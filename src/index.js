@@ -3,8 +3,10 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from './serviceWorker';
 import {Routes} from "./routing/Routes";
 import {Provider} from "react-redux";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./styles.scss";
 import configureStore from "./state";
+
 
 const reduxStore = configureStore( window.REDUX_INITIAL_DATA );
 

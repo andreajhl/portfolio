@@ -1,0 +1,11 @@
+@import "../../../theme";
+
+
+input {
+  margin-top: -6px;
+  width: 350px !important;
+  &.active {
+    border: solid 3px $active;
+  }
+}
+

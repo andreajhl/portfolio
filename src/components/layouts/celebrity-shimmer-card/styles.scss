@@ -1,0 +1,75 @@
+
+.shimmer-card {
+  margin-bottom: 10px;
+  position: relative;
+  -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  background-color: #FFF;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 180px;
+  height: 253px;
+
+  .shimmerBG {
+    text-align: center;
+    height: 160px;
+    animation-duration: 2.2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: shimmer;
+    animation-timing-function: linear;
+    background: #E5F0FB;
+    background: linear-gradient(to right, #c1dceb 4%, #a3cbe1 25%, #c1dceb 36%);
+    background-size: 1200px 100%;
+  }
+
+  @-webkit-keyframes shimmer {
+    0% {
+      background-position: -100% 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1200px 0;
+    }
+    100% {
+      background-position: 1200px 0;
+    }
+  }
+
+  .p-10 {
+    padding: 10px 0px;
+  }
+
+  .title-line {
+    height: 10px;
+    width: 80%;
+    border-radius: 20px;
+    animation-duration: 2.2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: shimmer;
+    animation-timing-function: linear;
+    background: #E5F0FB;
+    background: linear-gradient(to right, #c1dceb 4%, #a3cbe1 25%, #c1dceb 36%);
+    background-size: 1200px 100%;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .shimmer-card {
+    margin-bottom: 10px;
+    width: 200px;
+    height: 273px;
+
+    .shimmerBG {
+      width: 180px;
+      height: 180px;
+    }
+  }
+}

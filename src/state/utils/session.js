@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 
 export class Session {
     constructor() {
-        this.sessionName = "ss"; // simetrik session
+        this.sessionName = "fs"; // simetrik session
         this.session = this.getSession();
     }
 

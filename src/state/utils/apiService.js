@@ -49,10 +49,6 @@ const apiService = (meta) => {
     // Final URL
     let url = `${process.env.REACT_APP_ENDPOINT}${meta.path}`;
 
-    // replace client_id
-    const session = new Session();
-    url = url.replace(":client_session_id", session.getClientSession());
-
     let request = axios.create();
     switch (meta.method) {
         case 'GET':
