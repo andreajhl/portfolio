@@ -15,6 +15,9 @@ class PageContainer extends Component {
                 {/* FooterLayout */}
                 {/*{this.props.showFooter ? <FooterLayout/> : null}*/}
                 {/* End FooterLayout */}
+
+                {/*EmptyImage*/}
+                <img src="/assets/img/avatar-blank.png" style={{display: "none"}}/>
             </>
         );
     };

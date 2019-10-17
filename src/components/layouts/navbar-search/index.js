@@ -15,13 +15,16 @@ class NavbarSearchLayout extends Component {
     }
 
     inputHandler(e) {
-        if (e.target.value && e.target.value.length > 1) {
-            if (e.target.value.length % 2 === 0) {
-                if (this.props.onSearchChange) {
-                    this.props.onSearchChange(e.target.value)
-                }
-            }
+        if (this.props.onSearchChange) {
+            this.props.onSearchChange(e.target.value)
         }
+        // if (e.target.value && e.target.value.length > 1) {
+        //     if (e.target.value.length % 2 === 0) {
+        //         if (this.props.onSearchChange) {
+        //             this.props.onSearchChange(e.target.value)
+        //         }
+        //     }
+        // }
         this.setState({
             keyword: e.target.value
         });
@@ -58,26 +61,14 @@ class NavbarSearchLayout extends Component {
                         />
                         <span className="input-group-btn bg-primary" style={{color: "white !important"}}>
                                 {
-                                    !this.state.keyword.length
-                                        ?
-                                        <button className="btn btn-default text-white" type="button"
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    this.props.onSearchChange(this.state.keyword)
-                                                }}
-                                        >
-                                            <i className="fa fa-search"></i> Buscar
-                                        </button>
-                                        :
-                                        <button className="btn btn-danger text-white" type="button"
-                                                onClick={(e) => {
-                                                    this.setState({keyword: ""}, () => {
-                                                        this.props.onSearchChange(null)
-                                                    })
-                                                }}
-                                        >
-                                            Cancel
-                                        </button>
+                                    <button className="btn btn-default text-white" type="button"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                this.props.onSearchChange(this.state.keyword)
+                                            }}
+                                    >
+                                        <i className="fa fa-search"></i> Buscar
+                                    </button>
                                 }
                             </span>
                     </div>
