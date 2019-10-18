@@ -4,7 +4,7 @@ class FooterLayout extends Component {
 
     render() {
         return (
-            <>
+            <div className="FooterLayout">
                 <footer className="footer bg-light">
                     <div className="container">
                         <div className="row">
@@ -70,7 +70,7 @@ class FooterLayout extends Component {
                         </div>
                     </div>
                 </footer>
-            </>
+            </div>
         );
     };
 

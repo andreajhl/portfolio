@@ -1,18 +1,37 @@
 import React, {Component} from 'react';
 import "./styles.scss";
 import {NavbarSearchLayout} from "../navbar-search";
+import {history} from "../../../routing/History";
+import * as PATHS from "../../../routing/Paths";
+
 
 class NavbarSectionLayout extends Component {
 
+    constructor(props){
+        super(props);
+
+        this.state = {
+
+        };
+
+        this.goToRootPath = this.goToRootPath.bind(this)
+    }
+
+    goToRootPath() {
+        history.push(PATHS.ROOT_PATH)
+    }
+
     render() {
         return (
-            <>
+            <div className="NavbarSectionLayout">
                 <div className="f-navbar-container">
                     <nav className="f-navbar">
                         {/* LG*/}
                         <div className="f-items d-none d-md-block">
                             <div className="float-left">
-                                <img className="f-navbar-brand" src={"/assets/img/logo-color.png"} alt="logo"/>
+                                <img className="f-navbar-brand" src={"/assets/img/logo-color.png"} alt="logo"
+                                     onClick={this.goToRootPath}
+                                />
                             </div>
                             <div className="float-right float-right-lg">
                                 <button className="btn btn-sm mr-2">Ingresar</button>
@@ -68,7 +87,7 @@ class NavbarSectionLayout extends Component {
                     </nav>
                 </div>
                 <div style={{height: "90px"}}/>
-            </>
+            </div>
         );
     };
 

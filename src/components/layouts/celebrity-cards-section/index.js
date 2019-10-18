@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import "./styles.scss";
 import {CelebrityShimmerCardLayout} from "../celebrity-shimmer-card";
 import {CelebrityCardLayout} from "../celebrity-card";
+import "./styles.scss";
 
 class CelebrityCardsSectionLayout extends Component {
 
@@ -39,38 +39,25 @@ class CelebrityCardsSectionLayout extends Component {
 
     render() {
         return (
-            <>
+            <div className="CelebrityCardsSectionLayout">
                 <div className="f-main-padding">
                     {/*<div className="clearfix mb-2">*/}
                     {/*    <h6 className="float-left">*/}
                     {/*        <b>Famosos destacados</b>*/}
                     {/*    </h6>*/}
                     {/*</div>*/}
-                    <div>
-                        {
-                            this.props.showShimmerCards ?
-                                <div className="scrolling-wrapper">
-                                    {CelebrityCardsSectionLayout.renderShimmerCards()}
-                                </div>
-                                :
-                                <div className="scrolling-wrapper">
-                                    {this.renderCelebritiesCards()}
-                                    {this.renderCelebritiesCards()}
-                                    {this.renderCelebritiesCards()}
-                                    {this.renderCelebritiesCards()}
-                                    {this.renderCelebritiesCards()}
-                                    {this.renderCelebritiesCards()}
-                                    {this.renderCelebritiesCards()}
-                                    {this.renderCelebritiesCards()}
-                                    {this.renderCelebritiesCards()}
-                                    {this.renderCelebritiesCards()}
-                                    {this.renderCelebritiesCards()}
-                                    {this.renderCelebritiesCards()}
-                                </div>
-                        }
-                    </div>
+                    {
+                        this.props.showShimmerCards ?
+                            <div className="scrolling-wrapper">
+                                {CelebrityCardsSectionLayout.renderShimmerCards()}
+                            </div>
+                            :
+                            <div className="scrolling-wrapper">
+                                {this.renderCelebritiesCards()}
+                            </div>
+                    }
                 </div>
-            </>
+            </div>
         );
     };
 }

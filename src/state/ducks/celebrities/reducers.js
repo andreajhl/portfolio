@@ -9,12 +9,12 @@ const fetchCelebritiesInitialState = {
     data: {results: [], pagination_data: {}}
 };
 
-const getAlarmInitialState = {
+const getCelebrityInitialState = {
     loading: false,
     failed: false,
     completed: false,
     error_data: {error: ""},
-    data: {groups: []}
+    data: {category_data: {}, user_data: {}}
 };
 
 export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, action) {
@@ -46,7 +46,7 @@ export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, ac
     }
 }
 
-export function getAlarmReducer(state = getAlarmInitialState, action) {
+export function getCelebrityReducer(state = getCelebrityInitialState, action) {
     switch (action.type) {
         case types.GET_CELEBRITY_REQUEST:
             return {
@@ -55,13 +55,13 @@ export function getAlarmReducer(state = getAlarmInitialState, action) {
             };
         case types.GET_CELEBRITY_REQUEST_FAILURE:
             return {
-                ...getAlarmInitialState,
+                ...getCelebrityInitialState,
                 error_data: action.payload.data,
                 failed: true
             };
         case types.GET_CELEBRITY_REQUEST_SUCCESS:
             return {
-                ...getAlarmInitialState,
+                ...getCelebrityInitialState,
                 data: action.payload.data
             };
         case types.GET_CELEBRITY_REQUEST_COMPLETED:
@@ -77,5 +77,5 @@ export function getAlarmReducer(state = getAlarmInitialState, action) {
 
 export default combineReducers({
     fetchCelebritiesReducer,
-    getAlarmReducer,
+    getCelebrityReducer,
 });

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {CelebrityCardsSectionLayout, PageContainer, PaginationLayout} from "../../layouts";
 import * as PropTypes from "prop-types";
-import {CelebritiesShape, PaginationShape} from "../../../prop-types";
+import {CelebrityShape, PaginationShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 
 
-class LandingPage extends Component {
+class CelebritiesPage extends Component {
 
     constructor(props) {
         super(props);
@@ -14,14 +14,14 @@ class LandingPage extends Component {
         this.state = {
             params: {}
         };
-        this.fetchCelebrities = this.fetchCelebrities.bind(this);
+
         this.onPaginationChange = this.onPaginationChange.bind(this);
         this.updateParams = this.updateParams.bind(this);
         this.onSearchChange = this.onSearchChange.bind(this);
+        this.fetchCelebrities = this.fetchCelebrities.bind(this);
     }
 
     componentWillMount(): void {
-        this.fetchCelebrities();
     }
 
     fetchCelebrities() {
@@ -50,9 +50,7 @@ class LandingPage extends Component {
     render() {
         return (
             <>
-                <PageContainer
-                    onSearchChange={this.onSearchChange}
-                >
+                <PageContainer>
                     {/*/!* MainMenuLayout *!/*/}
                     {/*<MainMenuLayout/>*/}
                     {/*/!* End MainMenuLayout *!/*/}
@@ -78,14 +76,14 @@ class LandingPage extends Component {
 }
 
 // Set propTypes
-LandingPage.propTypes = {
-    celebrities: PropTypes.arrayOf(CelebritiesShape).isRequired,
+CelebritiesPage.propTypes = {
+    celebrities: PropTypes.arrayOf(CelebrityShape).isRequired,
     fetchCelebrities: PropTypes.func.isRequired,
     paginationData: PaginationShape
 };
 
 // Set defaultProps
-LandingPage.defaultProps = {
+CelebritiesPage.defaultProps = {
     celebrities: [],
     paginationData: {}
 };
@@ -103,5 +101,5 @@ const mapDispatchToProps = {
 };
 
 // Export Class
-const _LandingPage = connect(mapStateToProps, mapDispatchToProps)(LandingPage);
-export {_LandingPage as LandingPage};
+const _CelebritiesPage = connect(mapStateToProps, mapDispatchToProps)(CelebritiesPage);
+export {_CelebritiesPage as CelebritiesPage};

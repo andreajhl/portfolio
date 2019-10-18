@@ -21,12 +21,12 @@ class Routes extends Component {
                         <Route
                             exact
                             path={PATHS.ROOT_PATH}
-                            component={PAGES.LandingPage}
+                            component={PAGES.CelebritiesPage}
                         />
                         <Route
                             exact
-                            path={PATHS.LOGIN_PATH}
-                            component={PAGES.LoginPage}
+                            path={PATHS.CELEBRITY_PROFILE}
+                            component={PAGES.CelebrityProfilePage}
                         />
                         {/* ------- */}
                         <Route path="*" component={PAGES.NotFoundPage}/>

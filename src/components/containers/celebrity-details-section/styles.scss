@@ -1,0 +1,169 @@
+@import "../../../theme";
+
+.CelebrityDetailsSection{
+  .f-container {
+    background-color: $main-color-soft-purple;;
+
+    // PROFILE LG
+    .profile-lg {
+      position: relative;
+      width: 100vw;
+      padding-bottom: 20px;
+
+      .f-card {
+        margin-top: 30px;
+
+        .f-avatar {
+          background-color: transparent;
+          padding: 5px;
+
+          .rounded-circle {
+            display: inline-block;
+            width: 140px;
+            height: 140px;
+            background-position: 50% 50%;
+            background-size: cover;
+            border-radius: 50%;
+
+            img {
+              height: 100%;
+              width: 100%;
+              object-fit: cover
+            }
+          }
+
+        }
+
+        .f-names {
+          padding-top: 8px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .f-follow-button {
+          -webkit-border-radius: 30px;
+          -moz-border-radius: 30px;
+          border-radius: 30px;
+          border: solid 3px transparent;
+          padding: 5px 40px;
+        }
+
+        .f-social-network {
+          margin-top: 15px;
+          font-size: 10px;
+
+          i {
+            font-size: 15px;
+          }
+        }
+
+        .f-contract {
+          width: 100%;
+          font-size: 15px;
+          margin-top: 15px;
+          padding-top: 15px;
+          padding-bottom: 15px;
+          color: white;
+        }
+
+      }
+
+      .f-video {
+        padding-top: 30px;
+
+        img {
+          height: 362px;
+          width: 100%;
+          object-fit: cover;
+          background-color: #f6f6f6;
+          cursor: pointer;
+        }
+      }
+    }
+
+    // PROFILE SM
+    .profile-sm {
+      position: relative;
+      padding-top: 10px;
+
+      .f-video {
+        height: 60vh;
+        width: 100%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          overflow: hidden;
+        }
+      }
+
+      .f-avatar {
+        position: absolute;
+        bottom: -17px;
+        margin-left: 4vw;
+        height: 100px;
+        width: 100px;
+        background-color: white;
+        padding: 5px;
+      }
+
+      .margin-left-5w {
+        margin-left: 4vw !important;
+      }
+
+      .margin-right-5w {
+        margin-right: 4vw !important;
+      }
+
+      .f-follow-button {
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        border-radius: 30px;
+        border: solid 3px transparent;
+        padding: 5px 40px;
+      }
+
+      small.title {
+        font-size: 4vw !important;
+      }
+
+      small.subtitle {
+        font-size: 12px !important
+      }
+    }
+
+    .word-break {
+      word-break: break-all;
+    }
+  }
+
+  .f-section {
+    max-width: 900px;
+  }
+
+  .footer-btn {
+    height: 70px;
+    background-color: #f01e7c;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    z-index: 300;
+
+    * {
+      font-size: 15px;
+    }
+  }
+
+
+  .f-line {
+    border-top: dashed 2px $main-color-blue;
+  }
+
+  .hashtags {
+    color: $main-color-blue
+  }
+
+}

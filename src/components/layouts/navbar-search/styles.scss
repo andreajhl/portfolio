@@ -1,11 +1,12 @@
 @import "../../../theme";
 
+.NavbarSearchLayout {
 
-input {
-  margin-top: -6px;
-  width: 350px !important;
-  &.active {
-    border: solid 3px $active;
+  input {
+    width: 370px !important;
+
+    &.active {
+      border: solid 3px $active;
+    }
   }
 }
-

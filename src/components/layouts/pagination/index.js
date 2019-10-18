@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class PaginationLayout extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             currentPage: 1
@@ -41,50 +41,50 @@ class PaginationLayout extends Component {
     }
 
     render() {
-        const var1 = (this.props.pagination.totalItemsOnPage * (this.props.pagination.currentPage - 1)) + 1;
-        const var2 = (this.props.pagination.totalItemsOnPage * (this.props.pagination.currentPage - 1)) +
-            this.props.pagination.totalItemsOnPage;
-        const var3 = var2 > this.props.pagination.totalItems ? this.props.pagination.totalItems : var2;
+        // const var1 = (this.props.pagination.totalItemsOnPage * (this.props.pagination.currentPage - 1)) + 1;
+        // const var2 = (this.props.pagination.totalItemsOnPage * (this.props.pagination.currentPage - 1)) +
+        //     this.props.pagination.totalItemsOnPage;
+        // const var3 = var2 > this.props.pagination.totalItems ? this.props.pagination.totalItems : var2;
         return (
-            <>
+            <div className="PaginationLayout">
                 <div className="f-main-padding" style={{marginTop: "0"}}>
                     <nav>
                         <ul className="pagination">
                             <li className="page-item disabled">
-                                <a
+                                <span
                                     className="page-link cursor-pointer"
                                     onClick={this.previousPage.bind(this)}
                                     disabled={!this.props.pagination.previousPage}
                                 >
                                     Anterior
-                                </a>
+                                </span>
                             </li>
                             {
                                 [...Array(this.props.pagination.totalPages)].map((page, index) => {
                                     return (
-                                        <li className={"page-item " + (index + 1 === this.props.pagination.currentPage ? "active" : "")}
+                                        <li key={index} className={"page-item " + (index + 1 === this.props.pagination.currentPage ? "active" : "")}
                                             onClick={this.changePagination.bind(this, index + 1)}>
-                                            <a className={"page-link"}
+                                            <span className={"page-link"}
                                                key={index}>
                                                 {index + 1}
-                                            </a>
+                                            </span>
                                         </li>
                                     )
                                 })
                             }
                             <li className="page-item">
-                                <a
+                                <span
                                     className="page-link cursor-pointer"
                                     onClick={this.nextPage.bind(this)}
                                     disabled={!this.props.pagination.nextPage}
                                 >
                                     Siguiente
-                                </a>
+                                </span>
                             </li>
                         </ul>
                     </nav>
                 </div>
-            </>
+            </div>
         );
     }
 }

@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import "./styles.scss";
+import {history} from "../../../routing/History";
+import * as PATHS from "../../../routing/Paths";
+
 
 class CelebrityCardLayout extends Component {
 
@@ -10,17 +13,24 @@ class CelebrityCardLayout extends Component {
             imageLoaded: false,
         };
 
-        this.handleImageLoaded = this.handleImageLoaded.bind(this)
+        this.handleImageLoaded = this.handleImageLoaded.bind(this);
+        this.goToCelebrityProfile = this.goToCelebrityProfile.bind(this);
     }
 
     handleImageLoaded() {
         this.setState({imageLoaded: true});
     }
 
+    goToCelebrityProfile() {
+        history.push(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.celebrity.user_data.username))
+    }
+
     render() {
         return (
-            <>
-                <div className="card f-card f-rounded hover f-shadow p-2 cursor-pointer">
+            <div className="CelebrityCardLayout">
+                <div className="card f-card f-rounded hover f-shadow p-2 cursor-pointer"
+                     onClick={this.goToCelebrityProfile}
+                >
                     <div className="text-center mx-auto">
                         <div className="f-image border f-rounded">
                             <img className="card-img-top f-rounded"
@@ -29,7 +39,7 @@ class CelebrityCardLayout extends Component {
                                  src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.user_data.avatar}
                             />
                             <small className="f-price rounded">
-                                <b>{this.props.celebrity.contract_price}</b>
+                                <b>{this.props.celebrity.contract_price} USD</b>
                             </small>
                         </div>
                     </div>
@@ -42,14 +52,15 @@ class CelebrityCardLayout extends Component {
                         </h6>
                         <small className="text-main-color-blue">
                             {
-                                this.props.celebrity.hashtags.map(h => {
-                                    return <span style={{marginRight: "2px"}}>#{h}</span>
+                                this.props.celebrity.hashtags.map((h, index) => {
+                                    return <span key={index} style={{marginRight: "2px"}}>#{h}</span>
                                 })
                             }
                         </small>
+                        <small>{this.props.celebrity.user_data.username}</small>
                     </div>
                 </div>
-            </>
+            </div>
         );
     };
 }

@@ -1,7 +1,7 @@
 import * as PropTypes from "prop-types";
 
-const CelebritiesShape = PropTypes.shape({
+const CelebrityShape = PropTypes.shape({
     // Data
 });
 
-export {CelebritiesShape}
+export {CelebrityShape}

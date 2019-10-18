@@ -1,82 +1,85 @@
 @import "../../../theme";
 
-.f-navbar-container {
-  position: fixed;
-  width: 100%;
-  height: 90px;
-  z-index: 1;
-  background-color: white;
-  //border-bottom: solid 1px; // comment
-
-  .f-navbar {
-    position: absolute;
-    padding: 30px 3vw 30px 3vw;
-    width: 100%;
-    height: 100%;
-
-    .f-items {
-      height: 100%;
-
-      .float-left {
-
-        .f-navbar-brand {
-          width: 150px;
-        }
-      }
-
-      .float-right {
-
-        &.float-right-lg {
-          margin-top: 4px;
-          position: relative;
-          top: -2px;
-        }
-
-        &.float-right-sm {
-          margin-top: -5px;
-        }
-
-        .f-search-button {
-          font-size: 22px;
-        }
-
-        .f-register-button {
-          border-radius: 25px;
-          padding-left: 13px;
-          padding-right: 13px;
-        }
-
-        .btn-outline-primary{
-          border: solid 2px;
-        }
-      }
-    }
-
-  }
-
-  .profile-img{
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-  }
-
-}
-
-@media (max-width: 768px) {
+.NavbarSectionLayout {
   .f-navbar-container {
-    height: 80px;
+    position: fixed;
+    width: 100%;
+    height: 90px;
+    z-index: 1;
+    background-color: white;
+    //border-bottom: solid 1px; // comment
 
     .f-navbar {
-      padding: 20px 10px 20px 10px !important;
+      position: absolute;
+      padding: 30px 3vw 30px 3vw;
+      width: 100%;
+      height: 100%;
+
+      .f-items {
+        height: 100%;
+
+        .float-left {
+
+          .f-navbar-brand {
+            width: 150px;
+          }
+        }
+
+        .float-right {
+
+          &.float-right-lg {
+            margin-top: 4px;
+            position: relative;
+            top: -2px;
+          }
+
+          &.float-right-sm {
+            margin-top: -5px;
+          }
+
+          .f-search-button {
+            font-size: 22px;
+          }
+
+          .f-register-button {
+            border-radius: 25px;
+            padding-left: 13px;
+            padding-right: 13px;
+          }
+
+          .btn-outline-primary {
+            border: solid 2px;
+          }
+        }
+      }
+
+    }
+
+    .profile-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+  }
+
+  @media (max-width: 768px) {
+    .f-navbar-container {
+      height: 80px;
+
+      .f-navbar {
+        padding: 20px 10px 20px 10px !important;
+      }
     }
   }
-}
 
-@media (max-width: 983px) {
-  .d-md-block {
-    display: none !important;
+  @media (max-width: 983px) {
+    .d-md-block {
+      display: none !important;
+    }
+    .d-block {
+      display: block !important;
+    }
   }
-  .d-block {
-    display: block !important;
-  }
+
 }

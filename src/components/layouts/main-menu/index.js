@@ -5,7 +5,7 @@ class MainMenuLayout extends Component {
 
     render() {
         return (
-            <>
+            <div className="MainMenuLayout">
                 <div className="row justify-content-center">
                     <div className="col-12 col-lg-6">
                         <div className="f-main-padding mt-3">
@@ -20,7 +20,7 @@ class MainMenuLayout extends Component {
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     };
 

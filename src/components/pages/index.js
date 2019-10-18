@@ -1,3 +1,3 @@
-export * from './not-found';
-export * from './landing';
-export * from './login';
+export * from "./celebrities";
+export * from "./celebrity-profile";
+export * from "./not-found";

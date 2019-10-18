@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import "./styles.scss";
+import {history} from "../../../routing/History";
+import * as PATHS from "../../../routing/Paths";
 
 class NavbarSearchLayout extends Component {
 
@@ -15,18 +18,21 @@ class NavbarSearchLayout extends Component {
     }
 
     inputHandler(e) {
-        if (this.props.onSearchChange) {
-            this.props.onSearchChange(e.target.value)
+        if (e.target.value && e.target.value.length > 1) {
+            if (e.target.value.length % 2 === 0) {
+                if (this.props.onSearchChange) {
+                    this.props.onSearchChange(e.target.value)
+                }
+            }
+        } else if (e.target.value.length === 0) {
+            if (this.props.onSearchChange) {
+                this.props.onSearchChange(e.target.value)
+            }
         }
-        // if (e.target.value && e.target.value.length > 1) {
-        //     if (e.target.value.length % 2 === 0) {
-        //         if (this.props.onSearchChange) {
-        //             this.props.onSearchChange(e.target.value)
-        //         }
-        //     }
-        // }
         this.setState({
             keyword: e.target.value
+        }, () => {
+            history.push(PATHS.ROOT_PATH)
         });
     }
 
@@ -46,7 +52,7 @@ class NavbarSearchLayout extends Component {
 
     render() {
         return (
-            <>
+            <div className="NavbarSearchLayout">
                 <div className="form-group">
                     <div className="input-group">
                         <input
@@ -73,14 +79,14 @@ class NavbarSearchLayout extends Component {
                             </span>
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
 }
 
 // Set defaultProps
 NavbarSearchLayout.defaultProps = {
-    searchLabel: "Busca a un Famoso",
+    searchLabel: "Ej: Pibe Valderrama, Comediantes, Cantantes",
     onSearchChange: function () {
     }
 };
