@@ -112,13 +112,15 @@ class CelebrityDetailsSection extends Component {
                                                 src="https://famosos-output-videos.s3.amazonaws.com/videos/1347896573999/970528751665_1347896573999/970528751665_1347896573999.mp4">
                                         </iframe>
                                         <div className="f-avatar f-shadow">
-                                            <img src="" alt="avatar"/>
+                                            <img onLoad={this.handleImageLoaded}
+                                                 src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.user_data.avatar}
+                                                 alt="avatar"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-7 mt-4 pr-0">
                                     <div className="margin-left-5w">
-                                        <small className="title">{this.props.celebrity.short_name}</small>
+                                        <small className="title">{this.props.celebrity.user_data.full_name}</small>
                                     </div>
                                 </div>
                                 <div className="col-5 mt-3 pl-0 text-right">
