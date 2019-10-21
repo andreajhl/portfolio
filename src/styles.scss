@@ -48,6 +48,7 @@ b {
     border-radius: 0px 0px 20px 0;
     padding: 10px;
     text-transform: uppercase;
+
     .close-button {
       position: absolute;
       background: white;
@@ -62,25 +63,24 @@ b {
     padding: 25px;
   }
 
-  .form {
-    font-size: 15px;
-
-    .radio {
-      label {
-        font-size: 12px;
-      }
+  .radio {
+    label {
+      font-size: 12px;
     }
+  }
 
-    input, textarea {
-      border: 2px solid;
-    }
+  input, textarea {
+    border: 2px solid black !important;
+  }
 
-    .switch-label {
-      top: -10px;
-      position: relative;
-      margin-left: 5px;
-    }
+  input[type='radio'] {
+    border: 2px solid black !important;
+  }
 
+  .switch-label {
+    top: -10px;
+    position: relative;
+    margin-left: 5px;
   }
 
 }
@@ -195,7 +195,57 @@ b {
 }
 
 .btn-group.open.show {
-  .btn.dropdown-toggle{
+  .btn.dropdown-toggle {
     background-color: $light;
   }
+}
+
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+div.StripeCardForm {
+  border: solid 2px !important;
+  border-radius: 0.25rem;
+}
+
+button.contract-button {
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  border: solid 3px;
+  padding: 5px 40px;
+  width: 320px;
+  background-size: 280px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-image: url("/assets/img/Pattern-Fiesta.png"), linear-gradient(180deg, #F9EF7F 0%, #E1BC29 100%);
 }

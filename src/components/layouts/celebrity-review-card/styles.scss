@@ -1,0 +1,14 @@
+.CelebrityReviewCardLayout {
+  .card-review {
+    height: 160px;
+
+    .card-body {
+      overflow: hidden;
+
+      p {
+        text-align: justify;
+      }
+    }
+  }
+
+}

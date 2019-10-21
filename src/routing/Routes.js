@@ -28,6 +28,11 @@ class Routes extends Component {
                             path={PATHS.CELEBRITY_PROFILE}
                             component={PAGES.CelebrityProfilePage}
                         />
+                        <Route
+                            exact
+                            path={PATHS.CONTRACT_CREATED}
+                            component={PAGES.ContractCreatedPage}
+                        />
                         {/* ------- */}
                         <Route path="*" component={PAGES.NotFoundPage}/>
                     </Switch>

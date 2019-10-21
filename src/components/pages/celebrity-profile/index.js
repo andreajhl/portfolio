@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {PageContainer} from "../../layouts";
+import {CelebrityDetailsCardLayout, PageContainer} from "../../layouts";
 import * as PropTypes from "prop-types";
 import {CelebrityShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
-import {CelebrityDetailsSection} from "../../containers";
+import {CelebrityReviewsSection} from "../../containers";
 
 
 class CelebrityProfilePage extends Component {
@@ -20,11 +20,13 @@ class CelebrityProfilePage extends Component {
     }
 
     componentWillMount(): void {
-        this.getCelebrity(this.props.match.params.celebrity_username);
+        if (this.props.celebrity.user.username !== this.props.match.params.celebrity_username) {
+            this.getCelebrity(this.props.match.params.celebrity_username);
+        }
     }
 
     componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
-        if(nextProps.match.params.celebrity_username !== this.props.match.params.celebrity_username){
+        if (nextProps.match.params.celebrity_username !== this.props.match.params.celebrity_username) {
             this.getCelebrity(nextProps.match.params.celebrity_username);
         }
     }
@@ -36,8 +38,18 @@ class CelebrityProfilePage extends Component {
     render() {
         return (
             <>
-                <PageContainer>
-                    <CelebrityDetailsSection celebrity={this.props.celebrity}/>
+                <PageContainer fetchCelebrities={false}>
+                    {
+                        this.props.celebrity.user.username === this.props.match.params.celebrity_username ?
+                            <>
+                                <CelebrityDetailsCardLayout
+                                    celebrity={this.props.celebrity}
+                                    socialNetworks={this.props.socialNetworks}/>
+                                <CelebrityReviewsSection
+                                    celebrity={this.props.celebrity}/>
+                            </>
+                            : null
+                    }
                 </PageContainer>
             </>
         );
@@ -47,7 +59,7 @@ class CelebrityProfilePage extends Component {
 
 // Set propTypes
 CelebrityProfilePage.propTypes = {
-    celebrity: PropTypes.arrayOf(CelebrityShape).isRequired,
+    celebrity: CelebrityShape.isRequired,
     getCelebrity: PropTypes.func.isRequired,
 };
 
@@ -55,19 +67,21 @@ CelebrityProfilePage.propTypes = {
 CelebrityProfilePage.defaultProps = {
     celebrity: {
         category_data: {},
-        user_data: {}
+        user_data: {},
     },
+    socialNetworks: [],
 };
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     isLoading: state.celebrities.getCelebrityReducer.loading,
     celebrity: state.celebrities.getCelebrityReducer.data,
+    socialNetworks: state.celebritySocialNetworks.fetchCelebritySocialNetworksReducer.data.results,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getCelebrity: celebrityOperations.get
+    getCelebrity: celebrityOperations.get,
 };
 
 // Export Class

@@ -21,7 +21,9 @@ class PageContainer extends Component {
     }
 
     componentWillMount(): void {
-        this.fetchCelebrities();
+        if(this.props.fetchCelebrities && !this.props.celebrities.length) {
+            this.fetchCelebrities();
+        }
     }
 
     fetchCelebrities() {
@@ -77,6 +79,7 @@ PageContainer.propTypes = {
 
 // Set defaultProps
 PageContainer.defaultProps = {
+    fetchCelebrities: true,
     celebrities: [],
     paginationData: {},
     onSearchChange: () => {},

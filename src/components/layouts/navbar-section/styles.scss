@@ -63,17 +63,21 @@
 
   }
 
-  @media (max-width: 768px) {
-    .f-navbar-container {
-      height: 80px;
-
-      .f-navbar {
-        padding: 20px 10px 20px 10px !important;
-      }
-    }
+  .f-navbar-container-helper {
+    height: 90px;
   }
 
   @media (max-width: 983px) {
+    .f-navbar-container {
+      height: 70px !important;
+
+      .f-navbar {
+        padding: 12px 10px 12px 10px !important;
+      }
+    }
+    .f-navbar-container-helper {
+      height: 70px;
+    }
     .d-md-block {
       display: none !important;
     }

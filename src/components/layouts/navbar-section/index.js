@@ -50,14 +50,15 @@ class NavbarSectionLayout extends Component {
                                 {/* LOGO*/}
                                 <div className="col mt-0 pt-0 mr-0 pr-0 mb-0 pb-0">
                                     <img className="mt-1" src={"/assets/img/logo-color.png"}
-                                         style={{width: "100%", maxWidth: "150px"}} alt="logo"/>
+                                         style={{width: "100%", maxWidth: "150px"}} alt="logo"
+                                         onClick={this.goToRootPath}/>
                                 </div>
                                 {/* LOGIN*/}
-                                <div className="col-3 pt-0 ml-0 pl-0 mb-0 pb-0 text-center">
-                                    <button className="btn btn-primary btn-sm mt-2 f-register-button">
-                                        Comenzar
-                                    </button>
-                                </div>
+                                {/*<div className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center">*/}
+                                {/*    <button className="btn btn-primary btn-sm mt-2 f-register-button">*/}
+                                {/*        Comenzar*/}
+                                {/*    </button>*/}
+                                {/*</div>*/}
                                 {/* LOGGED*/}
                                 {/*<div className="col-6 pt-0 ml-0 pl-0 mb-0 pb-0 text-right">*/}
                                 {/*    <div className="btn-group">*/}
@@ -86,7 +87,7 @@ class NavbarSectionLayout extends Component {
                         </div>
                     </nav>
                 </div>
-                <div style={{height: "90px"}}/>
+                <div className="f-navbar-container-helper"/>
             </div>
         );
     };

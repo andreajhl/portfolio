@@ -65,18 +65,6 @@ class NavbarSearchLayout extends Component {
                             onChange={this.inputHandler.bind(this)}
                             placeholder={this.props.searchLabel}
                         />
-                        <span className="input-group-btn bg-primary" style={{color: "white !important"}}>
-                                {
-                                    <button className="btn btn-default text-white" type="button"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                this.props.onSearchChange(this.state.keyword)
-                                            }}
-                                    >
-                                        <i className="fa fa-search"></i> Buscar
-                                    </button>
-                                }
-                            </span>
                     </div>
                 </div>
             </div>

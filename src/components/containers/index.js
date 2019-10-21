@@ -1,1 +1,2 @@
-export * from "./celebrity-details-section";
+export * from "./celebrity-reviews-section";
+export * from "./contract-modal";

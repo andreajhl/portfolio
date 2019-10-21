@@ -22,7 +22,7 @@ class CelebrityCardLayout extends Component {
     }
 
     goToCelebrityProfile() {
-        history.push(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.celebrity.user_data.username))
+        history.push(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.celebrity.user.username))
     }
 
     render() {
@@ -36,19 +36,19 @@ class CelebrityCardLayout extends Component {
                             <img className="card-img-top f-rounded"
                                  alt="avatar"
                                  onLoad={this.handleImageLoaded}
-                                 src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.user_data.avatar}
+                                 src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
                             />
                             <small className="f-price rounded">
-                                <b>{this.props.celebrity.contract_price} USD</b>
+                                <b>{this.props.celebrity.contracts_price} USD</b>
                             </small>
                         </div>
                     </div>
                     <div className="card-body text-left pl-2 pt-2 pr-2 pb-0">
                         <small className="f-category text-muted">
-                            {this.props.celebrity.category_data.title}
+                            {this.props.celebrity.category.title}
                         </small>
                         <h6 className="p-0 m-0">
-                            <b>{this.props.celebrity.user_data.full_name}</b>
+                            <b>{this.props.celebrity.user.full_name}</b>
                         </h6>
                         <small className="text-main-color-blue">
                             {
@@ -57,7 +57,6 @@ class CelebrityCardLayout extends Component {
                                 })
                             }
                         </small>
-                        <small>{this.props.celebrity.user_data.username}</small>
                     </div>
                 </div>
             </div>
@@ -68,8 +67,8 @@ class CelebrityCardLayout extends Component {
 // default props
 CelebrityCardLayout.defaultProps = {
     celebrity: {
-        category_data: {},
-        user_data: {}
+        category: {},
+        user: {}
     }
 };
 

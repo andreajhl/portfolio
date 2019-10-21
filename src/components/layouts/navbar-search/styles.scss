@@ -4,6 +4,9 @@
 
   input {
     width: 370px !important;
+    height: 45px;
+    border-radius: 8px !important;
+    margin-top: -4px !important;
 
     &.active {
       border: solid 3px $active;

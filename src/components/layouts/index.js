@@ -1,5 +1,7 @@
 export * from "./celebrity-card";
 export * from "./celebrity-cards-section";
+export * from "./celebrity-details-card";
+export * from "./celebrity-review-card";
 export * from "./celebrity-shimmer-card";
 export * from "./footer";
 export * from "./main-menu";

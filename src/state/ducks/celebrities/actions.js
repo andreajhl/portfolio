@@ -2,6 +2,9 @@ import * as types from "./types";
 import apiService from "../../utils/apiService";
 import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
 import * as API_PATHS from './paths';
+import {celebritySocialNetworkOperations} from "../celebrity-social-networks";
+import {contractReviewOperations} from "../contract-reviews";
+
 
 export const get = (object_id) => {
     return dispatch => {
@@ -24,6 +27,9 @@ export const get = (object_id) => {
                 } else {
                     handleApiResponseSuccess(dispatch, TYPE, res);
                     // Other actions
+
+                    dispatch(celebritySocialNetworkOperations.list({celebrity__id: res.data.id}));
+                    dispatch(contractReviewOperations.list({celebrity__id: res.data.id}));
 
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
                 }

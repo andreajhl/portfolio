@@ -14,7 +14,7 @@ const getCelebrityInitialState = {
     failed: false,
     completed: false,
     error_data: {error: ""},
-    data: {category_data: {}, user_data: {}}
+    data: {category: {}, user: {}, hashtags: []}
 };
 
 export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, action) {

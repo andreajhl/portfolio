@@ -47,7 +47,7 @@ class PaginationLayout extends Component {
         // const var3 = var2 > this.props.pagination.totalItems ? this.props.pagination.totalItems : var2;
         return (
             <div className="PaginationLayout">
-                <div className="f-main-padding" style={{marginTop: "0"}}>
+                <div className={this.props.showFmainPadding ? "f-main-padding" : ""} style={{marginTop: "0"}}>
                     <nav>
                         <ul className="pagination">
                             <li className="page-item disabled">
@@ -91,6 +91,7 @@ class PaginationLayout extends Component {
 
 // default Props
 PaginationLayout.defaultProps = {
+    showFmainPadding: true,
     pagination: {totalItems: 0},
     onPaginationChange: function () {
     },
