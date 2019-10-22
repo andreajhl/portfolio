@@ -21,6 +21,7 @@ class ContractModal extends Component {
                 instructions: "",
                 price: this.props.celebrity.contracts_price,
                 is_public: true,
+                stripe_id: ""
             },
             errors: []
         };
@@ -58,10 +59,9 @@ class ContractModal extends Component {
     }
 
     async sendData() {
-        this.props.saveContract(this.state.contract_data);
 
         // //TODO: 1) Validate Form
-        // const contract_data = this.state.contract_data;
+        const contract_data = this.state.contract_data;
         const errors = [];
         // if (contract_data.contract_type === 1 && !contract_data.delivery_from) {
         //     errors.push("delivery_from");
@@ -81,10 +81,13 @@ class ContractModal extends Component {
             return false;
         } else {
             // //TODO: 2) Tokenize Card
-            // let {token} = await this.childRef.current.state.stripe.createToken();
-            // if (token) {
-            //     //TODO: 3) Send Card Token
-            // }
+            let {token} = await this.childRef.current.state.stripe.createToken();
+            if (token) {
+                contract_data.stripe_id = token.id;
+                this.setState({contract_data}, () => {
+                    this.props.saveContract(this.state.contract_data);
+                })
+            }
         }
     }
 
