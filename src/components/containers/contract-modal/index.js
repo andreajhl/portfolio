@@ -111,19 +111,6 @@ class ContractModal extends Component {
                     <Row>
                         <Col sm="4">
                             <Form.Group>
-                                <Form.Label><b>De:</b></Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Duvan"
-                                    name="delivery_from"
-                                    value={this.state.contract_data.delivery_from}
-                                    onChange={this.handleValue}
-                                />
-                                {this.showErrorMessage("delivery_from")}
-                            </Form.Group>
-                        </Col>
-                        <Col sm="4">
-                            <Form.Group>
                                 <Form.Label><b>Para:</b></Form.Label>
                                 <Form.Control
                                     type="text"
@@ -133,6 +120,19 @@ class ContractModal extends Component {
                                     onChange={this.handleValue}
                                 />
                                 {this.showErrorMessage("delivery_to")}
+                            </Form.Group>
+                        </Col>
+                        <Col sm="4">
+                            <Form.Group>
+                                <Form.Label><b>De:</b></Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Duvan"
+                                    name="delivery_from"
+                                    value={this.state.contract_data.delivery_from}
+                                    onChange={this.handleValue}
+                                />
+                                {this.showErrorMessage("delivery_from")}
                             </Form.Group>
                         </Col>
                     </Row>
@@ -209,16 +209,16 @@ class ContractModal extends Component {
                                     />
                                     <Form.Check.Label>Para mi</Form.Check.Label>
                                 </Form.Check>
-                                <Form.Check type="radio">
-                                    <Form.Check.Input
-                                        type="radio"
-                                        name="contract_type"
-                                        value={3}
-                                        checked={this.state.contract_data.contract_type === 3}
-                                        onChange={this.handleValue}
-                                    />
-                                    <Form.Check.Label>Para un negocio o marca</Form.Check.Label>
-                                </Form.Check>
+                                {/*<Form.Check type="radio">*/}
+                                {/*    <Form.Check.Input*/}
+                                {/*        type="radio"*/}
+                                {/*        name="contract_type"*/}
+                                {/*        value={3}*/}
+                                {/*        checked={this.state.contract_data.contract_type === 3}*/}
+                                {/*        onChange={this.handleValue}*/}
+                                {/*    />*/}
+                                {/*    <Form.Check.Label>Para un negocio o marca</Form.Check.Label>*/}
+                                {/*</Form.Check>*/}
                             </Form.Group>
                             {/*END CONTRACT TYPE*/}
 
@@ -232,13 +232,13 @@ class ContractModal extends Component {
                                     para {this.props.celebrity.user.full_name} son:</b></Form.Label>
                                 <Form.Control as="textarea"
                                               rows="3"
-                                              placeholder="Ejemplo: Mi nombre es Maria. Mi hermano Jose es fan tuyo y le encantan tus canciones. El esta cumpliendo años el 12 de agosto y quisiera que le desearas un Feliz Cumpleaños de mi parte."
+                                              placeholder={this.state.contract_data.contract_type === 1 ? "Ejemplo: Mi nombre es Maria. Mi hermano Jose es fan tuyo y le encantan tus canciones. El esta cumpliendo años el 12 de agosto y quisiera que le desearas un Feliz Cumpleaños de mi parte." : "Hola, estoy pasando por un momento dificil y me gustaria que me des un poco de animo!"}
                                               name="instructions"
                                               value={this.state.contract_data.instructions}
                                               onChange={this.handleValue}
                                 />
                                 <Form.Text className="text-muted">
-                                    Minimo 280 caracteres
+                                    Máximo 280 caracteres
                                 </Form.Text>
                                 {this.showErrorMessage("instructions")}
                             </Form.Group>
@@ -301,7 +301,7 @@ class ContractModal extends Component {
                                 className="contract-button hover cursor-pointer p-2 border bg-active"
                                 onClick={this.sendData}
                             >
-                                CONTRATAR A {this.props.celebrity.user.full_name}
+                                CONTRATAR A {this.props.celebrity.user ? this.props.celebrity.user.full_name.split(" ")[0] : null}
                             </button>
                             <div className="mt-2 mb-4">
                                 <small>

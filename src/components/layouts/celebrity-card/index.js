@@ -45,16 +45,22 @@ class CelebrityCardLayout extends Component {
                     </div>
                     <div className="card-body text-left pl-2 pt-2 pr-2 pb-0">
                         <small className="f-category text-muted">
-                            {this.props.celebrity.category.title}
+                            {this.props.celebrity.category ? this.props.celebrity.category.title : null}
                         </small>
                         <h6 className="p-0 m-0">
-                            <b>{this.props.celebrity.user.full_name}</b>
+                            <b>{this.props.celebrity.user ? this.props.celebrity.user.full_name : "--"}</b>
                         </h6>
                         <small className="text-main-color-blue">
                             {
-                                this.props.celebrity.hashtags.map((h, index) => {
-                                    return <span key={index} style={{marginRight: "2px"}}>#{h}</span>
-                                })
+                                this.props.celebrity.hashtags
+                                    ?
+                                    this.props.celebrity.hashtags.map((h, index) => {
+                                        return <span key={index} style={{marginRight: "2px"}}>#{h}</span>
+                                    })
+                                    :
+                                    <span style={{marginRight: "2px"}}>
+                                        #{this.props.celebrity.user ? this.props.celebrity.user.full_name.trim() : null}
+                                    </span>
                             }
                         </small>
                     </div>

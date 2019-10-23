@@ -1,6 +1,6 @@
 @import "../../../theme";
 
-.CelebrityDetailsCardLayout{
+.CelebrityDetailsCardLayout {
   .f-container {
     background-color: $main-color-soft-purple;;
 
@@ -72,7 +72,22 @@
       }
 
       .f-video {
-        padding-top: 30px;
+        background-color: transparent !important;
+
+        .play-pause {
+          position: absolute;
+          top: 35px;
+          left: 32px;
+          font-size: 45px;
+          color: white;
+        }
+
+        video {
+          margin-top: 20px;
+          border-radius: 20px;
+          height: 357px;
+          width: 100%;
+        }
 
         img {
           height: 362px;
@@ -90,8 +105,23 @@
       padding-top: 10px;
 
       .f-video {
-        height: 60vh;
-        width: 100%;
+        background-color: transparent !important;
+        border-radius: 20px;
+
+        .play-pause {
+          position: absolute;
+          top: 20px;
+          left: 32px;
+          font-size: 45px;
+          color: white;
+        }
+
+        video {
+          height: 460px;
+          width: 100%;
+          border-radius: 20px;
+        }
+
 
         img {
           width: 100%;
@@ -168,4 +198,8 @@
     color: $main-color-blue
   }
 
+}
+
+video {
+  object-fit: fill !important;
 }

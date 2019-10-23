@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {CelebrityDetailsCardLayout, PageContainer} from "../../layouts";
+import {CelebrityCardsSectionLayout, CelebrityDetailsCardLayout, PageContainer, PaginationLayout} from "../../layouts";
 import * as PropTypes from "prop-types";
 import {CelebrityShape} from "../../../prop-types";
 import {connect} from "react-redux";
@@ -42,11 +42,33 @@ class CelebrityProfilePage extends Component {
                     {
                         this.props.celebrity.user.username === this.props.match.params.celebrity_username ?
                             <>
+                                {/* CelebrityDetailsCardLayout */}
                                 <CelebrityDetailsCardLayout
                                     celebrity={this.props.celebrity}
                                     socialNetworks={this.props.socialNetworks}/>
+                                {/* END CelebrityDetailsCardLayout */}
+
+                                {/* CelebrityReviewsSection */}
                                 <CelebrityReviewsSection
                                     celebrity={this.props.celebrity}/>
+                                {/* END CelebrityReviewsSection */}
+
+                                {/* CelebrityCardsSectionLayout */}
+                                <div className="mt-4">
+                                    <CelebrityCardsSectionLayout
+                                        title={"Famosos similares"}
+                                        showShimmerCards={this.props.similarCelebritiesLoading}
+                                        celebrities={this.props.similarCelebrities}
+                                    />
+                                </div>
+                                {/* End CelebrityCardsSectionLayout */}
+
+                                {/* PaginationLayout */}
+                                <PaginationLayout
+                                    pagination={this.props.similarCelebritiesPaginationData}
+                                    // onPaginationChange={this.onPaginationChange}
+                                />
+                                {/* End PaginationLayout */}
                             </>
                             : null
                     }
@@ -70,6 +92,7 @@ CelebrityProfilePage.defaultProps = {
         user_data: {},
     },
     socialNetworks: [],
+    similarCelebrities: [],
 };
 
 // mapStateToProps
@@ -77,6 +100,9 @@ const mapStateToProps = (state: any) => ({
     isLoading: state.celebrities.getCelebrityReducer.loading,
     celebrity: state.celebrities.getCelebrityReducer.data,
     socialNetworks: state.celebritySocialNetworks.fetchCelebritySocialNetworksReducer.data.results,
+    similarCelebritiesLoading: state.celebrities.fetchSimilarCelebritiesReducer.loading,
+    similarCelebrities: state.celebrities.fetchSimilarCelebritiesReducer.data.results,
+    similarCelebritiesPaginationData: state.celebrities.fetchSimilarCelebritiesReducer.data.pagination_data
 });
 
 // mapStateToProps

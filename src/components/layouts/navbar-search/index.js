@@ -74,7 +74,7 @@ class NavbarSearchLayout extends Component {
 
 // Set defaultProps
 NavbarSearchLayout.defaultProps = {
-    searchLabel: "Ej: Pibe Valderrama, Comediantes, Cantantes",
+    searchLabel: "Ej: Pibe Valderrama, Comediantes, Músicos",
     onSearchChange: function () {
     }
 };

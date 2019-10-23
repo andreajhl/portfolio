@@ -1,0 +1,63 @@
+import React, {Component} from 'react';
+import "./styles.scss";
+
+class IndexHeaderLayout extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showHeader: true
+        };
+
+        this.hideHeader = this.hideHeader.bind(this);
+    }
+
+    hideHeader() {
+        localStorage.setItem("hideIndexHeader", "true");
+        this.setState({showHeader: false})
+    }
+
+    render() {
+        return (
+            <>
+                {
+                    this.state.showHeader === true
+                        ?
+                        <div className="IndexHeaderLayout">
+                            <div className="header">
+                                <div className="f-main-padding">
+                                    <div className="mr-4 ml-4 text-center p-4 index-header">
+                                        <i className="fa fa-times-circle fa-2x text-white" onClick={this.hideHeader}/>
+                                        <img width="150px" src="/assets/img/demo.svg" alt="avatar"/>
+                                        <div className="mt-4 mb-4 text-white">
+                                            <h6 className="font-weight-bold">Contrata Famosos Para Que Graben <br/>Videos
+                                                Personalizados Con Tus Mensajes</h6>
+                                            <small className="mt-2">
+                                                Regalos de Cumpleaños, Invitaciones a Eventos, Declaraciones de Amor
+                                            </small>
+                                            <br className="m-0 p-0"/>
+                                            <small>
+                                                Mensajes Corporativos, Contenidos Para Redes Sociales y Muchos Mas!
+                                            </small>
+                                        </div>
+                                        <div onClick={this.hideHeader} style={{cursor: "pointer"}}>
+                                            <h6 className="mt-4 pt-4 font-weight-bold text-white">
+                                                Ver Famosos
+                                            </h6>
+                                            <img width="20px" className="mt-0 pt-0" src="/assets/img/circle-down.svg"
+                                                 alt="avatar"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        : null
+                }
+            </>
+        );
+    };
+
+}
+
+export {IndexHeaderLayout};

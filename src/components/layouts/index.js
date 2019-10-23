@@ -9,3 +9,4 @@ export * from "./navbar-search";
 export * from "./navbar-section";
 export * from "./page-container";
 export * from "./pagination";
+export * from "./index-header";

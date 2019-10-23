@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {CelebrityCardsSectionLayout, PageContainer, PaginationLayout} from "../../layouts";
+import {CelebrityCardsSectionLayout, IndexHeaderLayout, PageContainer, PaginationLayout} from "../../layouts";
 import * as PropTypes from "prop-types";
 import {CelebrityShape, PaginationShape} from "../../../prop-types";
 import {connect} from "react-redux";
@@ -51,6 +51,11 @@ class CelebritiesPage extends Component {
         return (
             <>
                 <PageContainer>
+                    {/*/!* ShowHeader *!/*/}
+                    {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
+                    {/*/!* End ShowHeader *!/*/}
+
+
                     {/*/!* MainMenuLayout *!/*/}
                     {/*<MainMenuLayout/>*/}
                     {/*/!* End MainMenuLayout *!/*/}

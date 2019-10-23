@@ -75,7 +75,6 @@ class CelebrityReviewsSection extends Component {
                         </div>
                         : null
                 }
-                <br/><br/>
             </div>
         );
     };

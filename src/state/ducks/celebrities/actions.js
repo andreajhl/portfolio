@@ -5,7 +5,6 @@ import * as API_PATHS from './paths';
 import {celebritySocialNetworkOperations} from "../celebrity-social-networks";
 import {contractReviewOperations} from "../contract-reviews";
 
-
 export const get = (object_id) => {
     return dispatch => {
         const TYPE = types.GET_CELEBRITY_REQUEST;
@@ -30,6 +29,7 @@ export const get = (object_id) => {
 
                     dispatch(celebritySocialNetworkOperations.list({celebrity__id: res.data.id}));
                     dispatch(contractReviewOperations.list({celebrity__id: res.data.id}));
+                    dispatch(listSimilaties({country__id: res.data.country, category__id: res.data.category.id}));
 
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
                 }
@@ -43,6 +43,37 @@ export const get = (object_id) => {
 export const list = (params) => {
     return dispatch => {
         const TYPE = types.FETCH_CELEBRITIES_REQUEST;
+        const FINAL_PATH = API_PATHS.BASE_PATH;
+        dispatch({type: TYPE, payload: {}});
+        apiService({
+            method: "GET",
+            action: TYPE,
+            path: FINAL_PATH,
+            async: true,
+            params: params,
+            body: null
+        })
+            .then(res => {
+                if (res.data.status === "OK") {
+                    handleApiResponseSuccess(dispatch, TYPE, res);
+                    // Other actions
+
+                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
+                } else {
+                    handleApiResponseFailure(dispatch, TYPE, res);
+                    // Other actions
+
+                }
+            })
+            .catch(err => {
+                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+            });
+    }
+};
+
+export const listSimilaties = (params) => {
+    return dispatch => {
+        const TYPE = types.FETCH_SIMILAR_CELEBRITIES_REQUEST;
         const FINAL_PATH = API_PATHS.BASE_PATH;
         dispatch({type: TYPE, payload: {}});
         apiService({

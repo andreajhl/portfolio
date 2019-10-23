@@ -41,11 +41,15 @@ class CelebrityCardsSectionLayout extends Component {
         return (
             <div className="CelebrityCardsSectionLayout">
                 <div className="f-main-padding">
-                    {/*<div className="clearfix mb-2">*/}
-                    {/*    <h6 className="float-left">*/}
-                    {/*        <b>Famosos destacados</b>*/}
-                    {/*    </h6>*/}
-                    {/*</div>*/}
+                    {
+                        this.props.title
+                            ?
+                            <div className="clearfix mb-2">
+                                <h6 className="float-left">
+                                    <b>{this.props.title}</b>
+                                </h6>
+                            </div> : null
+                    }
                     {
                         this.props.showShimmerCards ?
                             <div className="scrolling-wrapper">
@@ -64,6 +68,7 @@ class CelebrityCardsSectionLayout extends Component {
 
 // default props
 CelebrityCardsSectionLayout.defaultProps = {
+    title: "",
     showShimmerCards: true,
     celebrities: []
 };
