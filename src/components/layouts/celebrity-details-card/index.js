@@ -20,6 +20,7 @@ class CelebrityDetailsCardLayout extends Component {
         this.closeModal = this.closeModal.bind(this);
         this.playDesktopVideo = this.playDesktopVideo.bind(this);
         this.playMobileVideo = this.playMobileVideo.bind(this);
+        this.goToCause = this.goToCause.bind(this);
 
         this.videoMobileRef = React.createRef();
         this.videoDesktopRef = React.createRef();
@@ -64,6 +65,10 @@ class CelebrityDetailsCardLayout extends Component {
                 this.videoMobileRef.current.pause()
             });
         }
+    }
+
+    goToCause() {
+
     }
 
     render() {
@@ -125,12 +130,38 @@ class CelebrityDetailsCardLayout extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-12 mt-1 text-justify"
-                                         style={{height: "100px", overflow: "auto"}}>
+                                    <div className="col-12 mt-1 text-justify description"
+                                         style={{height: "90px", overflow: "auto"}}>
                                         <small>
                                             {this.props.celebrity.description}
                                         </small>
                                     </div>
+                                    {
+                                        this.props.celebrity.is_donor
+                                            ?
+                                            <div className="col-12 mt-1 text-justify">
+                                                <div className="foundation" onClick={this.goToCause()}>
+                                                    <i className="fas fa-hand-holding-heart"/>
+                                                    <img className="bookmark" src="/assets/img/bookmark.svg"
+                                                         alt="bookmark"/>
+                                                    <div className="celebrity-data">
+                                                        <small>
+                                                            {this.props.celebrity.user ? this.props.celebrity.user.full_name : null} dona
+                                                            parte <br/> de sus ingresos a:
+                                                        </small>
+                                                    </div>
+                                                    <div className="cause-name">
+                                                        <small className="text-primary font-weight-bold">
+                                                            {this.props.celebrity.cause_name}
+                                                        </small>
+                                                    </div>
+                                                    <img className="cause_logo" src={this.props.celebrity.cause_logo}
+                                                         alt="cause_logo"/>
+                                                    <i className="fas fa-arrow-right text-primary"/>
+                                                </div>
+                                            </div>
+                                            : null
+                                    }
                                     <div className="col-12 text-justify" style={{height: "20px"}}>
                                         {
                                             this.props.socialNetworks
@@ -158,8 +189,6 @@ class CelebrityDetailsCardLayout extends Component {
                                    onClick={this.playDesktopVideo.bind(this)}
                                 />
                                 <video ref={this.videoDesktopRef}
-                                       width="100%"
-                                       height="100%"
                                        controls={false}
                                        onClick={this.playDesktopVideo.bind(this)}
                                 >

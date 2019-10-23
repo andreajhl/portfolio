@@ -76,14 +76,14 @@
 
         .play-pause {
           position: absolute;
-          top: 35px;
+          top: 85px;
           left: 32px;
           font-size: 45px;
           color: white;
         }
 
         video {
-          margin-top: 20px;
+          margin-top: 65px;
           border-radius: 20px;
           height: 357px;
           width: 100%;
@@ -96,6 +96,73 @@
           background-color: #f6f6f6;
           cursor: pointer;
         }
+      }
+
+      .foundation {
+        cursor: pointer;
+        margin-top: 20px !important;
+        background: white;
+        height: 68px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+
+        .fas.fa-hand-holding-heart {
+          position: absolute;
+          font-size: 40px;
+          bottom: 12px;
+          left: 0;
+          color: #333333;
+        }
+
+        .bookmark {
+          position: absolute;
+          left: 35px;
+          top: -5px;
+        }
+
+        .celebrity-data {
+          position: absolute;
+          left: 75px;
+          top: 17px;
+          width: 200px;
+          text-align: left;
+          overflow-y: scroll;
+          height: 45px;
+          line-height: 15px;
+
+          small {
+            font-weight: 600;
+          }
+        }
+
+        .cause-name {
+          position: absolute;
+          left: 270px;
+          top: 17px;
+          width: 160px;
+          text-align: left;
+          line-height: 15px;
+
+          small {
+            font-weight: 600;
+          }
+        }
+
+        .cause_logo {
+          height: 50px;
+          position: absolute;
+          right: 40px;
+          top: 8px;
+        }
+
+        .fas.fa-arrow-right {
+          position: absolute;
+          font-size: 20px;
+          bottom: 20px;
+          right: 10px;
+        }
+
       }
     }
 

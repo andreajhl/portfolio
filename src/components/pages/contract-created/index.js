@@ -43,7 +43,7 @@ class ContractCreatedPage extends Component {
                             </div>
                             <p className="mt-4 font-weight-bold">
                                 {this.props.contract.celebrity_name} ya ha recibido tu <br/>
-                                peticion y muy pronto recibiras tu <br/>video mensaje personalizado.
+                                petición y muy pronto recibirás tu <br/>video mensaje personalizado.
                             </p>
                             <div className="w-25 mx-auto m-4 text-center">
                                 <hr style={{border: "solid 1.5px;"}}/>
