@@ -12,7 +12,7 @@ class PageContainer extends Component {
         super(props);
 
         this.state = {
-            params: {}
+            params: {status: 50}
         };
         this.fetchCelebrities = this.fetchCelebrities.bind(this);
         this.onPaginationChange = this.onPaginationChange.bind(this);

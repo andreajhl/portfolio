@@ -63,19 +63,19 @@ class ContractModal extends Component {
         // //TODO: 1) Validate Form
         const contract_data = this.state.contract_data;
         const errors = [];
-        // if (contract_data.contract_type === 1 && !contract_data.delivery_from) {
-        //     errors.push("delivery_from");
-        // }
-        // if (!contract_data.delivery_to) {
-        //     errors.push("delivery_to");
-        // }
-        // if (!contract_data.delivery_contact) {
-        //     errors.push("delivery_contact");
-        // }
-        // if (!contract_data.instructions) {
-        //     errors.push("instructions");
-        // }
-        // this.setState({errors});
+        if (contract_data.contract_type === 1 && !contract_data.delivery_from) {
+            errors.push("delivery_from");
+        }
+        if (!contract_data.delivery_to) {
+            errors.push("delivery_to");
+        }
+        if (!contract_data.delivery_contact) {
+            errors.push("delivery_contact");
+        }
+        if (!contract_data.instructions) {
+            errors.push("instructions");
+        }
+        this.setState({errors});
 
         if (errors.length) {
             return false;

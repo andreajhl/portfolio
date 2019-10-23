@@ -3,6 +3,9 @@ import "./styles.scss";
 import {NavbarSearchLayout} from "../navbar-search";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import * as PropTypes from "prop-types";
+import {celebrityOperations} from "../../../state/ducks/celebrities";
+import {connect} from "react-redux";
 
 
 class NavbarSectionLayout extends Component {
@@ -18,6 +21,7 @@ class NavbarSectionLayout extends Component {
     }
 
     goToRootPath() {
+        this.props.fetchCelebrities({status: 50});
         history.push(PATHS.ROOT_PATH)
     }
 
@@ -94,9 +98,25 @@ class NavbarSectionLayout extends Component {
 
 }
 
-// default props
+
+// Set propTypes
+NavbarSectionLayout.propTypes = {
+    fetchCelebrities: PropTypes.func.isRequired,
+};
+
+// Set defaultProps
 NavbarSectionLayout.defaultProps = {
     onSearchChange: () => {},
 };
 
-export {NavbarSectionLayout};
+// mapStateToProps
+const mapStateToProps = (state: any) => ({});
+
+// mapStateToProps
+const mapDispatchToProps = {
+    fetchCelebrities: celebrityOperations.list
+};
+
+// Export Class
+const _NavbarSectionLayout = connect(mapStateToProps, mapDispatchToProps)(NavbarSectionLayout);
+export {_NavbarSectionLayout as NavbarSectionLayout};

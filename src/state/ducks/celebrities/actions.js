@@ -41,6 +41,7 @@ export const get = (object_id) => {
 };
 
 export const list = (params) => {
+    if (!"status" in params) params["status"] = 50;
     return dispatch => {
         const TYPE = types.FETCH_CELEBRITIES_REQUEST;
         const FINAL_PATH = API_PATHS.BASE_PATH;
@@ -72,6 +73,7 @@ export const list = (params) => {
 };
 
 export const listSimilaties = (params) => {
+    if (!"status" in params) params["status"] = 50;
     return dispatch => {
         const TYPE = types.FETCH_SIMILAR_CELEBRITIES_REQUEST;
         const FINAL_PATH = API_PATHS.BASE_PATH;

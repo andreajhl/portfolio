@@ -35,6 +35,16 @@ class CelebrityProfilePage extends Component {
         this.props.getCelebrity(username)
     }
 
+    similarCelebrities() {
+        const list = [];
+        this.props.similarCelebrities.map(c => {
+            if(c.id !== this.props.celebrity.id) {
+                list.push(c)
+            }
+        });
+        return list;
+    }
+
     render() {
         return (
             <>
@@ -58,7 +68,7 @@ class CelebrityProfilePage extends Component {
                                     <CelebrityCardsSectionLayout
                                         title={"Famosos similares"}
                                         showShimmerCards={this.props.similarCelebritiesLoading}
-                                        celebrities={this.props.similarCelebrities}
+                                        celebrities={this.similarCelebrities()}
                                     />
                                 </div>
                                 {/* End CelebrityCardsSectionLayout */}

@@ -116,8 +116,8 @@ class CelebrityDetailsCardLayout extends Component {
                                                 <small>1233 Calificaciones</small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
-                                                <h6>90%</h6>
-                                                <small>Porcentaje de Respuesta</small>
+                                                <h6>{this.props.celebrity.category ? this.props.celebrity.category.title : null}</h6>
+                                                <small>Categoria</small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
                                                 <h6>4 a 7 dias</h6>
@@ -208,23 +208,24 @@ class CelebrityDetailsCardLayout extends Component {
                             <div className="col-5 pr-0">
                                 <div className="margin-left-5w">
                                     <small className="title text-warning">
-                                        <i className="fa fa-star fa-1x mr-2"/>
-                                        <i className="fa fa-star fa-1x mr-2"/>
-                                        <i className="fa fa-star fa-1x mr-2"/>
-                                        <i className="fa fa-star fa-1x mr-2"/>
-                                        <i className="fa fa-star fa-1x mr-2"/>
+                                        <i className="fa fa-star fa-1x mr-1"/>
+                                        <i className="fa fa-star fa-1x mr-1"/>
+                                        <i className="fa fa-star fa-1x mr-1"/>
+                                        <i className="fa fa-star fa-1x mr-1"/>
+                                        <i className="fa fa-star fa-1x mr-1"/>
                                     </small>
                                     <br/>
-                                    <small className="text-muted subtitle">1234 Calificaciones</small>
+                                    <small className="text-muted subtitle"><b>1234</b> Calificaciones</small>
                                 </div>
                             </div>
                             <div className="col-7 pl-0 text-right">
                                 <div className="margin-right-5w">
-                                    <small className="text-muted subtitle">Porcentaje de respuesta: <b>90%</b>
+                                    <small className="text-muted subtitle">
+                                        Categoria: <b>{this.props.celebrity.category ? this.props.celebrity.category.title : null}</b>
                                     </small>
                                     <br/>
                                     <small className="text-muted subtitle">
-                                        Tiempo de respuesta: 3 a 4 dias
+                                        Tiempo de respuesta: <b>3 a 4 dias</b>
                                     </small>
                                 </div>
                             </div>
@@ -233,15 +234,15 @@ class CelebrityDetailsCardLayout extends Component {
                             <small className="ml-0 float-left text-uppercase">
                                 Contratar por 100 USD
                             </small>
-                            <i className="fa fa-arrow-right float-right"/>
+                            <i className="fa fa-arrow-right float-right" style={{fontSize: "26px"}}/>
                         </div>
                     </div>
                     {/*HASHTAGS*/}
                     <div className="f-line w-100 mt-2 mb-4"></div>
                     <div className="row f-section mx-auto">
                         <div className="col-12 text-justify word-break pb-3 ">
-                            <h6>{this.props.celebrity.category ? this.props.celebrity.category.title : null}
-                                <small className="ml-2 mr-1 hashtags">
+                            <h6>
+                                <small className="mr-1 hashtags">
                                     {
                                         this.props.celebrity.hashtags.map((h, index) => {
                                             return <span key={index} className="mr-3">#{h}</span>
