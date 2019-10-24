@@ -23,21 +23,21 @@ div.CelebrityCardsSectionLayout {
     }
 
 
-    // Medium devices (tablets, 768px and up)
-    //@media (max-width: 768px) {
-    //  .scrolling-wrapper {
-    //    //grid
-    //    display: block;
-    //    align-items: flex-start;
-    //    text-align: left;
-    //    grid-template-columns: none;
-    //    margin-left: -10px;
-    //
-    //    .item {
-    //      margin-right: 15px !important;
-    //    }
-    //  }
-    //}
+     //Medium devices (tablets, 768px and up)
+    @media (max-width: 768px) {
+      .scrolling-wrapper {
+        //grid
+        display: block;
+        align-items: flex-start;
+        text-align: left;
+        grid-template-columns: none;
+        margin-left: -10px;
+
+        .item {
+          margin-right: 15px !important;
+        }
+      }
+    }
 
     // Large devices (desktops, 300px and up)
     @media (min-width: 300px) {

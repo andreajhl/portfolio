@@ -41,7 +41,7 @@ class CelebrityCardsSectionLayout extends Component {
     render() {
         return (
             <div className="CelebrityCardsSectionLayout">
-                <div className="f-main-padding">
+                <div className={"f-main-padding"}>
                     {
                         this.props.title
                             ?
@@ -51,7 +51,7 @@ class CelebrityCardsSectionLayout extends Component {
                                 </h6>
                             </div> : null
                     }
-                    <div className="scrolling-wrapper">
+                    <div className={"scrolling-wrapper " + (this.props.horizontalScroll ? "horizontal-scroll" : "")}>
                         {this.renderCelebritiesCards()}
                     </div>
                     {
@@ -69,6 +69,7 @@ class CelebrityCardsSectionLayout extends Component {
 
 // default props
 CelebrityCardsSectionLayout.defaultProps = {
+    horizontalScroll: false,
     title: "",
     showShimmerCards: true,
     celebrities: []

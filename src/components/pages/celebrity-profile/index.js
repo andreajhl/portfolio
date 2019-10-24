@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import {CelebrityCardsSectionLayout, CelebrityDetailsCardLayout, PageContainer, PaginationLayout} from "../../layouts";
 import * as PropTypes from "prop-types";
 import {CelebrityShape} from "../../../prop-types";
@@ -17,6 +17,8 @@ class CelebrityProfilePage extends Component {
         };
 
         this.getCelebrity = this.getCelebrity.bind(this);
+
+        this.scrollDiv = createRef()
     }
 
     componentWillMount(): void {
@@ -64,10 +66,12 @@ class CelebrityProfilePage extends Component {
                                 {/* END CelebrityReviewsSection */}
 
                                 {/* CelebrityCardsSectionLayout */}
-                                <div className="mt-4">
+                                <div className="mt-4" style={{width: "calc(100vw - 15px)", overflow: "auto"}}
+                                     ref={this.scrollDiv}>
                                     <CelebrityCardsSectionLayout
                                         title={"Famosos similares"}
                                         showShimmerCards={this.props.similarCelebritiesLoading}
+                                        horizontalScroll={true}
                                         celebrities={this.similarCelebrities()}
                                     />
                                 </div>
