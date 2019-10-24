@@ -282,6 +282,34 @@ class CelebrityDetailsCardLayout extends Component {
                         </div>
                     </div>
                 </div>
+                {
+                    this.props.celebrity.is_donor
+                        ?
+                        <div className="d-block d-md-none profile-sm-foundation">
+                            <div className="col-12 mt-1 text-justify">
+                                <div className="foundation" onClick={this.goToCause()}>
+                                    <i className="fas fa-hand-holding-heart"/>
+                                    <img className="bookmark" src="/assets/img/bookmark.svg"
+                                         alt="bookmark"/>
+                                    <div className="celebrity-data">
+                                        <small>
+                                            {this.props.celebrity.user ? this.props.celebrity.user.full_name : null} dona
+                                            parte <br/> de sus ingresos a:
+                                        </small>
+                                    </div>
+                                    <div className="cause-name">
+                                        <small className="text-primary font-weight-bold">
+                                            {this.props.celebrity.cause_name}
+                                        </small>
+                                    </div>
+                                    <img className="cause_logo" src={this.props.celebrity.cause_logo}
+                                         alt="cause_logo"/>
+                                    <i className="fas fa-arrow-right text-primary"/>
+                                </div>
+                            </div>
+                        </div>
+                        : null
+                }
                 <ContractModal
                     celebrity={this.props.celebrity}
                     showModal={this.state.showContractModal}
