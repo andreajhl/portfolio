@@ -76,13 +76,6 @@ class CelebrityProfilePage extends Component {
                                     />
                                 </div>
                                 {/* End CelebrityCardsSectionLayout */}
-
-                                {/* PaginationLayout */}
-                                <PaginationLayout
-                                    pagination={this.props.similarCelebritiesPaginationData}
-                                    // onPaginationChange={this.onPaginationChange}
-                                />
-                                {/* End PaginationLayout */}
                             </>
                             : null
                     }
