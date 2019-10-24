@@ -79,7 +79,7 @@ class CelebrityDetailsCardLayout extends Component {
     render() {
         return (
             <div className="CelebrityDetailsCardLayout">
-                <div className="f-container bg-purple">
+                <div className="f-container">
                     {/*PROFILE LG*/}
                     <div className="d-none d-md-block profile-lg">
                         <div className="row f-section mx-auto">
@@ -99,7 +99,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                 <h5>{this.props.celebrity.user ? this.props.celebrity.user.full_name : null}</h5>
                                             </div>
                                             <div className="col-4 p-0 m-0 text-center my-auto">
-                                                <button className="btn btn-secondary btn-sm f-follow-button">Seguir
+                                                <button className="btn btn-outline-secondary btn-sm f-follow-button">Seguir
                                                 </button>
                                             </div>
                                             <div className="col-12 p-0 m-0 text-center pr-0">
@@ -241,7 +241,7 @@ class CelebrityDetailsCardLayout extends Component {
                             </div>
                             <div className="col-5 mt-3 pl-0 text-right">
                                 <div className="margin-right-5w">
-                                    <button className="btn btn-secondary btn-sm f-follow-button">Seguir</button>
+                                    <button className="btn btn-outline-secondary btn-sm f-follow-button">Seguir</button>
                                 </div>
                             </div>
                             <div className="col-5 pr-0">
