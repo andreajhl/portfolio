@@ -206,7 +206,8 @@ class CelebrityDetailsCardLayout extends Component {
                                     <i className={'fa fa-2x play-pause ' + (this.state.videoMobilePlayIcon)}
                                        onClick={this.playMobileVideo.bind(this)}
                                     />
-                                    <video ref={this.videoMobileRef}
+                                    <video style={{background: "url('" + this.props.celebrity.avatar + "')", backgroundSize: "cover"}}
+                                            ref={this.videoMobileRef}
                                            width="100%"
                                            height="460px"
                                            controls={false}
@@ -261,7 +262,7 @@ class CelebrityDetailsCardLayout extends Component {
                         </div>
                         <div className="footer-btn my-auto p-4" onClick={this.openModal}>
                             <small className="ml-0 float-left text-uppercase">
-                                Contratar por 100 USD
+                                Contratar por {this.props.celebrity.contracts_price} USD
                             </small>
                             <i className="fa fa-arrow-right float-right" style={{fontSize: "26px"}}/>
                         </div>
