@@ -1,8 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 
-html {
+html,body, * {
   font-family: 'Raleway', sans-serif !important;
-  background-color: red;
 }
 
 .cursor-pointer {
