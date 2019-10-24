@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import {CelebrityCardsSectionLayout, IndexHeaderLayout, PageContainer, PaginationLayout} from "../../layouts";
 import * as PropTypes from "prop-types";
 import {CelebrityShape, PaginationShape} from "../../../prop-types";
@@ -12,16 +12,32 @@ class CelebritiesPage extends Component {
         super(props);
 
         this.state = {
-            params: {}
+            params: {
+                page: 1
+            }
         };
 
         this.onPaginationChange = this.onPaginationChange.bind(this);
         this.updateParams = this.updateParams.bind(this);
         this.onSearchChange = this.onSearchChange.bind(this);
         this.fetchCelebrities = this.fetchCelebrities.bind(this);
+
+        this.scrollDiv = createRef()
     }
 
-    componentWillMount(): void {
+    componentDidMount(): void {
+        // Detect when scrolled to bottom.
+        this.scrollDiv.current.addEventListener("scroll", () => {
+            if (
+                this.scrollDiv.current.scrollTop + this.scrollDiv.current.clientHeight >=
+                this.scrollDiv.current.scrollHeight
+            ) {
+                const state = this.state;
+                if(this.props.paginationData.nextPage && !this.props.isLoading){
+                    this.onPaginationChange(state.params.page + 1);
+                }
+            }
+        });
     }
 
     fetchCelebrities() {
@@ -61,17 +77,20 @@ class CelebritiesPage extends Component {
                     {/*/!* End MainMenuLayout *!/*/}
 
                     {/* CelebrityCardsSectionLayout */}
-                    <CelebrityCardsSectionLayout
-                        showShimmerCards={this.props.isLoading}
-                        celebrities={this.props.celebrities}
-                    />
+                    <div style={{height: "calc(100vh - 90px)", overflow: "auto"}}
+                         ref={this.scrollDiv}>
+                        <CelebrityCardsSectionLayout
+                            showShimmerCards={this.props.isLoading}
+                            celebrities={this.props.celebrities}
+                        />
+                    </div>
                     {/* End CelebrityCardsSectionLayout */}
 
                     {/* PaginationLayout */}
-                    <PaginationLayout
-                        pagination={this.props.paginationData}
-                        onPaginationChange={this.onPaginationChange}
-                    />
+                    {/*<PaginationLayout*/}
+                    {/*    pagination={this.props.paginationData}*/}
+                    {/*    onPaginationChange={this.onPaginationChange}*/}
+                    {/*/>*/}
                     {/* End PaginationLayout */}
                 </PageContainer>
             </>

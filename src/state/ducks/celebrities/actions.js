@@ -4,6 +4,7 @@ import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} fro
 import * as API_PATHS from './paths';
 import {celebritySocialNetworkOperations} from "../celebrity-social-networks";
 import {contractReviewOperations} from "../contract-reviews";
+import {getTotalColumns} from "../../utils/gridSystem";
 
 export const get = (object_id) => {
     return dispatch => {
@@ -42,6 +43,9 @@ export const get = (object_id) => {
 
 export const list = (params) => {
     if (!"status" in params) params["status"] = 50;
+    params["page_size"] = getTotalColumns() * 3;
+    console.log("params:", params);
+
     return dispatch => {
         const TYPE = types.FETCH_CELEBRITIES_REQUEST;
         const FINAL_PATH = API_PATHS.BASE_PATH;

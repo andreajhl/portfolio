@@ -20,7 +20,7 @@ class PageContainer extends Component {
         this.onSearchChange = this.onSearchChange.bind(this);
     }
 
-    componentWillMount(): void {
+    componentDidMount(): void {
         if(this.props.fetchCelebrities && !this.props.celebrities.length) {
             this.fetchCelebrities();
         }

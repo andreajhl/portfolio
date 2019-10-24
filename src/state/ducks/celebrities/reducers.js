@@ -39,10 +39,18 @@ export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, ac
                 failed: true
             };
         case types.FETCH_CELEBRITIES_REQUEST_SUCCESS:
-            return {
-                ...fetchCelebritiesInitialState,
-                data: action.payload.data
-            };
+            if (action.payload.data.pagination_data.currentPage > 1) {
+                action.payload.data.results = state.data.results.concat(action.payload.data.results);
+                return {
+                    ...fetchCelebritiesInitialState,
+                    data:  action.payload.data
+                };
+            } else {
+                return {
+                    ...fetchCelebritiesInitialState,
+                    data: action.payload.data
+                };
+            }
         case types.FETCH_CELEBRITIES_REQUEST_COMPLETED:
             return {
                 ...state,

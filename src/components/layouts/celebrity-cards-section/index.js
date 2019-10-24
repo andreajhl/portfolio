@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {CelebrityShimmerCardLayout} from "../celebrity-shimmer-card";
 import {CelebrityCardLayout} from "../celebrity-card";
 import "./styles.scss";
+import {getTotalColumns} from "../../../state/utils/gridSystem";
 
 class CelebrityCardsSectionLayout extends Component {
 
@@ -13,7 +14,7 @@ class CelebrityCardsSectionLayout extends Component {
 
     static renderShimmerCards() {
         return (
-            [...Array(12)].map((o, index) => {
+            [...Array(getTotalColumns() * 3)].map((o, index) => {
                 return (
                     <div className="item mr-4 mb-2 mx-auto" key={index}>
                         <CelebrityShimmerCardLayout/>
@@ -50,15 +51,15 @@ class CelebrityCardsSectionLayout extends Component {
                                 </h6>
                             </div> : null
                     }
+                    <div className="scrolling-wrapper">
+                        {this.renderCelebritiesCards()}
+                    </div>
                     {
                         this.props.showShimmerCards ?
                             <div className="scrolling-wrapper">
                                 {CelebrityCardsSectionLayout.renderShimmerCards()}
                             </div>
-                            :
-                            <div className="scrolling-wrapper">
-                                {this.renderCelebritiesCards()}
-                            </div>
+                            :null
                     }
                 </div>
             </div>
