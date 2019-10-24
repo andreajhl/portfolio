@@ -37,12 +37,12 @@ class NavbarSectionLayout extends Component {
                                      onClick={this.goToRootPath}
                                 />
                             </div>
-                            <div className="float-right float-right-lg">
-                                <button className="btn btn-sm mr-2">Ingresar</button>
-                                <button className="btn btn-outline-primary btn-sm f-register-button">
-                                    Registrarse
-                                </button>
-                            </div>
+                            {/*<div className="float-right float-right-lg">*/}
+                            {/*    <button className="btn btn-sm mr-2">Ingresar</button>*/}
+                            {/*    <button className="btn btn-outline-primary btn-sm f-register-button">*/}
+                            {/*        Registrarse*/}
+                            {/*    </button>*/}
+                            {/*</div>*/}
                             <div className="float-left ml-4">
                                 <NavbarSearchLayout onSearchChange={this.props.onSearchChange}/>
                             </div>

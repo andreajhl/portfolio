@@ -56,6 +56,11 @@ class CelebrityDetailsCardLayout extends Component {
     }
 
     playMobileVideo() {
+        this.videoMobileRef.current.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
+        if (this.videoMobileRef.current.hasAttribute("controls")) {
+            this.videoMobileRef.current.removeAttribute("controls")
+        }
+        this.videoMobileRef.current.classList.add('IIV');
         if (this.videoMobileRef.current.paused) {
             this.setState({videoMobilePlayIcon: "fa-pause"}, () => {
                 this.videoMobileRef.current.play()
@@ -206,8 +211,12 @@ class CelebrityDetailsCardLayout extends Component {
                                     <i className={'fa fa-2x play-pause ' + (this.state.videoMobilePlayIcon)}
                                        onClick={this.playMobileVideo.bind(this)}
                                     />
-                                    <video style={{background: "url('" + this.props.celebrity.avatar + "')", backgroundSize: "cover"}}
-                                            ref={this.videoMobileRef}
+                                    <video playsinline
+                                           style={{
+                                               background: "url('" + this.props.celebrity.avatar + "')",
+                                               backgroundSize: "cover"
+                                           }}
+                                           ref={this.videoMobileRef}
                                            width="100%"
                                            height="460px"
                                            controls={false}
