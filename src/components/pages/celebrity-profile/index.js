@@ -70,10 +70,13 @@ class CelebrityProfilePage extends Component {
                                      ref={this.scrollDiv}>
                                     <CelebrityCardsSectionLayout
                                         title={"Famosos similares"}
-                                        showShimmerCards={this.props.similarCelebritiesLoading}
+                                        showShimmerCards={false}
                                         horizontalScroll={true}
                                         celebrities={this.similarCelebrities()}
                                     />
+                                    <br/>
+                                    <br/>
+                                    <br/>
                                 </div>
                                 {/* End CelebrityCardsSectionLayout */}
                             </>
