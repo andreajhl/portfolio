@@ -270,7 +270,7 @@ class CelebrityDetailsCardLayout extends Component {
                     {/*HASHTAGS*/}
                     <div className="f-line w-100 mt-2 mb-4"></div>
                     <div className="row f-section mx-auto">
-                        <div className="col-12 text-justify word-break pb-3 ">
+                        <div className="col-12 text-justify word-break pb-4 ">
                             <h6>
                                 <small className="mr-1 hashtags">
                                     {
@@ -305,7 +305,6 @@ class CelebrityDetailsCardLayout extends Component {
                                     </div>
                                     <img className="cause_logo" src={this.props.celebrity.cause_logo}
                                          alt="cause_logo"/>
-                                    <i className="fas fa-arrow-right text-primary"/>
                                 </div>
                             </div>
                         </div>
