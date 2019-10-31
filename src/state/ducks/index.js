@@ -3,3 +3,4 @@ export { default as celebrities } from "./celebrities";
 export { default as contractReviews } from "./contract-reviews";
 export { default as celebritySocialNetworks } from "./celebrity-social-networks";
 export { default as contracts } from "./contracts";
+export { default as restCountries } from "./rest-countries";

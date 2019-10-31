@@ -1,6 +1,3 @@
-// #############################
-// AUTHENTICATION
-// #############################
 export const ROOT_PATH = '/';
 export const NOT_FOUND_PATH = '/500-not-found';
 export const NOT_AUTHORIZED_PATH = '/not-authorized';
@@ -8,7 +5,12 @@ export const CELEBRITY_PROFILE = '/:celebrity_username';
 export const CONTRACT_CREATED = '/contract-created/:contract_reference';
 export const LOGIN_PATH = '/login';
 export const HOME_PATH = '/';
-// #############################
-// END AUTHENTICATION
-// #############################
+export const SIGN_IN_PATH = '/auth/sign-in';
+export const SIGN_UP_PATH = '/auth/sign-up';
+export const RESET_PASSWORD_PATH = '/auth/reset-password';
+export const CHANGE_PASSWORD_PATH = '/auth/change-password';
+export const CREATE_PASSWORD_PATH = '/auth/create-password';
+export const COMPLETE_PROFILE_PATH = '/auth/complete-profile';
+export const USER_PROFILE = '/my-account/profile';
+export const MY_CONTRACTS = '/my-account/contracts';
 

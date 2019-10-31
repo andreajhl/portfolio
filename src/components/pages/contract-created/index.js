@@ -4,6 +4,7 @@ import {contractOperations} from "../../../state/ducks/contracts";
 import {connect} from "react-redux";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import {Session} from "../../../state/utils/session";
 
 
 class ContractCreatedPage extends Component {
@@ -11,9 +12,12 @@ class ContractCreatedPage extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {}
+        this.state = {};
 
         this.goToHome = this.goToHome.bind(this);
+        this.goToCreateAccount = this.goToCreateAccount.bind(this);
+
+        this.session = new Session();
     }
 
     componentWillMount(): void {
@@ -24,7 +28,17 @@ class ContractCreatedPage extends Component {
         history.push(PATHS.ROOT_PATH);
     }
 
+    goToCreateAccount() {
+        if (this.props.contractCreated.token) {
+            this.session.setSession(this.props.contractCreated.token);
+            history.push(PATHS.CREATE_PASSWORD_PATH);
+        } else {
+            history.push(PATHS.SIGN_UP_PATH + "?use_email=true&email=" + this.props.contract.delivery_contact);
+        }
+    }
+
     render() {
+        const isLogged = this.session.getSession();
         return (
             <>
                 <div className="ContractCreatedPage">
@@ -38,7 +52,8 @@ class ContractCreatedPage extends Component {
                                 {this.props.contract.celebrity_name}
                             </p>
                             <div className="rounded-circle">
-                                <img className="rounded-circle" src={this.props.contract.celebrity_avatar}
+                                <img className="rounded-circle"
+                                     src={this.props.isLoading ? "/assets/img/avatar-blank.png" : this.props.contract.celebrity_avatar}
                                      alt="avatar"/>
                             </div>
                             <p className="mt-4 font-weight-bold">
@@ -46,12 +61,32 @@ class ContractCreatedPage extends Component {
                                 petición y muy pronto recibirás tu <br/>video mensaje personalizado.
                             </p>
                             <div className="w-25 mx-auto m-4 text-center">
-                                <hr style={{border: "solid 1.5px;"}}/>
+                                <hr style={{border: "solid 0.5px"}}/>
                             </div>
-                            <button className="btn btn-primary" onClick={this.goToHome}>
-                                <i className="fa fa-arrow-left mr-2"/>
-                                Volver
-                            </button>
+                            <p className="mt-4 font-weight-bold">
+                                Estás a un paso de crear tu cuenta<br/>
+                            </p>
+                            {
+                                !isLogged
+                                    ?
+                                    <>
+                                        <button className="btn btn-primary" onClick={this.goToCreateAccount}>
+                                            Crear una cuenta
+                                            <i className="fa fa-arrow-right ml-2"/>
+                                        </button>
+                                        <div className="w-25 mx-auto m-4 text-center">
+                                            <hr style={{border: "solid 0.5px"}}/>
+                                        </div>
+                                        <div className="mt-4" onClick={this.goToHome}>
+                                            <small>Volver a inicio</small>
+                                        </div>
+                                    </>
+                                    :
+                                    <button className="btn btn-primary" onClick={this.goToHome}>
+                                        <i className="fa fa-arrow-left mr-2"/>
+                                        Volver a inicio
+                                    </button>
+                            }
                         </div>
                     </div>
                 </div>
@@ -70,7 +105,8 @@ ContractCreatedPage.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     isLoading: state.contracts.getContractReducer.loading,
-    contract: state.contracts.getContractReducer.data
+    contract: state.contracts.getContractReducer.data,
+    contractCreated: state.contracts.saveContractReducer.data
 });
 
 // mapStateToProps

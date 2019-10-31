@@ -14,6 +14,7 @@ class PageContainer extends Component {
         this.state = {
             params: {status: 50}
         };
+
         this.fetchCelebrities = this.fetchCelebrities.bind(this);
         this.onPaginationChange = this.onPaginationChange.bind(this);
         this.updateParams = this.updateParams.bind(this);

@@ -5,6 +5,6 @@ export const getTotalColumns = () => {
         const split = style.gridTemplateColumns.split(" ");
         return split.length
     }catch (e) {
-
+        return 6
     }
 };

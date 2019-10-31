@@ -47,10 +47,19 @@
             padding-right: 13px;
           }
 
+          .f-register-button:hover {
+            border: solid 2px #EB2A7B !important;
+          }
+
           .btn-outline-primary {
             border: solid 2px;
           }
         }
+      }
+
+      .fa-2x{
+        font-size: 23px;
+        margin-top: 4px;
       }
 
     }
@@ -84,6 +93,18 @@
     .d-block {
       display: block !important;
     }
+  }
+
+  .search-sm {
+    position: fixed;
+    top: 60px;
+    z-index: 1;
+    left: -3px;
+    right: -3px;
+    background: white;
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
 }

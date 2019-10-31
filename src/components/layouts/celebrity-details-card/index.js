@@ -211,7 +211,7 @@ class CelebrityDetailsCardLayout extends Component {
                                     <i className={'fa fa-2x play-pause ' + (this.state.videoMobilePlayIcon)}
                                        onClick={this.playMobileVideo.bind(this)}
                                     />
-                                    <video playsinline
+                                    <video playsInline
                                            style={{
                                                background: "url('" + this.props.celebrity.avatar + "')",
                                                backgroundSize: "cover"

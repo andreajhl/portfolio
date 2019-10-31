@@ -246,6 +246,7 @@ button.contract-button {
   border: solid 3px;
   padding: 5px 40px;
   width: 320px;
+  max-width: 100%;
   background-size: 280px;
   font-weight: bold;
   text-transform: uppercase;
@@ -339,4 +340,8 @@ video {
 
 .media-controls.inline.ios.uses-ltr-user-interface-layout-direction {
   display: none !important
+}
+
+.search-sm-active{
+  margin-top: 45px;
 }

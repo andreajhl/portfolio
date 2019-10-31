@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 import * as types from "./types";
 
-const loginInitialState = {
+const signInWithEmailInitialState = {
     loading: false,
     failed: false,
     completed: false,
@@ -17,6 +17,14 @@ const changePasswordInitialState = {
     data: {}
 };
 
+const createPasswordInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+
 const verifySecurityCodeInitialState = {
     loading: false,
     failed: false,
@@ -25,7 +33,31 @@ const verifySecurityCodeInitialState = {
     data: {}
 };
 
-const resendSecurityCodeInitialState = {
+const sendSMSSecurityCodeReducerInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+
+const validateSMSSecurityCodeReducerInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+
+const sendEmailSecurityCodeReducerInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+
+const validateEmailSecurityCodeReducerInitialState = {
     loading: false,
     failed: false,
     completed: false,
@@ -41,27 +73,43 @@ const resetPasswordInitialState = {
     data: {}
 };
 
-export function loginReducer(state = loginInitialState, action) {
+const completeProfileInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+
+const sessionInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+
+export function signInWithEmailReducer(state = signInWithEmailInitialState, action) {
     switch (action.type) {
-        case types.LOGIN_REQUEST:
+        case types.SIGN_IN_WITH_EMAIL_REQUEST:
             return {
-                ...loginInitialState,
+                ...signInWithEmailInitialState,
                 loading: true
             };
-        case types.LOGIN_REQUEST_FAILURE:
+        case types.SIGN_IN_WITH_EMAIL_REQUEST_FAILURE:
             return {
-                ...loginInitialState,
+                ...signInWithEmailInitialState,
                 error_data: action.payload.data,
                 failed: true
             };
-        case types.LOGIN_REQUEST_SUCCESS:
+        case types.SIGN_IN_WITH_EMAIL_REQUEST_SUCCESS:
             return {
-                ...loginInitialState,
+                ...signInWithEmailInitialState,
                 data: action.payload.data
             };
-        case types.LOGIN_REQUEST_COMPLETED:
+        case types.SIGN_IN_WITH_EMAIL_REQUEST_COMPLETED:
             return {
-                ...loginInitialState,
+                ...signInWithEmailInitialState,
                 data: action.payload.data,
                 completed: true
             };
@@ -91,6 +139,36 @@ export function changePasswordReducer(state = changePasswordInitialState, action
         case types.CHANGE_PASSWORD_REQUEST_COMPLETED:
             return {
                 ...changePasswordInitialState,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+
+    }
+}
+
+export function createPasswordReducer(state = createPasswordInitialState, action) {
+    switch (action.type) {
+        case types.CREATE_PASSWORD_REQUEST:
+            return {
+                ...createPasswordInitialState,
+                loading: true
+            };
+        case types.CREATE_PASSWORD_REQUEST_FAILURE:
+            return {
+                ...createPasswordInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.CREATE_PASSWORD_REQUEST_SUCCESS:
+            return {
+                ...createPasswordInitialState,
+                data: action.payload.data
+            };
+        case types.CREATE_PASSWORD_REQUEST_COMPLETED:
+            return {
+                ...createPasswordInitialState,
                 data: action.payload.data,
                 completed: true
             };
@@ -130,27 +208,117 @@ export function verifySecurityCodeReducer(state = verifySecurityCodeInitialState
     }
 }
 
-export function resendSecurityCodeReducer(state = resendSecurityCodeInitialState, action) {
+export function sendSMSSecurityCodeReducer(state = sendSMSSecurityCodeReducerInitialState, action) {
     switch (action.type) {
-        case types.RESEND_SECURITY_CODE_REQUEST:
+        case types.SEND_SMS_SECURITY_CODE_REQUEST:
             return {
-                ...resendSecurityCodeInitialState,
+                ...sendSMSSecurityCodeReducerInitialState,
                 loading: true
             };
-        case types.RESEND_SECURITY_CODE_REQUEST_FAILURE:
+        case types.SEND_SMS_SECURITY_CODE_REQUEST_FAILURE:
             return {
-                ...resendSecurityCodeInitialState,
+                ...sendSMSSecurityCodeReducerInitialState,
                 error_data: action.payload.data,
                 failed: true
             };
-        case types.RESEND_SECURITY_CODE_REQUEST_SUCCESS:
+        case types.SEND_SMS_SECURITY_CODE_REQUEST_SUCCESS:
             return {
-                ...resendSecurityCodeInitialState,
+                ...sendSMSSecurityCodeReducerInitialState,
                 data: action.payload.data
             };
-        case types.RESEND_SECURITY_CODE_REQUEST_COMPLETED:
+        case types.SEND_SMS_SECURITY_CODE_REQUEST_COMPLETED:
             return {
-                ...resendSecurityCodeInitialState,
+                ...sendSMSSecurityCodeReducerInitialState,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+
+    }
+}
+
+export function validateSMSSecurityCodeReducer(state = validateSMSSecurityCodeReducerInitialState, action) {
+    switch (action.type) {
+        case types.VALIDATE_SMS_SECURITY_CODE_REQUEST:
+            return {
+                ...validateSMSSecurityCodeReducerInitialState,
+                loading: true
+            };
+        case types.VALIDATE_SMS_SECURITY_CODE_REQUEST_FAILURE:
+            return {
+                ...validateSMSSecurityCodeReducerInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.VALIDATE_SMS_SECURITY_CODE_REQUEST_SUCCESS:
+            return {
+                ...validateSMSSecurityCodeReducerInitialState,
+                data: action.payload.data
+            };
+        case types.VALIDATE_SMS_SECURITY_CODE_REQUEST_COMPLETED:
+            return {
+                ...validateSMSSecurityCodeReducerInitialState,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+
+    }
+}
+
+export function sendEmailSecurityCodeReducer(state = sendEmailSecurityCodeReducerInitialState, action) {
+    switch (action.type) {
+        case types.SEND_EMAIL_SECURITY_CODE_REQUEST:
+            return {
+                ...sendEmailSecurityCodeReducerInitialState,
+                loading: true
+            };
+        case types.SEND_EMAIL_SECURITY_CODE_REQUEST_FAILURE:
+            return {
+                ...sendEmailSecurityCodeReducerInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.SEND_EMAIL_SECURITY_CODE_REQUEST_SUCCESS:
+            return {
+                ...sendEmailSecurityCodeReducerInitialState,
+                data: action.payload.data
+            };
+        case types.SEND_EMAIL_SECURITY_CODE_REQUEST_COMPLETED:
+            return {
+                ...sendEmailSecurityCodeReducerInitialState,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+
+    }
+}
+
+export function validateEmailSecurityCodeReducer(state = validateEmailSecurityCodeReducerInitialState, action) {
+    switch (action.type) {
+        case types.VALIDATE_EMAIL_SECURITY_CODE_REQUEST:
+            return {
+                ...validateEmailSecurityCodeReducerInitialState,
+                loading: true
+            };
+        case types.VALIDATE_EMAIL_SECURITY_CODE_REQUEST_FAILURE:
+            return {
+                ...validateEmailSecurityCodeReducerInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.VALIDATE_EMAIL_SECURITY_CODE_REQUEST_SUCCESS:
+            return {
+                ...validateEmailSecurityCodeReducerInitialState,
+                data: action.payload.data
+            };
+        case types.VALIDATE_EMAIL_SECURITY_CODE_REQUEST_COMPLETED:
+            return {
+                ...validateEmailSecurityCodeReducerInitialState,
                 data: action.payload.data,
                 completed: true
             };
@@ -190,10 +358,76 @@ export function resetPasswordReducer(state = resetPasswordInitialState, action) 
     }
 }
 
+export function completeProfileReducer(state = completeProfileInitialState, action) {
+    switch (action.type) {
+        case types.COMPLETE_PROFILE_REQUEST:
+            return {
+                ...completeProfileInitialState,
+                loading: true
+            };
+        case types.COMPLETE_PROFILE_REQUEST_FAILURE:
+            return {
+                ...completeProfileInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.COMPLETE_PROFILE_REQUEST_SUCCESS:
+            return {
+                ...completeProfileInitialState,
+                data: action.payload.data
+            };
+        case types.COMPLETE_PROFILE_REQUEST_COMPLETED:
+            return {
+                ...completeProfileInitialState,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+
+    }
+}
+
+export function sessionReducer(state = sessionInitialState, action) {
+    switch (action.type) {
+        case types.SESSION_REQUEST:
+            return {
+                ...sessionInitialState,
+                loading: true
+            };
+        case types.SESSION_REQUEST_FAILURE:
+            return {
+                ...sessionInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.SESSION_REQUEST_SUCCESS:
+            return {
+                ...sessionInitialState,
+                data: action.payload.data
+            };
+        case types.SESSION_REQUEST_COMPLETED:
+            return {
+                ...sessionInitialState,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+
+    }
+}
+
 export default combineReducers({
-    loginReducer,
+    signInWithEmailReducer,
     changePasswordReducer,
+    createPasswordReducer,
     verifySecurityCodeReducer,
-    resendSecurityCodeReducer,
-    resetPasswordReducer
+    sendSMSSecurityCodeReducer,
+    validateSMSSecurityCodeReducer,
+    resetPasswordReducer,
+    completeProfileReducer,
+    sendEmailSecurityCodeReducer,
+    validateEmailSecurityCodeReducer,
+    sessionReducer
 });

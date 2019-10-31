@@ -42,6 +42,7 @@ class CelebrityCardsSectionLayout extends Component {
         return (
             <div className="CelebrityCardsSectionLayout">
                 <div className={"f-main-padding"}>
+                    {/*{this.props.title ? <h6 className="float-left font-weight-bold">{this.props.title}</h6> : null}*/}
                     {
                         this.props.title
                             ?
@@ -55,11 +56,13 @@ class CelebrityCardsSectionLayout extends Component {
                         {this.renderCelebritiesCards()}
                     </div>
                     {
-                        this.props.showShimmerCards ?
+                        this.props.showShimmerCards
+                            ?
                             <div className="scrolling-wrapper">
                                 {CelebrityCardsSectionLayout.renderShimmerCards()}
                             </div>
-                            :null
+                            :
+                            null
                     }
                 </div>
             </div>

@@ -6,6 +6,7 @@ import {history} from "./History";
 import * as PATHS from './Paths';
 // Pages
 import * as PAGES from "../components/pages";
+import {PrivateRoute} from "./PrivateRoute";
 
 
 class Routes extends Component {
@@ -32,6 +33,41 @@ class Routes extends Component {
                             exact
                             path={PATHS.CONTRACT_CREATED}
                             component={PAGES.ContractCreatedPage}
+                        />
+                        <Route
+                            exact
+                            path={PATHS.SIGN_IN_PATH}
+                            component={PAGES.SignInPage}
+                        />
+                        <Route
+                            exact
+                            path={PATHS.SIGN_UP_PATH}
+                            component={PAGES.SignUpPage}
+                        />
+                        <Route
+                            exact
+                            path={PATHS.RESET_PASSWORD_PATH}
+                            component={PAGES.ResetPasswordPage}
+                        />
+                        <Route
+                            exact
+                            path={PATHS.CHANGE_PASSWORD_PATH}
+                            component={PAGES.ChangePasswordPage}
+                        />
+                        <Route
+                            exact
+                            path={PATHS.CREATE_PASSWORD_PATH}
+                            component={PAGES.CreatePasswordPage}
+                        />
+                        <PrivateRoute
+                            exact
+                            path={PATHS.COMPLETE_PROFILE_PATH}
+                            component={PAGES.CompleteProfilePage}
+                        />
+                        <PrivateRoute
+                            exact
+                            path={PATHS.USER_PROFILE}
+                            component={PAGES.UserProfilePage}
                         />
                         {/* ------- */}
                         <Route path="*" component={PAGES.NotFoundPage}/>

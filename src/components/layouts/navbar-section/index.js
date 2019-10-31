@@ -6,6 +6,7 @@ import * as PATHS from "../../../routing/Paths";
 import * as PropTypes from "prop-types";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {connect} from "react-redux";
+import {Session} from "../../../state/utils/session";
 
 
 class NavbarSectionLayout extends Component {
@@ -14,10 +15,18 @@ class NavbarSectionLayout extends Component {
         super(props);
 
         this.state = {
-
+            showSearch: false
         };
 
-        this.goToRootPath = this.goToRootPath.bind(this)
+        this.session = new Session();
+
+        this.goToRootPath = this.goToRootPath.bind(this);
+        this.goToSignInPath = this.goToSignInPath.bind(this);
+        this.goToSignUpPath = this.goToSignUpPath.bind(this);
+        this.logout = this.logout.bind(this);
+        this.showSearch = this.showSearch.bind(this);
+        this.goToContracts = this.goToContracts.bind(this);
+        this.goToProfile = this.goToProfile.bind(this);
     }
 
     goToRootPath() {
@@ -25,7 +34,54 @@ class NavbarSectionLayout extends Component {
         history.push(PATHS.ROOT_PATH)
     }
 
+    goToSignInPath() {
+        history.push(PATHS.SIGN_IN_PATH)
+    }
+
+    goToSignUpPath() {
+        history.push(PATHS.SIGN_UP_PATH)
+    }
+
+    goToContracts() {
+        history.push(PATHS.MY_CONTRACTS)
+    }
+
+    goToProfile() {
+        history.push(PATHS.USER_PROFILE)
+    }
+
+    logout() {
+        this.session.removeSession();
+    }
+
+    showSearch() {
+        this.setState({
+            showSearch: !this.state.showSearch
+        }, () => {
+            if (this.state.showSearch) {
+                const fMainPadding = document.getElementsByClassName('f-main-padding');
+                const fContainer = document.getElementsByClassName('f-container');
+                if (fMainPadding.length) {
+                    fMainPadding[0].className += ' search-sm-active ';
+                }
+                if (fContainer.length) {
+                    fContainer[0].className += ' search-sm-active ';
+                }
+            } else {
+                const fMainPadding = document.getElementsByClassName('f-main-padding');
+                const fContainer = document.getElementsByClassName('f-container');
+                if (fMainPadding.length) {
+                    fMainPadding[0].className = ' f-main-padding ';
+                }
+                if (fContainer.length) {
+                    fContainer[0].className = ' f-container ';
+                }
+            }
+        })
+    }
+
     render() {
+        const isLogged = this.session.getSession();
         return (
             <div className="NavbarSectionLayout">
                 <div className="f-navbar-container">
@@ -37,12 +93,32 @@ class NavbarSectionLayout extends Component {
                                      onClick={this.goToRootPath}
                                 />
                             </div>
-                            {/*<div className="float-right float-right-lg">*/}
-                            {/*    <button className="btn btn-sm mr-2">Ingresar</button>*/}
-                            {/*    <button className="btn btn-outline-primary btn-sm f-register-button">*/}
-                            {/*        Registrarse*/}
-                            {/*    </button>*/}
-                            {/*</div>*/}
+                            <div className="float-right float-right-lg">
+                                {
+                                    !isLogged
+                                        ?
+                                        <>
+                                            <button className="btn btn-sm mr-2" onClick={this.goToSignInPath}>
+                                                Ingresar
+                                            </button>
+                                            <button className="btn btn-outline-primary btn-sm f-register-button"
+                                                    onClick={this.goToSignUpPath}>
+                                                Registrarse
+                                            </button>
+                                        </>
+                                        :
+                                        <>
+                                            <button className="btn btn-sm mr-2" onClick={this.goToContracts}>
+                                                <i className="mr-1 fa fa-clipboard fa-2x mt-0"/>
+                                                <span className="font-weight-bold ml-1">Contratos</span>
+                                            </button>
+                                            <button className="btn btn-sm" onClick={this.goToProfile}>
+                                                <i className="mr-1 fa fa-user fa-2x mt-0"/>
+                                                <span className="font-weight-bold ml-1">Mi perfil</span>
+                                            </button>
+                                        </>
+                                }
+                            </div>
                             <div className="float-left ml-4">
                                 <NavbarSearchLayout onSearchChange={this.props.onSearchChange}/>
                             </div>
@@ -57,33 +133,37 @@ class NavbarSectionLayout extends Component {
                                          style={{width: "100%", maxWidth: "150px"}} alt="logo"
                                          onClick={this.goToRootPath}/>
                                 </div>
-                                {/* LOGIN*/}
-                                {/*<div className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center">*/}
-                                {/*    <button className="btn btn-primary btn-sm mt-2 f-register-button">*/}
-                                {/*        Comenzar*/}
-                                {/*    </button>*/}
-                                {/*</div>*/}
-                                {/* LOGGED*/}
-                                {/*<div className="col-6 pt-0 ml-0 pl-0 mb-0 pb-0 text-right">*/}
-                                {/*    <div className="btn-group">*/}
-                                {/*        <button className=" btn f-search-button">*/}
-                                {/*            <i className=" fa fa-video-camera"/>*/}
-                                {/*        </button>*/}
-                                {/*        <button className=" btn f-search-button">*/}
-                                {/*            <i className="fa fa-search"/>*/}
-                                {/*        </button>*/}
-                                {/*        <button type="button" className="btn dropdown-toggle">*/}
-                                {/*            <img className="img border border-dark profile-img f-shadow" alt="avatar"/>*/}
-                                {/*        </button>*/}
-                                {/*        <ul role="menu" aria-labelledby="button-triggers-manual">*/}
-                                {/*            <li role="menuitem">*/}
-                                {/*                <span className="dropdown-item hover cursor-pointer">*/}
-                                {/*                    Cerrar sesión*/}
-                                {/*                </span>*/}
-                                {/*            </li>*/}
-                                {/*        </ul>*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
+                                <div className="float-right float-right-lg">
+                                    {
+                                        !isLogged
+                                            ?
+                                            <>
+                                                <div className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center"
+                                                     onClick={this.goToSignUpPath}>
+                                                    <button className="btn btn-primary btn-sm mt-2 f-register-button">
+                                                        Comenzar
+                                                    </button>
+                                                </div>
+                                            </>
+                                            :
+                                            <>
+                                                <div className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center"
+                                                     style={{display: "flex"}}
+                                                >
+                                                    <button className="btn btn-sm mr-3" onClick={this.showSearch}>
+                                                        <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
+                                                    </button>
+                                                    <button className="btn btn-sm mr-2"
+                                                            onClick={this.goToContracts}>
+                                                        <i className="mr-1 fa fa-clipboard fa-2x"/>
+                                                    </button>
+                                                    <button className="btn btn-sm" onClick={this.goToProfile}>
+                                                        <i className="fa fa-user fa-2x"/>
+                                                    </button>
+                                                </div>
+                                            </>
+                                    }
+                                </div>
                             </div>
                             <div className="mx-auto">
                                 {/*<app-navbar-search></app-navbar-search>*/}
@@ -92,6 +172,14 @@ class NavbarSectionLayout extends Component {
                     </nav>
                 </div>
                 <div className="f-navbar-container-helper"/>
+                {
+                    this.state.showSearch
+                        ?
+                        <div className="f-items d-block d-md-none m-2 search-sm">
+                            <NavbarSearchLayout onSearchChange={this.props.onSearchChange}/>
+                        </div>
+                        : null
+                }
             </div>
         );
     };

@@ -50,6 +50,10 @@ class NavbarSearchLayout extends Component {
         }
     }
 
+    goToHome() {
+        history.push(PATHS.ROOT_PATH)
+    }
+
     render() {
         return (
             <div className="NavbarSearchLayout">
@@ -57,12 +61,14 @@ class NavbarSearchLayout extends Component {
                     <div className="input-group">
                         <input
                             className="form-control"
+                            autoFocus={true}
                             type="text"
                             name="search"
                             value={this.state.keyword}
                             onKeyPress={this.handleKeyPress.bind(this)}
                             // onBlur={this.handleBlur.bind(this)}
                             onChange={this.inputHandler.bind(this)}
+                            onClick={this.goToHome}
                             placeholder={this.props.searchLabel}
                         />
                     </div>

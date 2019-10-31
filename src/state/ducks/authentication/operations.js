@@ -1,9 +1,25 @@
-import {changePassword, login, resetPassword, resendSecurityCode, verifySecurityCode} from "./actions";
+import {
+    changePassword,
+    createPassword,
+    signInWithEmail,
+    resetPassword,
+    sendSMSSecurityCode,
+    validateSMSSecurityCode,
+    sendEmailSecurityCode,
+    validateEmailSecurityCode,
+    completeProfile,
+    getSession
+} from "./actions";
 
 export {
-    login,
+    signInWithEmail,
     changePassword,
-    verifySecurityCode,
-    resendSecurityCode,
-    resetPassword
+    createPassword,
+    sendSMSSecurityCode,
+    validateSMSSecurityCode,
+    sendEmailSecurityCode,
+    validateEmailSecurityCode,
+    resetPassword,
+    completeProfile,
+    getSession
 };

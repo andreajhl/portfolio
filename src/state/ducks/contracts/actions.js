@@ -74,7 +74,7 @@ export const save = (body) => {
     console.log("saving...");
     return dispatch => {
         const TYPE = types.SAVE_CONTRACT_REQUEST;
-        const FINAL_PATH = API_PATHS.BASE_PATH;
+        const FINAL_PATH = API_PATHS.CREATE_CONTRACT;
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "POST",

@@ -59,34 +59,35 @@ class ContractModal extends Component {
     }
 
     async sendData() {
+        if (!this.props.isLoading) {
+            // //TODO: 1) Validate Form
+            const contract_data = this.state.contract_data;
+            const errors = [];
+            if (contract_data.contract_type === 1 && !contract_data.delivery_from) {
+                errors.push("delivery_from");
+            }
+            if (!contract_data.delivery_to) {
+                errors.push("delivery_to");
+            }
+            if (!contract_data.delivery_contact) {
+                errors.push("delivery_contact");
+            }
+            if (!contract_data.instructions) {
+                errors.push("instructions");
+            }
+            this.setState({errors});
 
-        // //TODO: 1) Validate Form
-        const contract_data = this.state.contract_data;
-        const errors = [];
-        if (contract_data.contract_type === 1 && !contract_data.delivery_from) {
-            errors.push("delivery_from");
-        }
-        if (!contract_data.delivery_to) {
-            errors.push("delivery_to");
-        }
-        if (!contract_data.delivery_contact) {
-            errors.push("delivery_contact");
-        }
-        if (!contract_data.instructions) {
-            errors.push("instructions");
-        }
-        this.setState({errors});
-
-        if (errors.length) {
-            return false;
-        } else {
-            // //TODO: 2) Tokenize Card
-            let {token} = await this.childRef.current.state.stripe.createToken();
-            if (token) {
-                contract_data.stripe_id = token.id;
-                this.setState({contract_data}, () => {
-                    this.props.saveContract(this.state.contract_data);
-                })
+            if (errors.length) {
+                return false;
+            } else {
+                // //TODO: 2) Tokenize Card
+                let {token} = await this.childRef.current.state.stripe.createToken();
+                if (token) {
+                    contract_data.stripe_id = token.id;
+                    this.setState({contract_data}, () => {
+                        this.props.saveContract(this.state.contract_data);
+                    })
+                }
             }
         }
     }
@@ -301,7 +302,18 @@ class ContractModal extends Component {
                                 className="contract-button hover cursor-pointer p-2 border bg-active"
                                 onClick={this.sendData}
                             >
-                                CONTRATAR A {this.props.celebrity.user ? this.props.celebrity.user.full_name.split(" ")[0] : null}
+                                {
+                                    this.props.isLoading
+                                        ?
+                                        <span className="spinner-grow spinner-grow-sm"
+                                              role="status"
+                                              aria-hidden="true"
+                                        />
+                                        :
+                                        <span>
+                                           CONTRATAR A {this.props.celebrity.user ? this.props.celebrity.user.full_name.split(" ")[0] : null}
+                                        </span>
+                                }
                             </button>
                             <div className="mt-2 mb-4">
                                 <small>

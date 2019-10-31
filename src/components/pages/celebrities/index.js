@@ -13,7 +13,8 @@ class CelebritiesPage extends Component {
 
         this.state = {
             params: {
-                page: 1
+                page: 1,
+                status: 50
             }
         };
 

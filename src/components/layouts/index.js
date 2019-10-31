@@ -10,3 +10,5 @@ export * from "./navbar-section";
 export * from "./page-container";
 export * from "./pagination";
 export * from "./index-header";
+export * from "./flags-select";
+export * from "./user-profile-details-card";

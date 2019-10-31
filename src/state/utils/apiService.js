@@ -47,7 +47,10 @@ const apiService = (meta) => {
     }
 
     // Final URL
-    let url = `${process.env.REACT_APP_ENDPOINT}${meta.path}`;
+    let url = meta.path;
+    if (!meta.custom_endpoint) {
+        url = `${process.env.REACT_APP_ENDPOINT}${meta.path}`;
+    }
 
     let request = axios.create();
     switch (meta.method) {

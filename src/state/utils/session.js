@@ -36,7 +36,8 @@ export class Session {
 
     removeSession = () => {
         localStorage.removeItem(this.sessionName);
-        history.push(PATHS.LOGIN_PATH);
+        history.push(PATHS.ROOT_PATH);
+        window.location.replace("/")
     };
 
     tokenExpired() {
@@ -61,7 +62,7 @@ export class Session {
         const session = this.getSession();
         if (session) {
             if (this.utcSecondsToDatetime(session.exp) >= new Date()) {
-                history.push('/home');
+                history.push(PATHS.ROOT_PATH);
             } else {
                 this.removeSession();
             }
