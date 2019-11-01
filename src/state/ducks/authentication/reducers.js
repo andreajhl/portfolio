@@ -81,14 +81,6 @@ const completeProfileInitialState = {
     data: {}
 };
 
-const sessionInitialState = {
-    loading: false,
-    failed: false,
-    completed: false,
-    error_data: {error: ""},
-    data: {}
-};
-
 export function signInWithEmailReducer(state = signInWithEmailInitialState, action) {
     switch (action.type) {
         case types.SIGN_IN_WITH_EMAIL_REQUEST:
@@ -388,36 +380,6 @@ export function completeProfileReducer(state = completeProfileInitialState, acti
     }
 }
 
-export function sessionReducer(state = sessionInitialState, action) {
-    switch (action.type) {
-        case types.SESSION_REQUEST:
-            return {
-                ...sessionInitialState,
-                loading: true
-            };
-        case types.SESSION_REQUEST_FAILURE:
-            return {
-                ...sessionInitialState,
-                error_data: action.payload.data,
-                failed: true
-            };
-        case types.SESSION_REQUEST_SUCCESS:
-            return {
-                ...sessionInitialState,
-                data: action.payload.data
-            };
-        case types.SESSION_REQUEST_COMPLETED:
-            return {
-                ...sessionInitialState,
-                data: action.payload.data,
-                completed: true
-            };
-        default:
-            return state
-
-    }
-}
-
 export default combineReducers({
     signInWithEmailReducer,
     changePasswordReducer,
@@ -429,5 +391,4 @@ export default combineReducers({
     completeProfileReducer,
     sendEmailSecurityCodeReducer,
     validateEmailSecurityCodeReducer,
-    sessionReducer
 });

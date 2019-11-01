@@ -3,9 +3,9 @@ import {PageContainer} from "../../layouts";
 import {connect} from "react-redux";
 import {UserProfileDetailsCardLayout} from "../../layouts/user-profile-details-card";
 import "./styles.scss"
-import {authenticationOperations} from "../../../state/ducks/authentication";
+import {sessionOperations} from "../../../state/ducks/session";
 
-class UserProfilePage extends Component {
+class MyProfilePage extends Component {
 
     constructor(props) {
         super(props);
@@ -27,7 +27,7 @@ class UserProfilePage extends Component {
     render() {
         return (
             <>
-                <div className="UserProfilePage">
+                <div className="MyProfilePage">
                     <PageContainer fetchCelebrities={false}>
                         <UserProfileDetailsCardLayout session={this.props.session}/>
                     </PageContainer>
@@ -39,21 +39,21 @@ class UserProfilePage extends Component {
 }
 
 // Set propTypes
-UserProfilePage.propTypes = {};
+MyProfilePage.propTypes = {};
 
 // Set defaultProps
-UserProfilePage.defaultProps = {};
+MyProfilePage.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    session: state.authentication.sessionReducer.data
+    session: state.session.getSessionReducer.data
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getSession: authenticationOperations.getSession
+    getSession: sessionOperations.getSession
 };
 
 // Export Class
-const _UserProfilePage = connect(mapStateToProps, mapDispatchToProps)(UserProfilePage);
-export {_UserProfilePage as UserProfilePage};
+const _UserProfilePage = connect(mapStateToProps, mapDispatchToProps)(MyProfilePage);
+export {_UserProfilePage as MyProfilePage};

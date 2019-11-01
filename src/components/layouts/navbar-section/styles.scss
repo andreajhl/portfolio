@@ -107,4 +107,13 @@
     padding-right: 10px;
   }
 
+  .btn:hover {
+    color: $primary;
+  }
+  .btn.active {
+    color: $primary;
+  }
+
+
 }
+

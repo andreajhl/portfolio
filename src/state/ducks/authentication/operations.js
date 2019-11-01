@@ -8,7 +8,6 @@ import {
     sendEmailSecurityCode,
     validateEmailSecurityCode,
     completeProfile,
-    getSession
 } from "./actions";
 
 export {
@@ -21,5 +20,4 @@ export {
     validateEmailSecurityCode,
     resetPassword,
     completeProfile,
-    getSession
 };

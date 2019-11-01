@@ -11,6 +11,6 @@ export const RESET_PASSWORD_PATH = '/auth/reset-password';
 export const CHANGE_PASSWORD_PATH = '/auth/change-password';
 export const CREATE_PASSWORD_PATH = '/auth/create-password';
 export const COMPLETE_PROFILE_PATH = '/auth/complete-profile';
-export const USER_PROFILE = '/my-account/profile';
-export const MY_CONTRACTS = '/my-account/contracts';
+export const MY_PROFILE = '/my-account/profile';
+export const MY_HIRINGS = '/my-account/hirings';
 

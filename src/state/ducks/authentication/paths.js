@@ -10,4 +10,3 @@ export const CREATE_ACCOUNT_TO_VALIDATE_BY_EMAIL = `api/${apiVersion}/auth/clien
 export const VALIDATE_EMAIL_SECURITY_CODE = `api/${apiVersion}/auth/clients/validate-email-security-code/`;
 export const RESET_PASSWORD = `api/${apiVersion}/auth/clients/reset-password/`;
 export const COMPLETE_PROFILE = `api/${apiVersion}/auth/clients/complete-profile/`;
-export const CLIENT_SESSION = `api/${apiVersion}/auth/clients/session/`;

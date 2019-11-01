@@ -1,0 +1,47 @@
+.HiringsCardSection {
+  .f-main-padding {
+    background-color: white;
+  }
+
+  .contract-card {
+    display: flex;
+    margin: 0px 20px 20px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #eeee;
+
+    .div-contract-info {
+      flex: 2; /* additionally, equal width */
+      padding: 5px;
+
+      .card-header {
+        height: 110px;
+        display: flex;
+
+        .celebrity-avatar {
+          padding: 2px;
+          margin-right: 10px;
+
+          img {
+            width: 70px;
+          }
+        }
+
+        .from-to {
+          width: 100%;
+        }
+
+        .button-status {
+          width: 200px;
+          text-align: right;
+
+          button {
+            margin-top: 25px;
+          }
+        }
+
+      }
+    }
+  }
+
+
+}

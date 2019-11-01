@@ -13,8 +13,6 @@ const afterLogin = (res, redirect_path = null) => {
     }
     if (redirect_path) {
         history.push(redirect_path)
-    } else if (session.getSession().client_data.status === 10) {
-        history.push(ROUTE_PATHS.COMPLETE_PROFILE_PATH)
     } else {
         history.push(ROUTE_PATHS.ROOT_PATH)
     }
@@ -38,7 +36,6 @@ export const signInWithEmail = (body) => {
                     handleApiResponseSuccess(dispatch, type, res);
                     dispatch({type: `${type}_COMPLETED`, payload: res});
                     afterLogin(res)
-                    dispatch(getSession())
                 } else {
                     handleApiResponseFailure(dispatch, type, res);
                 }
@@ -67,7 +64,6 @@ export const changePassword = (body, redirect_path=null) => {
                     handleApiResponseSuccess(dispatch, type, res);
                     dispatch({type: `${type}_COMPLETED`, payload: res});
                     afterLogin(res, redirect_path)
-                    dispatch(getSession())
                 } else {
                     handleApiResponseFailure(dispatch, type, res);
                 }
@@ -96,7 +92,6 @@ export const createPassword = (body, redirect_path=null) => {
                     handleApiResponseSuccess(dispatch, type, res);
                     dispatch({type: `${type}_COMPLETED`, payload: res});
                     afterLogin(res, redirect_path)
-                    dispatch(getSession())
                 } else {
                     handleApiResponseFailure(dispatch, type, res);
                 }
@@ -151,8 +146,7 @@ export const validateSMSSecurityCode = (body) => {
                 if (res.data.status === "OK") {
                     handleApiResponseSuccess(dispatch, type, res);
                     dispatch({type: `${type}_COMPLETED`, payload: res});
-                    afterLogin(res)
-                    dispatch(getSession())
+                    afterLogin(res, ROUTE_PATHS.COMPLETE_PROFILE_PATH)
                 } else {
                     handleApiResponseFailure(dispatch, type, res);
                 }
@@ -208,7 +202,6 @@ export const validateEmailSecurityCode = (body, redirect_path=null) => {
                     handleApiResponseSuccess(dispatch, type, res);
                     dispatch({type: `${type}_COMPLETED`, payload: res});
                     afterLogin(res, redirect_path)
-                    dispatch(getSession())
                 } else {
                     handleApiResponseFailure(dispatch, type, res);
                 }
@@ -237,7 +230,6 @@ export const completeProfile = (body) => {
                     handleApiResponseSuccess(dispatch, type, res);
                     dispatch({type: `${type}_COMPLETED`, payload: res});
                     afterLogin(res, ROUTE_PATHS.ROOT_PATH)
-                    dispatch(getSession())
                 } else {
                     handleApiResponseFailure(dispatch, type, res);
                 }
@@ -267,37 +259,6 @@ export const resetPassword = (body) => {
                     dispatch({type: `${type}_COMPLETED`, payload: res});
                 } else {
                     handleApiResponseFailure(dispatch, type, res);
-                }
-            })
-            .catch(err => {
-                handleApiErrors(dispatch, type, {data: {api_error: err, error: "Server 500"}})
-            });
-    }
-};
-
-export const getSession = () => {
-    return dispatch => {
-        const path = PATHS.CLIENT_SESSION;
-        const type = types.SESSION_REQUEST;
-        dispatch({type: type, payload: {}});
-        apiService({
-            action: type,
-            async: true,
-            path: path,
-            method: "GET",
-            params: null,
-            body: null
-        })
-            .then(res => {
-                if ("status" in res.data && res.data.status === "ERROR") {
-                    console.log("res.data.status:", res.data.status);
-                    handleApiResponseFailure(dispatch, type, res);
-
-                } else {
-                    handleApiResponseSuccess(dispatch, type, res);
-                    // Other actions
-
-                    dispatch({type: `${type}_COMPLETED`, payload: res});
                 }
             })
             .catch(err => {

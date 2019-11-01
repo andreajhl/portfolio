@@ -8,4 +8,5 @@ export * from "./reset-password";
 export * from "./change-password";
 export * from "./create-password";
 export * from "./complete-profile";
-export * from "./user-profile";
+export * from "./my-profile";
+export * from "./my-hirings";

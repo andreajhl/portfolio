@@ -7,6 +7,7 @@ import * as PropTypes from "prop-types";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {connect} from "react-redux";
 import {Session} from "../../../state/utils/session";
+import {NavLink} from "react-router-dom";
 
 
 class NavbarSectionLayout extends Component {
@@ -25,7 +26,6 @@ class NavbarSectionLayout extends Component {
         this.goToSignUpPath = this.goToSignUpPath.bind(this);
         this.logout = this.logout.bind(this);
         this.showSearch = this.showSearch.bind(this);
-        this.goToContracts = this.goToContracts.bind(this);
         this.goToProfile = this.goToProfile.bind(this);
     }
 
@@ -42,12 +42,8 @@ class NavbarSectionLayout extends Component {
         history.push(PATHS.SIGN_UP_PATH)
     }
 
-    goToContracts() {
-        history.push(PATHS.MY_CONTRACTS)
-    }
-
     goToProfile() {
-        history.push(PATHS.USER_PROFILE)
+        history.push(PATHS.MY_PROFILE)
     }
 
     logout() {
@@ -108,14 +104,20 @@ class NavbarSectionLayout extends Component {
                                         </>
                                         :
                                         <>
-                                            <button className="btn btn-sm mr-2" onClick={this.goToContracts}>
+                                            <NavLink className=" btn btn-sm mr-2"
+                                                     activeClassName='active'
+                                                     to={PATHS.MY_HIRINGS}
+                                            >
                                                 <i className="mr-1 fa fa-clipboard fa-2x mt-0"/>
-                                                <span className="font-weight-bold ml-1">Contratos</span>
-                                            </button>
-                                            <button className="btn btn-sm" onClick={this.goToProfile}>
+                                                <span className="font-weight-bold ml-1">Mis Contrataciones</span>
+                                            </NavLink>
+                                            <NavLink className=" btn btn-sm mr-2"
+                                                     activeClassName='active'
+                                                     to={PATHS.MY_PROFILE}
+                                            >
                                                 <i className="mr-1 fa fa-user fa-2x mt-0"/>
                                                 <span className="font-weight-bold ml-1">Mi perfil</span>
-                                            </button>
+                                            </NavLink>
                                         </>
                                 }
                             </div>
@@ -153,13 +155,20 @@ class NavbarSectionLayout extends Component {
                                                     <button className="btn btn-sm mr-3" onClick={this.showSearch}>
                                                         <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
                                                     </button>
-                                                    <button className="btn btn-sm mr-2"
-                                                            onClick={this.goToContracts}>
+                                                    <NavLink className=" btn btn-sm mr-2"
+                                                             activeClassName='active'
+                                                             to={PATHS.MY_HIRINGS}
+                                                    >
                                                         <i className="mr-1 fa fa-clipboard fa-2x"/>
-                                                    </button>
-                                                    <button className="btn btn-sm" onClick={this.goToProfile}>
-                                                        <i className="fa fa-user fa-2x"/>
-                                                    </button>
+                                                        <span className="font-weight-bold ml-1"/>
+                                                    </NavLink>
+                                                    <NavLink className=" btn btn-sm mr-2"
+                                                             activeClassName='active'
+                                                             to={PATHS.MY_PROFILE}
+                                                    >
+                                                        <i className="mr-1 fa fa-user fa-2x"/>
+                                                        <span className="font-weight-bold ml-1"/>
+                                                    </NavLink>
                                                 </div>
                                             </>
                                     }

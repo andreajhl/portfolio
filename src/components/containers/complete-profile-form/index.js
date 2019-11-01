@@ -5,7 +5,8 @@ import {connect} from "react-redux";
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
 import {Session} from "../../../state/utils/session";
-import {history} from "../../../routing/History"; // If using WebPack and style-loader.
+import {history} from "../../../routing/History";
+import {CelebritiesMultiselect} from "../../layouts/celebrities-multiselect"; // If using WebPack and style-loader.
 
 class CompleteProfileForm extends Component {
 
@@ -71,9 +72,8 @@ class CompleteProfileForm extends Component {
                         : null
                 }
                 <h6>¿Cuáles son tus Famosos favoritos? (Opcional)</h6>
-                <TagsInput
-                    inputProps={{placeholder: 'Escribe el nombre y presiona enter'}}
-                    value={this.state.fav_celebrities}
+                <CelebritiesMultiselect
+                    currentValue={this.state.fav_celebrities ? this.state.fav_celebrities : []}
                     onChange={this.handleChange}
                 />
                 {
