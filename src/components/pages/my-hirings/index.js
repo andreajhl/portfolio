@@ -3,7 +3,7 @@ import {PageContainer} from "../../layouts";
 import {connect} from "react-redux";
 import {HiringsCardSection} from "../../layouts";
 import "./styles.scss"
-import {sessionOperations} from "../../../state/ducks/session";
+import {contractOperations} from "../../../state/ducks/contracts";
 
 class MyHiringsPage extends Component {
 
@@ -17,7 +17,7 @@ class MyHiringsPage extends Component {
     }
 
     componentWillMount(): void {
-        this.props.getSession()
+        this.props.fetchMyContracts()
     }
 
     componentDidMount(): void {
@@ -29,7 +29,7 @@ class MyHiringsPage extends Component {
             <>
                 <div className="MyHiringsPage">
                     <PageContainer fetchCelebrities={false}>
-                        <HiringsCardSection/>
+                        <HiringsCardSection contracts={this.props.contracts}/>
                     </PageContainer>
                 </div>
             </>
@@ -46,12 +46,13 @@ MyHiringsPage.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    session: state.session.getSessionReducer.data
+    isLoading: state.contracts.fetchMyContractsReducer.loading,
+    contracts: state.contracts.fetchMyContractsReducer.data.contracts
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getSession: sessionOperations.getSession
+    fetchMyContracts: contractOperations.listMyContracts
 };
 
 // Export Class

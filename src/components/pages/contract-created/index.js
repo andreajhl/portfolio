@@ -14,7 +14,7 @@ class ContractCreatedPage extends Component {
 
         this.state = {};
 
-        this.goToHome = this.goToHome.bind(this);
+        this.goToMyHirings = this.goToMyHirings.bind(this);
         this.goToCreateAccount = this.goToCreateAccount.bind(this);
 
         this.session = new Session();
@@ -24,8 +24,8 @@ class ContractCreatedPage extends Component {
         this.props.getContract(this.props.match.params.contract_reference)
     }
 
-    goToHome() {
-        history.push(PATHS.ROOT_PATH);
+    goToMyHirings() {
+        history.push(PATHS.MY_HIRINGS);
     }
 
     goToCreateAccount() {
@@ -63,13 +63,13 @@ class ContractCreatedPage extends Component {
                             <div className="w-25 mx-auto m-4 text-center">
                                 <hr style={{border: "solid 0.5px"}}/>
                             </div>
-                            <p className="mt-4 font-weight-bold">
-                                Estás a un paso de crear tu cuenta<br/>
-                            </p>
                             {
                                 !isLogged
                                     ?
                                     <>
+                                        <p className="mt-4 font-weight-bold">
+                                            Estás a un paso de crear tu cuenta<br/>
+                                        </p>
                                         <button className="btn btn-primary" onClick={this.goToCreateAccount}>
                                             Crear una cuenta
                                             <i className="fa fa-arrow-right ml-2"/>
@@ -82,9 +82,9 @@ class ContractCreatedPage extends Component {
                                         </div>
                                     </>
                                     :
-                                    <button className="btn btn-primary" onClick={this.goToHome}>
-                                        <i className="fa fa-arrow-left mr-2"/>
-                                        Volver a inicio
+                                    <button className="btn btn-primary" onClick={this.goToMyHirings}>
+                                        Ver mis contrataciones
+                                        <i className="fa fa-arrow-right ml-2"/>
                                     </button>
                             }
                         </div>

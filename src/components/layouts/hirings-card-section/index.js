@@ -3,6 +3,61 @@ import "./styles.scss";
 
 class HiringsCardSection extends Component {
 
+    renderContractCards() {
+        return (
+            this.props.contracts.map((contract, key) => {
+                return (
+                    <div className="contract-card" key={key}>
+                        <div className="div-contract-info">
+                            <div className="card">
+                                <div className="card-header">
+                                    <div className="celebrity-avatar d-none d-md-block">
+                                        <img className="celebrity-avatar rounded mt-2"
+                                             width="40px"
+                                             src={contract.celebrity.avatar}
+                                             alt="avatar"/>
+                                    </div>
+                                    <div className="from-to">
+                                        <h6 className="mt-2 font-weight-bold">
+                                            Famoso:
+                                            <small>{contract.celebrity.ful_name}</small>
+                                        </h6>
+                                        <h6 className="mt-2 font-weight-bold">
+                                            Para:
+                                            <small>{contract.delivery_to}</small>
+                                        </h6>
+                                        <h6 className="mt-2 font-weight-bold">
+                                            De:
+                                            <small>{contract.delivery_from}</small>
+                                        </h6>
+                                    </div>
+                                    <div className="button-status">
+                                        {
+                                            contract.status <= 30
+                                                ?
+                                                <button className="btn btn-outline-dark" disabled>
+                                                    <span className="d-none d-md-block">Pendiente</span>
+                                                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-1 fa fa-clock"/>
+                                                </button>
+                                                :
+                                                <button className="btn btn-outline-success">
+                                                    <span className="d-none d-md-block">Ver Video</span>
+                                                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-1 fa fa-play"/>
+                                                </button>
+                                        }
+                                    </div>
+                                </div>
+                                <div className="card-body text-justify contract-instructions">
+                                    {contract.instructions}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            })
+        )
+    }
+
     render() {
         return (
             <div className="HiringsCardSection">
@@ -15,126 +70,7 @@ class HiringsCardSection extends Component {
                                         Mis Contrataciones
                                     </h4>
                                 </div>
-                                <div className="contract-card">
-                                    <div className="div-contract-info">
-                                        <div className="card">
-                                            <div className="card-header">
-                                                <div className="celebrity-avatar">
-                                                    <img className="celebrity-avatar rounded mt-2"
-                                                         width="40px"
-                                                         src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/54513868-2115337018768932-2992341411866451085-n-1554369172.jpg?crop=1.00xw:0.801xh;0,0.0760xh&resize=480:*"
-                                                         alt="avatar"/>
-                                                </div>
-                                                <div className="from-to">
-                                                    <h6 className="mt-2 font-weight-bold">Famoso: <small>La
-                                                        Rosalia</small>
-                                                    </h6>
-                                                    <h6 className="mt-2 font-weight-bold">Para: <small>Anita</small>
-                                                    </h6>
-                                                    <h6 className="mt-2 font-weight-bold">De: <small>Duvan</small>
-                                                    </h6>
-                                                </div>
-                                                <div className="button-status">
-                                                    <button className="btn btn-outline-dark" disabled>
-                                                        Pendiente
-                                                        <i className="ml-2 fa fa-clock"/>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div className="card-body text-justify contract-instructions">
-                                                Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has been the industry's standard dummy text ever
-                                                since the 1500s, when an unknown printer took a galley of type and
-                                                scrambled it to make a type specimen book. It has survived not only five
-                                                centuries, but also the leap into electronic typesetting, remaining
-                                                essentially unchanged. It was popularised in the 1960s with the release
-                                                of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                                with desktop publishing software like Aldus PageMaker including versions
-                                                of Lorem Ipsum.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="contract-card">
-                                    <div className="div-contract-info">
-                                        <div className="card">
-                                            <div className="card-header">
-                                                <div className="celebrity-avatar">
-                                                    <img className="celebrity-avatar rounded mt-2"
-                                                         width="40px"
-                                                         src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/54513868-2115337018768932-2992341411866451085-n-1554369172.jpg?crop=1.00xw:0.801xh;0,0.0760xh&resize=480:*"
-                                                         alt="avatar"/>
-                                                </div>
-                                                <div className="from-to">
-                                                    <h6 className="mt-2 font-weight-bold">Famoso: <small>La
-                                                        Rosalia</small>
-                                                    </h6>
-                                                    <h6 className="mt-2 font-weight-bold">Para: <small>Anita</small>
-                                                    </h6>
-                                                    <h6 className="mt-2 font-weight-bold">De: <small>Duvan</small>
-                                                    </h6>
-                                                </div>
-                                                <div className="button-status">
-                                                    <button className="btn btn-outline-success">
-                                                        Ver video
-                                                        <i className="ml-2 fa fa-play"/>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div className="card-body text-justify contract-instructions">
-                                                Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has been the industry's standard dummy text ever
-                                                since the 1500s, when an unknown printer took a galley of type and
-                                                scrambled it to make a type specimen book. It has survived not only five
-                                                centuries, but also the leap into electronic typesetting, remaining
-                                                essentially unchanged. It was popularised in the 1960s with the release
-                                                of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                                with desktop publishing software like Aldus PageMaker including versions
-                                                of Lorem Ipsum.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="contract-card">
-                                    <div className="div-contract-info">
-                                        <div className="card">
-                                            <div className="card-header">
-                                                <div className="celebrity-avatar">
-                                                    <img className="celebrity-avatar rounded mt-2"
-                                                         width="40px"
-                                                         src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/54513868-2115337018768932-2992341411866451085-n-1554369172.jpg?crop=1.00xw:0.801xh;0,0.0760xh&resize=480:*"
-                                                         alt="avatar"/>
-                                                </div>
-                                                <div className="from-to">
-                                                    <h6 className="mt-2 font-weight-bold">Famoso: <small>La
-                                                        Rosalia</small>
-                                                    </h6>
-                                                    <h6 className="mt-2 font-weight-bold">Para: <small>Anita</small>
-                                                    </h6>
-                                                    <h6 className="mt-2 font-weight-bold">De: <small>Duvan</small>
-                                                    </h6>
-                                                </div>
-                                                <div className="button-status">
-                                                    <button className="btn btn-outline-success">
-                                                        Ver video
-                                                        <i className="ml-2 fa fa-play"/>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div className="card-body text-justify contract-instructions">
-                                                Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has been the industry's standard dummy text ever
-                                                since the 1500s, when an unknown printer took a galley of type and
-                                                scrambled it to make a type specimen book. It has survived not only five
-                                                centuries, but also the leap into electronic typesetting, remaining
-                                                essentially unchanged. It was popularised in the 1960s with the release
-                                                of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                                with desktop publishing software like Aldus PageMaker including versions
-                                                of Lorem Ipsum.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {this.renderContractCards()}
                             </div>
                         </div>
                     </div>
@@ -144,5 +80,10 @@ class HiringsCardSection extends Component {
     };
 
 }
+
+//default props
+HiringsCardSection.defaultProps = {
+    contracts: []
+};
 
 export {HiringsCardSection};

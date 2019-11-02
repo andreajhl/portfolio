@@ -1,9 +1,11 @@
 .HiringsCardSection {
   .f-main-padding {
     background-color: white;
+    min-height: 550px;
   }
 
   .contract-card {
+    width: 100%;
     display: flex;
     margin: 0px 20px 20px;
     padding-bottom: 20px;
@@ -22,19 +24,22 @@
           margin-right: 10px;
 
           img {
+            border-radius: 6px !important;
             width: 70px;
           }
         }
 
         .from-to {
-          width: 100%;
+          flex: 4;
         }
 
         .button-status {
+          flex: 1;
           width: 200px;
           text-align: right;
 
           button {
+            display: flex;
             margin-top: 25px;
           }
         }

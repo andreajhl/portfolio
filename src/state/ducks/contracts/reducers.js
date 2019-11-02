@@ -33,6 +33,15 @@ const updateContractInitialState = {
     data: {}
 };
 
+const fetchMyContractsInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {contracts: []}
+};
+
+
 export function fetchContractsReducer(state = fetchContractsInitialState, action) {
     switch (action.type) {
         case types.FETCH_CONTRACTS_REQUEST:
@@ -149,9 +158,39 @@ export function updateContractReducer(state = updateContractInitialState, action
     }
 }
 
+export function fetchMyContractsReducer(state = fetchMyContractsInitialState, action) {
+    switch (action.type) {
+        case types.FETCH_MY_CONTRACTS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case types.FETCH_MY_CONTRACTS_REQUEST_FAILURE:
+            return {
+                ...fetchMyContractsInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.FETCH_MY_CONTRACTS_REQUEST_SUCCESS:
+            return {
+                ...fetchMyContractsInitialState,
+                data: action.payload.data
+            };
+        case types.FETCH_MY_CONTRACTS_REQUEST_COMPLETED:
+            return {
+                ...state,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
     fetchContractsReducer,
     saveContractReducer,
     getContractReducer,
-    updateContractReducer
+    updateContractReducer,
+    fetchMyContractsReducer
 });

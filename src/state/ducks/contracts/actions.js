@@ -134,3 +134,33 @@ export const update = (object_id, body, redirect_path = null) => {
             });
     }
 };
+
+
+export const listMyContracts = (params=null) => {
+    return dispatch => {
+        const TYPE = types.FETCH_MY_CONTRACTS_REQUEST;
+        const FINAL_PATH = API_PATHS.FETCH_MY_CONTRACTS;
+        dispatch({type: TYPE, payload: {}});
+        apiService({
+            method: "GET",
+            action: TYPE,
+            path: FINAL_PATH,
+            async: true,
+            params: params,
+            body: null
+        })
+            .then(res => {
+                if (res.data.status === "OK") {
+                    handleApiResponseSuccess(dispatch, TYPE, res);
+                    // Other actions
+
+                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
+                } else {
+                    handleApiResponseFailure(dispatch, TYPE, res);
+                }
+            })
+            .catch(err => {
+                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+            });
+    }
+};
