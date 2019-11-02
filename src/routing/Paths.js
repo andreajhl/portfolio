@@ -14,4 +14,4 @@ export const COMPLETE_PROFILE_PATH = '/auth/complete-profile';
 export const MY_PROFILE = '/my-account/profile';
 export const MY_HIRINGS = '/my-account/hirings';
 export const HIRING_PREVIEW = '/my-account/hirings/:hiring_reference';
-
+export const HIRING_PREVIEW_WITHOUT_SESSION = '/hirings/:hiring_reference';

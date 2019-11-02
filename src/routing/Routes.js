@@ -79,6 +79,11 @@ class Routes extends Component {
                             path={PATHS.HIRING_PREVIEW}
                             component={PAGES.HiringPreviewPage}
                         />
+                        <Route
+                            exact
+                            path={PATHS.HIRING_PREVIEW_WITHOUT_SESSION}
+                            component={PAGES.HiringPreviewPage}
+                        />
                         {/* ------- */}
                         <Route path="*" component={PAGES.NotFoundPage}/>
                     </Switch>
