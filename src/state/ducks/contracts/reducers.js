@@ -41,6 +41,13 @@ const fetchMyContractsInitialState = {
     data: {contracts: []}
 };
 
+const getContractPreviewInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {contract: []}
+};
 
 export function fetchContractsReducer(state = fetchContractsInitialState, action) {
     switch (action.type) {
@@ -187,10 +194,41 @@ export function fetchMyContractsReducer(state = fetchMyContractsInitialState, ac
     }
 }
 
+export function getContractPreviewReducer(state = getContractPreviewInitialState, action) {
+    switch (action.type) {
+        case types.GET_CONTRACT_PREVIEW_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case types.GET_CONTRACT_PREVIEW_REQUEST_FAILURE:
+            return {
+                ...getContractPreviewInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.GET_CONTRACT_PREVIEW_REQUEST_SUCCESS:
+            return {
+                ...getContractPreviewInitialState,
+                data: action.payload.data
+            };
+        case types.GET_CONTRACT_PREVIEW_REQUEST_COMPLETED:
+            return {
+                ...state,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+    }
+}
+
+
 export default combineReducers({
     fetchContractsReducer,
     saveContractReducer,
     getContractReducer,
     updateContractReducer,
-    fetchMyContractsReducer
+    fetchMyContractsReducer,
+    getContractPreviewReducer
 });

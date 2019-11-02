@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
 import "./styles.scss";
+import * as PATHS from "../../../routing/Paths";
+import {history} from "../../../routing/History";
 
-class HiringsCardSection extends Component {
+
+class HiringsCardSectionLayout extends Component {
+
+    goToContract(contract_reference) {
+        history.push(PATHS.HIRING_PREVIEW.replace(":hiring_reference", "") + contract_reference)
+    }
 
     renderContractCards() {
         return (
@@ -40,7 +47,7 @@ class HiringsCardSection extends Component {
                                                     <i className="ml-0 ml-sm-2 mt-0 mt-sm-1 fa fa-clock"/>
                                                 </button>
                                                 :
-                                                <button className="btn btn-outline-success">
+                                                <button className="btn btn-outline-success" onClick={this.goToContract.bind(this, contract.reference)}>
                                                     <span className="d-none d-md-block">Ver Video</span>
                                                     <i className="ml-0 ml-sm-2 mt-0 mt-sm-1 fa fa-play"/>
                                                 </button>
@@ -60,7 +67,7 @@ class HiringsCardSection extends Component {
 
     render() {
         return (
-            <div className="HiringsCardSection">
+            <div className="HiringsCardSectionLayout">
                 <div className="row justify-content-center">
                     <div className="col-12 col-lg-8">
                         <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
@@ -82,8 +89,8 @@ class HiringsCardSection extends Component {
 }
 
 //default props
-HiringsCardSection.defaultProps = {
+HiringsCardSectionLayout.defaultProps = {
     contracts: []
 };
 
-export {HiringsCardSection};
+export {HiringsCardSectionLayout};

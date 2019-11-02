@@ -74,6 +74,11 @@ class Routes extends Component {
                             path={PATHS.MY_HIRINGS}
                             component={PAGES.MyHiringsPage}
                         />
+                        <PrivateRoute
+                            exact
+                            path={PATHS.HIRING_PREVIEW}
+                            component={PAGES.HiringPreviewPage}
+                        />
                         {/* ------- */}
                         <Route path="*" component={PAGES.NotFoundPage}/>
                     </Switch>

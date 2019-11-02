@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {PageContainer} from "../../layouts";
 import {connect} from "react-redux";
-import {HiringsCardSection} from "../../layouts";
+import {HiringsCardSectionLayout} from "../../layouts";
 import "./styles.scss"
 import {contractOperations} from "../../../state/ducks/contracts";
 
@@ -29,7 +29,7 @@ class MyHiringsPage extends Component {
             <>
                 <div className="MyHiringsPage">
                     <PageContainer fetchCelebrities={false}>
-                        <HiringsCardSection contracts={this.props.contracts}/>
+                        <HiringsCardSectionLayout contracts={this.props.contracts}/>
                     </PageContainer>
                 </div>
             </>

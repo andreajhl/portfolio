@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {PageContainer} from "../../layouts";
+import {HiringPreviewLayout, PageContainer} from "../../layouts";
 import {connect} from "react-redux";
-import {HiringsCardSection} from "../../layouts";
 import "./styles.scss"
 import {contractOperations} from "../../../state/ducks/contracts";
 
@@ -17,7 +16,7 @@ class HiringPreviewPage extends Component {
     }
 
     componentWillMount(): void {
-        this.props.fetchMyContracts()
+        this.props.getContractPreview(this.props.match.params.hiring_reference)
     }
 
     componentDidMount(): void {
@@ -29,7 +28,7 @@ class HiringPreviewPage extends Component {
             <>
                 <div className="HiringPreviewPage">
                     <PageContainer fetchCelebrities={false}>
-                        <HiringsCardSection contracts={this.props.contracts}/>
+                        <HiringPreviewLayout contract={this.props.contract}/>
                     </PageContainer>
                 </div>
             </>
@@ -46,13 +45,13 @@ HiringPreviewPage.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.contracts.fetchMyContractsReducer.loading,
-    contracts: state.contracts.fetchMyContractsReducer.data.contracts
+    isLoading: state.contracts.getContractPreviewReducer.loading,
+    contract: state.contracts.getContractPreviewReducer.data.contract
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    fetchMyContracts: contractOperations.listMyContracts
+    getContractPreview: contractOperations.getContractPreview
 };
 
 // Export Class

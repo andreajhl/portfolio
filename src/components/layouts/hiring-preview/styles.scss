@@ -1,52 +1,78 @@
-.HiringsCardSection {
+.HiringPreviewLayout {
   .f-main-padding {
     background-color: white;
     min-height: 550px;
   }
 
-  .contract-card {
+  .preview {
     width: 100%;
-    display: flex;
-    margin: 0px 20px 20px;
-    padding-bottom: 20px;
-    border-bottom: solid 1px #eeee;
 
-    .div-contract-info {
-      flex: 2; /* additionally, equal width */
-      padding: 5px;
+    .video-container{
+      text-align: center;
+      margin: 0 auto;
+      padding-right: 40px;
+      padding-left: 40px;
 
-      .card-header {
-        height: 110px;
-        display: flex;
+      .f-video {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: transparent !important;
+        position: relative;
 
-        .celebrity-avatar {
-          padding: 2px;
-          margin-right: 10px;
+        .spinner-border{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          display: none;
+        }
 
-          img {
-            border-radius: 6px !important;
-            width: 70px;
+        &.video-loading{
+          height: 400px;
+          width: 100%;
+          * {
+            display: none;
+          }
+          .spinner-border{
+            display: block;
           }
         }
 
-        .from-to {
-          flex: 4;
+        .play-pause {
+          position: absolute;
+          top: 30px;
+          left: 35px;
+          font-size: 45px;
+          color: white;
         }
 
-        .button-status {
-          flex: 1;
-          width: 200px;
-          text-align: right;
-
-          button {
-            display: flex;
-            margin-top: 25px;
-          }
+        video {
+          max-width: 100%;
+          border-radius: 20px;
+          border: solid 1px #eee;
+          background-color: #eee;
         }
 
       }
     }
-  }
+    .video-details{
+      margin: 0 auto;
+      width: 90%;
 
+      .share-div {
+        position: absolute;
+        right: 10px;
+        top: -15px;
+        img {
+          width: 40px;
+          margin-right: 20px;
+        }
+      }
+
+      .instructions{
+        height: 120px;
+        overflow-y: scroll;
+      }
+    }
+  }
 
 }

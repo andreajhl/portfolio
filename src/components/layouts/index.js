@@ -14,3 +14,4 @@ export * from "./flags-select";
 export * from "./user-profile-details-card";
 export * from "./celebrities-multiselect";
 export * from "./hirings-card-section";
+export * from "./hiring-preview";
