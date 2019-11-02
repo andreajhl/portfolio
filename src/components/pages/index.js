@@ -10,3 +10,4 @@ export * from "./create-password";
 export * from "./complete-profile";
 export * from "./my-profile";
 export * from "./my-hirings";
+export * from "./hiring-preview";
