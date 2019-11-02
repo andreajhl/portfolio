@@ -71,13 +71,24 @@ class HiringsCardSectionLayout extends Component {
                 <div className="row justify-content-center">
                     <div className="col-12 col-lg-8">
                         <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
-                            <div className="row section">
+                            <div className="row  justify-content-center section">
                                 <div className="col-12 text-center">
                                     <h4 className="mt-3 font-weight-bold border-bottom pb-3">
                                         Mis Contrataciones
                                     </h4>
                                 </div>
-                                {this.renderContractCards()}
+                                {
+                                    this.props.contracts.length
+                                        ?
+                                        this.renderContractCards()
+                                        :
+                                        <div className="col-5 mt-4 pt-4 text-center">
+                                            <img width="100%"
+                                                style={{opacity: "0.4"}}
+                                                 src="/assets/img/sad-face-in-rounded-square.svg" alt="sad-face"/>
+                                            <h4 className="text-muted mt-3">Aún no has realizado una contratación</h4>
+                                        </div>
+                                }
                             </div>
                         </div>
                     </div>

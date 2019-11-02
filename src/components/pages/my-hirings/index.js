@@ -17,11 +17,15 @@ class MyHiringsPage extends Component {
     }
 
     componentWillMount(): void {
-        this.props.fetchMyContracts()
+        this.props.fetchMyContracts();
     }
 
     componentDidMount(): void {
         document.getElementsByClassName("f-main-body")[0].style.background = "#f7f7f7"
+    }
+
+    componentWillUnmount(): void {
+        document.getElementsByClassName("f-main-body")[0].style.background = "#fff"
     }
 
     render() {

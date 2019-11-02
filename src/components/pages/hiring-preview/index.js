@@ -23,6 +23,10 @@ class HiringPreviewPage extends Component {
         document.getElementsByClassName("f-main-body")[0].style.background = "#f7f7f7"
     }
 
+    componentWillUnmount(): void {
+        document.getElementsByClassName("f-main-body")[0].style.background = "#fff"
+    }
+
     render() {
         return (
             <>

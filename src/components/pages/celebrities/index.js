@@ -4,6 +4,7 @@ import * as PropTypes from "prop-types";
 import {CelebrityShape, PaginationShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
+import "./styles.scss"
 
 
 class CelebritiesPage extends Component {
@@ -67,33 +68,35 @@ class CelebritiesPage extends Component {
     render() {
         return (
             <>
-                <PageContainer>
-                    {/*/!* ShowHeader *!/*/}
-                    {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
-                    {/*/!* End ShowHeader *!/*/}
+                <div className="CelebritiesPage">
+                    <PageContainer>
+                        {/*/!* ShowHeader *!/*/}
+                        {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
+                        {/*/!* End ShowHeader *!/*/}
 
 
-                    {/*/!* MainMenuLayout *!/*/}
-                    {/*<MainMenuLayout/>*/}
-                    {/*/!* End MainMenuLayout *!/*/}
+                        {/*/!* MainMenuLayout *!/*/}
+                        {/*<MainMenuLayout/>*/}
+                        {/*/!* End MainMenuLayout *!/*/}
 
-                    {/* CelebrityCardsSectionLayout */}
-                    <div style={{height: "calc(100vh - 90px)", overflow: "auto"}}
-                         ref={this.scrollDiv}>
-                        <CelebrityCardsSectionLayout
-                            showShimmerCards={this.props.isLoading}
-                            celebrities={this.props.celebrities}
-                        />
-                    </div>
-                    {/* End CelebrityCardsSectionLayout */}
+                        {/* CelebrityCardsSectionLayout */}
+                        <div style={{height: "calc(100vh - 90px)", overflow: "auto"}}
+                             ref={this.scrollDiv}>
+                            <CelebrityCardsSectionLayout
+                                showShimmerCards={this.props.isLoading}
+                                celebrities={this.props.celebrities}
+                            />
+                        </div>
+                        {/* End CelebrityCardsSectionLayout */}
 
-                    {/* PaginationLayout */}
-                    {/*<PaginationLayout*/}
-                    {/*    pagination={this.props.paginationData}*/}
-                    {/*    onPaginationChange={this.onPaginationChange}*/}
-                    {/*/>*/}
-                    {/* End PaginationLayout */}
-                </PageContainer>
+                        {/* PaginationLayout */}
+                        {/*<PaginationLayout*/}
+                        {/*    pagination={this.props.paginationData}*/}
+                        {/*    onPaginationChange={this.onPaginationChange}*/}
+                        {/*/>*/}
+                        {/* End PaginationLayout */}
+                    </PageContainer>
+                </div>
             </>
         );
     };
