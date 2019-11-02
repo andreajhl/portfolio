@@ -29,6 +29,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-testing": "sh -ac '. .env.testing; react-scripts build'",
+    "build-staging": "react-scripts build --env=.env.staging",
+    "build-production": "react-scripts build --env=.env.production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -46,5 +49,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }
