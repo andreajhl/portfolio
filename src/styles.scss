@@ -43,8 +43,11 @@ b {
 
 .modal-content {
 
+  position: absolute;
+  zoom: 80%;
+
   .modal-header {
-    background-color: #555 !important;
+    background-color: $dark !important;
     color: white;
     width: 80%;
     border-radius: 0px 0px 20px 0;
@@ -57,7 +60,7 @@ b {
       right: 10px;
       border-radius: 10px;
       font-size: 15px;
-      color: black;
+      color: $dark;
     }
   }
 
@@ -72,11 +75,11 @@ b {
   }
 
   input, textarea {
-    border: 2px solid black !important;
+    border: 2px solid $dark !important;
   }
 
   input[type='radio'] {
-    border: 2px solid black !important;
+    border: 2px solid $dark !important;
   }
 
   .switch-label {
@@ -242,7 +245,9 @@ div.StripeCardForm {
 button.contract-button {
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
-  border-radius: 30px;
+  color: white;
+  border-radius: 20px;
+  background-color: $primary;
   border: solid 3px;
   padding: 5px 40px;
   width: 320px;
@@ -250,7 +255,7 @@ button.contract-button {
   background-size: 280px;
   font-weight: bold;
   text-transform: uppercase;
-  background-image: url("/assets/img/Pattern-Fiesta.png"), linear-gradient(180deg, #F9EF7F 0%, #E1BC29 100%);
+  //background-image: url("/assets/img/Pattern-Fiesta.png"), linear-gradient(180deg, #F9EF7F 0%, #E1BC29 100%);
 }
 
 /* This used to work for the parent element of button divs */
