@@ -62,7 +62,7 @@ class HiringPreviewLayout extends Component {
                         <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
                             <div className="row section m-0 p-0">
                                 <div className="col-12 text-center">
-                                    <h4 className="mt-3 font-weight-bold pb-4 mb-4">
+                                    <h4 className="mt-3 font-weight-bold mb-4">
                                         {this.props.contract.celebrity ? this.props.contract.celebrity.full_name : null}
                                     </h4>
                                 </div>

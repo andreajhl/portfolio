@@ -1,4 +1,7 @@
 .HiringPreviewLayout {
+  position: absolute;
+  zoom: 80%;
+
   .f-main-padding {
     background-color: white;
     min-height: 550px;
@@ -10,8 +13,8 @@
     .video-container{
       text-align: center;
       margin: 0 auto;
-      padding-right: 40px;
-      padding-left: 40px;
+      //padding-right: 40px;
+      //padding-left: 40px;
 
       .f-video {
         max-width: 400px;

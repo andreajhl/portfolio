@@ -27,15 +27,15 @@ class HiringsCardSectionLayout extends Component {
                                     <div className="from-to">
                                         <h6 className="mt-2 font-weight-bold">
                                             Famoso:
-                                            <small>{contract.celebrity.ful_name}</small>
+                                            <small className="ml-2">{contract.celebrity.full_name}</small>
                                         </h6>
                                         <h6 className="mt-2 font-weight-bold">
                                             Para:
-                                            <small>{contract.delivery_to}</small>
+                                            <small className="ml-2">{contract.delivery_to}</small>
                                         </h6>
                                         <h6 className="mt-2 font-weight-bold">
                                             De:
-                                            <small>{contract.delivery_from}</small>
+                                            <small className="ml-2">{contract.delivery_from}</small>
                                         </h6>
                                     </div>
                                     <div className="button-status">
