@@ -21,11 +21,11 @@ class ContractCreatedPage extends Component {
     }
 
     componentWillMount(): void {
-        this.props.getContract(this.props.match.params.contract_reference)
+        this.props.getClientContract(this.props.match.params.contract_reference)
     }
 
     goToMyHirings() {
-        history.push(PATHS.MY_HIRINGS);
+        history.push(PATHS.CLIENT_HIRINGS);
     }
 
     goToCreateAccount() {
@@ -49,15 +49,15 @@ class ContractCreatedPage extends Component {
                             <p className="mt-4 font-weight-bold">
                                 Has contratado un <br/>
                                 video mensaje de <br/>
-                                {this.props.contract.celebrity_name}
+                                {this.props.contract.celebrity.full_name}
                             </p>
                             <div className="rounded-circle">
                                 <img className="rounded-circle"
-                                     src={this.props.isLoading ? "/assets/img/avatar-blank.png" : this.props.contract.celebrity_avatar}
+                                     src={this.props.isLoading ? "/assets/img/avatar-blank.png" : this.props.contract.celebrity.avatar}
                                      alt="avatar"/>
                             </div>
                             <p className="mt-4 font-weight-bold">
-                                {this.props.contract.celebrity_name} ya ha recibido tu <br/>
+                                {this.props.contract.celebrity.full_name} ya ha recibido tu <br/>
                                 petición y muy pronto recibirás tu <br/>video mensaje personalizado.
                             </p>
                             <div className="w-25 mx-auto m-4 text-center">
@@ -104,14 +104,14 @@ ContractCreatedPage.defaultProps = {
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.contracts.getContractReducer.loading,
-    contract: state.contracts.getContractReducer.data,
-    contractCreated: state.contracts.saveContractReducer.data
+    isLoading: state.contracts.getClientContractReducer.loading,
+    contract: state.contracts.getClientContractReducer.data.contract,
+    contractCreated: state.contracts.saveClientContractReducer.data
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getContract: contractOperations.get,
+    getClientContract: contractOperations.getClientContract,
 };
 
 // Export Class

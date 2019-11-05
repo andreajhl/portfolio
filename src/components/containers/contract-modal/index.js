@@ -85,7 +85,7 @@ class ContractModal extends Component {
                 if (token) {
                     contract_data.stripe_id = token.id;
                     this.setState({contract_data}, () => {
-                        this.props.saveContract(this.state.contract_data);
+                        this.props.saveClientContract(this.state.contract_data);
                     })
                 }
             }
@@ -339,12 +339,12 @@ ContractModal.defaultProps = {
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.contracts.saveContractReducer.loading,
+    isLoading: state.contracts.saveClientContractReducer.loading,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    saveContract: contractOperations.save,
+    saveClientContract: contractOperations.saveClientContract,
 };
 
 // Export Class

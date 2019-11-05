@@ -43,7 +43,7 @@ class NavbarSectionLayout extends Component {
     }
 
     goToProfile() {
-        history.push(PATHS.MY_PROFILE)
+        history.push(PATHS.CLIENT_HIRINGS)
     }
 
     logout() {
@@ -106,14 +106,14 @@ class NavbarSectionLayout extends Component {
                                         <>
                                             <NavLink className=" btn btn-sm mr-2"
                                                      activeClassName='active'
-                                                     to={PATHS.MY_HIRINGS}
+                                                     to={PATHS.CLIENT_HIRINGS}
                                             >
                                                 <i className="mr-1 fa fa-clipboard fa-2x mt-0"/>
                                                 <span className="font-weight-bold ml-1">Mis Contrataciones</span>
                                             </NavLink>
                                             <NavLink className=" btn btn-sm mr-2"
                                                      activeClassName='active'
-                                                     to={PATHS.MY_PROFILE}
+                                                     to={PATHS.CLIENT_PROFILE}
                                             >
                                                 <i className="mr-1 fa fa-user fa-2x mt-0"/>
                                                 <span className="font-weight-bold ml-1">Mi perfil</span>
@@ -157,14 +157,14 @@ class NavbarSectionLayout extends Component {
                                                     </button>
                                                     <NavLink className=" btn btn-sm mr-2"
                                                              activeClassName='active'
-                                                             to={PATHS.MY_HIRINGS}
+                                                             to={PATHS.CLIENT_HIRINGS}
                                                     >
                                                         <i className="mr-1 fa fa-clipboard fa-2x"/>
                                                         <span className="font-weight-bold ml-1"/>
                                                     </NavLink>
                                                     <NavLink className=" btn btn-sm mr-2"
                                                              activeClassName='active'
-                                                             to={PATHS.MY_PROFILE}
+                                                             to={PATHS.CLIENT_PROFILE}
                                                     >
                                                         <i className="mr-1 fa fa-user fa-2x"/>
                                                         <span className="font-weight-bold ml-1"/>

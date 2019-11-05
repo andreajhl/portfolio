@@ -7,7 +7,7 @@ import {history} from "../../../routing/History";
 class HiringsCardSectionLayout extends Component {
 
     goToContract(contract_reference) {
-        history.push(PATHS.HIRING_PREVIEW.replace(":hiring_reference", "") + contract_reference)
+        history.push(PATHS.HIRING_PREVIEW.replace(":contract_reference", "") + contract_reference)
     }
 
     renderContractCards() {

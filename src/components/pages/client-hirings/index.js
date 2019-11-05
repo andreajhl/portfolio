@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {PageContainer} from "../../layouts";
+import {HiringsCardSectionLayout, PageContainer} from "../../layouts";
 import {connect} from "react-redux";
-import {HiringsCardSectionLayout} from "../../layouts";
 import "./styles.scss"
 import {contractOperations} from "../../../state/ducks/contracts";
 
-class MyHiringsPage extends Component {
+class ClientHiringsPage extends Component {
 
     constructor(props) {
         super(props);
@@ -17,7 +16,7 @@ class MyHiringsPage extends Component {
     }
 
     componentWillMount(): void {
-        this.props.fetchMyContracts();
+        this.props.listClientContracts();
     }
 
     componentDidMount(): void {
@@ -31,7 +30,7 @@ class MyHiringsPage extends Component {
     render() {
         return (
             <>
-                <div className="MyHiringsPage">
+                <div className="ClientHiringsPage">
                     <PageContainer fetchCelebrities={false}>
                         <HiringsCardSectionLayout contracts={this.props.contracts}/>
                     </PageContainer>
@@ -43,22 +42,22 @@ class MyHiringsPage extends Component {
 }
 
 // Set propTypes
-MyHiringsPage.propTypes = {};
+ClientHiringsPage.propTypes = {};
 
 // Set defaultProps
-MyHiringsPage.defaultProps = {};
+ClientHiringsPage.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.contracts.fetchMyContractsReducer.loading,
-    contracts: state.contracts.fetchMyContractsReducer.data.contracts
+    isLoading: state.contracts.listClientContractsReducer.loading,
+    contracts: state.contracts.listClientContractsReducer.data.contracts
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    fetchMyContracts: contractOperations.listMyContracts
+    listClientContracts: contractOperations.listClientContracts
 };
 
 // Export Class
-const _MyHiringsPage = connect(mapStateToProps, mapDispatchToProps)(MyHiringsPage);
-export {_MyHiringsPage as MyHiringsPage};
+const _ClientHiringsPage = connect(mapStateToProps, mapDispatchToProps)(ClientHiringsPage);
+export {_ClientHiringsPage as ClientHiringsPage};

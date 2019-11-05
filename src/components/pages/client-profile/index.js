@@ -5,7 +5,7 @@ import {UserProfileDetailsCardLayout} from "../../layouts/user-profile-details-c
 import "./styles.scss"
 import {sessionOperations} from "../../../state/ducks/session";
 
-class MyProfilePage extends Component {
+class ClientProfilePage extends Component {
 
     constructor(props) {
         super(props);
@@ -31,7 +31,7 @@ class MyProfilePage extends Component {
     render() {
         return (
             <>
-                <div className="MyProfilePage">
+                <div className="ClientProfilePage">
                     <PageContainer fetchCelebrities={false}>
                         <UserProfileDetailsCardLayout session={this.props.session}/>
                     </PageContainer>
@@ -43,10 +43,10 @@ class MyProfilePage extends Component {
 }
 
 // Set propTypes
-MyProfilePage.propTypes = {};
+ClientProfilePage.propTypes = {};
 
 // Set defaultProps
-MyProfilePage.defaultProps = {};
+ClientProfilePage.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
@@ -59,5 +59,5 @@ const mapDispatchToProps = {
 };
 
 // Export Class
-const _UserProfilePage = connect(mapStateToProps, mapDispatchToProps)(MyProfilePage);
-export {_UserProfilePage as MyProfilePage};
+const _UserProfilePage = connect(mapStateToProps, mapDispatchToProps)(ClientProfilePage);
+export {_UserProfilePage as ClientProfilePage};

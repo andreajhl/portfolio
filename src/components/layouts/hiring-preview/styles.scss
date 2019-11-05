@@ -1,6 +1,11 @@
+@import "../../../theme.scss";
+
 .HiringPreviewLayout {
-  position: absolute;
-  zoom: 80%;
+
+  &.active {
+    position: absolute;
+    zoom: 80%;
+  }
 
   .f-main-padding {
     background-color: white;
@@ -72,8 +77,17 @@
       }
 
       .instructions{
-        height: 120px;
+        height: 98px;
         overflow-y: scroll;
+      }
+
+      .fa-star:hover {
+        color: $active;
+        cursor: pointer;
+      }
+
+      .star-active {
+        color: $active;
       }
     }
   }

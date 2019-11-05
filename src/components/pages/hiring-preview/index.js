@@ -16,7 +16,7 @@ class HiringPreviewPage extends Component {
     }
 
     componentWillMount(): void {
-        this.props.getContractPreview(this.props.match.params.hiring_reference)
+        this.props.getClientContract(this.props.match.params.contract_reference)
     }
 
     componentDidMount(): void {
@@ -45,17 +45,19 @@ class HiringPreviewPage extends Component {
 HiringPreviewPage.propTypes = {};
 
 // Set defaultProps
-HiringPreviewPage.defaultProps = {};
+HiringPreviewPage.defaultProps = {
+    contract: {}
+};
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.contracts.getContractPreviewReducer.loading,
-    contract: state.contracts.getContractPreviewReducer.data.contract
+    isLoading: state.contracts.getClientContractReducer.loading,
+    contract: state.contracts.getClientContractReducer.data.contract
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getContractPreview: contractOperations.getContractPreview
+    getClientContract: contractOperations.getClientContract
 };
 
 // Export Class

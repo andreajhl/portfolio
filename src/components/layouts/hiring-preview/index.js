@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "./styles.scss";
+import {ReviewCreatorLayout} from "../../layouts";
 
 class HiringPreviewLayout extends Component {
 
@@ -8,7 +9,7 @@ class HiringPreviewLayout extends Component {
 
         this.state = {
             videoDesktopPlayIcon: "fa-play",
-            showVideo: false
+            showVideo: false,
         };
 
         this.playDesktopVideo = this.playDesktopVideo.bind(this);
@@ -54,9 +55,8 @@ class HiringPreviewLayout extends Component {
     }
 
     render() {
-
         return (
-            <div className="HiringPreviewLayout">
+            <div className={"HiringPreviewLayout" + (this.props.contract.celebrity ? " active " : "")}>
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-12 col-lg-11">
                         <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
@@ -122,14 +122,7 @@ class HiringPreviewLayout extends Component {
                                                 </div>
                                             </div>
                                             <div className="video-details">
-                                                <h5 className="font-weight-bold">Enviale un comentario
-                                                    a {this.props.contract.celebrity ? this.props.contract.celebrity.full_name : null}</h5>
-                                                <div className="mt-2">
-                                                    <textarea className="form-control" autoFocus={true}>
-                                                    </textarea>
-                                                    <button className="btn btn-sm btn-primary mt-2">Enviar comentario
-                                                    </button>
-                                                </div>
+                                                <ReviewCreatorLayout contract={this.props.contract}/>
                                             </div>
                                         </div>
                                     </div>
@@ -143,10 +136,5 @@ class HiringPreviewLayout extends Component {
     };
 
 }
-
-//default props
-HiringPreviewLayout.defaultProps = {
-    contract: []
-};
 
 export {HiringPreviewLayout};

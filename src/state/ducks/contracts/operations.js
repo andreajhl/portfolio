@@ -1,10 +1,15 @@
-import {get, getContractPreview, list, listMyContracts, save, update} from "./actions";
+import {
+    getClientContract,
+    listClientContractReviews,
+    listClientContracts,
+    saveClientContract,
+    saveClientContractReview,
+} from "./actions";
 
 export {
-    get,
-    list,
-    save,
-    update,
-    listMyContracts,
-    getContractPreview
+    saveClientContract,
+    listClientContracts,
+    getClientContract,
+    saveClientContractReview,
+    listClientContractReviews,
 };

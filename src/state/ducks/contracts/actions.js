@@ -1,4 +1,4 @@
-import * as types from "./types";
+import * as TYPES from "./types";
 import apiService from "../../utils/apiService";
 import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
 import * as API_PATHS from './paths';
@@ -6,75 +6,10 @@ import * as ROUTING_PATHS from '../../../routing/Paths';
 import {history} from "../../../routing/History";
 
 
-export const get = (object_id_or_reference) => {
+export const saveClientContract = (contractData) => {
     return dispatch => {
-        const TYPE = types.GET_CONTRACT_REQUEST;
-        const FINAL_PATH = API_PATHS.BASE_PATH + object_id_or_reference + "/"; // object_id
-        dispatch({type: TYPE, payload: {}});
-        apiService({
-            method: "GET",
-            action: TYPE,
-            path: FINAL_PATH,
-            async: true,
-            params: null,
-            body: null
-        })
-            .then(res => {
-                if ("status" in res.data && res.data.status === "ERROR") {
-                    console.log("res.data.status:", res.data.status);
-                    handleApiResponseFailure(dispatch, TYPE, res);
-                    if (res.data.error === "No Client matches the given query.") {
-                        history.push(
-                            ROUTING_PATHS.ROOT_PATH
-                        );
-                    }
-                } else {
-                    handleApiResponseSuccess(dispatch, TYPE, res);
-                    // Other actions
-
-                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
-                }
-            })
-            .catch(err => {
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
-            });
-    }
-};
-
-export const list = (params) => {
-    return dispatch => {
-        const TYPE = types.FETCH_CONTRACTS_REQUEST;
+        const TYPE = TYPES.SAVE_CLIENT_CONTRACT_REQUEST;
         const FINAL_PATH = API_PATHS.BASE_PATH;
-        dispatch({type: TYPE, payload: {}});
-        apiService({
-            method: "GET",
-            action: TYPE,
-            path: FINAL_PATH,
-            async: true,
-            params: params,
-            body: null
-        })
-            .then(res => {
-                if (res.data.status === "OK") {
-                    handleApiResponseSuccess(dispatch, TYPE, res);
-                    // Other actions
-
-                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
-                } else {
-                    handleApiResponseFailure(dispatch, TYPE, res);
-                }
-            })
-            .catch(err => {
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
-            });
-    }
-};
-
-export const save = (body) => {
-    console.log("saving...");
-    return dispatch => {
-        const TYPE = types.SAVE_CONTRACT_REQUEST;
-        const FINAL_PATH = API_PATHS.CREATE_CONTRACT;
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "POST",
@@ -82,81 +17,18 @@ export const save = (body) => {
             path: FINAL_PATH,
             async: true,
             params: null,
-            body: body
+            body: contractData
         })
             .then(res => {
                 if ("status" in res.data && res.data.status === "ERROR") {
                     handleApiResponseFailure(dispatch, TYPE, res);
-
-                } else {
-                    handleApiResponseSuccess(dispatch, TYPE, res);
-                    // Other actions
-                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
-
-                    history.push(ROUTING_PATHS.CONTRACT_CREATED.replace(":contract_reference", res.data.reference))
-                }
-            })
-            .catch(err => {
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
-            });
-    }
-};
-
-export const update = (object_id, body, redirect_path = null) => {
-    console.log("updating...");
-    return dispatch => {
-        const TYPE = types.UPDATE_CONTRACT_REQUEST;
-        const FINAL_PATH = API_PATHS.BASE_PATH + object_id + "/"; // object_id
-        dispatch({type: TYPE, payload: {}});
-        apiService({
-            method: "PUT",
-            action: TYPE,
-            path: FINAL_PATH,
-            async: true,
-            params: null,
-            body: body
-        })
-            .then(res => {
-                if ("status" in res.data && res.data.status === "ERROR") {
-                    handleApiResponseFailure(dispatch, TYPE, res);
-                } else {
-                    handleApiResponseSuccess(dispatch, TYPE, res);
-                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
-                    if (redirect_path) {
-                        history.push(redirect_path);
-                    } else {
-                        // redirect to..
-                    }
-                }
-            })
-            .catch(err => {
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
-            });
-    }
-};
-
-
-export const listMyContracts = (params=null) => {
-    return dispatch => {
-        const TYPE = types.FETCH_MY_CONTRACTS_REQUEST;
-        const FINAL_PATH = API_PATHS.MY_CONTRACTS;
-        dispatch({type: TYPE, payload: {}});
-        apiService({
-            method: "GET",
-            action: TYPE,
-            path: FINAL_PATH,
-            async: true,
-            params: params,
-            body: null
-        })
-            .then(res => {
-                if (res.data.status === "OK") {
-                    handleApiResponseSuccess(dispatch, TYPE, res);
                     // Other actions
 
-                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
                 } else {
-                    handleApiResponseFailure(dispatch, TYPE, res);
+                    handleApiResponseSuccess(dispatch, TYPE, res);
+                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
+                    // Other actions
+                    history.push(ROUTING_PATHS.CONTRACT_CREATED.replace(":contract_reference", res.data.reference));
                 }
             })
             .catch(err => {
@@ -165,10 +37,10 @@ export const listMyContracts = (params=null) => {
     }
 };
 
-export const getContractPreview = (contract_id) => {
+export const listClientContracts = () => {
     return dispatch => {
-        const TYPE = types.GET_CONTRACT_PREVIEW_REQUEST;
-        const FINAL_PATH = API_PATHS.MY_CONTRACTS + contract_id + "/";
+        const TYPE = TYPES.LIST_CLIENT_CONTRACTS_REQUEST;
+        const FINAL_PATH = API_PATHS.BASE_PATH;
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",
@@ -179,13 +51,103 @@ export const getContractPreview = (contract_id) => {
             body: null
         })
             .then(res => {
-                if (res.data.status === "OK") {
+                if ("status" in res.data && res.data.status === "ERROR") {
+                    handleApiResponseFailure(dispatch, TYPE, res);
+                    // Other actions
+                } else {
                     handleApiResponseSuccess(dispatch, TYPE, res);
                     // Other actions
-
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
-                } else {
+                }
+            })
+            .catch(err => {
+                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+            });
+    }
+};
+
+export const getClientContract = (contractID) => {
+    return dispatch => {
+        const TYPE = TYPES.GET_CLIENT_CONTRACT_REQUEST;
+        const FINAL_PATH = API_PATHS.BASE_PATH + contractID + "/";
+        dispatch({type: TYPE, payload: {}});
+        apiService({
+            method: "GET",
+            action: TYPE,
+            path: FINAL_PATH,
+            async: true,
+            params: null,
+            body: null
+        })
+            .then(res => {
+                if ("status" in res.data && res.data.status === "ERROR") {
                     handleApiResponseFailure(dispatch, TYPE, res);
+                    // Other actions
+                    history.push(ROUTING_PATHS.CLIENT_HIRINGS);
+
+                } else {
+                    handleApiResponseSuccess(dispatch, TYPE, res);
+                    // Other actions
+                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
+                }
+            })
+            .catch(err => {
+                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+            });
+    }
+};
+
+export const saveClientContractReview = (contractID, reviewData) => {
+    return dispatch => {
+        const TYPE = TYPES.SAVE_CLIENT_CONTRACT_REVIEW_REQUEST;
+        const FINAL_PATH = API_PATHS.BASE_PATH + contractID + "/reviews/";
+        dispatch({type: TYPE, payload: {}});
+        apiService({
+            method: "POST",
+            action: TYPE,
+            path: FINAL_PATH,
+            async: true,
+            params: null,
+            body: reviewData
+        })
+            .then(res => {
+                if ("status" in res.data && res.data.status === "ERROR") {
+                    handleApiResponseFailure(dispatch, TYPE, res);
+                    // Other actions
+
+                } else {
+                    handleApiResponseSuccess(dispatch, TYPE, res);
+                    // Other actions
+                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
+                }
+            })
+            .catch(err => {
+                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+            });
+    }
+};
+
+export const listClientContractReviews = (contractID) => {
+    return dispatch => {
+        const TYPE = TYPES.LIST_CLIENT_CONTRACT_REVIEWS_REQUEST;
+        const FINAL_PATH = API_PATHS.BASE_PATH + contractID + "/reviews/";
+        dispatch({type: TYPE, payload: {}});
+        apiService({
+            method: "GET",
+            action: TYPE,
+            path: FINAL_PATH,
+            async: true,
+            params: null,
+            body: null
+        })
+            .then(res => {
+                if ("status" in res.data && res.data.status === "ERROR") {
+                    handleApiResponseFailure(dispatch, TYPE, res);
+                    // Other actions
+                } else {
+                    handleApiResponseSuccess(dispatch, TYPE, res);
+                    // Other actions
+                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
                 }
             })
             .catch(err => {

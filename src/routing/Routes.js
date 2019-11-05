@@ -66,13 +66,13 @@ class Routes extends Component {
                         />
                         <PrivateRoute
                             exact
-                            path={PATHS.MY_PROFILE}
-                            component={PAGES.MyProfilePage}
+                            path={PATHS.CLIENT_PROFILE}
+                            component={PAGES.ClientProfilePage}
                         />
                         <PrivateRoute
                             exact
-                            path={PATHS.MY_HIRINGS}
-                            component={PAGES.MyHiringsPage}
+                            path={PATHS.CLIENT_HIRINGS}
+                            component={PAGES.ClientHiringsPage}
                         />
                         <PrivateRoute
                             exact

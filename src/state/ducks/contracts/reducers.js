@@ -1,23 +1,35 @@
 import {combineReducers} from "redux";
-import * as types from "./types";
+import * as TYPES from "./types";
 
-const fetchContractsInitialState = {
+const saveClientContractInitialState = {
     loading: false,
     failed: false,
     completed: false,
     error_data: {error: ""},
-    data: {results: [], pagination_data: {}}
+    data: {}
 };
-
-const getContractInitialState = {
+const listClientContractsInitialState = {
     loading: false,
     failed: false,
     completed: false,
     error_data: {error: ""},
-    data: {celebrity: {}}
+    data: {}
 };
-
-const saveContractInitialState = {
+const getClientContractInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+const saveClientContractReviewInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+const listClientContractReviewsInitialState = {
     loading: false,
     failed: false,
     completed: false,
@@ -25,49 +37,25 @@ const saveContractInitialState = {
     data: {}
 };
 
-const updateContractInitialState = {
-    loading: false,
-    failed: false,
-    completed: false,
-    error_data: {error: ""},
-    data: {}
-};
-
-const fetchMyContractsInitialState = {
-    loading: false,
-    failed: false,
-    completed: false,
-    error_data: {error: ""},
-    data: {contracts: []}
-};
-
-const getContractPreviewInitialState = {
-    loading: false,
-    failed: false,
-    completed: false,
-    error_data: {error: ""},
-    data: {contract: []}
-};
-
-export function fetchContractsReducer(state = fetchContractsInitialState, action) {
+export function saveClientContractReducer(state = saveClientContractInitialState, action) {
     switch (action.type) {
-        case types.FETCH_CONTRACTS_REQUEST:
+        case TYPES.SAVE_CLIENT_CONTRACT_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case types.FETCH_CONTRACTS_REQUEST_FAILURE:
+        case TYPES.SAVE_CLIENT_CONTRACT_REQUEST_FAILURE:
             return {
-                ...fetchContractsInitialState,
+                ...saveClientContractInitialState,
                 error_data: action.payload.data,
                 failed: true
             };
-        case types.FETCH_CONTRACTS_REQUEST_SUCCESS:
+        case TYPES.SAVE_CLIENT_CONTRACT_REQUEST_SUCCESS:
             return {
-                ...fetchContractsInitialState,
+                ...saveClientContractInitialState,
                 data: action.payload.data
             };
-        case types.FETCH_CONTRACTS_REQUEST_COMPLETED:
+        case TYPES.SAVE_CLIENT_CONTRACT_REQUEST_COMPLETED:
             return {
                 ...state,
                 data: action.payload.data,
@@ -78,25 +66,25 @@ export function fetchContractsReducer(state = fetchContractsInitialState, action
     }
 }
 
-export function getContractReducer(state = getContractInitialState, action) {
+export function listClientContractsReducer(state = listClientContractsInitialState, action) {
     switch (action.type) {
-        case types.GET_CONTRACT_REQUEST:
+        case TYPES.LIST_CLIENT_CONTRACTS_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case types.GET_CONTRACT_REQUEST_FAILURE:
+        case TYPES.LIST_CLIENT_CONTRACTS_REQUEST_FAILURE:
             return {
-                ...getContractInitialState,
+                ...listClientContractsInitialState,
                 error_data: action.payload.data,
                 failed: true
             };
-        case types.GET_CONTRACT_REQUEST_SUCCESS:
+        case TYPES.LIST_CLIENT_CONTRACTS_REQUEST_SUCCESS:
             return {
-                ...getContractInitialState,
+                ...listClientContractsInitialState,
                 data: action.payload.data
             };
-        case types.GET_CONTRACT_REQUEST_COMPLETED:
+        case TYPES.LIST_CLIENT_CONTRACTS_REQUEST_COMPLETED:
             return {
                 ...state,
                 data: action.payload.data,
@@ -107,25 +95,25 @@ export function getContractReducer(state = getContractInitialState, action) {
     }
 }
 
-export function saveContractReducer(state = saveContractInitialState, action) {
+export function getClientContractReducer(state = getClientContractInitialState, action) {
     switch (action.type) {
-        case types.SAVE_CONTRACT_REQUEST:
+        case TYPES.GET_CLIENT_CONTRACT_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case types.SAVE_CONTRACT_REQUEST_FAILURE:
+        case TYPES.GET_CLIENT_CONTRACT_REQUEST_FAILURE:
             return {
-                ...fetchContractsInitialState,
+                ...getClientContractInitialState,
                 error_data: action.payload.data,
                 failed: true
             };
-        case types.SAVE_CONTRACT_REQUEST_SUCCESS:
+        case TYPES.GET_CLIENT_CONTRACT_REQUEST_SUCCESS:
             return {
-                ...fetchContractsInitialState,
+                ...getClientContractInitialState,
                 data: action.payload.data
             };
-        case types.SAVE_CONTRACT_REQUEST_COMPLETED:
+        case TYPES.GET_CLIENT_CONTRACT_REQUEST_COMPLETED:
             return {
                 ...state,
                 data: action.payload.data,
@@ -136,25 +124,25 @@ export function saveContractReducer(state = saveContractInitialState, action) {
     }
 }
 
-export function updateContractReducer(state = updateContractInitialState, action) {
+export function saveClientContractReviewReducer(state = saveClientContractReviewInitialState, action) {
     switch (action.type) {
-        case types.UPDATE_CONTRACT_REQUEST:
+        case TYPES.SAVE_CLIENT_CONTRACT_REVIEW_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case types.UPDATE_CONTRACT_REQUEST_FAILURE:
+        case TYPES.SAVE_CLIENT_CONTRACT_REVIEW_REQUEST_FAILURE:
             return {
-                ...updateContractInitialState,
+                ...saveClientContractReviewInitialState,
                 error_data: action.payload.data,
                 failed: true
             };
-        case types.UPDATE_CONTRACT_REQUEST_SUCCESS:
+        case TYPES.SAVE_CLIENT_CONTRACT_REVIEW_REQUEST_SUCCESS:
             return {
-                ...updateContractInitialState,
+                ...saveClientContractReviewInitialState,
                 data: action.payload.data
             };
-        case types.UPDATE_CONTRACT_REQUEST_COMPLETED:
+        case TYPES.SAVE_CLIENT_CONTRACT_REVIEW_REQUEST_COMPLETED:
             return {
                 ...state,
                 data: action.payload.data,
@@ -165,25 +153,25 @@ export function updateContractReducer(state = updateContractInitialState, action
     }
 }
 
-export function fetchMyContractsReducer(state = fetchMyContractsInitialState, action) {
+export function listClientContractReviewsReducer(state = listClientContractReviewsInitialState, action) {
     switch (action.type) {
-        case types.FETCH_MY_CONTRACTS_REQUEST:
+        case TYPES.LIST_CLIENT_CONTRACT_REVIEWS_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case types.FETCH_MY_CONTRACTS_REQUEST_FAILURE:
+        case TYPES.LIST_CLIENT_CONTRACT_REVIEWS_REQUEST_FAILURE:
             return {
-                ...fetchMyContractsInitialState,
+                ...listClientContractReviewsInitialState,
                 error_data: action.payload.data,
                 failed: true
             };
-        case types.FETCH_MY_CONTRACTS_REQUEST_SUCCESS:
+        case TYPES.LIST_CLIENT_CONTRACT_REVIEWS_REQUEST_SUCCESS:
             return {
-                ...fetchMyContractsInitialState,
+                ...listClientContractReviewsInitialState,
                 data: action.payload.data
             };
-        case types.FETCH_MY_CONTRACTS_REQUEST_COMPLETED:
+        case TYPES.LIST_CLIENT_CONTRACT_REVIEWS_REQUEST_COMPLETED:
             return {
                 ...state,
                 data: action.payload.data,
@@ -193,42 +181,11 @@ export function fetchMyContractsReducer(state = fetchMyContractsInitialState, ac
             return state
     }
 }
-
-export function getContractPreviewReducer(state = getContractPreviewInitialState, action) {
-    switch (action.type) {
-        case types.GET_CONTRACT_PREVIEW_REQUEST:
-            return {
-                ...state,
-                loading: true
-            };
-        case types.GET_CONTRACT_PREVIEW_REQUEST_FAILURE:
-            return {
-                ...getContractPreviewInitialState,
-                error_data: action.payload.data,
-                failed: true
-            };
-        case types.GET_CONTRACT_PREVIEW_REQUEST_SUCCESS:
-            return {
-                ...getContractPreviewInitialState,
-                data: action.payload.data
-            };
-        case types.GET_CONTRACT_PREVIEW_REQUEST_COMPLETED:
-            return {
-                ...state,
-                data: action.payload.data,
-                completed: true
-            };
-        default:
-            return state
-    }
-}
-
 
 export default combineReducers({
-    fetchContractsReducer,
-    saveContractReducer,
-    getContractReducer,
-    updateContractReducer,
-    fetchMyContractsReducer,
-    getContractPreviewReducer
+    saveClientContractReducer,
+    listClientContractsReducer,
+    getClientContractReducer,
+    saveClientContractReviewReducer,
+    listClientContractReviewsReducer
 });
