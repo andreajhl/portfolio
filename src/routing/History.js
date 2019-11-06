@@ -11,8 +11,6 @@ history.listen(() => {
 history._pushRoute = (route) => {
     const redirectTo = localStorage.getItem("redirectTo");
 
-    console.log("route:_", route);
-
     if (route.includes("?")) {
         if (!route.includes("redirectTo")) {
             route += "&redirectTo=" + redirectTo
