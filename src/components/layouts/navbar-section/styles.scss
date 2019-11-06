@@ -2,18 +2,18 @@
 
 .NavbarSectionLayout {
   .f-navbar-container {
+    background-color: white;
     position: fixed;
     width: 100%;
-    height: 90px;
     z-index: 1;
-    background-color: white;
-    //border-bottom: solid 1px; // comment
 
     .f-navbar {
       position: absolute;
-      padding: 30px 3vw 30px 3vw;
+      padding: 11px 3vw 11px 3vw;
       width: 100%;
-      height: 100%;
+      height: 60px;
+      background: white;
+      box-shadow: 0 0rem 0.4rem #a1a1a1 !important;
 
       .f-items {
         height: 100%;
@@ -74,19 +74,19 @@
   }
 
   .f-navbar-container-helper {
-    height: 90px;
+    height: 60px;
   }
 
   @media (max-width: 983px) {
     .f-navbar-container {
-      height: 70px !important;
+      height: 60px !important;
 
       .f-navbar {
         padding: 12px 10px 12px 10px !important;
       }
     }
     .f-navbar-container-helper {
-      height: 70px;
+      height: 60px;
     }
     .d-md-block {
       display: none !important;

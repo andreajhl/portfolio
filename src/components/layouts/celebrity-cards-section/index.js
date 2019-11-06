@@ -46,7 +46,7 @@ class CelebrityCardsSectionLayout extends Component {
                     {
                         this.props.title
                             ?
-                            <div className="clearfix mb-2">
+                            <div className="clearfix">
                                 <h6 className="float-left">
                                     <b>{this.props.title}</b>
                                 </h6>

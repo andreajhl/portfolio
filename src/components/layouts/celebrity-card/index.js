@@ -51,6 +51,7 @@ class CelebrityCardLayout extends Component {
                             <b>{this.props.celebrity.user ? this.props.celebrity.user.full_name : "--"}</b>
                         </h6>
                         <small className="text-main-color-blue">
+                            <div className="hashtags">
                             {
                                 this.props.celebrity.hashtags
                                     ?
@@ -58,10 +59,11 @@ class CelebrityCardLayout extends Component {
                                         return <span key={index} style={{marginRight: "2px"}}>#{h}</span>
                                     })
                                     :
-                                    <span style={{marginRight: "2px"}}>
+                                    <span>
                                         #{this.props.celebrity.user ? this.props.celebrity.user.full_name.trim() : null}
                                     </span>
                             }
+                            </div>
                         </small>
                     </div>
                 </div>

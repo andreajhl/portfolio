@@ -3,11 +3,13 @@
 @import "~bootstrap/scss/bootstrap";
 
 
-html,body,input, h1, h2,h3,h4,h5,h6,small,span,p,textarea,label,div,a,section,header {
+html,body,input,b, h1, h2,h3,h4,h5,h6,small,span,p,textarea,label,div,a,section,header {
   font-family: 'Raleway', sans-serif !important;
 }
 
-
+* {
+  color: $dark;
+}
 .cursor-pointer {
   cursor: pointer;
 }
@@ -354,4 +356,8 @@ video {
 .dv-star-rating-star{
   margin-right: 5px;
   margin-bottom: 0;
+}
+
+.text-soft-grey {
+  color: $soft-grey !important;
 }

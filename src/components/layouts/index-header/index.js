@@ -24,7 +24,7 @@ class IndexHeaderLayout extends Component {
                 {
                     this.state.showHeader === true
                         ?
-                        <div className="IndexHeaderLayout">
+                        <div className="IndexHeaderLayout mt-2">
                             <div className="header">
                                 <div className="f-main-padding">
                                     <div className="mr-4 ml-4 text-center p-4 index-header">

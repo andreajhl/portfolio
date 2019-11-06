@@ -84,7 +84,7 @@ class NavbarSectionLayout extends Component {
                     <nav className="f-navbar">
                         {/* LG*/}
                         <div className="f-items d-none d-md-block">
-                            <div className="float-left">
+                            <div className="float-left" style={{position: "relative", top: "-2.5px"}}>
                                 <img className="f-navbar-brand" src={"/assets/img/logo-color.png"} alt="logo"
                                      onClick={this.goToRootPath}
                                 />

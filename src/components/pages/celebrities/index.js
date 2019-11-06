@@ -77,12 +77,13 @@ class CelebritiesPage extends Component {
 
                         {/*/!* MainMenuLayout *!/*/}
                         {/*<MainMenuLayout/>*/}
-                        {/*/!* End MainMenuLayout *!/*/}
+                        {/*/! End MainMenuLayout *!/*/}
 
                         {/* CelebrityCardsSectionLayout */}
-                        <div style={{height: "calc(100vh - 90px)", overflow: "auto"}}
+                        <div className="mt-4" style={{height: "calc(100vh - 90px)", overflow: "auto"}}
                              ref={this.scrollDiv}>
                             <CelebrityCardsSectionLayout
+                                title={"Famosos destacados"}
                                 showShimmerCards={this.props.isLoading}
                                 celebrities={this.props.celebrities}
                             />

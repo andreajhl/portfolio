@@ -96,10 +96,11 @@ class CelebrityDetailsCardLayout extends Component {
                                     <div className="col-9 details my-auto">
                                         <div className="row p-0 pl-3 pr-3">
                                             <div className="col-8 p-0 m-0 f-names my-auto">
-                                                <h5>{this.props.celebrity.user ? this.props.celebrity.user.full_name : null}</h5>
+                                                <h5 className="text-dark font-weight-bold pt-1 m-0">{this.props.celebrity.user ? this.props.celebrity.user.full_name : null}</h5>
                                             </div>
                                             <div className="col-4 p-0 m-0 text-center my-auto">
-                                                <button className="btn btn-outline-secondary btn-sm f-follow-button">Seguir
+                                                <button className="btn btn-outline-secondary btn-sm f-follow-button">
+                                                    Seguir
                                                 </button>
                                             </div>
                                             <div className="col-12 p-0 m-0 text-center pr-0">
@@ -108,7 +109,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                     className="bg-primary f-contract f-rounded hover cursor-pointer text-uppercase">
                                                     Contratar
                                                     a {this.props.celebrity.user ? this.props.celebrity.user.full_name.split(" ")[0] : null} por {this.props.celebrity.contracts_price} USD
-                                                    <i className="ml-2 fa fa-arrow-right"/>
+                                                    <i className="ml-2 fa fa-arrow-right text-white"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,20 +124,22 @@ class CelebrityDetailsCardLayout extends Component {
                                                     <i className="fa fa-star fa-1x mr-2"/>
                                                     <i className="fa fa-star fa-1x mr-2"/>
                                                 </h6>
-                                                <small>1233 Calificaciones</small>
+                                                <small className="text-soft-grey font-weight-bold">
+                                                    1233 Calificaciones
+                                                </small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
-                                                <h6>{this.props.celebrity.category ? this.props.celebrity.category.title : null}</h6>
-                                                <small>Categoria</small>
+                                                <h6 className="font-weight-bold">{this.props.celebrity.category ? this.props.celebrity.category.title : null}</h6>
+                                                <small className="text-soft-grey font-weight-bold">Categoria</small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
-                                                <h6>4 a 7 dias</h6>
-                                                <small>Tiempo de respuesta</small>
+                                                <h6 className="font-weight-bold">4 a 7 dias</h6>
+                                                <small className="text-soft-grey font-weight-bold">Tiempo de respuesta
+                                                </small>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-12 mt-1 text-justify description"
-                                         style={{height: "90px", overflow: "auto"}}>
+                                    <div className="col-12 mt-1 text-justify description border-bottom">
                                         <small>
                                             {this.props.celebrity.description}
                                         </small>
@@ -165,7 +168,20 @@ class CelebrityDetailsCardLayout extends Component {
                                                     <i className="fas fa-arrow-right text-primary"/>
                                                 </div>
                                             </div>
-                                            : null
+                                            :
+                                            <div className="col-12 mt-1 text-justify">
+                                                <div className="foundation">
+                                                    <i className="fas fa-hand-holding-heart text-light"/>
+                                                    <img className="bookmark"
+                                                         style={{filter: "grayscale(1)"}}
+                                                         src="/assets/img/bookmark.svg"
+                                                         alt="bookmark"/>
+                                                    <div className="celebrity-data">
+                                                    </div>
+                                                    <div className="cause-name">
+                                                    </div>
+                                                </div>
+                                            </div>
                                     }
                                     <div className="col-12 text-justify" style={{height: "20px"}}>
                                         {
@@ -189,13 +205,14 @@ class CelebrityDetailsCardLayout extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-4 f-video">
+                            <div className="col-4 f-video" style={{padding: "0px"}}>
                                 <i className={'fa fa-2x play-pause ' + (this.state.videoDesktopPlayIcon)}
                                    onClick={this.playDesktopVideo.bind(this)}
                                 />
                                 <video ref={this.videoDesktopRef}
                                        controls={false}
                                        onClick={this.playDesktopVideo.bind(this)}
+                                       playsInline={true}
                                 >
                                     <source src={this.props.celebrity.main_video} type="video/mp4"/>
                                     Your browser does not support the video tag.
@@ -205,13 +222,13 @@ class CelebrityDetailsCardLayout extends Component {
                     </div>
                     {/*PROFILE SM*/}
                     <div className="d-block d-md-none profile-sm">
-                        <div className="row f-section mx-auto">
+                        <div className="row f-section mx-auto sm-row">
                             <div className="col-12">
                                 <div className="f-video text-center">
                                     <i className={'fa fa-2x play-pause ' + (this.state.videoMobilePlayIcon)}
                                        onClick={this.playMobileVideo.bind(this)}
                                     />
-                                    <video playsInline
+                                    <video
                                            style={{
                                                background: "url('" + this.props.celebrity.avatar + "')",
                                                backgroundSize: "cover"
@@ -234,14 +251,16 @@ class CelebrityDetailsCardLayout extends Component {
                             </div>
                             <div className="col-7 mt-4 pr-0">
                                 <div className="margin-left-5w">
-                                    <small className="title">
+                                    <small className="font-weight-bold title">
                                         {this.props.celebrity.user ? this.props.celebrity.user.full_name : null}
                                     </small>
                                 </div>
                             </div>
                             <div className="col-5 mt-3 pl-0 text-right">
                                 <div className="margin-right-5w">
-                                    <button className="btn btn-outline-secondary btn-sm f-follow-button">Seguir</button>
+                                    <button className="btn btn-outline-secondary btn-sm f-follow-button">
+                                        Seguir
+                                    </button>
                                 </div>
                             </div>
                             <div className="col-5 pr-0">
@@ -254,34 +273,34 @@ class CelebrityDetailsCardLayout extends Component {
                                         <i className="fa fa-star fa-1x mr-1"/>
                                     </small>
                                     <br/>
-                                    <small className="text-muted subtitle"><b>1234</b> Calificaciones</small>
+                                    <small className="text-soft-grey font-weight-bold subtitle">1234 Calificaciones</small>
                                 </div>
                             </div>
                             <div className="col-7 pl-0 text-right">
                                 <div className="margin-right-5w">
-                                    <small className="text-muted subtitle">
+                                    <small className="text-soft-grey subtitle">
                                         Categoria: <b>{this.props.celebrity.category ? this.props.celebrity.category.title : null}</b>
                                     </small>
                                     <br/>
-                                    <small className="text-muted subtitle">
+                                    <small className="text-soft-grey subtitle">
                                         Tiempo de respuesta: <b>3 a 4 dias</b>
                                     </small>
                                 </div>
                             </div>
                         </div>
                         <div className="footer-btn my-auto p-4" onClick={this.openModal}>
-                            <small className="ml-0 float-left text-uppercase">
-                                Contratar por {this.props.celebrity.contracts_price} USD
+                            <small className="ml-0 float-left text-uppercase text-white">
+                                Contratar por ${this.props.celebrity.contracts_price} USD
                             </small>
-                            <i className="fa fa-arrow-right float-right" style={{fontSize: "26px"}}/>
+                            <i className="fa fa-arrow-right float-right text-white" style={{fontSize: "26px"}}/>
                         </div>
                     </div>
                     {/*HASHTAGS*/}
-                    <div className="f-line w-100 mt-2 mb-4"></div>
+                    <div className="f-line w-100 mt-2 mb-2 text-soft-grey"></div>
                     <div className="row f-section mx-auto">
-                        <div className="col-12 text-justify word-break pb-4 ">
+                        <div className="col-12 text-justify word-break">
                             <h6>
-                                <small className="mr-1 hashtags">
+                                <small className="mr-1 hashtags text-soft-grey">
                                     {
                                         this.props.celebrity.hashtags.map((h, index) => {
                                             return <span key={index} className="mr-3">#{h}</span>
@@ -296,7 +315,7 @@ class CelebrityDetailsCardLayout extends Component {
                     this.props.celebrity.is_donor
                         ?
                         <div className="d-block d-md-none profile-sm-foundation">
-                            <div className="col-12 mt-1 text-justify">
+                            <div className="col-12 mt-4 text-justify">
                                 <div className="foundation" onClick={this.goToCause()}>
                                     <i className="fas fa-hand-holding-heart"/>
                                     <img className="bookmark" src="/assets/img/bookmark.svg"
@@ -317,7 +336,8 @@ class CelebrityDetailsCardLayout extends Component {
                                 </div>
                             </div>
                         </div>
-                        : null
+                        :
+                        null
                 }
                 <ContractModal
                     celebrity={this.props.celebrity}

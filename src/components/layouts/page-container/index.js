@@ -53,6 +53,7 @@ class PageContainer extends Component {
     render() {
         return (
             <div className="PageContainer">
+
                 {/* NavbarSectionLayout */}
                 {this.props.showFooter ? <NavbarSectionLayout onSearchChange={this.onSearchChange}/> : null}
                 {/* End NavbarSectionLayout */}
