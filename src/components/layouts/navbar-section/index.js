@@ -128,7 +128,7 @@ class NavbarSectionLayout extends Component {
 
                         {/* SM*/}
                         <div className="f-items d-block d-md-none">
-                            <div className="row">
+                            <div className="row" style={{position: "relative", top: "-7px"}}>
                                 {/* LOGO*/}
                                 <div className="col mt-0 pt-0 mr-0 pr-0 mb-0 pb-0">
                                     <img className="mt-1" src={"/assets/img/logo-color.png"}
