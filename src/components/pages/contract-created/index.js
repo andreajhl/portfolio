@@ -25,16 +25,20 @@ class ContractCreatedPage extends Component {
     }
 
     goToMyHirings() {
-        history.push(PATHS.CLIENT_HIRINGS);
+        history._pushRoute(PATHS.CLIENT_HIRINGS);
     }
 
     goToCreateAccount() {
         if (this.props.contractCreated.token) {
             this.session.setSession(this.props.contractCreated.token);
-            history.push(PATHS.CREATE_PASSWORD_PATH);
+            history._pushRoute(PATHS.CREATE_PASSWORD_PATH);
         } else {
-            history.push(PATHS.SIGN_UP_PATH + "?use_email=true&email=" + this.props.contract.delivery_contact);
+            history._pushRoute(PATHS.SIGN_UP_PATH + "?use_email=true&email=" + this.props.contract.delivery_contact);
         }
+    }
+
+    goToHome(){
+        history._pushRoute(PATHS.ROOT_PATH);
     }
 
     render() {
@@ -78,7 +82,7 @@ class ContractCreatedPage extends Component {
                                             <hr style={{border: "solid 0.5px"}}/>
                                         </div>
                                         <div className="mt-4" onClick={this.goToHome}>
-                                            <small>Volver a inicio</small>
+                                            <small onClick={this.goToHome}>Volver a inicio</small>
                                         </div>
                                     </>
                                     :

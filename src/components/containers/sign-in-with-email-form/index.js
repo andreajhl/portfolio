@@ -43,11 +43,11 @@ class SignInWithEmailForm extends Component {
     }
 
     goToResetPassword() {
-        history.push(PATHS.RESET_PASSWORD_PATH)
+        history._pushRoute(PATHS.RESET_PASSWORD_PATH)
     }
 
     goToSignUp() {
-        history.push(PATHS.SIGN_UP_PATH)
+        history._pushRoute(PATHS.SIGN_UP_PATH)
     }
 
     signInWithEmail(e) {

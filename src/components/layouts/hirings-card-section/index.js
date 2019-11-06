@@ -7,7 +7,7 @@ import {history} from "../../../routing/History";
 class HiringsCardSectionLayout extends Component {
 
     goToContract(contract_reference) {
-        history.push(PATHS.HIRING_PREVIEW.replace(":contract_reference", "") + contract_reference)
+        history._pushRoute(PATHS.HIRING_PREVIEW.replace(":contract_reference", "") + contract_reference)
     }
 
     renderContractCards() {
@@ -65,6 +65,17 @@ class HiringsCardSectionLayout extends Component {
         )
     }
 
+    renderEmptyCard() {
+        if (!this.props.isLoading) {
+            return (<div className="col-5 mt-4 pt-4 text-center">
+                <img width="100%"
+                     style={{opacity: "0.4"}}
+                     src="/assets/img/sad-face-in-rounded-square.svg" alt="sad-face"/>
+                <h4 className="text-muted mt-3">Aún no has realizado una contratación</h4>
+            </div>)
+        }
+    }
+
     render() {
         return (
             <div className="HiringsCardSectionLayout">
@@ -82,12 +93,7 @@ class HiringsCardSectionLayout extends Component {
                                         ?
                                         this.renderContractCards()
                                         :
-                                        <div className="col-5 mt-4 pt-4 text-center">
-                                            <img width="100%"
-                                                style={{opacity: "0.4"}}
-                                                 src="/assets/img/sad-face-in-rounded-square.svg" alt="sad-face"/>
-                                            <h4 className="text-muted mt-3">Aún no has realizado una contratación</h4>
-                                        </div>
+                                        this.renderEmptyCard()
                                 }
                             </div>
                         </div>
@@ -101,7 +107,8 @@ class HiringsCardSectionLayout extends Component {
 
 //default props
 HiringsCardSectionLayout.defaultProps = {
-    contracts: []
+    contracts: [],
+    isLoading: true
 };
 
 export {HiringsCardSectionLayout};

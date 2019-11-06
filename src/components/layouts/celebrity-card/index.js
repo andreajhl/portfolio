@@ -22,7 +22,7 @@ class CelebrityCardLayout extends Component {
     }
 
     goToCelebrityProfile() {
-        history.push(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.celebrity.user.username))
+        history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.celebrity.user.username))
     }
 
     render() {

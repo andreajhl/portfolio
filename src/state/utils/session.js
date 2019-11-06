@@ -10,12 +10,11 @@ export class Session {
 
     setSession = (token) => {
         localStorage.setItem(this.sessionName, token);
-        this.applyRedirects()
     };
 
     applyRedirects() {
         this.session = this.getSession();
-        history.push(PATHS.HOME_PATH);
+        history._pushRoute(PATHS.HOME_PATH);
     }
 
     getSession = () => {
@@ -36,7 +35,7 @@ export class Session {
 
     removeSession = () => {
         localStorage.removeItem(this.sessionName);
-        history.push(PATHS.ROOT_PATH);
+        history._pushRoute(PATHS.ROOT_PATH);
         window.location.replace("/")
     };
 
@@ -62,7 +61,7 @@ export class Session {
         const session = this.getSession();
         if (session) {
             if (this.utcSecondsToDatetime(session.exp) >= new Date()) {
-                history.push(PATHS.ROOT_PATH);
+                history._pushRoute(PATHS.ROOT_PATH);
             } else {
                 this.removeSession();
             }

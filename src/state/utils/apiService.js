@@ -10,7 +10,7 @@ const setHeaders = (params = {}, addFamososAuthorizationHeader = true) => {
     }
     if (jsonToQueryString(params) !== "?") {
         options.params = params;
-        // history.push({
+        // history._pushRoute({
         //     pathname: history.location.pathname,
         //     search: jsonToQueryString(params)
         // })

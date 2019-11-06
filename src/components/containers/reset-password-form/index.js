@@ -52,7 +52,7 @@ class ResetPasswordForm extends Component {
     }
 
     goToLogin() {
-        history.push(PATHS.SIGN_IN_PATH)
+        history._pushRoute(PATHS.SIGN_IN_PATH)
     }
 
     validateEmailSecurityCode(e) {

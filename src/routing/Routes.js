@@ -54,7 +54,7 @@ class Routes extends Component {
                             path={PATHS.CHANGE_PASSWORD_PATH}
                             component={PAGES.ChangePasswordPage}
                         />
-                        <Route
+                        <PrivateRoute
                             exact
                             path={PATHS.CREATE_PASSWORD_PATH}
                             component={PAGES.CreatePasswordPage}

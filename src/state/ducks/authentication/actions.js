@@ -6,16 +6,18 @@ import {Session} from "../../utils/session";
 import {history} from "../../../routing/History";
 import * as ROUTE_PATHS from "../../../routing/Paths";
 
+
 const afterLogin = (res, redirect_path = null) => {
     const session = new Session();
     if(res.data.token) {
         session.setSession(res.data.token);
     }
     if (redirect_path) {
-        history.push(redirect_path)
-    } else {
-        history.push(ROUTE_PATHS.ROOT_PATH)
+        history._pushRoute(redirect_path)
+    }else{
+        history._pushRoute(ROUTE_PATHS.ROOT_PATH)
     }
+
 };
 
 export const signInWithEmail = (body) => {

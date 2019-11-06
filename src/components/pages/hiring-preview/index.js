@@ -12,7 +12,6 @@ class HiringPreviewPage extends Component {
         this.state = {
             params: {}
         };
-
     }
 
     componentWillMount(): void {

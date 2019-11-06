@@ -36,7 +36,7 @@ class ResetPasswordPage extends Component {
     }
 
     goToRoot() {
-        history.push(PATHS.ROOT_PATH)
+        history._pushRoute(PATHS.ROOT_PATH)
     }
 
     render() {

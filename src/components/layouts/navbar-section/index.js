@@ -31,19 +31,19 @@ class NavbarSectionLayout extends Component {
 
     goToRootPath() {
         this.props.fetchCelebrities({status: 50});
-        history.push(PATHS.ROOT_PATH)
+        history._pushRoute(PATHS.ROOT_PATH)
     }
 
     goToSignInPath() {
-        history.push(PATHS.SIGN_IN_PATH)
+        history._pushRoute(PATHS.SIGN_IN_PATH)
     }
 
     goToSignUpPath() {
-        history.push(PATHS.SIGN_UP_PATH)
+        history._pushRoute(PATHS.SIGN_UP_PATH)
     }
 
     goToProfile() {
-        history.push(PATHS.CLIENT_HIRINGS)
+        history._pushRoute(PATHS.CLIENT_HIRINGS)
     }
 
     logout() {

@@ -2,10 +2,10 @@
 
 .HiringPreviewLayout {
 
-  &.active {
-    position: absolute;
-    zoom: 80%;
-  }
+  position: absolute;
+  zoom: 80%;
+  left: 5vw;
+  right: 5vw;
 
   .f-main-padding {
     background-color: white;

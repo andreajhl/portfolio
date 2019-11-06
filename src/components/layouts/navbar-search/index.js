@@ -32,7 +32,7 @@ class NavbarSearchLayout extends Component {
         this.setState({
             keyword: e.target.value
         }, () => {
-            history.push(PATHS.ROOT_PATH)
+            history._pushRoute(PATHS.ROOT_PATH)
         });
     }
 
@@ -51,7 +51,7 @@ class NavbarSearchLayout extends Component {
     }
 
     goToHome() {
-        history.push(PATHS.ROOT_PATH)
+        history._pushRoute(PATHS.ROOT_PATH)
     }
 
     render() {

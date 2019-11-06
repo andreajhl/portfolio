@@ -28,7 +28,7 @@ export const saveClientContract = (contractData) => {
                     handleApiResponseSuccess(dispatch, TYPE, res);
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
                     // Other actions
-                    history.push(ROUTING_PATHS.CONTRACT_CREATED.replace(":contract_reference", res.data.reference));
+                    history._pushRoute(ROUTING_PATHS.CONTRACT_CREATED.replace(":contract_reference", res.data.reference));
                 }
             })
             .catch(err => {
@@ -83,7 +83,7 @@ export const getClientContract = (contractID) => {
                 if ("status" in res.data && res.data.status === "ERROR") {
                     handleApiResponseFailure(dispatch, TYPE, res);
                     // Other actions
-                    history.push(ROUTING_PATHS.CLIENT_HIRINGS);
+                    history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
 
                 } else {
                     handleApiResponseSuccess(dispatch, TYPE, res);

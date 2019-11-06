@@ -50,13 +50,14 @@ class HiringPreviewLayout extends Component {
 
     initSetTimeOut() {
         setTimeout(() => {
-            this.setState({showVideo: true})
+            this.setState({showVideo: true});
+            window.scroll({top: 0,});
         }, 3000)
     }
 
     render() {
         return (
-            <div className={"HiringPreviewLayout" + (this.props.contract.celebrity ? " active " : "")}>
+            <div className={"HiringPreviewLayout"}>
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-12 col-lg-11">
                         <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
