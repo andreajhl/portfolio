@@ -4,7 +4,7 @@ import {
     CelebrityDetailsCardLayout,
     CelebrityReviewsSectionLayout,
     PageContainer,
-    CelebrityPublicVideosSectionLayout
+    CelebrityPublicContractsSectionLayout
 } from "../../layouts";
 import * as PropTypes from "prop-types";
 import {CelebrityShape} from "../../../prop-types";
@@ -65,15 +65,15 @@ class CelebrityProfilePage extends Component {
                                     socialNetworks={this.props.socialNetworks}/>
                                 {/* END CelebrityDetailsCardLayout */}
 
+                                {/* CelebrityPublicVideosSectionLayout */}
+                                <CelebrityPublicContractsSectionLayout
+                                    celebrity={this.props.celebrity}/>
+                                {/* End CelebrityPublicVideosSectionLayout */}
+
                                 {/* CelebrityReviewsSection */}
                                 <CelebrityReviewsSectionLayout
                                     celebrity={this.props.celebrity}/>
                                 {/* END CelebrityReviewsSection */}
-
-                                {/* CelebrityPublicVideosSectionLayout */}
-                                <CelebrityPublicVideosSectionLayout
-                                    publicVideos={this.props.celebrity.publicVideos}/>
-                                {/* End CelebrityPublicVideosSectionLayout */}
 
                                 {/* CelebrityCardsSectionLayout */}
                                 <div className="mt-4" style={{width: "calc(100vw - 15px)", overflow: "auto"}}

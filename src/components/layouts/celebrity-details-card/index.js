@@ -78,7 +78,7 @@ class CelebrityDetailsCardLayout extends Component {
 
     render() {
         return (
-            <div className="CelebrityDetailsCardLayout">
+            <div className="CelebrityDetailsCardLayout mb-2 pb-2">
                 <div className="f-container">
                     {/*PROFILE LG*/}
                     <div className="d-none d-md-block profile-lg">
@@ -169,19 +169,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                 </div>
                                             </div>
                                             :
-                                            <div className="col-12 mt-1 text-justify">
-                                                <div className="foundation">
-                                                    <i className="fas fa-hand-holding-heart text-light"/>
-                                                    <img className="bookmark"
-                                                         style={{filter: "grayscale(1)"}}
-                                                         src="/assets/img/bookmark.svg"
-                                                         alt="bookmark"/>
-                                                    <div className="celebrity-data">
-                                                    </div>
-                                                    <div className="cause-name">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            null
                                     }
                                     <div className="col-12 text-justify" style={{height: "20px"}}>
                                         {

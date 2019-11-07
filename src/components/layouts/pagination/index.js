@@ -47,43 +47,47 @@ class PaginationLayout extends Component {
         // const var3 = var2 > this.props.pagination.totalItems ? this.props.pagination.totalItems : var2;
         return (
             <div className="PaginationLayout">
-                <div className={this.props.showFmainPadding ? "f-main-padding" : ""} style={{marginTop: "0"}}>
-                    <nav>
-                        <ul className="pagination">
-                            <li className="page-item disabled">
+                {
+                    this.props.pagination.totalPages > 1
+                        ?
+                        <div className={this.props.showFmainPadding ? "f-main-padding" : ""} style={{marginTop: "0"}}>
+                            <nav>
+                                <ul className="pagination">
+                                    <li className={"page-item" + (!this.props.pagination.previousPage ? " disabled " : "")}>
                                 <span
                                     className="page-link cursor-pointer"
                                     onClick={this.previousPage.bind(this)}
-                                    disabled={!this.props.pagination.previousPage}
                                 >
                                     Anterior
                                 </span>
-                            </li>
-                            {
-                                [...Array(this.props.pagination.totalPages)].map((page, index) => {
-                                    return (
-                                        <li key={index} className={"page-item " + (index + 1 === this.props.pagination.currentPage ? "active" : "")}
-                                            onClick={this.changePagination.bind(this, index + 1)}>
-                                            <span className={"page-link"}
-                                               key={index}>
-                                                {index + 1}
-                                            </span>
-                                        </li>
-                                    )
-                                })
-                            }
-                            <li className="page-item">
+                                    </li>
+                                    {/*{*/}
+                                    {/*    [...Array(this.props.pagination.totalPages)].map((page, index) => {*/}
+                                    {/*        return (*/}
+                                    {/*            <li key={index} className={"page-item " + (index + 1 === this.props.pagination.currentPage ? "active" : "")}*/}
+                                    {/*                onClick={this.changePagination.bind(this, index + 1)}>*/}
+                                    {/*                <span className={"page-link"}*/}
+                                    {/*                   key={index}>*/}
+                                    {/*                    {index + 1}*/}
+                                    {/*                </span>*/}
+                                    {/*            </li>*/}
+                                    {/*        )*/}
+                                    {/*    })*/}
+                                    {/*}*/}
+                                    <li className={"page-item" + (!this.props.pagination.nextPage ? " disabled " : "")}>
                                 <span
                                     className="page-link cursor-pointer"
                                     onClick={this.nextPage.bind(this)}
-                                    disabled={!this.props.pagination.nextPage}
                                 >
                                     Siguiente
                                 </span>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        :
+                        null
+                }
             </div>
         );
     }

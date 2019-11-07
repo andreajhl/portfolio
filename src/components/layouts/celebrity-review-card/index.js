@@ -24,7 +24,7 @@ class CelebrityReviewCardLayout extends Component {
                             }
                         </h5>
                         <div className="comment text-justify">
-                            <small>{this.props.review.comment}</small>
+                            <small>{this.props.review.review}</small>
                         </div>
                     </div>
                 </div>

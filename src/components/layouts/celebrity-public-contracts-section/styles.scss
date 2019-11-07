@@ -1,5 +1,5 @@
 
-div.CelebrityPublicVideosSectionLayout {
+div.CelebrityPublicContractsSectionLayout {
 
   .f-main-padding{
     max-width: 900px;
@@ -14,6 +14,8 @@ div.CelebrityPublicVideosSectionLayout {
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
       padding: 10px;
+      margin-left: -15px;
+      margin-right: -15px;
 
       &::-webkit-scrollbar {
         display: none;
@@ -56,14 +58,14 @@ div.CelebrityPublicVideosSectionLayout {
     // Large devices (desktops, 300px and up)
     @media (min-width: 300px) {
       .scrolling-wrapper {
-        grid-template-columns: repeat(2, minmax(200px, 1fr)) !important;
+        grid-template-columns: repeat(1, minmax(100%, 1fr)) !important;
       }
     }
 
     // Large devices (desktops, 768px and up)
     @media (min-width: 768px) {
       .scrolling-wrapper {
-        grid-template-columns: repeat(3, minmax(200px, 1fr)) !important;
+        grid-template-columns: repeat(2, minmax(100%, 1fr)) !important;
       }
     }
 
@@ -98,7 +100,7 @@ div.CelebrityPublicVideosSectionLayout {
     // Extra large devices (large desktops, 1600px and up)
     @media (min-width: 1600px) {
       .scrolling-wrapper {
-        grid-template-columns: repeat(8, minmax(200px, 1fr)) !important;
+        grid-template-columns: repeat(4, minmax(200px, 1fr)) !important;
       }
     }
 

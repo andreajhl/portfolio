@@ -1,6 +1,8 @@
-import {get, list } from "./actions";
+import {get, list, listReviews, listPublicContracts} from "./actions";
 
 export {
     get,
     list,
+    listReviews,
+    listPublicContracts
 };

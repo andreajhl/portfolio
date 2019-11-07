@@ -1,4 +1,3 @@
-export * from "./celebrity-reviews-section";
 export * from "./contract-modal";
 export * from "./sign-in-with-cellphone-form";
 export * from "./sign-in-with-email-form";

@@ -25,6 +25,22 @@ const getCelebrityInitialState = {
     data: {category: {}, user: {}, hashtags: []}
 };
 
+const fetchReviewsInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {results: [], pagination_data: {}}
+};
+
+const fetchPublicContractsInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {results: [], pagination_data: {}}
+};
+
 export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, action) {
     switch (action.type) {
         case types.FETCH_CELEBRITIES_REQUEST:
@@ -121,8 +137,68 @@ export function getCelebrityReducer(state = getCelebrityInitialState, action) {
     }
 }
 
+export function fetchReviewsReducer(state = fetchReviewsInitialState, action) {
+    switch (action.type) {
+        case types.FETCH_REVIEWS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case types.FETCH_REVIEWS_REQUEST_FAILURE:
+            return {
+                ...fetchReviewsInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.FETCH_REVIEWS_REQUEST_SUCCESS:
+            return {
+                ...fetchReviewsInitialState,
+                data: action.payload.data
+            };
+        case types.FETCH_REVIEWS_REQUEST_COMPLETED:
+            return {
+                ...state,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+    }
+}
+
+export function fetchPublicContractsReducer(state = fetchPublicContractsInitialState, action) {
+    switch (action.type) {
+        case types.FETCH_PUBLIC_CONTRACTS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case types.FETCH_PUBLIC_CONTRACTS_REQUEST_FAILURE:
+            return {
+                ...fetchPublicContractsInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.FETCH_PUBLIC_CONTRACTS_REQUEST_SUCCESS:
+            return {
+                ...fetchPublicContractsInitialState,
+                data: action.payload.data
+            };
+        case types.FETCH_PUBLIC_CONTRACTS_REQUEST_COMPLETED:
+            return {
+                ...state,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
     fetchCelebritiesReducer,
     fetchSimilarCelebritiesReducer,
     getCelebrityReducer,
+    fetchReviewsReducer,
+    fetchPublicContractsReducer
 });

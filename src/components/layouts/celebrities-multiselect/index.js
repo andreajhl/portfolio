@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import Select from 'react-select';
 import * as PropTypes from "prop-types";
 import {restCelebritiesOperations} from "../../../state/ducks/rest-celebrities";
 import {connect} from "react-redux";
 import "./styles.scss";
-import Creatable, { makeCreatableSelect } from 'react-select/creatable';
+import Creatable from 'react-select/creatable';
 
 class CelebritiesMultiselect extends Component {
 
