@@ -54,31 +54,36 @@ class CelebrityPublicContractsSectionLayout extends Component {
         )
     };
 
-
     render() {
         return (
             <div className="CelebrityPublicContractsSectionLayout">
-                <div className="f-container mb-2 pb-2">
-                    <div className={"f-main-padding"}>
-                        <div className="clearfix ml-4">
-                            <h6 className="float-left font-weight-bold">
-                                Videos
-                            </h6>
+                {
+                    this.props.publicContracts.length > 0
+                        ?
+                        <div className="f-container mb-2 pb-2">
+                            <div className={"f-main-padding"}>
+                                <div className="clearfix ml-4">
+                                    <h6 className="float-left font-weight-bold">
+                                        Videos
+                                    </h6>
+                                </div>
+                                <div className={"scrolling-wrapper"}>
+                                    {this.renderCelebrityPublicVideoCards()}
+                                </div>
+                                <div className="col-12">
+                                    {/* PaginationLayout */}
+                                    <PaginationLayout
+                                        showFmainPadding={false}
+                                        pagination={this.props.paginationData}
+                                        onPaginationChange={this.onPaginationChange}
+                                    />
+                                    {/* End PaginationLayout */}
+                                </div>
+                            </div>
                         </div>
-                        <div className={"scrolling-wrapper"}>
-                            {this.renderCelebrityPublicVideoCards()}
-                        </div>
-                        <div className="col-12">
-                            {/* PaginationLayout */}
-                            <PaginationLayout
-                                showFmainPadding={false}
-                                pagination={this.props.paginationData}
-                                onPaginationChange={this.onPaginationChange}
-                            />
-                            {/* End PaginationLayout */}
-                        </div>
-                    </div>
-                </div>
+                        :
+                        null
+                }
             </div>
         );
     };
