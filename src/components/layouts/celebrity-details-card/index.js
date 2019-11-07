@@ -212,7 +212,7 @@ class CelebrityDetailsCardLayout extends Component {
                     <div className="d-block d-md-none profile-sm">
                         <div className="row f-section mx-auto sm-row">
                             <div className="col-12">
-                                <div className="f-video text-center">
+                                <div className="f-video text-center" onClick={this.playMobileVideo.bind(this)}>
                                     <i className={'fa fa-2x play-pause ' + (this.state.videoMobilePlayIcon)}
                                        onClick={this.playMobileVideo.bind(this)}
                                     />
@@ -225,6 +225,7 @@ class CelebrityDetailsCardLayout extends Component {
                                            width="100%"
                                            height="460px"
                                            controls={false}
+                                           playsInline={true}
                                            onClick={this.playMobileVideo.bind(this)}
                                     >
                                         <source src={this.props.celebrity.main_video} type="video/mp4"/>
