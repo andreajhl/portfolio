@@ -43,10 +43,22 @@ b {
   border-radius: 0.5rem !important;
 }
 
+.fade.modal-backdrop.show{
+  z-index: 200000;
+}
+.fade.modal.show{
+  z-index: 200000;
+}
+
 .modal-content {
 
+  z-index: 200000;
   position: absolute;
   zoom: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  left: 50%;
+  transform: translate(-50%, 0);
 
   .modal-header {
     background-color: $dark !important;

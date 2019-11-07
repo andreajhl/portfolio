@@ -36,7 +36,10 @@ class CelebritiesPage extends Component {
             ) {
                 const state = this.state;
                 if(this.props.paginationData.nextPage && !this.props.isLoading){
-                    this.onPaginationChange(state.params.page + 1);
+                    const page = 1;
+                    if(state.params.page + 1 <= this.props.paginationData.totalPages) {
+                        this.onPaginationChange(state.params.page + 1);
+                    }
                 }
             }
         });
@@ -80,7 +83,7 @@ class CelebritiesPage extends Component {
                         {/*/! End MainMenuLayout *!/*/}
 
                         {/* CelebrityCardsSectionLayout */}
-                        <div className="mt-4" style={{height: "calc(100vh - 90px)", overflow: "auto"}}
+                        <div className="pt-4" style={{height: "calc(100vh - 90px)", overflow: "auto"}}
                              ref={this.scrollDiv}>
                             <CelebrityCardsSectionLayout
                                 title={"Famosos destacados"}

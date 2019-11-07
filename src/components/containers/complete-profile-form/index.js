@@ -91,12 +91,12 @@ class CompleteProfileForm extends Component {
                     {
                         this.props.isLoading
                             ?
-                            <span className="spinner-grow spinner-grow-sm"
+                            <span className="text-white spinner-grow spinner-grow-sm"
                                   role="status"
                                   aria-hidden="true"
                             />
                             :
-                            <span>Guardar</span>
+                            <span className={"text-white"}>Guardar</span>
 
                     }
                 </button>

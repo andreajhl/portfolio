@@ -152,9 +152,9 @@ class NavbarSectionLayout extends Component {
                                                 <div className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center"
                                                      style={{display: "flex"}}
                                                 >
-                                                    <button className="btn btn-sm mr-3" onClick={this.showSearch}>
+                                                    <a className="btn btn-sm mr-3" onClick={this.showSearch}>
                                                         <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
-                                                    </button>
+                                                    </a>
                                                     <NavLink className=" btn btn-sm mr-2"
                                                              activeClassName='active'
                                                              to={PATHS.CLIENT_HIRINGS}
@@ -162,7 +162,7 @@ class NavbarSectionLayout extends Component {
                                                         <i className="mr-1 fa fa-clipboard fa-2x"/>
                                                         <span className="font-weight-bold ml-1"/>
                                                     </NavLink>
-                                                    <NavLink className=" btn btn-sm mr-2"
+                                                    <NavLink className="btn btn-sm mr-2"
                                                              activeClassName='active'
                                                              to={PATHS.CLIENT_PROFILE}
                                                     >

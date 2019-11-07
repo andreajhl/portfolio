@@ -1,11 +1,14 @@
 @import "../../../theme";
 
 .NavbarSectionLayout {
+
+
   .f-navbar-container {
+
     background-color: white;
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 10000;
 
     .f-navbar {
       position: absolute;
@@ -98,11 +101,10 @@
 
   .search-sm {
     position: fixed;
-    top: 60px;
+    top: 65px;
     z-index: 1;
     left: -3px;
     right: -3px;
-    background: white;
     height: 50px;
     padding-left: 10px;
     padding-right: 10px;
@@ -113,6 +115,11 @@
   }
   .btn.active {
     color: $primary;
+
+    * {
+      color: $primary;
+
+    }
   }
 
 

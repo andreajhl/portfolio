@@ -8,7 +8,7 @@ import {contractReviewOperations} from "../../../state/ducks/contract-reviews";
 import {PaginationLayout} from "../../layouts/pagination";
 
 
-class CelebrityReviewsSection extends Component {
+class CelebrityReviewsSectionLayout extends Component {
 
 
     constructor(props) {
@@ -24,7 +24,7 @@ class CelebrityReviewsSection extends Component {
     }
 
     fetchReviews() {
-        this.props.fetchCelebrityContractReviews(this.state.params);
+        // this.props.fetchCelebrityContractReviews(this.state.params);
     }
 
     onPaginationChange(page) {
@@ -44,11 +44,11 @@ class CelebrityReviewsSection extends Component {
 
     render() {
         return (
-            <div className="CelebrityReviewsSection">
+            <div className="CelebrityReviewsSectionLayout">
                 {
                     this.props.reviews.length > 0
                         ?
-                        <div className="f-container mb-4 pb-4">
+                        <div className="f-container mb-2 pb-2">
                             <div className="row f-section mx-auto pt-2">
                                 <div className="col-12 mb-4">
                                     <b>Calificaciones</b>
@@ -81,23 +81,72 @@ class CelebrityReviewsSection extends Component {
 }
 
 // Set propTypes
-CelebrityReviewsSection.propTypes = {
+CelebrityReviewsSectionLayout.propTypes = {
     celebrity: CelebrityShape.isRequired,
     fetchCelebrityContractReviews: PropTypes.func.isRequired,
     paginationData: PaginationShape
 };
 
 // Set defaultProps
-CelebrityReviewsSection.defaultProps = {
+CelebrityReviewsSectionLayout.defaultProps = {
     celebrity: {},
-    reviews: [],
+    reviews: [
+        {
+            client: {
+                username: "",
+                full_name: "Duvan Vargas",
+            },
+            stars: 3,
+            comment: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        },
+        {
+            client: {
+                username: "",
+                full_name: "Heinz Sohm",
+            },
+            stars: 4,
+            comment: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        },
+        {
+            client: {
+                username: "",
+                full_name: "Andres Cohen",
+            },
+            stars: 5,
+            comment: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        },
+        {
+            client: {
+                username: "",
+                full_name: "Duvan Vargas",
+            },
+            stars: 3,
+            comment: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        },
+        {
+            client: {
+                username: "",
+                full_name: "Heinz Sohm",
+            },
+            stars: 4,
+            comment: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        },
+        {
+            client: {
+                username: "",
+                full_name: "Andres Cohen",
+            },
+            stars: 5,
+            comment: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        },
+    ],
     paginationData: {}
 };
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     isLoading: state.contractReviews.fetchContractReviewsReducer.loading,
-    reviews: state.contractReviews.fetchContractReviewsReducer.data.results,
+    // reviews: state.contractReviews.fetchContractReviewsReducer.data.results,
     paginationData: state.contractReviews.fetchContractReviewsReducer.data.pagination_data,
 });
 
@@ -107,5 +156,5 @@ const mapDispatchToProps = {
 };
 
 // Export Class
-const _CelebrityReviewsSection = connect(mapStateToProps, mapDispatchToProps)(CelebrityReviewsSection);
-export {_CelebrityReviewsSection as CelebrityReviewsSection};
+const _CelebrityReviewsSectionLayout = connect(mapStateToProps, mapDispatchToProps)(CelebrityReviewsSectionLayout);
+export {_CelebrityReviewsSectionLayout as CelebrityReviewsSectionLayout};

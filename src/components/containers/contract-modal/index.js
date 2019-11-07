@@ -182,7 +182,7 @@ class ContractModal extends Component {
             <div className="ContractModal">
                 <Modal size="lg" show={this.props.showModal} onHide={this.handleCloseModal}>
                     <Modal.Header>
-                        <small>Contrata a {this.props.celebrity.user.full_name} para que grabe tu video mensaje!</small>
+                        <small className="text-white">Contrata a {this.props.celebrity.user.full_name} para que grabe tu video mensaje!</small>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -310,7 +310,7 @@ class ContractModal extends Component {
                                               aria-hidden="true"
                                         />
                                         :
-                                        <span>
+                                        <span className="text-white">
                                            CONTRATAR A {this.props.celebrity.user ? this.props.celebrity.user.full_name.split(" ")[0] : null}
                                         </span>
                                 }

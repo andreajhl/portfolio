@@ -108,7 +108,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                     onClick={this.openModal}
                                                     className="bg-primary f-contract f-rounded hover cursor-pointer text-uppercase">
                                                     Contratar
-                                                    a {this.props.celebrity.user ? this.props.celebrity.user.full_name.split(" ")[0] : null} por {this.props.celebrity.contracts_price} USD
+                                                    a {this.props.celebrity.user ? this.props.celebrity.user.full_name.split(" ")[0] : null} por ${this.props.celebrity.contracts_price} USD
                                                     <i className="ml-2 fa fa-arrow-right text-white"/>
                                                 </div>
                                             </div>

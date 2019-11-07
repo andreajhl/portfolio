@@ -84,12 +84,12 @@ class CreatePasswordForm extends Component {
                         {
                             this.props.isLoading
                                 ?
-                                <span className="spinner-grow spinner-grow-sm"
+                                <span className="text-white spinner-grow spinner-grow-sm"
                                       role="status"
                                       aria-hidden="true"
                                 />
                                 :
-                                <span>Continuar</span>
+                                <span className={"text-white"}>Continuar</span>
 
                         }
                     </button>

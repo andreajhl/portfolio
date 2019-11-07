@@ -1,10 +1,15 @@
 import React, {Component, createRef} from 'react';
-import {CelebrityCardsSectionLayout, CelebrityDetailsCardLayout, PageContainer, PaginationLayout} from "../../layouts";
+import {
+    CelebrityCardsSectionLayout,
+    CelebrityDetailsCardLayout,
+    CelebrityReviewsSectionLayout,
+    PageContainer,
+    CelebrityPublicVideosSectionLayout
+} from "../../layouts";
 import * as PropTypes from "prop-types";
 import {CelebrityShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
-import {CelebrityReviewsSection} from "../../containers";
 
 
 class CelebrityProfilePage extends Component {
@@ -61,9 +66,14 @@ class CelebrityProfilePage extends Component {
                                 {/* END CelebrityDetailsCardLayout */}
 
                                 {/* CelebrityReviewsSection */}
-                                <CelebrityReviewsSection
+                                <CelebrityReviewsSectionLayout
                                     celebrity={this.props.celebrity}/>
                                 {/* END CelebrityReviewsSection */}
+
+                                {/* CelebrityPublicVideosSectionLayout */}
+                                <CelebrityPublicVideosSectionLayout
+                                    publicVideos={this.props.celebrity.publicVideos}/>
+                                {/* End CelebrityPublicVideosSectionLayout */}
 
                                 {/* CelebrityCardsSectionLayout */}
                                 <div className="mt-4" style={{width: "calc(100vw - 15px)", overflow: "auto"}}

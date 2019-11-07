@@ -6,8 +6,16 @@ import {history} from "../../../routing/History";
 
 class HiringsCardSectionLayout extends Component {
 
+    constructor(props){
+        super(props);
+    }
+
     goToContract(contract_reference) {
         history._pushRoute(PATHS.HIRING_PREVIEW.replace(":contract_reference", "") + contract_reference)
+    }
+
+    goToHome(){
+        history._pushRoute(PATHS.ROOT_PATH)
     }
 
     renderContractCards() {
@@ -72,7 +80,7 @@ class HiringsCardSectionLayout extends Component {
                      style={{opacity: "0.4"}}
                      src="/assets/img/sad-face-in-rounded-square.svg" alt="sad-face"/>
                 <h4 className="text-muted mt-3">Aún no has realizado una contratación</h4>
-                <button className="btn btn-sm btn-primary">
+                <button className="btn btn-sm btn-primary" onClick={this.goToHome}>
                     Ir a contratar
                     <i className="ml-2 text-white fa fa-arrow-right"/>
                 </button>
