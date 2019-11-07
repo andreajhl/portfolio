@@ -201,8 +201,9 @@ class CelebrityDetailsCardLayout extends Component {
                                        controls={false}
                                        onClick={this.playDesktopVideo.bind(this)}
                                        playsInline={true}
+                                       preload="metadata"
                                 >
-                                    <source src={this.props.celebrity.main_video} type="video/mp4"/>
+                                    <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4"/>
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
@@ -217,6 +218,7 @@ class CelebrityDetailsCardLayout extends Component {
                                        onClick={this.playMobileVideo.bind(this)}
                                     />
                                     <video
+                                           preload="metadata"
                                            style={{
                                                background: "url('" + this.props.celebrity.avatar + "')",
                                                backgroundSize: "cover"
@@ -228,7 +230,7 @@ class CelebrityDetailsCardLayout extends Component {
                                            playsInline={true}
                                            onClick={this.playMobileVideo.bind(this)}
                                     >
-                                        <source src={this.props.celebrity.main_video} type="video/mp4"/>
+                                        <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4"/>
                                         Your browser does not support the video tag.
                                     </video>
                                     <div className="f-avatar f-shadow">

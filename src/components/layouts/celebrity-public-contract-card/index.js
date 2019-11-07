@@ -67,8 +67,9 @@ class CelebrityPublicContractCardLayout extends Component {
                                controls={false}
                                onClick={this.playDesktopContract.bind(this)}
                                playsInline={true}
+                               preload="metadata"
                         >
-                            <source src={this.props.publicContract.media} type="video/mp4"/>
+                            <source src={(this.props.publicContract.media) + "#t=0.5"} type="video/mp4"/>
                             Your browser does not support the video tag.
                         </video>
                     </div>

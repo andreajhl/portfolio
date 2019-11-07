@@ -81,10 +81,13 @@ class HiringPreviewLayout extends Component {
                                                     <i className={'fa fa-2x play-pause ' + (this.state.videoDesktopPlayIcon)}
                                                        onClick={this.playDesktopVideo.bind(this)}
                                                     />
-                                                    <video src={this.props.contract.media}
-                                                           ref={this.videoDesktopRef}
-                                                           controls={false}
-                                                           onClick={this.playDesktopVideo.bind(this)}
+                                                    <video
+                                                        src={(this.props.contract.media) + "#t=0.5"}
+                                                        ref={this.videoDesktopRef}
+                                                        controls={false}
+                                                        onClick={this.playDesktopVideo.bind(this)}
+                                                        playsInline={true}
+                                                        preload="metadata"
                                                     />
                                                 </div>
                                             </div>
