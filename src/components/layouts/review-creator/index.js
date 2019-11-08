@@ -97,12 +97,12 @@ class ReviewCreatorLayout extends Component {
                             {
                                 this.props.isLoading
                                     ?
-                                    <span className="spinner-grow spinner-grow-sm"
+                                    <span className="text-white spinner-grow spinner-grow-sm"
                                           role="status"
                                           aria-hidden="true"
                                     />
                                     :
-                                    <span>Enviar comentario</span>
+                                    <span className="text-white">Enviar comentario</span>
                             }
                         </button>
                     </div>
@@ -140,12 +140,12 @@ class ReviewCreatorLayout extends Component {
                             {
                                 this.props.isLoading
                                     ?
-                                    <span className="spinner-grow spinner-grow-sm"
+                                    <span className="text-white spinner-grow spinner-grow-sm"
                                           role="status"
                                           aria-hidden="true"
                                     />
                                     :
-                                    <span>Actualizar comentario</span>
+                                    <span className="text-white">Actualizar comentario</span>
                             }
                         </button>
                     </div>
