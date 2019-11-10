@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import "./styles.scss";
-import * as PropTypes from "prop-types";
 import {authenticationOperations} from "../../../state/ducks/authentication";
 import {connect} from "react-redux";
+import {AuthTCLayout} from "../../layouts/auth-t&c";
+import {SignInMethodsForm} from "../sign-in-methods-form";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 
@@ -12,123 +13,105 @@ class SignInWithEmailForm extends Component {
         super(props);
 
         this.state = {
-            email: "",
-            password: "",
-            securityCode: "",
-            showForm1: true
+            email: this.props.email,
+            password: ""
         };
 
-        this.onChangeSignInType = this.onChangeSignInType.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.signInWithEmail = this.signInWithEmail.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.goToSignUp = this.goToSignUp.bind(this);
         this.goToResetPassword = this.goToResetPassword.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
-        if (nextProps.securityCodeSent === true && this.props.securityCodeSent !== nextProps.securityCodeSent) {
-            this.setState({showForm1: false})
-        }
-    }
-
-    showForm1() {
-        this.setState({showForm1: !this.state.showForm1})
-    }
-
-    onChangeSignInType() {
-        this.props.onChangeSignInType("cellphone");
     }
 
     handleInput(event) {
         this.setState({[event.target.name]: event.target.value})
     }
 
-    goToResetPassword() {
-        history._pushRoute(PATHS.RESET_PASSWORD_PATH)
+    handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            this.signInWithEmail();
+        }
+    };
+
+    signInWithEmail(e) {
+        if (!this.props.signInWithEmailLoading) {
+            this.props.signInWithEmail({
+                email: this.state.email,
+                password: this.state.password,
+            });
+        }
     }
 
     goToSignUp() {
-        history._pushRoute(PATHS.SIGN_UP_PATH)
+        history._pushRoute(PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form"))
     }
 
-    signInWithEmail(e) {
-        if (!this.props.isLoading) {
-            const data = {
-                email: this.state.email,
-                password: this.state.password,
-            };
-            this.props.signInWithEmail(data);
-        }
+    goToResetPassword() {
+        history._pushRoute(PATHS.RESET_PASSWORD_PATH)
     }
 
     render() {
         return (
             <div className="SignInWithEmailForm">
-                <>
-                    <h6>Ingresa con tú correo electrónico</h6>
-                    <input
-                        autoFocus={true}
-                        type="email"
-                        className="form-control mb-3"
-                        placeholder="Escribe tu correo"
-                        name="email"
-                        onChange={this.handleInput}
-                        value={this.state.email}
-                    />
-                    <h6>Contraseña</h6>
-                    <input
-                        type="password"
-                        className="form-control"
-                        placeholder="Escribe tu contraseña"
-                        name="password"
-                        onChange={this.handleInput}
-                        value={this.state.password}
-                    />
+                <h6>Ingresa con tú correo electrónico</h6>
+                <input
+                    autoFocus={!this.state.email}
+                    type="email"
+                    className="form-control mb-3"
+                    placeholder="Escribe tu correo"
+                    name="email"
+                    onChange={this.handleInput}
+                    value={this.state.email}
+                />
+                <h6>Contraseña</h6>
+                <input
+                    autoFocus={!!this.state.email}
+                    type="password"
+                    className="form-control"
+                    placeholder="Escribe tu contraseña"
+                    name="password"
+                    onChange={this.handleInput}
+                    value={this.state.password}
+                    onKeyPress={this.handleKeyPress}
+                />
+                {
+                    this.props.signInWithEmailError
+                    &&
+                    <p className="instructions mt-4 text-danger">
+                        {this.props.signInWithEmailError}
+                    </p>
+                }
+                <button className="send-button"
+                        disabled={!this.state.email || !this.state.password}
+                        onClick={this.signInWithEmail}
+                >
                     {
-                        this.props.signInError
+                        this.props.signInWithEmailLoading
                             ?
-                            <p className="instructions mt-4 text-danger">
-                                {this.props.signInError}
-                            </p>
-                            : null
-                    }
-                    <button className="send-button"
-                            disabled={!this.state.email || !this.state.password}
-                            onClick={this.signInWithEmail}
-                    >
-                        {
-                            this.props.isLoading
-                                ?
-                                <span className="text-white spinner-grow spinner-grow-sm"
-                                      role="status"
-                                      aria-hidden="true"
-                                />
-                                :
-                                <span className={"text-white"}>Enviar</span>
+                            <span className="text-white spinner-grow spinner-grow-sm"
+                                  role="status"
+                                  aria-hidden="true"
+                            />
+                            :
+                            <span className={"text-white"}>Continuar</span>
 
-                        }
-                    </button>
-                    <div className="mb-4 pb-4">
-                        <div className="mt-2 float-left cursor-pointer">
-                            <small className="text-muted" onClick={this.goToSignUp}>Crear una cuenta</small>
-                        </div>
-                        <div className="mt-2 float-right cursor-pointer">
-                            <small className="text-muted" onClick={this.goToResetPassword}>Olvidé mi contraseña</small>
-                        </div>
+                    }
+                </button>
+                <div className="mb-4 pb-4">
+                    <div className="mt-2 float-left cursor-pointer">
+                        <small className="text-muted" onClick={this.goToSignUp}>
+                            Crear una cuenta
+                        </small>
                     </div>
-                    <div className="login-type-button" onClick={this.onChangeSignInType}>
-                        Ingresar con número de celular
+                    <div className="mt-2 float-right cursor-pointer">
+                        <small className="text-muted" onClick={this.goToResetPassword}>
+                            Olvidé mi contraseña
+                        </small>
                     </div>
-                    <div className="terms custom-control custom-checkbox">
-                        <input type="checkbox"
-                               className="custom-control-input"
-                               checked
-                        />
-                        <label className="custom-control-label" htmlFor="defaultUnchecked">
-                            Acepto de manera expresa e informada los Términos &amp; Condiciones y la
-                            Política de Privacidad de Famosos Inc.
-                        </label>
-                    </div>
-                </>
+                </div>
+                <SignInMethodsForm cellphone={true} whatsapp={true}/>
+                <AuthTCLayout/>
             </div>
         );
     };
@@ -136,20 +119,19 @@ class SignInWithEmailForm extends Component {
 }
 
 // Set propTypes
-SignInWithEmailForm.propTypes = {
-    onChangeSignInType: PropTypes.func.isRequired,
-};
+SignInWithEmailForm.propTypes = {};
 
 // Set defaultProps
 SignInWithEmailForm.defaultProps = {
-    onChangeSignInType: () => {
-    },
+    email: ""
 };
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.authentication.sendEmailSecurityCodeReducer.loading || state.authentication.validateEmailSecurityCodeReducer.loading || state.authentication.signInWithEmailReducer.loading,
-    signInError: state.authentication.signInWithEmailReducer.error_data.error,
+    signInWithEmailLoading: state.authentication.signInWithEmailReducer.loading,
+    signInWithEmailCompleted: state.authentication.signInWithEmailReducer.completed,
+    signInWithEmailError: state.authentication.signInWithEmailReducer.error_data.error,
+    signInWithEmailData: state.authentication.signInWithEmailReducer.data,
 });
 
 // mapStateToProps

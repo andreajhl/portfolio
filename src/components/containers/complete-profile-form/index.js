@@ -27,6 +27,15 @@ class CompleteProfileForm extends Component {
 
     }
 
+    componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+        if(nextProps.session.client){
+            this.setState({
+                full_name: nextProps.session.client.full_name,
+                email: nextProps.session.client.email,
+            });
+        }
+    }
+
     handleInput(event) {
         this.setState({[event.target.name]: event.target.value})
     }
@@ -37,6 +46,11 @@ class CompleteProfileForm extends Component {
 
     completeProfile() {
         this.props.completeProfile(this.state)
+    }
+
+    hasEmail(){
+        if(this.props.session.client) return this.props.session.client;
+        return false
     }
 
     render() {
@@ -56,7 +70,7 @@ class CompleteProfileForm extends Component {
                     value={this.state.full_name}
                 />
                 {
-                    !email
+                    this.hasEmail()
                         ?
                         <>
                             <h6>¿Cuál es su correo?</h6>
@@ -85,7 +99,7 @@ class CompleteProfileForm extends Component {
                         : null
                 }
                 <button className="send-button"
-                        disabled={this.state.isLoading || (!this.state.email && !email) || !this.state.full_name}
+                        disabled={this.state.isLoading || !this.state.email || !this.state.full_name}
                         onClick={this.completeProfile}
                 >
                     {
@@ -110,7 +124,9 @@ class CompleteProfileForm extends Component {
 CompleteProfileForm.propTypes = {};
 
 // Set defaultProps
-CompleteProfileForm.defaultProps = {};
+CompleteProfileForm.defaultProps = {
+    session: {}
+};
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({

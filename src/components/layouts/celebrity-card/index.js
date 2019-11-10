@@ -45,7 +45,7 @@ class CelebrityCardLayout extends Component {
                     </div>
                     <div className="card-body text-left pl-2 pt-2 pr-2 pb-0">
                         <small className="f-category text-muted">
-                            {this.props.celebrity.category ? this.props.celebrity.category.title : null}
+                            {this.props.celebrity.category ? this.props.celebrity.category.title : "-"}
                         </small>
                         <h6 className="p-0 m-0">
                             <b>{this.props.celebrity.user ? this.props.celebrity.user.full_name : "--"}</b>
@@ -60,7 +60,7 @@ class CelebrityCardLayout extends Component {
                                     })
                                     :
                                     <span>
-                                        #{this.props.celebrity.user ? this.props.celebrity.user.full_name.trim() : null}
+                                        #{this.props.celebrity.user ? "-"  : null}
                                     </span>
                             }
                             </div>

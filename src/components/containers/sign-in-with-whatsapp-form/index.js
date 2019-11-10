@@ -7,14 +7,14 @@ import {AuthTCLayout} from "../../layouts/auth-t&c";
 import {getUTMs} from "../../../state/utils/UTMs";
 import {SignInMethodsForm} from "../sign-in-methods-form";
 
-class SignInWithCellphoneForm extends Component {
+class SignInWithWhatsAppForm extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
             countryAlpha3Code: "COL",
-            countryCellphoneCode: "+57",
+            countryWhatsAppCode: "+57",
             cellphoneNumber: "",
         };
 
@@ -26,7 +26,7 @@ class SignInWithCellphoneForm extends Component {
 
     onSelectCountry(country) {
         this.setState({
-            countryCellphoneCode: "+" + country.callingCodes[0],
+            countryWhatsAppCode: "+" + country.callingCodes[0],
             countryAlpha3Code: country.alpha3Code
         })
     }
@@ -47,7 +47,7 @@ class SignInWithCellphoneForm extends Component {
             this.props.sendSMSSecurityCode({
                 ...getUTMs(),
                 countryAlpha3Code: this.state.countryAlpha3Code,
-                countryCellphoneCode: this.state.countryCellphoneCode,
+                countryWhatsAppCode: this.state.countryWhatsAppCode,
                 cellphoneNumber: this.state.cellphoneNumber,
             });
         }
@@ -55,8 +55,8 @@ class SignInWithCellphoneForm extends Component {
 
     render() {
         return (
-            <div className="SignInWithCellphoneForm">
-                <h6>Ingresa con tú número de celular</h6>
+            <div className="SignInWithWhatsAppForm">
+                <h6>Ingresa con tú WhatsApp</h6>
                 <div className="form-horizontal">
                     <FlagsSelect
                         onSelect={this.onSelectCountry}
@@ -97,9 +97,9 @@ class SignInWithCellphoneForm extends Component {
                     }
                 </button>
                 <p className="instructions">
-                    Enviaremos un mensaje de texto a este número con un código de confirmación
+                    Enviaremos un mensaje a tu WhatsApp con un código de confirmación
                 </p>
-                <SignInMethodsForm whatsapp={true} email={true} signUp={this.props.signUp}/>
+                <SignInMethodsForm cellphone={true} email={true} signUp={this.props.signUp}/>
                 <AuthTCLayout/>
             </div>
         );
@@ -108,10 +108,10 @@ class SignInWithCellphoneForm extends Component {
 }
 
 // Set propTypes
-SignInWithCellphoneForm.propTypes = {};
+SignInWithWhatsAppForm.propTypes = {};
 
 // Set defaultProps
-SignInWithCellphoneForm.defaultProps = {
+SignInWithWhatsAppForm.defaultProps = {
     signUp: false
 };
 
@@ -129,5 +129,5 @@ const mapDispatchToProps = {
 };
 
 // Export Class
-const _SignInWithCellphoneForm = connect(mapStateToProps, mapDispatchToProps)(SignInWithCellphoneForm);
-export {_SignInWithCellphoneForm as SignInWithCellphoneForm};
+const _SignInWithWhatsAppForm = connect(mapStateToProps, mapDispatchToProps)(SignInWithWhatsAppForm);
+export {_SignInWithWhatsAppForm as SignInWithWhatsAppForm};

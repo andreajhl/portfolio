@@ -18,7 +18,6 @@ export const getSession = () => {
         })
             .then(res => {
                 if ("status" in res.data && res.data.status === "ERROR") {
-                    console.log("res.data.status:", res.data.status);
                     handleApiResponseFailure(dispatch, type, res);
 
                 } else {

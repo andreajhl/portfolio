@@ -24,7 +24,7 @@ class UserProfileDetailsCardLayout extends Component {
         this.sesion.removeSession();
     }
 
-    celebritiesMultiselectChanged(value){
+    celebritiesMultiselectChanged(value) {
         this.setState({fav_celebrities: value})
     }
 
@@ -37,52 +37,48 @@ class UserProfileDetailsCardLayout extends Component {
     render() {
         return (
             <div className="UserProfileDetailsCardLayout">
-                <div className="row justify-content-center">
-                    <div className="col-12 col-lg-5">
-                        <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
-                            <div className="row justify-content-center">
-                                <div className="col-12 text-center">
-                                    <h4 className="mt-3 font-weight-bold border-bottom pb-3">
-                                        Mi perfil
-                                    </h4>
-                                </div>
-                                <div className="col-12 text-center p-2">
-                                    <img className="rounded-circle" src="/assets/img/avatar-blank.png" width={"120px"}
-                                         alt={"avatar"}/>
-                                    <h5 className="font-weight-bold mt-2">{this.props.session.client ? this.props.session.client.full_name : ""}</h5>
-                                    <h6 className="mt-2">{this.props.session.client ? this.props.session.client.email : ""}</h6>
-                                    <h6 className="mt-2">{this.props.session.client ? this.props.session.client.cellphone_number : ""}</h6>
-                                    <small className="text-muted cursor-pointer" onClick={this.logout}>Cerrar sesión
-                                    </small>
-                                </div>
-                                <div className="col-12 text-center">
-                                    <hr/>
-                                </div>
-                                <div className="col-6 text-center border-right p-2">
-                                    <h6 className="mt-2">Siguiendo</h6>
-                                    <h2 className="font-weight-bold mt-4">{this.props.session.client ? 0 : "0"}</h2>
-                                </div>
-                                <div className="col-6 text-center p-2 border-left">
-                                    <h6 className="mt-2">Contratos</h6>
-                                    <h2 className="font-weight-bold mt-4">{this.props.session.client ? this.props.session.client.total_contracts : "0"}</h2>
-                                </div>
-                                <div className="col-12 text-center">
-                                    <hr/>
-                                </div>
-                                <div className="col-12 text-center p-2">
-                                    <h6 className="font-weight-bold mt-2">Famosos Favoritos</h6>
-                                    <div className="mt-2 mb-2">
-                                        <CelebritiesMultiselect
-                                            currentValue={this.props.session.client ? this.props.session.client.fav_celebrities : ""}
-                                            onChange={this.celebritiesMultiselectChanged}
-                                        />
-                                    </div>
-                                    <button className="btn btn-primary mb-4"
-                                    onClick={this.updateSession}>
-                                        Guardar
-                                    </button>
-                                </div>
+                <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
+                    <div className="row justify-content-center">
+                        <div className="col-12 text-center">
+                            <h4 className="mt-3 font-weight-bold border-bottom pb-3">
+                                Mi perfil
+                            </h4>
+                        </div>
+                        <div className="col-12 text-center p-2">
+                            <img className="rounded-circle" src="/assets/img/avatar-blank.png" width={"120px"}
+                                 alt={"avatar"}/>
+                            <h5 className="font-weight-bold mt-2">{this.props.session.client ? this.props.session.client.full_name : ""}</h5>
+                            <h6 className="mt-2">{this.props.session.client ? this.props.session.client.email : ""}</h6>
+                            <h6 className="mt-2">{this.props.session.client ? this.props.session.client.cellphone_number : ""}</h6>
+                            <small className="text-muted cursor-pointer" onClick={this.logout}>Cerrar sesión
+                            </small>
+                        </div>
+                        <div className="col-12 text-center">
+                            <hr/>
+                        </div>
+                        <div className="col-6 text-center border-right p-2">
+                            <h6 className="mt-2">Siguiendo</h6>
+                            <h2 className="font-weight-bold mt-4">{this.props.session.client ? 0 : "0"}</h2>
+                        </div>
+                        <div className="col-6 text-center p-2 border-left">
+                            <h6 className="mt-2">Contratos</h6>
+                            <h2 className="font-weight-bold mt-4">{this.props.session.client ? this.props.session.client.total_contracts : "0"}</h2>
+                        </div>
+                        <div className="col-12 text-center">
+                            <hr/>
+                        </div>
+                        <div className="col-12 text-center p-2">
+                            <h6 className="font-weight-bold mt-2">Famosos Favoritos</h6>
+                            <div className="mt-2 mb-2">
+                                <CelebritiesMultiselect
+                                    currentValue={this.props.session.client ? this.props.session.client.fav_celebrities : ""}
+                                    onChange={this.celebritiesMultiselectChanged}
+                                />
                             </div>
+                            <button className="btn btn-primary mb-4"
+                                    onClick={this.updateSession}>
+                                Guardar
+                            </button>
                         </div>
                     </div>
                 </div>

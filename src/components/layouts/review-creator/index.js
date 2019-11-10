@@ -79,6 +79,8 @@ class ReviewCreatorLayout extends Component {
                         a {this.props.contract.celebrity ? this.props.contract.celebrity.full_name : null}</h5>
                     <div className="mt-2">
                         <div className="mb-2">
+                            <small>¿Cuantas estrellas le das a este video?</small>
+                            <br/>
                             <StarRatingComponent
                                 name="rate1"
                                 starCount={5}
@@ -88,6 +90,7 @@ class ReviewCreatorLayout extends Component {
                         </div>
                         <textarea className={"form-control" + (this.state.showReviewError ? " border-danger " : "")}
                                   autoFocus={true}
+                                  rows={2}
                                   value={this.state.reviewData.review}
                                   onChange={this.handleChange}
                         />
@@ -122,6 +125,8 @@ class ReviewCreatorLayout extends Component {
                         a {this.props.contract.celebrity ? this.props.contract.celebrity.full_name : null}</h5>
                     <div className="mt-2">
                         <div className="mb-2">
+                            <small>¿Cuantas estrellas le das a este video?</small>
+                            <br/>
                             <StarRatingComponent
                                 name="rate1"
                                 starCount={5}
@@ -132,6 +137,7 @@ class ReviewCreatorLayout extends Component {
                         <textarea className={"form-control" + (this.state.showReviewError ? " border-danger " : "")}
                                   autoFocus={true}
                                   value={this.state.reviewData.review}
+                                  rows={2}
                                   onChange={this.handleChange}
                         />
                         <button className="btn btn-sm btn-primary mt-2"

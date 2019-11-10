@@ -41,8 +41,23 @@ class Routes extends Component {
                         />
                         <Route
                             exact
+                            path={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH}
+                            component={PAGES.SignInPage}
+                        />
+                        <Route
+                            exact
                             path={PATHS.SIGN_UP_PATH}
                             component={PAGES.SignUpPage}
+                        />
+                        <Route
+                            exact
+                            path={PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH}
+                            component={PAGES.SignUpPage}
+                        />
+                        <Route
+                            exact
+                            path={PATHS.VALIDATE_SECURITY_CODE}
+                            component={PAGES.ValidateSecurityCodePage}
                         />
                         <Route
                             exact

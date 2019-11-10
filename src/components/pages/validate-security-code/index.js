@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {SignInWithCellphoneForm, SignUpWithEmailForm, SignInWithWhatsAppForm} from "../../containers";
+import {ValidateCellphoneSecurityCodeForm, ValidateEmailSecurityCodeForm} from "../../containers";
 import {Session} from "../../../state/utils/session";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 
 
-class SignUpPage extends Component {
+class ValidateSecurityCodePage extends Component {
 
     constructor(props) {
         super(props);
@@ -25,17 +25,14 @@ class SignUpPage extends Component {
     }
 
     returnSpecificForm() {
-        const search = history.location.search;
-        const params = new URLSearchParams(search);
         if (this.props.match.params.form === "cellphone-form") {
-            return <SignInWithCellphoneForm signUp={true}/>
+            return <ValidateCellphoneSecurityCodeForm/>
         } else if (this.props.match.params.form === "email-form") {
-            const email = params.get("email");
-            return <SignUpWithEmailForm email={email}/>
+            return <ValidateEmailSecurityCodeForm/>
         } else if (this.props.match.params.form === "whatsapp-form") {
-            return <SignInWithWhatsAppForm signUp={true}/>
+            // return <ValidateWhatsAppSecurityCodeForm/>
         } else {
-            return <SignInWithCellphoneForm signUp={true}/>
+            return <span>Invalid Form (Available Forms: cellphone-form, email-form, whatsapp-form)</span>
         }
     }
 
@@ -60,5 +57,5 @@ class SignUpPage extends Component {
 
 }
 
-export {SignUpPage};
+export {ValidateSecurityCodePage};
 

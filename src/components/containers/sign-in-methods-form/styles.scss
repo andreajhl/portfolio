@@ -1,0 +1,46 @@
+@import "../../../theme";
+
+.SignInMethodsForm{
+  padding-top: 20px;
+  padding-bottom: 50px;
+
+  .sign-in-with-cellphone-button {
+      margin-top: 5px;
+      width: 100%;
+      height: 50px;
+      color: $dark;
+      border-radius: 8px;
+      background-color: #fff;
+  }
+
+  .sign-in-with-email-button {
+    margin-top: 5px;
+    width: 100%;
+    height: 50px;
+    color: $dark;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  .sign-in-with-whatsapp-button{
+    margin-top: 5px;
+    width: 100%;
+    height: 50px;
+    color: $dark;
+    border-radius: 8px;
+    background-color: #fff;
+    img {
+      width: 17px;
+    }
+  }
+
+  
+  .show-methods-label{
+    cursor: pointer;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 11px;
+    text-decoration: underline;
+  }
+
+}

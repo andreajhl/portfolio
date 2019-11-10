@@ -2,6 +2,8 @@
   .f-main-padding {
     background-color: white;
     min-height: 550px;
+    margin: 0 auto;
+    width: 900px;
   }
 
   .contract-card {
@@ -14,6 +16,9 @@
     .div-contract-info {
       flex: 2; /* additionally, equal width */
       padding: 5px;
+      width: 90vw;
+      max-width: 800px;
+      margin: 0 auto;
 
       .card-header {
         height: 110px;

@@ -33,7 +33,10 @@ class ContractCreatedPage extends Component {
             this.session.setSession(this.props.contractCreated.token);
             history._pushRoute(PATHS.CREATE_PASSWORD_PATH);
         } else {
-            history._pushRoute(PATHS.SIGN_UP_PATH + "?use_email=true&email=" + this.props.contract.delivery_contact);
+            history._pushRoute(
+                PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form")
+                + "?use_email=true&email=" + this.props.contract.delivery_contact
+            );
         }
     }
 

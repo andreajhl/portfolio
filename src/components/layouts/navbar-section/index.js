@@ -141,8 +141,12 @@ class NavbarSectionLayout extends Component {
                                             ?
                                             <>
                                                 <div className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center"
-                                                     onClick={this.goToSignUpPath}>
-                                                    <button className="btn btn-primary btn-sm mt-2 f-register-button">
+                                                     style={{display: "flex"}}
+                                                >
+                                                    <a className="btn btn-sm mr-3" onClick={this.showSearch}>
+                                                        <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
+                                                    </a>
+                                                    <button className="btn btn-primary btn-sm mt-2 f-register-button" onClick={this.goToSignUpPath}>
                                                         Comenzar
                                                     </button>
                                                 </div>

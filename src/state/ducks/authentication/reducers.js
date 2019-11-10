@@ -65,6 +65,14 @@ const validateEmailSecurityCodeReducerInitialState = {
     data: {}
 };
 
+const validateIfEmailIsRegisteredInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+
 const resetPasswordInitialState = {
     loading: false,
     failed: false,
@@ -320,6 +328,36 @@ export function validateEmailSecurityCodeReducer(state = validateEmailSecurityCo
     }
 }
 
+export function validateIfEmailIsRegisteredReducer(state = validateIfEmailIsRegisteredInitialState, action) {
+    switch (action.type) {
+        case types.VALIDATE_IF_EMAIL_IS_REGISTERED_REQUEST:
+            return {
+                ...validateIfEmailIsRegisteredInitialState,
+                loading: true
+            };
+        case types.VALIDATE_IF_EMAIL_IS_REGISTERED_REQUEST_FAILURE:
+            return {
+                ...validateIfEmailIsRegisteredInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.VALIDATE_IF_EMAIL_IS_REGISTERED_REQUEST_SUCCESS:
+            return {
+                ...validateIfEmailIsRegisteredInitialState,
+                data: action.payload.data
+            };
+        case types.VALIDATE_IF_EMAIL_IS_REGISTERED_REQUEST_COMPLETED:
+            return {
+                ...validateIfEmailIsRegisteredInitialState,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+
+    }
+}
+
 export function resetPasswordReducer(state = resetPasswordInitialState, action) {
     switch (action.type) {
         case types.RESET_PASSWORD_REQUEST:
@@ -391,4 +429,5 @@ export default combineReducers({
     completeProfileReducer,
     sendEmailSecurityCodeReducer,
     validateEmailSecurityCodeReducer,
+    validateIfEmailIsRegisteredReducer
 });

@@ -373,3 +373,26 @@ video {
 .text-soft-grey {
   color: $soft-grey !important;
 }
+
+.btn-outline-success{
+  span{
+    color: $text-success !important;
+  }
+  i{
+    color: $text-success !important;
+  }
+  &:hover {
+    span{
+      color: white !important;
+    }
+    i{
+      color: white !important;
+    }
+  }
+}
+
+.dv-star-rating-star.dv-star-rating-full-star{
+  i{
+    color: rgb(255, 180, 0);
+  }
+}

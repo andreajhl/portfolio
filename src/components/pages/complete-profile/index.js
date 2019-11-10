@@ -3,6 +3,8 @@ import "./styles.scss";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import {CompleteProfileForm} from "../../containers/complete-profile-form";
+import {sessionOperations} from "../../../state/ducks/session";
+import {connect} from "react-redux";
 
 
 class CompleteProfilePage extends Component {
@@ -13,6 +15,10 @@ class CompleteProfilePage extends Component {
         this.state = {};
         this.goToRoot = this.goToRoot.bind(this);
 
+    }
+
+    componentWillMount(): void {
+        this.props.getSession()
     }
 
     goToRoot() {
@@ -29,7 +35,7 @@ class CompleteProfilePage extends Component {
                                 <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
                             </div>
                             <div className="custom-form">
-                                <CompleteProfileForm/>
+                                <CompleteProfileForm session={this.props.session}/>
                             </div>
                         </div>
                     </div>
@@ -40,5 +46,25 @@ class CompleteProfilePage extends Component {
 
 }
 
-export {CompleteProfilePage};
+
+// Set propTypes
+CompleteProfilePage.propTypes = {};
+
+// Set defaultProps
+CompleteProfilePage.defaultProps = {};
+
+// mapStateToProps
+const mapStateToProps = (state: any) => ({
+    session: state.session.getSessionReducer.data
+});
+
+// mapStateToProps
+const mapDispatchToProps = {
+    getSession: sessionOperations.getSession
+};
+
+// Export Class
+const _CompleteProfilePage = connect(mapStateToProps, mapDispatchToProps)(CompleteProfilePage);
+export {_CompleteProfilePage as CompleteProfilePage};
+
 

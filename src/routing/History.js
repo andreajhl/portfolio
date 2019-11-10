@@ -9,21 +9,18 @@ history.listen(() => {
 });
 
 history._pushRoute = (route) => {
-    const redirectTo = localStorage.getItem("redirectTo");
 
-    if (route.includes("?")) {
-        if (!route.includes("redirectTo")) {
-            route += "&redirectTo=" + redirectTo
-        }
-    } else if(redirectTo){
-        route += "?redirectTo=" + redirectTo
-    }
+    let search = history.location.search;
+
+    const redirectTo = localStorage.getItem("redirectTo");
 
     if (route.split("?")[0] === "/" && redirectTo) {
         localStorage.removeItem("redirectTo");
         history.push(redirectTo);
     } else {
-        history.push(route);
+        const add = route.split("?")[0];
+
+        history.push(route + search + (add.includes("=") ? "&" : ""));
     }
 
 };

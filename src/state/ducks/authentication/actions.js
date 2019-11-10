@@ -8,16 +8,29 @@ import * as ROUTE_PATHS from "../../../routing/Paths";
 
 
 const afterLogin = (res, redirect_path = null) => {
-    const session = new Session();
     if(res.data.token) {
+        const session = new Session();
         session.setSession(res.data.token);
-    }
-    if (redirect_path) {
+        switch (session.getSession().client_status) {
+            // CHANGE PASSWORD REQUIRED
+            case 10:
+                return history._pushRoute(ROUTE_PATHS.CREATE_PASSWORD_PATH);
+            // COMPLETE PROFILE REQUIRED
+            case 20:
+                return history._pushRoute(ROUTE_PATHS.COMPLETE_PROFILE_PATH);
+            // HOME
+            default:
+                if (redirect_path) {
+                    return history._pushRoute(redirect_path)
+                } else {
+                    return history._pushRoute(ROUTE_PATHS.ROOT_PATH)
+                }
+        }
+    } else if (redirect_path) {
         history._pushRoute(redirect_path)
-    }else{
+    } else {
         history._pushRoute(ROUTE_PATHS.ROOT_PATH)
     }
-
 };
 
 export const signInWithEmail = (body) => {
@@ -76,9 +89,9 @@ export const changePassword = (body, redirect_path=null) => {
     }
 };
 
-export const createPassword = (body, redirect_path=null) => {
+export const createPassword = (body) => {
     return dispatch => {
-        const path = PATHS.CREATE_PASSWORD;
+        const path = PATHS.CREATE_CLIENT_PASSWORD;
         const type = types.CREATE_PASSWORD_REQUEST;
         dispatch({type: type, payload: {}});
         apiService({
@@ -93,7 +106,7 @@ export const createPassword = (body, redirect_path=null) => {
                 if (res.data.status === "OK") {
                     handleApiResponseSuccess(dispatch, type, res);
                     dispatch({type: `${type}_COMPLETED`, payload: res});
-                    afterLogin(res, redirect_path)
+                    afterLogin(res)
                 } else {
                     handleApiResponseFailure(dispatch, type, res);
                 }
@@ -121,6 +134,7 @@ export const sendSMSSecurityCode = (body) => {
                 if (res.data.status === "OK") {
                     handleApiResponseSuccess(dispatch, type, res);
                     dispatch({type: `${type}_COMPLETED`, payload: res});
+                    afterLogin(res, ROUTE_PATHS.VALIDATE_SECURITY_CODE.replace(":form", "cellphone-form"))
                 } else {
                     handleApiResponseFailure(dispatch, type, res);
                 }
@@ -148,7 +162,7 @@ export const validateSMSSecurityCode = (body) => {
                 if (res.data.status === "OK") {
                     handleApiResponseSuccess(dispatch, type, res);
                     dispatch({type: `${type}_COMPLETED`, payload: res});
-                    afterLogin(res, ROUTE_PATHS.COMPLETE_PROFILE_PATH)
+                    afterLogin(res)
                 } else {
                     handleApiResponseFailure(dispatch, type, res);
                 }
@@ -214,6 +228,42 @@ export const validateEmailSecurityCode = (body, redirect_path=null) => {
     }
 };
 
+export const validateIfEmailIsRegistered = (body) => {
+    return dispatch => {
+        const path = PATHS.VALIDATE_IF_EMAIL_IS_REGISTERED;
+        const type = types.VALIDATE_IF_EMAIL_IS_REGISTERED_REQUEST;
+        dispatch({type: type, payload: {}});
+        apiService({
+            action: type,
+            async: true,
+            path: path,
+            method: "POST",
+            params: null,
+            body: body
+        })
+            .then(res => {
+                if (res.data.status === "OK") {
+                    handleApiResponseSuccess(dispatch, type, res);
+                    dispatch({type: `${type}_COMPLETED`, payload: res});
+                    if(res.data.email_is_registered) {
+                        afterLogin(
+                            res,
+                            ROUTE_PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form") + "?email=" + res.data.email
+                        )
+                    }else {
+                        dispatch(sendEmailSecurityCode(res.data));
+                        afterLogin(res, ROUTE_PATHS.VALIDATE_SECURITY_CODE.replace(":form", "email-form"))
+                    }
+                } else {
+                    handleApiResponseFailure(dispatch, type, res);
+                }
+            })
+            .catch(err => {
+                handleApiErrors(dispatch, type, {data: {api_error: err, error: "Server 500"}})
+            });
+    }
+};
+
 export const completeProfile = (body) => {
     return dispatch => {
         const path = PATHS.COMPLETE_PROFILE;
@@ -231,7 +281,7 @@ export const completeProfile = (body) => {
                 if (res.data.status === "OK") {
                     handleApiResponseSuccess(dispatch, type, res);
                     dispatch({type: `${type}_COMPLETED`, payload: res});
-                    afterLogin(res, ROUTE_PATHS.ROOT_PATH)
+                    afterLogin(res)
                 } else {
                     handleApiResponseFailure(dispatch, type, res);
                 }

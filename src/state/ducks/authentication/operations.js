@@ -8,6 +8,7 @@ import {
     sendEmailSecurityCode,
     validateEmailSecurityCode,
     completeProfile,
+    validateIfEmailIsRegistered
 } from "./actions";
 
 export {
@@ -20,4 +21,5 @@ export {
     validateEmailSecurityCode,
     resetPassword,
     completeProfile,
+    validateIfEmailIsRegistered
 };

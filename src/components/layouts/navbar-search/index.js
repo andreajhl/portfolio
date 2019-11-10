@@ -61,7 +61,6 @@ class NavbarSearchLayout extends Component {
                     <div className="input-group">
                         <input
                             className="form-control"
-                            autoFocus={true}
                             type="text"
                             name="search"
                             value={this.state.keyword}

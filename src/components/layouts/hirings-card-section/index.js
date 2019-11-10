@@ -56,8 +56,8 @@ class HiringsCardSectionLayout extends Component {
                                                 </button>
                                                 :
                                                 <button className="btn btn-outline-success" onClick={this.goToContract.bind(this, contract.reference)}>
-                                                    <span className="d-none d-md-block">Ver Video</span>
-                                                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-1 fa fa-play"/>
+                                                    <span className="d-none d-md-block text-success">Ver Video</span>
+                                                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-1 fa fa-play text-success"/>
                                                 </button>
                                         }
                                     </div>
