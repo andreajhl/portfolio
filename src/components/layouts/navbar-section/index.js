@@ -84,7 +84,7 @@ class NavbarSectionLayout extends Component {
                     <nav className="f-navbar">
                         {/* LG*/}
                         <div className="f-items d-none d-md-block">
-                            <div className="float-left" style={{position: "relative", top: "-2.5px"}}>
+                            <div className="float-left cursor-pointer" style={{position: "relative", top: "-2.5px"}}>
                                 <img className="f-navbar-brand" src={"/assets/img/logo-color.png"} alt="logo"
                                      onClick={this.goToRootPath}
                                 />
@@ -116,7 +116,7 @@ class NavbarSectionLayout extends Component {
                                                      to={PATHS.CLIENT_PROFILE}
                                             >
                                                 <i className="mr-1 fa fa-user fa-2x mt-0"/>
-                                                <span className="font-weight-bold ml-1">Mi perfil</span>
+                                                <span className="font-weight-bold ml-1">Mi Perfil</span>
                                             </NavLink>
                                         </>
                                 }

@@ -41,7 +41,7 @@ class UserProfileDetailsCardLayout extends Component {
                     <div className="row justify-content-center">
                         <div className="col-12 text-center">
                             <h4 className="mt-3 font-weight-bold border-bottom pb-3">
-                                Mi perfil
+                                Mi Perfil
                             </h4>
                         </div>
                         <div className="col-12 text-center p-2">
