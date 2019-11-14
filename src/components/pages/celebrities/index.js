@@ -1,10 +1,11 @@
 import React, {Component, createRef} from 'react';
-import {CelebrityCardsSectionLayout, IndexHeaderLayout, PageContainer, PaginationLayout} from "../../layouts";
+import {CelebrityCardsSectionLayout, IndexHeaderLayout, PageContainer} from "../../layouts";
 import * as PropTypes from "prop-types";
 import {CelebrityShape, PaginationShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
+import * as GTM from "../../../state/utils/gtm";
 
 
 class CelebritiesPage extends Component {
@@ -24,7 +25,7 @@ class CelebritiesPage extends Component {
         this.onSearchChange = this.onSearchChange.bind(this);
         this.fetchCelebrities = this.fetchCelebrities.bind(this);
 
-        this.scrollDiv = createRef()
+        this.scrollDiv = createRef();
     }
 
     componentDidMount(): void {
@@ -46,7 +47,7 @@ class CelebritiesPage extends Component {
     }
 
     fetchCelebrities() {
-        this.props.fetchCelebrities(this.state.params)
+        this.props.fetchCelebrities(this.state.params);
     }
 
     onPaginationChange(page) {

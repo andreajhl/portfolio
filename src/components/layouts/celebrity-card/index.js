@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "./styles.scss";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class CelebrityCardLayout extends Component {
@@ -23,6 +24,10 @@ class CelebrityCardLayout extends Component {
 
     goToCelebrityProfile() {
         history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.celebrity.user.username))
+        GTM.tagManagerDataLayer(
+            "CLICK_IN_CELEBRITY_CARD",
+            this.props.celebrity
+        );
     }
 
     render() {

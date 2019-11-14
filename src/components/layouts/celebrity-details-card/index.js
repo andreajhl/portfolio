@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import "./styles.scss";
 import {ContractModal} from "../../containers";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class CelebrityDetailsCardLayout extends Component {
@@ -32,6 +33,10 @@ class CelebrityDetailsCardLayout extends Component {
     }
 
     openModal() {
+        GTM.tagManagerDataLayer(
+            "CLICK_IN_CONTRACT_BUTTON",
+            this.props.celebrity
+        );
         this.setState({
             showContractModal: true
         })
@@ -48,10 +53,18 @@ class CelebrityDetailsCardLayout extends Component {
             this.setState({videoDesktopPlayIcon: "fa-pause"}, () => {
                 this.videoDesktopRef.current.play()
             });
+            GTM.tagManagerDataLayer(
+                "PLAYING_MAIN_VIDEO",
+                this.props.celebrity
+            );
         } else {
             this.setState({videoDesktopPlayIcon: "fa-play"}, () => {
                 this.videoDesktopRef.current.pause()
             });
+            GTM.tagManagerDataLayer(
+                "STOPPED_MAIN_VIDEO",
+                this.props.celebrity
+            );
         }
     }
 
@@ -65,10 +78,18 @@ class CelebrityDetailsCardLayout extends Component {
             this.setState({videoMobilePlayIcon: "fa-pause"}, () => {
                 this.videoMobileRef.current.play()
             });
+            GTM.tagManagerDataLayer(
+                "PLAYING_MAIN_VIDEO",
+                this.props.celebrity
+            );
         } else {
             this.setState({videoMobilePlayIcon: "fa-play"}, () => {
                 this.videoMobileRef.current.pause()
             });
+            GTM.tagManagerDataLayer(
+                "STOPPED_MAIN_VIDEO",
+                this.props.celebrity
+            );
         }
     }
 
