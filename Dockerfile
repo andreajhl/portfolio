@@ -6,8 +6,10 @@ COPY . /app
 
 RUN npm install
 
+RUN npm install serve -g
+
 CMD npm run-script build
 
-RUN serve -s build
+CMD serve -s build
 
 EXPOSE 5000
