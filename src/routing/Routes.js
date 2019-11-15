@@ -14,7 +14,7 @@ class Routes extends Component {
     render() {
         return (
             <>
-                <BrowserRouter history={history}>
+                <BrowserRouter>
                     <Switch>
                         {/* ############### */}
                         {/* GENERAL PATHS */}

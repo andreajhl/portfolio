@@ -1,6 +1,6 @@
-import {createHashHistory} from 'history';
+import {createBrowserHistory} from 'history';
 
-const history = createHashHistory();
+const history = createBrowserHistory();
 history.listen(() => {
     window.scroll({top: 0,});
 });
