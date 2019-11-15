@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {HashRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {history} from "./History";
 // Paths
 import * as PATHS from './Paths';
@@ -14,7 +14,7 @@ class Routes extends Component {
     render() {
         return (
             <>
-                <HashRouter history={history}>
+                <BrowserRouter history={history}>
                     <Switch>
                         {/* ############### */}
                         {/* GENERAL PATHS */}
@@ -102,7 +102,7 @@ class Routes extends Component {
                         {/* ------- */}
                         <Route path="*" component={PAGES.NotFoundPage}/>
                     </Switch>
-                </HashRouter>
+                </BrowserRouter>
             </>
         );
     }
