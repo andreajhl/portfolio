@@ -6,7 +6,7 @@ COPY . /app
 
 RUN npm install
 
-CMD npm build
+CMD npm run-script build
 
 CMD serve -s build
 
