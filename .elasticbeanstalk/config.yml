@@ -1,0 +1,24 @@
+branch-defaults:
+  staging:
+    environment: FamososClientsFrontend-staging
+    group_suffix: null
+  master:
+    environment: FamososClientsFrontend-production
+    group_suffix: null
+  testing:
+    environment: FamososClientsFrontend-testing
+    group_suffix: null
+global:
+  application_name: Famosos-Clients-Frontend
+  branch: null
+  default_ec2_keyname: null
+  default_platform: Docker 18.06.1-ce
+  default_region: us-east-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: null
+  sc: git
+  workspace_type: Application
