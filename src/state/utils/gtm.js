@@ -11,8 +11,12 @@ export const initialize = () => {
 };
 
 export const tagManagerDataLayer = (event, dataLayer) => {
-    window.dataLayer.push({
-        ...dataLayer,
-        event
-    });
+    try {
+        window.dataLayer.push({
+            ...dataLayer,
+            event
+        });
+    }catch (e) {
+        console.log("GTM doesn't initialized")
+    }
 };
