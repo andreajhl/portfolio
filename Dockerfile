@@ -8,8 +8,6 @@ RUN npm install
 
 RUN npm install serve -g
 
-CMD npm run-script build
-
-CMD serve -s build
+CMD npm run-script build && serve -s build
 
 EXPOSE 5000
