@@ -14,18 +14,17 @@ class MyRoutes extends Component {
         return (
             <>
                 <Router history={history}>
-                    <Redirect
-                        from="/"
-                        to={PATHS.ROOT_PATH}
-                    />
-                    <Redirect
-                        from="/celebrities"
-                        to={PATHS.ROOT_PATH}
-                    />
                     <Switch>
                         {/* ############### */}
                         {/* GENERAL PATHS */}
                         {/* ############### */}
+                        <Route
+                            exact
+                            strict
+                            path={"/"}
+                        >
+                            <Redirect to={PATHS.ROOT_PATH}/>
+                        </Route>
                         <Route
                             exact
                             strict
