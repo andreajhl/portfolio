@@ -6,12 +6,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles.scss";
 import configureStore from "./state";
 import * as SENTRY from "./state/utils/sentry";
+import * as GTM from "./state/utils/gtm";
 import {MyRoutes} from "./routing/Routes";
 const reduxStore = configureStore( window.REDUX_INITIAL_DATA );
 
 // Initialize Sentry
 SENTRY.initialize();
 
+// Initialize GTM
+GTM.initialize();
 
 ReactDOM.render(
     <Provider store={reduxStore}>
