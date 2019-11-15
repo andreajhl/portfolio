@@ -1,4 +1,4 @@
-export const ROOT_PATH = '/';
+export const ROOT_PATH = '/celebrities/';
 export const NOT_FOUND_PATH = '/500-not-found';
 export const NOT_AUTHORIZED_PATH = '/not-authorized';
 export const CELEBRITY_PROFILE = '/:celebrity_username';

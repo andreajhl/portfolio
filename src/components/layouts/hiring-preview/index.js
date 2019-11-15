@@ -35,7 +35,7 @@ class HiringPreviewLayout extends Component {
     }
 
     goToCelebrity() {
-        history.push(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.contract.celebrity.username))
+        history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.contract.celebrity.username))
     }
 
     render() {

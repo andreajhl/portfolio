@@ -1,26 +1,34 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {history} from "./History";
+import {Route, Router, Switch, Redirect} from 'react-router-dom';
 // Paths
 import * as PATHS from './Paths';
 // Pages
 import * as PAGES from "../components/pages";
 import {PrivateRoute} from "./PrivateRoute";
+import {history} from "./History";
 
-
-class Routes extends Component {
+class MyRoutes extends Component {
 
     render() {
         return (
             <>
-                <BrowserRouter>
+                <Router history={history}>
+                    <Redirect
+                        from="/"
+                        to={PATHS.ROOT_PATH}
+                    />
+                    <Redirect
+                        from="/celebrities"
+                        to={PATHS.ROOT_PATH}
+                    />
                     <Switch>
                         {/* ############### */}
                         {/* GENERAL PATHS */}
                         {/* ############### */}
                         <Route
                             exact
+                            strict
                             path={PATHS.ROOT_PATH}
                             component={PAGES.CelebritiesPage}
                         />
@@ -102,7 +110,7 @@ class Routes extends Component {
                         {/* ------- */}
                         <Route path="*" component={PAGES.NotFoundPage}/>
                     </Switch>
-                </BrowserRouter>
+                </Router>
             </>
         );
     }
@@ -112,6 +120,6 @@ const mapStateToProps = (store) => {
     return {store};
 };
 
-const _Routes = connect(mapStateToProps)(Routes);
+const _MyRoutes = connect(mapStateToProps)(MyRoutes);
 
-export {_Routes as Routes};
+export {_MyRoutes as MyRoutes};
