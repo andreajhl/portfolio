@@ -1,2 +1,7 @@
 node_modules
 npm-debug.log
+.env.development
+.env.production
+.env.staging
+.env.test
+.env.testing
