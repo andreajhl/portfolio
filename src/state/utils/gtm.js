@@ -7,6 +7,10 @@ export const initialize = () => {
         TagManager.initialize({
             gtmId: 'GTM-TCDSJ3Q'
         })
+    }else{
+        TagManager.initialize({
+            gtmId: 'GTM-NH95V75'
+        });
     }
 };
 
