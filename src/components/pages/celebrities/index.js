@@ -96,7 +96,7 @@ class CelebritiesPage extends Component {
                         {/*/! End MainMenuLayout *!/*/}
 
                         {/* CelebrityCardsSectionLayout */}
-                        <div className="pt-4 scroll-section" style={{height: "calc(100vh - 100px)", overflow: "auto"}}
+                        <div className="pt-4 scroll-section" style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
                              ref={this.scrollDiv}>
                             <CelebrityCardsSectionLayout
                                 title={"Famosos destacados"}

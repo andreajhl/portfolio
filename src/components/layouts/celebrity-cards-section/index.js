@@ -64,6 +64,7 @@ class CelebrityCardsSectionLayout extends Component {
                             :
                             null
                     }
+                    <br/>
                 </div>
             </div>
         );

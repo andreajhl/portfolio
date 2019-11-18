@@ -45,17 +45,17 @@ class FooterLayout extends Component {
     render() {
         return (
             <div className="FooterLayout">
-                <footer className="footer f-shadow">
+                <footer className="footer">
                     <div className="container" style={{maxWidth: "1300px", zoom: "0.7"}}>
                         <div className="row">
-                            <div className="col-lg-3 h-100 text-left text-lg-left my-auto pb-sm-1 pt-2 pb-lg-3 pt-lg-3">
-                                <img className="text-dark pb-2 pb-lg-3" src="/assets/img/dark-famosos-logo.svg"
+                            <div className="col-lg-3 h-100 text-left text-lg-left my-auto pt-2 pb-lg-3 pt-lg-3">
+                                <img className="text-dark pt-2 pb-2 pb-lg-3" src="/assets/img/dark-famosos-logo.svg"
                                      alt="Logo"/>
                                 <p className="text-justify">
                                     Famosos es una compañía dedicada a crear tecnologías que conectan personalidades
                                     con sus fan base.
                                 </p>
-                                <p className="text-muted small mb-4 mb-lg-0">
+                                <p className="text-muted small mb-lg-0">
                                     © 2019 Famosos, Inc. All Rights Reserved.
                                 </p>
                             </div>
