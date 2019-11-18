@@ -5,7 +5,7 @@ import {CelebrityShape, PaginationShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
-import * as GTM from "../../../state/utils/gtm";
+import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 
 
 class CelebritiesPage extends Component {
@@ -24,11 +24,15 @@ class CelebritiesPage extends Component {
         this.updateParams = this.updateParams.bind(this);
         this.onSearchChange = this.onSearchChange.bind(this);
         this.fetchCelebrities = this.fetchCelebrities.bind(this);
+        this.listCountries = this.listCountries.bind(this);
 
         this.scrollDiv = createRef();
+
     }
 
     componentDidMount(): void {
+        this.listCountries();
+
         // Detect when scrolled to bottom.
         this.scrollDiv.current.addEventListener("scroll", () => {
             if (
@@ -37,13 +41,21 @@ class CelebritiesPage extends Component {
             ) {
                 const state = this.state;
                 if(this.props.paginationData.nextPage && !this.props.isLoading){
-                    const page = 1;
-                    if(state.params.page + 1 <= this.props.paginationData.totalPages) {
-                        this.onPaginationChange(state.params.page + 1);
-                    }
+                    setTimeout(() => {
+                        const page = 1;
+                        if(state.params.page + 1 <= this.props.paginationData.totalPages) {
+                            this.onPaginationChange(state.params.page + 1);
+                        }
+                    }, 500)
                 }
             }
         });
+    }
+
+    listCountries() {
+        if (this.props.countries.length === 0) {
+            this.props.listCountries()
+        }
     }
 
     fetchCelebrities() {
@@ -72,7 +84,7 @@ class CelebritiesPage extends Component {
     render() {
         return (
             <>
-                <div className="CelebritiesPage">
+                <div className={"CelebritiesPage "}>
                     <PageContainer>
                         {/*/!* ShowHeader *!/*/}
                         {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
@@ -84,7 +96,7 @@ class CelebritiesPage extends Component {
                         {/*/! End MainMenuLayout *!/*/}
 
                         {/* CelebrityCardsSectionLayout */}
-                        <div className="pt-4" style={{height: "calc(100vh - 70px)", overflow: "auto"}}
+                        <div className="pt-4 scroll-section" style={{height: "calc(100vh - 100px)", overflow: "auto"}}
                              ref={this.scrollDiv}>
                             <CelebrityCardsSectionLayout
                                 title={"Famosos destacados"}
@@ -125,12 +137,14 @@ CelebritiesPage.defaultProps = {
 const mapStateToProps = (state: any) => ({
     isLoading: state.celebrities.fetchCelebritiesReducer.loading,
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
-    paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data
+    paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data,
+    countries: state.restCountries.fetchCountriesReducer.data
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    fetchCelebrities: celebrityOperations.list
+    fetchCelebrities: celebrityOperations.list,
+    listCountries: restCountriesOperations.list,
 };
 
 // Export Class

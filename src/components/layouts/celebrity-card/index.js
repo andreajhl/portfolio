@@ -18,17 +18,6 @@ class CelebrityCardLayout extends Component {
 
         this.handleImageLoaded = this.handleImageLoaded.bind(this);
         this.goToCelebrityProfile = this.goToCelebrityProfile.bind(this);
-        this.listCountries = this.listCountries.bind(this);
-    }
-
-    componentDidMount(): void {
-        this.listCountries()
-    }
-
-    listCountries() {
-        if (!this.props.countries.length) {
-            this.props.listCountries()
-        }
     }
 
     handleImageLoaded() {

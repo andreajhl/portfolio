@@ -56,22 +56,10 @@ export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, ac
             };
         case types.FETCH_CELEBRITIES_REQUEST_SUCCESS:
             if (action.payload.data.pagination_data.currentPage > 1) {
-                // Concat Method
-                let hash = {};
-                for (let i of action.payload.data.results.concat(action.payload.data.results)) {
-                    if (!hash[i]) {
-                        hash[i.name] = i;
-                    }
-                }
-                let newArr = [];
-                for (let i in hash) {
-                    newArr.push(hash[i])
-                }
-                action.payload.data.results = newArr;
-                // End Concat Method
+                action.payload.data.results = state.data.results.concat(action.payload.data.results);
                 return {
                     ...fetchCelebritiesInitialState,
-                    data: action.payload.data
+                    data:  action.payload.data
                 };
             } else {
                 return {

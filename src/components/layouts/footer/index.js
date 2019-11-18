@@ -11,6 +11,7 @@ class FooterLayout extends Component {
         this.goToFamososTwitter = this.goToFamososTwitter.bind(this);
         this.goToFamososFacebook = this.goToFamososFacebook.bind(this);
         this.goToFamososInstagran = this.goToFamososInstagran.bind(this);
+        this.goToApply = this.goToApply.bind(this);
     }
 
     goToFAQs() {
@@ -37,11 +38,15 @@ class FooterLayout extends Component {
         window.open("https://www.instagram.com/famosos/", '_blank').focus();
     }
 
+    goToApply(){
+        window.open("https://aplica.famosos.com/", '_blank').focus()
+    }
+
     render() {
         return (
             <div className="FooterLayout">
                 <footer className="footer f-shadow">
-                    <div className="container">
+                    <div className="container" style={{maxWidth: "1300px", zoom: "0.7"}}>
                         <div className="row">
                             <div className="col-lg-3 h-100 text-left text-lg-left my-auto pb-sm-1 pt-2 pb-lg-3 pt-lg-3">
                                 <img className="text-dark pb-2 pb-lg-3" src="/assets/img/dark-famosos-logo.svg"
@@ -59,7 +64,9 @@ class FooterLayout extends Component {
                                 <p className="mb-3">
                                     ¿Tienes mas de 50k seguidores en redes?
                                     <i className="fa fa-arrow-right ml-2 mr-3"/>
-                                    <button className="btn btn-primary">Registrate como Famoso</button>
+                                    <button className="btn btn-primary" onClick={this.goToApply}>
+                                        Aplicate como Famoso
+                                    </button>
                                 </p>
                                 <ul className="list-inline mb-2">
                                     <li className="list-inline-item mr-3">
@@ -71,9 +78,9 @@ class FooterLayout extends Component {
                                     <li className="list-inline-item mr-3" onClick={this.goToFamososInstagran}>
                                         <img className="cursor-pointer" src="/assets/img/instagram.svg" width="30px"/>
                                     </li>
-                                    <li className="list-inline-item mr-3"  onClick={this.goToFamososTwitter}>
-                                        <img className="cursor-pointer" src="/assets/img/twitter.svg" width="30px"/>
-                                    </li>
+                                    {/*<li className="list-inline-item mr-3"  onClick={this.goToFamososTwitter}>*/}
+                                    {/*    <img className="cursor-pointer" src="/assets/img/twitter.svg" width="30px"/>*/}
+                                    {/*</li>*/}
                                 </ul>
                                 <ul className="list-inline mb-2">
                                     <li className="list-inline-item mr-2 cursor-pointer font-weight-bold">
