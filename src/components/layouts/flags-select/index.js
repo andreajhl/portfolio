@@ -32,6 +32,7 @@ class FlagsSelect extends Component {
                 countries.push(c.alpha2Code);
                 customLabels[c.alpha2Code] = "+" + c.callingCodes[0] + " " + c.name;
             });
+
             this.setState({countries, customLabels})
         }
     }

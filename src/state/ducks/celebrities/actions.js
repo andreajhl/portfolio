@@ -41,12 +41,12 @@ export const get = (object_id) => {
 
 export const list = (params) => {
     if (params["status"] === undefined) params["status"] = 50;
-    params["page_size"] = getTotalColumns() * 3;
+    params["page_size"] = getTotalColumns() * 5;
     console.log("params:", params);
 
     return dispatch => {
         const TYPE = types.FETCH_CELEBRITIES_REQUEST;
-        const FINAL_PATH = API_PATHS.BASE_PATH;
+        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "celebrities/";
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",
