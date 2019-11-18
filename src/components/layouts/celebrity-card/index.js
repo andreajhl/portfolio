@@ -67,9 +67,6 @@ class CelebrityCardLayout extends Component {
                                  onLoad={this.handleImageLoaded}
                                  src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
                             />
-                            {/*<small className="f-price rounded">*/}
-                            {/*    <b>{this.props.celebrity.contracts_price} USD</b>*/}
-                            {/*</small>*/}
                         </div>
                     </div>
                     <div className="card-body text-left pl-2 pt-2 pr-2 pb-0">

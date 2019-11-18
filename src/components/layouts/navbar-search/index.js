@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "./styles.scss";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import * as GTM from "../../../state/utils/gtm";
 
 class NavbarSearchLayout extends Component {
 
@@ -21,11 +22,19 @@ class NavbarSearchLayout extends Component {
         if (e.target.value && e.target.value.length > 1) {
             if (e.target.value.length % 2 === 0) {
                 if (this.props.onSearchChange) {
+                    GTM.tagManagerDataLayer(
+                        "CELEBRITIES_SEARCH_CHANGED",
+                        this.state.keyword
+                    );
                     this.props.onSearchChange(e.target.value)
                 }
             }
         } else if (e.target.value.length === 0) {
             if (this.props.onSearchChange) {
+                GTM.tagManagerDataLayer(
+                    "CELEBRITIES_SEARCH_CHANGED",
+                    this.state.keyword
+                );
                 this.props.onSearchChange(e.target.value)
             }
         }
@@ -39,6 +48,10 @@ class NavbarSearchLayout extends Component {
     handleKeyPress(event) {
         if (event.key === 'Enter') {
             if (this.props.onSearchChange) {
+                GTM.tagManagerDataLayer(
+                    "CELEBRITIES_SEARCH_CHANGED",
+                    this.state.keyword
+                );
                 this.props.onSearchChange(this.state.keyword)
             }
         }
@@ -46,6 +59,10 @@ class NavbarSearchLayout extends Component {
 
     handleBlur() {
         if (this.props.onSearchChange) {
+            GTM.tagManagerDataLayer(
+                "CELEBRITIES_SEARCH_CHANGED",
+                this.state.keyword
+            );
             this.props.onSearchChange(this.state.keyword)
         }
     }

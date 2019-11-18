@@ -27,7 +27,7 @@ class CelebrityProfilePage extends Component {
     }
 
     componentWillMount(): void {
-        if (this.props.celebrity.user.username !== this.props.match.params.celebrity_username) {
+        if (this.props.celebrity.username !== this.props.match.params.celebrity_username) {
             this.getCelebrity(this.props.match.params.celebrity_username);
         }
     }
@@ -57,7 +57,7 @@ class CelebrityProfilePage extends Component {
             <>
                 <PageContainer fetchCelebrities={false}>
                     {
-                        this.props.celebrity.user.username === this.props.match.params.celebrity_username ?
+                        this.props.celebrity.username === this.props.match.params.celebrity_username ?
                             <>
                                 {/* CelebrityDetailsCardLayout */}
                                 <CelebrityDetailsCardLayout

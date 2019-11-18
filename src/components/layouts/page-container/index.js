@@ -4,6 +4,7 @@ import {CelebrityShape, PaginationShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {NavbarSectionLayout} from "../navbar-section";
+import {FooterLayout} from "../footer";
 
 
 class PageContainer extends Component {
@@ -61,7 +62,7 @@ class PageContainer extends Component {
                 {this.props.children}
 
                 {/* FooterLayout */}
-                {/*{this.props.showFooter ? <FooterLayout/> : null}*/}
+                {this.props.showFooter ? <FooterLayout/> : null}
                 {/* End FooterLayout */}
 
                 {/*EmptyImage*/}

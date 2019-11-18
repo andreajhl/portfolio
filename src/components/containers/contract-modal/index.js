@@ -182,7 +182,7 @@ class ContractModal extends Component {
             <div className="ContractModal">
                 <Modal size="lg" show={this.props.showModal} onHide={this.handleCloseModal}>
                     <Modal.Header>
-                        <small className="text-white">Contrata a {this.props.celebrity.user.full_name} para que grabe tu video mensaje!</small>
+                        <small className="text-white">Contrata a {this.props.celebrity.full_name} para que grabe tu video mensaje!</small>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -230,7 +230,7 @@ class ContractModal extends Component {
                             {/*INSTRUCTIONS*/}
                             <Form.Group>
                                 <Form.Label><b>Mis instrucciones
-                                    para {this.props.celebrity.user.full_name} son:</b></Form.Label>
+                                    para {this.props.celebrity.full_name} son:</b></Form.Label>
                                 <Form.Control as="textarea"
                                               rows="3"
                                               placeholder={this.state.contract_data.contract_type === 1 ? "Ejemplo: Mi nombre es Duvan. Mi hermana Anita es fan tuyo y le encantan tus canciones. Ella está cumpliendo años el 12 de agosto y quisiera que le desearas un Feliz Cumpleaños de mi parte." : "Hola, estoy pasando por un momento dificil y me gustaria que me des un poco de animo!"}
@@ -311,7 +311,7 @@ class ContractModal extends Component {
                                         />
                                         :
                                         <span className="text-white">
-                                           CONTRATAR A {this.props.celebrity.user ? this.props.celebrity.user.full_name.split(" ")[0] : null}
+                                           CONTRATAR A {this.props.celebrity.full_name.split(" ")[0]}
                                         </span>
                                 }
                             </button>

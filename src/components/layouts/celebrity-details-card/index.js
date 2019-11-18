@@ -117,7 +117,7 @@ class CelebrityDetailsCardLayout extends Component {
                                     <div className="col-9 details my-auto">
                                         <div className="row p-0 pl-3 pr-3">
                                             <div className="col-8 p-0 m-0 f-names my-auto">
-                                                <h5 className="text-dark font-weight-bold pt-1 m-0">{this.props.celebrity.user ? this.props.celebrity.user.full_name : null}</h5>
+                                                <h5 className="text-dark font-weight-bold pt-1 m-0">{this.props.celebrity.full_name}</h5>
                                             </div>
                                             <div className="col-4 p-0 m-0 text-center my-auto">
                                                 <button className="btn btn-outline-secondary btn-sm f-follow-button">
@@ -129,7 +129,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                     onClick={this.openModal}
                                                     className="bg-primary f-contract f-rounded hover cursor-pointer text-uppercase">
                                                     Contratar
-                                                    a {this.props.celebrity.user ? this.props.celebrity.user.full_name.split(" ")[0] : null} por ${this.props.celebrity.contracts_price} USD
+                                                    a {this.props.celebrity.full_name.split(" ")[0]} por ${this.props.celebrity.contracts_price} USD
                                                     <i className="ml-2 fa fa-arrow-right text-white"/>
                                                 </div>
                                             </div>
@@ -139,22 +139,22 @@ class CelebrityDetailsCardLayout extends Component {
                                         <div className="row mt-2 text-center">
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
                                                 <h6 className="text-warning">
-                                                    <i className="fa fa-star fa-1x mr-2"/>
-                                                    <i className="fa fa-star fa-1x mr-2"/>
-                                                    <i className="fa fa-star fa-1x mr-2"/>
-                                                    <i className="fa fa-star fa-1x mr-2"/>
-                                                    <i className="fa fa-star fa-1x mr-2"/>
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
                                                 </h6>
                                                 <small className="text-soft-grey font-weight-bold">
-                                                    1233 Calificaciones
+                                                    Calificaciones
                                                 </small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
-                                                <h6 className="font-weight-bold">{this.props.celebrity.category ? this.props.celebrity.category.title : null}</h6>
+                                                <h6 className="font-weight-bold">{this.props.celebrity.category}</h6>
                                                 <small className="text-soft-grey font-weight-bold">Categoria</small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
-                                                <h6 className="font-weight-bold">4 a 7 dias</h6>
+                                                <h6 className="font-weight-bold">3 a 4 dias</h6>
                                                 <small className="text-soft-grey font-weight-bold">Tiempo de respuesta
                                                 </small>
                                             </div>
@@ -175,7 +175,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                          alt="bookmark"/>
                                                     <div className="celebrity-data">
                                                         <small>
-                                                            {this.props.celebrity.user ? this.props.celebrity.user.full_name : null} dona
+                                                            {this.props.celebrity.full_name} dona
                                                             parte <br/> de sus ingresos a:
                                                         </small>
                                                     </div>
@@ -264,7 +264,7 @@ class CelebrityDetailsCardLayout extends Component {
                             <div className="col-7 mt-4 pr-0">
                                 <div className="margin-left-5w">
                                     <small className="font-weight-bold title">
-                                        {this.props.celebrity.user ? this.props.celebrity.user.full_name : null}
+                                        {this.props.celebrity.full_name}
                                     </small>
                                 </div>
                             </div>
@@ -278,20 +278,20 @@ class CelebrityDetailsCardLayout extends Component {
                             <div className="col-5 pr-0">
                                 <div className="margin-left-5w">
                                     <small className="title text-warning">
-                                        <i className="fa fa-star fa-1x mr-1"/>
-                                        <i className="fa fa-star fa-1x mr-1"/>
-                                        <i className="fa fa-star fa-1x mr-1"/>
-                                        <i className="fa fa-star fa-1x mr-1"/>
-                                        <i className="fa fa-star fa-1x mr-1"/>
+                                        <i className="fa fa-star fa-1x mr-1 text-warning"/>
+                                        <i className="fa fa-star fa-1x mr-1 text-warning"/>
+                                        <i className="fa fa-star fa-1x mr-1 text-warning"/>
+                                        <i className="fa fa-star fa-1x mr-1 text-warning"/>
+                                        <i className="fa fa-star fa-1x mr-1 text-warning"/>
                                     </small>
                                     <br/>
-                                    <small className="text-soft-grey font-weight-bold subtitle">1234 Calificaciones</small>
+                                    <small className="text-soft-grey font-weight-bold subtitle">Calificaciones</small>
                                 </div>
                             </div>
                             <div className="col-7 pl-0 text-right">
                                 <div className="margin-right-5w">
                                     <small className="text-soft-grey subtitle">
-                                        Categoria: <b>{this.props.celebrity.category ? this.props.celebrity.category.title : null}</b>
+                                        Categoria: <b>{this.props.celebrity.category}</b>
                                     </small>
                                     <br/>
                                     <small className="text-soft-grey subtitle">
@@ -334,7 +334,7 @@ class CelebrityDetailsCardLayout extends Component {
                                          alt="bookmark"/>
                                     <div className="celebrity-data">
                                         <small>
-                                            {this.props.celebrity.user ? this.props.celebrity.user.full_name : null} dona
+                                            {this.props.celebrity.full_name} dona
                                             parte <br/> de sus ingresos a:
                                         </small>
                                     </div>

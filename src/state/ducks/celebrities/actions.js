@@ -7,7 +7,7 @@ import {getTotalColumns} from "../../utils/gridSystem";
 export const get = (object_id) => {
     return dispatch => {
         const TYPE = types.GET_CELEBRITY_REQUEST;
-        const FINAL_PATH = API_PATHS.BASE_PATH + object_id + "/"; // object_id
+        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "celebrities/" + object_id + "/"; // object_id
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",
@@ -78,7 +78,7 @@ export const listSimilaties = (params) => {
     if (params["status"] === undefined) params["status"] = 50;
     return dispatch => {
         const TYPE = types.FETCH_SIMILAR_CELEBRITIES_REQUEST;
-        const FINAL_PATH = API_PATHS.BASE_PATH;
+        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "celebrities/";
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",
