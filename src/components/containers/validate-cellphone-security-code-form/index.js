@@ -33,7 +33,7 @@ class ValidateCellphoneSecurityCodeForm extends Component {
 
     handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            this.sendSMSSecurityCode();
+            this.validateSMSSecurityCode();
         }
     };
 

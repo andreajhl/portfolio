@@ -30,7 +30,6 @@ class NavbarSectionLayout extends Component {
     }
 
     goToRootPath() {
-        this.props.fetchCelebrities({status: 50});
         history._pushRoute(PATHS.ROOT_PATH)
     }
 

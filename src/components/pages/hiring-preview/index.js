@@ -30,7 +30,7 @@ class HiringPreviewPage extends Component {
         return (
             <>
                 <div className="HiringPreviewPage">
-                    <PageContainer fetchCelebrities={false}>
+                    <PageContainer fetchCelebrities={false} showFooter={false}>
                         <HiringPreviewLayout contract={this.props.contract}/>
                     </PageContainer>
                 </div>

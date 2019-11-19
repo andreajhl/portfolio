@@ -31,7 +31,7 @@ class SignUpWithEmailForm extends Component {
 
     handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            this.signInWithEmail();
+            this.validateIfEmailIsRegistered();
         }
     };
 

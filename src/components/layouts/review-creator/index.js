@@ -15,7 +15,7 @@ class ReviewCreatorLayout extends Component {
         this.state = {
             firstTime: true,
             reviewData: {
-                stars: 0,
+                stars: 5,
                 review: ""
             }
         };
@@ -167,7 +167,15 @@ class ReviewCreatorLayout extends Component {
                     this.session.getSession()
                         ?
                         <>
-                            {!this.props.contract.review ? this.renderReviewFormCreator() : this.renderReviewFormEditor()}
+                            {
+                                this.session.getSession().client_id === this.props.contract.client
+                                ?
+                                <>
+                                {!this.props.contract.review ? this.renderReviewFormCreator() : this.renderReviewFormEditor()}
+                                </>
+                                :null
+                            }
+
                         </>
                         :
                         <>

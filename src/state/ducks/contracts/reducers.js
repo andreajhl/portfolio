@@ -182,10 +182,11 @@ export function listClientContractReviewsReducer(state = listClientContractRevie
     }
 }
 
+
 export default combineReducers({
     saveClientContractReducer,
     listClientContractsReducer,
     getClientContractReducer,
     saveClientContractReviewReducer,
-    listClientContractReviewsReducer
+    listClientContractReviewsReducer,
 });

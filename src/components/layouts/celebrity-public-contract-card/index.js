@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import "./styles.scss";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
-
+import {ContractFavsLayout} from "../contract-favs";
 
 class CelebrityPublicContractCardLayout extends Component {
 
@@ -14,9 +14,8 @@ class CelebrityPublicContractCardLayout extends Component {
             videoDesktopPlayIcon: "fa-play"
         };
 
-        this.handleImageLoaded = this.handleImageLoaded.bind(this);
-        this.goToCelebrityProfile = this.goToCelebrityProfile.bind(this);
         this.playDesktopContract = this.playDesktopContract.bind(this);
+        this.goToContract = this.goToContract.bind(this);
 
         this.videoDesktopRef = React.createRef();
 
@@ -34,13 +33,12 @@ class CelebrityPublicContractCardLayout extends Component {
         }
     }
 
-
     handleImageLoaded() {
         this.setState({imageLoaded: true});
     }
 
-    goToCelebrityProfile() {
-        history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.celebrity.user.username))
+    goToContract(){
+        history._pushRoute(PATHS.HIRING_PREVIEW.replace(":contract_reference", this.props.publicContract.contract_reference))
     }
 
     render() {
@@ -58,10 +56,9 @@ class CelebrityPublicContractCardLayout extends Component {
                             <small>1</small>
                         </div>
                         <div className="heart">
-                            <i className={'fa fa-2x fa-heart'}
-                               onClick={this.playDesktopContract.bind(this)}
+                            <ContractFavsLayout
+                                contractReference={this.props.publicContract.contract_reference}
                             />
-                            <small>10</small>
                         </div>
                         <video ref={this.videoDesktopRef}
                                controls={false}
@@ -73,10 +70,13 @@ class CelebrityPublicContractCardLayout extends Component {
                             Your browser does not support the video tag.
                         </video>
                     </div>
-                    <div className="title p-2 pt-3">
-                        <h6 className="font-weight-bold">
-                            Para: {this.props.publicContract.delivery_to}
-                        </h6>
+                    <div className="body pt-3 pb-2" onClick={this.goToContract}>
+                        <div className="title">
+                            <h6 className="font-weight-bold">Para: {this.props.publicContract.delivery_to}</h6>
+                        </div>
+                        <div className="icon font-weight-bold">
+                            <i className="fa fa-arrow-right text-primary"/>
+                        </div>
                     </div>
                 </div>
             </div>

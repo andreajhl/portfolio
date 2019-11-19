@@ -96,7 +96,7 @@ class MyRoutes extends Component {
                             path={PATHS.CLIENT_HIRINGS}
                             component={PAGES.ClientHiringsPage}
                         />
-                        <PrivateRoute
+                        <Route
                             exact
                             path={PATHS.HIRING_PREVIEW}
                             component={PAGES.HiringPreviewPage}

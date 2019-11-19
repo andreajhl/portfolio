@@ -4,13 +4,40 @@
   .f-card {
     margin-bottom: 10px;
     width: 200px;
+    padding: 10px 10px 0 10px;
+
   }
 
-  .title {
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .body {
+
+    padding: 2px;
+
+    &:hover {
+      .title {
+        color: $primary !important;
+      }
+    }
+
+    .title {
+      width: 87%;
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      float: left;
+    }
+
+    .icon {
+      padding-left: 10px;
+      width: 13%;
+      float: right;
+
+      i {
+        position: relative;
+        top: -2px;
+        right: 2px;
+      }
+    }
   }
 
   .play-pause {
@@ -23,15 +50,21 @@
   }
 
   .comments {
-    display: none;
     position: absolute;
     z-index: 1;
     bottom: 60px;
-    right: 20px;
+    right: 60px;
+    display: none;
+
 
     i {
       font-size: 20px;
       color: white;
+
+      &:hover {
+        font-size: 22px;
+        color: $primary;
+      }
     }
 
     small {
@@ -43,23 +76,10 @@
   }
 
   .heart {
-    display: none;
     position: absolute;
     z-index: 1;
     bottom: 60px;
-    right: 60px;
-
-    i {
-      font-size: 20px;
-      color: white;
-    }
-
-    small {
-      margin-left: 5px;
-      font-weight: bold;
-      font-size: 10px;
-      color: white;
-    }
+    right: 20px;
   }
 
   video {

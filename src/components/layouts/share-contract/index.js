@@ -19,6 +19,12 @@ class ShareContractLayout extends Component {
             +  encodeURI(window.location.href) + "&via=contratafamosos"
     }
 
+    mailMessage() {
+        return "Acabo de recibir un video personalizado de " +
+            (this.props.contract.celebrity ? this.props.contract.celebrity.full_name : "")
+            + ", puedes verlo en el siguiente Link => " + encodeURI(window.location.href)
+    }
+
     download() {
         window.open(this.props.contract.media, '_blank').focus();
     }
@@ -41,6 +47,12 @@ class ShareContractLayout extends Component {
                     <img
                         className="cursor-pointer"
                         src="/assets/img/twitter.svg"/>
+                </a>
+                <a href={"mailto:?subject=Me%20gustaría%20compartirte%20este%20video%20que%20compré%20en%20Famosos%2Ecom&body=" + this.mailMessage()}
+                   title="Share by Email">
+                    <img
+                        className="cursor-pointer"
+                        src="/assets/img/email.svg"/>
                 </a>
                 <img
                     className="cursor-pointer"
