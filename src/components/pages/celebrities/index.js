@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
+import {FooterLayout} from "../../layouts/footer";
 
 
 class CelebritiesPage extends Component {
@@ -17,7 +18,8 @@ class CelebritiesPage extends Component {
             params: {
                 page: 1,
                 status: 50
-            }
+            },
+            showShimmers: false
         };
 
         this.onPaginationChange = this.onPaginationChange.bind(this);
@@ -37,15 +39,17 @@ class CelebritiesPage extends Component {
         this.scrollDiv.current.addEventListener("scroll", () => {
             if (
                 this.scrollDiv.current.scrollTop + this.scrollDiv.current.clientHeight >=
-                this.scrollDiv.current.scrollHeight
+                (this.scrollDiv.current.scrollHeight - 500)
             ) {
                 const state = this.state;
                 if(this.props.paginationData.nextPage && !this.props.isLoading){
+                    this.setState({showShimmers: true});
                     setTimeout(() => {
                         const page = 1;
                         if(state.params.page + 1 <= this.props.paginationData.totalPages) {
                             this.onPaginationChange(state.params.page + 1);
                         }
+                        this.setState({showShimmers: false})
                     }, 500)
                 }
             }
@@ -85,7 +89,7 @@ class CelebritiesPage extends Component {
         return (
             <>
                 <div className={"CelebritiesPage "}>
-                    <PageContainer>
+                    <PageContainer showFooter={false}>
                         {/*/!* ShowHeader *!/*/}
                         {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
                         {/*/!* End ShowHeader *!/*/}
@@ -96,13 +100,14 @@ class CelebritiesPage extends Component {
                         {/*/! End MainMenuLayout *!/*/}
 
                         {/* CelebrityCardsSectionLayout */}
-                        <div className="pt-4 scroll-section" style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
+                        <div className="pt-4 scroll-section" style={{height: "calc(100vh - 100px)", overflow: "scroll"}}
                              ref={this.scrollDiv}>
                             <CelebrityCardsSectionLayout
                                 title={"Famosos destacados"}
-                                showShimmerCards={this.props.isLoading}
+                                showShimmerCards={this.props.isLoading || this.state.showShimmers}
                                 celebrities={this.props.celebrities}
                             />
+                            <FooterLayout/>
                         </div>
                         {/* End CelebrityCardsSectionLayout */}
 

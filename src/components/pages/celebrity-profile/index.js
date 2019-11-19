@@ -56,6 +56,7 @@ class CelebrityProfilePage extends Component {
         return (
             <>
                 <PageContainer fetchCelebrities={false}>
+                    <div style={{minHeight: "600px"}}>
                     {
                         this.props.celebrity.username === this.props.match.params.celebrity_username ?
                             <>
@@ -92,6 +93,7 @@ class CelebrityProfilePage extends Component {
                             </>
                             : null
                     }
+                    </div>
                 </PageContainer>
             </>
         );

@@ -154,7 +154,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                 <small className="text-soft-grey font-weight-bold">Categoria</small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
-                                                <h6 className="font-weight-bold">3 a 4 dias</h6>
+                                                <h6 className="font-weight-bold">1 a 2 dias</h6>
                                                 <small className="text-soft-grey font-weight-bold">Tiempo de respuesta
                                                 </small>
                                             </div>
@@ -295,7 +295,7 @@ class CelebrityDetailsCardLayout extends Component {
                                     </small>
                                     <br/>
                                     <small className="text-soft-grey subtitle">
-                                        Tiempo de respuesta: <b>3 a 4 dias</b>
+                                        Tiempo de respuesta: <b>1 a 2 dias</b>
                                     </small>
                                 </div>
                             </div>

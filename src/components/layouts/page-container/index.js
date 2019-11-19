@@ -56,7 +56,7 @@ class PageContainer extends Component {
             <div className="PageContainer">
 
                 {/* NavbarSectionLayout */}
-                {this.props.showFooter ? <NavbarSectionLayout onSearchChange={this.onSearchChange}/> : null}
+                {this.props.showNavbar ? <NavbarSectionLayout onSearchChange={this.onSearchChange}/> : null}
                 {/* End NavbarSectionLayout */}
 
                 {this.props.children}

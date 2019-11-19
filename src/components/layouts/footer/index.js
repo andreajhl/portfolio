@@ -46,11 +46,13 @@ class FooterLayout extends Component {
         return (
             <div className="FooterLayout">
                 <footer className="footer">
-                    <div className="container" style={{maxWidth: "1300px", zoom: "0.7"}}>
+                    <div className="container" style={{maxWidth: "1300px", zoom: "0.9"}}>
                         <div className="row">
-                            <div className="col-lg-3 h-100 text-left text-lg-left my-auto pt-2 pb-lg-3 pt-lg-3">
-                                <img className="text-dark pt-2 pb-2 pb-lg-3" src="/assets/img/dark-famosos-logo.svg"
+                            <div className="col-12 mb-4">
+                                <img className="text-dark" src="/assets/img/dark-famosos-logo.svg"
                                      alt="Logo"/>
+                            </div>
+                            <div className="col-lg-4 h-100 text-left">
                                 <p className="text-justify">
                                     Famosos es una compañía dedicada a crear tecnologías que conectan personalidades
                                     con sus fan base.
@@ -59,18 +61,10 @@ class FooterLayout extends Component {
                                     © 2019 Famosos, Inc. All Rights Reserved.
                                 </p>
                             </div>
-                            <div className="col-lg-2 pb-sm-1 pt-2 pb-lg-3 pt-lg-3"/>
-                            <div className="col-lg-7 h-100 text-left my-auto pb-sm-1 pt-2 pb-lg-3 pt-lg-3">
-                                <p className="mb-3">
-                                    ¿Tienes mas de 50k seguidores en redes?
-                                    <i className="fa fa-arrow-right ml-2 mr-3"/>
-                                    <button className="btn btn-primary" onClick={this.goToApply}>
-                                        Aplicate como Famoso
-                                    </button>
-                                </p>
-                                <ul className="list-inline mb-2">
-                                    <li className="list-inline-item mr-3">
-                                        <p>Siguenos en Redes</p>
+                            <div className="col-lg-4 h-100 text-left">
+                                <ul className="list-inline">
+                                    <li className="list-inline-item mr-3 font-weight-bold">
+                                        Siguenos en Redes
                                     </li>
                                     <li className="list-inline-item mr-3" onClick={this.goToFamososFacebook}>
                                         <img className="cursor-pointer" src="/assets/img/facebook.svg" width="30px"/>
@@ -78,21 +72,26 @@ class FooterLayout extends Component {
                                     <li className="list-inline-item mr-3" onClick={this.goToFamososInstagran}>
                                         <img className="cursor-pointer" src="/assets/img/instagram.svg" width="30px"/>
                                     </li>
-                                    {/*<li className="list-inline-item mr-3"  onClick={this.goToFamososTwitter}>*/}
-                                    {/*    <img className="cursor-pointer" src="/assets/img/twitter.svg" width="30px"/>*/}
-                                    {/*</li>*/}
                                 </ul>
-                                <ul className="list-inline mb-2">
+                                <ul className="list-inline">
                                     <li className="list-inline-item mr-2 cursor-pointer font-weight-bold">
-                                        <span onClick={this.goToFAQs}>FAQ's</span>
+                                        <span className="small" onClick={this.goToFAQs}>FAQ's</span>
                                     </li>
                                     <li className="list-inline-item ml-2 mr-2 cursor-pointer font-weight-bold">
-                                        <span onClick={this.goToSupport}>Soporte</span>
+                                        <span className="small" onClick={this.goToSupport}>Soporte</span>
                                     </li>
                                     <li className="list-inline-item ml-2 cursor-pointer font-weight-bold">
-                                        <span onClick={this.goToTerms}>Terminos y Condiciones</span>
+                                        <span className="small" onClick={this.goToTerms}>Terminos y Condiciones</span>
                                     </li>
                                 </ul>
+                            </div>
+                            <div className="col-lg-4 h-100 text-left">
+                                <p className="mb-3 font-weight-bold">
+                                    ¿Tienes mas de 50k seguidores en redes?
+                                    <button className="ml-2 btn btn-primary" onClick={this.goToApply}>
+                                        Aplicate como Famoso
+                                    </button>
+                                </p>
                             </div>
                         </div>
                     </div>
