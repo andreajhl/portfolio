@@ -15,15 +15,15 @@ class FooterLayout extends Component {
     }
 
     goToFAQs() {
-        window.open("https://support.famosos.com/faqs", '_blank').focus();
+        window.open("https://soporte.famosos.com/faqs", '_blank').focus();
     }
 
     goToSupport() {
-        window.open("https://support.famosos.com/contact-us", '_blank').focus();
+        window.open("https://soporte.famosos.com/contactanos", '_blank').focus();
     }
 
     goToTerms() {
-        window.open("https://support.famosos.com/terms", '_blank').focus();
+        window.open("https://soporte.famosos.com/terminos", '_blank').focus();
     }
 
     goToFamososTwitter() {
@@ -88,7 +88,7 @@ class FooterLayout extends Component {
                             <div className="col-lg-4 h-100 text-left">
                                 <p className="mb-3 font-weight-bold">
                                     ¿Tienes mas de 50k seguidores en redes?
-                                    <button className="ml-2 btn btn-primary" onClick={this.goToApply}>
+                                    <button className="ml-2 btn btn-primary mb-2" onClick={this.goToApply}>
                                         Aplicate como Famoso
                                     </button>
                                 </p>
