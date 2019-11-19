@@ -19,7 +19,6 @@ class CelebritiesPage extends Component {
                 page: 1,
                 status: 50
             },
-            showShimmers: false
         };
 
         this.onPaginationChange = this.onPaginationChange.bind(this);
@@ -43,13 +42,11 @@ class CelebritiesPage extends Component {
             ) {
                 const state = this.state;
                 if(this.props.paginationData.nextPage && !this.props.isLoading){
-                    this.setState({showShimmers: true});
                     setTimeout(() => {
                         const page = 1;
                         if(state.params.page + 1 <= this.props.paginationData.totalPages) {
                             this.onPaginationChange(state.params.page + 1);
                         }
-                        this.setState({showShimmers: false})
                     }, 500)
                 }
             }
@@ -104,7 +101,7 @@ class CelebritiesPage extends Component {
                              ref={this.scrollDiv}>
                             <CelebrityCardsSectionLayout
                                 title={"Famosos destacados"}
-                                showShimmerCards={this.props.isLoading || this.state.showShimmers}
+                                showShimmerCards={this.props.isLoading}
                                 celebrities={this.props.celebrities}
                             />
                             <FooterLayout/>

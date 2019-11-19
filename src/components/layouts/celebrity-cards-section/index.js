@@ -28,9 +28,10 @@ class CelebrityCardsSectionLayout extends Component {
         return (
             this.props.celebrities.map((celebrity, index) => {
                 return (
-                    <div className="item mr-4 mb-2 mx-auto" key={index}>
+                    <div className="item mr-4 mb-2 mx-auto" key={celebrity.id}>
                         <CelebrityCardLayout
                             celebrity={celebrity}
+                            index={index}
                         />
                     </div>
                 )

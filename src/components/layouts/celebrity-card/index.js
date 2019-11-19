@@ -87,6 +87,7 @@ class CelebrityCardLayout extends Component {
                         </small>
                     </div>
                 </div>
+                <pre>index__: {this.props.index}</pre>
             </div>
         );
     };
