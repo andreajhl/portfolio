@@ -60,9 +60,10 @@
       right: 15px;
       top: 15px;
       cursor: pointer;
-
+      z-index: 1;
       i {
         font-size: 30px;
+        cursor: pointer;
       }
     }
 
@@ -91,8 +92,11 @@
         }
       }
 
+      .to-from {
+        margin-top: 50px;
+      }
       .instructions{
-        height: 98px;
+        height: 40px;
         overflow-y: scroll;
       }
 

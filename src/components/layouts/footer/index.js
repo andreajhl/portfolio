@@ -85,10 +85,10 @@ class FooterLayout extends Component {
                                         Siguenos en Redes
                                     </li>
                                     <li className="list-inline-item mr-3" onClick={this.goToFamososFacebook}>
-                                        <img className="cursor-pointer" src="/assets/img/facebook.svg" width="30px"/>
+                                        <img className="cursor-pointer" src="/assets/img/facebook-white.svg" width="30px"/>
                                     </li>
                                     <li className="list-inline-item mr-3" onClick={this.goToFamososInstagran}>
-                                        <img className="cursor-pointer" src="/assets/img/instagram.svg" width="30px"/>
+                                        <img className="cursor-pointer" src="/assets/img/instagram-white.svg" width="30px"/>
                                     </li>
                                 </ul>
                                 <ul className="list-inline">

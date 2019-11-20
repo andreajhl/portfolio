@@ -47,7 +47,7 @@ class HiringPreviewLayout extends Component {
                     {
                         this.session.getSession().client_id === this.props.contract.client
                             ?
-                            <>
+                            <div className="to-from">
                                 <h5 className="font-weight-bold">
                                     Para:
                                 </h5>
@@ -65,7 +65,7 @@ class HiringPreviewLayout extends Component {
                                     <h5>{this.props.contract.instructions ? this.props.contract.instructions : "----"}</h5>
                                 </div>
                                 <hr/>
-                            </>
+                            </div>
                             : null
                     }
                 </>
