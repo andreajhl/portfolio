@@ -21,7 +21,7 @@ class ContractCreatedPage extends Component {
     }
 
     componentWillMount(): void {
-        this.props.getClientContract(this.props.match.params.contract_reference)
+        this.props.getContract(this.props.match.params.contract_reference)
     }
 
     goToMyHirings() {
@@ -29,6 +29,7 @@ class ContractCreatedPage extends Component {
     }
 
     goToCreateAccount() {
+        localStorage.setItem("redirectTo", PATHS.CLIENT_HIRINGS);
         if (this.props.contractCreated.token) {
             this.session.setSession(this.props.contractCreated.token);
             history._pushRoute(PATHS.CREATE_PASSWORD_PATH);
@@ -111,14 +112,14 @@ ContractCreatedPage.defaultProps = {
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.contracts.getClientContractReducer.loading,
-    contract: state.contracts.getClientContractReducer.data.contract,
+    isLoading: state.contracts.getContractReducer.loading,
+    contract: state.contracts.getContractReducer.data.contract,
     contractCreated: state.contracts.saveClientContractReducer.data
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getClientContract: contractOperations.getClientContract,
+    getContract: contractOperations.getContract,
 };
 
 // Export Class

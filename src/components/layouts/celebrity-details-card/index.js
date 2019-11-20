@@ -301,7 +301,7 @@ class CelebrityDetailsCardLayout extends Component {
                             </div>
                         </div>
                         <div className="footer-btn my-auto p-4" onClick={this.openModal}>
-                            <small className="ml-0 float-left text-uppercase text-white">
+                            <small className="ml-0 float-left text-uppercase text-white" style={{fontWeight: "550 !important"}}>
                                 Contratar por ${this.props.celebrity.contracts_price} USD
                             </small>
                             <i className="fa fa-arrow-right float-right text-white" style={{fontSize: "26px"}}/>
