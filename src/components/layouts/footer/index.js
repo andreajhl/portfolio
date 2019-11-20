@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "./styles.scss";
 
 class FooterLayout extends Component {
 
@@ -48,20 +49,37 @@ class FooterLayout extends Component {
                 <footer className="footer">
                     <div className="container" style={{maxWidth: "1300px", zoom: "0.9"}}>
                         <div className="row">
-                            <div className="col-12 mb-4">
-                                <img className="text-dark" src="/assets/img/dark-famosos-logo.svg"
-                                     alt="Logo"/>
+
+                            <div className="col-12 col-md-4 col-lg-4 col-one">
+                                <div className="col-image">
+                                    <img className="text-dark"
+                                         src="/assets/img/white-famosos-logo.png"
+                                         alt="Logo"
+                                    />
+                                </div>
+                                <div className="col-description">
+                                    Es una compañía dedicada a crear tecnologías
+                                    <br/>
+                                    que conecten personalidades con su fan base.
+                                </div>
+                                <div className="col-copyright">
+                                    &copy; 2019 Famosos, Inc. All Rights Reserved.
+                                </div>
                             </div>
-                            <div className="col-lg-4 h-100 text-left">
-                                <p className="text-justify">
-                                    Famosos es una compañía dedicada a crear tecnologías que conectan personalidades
-                                    con sus fan base.
-                                </p>
-                                <p className="text-muted small mb-lg-0">
-                                    © 2019 Famosos, Inc. All Rights Reserved.
-                                </p>
+
+                            <div className="col-12 col-md-4 col-lg-4 col-two">
+                                <div className="col-title">
+                                    ¿Tienes mas de 50k seguidores en redes?
+                                </div>
+                                <div className="col-button">
+                                    <button className="btn btn-primary" onClick={this.goToApply}>
+                                        Aplica como Famoso
+                                    </button>
+                                </div>
                             </div>
-                            <div className="col-lg-4 h-100 text-left">
+
+
+                            <div className="col-12 col-md-4 col-lg-4 col-three">
                                 <ul className="list-inline">
                                     <li className="list-inline-item mr-3 font-weight-bold">
                                         Siguenos en Redes
@@ -81,18 +99,11 @@ class FooterLayout extends Component {
                                         <span className="small" onClick={this.goToSupport}>Soporte</span>
                                     </li>
                                     <li className="list-inline-item ml-2 cursor-pointer font-weight-bold">
-                                        <span className="small" onClick={this.goToTerms}>Terminos y Condiciones</span>
+                                        <span className="small" onClick={this.goToTerms}>Términos y Condiciones</span>
                                     </li>
                                 </ul>
                             </div>
-                            <div className="col-lg-4 h-100 text-left">
-                                <p className="mb-3 font-weight-bold">
-                                    ¿Tienes mas de 50k seguidores en redes?
-                                    <button className="ml-2 btn btn-primary mb-2" onClick={this.goToApply}>
-                                        Aplicate como Famoso
-                                    </button>
-                                </p>
-                            </div>
+
                         </div>
                     </div>
                 </footer>

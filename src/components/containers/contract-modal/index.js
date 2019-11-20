@@ -189,7 +189,7 @@ class ContractModal extends Component {
 
                             {/*CONTRACT TYPE*/}
                             <Form.Group>
-                                <Form.Label><b>¿Para quien es este video?</b></Form.Label>
+                                <Form.Label><b>¿Para quién es este video?</b></Form.Label>
                                 <Form.Check type="radio">
                                     <Form.Check.Input
                                         type="radio"
@@ -233,7 +233,7 @@ class ContractModal extends Component {
                                     para {this.props.celebrity.full_name} son:</b></Form.Label>
                                 <Form.Control as="textarea"
                                               rows="3"
-                                              placeholder={this.state.contract_data.contract_type === 1 ? "Ejemplo: Mi nombre es Duvan. Mi hermana Anita es fan tuyo y le encantan tus canciones. Ella está cumpliendo años el 12 de agosto y quisiera que le desearas un Feliz Cumpleaños de mi parte." : "Hola, estoy pasando por un momento dificil y me gustaria que me des un poco de animo!"}
+                                              placeholder={this.state.contract_data.contract_type === 1 ? "Ejemplo: Mi nombre es Duvan. ¡Mi hermana Anita es tu fan!. Ella está cumpliendo años el 12 de agosto y quisiera que le desearas un Feliz Cumpleaños de mi parte" : null}
                                               name="instructions"
                                               value={this.state.contract_data.instructions}
                                               onChange={this.handleValue}
@@ -249,7 +249,7 @@ class ContractModal extends Component {
                             <Row>
                                 <Col sm="6">
                                     <Form.Group>
-                                        <Form.Label><b>Correo electronico de entrega:</b></Form.Label>
+                                        <Form.Label><b>Correo electrónico de entrega:</b></Form.Label>
                                         <Form.Control
                                             type="email"
                                             placeholder="correo@dominio.com"

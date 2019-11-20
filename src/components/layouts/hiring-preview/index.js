@@ -6,7 +6,6 @@ import * as PATHS from "../../../routing/Paths";
 import {Session} from "../../../state/utils/session";
 import {ReviewCreatorLayout} from "../review-creator";
 import {ContractCommentSectionLayout} from "../contract-comments-section";
-import {SessionRequiredToCommentLayout} from "../session-required-to-comment";
 
 class HiringPreviewLayout extends Component {
 
@@ -129,6 +128,9 @@ class HiringPreviewLayout extends Component {
                             </div>
                         </div>
                         <div className="col-sm-12 col-md-6 col-lg-7 details-container p-0 m-0">
+                            <div className="close-button" onClick={this.goToCelebrity}>
+                                <i className="fa fa-times-circle"/>
+                            </div>
                             <div className="share-div">
                                 <ShareContractLayout  contract={this.props.contract}/>
                             </div>
@@ -138,9 +140,9 @@ class HiringPreviewLayout extends Component {
                                         <img className="celebrity-avatar"
                                              src={this.props.contract.celebrity ? this.props.contract.celebrity.avatar : ""}
                                              alt={"avatar"} />
-                                        <h1 className="font-weight-bold cursor-pointer">
+                                        <h3 className="font-weight-bold cursor-pointer">
                                             {this.props.contract.celebrity ? this.props.contract.celebrity.full_name : "----"}
-                                        </h1>
+                                        </h3>
                                         <br/>
                                     </div>
                                     {this.renderContractDetails()}

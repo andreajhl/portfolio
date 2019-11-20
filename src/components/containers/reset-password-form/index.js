@@ -71,7 +71,7 @@ class ResetPasswordForm extends Component {
                     !this.props.resetPasswordSent
                         ?
                         <>
-                            <h6>Ingresa con tú correo electrónico</h6>
+                            <h6>Ingresa con tu correo electrónico</h6>
                             <input
                                 autoFocus={true}
                                 type="email"

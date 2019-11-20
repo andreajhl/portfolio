@@ -56,7 +56,7 @@ class SignInWithWhatsAppForm extends Component {
     render() {
         return (
             <div className="SignInWithWhatsAppForm">
-                <h6>Ingresa con tú WhatsApp</h6>
+                <h6>Ingresa con tu WhatsApp</h6>
                 <div className="form-horizontal">
                     <FlagsSelect
                         onSelect={this.onSelectCountry}

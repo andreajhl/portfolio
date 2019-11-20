@@ -96,9 +96,9 @@ class HiringsCardSectionLayout extends Component {
                         <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
                             <div className="row  justify-content-center section">
                                 <div className="col-12 text-center">
-                                    <h4 className="mt-3 font-weight-bold border-bottom pb-3">
+                                    <h6 className="mt-3 font-weight-bold border-bottom pb-3">
                                         Mis Contrataciones
-                                    </h4>
+                                    </h6>
                                 </div>
                                 {
                                     this.props.contracts.length

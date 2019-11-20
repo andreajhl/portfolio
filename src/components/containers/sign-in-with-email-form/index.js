@@ -54,7 +54,7 @@ class SignInWithEmailForm extends Component {
     render() {
         return (
             <div className="SignInWithEmailForm">
-                <h6>Ingresa con tú correo electrónico</h6>
+                <h6>Ingresa con tu correo electrónico</h6>
                 <input
                     autoFocus={!this.state.email}
                     type="email"

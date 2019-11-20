@@ -30,13 +30,15 @@ class HiringPreviewPage extends Component {
         return (
             <>
                 <div className="HiringPreviewPage">
-                    <PageContainer fetchCelebrities={false} showFooter={false}>
+                    <PageContainer fetchCelebrities={false} showFooter={this.props.isCompleted}>
                         {
                             this.props.isCompleted
                                 ?
                                 <HiringPreviewLayout contract={this.props.contract}/>
                                 : null
                         }
+                        <br/>
+                        <br/>
                     </PageContainer>
                 </div>
             </>

@@ -97,23 +97,18 @@ class CelebritiesPage extends Component {
                         {/*/! End MainMenuLayout *!/*/}
 
                         {/* CelebrityCardsSectionLayout */}
-                        <div className="pt-4 scroll-section" style={{height: "calc(100vh - 100px)", overflow: "scroll"}}
+                        <div className="pt-4 scroll-section" style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
                              ref={this.scrollDiv}>
                             <CelebrityCardsSectionLayout
                                 title={"Famosos destacados"}
                                 showShimmerCards={this.props.isLoading}
                                 celebrities={this.props.celebrities}
                             />
-                            <FooterLayout/>
+                            {
+                                this.props.paginationData.nextPage ? <FooterLayout/> : null
+                            }
                         </div>
                         {/* End CelebrityCardsSectionLayout */}
-
-                        {/* PaginationLayout */}
-                        {/*<PaginationLayout*/}
-                        {/*    pagination={this.props.paginationData}*/}
-                        {/*    onPaginationChange={this.onPaginationChange}*/}
-                        {/*/>*/}
-                        {/* End PaginationLayout */}
                     </PageContainer>
                 </div>
             </>

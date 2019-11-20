@@ -1,11 +1,70 @@
+@import "../../../theme";
+
 .FooterLayout {
 
   .footer {
-    background-color: white !important;
+    background-color: $dark !important;
+
     * {
       color: white !important;
     }
+
+    .col-one {
+      margin-top: 20px;
+      height: 150px;
+
+      .col-image {
+        height: 70px;
+
+        img {
+          width: 200px;
+        }
+      }
+
+      .col-description {
+        height: 70px;
+      }
+
+      .col-copyright {
+
+      }
+    }
+
+    .col-two {
+      margin-top: 60px;
+      height: 150px;
+
+      .col-title {
+        height: 50px;
+        font-weight: bold;
+      }
+
+      .col-button {
+        button {
+          border-radius: 20px;
+        }
+      }
+    }
+
+    .col-three {
+      margin-top: 85px;
+      height: 150px;
+
+    }
+
   }
+
+  // Large devices (desktops, 768px and up)
+  @media (max-width: 768px) {
+    .col-two {
+      height: 40px !important;
+    }
+    .col-three{
+      height: 88px !important;
+    }
+  }
+
 }
+
 
 

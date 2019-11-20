@@ -51,7 +51,7 @@ class SignUpWithEmailForm extends Component {
     render() {
         return (
             <div className="SignUpWithEmailForm">
-                <h6>Ingresa con tú correo electrónico</h6>
+                <h6>Ingresa con tu correo electrónico</h6>
                 <div className="form-horizontal">
                     <input
                         autoFocus={true}
