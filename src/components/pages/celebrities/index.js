@@ -105,7 +105,7 @@ class CelebritiesPage extends Component {
                                 celebrities={this.props.celebrities}
                             />
                             {
-                                this.props.paginationData.nextPage ? <FooterLayout/> : null
+                                !this.props.paginationData.nextPage ? <FooterLayout/> : null
                             }
                         </div>
                         {/* End CelebrityCardsSectionLayout */}
