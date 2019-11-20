@@ -21,6 +21,5 @@ export const tagManagerDataLayer = (event, dataLayer) => {
             event
         });
     }catch (e) {
-        console.log("GTM doesn't initialized")
     }
 };

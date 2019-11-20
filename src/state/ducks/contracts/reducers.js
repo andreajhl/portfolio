@@ -15,7 +15,7 @@ const listClientContractsInitialState = {
     error_data: {error: ""},
     data: {}
 };
-const getClientContractInitialState = {
+const getContractInitialState = {
     loading: false,
     failed: false,
     completed: false,
@@ -29,7 +29,14 @@ const saveClientContractReviewInitialState = {
     error_data: {error: ""},
     data: {}
 };
-const listClientContractReviewsInitialState = {
+const listContractCommmentsInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+const addContractCommmentInitialState = {
     loading: false,
     failed: false,
     completed: false,
@@ -95,25 +102,25 @@ export function listClientContractsReducer(state = listClientContractsInitialSta
     }
 }
 
-export function getClientContractReducer(state = getClientContractInitialState, action) {
+export function getContractReducer(state = getContractInitialState, action) {
     switch (action.type) {
-        case TYPES.GET_CLIENT_CONTRACT_REQUEST:
+        case TYPES.GET_CONTRACT_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case TYPES.GET_CLIENT_CONTRACT_REQUEST_FAILURE:
+        case TYPES.GET_CONTRACT_REQUEST_FAILURE:
             return {
-                ...getClientContractInitialState,
+                ...getContractInitialState,
                 error_data: action.payload.data,
                 failed: true
             };
-        case TYPES.GET_CLIENT_CONTRACT_REQUEST_SUCCESS:
+        case TYPES.GET_CONTRACT_REQUEST_SUCCESS:
             return {
-                ...getClientContractInitialState,
+                ...getContractInitialState,
                 data: action.payload.data
             };
-        case TYPES.GET_CLIENT_CONTRACT_REQUEST_COMPLETED:
+        case TYPES.GET_CONTRACT_REQUEST_COMPLETED:
             return {
                 ...state,
                 data: action.payload.data,
@@ -153,25 +160,33 @@ export function saveClientContractReviewReducer(state = saveClientContractReview
     }
 }
 
-export function listClientContractReviewsReducer(state = listClientContractReviewsInitialState, action) {
+export function listContractCommentsReducer(state = listContractCommmentsInitialState, action) {
     switch (action.type) {
-        case TYPES.LIST_CLIENT_CONTRACT_REVIEWS_REQUEST:
+        case TYPES.LIST_CONTRACT_COMMENTS_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case TYPES.LIST_CLIENT_CONTRACT_REVIEWS_REQUEST_FAILURE:
+        case TYPES.LIST_CONTRACT_COMMENTS_REQUEST_FAILURE:
             return {
-                ...listClientContractReviewsInitialState,
+                ...listContractCommmentsInitialState,
                 error_data: action.payload.data,
                 failed: true
             };
-        case TYPES.LIST_CLIENT_CONTRACT_REVIEWS_REQUEST_SUCCESS:
-            return {
-                ...listClientContractReviewsInitialState,
-                data: action.payload.data
-            };
-        case TYPES.LIST_CLIENT_CONTRACT_REVIEWS_REQUEST_COMPLETED:
+        case TYPES.LIST_CONTRACT_COMMENTS_REQUEST_SUCCESS:
+            if (action.payload.data.pagination_data.currentPage > 1) {
+                action.payload.data.results = state.data.results.concat(action.payload.data.results);
+                return {
+                    ...listContractCommmentsInitialState,
+                    data:  action.payload.data
+                };
+            }else{
+                return {
+                    ...listContractCommmentsInitialState,
+                    data: action.payload.data
+                };
+            }
+        case TYPES.LIST_CONTRACT_COMMENTS_REQUEST_COMPLETED:
             return {
                 ...state,
                 data: action.payload.data,
@@ -182,11 +197,40 @@ export function listClientContractReviewsReducer(state = listClientContractRevie
     }
 }
 
+export function addContractCommentReducer(state = addContractCommmentInitialState, action) {
+    switch (action.type) {
+        case TYPES.ADD_CONTRACT_COMMENTS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case TYPES.ADD_CONTRACT_COMMENTS_REQUEST_FAILURE:
+            return {
+                ...addContractCommmentInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case TYPES.ADD_CONTRACT_COMMENTS_REQUEST_SUCCESS:
+            return {
+                ...addContractCommmentInitialState,
+                data: action.payload.data
+            };
+        case TYPES.ADD_CONTRACT_COMMENTS_REQUEST_COMPLETED:
+            return {
+                ...state,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+    }
+}
 
 export default combineReducers({
     saveClientContractReducer,
     listClientContractsReducer,
-    getClientContractReducer,
+    getContractReducer,
     saveClientContractReviewReducer,
-    listClientContractReviewsReducer,
+    listContractCommentsReducer,
+    addContractCommentReducer
 });

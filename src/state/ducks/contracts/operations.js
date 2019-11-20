@@ -1,15 +1,17 @@
 import {
-    getClientContract,
-    listClientContractReviews,
+    getContract,
     listClientContracts,
     saveClientContract,
     saveClientContractReview,
+    listContractComments,
+    addContractComment
 } from "./actions";
 
 export {
     saveClientContract,
     listClientContracts,
-    getClientContract,
+    getContract,
     saveClientContractReview,
-    listClientContractReviews,
+    listContractComments,
+    addContractComment
 };

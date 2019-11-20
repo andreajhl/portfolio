@@ -35,26 +35,30 @@ class ShareContractLayout extends Component {
                 <a href={"whatsapp://send?text=Me gustaría compartirte este video que acabo de recibir de *_" + (this.props.contract.celebrity ? this.props.contract.celebrity.full_name : "") +  "_* ==> " + encodeURI(window.location.href)}
                    data-action="share/whatsapp/share">
                     <img
+                        alt="svg"
                         className="cursor-pointer"
                         src="/assets/img/whatsapp.svg"/>
                 </a>
                 <a href={"https://www.facebook.com/sharer/sharer.php?u=" + encodeURI(window.location.href)} target="_blank">
                     <img
+                        alt="svg"
                         className="cursor-pointer"
                         src="/assets/img/facebook.svg"/>
                 </a>
                 <a href={"https://twitter.com/intent/tweet?text=" + this.twitterMessage()} target="_blank">
                     <img
+                        alt="svg"
                         className="cursor-pointer"
                         src="/assets/img/twitter.svg"/>
                 </a>
-                <a href={"mailto:?subject=Me%20gustaría%20compartirte%20este%20video%20que%20compré%20en%20Famosos%2Ecom&body=" + this.mailMessage()}
-                   title="Share by Email">
+                <a href={"mailto:?subject=Me%20gustaría%20compartirte%20este%20video%20que%20compré%20en%20Famosos%2Ecom&body=" + this.mailMessage()}>
                     <img
+                        alt="svg"
                         className="cursor-pointer"
                         src="/assets/img/email.svg"/>
                 </a>
                 <img
+                    alt="svg"
                     className="cursor-pointer"
                     src="/assets/img/download.svg"
                     onClick={this.download}/>

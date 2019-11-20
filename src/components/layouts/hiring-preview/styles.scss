@@ -58,7 +58,14 @@
       margin: -10px auto;
       padding: 20px;
       width: 100%;
+      min-height: 155px;
 
+      .titles {
+        position: relative;
+        top: 18px;
+        left: 15px;         
+      }
+      
       .wrap-text{
         white-space: nowrap;
         overflow: hidden;

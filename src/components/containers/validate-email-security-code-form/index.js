@@ -38,13 +38,10 @@ class ValidateEmailSecurityCodeForm extends Component {
 
     validateEmailSecurityCode(e) {
         if (!this.props.validateEmailSecurityCodeLoading) {
-            console.log("1")
             this.props.validateEmailSecurityCode({
                 email: this.state.email,
                 securityCode: this.state.securityCode
             });
-        }else {
-            console.log("2")
         }
     }
 

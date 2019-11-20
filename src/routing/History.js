@@ -11,12 +11,11 @@ history._pushRoute = (route) => {
 
     const redirectTo = localStorage.getItem("redirectTo");
 
-    if (route.split("?")[0] === "/" && redirectTo) {
+    if (redirectTo && route === "/celebrities/" || redirectTo && route === "/") {
         localStorage.removeItem("redirectTo");
         history.push(redirectTo);
     } else {
         const add = route.split("?")[0];
-
         history.push(route + search + (add.includes("=") ? "&" : ""));
     }
 

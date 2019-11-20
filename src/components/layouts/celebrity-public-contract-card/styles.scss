@@ -12,19 +12,16 @@
 
     padding: 2px;
 
-    &:hover {
-      .title {
-        color: $primary !important;
-      }
-    }
-
     .title {
       width: 87%;
-      font-size: 12px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       float: left;
+
+      h6 {
+        font-size: 13px;
+      }
     }
 
     .icon {
@@ -47,39 +44,6 @@
     left: 20px;
     font-size: 45px;
     color: white;
-  }
-
-  .comments {
-    position: absolute;
-    z-index: 1;
-    bottom: 60px;
-    right: 60px;
-    display: none;
-
-
-    i {
-      font-size: 20px;
-      color: white;
-
-      &:hover {
-        font-size: 22px;
-        color: $primary;
-      }
-    }
-
-    small {
-      margin-left: 5px;
-      font-weight: bold;
-      font-size: 10px;
-      color: white;
-    }
-  }
-
-  .heart {
-    position: absolute;
-    z-index: 1;
-    bottom: 60px;
-    right: 20px;
   }
 
   video {

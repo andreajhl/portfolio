@@ -27,7 +27,7 @@ class ContractFavsLayout extends Component {
     componentDidMount(): void {
         apiService({
             method: "GET",
-            action: TYPES.ADD_OR_REMOVE_FAV_REQUEST,
+            action: TYPES.FAV_REQUEST,
             path: API_PATHS.CONTRACT_BASE_PATH + this.props.contractReference + "/favs/",
             async: true,
             params: null,
@@ -49,7 +49,7 @@ class ContractFavsLayout extends Component {
         if(this.session.getSession()) {
             apiService({
                 method: "POST",
-                action: TYPES.ADD_OR_REMOVE_FAV_REQUEST,
+                action: TYPES.FAV_REQUEST,
                 path: API_PATHS.CONTRACT_BASE_PATH + this.props.contractReference + "/favs/",
                 async: true,
                 params: null,
@@ -77,7 +77,7 @@ class ContractFavsLayout extends Component {
                 <i className={'fa fa-2x fa-heart' + (this.state.isFav ? " text-primary " : "")}
                    onClick={this.addOrRemoveFav}
                 />
-                <small>{this.state.favCount}</small>
+                <small className="text-dark">{this.state.favCount}</small>
             </div>
         );
     };

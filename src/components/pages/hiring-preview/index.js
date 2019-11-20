@@ -15,7 +15,7 @@ class HiringPreviewPage extends Component {
     }
 
     componentWillMount(): void {
-        this.props.getClientContract(this.props.match.params.contract_reference)
+        this.props.getContract(this.props.match.params.contract_reference)
     }
 
     componentDidMount(): void {
@@ -31,7 +31,12 @@ class HiringPreviewPage extends Component {
             <>
                 <div className="HiringPreviewPage">
                     <PageContainer fetchCelebrities={false} showFooter={false}>
-                        <HiringPreviewLayout contract={this.props.contract}/>
+                        {
+                            this.props.isCompleted
+                                ?
+                                <HiringPreviewLayout contract={this.props.contract}/>
+                                : null
+                        }
                     </PageContainer>
                 </div>
             </>
@@ -50,13 +55,14 @@ HiringPreviewPage.defaultProps = {
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.contracts.getClientContractReducer.loading,
-    contract: state.contracts.getClientContractReducer.data.contract
+    isLoading: state.contracts.getContractReducer.loading,
+    contract: state.contracts.getContractReducer.data.contract,
+    isCompleted: state.contracts.getContractReducer.completed
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getClientContract: contractOperations.getClientContract
+    getContract: contractOperations.getContract
 };
 
 // Export Class

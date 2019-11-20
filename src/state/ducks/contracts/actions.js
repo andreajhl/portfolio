@@ -5,6 +5,36 @@ import * as API_PATHS from './paths';
 import * as ROUTING_PATHS from '../../../routing/Paths';
 import {history} from "../../../routing/History";
 
+export const getContract = (contractReference) => {
+    return dispatch => {
+        const TYPE = TYPES.GET_CONTRACT_REQUEST;
+        const FINAL_PATH = API_PATHS.CONTRACT_BASE_PATH + contractReference + "/";
+        dispatch({type: TYPE, payload: {}});
+        apiService({
+            method: "GET",
+            action: TYPE,
+            path: FINAL_PATH,
+            async: true,
+            params: null,
+            body: null
+        })
+            .then(res => {
+                if ("status" in res.data && res.data.status === "ERROR") {
+                    handleApiResponseFailure(dispatch, TYPE, res);
+                    // Other actions
+                    history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
+
+                } else {
+                    handleApiResponseSuccess(dispatch, TYPE, res);
+                    // Other actions
+                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
+                }
+            })
+            .catch(err => {
+                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+            });
+    }
+};
 
 export const saveClientContract = (contractData) => {
     return dispatch => {
@@ -66,37 +96,6 @@ export const listClientContracts = () => {
     }
 };
 
-export const getClientContract = (contractID) => {
-    return dispatch => {
-        const TYPE = TYPES.GET_CLIENT_CONTRACT_REQUEST;
-        const FINAL_PATH = API_PATHS.BASE_PATH + contractID + "/";
-        dispatch({type: TYPE, payload: {}});
-        apiService({
-            method: "GET",
-            action: TYPE,
-            path: FINAL_PATH,
-            async: true,
-            params: null,
-            body: null
-        })
-            .then(res => {
-                if ("status" in res.data && res.data.status === "ERROR") {
-                    handleApiResponseFailure(dispatch, TYPE, res);
-                    // Other actions
-                    history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
-
-                } else {
-                    handleApiResponseSuccess(dispatch, TYPE, res);
-                    // Other actions
-                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
-                }
-            })
-            .catch(err => {
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
-            });
-    }
-};
-
 export const saveClientContractReview = (contractID, reviewData) => {
     return dispatch => {
         const TYPE = TYPES.SAVE_CLIENT_CONTRACT_REVIEW_REQUEST;
@@ -127,18 +126,47 @@ export const saveClientContractReview = (contractID, reviewData) => {
     }
 };
 
-export const listClientContractReviews = (contractID) => {
+export const listContractComments = (contractReference, params) => {
     return dispatch => {
-        const TYPE = TYPES.LIST_CLIENT_CONTRACT_REVIEWS_REQUEST;
-        const FINAL_PATH = API_PATHS.BASE_PATH + contractID + "/reviews/";
+        const TYPE = TYPES.LIST_CONTRACT_COMMENTS_REQUEST;
+        const FINAL_PATH = API_PATHS.CONTRACT_BASE_PATH + contractReference + "/comments/";
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",
             action: TYPE,
             path: FINAL_PATH,
             async: true,
-            params: null,
+            params: params,
             body: null
+        })
+            .then(res => {
+                if ("status" in res.data && res.data.status === "ERROR") {
+                    handleApiResponseFailure(dispatch, TYPE, res);
+                    // Other actions
+                } else {
+                    handleApiResponseSuccess(dispatch, TYPE, res);
+                    // Other actions
+                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
+                }
+            })
+            .catch(err => {
+                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+            });
+    }
+};
+
+export const addContractComment = (contractReference, body) => {
+    return dispatch => {
+        const TYPE = TYPES.ADD_CONTRACT_COMMENTS_REQUEST;
+        const FINAL_PATH = API_PATHS.CONTRACT_BASE_PATH + contractReference + "/comments/";
+        dispatch({type: TYPE, payload: {}});
+        apiService({
+            method: "POST",
+            action: TYPE,
+            path: FINAL_PATH,
+            async: true,
+            params: null,
+            body: body
         })
             .then(res => {
                 if ("status" in res.data && res.data.status === "ERROR") {

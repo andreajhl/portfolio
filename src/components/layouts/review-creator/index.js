@@ -29,21 +29,21 @@ class ReviewCreatorLayout extends Component {
     onStarClick(nextValue, prevValue, name) {
         const {reviewData} = this.state;
         reviewData.stars = nextValue;
-        this.setState({reviewData}, () => console.log(this.state));
+        this.setState({reviewData});
     }
 
     handleChange(e) {
         const {reviewData} = this.state;
         reviewData.review = e.target.value;
-        this.setState({reviewData}, () => console.log(this.state));
+        this.setState({reviewData});
     }
 
-    componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+    componentDidMount(): void {
         const {firstTime} = this.state;
         const {reviewData} = this.state;
-        if (firstTime && nextProps.contract.reference) {
-            reviewData.stars = nextProps.contract.stars;
-            reviewData.review = nextProps.contract.review;
+        if (firstTime && this.props.contract.reference) {
+            reviewData.stars = this.props.contract.stars;
+            reviewData.review = this.props.contract.review;
             this.setState({reviewData, firstTime: false})
         }
     }
@@ -56,16 +56,6 @@ class ReviewCreatorLayout extends Component {
                 showReviewError: true
             })
         }
-    }
-
-    goToSignIn() {
-        localStorage.setItem("redirectTo", history.location.pathname);
-        history._pushRoute(PATHS.SIGN_IN_PATH);
-    }
-
-    goToSignUp() {
-        localStorage.setItem("redirectTo", history.location.pathname);
-        history._pushRoute(PATHS.SIGN_UP_PATH);
     }
 
     renderReviewFormCreator() {
@@ -91,7 +81,7 @@ class ReviewCreatorLayout extends Component {
                         <textarea className={"form-control" + (this.state.showReviewError ? " border-danger " : "")}
                                   autoFocus={true}
                                   rows={2}
-                                  value={this.state.reviewData.review}
+                                  value={this.state.reviewData.review || ""}
                                   onChange={this.handleChange}
                         />
                         <button className="btn btn-sm btn-primary mt-2"
@@ -136,7 +126,7 @@ class ReviewCreatorLayout extends Component {
                         </div>
                         <textarea className={"form-control" + (this.state.showReviewError ? " border-danger " : "")}
                                   autoFocus={true}
-                                  value={this.state.reviewData.review}
+                                  value={this.state.reviewData.review || ""}
                                   rows={2}
                                   onChange={this.handleChange}
                         />
@@ -163,40 +153,7 @@ class ReviewCreatorLayout extends Component {
     render() {
         return (
             <div className="ReviewCreatorLayout">
-                {
-                    this.session.getSession()
-                        ?
-                        <>
-                            {
-                                this.session.getSession().client_id === this.props.contract.client
-                                ?
-                                <>
-                                {!this.props.contract.review ? this.renderReviewFormCreator() : this.renderReviewFormEditor()}
-                                </>
-                                :null
-                            }
-
-                        </>
-                        :
-                        <>
-                            <h5 className="font-weight-bold">
-                                Inicia sesión para agregar un comentario
-                            </h5>
-                            <button className="btn btn-sm btn-primary mt-2"
-                                    onClick={this.goToSignIn}
-                            >
-                                Iniciar sesión
-                            </button>
-                            <span className="ml-2 mr-2" style={{position: "relative", top: "6px"}}>
-                            ¿Aún no tienes cuenta?
-                                <b className="ml-2 mr-2" style={{textDecoration: "underline", cursor: "pointer"}}
-                                   onClick={this.goToSignUp}>
-                                    Crea una cuenta
-                                </b>
-                            </span>
-                        </>
-
-                }
+                {!this.props.contract.review ? this.renderReviewFormCreator() : this.renderReviewFormEditor()}
             </div>
         );
     };
@@ -217,7 +174,7 @@ const mapStateToProps = (state: any) => ({
     isLoading: state.contracts.saveClientContractReviewReducer.loading,
     isCompleted: state.contracts.saveClientContractReviewReducer.completed,
     contractReview: state.contracts.saveClientContractReviewReducer.data.contractReview,
-    contractDataCompleted: state.contracts.getClientContractReducer.completed
+    contractDataCompleted: state.contracts.saveClientContractReviewReducer.completed
 });
 
 // mapStateToProps

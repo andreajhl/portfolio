@@ -1,17 +1,12 @@
 @import "../../../theme";
 
-.ContractFavsLayout{
+.ContractCommentsLayout{
 
   margin-bottom: 8px;
-  margin-right: 10px;
 
   i {
     font-size: 20px;
     color: $dark;
-
-    &:hover {
-      color: $primary;
-    }
   }
 
   small {

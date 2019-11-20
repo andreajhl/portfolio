@@ -54,7 +54,6 @@ class CelebritiesMultiselect extends Component {
     handleChange = selectedOption => {
         this.setState({selectedOption},
             () => {
-                console.log(`Option selected:`, this.state.selectedOption);
                 let fav_celebrities = [];
                 if(this.state.selectedOption){
                     this.state.selectedOption.forEach(so => {

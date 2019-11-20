@@ -28,7 +28,6 @@ export class Session {
                 return jwt_decode(token)
             }
         } catch (e) {
-            console.log("jwtDecode Exception:", e);
             return null
         }
     }
