@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import "./styles.scss";
+import {history} from "../../../routing/History";
+import * as PATHS from "../../../routing/Paths";
 
 class FooterLayout extends Component {
 
@@ -7,7 +9,7 @@ class FooterLayout extends Component {
         super(props);
 
         this.goToFAQs = this.goToFAQs.bind(this);
-        this.goToSupport = this.goToSupport.bind(this);
+        this.goToPolicies = this.goToPolicies.bind(this);
         this.goToTerms = this.goToTerms.bind(this);
         this.goToFamososTwitter = this.goToFamososTwitter.bind(this);
         this.goToFamososFacebook = this.goToFamososFacebook.bind(this);
@@ -16,15 +18,15 @@ class FooterLayout extends Component {
     }
 
     goToFAQs() {
-        window.open("https://soporte.famosos.com/faqs", '_blank').focus();
+        history._pushRoute(PATHS.FAQS_PATH)
     }
 
-    goToSupport() {
-        window.open("https://soporte.famosos.com/contactanos", '_blank').focus();
+    goToPolicies() {
+        history._pushRoute(PATHS.POLICIES_PATH)
     }
 
     goToTerms() {
-        window.open("https://soporte.famosos.com/terminos", '_blank').focus();
+        history._pushRoute(PATHS.TERMS_PATH)
     }
 
     goToFamososTwitter() {
@@ -96,7 +98,7 @@ class FooterLayout extends Component {
                                         <span className="small" onClick={this.goToFAQs}>FAQ's</span>
                                     </li>
                                     <li className="list-inline-item ml-2 mr-2 cursor-pointer font-weight-bold">
-                                        <span className="small" onClick={this.goToSupport}>Soporte</span>
+                                        <span className="small" onClick={this.goToPolicies}>Políticas de Privacidad</span>
                                     </li>
                                     <li className="list-inline-item ml-2 cursor-pointer font-weight-bold">
                                         <span className="small" onClick={this.goToTerms}>Términos y Condiciones</span>

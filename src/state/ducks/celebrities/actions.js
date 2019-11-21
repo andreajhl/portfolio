@@ -3,6 +3,8 @@ import apiService from "../../utils/apiService";
 import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
 import * as API_PATHS from './paths';
 import {getTotalColumns} from "../../utils/gridSystem";
+import {history} from "../../../routing/History";
+import * as PATHS from "../../../routing/Paths";
 
 export const get = (object_id) => {
     return dispatch => {
@@ -21,6 +23,7 @@ export const get = (object_id) => {
                 if ("status" in res.data && res.data.status === "ERROR") {
                     handleApiResponseFailure(dispatch, TYPE, res);
                     // Other actions
+                    history._pushRoute(PATHS.ROOT_PATH);
 
                 } else {
                     handleApiResponseSuccess(dispatch, TYPE, res);
@@ -34,6 +37,7 @@ export const get = (object_id) => {
                 }
             })
             .catch(err => {
+                history._pushRoute(PATHS.ROOT_PATH);
                 handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
             });
     }

@@ -1,10 +1,13 @@
 export const ROOT_PATH = '/celebrities/';
-export const NOT_FOUND_PATH = '/500-not-found';
-export const NOT_AUTHORIZED_PATH = '/not-authorized';
 export const CELEBRITY_PROFILE = '/:celebrity_username';
 export const CONTRACT_CREATED = '/contract-created/:contract_reference';
-export const LOGIN_PATH = '/login';
 export const HOME_PATH = '/';
+
+// DOCS
+export const TERMS_PATH = '/docs/terminos';
+export const POLICIES_PATH = '/docs/politicas';
+export const FAQS_PATH = '/docs/faqs';
+
 // AUTH
 export const SIGN_IN_PATH = '/auth/sign-in/';
 export const SIGN_IN_WITH_SPECIFIC_FORM_PATH = '/auth/sign-in/:form/';
