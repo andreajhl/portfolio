@@ -98,14 +98,13 @@ class FooterLayout extends Component {
                                         <span className="small" onClick={this.goToFAQs}>FAQ's</span>
                                     </li>
                                     <li className="list-inline-item ml-2 mr-2 cursor-pointer font-weight-bold">
-                                        <span className="small" onClick={this.goToPolicies}>ebPrivacidad</span>
+                                        <span className="small" onClick={this.goToPolicies}>Privacidad</span>
                                     </li>
                                     <li className="list-inline-item ml-2 cursor-pointer font-weight-bold">
                                         <span className="small" onClick={this.goToTerms}>Términos y Condiciones</span>
                                     </li>
                                 </ul>
                             </div>
-
                         </div>
                     </div>
                 </footer>

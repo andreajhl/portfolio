@@ -104,9 +104,7 @@ class CelebritiesPage extends Component {
                                 showShimmerCards={this.props.isLoading}
                                 celebrities={this.props.celebrities}
                             />
-                            {
-                                !this.props.paginationData.nextPage ? <FooterLayout/> : null
-                            }
+                            {this.props.paginationData.nextPage === null ? <FooterLayout/> : null}
                         </div>
                         {/* End CelebrityCardsSectionLayout */}
                     </PageContainer>
