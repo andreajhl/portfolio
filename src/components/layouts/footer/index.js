@@ -42,7 +42,7 @@ class FooterLayout extends Component {
     }
 
     goToApply(){
-        window.open("https://aplica.famosos.com/", '_blank').focus()
+        history._pushRoute(PATHS.CELEBRITY_REQUEST)
     }
 
     render() {
@@ -55,7 +55,7 @@ class FooterLayout extends Component {
                             <div className="col-12 col-md-4 col-lg-4 col-one">
                                 <div className="col-image">
                                     <img className="text-dark"
-                                         src="/assets/img/white-famosos-logo.png"
+                                         src="/assets/img/famosos-white-logo.svg"
                                          alt="Logo"
                                     />
                                 </div>

@@ -105,6 +105,13 @@ class MyRoutes extends Component {
                             component={PAGES.FaqsPage}
                         />
                         {/*END DOCS*/}
+                        {/*FORMS*/}
+                        <Route
+                            exact
+                            path={PATHS.CELEBRITY_REQUEST}
+                            component={PAGES.CelebrityRequestPage}
+                        />
+                        {/*END FORMS*/}
                         <PrivateRoute
                             exact
                             path={PATHS.CLIENT_PROFILE}
