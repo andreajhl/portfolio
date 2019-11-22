@@ -112,7 +112,7 @@ class HiringPreviewLayout extends Component {
             <div className={"HiringPreviewLayout"}>
                 <div className="main-section f-shadow">
                     <div className="row p-0 m-0">
-                        <div className="col-sm-12 col-md-6 col-lg-5 video-container p-0 m-0">
+                        <div className="col-sm-12 col-md-7 col-lg-7 video-container p-0 m-0">
                             <div className="f-video">
                                 <i className={'fa fa-2x play-pause ' + (this.state.videoDesktopPlayIcon)}
                                    onClick={this.playDesktopVideo.bind(this)}
@@ -127,7 +127,7 @@ class HiringPreviewLayout extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="col-sm-12 col-md-6 col-lg-7 details-container p-0 m-0">
+                        <div className="col-sm-12 col-md-5 col-lg-5 details-container p-0 m-0">
                             <div className="close-button" onClick={this.goToCelebrity}>
                                 <i className="fa fa-times-circle"/>
                             </div>
