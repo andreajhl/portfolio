@@ -188,10 +188,11 @@ class CelebrityRequestForm extends Component {
                 {
                     this.state.data.referral &&
                     <>
-                        <label className="mt-3">Código de referido</label>
+                        <label className="mt-3">Referido por:</label>
                         <input
+                            disabled={true}
                             type="text"
-                            className={"form-control" + this.state.errors.referralError ? " border-danger " : ""}
+                            className={"form-control" + (this.state.errors.referralError ? " border-danger " : "")}
                             placeholder="Código de referido"
                             name="referral"
                             onChange={this.handleInput}
@@ -249,7 +250,7 @@ class CelebrityRequestForm extends Component {
                 <p className="mt-4">Nuestro equipo analizará tu solicitud y se pondrá en contacto contigo muy
                     pronto.</p>
                 <p className="text-justify"><span className="font-weight-bold mr-2">Nota:</span> Si utilizas el link de
-                    referido de uno uno de los Famosos registrados en la plataforma tendrás más oportunidades de ser
+                    referido de uno de los Famosos registrados en la plataforma tendrás más oportunidades de ser
                     aprobado, este link es único por cuenta y está disponible en la sección de Mi Perfil de la
                     aplicación de los Famosos.</p>
                 <div className={"text-center"}>
