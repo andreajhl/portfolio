@@ -16,14 +16,12 @@ class CelebritiesPage extends Component {
 
         this.state = {
             params: {
-                page: 1,
                 status: 50
             },
         };
 
         this.onPaginationChange = this.onPaginationChange.bind(this);
         this.updateParams = this.updateParams.bind(this);
-        this.onSearchChange = this.onSearchChange.bind(this);
         this.fetchCelebrities = this.fetchCelebrities.bind(this);
         this.listCountries = this.listCountries.bind(this);
 
@@ -40,14 +38,10 @@ class CelebritiesPage extends Component {
                 this.scrollDiv.current.scrollTop + this.scrollDiv.current.clientHeight >=
                 (this.scrollDiv.current.scrollHeight - 500)
             ) {
-                const state = this.state;
-                if(this.props.paginationData.nextPage && !this.props.isLoading){
-                    setTimeout(() => {
-                        const page = 1;
-                        if(state.params.page + 1 <= this.props.paginationData.totalPages) {
-                            this.onPaginationChange(state.params.page + 1);
-                        }
-                    }, 500)
+                if (!this.props.isLoading && this.props.paginationData.totalItems !== this.props.celebrities.length) {
+                    if (this.props.paginationData.currentPage + 1 <= this.props.paginationData.totalPages) {
+                        this.onPaginationChange(this.props.paginationData.currentPage + 1);
+                    }
                 }
             }
         });
@@ -67,16 +61,9 @@ class CelebritiesPage extends Component {
         this.updateParams("page", page);
     }
 
-    onSearchChange(keywork) {
-        this.updateParams("search", keywork);
-    }
-
     updateParams(key, value) {
         const {params}= this.state;
         params[key] = value;
-        if(key === "search"){
-            params["page"] = 1;
-        }
         this.setState({
             params: params,
         }, () => this.fetchCelebrities());
@@ -99,6 +86,12 @@ class CelebritiesPage extends Component {
                         {/* CelebrityCardsSectionLayout */}
                         <div className="pt-4 scroll-section" style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
                              ref={this.scrollDiv}>
+                            <br/>
+                            {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
+                            {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
+                            {/*<pre>state.params.page {this.state.params.page}</pre>*/}
+                            {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
+                            {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
                             <CelebrityCardsSectionLayout
                                 title={"Famosos destacados"}
                                 showShimmerCards={this.props.isLoading}
@@ -131,6 +124,7 @@ CelebritiesPage.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     isLoading: state.celebrities.fetchCelebritiesReducer.loading,
+    isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
     paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data,
     countries: state.restCountries.fetchCountriesReducer.data

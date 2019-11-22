@@ -146,7 +146,7 @@ class NavbarSectionLayout extends Component {
                                                         <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
                                                     </a>
                                                     <button className="btn btn-primary btn-sm mt-2 f-register-button" onClick={this.goToSignUpPath}>
-                                                        Comenzar
+                                                        Ingresar
                                                     </button>
                                                 </div>
                                             </>

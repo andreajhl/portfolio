@@ -73,13 +73,15 @@ class SignInMethodsForm extends Component {
                             {
                                 this.props.whatsapp
                                 &&
-                                <button
-                                    className="sign-in-with-whatsapp-button text-left"
-                                    onClick={this.goToSignInWithWhatsApp}
-                                >
-                                    <img className="cursor-pointer mr-3 ml-2" src="/assets/img/whatsapp-black.svg"/>
-                                    <span>Ingresar con mi WhatsApp</span>
-                                </button>
+                                <>
+                                    {/*<button*/}
+                                    {/*    className="sign-in-with-whatsapp-button text-left"*/}
+                                    {/*    onClick={this.goToSignInWithWhatsApp}*/}
+                                    {/*>*/}
+                                    {/*    <img className="cursor-pointer mr-3 ml-2" src="/assets/img/whatsapp-black.svg"/>*/}
+                                    {/*    <span>Ingresar con mi WhatsApp</span>*/}
+                                    {/*</button>*/}
+                                </>
                             }
                             {
                                 this.props.email

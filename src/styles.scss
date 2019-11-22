@@ -412,3 +412,7 @@ video {
 input, select {
   height: 45px !important;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}

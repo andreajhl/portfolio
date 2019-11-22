@@ -45,6 +45,7 @@ export const get = (object_id) => {
 
 export const list = (params) => {
     if (params["status"] === undefined) params["status"] = 50;
+    if (params["ordering"] === undefined) params["ordering"] = "top_celebrity";
     params["page_size"] = getTotalColumns() * 5;
 
     return dispatch => {

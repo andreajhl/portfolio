@@ -57,9 +57,11 @@
   // Large devices (desktops, 768px and up)
   @media (max-width: 768px) {
     .col-one{
+      margin-top: 40px !important;
       margin-bottom: 0px !important;
     }
     .col-two {
+      margin-top: 40px !important;
       height: 40px !important;
     }
     .col-three{

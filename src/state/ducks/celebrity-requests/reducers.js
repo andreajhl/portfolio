@@ -17,10 +17,6 @@ export function saveCelebrityRequestReducer(state = saveCelebrityRequestInitialS
                 loading: true
             };
         case TYPES.SAVE_CELEBRITY_REQUEST_REQUEST_FAILURE:
-            if("error" in action.payload.data){
-                console.log("error:", action.payload.data.error)
-            }
-
             return {
                 ...saveCelebrityRequestInitialState,
                 error_data: action.payload.data,

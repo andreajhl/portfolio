@@ -167,7 +167,7 @@ class CelebrityRequestForm extends Component {
                         onChange={this.handleInput}
                         value={this.state.data.socialNetworkName}
                     >
-                        <option></option>
+                        <option>---</option>
                         <option>Instagram</option>
                         <option>Facebook</option>
                         <option>Twitter</option>
@@ -235,8 +235,8 @@ class CelebrityRequestForm extends Component {
                 <div className={"text-center"}>
                     <img src={"/assets/img/review.svg"} alt={"img"} width="300px"/>
                 </div>
-                <div className={"text-center mt-3"}>
-                    <button className="btn btn-primary" onClick={this.close}>Cerrar</button>
+                <div className={"text-center mt-4"}>
+                    <button className="btn btn-primary mt-4 mb-4" onClick={this.close}>Cerrar</button>
                 </div>
             </>
         )
@@ -246,17 +246,17 @@ class CelebrityRequestForm extends Component {
         return (
             <>
                 <h4 className="font-weight-bold text-center mb-4">¡Tu solicitud ha sido enviada!</h4>
-                <p className="mt-4">Nuestro equipo analizará tu solicitud y se pondra en contacto contigo muy
+                <p className="mt-4">Nuestro equipo analizará tu solicitud y se pondrá en contacto contigo muy
                     pronto.</p>
                 <p className="text-justify"><span className="font-weight-bold mr-2">Nota:</span> Si utilizas el link de
-                    referido de uno uno de los Famosos registrados en la plataforma tendrás mas oportunidades de ser
+                    referido de uno uno de los Famosos registrados en la plataforma tendrás más oportunidades de ser
                     aprobado, este link es único por cuenta y está disponible en la sección de Mi Perfil de la
                     aplicación de los Famosos.</p>
                 <div className={"text-center"}>
                     <img src={"/assets/img/review.svg"} alt={"img"} width="300px"/>
                 </div>
-                <div className={"text-center mt-3"}>
-                    <button className="btn btn-primary" onClick={this.close}>Cerrar</button>
+                <div className={"text-center mt-4"}>
+                    <button className="btn btn-primary mt-4 mb-4" onClick={this.close}>Cerrar</button>
                 </div>
             </>
         )
