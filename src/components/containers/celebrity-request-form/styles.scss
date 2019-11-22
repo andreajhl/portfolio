@@ -11,4 +11,11 @@
       z-index: 1000;
     }
   }
+
+
+  button:disabled,
+  button[disabled]{
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
 }
