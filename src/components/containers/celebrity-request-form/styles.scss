@@ -1,0 +1,21 @@
+.CelebrityRequestForm{
+  max-width: 500px;
+  padding: 20px;
+  margin: 20px auto 0;
+  .form-horizontal {
+    display: flex;
+
+    input {
+      border-radius: 0 0.25rem 0.25rem 0;
+      width: 60%;
+      z-index: 1000;
+    }
+  }
+
+
+  button:disabled,
+  button[disabled]{
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+}

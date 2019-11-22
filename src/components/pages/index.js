@@ -12,3 +12,7 @@ export * from "./reset-password";
 export * from "./sign-in";
 export * from "./sign-up";
 export * from "./validate-security-code";
+export * from "./faqs";
+export * from "./policies";
+export * from "./terms";
+export * from "./celebrity-request";

@@ -11,3 +11,4 @@ export * from "./sign-up-with-email-form";
 export * from "./validate-cellphone-security-code-form";
 export * from "./validate-email-security-code-form";
 export * from "./validate-whatsapp-security-code-form";
+export * from "./celebrity-request-form";

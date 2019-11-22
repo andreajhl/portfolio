@@ -2,9 +2,10 @@
 
 .HiringPreviewLayout {
 
-  position: relative;
   zoom: 80%;
-  min-height: 680px;
+  left: 5vw;
+  right: 5vw;
+  min-height: 720px;
 
   .main-section {
     left: 5vw;
@@ -122,7 +123,6 @@
 // Large devices (desktops, 768px and up)
 @media (max-width: 768px) {
   .HiringPreviewLayout {
-    position: relative;
     .main-section {
       border-radius: 20px 20px 0 0 !important;
       position: relative;

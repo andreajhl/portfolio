@@ -41,6 +41,7 @@ class MyRoutes extends Component {
                             path={PATHS.CONTRACT_CREATED}
                             component={PAGES.ContractCreatedPage}
                         />
+                        {/*AUTH*/}
                         <Route
                             exact
                             path={PATHS.SIGN_IN_PATH}
@@ -86,6 +87,31 @@ class MyRoutes extends Component {
                             path={PATHS.COMPLETE_PROFILE_PATH}
                             component={PAGES.CompleteProfilePage}
                         />
+                        {/*END AUTH*/}
+                        {/*DOCS*/}
+                        <Route
+                            exact
+                            path={PATHS.POLICIES_PATH}
+                            component={PAGES.PoliciesPage}
+                        />
+                        <Route
+                            exact
+                            path={PATHS.TERMS_PATH}
+                            component={PAGES.TermsPage}
+                        />
+                        <Route
+                            exact
+                            path={PATHS.FAQS_PATH}
+                            component={PAGES.FaqsPage}
+                        />
+                        {/*END DOCS*/}
+                        {/*FORMS*/}
+                        <Route
+                            exact
+                            path={PATHS.CELEBRITY_REQUEST}
+                            component={PAGES.CelebrityRequestPage}
+                        />
+                        {/*END FORMS*/}
                         <PrivateRoute
                             exact
                             path={PATHS.CLIENT_PROFILE}

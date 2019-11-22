@@ -19,12 +19,17 @@ class ValidateCellphoneSecurityCodeForm extends Component {
         this.handleInput = this.handleInput.bind(this);
         this.validateSMSSecurityCode = this.validateSMSSecurityCode.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.goBack = this.goBack.bind(this)
     }
 
     componentDidMount(): void {
         if(!this.state.cellphoneNumber) {
             history.goBack()
         }
+    }
+
+    goBack(){
+        history.goBack()
     }
 
     handleInput(event) {
@@ -55,7 +60,7 @@ class ValidateCellphoneSecurityCodeForm extends Component {
                 <div className="mt-4">
                     <h6>¿Este no es tu número? <b>{this.state.cellphoneNumber}</b></h6>
                     <button className="btn btn-sm btn-outline-primary mb-4"
-                            onClick={this.showForm1}>
+                            onClick={this.goBack}>
                         Cambiar
                     </button>
                 </div>

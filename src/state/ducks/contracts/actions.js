@@ -22,7 +22,7 @@ export const getContract = (contractReference) => {
                 if ("status" in res.data && res.data.status === "ERROR") {
                     handleApiResponseFailure(dispatch, TYPE, res);
                     // Other actions
-                    history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
+                    history._pushRoute(ROUTING_PATHS.ROOT_PATH);
 
                 } else {
                     handleApiResponseSuccess(dispatch, TYPE, res);
@@ -31,6 +31,7 @@ export const getContract = (contractReference) => {
                 }
             })
             .catch(err => {
+                history._pushRoute(ROUTING_PATHS.ROOT_PATH);
                 handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
             });
     }

@@ -55,18 +55,20 @@ export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, ac
                 failed: true
             };
         case types.FETCH_CELEBRITIES_REQUEST_SUCCESS:
-            if (action.payload.data.pagination_data.currentPage > 1) {
-                action.payload.data.results = state.data.results.concat(action.payload.data.results);
-                return {
-                    ...fetchCelebritiesInitialState,
-                    data:  action.payload.data
-                };
-            } else {
+            if (action.payload.data.pagination_data.currentPage === 1) {
                 return {
                     ...fetchCelebritiesInitialState,
                     data: action.payload.data
                 };
+            } else if (action.payload.data.pagination_data.totalItems <= state.data.pagination_data.totalItems) {
+                action.payload.data.results = state.data.results.concat(action.payload.data.results);
+                console.log("action.payload.data.results:", action.payload.data)
+                return {
+                    ...fetchCelebritiesInitialState,
+                    data:  action.payload.data
+                };
             }
+            break;
         case types.FETCH_CELEBRITIES_REQUEST_COMPLETED:
             return {
                 ...state,
