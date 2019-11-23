@@ -30,6 +30,13 @@ class NavbarSectionLayout extends Component {
     }
 
     goToRootPath() {
+        const queryParams = this.props.queryParams;
+        queryParams["search"] = "";
+        if(this.props.queryParams.search === ""){
+            this.props.updateQueryParams(queryParams, true);
+        }else{
+            this.props.updateQueryParams(queryParams, false);
+        }
         history._pushRoute(PATHS.ROOT_PATH)
     }
 
@@ -210,11 +217,14 @@ NavbarSectionLayout.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({});
+const mapStateToProps = (state: any) => ({
+    queryParams: state.celebrities.queryParamsReducer,
+    celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
+});
 
 // mapStateToProps
 const mapDispatchToProps = {
-    fetchCelebrities: celebrityOperations.list
+    updateQueryParams: celebrityOperations.updateQueryParams,
 };
 
 // Export Class

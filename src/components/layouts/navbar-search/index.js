@@ -3,11 +3,14 @@ import "./styles.scss";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
+import {celebrityOperations} from "../../../state/ducks/celebrities";
+import {connect} from "react-redux";
+
 
 class NavbarSearchLayout extends Component {
 
     state = {
-        keyword: ""
+        keyword: this.props.queryParams.search || ""
     };
 
     componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
@@ -101,4 +104,16 @@ NavbarSearchLayout.defaultProps = {
     }
 };
 
-export {NavbarSearchLayout};
+// mapStateToProps
+const mapStateToProps = (state: any) => ({
+    queryParams: state.celebrities.queryParamsReducer,
+});
+
+// mapStateToProps
+const mapDispatchToProps = {
+    updateQueryParams: celebrityOperations.updateQueryParams,
+};
+
+// Export Class
+const _NavbarSearchLayout = connect(mapStateToProps, mapDispatchToProps)(NavbarSearchLayout);
+export {_NavbarSearchLayout as NavbarSearchLayout};

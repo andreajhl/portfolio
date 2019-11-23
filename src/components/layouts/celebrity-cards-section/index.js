@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {CelebrityShimmerCardLayout} from "../celebrity-shimmer-card";
 import {CelebrityCardLayout} from "../celebrity-card";
 import "./styles.scss";
 import {getTotalColumns} from "../../../state/utils/gridSystem";
+import {CelebrityShimmerCardLayout} from "../celebrity-shimmer-card";
+import {connect} from "react-redux";
 
 class CelebrityCardsSectionLayout extends Component {
 
@@ -12,59 +13,99 @@ class CelebrityCardsSectionLayout extends Component {
         this.state = {}
     }
 
-    static renderShimmerCards() {
-        return (
-            [...Array(getTotalColumns() * 3)].map((o, index) => {
-                return (
-                    <div className="item mr-4 mb-2 mx-auto" key={index}>
-                        <CelebrityShimmerCardLayout/>
-                    </div>
-                )
-            })
-        )
+    renderShimmerCards() {
+        if (this.props.showShimmerCards) {
+            return (
+                <div className="scrolling-wrapper">
+                    {
+                        [...Array(getTotalColumns() * 4)].map((o, index) => {
+                            return (
+                                <div className="item mr-4 mb-2 mx-auto" key={index}>
+                                    <CelebrityShimmerCardLayout/>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            )
+        }
     };
 
-    renderCelebritiesCards() {
-        return (
-            this.props.celebrities.map((celebrity, index) => {
-                return (
-                    <div className="item mr-4 mb-2 mx-auto" key={celebrity.id}>
-                        <CelebrityCardLayout
-                            celebrity={celebrity}
-                            index={index}
-                        />
+    renderLoading() {
+        if (this.props.showLoading) {
+            return (
+                <div className="mx-auto text-center">
+                    <div className="spinner-grow text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
                     </div>
-                )
-            })
-        )
+                    <div className="spinner-grow text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    renderCelebritiesCards() {
+        if (!this.props.showShimmerCards) {
+            return (
+                this.props.celebrities.map((celebrity, index) => {
+                    return (
+                        <div className="item mr-4 mb-2 mx-auto" key={celebrity.id}>
+                            <CelebrityCardLayout
+                                celebrity={celebrity}
+                                index={index}
+                            />
+                        </div>
+                    )
+                })
+            )
+        }
     };
+
+    renderTitle() {
+        if (this.props.title && !this.props.queryParams.search) {
+            return (
+                <div className="clearfix">
+                    <h6 className="float-left">
+                        <b>{this.props.title}</b>
+                    </h6>
+                </div>
+            )
+        } else if (this.props.title && this.props.queryParams.search && this.props.celebrities.length) {
+            return (
+                <div className="clearfix">
+                    <h6 className="float-left">
+                        <b>Famosos encontrados:</b>
+                    </h6>
+                </div>
+            )
+        } else if (this.props.title && this.props.queryParams.search && !this.props.celebrities.length) {
+            return (
+                <div className="clearfix">
+                    <h6 className="float-left">
+                        <b>No se encontraron famosos para esta busqueda</b>
+                    </h6>
+                </div>
+            )
+        }
+    }
 
     render() {
         return (
             <div className="CelebrityCardsSectionLayout">
                 <div className={"f-main-padding"}>
-                    {/*{this.props.title ? <h6 className="float-left font-weight-bold">{this.props.title}</h6> : null}*/}
-                    {
-                        this.props.title
-                            ?
-                            <div className="clearfix">
-                                <h6 className="float-left">
-                                    <b>{this.props.title}</b>
-                                </h6>
-                            </div> : null
-                    }
+                    {this.renderTitle()}
                     <div className={"scrolling-wrapper " + (this.props.horizontalScroll ? "horizontal-scroll" : "")}>
                         {this.renderCelebritiesCards()}
                     </div>
-                    {
-                        this.props.showShimmerCards
-                            ?
-                            <div className="scrolling-wrapper">
-                                {CelebrityCardsSectionLayout.renderShimmerCards()}
-                            </div>
-                            :
-                            null
-                    }
+                    {/* SHIMMER CARDS */}
+                    {this.renderShimmerCards()}
+                    {/* LOADING */}
+                    {this.renderLoading()}
                 </div>
             </div>
         );
@@ -76,7 +117,21 @@ CelebrityCardsSectionLayout.defaultProps = {
     horizontalScroll: false,
     title: "",
     showShimmerCards: true,
+    showLoading: false,
     celebrities: []
 };
 
-export {CelebrityCardsSectionLayout};
+
+// mapStateToProps
+const mapStateToProps = (state: any) => ({
+    celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
+    queryParams: state.celebrities.queryParamsReducer,
+});
+
+// mapStateToProps
+const mapDispatchToProps = {};
+
+// Export Class
+const _CelebrityCardsSectionLayout = connect(mapStateToProps, mapDispatchToProps)(CelebrityCardsSectionLayout);
+export {_CelebrityCardsSectionLayout as CelebrityCardsSectionLayout};
+
