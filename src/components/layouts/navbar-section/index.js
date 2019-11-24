@@ -16,7 +16,7 @@ class NavbarSectionLayout extends Component {
         super(props);
 
         this.state = {
-            showSearch: false
+            showSearch: this.props.showInputSearchSm
         };
 
         this.session = new Session();
@@ -29,6 +29,17 @@ class NavbarSectionLayout extends Component {
         this.goToProfile = this.goToProfile.bind(this);
     }
 
+    componentDidMount(): void {
+        if(this.showInputSearchSmRequired()){
+            this.showSearch()
+        }
+    }
+
+    showInputSearchSmRequired() {
+        const showInputSearchSm = new URLSearchParams(history.location.search).get("showInputSearchSm")
+        return showInputSearchSm !== null;
+    }
+
     goToRootPath() {
         const queryParams = this.props.queryParams;
         queryParams["search"] = "";
@@ -37,7 +48,7 @@ class NavbarSectionLayout extends Component {
         }else{
             this.props.updateQueryParams(queryParams, false);
         }
-        history._pushRoute(PATHS.ROOT_PATH)
+        this.showSearch()
     }
 
     goToSignInPath() {
@@ -61,25 +72,35 @@ class NavbarSectionLayout extends Component {
             showSearch: !this.state.showSearch
         }, () => {
             if (this.state.showSearch) {
-                const fMainPadding = document.getElementsByClassName('f-main-padding');
-                const fContainer = document.getElementsByClassName('f-container');
-                if (fMainPadding.length) {
-                    fMainPadding[0].className += ' search-sm-active ';
-                }
-                if (fContainer.length) {
-                    fContainer[0].className += ' search-sm-active ';
-                }
-            } else {
-                const fMainPadding = document.getElementsByClassName('f-main-padding');
-                const fContainer = document.getElementsByClassName('f-container');
-                if (fMainPadding.length) {
-                    fMainPadding[0].className = ' f-main-padding ';
-                }
-                if (fContainer.length) {
-                    fContainer[0].className = ' f-container ';
-                }
+                history._pushRoute(PATHS.ROOT_PATH + "?showInputSearchSm=true")
+            }else{
+                history._pushRoute(PATHS.ROOT_PATH)
             }
+            this.updateClasses()
         })
+    }
+
+    updateClasses() {
+        if (this.state.showSearch) {
+            const fMainPadding = document.getElementsByClassName('f-main-padding');
+            const fContainer = document.getElementsByClassName('f-container');
+            if (fMainPadding.length) {
+                fMainPadding[0].className += ' search-sm-active ';
+            }
+            if (fContainer.length) {
+                fContainer[0].className += ' search-sm-active ';
+            }
+            document.getElementById("input-search").autofocus = true;
+        } else {
+            const fMainPadding = document.getElementsByClassName('f-main-padding');
+            const fContainer = document.getElementsByClassName('f-container');
+            if (fMainPadding.length) {
+                fMainPadding[0].className = ' f-main-padding mt-4';
+            }
+            if (fContainer.length) {
+                fContainer[0].className = ' f-container mt-4';
+            }
+        }
     }
 
     render() {
@@ -195,7 +216,8 @@ class NavbarSectionLayout extends Component {
                     this.state.showSearch
                         ?
                         <div className="f-items d-block d-md-none m-2 search-sm">
-                            <NavbarSearchLayout onSearchChange={this.props.onSearchChange}/>
+                            <NavbarSearchLayout onSearchChange={this.props.onSearchChange}
+                                                autoFocus={this.state.showSearch}/>
                         </div>
                         : null
                 }

@@ -15,8 +15,7 @@ history._pushRoute = (route) => {
         localStorage.removeItem("redirectTo");
         history.push(redirectTo);
     } else {
-        const add = route.split("?")[0];
-        history.push(route + search + (add.includes("=") ? "&" : ""));
+        history.push(route);
     }
 
 };

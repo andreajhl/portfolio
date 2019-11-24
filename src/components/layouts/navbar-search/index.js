@@ -24,54 +24,37 @@ class NavbarSearchLayout extends Component {
     inputHandler(e) {
         if (e.target.value && e.target.value.length > 1) {
             if (e.target.value.length % 2 === 0) {
-                if (this.props.onSearchChange) {
-                    GTM.tagManagerDataLayer(
-                        "CELEBRITIES_SEARCH_CHANGED",
-                        this.state.keyword
-                    );
-                    this.props.onSearchChange(e.target.value)
+                if (this.onSearchChange) {
+                    this.onSearchChange(e.target.value)
                 }
             }
         } else if (e.target.value.length === 0) {
-            if (this.props.onSearchChange) {
-                GTM.tagManagerDataLayer(
-                    "CELEBRITIES_SEARCH_CHANGED",
-                    this.state.keyword
-                );
-                this.props.onSearchChange(e.target.value)
-            }
+            this.onSearchChange(e.target.value);
         }
         this.setState({
             keyword: e.target.value
-        }, () => {
-            history._pushRoute(PATHS.ROOT_PATH)
         });
     }
 
     handleKeyPress(event) {
         if (event.key === 'Enter') {
-            if (this.props.onSearchChange) {
-                GTM.tagManagerDataLayer(
-                    "CELEBRITIES_SEARCH_CHANGED",
-                    this.state.keyword
-                );
-                this.props.onSearchChange(this.state.keyword)
-            }
+            this.onSearchChange(this.state.keyword)
         }
     }
 
     handleBlur() {
-        if (this.props.onSearchChange) {
+        this.onSearchChange(this.state.keyword)
+    }
+
+    onSearchChange(keyword) {
+        if (!this.props.isLoading && this.props.isCompleted) {
             GTM.tagManagerDataLayer(
                 "CELEBRITIES_SEARCH_CHANGED",
                 this.state.keyword
             );
-            this.props.onSearchChange(this.state.keyword)
+            this.props.onSearchChange(keyword);
+            document.getElementsByClassName('scroll-section')[0].scrollTop = -100
         }
-    }
-
-    goToHome() {
-        history._pushRoute(PATHS.ROOT_PATH)
     }
 
     render() {
@@ -79,7 +62,10 @@ class NavbarSearchLayout extends Component {
             <div className="NavbarSearchLayout">
                 <div className="form-group">
                     <div className="input-group">
+                        <i className={"fa fa-search"} onClick={this.handleBlur.bind(this)}/>
                         <input
+                            autoFocus={this.props.autoFocus}
+                            id={"input-search"}
                             className="form-control"
                             type="text"
                             name="search"
@@ -87,7 +73,6 @@ class NavbarSearchLayout extends Component {
                             onKeyPress={this.handleKeyPress.bind(this)}
                             // onBlur={this.handleBlur.bind(this)}
                             onChange={this.inputHandler.bind(this)}
-                            onClick={this.goToHome}
                             placeholder={this.props.searchLabel}
                         />
                     </div>
@@ -101,11 +86,14 @@ class NavbarSearchLayout extends Component {
 NavbarSearchLayout.defaultProps = {
     searchLabel: "Ej: Pibe Valderrama, Comediantes, Músicos",
     onSearchChange: function () {
-    }
+    },
+    autoFocus: false
 };
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
+    isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
+    isLoading: state.celebrities.fetchCelebritiesReducer.loading,
     queryParams: state.celebrities.queryParamsReducer,
 });
 

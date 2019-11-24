@@ -12,4 +12,12 @@
       border: solid 3px $active;
     }
   }
+  .fa.fa-search{
+    position: absolute;
+    top: 1px;
+    z-index: 50000;
+    right: 10px;
+    background: white;
+    padding: 9px;
+  }
 }

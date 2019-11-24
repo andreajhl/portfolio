@@ -57,7 +57,7 @@ class CelebrityCardsSectionLayout extends Component {
                         <div className="item mr-4 mb-2 mx-auto" key={celebrity.id}>
                             <CelebrityCardLayout
                                 celebrity={celebrity}
-                                index={index}
+                                index={index + "_" + celebrity.id}
                             />
                         </div>
                     )
@@ -97,7 +97,7 @@ class CelebrityCardsSectionLayout extends Component {
     render() {
         return (
             <div className="CelebrityCardsSectionLayout">
-                <div className={"f-main-padding"}>
+                <div className={"f-main-padding mt-4"}>
                     {this.renderTitle()}
                     <div className={"scrolling-wrapper " + (this.props.horizontalScroll ? "horizontal-scroll" : "")}>
                         {this.renderCelebritiesCards()}

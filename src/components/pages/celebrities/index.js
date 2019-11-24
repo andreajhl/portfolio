@@ -7,6 +7,7 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import {FooterLayout} from "../../layouts/footer";
+import {history} from "../../../routing/History";
 
 
 class CelebritiesPage extends Component {
@@ -14,7 +15,9 @@ class CelebritiesPage extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            showInputSearchSm: false
+        };
         this.scrollDiv = createRef();
     }
 
@@ -65,7 +68,6 @@ class CelebritiesPage extends Component {
                         {/* CelebrityCardsSectionLayout */}
                         <div className="scroll-section" style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
                              ref={this.scrollDiv}>
-                            <br/>
                             {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
                             {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
                             {/*<pre>state.params.page {this.state.params.page}</pre>*/}
