@@ -1,5 +1,12 @@
 import {combineReducers} from "redux";
 import * as types from "./types";
+import {getTotalColumns} from "../../utils/gridSystem";
+
+const updateQueryParamsInitialState = {
+    page: 1,
+    search: "",
+    page_size: getTotalColumns() * 5
+};
 
 const fetchCelebritiesInitialState = {
     loading: false,
@@ -41,6 +48,14 @@ const fetchPublicContractsInitialState = {
     data: {results: [], pagination_data: {}}
 };
 
+export function queryParamsReducer(state = updateQueryParamsInitialState, action) {
+    if (action.type === types.UPDATE_QUERY_PARAMS) {
+        return action.payload.params;
+    } else {
+        return state
+    }
+}
+
 export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, action) {
     switch (action.type) {
         case types.FETCH_CELEBRITIES_REQUEST:
@@ -62,7 +77,6 @@ export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, ac
                 };
             } else if (action.payload.data.pagination_data.totalItems <= state.data.pagination_data.totalItems) {
                 action.payload.data.results = state.data.results.concat(action.payload.data.results);
-                console.log("action.payload.data.results:", action.payload.data)
                 return {
                     ...fetchCelebritiesInitialState,
                     data:  action.payload.data
@@ -198,6 +212,7 @@ export function fetchPublicContractsReducer(state = fetchPublicContractsInitialS
 }
 
 export default combineReducers({
+    queryParamsReducer,
     fetchCelebritiesReducer,
     fetchSimilarCelebritiesReducer,
     getCelebrityReducer,

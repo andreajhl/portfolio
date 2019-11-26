@@ -101,13 +101,13 @@
 
   .search-sm {
     position: fixed;
-    top: 65px;
     z-index: 1;
     left: -3px;
     right: -3px;
-    height: 50px;
-    padding-left: 10px;
-    padding-right: 10px;
+    background: white;
+    padding: 20px 10px 0;
+    height: 72px;
+    top: 50px;
   }
 
   .btn:hover {

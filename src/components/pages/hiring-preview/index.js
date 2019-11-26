@@ -37,8 +37,6 @@ class HiringPreviewPage extends Component {
                                 <HiringPreviewLayout contract={this.props.contract}/>
                                 : null
                         }
-                        <br/>
-                        <br/>
                     </PageContainer>
                 </div>
             </>

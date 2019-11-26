@@ -5,7 +5,7 @@
   zoom: 80%;
   left: 5vw;
   right: 5vw;
-  min-height: 720px;
+  min-height: 760px;
 
   .main-section {
     left: 5vw;
@@ -14,8 +14,8 @@
     border-radius: 20px;
     background-color: white;
     max-width: 1200px;
-    margin: 20px auto 0;
-    min-height: 680px;
+    margin: 50px auto 50px !important;
+    min-height: 662px;
     padding: 0;
 
     .video-container{
@@ -27,7 +27,8 @@
       }
       .f-video {
         .play-pause {
-          position: absolute;
+          z-index: 1;
+          position: relative;
           top: 30px;
           left: 35px;
           font-size: 45px;
@@ -40,7 +41,7 @@
           right: 0;
           bottom: 0;
           top: 0;
-          min-height: 680px;
+          position: absolute;
           display: block;
           visibility: initial;
           vertical-align: baseline;
@@ -124,17 +125,21 @@
 @media (max-width: 768px) {
   .HiringPreviewLayout {
     .main-section {
-      border-radius: 20px 20px 0 0 !important;
+      border-radius: 0 !important;
       position: relative;
-      max-width: 115vw;
       left: 0 !important;
       right: 0 !important;
+      margin: 0 !important;
 
       .video-container {
-        border-radius: 20px 20px 0 0 !important;
+        border-radius: 0 !important;
 
         *, video, .f-video {
-          border-radius: 20px 20px 0 0 !important;
+          border-radius: 0 !important;
+        }
+
+        .f-video {
+          min-height: 470px !important;
         }
         video {
           min-height: 450px;
@@ -154,4 +159,7 @@
     position: relative !important;
   }
 
+  .reviews{
+    margin-bottom: 20px;
+  }
 }

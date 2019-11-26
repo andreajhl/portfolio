@@ -16,39 +16,20 @@ class PageContainer extends Component {
             params: {status: 50}
         };
 
-        this.fetchCelebrities = this.fetchCelebrities.bind(this);
-        this.onPaginationChange = this.onPaginationChange.bind(this);
-        this.updateParams = this.updateParams.bind(this);
         this.onSearchChange = this.onSearchChange.bind(this);
     }
 
     componentDidMount(): void {
         if(this.props.fetchCelebrities && !this.props.celebrities.length) {
-            this.fetchCelebrities();
+            this.props.fetchCelebrities(this.props.queryParams)
         }
-    }
-
-    fetchCelebrities() {
-        this.props.fetchCelebrities(this.state.params)
-    }
-
-    onPaginationChange(page) {
-        this.updateParams("page", page);
     }
 
     onSearchChange(keywork) {
-        this.updateParams("search", keywork);
-    }
-
-    updateParams(key, value) {
-        const {params} = this.state;
-        params[key] = value;
-        if (key === "search") {
-            params["page"] = 1;
-        }
-        this.setState({
-            params: params,
-        }, () => this.fetchCelebrities());
+        const queryParams = this.props.queryParams;
+        queryParams["search"] = keywork;
+        queryParams["page"] = 1;
+        this.props.updateQueryParams(queryParams);
     }
 
     render() {
@@ -56,7 +37,14 @@ class PageContainer extends Component {
             <div className="PageContainer">
 
                 {/* NavbarSectionLayout */}
-                {this.props.showNavbar ? <NavbarSectionLayout onSearchChange={this.onSearchChange}/> : null}
+                {this.props.showNavbar
+                    ?
+                    <NavbarSectionLayout
+                        onSearchChange={this.onSearchChange}
+                        showInputSearchSm={this.props.showInputSearchSm}
+                    />
+                    : null
+                }
                 {/* End NavbarSectionLayout */}
 
                 {this.props.children}
@@ -87,19 +75,21 @@ PageContainer.defaultProps = {
     paginationData: {},
     onSearchChange: () => {},
     showFooter: true,
-    showNavbar: true
+    showNavbar: true,
 };
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     isLoading: state.celebrities.fetchCelebritiesReducer.loading,
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
-    paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data
+    paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data,
+    queryParams: state.celebrities.queryParamsReducer,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    fetchCelebrities: celebrityOperations.list
+    fetchCelebrities: celebrityOperations.list,
+    updateQueryParams: celebrityOperations.updateQueryParams,
 };
 
 // Export Class

@@ -15,18 +15,9 @@ class CelebritiesPage extends Component {
         super(props);
 
         this.state = {
-            params: {
-                status: 50
-            },
+            showInputSearchSm: false
         };
-
-        this.onPaginationChange = this.onPaginationChange.bind(this);
-        this.updateParams = this.updateParams.bind(this);
-        this.fetchCelebrities = this.fetchCelebrities.bind(this);
-        this.listCountries = this.listCountries.bind(this);
-
         this.scrollDiv = createRef();
-
     }
 
     componentDidMount(): void {
@@ -53,20 +44,10 @@ class CelebritiesPage extends Component {
         }
     }
 
-    fetchCelebrities() {
-        this.props.fetchCelebrities(this.state.params);
-    }
-
     onPaginationChange(page) {
-        this.updateParams("page", page);
-    }
-
-    updateParams(key, value) {
-        const {params}= this.state;
-        params[key] = value;
-        this.setState({
-            params: params,
-        }, () => this.fetchCelebrities());
+        const queryParams = this.props.queryParams;
+        queryParams["page"] = page;
+        this.props.updateQueryParams(queryParams);
     }
 
     render() {
@@ -84,9 +65,8 @@ class CelebritiesPage extends Component {
                         {/*/! End MainMenuLayout *!/*/}
 
                         {/* CelebrityCardsSectionLayout */}
-                        <div className="pt-4 scroll-section" style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
+                        <div className="scroll-section" style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
                              ref={this.scrollDiv}>
-                            <br/>
                             {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
                             {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
                             {/*<pre>state.params.page {this.state.params.page}</pre>*/}
@@ -94,7 +74,8 @@ class CelebritiesPage extends Component {
                             {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
                             <CelebrityCardsSectionLayout
                                 title={"Famosos destacados"}
-                                showShimmerCards={this.props.isLoading}
+                                showShimmerCards={this.props.isLoading && this.props.queryParams.page === 1}
+                                showLoading={this.props.isLoading && this.props.queryParams.page > 1}
                                 celebrities={this.props.celebrities}
                             />
                             {this.props.celebrities.length === this.props.paginationData.totalItems ? <FooterLayout/> : null}
@@ -127,12 +108,14 @@ const mapStateToProps = (state: any) => ({
     isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
     paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data,
-    countries: state.restCountries.fetchCountriesReducer.data
+    queryParams: state.celebrities.queryParamsReducer,
+    countries: state.restCountries.fetchCountriesReducer.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
     fetchCelebrities: celebrityOperations.list,
+    updateQueryParams: celebrityOperations.updateQueryParams,
     listCountries: restCountriesOperations.list,
 };
 
