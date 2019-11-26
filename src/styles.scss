@@ -361,8 +361,10 @@ video {
   display: none !important
 }
 
-.search-sm-active{
-  margin-top: 45px;
+@media (max-width: 768px) {
+  .search-sm-active {
+    margin-top: 75px !important;
+  }
 }
 
 .dv-star-rating-star{
@@ -415,4 +417,8 @@ input, select {
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.form-check-input{
+  height: initial !important;
 }

@@ -2,9 +2,18 @@ import * as types from "./types";
 import apiService from "../../utils/apiService";
 import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
 import * as API_PATHS from './paths';
-import {getTotalColumns} from "../../utils/gridSystem";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+
+
+export const updateQueryParams = (params: {}, applyFetch=true) => {
+    return dispatch => {
+        dispatch({type: types.UPDATE_QUERY_PARAMS, payload: {params}});
+        if(applyFetch){
+            dispatch(list(params))
+        }
+    }
+};
 
 export const get = (object_id) => {
     return dispatch => {
@@ -31,7 +40,7 @@ export const get = (object_id) => {
 
                     dispatch(listReviews(res.data.id, {page: 1}));
                     dispatch(listPublicContracts(res.data.id, {page: 1}));
-                    dispatch(listSimilaties({country__id: res.data.country, category__id: res.data.category.id}));
+                    dispatch(listSimilar({country__id: res.data.country, category__id: res.data.category.id}));
 
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
                 }
@@ -44,10 +53,6 @@ export const get = (object_id) => {
 };
 
 export const list = (params) => {
-    if (params["status"] === undefined) params["status"] = 50;
-    if (params["ordering"] === undefined) params["ordering"] = "top_celebrity";
-    params["page_size"] = getTotalColumns() * 5;
-
     return dispatch => {
         const TYPE = types.FETCH_CELEBRITIES_REQUEST;
         const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "celebrities/";
@@ -78,11 +83,10 @@ export const list = (params) => {
     }
 };
 
-export const listSimilaties = (params) => {
-    if (params["status"] === undefined) params["status"] = 50;
+export const listSimilar = (params) => {
     return dispatch => {
         const TYPE = types.FETCH_SIMILAR_CELEBRITIES_REQUEST;
-        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "celebrities/";
+        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "celebrities/similar/";
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",
