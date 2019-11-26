@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import "./styles.scss";
-import {history} from "../../../routing/History";
-import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {connect} from "react-redux";

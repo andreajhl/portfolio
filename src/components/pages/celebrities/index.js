@@ -7,7 +7,6 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import {FooterLayout} from "../../layouts/footer";
-import {history} from "../../../routing/History";
 
 
 class CelebritiesPage extends Component {
