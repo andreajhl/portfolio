@@ -40,7 +40,7 @@ export const get = (object_id) => {
 
                     dispatch(listReviews(res.data.id, {page: 1}));
                     dispatch(listPublicContracts(res.data.id, {page: 1}));
-                    dispatch(listSimilar({country__id: res.data.country, category__id: res.data.category.id}));
+                    // dispatch(listSimilar({country__id: res.data.country, category__id: res.data.category.id}));
 
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
                 }
@@ -114,7 +114,7 @@ export const listSimilar = (params) => {
     }
 };
 
-export const listReviews = (celebrity_id, params) => {
+export const listReviews = (celebrity_id, params={}) => {
     if (params["page_size"] === undefined) params["page_size"] = 6;
     return dispatch => {
         const TYPE = types.FETCH_REVIEWS_REQUEST;
@@ -146,8 +146,8 @@ export const listReviews = (celebrity_id, params) => {
     }
 };
 
-export const listPublicContracts = (celebrity_id, params) => {
-    if (params["page_size"] === undefined) params["page_size"] = 8;
+export const listPublicContracts = (celebrity_id, params={}) => {
+    if (params["page_size"] === undefined) params["page_size"] = 1;
     return dispatch => {
         const TYPE = types.FETCH_PUBLIC_CONTRACTS_REQUEST;
         const FINAL_PATH = API_PATHS.VIEWSETS_PATH + celebrity_id + "/contracts/";

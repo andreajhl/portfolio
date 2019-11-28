@@ -77,17 +77,15 @@ class CelebrityProfilePage extends Component {
                                 {/* END CelebrityReviewsSection */}
 
                                 {/* CelebrityCardsSectionLayout */}
-                                <div className="mt-4" style={{width: "calc(100vw - 15px)", overflow: "auto"}}
+                                <div className="mt-4" style={{width: "calc(100vw - 15px)", overflow: "auto", height: "350px"}}
                                      ref={this.scrollDiv}>
                                     <CelebrityCardsSectionLayout
                                         title={"Famosos similares"}
                                         showShimmerCards={false}
                                         horizontalScroll={true}
                                         celebrities={this.similarCelebrities()}
+                                        minHeight={false}
                                     />
-                                    <br/>
-                                    <br/>
-                                    <br/>
                                 </div>
                                 {/* End CelebrityCardsSectionLayout */}
                             </>

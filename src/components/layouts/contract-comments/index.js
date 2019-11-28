@@ -23,24 +23,26 @@ class ContractCommentsLayout extends Component {
 
     }
 
-    componentDidMount(): void {
-        apiService({
-            method: "GET",
-            action: TYPES.COMMENT_REQUEST,
-            path: API_PATHS.CONTRACT_BASE_PATH + this.props.contractReference + "/comments/count/",
-            async: true,
-            params: null,
-            body: null
-        })
-            .then(res => {
-                if ("status" in res.data && res.data.status === "ERROR") {
-                    //
-                } else {
-                    this.setState({
-                        commentsCount: res.data.count,
-                    })
-                }
+    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+        if (nextProps.contractReference !== this.props.contractReference) {
+            apiService({
+                method: "GET",
+                action: TYPES.COMMENT_REQUEST,
+                path: API_PATHS.CONTRACT_BASE_PATH + this.props.contractReference + "/comments/count/",
+                async: true,
+                params: null,
+                body: null
             })
+                .then(res => {
+                    if ("status" in res.data && res.data.status === "ERROR") {
+                        //
+                    } else {
+                        this.setState({
+                            commentsCount: res.data.count,
+                        })
+                    }
+                })
+        }
     }
 
     goToContract(){

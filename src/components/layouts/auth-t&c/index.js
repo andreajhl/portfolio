@@ -1,15 +1,22 @@
 import React, {Component} from 'react';
+import {history} from "../../../routing/History";
+import * as PATHS from "../../../routing/Paths";
 
 class AuthTCLayout extends Component {
 
     constructor(props){
         super(props);
 
-        this.openPage = this.openPage.bind(this);
+        this.terms = this.terms.bind(this);
+        this.policy = this.policy.bind(this);
     }
 
-    openPage() {
-        window.open("https://www.famosos.com/politicas", '_blank');
+    terms() {
+        history._pushRoute(PATHS.TERMS_PATH)
+    }
+
+    policy() {
+        history._pushRoute(PATHS.POLICIES_PATH)
     }
 
     render() {
@@ -18,11 +25,11 @@ class AuthTCLayout extends Component {
                 <div className="terms custom-control custom-checkbox p-0">
                     <small>
                         Al continuar acepto de manera expresa e informada los
-                        <b style={{textDecoration: "underline", cursor: "pointer"}} onClick={this.openPage}>
+                        <b style={{textDecoration: "underline", cursor: "pointer"}} onClick={this.terms}>
                             &nbsp;Términos &amp; Condiciones
                         </b>
                         &nbsp;y la&nbsp;
-                        <b style={{textDecoration: "underline", cursor: "pointer"}} onClick={this.openPage}>
+                        <b style={{textDecoration: "underline", cursor: "pointer"}} onClick={this.policy}>
                             Política de Privacidad</b> de Famosos Inc.
                     </small>
                 </div>

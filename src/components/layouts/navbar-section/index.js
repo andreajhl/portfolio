@@ -229,9 +229,7 @@ class NavbarSectionLayout extends Component {
 
 
 // Set propTypes
-NavbarSectionLayout.propTypes = {
-    fetchCelebrities: PropTypes.func.isRequired,
-};
+NavbarSectionLayout.propTypes = {};
 
 // Set defaultProps
 NavbarSectionLayout.defaultProps = {

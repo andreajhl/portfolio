@@ -56,7 +56,7 @@ class CelebrityReviewsSectionLayout extends Component {
                                 {
                                     this.props.reviews.map((review, index) => {
                                         return (
-                                            <div className="col-12 col-md-4 col-lg-4 col-xl-4 mb-4" key={index}>
+                                            <div className="col-12 col-md-4 col-lg-4 col-xl-4 mb-4" key={review.id + "-" + index}>
                                                 <CelebrityReviewCardLayout review={review}/>
                                             </div>
                                         )

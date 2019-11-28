@@ -77,6 +77,7 @@ class CelebritiesPage extends Component {
                                 showShimmerCards={this.props.isLoading && this.props.queryParams.page === 1}
                                 showLoading={this.props.isLoading && this.props.queryParams.page > 1}
                                 celebrities={this.props.celebrities}
+                                minHeight={true}
                             />
                             {this.props.celebrities.length === this.props.paginationData.totalItems ? <FooterLayout/> : null}
                         </div>

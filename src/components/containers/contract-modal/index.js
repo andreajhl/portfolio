@@ -23,7 +23,8 @@ class ContractModal extends Component {
                 is_public: true,
                 stripe_id: ""
             },
-            errors: []
+            errors: [],
+            tokenizeCardLoading: false
         };
 
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -50,6 +51,15 @@ class ContractModal extends Component {
         })
     }
 
+
+    contractTypeLabelClick(value){
+        const contract_data = this.state.contract_data;
+        contract_data["contract_type"] = value;
+        this.setState({
+            contract_data: contract_data
+        })
+    }
+
     handleIsPublic() {
         const contract_data = this.state.contract_data;
         contract_data.is_public = !contract_data.is_public;
@@ -59,7 +69,7 @@ class ContractModal extends Component {
     }
 
     async sendData() {
-        if (!this.props.isLoading) {
+        if (!this.props.isLoading || !this.state.tokenizeCardLoading) {
             // //TODO: 1) Validate Form
             const contract_data = this.state.contract_data;
             const errors = [];
@@ -72,7 +82,7 @@ class ContractModal extends Component {
             if (!contract_data.delivery_contact) {
                 errors.push("delivery_contact");
             }
-            if (!contract_data.instructions) {
+            if (!contract_data.instructions || contract_data.instructions.length > 300) {
                 errors.push("instructions");
             }
             this.setState({errors});
@@ -81,13 +91,18 @@ class ContractModal extends Component {
                 return false;
             } else {
                 // //TODO: 2) Tokenize Card
-                let {token} = await this.childRef.current.state.stripe.createToken();
-                if (token) {
-                    contract_data.stripe_id = token.id;
-                    this.setState({contract_data}, () => {
-                        this.props.saveClientContract(this.state.contract_data);
-                    })
-                }
+                this.setState({tokenizeCardLoading: true}, async () => {
+                    console.log("tokenizeCardLoading:", this.state.tokenizeCardLoading)
+                    let {token} = await this.childRef.current.state.stripe.createToken();
+                    if (token) {
+                        contract_data.stripe_id = token.id;
+                        this.setState({contract_data}, () => {
+                            this.props.saveClientContract(this.state.contract_data);
+                        })
+                    }else{
+                        this.setState({tokenizeCardLoading: false});
+                    }
+                });
             }
         }
     }
@@ -198,7 +213,9 @@ class ContractModal extends Component {
                                         checked={this.state.contract_data.contract_type === 1}
                                         onChange={this.handleValue}
                                     />
-                                    <Form.Check.Label>Para un amigo o familiar</Form.Check.Label>
+                                    <Form.Check.Label onClick={this.contractTypeLabelClick.bind(this, 1)}>
+                                        Para un amigo o familiar
+                                    </Form.Check.Label>
                                 </Form.Check>
                                 <Form.Check type="radio">
                                     <Form.Check.Input
@@ -208,7 +225,9 @@ class ContractModal extends Component {
                                         checked={this.state.contract_data.contract_type === 2}
                                         onChange={this.handleValue}
                                     />
-                                    <Form.Check.Label>Para mi</Form.Check.Label>
+                                    <Form.Check.Label onClick={this.contractTypeLabelClick.bind(this, 2)}>
+                                        Para mi
+                                    </Form.Check.Label>
                                 </Form.Check>
                                 {/*<Form.Check type="radio">*/}
                                 {/*    <Form.Check.Input*/}
@@ -239,7 +258,7 @@ class ContractModal extends Component {
                                               onChange={this.handleValue}
                                 />
                                 <Form.Text className="text-muted">
-                                    Máximo 280 caracteres
+                                    Máximo 300 caracteres
                                 </Form.Text>
                                 {this.showErrorMessage("instructions")}
                             </Form.Group>
@@ -299,11 +318,12 @@ class ContractModal extends Component {
                                     : null
                             }
                             <button
+                                disabled={this.props.isLoading || this.state.tokenizeCardLoading}
                                 className="contract-button hover cursor-pointer p-2 border bg-active"
                                 onClick={this.sendData}
                             >
                                 {
-                                    this.props.isLoading
+                                    this.props.isLoading || this.state.tokenizeCardLoading
                                         ?
                                         <span className="spinner-grow spinner-grow-sm"
                                               role="status"
