@@ -24,25 +24,27 @@ class ContractFavsLayout extends Component {
 
     }
 
-    componentDidMount(): void {
-        apiService({
-            method: "GET",
-            action: TYPES.FAV_REQUEST,
-            path: API_PATHS.CONTRACT_BASE_PATH + this.props.contractReference + "/favs/",
-            async: true,
-            params: null,
-            body: null
-        })
-            .then(res => {
-                if ("status" in res.data && res.data.status === "ERROR") {
-                    //
-                } else {
-                    this.setState({
-                        isFav: res.data.is_fav,
-                        favCount: res.data.count,
-                    })
-                }
+    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+        if(nextProps.contractReference !== this.props.contractReference){
+            apiService({
+                method: "GET",
+                action: TYPES.FAV_REQUEST,
+                path: API_PATHS.CONTRACT_BASE_PATH + this.props.contractReference + "/favs/",
+                async: true,
+                params: null,
+                body: null
             })
+                .then(res => {
+                    if ("status" in res.data && res.data.status === "ERROR") {
+                        //
+                    } else {
+                        this.setState({
+                            isFav: res.data.is_fav,
+                            favCount: res.data.count,
+                        })
+                    }
+                })
+        }
     }
 
     addOrRemoveFav() {

@@ -96,7 +96,7 @@ class CelebrityCardsSectionLayout extends Component {
 
     render() {
         return (
-            <div className="CelebrityCardsSectionLayout">
+            <div className="CelebrityCardsSectionLayout" style={{minHeight: (this.props.minHeight ? "100vh" : "initial")}}>
                 <div className={"f-main-padding mt-4"}>
                     {this.renderTitle()}
                     <div className={"scrolling-wrapper " + (this.props.horizontalScroll ? "horizontal-scroll" : "")}>
@@ -118,7 +118,8 @@ CelebrityCardsSectionLayout.defaultProps = {
     title: "",
     showShimmerCards: true,
     showLoading: false,
-    celebrities: []
+    celebrities: [],
+    minHeight: false
 };
 
 

@@ -57,10 +57,8 @@ class CelebrityPublicContractCardLayout extends Component {
                                playsInline={true}
                                onDoubleClick={(e) => {e.preventDefault(); this.contractFav.current.addOrRemoveFav()}}
                                preload="metadata"
-                        >
-                            <source src={(this.props.publicContract.media) + "#t=0.5"} type="video/mp4"/>
-                            Your browser does not support the video tag.
-                        </video>
+                               src={(this.props.publicContract.media) + "#t=0.5"}
+                       />
                     </div>
                     <div className="body pt-3 pb-2">
                         <div style={{display: "flex"}}>

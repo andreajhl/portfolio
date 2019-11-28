@@ -22,7 +22,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
     }
 
     fetchPublicContracts() {
-        this.props.listPublicContracts(this.state.params);
+        this.props.listPublicContracts(this.props.celebrity.id, this.state.params);
     }
 
     onPaginationChange(page) {
@@ -44,7 +44,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
         return (
             this.props.publicContracts.map((publicContract, index) => {
                 return (
-                    <div className="item mr-4 mb-2 mx-auto" key={index}>
+                    <div className="item mr-4 mb-2 mx-auto" key={index + "-" + publicContract.id}>
                         <CelebrityPublicContractCardLayout
                             publicContract={publicContract}
                         />
