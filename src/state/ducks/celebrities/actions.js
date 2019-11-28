@@ -147,7 +147,7 @@ export const listReviews = (celebrity_id, params={}) => {
 };
 
 export const listPublicContracts = (celebrity_id, params={}) => {
-    if (params["page_size"] === undefined) params["page_size"] = 1;
+    if (params["page_size"] === undefined) params["page_size"] = 8;
     return dispatch => {
         const TYPE = types.FETCH_PUBLIC_CONTRACTS_REQUEST;
         const FINAL_PATH = API_PATHS.VIEWSETS_PATH + celebrity_id + "/contracts/";
