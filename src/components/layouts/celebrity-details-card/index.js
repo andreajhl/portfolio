@@ -128,8 +128,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                 <div
                                                     onClick={this.openModal}
                                                     className="bg-primary f-contract f-rounded hover cursor-pointer text-uppercase">
-                                                    Contratar
-                                                    a {this.props.celebrity.full_name.split(" ")[0]} por ${this.props.celebrity.contracts_price} USD
+                                                    Contratar ahora por ${this.props.celebrity.contracts_price} USD
                                                     <i className="ml-2 fa fa-arrow-right text-white"/>
                                                 </div>
                                             </div>
@@ -310,7 +309,7 @@ class CelebrityDetailsCardLayout extends Component {
                         </div>
                         <div className="footer-btn my-auto p-4" onClick={this.openModal}>
                             <small className="ml-0 float-left text-uppercase text-white font-weight-bold">
-                                Contratar por ${this.props.celebrity.contracts_price} USD
+                                Contratar ahora por ${this.props.celebrity.contracts_price} USD
                             </small>
                             <i className="fa fa-arrow-right float-right text-white" style={{fontSize: "26px"}}/>
                         </div>
