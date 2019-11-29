@@ -94,7 +94,7 @@ class CelebrityDetailsCardLayout extends Component {
     }
 
     goToCause() {
-
+        window.location.replace(this.props.celebrity.cause_url)
     }
 
     render() {
