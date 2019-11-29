@@ -226,10 +226,6 @@ class CelebrityDetailsCardLayout extends Component {
                                        onClick={this.playDesktopVideo.bind(this)}
                                        playsInline={true}
                                        preload="metadata"
-                                       style={{
-                                           background: "url('" + this.props.celebrity.avatar + "')",
-                                           backgroundSize: "cover"
-                                       }}
                                 >
                                     <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4"/>
                                     Your browser does not support the video tag.

@@ -109,7 +109,7 @@ class ContractCommentSectionLayout extends Component {
         return (
             <div className="ContractCommentSectionLayout mb-4 mb-lg-0">
                 <h6 className="font-weight-bold">Comentarios:</h6>
-                <div className="pt-2 scroll-section"
+                <div className="pt-0 scroll-section"
                      style={{height: "300px", overflow: "scroll"}}
                      ref={this.scrollDiv}
                 >

@@ -69,7 +69,7 @@ class CelebrityCardsSectionLayout extends Component {
     renderTitle() {
         if (this.props.title && !this.props.queryParams.search) {
             return (
-                <div className="clearfix">
+                <div className="clearfix pt-4">
                     <h6 className="float-left">
                         <b>{this.props.title}</b>
                     </h6>
@@ -77,7 +77,7 @@ class CelebrityCardsSectionLayout extends Component {
             )
         } else if (this.props.title && this.props.queryParams.search && this.props.celebrities.length) {
             return (
-                <div className="clearfix">
+                <div className="clearfix pt-4">
                     <h6 className="float-left">
                         <b>Famosos encontrados:</b>
                     </h6>
@@ -85,7 +85,7 @@ class CelebrityCardsSectionLayout extends Component {
             )
         } else if (this.props.title && this.props.queryParams.search && !this.props.celebrities.length) {
             return (
-                <div className="clearfix">
+                <div className="clearfix pt-4">
                     <h6 className="float-left">
                         <b>No se encontraron famosos para esta busqueda</b>
                     </h6>

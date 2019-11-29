@@ -6,6 +6,7 @@ class CelebrityShimmerCardLayout extends Component {
     render() {
         return (
             <div className="CelebrityShimmerCardLayout">
+                <div></div>
                 <div className="shimmer-card f-card f-rounded hover f-shadow p-2 pt-0 cursor-pointer text-center mx-auto">
                     <div className="mx-auto">
                         <div className="shimmerBG mr-0"/>

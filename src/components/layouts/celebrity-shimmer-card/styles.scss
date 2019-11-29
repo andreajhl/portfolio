@@ -1,4 +1,5 @@
 .CelebrityShimmerCardLayout{
+
   .shimmer-card {
     margin-bottom: 10px;
     position: relative;
@@ -8,11 +9,15 @@
     border-radius: 6px;
     overflow: hidden;
     width: 180px;
-    height: 253px;
 
     .shimmerBG {
+      height: 100%;
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      border-radius: 0.5rem !important;
+      max-height: 100%;
       text-align: center;
-      height: 160px;
       animation-duration: 2.2s;
       animation-fill-mode: forwards;
       animation-iteration-count: infinite;
@@ -60,17 +65,21 @@
     }
 
   }
+}
 
-  @media (max-width: 768px) {
-    .shimmer-card {
-      margin-bottom: 10px;
-      width: 200px;
-      height: 273px;
+@media (max-width: 768px) {
+  .CelebrityShimmerCardLayout{
+    width: 45vw;
 
-      .shimmerBG {
-        width: 180px;
-        height: 180px;
-      }
+  }
+
+  .shimmer-card {
+    margin-bottom: 10px;
+    width: 100%;
+
+    .shimmerBG {
+      width: 100%;
+      height: 100%;
     }
   }
 }

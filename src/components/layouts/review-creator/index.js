@@ -80,7 +80,7 @@ class ReviewCreatorLayout extends Component {
                         </div>
                         <textarea className={"form-control" + (this.state.showReviewError ? " border-danger " : "")}
                                   autoFocus={true}
-                                  rows={2}
+                                  rows={3}
                                   value={this.state.reviewData.review || ""}
                                   onChange={this.handleChange}
                         />
@@ -127,7 +127,7 @@ class ReviewCreatorLayout extends Component {
                         <textarea className={"form-control" + (this.state.showReviewError ? " border-danger " : "")}
                                   autoFocus={true}
                                   value={this.state.reviewData.review || ""}
-                                  rows={2}
+                                  rows={3}
                                   onChange={this.handleChange}
                         />
                         <button className="btn btn-sm btn-primary mt-2"

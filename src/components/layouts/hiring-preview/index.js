@@ -58,13 +58,13 @@ class HiringPreviewLayout extends Component {
                                 </h5>
                                 <h5>{this.props.contract.delivery_from ? this.props.contract.delivery_from : "----"}</h5>
                                 <hr/>
-                                <h5 className="font-weight-bold">
-                                    Instrucciones
-                                </h5>
-                                <div className="instructions text-justify">
-                                    <h5>{this.props.contract.instructions ? this.props.contract.instructions : "----"}</h5>
-                                </div>
-                                <hr/>
+                                {/*<h5 className="font-weight-bold">*/}
+                                {/*    Instrucciones*/}
+                                {/*</h5>*/}
+                                {/*<div className="instructions text-justify">*/}
+                                {/*    <h5>{this.props.contract.instructions ? this.props.contract.instructions : "----"}</h5>*/}
+                                {/*</div>*/}
+                                {/*<hr/>*/}
                             </div>
                             : null
                     }

@@ -29,14 +29,13 @@ class NavbarSectionLayout extends Component {
     }
 
     componentDidMount(): void {
-        if(this.showInputSearchSmRequired()){
-            this.showSearch()
-        }
+        this.setState({
+            showSearch: new URLSearchParams(history.location.search).get("showInputSearchSm")
+        }, () => this.updateClasses())
     }
 
-    showInputSearchSmRequired() {
-        const showInputSearchSm = new URLSearchParams(history.location.search).get("showInputSearchSm")
-        return showInputSearchSm !== null;
+    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+        this.updateClasses()
     }
 
     goToRootPath() {
@@ -47,7 +46,7 @@ class NavbarSectionLayout extends Component {
         }else{
             this.props.updateQueryParams(queryParams, false);
         }
-        this.showSearch()
+        history._pushRoute(PATHS.ROOT_PATH)
     }
 
     goToSignInPath() {
@@ -70,7 +69,7 @@ class NavbarSectionLayout extends Component {
         this.setState({
             showSearch: !this.state.showSearch
         }, () => {
-            if (this.state.showSearch) {
+            if (this.state.showSearch === true) {
                 history._pushRoute(PATHS.ROOT_PATH + "?showInputSearchSm=true")
             }else{
                 history._pushRoute(PATHS.ROOT_PATH)
@@ -80,7 +79,7 @@ class NavbarSectionLayout extends Component {
     }
 
     updateClasses() {
-        if (this.state.showSearch) {
+        if (this.state.showSearch === true) {
             const fMainPadding = document.getElementsByClassName('f-main-padding');
             const fContainer = document.getElementsByClassName('f-container');
             if (fMainPadding.length) {
@@ -94,10 +93,10 @@ class NavbarSectionLayout extends Component {
             const fMainPadding = document.getElementsByClassName('f-main-padding');
             const fContainer = document.getElementsByClassName('f-container');
             if (fMainPadding.length) {
-                fMainPadding[0].className = ' f-main-padding mt-4';
+                fMainPadding[0].className = ' f-main-padding ';
             }
             if (fContainer.length) {
-                fContainer[0].className = ' f-container mt-4';
+                fContainer[0].className = ' f-container ';
             }
         }
     }

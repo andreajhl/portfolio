@@ -3,13 +3,21 @@ import "./styles.scss";
 import * as GTM from "../../../state/utils/gtm";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {connect} from "react-redux";
+import {history} from "../../../routing/History";
+import * as PATHS from "../../../routing/Paths";
 
 
 class NavbarSearchLayout extends Component {
 
-    state = {
-        keyword: this.props.queryParams.search || ""
-    };
+    constructor(props){
+        super(props);
+
+        this.state = {
+            keyword: this.props.queryParams.search || ""
+        };
+
+        this.goToHome = this.goToHome.bind(this)
+    }
 
     componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
         if (nextProps.removeKeywords) {
@@ -55,6 +63,10 @@ class NavbarSearchLayout extends Component {
         }
     }
 
+    goToHome(){
+        history._pushRoute(PATHS.ROOT_PATH + "?inputSearchFocus=true")
+    }
+
     render() {
         return (
             <div className="NavbarSearchLayout">
@@ -62,14 +74,25 @@ class NavbarSearchLayout extends Component {
                     <div className="input-group">
                         <i className={"fa fa-search"} onClick={this.handleBlur.bind(this)}/>
                         <input
-                            autoFocus={this.props.autoFocus}
+                            autoFocus={new URLSearchParams(history.location.search).get("inputSearchFocus")}
                             id={"input-search"}
-                            className="form-control"
+                            className="form-control f-items d-none d-md-block"
                             type="text"
                             name="search"
                             value={this.state.keyword}
                             onKeyPress={this.handleKeyPress.bind(this)}
-                            // onBlur={this.handleBlur.bind(this)}
+                            onClick={this.goToHome}
+                            onChange={this.inputHandler.bind(this)}
+                            placeholder={this.props.searchLabel}
+                        />
+                        <input
+                            autoFocus={this.props.autoFocus}
+                            id={"input-search"}
+                            className="form-control f-items d-block d-md-none"
+                            type="text"
+                            name="search"
+                            value={this.state.keyword}
+                            onKeyPress={this.handleKeyPress.bind(this)}
                             onChange={this.inputHandler.bind(this)}
                             placeholder={this.props.searchLabel}
                         />
