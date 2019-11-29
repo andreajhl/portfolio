@@ -168,7 +168,7 @@ class CelebrityDetailsCardLayout extends Component {
                                         this.props.celebrity.is_donor
                                             ?
                                             <div className="col-12 mt-1 text-justify">
-                                                <div className="foundation" onClick={this.goToCause()}>
+                                                <div className="foundation" onClick={this.goToCause}>
                                                     <i className="fas fa-hand-holding-heart"/>
                                                     <img className="bookmark" src="/assets/img/bookmark.svg"
                                                          alt="bookmark"/>
@@ -335,7 +335,7 @@ class CelebrityDetailsCardLayout extends Component {
                         ?
                         <div className="d-block d-md-none profile-sm-foundation">
                             <div className="col-12 mt-4 text-justify">
-                                <div className="foundation" onClick={this.goToCause()}>
+                                <div className="foundation" onClick={this.goToCause}>
                                     <i className="fas fa-hand-holding-heart"/>
                                     <img className="bookmark" src="/assets/img/bookmark.svg"
                                          alt="bookmark"/>
