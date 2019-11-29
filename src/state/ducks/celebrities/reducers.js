@@ -5,7 +5,7 @@ import {getTotalColumns} from "../../utils/gridSystem";
 const updateQueryParamsInitialState = {
     page: 1,
     search: "",
-    page_size: getTotalColumns() * 5
+    page_size: getTotalColumns() * 7
 };
 
 const fetchCelebritiesInitialState = {

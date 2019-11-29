@@ -49,12 +49,13 @@ class CelebrityCardLayout extends Component {
                 <div className="card f-card f-rounded hover f-shadow p-2 cursor-pointer"
                      onClick={this.goToCelebrityProfile}
                 >
-                    <div className="text-center mx-auto">
-                        <div className="f-image border f-rounded">
+                    <div
+                        className={"text-center mx-auto border f-rounded " + (!this.state.imageLoaded ? " profile-section " : "")}>
+                        <div className="f-image border f-rounded" style={{display: this.state.imageLoaded ? "block" : "none"}}>
                             <img className="card-img-top f-rounded"
                                  alt="avatar"
                                  onLoad={this.handleImageLoaded}
-                                 src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
+                                 src={this.props.celebrity.avatar}
                             />
                         </div>
                     </div>

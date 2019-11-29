@@ -5,6 +5,14 @@
     margin-bottom: 10px;
     width: 180px;
 
+    .profile-section{
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      background-color: $dark;
+      border-radius: 0.5rem !important;
+    }
+
     .f-image {
       position: relative;
       width: 160px;

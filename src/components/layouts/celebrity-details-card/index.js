@@ -176,7 +176,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                     <div className="celebrity-data">
                                                         <small>
                                                             {this.props.celebrity.full_name} dona
-                                                            parte <br/> de sus ingresos a:
+                                                            <br/> sus ingresos a:
                                                         </small>
                                                     </div>
                                                     <div className="cause-name">
@@ -184,8 +184,12 @@ class CelebrityDetailsCardLayout extends Component {
                                                             {this.props.celebrity.cause_name}
                                                         </small>
                                                     </div>
-                                                    <img className="cause_logo" src={this.props.celebrity.cause_logo}
-                                                         alt="cause_logo"/>
+                                                    {
+                                                        this.props.celebrity.cause_logo &&
+                                                        <img className="cause_logo"
+                                                             src={this.props.celebrity.cause_logo}
+                                                             alt="cause_logo"/>
+                                                    }
                                                     <i className="fas fa-arrow-right text-primary"/>
                                                 </div>
                                             </div>
@@ -223,6 +227,10 @@ class CelebrityDetailsCardLayout extends Component {
                                        onClick={this.playDesktopVideo.bind(this)}
                                        playsInline={true}
                                        preload="metadata"
+                                       style={{
+                                           background: "url('" + this.props.celebrity.avatar + "')",
+                                           backgroundSize: "cover"
+                                       }}
                                 >
                                     <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4"/>
                                     Your browser does not support the video tag.
@@ -335,7 +343,7 @@ class CelebrityDetailsCardLayout extends Component {
                                     <div className="celebrity-data">
                                         <small>
                                             {this.props.celebrity.full_name} dona
-                                            parte <br/> de sus ingresos a:
+                                            <br/> sus ingresos a:
                                         </small>
                                     </div>
                                     <div className="cause-name">
@@ -343,8 +351,11 @@ class CelebrityDetailsCardLayout extends Component {
                                             {this.props.celebrity.cause_name}
                                         </small>
                                     </div>
-                                    <img className="cause_logo" src={this.props.celebrity.cause_logo}
-                                         alt="cause_logo"/>
+                                    {
+                                        this.props.celebrity.cause_logo &&
+                                        <img className="cause_logo" src={this.props.celebrity.cause_logo}
+                                             alt="cause_logo"/>
+                                    }
                                 </div>
                             </div>
                         </div>
