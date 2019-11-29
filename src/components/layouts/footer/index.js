@@ -71,7 +71,7 @@ class FooterLayout extends Component {
 
                             <div className="col-12 col-md-4 col-lg-4 col-two">
                                 <div className="col-title">
-                                    ¿Tienes mas de 50k seguidores en redes?
+                                    ¿Tienes más de 50k seguidores en redes?
                                 </div>
                                 <div className="col-button">
                                     <button className="btn btn-primary" onClick={this.goToApply}>
@@ -84,7 +84,7 @@ class FooterLayout extends Component {
                             <div className="col-12 col-md-4 col-lg-4 col-three">
                                 <ul className="list-inline">
                                     <li className="list-inline-item mr-3 font-weight-bold">
-                                        Siguenos en Redes
+                                        Síguenos en Redes
                                     </li>
                                     <li className="list-inline-item mr-3" onClick={this.goToFamososFacebook}>
                                         <img className="cursor-pointer" src="/assets/img/facebook-white.svg" width="30px"/>

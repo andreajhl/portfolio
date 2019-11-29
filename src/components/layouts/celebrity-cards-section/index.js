@@ -125,7 +125,6 @@ CelebrityCardsSectionLayout.defaultProps = {
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
     queryParams: state.celebrities.queryParamsReducer,
 });
 

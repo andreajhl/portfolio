@@ -2,10 +2,10 @@
 
 .HiringPreviewLayout {
 
-  zoom: 80%;
+  zoom: 70%;
   left: 5vw;
   right: 5vw;
-  min-height: 760px;
+  min-height: 830px;
 
   .main-section {
     left: 5vw;
@@ -53,8 +53,8 @@
 
     .share-div {
       position: absolute;
-      right: 10px;
-      top: 70px;
+      left: 40px;
+      top: 100px;
     }
 
     .close-button {
@@ -95,7 +95,7 @@
       }
 
       .to-from {
-        margin-top: 50px;
+
       }
       .instructions{
         height: 40px;

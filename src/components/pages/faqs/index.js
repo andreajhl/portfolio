@@ -27,7 +27,7 @@ class FaqsPage extends Component {
                             </li>
                             <li>
                                 <span className="font-weight-bold">¿Cómo puedo trabajar con Famosos?</span>
-                                <p>Si deseas hacer parte de nuestro equipo envíanos una carta de motivación de
+                                <p>Si deseas hacer nuestro equipo envíanos una carta de motivación de
                                     por qué quieres unirte a nuestro equipo de Rock stars a jobs@famosos.com</p>
                             </li>
                             <li>

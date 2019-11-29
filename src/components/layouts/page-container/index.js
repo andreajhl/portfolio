@@ -20,8 +20,10 @@ class PageContainer extends Component {
     }
 
     componentDidMount(): void {
-        if(this.props.fetchCelebrities && !this.props.celebrities.length) {
-            this.props.fetchCelebrities(this.props.queryParams)
+        if(this.props.fetchCelebrities) {
+            const queryParams = this.props.queryParams;
+            queryParams["page"] = 1;
+            this.props.updateQueryParams(queryParams);
         }
     }
 

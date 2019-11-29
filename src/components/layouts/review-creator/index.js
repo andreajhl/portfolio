@@ -65,11 +65,11 @@ class ReviewCreatorLayout extends Component {
             return (
                 <>
                     <h5 className="font-weight-bold">
-                        Enviale un comentario
+                        Envíale un comentario
                         a {this.props.contract.celebrity ? this.props.contract.celebrity.full_name : null}</h5>
                     <div className="mt-2">
                         <div className="mb-2">
-                            <small>¿Cuantas estrellas le das a este video?</small>
+                            <h6>¿Cuántas estrellas le das a este video?</h6>
                             <br/>
                             <StarRatingComponent
                                 name="rate1"
@@ -115,7 +115,7 @@ class ReviewCreatorLayout extends Component {
                         a {this.props.contract.celebrity ? this.props.contract.celebrity.full_name : null}</h5>
                     <div className="mt-2">
                         <div className="mb-2">
-                            <small>¿Cuantas estrellas le das a este video?</small>
+                            <h6>¿Cuántas estrellas le das a este video?</h6>
                             <br/>
                             <StarRatingComponent
                                 name="rate1"

@@ -127,23 +127,25 @@ class HiringPreviewLayout extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="col-sm-12 col-md-5 col-lg-5 details-container p-0 m-0">
-                            <div className="close-button" onClick={this.goToCelebrity}>
-                                <i className="fa fa-times-circle"/>
-                            </div>
-                            <div className="share-div">
-                                <ShareContractLayout  contract={this.props.contract}/>
-                            </div>
+                        <div className="col-sm-12 col-md-5 col-lg-5 details-container p-0 m-0" style={{height: "730px"}}>
                             <div className="video-details">
                                 <div className="titles">
-                                    <div className="wrap-text" onClick={this.goToCelebrity}>
+                                    <div className="wrap-text">
                                         <img className="celebrity-avatar"
                                              src={this.props.contract.celebrity ? this.props.contract.celebrity.avatar : ""}
-                                             alt={"avatar"} />
-                                        <h3 className="font-weight-bold cursor-pointer">
+                                             alt={"avatar"}
+                                             onClick={this.goToCelebrity}
+                                        />
+                                        <h3 className="ml-2 font-weight-bold cursor-pointer" onClick={this.goToCelebrity}>
                                             {this.props.contract.celebrity ? this.props.contract.celebrity.full_name : "----"}
                                         </h3>
                                         <br/>
+                                        <div className="mt-4 mb-4">
+                                            <h6 className="font-weight-bold">
+                                                Compartir video en:
+                                            </h6>
+                                            <ShareContractLayout  contract={this.props.contract}/>
+                                        </div>
                                     </div>
                                     {this.renderContractDetails()}
                                 </div>

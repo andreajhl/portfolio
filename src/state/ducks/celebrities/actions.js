@@ -40,7 +40,10 @@ export const get = (object_id) => {
 
                     dispatch(listReviews(res.data.id, {page: 1}));
                     dispatch(listPublicContracts(res.data.id, {page: 1}));
-                    // dispatch(listSimilar({country__id: res.data.country, category__id: res.data.category.id}));
+                    dispatch(listSimilar( {
+                        country__code: res.data.country_code,
+                        category__title: res.data.category
+                    }));
 
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
                 }
@@ -86,7 +89,7 @@ export const list = (params) => {
 export const listSimilar = (params) => {
     return dispatch => {
         const TYPE = types.FETCH_SIMILAR_CELEBRITIES_REQUEST;
-        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "celebrities/similar/";
+        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "celebrities/";
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",

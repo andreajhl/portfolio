@@ -3,7 +3,6 @@ import "./styles.scss";
 import {NavbarSearchLayout} from "../navbar-search";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
-import * as PropTypes from "prop-types";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {connect} from "react-redux";
 import {Session} from "../../../state/utils/session";

@@ -92,7 +92,7 @@ class ContractCommentSectionLayout extends Component {
             )
         } else {
             return (
-                <h6>Este video no tiene comentarios, sé el primero en agregar uno.</h6>
+                <h6>Sé el primero en agregar un comentario.</h6>
             )
         }
     };
@@ -107,10 +107,10 @@ class ContractCommentSectionLayout extends Component {
 
     render() {
         return (
-            <div className="ContractCommentSectionLayout mt-2 mb-4 mb-lg-0">
+            <div className="ContractCommentSectionLayout mb-4 mb-lg-0">
                 <h6 className="font-weight-bold">Comentarios:</h6>
                 <div className="pt-2 scroll-section"
-                     style={{height: "330px", overflow: "scroll"}}
+                     style={{height: "300px", overflow: "scroll"}}
                      ref={this.scrollDiv}
                 >
                     {this.renderContractComments()}

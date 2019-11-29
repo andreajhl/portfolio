@@ -39,9 +39,7 @@ class CelebritiesPage extends Component {
     }
 
     listCountries() {
-        if (this.props.countries.length === 0) {
-            this.props.listCountries()
-        }
+        this.props.listCountries()
     }
 
     onPaginationChange(page) {
@@ -79,7 +77,8 @@ class CelebritiesPage extends Component {
                                 celebrities={this.props.celebrities}
                                 minHeight={true}
                             />
-                            {this.props.celebrities.length === this.props.paginationData.totalItems ? <FooterLayout/> : null}
+                            {this.props.celebrities.length === this.props.paginationData.totalItems ?
+                                <FooterLayout/> : null}
                         </div>
                         {/* End CelebrityCardsSectionLayout */}
                     </PageContainer>

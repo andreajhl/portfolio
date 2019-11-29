@@ -10,7 +10,7 @@ const checkSession = (Component, props, groups, requireClientID) => {
     const redirectToLogin = <Redirect to={{pathname: PATHS.SIGN_IN_PATH, state: {from: props.location}}}/>;
     // const redirectToNotFound = <Redirect to={{pathname: PATHS.NOT_FOUND_PATH, state: {from: props.location}}}/>;
     // const redirectToNotAuthorized = <Redirect to={{pathname: PATHS.NOT_AUTHORIZED_PATH, state: {from: props.location}}}/>;
-    const redirectToHome = <Redirect to={{pathname: PATHS.ROOT_PATH, state: {from: props.location}}}/>;
+    // const redirectToHome = <Redirect to={{pathname: PATHS.ROOT_PATH, state: {from: props.location}}}/>;
     const renderComponent = <Component {...props} />;
 
     if (!session.getSession() || session.tokenExpired()) {

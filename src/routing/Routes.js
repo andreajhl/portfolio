@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Route, Router, Switch, Redirect} from 'react-router-dom';
+import { Switch, Router, Route,} from 'react-router';
 // Paths
 import * as PATHS from './Paths';
 // Pages
@@ -20,14 +20,11 @@ class MyRoutes extends Component {
                         {/* ############### */}
                         <Route
                             exact
-                            strict
                             path={"/"}
-                        >
-                            <Redirect to={PATHS.ROOT_PATH}/>
-                        </Route>
+                            component={() => {window.location.replace("https://aplica.famosos.com/")}}
+                        />
                         <Route
                             exact
-                            strict
                             path={PATHS.ROOT_PATH}
                             component={PAGES.CelebritiesPage}
                         />
@@ -133,7 +130,7 @@ class MyRoutes extends Component {
                             component={PAGES.HiringPreviewPage}
                         />
                         {/* ------- */}
-                        <Route path="*" component={PAGES.CelebritiesPage}/>
+                        {/*<Route path="*" component={PAGES.CelebritiesPage}/>*/}
                     </Switch>
                 </Router>
             </>
