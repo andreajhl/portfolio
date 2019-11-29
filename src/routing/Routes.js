@@ -21,7 +21,7 @@ class MyRoutes extends Component {
                         <Route
                             exact
                             path={"/"}
-                            component={() => {window.location.replace("https://aplica.famosos.com/")}}
+                            component={() => {window.location.replace("https://landing.famosos.com/")}}
                         />
                         <Route
                             exact
