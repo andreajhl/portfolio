@@ -39,14 +39,17 @@ class NavbarSectionLayout extends Component {
     }
 
     goToRootPath() {
-        const queryParams = this.props.queryParams;
-        queryParams["search"] = "";
-        if(this.props.queryParams.search === ""){
-            this.props.updateQueryParams(queryParams, true);
-        }else{
-            this.props.updateQueryParams(queryParams, false);
+        console.log("window.location.pathname:", window.location.pathname)
+        if(window.location.pathname !== "/inicio/") {
+            const queryParams = this.props.queryParams;
+            queryParams["search"] = "";
+            if(this.props.queryParams.search === ""){
+                this.props.updateQueryParams(queryParams, true);
+            }else{
+                this.props.updateQueryParams(queryParams, false);
+            }
+            history._pushRoute(PATHS.ROOT_PATH)
         }
-        history._pushRoute(PATHS.ROOT_PATH)
     }
 
     goToSignInPath() {

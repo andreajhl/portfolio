@@ -48,6 +48,8 @@
           -moz-border-radius: 30px;
           border-radius: 30px;
           padding: 5px 40px;
+          border-color: $soft-grey;
+          color: $soft-grey;
         }
 
         .f-social-network {
@@ -108,7 +110,6 @@
       }
 
       .foundation {
-        cursor: pointer;
         margin-top: 20px !important;
         background: white;
         height: 68px;
@@ -134,7 +135,7 @@
           position: absolute;
           left: 75px;
           top: 17px;
-          width: 200px;
+          width: 180px;
           text-align: left;
           height: 45px;
           line-height: 15px;
@@ -146,12 +147,11 @@
 
         .cause-name {
           position: absolute;
-          left: 270px;
-          top: 17px;
-          width: 160px;
+          left: 210px;
+          top: 27px;
+          width: 310px;
           text-align: left;
           line-height: 15px;
-
           small {
             font-weight: 600;
           }
@@ -164,11 +164,12 @@
           top: 8px;
         }
 
-        .fas.fa-arrow-right {
+        .fa.fa-info-circle {
           position: absolute;
-          font-size: 20px;
-          bottom: 20px;
+          font-size: 12px;
+          top: 12px;
           right: 10px;
+          color: $soft-grey;
         }
       }
       .description{
@@ -333,6 +334,14 @@
         top: 23px;
         right: 0;
         color: $dark;
+      }
+
+      .fa.fa-info-circle {
+        position: absolute;
+        font-size: 12px;
+        top: 12px;
+        right: 10px;
+        color: $soft-grey;
       }
 
     }

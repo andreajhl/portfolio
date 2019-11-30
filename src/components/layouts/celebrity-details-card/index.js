@@ -168,13 +168,13 @@ class CelebrityDetailsCardLayout extends Component {
                                         this.props.celebrity.is_donor
                                             ?
                                             <div className="col-12 mt-1 text-justify">
-                                                <div className="foundation" onClick={this.goToCause}>
+                                                <div className="foundation" >
                                                     <i className="fas fa-hand-holding-heart"/>
                                                     <img className="bookmark" src="/assets/img/bookmark.svg"
                                                          alt="bookmark"/>
                                                     <div className="celebrity-data">
                                                         <small>
-                                                            {this.props.celebrity.full_name} dona
+                                                            {this.props.celebrity.full_name} dona de
                                                             <br/> sus ingresos a:
                                                         </small>
                                                     </div>
@@ -183,18 +183,23 @@ class CelebrityDetailsCardLayout extends Component {
                                                             {this.props.celebrity.cause_name}
                                                         </small>
                                                     </div>
-                                                    {
-                                                        this.props.celebrity.cause_logo &&
-                                                        <img className="cause_logo"
-                                                             src={this.props.celebrity.cause_logo}
-                                                             alt="cause_logo"/>
-                                                    }
-                                                    <i className="fas fa-arrow-right text-primary"/>
+                                                    {/*{*/}
+                                                    {/*    this.props.celebrity.cause_logo &&*/}
+                                                    {/*    <img className="cause_logo"*/}
+                                                    {/*         src={this.props.celebrity.cause_logo}*/}
+                                                    {/*         alt="cause_logo"/>*/}
+                                                    {/*}*/}
+                                                    <i className="fa fa-info-circle customTooltip">
+                                                        <span className="tooltipText">
+                                                            No existe ninguna relación entre Famosos Inc y esta fundación
+                                                        </span>
+                                                    </i>
                                                 </div>
                                             </div>
                                             :
                                             null
                                     }
+
                                     <div className="col-12 text-justify" style={{height: "20px"}}>
                                         {
                                             this.props.socialNetworks
@@ -331,13 +336,13 @@ class CelebrityDetailsCardLayout extends Component {
                         ?
                         <div className="d-block d-md-none profile-sm-foundation">
                             <div className="col-12 mt-4 text-justify">
-                                <div className="foundation" onClick={this.goToCause}>
+                                <div className="foundation" >
                                     <i className="fas fa-hand-holding-heart"/>
                                     <img className="bookmark" src="/assets/img/bookmark.svg"
                                          alt="bookmark"/>
                                     <div className="celebrity-data">
                                         <small>
-                                            {this.props.celebrity.full_name} dona
+                                            {this.props.celebrity.full_name} dona de
                                             <br/> sus ingresos a:
                                         </small>
                                     </div>
@@ -346,11 +351,16 @@ class CelebrityDetailsCardLayout extends Component {
                                             {this.props.celebrity.cause_name}
                                         </small>
                                     </div>
-                                    {
-                                        this.props.celebrity.cause_logo &&
-                                        <img className="cause_logo" src={this.props.celebrity.cause_logo}
-                                             alt="cause_logo"/>
-                                    }
+                                    <i className="fa fa-info-circle customTooltip">
+                                        <span className="tooltipText">
+                                            No existe ninguna relación entre Famosos Inc y esta fundación
+                                        </span>
+                                    </i>
+                                    {/*{*/}
+                                    {/*    this.props.celebrity.cause_logo &&*/}
+                                    {/*    <img className="cause_logo" src={this.props.celebrity.cause_logo}*/}
+                                    {/*         alt="cause_logo"/>*/}
+                                    {/*}*/}
                                 </div>
                             </div>
                         </div>

@@ -331,14 +331,13 @@ class ContractModal extends Component {
                                         />
                                         :
                                         <span className="text-white">
-                                           CONTRATAR A {this.props.celebrity.full_name.split(" ")[0]}
+                                           CONTRATAR AHORA
                                         </span>
                                 }
                             </button>
                             <div className="mt-2 mb-4">
                                 <small>
-                                    Cargaremos a tu tarjeta {this.props.celebrity.contracts_price} USD solamente cuando
-                                    recibas tu video
+                                    Pondremos una reserva de cupo en tu tarjeta de ${this.props.celebrity.contracts_price} USD y el cobro se completará únicamente si recibes tu video.
                                 </small>
                             </div>
                         </div>
