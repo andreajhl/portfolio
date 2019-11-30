@@ -24,30 +24,28 @@ class IndexHeaderLayout extends Component {
                 {
                     this.state.showHeader === true
                         ?
-                        <div className="IndexHeaderLayout mt-2">
+                        <div className="IndexHeaderLayout">
                             <div className="header">
-                                <div className="f-main-padding">
-                                    <div className="mr-4 ml-4 text-center p-4 index-header">
-                                        <i className="fa fa-times-circle fa-2x text-white" onClick={this.hideHeader}/>
-                                        <img width="150px" src="/assets/img/demo.svg" alt="avatar"/>
-                                        <div className="mt-4 mb-4 text-white">
-                                            <h6 className="font-weight-bold">Contrata famosos para que graben <br/>videos
-                                                personalizados con tus mensajes</h6>
-                                            <small className="mt-2">
-                                                Regalos de Cumpleaños, Invitaciones a Eventos, Declaraciones de Amor
-                                            </small>
-                                            <br className="m-0 p-0"/>
-                                            <small>
-                                                Mensajes Corporativos, Contenidos Para Redes Sociales y Muchos Más!
-                                            </small>
-                                        </div>
-                                        <div onClick={this.hideHeader} style={{cursor: "pointer"}}>
-                                            <h6 className="mt-4 pt-4 font-weight-bold text-white">
-                                                Ver Famosos
-                                            </h6>
-                                            <img width="20px" className="mt-0 pt-0" src="/assets/img/circle-down.svg"
-                                                 alt="avatar"/>
-                                        </div>
+                                <div className="text-center p-4 index-header">
+                                    <i className="fa fa-times-circle fa-2x text-white" onClick={this.hideHeader}/>
+                                    <img width="150px" src="/assets/img/demo.svg" alt="avatar"/>
+                                    <div className="mt-4 mb-4 text-white">
+                                        <h6 className="font-weight-bold">Contrata famosos para que graben <br/>videos
+                                            personalizados con tus mensajes</h6>
+                                        <small className="mt-2">
+                                            Regalos de Cumpleaños, Invitaciones a Eventos, Declaraciones de Amor
+                                        </small>
+                                        <br className="m-0 p-0"/>
+                                        <small>
+                                            Mensajes Corporativos, Contenidos Para Redes Sociales y Muchos Más!
+                                        </small>
+                                    </div>
+                                    <div onClick={this.hideHeader} style={{cursor: "pointer"}}>
+                                        <h6 className="mt-4 pt-4 font-weight-bold text-white">
+                                            Ver Famosos
+                                        </h6>
+                                        <img width="20px" className="mt-0 pt-0" src="/assets/img/circle-down.svg"
+                                             alt="avatar"/>
                                     </div>
                                 </div>
                             </div>

@@ -39,7 +39,6 @@ class NavbarSectionLayout extends Component {
     }
 
     goToRootPath() {
-        console.log("window.location.pathname:", window.location.pathname)
         if(window.location.pathname !== "/inicio/") {
             const queryParams = this.props.queryParams;
             queryParams["search"] = "";
