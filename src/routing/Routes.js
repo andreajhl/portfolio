@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import { Switch, Router, Route,} from 'react-router';
+import { Switch, Router, Route,Redirect} from 'react-router';
 // Paths
 import * as PATHS from './Paths';
 // Pages
@@ -18,11 +18,9 @@ class MyRoutes extends Component {
                         {/* ############### */}
                         {/* GENERAL PATHS */}
                         {/* ############### */}
-                        <Route
-                            exact
-                            path={"/"}
-                            component={() => {window.location.replace("https://landing.famosos.com/")}}
-                        />
+                        <Route exact path="/">
+                            <Redirect to={PATHS.ROOT_PATH} />
+                        </Route>
                         <Route
                             exact
                             path={PATHS.ROOT_PATH}
