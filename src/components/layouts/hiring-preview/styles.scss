@@ -139,10 +139,13 @@
         }
 
         .f-video {
-          min-height: 470px !important;
-        }
-        video {
-          min-height: 450px;
+          padding-top: 100% !important;
+          video {
+            min-height: 100%;
+          }
+          i{
+            position: absolute !important;
+          }
         }
       }
       .share-div {
