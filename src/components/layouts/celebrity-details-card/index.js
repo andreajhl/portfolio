@@ -174,8 +174,8 @@ class CelebrityDetailsCardLayout extends Component {
                                                          alt="bookmark"/>
                                                     <div className="celebrity-data">
                                                         <small>
-                                                            {this.props.celebrity.full_name}
-                                                            <br/>dona de sus ingresos a:
+                                                            {this.props.celebrity.full_name} dona <br/>
+                                                             de sus ingresos a:
                                                         </small>
                                                     </div>
                                                     <div className="cause-name">
