@@ -35,6 +35,14 @@ class ContractModal extends Component {
         this.childRef = React.createRef();
     }
 
+    componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+        if (nextProps.isLoading === false && this.props.isLoading === true) {
+            this.setState({
+                tokenizeCardLoading: false
+            })
+        }
+    }
+
     handleCloseModal() {
         this.props.onHide()
     }
@@ -320,7 +328,7 @@ class ContractModal extends Component {
                                     : null
                             }
                             <button
-                                disabled={this.props.isLoading || this.state.tokenizeCardLoading}
+                                disabled={(this.props.isLoading || this.state.tokenizeCardLoading)}
                                 className="contract-button hover cursor-pointer p-2 border bg-active"
                                 onClick={this.sendData}
                             >
@@ -337,6 +345,16 @@ class ContractModal extends Component {
                                         </span>
                                 }
                             </button>
+                            {
+                                this.props.saveClientContractError
+                                    ?
+                                    <div className="mt-2">
+                                        <small className="text-danger">
+                                            El pago no pudo ser procesado, contáctanos a experiencias@famosos.com.
+                                        </small>
+                                    </div>
+                                    : null
+                            }
                             <div className="mt-2 mb-4">
                                 <small>
                                     Pondremos una reserva de cupo en tu tarjeta de ${this.props.celebrity.contracts_price} USD y el cobro se completará únicamente si recibes tu video.
@@ -361,6 +379,7 @@ ContractModal.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     isLoading: state.contracts.saveClientContractReducer.loading,
+    saveClientContractError: state.contracts.saveClientContractReducer.error_data.error,
 });
 
 // mapStateToProps

@@ -277,10 +277,10 @@ class CelebrityDetailsCardLayout extends Component {
                                 </div>
                             </div>
                             <div className="col-5 mt-3 pl-0 text-right">
-                                <div className="margin-right-5w">
-                                    {/*<button className="btn btn-outline-secondary btn-sm f-follow-button">*/}
-                                    {/*    Seguir*/}
-                                    {/*</button>*/}
+                                <div className="margin-right-5w" onClick={this.openModal}>
+                                    <button className="btn btn-outline-primary btn-sm f-follow-button">
+                                        Contratar
+                                    </button>
                                 </div>
                             </div>
                             <div className="col-5 pr-0">
