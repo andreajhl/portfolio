@@ -72,6 +72,8 @@ class ContractModal extends Component {
         if (!this.props.isLoading || !this.state.tokenizeCardLoading) {
             // //TODO: 1) Validate Form
             const contract_data = this.state.contract_data;
+            contract_data.celebrity_id = this.props.celebrity.id;
+
             const errors = [];
             if (contract_data.contract_type === 1 && !contract_data.delivery_from) {
                 errors.push("delivery_from");

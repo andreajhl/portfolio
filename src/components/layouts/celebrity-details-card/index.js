@@ -120,9 +120,9 @@ class CelebrityDetailsCardLayout extends Component {
                                                 <h5 className="text-dark font-weight-bold pt-1 m-0">{this.props.celebrity.full_name}</h5>
                                             </div>
                                             <div className="col-4 p-0 m-0 text-center my-auto">
-                                                <button className="btn btn-outline-secondary btn-sm f-follow-button">
-                                                    Seguir
-                                                </button>
+                                                {/*<button className="btn btn-outline-secondary btn-sm f-follow-button">*/}
+                                                {/*    Seguir*/}
+                                                {/*</button>*/}
                                             </div>
                                             <div className="col-12 p-0 m-0 text-center pr-0">
                                                 <div
@@ -278,9 +278,9 @@ class CelebrityDetailsCardLayout extends Component {
                             </div>
                             <div className="col-5 mt-3 pl-0 text-right">
                                 <div className="margin-right-5w">
-                                    <button className="btn btn-outline-secondary btn-sm f-follow-button">
-                                        Seguir
-                                    </button>
+                                    {/*<button className="btn btn-outline-secondary btn-sm f-follow-button">*/}
+                                    {/*    Seguir*/}
+                                    {/*</button>*/}
                                 </div>
                             </div>
                             <div className="col-5 pr-0">
