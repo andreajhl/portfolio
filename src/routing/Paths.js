@@ -27,3 +27,6 @@ export const CLIENT_PROFILE = '/my-account/profile';
 export const CLIENT_HIRINGS = '/my-account/hirings';
 export const HIRING_PREVIEW = '/hirings/:contract_reference';
 export const HIRING_PREVIEW_WITHOUT_SESSION = '/hirings/:contract_reference';
+
+// TRENDING
+export const TRENDING = '/tendencias/';

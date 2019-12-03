@@ -1,0 +1,124 @@
+import React, {Component, createRef} from 'react';
+import {CelebrityCardsSectionLayout, IndexHeaderLayout, PageContainer} from "../../layouts";
+import * as PropTypes from "prop-types";
+import {CelebrityShape, PaginationShape} from "../../../prop-types";
+import {connect} from "react-redux";
+import {celebrityOperations} from "../../../state/ducks/celebrities";
+import "./styles.scss"
+import {restCountriesOperations} from "../../../state/ducks/rest-countries";
+import {FooterLayout} from "../../layouts/footer";
+
+
+class TrendingPage extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showInputSearchSm: false
+        };
+        this.scrollDiv = createRef();
+    }
+
+    componentDidMount(): void {
+        this.listCountries();
+
+        // Detect when scrolled to bottom.
+        this.scrollDiv.current.addEventListener("scroll", () => {
+            if (
+                this.scrollDiv.current.scrollTop + this.scrollDiv.current.clientHeight >=
+                (this.scrollDiv.current.scrollHeight - 500)
+            ) {
+                if (!this.props.isLoading && this.props.paginationData.totalItems !== this.props.celebrities.length) {
+                    if (this.props.paginationData.currentPage + 1 <= this.props.paginationData.totalPages) {
+                        this.onPaginationChange(this.props.paginationData.currentPage + 1);
+                    }
+                }
+            }
+        });
+    }
+
+    listCountries() {
+        this.props.listCountries()
+    }
+
+    onPaginationChange(page) {
+        const queryParams = this.props.queryParams;
+        queryParams["page"] = page;
+        this.props.updateQueryParams(queryParams);
+    }
+
+    render() {
+        return (
+            <>
+                <div className={"TrendingPage "}>
+                    <PageContainer showFooter={false}>
+                        {/*/!* ShowHeader *!/*/}
+                        {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
+                        {/*/!* End ShowHeader *!/*/}
+
+
+                        {/*/!* MainMenuLayout *!/*/}
+                        {/*<MainMenuLayout/>*/}
+                        {/*/! End MainMenuLayout *!/*/}
+
+                        {/* CelebrityCardsSectionLayout */}
+                        <div className="scroll-section" style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
+                             ref={this.scrollDiv}>
+                            {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
+                            {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
+                            {/*<pre>state.params.page {this.state.params.page}</pre>*/}
+                            {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
+                            {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
+                            <CelebrityCardsSectionLayout
+                                title={"Famosos destacados"}
+                                showShimmerCards={this.props.isLoading && this.props.queryParams.page === 1}
+                                showLoading={this.props.isLoading && this.props.queryParams.page > 1}
+                                celebrities={this.props.celebrities}
+                                minHeight={true}
+                            />
+                            {this.props.celebrities.length === this.props.paginationData.totalItems ?
+                                <FooterLayout/> : null}
+                        </div>
+                        {/* End CelebrityCardsSectionLayout */}
+                    </PageContainer>
+                </div>
+            </>
+        );
+    };
+
+}
+
+// Set propTypes
+TrendingPage.propTypes = {
+    celebrities: PropTypes.arrayOf(CelebrityShape).isRequired,
+    fetchCelebrities: PropTypes.func.isRequired,
+    paginationData: PaginationShape
+};
+
+// Set defaultProps
+TrendingPage.defaultProps = {
+    celebrities: [],
+    paginationData: {}
+};
+
+// mapStateToProps
+const mapStateToProps = (state: any) => ({
+    isLoading: state.celebrities.fetchCelebritiesReducer.loading,
+    isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
+    celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
+    paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data,
+    queryParams: state.celebrities.queryParamsReducer,
+    countries: state.restCountries.fetchCountriesReducer.data,
+});
+
+// mapStateToProps
+const mapDispatchToProps = {
+    fetchCelebrities: celebrityOperations.list,
+    updateQueryParams: celebrityOperations.updateQueryParams,
+    listCountries: restCountriesOperations.list,
+};
+
+// Export Class
+const _TrendingPage = connect(mapStateToProps, mapDispatchToProps)(TrendingPage);
+export {_TrendingPage as TrendingPage};
