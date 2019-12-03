@@ -127,7 +127,7 @@ class HiringPreviewLayout extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="col-sm-12 col-md-5 col-lg-5 details-container p-0 m-0" style={{height: "730px"}}>
+                        <div className="col-sm-12 col-md-5 col-lg-5 details-container p-0 m-0" style={{minHeight: "730px"}}>
                             <div className="video-details">
                                 <div className="titles">
                                     <div className="wrap-text">

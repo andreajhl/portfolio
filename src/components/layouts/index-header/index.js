@@ -30,7 +30,7 @@ class IndexHeaderLayout extends Component {
                                     <i className="fa fa-times-circle fa-2x text-white" onClick={this.hideHeader}/>
                                     <img width="150px" src="/assets/img/demo.svg" alt="avatar"/>
                                     <div className="mt-4 mb-4 text-white">
-                                        <h6 className="font-weight-bold">Contrata famosos para que graben <br/>videos
+                                        <h6 className="font-weight-bold">Conecta con famosos para que graben <br/>videos
                                             personalizados con tus mensajes</h6>
                                         <small className="mt-2">
                                             Regalos de Cumpleaños, Invitaciones a Eventos, Declaraciones de Amor
