@@ -24,7 +24,8 @@ class ContractModal extends Component {
                 stripe_id: ""
             },
             errors: [],
-            tokenizeCardLoading: false
+            tokenizeCardLoading: false,
+            tokenizeCardError: null
         };
 
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -101,8 +102,7 @@ class ContractModal extends Component {
                 return false;
             } else {
                 // //TODO: 2) Tokenize Card
-                this.setState({tokenizeCardLoading: true}, async () => {
-                    console.log("tokenizeCardLoading:", this.state.tokenizeCardLoading)
+                this.setState({tokenizeCardLoading: true, tokenizeCardError: null}, async () => {
                     let {token} = await this.childRef.current.state.stripe.createToken();
                     if (token) {
                         contract_data.stripe_id = token.id;
@@ -110,7 +110,7 @@ class ContractModal extends Component {
                             this.props.saveClientContract(this.state.contract_data);
                         })
                     }else{
-                        this.setState({tokenizeCardLoading: false});
+                        this.setState({tokenizeCardLoading: false, tokenizeCardError: "Error de tarjeta, por favor revisa los datos ingresados o utiliza otra tarjeta de crédito"});
                     }
                 });
             }
@@ -300,6 +300,9 @@ class ContractModal extends Component {
                                         <StripeCardForm ref={this.childRef}/>
                                     </Elements>
                                 </StripeProvider>
+                                <div className={"text-center"}>
+                                    <small>Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP = Código postal</small>
+                                </div>
                             </Form.Group>
                             {/* CARD FORM */}
 
@@ -351,6 +354,16 @@ class ContractModal extends Component {
                                     <div className="mt-2">
                                         <small className="text-danger">
                                             El pago no pudo ser procesado, contáctanos a experiencias@famosos.com.
+                                        </small>
+                                    </div>
+                                    : null
+                            }
+                            {
+                                this.state.tokenizeCardError
+                                    ?
+                                    <div className="mt-2">
+                                        <small className="text-danger">
+                                            {this.state.tokenizeCardError}
                                         </small>
                                     </div>
                                     : null

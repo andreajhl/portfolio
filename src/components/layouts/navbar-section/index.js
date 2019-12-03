@@ -121,12 +121,8 @@ class NavbarSectionLayout extends Component {
                                     !isLogged
                                         ?
                                         <>
-                                            <button className="btn btn-sm mr-2" onClick={this.goToSignInPath}>
+                                            <button className="btn btn-primary btn-sm f-register-button" onClick={this.goToSignUpPath}>
                                                 Ingresar
-                                            </button>
-                                            <button className="btn btn-outline-primary btn-sm f-register-button"
-                                                    onClick={this.goToSignUpPath}>
-                                                Registrarse
                                             </button>
                                         </>
                                         :
