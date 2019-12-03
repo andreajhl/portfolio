@@ -125,22 +125,32 @@ class NavbarSectionLayout extends Component {
                                     !isLogged
                                         ?
                                         <>
-                                            <a className="btn btn-sm mr-2" onClick={this.goToTrending}
-                                               style={{position: "relative", top: "-2px"}}>
+                                            <NavLink className=" btn btn-sm mr-2"
+                                                     activeClassName='active'
+                                                     to={PATHS.TRENDING}
+                                            >
                                                 <img width={"30px"} src={"/assets/img/trending.svg"}
-                                                     className={"cursor-pointer"}/>
-                                            </a>
+                                                     className={"cursor-pointer"}
+                                                     style={{position: "relative", top: "-2px"}}
+                                                />
+                                                <span className="font-weight-bold ml-1" style={{position: "relative", top: "3px"}}>Tendencias</span>
+                                            </NavLink>
                                             <button className="btn btn-primary btn-sm f-register-button" onClick={this.goToSignUpPath}>
                                                 Ingresar
                                             </button>
                                         </>
                                         :
                                         <>
-                                            <a className="btn btn-sm mr-2" onClick={this.goToTrending}
-                                               style={{position: "relative", top: "-2px"}}>
+                                            <NavLink className=" btn btn-sm mr-2"
+                                                     activeClassName='active'
+                                                     to={PATHS.TRENDING}
+                                            >
                                                 <img width={"30px"} src={"/assets/img/trending.svg"}
-                                                     className={"cursor-pointer"}/>
-                                            </a>
+                                                     className={"cursor-pointer"}
+                                                     style={{position: "relative", top: "-2px"}}
+                                                />
+                                                <span className="font-weight-bold ml-1" style={{position: "relative", top: "3px"}}>Tendencias</span>
+                                            </NavLink>
                                             <NavLink className=" btn btn-sm mr-2"
                                                      activeClassName='active'
                                                      to={PATHS.CLIENT_HIRINGS}
