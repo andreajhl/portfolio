@@ -8,6 +8,8 @@ branch-defaults:
   testing:
     environment: FamososClientsFrontend-testing
     group_suffix: null
+  trending:
+    environment: FamososClientsFrontend-testing
 global:
   application_name: Famosos-Clients-Frontend
   branch: null

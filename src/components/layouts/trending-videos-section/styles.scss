@@ -61,42 +61,42 @@ div.TrendingVideosSectionLayout {
     // Large devices (desktops, 768px and up)
     @media (min-width: 768px) {
       .scrolling-wrapper {
-        grid-template-columns: repeat(4, minmax(140px, 1fr)) !important;
+        grid-template-columns: repeat(3, minmax(140px, 1fr)) !important;
       }
     }
 
     // Large devices (desktops, 800px and up)
     @media (min-width: 800px) {
       .scrolling-wrapper {
-        grid-template-columns: repeat(4, minmax(180px, 1fr)) !important;
+        grid-template-columns: repeat(3, minmax(180px, 1fr)) !important;
       }
     }
 
     // Large devices (desktops, 992px and up)
     @media (min-width: 992px) {
       .scrolling-wrapper {
-        grid-template-columns: repeat(5, minmax(180px, 1fr)) !important;
+        grid-template-columns: repeat(4, minmax(180px, 1fr)) !important;
       }
     }
 
     // Extra large devices (large desktops, 1200px and up)
     @media (min-width: 1200px) {
       .scrolling-wrapper {
-        grid-template-columns: repeat(6, minmax(180px, 1fr)) !important;
+        grid-template-columns: repeat(5, minmax(180px, 1fr)) !important;
       }
     }
 
     // Extra large devices (large desktops, 1400px and up)
     @media (min-width: 1400px) {
       .scrolling-wrapper {
-        grid-template-columns: repeat(7, minmax(180px, 1fr)) !important;
+        grid-template-columns: repeat(6, minmax(180px, 1fr)) !important;
       }
     }
 
     // Extra large devices (large desktops, 1600px and up)
     @media (min-width: 1600px) {
       .scrolling-wrapper {
-        grid-template-columns: repeat(8, minmax(180px, 1fr)) !important;
+        grid-template-columns: repeat(7, minmax(180px, 1fr)) !important;
       }
     }
 

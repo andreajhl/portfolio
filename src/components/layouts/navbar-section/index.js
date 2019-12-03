@@ -125,12 +125,22 @@ class NavbarSectionLayout extends Component {
                                     !isLogged
                                         ?
                                         <>
+                                            <a className="btn btn-sm mr-2" onClick={this.goToTrending}
+                                               style={{position: "relative", top: "-2px"}}>
+                                                <img width={"30px"} src={"/assets/img/trending.svg"}
+                                                     className={"cursor-pointer"}/>
+                                            </a>
                                             <button className="btn btn-primary btn-sm f-register-button" onClick={this.goToSignUpPath}>
                                                 Ingresar
                                             </button>
                                         </>
                                         :
                                         <>
+                                            <a className="btn btn-sm mr-2" onClick={this.goToTrending}
+                                               style={{position: "relative", top: "-2px"}}>
+                                                <img width={"30px"} src={"/assets/img/trending.svg"}
+                                                     className={"cursor-pointer"}/>
+                                            </a>
                                             <NavLink className=" btn btn-sm mr-2"
                                                      activeClassName='active'
                                                      to={PATHS.CLIENT_HIRINGS}
@@ -171,7 +181,8 @@ class NavbarSectionLayout extends Component {
                                                      style={{display: "flex"}}
                                                 >
                                                     <a className="btn btn-sm" onClick={this.goToTrending}>
-                                                        <img width={"30px"} src={"/assets/img/trending.svg"}/>
+                                                        <img width={"30px"} src={"/assets/img/trending.svg"}
+                                                             className={"cursor-pointer"}/>
                                                     </a>
                                                     <a className="btn btn-sm mr-3" onClick={this.showSearch}>
                                                         <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
@@ -187,7 +198,8 @@ class NavbarSectionLayout extends Component {
                                                      style={{display: "flex"}}
                                                 >
                                                     <a className="btn btn-sm" onClick={this.goToTrending}>
-                                                        <img width={"30px"} src={"/assets/img/trending.svg"}/>
+                                                        <img width={"30px"} src={"/assets/img/trending.svg"}
+                                                             className={"cursor-pointer"}/>
                                                     </a>
                                                     <a className="btn btn-sm mr-2" onClick={this.showSearch}>
                                                         <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>

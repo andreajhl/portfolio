@@ -6,7 +6,7 @@ import * as types from "../celebrities/types";
 const updateQueryParamsInitialState = {
     page: 1,
     search: "",
-    page_size: getTotalColumns() * 1
+    page_size: getTotalColumns() * 7
 };
 
 const playVideoInitialState = {

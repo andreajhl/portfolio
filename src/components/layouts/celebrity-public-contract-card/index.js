@@ -81,6 +81,13 @@ class CelebrityPublicContractCardLayout extends Component {
                                 contractReference={this.props.publicContract.contract_reference}
                             />
                         </div>
+                        {
+                            this.props.publicContract.celebrity
+                            &&
+                            <div className="celebrity-name" onClick={this.goToContract}>
+                                <h6 className="font-weight-bold">{this.props.publicContract.celebrity.full_name}</h6>
+                            </div>
+                        }
                         <div className="title" onClick={this.goToContract}>
                             <h6 className="font-weight-bold">Para: {this.props.publicContract.delivery_to}</h6>
                         </div>
