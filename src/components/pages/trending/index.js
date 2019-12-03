@@ -1,12 +1,13 @@
 import React, {Component, createRef} from 'react';
-import {CelebrityCardsSectionLayout, IndexHeaderLayout, PageContainer} from "../../layouts";
+import {IndexHeaderLayout, PageContainer} from "../../layouts";
 import * as PropTypes from "prop-types";
 import {CelebrityShape, PaginationShape} from "../../../prop-types";
 import {connect} from "react-redux";
-import {celebrityOperations} from "../../../state/ducks/celebrities";
+import {contractOperations} from "../../../state/ducks/contracts";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import {FooterLayout} from "../../layouts/footer";
+import {TrendingVideosSectionLayout} from "../../layouts/trending-videos-section";
 
 
 class TrendingPage extends Component {
@@ -21,7 +22,6 @@ class TrendingPage extends Component {
     }
 
     componentDidMount(): void {
-        this.listCountries();
 
         // Detect when scrolled to bottom.
         this.scrollDiv.current.addEventListener("scroll", () => {
@@ -29,7 +29,7 @@ class TrendingPage extends Component {
                 this.scrollDiv.current.scrollTop + this.scrollDiv.current.clientHeight >=
                 (this.scrollDiv.current.scrollHeight - 500)
             ) {
-                if (!this.props.isLoading && this.props.paginationData.totalItems !== this.props.celebrities.length) {
+                if (!this.props.isLoading && this.props.paginationData.totalItems !== this.props.contracts.length) {
                     if (this.props.paginationData.currentPage + 1 <= this.props.paginationData.totalPages) {
                         this.onPaginationChange(this.props.paginationData.currentPage + 1);
                     }
@@ -38,8 +38,10 @@ class TrendingPage extends Component {
         });
     }
 
-    listCountries() {
-        this.props.listCountries()
+    componentWillMount(): void {
+        const queryParams = this.props.queryParams;
+        queryParams["page"] = 1;
+        this.props.updateQueryParams(queryParams);
     }
 
     onPaginationChange(page) {
@@ -52,7 +54,7 @@ class TrendingPage extends Component {
         return (
             <>
                 <div className={"TrendingPage "}>
-                    <PageContainer showFooter={false}>
+                    <PageContainer fetchCelebrities={false} showFooter={false}>
                         {/*/!* ShowHeader *!/*/}
                         {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
                         {/*/!* End ShowHeader *!/*/}
@@ -68,16 +70,16 @@ class TrendingPage extends Component {
                             {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
                             {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
                             {/*<pre>state.params.page {this.state.params.page}</pre>*/}
-                            {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
+                            {/*<pre>contracts: {this.props.contracts.length}</pre>*/}
                             {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
-                            <CelebrityCardsSectionLayout
-                                title={"Famosos destacados"}
+                            <TrendingVideosSectionLayout
+                                title={"Tendencia"}
                                 showShimmerCards={this.props.isLoading && this.props.queryParams.page === 1}
                                 showLoading={this.props.isLoading && this.props.queryParams.page > 1}
-                                celebrities={this.props.celebrities}
+                                contracts={this.props.contracts}
                                 minHeight={true}
                             />
-                            {this.props.celebrities.length === this.props.paginationData.totalItems ?
+                            {this.props.contracts.length === this.props.paginationData.totalItems ?
                                 <FooterLayout/> : null}
                         </div>
                         {/* End CelebrityCardsSectionLayout */}
@@ -91,31 +93,30 @@ class TrendingPage extends Component {
 
 // Set propTypes
 TrendingPage.propTypes = {
-    celebrities: PropTypes.arrayOf(CelebrityShape).isRequired,
-    fetchCelebrities: PropTypes.func.isRequired,
+    contracts: PropTypes.arrayOf(CelebrityShape).isRequired,
+    fetchTrendingContracts: PropTypes.func.isRequired,
     paginationData: PaginationShape
 };
 
 // Set defaultProps
 TrendingPage.defaultProps = {
-    celebrities: [],
+    contracts: [],
     paginationData: {}
 };
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.celebrities.fetchCelebritiesReducer.loading,
-    isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
-    celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
-    paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data,
-    queryParams: state.celebrities.queryParamsReducer,
-    countries: state.restCountries.fetchCountriesReducer.data,
+    isLoading: state.contracts.fetchTrendingContractsReducer.loading,
+    isCompleted: state.contracts.fetchTrendingContractsReducer.completed,
+    contracts: state.contracts.fetchTrendingContractsReducer.data.results,
+    paginationData: state.contracts.fetchTrendingContractsReducer.data.pagination_data,
+    queryParams: state.contracts.queryParamsReducer,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    fetchCelebrities: celebrityOperations.list,
-    updateQueryParams: celebrityOperations.updateQueryParams,
+    fetchTrendingContracts: contractOperations.listTrending,
+    updateQueryParams: contractOperations.updateQueryParams,
     listCountries: restCountriesOperations.list,
 };
 

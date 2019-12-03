@@ -4,7 +4,10 @@ import {
     saveClientContract,
     saveClientContractReview,
     listContractComments,
-    addContractComment
+    addContractComment,
+    listTrending,
+    updateQueryParams,
+    playVideo
 } from "./actions";
 
 export {
@@ -13,5 +16,8 @@ export {
     getContract,
     saveClientContractReview,
     listContractComments,
-    addContractComment
+    addContractComment,
+    listTrending,
+    updateQueryParams,
+    playVideo
 };

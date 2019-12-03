@@ -1,5 +1,25 @@
 import {combineReducers} from "redux";
 import * as TYPES from "./types";
+import {getTotalColumns} from "../../utils/gridSystem";
+import * as types from "../celebrities/types";
+
+const updateQueryParamsInitialState = {
+    page: 1,
+    search: "",
+    page_size: getTotalColumns() * 1
+};
+
+const playVideoInitialState = {
+    contract_reference: null,
+};
+
+const fetchTrendingContractsInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {results: [], pagination_data: {}}
+};
 
 const saveClientContractInitialState = {
     loading: false,
@@ -43,6 +63,60 @@ const addContractCommmentInitialState = {
     error_data: {error: ""},
     data: {}
 };
+
+export function queryParamsReducer(state = updateQueryParamsInitialState, action) {
+    if (action.type === types.UPDATE_QUERY_PARAMS) {
+        return action.payload.params;
+    } else {
+        return state
+    }
+}
+
+export function playVideoReducer(state = playVideoInitialState, action) {
+    if (action.type === types.PLAY_VIDEO) {
+        return action.payload.params;
+    } else {
+        return state
+    }
+}
+
+export function fetchTrendingContractsReducer(state = fetchTrendingContractsInitialState, action) {
+    switch (action.type) {
+        case types.FETCH_TRENDING_CONTRACTS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case types.FETCH_TRENDING_CONTRACTS_REQUEST_FAILURE:
+            return {
+                ...fetchTrendingContractsInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.FETCH_TRENDING_CONTRACTS_REQUEST_SUCCESS:
+            if (action.payload.data.pagination_data.currentPage === 1) {
+                return {
+                    ...fetchTrendingContractsInitialState,
+                    data: action.payload.data
+                };
+            } else if (action.payload.data.pagination_data.totalItems <= state.data.pagination_data.totalItems) {
+                action.payload.data.results = state.data.results.concat(action.payload.data.results);
+                return {
+                    ...fetchTrendingContractsInitialState,
+                    data:  action.payload.data
+                };
+            }
+            break;
+        case types.FETCH_TRENDING_CONTRACTS_REQUEST_COMPLETED:
+            return {
+                ...state,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+    }
+}
 
 export function saveClientContractReducer(state = saveClientContractInitialState, action) {
     switch (action.type) {
@@ -232,5 +306,8 @@ export default combineReducers({
     getContractReducer,
     saveClientContractReviewReducer,
     listContractCommentsReducer,
-    addContractCommentReducer
+    addContractCommentReducer,
+    fetchTrendingContractsReducer,
+    queryParamsReducer,
+    playVideoReducer
 });
