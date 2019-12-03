@@ -4,6 +4,22 @@ import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} fro
 import * as API_PATHS from './paths';
 import * as ROUTING_PATHS from '../../../routing/Paths';
 import {history} from "../../../routing/History";
+import * as types from "../celebrities/types";
+
+export const updateQueryParams = (params: {}, applyFetch=true) => {
+    return dispatch => {
+        dispatch({type: types.UPDATE_QUERY_PARAMS, payload: {params}});
+        if(applyFetch){
+            dispatch(listTrending(params))
+        }
+    }
+};
+
+export const playVideo = (params: {}) => {
+    return dispatch => {
+        dispatch({type: types.PLAY_VIDEO, payload: {params}});
+    }
+};
 
 export const getContract = (contractReference) => {
     return dispatch => {
@@ -32,6 +48,38 @@ export const getContract = (contractReference) => {
             })
             .catch(err => {
                 history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+            });
+    }
+};
+
+
+export const listTrending = (params) => {
+    return dispatch => {
+        const TYPE = types.FETCH_TRENDING_CONTRACTS_REQUEST;
+        const FINAL_PATH = API_PATHS.CONTRACT_BASE_PATH + "all/trending/";
+        dispatch({type: TYPE, payload: {}});
+        apiService({
+            method: "GET",
+            action: TYPE,
+            path: FINAL_PATH,
+            async: true,
+            params: params,
+            body: null
+        })
+            .then(res => {
+                if (res.data.status === "OK") {
+                    handleApiResponseSuccess(dispatch, TYPE, res);
+                    // Other actions
+
+                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
+                } else {
+                    handleApiResponseFailure(dispatch, TYPE, res);
+                    // Other actions
+
+                }
+            })
+            .catch(err => {
                 handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
             });
     }

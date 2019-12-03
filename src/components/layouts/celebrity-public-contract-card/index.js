@@ -4,6 +4,8 @@ import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import {ContractFavsLayout} from "../contract-favs";
 import {ContractCommentsLayout} from "../contract-comments";
+import {contractOperations} from "../../../state/ducks/contracts";
+import {connect} from "react-redux";
 
 class CelebrityPublicContractCardLayout extends Component {
 
@@ -23,10 +25,19 @@ class CelebrityPublicContractCardLayout extends Component {
 
     }
 
+    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+        if(this.props.currentVideoPlaying !== null && nextProps.currentVideoPlaying !== this.props.publicContract.contract_reference && this.state.videoDesktopPlayIcon === "fa-pause"){
+            this.setState({videoDesktopPlayIcon: "fa-play"}, () => {
+                this.videoDesktopRef.current.pause()
+            });
+        }
+    }
+
     playDesktopContract() {
         if (this.videoDesktopRef.current.paused) {
             this.setState({videoDesktopPlayIcon: "fa-pause"}, () => {
-                this.videoDesktopRef.current.play()
+                this.videoDesktopRef.current.play();
+                this.props.playVideo({contract_reference: this.props.publicContract.contract_reference})
             });
         } else {
             this.setState({videoDesktopPlayIcon: "fa-play"}, () => {
@@ -73,6 +84,13 @@ class CelebrityPublicContractCardLayout extends Component {
                         <div className="title" onClick={this.goToContract}>
                             <h6 className="font-weight-bold">Para: {this.props.publicContract.delivery_to}</h6>
                         </div>
+                        {
+                            this.props.publicContract.celebrity
+                            &&
+                            <div className="celebrity-name" onClick={this.goToContract}>
+                                <h6 className="font-weight-bold">{this.props.publicContract.celebrity.full_name}</h6>
+                            </div>
+                        }
                         <div className="icon font-weight-bold" onClick={this.goToContract}>
                             <i className="fa fa-arrow-right text-primary"/>
                         </div>
@@ -83,9 +101,23 @@ class CelebrityPublicContractCardLayout extends Component {
     };
 }
 
-// default props
+
+
+// Set defaultProps
 CelebrityPublicContractCardLayout.defaultProps = {
     publicContract: {}
 };
 
-export {CelebrityPublicContractCardLayout};
+// mapStateToProps
+const mapStateToProps = (state: any) => ({
+    currentVideoPlaying: state.contracts.playVideoReducer.contract_reference,
+});
+
+// mapStateToProps
+const mapDispatchToProps = {
+    playVideo: contractOperations.playVideo,
+};
+
+// Export Class
+const _CelebrityPublicContractCardLayout = connect(mapStateToProps, mapDispatchToProps)(CelebrityPublicContractCardLayout);
+export {_CelebrityPublicContractCardLayout as CelebrityPublicContractCardLayout};
