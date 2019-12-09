@@ -1,3 +1,7 @@
-.ContractModal {
+@import "../../../theme";
 
+.ContractModal {
+  *:checked {
+    border: 1px solid $primary !important;
+  }
 }

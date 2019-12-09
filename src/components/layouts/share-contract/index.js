@@ -32,8 +32,7 @@ class ShareContractLayout extends Component {
     render() {
         return (
             <div className="ShareContractLayout">
-                <a href={"whatsapp://send?text=Me gustaría compartirte este video que acabo de recibir de *_" + (this.props.contract.celebrity ? this.props.contract.celebrity.full_name : "") +  "_* ==> " + encodeURI(window.location.href)}
-                   data-action="share/whatsapp/share">
+                <a href={"https://api.whatsapp.com/send?text=Me gustaría compartirte este video que acabo de recibir de *_" + (this.props.contract.celebrity ? this.props.contract.celebrity.full_name : "") +  "_* ==> " + encodeURI(window.location.href)} target="_blank">
                     <img
                         alt="svg"
                         className="cursor-pointer"

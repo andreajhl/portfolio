@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import "./styles.scss";
 import {ContractModal} from "../../containers";
 import * as GTM from "../../../state/utils/gtm";
-
+import {history} from "../../../routing/History";
 
 class CelebrityDetailsCardLayout extends Component {
 
@@ -39,13 +39,17 @@ class CelebrityDetailsCardLayout extends Component {
         );
         this.setState({
             showContractModal: true
-        })
+        }, () => {
+            history._pushRoute(this.props.celebrity.username + "?modalOpened=true");
+        });
     }
 
     closeModal() {
         this.setState({
             showContractModal: false
-        })
+        }, () => {
+            history._pushRoute(this.props.celebrity.username + "?modalOpened=false");
+        });
     }
 
     playDesktopVideo() {
@@ -154,7 +158,7 @@ class CelebrityDetailsCardLayout extends Component {
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
                                                 <h6 className="font-weight-bold">1 a 2 días</h6>
-                                                <small className="text-soft-grey font-weight-bold">Tiempo promedio de respuesta
+                                                <small className="text-soft-grey font-weight-bold">Respuesta promedio
                                                 </small>
                                             </div>
                                         </div>
@@ -303,7 +307,7 @@ class CelebrityDetailsCardLayout extends Component {
                                     </small>
                                     <br/>
                                     <small className="text-soft-grey subtitle">
-                                        Tiempo promedio de respuesta: <b>1 a 2 días</b>
+                                        Respuesta promedio: <b>1 a 2 días</b>
                                     </small>
                                 </div>
                             </div>

@@ -1,0 +1,44 @@
+@import "../../../theme";
+
+.ContractCheckoutSummaryLayout {
+  min-height: 400px;
+
+  .contract-summary {
+    margin: 0;
+    padding: 0;
+
+    .custom-card-title {
+      height: 60px;
+      text-align: center;
+      position: relative;
+      border-bottom-right-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+
+      h6 {
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .contract-details {
+      min-height: 300px;
+      padding: 20px 50px;
+
+      .text-colored{
+        color: $soft-grey;
+      }
+    }
+
+    .contract-button{
+      width: 200px;
+      &.disabled{
+        background-color: #a1a1a1 !important;
+      }
+    }
+
+  }
+}

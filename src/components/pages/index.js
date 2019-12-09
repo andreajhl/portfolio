@@ -17,3 +17,4 @@ export * from "./policies";
 export * from "./terms";
 export * from "./celebrity-request";
 export * from "./trending";
+export * from "./payment-methods";

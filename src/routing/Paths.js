@@ -1,5 +1,6 @@
 export const ROOT_PATH = '/inicio/';
 export const CELEBRITY_PROFILE = '/:celebrity_username';
+export const PAYMENT_METHODS = '/metodos-de-pago/:contract_reference';
 export const CONTRACT_CREATED = '/contract-created/:contract_reference';
 export const HOME_PATH = '/';
 

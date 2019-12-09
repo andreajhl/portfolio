@@ -51,7 +51,6 @@ class FooterLayout extends Component {
                 <footer className="footer">
                     <div className="container" style={{maxWidth: "1300px", zoom: "0.9"}}>
                         <div className="row">
-
                             <div className="col-12 col-md-4 col-lg-4 col-one">
                                 <div className="col-image">
                                     <img className="text-dark"
@@ -80,7 +79,6 @@ class FooterLayout extends Component {
                                 </div>
                             </div>
 
-
                             <div className="col-12 col-md-4 col-lg-4 col-three">
                                 <ul className="list-inline">
                                     <li className="list-inline-item mr-3 font-weight-bold">
@@ -107,7 +105,6 @@ class FooterLayout extends Component {
                             </div>
                         </div>
                     </div>
-                    <div style={{fontSize:"10px"}}>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
                 </footer>
             </div>
         );

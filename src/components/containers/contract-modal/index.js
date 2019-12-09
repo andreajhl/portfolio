@@ -1,7 +1,5 @@
 import React, {Component} from "react";
 import {Col, Form, Modal, Row} from "react-bootstrap";
-import {Elements, StripeProvider} from 'react-stripe-elements';
-import StripeCardForm from "../../layouts/stripe-card-form";
 import {contractOperations} from "../../../state/ducks/contracts";
 import {connect} from "react-redux";
 
@@ -21,17 +19,16 @@ class ContractModal extends Component {
                 instructions: "",
                 price: this.props.celebrity.contracts_price,
                 is_public: true,
-                stripe_id: ""
             },
             errors: [],
             tokenizeCardLoading: false,
-            tokenizeCardError: null
+            tokenizeCardError: null,
         };
 
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleValue = this.handleValue.bind(this);
         this.handleIsPublic = this.handleIsPublic.bind(this);
-        this.sendData = this.sendData.bind(this);
+        this.createContract = this.createContract.bind(this);
 
         this.childRef = React.createRef();
     }
@@ -60,7 +57,6 @@ class ContractModal extends Component {
         })
     }
 
-
     contractTypeLabelClick(value){
         const contract_data = this.state.contract_data;
         contract_data["contract_type"] = value;
@@ -77,11 +73,11 @@ class ContractModal extends Component {
         })
     }
 
-    async sendData() {
+    createContract() {
         if (!this.props.isLoading || !this.state.tokenizeCardLoading) {
-            // //TODO: 1) Validate Form
             const contract_data = this.state.contract_data;
-            contract_data.celebrity_id = this.props.celebrity.id;
+
+            contract_data.celebrity_id = this.props.celebrity.id; // Celebrity ID
 
             const errors = [];
             if (contract_data.contract_type === 1 && !contract_data.delivery_from) {
@@ -93,40 +89,47 @@ class ContractModal extends Component {
             if (!contract_data.delivery_contact) {
                 errors.push("delivery_contact");
             }
-            if (!contract_data.instructions || contract_data.instructions.length > 300) {
+            if (!contract_data.instructions) {
                 errors.push("instructions");
             }
+            if (contract_data.instructions.length > 300) {
+                errors.push("instructions_300");
+            }
             this.setState({errors});
-
             if (errors.length) {
                 return false;
             } else {
-                // //TODO: 2) Tokenize Card
                 this.setState({tokenizeCardLoading: true, tokenizeCardError: null}, async () => {
-                    let {token} = await this.childRef.current.state.stripe.createToken();
-                    if (token) {
-                        contract_data.stripe_id = token.id;
-                        this.setState({contract_data}, () => {
-                            this.props.saveClientContract(this.state.contract_data);
-                        })
-                    }else{
-                        this.setState({tokenizeCardLoading: false, tokenizeCardError: "Error de tarjeta, por favor revisa los datos ingresados o utiliza otra tarjeta de crédito"});
-                    }
+                    this.setState({contract_data}, () => {
+                        this.props.saveClientContract(this.state.contract_data);
+                    })
                 });
             }
         }
     }
 
     showErrorMessage(field) {
-        return (
-            <>
-                {this.state.errors.includes(field)
-                    ?
-                    <Form.Text className="text-danger">Campo obligatorio</Form.Text>
-                    : null
-                }
-            </>
-        )
+        if (field === "instructions_300") {
+            return (
+                <>
+                    {
+                        this.state.errors.includes(field)
+                        &&
+                        <Form.Text className="text-danger">El campo contiene mas de 300 caracteres</Form.Text>
+                    }
+                </>
+            )
+        } else {
+            return (
+                <>
+                    {
+                        this.state.errors.includes(field)
+                        &&
+                        <Form.Text className="text-danger">Campo obligatorio</Form.Text>
+                    }
+                </>
+            )
+        }
     }
 
     renderFromTo() {
@@ -181,26 +184,9 @@ class ContractModal extends Component {
                         </Col>
                     </Row>
                 );
-            case 3:
-                return (
-                    <Row>
-                        <Col sm="4">
-                            <Form.Group>
-                                <Form.Label><b>Nombre de la marca:</b></Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Marca"
-                                    name="delivery_to"
-                                    value={this.state.contract_data.delivery_to}
-                                    onChange={this.handleValue}
-                                />
-                                {this.showErrorMessage("delivery_to")}
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                );
         }
     }
+
 
     render() {
         return (
@@ -239,16 +225,6 @@ class ContractModal extends Component {
                                         Para mi
                                     </Form.Check.Label>
                                 </Form.Check>
-                                {/*<Form.Check type="radio">*/}
-                                {/*    <Form.Check.Input*/}
-                                {/*        type="radio"*/}
-                                {/*        name="contract_type"*/}
-                                {/*        value={3}*/}
-                                {/*        checked={this.state.contract_data.contract_type === 3}*/}
-                                {/*        onChange={this.handleValue}*/}
-                                {/*    />*/}
-                                {/*    <Form.Check.Label>Para un negocio o marca</Form.Check.Label>*/}
-                                {/*</Form.Check>*/}
                             </Form.Group>
                             {/*END CONTRACT TYPE*/}
 
@@ -258,11 +234,14 @@ class ContractModal extends Component {
 
                             {/*INSTRUCTIONS*/}
                             <Form.Group>
-                                <Form.Label><b>Mis instrucciones
-                                    para {this.props.celebrity.full_name} son:</b></Form.Label>
+                                <Form.Label>
+                                    <b>
+                                        Mis instrucciones para {this.props.celebrity.full_name} son:
+                                    </b>
+                                </Form.Label>
                                 <Form.Control as="textarea"
                                               rows="3"
-                                              placeholder={this.state.contract_data.contract_type === 1 ? "Ejemplo: Mi nombre es Duvan. ¡Mi hermana Anita es tu fan!. Ella está cumpliendo años el 12 de agosto y quisiera que le desearas un Feliz Cumpleaños de mi parte" : null}
+                                              placeholder={this.state.contract_data.contract_type === 1 ? "Ejemplo: Mi nombre es Duvan. ¡Mi hermana Anita es tu fan!. Ella está cumpliendo años el 12 de agosto y quisiera que le desearas un Feliz Cumpleaños de mi parte." : "Escribe aquí tus instrucciones"}
                                               name="instructions"
                                               value={this.state.contract_data.instructions}
                                               onChange={this.handleValue}
@@ -271,6 +250,7 @@ class ContractModal extends Component {
                                     Máximo 300 caracteres
                                 </Form.Text>
                                 {this.showErrorMessage("instructions")}
+                                {this.showErrorMessage("instructions_300")}
                             </Form.Group>
                             {/*END INSTRUCTIONS*/}
 
@@ -292,22 +272,8 @@ class ContractModal extends Component {
                             </Row>
                             {/*END DELIVERY MAIL*/}
 
-                            {/* CARD FORM */}
-                            <Form.Group>
-                                <Form.Label><b>Información de pago:</b></Form.Label>
-                                <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
-                                    <Elements>
-                                        <StripeCardForm ref={this.childRef}/>
-                                    </Elements>
-                                </StripeProvider>
-                                <div className={"text-center"}>
-                                    <small>Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP = Código postal</small>
-                                </div>
-                            </Form.Group>
-                            {/* CARD FORM */}
-
                             {/* IS PUBLIC  */}
-                            <div className="mt-3">
+                            <div className="mt-1">
                                 <Form.Check
                                     checked={this.state.contract_data.is_public}
                                     onChange={this.handleIsPublic}
@@ -322,18 +288,37 @@ class ContractModal extends Component {
                         <div className="text-center">
                             {
                                 this.state.errors.length ?
-                                    <>
+                                    <div className={"mb-2"}>
                                         <small className="text-danger">
                                             Tienes campos obligatorios por llenar
                                         </small>
-                                        <hr/>
-                                    </>
+                                    </div>
+                                    : null
+                            }
+                            {
+                                this.props.saveClientContractError
+                                    ?
+                                    <div className={"mb-2"}>
+                                        <small className="text-danger">
+                                            El pago no pudo ser procesado, contáctanos a experiencias@famosos.com.
+                                        </small>
+                                    </div>
+                                    : null
+                            }
+                            {
+                                this.state.tokenizeCardError
+                                    ?
+                                    <div className={"mb-2"}>
+                                        <small className="text-danger">
+                                            {this.state.tokenizeCardError}
+                                        </small>
+                                    </div>
                                     : null
                             }
                             <button
                                 disabled={(this.props.isLoading || this.state.tokenizeCardLoading)}
                                 className="contract-button hover cursor-pointer p-2 border bg-active"
-                                onClick={this.sendData}
+                                onClick={this.createContract}
                             >
                                 {
                                     this.props.isLoading || this.state.tokenizeCardLoading
@@ -348,31 +333,6 @@ class ContractModal extends Component {
                                         </span>
                                 }
                             </button>
-                            {
-                                this.props.saveClientContractError
-                                    ?
-                                    <div className="mt-2">
-                                        <small className="text-danger">
-                                            El pago no pudo ser procesado, contáctanos a experiencias@famosos.com.
-                                        </small>
-                                    </div>
-                                    : null
-                            }
-                            {
-                                this.state.tokenizeCardError
-                                    ?
-                                    <div className="mt-2">
-                                        <small className="text-danger">
-                                            {this.state.tokenizeCardError}
-                                        </small>
-                                    </div>
-                                    : null
-                            }
-                            <div className="mt-2 mb-4">
-                                <small>
-                                    Pondremos una reserva de cupo en tu tarjeta de ${this.props.celebrity.contracts_price} USD y el cobro se completará únicamente si recibes tu video.
-                                </small>
-                            </div>
                         </div>
                     </Modal.Body>
                 </Modal>

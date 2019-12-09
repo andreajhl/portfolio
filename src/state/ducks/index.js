@@ -6,3 +6,4 @@ export { default as restCountries } from "./rest-countries";
 export { default as restCelebrities } from "./rest-celebrities";
 export { default as session } from "./session";
 export { default as celebrityRequests } from "./celebrity-requests";
+export { default as payments } from "./payments";

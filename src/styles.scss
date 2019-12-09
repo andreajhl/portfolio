@@ -3,13 +3,14 @@
 @import "~bootstrap/scss/bootstrap";
 
 
-html,body,input,b, h1, h2,h3,h4,h5,h6,small,span,p,textarea,label,div,a,section,header {
+html, body, input, b, h1, h2, h3, h4, h5, h6, small, span, p, textarea, label, div, a, section, header {
   font-family: 'Avenir Next LT Pro Regular', sans-serif !important;
 }
 
 * {
   color: $dark;
 }
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -43,10 +44,11 @@ b {
   border-radius: 0.5rem !important;
 }
 
-.fade.modal-backdrop.show{
+.fade.modal-backdrop.show {
   z-index: 200000;
 }
-.fade.modal.show{
+
+.fade.modal.show {
   z-index: 200000;
 }
 
@@ -367,7 +369,7 @@ video {
   }
 }
 
-.dv-star-rating-star{
+.dv-star-rating-star {
   margin-right: 5px;
   margin-bottom: 0;
 }
@@ -376,25 +378,28 @@ video {
   color: $soft-grey !important;
 }
 
-.btn-outline-success{
-  span{
+.btn-outline-success {
+  span {
     color: $text-success !important;
   }
-  i{
+
+  i {
     color: $text-success !important;
   }
+
   &:hover {
-    span{
+    span {
       color: white !important;
     }
-    i{
+
+    i {
       color: white !important;
     }
   }
 }
 
-.dv-star-rating-star.dv-star-rating-full-star{
-  i{
+.dv-star-rating-star.dv-star-rating-full-star {
+  i {
     color: rgb(255, 180, 0);
   }
 }
@@ -419,7 +424,7 @@ input, select {
   display: none;
 }
 
-.form-check-input{
+.form-check-input {
   height: initial !important;
 }
 
@@ -466,4 +471,8 @@ input, select {
 .customTooltip:hover .tooltipText {
   visibility: visible;
   opacity: 1;
+}
+
+.StripeCardForm {
+  zoom: 100%;
 }

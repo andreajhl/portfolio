@@ -6,6 +6,7 @@ import * as PATHS from "../../../routing/Paths";
 import {Session} from "../../../state/utils/session";
 import {ReviewCreatorLayout} from "../review-creator";
 import {ContractCommentSectionLayout} from "../contract-comments-section";
+import {ContractFavsLayout} from "../contract-favs";
 
 class HiringPreviewLayout extends Component {
 
@@ -131,6 +132,13 @@ class HiringPreviewLayout extends Component {
                             <div className="video-details">
                                 <div className="titles">
                                     <div className="wrap-text">
+                                        <div className="fav-icon">
+                                            <ContractFavsLayout
+                                                contractReference={this.props.contract.reference}
+                                                ref={this.contractFav}
+                                                showCount={false}
+                                            />
+                                        </div>
                                         <img className="celebrity-avatar"
                                              src={this.props.contract.celebrity ? this.props.contract.celebrity.avatar : ""}
                                              alt={"avatar"}

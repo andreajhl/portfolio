@@ -5,6 +5,7 @@ import * as API_PATHS from './paths';
 import * as ROUTING_PATHS from '../../../routing/Paths';
 import {history} from "../../../routing/History";
 import * as types from "../celebrities/types";
+import {Session} from "../../utils/session";
 
 export const updateQueryParams = (params: {}, applyFetch=true) => {
     return dispatch => {
@@ -105,9 +106,15 @@ export const saveClientContract = (contractData) => {
 
                 } else {
                     handleApiResponseSuccess(dispatch, TYPE, res);
+                    const session = new Session();
+                    session.setSession(res.data.token);
+
+                    dispatch(getContract(res.data.reference));
+
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
+
                     // Other actions
-                    history._pushRoute(ROUTING_PATHS.CONTRACT_CREATED.replace(":contract_reference", res.data.reference));
+                    history._pushRoute(ROUTING_PATHS.PAYMENT_METHODS.replace(":contract_reference", res.data.reference));
                 }
             })
             .catch(err => {

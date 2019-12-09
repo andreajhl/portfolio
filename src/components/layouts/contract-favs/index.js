@@ -24,27 +24,25 @@ class ContractFavsLayout extends Component {
 
     }
 
-    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
-        if(nextProps.contractReference !== this.props.contractReference){
-            apiService({
-                method: "GET",
-                action: TYPES.FAV_REQUEST,
-                path: API_PATHS.CONTRACT_BASE_PATH + this.props.contractReference + "/favs/",
-                async: true,
-                params: null,
-                body: null
+    componentDidMount(): void {
+        apiService({
+            method: "GET",
+            action: TYPES.FAV_REQUEST,
+            path: API_PATHS.CONTRACT_BASE_PATH + this.props.contractReference + "/favs/",
+            async: true,
+            params: null,
+            body: null
+        })
+            .then(res => {
+                if ("status" in res.data && res.data.status === "ERROR") {
+                    //
+                } else {
+                    this.setState({
+                        isFav: res.data.is_fav,
+                        favCount: res.data.count,
+                    })
+                }
             })
-                .then(res => {
-                    if ("status" in res.data && res.data.status === "ERROR") {
-                        //
-                    } else {
-                        this.setState({
-                            isFav: res.data.is_fav,
-                            favCount: res.data.count,
-                        })
-                    }
-                })
-        }
     }
 
     addOrRemoveFav() {
@@ -79,7 +77,11 @@ class ContractFavsLayout extends Component {
                 <i className={'fa fa-2x fa-heart' + (this.state.isFav ? " text-primary " : "")}
                    onClick={this.addOrRemoveFav}
                 />
-                <small className="text-dark">{this.state.favCount}</small>
+                {
+                    this.showCount
+                    &&
+                    <small className="text-dark">{this.state.favCount}</small>
+                }
             </div>
         );
     };
@@ -89,5 +91,6 @@ class ContractFavsLayout extends Component {
 // Set defaultProps
 ContractFavsLayout.defaultProps = {
     contractReference: "",
+    showCount: false
 };
 export {ContractFavsLayout};

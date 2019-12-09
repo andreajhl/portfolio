@@ -5,7 +5,7 @@ import {Session} from "./session"
 const setHeaders = (params = {}, addFamososAuthorizationHeader = true) => {
     const session = new Session();
     let options = {};
-    if (session.getSession() && addFamososAuthorizationHeader) {
+    if (session.getToken() && addFamososAuthorizationHeader) {
         options.headers = { 'authorization': "JWT " + localStorage.getItem(session.sessionName) };
     }
     if (jsonToQueryString(params) !== "?") {

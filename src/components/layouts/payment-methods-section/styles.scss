@@ -1,0 +1,185 @@
+@import "../../../theme";
+
+.PaymentMethodsSectionLayout {
+
+  .title {
+    margin-bottom: 30px;
+  }
+
+  .payment-types {
+
+    .payment-type {
+      border-bottom: solid 1px #a1a1a1;
+      cursor: pointer;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &:hover {
+        div.circle-button {
+          background-color: $primary;
+          border: 1px solid $primary;
+        }
+      }
+
+      .titles {
+        min-height: 80px;
+        display: flex;
+
+        .circle {
+          width: 100px;
+          text-align: center;
+          position: relative;
+
+          div.circle-button {
+            border: solid 1px #a1a1a1;
+            width: 25px;
+            height: 25px;
+            border-radius: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+
+            &.active {
+              background-color: $primary;
+            }
+          }
+        }
+
+        .icon {
+          width: 80px;
+          text-align: left;
+          position: relative;
+
+          .fa.fa-credit-card, .fa.fa-money-bill-alt, .fa.fa-dollar-sign {
+            font-size: 25px;
+            color: $secundary-color-blue;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+
+
+        }
+
+        .payment-type-title {
+          width: 520px;
+          text-align: left;
+          position: relative;
+          margin-left: 30px;
+
+          h6 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 100%;
+          }
+        }
+
+        .brands {
+          width: 100%;
+          text-align: left;
+          position: relative;
+          margin-left: 12px;
+          display: block;
+          align-items: flex-start;
+          grid-template-columns: none;
+          overflow-x: scroll;
+          overflow-y: hidden;
+          white-space: nowrap;
+          -webkit-overflow-scrolling: touch;
+          padding: 10px;
+
+          .horizontal-scroll {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 100%;
+
+            img {
+              margin-right: 10px;
+              width: 30px;
+              border-radius: 5px;
+              border: solid 1px #a1a1a1;
+            }
+          }
+
+
+        }
+      }
+
+      // available-options
+      .available-options {
+        padding-bottom: 10px;
+        min-height: 30px;
+
+        .available-option {
+          min-height: 30px;
+          width: 100%;
+          display: flex;
+          padding-top: 15px;
+          padding-bottom: 15px;
+          margin-left: 13px;
+
+          &:hover {
+            div.available-option-circle-button {
+              background-color: $primary;
+              border: 1px solid $primary;
+            }
+          }
+
+          .available-option-circle {
+            min-height: 30px;
+            width: 50px;
+            text-align: center;
+            position: relative;
+
+            .available-option-circle-button {
+              border: solid 1px #a1a1a1;
+              width: 25px;
+              height: 25px;
+              border-radius: 100%;
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+
+              &.active {
+                background-color: $primary;
+              }
+            }
+          }
+
+          .available-option-logo {
+            min-height: 30px;
+            width: 50px;
+            text-align: center;
+            position: relative;
+
+            img {
+              margin-left: 10px;
+              border: solid 1px #a1a1a1;
+              border-radius: 5px;
+            }
+          }
+
+        }
+
+      }
+
+      // end available-options
+
+    }
+
+  }
+}

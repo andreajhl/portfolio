@@ -41,6 +41,11 @@ class MyRoutes extends Component {
                             path={PATHS.CONTRACT_CREATED}
                             component={PAGES.ContractCreatedPage}
                         />
+                        <Route
+                            exact
+                            path={PATHS.PAYMENT_METHODS}
+                            component={PAGES.PaymentMethodsPage}
+                        />
                         {/*AUTH*/}
                         <Route
                             exact

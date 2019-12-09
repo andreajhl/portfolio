@@ -44,6 +44,8 @@ class PageContainer extends Component {
                     <NavbarSectionLayout
                         onSearchChange={this.onSearchChange}
                         showInputSearchSm={this.props.showInputSearchSm}
+                        showSearch={this.props.showSearch}
+                        showNavbarButtons={this.props.showNavbarButtons}
                     />
                     : null
                 }
@@ -78,6 +80,8 @@ PageContainer.defaultProps = {
     onSearchChange: () => {},
     showFooter: true,
     showNavbar: true,
+    showSearch: true,
+    showNavbarButtons: true
 };
 
 // mapStateToProps

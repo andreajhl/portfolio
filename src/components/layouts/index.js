@@ -21,3 +21,4 @@ export * from "./review-creator";
 export * from "./stripe-card-form";
 export * from "./user-profile-details-card";
 export * from "./auth-t&c";
+export * from "./payment-methods-section";
