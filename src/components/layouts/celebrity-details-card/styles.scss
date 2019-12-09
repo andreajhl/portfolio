@@ -239,7 +239,7 @@
 
       .f-avatar {
         position: absolute;
-        bottom: -17px;
+        bottom: -35px;
         margin-left: 4vw;
         height: 100px;
         width: 100px;
@@ -269,6 +269,12 @@
       small.subtitle {
         font-size: 12px !important
       }
+    }
+    .btn-outline-primary.f-follow-button{
+      width: 170px;
+      right: 23px;
+      position: absolute;
+      padding: 3px;
     }
 
     .word-break {
@@ -369,6 +375,10 @@
 
   .f-line {
     border-top: dashed 2px $soft-grey;
+  }
+
+  .m-2-6{
+    margin-top: 3rem !important;
   }
 
 }

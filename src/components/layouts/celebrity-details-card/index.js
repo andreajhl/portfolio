@@ -154,7 +154,7 @@ class CelebrityDetailsCardLayout extends Component {
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
                                                 <h6 className="font-weight-bold">1 a 2 días</h6>
-                                                <small className="text-soft-grey font-weight-bold">Tiempo promedio de respuesta
+                                                <small className="text-soft-grey font-weight-bold">Respuesta promedio
                                                 </small>
                                             </div>
                                         </div>
@@ -269,7 +269,7 @@ class CelebrityDetailsCardLayout extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-7 mt-4 pr-0">
+                            <div className="col-7 m-2-6 pr-0">
                                 <div className="margin-left-5w">
                                     <small className="font-weight-bold title">
                                         {this.props.celebrity.full_name}
@@ -279,7 +279,7 @@ class CelebrityDetailsCardLayout extends Component {
                             <div className="col-5 mt-3 pl-0 text-right">
                                 <div className="margin-right-5w" onClick={this.openModal}>
                                     <button className="btn btn-outline-primary btn-sm f-follow-button">
-                                        Contratar
+                                        Contratar por ${this.props.celebrity.contracts_price} USD
                                     </button>
                                 </div>
                             </div>
@@ -303,7 +303,7 @@ class CelebrityDetailsCardLayout extends Component {
                                     </small>
                                     <br/>
                                     <small className="text-soft-grey subtitle">
-                                        Tiempo promedio de respuesta: <b>1 a 2 días</b>
+                                        Respuesta promedio: <b>1 a 2 días</b>
                                     </small>
                                 </div>
                             </div>
