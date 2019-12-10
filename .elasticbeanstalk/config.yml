@@ -2,6 +2,8 @@ branch-defaults:
   master:
     environment: FamososClientsFrontend-production
     group_suffix: null
+  payments:
+    environment: FamososClientsFrontend-testing
   staging:
     environment: FamososClientsFrontend-staging
     group_suffix: null
