@@ -98,7 +98,7 @@ class ContractCommentSectionLayout extends Component {
     };
 
     renderContractCommentCreator() {
-        if (this.session.getToken()) {
+        if (this.session.getSession()) {
             return <ContractCommentCreatorLayout contractReference={this.props.contract.reference}/>
         }else{
             return <SessionRequiredToCommentLayout/>

@@ -46,7 +46,7 @@ class ContractFavsLayout extends Component {
     }
 
     addOrRemoveFav() {
-        if(this.session.getToken()) {
+        if(this.session.getSession()) {
             apiService({
                 method: "POST",
                 action: TYPES.FAV_REQUEST,
