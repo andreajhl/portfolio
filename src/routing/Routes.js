@@ -129,6 +129,11 @@ class MyRoutes extends Component {
                         />
                         <Route
                             exact
+                            path={PATHS.ACCOUNT_HIRING_PREVIEW}
+                            component={PAGES.ClientHiringPage}
+                        />
+                        <Route
+                            exact
                             path={PATHS.HIRING_PREVIEW}
                             component={PAGES.HiringPreviewPage}
                         />

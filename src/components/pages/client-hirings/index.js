@@ -32,7 +32,10 @@ class ClientHiringsPage extends Component {
             <>
                 <div className="ClientHiringsPage">
                     <PageContainer fetchCelebrities={false}>
-                        <HiringsCardSectionLayout isLoading={this.props.isLoading} contracts={this.props.contracts}/>
+                        <HiringsCardSectionLayout
+                            isLoading={this.props.isLoading}
+                            contracts={this.props.contracts}
+                        />
                     </PageContainer>
                 </div>
             </>

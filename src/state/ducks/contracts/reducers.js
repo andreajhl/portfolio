@@ -42,6 +42,13 @@ const getContractInitialState = {
     error_data: {error: ""},
     data: {}
 };
+const getContractWithPaymentsInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
 const saveClientContractReviewInitialState = {
     loading: false,
     failed: false,
@@ -205,6 +212,35 @@ export function getContractReducer(state = getContractInitialState, action) {
     }
 }
 
+export function getContractWithPaymentsReducer(state = getContractInitialState, action) {
+    switch (action.type) {
+        case TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST_FAILURE:
+            return {
+                ...getContractInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST_SUCCESS:
+            return {
+                ...getContractInitialState,
+                data: action.payload.data
+            };
+        case TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST_COMPLETED:
+            return {
+                ...state,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+    }
+}
+
 export function saveClientContractReviewReducer(state = saveClientContractReviewInitialState, action) {
     switch (action.type) {
         case TYPES.SAVE_CLIENT_CONTRACT_REVIEW_REQUEST:
@@ -309,5 +345,6 @@ export default combineReducers({
     addContractCommentReducer,
     fetchTrendingContractsReducer,
     queryParamsReducer,
-    playVideoReducer
+    playVideoReducer,
+    getContractWithPaymentsReducer
 });

@@ -18,3 +18,4 @@ export * from "./terms";
 export * from "./celebrity-request";
 export * from "./trending";
 export * from "./payment-methods";
+export * from "./client-hiring";

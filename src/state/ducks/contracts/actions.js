@@ -54,6 +54,37 @@ export const getContract = (contractReference) => {
     }
 };
 
+export const getContractWithPayments = (contractReference) => {
+    return dispatch => {
+        const TYPE = TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST;
+        const FINAL_PATH = API_PATHS.CONTRACT_BASE_PATH + "contract-with-payments/" + contractReference;
+        dispatch({type: TYPE, payload: {}});
+        apiService({
+            method: "GET",
+            action: TYPE,
+            path: FINAL_PATH,
+            async: true,
+            params: null,
+            body: null
+        })
+            .then(res => {
+                if ("status" in res.data && res.data.status === "ERROR") {
+                    handleApiResponseFailure(dispatch, TYPE, res);
+                    // Other actions
+                    history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+
+                } else {
+                    handleApiResponseSuccess(dispatch, TYPE, res);
+                    // Other actions
+                    dispatch({type: `${TYPE}_COMPLETED`, payload: res});
+                }
+            })
+            .catch(err => {
+                history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+            });
+    }
+};
 
 export const listTrending = (params) => {
     return dispatch => {

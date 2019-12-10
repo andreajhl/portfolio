@@ -7,7 +7,8 @@ import {
     addContractComment,
     listTrending,
     updateQueryParams,
-    playVideo
+    playVideo,
+    getContractWithPayments
 } from "./actions";
 
 export {
@@ -19,5 +20,6 @@ export {
     addContractComment,
     listTrending,
     updateQueryParams,
-    playVideo
+    playVideo,
+    getContractWithPayments
 };
