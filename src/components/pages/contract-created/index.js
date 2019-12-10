@@ -46,7 +46,7 @@ class ContractCreatedPage extends Component {
     }
 
     render() {
-        const isLogged = this.session.getSession();
+        const isLogged = this.session.getToken();
         return (
             <>
                 <div className="ContractCreatedPage">

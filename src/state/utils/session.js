@@ -19,31 +19,13 @@ export class Session {
 
     getSession = () => {
         const token = localStorage.getItem(this.sessionName);
-        return token ? this.isAuthenticated(token) : null
+        return token ? this.jwtDecode(token) : null
     };
 
-    getToken(){
-        const token = localStorage.getItem(this.sessionName);
-        return token ? this.jwtDecode(token) : null
-    }
-
-    jwtDecode(){
-        const token = localStorage.getItem(this.sessionName);
+    jwtDecode(token) {
         try {
             if (token) {
                 return jwt_decode(token)
-            }
-        } catch (e) {
-            return null
-        }
-    }
-
-    isAuthenticated(token) {
-        try {
-            if (token && token.client_session >= 10) {
-                return jwt_decode(token)
-            } else {
-                return null
             }
         } catch (e) {
             return null

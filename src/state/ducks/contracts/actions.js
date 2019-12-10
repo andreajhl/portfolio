@@ -106,8 +106,6 @@ export const saveClientContract = (contractData) => {
 
                 } else {
                     handleApiResponseSuccess(dispatch, TYPE, res);
-                    const session = new Session();
-                    session.setSession(res.data.token);
 
                     dispatch(getContract(res.data.reference));
 

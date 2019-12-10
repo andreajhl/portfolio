@@ -1,9 +1,9 @@
 import {
-    getSession,
+    getToken,
     updateSession
 } from "./actions";
 
 export {
-    getSession,
+    getToken,
     updateSession
 };

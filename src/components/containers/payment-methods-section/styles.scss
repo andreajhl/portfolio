@@ -1,16 +1,17 @@
 @import "../../../theme";
 
-.PaymentMethodsSectionLayout {
+.PaymentMethodsSection {
 
   .title {
-    margin-bottom: 30px;
+
   }
 
   .payment-types {
 
     .payment-type {
-      border-bottom: solid 1px #a1a1a1;
+      border-bottom: solid 1px #dee2e6;
       cursor: pointer;
+      position: relative;
 
       &:last-child {
         border-bottom: 0;
@@ -24,7 +25,7 @@
       }
 
       .titles {
-        min-height: 80px;
+        min-height: 40px;
         display: flex;
 
         .circle {
@@ -33,7 +34,7 @@
           position: relative;
 
           div.circle-button {
-            border: solid 1px #a1a1a1;
+            border: solid 1px #dee2e6;
             width: 25px;
             height: 25px;
             border-radius: 100%;
@@ -109,7 +110,7 @@
               margin-right: 10px;
               width: 30px;
               border-radius: 5px;
-              border: solid 1px #a1a1a1;
+              border: solid 1px #dee2e6;
             }
           }
 
@@ -144,7 +145,7 @@
             position: relative;
 
             .available-option-circle-button {
-              border: solid 1px #a1a1a1;
+              border: solid 1px #dee2e6;
               width: 25px;
               height: 25px;
               border-radius: 100%;
@@ -168,7 +169,7 @@
 
             img {
               margin-left: 10px;
-              border: solid 1px #a1a1a1;
+              border: solid 1px #dee2e6;
               border-radius: 5px;
             }
           }
@@ -176,8 +177,14 @@
         }
 
       }
-
       // end available-options
+
+      .fa-arrow-circle-right {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+        color: $primary
+      }
 
     }
 

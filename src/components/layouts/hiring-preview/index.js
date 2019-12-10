@@ -42,11 +42,11 @@ class HiringPreviewLayout extends Component {
     }
 
     renderContractDetails() {
-        if (this.session.getSession()) {
+        if (this.session.getToken()) {
             return (
                 <>
                     {
-                        this.session.getSession().client_id === this.props.contract.client
+                        this.session.getToken().client_id === this.props.contract.client
                             ?
                             <div className="to-from">
                                 <h5 className="font-weight-bold">
@@ -75,11 +75,11 @@ class HiringPreviewLayout extends Component {
     }
 
     renderContractReview() {
-        if (this.session.getSession()) {
+        if (this.session.getToken()) {
             return (
                 <>
                     {
-                        this.session.getSession().client_id === this.props.contract.client
+                        this.session.getToken().client_id === this.props.contract.client
                             ?
                             <div className="reviews">
                                 <ReviewCreatorLayout contract={this.props.contract}/>
@@ -92,11 +92,11 @@ class HiringPreviewLayout extends Component {
     }
 
     renderContractComments(){
-        if (this.session.getSession()) {
+        if (this.session.getToken()) {
             return (
                 <>
                     {
-                        this.session.getSession().client_id !== this.props.contract.client
+                        this.session.getToken().client_id !== this.props.contract.client
                             ?
                             <ContractCommentSectionLayout contract={this.props.contract}/>
                             : null

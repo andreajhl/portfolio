@@ -273,7 +273,7 @@ class CelebrityDetailsCardLayout extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-7 mt-4 pr-0">
+                            <div className="col-7 m-2-6 pr-0">
                                 <div className="margin-left-5w">
                                     <small className="font-weight-bold title">
                                         {this.props.celebrity.full_name}
@@ -283,7 +283,7 @@ class CelebrityDetailsCardLayout extends Component {
                             <div className="col-5 mt-3 pl-0 text-right">
                                 <div className="margin-right-5w" onClick={this.openModal}>
                                     <button className="btn btn-outline-primary btn-sm f-follow-button">
-                                        Contratar
+                                        Contratar por ${this.props.celebrity.contracts_price} USD
                                     </button>
                                 </div>
                             </div>

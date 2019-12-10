@@ -3,7 +3,7 @@ import * as PATHS from "./paths";
 import apiService from "../../utils/apiService";
 import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
 
-export const getSession = () => {
+export const getToken = () => {
     return dispatch => {
         const path = PATHS.GET_SESSION;
         const type = types.GET_SESSION_REQUEST;

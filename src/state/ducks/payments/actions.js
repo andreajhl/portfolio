@@ -113,7 +113,8 @@ export const createContractPayment = (data) => {
             path: FINAL_PATH,
             async: true,
             params: null,
-            body: data
+            body: data,
+            custom_endpoint: false
         })
             .then(res => {
                 if ("status" in res.data && res.data.status === "ERROR") {
@@ -122,6 +123,12 @@ export const createContractPayment = (data) => {
                 } else {
                     handleApiResponseSuccess(dispatch, TYPE, res);
                     // Other actions
+
+                    // Validate if it is necessary a redirect
+                    if(res.data.required_redirect === true) {
+                        window.location.href = res.data.redirect_uri;
+                    }
+
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
                 }
             })

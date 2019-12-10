@@ -21,8 +21,6 @@ class ContractModal extends Component {
                 is_public: true,
             },
             errors: [],
-            tokenizeCardLoading: false,
-            tokenizeCardError: null,
         };
 
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -33,13 +31,6 @@ class ContractModal extends Component {
         this.childRef = React.createRef();
     }
 
-    componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
-        if (nextProps.isLoading === false && this.props.isLoading === true) {
-            this.setState({
-                tokenizeCardLoading: false
-            })
-        }
-    }
 
     handleCloseModal() {
         this.props.onHide()
@@ -99,11 +90,9 @@ class ContractModal extends Component {
             if (errors.length) {
                 return false;
             } else {
-                this.setState({tokenizeCardLoading: true, tokenizeCardError: null}, async () => {
-                    this.setState({contract_data}, () => {
-                        this.props.saveClientContract(this.state.contract_data);
-                    })
-                });
+                this.setState({contract_data}, () => {
+                    this.props.saveClientContract(this.state.contract_data);
+                })
             }
         }
     }

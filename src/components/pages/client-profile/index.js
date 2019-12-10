@@ -17,7 +17,7 @@ class ClientProfilePage extends Component {
     }
 
     componentWillMount(): void {
-        this.props.getSession()
+        this.props.getToken()
     }
 
     componentDidMount(): void {
@@ -55,7 +55,7 @@ const mapStateToProps = (state: any) => ({
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getSession: sessionOperations.getSession
+    getToken: sessionOperations.getToken
 };
 
 // Export Class

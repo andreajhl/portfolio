@@ -18,7 +18,7 @@ class CompleteProfilePage extends Component {
     }
 
     componentWillMount(): void {
-        this.props.getSession()
+        this.props.getToken()
     }
 
     goToRoot() {
@@ -60,7 +60,7 @@ const mapStateToProps = (state: any) => ({
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getSession: sessionOperations.getSession
+    getToken: sessionOperations.getToken
 };
 
 // Export Class

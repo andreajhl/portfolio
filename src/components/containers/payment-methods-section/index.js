@@ -3,39 +3,36 @@ import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 
+const INITIAL_STATE = {
+    currency: "",
+    gatewayName: "",
+    paymentType: "",
+    paymentMethod: {},
+};
 
-class PaymentMethodsSectionLayout extends Component {
+class PaymentMethodsSection extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            currency: null,
-            paymentType: null,
-            paymentMethod: {},
-        };
+        this.state = INITIAL_STATE;
 
-        this.handleCurrency = this.handleCurrency.bind(this);
         this.handlePaymentMethod = this.handlePaymentMethod.bind(this);
         this.handlePaymentType = this.handlePaymentType.bind(this);
 
     }
 
-    handleCurrency(event) {
-        this.setState({
-            currency: event.target.value,
-            paymentType: null,
-            paymentMethod: {},
-        }, () => {
-            this.props.listPaymentGateways(this.state.currency);
-            this.props.onSelectPaymentMethod({})
-        })
+    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+        if(nextProps.isLoading && !this.props.isLoading){
+            this.setState(INITIAL_STATE)
+        }
     }
 
     handlePaymentType(method) {
         if(method.name !== this.state.paymentType){
             this.setState({
-                paymentType: method.name
+                paymentType: method.name,
+                gatewayName: method.gateway_name
             }, () => {
                 this.props.onSelectPaymentType(method);
                 this.props.onSelectPaymentMethod({})
@@ -135,59 +132,46 @@ class PaymentMethodsSectionLayout extends Component {
     }
 
     renderPaymentTypeOptions(methods) {
-        return (
-            <div className="available-options">
-                {
-                    methods.map((method, index) => {
-                        return (
-                            <div className="available-option" key={"method_" + method.identifier + index} onClick={this.handlePaymentMethod.bind(this, method)}>
-                                <div className="available-option-circle">
-                                    <div
-                                        className={"available-option-circle-button " + (this.state.paymentMethod.identifier === method.identifier && " active ")}/>
-                                </div>
-                                <div className="available-option-logo">
-                                    <img src={method.logo} alt="logo" width="30px"/>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-
-            </div>
-        )
-    }
-
-    renderPaymentTypes() {
-        if (this.state.currency && this.state.currency !== "USD") {
-            return (
+        if (this.state.gatewayName === "STRIPE") {
+            return(
                 <>
-                    <h5 className="title font-weight-bold">2. Elige un método de pago.</h5>
-                    <div className={"payment-types f-shadow f-rounded"}>
-                        {this.loopPaymentGateways()}
-                    </div>
+                    <span>This is Stripe</span>
                 </>
             )
-        } else if (this.state.currency && this.state.currency === "USD") {
+        } else {
             return (
-                <>
+                <div className="available-options">
+                    {
+                        methods.map((method, index) => {
+                            return (
+                                <div className="available-option" key={"method_" + method.identifier + index} onClick={this.handlePaymentMethod.bind(this, method)}>
+                                    <div className="available-option-circle">
+                                        <div
+                                            className={"available-option-circle-button " + (this.state.paymentMethod.identifier === method.identifier && " active ")}/>
+                                    </div>
+                                    <div className="available-option-logo">
+                                        <img src={method.logo} alt="logo" width="30px"/>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
 
-                </>
+                </div>
             )
         }
     }
 
     render() {
         return (
-            <div className="PaymentMethodsSectionLayout">
-                <h5 className="title font-weight-bold">1. ¿En qué moneda quieres pagar?</h5>
-                <select className="form-control" value={this.state.currency} onChange={this.handleCurrency}>
-                    <option value="">Seleccionar</option>
-                    <option value="USD">USD - Dólares</option>
-                    <option value="COP">COP - Pesos Colombianos</option>
-                    <option value="BRL">BRL - Real Brasileño</option>
-                </select>
-                <hr/>
-                {this.renderPaymentTypes()}
+            <div className="PaymentMethodsSection">
+                <h6 className="title font-weight-bold">
+                    2. Elige un método de pago.
+                    <small className="ml-1 text-danger">*</small>
+                </h6>
+                <div className={"payment-types border f-rounded"}>
+                    {this.loopPaymentGateways()}
+                </div>
             </div>
         );
     };
@@ -195,10 +179,10 @@ class PaymentMethodsSectionLayout extends Component {
 }
 
 // Set propTypes
-PaymentMethodsSectionLayout.propTypes = {};
+PaymentMethodsSection.propTypes = {};
 
 // Set defaultProps
-PaymentMethodsSectionLayout.defaultProps = {
+PaymentMethodsSection.defaultProps = {
     onSelectPaymentMethod: () => {
 
     },
@@ -219,6 +203,6 @@ const mapDispatchToProps = {
 };
 
 // Export Class
-const _PaymentMethodsSectionLayout = connect(mapStateToProps, mapDispatchToProps)(PaymentMethodsSectionLayout);
-export {_PaymentMethodsSectionLayout as PaymentMethodsSectionLayout};
+const _PaymentMethodsSection = connect(mapStateToProps, mapDispatchToProps)(PaymentMethodsSection);
+export {_PaymentMethodsSection as PaymentMethodsSection};
 
