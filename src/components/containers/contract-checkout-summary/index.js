@@ -88,7 +88,7 @@ class ContractCheckoutSummary extends Component {
                                 {this.props.error}
                             </div>
                         }
-                        <div className="contract-button mt-4 mx-auto text-center">
+                        <div classNgame="contract-button mt-4 mx-auto text-center">
                             <button
                                 onClick={this.onPay}
                                 className={"contract-button mx-auto hover cursor-pointer p-2 border bg-active " + (!this.props.buttonPayDisabled ? " disabled " : " ")}
