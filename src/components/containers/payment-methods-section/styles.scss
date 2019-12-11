@@ -1,13 +1,10 @@
 @import "../../../theme";
 
 .PaymentMethodsSection {
-
   .title {
-
   }
 
   .payment-types {
-
     .payment-type {
       border-bottom: solid 1px #dee2e6;
       cursor: pointer;
@@ -55,7 +52,9 @@
           text-align: left;
           position: relative;
 
-          .fa.fa-credit-card, .fa.fa-money-bill-alt, .fa.fa-dollar-sign {
+          .fa.fa-credit-card,
+          .fa.fa-money-bill-alt,
+          .fa.fa-dollar-sign {
             font-size: 25px;
             color: $secundary-color-blue;
             position: absolute;
@@ -64,8 +63,6 @@
             -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
           }
-
-
         }
 
         .payment-type-title {
@@ -113,8 +110,6 @@
               border: solid 1px #dee2e6;
             }
           }
-
-
         }
       }
 
@@ -156,7 +151,9 @@
               transform: translate(-50%, -50%);
 
               &.active {
-                background-color: $primary;
+                background-image: url("/assets/img/check.png");
+                background-repeat: no-repeat;
+                background-position: center;
               }
             }
           }
@@ -173,9 +170,7 @@
               border-radius: 5px;
             }
           }
-
         }
-
       }
       // end available-options
 
@@ -183,10 +178,8 @@
         position: absolute;
         top: 13px;
         right: 13px;
-        color: $primary
+        color: $primary;
       }
-
     }
-
   }
 }

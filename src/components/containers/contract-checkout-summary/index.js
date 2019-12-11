@@ -101,7 +101,7 @@ class ContractCheckoutSummary extends Component {
             {this.props.showError && (
               <div className="text-center">{this.props.error}</div>
             )}
-            <div classNgame="contract-button mt-4 mx-auto buttonContractCustom">
+            <div className="contract-button mt-4 mx-auto buttonContractCustom">
               <button
                 onClick={this.onPay}
                 className={
