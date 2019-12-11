@@ -81,6 +81,13 @@ class ContractCheckoutSummary extends Component {
                                 </h5>
                             </div>
                         </div>
+                        {
+                            this.props.showError
+                            &&
+                            <div className="text-center">
+                                {this.props.error}
+                            </div>
+                        }
                         <div className="contract-button mt-4 mx-auto text-center">
                             <button
                                 onClick={this.onPay}
@@ -103,6 +110,8 @@ ContractCheckoutSummary.propTypes = {};
 
 // Set defaultProps
 ContractCheckoutSummary.defaultProps = {
+    showError: false,
+    error: "",
     buttonPayDisabled: false,
     transactionFee: 0,
     contractData: {},

@@ -18,6 +18,6 @@ export * from "./navbar-section";
 export * from "./page-container";
 export * from "./pagination";
 export * from "./review-creator";
-export * from "./stripe-card-form";
+export * from "./stripe-card-element";
 export * from "./user-profile-details-card";
 export * from "./auth-t&c";

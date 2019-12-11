@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 
-class StripeCardForm extends Component {
+class StripeCardElementLayout extends Component {
     constructor(props) {
         super(props);
         this.state = {complete: false};
@@ -16,7 +16,7 @@ class StripeCardForm extends Component {
 
     render() {
         return (
-            <div className="StripeCardForm" style={{border: "solid 2px !important"}}>
+            <div className="StripeCardElementLayout" style={{border: "solid 2px !important"}}>
                 <div className="checkout">
                     <CardElement />
                 </div>
@@ -25,4 +25,4 @@ class StripeCardForm extends Component {
     }
 }
 
-export default injectStripe(StripeCardForm);
+export default injectStripe(StripeCardElementLayout);

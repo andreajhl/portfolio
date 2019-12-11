@@ -14,10 +14,12 @@ class CheckoutSectionForm extends Component {
         super(props);
 
         this.state = {
+            error: "",
             currency: "USD",
             buyerData: {},
             paymentMethod: {},
-            paymentType: {}
+            paymentType: {},
+            stripeToken: ""
         };
 
         this.onSelectCurrency = this.onSelectCurrency.bind(this);
@@ -105,6 +107,18 @@ class CheckoutSectionForm extends Component {
         }
     }
 
+    onTokenizeCard(status, token_id) {
+        if (status === "ERROR") {
+            this.setState({
+                error: "Error al validar la tarjeta de crédito"
+            })
+        }else{
+            this.setState({
+                stripeToken: token_id
+            })
+        }
+    }
+
     render() {
         return (
             <div className="CheckoutSectionForm">
@@ -115,6 +129,8 @@ class CheckoutSectionForm extends Component {
                         />
                         <hr/>
                         <PaymentMethodsSection
+                            onTokenizeCard={this.onTokenizeCard}
+                            tokenizeCard={this.tokenizeCard}
                             onSelectPaymentType={this.onSelectPaymentType}
                             onSelectPaymentMethod={this.onSelectPaymentMethod}
                         />
@@ -131,6 +147,8 @@ class CheckoutSectionForm extends Component {
                     </div>
                     <div className="col-lg-5 contract-summary">
                         <ContractCheckoutSummary
+                            showError={!!this.state.error}
+                            error={this.state.error}
                             transactionFee={this.state.paymentMethod.fee}
                             contractData={this.props.contractData}
                             buttonPayDisabled={this.checkButtonAvailability()}
