@@ -20,7 +20,9 @@ class PaymentMethodsSection extends Component {
 
         this.handlePaymentMethod = this.handlePaymentMethod.bind(this);
         this.handlePaymentType = this.handlePaymentType.bind(this);
+        this.tokenizeCard = this.tokenizeCard.bind(this);
 
+        this.stripeCardForm = React.createRef();
     }
 
     componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
@@ -138,7 +140,7 @@ class PaymentMethodsSection extends Component {
             return(
                 <div className="pl-3 pr-3 pt-4">
                     <StripeCardForm
-                        tokenizeCard={this.props.tokenizeCard}
+                        ref={this.stripeCardForm}
                         onTokenizeCard={this.props.onTokenizeCard}
                     />
                 </div>
@@ -164,10 +166,13 @@ class PaymentMethodsSection extends Component {
                             )
                         })
                     }
-
                 </div>
             )
         }
+    }
+
+    tokenizeCard() {
+        this.stripeCardForm.current.tokenizeCard()
     }
 
     render() {

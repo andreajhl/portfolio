@@ -28,6 +28,8 @@ class CheckoutSectionForm extends Component {
         this.onSelectPaymentMethod = this.onSelectPaymentMethod.bind(this);
         this.onSelectPaymentType = this.onSelectPaymentType.bind(this);
         this.onPay = this.onPay.bind(this);
+
+        this.paymentMethodsSectionRef = React.createRef();
     }
 
     onSelectCurrency(currency) {
@@ -69,7 +71,7 @@ class CheckoutSectionForm extends Component {
         } else if (this.state.currency === "COP") {
             country = "CO"
         } else if (this.state.currency === "USD") {
-            country = "EC"
+            country = "US"
         } else if (this.state.currency === "INR") {
             country = "IN"
         } else if (this.state.currency === "IDR") {
@@ -89,23 +91,30 @@ class CheckoutSectionForm extends Component {
         } else if (this.state.currency === "UYU") {
             country = "UY"
         }
-        this.props.createContractPayment({
-            buyer_full_name: this.state.buyerData.full_name,
-            buyer_email: this.state.buyerData.email,
-            buyer_document: this.state.buyerData.document,
-            contract_reference: this.props.contractData.reference,
-            payment_method_id: this.state.paymentMethod.id,
-            country: country,
-        })
-    }
 
-    checkButtonAvailability() {
-        if (this.state.currency !== "USD") {
-            return this.state.buyerData.full_name && this.state.buyerData.email && this.state.buyerData.document && this.state.paymentMethod.name && !this.props.isLoading;
-        } else {
-
+        if(country === "US"){
+            alert("1")
+            this.paymentMethodsSectionRef.current.tokenizeCard();
+        }else{
+            this.props.createContractPayment({
+                buyer_full_name: this.state.buyerData.full_name,
+                buyer_email: this.state.buyerData.email,
+                buyer_document: this.state.buyerData.document,
+                contract_reference: this.props.contractData.reference,
+                payment_method_id: this.state.paymentMethod.id,
+                country: country,
+                stripeToken: this.state.stripeToken
+            })
         }
     }
+
+    // checkButtonAvailability() {
+    //     if (this.state.currency !== "USD") {
+    //         return this.state.buyerData.full_name && this.state.buyerData.email && this.state.buyerData.document && this.state.paymentMethod.name && !this.props.isLoading;
+    //     } else {
+    //
+    //     }
+    // }
 
     onTokenizeCard(status, token_id) {
         if (status === "ERROR") {
@@ -129,8 +138,8 @@ class CheckoutSectionForm extends Component {
                         />
                         <hr/>
                         <PaymentMethodsSection
+                            ref={this.paymentMethodsSectionRef}
                             onTokenizeCard={this.onTokenizeCard}
-                            tokenizeCard={this.tokenizeCard}
                             onSelectPaymentType={this.onSelectPaymentType}
                             onSelectPaymentMethod={this.onSelectPaymentMethod}
                         />
@@ -151,7 +160,7 @@ class CheckoutSectionForm extends Component {
                             error={this.state.error}
                             transactionFee={this.state.paymentMethod.fee}
                             contractData={this.props.contractData}
-                            buttonPayDisabled={this.checkButtonAvailability()}
+                            buttonPayDisabled={false}
                             onPay={this.onPay}
                         />
                     </div>

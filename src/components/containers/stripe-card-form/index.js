@@ -20,8 +20,10 @@ class StripeCardForm extends Component {
         this.setState({showCardError: false}, async () => {
             let {token} = await this.childRef.current.state.stripe.createToken();
             if (token) {
+                alert("2")
                 this.props.onTokenizeCard("OK", token.id)
             } else {
+                alert("3")
                 this.setState({showCardError: true}, () => {
                     this.props.onTokenizeCard("ERROR", token.id)
                 });
