@@ -28,17 +28,18 @@
       min-height: 300px;
       padding: 20px 50px;
 
-      .text-colored{
+      .text-colored {
         color: $soft-grey;
       }
     }
 
-    .contract-button{
+    .contract-button {
       width: 200px;
-      &.disabled{
+      display: flex;
+      justify-content: center;
+      &.disabled {
         background-color: #a1a1a1 !important;
       }
     }
-
   }
 }
