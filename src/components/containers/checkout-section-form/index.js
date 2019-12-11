@@ -118,7 +118,7 @@ class CheckoutSectionForm extends Component {
         <div className="row checkout-section mx-auto justify-content-center">
           <div className="col-12 col-sm-8 col-md-7 col-lg-7 payment-methods">
             <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency} />
-            <hr />
+            <br />
             <PaymentMethodsSection
               ref={this.paymentMethodsSectionRef}
               onTokenizeCard={this.onTokenizeCard}
