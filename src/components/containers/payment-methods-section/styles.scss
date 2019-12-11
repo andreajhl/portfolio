@@ -151,6 +151,7 @@
               transform: translate(-50%, -50%);
 
               &.active {
+                background-color: $primary;
                 background-image: url("/assets/img/check.png");
                 background-repeat: no-repeat;
                 background-position: center;
