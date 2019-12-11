@@ -232,17 +232,17 @@ b {
 
   padding: 10px 12px;
 
-  border: 1px solid transparent;
+  //border: 1px solid transparent;
   border-radius: 4px;
   background-color: white;
 
-  box-shadow: 0 1px 3px 0 #e6ebf1;
+  //box-shadow: 0 1px 3px 0 #e6ebf1;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;
 }
 
 .StripeElement--focus {
-  box-shadow: 0 1px 3px 0 #cfd7df;
+  //box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
 .StripeElement--invalid {
@@ -253,8 +253,8 @@ b {
   background-color: #fefde5 !important;
 }
 
-div.StripeCardForm {
-  border: solid 2px !important;
+div.StripeCardElementLayout {
+  border: solid 1px #dee2e6 !important;
   border-radius: 0.25rem;
 }
 
@@ -473,6 +473,6 @@ input, select {
   opacity: 1;
 }
 
-.StripeCardForm {
+.StripeCardElementLayout {
   zoom: 100%;
 }

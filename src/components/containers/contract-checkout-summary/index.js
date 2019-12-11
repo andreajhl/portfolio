@@ -3,17 +3,13 @@ import "./styles.scss";
 import { paymentsOperations } from "../../../state/ducks/payments";
 import { connect } from "react-redux";
 import NumberFormat from "react-number-format";
-
 class ContractCheckoutSummary extends Component {
   constructor(props) {
     super(props);
-
     this.state = {};
-
     this.contractPrice = this.contractPrice.bind(this);
     this.onPay = this.onPay.bind(this);
   }
-
   returnNumber(number) {
     return (
       <NumberFormat
@@ -25,7 +21,6 @@ class ContractCheckoutSummary extends Component {
       />
     );
   }
-
   contractPrice() {
     if (this.props.contractData.price) {
       if (
@@ -46,11 +41,9 @@ class ContractCheckoutSummary extends Component {
       return 0;
     }
   }
-
   onPay() {
     this.props.onPay();
   }
-
   render() {
     return (
       <div className="ContractCheckoutSummary f-rounded">
@@ -75,7 +68,7 @@ class ContractCheckoutSummary extends Component {
               <h6>
                 <div className="col-12">
                   <span className="text-colored">
-                    De:&nbsp;
+                    De:{" "}
                     <span className="font-weight-bold">
                       {this.props.contractData.delivery_from}
                     </span>{" "}
@@ -83,7 +76,7 @@ class ContractCheckoutSummary extends Component {
                 </div>
                 <div className="col-12">
                   <span className="text-colored">
-                    Para:&nbsp;
+                    Para:{" "}
                     <span className="font-weight-bold">
                       {this.props.contractData.delivery_to}
                     </span>{" "}
@@ -105,14 +98,15 @@ class ContractCheckoutSummary extends Component {
                 </h5>
               </div>
             </div>
-            <div className="contract-button mt-4 mx-auto text-center">
+            {this.props.showError && (
+              <div className="text-center">{this.props.error}</div>
+            )}
+            <div classNgame="contract-button mt-4 mx-auto buttonContractCustom">
               <button
                 onClick={this.onPay}
                 className={
-                  "contract-button mx-auto hover cursor-pointer p-2 border bg-active " +
-                  (!this.props.buttonPayDisabled ? " disabled " : " ")
+                  "contract-button mx-auto hover cursor-pointer p-2 border bg-active "
                 }
-                disabled={!this.props.buttonPayDisabled}
               >
                 3. Pagar
               </button>
@@ -123,29 +117,26 @@ class ContractCheckoutSummary extends Component {
     );
   }
 }
-
 // Set propTypes
 ContractCheckoutSummary.propTypes = {};
-
 // Set defaultProps
 ContractCheckoutSummary.defaultProps = {
+  showError: false,
+  error: "",
   buttonPayDisabled: false,
   transactionFee: 0,
   contractData: {},
   onPay: () => {}
 };
-
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
   isLoading: state.payments.currencyExchangeReducer.loading,
   currencyExchangeData: state.payments.currencyExchangeReducer.data
 });
-
 // mapStateToProps
 const mapDispatchToProps = {
   currencyExchange: paymentsOperations.currencyExchange
 };
-
 // Export Class
 const _ContractCheckoutSummary = connect(
   mapStateToProps,

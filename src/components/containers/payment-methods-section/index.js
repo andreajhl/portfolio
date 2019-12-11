@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
+import {StripeCardForm} from "../stripe-card-form";
 
 const INITIAL_STATE = {
     currency: "",
@@ -77,7 +78,7 @@ class PaymentMethodsSection extends Component {
                                      key={"method_" + index}
                                      onClick={this.handlePaymentType.bind(this, method)}
                                 >
-                                    <div className="titles">
+                                    <div className="titles bg-light">
                                         <div className="icon">
                                             {
                                                 method.name === "CARD"
@@ -117,10 +118,11 @@ class PaymentMethodsSection extends Component {
                                     </div>
                                     {
                                         this.state.paymentType === method.name
-                                        &&
+                                            ?
                                         <>
                                             {this.renderPaymentTypeOptions(method["available-methods"])}
                                         </>
+                                            : null
                                     }
                                 </div>
                             )
@@ -134,9 +136,12 @@ class PaymentMethodsSection extends Component {
     renderPaymentTypeOptions(methods) {
         if (this.state.gatewayName === "STRIPE") {
             return(
-                <>
-                    <span>This is Stripe</span>
-                </>
+                <div className="pl-3 pr-3 pt-4">
+                    <StripeCardForm
+                        tokenizeCard={this.props.tokenizeCard}
+                        onTokenizeCard={this.props.onTokenizeCard}
+                    />
+                </div>
             )
         } else {
             return (
@@ -144,7 +149,10 @@ class PaymentMethodsSection extends Component {
                     {
                         methods.map((method, index) => {
                             return (
-                                <div className="available-option" key={"method_" + method.identifier + index} onClick={this.handlePaymentMethod.bind(this, method)}>
+                                <div className="available-option"
+                                     key={"method_" + method.identifier + index}
+                                     onClick={this.handlePaymentMethod.bind(this, method)}
+                                >
                                     <div className="available-option-circle">
                                         <div
                                             className={"available-option-circle-button " + (this.state.paymentMethod.identifier === method.identifier && " active ")}/>
@@ -183,6 +191,9 @@ PaymentMethodsSection.propTypes = {};
 
 // Set defaultProps
 PaymentMethodsSection.defaultProps = {
+    tokenizeCard: () => {
+
+    },
     onSelectPaymentMethod: () => {
 
     },

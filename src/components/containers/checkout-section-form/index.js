@@ -6,50 +6,44 @@ import { paymentsOperations } from "../../../state/ducks/payments";
 import { connect } from "react-redux";
 import { CheckoutBuyerData } from "../checkout-buyer-data";
 import { ContractCurrencyPayment } from "../contract-currency-payment";
-
 class CheckoutSectionForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
+      error: "",
       currency: "USD",
       buyerData: {},
       paymentMethod: {},
-      paymentType: {}
+      paymentType: {},
+      stripeToken: ""
     };
-
     this.onSelectCurrency = this.onSelectCurrency.bind(this);
     this.onBuyerDataChange = this.onBuyerDataChange.bind(this);
-
     this.onSelectPaymentMethod = this.onSelectPaymentMethod.bind(this);
     this.onSelectPaymentType = this.onSelectPaymentType.bind(this);
     this.onPay = this.onPay.bind(this);
+    this.paymentMethodsSectionRef = React.createRef();
   }
-
   onSelectCurrency(currency) {
     this.setState({
       currency
     });
   }
-
   onBuyerDataChange(buyerData) {
     this.setState({
       buyerData
     });
   }
-
   onSelectPaymentMethod(paymentMethod) {
     this.setState({
       paymentMethod
     });
   }
-
   onSelectPaymentType(paymentType) {
     this.setState({
       paymentType
     });
   }
-
   onPay() {
     let country = null;
     if (this.state.currency === "ARS") {
@@ -65,7 +59,7 @@ class CheckoutSectionForm extends Component {
     } else if (this.state.currency === "COP") {
       country = "CO";
     } else if (this.state.currency === "USD") {
-      country = "EC";
+      country = "US";
     } else if (this.state.currency === "INR") {
       country = "IN";
     } else if (this.state.currency === "IDR") {
@@ -85,29 +79,39 @@ class CheckoutSectionForm extends Component {
     } else if (this.state.currency === "UYU") {
       country = "UY";
     }
-    this.props.createContractPayment({
-      buyer_full_name: this.state.buyerData.full_name,
-      buyer_email: this.state.buyerData.email,
-      buyer_document: this.state.buyerData.document,
-      contract_reference: this.props.contractData.reference,
-      payment_method_id: this.state.paymentMethod.id,
-      country: country
-    });
-  }
-
-  checkButtonAvailability() {
-    if (this.state.currency !== "USD") {
-      return (
-        this.state.buyerData.full_name &&
-        this.state.buyerData.email &&
-        this.state.buyerData.document &&
-        this.state.paymentMethod.name &&
-        !this.props.isLoading
-      );
+    if (country === "US") {
+      alert("1");
+      this.paymentMethodsSectionRef.current.tokenizeCard();
     } else {
+      this.props.createContractPayment({
+        buyer_full_name: this.state.buyerData.full_name,
+        buyer_email: this.state.buyerData.email,
+        buyer_document: this.state.buyerData.document,
+        contract_reference: this.props.contractData.reference,
+        payment_method_id: this.state.paymentMethod.id,
+        country: country,
+        stripeToken: this.state.stripeToken
+      });
     }
   }
-
+  // checkButtonAvailability() {
+  //     if (this.state.currency !== "USD") {
+  //         return this.state.buyerData.full_name && this.state.buyerData.email && this.state.buyerData.document && this.state.paymentMethod.name && !this.props.isLoading;
+  //     } else {
+  //
+  //     }
+  // }
+  onTokenizeCard(status, token_id) {
+    if (status === "ERROR") {
+      this.setState({
+        error: "Error al validar la tarjeta de crédito"
+      });
+    } else {
+      this.setState({
+        stripeToken: token_id
+      });
+    }
+  }
   render() {
     return (
       <div className="CheckoutSectionForm">
@@ -116,6 +120,8 @@ class CheckoutSectionForm extends Component {
             <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency} />
             <hr />
             <PaymentMethodsSection
+              ref={this.paymentMethodsSectionRef}
+              onTokenizeCard={this.onTokenizeCard}
               onSelectPaymentType={this.onSelectPaymentType}
               onSelectPaymentMethod={this.onSelectPaymentMethod}
             />
@@ -126,11 +132,13 @@ class CheckoutSectionForm extends Component {
               </>
             )}
           </div>
-          <div className="col-12 col-sm-8 col-md-7 col-lg-5 contract-summary mt-3">
+          <div className="col-12 col-sm-8 col-md-7 col-lg-5 contract-summary  mt-3">
             <ContractCheckoutSummary
+              showError={!!this.state.error}
+              error={this.state.error}
               transactionFee={this.state.paymentMethod.fee}
               contractData={this.props.contractData}
-              buttonPayDisabled={this.checkButtonAvailability()}
+              buttonPayDisabled={false}
               onPay={this.onPay}
             />
           </div>
@@ -139,15 +147,12 @@ class CheckoutSectionForm extends Component {
     );
   }
 }
-
 // Set propTypes
 CheckoutSectionForm.propTypes = {};
-
 // Set defaultProps
 CheckoutSectionForm.defaultProps = {
   contractData: {}
 };
-
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
   currencyExchangeData: state.payments.currencyExchangeReducer.data,
@@ -155,12 +160,10 @@ const mapStateToProps = (state: any) => ({
   isCompleted: state.payments.createContractPaymentReducer.completed,
   contractPayment: state.payments.createContractPaymentReducer.data
 });
-
 // mapStateToProps
 const mapDispatchToProps = {
   createContractPayment: paymentsOperations.createContractPayment
 };
-
 // Export Class
 const _CheckoutSectionForm = connect(
   mapStateToProps,
