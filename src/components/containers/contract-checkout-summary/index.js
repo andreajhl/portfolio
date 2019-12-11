@@ -99,7 +99,7 @@ class ContractCheckoutSummary extends Component {
               </div>
             </div>
             {this.props.showError && (
-              <div className="text-center">{this.props.error}</div>
+              <div className="text-center text-danger">{this.props.error}</div>
             )}
             <div className="contract-button mt-4 mx-auto buttonContractCustom">
               <button

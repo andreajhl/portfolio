@@ -135,13 +135,18 @@ class PaymentMethodsSection extends Component {
         }
     }
 
+    tokenizeCard() {
+        this.stripeCardForm.current.tokenizeCard()
+    }
+
     renderPaymentTypeOptions(methods) {
         if (this.state.gatewayName === "STRIPE") {
             return(
                 <div className="pl-3 pr-3 pt-4">
                     <StripeCardForm
                         ref={this.stripeCardForm}
-                        onTokenizeCard={this.props.onTokenizeCard}
+                        onTokenizeCard
+                            ={this.props.onTokenizeCard}
                     />
                 </div>
             )
@@ -219,6 +224,8 @@ const mapDispatchToProps = {
 };
 
 // Export Class
-const _PaymentMethodsSection = connect(mapStateToProps, mapDispatchToProps)(PaymentMethodsSection);
+const _PaymentMethodsSection = connect(mapStateToProps, mapDispatchToProps, null, {
+    forwardRef: true,
+})(PaymentMethodsSection);
 export {_PaymentMethodsSection as PaymentMethodsSection};
 
