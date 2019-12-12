@@ -20,7 +20,7 @@ class PaymentMethodsSection extends Component {
 
         this.handlePaymentMethod = this.handlePaymentMethod.bind(this);
         this.handlePaymentType = this.handlePaymentType.bind(this);
-        this.tokenizeCard = this.tokenizeCard.bind(this);
+        this.tokenizeStripeCard = this.tokenizeStripeCard.bind(this);
 
         this.stripeCardForm = React.createRef();
     }
@@ -35,10 +35,11 @@ class PaymentMethodsSection extends Component {
         if(method.name !== this.state.paymentType){
             this.setState({
                 paymentType: method.name,
-                gatewayName: method.gateway_name
+                gatewayName: method.gateway_name,
+                paymentMethod: method["available-methods"][0]
             }, () => {
                 this.props.onSelectPaymentType(method);
-                this.props.onSelectPaymentMethod({})
+                this.props.onSelectPaymentMethod(method["available-methods"][0])
             })
         }
     }
@@ -97,6 +98,11 @@ class PaymentMethodsSection extends Component {
                                                 &&
                                                 <i className="fa fa-money-bill-alt"/>
                                             }
+                                            {
+                                                method.name === "OTHER"
+                                                &&
+                                                <i className="fa fa-plus"/>
+                                            }
                                         </div>
                                         <div className="payment-type-title">
                                             <h6>
@@ -114,6 +120,11 @@ class PaymentMethodsSection extends Component {
                                                     method.name === "TICKET"
                                                     &&
                                                     <span>Efectivo</span>
+                                                }
+                                                {
+                                                    method.name === "OTHER"
+                                                    &&
+                                                    <span>Otros</span>
                                                 }
                                             </h6>
                                         </div>
@@ -135,13 +146,19 @@ class PaymentMethodsSection extends Component {
         }
     }
 
+    tokenizeStripeCard() {
+        this.stripeCardForm.current.tokenizeStripeCard()
+    }
+
+
+
     renderPaymentTypeOptions(methods) {
         if (this.state.gatewayName === "STRIPE") {
             return(
                 <div className="pl-3 pr-3 pt-4">
                     <StripeCardForm
                         ref={this.stripeCardForm}
-                        onTokenizeCard={this.props.onTokenizeCard}
+                        onTokenizeCard={this.props.onTokenizeStripeCard}
                     />
                 </div>
             )
@@ -157,7 +174,7 @@ class PaymentMethodsSection extends Component {
                                 >
                                     <div className="available-option-circle">
                                         <div
-                                            className={"available-option-circle-button " + (this.state.paymentMethod.identifier === method.identifier && " active ")}/>
+                                            className={"available-option-circle-button " + ((this.state.paymentMethod.identifier === method.identifier && this.state.paymentMethod.brand === method.brand) && " active ")}/>
                                     </div>
                                     <div className="available-option-logo">
                                         <img src={method.logo} alt="logo" width="30px"/>
@@ -171,7 +188,7 @@ class PaymentMethodsSection extends Component {
         }
     }
 
-    tokenizeCard() {
+    tokenizeStripeCard() {
         this.stripeCardForm.current.tokenizeCard()
     }
 
@@ -196,7 +213,7 @@ PaymentMethodsSection.propTypes = {};
 
 // Set defaultProps
 PaymentMethodsSection.defaultProps = {
-    tokenizeCard: () => {
+    tokenizeStripeCard: () => {
 
     },
     onSelectPaymentMethod: () => {
@@ -219,6 +236,8 @@ const mapDispatchToProps = {
 };
 
 // Export Class
-const _PaymentMethodsSection = connect(mapStateToProps, mapDispatchToProps)(PaymentMethodsSection);
+const _PaymentMethodsSection = connect(mapStateToProps, mapDispatchToProps, null, {
+    forwardRef: true,
+})(PaymentMethodsSection);
 export {_PaymentMethodsSection as PaymentMethodsSection};
 

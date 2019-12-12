@@ -13,22 +13,22 @@ class StripeCardForm extends Component {
             showCardError: false
         };
 
+        this.tokenizeCard = this.tokenizeCard.bind(this);
+
         this.childRef = React.createRef();
     }
 
     async tokenizeCard() {
-        this.setState({showCardError: false}, async () => {
-            let {token} = await this.childRef.current.state.stripe.createToken();
-            if (token) {
-                alert("2")
+        let {token} = await this.childRef.current.state.stripe.createToken();
+        if (token) {
+            this.setState({showCardError: false},  () => {
                 this.props.onTokenizeCard("OK", token.id)
-            } else {
-                alert("3")
-                this.setState({showCardError: true}, () => {
-                    this.props.onTokenizeCard("ERROR", token.id)
-                });
-            }
-        });
+            });
+        } else {
+            this.setState({showCardError: true}, () => {
+                this.props.onTokenizeCard("ERROR", token.id)
+            });
+        }
     }
 
     render() {

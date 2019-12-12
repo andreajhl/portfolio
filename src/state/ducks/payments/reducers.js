@@ -27,13 +27,22 @@ const getContractToPayInitialState = {
     data: {}
 };
 
-const createContractPaymentInitialState = {
+const createDlocalPaymentInitialState = {
     loading: false,
     failed: false,
     completed: false,
     error_data: {error: ""},
     data: {}
 };
+
+const createStripePaymentInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+
 
 export function fetchPaymentGatewaysReducer(state = fetchPaymentGatewaysInitialState, action) {
     switch (action.type) {
@@ -122,25 +131,25 @@ export function getContractToPayReducer(state = getContractToPayInitialState, ac
     }
 }
 
-export function createContractPaymentReducer(state = createContractPaymentInitialState, action) {
+export function createDlocalPaymentReducer(state = createDlocalPaymentInitialState, action) {
     switch (action.type) {
-        case types.CREATE_CONTRACT_PAYMENT_REQUEST:
+        case types.CREATE_DLOCAL_PAYMENT_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case types.CREATE_CONTRACT_PAYMENT_REQUEST_FAILURE:
+        case types.CREATE_DLOCAL_PAYMENT_REQUEST_FAILURE:
             return {
-                ...createContractPaymentInitialState,
+                ...createDlocalPaymentInitialState,
                 error_data: action.payload.data,
                 failed: true
             };
-        case types.CREATE_CONTRACT_PAYMENT_REQUEST_SUCCESS:
+        case types.CREATE_DLOCAL_PAYMENT_REQUEST_SUCCESS:
             return {
-                ...createContractPaymentInitialState,
+                ...createDlocalPaymentInitialState,
                 data: action.payload.data
             };
-        case types.CREATE_CONTRACT_PAYMENT_REQUEST_COMPLETED:
+        case types.CREATE_DLOCAL_PAYMENT_REQUEST_COMPLETED:
             return {
                 ...state,
                 data: action.payload.data,
@@ -149,11 +158,41 @@ export function createContractPaymentReducer(state = createContractPaymentInitia
         default:
             return state
     }
-};
+}
+
+export function createStripePaymentReducer(state = createStripePaymentInitialState, action) {
+    switch (action.type) {
+        case types.CREATE_STRIPE_PAYMENT_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case types.CREATE_STRIPE_PAYMENT_REQUEST_FAILURE:
+            return {
+                ...createStripePaymentInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.CREATE_STRIPE_PAYMENT_REQUEST_SUCCESS:
+            return {
+                ...createStripePaymentInitialState,
+                data: action.payload.data
+            };
+        case types.CREATE_STRIPE_PAYMENT_REQUEST_COMPLETED:
+            return {
+                ...state,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+    }
+}
 
 export default combineReducers({
     fetchPaymentGatewaysReducer,
     currencyExchangeReducer,
     getContractToPayReducer,
-    createContractPaymentReducer
+    createDlocalPaymentReducer,
+    createStripePaymentReducer
 });
