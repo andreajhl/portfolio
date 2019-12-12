@@ -26,7 +26,7 @@ class StripeCardForm extends Component {
             });
         } else {
             this.setState({showCardError: true}, () => {
-                this.props.onTokenizeCard("ERROR", token.id)
+                this.props.onTokenizeCard("ERROR", null)
             });
         }
     }

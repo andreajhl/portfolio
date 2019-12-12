@@ -33,37 +33,37 @@ class HiringsCardSectionLayout extends Component {
 
         if (contract.status === 5) {
             return (
-                <button className="btn btn-outline-secondary" onClick={this.goToPay.bind(this, contract.reference)}>
-                    <span className="d-none d-md-block text-secondary">Ir a pagar</span>
-                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-1 fa fa-arrow-right text-secondary"/>
+                <button className="btn btn-outline-secondary" style={{width: "110px"}} onClick={this.goToPay.bind(this, contract.reference)}>
+                    <span className="d-md-block text-secondary">Ir a pagar</span>
+                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-2 fa fa-arrow-right text-secondary"/>
                 </button>
             )
         } else if (contract.status === 6) {
             return (
-                <button className="btn btn-outline-dark" disabled style={{width: "190px"}} onClick={this.goToContract.bind(this, contract.reference)}>
-                    <span className="d-none d-md-block text-dark">Validando el pago</span>
-                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-1 fa fa-clock"/>
+                <button className="btn btn-outline-dark" disabled style={{width: "170px"}} onClick={this.goToContract.bind(this, contract.reference)}>
+                    <span className="d-md-block text-dark">Validando el pago</span>
+                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-2 fa fa-clock"/>
                 </button>
             )
         } else if (contract.status === 10) {
             return (
                 <button className="btn btn-outline-dark" disabled style={{width: "220px"}} onClick={this.goToContract.bind(this, contract.reference)}>
-                    <span className="d-none d-md-block text-dark">En espera de grabación</span>
-                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-1 fa fa-clock"/>
+                    <span className="d-md-block text-dark">En espera de grabación</span>
+                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-2 fa fa-clock"/>
                 </button>
             )
         } else if (contract.status === 20) {
             return (
-                <button className="btn btn-outline-danger" disabled onClick={this.goToContract.bind(this, contract.reference)}>
-                    <span className="d-none d-md-block text-danger">Contrato rechazado</span>
-                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-1 fa fa-times-circle text-danger"/>
+                <button className="btn btn-outline-danger" disabled style={{width: "190px"}} onClick={this.goToContract.bind(this, contract.reference)}>
+                    <span className="d-md-block text-danger">Contrato rechazado</span>
+                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-2 fa fa-times-circle text-danger"/>
                 </button>
             )
         } else {
             return(
-                <button className="btn btn-outtext-primary" onClick={this.goToContract.bind(this, contract.reference)}>
-                    <span className="d-none d-md-block text-primary">Ver</span>
-                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-1 fa fa-play text-primary"/>
+                <button className="btn btn-outline-primary" onClick={this.goToContract.bind(this, contract.reference)}>
+                    <span className="d-md-block text-primary">Ver</span>
+                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-2 fa fa-play text-primary"/>
                 </button>
             )
         }

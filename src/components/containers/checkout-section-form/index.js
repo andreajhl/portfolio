@@ -135,14 +135,6 @@ class CheckoutSectionForm extends Component {
     });
   }
 
-  // checkButtonAvailability() {
-  //     if (this.state.currency !== "USD") {
-  //         return this.state.buyerData.full_name && this.state.buyerData.email && this.state.buyerData.document && this.state.paymentMethod.name && !this.props.isLoading;
-  //     } else {
-  //
-  //     }
-  // }
-
   onTokenizeStripeCard(status, token_id) {
     if (status === "ERROR") {
       this.setState({
