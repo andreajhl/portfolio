@@ -108,7 +108,7 @@ class CheckoutSectionForm extends Component {
               error: "Debes seleccionar un método de pago."
             })
         }
-      }catch (e) {
+      } catch (e) {
         this.setState({
           error: "Debes seleccionar un método de pago."
         })
