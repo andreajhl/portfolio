@@ -28,10 +28,6 @@ class CelebrityDetailsCardLayout extends Component {
 
     }
 
-    componentDidMount(): void {
-        this.playMobileVideo()
-    }
-
     handleImageLoaded() {
         this.setState({ imageLoaded: true });
     }
