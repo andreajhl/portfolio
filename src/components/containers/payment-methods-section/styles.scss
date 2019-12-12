@@ -168,9 +168,14 @@
             position: relative;
 
             img {
-              margin-left: 10px;
-              border: solid 1px #dee2e6;
-              border-radius: 5px;
+              margin-left: 0px;
+              width: 30px;
+            }
+
+            .text {
+              position: absolute;
+              top: 7px;
+              left: 55px;
             }
           }
         }
