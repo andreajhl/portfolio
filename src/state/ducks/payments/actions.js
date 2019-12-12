@@ -83,6 +83,7 @@ export const getContractToPay = contractReference => {
     if (localStorage.getItem("hash")) {
       console.log("llego");
       dispatch(AssociateContract(localStorage.getItem("hash")));
+      return;
     }
 
     const TYPE = types.GET_CONTRACT_TO_PAY_REQUEST;
