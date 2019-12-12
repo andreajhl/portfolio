@@ -81,6 +81,7 @@ export const getContractToPay = contractReference => {
     if (localStorage.getItem("hash")) {
       console.log("llego");
       dispatch(AssociateContract(localStorage.getItem("hash")));
+      return;
     }
 
     // Get Contract to Pay
