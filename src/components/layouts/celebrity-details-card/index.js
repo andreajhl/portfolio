@@ -12,7 +12,7 @@ class CelebrityDetailsCardLayout extends Component {
         this.state = {
             imageLoaded: false,
             showContractModal: false,
-            videoMobilePlayIcon: "fa-pause",
+            videoMobilePlayIcon: "fa-play",
             videoDesktopPlayIcon: "fa-play"
         };
 
@@ -26,6 +26,10 @@ class CelebrityDetailsCardLayout extends Component {
         this.videoMobileRef = React.createRef();
         this.videoDesktopRef = React.createRef();
 
+    }
+
+    componentDidMount(): void {
+        this.playMobileVideo()
     }
 
     handleImageLoaded() {
