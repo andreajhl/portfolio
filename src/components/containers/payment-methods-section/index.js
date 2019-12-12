@@ -178,6 +178,7 @@ class PaymentMethodsSection extends Component {
                                     </div>
                                     <div className="available-option-logo">
                                         <img src={method.logo} alt="logo" width="30px"/>
+                                        <small className={"text"}>{method.name}</small>
                                     </div>
                                 </div>
                             )

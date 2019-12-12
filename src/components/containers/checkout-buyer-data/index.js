@@ -47,7 +47,6 @@ class CheckoutBuyerData extends Component {
         <div className="row">
           <div className="col-12 col-md-6">
             <input
-              autoFocus={true}
               type="text"
               className="form-control mb-3"
               placeholder="Escribe tu nombre"
