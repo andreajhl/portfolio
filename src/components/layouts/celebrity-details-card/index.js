@@ -12,7 +12,7 @@ class CelebrityDetailsCardLayout extends Component {
         this.state = {
             imageLoaded: false,
             showContractModal: false,
-            videoMobilePlayIcon: "fa-play",
+            videoMobilePlayIcon: "fa-pause",
             videoDesktopPlayIcon: "fa-play"
         };
 
@@ -257,6 +257,7 @@ class CelebrityDetailsCardLayout extends Component {
                                             backgroundSize: "cover"
                                         }}
                                         ref={this.videoMobileRef}
+                                        autoPlay={true}
                                         width="100%"
                                         height="460px"
                                         controls={false}
@@ -283,7 +284,7 @@ class CelebrityDetailsCardLayout extends Component {
                             <div className="col-5 mt-3 pl-0 text-right">
                                 <div className="margin-right-5w" onClick={this.openModal}>
                                     <button className="btn btn-outline-primary btn-sm f-follow-button">
-                                        Comprar video por ${this.props.celebrity.contracts_price} USD
+                                        Comprar video
                                     </button>
                                 </div>
                             </div>

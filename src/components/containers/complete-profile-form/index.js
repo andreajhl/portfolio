@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import "./styles.scss";
 import {authenticationOperations} from "../../../state/ducks/authentication";
 import {connect} from "react-redux";
-import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
 import {Session} from "../../../state/utils/session";
 import {history} from "../../../routing/History";

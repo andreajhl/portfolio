@@ -331,7 +331,10 @@ class ContractModal extends Component {
                     aria-hidden="true"
                   />
                 ) : (
-                  <span className="text-white">IR AL PAGO</span>
+                  <span className="text-white">
+                    IR AL PAGO
+                    <i className="fa fa-arrow-right float-right text-white ml-2" style={{ fontSize: "26px", position: "absolute" }} />
+                  </span>
                 )}
               </button>
             </div>
