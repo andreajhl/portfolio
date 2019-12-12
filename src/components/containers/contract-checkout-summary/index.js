@@ -114,7 +114,7 @@ class ContractCheckoutSummary extends Component {
                       "contract-button mx-auto hover cursor-pointer p-2 border bg-active "
                     }
                 >
-                  3. Pagar
+                  Pagar
                 </button>
               </div>
             </div>

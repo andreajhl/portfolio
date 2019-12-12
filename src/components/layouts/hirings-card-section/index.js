@@ -35,35 +35,35 @@ class HiringsCardSectionLayout extends Component {
             return (
                 <button className="btn btn-outline-secondary" style={{width: "110px"}} onClick={this.goToPay.bind(this, contract.reference)}>
                     <span className="d-md-block text-secondary">Ir a pagar</span>
-                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-2 fa fa-arrow-right text-secondary"/>
+                    <i className="fa fa-arrow-right text-secondary"/>
                 </button>
             )
         } else if (contract.status === 6) {
             return (
                 <button className="btn btn-outline-dark" disabled style={{width: "170px"}} onClick={this.goToContract.bind(this, contract.reference)}>
                     <span className="d-md-block text-dark">Validando el pago</span>
-                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-2 fa fa-clock"/>
+                    <i className="fa fa-clock"/>
                 </button>
             )
         } else if (contract.status === 10) {
             return (
                 <button className="btn btn-outline-dark" disabled style={{width: "220px"}} onClick={this.goToContract.bind(this, contract.reference)}>
                     <span className="d-md-block text-dark">En espera de grabación</span>
-                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-2 fa fa-clock"/>
+                    <i className="fa fa-clock"/>
                 </button>
             )
         } else if (contract.status === 20) {
             return (
                 <button className="btn btn-outline-danger" disabled style={{width: "190px"}} onClick={this.goToContract.bind(this, contract.reference)}>
                     <span className="d-md-block text-danger">Contrato rechazado</span>
-                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-2 fa fa-times-circle text-danger"/>
+                    <i className="fa fa-times-circle text-danger"/>
                 </button>
             )
         } else {
             return(
                 <button className="btn btn-outline-primary" onClick={this.goToContract.bind(this, contract.reference)}>
                     <span className="d-md-block text-primary">Ver</span>
-                    <i className="ml-0 ml-sm-2 mt-0 mt-sm-2 fa fa-play text-primary"/>
+                    <i className="fa fa-play text-primary"/>
                 </button>
             )
         }
