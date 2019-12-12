@@ -331,7 +331,7 @@ class ContractModal extends Component {
                     aria-hidden="true"
                   />
                 ) : (
-                  <span className="text-white">CONTRATAR AHORA</span>
+                  <span className="text-white">IR AL PAGO</span>
                 )}
               </button>
             </div>

@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import "./styles.scss";
-import {ContractModal} from "../../containers";
+import { ContractModal } from "../../containers";
 import * as GTM from "../../../state/utils/gtm";
-import {history} from "../../../routing/History";
+import { history } from "../../../routing/History";
 
 class CelebrityDetailsCardLayout extends Component {
 
@@ -29,7 +29,7 @@ class CelebrityDetailsCardLayout extends Component {
     }
 
     handleImageLoaded() {
-        this.setState({imageLoaded: true});
+        this.setState({ imageLoaded: true });
     }
 
     openModal() {
@@ -54,7 +54,7 @@ class CelebrityDetailsCardLayout extends Component {
 
     playDesktopVideo() {
         if (this.videoDesktopRef.current.paused) {
-            this.setState({videoDesktopPlayIcon: "fa-pause"}, () => {
+            this.setState({ videoDesktopPlayIcon: "fa-pause" }, () => {
                 this.videoDesktopRef.current.play()
             });
             GTM.tagManagerDataLayer(
@@ -62,7 +62,7 @@ class CelebrityDetailsCardLayout extends Component {
                 this.props.celebrity
             );
         } else {
-            this.setState({videoDesktopPlayIcon: "fa-play"}, () => {
+            this.setState({ videoDesktopPlayIcon: "fa-play" }, () => {
                 this.videoDesktopRef.current.pause()
             });
             GTM.tagManagerDataLayer(
@@ -79,7 +79,7 @@ class CelebrityDetailsCardLayout extends Component {
         }
         this.videoMobileRef.current.classList.add('IIV');
         if (this.videoMobileRef.current.paused) {
-            this.setState({videoMobilePlayIcon: "fa-pause"}, () => {
+            this.setState({ videoMobilePlayIcon: "fa-pause" }, () => {
                 this.videoMobileRef.current.play()
             });
             GTM.tagManagerDataLayer(
@@ -87,7 +87,7 @@ class CelebrityDetailsCardLayout extends Component {
                 this.props.celebrity
             );
         } else {
-            this.setState({videoMobilePlayIcon: "fa-play"}, () => {
+            this.setState({ videoMobilePlayIcon: "fa-play" }, () => {
                 this.videoMobileRef.current.pause()
             });
             GTM.tagManagerDataLayer(
@@ -110,15 +110,15 @@ class CelebrityDetailsCardLayout extends Component {
                         <div className="row f-section mx-auto">
                             <div className="col-8">
                                 <div className="row f-card mx-auto">
-                                    <div className="col-3 f-avatar my-auto">
+                                    <div className="col-3 col-md-4 f-avatar my-auto">
                                         <div className="rounded-circle f-shadow">
                                             <img className="rounded-circle"
-                                                 onLoad={this.handleImageLoaded}
-                                                 src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
-                                                 alt="avatar"/>
+                                                onLoad={this.handleImageLoaded}
+                                                src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
+                                                alt="avatar" />
                                         </div>
                                     </div>
-                                    <div className="col-9 details my-auto">
+                                    <div className="col-9 col-md-8 details my-auto">
                                         <div className="row p-0 pl-3 pr-3">
                                             <div className="col-8 p-0 m-0 f-names my-auto">
                                                 <h5 className="text-dark font-weight-bold pt-1 m-0">{this.props.celebrity.full_name}</h5>
@@ -132,8 +132,8 @@ class CelebrityDetailsCardLayout extends Component {
                                                 <div
                                                     onClick={this.openModal}
                                                     className="bg-primary f-contract f-rounded hover cursor-pointer text-uppercase">
-                                                    Contratar ahora por ${this.props.celebrity.contracts_price} USD
-                                                    <i className="ml-2 fa fa-arrow-right text-white"/>
+                                                    Comprar video por ${this.props.celebrity.contracts_price} USD
+                                                    <i className="ml-2 fa fa-arrow-right text-white" />
                                                 </div>
                                             </div>
                                         </div>
@@ -142,11 +142,11 @@ class CelebrityDetailsCardLayout extends Component {
                                         <div className="row mt-2 text-center">
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
                                                 <h6 className="text-warning">
-                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
-                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
-                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
-                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
-                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning" />
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning" />
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning" />
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning" />
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning" />
                                                 </h6>
                                                 <small className="text-soft-grey font-weight-bold">
                                                     Calificaciones
@@ -173,13 +173,13 @@ class CelebrityDetailsCardLayout extends Component {
                                             ?
                                             <div className="col-12 mt-1 text-justify">
                                                 <div className="foundation" >
-                                                    <i className="fas fa-hand-holding-heart"/>
+                                                    <i className="fas fa-hand-holding-heart" />
                                                     <img className="bookmark" src="/assets/img/bookmark.svg"
-                                                         alt="bookmark"/>
+                                                        alt="bookmark" />
                                                     <div className="celebrity-data">
                                                         <small>
-                                                            {this.props.celebrity.full_name} dona <br/>
-                                                             de sus ingresos a:
+                                                            {this.props.celebrity.full_name} dona <br />
+                                                            de sus ingresos a:
                                                         </small>
                                                     </div>
                                                     <div className="cause-name">
@@ -204,39 +204,39 @@ class CelebrityDetailsCardLayout extends Component {
                                             null
                                     }
 
-                                    <div className="col-12 text-justify" style={{height: "20px"}}>
+                                    <div className="col-12 text-justify" style={{ height: "20px" }}>
                                         {
                                             this.props.socialNetworks
                                                 ?
                                                 this.props.socialNetworks.map((i, index) => {
-                                                        return (
-                                                            <a href={i.social_network.url} target="_blank"
-                                                               rel="noopener noreferrer"
-                                                               key={index}
-                                                               className="text-secondary">
-                                                                <small>
-                                                                    <i className={"fa-2x mr-4 " + (i.social_network.fa_icon)}/>
-                                                                </small>
-                                                            </a>
-                                                        )
-                                                    }
+                                                    return (
+                                                        <a href={i.social_network.url} target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            key={index}
+                                                            className="text-secondary">
+                                                            <small>
+                                                                <i className={"fa-2x mr-4 " + (i.social_network.fa_icon)} />
+                                                            </small>
+                                                        </a>
+                                                    )
+                                                }
                                                 )
                                                 : null
                                         }
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-4 f-video" style={{padding: "0px"}}>
+                            <div className="col-4 f-video" style={{ padding: "0px" }}>
                                 <i className={'fa fa-2x play-pause ' + (this.state.videoDesktopPlayIcon)}
-                                   onClick={this.playDesktopVideo.bind(this)}
+                                    onClick={this.playDesktopVideo.bind(this)}
                                 />
                                 <video ref={this.videoDesktopRef}
-                                       controls={false}
-                                       onClick={this.playDesktopVideo.bind(this)}
-                                       playsInline={true}
-                                       preload="metadata"
+                                    controls={false}
+                                    onClick={this.playDesktopVideo.bind(this)}
+                                    playsInline={true}
+                                    preload="metadata"
                                 >
-                                    <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4"/>
+                                    <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
@@ -248,28 +248,28 @@ class CelebrityDetailsCardLayout extends Component {
                             <div className="col-12">
                                 <div className="f-video text-center" onClick={this.playMobileVideo.bind(this)}>
                                     <i className={'fa fa-2x play-pause ' + (this.state.videoMobilePlayIcon)}
-                                       onClick={this.playMobileVideo.bind(this)}
+                                        onClick={this.playMobileVideo.bind(this)}
                                     />
                                     <video
-                                           preload="metadata"
-                                           style={{
-                                               background: "url('" + this.props.celebrity.avatar + "')",
-                                               backgroundSize: "cover"
-                                           }}
-                                           ref={this.videoMobileRef}
-                                           width="100%"
-                                           height="460px"
-                                           controls={false}
-                                           playsInline={true}
-                                           onClick={this.playMobileVideo.bind(this)}
+                                        preload="metadata"
+                                        style={{
+                                            background: "url('" + this.props.celebrity.avatar + "')",
+                                            backgroundSize: "cover"
+                                        }}
+                                        ref={this.videoMobileRef}
+                                        width="100%"
+                                        height="460px"
+                                        controls={false}
+                                        playsInline={true}
+                                        onClick={this.playMobileVideo.bind(this)}
                                     >
-                                        <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4"/>
+                                        <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4" />
                                         Your browser does not support the video tag.
                                     </video>
                                     <div className="f-avatar f-shadow">
                                         <img onLoad={this.handleImageLoaded}
-                                             src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
-                                             alt="avatar"/>
+                                            src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
+                                            alt="avatar" />
                                     </div>
                                 </div>
                             </div>
@@ -283,20 +283,20 @@ class CelebrityDetailsCardLayout extends Component {
                             <div className="col-5 mt-3 pl-0 text-right">
                                 <div className="margin-right-5w" onClick={this.openModal}>
                                     <button className="btn btn-outline-primary btn-sm f-follow-button">
-                                        Contratar por ${this.props.celebrity.contracts_price} USD
+                                        Comprar video por ${this.props.celebrity.contracts_price} USD
                                     </button>
                                 </div>
                             </div>
                             <div className="col-5 pr-0">
                                 <div className="margin-left-5w">
                                     <small className="title text-warning">
-                                        <i className="fa fa-star fa-1x mr-1 text-warning"/>
-                                        <i className="fa fa-star fa-1x mr-1 text-warning"/>
-                                        <i className="fa fa-star fa-1x mr-1 text-warning"/>
-                                        <i className="fa fa-star fa-1x mr-1 text-warning"/>
-                                        <i className="fa fa-star fa-1x mr-1 text-warning"/>
+                                        <i className="fa fa-star fa-1x mr-1 text-warning" />
+                                        <i className="fa fa-star fa-1x mr-1 text-warning" />
+                                        <i className="fa fa-star fa-1x mr-1 text-warning" />
+                                        <i className="fa fa-star fa-1x mr-1 text-warning" />
+                                        <i className="fa fa-star fa-1x mr-1 text-warning" />
                                     </small>
-                                    <br/>
+                                    <br />
                                     <small className="text-soft-grey font-weight-bold subtitle">Calificaciones</small>
                                 </div>
                             </div>
@@ -305,7 +305,7 @@ class CelebrityDetailsCardLayout extends Component {
                                     <small className="text-soft-grey subtitle">
                                         Categoría: <b>{this.props.celebrity.category}</b>
                                     </small>
-                                    <br/>
+                                    <br />
                                     <small className="text-soft-grey subtitle">
                                         Respuesta promedio: <b>1 a 2 días</b>
                                     </small>
@@ -314,9 +314,9 @@ class CelebrityDetailsCardLayout extends Component {
                         </div>
                         <div className="footer-btn my-auto p-4" onClick={this.openModal}>
                             <small className="ml-0 float-left text-uppercase text-white font-weight-bold">
-                                Contratar ahora por ${this.props.celebrity.contracts_price} USD
+                                Comprar video por ${this.props.celebrity.contracts_price} USD
                             </small>
-                            <i className="fa fa-arrow-right float-right text-white" style={{fontSize: "26px"}}/>
+                            <i className="fa fa-arrow-right float-right text-white" style={{ fontSize: "26px" }} />
                         </div>
                     </div>
                     {/*HASHTAGS*/}
@@ -341,13 +341,13 @@ class CelebrityDetailsCardLayout extends Component {
                         <div className="d-block d-md-none profile-sm-foundation">
                             <div className="col-12 mt-4 text-justify">
                                 <div className="foundation" >
-                                    <i className="fas fa-hand-holding-heart"/>
+                                    <i className="fas fa-hand-holding-heart" />
                                     <img className="bookmark" src="/assets/img/bookmark.svg"
-                                         alt="bookmark"/>
+                                        alt="bookmark" />
                                     <div className="celebrity-data">
                                         <small>
                                             {this.props.celebrity.full_name} dona de
-                                            <br/> sus ingresos a:
+                                            <br /> sus ingresos a:
                                         </small>
                                     </div>
                                     <div className="cause-name">
@@ -392,4 +392,4 @@ CelebrityDetailsCardLayout.defaultProps = {
     socialNetworks: []
 };
 
-export {CelebrityDetailsCardLayout};
+export { CelebrityDetailsCardLayout };
