@@ -98,6 +98,11 @@ class PaymentMethodsSection extends Component {
                                                 &&
                                                 <i className="fa fa-money-bill-alt"/>
                                             }
+                                            {
+                                                method.name === "OTHER"
+                                                &&
+                                                <i className="fa fa-plus"/>
+                                            }
                                         </div>
                                         <div className="payment-type-title">
                                             <h6>
@@ -115,6 +120,11 @@ class PaymentMethodsSection extends Component {
                                                     method.name === "TICKET"
                                                     &&
                                                     <span>Efectivo</span>
+                                                }
+                                                {
+                                                    method.name === "OTHER"
+                                                    &&
+                                                    <span>Otros</span>
                                                 }
                                             </h6>
                                         </div>
@@ -164,7 +174,7 @@ class PaymentMethodsSection extends Component {
                                 >
                                     <div className="available-option-circle">
                                         <div
-                                            className={"available-option-circle-button " + (this.state.paymentMethod.identifier === method.identifier && " active ")}/>
+                                            className={"available-option-circle-button " + ((this.state.paymentMethod.identifier === method.identifier && this.state.paymentMethod.brand === method.brand) && " active ")}/>
                                     </div>
                                     <div className="available-option-logo">
                                         <img src={method.logo} alt="logo" width="30px"/>
