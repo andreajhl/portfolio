@@ -20,7 +20,7 @@ class PaymentMethodsSection extends Component {
 
         this.handlePaymentMethod = this.handlePaymentMethod.bind(this);
         this.handlePaymentType = this.handlePaymentType.bind(this);
-        this.tokenizeCard = this.tokenizeCard.bind(this);
+        this.tokenizeStripeCard = this.tokenizeStripeCard.bind(this);
 
         this.stripeCardForm = React.createRef();
     }
@@ -35,10 +35,11 @@ class PaymentMethodsSection extends Component {
         if(method.name !== this.state.paymentType){
             this.setState({
                 paymentType: method.name,
-                gatewayName: method.gateway_name
+                gatewayName: method.gateway_name,
+                paymentMethod: method["available-methods"][0]
             }, () => {
                 this.props.onSelectPaymentType(method);
-                this.props.onSelectPaymentMethod({})
+                this.props.onSelectPaymentMethod(method["available-methods"][0])
             })
         }
     }
@@ -135,9 +136,11 @@ class PaymentMethodsSection extends Component {
         }
     }
 
-    tokenizeCard() {
-        this.stripeCardForm.current.tokenizeCard()
+    tokenizeStripeCard() {
+        this.stripeCardForm.current.tokenizeStripeCard()
     }
+
+
 
     renderPaymentTypeOptions(methods) {
         if (this.state.gatewayName === "STRIPE") {
@@ -145,8 +148,7 @@ class PaymentMethodsSection extends Component {
                 <div className="pl-3 pr-3 pt-4">
                     <StripeCardForm
                         ref={this.stripeCardForm}
-                        onTokenizeCard
-                            ={this.props.onTokenizeCard}
+                        onTokenizeCard={this.props.onTokenizeStripeCard}
                     />
                 </div>
             )
@@ -176,7 +178,7 @@ class PaymentMethodsSection extends Component {
         }
     }
 
-    tokenizeCard() {
+    tokenizeStripeCard() {
         this.stripeCardForm.current.tokenizeCard()
     }
 
@@ -201,7 +203,7 @@ PaymentMethodsSection.propTypes = {};
 
 // Set defaultProps
 PaymentMethodsSection.defaultProps = {
-    tokenizeCard: () => {
+    tokenizeStripeCard: () => {
 
     },
     onSelectPaymentMethod: () => {

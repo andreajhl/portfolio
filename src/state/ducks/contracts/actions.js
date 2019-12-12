@@ -26,6 +26,38 @@ export const playVideo = (params: {}) => {
   };
 };
 
+export const AssociateContract = hash => {
+  return dispatch => {
+    const FINAL_PATH =
+      API_PATHS.CONTRACT_BASE_PATH + "associate-contract/" + hash + "/";
+    apiService({
+      method: "GET",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: null
+    })
+      .then(res => {
+        if ("status" in res.data && res.data.status === "ERROR") {
+          // Other actions
+          localStorage.removeItem("redirectPaymentTo");
+          localStorage.removeItem("hash");
+          console.log(res);
+          history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+        } else {
+          // Other actions
+          localStorage.removeItem("redirectPaymentTo");
+          localStorage.removeItem("hash");
+          console.log("llego perfect");
+        }
+      })
+      .catch(err => {
+        history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+      });
+  };
+};
+
 export const getContract = contractReference => {
   return dispatch => {
     const TYPE = TYPES.GET_CONTRACT_REQUEST;
@@ -147,6 +179,7 @@ export const saveClientContract = contractData => {
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
 
+          // console.log(res.data.hash);
           dispatch(getContract(res.data.reference));
 
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
@@ -161,6 +194,7 @@ export const saveClientContract = contractData => {
                 res.data.reference
               )
             );
+            localStorage.setItem("hash", res.data.hash);
             history._pushRoute(ROUTING_PATHS.SIGN_UP_PATH);
           } else {
             history._pushRoute(

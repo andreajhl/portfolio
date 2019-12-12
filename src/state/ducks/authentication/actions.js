@@ -9,8 +9,7 @@ import {
 import { Session } from "../../utils/session";
 import { history } from "../../../routing/History";
 import * as ROUTE_PATHS from "../../../routing/Paths";
-
-const afterLogin = (res, redirect_path = null) => {
+const afterLogin = (res, redirect_path = null, dispatch = null) => {
   if (res.data.token) {
     const session = new Session();
     session.setSession(res.data.token);
@@ -58,7 +57,7 @@ export const signInWithEmail = body => {
         if (res.data.status === "OK") {
           handleApiResponseSuccess(dispatch, type, res);
           dispatch({ type: `${type}_COMPLETED`, payload: res });
-          afterLogin(res);
+          afterLogin(res, null, dispatch);
         } else {
           handleApiResponseFailure(dispatch, type, res);
         }
@@ -152,7 +151,8 @@ export const sendSMSSecurityCode = body => {
             res,
             ROUTE_PATHS.VALIDATE_SECURITY_CODE.replace(
               ":form",
-              "cellphone-form"
+              "cellphone-form",
+              dispatch
             )
           );
         } else {

@@ -1,5 +1,5 @@
-import {createContractPayment, currencyExchange, getContractToPay, listPaymentGateways} from "./actions";
+import {createDlocalPayment, createStripePayment, currencyExchange, getContractToPay, listPaymentGateways} from "./actions";
 
 export {
-    listPaymentGateways, currencyExchange, getContractToPay, createContractPayment
+    listPaymentGateways, currencyExchange, getContractToPay, createDlocalPayment, createStripePayment,
 };
