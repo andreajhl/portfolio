@@ -175,7 +175,7 @@ class CheckoutSectionForm extends Component {
                   error={this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError}
                   transactionFee={this.state.paymentMethod.fee}
                   contractData={this.props.contractData}
-                  buttonPayDisabled={false}
+                  buttonPayLoading={this.props.isCreateDlocalPaymentLoading || this.props.isCreateStripePaymentLoading }
                   onPay={this.onPay}
               />
             </div>

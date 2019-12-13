@@ -47,7 +47,9 @@ class ContractCheckoutSummary extends Component {
   }
 
   onPay() {
-    this.props.onPay();
+    if(!this.props.buttonPayLoading){
+      this.props.onPay();
+    }
   }
 
   render() {
@@ -114,7 +116,19 @@ class ContractCheckoutSummary extends Component {
                       "contract-button mx-auto hover cursor-pointer p-2 border bg-active "
                     }
                 >
-                  Pagar
+                  {
+                    this.props.buttonPayLoading
+                        ?
+                        <span
+                            className="spinner-grow spinner-grow-sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
+                        :
+                        <span className="text-white">
+                          Pagar
+                        </span>
+                  }
                 </button>
               </div>
             </div>
@@ -130,7 +144,7 @@ ContractCheckoutSummary.propTypes = {};
 ContractCheckoutSummary.defaultProps = {
   showError: false,
   error: "",
-  buttonPayDisabled: false,
+  buttonPayLoading: false,
   transactionFee: 0,
   contractData: {},
   onPay: () => {
