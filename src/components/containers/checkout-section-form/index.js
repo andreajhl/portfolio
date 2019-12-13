@@ -6,6 +6,7 @@ import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 import {CheckoutBuyerData} from "../checkout-buyer-data";
 import {ContractCurrencyPayment} from "../contract-currency-payment";
+import * as GTM from "../../../state/utils/gtm";
 
 class CheckoutSectionForm extends Component {
   constructor(props) {
@@ -94,6 +95,10 @@ class CheckoutSectionForm extends Component {
   }
 
   onPay() {
+    GTM.tagManagerDataLayer(
+        "ON_PAY",
+        this.state
+    );
     this.setState({
       error: null
     }, () => {
@@ -175,7 +180,7 @@ class CheckoutSectionForm extends Component {
                   error={this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError}
                   transactionFee={this.state.paymentMethod.fee}
                   contractData={this.props.contractData}
-                  buttonPayLoading={this.props.isCreateDlocalPaymentLoading || this.props.isCreateStripePaymentLoading }
+                  buttonPayLoading={this.props.isCreateDlocalPaymentLoading || this.props.isCreateStripePaymentLoading}
                   onPay={this.onPay}
               />
             </div>
