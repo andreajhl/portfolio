@@ -97,6 +97,17 @@
     .d-block {
       display: block !important;
     }
+    .div-buttons-sm{
+      padding-right: 4px;
+      margin-top: 2px;
+      display: flex;
+    }
+    .div-currency {
+      width: 53px;
+      right: 7px;
+      top: -1px;
+      position: relative;
+    }
   }
 
   .search-sm {
