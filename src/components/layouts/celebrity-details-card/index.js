@@ -257,7 +257,6 @@ class CelebrityDetailsCardLayout extends Component {
                                             backgroundSize: "cover"
                                         }}
                                         ref={this.videoMobileRef}
-                                        autoPlay={true}
                                         width="100%"
                                         height="460px"
                                         controls={false}
