@@ -46,7 +46,7 @@ class SignInPage extends Component {
                 <div className="SignInPage">
                     <div className="section">
                         <div className="auth-container">
-                            <div className="logo" onClick={this.goToRoot}>
+                            <div className="logo">
                                 <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
                             </div>
                             <div className="custom-form">

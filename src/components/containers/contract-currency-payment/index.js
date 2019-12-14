@@ -9,23 +9,27 @@ class ContractCurrencyPayment extends Component {
         super(props);
 
         this.state = {
-            currency: "USD"
+            currency: this.props.currencyExchangeData.to
         };
 
         this.handleCurrency = this.handleCurrency.bind(this)
     }
 
     componentDidMount(): void {
-        this.props.listPaymentGateways(this.state.currency);
+        this.changeCurrency(this.state.currency);
     }
 
-    handleCurrency(event) {
+    changeCurrency(value) {
         this.setState({
-            currency: event.target.value
+            currency: value
         }, () => {
             this.props.listPaymentGateways(this.state.currency);
             this.props.onSelectCurrency(this.state.currency)
         });
+    }
+
+    handleCurrency(event) {
+        this.changeCurrency(event.target.value)
     }
 
     render() {
@@ -59,14 +63,19 @@ ContractCurrencyPayment.defaultProps = {
 const mapStateToProps = (state: any) => ({
     isLoading: state.payments.fetchPaymentGatewaysReducer.loading,
     paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.gateways,
+    currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
+    currencyExchangeData: state.payments.currencyExchangeReducer.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
     listPaymentGateways: paymentsOperations.listPaymentGateways,
+    currencyExchange: paymentsOperations.currencyExchange,
 };
 
 // Export Class
 const _ContractCurrencyPayment = connect(mapStateToProps, mapDispatchToProps)(ContractCurrencyPayment);
 export {_ContractCurrencyPayment as ContractCurrencyPayment};
+
+
 

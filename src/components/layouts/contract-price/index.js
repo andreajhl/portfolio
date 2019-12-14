@@ -1,25 +1,22 @@
 import React, {Component} from 'react';
-import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
+import NumberFormat from "react-number-format";
+import "./styles.scss";
 
 
 class ContractPriceLayout extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-        };
-    }
-
     render() {
         return (
-            <div className="ContractPriceLayout">
-                <span className={this.props.textColor}>
-
-                </span>
-            </div>
+            <NumberFormat
+                value={this.props.currencyExchangeData.to !== "USD" ? this.props.price * this.props.currencyExchangeData.rate : this.props.price}
+                displayType={"text"}
+                thousandSeparator={true}
+                decimalScale={2}
+                prefix={"$"}
+                renderText={value => <span className={(this.props.classes)}>{value} {this.props.currencyExchangeData.to}</span>}
+            />
         );
     };
 
@@ -30,18 +27,19 @@ ContractPriceLayout.propTypes = {};
 
 // Set defaultProps
 ContractPriceLayout.defaultProps = {
-    textColor: "text-white",
+    classes: "",
+    price: 0
 };
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.payments.fetchPaymentGatewaysReducer.loading,
-    paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.gateways,
+    currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
+    currencyExchangeData: state.payments.currencyExchangeReducer.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    listPaymentGateways: paymentsOperations.listPaymentGateways,
+    currencyExchange: paymentsOperations.currencyExchange,
 };
 
 // Export Class

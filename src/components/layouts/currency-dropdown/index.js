@@ -18,6 +18,16 @@ class CurrencyDropdownLayout extends Component {
         this.handleCurrentCurrency = this.handleCurrentCurrency.bind(this);
     }
 
+    componentDidMount(): void {
+        if(this.props.currencyExchangeData.to !== "USD"){
+            const currency = AVAILABLE_CURRENCIES.find(item => item.name === this.props.currencyExchangeData.to);
+            this.setState({
+                currentCurrencyFlag: currency.flag,
+                currentCurrencyName: currency.name
+            })
+        }
+    }
+
     handleCurrentCurrency(event) {
         const currency = AVAILABLE_CURRENCIES.find(item => item.name === event.target.value);
         this.setState({
@@ -26,7 +36,7 @@ class CurrencyDropdownLayout extends Component {
         }, () => {
             this.props.currencyExchange({
                 from: "USD",
-                to: this.state.currentCurrencyFlag
+                to: currency.name
             });
         })
     }
@@ -45,11 +55,13 @@ class CurrencyDropdownLayout extends Component {
                 </svg>
                 <img src={this.state.currentCurrencyFlag} alt={"flag"}/>
                 <select value={this.state.currentCurrencyName} onChange={this.handleCurrentCurrency}>
-                    {
-                        AVAILABLE_CURRENCIES.map((item, index) => {
-                            return <option key={index} value={item.name}>{item.name}</option>
-                        })
-                    }
+                    <option value="USD">USD</option>
+                    <option value="COP">COP</option>
+                    {/*{*/}
+                    {/*    AVAILABLE_CURRENCIES.map((item, index) => {*/}
+                    {/*        return <option key={index} value={item.name}>{item.name}</option>*/}
+                    {/*    })*/}
+                    {/*}*/}
                 </select>
             </div>
         );

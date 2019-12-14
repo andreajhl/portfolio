@@ -18,7 +18,7 @@ class StripeCardElementLayout extends Component {
         return (
             <div className="StripeCardElementLayout" style={{border: "solid 2px !important"}}>
                 <div className="checkout">
-                    <CardElement />
+                    <CardElement autofocus={true}/>
                 </div>
             </div>
         );

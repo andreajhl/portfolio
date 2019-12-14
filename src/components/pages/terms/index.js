@@ -235,7 +235,7 @@ class TermsPage extends Component {
                     </div>
                     <div className="container-text">
                         <h5 className="font-weight-bold">Talento Condiciones del servicio</h5>
-                        <p>Revisado: 24 de mayo 2017</p>
+                        <p>Revisado: 7 Agosto 2019</p>
                         <p>Estos Términos de Servicio ( "Términos") regulan el uso del sitio web Famosos ( "Sitio") y cualquier aplicación móvil Famosos y otros servicios ofrecidos por Famosos, Inc. ( "Servicios"). Famosos, Inc. ( "nosotros." "Nos" o "famosos") proporciona el sitio y los servicios. "Usted" se refiere a usted como un usuario atleta o persona influyente del Sitio o los Servicios.</p>
                         <p>Haciendo clic en "ACEPTO" O AL UTILIZAR EL SITIO O SERVICIOS, usted acepta estos términos. POR FAVOR LEA CON CUIDADO.</p>
                         <ul>

@@ -203,6 +203,9 @@ class NavbarSectionLayout extends Component {
                                                             onClick={this.goToSignUpPath}>
                                                         Ingresar
                                                     </button>
+                                                    <div className="div-currency">
+                                                        <CurrencyDropdownLayout/>
+                                                    </div>
                                                 </div>
                                             </>
                                             :
