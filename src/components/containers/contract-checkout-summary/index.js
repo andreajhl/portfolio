@@ -11,27 +11,6 @@ class ContractCheckoutSummary extends Component {
     this.onPay = this.onPay.bind(this);
   }
 
-  // contractPrice() {
-  //   if (this.props.contractData.price) {
-  //     if (
-  //         this.props.currencyExchangeData.to !== "USD" &&
-  //         this.props.transactionFee
-  //     ) {
-  //       const price =
-  //           this.props.contractData.price * this.props.currencyExchangeData.rate;
-  //       return price + price * this.props.transactionFee;
-  //     } else if (this.props.currencyExchangeData.to) {
-  //       return (
-  //           this.props.contractData.price * this.props.currencyExchangeData.rate
-  //       );
-  //     } else {
-  //       return this.props.contractData.price;
-  //     }
-  //   } else {
-  //     return 0;
-  //   }
-  // }
-
   onPay() {
     if(!this.props.buttonPayLoading){
       this.props.onPay();
@@ -60,22 +39,34 @@ class ContractCheckoutSummary extends Component {
               </div>
               <div className="from-to mt-4">
                 <h6>
-                  <div className="col-12 ml-0 pl-0 mb-3">
-                  <span className="text-colored">
-                    Para:{" "}
-                    <span className="font-weight-bold">
-                      {this.props.contractData.delivery_to}
-                    </span>{" "}
-                  </span>
-                  </div>
-                  <div className="col-12 ml-0 pl-0">
-                  <span className="text-colored">
-                    De:{" "}
-                    <span className="font-weight-bold">
-                      {this.props.contractData.delivery_from}
-                    </span>{" "}
-                  </span>
-                  </div>
+                  {
+                    this.props.contractData.delivery_to
+                      &&
+                    <>
+                      <div className="col-12 ml-0 pl-0 mb-3">
+                        <span className="text-colored">
+                          Para:{" "}
+                          <span className="font-weight-bold">
+                            {this.props.contractData.delivery_to}
+                          </span>{" "}
+                        </span>
+                      </div>
+                    </>
+                  }
+                  {
+                    this.props.contractData.delivery_from
+                    &&
+                    <>
+                      <div className="col-12 ml-0 pl-0">
+                        <span className="text-colored">
+                          De:{" "}
+                          <span className="font-weight-bold">
+                            {this.props.contractData.delivery_from}
+                          </span>{" "}
+                        </span>
+                      </div>
+                    </>
+                  }
                 </h6>
               </div>
               <div className="instructions mt-4 text-justify">

@@ -32,20 +32,23 @@ class PaymentMethodsSection extends Component {
         if (nextProps.isLoading && !this.props.isLoading) {
             this.setState(INITIAL_STATE);
         }
-        if (nextProps.paymentGateways.length) {
+        if (nextProps.paymentGateways.length && nextProps.isCompleted) {
             this.preselectMethdo(nextProps.paymentGateways)
         }
     }
 
     preselectMethdo(paymentGateways) {
-        console.log("paymentGateway:", paymentGateways);
         if(paymentGateways.length) {
-            paymentGateways.forEach(paymentGateway => {
-                if(paymentGateway["payment-methods"].length){
-                    const pm_card = paymentGateway["payment-methods"].find(item => item.name === "CARD");
-                    this.handlePaymentType(pm_card)
-                }
-            })
+            try {
+                paymentGateways.forEach(paymentGateway => {
+                    if(paymentGateway["payment-methods"].length){
+                        const pm_card = paymentGateway["payment-methods"].find(item => item.name === "CARD");
+                        this.handlePaymentType(pm_card)
+                    }
+                })
+            }catch (e) {
+
+            }
         }
     }
 
@@ -224,6 +227,7 @@ PaymentMethodsSection.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     isLoading: state.payments.fetchPaymentGatewaysReducer.loading,
+    isCompleted: state.payments.fetchPaymentGatewaysReducer.completed,
     paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.gateways
 });
 
