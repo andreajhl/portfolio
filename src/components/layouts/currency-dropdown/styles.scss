@@ -16,8 +16,8 @@
   select {
     width: 46px;
     padding: 0;
-    padding-top: 20px;
-    margin: 0 auto;
+    margin-top: 8px;
+    margin-left: 7px;
     text-align: center;
     font-size: 11px;
     border: 0;
@@ -25,5 +25,16 @@
     top: 2px;
     left: 2px;
     background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+  }
+  select::-ms-expand {
+    display: none !important;
   }
 }
