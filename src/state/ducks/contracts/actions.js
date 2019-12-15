@@ -195,7 +195,7 @@ export const saveClientContract = contractData => {
               )
             );
             localStorage.setItem("hash", res.data.hash);
-            history._pushRoute(ROUTING_PATHS.SIGN_UP_PATH);
+            history._pushRoute(ROUTING_PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH + "?title=Inicia sesión para continuar con el pago.");
           } else {
             history._pushRoute(
               ROUTING_PATHS.PAYMENT_METHODS.replace(

@@ -2,48 +2,13 @@ import React, {Component} from "react";
 import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
-import NumberFormat from "react-number-format";
+import {ContractPriceLayout} from "../../layouts/contract-price";
 
 class ContractCheckoutSummary extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.contractPrice = this.contractPrice.bind(this);
     this.onPay = this.onPay.bind(this);
-  }
-
-  returnNumber(number) {
-    return (
-        <NumberFormat
-            value={number}
-            displayType={"text"}
-            thousandSeparator={true}
-            decimalScale={2}
-            prefix={""}
-            renderText={value => <span>{value}</span>}
-        />
-    );
-  }
-
-  contractPrice() {
-    if (this.props.contractData.price) {
-      if (
-          this.props.currencyExchangeData.to !== "USD" &&
-          this.props.transactionFee
-      ) {
-        const price =
-            this.props.contractData.price * this.props.currencyExchangeData.rate;
-        return price + price * this.props.transactionFee;
-      } else if (this.props.currencyExchangeData.to) {
-        return (
-            this.props.contractData.price * this.props.currencyExchangeData.rate
-        );
-      } else {
-        return this.props.contractData.price;
-      }
-    } else {
-      return 0;
-    }
   }
 
   onPay() {
@@ -74,22 +39,34 @@ class ContractCheckoutSummary extends Component {
               </div>
               <div className="from-to mt-4">
                 <h6>
-                  <div className="col-12">
-                  <span className="text-colored">
-                    De:{" "}
-                    <span className="font-weight-bold">
-                      {this.props.contractData.delivery_from}
-                    </span>{" "}
-                  </span>
-                  </div>
-                  <div className="col-12">
-                  <span className="text-colored">
-                    Para:{" "}
-                    <span className="font-weight-bold">
-                      {this.props.contractData.delivery_to}
-                    </span>{" "}
-                  </span>
-                  </div>
+                  {
+                    this.props.contractData.delivery_to
+                      &&
+                    <>
+                      <div className="col-12 ml-0 pl-0 mb-3">
+                        <span className="text-colored">
+                          Para:{" "}
+                          <span className="font-weight-bold">
+                            {this.props.contractData.delivery_to}
+                          </span>{" "}
+                        </span>
+                      </div>
+                    </>
+                  }
+                  {
+                    this.props.contractData.delivery_from
+                    &&
+                    <>
+                      <div className="col-12 ml-0 pl-0">
+                        <span className="text-colored">
+                          De:{" "}
+                          <span className="font-weight-bold">
+                            {this.props.contractData.delivery_from}
+                          </span>{" "}
+                        </span>
+                      </div>
+                    </>
+                  }
                 </h6>
               </div>
               <div className="instructions mt-4 text-justify">
@@ -99,10 +76,7 @@ class ContractCheckoutSummary extends Component {
                 <div className="clearfix ">
                   <h5 className="font-weight-bold float-left">Total:</h5>
                   <h5 className="font-weight-bold float-right">
-                    $ {this.returnNumber(this.contractPrice())}{" "}
-                    {this.props.currencyExchangeData.to
-                        ? this.props.currencyExchangeData.to
-                        : "USD"}
+                    <ContractPriceLayout classes={"text-black font-weight-bold"} price={this.props.contractData.price}/>
                   </h5>
                 </div>
               </div>

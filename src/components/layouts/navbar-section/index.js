@@ -7,11 +7,12 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {connect} from "react-redux";
 import {Session} from "../../../state/utils/session";
 import {NavLink} from "react-router-dom";
+import {CurrencyDropdownLayout} from "../currency-dropdown";
 
 
 class NavbarSectionLayout extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -39,12 +40,12 @@ class NavbarSectionLayout extends Component {
     }
 
     goToRootPath() {
-        if(window.location.pathname !== "/inicio/") {
+        if (window.location.pathname !== "/inicio/") {
             const queryParams = this.props.queryParams;
             queryParams["search"] = "";
-            if(this.props.queryParams.search === ""){
+            if (this.props.queryParams.search === "") {
                 this.props.updateQueryParams(queryParams, true);
-            }else{
+            } else {
                 this.props.updateQueryParams(queryParams, false);
             }
             history._pushRoute(PATHS.ROOT_PATH)
@@ -63,7 +64,7 @@ class NavbarSectionLayout extends Component {
         history._pushRoute(PATHS.CLIENT_HIRINGS)
     }
 
-    goToTrending(){
+    goToTrending() {
         history._pushRoute(PATHS.TRENDING)
     }
 
@@ -77,7 +78,7 @@ class NavbarSectionLayout extends Component {
         }, () => {
             if (this.state.showSearch === true) {
                 history._pushRoute(PATHS.ROOT_PATH + "?showInputSearchSm=true")
-            }else{
+            } else {
                 history._pushRoute(PATHS.ROOT_PATH)
             }
             this.updateClasses()
@@ -135,7 +136,8 @@ class NavbarSectionLayout extends Component {
                                             {/*    />*/}
                                             {/*    <span className="font-weight-bold ml-1" style={{position: "relative", top: "3px"}}>Tendencias</span>*/}
                                             {/*</NavLink>*/}
-                                            <button className="btn btn-primary btn-sm f-register-button" onClick={this.goToSignUpPath}>
+                                            <button className="btn btn-primary btn-sm f-register-button"
+                                                    onClick={this.goToSignUpPath}>
                                                 Ingresar
                                             </button>
                                         </>
@@ -197,16 +199,19 @@ class NavbarSectionLayout extends Component {
                                                     <a className="btn btn-sm mr-3" onClick={this.showSearch}>
                                                         <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
                                                     </a>
-                                                    <button className="btn btn-primary btn-sm mt-2 f-register-button" onClick={this.goToSignUpPath}>
+                                                    <button className="btn btn-primary btn-sm mt-2 f-register-button"
+                                                            onClick={this.goToSignUpPath}>
                                                         Ingresar
                                                     </button>
+                                                    <div className="div-currency">
+                                                        <CurrencyDropdownLayout/>
+                                                    </div>
                                                 </div>
                                             </>
                                             :
                                             <>
-                                                <div className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center"
-                                                     style={{display: "flex"}}
-                                                >
+                                                <div
+                                                    className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center div-buttons-sm">
                                                     {/*<a className="btn btn-sm" onClick={this.goToTrending}>*/}
                                                     {/*    <img width={"30px"} src={"/assets/img/trending.svg"}*/}
                                                     {/*         className={"cursor-pointer"}/>*/}
@@ -228,6 +233,9 @@ class NavbarSectionLayout extends Component {
                                                         <i className="mr-1 fa fa-user fa-2x"/>
                                                         <span className="font-weight-bold ml-1"/>
                                                     </NavLink>
+                                                    <div className="div-currency">
+                                                        <CurrencyDropdownLayout/>
+                                                    </div>
                                                 </div>
                                             </>
                                     }
@@ -261,7 +269,8 @@ NavbarSectionLayout.propTypes = {};
 
 // Set defaultProps
 NavbarSectionLayout.defaultProps = {
-    onSearchChange: () => {},
+    onSearchChange: () => {
+    },
 };
 
 // mapStateToProps

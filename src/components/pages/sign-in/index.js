@@ -11,7 +11,8 @@ class SignInPage extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+        };
 
         this.goToRoot = this.goToRoot.bind(this);
     }
@@ -29,14 +30,14 @@ class SignInPage extends Component {
         const search = history.location.search;
         const params = new URLSearchParams(search);
         if (this.props.match.params.form === "cellphone-form") {
-            return <SignInWithCellphoneForm/>
+            return <SignInWithCellphoneForm title={params.get("title") ? params.get("title") : "Ingresa con tu número de celular"}/>
         } else if (this.props.match.params.form === "email-form") {
             const email = params.get("email");
             return <SignInWithEmailForm email={email}/>
         } else if (this.props.match.params.form === "whatsapp-form") {
             return <SignInWithWhatsAppForm/>
         } else {
-            return <SignInWithCellphoneForm/>
+            return <SignInWithCellphoneForm title={params.get("title") ? params.get("title") : "Ingresa con tu número de celular"}/>
         }
     }
 
@@ -46,7 +47,7 @@ class SignInPage extends Component {
                 <div className="SignInPage">
                     <div className="section">
                         <div className="auth-container">
-                            <div className="logo" onClick={this.goToRoot}>
+                            <div className="logo">
                                 <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
                             </div>
                             <div className="custom-form">
