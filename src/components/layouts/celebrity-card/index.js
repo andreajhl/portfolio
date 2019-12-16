@@ -58,8 +58,8 @@ class CelebrityCardLayout extends Component {
                                  onLoad={this.handleImageLoaded}
                                  src={this.props.celebrity.avatar}
                             />
-                            <span className="f-price f-rounded f-shadow">
-                                <ContractPriceLayout classes={"text-black"} price={this.props.celebrity.contracts_price} />
+                            <span className="f-price f-rounded f-shadow font-weight-bold">
+                                <ContractPriceLayout classes={"text-black font-weight-bold"} price={this.props.celebrity.contracts_price} />
                             </span>
                         </div>
                     </div>
