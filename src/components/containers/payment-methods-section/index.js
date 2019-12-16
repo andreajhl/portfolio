@@ -4,18 +4,17 @@ import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 import {StripeCardForm} from "../stripe-card-form";
 
-const INITIAL_STATE = {
-    currency: "",
-    gatewayName: "",
-    paymentType: "",
-    paymentMethod: {}
-};
 
 class PaymentMethodsSection extends Component {
     constructor(props) {
         super(props);
 
-        this.state = INITIAL_STATE;
+        this.state = {
+            currency: this.props.currencyExchangeData.to,
+            gatewayName: "",
+            paymentType: "",
+            paymentMethod: {}
+        };
 
         this.handlePaymentMethod = this.handlePaymentMethod.bind(this);
         this.handlePaymentType = this.handlePaymentType.bind(this);
@@ -30,7 +29,12 @@ class PaymentMethodsSection extends Component {
         nextContext: any
     ): void {
         if (nextProps.isLoading && !this.props.isLoading) {
-            this.setState(INITIAL_STATE);
+            this.setState({
+                currency: this.props.currencyExchangeData.to,
+                gatewayName: "",
+                paymentType: "",
+                paymentMethod: {}
+            });
         }
         if (nextProps.paymentGateways.length && nextProps.isCompleted) {
             this.preselectMethdo(nextProps.paymentGateways)
@@ -228,7 +232,8 @@ PaymentMethodsSection.defaultProps = {
 const mapStateToProps = (state: any) => ({
     isLoading: state.payments.fetchPaymentGatewaysReducer.loading,
     isCompleted: state.payments.fetchPaymentGatewaysReducer.completed,
-    paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.gateways
+    paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.gateways,
+    currencyExchangeData: state.payments.currencyExchangeReducer.data,
 });
 
 // mapStateToProps
