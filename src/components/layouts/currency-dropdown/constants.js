@@ -1,9 +1,5 @@
 export const AVAILABLE_CURRENCIES = [
     {
-        "name": "USD",
-        "flag": "https://restcountries.eu/data/usa.svg",
-    },
-    {
         "name": "ARS",
         "flag": "https://restcountries.eu/data/arg.svg",
     },
@@ -38,6 +34,10 @@ export const AVAILABLE_CURRENCIES = [
     {
         "name": "PEN",
         "flag": "https://restcountries.eu/data/per.svg",
+    },
+    {
+        "name": "USD",
+        "flag": "https://restcountries.eu/data/usa.svg",
     },
     {
         "name": "UYU",

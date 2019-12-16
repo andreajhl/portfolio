@@ -72,11 +72,34 @@ class ContractCheckoutSummary extends Component {
               <div className="instructions mt-4 text-justify">
                 <small>{this.props.contractData.instructions}</small>
               </div>
+              <hr/>
               <div className="total mt-4">
+                {
+                  this.props.currencyExchangeData.to !== "USD"
+                  &&
+                  <div className="clearfix ">
+                    <h6 className=" float-left">Total en Dólares:</h6>
+                    <h6 className=" text-right float-right">
+                      <ContractPriceLayout
+                          classes={"text-black "}
+                          price={this.props.contractData.price}
+                          showInUSD={true}
+                      />
+                    </h6>
+                  </div>
+                }
                 <div className="clearfix ">
                   <h5 className="font-weight-bold float-left">Total:</h5>
-                  <h5 className="font-weight-bold float-right">
+                  <h5 className="font-weight-bold text-right float-right">
                     <ContractPriceLayout classes={"text-black font-weight-bold"} price={this.props.contractData.price}/>
+                    {
+                      this.props.currencyExchangeData.to !== "USD"
+                      &&
+                      <>
+                        <br/>
+                        <small className={"text-right mx-auto"} style={{fontSize: "10px"}}>(Aproximado)</small>
+                      </>
+                    }
                   </h5>
                 </div>
               </div>
@@ -105,6 +128,9 @@ class ContractCheckoutSummary extends Component {
                   }
                 </button>
               </div>
+              {/*<div className="mt-4 mx-auto text-center">*/}
+              {/*  <img width="150px" src={"/assets/img/pago-seguro.png"} alt={"pago-seguro"}/>*/}
+              {/*</div>*/}
             </div>
           </div>
         </div>
