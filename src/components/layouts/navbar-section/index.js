@@ -136,10 +136,13 @@ class NavbarSectionLayout extends Component {
                                             {/*    />*/}
                                             {/*    <span className="font-weight-bold ml-1" style={{position: "relative", top: "3px"}}>Tendencias</span>*/}
                                             {/*</NavLink>*/}
-                                            <button className="btn btn-primary btn-sm f-register-button"
+                                            <button className="btn btn-primary btn-sm f-register-button mr-2"
                                                     onClick={this.goToSignUpPath}>
                                                 Ingresar
                                             </button>
+                                            <div className="div-currency">
+                                                <CurrencyDropdownLayout/>
+                                            </div>
                                         </>
                                         :
                                         <>
@@ -160,13 +163,16 @@ class NavbarSectionLayout extends Component {
                                                 <i className="mr-1 fa fa-clipboard fa-2x mt-0"/>
                                                 <span className="font-weight-bold ml-1">Mis Contrataciones</span>
                                             </NavLink>
-                                            <NavLink className=" btn btn-sm mr-2"
+                                            <NavLink className=" btn btn-sm mr-3"
                                                      activeClassName='active'
                                                      to={PATHS.CLIENT_PROFILE}
                                             >
                                                 <i className="mr-1 fa fa-user fa-2x mt-0"/>
                                                 <span className="font-weight-bold ml-1">Mi Perfil</span>
                                             </NavLink>
+                                            <div className="div-currency">
+                                                <CurrencyDropdownLayout/>
+                                            </div>
                                         </>
                                 }
                             </div>
@@ -184,7 +190,7 @@ class NavbarSectionLayout extends Component {
                                          style={{width: "100%", maxWidth: "150px"}} alt="logo"
                                          onClick={this.goToRootPath}/>
                                 </div>
-                                <div className="float-right float-right-lg">
+                                <div className="float-right float-right-sm">
                                     {
                                         !isLogged
                                             ?

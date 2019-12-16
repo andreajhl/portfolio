@@ -11,8 +11,8 @@ class CurrencyDropdownLayout extends Component {
         super(props);
 
         this.state = {
-            currentCurrencyFlag: AVAILABLE_CURRENCIES[0]["flag"],
-            currentCurrencyName: AVAILABLE_CURRENCIES[0]["name"]
+            currentCurrencyFlag: AVAILABLE_CURRENCIES.find(item => item.name === "USD")["flag"],
+            currentCurrencyName: AVAILABLE_CURRENCIES.find(item => item.name === "USD")["name"]
         };
 
         this.handleCurrentCurrency = this.handleCurrentCurrency.bind(this);
@@ -55,13 +55,11 @@ class CurrencyDropdownLayout extends Component {
                 </svg>
                 <img src={this.state.currentCurrencyFlag} alt={"flag"}/>
                 <select value={this.state.currentCurrencyName} onChange={this.handleCurrentCurrency}>
-                    <option value="USD">USD</option>
-                    <option value="COP">COP</option>
-                    {/*{*/}
-                    {/*    AVAILABLE_CURRENCIES.map((item, index) => {*/}
-                    {/*        return <option key={index} value={item.name}>{item.name}</option>*/}
-                    {/*    })*/}
-                    {/*}*/}
+                    {
+                        AVAILABLE_CURRENCIES.map((item, index) => {
+                            return <option key={index} value={item.name}>{item.name}</option>
+                        })
+                    }
                 </select>
             </div>
         );
