@@ -41,7 +41,7 @@ class CelebrityDetailsCardLayout extends Component {
         this.setState({
             showContractModal: true
         }, () => {
-            history._pushRoute(this.props.celebrity.username + "?modalOpened=true");
+            history._pushRoute(this.props.celebrity.username + "/contratar");
         });
     }
 
