@@ -10,12 +10,12 @@ class ContractPriceLayout extends Component {
     render() {
         return (
             <NumberFormat
-                value={this.props.currencyExchangeData.to !== "USD" ? this.props.price * this.props.currencyExchangeData.rate : this.props.price}
+                value={(this.props.currencyExchangeData.to !== "USD" && this.props.showInUSD === false) ? this.props.price * this.props.currencyExchangeData.rate : this.props.price}
                 displayType={"text"}
                 thousandSeparator={true}
                 decimalScale={2}
                 prefix={"$"}
-                renderText={value => <span className={(this.props.classes)}>{value} {this.props.currencyExchangeData.to}</span>}
+                renderText={value => <span className={(this.props.classes)}>{value} {this.props.showInUSD === false ? this.props.currencyExchangeData.to : "USD"}</span>}
             />
         );
     };
@@ -28,6 +28,7 @@ ContractPriceLayout.propTypes = {};
 // Set defaultProps
 ContractPriceLayout.defaultProps = {
     classes: "",
+    showInUSD: false,
     price: 0
 };
 

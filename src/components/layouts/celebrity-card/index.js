@@ -5,6 +5,7 @@ import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import {connect} from "react-redux";
+import {ContractPriceLayout} from "../contract-price";
 
 
 class CelebrityCardLayout extends Component {
@@ -57,6 +58,9 @@ class CelebrityCardLayout extends Component {
                                  onLoad={this.handleImageLoaded}
                                  src={this.props.celebrity.avatar}
                             />
+                            <span className="f-price f-rounded f-shadow">
+                                <ContractPriceLayout classes={"text-black"} price={this.props.celebrity.contracts_price} />
+                            </span>
                         </div>
                     </div>
                     <div className="card-body text-left pl-2 pt-2 pr-2 pb-0">
