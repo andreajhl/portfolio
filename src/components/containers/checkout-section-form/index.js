@@ -8,25 +8,29 @@ import {CheckoutBuyerData} from "../checkout-buyer-data";
 import {ContractCurrencyPayment} from "../contract-currency-payment";
 
 class CheckoutSectionForm extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
+            showPayButton: true,
             error: "",
             currency: "USD",
             buyerData: {},
             paymentMethod: {},
             paymentType: {},
             stripeToken: "",
-            payPalCheckoutStatus: false,
+            paypalResponse: {}
         };
         this.onSelectCurrency = this.onSelectCurrency.bind(this);
         this.onBuyerDataChange = this.onBuyerDataChange.bind(this);
         this.onSelectPaymentMethod = this.onSelectPaymentMethod.bind(this);
         this.onSelectPaymentType = this.onSelectPaymentType.bind(this);
         this.onPay = this.onPay.bind(this);
-        this.onTokenizeStripeCard = this.onTokenizeStripeCard.bind(this);
+        this.onFinish = this.onFinish.bind(this);
+        this.onStripeResponse = this.onStripeResponse.bind(this);
+        this.onPayPalResponse = this.onPayPalResponse.bind(this);
         this.createStripePayment = this.createStripePayment.bind(this);
-        this.onPayPalCheckoutPay = this.onPayPalCheckoutPay.bind(this);
+        this.createPaypalPayment = this.createPaypalPayment.bind(this);
 
         this.paymentMethodsSectionRef = React.createRef();
     }
@@ -46,12 +50,15 @@ class CheckoutSectionForm extends Component {
     onSelectPaymentMethod(paymentMethod) {
         this.setState({
             paymentMethod
-        }, () => {
-            console.log("paymentMethod:", paymentMethod)
         });
     }
 
     onSelectPaymentType(paymentType) {
+        if (paymentType.name === "OTHER") {
+            this.setState({
+                showPayButton: false
+            })
+        }
         this.setState({
             paymentType
         });
@@ -100,16 +107,12 @@ class CheckoutSectionForm extends Component {
             error: null
         }, () => {
             try {
+                console.log("this.state.paymentType.gateway_name:", this.state.paymentType.gateway_name)
                 switch (this.state.paymentType.gateway_name) {
                     case "STRIPE":
-                        return this.paymentMethodsSectionRef.current.tokenizeStripeCard();
+                        return this.paymentMethodsSectionRef.current.stripeCardForm.current.tokenizeCard();
                     case "DLOCAL":
                         return this.createDlocalPayment();
-                    case "PAYPAL":
-                        this.setState({
-                            error: "Debes pagar por medio del botón de PayPal."
-                        });
-                        return;
                     default:
                         this.setState({
                             error: "Debes seleccionar un método de pago."
@@ -121,6 +124,54 @@ class CheckoutSectionForm extends Component {
                 })
             }
         });
+    }
+
+    onFinish() {
+        this.setState({
+            error: null
+        }, () => {
+            try {
+                console.log("this.state.paymentType.gateway_name:", this.state.paymentType.gateway_name)
+                switch (this.state.paymentType.gateway_name) {
+                    case "PAYPAL":
+                        return this.createPaypalPayment();
+                    default:
+                        this.setState({
+                            error: "Debes seleccionar un método de pago."
+                        })
+                }
+            } catch (e) {
+                this.setState({
+                    error: "Debes seleccionar un método de pago."
+                })
+            }
+        });
+    }
+
+    onStripeResponse(status, token_id) {
+        if (status === "ERROR") {
+            this.setState({
+                error: "Error al validar la tarjeta de crédito"
+            });
+        } else {
+            this.setState({
+                stripeToken: token_id
+            }, () => {
+                this.createStripePayment()
+            });
+        }
+    }
+
+    onPayPalResponse(details) {
+        if (details.status === "COMPLETED") {
+            this.setState({
+                paypalResponse: details
+            });
+        } else {
+            this.setState({
+                error: "No se pudo hacer el cobro a tu cuenta de PayPal, intentalo nuevamente o utiliza otro método de pago."
+            })
+        }
     }
 
     createDlocalPayment() {
@@ -142,22 +193,8 @@ class CheckoutSectionForm extends Component {
         });
     }
 
-    onTokenizeStripeCard(status, token_id) {
-        if (status === "ERROR") {
-            this.setState({
-                error: "Error al validar la tarjeta de crédito"
-            });
-        } else {
-            this.setState({
-                stripeToken: token_id
-            }, () => {
-                this.createStripePayment()
-            });
-        }
-    }
+    createPaypalPayment() {
 
-    onPayPalCheckoutPay(status) {
-        this.setState({'payPalCheckoutStatus': status})
     }
 
     render() {
@@ -169,11 +206,11 @@ class CheckoutSectionForm extends Component {
                         <br/>
                         <PaymentMethodsSection
                             ref={this.paymentMethodsSectionRef}
-                            onTokenizeStripeCard={this.onTokenizeStripeCard}
+                            onStripeResponse={this.onStripeResponse}
                             contractData={this.props.contractData}
                             onSelectPaymentType={this.onSelectPaymentType}
                             onSelectPaymentMethod={this.onSelectPaymentMethod}
-                            onPayPalCheckoutPay={this.onPayPalCheckoutPay}
+                            onPayPalResponse={this.onPayPalResponse}
                         />
                         {this.state.currency !== "USD" && (
                             <>
@@ -190,7 +227,8 @@ class CheckoutSectionForm extends Component {
                             contractData={this.props.contractData}
                             buttonPayDisabled={false}
                             onPay={this.onPay}
-                            showPayButton={this.state.payPalCheckoutStatus}
+                            onFinish={this.onFinish}
+                            showPayButton={this.state.showPayButton}
                         />
                     </div>
                 </div>

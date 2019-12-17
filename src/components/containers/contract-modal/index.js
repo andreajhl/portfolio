@@ -75,7 +75,7 @@ class ContractModal extends Component {
       if (!contract_data.delivery_to) {
         errors.push("delivery_to");
       }
-      if (!contract_data.delivery_contact) {
+      if (!contract_data.delivery_contact || !contract_data.delivery_contact.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
         errors.push("delivery_contact");
       }
       if (!contract_data.instructions) {

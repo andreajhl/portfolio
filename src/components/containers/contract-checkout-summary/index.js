@@ -54,20 +54,19 @@ class ContractCheckoutSummary extends Component {
     }
 
     onFinish() {
-        console.log(this.props.contractData);
         return history._pushRoute(ROUTE_PATHS.CONTRACT_CREATED.replace(':contract_reference', this.props.contractData.reference));
     }
 
     returnActionButton() {
         if (this.props.showPayButton) {
-            return <button onClick={this.onFinish}
-                           className={"contract-button mx-auto hover cursor-pointer p-2 border bg-active "}>
-                3. Finalizar
-            </button>;
-        } else {
             return <button onClick={this.onPay}
                            className={"contract-button mx-auto hover cursor-pointer p-2 border bg-active"}>
                 3. Pagar
+            </button>;
+        } else {
+            return <button onClick={this.onFinish}
+                           className={"contract-button mx-auto hover cursor-pointer p-2 border bg-active "}>
+                3. Finalizar
             </button>;
         }
 
@@ -128,10 +127,9 @@ class ContractCheckoutSummary extends Component {
                             </div>
                         </div>
                         {this.props.showError && (
-                            <div className="text-center text-danger">{this.props.error}</div>
+                            <div className="text-justify text-danger" style={{fontSize: "12px"}}>{this.props.error}</div>
                         )}
-                        <div className="contract-button mt-4 mx-auto buttonContractCustom">
-
+                        <div className="contract-button mt-2 mx-auto buttonContractCustom">
                             {
                                 this.returnActionButton()
                             }
@@ -147,6 +145,7 @@ class ContractCheckoutSummary extends Component {
 ContractCheckoutSummary.propTypes = {};
 // Set defaultProps
 ContractCheckoutSummary.defaultProps = {
+    showPayButton: true,
     showError: false,
     error: "",
     buttonPayDisabled: false,
