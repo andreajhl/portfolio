@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {Session} from "../../../state/utils/session";
 import {NavLink} from "react-router-dom";
 import {CurrencyDropdownLayout} from "../currency-dropdown";
+import {BottomNavbarSectionLayout} from "../bottom-navbar-section";
 
 
 class NavbarSectionLayout extends Component {
@@ -25,18 +26,40 @@ class NavbarSectionLayout extends Component {
         this.goToSignInPath = this.goToSignInPath.bind(this);
         this.goToSignUpPath = this.goToSignUpPath.bind(this);
         this.logout = this.logout.bind(this);
-        this.showSearch = this.showSearch.bind(this);
         this.goToProfile = this.goToProfile.bind(this);
     }
 
     componentDidMount(): void {
         this.setState({
-            showSearch: new URLSearchParams(history.location.search).get("showInputSearchSm")
+            showSearch: history.location.pathname === PATHS.SEARCH_PATH
         }, () => this.updateClasses())
     }
 
     componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
         this.updateClasses()
+    }
+
+    updateClasses() {
+        if (this.state.showSearch === true) {
+            const fMainPadding = document.getElementsByClassName('f-main-padding');
+            const fContainer = document.getElementsByClassName('f-container');
+            if (fMainPadding.length) {
+                fMainPadding[0].className += ' search-sm-active ';
+            }
+            if (fContainer.length) {
+                fContainer[0].className += ' search-sm-active ';
+            }
+            document.getElementById("input-search").autofocus = true;
+        } else {
+            const fMainPadding = document.getElementsByClassName('f-main-padding');
+            const fContainer = document.getElementsByClassName('f-container');
+            if (fMainPadding.length) {
+                fMainPadding[0].className = ' f-main-padding ';
+            }
+            if (fContainer.length) {
+                fContainer[0].className = ' f-container ';
+            }
+        }
     }
 
     goToRootPath() {
@@ -70,42 +93,6 @@ class NavbarSectionLayout extends Component {
 
     logout() {
         this.session.removeSession();
-    }
-
-    showSearch() {
-        this.setState({
-            showSearch: !this.state.showSearch
-        }, () => {
-            if (this.state.showSearch === true) {
-                history._pushRoute(PATHS.ROOT_PATH + "?showInputSearchSm=true")
-            } else {
-                history._pushRoute(PATHS.ROOT_PATH)
-            }
-            this.updateClasses()
-        })
-    }
-
-    updateClasses() {
-        if (this.state.showSearch === true) {
-            const fMainPadding = document.getElementsByClassName('f-main-padding');
-            const fContainer = document.getElementsByClassName('f-container');
-            if (fMainPadding.length) {
-                fMainPadding[0].className += ' search-sm-active ';
-            }
-            if (fContainer.length) {
-                fContainer[0].className += ' search-sm-active ';
-            }
-            document.getElementById("input-search").autofocus = true;
-        } else {
-            const fMainPadding = document.getElementsByClassName('f-main-padding');
-            const fContainer = document.getElementsByClassName('f-container');
-            if (fMainPadding.length) {
-                fMainPadding[0].className = ' f-main-padding ';
-            }
-            if (fContainer.length) {
-                fContainer[0].className = ' f-container ';
-            }
-        }
     }
 
     render() {
@@ -182,7 +169,12 @@ class NavbarSectionLayout extends Component {
                         </div>
 
                         {/* SM*/}
+                        <BottomNavbarSectionLayout
+                            onSearchClick={this.showSearch}
+                        />
                         <div className="f-items d-block d-md-none">
+
+
                             <div className="row" style={{position: "relative", top: "-7px"}}>
                                 {/* LOGO*/}
                                 <div className="col mt-0 pt-0 mr-0 pr-0 mb-0 pb-0">
@@ -202,13 +194,10 @@ class NavbarSectionLayout extends Component {
                                                     {/*    <img width={"30px"} src={"/assets/img/trending.svg"}*/}
                                                     {/*         className={"cursor-pointer"}/>*/}
                                                     {/*</a>*/}
-                                                    <a className="btn btn-sm mr-3" onClick={this.showSearch}>
-                                                        <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
-                                                    </a>
-                                                    <button className="btn btn-primary btn-sm mt-2 f-register-button"
-                                                            onClick={this.goToSignUpPath}>
-                                                        Ingresar
-                                                    </button>
+                                                    {/*<button className="btn btn-primary btn-sm mt-2 f-register-button"*/}
+                                                    {/*        onClick={this.goToSignUpPath}>*/}
+                                                    {/*    Ingresar*/}
+                                                    {/*</button>*/}
                                                     <div className="div-currency">
                                                         <CurrencyDropdownLayout/>
                                                     </div>
@@ -218,27 +207,6 @@ class NavbarSectionLayout extends Component {
                                             <>
                                                 <div
                                                     className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center div-buttons-sm">
-                                                    {/*<a className="btn btn-sm" onClick={this.goToTrending}>*/}
-                                                    {/*    <img width={"30px"} src={"/assets/img/trending.svg"}*/}
-                                                    {/*         className={"cursor-pointer"}/>*/}
-                                                    {/*</a>*/}
-                                                    <a className="btn btn-sm mr-2" onClick={this.showSearch}>
-                                                        <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
-                                                    </a>
-                                                    <NavLink className=" btn btn-sm mr-2"
-                                                             activeClassName='active'
-                                                             to={PATHS.CLIENT_HIRINGS}
-                                                    >
-                                                        <i className="mr-1 fa fa-clipboard fa-2x"/>
-                                                        <span className="font-weight-bold ml-1"/>
-                                                    </NavLink>
-                                                    <NavLink className="btn btn-sm mr-2"
-                                                             activeClassName='active'
-                                                             to={PATHS.CLIENT_PROFILE}
-                                                    >
-                                                        <i className="mr-1 fa fa-user fa-2x"/>
-                                                        <span className="font-weight-bold ml-1"/>
-                                                    </NavLink>
                                                     <div className="div-currency">
                                                         <CurrencyDropdownLayout/>
                                                     </div>

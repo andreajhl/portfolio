@@ -20,10 +20,25 @@
 
     .primary-option {
       flex: 1 5;
+      position: relative;
+      height: 50px;
+      top: -15px;
+      border-radius: 100%;
+      box-shadow: 0 -0.5rem 0.5rem -0.5rem #a1a1a1 !important;
+
+      .primary-option-icon {
+        top: 60% !important;
+      }
     }
 
     .secondary-option {
       flex: 1 5;
+    }
+
+    .primary-option.active, .secondary-option.active {
+      .icon {
+        color: $primary;
+      }
     }
 
     .icon {

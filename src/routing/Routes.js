@@ -28,6 +28,11 @@ class MyRoutes extends Component {
                         />
                         <Route
                             exact
+                            path={PATHS.SEARCH_PATH}
+                            component={PAGES.CelebritiesPage}
+                        />
+                        <Route
+                            exact
                             path={PATHS.TRENDING}
                             component={PAGES.TrendingPage}
                         />

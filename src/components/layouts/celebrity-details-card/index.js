@@ -313,12 +313,12 @@ class CelebrityDetailsCardLayout extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="footer-btn my-auto p-4" onClick={this.openModal}>
-                            <small className="ml-0 float-left text-uppercase text-white font-weight-bold">
-                                Comprar video por <ContractPriceLayout classes={"text-white font-weight-bold"} price={this.props.celebrity.contracts_price} />
-                            </small>
-                            <i className="fa fa-arrow-right float-right text-white" style={{ fontSize: "26px" }} />
-                        </div>
+                        {/*<div className="footer-btn my-auto p-4" onClick={this.openModal}>*/}
+                        {/*    <small className="ml-0 float-left text-uppercase text-white font-weight-bold">*/}
+                        {/*        Comprar video por <ContractPriceLayout classes={"text-white font-weight-bold"} price={this.props.celebrity.contracts_price} />*/}
+                        {/*    </small>*/}
+                        {/*    <i className="fa fa-arrow-right float-right text-white" style={{ fontSize: "26px" }} />*/}
+                        {/*</div>*/}
                     </div>
                     {/*HASHTAGS*/}
                     <div className="f-line w-100 mt-2 mb-2 text-soft-grey"></div>
