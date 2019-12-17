@@ -11,6 +11,18 @@ class IndexHeaderLayout extends Component {
         };
 
         this.hideHeader = this.hideHeader.bind(this);
+
+        setTimeout(() => {
+            try {
+                // Detect when scrolled to bottom.
+                document.getElementsByClassName("scroll-section")[0].addEventListener("scroll", () => {
+                    this.hideHeader()
+                });
+            }
+            catch (e) {
+                console.log("scroll-section doesn't allowed")
+            }
+        }, 1000)
     }
 
     hideHeader() {

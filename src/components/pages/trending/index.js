@@ -54,7 +54,7 @@ class TrendingPage extends Component {
         return (
             <>
                 <div className={"TrendingPage "}>
-                    <PageContainer fetchCelebrities={false} showFooter={false}>
+                    <PageContainer showNavbar={false} fetchCelebrities={false} showFooter={false}>
                         {/*/!* ShowHeader *!/*/}
                         {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
                         {/*/!* End ShowHeader *!/*/}

@@ -16,7 +16,9 @@ const currencyExchangeInitialState = {
     failed: false,
     completed: false,
     error_data: {error: ""},
-    data: {}
+    data: {
+        to: "USD"
+    }
 };
 
 const getContractToPayInitialState = {

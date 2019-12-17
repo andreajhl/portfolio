@@ -21,7 +21,6 @@ class CheckoutSectionForm extends Component {
             stripeToken: "",
             paypalResponse: {}
         };
-
         this.onSelectCurrency = this.onSelectCurrency.bind(this);
         this.onBuyerDataChange = this.onBuyerDataChange.bind(this);
         this.onSelectPaymentMethod = this.onSelectPaymentMethod.bind(this);
@@ -118,6 +117,7 @@ class CheckoutSectionForm extends Component {
                         this.setState({
                             error: "Debes seleccionar un método de pago."
                         })
+                        break;
                 }
             } catch (e) {
                 this.setState({
@@ -132,14 +132,10 @@ class CheckoutSectionForm extends Component {
             error: null
         }, () => {
             try {
-                console.log("this.state.paymentType.gateway_name:", this.state.paymentType.gateway_name)
-                switch (this.state.paymentType.gateway_name) {
-                    case "PAYPAL":
-                        return this.createPaypalPayment();
-                    default:
-                        this.setState({
-                            error: "Debes seleccionar un método de pago."
-                        })
+                if (this.state.paymentType.gateway_name === "PAYPAL") {
+                    return this.createPaypalPayment();
+                } else {
+                    this.setState({error: "Debes seleccionar un método de pago."})
                 }
             } catch (e) {
                 this.setState({
@@ -151,9 +147,7 @@ class CheckoutSectionForm extends Component {
 
     onStripeResponse(status, token_id) {
         if (status === "ERROR") {
-            this.setState({
-                error: "Error al validar la tarjeta de crédito"
-            });
+            this.setState({error: "Error al validar la tarjeta de crédito"});
         } else {
             this.setState({
                 stripeToken: token_id
@@ -170,7 +164,8 @@ class CheckoutSectionForm extends Component {
             });
         } else {
             this.setState({
-                error: "No se pudo hacer el cobro a tu cuenta de PayPal, intentalo nuevamente o utiliza otro método de pago."
+                error: "No se pudo hacer el cobro a tu cuenta de PayPal, intentalo nuevamente o " +
+                    "utiliza otro método de pago."
             })
         }
     }
@@ -226,10 +221,9 @@ class CheckoutSectionForm extends Component {
                             error={this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError}
                             transactionFee={this.state.paymentMethod.fee}
                             contractData={this.props.contractData}
-                            buttonPayDisabled={false    }
+                            buttonPayDisabled={false}
                             onPay={this.onPay}
                             onFinish={this.onFinish}
-                            buttonPayLoading={this.props.isCreateDlocalPaymentLoading || this.props.isCreateStripePaymentLoading}
                             showPayButton={this.state.showPayButton}
                         />
                     </div>
