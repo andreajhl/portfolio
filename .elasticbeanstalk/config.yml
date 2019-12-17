@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: FamososClientsFrontend-production
+    environment: FamososClientsFrontend-testing
     group_suffix: null
   payments:
     environment: FamososClientsFrontend-testing
