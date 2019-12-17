@@ -81,14 +81,6 @@ export const currencyExchange = params => {
 
 export const getContractToPay = contractReference => {
   return async dispatch => {
-    // Verify if there is a hash to associate
-    if (localStorage.getItem("hash")) {
-      console.log("llego");
-
-      await dispatch(AssociateContract(localStorage.getItem("hash")));
-      console.log("llego2");
-    }
-
     setTimeout(function() {
       // Get Contract to Pay
       const TYPE = types.GET_CONTRACT_TO_PAY_REQUEST;

@@ -68,6 +68,7 @@ class CreateContractPage extends Component {
       const contract_data = this.state.contract_data;
 
       contract_data.celebrity_id = this.props.celebrity.id; // Celebrity ID
+      contract_data.price = this.props.celebrity.contracts_price; // Price
 
       const errors = [];
       if (contract_data.contract_type === 1 && !contract_data.delivery_from) {
@@ -274,7 +275,7 @@ class CreateContractPage extends Component {
                     <Col sm="6">
                       <Form.Group>
                         <Form.Label>
-                          <b>Correo electrónico de entrega:</b>
+                          <b>Correo electrónico de notificación:</b>
                         </Form.Label>
                         <Form.Control
                           type="email"

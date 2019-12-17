@@ -1,47 +1,44 @@
-import React, {Component} from 'react';
-import {PageContainer} from "../../layouts";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { PageContainer } from "../../layouts";
+import { connect } from "react-redux";
 import "./styles.scss";
-import {paymentsOperations} from "../../../state/ducks/payments";
-import {CheckoutSectionForm} from "../../containers/checkout-section-form";
+import { paymentsOperations } from "../../../state/ducks/payments";
+import { CheckoutSectionForm } from "../../containers/checkout-section-form";
 
 class PaymentMethodsPage extends Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            params: {
-                showContractPayedSection: this.props.contract.status >= 10,
-            }
-        };
-
-    }
-
-    componentDidMount(): void {
-        this.props.getContractToPay(this.props.match.params.contract_reference)
-    }
-
-    render() {
-        return (
-            <>
-                <div className="PaymentMethodsPage">
-                    <PageContainer fetchCelebrities={false} showSearch={false} showNavbarButtons={false}>
-                        {
-                            this.state.showContractPayedSection
-                                ?
-                                <>
-                                    >= 10
-                                </>
-                                :
-                                <CheckoutSectionForm contractData={this.props.contract}/>
-                        }
-                    </PageContainer>
-                </div>
-            </>
-        );
+    this.state = {
+      params: {
+        showContractPayedSection: this.props.contract.status >= 10
+      }
     };
+  }
 
+  componentDidMount(): void {
+    this.props.getContractToPay(this.props.match.params.contract_reference);
+  }
+
+  render() {
+    return (
+      <>
+        <div className="PaymentMethodsPage">
+          <PageContainer
+            fetchCelebrities={false}
+            showSearch={false}
+            showNavbarButtons={false}
+          >
+            {this.state.showContractPayedSection ? (
+              <>>= 10</>
+            ) : (
+              <CheckoutSectionForm contractData={this.props.contract} />
+            )}
+          </PageContainer>
+        </div>
+      </>
+    );
+  }
 }
 
 // Set propTypes
@@ -49,21 +46,24 @@ PaymentMethodsPage.propTypes = {};
 
 // Set defaultProps
 PaymentMethodsPage.defaultProps = {
-    contract: {},
+  contract: {}
 };
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.payments.getContractToPayReducer.loading,
-    isCompleted: state.payments.getContractToPayReducer.completed,
-    contract: state.payments.getContractToPayReducer.data.contract,
+  isLoading: state.payments.getContractToPayReducer.loading,
+  isCompleted: state.payments.getContractToPayReducer.completed,
+  contract: state.payments.getContractToPayReducer.data.contract
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getContractToPay: paymentsOperations.getContractToPay,
+  getContractToPay: paymentsOperations.getContractToPay
 };
 
 // Export Class
-const _PaymentMethodsPage = connect(mapStateToProps, mapDispatchToProps)(PaymentMethodsPage);
-export {_PaymentMethodsPage as PaymentMethodsPage};
+const _PaymentMethodsPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PaymentMethodsPage);
+export { _PaymentMethodsPage as PaymentMethodsPage };
