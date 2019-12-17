@@ -1,11 +1,11 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./styles.scss";
-import {PaymentMethodsSection} from "../../containers/payment-methods-section";
-import {ContractCheckoutSummary} from "../../containers/contract-checkout-summary";
-import {paymentsOperations} from "../../../state/ducks/payments";
-import {connect} from "react-redux";
-import {CheckoutBuyerData} from "../checkout-buyer-data";
-import {ContractCurrencyPayment} from "../contract-currency-payment";
+import { PaymentMethodsSection } from "../../containers/payment-methods-section";
+import { ContractCheckoutSummary } from "../../containers/contract-checkout-summary";
+import { paymentsOperations } from "../../../state/ducks/payments";
+import { connect } from "react-redux";
+import { CheckoutBuyerData } from "../checkout-buyer-data";
+import { ContractCurrencyPayment } from "../contract-currency-payment";
 import * as GTM from "../../../state/utils/gtm";
 
 class CheckoutSectionForm extends Component {
@@ -43,11 +43,14 @@ class CheckoutSectionForm extends Component {
   }
 
   onSelectPaymentMethod(paymentMethod) {
-    this.setState({
-      paymentMethod
-    }, () => {
-      console.log("paymentMethod:", paymentMethod)
-    });
+    this.setState(
+      {
+        paymentMethod
+      },
+      () => {
+        console.log("paymentMethod:", paymentMethod);
+      }
+    );
   }
 
   onSelectPaymentType(paymentType) {
@@ -91,34 +94,34 @@ class CheckoutSectionForm extends Component {
     } else if (this.state.currency === "UYU") {
       country = "UY";
     }
-    return country
+    return country;
   }
 
   onPay() {
-    GTM.tagManagerDataLayer(
-        "ON_PAY",
-        this.state
-    );
-    this.setState({
-      error: null
-    }, () => {
-      try {
-        switch (this.state.paymentType.gateway_name) {
-          case "STRIPE":
-            return this.paymentMethodsSectionRef.current.tokenizeStripeCard();
-          case "DLOCAL":
-            return this.createDlocalPayment();
-          default:
-            this.setState({
-              error: "Debes seleccionar un método de pago."
-            })
+    GTM.tagManagerDataLayer("ON_PAY", this.state);
+    this.setState(
+      {
+        error: null
+      },
+      () => {
+        try {
+          switch (this.state.paymentType.gateway_name) {
+            case "STRIPE":
+              return this.paymentMethodsSectionRef.current.tokenizeStripeCard();
+            case "DLOCAL":
+              return this.createDlocalPayment();
+            default:
+              this.setState({
+                error: "Debes seleccionar un método de pago."
+              });
+          }
+        } catch (e) {
+          this.setState({
+            error: "Debes seleccionar un método de pago."
+          });
         }
-      } catch (e) {
-        this.setState({
-          error: "Debes seleccionar un método de pago."
-        })
       }
-    });
+    );
   }
 
   createDlocalPayment() {
@@ -128,7 +131,7 @@ class CheckoutSectionForm extends Component {
       buyer_document: this.state.buyerData.document,
       contract_reference: this.props.contractData.reference,
       payment_method_id: this.state.paymentMethod.id,
-      country: this.returnCountry(),
+      country: this.returnCountry()
     });
   }
 
@@ -146,46 +149,60 @@ class CheckoutSectionForm extends Component {
         error: "Error al validar la tarjeta de crédito"
       });
     } else {
-      this.setState({
-        stripeToken: token_id
-      }, () => {
-        this.createStripePayment()
-      });
+      this.setState(
+        {
+          stripeToken: token_id
+        },
+        () => {
+          this.createStripePayment();
+        }
+      );
     }
   }
 
   render() {
     return (
-        <div className="CheckoutSectionForm">
-          <div className="row checkout-section mx-auto justify-content-center">
-            <div className="col-12 col-sm-8 col-md-7 col-lg-7 payment-methods">
-              <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency}/>
-              <br/>
-              <PaymentMethodsSection
-                  ref={this.paymentMethodsSectionRef}
-                  onTokenizeStripeCard={this.onTokenizeStripeCard}
-                  onSelectPaymentType={this.onSelectPaymentType}
-                  onSelectPaymentMethod={this.onSelectPaymentMethod}
-              />
-              {this.state.currency !== "USD" && (
-                  <>
-                    <br/>
-                    <CheckoutBuyerData onBuyerDataChange={this.onBuyerDataChange}/>
-                  </>
-              )}
-            </div>
-            <div className="col-12 col-sm-8 col-md-7 col-lg-5 contract-summary  mt-3">
-              <ContractCheckoutSummary
-                  showError={!!this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError}
-                  error={this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError}
-                  transactionFee={this.state.paymentMethod.fee}
-                  contractData={this.props.contractData}
-                  buttonPayLoading={this.props.isCreateDlocalPaymentLoading || this.props.isCreateStripePaymentLoading}
-                  onPay={this.onPay}
-              />
-            </div>
+      <div className="CheckoutSectionForm">
+        <div className="row checkout-section mx-auto justify-content-center">
+          <div className="col-12 col-sm-8 col-md-7 col-lg-7 payment-methods">
+            <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency} />
+            <br />
+            <PaymentMethodsSection
+              ref={this.paymentMethodsSectionRef}
+              onTokenizeStripeCard={this.onTokenizeStripeCard}
+              onSelectPaymentType={this.onSelectPaymentType}
+              onSelectPaymentMethod={this.onSelectPaymentMethod}
+            />
+            {this.state.currency !== "USD" && (
+              <>
+                <br />
+                <CheckoutBuyerData onBuyerDataChange={this.onBuyerDataChange} />
+              </>
+            )}
+          </div>
+          <div className="col-12 col-sm-8 col-md-7 col-lg-5 contract-summary  mt-3">
+            <ContractCheckoutSummary
+              showError={
+                !!this.state.error ||
+                this.props.createDlocalPaymentError ||
+                this.props.createStripePaymentError
+              }
+              error={
+                this.state.error ||
+                this.props.createDlocalPaymentError ||
+                this.props.createStripePaymentError
+              }
+              transactionFee={this.state.paymentMethod.fee}
+              contractData={this.props.contractData}
+              buttonPayLoading={
+                this.props.isCreateDlocalPaymentLoading ||
+                this.props.isCreateStripePaymentLoading
+              }
+              onPay={this.onPay}
+            />
           </div>
         </div>
+      </div>
     );
   }
 }
@@ -199,14 +216,20 @@ CheckoutSectionForm.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
   currencyExchangeData: state.payments.currencyExchangeReducer.data,
-  isCreateDlocalPaymentLoading: state.payments.createDlocalPaymentReducer.loading,
-  isCreateDlocalPaymentCompleted: state.payments.createDlocalPaymentReducer.completed,
+  isCreateDlocalPaymentLoading:
+    state.payments.createDlocalPaymentReducer.loading,
+  isCreateDlocalPaymentCompleted:
+    state.payments.createDlocalPaymentReducer.completed,
   createDlocalPaymentData: state.payments.createDlocalPaymentReducer.data,
-  createDlocalPaymentError: state.payments.createDlocalPaymentReducer.error_data.error,
-  isCreateStripePaymentLoading: state.payments.createStripePaymentReducer.loading,
-  isCreateStripePaymentCompleted: state.payments.createStripePaymentReducer.completed,
+  createDlocalPaymentError:
+    state.payments.createDlocalPaymentReducer.error_data.error,
+  isCreateStripePaymentLoading:
+    state.payments.createStripePaymentReducer.loading,
+  isCreateStripePaymentCompleted:
+    state.payments.createStripePaymentReducer.completed,
   createStripePaymentData: state.payments.createStripePaymentReducer.data,
-  createStripePaymentError: state.payments.createStripePaymentReducer.error_data.error
+  createStripePaymentError:
+    state.payments.createStripePaymentReducer.error_data.error
 });
 // mapStateToProps
 const mapDispatchToProps = {
@@ -215,7 +238,7 @@ const mapDispatchToProps = {
 };
 // Export Class
 const _CheckoutSectionForm = connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(CheckoutSectionForm);
-export {_CheckoutSectionForm as CheckoutSectionForm};
+export { _CheckoutSectionForm as CheckoutSectionForm };
