@@ -21,6 +21,7 @@ class CheckoutSectionForm extends Component {
             stripeToken: "",
             paypalResponse: {}
         };
+
         this.onSelectCurrency = this.onSelectCurrency.bind(this);
         this.onBuyerDataChange = this.onBuyerDataChange.bind(this);
         this.onSelectPaymentMethod = this.onSelectPaymentMethod.bind(this);
@@ -225,9 +226,10 @@ class CheckoutSectionForm extends Component {
                             error={this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError}
                             transactionFee={this.state.paymentMethod.fee}
                             contractData={this.props.contractData}
-                            buttonPayDisabled={false}
+                            buttonPayDisabled={false    }
                             onPay={this.onPay}
                             onFinish={this.onFinish}
+                            buttonPayLoading={this.props.isCreateDlocalPaymentLoading || this.props.isCreateStripePaymentLoading}
                             showPayButton={this.state.showPayButton}
                         />
                     </div>

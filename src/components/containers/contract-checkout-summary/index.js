@@ -2,72 +2,75 @@ import React, {Component} from "react";
 import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
-import NumberFormat from "react-number-format";
-import {history} from "../../../routing/History";
-import * as ROUTE_PATHS from "../../../routing/Paths";
+import {ContractPriceLayout} from "../../layouts/contract-price";
+
 
 class ContractCheckoutSummary extends Component {
+
     constructor(props) {
         super(props);
         this.state = {};
-        this.contractPrice = this.contractPrice.bind(this);
         this.onPay = this.onPay.bind(this);
         this.onFinish = this.onFinish.bind(this);
     }
 
-    returnNumber(number) {
-        return (
-            <NumberFormat
-                value={number}
-                displayType={"text"}
-                thousandSeparator={true}
-                decimalScale={2}
-                prefix={""}
-                renderText={value => <span>{value}</span>}
-            />
-        );
-    }
-
-    contractPrice() {
-        if (this.props.contractData.price) {
-            if (
-                this.props.currencyExchangeData.to !== "USD" &&
-                this.props.transactionFee
-            ) {
-                const price =
-                    this.props.contractData.price * this.props.currencyExchangeData.rate;
-                return price + price * this.props.transactionFee;
-            } else if (this.props.currencyExchangeData.to) {
-                return (
-                    this.props.contractData.price * this.props.currencyExchangeData.rate
-                );
-            } else {
-                return this.props.contractData.price;
-            }
-        } else {
-            return 0;
+    onPay() {
+        if (!this.props.buttonPayLoading) {
+            this.props.onPay();
         }
     }
 
-    onPay() {
-        this.props.onPay();
-    }
-
     onFinish() {
-        return history._pushRoute(ROUTE_PATHS.CONTRACT_CREATED.replace(':contract_reference', this.props.contractData.reference));
+        if (!this.props.buttonFinishLoading) {
+            this.props.onPay();
+        }
     }
 
     returnActionButton() {
         if (this.props.showPayButton) {
-            return <button onClick={this.onPay}
-                           className={"contract-button mx-auto hover cursor-pointer p-2 border bg-active"}>
-                3. Pagar
-            </button>;
+            return (
+                <button
+                    onClick={this.onPay}
+                    className={
+                        "contract-button mx-auto hover cursor-pointer p-2 border bg-active "
+                    }
+                >
+                    {
+                        this.props.buttonPayLoading
+                            ?
+                            <span
+                                className="spinner-grow spinner-grow-sm"
+                                role="status"
+                                aria-hidden="true"
+                            />
+                            :
+                            <span className="text-white">
+                              Pagar
+                            </span>
+                    }
+                </button>
+            );
         } else {
-            return <button onClick={this.onFinish}
-                           className={"contract-button mx-auto hover cursor-pointer p-2 border bg-active "}>
-                3. Finalizar
-            </button>;
+            return (
+                <button
+                    onClick={this.onFinish}
+                    className={"contract-button mx-auto hover cursor-pointer p-2 border bg-active "}
+                >
+                    {
+                        this.props.buttonFinishLoading
+                            ?
+                            <span
+                                className="spinner-grow spinner-grow-sm"
+                                role="status"
+                                aria-hidden="true"
+                            />
+                            :
+                            <span className="text-white">
+                              Finalizar
+                            </span>
+                    }
+                </button>
+            );
         }
 
     }
@@ -94,45 +97,85 @@ class ContractCheckoutSummary extends Component {
                         </div>
                         <div className="from-to mt-4">
                             <h6>
-                                <div className="col-12">
-                  <span className="text-colored">
-                    De:{" "}
-                      <span className="font-weight-bold">
-                      {this.props.contractData.delivery_from}
-                    </span>{" "}
-                  </span>
-                                </div>
-                                <div className="col-12">
-                  <span className="text-colored">
-                    Para:{" "}
-                      <span className="font-weight-bold">
-                      {this.props.contractData.delivery_to}
-                    </span>{" "}
-                  </span>
-                                </div>
+                                {
+                                    this.props.contractData.delivery_to
+                                    &&
+                                    <>
+                                        <div className="col-12 ml-0 pl-0 mb-3">
+                                            <span className="text-colored">
+                                              Para:{" "}
+                                                <span className="font-weight-bold">
+                                                {this.props.contractData.delivery_to}
+                                              </span>{" "}
+                                            </span>
+                                        </div>
+                                    </>
+                                }
+                                {
+                                    this.props.contractData.delivery_from
+                                    &&
+                                    <>
+                                        <div className="col-12 ml-0 pl-0">
+                                            <span className="text-colored">
+                                              De:{" "}
+                                                <span className="font-weight-bold">
+                                                {this.props.contractData.delivery_from}
+                                              </span>{" "}
+                                            </span>
+                                        </div>
+                                    </>
+                                }
                             </h6>
                         </div>
                         <div className="instructions mt-4 text-justify">
                             <small>{this.props.contractData.instructions}</small>
                         </div>
+                        <hr/>
                         <div className="total mt-4">
+                            {
+                                this.props.currencyExchangeData.to !== "USD"
+                                &&
+                                <div className="clearfix ">
+                                    <h6 className=" float-left">Total en Dólares:</h6>
+                                    <h6 className=" text-right float-right">
+                                        <ContractPriceLayout
+                                            classes={"text-black "}
+                                            price={this.props.contractData.price}
+                                            showInUSD={true}
+                                        />
+                                    </h6>
+                                </div>
+                            }
                             <div className="clearfix ">
                                 <h5 className="font-weight-bold float-left">Total:</h5>
-                                <h5 className="font-weight-bold float-right">
-                                    $ {this.returnNumber(this.contractPrice())}{" "}
-                                    {this.props.currencyExchangeData.to
-                                        ? this.props.currencyExchangeData.to
-                                        : "USD"}
+                                <h5 className="font-weight-bold text-right float-right">
+                                    <ContractPriceLayout
+                                        classes={"text-black font-weight-bold"}
+                                        price={this.props.contractData.price}
+                                    />
+                                    {
+                                        this.props.currencyExchangeData.to !== "USD"
+                                        &&
+                                        <>
+                                            <br/>
+                                            <small className={"text-right mx-auto"}
+                                                   style={{fontSize: "10px"}}>(Aproximado)
+                                            </small>
+                                        </>
+                                    }
                                 </h5>
                             </div>
                         </div>
                         {this.props.showError && (
-                            <div className="text-justify text-danger" style={{fontSize: "12px"}}>{this.props.error}</div>
+                            <div className="text-justify text-danger"
+                                 style={{fontSize: "12px"}}>{this.props.error}
+                            </div>
                         )}
-                        <div className="contract-button mt-2 mx-auto buttonContractCustom">
-                            {
-                                this.returnActionButton()
-                            }
+                        <div className="contract-button mt-4 mx-auto buttonContractCustom">
+                            {this.returnActionButton()}
+                        </div>
+                        <div className="mt-4 mx-auto text-center">
+                            <img width="150px" src={"/assets/img/pago-seguro.png"} alt={"pago-seguro"}/>
                         </div>
                     </div>
                 </div>
@@ -143,30 +186,34 @@ class ContractCheckoutSummary extends Component {
 
 // Set propTypes
 ContractCheckoutSummary.propTypes = {};
+
 // Set defaultProps
 ContractCheckoutSummary.defaultProps = {
-    showPayButton: true,
     showError: false,
     error: "",
-    buttonPayDisabled: false,
+    buttonPayLoading: false,
+    buttonFinishLoading: false,
     transactionFee: 0,
     contractData: {},
+    showPayButton: true,
+    buttonPayDisabled: false,
+    payPalCheckoutStatus: false,
     onPay: () => {
     },
-    payPalCheckoutStatus: false,
 };
+
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     isLoading: state.payments.currencyExchangeReducer.loading,
     currencyExchangeData: state.payments.currencyExchangeReducer.data
 });
+
 // mapStateToProps
 const mapDispatchToProps = {
     currencyExchange: paymentsOperations.currencyExchange
 };
+
 // Export Class
-const _ContractCheckoutSummary = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ContractCheckoutSummary);
+const _ContractCheckoutSummary = connect(mapStateToProps, mapDispatchToProps)(ContractCheckoutSummary);
+
 export {_ContractCheckoutSummary as ContractCheckoutSummary};
