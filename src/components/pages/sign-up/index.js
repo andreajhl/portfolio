@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {SignInWithCellphoneForm, SignUpWithEmailForm, SignInWithWhatsAppForm} from "../../containers";
+import {SignInWithCellphoneForm, SignInWithWhatsAppForm, SignUpWithEmailForm} from "../../containers";
 import {Session} from "../../../state/utils/session";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import {PageContainer} from "../../layouts/page-container";
 
 
 class SignUpPage extends Component {
@@ -42,18 +43,20 @@ class SignUpPage extends Component {
     render() {
         return (
             <>
-                <div className="SignInPage">
-                    <div className="section">
-                        <div className="auth-container">
-                            <div className="logo">
-                                <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
-                            </div>
-                            <div className="custom-form">
-                                {this.returnSpecificForm()}
+                <PageContainer fetchCelebrities={false}>
+                    <div className="SignInPage">
+                        <div className="section">
+                            <div className="auth-container">
+                                <div className="logo">
+                                    <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
+                                </div>
+                                <div className="custom-form">
+                                    {this.returnSpecificForm()}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </PageContainer>
             </>
         );
     };

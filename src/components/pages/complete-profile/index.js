@@ -5,6 +5,7 @@ import * as PATHS from "../../../routing/Paths";
 import {CompleteProfileForm} from "../../containers/complete-profile-form";
 import {sessionOperations} from "../../../state/ducks/session";
 import {connect} from "react-redux";
+import {PageContainer} from "../../layouts/page-container";
 
 
 class CompleteProfilePage extends Component {
@@ -28,18 +29,20 @@ class CompleteProfilePage extends Component {
     render() {
         return (
             <>
-                <div className="SignInPage">
-                    <div className="section">
-                        <div className="auth-container">
-                            <div className="logo">
-                                <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
-                            </div>
-                            <div className="custom-form">
-                                <CompleteProfileForm session={this.props.session}/>
+                <PageContainer fetchCelebrities={false}>
+                    <div className="SignInPage">
+                        <div className="section">
+                            <div className="auth-container">
+                                <div className="logo">
+                                    <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
+                                </div>
+                                <div className="custom-form">
+                                    <CompleteProfileForm session={this.props.session}/>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </PageContainer>
             </>
         );
     };

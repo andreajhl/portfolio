@@ -54,7 +54,7 @@ class BottomNavbarSectionLayout extends Component {
                 <div className="bottom-navbar-container f-shadow">
                     <NavLink className="box secondary-option"
                              activeClassName='active'
-                             to={PATHS.ROOT_PATH}
+                             to={PATHS.TRENDING}
                     >
                         <i className={"fa fa-home icon"}/>
                     </NavLink>
@@ -67,7 +67,7 @@ class BottomNavbarSectionLayout extends Component {
                     </NavLink>
                     <NavLink className="box primary-option"
                              activeClassName='active'
-                             to={PATHS.TRENDING}
+                             to={PATHS.ROOT_PATH}
                     >
                         <img className={"icon primary-option-icon"} width="42px" src={"/assets/img/favicon.png"}
                              alt={"main-icon"}/>

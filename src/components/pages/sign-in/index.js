@@ -4,6 +4,8 @@ import {SignInWithCellphoneForm, SignInWithEmailForm, SignInWithWhatsAppForm} fr
 import {Session} from "../../../state/utils/session";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import {PageContainer} from "../../layouts/page-container";
+import {HiringsCardSectionLayout} from "../../layouts/hirings-card-section";
 
 
 class SignInPage extends Component {
@@ -44,18 +46,20 @@ class SignInPage extends Component {
     render() {
         return (
             <>
-                <div className="SignInPage">
-                    <div className="section">
-                        <div className="auth-container">
-                            <div className="logo">
-                                <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
-                            </div>
-                            <div className="custom-form">
-                                {this.returnSpecificForm()}
+                <PageContainer fetchCelebrities={false}>
+                    <div className="SignInPage">
+                        <div className="section">
+                            <div className="auth-container">
+                                <div className="logo">
+                                    <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
+                                </div>
+                                <div className="custom-form">
+                                    {this.returnSpecificForm()}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </PageContainer>
             </>
         );
     };

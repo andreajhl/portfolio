@@ -4,6 +4,7 @@ import {Session} from "../../../state/utils/session";
 import {ResetPasswordForm} from "../../containers";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import {PageContainer} from "../../layouts/page-container";
 
 class ResetPasswordPage extends Component {
 
@@ -42,18 +43,20 @@ class ResetPasswordPage extends Component {
     render() {
         return (
             <>
-                <div className="SignInPage">
-                    <div className="section">
-                        <div className="auth-container">
-                            <div className="logo">
-                                <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
-                            </div>
-                            <div className="custom-form">
-                                <ResetPasswordForm/>
+                <PageContainer fetchCelebrities={false}>
+                    <div className="SignInPage">
+                        <div className="section">
+                            <div className="auth-container">
+                                <div className="logo">
+                                    <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
+                                </div>
+                                <div className="custom-form">
+                                    <ResetPasswordForm/>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </PageContainer>
             </>
         );
     };
