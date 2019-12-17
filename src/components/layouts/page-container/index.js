@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {NavbarSectionLayout} from "../navbar-section";
 import {FooterLayout} from "../footer";
+import {BottomNavbarSectionLayout} from "../bottom-navbar-section";
 
 
 class PageContainer extends Component {
@@ -59,6 +60,8 @@ class PageContainer extends Component {
 
                 {/*EmptyImage*/}
                 <img src="/assets/img/avatar-blank.png" style={{display: "none"}} alt="None"/>
+
+                <BottomNavbarSectionLayout/>
             </div>
         );
     };
