@@ -136,7 +136,7 @@ class NavbarSectionLayout extends Component {
                                             {/*    />*/}
                                             {/*    <span className="font-weight-bold ml-1" style={{position: "relative", top: "3px"}}>Tendencias</span>*/}
                                             {/*</NavLink>*/}
-                                            <button className="btn btn-primary btn-sm f-register-button mr-2"
+                                            <button className="btn btn-primary btn-sm mt-1 f-register-button mr-2"
                                                     onClick={this.goToSignUpPath}>
                                                 Ingresar
                                             </button>
