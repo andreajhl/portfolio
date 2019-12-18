@@ -56,7 +56,9 @@ class ContractCurrencyPayment extends Component {
                 </h6>
                 <select className="form-control" value={this.state.currency} onChange={this.handleCurrency}>
                     <option value="USD">USD - Dólares</option>
+                    <option value="ARS">ARS - Pesos Argentinos</option>
                     <option value="COP">COP - Pesos Colombianos</option>
+                    <option value="MXN">MXN - Pesos Mexicanos</option>
                 </select>
             </div>
         );
