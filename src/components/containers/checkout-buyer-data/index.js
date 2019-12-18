@@ -67,7 +67,7 @@ class CheckoutBuyerData extends Component {
           </div>
           <div className="col-12">
             <input
-              type="number"
+              type="text"
               className="form-control mb-3"
               placeholder="Escribe tu ID o Documento de Identidad"
               name="document"
