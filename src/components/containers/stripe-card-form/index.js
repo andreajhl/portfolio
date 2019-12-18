@@ -22,11 +22,11 @@ class StripeCardForm extends Component {
         let {token} = await this.childRef.current.state.stripe.createToken();
         if (token) {
             this.setState({showCardError: false},  () => {
-                this.props.onTokenizeCard("OK", token.id)
+                this.props.onStripeResponse("OK", token.id)
             });
         } else {
             this.setState({showCardError: true}, () => {
-                this.props.onTokenizeCard("ERROR", null)
+                this.props.onStripeResponse("ERROR", null)
             });
         }
     }
@@ -54,7 +54,7 @@ class StripeCardForm extends Component {
 
 // defaultProps
 StripeCardForm.defaultProps = {
-    onTokenizeCard: () => {
+    onStripeResponse: () => {
 
     }
 };
