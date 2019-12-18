@@ -22,7 +22,7 @@ class ContractCheckoutSummary extends Component {
 
     onFinish() {
         if (!this.props.buttonFinishLoading) {
-            this.props.onPay();
+            this.props.onFinish();
         }
     }
 

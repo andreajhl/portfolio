@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {OnCaptureData, PayPalButton} from "react-paypal-button";
+import {OnCancelData, OnCaptureData, PayPalButton} from "react-paypal-button";
 
 
 class PayPalCardForm extends Component {
@@ -36,18 +36,41 @@ class PayPalCardForm extends Component {
                     buttonStyles={buttonStyles}
                     amount={this.props.contractPrice}
                     onPaymentSuccess={(details: OnCaptureData) => {
+                        console.log(details)
                         this.props.onPayPalResponse(details);
                     }}
-                    onPaymentError={(details: OnCaptureData) => {
-                        this.props.onPayPalResponse(details);
+                    onPaymentError={(details: string) => {
+                        const data = {
+                            create_time: this.getDate(),
+                            update_time: this.getDate(),
+                            id: details.orderID,
+                            intent: '',
+                            status: 'ERROR'
+                        };
+                        this.props.onPayPalResponse(data);
                     }}
-                    onPaymentCancel={(details: OnCaptureData) => {
-                        this.props.onPayPalResponse(details);
+                    onPaymentCancel={(details: OnCancelData) => {
+                        const data = {
+                            create_time: this.getDate(),
+                            update_time: this.getDate(),
+                            id: details.orderID,
+                            intent: '',
+                            status: 'CANCEL'
+                        };
+                        this.props.onPayPalResponse(data);
                     }}
                 />
             </div>
         )
             ;
+    }
+
+    getDate() {
+        let newDate = new Date();
+        let date = newDate.getDate();
+        let month = newDate.getMonth() + 1;
+        let year = newDate.getFullYear();
+        return year + '-' + month + '-' + date + ' ' + newDate.getHours() + ':' + newDate.getMinutes() + ':' + newDate.getSeconds();
     }
 }
 

@@ -6,6 +6,9 @@ import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 import {CheckoutBuyerData} from "../checkout-buyer-data";
 import {ContractCurrencyPayment} from "../contract-currency-payment";
+import {history} from "../../../routing/History";
+import * as ROUTE_PATHS from "../../../routing/Paths";
+
 
 class CheckoutSectionForm extends Component {
 
@@ -58,6 +61,10 @@ class CheckoutSectionForm extends Component {
             this.setState({
                 showPayButton: false
             })
+        }else {
+            this.setState({
+                showPayButton: true
+            })
         }
         this.setState({
             paymentType
@@ -107,7 +114,7 @@ class CheckoutSectionForm extends Component {
             error: null
         }, () => {
             try {
-                console.log("this.state.paymentType.gateway_name:", this.state.paymentType.gateway_name)
+                console.log("this.state.paymentType.gateway_name:", this.state.paymentType.gateway_name);
                 switch (this.state.paymentType.gateway_name) {
                     case "STRIPE":
                         return this.paymentMethodsSectionRef.current.stripeCardForm.current.tokenizeCard();
@@ -116,7 +123,7 @@ class CheckoutSectionForm extends Component {
                     default:
                         this.setState({
                             error: "Debes seleccionar un método de pago."
-                        })
+                        });
                         break;
                 }
             } catch (e) {
@@ -133,9 +140,9 @@ class CheckoutSectionForm extends Component {
         }, () => {
             try {
                 if (this.state.paymentType.gateway_name === "PAYPAL") {
-                    return this.createPaypalPayment();
+                    return this.createPaypalPayment(this.state.paypalResponse.status);
                 } else {
-                    this.setState({error: "Debes seleccionar un método de pago."})
+                    this.setState({error: "Debes seleccionar un método de pago."});
                 }
             } catch (e) {
                 this.setState({
@@ -164,6 +171,9 @@ class CheckoutSectionForm extends Component {
             });
         } else {
             this.setState({
+                paypalResponse: details
+            });
+            this.setState({
                 error: "No se pudo hacer el cobro a tu cuenta de PayPal, intentalo nuevamente o " +
                     "utiliza otro método de pago."
             })
@@ -189,8 +199,15 @@ class CheckoutSectionForm extends Component {
         });
     }
 
-    createPaypalPayment() {
-
+    createPaypalPayment(status) {
+        if (status === 'COMPLETED'){
+            return history._pushRoute(ROUTE_PATHS.CONTRACT_CREATED.replace(':contract_reference', this.props.contractData.reference));
+        }else {
+            this.setState({
+                error: "No se pudo hacer el cobro a tu cuenta de PayPal, inténtalo nuevamente o " +
+                    "utiliza otro método de pago."
+            })
+        }
     }
 
     render() {
