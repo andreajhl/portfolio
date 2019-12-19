@@ -104,7 +104,6 @@ class CheckoutSectionForm extends Component {
     }
 
     onPay() {
-        this.buttonPayLoading = true;
         this.setState({
             error: null
         }, () => {
@@ -199,53 +198,50 @@ class CheckoutSectionForm extends Component {
     }
 
     createPaypalPayment(status, response) {
-        if (status === 'COMPLETED') {
-            this.buttonFinishLoading = true;
-            this.props.createPayPalPayment({
-                contract_reference: this.props.contractData.reference,
-                payment_method_id: this.state.paymentMethod.id,
-                paypal_response: response
-            })
-        } else {
-            this.setState({
-                error: "No se pudo hacer el cobro a tu cuenta de PayPal, inténtalo nuevamente o " +
-                    "utiliza otro método de pago."
-            })
-        }
+        this.props.createPayPalPayment({
+            contract_reference: this.props.contractData.reference,
+            payment_method_id: this.state.paymentMethod.id,
+            paypal_response: response
+        })
     }
 
     render() {
         return (
-            <div className="CheckoutSectionForm">
+            <div className="CheckoutSectionForm"
+                 style={this.props.isCreatePayPalPaymentLoading ? {opacity: "0.2"} : {}}>
                 <div className="row checkout-section mx-auto justify-content-center">
-                    <div className="col-12 col-sm-8 col-md-7 col-lg-7 payment-methods">
-                        {
-                            this.state.showPayButton
-                            &&
-                            <>
-                                <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency}/>
-                                <br/>
-                                <PaymentMethodsSection
-                                    ref={this.paymentMethodsSectionRef}
-                                    onStripeResponse={this.onStripeResponse}
-                                    contractData={this.props.contractData}
-                                    onSelectPaymentType={this.onSelectPaymentType}
-                                    onSelectPaymentMethod={this.onSelectPaymentMethod}
-                                    onPayPalResponse={this.onPayPalResponse}
-                                />
-                            </>
-                        }
-                        {this.state.currency !== "USD" && (
-                            <>
-                                <br/>
-                                <CheckoutBuyerData onBuyerDataChange={this.onBuyerDataChange}/>
-                            </>
-                        )}
-                    </div>
-                    <div className="col-12 col-sm-8 col-md-7 col-lg-5 contract-summary  mt-3">
+                    {
+                        this.state.showPayButton
+                        &&
+                        <div className="col-12 col-sm-8 col-md-7 col-lg-7 payment-methods">
+
+                            <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency}/>
+                            <br/>
+                            <PaymentMethodsSection
+                                ref={this.paymentMethodsSectionRef}
+                                onStripeResponse={this.onStripeResponse}
+                                contractData={this.props.contractData}
+                                onSelectPaymentType={this.onSelectPaymentType}
+                                onSelectPaymentMethod={this.onSelectPaymentMethod}
+                                onPayPalResponse={this.onPayPalResponse}
+                            />
+
+                            {this.state.currency !== "USD" && (
+                                <>
+                                    <br/>
+                                    <CheckoutBuyerData onBuyerDataChange={this.onBuyerDataChange}/>
+                                </>
+                            )}
+                        </div>
+                    }
+                    <div
+                        className={"contract-summary  mt-3" + (!this.props.isCreatePayPalPaymentCompleted
+                            ? " col-12  col-sm-8 col-md-7 col-lg-5 " : " col-sm-12 col-lg-8")}>
                         <ContractCheckoutSummary
-                            showError={!!this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError || this.props.isCreatePayPalPaymentLoading}
-                            error={this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError || this.props.createPayPalPaymentError}
+                            showError={!!this.state.error || this.props.createDlocalPaymentError ||
+                            this.props.createStripePaymentError || this.props.isCreatePayPalPaymentLoading}
+                            error={this.state.error || this.props.createDlocalPaymentError ||
+                            this.props.createStripePaymentError || this.props.createPayPalPaymentError}
                             transactionFee={this.state.paymentMethod.fee}
                             contractData={this.props.contractData}
                             buttonPayDisabled={false}
