@@ -38,11 +38,11 @@ class PaymentMethodsSection extends Component {
             });
         }
         if (nextProps.paymentGateways.length && nextProps.isCompleted) {
-            this.preselectMethdo(nextProps.paymentGateways)
+            this.preselectMethod(nextProps.paymentGateways)
         }
     }
 
-    preselectMethdo(paymentGateways) {
+    preselectMethod(paymentGateways) {
         if (paymentGateways.length) {
             try {
                 paymentGateways.forEach(paymentGateway => {
@@ -57,19 +57,21 @@ class PaymentMethodsSection extends Component {
         }
     }
 
-    handlePaymentMethod(paymentGateways) {
-        if (paymentGateways.length) {
-            try {
-                paymentGateways.forEach(paymentGateway => {
-                    if (paymentGateway["payment-methods"].length) {
-                        const pm_card = paymentGateway["payment-methods"].find(item => item.name === "CARD");
-                        this.handlePaymentType(pm_card)
-                    }
-                })
-            } catch (e) {
-
-            }
-        }
+    handlePaymentMethod(paymentMethod) {
+        this.setState({paymentMethod});
+        console.log("paymentMethod:", paymentMethod)
+        // if (paymentMethod.length) {
+        //     try {
+        //         paymentMethod.forEach(paymentGateway => {
+        //             if (paymentGateway["payment-methods"].length) {
+        //                 const pm_card = paymentGateway["payment-methods"].find(item => item.name === "CARD");
+        //                 this.handlePaymentType(pm_card)
+        //             }
+        //         })
+        //     } catch (e) {
+        //
+        //     }
+        // }
     }
 
     handlePaymentType(method) {
@@ -78,11 +80,10 @@ class PaymentMethodsSection extends Component {
                 {
                     paymentType: method.name,
                     gatewayName: method.gateway_name,
-                    paymentMethod: method["available-methods"][0]
+                    paymentMethod: {}
                 },
                 () => {
                     this.props.onSelectPaymentType(method);
-                    this.props.onSelectPaymentMethod(method["available-methods"][0]);
                 }
             );
         }

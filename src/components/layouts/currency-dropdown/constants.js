@@ -44,3 +44,4 @@ export const AVAILABLE_CURRENCIES = [
         "flag": "https://restcountries.eu/data/ury.svg",
     },
 ];
+
