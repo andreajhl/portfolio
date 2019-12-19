@@ -43,13 +43,11 @@ export const AssociateContract = hash => {
           // Other actions
           localStorage.removeItem("redirectPaymentTo");
           localStorage.removeItem("hash");
-          console.log(res);
           history._pushRoute(ROUTING_PATHS.ROOT_PATH);
         } else {
           // Other actions
           localStorage.removeItem("redirectPaymentTo");
           localStorage.removeItem("hash");
-          console.log("llego perfect");
         }
       })
       .catch(err => {
@@ -179,7 +177,6 @@ export const saveClientContract = contractData => {
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
 
-          // console.log(res.data.hash);
           dispatch(getContract(res.data.reference));
 
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });

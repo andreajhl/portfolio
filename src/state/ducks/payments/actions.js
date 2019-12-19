@@ -83,10 +83,7 @@ export const getContractToPay = contractReference => {
   return async dispatch => {
     // Verify if there is a hash to associate
     if (localStorage.getItem("hash")) {
-      console.log("llego");
-
       await dispatch(AssociateContract(localStorage.getItem("hash")));
-      console.log("llego2");
     }
 
     setTimeout(function() {

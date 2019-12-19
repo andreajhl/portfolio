@@ -18,63 +18,23 @@ class PaymentMethodsSection extends Component {
             paymentMethod: {}
         };
 
-        this.handlePaymentMethod = this.handlePaymentMethod.bind(this);
-        this.handlePaymentType = this.handlePaymentType.bind(this);
-
         this.stripeCardForm = React.createRef();
     }
 
-    componentWillUpdate(
-        nextProps: Readonly<P>,
-        nextState: Readonly<S>,
-        nextContext: any
-    ): void {
-        if (nextProps.isLoading && !this.props.isLoading) {
+    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+        if (nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to) {
+            console.log("nextProps:", nextProps.currencyExchangeData.to)
             this.setState({
-                currency: this.props.currencyExchangeData.to,
+                currency: nextProps.currencyExchangeData.to,
                 gatewayName: "",
                 paymentType: "",
                 paymentMethod: {}
-            });
+            })
         }
-        if (nextProps.paymentGateways.length && nextProps.isCompleted) {
-            this.preselectMethod(nextProps.paymentGateways)
-        }
-    }
-
-    preselectMethod(paymentGateways) {
-        if (paymentGateways.length) {
-            try {
-                paymentGateways.forEach(paymentGateway => {
-                    if (paymentGateway["payment-methods"].length) {
-                        const pm_card = paymentGateway["payment-methods"].find(item => item.name === "CARD");
-                        this.handlePaymentType(pm_card)
-                    }
-                })
-            } catch (e) {
-
-            }
-        }
-    }
-
-    handlePaymentMethod(paymentMethod) {
-        this.setState({paymentMethod});
-        console.log("paymentMethod:", paymentMethod)
-        // if (paymentMethod.length) {
-        //     try {
-        //         paymentMethod.forEach(paymentGateway => {
-        //             if (paymentGateway["payment-methods"].length) {
-        //                 const pm_card = paymentGateway["payment-methods"].find(item => item.name === "CARD");
-        //                 this.handlePaymentType(pm_card)
-        //             }
-        //         })
-        //     } catch (e) {
-        //
-        //     }
-        // }
     }
 
     handlePaymentType(method) {
+        console.log("handlePaymentType...", method);
         if (method.name !== this.state.paymentType) {
             this.setState(
                 {
@@ -87,6 +47,12 @@ class PaymentMethodsSection extends Component {
                 }
             );
         }
+    }
+
+    handlePaymentMethod(paymentMethod) {
+        console.log("handlePaymentMethod...", paymentMethod);
+        this.setState({paymentMethod});
+        this.props.onSelectPaymentMethod(paymentMethod)
     }
 
     loopPaymentGateways() {
@@ -114,9 +80,8 @@ class PaymentMethodsSection extends Component {
                             <div
                                 className="payment-type mb-3"
                                 key={"method_" + index}
-                                onClick={this.handlePaymentType.bind(this, method)}
                             >
-                                <div className="titles">
+                                <div className="titles" onClick={this.handlePaymentType.bind(this, method)}>
                                     <div className="icon">
                                         {method.name === "CARD" && (
                                             <i className="fa fa-credit-card"/>
@@ -163,6 +128,7 @@ class PaymentMethodsSection extends Component {
                         <PayPalCardForm
                             onPayPalResponse={this.props.onPayPalResponse}
                             contractPrice={this.props.contractData.price}
+                            paymentMethod={methods.find(x => x.identifier === "PAYPAL")}
                         />
                     </div>
                 );
@@ -173,6 +139,7 @@ class PaymentMethodsSection extends Component {
                             ref={this.stripeCardForm}
                             onStripeResponse={this.props.onStripeResponse}
                             onTokenizeCard={this.props.onTokenizeStripeCard}
+                            paymentMethod={methods.find(x => x.identifier === "STRIPE")}
                         />
                     </div>
                 );
@@ -216,7 +183,7 @@ class PaymentMethodsSection extends Component {
                     2. Elige un método de pago.
                     <small className="ml-1 text-danger">*</small>
                 </h6>
-                <div className={"payment-types f-rounded"}>
+                <div className={"payment-types f-rounded"} style={this.props.isLoading ? {opacity: "0.2"} : {}}>
                     {this.loopPaymentGateways()}
                 </div>
             </div>

@@ -51,24 +51,17 @@ class CheckoutSectionForm extends Component {
         });
     }
 
-    onSelectPaymentMethod(paymentMethod) {
+    onSelectPaymentType(paymentType) {
+        console.log("onSelectPaymentType...", paymentType);
         this.setState({
-            paymentMethod
+            paymentType
         });
     }
 
-    onSelectPaymentType(paymentType) {
-        if (paymentType.name === "OTHER") {
-            this.setState({
-                showPayButton: false
-            })
-        } else {
-            this.setState({
-                showPayButton: true
-            })
-        }
+    onSelectPaymentMethod(paymentMethod) {
+        console.log("onSelectPaymentMethod...", paymentMethod);
         this.setState({
-            paymentType
+            paymentMethod
         });
     }
 
@@ -116,7 +109,6 @@ class CheckoutSectionForm extends Component {
             error: null
         }, () => {
             try {
-                console.log("this.state.paymentType.gateway_name:", this.state.paymentType.gateway_name);
                 switch (this.state.paymentType.gateway_name) {
                     case "STRIPE":
                         return this.paymentMethodsSectionRef.current.stripeCardForm.current.tokenizeCard();
@@ -154,7 +146,10 @@ class CheckoutSectionForm extends Component {
         });
     }
 
-    onStripeResponse(status, token_id) {
+    onStripeResponse(paymentMethod, status, token_id) {
+        this.setState({
+            paymentMethod: paymentMethod
+        });
         if (status === "ERROR") {
             this.setState({error: "Error al validar la tarjeta de crédito"});
         } else {
@@ -166,19 +161,21 @@ class CheckoutSectionForm extends Component {
         }
     }
 
-    onPayPalResponse(details) {
+    onPayPalResponse(paymentMethod, details) {
+        this.setState({
+            paymentMethod: paymentMethod
+        });
         if (details.status === "COMPLETED") {
             this.setState({
+                showPayButton: false,
                 paypalResponse: details
             });
         } else {
             this.setState({
-                paypalResponse: details
-            });
-            this.setState({
+                paypalResponse: details,
                 error: "No se pudo hacer el cobro a tu cuenta de PayPal, intentalo nuevamente o " +
                     "utiliza otro método de pago."
-            })
+            });
         }
     }
 
@@ -222,16 +219,22 @@ class CheckoutSectionForm extends Component {
             <div className="CheckoutSectionForm">
                 <div className="row checkout-section mx-auto justify-content-center">
                     <div className="col-12 col-sm-8 col-md-7 col-lg-7 payment-methods">
-                        <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency}/>
-                        <br/>
-                        <PaymentMethodsSection
-                            ref={this.paymentMethodsSectionRef}
-                            onStripeResponse={this.onStripeResponse}
-                            contractData={this.props.contractData}
-                            onSelectPaymentType={this.onSelectPaymentType}
-                            onSelectPaymentMethod={this.onSelectPaymentMethod}
-                            onPayPalResponse={this.onPayPalResponse}
-                        />
+                        {
+                            this.state.showPayButton
+                            &&
+                            <>
+                                <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency}/>
+                                <br/>
+                                <PaymentMethodsSection
+                                    ref={this.paymentMethodsSectionRef}
+                                    onStripeResponse={this.onStripeResponse}
+                                    contractData={this.props.contractData}
+                                    onSelectPaymentType={this.onSelectPaymentType}
+                                    onSelectPaymentMethod={this.onSelectPaymentMethod}
+                                    onPayPalResponse={this.onPayPalResponse}
+                                />
+                            </>
+                        }
                         {this.state.currency !== "USD" && (
                             <>
                                 <br/>
@@ -241,8 +244,8 @@ class CheckoutSectionForm extends Component {
                     </div>
                     <div className="col-12 col-sm-8 col-md-7 col-lg-5 contract-summary  mt-3">
                         <ContractCheckoutSummary
-                            showError={!!this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError}
-                            error={this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError}
+                            showError={!!this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError || this.props.isCreatePayPalPaymentLoading}
+                            error={this.state.error || this.props.createDlocalPaymentError || this.props.createStripePaymentError || this.props.createPayPalPaymentError}
                             transactionFee={this.state.paymentMethod.fee}
                             contractData={this.props.contractData}
                             buttonPayDisabled={false}
@@ -261,10 +264,12 @@ class CheckoutSectionForm extends Component {
 
 // Set propTypes
 CheckoutSectionForm.propTypes = {};
+
 // Set defaultProps
 CheckoutSectionForm.defaultProps = {
     contractData: {}
 };
+
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     currencyExchangeData: state.payments.currencyExchangeReducer.data,
@@ -281,15 +286,14 @@ const mapStateToProps = (state: any) => ({
     createPayPalPaymentData: state.payments.createPayPalPaymentReducer.data,
     createPayPalPaymentError: state.payments.createPayPalPaymentReducer.error_data.error
 });
+
 // mapStateToProps
 const mapDispatchToProps = {
     createDlocalPayment: paymentsOperations.createDlocalPayment,
     createStripePayment: paymentsOperations.createStripePayment,
     createPayPalPayment: paymentsOperations.createPayPalPayment
 };
+
 // Export Class
-const _CheckoutSectionForm = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(CheckoutSectionForm);
+const _CheckoutSectionForm = connect(mapStateToProps, mapDispatchToProps)(CheckoutSectionForm);
 export {_CheckoutSectionForm as CheckoutSectionForm};

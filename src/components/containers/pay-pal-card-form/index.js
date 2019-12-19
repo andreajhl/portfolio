@@ -36,7 +36,7 @@ class PayPalCardForm extends Component {
                     buttonStyles={buttonStyles}
                     amount={this.props.contractPrice}
                     onPaymentSuccess={(details: OnCaptureData) => {
-                        this.props.onPayPalResponse(details);
+                        this.props.onPayPalResponse(this.props.paymentMethod, details);
                     }}
                     onPaymentError={(details: string) => {
                         const data = {
@@ -46,7 +46,7 @@ class PayPalCardForm extends Component {
                             intent: '',
                             status: 'ERROR'
                         };
-                        this.props.onPayPalResponse(data);
+                        this.props.onPayPalResponse(this.props.paymentMethod, data);
                     }}
                     onPaymentCancel={(details: OnCancelData) => {
                         const data = {
@@ -56,7 +56,7 @@ class PayPalCardForm extends Component {
                             intent: '',
                             status: 'CANCEL'
                         };
-                        this.props.onPayPalResponse(data);
+                        this.props.onPayPalResponse(this.props.paymentMethod, data);
                     }}
                 />
             </div>
@@ -76,7 +76,8 @@ class PayPalCardForm extends Component {
 // defaultProps
 PayPalCardForm.defaultProps = {
     onPayPalResponse: () => {
-    }
+    },
+    paymentMethod: {}
 };
 
 export {PayPalCardForm};
