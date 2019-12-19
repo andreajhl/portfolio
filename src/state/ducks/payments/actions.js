@@ -1,15 +1,10 @@
 import * as types from "./types";
 import apiService from "../../utils/apiService";
-import {
-  handleApiErrors,
-  handleApiResponseFailure,
-  handleApiResponseSuccess
-} from "../../utils";
+import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
 import * as API_PATHS from "./paths";
-import { AssociateContract } from "../contracts/actions";
-import { history } from "../../../routing/History";
+import {AssociateContract} from "../contracts/actions";
+import {history} from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
-import { doesNotReject } from "assert";
 
 export const listPaymentGateways = currency => {
   return dispatch => {
@@ -81,16 +76,11 @@ export const currencyExchange = params => {
 
 export const getContractToPay = contractReference => {
   return async dispatch => {
-    // Verify if there is a hash to associate
-    if (localStorage.getItem("hash")) {
-      await dispatch(AssociateContract(localStorage.getItem("hash")));
-    }
-
     setTimeout(function() {
       // Get Contract to Pay
       const TYPE = types.GET_CONTRACT_TO_PAY_REQUEST;
       const FINAL_PATH =
-        API_PATHS.BASE_PATH + "contract-to-pay/" + contractReference + "/";
+          API_PATHS.BASE_PATH + "contract-to-pay/" + contractReference + "/";
       dispatch({ type: TYPE, payload: {} });
       apiService({
         method: "GET",
@@ -100,23 +90,23 @@ export const getContractToPay = contractReference => {
         params: null,
         body: null
       })
-        .then(res => {
-          if ("status" in res.data && res.data.status === "ERROR") {
-            handleApiResponseFailure(dispatch, TYPE, res);
-            // Other actions
-            history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
-          } else {
-            handleApiResponseSuccess(dispatch, TYPE, res);
-            // Other actions
-            dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
-          }
-        })
-        .catch(err => {
-          // history._pushRoute(ROUTING_PATHS.ROOT_PATH);
-          handleApiErrors(dispatch, TYPE, {
-            data: { api_error: err, error: "Server 500" }
+          .then(res => {
+            if ("status" in res.data && res.data.status === "ERROR") {
+              handleApiResponseFailure(dispatch, TYPE, res);
+              // Other actions
+              history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
+            } else {
+              handleApiResponseSuccess(dispatch, TYPE, res);
+              // Other actions
+              dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+            }
+          })
+          .catch(err => {
+            // history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+            handleApiErrors(dispatch, TYPE, {
+              data: { api_error: err, error: "Server 500" }
+            });
           });
-        });
     }, 1000);
   };
 };

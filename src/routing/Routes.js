@@ -1,15 +1,14 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 import {connect} from "react-redux";
-import { Switch, Router, Route,Redirect} from 'react-router';
+import {Redirect, Route, Router, Switch} from "react-router";
 // Paths
-import * as PATHS from './Paths';
+import * as PATHS from "./Paths";
 // Pages
 import * as PAGES from "../components/pages";
 import {PrivateRoute} from "./PrivateRoute";
 import {history} from "./History";
 
 class MyRoutes extends Component {
-
     render() {
         return (
             <>
@@ -19,7 +18,7 @@ class MyRoutes extends Component {
                         {/* GENERAL PATHS */}
                         {/* ############### */}
                         <Route exact path="/">
-                            <Redirect to={PATHS.ROOT_PATH} />
+                            <Redirect to={PATHS.ROOT_PATH}/>
                         </Route>
                         <Route
                             exact
@@ -38,13 +37,18 @@ class MyRoutes extends Component {
                         />
                         <Route
                             exact
+                            path={PATHS.CELEBRITY_PROFILE_CONTRACT}
+                            component={PAGES.CreateContractPage}
+                        />
+                        <Route
+                            exact
                             path={PATHS.CONTRACT_CREATED}
                             component={PAGES.ContractCreatedPage}
                         />
                         <Route
                             exact
-                            path={PATHS.CONTRACT_PENDING_TO_PAY}
-                            component={PAGES.ContractCreatedPage}
+                            path={PATHS.CONTRACT_PENDING}
+                            component={PAGES.ContractPendingPayPage}
                         />
                         <Route
                             exact
@@ -104,16 +108,8 @@ class MyRoutes extends Component {
                             path={PATHS.POLICIES_PATH}
                             component={PAGES.PoliciesPage}
                         />
-                        <Route
-                            exact
-                            path={PATHS.TERMS_PATH}
-                            component={PAGES.TermsPage}
-                        />
-                        <Route
-                            exact
-                            path={PATHS.FAQS_PATH}
-                            component={PAGES.FaqsPage}
-                        />
+                        <Route exact path={PATHS.TERMS_PATH} component={PAGES.TermsPage}/>
+                        <Route exact path={PATHS.FAQS_PATH} component={PAGES.FaqsPage}/>
                         {/*END DOCS*/}
                         {/*FORMS*/}
                         <Route
@@ -156,10 +152,8 @@ class MyRoutes extends Component {
     }
 }
 
-const mapStateToProps = (store) => {
+const mapStateToProps = store => {
     return {store};
 };
-
 const _MyRoutes = connect(mapStateToProps)(MyRoutes);
-
 export {_MyRoutes as MyRoutes};
