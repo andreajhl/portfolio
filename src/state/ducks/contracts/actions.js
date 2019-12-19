@@ -43,7 +43,6 @@ export const AssociateContract = hash => {
           // Other actions
           localStorage.removeItem("redirectPaymentTo");
           localStorage.removeItem("hash");
-          console.log(res);
           history._pushRoute(ROUTING_PATHS.ROOT_PATH);
         } else {
           // Other actions
@@ -181,7 +180,6 @@ export const saveClientContract = contractData => {
 
           // console.log(res.data.hash);
           dispatch(getContract(res.data.reference));
-          console.log(res.data);
 
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
 

@@ -191,7 +191,7 @@ class CreateContractPage extends Component {
     return (
       <>
         <PageContainer fetchCelebrities={false}>
-          <div className="container my-4">
+          <div className="container CreateContractPage my-4">
             <div className="row centerForm">
               <div className="col-md-8" style={{ zoom: "90%" }}>
                 <div className="mb-4 titleMessage">

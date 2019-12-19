@@ -5,6 +5,7 @@ export * from "./client-hirings";
 export * from "./client-profile";
 export * from "./complete-profile";
 export * from "./contract-created";
+export * from "./contract-pending-pay";
 export * from "./create-password";
 export * from "./hiring-preview";
 export * from "./not-found";

@@ -49,8 +49,8 @@ class ContractCreatedPage extends Component {
     history._pushRoute(PATHS.ROOT_PATH);
   }
 
-  render() {
-    console.log(this.session.getSession().client_status);
+  renderStripe() {
+    console.log(this.props.contract);
     const isLogged = this.session.getSession();
     const isDummy = this.session.getSession().client_status;
 
@@ -94,6 +94,7 @@ class ContractCreatedPage extends Component {
                 petición y muy pronto recibirás tu <br />
                 video mensaje personalizado.
               </p>
+
               <div className="w-25 mx-auto m-4 text-center">
                 <hr style={{ border: "solid 0.5px" }} />
               </div>
@@ -119,10 +120,6 @@ class ContractCreatedPage extends Component {
                 </>
               ) : !isDummy ? (
                 <>
-                  <p className="mt-4 font-weight-bold">
-                    Estás a un paso de crear tu cuenta
-                    <br />
-                  </p>
                   <button
                     className="btn btn-primary"
                     onClick={this.goToCompleteProfile}
@@ -147,6 +144,9 @@ class ContractCreatedPage extends Component {
         </div>
       </>
     );
+  }
+  render() {
+    return <>{this.renderStripe()}</>;
   }
 }
 
