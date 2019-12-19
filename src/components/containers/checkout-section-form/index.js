@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./styles.scss";
 import {PaymentMethodsSection} from "../../containers/payment-methods-section";
 import {ContractCheckoutSummary} from "../../containers/contract-checkout-summary";
@@ -146,6 +146,7 @@ class CheckoutSectionForm extends Component {
     }
 
     onStripeResponse(paymentMethod, status, token_id) {
+        console.log("paymentMethod:", paymentMethod)
         this.setState({
             paymentMethod: paymentMethod
         });

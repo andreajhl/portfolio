@@ -139,7 +139,7 @@ class PaymentMethodsSection extends Component {
                             ref={this.stripeCardForm}
                             onStripeResponse={this.props.onStripeResponse}
                             onTokenizeCard={this.props.onTokenizeStripeCard}
-                            paymentMethod={methods.find(x => x.identifier === "STRIPE")}
+                            paymentMethod={methods.find(x => x.identifier === "CARD")}
                         />
                     </div>
                 );

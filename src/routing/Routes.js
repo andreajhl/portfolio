@@ -5,8 +5,8 @@ import {Redirect, Route, Router, Switch} from "react-router";
 import * as PATHS from "./Paths";
 // Pages
 import * as PAGES from "../components/pages";
-import {PrivateRoute} from "./PrivateRoute";
-import {history} from "./History";
+import { PrivateRoute } from "./PrivateRoute";
+import { history } from "./History";
 
 class MyRoutes extends Component {
     render() {

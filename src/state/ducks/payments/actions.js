@@ -2,7 +2,6 @@ import * as types from "./types";
 import apiService from "../../utils/apiService";
 import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
 import * as API_PATHS from "./paths";
-import {AssociateContract} from "../contracts/actions";
 import {history} from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 

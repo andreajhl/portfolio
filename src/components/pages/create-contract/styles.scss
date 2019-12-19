@@ -1,0 +1,26 @@
+@import "../../../theme";
+
+.CreateContractPage {
+  *:checked {
+    border: 1px solid $primary !important;
+  }
+
+  .centerForm {
+    display: flex;
+    justify-content: center;
+  }
+
+  input,
+  textarea {
+    border: 2px solid $dark !important;
+  }
+
+  .titleMessage {
+    background-color: #303542 !important;
+    color: white;
+    width: 80%;
+    border-radius: 0px 0px 20px 0;
+    padding: 10px;
+    text-transform: uppercase;
+  }
+}
