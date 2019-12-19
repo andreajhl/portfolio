@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./styles.scss";
 import {PaymentMethodsSection} from "../../containers/payment-methods-section";
 import {ContractCheckoutSummary} from "../../containers/contract-checkout-summary";
@@ -52,14 +52,13 @@ class CheckoutSectionForm extends Component {
     }
 
     onSelectPaymentType(paymentType) {
-        console.log("onSelectPaymentType...", paymentType);
+        console.log("paymentType:", paymentType)
         this.setState({
             paymentType
         });
     }
 
     onSelectPaymentMethod(paymentMethod) {
-        console.log("onSelectPaymentMethod...", paymentMethod);
         this.setState({
             paymentMethod
         });
@@ -104,54 +103,45 @@ class CheckoutSectionForm extends Component {
     }
 
     onPay() {
-        this.setState({
-            error: null
-        }, () => {
-            try {
-                switch (this.state.paymentType.gateway_name) {
-                    case "STRIPE":
-                        return this.paymentMethodsSectionRef.current.stripeCardForm.current.tokenizeCard();
-                    case "DLOCAL":
-                        return this.createDlocalPayment();
-                    default:
-                        this.setState({
-                            error: "Debes seleccionar un método de pago."
-                        });
-                        break;
-                }
-            } catch (e) {
+        switch (this.state.paymentType.gateway_name) {
+            case "STRIPE":
+                this.paymentMethodsSectionRef.current.stripeCardForm.current.tokenizeCard();
+                break;
+            case "DLOCAL":
+                this.createDlocalPayment();
+                break;
+            default:
                 this.setState({
                     error: "Debes seleccionar un método de pago."
-                })
-            }
-        });
+                });
+                break;
+        }
     }
 
     onFinish() {
-        this.setState({
-            error: null
-        }, () => {
-            try {
-                if (this.state.paymentType.gateway_name === "PAYPAL") {
-                    return this.createPaypalPayment(this.state.paypalResponse.status, this.state.paypalResponse);
-                } else {
-                    this.setState({error: "Debes seleccionar un método de pago."});
-                }
-            } catch (e) {
+        switch (this.state.paymentType.gateway_name) {
+            case "PAYPAL":
+                this.createPaypalPayment(this.state.paypalResponse.status, this.state.paypalResponse);
+                break;
+            case "GOOGLE_PAY":
+            case "APPLE_PAY":
+                break;
+            default:
                 this.setState({
                     error: "Debes seleccionar un método de pago."
-                })
-            }
-        });
+                });
+                break;
+        }
     }
 
     onStripeResponse(paymentMethod, status, token_id) {
-        console.log("paymentMethod:", paymentMethod)
         this.setState({
             paymentMethod: paymentMethod
         });
         if (status === "ERROR") {
-            this.setState({error: "Error al validar la tarjeta de crédito"});
+            this.setState({
+                error: "Error al validar la tarjeta de crédito"
+            });
         } else {
             this.setState({
                 stripeToken: token_id
@@ -162,21 +152,16 @@ class CheckoutSectionForm extends Component {
     }
 
     onPayPalResponse(paymentMethod, details) {
+        const error = "No se pudo hacer el cobro a tu cuenta de PayPal, intentalo nuevamente o " +
+            "utiliza otro método de pago.";
         this.setState({
-            paymentMethod: paymentMethod
+            showPayButton: !!details.status === "COMPLETED",
+            paypalResponse: details,
+            paymentMethod: paymentMethod,
+            error: details.status === "COMPLETED" ? null : error
+        }, () => {
+            this.createPaypalPayment(this.state.paypalResponse.status, this.state.paypalResponse);
         });
-        if (details.status === "COMPLETED") {
-            this.setState({
-                showPayButton: false,
-                paypalResponse: details
-            });
-        } else {
-            this.setState({
-                paypalResponse: details,
-                error: "No se pudo hacer el cobro a tu cuenta de PayPal, intentalo nuevamente o " +
-                    "utiliza otro método de pago."
-            });
-        }
     }
 
     createDlocalPayment() {
@@ -206,35 +191,41 @@ class CheckoutSectionForm extends Component {
         })
     }
 
+    isLoading() {
+        return this.props.isCreateDlocalPaymentLoading ||
+            this.props.isCreateStripePaymentLoading ||
+            this.props.isCreatePayPalPaymentLoading
+    }
+
+    isCompleted() {
+        return this.props.isCreateDlocalPaymentCompleted ||
+            this.props.isCreateStripePaymentCompleted ||
+            this.props.isCreatePayPalPaymentCompleted
+    }
+
     render() {
         return (
             <div className="CheckoutSectionForm"
-                 style={this.props.isCreatePayPalPaymentLoading ? {opacity: "0.2"} : {}}>
+                 style={this.isLoading() ? {opacity: "0.2"} : {}}>
                 <div className="row checkout-section mx-auto justify-content-center">
-                    {
-                        this.state.showPayButton
-                        &&
-                        <div className="col-12 col-sm-8 col-md-7 col-lg-7 payment-methods">
-
-                            <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency}/>
-                            <br/>
-                            <PaymentMethodsSection
-                                ref={this.paymentMethodsSectionRef}
-                                onStripeResponse={this.onStripeResponse}
-                                contractData={this.props.contractData}
-                                onSelectPaymentType={this.onSelectPaymentType}
-                                onSelectPaymentMethod={this.onSelectPaymentMethod}
-                                onPayPalResponse={this.onPayPalResponse}
-                            />
-
-                            {this.state.currency !== "USD" && (
-                                <>
-                                    <br/>
-                                    <CheckoutBuyerData onBuyerDataChange={this.onBuyerDataChange}/>
-                                </>
-                            )}
-                        </div>
-                    }
+                    <div className={"col-12 col-sm-8 col-md-7 col-lg-7 payment-methods"}>
+                        <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency}/>
+                        <br/>
+                        <PaymentMethodsSection
+                            ref={this.paymentMethodsSectionRef}
+                            onStripeResponse={this.onStripeResponse}
+                            contractData={this.props.contractData}
+                            onSelectPaymentType={this.onSelectPaymentType}
+                            onSelectPaymentMethod={this.onSelectPaymentMethod}
+                            onPayPalResponse={this.onPayPalResponse}
+                        />
+                        {this.state.currency !== "USD" && (
+                            <>
+                                <br/>
+                                <CheckoutBuyerData onBuyerDataChange={this.onBuyerDataChange}/>
+                            </>
+                        )}
+                    </div>
                     <div
                         className={"contract-summary  mt-3" + (!this.props.isCreatePayPalPaymentCompleted
                             ? " col-12  col-sm-8 col-md-7 col-lg-5 " : " col-sm-12 col-lg-8")}>
@@ -269,15 +260,17 @@ CheckoutSectionForm.defaultProps = {
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    currencyExchangeData: state.payments.currencyExchangeReducer.data,
+    // Dlocal
     isCreateDlocalPaymentLoading: state.payments.createDlocalPaymentReducer.loading,
     isCreateDlocalPaymentCompleted: state.payments.createDlocalPaymentReducer.completed,
     createDlocalPaymentData: state.payments.createDlocalPaymentReducer.data,
     createDlocalPaymentError: state.payments.createDlocalPaymentReducer.error_data.error,
+    // Stripe
     isCreateStripePaymentLoading: state.payments.createStripePaymentReducer.loading,
     isCreateStripePaymentCompleted: state.payments.createStripePaymentReducer.completed,
     createStripePaymentData: state.payments.createStripePaymentReducer.data,
     createStripePaymentError: state.payments.createStripePaymentReducer.error_data.error,
+    // PayPal
     isCreatePayPalPaymentLoading: state.payments.createPayPalPaymentReducer.loading,
     isCreatePayPalPaymentCompleted: state.payments.createPayPalPaymentReducer.completed,
     createPayPalPaymentData: state.payments.createPayPalPaymentReducer.data,
