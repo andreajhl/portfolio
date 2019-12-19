@@ -36,7 +36,6 @@ class PayPalCardForm extends Component {
                     buttonStyles={buttonStyles}
                     amount={this.props.contractPrice}
                     onPaymentSuccess={(details: OnCaptureData) => {
-                        console.log(details)
                         this.props.onPayPalResponse(details);
                     }}
                     onPaymentError={(details: string) => {

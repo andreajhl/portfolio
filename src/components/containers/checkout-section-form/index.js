@@ -6,8 +6,6 @@ import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 import {CheckoutBuyerData} from "../checkout-buyer-data";
 import {ContractCurrencyPayment} from "../contract-currency-payment";
-import {history} from "../../../routing/History";
-import * as ROUTE_PATHS from "../../../routing/Paths";
 
 
 class CheckoutSectionForm extends Component {
@@ -24,6 +22,9 @@ class CheckoutSectionForm extends Component {
             stripeToken: "",
             paypalResponse: {}
         };
+        this.buttonFinishLoading = false;
+        this.buttonPayLoading = false;
+
         this.onSelectCurrency = this.onSelectCurrency.bind(this);
         this.onBuyerDataChange = this.onBuyerDataChange.bind(this);
         this.onSelectPaymentMethod = this.onSelectPaymentMethod.bind(this);
@@ -61,7 +62,7 @@ class CheckoutSectionForm extends Component {
             this.setState({
                 showPayButton: false
             })
-        }else {
+        } else {
             this.setState({
                 showPayButton: true
             })
@@ -110,6 +111,7 @@ class CheckoutSectionForm extends Component {
     }
 
     onPay() {
+        this.buttonPayLoading = true;
         this.setState({
             error: null
         }, () => {
@@ -140,7 +142,7 @@ class CheckoutSectionForm extends Component {
         }, () => {
             try {
                 if (this.state.paymentType.gateway_name === "PAYPAL") {
-                    return this.createPaypalPayment(this.state.paypalResponse.status);
+                    return this.createPaypalPayment(this.state.paypalResponse.status, this.state.paypalResponse);
                 } else {
                     this.setState({error: "Debes seleccionar un método de pago."});
                 }
@@ -199,10 +201,15 @@ class CheckoutSectionForm extends Component {
         });
     }
 
-    createPaypalPayment(status) {
-        if (status === 'COMPLETED'){
-            return history._pushRoute(ROUTE_PATHS.CONTRACT_CREATED.replace(':contract_reference', this.props.contractData.reference));
-        }else {
+    createPaypalPayment(status, response) {
+        if (status === 'COMPLETED') {
+            this.buttonFinishLoading = true;
+            this.props.createPayPalPayment({
+                contract_reference: this.props.contractData.reference,
+                payment_method_id: this.state.paymentMethod.id,
+                paypal_response: response
+            })
+        } else {
             this.setState({
                 error: "No se pudo hacer el cobro a tu cuenta de PayPal, inténtalo nuevamente o " +
                     "utiliza otro método de pago."
@@ -242,6 +249,8 @@ class CheckoutSectionForm extends Component {
                             onPay={this.onPay}
                             onFinish={this.onFinish}
                             showPayButton={this.state.showPayButton}
+                            buttonPayLoading={this.buttonPayLoading}
+                            buttonFinishLoading={this.buttonFinishLoading}
                         />
                     </div>
                 </div>
@@ -266,12 +275,17 @@ const mapStateToProps = (state: any) => ({
     isCreateStripePaymentLoading: state.payments.createStripePaymentReducer.loading,
     isCreateStripePaymentCompleted: state.payments.createStripePaymentReducer.completed,
     createStripePaymentData: state.payments.createStripePaymentReducer.data,
-    createStripePaymentError: state.payments.createStripePaymentReducer.error_data.error
+    createStripePaymentError: state.payments.createStripePaymentReducer.error_data.error,
+    isCreatePayPalPaymentLoading: state.payments.createPayPalPaymentReducer.loading,
+    isCreatePayPalPaymentCompleted: state.payments.createPayPalPaymentReducer.completed,
+    createPayPalPaymentData: state.payments.createPayPalPaymentReducer.data,
+    createPayPalPaymentError: state.payments.createPayPalPaymentReducer.error_data.error
 });
 // mapStateToProps
 const mapDispatchToProps = {
     createDlocalPayment: paymentsOperations.createDlocalPayment,
-    createStripePayment: paymentsOperations.createStripePayment
+    createStripePayment: paymentsOperations.createStripePayment,
+    createPayPalPayment: paymentsOperations.createPayPalPayment
 };
 // Export Class
 const _CheckoutSectionForm = connect(

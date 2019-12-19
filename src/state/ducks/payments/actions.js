@@ -209,3 +209,48 @@ export const createStripePayment = data => {
       });
   };
 };
+
+
+export const createPayPalPayment = data => {
+  return dispatch => {
+    const TYPE = types.CREATE_PAYPAL_PAYMENT_REQUEST;
+    const FINAL_PATH = API_PATHS.BASE_PATH + "create-paypal-payment/";
+    dispatch({ type: TYPE, payload: {} });
+    apiService({
+      method: "POST",
+      action: TYPE,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false
+    })
+        .then(res => {
+          if ("status" in res.data && res.data.status === "ERROR") {
+            handleApiResponseFailure(dispatch, TYPE, res);
+          } else {
+            handleApiResponseSuccess(dispatch, TYPE, res);
+            // Other actions
+
+            history._pushRoute(
+                ROUTING_PATHS.CONTRACT_CREATED.replace(
+                    ":contract_reference",
+                    res.data.reference
+                )
+            );
+
+            dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+          }
+        })
+        .catch(err => {
+          // history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+          let error = "Server 500";
+          if (err.response.data.error) {
+            error = err.response.data.error;
+          }
+          handleApiErrors(dispatch, TYPE, {
+            data: { api_error: err, error: error }
+          });
+        });
+  };
+};

@@ -45,6 +45,14 @@ const createStripePaymentInitialState = {
     data: {}
 };
 
+const createPayPalPaymentInitialState = {
+    loading: false,
+    failed: false,
+    completed: false,
+    error_data: {error: ""},
+    data: {}
+};
+
 
 export function fetchPaymentGatewaysReducer(state = fetchPaymentGatewaysInitialState, action) {
     switch (action.type) {
@@ -191,10 +199,40 @@ export function createStripePaymentReducer(state = createStripePaymentInitialSta
     }
 }
 
+export function createPayPalPaymentReducer(state = createPayPalPaymentInitialState, action) {
+    switch (action.type) {
+        case types.CREATE_PAYPAL_PAYMENT_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case types.CREATE_PAYPAL_PAYMENT_REQUEST_FAILURE:
+            return {
+                ...createPayPalPaymentInitialState,
+                error_data: action.payload.data,
+                failed: true
+            };
+        case types.CREATE_PAYPAL_PAYMENT_REQUEST_SUCCESS:
+            return {
+                ...createPayPalPaymentInitialState,
+                data: action.payload.data
+            };
+        case types.CREATE_PAYPAL_PAYMENT_REQUEST_COMPLETED:
+            return {
+                ...state,
+                data: action.payload.data,
+                completed: true
+            };
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
     fetchPaymentGatewaysReducer,
     currencyExchangeReducer,
     getContractToPayReducer,
     createDlocalPaymentReducer,
-    createStripePaymentReducer
+    createStripePaymentReducer,
+    createPayPalPaymentReducer
 });
