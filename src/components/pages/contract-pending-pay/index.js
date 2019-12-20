@@ -101,7 +101,7 @@ class ContractPendingPayPage extends Component {
                   <p className="textDescription">
                     Estamos validando la transacción (este proceso puede tardar
                     hasta 24 horas después de realizado el pago). Una vez que
-                    esté confirmado, tu Videomensaje llegará en breve.
+                    esté confirmado, tu Videomensaje llegará pronto.
                   </p>
                 </>
               )}
@@ -243,6 +243,10 @@ class ContractPendingPayPage extends Component {
                             Hora:{" "}
                             {moment(pay.transaction_datetime).format("LT")}
                           </p>
+                          <p className="card-text text-muted text-left">
+                            Transacción Reference:{" "}
+                            {pay.gateway_charge_id}
+                          </p>
                         </div>
                         <div className="d-flex mt-2 justify-content-start align.items-center">
                           <img
@@ -254,11 +258,12 @@ class ContractPendingPayPage extends Component {
                         </div>
                         <div className="mt-2">
                           <p className="price mb-0">
-                            <ContractPriceLayout
-                              classes={"text-black"}
-                              currency={pay.currency}
-                              price={pay.transaction_amount}
-                            />
+
+                            {/*<ContractPriceLayout*/}
+                            {/*  classes={"text-black"}*/}
+                            {/*  currency={pay.currency}*/}
+                            {/*  price={pay.transaction_amount}*/}
+                            {/*/>*/}
                           </p>
                         </div>
                       </div>

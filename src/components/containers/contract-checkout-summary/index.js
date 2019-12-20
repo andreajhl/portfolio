@@ -83,7 +83,7 @@ class ContractCheckoutSummary extends Component {
     }
 
     returnContractPrice(){
-        if(this.props.currencyExchangeData.rate > 0){
+        if(this.props.currencyExchangeData.rate > 1){
             return (this.props.contractData.price * this.props.currencyExchangeData.rate) + this.props.contractData.price
         }else{
             return this.props.contractData.price
@@ -155,8 +155,8 @@ class ContractCheckoutSummary extends Component {
                                     <h6 className=" text-right float-right">
                                         <ContractPriceLayout
                                             classes={"text-black "}
-                                            price={this.returnContractPrice()}
-                                            currency={this.props.currencyExchangeData.to}
+                                            price={this.props.contractData.price}
+                                            currency={"USD"}
                                             rounding={false}
                                         />
                                     </h6>

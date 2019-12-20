@@ -45,7 +45,7 @@ class CelebrityCardLayout extends Component {
     }
 
     returnContractPrice(){
-        if(this.props.currencyExchangeData.rate > 0){
+        if(this.props.currencyExchangeData.rate > 1){
             return (this.props.celebrity.contracts_price * this.props.currencyExchangeData.rate) + this.props.celebrity.contracts_price
         }else{
             return this.props.celebrity.contracts_price
