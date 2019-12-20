@@ -3,8 +3,7 @@ export const CELEBRITY_PROFILE = "/:celebrity_username";
 export const CELEBRITY_PROFILE_CONTRACT = "/:celebrity_username/contratar";
 export const PAYMENT_METHODS = "/metodos-de-pago/:contract_reference";
 export const CONTRACT_CREATED = "/contract-created/:contract_reference";
-export const CONTRACT_PENDING =
-    "/contrato-pendiente-de-pagar/:contract_reference";
+export const CONTRACT_PENDING = "/resumen-de-compra/:contract_reference";
 export const HOME_PATH = "/";
 // DOCS
 export const TERMS_PATH = "/docs/terminos";

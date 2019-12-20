@@ -2,20 +2,7 @@ import React, {Component} from "react";
 import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
-
-const USD_CURRENCIES = [
-    "ARS",
-    "BRL",
-    "CLP",
-    // "COP", // TODO COL IS AVAILABLE
-    "DOP",
-    "MXN",
-    "PEN",
-    "UYU",
-    "USD",
-    "EUR",
-    "CAD"
-];
+import {AVAILABLE_CURRENCIES} from "../../layouts/currency-dropdown/constants";
 
 class ContractCurrencyPayment extends Component {
 
@@ -23,7 +10,7 @@ class ContractCurrencyPayment extends Component {
         super(props);
 
         this.state = {
-            currency: USD_CURRENCIES.includes(this.props.currencyExchangeData.to) ? "USD" : this.props.currencyExchangeData.to
+            currency: this.props.currencyExchangeData.to
         };
 
         this.handleCurrency = this.handleCurrency.bind(this)
@@ -35,6 +22,14 @@ class ContractCurrencyPayment extends Component {
 
     componentDidMount(): void {
         this.changeCurrency(this.state.currency);
+    }
+
+    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+        if(nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.state.currency){
+            console.log("nextProps.currencyExchangeData.to", console.log("nextProps.currencyExchangeData.to"))
+            console.log("this.state.currency:", this.state.currency)
+            this.changeCurrency(nextProps.currencyExchangeData.to)
+        }
     }
 
     changeCurrency(value) {
@@ -53,6 +48,16 @@ class ContractCurrencyPayment extends Component {
         this.changeCurrency(event.target.value);
     }
 
+    loopAvailableCurrencies() {
+        return (
+            AVAILABLE_CURRENCIES.filter(x => x.implemented_by_dlocal === true).map((c, index) => {
+                return(
+                    <option value={c.name} key={index}>{c.name} - {c.label}</option>
+                )
+            })
+        )
+    }
+
     render() {
         return (
             <div className="ContractCurrencyPayment">
@@ -65,8 +70,8 @@ class ContractCurrencyPayment extends Component {
                     value={this.state.currency}
                     onChange={this.handleCurrency}
                 >
-                    <option value="USD">USD - Dólares</option>
-                    <option value="COP">COP - Pesos Colombianos</option>
+                    <option value={"USD"}>USD - Dólares</option>
+                    {this.loopAvailableCurrencies()}
                 </select>
             </div>
         );

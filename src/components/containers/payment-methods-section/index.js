@@ -23,7 +23,6 @@ class PaymentMethodsSection extends Component {
 
     componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
         if (nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to) {
-            console.log("nextProps:", nextProps.currencyExchangeData.to)
             this.setState({
                 currency: nextProps.currencyExchangeData.to,
                 gatewayName: "",
@@ -34,7 +33,6 @@ class PaymentMethodsSection extends Component {
     }
 
     handlePaymentType(method) {
-        console.log("handlePaymentType...", method);
         if (method.name !== this.state.paymentType) {
             this.setState(
                 {
@@ -50,7 +48,6 @@ class PaymentMethodsSection extends Component {
     }
 
     handlePaymentMethod(paymentMethod) {
-        console.log("handlePaymentMethod...", paymentMethod);
         this.setState({paymentMethod});
         this.props.onSelectPaymentMethod(paymentMethod)
     }

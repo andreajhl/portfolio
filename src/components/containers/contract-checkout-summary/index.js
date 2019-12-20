@@ -3,6 +3,7 @@ import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 import {ContractPriceLayout} from "../../layouts/contract-price";
+import {AVAILABLE_CURRENCIES} from "../../layouts/currency-dropdown/constants";
 
 
 class ContractCheckoutSummary extends Component {
@@ -75,6 +76,20 @@ class ContractCheckoutSummary extends Component {
 
     }
 
+    returnAproxLabel() {
+        return !!AVAILABLE_CURRENCIES.find(
+            x => x.implemented_by_dlocal === false && x.name === this.props.currencyExchangeData.to
+        )
+    }
+
+    returnContractPrice(){
+        if(this.props.currencyExchangeData.rate > 0){
+            return (this.props.contractData.price * this.props.currencyExchangeData.rate) + this.props.contractData.price
+        }else{
+            return this.props.contractData.price
+        }
+    }
+
     render() {
         return (
             <div className="ContractCheckoutSummary f-rounded">
@@ -133,15 +148,16 @@ class ContractCheckoutSummary extends Component {
                         <hr/>
                         <div className="total mt-4">
                             {
-                                this.props.currencyExchangeData.to !== "USD"
+                                this.props.currencyExchangeData.to !== "USD" && this.returnAproxLabel()
                                 &&
                                 <div className="clearfix ">
                                     <h6 className=" float-left">Total en Dólares:</h6>
                                     <h6 className=" text-right float-right">
                                         <ContractPriceLayout
                                             classes={"text-black "}
-                                            price={this.props.contractData.price}
-                                            showInUSD={true}
+                                            price={this.returnContractPrice()}
+                                            currency={this.props.currencyExchangeData.to}
+                                            rounding={false}
                                         />
                                     </h6>
                                 </div>
@@ -151,15 +167,24 @@ class ContractCheckoutSummary extends Component {
                                 <h5 className="font-weight-bold text-right float-right">
                                     <ContractPriceLayout
                                         classes={"text-black font-weight-bold"}
-                                        price={this.props.contractData.price}
+                                        price={this.returnContractPrice()}
+                                        currency={this.props.currencyExchangeData.to}
+                                        rounding={false}
                                     />
                                     {
-                                        this.props.currencyExchangeData.to !== "USD"
+                                        this.props.currencyExchangeData.to !== "USD" && !this.props.isLoading
                                         &&
                                         <>
                                             <br/>
                                             <small className={"text-right mx-auto"}
-                                                   style={{fontSize: "10px"}}>(Aproximado)
+                                                   style={{fontSize: "10px"}}>
+                                                {
+                                                    this.returnAproxLabel()
+                                                    &&
+                                                    <>
+                                                        (Aproximado)
+                                                    </>
+                                                }
                                             </small>
                                         </>
                                     }
