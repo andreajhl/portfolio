@@ -314,7 +314,6 @@ class NavbarSectionLayout extends Component {
                                                         :
                                                         ''
                                                     }
-
                                                     <NavLink className=" btn btn-sm mr-2"
                                                              activeClassName='active'
                                                              to={PATHS.CLIENT_HIRINGS}
@@ -351,7 +350,7 @@ class NavbarSectionLayout extends Component {
                                                             ?
                                                             (
                                                                 <>
-                                                                    <button className="btn btn-primary btn-sm mt-1 f-register-button"
+                                                                    <button className="btn btn-primary btn-sm mt-2 f-register-button"
                                                                             onClick={this.goToSignUpPath}>
                                                                         Ingresar
                                                                     </button>

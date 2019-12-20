@@ -190,11 +190,10 @@ class CreateContractPage extends Component {
           <PageContainer showFooter={false} showLogin={false} showInputSearchSm={false} showSearchWeb={false} fetchCelebrities={false}>
             <div className="container CreateContractPage my-4">
               <div className="row centerForm">
-                <div className="col-12 col-md-8" style={{zoom: "90%"}}>
+                <div className="col-12 col-md-8">
                   <div className="mb-4 titleMessage">
                     <small className="text-white">
-                      Contrata a {this.props.celebrity.full_name} para que grabe
-                      tu videomensaje!
+                      Video personalizado de {this.props.celebrity.full_name}
                     </small>
                   </div>
 
@@ -304,7 +303,7 @@ class CreateContractPage extends Component {
                     </div>
                     {/* END IS PUBLIC */}
                   </Form>
-                  <hr/>
+                  <br/>
                   <div className="text-center">
                     {this.state.errors.length ? (
                         <div className={"mb-2"}>
@@ -352,6 +351,9 @@ class CreateContractPage extends Component {
                       )}
                     </button>
                     <br/>
+                    <div className="mt-4 mx-auto text-center">
+                      <img width="230px" src={"/assets/img/pago-seguro.png"} alt={"pago-seguro"}/>
+                    </div>
                     <br/>
                   </div>
                 </div>
