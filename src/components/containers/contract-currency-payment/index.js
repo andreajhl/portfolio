@@ -24,12 +24,8 @@ class ContractCurrencyPayment extends Component {
         this.changeCurrency(this.state.currency);
     }
 
-    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
-        if(nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.state.currency){
-            console.log("nextProps.currencyExchangeData.to", console.log("nextProps.currencyExchangeData.to"))
-            console.log("this.state.currency:", this.state.currency)
-            this.changeCurrency(nextProps.currencyExchangeData.to)
-        }
+    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS): void {
+        console.log("prevProps:", prevProps)
     }
 
     changeCurrency(value) {
