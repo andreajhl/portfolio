@@ -34,7 +34,7 @@ class HiringsCardSectionLayout extends Component {
         if (contract.status === 5) {
             return (
                 <button className="btn btn-outline-secondary" style={{width: "110px"}} onClick={this.goToPay.bind(this, contract.reference)}>
-                    <span className="d-md-block text-secondary">Ir a pagar</span>
+                    <span className="d-md-block text-secondary">Continuar</span>
                     <i className="fa fa-arrow-right text-secondary"/>
                 </button>
             )

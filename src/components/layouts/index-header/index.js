@@ -68,12 +68,14 @@ class IndexHeaderLayout extends Component {
                                     <i className="fa fa-times-circle fa-2x text-white" onClick={this.hideHeader}/>
                                     <div className="f-video">
                                         <video
-                                            src={"https://firebasestorage.googleapis.com/v0/b/famosos-27f08.appspot.com/o/famosos%2Findex-banner-video.mp4?alt=media&token=97303a12-a5bc-4171-87fa-713dbb7196aa"}
                                             controls={false}
                                             autoPlay
                                             playsInline={true}
                                             loop={true}
-                                        />
+                                            muted
+                                        >
+                                            <source src={"https://firebasestorage.googleapis.com/v0/b/famosos-27f08.appspot.com/o/famosos%2Findex-banner-video.mp4?alt=media&token=97303a12-a5bc-4171-87fa-713dbb7196aa"} type="video/mp4"/>
+                                        </video>
                                     </div>
                                 </div>
                             </div>

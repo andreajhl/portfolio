@@ -146,8 +146,6 @@ class ContractCheckoutSummary extends Component {
                             <small>{this.props.contractData.instructions}</small>
                         </div>
                         <hr/>
-                        <span>sadasdasd{JSON.stringify(this.props.currencyExchangeData.to)}</span>
-
                         <div className="total mt-4">
                             {
                                 this.props.currencyExchangeData.to !== "USD" && this.returnAproxLabel()
@@ -202,7 +200,7 @@ class ContractCheckoutSummary extends Component {
                             {this.returnActionButton()}
                         </div>
                         <div className="mt-4 mx-auto text-center">
-                            <img width="150px" src={"/assets/img/pago-seguro.png"} alt={"pago-seguro"}/>
+                            <img width="230px" src={"/assets/img/pago-seguro.png"} alt={"pago-seguro"}/>
                         </div>
                     </div>
                 </div>

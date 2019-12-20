@@ -24,6 +24,8 @@ class ContractCurrencyPayment extends Component {
         if(nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to && !nextProps.isLoading){
             this.setState({
                 currency: nextProps.currencyExchangeData.to
+            }, () => {
+                this.props.onSelectCurrency(this.state.currency);
             })
         }
     }
