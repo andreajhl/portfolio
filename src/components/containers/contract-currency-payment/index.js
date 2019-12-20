@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
-
+import {AVAILABLE_CURRENCIES} from "../../layouts/currency-dropdown/constants";
 
 class ContractCurrencyPayment extends Component {
 
@@ -24,6 +24,14 @@ class ContractCurrencyPayment extends Component {
         this.changeCurrency(this.state.currency);
     }
 
+    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+        if(nextProps.currencyExchangeData.to !== this.state.currency){
+            this.setState({
+                currency: nextProps.currencyExchangeData.to
+            })
+        }
+    }
+
     changeCurrency(value) {
         this.setState(
             {
@@ -40,6 +48,16 @@ class ContractCurrencyPayment extends Component {
         this.changeCurrency(event.target.value);
     }
 
+    loopAvailableCurrencies() {
+        return (
+            AVAILABLE_CURRENCIES.filter(x => x.implemented_by_dlocal === true).map((c, index) => {
+                return(
+                    <option value={c.name} key={index}>{c.name} - {c.label}</option>
+                )
+            })
+        )
+    }
+
     render() {
         return (
             <div className="ContractCurrencyPayment">
@@ -52,10 +70,8 @@ class ContractCurrencyPayment extends Component {
                     value={this.state.currency}
                     onChange={this.handleCurrency}
                 >
-                    <option value="USD">USD - Dólares</option>
-                    <option value="COP">COP - Pesos Colombianos</option>
-                    <option value="MXN">MXN - Pesos Mexicanos</option>
-                    <option value="ARS">ARS - Pesos Argentinos</option>
+                    <option value={"USD"}>USD - Dólares</option>
+                    {this.loopAvailableCurrencies()}
                 </select>
             </div>
         );

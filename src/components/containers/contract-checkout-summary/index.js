@@ -3,16 +3,8 @@ import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 import {ContractPriceLayout} from "../../layouts/contract-price";
+import {AVAILABLE_CURRENCIES} from "../../layouts/currency-dropdown/constants";
 
-const DLOCAL_CURRENCIES = [
-    "ARS",
-    "BRL",
-    "CLP",
-    "COP",
-    "MXN",
-    "PEN",
-    "UYU",
-];
 
 class ContractCheckoutSummary extends Component {
 
@@ -84,6 +76,12 @@ class ContractCheckoutSummary extends Component {
 
     }
 
+    returnAproxLabel() {
+        return !!AVAILABLE_CURRENCIES.find(
+            x => x.implemented_by_dlocal === false && x.name === this.props.currencyExchangeData.to
+        )
+    }
+
     render() {
         return (
             <div className="ContractCheckoutSummary f-rounded">
@@ -142,7 +140,7 @@ class ContractCheckoutSummary extends Component {
                         <hr/>
                         <div className="total mt-4">
                             {
-                                this.props.currencyExchangeData.to !== "USD"
+                                this.props.currencyExchangeData.to !== "USD" && this.returnAproxLabel()
                                 &&
                                 <div className="clearfix ">
                                     <h6 className=" float-left">Total en Dólares:</h6>
@@ -169,9 +167,8 @@ class ContractCheckoutSummary extends Component {
                                             <br/>
                                             <small className={"text-right mx-auto"}
                                                    style={{fontSize: "10px"}}>
-
                                                 {
-                                                    !DLOCAL_CURRENCIES.includes(this.props.currencyExchangeData.to)
+                                                    this.returnAproxLabel()
                                                     &&
                                                     <>
                                                         (Aproximado)
