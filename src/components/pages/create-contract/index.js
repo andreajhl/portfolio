@@ -187,7 +187,7 @@ class CreateContractPage extends Component {
   render() {
     return (
         <>
-          <PageContainer showLogin={false} showInputSearchSm={false} showSearchWeb={false} fetchCelebrities={false}>
+          <PageContainer showFooter={false} showLogin={false} showInputSearchSm={false} showSearchWeb={false} fetchCelebrities={false}>
             <div className="container CreateContractPage my-4">
               <div className="row centerForm">
                 <div className="col-12 col-md-8" style={{zoom: "90%"}}>

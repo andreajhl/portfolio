@@ -22,24 +22,25 @@ class PaymentMethodsPage extends Component {
 
   render() {
     return (
-      <>
-        <div className="PaymentMethodsPage">
-          <PageContainer
-            fetchCelebrities={false}
-            showSearch={false}
-            showNavbarButtons={false}
-            showSearchWeb={false}
-            showInputSearchSm={false}
-            showLogin={false}
-          >
-            {this.state.showContractPayedSection ? (
-              <>>= 10</>
-            ) : (
-              <CheckoutSectionForm contractData={this.props.contract} />
-            )}
-          </PageContainer>
-        </div>
-      </>
+        <>
+          <div className="PaymentMethodsPage">
+            <PageContainer
+                fetchCelebrities={false}
+                showSearch={false}
+                showNavbarButtons={false}
+                showSearchWeb={false}
+                showInputSearchSm={false}
+                showLogin={false}
+                showFooter={false}
+            >
+              {this.state.showContractPayedSection ? (
+                  <>>= 10</>
+              ) : (
+                  <CheckoutSectionForm contractData={this.props.contract} />
+              )}
+            </PageContainer>
+          </div>
+        </>
     );
   }
 }
@@ -66,7 +67,7 @@ const mapDispatchToProps = {
 
 // Export Class
 const _PaymentMethodsPage = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(PaymentMethodsPage);
 export { _PaymentMethodsPage as PaymentMethodsPage };
