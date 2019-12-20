@@ -343,7 +343,7 @@ class CreateContractPage extends Component {
                           />
                       ) : (
                           <span className="text-white">
-                        IR AL PAGO
+                        Continuar
                         <i
                             className="fa fa-arrow-right float-right text-white ml-2"
                             style={{fontSize: "26px", position: "absolute"}}
