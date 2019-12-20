@@ -16,7 +16,7 @@ class PaymentMethodsPage extends Component {
     };
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.props.getContractToPay(this.props.match.params.contract_reference);
   }
 
@@ -28,6 +28,9 @@ class PaymentMethodsPage extends Component {
             fetchCelebrities={false}
             showSearch={false}
             showNavbarButtons={false}
+            showSearchWeb={false}
+            showInputSearchSm={false}
+            showLogin={false}
           >
             {this.state.showContractPayedSection ? (
               <>>= 10</>
@@ -50,7 +53,7 @@ PaymentMethodsPage.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   isLoading: state.payments.getContractToPayReducer.loading,
   isCompleted: state.payments.getContractToPayReducer.completed,
   contract: state.payments.getContractToPayReducer.data.contract

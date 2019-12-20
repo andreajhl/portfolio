@@ -187,14 +187,14 @@ class CreateContractPage extends Component {
   render() {
     return (
         <>
-          <PageContainer fetchCelebrities={false}>
+          <PageContainer showLogin={false} showInputSearchSm={false} showSearchWeb={false} fetchCelebrities={false}>
             <div className="container CreateContractPage my-4">
               <div className="row centerForm">
-                <div className="col-md-8" style={{zoom: "90%"}}>
+                <div className="col-12 col-md-8" style={{zoom: "90%"}}>
                   <div className="mb-4 titleMessage">
                     <small className="text-white">
                       Contrata a {this.props.celebrity.full_name} para que grabe
-                      tu video mensaje!
+                      tu videomensaje!
                     </small>
                   </div>
 

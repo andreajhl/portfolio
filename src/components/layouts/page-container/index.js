@@ -46,6 +46,8 @@ class PageContainer extends Component {
                         showInputSearchSm={this.props.showInputSearchSm}
                         showSearch={this.props.showSearch}
                         showNavbarButtons={this.props.showNavbarButtons}
+                        showSearchWeb={this.props.showSearchWeb}
+                        showLogin={this.props.showLogin}
                     />
                     : null
                 }
@@ -81,7 +83,10 @@ PageContainer.defaultProps = {
     showFooter: true,
     showNavbar: true,
     showSearch: true,
-    showNavbarButtons: true
+    showNavbarButtons: true,
+    showSearchWeb: true,
+    showInputSearchSm: true,
+    showLogin: true
 };
 
 // mapStateToProps
