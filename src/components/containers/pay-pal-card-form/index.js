@@ -10,7 +10,7 @@ class PayPalCardForm extends Component {
 
     render() {
         const paypalOptions = {
-            clientId: 'Af-NXGQtVWkKrQRBI95nXcwtmzE-PnC7lLEpGytJ5qHdELsMDbRScE-7I-21ehhZMUIIy5jAk0q7RNrA',
+            clientId: process.env.REACT_APP_PAYPAL_KEY,
             intent: 'capture',
             currency: 'USD',
         };
