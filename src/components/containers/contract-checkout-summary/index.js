@@ -200,7 +200,7 @@ class ContractCheckoutSummary extends Component {
                             {this.returnActionButton()}
                         </div>
                         <div className="mt-4 mx-auto text-center">
-                            <img width="150px" src={"/assets/img/pago-seguro.png"} alt={"pago-seguro"}/>
+                            <img width="230px" src={"/assets/img/pago-seguro.png"} alt={"pago-seguro"}/>
                         </div>
                     </div>
                 </div>

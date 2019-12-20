@@ -39,6 +39,14 @@ class CheckoutSectionForm extends Component {
         this.paymentMethodsSectionRef = React.createRef();
     }
 
+    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+        if(nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to){
+            this.setState({
+                currency: nextProps.currencyExchangeData.to
+            })
+        }
+    }
+
     onSelectCurrency(currency) {
         this.setState({
             currency
@@ -274,7 +282,10 @@ const mapStateToProps = (state: any) => ({
     isCreatePayPalPaymentLoading: state.payments.createPayPalPaymentReducer.loading,
     isCreatePayPalPaymentCompleted: state.payments.createPayPalPaymentReducer.completed,
     createPayPalPaymentData: state.payments.createPayPalPaymentReducer.data,
-    createPayPalPaymentError: state.payments.createPayPalPaymentReducer.error_data.error
+    createPayPalPaymentError: state.payments.createPayPalPaymentReducer.error_data.error,
+    // currencyExchangeData
+    currencyExchangeData: state.payments.currencyExchangeReducer.data
+
 });
 
 // mapStateToProps

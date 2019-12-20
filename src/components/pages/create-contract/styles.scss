@@ -23,7 +23,20 @@
     padding: 10px;
     text-transform: uppercase;
   }
-  label{
+
+  label {
     width: 100%;
+  }
+
+  button.contract-button {
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    padding: 5px 40px;
+    background: linear-gradient(#FF359B, #FB177D 50%);
+    color: #FFFFFF;
+    font-size: 1.0526rem;
+    font-weight: 700;
+    width: 18.6875rem;
+    border-radius: 41px;
   }
 }

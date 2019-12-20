@@ -29,7 +29,7 @@ class CurrencyDropdownLayout extends Component {
     }
 
     componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
-        if(nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to && nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== "USD"){
+        if(nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to && nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== "USD"){
             this.setState({
                 currentCurrencyFlag: AVAILABLE_CURRENCIES.find(item => item.name === nextProps.currencyExchangeData.to)["flag"],
                 currentCurrencyName: AVAILABLE_CURRENCIES.find(item => item.name === nextProps.currencyExchangeData.to)["name"]

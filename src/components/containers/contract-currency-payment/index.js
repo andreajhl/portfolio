@@ -16,19 +16,17 @@ class ContractCurrencyPayment extends Component {
         this.handleCurrency = this.handleCurrency.bind(this)
     }
 
-    handleCurrency(event) {
-        this.changeCurrency(event.target.value)
-    }
-
     componentDidMount(): void {
         this.changeCurrency(this.state.currency);
     }
 
     componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
-        if(nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.state.currency){
-            console.log("nextProps.currencyExchangeData.to", console.log("nextProps.currencyExchangeData.to"))
-            console.log("this.state.currency:", this.state.currency)
-            this.changeCurrency(nextProps.currencyExchangeData.to)
+        if(nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to && !nextProps.isLoading){
+            this.setState({
+                currency: nextProps.currencyExchangeData.to
+            }, () => {
+                this.props.onSelectCurrency(this.state.currency);
+            })
         }
     }
 
@@ -38,7 +36,10 @@ class ContractCurrencyPayment extends Component {
                 currency: value
             },
             () => {
-                this.props.listPaymentGateways(this.state.currency);
+                this.props.currencyExchange({
+                    from: "USD",
+                    to: this.state.currency
+                });
                 this.props.onSelectCurrency(this.state.currency);
             }
         );
