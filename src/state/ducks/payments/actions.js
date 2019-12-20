@@ -26,7 +26,6 @@ export const listPaymentGateways = currency => {
           // Other actions
 
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
-          dispatch(currencyExchange({ from: "USD", to: currency }));
         } else {
           handleApiResponseFailure(dispatch, TYPE, res);
           // Other actions
