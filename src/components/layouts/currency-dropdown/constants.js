@@ -114,7 +114,7 @@ export const AVAILABLE_CURRENCIES = [
         "label": "Dólares",
         "symbol": "$",
         "implemented_by_dlocal": false,
-        "flag": "https://restcountries.eu/data/usa.svg",
+        "flag": "/assets/img/usa.svg",
         "document_name":"SSN",
         "decimal_separator":".",
         "thousand_separator":",",

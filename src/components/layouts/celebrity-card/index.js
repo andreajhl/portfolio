@@ -36,7 +36,7 @@ class CelebrityCardLayout extends Component {
     getCelebrityCountryImage() {
         const a = this.props.countries.find(x => x.alpha3Code === this.props.celebrity.country_code);
         if (a) {
-            return <img src={a.flag} alt="flag" width="17px"/>
+            return <img src={a.alpha3Code === "USA" ? "/assets/img/usa.svg" : a.flag} alt="flag" width="17px"/>
         }
         return <span className="text-white spinner-grow spinner-grow-sm"
                      role="status"

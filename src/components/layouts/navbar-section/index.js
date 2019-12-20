@@ -304,8 +304,7 @@ NavbarSectionLayout.propTypes = {};
 
 // Set defaultProps
 NavbarSectionLayout.defaultProps = {
-    onSearchChange: () => {
-    },
+    onSearchChange: () => {},
 };
 
 // mapStateToProps
