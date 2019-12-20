@@ -4,6 +4,7 @@ import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} fro
 import * as API_PATHS from "./paths";
 import {history} from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
+import {AVAILABLE_CURRENCIES} from "../../../components/layouts/currency-dropdown/constants";
 
 export const listPaymentGateways = currency => {
   return dispatch => {
@@ -58,6 +59,13 @@ export const currencyExchange = params => {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
 
+          if (!AVAILABLE_CURRENCIES.find(
+              x => x.implemented_by_dlocal === false && x.name ===params.to
+          )) {
+            dispatch(listPaymentGateways(params.to))
+          } else {
+            dispatch(listPaymentGateways("USD"))
+          }
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
         } else {
           handleApiResponseFailure(dispatch, TYPE, res);

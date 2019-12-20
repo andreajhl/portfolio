@@ -146,6 +146,8 @@ class ContractCheckoutSummary extends Component {
                             <small>{this.props.contractData.instructions}</small>
                         </div>
                         <hr/>
+                        <span>sadasdasd{JSON.stringify(this.props.currencyExchangeData.to)}</span>
+
                         <div className="total mt-4">
                             {
                                 this.props.currencyExchangeData.to !== "USD" && this.returnAproxLabel()
