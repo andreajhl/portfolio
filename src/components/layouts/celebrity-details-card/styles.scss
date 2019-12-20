@@ -50,6 +50,7 @@
           padding: 5px 40px;
           border-color: $primary;
           color: $primary;
+          background: linear-gradient(#FF359B,#FB177D 50%) !important;
         }
 
         .f-social-network {
@@ -258,8 +259,14 @@
       .f-follow-button {
         -webkit-border-radius: 30px;
         -moz-border-radius: 30px;
-        border-radius: 30px;
         padding: 5px 40px;
+        background: linear-gradient(#FF359B,#FB177D 50%);
+        color: #FFFFFF;
+        font-size: 1.0526rem;
+        font-weight: 700;
+        height: 34px;
+        width: 18.6875rem;
+        border-radius: 41px;
       }
 
       small.title {
@@ -271,7 +278,7 @@
       }
     }
     .btn-outline-primary.f-follow-button{
-      width: 120px;
+      width: 160px;
       right: 23px;
       position: absolute;
       padding: 3px;

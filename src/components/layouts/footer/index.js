@@ -73,7 +73,7 @@ class FooterLayout extends Component {
                                     ¿Tienes más de 50k seguidores en redes?
                                 </div>
                                 <div className="col-button">
-                                    <button className="btn btn-primary" onClick={this.goToApply}>
+                                    <button className="btn btn-apply" onClick={this.goToApply}>
                                         Aplica como Famoso
                                     </button>
                                 </div>
