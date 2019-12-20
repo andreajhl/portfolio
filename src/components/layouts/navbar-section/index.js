@@ -29,13 +29,13 @@ class NavbarSectionLayout extends Component {
         this.goToProfile = this.goToProfile.bind(this);
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         this.setState({
             showSearch: new URLSearchParams(history.location.search).get("showInputSearchSm")
-        }, () => this.updateClasses())
+        }, () => this.updateClasses());
     }
 
-    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+    componentWillUpdate(nextProps, nextState, nextContext) {
         this.updateClasses()
     }
 
@@ -73,6 +73,7 @@ class NavbarSectionLayout extends Component {
     }
 
     showSearch() {
+        console.log(this.state.showSearch);
         this.setState({
             showSearch: !this.state.showSearch
         }, () => {
@@ -110,6 +111,15 @@ class NavbarSectionLayout extends Component {
 
     render() {
         const isLogged = this.session.getSession();
+        let isDummy = true;
+        let showSearch = true;
+        if (this.session.getSession()) {
+            isDummy = this.session.getSession().client_status;
+        }
+        if ((window.location.pathname.indexOf('contratar') > -1) || (window.location.pathname.indexOf('metodos-de-pago') > -1)) {
+            showSearch = false;
+        }
+
         return (
             <div className="NavbarSectionLayout">
                 <div className="f-navbar-container">
@@ -125,60 +135,79 @@ class NavbarSectionLayout extends Component {
                                 {
                                     !isLogged
                                         ?
-                                        <>
-                                            {/*<NavLink className=" btn btn-sm mr-2"*/}
-                                            {/*         activeClassName='active'*/}
-                                            {/*         to={PATHS.TRENDING}*/}
-                                            {/*>*/}
-                                            {/*    <img width={"30px"} src={"/assets/img/trending.svg"}*/}
-                                            {/*         className={"cursor-pointer"}*/}
-                                            {/*         style={{position: "relative", top: "-2px"}}*/}
-                                            {/*    />*/}
-                                            {/*    <span className="font-weight-bold ml-1" style={{position: "relative", top: "3px"}}>Tendencias</span>*/}
-                                            {/*</NavLink>*/}
-                                            <button className="btn btn-primary btn-sm f-register-button mr-2"
-                                                    onClick={this.goToSignUpPath}>
-                                                Ingresar
-                                            </button>
-                                            <div className="div-currency">
-                                                <CurrencyDropdownLayout/>
-                                            </div>
-                                        </>
-                                        :
-                                        <>
-                                            {/*<NavLink className=" btn btn-sm mr-2"*/}
-                                            {/*         activeClassName='active'*/}
-                                            {/*         to={PATHS.TRENDING}*/}
-                                            {/*>*/}
-                                            {/*    <img width={"30px"} src={"/assets/img/trending.svg"}*/}
-                                            {/*         className={"cursor-pointer"}*/}
-                                            {/*         style={{position: "relative", top: "-2px"}}*/}
-                                            {/*    />*/}
-                                            {/*    <span className="font-weight-bold ml-1" style={{position: "relative", top: "3px"}}>Tendencias</span>*/}
-                                            {/*</NavLink>*/}
-                                            <NavLink className=" btn btn-sm mr-2"
-                                                     activeClassName='active'
-                                                     to={PATHS.CLIENT_HIRINGS}
-                                            >
-                                                <i className="mr-1 fa fa-clipboard fa-2x mt-0"/>
-                                                <span className="font-weight-bold ml-1">Mis Contrataciones</span>
-                                            </NavLink>
-                                            <NavLink className=" btn btn-sm mr-3"
-                                                     activeClassName='active'
-                                                     to={PATHS.CLIENT_PROFILE}
-                                            >
-                                                <i className="mr-1 fa fa-user fa-2x mt-0"/>
-                                                <span className="font-weight-bold ml-1">Mi Perfil</span>
-                                            </NavLink>
-                                            <div className="div-currency">
-                                                <CurrencyDropdownLayout/>
-                                            </div>
-                                        </>
+                                        (
+                                            <>
+                                                {/*<NavLink className=" btn btn-sm mr-2"*/}
+                                                {/*         activeClassName='active'*/}
+                                                {/*         to={PATHS.TRENDING}*/}
+                                                {/*>*/}
+                                                {/*    <img width={"30px"} src={"/assets/img/trending.svg"}*/}
+                                                {/*         className={"cursor-pointer"}*/}
+                                                {/*         style={{position: "relative", top: "-2px"}}*/}
+                                                {/*    />*/}
+                                                {/*    <span className="font-weight-bold ml-1" style={{position: "relative", top: "3px"}}>Tendencias</span>*/}
+                                                {/*</NavLink>*/}
+                                                <button className="btn btn-primary mt-1 btn-sm f-register-button mr-2"
+                                                        onClick={this.goToSignUpPath}>
+                                                    Ingresar
+                                                </button>
+                                                <div className="div-currency">
+                                                    <CurrencyDropdownLayout/>
+                                                </div>
+                                            </>
+                                        )
+                                        : !isDummy ? (
+                                            <>
+                                                <div className="div-currency">
+                                                    <CurrencyDropdownLayout/>
+                                                </div>
+                                            </>
+                                        ) : (
+
+                                            <>
+                                                {/*<NavLink className=" btn btn-sm mr-2"*/}
+                                                {/*         activeClassName='active'*/}
+                                                {/*         to={PATHS.TRENDING}*/}
+                                                {/*>*/}
+                                                {/*    <img width={"30px"} src={"/assets/img/trending.svg"}*/}
+                                                {/*         className={"cursor-pointer"}*/}
+                                                {/*         style={{position: "relative", top: "-2px"}}*/}
+                                                {/*    />*/}
+                                                {/*    <span className="font-weight-bold ml-1" style={{position: "relative", top: "3px"}}>Tendencias</span>*/}
+                                                {/*</NavLink>*/}
+                                                <NavLink className=" btn btn-sm mr-2"
+                                                         activeClassName='active'
+                                                         to={PATHS.CLIENT_HIRINGS}
+                                                >
+                                                    <i className="mr-1 fa fa-clipboard fa-2x mt-0"/>
+                                                    <span className="font-weight-bold ml-1">Mis Contrataciones</span>
+                                                </NavLink>
+                                                <NavLink className=" btn btn-sm mr-3"
+                                                         activeClassName='active'
+                                                         to={PATHS.CLIENT_PROFILE}
+                                                >
+                                                    <i className="mr-1 fa fa-user fa-2x mt-0"/>
+                                                    <span className="font-weight-bold ml-1">Mi Perfil</span>
+                                                </NavLink>
+                                                <div className="div-currency">
+                                                    <CurrencyDropdownLayout/>
+                                                </div>
+                                            </>
+                                        )
                                 }
                             </div>
-                            <div className="float-left ml-4">
-                                <NavbarSearchLayout onSearchChange={this.props.onSearchChange}/>
-                            </div>
+                            {showSearch ?
+                                (
+                                    <>
+                                        <div className="float-left ml-4">
+                                            <NavbarSearchLayout onSearchChange={this.props.onSearchChange}/>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                    </>
+                                )
+                            }
                         </div>
 
                         {/* SM*/}
@@ -192,7 +221,7 @@ class NavbarSectionLayout extends Component {
                                 </div>
                                 <div className="float-right float-right-sm">
                                     {
-                                        !isLogged
+                                        !this.isLogged
                                             ?
                                             <>
                                                 <div className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center"
@@ -280,7 +309,7 @@ NavbarSectionLayout.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     queryParams: state.celebrities.queryParamsReducer,
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
 });

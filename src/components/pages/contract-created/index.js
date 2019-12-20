@@ -53,9 +53,6 @@ class ContractCreatedPage extends Component {
     console.log(this.props.contract);
     const isLogged = this.session.getSession();
     const isDummy = this.session.getSession().client_status;
-
-    if (!isDummy) {
-    }
     return (
       <>
         <div className="ContractCreatedPage">

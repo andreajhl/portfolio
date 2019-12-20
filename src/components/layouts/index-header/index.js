@@ -72,7 +72,6 @@ class IndexHeaderLayout extends Component {
                                             controls={false}
                                             autoPlay
                                             playsInline={true}
-                                            preload="metadata"
                                             loop={true}
                                         />
                                     </div>
