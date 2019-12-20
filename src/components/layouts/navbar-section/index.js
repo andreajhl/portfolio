@@ -111,11 +111,15 @@ class NavbarSectionLayout extends Component {
 
     render() {
         const isLogged = this.session.getSession();
-        const isDummy = this.session.getSession().client_status;
+        let isDummy = true;
         let showSearch = true;
+        if (this.session.getSession()) {
+            isDummy = this.session.getSession().client_status;
+        }
         if ((window.location.pathname.indexOf('contratar') > -1) || (window.location.pathname.indexOf('metodos-de-pago') > -1)) {
             showSearch = false;
         }
+
         return (
             <div className="NavbarSectionLayout">
                 <div className="f-navbar-container">
