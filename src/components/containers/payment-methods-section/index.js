@@ -100,7 +100,7 @@ class PaymentMethodsSection extends Component {
                                                 <span>Tarjeta de débito</span>
                                             )}
                                             {method.name === "TICKET" && <span>Efectivo</span>}
-                                            {method.name === "OTHER" && <span>Otros</span>}
+                                            {method.name === "OTHER" && <span>PayPal</span>}
                                         </h6>
                                     </div>
                                 </div>
