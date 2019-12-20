@@ -43,13 +43,11 @@ export const AssociateContract = hash => {
           // Other actions
           localStorage.removeItem("redirectPaymentTo");
           localStorage.removeItem("hash");
-          console.log(res);
           history._pushRoute(ROUTING_PATHS.ROOT_PATH);
         } else {
           // Other actions
           localStorage.removeItem("redirectPaymentTo");
           localStorage.removeItem("hash");
-          console.log("llego perfect");
         }
       })
       .catch(err => {
@@ -179,7 +177,6 @@ export const saveClientContract = contractData => {
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
 
-          // console.log(res.data.hash);
           dispatch(getContract(res.data.reference));
 
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
@@ -187,15 +184,23 @@ export const saveClientContract = contractData => {
           // Other actions
           const session = new Session();
           if (!session.getSession()) {
+            localStorage.setItem("fs", res.data.token);
             localStorage.setItem(
               "redirectPaymentTo",
+              ROUTING_PATHS.CLIENT_HIRINGS
+            );
+            localStorage.setItem("hash", res.data.hash);
+
+            history._pushRoute(
               ROUTING_PATHS.PAYMENT_METHODS.replace(
                 ":contract_reference",
                 res.data.reference
               )
             );
-            localStorage.setItem("hash", res.data.hash);
-            history._pushRoute(ROUTING_PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH + "?title=Inicia sesión para continuar con el pago.");
+            // history._pushRoute(
+            //   ROUTING_PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH +
+            //     "?title=Inicia sesión para continuar con el pago."
+            // );
           } else {
             history._pushRoute(
               ROUTING_PATHS.PAYMENT_METHODS.replace(

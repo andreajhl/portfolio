@@ -13,10 +13,6 @@ class TrendingVideosSectionLayout extends Component {
         this.state = {}
     }
 
-    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
-        console.log("nextProps:", nextProps)
-    }
-
     renderShimmerCards() {
         if (this.props.showShimmerCards) {
             return (

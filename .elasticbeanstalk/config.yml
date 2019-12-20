@@ -1,4 +1,6 @@
 branch-defaults:
+  bottom-nav:
+    environment: FamososClientsFrontend-testing
   master:
     environment: FamososClientsFrontend-testing
     group_suffix: null

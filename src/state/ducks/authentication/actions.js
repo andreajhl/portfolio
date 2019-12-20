@@ -16,6 +16,7 @@ const afterLogin = (res, redirect_path = null, dispatch = null) => {
     if (localStorage.getItem("redirectPaymentTo")) {
       history._pushRoute(localStorage.getItem("redirectPaymentTo"));
       localStorage.removeItem("redirectPaymentTo");
+      localStorage.removeItem("hash");
       return;
     }
     switch (session.getSession().client_status) {
