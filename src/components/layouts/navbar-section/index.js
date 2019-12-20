@@ -112,7 +112,7 @@ class NavbarSectionLayout extends Component {
         let logged = "no";
         if (this.session.getSession()) {
             logged = "si";
-            if (this.session.getSession()) {
+            if (this.session.getSession().client_status === 0) {
                 logged = "dummy";
             }
         }
@@ -218,13 +218,6 @@ class NavbarSectionLayout extends Component {
                                             <i className="mr-1 fa fa-clipboard fa-2x mt-0"/>
                                             <span className="font-weight-bold ml-1">Mis Contrataciones</span>
                                         </NavLink>
-                                        {this.props.showInputSearchSm ?
-                                            <a className="btn btn-sm mr-2" onClick={this.showSearch}>
-                                                <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
-                                            </a>
-                                            :
-                                            ''
-                                        }
                                         <NavLink className=" btn btn-sm mr-3"
                                                  activeClassName='active'
                                                  to={PATHS.CLIENT_PROFILE}
