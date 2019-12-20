@@ -14,7 +14,7 @@ class ContractPriceLayout extends Component {
                 displayType={"text"}
                 thousandSeparator={true}
                 decimalScale={2}
-                prefix={"$"}
+                prefix={this.props.currencyExchangeData.to === "EUR" ? "€" : "$"}
                 renderText={value => <span className={(this.props.classes)}>{value} {this.props.showInUSD === false ? this.props.currencyExchangeData.to : "USD"}</span>}
             />
         );

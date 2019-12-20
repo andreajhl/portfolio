@@ -70,7 +70,7 @@ class IndexHeaderLayout extends Component {
                                         <video
                                             src={"https://firebasestorage.googleapis.com/v0/b/famosos-27f08.appspot.com/o/famosos%2Findex-banner-video.mp4?alt=media&token=97303a12-a5bc-4171-87fa-713dbb7196aa"}
                                             controls={false}
-                                            autoPlay={true}
+                                            autoPlay
                                             playsInline={true}
                                             preload="metadata"
                                             loop={true}

@@ -4,6 +4,15 @@ import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 import {ContractPriceLayout} from "../../layouts/contract-price";
 
+const DLOCAL_CURRENCIES = [
+    "ARS",
+    "BRL",
+    "CLP",
+    "COP",
+    "MXN",
+    "PEN",
+    "UYU",
+];
 
 class ContractCheckoutSummary extends Component {
 
@@ -154,12 +163,20 @@ class ContractCheckoutSummary extends Component {
                                         price={this.props.contractData.price}
                                     />
                                     {
-                                        this.props.currencyExchangeData.to !== "USD"
+                                        this.props.currencyExchangeData.to !== "USD" && !this.props.isLoading
                                         &&
                                         <>
                                             <br/>
                                             <small className={"text-right mx-auto"}
-                                                   style={{fontSize: "10px"}}>(Aproximado)
+                                                   style={{fontSize: "10px"}}>
+
+                                                {
+                                                    !DLOCAL_CURRENCIES.includes(this.props.currencyExchangeData.to)
+                                                    &&
+                                                    <>
+                                                        (Aproximado)
+                                                    </>
+                                                }
                                             </small>
                                         </>
                                     }

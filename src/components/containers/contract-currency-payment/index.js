@@ -3,19 +3,6 @@ import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 
-const USD_CURRENCIES = [
-    "ARS",
-    "BRL",
-    "CLP",
-    // "COP", // TODO COL IS AVAILABLE
-    "DOP",
-    "MXN",
-    "PEN",
-    "UYU",
-    "USD",
-    "EUR",
-    "CAD"
-];
 
 class ContractCurrencyPayment extends Component {
 
@@ -23,7 +10,7 @@ class ContractCurrencyPayment extends Component {
         super(props);
 
         this.state = {
-            currency: USD_CURRENCIES.includes(this.props.currencyExchangeData.to) ? "USD" : this.props.currencyExchangeData.to
+            currency: this.props.currencyExchangeData.to
         };
 
         this.handleCurrency = this.handleCurrency.bind(this)
@@ -67,6 +54,8 @@ class ContractCurrencyPayment extends Component {
                 >
                     <option value="USD">USD - Dólares</option>
                     <option value="COP">COP - Pesos Colombianos</option>
+                    <option value="MXN">MXN - Pesos Mexicanos</option>
+                    <option value="ARS">ARS - Pesos Argentinos</option>
                 </select>
             </div>
         );
