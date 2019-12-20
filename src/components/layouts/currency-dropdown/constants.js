@@ -60,10 +60,10 @@ export const AVAILABLE_CURRENCIES = [
         "symbol": "€",
         "implemented_by_dlocal": false,
         "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/1200px-Flag_of_Europe.svg.png",
-        "document_name":"CI",
+        "document_name":"DNI",
         "decimal_separator":",",
         "thousand_separator":".",
-        "round":"50"
+        "round":"1"
     },
     {
         "name": "DOP",
@@ -71,7 +71,7 @@ export const AVAILABLE_CURRENCIES = [
         "symbol": "$",
         "implemented_by_dlocal": false,
         "flag": "https://restcountries.eu/data/dom.svg",
-        "document_name":"CI",
+        "document_name":"Cédula",
         "decimal_separator":",",
         "thousand_separator":".",
         "round":"50"
@@ -125,7 +125,7 @@ export const AVAILABLE_CURRENCIES = [
         "label": "Pesos Uruaguayos",
         "symbol": "$",
         "implemented_by_dlocal": false,
-        "flag": "https://restcountries.eu/data/dom.svg",
+        "flag": "https://restcountries.eu/data/ury.svg",
         "document_name":"CI",
         "decimal_separator":",",
         "thousand_separator":".",

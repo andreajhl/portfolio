@@ -3,19 +3,29 @@ import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 import NumberFormat from "react-number-format";
 import "./styles.scss";
+import {AVAILABLE_CURRENCIES} from "../currency-dropdown/constants";
 
 
 class ContractPriceLayout extends Component {
 
+    rounding() {
+        const res = AVAILABLE_CURRENCIES.find(item => item.name === this.props.currency);
+        if (this.props.price < res.round) {
+            return res.round
+        } else {
+            return (Math.round(this.props.price / res.round)) * res.round;
+        }
+    }
+
     render() {
         return (
             <NumberFormat
-                value={(this.props.currencyExchangeData.to !== "USD" && this.props.showInUSD === false) ? this.props.price * this.props.currencyExchangeData.rate : this.props.price}
+                value={this.props.rounding ? this.rounding() : this.props.price}
                 displayType={"text"}
                 thousandSeparator={true}
                 decimalScale={2}
-                prefix={this.props.currencyExchangeData.to === "EUR" ? "€" : "$"}
-                renderText={value => <span className={(this.props.classes)}>{value} {this.props.showInUSD === false ? this.props.currencyExchangeData.to : "USD"}</span>}
+                prefix={AVAILABLE_CURRENCIES.find(item => item.name === this.props.currency)["symbol"]}
+                renderText={value => <span className={(this.props.classes)}> {value} {this.props.currency}</span>}
             />
         );
     };
@@ -28,8 +38,9 @@ ContractPriceLayout.propTypes = {};
 // Set defaultProps
 ContractPriceLayout.defaultProps = {
     classes: "",
-    showInUSD: false,
-    price: 0
+    price: 0,
+    currency: "USD",
+    rounding: false
 };
 
 // mapStateToProps

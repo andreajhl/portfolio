@@ -82,6 +82,14 @@ class ContractCheckoutSummary extends Component {
         )
     }
 
+    returnContractPrice(){
+        if(this.props.currencyExchangeData.rate > 0){
+            return (this.props.contractData.price * this.props.currencyExchangeData.rate) + this.props.contractData.price
+        }else{
+            return this.props.contractData.price
+        }
+    }
+
     render() {
         return (
             <div className="ContractCheckoutSummary f-rounded">
@@ -147,8 +155,9 @@ class ContractCheckoutSummary extends Component {
                                     <h6 className=" text-right float-right">
                                         <ContractPriceLayout
                                             classes={"text-black "}
-                                            price={this.props.contractData.price}
-                                            showInUSD={true}
+                                            price={this.returnContractPrice()}
+                                            currency={this.props.currencyExchangeData.to}
+                                            rounding={false}
                                         />
                                     </h6>
                                 </div>
@@ -158,7 +167,9 @@ class ContractCheckoutSummary extends Component {
                                 <h5 className="font-weight-bold text-right float-right">
                                     <ContractPriceLayout
                                         classes={"text-black font-weight-bold"}
-                                        price={this.props.contractData.price}
+                                        price={this.returnContractPrice()}
+                                        currency={this.props.currencyExchangeData.to}
+                                        rounding={false}
                                     />
                                     {
                                         this.props.currencyExchangeData.to !== "USD" && !this.props.isLoading
