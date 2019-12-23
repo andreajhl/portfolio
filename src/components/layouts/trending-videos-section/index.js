@@ -1,93 +1,70 @@
 import React, {Component} from 'react';
-import {getTotalColumns} from "../../../state/utils/gridSystem";
-import {CelebrityShimmerCardLayout} from "../celebrity-shimmer-card";
 import {connect} from "react-redux";
-import {CelebrityPublicContractCardLayout} from "../celebrity-public-contract-card";
 import "./styles.scss";
+import {TrendingVideoCardLayout} from "../tending-video-card";
+import {PaginationLayout} from "../pagination";
+import {contractOperations} from "../../../state/ducks/contracts";
 
 class TrendingVideosSectionLayout extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {}
+        this.state = {
+            params: {}
+        };
+
+        this.onPaginationChange = this.onPaginationChange.bind(this);
     }
 
-    renderShimmerCards() {
-        if (this.props.showShimmerCards) {
-            return (
-                <div className="scrolling-wrapper">
-                    {
-                        [...Array(getTotalColumns() * 4)].map((o, index) => {
-                            return (
-                                <div className="item mr-4 mb-2 mx-auto" key={index}>
-                                    <CelebrityShimmerCardLayout/>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            )
-        }
-    };
+    componentWillMount(): void {
+        this.onPaginationChange(1)
+    }
 
-    renderLoading() {
-        if (this.props.showLoading) {
-            return (
-                <div className="mx-auto text-center">
-                    <div className="spinner-grow text-primary" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>
-                    <div className="spinner-grow text-primary" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>
-                    <div className="spinner-grow text-primary" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>
-                </div>
-            )
+    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+        if(nextProps.isLoading){
+            window.scroll({top: 0,});
         }
+    }
+
+    onPaginationChange(page) {
+        const params = this.state.params;
+        params["page_size"] = 4;
+        params["page"] = page;
+        this.setState({
+            params
+        }, ()=> {
+            this.props.fetchTrendingContracts(this.state.params)
+        })
     }
 
     renderContractsCards() {
-        if (!this.props.showShimmerCards) {
-            return (
-                this.props.contracts.map((contract, index) => {
-                    return (
-                        <div className="item mr-4 mb-2 mx-auto" key={contract.id}>
-                            <CelebrityPublicContractCardLayout
-                                publicContract={contract}
-                            />
-                        </div>
-                    )
-                })
-            )
-        }
+        return (
+            this.props.contracts.map((contract, index) => {
+                return (
+                    <div key={contract.id + "index-" + index} style={this.props.isLoading ? {opacity: "0.1"} : {}}>
+                        <TrendingVideoCardLayout
+                            publicContract={contract}
+                        />
+                    </div>
+                )
+            })
+        )
     };
 
-    renderTitle() {
-        if (this.props.title && !this.props.queryParams.search) {
+    renderLoading() {
+        if (this.props.isLoading) {
             return (
-                <div className="clearfix pt-4">
-                    <h6 className="float-left">
-                        <b>{this.props.title}</b>
-                    </h6>
-                </div>
-            )
-        } else if (this.props.title && this.props.queryParams.search && this.props.contracts.length) {
-            return (
-                <div className="clearfix pt-4">
-                    <h6 className="float-left">
-                        <b>Famosos encontrados:</b>
-                    </h6>
-                </div>
-            )
-        } else if (this.props.title && this.props.queryParams.search && !this.props.contracts.length) {
-            return (
-                <div className="clearfix pt-4">
-                    <h6 className="float-left">
-                        <b>No se encontraron famosos para esta busqueda</b>
-                    </h6>
+                <div className="loading-section mx-auto text-center">
+                    <div className="spinner-grow text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
                 </div>
             )
         }
@@ -95,16 +72,20 @@ class TrendingVideosSectionLayout extends Component {
 
     render() {
         return (
-            <div className="TrendingVideosSectionLayout" style={{minHeight: (this.props.minHeight ? "100vh" : "initial")}}>
-                <div className={"f-main-padding mt-4"}>
-                    {this.renderTitle()}
-                    <div className={"scrolling-wrapper " + (this.props.horizontalScroll ? "horizontal-scroll" : "")}>
-                        {this.renderContractsCards()}
-                    </div>
-                    {/* SHIMMER CARDS */}
-                    {this.renderShimmerCards()}
-                    {/* LOADING */}
-                    {this.renderLoading()}
+            <div className="TrendingVideosSectionLayout">
+                {this.renderLoading()}
+                {this.renderContractsCards()}
+                <div className="pagination-section">
+                    {/* PaginationLayout */}
+                    <PaginationLayout
+                        showFmainPadding={false}
+                        pagination={this.props.paginationData}
+                        onPaginationChange={this.onPaginationChange}
+                    />
+                    {/* End PaginationLayout */}
+                    <br/>
+                    <br/>
+                    <br/>
                 </div>
             </div>
         );
@@ -113,22 +94,20 @@ class TrendingVideosSectionLayout extends Component {
 
 // default props
 TrendingVideosSectionLayout.defaultProps = {
-    horizontalScroll: false,
-    title: "",
-    showShimmerCards: true,
-    showLoading: false,
-    contracts: [],
-    minHeight: false
 };
 
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    queryParams: state.contracts.queryParamsReducer,
+    isLoading: state.contracts.fetchTrendingContractsReducer.loading,
+    contracts: state.contracts.fetchTrendingContractsReducer.data.results,
+    paginationData: state.contracts.fetchTrendingContractsReducer.data.pagination_data,
 });
 
 // mapStateToProps
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    fetchTrendingContracts: contractOperations.listTrending,
+};
 
 // Export Class
 const _TrendingVideosSectionLayout = connect(mapStateToProps, mapDispatchToProps)(TrendingVideosSectionLayout);

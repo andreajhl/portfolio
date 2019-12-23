@@ -107,24 +107,10 @@ export function fetchTrendingContractsReducer(
         failed: true
       };
     case types.FETCH_TRENDING_CONTRACTS_REQUEST_SUCCESS:
-      if (action.payload.data.pagination_data.currentPage === 1) {
-        return {
-          ...fetchTrendingContractsInitialState,
-          data: action.payload.data
-        };
-      } else if (
-        action.payload.data.pagination_data.totalItems <=
-        state.data.pagination_data.totalItems
-      ) {
-        action.payload.data.results = state.data.results.concat(
-          action.payload.data.results
-        );
-        return {
-          ...fetchTrendingContractsInitialState,
-          data: action.payload.data
-        };
-      }
-      break;
+      return {
+        ...fetchTrendingContractsInitialState,
+        data: action.payload.data
+      };
     case types.FETCH_TRENDING_CONTRACTS_REQUEST_COMPLETED:
       return {
         ...state,

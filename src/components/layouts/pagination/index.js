@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "./styles.scss"
 
 class PaginationLayout extends Component {
 
@@ -58,7 +59,7 @@ class PaginationLayout extends Component {
                                     className="page-link cursor-pointer"
                                     onClick={this.previousPage.bind(this)}
                                 >
-                                    Anterior
+                                    Anterior página
                                 </span>
                                     </li>
                                     {/*{*/}
@@ -79,7 +80,7 @@ class PaginationLayout extends Component {
                                     className="page-link cursor-pointer"
                                     onClick={this.nextPage.bind(this)}
                                 >
-                                    Siguiente
+                                    Siguiente página
                                 </span>
                                     </li>
                                 </ul>
