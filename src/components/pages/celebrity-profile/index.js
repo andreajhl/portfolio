@@ -55,7 +55,7 @@ class CelebrityProfilePage extends Component {
     render() {
         return (
             <>
-                <PageContainer fetchCelebrities={false} showFooter={window.innerWidth >= 768}>
+                <PageContainer fetchCelebrities={false} showLogin={false}>
                     <div style={{minHeight: "600px"}}>
                     {
                         this.props.celebrity.username === this.props.match.params.celebrity_username ?

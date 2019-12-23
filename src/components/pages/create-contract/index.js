@@ -187,8 +187,9 @@ class CreateContractPage extends Component {
   render() {
     return (
         <>
-          <PageContainer showFooter={false} showLogin={false} showInputSearchSm={false} showSearchWeb={false} fetchCelebrities={false}>
-            <div className="container CreateContractPage my-4">
+          <PageContainer showFooter={false} showLogin={false} showInputSearchSm={false} showSearchWeb={false}
+                         fetchCelebrities={false}>
+            <div className="container CreateContractPage my-4" style={{zoom: "80%"}}>
               <div className="row centerForm">
                 <div className="col-12 col-md-8">
                   <div className="mb-4 titleMessage">
@@ -267,28 +268,24 @@ class CreateContractPage extends Component {
                     {/*END INSTRUCTIONS*/}
 
                     {/*DELIVERY MAIL*/}
-                    <Row>
-                      <Col sm="6">
-                        <Form.Group>
-                          <Form.Label>
-                            <b>Correo electrónico de notificación:</b>
-                            <i className="fa fa-info-circle customTooltip float-right">
+                    <Form.Group>
+                      <Form.Label>
+                        <b>Correo electrónico de notificación:</b>
+                        <i className="fa fa-info-circle customTooltip ml-4">
                             <span className="tooltipText">
                                 A este correo electrónico te noficaremos cuando el video esté listo.
                             </span>
-                            </i>
-                          </Form.Label>
-                          <Form.Control
-                              type="email"
-                              placeholder="correo@dominio.com"
-                              name="delivery_contact"
-                              value={this.state.contract_data.delivery_contact}
-                              onChange={this.handleValue}
-                          />
-                          {this.showErrorMessage("delivery_contact")}
-                        </Form.Group>
-                      </Col>
-                    </Row>
+                        </i>
+                      </Form.Label>
+                      <Form.Control
+                          type="email"
+                          placeholder="correo@dominio.com"
+                          name="delivery_contact"
+                          value={this.state.contract_data.delivery_contact}
+                          onChange={this.handleValue}
+                      />
+                      {this.showErrorMessage("delivery_contact")}
+                    </Form.Group>
                     {/*END DELIVERY MAIL*/}
 
                     {/* IS PUBLIC  */}

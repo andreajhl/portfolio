@@ -46,7 +46,7 @@ class SignInPage extends Component {
     render() {
         return (
             <>
-                <PageContainer fetchCelebrities={false} showFooter={window.innerWidth >= 768}>
+                <PageContainer fetchCelebrities={false}>
                     <div className="SignInPage">
                         <div className="section">
                             <div className="auth-container">

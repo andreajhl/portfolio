@@ -63,7 +63,7 @@ class PageContainer extends Component {
                 {/*EmptyImage*/}
                 <img src="/assets/img/avatar-blank.png" style={{display: "none"}} alt="None"/>
 
-                <BottomNavbarSectionLayout/>
+                {/*<BottomNavbarSectionLayout/>*/}
             </div>
         );
     };

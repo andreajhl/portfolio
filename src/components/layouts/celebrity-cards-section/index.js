@@ -54,7 +54,7 @@ class CelebrityCardsSectionLayout extends Component {
             return (
                 this.props.celebrities.map((celebrity, index) => {
                     return (
-                        <div className="item mr-4 mb-2 mx-auto" key={celebrity.id}>
+                        <div className="item mr-4 mx-auto" key={celebrity.id}>
                             <CelebrityCardLayout
                                 celebrity={celebrity}
                                 index={index + "_" + celebrity.id}
@@ -69,34 +69,29 @@ class CelebrityCardsSectionLayout extends Component {
     renderTitle() {
         if (this.props.title && !this.props.queryParams.search) {
             return (
-                <div className="clearfix pt-4">
-                    <h6 className="float-left">
-                        <b>{this.props.title}</b>
-                    </h6>
-                </div>
+                <h6 className="text-left pt-4" style={{marginLeft: "2rem"}}>
+                    <b>{this.props.title}</b>
+                </h6>
             )
         } else if (this.props.title && this.props.queryParams.search && this.props.celebrities.length) {
             return (
-                <div className="clearfix pt-4">
-                    <h6 className="float-left">
-                        <b>Famosos encontrados:</b>
-                    </h6>
-                </div>
+                <h6 className="text-left pt-4" style={{marginLeft: "2rem"}}>
+                    <b>Famosos encontrados:</b>
+                </h6>
             )
         } else if (this.props.title && this.props.queryParams.search && !this.props.celebrities.length) {
             return (
-                <div className="clearfix pt-4">
-                    <h6 className="float-left">
-                        <b>No se encontraron famosos para esta busqueda</b>
-                    </h6>
-                </div>
+                <h6 className="text-left pt-4" style={{marginLeft: "2rem"}}>
+                    <b>No se encontraron famosos para esta busqueda</b>
+                </h6>
             )
         }
     }
 
     render() {
         return (
-            <div className="CelebrityCardsSectionLayout" style={{minHeight: (this.props.minHeight ? "100vh" : "initial")}}>
+            <div className="CelebrityCardsSectionLayout"
+                 style={{minHeight: (this.props.minHeight ? "100vh" : "initial")}}>
                 <div className={"f-main-padding mt-4"}>
                     {this.renderTitle()}
                     <div className={"scrolling-wrapper " + (this.props.horizontalScroll ? "horizontal-scroll" : "")}>

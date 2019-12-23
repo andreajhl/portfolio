@@ -50,7 +50,7 @@
             padding-left: 13px;
             padding-right: 13px;
             position: relative;
-            top: -5px;
+            top: -2.5px;
             right: 12px;
             max-height: 35px;
             border: solid 2px $primary;
@@ -91,6 +91,22 @@
 
   }
 
+
+  .trending {
+    img {
+      background-image: url("/assets/img/trending.svg");
+      background-repeat: no-repeat;
+    }
+
+    &.active {
+      img {
+        background-image: url("/assets/img/trending-active.svg");
+        background-repeat: no-repeat;
+      }
+    }
+  }
+
+
   .f-navbar-container-helper {
     height: 60px;
   }
@@ -128,7 +144,6 @@
       position: relative;
     }
   }
-
   .search-sm {
     position: fixed;
     z-index: 1;

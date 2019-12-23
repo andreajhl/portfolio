@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import "./styles.scss";
-import { ContractModal } from "../../containers";
+import {ContractModal} from "../../containers";
 import * as GTM from "../../../state/utils/gtm";
-import { history } from "../../../routing/History";
+import {history} from "../../../routing/History";
 import {ContractPriceLayout} from "../contract-price";
 import {connect} from "react-redux";
 
@@ -31,7 +31,7 @@ class CelebrityDetailsCardLayout extends Component {
     }
 
     handleImageLoaded() {
-        this.setState({ imageLoaded: true });
+        this.setState({imageLoaded: true});
     }
 
     openModal() {
@@ -56,7 +56,7 @@ class CelebrityDetailsCardLayout extends Component {
 
     playDesktopVideo() {
         if (this.videoDesktopRef.current.paused) {
-            this.setState({ videoDesktopPlayIcon: "fa-pause" }, () => {
+            this.setState({videoDesktopPlayIcon: "fa-pause"}, () => {
                 this.videoDesktopRef.current.play()
             });
             GTM.tagManagerDataLayer(
@@ -64,7 +64,7 @@ class CelebrityDetailsCardLayout extends Component {
                 this.props.celebrity
             );
         } else {
-            this.setState({ videoDesktopPlayIcon: "fa-play" }, () => {
+            this.setState({videoDesktopPlayIcon: "fa-play"}, () => {
                 this.videoDesktopRef.current.pause()
             });
             GTM.tagManagerDataLayer(
@@ -75,13 +75,16 @@ class CelebrityDetailsCardLayout extends Component {
     }
 
     playMobileVideo() {
-        this.videoMobileRef.current.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
+        this.videoMobileRef.current.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }, false);
         if (this.videoMobileRef.current.hasAttribute("controls")) {
             this.videoMobileRef.current.removeAttribute("controls")
         }
         this.videoMobileRef.current.classList.add('IIV');
         if (this.videoMobileRef.current.paused) {
-            this.setState({ videoMobilePlayIcon: "fa-pause" }, () => {
+            this.setState({videoMobilePlayIcon: "fa-pause"}, () => {
                 this.videoMobileRef.current.play()
             });
             GTM.tagManagerDataLayer(
@@ -89,7 +92,7 @@ class CelebrityDetailsCardLayout extends Component {
                 this.props.celebrity
             );
         } else {
-            this.setState({ videoMobilePlayIcon: "fa-play" }, () => {
+            this.setState({videoMobilePlayIcon: "fa-play"}, () => {
                 this.videoMobileRef.current.pause()
             });
             GTM.tagManagerDataLayer(
@@ -103,10 +106,10 @@ class CelebrityDetailsCardLayout extends Component {
         window.location.replace(this.props.celebrity.cause_url)
     }
 
-    returnContractPrice(){
-        if(this.props.currencyExchangeData.rate > 1){
+    returnContractPrice() {
+        if (this.props.currencyExchangeData.rate > 1) {
             return (this.props.celebrity.contracts_price * this.props.currencyExchangeData.rate) + this.props.celebrity.contracts_price
-        }else{
+        } else {
             return this.props.celebrity.contracts_price
         }
     }
@@ -123,20 +126,15 @@ class CelebrityDetailsCardLayout extends Component {
                                     <div className="col-3 col-md-4 f-avatar my-auto">
                                         <div className="rounded-circle f-shadow">
                                             <img className="rounded-circle"
-                                                onLoad={this.handleImageLoaded}
-                                                src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
-                                                alt="avatar" />
+                                                 onLoad={this.handleImageLoaded}
+                                                 src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
+                                                 alt="avatar"/>
                                         </div>
                                     </div>
                                     <div className="col-9 col-md-8 details my-auto">
                                         <div className="row p-0 pl-3 pr-3">
                                             <div className="col-8 p-0 m-0 f-names my-auto">
                                                 <h5 className="text-dark font-weight-bold pt-1 m-0">{this.props.celebrity.full_name}</h5>
-                                            </div>
-                                            <div className="col-4 p-0 m-0 text-center my-auto">
-                                                {/*<button className="btn btn-outline-secondary btn-sm f-follow-button">*/}
-                                                {/*    Seguir*/}
-                                                {/*</button>*/}
                                             </div>
                                             <div className="col-12 p-0 m-0 text-center pr-0">
                                                 <div
@@ -148,7 +146,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                     currency={this.props.currencyExchangeData.to}
                                                     rounding={true}
                                                 />
-                                                    <i className="ml-2 fa fa-arrow-right text-white" />
+                                                    <i className="ml-2 fa fa-arrow-right text-white"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -157,11 +155,11 @@ class CelebrityDetailsCardLayout extends Component {
                                         <div className="row mt-2 text-center">
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
                                                 <h6 className="text-warning">
-                                                    <i className="fa fa-star fa-1x mr-2 text-warning" />
-                                                    <i className="fa fa-star fa-1x mr-2 text-warning" />
-                                                    <i className="fa fa-star fa-1x mr-2 text-warning" />
-                                                    <i className="fa fa-star fa-1x mr-2 text-warning" />
-                                                    <i className="fa fa-star fa-1x mr-2 text-warning" />
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
+                                                    <i className="fa fa-star fa-1x mr-2 text-warning"/>
                                                 </h6>
                                                 <small className="text-soft-grey font-weight-bold">
                                                     Calificaciones
@@ -187,13 +185,13 @@ class CelebrityDetailsCardLayout extends Component {
                                         this.props.celebrity.is_donor
                                             ?
                                             <div className="col-12 mt-1 text-justify">
-                                                <div className="foundation" >
-                                                    <i className="fas fa-hand-holding-heart" />
+                                                <div className="foundation">
+                                                    <i className="fas fa-hand-holding-heart"/>
                                                     <img className="bookmark" src="/assets/img/bookmark.svg"
-                                                        alt="bookmark" />
+                                                         alt="bookmark"/>
                                                     <div className="celebrity-data">
                                                         <small>
-                                                            {this.props.celebrity.full_name} dona <br />
+                                                            {this.props.celebrity.full_name} dona <br/>
                                                             de sus ingresos a:
                                                         </small>
                                                     </div>
@@ -219,39 +217,39 @@ class CelebrityDetailsCardLayout extends Component {
                                             null
                                     }
 
-                                    <div className="col-12 text-justify" style={{ height: "20px" }}>
+                                    <div className="col-12 text-justify" style={{height: "20px"}}>
                                         {
                                             this.props.socialNetworks
                                                 ?
                                                 this.props.socialNetworks.map((i, index) => {
-                                                    return (
-                                                        <a href={i.social_network.url} target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            key={index}
-                                                            className="text-secondary">
-                                                            <small>
-                                                                <i className={"fa-2x mr-4 " + (i.social_network.fa_icon)} />
-                                                            </small>
-                                                        </a>
-                                                    )
-                                                }
+                                                        return (
+                                                            <a href={i.social_network.url} target="_blank"
+                                                               rel="noopener noreferrer"
+                                                               key={index}
+                                                               className="text-secondary">
+                                                                <small>
+                                                                    <i className={"fa-2x mr-4 " + (i.social_network.fa_icon)}/>
+                                                                </small>
+                                                            </a>
+                                                        )
+                                                    }
                                                 )
                                                 : null
                                         }
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-4 f-video" style={{ padding: "0px" }}>
+                            <div className="col-4 f-video" style={{padding: "0px"}}>
                                 <i className={'fa fa-2x play-pause ' + (this.state.videoDesktopPlayIcon)}
-                                    onClick={this.playDesktopVideo.bind(this)}
+                                   onClick={this.playDesktopVideo.bind(this)}
                                 />
                                 <video ref={this.videoDesktopRef}
-                                    controls={false}
-                                    onClick={this.playDesktopVideo.bind(this)}
-                                    playsInline={true}
-                                    preload="metadata"
+                                       controls={false}
+                                       onClick={this.playDesktopVideo.bind(this)}
+                                       playsInline={true}
+                                       preload="metadata"
                                 >
-                                    <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4" />
+                                    <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4"/>
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
@@ -263,7 +261,7 @@ class CelebrityDetailsCardLayout extends Component {
                             <div className="col-12">
                                 <div className="f-video text-center" onClick={this.playMobileVideo.bind(this)}>
                                     <i className={'fa fa-2x play-pause ' + (this.state.videoMobilePlayIcon)}
-                                        onClick={this.playMobileVideo.bind(this)}
+                                       onClick={this.playMobileVideo.bind(this)}
                                     />
                                     <video
                                         preload="metadata"
@@ -278,49 +276,50 @@ class CelebrityDetailsCardLayout extends Component {
                                         playsInline={true}
                                         onClick={this.playMobileVideo.bind(this)}
                                     >
-                                        <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4" />
+                                        <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4"/>
                                         Your browser does not support the video tag.
                                     </video>
                                     <div className="f-avatar f-shadow">
                                         <img onLoad={this.handleImageLoaded}
-                                            src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
-                                            alt="avatar" />
+                                             src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
+                                             alt="avatar"/>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-7 m-2-6 pr-0">
-                                <div className="margin-left-5w">
-                                    <small className="font-weight-bold title">
-                                        {this.props.celebrity.full_name}
-                                    </small>
-                                </div>
+                                <small className="font-weight-bold title">
+                                    {this.props.celebrity.full_name}
+                                </small>
                             </div>
                             <div className="col-5 mt-3 pl-0 text-right">
                                 <div className="margin-right-5w" onClick={this.openModal}>
                                     <button className="btn btn-outline-primary btn-sm f-follow-button">
-                                        Comprar video
+                                        Contratar por: <ContractPriceLayout
+                                        classes={"text-white font-weight-bold"}
+                                        price={this.returnContractPrice()}
+                                        currency={this.props.currencyExchangeData.to}
+                                        rounding={true}
+                                    />
                                     </button>
                                 </div>
                             </div>
                             <div className="col-5 pr-0">
-                                <div className="margin-left-5w">
-                                    <small className="title text-warning">
-                                        <i className="fa fa-star fa-1x mr-1 text-warning" />
-                                        <i className="fa fa-star fa-1x mr-1 text-warning" />
-                                        <i className="fa fa-star fa-1x mr-1 text-warning" />
-                                        <i className="fa fa-star fa-1x mr-1 text-warning" />
-                                        <i className="fa fa-star fa-1x mr-1 text-warning" />
-                                    </small>
-                                    <br />
-                                    <small className="text-soft-grey font-weight-bold subtitle">Calificaciones</small>
-                                </div>
+                                <small className="title text-warning">
+                                    <i className="fa fa-star fa-1x mr-1 text-warning"/>
+                                    <i className="fa fa-star fa-1x mr-1 text-warning"/>
+                                    <i className="fa fa-star fa-1x mr-1 text-warning"/>
+                                    <i className="fa fa-star fa-1x mr-1 text-warning"/>
+                                    <i className="fa fa-star fa-1x mr-1 text-warning"/>
+                                </small>
+                                <br/>
+                                <small className="text-soft-grey font-weight-bold subtitle">Calificaciones</small>
                             </div>
                             <div className="col-7 pl-0 text-right">
                                 <div className="margin-right-5w">
                                     <small className="text-soft-grey subtitle">
                                         Categoría: <b>{this.props.celebrity.category}</b>
                                     </small>
-                                    <br />
+                                    <br/>
                                     <small className="text-soft-grey subtitle">
                                         Respuesta promedio: <b>1 a 2 días</b>
                                     </small>
@@ -360,14 +359,14 @@ class CelebrityDetailsCardLayout extends Component {
                         ?
                         <div className="d-block d-md-none profile-sm-foundation">
                             <div className="col-12 mt-4 text-justify">
-                                <div className="foundation" >
-                                    <i className="fas fa-hand-holding-heart" />
+                                <div className="foundation">
+                                    <i className="fas fa-hand-holding-heart"/>
                                     <img className="bookmark" src="/assets/img/bookmark.svg"
-                                        alt="bookmark" />
+                                         alt="bookmark"/>
                                     <div className="celebrity-data">
                                         <small>
                                             {this.props.celebrity.full_name} dona de
-                                            <br /> sus ingresos a:
+                                            <br/> sus ingresos a:
                                         </small>
                                     </div>
                                     <div className="cause-name">
