@@ -20,6 +20,7 @@ class TrendingVideoCardLayout extends Component {
         this.playDesktopContract = this.playDesktopContract.bind(this);
         this.goToContract = this.goToContract.bind(this);
         this.goToHire = this.goToHire.bind(this);
+        this.goToCelebrityProfile = this.goToCelebrityProfile.bind(this);
 
         this.videoDesktopRef = React.createRef();
         this.contractFav = React.createRef();
@@ -59,6 +60,10 @@ class TrendingVideoCardLayout extends Component {
         history._pushRoute(PATHS.CELEBRITY_PROFILE_CONTRACT.replace(":celebrity_username", this.props.publicContract.celebrity.username))
     }
 
+    goToCelebrityProfile(){
+        history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.publicContract.celebrity.username))
+    }
+
     render() {
         return (
             <div className="TrendingVideoCardLayout">
@@ -67,9 +72,9 @@ class TrendingVideoCardLayout extends Component {
                         <img className="avatar"
                              src={this.props.publicContract.celebrity ? this.props.publicContract.celebrity.avatar : ""}
                              alt={"-"}
-                             onClick={this.goToCelebrity}
+                             onClick={this.goToCelebrityProfile}
                         />
-                        <h5 className="full-name">
+                        <h5 className="full-name" onClick={this.goToCelebrityProfile}>
                             {this.props.publicContract.celebrity ? this.props.publicContract.celebrity.full_name : "----"}
                         </h5>
                         <div className="contract-button" onClick={this.goToHire}>
