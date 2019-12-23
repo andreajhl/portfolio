@@ -43,7 +43,7 @@ class SignUpPage extends Component {
     render() {
         return (
             <>
-                <PageContainer fetchCelebrities={false}>
+                <PageContainer fetchCelebrities={false} showFooter={window.innerWidth >= 768}>
                     <div className="SignInPage">
                         <div className="section">
                             <div className="auth-container">

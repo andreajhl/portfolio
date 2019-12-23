@@ -55,7 +55,7 @@ class CelebrityProfilePage extends Component {
     render() {
         return (
             <>
-                <PageContainer fetchCelebrities={false}>
+                <PageContainer fetchCelebrities={false} showFooter={window.innerWidth >= 768}>
                     <div style={{minHeight: "600px"}}>
                     {
                         this.props.celebrity.username === this.props.match.params.celebrity_username ?
@@ -77,7 +77,7 @@ class CelebrityProfilePage extends Component {
                                 {/* END CelebrityReviewsSection */}
 
                                 {/* CelebrityCardsSectionLayout */}
-                                <div style={{width: "calc(100vw - 15px)", height: "350px"}}
+                                <div style={{width: "calc(100vw - 15px)", height: "390px"}}
                                      ref={this.scrollDiv}>
                                     <CelebrityCardsSectionLayout
                                         title={"Famosos similares"}

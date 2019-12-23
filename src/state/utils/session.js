@@ -57,13 +57,26 @@ export class Session {
     };
 
     checkSession = () => {
-        const session = this.getSession();
-        if (session) {
-            if (this.utcSecondsToDatetime(session.exp) >= new Date()) {
-                history._pushRoute(PATHS.ROOT_PATH);
-            } else {
-                this.removeSession();
+        try {
+            let logged = "no";
+            if (this.getSession()) {
+                logged = "si";
+                if (this.getSession().client_status > 0) {
+
+                    const session = this.getSession();
+                    if (session) {
+                        if (this.utcSecondsToDatetime(session.exp) >= new Date()) {
+                            history._pushRoute(PATHS.ROOT_PATH);
+                        } else {
+                            this.removeSession();
+                        }
+                    }
+
+
+                }
             }
+        }catch (e) {
+            history._pushRoute(PATHS.ROOT_PATH);
         }
     };
 

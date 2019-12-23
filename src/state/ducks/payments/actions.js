@@ -1,15 +1,10 @@
 import * as types from "./types";
 import apiService from "../../utils/apiService";
-import {
-  handleApiErrors,
-  handleApiResponseFailure,
-  handleApiResponseSuccess
-} from "../../utils";
+import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
 import * as API_PATHS from "./paths";
-import { AssociateContract } from "../contracts/actions";
-import { history } from "../../../routing/History";
+import {history} from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
-import { doesNotReject } from "assert";
+import {AVAILABLE_CURRENCIES} from "../../../components/layouts/currency-dropdown/constants";
 
 export const listPaymentGateways = currency => {
   return dispatch => {
@@ -32,7 +27,6 @@ export const listPaymentGateways = currency => {
           // Other actions
 
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
-          dispatch(currencyExchange({ from: "USD", to: currency }));
         } else {
           handleApiResponseFailure(dispatch, TYPE, res);
           // Other actions
@@ -65,6 +59,13 @@ export const currencyExchange = params => {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
 
+          if (!AVAILABLE_CURRENCIES.find(
+              x => x.implemented_by_dlocal === false && x.name ===params.to
+          )) {
+            dispatch(listPaymentGateways(params.to))
+          } else {
+            dispatch(listPaymentGateways("USD"))
+          }
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
         } else {
           handleApiResponseFailure(dispatch, TYPE, res);
@@ -81,19 +82,11 @@ export const currencyExchange = params => {
 
 export const getContractToPay = contractReference => {
   return async dispatch => {
-    // Verify if there is a hash to associate
-    if (localStorage.getItem("hash")) {
-      console.log("llego");
-
-      await dispatch(AssociateContract(localStorage.getItem("hash")));
-      console.log("llego2");
-    }
-
     setTimeout(function() {
       // Get Contract to Pay
       const TYPE = types.GET_CONTRACT_TO_PAY_REQUEST;
       const FINAL_PATH =
-        API_PATHS.BASE_PATH + "contract-to-pay/" + contractReference + "/";
+          API_PATHS.BASE_PATH + "contract-to-pay/" + contractReference + "/";
       dispatch({ type: TYPE, payload: {} });
       apiService({
         method: "GET",
@@ -103,23 +96,23 @@ export const getContractToPay = contractReference => {
         params: null,
         body: null
       })
-        .then(res => {
-          if ("status" in res.data && res.data.status === "ERROR") {
-            handleApiResponseFailure(dispatch, TYPE, res);
-            // Other actions
-            history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
-          } else {
-            handleApiResponseSuccess(dispatch, TYPE, res);
-            // Other actions
-            dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
-          }
-        })
-        .catch(err => {
-          // history._pushRoute(ROUTING_PATHS.ROOT_PATH);
-          handleApiErrors(dispatch, TYPE, {
-            data: { api_error: err, error: "Server 500" }
+          .then(res => {
+            if ("status" in res.data && res.data.status === "ERROR") {
+              handleApiResponseFailure(dispatch, TYPE, res);
+              // Other actions
+              history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
+            } else {
+              handleApiResponseSuccess(dispatch, TYPE, res);
+              // Other actions
+              dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+            }
+          })
+          .catch(err => {
+            // history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+            handleApiErrors(dispatch, TYPE, {
+              data: { api_error: err, error: "Server 500" }
+            });
           });
-        });
     }, 1000);
   };
 };
@@ -207,5 +200,50 @@ export const createStripePayment = data => {
           data: { api_error: err, error: error }
         });
       });
+  };
+};
+
+
+export const createPayPalPayment = data => {
+  return dispatch => {
+    const TYPE = types.CREATE_PAYPAL_PAYMENT_REQUEST;
+    const FINAL_PATH = API_PATHS.BASE_PATH + "create-paypal-payment/";
+    dispatch({ type: TYPE, payload: {} });
+    apiService({
+      method: "POST",
+      action: TYPE,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false
+    })
+        .then(res => {
+          if ("status" in res.data && res.data.status === "ERROR") {
+            handleApiResponseFailure(dispatch, TYPE, res);
+          } else {
+            handleApiResponseSuccess(dispatch, TYPE, res);
+            // Other actions
+
+            history._pushRoute(
+                ROUTING_PATHS.CONTRACT_CREATED.replace(
+                    ":contract_reference",
+                    res.data.reference
+                )
+            );
+
+            dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+          }
+        })
+        .catch(err => {
+          // history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+          let error = "Server 500";
+          if (err.response.data.error) {
+            error = err.response.data.error;
+          }
+          handleApiErrors(dispatch, TYPE, {
+            data: { api_error: err, error: error }
+          });
+        });
   };
 };

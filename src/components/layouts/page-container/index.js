@@ -20,7 +20,7 @@ class PageContainer extends Component {
         this.onSearchChange = this.onSearchChange.bind(this);
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         if(this.props.fetchCelebrities) {
             const queryParams = this.props.queryParams;
             queryParams["page"] = 1;
@@ -47,6 +47,8 @@ class PageContainer extends Component {
                         showInputSearchSm={this.props.showInputSearchSm}
                         showSearch={this.props.showSearch}
                         showNavbarButtons={this.props.showNavbarButtons}
+                        showSearchWeb={this.props.showSearchWeb}
+                        showLogin={this.props.showLogin}
                     />
                     : null
                 }
@@ -84,11 +86,14 @@ PageContainer.defaultProps = {
     showFooter: true,
     showNavbar: true,
     showSearch: true,
-    showNavbarButtons: true
+    showNavbarButtons: true,
+    showSearchWeb: true,
+    showInputSearchSm: true,
+    showLogin: true
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     isLoading: state.celebrities.fetchCelebritiesReducer.loading,
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
     paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data,

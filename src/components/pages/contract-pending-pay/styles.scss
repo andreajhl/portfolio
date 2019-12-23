@@ -1,0 +1,59 @@
+div.ContractPendingPayPage {
+  .logoFamosos {
+    position: absolute;
+    margin-top: -4rem;
+    margin-left: -1rem !important;
+  }
+  .textDescription {
+    font-size: small;
+  }
+
+  .price {
+    font-size: 2rem;
+  }
+
+  .f-container {
+    background: no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10rem;
+    z-index: 2000;
+    background-image: url("/assets/img/Pattern-Fiesta.png"),
+      linear-gradient(180deg, #f9ef7f 0%, #e1bc29 100%);
+
+    .f-card {
+      margin-top: 6rem;
+    }
+
+    .f-back {
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      border-radius: 30px;
+      border: solid 3px;
+      padding: 5px 15px;
+    }
+  }
+
+  .rounded-circle {
+    display: inline-block;
+    width: 140px;
+    height: 140px;
+    background-position: 50% 50%;
+    background-size: cover;
+    border-radius: 50%;
+    border: solid white 3px !important;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}

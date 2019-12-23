@@ -36,12 +36,20 @@ class CelebrityCardLayout extends Component {
     getCelebrityCountryImage() {
         const a = this.props.countries.find(x => x.alpha3Code === this.props.celebrity.country_code);
         if (a) {
-            return <img src={a.flag} alt="flag" width="17px"/>
+            return <img src={a.alpha3Code === "USA" ? "/assets/img/usa.svg" : a.flag} alt="flag" width="17px"/>
         }
         return <span className="text-white spinner-grow spinner-grow-sm"
                      role="status"
                      aria-hidden="true"
         />
+    }
+
+    returnContractPrice(){
+        if(this.props.currencyExchangeData.rate > 1){
+            return (this.props.celebrity.contracts_price * this.props.currencyExchangeData.rate) + this.props.celebrity.contracts_price
+        }else{
+            return this.props.celebrity.contracts_price
+        }
     }
 
     render() {
@@ -59,7 +67,12 @@ class CelebrityCardLayout extends Component {
                                  src={this.props.celebrity.avatar}
                             />
                             <span className="f-price f-rounded f-shadow font-weight-bold">
-                                <ContractPriceLayout classes={"text-black font-weight-bold"} price={this.props.celebrity.contracts_price} />
+                                <ContractPriceLayout
+                                    classes={"text-black font-weight-bold"}
+                                    price={this.returnContractPrice()}
+                                    currency={this.props.currencyExchangeData.to}
+                                    rounding={true}
+                                />
                             </span>
                         </div>
                     </div>
@@ -110,7 +123,8 @@ CelebrityCardLayout.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    countries: state.restCountries.fetchCountriesReducer.data
+    countries: state.restCountries.fetchCountriesReducer.data,
+    currencyExchangeData: state.payments.currencyExchangeReducer.data
 });
 
 // mapStateToProps

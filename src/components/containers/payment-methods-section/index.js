@@ -3,9 +3,11 @@ import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 import {StripeCardForm} from "../stripe-card-form";
+import {PayPalCardForm} from "../pay-pal-card-form";
 
 
 class PaymentMethodsSection extends Component {
+
     constructor(props) {
         super(props);
 
@@ -16,43 +18,17 @@ class PaymentMethodsSection extends Component {
             paymentMethod: {}
         };
 
-        this.handlePaymentMethod = this.handlePaymentMethod.bind(this);
-        this.handlePaymentType = this.handlePaymentType.bind(this);
-        this.tokenizeStripeCard = this.tokenizeStripeCard.bind(this);
-
         this.stripeCardForm = React.createRef();
     }
 
-    componentWillUpdate(
-        nextProps: Readonly<P>,
-        nextState: Readonly<S>,
-        nextContext: any
-    ): void {
-        if (nextProps.isLoading && !this.props.isLoading) {
+    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+        if (nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to) {
             this.setState({
-                currency: this.props.currencyExchangeData.to,
+                currency: nextProps.currencyExchangeData.to,
                 gatewayName: "",
                 paymentType: "",
                 paymentMethod: {}
-            });
-        }
-        if (nextProps.paymentGateways.length && nextProps.isCompleted) {
-            this.preselectMethdo(nextProps.paymentGateways)
-        }
-    }
-
-    preselectMethdo(paymentGateways) {
-        if(paymentGateways.length) {
-            try {
-                paymentGateways.forEach(paymentGateway => {
-                    if(paymentGateway["payment-methods"].length){
-                        const pm_card = paymentGateway["payment-methods"].find(item => item.name === "CARD");
-                        this.handlePaymentType(pm_card)
-                    }
-                })
-            }catch (e) {
-
-            }
+            })
         }
     }
 
@@ -62,25 +38,18 @@ class PaymentMethodsSection extends Component {
                 {
                     paymentType: method.name,
                     gatewayName: method.gateway_name,
-                    paymentMethod: method["available-methods"][0]
+                    paymentMethod: {}
                 },
                 () => {
                     this.props.onSelectPaymentType(method);
-                    this.props.onSelectPaymentMethod(method["available-methods"][0]);
                 }
             );
         }
     }
 
-    handlePaymentMethod(identifier) {
-        this.setState(
-            {
-                paymentMethod: identifier
-            },
-            () => {
-                this.props.onSelectPaymentMethod(identifier);
-            }
-        );
+    handlePaymentMethod(paymentMethod) {
+        this.setState({paymentMethod});
+        this.props.onSelectPaymentMethod(paymentMethod)
     }
 
     loopPaymentGateways() {
@@ -108,9 +77,8 @@ class PaymentMethodsSection extends Component {
                             <div
                                 className="payment-type mb-3"
                                 key={"method_" + index}
-                                onClick={this.handlePaymentType.bind(this, method)}
                             >
-                                <div className="titles">
+                                <div className="titles" onClick={this.handlePaymentType.bind(this, method)}>
                                     <div className="icon">
                                         {method.name === "CARD" && (
                                             <i className="fa fa-credit-card"/>
@@ -132,7 +100,7 @@ class PaymentMethodsSection extends Component {
                                                 <span>Tarjeta de débito</span>
                                             )}
                                             {method.name === "TICKET" && <span>Efectivo</span>}
-                                            {method.name === "OTHER" && <span>Otros</span>}
+                                            {method.name === "OTHER" && <span>PayPal</span>}
                                         </h6>
                                     </div>
                                 </div>
@@ -149,55 +117,60 @@ class PaymentMethodsSection extends Component {
         }
     }
 
-    tokenizeStripeCard() {
-        this.stripeCardForm.current.tokenizeStripeCard();
-    }
-
     renderPaymentTypeOptions(methods) {
-        if (this.state.gatewayName === "STRIPE") {
-            return (
-                <div className="pl-3 pr-3 pt-4 bg-light">
-                    <StripeCardForm
-                        ref={this.stripeCardForm}
-                        onTokenizeCard={this.props.onTokenizeStripeCard}
-                    />
-                </div>
-            );
-        } else {
-            return (
-                <div className="available-options bg-light">
-                    {methods.map((method, index) => {
-                        return (
-                            <div
-                                className="available-option"
-                                key={"method_" + method.identifier + index}
-                                onClick={this.handlePaymentMethod.bind(this, method)}
-                            >
-                                <div className="available-option-circle">
-                                    <div
-                                        className={
-                                            "available-option-circle-button " +
-                                            (this.state.paymentMethod.identifier ===
-                                                method.identifier &&
-                                                this.state.paymentMethod.brand === method.brand &&
-                                                " active ")
-                                        }
-                                    />
+        switch (this.state.gatewayName) {
+            case "PAYPAL":
+                return (
+                    <div className="pl-3 pr-3 pt-4 bg-light">
+                        <PayPalCardForm
+                            onPayPalResponse={this.props.onPayPalResponse}
+                            contractPrice={this.props.contractData.price}
+                            paymentMethod={methods.find(x => x.identifier === "PAYPAL")}
+                        />
+                    </div>
+                );
+            case "STRIPE":
+                return (
+                    <div className="pl-3 pr-3 pt-4 bg-light">
+                        <StripeCardForm
+                            ref={this.stripeCardForm}
+                            onStripeResponse={this.props.onStripeResponse}
+                            onTokenizeCard={this.props.onTokenizeStripeCard}
+                            paymentMethod={methods.find(x => x.identifier === "STRIPE")}
+                        />
+                    </div>
+                );
+            default:
+                return (
+                    <div className="available-options bg-light">
+                        {methods.map((method, index) => {
+                            return (
+                                <div
+                                    className="available-option"
+                                    key={"method_" + method.identifier + index}
+                                    onClick={this.handlePaymentMethod.bind(this, method)}
+                                >
+                                    <div className="available-option-circle">
+                                        <div
+                                            className={
+                                                "available-option-circle-button " +
+                                                (this.state.paymentMethod.identifier ===
+                                                    method.identifier &&
+                                                    this.state.paymentMethod.brand === method.brand &&
+                                                    " active ")
+                                            }
+                                        />
+                                    </div>
+                                    <div className="available-option-logo">
+                                        <img src={method.logo} alt="logo" width="30px"/>
+                                        <small className="text-title">{method.name}</small>
+                                    </div>
                                 </div>
-                                <div className="available-option-logo">
-                                    <img src={method.logo} alt="logo" width="30px"/>
-                                    <small className="text-title">{method.name}</small>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-            );
+                            );
+                        })}
+                    </div>
+                );
         }
-    }
-
-    tokenizeStripeCard() {
-        this.stripeCardForm.current.tokenizeCard();
     }
 
     render() {
@@ -207,7 +180,7 @@ class PaymentMethodsSection extends Component {
                     2. Elige un método de pago.
                     <small className="ml-1 text-danger">*</small>
                 </h6>
-                <div className={"payment-types f-rounded"}>
+                <div className={"payment-types f-rounded"} style={this.props.isLoading ? {opacity: "0.2"} : {}}>
                     {this.loopPaymentGateways()}
                 </div>
             </div>
@@ -215,18 +188,19 @@ class PaymentMethodsSection extends Component {
     }
 }
 
-// Set propTypes
-PaymentMethodsSection.propTypes = {};
-
 // Set defaultProps
 PaymentMethodsSection.defaultProps = {
-    tokenizeStripeCard: () => {
+    onStripeResponse: () => {
+    },
+    onPayPalResponse: () => {
     },
     onSelectPaymentMethod: () => {
     },
     onSelectPaymentType: () => {
-    }
+    },
+    contractData: {},
 };
+
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({

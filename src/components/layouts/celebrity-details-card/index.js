@@ -4,6 +4,7 @@ import { ContractModal } from "../../containers";
 import * as GTM from "../../../state/utils/gtm";
 import { history } from "../../../routing/History";
 import {ContractPriceLayout} from "../contract-price";
+import {connect} from "react-redux";
 
 class CelebrityDetailsCardLayout extends Component {
 
@@ -41,7 +42,7 @@ class CelebrityDetailsCardLayout extends Component {
         this.setState({
             showContractModal: true
         }, () => {
-            history._pushRoute(this.props.celebrity.username + "?modalOpened=true");
+            history._pushRoute(this.props.celebrity.username + "/contratar");
         });
     }
 
@@ -102,6 +103,14 @@ class CelebrityDetailsCardLayout extends Component {
         window.location.replace(this.props.celebrity.cause_url)
     }
 
+    returnContractPrice(){
+        if(this.props.currencyExchangeData.rate > 1){
+            return (this.props.celebrity.contracts_price * this.props.currencyExchangeData.rate) + this.props.celebrity.contracts_price
+        }else{
+            return this.props.celebrity.contracts_price
+        }
+    }
+
     render() {
         return (
             <div className="CelebrityDetailsCardLayout mb-2 pb-2">
@@ -133,7 +142,12 @@ class CelebrityDetailsCardLayout extends Component {
                                                 <div
                                                     onClick={this.openModal}
                                                     className="bg-primary f-contract f-rounded hover cursor-pointer text-uppercase">
-                                                    Comprar video por <ContractPriceLayout classes={"text-white"} price={this.props.celebrity.contracts_price} />
+                                                    Comprar video por <ContractPriceLayout
+                                                    classes={"text-white"}
+                                                    price={this.returnContractPrice()}
+                                                    currency={this.props.currencyExchangeData.to}
+                                                    rounding={true}
+                                                />
                                                     <i className="ml-2 fa fa-arrow-right text-white" />
                                                 </div>
                                             </div>
@@ -315,7 +329,12 @@ class CelebrityDetailsCardLayout extends Component {
                         </div>
                         {/*<div className="footer-btn my-auto p-4" onClick={this.openModal}>*/}
                         {/*    <small className="ml-0 float-left text-uppercase text-white font-weight-bold">*/}
-                        {/*        Comprar video por <ContractPriceLayout classes={"text-white font-weight-bold"} price={this.props.celebrity.contracts_price} />*/}
+                        {/*        Comprar video por <ContractPriceLayout*/}
+                        {/*        classes={"text-white font-weight-bold"}*/}
+                        {/*        price={this.returnContractPrice()}*/}
+                        {/*        currency={this.props.currencyExchangeData.to}*/}
+                        {/*        rounding={true}*/}
+                        {/*    />*/}
                         {/*    </small>*/}
                         {/*    <i className="fa fa-arrow-right float-right text-white" style={{ fontSize: "26px" }} />*/}
                         {/*</div>*/}
@@ -393,4 +412,14 @@ CelebrityDetailsCardLayout.defaultProps = {
     socialNetworks: []
 };
 
-export { CelebrityDetailsCardLayout };
+// mapStateToProps
+const mapStateToProps = (state: any) => ({
+    currencyExchangeData: state.payments.currencyExchangeReducer.data
+});
+
+// mapStateToProps
+const mapDispatchToProps = {};
+
+// Export Class
+const _CelebrityDetailsCardLayout = connect(mapStateToProps, mapDispatchToProps)(CelebrityDetailsCardLayout);
+export {_CelebrityDetailsCardLayout as CelebrityDetailsCardLayout};

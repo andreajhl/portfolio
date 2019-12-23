@@ -53,6 +53,9 @@
             top: -5px;
             right: 12px;
             max-height: 35px;
+            border: solid 2px $primary;
+            background: transparent !important;
+            color: $primary !important;
           }
 
           .f-register-button:hover {
@@ -135,10 +138,6 @@
     padding: 20px 10px 0;
     height: 72px;
     top: 50px;
-  }
-
-  .f-register-button {
-    top: 0px !important;
   }
 
   .btn:hover {
