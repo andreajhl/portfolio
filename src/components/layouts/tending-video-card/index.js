@@ -6,6 +6,7 @@ import {ContractFavsLayout} from "../contract-favs";
 import {ContractCommentsLayout} from "../contract-comments";
 import {contractOperations} from "../../../state/ducks/contracts";
 import {connect} from "react-redux";
+import * as GTM from "../../../state/utils/gtm";
 
 class TrendingVideoCardLayout extends Component {
 
@@ -53,14 +54,26 @@ class TrendingVideoCardLayout extends Component {
     }
 
     goToContract() {
+        GTM.tagManagerDataLayer(
+            "CLICK_ON_TRENDING_VIDEO_CONTRACT_DETAILS_BUTTON",
+            this.props.publicContract
+        );
         history._pushRoute(PATHS.HIRING_PREVIEW.replace(":contract_reference", this.props.publicContract.contract_reference))
     }
 
     goToHire(){
+        GTM.tagManagerDataLayer(
+            "CLICK_ON_TRENDING_VIDEO_HIRE_BUTTON",
+            this.props.publicContract
+        );
         history._pushRoute(PATHS.CELEBRITY_PROFILE_CONTRACT.replace(":celebrity_username", this.props.publicContract.celebrity.username))
     }
 
     goToCelebrityProfile(){
+        GTM.tagManagerDataLayer(
+            "CLICK_ON_TRENDING_VIDEO_CELEBRITY_DETAILS_BUTTON",
+            this.props.publicContract
+        );
         history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.publicContract.celebrity.username))
     }
 

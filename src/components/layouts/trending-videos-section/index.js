@@ -4,6 +4,7 @@ import "./styles.scss";
 import {TrendingVideoCardLayout} from "../tending-video-card";
 import {PaginationLayout} from "../pagination";
 import {contractOperations} from "../../../state/ducks/contracts";
+import * as GTM from "../../../state/utils/gtm";
 
 class TrendingVideosSectionLayout extends Component {
 
@@ -34,7 +35,11 @@ class TrendingVideosSectionLayout extends Component {
         this.setState({
             params
         }, ()=> {
-            this.props.fetchTrendingContracts(this.state.params)
+            this.props.fetchTrendingContracts(this.state.params);
+            GTM.tagManagerDataLayer(
+                "NEW_FETCH_ON_TRENDING_VIDEOS",
+                this.state.params
+            );
         })
     }
 
@@ -83,9 +88,6 @@ class TrendingVideosSectionLayout extends Component {
                         onPaginationChange={this.onPaginationChange}
                     />
                     {/* End PaginationLayout */}
-                    <br/>
-                    <br/>
-                    <br/>
                 </div>
             </div>
         );
