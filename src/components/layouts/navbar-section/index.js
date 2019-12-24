@@ -16,7 +16,8 @@ class NavbarSectionLayout extends Component {
         super(props);
 
         this.state = {
-            showSearch: this.props.showInputSearchSm
+            showSearch: this.props.showInputSearchSm,
+            dropdownOpened: false
         };
 
         this.session = new Session();
@@ -27,16 +28,44 @@ class NavbarSectionLayout extends Component {
         this.logout = this.logout.bind(this);
         this.showSearch = this.showSearch.bind(this);
         this.goToProfile = this.goToProfile.bind(this);
+        this.openLanding = this.openLanding.bind(this);
+
+        this.dropdownClick = this.dropdownClick.bind(this);
+
     }
 
     componentDidMount() {
         this.setState({
             showSearch: new URLSearchParams(history.location.search).get("showInputSearchSm")
         }, () => this.updateClasses());
+        document.getElementsByClassName("page-container-children")[0].addEventListener("click", () => {
+            this.dropdownClick(false);
+        });
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
         this.updateClasses()
+    }
+
+    dropdownClick(status = null) {
+        let finalStatus = !this.state.dropdownOpened;
+        if (status === false) {
+            finalStatus = status;
+        }
+        this.setState({
+            dropdownOpened: finalStatus
+        }, () => {
+            const initialClass = "page-container-children-helper";
+            if (this.state.dropdownOpened) {
+                document.getElementsByClassName(initialClass)[0].className += " active "
+            } else {
+                document.getElementsByClassName(initialClass)[0].className = initialClass;
+            }
+        })
+    }
+
+    openLanding() {
+        window.location.href = "https://landing.famosos.com"
     }
 
     goToRootPath() {
@@ -62,10 +91,6 @@ class NavbarSectionLayout extends Component {
 
     goToProfile() {
         history._pushRoute(PATHS.CLIENT_HIRINGS)
-    }
-
-    goToTrending() {
-        history._pushRoute(PATHS.TRENDING)
     }
 
     logout() {
@@ -257,34 +282,62 @@ class NavbarSectionLayout extends Component {
                                 </div>
                                 <div className="float-right float-right-sm">
                                     {
-                                        logged === "no"
+                                        logged === "no" || logged === "dummy"
                                             ?
                                             <>
                                                 <div className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center"
                                                      style={{display: "flex"}}
                                                 >
-                                                    <a className="btn btn-sm mr-2" onClick={this.goToTrending}>
-                                                        <img width={"32px"} src={"/assets/img/trending.svg"}
-                                                             className={"cursor-pointer"}/>
+                                                    <a className="btn btn-sm mr-3" onClick={this.showSearch}>
+                                                        <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
                                                     </a>
-                                                    {/*{this.props.showInputSearchSm ?*/}
-                                                    {/*    <a className="btn btn-sm mr-3" onClick={this.showSearch}>*/}
-                                                    {/*        <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>*/}
-                                                    {/*    </a>*/}
-                                                    {/*    :*/}
-                                                    {/*    ''*/}
-                                                    {/*}*/}
-                                                    {
-                                                        this.props.showLogin
-                                                        &&
-                                                        <button
-                                                            className="btn btn-primary btn-sm mt-2 f-register-button"
-                                                            onClick={this.goToSignUpPath}>
-                                                            Ingresar
-                                                        </button>
-                                                    }
-                                                    <div className="div-currency">
+                                                    <div className="div-currency mr-2">
                                                         <CurrencyDropdownLayout/>
+                                                    </div>
+                                                    <div className="dropdown">
+                                                        <button className="btn btn-outline-dark dropdown-toggle"
+                                                                type="button" id="dropdownMenuButton"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false"
+                                                                onClick={this.dropdownClick}
+                                                        >
+                                                            <i className="fa fa-bars"/>
+                                                        </button>
+                                                        <div className="dropdown-menu dropdown-menu-right"
+                                                             aria-labelledby="dropdownMenuButton"
+                                                             style={this.state.dropdownOpened ? {display: "block"} : {}}
+                                                        >
+                                                            <a className="dropdown-item"
+                                                               href="#"
+                                                               onClick={this.openLanding}
+                                                            >
+                                                                ¿Cómo funciona?
+                                                            </a>
+                                                            <NavLink className="dropdown-item"
+                                                                     activeClassName='active'
+                                                                     to={PATHS.TRENDING}
+                                                            >
+                                                                Tendencias
+                                                            </NavLink>
+                                                            <NavLink className="dropdown-item"
+                                                                     activeClassName='active'
+                                                                     to={PATHS.SIGN_IN_PATH}
+                                                            >
+                                                                Iniciar sesión
+                                                            </NavLink>
+                                                            <NavLink className="dropdown-item"
+                                                                     activeClassName='active'
+                                                                     to={PATHS.SIGN_UP_PATH}
+                                                            >
+                                                                Registrarme
+                                                            </NavLink>
+                                                            <NavLink className="dropdown-item"
+                                                                     activeClassName='active'
+                                                                     to={PATHS.CELEBRITY_REQUEST}
+                                                            >
+                                                                Aplicar
+                                                            </NavLink>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </>
@@ -296,65 +349,56 @@ class NavbarSectionLayout extends Component {
                                             <>
                                                 <div
                                                     className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center div-buttons-sm">
-                                                    <a className="btn btn-sm" onClick={this.goToTrending}>
-                                                        <img width={"28px"} src={"/assets/img/trending.svg"}
-                                                             className={"cursor-pointer"}/>
+                                                    <a className="btn btn-sm mr-3" onClick={this.showSearch}>
+                                                        <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
                                                     </a>
-                                                    {/*{this.props.showInputSearchSm ?*/}
-                                                    {/*    <a className="btn btn-sm mr-2" onClick={this.showSearch}>*/}
-                                                    {/*        <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>*/}
-                                                    {/*    </a>*/}
-                                                    {/*    :*/}
-                                                    {/*    ''*/}
-                                                    {/*}*/}
-                                                    <NavLink className=" btn btn-sm mr-2"
-                                                             activeClassName='active'
-                                                             to={PATHS.CLIENT_HIRINGS}
-                                                    >
-                                                        <i className="mr-1 fa fa-clipboard fa-2x"/>
-                                                        <span className="font-weight-bold ml-1"/>
-                                                    </NavLink>
-                                                    <NavLink className="btn btn-sm mr-2"
-                                                             activeClassName='active'
-                                                             to={PATHS.CLIENT_PROFILE}
-                                                    >
-                                                        <i className="mr-1 fa fa-user fa-2x"/>
-                                                        <span className="font-weight-bold ml-1"/>
-                                                    </NavLink>
-                                                    <div className="div-currency">
+                                                    <div className="div-currency mr-2">
                                                         <CurrencyDropdownLayout/>
                                                     </div>
-                                                </div>
-                                            </>
-                                            : ""
-                                    }
-                                    {
-                                        logged === "dummy"
-                                            ?
-                                            <>
-                                                <div
-                                                    className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center div-buttons-sm">
-                                                    <a className="btn btn-sm mr-2" onClick={this.goToTrending}>
-                                                        <img width={"28px"} src={"/assets/img/trending.svg"}
-                                                             className={"cursor-pointer"}/>
-                                                    </a>
-                                                    {
-                                                        this.props.showLogin
-                                                            ?
-                                                            (
-                                                                <>
-                                                                    <button
-                                                                        className="btn btn-primary btn-sm mt-2 f-register-button"
-                                                                        onClick={this.goToSignUpPath}>
-                                                                        Ingresar
-                                                                    </button>
-                                                                </>
-                                                            ) : (
-                                                                <></>
-                                                            )
-                                                    }
-                                                    <div className="div-currency">
-                                                        <CurrencyDropdownLayout/>
+                                                    <div className="dropdown">
+                                                        <button className="btn btn-outline-dark dropdown-toggle"
+                                                                type="button" id="dropdownMenuButton"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false"
+                                                                onClick={this.dropdownClick}
+                                                        >
+                                                            <i className="fa fa-bars"/>
+                                                        </button>
+                                                        <div className="dropdown-menu dropdown-menu-right f-shadow"
+                                                             aria-labelledby="dropdownMenuButton"
+                                                             style={this.state.dropdownOpened ? {display: "block"} : {}}
+                                                        >
+                                                            <NavLink className=" btn btn-sm mr-2"
+                                                                     activeClassName='active'
+                                                                     to={PATHS.CLIENT_HIRINGS}
+                                                            >
+                                                                Mis contrataciones
+                                                            </NavLink>
+                                                            <NavLink className="btn btn-sm mr-2"
+                                                                     activeClassName='active'
+                                                                     to={PATHS.CLIENT_PROFILE}
+                                                            >
+                                                                Mi perfil
+                                                            </NavLink>
+                                                            <a className="dropdown-item"
+                                                               href="#"
+                                                               onClick={this.openLanding}
+                                                            >
+                                                                ¿Cómo funciona?
+                                                            </a>
+                                                            <NavLink className="dropdown-item"
+                                                                     activeClassName='active'
+                                                                     to={PATHS.TRENDING}
+                                                            >
+                                                                Tendencias
+                                                            </NavLink>
+                                                            <NavLink className="dropdown-item"
+                                                                     activeClassName='active'
+                                                                     to={PATHS.CELEBRITY_REQUEST}
+                                                            >
+                                                                Aplicar
+                                                            </NavLink>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </>

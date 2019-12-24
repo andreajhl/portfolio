@@ -52,49 +52,39 @@ class SignInMethodsForm extends Component {
         return (
             <div className="SignInMethodsForm">
                 {
-                    !this.state.showMethods
-                        ?
-                        <div className="show-methods-label" onClick={this.showMethods}>
-                            <span>Ver otros métodos de ingreso</span>
-                        </div>
-                        :
-                        <>
-                            {
-                                this.props.cellphone
-                                &&
-                                <button
-                                    className="sign-in-with-cellphone-button text-left"
-                                    onClick={this.goToSignInWithCellphone}
-                                >
-                                    <i className="fa fa-sms mr-3 ml-2"/>
-                                    <span>Ingresar con mi celular</span>
-                                </button>
-                            }
-                            {
-                                this.props.whatsapp
-                                &&
-                                <>
-                                    {/*<button*/}
-                                    {/*    className="sign-in-with-whatsapp-button text-left"*/}
-                                    {/*    onClick={this.goToSignInWithWhatsApp}*/}
-                                    {/*>*/}
-                                    {/*    <img className="cursor-pointer mr-3 ml-2" src="/assets/img/whatsapp-black.svg"/>*/}
-                                    {/*    <span>Ingresar con mi WhatsApp</span>*/}
-                                    {/*</button>*/}
-                                </>
-                            }
-                            {
-                                this.props.email
-                                &&
-                                <button
-                                    className="sign-in-with-email-button text-left"
-                                    onClick={this.goToSignInWithEmail}
-                                >
-                                    <i className="fa fa-envelope mr-3 ml-2"/>
-                                    <span>Ingresar con mi correo</span>
-                                </button>
-                            }
-                        </>
+                    this.props.cellphone
+                    &&
+                    <button
+                        className="sign-in-with-cellphone-button text-left"
+                        onClick={this.goToSignInWithCellphone}
+                    >
+                        <i className="fa fa-sms mr-3 ml-2"/>
+                        <span>Ingresar con mi celular</span>
+                    </button>
+                }
+                {
+                    this.props.whatsapp
+                    &&
+                    <>
+                        {/*<button*/}
+                        {/*    className="sign-in-with-whatsapp-button text-left"*/}
+                        {/*    onClick={this.goToSignInWithWhatsApp}*/}
+                        {/*>*/}
+                        {/*    <img className="cursor-pointer mr-3 ml-2" src="/assets/img/whatsapp-black.svg"/>*/}
+                        {/*    <span>Ingresar con mi WhatsApp</span>*/}
+                        {/*</button>*/}
+                    </>
+                }
+                {
+                    this.props.email
+                    &&
+                    <button
+                        className="sign-in-with-email-button text-left"
+                        onClick={this.goToSignInWithEmail}
+                    >
+                        <i className="fa fa-envelope mr-3 ml-2"/>
+                        <span>Ingresar con mi correo</span>
+                    </button>
                 }
             </div>
         );

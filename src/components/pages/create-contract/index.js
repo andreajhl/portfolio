@@ -189,8 +189,8 @@ class CreateContractPage extends Component {
         <>
           <PageContainer showFooter={false} showLogin={false} showInputSearchSm={false} showSearchWeb={false}
                          fetchCelebrities={false}>
-            <div className="container CreateContractPage my-4" style={{zoom: "80%"}}>
-              <div className="row centerForm">
+            <div className="container CreateContractPage" style={{zoom: "80%"}}>
+              <div className="row centerForm p-4">
                 <div className="col-12 col-md-8">
                   <div className="mb-4 titleMessage">
                     <small className="text-white">

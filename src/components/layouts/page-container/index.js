@@ -5,8 +5,7 @@ import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {NavbarSectionLayout} from "../navbar-section";
 import {FooterLayout} from "../footer";
-import {BottomNavbarSectionLayout} from "../bottom-navbar-section";
-
+import "./styles.scss"
 
 class PageContainer extends Component {
 
@@ -53,8 +52,10 @@ class PageContainer extends Component {
                     : null
                 }
                 {/* End NavbarSectionLayout */}
-
-                {this.props.children}
+                <div className="page-container-children">
+                    {this.props.children}
+                    <div className="page-container-children-helper"/>
+                </div>
 
                 {/* FooterLayout */}
                 {this.props.showFooter ? <FooterLayout/> : null}

@@ -167,6 +167,37 @@
     }
   }
 
+  .dropdown {
+    background-color: white;
+    padding: 0;
+
+    .dropdown-item{
+      padding: 10px;
+      border-bottom: solid 1px #ccc;
+    }
+
+    .dropdown-toggle::after{
+      color: $dark !important;
+      display: none;
+    }
+    .btn-outline-dark:hover{
+      background-color: white !important;
+      color: $dark !important;
+    }
+
+    &:active, &:hover {
+      background-color: white !important;
+      i {
+        color: $dark !important;
+      }
+    }
+
+    position: relative;
+    top: 3px;
+    height: 42px;
+    font-size: 20px;
+  }
+
 
 }
 

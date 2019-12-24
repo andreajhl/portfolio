@@ -476,3 +476,10 @@ input, select {
 .StripeCardElementLayout {
   zoom: 100%;
 }
+
+.dropdown-menu-right {
+  right: -7px !important;
+  left: auto !important;
+  padding: 0;
+  margin-top: 9px;
+}
