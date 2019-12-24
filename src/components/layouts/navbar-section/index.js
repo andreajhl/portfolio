@@ -352,8 +352,9 @@ class NavbarSectionLayout extends Component {
                                         logged === "si"
                                             ?
                                             <>
-                                                <div
-                                                    className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center div-buttons-sm">
+                                                <div className="col-sm-2 pt-0 ml-0 pl-0 mb-0 pb-0 text-center"
+                                                     style={{display: "flex"}}
+                                                >
                                                     <a className="btn btn-sm mr-3" onClick={this.showSearch}>
                                                         <i className={"fa fa-search fa-2x" + (this.state.showSearch ? " text-primary " : "")}/>
                                                     </a>
