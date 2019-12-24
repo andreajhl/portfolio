@@ -29,54 +29,11 @@ class FlagsSelect extends Component {
             let items = nextProps.countries;
             const countries = [];
             const customLabels = {};
-            const sorting = [
-                "AGR",
-                "BOL",
-                "CHL",
-                "COL",
-                "CRC",
-                "CUB",
-                "DOM",
-                "ECU",
-                "SLV",
-                "GNQ",
-                "GTM",
-                "HND",
-                "MEX",
-                "NIC",
-                "PAN",
-                "PRY",
-                "PER",
-                "ESP",
-                "URY",
-                "VEN",
-                "USA",
-            ];
 
-            const sorting_result = [];
-            const unsorting_result = [];
-
-            sorting.forEach(function (key) {
-                var found = false;
-                items = items.filter(function (item) {
-                    if (!found && item["alpha3Code"] === key) {
-                        sorting_result.push(item);
-                        found = true;
-                        return false;
-                    }  else if (!found && !sorting.includes(item["alpha3Code"])) {
-                        unsorting_result.push(item);
-                        return false;
-                    } else {
-                        return true;
-                    }
-                })
-            });
-
-            const final_list = sorting_result.concat(unsorting_result);
-
-            final_list.forEach(c => {
+            nextProps.countries.forEach(c => {
+                const name = " " + c.name;
                 countries.push(c.alpha2Code);
-                customLabels[c.alpha2Code] = "+" + c.callingCodes[0] + " " + c.name;
+                customLabels[c.alpha2Code] = "+" + c.callingCodes[0] + name;
             });
 
             this.setState({countries, customLabels})

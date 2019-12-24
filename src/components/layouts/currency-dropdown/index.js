@@ -3,6 +3,7 @@ import "./styles.scss";
 import {AVAILABLE_CURRENCIES} from "./constants";
 import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class CurrencyDropdownLayout extends Component {
@@ -48,6 +49,12 @@ class CurrencyDropdownLayout extends Component {
                 from: "USD",
                 to: currency.name
             });
+            GTM.tagManagerDataLayer(
+                "CLICK_ON_DROPDOWN_CURRENCY",
+                {
+                    to: currency.name
+                }
+            );
         })
     }
 

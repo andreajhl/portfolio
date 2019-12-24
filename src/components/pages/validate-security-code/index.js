@@ -44,9 +44,7 @@ class ValidateSecurityCodePage extends Component {
                     <div className="SignInPage">
                         <div className="section">
                             <div className="auth-container">
-                                <div className="logo">
-                                    <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
-                                </div>
+                                <h3 className="font-weight-bold text-center">Confirmación de código de seguridad</h3>
                                 <div className="custom-form">
                                     {this.returnSpecificForm()}
                                 </div>

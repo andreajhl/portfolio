@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {Session} from "../../../state/utils/session";
 import {NavLink} from "react-router-dom";
 import {CurrencyDropdownLayout} from "../currency-dropdown";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class NavbarSectionLayout extends Component {
@@ -55,6 +56,10 @@ class NavbarSectionLayout extends Component {
         this.setState({
             dropdownOpened: finalStatus
         }, () => {
+            GTM.tagManagerDataLayer(
+                "CLICK_ON_DROPDOWN_MENU",
+                {}
+            );
             const initialClass = "page-container-children-helper";
             if (this.state.dropdownOpened) {
                 document.getElementsByClassName(initialClass)[0].className += " active "
@@ -406,9 +411,6 @@ class NavbarSectionLayout extends Component {
                                     }
                                 </div>
                             </div>
-                            <div className="mx-auto">
-                                {/*<app-navbar-search></app-navbar-search>*/}
-                            </div>
                         </div>
                     </nav>
                 </div>
@@ -417,8 +419,9 @@ class NavbarSectionLayout extends Component {
                     this.state.showSearch
                         ?
                         <div className="f-items d-block d-md-none m-2 search-sm">
-                            <NavbarSearchLayout onSearchChange={this.props.onSearchChange}
-                                                autoFocus={this.state.showSearch}/>
+                            <NavbarSearchLayout
+                                onSearchChange={this.props.onSearchChange}
+                                autoFocus={this.state.showSearch}/>
                         </div>
                         : null
                 }
