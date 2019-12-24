@@ -29,7 +29,7 @@ class CompleteProfilePage extends Component {
     render() {
         return (
             <>
-                <PageContainer fetchCelebrities={false}>
+                <PageContainer fetchCelebrities={false} showFooter={false}>
                     <div className="SignInPage">
                         <div className="section">
                             <div className="auth-container">
