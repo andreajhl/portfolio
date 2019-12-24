@@ -369,17 +369,17 @@ class NavbarSectionLayout extends Component {
                                                         >
                                                             <i className="fa fa-bars"/>
                                                         </button>
-                                                        <div className="dropdown-menu dropdown-menu-right f-shadow"
+                                                        <div className="dropdown-menu dropdown-menu-right"
                                                              aria-labelledby="dropdownMenuButton"
                                                              style={this.state.dropdownOpened ? {display: "block"} : {}}
                                                         >
-                                                            <NavLink className=" btn btn-sm mr-2"
+                                                            <NavLink className="dropdown-item"
                                                                      activeClassName='active'
                                                                      to={PATHS.CLIENT_HIRINGS}
                                                             >
                                                                 Mis contrataciones
                                                             </NavLink>
-                                                            <NavLink className="btn btn-sm mr-2"
+                                                            <NavLink className="dropdown-item"
                                                                      activeClassName='active'
                                                                      to={PATHS.CLIENT_PROFILE}
                                                             >

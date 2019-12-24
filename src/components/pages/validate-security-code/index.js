@@ -44,7 +44,7 @@ class ValidateSecurityCodePage extends Component {
                     <div className="SignInPage">
                         <div className="section">
                             <div className="auth-container">
-                                <h3 className="font-weight-bold text-center">Confirmación de código de seguridad</h3>
+                                <h5 className="font-weight-bold text-center">Confirmación de código de seguridad</h5>
                                 <div className="custom-form">
                                     {this.returnSpecificForm()}
                                 </div>
