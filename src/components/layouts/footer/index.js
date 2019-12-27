@@ -34,7 +34,7 @@ class FooterLayout extends Component {
     }
 
     goToFamososFacebook() {
-        window.open("https://www.facebook.com/famosos", '_blank').focus();
+        window.open("https://www.facebook.com/contratafamosos", '_blank').focus();
     }
 
     goToFamososInstagran() {
