@@ -76,7 +76,7 @@ class CelebritiesPage extends Component {
                         {/*/!* End ShowHeader *!/*/}
 
                         {/* Modal FFB */}
-                        <FamososForBusinessModal showModal={this.state.showFFBModal}  onHide={this.closeModal}/>
+                        {/*<FamososForBusinessModal showModal={this.state.showFFBModal}  onHide={this.closeModal}/>*/}
                         {/* End Modal FFB */}
 
                         {/*/!* MainMenuLayout *!/*/}
