@@ -7,6 +7,9 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import {FooterLayout} from "../../layouts/footer";
+import * as GTM from "../../../state/utils/gtm";
+import {history} from "../../../routing/History";
+import FamososForBusinessModal from "../../containers/famosos-for-business-modal";
 
 
 class CelebritiesPage extends Component {
@@ -15,9 +18,12 @@ class CelebritiesPage extends Component {
         super(props);
 
         this.state = {
-            showInputSearchSm: false
+            showInputSearchSm: false,
+            showFFBModal: localStorage.getItem("ffbmodal") === null
         };
         this.scrollDiv = createRef();
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     componentDidMount(): void {
@@ -36,6 +42,18 @@ class CelebritiesPage extends Component {
                 }
             }
         });
+    }
+
+    openModal() {
+        this.setState({
+            showFFBModal: true
+        });
+    }
+
+    closeModal() {
+        this.setState({
+            showFFBModal: false
+        }, () => localStorage.setItem("ffbmodal", ""));
     }
 
     listCountries() {
@@ -57,6 +75,9 @@ class CelebritiesPage extends Component {
                         {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
                         {/*/!* End ShowHeader *!/*/}
 
+                        {/* Modal FFB */}
+                        <FamososForBusinessModal showModal={this.state.showFFBModal}  onHide={this.closeModal}/>
+                        {/* End Modal FFB */}
 
                         {/*/!* MainMenuLayout *!/*/}
                         {/*<MainMenuLayout/>*/}
