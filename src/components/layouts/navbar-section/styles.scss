@@ -63,6 +63,24 @@
             border: solid 2px #EB2A7B !important;
           }
 
+          .ffb-button {
+            border-radius: 25px;
+            padding-left: 13px;
+            padding-right: 13px;
+            position: relative;
+            top: -2.5px;
+            right: 12px;
+            max-height: 35px;
+            border: solid 2px $primary;
+            background: $primary !important;
+            color: white !important;
+          }
+
+          .ffb-button:hover {
+            color: white;
+            border: solid 2px #EB2A7B !important;
+          }
+
           .btn-outline-primary {
             border: solid 2px;
           }

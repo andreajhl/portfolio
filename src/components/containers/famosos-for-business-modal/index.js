@@ -1,0 +1,54 @@
+import React, {Component} from "react";
+import {Col, Form, Modal, Row} from "react-bootstrap";
+import {contractOperations} from "../../../state/ducks/contracts";
+import {connect} from "react-redux";
+import * as GTM from "../../../state/utils/gtm";
+
+class FamososForBusinessModal extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.goToFFB = this.goToFFB.bind(this);
+    }
+
+    handleCloseModal() {
+        this.props.onHide();
+    }
+
+    goToFFB() {
+        this.props.onHide();
+        window.open("https://business.famosos.com", '_blank');
+    }
+
+    render() {
+        return (
+            <div className="FamososForBusinessModal">
+                <Modal
+                    size="lg"
+                    show={this.props.showModal}
+                    onHide={this.handleCloseModal}
+                >
+                    <Modal.Body>
+                        <div>
+                            <div className="text-right">
+                                <span style={{position: "relative", top: "-6px"}}>Cerrar </span>
+                                <i className="fa fa-times fa-2x" onClick={this.handleCloseModal}/>
+                            </div>
+                            <div className={"text-center"}>
+                                <img width="100%" style={{maxWidth: "350px"}} src={"/assets/img/ffb-phones.png"}
+                                     alt={"ffb-modal"}/>
+                                <br/>
+                                <button className="btn btn-primary" onClick={this.goToFFB}>Aplicar</button>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                </Modal>
+            </div>
+        );
+    }
+}
+
+export default FamososForBusinessModal;
