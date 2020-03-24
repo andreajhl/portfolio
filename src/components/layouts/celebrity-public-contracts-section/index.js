@@ -26,14 +26,14 @@ class CelebrityPublicContractsSectionLayout extends Component {
     }
 
     onPaginationChange(page) {
-        this.updateParams("page", page);
+        this.updateParams("currentPage", page);
     }
 
     updateParams(key, value) {
         const {params} = this.state;
         params[key] = value;
         if (key === "search") {
-            params["page"] = 1;
+            params["currentPage"] = 1;
         }
         this.setState({
             params: params,
@@ -106,7 +106,7 @@ CelebrityPublicContractsSectionLayout.defaultProps = {
 const mapStateToProps = (state: any) => ({
     isLoading: state.celebrities.fetchPublicContractsReducer.loading,
     publicContracts: state.celebrities.fetchPublicContractsReducer.data.results,
-    paginationData: state.celebrities.fetchPublicContractsReducer.data.pagination_data,
+    paginationData: state.celebrities.fetchPublicContractsReducer.data.informationPage,
 });
 
 // mapStateToProps

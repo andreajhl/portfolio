@@ -20,7 +20,7 @@ class ContractPriceLayout extends Component {
     render() {
         return (
             <NumberFormat
-                value={this.props.rounding ? this.rounding() : this.props.price}
+                value={this.props.price ? (this.props.rounding ? this.rounding() : this.props.price) : 0}
                 displayType={"text"}
                 thousandSeparator={true}
                 decimalScale={2}

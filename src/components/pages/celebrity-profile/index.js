@@ -2,9 +2,9 @@ import React, {Component, createRef} from 'react';
 import {
     CelebrityCardsSectionLayout,
     CelebrityDetailsCardLayout,
+    CelebrityPublicContractsSectionLayout,
     CelebrityReviewsSectionLayout,
-    PageContainer,
-    CelebrityPublicContractsSectionLayout
+    PageContainer
 } from "../../layouts";
 import * as PropTypes from "prop-types";
 import {CelebrityShape} from "../../../prop-types";
@@ -122,7 +122,7 @@ const mapStateToProps = (state: any) => ({
     socialNetworks: state.celebritySocialNetworks.fetchCelebritySocialNetworksReducer.data.results,
     similarCelebritiesLoading: state.celebrities.fetchSimilarCelebritiesReducer.loading,
     similarCelebrities: state.celebrities.fetchSimilarCelebritiesReducer.data.results,
-    similarCelebritiesPaginationData: state.celebrities.fetchSimilarCelebritiesReducer.data.pagination_data
+    similarCelebritiesPaginationData: state.celebrities.fetchSimilarCelebritiesReducer.data.informationPage
 });
 
 // mapStateToProps

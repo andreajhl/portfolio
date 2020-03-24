@@ -30,8 +30,8 @@ class TrendingVideosSectionLayout extends Component {
 
     onPaginationChange(page) {
         const params = this.state.params;
-        params["page_size"] = 4;
-        params["page"] = page;
+        params["pageSize"] = 4;
+        params["currentPage"] = page;
         this.setState({
             params
         }, ()=> {
@@ -103,7 +103,7 @@ TrendingVideosSectionLayout.defaultProps = {
 const mapStateToProps = (state: any) => ({
     isLoading: state.contracts.fetchTrendingContractsReducer.loading,
     contracts: state.contracts.fetchTrendingContractsReducer.data.results,
-    paginationData: state.contracts.fetchTrendingContractsReducer.data.pagination_data,
+    paginationData: state.contracts.fetchTrendingContractsReducer.data.informationPage,
 });
 
 // mapStateToProps

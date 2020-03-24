@@ -7,9 +7,6 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import {FooterLayout} from "../../layouts/footer";
-import * as GTM from "../../../state/utils/gtm";
-import {history} from "../../../routing/History";
-import FamososForBusinessModal from "../../containers/famosos-for-business-modal";
 
 
 class CelebritiesPage extends Component {
@@ -62,7 +59,7 @@ class CelebritiesPage extends Component {
 
     onPaginationChange(page) {
         const queryParams = this.props.queryParams;
-        queryParams["page"] = page;
+        queryParams["currentPage"] = page;
         this.props.updateQueryParams(queryParams);
     }
 
@@ -128,7 +125,7 @@ const mapStateToProps = (state: any) => ({
     isLoading: state.celebrities.fetchCelebritiesReducer.loading,
     isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
-    paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data,
+    paginationData: state.celebrities.fetchCelebritiesReducer.data.informationPage,
     queryParams: state.celebrities.queryParamsReducer,
     countries: state.restCountries.fetchCountriesReducer.data,
 });

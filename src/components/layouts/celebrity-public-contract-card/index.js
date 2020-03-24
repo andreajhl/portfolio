@@ -68,29 +68,22 @@ class CelebrityPublicContractCardLayout extends Component {
                                playsInline={true}
                                onDoubleClick={(e) => {e.preventDefault(); this.contractFav.current.addOrRemoveFav()}}
                                preload="metadata"
-                               src={(this.props.publicContract.media) + "#t=0.5"}
+                               src={(this.props.publicContract.contract_media) + "#t=0.5"}
                        />
                     </div>
                     <div className="body pt-3 pb-2">
-                        <div style={{display: "flex"}}>
-                            <ContractFavsLayout
-                                contractReference={this.props.publicContract.contract_reference}
-                                ref={this.contractFav}
-                            />
-                            <ContractCommentsLayout
-                                contractReference={this.props.publicContract.contract_reference}
-                            />
-                        </div>
+                        {/*<div style={{display: "flex"}}>*/}
+                        {/*    <ContractFavsLayout*/}
+                        {/*        contractReference={this.props.publicContract.contract_reference}*/}
+                        {/*        ref={this.contractFav}*/}
+                        {/*    />*/}
+                        {/*    <ContractCommentsLayout*/}
+                        {/*        contractReference={this.props.publicContract.contract_reference}*/}
+                        {/*    />*/}
+                        {/*</div>*/}
                         <div className="title" onClick={this.goToContract}>
-                            <h6 className="font-weight-bold">Para: {this.props.publicContract.delivery_to}</h6>
+                            <h6 className="font-weight-bold">Para: {this.props.publicContract.contract_delivery_to}</h6>
                         </div>
-                        {
-                            this.props.publicContract.celebrity
-                            &&
-                            <div className="celebrity-name" onClick={this.goToContract}>
-                                <h6 className="font-weight-bold">{this.props.publicContract.celebrity.full_name}</h6>
-                            </div>
-                        }
                         <div className="icon font-weight-bold" onClick={this.goToContract}>
                             <i className="fa fa-arrow-right text-primary"/>
                         </div>

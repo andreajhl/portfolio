@@ -3,9 +3,9 @@ import * as types from "./types";
 import {getTotalColumns} from "../../utils/gridSystem";
 
 const updateQueryParamsInitialState = {
-    page: 1,
+    currentPage: 1,
     search: "",
-    page_size: getTotalColumns() * 7
+    pageSize: getTotalColumns() * 7
 };
 
 const fetchCelebritiesInitialState = {
@@ -13,7 +13,7 @@ const fetchCelebritiesInitialState = {
     failed: false,
     completed: false,
     error_data: {error: ""},
-    data: {results: [], pagination_data: {}}
+    data: {results: [], informationPage: {}}
 };
 
 const fetchSimilarCelebritiesInitialState = {
@@ -21,7 +21,7 @@ const fetchSimilarCelebritiesInitialState = {
     failed: false,
     completed: false,
     error_data: {error: ""},
-    data: {results: [], pagination_data: {}}
+    data: {results: [], informationPage: {}}
 };
 
 const getCelebrityInitialState = {
@@ -37,7 +37,7 @@ const fetchReviewsInitialState = {
     failed: false,
     completed: false,
     error_data: {error: ""},
-    data: {results: [], pagination_data: {}}
+    data: {results: [], informationPage: {}}
 };
 
 const fetchPublicContractsInitialState = {
@@ -45,7 +45,7 @@ const fetchPublicContractsInitialState = {
     failed: false,
     completed: false,
     error_data: {error: ""},
-    data: {results: [], pagination_data: {}}
+    data: {results: [], informationPage: {}}
 };
 
 export function queryParamsReducer(state = updateQueryParamsInitialState, action) {
@@ -70,12 +70,12 @@ export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, ac
                 failed: true
             };
         case types.FETCH_CELEBRITIES_REQUEST_SUCCESS:
-            if (action.payload.data.pagination_data.currentPage === 1) {
+            if (action.payload.data.informationPage.currentPage === 1) {
                 return {
                     ...fetchCelebritiesInitialState,
                     data: action.payload.data
                 };
-            } else if (action.payload.data.pagination_data.totalItems <= state.data.pagination_data.totalItems) {
+            } else if (action.payload.data.informationPage.totalItems <= state.data.informationPage.totalItems) {
                 action.payload.data.results = state.data.results.concat(action.payload.data.results);
                 return {
                     ...fetchCelebritiesInitialState,
@@ -140,12 +140,12 @@ export function getCelebrityReducer(state = getCelebrityInitialState, action) {
         case types.GET_CELEBRITY_REQUEST_SUCCESS:
             return {
                 ...getCelebrityInitialState,
-                data: action.payload.data
+                data: action.payload.data.data
             };
         case types.GET_CELEBRITY_REQUEST_COMPLETED:
             return {
                 ...state,
-                data: action.payload.data,
+                data: action.payload.data.data,
                 completed: true
             };
         default:

@@ -4,9 +4,9 @@ import { getTotalColumns } from "../../utils/gridSystem";
 import * as types from "../celebrities/types";
 
 const updateQueryParamsInitialState = {
-  page: 1,
+  currentPage: 1,
   search: "",
-  page_size: getTotalColumns() * 7
+  pageSize: getTotalColumns() * 7
 };
 
 const playVideoInitialState = {
@@ -18,7 +18,7 @@ const fetchTrendingContractsInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { results: [], pagination_data: {} }
+  data: { results: [], informationPage: {} }
 };
 
 const saveClientContractInitialState = {
@@ -296,7 +296,7 @@ export function listContractCommentsReducer(
         failed: true
       };
     case TYPES.LIST_CONTRACT_COMMENTS_REQUEST_SUCCESS:
-      if (action.payload.data.pagination_data.currentPage > 1) {
+      if (action.payload.data.informationPage.currentPage > 1) {
         action.payload.data.results = state.data.results.concat(
           action.payload.data.results
         );

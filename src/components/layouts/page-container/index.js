@@ -20,9 +20,9 @@ class PageContainer extends Component {
     }
 
     componentDidMount() {
-        if(this.props.fetchCelebrities) {
+        if(this.props.applyFetchCelebrities === true) {
             const queryParams = this.props.queryParams;
-            queryParams["page"] = 1;
+            queryParams["currentPage"] = 1;
             this.props.updateQueryParams(queryParams);
         }
     }
@@ -30,7 +30,7 @@ class PageContainer extends Component {
     onSearchChange(keywork) {
         const queryParams = this.props.queryParams;
         queryParams["search"] = keywork;
-        queryParams["page"] = 1;
+        queryParams["currentPage"] = 1;
         this.props.updateQueryParams(queryParams);
     }
 
@@ -74,13 +74,13 @@ class PageContainer extends Component {
 // Set propTypes
 PageContainer.propTypes = {
     celebrities: PropTypes.arrayOf(CelebrityShape).isRequired,
-    fetchCelebrities: PropTypes.func.isRequired,
+    applyFetchCelebrities: PropTypes.func.isRequired,
     paginationData: PaginationShape
 };
 
 // Set defaultProps
 PageContainer.defaultProps = {
-    fetchCelebrities: true,
+    applyFetchCelebrities: true,
     celebrities: [],
     paginationData: {},
     onSearchChange: () => {},
@@ -97,7 +97,7 @@ PageContainer.defaultProps = {
 const mapStateToProps = (state) => ({
     isLoading: state.celebrities.fetchCelebritiesReducer.loading,
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
-    paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data,
+    paginationData: state.celebrities.fetchCelebritiesReducer.data.informationPage,
     queryParams: state.celebrities.queryParamsReducer,
 });
 

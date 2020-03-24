@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import "./styles.scss";
 import {CelebrityReviewCardLayout} from "../../layouts/celebrity-review-card";
-import {CelebrityShape, PaginationShape} from "../../../prop-types";
-import * as PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {PaginationLayout} from "../../layouts/pagination";
@@ -28,14 +26,14 @@ class CelebrityReviewsSectionLayout extends Component {
     }
 
     onPaginationChange(page) {
-        this.updateParams("page", page);
+        this.updateParams("currentPage", page);
     }
 
     updateParams(key, value) {
         const {params} = this.state;
         params[key] = value;
         if (key === "search") {
-            params["page"] = 1;
+            params["currentPage"] = 1;
         }
         this.setState({
             params: params,
@@ -96,7 +94,7 @@ CelebrityReviewsSectionLayout.defaultProps = {
 const mapStateToProps = (state: any) => ({
     isLoading: state.celebrities.fetchReviewsReducer.loading,
     reviews: state.celebrities.fetchReviewsReducer.data.results,
-    paginationData: state.celebrities.fetchReviewsReducer.data.pagination_data,
+    paginationData: state.celebrities.fetchReviewsReducer.data.informationPage,
 });
 
 // mapStateToProps

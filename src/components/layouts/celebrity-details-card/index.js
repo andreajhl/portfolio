@@ -108,9 +108,9 @@ class CelebrityDetailsCardLayout extends Component {
 
     returnContractPrice() {
         if (this.props.currencyExchangeData.rate > 1) {
-            return (this.props.celebrity.contracts_price * this.props.currencyExchangeData.rate) + this.props.celebrity.contracts_price
+            return (this.props.celebrity.video_message_price * this.props.currencyExchangeData.rate) + this.props.celebrity.video_message_price
         } else {
-            return this.props.celebrity.contracts_price
+            return this.props.celebrity.video_message_price
         }
     }
 
@@ -166,7 +166,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                 </small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
-                                                <h6 className="font-weight-bold">{this.props.celebrity.category}</h6>
+                                                <h6 className="font-weight-bold">{this.props.celebrity.category_title}</h6>
                                                 <small className="text-soft-grey font-weight-bold">Categoría</small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">

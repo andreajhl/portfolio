@@ -59,7 +59,7 @@ class ContractCommentSectionLayout extends Component {
     }
 
     onPaginationChange(page) {
-        this.updateParams("page", page);
+        this.updateParams("currentPage", page);
     }
 
     onSearchChange(keywork) {
@@ -70,7 +70,7 @@ class ContractCommentSectionLayout extends Component {
         const {params} = this.state;
         params[key] = value;
         if (key === "search") {
-            params["page"] = 1;
+            params["currentPage"] = 1;
         }
         this.setState({
             params: params,
@@ -136,7 +136,7 @@ ContractCommentSectionLayout.defaultProps = {
 const mapStateToProps = (state: any) => ({
     isLoading: state.contracts.listContractCommentsReducer.loading,
     contractComments: state.contracts.listContractCommentsReducer.data.results,
-    paginationData: state.contracts.listContractCommentsReducer.data.pagination_data,
+    paginationData: state.contracts.listContractCommentsReducer.data.informationPage,
 });
 
 // mapStateToProps

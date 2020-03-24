@@ -46,9 +46,9 @@ class CelebrityCardLayout extends Component {
 
     returnContractPrice(){
         if(this.props.currencyExchangeData.rate > 1){
-            return (this.props.celebrity.contracts_price * this.props.currencyExchangeData.rate) + this.props.celebrity.contracts_price
+            return (this.props.celebrity.video_message_price * this.props.currencyExchangeData.rate) + this.props.celebrity.video_message_price
         }else{
-            return this.props.celebrity.contracts_price
+            return this.props.celebrity.video_message_price
         }
     }
 
@@ -79,7 +79,7 @@ class CelebrityCardLayout extends Component {
                     <div className="card-body text-left pl-2 pt-2 pr-2 pb-0">
                         <div style={{overflow: "auto"}}>
                             <small className="f-category text-muted float-left">
-                                {this.props.celebrity.category}
+                                {this.props.celebrity.title}
                             </small>
                             <small className="f-category text-muted float-right">
                                 {this.getCelebrityCountryImage()}
@@ -91,7 +91,7 @@ class CelebrityCardLayout extends Component {
                         <small className="text-main-color-blue">
                             <div className="hashtags">
                             {
-                                this.props.celebrity.hashtags.length >= 1
+                                this.props.celebrity.hashtags
                                     ?
                                     this.props.celebrity.hashtags.map((h, index) => {
                                         return <span key={index} style={{marginRight: "2px"}}>#{h}</span>
