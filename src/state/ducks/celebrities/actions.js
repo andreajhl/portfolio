@@ -18,7 +18,7 @@ export const updateQueryParams = (params: {}, applyFetch=true) => {
 export const get = (object_id) => {
     return dispatch => {
         const TYPE = types.GET_CELEBRITY_REQUEST;
-        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "celebrities/" + object_id + "/"; // object_id
+        const FINAL_PATH = API_PATHS.GET + object_id;
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",
@@ -58,7 +58,7 @@ export const get = (object_id) => {
 export const list = (params) => {
     return dispatch => {
         const TYPE = types.FETCH_CELEBRITIES_REQUEST;
-        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "celebrities/";
+        const FINAL_PATH = API_PATHS.LIST;
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",
@@ -89,7 +89,7 @@ export const list = (params) => {
 export const listSimilar = (params) => {
     return dispatch => {
         const TYPE = types.FETCH_SIMILAR_CELEBRITIES_REQUEST;
-        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "celebrities/";
+        const FINAL_PATH = API_PATHS.LIST;
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",
@@ -121,7 +121,7 @@ export const listReviews = (celebrity_id, params={}) => {
     if (params["page_size"] === undefined) params["page_size"] = 6;
     return dispatch => {
         const TYPE = types.FETCH_REVIEWS_REQUEST;
-        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + celebrity_id + "/reviews/";
+        const FINAL_PATH = API_PATHS.REVIEWS;
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",
@@ -153,7 +153,7 @@ export const listPublicContracts = (celebrity_id, params={}) => {
     if (params["page_size"] === undefined) params["page_size"] = 8;
     return dispatch => {
         const TYPE = types.FETCH_PUBLIC_CONTRACTS_REQUEST;
-        const FINAL_PATH = API_PATHS.VIEWSETS_PATH + celebrity_id + "/contracts/";
+        const FINAL_PATH = API_PATHS.PUBLIC_CONTRACTS.replace(":celebrity_username", celebrity_id);
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "GET",

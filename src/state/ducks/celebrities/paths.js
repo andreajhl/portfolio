@@ -1,4 +1,8 @@
-const apiVersion = "v1";
+export const MODEL = `celebrities`;
 
-export const BASE_PATH = `api/${apiVersion}/celebrities/`;
-export const VIEWSETS_PATH = `api/${apiVersion}/celebrity-viewsets/`;
+export const LIST = `crud/list/${MODEL}`;
+export const POST = `crud/post/${MODEL}`;
+export const UPDATE = `crud/put/${MODEL}/`;
+export const GET = `crud/get/${MODEL}/`;
+export const REVIEWS = `custom-endpoints/${MODEL}/reviews`;
+export const PUBLIC_CONTRACTS = `custom-endpoints/${MODEL}/:celebrity_username/public-contracts`;
