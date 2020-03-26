@@ -27,7 +27,7 @@ class ContractCommentsLayout extends Component {
         apiService({
             method: "GET",
             action: TYPES.COMMENT_REQUEST,
-            path: API_PATHS.CONTRACT_BASE_PATH + this.props.contractReference + "/comments/count/",
+            path: "API_PATHS.CONTRACT_BASE_PATH" + this.props.contractReference + "/comments/count/",
             async: true,
             params: null,
             body: null

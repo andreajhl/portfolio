@@ -28,10 +28,12 @@ class PageContainer extends Component {
     }
 
     onSearchChange(keywork) {
-        const queryParams = this.props.queryParams;
-        queryParams["search"] = keywork;
-        queryParams["currentPage"] = 1;
-        this.props.updateQueryParams(queryParams);
+        if (this.props.applyFetchCelebrities === true) {
+            const queryParams = this.props.queryParams;
+            queryParams["search"] = keywork;
+            queryParams["currentPage"] = 1;
+            this.props.updateQueryParams(queryParams);
+        }
     }
 
     render() {
@@ -74,13 +76,13 @@ class PageContainer extends Component {
 // Set propTypes
 PageContainer.propTypes = {
     celebrities: PropTypes.arrayOf(CelebrityShape).isRequired,
-    applyFetchCelebrities: PropTypes.func.isRequired,
+    applyFetchCelebrities: PropTypes.bool.isRequired,
     paginationData: PaginationShape
 };
 
 // Set defaultProps
 PageContainer.defaultProps = {
-    applyFetchCelebrities: true,
+    applyFetchCelebrities: false,
     celebrities: [],
     paginationData: {},
     onSearchChange: () => {},

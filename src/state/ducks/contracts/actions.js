@@ -1,15 +1,11 @@
 import * as TYPES from "./types";
 import apiService from "../../utils/apiService";
-import {
-  handleApiErrors,
-  handleApiResponseFailure,
-  handleApiResponseSuccess
-} from "../../utils";
+import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
 import * as API_PATHS from "./paths";
 import * as ROUTING_PATHS from "../../../routing/Paths";
-import { history } from "../../../routing/History";
+import {history} from "../../../routing/History";
 import * as types from "../celebrities/types";
-import { Session } from "../../utils/session";
+import {Session} from "../../utils/session";
 
 export const updateQueryParams = (params: {}, applyFetch = true) => {
   return dispatch => {
@@ -28,8 +24,7 @@ export const playVideo = (params: {}) => {
 
 export const AssociateContract = hash => {
   return dispatch => {
-    const FINAL_PATH =
-      API_PATHS.CONTRACT_BASE_PATH + "associate-contract/" + hash + "/";
+    const FINAL_PATH = "AssociateContract" + "associate-contract/" + hash + "/";
     apiService({
       method: "GET",
       action: null,
@@ -59,7 +54,7 @@ export const AssociateContract = hash => {
 export const getContract = contractReference => {
   return dispatch => {
     const TYPE = TYPES.GET_CONTRACT_REQUEST;
-    const FINAL_PATH = API_PATHS.CONTRACT_BASE_PATH + contractReference + "/";
+    const FINAL_PATH = "getContract" + contractReference + "/";
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",
@@ -92,10 +87,7 @@ export const getContract = contractReference => {
 export const getContractWithPayments = contractReference => {
   return dispatch => {
     const TYPE = TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST;
-    const FINAL_PATH =
-      API_PATHS.CONTRACT_BASE_PATH +
-      "contract-with-payments/" +
-      contractReference;
+    const FINAL_PATH = "getContractWithPayments" + "contract-with-payments/" + contractReference;
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",
@@ -128,7 +120,7 @@ export const getContractWithPayments = contractReference => {
 export const listTrending = params => {
   return dispatch => {
     const TYPE = types.FETCH_TRENDING_CONTRACTS_REQUEST;
-    const FINAL_PATH = API_PATHS.CONTRACT_BASE_PATH + "all/trending/";
+    const FINAL_PATH = "listTrending" + "all/trending/";
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",
@@ -160,7 +152,7 @@ export const listTrending = params => {
 export const saveClientContract = contractData => {
   return dispatch => {
     const TYPE = TYPES.SAVE_CLIENT_CONTRACT_REQUEST;
-    const FINAL_PATH = API_PATHS.BASE_PATH;
+    const FINAL_PATH = API_PATHS.CREATE_CONTRACT;
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "POST",
@@ -171,41 +163,32 @@ export const saveClientContract = contractData => {
       body: contractData
     })
       .then(res => {
+
         if ("status" in res.data && res.data.status === "ERROR") {
           handleApiResponseFailure(dispatch, TYPE, res);
           // Other actions
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
-
-          dispatch(getContract(res.data.reference));
-
+          // dispatch(getContract(res.data.contractReference));
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
 
           // Other actions
           const session = new Session();
           if (!session.getSession()) {
-            localStorage.setItem("fs", res.data.token);
-            localStorage.setItem(
-              "redirectPaymentTo",
-              ROUTING_PATHS.CLIENT_HIRINGS
-            );
-            localStorage.setItem("hash", res.data.hash);
-
+            localStorage.setItem("fs", res.data.data.sessionToken);
+            localStorage.setItem("redirectPaymentTo", ROUTING_PATHS.CLIENT_HIRINGS);
+            localStorage.setItem("hash", res.data.data.contractHash);
             history._pushRoute(
               ROUTING_PATHS.PAYMENT_METHODS.replace(
                 ":contract_reference",
-                res.data.reference
+                  res.data.data.contractReference
               )
             );
-            // history._pushRoute(
-            //   ROUTING_PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH +
-            //     "?title=Inicia sesión para continuar con el pago."
-            // );
           } else {
             history._pushRoute(
               ROUTING_PATHS.PAYMENT_METHODS.replace(
                 ":contract_reference",
-                res.data.reference
+                  res.data.data.contractReference
               )
             );
           }
@@ -222,7 +205,7 @@ export const saveClientContract = contractData => {
 export const listClientContracts = () => {
   return dispatch => {
     const TYPE = TYPES.LIST_CLIENT_CONTRACTS_REQUEST;
-    const FINAL_PATH = API_PATHS.BASE_PATH;
+    const FINAL_PATH = "listClientContracts";
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",
@@ -253,7 +236,7 @@ export const listClientContracts = () => {
 export const saveClientContractReview = (contractID, reviewData) => {
   return dispatch => {
     const TYPE = TYPES.SAVE_CLIENT_CONTRACT_REVIEW_REQUEST;
-    const FINAL_PATH = API_PATHS.BASE_PATH + contractID + "/reviews/";
+    const FINAL_PATH = "saveClientContractReview" + contractID + "/reviews/";
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "POST",
@@ -284,8 +267,7 @@ export const saveClientContractReview = (contractID, reviewData) => {
 export const listContractComments = (contractReference, params) => {
   return dispatch => {
     const TYPE = TYPES.LIST_CONTRACT_COMMENTS_REQUEST;
-    const FINAL_PATH =
-      API_PATHS.CONTRACT_BASE_PATH + contractReference + "/comments/";
+    const FINAL_PATH = "listContractComments" + contractReference + "/comments/";
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",
@@ -316,8 +298,7 @@ export const listContractComments = (contractReference, params) => {
 export const addContractComment = (contractReference, body) => {
   return dispatch => {
     const TYPE = TYPES.ADD_CONTRACT_COMMENTS_REQUEST;
-    const FINAL_PATH =
-      API_PATHS.CONTRACT_BASE_PATH + contractReference + "/comments/";
+    const FINAL_PATH = "addContractComment" + contractReference + "/comments/";
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "POST",

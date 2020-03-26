@@ -25,7 +25,7 @@ class PaymentMethodsPage extends Component {
         <>
           <div className="PaymentMethodsPage">
             <PageContainer
-                fetchCelebrities={false}
+                applyFetchCelebrities={false}
                 showSearch={false}
                 showNavbarButtons={false}
                 showSearchWeb={false}
@@ -57,7 +57,7 @@ PaymentMethodsPage.defaultProps = {
 const mapStateToProps = (state) => ({
   isLoading: state.payments.getContractToPayReducer.loading,
   isCompleted: state.payments.getContractToPayReducer.completed,
-  contract: state.payments.getContractToPayReducer.data.contract
+  contract: state.payments.getContractToPayReducer.data
 });
 
 // mapStateToProps

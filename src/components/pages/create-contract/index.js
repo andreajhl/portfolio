@@ -14,14 +14,14 @@ class CreateContractPage extends Component {
     this.state = {
       contract_data: {
         celebrity: this.props.celebrity.id,
-        contract_type: 1,
-        delivery_from: "",
-        delivery_to: "",
-        delivery_type: 1,
-        delivery_contact: "",
+        contractType: 1,
+        deliveryFrom: "",
+        deliveryTo: "",
+        deliveryType: 1,
+        deliveryContact: "",
         instructions: "",
         price: this.props.celebrity.contracts_price,
-        is_public: true
+        isPublic: true
       },
       errors: []
     };
@@ -34,7 +34,7 @@ class CreateContractPage extends Component {
 
   handleValue(event) {
     const contract_data = this.state.contract_data;
-    if (event.target.name === "contract_type") {
+    if (event.target.name === "contractType") {
       contract_data[event.target.name] = parseInt(event.target.value);
     } else {
       contract_data[event.target.name] = event.target.value;
@@ -46,7 +46,7 @@ class CreateContractPage extends Component {
 
   contractTypeLabelClick(value) {
     const contract_data = this.state.contract_data;
-    contract_data["contract_type"] = value;
+    contract_data["contractType"] = value;
     this.setState({
       contract_data: contract_data
     });
@@ -54,7 +54,7 @@ class CreateContractPage extends Component {
 
   handleIsPublic() {
     const contract_data = this.state.contract_data;
-    contract_data.is_public = !contract_data.is_public;
+    contract_data.isPublic = !contract_data.isPublic;
     this.setState({
       contract_data: contract_data
     });
@@ -64,18 +64,18 @@ class CreateContractPage extends Component {
     if (!this.props.isLoading || !this.state.tokenizeCardLoading) {
       const contract_data = this.state.contract_data;
 
-      contract_data.celebrity_id = this.props.celebrity.id; // Celebrity ID
-      contract_data.price = this.props.celebrity.contracts_price; // Price
+      contract_data.celebrityId = this.props.celebrity.id; // Celebrity ID
+      contract_data.price = this.props.celebrity.video_message_price; // Price
 
       const errors = [];
-      if (contract_data.contract_type === 1 && !contract_data.delivery_from) {
-        errors.push("delivery_from");
+      if (contract_data.contractType === 1 && !contract_data.deliveryFrom) {
+        errors.push("deliveryFrom");
       }
-      if (!contract_data.delivery_to) {
-        errors.push("delivery_to");
+      if (!contract_data.deliveryTo) {
+        errors.push("deliveryTo");
       }
-      if (!contract_data.delivery_contact || !contract_data.delivery_contact.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-        errors.push("delivery_contact");
+      if (!contract_data.deliveryContact || !contract_data.deliveryContact.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+        errors.push("deliveryContact");
       }
       if (!contract_data.instructions) {
         errors.push("instructions");
@@ -124,7 +124,7 @@ class CreateContractPage extends Component {
   }
 
   renderFromTo() {
-    switch (this.state.contract_data.contract_type) {
+    switch (this.state.contract_data.contractType) {
       default:
       case 1:
         return (
@@ -137,11 +137,11 @@ class CreateContractPage extends Component {
                   <Form.Control
                       type="text"
                       placeholder="Anita"
-                      name="delivery_to"
-                      value={this.state.contract_data.delivery_to}
+                      name="deliveryTo"
+                      value={this.state.contract_data.deliveryTo}
                       onChange={this.handleValue}
                   />
-                  {this.showErrorMessage("delivery_to")}
+                  {this.showErrorMessage("deliveryTo")}
                 </Form.Group>
               </Col>
               <Col sm="4">
@@ -152,11 +152,11 @@ class CreateContractPage extends Component {
                   <Form.Control
                       type="text"
                       placeholder="Duvan"
-                      name="delivery_from"
-                      value={this.state.contract_data.delivery_from}
+                      name="deliveryFrom"
+                      value={this.state.contract_data.deliveryFrom}
                       onChange={this.handleValue}
                   />
-                  {this.showErrorMessage("delivery_from")}
+                  {this.showErrorMessage("deliveryFrom")}
                 </Form.Group>
               </Col>
             </Row>
@@ -172,11 +172,11 @@ class CreateContractPage extends Component {
                   <Form.Control
                       type="text"
                       placeholder="Duvan"
-                      name="delivery_to"
-                      value={this.state.contract_data.delivery_to}
+                      name="deliveryTo"
+                      value={this.state.contract_data.deliveryTo}
                       onChange={this.handleValue}
                   />
-                  {this.showErrorMessage("delivery_to")}
+                  {this.showErrorMessage("deliveryTo")}
                 </Form.Group>
               </Col>
             </Row>
@@ -187,8 +187,13 @@ class CreateContractPage extends Component {
   render() {
     return (
         <>
-          <PageContainer showFooter={false} showLogin={false} showInputSearchSm={false} showSearchWeb={false}
-                         fetchCelebrities={false}>
+          <PageContainer
+              showFooter={false}
+              showLogin={false}
+              showInputSearchSm={false}
+              showSearchWeb={false}
+              applyFetchCelebrities={false}
+          >
             <div className="container CreateContractPage" style={{zoom: "80%"}}>
               <div className="row centerForm p-4">
                 <div className="col-12 col-md-8">
@@ -207,9 +212,9 @@ class CreateContractPage extends Component {
                       <Form.Check type="radio">
                         <Form.Check.Input
                             type="radio"
-                            name="contract_type"
+                            name="contractType"
                             value={1}
-                            checked={this.state.contract_data.contract_type === 1}
+                            checked={this.state.contract_data.contractType === 1}
                             onChange={this.handleValue}
                         />
                         <Form.Check.Label
@@ -221,9 +226,9 @@ class CreateContractPage extends Component {
                       <Form.Check type="radio">
                         <Form.Check.Input
                             type="radio"
-                            name="contract_type"
+                            name="contractType"
                             value={2}
-                            checked={this.state.contract_data.contract_type === 2}
+                            checked={this.state.contract_data.contractType === 2}
                             onChange={this.handleValue}
                         />
                         <Form.Check.Label
@@ -251,7 +256,7 @@ class CreateContractPage extends Component {
                           as="textarea"
                           rows="3"
                           placeholder={
-                            this.state.contract_data.contract_type === 1
+                            this.state.contract_data.contractType === 1
                                 ? "Ejemplo: Mi nombre es Duvan. ¡Mi hermana Anita es tu fan!. Ella está cumpliendo años el 12 de agosto y quisiera que le desearas un Feliz Cumpleaños de mi parte."
                                 : "Escribe aquí tus instrucciones"
                           }
@@ -280,18 +285,18 @@ class CreateContractPage extends Component {
                       <Form.Control
                           type="email"
                           placeholder="correo@dominio.com"
-                          name="delivery_contact"
-                          value={this.state.contract_data.delivery_contact}
+                          name="deliveryContact"
+                          value={this.state.contract_data.deliveryContact}
                           onChange={this.handleValue}
                       />
-                      {this.showErrorMessage("delivery_contact")}
+                      {this.showErrorMessage("deliveryContact")}
                     </Form.Group>
                     {/*END DELIVERY MAIL*/}
 
                     {/* IS PUBLIC  */}
                     <div className="mt-1">
                       <Form.Check
-                          checked={this.state.contract_data.is_public}
+                          checked={this.state.contract_data.isPublic}
                           onChange={this.handleIsPublic}
                           type="switch"
                           id="custom-switch"

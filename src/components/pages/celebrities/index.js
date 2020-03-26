@@ -67,7 +67,7 @@ class CelebritiesPage extends Component {
         return (
             <>
                 <div className={"CelebritiesPage "}>
-                    <PageContainer showFooter={false}>
+                    <PageContainer applyFetchCelebrities={true} showFooter={false}>
                         {/*/!* ShowHeader *!/*/}
                         {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
                         {/*/!* End ShowHeader *!/*/}

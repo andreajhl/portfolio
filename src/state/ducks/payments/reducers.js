@@ -128,12 +128,12 @@ export function getContractToPayReducer(state = getContractToPayInitialState, ac
         case types.GET_CONTRACT_TO_PAY_REQUEST_SUCCESS:
             return {
                 ...getContractToPayInitialState,
-                data: action.payload.data
+                data: action.payload.data.data
             };
         case types.GET_CONTRACT_TO_PAY_REQUEST_COMPLETED:
             return {
                 ...state,
-                data: action.payload.data,
+                data: action.payload.data.data,
                 completed: true
             };
         default:

@@ -40,7 +40,7 @@ class ValidateSecurityCodePage extends Component {
     render() {
         return (
             <>
-                <PageContainer fetchCelebrities={false} showFooter={false}>
+                <PageContainer applyFetchCelebrities={false} showFooter={false}>
                     <div className="SignInPage">
                         <div className="section">
                             <div className="auth-container">

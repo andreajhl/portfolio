@@ -102,9 +102,9 @@ class ContractCheckoutSummary extends Component {
                             <img
                                 className="rounded-circle mx-auto"
                                 src={
-                                    !this.props.contractData.celebrity
+                                    !this.props.contractData.celebrity_avatar
                                         ? "/assets/img/avatar-blank.png"
-                                        : this.props.contractData.celebrity.avatar
+                                        : this.props.contractData.celebrity_avatar
                                 }
                                 width={"60px"}
                                 alt={"avatar"}

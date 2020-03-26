@@ -28,7 +28,7 @@ class ContractFavsLayout extends Component {
         apiService({
             method: "GET",
             action: TYPES.FAV_REQUEST,
-            path: API_PATHS.CONTRACT_BASE_PATH + this.props.contractReference + "/favs/",
+            path: "API_PATHS.CONTRACT_BASE_PATH" + this.props.contractReference + "/favs/",
             async: true,
             params: null,
             body: null
@@ -50,7 +50,7 @@ class ContractFavsLayout extends Component {
             apiService({
                 method: "POST",
                 action: TYPES.FAV_REQUEST,
-                path: API_PATHS.CONTRACT_BASE_PATH + this.props.contractReference + "/favs/",
+                path: "addOrRemoveFav" + this.props.contractReference + "/favs/",
                 async: true,
                 params: null,
                 body: null

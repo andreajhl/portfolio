@@ -30,7 +30,7 @@ class HiringPreviewPage extends Component {
         return (
             <>
                 <div className="HiringPreviewPage">
-                    <PageContainer fetchCelebrities={false} showFooter={this.props.isCompleted}>
+                    <PageContainer applyFetchCelebrities={false} showFooter={this.props.isCompleted}>
                         {
                             this.props.isCompleted
                                 ?

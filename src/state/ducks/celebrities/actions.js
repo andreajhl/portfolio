@@ -15,7 +15,7 @@ export const updateQueryParams = (params: {}, applyFetch=true) => {
     }
 };
 
-export const get = (object_id) => {
+export const get = (object_id, preloaded = false) => {
     return dispatch => {
         const TYPE = types.GET_CELEBRITY_REQUEST;
         const FINAL_PATH = API_PATHS.GET + object_id;
@@ -37,14 +37,14 @@ export const get = (object_id) => {
                 } else {
                     handleApiResponseSuccess(dispatch, TYPE, res);
                     // Other actions
-
-                    dispatch(listReviews(res.data.data.id, {currentPage: 1}));
-                    dispatch(listPublicContracts(res.data.data.id, {currentPage: 1}));
-                    dispatch(listSimilar( {
-                        country_id: res.data.data.country_id,
-                        category_id: res.data.data.category_id
-                    }));
-
+                    if(preloaded) {
+                        dispatch(listReviews(res.data.data.id, {currentPage: 1}));
+                        dispatch(listPublicContracts(res.data.data.id, {currentPage: 1}));
+                        dispatch(listSimilar( {
+                            country_id: res.data.data.country_id,
+                            category_id: res.data.data.category_id
+                        }));
+                    }
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
                 }
             })

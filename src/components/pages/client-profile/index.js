@@ -32,7 +32,7 @@ class ClientProfilePage extends Component {
         return (
             <>
                 <div className="ClientProfilePage">
-                    <PageContainer fetchCelebrities={false}>
+                    <PageContainer applyFetchCelebrities={false}>
                         <UserProfileDetailsCardLayout session={this.props.session}/>
                     </PageContainer>
                 </div>

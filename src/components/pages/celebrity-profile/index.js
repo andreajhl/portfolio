@@ -39,7 +39,7 @@ class CelebrityProfilePage extends Component {
     }
 
     getCelebrity(username) {
-        this.props.getCelebrity(username)
+        this.props.getCelebrity(username, true)
     }
 
     similarCelebrities() {
@@ -55,7 +55,7 @@ class CelebrityProfilePage extends Component {
     render() {
         return (
             <>
-                <PageContainer fetchCelebrities={false} showLogin={false}>
+                <PageContainer applyFetchCelebrities={false} showLogin={false}>
                     <div style={{minHeight: "600px"}}>
                     {
                         this.props.celebrity.username === this.props.match.params.celebrity_username ?

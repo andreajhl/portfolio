@@ -43,7 +43,7 @@ export const listPaymentGateways = currency => {
 export const currencyExchange = params => {
   return dispatch => {
     const TYPE = types.CURRENCY_EXCHANGE_REQUEST;
-    const FINAL_PATH = API_PATHS.BASE_PATH + "currency-exchanges/";
+    const FINAL_PATH = "custom-endpoints/gateway-payment-methods/currency-exchange";
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",
@@ -85,8 +85,7 @@ export const getContractToPay = contractReference => {
     setTimeout(function() {
       // Get Contract to Pay
       const TYPE = types.GET_CONTRACT_TO_PAY_REQUEST;
-      const FINAL_PATH =
-          API_PATHS.BASE_PATH + "contract-to-pay/" + contractReference + "/";
+      const FINAL_PATH = "custom-endpoints/contracts/contract-to-pay/" + contractReference;
       dispatch({ type: TYPE, payload: {} });
       apiService({
         method: "GET",

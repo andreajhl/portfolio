@@ -18,7 +18,7 @@ class TrendingPage extends Component {
         return (
             <>
                 <div className={"TrendingPage "}>
-                    <PageContainer showNavbar={true} fetchCelebrities={false} showFooter={false}>
+                    <PageContainer showNavbar={true} applyFetchCelebrities={false} showFooter={false}>
                         {/* CelebrityCardsSectionLayout */}
                         <div className="trending-section">
                             <TrendingVideosSectionLayout/>

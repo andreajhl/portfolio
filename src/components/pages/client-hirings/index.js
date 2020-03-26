@@ -31,7 +31,7 @@ class ClientHiringsPage extends Component {
         return (
             <>
                 <div className="ClientHiringsPage">
-                    <PageContainer fetchCelebrities={false}>
+                    <PageContainer applyFetchCelebrities={false}>
                         <HiringsCardSectionLayout
                             isLoading={this.props.isLoading}
                             contracts={this.props.contracts}
