@@ -185,11 +185,11 @@ class NavbarSectionLayout extends Component {
                                                         ?
                                                         (
                                                             <>
-                                                                <button
-                                                                    className="btn btn-primary mt-1 btn-sm ffb-button mr-2"
-                                                                    onClick={this.openFFBLanding}>
-                                                                    Famosos For Business
-                                                                </button>
+                                                                {/*<button*/}
+                                                                {/*    className="btn btn-primary mt-1 btn-sm ffb-button mr-2"*/}
+                                                                {/*    onClick={this.openFFBLanding}>*/}
+                                                                {/*    Famosos For Business*/}
+                                                                {/*</button>*/}
                                                                 <button
                                                                     className="btn btn-primary mt-1 btn-sm f-register-button mr-2"
                                                                     onClick={this.goToSignUpPath}>
@@ -322,12 +322,12 @@ class NavbarSectionLayout extends Component {
                                                              aria-labelledby="dropdownMenuButton"
                                                              style={this.state.dropdownOpened ? {display: "block"} : {}}
                                                         >
-                                                            <a className="dropdown-item"
-                                                               href="https://business.famosos.com"
-                                                               target="_blank"
-                                                            >
-                                                                Famosos for business
-                                                            </a>
+                                                            {/*<a className="dropdown-item"*/}
+                                                            {/*   href="https://business.famosos.com"*/}
+                                                            {/*   target="_blank"*/}
+                                                            {/*>*/}
+                                                            {/*    Famosos for business*/}
+                                                            {/*</a>*/}
                                                             <a className="dropdown-item"
                                                                href="#"
                                                                onClick={this.openLanding}
