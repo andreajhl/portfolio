@@ -159,9 +159,9 @@ class TermsPage extends Component {
                                 <p>Agente de derechos de autor:</p>
                                 <p>
                                     Famosos<br/>
-                                    20201 E Country Club DR<br/>
-                                    Aventura, FL 33180<br/>
-                                    andres@contratafamosos.com<br/>
+                                    10800 Biscayne Blvd Suite 560<br/>
+                                    Miami, Florida, 33161<br/>
+                                    experiencias@famosos.com<br/>
                                 </p>
                                 <p>Para mayor claridad, las notificaciones de infracción de derechos de autor sólo se deben ir a nuestro Agente de Derechos de Autor. Usted reconoce que si usted no cumple con todos los requisitos de esta sección de su notificación no puede ser válida.</p>
                                 <p>Si cree que el contenido que se retiró (o cuyo acceso se ha desactivado) no está en infracción, o que tiene la autorización del propietario del copyright, el agente del propietario del copyright, o de conformidad con la ley, para publicar y utilizar dicho contenido, pueden presentar una respuesta a una notificación a la dirección indicada anteriormente, que contiene la siguiente información:</p>
@@ -234,6 +234,7 @@ class TermsPage extends Component {
                     </div>
                     <div className="container-text">
                         <h5 className="font-weight-bold">Talento Condiciones del servicio</h5>
+                        <p>Revisado: 24 de mayo 2017</p>
                         <p>Revisado: 7 Agosto 2019</p>
                         <p>Estos Términos de Servicio ( "Términos") regulan el uso del sitio web Famosos ( "Sitio") y cualquier aplicación móvil Famosos y otros servicios ofrecidos por Famosos, Inc. ( "Servicios"). Famosos, Inc. ( "nosotros." "Nos" o "famosos") proporciona el sitio y los servicios. "Usted" se refiere a usted como un usuario atleta o persona influyente del Sitio o los Servicios.</p>
                         <p>Haciendo clic en "ACEPTO" O AL UTILIZAR EL SITIO O SERVICIOS, usted acepta estos términos. POR FAVOR LEA CON CUIDADO.</p>
@@ -307,9 +308,9 @@ class TermsPage extends Component {
                                 <p>Agente de derechos de autor:</p>
                                 <p>
                                     Famosos<br/>
-                                    20201 E Country Club DR<br/>
-                                    Aventura, FL, 33180<br/>
-                                    andres@contratafamosos.com<br/>
+                                    10800 Biscayne Blvd Suite 560<br/>
+                                    Miami, Florida, 33161<br/>
+                                    experiencias@famosos.com<br/>
                                 </p>
                                 <p>Para mayor claridad, las notificaciones de infracción de derechos de autor sólo se deben ir a nuestro Agente de Derechos de Autor. Usted reconoce que si usted no cumple con todos los requisitos de esta sección de su notificación no puede ser válida.</p>
                                 <p>Si cree que el contenido que se retiró (o cuyo acceso se ha desactivado) no está en infracción, o que tiene la autorización del propietario del copyright, el agente del propietario del copyright, o de conformidad con la ley, para publicar y utilizar dicho contenido, pueden presentar una respuesta a una notificación a la dirección indicada anteriormente, que contiene la siguiente información:</p>
@@ -391,4 +392,5 @@ class TermsPage extends Component {
 }
 
 export {TermsPage};
+
 
