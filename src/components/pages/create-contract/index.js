@@ -312,8 +312,7 @@ class CreateContractPage extends Component {
                     {this.props.saveClientContractError ? (
                         <div className={"mb-2"}>
                           <small className="text-danger">
-                            El pago no pudo ser procesado, contáctanos a
-                            experiencias@famosos.com.
+                            El pago no pudo ser procesado
                           </small>
                         </div>
                     ) : null}
