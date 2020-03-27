@@ -12,7 +12,7 @@ class CheckoutBuyerData extends Component {
     this.state = {
       buyerData: {
         full_name: this.session.getSession().full_name,
-        email: this.session.getSession().email,
+        email: "",
         document: this.session.getSession().document
       }
     };

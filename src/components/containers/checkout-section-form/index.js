@@ -60,7 +60,6 @@ class CheckoutSectionForm extends Component {
     }
 
     onSelectPaymentType(paymentType) {
-        console.log("paymentType:", paymentType)
         this.setState({
             paymentType
         });
@@ -111,7 +110,7 @@ class CheckoutSectionForm extends Component {
     }
 
     onPay() {
-        switch (this.state.paymentType.gateway_name) {
+        switch (this.state.paymentType.gatewayName) {
             case "STRIPE":
                 this.paymentMethodsSectionRef.current.stripeCardForm.current.tokenizeCard();
                 break;
@@ -127,7 +126,7 @@ class CheckoutSectionForm extends Component {
     }
 
     onFinish() {
-        switch (this.state.paymentType.gateway_name) {
+        switch (this.state.paymentType.gatewayName) {
             case "PAYPAL":
                 this.createPaypalPayment(this.state.paypalResponse.status, this.state.paypalResponse);
                 break;

@@ -37,7 +37,7 @@ class PaymentMethodsSection extends Component {
             this.setState(
                 {
                     paymentType: method.name,
-                    gatewayName: method.gateway_name,
+                    gatewayName: method.gatewayName,
                     paymentMethod: {}
                 },
                 () => {
@@ -59,7 +59,7 @@ class PaymentMethodsSection extends Component {
                     {this.props.paymentGateways.map((pg: [], index) => {
                         return (
                             <div key={"paymentGateway_" + index}>
-                                {this.loopMethods(pg["payment-methods"])}
+                                {this.loopMethods(pg["paymentMethods"])}
                             </div>
                         );
                     })}
@@ -106,7 +106,7 @@ class PaymentMethodsSection extends Component {
                                 </div>
                                 {this.state.paymentType === method.name ? (
                                     <>
-                                        {this.renderPaymentTypeOptions(method["available-methods"])}
+                                        {this.renderPaymentTypeOptions(method["availablePaymentMethods"])}
                                     </>
                                 ) : null}
                             </div>
@@ -206,7 +206,7 @@ PaymentMethodsSection.defaultProps = {
 const mapStateToProps = (state: any) => ({
     isLoading: state.payments.fetchPaymentGatewaysReducer.loading,
     isCompleted: state.payments.fetchPaymentGatewaysReducer.completed,
-    paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.gateways,
+    paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.data,
     currencyExchangeData: state.payments.currencyExchangeReducer.data,
 });
 

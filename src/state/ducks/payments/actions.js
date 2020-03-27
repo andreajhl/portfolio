@@ -9,8 +9,7 @@ import {AVAILABLE_CURRENCIES} from "../../../components/layouts/currency-dropdow
 export const listPaymentGateways = currency => {
   return dispatch => {
     const TYPE = types.FETCH_PAYMENT_GATEWAYS_REQUEST;
-    const FINAL_PATH =
-      API_PATHS.BASE_PATH + "available-payment-gateways/" + currency + "/";
+    const FINAL_PATH = "/custom-endpoints/gateway-payment-methods/available-payment-methods/" + currency;
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",
@@ -119,7 +118,7 @@ export const getContractToPay = contractReference => {
 export const createDlocalPayment = data => {
   return dispatch => {
     const TYPE = types.CREATE_DLOCAL_PAYMENT_REQUEST;
-    const FINAL_PATH = API_PATHS.BASE_PATH + "create-dlocal-payment/";
+    const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "POST",
@@ -138,8 +137,8 @@ export const createDlocalPayment = data => {
           // Other actions
 
           // Validate if it is necessary a redirect
-          if (res.data.required_redirect === true) {
-            window.location.href = res.data.redirect_uri;
+          if (res.data.data.requiredRedirect === true) {
+            window.location.href = res.data.data.redirectUri;
           }
 
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
@@ -161,7 +160,7 @@ export const createDlocalPayment = data => {
 export const createStripePayment = data => {
   return dispatch => {
     const TYPE = types.CREATE_STRIPE_PAYMENT_REQUEST;
-    const FINAL_PATH = API_PATHS.BASE_PATH + "create-stripe-payment/";
+    const FINAL_PATH = "custom-endpoints/user-payments/process-stripe-payment";
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "POST",

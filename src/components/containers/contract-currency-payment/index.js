@@ -91,7 +91,7 @@ ContractCurrencyPayment.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     isLoading: state.payments.fetchPaymentGatewaysReducer.loading,
-    paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.gateways,
+    paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.data,
     currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
     currencyExchangeData: state.payments.currencyExchangeReducer.data
 });
