@@ -56,7 +56,7 @@ class ContractCheckoutSummary extends Component {
                     <hr/>
                     <small className={"text-muted"}>
                         Al continuar estás aceptando nuestros
-                        <a href={PATHS.TERMS_PATH} target={"_blank"}>T&C</a>
+                        <a href={PATHS.TERMS_PATH} target={"_blank"}>&nbsp;Términos y Condiciones</a>
                     </small>
                 </div>
             );
