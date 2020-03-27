@@ -4,6 +4,7 @@ import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 import {ContractPriceLayout} from "../../layouts/contract-price";
 import {AVAILABLE_CURRENCIES} from "../../layouts/currency-dropdown/constants";
+import * as PATHS from "../../../routing/Paths";
 
 
 class ContractCheckoutSummary extends Component {
@@ -30,26 +31,37 @@ class ContractCheckoutSummary extends Component {
     returnActionButton() {
         if (this.props.showPayButton) {
             return (
-                <button
-                    onClick={this.onPay}
-                    className={
-                        "contract-button mx-auto hover cursor-pointer p-2 border bg-active "
-                    }
-                >
-                    {
-                        this.props.buttonPayLoading
-                            ?
-                            <span
-                                className="spinner-grow spinner-grow-sm"
-                                role="status"
-                                aria-hidden="true"
-                            />
-                            :
-                            <span className="text-white">
-                              Pagar
+                <div className={"text-center"}>
+                    <button
+                        onClick={this.onPay}
+                        className={
+                            "contract-button mx-auto hover cursor-pointer p-2 border bg-active "
+                        }
+                    >
+                        {
+                            this.props.buttonPayLoading
+                                ?
+                                <span
+                                    className="spinner-grow spinner-grow-sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
+                                :
+
+                                <span className="text-white">
+                                Pagar
                             </span>
-                    }
-                </button>
+                        }
+                    </button>
+                    <hr/>
+                    <small className={"text-muted"}>
+                        Al continuar estás aceptando nuestros&nbsp;
+                        <a href={PATHS.TERMS_PATH} target={"_blank"}>Términos y Condiciones</a>&nbsp;
+                        y nuestra&nbsp;
+                        <a href={PATHS.POLICIES_PATH} target={"_blank"}>Política de Privacidad</a>&nbsp;
+
+                    </small>
+                </div>
             );
         } else {
             return (

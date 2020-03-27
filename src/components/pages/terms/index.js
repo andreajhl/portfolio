@@ -158,7 +158,6 @@ class TermsPage extends Component {
                                 </ul>
                                 <p>Agente de derechos de autor:</p>
                                 <p>
-                                    Andrés Cohen<br/>
                                     Famosos<br/>
                                     20201 E Country Club DR<br/>
                                     Aventura, FL 33180<br/>
@@ -307,7 +306,6 @@ class TermsPage extends Component {
                                 </ul>
                                 <p>Agente de derechos de autor:</p>
                                 <p>
-                                    Andrés Cohen<br/>
                                     Famosos<br/>
                                     20201 E Country Club DR<br/>
                                     Aventura, FL, 33180<br/>
