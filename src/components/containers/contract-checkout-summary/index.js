@@ -59,6 +59,7 @@ class ContractCheckoutSummary extends Component {
                         <a href={PATHS.TERMS_PATH} target={"_blank"}>Términos y Condiciones</a>&nbsp;
                         y nuestra&nbsp;
                         <a href={PATHS.POLICIES_PATH} target={"_blank"}>Política de Privacidad</a>&nbsp;
+
                     </small>
                 </div>
             );
