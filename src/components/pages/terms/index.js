@@ -23,13 +23,13 @@ class TermsPage extends Component {
                                 <span className="font-weight-bold">Famosos Videos</span>
                                 <p>A través del Sitio y los Servicios, usted tiene la oportunidad de comprar vídeos
                                     personalizados (“Famosos”) Vídeos de los atletas y personas influyentes ( “Usuarios
-                                    de talento”). Va a presentar una solicitud de un vídeo Famosos a un usuario Talento.
-                                    El Usuario Talento tiene 10 dias para aceptar o rechazar su solicitud. Su pago se
-                                    hará efectivo apenas complete su contratación y cree su solicitud. En el caso tal de
-                                    que el talento o Famosos rechaze su solicitud, se le hará el reembolso a su metodo
-                                    de pago elegido (el reembolso podría tardar desde 5-10 días hábiles en aparecer). En
-                                    el caso tal de que su solicitud sea aceptada, no habrán devoluciones ni
-                                    reembolsos.</p>
+                                    de talento”). Usted va a presentar una solicitud de un vídeo Famosos a un usuario
+                                    Talento. El Usuario Talento tiene hasta 10 dias hábiles para aceptar o rechazar su
+                                    solicitud. Su pago se hará efectivo apenas complete su contratación y cree su
+                                    solicitud. En el caso tal de que el talento o Famosos rechaze su solicitud, se le
+                                    hará el reembolso a su metodo de pago elegido (el reembolso podría tardar desde 5-10
+                                    días hábiles en aparecer). En el caso tal de que su solicitud sea aceptada, no
+                                    habrán devoluciones ni reembolsos.</p>
                                 <p>Al recibir el pago total de su Famosos vídeo, se le concede una licencia no
                                     exclusiva, a nivel mundial para utilizar el vídeo Famosos para sus propios fines
                                     personales, no comerciales, y no promocionales. Los Famosos Videos tienen licencia y
