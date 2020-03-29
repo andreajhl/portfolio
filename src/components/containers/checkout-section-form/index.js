@@ -2,10 +2,12 @@ import React, {Component} from "react";
 import "./styles.scss";
 import {PaymentMethodsSection} from "../../containers/payment-methods-section";
 import {ContractCheckoutSummary} from "../../containers/contract-checkout-summary";
-import {paymentsOperations} from "../../../state/ducks/payments";
 import {connect} from "react-redux";
 import {CheckoutBuyerData} from "../checkout-buyer-data";
 import {ContractCurrencyPayment} from "../contract-currency-payment";
+import apiService from "../../../state/utils/apiService";
+import {history} from "../../../routing/History";
+import * as ROUTING_PATHS from "../../../routing/Paths";
 
 
 class CheckoutSectionForm extends Component {
@@ -20,10 +22,10 @@ class CheckoutSectionForm extends Component {
             paymentMethod: {},
             paymentType: {},
             stripeToken: "",
-            paypalResponse: {}
+            payPalResponse: {},
+            buttonFinishLoading: false,
+            buttonPayLoading: false
         };
-        this.buttonFinishLoading = false;
-        this.buttonPayLoading = false;
 
         this.onSelectCurrency = this.onSelectCurrency.bind(this);
         this.onBuyerDataChange = this.onBuyerDataChange.bind(this);
@@ -34,13 +36,13 @@ class CheckoutSectionForm extends Component {
         this.onStripeResponse = this.onStripeResponse.bind(this);
         this.onPayPalResponse = this.onPayPalResponse.bind(this);
         this.createStripePayment = this.createStripePayment.bind(this);
-        this.createPaypalPayment = this.createPaypalPayment.bind(this);
+        this.createPayPalPayment = this.createPayPalPayment.bind(this);
 
         this.paymentMethodsSectionRef = React.createRef();
     }
 
     componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
-        if(nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to){
+        if (nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to) {
             this.setState({
                 currency: nextProps.currencyExchangeData.to
             })
@@ -110,16 +112,23 @@ class CheckoutSectionForm extends Component {
     }
 
     onPay() {
+        this.setState({
+            ...this.state,
+            error: "",
+            buttonPayLoading: true
+        });
         switch (this.state.paymentType.gatewayName) {
             case "STRIPE":
                 this.paymentMethodsSectionRef.current.stripeCardForm.current.tokenizeCard();
                 break;
             case "DLOCAL":
-                this.createDlocalPayment();
+                this.createDLocalPayment();
                 break;
             default:
                 this.setState({
-                    error: "Debes seleccionar un método de pago."
+                    error: "Debes seleccionar un método de pago.",
+                    buttonFinishLoading: false,
+                    buttonPayLoading: false,
                 });
                 break;
         }
@@ -128,14 +137,16 @@ class CheckoutSectionForm extends Component {
     onFinish() {
         switch (this.state.paymentType.gatewayName) {
             case "PAYPAL":
-                this.createPaypalPayment(this.state.paypalResponse.status, this.state.paypalResponse);
+                this.createPayPalPayment(this.state.payPalResponse.status, this.state.payPalResponse);
                 break;
             case "GOOGLE_PAY":
             case "APPLE_PAY":
                 break;
             default:
                 this.setState({
-                    error: "Debes seleccionar un método de pago."
+                    error: "Debes seleccionar un método de pago.",
+                    buttonFinishLoading: false,
+                    buttonPayLoading: false,
                 });
                 break;
         }
@@ -147,7 +158,9 @@ class CheckoutSectionForm extends Component {
         });
         if (status === "ERROR") {
             this.setState({
-                error: "Error al validar la tarjeta de crédito"
+                error: "Error al validar la tarjeta de crédito",
+                buttonFinishLoading: false,
+                buttonPayLoading: false,
             });
         } else {
             this.setState({
@@ -163,57 +176,157 @@ class CheckoutSectionForm extends Component {
             "utiliza otro método de pago.";
         this.setState({
             showPayButton: !!details.status === "COMPLETED",
-            paypalResponse: details,
+            payPalResponse: details,
             paymentMethod: paymentMethod,
             error: details.status === "COMPLETED" ? null : error
         }, () => {
-            this.createPaypalPayment(this.state.paypalResponse.status, this.state.paypalResponse);
+            this.createPayPalPayment(this.state.payPalResponse.status, this.state.payPalResponse);
         });
     }
 
-    createDlocalPayment() {
-        this.props.createDlocalPayment({
+    createDLocalPayment() {
+        const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
+        const data = {
             buyer_full_name: this.state.buyerData.full_name,
             buyer_email: this.state.buyerData.email,
             buyer_document: this.state.buyerData.document,
             contract_reference: this.props.contractData.reference,
             payment_method_id: this.state.paymentMethod.id,
             country: this.returnCountry(),
-        });
+        };
+        apiService({
+            method: "POST",
+            action: null,
+            path: FINAL_PATH,
+            async: true,
+            params: null,
+            body: data,
+            custom_endpoint: false
+        })
+            .then(res => {
+                if (res.data.status === "ERROR") {
+                    this.setState({
+                        ...this.state,
+                        error: res.data.error,
+                        buttonPayLoading: false
+                    })
+                } else {
+                    // Validate if it is necessary a redirect
+                    if (res.data.data.requiredRedirect === true) {
+                        window.location.href = res.data.data.redirectUri;
+                    } else {
+                        history._pushRoute(
+                            ROUTING_PATHS.CONTRACT_CREATED.replace(
+                                ":contract_reference",
+                                res.data.data.reference
+                            )
+                        );
+                    }
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({
+                    ...this.state,
+                    error: "No se pudo procesar tu pago, contáctanos a experiencias@famosos.com.",
+                    buttonPayLoading: false
+                })
+            });
     }
 
     createStripePayment() {
-        this.props.createStripePayment({
+        const FINAL_PATH = "custom-endpoints/user-payments/process-stripe-payment";
+        const data = {
             contract_reference: this.props.contractData.reference,
             payment_method_id: this.state.paymentMethod.id,
             stripe_card_token: this.state.stripeToken
-        });
-    }
+        };
+        apiService({
+            method: "POST",
+            action: null,
+            path: FINAL_PATH,
+            async: true,
+            params: null,
+            body: data,
+            custom_endpoint: false
+        })
+            .then(res => {
+                if (res.data.status === "ERROR") {
+                    this.setState({
+                        ...this.state,
+                        error: res.data.error,
+                        buttonPayLoading: false
+                    })
+                } else {
+                    history._pushRoute(
+                        ROUTING_PATHS.CONTRACT_CREATED.replace(
+                            ":contract_reference",
+                            res.data.data.reference
+                        )
+                    );
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({
+                    ...this.state,
+                    error: "No se pudo procesar tu pago, contáctanos a experiencias@famosos.com.",
+                    buttonPayLoading: false
+                })
+            });
+    };
 
-    createPaypalPayment(status, response) {
-        this.props.createPayPalPayment({
+    createPayPalPayment(status, response) {
+        const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
+        const data = {
             contract_reference: this.props.contractData.reference,
             payment_method_id: this.state.paymentMethod.id,
             paypal_response: response
+        };
+        apiService({
+            method: "POST",
+            action: null,
+            path: FINAL_PATH,
+            async: true,
+            params: null,
+            body: data,
+            custom_endpoint: false
         })
+            .then(res => {
+                if (res.data.status === "ERROR") {
+                    this.setState({
+                        ...this.state,
+                        error: res.data.error,
+                        buttonPayLoading: false
+                    })
+                } else {
+                    history._pushRoute(
+                        ROUTING_PATHS.CONTRACT_CREATED.replace(
+                            ":contract_reference",
+                            res.data.data.reference
+                        )
+                    );
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({
+                    ...this.state,
+                    error: "No se pudo procesar tu pago, contáctanos a experiencias@famosos.com.",
+                    buttonPayLoading: false
+                })
+            });
+
     }
 
-    isLoading() {
-        return this.props.isCreateDlocalPaymentLoading ||
-            this.props.isCreateStripePaymentLoading ||
-            this.props.isCreatePayPalPaymentLoading
-    }
-
-    isCompleted() {
-        return this.props.isCreateDlocalPaymentCompleted ||
-            this.props.isCreateStripePaymentCompleted ||
-            this.props.isCreatePayPalPaymentCompleted
-    }
+    isLoading = () => {
+        return this.state.buttonPayLoading || this.state.buttonFinishLoading
+    };
 
     render() {
         return (
             <div className="CheckoutSectionForm"
-                 style={this.isLoading() ? {opacity: "0.2"} : {}}>
+                 style={this.isLoading() ? {opacity: "0.2",} : {}}>
                 <div className="row checkout-section mx-auto justify-content-center">
                     <div className={"col-12 col-sm-8 col-md-7 col-lg-7 payment-methods"}>
                         <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency}/>
@@ -237,18 +350,16 @@ class CheckoutSectionForm extends Component {
                         className={"contract-summary  mt-3" + (!this.props.isCreatePayPalPaymentCompleted
                             ? " col-12  col-sm-8 col-md-7 col-lg-5 " : " col-sm-12 col-lg-8")}>
                         <ContractCheckoutSummary
-                            showError={!!this.state.error || this.props.createDlocalPaymentError ||
-                            this.props.createStripePaymentError || this.props.isCreatePayPalPaymentLoading}
-                            error={this.state.error || this.props.createDlocalPaymentError ||
-                            this.props.createStripePaymentError || this.props.createPayPalPaymentError}
-                            transactionFee={this.state.paymentMethod.fee}
+                            showError={this.state.error}
+                            error={this.state.error}
+                            transactionFee={this.state.paymentMethod["fee"]}
                             contractData={this.props.contractData}
                             buttonPayDisabled={false}
                             onPay={this.onPay}
                             onFinish={this.onFinish}
                             showPayButton={this.state.showPayButton}
-                            buttonPayLoading={this.buttonPayLoading}
-                            buttonFinishLoading={this.buttonFinishLoading}
+                            buttonPayLoading={this.state.buttonPayLoading}
+                            buttonFinishLoading={this.state.buttonFinishLoading}
                         />
                     </div>
                 </div>
@@ -267,32 +378,12 @@ CheckoutSectionForm.defaultProps = {
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    // Dlocal
-    isCreateDlocalPaymentLoading: state.payments.createDlocalPaymentReducer.loading,
-    isCreateDlocalPaymentCompleted: state.payments.createDlocalPaymentReducer.completed,
-    createDlocalPaymentData: state.payments.createDlocalPaymentReducer.data,
-    createDlocalPaymentError: state.payments.createDlocalPaymentReducer.error_data.error,
-    // Stripe
-    isCreateStripePaymentLoading: state.payments.createStripePaymentReducer.loading,
-    isCreateStripePaymentCompleted: state.payments.createStripePaymentReducer.completed,
-    createStripePaymentData: state.payments.createStripePaymentReducer.data,
-    createStripePaymentError: state.payments.createStripePaymentReducer.error_data.error,
-    // PayPal
-    isCreatePayPalPaymentLoading: state.payments.createPayPalPaymentReducer.loading,
-    isCreatePayPalPaymentCompleted: state.payments.createPayPalPaymentReducer.completed,
-    createPayPalPaymentData: state.payments.createPayPalPaymentReducer.data,
-    createPayPalPaymentError: state.payments.createPayPalPaymentReducer.error_data.error,
     // currencyExchangeData
     currencyExchangeData: state.payments.currencyExchangeReducer.data
-
 });
 
 // mapStateToProps
-const mapDispatchToProps = {
-    createDlocalPayment: paymentsOperations.createDlocalPayment,
-    createStripePayment: paymentsOperations.createStripePayment,
-    createPayPalPayment: paymentsOperations.createPayPalPayment
-};
+const mapDispatchToProps = {};
 
 // Export Class
 const _CheckoutSectionForm = connect(mapStateToProps, mapDispatchToProps)(CheckoutSectionForm);

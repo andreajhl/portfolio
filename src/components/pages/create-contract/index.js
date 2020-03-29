@@ -317,7 +317,7 @@ class CreateContractPage extends Component {
                     {this.props.saveClientContractError ? (
                         <div className={"mb-2"}>
                           <small className="text-danger">
-                            El pago no pudo ser procesado
+                            Error
                           </small>
                         </div>
                     ) : null}
