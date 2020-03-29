@@ -187,11 +187,11 @@ class CheckoutSectionForm extends Component {
     createDLocalPayment() {
         const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
         const data = {
-            buyer_full_name: this.state.buyerData.full_name,
-            buyer_email: this.state.buyerData.email,
-            buyer_document: this.state.buyerData.document,
-            contract_reference: this.props.contractData.reference,
-            payment_method_id: this.state.paymentMethod.id,
+            buyerFullName: this.state.buyerData.full_name,
+            buyerEmail: this.state.buyerData.email,
+            buyerDocument: this.state.buyerData.document,
+            contractReference: this.props.contractData.reference,
+            paymentMethodId: this.state.paymentMethod.id,
             country: this.returnCountry(),
         };
         apiService({
@@ -237,9 +237,9 @@ class CheckoutSectionForm extends Component {
     createStripePayment() {
         const FINAL_PATH = "custom-endpoints/user-payments/process-stripe-payment";
         const data = {
-            contract_reference: this.props.contractData.reference,
-            payment_method_id: this.state.paymentMethod.id,
-            stripe_card_token: this.state.stripeToken
+            contractReference: this.props.contractData.reference,
+            paymentMethodId: this.state.paymentMethod.id,
+            stripeCardToken: this.state.stripeToken
         };
         apiService({
             method: "POST",
@@ -276,12 +276,26 @@ class CheckoutSectionForm extends Component {
             });
     };
 
-    createPayPalPayment(status, response) {
+    createPayPalPayment(status, payPalResponse) {
         const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
+        let isPending = false;
+        try {
+            payPalResponse["purchase_units"].map(purchase_unit => {
+                purchase_unit["payments"]["captures"].map(payment_capture => {
+                    if (payment_capture["status"] === "PENDING") {
+                        isPending = true;
+                        alert("Tu pago está pendiente por ser validado por PayPal")
+                    }
+                })
+            })
+        } catch (e) {
+
+        }
         const data = {
-            contract_reference: this.props.contractData.reference,
-            payment_method_id: this.state.paymentMethod.id,
-            paypal_response: response
+            contractReference: this.props.contractData.reference,
+            paymentMethodId: this.state.paymentMethod.id,
+            payPalResponse: payPalResponse,
+            isPending: isPending
         };
         apiService({
             method: "POST",

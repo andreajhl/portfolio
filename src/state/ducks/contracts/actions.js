@@ -87,7 +87,7 @@ export const getContract = contractReference => {
 export const getContractWithPayments = contractReference => {
   return dispatch => {
     const TYPE = TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST;
-    const FINAL_PATH = "getContractWithPayments" + "contract-with-payments/" + contractReference;
+    const FINAL_PATH = "custom-endpoints/contracts/contract-with-payments/" + contractReference;
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",

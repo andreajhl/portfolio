@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./styles.scss";
-import { contractOperations } from "../../../state/ducks/contracts";
-import { connect } from "react-redux";
-import { history } from "../../../routing/History";
+import {contractOperations} from "../../../state/ducks/contracts";
+import {connect} from "react-redux";
+import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
-import { Session } from "../../../state/utils/session";
-import { ContractPriceLayout } from "../../layouts/contract-price";
+import {Session} from "../../../state/utils/session";
 
 var moment = require("moment");
 
@@ -39,7 +38,7 @@ class ContractPendingPayPage extends Component {
       history._pushRoute(
         PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form") +
           "?use_email=true&email=" +
-          this.props.resumen.contract.delivery_contact
+          this.props.resumen.contract.deliveryContact
       );
     }
   }
@@ -74,7 +73,7 @@ class ContractPendingPayPage extends Component {
                   src={
                     this.props.isLoading
                       ? "/assets/img/avatar-blank.png"
-                      : this.props.resumen.contract.celebrity.avatar || ""
+                      : this.props.resumen.celebrity.avatar || ""
                   }
                   alt="avatar"
                 />
@@ -86,16 +85,16 @@ class ContractPendingPayPage extends Component {
                   </p>
                   <p className="textDescription">
                     Le hemos enviado tu solicitud a{" "}
-                    {this.props.resumen.contract.celebrity.full_name}, muy
+                    {this.props.resumen.celebrity.fullName}, muy
                     pronto recibirás tu Videomensaje personalizado para{" "}
-                    {this.props.resumen.contract.delivery_to}
+                    {this.props.resumen.contract.deliveryTo}
                   </p>
                 </>
               ) : (
                 <>
                   <p className="mt-4 font-weight-bold">
                     Tu solicitud para{" "}
-                    {this.props.resumen.contract.celebrity.full_name} ha sido
+                    {this.props.resumen.celebrity.fullName} ha sido
                     creada.
                   </p>
                   <p className="textDescription">
@@ -237,21 +236,21 @@ class ContractPendingPayPage extends Component {
                         <div>
                           <p className="card-text text-muted text-left">
                             Fecha:{" "}
-                            {moment(pay.transaction_datetime).format("L")}
+                            {moment(pay["createdAt"]).format("L")}
                           </p>
                           <p className="card-text text-muted text-left">
                             Hora:{" "}
-                            {moment(pay.transaction_datetime).format("LT")}
+                            {moment(pay["createdAt"]).format("LT")}
                           </p>
                           <p className="card-text text-muted text-left">
                             Transacción Reference:{" "}
-                            {pay.gateway_charge_id}
+                            {pay["transactionChargeId"]}
                           </p>
                         </div>
                         <div className="d-flex mt-2 justify-content-start align.items-center">
                           <img
                             className="text-left"
-                            src={pay.gateway_payment_method.logo}
+                            src={pay["gatewayPaymentMethodLogo"]}
                             width="50px"
                             alt=""
                           />
@@ -279,7 +278,6 @@ class ContractPendingPayPage extends Component {
   }
 
   render() {
-    console.log(this.props.resumen.payments);
     return <>{this.renderStripe()}</>;
   }
 }
@@ -288,6 +286,7 @@ class ContractPendingPayPage extends Component {
 ContractPendingPayPage.defaultProps = {
   resumen: {
     contract: {},
+    celebrity: {},
     payments: []
   }
 };

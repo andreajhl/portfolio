@@ -47,7 +47,7 @@ const getContractWithPaymentsInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { contract: { celebrity: { avatar: "", full_name: "" } }, payments: [] }
+  data: { contract: { }, payments: [],  celebrity: { } }
 };
 const saveClientContractReviewInitialState = {
   loading: false,
@@ -234,12 +234,12 @@ export function getContractWithPaymentsReducer(
     case TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST_SUCCESS:
       return {
         ...getContractWithPaymentsInitialState,
-        data: action.payload.data
+        data: action.payload.data.data
       };
     case TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST_COMPLETED:
       return {
         ...state,
-        data: action.payload.data,
+        data: action.payload.data.data,
         completed: true
       };
     default:
