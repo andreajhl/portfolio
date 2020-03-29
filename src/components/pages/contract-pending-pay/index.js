@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./styles.scss";
-import { contractOperations } from "../../../state/ducks/contracts";
-import { connect } from "react-redux";
-import { history } from "../../../routing/History";
+import {contractOperations} from "../../../state/ducks/contracts";
+import {connect} from "react-redux";
+import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
-import { Session } from "../../../state/utils/session";
-import { ContractPriceLayout } from "../../layouts/contract-price";
+import {Session} from "../../../state/utils/session";
 
 var moment = require("moment");
 
@@ -85,8 +84,8 @@ class ContractPendingPayPage extends Component {
                     ¡Felicitaciones! tu pago ha sido exitoso.
                   </p>
                   <p className="textDescription">
-                    Le hemos enviado tu solicitud a{" "}
-                    {this.props.resumen.contract.celebrity.full_name}, muy
+                    Vamos a validar tu solicitud y si cumple con nuestras politicas se la enviaremos a{" "}
+                    {this.props.resumen.contract.celebrity.full_name} y muy
                     pronto recibirás tu Videomensaje personalizado para{" "}
                     {this.props.resumen.contract.delivery_to}
                   </p>
