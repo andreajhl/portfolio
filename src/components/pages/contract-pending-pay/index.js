@@ -84,8 +84,8 @@ class ContractPendingPayPage extends Component {
                     ¡Felicitaciones! tu pago ha sido exitoso.
                   </p>
                   <p className="textDescription">
-                    Le hemos enviado tu solicitud a{" "}
-                    {this.props.resumen.celebrity.fullName}, muy
+                    Vamos a validar tu solicitud y si cumple con nuestras politicas se la enviaremos a{" "}
+                    {this.props.resumen.contract.celebrity.full_name} y muy
                     pronto recibirás tu Videomensaje personalizado para{" "}
                     {this.props.resumen.contract.deliveryTo}
                   </p>
