@@ -61,7 +61,7 @@ export class Session {
             let logged = "no";
             if (this.getSession()) {
                 logged = "si";
-                if (this.getSession().client_status > 0) {
+                if (this.getSession().status > 0) {
 
                     const session = this.getSession();
                     if (session) {

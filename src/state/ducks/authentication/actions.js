@@ -19,7 +19,7 @@ const afterLogin = (res, redirect_path = null, dispatch = null) => {
       localStorage.removeItem("hash");
       return;
     }
-    switch (session.getSession().client_status) {
+    switch (session.getSession().status) {
       // CHANGE PASSWORD REQUIRED
       case 10:
         return history._pushRoute(ROUTE_PATHS.CREATE_PASSWORD_PATH);

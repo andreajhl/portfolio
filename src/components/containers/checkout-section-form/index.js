@@ -277,7 +277,7 @@ class CheckoutSectionForm extends Component {
     };
 
     createPayPalPayment(status, payPalResponse) {
-        const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
+        const FINAL_PATH = "custom-endpoints/user-payments/process-paypal-payment";
         let isPending = false;
         try {
             payPalResponse["purchase_units"].map(purchase_unit => {

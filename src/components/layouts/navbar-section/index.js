@@ -147,7 +147,7 @@ class NavbarSectionLayout extends Component {
         let logged = "no";
         if (this.session.getSession()) {
             logged = "si";
-            if (this.session.getSession().client_status === 0) {
+            if (this.session.getSession().status === 0) {
                 logged = "dummy";
             }
         }

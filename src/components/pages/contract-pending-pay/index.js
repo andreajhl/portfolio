@@ -53,7 +53,7 @@ class ContractPendingPayPage extends Component {
 
   renderStripe() {
     const isLogged = this.session.getSession();
-    const isDummy = this.session.getSession().client_status;
+    const isDummy = this.session.getSession().status;
 
     return (
       <>
@@ -85,9 +85,9 @@ class ContractPendingPayPage extends Component {
                   </p>
                   <p className="textDescription">
                     Vamos a validar tu solicitud y si cumple con nuestras politicas se la enviaremos a{" "}
-                    {this.props.resumen.contract.celebrity.full_name} y muy
+                    <b>{this.props.resumen.celebrity.fullName}</b> y muy
                     pronto recibirás tu Videomensaje personalizado para{" "}
-                    {this.props.resumen.contract.deliveryTo}
+                    <b>{this.props.resumen.contract.deliveryTo}</b>
                   </p>
                 </>
               ) : (
@@ -115,7 +115,7 @@ class ContractPendingPayPage extends Component {
                     onClick={this.goToCreateAccount}
                   >
                     Crear una cuenta
-                    <i className="fa fa-arrow-right ml-2" />
+                    <i className="fa fa-arrow-right text-white ml-2" />
                   </button>
                   <div className="w-25 mx-auto m-4 text-center">
                     <hr style={{ border: "solid 0.5px" }} />
@@ -131,7 +131,7 @@ class ContractPendingPayPage extends Component {
                     onClick={this.goToCompleteProfile}
                   >
                     Completar perfil
-                    <i className="fa fa-arrow-right ml-2" />
+                    <i className="fa fa-arrow-right text-white ml-2" />
                   </button>
                 </>
               ) : (

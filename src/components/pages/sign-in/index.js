@@ -5,7 +5,6 @@ import {Session} from "../../../state/utils/session";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import {PageContainer} from "../../layouts/page-container";
-import {HiringsCardSectionLayout} from "../../layouts/hirings-card-section";
 
 
 class SignInPage extends Component {
