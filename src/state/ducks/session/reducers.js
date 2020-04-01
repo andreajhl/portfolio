@@ -33,12 +33,12 @@ export function getSessionReducer(state = getSessionInitialState, action) {
         case types.GET_SESSION_REQUEST_SUCCESS:
             return {
                 ...getSessionInitialState,
-                data: action.payload.data
+                data: action.payload.data.data
             };
         case types.GET_SESSION_REQUEST_COMPLETED:
             return {
                 ...getSessionInitialState,
-                data: action.payload.data,
+                data: action.payload.data.data,
                 completed: true
             };
         default:

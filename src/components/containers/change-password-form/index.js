@@ -30,7 +30,7 @@ class ChangePasswordForm extends Component {
             this.setState({passwordsDontMatch: false});
             if (!this.props.isLoading) {
                 const data = {
-                    new_password: this.state.password,
+                    newPassword: this.state.password,
                 };
                 this.props.changePassword(data, PATHS.ROOT_PATH);
             }

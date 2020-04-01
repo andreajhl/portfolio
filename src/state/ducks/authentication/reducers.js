@@ -134,12 +134,12 @@ export function changePasswordReducer(state = changePasswordInitialState, action
         case types.CHANGE_PASSWORD_REQUEST_SUCCESS:
             return {
                 ...changePasswordInitialState,
-                data: action.payload.data
+                data: action.payload.data.data
             };
         case types.CHANGE_PASSWORD_REQUEST_COMPLETED:
             return {
                 ...changePasswordInitialState,
-                data: action.payload.data,
+                data: action.payload.data.data,
                 completed: true
             };
         default:
@@ -314,12 +314,12 @@ export function validateEmailSecurityCodeReducer(state = validateEmailSecurityCo
         case types.VALIDATE_EMAIL_SECURITY_CODE_REQUEST_SUCCESS:
             return {
                 ...validateEmailSecurityCodeReducerInitialState,
-                data: action.payload.data
+                data: action.payload.data.data
             };
         case types.VALIDATE_EMAIL_SECURITY_CODE_REQUEST_COMPLETED:
             return {
                 ...validateEmailSecurityCodeReducerInitialState,
-                data: action.payload.data,
+                data: action.payload.data.data,
                 completed: true
             };
         default:
@@ -344,12 +344,12 @@ export function validateIfEmailIsRegisteredReducer(state = validateIfEmailIsRegi
         case types.VALIDATE_IF_EMAIL_IS_REGISTERED_REQUEST_SUCCESS:
             return {
                 ...validateIfEmailIsRegisteredInitialState,
-                data: action.payload.data
+                data: action.payload.data.data
             };
         case types.VALIDATE_IF_EMAIL_IS_REGISTERED_REQUEST_COMPLETED:
             return {
                 ...validateIfEmailIsRegisteredInitialState,
-                data: action.payload.data,
+                data: action.payload.data.data,
                 completed: true
             };
         default:

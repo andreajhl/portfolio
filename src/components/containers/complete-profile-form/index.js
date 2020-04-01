@@ -15,9 +15,9 @@ class CompleteProfileForm extends Component {
         this.session = new Session();
 
         this.state = {
-            full_name: "",
+            fullName: "",
             email: "",
-            fav_celebrities: []
+            favCelebrities: []
         };
 
         this.handleInput = this.handleInput.bind(this);
@@ -27,10 +27,10 @@ class CompleteProfileForm extends Component {
     }
 
     componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
-        if(nextProps.session.client){
+        if (nextProps.session.userId) {
             this.setState({
-                full_name: nextProps.session.client.full_name,
-                email: nextProps.session.client.email,
+                fullName: nextProps.session.fullName,
+                email: nextProps.session.email,
             });
         }
     }
@@ -39,8 +39,8 @@ class CompleteProfileForm extends Component {
         this.setState({[event.target.name]: event.target.value})
     }
 
-    handleChange(fav_celebrities) {
-        this.setState({fav_celebrities})
+    handleChange(favCelebrities) {
+        this.setState({favCelebrities})
     }
 
     completeProfile() {
@@ -48,7 +48,7 @@ class CompleteProfileForm extends Component {
     }
 
     hasEmail(){
-        if(this.props.session.client) return this.props.session.client;
+        if (this.props.session) return this.props.session;
         return false
     }
 
@@ -64,9 +64,9 @@ class CompleteProfileForm extends Component {
                     type="text"
                     className="form-control mb-3"
                     placeholder="Escribe tu nombre"
-                    name="full_name"
+                    name="fullName"
                     onChange={this.handleInput}
-                    value={this.state.full_name}
+                    value={this.state.fullName}
                 />
                 {
                     this.hasEmail()
@@ -86,7 +86,7 @@ class CompleteProfileForm extends Component {
                 }
                 <h6>¿Cuáles son tus Famosos favoritos? (Opcional)</h6>
                 <CelebritiesMultiselect
-                    currentValue={this.state.fav_celebrities ? this.state.fav_celebrities : []}
+                    currentValue={this.state.favCelebrities ? this.state.favCelebrities : []}
                     onChange={this.handleChange}
                 />
                 {
@@ -98,7 +98,7 @@ class CompleteProfileForm extends Component {
                         : null
                 }
                 <button className="send-button"
-                        disabled={this.state.isLoading || !this.state.email || !this.state.full_name}
+                        disabled={this.state.isLoading || !this.state.email || !this.state.fullName}
                         onClick={this.completeProfile}
                 >
                     {

@@ -274,7 +274,7 @@ export const validateIfEmailIsRegistered = body => {
         if (res.data.status === "OK") {
           handleApiResponseSuccess(dispatch, type, res);
           dispatch({ type: `${type}_COMPLETED`, payload: res });
-          if (res.data.email_is_registered) {
+          if (res.data.data.emailIsRegistered) {
             afterLogin(
               res,
               ROUTE_PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(
@@ -282,10 +282,10 @@ export const validateIfEmailIsRegistered = body => {
                 "email-form"
               ) +
                 "?email=" +
-                res.data.email
+                res.data.data.email
             );
           } else {
-            dispatch(sendEmailSecurityCode(res.data));
+            dispatch(sendEmailSecurityCode(res.data.data));
             afterLogin(
               res,
               ROUTE_PATHS.VALIDATE_SECURITY_CODE.replace(":form", "email-form")

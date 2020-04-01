@@ -21,7 +21,7 @@ class ValidateEmailSecurityCodeForm extends Component {
     }
 
     componentDidMount(): void {
-        if(!this.state.email) {
+        if(!this.props.validateIfEmailIsRegisteredData.email) {
             history.goBack()
         }
     }
