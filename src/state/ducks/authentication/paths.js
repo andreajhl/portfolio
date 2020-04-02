@@ -8,8 +8,6 @@ export const VALIDATE_EMAIL_SECURITY_CODE = MODEL_PATH + "/validate-email-securi
 export const CREATE_CLIENT_PASSWORD = MODEL_PATH + "/create-account-password";
 export const COMPLETE_PROFILE = MODEL_PATH + "/complete-profile";
 export const CHANGE_PASSWORD = MODEL_PATH + "/change-password";
-export const RESET_PASSWORD = MODEL_PATH + "/reset-password/";
-
-
-export const CREATE_ACCOUNT_TO_VALIDATE_BY_SMS = `api/${apiVersion}/auth/clients/create-account-to-validate-by-sms/`;
-export const VALIDATE_SMS_SECURITY_CODE = `api/${apiVersion}/auth/clients/validate-sms-security-code/`;
+export const RESET_PASSWORD = MODEL_PATH + "/reset-password";
+export const CREATE_ACCOUNT_TO_VALIDATE_BY_SMS = MODEL_PATH + "/create-account-to-validate-by-sms";
+export const VALIDATE_SMS_SECURITY_CODE = MODEL_PATH + "/validate-sms-security-code";

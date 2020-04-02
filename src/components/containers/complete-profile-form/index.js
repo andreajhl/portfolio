@@ -30,7 +30,7 @@ class CompleteProfileForm extends Component {
         if (nextProps.session.userId) {
             this.setState({
                 fullName: nextProps.session.fullName,
-                email: nextProps.session.email,
+                email: nextProps.session.email.includes("myemail@") ? "" : nextProps.session.email,
             });
         }
     }

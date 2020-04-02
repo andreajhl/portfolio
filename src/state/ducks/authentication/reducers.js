@@ -224,12 +224,12 @@ export function sendSMSSecurityCodeReducer(state = sendSMSSecurityCodeReducerIni
         case types.SEND_SMS_SECURITY_CODE_REQUEST_SUCCESS:
             return {
                 ...sendSMSSecurityCodeReducerInitialState,
-                data: action.payload.data
+                data: action.payload.data.data
             };
         case types.SEND_SMS_SECURITY_CODE_REQUEST_COMPLETED:
             return {
                 ...sendSMSSecurityCodeReducerInitialState,
-                data: action.payload.data,
+                data: action.payload.data.data,
                 completed: true
             };
         default:
@@ -254,12 +254,13 @@ export function validateSMSSecurityCodeReducer(state = validateSMSSecurityCodeRe
         case types.VALIDATE_SMS_SECURITY_CODE_REQUEST_SUCCESS:
             return {
                 ...validateSMSSecurityCodeReducerInitialState,
-                data: action.payload.data
+                data: action.payload.data.data
             };
         case types.VALIDATE_SMS_SECURITY_CODE_REQUEST_COMPLETED:
+            console.log("action.payload.data.data", action.payload.data.data)
             return {
                 ...validateSMSSecurityCodeReducerInitialState,
-                data: action.payload.data,
+                data: action.payload.data.data,
                 completed: true
             };
         default:
