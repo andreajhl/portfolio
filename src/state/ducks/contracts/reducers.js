@@ -173,12 +173,12 @@ export function listClientContractsReducer(
     case TYPES.LIST_CLIENT_CONTRACTS_REQUEST_SUCCESS:
       return {
         ...listClientContractsInitialState,
-        data: action.payload.data
+        data: action.payload.data.data
       };
     case TYPES.LIST_CLIENT_CONTRACTS_REQUEST_COMPLETED:
       return {
         ...state,
-        data: action.payload.data,
+        data: action.payload.data.data,
         completed: true
       };
     default:

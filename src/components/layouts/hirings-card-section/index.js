@@ -80,21 +80,21 @@ class HiringsCardSectionLayout extends Component {
                                     <div className="celebrity-avatar d-none d-md-block">
                                         <img className="celebrity-avatar rounded mt-2"
                                              width="40px"
-                                             src={contract.celebrity.avatar}
+                                             src={contract.celebrityData.avatar}
                                              alt="avatar"/>
                                     </div>
                                     <div className="from-to">
                                         <h6 className="mt-2 font-weight-bold">
                                             Famoso:
-                                            <small className="ml-2">{contract.celebrity.full_name}</small>
+                                            <small className="ml-2">{contract.celebrityData.fullName}</small>
                                         </h6>
                                         <h6 className="mt-2 font-weight-bold">
                                             Para:
-                                            <small className="ml-2">{contract.delivery_to}</small>
+                                            <small className="ml-2">{contract.deliveryTo}</small>
                                         </h6>
                                         <h6 className="mt-2 font-weight-bold">
                                             De:
-                                            <small className="ml-2">{contract.delivery_from}</small>
+                                            <small className="ml-2">{contract.deliveryFrom}</small>
                                         </h6>
                                     </div>
                                     <div className="button-status">

@@ -353,12 +353,12 @@ class CheckoutSectionForm extends Component {
                             onSelectPaymentMethod={this.onSelectPaymentMethod}
                             onPayPalResponse={this.onPayPalResponse}
                         />
-                        {this.state.currency !== "USD" && (
-                            <>
-                                <br/>
-                                <CheckoutBuyerData onBuyerDataChange={this.onBuyerDataChange}/>
-                            </>
-                        )}
+                        {/*{this.state.currency !== "USD" && (*/}
+                        {/*    <>*/}
+                        {/*        <br/>*/}
+                        {/*        <CheckoutBuyerData onBuyerDataChange={this.onBuyerDataChange}/>*/}
+                        {/*    </>*/}
+                        {/*)}*/}
                     </div>
                     <div
                         className={"contract-summary  mt-3" + (!this.props.isCreatePayPalPaymentCompleted

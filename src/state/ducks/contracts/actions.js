@@ -205,7 +205,7 @@ export const saveClientContract = contractData => {
 export const listClientContracts = () => {
   return dispatch => {
     const TYPE = TYPES.LIST_CLIENT_CONTRACTS_REQUEST;
-    const FINAL_PATH = "listClientContracts";
+    const FINAL_PATH = API_PATHS.ACCOUNT_CONTRACTS;
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",

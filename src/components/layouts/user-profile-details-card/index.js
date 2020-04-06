@@ -11,11 +11,11 @@ class UserProfileDetailsCardLayout extends Component {
         super(props);
 
         this.state = {
-            fav_celebrities: ""
+            favCelebrities: ""
         };
 
         this.sesion = new Session();
-        this.celebritiesMultiselectChanged = this.celebritiesMultiselectChanged.bind(this);
+        this.celebritiesMultiSelectChanged = this.celebritiesMultiSelectChanged.bind(this);
         this.logout = this.logout.bind(this);
         this.updateSession = this.updateSession.bind(this);
     }
@@ -24,14 +24,14 @@ class UserProfileDetailsCardLayout extends Component {
         this.sesion.removeSession();
     }
 
-    celebritiesMultiselectChanged(value) {
-        this.setState({fav_celebrities: value})
+    celebritiesMultiSelectChanged(value) {
+        this.setState({favCelebrities: value})
     }
 
     updateSession() {
         const session = this.props.sessionData;
-        session.client.fav_celebrities = this.state.fav_celebrities;
-        this.props.updateSession(session.client)
+        session.favCelebrities = this.state.favCelebrities;
+        this.props.updateSession(session)
     }
 
     render() {
@@ -47,9 +47,9 @@ class UserProfileDetailsCardLayout extends Component {
                         <div className="col-12 text-center p-2">
                             <img className="rounded-circle" src="/assets/img/avatar-blank.png" width={"120px"}
                                  alt={"avatar"}/>
-                            <h5 className="font-weight-bold mt-2">{this.props.session.client ? this.props.session.client.full_name : ""}</h5>
-                            <h6 className="mt-2">{this.props.session.client ? this.props.session.client.email : ""}</h6>
-                            <h6 className="mt-2">{this.props.session.client ? this.props.session.client.cellphone_number : ""}</h6>
+                            <h5 className="font-weight-bold mt-2">{this.props.session.fullName}</h5>
+                            <h6 className="mt-2">{this.props.session.email}</h6>
+                            <h6 className="mt-2">{this.props.session.cellphoneNumber}</h6>
                             <small className="text-muted cursor-pointer" onClick={this.logout}>Cerrar sesión
                             </small>
                         </div>
@@ -58,11 +58,11 @@ class UserProfileDetailsCardLayout extends Component {
                         </div>
                         <div className="col-6 text-center border-right p-2">
                             <h6 className="mt-2">Siguiendo</h6>
-                            <h2 className="font-weight-bold mt-4">{this.props.session.client ? 0 : "0"}</h2>
+                            <h2 className="font-weight-bold mt-4">0</h2>
                         </div>
                         <div className="col-6 text-center p-2 border-left">
                             <h6 className="mt-2">Contratos</h6>
-                            <h2 className="font-weight-bold mt-4">{this.props.session.client ? this.props.session.client.total_contracts : "0"}</h2>
+                            <h2 className="font-weight-bold mt-4">{this.props.session.totalContracts}</h2>
                         </div>
                         <div className="col-12 text-center">
                             <hr/>
@@ -71,8 +71,8 @@ class UserProfileDetailsCardLayout extends Component {
                             <h6 className="font-weight-bold mt-2">Famosos Favoritos</h6>
                             <div className="mt-2 mb-2">
                                 <CelebritiesMultiselect
-                                    currentValue={this.props.session.client ? this.props.session.client.fav_celebrities : ""}
-                                    onChange={this.celebritiesMultiselectChanged}
+                                    currentValue={this.props.session.favCelebrities}
+                                    onChange={this.celebritiesMultiSelectChanged}
                                 />
                             </div>
                             <button className="btn btn-primary mb-4"

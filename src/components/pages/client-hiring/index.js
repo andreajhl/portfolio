@@ -14,7 +14,7 @@ class ClientHiringPage extends Component {
     }
 
     componentWillMount(): void {
-        this.props.getContractWithPayments(this.props.match.params.contract_reference)
+        this.props.getContract(this.props.match.params.contract_reference)
     }
 
     componentDidMount(): void {
@@ -50,14 +50,14 @@ ClientHiringPage.defaultProps = {
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isLoading: state.contracts.getContractWithPaymentsReducer.loading,
-    contract: state.contracts.getContractWithPaymentsReducer.data.contract,
-    isCompleted: state.contracts.getContractWithPaymentsReducer.completed
+    isLoading: state.contracts.getContractReducer.loading,
+    contract: state.contracts.getContractReducer.data.contract,
+    isCompleted: state.contracts.getContractReducer.completed
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getContractWithPayments: contractOperations.getContractWithPayments
+    getContract: contractOperations.getContract
 };
 
 // Export Class

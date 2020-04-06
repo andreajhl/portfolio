@@ -53,7 +53,7 @@ ClientHiringsPage.defaultProps = {};
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     isLoading: state.contracts.listClientContractsReducer.loading,
-    contracts: state.contracts.listClientContractsReducer.data.contracts
+    contracts: state.contracts.listClientContractsReducer.data
 });
 
 // mapStateToProps
