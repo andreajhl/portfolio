@@ -11,7 +11,7 @@ class PayPalCardForm extends Component {
     render() {
         const paypalOptions = {
             clientId: process.env.REACT_APP_PAYPAL_KEY,
-            intent: 'capture',
+            intent: 'authorize', // capture
             currency: 'USD',
         };
 
