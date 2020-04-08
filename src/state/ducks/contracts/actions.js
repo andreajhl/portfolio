@@ -54,7 +54,7 @@ export const AssociateContract = hash => {
 export const getContract = contractReference => {
   return dispatch => {
     const TYPE = TYPES.GET_CONTRACT_REQUEST;
-    const FINAL_PATH = "getContract" + contractReference + "/";
+    const FINAL_PATH = API_PATHS.GET_CONTRACT_BY_REFERENCE + contractReference;
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",
@@ -87,7 +87,7 @@ export const getContract = contractReference => {
 export const getContractWithPayments = contractReference => {
   return dispatch => {
     const TYPE = TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST;
-    const FINAL_PATH = "custom-endpoints/contracts/contract-with-payments/" + contractReference;
+    const FINAL_PATH = API_PATHS.GET_CONTRACT_WITH_PAYMENTS + contractReference;
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",

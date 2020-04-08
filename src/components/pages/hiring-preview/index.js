@@ -32,7 +32,7 @@ class HiringPreviewPage extends Component {
                 <div className="HiringPreviewPage">
                     <PageContainer applyFetchCelebrities={false} showFooter={this.props.isCompleted}>
                         {
-                            this.props.isCompleted
+                            this.props.contract.id
                                 ?
                                 <HiringPreviewLayout contract={this.props.contract}/>
                                 : null

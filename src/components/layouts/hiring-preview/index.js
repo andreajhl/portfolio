@@ -38,7 +38,7 @@ class HiringPreviewLayout extends Component {
     }
 
     goToCelebrity() {
-        history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.contract.celebrity.username))
+        history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.contract.celebrityData.username))
     }
 
     renderContractDetails() {
@@ -46,26 +46,19 @@ class HiringPreviewLayout extends Component {
             return (
                 <>
                     {
-                        this.session.getSession().client_id === this.props.contract.client
+                        this.session.getSession().id === this.props.contract.userData.id
                             ?
                             <div className="to-from">
                                 <h5 className="font-weight-bold">
                                     Para:
                                 </h5>
-                                <h5>{this.props.contract.delivery_to ? this.props.contract.delivery_to : "----"}</h5>
+                                <h5>{this.props.contract.deliveryTo ? this.props.contract.deliveryTo : "----"}</h5>
                                 <hr/>
                                 <h5 className="font-weight-bold">
                                     De:
                                 </h5>
-                                <h5>{this.props.contract.delivery_from ? this.props.contract.delivery_from : "----"}</h5>
+                                <h5>{this.props.contract.deliveryFrom ? this.props.contract.deliveryFrom : "----"}</h5>
                                 <hr/>
-                                {/*<h5 className="font-weight-bold">*/}
-                                {/*    Instrucciones*/}
-                                {/*</h5>*/}
-                                {/*<div className="instructions text-justify">*/}
-                                {/*    <h5>{this.props.contract.instructions ? this.props.contract.instructions : "----"}</h5>*/}
-                                {/*</div>*/}
-                                {/*<hr/>*/}
                             </div>
                             : null
                     }
@@ -79,7 +72,7 @@ class HiringPreviewLayout extends Component {
             return (
                 <>
                     {
-                        this.session.getSession().client_id === this.props.contract.client
+                        this.session.getSession().id === this.props.contract.userData.id
                             ?
                             <div className="reviews">
                                 <ReviewCreatorLayout contract={this.props.contract}/>
@@ -96,7 +89,7 @@ class HiringPreviewLayout extends Component {
             return (
                 <>
                     {
-                        this.session.getSession().client_id !== this.props.contract.client
+                        this.session.getSession().id !== this.props.contract.userData.id
                             ?
                             <ContractCommentSectionLayout contract={this.props.contract}/>
                             : null
@@ -140,12 +133,12 @@ class HiringPreviewLayout extends Component {
                                             />
                                         </div>
                                         <img className="celebrity-avatar"
-                                             src={this.props.contract.celebrity ? this.props.contract.celebrity.avatar : ""}
+                                             src={this.props.contract.celebrityData ? this.props.contract.celebrityData.avatar : ""}
                                              alt={"avatar"}
                                              onClick={this.goToCelebrity}
                                         />
                                         <h3 className="ml-2 font-weight-bold cursor-pointer" onClick={this.goToCelebrity}>
-                                            {this.props.contract.celebrity ? this.props.contract.celebrity.full_name : "----"}
+                                            {this.props.contract.celebrityData ? this.props.contract.celebrityData.fullName : "----"}
                                         </h3>
                                         <br/>
                                         <div className="mt-4 mb-4">

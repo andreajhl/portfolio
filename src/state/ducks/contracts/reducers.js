@@ -202,12 +202,12 @@ export function getContractReducer(state = getContractInitialState, action) {
     case TYPES.GET_CONTRACT_REQUEST_SUCCESS:
       return {
         ...getContractInitialState,
-        data: action.payload.data
+        data: action.payload.data.data
       };
     case TYPES.GET_CONTRACT_REQUEST_COMPLETED:
       return {
         ...state,
-        data: action.payload.data,
+        data: action.payload.data.data,
         completed: true
       };
     default:
