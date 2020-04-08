@@ -60,7 +60,6 @@ class CheckoutSectionForm extends Component {
     }
 
     onSelectPaymentType(paymentType) {
-        console.log("paymentType:", paymentType)
         this.setState({
             paymentType
         });

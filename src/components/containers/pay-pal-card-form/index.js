@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {OnCancelData, OnCaptureData, PayPalButton} from "react-paypal-button";
+import {OnApproveData, OnCancelData, OnCaptureData, PayPalButton} from "react-paypal-button";
 
 
 class PayPalCardForm extends Component {
@@ -35,6 +35,19 @@ class PayPalCardForm extends Component {
                     paypalOptions={paypalOptions}
                     buttonStyles={buttonStyles}
                     amount={this.props.contractPrice}
+                    onApprove={(data: OnApproveData, authId: string) => {
+                        this.props.onPayPalResponse(this.props.paymentMethod, {
+                            create_time: this.getDate(),
+                            update_time: this.getDate(),
+                            id: data.orderID,
+                            intent: '',
+                            status: 'APPROVED',
+                            orderID: data.orderID,
+                            payerID: data.payerID,
+                            facilitatorAccessID: data.facilitatorAccessID,
+                            authId: authId
+                        });
+                    }}
                     onPaymentSuccess={(details: OnCaptureData) => {
                         this.props.onPayPalResponse(this.props.paymentMethod, details);
                     }}
