@@ -44,17 +44,19 @@ class TrendingVideosSectionLayout extends Component {
     }
 
     renderContractsCards() {
-        return (
-            this.props.contracts.map((contract, index) => {
-                return (
-                    <div key={contract.id + "index-" + index} style={this.props.isLoading ? {opacity: "0.1"} : {}}>
-                        <TrendingVideoCardLayout
-                            publicContract={contract}
-                        />
-                    </div>
-                )
-            })
-        )
+        if(this.props.contracts){
+            return (
+                this.props.contracts.map((contract, index) => {
+                    return (
+                        <div key={contract.id + "index-" + index} style={this.props.isLoading ? {opacity: "0.1"} : {}}>
+                            <TrendingVideoCardLayout
+                                publicContract={contract}
+                            />
+                        </div>
+                    )
+                })
+            )
+        }
     };
 
     renderLoading() {

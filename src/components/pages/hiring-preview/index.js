@@ -32,7 +32,7 @@ class HiringPreviewPage extends Component {
                 <div className="HiringPreviewPage">
                     <PageContainer applyFetchCelebrities={false} showFooter={this.props.isCompleted}>
                         {
-                            this.props.contract.id
+                            this.props.contract.reference
                                 ?
                                 <HiringPreviewLayout contract={this.props.contract}/>
                                 : null
@@ -56,7 +56,7 @@ HiringPreviewPage.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
     isLoading: state.contracts.getContractReducer.loading,
-    contract: state.contracts.getContractReducer.data.contract,
+    contract: state.contracts.getContractReducer.data,
     isCompleted: state.contracts.getContractReducer.completed
 });
 

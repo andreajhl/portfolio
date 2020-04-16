@@ -72,15 +72,15 @@ class CelebrityPublicContractCardLayout extends Component {
                        />
                     </div>
                     <div className="body pt-3 pb-2">
-                        {/*<div style={{display: "flex"}}>*/}
-                        {/*    <ContractFavsLayout*/}
-                        {/*        contractReference={this.props.publicContract.contract_reference}*/}
-                        {/*        ref={this.contractFav}*/}
-                        {/*    />*/}
-                        {/*    <ContractCommentsLayout*/}
-                        {/*        contractReference={this.props.publicContract.contract_reference}*/}
-                        {/*    />*/}
-                        {/*</div>*/}
+                        <div style={{display: "flex"}}>
+                            <ContractFavsLayout
+                                contractReference={this.props.publicContract.contract_reference}
+                                ref={this.contractFav}
+                            />
+                            <ContractCommentsLayout
+                                contractReference={this.props.publicContract.contract_reference}
+                            />
+                        </div>
                         <div className="title" onClick={this.goToContract}>
                             <h6 className="font-weight-bold">Para: {this.props.publicContract.contract_delivery_to}</h6>
                         </div>

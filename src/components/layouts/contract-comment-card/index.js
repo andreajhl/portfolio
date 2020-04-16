@@ -18,7 +18,7 @@ class ContractCommentCardLayout extends Component {
                         <i className="fa fa-user"/>
                     </div>
                     <div className="client-name">
-                        {this.props.contractComment.client.full_name}
+                        {this.props.contractComment.userFullName}
                     </div>
                 </div>
                 <div className="custom-card-body">

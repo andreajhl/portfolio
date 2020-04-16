@@ -354,7 +354,7 @@ const mapStateToProps = (state: any) => ({
   saveCelebrityRequestError:
     state.celebrityRequests.saveCelebrityRequestReducer.error_data.error,
   saveCelebrityRequestData:
-    state.celebrityRequests.saveCelebrityRequestReducer.data
+    state.celebrityRequests.saveCelebrityRequestReducer.data.data
 });
 
 // mapStateToProps

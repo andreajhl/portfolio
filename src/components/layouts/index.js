@@ -12,7 +12,6 @@ export * from "./footer";
 export * from "./hiring-preview";
 export * from "./hirings-card-section";
 export * from "./index-header";
-export * from "./main-menu";
 export * from "./navbar-search";
 export * from "./navbar-section";
 export * from "./page-container";

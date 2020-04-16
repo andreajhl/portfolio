@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import 'react-flags-select/scss/react-flags-select.scss';
 import "./styles.scss";
-import * as TYPES from "../../../state/ducks/contracts/types";
-import * as API_PATHS from "../../../state/ducks/contracts/paths";
-import apiService from "../../../state/utils/apiService";
 import {Session} from "../../../state/utils/session";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import {getContractCommentsData} from "../../../state/ducks/contracts/actions";
 
 class ContractCommentsLayout extends Component {
 
@@ -24,22 +22,11 @@ class ContractCommentsLayout extends Component {
     }
 
     componentDidMount(): void {
-        apiService({
-            method: "GET",
-            action: TYPES.COMMENT_REQUEST,
-            path: "API_PATHS.CONTRACT_BASE_PATH" + this.props.contractReference + "/comments/count/",
-            async: true,
-            params: null,
-            body: null
-        })
+        getContractCommentsData(this.props.contractReference)
             .then(res => {
-                if ("status" in res.data && res.data.status === "ERROR") {
-                    //
-                } else {
-                    this.setState({
-                        commentsCount: res.data.count,
-                    })
-                }
+                this.setState({
+                    commentsCount: res.count,
+                })
             })
     }
 
@@ -51,7 +38,7 @@ class ContractCommentsLayout extends Component {
         return (
             <div className="ContractCommentsLayout" onClick={this.goToContract}>
                 <i className={'fa fa-2x fa-comment'}/>
-                <small className="text-dark">{this.state.commentsCount}</small>
+                <small className="text-dark">{this.state.commentsCount ? this.state.commentsCount : 0}</small>
             </div>
         );
     };

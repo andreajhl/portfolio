@@ -6,14 +6,12 @@ import * as API_PATHS from './paths';
 export const saveRequest = (contractData) => {
     return dispatch => {
         const TYPE = TYPES.SAVE_CELEBRITY_REQUEST_REQUEST;
-        const FINAL_PATH = API_PATHS.VIEWSETS_PATH;
+        const FINAL_PATH = API_PATHS.CREATE_CELEBRITY_REQUET;
         dispatch({type: TYPE, payload: {}});
         apiService({
             method: "POST",
             action: TYPE,
             path: FINAL_PATH,
-            async: true,
-            params: null,
             body: contractData
         })
             .then(res => {

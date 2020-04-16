@@ -29,7 +29,7 @@ class TrendingVideoCardLayout extends Component {
     }
 
     componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
-        if (this.props.currentVideoPlaying !== null && nextProps.currentVideoPlaying !== this.props.publicContract.contract_reference && this.state.videoDesktopPlayIcon === "fa-pause") {
+        if (this.props.currentVideoPlaying !== null && nextProps.currentVideoPlaying !== this.props.publicContract.reference && this.state.videoDesktopPlayIcon === "fa-pause") {
             this.setState({videoDesktopPlayIcon: "fa-play"}, () => {
                 this.videoDesktopRef.current.pause()
             });
@@ -40,7 +40,7 @@ class TrendingVideoCardLayout extends Component {
         if (this.videoDesktopRef.current.paused) {
             this.setState({videoDesktopPlayIcon: "fa-pause"}, () => {
                 this.videoDesktopRef.current.play();
-                this.props.playVideo({contract_reference: this.props.publicContract.contract_reference})
+                this.props.playVideo({contract_reference: this.props.publicContract.reference})
             });
         } else {
             this.setState({videoDesktopPlayIcon: "fa-play"}, () => {
@@ -58,7 +58,7 @@ class TrendingVideoCardLayout extends Component {
             "CLICK_ON_TRENDING_VIDEO_CONTRACT_DETAILS_BUTTON",
             this.props.publicContract
         );
-        history._pushRoute(PATHS.HIRING_PREVIEW.replace(":contract_reference", this.props.publicContract.contract_reference))
+        history._pushRoute(PATHS.HIRING_PREVIEW.replace(":contract_reference", this.props.publicContract.reference))
     }
 
     goToHire(){
@@ -66,7 +66,7 @@ class TrendingVideoCardLayout extends Component {
             "CLICK_ON_TRENDING_VIDEO_HIRE_BUTTON",
             this.props.publicContract
         );
-        history._pushRoute(PATHS.CELEBRITY_PROFILE_CONTRACT.replace(":celebrity_username", this.props.publicContract.celebrity.username))
+        history._pushRoute(PATHS.CELEBRITY_PROFILE_CONTRACT.replace(":celebrity_username", this.props.publicContract.celebrityData.username))
     }
 
     goToCelebrityProfile(){
@@ -74,7 +74,7 @@ class TrendingVideoCardLayout extends Component {
             "CLICK_ON_TRENDING_VIDEO_CELEBRITY_DETAILS_BUTTON",
             this.props.publicContract
         );
-        history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.publicContract.celebrity.username))
+        history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.publicContract.celebrityData.username))
     }
 
     render() {
@@ -83,12 +83,12 @@ class TrendingVideoCardLayout extends Component {
                 <div className="card f-card f-rounded hover cursor-pointer">
                     <div className="celebrity-details">
                         <img className="avatar"
-                             src={this.props.publicContract.celebrity ? this.props.publicContract.celebrity.avatar : ""}
+                             src={this.props.publicContract.celebrityData ? this.props.publicContract.celebrityData.avatar : ""}
                              alt={"-"}
                              onClick={this.goToCelebrityProfile}
                         />
                         <h5 className="full-name" onClick={this.goToCelebrityProfile}>
-                            {this.props.publicContract.celebrity ? this.props.publicContract.celebrity.full_name : "----"}
+                            {this.props.publicContract.celebrityData ? this.props.publicContract.celebrityData.fullName : "----"}
                         </h5>
                         <div className="contract-button" onClick={this.goToHire}>
                             Contratar
@@ -114,16 +114,16 @@ class TrendingVideoCardLayout extends Component {
                     <div className="body">
                         <div className="contract-to">
                             <div className="title" onClick={this.goToContract}>
-                                <h6 className="font-weight-bold">Para: {this.props.publicContract.delivery_to}</h6>
+                                <h6 className="font-weight-bold">Para: {this.props.publicContract.deliveryTo}</h6>
                             </div>
                         </div>
                         <div className="favs-and-comments">
                             <ContractFavsLayout
-                                contractReference={this.props.publicContract.contract_reference}
+                                contractReference={this.props.publicContract.reference}
                                 ref={this.contractFav}
                             />
                             <ContractCommentsLayout
-                                contractReference={this.props.publicContract.contract_reference}
+                                contractReference={this.props.publicContract.reference}
                             />
                         </div>
                     </div>
@@ -141,7 +141,7 @@ TrendingVideoCardLayout.defaultProps = {
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    currentVideoPlaying: state.contracts.playVideoReducer.contract_reference,
+    currentVideoPlaying: state.contracts.playVideoReducer.reference,
 });
 
 // mapStateToProps

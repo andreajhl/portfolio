@@ -4,9 +4,9 @@ import {ShareContractLayout} from "../share-contract";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import {Session} from "../../../state/utils/session";
+import {ContractFavsLayout} from "../contract-favs";
 import {ReviewCreatorLayout} from "../review-creator";
 import {ContractCommentSectionLayout} from "../contract-comments-section";
-import {ContractFavsLayout} from "../contract-favs";
 
 class HiringPreviewLayout extends Component {
 
@@ -84,7 +84,7 @@ class HiringPreviewLayout extends Component {
         }
     }
 
-    renderContractComments(){
+    renderContractComments() {
         if (this.session.getSession()) {
             return (
                 <>
@@ -121,7 +121,8 @@ class HiringPreviewLayout extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="col-sm-12 col-md-5 col-lg-5 details-container p-0 m-0" style={{minHeight: "730px"}}>
+                        <div className="col-sm-12 col-md-5 col-lg-5 details-container p-0 m-0"
+                             style={{minHeight: "730px"}}>
                             <div className="video-details">
                                 <div className="titles">
                                     <div className="wrap-text">
@@ -137,7 +138,8 @@ class HiringPreviewLayout extends Component {
                                              alt={"avatar"}
                                              onClick={this.goToCelebrity}
                                         />
-                                        <h3 className="ml-2 font-weight-bold cursor-pointer" onClick={this.goToCelebrity}>
+                                        <h3 className="ml-2 font-weight-bold cursor-pointer"
+                                            onClick={this.goToCelebrity}>
                                             {this.props.contract.celebrityData ? this.props.contract.celebrityData.fullName : "----"}
                                         </h3>
                                         <br/>
@@ -145,7 +147,7 @@ class HiringPreviewLayout extends Component {
                                             <h6 className="font-weight-bold">
                                                 Compartir video en:
                                             </h6>
-                                            <ShareContractLayout  contract={this.props.contract}/>
+                                            <ShareContractLayout contract={this.props.contract}/>
                                         </div>
                                     </div>
                                     {this.renderContractDetails()}

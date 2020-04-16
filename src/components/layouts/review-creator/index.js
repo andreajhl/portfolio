@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import StarRatingComponent from "react-star-rating-component";
-import {contractOperations} from "../../../state/ducks/contracts";
-import {connect} from "react-redux";
 import {Session} from "../../../state/utils/session";
-import {history} from "../../../routing/History";
-import * as PATHS from "../../../routing/Paths";
 import "./styles.scss";
+import {saveClientContractReview} from "../../../state/ducks/contracts/actions";
 
 class ReviewCreatorLayout extends Component {
 
@@ -13,11 +10,13 @@ class ReviewCreatorLayout extends Component {
         super(props);
 
         this.state = {
-            firstTime: true,
             reviewData: {
                 stars: 5,
                 review: ""
-            }
+            },
+            showReviewError: false,
+            dataSent: false,
+            isLoading: false
         };
 
         this.session = new Session();
@@ -29,44 +28,68 @@ class ReviewCreatorLayout extends Component {
     onStarClick(nextValue, prevValue, name) {
         const {reviewData} = this.state;
         reviewData.stars = nextValue;
-        this.setState({reviewData});
+        this.setState({
+            ...this.state,
+            reviewData
+        });
     }
 
     handleChange(e) {
         const {reviewData} = this.state;
         reviewData.review = e.target.value;
-        this.setState({reviewData});
+        this.setState({
+            ...this.state,
+            reviewData
+        });
     }
 
     componentDidMount(): void {
-        const {firstTime} = this.state;
-        const {reviewData} = this.state;
-        if (firstTime && this.props.contract.reference) {
-            reviewData.stars = this.props.contract.stars;
-            reviewData.review = this.props.contract.review;
-            this.setState({reviewData, firstTime: false})
-        }
+        this.setState({
+            ...this.state,
+            reviewData: {
+                review: this.props.contract.review,
+                stars: this.props.contract.stars
+            }
+        })
     }
 
     saveReview() {
+        this.setState({
+            isLoading: true
+        });
         if (this.state.reviewData.review && this.state.reviewData.review !== "" && this.state.reviewData.review.length !== null) {
-            this.props.saveClientContractReview(this.props.contract.reference, this.state.reviewData)
+            saveClientContractReview(this.props.contract.reference, this.state.reviewData)
+                .then(data => {
+                    if (data.status === "OK") {
+                        this.setState({
+                            showReviewError: false,
+                            isCompleted: true,
+                            isLoading: false
+                        })
+                    } else {
+                        this.setState({
+                            showReviewError: true,
+                            isLoading: false
+                        })
+                    }
+                })
         } else {
             this.setState({
-                showReviewError: true
+                showReviewError: true,
+                isLoading: false
             })
         }
     }
 
     renderReviewFormCreator() {
-        if (this.props.isCompleted) {
+        if (this.state.isCompleted) {
             return (<h6 className="">El comentario ha sido enviado. <i className="fa fa-check ml-2"/></h6>)
         } else {
             return (
                 <>
                     <h5 className="font-weight-bold">
                         Envíale un comentario
-                        a {this.props.contract.celebrity ? this.props.contract.celebrity.full_name : null}</h5>
+                        a {this.props.contract.celebrityData ? this.props.contract.celebrityData.fullName : null}</h5>
                     <div className="mt-2">
                         <div className="mb-2">
                             <h6>¿Cuántas estrellas le das a este video?</h6>
@@ -88,7 +111,7 @@ class ReviewCreatorLayout extends Component {
                                 onClick={this.saveReview}
                         >
                             {
-                                this.props.isLoading
+                                this.state.isLoading
                                     ?
                                     <span className="text-white spinner-grow spinner-grow-sm"
                                           role="status"
@@ -105,14 +128,14 @@ class ReviewCreatorLayout extends Component {
     }
 
     renderReviewFormEditor() {
-        if (this.props.isCompleted) {
+        if (this.state.isCompleted) {
             return (<h6 className="">El comentario ha sido actualizado. <i className="fa fa-check ml-2"/></h6>)
         } else {
             return (
                 <>
                     <h5 className="font-weight-bold">
                         Actualiza tu comentario
-                        a {this.props.contract.celebrity ? this.props.contract.celebrity.full_name : null}</h5>
+                        a {this.props.contract.celebrityData ? this.props.contract.celebrityData.fullName : null}</h5>
                     <div className="mt-2">
                         <div className="mb-2">
                             <h6>¿Cuántas estrellas le das a este video?</h6>
@@ -134,7 +157,7 @@ class ReviewCreatorLayout extends Component {
                                 onClick={this.saveReview}
                         >
                             {
-                                this.props.isLoading
+                                this.state.isLoading
                                     ?
                                     <span className="text-white spinner-grow spinner-grow-sm"
                                           role="status"
@@ -166,22 +189,12 @@ ReviewCreatorLayout.propTypes = {};
 
 // Set defaultProps
 ReviewCreatorLayout.defaultProps = {
-    contract: {review: null}
-};
-
-// mapStateToProps
-const mapStateToProps = (state: any) => ({
-    isLoading: state.contracts.saveClientContractReviewReducer.loading,
-    isCompleted: state.contracts.saveClientContractReviewReducer.completed,
-    contractReview: state.contracts.saveClientContractReviewReducer.data.contractReview,
-    contractDataCompleted: state.contracts.saveClientContractReviewReducer.completed
-});
-
-// mapStateToProps
-const mapDispatchToProps = {
-    saveClientContractReview: contractOperations.saveClientContractReview
+    contract: {
+        reference: null,
+        review: null,
+        stars: 0
+    }
 };
 
 // Export Class
-const _ReviewCreatorLayout = connect(mapStateToProps, mapDispatchToProps)(ReviewCreatorLayout);
-export {_ReviewCreatorLayout as ReviewCreatorLayout};
+export {ReviewCreatorLayout};

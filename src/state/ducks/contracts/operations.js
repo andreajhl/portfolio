@@ -1,22 +1,20 @@
 import {
-  getContract,
-  listClientContracts,
-  saveClientContract,
-  saveClientContractReview,
-  listContractComments,
   addContractComment,
-  listTrending,
-  updateQueryParams,
-  playVideo,
+  AssociateContract,
+  getContract,
   getContractWithPayments,
-  AssociateContract
+  listClientContracts,
+  listContractComments,
+  listTrending,
+  playVideo,
+  saveClientContract,
+  updateQueryParams
 } from "./actions";
 
 export {
   saveClientContract,
   listClientContracts,
   getContract,
-  saveClientContractReview,
   listContractComments,
   addContractComment,
   listTrending,

@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import 'react-flags-select/scss/react-flags-select.scss';
 import "./styles.scss";
-import * as TYPES from "../../../state/ducks/contracts/types";
-import * as API_PATHS from "../../../state/ducks/contracts/paths";
-import apiService from "../../../state/utils/apiService";
 import {Session} from "../../../state/utils/session";
+import {addOrRemoveContractLike, getContractLikesData} from "../../../state/ducks/contracts/actions";
+import * as ROUTING_PATHS from "../../../routing/Paths";
 import {history} from "../../../routing/History";
-import * as PATHS from "../../../routing/Paths";
 
 class ContractFavsLayout extends Component {
 
@@ -14,7 +12,7 @@ class ContractFavsLayout extends Component {
         super(props);
 
         this.state = {
-            isFav: false,
+            markedByMe: false,
             favCount: 0,
         };
 
@@ -25,63 +23,39 @@ class ContractFavsLayout extends Component {
     }
 
     componentDidMount(): void {
-        apiService({
-            method: "GET",
-            action: TYPES.FAV_REQUEST,
-            path: "API_PATHS.CONTRACT_BASE_PATH" + this.props.contractReference + "/favs/",
-            async: true,
-            params: null,
-            body: null
-        })
-            .then(res => {
-                if ("status" in res.data && res.data.status === "ERROR") {
-                    //
-                } else {
-                    this.setState({
-                        isFav: res.data.is_fav,
-                        favCount: res.data.count,
-                    })
-                }
+        getContractLikesData(this.props.contractReference)
+            .then(data => {
+                this.setState({
+                    ...this.state,
+                    markedByMe: data.markedByMe,
+                    favCount: data.count,
+                });
             })
     }
 
     addOrRemoveFav() {
         if(this.session.getSession()) {
-            apiService({
-                method: "POST",
-                action: TYPES.FAV_REQUEST,
-                path: "addOrRemoveFav" + this.props.contractReference + "/favs/",
-                async: true,
-                params: null,
-                body: null
-            })
-                .then(res => {
-                    if ("status" in res.data && res.data.status === "ERROR") {
-                        //
-                    } else {
-                        this.setState({
-                            isFav: res.data.is_fav,
-                            favCount: res.data.count,
-                        })
-                    }
+            addOrRemoveContractLike(this.props.contractReference)
+                .then(data => {
+                    this.setState({
+                        ...this.state,
+                        markedByMe: data.markedByMe,
+                        favCount: data.count,
+                    });
                 })
         }else{
             localStorage.setItem("redirectTo", window.location.pathname);
-            history._pushRoute(PATHS.SIGN_UP_PATH)
+            history._pushRoute(ROUTING_PATHS.SIGN_UP_PATH)
         }
     }
 
     render() {
         return (
             <div className="ContractFavsLayout">
-                <i className={'fa fa-2x fa-heart' + (this.state.isFav ? " text-primary " : "")}
+                <i className={'fa fa-2x fa-heart' + (this.state.markedByMe ? " text-primary " : "")}
                    onClick={this.addOrRemoveFav}
                 />
-                {
-                    this.showCount
-                    &&
-                    <small className="text-dark">{this.state.favCount}</small>
-                }
+                <small className="text-dark">{this.state.favCount ? this.state.favCount : 0}</small>
             </div>
         );
     };
@@ -91,6 +65,5 @@ class ContractFavsLayout extends Component {
 // Set defaultProps
 ContractFavsLayout.defaultProps = {
     contractReference: "",
-    showCount: false
 };
 export {ContractFavsLayout};
