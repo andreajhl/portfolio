@@ -9,6 +9,7 @@ import {Session} from "../../../state/utils/session";
 import {NavLink} from "react-router-dom";
 import {CurrencyDropdownLayout} from "../currency-dropdown";
 import * as GTM from "../../../state/utils/gtm";
+import {FiltersSectionLayout} from "../filters-section";
 
 
 class NavbarSectionLayout extends Component {
@@ -432,6 +433,14 @@ class NavbarSectionLayout extends Component {
                             </div>
                         </div>
                     </nav>
+                    {
+                        this.props.showFiltersSection === true
+                        &&
+                        <FiltersSectionLayout
+
+                        />
+
+                    }
                 </div>
                 <div className="f-navbar-container-helper"/>
                 {

@@ -7,7 +7,6 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import {FooterLayout} from "../../layouts/footer";
-import {FiltersSectionLayout} from "../../layouts/filters-section";
 
 
 class CelebritiesPage extends Component {
@@ -59,6 +58,14 @@ class CelebritiesPage extends Component {
         });
     }
 
+    componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+        if(nextProps.selectedCategory.id !== this.props.selectedCategory.id){
+            const queryParams = this.props.queryParams;
+            queryParams["category__id"] = nextProps.selectedCategory.id;
+            this.props.updateQueryParams(queryParams);
+        }
+    }
+
     openModal() {
         this.setState({
             showFFBModal: true
@@ -85,7 +92,10 @@ class CelebritiesPage extends Component {
         return (
             <>
                 <div className={"CelebritiesPage "}>
-                    <PageContainer showFooter={false}>
+                    <PageContainer
+                        showFooter={false}
+                        showFiltersSection={true}
+                    >
 
                         {/*/!* ShowHeader *!/*/}
                         {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
@@ -99,36 +109,25 @@ class CelebritiesPage extends Component {
                         {/*<MainMenuLayout/>*/}
                         {/*/! End MainMenuLayout *!/*/}
 
-                        <div className="display-flex-section">
-
-                            {/*FILTERS SECTION*/}
-                            <div className={"filters-section"}>
-                                <FiltersSectionLayout
-
-                                />
-                            </div>
-                            {/*END FILTERS SECTION*/}
-
-
-                            {/* CelebrityCardsSectionLayout */}
-                            <div className="scroll-section"
-                                 style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
-                                 ref={this.scrollDiv}>
-                                {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
-                                {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
-                                {/*<pre>state.params.page {this.state.params.page}</pre>*/}
-                                {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
-                                {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
-                                <CelebrityCardsSectionLayout
-                                    title={"Famosos destacados"}
-                                    showShimmerCards={this.props.isLoading && this.props.queryParams.page === 1}
-                                    showLoading={this.props.isLoading && this.props.queryParams.page > 1}
-                                    celebrities={this.props.celebrities}
-                                    minHeight={true}
-                                />
-                            </div>
-                            {/* End CelebrityCardsSectionLayout */}
+                        {/* CelebrityCardsSectionLayout */}
+                        <div className="scroll-section"
+                             style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
+                             ref={this.scrollDiv}>
+                            {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
+                            {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
+                            {/*<pre>state.params.page {this.state.params.page}</pre>*/}
+                            {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
+                            {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
+                            <CelebrityCardsSectionLayout
+                                title={"Famosos destacados"}
+                                showShimmerCards={this.props.isLoading && this.props.queryParams.page === 1}
+                                showLoading={this.props.isLoading && this.props.queryParams.page > 1}
+                                celebrities={this.props.celebrities}
+                                minHeight={true}
+                            />
                         </div>
+                        {/* End CelebrityCardsSectionLayout */}
+
                     </PageContainer>
                     {this.state.showFooter && (this.props.celebrities.length === this.props.paginationData.totalItems) ?
                         <FooterLayout/> : null}
@@ -153,13 +152,14 @@ CelebritiesPage.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
-    isLoading: state.celebrities.fetchCelebritiesReducer.loading,
-    isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
-    celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
-    paginationData: state.celebrities.fetchCelebritiesReducer.data.pagination_data,
-    queryParams: state.celebrities.queryParamsReducer,
-    countries: state.restCountries.fetchCountriesReducer.data,
+const mapStateToProps = ({celebrities, restCountries, filters}) => ({
+    isLoading: celebrities.fetchCelebritiesReducer.loading,
+    isCompleted: celebrities.fetchCelebritiesReducer.completed,
+    celebrities: celebrities.fetchCelebritiesReducer.data.results,
+    paginationData: celebrities.fetchCelebritiesReducer.data.pagination_data,
+    queryParams: celebrities.queryParamsReducer,
+    countries: restCountries.fetchCountriesReducer.data,
+    selectedCategory: filters.filtersReducer.categoryFilter.selectedCategory,
 });
 
 // mapStateToProps

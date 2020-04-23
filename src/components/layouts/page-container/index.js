@@ -48,6 +48,7 @@ class PageContainer extends Component {
                         showNavbarButtons={this.props.showNavbarButtons}
                         showSearchWeb={this.props.showSearchWeb}
                         showLogin={this.props.showLogin}
+                        showFiltersSection={this.props.showFiltersSection}
                     />
                     : null
                 }

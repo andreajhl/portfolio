@@ -1,45 +1,64 @@
 @import "../../../theme";
 
 .FiltersSectionLayout {
-  margin-top: 60px;
+  position: relative;
+  top: 60px;
+  width: 100vw;
+  height: 55px;
+  background-color: $dark;
+
+  .navbar-1240 {
+    max-width: $width-1240;
+    margin: 0 auto;
+  }
 
   .filters-section {
-    width: 300px;
-    min-height: 80vh;
+    width: 100%;
+    max-width: $width-1240;;
+    align-items: flex-start;
+    height: 55px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    grid-template-columns: none;
+    padding: 8.5px;
+    display: block;
+    text-align: left;
 
-    .filter-div {
-      display: flex;
-      align-items: end;
-      margin-top: 20px;
-      padding: 14px;
+    .filter-option {
+      display: inline-block;
+      margin-right: 10px;
+      margin-left: 10px;
+      color: white;
+      border: solid 1px white;
       border-radius: 20px;
-      border: solid $dark 1px;
+      padding: 8px;
+      font-size: 12px;
 
       &:hover {
-        background-color: $dark;
         cursor: pointer;
-
-        * {
-          color: white !important;
-        }
-      }
-
-      .filter-option-title {
-        width: 40%;
-        text-align: left;
-      }
-
-      .filter-option-selected {
-        width: 60%;
-        text-align: right;
-
-        .fa-caret-right {
-          margin-left: 10px;
-        }
+        background-color: white;
+        color: $dark;
       }
     }
 
-  }
+    .filter-option-selected {
+      background-color: white;
+      color: $dark;
+      margin-left: 0;
+    }
 
+    .divider {
+      display: inline-block;
+      border: solid 1px white;
+      height: 20px;
+      top: 6px;
+      position: relative;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+
+  }
 
 }
