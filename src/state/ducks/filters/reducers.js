@@ -12,7 +12,7 @@ const filtersInitialState = {
     categoryFilter: {
         selectedCategory: {
             id: null,
-            title: "Todos las categorías"
+            title: "Todos los famosos"
         },
         categories: []
     },

@@ -5,7 +5,7 @@
   top: 60px;
   width: 100vw;
   height: 80px;
-  background-color: $dark;
+  background-color: white;
 
   .navbar-1240 {
     max-width: $width-1240;
@@ -34,42 +34,53 @@
       margin-right: 6px;
       margin-left: 6px;
       margin-top: 14px;
-      color: white;
-      border: solid 1px white;
+      color: $dark;
+      border: solid 1px $dark;
       border-radius: 20px;
-      padding: 8px;
-      font-size: 12px;
+      padding: 4px 15px 4px 15px;
+      font-size: 11px;
+      font-weight: bold;
 
-      &:hover {
+      &:hover, &:active, &:focus {
         cursor: pointer;
-        background-color: white;
-        color: $dark;
-      }
-
-      &:active, &:focus {
-        cursor: pointer;
-        background-color: $dark;
+        background-color: $primary;
         color: white;
+        border-color: $primary;
       }
     }
 
     .filter-option-selected {
-      background-color: white;
-      color: $dark;
-      margin-left: 0;
+      background-color: $primary;
+      border-color: $primary;
+      color: white;
+      //margin-left: 0;
       *{
-        color: $dark;
+        color: white;
       }
     }
 
     .divider {
       display: inline-block;
-      border: solid 1px white;
+      border: solid 1px $dark;
       height: 20px;
       top: 6px;
       position: relative;
       margin-left: 10px;
       margin-right: 10px;
+    }
+
+    .filter-option-back {
+      display: inline-block;
+      border: solid 1px $dark;
+      background-color: white;
+      color: $dark;
+      border-radius: 50%;
+      padding: 4px 5px 4px 4px !important;
+
+      i {
+        font-size: 10px;
+        color: $dark !important;
+      }
     }
 
 

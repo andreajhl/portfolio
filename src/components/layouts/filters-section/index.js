@@ -13,7 +13,7 @@ import * as GTM from "../../../state/utils/gtm";
 
 const SELECTED_CATEGORY = {
     id: null,
-    title: "Todos las categorías"
+    title: "Todos los famosos"
 };
 
 const SELECTED_COUNTRY = {
@@ -157,6 +157,30 @@ class FiltersSectionLayout extends Component {
                     <div className="filters-section" ref={this.scrollDiv}>
 
                         {/*SELECTED FILTERS*/}
+                        {
+                            this.props.selectedCategory.id && !this.props.selectedCountry.id
+                            &&
+                            <div className="filter-option filter-option-back"
+                                 onClick={(e) => {
+                                     this.updateCategoryFilter(e, null)
+                                 }}
+                            >
+                                <span>
+                                <i className="fa fa-arrow-left ml-2 mr-2 text-white"/>
+                                </span>
+                            </div>
+                        }
+                        {
+                            this.props.selectedCategory.id && this.props.selectedCountry.id
+                            &&
+                            <div className="filter-option filter-option-back"
+                                 onClick={(e) => {
+                                     this.updateCountryFilter(e, null)
+                                 }}
+                            >
+                                <i className="fa fa-arrow-left ml-2 mr-2 text-white"/>
+                            </div>
+                        }
                         <div className="filter-option filter-option-selected">
                             {this.props.selectedCategory.title}
                             {
@@ -178,30 +202,6 @@ class FiltersSectionLayout extends Component {
                         {/*OPTIONS*/}
                         {this.renderCountries()}
                         {this.renderCategories()}
-                        {
-                            this.props.selectedCategory.id
-                            &&
-                            <div
-                                className="filter-option"
-                                onClick={(e) => {
-                                    this.updateCategoryFilter(e, null)
-                                }}
-                            >
-                                Todos las Categorias
-                            </div>
-                        }
-                        {
-                            this.props.selectedCountry.id
-                            &&
-                            <div
-                                className="filter-option"
-                                onClick={(e) => {
-                                    this.updateCountryFilter(e, null)
-                                }}
-                            >
-                                Todos los países
-                            </div>
-                        }
                         {/*END OPTIONS*/}
 
                     </div>

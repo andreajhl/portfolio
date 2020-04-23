@@ -1,7 +1,5 @@
 import React, {Component, createRef} from 'react';
 import {CelebrityCardsSectionLayout, IndexHeaderLayout, PageContainer} from "../../layouts";
-import * as PropTypes from "prop-types";
-import {CelebrityShape, PaginationShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
@@ -63,12 +61,17 @@ class CelebritiesPage extends Component {
             const queryParams = this.props.queryParams;
             queryParams["country__id"] = nextProps.selectedCountry.id;
             queryParams["category__id"] = this.props.selectedCategory.id;
+            queryParams["page"] = 1;
             this.props.updateQueryParams(queryParams);
         }
         if(nextProps.selectedCategory.id !== this.props.selectedCategory.id){
             const queryParams = this.props.queryParams;
             queryParams["category__id"] = nextProps.selectedCategory.id;
+            queryParams["page"] = 1;
             this.props.updateQueryParams(queryParams);
+        }
+        if (nextProps.isLoading) {
+            this.scrollDiv.current.scrollTop = 0;
         }
     }
 
@@ -159,11 +162,7 @@ class CelebritiesPage extends Component {
 }
 
 // Set propTypes
-CelebritiesPage.propTypes = {
-    celebrities: PropTypes.arrayOf(CelebrityShape).isRequired,
-    fetchCelebrities: PropTypes.func.isRequired,
-    paginationData: PaginationShape
-};
+CelebritiesPage.propTypes = {};
 
 // Set defaultProps
 CelebritiesPage.defaultProps = {
