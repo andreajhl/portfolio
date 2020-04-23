@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import "./styles.scss";
 import {connect} from "react-redux";
 import {
@@ -9,6 +9,7 @@ import {
 } from "../../../state/ducks/filters/actions";
 import {listAsync as listAsyncCategories} from "../../../state/ducks/celebrity-categories/actions";
 import {listAsync as listAsyncCountries} from "../../../state/ducks/countries/actions";
+import * as GTM from "../../../state/utils/gtm";
 
 const SELECTED_CATEGORY = {
     id: null,
@@ -28,6 +29,7 @@ class FiltersSectionLayout extends Component {
         this.state = {
             currentSection: "filters-section"
         };
+        this.scrollDiv = createRef();
     }
 
     componentDidMount(): void {
@@ -70,9 +72,13 @@ class FiltersSectionLayout extends Component {
         );
         this.props.updateSelectedCategory(
             selectedCategory
-        )
+        );
+        GTM.tagManagerDataLayer(
+            "CLICK_ON_CATEGORY_FILTER",
+            selectedCategory
+        );
+        this.scrollDiv.current.scrollLeft = 0;
     };
-
 
     updateCountryFilter = (e, countryID) => {
         e.preventDefault();
@@ -82,7 +88,12 @@ class FiltersSectionLayout extends Component {
         }
         this.props.updateSelectedCountry(
             selectedCountry
-        )
+        );
+        GTM.tagManagerDataLayer(
+            "CLICK_ON_COUNTRY_FILTER",
+            selectedCountry
+        );
+        this.scrollDiv.current.scrollLeft = 0;
     };
 
     renderCountries = () => {
@@ -143,7 +154,7 @@ class FiltersSectionLayout extends Component {
         return (
             <div className="FiltersSectionLayout">
                 <div className="navbar-1240">
-                    <div className="filters-section">
+                    <div className="filters-section" ref={this.scrollDiv}>
 
                         {/*SELECTED FILTERS*/}
                         <div className="filter-option filter-option-selected">

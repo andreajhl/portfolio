@@ -94,6 +94,18 @@ class CelebritiesPage extends Component {
         this.props.updateQueryParams(queryParams);
     }
 
+    returnTitle = () => {
+        if (!this.props.selectedCategory.id && !this.props.selectedCountry.id) {
+            return "Famosos destacados"
+        } else if (this.props.celebrities.length && (this.props.selectedCategory.id || this.props.selectedCountry.id || this.props.queryParams.search)) {
+            return "Famosos encontrados"
+        } else if(!this.props.celebrities.length && this.props.isLoading){
+            return "Buscando..."
+        } else if(!this.props.celebrities.length && this.props.isCompleted){
+            return "No se encontraron famosos para esta busqueda"
+        }
+    };
+
     render() {
         return (
             <>
@@ -127,7 +139,7 @@ class CelebritiesPage extends Component {
                             {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
                             {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
                             <CelebrityCardsSectionLayout
-                                title={"Famosos destacados"}
+                                title={this.returnTitle()}
                                 showShimmerCards={this.props.isLoading && this.props.queryParams.page === 1}
                                 showLoading={this.props.isLoading && this.props.queryParams.page > 1}
                                 celebrities={this.props.celebrities}

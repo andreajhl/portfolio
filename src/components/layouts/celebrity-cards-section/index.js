@@ -79,16 +79,16 @@ class CelebrityCardsSectionLayout extends Component {
                     <b>{this.props.title}</b>
                 </div>
             )
-        } else if (this.props.title && this.props.queryParams.search && this.props.celebrities.length) {
-            return (
-                <div className="text-left section-title">
-                    <b>Famosos encontrados:</b>
-                </div>
-            )
-        } else if (this.props.title && this.props.queryParams.search && !this.props.celebrities.length) {
+        } else if (this.props.title !== "Famosos Similares" && this.props.queryParams.search && !this.props.celebrities.length) {
             return (
                 <div className="text-left section-title">
                     <b>No se encontraron famosos para esta busqueda</b>
+                </div>
+            )
+        } else if (this.props.title) {
+            return (
+                <div className="text-left section-title">
+                    <b>Famosos encontrados:</b>
                 </div>
             )
         }
@@ -100,11 +100,13 @@ class CelebrityCardsSectionLayout extends Component {
                 className="CelebrityCardsSectionLayout"
                 style={{minHeight: (this.props.minHeight ? "100vh" : "initial")}}
             >
-                    {this.renderTitle()}
-                    {/* SHIMMER CARDS */}
-                    {this.renderShimmerCards()}
-                    {/* LOADING */}
-                    {this.renderLoading()}
+                <div className="text-left section-title">
+                    <b>{this.props.title}</b>
+                </div>
+                {/* SHIMMER CARDS */}
+                {this.renderShimmerCards()}
+                {/* LOADING */}
+                {this.renderLoading()}
             </div>
         );
     };
