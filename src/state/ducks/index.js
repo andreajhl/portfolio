@@ -9,3 +9,4 @@ export {default as celebrityRequests} from "./celebrity-requests";
 export {default as payments} from "./payments";
 export {default as filters} from "./filters";
 export {default as celebrityCategories} from "./celebrity-categories";
+export {default as countries} from "./countries";

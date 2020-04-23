@@ -4,9 +4,9 @@ const PaginationShape = PropTypes.shape({
     totalItems: PropTypes.number,
     totalItemsOnPage: PropTypes.number,
     totalPages: PropTypes.number,
-    previousPage: PropTypes.string,
+    previousPage: PropTypes.number,
     currentPage: PropTypes.number,
-    nextPage: PropTypes.string,
+    nextPage: PropTypes.number,
 });
 
 export {PaginationShape}

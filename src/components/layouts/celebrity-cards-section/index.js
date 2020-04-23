@@ -96,8 +96,10 @@ class CelebrityCardsSectionLayout extends Component {
 
     render() {
         return (
-            <div className="CelebrityCardsSectionLayout"
-                 style={{minHeight: (this.props.minHeight ? "100vh" : "initial")}}>
+            <div
+                className="CelebrityCardsSectionLayout"
+                style={{minHeight: (this.props.minHeight ? "100vh" : "initial")}}
+            >
                     {this.renderTitle()}
                     {/* SHIMMER CARDS */}
                     {this.renderShimmerCards()}

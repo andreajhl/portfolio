@@ -110,9 +110,11 @@ class CelebritiesPage extends Component {
                         {/*/! End MainMenuLayout *!/*/}
 
                         {/* CelebrityCardsSectionLayout */}
-                        <div className="scroll-section"
-                             style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
-                             ref={this.scrollDiv}>
+                        <div
+                            className="scroll-section"
+                            style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
+                            ref={this.scrollDiv}
+                        >
                             {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
                             {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
                             {/*<pre>state.params.page {this.state.params.page}</pre>*/}

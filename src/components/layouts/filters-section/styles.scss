@@ -4,8 +4,8 @@
   position: relative;
   top: 60px;
   width: 100vw;
-  height: 55px;
-  background-color: $dark;
+  height: 80px;
+  background-color: $primary;
 
   .navbar-1240 {
     max-width: $width-1240;
@@ -16,7 +16,7 @@
     width: 100%;
     max-width: $width-1240;;
     align-items: flex-start;
-    height: 55px;
+    height: 80px;
     overflow-x: scroll;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
@@ -25,10 +25,15 @@
     display: block;
     text-align: left;
 
+    .helper-div {
+      display: inline-block;
+    }
+
     .filter-option {
       display: inline-block;
-      margin-right: 10px;
-      margin-left: 10px;
+      margin-right: 6px;
+      margin-left: 6px;
+      margin-top: 14px;
       color: white;
       border: solid 1px white;
       border-radius: 20px;
@@ -38,14 +43,24 @@
       &:hover {
         cursor: pointer;
         background-color: white;
-        color: $dark;
+        color: $primary;
+      }
+
+      &:active, &:focus {
+        cursor: pointer;
+        background-color: $primary;
+        color: white;
       }
     }
 
     .filter-option-selected {
       background-color: white;
-      color: $dark;
+      color: $primary;
       margin-left: 0;
+
+      * {
+        color: $primary;
+      }
     }
 
     .divider {
