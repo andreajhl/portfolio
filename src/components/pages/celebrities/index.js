@@ -59,8 +59,14 @@ class CelebritiesPage extends Component {
     }
 
     componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+        if(nextProps.selectedCountry.id !== this.props.selectedCountry.id){
+            const queryParams = this.props.queryParams;
+            queryParams["country__id"] = nextProps.selectedCountry.id;
+            this.props.updateQueryParams(queryParams);
+        }
         if(nextProps.selectedCategory.id !== this.props.selectedCategory.id){
             const queryParams = this.props.queryParams;
+            queryParams["country__id"] = this.props.selectedCountry.id;
             queryParams["category__id"] = nextProps.selectedCategory.id;
             this.props.updateQueryParams(queryParams);
         }
@@ -162,6 +168,7 @@ const mapStateToProps = ({celebrities, restCountries, filters}) => ({
     queryParams: celebrities.queryParamsReducer,
     countries: restCountries.fetchCountriesReducer.data,
     selectedCategory: filters.filtersReducer.categoryFilter.selectedCategory,
+    selectedCountry: filters.filtersReducer.countryFilter.selectedCountry,
 });
 
 // mapStateToProps

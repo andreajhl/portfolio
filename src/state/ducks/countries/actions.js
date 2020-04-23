@@ -5,7 +5,7 @@ import * as API_PATHS from './paths';
 
 
 export const listAsync = async (params) => {
-    const FINAL_PATH = API_PATHS.BASE_PATH;
+    const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "countries/";
     return apiService({
         method: "GET",
         path: FINAL_PATH,

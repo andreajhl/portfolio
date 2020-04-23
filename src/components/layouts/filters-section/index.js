@@ -31,19 +31,6 @@ class FiltersSectionLayout extends Component {
     }
 
     componentDidMount(): void {
-        if(this.props.categories.length === 0){
-            listAsyncCategories({})
-                .then(res => {
-                    if (res.data.status === "OK") {
-                        this.props.updateCategories(
-                            res.data.results
-                        )
-                    }
-                })
-                .catch(err => {
-
-                })
-        }
         if (this.props.countries.length === 0) {
             listAsyncCountries({})
                 .then(res => {
@@ -77,6 +64,19 @@ class FiltersSectionLayout extends Component {
         if (countryID !== null) {
             selectedCountry = this.props.countries.find(x => x.id === countryID)
         }
+        listAsyncCategories({
+            usedInCountryID: countryID
+        })
+            .then(res => {
+                if (res.data.status === "OK") {
+                    this.props.updateCategories(
+                        res.data.results
+                    )
+                }
+            })
+            .catch(err => {
+
+            })
         this.props.updateSelectedCategory(
             SELECTED_CATEGORY
         );
