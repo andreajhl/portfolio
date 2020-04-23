@@ -18,6 +18,11 @@
       background: white;
       box-shadow: 0 0rem 0.4rem #a1a1a1 !important;
 
+      .navbar-1240 {
+        max-width: $width-1240;
+        margin: 0 auto;
+      }
+
       .f-items {
         height: 100%;
 

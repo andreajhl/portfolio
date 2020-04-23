@@ -1,0 +1,45 @@
+@import "../../../theme";
+
+.FiltersSectionLayout {
+  margin-top: 60px;
+
+  .filters-section {
+    width: 300px;
+    min-height: 80vh;
+
+    .filter-div {
+      display: flex;
+      align-items: end;
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 20px;
+      border: solid $dark 1px;
+
+      &:hover {
+        background-color: $dark;
+        cursor: pointer;
+
+        * {
+          color: white !important;
+        }
+      }
+
+      .filter-option-title {
+        width: 40%;
+        text-align: left;
+      }
+
+      .filter-option-selected {
+        width: 60%;
+        text-align: right;
+
+        .fa-caret-right {
+          margin-left: 10px;
+        }
+      }
+    }
+
+  }
+
+
+}

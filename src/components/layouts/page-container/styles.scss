@@ -2,7 +2,15 @@
 
 
 .PageContainer{
+
+  .page-container-children{
+    max-width: $width-1240;
+    margin: 0 auto;
+  }
+
   .page-container-children-helper {
+    max-width: $width-1240;
+    margin: 0 auto;
     display: none;
     position: fixed;
     top: 0;

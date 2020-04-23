@@ -7,9 +7,7 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import {FooterLayout} from "../../layouts/footer";
-import * as GTM from "../../../state/utils/gtm";
-import {history} from "../../../routing/History";
-import FamososForBusinessModal from "../../containers/famosos-for-business-modal";
+import {FiltersSectionLayout} from "../../layouts/filters-section";
 
 
 class CelebritiesPage extends Component {
@@ -19,7 +17,8 @@ class CelebritiesPage extends Component {
 
         this.state = {
             showInputSearchSm: false,
-            showFFBModal: localStorage.getItem("ffbmodal") === null
+            showFFBModal: localStorage.getItem("ffbmodal") === null,
+            showFooter: false
         };
         this.scrollDiv = createRef();
         this.openModal = this.openModal.bind(this);
@@ -29,11 +28,27 @@ class CelebritiesPage extends Component {
     componentDidMount(): void {
         this.listCountries();
 
+        const divScroll = this.scrollDiv.current;
+
         // Detect when scrolled to bottom.
-        this.scrollDiv.current.addEventListener("scroll", () => {
+        divScroll.addEventListener("scroll", (e) => {
+
+            const value = (Math.round(divScroll.scrollHeight - divScroll.offsetHeight));
+            if (divScroll.scrollTop >= value) {
+                this.setState({
+                    ...this.state,
+                    showFooter: true
+                })
+            } else {
+                this.setState({
+                    ...this.state,
+                    showFooter: false
+                })
+            }
+
             if (
-                this.scrollDiv.current.scrollTop + this.scrollDiv.current.clientHeight >=
-                (this.scrollDiv.current.scrollHeight - 500)
+                divScroll.scrollTop + divScroll.clientHeight >=
+                (divScroll.scrollHeight - 500)
             ) {
                 if (!this.props.isLoading && this.props.paginationData.totalItems !== this.props.celebrities.length) {
                     if (this.props.paginationData.currentPage + 1 <= this.props.paginationData.totalPages) {
@@ -71,6 +86,7 @@ class CelebritiesPage extends Component {
             <>
                 <div className={"CelebritiesPage "}>
                     <PageContainer showFooter={false}>
+
                         {/*/!* ShowHeader *!/*/}
                         {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
                         {/*/!* End ShowHeader *!/*/}
@@ -83,26 +99,39 @@ class CelebritiesPage extends Component {
                         {/*<MainMenuLayout/>*/}
                         {/*/! End MainMenuLayout *!/*/}
 
-                        {/* CelebrityCardsSectionLayout */}
-                        <div className="scroll-section" style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
-                             ref={this.scrollDiv}>
-                            {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
-                            {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
-                            {/*<pre>state.params.page {this.state.params.page}</pre>*/}
-                            {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
-                            {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
-                            <CelebrityCardsSectionLayout
-                                title={"Famosos destacados"}
-                                showShimmerCards={this.props.isLoading && this.props.queryParams.page === 1}
-                                showLoading={this.props.isLoading && this.props.queryParams.page > 1}
-                                celebrities={this.props.celebrities}
-                                minHeight={true}
-                            />
-                            {this.props.celebrities.length === this.props.paginationData.totalItems ?
-                                <FooterLayout/> : null}
+                        <div className="display-flex-section">
+
+                            {/*FILTERS SECTION*/}
+                            <div className={"filters-section"}>
+                                <FiltersSectionLayout
+
+                                />
+                            </div>
+                            {/*END FILTERS SECTION*/}
+
+
+                            {/* CelebrityCardsSectionLayout */}
+                            <div className="scroll-section"
+                                 style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
+                                 ref={this.scrollDiv}>
+                                {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
+                                {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
+                                {/*<pre>state.params.page {this.state.params.page}</pre>*/}
+                                {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
+                                {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
+                                <CelebrityCardsSectionLayout
+                                    title={"Famosos destacados"}
+                                    showShimmerCards={this.props.isLoading && this.props.queryParams.page === 1}
+                                    showLoading={this.props.isLoading && this.props.queryParams.page > 1}
+                                    celebrities={this.props.celebrities}
+                                    minHeight={true}
+                                />
+                            </div>
+                            {/* End CelebrityCardsSectionLayout */}
                         </div>
-                        {/* End CelebrityCardsSectionLayout */}
                     </PageContainer>
+                    {this.state.showFooter && (this.props.celebrities.length === this.props.paginationData.totalItems) ?
+                        <FooterLayout/> : null}
                 </div>
             </>
         );

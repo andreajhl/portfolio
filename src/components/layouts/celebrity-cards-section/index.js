@@ -18,7 +18,7 @@ class CelebrityCardsSectionLayout extends Component {
             return (
                 <div className="scrolling-wrapper">
                     {
-                        [...Array(getTotalColumns() * 4)].map((o, index) => {
+                        [...Array(getTotalColumns() * 6)].map((o, index) => {
                             return (
                                 <div className="item mr-4 mb-2 mx-auto" key={index}>
                                     <CelebrityShimmerCardLayout/>
@@ -26,6 +26,12 @@ class CelebrityCardsSectionLayout extends Component {
                             )
                         })
                     }
+                </div>
+            )
+        } else {
+            return (
+                <div className={"scrolling-wrapper " + (this.props.horizontalScroll ? "horizontal-scroll" : "")}>
+                    {this.renderCelebritiesCards()}
                 </div>
             )
         }
@@ -69,21 +75,21 @@ class CelebrityCardsSectionLayout extends Component {
     renderTitle() {
         if (this.props.title && !this.props.queryParams.search) {
             return (
-                <h6 className="text-left pt-4" style={{marginLeft: "2rem"}}>
+                <div className="text-left section-title">
                     <b>{this.props.title}</b>
-                </h6>
+                </div>
             )
         } else if (this.props.title && this.props.queryParams.search && this.props.celebrities.length) {
             return (
-                <h6 className="text-left pt-4" style={{marginLeft: "2rem"}}>
+                <div className="text-left section-title">
                     <b>Famosos encontrados:</b>
-                </h6>
+                </div>
             )
         } else if (this.props.title && this.props.queryParams.search && !this.props.celebrities.length) {
             return (
-                <h6 className="text-left pt-4" style={{marginLeft: "2rem"}}>
+                <div className="text-left section-title">
                     <b>No se encontraron famosos para esta busqueda</b>
-                </h6>
+                </div>
             )
         }
     }
@@ -92,16 +98,11 @@ class CelebrityCardsSectionLayout extends Component {
         return (
             <div className="CelebrityCardsSectionLayout"
                  style={{minHeight: (this.props.minHeight ? "100vh" : "initial")}}>
-                <div className={"f-main-padding mt-4"}>
                     {this.renderTitle()}
-                    <div className={"scrolling-wrapper " + (this.props.horizontalScroll ? "horizontal-scroll" : "")}>
-                        {this.renderCelebritiesCards()}
-                    </div>
                     {/* SHIMMER CARDS */}
                     {this.renderShimmerCards()}
                     {/* LOADING */}
                     {this.renderLoading()}
-                </div>
             </div>
         );
     };
