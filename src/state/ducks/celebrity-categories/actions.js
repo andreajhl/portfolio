@@ -9,7 +9,8 @@ export const listAsync = async (params) => {
     if (!params) {
         params = {country_id: 0}
     }
-    const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "categories/";
+    // const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "categories/";
+    const FINAL_PATH = API_PATHS.BASE_PATH;
     return apiService({
         method: "GET",
         path: FINAL_PATH,

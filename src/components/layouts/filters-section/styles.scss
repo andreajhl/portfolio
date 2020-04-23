@@ -5,7 +5,7 @@
   top: 60px;
   width: 100vw;
   height: 80px;
-  background-color: $primary;
+  background-color: $dark;
 
   .navbar-1240 {
     max-width: $width-1240;
@@ -25,7 +25,7 @@
     display: block;
     text-align: left;
 
-    .helper-div {
+    .helper-div{
       display: inline-block;
     }
 
@@ -43,23 +43,22 @@
       &:hover {
         cursor: pointer;
         background-color: white;
-        color: $primary;
+        color: $dark;
       }
 
       &:active, &:focus {
         cursor: pointer;
-        background-color: $primary;
+        background-color: $dark;
         color: white;
       }
     }
 
     .filter-option-selected {
       background-color: white;
-      color: $primary;
+      color: $dark;
       margin-left: 0;
-
-      * {
-        color: $primary;
+      *{
+        color: $dark;
       }
     }
 

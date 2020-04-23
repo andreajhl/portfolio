@@ -62,11 +62,11 @@ class CelebritiesPage extends Component {
         if(nextProps.selectedCountry.id !== this.props.selectedCountry.id){
             const queryParams = this.props.queryParams;
             queryParams["country__id"] = nextProps.selectedCountry.id;
+            queryParams["category__id"] = this.props.selectedCategory.id;
             this.props.updateQueryParams(queryParams);
         }
         if(nextProps.selectedCategory.id !== this.props.selectedCategory.id){
             const queryParams = this.props.queryParams;
-            queryParams["country__id"] = this.props.selectedCountry.id;
             queryParams["category__id"] = nextProps.selectedCategory.id;
             this.props.updateQueryParams(queryParams);
         }

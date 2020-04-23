@@ -31,11 +31,11 @@ class FiltersSectionLayout extends Component {
     }
 
     componentDidMount(): void {
-        if (this.props.countries.length === 0) {
-            listAsyncCountries({})
+        if (this.props.categories.length === 0) {
+            listAsyncCategories({})
                 .then(res => {
                     if (res.data.status === "OK") {
-                        this.props.updateCountries(
+                        this.props.updateCategories(
                             res.data.results
                         )
                     }
@@ -52,6 +52,22 @@ class FiltersSectionLayout extends Component {
         if (categoryID !== null) {
             selectedCategory = this.props.categories.find(x => x.id === categoryID)
         }
+        listAsyncCountries({
+            usedInCategoryID: selectedCategory.id
+        })
+            .then(res => {
+                if (res.data.status === "OK") {
+                    this.props.updateCountries(
+                        res.data.results
+                    )
+                }
+            })
+            .catch(err => {
+
+            });
+        this.props.updateSelectedCountry(
+            SELECTED_COUNTRY
+        );
         this.props.updateSelectedCategory(
             selectedCategory
         )
@@ -64,29 +80,13 @@ class FiltersSectionLayout extends Component {
         if (countryID !== null) {
             selectedCountry = this.props.countries.find(x => x.id === countryID)
         }
-        listAsyncCategories({
-            usedInCountryID: countryID
-        })
-            .then(res => {
-                if (res.data.status === "OK") {
-                    this.props.updateCategories(
-                        res.data.results
-                    )
-                }
-            })
-            .catch(err => {
-
-            })
-        this.props.updateSelectedCategory(
-            SELECTED_CATEGORY
-        );
         this.props.updateSelectedCountry(
             selectedCountry
         )
     };
 
     renderCountries = () => {
-        if (!this.props.selectedCountry.id) {
+        if (this.props.selectedCategory.id && !this.props.selectedCountry.id) {
             return (
                 <div className="helper-div">
                     {
@@ -113,7 +113,7 @@ class FiltersSectionLayout extends Component {
     };
 
     renderCategories = () => {
-        if (this.props.selectedCountry.id && !this.props.selectedCategory.id) {
+        if (!this.props.selectedCategory.id) {
             return (
                 <div className="helper-div">
                     {
@@ -147,13 +147,13 @@ class FiltersSectionLayout extends Component {
 
                         {/*SELECTED FILTERS*/}
                         <div className="filter-option filter-option-selected">
-                            {this.props.selectedCountry.name}
+                            {this.props.selectedCategory.title}
                             {
-                                this.props.selectedCategory.id
+                                this.props.selectedCountry.id
                                 &&
                                 <span>
                                     <i className="fa fa-caret-right ml-2 mr-2"/>
-                                    {this.props.selectedCategory.title}
+                                    {this.props.selectedCountry.name}
                                 </span>
                             }
                             <i className="fa fa-caret-right ml-2"/>
@@ -165,18 +165,8 @@ class FiltersSectionLayout extends Component {
                         {/*END DIVIDER*/}
 
                         {/*OPTIONS*/}
-                        {
-                            this.props.selectedCountry.id
-                            &&
-                            <div
-                                className="filter-option"
-                                onClick={(e) => {
-                                    this.updateCountryFilter(e, null)
-                                }}
-                            >
-                                Todos los países
-                            </div>
-                        }
+                        {this.renderCountries()}
+                        {this.renderCategories()}
                         {
                             this.props.selectedCategory.id
                             &&
@@ -189,8 +179,18 @@ class FiltersSectionLayout extends Component {
                                 Todos las Categorias
                             </div>
                         }
-                        {this.renderCountries()}
-                        {this.renderCategories()}
+                        {
+                            this.props.selectedCountry.id
+                            &&
+                            <div
+                                className="filter-option"
+                                onClick={(e) => {
+                                    this.updateCountryFilter(e, null)
+                                }}
+                            >
+                                Todos los países
+                            </div>
+                        }
                         {/*END OPTIONS*/}
 
                     </div>
