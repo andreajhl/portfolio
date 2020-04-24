@@ -195,10 +195,6 @@ class FiltersSectionLayout extends Component {
                         </div>
                         {/*END SELECTED FILTERS*/}
 
-                        {/*DIVIDER*/}
-                        <div className="divider"/>
-                        {/*END DIVIDER*/}
-
                         {/*OPTIONS*/}
                         {this.renderCountries()}
                         {this.renderCategories()}

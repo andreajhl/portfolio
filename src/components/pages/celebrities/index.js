@@ -106,7 +106,7 @@ class CelebritiesPage extends Component {
                     >
 
                         {/*/!* ShowHeader *!/*/}
-                        {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
+                        {/*{localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}*/}
                         {/*/!* End ShowHeader *!/*/}
 
                         {/* Modal FFB */}
@@ -142,7 +142,7 @@ class CelebritiesPage extends Component {
                     {
                         this.props.celebrities.length === this.props.paginationData.totalItems
                         &&
-                        <FooterLayout/> : null
+                        <FooterLayout/>
                     }
                 </div>
             </>
