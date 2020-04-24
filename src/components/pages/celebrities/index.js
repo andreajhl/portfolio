@@ -15,7 +15,6 @@ class CelebritiesPage extends Component {
         this.state = {
             showInputSearchSm: false,
             showFFBModal: localStorage.getItem("ffbmodal") === null,
-            showFooter: false
         };
         this.scrollDiv = createRef();
         this.openModal = this.openModal.bind(this);
@@ -31,18 +30,6 @@ class CelebritiesPage extends Component {
         divScroll.addEventListener("scroll", (e) => {
 
             const value = (Math.round(divScroll.scrollHeight - divScroll.offsetHeight));
-            if (divScroll.scrollTop >= value) {
-                this.setState({
-                    ...this.state,
-                    showFooter: true
-                })
-            } else {
-                this.setState({
-                    ...this.state,
-                    showFooter: false
-                })
-            }
-
             if (
                 divScroll.scrollTop + divScroll.clientHeight >=
                 (divScroll.scrollHeight - 500)
@@ -152,8 +139,11 @@ class CelebritiesPage extends Component {
                         {/* End CelebrityCardsSectionLayout */}
 
                     </PageContainer>
-                    {this.state.showFooter && (this.props.celebrities.length === this.props.paginationData.totalItems) ?
-                        <FooterLayout/> : null}
+                    {
+                        this.props.celebrities.length === this.props.paginationData.totalItems
+                        &&
+                        <FooterLayout/> : null
+                    }
                 </div>
             </>
         );
