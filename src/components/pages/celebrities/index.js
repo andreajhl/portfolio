@@ -139,11 +139,11 @@ class CelebritiesPage extends Component {
                         {/* End CelebrityCardsSectionLayout */}
 
                     </PageContainer>
-                    {
-                        this.props.celebrities.length === this.props.paginationData.totalItems
-                        &&
-                        <FooterLayout/>
-                    }
+                    {/*{*/}
+                    {/*    this.props.celebrities.length === this.props.paginationData.totalItems*/}
+                    {/*    &&*/}
+                    {/*    <FooterLayout/>*/}
+                    {/*}*/}
                 </div>
             </>
         );
