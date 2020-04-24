@@ -57,7 +57,7 @@ class CelebritiesPage extends Component {
             queryParams["page"] = 1;
             this.props.updateQueryParams(queryParams);
         }
-        if (nextProps.isLoading) {
+        if (!this.props.celebrities.length && nextProps.isLoading) {
             this.scrollDiv.current.scrollTop = 0;
         }
     }

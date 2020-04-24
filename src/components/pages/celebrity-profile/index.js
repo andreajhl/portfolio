@@ -2,15 +2,16 @@ import React, {Component, createRef} from 'react';
 import {
     CelebrityCardsSectionLayout,
     CelebrityDetailsCardLayout,
+    CelebrityPublicContractsSectionLayout,
     CelebrityReviewsSectionLayout,
-    PageContainer,
-    CelebrityPublicContractsSectionLayout
+    PageContainer
 } from "../../layouts";
 import * as PropTypes from "prop-types";
 import {CelebrityShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
+import MetaTags from 'react-meta-tags';
 
 class CelebrityProfilePage extends Component {
 
@@ -54,43 +55,55 @@ class CelebrityProfilePage extends Component {
 
     render() {
         return (
-            <div className="CelebrityProfilePage">
+            <div className="CelebrityProfilePage2">
+                <MetaTags>
+                    <title>Famosos.com - @{this.props.match.params.celebrity_username}</title>
+                    <meta name="description"
+                          content={"Experiencias que mejoran relaciones. Reserva ahora un video personalizado de tu famoso favorito."}/>
+                    <meta property="og:title" content={"Famosos.com - @" + this.props.match.params.celebrity_username}/>
+                    <meta property="og:image"
+                          content={"https://famosos-media.s3.amazonaws.com/pictures-develop/" + this.props.match.params.celebrity_username + "profile.jpeg"}/>
+                </MetaTags>
+                <div style={{position: "absolute", top: "-1000px"}}>Videos Personalizados de {this.props.celebrity.full_name}</div>
+                <div style={{position: "absolute", top: "-1000px"}}>Compar video de {this.props.match.params.celebrity_username}</div>
+                <div style={{position: "absolute", top: "-1000px"}}>Compar video de {this.props.celebrity.full_name}</div>
+                <div style={{position: "absolute", top: "-1000px"}}>Saludos de {this.props.match.params.celebrity_username}</div>
                 <PageContainer fetchCelebrities={false} showLogin={false}>
                     <div style={{minHeight: "100vh"}}>
-                    {
-                        this.props.celebrity.username === this.props.match.params.celebrity_username ?
-                            <>
-                                {/* CelebrityDetailsCardLayout */}
-                                <CelebrityDetailsCardLayout
-                                    celebrity={this.props.celebrity}
-                                    socialNetworks={this.props.socialNetworks}/>
-                                {/* END CelebrityDetailsCardLayout */}
+                        {
+                            this.props.celebrity.username === this.props.match.params.celebrity_username ?
+                                <>
+                                    {/* CelebrityDetailsCardLayout */}
+                                    <CelebrityDetailsCardLayout
+                                        celebrity={this.props.celebrity}
+                                        socialNetworks={this.props.socialNetworks}/>
+                                    {/* END CelebrityDetailsCardLayout */}
 
-                                {/* CelebrityPublicVideosSectionLayout */}
-                                <CelebrityPublicContractsSectionLayout
-                                    celebrity={this.props.celebrity}/>
-                                {/* End CelebrityPublicVideosSectionLayout */}
+                                    {/* CelebrityPublicVideosSectionLayout */}
+                                    <CelebrityPublicContractsSectionLayout
+                                        celebrity={this.props.celebrity}/>
+                                    {/* End CelebrityPublicVideosSectionLayout */}
 
-                                {/* CelebrityReviewsSection */}
-                                <CelebrityReviewsSectionLayout
-                                    celebrity={this.props.celebrity}/>
-                                {/* END CelebrityReviewsSection */}
+                                    {/* CelebrityReviewsSection */}
+                                    <CelebrityReviewsSectionLayout
+                                        celebrity={this.props.celebrity}/>
+                                    {/* END CelebrityReviewsSection */}
 
-                                {/* CelebrityCardsSectionLayout */}
-                                <div className="card-section"
-                                     ref={this.scrollDiv}>
-                                    <CelebrityCardsSectionLayout
-                                        title={"Famosos similares"}
-                                        showShimmerCards={false}
-                                        horizontalScroll={true}
-                                        celebrities={this.similarCelebrities()}
-                                        minHeight={false}
-                                    />
-                                </div>
-                                {/* End CelebrityCardsSectionLayout */}
-                            </>
-                            : null
-                    }
+                                    {/* CelebrityCardsSectionLayout */}
+                                    <div className="card-section"
+                                         ref={this.scrollDiv}>
+                                        <CelebrityCardsSectionLayout
+                                            title={"Famosos similares"}
+                                            showShimmerCards={false}
+                                            horizontalScroll={true}
+                                            celebrities={this.similarCelebrities()}
+                                            minHeight={false}
+                                        />
+                                    </div>
+                                    {/* End CelebrityCardsSectionLayout */}
+                                </>
+                                : null
+                        }
                     </div>
                 </PageContainer>
             </div>
