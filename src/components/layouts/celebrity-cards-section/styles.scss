@@ -14,7 +14,7 @@ div.CelebrityCardsSectionLayout {
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     padding-top: 10px;
-    max-width: 1240px;
+    max-width: 1070px;
     background-color: white;
     margin: 0 auto;
 
@@ -71,10 +71,10 @@ div.CelebrityCardsSectionLayout {
   @media (min-width: 768px) {
     .scrolling-wrapper {
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
-      max-width: 100vw;
+      max-width: 890px;
     }
     .section-title {
-      max-width: 100vw;
+      max-width: 890px;
       margin: 90px auto 0;
     }
   }
@@ -83,6 +83,11 @@ div.CelebrityCardsSectionLayout {
   @media (min-width: 800px) {
     .scrolling-wrapper {
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+      max-width: 1070px;
+    }
+    .section-title {
+      max-width: 1070px;
+      margin: 90px auto 0;
     }
   }
 

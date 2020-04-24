@@ -10,7 +10,7 @@ import * as PropTypes from "prop-types";
 import {CelebrityShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
-
+import "./styles.scss"
 
 class CelebrityProfilePage extends Component {
 
@@ -54,9 +54,9 @@ class CelebrityProfilePage extends Component {
 
     render() {
         return (
-            <>
+            <div className="CelebrityProfilePage">
                 <PageContainer fetchCelebrities={false} showLogin={false}>
-                    <div style={{minHeight: "600px"}}>
+                    <div style={{minHeight: "100vh"}}>
                     {
                         this.props.celebrity.username === this.props.match.params.celebrity_username ?
                             <>
@@ -77,7 +77,7 @@ class CelebrityProfilePage extends Component {
                                 {/* END CelebrityReviewsSection */}
 
                                 {/* CelebrityCardsSectionLayout */}
-                                <div style={{width: "calc(100vw - 15px)", height: "390px"}}
+                                <div className="card-section"
                                      ref={this.scrollDiv}>
                                     <CelebrityCardsSectionLayout
                                         title={"Famosos similares"}
@@ -93,7 +93,7 @@ class CelebrityProfilePage extends Component {
                     }
                     </div>
                 </PageContainer>
-            </>
+            </div>
         );
     };
 
