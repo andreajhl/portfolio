@@ -41,7 +41,14 @@
       font-size: 11px;
       font-weight: bold;
 
-      &:hover, &:active, &:focus {
+      &:active, &:active, &:focus {
+        cursor: pointer;
+        background-color: $dark;
+        color: white;
+        border-color: $dark;
+      }
+
+      &:hover {
         cursor: pointer;
         background-color: $primary;
         color: white;
