@@ -266,7 +266,7 @@ class FiltersSectionLayout extends Component {
                             this.props.flow === null
                             &&
                             <div className="filter-option filter-option-selected">
-                                Todos los famosos
+                                Todos
                                 <i className="fa fa-caret-right ml-2"/>
                             </div>
                         }
