@@ -65,7 +65,7 @@ export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, ac
             };
         case types.FETCH_CELEBRITIES_REQUEST_FAILURE:
             return {
-                ...fetchCelebritiesInitialState,
+                ...state,
                 error_data: action.payload.data,
                 failed: true
             };
@@ -76,7 +76,13 @@ export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, ac
                     data: action.payload.data
                 };
             } else if (action.payload.data.pagination_data.totalItems <= state.data.pagination_data.totalItems) {
-                action.payload.data.results = state.data.results.concat(action.payload.data.results);
+                let final = [];
+                action.payload.data.results.forEach(x => {
+                    if(!state.data.results.find(i => i.id === x.id)){
+                        final.push(x)
+                    }
+                });
+                action.payload.data.results = state.data.results.concat(final);
                 return {
                     ...fetchCelebritiesInitialState,
                     data:  action.payload.data

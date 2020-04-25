@@ -1,10 +1,9 @@
 import React, {Component, createRef} from 'react';
-import {CelebrityCardsSectionLayout, IndexHeaderLayout, PageContainer} from "../../layouts";
+import {CelebrityCardsSectionLayout, PageContainer} from "../../layouts";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
-import {FooterLayout} from "../../layouts/footer";
 
 
 class CelebritiesPage extends Component {
@@ -44,20 +43,20 @@ class CelebritiesPage extends Component {
     }
 
     componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
-        if(nextProps.selectedCountry.id !== this.props.selectedCountry.id){
-            const queryParams = this.props.queryParams;
-            queryParams["country__id"] = nextProps.selectedCountry.id;
+        const queryParams = this.props.queryParams;
+        if (nextProps.selectedCountry.id !== this.props.selectedCountry.id) {
+            queryParams["country__id"] = nextProps.selectedCountry.id > 0 ? nextProps.selectedCountry.id : null;
             queryParams["category__id"] = this.props.selectedCategory.id;
             queryParams["page"] = 1;
             this.props.updateQueryParams(queryParams);
         }
-        if(nextProps.selectedCategory.id !== this.props.selectedCategory.id){
-            const queryParams = this.props.queryParams;
-            queryParams["category__id"] = nextProps.selectedCategory.id;
+        if (nextProps.selectedCategory.id !== this.props.selectedCategory.id) {
+            queryParams["category__id"] = nextProps.selectedCategory.id > 0 ? nextProps.selectedCategory.id : null;
+            queryParams["country__id"] = this.props.selectedCountry.id;
             queryParams["page"] = 1;
             this.props.updateQueryParams(queryParams);
         }
-        if (!this.props.celebrities.length && nextProps.isLoading) {
+        if (queryParams.page === 1 && nextProps.isLoading) {
             this.scrollDiv.current.scrollTop = 0;
         }
     }
@@ -168,8 +167,8 @@ const mapStateToProps = ({celebrities, restCountries, filters}) => ({
     paginationData: celebrities.fetchCelebritiesReducer.data.pagination_data,
     queryParams: celebrities.queryParamsReducer,
     countries: restCountries.fetchCountriesReducer.data,
-    selectedCategory: filters.filtersReducer.categoryFilter.selectedCategory,
-    selectedCountry: filters.filtersReducer.countryFilter.selectedCountry,
+    selectedCategory: filters.filtersReducer.selectedCategory,
+    selectedCountry: filters.filtersReducer.selectedCountry,
 });
 
 // mapStateToProps

@@ -69,8 +69,8 @@
     .filter-option-back {
       display: inline-block;
       border: solid 1px $dark;
-      background-color: white;
-      color: $dark;
+      background-color: $dark;
+      color: white;
       border-radius: 50%;
       padding: 4px 5px 4px 4px !important;
       width: 26px;
@@ -80,7 +80,25 @@
         font-size: 10px;
         position: relative;
         left: -4px;
-        color: $dark !important;
+        color: white !important;
+      }
+
+      &:active, &:active, &:focus {
+        cursor: pointer;
+        background-color: $dark;
+        color: white;
+        border-color: $dark;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: white;
+        color: $dark;
+        border-color: $dark;
+
+        i {
+          color: $dark !important;
+        }
       }
     }
 

@@ -55,6 +55,18 @@ class CelebrityCardLayout extends Component {
     render() {
         return (
             <div className="CelebrityCardLayout">
+                <span style={{position: "fixed", top: "-1000px"}}>
+                    Videos personalizados
+                </span>
+                <span style={{position: "fixed", top: "-1000px"}}>
+                    Videos personalizados de {this.props.celebrity.full_name}
+                </span>
+                <span style={{position: "fixed", top: "-1000px"}}>
+                    Videos personalizados de {this.props.celebrity.username}
+                </span>
+                <span style={{position: "fixed", top: "-1000px"}}>
+                    Videos personalizados de @{this.props.celebrity.username}
+                </span>
                 <div className="card f-card f-rounded hover f-shadow p-2 cursor-pointer"
                      onClick={this.goToCelebrityProfile}
                 >

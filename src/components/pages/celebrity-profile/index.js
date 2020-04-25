@@ -55,19 +55,32 @@ class CelebrityProfilePage extends Component {
 
     render() {
         return (
-            <div className="CelebrityProfilePage2">
-                <MetaTags>
-                    <title>Famosos.com - @{this.props.match.params.celebrity_username}</title>
-                    <meta name="description"
-                          content={"Experiencias que mejoran relaciones. Reserva ahora un video personalizado de tu famoso favorito."}/>
-                    <meta property="og:title" content={"Famosos.com - @" + this.props.match.params.celebrity_username}/>
-                    <meta property="og:image"
-                          content={"https://famosos-media.s3.amazonaws.com/pictures-develop/" + this.props.match.params.celebrity_username + "profile.jpeg"}/>
-                </MetaTags>
-                <div style={{position: "absolute", top: "-1000px"}}>Videos Personalizados de {this.props.celebrity.full_name}</div>
-                <div style={{position: "absolute", top: "-1000px"}}>Compar video de {this.props.match.params.celebrity_username}</div>
-                <div style={{position: "absolute", top: "-1000px"}}>Compar video de {this.props.celebrity.full_name}</div>
-                <div style={{position: "absolute", top: "-1000px"}}>Saludos de {this.props.match.params.celebrity_username}</div>
+            <div className="CelebrityProfilePage">
+                {
+                    process.env.NODE_ENV === 'production'
+                    &&
+                    <div>
+                        <MetaTags>
+                            <title>Famosos.com - @{this.props.match.params.celebrity_username}</title>
+                            <meta name="description"
+                                  content={"Experiencias que mejoran relaciones. Reserva ahora un video personalizado de tu famoso favorito."}/>
+                            <meta property="og:site_name"
+                                  content={"@" + this.props.match.params.celebrity_username + "en famosos.com."}/>
+                            <meta property="og:title"
+                                  content={"Famosos.com - @" + this.props.match.params.celebrity_username}/>
+                            <meta property="og:url"
+                                  content={"https://famosos.com/" + this.props.match.params.celebrity_username}/>
+                        </MetaTags>
+                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Videos Personalizados
+                            de {this.props.celebrity.full_name}</div>
+                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Comprar video
+                            de {this.props.match.params.celebrity_username}</div>
+                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Comprar video
+                            de {this.props.celebrity.full_name}</div>
+                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Saludos
+                            de {this.props.match.params.celebrity_username}</div>
+                    </div>
+                }
                 <PageContainer fetchCelebrities={false} showLogin={false}>
                     <div style={{minHeight: "100vh"}}>
                         {

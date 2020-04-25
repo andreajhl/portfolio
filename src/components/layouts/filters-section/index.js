@@ -4,22 +4,13 @@ import {connect} from "react-redux";
 import {
     updateCategories,
     updateCountries,
+    updateFlow,
     updateSelectedCategory,
     updateSelectedCountry
 } from "../../../state/ducks/filters/actions";
 import {listAsync as listAsyncCategories} from "../../../state/ducks/celebrity-categories/actions";
-import {listAsync as listAsyncCountries} from "../../../state/ducks/countries/actions";
 import * as GTM from "../../../state/utils/gtm";
-
-const SELECTED_CATEGORY = {
-    id: null,
-    title: "Todos los famosos"
-};
-
-const SELECTED_COUNTRY = {
-    id: null,
-    name: "Todos los países"
-};
+import {listAsync as listAsyncCountries} from "../../../state/ducks/countries/actions";
 
 
 class FiltersSectionLayout extends Component {
@@ -32,8 +23,15 @@ class FiltersSectionLayout extends Component {
         this.scrollDiv = createRef();
     }
 
-    componentDidMount(): void {
-        if (this.props.categories.length === 0) {
+    updateCategoryFilter = (e, categoryID) => {
+        e.preventDefault();
+        let selectedCategory = {};
+        if (categoryID === -1) {
+            this.props.updateFlow("allCategories");
+            selectedCategory = {
+                id: -1,
+                title: "Todos las categorías",
+            };
             listAsyncCategories({})
                 .then(res => {
                     if (res.data.status === "OK") {
@@ -43,33 +41,25 @@ class FiltersSectionLayout extends Component {
                     }
                 })
                 .catch(err => {
-
-                })
-        }
-    }
-
-    updateCategoryFilter = (e, categoryID) => {
-        e.preventDefault();
-        let selectedCategory = SELECTED_CATEGORY;
-        if (categoryID !== null) {
-            selectedCategory = this.props.categories.find(x => x.id === categoryID)
-        }
-        listAsyncCountries({
-            usedInCategoryID: selectedCategory.id
-        })
-            .then(res => {
-                if (res.data.status === "OK") {
-                    this.props.updateCountries(
-                        res.data.results
-                    )
-                }
+                });
+        } else if (categoryID !== null) {
+            if (this.props.flow !== "categoriesUsedInCountry") {
+                this.props.updateFlow("countriesUsedInCategory");
+            }
+            selectedCategory = this.props.categories.find(x => x.id === categoryID);
+            listAsyncCountries({
+                usedInCategoryID: categoryID
             })
-            .catch(err => {
-
-            });
-        this.props.updateSelectedCountry(
-            SELECTED_COUNTRY
-        );
+                .then(res => {
+                    if (res.data.status === "OK") {
+                        this.props.updateCountries(
+                            res.data.results
+                        )
+                    }
+                })
+                .catch(err => {
+                });
+        }
         this.props.updateSelectedCategory(
             selectedCategory
         );
@@ -82,9 +72,40 @@ class FiltersSectionLayout extends Component {
 
     updateCountryFilter = (e, countryID) => {
         e.preventDefault();
-        let selectedCountry = SELECTED_COUNTRY;
-        if (countryID !== null) {
+        let selectedCountry = {};
+        if (countryID === -1) {
+            this.props.updateFlow("allCountries");
+            selectedCountry = {
+                id: -1,
+                name: "Todos los países",
+            };
+            listAsyncCountries({})
+                .then(res => {
+                    if (res.data.status === "OK") {
+                        this.props.updateCountries(
+                            res.data.results
+                        )
+                    }
+                })
+                .catch(err => {
+                });
+        } else if (countryID !== null) {
+            if (this.props.flow !== "countriesUsedInCategory") {
+                this.props.updateFlow("categoriesUsedInCountry");
+            }
             selectedCountry = this.props.countries.find(x => x.id === countryID)
+            listAsyncCategories({
+                usedInCountryID: countryID
+            })
+                .then(res => {
+                    if (res.data.status === "OK") {
+                        this.props.updateCategories(
+                            res.data.results
+                        )
+                    }
+                })
+                .catch(err => {
+                });
         }
         this.props.updateSelectedCountry(
             selectedCountry
@@ -96,14 +117,44 @@ class FiltersSectionLayout extends Component {
         this.scrollDiv.current.scrollLeft = 0;
     };
 
+    onBack = () => {
+        switch (this.props.flow) {
+            case "allCountries":
+                this.props.updateFlow(null);
+                this.props.updateSelectedCountry({});
+                this.props.updateSelectedCategory({});
+                return;
+            case "allCategories":
+                this.props.updateFlow(null);
+                this.props.updateSelectedCountry({});
+                this.props.updateSelectedCategory({});
+                return;
+            case "countriesUsedInCategory":
+                this.props.updateFlow("allCategories");
+                this.props.updateSelectedCountry({});
+                return;
+            case "categoriesUsedInCountry":
+                this.props.updateFlow("allCountries");
+                this.props.updateSelectedCategory({});
+                return;
+            default:
+                this.props.updateFlow(null);
+                this.props.updateSelectedCountry({});
+                this.props.updateSelectedCategory({});
+
+        }
+    };
+
     renderCountries = () => {
-        if (this.props.selectedCategory.id && !this.props.selectedCountry.id) {
+        const returnResults = (this.props.flow === "allCountries" && !this.props.selectedCategory.id)
+            || (this.props.flow === "countriesUsedInCategory" && !this.props.selectedCountry.id);
+        if (returnResults) {
             return (
                 <div className="helper-div">
                     {
                         this.props.countries.filter((item) => {
                             return item.id !== this.props.selectedCountry.id;
-                        }).map(
+                        }).reverse().map(
                             (item, index) => {
                                 return (
                                     <div
@@ -124,13 +175,15 @@ class FiltersSectionLayout extends Component {
     };
 
     renderCategories = () => {
-        if (!this.props.selectedCategory.id) {
+        const returnResults = (this.props.flow === "allCategories" && !this.props.selectedCountry.id)
+            || (this.props.flow === "categoriesUsedInCountry" && !this.props.selectedCategory.id);
+        if (returnResults) {
             return (
                 <div className="helper-div">
                     {
                         this.props.categories.filter((item) => {
                             return item.id !== this.props.selectedCategory.id;
-                        }).map(
+                        }).reverse().map(
                             (item, index) => {
                                 return (
                                     <div
@@ -150,55 +203,107 @@ class FiltersSectionLayout extends Component {
         }
     };
 
+    returnSelectecOptions = () => {
+        let selectedOption1 = "";
+        let selectedOption2 = "";
+        switch (this.props.flow) {
+            case  "allCategories":
+            case  "countriesUsedInCategory":
+                selectedOption1 = this.props.selectedCategory.title;
+                selectedOption2 = this.props.selectedCountry.id && this.props.selectedCountry.name;
+                break;
+            case  "allCountries":
+            case  "categoriesUsedInCountry":
+                selectedOption1 = this.props.selectedCountry.name;
+                selectedOption2 = this.props.selectedCategory.id && this.props.selectedCategory.title;
+                break;
+
+        }
+        if (this.props.flow !== null) {
+            return (
+                <div className="filter-option filter-option-selected">
+                    {selectedOption1}
+                    {
+                        selectedOption2
+                        &&
+                        <span>
+                            <i className="fa fa-caret-right ml-2 mr-2"/>
+                            {selectedOption2}
+                        </span>
+                    }
+                </div>
+            )
+        }
+        return null
+    };
+
     render() {
         return (
             <div className="FiltersSectionLayout">
                 <div className="navbar-1240">
                     <div className="filters-section" ref={this.scrollDiv}>
 
-                        {/*SELECTED FILTERS*/}
-                        {
-                            this.props.selectedCategory.id && !this.props.selectedCountry.id
-                            &&
-                            <div className="filter-option filter-option-back"
-                                 onClick={(e) => {
-                                     this.updateCategoryFilter(e, null)
-                                 }}
-                            >
-                                <span>
-                                <i className="fa fa-arrow-left ml-2 mr-2 text-white"/>
-                                </span>
-                            </div>
-                        }
-                        {
-                            this.props.selectedCategory.id && this.props.selectedCountry.id
-                            &&
-                            <div className="filter-option filter-option-back"
-                                 onClick={(e) => {
-                                     this.updateCountryFilter(e, null)
-                                 }}
-                            >
-                                <i className="fa fa-arrow-left ml-2 mr-2 text-white"/>
-                            </div>
-                        }
-                        <div className="filter-option filter-option-selected">
-                            {this.props.selectedCategory.title}
-                            {
-                                this.props.selectedCountry.id
-                                &&
-                                <span>
-                                    <i className="fa fa-caret-right ml-2 mr-2"/>
-                                    {this.props.selectedCountry.name}
-                                </span>
-                            }
-                            <i className="fa fa-caret-right ml-2"/>
-                        </div>
-                        {/*END SELECTED FILTERS*/}
 
-                        {/*OPTIONS*/}
+                        {/*BACK BUTTON*/}
+                        {
+                            this.props.flow !== null
+                            &&
+                            <div className="filter-option filter-option-back"
+                                 onClick={(e) => {
+                                     this.onBack(e)
+                                 }}
+                            >
+                                <span>
+                                <i className="fa fa-arrow-left ml-2 mr-2 text-white"/>
+                                </span>
+                            </div>
+                        }
+                        {/*END BACK BUTTON*/}
+
+
+                        {/*ROOT OPTIONS*/}
+                        {
+                            this.props.flow === null
+                            &&
+                            <div className="filter-option filter-option-selected">
+                                Todos los famosos
+                                <i className="fa fa-caret-right ml-2"/>
+                            </div>
+                        }
+                        {
+                            this.props.flow === null
+                            &&
+                            <div className="filter-option"
+                                 onClick={(e) => {
+                                     this.updateCountryFilter(e, -1)
+                                 }}
+                            >
+                                Filtrar por países
+                            </div>
+                        }
+                        {
+                            this.props.flow === null
+                            &&
+                            <div className="filter-option"
+                                 onClick={(e) => {
+                                     this.updateCategoryFilter(e, -1)
+                                 }}
+                            >
+                                Filtrar por categorias
+                            </div>
+                        }
+                        {/*END ROOT OPTIONS*/}
+
+
+                        {/*SELECTED OPTIONS*/}
+                        {this.returnSelectecOptions()}
+                        {/*END SELECTED OPTIONS*/}
+
+
+                        {/*RESULTS*/}
                         {this.renderCountries()}
                         {this.renderCategories()}
-                        {/*END OPTIONS*/}
+                        {/*END RESULTS*/}
 
                     </div>
                 </div>
@@ -216,10 +321,11 @@ FiltersSectionLayout.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = ({filters}) => ({
-    selectedCategory: filters.filtersReducer.categoryFilter.selectedCategory,
-    categories: filters.filtersReducer.categoryFilter.categories,
-    selectedCountry: filters.filtersReducer.countryFilter.selectedCountry,
-    countries: filters.filtersReducer.countryFilter.countries
+    flow: filters.filtersReducer.flow,
+    selectedCategory: filters.filtersReducer.selectedCategory,
+    categories: filters.filtersReducer.categories,
+    selectedCountry: filters.filtersReducer.selectedCountry,
+    countries: filters.filtersReducer.countries
 });
 
 // mapStateToProps
@@ -228,6 +334,7 @@ const mapDispatchToProps = {
     updateCategories,
     updateCountries,
     updateSelectedCountry,
+    updateFlow
 };
 
 // Export Class

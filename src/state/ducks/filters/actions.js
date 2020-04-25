@@ -1,5 +1,14 @@
 import * as types from "./types";
 
+export const updateFlow = (flow) => {
+    return dispatch => {
+        dispatch({
+            type: types.UPDATE_UPDATE_FLOW,
+            payload: {flow}
+        });
+    }
+};
+
 export const updateSelectedCountry = (selectedCountry) => {
     return dispatch => {
         dispatch({

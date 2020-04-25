@@ -2,55 +2,40 @@ import {combineReducers} from "redux";
 import * as TYPES from "./types";
 
 const filtersInitialState = {
-    countryFilter: {
-        selectedCountry: {
-            id: null,
-            name: "Todos los países"
-        },
-        countries: []
-    },
-    categoryFilter: {
-        selectedCategory: {
-            id: null,
-            title: "Todos los famosos"
-        },
-        categories: []
-    },
+    flow: null, // allCountries -> categoriesUsedInCountry
+                // allCategories -> countriesUsedInCategory
+    selectedCountry: {},
+    countries: [],
+    selectedCategory: {},
+    categories: [],
 };
 
 export function filtersReducer(state = filtersInitialState, action) {
     switch (action.type) {
+        case TYPES.UPDATE_UPDATE_FLOW:
+            return {
+                ...state,
+                flow: action.payload.flow
+            };
         case TYPES.UPDATE_SELECTED_COUNTRY:
             return {
                 ...state,
-                countryFilter: {
-                    selectedCountry: action.payload.selectedCountry,
-                    countries: state.countryFilter.countries
-                }
+                selectedCountry: action.payload.selectedCountry,
             };
         case TYPES.UPDATE_COUNTRIES:
             return {
                 ...state,
-                countryFilter: {
-                    selectedCountry: state.countryFilter.selectedCountry,
-                    countries: action.payload.countries
-                }
+                countries: action.payload.countries
             };
         case TYPES.UPDATE_SELECTED_CATEGORY:
             return {
                 ...state,
-                categoryFilter: {
-                    selectedCategory: action.payload.selectedCategory,
-                    categories: state.categoryFilter.categories
-                }
+                selectedCategory: action.payload.selectedCategory,
             };
         case TYPES.UPDATE_CATEGORIES:
             return {
                 ...state,
-                categoryFilter: {
-                    selectedCategory: state.categoryFilter.selectedCategory,
-                    categories: action.payload.categories
-                }
+                categories: action.payload.categories
             };
         default:
             return state
