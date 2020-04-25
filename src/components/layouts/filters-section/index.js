@@ -30,7 +30,7 @@ class FiltersSectionLayout extends Component {
             this.props.updateFlow("allCategories");
             selectedCategory = {
                 id: -1,
-                title: "Todos las categorías",
+                title: "Todas las categorías",
             };
             listAsyncCategories({})
                 .then(res => {
