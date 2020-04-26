@@ -18,7 +18,7 @@ class PageContainer extends Component {
     }
 
     componentDidMount() {
-        if(this.props.fetchCelebrities) {
+        if(this.props.fetchCelebrities === true) {
             const queryParams = this.props.queryParams;
             queryParams["page"] = 1;
             this.props.updateQueryParams(queryParams);
@@ -75,7 +75,6 @@ PageContainer.propTypes = {};
 
 // Set defaultProps
 PageContainer.defaultProps = {
-    fetchCelebrities: true,
     celebrities: [],
     paginationData: {},
     onSearchChange: () => {},
@@ -98,7 +97,6 @@ const mapStateToProps = (state) => ({
 
 // mapStateToProps
 const mapDispatchToProps = {
-    fetchCelebrities: celebrityOperations.list,
     updateQueryParams: celebrityOperations.updateQueryParams,
 };
 

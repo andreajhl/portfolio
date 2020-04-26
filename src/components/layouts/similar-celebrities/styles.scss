@@ -1,0 +1,70 @@
+@import "../../../theme";
+
+.SimilarCelebritiesLayout {
+  .f-section {
+    margin: 0 auto;
+    max-width: 900px;
+
+    .scroll-section {
+      min-height: 210px;
+      max-width: 100%;
+      padding: 0 20px 0 20px;
+      display: block;
+      align-items: flex-start;
+      text-align: left;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      background-color: #fff;
+      z-index: -1;
+
+      .item {
+        display: inline-block;
+        margin-right: 20px !important;
+      }
+    }
+
+    .scroll-button {
+      background-color: $dark;
+      opacity: 0.6;
+      position: absolute;
+      top: 0;
+      height: 245px;
+      width: 40px;
+      z-index: 1;
+
+      &.scroll-button-right {
+        right: 0;
+      }
+
+      &.scroll-button-left {
+        left: 0;
+      }
+
+      &:hover {
+        opacity: 0.7;
+        cursor: pointer;
+      }
+
+      i {
+        position: relative;
+        top: 100px;
+        left: 11px;
+        color: white;
+      }
+    }
+
+  }
+
+  @media (max-width: 768px) {
+    .scroll-section {
+      padding: 0 !important;
+    }
+    .scroll-button {
+      display: none;
+    }
+  }
+
+}

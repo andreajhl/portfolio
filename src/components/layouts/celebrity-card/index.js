@@ -56,7 +56,7 @@ class CelebrityCardLayout extends Component {
         return (
             <div className="CelebrityCardLayout">
                 <span style={{position: "fixed", top: "-1000px"}}>
-                    Videos personalizados
+                    Famosos Videos personalizados
                 </span>
                 <span style={{position: "fixed", top: "-1000px"}}>
                     Videos personalizados de {this.props.celebrity.full_name}

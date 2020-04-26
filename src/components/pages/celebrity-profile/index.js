@@ -1,6 +1,5 @@
 import React, {Component, createRef} from 'react';
 import {
-    CelebrityCardsSectionLayout,
     CelebrityDetailsCardLayout,
     CelebrityPublicContractsSectionLayout,
     CelebrityReviewsSectionLayout,
@@ -12,6 +11,7 @@ import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import MetaTags from 'react-meta-tags';
+import {SimilarCelebritiesLayout} from "../../layouts/similar-celebrities";
 
 class CelebrityProfilePage extends Component {
 
@@ -44,13 +44,9 @@ class CelebrityProfilePage extends Component {
     }
 
     similarCelebrities() {
-        const list = [];
-        this.props.similarCelebrities.map(c => {
-            if(c.id !== this.props.celebrity.id) {
-                list.push(c)
-            }
+        return this.props.similarCelebrities.filter((item) => {
+            return item.id !== this.props.celebrity.id;
         });
-        return list;
     }
 
     render() {
@@ -71,7 +67,8 @@ class CelebrityProfilePage extends Component {
                             <meta property="og:url"
                                   content={"https://famosos.com/" + this.props.match.params.celebrity_username}/>
                         </MetaTags>
-                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Videos Personalizados
+                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Famosos Videos
+                            Personalizados
                             de {this.props.celebrity.full_name}</div>
                         <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Comprar video
                             de {this.props.match.params.celebrity_username}</div>
@@ -81,7 +78,7 @@ class CelebrityProfilePage extends Component {
                             de {this.props.match.params.celebrity_username}</div>
                     </div>
                 }
-                <PageContainer fetchCelebrities={false} showLogin={false}>
+                <PageContainer showLogin={false}>
                     <div style={{minHeight: "100vh"}}>
                         {
                             this.props.celebrity.username === this.props.match.params.celebrity_username ?
@@ -103,16 +100,10 @@ class CelebrityProfilePage extends Component {
                                     {/* END CelebrityReviewsSection */}
 
                                     {/* CelebrityCardsSectionLayout */}
-                                    <div className="card-section"
-                                         ref={this.scrollDiv}>
-                                        <CelebrityCardsSectionLayout
-                                            title={"Famosos similares"}
-                                            showShimmerCards={false}
-                                            horizontalScroll={true}
-                                            celebrities={this.similarCelebrities()}
-                                            minHeight={false}
-                                        />
-                                    </div>
+                                    <SimilarCelebritiesLayout
+                                        showLoading={this.props.isLoading && this.props.queryParams.page > 1}
+                                        celebrities={this.props.similarCelebrities}
+                                    />
                                     {/* End CelebrityCardsSectionLayout */}
                                 </>
                                 : null

@@ -75,7 +75,7 @@ class NavbarSearchLayout extends Component {
                         <i className={"fa fa-search"} onClick={this.handleBlur.bind(this)}/>
                         <input
                             autoFocus={new URLSearchParams(history.location.search).get("inputSearchFocus")}
-                            id={"input-search"}
+                            // id={"input-search"}
                             className="form-control f-items d-none d-md-block"
                             type="text"
                             name="search"

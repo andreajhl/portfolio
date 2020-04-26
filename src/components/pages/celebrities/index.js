@@ -101,6 +101,7 @@ class CelebritiesPage extends Component {
                 <div className={"CelebritiesPage "}>
                     <PageContainer
                         showFooter={false}
+                        fetchCelebrities={true}
                         showFiltersSection={true}
                     >
 

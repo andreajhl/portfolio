@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import "./styles.scss";
 import {CelebrityReviewCardLayout} from "../../layouts/celebrity-review-card";
-import {CelebrityShape, PaginationShape} from "../../../prop-types";
-import * as PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {PaginationLayout} from "../../layouts/pagination";
