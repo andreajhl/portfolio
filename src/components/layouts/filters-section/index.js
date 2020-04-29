@@ -289,7 +289,7 @@ class FiltersSectionLayout extends Component {
                                      this.updateCategoryFilter(e, -1)
                                  }}
                             >
-                                Filtrar por categorias
+                                Filtrar por categorías
                             </div>
                         }
                         {/*END ROOT OPTIONS*/}
