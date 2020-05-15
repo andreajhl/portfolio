@@ -1,43 +1,60 @@
 #!/bin/bash
 
-# Get the name of the current Git branch and then ensure that only
-# the master Git branch is deployable to production by this script.
-branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+# REMOVE FILES
+rm -rf zip.zip
+rm -rf build
 
-# Only push this update to the server if the current branch is the Master branch
-if [[ "$branch" == "master" ]]
-then
-    echo "\nCompiling and deploying $branch to production.famosos.com..."
+# INITIAL MESSAGE
+clear
+echo "Which environment do you want to deploy?"
+echo
 
-    npm run-script build-production  && \
-            aws s3 cp build s3://production.famosos.com --recursive  && \
-             aws cloudfront create-invalidation --distribution-id E22SR0DAP4MTIB --paths '/*'
+# ENVIRONMENTS
+environments=(
+  "Testing"
+  "Production"
+)
+for i in "${!environments[@]}"; do
+  echo "$i" "=" "${environments[$i]}"
+done
+echo
 
-    ELAPSED_TIME=$(($SECONDS - $START_TIME))
-    echo "\nFinished in $ELAPSED_TIME seconds.\n\n"
+# SELECTED ENVIRONMENT
+# shellcheck disable=SC2162
+read -p 'Select an option: ' selectedOption
+clear
+echo
+echo "Deploying ====> ${environments[selectedOption]}..."
+echo
 
-elif [[ "$branch" == "staging" ]]
-then
-    echo "\nCompiling and deploying $branch to staging.famosos.com..."
 
-    npm run-script build-staging  && \
-            aws s3 cp build s3://staging.famosos.com --recursive  && \
-             aws cloudfront create-invalidation --distribution-id E34DOVLDWUSFGU --paths '/*'
-
-    ELAPSED_TIME=$(($SECONDS - $START_TIME))
-    echo "\nFinished in $ELAPSED_TIME seconds.\n\n"
-
-elif [[ "$branch" == "testing" ]]
-then
-    echo "\nCompiling and deploying $branch to testing.famosos.com..."
-
-    npm run-script build-testing  && \
-            aws s3 cp build s3://testing.famosos.com --recursive  && \
-             aws cloudfront create-invalidation --distribution-id E24ZXTLVX8AVT8 --paths '/*'
-
-    ELAPSED_TIME=$(($SECONDS - $START_TIME))
-    echo "\nFinished in $ELAPSED_TIME seconds.\n\n"
-
+mkdir build
+cd react-app
+if [[ ${environments[selectedOption]} = "Testing" ]]; then
+    npm run-script build-testing
+elif [[ ${environments[selectedOption]} = "Production" ]]; then
+    npm run-script build-production
 else
-    echo "---$branch Error---"
+    echo "Invalid environment"
+    exit 1
 fi
+cp -R build/ ../build
+rm -rf build
+
+cd ../
+
+zip -r zip.zip . \
+ --exclude=*.git* \
+ --exclude=node_modules/ \
+ --exclude=node_modules/* \
+ --exclude=*.env* \
+ --exclude=react-app/ \
+ --exclude=react-app/* \
+ --exclude=.ebextensions/* \
+ --exclude=.elasticbeanstalk/*
+
+eb use "AdminForFamososFrontend-${environments[selectedOption]}"
+eb deploy
+
+rm -rf zip.zip
+rm -rf build

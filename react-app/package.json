@@ -1,0 +1,65 @@
+{
+  "name": "webapp",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@sentry/browser": "^5.8.0",
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "history": "^4.10.1",
+    "iphone-inline-video": "^2.2.2",
+    "jwt-decode": "^2.2.0",
+    "lodash.debounce": "^4.0.8",
+    "moment": "^2.24.0",
+    "node-sass": "^4.13.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-bootstrap": "^1.0.0-beta.14",
+    "react-document-meta": "^3.0.0-beta.2",
+    "react-dom": "^16.10.2",
+    "react-flags-select": "^1.1.10",
+    "react-gtm-module": "^2.0.8",
+    "react-meta-tags": "^0.7.4",
+    "react-number-format": "^4.3.1",
+    "react-paypal-button": "^4.1.1",
+    "react-redux": "^7.1.1",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.3.0",
+    "react-select": "^3.0.8",
+    "react-simple-infinite-loading": "^1.0.0-alpha.6",
+    "react-star-rating-component": "^1.4.1",
+    "react-stripe-elements": "^5.0.1",
+    "react-tag-manager": "^3.0.0",
+    "react-tagsinput": "^3.19.0",
+    "redux": "^4.0.4",
+    "redux-batched-actions": "^0.4.1",
+    "redux-thunk": "^2.3.0",
+    "serve": "^11.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "build-testing": "react-scripts build --env=.env.testing",
+    "build-staging": "react-scripts build --env=.env.staging",
+    "build-production": "react-scripts build --env=.env.production",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {}
+}
