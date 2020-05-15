@@ -18,6 +18,11 @@
       background: white;
       box-shadow: 0 0rem 0.4rem #a1a1a1 !important;
 
+      .navbar-1240 {
+        max-width: $width-1240;
+        margin: 0 auto;
+      }
+
       .f-items {
         height: 100%;
 
@@ -164,12 +169,12 @@
   }
   .search-sm {
     position: fixed;
-    z-index: 1;
-    left: -3px;
-    right: -3px;
+    z-index: 10000;
+    left: -8px;
+    right: -8px;
     background: white;
     padding: 20px 10px 0;
-    height: 72px;
+    height: 82px;
     top: 50px;
   }
 

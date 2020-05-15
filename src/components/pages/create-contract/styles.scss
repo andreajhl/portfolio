@@ -39,4 +39,32 @@
     width: 18.6875rem;
     border-radius: 41px;
   }
+
+  a.whatsapp-link {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    div {
+      margin: 0 auto;
+      text-align: center;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      padding: 5px 40px;
+      background: linear-gradient(#FF359B, #FB177D 50%);
+      color: #FFFFFF;
+      font-size: 1.0526rem;
+      font-weight: 700;
+      width: 18.6875rem;
+      border-radius: 41px;
+    }
+  }
+
+
+  .new-label {
+    color: white;
+    background-color: green;
+    padding: 4px 10px 4px 10px;
+    font-size: 10px;
+    margin-left: 8px;
+  }
 }

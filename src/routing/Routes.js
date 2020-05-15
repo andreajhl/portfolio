@@ -149,7 +149,7 @@ class MyRoutes extends Component {
                             component={PAGES.HiringPreviewPage}
                         />
                         {/* ------- */}
-                        {/*<Route path="*" component={PAGES.CelebritiesPage}/>*/}
+                        <Route path="*" component={PAGES.CelebritiesPage}/>
                     </Switch>
                 </Router>
             </>

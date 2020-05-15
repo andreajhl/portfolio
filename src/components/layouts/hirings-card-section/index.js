@@ -28,6 +28,7 @@ class HiringsCardSectionLayout extends Component {
         // CONTRACT_PENDING_TO_PAY = 6
         // CONTRACT_PAYED_BY_CLIENT = 10
         // CONTRACT_REJECTED = 20
+        // CONTRACT_EXPIRED = 25
         // CONTRACT_RECORDED = 30
         // CONTRACT_COMPLETED = 40
 
@@ -40,27 +41,34 @@ class HiringsCardSectionLayout extends Component {
             )
         } else if (contract.status === 6) {
             return (
-                <button className="btn btn-outline-dark" disabled style={{width: "170px"}} onClick={this.goToContract.bind(this, contract.reference)}>
+                <button className="btn btn-outline-dark" disabled style={{width: "170px"}}>
                     <span className="d-md-block text-dark">Validando el pago</span>
                     <i className="fa fa-clock"/>
                 </button>
             )
         } else if (contract.status === 10) {
             return (
-                <button className="btn btn-outline-dark" disabled style={{width: "220px"}} onClick={this.goToContract.bind(this, contract.reference)}>
+                <button className="btn btn-outline-dark" disabled style={{width: "220px"}}>
                     <span className="d-md-block text-dark">En espera de grabación</span>
                     <i className="fa fa-clock"/>
                 </button>
             )
         } else if (contract.status === 20) {
             return (
-                <button className="btn btn-outline-danger" disabled style={{width: "190px"}} onClick={this.goToContract.bind(this, contract.reference)}>
+                <button className="btn btn-outline-danger" disabled style={{width: "190px"}}>
                     <span className="d-md-block text-danger">Contrato rechazado</span>
                     <i className="fa fa-times-circle text-danger"/>
                 </button>
             )
-        } else {
-            return(
+        } else if (contract.status === 25) {
+            return (
+                <button className="btn btn-outline-light" disabled style={{width: "190px"}}>
+                    <span className="d-md-block text-dark">Contrato Expirado</span>
+                    <i className="fa fa-times-circle text-dark"/>
+                </button>
+            )
+        } else if (contract.status === 30 || contract.status === 40) {
+            return (
                 <button className="btn btn-outline-primary" onClick={this.goToContract.bind(this, contract.reference)}>
                     <span className="d-md-block text-primary">Ver</span>
                     <i className="fa fa-play text-primary"/>

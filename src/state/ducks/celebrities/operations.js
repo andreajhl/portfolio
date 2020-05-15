@@ -1,9 +1,10 @@
-import {get, list, listReviews, listPublicContracts, updateQueryParams} from "./actions";
+import {get, list, listPublicContracts, listReviews, listSimilar, updateQueryParams} from "./actions";
 
 export {
     get,
     list,
     listReviews,
     listPublicContracts,
-    updateQueryParams
+    updateQueryParams,
+    listSimilar
 };

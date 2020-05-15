@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import * as PropTypes from "prop-types";
-import {CelebrityShape, PaginationShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import {NavbarSectionLayout} from "../navbar-section";
@@ -50,6 +48,7 @@ class PageContainer extends Component {
                         showNavbarButtons={this.props.showNavbarButtons}
                         showSearchWeb={this.props.showSearchWeb}
                         showLogin={this.props.showLogin}
+                        showFiltersSection={this.props.showFiltersSection}
                     />
                     : null
                 }
@@ -105,7 +104,6 @@ const mapStateToProps = (state) => ({
 
 // mapStateToProps
 const mapDispatchToProps = {
-    fetchCelebrities: celebrityOperations.list,
     updateQueryParams: celebrityOperations.updateQueryParams,
 };
 

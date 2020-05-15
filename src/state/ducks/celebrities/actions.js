@@ -74,14 +74,15 @@ export const list = (params) => {
                     // Other actions
 
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
-                } else {
-                    handleApiResponseFailure(dispatch, TYPE, res);
-                    // Other actions
-
                 }
+                // else {
+                //     handleApiResponseFailure(dispatch, TYPE, res);
+                //     // Other actions
+                //
+                // }
             })
             .catch(err => {
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+                // handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
             });
     }
 };

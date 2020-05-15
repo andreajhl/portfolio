@@ -1,6 +1,5 @@
 import React, {Component, createRef} from 'react';
 import {
-    CelebrityCardsSectionLayout,
     CelebrityDetailsCardLayout,
     CelebrityPublicContractsSectionLayout,
     CelebrityReviewsSectionLayout,
@@ -10,7 +9,9 @@ import * as PropTypes from "prop-types";
 import {CelebrityShape} from "../../../prop-types";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
-
+import "./styles.scss"
+import MetaTags from 'react-meta-tags';
+import {SimilarCelebritiesLayout} from "../../layouts/similar-celebrities";
 
 class CelebrityProfilePage extends Component {
 
@@ -43,57 +44,76 @@ class CelebrityProfilePage extends Component {
     }
 
     similarCelebrities() {
-        const list = [];
-        this.props.similarCelebrities.map(c => {
-            if(c.id !== this.props.celebrity.id) {
-                list.push(c)
-            }
+        return this.props.similarCelebrities.filter((item) => {
+            return item.id !== this.props.celebrity.id;
         });
-        return list;
     }
 
     render() {
         return (
-            <>
-                <PageContainer applyFetchCelebrities={false} showLogin={false}>
-                    <div style={{minHeight: "600px"}}>
-                    {
-                        this.props.celebrity.username === this.props.match.params.celebrity_username ?
-                            <>
-                                {/* CelebrityDetailsCardLayout */}
-                                <CelebrityDetailsCardLayout
-                                    celebrity={this.props.celebrity}
-                                    socialNetworks={this.props.socialNetworks}/>
-                                {/* END CelebrityDetailsCardLayout */}
+            <div className="CelebrityProfilePage">
+                {
+                    process.env.NODE_ENV === 'production'
+                    &&
+                    <div>
+                        <MetaTags>
+                            <title>Famosos.com - @{this.props.match.params.celebrity_username}</title>
+                            <meta name="description"
+                                  content={"Experiencias que mejoran relaciones. Reserva ahora un video personalizado de tu famoso favorito."}/>
+                            <meta property="og:site_name"
+                                  content={"@" + this.props.match.params.celebrity_username + "en famosos.com."}/>
+                            <meta property="og:title"
+                                  content={"Famosos.com - @" + this.props.match.params.celebrity_username}/>
+                            <meta property="og:url"
+                                  content={"https://famosos.com/" + this.props.match.params.celebrity_username}/>
+                        </MetaTags>
+                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Famosos Videos
+                            Personalizados
+                            de {this.props.celebrity.full_name}</div>
+                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Comprar video
+                            de {this.props.match.params.celebrity_username}</div>
+                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Comprar video
+                            de {this.props.celebrity.full_name}</div>
+                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Saludos
+                            de {this.props.match.params.celebrity_username}</div>
+                    </div>
+                }
+                <PageContainer 
+                    applyFetchCelebrities={false}
+                    showLogin={false}
+                >
+                    <div style={{minHeight: "100vh"}}>
+                        {
+                            this.props.celebrity.username === this.props.match.params.celebrity_username ?
+                                <>
+                                    {/* CelebrityDetailsCardLayout */}
+                                    <CelebrityDetailsCardLayout
+                                        celebrity={this.props.celebrity}
+                                        socialNetworks={this.props.socialNetworks}/>
+                                    {/* END CelebrityDetailsCardLayout */}
 
-                                {/* CelebrityPublicVideosSectionLayout */}
-                                <CelebrityPublicContractsSectionLayout
-                                    celebrity={this.props.celebrity}/>
-                                {/* End CelebrityPublicVideosSectionLayout */}
+                                    {/* CelebrityPublicVideosSectionLayout */}
+                                    <CelebrityPublicContractsSectionLayout
+                                        celebrity={this.props.celebrity}/>
+                                    {/* End CelebrityPublicVideosSectionLayout */}
 
-                                {/* CelebrityReviewsSection */}
-                                <CelebrityReviewsSectionLayout
-                                    celebrity={this.props.celebrity}/>
-                                {/* END CelebrityReviewsSection */}
+                                    {/* CelebrityReviewsSection */}
+                                    <CelebrityReviewsSectionLayout
+                                        celebrity={this.props.celebrity}/>
+                                    {/* END CelebrityReviewsSection */}
 
-                                {/* CelebrityCardsSectionLayout */}
-                                <div style={{width: "calc(100vw - 15px)", height: "390px"}}
-                                     ref={this.scrollDiv}>
-                                    <CelebrityCardsSectionLayout
-                                        title={"Famosos similares"}
-                                        showShimmerCards={false}
-                                        horizontalScroll={true}
-                                        celebrities={this.similarCelebrities()}
-                                        minHeight={false}
+                                    {/* CelebrityCardsSectionLayout */}
+                                    <SimilarCelebritiesLayout
+                                        showLoading={this.props.isLoading && this.props.queryParams.page > 1}
+                                        celebrities={this.props.similarCelebrities}
                                     />
-                                </div>
-                                {/* End CelebrityCardsSectionLayout */}
-                            </>
-                            : null
-                    }
+                                    {/* End CelebrityCardsSectionLayout */}
+                                </>
+                                : null
+                        }
                     </div>
                 </PageContainer>
-            </>
+            </div>
         );
     };
 

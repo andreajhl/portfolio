@@ -70,7 +70,7 @@ class FooterLayout extends Component {
 
                             <div className="col-12 col-md-4 col-lg-4 col-two">
                                 <div className="col-title">
-                                    ¿Tienes más de 50k seguidores en redes?
+                                    ¿Eres una celebridad o influencer?
                                 </div>
                                 <div className="col-button">
                                     <button className="btn btn-apply" onClick={this.goToApply}>

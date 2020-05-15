@@ -1,12 +1,9 @@
 import React, {Component, createRef} from 'react';
-import {CelebrityCardsSectionLayout, IndexHeaderLayout, PageContainer} from "../../layouts";
-import * as PropTypes from "prop-types";
-import {CelebrityShape, PaginationShape} from "../../../prop-types";
+import {CelebrityCardsSectionLayout, PageContainer} from "../../layouts";
 import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
-import {FooterLayout} from "../../layouts/footer";
 
 
 class CelebritiesPage extends Component {
@@ -16,7 +13,7 @@ class CelebritiesPage extends Component {
 
         this.state = {
             showInputSearchSm: false,
-            showFFBModal: localStorage.getItem("ffbmodal") === null
+            showFFBModal: localStorage.getItem("ffbmodal") === null,
         };
         this.scrollDiv = createRef();
         this.openModal = this.openModal.bind(this);
@@ -26,11 +23,15 @@ class CelebritiesPage extends Component {
     componentDidMount(): void {
         this.listCountries();
 
+        const divScroll = this.scrollDiv.current;
+
         // Detect when scrolled to bottom.
-        this.scrollDiv.current.addEventListener("scroll", () => {
+        divScroll.addEventListener("scroll", (e) => {
+
+            const value = (Math.round(divScroll.scrollHeight - divScroll.offsetHeight));
             if (
-                this.scrollDiv.current.scrollTop + this.scrollDiv.current.clientHeight >=
-                (this.scrollDiv.current.scrollHeight - 500)
+                divScroll.scrollTop + divScroll.clientHeight >=
+                (divScroll.scrollHeight - 500)
             ) {
                 if (!this.props.isLoading && this.props.paginationData.totalItems !== this.props.celebrities.length) {
                     if (this.props.paginationData.currentPage + 1 <= this.props.paginationData.totalPages) {
@@ -39,6 +40,25 @@ class CelebritiesPage extends Component {
                 }
             }
         });
+    }
+
+    componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+        const queryParams = this.props.queryParams;
+        if (nextProps.selectedCountry.id !== this.props.selectedCountry.id) {
+            queryParams["country__id"] = nextProps.selectedCountry.id > 0 ? nextProps.selectedCountry.id : null;
+            queryParams["category__id"] = this.props.selectedCategory.id;
+            queryParams["page"] = 1;
+            this.props.updateQueryParams(queryParams);
+        }
+        if (nextProps.selectedCategory.id !== this.props.selectedCategory.id) {
+            queryParams["category__id"] = nextProps.selectedCategory.id > 0 ? nextProps.selectedCategory.id : null;
+            queryParams["country__id"] = this.props.selectedCountry.id;
+            queryParams["page"] = 1;
+            this.props.updateQueryParams(queryParams);
+        }
+        if (queryParams.page === 1 && nextProps.isLoading) {
+            this.scrollDiv.current.scrollTop = 0;
+        }
     }
 
     openModal() {
@@ -63,13 +83,30 @@ class CelebritiesPage extends Component {
         this.props.updateQueryParams(queryParams);
     }
 
+    returnTitle = () => {
+        if (!this.props.selectedCategory.id && !this.props.selectedCountry.id) {
+            return "Famosos destacados"
+        } else if (this.props.celebrities.length && (this.props.selectedCategory.id || this.props.selectedCountry.id || this.props.queryParams.search)) {
+            return "Famosos encontrados"
+        } else if(!this.props.celebrities.length && this.props.isLoading){
+            return "Buscando..."
+        } else if(!this.props.celebrities.length && this.props.isCompleted){
+            return "No se encontraron famosos para esta busqueda"
+        }
+    };
+
     render() {
         return (
             <>
                 <div className={"CelebritiesPage "}>
-                    <PageContainer applyFetchCelebrities={true} showFooter={false}>
+                    <PageContainer
+                        showFooter={false}
+                        applyFetchCelebrities={true}
+                        showFiltersSection={true}
+                    >
+
                         {/*/!* ShowHeader *!/*/}
-                        {localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}
+                        {/*{localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}*/}
                         {/*/!* End ShowHeader *!/*/}
 
                         {/* Modal FFB */}
@@ -81,25 +118,32 @@ class CelebritiesPage extends Component {
                         {/*/! End MainMenuLayout *!/*/}
 
                         {/* CelebrityCardsSectionLayout */}
-                        <div className="scroll-section" style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
-                             ref={this.scrollDiv}>
+                        <div
+                            className="scroll-section"
+                            style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
+                            ref={this.scrollDiv}
+                        >
                             {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
                             {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
                             {/*<pre>state.params.page {this.state.params.page}</pre>*/}
                             {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
                             {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
                             <CelebrityCardsSectionLayout
-                                title={"Famosos destacados"}
+                                title={this.returnTitle()}
                                 showShimmerCards={this.props.isLoading && this.props.queryParams.page === 1}
                                 showLoading={this.props.isLoading && this.props.queryParams.page > 1}
                                 celebrities={this.props.celebrities}
                                 minHeight={true}
                             />
-                            {this.props.celebrities.length === this.props.paginationData.totalItems ?
-                                <FooterLayout/> : null}
                         </div>
                         {/* End CelebrityCardsSectionLayout */}
+
                     </PageContainer>
+                    {/*{*/}
+                    {/*    this.props.celebrities.length === this.props.paginationData.totalItems*/}
+                    {/*    &&*/}
+                    {/*    <FooterLayout/>*/}
+                    {/*}*/}
                 </div>
             </>
         );
@@ -108,11 +152,7 @@ class CelebritiesPage extends Component {
 }
 
 // Set propTypes
-CelebritiesPage.propTypes = {
-    celebrities: PropTypes.arrayOf(CelebrityShape).isRequired,
-    fetchCelebrities: PropTypes.func.isRequired,
-    paginationData: PaginationShape
-};
+CelebritiesPage.propTypes = {};
 
 // Set defaultProps
 CelebritiesPage.defaultProps = {
@@ -121,13 +161,15 @@ CelebritiesPage.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
-    isLoading: state.celebrities.fetchCelebritiesReducer.loading,
-    isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
-    celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
-    paginationData: state.celebrities.fetchCelebritiesReducer.data.informationPage,
-    queryParams: state.celebrities.queryParamsReducer,
-    countries: state.restCountries.fetchCountriesReducer.data,
+const mapStateToProps = ({celebrities, restCountries, filters}) => ({
+    isLoading: celebrities.fetchCelebritiesReducer.loading,
+    isCompleted: celebrities.fetchCelebritiesReducer.completed,
+    celebrities: celebrities.fetchCelebritiesReducer.data.results,
+    paginationData: celebrities.fetchCelebritiesReducer.data.pagination_data,
+    queryParams: celebrities.queryParamsReducer,
+    countries: restCountries.fetchCountriesReducer.data,
+    selectedCategory: filters.filtersReducer.selectedCategory,
+    selectedCountry: filters.filtersReducer.selectedCountry,
 });
 
 // mapStateToProps

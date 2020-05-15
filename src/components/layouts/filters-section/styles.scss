@@ -1,0 +1,108 @@
+@import "../../../theme";
+
+.FiltersSectionLayout {
+  position: relative;
+  top: 60px;
+  width: 100vw;
+  height: 60px;
+  background-color: white;
+
+  .navbar-1240 {
+    max-width: $width-1240;
+    margin: 0 auto;
+  }
+
+  .filters-section {
+    width: 100%;
+    max-width: $width-1240;;
+    align-items: flex-start;
+    height: 60px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    grid-template-columns: none;
+    padding: 8.5px;
+    display: block;
+    text-align: left;
+
+    .helper-div{
+      display: inline-block;
+    }
+
+    .filter-option {
+      display: inline-block;
+      margin-right: 3px;
+      margin-left: 3px;
+      margin-top: 6px;
+      color: $dark;
+      border: solid 1px $dark;
+      border-radius: 20px;
+      padding: 4px 15px 4px 15px;
+      font-size: 11px;
+      font-weight: bold;
+
+      &:active, &:active, &:focus {
+        cursor: pointer;
+        background-color: $dark;
+        color: white;
+        border-color: $dark;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: $primary;
+        color: white;
+        border-color: $primary;
+      }
+    }
+
+    .filter-option-selected {
+      background-color: $primary;
+      border-color: $primary;
+      color: white;
+      //margin-left: 0;
+      *{
+        color: white;
+      }
+    }
+
+    .filter-option-back {
+      display: inline-block;
+      border: solid 1px $dark;
+      background-color: $dark;
+      color: white;
+      border-radius: 50%;
+      padding: 4px 5px 4px 4px !important;
+      width: 26px;
+      height: 26px;
+
+      i {
+        font-size: 10px;
+        position: relative;
+        left: -4px;
+        color: white !important;
+      }
+
+      &:active, &:active, &:focus {
+        cursor: pointer;
+        background-color: $dark;
+        color: white;
+        border-color: $dark;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: white;
+        color: $dark;
+        border-color: $dark;
+
+        i {
+          color: $dark !important;
+        }
+      }
+    }
+
+
+  }
+
+}
