@@ -120,6 +120,29 @@
     border-radius: 100%;
   }
 
+  .bg-dark {
+    background-color: $primary !important;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 100% !important;
+
+    img {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    .span-clock-text {
+      color: white !important;
+      text-align: center !important;
+      padding: 10px;
+      font-size: 20px;
+    }
+
+  }
 }
 
 // Large devices (desktops, 768px and up)

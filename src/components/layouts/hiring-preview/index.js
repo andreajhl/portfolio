@@ -114,18 +114,29 @@ class HiringPreviewLayout extends Component {
                 <div className="main-section f-shadow">
                     <div className="row p-0 m-0">
                         <div className="col-sm-12 col-md-7 col-lg-7 video-container p-0 m-0">
-                            <div className="f-video">
-                                <i className={'fa fa-2x play-pause ' + (this.state.videoDesktopPlayIcon)}
-                                   onClick={this.playDesktopVideo.bind(this)}
-                                />
-                                <video
-                                    src={(this.props.contract.media) + "#t=0.5"}
-                                    ref={this.videoDesktopRef}
-                                    controls={false}
-                                    onClick={this.playDesktopVideo.bind(this)}
-                                    playsInline={true}
-                                    preload="metadata"
-                                />
+                            <div className={"f-video " + (this.props.contract.status === 10 ? "bg-dark" : "")}>
+                                {
+                                    this.props.contract.status === 10
+                                        ?
+                                        <>
+                                            <img src={this.props.contract.celebrity.avatar}/>
+                                            <span className="span-clock-text">Aún no se ha grabado tu video personalizado</span>
+                                        </>
+                                        :
+                                        <>
+                                            <i className={'fa fa-2x play-pause ' + (this.state.videoDesktopPlayIcon)}
+                                               onClick={this.playDesktopVideo.bind(this)}
+                                            />
+                                            <video
+                                                src={(this.props.contract.media) + "#t=0.5"}
+                                                ref={this.videoDesktopRef}
+                                                controls={false}
+                                                onClick={this.playDesktopVideo.bind(this)}
+                                                playsinline={true}
+                                                preload="metadata"
+                                            />
+                                        </>
+                                }
                             </div>
                         </div>
                         <div className="col-sm-12 col-md-5 col-lg-5 details-container p-0 m-0" style={{minHeight: "730px"}}>
