@@ -74,9 +74,7 @@ class PageContainer extends Component {
 
 // Set propTypes
 PageContainer.propTypes = {
-    celebrities: PropTypes.arrayOf(CelebrityShape).isRequired,
-    applyFetchCelebrities: PropTypes.bool.isRequired,
-    paginationData: PaginationShape
+
 };
 
 // Set defaultProps

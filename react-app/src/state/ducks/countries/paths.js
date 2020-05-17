@@ -1,4 +1,3 @@
-const apiVersion = "v1";
+export const MODEL = `celebrities`;
 
-export const BASE_PATH = `api/${apiVersion}/countries/`;
-export const VIEWSETS_PATH = `api/${apiVersion}/country-viewsets/`;
+export const PUBLIC_LIST = `custom-endpoints/${MODEL}/public-list/`;
