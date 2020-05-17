@@ -1,8 +1,5 @@
 import React, {Component} from "react";
-import {Col, Form, Modal, Row} from "react-bootstrap";
-import {contractOperations} from "../../../state/ducks/contracts";
-import {connect} from "react-redux";
-import * as GTM from "../../../state/utils/gtm";
+import {Modal} from "react-bootstrap";
 
 class FamososForBusinessModal extends Component {
     constructor(props) {
@@ -38,10 +35,13 @@ class FamososForBusinessModal extends Component {
                                 <i className="fa fa-times fa-2x" onClick={this.handleCloseModal}/>
                             </div>
                             <div className={"text-center"}>
-                                <img width="100%" style={{maxWidth: "350px"}} src={"/assets/img/ffb-phones.png"}
-                                     alt={"ffb-modal"}/>
+                                <img
+                                    width="100%" style={{maxWidth: "450px"}}
+                                    src={"/assets/img/famosos_licencia.png"}
+                                    alt={"ffb-modal"}
+                                />
                                 <br/>
-                                <button className="btn btn-primary" onClick={this.goToFFB}>Aplicar</button>
+                                <button className="btn btn-primary" onClick={this.handleCloseModal}>Cerrar</button>
                             </div>
                         </div>
                     </Modal.Body>
