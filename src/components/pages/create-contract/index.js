@@ -241,7 +241,7 @@ class CreateContractPage extends Component {
                                             <Form.Check.Input
                                                 type="radio"
                                                 name="contract_type"
-                                                value={2}
+                                                value={3}
                                                 checked={this.state.contract_data.contract_type === 3}
                                                 onChange={this.handleValue}
                                             />
