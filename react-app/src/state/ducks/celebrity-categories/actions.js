@@ -5,11 +5,7 @@ import * as API_PATHS from './paths';
 
 
 export const listAsync = async (params) => {
-    // COUNTRY ID IS REQUIRED
-    if (!params) {
-        params = {country_id: 0}
-    }
-    const FINAL_PATH = API_PATHS.VIEWSETS_PATH + "categories/";
+    const FINAL_PATH = API_PATHS.PUBLIC_LIST;
     return apiService({
         method: "GET",
         path: FINAL_PATH,

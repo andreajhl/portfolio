@@ -20,7 +20,7 @@ class CelebritiesPage extends Component {
         this.closeModal = this.closeModal.bind(this);
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         this.listCountries();
 
         const divScroll = this.scrollDiv.current;
@@ -42,18 +42,18 @@ class CelebritiesPage extends Component {
         });
     }
 
-    componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+    componentWillReceiveProps(nextProps, nextContext) {
         const queryParams = this.props.queryParams;
         if (nextProps.selectedCountry.id !== this.props.selectedCountry.id) {
-            queryParams["country__id"] = nextProps.selectedCountry.id > 0 ? nextProps.selectedCountry.id : null;
-            queryParams["category__id"] = this.props.selectedCategory.id;
-            queryParams["page"] = 1;
+            queryParams["country_id"] = nextProps.selectedCountry.id > 0 ? nextProps.selectedCountry.id : null;
+            queryParams["category_id"] = this.props.selectedCategory.id;
+            queryParams["currentPage"] = 1;
             this.props.updateQueryParams(queryParams);
         }
         if (nextProps.selectedCategory.id !== this.props.selectedCategory.id) {
-            queryParams["category__id"] = nextProps.selectedCategory.id > 0 ? nextProps.selectedCategory.id : null;
-            queryParams["country__id"] = this.props.selectedCountry.id;
-            queryParams["page"] = 1;
+            queryParams["category_id"] = nextProps.selectedCategory.id > 0 ? nextProps.selectedCategory.id : null;
+            queryParams["country_id"] = this.props.selectedCountry.id;
+            queryParams["currentPage"] = 1;
             this.props.updateQueryParams(queryParams);
         }
         if (queryParams.page === 1 && nextProps.isLoading) {
