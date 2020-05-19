@@ -37,7 +37,7 @@ class FamososForBusinessModal extends Component {
                             <div className={"text-center"}>
                                 <img
                                     width="100%" style={{maxWidth: "450px"}}
-                                    src={"/assets/img/famosos_licencia.png"}
+                                    src={"/assets/img/famosos_licencia_pop-up.png"}
                                     alt={"ffb-modal"}
                                 />
                                 <br/>
