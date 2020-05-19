@@ -149,10 +149,11 @@
           position: absolute;
           left: 45%;
           top: 27px;
-          width: 310px;
+          width: 280px;
           text-align: left;
           line-height: 15px;
           small {
+            text-transform: capitalize !important;
             font-weight: 600;
           }
         }
@@ -338,6 +339,7 @@
         line-height: 15px;
 
         small {
+          text-transform: capitalize !important;
           font-weight: 600;
         }
       }
