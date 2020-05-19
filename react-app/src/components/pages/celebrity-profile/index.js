@@ -27,13 +27,13 @@ class CelebrityProfilePage extends Component {
         this.scrollDiv = createRef()
     }
 
-    componentWillMount(): void {
+    componentWillMount() {
         if (this.props.celebrity.username !== this.props.match.params.celebrity_username) {
             this.getCelebrity(this.props.match.params.celebrity_username);
         }
     }
 
-    componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+    componentWillReceiveProps(nextProps, nextContext) {
         if (nextProps.match.params.celebrity_username !== this.props.match.params.celebrity_username) {
             this.getCelebrity(nextProps.match.params.celebrity_username);
         }
@@ -69,11 +69,11 @@ class CelebrityProfilePage extends Component {
                         </MetaTags>
                         <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Famosos Videos
                             Personalizados
-                            de {this.props.celebrity.full_name}</div>
+                            de {this.props.celebrity.fullName}</div>
                         <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Comprar video
                             de {this.props.match.params.celebrity_username}</div>
                         <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Comprar video
-                            de {this.props.celebrity.full_name}</div>
+                            de {this.props.celebrity.fullName}</div>
                         <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Saludos
                             de {this.props.match.params.celebrity_username}</div>
                     </div>
@@ -88,18 +88,32 @@ class CelebrityProfilePage extends Component {
                                 <>
                                     {/* CelebrityDetailsCardLayout */}
                                     <CelebrityDetailsCardLayout
-                                        celebrity={this.props.celebrity}
-                                        socialNetworks={this.props.socialNetworks}/>
+                                        username={this.props.celebrity.username}
+                                        causeUrl={this.props.celebrity.causeUrl}
+                                        videoMessagePrice={this.props.celebrity.videoMessagePrice}
+                                        avatar={this.props.celebrity.avatar}
+                                        fullName={this.props.celebrity.fullName}
+                                        categoryTitle={this.props.celebrity.categoryTitle}
+                                        isDonor={this.props.celebrity.isDonor}
+                                        description={this.props.celebrity.description}
+                                        causeLogo={this.props.celebrity.causeLogo}
+                                        causeName={this.props.celebrity.causeName}
+                                        mainVideo={this.props.celebrity.mainVideo}
+                                        hashtags={this.props.celebrity.hashtags}
+                                        socialNetworks={this.props.socialNetworks}
+                                    />
                                     {/* END CelebrityDetailsCardLayout */}
 
                                     {/* CelebrityPublicVideosSectionLayout */}
                                     <CelebrityPublicContractsSectionLayout
-                                        celebrity={this.props.celebrity}/>
+                                        celebrityId={this.props.celebrity.id}
+                                    />
                                     {/* End CelebrityPublicVideosSectionLayout */}
 
                                     {/* CelebrityReviewsSection */}
                                     <CelebrityReviewsSectionLayout
-                                        celebrity={this.props.celebrity}/>
+                                        celebrityId={this.props.celebrity.id}
+                                    />
                                     {/* END CelebrityReviewsSection */}
 
                                     {/* CelebrityCardsSectionLayout */}
@@ -136,7 +150,7 @@ CelebrityProfilePage.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     isLoading: state.celebrities.getCelebrityReducer.loading,
     celebrity: state.celebrities.getCelebrityReducer.data,
     socialNetworks: state.celebritySocialNetworks.fetchCelebritySocialNetworksReducer.data.results,

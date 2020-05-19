@@ -22,7 +22,7 @@ class CelebrityReviewsSectionLayout extends Component {
     }
 
     fetchReviews() {
-        this.props.listReviews(this.props.celebrity.id, this.state.params);
+        this.props.listReviews(this.props.celebrityId, this.state.params);
     }
 
     onPaginationChange(page) {
@@ -91,7 +91,7 @@ CelebrityReviewsSectionLayout.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     isLoading: state.celebrities.fetchReviewsReducer.loading,
     reviews: state.celebrities.fetchReviewsReducer.data.results,
     paginationData: state.celebrities.fetchReviewsReducer.data.informationPage,

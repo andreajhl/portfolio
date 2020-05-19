@@ -22,7 +22,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
     }
 
     fetchPublicContracts() {
-        this.props.listPublicContracts(this.props.celebrity.id, this.state.params);
+        this.props.listPublicContracts(this.props.celebrityId, this.state.params);
     }
 
     onPaginationChange(page) {
@@ -103,7 +103,7 @@ CelebrityPublicContractsSectionLayout.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     isLoading: state.celebrities.fetchPublicContractsReducer.loading,
     publicContracts: state.celebrities.fetchPublicContractsReducer.data.results,
     paginationData: state.celebrities.fetchPublicContractsReducer.data.informationPage,

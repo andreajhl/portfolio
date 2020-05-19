@@ -14,14 +14,14 @@ class CreateContractPage extends Component {
         this.state = {
             contract_data: {
                 celebrity: this.props.celebrity.id,
-                contract_type: 1,
-                delivery_from: "",
-                delivery_to: "",
-                delivery_type: 1,
-                delivery_contact: "",
+                contractType: 1,
+                deliveryFrom: "",
+                deliveryTo: "",
+                deliveryType: 1,
+                deliveryContact: "",
                 instructions: "",
-                price: this.props.celebrity.contracts_price,
-                is_public: true
+                price: this.props.celebrity.videoMessagePrice,
+                isPublic: true
             },
             errors: []
         };
@@ -34,7 +34,7 @@ class CreateContractPage extends Component {
 
     handleValue(event) {
         const contract_data = this.state.contract_data;
-        if (event.target.name === "contract_type") {
+        if (event.target.name === "contractType") {
             contract_data[event.target.name] = parseInt(event.target.value);
         } else {
             contract_data[event.target.name] = event.target.value;
@@ -46,7 +46,7 @@ class CreateContractPage extends Component {
 
     contractTypeLabelClick(value) {
         const contract_data = this.state.contract_data;
-        contract_data["contract_type"] = value;
+        contract_data["contractType"] = value;
         this.setState({
             contract_data: contract_data
         });
@@ -54,7 +54,7 @@ class CreateContractPage extends Component {
 
     handleIsPublic() {
         const contract_data = this.state.contract_data;
-        contract_data.is_public = !contract_data.is_public;
+        contract_data.isPublic = !contract_data.isPublic;
         this.setState({
             contract_data: contract_data
         });
@@ -64,18 +64,18 @@ class CreateContractPage extends Component {
         if (!this.props.isLoading || !this.state.tokenizeCardLoading) {
             const contract_data = this.state.contract_data;
 
-            contract_data.celebrity_id = this.props.celebrity.id; // Celebrity ID
-            contract_data.price = this.props.celebrity.contracts_price; // Price
+            contract_data.celebrityId = this.props.celebrity.id; // Celebrity ID
+            contract_data.price = this.props.celebrity.videoMessagePrice; // Price
 
             const errors = [];
-            if (contract_data.contract_type === 1 && !contract_data.delivery_from) {
-                errors.push("delivery_from");
+            if (contract_data.contractType === 1 && !contract_data.deliveryFrom) {
+                errors.push("deliveryFrom");
             }
-            if (!contract_data.delivery_to) {
-                errors.push("delivery_to");
+            if (!contract_data.deliveryTo) {
+                errors.push("deliveryTo");
             }
-            if (!contract_data.delivery_contact || !contract_data.delivery_contact.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-                errors.push("delivery_contact");
+            if (!contract_data.deliveryContact || !contract_data.deliveryContact.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+                errors.push("deliveryContact");
             }
             if (!contract_data.instructions) {
                 errors.push("instructions");
@@ -124,7 +124,7 @@ class CreateContractPage extends Component {
     }
 
     renderFromTo() {
-        switch (this.state.contract_data.contract_type) {
+        switch (this.state.contract_data.contractType) {
             case 1:
                 return (
                     <Row>
@@ -136,11 +136,11 @@ class CreateContractPage extends Component {
                                 <Form.Control
                                     type="text"
                                     placeholder="Anita"
-                                    name="delivery_to"
-                                    value={this.state.contract_data.delivery_to}
+                                    name="deliveryTo"
+                                    value={this.state.contract_data.deliveryTo}
                                     onChange={this.handleValue}
                                 />
-                                {this.showErrorMessage("delivery_to")}
+                                {this.showErrorMessage("deliveryTo")}
                             </Form.Group>
                         </Col>
                         <Col sm="4">
@@ -151,11 +151,11 @@ class CreateContractPage extends Component {
                                 <Form.Control
                                     type="text"
                                     placeholder="Duvan"
-                                    name="delivery_from"
-                                    value={this.state.contract_data.delivery_from}
+                                    name="deliveryFrom"
+                                    value={this.state.contract_data.deliveryFrom}
                                     onChange={this.handleValue}
                                 />
-                                {this.showErrorMessage("delivery_from")}
+                                {this.showErrorMessage("deliveryFrom")}
                             </Form.Group>
                         </Col>
                     </Row>
@@ -171,11 +171,11 @@ class CreateContractPage extends Component {
                                 <Form.Control
                                     type="text"
                                     placeholder="Duvan"
-                                    name="delivery_to"
-                                    value={this.state.contract_data.delivery_to}
+                                    name="deliveryTo"
+                                    value={this.state.contract_data.deliveryTo}
                                     onChange={this.handleValue}
                                 />
-                                {this.showErrorMessage("delivery_to")}
+                                {this.showErrorMessage("deliveryTo")}
                             </Form.Group>
                         </Col>
                     </Row>
@@ -199,7 +199,7 @@ class CreateContractPage extends Component {
                             <div className="col-12 col-md-8">
                                 <div className="mb-4 titleMessage">
                                     <small className="text-white">
-                                        Video personalizado de {this.props.celebrity.full_name}
+                                        Video personalizado de {this.props.celebrity.fullName}
                                     </small>
                                 </div>
 
@@ -212,9 +212,9 @@ class CreateContractPage extends Component {
                                         <Form.Check type="radio">
                                             <Form.Check.Input
                                                 type="radio"
-                                                name="contract_type"
+                                                name="contractType"
                                                 value={1}
-                                                checked={this.state.contract_data.contract_type === 1}
+                                                checked={this.state.contract_data.contractType === 1}
                                                 onChange={this.handleValue}
                                             />
                                             <Form.Check.Label
@@ -226,9 +226,9 @@ class CreateContractPage extends Component {
                                         <Form.Check type="radio">
                                             <Form.Check.Input
                                                 type="radio"
-                                                name="contract_type"
+                                                name="contractType"
                                                 value={2}
-                                                checked={this.state.contract_data.contract_type === 2}
+                                                checked={this.state.contract_data.contractType === 2}
                                                 onChange={this.handleValue}
                                             />
                                             <Form.Check.Label
@@ -240,9 +240,9 @@ class CreateContractPage extends Component {
                                         <Form.Check type="radio">
                                             <Form.Check.Input
                                                 type="radio"
-                                                name="contract_type"
-                                                value={2}
-                                                checked={this.state.contract_data.contract_type === 3}
+                                                name="contractType"
+                                                value={3}
+                                                checked={this.state.contract_data.contractType === 3}
                                                 onChange={this.handleValue}
                                             />
                                             <Form.Check.Label
@@ -259,14 +259,14 @@ class CreateContractPage extends Component {
                                     {/*END FROM TO*/}
 
                                     {
-                                        this.state.contract_data.contract_type <= 2
+                                        this.state.contract_data.contractType <= 2
                                             ?
                                             <>
                                                 {/*INSTRUCTIONS*/}
                                                 <Form.Group>
                                                     <Form.Label>
                                                         <b>
-                                                            Mis instrucciones para {this.props.celebrity.full_name}{" "}
+                                                            Mis instrucciones para {this.props.celebrity.fullName}{" "}
                                                             son:
                                                         </b>
                                                     </Form.Label>
@@ -274,7 +274,7 @@ class CreateContractPage extends Component {
                                                         as="textarea"
                                                         rows="3"
                                                         placeholder={
-                                                            this.state.contract_data.contract_type === 1
+                                                            this.state.contract_data.contractType === 1
                                                                 ? "Ejemplo: Mi nombre es Duvan. ¡Mi hermana Anita es tu fan!. Ella está cumpliendo años el 12 de agosto y quisiera que le desearas un Feliz Cumpleaños de mi parte."
                                                                 : "Escribe aquí tus instrucciones"
                                                         }
@@ -295,26 +295,26 @@ class CreateContractPage extends Component {
                                                     <Form.Label>
                                                         <b>Correo electrónico de notificación:</b>
                                                         <i className="fa fa-info-circle customTooltip ml-4">
-                            <span className="tooltipText">
-                                A este correo electrónico te noficaremos cuando el video esté listo.
-                            </span>
+                                                            <span className="tooltipText">
+                                                                A este correo electrónico te noficaremos cuando el video esté listo.
+                                                            </span>
                                                         </i>
                                                     </Form.Label>
                                                     <Form.Control
                                                         type="email"
                                                         placeholder="correo@dominio.com"
-                                                        name="delivery_contact"
-                                                        value={this.state.contract_data.delivery_contact}
+                                                        name="deliveryContact"
+                                                        value={this.state.contract_data.deliveryContact}
                                                         onChange={this.handleValue}
                                                     />
-                                                    {this.showErrorMessage("delivery_contact")}
+                                                    {this.showErrorMessage("deliveryContact")}
                                                 </Form.Group>
                                                 {/*END DELIVERY MAIL*/}
 
                                                 {/* IS PUBLIC  */}
                                                 <div className="mt-1">
                                                     <Form.Check
-                                                        checked={this.state.contract_data.is_public}
+                                                        checked={this.state.contract_data.isPublic}
                                                         onChange={this.handleIsPublic}
                                                         type="switch"
                                                         id="custom-switch"
@@ -335,7 +335,7 @@ class CreateContractPage extends Component {
                                                     {this.props.saveClientContractError ? (
                                                         <div className={"mb-2"}>
                                                             <small className="text-danger">
-                                                                El pago no pudo ser procesado
+                                                                Error
                                                             </small>
                                                         </div>
                                                     ) : null}
@@ -387,7 +387,7 @@ class CreateContractPage extends Component {
                                                     alt="famosos_licencia"
                                                 />
                                                 <div className="text-center mt-4">
-                                                    <a href={"https://api.whatsapp.com/send?phone=+17865207235&text=¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.full_name + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?"}
+                                                    <a href={"https://api.whatsapp.com/send?phone=+17865207235&text=¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?"}
                                                        target="_blank"
                                                        className={"whatsapp-link"}
                                                        onClick={this.sendBusinessRequestGTMEvent}

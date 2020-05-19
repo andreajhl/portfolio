@@ -42,7 +42,7 @@ class CelebrityDetailsCardLayout extends Component {
         this.setState({
             showContractModal: true
         }, () => {
-            history._pushRoute(this.props.celebrity.username + "/contratar");
+            history._pushRoute(this.props.username + "/contratar");
         });
     }
 
@@ -50,7 +50,7 @@ class CelebrityDetailsCardLayout extends Component {
         this.setState({
             showContractModal: false
         }, () => {
-            history._pushRoute(this.props.celebrity.username + "?modalOpened=false");
+            history._pushRoute(this.props.username + "?modalOpened=false");
         });
     }
 
@@ -103,14 +103,14 @@ class CelebrityDetailsCardLayout extends Component {
     }
 
     goToCause() {
-        window.location.replace(this.props.celebrity.cause_url)
+        window.location.replace(this.props.causeUrl)
     }
 
     returnContractPrice() {
         if (this.props.currencyExchangeData.rate > 1) {
-            return (this.props.celebrity.video_message_price * this.props.currencyExchangeData.rate) + this.props.celebrity.video_message_price
+            return (this.props.videoMessagePrice * this.props.currencyExchangeData.rate) + this.props.videoMessagePrice
         } else {
-            return this.props.celebrity.video_message_price
+            return this.props.videoMessagePrice
         }
     }
 
@@ -127,14 +127,14 @@ class CelebrityDetailsCardLayout extends Component {
                                         <div className="rounded-circle f-shadow">
                                             <img className="rounded-circle"
                                                  onLoad={this.handleImageLoaded}
-                                                 src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
+                                                 src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.avatar}
                                                  alt="avatar"/>
                                         </div>
                                     </div>
                                     <div className="col-9 col-md-8 details my-auto">
                                         <div className="row p-0 pl-3 pr-3">
                                             <div className="col-8 p-0 m-0 f-names my-auto">
-                                                <h5 className="text-dark font-weight-bold pt-1 m-0">{this.props.celebrity.full_name}</h5>
+                                                <h5 className="text-dark font-weight-bold pt-1 m-0">{this.props.fullName}</h5>
                                             </div>
                                             <div className="col-12 p-0 m-0 text-center pr-0">
                                                 <div
@@ -166,7 +166,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                 </small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
-                                                <h6 className="font-weight-bold">{this.props.celebrity.category_title}</h6>
+                                                <h6 className="font-weight-bold">{this.props.categoryTitle}</h6>
                                                 <small className="text-soft-grey font-weight-bold">Categoría</small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
@@ -178,11 +178,11 @@ class CelebrityDetailsCardLayout extends Component {
                                     </div>
                                     <div className="col-12 mt-1 text-justify description border-bottom">
                                         <small>
-                                            {this.props.celebrity.description}
+                                            {this.props.description}
                                         </small>
                                     </div>
                                     {
-                                        this.props.celebrity.is_donor
+                                        this.props.isDonor
                                             ?
                                             <div className="col-12 mt-1 text-justify">
                                                 <div className="foundation">
@@ -191,20 +191,20 @@ class CelebrityDetailsCardLayout extends Component {
                                                          alt="bookmark"/>
                                                     <div className="celebrity-data">
                                                         <small>
-                                                            {this.props.celebrity.full_name} dona <br/>
+                                                            {this.props.fullName} dona <br/>
                                                             de sus ingresos a:
                                                         </small>
                                                     </div>
                                                     <div className="cause-name">
                                                         <small className="text-primary font-weight-bold">
-                                                            {this.props.celebrity.cause_name}
+                                                            {this.props.causeName}
                                                         </small>
                                                     </div>
                                                     {/*{*/}
-                                                    {/*    this.props.celebrity.cause_logo &&*/}
-                                                    {/*    <img className="cause_logo"*/}
-                                                    {/*         src={this.props.celebrity.cause_logo}*/}
-                                                    {/*         alt="cause_logo"/>*/}
+                                                    {/*    this.props.causeLogo &&*/}
+                                                    {/*    <img className="causeLogo"*/}
+                                                    {/*         src={this.props.causeLogo}*/}
+                                                    {/*         alt="causeLogo"/>*/}
                                                     {/*}*/}
                                                     <i className="fa fa-info-circle customTooltip">
                                                         <span className="tooltipText">
@@ -249,7 +249,7 @@ class CelebrityDetailsCardLayout extends Component {
                                        playsInline={true}
                                        preload="metadata"
                                 >
-                                    <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4"/>
+                                    <source src={(this.props.mainVideo) + "#t=0.5"} type="video/mp4"/>
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
@@ -266,7 +266,7 @@ class CelebrityDetailsCardLayout extends Component {
                                     <video
                                         preload="metadata"
                                         style={{
-                                            background: "url('" + this.props.celebrity.avatar + "')",
+                                            background: "url('" + this.props.avatar + "')",
                                             backgroundSize: "cover"
                                         }}
                                         ref={this.videoMobileRef}
@@ -276,19 +276,19 @@ class CelebrityDetailsCardLayout extends Component {
                                         playsInline={true}
                                         onClick={this.playMobileVideo.bind(this)}
                                     >
-                                        <source src={(this.props.celebrity.main_video) + "#t=0.5"} type="video/mp4"/>
+                                        <source src={(this.props.mainVideo) + "#t=0.5"} type="video/mp4"/>
                                         Your browser does not support the video tag.
                                     </video>
                                     <div className="f-avatar f-shadow">
                                         <img onLoad={this.handleImageLoaded}
-                                             src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.celebrity.avatar}
+                                             src={!this.state.imageLoaded ? "/assets/img/avatar-blank.png" : this.props.avatar}
                                              alt="avatar"/>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-7 m-2-6 pr-0">
                                 <small className="font-weight-bold title">
-                                    {this.props.celebrity.full_name}
+                                    {this.props.fullName}
                                 </small>
                             </div>
                             <div className="col-5 mt-3 pl-0 text-right">
@@ -317,7 +317,7 @@ class CelebrityDetailsCardLayout extends Component {
                             <div className="col-7 pl-0 text-right">
                                 <div className="margin-right-5w">
                                     <small className="text-soft-grey subtitle">
-                                        Categoría: <b>{this.props.celebrity.category}</b>
+                                        Categoría: <b>{this.props.categoryTitle}</b>
                                     </small>
                                     <br/>
                                     <small className="text-soft-grey subtitle">
@@ -345,7 +345,7 @@ class CelebrityDetailsCardLayout extends Component {
                             <h6>
                                 <small className="mr-1 hashtags text-soft-grey">
                                     {
-                                        this.props.celebrity.hashtags.map((h, index) => {
+                                        this.props.hashtags.map((h, index) => {
                                             return <span key={index} className="mr-3">#{h}</span>
                                         })
                                     }
@@ -355,7 +355,7 @@ class CelebrityDetailsCardLayout extends Component {
                     </div>
                 </div>
                 {
-                    this.props.celebrity.is_donor
+                    this.props.isDonor
                         ?
                         <div className="d-block d-md-none profile-sm-foundation">
                             <div className="col-12 mt-4 text-justify">
@@ -365,13 +365,13 @@ class CelebrityDetailsCardLayout extends Component {
                                          alt="bookmark"/>
                                     <div className="celebrity-data">
                                         <small>
-                                            {this.props.celebrity.full_name} dona de
+                                            {this.props.fullName} dona de
                                             <br/> sus ingresos a:
                                         </small>
                                     </div>
                                     <div className="cause-name">
                                         <small className="text-primary font-weight-bold">
-                                            {this.props.celebrity.cause_name}
+                                            {this.props.causeName}
                                         </small>
                                     </div>
                                     <i className="fa fa-info-circle customTooltip">
@@ -380,9 +380,9 @@ class CelebrityDetailsCardLayout extends Component {
                                         </span>
                                     </i>
                                     {/*{*/}
-                                    {/*    this.props.celebrity.cause_logo &&*/}
-                                    {/*    <img className="cause_logo" src={this.props.celebrity.cause_logo}*/}
-                                    {/*         alt="cause_logo"/>*/}
+                                    {/*    this.props.causeLogo &&*/}
+                                    {/*    <img className="causeLogo" src={this.props.causeLogo}*/}
+                                    {/*         alt="causeLogo"/>*/}
                                     {/*}*/}
                                 </div>
                             </div>
@@ -403,11 +403,18 @@ class CelebrityDetailsCardLayout extends Component {
 
 // default props
 CelebrityDetailsCardLayout.defaultProps = {
-    celebrity: {
-        category: {},
-        user: {},
-        hashtags: []
-    },
+    username: "",
+    causeUrl: "",
+    videoMessagePrice: 0,
+    avatar: "",
+    fullName: "",
+    categoryTitle: "",
+    isDonor: "",
+    description: "",
+    causeLogo: "",
+    causeName: "",
+    hashtags: [],
+    mainVideo: "",
     socialNetworks: []
 };
 
