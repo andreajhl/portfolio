@@ -35,7 +35,7 @@ class PayPalCardForm extends Component {
                     paypalOptions={paypalOptions}
                     buttonStyles={buttonStyles}
                     amount={this.props.contractPrice}
-                    onApprove={(data: OnApproveData, authId: string) => {
+                    onApprove={(data, authId) => {
                         this.props.onPayPalResponse(this.props.paymentMethod, {
                             create_time: this.getDate(),
                             update_time: this.getDate(),
@@ -48,10 +48,10 @@ class PayPalCardForm extends Component {
                             authId: authId
                         });
                     }}
-                    onPaymentSuccess={(details: OnCaptureData) => {
+                    onPaymentSuccess={(details) => {
                         this.props.onPayPalResponse(this.props.paymentMethod, details);
                     }}
-                    onPaymentError={(details: string) => {
+                    onPaymentError={(details) => {
                         const data = {
                             create_time: this.getDate(),
                             update_time: this.getDate(),
@@ -61,7 +61,7 @@ class PayPalCardForm extends Component {
                         };
                         this.props.onPayPalResponse(this.props.paymentMethod, data);
                     }}
-                    onPaymentCancel={(details: OnCancelData) => {
+                    onPaymentCancel={(details) => {
                         const data = {
                             create_time: this.getDate(),
                             update_time: this.getDate(),
