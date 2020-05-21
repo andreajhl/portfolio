@@ -172,13 +172,10 @@ class CheckoutSectionForm extends Component {
     }
 
     onPayPalResponse(paymentMethod, details) {
-        const error = "No se pudo hacer el cobro a tu cuenta de PayPal, intentalo nuevamente o " +
-            "utiliza otro método de pago.";
         this.setState({
             showPayButton: !!details.status === "COMPLETED",
             payPalResponse: details,
             paymentMethod: paymentMethod,
-            error: details.status === "COMPLETED" ? null : error
         }, () => {
             this.createPayPalPayment(this.state.payPalResponse.status, this.state.payPalResponse);
         });

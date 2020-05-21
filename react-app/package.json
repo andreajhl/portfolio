@@ -35,13 +35,13 @@
     "redux": "^4.0.4",
     "redux-batched-actions": "^0.4.1",
     "redux-thunk": "^2.3.0",
-    "serve": "^11.2.0"
+    "serve": "^11.2.0",
+    "env-cmd": "^9.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build-testing": "react-scripts build --env=.env.testing",
-    "build-staging": "react-scripts build --env=.env.staging",
-    "build-production": "react-scripts build --env=.env.production",
+    "build-production": "env-cmd -f .env.production react-scripts build",
+    "build-testing": "env-cmd -f .env.testing react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
