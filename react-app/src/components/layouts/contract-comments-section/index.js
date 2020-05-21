@@ -30,7 +30,7 @@ class ContractCommentSectionLayout extends Component {
         this.session = new Session();
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         // Detect when scrolled to bottom.
         this.scrollDiv.current.addEventListener("scroll", () => {
             if (
@@ -50,7 +50,7 @@ class ContractCommentSectionLayout extends Component {
         });
     }
 
-    componentWillMount(): void {
+    componentWillMount() {
         this.listContractComments();
     }
 
@@ -133,7 +133,7 @@ ContractCommentSectionLayout.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     isLoading: state.contracts.listContractCommentsReducer.loading,
     contractComments: state.contracts.listContractCommentsReducer.data.results,
     paginationData: state.contracts.listContractCommentsReducer.data.informationPage,

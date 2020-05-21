@@ -6,7 +6,7 @@ const countriesInitialState = {
     failed: false,
     completed: false,
     error_data: {error: ""},
-    data: {results: [], pagination_data: {}}
+    data: {results: [], informationPage: {}}
 };
 
 export function countriesReducer(state = countriesInitialState, action) {

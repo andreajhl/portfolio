@@ -120,7 +120,7 @@ class CelebritiesPage extends Component {
                         {/* CelebrityCardsSectionLayout */}
                         <div
                             className="scroll-section"
-                            style={{height: "calc(100vh - 10px)", overflow: "scroll"}}
+                            style={{height: "calc(100vh - 50px)", overflow: "scroll"}}
                             ref={this.scrollDiv}
                         >
                             {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
@@ -165,7 +165,7 @@ const mapStateToProps = ({celebrities, restCountries, filters}) => ({
     isLoading: celebrities.fetchCelebritiesReducer.loading,
     isCompleted: celebrities.fetchCelebritiesReducer.completed,
     celebrities: celebrities.fetchCelebritiesReducer.data.results,
-    paginationData: celebrities.fetchCelebritiesReducer.data.pagination_data,
+    paginationData: celebrities.fetchCelebritiesReducer.data.informationPage,
     queryParams: celebrities.queryParamsReducer,
     countries: restCountries.fetchCountriesReducer.data,
     selectedCategory: filters.filtersReducer.selectedCategory,

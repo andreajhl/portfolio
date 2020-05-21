@@ -173,7 +173,7 @@ class CheckoutSectionForm extends Component {
 
     onPayPalResponse(paymentMethod, details) {
         this.setState({
-            showPayButton: !!details.status === "COMPLETED",
+            9: !!details.status === "COMPLETED",
             payPalResponse: details,
             paymentMethod: paymentMethod,
         }, () => {

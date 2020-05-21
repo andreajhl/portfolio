@@ -75,7 +75,7 @@ export function fetchCelebritiesReducer(state = fetchCelebritiesInitialState, ac
                     ...fetchCelebritiesInitialState,
                     data: action.payload.data
                 };
-            } else if (action.payload.data.pagination_data.totalItems <= state.data.pagination_data.totalItems) {
+            } else if (action.payload.data.informationPage.totalItems <= state.data.informationPage.totalItems) {
                 let final = [];
                 action.payload.data.results.forEach(x => {
                     if(!state.data.results.find(i => i.id === x.id)){

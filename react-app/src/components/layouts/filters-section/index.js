@@ -48,7 +48,7 @@ class FiltersSectionLayout extends Component {
             }
             selectedCategory = this.props.categories.find(x => x.id === categoryID);
             listAsyncCountries({
-                usedInCategoryID: categoryID
+                __cf__usedInCategoryID: categoryID
             })
                 .then(res => {
                     if (res.data.status === "OK") {
@@ -81,6 +81,7 @@ class FiltersSectionLayout extends Component {
             };
             listAsyncCountries({})
                 .then(res => {
+                    console.log("data:", res);
                     if (res.data.status === "OK") {
                         this.props.updateCountries(
                             res.data.results
@@ -95,9 +96,10 @@ class FiltersSectionLayout extends Component {
             }
             selectedCountry = this.props.countries.find(x => x.id === countryID)
             listAsyncCategories({
-                usedInCountryID: countryID
+                __cf__usedInCountryID: countryID
             })
                 .then(res => {
+                    console.log("data:", res);
                     if (res.data.status === "OK") {
                         this.props.updateCategories(
                             res.data.results

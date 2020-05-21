@@ -6,7 +6,7 @@ const fetchCelebrityCategoriesInitialState = {
     failed: false,
     completed: false,
     error_data: {error: ""},
-    data: {results: [], pagination_data: {}}
+    data: {results: [], informationPage: {}}
 };
 
 export function fetchCelebrityCategoriesReducer(state = fetchCelebrityCategoriesInitialState, action) {
