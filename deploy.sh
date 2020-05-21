@@ -53,7 +53,7 @@ zip -r zip.zip . \
  --exclude=.ebextensions/* \
  --exclude=.elasticbeanstalk/*
 
-eb use "AdminForFamososFrontend-${environments[selectedOption]}"
+eb use "FamososFrontend-${environments[selectedOption]}"
 eb deploy
 
 rm -rf zip.zip
