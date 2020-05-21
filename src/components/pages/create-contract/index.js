@@ -387,7 +387,7 @@ class CreateContractPage extends Component {
                                                     alt="famosos_licencia"
                                                 />
                                                 <div className="text-center mt-4">
-                                                    <a href={"https://api.whatsapp.com/send?phone=+17865207235&text=¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.full_name + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?"}
+                                                    <a href={"https://wa.me/17865207235?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.full_name + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?")}
                                                        target="_blank"
                                                        className={"whatsapp-link"}
                                                        onClick={this.sendBusinessRequestGTMEvent}
