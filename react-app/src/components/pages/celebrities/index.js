@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
+import FamososForBusinessModal from "../../containers/famosos-for-business-modal";
 
 
 class CelebritiesPage extends Component {
@@ -110,7 +111,7 @@ class CelebritiesPage extends Component {
                         {/*/!* End ShowHeader *!/*/}
 
                         {/* Modal FFB */}
-                        {/*<FamososForBusinessModal showModal={this.state.showFFBModal}  onHide={this.closeModal}/>*/}
+                        <FamososForBusinessModal showModal={this.state.showFFBModal}  onHide={this.closeModal}/>
                         {/* End Modal FFB */}
 
                         {/*/!* MainMenuLayout *!/*/}

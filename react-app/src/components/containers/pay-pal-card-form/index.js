@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
-import {OnApproveData, OnCancelData, OnCaptureData, PayPalButton} from "react-paypal-button";
+import {PayPalButton} from "react-paypal-button";
 
 
 class PayPalCardForm extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentDidCatch(error, errorInfo) {
+        console.log("error", error)
     }
 
     render() {
@@ -58,16 +62,6 @@ class PayPalCardForm extends Component {
                             id: details.orderID,
                             intent: '',
                             status: 'ERROR'
-                        };
-                        this.props.onPayPalResponse(this.props.paymentMethod, data);
-                    }}
-                    onPaymentCancel={(details) => {
-                        const data = {
-                            create_time: this.getDate(),
-                            update_time: this.getDate(),
-                            id: details.orderID,
-                            intent: '',
-                            status: 'CANCEL'
                         };
                         this.props.onPayPalResponse(this.props.paymentMethod, data);
                     }}

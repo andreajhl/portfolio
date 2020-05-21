@@ -20,7 +20,7 @@ class FamososForBusinessModal extends Component {
 
     goToFFB() {
         this.props.onHide();
-        window.open("https://business.famosos.com", '_blank');
+        // window.open("https://business.famosos.com", '_blank');
     }
 
     render() {
@@ -38,10 +38,10 @@ class FamososForBusinessModal extends Component {
                                 <i className="fa fa-times fa-2x" onClick={this.handleCloseModal}/>
                             </div>
                             <div className={"text-center"}>
-                                <img width="100%" style={{maxWidth: "350px"}} src={"/assets/img/ffb-phones.png"}
+                                <img width="100%" style={{maxWidth: "350px"}} src={"/assets/img/famosos_licencia_pop-up.png"}
                                      alt={"ffb-modal"}/>
                                 <br/>
-                                <button className="btn btn-primary" onClick={this.goToFFB}>Aplicar</button>
+                                <button className="btn btn-primary" onClick={this.goToFFB}>Cerrar</button>
                             </div>
                         </div>
                     </Modal.Body>

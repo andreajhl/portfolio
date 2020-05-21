@@ -55,12 +55,12 @@ class PaginationLayout extends Component {
                             <nav>
                                 <ul className="pagination">
                                     <li className={"page-item" + (!this.props.pagination.previousPage ? " disabled " : "")}>
-                                <span
-                                    className="page-link cursor-pointer"
-                                    onClick={this.previousPage.bind(this)}
-                                >
-                                    Anterior página
-                                </span>
+                                        <span
+                                            className="page-link cursor-pointer"
+                                            onClick={this.previousPage.bind(this)}
+                                        >
+                                            Anterior página
+                                        </span>
                                     </li>
                                     {/*{*/}
                                     {/*    [...Array(this.props.pagination.totalPages)].map((page, index) => {*/}
@@ -75,13 +75,13 @@ class PaginationLayout extends Component {
                                     {/*        )*/}
                                     {/*    })*/}
                                     {/*}*/}
-                                    <li className={"page-item" + (!this.props.pagination.nextPage ? " disabled " : "")}>
-                                <span
-                                    className="page-link cursor-pointer"
-                                    onClick={this.nextPage.bind(this)}
-                                >
-                                    Siguiente página
-                                </span>
+                                    <li className={"page-item" + (this.props.pagination.currentPage - this.props.pagination.totalPages >= 1 ? " disabled " : "")}>
+                                        <span
+                                            className="page-link cursor-pointer"
+                                            onClick={this.nextPage.bind(this)}
+                                        >
+                                            Siguiente página
+                                        </span>
                                     </li>
                                 </ul>
                             </nav>
