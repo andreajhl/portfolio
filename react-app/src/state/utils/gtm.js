@@ -1,4 +1,5 @@
 import TagManager from 'react-gtm-module'
+import {Mixpanel} from './mixPanel';
 
 const ENV = process.env.REACT_APP_ENVIRONMENT;
 
@@ -16,10 +17,15 @@ export const initialize = () => {
 
 export const tagManagerDataLayer = (event, dataLayer) => {
     try {
+        // GTM NOTIFICATION
         window.dataLayer.push({
             ...dataLayer,
             event
         });
+
+        // MIX PANEL
+        Mixpanel.track(event, dataLayer);
     }catch (e) {
+        console.log("tagManagerDataLayer Error:", e)
     }
 };

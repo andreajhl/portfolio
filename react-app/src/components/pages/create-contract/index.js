@@ -87,7 +87,7 @@ class CreateContractPage extends Component {
             if (errors.length) {
                 return false;
             } else {
-                GTM.tagManagerDataLayer("CONTRACT_SAVED", contract_data);
+                GTM.tagManagerDataLayer("CONTRACT_CREATED", contract_data);
                 this.setState({contract_data}, () => {
                     this.props.saveClientContract(this.state.contract_data);
                 });

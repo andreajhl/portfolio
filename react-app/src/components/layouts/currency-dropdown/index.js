@@ -51,9 +51,7 @@ class CurrencyDropdownLayout extends Component {
             });
             GTM.tagManagerDataLayer(
                 "CLICK_ON_DROPDOWN_CURRENCY",
-                {
-                    to: currency.name
-                }
+                currency
             );
         })
     }

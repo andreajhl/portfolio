@@ -8,6 +8,7 @@ import configureStore from "./state";
 import * as SENTRY from "./state/utils/sentry";
 import * as GTM from "./state/utils/gtm";
 import {MyRoutes} from "./routing/Routes";
+
 const reduxStore = configureStore( window.REDUX_INITIAL_DATA );
 
 // Initialize Sentry

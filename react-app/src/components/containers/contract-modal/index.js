@@ -90,7 +90,7 @@ class ContractModal extends Component {
         return false;
       } else {
         GTM.tagManagerDataLayer(
-            "CONTRACT_SAVED",
+            "CONTRACT_CREATED",
             contract_data
         );
         this.setState({contract_data}, () => {
