@@ -7,6 +7,7 @@ import {getUTMs} from "../../../state/utils/UTMs";
 import {SignInMethodsForm} from "../sign-in-methods-form";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import * as GTM from "../../../state/utils/gtm";
 
 class SignUpWithEmailForm extends Component {
 
@@ -41,6 +42,13 @@ class SignUpWithEmailForm extends Component {
                 ...getUTMs(),
                 email: this.state.email
             });
+            GTM.tagManagerDataLayer(
+                "CLICK_ON_SEND_SMS_SECURITY_CODE",
+                {
+                    ...getUTMs(),
+                    email: this.state.email
+                }
+            );
         }
     }
 

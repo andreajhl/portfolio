@@ -1,6 +1,7 @@
 import {history} from "../../routing/History";
 import * as PATHS from "../../routing/Paths";
 import jwt_decode from "jwt-decode";
+import {Mixpanel} from "./mixPanel";
 
 export class Session {
     constructor() {
@@ -10,6 +11,13 @@ export class Session {
 
     setSession = (token) => {
         localStorage.setItem(this.sessionName, token);
+        const decoded = this.jwtDecode(token);
+        Mixpanel.people.set({
+            "USER_ID": decoded.id,
+            "$email": decoded.email,
+            "status": decoded.status,
+            "exp": decoded.exp,
+        });
     };
 
     applyRedirects() {

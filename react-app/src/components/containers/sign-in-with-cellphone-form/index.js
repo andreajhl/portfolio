@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {AuthTCLayout} from "../../layouts/auth-t&c";
 import {getUTMs} from "../../../state/utils/UTMs";
 import {SignInMethodsForm} from "../sign-in-methods-form";
+import * as GTM from "../../../state/utils/gtm";
 
 class SignInWithCellphoneForm extends Component {
 
@@ -44,12 +45,17 @@ class SignInWithCellphoneForm extends Component {
 
     sendSMSSecurityCode(e) {
         if (!this.props.sendSMSSecurityCodeLoading) {
-            this.props.sendSMSSecurityCode({
+            const data = {
                 ...getUTMs(),
                 countryAlpha3Code: this.state.countryAlpha3Code,
                 countryCellphoneCode: this.state.countryCellphoneCode,
                 cellphoneNumber: this.state.cellphoneNumber,
-            });
+            };
+            this.props.sendSMSSecurityCode(data);
+            GTM.tagManagerDataLayer(
+                "CLICK_ON_SEND_SMS_SECURITY_CODE",
+                data
+            );
         }
     }
 

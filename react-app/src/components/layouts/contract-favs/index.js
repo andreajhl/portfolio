@@ -5,6 +5,7 @@ import {Session} from "../../../state/utils/session";
 import {addOrRemoveContractLike, getContractLikesData} from "../../../state/ducks/contracts/actions";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import {history} from "../../../routing/History";
+import * as GTM from "../../../state/utils/gtm";
 
 class ContractFavsLayout extends Component {
 
@@ -42,7 +43,17 @@ class ContractFavsLayout extends Component {
                         markedByMe: data.markedByMe,
                         favCount: data.count,
                     });
+                    GTM.tagManagerDataLayer(
+                        data.markedByMe ? "MARKED_FAV_CONTRACT" : "UNMARKED_FAV_CONTRACT",
+                        {
+                            ...this.state,
+                            markedByMe: data.markedByMe,
+                            favCount: data.count,
+                            ...this.props
+                        }
+                    );
                 })
+
         }else{
             localStorage.setItem("redirectTo", window.location.pathname);
             history._pushRoute(ROUTING_PATHS.SIGN_UP_PATH)

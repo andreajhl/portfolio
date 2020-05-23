@@ -6,6 +6,7 @@ import {AuthTCLayout} from "../../layouts/auth-t&c";
 import {SignInMethodsForm} from "../sign-in-methods-form";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import * as GTM from "../../../state/utils/gtm";
 
 class SignInWithEmailForm extends Component {
 
@@ -40,6 +41,12 @@ class SignInWithEmailForm extends Component {
                 email: this.state.email,
                 password: this.state.password,
             });
+            GTM.tagManagerDataLayer(
+                "CLICK_ON_SEND_SMS_SECURITY_CODE",
+                {
+                    email: this.state.email,
+                }
+            );
         }
     }
 
