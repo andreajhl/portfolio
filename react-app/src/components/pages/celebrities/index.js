@@ -5,6 +5,8 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import FamososForBusinessModal from "../../containers/famosos-for-business-modal";
+import * as GTM from "../../../state/utils/gtm";
+import {history} from "../../../routing/History";
 
 
 class CelebritiesPage extends Component {
@@ -22,6 +24,12 @@ class CelebritiesPage extends Component {
     }
 
     componentDidMount() {
+
+        GTM.tagManagerDataLayer(
+            "CELEBRITIES_PAGE_VIEW",
+            this.props.queryParams
+        );
+
         this.listCountries();
 
         const divScroll = this.scrollDiv.current;

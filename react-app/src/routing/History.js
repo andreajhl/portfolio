@@ -1,4 +1,5 @@
 import {createBrowserHistory} from 'history';
+import * as GTM from "../state/utils/gtm";
 
 const history = createBrowserHistory();
 history.listen(() => {
@@ -6,6 +7,11 @@ history.listen(() => {
 });
 
 history._pushRoute = (route) => {
+
+    GTM.tagManagerDataLayer(
+        "PAGE_VIEW",
+        history.location
+    );
 
     let search = history.location.search;
 

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {UserProfileDetailsCardLayout} from "../../layouts/user-profile-details-card";
 import "./styles.scss"
 import {sessionOperations} from "../../../state/ducks/session";
+import * as GTM from "../../../state/utils/gtm";
 
 class ClientProfilePage extends Component {
 
@@ -22,6 +23,10 @@ class ClientProfilePage extends Component {
 
     componentDidMount(): void {
         document.getElementsByClassName("f-main-body")[0].style.background = "#f7f7f7"
+        GTM.tagManagerDataLayer(
+            "CLIENT_PROFILE_PAGE_VIEW",
+            this.props.session
+        );
     }
 
     componentWillUnmount(): void {

@@ -3,6 +3,7 @@ import {HiringPreviewLayout, PageContainer} from "../../layouts";
 import {connect} from "react-redux";
 import "./styles.scss"
 import {contractOperations} from "../../../state/ducks/contracts";
+import * as GTM from "../../../state/utils/gtm";
 
 class HiringPreviewPage extends Component {
 
@@ -20,6 +21,10 @@ class HiringPreviewPage extends Component {
 
     componentDidMount(): void {
         document.getElementsByClassName("f-main-body")[0].style.background = "#f7f7f7"
+        GTM.tagManagerDataLayer(
+            "HIRING_PREVIEW_PAGE_VIEW",
+            this.props.match
+        );
     }
 
     componentWillUnmount(): void {

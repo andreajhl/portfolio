@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
 import {PageContainer} from "../../layouts/page-container";
 import "./styles.scss";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class PoliciesPage extends Component {
+
+    componentDidMount() {
+        GTM.tagManagerDataLayer(
+            "POLICIES_PAGE_VIEW",
+            this.props.match
+        );
+    }
 
     render() {
         return (

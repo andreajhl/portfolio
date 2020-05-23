@@ -28,7 +28,7 @@ class CelebrityCardLayout extends Component {
     goToCelebrityProfile() {
         history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.celebrity.username));
         GTM.tagManagerDataLayer(
-            "CLICK_IN_CELEBRITY_CARD",
+            "CLICK_ON_CELEBRITY_CARD",
             this.props.celebrity
         );
     }

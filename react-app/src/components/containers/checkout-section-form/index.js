@@ -3,11 +3,11 @@ import "./styles.scss";
 import {PaymentMethodsSection} from "../../containers/payment-methods-section";
 import {ContractCheckoutSummary} from "../../containers/contract-checkout-summary";
 import {connect} from "react-redux";
-import {CheckoutBuyerData} from "../checkout-buyer-data";
 import {ContractCurrencyPayment} from "../contract-currency-payment";
 import apiService from "../../../state/utils/apiService";
 import {history} from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class CheckoutSectionForm extends Component {
@@ -255,6 +255,10 @@ class CheckoutSectionForm extends Component {
                         buttonPayLoading: false
                     })
                 } else {
+                    GTM.tagManagerDataLayer(
+                        "CONTRACT_PAYED",
+                        res.data
+                    );
                     history._pushRoute(
                         ROUTING_PATHS.CONTRACT_CREATED.replace(
                             ":contract_reference",
@@ -311,6 +315,10 @@ class CheckoutSectionForm extends Component {
                         buttonPayLoading: false
                     })
                 } else {
+                    GTM.tagManagerDataLayer(
+                        "CONTRACT_PAYED",
+                        res.data
+                    );
                     history._pushRoute(
                         ROUTING_PATHS.CONTRACT_CREATED.replace(
                             ":contract_reference",

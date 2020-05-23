@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import {Session} from "../../../state/utils/session";
+import * as GTM from "../../../state/utils/gtm";
 
 var moment = require("moment");
 
@@ -23,6 +24,13 @@ class ContractPendingPayPage extends Component {
 
   componentWillMount() {
     this.props.getContract(this.props.match.params.contract_reference);
+  }
+
+  componentDidMount() {
+    GTM.tagManagerDataLayer(
+        "CONTYRACT_PENDING_TO_PAY_PAGE_VIEW",
+        this.props.match
+    );
   }
 
   goToMyHirings() {

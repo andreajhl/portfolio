@@ -5,6 +5,7 @@ import {Session} from "../../../state/utils/session";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import {PageContainer} from "../../layouts/page-container";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class SignInPage extends Component {
@@ -21,6 +22,13 @@ class SignInPage extends Component {
     componentWillMount(): void {
         const session = new Session();
         session.checkSession();
+    }
+
+    componentDidMount() {
+        GTM.tagManagerDataLayer(
+            "SIGN_IN_PAGE_VIEW",
+            this.props.match
+        );
     }
 
     goToRoot() {

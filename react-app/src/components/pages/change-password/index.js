@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {ChangePasswordForm} from "../../containers/change-password-form";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import * as GTM from "../../../state/utils/gtm";
 
 class ChangePasswordPage extends Component {
 
@@ -13,6 +14,13 @@ class ChangePasswordPage extends Component {
         };
 
         this.goToRoot = this.goToRoot.bind(this);
+    }
+
+    componentDidMount() {
+        GTM.tagManagerDataLayer(
+            "CHANGE_PASSWORD_PAGE_VIEW",
+            {}
+        );
     }
 
     goToRoot() {

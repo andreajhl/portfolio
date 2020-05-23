@@ -4,6 +4,7 @@ import {Session} from "../../../state/utils/session";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import {PageContainer} from "../../layouts/page-container";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class ValidateSecurityCodePage extends Component {
@@ -19,6 +20,13 @@ class ValidateSecurityCodePage extends Component {
     componentWillMount(): void {
         const session = new Session();
         session.checkSession();
+    }
+
+    componentDidMount() {
+        GTM.tagManagerDataLayer(
+            "VALIDATE_SECURITY_CODE_PAGE_VIEW",
+            this.props.match
+        );
     }
 
     goToRoot() {

@@ -36,7 +36,7 @@ class CelebrityDetailsCardLayout extends Component {
 
     openModal() {
         GTM.tagManagerDataLayer(
-            "CLICK_IN_CONTRACT_BUTTON",
+            "CLICK_ON_CONTRACT_BUTTON",
             this.props.celebrity
         );
         this.setState({

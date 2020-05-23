@@ -6,6 +6,7 @@ import {CompleteProfileForm} from "../../containers/complete-profile-form";
 import {sessionOperations} from "../../../state/ducks/session";
 import {connect} from "react-redux";
 import {PageContainer} from "../../layouts/page-container";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class CompleteProfilePage extends Component {
@@ -20,6 +21,13 @@ class CompleteProfilePage extends Component {
 
     componentWillMount(): void {
         this.props.getToken()
+    }
+
+    componentDidMount() {
+        GTM.tagManagerDataLayer(
+            "COMPLETE_PROFILE_PAGE_VIEW",
+            this.props.session
+        );
     }
 
     goToRoot() {

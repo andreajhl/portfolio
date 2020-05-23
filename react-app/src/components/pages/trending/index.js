@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {PageContainer} from "../../layouts";
 import "./styles.scss"
 import {TrendingVideosSectionLayout} from "../../layouts/trending-videos-section";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class TrendingPage extends Component {
@@ -12,6 +13,13 @@ class TrendingPage extends Component {
         this.state = {
 
         };
+    }
+
+    componentDidMount() {
+        GTM.tagManagerDataLayer(
+            "TRENDING_PAGE_VIEW",
+            this.props.match
+        );
     }
 
     render() {

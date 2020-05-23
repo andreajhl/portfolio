@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import { PageContainer } from "../../layouts";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {PageContainer} from "../../layouts";
+import {connect} from "react-redux";
 import "./styles.scss";
-import { paymentsOperations } from "../../../state/ducks/payments";
-import { CheckoutSectionForm } from "../../containers/checkout-section-form";
+import {paymentsOperations} from "../../../state/ducks/payments";
+import {CheckoutSectionForm} from "../../containers/checkout-section-form";
+import * as GTM from "../../../state/utils/gtm";
 
 class PaymentMethodsPage extends Component {
   constructor(props) {
@@ -18,6 +19,10 @@ class PaymentMethodsPage extends Component {
 
   componentDidMount() {
     this.props.getContractToPay(this.props.match.params.contract_reference);
+    GTM.tagManagerDataLayer(
+        "PAYMENT_METHODS_PAGE_VIEW",
+        this.props.match
+    );
   }
 
   render() {

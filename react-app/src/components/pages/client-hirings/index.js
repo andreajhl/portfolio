@@ -3,6 +3,7 @@ import {HiringsCardSectionLayout, PageContainer} from "../../layouts";
 import {connect} from "react-redux";
 import "./styles.scss"
 import {contractOperations} from "../../../state/ducks/contracts";
+import * as GTM from "../../../state/utils/gtm";
 
 class ClientHiringsPage extends Component {
 
@@ -19,8 +20,12 @@ class ClientHiringsPage extends Component {
         this.props.listClientContracts();
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         document.getElementsByClassName("f-main-body")[0].style.background = "#f7f7f7"
+        GTM.tagManagerDataLayer(
+            "CLIENT_HIRINGS_PAGE_VIEW",
+            {}
+        );
     }
 
     componentWillUnmount(): void {

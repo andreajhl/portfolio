@@ -12,6 +12,7 @@ export class Session {
     setSession = (token) => {
         localStorage.setItem(this.sessionName, token);
         const decoded = this.jwtDecode(token);
+        Mixpanel.identify(decoded.id);
         Mixpanel.people.set({
             "USER_ID": decoded.id,
             "$email": decoded.email,

@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
 import {PageContainer} from "../../layouts/page-container";
 import "./styles.scss";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class FaqsPage extends Component {
+
+    componentDidMount() {
+        GTM.tagManagerDataLayer(
+            "FAQS_PAGE_VIEW",
+            this.props.match
+        );
+    }
 
     render() {
         return (

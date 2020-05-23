@@ -5,6 +5,7 @@ import {ResetPasswordForm} from "../../containers";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import {PageContainer} from "../../layouts/page-container";
+import * as GTM from "../../../state/utils/gtm";
 
 class ResetPasswordPage extends Component {
 
@@ -22,6 +23,13 @@ class ResetPasswordPage extends Component {
     componentWillMount(): void {
         const session = new Session();
         session.checkSession();
+    }
+
+    componentDidMount() {
+        GTM.tagManagerDataLayer(
+            "RESET_PASSWORD_PAGE_VIEW",
+            this.props.match
+        );
     }
 
     onChangeSignInType(type) {

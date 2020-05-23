@@ -12,6 +12,7 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import MetaTags from 'react-meta-tags';
 import {SimilarCelebritiesLayout} from "../../layouts/similar-celebrities";
+import * as GTM from "../../../state/utils/gtm";
 
 class CelebrityProfilePage extends Component {
 
@@ -25,6 +26,13 @@ class CelebrityProfilePage extends Component {
         this.getCelebrity = this.getCelebrity.bind(this);
 
         this.scrollDiv = createRef()
+    }
+
+    componentDidMount() {
+        GTM.tagManagerDataLayer(
+            "CELEBRITY_PROFILE_PAGE_VIEW",
+            this.props.match
+        );
     }
 
     componentWillMount() {

@@ -32,6 +32,13 @@ class CreateContractPage extends Component {
         this.childRef = React.createRef();
     }
 
+    componentDidMount() {
+        GTM.tagManagerDataLayer(
+            "CREATE_CONTRACT_PAGE_VIEW",
+            this.props.match
+        );
+    }
+
     handleValue(event) {
         const contract_data = this.state.contract_data;
         if (event.target.name === "contractType") {
