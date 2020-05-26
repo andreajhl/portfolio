@@ -10,6 +10,8 @@
   "author": "famosos inc",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mixpanel-browser": "^2.36.0",
+    "react-mixpanel": "^1.0.5"
   }
 }
