@@ -17,14 +17,16 @@ export const initialize = () => {
 
 export const tagManagerDataLayer = (event, dataLayer) => {
     try {
+
+        // MIX PANEL
+        Mixpanel.track(event, {...dataLayer});
+
         // GTM NOTIFICATION
         window.dataLayer.push({
             ...dataLayer,
             event
         });
 
-        // MIX PANEL
-        Mixpanel.track(event, dataLayer);
     }catch (e) {
         console.log("tagManagerDataLayer Error:", e)
     }
