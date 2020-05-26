@@ -8,8 +8,8 @@ import {connect} from "react-redux";
 import {Session} from "../../../state/utils/session";
 import {NavLink} from "react-router-dom";
 import {CurrencyDropdownLayout} from "../currency-dropdown";
-import * as GTM from "../../../state/utils/gtm";
 import {FiltersSectionLayout} from "../filters-section";
+import * as GTM from "../../../state/utils/gtm";
 
 
 class NavbarSectionLayout extends Component {
@@ -33,7 +33,7 @@ class NavbarSectionLayout extends Component {
         this.openLanding = this.openLanding.bind(this);
         this.openFFBLanding = this.openFFBLanding.bind(this);
 
-        this.dropdownClick = this.dropdownClick.bind(this);
+        this.closeOrOpenMenu = this.closeOrOpenMenu.bind(this);
 
     }
 
@@ -42,7 +42,7 @@ class NavbarSectionLayout extends Component {
             showSearch: new URLSearchParams(history.location.search).get("showInputSearchSm")
         }, () => this.updateClasses());
         document.getElementsByClassName("page-container-children")[0].addEventListener("click", () => {
-            this.dropdownClick(false);
+            this.closeOrOpenMenu(false);
         });
     }
 
@@ -50,7 +50,7 @@ class NavbarSectionLayout extends Component {
         this.updateClasses()
     }
 
-    dropdownClick(status = null) {
+    closeOrOpenMenu(status = null) {
         let finalStatus = !this.state.dropdownOpened;
         if (status === false) {
             finalStatus = status;
@@ -58,10 +58,6 @@ class NavbarSectionLayout extends Component {
         this.setState({
             dropdownOpened: finalStatus
         }, () => {
-            GTM.tagManagerDataLayer(
-                "CLICK_ON_DROPDOWN_MENU",
-                {}
-            );
             const initialClass = "page-container-children-helper";
             if (this.state.dropdownOpened) {
                 document.getElementsByClassName(initialClass)[0].className += " active "
@@ -70,6 +66,14 @@ class NavbarSectionLayout extends Component {
             }
         })
     }
+
+    clickOnDropDownMenu = () => {
+        GTM.tagManagerDataLayer(
+            "CLICK_ON_DROPDOWN_MENU",
+            {}
+        );
+        this.closeOrOpenMenu()
+    };
 
     openLanding() {
         window.location.href = "https://landing.famosos.com"
@@ -317,7 +321,7 @@ class NavbarSectionLayout extends Component {
                                                                 type="button" id="dropdownMenuButton"
                                                                 data-toggle="dropdown" aria-haspopup="true"
                                                                 aria-expanded="false"
-                                                                onClick={this.dropdownClick}
+                                                                onClick={this.clickOnDropDownMenu}
                                                         >
                                                             <i className="fa fa-bars"/>
                                                         </button>
@@ -385,7 +389,7 @@ class NavbarSectionLayout extends Component {
                                                                 type="button" id="dropdownMenuButton"
                                                                 data-toggle="dropdown" aria-haspopup="true"
                                                                 aria-expanded="false"
-                                                                onClick={this.dropdownClick}
+                                                                onClick={this.clickOnDropDownMenu}
                                                         >
                                                             <i className="fa fa-bars"/>
                                                         </button>
