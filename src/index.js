@@ -13,6 +13,8 @@ const reduxStore = configureStore( window.REDUX_INITIAL_DATA );
 // Initialize Sentry
 SENTRY.initialize();
 
+
+
 // Initialize GTM
 GTM.initialize();
 
