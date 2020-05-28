@@ -239,7 +239,7 @@
 
       .f-avatar {
         position: absolute;
-        bottom: -35px;
+        bottom: -45px;
         margin-left: 4vw;
         height: 100px;
         width: 100px;
@@ -268,8 +268,10 @@
         border-radius: 41px;
       }
 
-      small.title {
-        font-size: 4vw !important;
+      h6.title {
+        position: relative;
+        left: 120px;
+        font-size: 18px;
       }
 
       small.subtitle {

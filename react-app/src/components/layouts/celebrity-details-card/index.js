@@ -286,24 +286,12 @@ class CelebrityDetailsCardLayout extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-7 m-2-6 pr-0">
-                                <small className="font-weight-bold title">
+                            <div className="col-8 pt-3 pb-1">
+                                <h6 className="font-weight-bold title">
                                     {this.props.fullName}
-                                </small>
+                                </h6>
                             </div>
-                            <div className="col-5 mt-3 pl-0 text-right">
-                                <div className="margin-right-5w" onClick={this.openModal}>
-                                    <button className="btn btn-outline-primary btn-sm f-follow-button">
-                                        Contratar por: <ContractPriceLayout
-                                        classes={"text-white font-weight-bold"}
-                                        price={this.returnContractPrice()}
-                                        currency={this.props.currencyExchangeData.to}
-                                        rounding={true}
-                                    />
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="col-5 pr-0">
+                            <div className="col-5 pr-0 mt-2">
                                 <small className="title text-warning">
                                     <i className="fa fa-star fa-1x mr-1 text-warning"/>
                                     <i className="fa fa-star fa-1x mr-1 text-warning"/>
@@ -314,7 +302,7 @@ class CelebrityDetailsCardLayout extends Component {
                                 <br/>
                                 <small className="text-soft-grey font-weight-bold subtitle">Calificaciones</small>
                             </div>
-                            <div className="col-7 pl-0 text-right">
+                            <div className="col-7 pl-0 text-right mt-2">
                                 <div className="margin-right-5w">
                                     <small className="text-soft-grey subtitle">
                                         Categoría: <b>{this.props.categoryTitle}</b>
@@ -323,6 +311,18 @@ class CelebrityDetailsCardLayout extends Component {
                                     <small className="text-soft-grey subtitle">
                                         Respuesta promedio: <b>1 a 7 días</b>
                                     </small>
+                                </div>
+                            </div>
+                            <div className="col-12 p-2">
+                                <div className="margin-right-5w" onClick={this.openModal}>
+                                    <button className="btn btn-outline-primary btn-sm f-follow-button">
+                                        Contratar por: <ContractPriceLayout
+                                        classes={"text-white font-weight-bold"}
+                                        price={this.returnContractPrice()}
+                                        currency={this.props.currencyExchangeData.to}
+                                        rounding={true}
+                                    />
+                                    </button>
                                 </div>
                             </div>
                         </div>
