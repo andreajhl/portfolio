@@ -6,6 +6,7 @@ import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import FamososForBusinessModal from "../../containers/famosos-for-business-modal";
 import * as GTM from "../../../state/utils/gtm";
+import {jsonToQueryString} from "../../../state/utils/apiService";
 
 
 class CelebritiesPage extends Component {
@@ -30,7 +31,6 @@ class CelebritiesPage extends Component {
 
         // Detect when scrolled to bottom.
         divScroll.addEventListener("scroll", (e) => {
-
             const value = (Math.round(divScroll.scrollHeight - divScroll.offsetHeight));
             if (
                 divScroll.scrollTop + divScroll.clientHeight >=
@@ -54,16 +54,44 @@ class CelebritiesPage extends Component {
     componentWillReceiveProps(nextProps, nextContext) {
         const queryParams = this.props.queryParams;
         if (nextProps.selectedCountry.id !== this.props.selectedCountry.id) {
-            queryParams["country_id"] = nextProps.selectedCountry.id > 0 ? nextProps.selectedCountry.id : null;
-            queryParams["category_id"] = this.props.selectedCategory.id;
+            const categoryId = this.props.selectedCategory.id;
+            const countryId = nextProps.selectedCountry.id > 0 ? nextProps.selectedCountry.id : null;
+            if (countryId) {
+                queryParams["country_id"] = countryId;
+            } else {
+                delete queryParams["country_id"]
+            }
+            if (categoryId) {
+                queryParams["category_id"] = categoryId;
+            } else {
+                delete queryParams["category_id"]
+            }
             queryParams["currentPage"] = 1;
             this.props.updateQueryParams(queryParams);
+            this.props.history.push({
+                pathname: this.props.history.pathname,
+                search: jsonToQueryString(queryParams)
+            });
         }
         if (nextProps.selectedCategory.id !== this.props.selectedCategory.id) {
-            queryParams["category_id"] = nextProps.selectedCategory.id > 0 ? nextProps.selectedCategory.id : null;
-            queryParams["country_id"] = this.props.selectedCountry.id;
+            const categoryId = nextProps.selectedCategory.id > 0 ? nextProps.selectedCategory.id : null;
+            const countryId = this.props.selectedCountry.id;
+            if (countryId) {
+                queryParams["country_id"] = countryId
+            } else {
+                delete queryParams["country_id"]
+            }
+            if (categoryId) {
+                queryParams["category_id"] = categoryId
+            } else {
+                delete queryParams["category_id"]
+            }
             queryParams["currentPage"] = 1;
             this.props.updateQueryParams(queryParams);
+            this.props.history.push({
+                pathname: this.props.history.pathname,
+                search: jsonToQueryString(queryParams)
+            });
         }
         if (queryParams.page === 1 && nextProps.isLoading) {
             this.scrollDiv.current.scrollTop = 0;

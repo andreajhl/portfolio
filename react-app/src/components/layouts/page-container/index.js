@@ -20,8 +20,11 @@ class PageContainer extends Component {
     componentDidMount() {
         if(this.props.applyFetchCelebrities === true) {
             const queryParams = this.props.queryParams;
-            queryParams["currentPage"] = 1;
-            this.props.updateQueryParams(queryParams);
+            if (!window.location.search) {
+                queryParams["currentPage"] = 1;
+                this.props.updateQueryParams(queryParams);
+            }
+
         }
     }
 

@@ -8,23 +8,67 @@ import {
     updateSelectedCategory,
     updateSelectedCountry
 } from "../../../state/ducks/filters/actions";
-import {listAsync as listAsyncCategories} from "../../../state/ducks/celebrity-categories/actions";
+import {
+    getAsync as getAsyncCategories,
+    listAsync as listAsyncCategories
+} from "../../../state/ducks/celebrity-categories/actions";
 import * as GTM from "../../../state/utils/gtm";
-import {listAsync as listAsyncCountries} from "../../../state/ducks/countries/actions";
+import {getAsync as getAsyncCountry, listAsync as listAsyncCountries} from "../../../state/ducks/countries/actions";
+import {queryStringToJSON} from "../../../state/utils/apiService";
 
 
 class FiltersSectionLayout extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            currentSection: "filters-section"
-        };
         this.scrollDiv = createRef();
     }
 
-    updateCategoryFilter = (e, categoryID) => {
-        e.preventDefault();
+    componentDidMount = async () => {
+        if (window.location.search) {
+            const queryParams = queryStringToJSON(window.location.search);
+            if (queryParams.country_id) {
+                this.updateCountryFilter(queryParams.country_id).then()
+                this.fetchCategories()
+            }
+            if (queryParams.category_id) {
+                this.updateCategoryFilter(queryParams.category_id).then()
+                this.fetchCountries()
+            }
+            if (queryParams.country_id && queryParams.category_id) {
+                this.updateCountryFilter(queryParams.country_id).then();
+                this.updateCategoryFilter(queryParams.category_id).then();
+            }
+        }
+    };
+
+    fetchCountries = () => {
+        listAsyncCountries({})
+            .then(res => {
+                if (res.data.status === "OK") {
+                    this.props.updateCountries(
+                        res.data.results
+                    )
+                }
+            })
+            .catch(err => {
+            });
+    };
+
+    fetchCategories = () => {
+        listAsyncCategories({})
+            .then(res => {
+                if (res.data.status === "OK") {
+                    this.props.updateCategories(
+                        res.data.results
+                    )
+                }
+            })
+            .catch(err => {
+            });
+    };
+
+    updateCategoryFilter = async (categoryID) => {
         let selectedCategory = {};
         if (categoryID === -1) {
             this.props.updateFlow("allCategories");
@@ -32,22 +76,20 @@ class FiltersSectionLayout extends Component {
                 id: -1,
                 title: "Todas las categorías",
             };
-            listAsyncCategories({})
-                .then(res => {
-                    if (res.data.status === "OK") {
-                        this.props.updateCategories(
-                            res.data.results
-                        )
-                    }
-                })
-                .catch(err => {
-                });
+            this.fetchCategories()
         } else if (categoryID !== null) {
             if (this.props.flow !== "categoriesUsedInCountry") {
                 this.props.updateFlow("countriesUsedInCategory");
             }
-            selectedCategory = this.props.categories.find(x => x.id === categoryID);
-            listAsyncCountries({
+            await getAsyncCategories(categoryID)
+                .then(res => {
+                    if (res.data.status === "OK") {
+                        selectedCategory = res.data.data
+                    }
+                })
+                .catch(err => {
+                });
+            await listAsyncCountries({
                 __cf__usedInCategoryID: categoryID
             })
                 .then(res => {
@@ -70,8 +112,7 @@ class FiltersSectionLayout extends Component {
         this.scrollDiv.current.scrollLeft = 0;
     };
 
-    updateCountryFilter = (e, countryID) => {
-        e.preventDefault();
+    updateCountryFilter = async (countryID) => {
         let selectedCountry = {};
         if (countryID === -1) {
             this.props.updateFlow("allCountries");
@@ -79,27 +120,23 @@ class FiltersSectionLayout extends Component {
                 id: -1,
                 name: "Todos los países",
             };
-            listAsyncCountries({})
-                .then(res => {
-                    console.log("data:", res);
-                    if (res.data.status === "OK") {
-                        this.props.updateCountries(
-                            res.data.results
-                        )
-                    }
-                })
-                .catch(err => {
-                });
+            this.fetchCountries()
         } else if (countryID !== null) {
             if (this.props.flow !== "countriesUsedInCategory") {
                 this.props.updateFlow("categoriesUsedInCountry");
             }
-            selectedCountry = this.props.countries.find(x => x.id === countryID)
-            listAsyncCategories({
+            await getAsyncCountry(countryID)
+                .then(res => {
+                    if (res.data.status === "OK") {
+                        selectedCountry = res.data.data
+                    }
+                })
+                .catch(err => {
+                });
+            await listAsyncCategories({
                 __cf__usedInCountryID: countryID
             })
                 .then(res => {
-                    console.log("data:", res);
                     if (res.data.status === "OK") {
                         this.props.updateCategories(
                             res.data.results
@@ -117,6 +154,16 @@ class FiltersSectionLayout extends Component {
             selectedCountry
         );
         this.scrollDiv.current.scrollLeft = 0;
+    };
+
+    clickOnUpdateCategoryFilter = (e, categoryID) => {
+        e.preventDefault();
+        this.updateCategoryFilter(categoryID)
+    };
+
+    clickOnUpdateCountryFilter = (e, countryID) => {
+        e.preventDefault();
+        this.updateCountryFilter(countryID)
     };
 
     onBack = () => {
@@ -163,7 +210,7 @@ class FiltersSectionLayout extends Component {
                                         className="filter-option"
                                         key={"filter-option country" + item.name + item.id}
                                         onClick={(e) => {
-                                            this.updateCountryFilter(e, item.id)
+                                            this.clickOnUpdateCountryFilter(e, item.id)
                                         }}
                                     >
                                         {item.name}
@@ -192,7 +239,7 @@ class FiltersSectionLayout extends Component {
                                         className="filter-option"
                                         key={"filter-option category" + item.title + item.id}
                                         onClick={(e) => {
-                                            this.updateCategoryFilter(e, item.id)
+                                            this.clickOnUpdateCategoryFilter(e, item.id)
                                         }}
                                     >
                                         {item.title}
@@ -277,7 +324,7 @@ class FiltersSectionLayout extends Component {
                             &&
                             <div className="filter-option"
                                  onClick={(e) => {
-                                     this.updateCountryFilter(e, -1)
+                                     this.clickOnUpdateCountryFilter(e, -1)
                                  }}
                             >
                                 Filtrar por países
@@ -288,7 +335,7 @@ class FiltersSectionLayout extends Component {
                             &&
                             <div className="filter-option"
                                  onClick={(e) => {
-                                     this.updateCategoryFilter(e, -1)
+                                     this.clickOnUpdateCategoryFilter(e, -1)
                                  }}
                             >
                                 Filtrar por categorías

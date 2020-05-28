@@ -15,6 +15,15 @@ export const listAsync = async (params) => {
     })
 };
 
+export const getAsync = async (id) => {
+    const FINAL_PATH = API_PATHS.PUBLIC_GET + id;
+    return apiService({
+        method: "GET",
+        path: FINAL_PATH,
+        async: true,
+        body: null
+    })
+};
 
 export const list = (params) => {
     return dispatch => {

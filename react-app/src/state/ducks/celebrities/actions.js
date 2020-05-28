@@ -1,12 +1,12 @@
 import * as types from "./types";
-import apiService from "../../utils/apiService";
+import apiService, {jsonToQueryString} from "../../utils/apiService";
 import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
 import * as API_PATHS from './paths';
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 
 
-export const updateQueryParams = (params: {}, applyFetch=true) => {
+export const updateQueryParams = (params, applyFetch=true) => {
     return dispatch => {
         dispatch({type: types.UPDATE_QUERY_PARAMS, payload: {params}});
         if(applyFetch){

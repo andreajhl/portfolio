@@ -8,13 +8,8 @@ const setHeaders = (params = {}, addFamososAuthorizationHeader = true) => {
     if (session.getSession() && addFamososAuthorizationHeader) {
         options.headers = { 'authorization': "JWT " + localStorage.getItem(session.sessionName) };
     }
-    console.log("params", params)
-    if (jsonToQueryString(params) !== "?") {
+    if ((params) !== "?") {
         options.params = params;
-        // history._pushRoute({
-        //     pathname: history.location.pathname,
-        //     search: jsonToQueryString(params)
-        // })
     }
     return options;
 };
