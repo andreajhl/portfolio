@@ -20,7 +20,7 @@ class CreateContractPage extends Component {
                 deliveryType: 1,
                 deliveryContact: "",
                 instructions: "",
-                price: this.props.celebrity.videoMessagePrice,
+                price: 0,
                 isPublic: true
             },
             errors: []
@@ -71,8 +71,11 @@ class CreateContractPage extends Component {
         if (!this.props.isLoading || !this.state.tokenizeCardLoading) {
             const contract_data = this.state.contract_data;
 
-            contract_data.celebrityId = this.props.celebrity.id; // Celebrity ID
-            contract_data.price = this.props.celebrity.videoMessagePrice; // Price
+            contract_data.celebrityId = this.props.celebrity.id;
+            const res = this.props.celebrity.contractTypes.find(x => x.contractType === 1);
+            if(res){
+                contract_data.price = res.price;
+            }
 
             const errors = [];
             if (contract_data.contractType === 1 && !contract_data.deliveryFrom) {

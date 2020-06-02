@@ -122,23 +122,34 @@ class CelebrityDetailsCardLayout extends Component {
     goToSpecialVideoMessageLink = () => {
         const res = this.props.contractTypes.find(x => x.contractType === 2);
         if (res) {
-            return window.location.href = res.options.url
+            if (res.options) {
+                if (res.options.buttonLabel && res.options.url) {
+                    return window.location.href = res.options.url
+                }
+                return null;
+            }
+            return null
         }
         return null
     };
 
     returnSecondaryButton = () => {
         const res = this.props.contractTypes.find(x => x.contractType === 2);
-        console.log("res", res)
         if (res) {
-            return (
-                <div className="mt-1 mb-3" onClick={this.goToSpecialVideoMessageLink}>
-                    <button className="btn btn-outline-primary btn-sm f-contract-button invert">
-                        {res.options.buttonLabel}
-                        <i className="fa fa-arrow-right"/>
-                    </button>
-                </div>
-            )
+            if (res.options) {
+                if (res.options.buttonLabel && res.options.url) {
+                    return (
+                        <div className="mt-1 mb-3" onClick={this.goToSpecialVideoMessageLink}>
+                            <button className="btn btn-outline-primary btn-sm f-contract-button invert">
+                                {res.options.buttonLabel}
+                                <i className="fa fa-arrow-right"/>
+                            </button>
+                        </div>
+                    )
+                }
+                return null
+            }
+            return null
         }
         return null
     };
