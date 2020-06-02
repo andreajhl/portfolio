@@ -98,7 +98,6 @@ class CelebrityProfilePage extends Component {
                                     <CelebrityDetailsCardLayout
                                         username={this.props.celebrity.username}
                                         causeUrl={this.props.celebrity.causeUrl}
-                                        videoMessagePrice={this.props.celebrity.videoMessagePrice}
                                         avatar={this.props.celebrity.avatar}
                                         fullName={this.props.celebrity.fullName}
                                         categoryTitle={this.props.celebrity.categoryTitle}
@@ -109,6 +108,7 @@ class CelebrityProfilePage extends Component {
                                         mainVideo={this.props.celebrity.mainVideo}
                                         hashtags={this.props.celebrity.hashtags}
                                         socialNetworks={this.props.socialNetworks}
+                                        contractTypes={this.props.celebrity.contractTypes}
                                     />
                                     {/* END CelebrityDetailsCardLayout */}
 

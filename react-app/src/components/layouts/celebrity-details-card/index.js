@@ -107,12 +107,41 @@ class CelebrityDetailsCardLayout extends Component {
     }
 
     returnContractPrice() {
+        const res = this.props.contractTypes.find(x => x.contractType === 1);
+        let videoMessagePrice = 0;
+        if(res){
+            videoMessagePrice = res.price;
+        }
         if (this.props.currencyExchangeData.rate > 1) {
-            return (this.props.videoMessagePrice * this.props.currencyExchangeData.rate) + this.props.videoMessagePrice
+            return (videoMessagePrice * this.props.currencyExchangeData.rate) + videoMessagePrice
         } else {
-            return this.props.videoMessagePrice
+            return videoMessagePrice
         }
     }
+
+    goToSpecialVideoMessageLink = () => {
+        const res = this.props.contractTypes.find(x => x.contractType === 2);
+        if (res) {
+            return window.location.href = res.options.url
+        }
+        return null
+    };
+
+    returnSecondaryButton = () => {
+        const res = this.props.contractTypes.find(x => x.contractType === 2);
+        console.log("res", res)
+        if (res) {
+            return (
+                <div className="mt-1 mb-3" onClick={this.goToSpecialVideoMessageLink}>
+                    <button className="btn btn-outline-primary btn-sm f-contract-button invert">
+                        {res.options.buttonLabel}
+                        <i className="fa fa-arrow-right"/>
+                    </button>
+                </div>
+            )
+        }
+        return null
+    };
 
     render() {
         return (
@@ -137,21 +166,22 @@ class CelebrityDetailsCardLayout extends Component {
                                                 <h5 className="text-dark font-weight-bold pt-1 m-0">{this.props.fullName}</h5>
                                             </div>
                                             <div className="col-12 p-0 m-0 text-center pr-0">
-                                                <div
-                                                    onClick={this.openModal}
-                                                    className="bg-primary f-contract f-rounded hover cursor-pointer text-uppercase">
-                                                    Comprar video por <ContractPriceLayout
-                                                    classes={"text-white"}
-                                                    price={this.returnContractPrice()}
-                                                    currency={this.props.currencyExchangeData.to}
-                                                    rounding={true}
-                                                />
-                                                    <i className="ml-2 fa fa-arrow-right text-white"/>
+                                                <div className="mt-3 mb-3" onClick={this.openModal}>
+                                                    <button className="btn  btn-sm f-contract-button">
+                                                        Comprar Video Personalizado por <ContractPriceLayout
+                                                        classes={"text-white font-weight-bold"}
+                                                        price={this.returnContractPrice()}
+                                                        currency={this.props.currencyExchangeData.to}
+                                                        rounding={true}
+                                                    />
+                                                        <i className="fa fa-arrow-right"/>
+                                                    </button>
                                                 </div>
+                                                {this.returnSecondaryButton()}
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-12">
+                                    <div className="col-12 ">
                                         <div className="row mt-2 text-center">
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
                                                 <h6 className="text-warning">
@@ -303,7 +333,7 @@ class CelebrityDetailsCardLayout extends Component {
                                 <small className="text-soft-grey font-weight-bold subtitle">Calificaciones</small>
                             </div>
                             <div className="col-7 pl-0 text-right mt-2">
-                                <div className="margin-right-5w">
+                                <div className="">
                                     <small className="text-soft-grey subtitle">
                                         Categoría: <b>{this.props.categoryTitle}</b>
                                     </small>
@@ -314,16 +344,18 @@ class CelebrityDetailsCardLayout extends Component {
                                 </div>
                             </div>
                             <div className="col-12 p-2">
-                                <div className="margin-right-5w" onClick={this.openModal}>
-                                    <button className="btn btn-outline-primary btn-sm f-follow-button">
-                                        Contratar por: <ContractPriceLayout
+                                <div className="mt-3 mb-3" onClick={this.openModal}>
+                                    <button className="btn  btn-sm f-contract-button">
+                                        Comprar Video Personalizado por <ContractPriceLayout
                                         classes={"text-white font-weight-bold"}
                                         price={this.returnContractPrice()}
                                         currency={this.props.currencyExchangeData.to}
                                         rounding={true}
                                     />
+                                        <i className="fa fa-arrow-right"/>
                                     </button>
                                 </div>
+                                {this.returnSecondaryButton()}
                             </div>
                         </div>
                         {/*<div className="footer-btn my-auto p-4" onClick={this.openModal}>*/}
@@ -405,7 +437,6 @@ class CelebrityDetailsCardLayout extends Component {
 CelebrityDetailsCardLayout.defaultProps = {
     username: "",
     causeUrl: "",
-    videoMessagePrice: 0,
     avatar: "",
     fullName: "",
     categoryTitle: "",
@@ -415,7 +446,8 @@ CelebrityDetailsCardLayout.defaultProps = {
     causeName: "",
     hashtags: [],
     mainVideo: "",
-    socialNetworks: []
+    socialNetworks: [],
+    contractTypes: []
 };
 
 // mapStateToProps
