@@ -202,8 +202,13 @@ class CreateContractPage extends Component {
     render() {
         return (
             <>
-                <PageContainer showFooter={false} showLogin={false} showInputSearchSm={false} showSearchWeb={false}
-                               fetchCelebrities={false}>
+                <PageContainer
+                    showFooter={false}
+                    showLogin={false}
+                    showInputSearchSm={false}
+                    showSearchWeb={false}
+                    fetchCelebrities={false}
+                >
                     <div className="container CreateContractPage" style={{zoom: "80%"}}>
                         <div className="row centerForm p-4">
                             <div className="col-12 col-md-8">
@@ -334,6 +339,7 @@ class CreateContractPage extends Component {
                                                 {/* END IS PUBLIC */}
 
                                                 <br/>
+
                                                 <div className="text-center">
                                                     {this.state.errors.length ? (
                                                         <div className={"mb-2"}>
@@ -372,12 +378,12 @@ class CreateContractPage extends Component {
                                                             />
                                                         ) : (
                                                             <span className="text-white">
-                                      Continuar
-                                      <i
-                                          className="fa fa-arrow-right float-right text-white ml-2"
-                                          style={{fontSize: "26px", position: "absolute"}}
-                                      />
-                                    </span>
+                                                              Continuar
+                                                              <i
+                                                                  className="fa fa-arrow-right float-right text-white ml-2"
+                                                                  style={{fontSize: "26px", position: "absolute"}}
+                                                              />
+                                                            </span>
                                                         )}
                                                     </button>
                                                     <br/>
@@ -397,9 +403,10 @@ class CreateContractPage extends Component {
                                                     alt="famosos_licencia"
                                                 />
                                                 <div className="text-center mt-4">
-                                                    <a href={"https://wa.me/17865207235?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?")}
+                                                    {/*<a href={"https://wa.me/17865207235?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?")}*/}
+                                                    <a href={"https://calendly.com/famosos-for-business/video-comercial"}
                                                        target="_blank"
-                                                       className={"whatsapp-link"}
+                                                       // className={"whatsapp-link"}
                                                        onClick={this.sendBusinessRequestGTMEvent}
                                                     >
                                                         <div>

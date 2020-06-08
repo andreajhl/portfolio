@@ -41,8 +41,8 @@ export const get = (object_id, preloaded = false) => {
                         dispatch(listReviews(res.data.data.id, {currentPage: 1}));
                         dispatch(listPublicContracts(res.data.data.id, {currentPage: 1}));
                         dispatch(listSimilar( {
-                            country_id: res.data.data.country_id,
-                            category_id: res.data.data.category_id
+                            country_id: res.data.data.countryId,
+                            category_id: res.data.data.categoryId
                         }));
                     }
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
