@@ -24,6 +24,8 @@ class CelebritiesPage extends Component {
     }
 
     componentDidMount() {
+        const queryParams = this.props.queryParams;
+        this.props.updateQueryParams(queryParams);
 
         this.listCountries();
 
