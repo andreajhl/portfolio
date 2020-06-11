@@ -483,3 +483,49 @@ input, select {
   padding: 0;
   margin-top: 9px;
 }
+
+.f-contract-button {
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  background: linear-gradient(#FF359B, #FB177D 50%);
+  color: #FFFFFF;
+  font-weight: 700;
+  text-align: left;
+  width: 100% !important;
+  height: 45px !important;
+  padding: 5px 18px !important;
+  font-size: 13px !important;
+  border-radius: 5px;
+  //box-shadow: 3px 5px rgba(0, 0, 0, 0.1);
+  border: solid 2px #f01e7c;
+
+  &.text-align-center {
+    text-align: center;
+  }
+
+  i {
+    float: right;
+    position: relative;
+    top: 2px;
+    right: -8px;
+    color: white;
+    font-size: 16px;
+  }
+
+  &.invert {
+    background: white !important;
+    color: #f01e7c !important;
+
+    i {
+      color: #f01e7c !important;
+    }
+
+    &:hover {
+      color: #f01e7c !important;
+    }
+  }
+
+  &:hover {
+    color: white !important;
+  }
+}

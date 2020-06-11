@@ -73,7 +73,7 @@ class CreateContractPage extends Component {
 
             contract_data.celebrityId = this.props.celebrity.id;
             const res = this.props.celebrity.contractTypes.find(x => x.contractType === 1);
-            if(res){
+            if (res) {
                 contract_data.price = res.price;
             }
 
@@ -197,6 +197,7 @@ class CreateContractPage extends Component {
 
     sendBusinessRequestGTMEvent = () => {
         GTM.tagManagerDataLayer("BUSINESS_REQUEST", this.props.celebrity);
+        window.open("https://calendly.com/famosos-for-business/video-comercial", "_blank")
     };
 
     render() {
@@ -340,7 +341,7 @@ class CreateContractPage extends Component {
 
                                                 <br/>
 
-                                                <div className="text-center">
+                                                <div className="text-center mx-auto" style={{maxWidth: "230px"}}>
                                                     {this.state.errors.length ? (
                                                         <div className={"mb-2"}>
                                                             <small className="text-danger">
@@ -366,25 +367,11 @@ class CreateContractPage extends Component {
                                                         disabled={
                                                             this.props.isLoading || this.state.tokenizeCardLoading
                                                         }
-                                                        type="button"
-                                                        className="contract-button hover cursor-pointer p-2 border bg-active"
+                                                        className={"btn f-contract-button text-align-center"}
                                                         onClick={this.createContract}
                                                     >
-                                                        {this.props.isLoading || this.state.tokenizeCardLoading ? (
-                                                            <span
-                                                                className="spinner-grow spinner-grow-sm"
-                                                                role="status"
-                                                                aria-hidden="true"
-                                                            />
-                                                        ) : (
-                                                            <span className="text-white">
-                                                              Continuar
-                                                              <i
-                                                                  className="fa fa-arrow-right float-right text-white ml-2"
-                                                                  style={{fontSize: "26px", position: "absolute"}}
-                                                              />
-                                                            </span>
-                                                        )}
+                                                        Continuar
+                                                        <i className="fa fa-arrow-right"/>
                                                     </button>
                                                     <br/>
                                                     <div className="mt-4 mx-auto text-center">
@@ -402,18 +389,15 @@ class CreateContractPage extends Component {
                                                     src="/assets/img/famosos_licencia.png"
                                                     alt="famosos_licencia"
                                                 />
-                                                <div className="text-center mt-4">
+                                                <div className="text-center mx-auto" style={{maxWidth: "230px"}}>
                                                     {/*<a href={"https://wa.me/17865207235?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?")}*/}
-                                                    <a href={"https://calendly.com/famosos-for-business/video-comercial"}
-                                                       target="_blank"
-                                                       // className={"whatsapp-link"}
-                                                       onClick={this.sendBusinessRequestGTMEvent}
+                                                    <button
+                                                        className={"btn f-contract-button text-align-center"}
+                                                        onClick={this.sendBusinessRequestGTMEvent}
                                                     >
-                                                        <div>
-                                                            Continuar
-                                                            <i className="fa fa-arrow-circle-right text-white ml-2"/>
-                                                        </div>
-                                                    </a>
+                                                        Continuar
+                                                        <i className="fa fa-arrow-right"/>
+                                                    </button>
                                                 </div>
                                             </>
                                     }
