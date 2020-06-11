@@ -363,16 +363,26 @@ class CreateContractPage extends Component {
                                                             </small>
                                                         </div>
                                                     ) : null}
-                                                    <button
-                                                        disabled={
-                                                            this.props.isLoading || this.state.tokenizeCardLoading
-                                                        }
-                                                        className={"btn f-contract-button text-align-center"}
-                                                        onClick={this.createContract}
-                                                    >
-                                                        Continuar
-                                                        <i className="fa fa-arrow-right"/>
-                                                    </button>
+                                                    {
+                                                        this.props.isLoading
+                                                            ?
+                                                            <div className="mx-auto text-center text-dark">
+                                                                Enviando...
+                                                            </div>
+                                                            :
+                                                            <button
+                                                                disabled={
+                                                                    this.props.isLoading || this.state.tokenizeCardLoading
+                                                                }
+                                                                type={"button"}
+                                                                className={"btn f-contract-button text-align-center"}
+                                                                onClick={this.createContract}
+                                                            >
+                                                                Continuar
+                                                                <i className="fa fa-arrow-right"/>
+                                                            </button>
+                                                    }
+
                                                     <br/>
                                                     <div className="mt-4 mx-auto text-center">
                                                         <img width="230px" src={"/assets/img/pago-seguro.png"}
@@ -394,6 +404,7 @@ class CreateContractPage extends Component {
                                                     <button
                                                         className={"btn f-contract-button text-align-center"}
                                                         onClick={this.sendBusinessRequestGTMEvent}
+                                                        type={"button"}
                                                     >
                                                         Continuar
                                                         <i className="fa fa-arrow-right"/>
