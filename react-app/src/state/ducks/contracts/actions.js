@@ -237,7 +237,7 @@ export const listContractComments = (contractReference, params) => {
     apiService({
       method: "GET",
       action: TYPE,
-      path: API_PATHS.GET_CONTRACT_COMMENTS_DATA + contractReference,
+      path: API_PATHS.GET_CONTRACT_COMMENTS + contractReference,
       params: params,
     })
       .then(res => {

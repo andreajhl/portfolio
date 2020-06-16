@@ -8,7 +8,7 @@ class CelebrityReviewCardLayout extends Component {
             <div className="CelebrityReviewCardLayout">
                 <div className="card f-shadow f-rounded card-review p-4">
                     <div className="card-body p-0">
-                        <h6 className="font-weight-bold">{this.props.review.user_full_name}</h6>
+                        <h6 className="font-weight-bold">{this.props.review.user_full_name ? this.props.review.user_full_name : "Anónimo"}</h6>
                         <h5 className="text-warning">
                             {
                                 [...Array(this.props.review.contract_stars)].map((i, index) => {
