@@ -384,8 +384,8 @@ class CreateContractPage extends Component {
                                                     }
 
                                                     <br/>
-                                                    <div className="mt-4 mx-auto text-center">
-                                                        <img width="230px" src={"/assets/img/pago-seguro.png"}
+                                                    <div className="mt-4 pt-2 mx-auto text-center" style={{width: "230px"}}>
+                                                        <img width="100%" src={"/assets/img/pago-seguro-Famosos.png"}
                                                              alt={"pago-seguro"}/>
                                                     </div>
                                                     <br/>

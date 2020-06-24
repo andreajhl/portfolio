@@ -211,8 +211,9 @@ class ContractCheckoutSummary extends Component {
                         <div className="contract-button mt-4 mx-auto buttonContractCustom">
                             {this.returnActionButton()}
                         </div>
-                        <div className="mt-4 mx-auto text-center">
-                            <img width="230px" src={"/assets/img/pago-seguro.png"} alt={"pago-seguro"}/>
+                        <div className="mt-4 mx-auto text-center" style={{width: "230px"}}>
+                            <img width="100%" src={"/assets/img/pago-seguro-Famosos.png"}
+                                 alt={"pago-seguro"}/>
                         </div>
                     </div>
                 </div>
