@@ -257,7 +257,9 @@ class CelebrityDetailsCardLayout extends Component {
                                             :
                                             null
                                     }
-
+                                    <div className="col-12 d-none d-md-block">
+                                        <img width="100%" src="/assets/img/steps_desktop_profile.svg"/>
+                                    </div>
                                     <div className="col-12 text-justify" style={{height: "20px"}}>
                                         {
                                             this.props.socialNetworks

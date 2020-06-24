@@ -415,8 +415,14 @@ class CreateContractPage extends Component {
                                 </Form>
                             </div>
                         </div>
+                        <div className="d-none d-md-block">
+                            <img width="100%" src="/assets/img/steps_desktop_hire.svg"/>
+                        </div>
                     </div>
                 </PageContainer>
+                <div className="d-block d-md-none">
+                    <img width="100%" src="/assets/img/steps_mobile_hire.svg"/>
+                </div>
             </>
         );
     }

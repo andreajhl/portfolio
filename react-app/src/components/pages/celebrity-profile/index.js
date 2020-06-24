@@ -124,6 +124,14 @@ class CelebrityProfilePage extends Component {
                                     />
                                     {/* END CelebrityReviewsSection */}
 
+                                    <div className="col-12 d-block d-md-none">
+                                        <img width="100%" style={{
+                                            borderTop: "solid 5px #e4e4e4",
+                                            borderBottom: "solid 5px rgb(198, 195, 195)",
+                                            marginBottom: "10px",
+                                        }} src="/assets/img/steps_mobile_profile.svg"/>
+                                    </div>
+
                                     {/* CelebrityCardsSectionLayout */}
                                     <SimilarCelebritiesLayout
                                         showLoading={this.props.isLoading && this.props.queryParams.page > 1}
