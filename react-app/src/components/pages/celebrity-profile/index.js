@@ -129,7 +129,7 @@ class CelebrityProfilePage extends Component {
                                             borderTop: "solid 5px #e4e4e4",
                                             borderBottom: "solid 5px rgb(198, 195, 195)",
                                             marginBottom: "10px",
-                                        }} src="/assets/img/steps_mobile_profile.svg"/>
+                                        }} src="/assets/img/steps_mobile_profile.png"/>
                                     </div>
 
                                     {/* CelebrityCardsSectionLayout */}
