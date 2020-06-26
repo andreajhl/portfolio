@@ -197,7 +197,7 @@ class CreateContractPage extends Component {
 
     sendBusinessRequestGTMEvent = () => {
         GTM.tagManagerDataLayer("BUSINESS_REQUEST", this.props.celebrity);
-        window.open("https://wa.me/17865207235?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?"), "_blank")
+        window.open("https://wa.me/573212493718?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?"), "_blank")
     };
 
     render() {
