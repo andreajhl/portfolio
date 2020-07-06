@@ -46,8 +46,8 @@
           display: block;
           visibility: initial;
           vertical-align: baseline;
-          object-fit: cover !important;
-          background-color: #eee;
+          object-fit: contain !important;
+          background-color: rgba(49, 53, 66, 0.2784313725490196);
         }
       }
     }
