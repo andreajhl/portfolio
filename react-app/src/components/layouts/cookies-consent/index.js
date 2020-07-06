@@ -14,10 +14,6 @@ class CookiesConsent extends Component {
         }
     }
 
-    componentDidMount(): void {
-
-    }
-
     goToTerms = () => {
         history._pushRoute(PATHS.POLICIES_PATH)
     };
