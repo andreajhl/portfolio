@@ -35,6 +35,7 @@ class CookiesConsent extends Component {
                         Al hacer clic en 'Aceptar' o utilizar nuestro sitio, acepta cookies y tecnologías similares para
                         el rendimiento, análisis y otros fines.
                     </span>
+                        <br/>
                         <span className={"terms ml-2"} onClick={this.goToTerms}>
                         Vea nuestra política de privacidad
                     </span>
