@@ -1,4 +1,7 @@
 .CookiesConsent{
+  * {
+    font-size: 11px !important;
+  }
   .content{
     background-color: #eee;
     width: 100vw;
@@ -10,12 +13,12 @@
     margin-right: auto;
     margin-left: auto;
     padding: 10px;
-    text-align: center;
+    text-align: justify;
     max-width: 1000px;
     border-radius: 8px;
 
     span {
-      font-size: 12px;
+      font-size: 11px;
     }
 
     .terms{
@@ -26,8 +29,10 @@
       }
     }
 
+
     .button{
       border: solid 1px;
+      margin-top: -9px;
       &:hover{
         cursor: pointer;
       }

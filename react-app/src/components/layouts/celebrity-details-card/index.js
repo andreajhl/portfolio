@@ -177,17 +177,23 @@ class CelebrityDetailsCardLayout extends Component {
                                                 <h5 className="text-dark font-weight-bold pt-1 m-0">{this.props.fullName}</h5>
                                             </div>
                                             <div className="col-12 p-0 m-0 text-center pr-0">
-                                                <div className="mt-3 mb-3" onClick={this.openModal}>
-                                                    <button className="btn  btn-sm f-contract-button">
-                                                        Comprar Video Personalizado por <ContractPriceLayout
-                                                        classes={"text-white font-weight-bold"}
-                                                        price={this.returnContractPrice()}
-                                                        currency={this.props.currencyExchangeData.to}
-                                                        rounding={true}
-                                                    />
-                                                        <i className="fa fa-arrow-right"/>
-                                                    </button>
-                                                </div>
+                                                {
+                                                    this.returnContractPrice() > 0
+                                                        ?
+                                                        <div className="mt-3 mb-3" onClick={this.openModal}>
+                                                            <button className="btn  btn-sm f-contract-button">
+                                                                Comprar Video Personalizado por <ContractPriceLayout
+                                                                classes={"text-white font-weight-bold"}
+                                                                price={this.returnContractPrice()}
+                                                                currency={this.props.currencyExchangeData.to}
+                                                                rounding={true}
+                                                            />
+                                                                <i className="fa fa-arrow-right"/>
+                                                            </button>
+                                                        </div>
+                                                        :
+                                                        null
+                                                }
                                                 {this.returnSecondaryButton()}
                                             </div>
                                         </div>
@@ -357,17 +363,24 @@ class CelebrityDetailsCardLayout extends Component {
                                 </div>
                             </div>
                             <div className="col-12 p-2">
-                                <div className="mt-3 mb-3" onClick={this.openModal}>
-                                    <button className="btn  btn-sm f-contract-button">
-                                        Comprar Video Personalizado por <ContractPriceLayout
-                                        classes={"text-white font-weight-bold"}
-                                        price={this.returnContractPrice()}
-                                        currency={this.props.currencyExchangeData.to}
-                                        rounding={true}
-                                    />
-                                        <i className="fa fa-arrow-right"/>
-                                    </button>
-                                </div>
+                                {
+                                    this.returnContractPrice() > 0
+                                        ?
+                                        <div className="mt-3 mb-3" onClick={this.openModal}>
+                                            <button className="btn  btn-sm f-contract-button">
+                                                Comprar Video Personalizado por <ContractPriceLayout
+                                                classes={"text-white font-weight-bold"}
+                                                price={this.returnContractPrice()}
+                                                currency={this.props.currencyExchangeData.to}
+                                                rounding={true}
+                                            />
+                                                <i className="fa fa-arrow-right"/>
+                                            </button>
+                                        </div>
+                                        :
+                                        null
+
+                                }
                                 {this.returnSecondaryButton()}
                             </div>
                         </div>

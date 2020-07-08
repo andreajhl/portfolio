@@ -31,17 +31,19 @@ class CookiesConsent extends Component {
             return (
                 <div className="CookiesConsent">
                     <div className={"content"}>
-                    <span>
-                        Al hacer clic en 'Aceptar' o utilizar nuestro sitio, acepta cookies y tecnologías similares para
-                        el rendimiento, análisis y otros fines.
-                    </span>
-                        <br/>
-                        <span className={"terms ml-2"} onClick={this.goToTerms}>
-                        Vea nuestra política de privacidad
-                    </span>
-                        <span className="button ml-3 font-weight-bold p-2" onClick={this.hideBanner}>
-                        Aceptar
-                    </span>
+                        <div>
+                            En nuestro sitio web utilizamos cookies propias y de terceros para mejorar la experiencia de
+                            usuario, rendimiento, análisis y otro fines. Al hacer clic en aceptar o utilizar nuestro
+                            sitio, estarás aceptando el uso de estas cookies.
+                        </div>
+                        <div className={"text-justify mt-2 "}>
+                            <div className={"terms float-left"} onClick={this.goToTerms}>
+                                Ver las políticas de privacidad
+                            </div>
+                            <div className="button ml-3 font-weight-bold p-2 float-right" onClick={this.hideBanner}>
+                                Aceptar
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
