@@ -40,7 +40,7 @@ class CookiesConsent extends Component {
                             <div className={"terms float-left"} onClick={this.goToTerms}>
                                 Ver las políticas de privacidad
                             </div>
-                            <div className="button ml-3 font-weight-bold p-2 float-right" onClick={this.hideBanner}>
+                            <div className="button mr-1 font-weight-bold p-2 float-right" onClick={this.hideBanner}>
                                 Aceptar
                             </div>
                         </div>
