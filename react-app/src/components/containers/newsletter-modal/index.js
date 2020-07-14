@@ -36,7 +36,7 @@ class NewsLetterModal extends Component {
                 ...this.state,
                 showModal: localStorage.getItem("show-newsletter-modal") === null
             })
-        }, 2000);
+        }, 3000);
     };
 
     saveData = () => {
