@@ -1,8 +1,5 @@
 import React, {Component} from "react";
-import {Col, Form, Modal, Row} from "react-bootstrap";
-import {contractOperations} from "../../../state/ducks/contracts";
-import {connect} from "react-redux";
-import * as GTM from "../../../state/utils/gtm";
+import {Modal} from "react-bootstrap";
 
 class FamososForBusinessModal extends Component {
     constructor(props) {
@@ -31,20 +28,18 @@ class FamososForBusinessModal extends Component {
                     show={this.props.showModal}
                     onHide={this.handleCloseModal}
                 >
-                    <Modal.Body>
-                        <div>
-                            <div className="text-right">
-                                <span style={{position: "relative", top: "-6px"}}>Cerrar </span>
-                                <i className="fa fa-times fa-2x" onClick={this.handleCloseModal}/>
-                            </div>
-                            <div className={"text-center"}>
-                                <img width="100%" style={{maxWidth: "350px"}} src={"/assets/img/famosos_licencia_pop-up.png"}
-                                     alt={"ffb-modal"}/>
-                                <br/>
-                                <button className="btn btn-primary" onClick={this.goToFFB}>Cerrar</button>
-                            </div>
+                    <div className="p-4 bg-white">
+                        <div className="text-right">
+                            <span style={{position: "relative", top: "-6px"}}>Cerrar </span>
+                            <i className="fa fa-times fa-2x" onClick={this.handleCloseModal}/>
                         </div>
-                    </Modal.Body>
+                        <div className={"text-center"}>
+                            <img width="100%" style={{maxWidth: "350px"}} src={"/assets/img/famosos_licencia_pop-up.png"}
+                                 alt={"ffb-modal"}/>
+                            <br/>
+                            <button className="btn btn-primary" onClick={this.goToFFB}>Cerrar</button>
+                        </div>
+                    </div>
                 </Modal>
             </div>
         );

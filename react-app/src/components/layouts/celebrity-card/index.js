@@ -140,7 +140,7 @@ CelebrityCardLayout.propTypes = {};
 CelebrityCardLayout.defaultProps = {};
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     countries: state.restCountries.fetchCountriesReducer.data,
     currencyExchangeData: state.payments.currencyExchangeReducer.data
 });

@@ -23,7 +23,7 @@ class ContractFavsLayout extends Component {
 
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         getContractLikesData(this.props.contractReference)
             .then(data => {
                 this.setState({

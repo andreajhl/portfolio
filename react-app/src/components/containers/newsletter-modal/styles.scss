@@ -1,0 +1,31 @@
+.NewsLetterModal {
+
+}
+
+.NewsLetterModal-div-image {
+  img {
+    border-radius: 0px 0px 0px 0;
+  }
+}
+
+
+.NewsLetterModal-body {
+  background-color: white !important;
+  border-radius: 0px 0px 0px 0;
+  display: flex;
+
+  button {
+    height: 45px;
+  }
+}
+
+.NewsLetterModal-close-div {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+.modal-content {
+  border: 0;
+  background-color: transparent;
+}

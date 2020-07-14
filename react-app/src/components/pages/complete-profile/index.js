@@ -19,7 +19,7 @@ class CompleteProfilePage extends Component {
 
     }
 
-    componentWillMount(): void {
+    componentWillMount() {
         this.props.getToken()
     }
 

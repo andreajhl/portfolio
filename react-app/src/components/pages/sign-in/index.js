@@ -19,7 +19,7 @@ class SignInPage extends Component {
         this.goToRoot = this.goToRoot.bind(this);
     }
 
-    componentWillMount(): void {
+    componentWillMount() {
         const session = new Session();
         session.checkSession();
     }

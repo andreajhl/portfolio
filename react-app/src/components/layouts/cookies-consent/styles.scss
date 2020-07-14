@@ -1,8 +1,9 @@
-.CookiesConsent{
+.CookiesConsent {
   * {
     font-size: 10px !important;
   }
-  .content{
+
+  .content {
     background-color: #eee;
     width: 100vw;
     position: fixed;
@@ -18,19 +19,21 @@
     border-radius: 8px;
     z-index: 10000;
 
-    .terms{
+    .terms {
       color: #0094da;
-      &:hover{
+
+      &:hover {
         text-decoration: underline;
         cursor: pointer;
       }
     }
 
 
-    .button{
+    .button {
       border: solid 1px;
       margin-top: -9px;
-      &:hover{
+
+      &:hover {
         cursor: pointer;
       }
     }

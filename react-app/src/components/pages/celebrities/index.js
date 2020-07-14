@@ -7,6 +7,7 @@ import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import FamososForBusinessModal from "../../containers/famosos-for-business-modal";
 import * as GTM from "../../../state/utils/gtm";
 import {jsonToQueryString} from "../../../state/utils/apiService";
+import {NewsLetterModal} from "../../containers/newsletter-modal";
 
 
 class CelebritiesPage extends Component {
@@ -149,8 +150,12 @@ class CelebritiesPage extends Component {
                         {/*/!* End ShowHeader *!/*/}
 
                         {/* Modal FFB */}
-                        <FamososForBusinessModal showModal={this.state.showFFBModal}  onHide={this.closeModal}/>
+                        {/*<FamososForBusinessModal showModal={this.state.showFFBModal}  onHide={this.closeModal}/>*/}
                         {/* End Modal FFB */}
+
+                        {/* NEWSLETTER MODAL */}
+                        <NewsLetterModal/>
+                        {/* End NEWSLETTER MODAL */}
 
                         {/*/!* MainMenuLayout *!/*/}
                         {/*<MainMenuLayout/>*/}
