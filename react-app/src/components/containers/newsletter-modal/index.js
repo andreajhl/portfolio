@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "./styles.scss";
 import {Modal} from "react-bootstrap";
 import {Mixpanel} from "../../../state/utils/mixPanel";
+import {newsletterSubscrition} from "../../../state/ducks/authentication/actions";
 
 class NewsLetterModal extends Component {
 
@@ -12,7 +13,6 @@ class NewsLetterModal extends Component {
             email: "",
             showModal: false,
         };
-
     }
 
     handleCloseModal = () => {
@@ -36,10 +36,10 @@ class NewsLetterModal extends Component {
                 ...this.state,
                 showModal: localStorage.getItem("show-newsletter-modal") === null
             })
-        }, 3000);
+        }, 4000);
     };
 
-    saveData = () => {
+    saveData = async () => {
         if (this.state.email && this.state.email.includes("@")) {
             Mixpanel.identify(this.state.email);
             Mixpanel.people.set({
@@ -48,6 +48,7 @@ class NewsLetterModal extends Component {
             });
         }
         this.handleCloseModal();
+        await newsletterSubscrition(this.state.email);
     };
 
     render() {

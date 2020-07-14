@@ -2,6 +2,8 @@
 import {Session} from "./session";
 
 export function handleApiErrors(dispatch, type, data) {
+    const session = new Session();
+    session.tokenExpired();
     return dispatch({type: `${type}_FAILURE`, payload: data})
 }
 
@@ -12,10 +14,7 @@ export function handleApiResponseSuccess(dispatch, type, data) {
 
 // Handle Fetch Response
 export function handleApiResponseFailure(dispatch, type, data) {
-    if(data.data.error === "Signature has expired.") {
-        alert("Signature has expired.");
-        const session = new Session();
-        session.removeSession();
-    }
+    const session = new Session();
+    session.tokenExpired();
     return dispatch({type: `${type}_FAILURE`, payload: data})
 }

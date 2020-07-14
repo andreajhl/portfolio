@@ -357,3 +357,18 @@ export const resetPassword = body => {
         });
   };
 };
+
+export const newsletterSubscrition = email => {
+  apiService({
+    action: "type",
+    async: true,
+    path: PATHS.NEWSLETTER_SUBSCRIPTION + "/" + email,
+    method: "GET",
+  })
+      .then(res => {
+
+      })
+      .catch(err => {
+
+      });
+};

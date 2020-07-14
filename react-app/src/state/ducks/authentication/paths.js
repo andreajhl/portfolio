@@ -11,3 +11,4 @@ export const CHANGE_PASSWORD = MODEL_PATH + "/change-password";
 export const RESET_PASSWORD = MODEL_PATH + "/reset-password";
 export const CREATE_ACCOUNT_TO_VALIDATE_BY_SMS = MODEL_PATH + "/create-account-to-validate-by-sms";
 export const VALIDATE_SMS_SECURITY_CODE = MODEL_PATH + "/validate-sms-security-code";
+export const NEWSLETTER_SUBSCRIPTION = MODEL_PATH + "/newsletter-subscription";
