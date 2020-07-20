@@ -48,10 +48,12 @@ export class Session {
     };
 
     tokenExpired() {
+        console.log("this.session", this.session);
         if (this.utcSecondsToDatetime(this.session.exp) <= new Date()) {
             this.removeSession();
             return true;
         }
+        alert("false");
         return false;
     }
 

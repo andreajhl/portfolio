@@ -9,6 +9,8 @@ export function handleApiErrors(dispatch, type, data) {
 
 // Handle Fetch Response
 export function handleApiResponseSuccess(dispatch, type, data) {
+    const session = new Session();
+    session.tokenExpired();
     return dispatch({type: `${type}_SUCCESS`, payload: data})
 }
 
