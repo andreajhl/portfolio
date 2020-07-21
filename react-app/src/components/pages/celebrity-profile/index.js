@@ -133,10 +133,10 @@ class CelebrityProfilePage extends Component {
                                     </div>
 
                                     {/* CelebrityCardsSectionLayout */}
-                                    <SimilarCelebritiesLayout
-                                        showLoading={this.props.isLoading && this.props.queryParams.page > 1}
-                                        celebrities={this.props.similarCelebrities}
-                                    />
+                                    {/*<SimilarCelebritiesLayout*/}
+                                    {/*    showLoading={this.props.isLoading && this.props.queryParams.page > 1}*/}
+                                    {/*    celebrities={this.props.similarCelebrities}*/}
+                                    {/*/>*/}
                                     {/* End CelebrityCardsSectionLayout */}
                                 </>
                                 : null
