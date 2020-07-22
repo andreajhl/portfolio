@@ -5,7 +5,7 @@ import {Mixpanel} from "./mixPanel";
 
 export class Session {
     constructor() {
-        this.sessionName = "fs"; // simetrik session
+        this.sessionName = "_fs_";
         this.session = this.getSession();
     }
 
