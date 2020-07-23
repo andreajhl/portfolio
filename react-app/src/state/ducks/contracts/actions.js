@@ -170,16 +170,28 @@ export const saveClientContract = contractData => {
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
 
           // Other actions
-          const session = new Session();
-          session.setSession(res.data.data.sessionToken);
-          localStorage.setItem("redirectPaymentTo", ROUTING_PATHS.CLIENT_HIRINGS);
-          localStorage.setItem("hash", res.data.data.contractHash);
-          history._pushRoute(
+          if (res.data.data.sessionToken) {
+
+            const session = new Session();
+            session.setSession(res.data.data.sessionToken);
+            localStorage.setItem("redirectPaymentTo", ROUTING_PATHS.CLIENT_HIRINGS);
+            localStorage.setItem("hash", res.data.data.contractHash);
+
+            history._pushRoute(
               ROUTING_PATHS.PAYMENT_METHODS.replace(
-                  ":contract_reference",
+                ":contract_reference",
                   res.data.data.contractReference
               )
-          );
+            );
+
+          } else {
+            history._pushRoute(
+              ROUTING_PATHS.PAYMENT_METHODS.replace(
+                ":contract_reference",
+                  res.data.data.contractReference
+              )
+            );
+          }
         }
       })
       .catch(err => {
