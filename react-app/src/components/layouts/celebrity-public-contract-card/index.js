@@ -60,11 +60,11 @@ class CelebrityPublicContractCardLayout extends Component {
                 <div className="card f-card f-rounded hover f-shadow  cursor-pointer">
                     <div className="video">
                         <i className={'fa fa-2x play-pause ' + (this.state.videoDesktopPlayIcon)}
-                           onClick={this.playDesktopContract.bind(this)}
+                           onClick={this.goToContract.bind(this)}
                         />
                         <video ref={this.videoDesktopRef}
                                controls={false}
-                               onClick={this.playDesktopContract.bind(this)}
+                               onClick={this.goToContract.bind(this)}
                                playsInline={true}
                                onDoubleClick={(e) => {e.preventDefault(); this.contractFav.current.addOrRemoveFav()}}
                                preload="metadata"

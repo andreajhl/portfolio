@@ -7,6 +7,74 @@
   right: 5vw;
   min-height: 830px;
 
+  .loading-container {
+    width: 100%;
+    text-align: center;
+    opacity: 1;
+    display: block;
+    transition-property: opacity, display;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    margin: 40vh auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+
+    &.off {
+      opacity: 0;
+      display: none;
+    }
+
+    @keyframes slide {
+      0% {
+        top: 0;
+      }
+      100% {
+        top: 10px;
+      }
+    }
+
+    .stage {
+      position: relative;
+    }
+
+
+    .stage img {
+      animation-name: slide;
+      animation-duration: 0.3s;
+      animation-timing-function: ease-in-out;
+      animation-delay: .3s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    img {
+      position: relative;
+      margin-right: 20px;
+      width: 120px;
+    }
+
+
+    .box {
+      background: #2db34a;
+      border-radius: 6px;
+      height: 95px;
+      transition-property: background;
+      transition-duration: 1s;
+      transition-timing-function: linear;
+      width: 95px;
+    }
+
+    .box:hover {
+      background: #ff7b29;
+    }
+
+    h2 {
+      margin-top: 30px;
+      font-weight: bold;
+    }
+
+  }
+
   .main-section {
     left: 5vw;
     right: 5vw;
@@ -17,14 +85,23 @@
     margin: 50px auto 50px !important;
     min-height: 662px;
     padding: 0;
+    opacity: 0.2;
+    transition-property: opacity;
+    transition-duration: 2s;
+    transition-timing-function: linear;
 
-    .video-container{
+    &.ready {
+      opacity: 1;
+    }
+
+    .video-container {
       padding: 0;
       margin: 0;
 
       * {
         border-radius: 20px 0px 0px 20px;
       }
+
       .f-video {
         .play-pause {
           z-index: 1;
@@ -46,8 +123,8 @@
           display: block;
           visibility: initial;
           vertical-align: baseline;
-          object-fit: contain !important;
-          background-color: rgba(49, 53, 66, 0.2784313725490196);
+          object-fit: cover !important;
+          background-color: #303542;
         }
       }
     }
@@ -58,7 +135,7 @@
       top: 100px;
     }
 
-    .video-details{
+    .video-details {
       margin: -10px auto;
       padding: 20px;
       width: 100%;
@@ -82,7 +159,7 @@
         left: 15px;
       }
 
-      .wrap-text{
+      .wrap-text {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -98,7 +175,8 @@
       .to-from {
 
       }
-      .instructions{
+
+      .instructions {
         height: 40px;
         overflow-y: scroll;
       }
@@ -114,7 +192,7 @@
     }
   }
 
-  .celebrity-avatar{
+  .celebrity-avatar {
     position: absolute;
     width: 60px;
     border-radius: 100%;
@@ -141,14 +219,29 @@
 
         .f-video {
           padding-top: 100% !important;
+
+          &.uno-uno {
+            padding-top: 100% !important;
+          }
+
+          &.cuatro-tres {
+            padding-top: 133% !important;
+          }
+
+          &.dieciseis-nueve {
+            padding-top: 177% !important;
+          }
+
           video {
             min-height: 100%;
           }
-          i{
+
+          i {
             position: absolute !important;
           }
         }
       }
+
       .share-div {
         top: 70px;
       }
@@ -163,7 +256,7 @@
     position: relative !important;
   }
 
-  .reviews{
+  .reviews {
     margin-bottom: 20px;
   }
 }

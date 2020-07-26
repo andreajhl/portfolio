@@ -16,6 +16,10 @@ class HiringPreviewLayout extends Component {
         this.state = {
             videoDesktopPlayIcon: "fa-play",
             showVideo: false,
+            readyState: false,
+            videoResolution: "uno-uno", // 1  -  1-33  -  1-77
+            videoGridCols: "col-md-7 col-lg-7",
+            videoDetailsGridCols: "col-md-5 col-lg-5",
         };
 
         this.session = new Session();
@@ -23,6 +27,37 @@ class HiringPreviewLayout extends Component {
 
         this.playDesktopVideo = this.playDesktopVideo.bind(this);
         this.goToCelebrity = this.goToCelebrity.bind(this);
+
+    }
+
+    componentDidMount() {
+        this.videoDesktopRef.current.addEventListener('loadeddata', (e) => {
+            if (this.videoDesktopRef.current.readyState >= 3) {
+                const res = this.videoDesktopRef.current.videoHeight / this.videoDesktopRef.current.videoWidth;
+                let _res = this.state.videoResolution;
+                let videoGridCols = this.state.videoGridCols;
+                let videoDetailsGridCols = this.state.videoDetailsGridCols;
+                if (res.toFixed(2) === "1.33") {
+                    _res = "cuatro-tres";
+                    videoGridCols = "col-md-5 col-lg-5";
+                    videoDetailsGridCols = "col-md-7 col-lg-7";
+                }
+                if (res.toFixed(2) === "1.78") {
+                    _res = "dieciseis-nueve";
+                    videoGridCols = "col-md-4 col-lg-4";
+                    videoDetailsGridCols = "col-md-8 col-lg-8";
+                }
+                setTimeout(() => {
+                    this.setState({
+                        ...this.state,
+                        videoGridCols,
+                        videoDetailsGridCols,
+                        resolution: _res,
+                        readyState: true
+                    });
+                }, 1000)
+            }
+        });
     }
 
     playDesktopVideo() {
@@ -104,14 +139,26 @@ class HiringPreviewLayout extends Component {
     render() {
         return (
             <div className={"HiringPreviewLayout"}>
-                <div className="main-section f-shadow">
+
+
+                <div className={"loading-container mx-auto " + (!this.state.readyState ? " on " : " off ")}>
+                    <div className="stage">
+                        <img src={"https://v.fastcdn.co/u/054523e2/48208445-0-FAMOSOS-favicon.png"} width="100%"/>
+                    </div>
+                    <h2> Cargando...</h2>
+                </div>
+
+
+                <div className={"main-section f-shadow " + (this.state.readyState ? " ready " : "")}>
                     <div className="row p-0 m-0">
-                        <div className="col-sm-12 col-md-7 col-lg-7 video-container p-0 m-0">
-                            <div className="f-video">
+                        <div className={"col-sm-12 video-container p-0 m-0 " + (this.state.videoGridCols)}>
+                            <div className={" f-video " + (this.state.resolution)}>
                                 <i className={'fa fa-2x play-pause ' + (this.state.videoDesktopPlayIcon)}
                                    onClick={this.playDesktopVideo.bind(this)}
                                 />
                                 <video
+                                    poster={this.props.contract.celebrityData.avatar}
+                                    id={"video1"}
                                     src={(this.props.contract.media) + "#t=0.5"}
                                     ref={this.videoDesktopRef}
                                     controls={false}
@@ -121,7 +168,7 @@ class HiringPreviewLayout extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="col-sm-12 col-md-5 col-lg-5 details-container p-0 m-0"
+                        <div className={"col-sm-12 details-container p-0 m-0 " + (this.state.videoDetailsGridCols)}
                              style={{minHeight: "730px"}}>
                             <div className="video-details">
                                 <div className="titles">
