@@ -32,7 +32,8 @@ class HiringPreviewLayout extends Component {
 
     componentDidMount() {
         this.videoDesktopRef.current.addEventListener('loadeddata', (e) => {
-            if (this.videoDesktopRef.current.readyState >= 3) {
+            console.log("this.videoDesktopRef.current.readyState,", this.videoDesktopRef.current.readyState)
+            if (this.videoDesktopRef.current.videoHeight > 0) {
                 const res = this.videoDesktopRef.current.videoHeight / this.videoDesktopRef.current.videoWidth;
                 let _res = this.state.videoResolution;
                 let videoGridCols = this.state.videoGridCols;
@@ -47,17 +48,23 @@ class HiringPreviewLayout extends Component {
                     videoGridCols = "col-md-4 col-lg-4";
                     videoDetailsGridCols = "col-md-8 col-lg-8";
                 }
-                setTimeout(() => {
-                    this.setState({
-                        ...this.state,
-                        videoGridCols,
-                        videoDetailsGridCols,
-                        resolution: _res,
-                        readyState: true
-                    });
-                }, 1000)
+                this.setState({
+                    ...this.state,
+                    videoGridCols,
+                    videoDetailsGridCols,
+                    resolution: _res,
+                    readyState: true
+                });
             }
         });
+        setTimeout(() => {
+            if(this.state.readyState === false){
+                this.setState({
+                    ...this.state,
+                    readyState: true
+                });
+            }
+        }, 15000)
     }
 
     playDesktopVideo() {
@@ -145,7 +152,6 @@ class HiringPreviewLayout extends Component {
                     <div className="stage">
                         <img src={"https://v.fastcdn.co/u/054523e2/48208445-0-FAMOSOS-favicon.png"} width="100%"/>
                     </div>
-                    <h2> Cargando...</h2>
                 </div>
 
 

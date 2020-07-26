@@ -15,9 +15,14 @@
     transition-property: opacity, display;
     transition-duration: 1s;
     transition-timing-function: linear;
-    margin: 40vh auto;
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+    /* margin-top: 50vh; */
+    bottom: 0;
+    right: 0;
+    height: 104px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     &.off {
       opacity: 0;
@@ -50,7 +55,7 @@
     img {
       position: relative;
       margin-right: 20px;
-      width: 120px;
+      width: 100px;
     }
 
 
@@ -68,9 +73,10 @@
       background: #ff7b29;
     }
 
-    h2 {
-      margin-top: 30px;
+    h5 {
+      margin-top: 0px;
       font-weight: bold;
+      font-size: 23px;
     }
 
   }
