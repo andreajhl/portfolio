@@ -28,7 +28,7 @@ export const getToken = () => {
                 }
             })
             .catch(err => {
-                handleApiErrors(dispatch, type, {data: {api_error: err, error: "Server 500"}})
+                handleApiErrors(dispatch, type, err);
             });
     }
 };
@@ -58,7 +58,7 @@ export const updateSession = (body) => {
                 }
             })
             .catch(err => {
-                handleApiErrors(dispatch, type, {data: {api_error: err, error: "Server 500"}})
+                handleApiErrors(dispatch, type, err);
             });
     }
 };

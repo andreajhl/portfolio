@@ -38,7 +38,7 @@ class SignInWithEmailForm extends Component {
     signInWithEmail(e) {
         if (!this.props.signInWithEmailLoading) {
             this.props.signInWithEmail({
-                email: this.state.email,
+                email: this.state.email.trim(),
                 password: this.state.password,
             });
             GTM.tagManagerDataLayer(

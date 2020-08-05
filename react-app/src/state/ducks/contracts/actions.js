@@ -7,7 +7,7 @@ import {history} from "../../../routing/History";
 import * as types from "../celebrities/types";
 import {Session} from "../../utils/session";
 
-export const updateQueryParams = (params: {}, applyFetch = true) => {
+export const updateQueryParams = (params, applyFetch = true) => {
   return dispatch => {
     dispatch({ type: types.UPDATE_QUERY_PARAMS, payload: { params } });
     if (applyFetch) {
@@ -16,7 +16,7 @@ export const updateQueryParams = (params: {}, applyFetch = true) => {
   };
 };
 
-export const playVideo = (params: {}) => {
+export const playVideo = (params) => {
   return dispatch => {
     dispatch({ type: types.PLAY_VIDEO, payload: { params } });
   };
@@ -48,9 +48,7 @@ export const getContract = contractReference => {
       })
       .catch(err => {
         history._pushRoute(ROUTING_PATHS.ROOT_PATH);
-        handleApiErrors(dispatch, TYPE, {
-          data: {api_error: err, error: "Server 500"}
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -81,9 +79,7 @@ export const getContractWithPayments = contractReference => {
       })
       .catch(err => {
         history._pushRoute(ROUTING_PATHS.ROOT_PATH);
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -139,9 +135,7 @@ export const listTrending = params => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -195,9 +189,7 @@ export const saveClientContract = contractData => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -226,9 +218,7 @@ export const listClientContracts = () => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -254,9 +244,7 @@ export const listContractComments = (contractReference, params) => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -282,9 +270,7 @@ export const addContractComment = (contractReference, body) => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };

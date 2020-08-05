@@ -35,24 +35,28 @@ class HiringPreviewLayout extends Component {
             console.log("this.videoDesktopRef.current.readyState,", this.videoDesktopRef.current.readyState)
             if (this.videoDesktopRef.current.videoHeight > 0) {
                 const res = this.videoDesktopRef.current.videoHeight / this.videoDesktopRef.current.videoWidth;
-                let _res = this.state.videoResolution;
+                let resolution = this.state.videoResolution;
                 let videoGridCols = this.state.videoGridCols;
                 let videoDetailsGridCols = this.state.videoDetailsGridCols;
-                if (res.toFixed(2) === "1.33") {
-                    _res = "cuatro-tres";
+                if (res > 1.2 && res < 1.6) {
+                    resolution = "cuatro-tres";
                     videoGridCols = "col-md-5 col-lg-5";
                     videoDetailsGridCols = "col-md-7 col-lg-7";
-                }
-                if (res.toFixed(2) === "1.78") {
-                    _res = "dieciseis-nueve";
+                } else if (res > 1.6) {
+                    resolution = "dieciseis-nueve";
                     videoGridCols = "col-md-4 col-lg-4";
                     videoDetailsGridCols = "col-md-8 col-lg-8";
+                } else {
+                    resolution = "uno-uno"; // 1  -  1-33  -  1-77
+                    videoGridCols = "col-md-7 col-lg-7";
+                    videoDetailsGridCols = "col-md-5 col-lg-5";
                 }
+
                 this.setState({
                     ...this.state,
                     videoGridCols,
                     videoDetailsGridCols,
-                    resolution: _res,
+                    resolution,
                     readyState: true
                 });
             }

@@ -52,7 +52,7 @@ class FlagsSelect extends Component {
                         ?
                         <ReactFlagsSelect
                             className="form-control"
-                            defaultCountry="CO"
+                            defaultCountry="US"
                             onSelect={this.onSelectFlag}
                         />
                         :

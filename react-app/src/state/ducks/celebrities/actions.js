@@ -41,8 +41,8 @@ export const get = (object_id, preloaded = false) => {
                         dispatch(listReviews(res.data.data.id, {currentPage: 1}));
                         dispatch(listPublicContracts(res.data.data.id, {currentPage: 1}));
                         dispatch(listSimilar( {
-                            country_id: res.data.data.countryId,
-                            category_id: res.data.data.categoryId
+                            country_id: res.data.data["countryId"],
+                            category_id: res.data.data["categoryId"]
                         }));
                     }
                     dispatch({type: `${TYPE}_COMPLETED`, payload: res});
@@ -50,7 +50,7 @@ export const get = (object_id, preloaded = false) => {
             })
             .catch(err => {
                 history._pushRoute(PATHS.ROOT_PATH);
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+                handleApiErrors(dispatch, TYPE, err);
             });
     }
 };
@@ -82,7 +82,7 @@ export const list = (params) => {
                 // }
             })
             .catch(err => {
-                // handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+                handleApiErrors(dispatch, TYPE, err);
             });
     }
 };
@@ -113,7 +113,7 @@ export const listSimilar = (params) => {
                 }
             })
             .catch(err => {
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+                handleApiErrors(dispatch, TYPE, err);
             });
     }
 };
@@ -145,7 +145,7 @@ export const listReviews = (celebrity_id, params={}) => {
                 }
             })
             .catch(err => {
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+                handleApiErrors(dispatch, TYPE, err);
             });
     }
 };
@@ -177,7 +177,7 @@ export const listPublicContracts = (celebrity_id, params={}) => {
                 }
             })
             .catch(err => {
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+                handleApiErrors(dispatch, TYPE, err);
             });
     }
 };
