@@ -17,12 +17,14 @@ class MyRoutes extends Component {
                         {/* ############### */}
                         {/* GENERAL PATHS */}
                         {/* ############### */}
-                        <Route exact path="/">
-                            <Redirect to={PATHS.ROOT_PATH}/>
-                        </Route>
                         <Route
                             exact
                             path={PATHS.ROOT_PATH}
+                            component={PAGES.LoadingPage}
+                        />
+                        <Route
+                            exact
+                            path={PATHS.HOME_PATH}
                             component={PAGES.CelebritiesPage}
                         />
                         <Route
@@ -149,7 +151,7 @@ class MyRoutes extends Component {
                             component={PAGES.HiringPreviewPage}
                         />
                         {/* ------- */}
-                        <Route path="*" component={PAGES.CelebritiesPage}/>
+                        <Route path="*" component={PAGES.LoadingPage}/>
                     </Switch>
                 </Router>
             </>

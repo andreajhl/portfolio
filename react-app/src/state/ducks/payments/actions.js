@@ -111,7 +111,7 @@ export const getContractToPay = contractReference => {
             }
           })
           .catch(err => {
-            // history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+            // history._pushRoute(ROUTING_PATHS.HOME_PATH);
             handleApiErrors(dispatch, TYPE, err);
           });
     }, 1000);

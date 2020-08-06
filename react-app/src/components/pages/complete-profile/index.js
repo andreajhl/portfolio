@@ -31,7 +31,7 @@ class CompleteProfilePage extends Component {
     }
 
     goToRoot() {
-        history._pushRoute(PATHS.ROOT_PATH)
+        history._pushRoute(PATHS.HOME_PATH)
     }
 
     render() {

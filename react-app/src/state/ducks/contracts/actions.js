@@ -39,7 +39,7 @@ export const getContract = contractReference => {
         if ("status" in res.data && res.data.status === "ERROR") {
           handleApiResponseFailure(dispatch, TYPE, res);
           // Other actions
-          history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+          history._pushRoute(ROUTING_PATHS.HOME_PATH);
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
@@ -47,7 +47,7 @@ export const getContract = contractReference => {
         }
       })
       .catch(err => {
-        history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+        history._pushRoute(ROUTING_PATHS.HOME_PATH);
         handleApiErrors(dispatch, TYPE, err);
       });
   };
@@ -70,7 +70,7 @@ export const getContractWithPayments = contractReference => {
         if ("status" in res.data && res.data.status === "ERROR") {
           handleApiResponseFailure(dispatch, TYPE, res);
           // Other actions
-          history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+          history._pushRoute(ROUTING_PATHS.HOME_PATH);
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
@@ -78,7 +78,7 @@ export const getContractWithPayments = contractReference => {
         }
       })
       .catch(err => {
-        history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+        history._pushRoute(ROUTING_PATHS.HOME_PATH);
         handleApiErrors(dispatch, TYPE, err);
       });
   };
@@ -100,7 +100,7 @@ export const AssociateContract = hash => {
             // Other actions
             localStorage.removeItem("redirectPaymentTo");
             localStorage.removeItem("hash");
-            history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+            history._pushRoute(ROUTING_PATHS.HOME_PATH);
           } else {
             // Other actions
             localStorage.removeItem("redirectPaymentTo");
@@ -108,7 +108,7 @@ export const AssociateContract = hash => {
           }
         })
         .catch(err => {
-          history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+          history._pushRoute(ROUTING_PATHS.HOME_PATH);
         });
   };
 };

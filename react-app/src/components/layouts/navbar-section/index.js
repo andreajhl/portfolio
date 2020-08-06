@@ -88,7 +88,7 @@ class NavbarSectionLayout extends Component {
             } else {
                 this.props.updateQueryParams(queryParams, false);
             }
-            history._pushRoute(PATHS.ROOT_PATH)
+            history._pushRoute(PATHS.HOME_PATH)
         }
     }
 
@@ -113,9 +113,9 @@ class NavbarSectionLayout extends Component {
             showSearch: !this.state.showSearch
         }, () => {
             if (this.state.showSearch === true) {
-                history._pushRoute(PATHS.ROOT_PATH + "?showInputSearchSm=true")
+                history._pushRoute(PATHS.HOME_PATH + "?showInputSearchSm=true")
             } else {
-                history._pushRoute(PATHS.ROOT_PATH)
+                history._pushRoute(PATHS.HOME_PATH)
             }
             this.updateClasses()
         })

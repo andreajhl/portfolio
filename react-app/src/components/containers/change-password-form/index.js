@@ -32,7 +32,7 @@ class ChangePasswordForm extends Component {
                 const data = {
                     newPassword: this.state.password,
                 };
-                this.props.changePassword(data, PATHS.ROOT_PATH);
+                this.props.changePassword(data, PATHS.HOME_PATH);
             }
         }
     }

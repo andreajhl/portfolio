@@ -3,6 +3,9 @@ import "./styles.scss";
 import {Modal} from "react-bootstrap";
 import {Mixpanel} from "../../../state/utils/mixPanel";
 import {newsletterSubscrition} from "../../../state/ducks/authentication/actions";
+import {history} from "../../../routing/History";
+import * as PATHS from "../../../routing/Paths";
+import {Session} from "../../../state/utils/session";
 
 class NewsLetterModal extends Component {
 
@@ -31,11 +34,14 @@ class NewsLetterModal extends Component {
     };
 
     componentDidMount = () => {
+        const session = new Session();
         setTimeout(() => {
-            this.setState({
-                ...this.state,
-                showModal: localStorage.getItem("show-newsletter-modal") === null
-            })
+            if(!session.getSession()){
+                this.setState({
+                    ...this.state,
+                    showModal: localStorage.getItem("show-newsletter-modal") === null
+                })
+            }
         }, 4000);
     };
 

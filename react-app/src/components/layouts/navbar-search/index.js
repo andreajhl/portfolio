@@ -64,7 +64,7 @@ class NavbarSearchLayout extends Component {
     }
 
     goToHome(){
-        history._pushRoute(PATHS.ROOT_PATH + "?inputSearchFocus=true")
+        history._pushRoute(PATHS.HOME_PATH + "?inputSearchFocus=true")
     }
 
     render() {

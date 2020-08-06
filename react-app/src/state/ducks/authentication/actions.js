@@ -28,13 +28,13 @@ const afterLogin = (res, redirect_path = null) => {
         if (redirect_path) {
           return history._pushRoute(redirect_path);
         } else {
-          return history._pushRoute(ROUTE_PATHS.ROOT_PATH);
+          return history._pushRoute(ROUTE_PATHS.HOME_PATH);
         }
     }
   } else if (redirect_path) {
     history._pushRoute(redirect_path);
   } else {
-    history._pushRoute(ROUTE_PATHS.ROOT_PATH);
+    history._pushRoute(ROUTE_PATHS.HOME_PATH);
   }
 };
 

@@ -6,6 +6,7 @@ import {Mixpanel} from "./mixPanel";
 export class Session {
     constructor() {
         this.sessionName = "_fs_";
+        this.visitKey = "_visit_";
         this.session = this.getSession();
     }
 
@@ -23,7 +24,7 @@ export class Session {
 
     applyRedirects() {
         this.session = this.getSession();
-        history._pushRoute(PATHS.HOME_PATH);
+        history._pushRoute(PATHS.ROOT_PATH);
     }
 
     getSession = () => {
@@ -44,7 +45,6 @@ export class Session {
     removeSession = () => {
         localStorage.removeItem(this.sessionName);
         history._pushRoute(PATHS.ROOT_PATH);
-        window.location.replace("/")
     };
 
     tokenExpired() {
@@ -77,7 +77,7 @@ export class Session {
                     const session = this.getSession();
                     if (session) {
                         if (this.utcSecondsToDatetime(session.exp) >= new Date()) {
-                            history._pushRoute(PATHS.ROOT_PATH);
+                            history._pushRoute(PATHS.HOME_PATH);
                         } else {
                             this.removeSession();
                         }
@@ -87,7 +87,7 @@ export class Session {
                 }
             }
         }catch (e) {
-            history._pushRoute(PATHS.ROOT_PATH);
+            history._pushRoute(PATHS.HOME_PATH);
         }
     };
 
@@ -100,4 +100,13 @@ export class Session {
             return null
         }
     };
+
+    isFirstVisit() {
+        const isFirstVisit = localStorage.getItem(this.visitKey);
+        if (isFirstVisit == null) {
+            localStorage.setItem(this.visitKey, "true");
+            return true;
+        }
+        return false;
+    }
 }

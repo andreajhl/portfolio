@@ -32,7 +32,7 @@ export const get = (object_id, preloaded = false) => {
                 if ("status" in res.data && res.data.status === "ERROR") {
                     handleApiResponseFailure(dispatch, TYPE, res);
                     // Other actions
-                    history._pushRoute(PATHS.ROOT_PATH);
+                    history._pushRoute(PATHS.HOME_PATH);
 
                 } else {
                     handleApiResponseSuccess(dispatch, TYPE, res);
@@ -49,7 +49,7 @@ export const get = (object_id, preloaded = false) => {
                 }
             })
             .catch(err => {
-                history._pushRoute(PATHS.ROOT_PATH);
+                history._pushRoute(PATHS.HOME_PATH);
                 handleApiErrors(dispatch, TYPE, err);
             });
     }

@@ -67,7 +67,7 @@ class BottomNavbarSectionLayout extends Component {
                     </NavLink>
                     <NavLink className="box primary-option"
                              activeClassName='active'
-                             to={PATHS.ROOT_PATH}
+                             to={PATHS.HOME_PATH}
                     >
                         <img className={"icon primary-option-icon"} width="42px" src={"/assets/img/favicon.png"}
                              alt={"main-icon"}/>
