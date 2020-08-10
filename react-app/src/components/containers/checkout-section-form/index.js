@@ -267,8 +267,17 @@ class CheckoutSectionForm extends Component {
                     );
                 }
             })
-            .catch(err => {
-                console.log(err);
+            .catch(error => {
+                if (error.response) {
+                    if (error.response.data) {
+                        this.setState({
+                            ...this.state,
+                            error: error.response.data.error,
+                            buttonPayLoading: false
+                        });
+                        return;
+                    }
+                }
                 this.setState({
                     ...this.state,
                     error: "No se pudo procesar tu pago, contáctanos a experiencias@famosos.com.",

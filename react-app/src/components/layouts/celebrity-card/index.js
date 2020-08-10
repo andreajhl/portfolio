@@ -78,14 +78,20 @@ class CelebrityCardLayout extends Component {
                                  onLoad={this.handleImageLoaded}
                                  src={this.props.celebrity.avatar}
                             />
-                            <span className="f-price f-rounded f-shadow font-weight-bold">
-                                <ContractPriceLayout
-                                    classes={"text-black font-weight-bold"}
-                                    price={this.returnContractPrice()}
-                                    currency={this.props.currencyExchangeData.to}
-                                    rounding={true}
-                                />
-                            </span>
+                            {
+                                this.returnContractPrice() > 0
+                                    ?
+                                    <span className="f-price f-rounded f-shadow font-weight-bold">
+                                        <ContractPriceLayout
+                                            classes={"text-black font-weight-bold"}
+                                            price={this.returnContractPrice()}
+                                            currency={this.props.currencyExchangeData.to}
+                                            rounding={true}
+                                        />
+                                    </span>
+                                    :
+                                    null
+                            }
                         </div>
                     </div>
                     <div className="card-body text-left pl-2 pt-2 pr-2 pb-0">
@@ -134,7 +140,7 @@ CelebrityCardLayout.propTypes = {};
 CelebrityCardLayout.defaultProps = {};
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     countries: state.restCountries.fetchCountriesReducer.data,
     currencyExchangeData: state.payments.currencyExchangeReducer.data
 });

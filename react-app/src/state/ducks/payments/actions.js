@@ -32,9 +32,7 @@ export const listPaymentGateways = currency => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -72,9 +70,7 @@ export const currencyExchange = params => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -115,10 +111,8 @@ export const getContractToPay = contractReference => {
             }
           })
           .catch(err => {
-            // history._pushRoute(ROUTING_PATHS.ROOT_PATH);
-            handleApiErrors(dispatch, TYPE, {
-              data: { api_error: err, error: "Server 500" }
-            });
+            // history._pushRoute(ROUTING_PATHS.HOME_PATH);
+            handleApiErrors(dispatch, TYPE, err);
           });
     }, 1000);
   };

@@ -19,7 +19,7 @@ class SignInPage extends Component {
         this.goToRoot = this.goToRoot.bind(this);
     }
 
-    componentWillMount(): void {
+    componentWillMount() {
         const session = new Session();
         session.checkSession();
     }
@@ -32,7 +32,7 @@ class SignInPage extends Component {
     }
 
     goToRoot() {
-        history._pushRoute(PATHS.ROOT_PATH)
+        history._pushRoute(PATHS.HOME_PATH)
     }
 
     returnSpecificForm() {

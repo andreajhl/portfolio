@@ -7,7 +7,7 @@ import {history} from "../../../routing/History";
 import * as types from "../celebrities/types";
 import {Session} from "../../utils/session";
 
-export const updateQueryParams = (params: {}, applyFetch = true) => {
+export const updateQueryParams = (params, applyFetch = true) => {
   return dispatch => {
     dispatch({ type: types.UPDATE_QUERY_PARAMS, payload: { params } });
     if (applyFetch) {
@@ -16,7 +16,7 @@ export const updateQueryParams = (params: {}, applyFetch = true) => {
   };
 };
 
-export const playVideo = (params: {}) => {
+export const playVideo = (params) => {
   return dispatch => {
     dispatch({ type: types.PLAY_VIDEO, payload: { params } });
   };
@@ -39,7 +39,7 @@ export const getContract = contractReference => {
         if ("status" in res.data && res.data.status === "ERROR") {
           handleApiResponseFailure(dispatch, TYPE, res);
           // Other actions
-          history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+          history._pushRoute(ROUTING_PATHS.HOME_PATH);
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
@@ -47,10 +47,8 @@ export const getContract = contractReference => {
         }
       })
       .catch(err => {
-        history._pushRoute(ROUTING_PATHS.ROOT_PATH);
-        handleApiErrors(dispatch, TYPE, {
-          data: {api_error: err, error: "Server 500"}
-        });
+        history._pushRoute(ROUTING_PATHS.HOME_PATH);
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -72,7 +70,7 @@ export const getContractWithPayments = contractReference => {
         if ("status" in res.data && res.data.status === "ERROR") {
           handleApiResponseFailure(dispatch, TYPE, res);
           // Other actions
-          history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+          history._pushRoute(ROUTING_PATHS.HOME_PATH);
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
@@ -80,10 +78,8 @@ export const getContractWithPayments = contractReference => {
         }
       })
       .catch(err => {
-        history._pushRoute(ROUTING_PATHS.ROOT_PATH);
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        history._pushRoute(ROUTING_PATHS.HOME_PATH);
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -104,7 +100,7 @@ export const AssociateContract = hash => {
             // Other actions
             localStorage.removeItem("redirectPaymentTo");
             localStorage.removeItem("hash");
-            history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+            history._pushRoute(ROUTING_PATHS.HOME_PATH);
           } else {
             // Other actions
             localStorage.removeItem("redirectPaymentTo");
@@ -112,7 +108,7 @@ export const AssociateContract = hash => {
           }
         })
         .catch(err => {
-          history._pushRoute(ROUTING_PATHS.ROOT_PATH);
+          history._pushRoute(ROUTING_PATHS.HOME_PATH);
         });
   };
 };
@@ -139,9 +135,7 @@ export const listTrending = params => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -170,17 +164,20 @@ export const saveClientContract = contractData => {
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
 
           // Other actions
-          const session = new Session();
-          if (!session.getSession()) {
-            localStorage.setItem("fs", res.data.data.sessionToken);
+          if (res.data.data.sessionToken) {
+
+            const session = new Session();
+            session.setSession(res.data.data.sessionToken);
             localStorage.setItem("redirectPaymentTo", ROUTING_PATHS.CLIENT_HIRINGS);
             localStorage.setItem("hash", res.data.data.contractHash);
+
             history._pushRoute(
               ROUTING_PATHS.PAYMENT_METHODS.replace(
                 ":contract_reference",
                   res.data.data.contractReference
               )
             );
+
           } else {
             history._pushRoute(
               ROUTING_PATHS.PAYMENT_METHODS.replace(
@@ -192,9 +189,7 @@ export const saveClientContract = contractData => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -223,9 +218,7 @@ export const listClientContracts = () => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -237,7 +230,7 @@ export const listContractComments = (contractReference, params) => {
     apiService({
       method: "GET",
       action: TYPE,
-      path: API_PATHS.GET_CONTRACT_COMMENTS_DATA + contractReference,
+      path: API_PATHS.GET_CONTRACT_COMMENTS + contractReference,
       params: params,
     })
       .then(res => {
@@ -251,9 +244,7 @@ export const listContractComments = (contractReference, params) => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
@@ -279,9 +270,7 @@ export const addContractComment = (contractReference, body) => {
         }
       })
       .catch(err => {
-        handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
-        });
+        handleApiErrors(dispatch, TYPE, err);
       });
   };
 };

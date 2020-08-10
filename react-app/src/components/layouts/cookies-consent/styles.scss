@@ -1,0 +1,41 @@
+.CookiesConsent {
+  * {
+    font-size: 10px !important;
+  }
+
+  .content {
+    background-color: #eee;
+    width: 100vw;
+    position: fixed;
+    bottom: 0px;
+    /* center the element */
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    text-align: justify;
+    max-width: 1000px;
+    border-radius: 8px;
+    z-index: 10000;
+
+    .terms {
+      color: #0094da;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+
+
+    .button {
+      border: solid 1px;
+      margin-top: -9px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

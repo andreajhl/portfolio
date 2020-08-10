@@ -98,7 +98,6 @@ class CelebrityProfilePage extends Component {
                                     <CelebrityDetailsCardLayout
                                         username={this.props.celebrity.username}
                                         causeUrl={this.props.celebrity.causeUrl}
-                                        videoMessagePrice={this.props.celebrity.videoMessagePrice}
                                         avatar={this.props.celebrity.avatar}
                                         fullName={this.props.celebrity.fullName}
                                         categoryTitle={this.props.celebrity.categoryTitle}
@@ -109,6 +108,7 @@ class CelebrityProfilePage extends Component {
                                         mainVideo={this.props.celebrity.mainVideo}
                                         hashtags={this.props.celebrity.hashtags}
                                         socialNetworks={this.props.socialNetworks}
+                                        contractTypes={this.props.celebrity.contractTypes}
                                     />
                                     {/* END CelebrityDetailsCardLayout */}
 
@@ -124,11 +124,19 @@ class CelebrityProfilePage extends Component {
                                     />
                                     {/* END CelebrityReviewsSection */}
 
+                                    <div className="col-12 d-block d-md-none">
+                                        <img width="100%" style={{
+                                            borderTop: "solid 5px #e4e4e4",
+                                            borderBottom: "solid 5px rgb(198, 195, 195)",
+                                            marginBottom: "10px",
+                                        }} src="/assets/img/steps_mobile_profile.png"/>
+                                    </div>
+
                                     {/* CelebrityCardsSectionLayout */}
-                                    <SimilarCelebritiesLayout
-                                        showLoading={this.props.isLoading && this.props.queryParams.page > 1}
-                                        celebrities={this.props.similarCelebrities}
-                                    />
+                                    {/*<SimilarCelebritiesLayout*/}
+                                    {/*    showLoading={this.props.isLoading && this.props.queryParams.page > 1}*/}
+                                    {/*    celebrities={this.props.similarCelebrities}*/}
+                                    {/*/>*/}
                                     {/* End CelebrityCardsSectionLayout */}
                                 </>
                                 : null

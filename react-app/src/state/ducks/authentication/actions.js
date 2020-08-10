@@ -28,13 +28,13 @@ const afterLogin = (res, redirect_path = null) => {
         if (redirect_path) {
           return history._pushRoute(redirect_path);
         } else {
-          return history._pushRoute(ROUTE_PATHS.ROOT_PATH);
+          return history._pushRoute(ROUTE_PATHS.HOME_PATH);
         }
     }
   } else if (redirect_path) {
     history._pushRoute(redirect_path);
   } else {
-    history._pushRoute(ROUTE_PATHS.ROOT_PATH);
+    history._pushRoute(ROUTE_PATHS.HOME_PATH);
   }
 };
 
@@ -60,10 +60,8 @@ export const signInWithEmail = body => {
             handleApiResponseFailure(dispatch, type, res);
           }
         })
-        .catch(err => {
-          handleApiErrors(dispatch, type, {
-            data: {api_error: err, error: "Server 500"}
-          });
+        .catch(error => {
+          handleApiErrors(dispatch, type, error);
         });
   };
 };
@@ -91,9 +89,7 @@ export const changePassword = (body, redirect_path = null) => {
           }
         })
         .catch(err => {
-          handleApiErrors(dispatch, type, {
-            data: {api_error: err, error: "Server 500"}
-          });
+          handleApiErrors(dispatch, type, err);
         });
   };
 };
@@ -121,9 +117,7 @@ export const createPassword = body => {
           }
         })
         .catch(err => {
-          handleApiErrors(dispatch, type, {
-            data: {api_error: err, error: "Server 500"}
-          });
+          handleApiErrors(dispatch, type, err);
         });
   };
 };
@@ -157,9 +151,7 @@ export const sendSMSSecurityCode = body => {
           }
         })
         .catch(err => {
-          handleApiErrors(dispatch, type, {
-            data: {api_error: err, error: "Server 500"}
-          });
+          handleApiErrors(dispatch, type, err);
         });
   };
 };
@@ -187,9 +179,7 @@ export const validateSMSSecurityCode = body => {
           }
         })
         .catch(err => {
-          handleApiErrors(dispatch, type, {
-            data: {api_error: err, error: "Server 500"}
-          });
+          handleApiErrors(dispatch, type, err);
         });
   };
 };
@@ -216,9 +206,7 @@ export const sendEmailSecurityCode = body => {
           }
         })
         .catch(err => {
-          handleApiErrors(dispatch, type, {
-            data: {api_error: err, error: "Server 500"}
-          });
+          handleApiErrors(dispatch, type, err);
         });
   };
 };
@@ -246,9 +234,7 @@ export const validateEmailSecurityCode = (body, redirect_path = null) => {
           }
         })
         .catch(err => {
-          handleApiErrors(dispatch, type, {
-            data: {api_error: err, error: "Server 500"}
-          });
+          handleApiErrors(dispatch, type, err);
         });
   };
 };
@@ -270,7 +256,8 @@ export const validateIfEmailIsRegistered = body => {
           if (res.data.status === "OK") {
             handleApiResponseSuccess(dispatch, type, res);
             dispatch({type: `${type}_COMPLETED`, payload: res});
-            if (res.data.data.emailIsRegistered) {
+            console.log("res.data.data", res.data.data);
+            if (res.data.data["emailIsRegistered"] === true) {
               afterLogin(
                   res,
                   ROUTE_PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(
@@ -292,9 +279,7 @@ export const validateIfEmailIsRegistered = body => {
           }
         })
         .catch(err => {
-          handleApiErrors(dispatch, type, {
-            data: {api_error: err, error: "Server 500"}
-          });
+          handleApiErrors(dispatch, type, err);
         });
   };
 };
@@ -322,9 +307,7 @@ export const completeProfile = body => {
           }
         })
         .catch(err => {
-          handleApiErrors(dispatch, type, {
-            data: {api_error: err, error: "Server 500"}
-          });
+          handleApiErrors(dispatch, type, err);
         });
   };
 };
@@ -351,9 +334,22 @@ export const resetPassword = body => {
           }
         })
         .catch(err => {
-          handleApiErrors(dispatch, type, {
-            data: {api_error: err, error: "Server 500"}
-          });
+          handleApiErrors(dispatch, type, err);
         });
   };
+};
+
+export const newsletterSubscrition = email => {
+  apiService({
+    action: "type",
+    async: true,
+    path: PATHS.NEWSLETTER_SUBSCRIPTION + "/" + email,
+    method: "GET",
+  })
+      .then(res => {
+
+      })
+      .catch(err => {
+
+      });
 };

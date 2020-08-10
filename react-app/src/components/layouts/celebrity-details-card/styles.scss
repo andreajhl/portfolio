@@ -3,7 +3,6 @@
 .CelebrityDetailsCardLayout {
   .f-container {
 
-
     // PROFILE LG
     .profile-lg {
       position: relative;
@@ -40,16 +39,6 @@
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-        }
-
-        .f-follow-button {
-          -webkit-border-radius: 30px;
-          -moz-border-radius: 30px;
-          border-radius: 30px;
-          padding: 5px 40px;
-          border-color: $primary;
-          color: $primary;
-          background: linear-gradient(#FF359B,#FB177D 50%) !important;
         }
 
         .f-social-network {
@@ -240,7 +229,7 @@
 
       .f-avatar {
         position: absolute;
-        bottom: -35px;
+        bottom: -45px;
         margin-left: 4vw;
         height: 100px;
         width: 100px;
@@ -256,34 +245,15 @@
         margin-right: 4vw !important;
       }
 
-      .f-follow-button {
-        -webkit-border-radius: 30px;
-        -moz-border-radius: 30px;
-        padding: 5px 40px;
-        background: linear-gradient(#FF359B,#FB177D 50%);
-        color: #FFFFFF;
-        font-size: 1.0526rem;
-        font-weight: 700;
-        height: 34px;
-        width: 18.6875rem;
-        border-radius: 41px;
-      }
-
-      small.title {
-        font-size: 4vw !important;
+      h6.title {
+        position: relative;
+        left: 120px;
+        font-size: 18px;
       }
 
       small.subtitle {
         font-size: 12px !important
       }
-    }
-    .btn-outline-primary.f-follow-button{
-      width: 210px !important;
-      right: 23px !important;
-      position: absolute !important;
-      padding: 3px !important;
-      top: 0px !important;
-      font-size: 13px !important;
     }
 
     .word-break {

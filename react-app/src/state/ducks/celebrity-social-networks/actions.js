@@ -29,7 +29,7 @@ export const get = (object_id) => {
                 }
             })
             .catch(err => {
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+                handleApiErrors(dispatch, TYPE, err);
             });
     }
 };
@@ -60,7 +60,7 @@ export const list = (params) => {
                 }
             })
             .catch(err => {
-                handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+                handleApiErrors(dispatch, TYPE, err);
             });
     }
 };

@@ -28,10 +28,10 @@ class CompleteProfileForm extends Component {
 
     componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
         if (nextProps.session.userId) {
-            this.setState({
-                fullName: nextProps.session.fullName,
-                email: nextProps.session.email.includes("myemail@") ? "" : nextProps.session.email,
-            });
+            // this.setState({
+            //     fullName: nextProps.session.fullName,
+            //     email: nextProps.session.email.includes("myemail@") ? "" : nextProps.session.email,
+            // });
         }
     }
 

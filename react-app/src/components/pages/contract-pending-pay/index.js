@@ -56,7 +56,7 @@ class ContractPendingPayPage extends Component {
   }
 
   goToHome() {
-    history._pushRoute(PATHS.ROOT_PATH);
+    history._pushRoute(PATHS.HOME_PATH);
   }
 
   renderStripe() {

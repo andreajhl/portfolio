@@ -15,11 +15,11 @@ class HiringPreviewPage extends Component {
         };
     }
 
-    componentWillMount(): void {
+    componentWillMount() {
         this.props.getContract(this.props.match.params.contract_reference)
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         document.getElementsByClassName("f-main-body")[0].style.background = "#f7f7f7"
         GTM.tagManagerDataLayer(
             "HIRING_PREVIEW_PAGE_VIEW",
@@ -27,7 +27,7 @@ class HiringPreviewPage extends Component {
         );
     }
 
-    componentWillUnmount(): void {
+    componentWillUnmount() {
         document.getElementsByClassName("f-main-body")[0].style.background = "#fff"
     }
 
@@ -59,7 +59,7 @@ HiringPreviewPage.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     isLoading: state.contracts.getContractReducer.loading,
     contract: state.contracts.getContractReducer.data,
     isCompleted: state.contracts.getContractReducer.completed

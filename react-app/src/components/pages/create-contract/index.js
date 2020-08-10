@@ -20,7 +20,7 @@ class CreateContractPage extends Component {
                 deliveryType: 1,
                 deliveryContact: "",
                 instructions: "",
-                price: this.props.celebrity.videoMessagePrice,
+                price: 0,
                 isPublic: true
             },
             errors: []
@@ -71,8 +71,11 @@ class CreateContractPage extends Component {
         if (!this.props.isLoading || !this.state.tokenizeCardLoading) {
             const contract_data = this.state.contract_data;
 
-            contract_data.celebrityId = this.props.celebrity.id; // Celebrity ID
-            contract_data.price = this.props.celebrity.videoMessagePrice; // Price
+            contract_data.celebrityId = this.props.celebrity.id;
+            const res = this.props.celebrity.contractTypes.find(x => x.contractType === 1);
+            if (res) {
+                contract_data.price = res.price;
+            }
 
             const errors = [];
             if (contract_data.contractType === 1 && !contract_data.deliveryFrom) {
@@ -194,13 +197,20 @@ class CreateContractPage extends Component {
 
     sendBusinessRequestGTMEvent = () => {
         GTM.tagManagerDataLayer("BUSINESS_REQUEST", this.props.celebrity);
+        // window.open("https://wa.me/573212493718?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?"), "_blank")
+        window.open("https://landing-business.famosos.com/form", "_blank")
     };
 
     render() {
         return (
             <>
-                <PageContainer showFooter={false} showLogin={false} showInputSearchSm={false} showSearchWeb={false}
-                               fetchCelebrities={false}>
+                <PageContainer
+                    showFooter={false}
+                    showLogin={false}
+                    showInputSearchSm={false}
+                    showSearchWeb={false}
+                    fetchCelebrities={false}
+                >
                     <div className="container CreateContractPage" style={{zoom: "80%"}}>
                         <div className="row centerForm p-4">
                             <div className="col-12 col-md-8">
@@ -331,7 +341,8 @@ class CreateContractPage extends Component {
                                                 {/* END IS PUBLIC */}
 
                                                 <br/>
-                                                <div className="text-center">
+
+                                                <div className="text-center mx-auto" style={{maxWidth: "230px"}}>
                                                     {this.state.errors.length ? (
                                                         <div className={"mb-2"}>
                                                             <small className="text-danger">
@@ -353,33 +364,29 @@ class CreateContractPage extends Component {
                                                             </small>
                                                         </div>
                                                     ) : null}
-                                                    <button
-                                                        disabled={
-                                                            this.props.isLoading || this.state.tokenizeCardLoading
-                                                        }
-                                                        type="button"
-                                                        className="contract-button hover cursor-pointer p-2 border bg-active"
-                                                        onClick={this.createContract}
-                                                    >
-                                                        {this.props.isLoading || this.state.tokenizeCardLoading ? (
-                                                            <span
-                                                                className="spinner-grow spinner-grow-sm"
-                                                                role="status"
-                                                                aria-hidden="true"
-                                                            />
-                                                        ) : (
-                                                            <span className="text-white">
-                                      Continuar
-                                      <i
-                                          className="fa fa-arrow-right float-right text-white ml-2"
-                                          style={{fontSize: "26px", position: "absolute"}}
-                                      />
-                                    </span>
-                                                        )}
-                                                    </button>
+                                                    {
+                                                        this.props.isLoading
+                                                            ?
+                                                            <div className="mx-auto text-center text-dark">
+                                                                Enviando...
+                                                            </div>
+                                                            :
+                                                            <button
+                                                                disabled={
+                                                                    this.props.isLoading || this.state.tokenizeCardLoading
+                                                                }
+                                                                type={"button"}
+                                                                className={"btn f-contract-button text-align-center"}
+                                                                onClick={this.createContract}
+                                                            >
+                                                                Continuar
+                                                                <i className="fa fa-arrow-right"/>
+                                                            </button>
+                                                    }
+
                                                     <br/>
-                                                    <div className="mt-4 mx-auto text-center">
-                                                        <img width="230px" src={"/assets/img/pago-seguro.png"}
+                                                    <div className="mt-4 pt-2 mx-auto text-center" style={{width: "230px"}}>
+                                                        <img width="100%" src={"/assets/img/pago-seguro-Famosos.png"}
                                                              alt={"pago-seguro"}/>
                                                     </div>
                                                     <br/>
@@ -393,25 +400,30 @@ class CreateContractPage extends Component {
                                                     src="/assets/img/famosos_licencia.png"
                                                     alt="famosos_licencia"
                                                 />
-                                                <div className="text-center mt-4">
-                                                    <a href={"https://wa.me/17865207235?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?")}
-                                                       target="_blank"
-                                                       className={"whatsapp-link"}
-                                                       onClick={this.sendBusinessRequestGTMEvent}
+                                                <div className="text-center mx-auto" style={{maxWidth: "230px"}}>
+                                                    {/*<a href={"https://wa.me/17865207235?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?")}*/}
+                                                    <button
+                                                        className={"btn f-contract-button text-align-center"}
+                                                        onClick={this.sendBusinessRequestGTMEvent}
+                                                        type={"button"}
                                                     >
-                                                        <div>
-                                                            Continuar
-                                                            <i className="fa fa-arrow-circle-right text-white ml-2"/>
-                                                        </div>
-                                                    </a>
+                                                        Continuar
+                                                        <i className="fa fa-arrow-right"/>
+                                                    </button>
                                                 </div>
                                             </>
                                     }
                                 </Form>
                             </div>
                         </div>
+                        <div className="d-none d-md-block">
+                            <img width="100%" src="/assets/img/steps_desktop_hire.svg"/>
+                        </div>
                     </div>
                 </PageContainer>
+                <div className="d-block d-md-none">
+                    <img width="100%" src="/assets/img/steps_mobile_hire.svg"/>
+                </div>
             </>
         );
     }
