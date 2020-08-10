@@ -20,17 +20,17 @@ class LoadingPage extends Component {
             this.setState({
                 readyState: true,
             })
-        }, 2600);
+        }, 800);
         // CHECK VISIT
         const session = new Session();
         if (session.isFirstVisit()) {
             setTimeout(() => {
                 window.location.href = "https://landing.famosos.com";
-            }, 3000)
+            }, 1200)
         } else {
             setTimeout(() => {
                 history._pushRoute(PATHS.HOME_PATH)
-            }, 3000)
+            }, 1200)
         }
     }
 
