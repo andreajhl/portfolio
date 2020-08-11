@@ -10,27 +10,36 @@ class LoadingPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            readyState: false,
+            // readyState: false,
+            readyState: true,
         };
     }
 
 
     componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                readyState: true,
-            })
-        }, 800);
-        // CHECK VISIT
+        // setTimeout(() => {
+        //     this.setState({
+        //         readyState: true,
+        //     })
+        // }, 800);
+        // // CHECK VISIT
+        // const session = new Session();
+        // if (session.isFirstVisit()) {
+        //     setTimeout(() => {
+        //         window.location.href = "https://landing.famosos.com";
+        //     }, 1200)
+        // } else {
+        //     setTimeout(() => {
+        //         history._pushRoute(PATHS.HOME_PATH)
+        //     }, 1200)
+        // }
+
+
         const session = new Session();
         if (session.isFirstVisit()) {
-            setTimeout(() => {
-                window.location.href = "https://landing.famosos.com";
-            }, 1200)
+            window.location.href = "https://landing.famosos.com";
         } else {
-            setTimeout(() => {
-                history._pushRoute(PATHS.HOME_PATH)
-            }, 1200)
+            history._pushRoute(PATHS.HOME_PATH)
         }
     }
 
