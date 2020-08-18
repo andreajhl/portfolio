@@ -241,7 +241,7 @@ ContractCheckoutSummary.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     isLoading: state.payments.currencyExchangeReducer.loading,
     currencyExchangeData: state.payments.currencyExchangeReducer.data
 });

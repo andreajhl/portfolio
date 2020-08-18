@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import "./styles.scss";
-import {FlagsSelect} from "../../layouts/flags-select";
 import {authenticationOperations} from "../../../state/ducks/authentication";
 import {connect} from "react-redux";
 import {AuthTCLayout} from "../../layouts/auth-t&c";
 import {getUTMs} from "../../../state/utils/UTMs";
 import {SignInMethodsForm} from "../sign-in-methods-form";
 import * as GTM from "../../../state/utils/gtm";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+import apiService from "../../../state/utils/apiService";
 
 class SignInWithCellphoneForm extends Component {
 
@@ -14,28 +16,50 @@ class SignInWithCellphoneForm extends Component {
         super(props);
 
         this.state = {
-            countryAlpha3Code: "COL",
-            countryCellphoneCode: "+57",
+            showInput: false,
+            _phone: "",
+            countryCode: "us",
+            dialCode: "+57",
             cellphoneNumber: "",
         };
-
-        this.handleInput = this.handleInput.bind(this);
-        this.onSelectCountry = this.onSelectCountry.bind(this);
         this.sendSMSSecurityCode = this.sendSMSSecurityCode.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
+
+        this.getUserCountry();
     }
 
-    onSelectCountry(country) {
-        this.setState({
-            countryCellphoneCode: "+" + country.callingCodes[0],
-            countryAlpha3Code: country.alpha3Code
+    async getUserCountry() {
+        const FINAL_PATH = "custom-endpoints/countries/ip-parse";
+        await apiService({
+            method: "GET",
+            action: null,
+            path: FINAL_PATH,
+            async: true,
+            params: null,
+            custom_endpoint: false
         })
+            .then(res => {
+                if (res.data.status === "OK") {
+                    if (res.data["data"]["countryCode"] !== "") {
+                        this.setState({
+                            ...this.state,
+                            showInput: true,
+                            countryCode: res.data["data"]["countryCode"].toLowerCase(),
+                        })
+                    }
+                }
+            })
+            .catch(error => {
+
+            });
     }
 
-    handleInput(event) {
-        this.setState({[event.target.name]: event.target.value})
-    }
-
+    onCellphoneChange = (dialCode, cellphoneNumber) => {
+        this.setState({
+            dialCode: "+" + dialCode,
+            cellphoneNumber: cellphoneNumber,
+        });
+    };
 
     handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -47,8 +71,7 @@ class SignInWithCellphoneForm extends Component {
         if (!this.props.sendSMSSecurityCodeLoading) {
             const data = {
                 ...getUTMs(),
-                countryAlpha3Code: this.state.countryAlpha3Code,
-                countryCellphoneCode: this.state.countryCellphoneCode,
+                dialCode: this.state.dialCode,
                 cellphoneNumber: this.state.cellphoneNumber,
             };
             this.props.sendSMSSecurityCode(data);
@@ -63,21 +86,15 @@ class SignInWithCellphoneForm extends Component {
         return (
             <div className="SignInWithCellphoneForm">
                 <h6>{this.props.title}</h6>
-                <div className="form-horizontal">
-                    <FlagsSelect
-                        onSelect={this.onSelectCountry}
-                    />
-                    <input
-                        autoFocus={true}
-                        type="number"
-                        className="form-control"
-                        placeholder="Escribe tu número"
-                        name="cellphoneNumber"
-                        onChange={this.handleInput}
-                        value={this.state.cellphoneNumber}
-                        onKeyPress={this.handleKeyPress}
-                    />
-                </div>
+                <PhoneInput
+                    enableSearch={true}
+                    country={this.state.countryCode}
+                    value={this.state._phone}
+                    className={"form-control"}
+                    onChange={(phone, val) => {
+                        this.onCellphoneChange(val["dialCode"], phone.substring(val["dialCode"].length, phone.length));
+                    }}
+                />
                 {
                     this.props.sendSMSSecurityCodeError
                     &&
@@ -123,7 +140,7 @@ SignInWithCellphoneForm.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     sendSMSSecurityCodeLoading: state.authentication.sendSMSSecurityCodeReducer.loading,
     sendSMSSecurityCodeCompleted: state.authentication.sendSMSSecurityCodeReducer.completed,
     sendSMSSecurityCodeError: state.authentication.sendSMSSecurityCodeReducer.error_data.error,

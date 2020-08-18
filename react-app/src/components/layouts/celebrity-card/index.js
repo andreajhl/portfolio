@@ -3,7 +3,6 @@ import "./styles.scss";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
-import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import {connect} from "react-redux";
 import {ContractPriceLayout} from "../contract-price";
 
@@ -147,7 +146,6 @@ const mapStateToProps = (state) => ({
 
 // mapStateToProps
 const mapDispatchToProps = {
-    listCountries: restCountriesOperations.list,
 };
 
 // Export Class
