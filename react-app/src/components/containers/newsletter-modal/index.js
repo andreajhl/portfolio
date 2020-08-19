@@ -71,7 +71,7 @@ class NewsLetterModal extends Component {
                         <div className="NewsLetterModal-close-div">
                             <i className="fa fa-times fa-2x" onClick={this.handleCloseModal}/>
                         </div>
-                        <img width="100%" src={"/assets/img/banner-suscripción-mail_low.png"}
+                        <img width="100%" src={"/assets/img/banner-suscripcioon-mail_low.png"}
                              alt={"ffb-modal"}/>
                     </div>
                     <div className="NewsLetterModal-body p-4">
