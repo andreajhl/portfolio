@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 // CELEBRITY PROFILE
 app.get('/:celebrity_username', async (req, res) => {
     const filePath = path.resolve(__dirname, './build', 'index.html');
-    if (req.params.contract_reference !== "inicio" && req.params.contract_reference.length > 0) {
+    if (req.params.contract_reference !== "inicio" && req.params.contract_reference && req.params.contract_reference !== "inicio/") {
         await axios
             .get(process.env.REACT_APP_ENDPOINT + "custom-endpoints/celebrities/public-get/" + req.params.celebrity_username)
             .then((r) => {
@@ -60,22 +60,15 @@ app.get('/:celebrity_username', async (req, res) => {
                         res.send(data);
                     });
                 } else {
-                    defaultResponse(fs, filePath, res);
+                    return defaultResponse(fs, filePath, res);
                 }
             })
             .catch((e) => {
-                defaultResponse(fs, filePath, res);
+                return defaultResponse(fs, filePath, res);
             });
     } else {
-        fs.readFile(filePath, 'utf8', function (err, data) {
-            if (err) {
-                return console.log(err);
-            }
-            res.send(defaultOG(data));
-        });
+        return defaultResponse(fs, filePath, res);
     }
-
-
 });
 
 // HIRING PREVIEW
@@ -103,20 +96,30 @@ app.get('/hirings/:contract_reference', async (req, res) => {
                     res.send(data);
                 });
             } else {
-                defaultResponse(fs, filePath, res);
+                return defaultResponse(fs, filePath, res);
             }
         })
         .catch((e) => {
-            defaultResponse(fs, filePath, res);
+            return defaultResponse(fs, filePath, res);
         });
 });
 
+// ROOT PAGE
+app.get('', (req, res) => {
+    const filePath = path.resolve(__dirname, './build', 'index.html');
+    return defaultResponse(fs, filePath, res);
+});
+
+app.get('/', (req, res) => {
+    const filePath = path.resolve(__dirname, './build', 'index.html');
+    return defaultResponse(fs, filePath, res);
+});
 
 // OTHER PAGES
 app.get('*', (req, res) => {
     // res.sendFile(path.join(__dirname + '/build/index.html'));
     const filePath = path.resolve(__dirname, './build', 'index.html');
-    defaultResponse(fs, filePath, res);
+    return defaultResponse(fs, filePath, res);
 });
 
 const port = process.env.PORT || 5000;
