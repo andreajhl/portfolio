@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import "./styles.scss";
-import {ContractModal} from "../../containers";
 import * as GTM from "../../../state/utils/gtm";
 import {history} from "../../../routing/History";
 import {ContractPriceLayout} from "../contract-price";
@@ -13,7 +12,6 @@ class CelebrityDetailsCardLayout extends Component {
 
         this.state = {
             imageLoaded: false,
-            showContractModal: false,
             videoMobilePlayIcon: "fa-play",
             videoDesktopPlayIcon: "fa-play"
         };
@@ -448,11 +446,6 @@ class CelebrityDetailsCardLayout extends Component {
                         :
                         null
                 }
-                <ContractModal
-                    celebrity={this.props.celebrity}
-                    showModal={this.state.showContractModal}
-                    onHide={this.closeModal}
-                />
             </div>
         );
     };
@@ -477,7 +470,7 @@ CelebrityDetailsCardLayout.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     currencyExchangeData: state.payments.currencyExchangeReducer.data
 });
 

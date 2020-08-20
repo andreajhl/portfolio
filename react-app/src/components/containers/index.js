@@ -1,6 +1,5 @@
 export * from "./change-password-form";
 export * from "./complete-profile-form";
-export * from "./contract-modal";
 export * from "./create-password-form";
 export * from "./reset-password-form";
 export * from "./sign-in-methods-form";
@@ -12,3 +11,5 @@ export * from "./validate-cellphone-security-code-form";
 export * from "./validate-email-security-code-form";
 export * from "./validate-whatsapp-security-code-form";
 export * from "./celebrity-request-form";
+export * from "./create-contract-form";
+
