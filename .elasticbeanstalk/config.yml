@@ -3,6 +3,8 @@ branch-defaults:
     environment: FamososFrontend-Testing
   duvan:
     environment: FamososFrontend-Production
+  new-form:
+    environment: FamososFrontend-Testing
 deploy:
   artifact: zip.zip
 environment-defaults:
