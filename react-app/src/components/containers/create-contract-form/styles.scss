@@ -152,6 +152,10 @@
       width: 100%;
     }
 
+    &.hide {
+      display: none;
+    }
+
     label {
       font-style: normal;
       font-weight: bold;
@@ -186,9 +190,16 @@
     }
   }
 
+  .hide-error {
+    display: none;
+  }
+
+  .show-error {
+    display: block;
+  }
 
   // ####################
-  // END delivery-option
+  // END form-custom-horizontal-group
   // ####################
 
   @media (min-width: 768px) {
