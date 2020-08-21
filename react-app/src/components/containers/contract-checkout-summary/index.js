@@ -121,6 +121,8 @@ class ContractCheckoutSummary extends Component {
                                 width={"60px"}
                                 alt={"avatar"}
                             />
+                            <br/>
+                            <h6 className="mt-2 font-weight-bold">{this.props.contractData.celebrity_full_name}</h6>
                         </div>
                         <div className="from-to mt-4">
                             <h6>

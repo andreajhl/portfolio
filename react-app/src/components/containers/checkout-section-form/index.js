@@ -3,11 +3,11 @@ import "./styles.scss";
 import {PaymentMethodsSection} from "../../containers/payment-methods-section";
 import {ContractCheckoutSummary} from "../../containers/contract-checkout-summary";
 import {connect} from "react-redux";
-import {ContractCurrencyPayment} from "../contract-currency-payment";
 import apiService from "../../../state/utils/apiService";
 import {history} from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
+import {paymentsOperations} from "../../../state/ducks/payments";
 
 
 class CheckoutSectionForm extends Component {
@@ -39,6 +39,13 @@ class CheckoutSectionForm extends Component {
         this.createPayPalPayment = this.createPayPalPayment.bind(this);
 
         this.paymentMethodsSectionRef = React.createRef();
+    }
+
+    componentDidMount() {
+        this.props.currencyExchange({
+            from: "USD",
+            to: this.state.currency
+        });
     }
 
     componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
@@ -357,8 +364,8 @@ class CheckoutSectionForm extends Component {
                  style={this.isLoading() ? {opacity: "0.2",} : {}}>
                 <div className="row checkout-section mx-auto justify-content-center">
                     <div className={"col-12 col-sm-8 col-md-7 col-lg-7 payment-methods"}>
-                        <ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency}/>
-                        <br/>
+                        {/*<ContractCurrencyPayment onSelectCurrency={this.onSelectCurrency}/>*/}
+                        {/*<br/>*/}
                         <PaymentMethodsSection
                             ref={this.paymentMethodsSectionRef}
                             onStripeResponse={this.onStripeResponse}
@@ -411,7 +418,9 @@ const mapStateToProps = (state: any) => ({
 });
 
 // mapStateToProps
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    currencyExchange: paymentsOperations.currencyExchange
+};
 
 // Export Class
 const _CheckoutSectionForm = connect(mapStateToProps, mapDispatchToProps)(CheckoutSectionForm);
