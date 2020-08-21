@@ -5,6 +5,7 @@ import {PageContainer} from "../../layouts";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import * as GTM from "../../../state/utils/gtm";
 import {CreateContractForm} from "../../containers";
+import MetaTags from "react-meta-tags";
 
 class CreateContractPage extends Component {
     constructor(props) {
@@ -27,6 +28,19 @@ class CreateContractPage extends Component {
     render() {
         return (
             <>
+
+                {
+                    this.props.celebrity.id ?
+                        <MetaTags>
+                            <title>Famosos.com - Comprar video personalizado de {this.props.celebrity.fullName}</title>
+                            <meta name="description"
+                                  content={"Comprar video personalizado de " + this.props.celebrity.fullName + " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."}/>
+                        </MetaTags>
+                        :
+                        <div></div>
+                }
+
+
                 <PageContainer
                     showFooter={false}
                     showLogin={false}

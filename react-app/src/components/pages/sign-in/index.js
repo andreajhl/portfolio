@@ -6,6 +6,7 @@ import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import {PageContainer} from "../../layouts/page-container";
 import * as GTM from "../../../state/utils/gtm";
+import MetaTags from "react-meta-tags";
 
 
 class SignInPage extends Component {
@@ -53,6 +54,12 @@ class SignInPage extends Component {
     render() {
         return (
             <>
+
+                <MetaTags>
+                    <title>Famosos.com - Iniciar Sesión</title>
+                    <meta name="description" content="Inicia sesión en Famosos.com. Reserva tu video y disfruta de experiencias únicas."/>
+                </MetaTags>
+
                 <PageContainer applyFetchCelebrities={false} showFooter={false}>
                     <div className="SignInPage">
                         <div className="section">

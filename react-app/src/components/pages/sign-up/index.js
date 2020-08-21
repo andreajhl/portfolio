@@ -5,6 +5,7 @@ import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import {PageContainer} from "../../layouts/page-container";
 import * as GTM from "../../../state/utils/gtm";
+import MetaTags from "react-meta-tags";
 
 
 class SignUpPage extends Component {
@@ -51,6 +52,12 @@ class SignUpPage extends Component {
     render() {
         return (
             <>
+
+                <MetaTags>
+                    <title>Famosos.com - Crear una cuenta</title>
+                    <meta name="description" content="Crea una cuenta en Famosos.com. Reserva tu video y disfruta de experiencias únicas."/>
+                </MetaTags>
+
                 <PageContainer applyFetchCelebrities={false} showFooter={false}>
                     <div className="SignInPage">
                         <div className="section">
