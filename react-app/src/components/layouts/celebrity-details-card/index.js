@@ -155,6 +155,8 @@ class CelebrityDetailsCardLayout extends Component {
     returnTurnAroundText = () => {
         if (this.props.turnaround < 1) {
             return <span style={{fontSize: "12px"}}>Pocas horas</span>
+        } else if (this.props.turnaround === 1) {
+            return <span>{parseInt(this.props.turnaround)} día</span>
         } else {
             return <span>{parseInt(this.props.turnaround)} días</span>
         }
