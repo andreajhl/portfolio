@@ -152,6 +152,14 @@ class CelebrityDetailsCardLayout extends Component {
         return null
     };
 
+    returnTurnAroundText = () => {
+        if (this.props.turnaround < 1) {
+            return <span style={{fontSize: "12px"}}>Graba el mismo día</span>
+        } else {
+            return <span>{parseInt(this.props.turnaround)} días</span>
+        }
+    };
+
     render() {
         return (
             <div className="CelebrityDetailsCardLayout mb-2 pb-2">
@@ -215,7 +223,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                 <small className="text-soft-grey font-weight-bold">Categoría</small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
-                                                <h6 className="font-weight-bold">1 a 7 días</h6>
+                                                <h6 className="font-weight-bold">{this.returnTurnAroundText()}</h6>
                                                 <small className="text-soft-grey font-weight-bold">Respuesta promedio
                                                 </small>
                                             </div>
@@ -356,7 +364,7 @@ class CelebrityDetailsCardLayout extends Component {
                                     </small>
                                     <br/>
                                     <small className="text-soft-grey subtitle">
-                                        Respuesta promedio: <b>1 a 7 días</b>
+                                        Respuesta promedio: <b>{this.returnTurnAroundText()}</b>
                                     </small>
                                 </div>
                             </div>
@@ -466,7 +474,8 @@ CelebrityDetailsCardLayout.defaultProps = {
     hashtags: [],
     mainVideo: "",
     socialNetworks: [],
-    contractTypes: []
+    contractTypes: [],
+    turnaround: 7
 };
 
 // mapStateToProps
