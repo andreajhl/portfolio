@@ -341,12 +341,12 @@ class CelebrityDetailsCardLayout extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-8 pt-3 pb-1">
+                            <div className="col-9 pt-3 pb-1">
                                 <h6 className="font-weight-bold title">
                                     {this.props.fullName}
                                 </h6>
                             </div>
-                            <div className="col-5 pr-0 mt-2">
+                            <div className="col-4 pr-0 mt-2">
                                 <small className="title text-warning">
                                     <i className="fa fa-star fa-1x mr-1 text-warning"/>
                                     <i className="fa fa-star fa-1x mr-1 text-warning"/>
@@ -357,7 +357,7 @@ class CelebrityDetailsCardLayout extends Component {
                                 <br/>
                                 <small className="text-soft-grey font-weight-bold subtitle">Calificaciones</small>
                             </div>
-                            <div className="col-7 pl-0 text-right mt-2">
+                            <div className="col-8 pl-0 text-right mt-2">
                                 <div className="">
                                     <small className="text-soft-grey subtitle">
                                         Categoría: <b>{this.props.categoryTitle}</b>
