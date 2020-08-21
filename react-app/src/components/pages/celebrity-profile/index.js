@@ -97,7 +97,7 @@ class CelebrityProfilePage extends Component {
                                         hashtags={this.props.celebrity.hashtags}
                                         socialNetworks={this.props.socialNetworks}
                                         contractTypes={this.props.celebrity.contractTypes}
-                                        turnaround={this.props.celebrity.turnaround || 7}
+                                        turnaround={this.props.celebrity.turnaround}
                                     />
                                     {/* END CelebrityDetailsCardLayout */}
 
