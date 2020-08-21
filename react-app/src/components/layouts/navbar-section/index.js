@@ -148,6 +148,24 @@ class NavbarSectionLayout extends Component {
         window.open("https://business.famosos.com", '_blank');
     }
 
+    renderFiltersSection = () => {
+        if (this.props.showFiltersSection) {
+            return <FiltersSectionLayout/>;
+        }
+    };
+
+    renderSearch = () => {
+        if (this.state.showSearch) {
+            return (
+                <div className="f-items d-block d-md-none m-2 search-sm">
+                    <NavbarSearchLayout
+                        onSearchChange={this.props.onSearchChange}
+                        autoFocus={this.state.showSearch}/>
+                </div>
+            )
+        }
+    };
+
     render() {
         let logged = "no";
         if (this.session.getSession()) {
@@ -170,22 +188,13 @@ class NavbarSectionLayout extends Component {
                                          onClick={this.goToRootPath}
                                     />
                                 </div>
-                                <div className="float-right float-right-lg">
+                                <div
+                                    className={"float-right float-right-lg" + (this.props.hideControls ? " d-none " : "")}>
                                     {
                                         logged === "no"
                                             ?
                                             (
                                                 <>
-                                                    {/*<NavLink className=" btn btn-sm mr-2"*/}
-                                                    {/*         activeClassName='active'*/}
-                                                    {/*         to={PATHS.TRENDING}*/}
-                                                    {/*>*/}
-                                                    {/*    <img width={"30px"} src={"/assets/img/trending.svg"}*/}
-                                                    {/*         className={"cursor-pointer"}*/}
-                                                    {/*         style={{position: "relative", top: "-2px"}}*/}
-                                                    {/*    />*/}
-                                                    {/*    <span className="font-weight-bold ml-1" style={{position: "relative", top: "3px"}}>Tendencias</span>*/}
-                                                    {/*</NavLink>*/}
                                                     {
                                                         this.props.showLogin
                                                             ?
@@ -298,11 +307,12 @@ class NavbarSectionLayout extends Component {
                             <div className="row" style={{position: "relative", top: "-7px"}}>
                                 {/* LOGO*/}
                                 <div className="col mt-0 pt-0 mr-0 pr-0 mb-0 pb-0">
-                                    <img className="mt-1" src={"/assets/img/logo-color.png"}
-                                         style={{width: "100%", maxWidth: "150px"}} alt="logo"
+                                    <img className="mt-2" src={"/assets/img/logo-color.png"}
+                                         style={{width: "130px"}} alt="logo"
                                          onClick={this.goToRootPath}/>
                                 </div>
-                                <div className="float-right float-right-sm">
+                                <div
+                                    className={"float-right float-right-sm" + (this.props.hideControls ? " d-none " : "")}>
                                     {
                                         logged === "no" || logged === "dummy"
                                             ?
@@ -437,26 +447,10 @@ class NavbarSectionLayout extends Component {
                             </div>
                         </div>
                     </nav>
-                    {
-                        this.props.showFiltersSection === true
-                        &&
-                        <FiltersSectionLayout
-
-                        />
-
-                    }
+                    {this.renderFiltersSection()}
                 </div>
                 <div className="f-navbar-container-helper"/>
-                {
-                    this.state.showSearch
-                        ?
-                        <div className="f-items d-block d-md-none m-2 search-sm">
-                            <NavbarSearchLayout
-                                onSearchChange={this.props.onSearchChange}
-                                autoFocus={this.state.showSearch}/>
-                        </div>
-                        : null
-                }
+                {this.renderSearch()}
             </div>
         );
     };
@@ -469,6 +463,7 @@ NavbarSectionLayout.propTypes = {};
 
 // Set defaultProps
 NavbarSectionLayout.defaultProps = {
+    hideControls: false,
     onSearchChange: () => {
     },
 };

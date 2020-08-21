@@ -79,6 +79,7 @@ class CreateContractForm extends Component {
         const contractData = this.state.contractData;
         contractData.isPublic = !contractData.isPublic;
         this.setState({
+            ...this.state,
             contractData: contractData
         });
     }
@@ -174,14 +175,32 @@ class CreateContractForm extends Component {
                                 </div>
                             </div>
                         </div>
-                        <span className="business-option">
-                        Si quieres un video comercial para tu marca haz clic
+                        <div className="business-option">
+                            Si quieres un video comercial para tu marca haz click
                             {" "}
                             <span className={"text-primary"} onClick={this.sendBusinessRequestGTMEvent}>aquí.</span>
-                        </span>
+                        </div>
                     </div>
                     <br/>
                     {/* FORM INPUTS */}
+                    <div className={"form-custom-horizontal-group"}>
+                        <div className={"form-custom-label"}>
+                            <label>Para:</label>
+                        </div>
+                        <div className={"form-custom-input"}>
+                            <input
+                                type={"text"}
+                                placeholder={"Ana"}
+                                value={contractData.deliveryTo}
+                                name={"deliveryTo"}
+                                onChange={this.handleInputChange}
+                            />
+                            <span
+                                className={"text-danger" + (this.state.showErrors ? " show-error " : " hide-error ")}>
+                                {this.deliveryToValidator()}
+                            </span>
+                        </div>
+                    </div>
                     <div
                         className={"form-custom-horizontal-group" + (contractData.contractType === 1 ? " hide " : "")}>
                         <div className={"form-custom-label"}>
@@ -201,27 +220,9 @@ class CreateContractForm extends Component {
                             </span>
                         </div>
                     </div>
-                    <div className={"form-custom-horizontal-group"}>
-                        <div className={"form-custom-label"}>
-                            <label>Para:</label>
-                        </div>
-                        <div className={"form-custom-input"}>
-                            <input
-                                type={"text"}
-                                placeholder={"Ana"}
-                                value={contractData.deliveryTo}
-                                name={"deliveryTo"}
-                                onChange={this.handleInputChange}
-                            />
-                            <span
-                                className={"text-danger" + (this.state.showErrors ? " show-error " : " hide-error ")}>
-                                {this.deliveryToValidator()}
-                            </span>
-                        </div>
-                    </div>
                     <div className={"mt-3"}>{""}</div>
                     <div className={"form-custom-vertical-group"}>
-                        <label>¿Qué quieres que diga Alan Tacher?</label>
+                        <label>¿Qué quieres que diga {this.props.celebrityFullName}?</label>
                         <textarea
                             rows={5}
                             placeholder={

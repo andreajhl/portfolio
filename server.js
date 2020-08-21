@@ -7,7 +7,7 @@ require("dotenv").config({path: ".env"});
 
 // default OG
 function defaultOG(data) {
-    data = data.replace(/\$OG_TITLE/g, 'Famosos.com');
+    data = data.replace(/\$OG_TITLE/g, 'Famosos.com - Videos personalizados de tus famosos favoritos.');
     data = data.replace(/\$OG_TYPE/g, 'website');
     data = data.replace(/\$OG_URL/g, 'https://www.famosos.com');
     data = data.replace(/\$OG_IMAGE/g, 'https://www.famosos.com/assets/img/favicon.png');
@@ -22,8 +22,9 @@ function defaultOG(data) {
 }
 
 // default response
-function defaultResponse(fs, filePath, res) {
-    fs.readFile(filePath, 'utf8', function (err, data) {
+function defaultResponse(res) {
+    const _filePath = path.resolve(__dirname, './build', 'index.html');
+    fs.readFile(_filePath, 'utf8', function (err, data) {
         if (err) {
             return console.log(err);
         }
@@ -31,13 +32,23 @@ function defaultResponse(fs, filePath, res) {
     });
 }
 
-// Serve the static files from the React app
-app.use(express.static(path.join(__dirname, 'build')));
+
+// ROOT PAGE
+app.get('/', function (request, response) {
+    const filePath = path.resolve(__dirname, './build', 'index.html');
+    fs.readFile(filePath, 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+        response.send(defaultOG(data));
+    });
+});
 
 // CELEBRITY PROFILE
 app.get('/:celebrity_username', async (req, res) => {
     const filePath = path.resolve(__dirname, './build', 'index.html');
-    if (req.params.contract_reference !== "inicio" && req.params.contract_reference && req.params.contract_reference !== "inicio/") {
+    if (req.params.celebrity_username !== "inicio" && req.params.celebrity_username && req.params.celebrity_username !== "inicio/") {
+        console.log("celebrity_username", req.params.celebrity_username);
         await axios
             .get(process.env.REACT_APP_ENDPOINT + "custom-endpoints/celebrities/public-get/" + req.params.celebrity_username)
             .then((r) => {
@@ -51,7 +62,7 @@ app.get('/:celebrity_username', async (req, res) => {
                         data = data.replace(/\$OG_URL/g, 'https://www.famosos.com/' + r.data.data.username);
                         data = data.replace(/\$OG_IMAGE/g, r.data.data.avatar);
                         data = data.replace(/\$OG_SITE_NAME/g, 'Famosos.com');
-                        data = data.replace(/\$OG_DESCRIPTION/g, "Perfil oficial de " + r.data.data.username + " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.");
+                        data = data.replace(/\$OG_DESCRIPTION/g, "Perfil oficial de " + r.data.data.fullName + " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.");
                         data = data.replace(/\$OG_VIDEO/g, r.data.data.mainVideo);
                         data = data.replace(/\$OG_VIDEO_URL/g, r.data.data.mainVideo);
                         data = data.replace(/\$OG_VIDEO_SECURE_URL/g, r.data.data.mainVideo);
@@ -60,14 +71,15 @@ app.get('/:celebrity_username', async (req, res) => {
                         res.send(data);
                     });
                 } else {
-                    return defaultResponse(fs, filePath, res);
+                    return defaultResponse(res);
                 }
             })
             .catch((e) => {
-                return defaultResponse(fs, filePath, res);
+                console.log(e);
+                return defaultResponse(res);
             });
     } else {
-        return defaultResponse(fs, filePath, res);
+        return defaultResponse(res);
     }
 });
 
@@ -96,30 +108,27 @@ app.get('/hirings/:contract_reference', async (req, res) => {
                     res.send(data);
                 });
             } else {
-                return defaultResponse(fs, filePath, res);
+                return defaultResponse(res);
             }
         })
         .catch((e) => {
-            return defaultResponse(fs, filePath, res);
+            return defaultResponse(res);
         });
 });
 
-// ROOT PAGE
-app.get('', (req, res) => {
-    const filePath = path.resolve(__dirname, './build', 'index.html');
-    return defaultResponse(fs, filePath, res);
-});
 
-app.get('/', (req, res) => {
-    const filePath = path.resolve(__dirname, './build', 'index.html');
-    return defaultResponse(fs, filePath, res);
-});
+app.use(express.static(path.resolve(__dirname, './build')));
+
 
 // OTHER PAGES
-app.get('*', (req, res) => {
-    // res.sendFile(path.join(__dirname + '/build/index.html'));
+app.get('*', function (request, response) {
     const filePath = path.resolve(__dirname, './build', 'index.html');
-    return defaultResponse(fs, filePath, res);
+    fs.readFile(filePath, 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+        response.send(defaultOG(data));
+    });
 });
 
 const port = process.env.PORT || 5000;

@@ -11,7 +11,6 @@ import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import MetaTags from 'react-meta-tags';
-import {SimilarCelebritiesLayout} from "../../layouts/similar-celebrities";
 import * as GTM from "../../../state/utils/gtm";
 
 class CelebrityProfilePage extends Component {
@@ -61,29 +60,18 @@ class CelebrityProfilePage extends Component {
         return (
             <div className="CelebrityProfilePage">
                 {
-                    process.env.NODE_ENV === 'production'
+                    this.props.celebrity.username
                     &&
                     <div>
                         <MetaTags>
-                            <title>Famosos.com - @{this.props.match.params.celebrity_username}</title>
+                            <title>Famosos.com - {this.props.celebrity.fullName}</title>
                             <meta name="description"
-                                  content={"Experiencias que mejoran relaciones. Reserva ahora un video personalizado de tu famoso favorito."}/>
-                            <meta property="og:site_name"
-                                  content={"@" + this.props.match.params.celebrity_username + "en famosos.com."}/>
+                                  content={"Perfil oficial de " + this.props.celebrity.fullName + " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."}/>
                             <meta property="og:title"
-                                  content={"Famosos.com - @" + this.props.match.params.celebrity_username}/>
+                                  content={"Famosos.com - " + this.props.celebrity.fullName}/>
                             <meta property="og:url"
-                                  content={"https://famosos.com/" + this.props.match.params.celebrity_username}/>
+                                  content={"https://famosos.com/" + this.props.celebrity.username}/>
                         </MetaTags>
-                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Famosos Videos
-                            Personalizados
-                            de {this.props.celebrity.fullName}</div>
-                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Comprar video
-                            de {this.props.match.params.celebrity_username}</div>
-                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Comprar video
-                            de {this.props.celebrity.fullName}</div>
-                        <div className="transition-2xx" style={{position: "fixed", top: "-1000px"}}>Saludos
-                            de {this.props.match.params.celebrity_username}</div>
                     </div>
                 }
                 <PageContainer 

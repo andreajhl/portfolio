@@ -33,6 +33,7 @@ class CreateContractPage extends Component {
                     showInputSearchSm={false}
                     showSearchWeb={false}
                     fetchCelebrities={false}
+                    hideControls={true}
                 >
                     <div className={"CreateContractPage row mx-auto my-auto"}>
                         {/* FORM */}

@@ -8,6 +8,7 @@ import FamososForBusinessModal from "../../containers/famosos-for-business-modal
 import * as GTM from "../../../state/utils/gtm";
 import {jsonToQueryString} from "../../../state/utils/apiService";
 import {NewsLetterModal} from "../../containers/newsletter-modal";
+import MetaTags from "react-meta-tags";
 
 
 class CelebritiesPage extends Component {
@@ -139,6 +140,15 @@ class CelebritiesPage extends Component {
         return (
             <>
                 <div className={"CelebritiesPage "}>
+
+                    <div>
+                        <MetaTags>
+                            <title>Famosos.com - Videos personalizados de tus famosos favoritos.</title>
+                            <meta name="description"
+                                  content={"Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."}/>
+                        </MetaTags>
+                    </div>
+
                     <PageContainer
                         showFooter={false}
                         applyFetchCelebrities={true}
