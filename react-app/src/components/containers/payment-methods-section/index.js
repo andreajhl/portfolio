@@ -56,7 +56,7 @@ class PaymentMethodsSection extends Component {
         if (this.props.paymentGateways) {
             return (
                 <>
-                    {this.props.paymentGateways.map((pg, index) => {
+                    {this.props.paymentGateways.reverse().map((pg, index) => {
                         return (
                             <div key={"paymentGateway_" + index}>
                                 {this.loopMethods(pg["paymentMethods"])}
