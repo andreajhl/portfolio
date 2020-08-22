@@ -206,7 +206,7 @@ class ContractCheckoutSummary extends Component {
                             </div>
                         </div>
                         {this.props.showError && (
-                            <div className="text-center text-danger"
+                            <div className="text-center text-danger mt-3"
                                  style={{fontSize: "12px"}}>{this.props.error}
                             </div>
                         )}

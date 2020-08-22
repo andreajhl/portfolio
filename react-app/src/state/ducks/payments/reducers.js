@@ -73,9 +73,11 @@ export function fetchPaymentGatewaysReducer(state = fetchPaymentGatewaysInitialS
                 data: action.payload.data
             };
         case types.FETCH_PAYMENT_GATEWAYS_REQUEST_COMPLETED:
+            const data = action.payload.data;
+            data.data = action.payload.data.data.reverse();
             return {
                 ...state,
-                data: action.payload.data,
+                data: data,
                 completed: true
             };
         default:

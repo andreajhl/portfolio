@@ -159,13 +159,13 @@ class CheckoutSectionForm extends Component {
         }
     }
 
-    onStripeResponse(paymentMethod, status, token_id) {
+    onStripeResponse(paymentMethod, status, token_id, errorMessage) {
         this.setState({
             paymentMethod: paymentMethod
         });
         if (status === "ERROR") {
             this.setState({
-                error: "Error al validar la tarjeta de crédito",
+                error: errorMessage ? errorMessage : "Error al validar la tarjeta de crédito",
                 buttonFinishLoading: false,
                 buttonPayLoading: false,
             });
