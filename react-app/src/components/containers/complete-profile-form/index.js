@@ -14,11 +14,9 @@ class CompleteProfileForm extends Component {
     constructor(props) {
         super(props);
 
-        this.session = new Session();
-
         this.state = {
             fullName: "",
-            email: this.session.getSession().email,
+            email: this.hasEmail() ? new Session().getSession().email : "",
             favCelebrities: [],
             dialCode: "",
             cellphoneNumber: "",
@@ -55,7 +53,12 @@ class CompleteProfileForm extends Component {
     hasEmail(){
         const session = new Session();
         if (session.getSession()) {
-            return session.getSession().email !== "" && session.getSession().email !== null;
+            const email = session.getSession().email;
+            if(email === null){
+                return false;
+            }else{
+                return email !== "" && email !== null && !email.includes("myemail@");
+            }
         }
         return false
     }
