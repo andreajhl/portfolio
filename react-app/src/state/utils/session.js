@@ -73,7 +73,6 @@ export class Session {
             if (this.getSession()) {
                 logged = "si";
                 if (this.getSession().status > 0) {
-
                     const session = this.getSession();
                     if (session) {
                         if (this.utcSecondsToDatetime(session.exp) >= new Date()) {
@@ -82,8 +81,6 @@ export class Session {
                             this.removeSession();
                         }
                     }
-
-
                 }
             }
         }catch (e) {
@@ -108,5 +105,12 @@ export class Session {
             return true;
         }
         return false;
+    }
+
+    isDummy = () => {
+        if (this.getSession()) {
+            return this.getSession().status === 0;
+        }
+        return true;
     }
 }

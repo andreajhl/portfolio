@@ -44,6 +44,7 @@ class SignInWithWhatsAppForm extends Component {
 
     sendSMSSecurityCode(e) {
         if (!this.props.sendSMSSecurityCodeLoading) {
+
             this.props.sendSMSSecurityCode({
                 ...getUTMs(),
                 countryAlpha3Code: this.state.countryAlpha3Code,

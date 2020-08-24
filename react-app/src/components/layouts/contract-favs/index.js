@@ -55,7 +55,7 @@ class ContractFavsLayout extends Component {
                 })
 
         }else{
-            localStorage.setItem("redirectTo", window.location.pathname);
+            localStorage.setItem("finalRedirect", window.location.pathname);
             history._pushRoute(ROUTING_PATHS.SIGN_UP_PATH)
         }
     }

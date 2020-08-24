@@ -7,23 +7,11 @@ history.listen(() => {
 });
 
 history._pushRoute = (route) => {
-
     GTM.tagManagerDataLayer(
         "PAGE_VIEW",
         history.location
     );
-
-    let search = history.location.search;
-
-    const redirectTo = localStorage.getItem("redirectTo");
-
-    if (redirectTo && route === "/celebrities/" || redirectTo && route === "/") {
-        localStorage.removeItem("redirectTo");
-        history.push(redirectTo);
-    } else {
-        history.push(route);
-    }
-
+    history.push(route);
 };
 
 export {history};

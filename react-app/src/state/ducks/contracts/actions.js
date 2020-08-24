@@ -98,12 +98,12 @@ export const AssociateContract = hash => {
         .then(res => {
           if ("status" in res.data && res.data.status === "ERROR") {
             // Other actions
-            localStorage.removeItem("redirectPaymentTo");
+            localStorage.removeItem("redirectTo");
             localStorage.removeItem("hash");
             history._pushRoute(ROUTING_PATHS.HOME_PATH);
           } else {
             // Other actions
-            localStorage.removeItem("redirectPaymentTo");
+            localStorage.removeItem("redirectTo");
             localStorage.removeItem("hash");
           }
         })
@@ -168,7 +168,7 @@ export const saveClientContract = contractData => {
 
             const session = new Session();
             session.setSession(res.data.data.sessionToken);
-            localStorage.setItem("redirectPaymentTo", ROUTING_PATHS.CLIENT_HIRINGS);
+            localStorage.setItem("finalRedirect", ROUTING_PATHS.CLIENT_HIRINGS);
             localStorage.setItem("hash", res.data.data.contractHash);
 
             history._pushRoute(

@@ -9,6 +9,7 @@ import * as GTM from "../../../state/utils/gtm";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import apiService from "../../../state/utils/apiService";
+import * as ROUTE_PATHS from "../../../routing/Paths";
 
 class SignInWithCellphoneForm extends Component {
 

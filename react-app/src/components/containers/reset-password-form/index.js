@@ -60,7 +60,7 @@ class ResetPasswordForm extends Component {
             this.props.validateEmailSecurityCode({
                 email: this.state.email,
                 securityCode: this.state.securityCode
-            }, PATHS.CHANGE_PASSWORD_PATH)
+            })
         }
     }
 
@@ -81,6 +81,9 @@ class ResetPasswordForm extends Component {
                                 onChange={this.handleInput}
                                 value={this.state.email}
                             />
+                            <div className="instructions">
+                                Enviaremos un correo con un código de confirmación
+                            </div>
                             {
                                 this.props.resetPasswordError
                                     ?
@@ -105,16 +108,13 @@ class ResetPasswordForm extends Component {
 
                                 }
                             </button>
-                            <p className="instructions">
-                                Enviaremos un correo con un código de confirmación
-                            </p>
                             <div className="login-type-button" onClick={this.goToLogin}>
                                 Volver a Iniciar Sesión
                             </div>
                         </>
                         :
                         <>
-                            <h6>Ingresar código</h6>
+                            <h6>Ingresar código que enviamos a tu correo electrónico</h6>
                             <input
                                 autoFocus={true}
                                 type="number"

@@ -38,7 +38,7 @@ class ContractPendingPayPage extends Component {
   }
 
   goToCreateAccount() {
-    localStorage.setItem("redirectTo", PATHS.CLIENT_HIRINGS);
+    localStorage.setItem("finalRedirect", PATHS.CLIENT_HIRINGS);
     if (this.props.contractCreated.token) {
       this.session.setSession(this.props.contractCreated.token);
       history._pushRoute(PATHS.CREATE_PASSWORD_PATH);

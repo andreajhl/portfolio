@@ -77,12 +77,12 @@ class CelebritiesPage extends Component {
             }
             queryParams["currentPage"] = 1;
             this.props.updateQueryParams(queryParams);
-            this.props.history.push({
-                pathname: this.props.history.pathname,
-                search: jsonToQueryString(queryParams),
-                metaTagTitle: "Famosos.com - Famosos de " + nextProps.selectedCountry.name,
-                metaTagDescription: "Encuentra aqui los Famosos de " + nextProps.selectedCountry.name + " para grabar tu video personalizado. Reserva tu video y disfruta de experiencias únicas.",
-            });
+            // this.props.history.push({
+            //     pathname: this.props.history.pathname,
+            //     search: jsonToQueryString(queryParams),
+            //     metaTagTitle: "Famosos.com - Famosos de " + nextProps.selectedCountry.name,
+            //     metaTagDescription: "Encuentra aqui los Famosos de " + nextProps.selectedCountry.name + " para grabar tu video personalizado. Reserva tu video y disfruta de experiencias únicas.",
+            // });
         }
         if (nextProps.selectedCategory.id !== this.props.selectedCategory.id) {
             const categoryId = nextProps.selectedCategory.id > 0 ? nextProps.selectedCategory.id : null;
@@ -102,12 +102,12 @@ class CelebritiesPage extends Component {
             }
             queryParams["currentPage"] = 1;
             this.props.updateQueryParams(queryParams);
-            this.props.history.push({
-                pathname: this.props.history.pathname,
-                search: jsonToQueryString(queryParams),
-                // metaTagTitle: "Famosos.com - " + nextProps.selectedCategory.name,
-                // metaTagDescription: "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
-            });
+            // this.props.history.push({
+            //     pathname: this.props.history.pathname,
+            //     search: jsonToQueryString(queryParams),
+            //     // metaTagTitle: "Famosos.com - " + nextProps.selectedCategory.name,
+            //     // metaTagDescription: "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
+            // });
         }
         if (queryParams.page === 1 && nextProps.isLoading) {
             this.scrollDiv.current.scrollTop = 0;

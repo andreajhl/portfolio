@@ -6,6 +6,8 @@ import 'react-tagsinput/react-tagsinput.css'
 import {Session} from "../../../state/utils/session";
 import {history} from "../../../routing/History";
 import {CelebritiesMultiselect} from "../../layouts/celebrities-multiselect"; // If using WebPack and style-loader.
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class CompleteProfileForm extends Component {
 
@@ -16,7 +18,7 @@ class CompleteProfileForm extends Component {
 
         this.state = {
             fullName: "",
-            email: "",
+            email: this.session.getSession().email,
             favCelebrities: []
         };
 
@@ -52,6 +54,10 @@ class CompleteProfileForm extends Component {
         return false
     }
 
+    // onBirthDateChange = (date) => {
+    //     console.log("date", date);
+    // };
+
     render() {
         const search = history.location.search;
         const params = new URLSearchParams(search);
@@ -84,9 +90,16 @@ class CompleteProfileForm extends Component {
                         </>
                         : null
                 }
+                {/*<h6>Fecha de nacimiento</h6>*/}
+                {/*<DatePicker*/}
+                {/*    closeOnScroll={true}*/}
+                {/*    className="form-control mb-3"*/}
+                {/*    onChange={this.onBirthDateChange}*/}
+                {/*/>*/}
                 <h6>¿Cuáles son tus Famosos favoritos? (Opcional)</h6>
                 <CelebritiesMultiselect
                     currentValue={this.state.favCelebrities ? this.state.favCelebrities : []}
+                    className="form-control mb-3"
                     onChange={this.handleChange}
                 />
                 {

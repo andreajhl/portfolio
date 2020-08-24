@@ -122,10 +122,10 @@ class HiringsCardSectionLayout extends Component {
 
     renderEmptyCard() {
         if (!this.props.isLoading) {
-            return (<div className="col-5 mt-2 pt-2 text-center">
+            return (<div className="col-sm-10 col-md-5 mt-2 pt-2 text-center">
                 <br/>
-                <img width="70%"
-                     style={{opacity: "0.3"}}
+                <img width="200px"
+                     style={{opacity: "0.2"}}
                      src="/assets/img/sad-face-in-rounded-square.svg" alt="sad-face"/>
                 <br/>
                 <h4 className="text-muted mt-3">Aún no has realizado una contratación</h4>

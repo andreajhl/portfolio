@@ -6,12 +6,12 @@ import * as PATHS from "../../../routing/Paths";
 class SessionRequiredToCommentLayout extends Component {
 
     goToSignIn() {
-        localStorage.setItem("redirectTo", history.location.pathname);
+        localStorage.setItem("finalRedirect", history.location.pathname);
         history._pushRoute(PATHS.SIGN_IN_PATH);
     }
 
     goToSignUp() {
-        localStorage.setItem("redirectTo", history.location.pathname);
+        localStorage.setItem("finalRedirect", history.location.pathname);
         history._pushRoute(PATHS.SIGN_UP_PATH);
     }
 

@@ -19,7 +19,7 @@ class NewsLetterModal extends Component {
     }
 
     handleCloseModal = () => {
-        localStorage.setItem("show-newsletter-modal", "");
+        localStorage.setItem("show-newsletter-modal", "false");
         this.setState({
             ...this.state,
             showModal: false

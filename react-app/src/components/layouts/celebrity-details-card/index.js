@@ -4,6 +4,8 @@ import * as GTM from "../../../state/utils/gtm";
 import {history} from "../../../routing/History";
 import {ContractPriceLayout} from "../contract-price";
 import {connect} from "react-redux";
+import {Session} from "../../../state/utils/session";
+import * as PATHS from "../../../routing/Paths";
 
 class CelebrityDetailsCardLayout extends Component {
 
@@ -17,8 +19,7 @@ class CelebrityDetailsCardLayout extends Component {
         };
 
         this.handleImageLoaded = this.handleImageLoaded.bind(this);
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+        this.goToCreateContract = this.goToCreateContract.bind(this);
         this.playDesktopVideo = this.playDesktopVideo.bind(this);
         this.playMobileVideo = this.playMobileVideo.bind(this);
         this.goToCause = this.goToCause.bind(this);
@@ -32,24 +33,18 @@ class CelebrityDetailsCardLayout extends Component {
         this.setState({imageLoaded: true});
     }
 
-    openModal() {
+    goToCreateContract() {
         GTM.tagManagerDataLayer(
             "CLICK_ON_CONTRACT_BUTTON",
             this.props.celebrity
         );
-        this.setState({
-            showContractModal: true
-        }, () => {
+        const session = new Session();
+        if (session.isDummy()) {
+            localStorage.setItem("finalRedirect", "/" + this.props.username + "/contratar");
+            history._pushRoute(PATHS.SIGN_IN_PATH);
+        } else {
             history._pushRoute(this.props.username + "/contratar");
-        });
-    }
-
-    closeModal() {
-        this.setState({
-            showContractModal: false
-        }, () => {
-            history._pushRoute(this.props.username + "?modalOpened=false");
-        });
+        }
     }
 
     playDesktopVideo() {
@@ -188,7 +183,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                 {
                                                     this.returnContractPrice() > 0
                                                         ?
-                                                        <div className="mt-3 mb-3" onClick={this.openModal}>
+                                                        <div className="mt-3 mb-3" onClick={this.goToCreateContract}>
                                                             <button className="btn  btn-sm f-contract-button">
                                                                 Comprar Video Personalizado por <ContractPriceLayout
                                                                 classes={"text-white font-weight-bold"}
@@ -374,7 +369,7 @@ class CelebrityDetailsCardLayout extends Component {
                                 {
                                     this.returnContractPrice() > 0
                                         ?
-                                        <div className="mt-3 mb-3" onClick={this.openModal}>
+                                        <div className="mt-3 mb-3" onClick={this.goToCreateContract}>
                                             <button className="btn  btn-sm f-contract-button">
                                                 Comprar Video Personalizado por <ContractPriceLayout
                                                 classes={"text-white font-weight-bold"}
@@ -392,7 +387,7 @@ class CelebrityDetailsCardLayout extends Component {
                                 {this.returnSecondaryButton()}
                             </div>
                         </div>
-                        {/*<div className="footer-btn my-auto p-4" onClick={this.openModal}>*/}
+                        {/*<div className="footer-btn my-auto p-4" onClick={this.goToCreateContract}>*/}
                         {/*    <small className="ml-0 float-left text-uppercase text-white font-weight-bold">*/}
                         {/*        Comprar video por <ContractPriceLayout*/}
                         {/*        classes={"text-white font-weight-bold"}*/}

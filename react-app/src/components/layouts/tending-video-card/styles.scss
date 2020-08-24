@@ -2,8 +2,11 @@
 
 .TrendingVideoCardLayout {
 
+  max-width: 400px !important;
+  margin:  0 auto;
+
   .f-card {
-    width: 100vw;
+    width: 100%;
     border: solid 0px !important;
     border-radius: 0px !important;
   }
@@ -57,7 +60,7 @@
 
   .video {
     position: relative;
-    padding-top: 100vw;
+    padding-top: 100%;
 
     .play-pause {
       z-index: 1;

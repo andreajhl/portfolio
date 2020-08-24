@@ -117,9 +117,7 @@ class CreateContractForm extends Component {
 
 
     render() {
-
         const contractData = this.state.contractData;
-
         return (
             <div className="CreateContractForm">
 
