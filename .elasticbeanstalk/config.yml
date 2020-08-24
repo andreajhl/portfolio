@@ -4,7 +4,7 @@ branch-defaults:
   duvan:
     environment: FamososFrontend-Production
   new-form:
-    environment: FamososFrontend-Testing
+    environment: FamososFrontend-Production
 deploy:
   artifact: zip.zip
 environment-defaults:
