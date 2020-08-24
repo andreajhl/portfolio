@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {PageContainer} from "../../layouts";
+import {NavbarSectionLayout, PageContainer} from "../../layouts";
 import {connect} from "react-redux";
 import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
@@ -37,6 +37,7 @@ class PaymentMethodsPage extends Component {
                 showInputSearchSm={false}
                 showLogin={false}
                 showFooter={false}
+                hideControls={true}
             >
               {this.state.showContractPayedSection ? (
                   <>>= 10</>

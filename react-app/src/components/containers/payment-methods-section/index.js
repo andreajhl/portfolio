@@ -21,7 +21,7 @@ class PaymentMethodsSection extends Component {
         this.stripeCardForm = React.createRef();
     }
 
-    componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): void {
+    componentWillUpdate(nextProps, nextState, nextContext): void {
         if (nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to) {
             this.setState({
                 currency: nextProps.currencyExchangeData.to,
@@ -56,7 +56,7 @@ class PaymentMethodsSection extends Component {
         if (this.props.paymentGateways) {
             return (
                 <>
-                    {this.props.paymentGateways.map((pg: [], index) => {
+                    {this.props.paymentGateways.map((pg, index) => {
                         return (
                             <div key={"paymentGateway_" + index}>
                                 {this.loopMethods(pg["paymentMethods"])}
@@ -177,7 +177,7 @@ class PaymentMethodsSection extends Component {
         return (
             <div className="PaymentMethodsSection">
                 <h6 className="title font-weight-bold">
-                    2. Elige un método de pago.
+                    Elige un método de pago:
                     <small className="ml-1 text-danger">*</small>
                 </h6>
                 <div className={"payment-types f-rounded"} style={this.props.isLoading ? {opacity: "0.2"} : {}}>
@@ -203,7 +203,7 @@ PaymentMethodsSection.defaultProps = {
 
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     isLoading: state.payments.fetchPaymentGatewaysReducer.loading,
     isCompleted: state.payments.fetchPaymentGatewaysReducer.completed,
     paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.data,

@@ -3,33 +3,13 @@ import "./styles.scss";
 import {connect} from "react-redux";
 import {PageContainer} from "../../layouts";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
-import {Col, Form, Row} from "react-bootstrap";
 import * as GTM from "../../../state/utils/gtm";
-import {contractOperations} from "../../../state/ducks/contracts";
+import {CreateContractForm} from "../../containers";
+import MetaTags from "react-meta-tags";
 
 class CreateContractPage extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            contract_data: {
-                celebrity: this.props.celebrity.id,
-                contractType: 1,
-                deliveryFrom: "",
-                deliveryTo: "",
-                deliveryType: 1,
-                deliveryContact: "",
-                instructions: "",
-                price: 0,
-                isPublic: true
-            },
-            errors: []
-        };
-        this.handleValue = this.handleValue.bind(this);
-        this.handleIsPublic = this.handleIsPublic.bind(this);
-        this.createContract = this.createContract.bind(this);
-
-        this.childRef = React.createRef();
     }
 
     componentDidMount() {
@@ -39,391 +19,64 @@ class CreateContractPage extends Component {
         );
     }
 
-    handleValue(event) {
-        const contract_data = this.state.contract_data;
-        if (event.target.name === "contractType") {
-            contract_data[event.target.name] = parseInt(event.target.value);
-        } else {
-            contract_data[event.target.name] = event.target.value;
-        }
-        this.setState({
-            contract_data: contract_data
-        });
-    }
-
-    contractTypeLabelClick(value) {
-        const contract_data = this.state.contract_data;
-        contract_data["contractType"] = value;
-        this.setState({
-            contract_data: contract_data
-        });
-    }
-
-    handleIsPublic() {
-        const contract_data = this.state.contract_data;
-        contract_data.isPublic = !contract_data.isPublic;
-        this.setState({
-            contract_data: contract_data
-        });
-    }
-
-    createContract() {
-        if (!this.props.isLoading || !this.state.tokenizeCardLoading) {
-            const contract_data = this.state.contract_data;
-
-            contract_data.celebrityId = this.props.celebrity.id;
-            const res = this.props.celebrity.contractTypes.find(x => x.contractType === 1);
-            if (res) {
-                contract_data.price = res.price;
-            }
-
-            const errors = [];
-            if (contract_data.contractType === 1 && !contract_data.deliveryFrom) {
-                errors.push("deliveryFrom");
-            }
-            if (!contract_data.deliveryTo) {
-                errors.push("deliveryTo");
-            }
-            if (!contract_data.deliveryContact || !contract_data.deliveryContact.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-                errors.push("deliveryContact");
-            }
-            if (!contract_data.instructions) {
-                errors.push("instructions");
-            }
-            if (contract_data.instructions.length > 300) {
-                errors.push("instructions_300");
-            }
-            this.setState({errors});
-            if (errors.length) {
-                return false;
-            } else {
-                GTM.tagManagerDataLayer("CONTRACT_CREATED", contract_data);
-                this.setState({contract_data}, () => {
-                    this.props.saveClientContract(this.state.contract_data);
-                });
-            }
-        }
-    }
-
     componentWillMount() {
-        if (this.props.match.params.celebrity_username) {
-            this.props.getCelebrity(this.props.match.params.celebrity_username);
+        if (this.props.match.params["celebrity_username"]) {
+            this.props.getCelebrity(this.props.match.params["celebrity_username"]);
         }
     }
-
-    showErrorMessage(field) {
-        if (field === "instructions_300") {
-            return (
-                <>
-                    {this.state.errors.includes(field) && (
-                        <Form.Text className="text-danger">
-                            El campo contiene mas de 300 caracteres
-                        </Form.Text>
-                    )}
-                </>
-            );
-        } else {
-            return (
-                <>
-                    {this.state.errors.includes(field) && (
-                        <Form.Text className="text-danger">Campo obligatorio</Form.Text>
-                    )}
-                </>
-            );
-        }
-    }
-
-    renderFromTo() {
-        switch (this.state.contract_data.contractType) {
-            case 1:
-                return (
-                    <Row>
-                        <Col sm="4">
-                            <Form.Group>
-                                <Form.Label>
-                                    <b>Para:</b>
-                                </Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Anita"
-                                    name="deliveryTo"
-                                    value={this.state.contract_data.deliveryTo}
-                                    onChange={this.handleValue}
-                                />
-                                {this.showErrorMessage("deliveryTo")}
-                            </Form.Group>
-                        </Col>
-                        <Col sm="4">
-                            <Form.Group>
-                                <Form.Label>
-                                    <b>De:</b>
-                                </Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Duvan"
-                                    name="deliveryFrom"
-                                    value={this.state.contract_data.deliveryFrom}
-                                    onChange={this.handleValue}
-                                />
-                                {this.showErrorMessage("deliveryFrom")}
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                );
-            case 2:
-                return (
-                    <Row>
-                        <Col sm="4">
-                            <Form.Group>
-                                <Form.Label>
-                                    <b>Mi nombre es:</b>
-                                </Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Duvan"
-                                    name="deliveryTo"
-                                    value={this.state.contract_data.deliveryTo}
-                                    onChange={this.handleValue}
-                                />
-                                {this.showErrorMessage("deliveryTo")}
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                );
-            default:
-                return
-        }
-    }
-
-    sendBusinessRequestGTMEvent = () => {
-        GTM.tagManagerDataLayer("BUSINESS_REQUEST", this.props.celebrity);
-        // window.open("https://wa.me/573212493718?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?"), "_blank")
-        window.open("https://landing-business.famosos.com/form", "_blank")
-    };
 
     render() {
         return (
             <>
+
+                {
+                    this.props.celebrity.id ?
+                        <MetaTags>
+                            <title>Famosos.com - Comprar video personalizado de {this.props.celebrity.fullName}</title>
+                            <meta name="description"
+                                  content={"Comprar video personalizado de " + this.props.celebrity.fullName + " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."}/>
+                        </MetaTags>
+                        :
+                        <div></div>
+                }
+
+
                 <PageContainer
                     showFooter={false}
                     showLogin={false}
                     showInputSearchSm={false}
                     showSearchWeb={false}
                     fetchCelebrities={false}
+                    hideControls={true}
                 >
-                    <div className="container CreateContractPage" style={{zoom: "80%"}}>
-                        <div className="row centerForm p-4">
-                            <div className="col-12 col-md-8">
-                                <div className="mb-4 titleMessage">
-                                    <small className="text-white">
-                                        Video personalizado de {this.props.celebrity.fullName}
-                                    </small>
+                    <div className={"CreateContractPage row mx-auto my-auto"}>
+                        {/* FORM */}
+                        <div className={"col-sm-12 col-lg-6 mx-auto my-auto p-0 m-0"}>
+                            <CreateContractForm
+                                celebrityId={this.props.celebrity.id}
+                                celebrityFullName={this.props.celebrity.fullName}
+                                celebrityUsername={this.props.celebrity.username}
+                                celebrityAvatar={this.props.celebrity.avatar}
+                            />
+                        </div>
+                        {/* STEPS COMMUNICATION */}
+                        <div className={"col-sm-12 col-md-6 col-lg-6 mx-auto my-auto p-4 text-center"}>
+                            <div className={"steps-image ml-2 mb-2 mx-auto my-auto"}>
+                                <div className={"text-left"}>
+                                    <i className={"ml-2 fas fa-question-circle"} style={{fontSize: "20px"}}/>
                                 </div>
-
-                                <Form>
-                                    {/*CONTRACT TYPE*/}
-                                    <Form.Group>
-                                        <Form.Label>
-                                            <b>¿Para quién es este video?</b>
-                                        </Form.Label>
-                                        <Form.Check type="radio">
-                                            <Form.Check.Input
-                                                type="radio"
-                                                name="contractType"
-                                                value={1}
-                                                checked={this.state.contract_data.contractType === 1}
-                                                onChange={this.handleValue}
-                                            />
-                                            <Form.Check.Label
-                                                onClick={this.contractTypeLabelClick.bind(this, 1)}
-                                            >
-                                                Para un amigo o familiar
-                                            </Form.Check.Label>
-                                        </Form.Check>
-                                        <Form.Check type="radio">
-                                            <Form.Check.Input
-                                                type="radio"
-                                                name="contractType"
-                                                value={2}
-                                                checked={this.state.contract_data.contractType === 2}
-                                                onChange={this.handleValue}
-                                            />
-                                            <Form.Check.Label
-                                                onClick={this.contractTypeLabelClick.bind(this, 2)}
-                                            >
-                                                Para mi
-                                            </Form.Check.Label>
-                                        </Form.Check>
-                                        <Form.Check type="radio">
-                                            <Form.Check.Input
-                                                type="radio"
-                                                name="contractType"
-                                                value={3}
-                                                checked={this.state.contract_data.contractType === 3}
-                                                onChange={this.handleValue}
-                                            />
-                                            <Form.Check.Label
-                                                onClick={this.contractTypeLabelClick.bind(this, 3)}
-                                            >
-                                                Para mi marca o negocio <span className="new-label f-rounded">¡Nueva funcionalidad!</span>
-                                            </Form.Check.Label>
-                                        </Form.Check>
-                                    </Form.Group>
-                                    {/*END CONTRACT TYPE*/}
-
-                                    {/*FROM TO*/}
-                                    {this.renderFromTo()}
-                                    {/*END FROM TO*/}
-
-                                    {
-                                        this.state.contract_data.contractType <= 2
-                                            ?
-                                            <>
-                                                {/*INSTRUCTIONS*/}
-                                                <Form.Group>
-                                                    <Form.Label>
-                                                        <b>
-                                                            Mis instrucciones para {this.props.celebrity.fullName}{" "}
-                                                            son:
-                                                        </b>
-                                                    </Form.Label>
-                                                    <Form.Control
-                                                        as="textarea"
-                                                        rows="3"
-                                                        placeholder={
-                                                            this.state.contract_data.contractType === 1
-                                                                ? "Ejemplo: Mi nombre es Duvan. ¡Mi hermana Anita es tu fan!. Ella está cumpliendo años el 12 de agosto y quisiera que le desearas un Feliz Cumpleaños de mi parte."
-                                                                : "Escribe aquí tus instrucciones"
-                                                        }
-                                                        name="instructions"
-                                                        value={this.state.contract_data.instructions}
-                                                        onChange={this.handleValue}
-                                                    />
-                                                    <Form.Text className="text-muted">
-                                                        Máximo 300 caracteres
-                                                    </Form.Text>
-                                                    {this.showErrorMessage("instructions")}
-                                                    {this.showErrorMessage("instructions_300")}
-                                                </Form.Group>
-                                                {/*END INSTRUCTIONS*/}
-
-                                                {/*DELIVERY MAIL*/}
-                                                <Form.Group>
-                                                    <Form.Label>
-                                                        <b>Correo electrónico de notificación:</b>
-                                                        <i className="fa fa-info-circle customTooltip ml-4">
-                                                            <span className="tooltipText">
-                                                                A este correo electrónico te noficaremos cuando el video esté listo.
-                                                            </span>
-                                                        </i>
-                                                    </Form.Label>
-                                                    <Form.Control
-                                                        type="email"
-                                                        placeholder="correo@dominio.com"
-                                                        name="deliveryContact"
-                                                        value={this.state.contract_data.deliveryContact}
-                                                        onChange={this.handleValue}
-                                                    />
-                                                    {this.showErrorMessage("deliveryContact")}
-                                                </Form.Group>
-                                                {/*END DELIVERY MAIL*/}
-
-                                                {/* IS PUBLIC  */}
-                                                <div className="mt-1">
-                                                    <Form.Check
-                                                        checked={this.state.contract_data.isPublic}
-                                                        onChange={this.handleIsPublic}
-                                                        type="switch"
-                                                        id="custom-switch"
-                                                        label="Publicar este video en Famosos.com"
-                                                    />
-                                                </div>
-                                                {/* END IS PUBLIC */}
-
-                                                <br/>
-
-                                                <div className="text-center mx-auto" style={{maxWidth: "230px"}}>
-                                                    {this.state.errors.length ? (
-                                                        <div className={"mb-2"}>
-                                                            <small className="text-danger">
-                                                                Tienes campos obligatorios por llenar
-                                                            </small>
-                                                        </div>
-                                                    ) : null}
-                                                    {this.props.saveClientContractError ? (
-                                                        <div className={"mb-2"}>
-                                                            <small className="text-danger">
-                                                                Error
-                                                            </small>
-                                                        </div>
-                                                    ) : null}
-                                                    {this.state.tokenizeCardError ? (
-                                                        <div className={"mb-2"}>
-                                                            <small className="text-danger">
-                                                                {this.state.tokenizeCardError}
-                                                            </small>
-                                                        </div>
-                                                    ) : null}
-                                                    {
-                                                        this.props.isLoading
-                                                            ?
-                                                            <div className="mx-auto text-center text-dark">
-                                                                Enviando...
-                                                            </div>
-                                                            :
-                                                            <button
-                                                                disabled={
-                                                                    this.props.isLoading || this.state.tokenizeCardLoading
-                                                                }
-                                                                type={"button"}
-                                                                className={"btn f-contract-button text-align-center"}
-                                                                onClick={this.createContract}
-                                                            >
-                                                                Continuar
-                                                                <i className="fa fa-arrow-right"/>
-                                                            </button>
-                                                    }
-
-                                                    <br/>
-                                                    <div className="mt-4 pt-2 mx-auto text-center" style={{width: "230px"}}>
-                                                        <img width="100%" src={"/assets/img/pago-seguro-Famosos.png"}
-                                                             alt={"pago-seguro"}/>
-                                                    </div>
-                                                    <br/>
-                                                    <br className={"d-block d-md-none"}/>
-                                                </div>
-                                            </>
-                                            :
-                                            <>
-                                                <img
-                                                    width="100%"
-                                                    src="/assets/img/famosos_licencia.png"
-                                                    alt="famosos_licencia"
-                                                />
-                                                <div className="text-center mx-auto" style={{maxWidth: "230px"}}>
-                                                    {/*<a href={"https://wa.me/17865207235?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?")}*/}
-                                                    <button
-                                                        className={"btn f-contract-button text-align-center"}
-                                                        onClick={this.sendBusinessRequestGTMEvent}
-                                                        type={"button"}
-                                                    >
-                                                        Continuar
-                                                        <i className="fa fa-arrow-right"/>
-                                                    </button>
-                                                </div>
-                                            </>
-                                    }
-                                </Form>
+                                <img
+                                    width="100%"
+                                    className={"create-contract-steps"}
+                                    src={"/assets/img/create-contract-steps.svg"}
+                                    alt={"create-contract-steps"}
+                                />
                             </div>
                         </div>
-                        <div className="d-none d-md-block">
-                            <img width="100%" src="/assets/img/steps_desktop_hire.svg"/>
-                        </div>
                     </div>
+
+
                 </PageContainer>
-                <div className="d-block d-md-none">
-                    <img width="100%" src="/assets/img/steps_mobile_hire.svg"/>
-                </div>
             </>
         );
     }
@@ -431,21 +84,17 @@ class CreateContractPage extends Component {
 
 // Set defaultProps
 CreateContractPage.defaultProps = {
-    contract: {celebrity: {}}
 };
 
 // mapStateToProps
 const mapStateToProps = state => ({
     isLoading: state.celebrities.getCelebrityReducer.loading,
     celebrity: state.celebrities.getCelebrityReducer.data,
-    saveClientContractError:
-    state.contracts.saveClientContractReducer.error_data.error
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
     getCelebrity: celebrityOperations.get,
-    saveClientContract: contractOperations.saveClientContract
 };
 
 // Export Class

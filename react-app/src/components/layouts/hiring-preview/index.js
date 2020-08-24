@@ -7,6 +7,7 @@ import {Session} from "../../../state/utils/session";
 import {ContractFavsLayout} from "../contract-favs";
 import {ReviewCreatorLayout} from "../review-creator";
 import {ContractCommentSectionLayout} from "../contract-comments-section";
+import MetaTags from "react-meta-tags";
 
 class HiringPreviewLayout extends Component {
 
@@ -151,6 +152,21 @@ class HiringPreviewLayout extends Component {
         return (
             <div className={"HiringPreviewLayout"}>
 
+                {
+                    this.props.contract.celebrityData.username
+                    &&
+                    <div>
+                        <MetaTags>
+                            <title>Famosos.com - {this.props.contract.celebrityData.fullName}</title>
+                            <meta name="description"
+                                  content={"Perfil oficial de " + this.props.contract.celebrityData.fullName + " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."}/>
+                            <meta property="og:title"
+                                  content={"Famosos.com - " + this.props.contract.celebrityData.fullName}/>
+                            <meta property="og:url"
+                                  content={"https://famosos.com/" + this.props.contract.celebrityData.username}/>
+                        </MetaTags>
+                    </div>
+                }
 
                 <div className={"loading-container mx-auto " + (!this.state.readyState ? " on " : " off ")}>
                     <div className="stage">

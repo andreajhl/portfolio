@@ -10,7 +10,6 @@ class LoadingPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // readyState: false,
             readyState: true,
         };
     }
@@ -21,20 +20,18 @@ class LoadingPage extends Component {
         //     this.setState({
         //         readyState: true,
         //     })
-        // }, 800);
+        // }, 2600);
         // // CHECK VISIT
         // const session = new Session();
         // if (session.isFirstVisit()) {
         //     setTimeout(() => {
         //         window.location.href = "https://landing.famosos.com";
-        //     }, 1200)
+        //     }, 3000)
         // } else {
         //     setTimeout(() => {
         //         history._pushRoute(PATHS.HOME_PATH)
-        //     }, 1200)
+        //     }, 3000)
         // }
-
-
         const session = new Session();
         if (session.isFirstVisit()) {
             window.location.href = "https://landing.famosos.com";

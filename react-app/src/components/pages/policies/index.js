@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {PageContainer} from "../../layouts/page-container";
 import "./styles.scss";
 import * as GTM from "../../../state/utils/gtm";
+import MetaTags from "react-meta-tags";
 
 
 class PoliciesPage extends Component {
@@ -16,6 +17,12 @@ class PoliciesPage extends Component {
     render() {
         return (
             <div className="PoliciesPage">
+
+                <MetaTags>
+                    <title>Famosos.com - Política de privacidad</title>
+                    <meta name="description" content="Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."/>
+                </MetaTags>
+
                 <PageContainer>
                     <div className="container-text">
                         <h5 className="font-weight-bold">POLÍTICA DE PRIVACIDAD “FAMOSOS INC”, PRIMERO (1º.) DE OCTUBRE DE 2019.</h5>

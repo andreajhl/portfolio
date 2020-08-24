@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
-import FamososForBusinessModal from "../../containers/famosos-for-business-modal";
 import * as GTM from "../../../state/utils/gtm";
 import {jsonToQueryString} from "../../../state/utils/apiService";
 import {NewsLetterModal} from "../../containers/newsletter-modal";
+import MetaTags from "react-meta-tags";
 
 
 class CelebritiesPage extends Component {
@@ -18,6 +18,8 @@ class CelebritiesPage extends Component {
         this.state = {
             showInputSearchSm: false,
             showFFBModal: localStorage.getItem("ffbmodal") === null,
+            metaTagTitle: "Famosos.com - Todos los Famosos",
+            metaTagDescription: "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
         };
         this.scrollDiv = createRef();
         this.openModal = this.openModal.bind(this);
@@ -59,6 +61,10 @@ class CelebritiesPage extends Component {
         if (nextProps.selectedCountry.id !== this.props.selectedCountry.id) {
             const categoryId = this.props.selectedCategory.id;
             const countryId = nextProps.selectedCountry.id > 0 ? nextProps.selectedCountry.id : null;
+
+            console.log("nextProps.selectedCountry", nextProps.selectedCountry);
+
+
             if (countryId) {
                 queryParams["country_id"] = countryId;
             } else {
@@ -73,11 +79,16 @@ class CelebritiesPage extends Component {
             this.props.updateQueryParams(queryParams);
             this.props.history.push({
                 pathname: this.props.history.pathname,
-                search: jsonToQueryString(queryParams)
+                search: jsonToQueryString(queryParams),
+                metaTagTitle: "Famosos.com - Famosos de " + nextProps.selectedCountry.name,
+                metaTagDescription: "Encuentra aqui los Famosos de " + nextProps.selectedCountry.name + " para grabar tu video personalizado. Reserva tu video y disfruta de experiencias únicas.",
             });
         }
         if (nextProps.selectedCategory.id !== this.props.selectedCategory.id) {
             const categoryId = nextProps.selectedCategory.id > 0 ? nextProps.selectedCategory.id : null;
+
+            console.log("nextProps.selectedCategory", nextProps.selectedCategory);
+
             const countryId = this.props.selectedCountry.id;
             if (countryId) {
                 queryParams["country_id"] = countryId
@@ -93,7 +104,9 @@ class CelebritiesPage extends Component {
             this.props.updateQueryParams(queryParams);
             this.props.history.push({
                 pathname: this.props.history.pathname,
-                search: jsonToQueryString(queryParams)
+                search: jsonToQueryString(queryParams),
+                // metaTagTitle: "Famosos.com - " + nextProps.selectedCategory.name,
+                // metaTagDescription: "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
             });
         }
         if (queryParams.page === 1 && nextProps.isLoading) {
@@ -139,6 +152,14 @@ class CelebritiesPage extends Component {
         return (
             <>
                 <div className={"CelebritiesPage "}>
+
+                    <div>
+                        <MetaTags>
+                            <title>{this.state.metaTagTitle}</title>
+                            <meta name="description" content={this.state.metaTagDescription}/>
+                        </MetaTags>
+                    </div>
+
                     <PageContainer
                         showFooter={false}
                         applyFetchCelebrities={true}

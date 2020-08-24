@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import "./styles.scss"
 import {contractOperations} from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
+import MetaTags from "react-meta-tags";
 
 class HiringPreviewPage extends Component {
 

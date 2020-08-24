@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {PageContainer} from "../../layouts/page-container";
 import "./styles.scss";
 import * as GTM from "../../../state/utils/gtm";
+import MetaTags from "react-meta-tags";
 
 
 class FaqsPage extends Component {
@@ -16,6 +17,13 @@ class FaqsPage extends Component {
     render() {
         return (
             <div className="PoliciesPage">
+
+                <MetaTags>
+                    <title>Famosos.com - Preguntas frecuentes</title>
+                    <meta name="description" content="¿Qué es Famosos.com? Famosos es una plataforma en dónde puedes comprar video-mensajes de tus famosos favoritos. ¿Cómo puedo comprar un video?"/>
+                </MetaTags>
+
+
                 <PageContainer>
                     <div className="container-text">
                         <h5 className="font-weight-bold">FAQS</h5>

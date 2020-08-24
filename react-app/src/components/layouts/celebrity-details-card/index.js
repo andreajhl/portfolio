@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import "./styles.scss";
-import {ContractModal} from "../../containers";
 import * as GTM from "../../../state/utils/gtm";
 import {history} from "../../../routing/History";
 import {ContractPriceLayout} from "../contract-price";
@@ -13,7 +12,6 @@ class CelebrityDetailsCardLayout extends Component {
 
         this.state = {
             imageLoaded: false,
-            showContractModal: false,
             videoMobilePlayIcon: "fa-play",
             videoDesktopPlayIcon: "fa-play"
         };
@@ -154,6 +152,16 @@ class CelebrityDetailsCardLayout extends Component {
         return null
     };
 
+    returnTurnAroundText = () => {
+        if (this.props.turnaround < 1) {
+            return <span style={{fontSize: "12px"}}>Pocas horas</span>
+        } else if (this.props.turnaround === 1) {
+            return <span>{parseInt(this.props.turnaround)} día</span>
+        } else {
+            return <span>{parseInt(this.props.turnaround)} días</span>
+        }
+    };
+
     render() {
         return (
             <div className="CelebrityDetailsCardLayout mb-2 pb-2">
@@ -217,7 +225,7 @@ class CelebrityDetailsCardLayout extends Component {
                                                 <small className="text-soft-grey font-weight-bold">Categoría</small>
                                             </div>
                                             <div className="col-sm-12 col-md-4 col-lg-4 mb-2">
-                                                <h6 className="font-weight-bold">1 a 7 días</h6>
+                                                <h6 className="font-weight-bold">{this.returnTurnAroundText()}</h6>
                                                 <small className="text-soft-grey font-weight-bold">Respuesta promedio
                                                 </small>
                                             </div>
@@ -335,12 +343,12 @@ class CelebrityDetailsCardLayout extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-8 pt-3 pb-1">
+                            <div className="col-9 pt-3 pb-1">
                                 <h6 className="font-weight-bold title">
                                     {this.props.fullName}
                                 </h6>
                             </div>
-                            <div className="col-5 pr-0 mt-2">
+                            <div className="col-4 pr-0 mt-2">
                                 <small className="title text-warning">
                                     <i className="fa fa-star fa-1x mr-1 text-warning"/>
                                     <i className="fa fa-star fa-1x mr-1 text-warning"/>
@@ -351,14 +359,14 @@ class CelebrityDetailsCardLayout extends Component {
                                 <br/>
                                 <small className="text-soft-grey font-weight-bold subtitle">Calificaciones</small>
                             </div>
-                            <div className="col-7 pl-0 text-right mt-2">
+                            <div className="col-8 pl-0 text-right mt-2">
                                 <div className="">
                                     <small className="text-soft-grey subtitle">
                                         Categoría: <b>{this.props.categoryTitle}</b>
                                     </small>
                                     <br/>
                                     <small className="text-soft-grey subtitle">
-                                        Respuesta promedio: <b>1 a 7 días</b>
+                                        Respuesta promedio: <b>{this.returnTurnAroundText()}</b>
                                     </small>
                                 </div>
                             </div>
@@ -448,11 +456,6 @@ class CelebrityDetailsCardLayout extends Component {
                         :
                         null
                 }
-                <ContractModal
-                    celebrity={this.props.celebrity}
-                    showModal={this.state.showContractModal}
-                    onHide={this.closeModal}
-                />
             </div>
         );
     };
@@ -473,11 +476,12 @@ CelebrityDetailsCardLayout.defaultProps = {
     hashtags: [],
     mainVideo: "",
     socialNetworks: [],
-    contractTypes: []
+    contractTypes: [],
+    turnaround: 7
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     currencyExchangeData: state.payments.currencyExchangeReducer.data
 });
 

@@ -121,6 +121,8 @@ class ContractCheckoutSummary extends Component {
                                 width={"60px"}
                                 alt={"avatar"}
                             />
+                            <br/>
+                            <h6 className="mt-2 font-weight-bold">{this.props.contractData.celebrity_full_name}</h6>
                         </div>
                         <div className="from-to mt-4">
                             <h6>
@@ -204,7 +206,7 @@ class ContractCheckoutSummary extends Component {
                             </div>
                         </div>
                         {this.props.showError && (
-                            <div className="text-center text-danger"
+                            <div className="text-center text-danger mt-3"
                                  style={{fontSize: "12px"}}>{this.props.error}
                             </div>
                         )}
@@ -212,7 +214,7 @@ class ContractCheckoutSummary extends Component {
                             {this.returnActionButton()}
                         </div>
                         <div className="mt-4 mx-auto text-center" style={{width: "230px"}}>
-                            <img width="100%" src={"/assets/img/pago-seguro-Famosos.png"}
+                            <img width="100%" src={"/assets/img/pago-seguro.png"}
                                  alt={"pago-seguro"}/>
                         </div>
                     </div>
@@ -241,7 +243,7 @@ ContractCheckoutSummary.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
     isLoading: state.payments.currencyExchangeReducer.loading,
     currencyExchangeData: state.payments.currencyExchangeReducer.data
 });

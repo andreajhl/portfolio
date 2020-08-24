@@ -10,8 +10,7 @@ class ValidateWhatsAppSecurityCodeForm extends Component {
         super(props);
 
         this.state = {
-            countryAlpha3Code: this.props.sendSMSSecurityCodeData.countryAlpha3Code,
-            countryCellphoneCode: this.props.sendSMSSecurityCodeData.countryCellphoneCode,
+            dialCode: this.props.sendSMSSecurityCodeData.dialCode,
             cellphoneNumber: this.props.sendSMSSecurityCodeData.cellphoneNumber,
             securityCode: ""
         };
@@ -41,8 +40,7 @@ class ValidateWhatsAppSecurityCodeForm extends Component {
     validateSMSSecurityCode(e) {
         if (!this.props.validateSMSSecurityCodeLoading) {
             this.props.validateSMSSecurityCode({
-                countryAlpha3Code: this.state.countryAlpha3Code,
-                countryCellphoneCode: this.state.countryCellphoneCode,
+                dialCode: this.state.dialCode,
                 cellphoneNumber: this.state.cellphoneNumber,
                 securityCode: this.state.securityCode
             });
@@ -58,7 +56,7 @@ class ValidateWhatsAppSecurityCodeForm extends Component {
             <div className="ValidateWhatsAppSecurityCodeForm">
                 <h6>Ingresar código</h6>
                 <div className="mt-4">
-                    <h6>¿Este no es tu número? <b>{this.state.cellphoneNumber}</b></h6>
+                    <h6>¿Este no es tu número? <b>{this.state.dialCode} {this.state.cellphoneNumber}</b></h6>
                     <button className="btn btn-sm btn-outline-primary mb-4"
                             onClick={this.goBack}>
                         Cambiar
