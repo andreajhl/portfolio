@@ -222,7 +222,6 @@ export const validateEmailSecurityCode = (body) => {
                 if (res.data.status === "OK") {
                     handleApiResponseSuccess(dispatch, type, res);
                     dispatch({type: `${type}_COMPLETED`, payload: res});
-                    localStorage.setItem("authRedirect", ROUTE_PATHS.CREATE_PASSWORD_PATH);
                     afterLogin(res);
                 } else {
                     handleApiResponseFailure(dispatch, type, res);

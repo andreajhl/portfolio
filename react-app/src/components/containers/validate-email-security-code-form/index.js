@@ -38,6 +38,7 @@ class ValidateEmailSecurityCodeForm extends Component {
 
     validateEmailSecurityCode(e) {
         if (!this.props.validateEmailSecurityCodeLoading) {
+            localStorage.setItem("authRedirect", PATHS.CREATE_PASSWORD_PATH);
             this.props.validateEmailSecurityCode({
                 email: this.state.email,
                 securityCode: this.state.securityCode

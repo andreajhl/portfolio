@@ -57,6 +57,7 @@ class ResetPasswordForm extends Component {
 
     validateEmailSecurityCode(e) {
         if (!this.props.isLoading) {
+            localStorage.setItem("authRedirect", PATHS.CHANGE_PASSWORD_PATH);
             this.props.validateEmailSecurityCode({
                 email: this.state.email,
                 securityCode: this.state.securityCode

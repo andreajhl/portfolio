@@ -6,8 +6,8 @@ import 'react-tagsinput/react-tagsinput.css'
 import {Session} from "../../../state/utils/session";
 import {history} from "../../../routing/History";
 import {CelebritiesMultiselect} from "../../layouts/celebrities-multiselect"; // If using WebPack and style-loader.
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import PhoneInput from "react-phone-input-2";
 
 class CompleteProfileForm extends Component {
 
@@ -19,7 +19,10 @@ class CompleteProfileForm extends Component {
         this.state = {
             fullName: "",
             email: this.session.getSession().email,
-            favCelebrities: []
+            favCelebrities: [],
+            dialCode: "",
+            cellphoneNumber: "",
+            _phone: ""
         };
 
         this.handleInput = this.handleInput.bind(this);
@@ -50,9 +53,20 @@ class CompleteProfileForm extends Component {
     }
 
     hasEmail(){
-        if (this.props.session) return this.props.session;
+        const session = new Session();
+        if (session.getSession()) {
+            return session.getSession().email !== "" && session.getSession().email !== null;
+        }
         return false
     }
+
+    onCellphoneChange = (dialCode, cellphoneNumber) => {
+        this.setState({
+            ...this.state,
+            dialCode: "+" + dialCode,
+            cellphoneNumber: cellphoneNumber,
+        });
+    };
 
     // onBirthDateChange = (date) => {
     //     console.log("date", date);
@@ -75,7 +89,7 @@ class CompleteProfileForm extends Component {
                     value={this.state.fullName}
                 />
                 {
-                    this.hasEmail()
+                    !this.hasEmail()
                         ?
                         <>
                             <h6>¿Cuál es su correo?</h6>
@@ -88,7 +102,20 @@ class CompleteProfileForm extends Component {
                                 value={this.state.email}
                             />
                         </>
-                        : null
+                        :
+                        <>
+                            <h6>¿Cuál es su número de celular?</h6>
+                            <PhoneInput
+                                enableSearch={true}
+                                country={"us"}
+                                value={this.state._phone}
+                                className="form-control mb-3"
+                                onChange={(phone, val) => {
+                                    this.onCellphoneChange(val["dialCode"], phone.substring(val["dialCode"].length, phone.length));
+                                }}
+                            />
+                            <div className={"mb-3"}/>
+                        </>
                 }
                 {/*<h6>Fecha de nacimiento</h6>*/}
                 {/*<DatePicker*/}
