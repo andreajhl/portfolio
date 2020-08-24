@@ -41,13 +41,15 @@ class AuthFlowPage extends Component {
                                 <h6 className="text-center mb-4">
                                     ¡Hola, para hacer una compra debes ingresar a tu cuenta!
                                 </h6>
-                                <button
-                                    className={"btn btn-primary mb-3"}
-                                    style={{width: "200px"}}
-                                    onClick={this.goToSignUp}
-                                >
-                                    Soy nuevo
-                                </button>
+                                <div>
+                                    <button
+                                        className={"btn btn-primary mb-3"}
+                                        style={{width: "200px"}}
+                                        onClick={this.goToSignUp}
+                                    >
+                                        Soy nuevo
+                                    </button>
+                                </div>
                                 <button
                                     className="btn btn-flat font-weight-lighter"
                                     onClick={this.goToSignIn}
