@@ -39,7 +39,7 @@ class AuthFlowPage extends Component {
                         <div className="section">
                             <div className="auth-container mx-auto text-center">
                                 <h6 className="text-center mb-4">
-                                    ¡Hola, para continuar, ingresa a tu cuenta!
+                                    ¡Hola, para hacer una compra debes ingresar a tu cuenta!
                                 </h6>
                                 <button
                                     className={"btn btn-primary mb-3"}
