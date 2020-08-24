@@ -112,5 +112,19 @@ export class Session {
             return this.getSession().status === 0;
         }
         return true;
+    };
+
+    hasEmail(){
+        const session = new Session();
+        if (session.getSession()) {
+            const email = session.getSession().email;
+            if(email === null){
+                return false;
+            }else{
+                return email !== "" && email !== null && !email.includes("myemail@");
+            }
+        }
+        return false
     }
+
 }

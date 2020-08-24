@@ -13,10 +13,10 @@ class CompleteProfileForm extends Component {
 
     constructor(props) {
         super(props);
-
+        const session = new Session();
         this.state = {
             fullName: "",
-            email: this.hasEmail() ? new Session().getSession().email : "",
+            email: session.hasEmail() ? session.getSession().email : "",
             favCelebrities: [],
             dialCode: "",
             cellphoneNumber: "",
@@ -48,19 +48,6 @@ class CompleteProfileForm extends Component {
 
     completeProfile() {
         this.props.completeProfile(this.state)
-    }
-
-    hasEmail(){
-        const session = new Session();
-        if (session.getSession()) {
-            const email = session.getSession().email;
-            if(email === null){
-                return false;
-            }else{
-                return email !== "" && email !== null && !email.includes("myemail@");
-            }
-        }
-        return false
     }
 
     onCellphoneChange = (dialCode, cellphoneNumber) => {

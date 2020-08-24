@@ -5,11 +5,13 @@ import {Form} from "react-bootstrap";
 import PropTypes from 'prop-types';
 import {contractOperations} from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
+import {Session} from "../../../state/utils/session";
 
 class CreateContractForm extends Component {
 
     constructor(props) {
         super(props);
+        const session = new Session();
         this.state = {
             contractData: {
                 celebrity: null,
@@ -17,7 +19,7 @@ class CreateContractForm extends Component {
                 deliveryFrom: "",
                 deliveryTo: "",
                 deliveryType: 1,
-                deliveryContact: "",
+                deliveryContact: session.hasEmail() ? session.getSession().email : "",
                 instructions: "",
                 isPublic: true
             },
@@ -242,7 +244,7 @@ class CreateContractForm extends Component {
                         </span>
                     </div>
                     <div className={"form-custom-vertical-group"}>
-                        <label>Correo eléctronico de entrega</label>
+                        <label>Correo eléctronico de notificación</label>
                         <input
                             type={"email"}
                             placeholder={"correo@dominio.com"}
