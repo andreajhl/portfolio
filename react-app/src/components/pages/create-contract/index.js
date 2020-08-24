@@ -74,8 +74,6 @@ class CreateContractPage extends Component {
                             </div>
                         </div>
                     </div>
-
-
                 </PageContainer>
             </>
         );

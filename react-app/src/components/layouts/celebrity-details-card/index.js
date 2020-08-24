@@ -41,7 +41,7 @@ class CelebrityDetailsCardLayout extends Component {
         const session = new Session();
         if (session.isDummy()) {
             localStorage.setItem("finalRedirect", "/" + this.props.username + "/contratar");
-            history._pushRoute(PATHS.SIGN_IN_PATH);
+            history._pushRoute(PATHS.AUTH_FLOW);
         } else {
             history._pushRoute(this.props.username + "/contratar");
         }

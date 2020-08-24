@@ -150,8 +150,13 @@ class MyRoutes extends Component {
                             path={PATHS.HIRING_PREVIEW_WITHOUT_SESSION}
                             component={PAGES.HiringPreviewPage}
                         />
+                        <Route
+                            exact
+                            path={PATHS.AUTH_FLOW}
+                            component={PAGES.AuthFlowPage}
+                        />
                         {/* ------- */}
-                        <Route path="*" component={PAGES.LoadingPage}/>
+                        <Route component={PAGES.FourZeroFour} />
                     </Switch>
                 </Router>
             </>
