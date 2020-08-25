@@ -47,10 +47,9 @@ class ContractCheckoutSummary extends Component {
                                     aria-hidden="true"
                                 />
                                 :
-
                                 <span className="text-white">
-                                Pagar
-                            </span>
+                                    Pagar
+                                </span>
                         }
                     </button>
                     <hr/>
@@ -206,8 +205,21 @@ class ContractCheckoutSummary extends Component {
                             </div>
                         </div>
                         {this.props.showError && (
-                            <div className="text-center text-danger mt-3"
-                                 style={{fontSize: "12px"}}>{this.props.error}
+                            <div className={"mx-auto text-justify"} style={{maxWidth: "200px"}}>
+                                <div className="text-danger mt-3">
+                                    <small className={"text-danger font-weight-bold"}>
+                                        {this.props.error}
+                                    </small>
+                                </div>
+                                <div className="mt-2">
+                                    <small>
+                                        Comunicate con nuestro soporte a
+                                        {" "}
+                                        <a className={"font-weight-bold"} href="mailto:experiencias@famosos.com">experiencias@famosos.com</a>
+                                        {" "}
+                                        para mas información.
+                                    </small>
+                                </div>
                             </div>
                         )}
                         <div className="contract-button mt-4 mx-auto buttonContractCustom">

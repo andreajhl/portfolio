@@ -39,11 +39,17 @@ class CompleteProfileForm extends Component {
     }
 
     handleInput(event) {
-        this.setState({[event.target.name]: event.target.value})
+        this.setState({
+            ...this.state,
+            [event.target.name]: event.target.value
+        })
     }
 
     handleChange(favCelebrities) {
-        this.setState({favCelebrities})
+        this.setState({
+            ...this.state,
+            favCelebrities
+        })
     }
 
     completeProfile() {

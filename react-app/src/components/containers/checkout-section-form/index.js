@@ -232,7 +232,7 @@ class CheckoutSectionForm extends Component {
                 console.log(err);
                 this.setState({
                     ...this.state,
-                    error: "No se pudo procesar tu pago, contáctanos a experiencias@famosos.com.",
+                    error: "Ocurrió un error procesando tu pago,",
                     buttonPayLoading: false
                 })
             });
@@ -282,14 +282,14 @@ class CheckoutSectionForm extends Component {
                             error: error.response.data.error,
                             buttonPayLoading: false
                         });
-                        return;
                     }
+                } else {
+                    this.setState({
+                        ...this.state,
+                        error: "Ocurrió un error procesando tu pago,",
+                        buttonPayLoading: false
+                    })
                 }
-                this.setState({
-                    ...this.state,
-                    error: "No se pudo procesar tu pago, contáctanos a experiencias@famosos.com.",
-                    buttonPayLoading: false
-                })
             });
     };
 
@@ -347,7 +347,7 @@ class CheckoutSectionForm extends Component {
                 console.log(err);
                 this.setState({
                     ...this.state,
-                    error: "No se pudo procesar tu pago, contáctanos a experiencias@famosos.com.",
+                    error: "Ocurrió un error procesando tu pago,",
                     buttonPayLoading: false
                 })
             });
