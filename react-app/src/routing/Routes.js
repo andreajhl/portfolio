@@ -44,6 +44,11 @@ class MyRoutes extends Component {
                         />
                         <Route
                             exact
+                            path={PATHS.CELEBRITY_PROFILE_ERROR}
+                            component={PAGES.FourZeroFourCelebrityProfile}
+                        />
+                        <Route
+                            exact
                             path={PATHS.CELEBRITY_PROFILE_CONTRACT}
                             component={PAGES.CreateContractPage}
                         />
@@ -166,7 +171,12 @@ class MyRoutes extends Component {
                             component={PAGES.AuthFlowPage}
                         />
                         {/* ------- */}
-                        <Route component={PAGES.FourZeroFour} />
+                        <Route
+                            exact
+                            path='/page-not-found/404/'
+                            component={PAGES.FourZeroFour}
+                        />
+                        <Redirect from='*' to='/page-not-found/404/' />
                     </Switch>
                 </Router>
             </>

@@ -8,6 +8,7 @@ require("dotenv").config({path: ".env"});
 // ################################################################
 // default OG
 function defaultOG(data) {
+
     data = data.replace(/\$OG_TITLE/g, 'Famosos.com - Videos personalizados de tus famosos favoritos.');
     data = data.replace(/\$OG_TYPE/g, 'website');
     data = data.replace(/\$OG_URL/g, 'https://www.famosos.com');
@@ -62,7 +63,7 @@ app.get('/:celebrity_username', async (req, res) => {
         await axios
             .get(process.env.REACT_APP_ENDPOINT + "custom-endpoints/celebrities/public-get/" + req.params.celebrity_username)
             .then((r) => {
-                if (r.data.status === "OK") {
+                if (r.data.data) {
                     fs.readFile(filePath, 'utf8', function (err, data) {
                         if (err) {
                             return console.log(err);
@@ -81,7 +82,23 @@ app.get('/:celebrity_username', async (req, res) => {
                         res.send(data);
                     });
                 } else {
-                    return defaultResponse(res);
+                    fs.readFile(filePath, 'utf8', function (err, data) {
+                        if (err) {
+                            return console.log(err);
+                        }
+                        data = data.replace(/\$OG_TITLE/g, 'Famoso no encontrado');
+                        data = data.replace(/\$OG_TYPE/g, 'website');
+                        data = data.replace(/\$OG_URL/g, 'https://www.famosos.com/');
+                        data = data.replace(/\$OG_IMAGE/g, 'https://www.famosos.com/assets/img/favicon.png');
+                        data = data.replace(/\$OG_SITE_NAME/g, 'Famosos.com');
+                        data = data.replace(/\$OG_DESCRIPTION/g, "No se encontró un famoso con este usuario");
+                        data = data.replace(/\$OG_VIDEO/g, 'https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5');
+                        data = data.replace(/\$OG_VIDEO_URL/g, 'https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5');
+                        data = data.replace(/\$OG_VIDEO_SECURE_URL/g, 'https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5');
+                        data = data.replace(/\$OG_VIDEO_WITH/g, '400');
+                        data = data.replace(/\$OG_VIDEO_HEIGHT/g, '400');
+                        res.status(404).send(data);
+                    });
                 }
             })
             .catch((e) => {

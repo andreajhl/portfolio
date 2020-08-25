@@ -62,7 +62,6 @@ class SignUpWithEmailForm extends Component {
                 <h6>Ingresa con tu correo electrónico</h6>
                 <div className="form-horizontal">
                     <input
-                        autoFocus={true}
                         type="email"
                         className="form-control"
                         placeholder="Escribe tu correo"
@@ -101,7 +100,7 @@ class SignUpWithEmailForm extends Component {
                         </small>
                     </div>
                 </div>
-                <SignInMethodsForm cellphone={true} whatsapp={true} signUp={true}/>
+                {/*<SignInMethodsForm cellphone={true} whatsapp={true} signUp={true}/>*/}
                 <AuthTCLayout/>
             </div>
         )

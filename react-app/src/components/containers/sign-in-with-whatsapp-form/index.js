@@ -63,7 +63,6 @@ class SignInWithWhatsAppForm extends Component {
                         onSelect={this.onSelectCountry}
                     />
                     <input
-                        autoFocus={true}
                         type="number"
                         className="form-control"
                         placeholder="Escribe tu número"

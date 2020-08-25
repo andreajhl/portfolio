@@ -62,7 +62,6 @@ class ValidateWhatsAppSecurityCodeForm extends Component {
                     </button>
                 </div>
                 <input
-                    autoFocus={true}
                     type="number"
                     className="form-control"
                     placeholder="# # # # # #"

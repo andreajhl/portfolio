@@ -6,7 +6,7 @@ import {history} from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 
 
-class FourZeroFour extends Component {
+class FourZeroFourCelebrityProfile extends Component {
 
     constructor(props) {
         super(props);
@@ -21,7 +21,13 @@ class FourZeroFour extends Component {
                     <div className="SignInPage">
                         <div className="section">
                             <div className="auth-container mx-auto text-center p-4">
-                                <h3 className="font-weight-light text-center">Lo sentimos, esta página no fue encontrada</h3>
+                                <h3 className="font-weight-light text-center">
+                                    No se encontró un famoso con el usuario
+                                    {" "}
+                                    <span className={"font-weight-bold"}>
+                                        {this.props.match.params.celebrity_username}
+                                    </span>
+                                </h3>
                                 <br/>
                                 <img width="200px"
                                      style={{opacity: "0.2"}}
@@ -45,5 +51,5 @@ class FourZeroFour extends Component {
 
 }
 
-export {FourZeroFour};
+export {FourZeroFourCelebrityProfile};
 

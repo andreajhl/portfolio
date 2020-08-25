@@ -25,3 +25,4 @@ export * from "./auth-flow";
 export * from "./404";
 export * from "./stripe_3d_response";
 export * from "./stripe_3d_form";
+export * from "./404CelebrityProfile";

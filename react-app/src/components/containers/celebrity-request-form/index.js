@@ -115,7 +115,6 @@ class CelebrityRequestForm extends Component {
           <small className="text-danger ml-1">*</small>
         </label>
         <input
-          autoFocus={true}
           type="text"
           className={
             "form-control mb-3" +
