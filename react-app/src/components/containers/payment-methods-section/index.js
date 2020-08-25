@@ -1,227 +1,239 @@
 import React, {Component} from "react";
 import "./styles.scss";
-import {paymentsOperations} from "../../../state/ducks/payments";
-import {connect} from "react-redux";
-import {StripeCardForm} from "../stripe-card-form";
-import {PayPalCardForm} from "../pay-pal-card-form";
-
+import {ContractCheckoutSummary} from "../../containers/contract-checkout-summary";
+import {AvailablePaymentMethods} from "../../containers/available-payment-methods";
+import * as ROUTING_PATHS from "../../../routing/Paths";
 
 class PaymentMethodsSection extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            currency: this.props.currencyExchangeData.to,
-            gatewayName: "",
-            paymentType: "",
-            paymentMethod: {}
-        };
-
-        this.stripeCardForm = React.createRef();
+        this.state = {};
     }
 
-    componentWillUpdate(nextProps, nextState, nextContext): void {
-        if (nextProps.currencyExchangeData.to && nextProps.currencyExchangeData.to !== this.props.currencyExchangeData.to) {
-            this.setState({
-                currency: nextProps.currencyExchangeData.to,
-                gatewayName: "",
-                paymentType: "",
-                paymentMethod: {}
-            })
-        }
+    componentDidMount() {
     }
 
-    handlePaymentType(method) {
-        if (method.name !== this.state.paymentType) {
-            this.setState(
-                {
-                    paymentType: method.name,
-                    gatewayName: method.gatewayName,
-                    paymentMethod: {}
-                },
-                () => {
-                    this.props.onSelectPaymentType(method);
-                }
-            );
-        }
-    }
-
-    handlePaymentMethod(paymentMethod) {
-        this.setState({paymentMethod});
-        this.props.onSelectPaymentMethod(paymentMethod)
-    }
-
-    loopPaymentGateways() {
-        if (this.props.paymentGateways) {
-            return (
-                <>
-                    {this.props.paymentGateways.map((pg, index) => {
-                        return (
-                            <div key={"paymentGateway_" + index}>
-                                {this.loopMethods(pg["paymentMethods"])}
-                            </div>
-                        );
-                    })}
-                </>
-            );
-        }
-    }
-
-    loopMethods(paymentMethods) {
-        if (paymentMethods) {
-            return (
-                <>
-                    {paymentMethods.map((method, index) => {
-                        return (
-                            <div
-                                className="payment-type mb-3"
-                                key={"method_" + index}
-                            >
-                                <div className="titles" onClick={this.handlePaymentType.bind(this, method)}>
-                                    <div className="icon">
-                                        {method.name === "CARD" && (
-                                            <i className="fa fa-credit-card"/>
-                                        )}
-                                        {method.name === "BANK_TRANSFER" && (
-                                            <i className="fa fa-dollar-sign"/>
-                                        )}
-                                        {method.name === "TICKET" && (
-                                            <i className="fa fa-money-bill-alt"/>
-                                        )}
-                                        {method.name === "OTHER" && <i className="fa fa-plus"/>}
-                                    </div>
-                                    <div className="payment-type-title">
-                                        <h6>
-                                            {method.name === "CARD" && (
-                                                <span>Tarjeta de crédito</span>
-                                            )}
-                                            {method.name === "BANK_TRANSFER" && (
-                                                <span>Tarjeta de débito</span>
-                                            )}
-                                            {method.name === "TICKET" && <span>Efectivo</span>}
-                                            {method.name === "OTHER" && <span>PayPal</span>}
-                                        </h6>
-                                    </div>
-                                </div>
-                                {this.state.paymentType === method.name ? (
-                                    <>
-                                        {this.renderPaymentTypeOptions(method["availablePaymentMethods"])}
-                                    </>
-                                ) : null}
-                            </div>
-                        );
-                    })}
-                </>
-            );
-        }
-    }
-
-    renderPaymentTypeOptions(methods) {
-        switch (this.state.gatewayName) {
-            case "PAYPAL":
-                return (
-                    <div className="pl-3 pr-3 pt-4 bg-light">
-                        <PayPalCardForm
-                            onPayPalResponse={this.props.onPayPalResponse}
-                            contractPrice={this.props.contractData.price}
-                            paymentMethod={methods.find(x => x.identifier === "PAYPAL")}
-                        />
-                    </div>
-                );
-            case "STRIPE":
-                return (
-                    <div className="pl-3 pr-3 pt-4 bg-light">
-                        <StripeCardForm
-                            ref={this.stripeCardForm}
-                            onStripeResponse={this.props.onStripeResponse}
-                            onTokenizeCard={this.props.onTokenizeStripeCard}
-                            paymentMethod={methods.find(x => x.identifier === "STRIPE")}
-                        />
-                    </div>
-                );
-            default:
-                return (
-                    <div className="available-options bg-light">
-                        {methods.map((method, index) => {
-                            return (
-                                <div
-                                    className="available-option"
-                                    key={"method_" + method.identifier + index}
-                                    onClick={this.handlePaymentMethod.bind(this, method)}
-                                >
-                                    <div className="available-option-circle">
-                                        <div
-                                            className={
-                                                "available-option-circle-button " +
-                                                (this.state.paymentMethod.identifier ===
-                                                    method.identifier &&
-                                                    this.state.paymentMethod.brand === method.brand &&
-                                                    " active ")
-                                            }
-                                        />
-                                    </div>
-                                    <div className="available-option-logo">
-                                        <img src={method.logo} alt="logo" width="30px"/>
-                                        <small className="text-title">{method.name}</small>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                );
-        }
-    }
+    // onPay() {
+    //     this.setState({
+    //         ...this.state,
+    //         error: "",
+    //         buttonPayLoading: true
+    //     });
+    //     switch (this.state.paymentType.gatewayName) {
+    //         case "STRIPE":
+    //             console.log(this.paymentMethodsSectionRef.current.stripeCardFormRef.current);
+    //             break;
+    //         case "DLOCAL":
+    //             this.createDLocalPayment();
+    //             break;
+    //         default:
+    //             this.setState({
+    //                 error: "Debes seleccionar un método de pago.",
+    //                 buttonFinishLoading: false,
+    //                 buttonPayLoading: false,
+    //             });
+    //             break;
+    //     }
+    // }
+    //
+    // onFinish() {
+    //     switch (this.state.paymentType.gatewayName) {
+    //         case "PAYPAL":
+    //             this.createPayPalPayment(this.state.payPalResponse.status, this.state.payPalResponse);
+    //             break;
+    //         case "GOOGLE_PAY":
+    //         case "APPLE_PAY":
+    //             break;
+    //         default:
+    //             this.setState({
+    //                 error: "Debes seleccionar un método de pago.",
+    //                 buttonFinishLoading: false,
+    //                 buttonPayLoading: false,
+    //             });
+    //             break;
+    //     }
+    // }
+    //
+    // onPayPalResponse(paymentMethod, details) {
+    //     this.setState({
+    //         9: !!details.status === "COMPLETED",
+    //         payPalResponse: details,
+    //         paymentMethod: paymentMethod,
+    //     }, () => {
+    //         this.createPayPalPayment(this.state.payPalResponse.status, this.state.payPalResponse);
+    //     });
+    // }
+    //
+    // createStripePayment() {
+    //     const FINAL_PATH = "custom-endpoints/user-payments/process-stripe-payment";
+    //     const data = {
+    //         contractReference: this.props.contractData.reference,
+    //         paymentMethodId: this.state.paymentMethod.id,
+    //         stripeCardToken: this.state.stripeToken
+    //     };
+    //     apiService({
+    //         method: "POST",
+    //         action: null,
+    //         path: FINAL_PATH,
+    //         async: true,
+    //         params: null,
+    //         body: data,
+    //         custom_endpoint: false
+    //     })
+    //         .then(res => {
+    //             if (res.data.status === "ERROR") {
+    //                 this.setState({
+    //                     ...this.state,
+    //                     error: res.data.error,
+    //                     buttonPayLoading: false
+    //                 })
+    //             } else {
+    //                 GTM.tagManagerDataLayer(
+    //                     "CONTRACT_PAYED",
+    //                     res.data
+    //                 );
+    //                 history._pushRoute(
+    //                     ROUTING_PATHS.CONTRACT_CREATED.replace(
+    //                         ":contract_reference",
+    //                         res.data.data.reference
+    //                     )
+    //                 );
+    //             }
+    //         })
+    //         .catch(error => {
+    //             if (error.response) {
+    //                 if (error.response.data) {
+    //                     this.setState({
+    //                         ...this.state,
+    //                         error: error.response.data.error,
+    //                         buttonPayLoading: false
+    //                     });
+    //                 }
+    //             } else {
+    //                 this.setState({
+    //                     ...this.state,
+    //                     error: "Ocurrió un error procesando tu pago,",
+    //                     buttonPayLoading: false
+    //                 })
+    //             }
+    //         });
+    // };
+    //
+    // createPayPalPayment(status, payPalResponse) {
+    //     const FINAL_PATH = "custom-endpoints/user-payments/process-paypal-payment";
+    //     let isPending = false;
+    //     try {
+    //         payPalResponse["purchase_units"].map(purchase_unit => {
+    //             purchase_unit["payments"]["captures"].map(payment_capture => {
+    //                 if (payment_capture["status"] === "PENDING") {
+    //                     isPending = true;
+    //                     alert("Tu pago está pendiente por ser validado por PayPal")
+    //                 }
+    //             })
+    //         })
+    //     } catch (e) {
+    //
+    //     }
+    //     const data = {
+    //         contractReference: this.props.contractData.reference,
+    //         paymentMethodId: this.state.paymentMethod.id,
+    //         payPalResponse: payPalResponse,
+    //         isPending: isPending
+    //     };
+    //     apiService({
+    //         method: "POST",
+    //         action: null,
+    //         path: FINAL_PATH,
+    //         async: true,
+    //         params: null,
+    //         body: data,
+    //         custom_endpoint: false
+    //     })
+    //         .then(res => {
+    //             if (res.data.status === "ERROR") {
+    //                 this.setState({
+    //                     ...this.state,
+    //                     error: res.data.error,
+    //                     buttonPayLoading: false
+    //                 })
+    //             } else {
+    //                 GTM.tagManagerDataLayer(
+    //                     "CONTRACT_PAYED",
+    //                     res.data
+    //                 );
+    //                 history._pushRoute(
+    //                     ROUTING_PATHS.CONTRACT_CREATED.replace(
+    //                         ":contract_reference",
+    //                         res.data.data.reference
+    //                     )
+    //                 );
+    //             }
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //             this.setState({
+    //                 ...this.state,
+    //                 error: "Ocurrió un error procesando tu pago,",
+    //                 buttonPayLoading: false
+    //             })
+    //         });
+    //
+    // }
+    //
+    // isLoading = () => {
+    //     return this.state.buttonPayLoading || this.state.buttonFinishLoading
+    // };
 
     render() {
         return (
             <div className="PaymentMethodsSection">
-                <h6 className="title font-weight-bold">
-                    Elige un método de pago:
-                    <small className="ml-1 text-danger">*</small>
-                </h6>
-                <div className={"payment-types f-rounded"} style={this.props.isLoading ? {opacity: "0.2"} : {}}>
-                    {this.loopPaymentGateways()}
+                <div className={"row justify-content-center payment-methods-section-row"}>
+                    <div className="col-12 col-md-6 p-0 m-0 f-rounded f-shadow">
+
+                        {/* CONTRACT SUMMARY */}
+                        <ContractCheckoutSummary
+                            celebrityAvatar={this.props.contractData.celebrity_avatar}
+                            celebrityFullName={this.props.contractData.celebrity_full_name}
+                            deliveryFrom={this.props.contractData.delivery_from}
+                            deliveryTo={this.props.contractData.delivery_to}
+                            instructions={this.props.contractData.instructions}
+                            price={this.props.contractData.price}
+                        />
+
+                        {/* PAYMENT METHODS */}
+                        <AvailablePaymentMethods
+                            contractReference={this.props.contractData.reference}
+                            contractPrice={this.props.contractData.price}
+                        />
+
+                        {/* TERMS */}
+                        <div className={"p-4 text-center"}>
+                            <small className={"text-muted text-center"}>
+                                Al continuar estás aceptando nuestros&nbsp;
+                                <a href={ROUTING_PATHS.TERMS_PATH} target={"_blank"}>Términos y Condiciones</a>&nbsp;
+                                y nuestra&nbsp;
+                                <a href={ROUTING_PATHS.POLICIES_PATH} target={"_blank"}>Política de Privacidad</a>&nbsp;
+                            </small>
+                            <div className="mt-4 mx-auto text-center">
+                                <img width="230px" src={"/assets/img/pago-seguro.png"} alt={"pago-seguro"}/>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
+// Set propTypes
+PaymentMethodsSection.propTypes = {};
+
 // Set defaultProps
 PaymentMethodsSection.defaultProps = {
-    onStripeResponse: () => {
-    },
-    onPayPalResponse: () => {
-    },
-    onSelectPaymentMethod: () => {
-    },
-    onSelectPaymentType: () => {
-    },
-    contractData: {},
-};
-
-
-// mapStateToProps
-const mapStateToProps = (state) => ({
-    isLoading: state.payments.fetchPaymentGatewaysReducer.loading,
-    isCompleted: state.payments.fetchPaymentGatewaysReducer.completed,
-    paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.data,
-    currencyExchangeData: state.payments.currencyExchangeReducer.data,
-});
-
-// mapStateToProps
-const mapDispatchToProps = {
-    listPaymentGateways: paymentsOperations.listPaymentGateways
+    contractData: {}
 };
 
 // Export Class
-const _PaymentMethodsSection = connect(
-    mapStateToProps,
-    mapDispatchToProps,
-    null,
-    {
-        forwardRef: true
-    }
-)(PaymentMethodsSection);
-export {_PaymentMethodsSection as PaymentMethodsSection};
+export {PaymentMethodsSection};

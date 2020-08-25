@@ -4,6 +4,8 @@ export const SEARCH_PATH = '/buscar/';
 export const CELEBRITY_PROFILE = "/:celebrity_username";
 export const CELEBRITY_PROFILE_CONTRACT = "/:celebrity_username/contratar";
 export const PAYMENT_METHODS = "/metodos-de-pago/:contract_reference";
+export const STRIPE_3D_SECURE_IFRAME = "/metodos-de-pago/:contract_reference/stripe-3d-secure/iframe";
+export const STRIPE_3D_SECURE_RESPONSE = "/metodos-de-pago/:contract_reference/stripe-3d-secure/response";
 export const CONTRACT_CREATED = "/contract-created/:contract_reference";
 export const CONTRACT_PENDING = "/resumen-de-compra/:contract_reference";
 // DOCS

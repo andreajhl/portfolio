@@ -1,7 +1,6 @@
 @import "../../../theme";
 
 .ContractCheckoutSummary {
-  min-height: 400px;
 
   .contract-summary {
     margin: 0;
@@ -26,8 +25,7 @@
     }
 
     .contract-details {
-      min-height: 300px;
-      padding: 20px;
+      padding: 20px 20px 0px 20px;
 
       .text-colored {
         color: $soft-grey;
@@ -41,6 +39,12 @@
       &.disabled {
         background-color: #a1a1a1 !important;
       }
+    }
+
+    .total{
+      background-color: #f9f9f9;
+      padding: 10px;
+      height: 42px;
     }
   }
 }

@@ -1,20 +1,17 @@
 import React, {Component} from "react";
-import {NavbarSectionLayout, PageContainer} from "../../layouts";
+import {PageContainer} from "../../layouts";
 import {connect} from "react-redux";
 import "./styles.scss";
 import {paymentsOperations} from "../../../state/ducks/payments";
-import {CheckoutSectionForm} from "../../containers/checkout-section-form";
 import * as GTM from "../../../state/utils/gtm";
+import {StripeProvider} from "react-stripe-elements";
+import {PaymentMethodsSection} from "../../containers/payment-methods-section";
+import * as PATHS from "../../../routing/Paths";
 
 class PaymentMethodsPage extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      params: {
-        showContractPayedSection: this.props.contract.status >= 10
-      }
-    };
+    this.state = {};
   }
 
   componentDidMount() {
@@ -27,8 +24,7 @@ class PaymentMethodsPage extends Component {
 
   render() {
     return (
-        <>
-          <div className="PaymentMethodsPage">
+        <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
             <PageContainer
                 applyFetchCelebrities={false}
                 showSearch={false}
@@ -39,14 +35,11 @@ class PaymentMethodsPage extends Component {
                 showFooter={false}
                 hideControls={true}
             >
-              {this.state.showContractPayedSection ? (
-                  <>>= 10</>
-              ) : (
-                  <CheckoutSectionForm contractData={this.props.contract} />
-              )}
+              <PaymentMethodsSection
+                  contractData={this.props.contract}
+              />
             </PageContainer>
-          </div>
-        </>
+        </StripeProvider>
     );
   }
 }

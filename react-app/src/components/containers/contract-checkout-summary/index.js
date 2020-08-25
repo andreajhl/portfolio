@@ -1,10 +1,6 @@
 import React, {Component} from "react";
 import "./styles.scss";
-import {paymentsOperations} from "../../../state/ducks/payments";
-import {connect} from "react-redux";
 import {ContractPriceLayout} from "../../layouts/contract-price";
-import {AVAILABLE_CURRENCIES} from "../../layouts/currency-dropdown/constants";
-import * as PATHS from "../../../routing/Paths";
 
 
 class ContractCheckoutSummary extends Component {
@@ -12,222 +8,76 @@ class ContractCheckoutSummary extends Component {
     constructor(props) {
         super(props);
         this.state = {};
-        this.onPay = this.onPay.bind(this);
-        this.onFinish = this.onFinish.bind(this);
-    }
-
-    onPay() {
-        if (!this.props.buttonPayLoading) {
-            this.props.onPay();
-        }
-    }
-
-    onFinish() {
-        if (!this.props.buttonFinishLoading) {
-            this.props.onFinish();
-        }
-    }
-
-    returnActionButton() {
-        if (this.props.showPayButton) {
-            return (
-                <div className={"text-center"}>
-                    <button
-                        onClick={this.onPay}
-                        className={
-                            "contract-button mx-auto hover cursor-pointer p-2 border bg-active "
-                        }
-                    >
-                        {
-                            this.props.buttonPayLoading
-                                ?
-                                <span
-                                    className="spinner-grow spinner-grow-sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                />
-                                :
-                                <span className="text-white">
-                                    Pagar
-                                </span>
-                        }
-                    </button>
-                    <hr/>
-                    <small className={"text-muted"}>
-                        Al continuar estás aceptando nuestros&nbsp;
-                        <a href={PATHS.TERMS_PATH} target={"_blank"}>Términos y Condiciones</a>&nbsp;
-                        y nuestra&nbsp;
-                        <a href={PATHS.POLICIES_PATH} target={"_blank"}>Política de Privacidad</a>&nbsp;
-
-                    </small>
-                </div>
-            );
-        } else {
-            return (
-                <button
-                    onClick={this.onFinish}
-                    className={"contract-button mx-auto hover cursor-pointer p-2 border bg-active "}
-                >
-                    {
-                        this.props.buttonFinishLoading
-                            ?
-                            <span
-                                className="spinner-grow spinner-grow-sm"
-                                role="status"
-                                aria-hidden="true"
-                            />
-                            :
-                            <span className="text-white">
-                              Finalizar
-                            </span>
-                    }
-                </button>
-            );
-        }
-
-    }
-
-    returnAproxLabel() {
-        return !!AVAILABLE_CURRENCIES.find(
-            x => x.implemented_by_dlocal === false && x.name === this.props.currencyExchangeData.to
-        )
-    }
-
-    returnContractPrice(){
-        if(this.props.currencyExchangeData.rate > 1){
-            return (this.props.contractData.price * this.props.currencyExchangeData.rate) + this.props.contractData.price
-        }else{
-            return this.props.contractData.price
-        }
     }
 
     render() {
         return (
-            <div className="ContractCheckoutSummary f-rounded">
-                <div className="row contract-summary col-lg-12 justify-content-center f-shadow f-rounded">
+            <div className="ContractCheckoutSummary">
+                <div className="row contract-summary col-lg-12 justify-content-center">
                     <div className="col-lg-12 custom-card-title f-rounded">
                         <h6 className="text-white">Resumen de la contratación</h6>
                     </div>
-                    <div className="col-lg-12 contract-details">
+                    <div className="col-lg-12 contract-details mx-auto" style={{maxWidth: "500px"}}>
+                        <div className={"row"}>
+                            <div className="col-3">
+                                <img
+                                    className="rounded-circle mx-auto"
+                                    src={this.props.celebrityAvatar || "/assets/img/avatar-blank.png"}
+                                    width={"60px"}
+                                    alt={"avatar"}
+                                />
+                            </div>
+                            <div className={"col-8 mt-1"}>
+                                <h6 className="mt-2 font-weight-bold">Video personalizado de {this.props.celebrityFullName}</h6>
+                            </div>
+                        </div>
                         <div className="celebrity-name text-center">
-                            <img
-                                className="rounded-circle mx-auto"
-                                src={
-                                    !this.props.contractData.celebrity_avatar
-                                        ? "/assets/img/avatar-blank.png"
-                                        : this.props.contractData.celebrity_avatar
-                                }
-                                width={"60px"}
-                                alt={"avatar"}
-                            />
-                            <br/>
-                            <h6 className="mt-2 font-weight-bold">{this.props.contractData.celebrity_full_name}</h6>
+
                         </div>
                         <div className="from-to mt-4">
-                            <h6>
-                                {
-                                    this.props.contractData.delivery_to
-                                    &&
-                                    <>
-                                        <div className="col-12 ml-0 pl-0 mb-3">
-                                            <span className="text-colored">
-                                              Para:{" "}
-                                                <span className="font-weight-bold">
-                                                {this.props.contractData.delivery_to}
-                                              </span>{" "}
+                            {
+                                this.props.deliveryTo
+                                &&
+                                <>
+                                    <div className="col-12 ml-0 pl-0 mb-3">
+                                        <h6 className="text-colored">
+                                            Para:&nbsp;
+                                            <span className="font-weight-bold">
+                                                {this.props.deliveryTo}
                                             </span>
-                                        </div>
-                                    </>
-                                }
-                                {
-                                    this.props.contractData.delivery_from
-                                    &&
-                                    <>
-                                        <div className="col-12 ml-0 pl-0">
-                                            <span className="text-colored">
-                                              De:{" "}
-                                                <span className="font-weight-bold">
-                                                {this.props.contractData.delivery_from}
-                                              </span>{" "}
+                                        </h6>
+                                    </div>
+                                </>
+                            }
+                            {
+                                this.props.deliveryFrom
+                                &&
+                                <>
+                                    <div className="col-12 ml-0 pl-0">
+                                        <h6 className="text-colored">
+                                            De:&nbsp;
+                                            <span className="font-weight-bold">
+                                                {this.props.deliveryFrom}
                                             </span>
-                                        </div>
-                                    </>
-                                }
-                            </h6>
+                                        </h6>
+                                    </div>
+                                </>
+                            }
                         </div>
                         <div className="instructions mt-4 text-justify">
-                            <small>{this.props.contractData.instructions}</small>
+                            <small>{this.props.instructions}</small>
                         </div>
                         <hr/>
-                        <div className="total mt-4">
-                            {
-                                this.props.currencyExchangeData.to !== "USD" && this.returnAproxLabel()
-                                &&
-                                <div className="clearfix ">
-                                    <h6 className=" float-left">Total en Dólares:</h6>
-                                    <h6 className=" text-right float-right">
-                                        <ContractPriceLayout
-                                            classes={"text-black "}
-                                            price={this.props.contractData.price}
-                                            currency={"USD"}
-                                            rounding={false}
-                                        />
-                                    </h6>
-                                </div>
-                            }
-                            <div className="clearfix ">
-                                <h5 className="font-weight-bold float-left">Total:</h5>
-                                <h5 className="font-weight-bold text-right float-right">
-                                    <ContractPriceLayout
-                                        classes={"text-black font-weight-bold"}
-                                        price={this.returnContractPrice()}
-                                        currency={this.props.currencyExchangeData.to}
-                                        rounding={false}
-                                    />
-                                    {
-                                        this.props.currencyExchangeData.to !== "USD" && !this.props.isLoading
-                                        &&
-                                        <>
-                                            <br/>
-                                            <small className={"text-right mx-auto"}
-                                                   style={{fontSize: "10px"}}>
-                                                {
-                                                    this.returnAproxLabel()
-                                                    &&
-                                                    <>
-                                                        (Aproximado)
-                                                    </>
-                                                }
-                                            </small>
-                                        </>
-                                    }
-                                </h5>
-                            </div>
-                        </div>
-                        {this.props.showError && (
-                            <div className={"mx-auto text-justify"} style={{maxWidth: "200px"}}>
-                                <div className="text-danger mt-3">
-                                    <small className={"text-danger font-weight-bold"}>
-                                        {this.props.error}
-                                    </small>
-                                </div>
-                                <div className="mt-2">
-                                    <small>
-                                        Comunicate con nuestro soporte a
-                                        {" "}
-                                        <a className={"font-weight-bold"} href="mailto:experiencias@famosos.com">experiencias@famosos.com</a>
-                                        {" "}
-                                        para mas información.
-                                    </small>
-                                </div>
-                            </div>
-                        )}
-                        <div className="contract-button mt-4 mx-auto buttonContractCustom">
-                            {this.returnActionButton()}
-                        </div>
-                        <div className="mt-4 mx-auto text-center" style={{width: "230px"}}>
-                            <img width="100%" src={"/assets/img/pago-seguro.png"}
-                                 alt={"pago-seguro"}/>
+                        <div className="total mt-4 f-rounded">
+                            <h5 className="font-weight-bold float-left">Total:</h5>
+                            <h5 className="font-weight-bold text-right float-right">
+                                <ContractPriceLayout
+                                    classes={"text-black font-weight-bold"}
+                                    price={this.props.price}
+                                    currency={"USD"}
+                                    rounding={false}
+                                />
+                            </h5>
                         </div>
                     </div>
                 </div>
@@ -241,31 +91,12 @@ ContractCheckoutSummary.propTypes = {};
 
 // Set defaultProps
 ContractCheckoutSummary.defaultProps = {
-    showError: false,
-    error: "",
-    buttonPayLoading: false,
-    buttonFinishLoading: false,
-    transactionFee: 0,
-    contractData: {},
-    showPayButton: true,
-    buttonPayDisabled: false,
-    payPalCheckoutStatus: false,
-    onPay: () => {
-    },
+    celebrityAvatar: "",
+    celebrityFullName: "",
+    deliveryFrom: "",
+    deliveryTo: "",
+    instructions: "",
+    price: 0,
 };
 
-// mapStateToProps
-const mapStateToProps = (state) => ({
-    isLoading: state.payments.currencyExchangeReducer.loading,
-    currencyExchangeData: state.payments.currencyExchangeReducer.data
-});
-
-// mapStateToProps
-const mapDispatchToProps = {
-    currencyExchange: paymentsOperations.currencyExchange
-};
-
-// Export Class
-const _ContractCheckoutSummary = connect(mapStateToProps, mapDispatchToProps)(ContractCheckoutSummary);
-
-export {_ContractCheckoutSummary as ContractCheckoutSummary};
+export {ContractCheckoutSummary};

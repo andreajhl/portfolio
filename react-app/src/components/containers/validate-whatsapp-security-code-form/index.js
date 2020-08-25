@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {authenticationOperations} from "../../../state/ducks/authentication";
 import {history} from "../../../routing/History";
-import * as PATHS from "../../../routing/Paths";
 import {connect} from "react-redux";
 
 class ValidateWhatsAppSecurityCodeForm extends Component {

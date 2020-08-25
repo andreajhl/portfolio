@@ -62,6 +62,16 @@ class MyRoutes extends Component {
                             path={PATHS.PAYMENT_METHODS}
                             component={PAGES.PaymentMethodsPage}
                         />
+                        <Route
+                            exact
+                            path={PATHS.STRIPE_3D_SECURE_IFRAME}
+                            component={PAGES.ProcessStripe3DFormPage}
+                        />
+                        <Route
+                            exact
+                            path={PATHS.STRIPE_3D_SECURE_RESPONSE}
+                            component={PAGES.ProcessStripe3DResponsePage}
+                        />
                         {/*AUTH*/}
                         <Route
                             exact

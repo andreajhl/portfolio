@@ -12,4 +12,8 @@ export * from "./validate-email-security-code-form";
 export * from "./validate-whatsapp-security-code-form";
 export * from "./celebrity-request-form";
 export * from "./create-contract-form";
+export * from "./available-payment-methods";
+export * from "./payment-methods-section";
+export * from "./stripe-3d-secure-iframe";
+export * from "./stripe-3d-secure-response";
 

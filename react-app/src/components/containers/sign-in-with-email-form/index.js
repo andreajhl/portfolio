@@ -63,7 +63,6 @@ class SignInWithEmailForm extends Component {
             <div className="SignInWithEmailForm">
                 <h6>Ingresa con tu correo electrónico</h6>
                 <input
-                    autoFocus={!this.state.email}
                     type="email"
                     className="form-control mb-3"
                     placeholder="Escribe tu correo"
@@ -73,7 +72,6 @@ class SignInWithEmailForm extends Component {
                 />
                 <h6>Contraseña</h6>
                 <input
-                    autoFocus={!!this.state.email}
                     type="password"
                     className="form-control"
                     placeholder="Escribe tu contraseña"
