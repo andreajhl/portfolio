@@ -93,11 +93,11 @@ class NavbarSectionLayout extends Component {
     }
 
     goToSignInPath() {
-        history._pushRoute(PATHS.SIGN_IN_PATH)
+        history._pushRoute(PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form"))
     }
 
     goToSignUpPath() {
-        history._pushRoute(PATHS.SIGN_UP_PATH)
+        history._pushRoute(PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form"))
     }
 
     goToProfile() {
@@ -359,7 +359,7 @@ class NavbarSectionLayout extends Component {
                                                             </NavLink>
                                                             <NavLink className="dropdown-item"
                                                                      activeClassName='active'
-                                                                     to={PATHS.SIGN_IN_PATH}
+                                                                     to={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form")}
                                                             >
                                                                 Iniciar sesión
                                                             </NavLink>

@@ -2,6 +2,7 @@ export const ROOT_PATH = "/";
 export const HOME_PATH = "/inicio/";
 export const SEARCH_PATH = '/buscar/';
 export const CELEBRITY_PROFILE = "/:celebrity_username";
+export const CELEBRITY_PROFILE_ERROR = "/:celebrity_username/404-not-found/";
 export const CELEBRITY_PROFILE_CONTRACT = "/:celebrity_username/contratar";
 export const PAYMENT_METHODS = "/metodos-de-pago/:contract_reference";
 export const CONTRACT_CREATED = "/contract-created/:contract_reference";

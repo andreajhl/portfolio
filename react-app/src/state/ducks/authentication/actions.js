@@ -8,8 +8,21 @@ import * as ROUTE_PATHS from "../../../routing/Paths";
 
 const afterLogin = (res) => {
     const session = new Session();
-    if(res.data.token){
+    if (res.data.token) {
         session.setSession(res.data.token);
+        switch (session.getSession().status) {
+            // CHANGE PASSWORD REQUIRED
+            case 10:
+                localStorage.setItem("authRedirect", ROUTE_PATHS.CREATE_PASSWORD_PATH);
+                break;
+            // COMPLETE PROFILE REQUIRED
+            case 20:
+                localStorage.setItem("authRedirect", ROUTE_PATHS.COMPLETE_PROFILE_PATH);
+                break;
+            // FINAL REDIRECT
+            default:
+                break;
+        }
     }
     const authRedirect = localStorage.getItem("authRedirect");
     const finalRedirect = localStorage.getItem("finalRedirect");
@@ -17,18 +30,8 @@ const afterLogin = (res) => {
         localStorage.removeItem("authRedirect");
         return history._pushRoute(authRedirect);
     } else if (finalRedirect !== null) {
-        switch (session.getSession().status) {
-            // CHANGE PASSWORD REQUIRED
-            case 10:
-                return history._pushRoute(ROUTE_PATHS.CREATE_PASSWORD_PATH);
-            // COMPLETE PROFILE REQUIRED
-            case 20:
-                return history._pushRoute(ROUTE_PATHS.COMPLETE_PROFILE_PATH);
-            // FINAL REDIRECT
-            default:
-                localStorage.removeItem("finalRedirect");
-                return history._pushRoute(finalRedirect);
-        }
+        localStorage.removeItem("finalRedirect");
+        return history._pushRoute(finalRedirect);
     } else {
         return history._pushRoute(ROUTE_PATHS.HOME_PATH);
     }

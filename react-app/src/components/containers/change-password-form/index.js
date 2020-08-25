@@ -43,7 +43,6 @@ class ChangePasswordForm extends Component {
                 <>
                     <h6>Crea una nueva contraseña</h6>
                     <input
-                        autoFocus={true}
                         type="password"
                         className="form-control mb-3"
                         placeholder="Escribe tu nueva contraseña"

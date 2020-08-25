@@ -76,7 +76,6 @@ class CompleteProfileForm extends Component {
             <div className="CompleteProfileForm">
                 <h6>¿Cuál es su nombre?</h6>
                 <input
-                    autoFocus={true}
                     type="text"
                     className="form-control mb-3"
                     placeholder="Escribe tu nombre"

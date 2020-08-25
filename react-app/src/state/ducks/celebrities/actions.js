@@ -1,5 +1,5 @@
 import * as types from "./types";
-import apiService, {jsonToQueryString} from "../../utils/apiService";
+import apiService from "../../utils/apiService";
 import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
 import * as API_PATHS from './paths';
 import {history} from "../../../routing/History";
@@ -29,11 +29,11 @@ export const get = (object_id, preloaded = false) => {
             body: null
         })
             .then(res => {
-                if ("status" in res.data && res.data.status === "ERROR") {
+                console.log("res", res);
+                if (!res.data.data.username) {
                     handleApiResponseFailure(dispatch, TYPE, res);
                     // Other actions
-                    history._pushRoute(PATHS.HOME_PATH);
-
+                    history._pushRoute(PATHS.CELEBRITY_PROFILE_ERROR.replace(":celebrity_username", object_id));
                 } else {
                     handleApiResponseSuccess(dispatch, TYPE, res);
                     // Other actions
@@ -49,7 +49,8 @@ export const get = (object_id, preloaded = false) => {
                 }
             })
             .catch(err => {
-                history._pushRoute(PATHS.HOME_PATH);
+                // Other actions
+                history._pushRoute(PATHS.CELEBRITY_PROFILE_ERROR.replace(":celebrity_username", object_id));
                 handleApiErrors(dispatch, TYPE, err);
             });
     }

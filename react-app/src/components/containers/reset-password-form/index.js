@@ -74,7 +74,6 @@ class ResetPasswordForm extends Component {
                         <>
                             <h6>Ingresa con tu correo electrónico</h6>
                             <input
-                                autoFocus={true}
                                 type="email"
                                 className="form-control"
                                 placeholder="Escribe tu correo"
@@ -117,7 +116,6 @@ class ResetPasswordForm extends Component {
                         <>
                             <h6>Ingresar código que enviamos a tu correo electrónico</h6>
                             <input
-                                autoFocus={true}
                                 type="number"
                                 className="form-control"
                                 placeholder="# # # # # #"

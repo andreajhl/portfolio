@@ -64,7 +64,6 @@ class StripeCardForm extends Component {
                 <Form.Group>
                     <h6>Nombre del titular de la tarjeta</h6>
                     <input
-                        autoFocus={true}
                         type="text"
                         className="form-control mb-3"
                         placeholder="Escribe aquí el nombre"

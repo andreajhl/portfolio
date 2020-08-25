@@ -23,3 +23,4 @@ export * from "./create-contract";
 export * from "./loading";
 export * from "./auth-flow";
 export * from "./404";
+export * from "./404CelebrityProfile";
