@@ -13,10 +13,10 @@ class CompleteProfileForm extends Component {
 
     constructor(props) {
         super(props);
-        const session = new Session();
+        this.session = new Session();
         this.state = {
             fullName: "",
-            email: session.hasEmail() ? session.getSession().email : "",
+            email: this.session.hasEmail() ? this.session.getSession().email : "",
             favCelebrities: [],
             dialCode: "",
             cellphoneNumber: "",
@@ -79,7 +79,7 @@ class CompleteProfileForm extends Component {
                     value={this.state.fullName}
                 />
                 {
-                    !this.hasEmail()
+                    !this.session.hasEmail()
                         ?
                         <>
                             <h6>¿Cuál es su correo?</h6>
