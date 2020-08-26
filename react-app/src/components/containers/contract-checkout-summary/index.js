@@ -19,7 +19,7 @@ class ContractCheckoutSummary extends Component {
                     </div>
                     <div className="col-lg-12 contract-details mx-auto" style={{maxWidth: "500px"}}>
                         <div className={"row"}>
-                            <div className="col-3">
+                            <div className="col-3 col-lg-2">
                                 <img
                                     className="rounded-circle mx-auto"
                                     src={this.props.celebrityAvatar || "/assets/img/avatar-blank.png"}
@@ -27,12 +27,9 @@ class ContractCheckoutSummary extends Component {
                                     alt={"avatar"}
                                 />
                             </div>
-                            <div className={"col-8 mt-1"}>
+                            <div className={"col-8 col-lg-6"}>
                                 <h6 className="mt-2 font-weight-bold">Video personalizado de {this.props.celebrityFullName}</h6>
                             </div>
-                        </div>
-                        <div className="celebrity-name text-center">
-
                         </div>
                         <div className="from-to mt-4">
                             {

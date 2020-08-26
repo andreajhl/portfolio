@@ -3,6 +3,8 @@ import "./styles.scss";
 import {PageContainer} from "../../layouts/page-container";
 import {Stripe3dSecureIframe} from "../../containers/stripe-3d-secure-iframe";
 
+const stripe = require('stripe')(process.env.REACT_APP_STRIPE_KEY);
+
 class ProcessStripe3DFormPage extends Component {
 
     constructor(props) {
@@ -25,7 +27,7 @@ class ProcessStripe3DFormPage extends Component {
                     hideControls={true}
                 >
                     <Stripe3dSecureIframe
-                        iframeUrl={this.props.location.state.url}
+                        iframeUrl={this.props.location.state ? this.props.location.state.url : ""}
                     />
                 </PageContainer>
             </div>
