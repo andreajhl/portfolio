@@ -39,7 +39,7 @@ class CelebritiesPage extends Component {
             const value = (Math.round(divScroll.scrollHeight - divScroll.offsetHeight));
             if (
                 divScroll.scrollTop + divScroll.clientHeight >=
-                (divScroll.scrollHeight - 500)
+                (divScroll.scrollHeight - window.innerHeight+200)
             ) {
                 if (!this.props.isLoading && this.props.paginationData.totalItems !== this.props.celebrities.length) {
                     if (this.props.paginationData.currentPage + 1 <= this.props.paginationData.totalPages) {
