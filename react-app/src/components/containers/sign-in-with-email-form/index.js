@@ -61,10 +61,9 @@ class SignInWithEmailForm extends Component {
     render() {
         return (
             <div className="SignInWithEmailForm">
-                <form autoComplete={"off"}>
+                <form>
                     <h6>Ingresa con tu correo electrónico</h6>
                     <input
-                        autoComplete={false}
                         type="email"
                         className="form-control mb-3"
                         placeholder="Escribe tu correo"
@@ -105,21 +104,21 @@ class SignInWithEmailForm extends Component {
 
                         }
                     </button>
-                    <div className="mb-4 pb-4">
-                        <div className="mt-2 float-left cursor-pointer">
-                            <small className="text-muted" onClick={this.goToSignUp}>
-                                Crear una cuenta
-                            </small>
-                        </div>
-                        <div className="mt-2 float-right cursor-pointer">
-                            <small className="text-muted" onClick={this.goToResetPassword}>
-                                Olvidé mi contraseña
-                            </small>
-                        </div>
-                    </div>
-                    <SignInMethodsForm cellphone={true} whatsapp={true}/>
-                    <AuthTCLayout/>
                 </form>
+                <div className="mb-2">
+                    <div className="mt-2 cursor-pointer">
+                        <small className="font-weight-normal" onClick={this.goToSignUp}>
+                            Crear una cuenta
+                        </small>
+                    </div>
+                    <div className="mt-2 cursor-pointer">
+                        <small className="font-weight-normal" onClick={this.goToResetPassword}>
+                            Olvidé mi contraseña
+                        </small>
+                    </div>
+                </div>
+                <SignInMethodsForm cellphone={true} whatsapp={true}/>
+                <AuthTCLayout/>
             </div>
         );
     };

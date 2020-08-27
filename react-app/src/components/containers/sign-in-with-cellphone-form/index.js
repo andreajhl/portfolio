@@ -9,7 +9,6 @@ import * as GTM from "../../../state/utils/gtm";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import apiService from "../../../state/utils/apiService";
-import * as ROUTE_PATHS from "../../../routing/Paths";
 
 class SignInWithCellphoneForm extends Component {
 
@@ -86,40 +85,42 @@ class SignInWithCellphoneForm extends Component {
     render() {
         return (
             <div className="SignInWithCellphoneForm">
-                <h6>{this.props.title}</h6>
-                <PhoneInput
-                    enableSearch={true}
-                    country={this.state.countryCode}
-                    value={this.state._phone}
-                    className={"form-control"}
-                    onChange={(phone, val) => {
-                        this.onCellphoneChange(val["dialCode"], phone.substring(val["dialCode"].length, phone.length));
-                    }}
-                />
-                {
-                    this.props.sendSMSSecurityCodeError
-                    &&
-                    <p className="instructions mt-4 text-danger">
-                        {this.props.sendSMSSecurityCodeError}
-                    </p>
-                }
-                <button
-                    className="send-button"
-                    disabled={!this.state.cellphoneNumber}
-                    onClick={this.sendSMSSecurityCode}
-                >
+                <form>
+                    <h6>{this.props.title}</h6>
+                    <PhoneInput
+                        enableSearch={true}
+                        country={this.state.countryCode}
+                        value={this.state._phone}
+                        className={"form-control"}
+                        onChange={(phone, val) => {
+                            this.onCellphoneChange(val["dialCode"], phone.substring(val["dialCode"].length, phone.length));
+                        }}
+                    />
                     {
-                        this.props.sendSMSSecurityCodeLoading
-                            ?
-                            <span className="text-white spinner-grow spinner-grow-sm"
-                                  role="status"
-                                  aria-hidden="true"
-                            />
-                            :
-                            <span className={"text-white"}>Continuar</span>
-
+                        this.props.sendSMSSecurityCodeError
+                        &&
+                        <p className="instructions mt-4 text-danger">
+                            {this.props.sendSMSSecurityCodeError}
+                        </p>
                     }
-                </button>
+                    <button
+                        className="send-button"
+                        disabled={!this.state.cellphoneNumber}
+                        onClick={this.sendSMSSecurityCode}
+                    >
+                        {
+                            this.props.sendSMSSecurityCodeLoading
+                                ?
+                                <span className="text-white spinner-grow spinner-grow-sm"
+                                      role="status"
+                                      aria-hidden="true"
+                                />
+                                :
+                                <span className={"text-white"}>Continuar</span>
+
+                        }
+                    </button>
+                </form>
                 <p className="instructions">
                     Enviaremos un mensaje de texto a este número con un código de confirmación
                 </p>

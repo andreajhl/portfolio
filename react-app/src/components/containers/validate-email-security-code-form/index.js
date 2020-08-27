@@ -61,38 +61,40 @@ class ValidateEmailSecurityCodeForm extends Component {
                         Cambiar
                     </button>
                 </div>
-                <input
-                    type="number"
-                    className="form-control"
-                    placeholder="# # # # # #"
-                    name="securityCode"
-                    onChange={this.handleInput}
-                    value={this.state.securityCode}
-                    onKeyPress={this.handleKeyPress}
-                />
-                {
-                    this.props.validateEmailSecurityCodeError
-                    &&
-                    <p className="instructions mt-4 text-danger">
-                        {this.props.validateEmailSecurityCodeError}
-                    </p>
-                }
-                <button className="send-button"
-                        disabled={!this.state.securityCode}
-                        onClick={this.validateEmailSecurityCode}
-                >
+                <form>
+                    <input
+                        type="number"
+                        className="form-control"
+                        placeholder="# # # # # #"
+                        name="securityCode"
+                        onChange={this.handleInput}
+                        value={this.state.securityCode}
+                        onKeyPress={this.handleKeyPress}
+                    />
                     {
-                        this.props.validateEmailSecurityCodeLoading
-                            ?
-                            <span className="text-white spinner-grow spinner-grow-sm"
-                                  role="status"
-                                  aria-hidden="true"
-                            />
-                            :
-                            <span className="text-white">Continuar</span>
-
+                        this.props.validateEmailSecurityCodeError
+                        &&
+                        <p className="instructions mt-4 text-danger">
+                            {this.props.validateEmailSecurityCodeError}
+                        </p>
                     }
-                </button>
+                    <button className="send-button"
+                            disabled={!this.state.securityCode}
+                            onClick={this.validateEmailSecurityCode}
+                    >
+                        {
+                            this.props.validateEmailSecurityCodeLoading
+                                ?
+                                <span className="text-white spinner-grow spinner-grow-sm"
+                                      role="status"
+                                      aria-hidden="true"
+                                />
+                                :
+                                <span className="text-white">Continuar</span>
+
+                        }
+                    </button>
+                </form>
             </div>
         );
     };

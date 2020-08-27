@@ -55,7 +55,7 @@ class SignInMethodsForm extends Component {
                     this.props.cellphone
                     &&
                     <button
-                        className="sign-in-with-cellphone-button text-left"
+                        className="sign-in-with-cellphone-button text-center"
                         onClick={this.goToSignInWithCellphone}
                     >
                         <i className="fa fa-sms mr-3 ml-2"/>
@@ -67,7 +67,7 @@ class SignInMethodsForm extends Component {
                     &&
                     <>
                         {/*<button*/}
-                        {/*    className="sign-in-with-whatsapp-button text-left"*/}
+                        {/*    className="sign-in-with-whatsapp-button text-center"*/}
                         {/*    onClick={this.goToSignInWithWhatsApp}*/}
                         {/*>*/}
                         {/*    <img className="cursor-pointer mr-3 ml-2" src="/assets/img/whatsapp-black.svg"/>*/}
@@ -79,7 +79,7 @@ class SignInMethodsForm extends Component {
                     this.props.email
                     &&
                     <button
-                        className="sign-in-with-email-button text-left"
+                        className="sign-in-with-email-button text-center"
                         onClick={this.goToSignInWithEmail}
                     >
                         <i className="fa fa-envelope mr-3 ml-2"/>

@@ -72,42 +72,44 @@ class ResetPasswordForm extends Component {
                     !this.props.resetPasswordSent
                         ?
                         <>
-                            <h6>Ingresa con tu correo electrónico</h6>
-                            <input
-                                type="email"
-                                className="form-control"
-                                placeholder="Escribe tu correo"
-                                name="email"
-                                onChange={this.handleInput}
-                                value={this.state.email}
-                            />
-                            <div className="instructions">
-                                Enviaremos un correo con un código de confirmación
-                            </div>
-                            {
-                                this.props.resetPasswordError
-                                    ?
-                                    <p className="instructions mt-4 text-danger">
-                                        {this.props.resetPasswordError}
-                                    </p>
-                                    : null
-                            }
-                            <button className="send-button"
-                                    disabled={!this.state.email}
-                                    onClick={this.resetPassword}
-                            >
+                            <form>
+                                <h6>Ingresa con tu correo electrónico</h6>
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    placeholder="Escribe tu correo"
+                                    name="email"
+                                    onChange={this.handleInput}
+                                    value={this.state.email}
+                                />
+                                <div className="instructions">
+                                    Enviaremos un correo con un código de confirmación
+                                </div>
                                 {
-                                    this.props.isLoading
+                                    this.props.resetPasswordError
                                         ?
-                                        <span className="text-white spinner-grow spinner-grow-sm"
-                                              role="status"
-                                              aria-hidden="true"
-                                        />
-                                        :
-                                        <span className={"text-white"}>Enviar</span>
-
+                                        <p className="instructions mt-4 text-danger">
+                                            {this.props.resetPasswordError}
+                                        </p>
+                                        : null
                                 }
-                            </button>
+                                <button className="send-button"
+                                        disabled={!this.state.email}
+                                        onClick={this.resetPassword}
+                                >
+                                    {
+                                        this.props.isLoading
+                                            ?
+                                            <span className="text-white spinner-grow spinner-grow-sm"
+                                                  role="status"
+                                                  aria-hidden="true"
+                                            />
+                                            :
+                                            <span className={"text-white"}>Enviar</span>
+
+                                    }
+                                </button>
+                            </form>
                             <div className="login-type-button" onClick={this.goToLogin}>
                                 Volver a Iniciar Sesión
                             </div>

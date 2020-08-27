@@ -17,7 +17,7 @@ class CreateContractForm extends Component {
                 celebrity: null,
                 contractType: 1,
                 deliveryFrom: "",
-                deliveryTo: "",
+                deliveryTo: session.hasEmail() ? session.getSession().FullName : "",
                 deliveryType: 1,
                 deliveryContact: session.hasEmail() ? session.getSession().email : "",
                 instructions: "",

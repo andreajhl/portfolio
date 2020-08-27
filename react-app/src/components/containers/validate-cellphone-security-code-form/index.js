@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {authenticationOperations} from "../../../state/ducks/authentication";
 import {history} from "../../../routing/History";
-import * as PATHS from "../../../routing/Paths";
 import {connect} from "react-redux";
 
 class ValidateCellphoneSecurityCodeForm extends Component {
@@ -62,38 +61,40 @@ class ValidateCellphoneSecurityCodeForm extends Component {
                         Cambiar
                     </button>
                 </div>
-                <input
-                    type="number"
-                    className="form-control"
-                    placeholder="# # # # # #"
-                    name="securityCode"
-                    onChange={this.handleInput}
-                    value={this.state.securityCode}
-                    onKeyPress={this.handleKeyPress}
-                />
-                {
-                    this.props.validateSMSSecurityCodeError
-                    &&
-                    <p className="instructions mt-4 text-danger">
-                        {this.props.validateSMSSecurityCodeError}
-                    </p>
-                }
-                <button className="send-button"
-                        disabled={!this.state.securityCode}
-                        onClick={this.validateSMSSecurityCode}
-                >
+                <form>
+                    <input
+                        type="number"
+                        className="form-control"
+                        placeholder="# # # # # #"
+                        name="securityCode"
+                        onChange={this.handleInput}
+                        value={this.state.securityCode}
+                        onKeyPress={this.handleKeyPress}
+                    />
                     {
-                        this.props.validateSMSSecurityCodeLoading
-                            ?
-                            <span className="text-white spinner-grow spinner-grow-sm"
-                                  role="status"
-                                  aria-hidden="true"
-                            />
-                            :
-                            <span className="text-white">Continuar</span>
-
+                        this.props.validateSMSSecurityCodeError
+                        &&
+                        <p className="instructions mt-4 text-danger">
+                            {this.props.validateSMSSecurityCodeError}
+                        </p>
                     }
-                </button>
+                    <button className="send-button"
+                            disabled={!this.state.securityCode}
+                            onClick={this.validateSMSSecurityCode}
+                    >
+                        {
+                            this.props.validateSMSSecurityCodeLoading
+                                ?
+                                <span className="text-white spinner-grow spinner-grow-sm"
+                                      role="status"
+                                      aria-hidden="true"
+                                />
+                                :
+                                <span className="text-white">Continuar</span>
+
+                        }
+                    </button>
+                </form>
             </div>
         );
     };

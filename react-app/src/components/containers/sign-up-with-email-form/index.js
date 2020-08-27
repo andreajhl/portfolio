@@ -4,7 +4,6 @@ import {authenticationOperations} from "../../../state/ducks/authentication";
 import {connect} from "react-redux";
 import {AuthTCLayout} from "../../layouts/auth-t&c";
 import {getUTMs} from "../../../state/utils/UTMs";
-import {SignInMethodsForm} from "../sign-in-methods-form";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
@@ -59,17 +58,19 @@ class SignUpWithEmailForm extends Component {
     render() {
         return (
             <div className="SignUpWithEmailForm">
-                <h6>Ingresa con tu correo electrónico</h6>
-                <div className="form-horizontal">
-                    <input
-                        type="email"
-                        className="form-control"
-                        placeholder="Escribe tu correo"
-                        name="email"
-                        onChange={this.handleInput}
-                        value={this.state.email}
-                    />
-                </div>
+                <form>
+                    <h6>Ingresa con tu correo electrónico</h6>
+                    <div className="form-horizontal">
+                        <input
+                            type="email"
+                            className="form-control"
+                            placeholder="Escribe tu correo"
+                            name="email"
+                            onChange={this.handleInput}
+                            value={this.state.email}
+                        />
+                    </div>
+                </form>
                 {
                     this.props.validateIfEmailIsRegisteredError
                     &&
