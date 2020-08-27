@@ -64,10 +64,6 @@ class CompleteProfileForm extends Component {
         });
     };
 
-    // onBirthDateChange = (date) => {
-    //     console.log("date", date);
-    // };
-
     render() {
         const search = history.location.search;
         const params = new URLSearchParams(search);
@@ -112,12 +108,6 @@ class CompleteProfileForm extends Component {
                             <div className={"mb-3"}/>
                         </>
                 }
-                {/*<h6>Fecha de nacimiento</h6>*/}
-                {/*<DatePicker*/}
-                {/*    closeOnScroll={true}*/}
-                {/*    className="form-control mb-3"*/}
-                {/*    onChange={this.onBirthDateChange}*/}
-                {/*/>*/}
                 <h6>¿Cuáles son tus Famosos favoritos? (Opcional)</h6>
                 <CelebritiesMultiselect
                     currentValue={this.state.favCelebrities ? this.state.favCelebrities : []}

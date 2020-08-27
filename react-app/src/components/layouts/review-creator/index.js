@@ -27,7 +27,11 @@ class ReviewCreatorLayout extends Component {
 
     onStarClick(nextValue, prevValue, name) {
         const {reviewData} = this.state;
-        reviewData.stars = nextValue;
+        if(nextValue === 0) {
+            reviewData.stars = 1;
+        }else{
+            reviewData.stars = nextValue;
+        }
         this.setState({
             ...this.state,
             reviewData

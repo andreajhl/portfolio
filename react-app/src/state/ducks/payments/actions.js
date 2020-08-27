@@ -1,10 +1,10 @@
 import * as types from "./types";
 import apiService from "../../utils/apiService";
 import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
-import * as API_PATHS from "./paths";
 import {history} from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import {AVAILABLE_CURRENCIES} from "../../../components/layouts/currency-dropdown/constants";
+import * as GTM from "../../utils/gtm";
 
 export const listPaymentGateways = currency => {
   return dispatch => {
@@ -116,4 +116,49 @@ export const getContractToPay = contractReference => {
           });
     }, 1000);
   };
+};
+
+export const processStripePayment = (contractReference, sourceId) => {
+  const FINAL_PATH = "custom-endpoints/user-payments/process-stripe-payment";
+  const data = {
+    contractReference: contractReference,
+    sourceId: sourceId
+  };
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false
+    })
+        .then(res => {
+          if (res.data.status === "ERROR") {
+            rejectionFunc(res.data.error);
+          } else {
+            GTM.tagManagerDataLayer(
+                "CONTRACT_PAYED",
+                res.data
+            );
+            history._pushRoute(
+                ROUTING_PATHS.CONTRACT_CREATED.replace(
+                    ":contract_reference",
+                    res.data.data.reference
+                )
+            );
+            resolutionFunc(res.data.data);
+          }
+        })
+        .catch(error => {
+          if (error.response) {
+            if (error.response.data) {
+              rejectionFunc(error.response.data.error);
+            }
+          } else {
+            rejectionFunc("Ocurrió un error procesando tu pago,");
+          }
+        });
+  })
 };

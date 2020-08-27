@@ -5,8 +5,7 @@ import {CardElement, injectStripe} from "react-stripe-elements";
 import {Session} from "../../../state/utils/session";
 import * as PATHS from "../../../routing/Paths";
 import {withRouter} from 'react-router-dom';
-import {loadStripe} from '@stripe/stripe-js';
-
+import {processStripePayment} from "../../../state/ducks/payments/actions";
 
 class StripeCardForm extends Component {
 
@@ -14,24 +13,13 @@ class StripeCardForm extends Component {
         super(props);
         this.session = new Session();
         this.state = {
-            showCardError: false,
-            ownerName: this.session.getSession().fullName,
-            ownerEmail: this.session.getSession().email,
-            iframeUrl: null
+            ownerName: this.session.getSession().fullName || '',
+            ownerEmail: this.session.getSession().email || '',
+            errorMessage: null,
+            disableButton: false,
         };
 
     }
-
-    addStripePoll = async (clientSecret, sourceId) => {
-        const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
-        const stripe = await loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
-        console.log("stripe", stripe)
-        stripe.source.poll(
-            sourceId,
-            clientSecret,
-            this.onPollCallback
-        );
-    };
 
     handleInput = (e) => {
         this.setState({
@@ -40,11 +28,36 @@ class StripeCardForm extends Component {
         })
     };
 
-    apply3DCharge = () => {
+    createStripeSource = () => {
 
+        // CHECK REQUIRED FIELDS
+        if(!this.state.ownerName){
+            // ERROR
+            return this.setState({
+                ...this.state,
+                disableButton: false,
+                errorMessage: "El campo de nombre del titular de la tarjeta es obligatorio"
+            });
+        }
+        if(!this.state.ownerEmail){
+            // ERROR
+            return this.setState({
+                ...this.state,
+                disableButton: false,
+                errorMessage: "El campo de correo electrónico del titular de la tarjeta es obligatorio"
+            });
+        }
+
+        // DISABLE BUTTON
+        this.setState({
+            ...this.state,
+            disableButton: true
+        });
+
+        // REQUIRED DATA
         const amount = this.props.contractPrice * 100;
         const currency = "USD";
-        const userData = {
+        const ownerData = {
             name: this.state.ownerName,
             email: this.state.ownerEmail,
         };
@@ -55,25 +68,30 @@ class StripeCardForm extends Component {
                 type: 'card',
                 currency: currency,
                 amount: amount,
-                owner: userData
+                owner: ownerData
             })
             .then(response => {
-                console.log("createSource Response: ", response);
 
                 // ERROR
                 if (response.error) {
                     // ERROR
-                    console.log("createSource ERROR", response.error);
-                    // TODO
-                    return;
+                    return this.setState({
+                        ...this.state,
+                        disableButton: false,
+                        errorMessage: response.error.message
+                    });
                 }
-
 
                 // SEND TO THE BACKEND TO LINKED WITH THE CUSTOMER AND APPLY THE AUTHORIZATION
                 if (response.source.card.three_d_secure === 'not_supported' && response.source.status === 'chargeable') {
-                    console.log("createSource NOT 3D NOT REQUIRED", response);
-                    // TODO
-                    return;
+                    return processStripePayment(this.props.contractReference, response.source.id)
+                        .then(r => console.log(r))
+                        .catch(e => {
+                            this.setState({
+                                ...this.state,
+                                error: e,
+                            })
+                        });
                 }
 
                 // APPLY 3D FLOW
@@ -81,118 +99,133 @@ class StripeCardForm extends Component {
                     response.source.card.three_d_secure === 'recommended' ||
                     response.source.card.three_d_secure === 'optional'
                 ) {
-                    const redirectUrl = PATHS.STRIPE_3D_SECURE_IFRAME.replace(
-                        ":contract_reference",
-                        this.props.contractReference
-                    );
-                    // CREATE A 3D SOURCE
-                    this.props.stripe.createSource({
-                        type: 'three_d_secure',
-                        currency: currency,
-                        amount: amount,
-                        three_d_secure: {
-                            card: response.source.id
-                        },
-                        redirect: {
-                            return_url: window.location.origin + PATHS.STRIPE_3D_SECURE_RESPONSE.replace(":contract_reference", this.props.contractReference)
-                        },
-                        owner: userData
-                    }).then(response => {
-
-                        console.log("createSource 3D REQUIRED", response);
-
-                        // ERROR
-                        if (response.error) {
-                            console.log("createSource ERROR", response.error.message);
-                            // TODO
-                            return;
-                        }
-
-                        console.log("response", response);
-
-                        // ON POLL
-                        this.addStripePoll(response.source.client_secret, response.source.id)
-
-                        // // GO TO IFRAME
-                        // this.setState({
-                        //     ...this.state,
-                        //     iframeUrl: response.source.redirect.url
-                        // });
-
-
-                        // this.props.history.push({
-                        //     pathname: PATHS.STRIPE_3D_SECURE_IFRAME.replace(
-                        //         ":contract_reference",
-                        //         this.props.contractReference
-                        //     ),
-                        //     state: {url: response.source.redirect.url}
-                        // });
-                    });
+                    this.createStripe3DFlow(currency, amount, response.source.id, ownerData);
                 }
             })
     };
 
-    onPollCallback = (paymentRequest, resolve, reject) => {
-        return (status, source) => {
-            console.log('onPoolCallback --> ', source);
 
-            if (status !== 200 || source.error) {
-                console.log('onPoolCallback --> REJECT --> not 200 or error --> ', source);
-                reject(source.error);
-            } else if (source.status === 'canceled' || source.status === 'consumed' || source.status === 'failed') {
-                console.log('onPoolCallback --> REJECT --> canceled/consumed/fail --> ', source);
-                reject(source.status);
-            } else if (/* source.three_d_secure.authenticated && */ source.status === 'chargeable') {
-                /* some cards do not need to be authenticated, like the 4242 4242 4242 4242 */
-                console.log('onPoolCallback --> SUCCESS --> ', source);
-                resolve(source);
+    createStripe3DFlow = (currency, amount, sourceId, ownerData) => {
+        const iframeUrl = PATHS.STRIPE_3D_SECURE_IFRAME.replace(
+            ":contract_reference",
+            this.props.contractReference
+        );
+        const responseURL = window.location.origin + PATHS.STRIPE_3D_SECURE_RESPONSE.replace(
+            ":contract_reference", this.props.contractReference
+        );
+
+        // CREATE A 3D SOURCE
+        this.props.stripe.createSource({
+            type: 'three_d_secure',
+            currency: currency,
+            amount: amount,
+            three_d_secure: {card: sourceId},
+            redirect: {return_url: responseURL},
+            owner: ownerData
+        }).then(response => {
+
+            // ERROR
+            if (response.error) {
+                return this.setState({
+                    ...this.state,
+                    disableButton: false,
+                    errorMessage: response.error.message
+                });
             }
-        };
+
+            // GO TO IFRAME
+            this.props.history.push({
+                pathname: iframeUrl,
+                state: {url: response.source.redirect.url}
+            });
+        });
+    };
+
+    retry = () => {
+        return this.setState({
+            ...this.state,
+            disableButton: false,
+            errorMessage: null
+        });
+    };
+
+    renderError = () => {
+        if (this.state.errorMessage) {
+            return (
+                <div className={"mx-auto p-4 error-container"}>
+                    <div className="text-danger text-center mb-3">
+                        <small className={"text-danger font-weight-bold"}>
+                            {this.state.errorMessage}
+                        </small>
+                    </div>
+                    <div className={"mx-auto text-center mb-3"}>
+                        <button className={"btn btn-primary"} onClick={this.retry}>
+                            Volver a intentar
+                        </button>
+                    </div>
+                    <div className="mb-3 text-justify ">
+                        <small>
+                            Si el problema persiste puedes comunicarte con nuestro equipo de soporte a
+                            {" "}
+                            <a className={"font-weight-bold"}
+                               href="mailto:experiencias@famosos.com">experiencias@famosos.com</a>
+                            {" "}
+                            para más información.
+                        </small>
+                    </div>
+                </div>
+            )
+        }
     };
 
     render() {
         return (
             <div className="StripeCardForm">
-                {
-                    this.state.iframeUrl
-                        ?
-                        <iframe src={this.state.iframeUrl} width={"100%"} height={"700px"}/>
-                        :
-                        <Form.Group>
-                            <h6 className={"font-weight-light"}>Correo del titular de la tarjeta</h6>
-                            <input
-                                type="text"
-                                className="form-control mb-3"
-                                placeholder="Escribe aquí el correo"
-                                name="ownerEmail"
-                                onChange={this.handleInput}
-                                value={this.state.ownerEmail}
-                            />
-                            <h6 className={"font-weight-light"}>Nombre del titular de la tarjeta</h6>
-                            <input
-                                type="text"
-                                className="form-control mb-3"
-                                placeholder="Escribe aquí el nombre"
-                                name="ownerName"
-                                onChange={this.handleInput}
-                                value={this.state.ownerName}
-                            />
-                            <h6 className={"font-weight-light"}>Datos de la tarjeta</h6>
-                            <div className="StripeCardElementLayout" style={{border: "solid 2px !important"}}>
-                                <div className="checkout">
-                                    <CardElement/>
-                                </div>
-                            </div>
-                            <div className={"text-center mt-2 pb-2"}>
-                                <div className={"font-weight-light"} style={{fontSize: "10px"}}>
-                                    Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP = Código postal
-                                </div>
-                            </div>
-                            <div className={"mx-auto text-center"}>
-                                <button className={"btn btn-primary"} onClick={this.apply3DCharge}>Pagar</button>
-                            </div>
-                        </Form.Group>
-                }
+                <Form.Group>
+                    <h6 className={"font-weight-light"}>Correo del titular de la tarjeta</h6>
+                    <input
+                        type="text"
+                        className="form-control mb-3"
+                        placeholder="Escribe aquí el correo"
+                        name="ownerEmail"
+                        onChange={this.handleInput || ""}
+                        value={this.state.ownerEmail}
+                    />
+                    <h6 className={"font-weight-light"}>Nombre del titular de la tarjeta</h6>
+                    <input
+                        type="text"
+                        className="form-control mb-3"
+                        placeholder="Escribe aquí el nombre"
+                        name="ownerName"
+                        onChange={this.handleInput || ""}
+                        value={this.state.ownerName}
+                    />
+                    <h6 className={"font-weight-light"}>Datos de la tarjeta</h6>
+                    <div className="StripeCardElementLayout" style={{border: "solid 2px !important"}}>
+                        <div className="checkout">
+                            <CardElement/>
+                        </div>
+                    </div>
+                    <div className={"text-center mt-2 pb-2"}>
+                        <div className={"font-weight-light"} style={{fontSize: "10px"}}>
+                            Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP = Código postal
+                        </div>
+                    </div>
+                    {this.renderError()}
+                    {
+                        !this.state.errorMessage
+                        &&
+                        <div className={"mx-auto text-center"}>
+                            <button
+                                className={"btn btn-primary"}
+                                onClick={this.createStripeSource}
+                                disabled={this.state.disableButton}
+                            >
+                                Pagar
+                            </button>
+                        </div>
+                    }
+                </Form.Group>
             </div>
         );
     };

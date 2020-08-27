@@ -12,7 +12,6 @@ class AvailablePaymentMethods extends Component {
 
         this.state = {
             selectedPaymentMethod: "STRIPE",
-            showError: false
         };
     }
 
@@ -59,26 +58,6 @@ class AvailablePaymentMethods extends Component {
                         </div>
                     </div>
                 </div>
-
-                {this.state.showError && (
-                    <div className={"mx-auto text-justify"} style={{maxWidth: "200px"}}>
-                        <div className="text-danger mt-3">
-                            <small className={"text-danger font-weight-bold"}>
-                                {this.props.error}
-                            </small>
-                        </div>
-                        <div className="mt-2">
-                            <small>
-                                Comunícate con nuestro soporte a
-                                {" "}
-                                <a className={"font-weight-bold"}
-                                   href="mailto:experiencias@famosos.com">experiencias@famosos.com</a>
-                                {" "}
-                                para más información.
-                            </small>
-                        </div>
-                    </div>
-                )}
             </div>
         );
     }
