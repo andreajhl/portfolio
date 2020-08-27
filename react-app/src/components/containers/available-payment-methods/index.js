@@ -11,15 +11,33 @@ class AvailablePaymentMethods extends Component {
         super(props);
 
         this.state = {
-            selectedPaymentMethod: "STRIPE",
+            selectedPaymentMethod: "",
         };
     }
+
+    changeToStripe = (e) => {
+        e.preventDefault();
+
+        this.setState({
+            ...this.state,
+            selectedPaymentMethod: "STRIPE"
+        })
+    };
+
+    changeToPaypal = (e) => {
+        e.preventDefault();
+
+        this.setState({
+            ...this.state,
+            selectedPaymentMethod: "PAYPAL"
+        })
+    };
 
     render() {
         return (
             <div className="AvailablePaymentMethods mx-auto">
                 <div className={"payment-types f-rounded"}>
-                    <div className="payment-type mb-3">
+                    <div className="payment-type mb-3" onClick={this.changeToStripe}>
                         <div className="titles">
                             <div className="icon">
                                 <i className="ml-2 fa fa-credit-card"/>
@@ -39,7 +57,7 @@ class AvailablePaymentMethods extends Component {
                             </Elements>
                         </div>
                     </div>
-                    <div className="payment-type mb-3">
+                    <div className="payment-type mb-3" onClick={this.changeToPaypal}>
                         <div className="titles">
                             <div className="icon">
                                 <i className="ml-2 fa fa-plus"/>

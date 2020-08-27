@@ -3,7 +3,6 @@ import "./styles.scss";
 import {PageContainer} from "../../layouts/page-container";
 import {Stripe3dSecureIframe} from "../../containers/stripe-3d-secure-iframe";
 import * as ROUTING_PATHS from "../../../routing/Paths";
-import {ContractCheckoutSummary} from "../../containers/contract-checkout-summary";
 
 const stripe = require('stripe')(process.env.REACT_APP_STRIPE_KEY);
 
@@ -20,13 +19,18 @@ class ProcessStripe3DFormPage extends Component {
     }
 
     handleIframeTask= (message) => {
-        if(message.data === "GO_TO_PAYMENT_METHODS"){
-            this.props.history._pushRoute(
-                ROUTING_PATHS.PAYMENT_METHODS.replace(
-                    ":contract_reference",
-                    this.props.match.params.contract_reference
-                )
-            );
+        if(typeof message.data === "string"){
+            console.log("message.data", message.data);
+            if(message.data === "GO_TO_PAYMENT_METHODS"){
+                this.props.history._pushRoute(
+                    ROUTING_PATHS.PAYMENT_METHODS.replace(
+                        ":contract_reference",
+                        this.props.match.params.contract_reference
+                    )
+                );
+            } else if (message.data.includes("CONTRACT_CREATED")) {
+                this.props.history._pushRoute(message.data.replace("CONTRACT_CREATED", ""));
+            }
         }
     };
 
@@ -50,7 +54,7 @@ class ProcessStripe3DFormPage extends Component {
                                     <div className="row contract-summary col-lg-12 justify-content-center">
                                         <div className="col-lg-12 custom-card-title f-rounded">
                                             <h6 className="text-white">
-                                                Autenticación requerida para pagos seguros
+                                                Verificación de autenticidad de la tarjeta
                                             </h6>
                                         </div>
                                     </div>
