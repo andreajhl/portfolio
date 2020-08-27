@@ -64,18 +64,22 @@ class ContractCheckoutSummary extends Component {
                         <div className="instructions mt-4 text-justify">
                             <small>{this.props.instructions}</small>
                         </div>
-                        <hr/>
-                        <div className="total mt-4 f-rounded">
-                            <h5 className="font-weight-bold float-left">Total:</h5>
-                            <h5 className="font-weight-bold text-right float-right">
-                                <ContractPriceLayout
-                                    classes={"text-black font-weight-bold"}
-                                    price={this.props.price}
-                                    currency={"USD"}
-                                    rounding={false}
-                                />
-                            </h5>
-                        </div>
+                        {
+                            this.props.price
+                                ?
+                                <div className="mt-4 f-rounded">
+                                    <h5 className="font-weight-bold float-left">Total:</h5>
+                                    <h5 className="font-weight-bold text-right float-right">
+                                        <ContractPriceLayout
+                                            classes={"text-black font-weight-bold"}
+                                            price={this.props.price}
+                                            currency={"USD"}
+                                            rounding={false}
+                                        />
+                                    </h5>
+                                </div>
+                                : <div></div>
+                        }
                     </div>
                 </div>
             </div>

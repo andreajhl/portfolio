@@ -61,62 +61,65 @@ class SignInWithEmailForm extends Component {
     render() {
         return (
             <div className="SignInWithEmailForm">
-                <h6>Ingresa con tu correo electrónico</h6>
-                <input
-                    type="email"
-                    className="form-control mb-3"
-                    placeholder="Escribe tu correo"
-                    name="email"
-                    onChange={this.handleInput}
-                    value={this.state.email}
-                />
-                <h6>Contraseña</h6>
-                <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Escribe tu contraseña"
-                    name="password"
-                    onChange={this.handleInput}
-                    value={this.state.password}
-                    onKeyPress={this.handleKeyPress}
-                />
-                {
-                    this.props.signInWithEmailError
-                    &&
-                    <p className="instructions mt-4 text-danger">
-                        {this.props.signInWithEmailError}
-                    </p>
-                }
-                <button className="send-button"
-                        disabled={!this.state.email || !this.state.password}
-                        onClick={this.signInWithEmail}
-                >
+                <form autoComplete={"off"}>
+                    <h6>Ingresa con tu correo electrónico</h6>
+                    <input
+                        autoComplete={false}
+                        type="email"
+                        className="form-control mb-3"
+                        placeholder="Escribe tu correo"
+                        name="email"
+                        onChange={this.handleInput}
+                        value={this.state.email}
+                    />
+                    <h6>Contraseña</h6>
+                    <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Escribe tu contraseña"
+                        name="password"
+                        onChange={this.handleInput}
+                        value={this.state.password}
+                        onKeyPress={this.handleKeyPress}
+                    />
                     {
-                        this.props.signInWithEmailLoading
-                            ?
-                            <span className="text-white spinner-grow spinner-grow-sm"
-                                  role="status"
-                                  aria-hidden="true"
-                            />
-                            :
-                            <span className={"text-white"}>Continuar</span>
-
+                        this.props.signInWithEmailError
+                        &&
+                        <p className="instructions mt-4 text-danger">
+                            {this.props.signInWithEmailError}
+                        </p>
                     }
-                </button>
-                <div className="mb-4 pb-4">
-                    <div className="mt-2 float-left cursor-pointer">
-                        <small className="text-muted" onClick={this.goToSignUp}>
-                            Crear una cuenta
-                        </small>
+                    <button className="send-button"
+                            disabled={!this.state.email || !this.state.password}
+                            onClick={this.signInWithEmail}
+                    >
+                        {
+                            this.props.signInWithEmailLoading
+                                ?
+                                <span className="text-white spinner-grow spinner-grow-sm"
+                                      role="status"
+                                      aria-hidden="true"
+                                />
+                                :
+                                <span className={"text-white"}>Continuar</span>
+
+                        }
+                    </button>
+                    <div className="mb-4 pb-4">
+                        <div className="mt-2 float-left cursor-pointer">
+                            <small className="text-muted" onClick={this.goToSignUp}>
+                                Crear una cuenta
+                            </small>
+                        </div>
+                        <div className="mt-2 float-right cursor-pointer">
+                            <small className="text-muted" onClick={this.goToResetPassword}>
+                                Olvidé mi contraseña
+                            </small>
+                        </div>
                     </div>
-                    <div className="mt-2 float-right cursor-pointer">
-                        <small className="text-muted" onClick={this.goToResetPassword}>
-                            Olvidé mi contraseña
-                        </small>
-                    </div>
-                </div>
-                <SignInMethodsForm cellphone={true} whatsapp={true}/>
-                <AuthTCLayout/>
+                    <SignInMethodsForm cellphone={true} whatsapp={true}/>
+                    <AuthTCLayout/>
+                </form>
             </div>
         );
     };

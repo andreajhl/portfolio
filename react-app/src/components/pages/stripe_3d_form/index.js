@@ -20,7 +20,6 @@ class ProcessStripe3DFormPage extends Component {
 
     handleIframeTask= (message) => {
         if(typeof message.data === "string"){
-            console.log("message.data", message.data);
             if(message.data === "GO_TO_PAYMENT_METHODS"){
                 this.props.history._pushRoute(
                     ROUTING_PATHS.PAYMENT_METHODS.replace(

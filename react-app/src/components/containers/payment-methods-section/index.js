@@ -13,7 +13,7 @@ class PaymentMethodsSection extends Component {
 
     render() {
         return (
-            <div className="PaymentMethodsSection">
+            <div className="PaymentMethodsSection" style={{opacity: (this.props.contractData.celebrity_avatar ? "1" : "0.3")}}>
                 <div className={"row justify-content-center payment-methods-section-row"}>
                     <div className="col-12 col-md-8 p-0 m-0 f-rounded f-shadow">
 
@@ -41,11 +41,16 @@ class PaymentMethodsSection extends Component {
                                 y nuestra&nbsp;
                                 <a href={ROUTING_PATHS.POLICIES_PATH} target={"_blank"}>Política de Privacidad</a>&nbsp;
                             </small>
-                            <div className="mt-4 mx-auto text-center">
+                            <div className="mt-2 mx-auto text-center">
                                 <img width="230px" src={"/assets/img/pago-seguro.png"} alt={"pago-seguro"}/>
                             </div>
                             <br/>
                         </div>
+
+                        {/* HELP */}
+                        {/*<div className={"mb-4 text-center"}>*/}
+                        {/*    <small className={"font-weight-light"}>¿Necesitas ayuda?</small>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>

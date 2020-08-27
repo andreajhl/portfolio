@@ -18,7 +18,7 @@ class Stripe3dSecureIframe extends Component {
                 <iframe
                     src={this.props.iframeUrl}
                     width={"100%"}
-                    height={window.innerHeight - 300}
+                    height={window.innerHeight - 200}
                     onload="resizeIframe(this);window.scrollTo(0, 0);"
                 />
             </div>

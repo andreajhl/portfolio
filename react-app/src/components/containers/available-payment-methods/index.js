@@ -37,14 +37,17 @@ class AvailablePaymentMethods extends Component {
         return (
             <div className="AvailablePaymentMethods mx-auto">
                 <div className={"payment-types f-rounded"}>
+                    <div className={"font-weight-bold pt-2 pl-3 pb-2 mb-2 bg-light"}>
+                        Selecciona un método de pago
+                    </div>
                     <div className="payment-type mb-3" onClick={this.changeToStripe}>
                         <div className="titles">
                             <div className="icon">
                                 <i className="ml-2 fa fa-credit-card"/>
                             </div>
                             <div className="payment-type-title">
-                                <h6 className={"font-weight-bold"}>
-                                    <span>Pagar con Tarjeta de Crédito</span>
+                                <h6 className={"font-weight-normal"}>
+                                    <span>Tarjeta de Crédito</span>
                                 </h6>
                             </div>
                         </div>
@@ -63,8 +66,8 @@ class AvailablePaymentMethods extends Component {
                                 <i className="ml-2 fa fa-plus"/>
                             </div>
                             <div className="payment-type-title">
-                                <h6 className={"font-weight-bold"}>
-                                    <span>Pagar con PayPal</span>
+                                <h6 className={"font-weight-normal"}>
+                                    <span>PayPal</span>
                                 </h6>
                             </div>
                         </div>
