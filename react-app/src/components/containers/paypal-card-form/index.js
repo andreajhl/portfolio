@@ -94,7 +94,7 @@ class PayPalCardForm extends Component {
             maxWidth: '100%',
             maxHeight: '50%',
         };
-        if (!this.state.errorMessage) {
+        if (!this.state.errorMessage && this.props.contractPrice > 0) {
             return (
                 <div style={divStyles}>
                     <PayPalButton
