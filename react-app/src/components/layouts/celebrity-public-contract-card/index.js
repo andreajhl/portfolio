@@ -59,7 +59,8 @@ class CelebrityPublicContractCardLayout extends Component {
             let posterURL = videoURL;
             posterURL = posterURL.replace(".mp4", ".jpg").replace("watermark", "poster");
             return (
-                <img className="poster" width={"100%"} src={posterURL} alt={"video-poster"}/>
+                <img className="poster" width={"100%"} onClick={this.goToContract.bind(this)} src={posterURL}
+                     alt={"video-poster"}/>
             )
         } else {
             return (

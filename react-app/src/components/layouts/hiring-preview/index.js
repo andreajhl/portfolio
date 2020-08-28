@@ -193,6 +193,7 @@ class HiringPreviewLayout extends Component {
                                    onClick={this.playDesktopVideo.bind(this)}
                                 />
                                 <video
+                                    autoPlay={true}
                                     poster={this.returnPoster(this.props.contract.celebrityData.avatar)}
                                     id={"video1"}
                                     src={(this.props.contract.media) + "#t=0.5"}
