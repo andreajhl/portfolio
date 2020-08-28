@@ -107,13 +107,11 @@ class ContractCreatedPage extends Component {
                                      alt="avatar"
                                 />
                             </div>
-                            <p className="mt-2 font-weight-bold">
-                                <h5>¡Felicitaciones!</h5>
+                            <p className="mt-4 font-weight-bold">
+                                <h5 className={"font-weight-bold"}>¡Felicitaciones!</h5>
+                                <h5 className={"font-weight-bold"}> Se ha realizado con éxito la pre-autorización del cobro a tu cuenta.</h5>
                             </p>
-                            <p className="mt-2 p-3 font-weight-bold">
-                                <h5> Se ha realizado con éxito la pre-autorización del cobro a tu cuenta.</h5>
-                            </p>
-                            <p className="mt-2 pl-3 pr-3 font-weight-light text-left">
+                            <p className="mt-4 pl-3 pr-3 font-weight-light text-left">
                                 <h6>Ten en cuenta:</h6>
                                 <li>{this.props.resumen.celebrity.fullName} tiene un plazo
                                     de{" "}<b>7 días</b>{" "}para grabar tu video a partir de hoy.
