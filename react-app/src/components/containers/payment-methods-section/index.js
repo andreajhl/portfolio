@@ -15,7 +15,7 @@ class PaymentMethodsSection extends Component {
         return (
             <div className="PaymentMethodsSection" style={{opacity: (this.props.contractData.celebrity_avatar ? "1" : "0.3")}}>
                 <div className={"row justify-content-center payment-methods-section-row"}>
-                    <div className="col-12 col-md-8 p-0 m-0 f-rounded f-shadow">
+                    <div className="col-12 col-md-8 p-0 m-0 mb-4 f-rounded f-shadow">
 
                         {/* CONTRACT SUMMARY */}
                         <ContractCheckoutSummary

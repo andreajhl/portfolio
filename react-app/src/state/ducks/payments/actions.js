@@ -124,43 +124,15 @@ export const processStripePayment = (contractReference, sourceId) => {
     contractReference: contractReference,
     sourceId: sourceId
   };
-  return new Promise((resolutionFunc, rejectionFunc) => {
-    apiService({
-      method: "POST",
-      action: null,
-      path: FINAL_PATH,
-      async: true,
-      params: null,
-      body: data,
-      custom_endpoint: false
-    })
-        .then(res => {
-          if (res.data.status === "ERROR") {
-            rejectionFunc(res.data.error);
-          } else {
-            GTM.tagManagerDataLayer(
-                "CONTRACT_PAYED",
-                res.data
-            );
-            const route = ROUTING_PATHS.CONTRACT_CREATED.replace(
-                ":contract_reference",
-                res.data.data.reference
-            );
-            window.parent.postMessage("CONTRACT_CREATED" + route, '*');
-            history._pushRoute(route);
-            resolutionFunc(res.data.data);
-          }
-        })
-        .catch(error => {
-          if (error.response) {
-            if (error.response.data) {
-              rejectionFunc(error.response.data.error);
-            }
-          } else {
-            rejectionFunc("Ocurrió un error procesando tu pago,");
-          }
-        });
-  })
+  return apiService({
+    method: "POST",
+    action: null,
+    path: FINAL_PATH,
+    async: true,
+    params: null,
+    body: data,
+    custom_endpoint: false
+  });
 };
 
 export const processPayPalPayment = (contractReference, payPalResponse, isPending) => {
@@ -204,6 +176,37 @@ export const processPayPalPayment = (contractReference, payPalResponse, isPendin
             }
           } else {
             rejectionFunc("Ocurrió un error procesando tu pago,");
+          }
+        });
+  })
+};
+
+export const retrieveUserCards = () => {
+  const FINAL_PATH = "custom-endpoints/user-payments/retrieve-stripe-customer-sources";
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "GET",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: null,
+      custom_endpoint: false
+    })
+        .then(res => {
+          if (res.data.status === "ERROR") {
+            rejectionFunc(res.data.error);
+          } else {
+            resolutionFunc(res.data.data);
+          }
+        })
+        .catch(error => {
+          if (error.response) {
+            if (error.response.data) {
+              rejectionFunc(error.response.data.error);
+            }
+          } else {
+            rejectionFunc("ERROR");
           }
         });
   })

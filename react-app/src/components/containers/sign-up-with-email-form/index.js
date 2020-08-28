@@ -58,7 +58,7 @@ class SignUpWithEmailForm extends Component {
     render() {
         return (
             <div className="SignUpWithEmailForm">
-                <form>
+                <form onSubmit={(e) => e.preventDefault()}>
                     <h6>Ingresa con tu correo electrónico</h6>
                     <div className="form-horizontal">
                         <input

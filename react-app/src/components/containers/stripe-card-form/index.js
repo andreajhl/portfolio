@@ -6,6 +6,8 @@ import {Session} from "../../../state/utils/session";
 import * as PATHS from "../../../routing/Paths";
 import {withRouter} from 'react-router-dom';
 import {processStripePayment} from "../../../state/ducks/payments/actions";
+import {history} from "../../../routing/History";
+import * as GTM from "../../../state/utils/gtm";
 
 class StripeCardForm extends Component {
 
@@ -68,10 +70,10 @@ class StripeCardForm extends Component {
                 type: 'card',
                 currency: currency,
                 amount: amount,
-                owner: ownerData
+                owner: ownerData,
+                usage: "reusable"
             })
-            .then(response => {
-
+            .then((response) => {
                 // ERROR
                 if (response.error) {
                     // ERROR
@@ -81,29 +83,62 @@ class StripeCardForm extends Component {
                         errorMessage: response.error.message
                     });
                 }
-
                 // SEND TO THE BACKEND TO LINKED WITH THE CUSTOMER AND APPLY THE AUTHORIZATION
-                if (response.source.card.three_d_secure === 'not_supported' && response.source.status === 'chargeable') {
-                    return processStripePayment(this.props.contractReference, response.source.id)
-                        .then(r => console.log(r))
-                        .catch(e => {
-                            this.setState({
-                                ...this.state,
-                                error: e,
-                            })
-                        });
+                else if (
+                    response.source.status === 'chargeable' &&
+                    response.source.card.three_d_secure !== 'recommended'
+                ) {
+                    this.applyStripeAuth(response.source.id)
                 }
-
                 // APPLY 3D FLOW
-                if (response.source.card.three_d_secure === 'required' ||
-                    response.source.card.three_d_secure === 'recommended' ||
-                    response.source.card.three_d_secure === 'optional'
+                else if (
+                    response.source.card.three_d_secure === 'optional' ||
+                    response.source.card.three_d_secure === 'required' ||
+                    response.source.card.three_d_secure === 'recommended'
                 ) {
                     this.createStripe3DFlow(currency, amount, response.source.id, ownerData);
+                } else {
+                    this.setState({
+                        ...this.state,
+                        errorMessage: "Ocurrió un error inesperado.",
+                    })
                 }
             })
     };
 
+
+    applyStripeAuth = (sourceId) => {
+        processStripePayment(this.props.contractReference, sourceId)
+            .then(res => {
+                if (res.data.status === "ERROR") {
+                    this.setState({
+                        ...this.state,
+                        errorMessage: res.data.error,
+                    });
+                } else {
+                    const route = PATHS.CONTRACT_CREATED.replace(
+                        ":contract_reference",
+                        res.data.data.reference
+                    );
+                    history._pushRoute(route);
+                }
+            })
+            .catch(error => {
+                if (error.response) {
+                    if (error.response.data) {
+                        this.setState({
+                            ...this.state,
+                            errorMessage: error.response.data.error,
+                        });
+                    }
+                } else {
+                    this.setState({
+                        ...this.state,
+                        errorMessage: "Ocurrió un error procesando tu pago,",
+                    });
+                }
+            });
+    };
 
     createStripe3DFlow = (currency, amount, sourceId, ownerData) => {
         const iframeUrl = PATHS.STRIPE_3D_SECURE_IFRAME.replace(
@@ -121,7 +156,7 @@ class StripeCardForm extends Component {
             amount: amount,
             three_d_secure: {card: sourceId},
             redirect: {return_url: responseURL},
-            owner: ownerData
+            owner: ownerData,
         }).then(response => {
 
             // ERROR

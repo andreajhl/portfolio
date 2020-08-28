@@ -61,7 +61,7 @@ class SignInWithEmailForm extends Component {
     render() {
         return (
             <div className="SignInWithEmailForm">
-                <form>
+                <form onSubmit={(e) => e.preventDefault()}>
                     <h6>Ingresa con tu correo electrónico</h6>
                     <input
                         type="email"

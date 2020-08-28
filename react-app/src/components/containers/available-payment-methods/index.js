@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import "./styles.scss";
 import {PayPalCardForm} from "../paypal-card-form";
 import {Elements} from "react-stripe-elements";
-import StripeCardForm from "../stripe-card-form";
+import StripeFlowHandler from "../stripe-flow-handler";
 
 
 class AvailablePaymentMethods extends Component {
@@ -53,7 +53,7 @@ class AvailablePaymentMethods extends Component {
                         </div>
                         <div className={"pl-3 pr-3 pt-4 pb-4 bg-light" + (this.state.selectedPaymentMethod==="STRIPE" ? "":" d-none ")}>
                             <Elements>
-                                <StripeCardForm
+                                <StripeFlowHandler
                                     contractReference={this.props.contractReference}
                                     contractPrice={this.props.contractPrice}
                                 />

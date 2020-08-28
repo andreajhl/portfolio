@@ -61,7 +61,7 @@ class ValidateEmailSecurityCodeForm extends Component {
                         Cambiar
                     </button>
                 </div>
-                <form>
+                <form onSubmit={(e) => e.preventDefault()}>
                     <input
                         type="number"
                         className="form-control"

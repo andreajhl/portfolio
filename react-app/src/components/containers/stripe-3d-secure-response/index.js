@@ -3,6 +3,7 @@ import "./styles.scss"
 import {withRouter} from "react-router";
 import {loadStripe} from "@stripe/stripe-js";
 import {processStripePayment} from "../../../state/ducks/payments/actions";
+import * as PATHS from "../../../routing/Paths";
 
 
 class Stripe3dSecureResponse extends Component {
@@ -70,7 +71,13 @@ class Stripe3dSecureResponse extends Component {
 
     sendStripePayemtData = (sourceId) => {
         processStripePayment(this.props.contractReference, sourceId)
-            .then(r => console.log(r))
+            .then(res => {
+                const route = PATHS.CONTRACT_CREATED.replace(
+                    ":contract_reference",
+                    res.data.data.reference
+                );
+                window.parent.postMessage("CONTRACT_CREATED" + route, '*');
+            })
             .catch(e => {
                 this.setState({
                     ...this.state,

@@ -72,7 +72,7 @@ class ResetPasswordForm extends Component {
                     !this.props.resetPasswordSent
                         ?
                         <>
-                            <form>
+                            <form onSubmit={(e) => e.preventDefault()}>
                                 <h6>Ingresa con tu correo electrónico</h6>
                                 <input
                                     type="email"

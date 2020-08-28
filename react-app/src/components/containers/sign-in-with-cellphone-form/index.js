@@ -85,7 +85,7 @@ class SignInWithCellphoneForm extends Component {
     render() {
         return (
             <div className="SignInWithCellphoneForm">
-                <form>
+                <form onSubmit={(e) => e.preventDefault()}>
                     <h6>{this.props.title}</h6>
                     <PhoneInput
                         enableSearch={true}

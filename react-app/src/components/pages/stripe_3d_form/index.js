@@ -48,7 +48,7 @@ class ProcessStripe3DFormPage extends Component {
                 >
                     <div className="PaymentMethodsSection">
                         <div className={"row justify-content-center payment-methods-section-row"}>
-                            <div className="col-12 col-md-6 p-0 m-0 f-rounded f-shadow">
+                            <div className="col-12 col-md-6 p-0 m-0 mb-4 f-rounded f-shadow">
                                 <div className="ContractCheckoutSummary">
                                     <div className="row contract-summary col-lg-12 justify-content-center">
                                         <div className="col-lg-12 custom-card-title f-rounded">
