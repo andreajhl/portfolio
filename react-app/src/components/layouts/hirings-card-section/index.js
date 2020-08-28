@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import "./styles.scss";
 import * as PATHS from "../../../routing/Paths";
 import {history} from "../../../routing/History";
-
+const moment = require("moment");
 
 class HiringsCardSectionLayout extends Component {
 
@@ -22,6 +22,13 @@ class HiringsCardSectionLayout extends Component {
         history._pushRoute(PATHS.PAYMENT_METHODS.replace(":contract_reference", contract_reference))
     }
 
+    renderExpirationMessage = (date) => {
+        const _date = new Date(date);
+        require('moment/locale/es');
+        _date.setDate(_date.getDate() + 6);
+        return "Este video expira el " + moment(_date.toISOString()).format("L");
+    };
+
     returnButton(contract) {
 
         // CONTRACT_CREATED = 5
@@ -34,42 +41,51 @@ class HiringsCardSectionLayout extends Component {
 
         if (contract.status === 5) {
             return (
-                <button className="btn btn-outline-secondary" style={{width: "110px"}} onClick={this.goToPay.bind(this, contract.reference)}>
-                    <span className="d-md-block text-secondary">Continuar</span>
-                    <i className="fa fa-arrow-right text-secondary"/>
+                <button className="btn btn-outline-primary mt-2" style={{width: "100%"}}
+                        onClick={this.goToPay.bind(this, contract.reference)}>
+                    <span className="d-md-block text-primary">Finalizar compra</span>
+                    <i className="fa fa-arrow-right text-primary"/>
                 </button>
             )
         } else if (contract.status === 6) {
             return (
-                <button className="btn btn-outline-dark" disabled style={{width: "170px"}}>
+                <button className="btn btn-outline-dark mt-2" disabled style={{width: "100%"}}>
                     <span className="d-md-block text-dark">Validando el pago</span>
                     <i className="fa fa-clock"/>
                 </button>
             )
         } else if (contract.status === 10) {
             return (
-                <button className="btn btn-outline-dark" disabled style={{width: "220px"}}>
-                    <span className="d-md-block text-dark">En espera de grabación</span>
-                    <i className="fa fa-clock"/>
-                </button>
+                <>
+                    <div>
+                        <small>
+                            {this.renderExpirationMessage(contract.paymentDate)}
+                        </small>
+                    </div>
+                    <button className="btn btn-outline-dark mt-2" disabled style={{width: "100%"}}>
+                        <span className="d-md-block text-dark">En espera de grabación</span>
+                        <i className="fa fa-clock"/>
+                    </button>
+                </>
             )
         } else if (contract.status === 20) {
             return (
-                <button className="btn btn-outline-danger" disabled style={{width: "190px"}}>
+                <button className="btn btn-outline-danger mt-2" disabled style={{width: "100%"}}>
                     <span className="d-md-block text-danger">Contrato rechazado</span>
                     <i className="fa fa-times-circle text-danger"/>
                 </button>
             )
         } else if (contract.status === 25) {
             return (
-                <button className="btn btn-outline-light" disabled style={{width: "190px"}}>
+                <button className="btn btn-outline-light mt-2" disabled style={{width: "100%"}}>
                     <span className="d-md-block text-dark">Contrato Expirado</span>
                     <i className="fa fa-times-circle text-dark"/>
                 </button>
             )
         } else if (contract.status === 30 || contract.status === 40) {
             return (
-                <button className="btn btn-outline-primary" onClick={this.goToContract.bind(this, contract.reference)}>
+                <button className="btn btn-outline-primary mt-2"
+                        onClick={this.goToContract.bind(this, contract.reference)}>
                     <span className="d-md-block text-primary">Ver</span>
                     <i className="fa fa-play text-primary"/>
                 </button>
@@ -85,32 +101,38 @@ class HiringsCardSectionLayout extends Component {
                         <div className="div-contract-info">
                             <div className="card">
                                 <div className="card-header">
-                                    <div className="celebrity-avatar d-none d-md-block">
-                                        <img className="celebrity-avatar rounded mt-2"
-                                             width="40px"
-                                             src={contract.celebrityData.avatar}
-                                             alt="avatar"/>
+                                    <div className="celebrity-image">
+                                        <img width={"100%"} className={"img-responsive"}
+                                             src={contract.celebrityData.avatar}/>
                                     </div>
                                     <div className="from-to">
-                                        <h6 className="mt-2 font-weight-bold">
-                                            Famoso:
-                                            <small className="ml-2">{contract.celebrityData.fullName}</small>
-                                        </h6>
-                                        <h6 className="mt-2 font-weight-bold">
-                                            Para:
-                                            <small className="ml-2">{contract.deliveryTo}</small>
-                                        </h6>
-                                        <h6 className="mt-2 font-weight-bold">
-                                            De:
-                                            <small className="ml-2">{contract.deliveryFrom}</small>
-                                        </h6>
-                                    </div>
-                                    <div className="button-status">
-                                        {this.returnButton(contract)}
+                                        <h5 className="mt-2 font-weight-bold">
+                                            {contract.celebrityData.fullName}
+                                        </h5>
+                                        {
+                                            contract.deliveryFrom
+                                                ?
+                                                <h6 className="mt-2 font-weight-bold">
+                                                    De:
+                                                    <small className="ml-2">{contract.deliveryFrom}</small>
+                                                </h6>
+                                                :
+                                                <div/>
+                                        }
+                                        <div className="button-status">
+                                            {this.returnButton(contract)}
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div className="card-body text-justify contract-instructions">
-                                    {contract.instructions}
+                                    <h6 className="font-weight-bold">
+                                        Para:
+                                        <small className="ml-2">{contract.deliveryTo}</small>
+                                    </h6>
+                                    <p>
+                                        {contract.instructions}
+                                    </p>
                                 </div>
                             </div>
                         </div>

@@ -21,16 +21,15 @@
       margin: 0 auto;
 
       .card-header {
-        height: 110px;
+        min-height: 110px;
         display: flex;
 
-        .celebrity-avatar {
+        .celebrity-image {
           padding: 2px;
-          margin-right: 10px;
+          margin-right: 20px;
 
           img {
             border-radius: 6px !important;
-            width: 70px;
           }
         }
 
@@ -38,7 +37,7 @@
           flex: 4;
         }
 
-        .button-status {
+        .celebrity-image {
           flex: 2;
           width: 200px;
           text-align: right;
