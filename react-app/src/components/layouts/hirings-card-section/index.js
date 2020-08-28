@@ -26,7 +26,7 @@ class HiringsCardSectionLayout extends Component {
     renderExpirationMessage = (date) => {
         const _date = new Date(date);
         require('moment/locale/es');
-        _date.setDate(_date.getDate() + 6);
+        _date.setDate(_date.getDate() + 7);
         return "Esta solicitud expira el " + moment(_date.toISOString()).format("L");
     };
 
