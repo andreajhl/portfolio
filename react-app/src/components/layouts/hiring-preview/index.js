@@ -18,9 +18,9 @@ class HiringPreviewLayout extends Component {
             videoDesktopPlayIcon: "fa-play",
             showVideo: false,
             readyState: false,
-            videoResolution: "uno-uno", // 1  -  1-33  -  1-77
-            videoGridCols: "col-md-7 col-lg-7",
-            videoDetailsGridCols: "col-md-5 col-lg-5",
+            videoResolution: "dieciseis-nueve", // 1  -  1-33  -  1-77
+            videoGridCols: "col-md-4 col-lg-4",
+            videoDetailsGridCols: "col-md-8 col-lg-8",
         };
 
         this.session = new Session();
@@ -148,6 +148,15 @@ class HiringPreviewLayout extends Component {
         }
     }
 
+    returnPoster = (videoURL) => {
+        if (videoURL.includes("watermark")) {
+            let posterURL = videoURL;
+            posterURL = posterURL.replace(".mp4", ".jpg").replace("watermark", "poster");
+            return posterURL;
+        }
+        return videoURL;
+    };
+
     render() {
         return (
             <div className={"HiringPreviewLayout"}>
@@ -183,7 +192,7 @@ class HiringPreviewLayout extends Component {
                                    onClick={this.playDesktopVideo.bind(this)}
                                 />
                                 <video
-                                    poster={this.props.contract.celebrityData.avatar}
+                                    poster={this.returnPoster(this.props.contract.celebrityData.avatar)}
                                     id={"video1"}
                                     src={(this.props.contract.media) + "#t=0.5"}
                                     ref={this.videoDesktopRef}
@@ -195,7 +204,7 @@ class HiringPreviewLayout extends Component {
                             </div>
                         </div>
                         <div className={"col-sm-12 details-container p-0 m-0 " + (this.state.videoDetailsGridCols)}
-                             style={{minHeight: "730px"}}>
+                             style={{minHeight: "500px"}}>
                             <div className="video-details">
                                 <div className="titles">
                                     <div className="wrap-text">
@@ -211,12 +220,12 @@ class HiringPreviewLayout extends Component {
                                              alt={"avatar"}
                                              onClick={this.goToCelebrity}
                                         />
-                                        <h3 className="ml-2 font-weight-bold cursor-pointer"
-                                            onClick={this.goToCelebrity}>
-                                            {this.props.contract.celebrityData ? this.props.contract.celebrityData.fullName : "----"}
-                                        </h3>
+                                        <div className="ml-2 font-weight-bold cursor-pointer celebrity-name"
+                                             onClick={this.goToCelebrity}>
+                                            <h4>{this.props.contract.celebrityData ? this.props.contract.celebrityData.fullName : "----"}</h4>
+                                        </div>
                                         <br/>
-                                        <div className="mt-4 mb-4">
+                                        <div className="mb-4">
                                             <h6 className="font-weight-bold">
                                                 Compartir video en:
                                             </h6>

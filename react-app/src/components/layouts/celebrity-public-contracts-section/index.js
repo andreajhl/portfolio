@@ -8,7 +8,6 @@ import {PaginationLayout} from "../pagination";
 
 class CelebrityPublicContractsSectionLayout extends Component {
 
-
     constructor(props) {
         super(props);
 

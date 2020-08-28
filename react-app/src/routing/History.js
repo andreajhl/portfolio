@@ -12,6 +12,7 @@ history._pushRoute = (route) => {
         history.location
     );
     history.push(route);
+    window.scroll({top: 0,});
 };
 
 export {history};

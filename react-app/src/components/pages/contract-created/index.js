@@ -107,26 +107,31 @@ class ContractCreatedPage extends Component {
                                      alt="avatar"
                                 />
                             </div>
-                            <p className="mt-4 font-weight-bold">
-                                ¡Felicitaciones! tu pago ha sido exitoso.
+                            <p className="mt-2 font-weight-bold">
+                                <h5>¡Felicitaciones!</h5>
                             </p>
-                            <p className="mt-4 font-weight-bold">
-                                ¡Prepárate para recibir una experiencia única!
+                            <p className="mt-2 p-3 font-weight-bold">
+                                <h5> Se ha realizado con éxito la pre-autorización del cobro a tu cuenta.</h5>
                             </p>
-                            <p className="textDescription">
-                                Si todo está bien con tu solicitud de acuerdo a nuestras políticas, muy pronto podrás
-                                disfrutar de tu videomensaje. {this.props.resumen.celebrity.fullName} tiene un plazo de
-                                7 días para grabarlo a
-                                partir de hoy.
-                                Te notificaremos cuando esté listo.
-                                Puedes seguir de cerca el estado de tu solicitud en “Mis contrataciones”.
+                            <p className="mt-2 pl-3 pr-3 font-weight-light text-left">
+                                <h6>Ten en cuenta:</h6>
+                                <li>{this.props.resumen.celebrity.fullName} tiene un plazo
+                                    de{" "}<b>7 días</b>{" "}para grabar tu video a partir de hoy.
+                                </li>
+                                <li>El <b>cobro se realizará</b> una vez que {this.props.resumen.celebrity.fullName} grabe tu
+                                    video.
+                                </li>
+                                <li>Recibirás una notificación a <b>{this.props.resumen.contract.deliveryContact}</b> cuando tu video esté listo.</li>
+                                <li> Si todo está bien con tu solicitud de acuerdo a nuestras políticas, muy pronto
+                                    podrás
+                                    disfrutar de tu videomensaje.
+                                </li>
                             </p>
                             <button
                                 className="btn btn-primary mb-4"
                                 onClick={this.goToMyHirings}
                             >
                                 Ver mis contrataciones
-                                <i className="fa fa-arrow-right ml-2"/>
                             </button>
                             <div className="w-100 mx-auto mb-4">
                                 {this.props.resumen.payments.map((pay, index) => {

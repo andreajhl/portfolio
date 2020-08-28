@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import "./styles.scss";
 import * as PATHS from "../../../routing/Paths";
 import {history} from "../../../routing/History";
+
 const moment = require("moment");
 
 class HiringsCardSectionLayout extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
@@ -14,11 +15,11 @@ class HiringsCardSectionLayout extends Component {
         history._pushRoute(PATHS.HIRING_PREVIEW.replace(":contract_reference", "") + contract_reference)
     }
 
-    goToHome(){
+    goToHome() {
         history._pushRoute(PATHS.HOME_PATH)
     }
 
-    goToPay(contract_reference){
+    goToPay(contract_reference) {
         history._pushRoute(PATHS.PAYMENT_METHODS.replace(":contract_reference", contract_reference))
     }
 
@@ -41,16 +42,16 @@ class HiringsCardSectionLayout extends Component {
 
         if (contract.status === 5) {
             return (
-                <button className="btn btn-outline-primary mt-2" style={{width: "100%"}}
+                <button className="btn btn-outline-primary mt-2" style={{width: "100%", fontSize: "12px"}}
                         onClick={this.goToPay.bind(this, contract.reference)}>
-                    <span className="d-md-block text-primary">Finalizar compra</span>
+                    Finalizar compra
                     <i className="fa fa-arrow-right text-primary"/>
                 </button>
             )
         } else if (contract.status === 6) {
             return (
-                <button className="btn btn-outline-dark mt-2" disabled style={{width: "100%"}}>
-                    <span className="d-md-block text-dark">Validando el pago</span>
+                <button className="btn btn-outline-dark mt-2" disabled style={{width: "100%", fontSize: "12px"}}>
+                    Validando el pago
                     <i className="fa fa-clock"/>
                 </button>
             )
@@ -62,31 +63,33 @@ class HiringsCardSectionLayout extends Component {
                             {this.renderExpirationMessage(contract.paymentDate)}
                         </small>
                     </div>
-                    <button className="btn btn-outline-dark mt-2" disabled style={{width: "100%"}}>
-                        <span className="d-md-block text-dark">En espera de grabación</span>
+                    <button className="btn btn-outline-dark mt-2" disabled style={{width: "100%", fontSize: "12px"}}>
+                        En espera de grabación
                         <i className="fa fa-clock"/>
                     </button>
                 </>
             )
         } else if (contract.status === 20) {
             return (
-                <button className="btn btn-outline-danger mt-2" disabled style={{width: "100%"}}>
-                    <span className="d-md-block text-danger">Contrato rechazado</span>
+                <button className="btn btn-outline-danger mt-2" disabled style={{width: "100%", fontSize: "12px"}}>
+                    Contrato rechazado
                     <i className="fa fa-times-circle text-danger"/>
                 </button>
             )
         } else if (contract.status === 25) {
             return (
-                <button className="btn btn-outline-light mt-2" disabled style={{width: "100%"}}>
-                    <span className="d-md-block text-dark">Contrato Expirado</span>
+                <button className="btn btn-outline-light mt-2" disabled style={{width: "100%", fontSize: "12px"}}>
+                    Contrato Expirado
                     <i className="fa fa-times-circle text-dark"/>
                 </button>
             )
         } else if (contract.status === 30 || contract.status === 40) {
             return (
-                <button className="btn btn-outline-primary mt-2"
-                        onClick={this.goToContract.bind(this, contract.reference)}>
-                    <span className="d-md-block text-primary">Ver</span>
+                <button
+                    className="btn btn-outline-primary mt-2"
+                    onClick={this.goToContract.bind(this, contract.reference)}
+                >
+                    Ver video
                     <i className="fa fa-play text-primary"/>
                 </button>
             )
@@ -124,7 +127,6 @@ class HiringsCardSectionLayout extends Component {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="card-body text-justify contract-instructions">
                                     <h6 className="font-weight-bold">
                                         Para:

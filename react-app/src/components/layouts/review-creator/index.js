@@ -52,7 +52,7 @@ class ReviewCreatorLayout extends Component {
             ...this.state,
             reviewData: {
                 review: this.props.contract.review,
-                stars: this.props.contract.stars
+                stars: this.props.contract.stars || 5
             }
         })
     }
@@ -85,6 +85,13 @@ class ReviewCreatorLayout extends Component {
         }
     }
 
+    returnCountStars = () => {
+        if (this.state.reviewData.stars === 1) {
+            return "1 Estrella";
+        }
+        return this.state.reviewData.stars + " Estrellas";
+    };
+
     renderReviewFormCreator() {
         if (this.state.isCompleted) {
             return (<h6 className="">El comentario ha sido enviado. <i className="fa fa-check ml-2"/></h6>)
@@ -93,18 +100,23 @@ class ReviewCreatorLayout extends Component {
                 <>
                     <h5 className="font-weight-bold">
                         Envíale un comentario
-                        a {this.props.contract.celebrityData ? this.props.contract.celebrityData.fullName : null}</h5>
+                        a {this.props.contract.celebrityData ? this.props.contract.celebrityData.fullName : null}
+                    </h5>
+                    <br/>
                     <div className="mt-2">
                         <div className="mb-2">
-                            <h6>¿Cuántas estrellas le das a este video?</h6>
-                            <br/>
+                            <h6 className={"font-weight-bold"}>¿Cuántas estrellas le das a este video?</h6>
                             <StarRatingComponent
                                 name="rate1"
                                 starCount={5}
-                                value={this.state.reviewData.stars}
+                                value={this.state.reviewData.stars || 5}
                                 onStarClick={this.onStarClick.bind(this)}
                             />
+                            <div className={"mb-4 text-muted"}>
+                                <small>{this.returnCountStars()}</small>
+                            </div>
                         </div>
+                        <h6 className={"font-weight-bold"}>Escribe un comentario</h6>
                         <textarea className={"form-control" + (this.state.showReviewError ? " border-danger " : "")}
                                   autoFocus={true}
                                   rows={3}

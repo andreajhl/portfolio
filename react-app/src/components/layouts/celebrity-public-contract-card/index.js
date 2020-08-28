@@ -54,6 +54,30 @@ class CelebrityPublicContractCardLayout extends Component {
         history._pushRoute(PATHS.HIRING_PREVIEW.replace(":contract_reference", this.props.publicContract.contract_reference))
     }
 
+    returnPoster = (videoURL) => {
+        if (videoURL.includes("watermark")) {
+            let posterURL = videoURL;
+            posterURL = posterURL.replace(".mp4", ".jpg").replace("watermark", "poster");
+            return (
+                <img className="poster" width={"100%"} src={posterURL} alt={"video-poster"}/>
+            )
+        } else {
+            return (
+                <video ref={this.videoDesktopRef}
+                       controls={false}
+                       onClick={this.goToContract.bind(this)}
+                       playsInline={true}
+                       onDoubleClick={(e) => {
+                           e.preventDefault();
+                           this.contractFav.current.addOrRemoveFav()
+                       }}
+                       preload="metadata"
+                       src={(videoURL) + "#t=0.5"}
+                />
+            )
+        }
+    };
+
     render() {
         return (
             <div className="CelebrityPublicContractCardLayout">
@@ -62,14 +86,7 @@ class CelebrityPublicContractCardLayout extends Component {
                         <i className={'fa fa-2x play-pause ' + (this.state.videoDesktopPlayIcon)}
                            onClick={this.goToContract.bind(this)}
                         />
-                        <video ref={this.videoDesktopRef}
-                               controls={false}
-                               onClick={this.goToContract.bind(this)}
-                               playsInline={true}
-                               onDoubleClick={(e) => {e.preventDefault(); this.contractFav.current.addOrRemoveFav()}}
-                               preload="metadata"
-                               src={(this.props.publicContract.contract_media) + "#t=0.5"}
-                       />
+                        {this.returnPoster(this.props.publicContract.contract_media)}
                     </div>
                     <div className="body pt-3 pb-2">
                         <div style={{display: "flex"}}>

@@ -2,7 +2,7 @@
 
 .HiringPreviewLayout {
 
-  zoom: 70%;
+  zoom: 90%;
   left: 5vw;
   right: 5vw;
   min-height: 830px;
@@ -166,15 +166,26 @@
       }
 
       .wrap-text {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        //white-space: nowrap;
+        //overflow: hidden;
+        //text-overflow: ellipsis;
         width: 100%;
 
-        h3 {
+        div.celebrity-name {
           position: relative;
           left: 65px;
-          top: 15px;
+          top: 0px;
+          bottom: 0;
+          display: flex;
+          width: 65vw;
+          justify-content: center;
+          align-content: center;
+          flex-direction: column;
+          min-height: 61px;
+          h4{
+            font-size: 25px;
+            font-weight: bold;
+          }
         }
       }
 
@@ -258,7 +269,7 @@
           }
 
           &.dieciseis-nueve {
-            padding-top: 177% !important;
+            padding-top: 170% !important;
           }
 
           video {
