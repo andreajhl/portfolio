@@ -22,7 +22,7 @@ class AuthTCLayout extends Component {
     render() {
         return (
             <div className="AuthTCLayout">
-                <div className="terms custom-control custom-checkbox p-0">
+                <div className="tp-0 mx-auto text-center">
                     <small>
                         Al continuar acepto de manera expresa e informada los
                         <b style={{textDecoration: "underline", cursor: "pointer"}} onClick={this.terms}>

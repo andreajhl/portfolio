@@ -40,7 +40,7 @@ class CreatePasswordForm extends Component {
 
     render() {
         return (
-            <div className="LoginWithEmailForm">
+            <div className="SignInWithEmailForm">
                 <>
                     <h6>Crea una contraseña para tu cuenta</h6>
                     <input

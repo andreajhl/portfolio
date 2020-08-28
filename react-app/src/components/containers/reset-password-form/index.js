@@ -67,7 +67,7 @@ class ResetPasswordForm extends Component {
 
     render() {
         return (
-            <div className="LoginWithEmailForm">
+            <div className="SignInWithEmailForm">
                 {
                     !this.props.resetPasswordSent
                         ?

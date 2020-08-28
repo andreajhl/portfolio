@@ -73,7 +73,6 @@ class SignInWithEmailForm extends Component {
                     <div className="form-group">
                     <h6>Ingresa con tu correo electrónico</h6>
                     <input
-
                         type="email"
                         className="form-control mb-3"
                         placeholder="Escribe tu correo"

@@ -39,7 +39,7 @@ class ChangePasswordForm extends Component {
 
     render() {
         return (
-            <div className="LoginWithEmailForm">
+            <div className="SignInWithEmailForm">
                 <>
                     <h6>Crea una nueva contraseña</h6>
                     <input
