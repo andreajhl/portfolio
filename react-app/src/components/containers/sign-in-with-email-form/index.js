@@ -61,9 +61,19 @@ class SignInWithEmailForm extends Component {
     render() {
         return (
             <div className="SignInWithEmailForm">
-                <form onSubmit={(e) => e.preventDefault()}>
+                <form
+                    onSubmit={(e) => e.preventDefault()}
+                    autoComplete="on"
+                    onScroll={() => {
+                        const a = document.activeElement;
+                        a.blur();
+                        a.focus();
+                    }}
+                >
+                    <div className="form-group">
                     <h6>Ingresa con tu correo electrónico</h6>
                     <input
+
                         type="email"
                         className="form-control mb-3"
                         placeholder="Escribe tu correo"
@@ -71,23 +81,26 @@ class SignInWithEmailForm extends Component {
                         onChange={this.handleInput}
                         value={this.state.email}
                     />
-                    <h6>Contraseña</h6>
-                    <input
-                        type="password"
-                        className="form-control"
-                        placeholder="Escribe tu contraseña"
-                        name="password"
-                        onChange={this.handleInput}
-                        value={this.state.password}
-                        onKeyPress={this.handleKeyPress}
-                    />
-                    {
-                        this.props.signInWithEmailError
-                        &&
-                        <p className="instructions mt-4 text-danger">
-                            {this.props.signInWithEmailError}
-                        </p>
-                    }
+                    </div>
+                    <div className="form-group">
+                        <h6>Contraseña</h6>
+                        <input
+                            type="password"
+                            className="form-control"
+                            placeholder="Escribe tu contraseña"
+                            name="password"
+                            onChange={this.handleInput}
+                            value={this.state.password}
+                            onKeyPress={this.handleKeyPress}
+                        />
+                        {
+                            this.props.signInWithEmailError
+                            &&
+                            <p className="instructions mt-4 text-danger">
+                                {this.props.signInWithEmailError}
+                            </p>
+                        }
+                    </div>
                     <button className="send-button"
                             disabled={!this.state.email || !this.state.password}
                             onClick={this.signInWithEmail}

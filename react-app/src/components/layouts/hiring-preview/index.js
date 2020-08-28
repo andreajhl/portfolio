@@ -21,6 +21,7 @@ class HiringPreviewLayout extends Component {
             videoResolution: "dieciseis-nueve", // 1  -  1-33  -  1-77
             videoGridCols: "col-md-4 col-lg-4",
             videoDetailsGridCols: "col-md-8 col-lg-8",
+            videoHeight: 500,
         };
 
         this.session = new Session();
@@ -33,7 +34,6 @@ class HiringPreviewLayout extends Component {
 
     componentDidMount() {
         this.videoDesktopRef.current.addEventListener('loadeddata', (e) => {
-            console.log("this.videoDesktopRef.current.readyState,", this.videoDesktopRef.current.readyState)
             if (this.videoDesktopRef.current.videoHeight > 0) {
                 const res = this.videoDesktopRef.current.videoHeight / this.videoDesktopRef.current.videoWidth;
                 let resolution = this.state.videoResolution;
@@ -58,6 +58,7 @@ class HiringPreviewLayout extends Component {
                     videoGridCols,
                     videoDetailsGridCols,
                     resolution,
+                    videoHeight: this.videoDesktopRef.current.videoHeight,
                     readyState: true
                 });
             }
@@ -204,7 +205,7 @@ class HiringPreviewLayout extends Component {
                             </div>
                         </div>
                         <div className={"col-sm-12 details-container p-0 m-0 " + (this.state.videoDetailsGridCols)}
-                             style={{minHeight: "500px"}}>
+                             style={{minHeight: "730px"}}>
                             <div className="video-details">
                                 <div className="titles">
                                     <div className="wrap-text">
