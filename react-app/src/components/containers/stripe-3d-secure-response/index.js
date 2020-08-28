@@ -72,17 +72,33 @@ class Stripe3dSecureResponse extends Component {
     sendStripePayemtData = (sourceId) => {
         processStripePayment(this.props.contractReference, sourceId)
             .then(res => {
-                const route = PATHS.CONTRACT_CREATED.replace(
-                    ":contract_reference",
-                    res.data.data.reference
-                );
-                window.parent.postMessage("CONTRACT_CREATED" + route, '*');
+                if (res.data.status === "ERROR") {
+                    this.setState({
+                        ...this.state,
+                        errorMessage: res.data.error,
+                    });
+                } else {
+                    const route = PATHS.CONTRACT_CREATED.replace(
+                        ":contract_reference",
+                        res.data.data.reference
+                    );
+                    window.parent.postMessage("CONTRACT_CREATED" + route, '*');
+                }
             })
-            .catch(e => {
-                this.setState({
-                    ...this.state,
-                    error: e,
-                })
+            .catch(error => {
+                if (error.response) {
+                    if (error.response.data) {
+                        this.setState({
+                            ...this.state,
+                            errorMessage: error.response.data.error,
+                        });
+                    }
+                } else {
+                    this.setState({
+                        ...this.state,
+                        errorMessage: "Ocurrió un error procesando tu pago,",
+                    });
+                }
             });
     };
 
@@ -95,7 +111,7 @@ class Stripe3dSecureResponse extends Component {
             <div className="Stripe3dSecureResponse">
                 <div className="section">
                     {
-                        !this.state.error
+                        !this.state.errorMessage
                             ?
                             <div className={"text-center p-4 mx-auto my-auto"}>
                                 <h4 className="font-weight-bold text-center">Procesando...</h4>
@@ -116,7 +132,7 @@ class Stripe3dSecureResponse extends Component {
                                 </div>
                                 <div className="text-danger text-center mb-3">
                                     <small className={"text-danger font-weight-bold"}>
-                                        {this.state.error}
+                                        {this.state.errorMessage}
                                     </small>
                                 </div>
                                 <div className={"mx-auto text-center mb-3"}>

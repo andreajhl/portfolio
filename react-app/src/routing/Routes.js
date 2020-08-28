@@ -55,12 +55,12 @@ class MyRoutes extends Component {
                         <Route
                             exact
                             path={PATHS.CONTRACT_CREATED}
-                            component={PAGES.ContractPendingPayPage}
+                            component={PAGES.ContractCreatedPage}
                         />
                         <Route
                             exact
                             path={PATHS.CONTRACT_PENDING}
-                            component={PAGES.ContractPendingPayPage}
+                            component={PAGES.ContractCreatedPage}
                         />
                         <Route
                             exact

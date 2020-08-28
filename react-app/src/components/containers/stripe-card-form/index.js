@@ -7,7 +7,6 @@ import * as PATHS from "../../../routing/Paths";
 import {withRouter} from 'react-router-dom';
 import {processStripePayment} from "../../../state/ducks/payments/actions";
 import {history} from "../../../routing/History";
-import * as GTM from "../../../state/utils/gtm";
 
 class StripeCardForm extends Component {
 
@@ -74,6 +73,9 @@ class StripeCardForm extends Component {
                 usage: "reusable"
             })
             .then((response) => {
+
+                console.log("response.source", response.source);
+
                 // ERROR
                 if (response.error) {
                     // ERROR
@@ -86,7 +88,7 @@ class StripeCardForm extends Component {
                 // SEND TO THE BACKEND TO LINKED WITH THE CUSTOMER AND APPLY THE AUTHORIZATION
                 else if (
                     response.source.status === 'chargeable' &&
-                    response.source.card.three_d_secure !== 'recommended'
+                    response.source.card.three_d_secure === 'optional'
                 ) {
                     this.applyStripeAuth(response.source.id)
                 }

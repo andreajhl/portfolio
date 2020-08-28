@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "./styles.scss"
-import {retrieveUserCards} from "../../../state/ducks/payments/actions";
+import {removeSource, retrieveUserCards} from "../../../state/ducks/payments/actions";
 import StripeCardForm from "../stripe-card-form";
 import StripeCustomerSources from "../stripe-customer-sources";
 
@@ -68,11 +68,50 @@ class StripeFlowHandler extends Component {
         if (this.state.showCards) {
             return (
                 <StripeCustomerSources
+                    onDeleteSource={this.onDeleteSource}
                     contractReference={this.props.contractReference}
                     availableSources={this.state.availableSources}
                 />
             );
         }
+    };
+
+    onDeleteSource = async (index) => {
+        const {availableSources} = this.state;
+        await removeSource(availableSources[index].sourceId)
+            .then(r => console.log(r))
+            .catch(e => console.log(e));
+        availableSources.splice(index, 1);
+        this.setState({
+            ...this.state,
+            showCardForm: !availableSources.length,
+            showCards: !!availableSources.length,
+            availableSources
+        });
+    };
+
+    renderOptions = () => {
+        if (this.state.availableSources.length && this.state.showCardForm) {
+            return (
+                <div className={"p-4 text-center"} onClick={this.changeContainer}>
+                    <h6>Seleccionar una tarjeta</h6>
+                </div>
+            )
+        } else if (this.state.availableSources && !this.state.showCardForm) {
+            return (
+                <div className={"p-4 text-center"} onClick={this.changeContainer}>
+                    <h6>Agregar nueva tarjeta</h6>
+                </div>
+            )
+        }
+    };
+
+    changeContainer = () => {
+        this.setState({
+            ...this.state,
+            showCardForm: !this.state.showCardForm,
+            showCards: !this.state.showCards,
+        })
     };
 
     render() {
@@ -81,6 +120,7 @@ class StripeFlowHandler extends Component {
                 {this.renderLoading()}
                 {this.renderCardForm()}
                 {this.renderCards()}
+                {this.renderOptions()}
             </div>
         );
     };

@@ -211,3 +211,34 @@ export const retrieveUserCards = () => {
         });
   })
 };
+
+export const removeSource = (sourceId) => {
+  const FINAL_PATH = "custom-endpoints/user-payments/remove-stripe-source/" + sourceId;
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "DELETE",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: null,
+      custom_endpoint: false
+    })
+        .then(res => {
+          if (res.data.status === "ERROR") {
+            rejectionFunc(res.data.error);
+          } else {
+            resolutionFunc(res.data.data);
+          }
+        })
+        .catch(error => {
+          if (error.response) {
+            if (error.response.data) {
+              rejectionFunc(error.response.data.error);
+            }
+          } else {
+            rejectionFunc("ERROR");
+          }
+        });
+  })
+};

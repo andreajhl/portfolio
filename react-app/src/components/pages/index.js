@@ -4,7 +4,7 @@ export * from "./change-password";
 export * from "./client-hirings";
 export * from "./client-profile";
 export * from "./complete-profile";
-export * from "./contract-pending-pay";
+export * from "./contract-created";
 export * from "./create-password";
 export * from "./hiring-preview";
 export * from "./not-found";

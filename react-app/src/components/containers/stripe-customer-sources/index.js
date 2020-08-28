@@ -4,9 +4,10 @@ import {injectStripe} from "react-stripe-elements";
 import {Session} from "../../../state/utils/session";
 import {withRouter} from 'react-router-dom';
 import {processStripePayment} from "../../../state/ducks/payments/actions";
-import {Form} from "react-bootstrap";
 import * as PATHS from "../../../routing/Paths";
 import {history} from "../../../routing/History";
+import {confirmAlert} from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class StripeCustomerSources extends Component {
 
@@ -111,6 +112,33 @@ class StripeCustomerSources extends Component {
         }
     };
 
+    removeSource = async (e, index, source) => {
+        e.preventDefault();
+        confirmAlert({
+            customUI: ({onClose}) => {
+                return (
+                    <div className='custom-ui'>
+                        <h4>¿Eliminar tarjeta?</h4>
+                        <br/>
+                        <button className={"btn btn-danger mr-2"} onClick={() => {
+                            this.props.onDeleteSource(index);
+                            onClose();
+                        }}>
+                            Si, eliminar
+                        </button>
+                        <button
+                            className={"btn mr-2"}
+                            onClick={() => {
+                                onClose();
+                            }}
+                        >
+                            No
+                        </button>
+                    </div>
+                );
+            }
+        });
+    };
 
     renderCards = () => {
         return (
@@ -123,28 +151,34 @@ class StripeCustomerSources extends Component {
                         return (
                             <div
                                 className={"sources-option"}
-                                key={"source-index-" + index}
-                                onClick={(e) => this.updateSelectedSourceId(e, s)}
+                                key={"source-id-" + s.sourceId}
                             >
-                                <div className={"source-brand"}>
-                                    {s.typeData ? s.typeData.brand : ""}
+                                <div className={"source-option-selector"}
+                                     onClick={(e) => this.updateSelectedSourceId(e, s)}>
+                                    <div className={"source-brand"}>
+                                        {s.typeData ? s.typeData.brand : ""}
+                                    </div>
+                                    <div className={"source-number"}>
+                                        **** **** **** {s.typeData ? s.typeData.last4 : ""}
+                                    </div>
+                                    <div className={"handle-check"}>
+                                        {
+                                            this.state.selectedSourceId === s.sourceId
+                                                ?
+                                                <i className={"fa fa-check text-primary"}/>
+                                                :
+                                                <div/>
+                                        }
+                                    </div>
                                 </div>
-                                <div className={"source-number"}>
-                                    **** **** **** {s.typeData ? s.typeData.last4 : ""}
-                                </div>
-                                <div className={"handle-check"}>
-                                    {
-                                        this.state.selectedSourceId === s.sourceId
-                                            ?
-                                            <i className={"fa fa-check"}/>
-                                            :
-                                            <div/>
-                                    }
+                                <div className={"close-div"} onClick={(e) => this.removeSource(e, index, s)}>
+                                    <i className={"fa fa-trash"}/>
                                 </div>
                             </div>
                         )
                     })
                 }
+                <br/>
                 <div className={"text-center"}>
                     {
                         !this.state.errorMessage
@@ -178,6 +212,9 @@ class StripeCustomerSources extends Component {
 // defaultProps
 StripeCustomerSources.defaultProps = {
     contractReference: "",
-    availableSources: []
+    availableSources: [],
+    onDeleteSource: () => {
+
+    }
 };
 export default withRouter(injectStripe(StripeCustomerSources));
