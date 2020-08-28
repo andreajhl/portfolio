@@ -26,7 +26,7 @@ class HiringsCardSectionLayout extends Component {
         const _date = new Date(date);
         require('moment/locale/es');
         _date.setDate(_date.getDate() + 6);
-        return "Este video expira el " + moment(_date.toISOString()).format("L");
+        return "Esta solicitud expira el " + moment(_date.toISOString()).format("L");
     };
 
     returnButton(contract) {
