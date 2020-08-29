@@ -109,7 +109,12 @@ export class Session {
 
     isDummy = () => {
         if (this.getSession()) {
-            return this.getSession().status === 0;
+            if (this.getSession().status === 0) {
+                localStorage.removeItem(this.sessionName);
+                return true;
+            } else {
+                return false;
+            }
         }
         return true;
     };
