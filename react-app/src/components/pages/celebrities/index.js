@@ -5,7 +5,6 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import {restCountriesOperations} from "../../../state/ducks/rest-countries";
 import * as GTM from "../../../state/utils/gtm";
-import {jsonToQueryString} from "../../../state/utils/apiService";
 import {NewsLetterModal} from "../../containers/newsletter-modal";
 import MetaTags from "react-meta-tags";
 
@@ -53,7 +52,6 @@ class CelebritiesPage extends Component {
             "CELEBRITIES_PAGE_VIEW",
             this.props.queryParams
         );
-
     }
 
     componentWillReceiveProps(nextProps, nextContext) {

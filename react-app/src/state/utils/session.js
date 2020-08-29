@@ -108,15 +108,21 @@ export class Session {
     }
 
     isDummy = () => {
-        if (this.getSession()) {
-            if (this.getSession().status === 0) {
-                localStorage.removeItem(this.sessionName);
-                return true;
-            } else {
-                return false;
+        try{
+            if (this.getSession()) {
+                const email = this.getSession().email;
+                if (this.getSession().status === 0 && email.includes("myemail@")) {
+                    localStorage.removeItem(this.sessionName);
+                    return true;
+                } else {
+                    return false;
+                }
             }
+            return true;
+        }catch (e) {
+            localStorage.removeItem(this.sessionName);
+            return true;
         }
-        return true;
     };
 
     hasEmail(){
