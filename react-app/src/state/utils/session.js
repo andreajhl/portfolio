@@ -111,7 +111,7 @@ export class Session {
         try{
             if (this.getSession()) {
                 const email = this.getSession().email;
-                if (this.getSession().status === 0 && email.includes("myemail@")) {
+                if (this.getSession().status === 0 && (email.includes("myemail@") || (email.includes("@famosos.com") && ("Anonymous")))) {
                     localStorage.removeItem(this.sessionName);
                     return true;
                 } else {

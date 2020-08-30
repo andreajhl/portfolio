@@ -12,6 +12,7 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss"
 import MetaTags from 'react-meta-tags';
 import * as GTM from "../../../state/utils/gtm";
+import {Session} from "../../../state/utils/session";
 
 class CelebrityProfilePage extends Component {
 
@@ -32,6 +33,8 @@ class CelebrityProfilePage extends Component {
             "CELEBRITY_PROFILE_PAGE_VIEW",
             this.props.match
         );
+        const session = new Session();
+        session.isDummy()
     }
 
     componentWillMount() {

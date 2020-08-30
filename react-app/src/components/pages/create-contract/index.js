@@ -6,6 +6,9 @@ import {celebrityOperations} from "../../../state/ducks/celebrities";
 import * as GTM from "../../../state/utils/gtm";
 import {CreateContractForm} from "../../containers";
 import MetaTags from "react-meta-tags";
+import {Session} from "../../../state/utils/session";
+import {history} from "../../../routing/History";
+import * as PATHS from "../../../routing/Paths";
 
 class CreateContractPage extends Component {
     constructor(props) {
@@ -17,6 +20,11 @@ class CreateContractPage extends Component {
             "CREATE_CONTRACT_PAGE_VIEW",
             this.props.match
         );
+        const session = new Session();
+        if (session.isDummy()) {
+            localStorage.setItem("finalRedirect", "/" + this.props.match.params["celebrity_username"] + "/contratar");
+            history._pushRoute(PATHS.AUTH_FLOW);
+        }
     }
 
     componentWillMount() {
