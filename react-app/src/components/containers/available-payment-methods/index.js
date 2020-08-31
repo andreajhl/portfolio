@@ -11,7 +11,7 @@ class AvailablePaymentMethods extends Component {
         super(props);
 
         this.state = {
-            selectedPaymentMethod: "",
+            selectedPaymentMethod: "STRIPE",
         };
     }
 
@@ -37,9 +37,9 @@ class AvailablePaymentMethods extends Component {
         return (
             <div className="AvailablePaymentMethods mx-auto">
                 <div className={"payment-types f-rounded"}>
-                    <div className={"font-weight-bold pt-2 pl-3 pb-2 mb-2 bg-light"}>
-                        Selecciona un método de pago
-                    </div>
+                    {/*<div className={"font-weight-bold pt-2 pl-3 pb-2 mb-2 bg-light"}>*/}
+                    {/*    Selecciona un método de pago*/}
+                    {/*</div>*/}
                     <div className="payment-type mb-3" onClick={this.changeToStripe}>
                         <div className="titles">
                             <div className="icon">
@@ -47,7 +47,8 @@ class AvailablePaymentMethods extends Component {
                             </div>
                             <div className="payment-type-title">
                                 <h6 className={"font-weight-normal"}>
-                                    <span>Tarjeta de Crédito</span>
+                                    {/*<span>Tarjeta de Crédito</span>*/}
+                                    Pago con tarjeta de crédito
                                 </h6>
                             </div>
                         </div>
@@ -60,24 +61,24 @@ class AvailablePaymentMethods extends Component {
                             </Elements>
                         </div>
                     </div>
-                    <div className="payment-type mb-3" onClick={this.changeToPaypal}>
-                        <div className="titles">
-                            <div className="icon">
-                                <i className="ml-2 fa fa-plus"/>
-                            </div>
-                            <div className="payment-type-title">
-                                <h6 className={"font-weight-normal"}>
-                                    <span>PayPal</span>
-                                </h6>
-                            </div>
-                        </div>
-                        <div className={"pl-3 pr-3 pt-4 pb-4 bg-light" + (this.state.selectedPaymentMethod==="PAYPAL" ? "":" d-none ")}>
-                            <PayPalCardForm
-                                contractReference={this.props.contractReference}
-                                contractPrice={this.props.contractPrice}
-                            />
-                        </div>
-                    </div>
+                    {/*<div className="payment-type mb-3" onClick={this.changeToPaypal}>*/}
+                    {/*    <div className="titles">*/}
+                    {/*        <div className="icon">*/}
+                    {/*            <i className="ml-2 fa fa-plus"/>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="payment-type-title">*/}
+                    {/*            <h6 className={"font-weight-normal"}>*/}
+                    {/*                <span>PayPal</span>*/}
+                    {/*            </h6>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={"pl-3 pr-3 pt-4 pb-4 bg-light" + (this.state.selectedPaymentMethod==="PAYPAL" ? "":" d-none ")}>*/}
+                    {/*        <PayPalCardForm*/}
+                    {/*            contractReference={this.props.contractReference}*/}
+                    {/*            contractPrice={this.props.contractPrice}*/}
+                    {/*        />*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </div>
         );
