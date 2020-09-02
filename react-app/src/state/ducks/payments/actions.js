@@ -135,12 +135,12 @@ export const processStripePayment = (contractReference, sourceId) => {
   });
 };
 
-export const processPayPalPayment = (contractReference, payPalResponse, isPending) => {
+export const processPayPalPayment = (contractReference, orderId, authorizationId) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-paypal-payment";
   const data = {
-    contractReference,
-    payPalResponse,
-    isPending
+    contractReference: contractReference,
+    orderId: orderId,
+    authorizationId: authorizationId
   };
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
@@ -156,16 +156,6 @@ export const processPayPalPayment = (contractReference, payPalResponse, isPendin
           if (res.data.status === "ERROR") {
             rejectionFunc(res.data.error);
           } else {
-            GTM.tagManagerDataLayer(
-                "CONTRACT_PAYED",
-                res.data
-            );
-            history._pushRoute(
-                ROUTING_PATHS.CONTRACT_CREATED.replace(
-                    ":contract_reference",
-                    res.data.data.reference
-                )
-            );
             resolutionFunc(res.data.data);
           }
         })

@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-import {OnApproveData, OnCaptureData, PayPalButton} from "react-paypal-button";
-
+import PaypalReactButton from "../paypal-react-button"
+import {processPayPalPayment} from "../../../state/ducks/payments/actions";
+import * as GTM from "../../../state/utils/gtm";
+import {history} from "../../../routing/History";
+import * as ROUTING_PATHS from "../../../routing/Paths";
 
 class PayPalCardForm extends Component {
 
@@ -12,14 +15,40 @@ class PayPalCardForm extends Component {
         }
     }
 
-    createPayPalPayment = (payPalResponse) => {
-        this.processPayPalPayment(
-            this.props.contractReference,
-            payPalResponse,
-            null
-        )
-            .then(r => {
+    retry = () => {
+        return this.setState({
+            ...this.state,
+            errorMessage: null
+        });
+    };
 
+    onPayPalButtonApprove = (orderId, authorizationId) => {
+        processPayPalPayment(
+            this.props.contractReference,
+            orderId,
+            authorizationId,
+        )
+            .then(res => {
+                if (res.status === 10) {
+                    GTM.tagManagerDataLayer(
+                        "CONTRACT_PAYED",
+                        res.data
+                    );
+                    history._pushRoute(
+                        ROUTING_PATHS.CONTRACT_CREATED.replace(
+                            ":contract_reference",
+                            res.reference
+                        )
+                    );
+                } else {
+                    GTM.tagManagerDataLayer(
+                        "PENDING_TO_VALIDATE_PAYMENT",
+                        res.data
+                    );
+                    history._pushRoute(
+                        ROUTING_PATHS.CLIENT_HIRINGS
+                    );
+                }
             })
             .catch(error => {
                 this.setState({
@@ -27,22 +56,32 @@ class PayPalCardForm extends Component {
                     errorMessage: error
                 })
             })
-
     };
 
-    getDate = () => {
-        let newDate = new Date();
-        let date = newDate.getDate();
-        let month = newDate.getMonth() + 1;
-        let year = newDate.getFullYear();
-        return year + '-' + month + '-' + date + ' ' + newDate.getHours() + ':' + newDate.getMinutes() + ':' + newDate.getSeconds();
-    };
-
-    retry = () => {
+    onPayPalButtonCancel = (orderId) => {
         return this.setState({
             ...this.state,
-            errorMessage: null
+            errorMessage: "Acción cancelada por el usuario"
         });
+    };
+
+    onPayPalButtonError = (error: string) => {
+        return this.setState({
+            ...this.state,
+            errorMessage: error
+        });
+    };
+
+    renderButton = () => {
+        if (!this.state.errorMessage && this.props.contractPrice > 0) {
+            return <PaypalReactButton
+                contractReference={this.props.contractReference}
+                contractPrice={this.props.contractPrice}
+                onPayPalButtonApprove={this.onPayPalButtonApprove}
+                onPayPalButtonCancel={this.onPayPalButtonCancel}
+                onPayPalButtonError={this.onPayPalButtonError}
+            />;
+        }
     };
 
     renderError = () => {
@@ -72,64 +111,6 @@ class PayPalCardForm extends Component {
                 </div>
             )
         }
-    };
-
-    renderButton = () => {
-        const paypalOptions = {
-            clientId: process.env.REACT_APP_PAYPAL_KEY,
-            intent: 'authorize', // capture
-            currency: 'USD',
-        };
-
-        const buttonStyles = {
-            layout: 'horizontal',
-            shape: 'rect',
-            color: 'gold',
-            size: 'small',
-            label: 'paypal',
-            tagline: 'false',
-        };
-        const divStyles = {
-            textAlign: "center",
-            maxWidth: '100%',
-            maxHeight: '50%',
-        };
-        if (!this.state.errorMessage && this.props.contractPrice > 0) {
-            return (
-                <div style={divStyles}>
-                    <PayPalButton
-                        paypalOptions={paypalOptions}
-                        buttonStyles={buttonStyles}
-                        amount={this.props.contractPrice}
-                        onApprove={(data: OnApproveData, authorizationId: string) => {
-                            this.createPayPalPayment({
-                                create_time: this.getDate(),
-                                update_time: this.getDate(),
-                                id: data.orderID,
-                                status: 'APPROVED',
-                                orderID: data.orderID,
-                                payerID: data.payerID,
-                                authId: authorizationId,
-                                intent: "AUTHORIZATION",
-                            });
-                        }}
-                        onPaymentSuccess={(details: OnCaptureData) => {
-                            this.createPayPalPayment(details);
-                        }}
-                        onPaymentError={(error: string) => {
-                            this.onPaymentError(error);
-                        }}
-                    />
-                </div>
-            );
-        }
-    };
-
-    onPaymentError = (error: string) =>{
-        return this.setState({
-            ...this.state,
-            errorMessage: error
-        });
     };
 
     render() {
