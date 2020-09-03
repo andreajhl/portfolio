@@ -7,8 +7,8 @@ const INTENT = "authorize";
 const CLIENT_ID = process.env.REACT_APP_PAYPAL_KEY;
 const CURRENCY = "USD";
 const LOCALE = "es_CO";
-const PAYPAL_URL = 'https://www.paypal.com/sdk/js';
-const SDK_URL = `${PAYPAL_URL}?client-id=${CLIENT_ID}&intent=${INTENT}&currency=${CURRENCY}&locale=${LOCALE}`;
+const PAYPAL_URL = 'https://www.paypal.com/sdk/js?disable-funding=credit,card';
+const SDK_URL = `${PAYPAL_URL}&client-id=${CLIENT_ID}&intent=${INTENT}&currency=${CURRENCY}&locale=${LOCALE}`;
 
 class PaypalReactButton extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class PaypalReactButton extends React.Component {
         this.state = {
             showButtons: false,
             loading: true,
-            paid: false
+            approved: false
         };
 
         window.React = React;
@@ -62,14 +62,18 @@ class PaypalReactButton extends React.Component {
     };
 
     onApprove = (data, actions) => {
+        this.setState({
+            ...this.state,
+            approved: true,
+        });
         // Authorize the transaction
         let authorizationID = null;
         actions.order.authorize().then((authorization) => {
             // Get the authorization id
             authorizationID = authorization.purchase_units[0].payments.authorizations[0].id;
             this.setState({
+                ...this.state,
                 showButtons: false,
-                paid: true
             }, () => {
                 this.props.onPayPalButtonApprove(data["orderID"], authorizationID);
             })
@@ -85,19 +89,21 @@ class PaypalReactButton extends React.Component {
     };
 
     render() {
-        const {showButtons, loading, paid} = this.state;
+        const {showButtons, loading, approved} = this.state;
         const divStyles = {
             textAlign: "center",
             maxWidth: '100%',
             maxHeight: '50%',
+            display: !approved ? "block" : "none"
         };
         const buttonStyles = {
-            layout: 'horizontal',
+            layout: 'vertical',
             shape: 'rect',
             color: 'gold',
             size: 'small',
-            label: 'paypal',
+            label: 'pay',
             tagline: 'false',
+            fundingicons: 'false',
         };
         return (
             <div>
@@ -112,7 +118,7 @@ class PaypalReactButton extends React.Component {
                         />
                     </div>
                 )}
-                {paid && (
+                {approved && (
                     <h6 className={"text-center"}>Guardando...</h6>
                 )}
             </div>
