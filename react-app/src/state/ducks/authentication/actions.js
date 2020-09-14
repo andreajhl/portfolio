@@ -16,8 +16,12 @@ const afterLogin = (res) => {
                 localStorage.setItem("authRedirect", ROUTE_PATHS.CREATE_PASSWORD_PATH);
                 break;
             // COMPLETE PROFILE REQUIRED
-            case 20:
+            case 15:
                 localStorage.setItem("authRedirect", ROUTE_PATHS.COMPLETE_PROFILE_PATH);
+                break;
+            // UPDATE PASSWORD
+            case 29:
+                localStorage.setItem("authRedirect", ROUTE_PATHS.CHANGE_PASSWORD_PATH);
                 break;
             // FINAL REDIRECT
             default:

@@ -43,7 +43,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
         return (
             this.props.publicContracts.map((publicContract, index) => {
                 return (
-                    <div className="item mr-4 mb-2 mx-auto" key={index + "-" + publicContract.id}>
+                    <div className="item mr-4 mb-2 mx-auto" key={index + "-" + publicContract.reference}>
                         <CelebrityPublicContractCardLayout
                             publicContract={publicContract}
                         />

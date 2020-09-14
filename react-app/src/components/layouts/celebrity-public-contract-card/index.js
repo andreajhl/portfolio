@@ -46,10 +46,6 @@ class CelebrityPublicContractCardLayout extends Component {
         }
     }
 
-    handleImageLoaded() {
-        this.setState({imageLoaded: true});
-    }
-
     goToContract(){
         history._pushRoute(PATHS.HIRING_PREVIEW.replace(":contract_reference", this.props.publicContract.contract_reference))
     }
