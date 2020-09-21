@@ -47,7 +47,7 @@ class AvailablePaymentMethods extends Component {
                             </div>
                             <div className="payment-type-title">
                                 <h6 className={"font-weight-normal"}>
-                                    <span>Tarjeta de Crédito</span>
+                                    <span>Tarjeta de Crédito o Débito</span>
                                     {/*Pago con tarjeta de crédito*/}
                                 </h6>
                             </div>

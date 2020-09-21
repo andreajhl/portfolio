@@ -144,7 +144,7 @@ class StripeCustomerSources extends Component {
         return (
             <div className={"sources-section"}>
                 <div className={"mb-3"}>
-                    <h6>Selecciona una tarjeta de crédito</h6>
+                    <h6>Selecciona una tarjeta</h6>
                 </div>
                 {
                     this.props.availableSources.map((s, index) => {
