@@ -173,7 +173,7 @@ class CelebritiesPage extends Component {
                         {/* End Modal FFB */}
 
                         {/* NEWSLETTER MODAL */}
-                        <NewsLetterModal/>
+                        {/*<NewsLetterModal/>*/}
                         {/* End NEWSLETTER MODAL */}
 
                         {/*/!* MainMenuLayout *!/*/}
