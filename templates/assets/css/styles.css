@@ -248,6 +248,9 @@ h2 {
 .celebrity__card__hashtags {
   font-size: 0.75em;
   color: #b0bbd7;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .celebrities__main__bottom {
