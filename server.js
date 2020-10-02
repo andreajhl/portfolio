@@ -19,6 +19,8 @@ function defaultOG(data) {
 	);
 	data = data.replace(/\$OG_TYPE/g, "website");
 	data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
+	const isProdEnviroment = process.env.NODE_ENV === "production";
+	data = data.replace(/\$ROBOTS_META/g, isProdEnviroment ? "index" : "noindex");
 	data = data.replace(
 		/\$OG_IMAGE/g,
 		"https://www.famosos.com/assets/img/favicon.png"
