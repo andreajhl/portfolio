@@ -52,5 +52,57 @@
       "celebrity_name": "rolandoschiavi",
       "contract_reference": "202008180442-8580655-3541"
     }
+  ],
+  "love": [
+    {
+      "celebrity_id": 21,
+      "user_id": 791,
+      "celebrity_name": "victordrija",
+      "contract_reference": "202002080925-151881-791"
+    },
+    {
+      "celebrity_id": 369,
+      "user_id": 3967,
+      "celebrity_name": "jhonnyrivera",
+      "contract_reference": "202008290303-1152999-3967"
+    },
+    {
+      "celebrity_id": 485,
+      "user_id": 2946,
+      "celebrity_name": "lorenameritano",
+      "contract_reference": "202008032313-5463170-2946"
+    },
+    {
+      "celebrity_id": 347,
+      "user_id": 3135,
+      "celebrity_name": "juliangil",
+      "contract_reference": "202008080935-2511451-3135"
+    }
+  ],
+  "comedy": [
+    {
+      "celebrity_id": 589,
+      "user_id": 4034,
+      "celebrity_name": "marioarvizu",
+      "contract_reference": "202008310647-4181403-4034"
+    },
+    {
+      "celebrity_id": 95,
+      "user_id": 3303,
+      "celebrity_name": "gustavomunguia",
+      "contract_reference": "202008121629-1877515-3303"
+    },
+    {
+      "celebrity_id": 94,
+      "user_id": 1168,
+      "celebrity_name": "manualerod",
+      "contract_reference": "202003291951-803449-1168"
+    },
+    {
+      "celebrity_id": 585,
+      "user_id": 3946,
+      "celebrity_name": "eduardogarza",
+      "contract_reference": "202008280519-3821925-3946"
+    }
   ]
 }

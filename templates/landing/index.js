@@ -29,23 +29,33 @@ const getContractsVideos = async () => {
     CONTRACTS_VIDEOS_DATA_PATH
   );
   const contractsVideosData = JSON.parse(contractsVideosJSON);
-  const birthdayVideos = getContentFromElements(
+  const birthday = getContentFromElements(
     contractsVideosData.birthday,
     contractVideoTemplate
   );
-  const inspirationVideos = getContentFromElements(
+  const inspiration = getContentFromElements(
     contractsVideosData.inspiration,
     contractVideoTemplate
   );
-  return { birthdayVideos, inspirationVideos };
+  const love = getContentFromElements(
+    contractsVideosData.love,
+    contractVideoTemplate
+  );
+  const comedy = getContentFromElements(
+    contractsVideosData.comedy,
+    contractVideoTemplate
+  );
+  return { birthday, inspiration, love, comedy };
 };
 
 module.exports = async () => {
   const landingPage = await readFilePromisified(LANDING_PAGE_TEMPLATE_PATH);
   const celebritiesCards = await getCelebritiesCards();
-  const { birthdayVideos, inspirationVideos } = await getContractsVideos();
+  const contractVideos = await getContractsVideos();
   return landingPage
     .replace("{{DATA_CELEBRITIES_CARDS}}", celebritiesCards)
-    .replace("{{DATA_VIDEOS_LIST_BIRTHDAYS}}", birthdayVideos)
-    .replace("{{DATA_VIDEOS_LIST_INSPIRATION}}", inspirationVideos);
+    .replace("{{DATA_VIDEOS_LIST_BIRTHDAYS}}", contractVideos.birthday)
+    .replace("{{DATA_VIDEOS_LIST_INSPIRATION}}", contractVideos.inspiration)
+    .replace("{{DATA_VIDEOS_LIST_LOVE}}", contractVideos.love)
+    .replace("{{DATA_VIDEOS_LIST_COMEDY}}", contractVideos.comedy);
 };
