@@ -1,0 +1,56 @@
+{
+  "birthday": [
+    {
+      "celebrity_id": 609,
+      "user_id": 3020,
+      "celebrity_name": "enriquearce",
+      "contract_reference": "202008052234-4087818-3020"
+    },
+    {
+      "celebrity_id": 367,
+      "user_id": 3034,
+      "celebrity_name": "vanessaguzman",
+      "contract_reference": "202008060313-1370349-3034"
+    },
+
+    {
+      "celebrity_id": 613,
+      "user_id": 3071,
+      "celebrity_name": "alantacher",
+      "contract_reference": "202008062312-0800104-3071"
+    },
+
+    {
+      "celebrity_id": 354,
+      "user_id": 3686,
+      "celebrity_name": "geraldinezivic",
+      "contract_reference": "202008211537-1195236-3686"
+    }
+  ],
+  "inspiration": [
+    {
+      "celebrity_id": 483,
+      "user_id": 3017,
+      "celebrity_name": "fabra",
+      "contract_reference": "202008052153-1892699-3017"
+    },
+    {
+      "celebrity_id": 338,
+      "user_id": 3820,
+      "celebrity_name": "juanbaptistad",
+      "contract_reference": "202008250228-7082715-3820"
+    },
+    {
+      "celebrity_id": 485,
+      "user_id": 2946,
+      "celebrity_name": "lorenameritano",
+      "contract_reference": "202008032313-5463170-2946"
+    },
+    {
+      "celebrity_id": 301,
+      "user_id": 3541,
+      "celebrity_name": "rolandoschiavi",
+      "contract_reference": "202008180442-8580655-3541"
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+/* ---------------- MEDIA QUERIES STARTS ------------------- */
+@supports not (display: grid) {
+  .celebrities__card {
+    margin-bottom: 1rem;
+  }
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .image[src$=".svg"] {
+      width: calc(100% + 1px);
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  :root {
+    font-size: 4vw;
+  }
+
+  .hero {
+    background: url(../img/hero-background-small.jpg) repeat 50% 50% / cover,
+      black;
+    height: 33.1875rem;
+  }
+
+  .section-block__inner-content {
+    width: 80%;
+  }
+
+  .celebrities__main {
+    height: auto;
+    padding: 2rem 0 3rem;
+  }
+
+  .videos__list-item {
+    flex-basis: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .celebrities__main__cards {
+    grid-template-columns: repeat(2, 10rem);
+  }
+}
+
+@media screen and (min-width: 401px) and (max-width: 767px) {
+  :root {
+    font-size: 16px;
+  }
+
+  .videos__list {
+    justify-content: space-between;
+  }
+
+  .videos__list-item {
+    flex-basis: calc(50% - 0.5rem);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  :root {
+    font-size: 1.33vw;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .how-to__steps {
+    width: 18rem;
+    flex-wrap: wrap;
+    top: -1.5rem;
+  }
+  .hero__header__heading {
+    font-size: 1.8576rem;
+    width: 15.75rem;
+  }
+
+  .how-to__copy {
+    text-align: center;
+    width: 80%;
+  }
+
+  .celebrities__header__cropped {
+    width: 18rem;
+  }
+
+  .btn {
+    padding: 1em;
+  }
+
+  .hidden-mobile {
+    display: none;
+  }
+
+  footer {
+    height: 18.75rem;
+  }
+
+  .footer__inner-content {
+    max-width: 300px;
+  }
+
+  .footer__info__logo {
+    top: -1rem;
+    position: relative;
+    height: 2.125rem;
+    width: 10rem;
+    margin: 0 auto 2rem;
+  }
+
+  .footer__info__what-is,
+  .text-medium,
+  .footer__info__copyright {
+    line-height: 1.25rem;
+    font-size: 0.8669rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  h2 {
+    font-size: 1.3622rem;
+  }
+
+  .section-block__inner-content {
+    max-width: 60rem;
+  }
+
+  .how-to {
+    height: 7.5rem;
+  }
+
+  .how-to__steps {
+    justify-content: space-around;
+  }
+
+  .how-to__steps-image {
+    margin-right: 0.15rem;
+  }
+
+  /* .videos {
+    padding: 0;
+    height: 62.6875rem;
+  } */
+
+  .celebrities__main {
+    height: 46.3125rem;
+  }
+
+  .celebrities__main__cards {
+    grid-template-columns: repeat(5, 11.35rem);
+  }
+
+  .videos__button {
+    font-size: 1.8576rem;
+  }
+
+  .hidden-on-desktop {
+    display: none;
+  }
+
+  .videos__list-item {
+    flex: 1;
+    margin-right: 1.25rem;
+  }
+
+  .footer__inner-content {
+    flex-wrap: wrap;
+  }
+
+  .footer__info__what-is {
+    margin-bottom: 1.25rem;
+  }
+
+  .footer__info__copyright {
+  }
+
+  .footer__socials {
+    margin-top: 1.5rem;
+    flex-basis: 100%;
+    order: 1;
+  }
+
+  .footer__socials__text {
+    margin-left: auto;
+  }
+}
+/* ---------------- MEDIA QUERIES ENDS ------------------- */

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<!-- in public/index.html -->
+		<title>$OG_TITLE</title>
+		<meta property="og:title" content="$OG_TITLE" />
+		<meta property="og:type" content="$OG_TYPE" />
+		<meta property="og:url" content="$OG_URL" />
+		<meta property="og:image" content="$OG_IMAGE" />
+		<meta property="og:site_name" content="$OG_SITE_NAME" />
+		<meta property="og:description" content="$OG_DESCRIPTION" />
+
+		<!--  VIDEOS  -->
+		<meta property="og:video" content="$OG_VIDEO" />
+		<meta property="og:video:url" content="$OG_VIDEO_URL" />
+		<meta property="og:video:secure_url" content="$OG_VIDEO_SECURE_URL" />
+		<meta property="og:video:type" content="video/mp4" />
+		<meta property="og:video:width" content="$OG_VIDEO_WITH" />
+		<meta property="og:video:height" content="$OG_VIDEO_HEIGHT" />
+		<meta
+			name="description"
+			content="Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
+		/>
+		<meta
+			name="keywords"
+			content="famosos, latinos, videos, personalizados, fans, celebridades, actores, actrices, cantantes, dedicatorias"
+		/>
+		<link rel="canonical" href="https://www.famosos.com" />
+		<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/ico" />
+		<link rel="stylesheet" href="assets/css/normalize.css" />
+		<link rel="stylesheet" href="assets/css/styles.css" />
+		<link rel="stylesheet" href="assets/css/queries.css" />
+		<title>Famosos.com - Videos personalizados de tus famosos favoritos.</title>
+	</head>
+
+	<body id="landing-page">
+		<main>
+			<header class="top-bar align-vertically">
+				<img
+					class="top-bar__logo"
+					src="https://v.fastcdn.co/u/054523e2/51329427-0-Famosos-LOGO-ORIGINA.png"
+				/>
+			</header>
+			<section class="hero section-block">
+				<div class="section-block__inner-content">
+					<header class="hero__header align-vertically">
+						<h1 class="hero__header__heading text-center">
+							Experiencias personalizadas <br />
+							de tus Famosos favoritos.
+						</h1>
+						<a
+							class="btn btn-primary text-uppercase hero__header__button"
+							href="/inicio"
+							>Ver Famosos</a
+						>
+					</header>
+				</div>
+			</section>
+			<section class="how-to">
+				<div
+					class="how-to__inner-content align-vertically section-block__inner-content"
+				>
+					<ol class="how-to__steps">
+						<li class="how-to__steps-item">
+							<img
+								class="how-to__steps-image"
+								src="https://v.fastcdn.co/u/054523e2/50368430-0-iconos-web-02.png"
+								alt="Sonriendo"
+							/>
+							<p>Elige a tu Famoso.</p>
+						</li>
+						<li class="how-to__steps-item">
+							<img
+								class="how-to__steps-image"
+								src="https://v.fastcdn.co/u/054523e2/50368445-0-iconos-web-03.png"
+								alt="Enviando"
+							/>
+							<p>Especifica tu mensaje.</p>
+						</li>
+						<li class="how-to__steps-item">
+							<img
+								class="how-to__steps-image"
+								src="https://v.fastcdn.co/u/054523e2/50368450-0-iconos-web-01.png"
+								alt="TDC"
+							/>
+							<p>Elige tu método de pago.</p>
+						</li>
+					</ol>
+					<p class="how-to__copy">
+						¡Y listo! ¡Prepárate para recibir el regalo más original del mundo!
+					</p>
+				</div>
+			</section>
+			<section class="celebrities">
+				<div class="section-block__inner-content">
+					<header class="celebrities__header align-vertically text-center">
+						<img
+							class="celebrities__header__icon"
+							src="https://v.fastcdn.co/u/054523e2/48208445-0-FAMOSOS-favicon.png"
+							alt="Famosos Icon"
+						/>
+						<h2 class="celebrities__header__heading">
+							La gente que admiras, ¡ahora más cerca de ti!
+						</h2>
+						<p class="celebrities__header__text celebrities__header__cropped">
+							Recibe o regala mensajes de tus artistas, celebridades e
+							influencers favoritos
+						</p>
+						<p class="celebrities__header__text">
+							con contenido exclusivo y a un clic de distancia.
+						</p>
+					</header>
+					<div class="celebrities__main">
+						<div class="celebrities__main__cards">
+							{{DATA_CELEBRITIES_CARDS}}
+						</div>
+						<div class="celebrities__main__bottom">
+							<a
+								class="btn btn-primary btn-primary-alternative-hover celebrities__main__bottom__call-to-action"
+								href="/inicio"
+								>Ver más Famosos</a
+							>
+							<h2 class="celebrities__main__bottom__heading">
+								Regala experiencias inolvidables.
+							</h2>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="videos">
+				<div
+					class="videos__inner-content align-vertically section-block__inner-content"
+				>
+					<h2 class="videos__title">Vídeos para cualquier ocasión</h2>
+					<section>
+						<h3 class="videos__heading">Cumpleaños</h3>
+						<ul class="videos__list">
+							{{DATA_VIDEOS_LIST_BIRTHDAYS}}
+						</ul>
+					</section>
+					<section>
+						<h3 class="videos__heading">Ánimo e inspiración</h3>
+						<ul class="videos__list">
+							{{DATA_VIDEOS_LIST_INSPIRATION}}
+						</ul>
+					</section>
+					<div class="videos__button-wrapper">
+						<a
+							class="btn btn-primary text-uppercase videos__button"
+							href="/inicio"
+							>Explorar</a
+						>
+					</div>
+				</div>
+			</section>
+			<footer>
+				<div
+					class="footer__inner-content align-vertically section-block__inner-content"
+				>
+					<img
+						class="footer__info__logo"
+						src="https://v.fastcdn.co/u/054523e2/47668730-0-Famosos-Logo.svg"
+						alt="Famosos Inc. Logo"
+					/>
+					<p class="footer__info__what-is text-medium">
+						<span class="footer__info__what-is__text"
+							>Es una compañía dedicada a crear <br class="hidden-on-desktop" />
+							tecnologías</span
+						>
+						<span class="footer__info__what-is__text"
+							>que conecten personalidades con su fan base.</span
+						>
+					</p>
+					<div class="footer__socials">
+						<span class="footer__socials__text text-medium"
+							>Síguenos en Redes</span
+						>
+						<a
+							class="footer__socials__link"
+							href="https://www.instagram.com/famosos/"
+						>
+							<img
+								class="footer__socials__link__image"
+								src="https://v.fastcdn.co/u/054523e2/47331190-0-Vector-1.png"
+								alt="Instagram"
+							/>
+						</a>
+						<a
+							class="footer__socials__link"
+							href="https://www.facebook.com/contratafamosos/"
+						>
+							<img
+								class="footer__socials__link__image"
+								src="https://v.fastcdn.co/u/054523e2/47331195-0-Vector.png"
+								alt="Facebook"
+							/>
+						</a>
+					</div>
+					<div class="footer__info__copyright">
+						© 2019 Famosos, Inc. All Rights Reserved.
+					</div>
+				</div>
+			</footer>
+		</main>
+	</body>
+</html>
