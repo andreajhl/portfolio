@@ -20,7 +20,6 @@ export * from "./trending";
 export * from "./payment-methods";
 export * from "./client-hiring";
 export * from "./create-contract";
-export * from "./loading";
 export * from "./auth-flow";
 export * from "./404";
 export * from "./stripe_3d_response";
