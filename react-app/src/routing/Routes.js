@@ -19,11 +19,6 @@ class MyRoutes extends Component {
                         {/* ############### */}
                         <Route
                             exact
-                            path={PATHS.ROOT_PATH}
-                            component={PAGES.LoadingPage}
-                        />
-                        <Route
-                            exact
                             path={PATHS.HOME_PATH}
                             component={PAGES.CelebritiesPage}
                         />
