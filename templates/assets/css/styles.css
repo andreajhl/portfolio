@@ -111,7 +111,8 @@ h2 {
 /* ---------------- HERO SECTION BEGINS ------------------- */
 
 .hero {
-  background: url(../img/hero-background-large.jpg) repeat 50% 50% / cover,
+  background: url(../img/hero-background-extra-large.jpg) no-repeat 50% 50% /
+      contain,
     black;
 }
 

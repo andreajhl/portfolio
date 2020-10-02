@@ -18,12 +18,6 @@
     font-size: 4vw;
   }
 
-  .hero {
-    background: url(../img/hero-background-small.jpg) repeat 50% 50% / cover,
-      black;
-    height: 33.1875rem;
-  }
-
   .section-block__inner-content {
     width: 80%;
   }
@@ -48,12 +42,24 @@
     font-size: 16px;
   }
 
+  .hero {
+    background-size: cover;
+  }
+
   .videos__list {
     justify-content: space-between;
   }
 
   .videos__list-item {
     flex-basis: calc(50% - 0.5rem);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .hero {
+    background: url(../img/hero-background-small.jpg) no-repeat 50% 50% / cover,
+      black;
+    height: 33.1875rem;
   }
 }
 
@@ -69,6 +75,7 @@
     flex-wrap: wrap;
     top: -1.5rem;
   }
+
   .hero__header__heading {
     font-size: 1.8576rem;
     width: 15.75rem;
@@ -136,11 +143,6 @@
     margin-right: 0.15rem;
   }
 
-  /* .videos {
-    padding: 0;
-    height: 62.6875rem;
-  } */
-
   .celebrities__main {
     height: 46.3125rem;
   }
@@ -150,7 +152,8 @@
   }
 
   .videos__button {
-    font-size: 1.8576rem;
+    font-size: 1.486rem;
+    /* font-size: 1.8576rem; */
   }
 
   .hidden-on-desktop {
