@@ -196,7 +196,8 @@ h2 {
 }
 
 .celebrities__main {
-  height: 95.5625rem;
+  height: auto;
+  padding: 1rem 0 4rem;
 }
 
 .celebrities__main__cards {

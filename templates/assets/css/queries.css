@@ -22,11 +22,6 @@
     width: 80%;
   }
 
-  .celebrities__main {
-    height: auto;
-    padding: 2rem 0 3rem;
-  }
-
   .videos__list-item {
     flex-basis: 100%;
     margin-bottom: 1rem;
@@ -143,17 +138,12 @@
     margin-right: 0.15rem;
   }
 
-  .celebrities__main {
-    height: 46.3125rem;
-  }
-
   .celebrities__main__cards {
     grid-template-columns: repeat(5, 11.35rem);
   }
 
   .videos__button {
     font-size: 1.486rem;
-    /* font-size: 1.8576rem; */
   }
 
   .hidden-on-desktop {
