@@ -17,33 +17,33 @@ function defaultOG(data) {
 		/\$OG_TITLE/g,
 		"Famosos.com - Videos personalizados de tus famosos favoritos."
 	);
-	data = data.replace(/\$OG_TYPE/g, "website");
-	data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
+	data = data.replace(/\$OG_TYPE/, "website");
+	data = data.replace(/\$OG_URL/, "https://www.famosos.com");
 	const isProdEnviroment = process.env.NODE_ENV === "production";
-	data = data.replace(/\$ROBOTS_META/g, isProdEnviroment ? "index" : "noindex");
+	data = data.replace(/\$ROBOTS_META/, isProdEnviroment ? "index" : "noindex");
 	data = data.replace(
 		/\$OG_IMAGE/g,
 		"https://www.famosos.com/assets/img/favicon.png"
 	);
-	data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
+	data = data.replace(/\$OG_SITE_NAME/, "Famosos.com");
 	data = data.replace(
-		/\$OG_DESCRIPTION/g,
+		/\$OG_DESCRIPTION/,
 		"Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
 	);
+	data = data.replace(/\$OG_VIDEO_WITH/, "400");
+  data = data.replace(/\$OG_VIDEO_HEIGHT/, "400");
 	data = data.replace(
-		/\$OG_VIDEO/g,
+		/\$OG_VIDEO_SECURE_URL/,
 		"https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
 	);
 	data = data.replace(
-		/\$OG_VIDEO_URL/g,
+		/\$OG_VIDEO_URL/,
 		"https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
 	);
 	data = data.replace(
-		/\$OG_VIDEO_SECURE_URL/g,
+		/\$OG_VIDEO/,
 		"https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
 	);
-	data = data.replace(/\$OG_VIDEO_WITH/g, "400");
-	data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
 	return data;
 }
 
