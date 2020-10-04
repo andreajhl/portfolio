@@ -93,15 +93,15 @@
     display: none;
   }
 
-  footer {
+  .main_footer {
     height: 18.75rem;
   }
 
-  .footer__inner-content {
+  .main_footer__inner-content {
     max-width: 300px;
   }
 
-  .footer__info__logo {
+  .main_footer__info__logo {
     top: -1rem;
     position: relative;
     height: 2.125rem;
@@ -109,9 +109,9 @@
     margin: 0 auto 2rem;
   }
 
-  .footer__info__what-is,
+  .main_footer__info__what-is,
   .text-medium,
-  .footer__info__copyright {
+  .main_footer__info__copyright {
     line-height: 1.25rem;
     font-size: 0.8669rem;
   }
@@ -155,24 +155,24 @@
     margin-right: 1.25rem;
   }
 
-  .footer__inner-content {
+  .main_footer__inner-content {
     flex-wrap: wrap;
   }
 
-  .footer__info__what-is {
+  .main_footer__info__what-is {
     margin-bottom: 1.25rem;
   }
 
-  .footer__info__copyright {
+  .main_footer__info__copyright {
   }
 
-  .footer__socials {
+  .main_footer__socials {
     margin-top: 1.5rem;
     flex-basis: 100%;
     order: 1;
   }
 
-  .footer__socials__text {
+  .main_footer__socials__text {
     margin-left: auto;
   }
 }

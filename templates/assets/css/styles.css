@@ -373,51 +373,51 @@ h2 {
 
 /* ---------------- COOKIES CONSENT ENDS ------------------- */
 
-/* ---------------- FOOTER SECTION STARTS ------------------- */
+/* ---------------- MAIN FOOTER SECTION STARTS ------------------- */
 
-footer {
+.main_footer {
   color: white;
   background: rgb(40, 40, 40);
   height: 10rem;
 }
 
-.footer__info {
+.main_footer__info {
   height: 100%;
 }
 
-.footer__info__logo {
+.main_footer__info__logo {
   height: 1.75rem;
   width: 8.1875rem;
   margin-bottom: 0.75rem;
 }
 
-.footer__info__what-is {
+.main_footer__info__what-is {
   margin-bottom: 2rem;
 }
 
-.footer__info__copyright {
+.main_footer__info__copyright {
   line-height: 0.9375rem;
   font-size: 0.6811rem;
 }
 
-.footer__socials {
+.main_footer__socials {
   display: flex;
   align-items: center;
   justify-content: right;
   margin-bottom: 1.5rem;
 }
 
-.footer__socials__text {
+.main_footer__socials__text {
   margin-right: 1rem;
 }
 
-.footer__socials__link {
+.main_footer__socials__link {
   height: 1.25rem;
   width: 1.25rem;
   margin-right: 0.5rem;
 }
 
-.footer__socials__link__image {
+.main_footer__socials__link__image {
   width: 100%;
 }
-/* ---------------- FOOTER SECTION ENDS ------------------- */
+/* ---------------- MAIN FOOTER SECTION ENDS ------------------- */
