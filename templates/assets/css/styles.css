@@ -293,6 +293,7 @@ h2 {
 }
 
 .videos__list {
+  justify-content: space-between;
   width: 100%;
   max-width: 750px;
   flex-wrap: wrap;
@@ -300,8 +301,9 @@ h2 {
   display: flex;
 }
 
-.videos__list-last-item {
-  margin-right: 0;
+.videos__list-item {
+  flex-basis: 100%;
+  margin-bottom: 1rem;
 }
 
 .videos__list-item__video {
