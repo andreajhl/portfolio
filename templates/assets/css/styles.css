@@ -222,6 +222,7 @@ h2 {
   padding: 0.75rem;
   width: 100%;
   height: 100%;
+  will-change: transform;
   transition: transform 0.5s ease;
 }
 
@@ -329,6 +330,7 @@ h2 {
 /* ---------------- COOKIES CONSENT STARTS ------------------- */
 .cookies-consent {
   display: none;
+  will-change: opacity;
   font-size: 0.75em !important;
   background-color: #eee;
   width: 100%;
