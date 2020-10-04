@@ -259,11 +259,12 @@ h2 {
 
 .celebrity__card__fullname {
   line-height: 1.5;
+  font-size: 1rem;
 }
 
 .celebrity__card__hashtags {
   font-size: 0.75em;
-  color: #b0bbd7;
+  color: #4c5365;
 }
 
 .celebrities__main__bottom {
@@ -360,7 +361,7 @@ h2 {
 }
 
 .cookies-consent__terms-link {
-  color: #0094da;
+  color: #035277;
 }
 
 .cookies-consent__terms-link:hover {
