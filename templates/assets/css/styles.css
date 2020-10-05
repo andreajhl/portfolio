@@ -182,7 +182,8 @@ h2 {
 
 /* ---------------- CELEBRITIES SECTION STARTS ------------------- */
 .celebrities__header {
-  height: 14.3125rem;
+  height: auto;
+  padding: 2rem 0 1.25rem;
   align-items: center;
 }
 
