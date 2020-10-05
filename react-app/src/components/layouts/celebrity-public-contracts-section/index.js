@@ -56,18 +56,20 @@ class CelebrityPublicContractsSectionLayout extends Component {
   }
 
   renderShimmerVideoCards() {
-    console.log([...Array(getTotalColumns() * 1)]);
-    return [...Array(getTotalColumns() * 1)].map((o, index) => {
-      return (
+    const shimmersCards = [];
+    for (let index = 0; index < 8; index++) {
+      shimmersCards.push(
         <div className="item mr-4 mb-2 mx-auto" key={index}>
           <CelebrityShimmerCardLayout />
         </div>
       );
-    });
+    }
+    return shimmersCards;
   }
 
   render() {
-    return (
+    const hasContracts = this.props.publicContracts.length > 0;
+    return this.props.isLoading || hasContracts ? (
       <div className="CelebrityPublicContractsSectionLayout">
         <div className="f-container mb-2 pb-2">
           <div className={"f-main-padding"}>
@@ -75,9 +77,9 @@ class CelebrityPublicContractsSectionLayout extends Component {
               <h6 className="float-left font-weight-bold">Videos</h6>
             </div>
             <div className={"scrolling-wrapper"}>
-              {!this.props.isLoading
-                ? this.renderCelebrityPublicVideoCards()
-                : this.renderShimmerVideoCards()}
+              {this.props.isLoading
+                ? this.renderShimmerVideoCards()
+                : this.renderCelebrityPublicVideoCards()}
             </div>
             <div className="col-12">
               {/* PaginationLayout */}
@@ -91,7 +93,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
           </div>
         </div>
       </div>
-    );
+    ) : null;
   }
 }
 
