@@ -31,7 +31,7 @@ function defaultOG(data) {
 		"Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
 	);
 	data = data.replace(/\$OG_VIDEO_WITH/, "400");
-  data = data.replace(/\$OG_VIDEO_HEIGHT/, "400");
+	data = data.replace(/\$OG_VIDEO_HEIGHT/, "400");
 	data = data.replace(
 		/\$OG_VIDEO_SECURE_URL/,
 		"https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
@@ -701,7 +701,9 @@ app.get("/docs/faqs", function (request, response) {
 
 // ################################################################
 app.use(express.static(path.resolve(__dirname, "./build")));
-app.use(express.static(path.resolve(__dirname, "./templates")));
+app.use(
+	express.static(path.resolve(__dirname, "./templates"), { maxAge: "1y" })
+);
 // ################################################################
 
 // ################################################################
