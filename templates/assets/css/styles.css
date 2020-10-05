@@ -15,6 +15,7 @@ html {
 body {
   background: white;
   font-family: "Avenir Next LT Pro Regular", sans-serif !important;
+  text-rendering: optimizeLegibility;
   font-weight: 400;
 }
 
@@ -32,6 +33,11 @@ h2 {
   font-size: 0.9907rem;
 }
 
+.hidden {
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
 .align-vertically {
   display: flex;
   flex-direction: column;
@@ -44,6 +50,7 @@ h2 {
 }
 
 .btn {
+  background: none;
   cursor: pointer;
   text-align: center;
   transition: border 0.5s;
@@ -81,6 +88,12 @@ h2 {
 
 .text-uppercase {
   text-transform: uppercase;
+}
+
+.text-with-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .section-block {
@@ -169,7 +182,8 @@ h2 {
 
 /* ---------------- CELEBRITIES SECTION STARTS ------------------- */
 .celebrities__header {
-  height: 14.3125rem;
+  height: auto;
+  padding: 2rem 0 1.25rem;
   align-items: center;
 }
 
@@ -189,7 +203,8 @@ h2 {
 }
 
 .celebrities__main {
-  height: 95.5625rem;
+  height: auto;
+  padding: 1rem 0 4rem;
 }
 
 .celebrities__main__cards {
@@ -208,6 +223,7 @@ h2 {
   padding: 0.75rem;
   width: 100%;
   height: 100%;
+  will-change: transform;
   transition: transform 0.5s ease;
 }
 
@@ -238,20 +254,18 @@ h2 {
 }
 
 .celebrity__card__country {
-  height: 0.75rem;
-  width: 1rem;
+  height: 0.625rem;
+  width: 0.9375rem;
 }
 
 .celebrity__card__fullname {
   line-height: 1.5;
+  font-size: 1rem;
 }
 
 .celebrity__card__hashtags {
   font-size: 0.75em;
-  color: #b0bbd7;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  color: #4c5365;
 }
 
 .celebrities__main__bottom {
@@ -281,6 +295,7 @@ h2 {
 }
 
 .videos__list {
+  justify-content: space-between;
   width: 100%;
   max-width: 750px;
   flex-wrap: wrap;
@@ -288,8 +303,9 @@ h2 {
   display: flex;
 }
 
-.videos__list-last-item {
-  margin-right: 0;
+.videos__list-item {
+  flex-basis: 100%;
+  margin-bottom: 1rem;
 }
 
 .videos__list-item__video {
@@ -315,51 +331,97 @@ h2 {
 
 /* ---------------- VIDEOS SECTION ENDS ------------------- */
 
-/* ---------------- FOOTER SECTION STARTS ------------------- */
+/* ---------------- COOKIES CONSENT STARTS ------------------- */
+.cookies-consent {
+  display: none;
+  will-change: opacity;
+  font-size: 0.75em !important;
+  background-color: #eee;
+  width: 100%;
+  max-width: 65rem;
+  position: fixed;
+  bottom: 0px;
+  /* center the element */
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  padding: 1.25em;
+  text-align: justify;
+  border-radius: 4px;
+  z-index: 10000;
+}
 
-footer {
+.cookies-consent__text {
+  margin-bottom: 1.25em;
+}
+
+.cookies-consent__options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cookies-consent__terms-link {
+  color: #035277;
+}
+
+.cookies-consent__terms-link:hover {
+  text-decoration: underline;
+}
+
+.cookies-consent__accept-button {
+  float: right;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+/* ---------------- COOKIES CONSENT ENDS ------------------- */
+
+/* ---------------- MAIN FOOTER SECTION STARTS ------------------- */
+
+.main_footer {
   color: white;
   background: rgb(40, 40, 40);
   height: 10rem;
 }
 
-.footer__info {
+.main_footer__info {
   height: 100%;
 }
 
-.footer__info__logo {
+.main_footer__info__logo {
   height: 1.75rem;
   width: 8.1875rem;
   margin-bottom: 0.75rem;
 }
 
-.footer__info__what-is {
+.main_footer__info__what-is {
   margin-bottom: 2rem;
 }
 
-.footer__info__copyright {
+.main_footer__info__copyright {
   line-height: 0.9375rem;
   font-size: 0.6811rem;
 }
 
-.footer__socials {
+.main_footer__socials {
   display: flex;
   align-items: center;
   justify-content: right;
   margin-bottom: 1.5rem;
 }
 
-.footer__socials__text {
+.main_footer__socials__text {
   margin-right: 1rem;
 }
 
-.footer__socials__link {
-  height: 1.25rem;
-  width: 1.25rem;
-  margin-right: 0.5rem;
+.main_footer__socials__link {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 1rem;
 }
 
-.footer__socials__link__image {
+.main_footer__socials__link__image {
   width: 100%;
 }
-/* ---------------- FOOTER SECTION ENDS ------------------- */
+/* ---------------- MAIN FOOTER SECTION ENDS ------------------- */

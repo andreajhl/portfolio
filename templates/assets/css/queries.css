@@ -22,14 +22,8 @@
     width: 80%;
   }
 
-  .celebrities__main {
-    height: auto;
-    padding: 2rem 0 3rem;
-  }
-
-  .videos__list-item {
-    flex-basis: 100%;
-    margin-bottom: 1rem;
+  .celebrities__inner-content {
+    width: 90%;
   }
 
   .celebrities__main__cards {
@@ -45,11 +39,15 @@
   .hero {
     background-size: cover;
   }
+}
 
+@media screen and (max-width: 500px) and (min-width: 401px) {
   .videos__list {
-    justify-content: space-between;
+    padding: 1.5rem;
   }
+}
 
+@media screen and (min-width: 501px) and (max-width: 767px) {
   .videos__list-item {
     flex-basis: calc(50% - 0.5rem);
   }
@@ -87,7 +85,7 @@
   }
 
   .celebrities__header__cropped {
-    width: 18rem;
+    width: 19rem;
   }
 
   .btn {
@@ -98,15 +96,15 @@
     display: none;
   }
 
-  footer {
+  .main_footer {
     height: 18.75rem;
   }
 
-  .footer__inner-content {
+  .main_footer__inner-content {
     max-width: 300px;
   }
 
-  .footer__info__logo {
+  .main_footer__info__logo {
     top: -1rem;
     position: relative;
     height: 2.125rem;
@@ -114,9 +112,9 @@
     margin: 0 auto 2rem;
   }
 
-  .footer__info__what-is,
+  .main_footer__info__what-is,
   .text-medium,
-  .footer__info__copyright {
+  .main_footer__info__copyright {
     line-height: 1.25rem;
     font-size: 0.8669rem;
   }
@@ -143,46 +141,38 @@
     margin-right: 0.15rem;
   }
 
-  .celebrities__main {
-    height: 46.3125rem;
-  }
-
   .celebrities__main__cards {
     grid-template-columns: repeat(5, 11.35rem);
   }
 
+  .videos__list-item {
+    flex-basis: calc(25% - 1rem);
+    margin-bottom: 0;
+  }
+
   .videos__button {
     font-size: 1.486rem;
-    /* font-size: 1.8576rem; */
   }
 
   .hidden-on-desktop {
     display: none;
   }
 
-  .videos__list-item {
-    flex: 1;
-    margin-right: 1.25rem;
-  }
-
-  .footer__inner-content {
+  .main_footer__inner-content {
     flex-wrap: wrap;
   }
 
-  .footer__info__what-is {
+  .main_footer__info__what-is {
     margin-bottom: 1.25rem;
   }
 
-  .footer__info__copyright {
-  }
-
-  .footer__socials {
+  .main_footer__socials {
     margin-top: 1.5rem;
     flex-basis: 100%;
     order: 1;
   }
 
-  .footer__socials__text {
+  .main_footer__socials__text {
     margin-left: auto;
   }
 }
