@@ -5,7 +5,6 @@ import { CelebrityPublicContractCardLayout } from "../celebrity-public-contract-
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { PaginationLayout } from "../pagination";
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
-import { getTotalColumns } from "../../../state/utils/gridSystem";
 
 class CelebrityPublicContractsSectionLayout extends Component {
   constructor(props) {
@@ -55,7 +54,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
     });
   }
 
-  renderShimmerVideoCards() {
+  renderShimmerPublicVideoCards() {
     const shimmersCards = [];
     for (let index = 0; index < 8; index++) {
       shimmersCards.push(
@@ -78,7 +77,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
             </div>
             <div className={"scrolling-wrapper"}>
               {this.props.isLoading
-                ? this.renderShimmerVideoCards()
+                ? this.renderShimmerPublicVideoCards()
                 : this.renderCelebrityPublicVideoCards()}
             </div>
             <div className="col-12">

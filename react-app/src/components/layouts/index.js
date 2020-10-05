@@ -7,6 +7,7 @@ export * from "./celebrity-public-contracts-section";
 export * from "./celebrity-review-card";
 export * from "./celebrity-reviews-section";
 export * from "./celebrity-shimmer-card";
+export * from "./celebrity-shimmer-review-card";
 export * from "./flags-select";
 export * from "./footer";
 export * from "./hiring-preview";

@@ -4,6 +4,7 @@ import { CelebrityReviewCardLayout } from "../../layouts/celebrity-review-card";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { PaginationLayout } from "../../layouts/pagination";
+import { CelebrityShimmerReviewCardLayout } from "../celebrity-shimmer-review-card";
 
 class CelebrityReviewsSectionLayout extends Component {
   constructor(props) {
@@ -40,17 +41,34 @@ class CelebrityReviewsSectionLayout extends Component {
     );
   }
 
+  renderShimmerReviewCards() {
+    const shimmersCards = [];
+    for (let index = 0; index < 3; index++) {
+      shimmersCards.push(
+        <div className="col-12 col-md-4 col-lg-4 col-xl-4 mb-4" key={index}>
+          <CelebrityShimmerReviewCardLayout />
+        </div>
+      );
+    }
+    return shimmersCards;
+  }
+
   render() {
+    const hasReviews = this.props.reviews.length > 0;
     return (
       <div className="CelebrityReviewsSectionLayout">
-        {this.props.reviews.length > 0 ? (
+        {this.props.isLoading || hasReviews ? (
           <div className="f-container mb-2 pb-2">
             <div className="row f-section mx-auto pt-2">
               <div className="col-12 mb-4">
                 <b>Calificaciones</b>
               </div>
-              {!this.props.isLoading
-                ? this.props.reviews.map((review, index) => {
+              {this.props.isLoading ? (
+                this.renderShimmerReviewCards()
+              ) : (
+                <>
+                  {this.renderShimmerReviewCards()}{" "}
+                  {this.props.reviews.map((review, index) => {
                     return (
                       <div
                         className="col-12 col-md-4 col-lg-4 col-xl-4 mb-4"
@@ -59,8 +77,9 @@ class CelebrityReviewsSectionLayout extends Component {
                         <CelebrityReviewCardLayout review={review} />
                       </div>
                     );
-                  })
-                : null}
+                  })}
+                </>
+              )}
               <div className="col-12">
                 {/* PaginationLayout */}
                 <PaginationLayout
