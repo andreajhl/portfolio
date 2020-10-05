@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { CelebrityPublicContractCardLayout } from "../celebrity-public-contract-card";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { PaginationLayout } from "../pagination";
+import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
+import { getTotalColumns } from "../../../state/utils/gridSystem";
 
 class CelebrityPublicContractsSectionLayout extends Component {
   constructor(props) {
@@ -53,33 +55,41 @@ class CelebrityPublicContractsSectionLayout extends Component {
     });
   }
 
+  renderShimmerVideoCards() {
+    console.log([...Array(getTotalColumns() * 1)]);
+    return [...Array(getTotalColumns() * 1)].map((o, index) => {
+      return (
+        <div className="item mr-4 mb-2 mx-auto" key={index}>
+          <CelebrityShimmerCardLayout />
+        </div>
+      );
+    });
+  }
+
   render() {
-    // console.log(this.props.publicContracts);
     return (
       <div className="CelebrityPublicContractsSectionLayout">
-        {this.props.publicContracts.length > 0 ? (
-          <div className="f-container mb-2 pb-2">
-            <div className={"f-main-padding"}>
-              <div className="clearfix ml-4">
-                <h6 className="float-left font-weight-bold">Videos</h6>
-              </div>
-              <div className={"scrolling-wrapper"}>
-                {!this.props.isLoading
-                  ? this.renderCelebrityPublicVideoCards()
-                  : null}
-              </div>
-              <div className="col-12">
-                {/* PaginationLayout */}
-                <PaginationLayout
-                  showFmainPadding={false}
-                  pagination={this.props.paginationData}
-                  onPaginationChange={this.onPaginationChange}
-                />
-                {/* End PaginationLayout */}
-              </div>
+        <div className="f-container mb-2 pb-2">
+          <div className={"f-main-padding"}>
+            <div className="clearfix ml-4">
+              <h6 className="float-left font-weight-bold">Videos</h6>
+            </div>
+            <div className={"scrolling-wrapper"}>
+              {!this.props.isLoading
+                ? this.renderCelebrityPublicVideoCards()
+                : this.renderShimmerVideoCards()}
+            </div>
+            <div className="col-12">
+              {/* PaginationLayout */}
+              <PaginationLayout
+                showFmainPadding={false}
+                pagination={this.props.paginationData}
+                onPaginationChange={this.onPaginationChange}
+              />
+              {/* End PaginationLayout */}
             </div>
           </div>
-        ) : null}
+        </div>
       </div>
     );
   }
