@@ -15,7 +15,7 @@
     //top: -30px;
 
     .auth-container {
-      margin-top: 20px ;
+      margin-top: 20px;
       background: #fff;
       max-width: 400px;
       width: 90vw;
@@ -34,14 +34,16 @@
       }
 
       .custom-form {
-
         padding: 0;
         max-width: 410px;
         width: 90%;
         margin: 20px auto 0;
 
-        button[disabled=disabled], button:disabled {
-          opacity: 0.1;
+        button[disabled="disabled"],
+        button:disabled {
+          background-color: #eb2a7b66;
+          border-color: #eb2a7b66;
+          cursor: not-allowed;
         }
 
         .instructions {
@@ -76,11 +78,7 @@
           font-size: 10px;
           text-align: left;
         }
-
       }
-
     }
-
   }
-
 }
