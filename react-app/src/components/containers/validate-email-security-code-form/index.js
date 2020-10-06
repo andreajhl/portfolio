@@ -69,6 +69,7 @@ class ValidateEmailSecurityCodeForm extends Component {
         </div>
         <form onSubmit={(e) => e.preventDefault()}>
           <input
+            type="text"
             className="form-control"
             placeholder="# # # # # #"
             name="securityCode"
