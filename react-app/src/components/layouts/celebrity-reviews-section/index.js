@@ -63,12 +63,9 @@ class CelebrityReviewsSectionLayout extends Component {
               <div className="col-12 mb-4">
                 <b>Calificaciones</b>
               </div>
-              {this.props.isLoading ? (
-                this.renderShimmerReviewCards()
-              ) : (
-                <>
-                  {this.renderShimmerReviewCards()}{" "}
-                  {this.props.reviews.map((review, index) => {
+              {this.props.isLoading
+                ? this.renderShimmerReviewCards()
+                : this.props.reviews.map((review, index) => {
                     return (
                       <div
                         className="col-12 col-md-4 col-lg-4 col-xl-4 mb-4"
@@ -78,8 +75,6 @@ class CelebrityReviewsSectionLayout extends Component {
                       </div>
                     );
                   })}
-                </>
-              )}
               <div className="col-12">
                 {/* PaginationLayout */}
                 <PaginationLayout
