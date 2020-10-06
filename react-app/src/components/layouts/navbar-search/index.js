@@ -1,128 +1,132 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import "./styles.scss";
 import * as GTM from "../../../state/utils/gtm";
-import {celebrityOperations} from "../../../state/ducks/celebrities";
-import {connect} from "react-redux";
-import {history} from "../../../routing/History";
+import { celebrityOperations } from "../../../state/ducks/celebrities";
+import { connect } from "react-redux";
+import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 
-
 class NavbarSearchLayout extends Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props){
-        super(props);
+    this.state = {
+      keyword: this.props.queryParams.search || ""
+    };
 
-        this.state = {
-            keyword: this.props.queryParams.search || ""
-        };
+    this.goToHome = this.goToHome.bind(this);
+  }
 
-        this.goToHome = this.goToHome.bind(this)
+  componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+    if (nextProps.removeKeywords) {
+      this.setState({
+        keyword: ""
+      });
     }
+  }
 
-    componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
-        if (nextProps.removeKeywords) {
-            this.setState({
-                keyword: ""
-            });
+  inputHandler(e) {
+    if (e.target.value && e.target.value.length > 1) {
+      if (e.target.value.length % 2 === 0) {
+        if (this.onSearchChange) {
+          this.onSearchChange(e.target.value);
         }
+      }
+    } else if (e.target.value.length === 0) {
+      this.onSearchChange(e.target.value);
     }
+    this.setState({
+      keyword: e.target.value
+    });
+  }
 
-    inputHandler(e) {
-        if (e.target.value && e.target.value.length > 1) {
-            if (e.target.value.length % 2 === 0) {
-                if (this.onSearchChange) {
-                    this.onSearchChange(e.target.value)
-                }
-            }
-        } else if (e.target.value.length === 0) {
-            this.onSearchChange(e.target.value);
-        }
-        this.setState({
-            keyword: e.target.value
-        });
+  handleKeyPress(event) {
+    if (event.key === "Enter") {
+      this.onSearchChange(this.state.keyword);
     }
+  }
 
-    handleKeyPress(event) {
-        if (event.key === 'Enter') {
-            this.onSearchChange(this.state.keyword)
-        }
-    }
+  handleBlur() {
+    this.onSearchChange(this.state.keyword);
+  }
 
-    handleBlur() {
-        this.onSearchChange(this.state.keyword)
+  onSearchChange(keyword) {
+    if (!this.props.isLoading && this.props.isCompleted) {
+      GTM.tagManagerDataLayer("CELEBRITIES_SEARCH_CHANGED", this.state.keyword);
+      this.props.onSearchChange(keyword);
+      document.getElementsByClassName("scroll-section")[0].scrollTop = -100;
     }
+  }
 
-    onSearchChange(keyword) {
-        if (!this.props.isLoading && this.props.isCompleted) {
-            GTM.tagManagerDataLayer(
-                "CELEBRITIES_SEARCH_CHANGED",
-                this.state.keyword
-            );
-            this.props.onSearchChange(keyword);
-            document.getElementsByClassName('scroll-section')[0].scrollTop = -100
-        }
-    }
+  goToHome() {
+    history._pushRoute(PATHS.HOME_PATH + "?inputSearchFocus=true");
+  }
 
-    goToHome(){
-        history._pushRoute(PATHS.HOME_PATH + "?inputSearchFocus=true")
-    }
-
-    render() {
-        return (
-            <div className="NavbarSearchLayout">
-                <div className="form-group">
-                    <div className="input-group">
-                        <i className={"fa fa-search"} onClick={this.handleBlur.bind(this)}/>
-                        <input
-                            autoFocus={new URLSearchParams(history.location.search).get("inputSearchFocus")}
-                            // id={"input-search"}
-                            className="form-control f-items d-none d-md-block"
-                            type="text"
-                            name="search"
-                            value={this.state.keyword}
-                            onKeyPress={this.handleKeyPress.bind(this)}
-                            onClick={this.goToHome}
-                            onChange={this.inputHandler.bind(this)}
-                            placeholder={this.props.searchLabel}
-                        />
-                        <input
-                            autoFocus={this.props.autoFocus}
-                            id={"input-search"}
-                            className="form-control f-items d-block d-md-none"
-                            type="text"
-                            name="search"
-                            value={this.state.keyword}
-                            onKeyPress={this.handleKeyPress.bind(this)}
-                            onChange={this.inputHandler.bind(this)}
-                            placeholder={this.props.searchLabel}
-                        />
-                    </div>
-                </div>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="NavbarSearchLayout">
+        <div className="form-group">
+          <div className="input-group">
+            <i
+              className={"fa fa-search"}
+              onClick={this.handleBlur.bind(this)}
+            />
+            <input
+              autoFocus={Boolean(
+                new URLSearchParams(history.location.search).get(
+                  "inputSearchFocus"
+                )
+              )}
+              // id={"input-search"}
+              className="form-control f-items d-none d-md-block"
+              type="text"
+              name="search"
+              value={this.state.keyword}
+              onKeyPress={this.handleKeyPress.bind(this)}
+              onClick={this.goToHome}
+              onChange={this.inputHandler.bind(this)}
+              placeholder={this.props.searchLabel}
+            />
+            <input
+              autoFocus={this.props.autoFocus}
+              id={"input-search"}
+              className="form-control f-items d-block d-md-none"
+              type="text"
+              name="search"
+              value={this.state.keyword}
+              onKeyPress={this.handleKeyPress.bind(this)}
+              onChange={this.inputHandler.bind(this)}
+              placeholder={this.props.searchLabel}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 // Set defaultProps
 NavbarSearchLayout.defaultProps = {
-    searchLabel: "Ej: Pibe Valderrama, Comediantes, Músicos",
-    onSearchChange: function () {
-    },
-    autoFocus: false
+  searchLabel: "Ej: Pibe Valderrama, Comediantes, Músicos",
+  onSearchChange: function () {},
+  autoFocus: false
 };
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
-    isLoading: state.celebrities.fetchCelebritiesReducer.loading,
-    queryParams: state.celebrities.queryParamsReducer,
+  isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
+  isLoading: state.celebrities.fetchCelebritiesReducer.loading,
+  queryParams: state.celebrities.queryParamsReducer
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    updateQueryParams: celebrityOperations.updateQueryParams,
+  updateQueryParams: celebrityOperations.updateQueryParams
 };
 
 // Export Class
-const _NavbarSearchLayout = connect(mapStateToProps, mapDispatchToProps)(NavbarSearchLayout);
-export {_NavbarSearchLayout as NavbarSearchLayout};
+const _NavbarSearchLayout = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavbarSearchLayout);
+export { _NavbarSearchLayout as NavbarSearchLayout };
