@@ -1,41 +1,43 @@
-import React, {Component} from 'react';
-import {CelebrityCardLayout} from "../celebrity-card";
+import React, { Component } from "react";
+import { CelebrityCardLayout } from "../celebrity-card";
 import "./styles.scss";
-import {getTotalColumns} from "../../../state/utils/gridSystem";
-import {CelebrityShimmerCardLayout} from "../celebrity-shimmer-card";
-import {connect} from "react-redux";
+import { getTotalColumns } from "../../../state/utils/gridSystem";
+import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
+import { connect } from "react-redux";
 
 class CelebrityCardsSectionLayout extends Component {
-
     constructor(props) {
         super(props);
 
-        this.state = {}
+        this.state = {};
     }
 
     renderShimmerCards() {
         if (this.props.showShimmerCards) {
             return (
                 <div className="scrolling-wrapper">
-                    {
-                        [...Array(getTotalColumns() * 6)].map((o, index) => {
-                            return (
-                                <div className="item mr-4 mb-2 mx-auto" key={index}>
-                                    <CelebrityShimmerCardLayout/>
-                                </div>
-                            )
-                        })
-                    }
+                    {[...Array(getTotalColumns() * 6)].map((o, index) => {
+                        return (
+                            <div className="item mr-4 mb-2 mx-auto" key={index}>
+                                <CelebrityShimmerCardLayout />
+                            </div>
+                        );
+                    })}
                 </div>
-            )
+            );
         } else {
             return (
-                <div className={"scrolling-wrapper " + (this.props.horizontalScroll ? "horizontal-scroll" : "")}>
+                <div
+                    className={
+                        "scrolling-wrapper " +
+                        (this.props.horizontalScroll ? "horizontal-scroll" : "")
+                    }
+                >
                     {this.renderCelebritiesCards()}
                 </div>
-            )
+            );
         }
-    };
+    }
 
     renderLoading() {
         if (this.props.showLoading) {
@@ -51,25 +53,24 @@ class CelebrityCardsSectionLayout extends Component {
                         <span className="sr-only">Loading...</span>
                     </div>
                 </div>
-            )
+            );
         }
     }
 
     renderCelebritiesCards() {
         if (!this.props.showShimmerCards) {
-            return (
-                this.props.celebrities.map((celebrity, index) => {
-                    return (
-                        <div className="item mr-4 mx-auto" key={"celebrity" + celebrity.id + "-" + index}>
-                            <CelebrityCardLayout
-                                celebrity={celebrity}
-                            />
-                        </div>
-                    )
-                })
-            )
+            return this.props.celebrities.map((celebrity, index) => {
+                return (
+                    <div
+                        className="item mr-4 mx-auto"
+                        key={"celebrity" + celebrity.id + "-" + index}
+                    >
+                        <CelebrityCardLayout celebrity={celebrity} />
+                    </div>
+                );
+            });
         }
-    };
+    }
 
     renderTitle() {
         if (this.props.title && !this.props.queryParams.search) {
@@ -77,19 +78,23 @@ class CelebrityCardsSectionLayout extends Component {
                 <div className="text-left section-title">
                     <b>{this.props.title}</b>
                 </div>
-            )
-        } else if (this.props.title !== "Famosos Similares" && this.props.queryParams.search && !this.props.celebrities.length) {
+            );
+        } else if (
+            this.props.title !== "Famosos Similares" &&
+            this.props.queryParams.search &&
+            !this.props.celebrities.length
+        ) {
             return (
                 <div className="text-left section-title">
                     <b>No se encontraron famosos para esta busqueda</b>
                 </div>
-            )
+            );
         } else if (this.props.title) {
             return (
                 <div className="text-left section-title">
                     <b>Famosos encontrados:</b>
                 </div>
-            )
+            );
         }
     }
 
@@ -97,7 +102,9 @@ class CelebrityCardsSectionLayout extends Component {
         return (
             <div
                 className="CelebrityCardsSectionLayout"
-                style={{minHeight: (this.props.minHeight ? "100vh" : "initial")}}
+                style={{
+                    minHeight: this.props.minHeight ? "100vh" : "initial"
+                }}
             >
                 <div className="text-left section-title">
                     <b>{this.props.title}</b>
@@ -108,7 +115,7 @@ class CelebrityCardsSectionLayout extends Component {
                 {this.renderLoading()}
             </div>
         );
-    };
+    }
 }
 
 // default props
@@ -121,16 +128,17 @@ CelebrityCardsSectionLayout.defaultProps = {
     minHeight: false
 };
 
-
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-    queryParams: state.celebrities.queryParamsReducer,
+    queryParams: state.celebrities.queryParamsReducer
 });
 
 // mapStateToProps
 const mapDispatchToProps = {};
 
 // Export Class
-const _CelebrityCardsSectionLayout = connect(mapStateToProps, mapDispatchToProps)(CelebrityCardsSectionLayout);
-export {_CelebrityCardsSectionLayout as CelebrityCardsSectionLayout};
-
+const _CelebrityCardsSectionLayout = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CelebrityCardsSectionLayout);
+export { _CelebrityCardsSectionLayout as CelebrityCardsSectionLayout };
