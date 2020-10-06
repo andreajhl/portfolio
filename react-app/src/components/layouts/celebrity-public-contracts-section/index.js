@@ -59,7 +59,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
     for (let index = 0; index < 8; index++) {
       shimmersCards.push(
         <div className="item mr-4 mb-2 mx-auto" key={index}>
-          <CelebrityShimmerCardLayout />
+          <CelebrityShimmerCardLayout className="public-contract-shimmer CelebrityPublicContractCardLayout" />
         </div>
       );
     }

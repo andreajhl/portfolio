@@ -1,7 +1,5 @@
-
 div.CelebrityPublicContractsSectionLayout {
-
-  .f-main-padding{
+  .f-main-padding {
     max-width: 900px;
     margin: 0 auto;
 
@@ -63,13 +61,6 @@ div.CelebrityPublicContractsSectionLayout {
     // Large devices (desktops, 768px and up)
     @media (min-width: 768px) {
       .scrolling-wrapper {
-        grid-template-columns: repeat(2, minmax(100%, 1fr)) !important;
-      }
-    }
-
-    // Large devices (desktops, 800px and up)
-    @media (min-width: 800px) {
-      .scrolling-wrapper {
         grid-template-columns: repeat(3, minmax(200px, 1fr)) !important;
       }
     }
@@ -101,7 +92,14 @@ div.CelebrityPublicContractsSectionLayout {
         grid-template-columns: repeat(4, minmax(200px, 1fr)) !important;
       }
     }
-
   }
 
+  .public-contract-shimmer {
+    @media (max-width: 767px) {
+      .f-card {
+        margin-bottom: 0 !important;
+        width: 90vw !important;
+      }
+    }
+  }
 }
