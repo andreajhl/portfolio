@@ -30,6 +30,7 @@ class SignUpWithEmailForm extends Component {
   }
 
   handleInput(event) {
+    this.setState({ emailIsInvalid: false });
     this.setState({ [event.target.name]: event.target.value });
   }
 
@@ -40,7 +41,7 @@ class SignUpWithEmailForm extends Component {
   };
 
   validateIfEmailIsRegistered() {
-    this.setState((state) => ({ ...state, emailIsInvalid: false }));
+    this.setState({ emailIsInvalid: false });
     if (!this.props.validateIfEmailIsRegisteredLoading) {
       this.props.validateIfEmailIsRegistered({
         ...getUTMs(),
@@ -57,7 +58,7 @@ class SignUpWithEmailForm extends Component {
     if (isEmail(this.state.email)) {
       this.validateIfEmailIsRegistered();
     } else {
-      this.setState((state) => ({ ...state, emailIsInvalid: true }));
+      this.setState({ emailIsInvalid: true });
     }
   }
 
