@@ -8,6 +8,7 @@ import { SignInMethodsForm } from "../sign-in-methods-form";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
+import isEmail from "validator/lib/isEmail";
 
 class SignInWithEmailForm extends Component {
   constructor(props) {
@@ -15,7 +16,8 @@ class SignInWithEmailForm extends Component {
 
     this.state = {
       email: this.props.email || "",
-      password: ""
+      password: "",
+      emailIsInvalid: false
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -26,7 +28,10 @@ class SignInWithEmailForm extends Component {
   }
 
   handleInput(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value,
+      emailIsInvalid: false
+    });
   }
 
   handleKeyPress = (event) => {
@@ -36,15 +41,17 @@ class SignInWithEmailForm extends Component {
   };
 
   signInWithEmail(e) {
-    if (!this.props.signInWithEmailLoading) {
-      this.props.signInWithEmail({
-        email: this.state.email.trim(),
-        password: this.state.password
-      });
-      GTM.tagManagerDataLayer("CLICK_ON_SEND_SMS_SECURITY_CODE", {
-        email: this.state.email
-      });
-    }
+    if (this.props.signInWithEmailLoading) return;
+    if (!isEmail(this.state.email))
+      return this.setState({ emailIsInvalid: true });
+
+    this.props.signInWithEmail({
+      email: this.state.email.trim(),
+      password: this.state.password
+    });
+    GTM.tagManagerDataLayer("CLICK_ON_SEND_SMS_SECURITY_CODE", {
+      email: this.state.email
+    });
   }
 
   goToSignUp() {
@@ -62,6 +69,7 @@ class SignInWithEmailForm extends Component {
       <div className="SignInWithEmailForm">
         <form
           onSubmit={(e) => e.preventDefault()}
+          noValidate
           autoComplete="on"
           onScroll={() => {
             const a = document.activeElement;
@@ -73,7 +81,12 @@ class SignInWithEmailForm extends Component {
             <h6>Ingresa con tu correo electrónico</h6>
             <input
               type="email"
-              className="form-control mb-3"
+              className={`form-control mb-3 ${
+                this.props.validateIfEmailIsRegisteredError ||
+                this.state.emailIsInvalid
+                  ? "border-danger"
+                  : ""
+              }`}
               placeholder="Escribe tu correo"
               name="email"
               onChange={this.handleInput}
@@ -91,11 +104,13 @@ class SignInWithEmailForm extends Component {
               value={this.state.password}
               onKeyPress={this.handleKeyPress}
             />
-            {this.props.signInWithEmailError && (
-              <p className="instructions mt-4 text-danger">
-                {this.props.signInWithEmailError}
-              </p>
-            )}
+            {this.props.signInWithEmailError ||
+              (this.state.emailIsInvalid && (
+                <p className="instructions mt-4 text-danger">
+                  {this.props.signInWithEmailError ||
+                    "Introduce un correo electrónico valido"}
+                </p>
+              ))}
           </div>
           <button
             className="send-button"
