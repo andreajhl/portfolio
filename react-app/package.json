@@ -46,7 +46,8 @@
     "redux-batched-actions": "^0.4.1",
     "redux-thunk": "^2.3.0",
     "serve": "^11.2.0",
-    "stripe": "^8.89.0"
+    "stripe": "^8.89.0",
+    "validator": "^13.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

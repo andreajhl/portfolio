@@ -7,6 +7,7 @@ import { getUTMs } from "../../../state/utils/UTMs";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
+import isEmail from "validator/lib/isEmail";
 
 class SignUpWithEmailForm extends Component {
   constructor(props) {
@@ -15,12 +16,14 @@ class SignUpWithEmailForm extends Component {
     this.state = {
       email: this.props.email || "",
       securityCode: "",
-      showForm: 1
+      showForm: 1,
+      emailIsInvalid: false
     };
 
     this.handleInput = this.handleInput.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.goToSignIn = this.goToSignIn.bind(this);
+    this.signUpWithEmail = this.signUpWithEmail.bind(this);
     this.validateIfEmailIsRegistered = this.validateIfEmailIsRegistered.bind(
       this
     );
@@ -37,6 +40,7 @@ class SignUpWithEmailForm extends Component {
   };
 
   validateIfEmailIsRegistered() {
+    this.setState((state) => ({ ...state, emailIsInvalid: false }));
     if (!this.props.validateIfEmailIsRegisteredLoading) {
       this.props.validateIfEmailIsRegistered({
         ...getUTMs(),
@@ -46,6 +50,14 @@ class SignUpWithEmailForm extends Component {
         ...getUTMs(),
         email: this.state.email
       });
+    }
+  }
+
+  signUpWithEmail() {
+    if (isEmail(this.state.email)) {
+      this.validateIfEmailIsRegistered();
+    } else {
+      this.setState((state) => ({ ...state, emailIsInvalid: true }));
     }
   }
 
@@ -63,7 +75,12 @@ class SignUpWithEmailForm extends Component {
           <div className="form-horizontal">
             <input
               type="email"
-              className="form-control"
+              className={`form-control ${
+                this.props.validateIfEmailIsRegisteredError ||
+                this.state.emailIsInvalid
+                  ? "border-danger"
+                  : ""
+              }`}
               placeholder="Escribe tu correo"
               name="email"
               onChange={this.handleInput}
@@ -71,15 +88,17 @@ class SignUpWithEmailForm extends Component {
             />
           </div>
         </form>
-        {this.props.validateIfEmailIsRegisteredError && (
+        {this.props.validateIfEmailIsRegisteredError ||
+        this.state.emailIsInvalid ? (
           <p className="instructions mt-4 text-danger">
-            {this.props.validateIfEmailIsRegisteredError}
+            {this.props.validateIfEmailIsRegisteredError ||
+              "Introduce un correo electrónico valido"}
           </p>
-        )}
+        ) : null}
         <button
           className="send-button"
           disabled={!this.state.email}
-          onClick={this.validateIfEmailIsRegistered}
+          onClick={this.signUpWithEmail}
         >
           {this.props.validatingIfEmailIsRegistered ? (
             <span
