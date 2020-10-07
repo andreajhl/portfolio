@@ -3,7 +3,7 @@ import {
   CelebrityDetailsCardLayout,
   CelebrityPublicContractsSectionLayout,
   CelebrityReviewsSectionLayout,
-  LoadingOverlay,
+  /* LoadingOverlay, */
   PageContainer
 } from "../../layouts";
 import * as PropTypes from "prop-types";
@@ -143,9 +143,9 @@ class CelebrityProfilePage extends Component {
                 {/*/>*/}
                 {/* End CelebrityCardsSectionLayout */}
               </>
-            ) : (
+            ) : null /* (
               <LoadingOverlay />
-            )}
+            ) */}
           </div>
         </PageContainer>
       </div>
