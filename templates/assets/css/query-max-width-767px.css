@@ -1,0 +1,50 @@
+  .how-to__steps {
+    width: 18rem;
+    flex-wrap: wrap;
+    top: -1.5rem;
+  }
+
+  .hero__header__heading {
+    font-size: 1.8576rem;
+    width: 15.75rem;
+  }
+
+  .how-to__copy {
+    text-align: center;
+    width: 80%;
+  }
+
+  .celebrities__header__cropped {
+    width: 19rem;
+  }
+
+  .btn {
+    padding: 1em;
+  }
+
+  .hidden-mobile {
+    display: none;
+  }
+
+  .main_footer {
+    height: 18.75rem;
+  }
+
+  .main_footer__inner-content {
+    max-width: 300px;
+  }
+
+  .main_footer__info__logo {
+    top: -1rem;
+    position: relative;
+    height: 2.125rem;
+    width: 10rem;
+    margin: 0 auto 2rem;
+  }
+
+  .main_footer__info__what-is,
+  .text-medium,
+  .main_footer__info__copyright {
+    line-height: 1.25rem;
+    font-size: 0.8669rem;
+  }
