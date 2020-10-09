@@ -29,12 +29,9 @@ class ValidateCellphoneSecurityCodeForm extends Component {
     history.goBack();
   }
 
-  handleInput({ nativeEvent, target }) {
-    const keyPressedIsNumber = /[0-9]/.test(nativeEvent.data);
-    const keyPressedIsBackspace = event.nativeEvent.data === null;
-    if (keyPressedIsNumber || keyPressedIsBackspace) {
-      this.setState({ [target.name]: target.value });
-    }
+  handleInput({ target }) {
+    const value = target.value.replace(/[^0-9]/g, "");
+    this.setState({ [target.name]: value });
   }
 
   handleKeyPress = event => {
