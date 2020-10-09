@@ -27,7 +27,8 @@ class ValidateWhatsAppSecurityCodeForm extends Component {
 
   handleInput({ nativeEvent, target }) {
     const keyPressedIsNumber = /[0-9]/.test(nativeEvent.data);
-    if (keyPressedIsNumber) {
+    const keyPressedIsBackspace = event.nativeEvent.data === null;
+    if (keyPressedIsNumber || keyPressedIsBackspace) {
       this.setState({ [target.name]: target.value });
     }
   }

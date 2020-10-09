@@ -31,12 +31,13 @@ class ValidateCellphoneSecurityCodeForm extends Component {
 
   handleInput({ nativeEvent, target }) {
     const keyPressedIsNumber = /[0-9]/.test(nativeEvent.data);
-    if (keyPressedIsNumber) {
+    const keyPressedIsBackspace = event.nativeEvent.data === null;
+    if (keyPressedIsNumber || keyPressedIsBackspace) {
       this.setState({ [target.name]: target.value });
     }
   }
 
-  handleKeyPress = (event) => {
+  handleKeyPress = event => {
     if (event.key === "Enter") {
       this.validateSMSSecurityCode();
     }
@@ -70,7 +71,7 @@ class ValidateCellphoneSecurityCodeForm extends Component {
             Cambiar
           </button>
         </div>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={e => e.preventDefault()}>
           <input
             type="text"
             className="form-control"
@@ -113,7 +114,7 @@ ValidateCellphoneSecurityCodeForm.propTypes = {};
 ValidateCellphoneSecurityCodeForm.defaultProps = {};
 
 // mapStateToProps
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   // sendSMSSecurityCode
   sendSMSSecurityCodeData: state.authentication.sendSMSSecurityCodeReducer.data,
   // validateSMSSecurityCode
