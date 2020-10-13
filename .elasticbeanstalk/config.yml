@@ -4,7 +4,7 @@ branch-defaults:
   duvan:
     environment: FamososFrontend-Production
   master:
-    environment: FamososFrontend-Production
+    environment: FamososFrontend-Testing
   new-form:
     environment: FamososFrontend-Production
 deploy:

@@ -3,11 +3,14 @@ const path = require("path");
 const axios = require("axios");
 const fs = require("fs");
 const app = express();
-require("dotenv").config({ path: ".env" });
-
 const compression = require("compression");
 
+// DOTENV SETTINGS
+require("dotenv").config({ path: ".env" });
+
+// COMPRESSION SETTINGS
 app.use(compression());
+
 
 const { getLandingPageSync } = require("./templates/landing");
 // ################################################################
