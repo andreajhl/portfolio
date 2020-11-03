@@ -1,4 +1,4 @@
-.topbarSectionLayout {
+.NavbarSectionLayout {
   width: 100%;
   position: fixed;
   background-color: white;
@@ -34,5 +34,43 @@
 
   &__search-sm {
     margin: 0 0.81rem;
+  }
+}
+
+.hero {
+  height: 150px;
+  background: url("/assets/img/hero-background.jpg") center black;
+
+  &__container {
+    padding-top: 0.75rem;
+    width: 90%;
+    height: 100%;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  &__steps {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+
+    &-item {
+    }
+
+    &-image {
+      margin-bottom: 0.5rem;
+    }
+
+    &-text {
+      color: white;
+      font-size: 10px;
+      line-height: 14px;
+    }
   }
 }
