@@ -11,7 +11,7 @@ class NavbarSearchLayout extends Component {
     super(props);
 
     this.state = {
-      keyword: this.props.queryParams.search || ""
+      keyword: this.props.queryParams.search || "",
     };
 
     this.goToHome = this.goToHome.bind(this);
@@ -20,7 +20,7 @@ class NavbarSearchLayout extends Component {
   componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
     if (nextProps.removeKeywords) {
       this.setState({
-        keyword: ""
+        keyword: "",
       });
     }
   }
@@ -36,7 +36,7 @@ class NavbarSearchLayout extends Component {
       this.onSearchChange(e.target.value);
     }
     this.setState({
-      keyword: e.target.value
+      keyword: e.target.value,
     });
   }
 
@@ -72,25 +72,9 @@ class NavbarSearchLayout extends Component {
               onClick={this.handleBlur.bind(this)}
             />
             <input
-              autoFocus={Boolean(
-                new URLSearchParams(history.location.search).get(
-                  "inputSearchFocus"
-                )
-              )}
-              // id={"input-search"}
-              className="form-control f-items d-none d-md-block"
-              type="text"
-              name="search"
-              value={this.state.keyword}
-              onKeyPress={this.handleKeyPress.bind(this)}
-              onClick={this.goToHome}
-              onChange={this.inputHandler.bind(this)}
-              placeholder={this.props.searchLabel}
-            />
-            <input
               autoFocus={this.props.autoFocus}
               id={"input-search"}
-              className="form-control f-items d-block d-md-none"
+              className="form-control"
               type="text"
               name="search"
               value={this.state.keyword}
@@ -109,19 +93,19 @@ class NavbarSearchLayout extends Component {
 NavbarSearchLayout.defaultProps = {
   searchLabel: "Ej: Pibe Valderrama, Comediantes, Músicos",
   onSearchChange: function () {},
-  autoFocus: false
+  autoFocus: false,
 };
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
   isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
   isLoading: state.celebrities.fetchCelebritiesReducer.loading,
-  queryParams: state.celebrities.queryParamsReducer
+  queryParams: state.celebrities.queryParamsReducer,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  updateQueryParams: celebrityOperations.updateQueryParams
+  updateQueryParams: celebrityOperations.updateQueryParams,
 };
 
 // Export Class

@@ -1,23 +1,28 @@
 @import "../../../theme";
 
 .NavbarSearchLayout {
-
   input {
+    background-color: #f4f4f4;
     width: 370px !important;
-    height: 45px;
-    border-radius: 8px !important;
+    height: unset !important;
+    border-radius: 40px !important;
     margin-top: -4px !important;
+    padding: 0.5rem 1rem;
+
+    &::placeholder {
+      color: #9597a1;
+    }
 
     &.active {
       border: solid 3px $active;
     }
   }
-  .fa.fa-search{
+  .fa.fa-search {
+    color: #9597a1;
     position: absolute;
     top: 1px;
     z-index: 50000;
     right: 10px;
-    background: white;
     padding: 9px;
   }
 }

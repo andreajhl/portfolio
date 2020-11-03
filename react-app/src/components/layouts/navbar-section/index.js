@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
+import { NavbarSearchLayout } from "../navbar-search";
 import "./styles.scss";
 
 const NavbarSectionLayout = (props) => {
@@ -81,6 +82,17 @@ const NavbarSectionLayout = (props) => {
         <div className="topbar__right-side col-4 p-0">
           <div className="topbar__currency ml-auto mr-2">
             <CurrencyDropdownLayout />
+          </div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12 pt-3">
+          <div className="d-block d-md-none topbar__search-sm">
+            <NavbarSearchLayout
+              searchLabel="Buscar famosos"
+              /* onSearchChange={this.props.onSearchChange}
+              autoFocus={this.state.showSearch} */
+            />
           </div>
         </div>
       </div>
