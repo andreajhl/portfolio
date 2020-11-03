@@ -1,0 +1,226 @@
+@import "../../../theme";
+
+.NavbarSectionLayout {
+
+
+  .f-navbar-container {
+
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 10000;
+
+    .f-navbar {
+      position: absolute;
+      padding: 11px 3vw 11px 3vw;
+      width: 100%;
+      height: 60px;
+      background: white;
+      box-shadow: 0 0rem 0.4rem #a1a1a1 !important;
+
+      .navbar-1240 {
+        max-width: $width-1240;
+        margin: 0 auto;
+      }
+
+      .f-items {
+        height: 100%;
+
+        .float-left {
+
+          .f-navbar-brand {
+            width: 150px;
+          }
+        }
+
+        .float-right {
+
+          &.float-right-lg {
+            display: flex;
+            margin-top: 4px;
+            position: relative;
+            top: -2px;
+          }
+
+          &.float-right-sm {
+            margin-top: -5px;
+          }
+
+          .f-search-button {
+            font-size: 22px;
+          }
+
+          .f-register-button {
+            border-radius: 25px;
+            padding-left: 13px;
+            padding-right: 13px;
+            position: relative;
+            top: -2.5px;
+            right: 12px;
+            max-height: 35px;
+            border: solid 2px $primary;
+            background: transparent !important;
+            color: $primary !important;
+          }
+
+          .f-register-button:hover {
+            color: white;
+            border: solid 2px #EB2A7B !important;
+          }
+
+          .ffb-button {
+            border-radius: 25px;
+            padding-left: 13px;
+            padding-right: 13px;
+            position: relative;
+            top: -2.5px;
+            right: 12px;
+            max-height: 35px;
+            border: solid 2px $primary;
+            background: $primary !important;
+            color: white !important;
+          }
+
+          .ffb-button:hover {
+            color: white;
+            border: solid 2px #EB2A7B !important;
+          }
+
+          .btn-outline-primary {
+            border: solid 2px;
+          }
+        }
+      }
+
+      .fa-2x{
+        font-size: 23px;
+        margin-top: 4px;
+      }
+
+    }
+
+    .profile-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    .div-currency {
+      width: 53px;
+      right: 7px;
+      top: -4px;
+      position: relative;
+    }
+
+  }
+
+
+  .trending {
+    img {
+      background-image: url("/assets/img/trending.svg");
+      background-repeat: no-repeat;
+    }
+
+    &.active {
+      img {
+        background-image: url("/assets/img/trending-active.svg");
+        background-repeat: no-repeat;
+      }
+    }
+  }
+
+
+  .f-navbar-container-helper {
+    height: 60px;
+  }
+
+  @media (max-width: 983px) {
+    .f-navbar-container {
+      height: 60px !important;
+
+      .f-navbar {
+        padding: 12px 10px 12px 10px !important;
+      }
+    }
+    .f-navbar-container-helper {
+      height: 60px;
+    }
+    .d-md-block {
+      display: none !important;
+    }
+    .d-block {
+      display: block !important;
+    }
+    .float-right-sm{
+      position: relative;
+      top: 6px;
+    }
+    .div-buttons-sm{
+      padding-right: 4px;
+      margin-top: 2px;
+      display: flex;
+    }
+    .div-currency {
+      width: 53px;
+      right: 7px;
+      top: 2px !important;
+      position: relative;
+    }
+  }
+  .search-sm {
+    position: fixed;
+    z-index: 10000;
+    left: -8px;
+    right: -8px;
+    background: white;
+    padding: 20px 10px 0;
+    height: 82px;
+    top: 40px;
+  }
+
+  .btn:hover {
+    color: $primary;
+  }
+  .btn.active {
+    color: $primary;
+
+    * {
+      color: $primary;
+
+    }
+  }
+
+  .dropdown {
+    background-color: white;
+    padding: 0;
+
+    .dropdown-item{
+      padding: 10px;
+      border-bottom: solid 1px #ccc;
+    }
+
+    .dropdown-toggle::after{
+      color: $dark !important;
+      display: none;
+    }
+    .btn-outline-dark:hover{
+      background-color: white !important;
+      color: $dark !important;
+    }
+
+    &:active, &:hover {
+      background-color: white !important;
+      i {
+        color: $dark !important;
+      }
+    }
+
+    position: relative;
+    top: 3px;
+    height: 42px;
+    font-size: 20px;
+  }
+
+
+}
+
