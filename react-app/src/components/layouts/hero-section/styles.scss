@@ -1,0 +1,40 @@
+.hero {
+  position: relative;
+  top: 123px;
+  height: 150px;
+  background: url("/assets/img/hero-background.jpg") center black;
+
+  &__container {
+    padding-top: 0.75rem;
+    width: 90%;
+    height: 100%;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  &__steps {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+
+    &-item {
+    }
+
+    &-image {
+      margin-bottom: 0.5rem;
+    }
+
+    &-text {
+      max-width: 9em;
+      color: white;
+      font-size: 0.625rem;
+      line-height: 1.4;
+    }
+  }
+}

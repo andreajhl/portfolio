@@ -3,17 +3,18 @@ import { NavLink } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
 import { NavbarSearchLayout } from "../navbar-search";
+import { HeroSectionLayout } from "../hero-section";
 import "./styles.scss";
 
 const NavbarSectionLayout = (props) => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   return (
     <div className="NavbarSectionLayout">
-      <div className="topbar container m-0 p-0 row align-items-center">
-        <div className="topbar__left-side col-4 p-0">
+      <div className="top-bar container m-0 p-0 row align-items-center">
+        <div className="top-bar__left-side col-4 p-0">
           <div className="dropdown">
             <button
-              className="btn topbar__dropdown-button"
+              className="btn top-bar__dropdown-button"
               type="button"
               id="dropdownMenuButton"
               data-toggle="dropdown"
@@ -70,67 +71,28 @@ const NavbarSectionLayout = (props) => {
             </div>
           </div>
         </div>
-        <div className="topbar__center-side col-4 text-center p-0">
-          <a href="#" className="topbar__logo-link">
+        <div className="top-bar__center-side col-4 text-center p-0">
+          <a href="#" className="top-bar__logo-link">
             <img
-              className="topbar__logo"
+              className="top-bar__logo"
               src="/assets/img/logo-color-1.png"
               alt="Famosos Logo"
             />
           </a>
         </div>
-        <div className="topbar__right-side col-4 p-0">
-          <div className="topbar__currency ml-auto mr-2">
+        <div className="top-bar__right-side col-4 p-0">
+          <div className="top-bar__currency ml-auto mr-2">
             <CurrencyDropdownLayout />
           </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-12 pt-3">
-          <div className="d-block d-md-none topbar__search-sm">
+        <div className="col-12 pt-3 px-0">
+          <div className="d-block d-md-none top-bar__search-sm">
             <NavbarSearchLayout
               searchLabel="Buscar famosos"
               /* onSearchChange={this.props.onSearchChange}
               autoFocus={this.state.showSearch} */
             />
           </div>
-        </div>
-      </div>
-      <div className="hero">
-        <div className="container hero__container">
-          <h1 className="hero__title mb-3">
-            Recibe videos personalizados de tus ídolos.
-          </h1>
-          <ol className="hero__steps p-0">
-            <li className="hero__steps-item">
-              <img
-                className="hero__steps-image"
-                src="/assets/img/paper-plain.svg"
-                alt="Enviando"
-              />
-              <p className="hero__steps-text">
-                Elige a tu Famoso y solicita el mensaje.
-              </p>
-            </li>
-            <li className="hero__steps-item">
-              <img
-                className="hero__steps-image"
-                src="/assets/img/credit-card-small-white.svg"
-                alt="Pagando"
-              />
-              <p className="hero__steps-text">Completa el proceso de pago.</p>
-            </li>
-            <li className="hero__steps-item">
-              <img
-                className="hero__steps-image"
-                src="/assets/img/play.svg"
-                alt="Recibiendo"
-              />
-              <p className="hero__steps-text">
-                ¡Recibe tu video personalizado!
-              </p>
-            </li>
-          </ol>
         </div>
       </div>
     </div>

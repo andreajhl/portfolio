@@ -6,6 +6,8 @@ import "./styles.scss";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import * as GTM from "../../../state/utils/gtm";
 import { NewsLetterModal } from "../../containers/newsletter-modal";
+import { HeroSectionLayout } from "../../layouts/hero-section";
+import { FiltersSectionLayout } from "../../layouts/filters-section";
 import MetaTags from "react-meta-tags";
 
 class CelebritiesPage extends Component {
@@ -17,7 +19,7 @@ class CelebritiesPage extends Component {
       showFFBModal: localStorage.getItem("ffbmodal") === null,
       metaTagTitle: "Famosos.com - Todos los Famosos",
       metaTagDescription:
-        "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
+        "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
     };
     this.scrollDiv = createRef();
     this.openModal = this.openModal.bind(this);
@@ -119,14 +121,14 @@ class CelebritiesPage extends Component {
 
   openModal() {
     this.setState({
-      showFFBModal: true
+      showFFBModal: true,
     });
   }
 
   closeModal() {
     this.setState(
       {
-        showFFBModal: false
+        showFFBModal: false,
       },
       () => localStorage.setItem("ffbmodal", "")
     );
@@ -195,20 +197,23 @@ class CelebritiesPage extends Component {
             {/*/! End MainMenuLayout *!/*/}
 
             {/* CelebrityCardsSectionLayout */}
+            <HeroSectionLayout />
+            <FiltersSectionLayout />
             <div
               className="scroll-section"
               style={{
                 height: "calc(100vh - 50px)",
-                overflow: "scroll"
+                overflow: "scroll",
               }}
               ref={this.scrollDiv}
             >
+              LOS CARDS APARECERAN AQUI
               {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
               {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
               {/*<pre>state.params.page {this.state.params.page}</pre>*/}
               {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
               {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
-              <CelebrityCardsSectionLayout
+              {/* <CelebrityCardsSectionLayout
                 title={this.returnTitle()}
                 showShimmerCards={
                   this.props.isLoading &&
@@ -219,7 +224,7 @@ class CelebritiesPage extends Component {
                 }
                 celebrities={this.props.celebrities}
                 minHeight={true}
-              />
+              /> */}
             </div>
             {/* End CelebrityCardsSectionLayout */}
           </PageContainer>
@@ -240,7 +245,7 @@ CelebritiesPage.propTypes = {};
 // Set defaultProps
 CelebritiesPage.defaultProps = {
   celebrities: [],
-  paginationData: {}
+  paginationData: {},
 };
 
 // mapStateToProps
@@ -252,14 +257,14 @@ const mapStateToProps = ({ celebrities, restCountries, filters }) => ({
   queryParams: celebrities.queryParamsReducer,
   countries: restCountries.fetchCountriesReducer.data,
   selectedCategory: filters.filtersReducer.selectedCategory,
-  selectedCountry: filters.filtersReducer.selectedCountry
+  selectedCountry: filters.filtersReducer.selectedCountry,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list,
   updateQueryParams: celebrityOperations.updateQueryParams,
-  listCountries: restCountriesOperations.list
+  listCountries: restCountriesOperations.list,
 };
 
 // Export Class
