@@ -207,13 +207,12 @@ class CelebritiesPage extends Component {
               }}
               ref={this.scrollDiv}
             >
-              LOS CARDS APARECERAN AQUI
               {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
               {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
               {/*<pre>state.params.page {this.state.params.page}</pre>*/}
               {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
               {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
-              {/* <CelebrityCardsSectionLayout
+              <CelebrityCardsSectionLayout
                 title={this.returnTitle()}
                 showShimmerCards={
                   this.props.isLoading &&
@@ -224,7 +223,7 @@ class CelebritiesPage extends Component {
                 }
                 celebrities={this.props.celebrities}
                 minHeight={true}
-              /> */}
+              />
             </div>
             {/* End CelebrityCardsSectionLayout */}
           </PageContainer>

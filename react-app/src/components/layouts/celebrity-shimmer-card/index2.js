@@ -5,21 +5,13 @@ import "./styles.scss";
 const CelebrityShimmerCardLayout = ({ className }) => {
   return (
     <div className={`CelebrityShimmerCardLayout ${className}`}>
-      <div className="shimmer-card">
+      <div className="shimmer-card f-card f-rounded hover f-shadow p-2 pt-0 cursor-pointer text-center mx-auto">
         <div className="mx-auto">
-          <div className="shimmerBG mr-0">
-            <div className="line price-line"></div>
-          </div>
-          <div className="card-details">
-            <div className="celebrity-info mb-1">
-              <div className="line flag-line" />
-              <div className="line w-25" />
-              <img
-                src="/assets/img/outlined-heart.svg"
-                className="heart-icon"
-              />
-            </div>
-            <div className="line w-100 celebrity-name" />
+          <div className="shimmerBG mr-0" />
+          <div className="mt-3">
+            <div className="title-line mt-2" />
+            <div className="title-line mt-2" />
+            <div className="title-line mt-2" />
           </div>
         </div>
       </div>

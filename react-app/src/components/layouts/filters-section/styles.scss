@@ -2,7 +2,9 @@
 
 .FiltersSectionLayout {
   position: sticky;
-  top: 123px;
+  z-index: 10000;
+  top: 120px;
+  padding-bottom: 0.25rem;
   margin-top: 123px;
   background-color: white;
 

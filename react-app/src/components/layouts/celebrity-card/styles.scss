@@ -1,84 +1,69 @@
 @import "../../../theme";
 
 .CelebrityCardLayout {
-  .f-card {
-    margin-bottom: 20px;
-    width: 180px;
+  .celebrity-card {
+    width: 150px;
+    background: #ffffff;
+    box-shadow: 0px 8px 20px rgba(228, 228, 228, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
 
-    .profile-section{
+    .thumbnail {
       position: relative;
-      width: 100%;
-      padding-top: 100%;
-      background-color: $dark;
-      border-radius: 0.5rem !important;
-      max-height: 100%;
-    }
-
-    .f-image {
-      position: relative;
-      width: 160px;
-      height: 160px;
-
-      img {
-        height: 100%;
+      overflow: hidden;
+      height: 150px;
+      .celebrity__profile-photo {
+        position: absolute;
         width: 100%;
         object-fit: cover;
-        -webkit-user-drag: none;
-        -khtml-user-drag: none;
-        -moz-user-drag: none;
-        -o-user-drag: none;
-        user-drag: none;
       }
 
-      .f-price {
-        position: absolute;
-        top: 86%;
-        background-color: #fff;
-        padding: 1px;
-        left: 0;
-        right: 0;
-        margin: auto;
-        max-width: 100px;
-        text-align: center;
-        opacity: 0.8;
-        font-size: 10px;
+      .celebrity__price {
+        font-weight: bold;
+        font-size: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 3px;
+        top: calc(100% - 0.4775rem);
+        transform: translateY(-100%);
+        margin: 0 auto;
+        width: 5.7925rem;
+        height: 1.1944rem;
       }
     }
 
-    .card-body {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
+    .celebrity-details {
+      padding: 0.5rem 0.75rem;
+      height: 53px;
 
-  .hashtags{
-    *{
-      color: $soft-grey !important;
-    }
-    margin-right: 2px;
-  }
+      .celebrity-info {
+        display: flex;
+        margin-bottom: 0.25rem;
 
+        .celebrity__country {
+          margin-right: 0.4375rem;
+        }
+        .celebrity__category {
+          font-weight: 300;
+          font-size: 0.625rem;
+          line-height: 18px;
+          top: 0.1em;
+          position: relative;
+        }
 
-  @media (max-width: 768px) {
-    .f-card {
-      margin-bottom: 20px;
-      max-width: 160px;
-
-      .f-image {
-        width: 100%;
-        height: 100%;
-      }
-
-      &.min-style {
-        width: 44vw;
-
-        .f-image {
-          width: 38vw;
-          height: 38vw;
+        .like-icon {
+          margin-left: auto;
         }
       }
 
+      .celebrity__full-name {
+        font-size: 0.8125rem;
+        line-height: 1.384;
+        font-weight: bold;
+      }
     }
   }
 }
