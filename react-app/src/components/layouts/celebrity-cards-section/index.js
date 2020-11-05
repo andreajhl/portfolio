@@ -3,25 +3,54 @@ import { CelebrityCardLayout } from "../celebrity-card";
 import "./styles.scss";
 import { getTotalColumns } from "../../../state/utils/gridSystem";
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
+import { VideoCardLayout } from "../video-card";
+import { VideoShimmerCardLayout } from "../video-shimmer-card";
 import { connect } from "react-redux";
 
-const CelebritiesSectionLayout = ({ title }) => {
+const CelebritiesSectionLayout = ({ title, type }) => {
   return (
     <section className="celebrities-section-layout container pr-0">
       <h2 className="celebrities-section-layout__title">{title}</h2>
       <ul className="celebrities-section-layout__cards-list">
         {Array(7).fill(
-          <>
-            <li className="celebrities-section-layout__cards-item">
-              <CelebrityShimmerCardLayout />
-            </li>
-            <li className="celebrities-section-layout__cards-item">
-              <CelebrityCardLayout celebrity={{ fullName: "German" }} />
-            </li>
-          </>,
+          type !== "video" ? (
+            <>
+              <li className="celebrities-section-layout__card-item">
+                <CelebrityShimmerCardLayout />
+              </li>
+              <li className="celebrities-section-layout__card-item">
+                <CelebrityCardLayout celebrity={{ fullName: "German" }} />
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="celebrities-section-layout__card-item">
+                <VideoCardLayout />
+              </li>
+              <li className="celebrities-section-layout__card-item">
+                <VideoShimmerCardLayout />
+              </li>
+            </>
+          ),
           0,
           7
         )}
+      </ul>
+    </section>
+  );
+};
+
+const VideosCardsSectionLayout = ({ title }) => {
+  return (
+    <section className="videos-section-layout container pr-0">
+      <h2 className="videos-section-layout__title">{title}</h2>
+      <ul className="videos-section-layout__cards-list">
+        <li className="videos-section-layout__card-item">
+          <VideoCardLayout />
+        </li>
+        <li className="videos-section-layout__card-item">
+          <VideoShimmerCardLayout />
+        </li>
       </ul>
     </section>
   );
@@ -31,6 +60,8 @@ const CelebrityCardsSectionLayout = (props) => {
   return (
     <div className="CelebrityCardsSectionLayout">
       <CelebritiesSectionLayout title="Actores" />
+      <CelebritiesSectionLayout title="Famosos destacados" />
+      <CelebritiesSectionLayout title="Videos destacados" type="video" />
     </div>
   );
 };

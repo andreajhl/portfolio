@@ -1,0 +1,61 @@
+.VideoShimmerCardLayout {
+  .video-shimmer-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.75rem 0.625rem;
+    width: 258px;
+    height: 344px;
+    background: #ebebeb;
+    border-radius: 11px;
+
+    &__category {
+      display: inline-block;
+      height: 1rem;
+      font-size: 0.5625rem;
+      background: #dcdbdb;
+      width: 6rem;
+      border-radius: 30px;
+      color: white;
+      padding: 0.375em 0.75em;
+      text-align: left;
+
+      &-icon {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        display: inline-block;
+        border-radius: 50%;
+        background: #c4c4c4;
+      }
+    }
+
+    &__celebrity-photo {
+      width: 53.65px;
+      height: 53.65px;
+      flex-basis: auto;
+      margin-right: 0.75rem;
+      border-radius: 50%;
+      background: #c9c8c8;
+      border: 1px solid #adadad;
+    }
+
+    &__celebrity-full-name {
+      margin: 0;
+      flex-basis: 137px;
+      .line {
+        height: 1.25rem;
+        background: #dcdbdb;
+        border-radius: 20px;
+
+        &-one {
+          width: 80%;
+        }
+
+        &-two {
+          width: 90%;
+        }
+      }
+    }
+  }
+}
