@@ -22,10 +22,6 @@
     &__filters-item {
       margin-right: 0.625rem;
     }
-
-    .modal-content {
-      background-color: white !important;
-    }
   }
 
   .CelebritiesFilter {
@@ -88,9 +84,9 @@
       &:active,
       &:focus {
         cursor: pointer;
-        background-color: $dark;
+        background-color: $green;
         color: white;
-        border-color: $dark;
+        border-color: $red;
       }
 
       &:hover {
@@ -153,16 +149,23 @@
 
 .CelebritiesFilter__modal {
   .modal-content {
+    top: 3.5rem;
     width: 85%;
     border-radius: 10px !important;
     background-color: white !important;
 
+    input {
+      border: inherit !important;
+    }
+
     .modal-header {
+      padding: 1rem 2rem !important;
       text-align: center;
       background-color: transparent !important;
       width: unset;
-      /* border-radius: 0px 0px 20px 0; */
+      border-bottom-color: #d5d5d5 !important;
       padding: 10px;
+      border-radius: 0;
       text-transform: unset;
 
       .modal-title {
@@ -173,9 +176,47 @@
         font-weight: bold;
       }
     }
+
+    .modal-body,
+    .modal-footer {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    .modal-body {
+      padding-bottom: 0;
+      .options-list {
+        margin-top: 1.675rem;
+        overflow: scroll;
+        max-height: 35rem;
+        list-style-type: none;
+
+        .custom-control {
+          padding-bottom: 0;
+          padding-top: 0;
+          height: calc(1em + 1rem + 2px);
+        }
+
+        .custom-control-label::before,
+        .custom-control-label::after {
+          top: 0rem;
+          width: 1.25rem;
+          height: 1.25rem;
+          margin-right: 2rem;
+        }
+
+        &__label {
+          margin-left: 0.5rem;
+          font-weight: bold;
+          font-size: 1rem;
+        }
+      }
+    }
+
     .modal-footer {
       justify-content: center;
       border: none !important;
+      padding-bottom: 2.6875rem;
+      padding-top: 1.675rem;
 
       .btn {
         width: 100%;
