@@ -2,6 +2,8 @@ import React, { Component, createRef } from "react";
 import { CelebrityCardsSectionLayout, PageContainer } from "../../layouts";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
+import { cursorOperations } from "../../../state/ducks/cursorPosition";
+
 import "./styles.scss";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import * as GTM from "../../../state/utils/gtm";
@@ -25,12 +27,18 @@ class CelebritiesPage extends Component {
   }
 
   componentDidMount() {
-    const queryParams = this.props.queryParams;
-    this.props.updateQueryParams(queryParams);
+    const divScroll = this.scrollDiv.current;
+    console.log(divScroll)
+    if (this.props.celebrities.length < 0) {
+      const queryParams = this.props.queryParams;
+      this.props.updateQueryParams(queryParams);
+    } else {
+      setTimeout(() => {
+        divScroll.scrollTop = this.props.cursor - divScroll.offsetTop;
+      }, 1000);
+    }
 
     this.listCountries();
-
-    const divScroll = this.scrollDiv.current;
 
     // Detect when scrolled to bottom.
     divScroll.addEventListener("scroll", (e) => {
@@ -47,6 +55,7 @@ class CelebritiesPage extends Component {
             this.props.paginationData.currentPage + 1 <=
             this.props.paginationData.totalPages
           ) {
+            // this.props.updateCursorPosition(divScroll.scrollTop)
             this.onPaginationChange(this.props.paginationData.currentPage + 1);
           }
         }
@@ -175,7 +184,7 @@ class CelebritiesPage extends Component {
 
           <PageContainer
             showFooter={false}
-            applyFetchCelebrities={true}
+            applyFetchCelebrities={this.props.celebrities.length > 1 ? false: true}
             showFiltersSection={true}
           >
             {/*/!* ShowHeader *!/*/}
@@ -244,7 +253,7 @@ CelebritiesPage.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = ({ celebrities, restCountries, filters }) => ({
+const mapStateToProps = ({ celebrities, restCountries, filters, cursor }) => ({
   isLoading: celebrities.fetchCelebritiesReducer.loading,
   isCompleted: celebrities.fetchCelebritiesReducer.completed,
   celebrities: celebrities.fetchCelebritiesReducer.data.results,
@@ -252,14 +261,15 @@ const mapStateToProps = ({ celebrities, restCountries, filters }) => ({
   queryParams: celebrities.queryParamsReducer,
   countries: restCountries.fetchCountriesReducer.data,
   selectedCategory: filters.filtersReducer.selectedCategory,
-  selectedCountry: filters.filtersReducer.selectedCountry
+  selectedCountry: filters.filtersReducer.selectedCountry,
+  cursor : cursor.cursorReducer.Position
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list,
   updateQueryParams: celebrityOperations.updateQueryParams,
-  listCountries: restCountriesOperations.list
+  listCountries: restCountriesOperations.list,
 };
 
 // Export Class

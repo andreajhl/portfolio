@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import "./styles.scss";
 import {history} from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import {connect} from "react-redux";
 import {ContractPriceLayout} from "../contract-price";
-
+import { cursorOperations } from "../../../state/ducks/cursorPosition";
 
 class CelebrityCardLayout extends Component {
 
@@ -15,7 +15,7 @@ class CelebrityCardLayout extends Component {
         this.state = {
             imageLoaded: false,
         };
-
+        this.scrollDiv = createRef();
         this.handleImageLoaded = this.handleImageLoaded.bind(this);
         this.goToCelebrityProfile = this.goToCelebrityProfile.bind(this);
     }
@@ -25,6 +25,8 @@ class CelebrityCardLayout extends Component {
     }
 
     goToCelebrityProfile() {
+        const divScroll = this.scrollDiv.current;
+        this.props.updateCursorPosition(divScroll.offsetTop)
         history._pushRoute(PATHS.CELEBRITY_PROFILE.replace(":celebrity_username", this.props.celebrity.username));
         GTM.tagManagerDataLayer(
             "CLICK_ON_CELEBRITY_CARD",
@@ -53,7 +55,7 @@ class CelebrityCardLayout extends Component {
 
     render() {
         return (
-            <div className="CelebrityCardLayout">
+            <div className="CelebrityCardLayout" ref={this.scrollDiv}>
                 <span style={{position: "fixed", top: "-1000px"}}>
                     Famosos Videos personalizados
                 </span>
@@ -146,6 +148,7 @@ const mapStateToProps = (state) => ({
 
 // mapStateToProps
 const mapDispatchToProps = {
+  updateCursorPosition: cursorOperations.saveCursorPosition
 };
 
 // Export Class
