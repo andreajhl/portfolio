@@ -5,7 +5,7 @@ import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import {connect} from "react-redux";
 import {ContractPriceLayout} from "../contract-price";
-import { cursorOperations } from "../../../state/ducks/cursorPosition";
+import { cursorOperations } from "../../../state/ducks/cursor-position";
 
 class CelebrityCardLayout extends Component {
 

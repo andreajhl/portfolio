@@ -2,7 +2,7 @@ import React, { Component, createRef } from "react";
 import { CelebrityCardsSectionLayout, PageContainer } from "../../layouts";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
-import { cursorOperations } from "../../../state/ducks/cursorPosition";
+import { cursorOperations } from "../../../state/ducks/cursor-position";
 
 import "./styles.scss";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
