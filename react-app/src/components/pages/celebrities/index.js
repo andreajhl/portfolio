@@ -28,13 +28,13 @@ class CelebritiesPage extends Component {
 
   componentDidMount() {
     const divScroll = this.scrollDiv.current;
-    console.log(divScroll)
-    if (this.props.celebrities.length < 0) {
+    if (this.props.celebrities.length === 0) {
       const queryParams = this.props.queryParams;
+      console.log('Do the call')
       this.props.updateQueryParams(queryParams);
     } else {
       setTimeout(() => {
-        divScroll.scrollTop = this.props.cursor - divScroll.offsetTop;
+        divScroll.scrollTop = this.props.cursor - divScroll.offsetTop * 3;
       }, 1000);
     }
 
@@ -184,7 +184,8 @@ class CelebritiesPage extends Component {
 
           <PageContainer
             showFooter={false}
-            applyFetchCelebrities={this.props.celebrities.length > 1 ? false: true}
+            existPreviewResults = {this.props.celebrities.length > 1 ? false : true}
+            applyFetchCelebrities={true}
             showFiltersSection={true}
           >
             {/*/!* ShowHeader *!/*/}

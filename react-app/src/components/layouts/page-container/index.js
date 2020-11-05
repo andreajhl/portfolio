@@ -19,7 +19,7 @@ class PageContainer extends Component {
     }
 
     componentDidMount() {
-        if(this.props.applyFetchCelebrities === true) {
+        if(this.props.applyFetchCelebrities === true && this.props.existPreviewResults) {
             const queryParams = this.props.queryParams;
             if (!window.location.search) {
                 queryParams["currentPage"] = 1;
