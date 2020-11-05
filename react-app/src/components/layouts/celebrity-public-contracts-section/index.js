@@ -87,9 +87,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
         >
           <CelebrityPublicContractCardLayout publicContract={publicContract} />
 
-          {/*TODO: Agregando nuevo boton para comprar video */}
-
-          <div className='col-12 p-0 m-0 text-center pr-0'>
+          <div className='col-12 p-0 m-0 d-md-none text-center pr-0'>
             {this.returnContractPrice() > 0 ? (
               <div className='mt-3 mb-3' onClick={this.goToCreateContract}>
                 <button className='btn  btn-sm f-contract-button'>
