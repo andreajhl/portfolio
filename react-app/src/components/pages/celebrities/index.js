@@ -226,7 +226,9 @@ class CelebritiesPage extends Component {
               {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
               {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
               {hasFilteredCelebrities ? (
-                <CelebritiesResultsLayout />
+                <CelebritiesResultsLayout
+                  celebrities={this.props.celebrities}
+                />
               ) : (
                 <CelebritiesSectionsLayout />
               )}

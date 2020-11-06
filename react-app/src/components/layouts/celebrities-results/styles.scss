@@ -1,0 +1,30 @@
+.CelebritiesResultsLayout {
+  .celebrities-results-layout {
+    &__title {
+      font-weight: bold;
+      font-size: 1.125rem;
+      line-height: 1.22;
+    }
+
+    &__cards-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      overflow: scroll;
+    }
+
+    &__card-item {
+      margin-right: 0.75rem;
+      margin-bottom: 1.1656rem;
+
+      .celebrity-card {
+        width: 186.54px;
+
+        .thumbnail {
+          height: 186.54px;
+        }
+      }
+    }
+  }
+}

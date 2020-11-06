@@ -1,6 +1,7 @@
 export * from "./celebrities-multiselect";
 export * from "./celebrity-card";
 export * from "./celebrities-sections";
+export * from "./celebrities-results";
 export * from "./celebrity-details-card";
 export * from "./celebrity-public-contract-card";
 export * from "./celebrity-public-contracts-section";
