@@ -1,6 +1,9 @@
 @import "../../../theme";
 
 .CelebrityCardLayout {
+  &:hover {
+    text-decoration: none;
+  }
   .celebrity-card {
     width: 150px;
     background: #ffffff;
@@ -32,6 +35,10 @@
         margin: 0 auto;
         width: 5.7925rem;
         height: 1.1944rem;
+
+        &__text {
+          color: black;
+        }
       }
     }
 

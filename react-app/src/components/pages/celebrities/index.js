@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import "./styles.scss";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
+import { countriesOperations } from "../../../state/ducks/countries";
 import * as GTM from "../../../state/utils/gtm";
 import { NewsLetterModal } from "../../containers/newsletter-modal";
 import { HeroSectionLayout } from "../../layouts/hero-section";
@@ -19,7 +20,7 @@ class CelebritiesPage extends Component {
       showFFBModal: localStorage.getItem("ffbmodal") === null,
       metaTagTitle: "Famosos.com - Todos los Famosos",
       metaTagDescription:
-        "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
+        "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
     };
     this.scrollDiv = createRef();
     this.openModal = this.openModal.bind(this);
@@ -27,10 +28,11 @@ class CelebritiesPage extends Component {
   }
 
   componentDidMount() {
-    const queryParams = this.props.queryParams;
-    this.props.updateQueryParams(queryParams);
-
     this.listCountries();
+    this.props.listRestCountries();
+    /* const queryParams = this.props.queryParams;
+    // this.props.updateQueryParams(queryParams);
+
 
     const divScroll = this.scrollDiv.current;
 
@@ -53,13 +55,13 @@ class CelebritiesPage extends Component {
           }
         }
       }
-    });
+    }); */
 
     GTM.tagManagerDataLayer("CELEBRITIES_PAGE_VIEW", this.props.queryParams);
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    const queryParams = this.props.queryParams;
+    /* const queryParams = this.props.queryParams;
     if (nextProps.selectedCountry.id !== this.props.selectedCountry.id) {
       const categoryId = this.props.selectedCategory.id;
       const countryId =
@@ -116,19 +118,19 @@ class CelebritiesPage extends Component {
     }
     if (queryParams.page === 1 && nextProps.isLoading) {
       this.scrollDiv.current.scrollTop = 0;
-    }
+    } */
   }
 
   openModal() {
     this.setState({
-      showFFBModal: true,
+      showFFBModal: true
     });
   }
 
   closeModal() {
     this.setState(
       {
-        showFFBModal: false,
+        showFFBModal: false
       },
       () => localStorage.setItem("ffbmodal", "")
     );
@@ -203,7 +205,7 @@ class CelebritiesPage extends Component {
               className="scroll-section"
               style={{
                 height: "calc(100vh - 50px)",
-                overflow: "scroll",
+                overflow: "scroll"
               }}
               ref={this.scrollDiv}
             >
@@ -233,26 +235,33 @@ CelebritiesPage.propTypes = {};
 // Set defaultProps
 CelebritiesPage.defaultProps = {
   celebrities: [],
-  paginationData: {},
+  paginationData: {}
 };
 
 // mapStateToProps
-const mapStateToProps = ({ celebrities, restCountries, filters }) => ({
+const mapStateToProps = ({
+  celebrities,
+  restCountries,
+  countries,
+  filters
+}) => ({
   isLoading: celebrities.fetchCelebritiesReducer.loading,
   isCompleted: celebrities.fetchCelebritiesReducer.completed,
   celebrities: celebrities.fetchCelebritiesReducer.data.results,
   paginationData: celebrities.fetchCelebritiesReducer.data.informationPage,
   queryParams: celebrities.queryParamsReducer,
-  countries: restCountries.fetchCountriesReducer.data,
+  countries: countries.countriesReducer.results,
+  restCountries: restCountries.fetchCountriesReducer.data,
   selectedCategory: filters.filtersReducer.selectedCategory,
-  selectedCountry: filters.filtersReducer.selectedCountry,
+  selectedCountry: filters.filtersReducer.selectedCountry
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list,
   updateQueryParams: celebrityOperations.updateQueryParams,
-  listCountries: restCountriesOperations.list,
+  listCountries: countriesOperations.list,
+  listRestCountries: restCountriesOperations.list
 };
 
 // Export Class

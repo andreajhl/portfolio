@@ -1,23 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { CelebritiesCardsSectionLayout } from "../celebrities-cards-section";
+import { fetchCelebritySections } from "../../../state/ducks/celebrity-sections/actions";
 import "./styles.scss";
 
-const CelebritiesSectionsLayout = (props) => {
+const mapStateToProps = ({ celebritySections }) => {
+  const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
+  return { loading, celebritiesSections: data.results };
+};
+
+const mapDispatchToProps = { fetchCelebritySections };
+
+const CelebritiesSectionsLayout = ({
+  loading,
+  celebritiesSections,
+  fetchCelebritySections
+}) => {
+  useEffect(() => {
+    fetchCelebritySections({ offset: 0, limit: 10, orderBy: "position" });
+  }, []);
+
   return (
     <div className="CelebritiesSectionsLayout">
-      <CelebritiesCardsSectionLayout title="Actores" />
-      <CelebritiesCardsSectionLayout title="Famosos destacados" />
-      <CelebritiesCardsSectionLayout title="Videos destacados" type="video" />
+      {celebritiesSections.length > 0
+        ? celebritiesSections.map((celebritiesSection) => (
+            <CelebritiesCardsSectionLayout
+              key={celebritiesSection.id}
+              title={celebritiesSection.title}
+              type={celebritiesSection.celebritySectionType}
+              celebrities={celebritiesSection.celebrities}
+            />
+          ))
+        : null}
     </div>
   );
 };
 
 CelebritiesSectionsLayout.defaultProps = {};
-
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = {};
 
 // Export Class
 const _CelebritiesSectionsLayout = connect(

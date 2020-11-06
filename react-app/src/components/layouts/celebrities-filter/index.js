@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { NavbarSearchLayout } from "../navbar-search";
+import "./styles.scss";
 
 const CelebritiesFilter = ({ label, modalTitle, searchLabel, options }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
