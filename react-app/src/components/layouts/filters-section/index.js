@@ -42,7 +42,8 @@ const FiltersSectionLayout = ({
 
   useEffect(() => {
     if (params === updateQueryParamsInitialState) return;
-    updateQueryParams({ ...queryParams, ...params }, true);
+    const { country_id, category_id } = params;
+    updateQueryParams({ ...queryParams, country_id, category_id }, true);
   }, [params]);
 
   return (
@@ -55,6 +56,9 @@ const FiltersSectionLayout = ({
               label="País"
               modalTitle="Filtrar por país"
               searchLabel="Buscar país"
+              activeItems={
+                queryParams.country_id ? queryParams.country_id.split(",") : []
+              }
               onApplyFilters={setFilterParam("country_id")}
               options={countries.map((country) => ({
                 label: removeParenthesis(country.name),
@@ -67,6 +71,11 @@ const FiltersSectionLayout = ({
               label="Categoría"
               modalTitle="Filtrar por categoría"
               searchLabel="Buscar categoría"
+              activeItems={
+                queryParams.category_id
+                  ? queryParams.category_id.split(",")
+                  : []
+              }
               onApplyFilters={setFilterParam("category_id")}
               options={celebrityCategories.map((category) => ({
                 label: category.title,
@@ -77,7 +86,7 @@ const FiltersSectionLayout = ({
           <li className="filters-section__filters-item">
             <CelebritiesFilter
               label="Precio"
-              modalTitle="Filtrar por categoría"
+              modalTitle="Filtrar por precio"
               showSearch={false}
               onApplyFilters={(checkedItems) => alert(checkedItems.join(" "))}
               options={priceFilterOptions}

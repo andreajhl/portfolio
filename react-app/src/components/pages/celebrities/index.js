@@ -175,7 +175,9 @@ class CelebritiesPage extends Component {
 
   render() {
     const hasFilteredCelebrities =
-      this.props.queryParams !== updateQueryParamsInitialState;
+      this.props.queryParams.search ||
+      this.props.queryParams.country_id ||
+      this.props.queryParams.category_id;
     return (
       <>
         <div className={"CelebritiesPage "}>

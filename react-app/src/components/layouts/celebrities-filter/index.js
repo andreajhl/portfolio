@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { NavbarSearchLayout } from "../navbar-search";
@@ -10,16 +10,25 @@ const CelebritiesFilter = ({
   showSearch,
   searchLabel,
   options,
-  onApplyFilters
+  onApplyFilters,
+  activeItems
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const closeModal = () => setModalIsOpen(false);
-  const openModal = () => setModalIsOpen(true);
-
   const [checkedItems, setCheckedItems] = useState([]);
+  const closeModal = () => setModalIsOpen(false);
+  const openModal = () => {
+    setCheckedItems(activeItems);
+    setModalIsOpen(true);
+  };
 
   const addCheckedItem = ({ target }) => {
-    setCheckedItems((checkedItems) => [...checkedItems, target.value]);
+    if (target.checked) {
+      setCheckedItems((checkedItems) => [...checkedItems, target.value]);
+    } else {
+      setCheckedItems((checkedItems) =>
+        checkedItems.filter((item) => item !== target.value)
+      );
+    }
   };
 
   const applyFilters = () => {
@@ -27,7 +36,9 @@ const CelebritiesFilter = ({
     closeModal();
   };
 
-  console.log(checkedItems);
+  useEffect(() => {
+    setCheckedItems(activeItems);
+  }, [activeItems]);
 
   return (
     <>
@@ -38,7 +49,7 @@ const CelebritiesFilter = ({
         onClick={openModal}
       >
         <span className="CelebritiesFilter__btn-text">
-          {label} {checkedItems.length > 0 ? `(${checkedItems.length})` : ""}
+          {label} {activeItems.length > 0 ? `(${activeItems.length})` : ""}
         </span>
         <i className="fa fa-sort-down CelebritiesFilter__btn-icon" />
       </Button>
@@ -55,10 +66,7 @@ const CelebritiesFilter = ({
         </Modal.Header>
         <Modal.Body>
           {showSearch ? <NavbarSearchLayout searchLabel={searchLabel} /> : null}
-          <ul
-            className={`options-list pl-2 mb-0 ${!showSearch ? "py-0" : ""}`}
-            onChange={addCheckedItem}
-          >
+          <ul className={`options-list pl-2 mb-0 ${!showSearch ? "py-0" : ""}`}>
             {options &&
               options.map((option) => {
                 const optionKey = `${label}-${option.label}-${option.value}`;
@@ -70,6 +78,8 @@ const CelebritiesFilter = ({
                         className="custom-control-input"
                         id={optionKey}
                         value={option.value}
+                        onChange={addCheckedItem}
+                        checked={checkedItems.includes(String(option.value))}
                       />
                       <label
                         className="custom-control-label"
@@ -93,6 +103,6 @@ const CelebritiesFilter = ({
   );
 };
 
-CelebritiesFilter.defaultProps = { showSearch: true };
+CelebritiesFilter.defaultProps = { showSearch: true, activeItems: [] };
 
 export { CelebritiesFilter };

@@ -8,6 +8,10 @@
   margin-top: 123px;
   background-color: white;
 
+  .hidden-hero + .page-container-children & {
+    margin-top: 120px;
+  }
+
   .filters-section {
     &__title {
       font-weight: bold;
