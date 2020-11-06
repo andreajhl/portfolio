@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { CelebritiesCardsSectionLayout } from "../celebrities-cards-section";
+import { CelebritiesShimmerCardsSectionLayout } from "../celebrities-shimmer-cards-section";
 import { fetchCelebritySections } from "../../../state/ducks/celebrity-sections/actions";
 import "./styles.scss";
 
@@ -20,8 +21,11 @@ const CelebritiesSectionsLayout = ({
     fetchCelebritySections({ offset: 0, limit: 10, orderBy: "position" });
   }, []);
 
+  console.log(loading);
+
   return (
     <div className="CelebritiesSectionsLayout">
+      {loading ? <CelebritiesShimmerCardsSectionLayout /> : null}
       {celebritiesSections.length > 0
         ? celebritiesSections.map((celebritiesSection) => (
             <CelebritiesCardsSectionLayout

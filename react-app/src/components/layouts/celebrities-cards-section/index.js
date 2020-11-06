@@ -1,8 +1,5 @@
 import React from "react";
 import { CelebrityCardLayout } from "../celebrity-card";
-import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
-import { VideoCardLayout } from "../video-card";
-import { VideoShimmerCardLayout } from "../video-shimmer-card";
 import "./styles.scss";
 
 const CelebritiesCardsSectionLayout = ({ title, type, celebrities }) => {

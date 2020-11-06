@@ -1,0 +1,21 @@
+.celebrities-shimmer-section-layout {
+  &__title {
+    height: 1.125rem;
+    margin-bottom: 0.75rem;
+    width: 80%;
+    border-radius: 10px;
+    background: #d8d8d8;
+    background-size: 1200px 100%;
+  }
+
+  &__cards-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    overflow: scroll;
+  }
+
+  &__card-item {
+    margin-right: 0.75rem;
+  }
+}
