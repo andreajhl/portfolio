@@ -5,10 +5,10 @@ import { CurrencyDropdownLayout } from "../currency-dropdown";
 import { NavbarSearchLayout } from "../navbar-search";
 import "./styles.scss";
 
-const NavbarSectionLayout = (props) => {
+const NavbarSectionLayout = ({ className, onSearchChange }) => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   return (
-    <div className="NavbarSectionLayout">
+    <div className={`NavbarSectionLayout ${className}`}>
       <div className="top-bar container m-0 mx-md-auto p-0 row align-items-center">
         <div className="top-bar__left-side col-4 p-0">
           <div className="dropdown">
@@ -31,7 +31,7 @@ const NavbarSectionLayout = (props) => {
               style={
                 dropdownIsOpen
                   ? {
-                      display: "block",
+                      display: "block"
                     }
                   : {}
               }
@@ -88,8 +88,7 @@ const NavbarSectionLayout = (props) => {
           <div className="d-block top-bar__search-sm">
             <NavbarSearchLayout
               searchLabel="Buscar famosos"
-              /* onSearchChange={this.props.onSearchChange}
-              autoFocus={this.state.showSearch} */
+              onSearchChange={onSearchChange}
             />
           </div>
         </div>

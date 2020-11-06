@@ -3,6 +3,10 @@
   position: fixed;
   background-color: white;
   z-index: 10000;
+
+  &.hidden-hero {
+    top: 0;
+  }
 }
 
 .top-bar {

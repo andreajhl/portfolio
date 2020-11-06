@@ -39,18 +39,6 @@ const CelebrityCardLayout = ({
       onClick={registerClickOnCelebrity}
       className="CelebrityCardLayout"
     >
-      <span style={{ position: "fixed", top: "-1000px" }}>
-        Famosos Videos personalizados
-      </span>
-      <span style={{ position: "fixed", top: "-1000px" }}>
-        Videos personalizados de {celebrity.fullName}
-      </span>
-      <span style={{ position: "fixed", top: "-1000px" }}>
-        Videos personalizados de {celebrity.username}
-      </span>
-      <span style={{ position: "fixed", top: "-1000px" }}>
-        Videos personalizados de @{celebrity.username}
-      </span>
       <div className="celebrity-card">
         <div className="thumbnail">
           <img

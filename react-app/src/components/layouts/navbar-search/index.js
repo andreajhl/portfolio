@@ -11,7 +11,7 @@ class NavbarSearchLayout extends Component {
     super(props);
 
     this.state = {
-      keyword: this.props.queryParams.search || "",
+      keyword: this.props.queryParams.search || ""
     };
 
     this.goToHome = this.goToHome.bind(this);
@@ -20,7 +20,7 @@ class NavbarSearchLayout extends Component {
   componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
     if (nextProps.removeKeywords) {
       this.setState({
-        keyword: "",
+        keyword: ""
       });
     }
   }
@@ -36,7 +36,7 @@ class NavbarSearchLayout extends Component {
       this.onSearchChange(e.target.value);
     }
     this.setState({
-      keyword: e.target.value,
+      keyword: e.target.value
     });
   }
 
@@ -51,11 +51,10 @@ class NavbarSearchLayout extends Component {
   }
 
   onSearchChange(keyword) {
-    if (!this.props.isLoading && this.props.isCompleted) {
-      GTM.tagManagerDataLayer("CELEBRITIES_SEARCH_CHANGED", this.state.keyword);
-      this.props.onSearchChange(keyword);
-      document.getElementsByClassName("scroll-section")[0].scrollTop = -100;
-    }
+    if (this.props.isLoading) return;
+    GTM.tagManagerDataLayer("CELEBRITIES_SEARCH_CHANGED", this.state.keyword);
+    this.props.onSearchChange(keyword);
+    document.getElementsByClassName("scroll-section")[0].scrollTop = -100;
   }
 
   goToHome() {
@@ -93,19 +92,19 @@ class NavbarSearchLayout extends Component {
 NavbarSearchLayout.defaultProps = {
   searchLabel: "Ej: Pibe Valderrama, Comediantes, Músicos",
   onSearchChange: function () {},
-  autoFocus: false,
+  autoFocus: false
 };
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
   isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
   isLoading: state.celebrities.fetchCelebritiesReducer.loading,
-  queryParams: state.celebrities.queryParamsReducer,
+  queryParams: state.celebrities.queryParamsReducer
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  updateQueryParams: celebrityOperations.updateQueryParams,
+  updateQueryParams: celebrityOperations.updateQueryParams
 };
 
 // Export Class

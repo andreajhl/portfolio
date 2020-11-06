@@ -7,7 +7,7 @@ const HeroSectionLayout = () => {
       <div className="container hero__container">
         <h1 className="hero__title mb-3">
           Recibe videos personalizados
-          <br /> de tus ídolos.
+          <br /> de tus famosos favoritas.
         </h1>
         <ol className="hero__steps p-0">
           <li className="hero__steps-item">

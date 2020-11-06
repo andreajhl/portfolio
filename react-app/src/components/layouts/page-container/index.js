@@ -5,6 +5,7 @@ import { NavbarSectionLayout } from "../navbar-section";
 import { FooterLayout } from "../footer";
 import "./styles.scss";
 import { CookiesConsent } from "../cookies-consent";
+import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 
 class PageContainer extends Component {
   constructor(props) {
@@ -27,21 +28,25 @@ class PageContainer extends Component {
     } */
   }
 
-  onSearchChange(keywork) {
+  onSearchChange(keyword) {
     if (this.props.applyFetchCelebrities === true) {
-      const queryParams = this.props.queryParams;
-      queryParams["search"] = keywork;
+      const queryParams = { ...this.props.queryParams };
+      queryParams["search"] = keyword;
       queryParams["currentPage"] = 1;
-      this.props.updateQueryParams(queryParams);
+      this.props.updateQueryParams(queryParams, true);
     }
   }
 
   render() {
+    const hasSearchedOrFiltered =
+      this.props.queryParams !== updateQueryParamsInitialState;
+
     return (
       <div className="PageContainer">
         {/* NavbarSectionLayout */}
         {this.props.showNavbar ? (
           <NavbarSectionLayout
+            className={hasSearchedOrFiltered ? "hidden-hero" : ""}
             onSearchChange={this.onSearchChange}
             showInputSearchSm={this.props.showInputSearchSm}
             showSearch={this.props.showSearch}
