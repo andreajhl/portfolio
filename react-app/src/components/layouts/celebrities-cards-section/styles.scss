@@ -1,0 +1,18 @@
+.celebrities-section-layout {
+  &__title {
+    font-weight: bold;
+    font-size: 1.125rem;
+    line-height: 1.22;
+  }
+
+  &__cards-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    overflow: scroll;
+  }
+
+  &__card-item {
+    margin-right: 0.75rem;
+  }
+}

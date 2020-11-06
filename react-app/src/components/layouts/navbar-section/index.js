@@ -3,14 +3,13 @@ import { NavLink } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
 import { NavbarSearchLayout } from "../navbar-search";
-import { HeroSectionLayout } from "../hero-section";
 import "./styles.scss";
 
 const NavbarSectionLayout = (props) => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   return (
     <div className="NavbarSectionLayout">
-      <div className="top-bar container m-0 p-0 row align-items-center">
+      <div className="top-bar container m-0 mx-md-auto p-0 row align-items-center">
         <div className="top-bar__left-side col-4 p-0">
           <div className="dropdown">
             <button
@@ -86,7 +85,7 @@ const NavbarSectionLayout = (props) => {
           </div>
         </div>
         <div className="col-12 pt-3 px-0">
-          <div className="d-block d-md-none top-bar__search-sm">
+          <div className="d-block top-bar__search-sm">
             <NavbarSearchLayout
               searchLabel="Buscar famosos"
               /* onSearchChange={this.props.onSearchChange}

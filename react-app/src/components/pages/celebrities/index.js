@@ -1,5 +1,5 @@
 import React, { Component, createRef } from "react";
-import { CelebrityCardsSectionLayout, PageContainer } from "../../layouts";
+import { CelebritiesSectionsLayout, PageContainer } from "../../layouts";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import "./styles.scss";
@@ -212,18 +212,7 @@ class CelebritiesPage extends Component {
               {/*<pre>state.params.page {this.state.params.page}</pre>*/}
               {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
               {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
-              <CelebrityCardsSectionLayout
-                title={this.returnTitle()}
-                showShimmerCards={
-                  this.props.isLoading &&
-                  this.props.queryParams.currentPage === 1
-                }
-                showLoading={
-                  this.props.isLoading && this.props.queryParams.currentPage > 1
-                }
-                celebrities={this.props.celebrities}
-                minHeight={true}
-              />
+              <CelebritiesSectionsLayout />
             </div>
             {/* End CelebrityCardsSectionLayout */}
           </PageContainer>

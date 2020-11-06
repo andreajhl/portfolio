@@ -26,28 +26,6 @@
     }
   }
 
-  .CelebritiesFilter {
-    &__btn {
-      background: #ffffff;
-      border-radius: 40px;
-      min-width: 122.52px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 0.15em 0.25em 0 rgba($color: #000000, $alpha: 0.1);
-      &-text {
-        font-size: 0.75rem;
-        font-weight: 600;
-      }
-
-      &-icon {
-        font-size: 1.2rem;
-        top: -0.2rem;
-        position: relative;
-      }
-    }
-  }
-
   /* .navbar-1240 {
     max-width: $width-1240;
     margin: 0 auto;
