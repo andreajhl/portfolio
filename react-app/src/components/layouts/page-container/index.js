@@ -11,20 +11,20 @@ class PageContainer extends Component {
     super(props);
 
     this.state = {
-      params: { status: 50 },
+      params: { status: 50 }
     };
 
     this.onSearchChange = this.onSearchChange.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.applyFetchCelebrities === true) {
+    /* if (this.props.applyFetchCelebrities === true) {
       const queryParams = this.props.queryParams;
       if (!window.location.search) {
         queryParams["currentPage"] = 1;
         this.props.updateQueryParams(queryParams);
       }
-    }
+    } */
   }
 
   onSearchChange(keywork) {
@@ -94,7 +94,7 @@ PageContainer.defaultProps = {
   showSearchWeb: true,
   showInputSearchSm: true,
   showLogin: true,
-  hideControls: false,
+  hideControls: false
 };
 
 // mapStateToProps
@@ -103,12 +103,12 @@ const mapStateToProps = (state) => ({
   celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
   paginationData:
     state.celebrities.fetchCelebritiesReducer.data.informationPage,
-  queryParams: state.celebrities.queryParamsReducer,
+  queryParams: state.celebrities.queryParamsReducer
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  updateQueryParams: celebrityOperations.updateQueryParams,
+  updateQueryParams: celebrityOperations.updateQueryParams
 };
 
 // Export Class

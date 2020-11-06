@@ -1,8 +1,50 @@
 import React from "react";
-import "./styles.scss";
+import { connect } from "react-redux";
 import { CelebritiesFilter } from "../celebrities-filter";
+import "./styles.scss";
+import { CelebritiesPage } from "../../pages/celebrities";
+import { useState } from "react";
+import { useEffect } from "react";
+import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
+import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 
-const FiltersSectionLayout = () => {
+const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
+  return {
+    countries: countries.countriesReducer.data.results,
+    queryParams: celebrities.queryParamsReducer,
+    celebrityCategories:
+      celebrityCategories.fetchCelebrityCategoriesReducer.data.results
+  };
+};
+
+const mapDispatchToProps = { updateQueryParams };
+
+const removeParenthesis = (string) => string.replace(/\([^)]*\)/, "");
+
+const priceFilterOptions = [
+  { label: "De Menor a Mayor", value: "asc" },
+  { label: "De Mayor a Menor", value: "desc" }
+];
+
+const FiltersSectionLayout = ({
+  countries,
+  celebrityCategories,
+  queryParams,
+  updateQueryParams
+}) => {
+  const [params, setParams] = useState(updateQueryParamsInitialState);
+
+  const setFilterParam = (paramName) => (paramValues) =>
+    setParams((params) => ({
+      ...params,
+      [paramName]: paramValues.join(",")
+    }));
+
+  useEffect(() => {
+    if (params === updateQueryParamsInitialState) return;
+    updateQueryParams({ ...queryParams, ...params }, true);
+  }, [params]);
+
   return (
     <section className="FiltersSectionLayout">
       <div className="filters-section__container container pt-2">
@@ -13,14 +55,33 @@ const FiltersSectionLayout = () => {
               label="País"
               modalTitle="Filtrar por país"
               searchLabel="Buscar país"
-              options={Array(20).fill({ label: "México", value: "mx" }, 0, 20)}
+              onApplyFilters={setFilterParam("country_id")}
+              options={countries.map((country) => ({
+                label: removeParenthesis(country.name),
+                value: country.id
+              }))}
             />
           </li>
           <li className="filters-section__filters-item">
-            <CelebritiesFilter label="Categoría" />
+            <CelebritiesFilter
+              label="Categoría"
+              modalTitle="Filtrar por categoría"
+              searchLabel="Buscar categoría"
+              onApplyFilters={setFilterParam("category_id")}
+              options={celebrityCategories.map((category) => ({
+                label: category.title,
+                value: category.id
+              }))}
+            />
           </li>
           <li className="filters-section__filters-item">
-            <CelebritiesFilter label="Precio" />
+            <CelebritiesFilter
+              label="Precio"
+              modalTitle="Filtrar por categoría"
+              showSearch={false}
+              onApplyFilters={(checkedItems) => alert(checkedItems.join(" "))}
+              options={priceFilterOptions}
+            />
           </li>
         </ul>
       </div>
@@ -28,4 +89,8 @@ const FiltersSectionLayout = () => {
   );
 };
 
-export { FiltersSectionLayout };
+const _FiltersSectionLayout = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FiltersSectionLayout);
+export { _FiltersSectionLayout as FiltersSectionLayout };

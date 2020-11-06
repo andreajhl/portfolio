@@ -12,7 +12,6 @@ const CelebrityCardLayout = ({
   countries,
   currencyExchangeData
 }) => {
-  console.log(countries);
   const [avatarIsLoaded, setAvatarIsLoaded] = useState(false);
   const finishAvatarLoad = () => setAvatarIsLoaded(true);
 

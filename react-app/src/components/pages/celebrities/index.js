@@ -1,15 +1,21 @@
 import React, { Component, createRef } from "react";
-import { CelebritiesSectionsLayout, PageContainer } from "../../layouts";
+import {
+  CelebritiesSectionsLayout,
+  PageContainer,
+  CelebritiesResultsLayout
+} from "../../layouts";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import "./styles.scss";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import { countriesOperations } from "../../../state/ducks/countries";
+import { celebrityCategoriesOperations } from "../../../state/ducks/celebrity-categories";
 import * as GTM from "../../../state/utils/gtm";
 import { NewsLetterModal } from "../../containers/newsletter-modal";
 import { HeroSectionLayout } from "../../layouts/hero-section";
 import { FiltersSectionLayout } from "../../layouts/filters-section";
 import MetaTags from "react-meta-tags";
+import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 
 class CelebritiesPage extends Component {
   constructor(props) {
@@ -30,6 +36,7 @@ class CelebritiesPage extends Component {
   componentDidMount() {
     this.listCountries();
     this.props.listRestCountries();
+    this.props.listCelebrityCategories();
     /* const queryParams = this.props.queryParams;
     // this.props.updateQueryParams(queryParams);
 
@@ -61,6 +68,9 @@ class CelebritiesPage extends Component {
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
+    if (nextProps.queryParams !== updateQueryParamsInitialState) {
+      console.log("Fetch celebrities");
+    }
     /* const queryParams = this.props.queryParams;
     if (nextProps.selectedCountry.id !== this.props.selectedCountry.id) {
       const categoryId = this.props.selectedCategory.id;
@@ -164,6 +174,8 @@ class CelebritiesPage extends Component {
   };
 
   render() {
+    const hasFilteredCelebrities =
+      this.props.queryParams !== updateQueryParamsInitialState;
     return (
       <>
         <div className={"CelebritiesPage "}>
@@ -198,8 +210,7 @@ class CelebritiesPage extends Component {
             {/*<MainMenuLayout/>*/}
             {/*/! End MainMenuLayout *!/*/}
 
-            {/* CelebrityCardsSectionLayout */}
-            <HeroSectionLayout />
+            {!hasFilteredCelebrities ? <HeroSectionLayout /> : null}
             <FiltersSectionLayout />
             <div
               className="scroll-section"
@@ -214,7 +225,11 @@ class CelebritiesPage extends Component {
               {/*<pre>state.params.page {this.state.params.page}</pre>*/}
               {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
               {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
-              <CelebritiesSectionsLayout />
+              {hasFilteredCelebrities ? (
+                <CelebritiesResultsLayout />
+              ) : (
+                <CelebritiesSectionsLayout />
+              )}
             </div>
             {/* End CelebrityCardsSectionLayout */}
           </PageContainer>
@@ -261,6 +276,7 @@ const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list,
   updateQueryParams: celebrityOperations.updateQueryParams,
   listCountries: countriesOperations.list,
+  listCelebrityCategories: celebrityCategoriesOperations.list,
   listRestCountries: restCountriesOperations.list
 };
 
