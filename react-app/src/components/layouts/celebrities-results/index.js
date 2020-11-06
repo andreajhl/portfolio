@@ -13,19 +13,30 @@ const mapDispatchToProps = { fetchCelebritySections };
 
 const CelebritiesResultsLayout = ({
   celebrities,
+  queryParams,
   loading,
   celebritiesSections,
   fetchCelebritySections
 }) => {
+  const isSearchingByKeyword = queryParams.search !== "";
+  const hasResults = celebrities.length > 0;
   return (
     <div className="CelebritiesResultsLayout">
-      <section className="celebrities-results-layout container pr-0">
-        <h2 className="celebrities-results-layout__title">
-          Resultados para XXX
-        </h2>
-        <ul className="celebrities-results-layout__cards-list">
-          {celebrities.length > 0
-            ? celebrities.map((celebrity) => (
+      <section
+        className={`celebrities-results-layout container ${
+          hasResults ? "pr-0" : ""
+        }`}
+      >
+        {hasResults ? (
+          <>
+            <h2 className="celebrities-results-layout__title">
+              Resultados{" "}
+              {isSearchingByKeyword
+                ? `para ${queryParams.search}`
+                : "de búsqueda"}
+            </h2>
+            <ul className="celebrities-results-layout__cards-list">
+              {celebrities.map((celebrity) => (
                 <li
                   key={celebrity.id}
                   className="celebrities-results-layout__card-item"
@@ -41,9 +52,21 @@ const CelebritiesResultsLayout = ({
                     }}
                   />
                 </li>
-              ))
-            : null}
-        </ul>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <div className="align-items-center d-flex flex-column no-results">
+            <img src="/assets/img/search-glass.svg" alt="Lupa" />
+            <span className="no-results__text mt-3">
+              No se encontraron resultados <br /> para{" "}
+              {isSearchingByKeyword
+                ? `"${queryParams.search}"`
+                : "esta búsqueda"}
+              .
+            </span>
+          </div>
+        )}
       </section>
     </div>
   );

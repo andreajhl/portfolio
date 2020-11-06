@@ -224,6 +224,7 @@ class CelebritiesPage extends Component {
               {hasFilteredCelebrities ? (
                 <CelebritiesResultsLayout
                   celebrities={this.props.celebrities}
+                  queryParams={this.props.queryParams}
                 />
               ) : (
                 <CelebritiesSectionsLayout />

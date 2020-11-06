@@ -27,4 +27,13 @@
       }
     }
   }
+
+  .no-results {
+    position: relative;
+    top: 20vh;
+    &__text {
+      text-align: center;
+      color: #999999;
+    }
+  }
 }
