@@ -21,8 +21,6 @@ const CelebritiesSectionsLayout = ({
     fetchCelebritySections({ offset: 0, limit: 10, orderBy: "position" });
   }, []);
 
-  console.log(loading);
-
   return (
     <div className="CelebritiesSectionsLayout">
       {loading ? <CelebritiesShimmerCardsSectionLayout /> : null}

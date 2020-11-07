@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { CelebritiesFilter } from "../celebrities-filter";
+// import { CelebritiesOrderBy } from "../celebrities-order-by";
 import "./styles.scss";
-import { CelebritiesPage } from "../../pages/celebrities";
-import { useState } from "react";
-import { useEffect } from "react";
 import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 
@@ -53,9 +51,9 @@ const FiltersSectionLayout = ({
         <ul className="filters-section__filters-list p-0">
           <li className="filters-section__filters-item">
             <CelebritiesFilter
-              label="País"
+              buttonLabel="País"
               modalTitle="Filtrar por país"
-              searchLabel="Buscar país"
+              searchPlaceholder="Buscar país"
               activeItems={
                 queryParams.country_id ? queryParams.country_id.split(",") : []
               }
@@ -68,9 +66,9 @@ const FiltersSectionLayout = ({
           </li>
           <li className="filters-section__filters-item">
             <CelebritiesFilter
-              label="Categoría"
+              buttonLabel="Categoría"
               modalTitle="Filtrar por categoría"
-              searchLabel="Buscar categoría"
+              searchPlaceholder="Buscar categoría"
               activeItems={
                 queryParams.category_id
                   ? queryParams.category_id.split(",")
@@ -84,13 +82,13 @@ const FiltersSectionLayout = ({
             />
           </li>
           <li className="filters-section__filters-item">
-            <CelebritiesFilter
-              label="Precio"
+            {/* <CelebritiesOrderBy
+              label="Ordenar por:"
               modalTitle="Filtrar por precio"
               showSearch={false}
               onApplyFilters={(checkedItems) => alert(checkedItems.join(" "))}
               options={priceFilterOptions}
-            />
+            /> */}
           </li>
         </ul>
       </div>
