@@ -6,6 +6,10 @@
     position: relative;
     //max-width: $width-1240;
     margin: 0 auto;
+
+    &.hidden-search {
+      top: 53px !important;
+    }
   }
 
   .page-container-children-helper {

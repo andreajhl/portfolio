@@ -58,7 +58,11 @@ class PageContainer extends Component {
           />
         ) : null}
         {/* End NavbarSectionLayout */}
-        <div className="page-container-children">
+        <div
+          className={`page-container-children ${
+            !this.props.showSearch ? "hidden-search" : ""
+          }`}
+        >
           {this.props.children}
           <div className="page-container-children-helper" />
         </div>
