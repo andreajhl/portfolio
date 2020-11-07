@@ -208,29 +208,28 @@ class CelebritiesPage extends Component {
 
             {!hasFilteredCelebrities ? <HeroSectionLayout /> : null}
             <FiltersSectionLayout />
-            <div
+            {hasFilteredCelebrities ? (
+              <CelebritiesResultsLayout
+                celebrities={this.props.celebrities}
+                queryParams={this.props.queryParams}
+                isLoading={this.props.isLoading}
+              />
+            ) : (
+              <CelebritiesSectionsLayout />
+            )}
+            {/* <div
               className="scroll-section"
               style={{
                 height: "calc(100vh - 50px)",
                 overflow: "scroll"
               }}
               ref={this.scrollDiv}
-            >
-              {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
-              {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
-              {/*<pre>state.params.page {this.state.params.page}</pre>*/}
-              {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
-              {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
-              {hasFilteredCelebrities ? (
-                <CelebritiesResultsLayout
-                  celebrities={this.props.celebrities}
-                  queryParams={this.props.queryParams}
-                  isLoading={this.props.isLoading}
-                />
-              ) : (
-                <CelebritiesSectionsLayout />
-              )}
-            </div>
+            ></div> */}
+            {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
+            {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
+            {/*<pre>state.params.page {this.state.params.page}</pre>*/}
+            {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
+            {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
             {/* End CelebrityCardsSectionLayout */}
           </PageContainer>
           {/*{*/}
