@@ -17,9 +17,6 @@ const NavbarSectionLayout = ({
   setDropdownMenuIsOpen
 }) => {
   const isLogged = new Session().getSession();
-
-  console.log(isLogged);
-
   return (
     <div className={`NavbarSectionLayout ${className}`}>
       <div className="top-bar container m-0 mx-md-auto p-0 row align-items-center">
