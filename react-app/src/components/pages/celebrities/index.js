@@ -227,6 +227,7 @@ class CelebritiesPage extends Component {
                 <CelebritiesResultsLayout
                   celebrities={this.props.celebrities}
                   queryParams={this.props.queryParams}
+                  isLoading={this.props.isLoading}
                 />
               ) : (
                 <CelebritiesSectionsLayout />

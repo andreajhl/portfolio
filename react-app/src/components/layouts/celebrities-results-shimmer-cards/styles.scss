@@ -1,0 +1,31 @@
+.celebrities-results-shimmer-layout {
+  &__title {
+    height: 1.125rem;
+    margin-bottom: 0.75rem;
+    width: 60%;
+    border-radius: 10px;
+    background: #d8d8d8;
+  }
+
+  &__cards-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: scroll;
+  }
+
+  &__card-item {
+    margin-right: 0.75rem;
+    margin-bottom: 1.1656rem;
+
+    .shimmer-card {
+      width: 186.54px;
+
+      .shimmerBG {
+        height: 186.54px;
+      }
+    }
+  }
+}

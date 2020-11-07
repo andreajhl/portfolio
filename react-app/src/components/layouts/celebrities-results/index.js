@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { CelebrityCardLayout } from "../celebrity-card";
 import { fetchCelebritySections } from "../../../state/ducks/celebrity-sections/actions";
 import "./styles.scss";
+import { CelebritiesResultsShimmerCardsLayout } from "../celebrities-results-shimmer-cards";
 
 const mapStateToProps = ({ celebritySections }) => {
   const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
@@ -11,13 +12,7 @@ const mapStateToProps = ({ celebritySections }) => {
 
 const mapDispatchToProps = { fetchCelebritySections };
 
-const CelebritiesResultsLayout = ({
-  celebrities,
-  queryParams,
-  loading,
-  celebritiesSections,
-  fetchCelebritySections
-}) => {
+const CelebritiesResultsLayout = ({ celebrities, queryParams, isLoading }) => {
   const isSearchingByKeyword = queryParams.search !== "";
   const hasResults = celebrities.length > 0;
   return (
@@ -27,7 +22,9 @@ const CelebritiesResultsLayout = ({
           hasResults ? "pr-0" : ""
         }`}
       >
-        {hasResults ? (
+        {isLoading ? (
+          <CelebritiesResultsShimmerCardsLayout />
+        ) : hasResults ? (
           <>
             <h2 className="celebrities-results-layout__title">
               Resultados{" "}
