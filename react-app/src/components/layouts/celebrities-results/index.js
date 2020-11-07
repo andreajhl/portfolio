@@ -45,7 +45,8 @@ const CelebritiesResultsLayout = ({ celebrities, queryParams, isLoading }) => {
                       countryCode: celebrity.country_code,
                       countryName: celebrity.country_name,
                       title: celebrity.title,
-                      username: celebrity.username
+                      username: celebrity.username,
+                      videoMessagePrice: celebrity.video_message_price
                     }}
                   />
                 </li>
