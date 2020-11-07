@@ -2,13 +2,11 @@
 
 .PageContainer {
   .page-container-children {
-    top: 122px;
-    position: relative;
     //max-width: $width-1240;
-    margin: 0 auto;
+    margin: 122px auto 0;
 
     &.hidden-search {
-      top: 53px !important;
+      margin-top: 53px !important;
     }
   }
 
