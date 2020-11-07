@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
 import { NavbarSearchLayout } from "../navbar-search";
+import { HOME_PATH } from "../../../routing/Paths";
 import "./styles.scss";
 
 const NavbarSectionLayout = ({ className, onSearchChange }) => {
@@ -71,13 +72,13 @@ const NavbarSectionLayout = ({ className, onSearchChange }) => {
           </div>
         </div>
         <div className="top-bar__center-side col-4 text-center p-0">
-          <a href="#" className="top-bar__logo-link">
+          <NavLink to={HOME_PATH} className="top-bar__logo-link">
             <img
               className="top-bar__logo"
               src="/assets/img/logo-color-1.png"
               alt="Famosos Logo"
             />
-          </a>
+          </NavLink>
         </div>
         <div className="top-bar__right-side col-4 p-0">
           <div className="top-bar__currency ml-auto mr-2">

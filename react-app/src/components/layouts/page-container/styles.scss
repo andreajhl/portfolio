@@ -1,9 +1,9 @@
 @import "../../../theme";
 
-
-.PageContainer{
-
-  .page-container-children{
+.PageContainer {
+  .page-container-children {
+    top: 122px;
+    position: relative;
     //max-width: $width-1240;
     margin: 0 auto;
   }
@@ -22,7 +22,7 @@
     z-index: 4000;
     overflow-y: auto;
 
-    &.active{
+    &.active {
       display: block;
     }
   }
