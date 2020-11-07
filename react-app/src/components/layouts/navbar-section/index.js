@@ -1,10 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
 import { NavbarSearchLayout } from "../navbar-search";
 import { HOME_PATH } from "../../../routing/Paths";
 import PropTypes from "prop-types";
+import { Session } from "../../../state/utils/session";
 import "./styles.scss";
 
 const NavbarSectionLayout = ({
@@ -15,6 +16,10 @@ const NavbarSectionLayout = ({
   dropdownMenuIsOpen,
   setDropdownMenuIsOpen
 }) => {
+  const isLogged = new Session().getSession();
+
+  console.log(isLogged);
+
   return (
     <div className={`NavbarSectionLayout ${className}`}>
       <div className="top-bar container m-0 mx-md-auto p-0 row align-items-center">
@@ -42,35 +47,27 @@ const NavbarSectionLayout = ({
                   : {}
               }
             >
-              <NavLink
-                className="dropdown-item"
-                activeClassName="active"
-                to={PATHS.CLIENT_HIRINGS}
-              >
-                Mis contrataciones
-              </NavLink>
-              {showLogin ? (
-                <NavLink
-                  className="dropdown-item"
-                  activeClassName="active"
-                  to={PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH.replace(
-                    ":form",
-                    "email-form"
-                  )}
-                >
-                  Ingresar
-                </NavLink>
+              {isLogged ? (
+                <>
+                  <NavLink
+                    className="dropdown-item"
+                    activeClassName="active"
+                    to={PATHS.CLIENT_PROFILE}
+                  >
+                    Mi perfil
+                  </NavLink>
+                  <NavLink
+                    className="dropdown-item"
+                    activeClassName="active"
+                    to={PATHS.CLIENT_HIRINGS}
+                  >
+                    Mis contrataciones
+                  </NavLink>
+                </>
               ) : null}
-              <NavLink
-                className="dropdown-item"
-                activeClassName="active"
-                to={PATHS.CLIENT_PROFILE}
-              >
-                Mi perfil
-              </NavLink>
-              <a className="dropdown-item" href="#" onClick={console.log}>
+              <Link className="dropdown-item" to={PATHS.ROOT_PATH}>
                 ¿Cómo funciona?
-              </a>
+              </Link>
               <NavLink
                 className="dropdown-item"
                 activeClassName="active"
@@ -78,6 +75,27 @@ const NavbarSectionLayout = ({
               >
                 Tendencias
               </NavLink>
+              {!isLogged ? (
+                <>
+                  <NavLink
+                    className="dropdown-item"
+                    activeClassName="active"
+                    to={PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH.replace(
+                      ":form",
+                      "email-form"
+                    )}
+                  >
+                    Ingresar
+                  </NavLink>
+                  <NavLink
+                    className="dropdown-item"
+                    activeClassName="active"
+                    to={PATHS.SIGN_UP_PATH}
+                  >
+                    Registrarme
+                  </NavLink>
+                </>
+              ) : null}
               <NavLink
                 className="dropdown-item"
                 activeClassName="active"
