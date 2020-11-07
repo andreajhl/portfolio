@@ -4,9 +4,15 @@ import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
 import { NavbarSearchLayout } from "../navbar-search";
 import { HOME_PATH } from "../../../routing/Paths";
+import PropTypes from "prop-types";
 import "./styles.scss";
 
-const NavbarSectionLayout = ({ className, onSearchChange }) => {
+const NavbarSectionLayout = ({
+  className,
+  onSearchChange,
+  showSearch,
+  showLogin
+}) => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   return (
     <div className={`NavbarSectionLayout ${className}`}>
@@ -44,6 +50,18 @@ const NavbarSectionLayout = ({ className, onSearchChange }) => {
               >
                 Mis contrataciones
               </NavLink>
+              {showLogin ? (
+                <NavLink
+                  className="dropdown-item"
+                  activeClassName="active"
+                  to={PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH.replace(
+                    ":form",
+                    "email-form"
+                  )}
+                >
+                  Ingresar
+                </NavLink>
+              ) : null}
               <NavLink
                 className="dropdown-item"
                 activeClassName="active"
@@ -85,17 +103,33 @@ const NavbarSectionLayout = ({ className, onSearchChange }) => {
             <CurrencyDropdownLayout />
           </div>
         </div>
-        <div className="col-12 pt-3 px-0">
-          <div className="d-block top-bar__search-sm">
-            <NavbarSearchLayout
-              searchLabel="Buscar famosos"
-              onSearchChange={onSearchChange}
-            />
+        {showSearch ? (
+          <div className="col-12 pt-3 px-0">
+            <div className="d-block top-bar__search-sm">
+              <NavbarSearchLayout
+                searchLabel="Buscar famosos"
+                onSearchChange={onSearchChange}
+              />
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </div>
   );
+};
+
+NavbarSectionLayout.propTypes = {
+  className: PropTypes.string,
+  onSearchChange: PropTypes.func,
+  showSearch: PropTypes.bool,
+  showLogin: PropTypes.bool
+};
+
+NavbarSectionLayout.defaultProps = {
+  className: "",
+  onSearchChange: () => {},
+  showSearch: true,
+  showLogin: true
 };
 
 export { NavbarSectionLayout };
