@@ -2,7 +2,6 @@
   &__btn {
     background: #ffffff;
     border-radius: 40px;
-    min-width: 122.52px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,7 +10,7 @@
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      margin-right: 0.25rem;
+      margin-right: 0.5rem;
       font-size: 0.75rem;
       font-weight: 600;
     }

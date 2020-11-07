@@ -2,7 +2,6 @@
 
 .FiltersSectionLayout {
   position: sticky;
-  overflow: scroll;
   z-index: 10000;
   top: 120px;
   padding-bottom: 0.25rem;
@@ -24,6 +23,7 @@
     &__filters-list {
       display: flex;
       list-style: none;
+      overflow: scroll;
     }
 
     &__filters-item {
