@@ -54,7 +54,7 @@ class NavbarSearchLayout extends Component {
     if (this.props.isLoading) return;
     GTM.tagManagerDataLayer("CELEBRITIES_SEARCH_CHANGED", this.state.keyword);
     this.props.onSearchChange(keyword);
-    document.getElementsByClassName("scroll-section")[0].scrollTop = -100;
+    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   goToHome() {
