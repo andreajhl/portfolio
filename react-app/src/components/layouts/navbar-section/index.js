@@ -77,7 +77,7 @@ const NavbarSectionLayout = ({
                   <NavLink
                     className="dropdown-item"
                     activeClassName="active"
-                    to={PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH.replace(
+                    to={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(
                       ":form",
                       "email-form"
                     )}
@@ -128,6 +128,7 @@ const NavbarSectionLayout = ({
           </div>
         ) : null}
       </div>
+      <div className="top-bar-helper"></div>
     </div>
   );
 };

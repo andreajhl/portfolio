@@ -1,18 +1,21 @@
 @import "../../../theme";
 
 .NavbarSectionLayout {
-  width: 100%;
-  position: fixed;
-  background-color: white;
-  z-index: 10000;
-
   &.hidden-hero {
     top: 0;
   }
 }
 
 .top-bar {
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  z-index: 10000;
   margin: 0 auto;
+
+  &-helper {
+    height: 121px;
+  }
 
   &__dropdown-button {
     font-size: 1.35rem;
