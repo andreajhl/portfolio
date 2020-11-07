@@ -12,7 +12,8 @@ class PageContainer extends Component {
     super(props);
 
     this.state = {
-      params: { status: 50 }
+      params: { status: 50 },
+      dropdownMenuIsOpen: false
     };
 
     this.onSearchChange = this.onSearchChange.bind(this);
@@ -37,6 +38,9 @@ class PageContainer extends Component {
     }
   }
 
+  setDropdownMenuIsOpen = (dropdownMenuIsOpen) =>
+    this.setState({ dropdownMenuIsOpen });
+
   render() {
     const hasSearchedOrFiltered =
       this.props.queryParams !== updateQueryParamsInitialState;
@@ -55,6 +59,8 @@ class PageContainer extends Component {
             showLogin={this.props.showLogin}
             showFiltersSection={this.props.showFiltersSection}
             hideControls={this.props.hideControls}
+            dropdownMenuIsOpen={this.state.dropdownMenuIsOpen}
+            setDropdownMenuIsOpen={this.setDropdownMenuIsOpen}
           />
         ) : null}
         {/* End NavbarSectionLayout */}
@@ -64,7 +70,11 @@ class PageContainer extends Component {
           }`}
         >
           {this.props.children}
-          <div className="page-container-children-helper" />
+          <div
+            className={`page-container-children-helper ${
+              this.state.dropdownMenuIsOpen ? "active" : ""
+            }`}
+          />
         </div>
 
         {/* FooterLayout */}

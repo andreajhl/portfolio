@@ -1,3 +1,5 @@
+@import "../../../theme";
+
 .NavbarSectionLayout {
   width: 100%;
   position: fixed;
@@ -11,11 +13,6 @@
 
 .top-bar {
   margin: 0 auto;
-
-  &,
-  > * {
-    // border: 1px solid black;
-  }
 
   &__dropdown-button {
     font-size: 1.35rem;
@@ -39,5 +36,42 @@
 
   &__search-sm {
     margin: 0 0.81rem;
+  }
+
+  .dropdown {
+    background-color: white;
+    padding: 0;
+
+    &-menu {
+      padding: 0;
+      z-index: 99999;
+    }
+
+    .dropdown-item {
+      padding: 10px;
+      border-bottom: solid 1px #ccc;
+    }
+
+    .dropdown-toggle::after {
+      color: $dark !important;
+      display: none;
+    }
+    .btn-outline-dark:hover {
+      background-color: white !important;
+      color: $dark !important;
+    }
+
+    &:active,
+    &:hover {
+      background-color: white !important;
+      i {
+        color: $dark !important;
+      }
+    }
+
+    position: relative;
+    top: 3px;
+    height: 42px;
+    font-size: 20px;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
@@ -11,9 +11,10 @@ const NavbarSectionLayout = ({
   className,
   onSearchChange,
   showSearch,
-  showLogin
+  showLogin,
+  dropdownMenuIsOpen,
+  setDropdownMenuIsOpen
 }) => {
-  const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   return (
     <div className={`NavbarSectionLayout ${className}`}>
       <div className="top-bar container m-0 mx-md-auto p-0 row align-items-center">
@@ -26,9 +27,7 @@ const NavbarSectionLayout = ({
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-              onClick={() =>
-                setDropdownIsOpen((dropdownIsOpen) => !dropdownIsOpen)
-              }
+              onClick={() => setDropdownMenuIsOpen(!dropdownMenuIsOpen)}
             >
               <i className="fa fa-bars" />
             </button>
@@ -36,7 +35,7 @@ const NavbarSectionLayout = ({
               className="dropdown-menu"
               aria-labelledby="dropdownMenuButton"
               style={
-                dropdownIsOpen
+                dropdownMenuIsOpen
                   ? {
                       display: "block"
                     }
