@@ -68,9 +68,6 @@ class CelebritiesPage extends Component {
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    if (nextProps.queryParams !== updateQueryParamsInitialState) {
-      console.log("Fetch celebrities");
-    }
     /* const queryParams = this.props.queryParams;
     if (nextProps.selectedCountry.id !== this.props.selectedCountry.id) {
       const categoryId = this.props.selectedCategory.id;
@@ -177,7 +174,8 @@ class CelebritiesPage extends Component {
     const hasFilteredCelebrities =
       this.props.queryParams.search ||
       this.props.queryParams.country_id ||
-      this.props.queryParams.category_id;
+      this.props.queryParams.category_id ||
+      this.props.queryParams.orderBy;
     return (
       <>
         <div className={"CelebritiesPage "}>

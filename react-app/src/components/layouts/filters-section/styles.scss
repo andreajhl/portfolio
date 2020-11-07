@@ -28,6 +28,13 @@
     &__filters-item {
       margin-right: 0.625rem;
     }
+
+    &__order-by {
+      .ModalSelect__btn-text {
+        max-width: 21.5vw;
+        text-align: left;
+      }
+    }
   }
 
   /* .navbar-1240 {

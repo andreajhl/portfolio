@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { CelebritiesFilter } from "../celebrities-filter";
-// import { CelebritiesOrderBy } from "../celebrities-order-by";
+import { CelebritiesOrderBy } from "../celebrities-order-by";
 import "./styles.scss";
 import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
@@ -19,11 +19,6 @@ const mapDispatchToProps = { updateQueryParams };
 
 const removeParenthesis = (string) => string.replace(/\([^)]*\)/, "");
 
-const priceFilterOptions = [
-  { label: "De Menor a Mayor", value: "asc" },
-  { label: "De Mayor a Menor", value: "desc" }
-];
-
 const FiltersSectionLayout = ({
   countries,
   celebrityCategories,
@@ -38,10 +33,16 @@ const FiltersSectionLayout = ({
       [paramName]: paramValues.join(",")
     }));
 
+  const setOrderByParam = (orderBy) =>
+    setParams((params) => ({ ...params, orderBy }));
+
   useEffect(() => {
     if (params === updateQueryParamsInitialState) return;
-    const { country_id, category_id } = params;
-    updateQueryParams({ ...queryParams, country_id, category_id }, true);
+    const { country_id, category_id, orderBy } = params;
+    updateQueryParams(
+      { ...queryParams, country_id, category_id, orderBy },
+      true
+    );
   }, [params]);
 
   return (
@@ -81,14 +82,11 @@ const FiltersSectionLayout = ({
               }))}
             />
           </li>
-          <li className="filters-section__filters-item">
-            {/* <CelebritiesOrderBy
-              label="Ordenar por:"
-              modalTitle="Filtrar por precio"
-              showSearch={false}
-              onApplyFilters={(checkedItems) => alert(checkedItems.join(" "))}
-              options={priceFilterOptions}
-            /> */}
+          <li className="filters-section__filters-item filters-section__order-by">
+            <CelebritiesOrderBy
+              onApplyOrderBy={setOrderByParam}
+              activeValue={params.orderBy}
+            />
           </li>
         </ul>
       </div>
