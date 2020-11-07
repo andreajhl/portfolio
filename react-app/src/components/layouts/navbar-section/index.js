@@ -33,7 +33,7 @@ const NavbarSectionLayout = ({
               <i className="fa fa-bars" />
             </button>
             <div
-              className="dropdown-menu dropdown-menu-right"
+              className="dropdown-menu"
               aria-labelledby="dropdownMenuButton"
               style={
                 dropdownIsOpen
