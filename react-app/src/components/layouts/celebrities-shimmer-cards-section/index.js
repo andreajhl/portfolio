@@ -31,15 +31,15 @@ const CelebritiesShimmerCardsSectionLayout = () => {
         </ul>
       </section>
       <section className="celebrities-shimmer-section-layout container pr-0">
-        <div className="celebrities-shimmer-section-layout__title w-50"></div>
-        <ul className="celebrities-shimmer-section-layout__cards-list">
-          {shimmerCelebritiesCardsItems}
-        </ul>
-      </section>
-      <section className="celebrities-shimmer-section-layout container pr-0">
         <div className="celebrities-shimmer-section-layout__title w-75"></div>
         <ul className="celebrities-shimmer-section-layout__cards-list">
           {shimmerVideosCardsItems}
+        </ul>
+      </section>
+      <section className="celebrities-shimmer-section-layout container pr-0">
+        <div className="celebrities-shimmer-section-layout__title w-50"></div>
+        <ul className="celebrities-shimmer-section-layout__cards-list">
+          {shimmerCelebritiesCardsItems}
         </ul>
       </section>
       <section className="celebrities-shimmer-section-layout container pr-0">

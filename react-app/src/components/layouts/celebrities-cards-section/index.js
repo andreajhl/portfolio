@@ -1,5 +1,6 @@
 import React from "react";
 import { CelebrityCardLayout } from "../celebrity-card";
+import { VideoCardLayout } from "../video-card";
 import "./styles.scss";
 
 const CelebritiesCardsSectionLayout = ({ title, type, celebrities }) => {
@@ -13,7 +14,11 @@ const CelebritiesCardsSectionLayout = ({ title, type, celebrities }) => {
                 key={`${title}-${type}-${celebrity.id}${index}`}
                 className="celebrities-section-layout__card-item"
               >
-                <CelebrityCardLayout celebrity={celebrity} />
+                {type === "MAIN_VIDEO_1" ? (
+                  <VideoCardLayout celebrity={celebrity} />
+                ) : (
+                  <CelebrityCardLayout celebrity={celebrity} />
+                )}
               </li>
             ))
           : null}
