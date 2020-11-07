@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import {contractOperations} from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
 import {Session} from "../../../state/utils/session";
-
+import OcassionsOptions from '../ocassions-options';
 class CreateContractForm extends Component {
 
     constructor(props) {
@@ -221,6 +221,7 @@ class CreateContractForm extends Component {
                         </div>
                     </div>
                     <div className={"mt-3"}>{""}</div>
+                    <OcassionsOptions></OcassionsOptions>
                     <div className={"form-custom-vertical-group"}>
                         <label>¿Qué quieres que diga {this.props.celebrityFullName}?</label>
                         <textarea
