@@ -2,14 +2,20 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
+import { NavbarSearchLayout } from "../navbar-search";
 import "./styles.scss";
 
 const ModalSelect = ({
   buttonLabel,
   modalTitle,
-  children,
+  showSearch,
+  searchPlaceholder,
+  options,
   footerButtonLabel,
   footerButtonOnClick,
+  onInputChange,
+  isChecked,
+  multipleSelection,
   onModalClose,
   onModalOpen
 }) => {
@@ -52,7 +58,43 @@ const ModalSelect = ({
             {modalTitle}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>{children}</Modal.Body>
+        <Modal.Body>
+          {showSearch ? (
+            <NavbarSearchLayout searchLabel={searchPlaceholder} />
+          ) : null}
+          <ul className={`options-list pl-2 mb-0 ${!showSearch ? "py-0" : ""}`}>
+            {options &&
+              options.map((option) => {
+                const optionKey = `${buttonLabel}-${option.label}-${option.value}`;
+                const inputType = multipleSelection ? "checkbox" : "radio";
+                return (
+                  <li className="options-list__item" key={optionKey}>
+                    <div
+                      className={`custom-control form-control-lg custom-${inputType}`}
+                    >
+                      <input
+                        type={inputType}
+                        className="custom-control-input"
+                        id={optionKey}
+                        name={multipleSelection ? optionKey : buttonLabel}
+                        value={option.value}
+                        onChange={onInputChange}
+                        checked={isChecked(option.value)}
+                      />
+                      <label
+                        className="custom-control-label"
+                        htmlFor={optionKey}
+                      >
+                        <span className="options-list__label">
+                          {option.label}
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                );
+              })}
+          </ul>
+        </Modal.Body>
         <Modal.Footer>
           <Button onClick={onClickFooterButton}>{footerButtonLabel}</Button>
         </Modal.Footer>
@@ -68,7 +110,8 @@ ModalSelect.defaultProps = {
   footerButtonLabel: "",
   footerButtonOnClick: () => {},
   onModalClose: () => {},
-  onModalOpen: () => {}
+  onModalOpen: () => {},
+  multipleSelection: false
 };
 
 ModalSelect.propTypes = {
@@ -78,7 +121,8 @@ ModalSelect.propTypes = {
   footerButtonLabel: PropTypes.string,
   footerButtonOnClick: PropTypes.func,
   onModalClose: PropTypes.func,
-  onModalOpen: PropTypes.func
+  onModalOpen: PropTypes.func,
+  multipleSelection: PropTypes.bool
 };
 
 export { ModalSelect };

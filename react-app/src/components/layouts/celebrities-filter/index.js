@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { NavbarSearchLayout } from "../navbar-search";
 import { ModalSelect } from "../modal-select";
 import "./styles.scss";
 
@@ -42,35 +41,14 @@ const CelebritiesFilter = ({
       modalTitle={modalTitle}
       footerButtonLabel="Aplicar filtro"
       footerButtonOnClick={applyFilters}
+      searchPlaceholder={searchPlaceholder}
       onModalOpen={onModalOpen}
-    >
-      {showSearch ? (
-        <NavbarSearchLayout searchLabel={searchPlaceholder} />
-      ) : null}
-      <ul className={`options-list pl-2 mb-0 ${!showSearch ? "py-0" : ""}`}>
-        {options &&
-          options.map((option) => {
-            const optionKey = `${buttonLabel}-${option.label}-${option.value}`;
-            return (
-              <li className="options-list__item" key={optionKey}>
-                <div className="custom-control form-control-lg custom-checkbox">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input"
-                    id={optionKey}
-                    value={option.value}
-                    onChange={addCheckedItem}
-                    checked={checkedItems.includes(String(option.value))}
-                  />
-                  <label className="custom-control-label" htmlFor={optionKey}>
-                    <span className="options-list__label">{option.label}</span>
-                  </label>
-                </div>
-              </li>
-            );
-          })}
-      </ul>
-    </ModalSelect>
+      options={options}
+      showSearch={showSearch}
+      onInputChange={addCheckedItem}
+      isChecked={(optionValue) => checkedItems.includes(String(optionValue))}
+      multipleSelection
+    />
   );
 };
 
