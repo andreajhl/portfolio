@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
-import { NavbarSearchLayout } from "../navbar-search";
+import { SearchInputLayout } from "../search-input";
 import "./styles.scss";
 
 const ModalSelect = ({
@@ -10,6 +10,7 @@ const ModalSelect = ({
   modalTitle,
   showSearch,
   searchPlaceholder,
+  onSearchChange,
   options,
   footerButtonLabel,
   footerButtonOnClick,
@@ -60,7 +61,10 @@ const ModalSelect = ({
         </Modal.Header>
         <Modal.Body>
           {showSearch ? (
-            <NavbarSearchLayout searchLabel={searchPlaceholder} />
+            <SearchInputLayout
+              searchLabel={searchPlaceholder}
+              onSearchChange={onSearchChange}
+            />
           ) : null}
           <ul className={`options-list pl-2 mb-0 ${!showSearch ? "py-0" : ""}`}>
             {options &&
@@ -106,23 +110,33 @@ const ModalSelect = ({
 ModalSelect.defaultProps = {
   buttonLabel: "",
   modalTitle: "",
-  children: null,
+  showSearch: true,
+  searchPlaceholder: "Buscar",
+  onSearchChange: () => {},
+  options: [],
   footerButtonLabel: "",
   footerButtonOnClick: () => {},
+  onInputChange: () => {},
+  isChecked: () => {},
+  multipleSelection: false,
   onModalClose: () => {},
-  onModalOpen: () => {},
-  multipleSelection: false
+  onModalOpen: () => {}
 };
 
 ModalSelect.propTypes = {
   buttonLabel: PropTypes.string,
   modalTitle: PropTypes.string,
-  children: PropTypes.node,
+  showSearch: PropTypes.bool,
+  searchPlaceholder: PropTypes.string,
+  onSearchChange: PropTypes.func,
+  options: PropTypes.array,
   footerButtonLabel: PropTypes.string,
   footerButtonOnClick: PropTypes.func,
+  onInputChange: PropTypes.func,
+  isChecked: PropTypes.func,
+  multipleSelection: PropTypes.bool,
   onModalClose: PropTypes.func,
-  onModalOpen: PropTypes.func,
-  multipleSelection: PropTypes.bool
+  onModalOpen: PropTypes.func
 };
 
 export { ModalSelect };

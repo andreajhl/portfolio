@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import { ModalSelect } from "../modal-select";
 import "./styles.scss";
@@ -12,6 +12,7 @@ const CelebritiesFilter = ({
   onApplyFilters,
   activeItems
 }) => {
+  const [searchQuery, setSearchQuery] = useState("");
   const [checkedItems, setCheckedItems] = useState([]);
   const addCheckedItem = ({ target }) => {
     if (target.checked) {
@@ -24,6 +25,7 @@ const CelebritiesFilter = ({
   };
 
   const onModalOpen = () => setCheckedItems(activeItems);
+  const onModalClose = () => setSearchQuery("");
 
   const applyFilters = () => {
     onApplyFilters(checkedItems);
@@ -32,6 +34,13 @@ const CelebritiesFilter = ({
   useEffect(() => {
     setCheckedItems(activeItems);
   }, [activeItems]);
+
+  const matchSearchQuery = ({ label }) =>
+    new RegExp(searchQuery, "gi").test(label);
+
+  const filteredOptions = searchQuery
+    ? options.filter(matchSearchQuery)
+    : options;
 
   return (
     <ModalSelect
@@ -43,9 +52,11 @@ const CelebritiesFilter = ({
       footerButtonOnClick={applyFilters}
       searchPlaceholder={searchPlaceholder}
       onModalOpen={onModalOpen}
-      options={options}
+      onModalClose={onModalClose}
+      options={filteredOptions}
       showSearch={showSearch}
       onInputChange={addCheckedItem}
+      onSearchChange={setSearchQuery}
       isChecked={(optionValue) => checkedItems.includes(String(optionValue))}
       multipleSelection
     />
