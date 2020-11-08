@@ -4,6 +4,12 @@ import { CelebritiesFilter } from "../celebrities-filter";
 import { CelebritiesOrderBy } from "../celebrities-order-by";
 import "./styles.scss";
 import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
+import { restCountriesOperations } from "../../../state/ducks/rest-countries";
+import { countriesOperations } from "../../../state/ducks/countries";
+import {
+  celebrityCategoriesOperations,
+  celebrityCategoriesEndpoints
+} from "../../../state/ducks/celebrity-categories";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 
 const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
@@ -15,7 +21,12 @@ const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
   };
 };
 
-const mapDispatchToProps = { updateQueryParams };
+const mapDispatchToProps = {
+  updateQueryParams,
+  listCountries: countriesOperations.list,
+  listCelebrityCategories: celebrityCategoriesOperations.list,
+  listRestCountries: restCountriesOperations.list
+};
 
 const removeParenthesis = (string) => string.replace(/\([^)]*\)/, "");
 
@@ -23,7 +34,10 @@ const FiltersSectionLayout = ({
   countries,
   celebrityCategories,
   queryParams,
-  updateQueryParams
+  updateQueryParams,
+  listCountries,
+  listCelebrityCategories,
+  listRestCountries
 }) => {
   const [params, setParams] = useState(updateQueryParamsInitialState);
 
@@ -39,11 +53,17 @@ const FiltersSectionLayout = ({
   useEffect(() => {
     if (params === updateQueryParamsInitialState) return;
     const { country_id, category_id, orderBy } = params;
-    updateQueryParams(
-      { ...queryParams, country_id, category_id, orderBy },
-      true
-    );
+    updateQueryParams({ ...queryParams, country_id, category_id, orderBy });
   }, [params]);
+
+  useEffect(() => {
+    const shouldFetchFilterOptions =
+      !countries.length && !celebrityCategories.length;
+    if (!shouldFetchFilterOptions) return;
+    listCountries();
+    listRestCountries();
+    listCelebrityCategories();
+  }, []);
 
   return (
     <section className="FiltersSectionLayout">

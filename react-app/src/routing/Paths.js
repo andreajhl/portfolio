@@ -1,12 +1,14 @@
 export const ROOT_PATH = "/";
 export const HOME_PATH = "/inicio/";
-export const SEARCH_PATH = '/buscar/';
+export const SEARCH_PATH = "/buscar";
 export const CELEBRITY_PROFILE = "/:celebrity_username";
 export const CELEBRITY_PROFILE_ERROR = "/:celebrity_username/404-not-found/";
 export const CELEBRITY_PROFILE_CONTRACT = "/:celebrity_username/contratar";
 export const PAYMENT_METHODS = "/metodos-de-pago/:contract_reference";
-export const STRIPE_3D_SECURE_IFRAME = "/metodos-de-pago/:contract_reference/stripe-3d-secure/iframe";
-export const STRIPE_3D_SECURE_RESPONSE = "/metodos-de-pago/:contract_reference/stripe-3d-secure/response";
+export const STRIPE_3D_SECURE_IFRAME =
+  "/metodos-de-pago/:contract_reference/stripe-3d-secure/iframe";
+export const STRIPE_3D_SECURE_RESPONSE =
+  "/metodos-de-pago/:contract_reference/stripe-3d-secure/response";
 export const CONTRACT_CREATED = "/contract-created/:contract_reference";
 export const CONTRACT_PENDING = "/resumen-de-compra/:contract_reference";
 // DOCS
@@ -30,7 +32,7 @@ export const CELEBRITY_REQUEST = "/forms/aplicar/";
 export const CLIENT_PROFILE = "/my-account/profile";
 export const CLIENT_HIRINGS = "/my-account/hirings";
 export const ACCOUNT_HIRING_PREVIEW =
-    "/my-account/hirings/:contract_reference/";
+  "/my-account/hirings/:contract_reference/";
 export const HIRING_PREVIEW = "/hirings/:contract_reference";
 export const HIRING_PREVIEW_WITHOUT_SESSION = "/hirings/:contract_reference";
 // TRENDING

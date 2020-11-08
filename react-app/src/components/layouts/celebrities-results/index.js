@@ -1,19 +1,10 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { CelebrityCardLayout } from "../celebrity-card";
-import { fetchCelebritySections } from "../../../state/ducks/celebrity-sections/actions";
 import "./styles.scss";
-import { CelebritiesResultsShimmerCardsLayout } from "../celebrities-results-shimmer-cards";
 
-const mapStateToProps = ({ celebritySections }) => {
-  const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
-  return { loading, celebritiesSections: data.results };
-};
-
-const mapDispatchToProps = { fetchCelebritySections };
-
-const CelebritiesResultsLayout = ({ celebrities, queryParams, isLoading }) => {
-  const isSearchingByKeyword = queryParams.search !== "";
+const CelebritiesResultsLayout = ({ celebrities, queryParams, ...props }) => {
+  console.log(props);
+  const isSearchingByKeyword = /* queryParams.search !== "" */ false;
   const hasResults = celebrities.length > 0;
   return (
     <div className="CelebritiesResultsLayout">
@@ -22,9 +13,7 @@ const CelebritiesResultsLayout = ({ celebrities, queryParams, isLoading }) => {
           hasResults ? "pr-0" : ""
         }`}
       >
-        {isLoading ? (
-          <CelebritiesResultsShimmerCardsLayout />
-        ) : hasResults ? (
+        {hasResults ? (
           <>
             <h2 className="celebrities-results-layout__title">
               Resultados{" "}
@@ -70,12 +59,8 @@ const CelebritiesResultsLayout = ({ celebrities, queryParams, isLoading }) => {
   );
 };
 
-CelebritiesResultsLayout.defaultProps = {};
+CelebritiesResultsLayout.defaultProps = {
+  celebrities: []
+};
 
-// Export Class
-const _CelebritiesResultsLayout = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CelebritiesResultsLayout);
-
-export { _CelebritiesResultsLayout as CelebritiesResultsLayout };
+export { CelebritiesResultsLayout };

@@ -9,13 +9,21 @@ import * as API_PATHS from "./paths";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 
-export const updateQueryParams = (params, applyFetch = true) => {
-  return (dispatch) => {
-    dispatch({ type: types.UPDATE_QUERY_PARAMS, payload: { params } });
-    if (applyFetch) {
-      dispatch(list(params));
-    }
-  };
+const getValidParams = (params) => {
+  const paramsEntries = Object.entries(params);
+  const onlyValidParamsEntries = paramsEntries.filter(([key, value]) =>
+    Boolean(value)
+  );
+  return Object.fromEntries(onlyValidParamsEntries);
+};
+
+export const updateQueryParams = (params) => (dispatch) => {
+  const newParams = getValidParams(params);
+  dispatch({
+    type: types.UPDATE_QUERY_PARAMS,
+    payload: { params: newParams }
+  });
+  history.push(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
 };
 
 export const get = (object_id, preloaded = false) => {

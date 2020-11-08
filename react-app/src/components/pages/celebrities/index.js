@@ -7,9 +7,6 @@ import {
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import "./styles.scss";
-import { restCountriesOperations } from "../../../state/ducks/rest-countries";
-import { countriesOperations } from "../../../state/ducks/countries";
-import { celebrityCategoriesOperations } from "../../../state/ducks/celebrity-categories";
 import * as GTM from "../../../state/utils/gtm";
 import { NewsLetterModal } from "../../containers/newsletter-modal";
 import { HeroSectionLayout } from "../../layouts/hero-section";
@@ -34,36 +31,6 @@ class CelebritiesPage extends Component {
   }
 
   componentDidMount() {
-    this.listCountries();
-    this.props.listRestCountries();
-    this.props.listCelebrityCategories();
-    /* const queryParams = this.props.queryParams;
-    // this.props.updateQueryParams(queryParams);
-
-
-    const divScroll = this.scrollDiv.current;
-
-    // Detect when scrolled to bottom.
-    divScroll.addEventListener("scroll", (e) => {
-      const value = Math.round(divScroll.scrollHeight - divScroll.offsetHeight);
-      if (
-        divScroll.scrollTop + divScroll.clientHeight >=
-        divScroll.scrollHeight - window.innerHeight + 200
-      ) {
-        if (
-          !this.props.isLoading &&
-          this.props.paginationData.totalItems !== this.props.celebrities.length
-        ) {
-          if (
-            this.props.paginationData.currentPage + 1 <=
-            this.props.paginationData.totalPages
-          ) {
-            this.onPaginationChange(this.props.paginationData.currentPage + 1);
-          }
-        }
-      }
-    }); */
-
     GTM.tagManagerDataLayer("CELEBRITIES_PAGE_VIEW", this.props.queryParams);
   }
 
@@ -143,10 +110,6 @@ class CelebritiesPage extends Component {
     );
   }
 
-  listCountries() {
-    this.props.listCountries();
-  }
-
   onPaginationChange(page) {
     const queryParams = this.props.queryParams;
     queryParams["currentPage"] = page;
@@ -171,11 +134,6 @@ class CelebritiesPage extends Component {
   };
 
   render() {
-    const hasFilteredCelebrities =
-      this.props.queryParams.search ||
-      this.props.queryParams.country_id ||
-      this.props.queryParams.category_id ||
-      this.props.queryParams.orderBy;
     return (
       <>
         <div className={"CelebritiesPage "}>
@@ -206,17 +164,9 @@ class CelebritiesPage extends Component {
             {/*<MainMenuLayout/>*/}
             {/*/! End MainMenuLayout *!/*/}
 
-            {!hasFilteredCelebrities ? <HeroSectionLayout /> : null}
+            <HeroSectionLayout />
             <FiltersSectionLayout />
-            {hasFilteredCelebrities ? (
-              <CelebritiesResultsLayout
-                celebrities={this.props.celebrities}
-                queryParams={this.props.queryParams}
-                isLoading={this.props.isLoading}
-              />
-            ) : (
-              <CelebritiesSectionsLayout />
-            )}
+            <CelebritiesSectionsLayout />
             {/* <div
               className="scroll-section"
               style={{
@@ -273,10 +223,7 @@ const mapStateToProps = ({
 // mapStateToProps
 const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list,
-  updateQueryParams: celebrityOperations.updateQueryParams,
-  listCountries: countriesOperations.list,
-  listCelebrityCategories: celebrityCategoriesOperations.list,
-  listRestCountries: restCountriesOperations.list
+  updateQueryParams: celebrityOperations.updateQueryParams
 };
 
 // Export Class
