@@ -24,6 +24,7 @@ class CreateContractForm extends Component {
                 isPublic: true
             },
             showErrors: false,
+            typeMessageSelected: 'fa-birthday-cake',
         };
         this.handleIsPublic = this.handleIsPublic.bind(this);
         this.createContract = this.createContract.bind(this);
@@ -107,6 +108,14 @@ class CreateContractForm extends Component {
         }
         return null
     };
+
+    changeOcassionOption = (idenfifier) =>{
+        console.log(idenfifier);
+        this.setState({
+            ...this.state,
+            typeMessageSelected: idenfifier,
+        });
+    }
 
     deliveryContactValidator = () => {
         if (!this.state.contractData.deliveryContact.length) {
@@ -221,7 +230,7 @@ class CreateContractForm extends Component {
                         </div>
                     </div>
                     <div className={"mt-3"}>{""}</div>
-                    <OcassionsOptions></OcassionsOptions>
+                    <OcassionsOptions currentChoise={this.state.typeMessageSelected} clicked={this.changeOcassionOption}></OcassionsOptions>
                     <div className={"form-custom-vertical-group"}>
                         <label>¿Qué quieres que diga {this.props.celebrityFullName}?</label>
                         <textarea

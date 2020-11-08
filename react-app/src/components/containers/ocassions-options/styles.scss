@@ -1,9 +1,10 @@
+
 .option-container{
    
     text-align: center;
 
-    .container-circle{
-        
+    
+    .container-circle{ 
         cursor: pointer;
         border: 1.5px solid #000000;
         border-radius: 50%;
@@ -14,11 +15,22 @@
         align-content: center;
         align-items: center;
         margin: auto;
+      
+        &.choose{
+            border: 1.5px solid #FB177D;
+        }
+        
     }
+    &.choose *{
+       color: #FB177D;
+    }
+    
     .container-legend{
         font-size: 11px;
         cursor: pointer;
     }
+
+    
     i {
         font-size: 25px;
         
