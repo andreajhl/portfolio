@@ -52,7 +52,10 @@ const CelebritiesResultsPage = ({
         {isLoading ? (
           <CelebritiesResultsShimmerCardsLayout />
         ) : (
-          <CelebritiesResultsLayout celebrities={celebrities} />
+          <CelebritiesResultsLayout
+            celebrities={celebrities}
+            queryParams={listParams}
+          />
         )}
       </PageContainer>
     </div>

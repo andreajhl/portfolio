@@ -3,7 +3,7 @@ import { CelebrityCardLayout } from "../celebrity-card";
 import "./styles.scss";
 
 const CelebritiesResultsLayout = ({ celebrities, queryParams, ...props }) => {
-  const isSearchingByKeyword = /* queryParams.search !== "" */ false;
+  const isSearchingByKeyword = Boolean(queryParams.search);
   const hasResults = celebrities.length > 0;
   return (
     <div className="CelebritiesResultsLayout">
