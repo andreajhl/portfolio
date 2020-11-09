@@ -31,12 +31,13 @@ class PageContainer extends Component {
   }
 
   onSearchChange(keyword) {
-    if (this.props.applyFetchCelebrities === true) {
-      const queryParams = { ...this.props.queryParams };
-      queryParams["search"] = keyword;
-      queryParams["currentPage"] = 1;
-      this.props.updateQueryParams(queryParams, true);
-    }
+    const queryParams = {
+      ...this.props.queryParams,
+      offset: updateQueryParamsInitialState.offset,
+      limit: updateQueryParamsInitialState.limit,
+      search: keyword
+    };
+    this.props.updateQueryParams(queryParams);
   }
 
   setDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
@@ -64,6 +65,7 @@ class PageContainer extends Component {
             hideControls={this.props.hideControls}
             dropdownMenuIsOpen={this.state.dropdownMenuIsOpen}
             setDropdownMenuIsOpen={this.setDropdownMenuIsOpen}
+            queryParams={this.props.queryParams}
           />
         ) : null}
         {/* End NavbarSectionLayout */}
@@ -109,6 +111,7 @@ PageContainer.defaultProps = {
   celebrities: [],
   paginationData: {},
   onSearchChange: () => {},
+  queryParams: {},
   showFooter: true,
   showNavbar: true,
   showSearch: true,
@@ -123,9 +126,7 @@ PageContainer.defaultProps = {
 const mapStateToProps = (state) => ({
   isLoading: state.celebrities.fetchCelebritiesReducer.loading,
   celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
-  paginationData:
-    state.celebrities.fetchCelebritiesReducer.data.informationPage,
-  queryParams: state.celebrities.queryParamsReducer
+  paginationData: state.celebrities.fetchCelebritiesReducer.data.informationPage
 });
 
 // mapStateToProps

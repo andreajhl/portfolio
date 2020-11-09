@@ -28,15 +28,6 @@ class NavbarSearchLayout extends Component {
   }
 
   inputHandler({ target }) {
-    // if (e.target.value && e.target.value.length > 1) {
-    //   if (e.target.value.length % 2 === 0) {
-    //     if (this.onSearchChange) {
-    //       this.onSearchChange(e.target.value);
-    //     }
-    //   }
-    // } else if (e.target.value.length === 0) {
-    //   this.onSearchChange(e.target.value);
-    // }
     const { value } = target;
     this.debouncedOnSearchChange(value);
     this.setState({
@@ -102,8 +93,7 @@ NavbarSearchLayout.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
   isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
-  isLoading: state.celebrities.fetchCelebritiesReducer.loading,
-  queryParams: state.celebrities.queryParamsReducer
+  isLoading: state.celebrities.fetchCelebritiesReducer.loading
 });
 
 // mapStateToProps

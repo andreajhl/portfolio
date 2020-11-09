@@ -13,6 +13,7 @@ const NavbarSectionLayout = ({
   onSearchChange,
   showSearch,
   showLogin,
+  queryParams,
   dropdownMenuIsOpen,
   setDropdownMenuIsOpen
 }) => {
@@ -123,6 +124,7 @@ const NavbarSectionLayout = ({
               <NavbarSearchLayout
                 searchLabel="Buscar famosos"
                 onSearchChange={onSearchChange}
+                queryParams={queryParams}
               />
             </div>
           </div>

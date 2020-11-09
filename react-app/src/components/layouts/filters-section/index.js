@@ -6,10 +6,7 @@ import "./styles.scss";
 import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import { countriesOperations } from "../../../state/ducks/countries";
-import {
-  celebrityCategoriesOperations,
-  celebrityCategoriesEndpoints
-} from "../../../state/ducks/celebrity-categories";
+import { celebrityCategoriesOperations } from "../../../state/ducks/celebrity-categories";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 
 const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
@@ -31,8 +28,8 @@ const removeParenthesis = (string) => string.replace(/\([^)]*\)/, "");
 
 const initialState = {
   params: {
-    currentPage: updateQueryParamsInitialState.currentPage,
-    pageSize: updateQueryParamsInitialState.pageSize
+    offset: updateQueryParamsInitialState.offset,
+    limit: updateQueryParamsInitialState.limit
   }
 };
 
@@ -58,7 +55,11 @@ const FiltersSectionLayout = ({
 
   useEffect(() => {
     if (params === initialState.params) return;
-    updateQueryParams({ ...queryParams, ...params });
+    updateQueryParams({
+      ...queryParams,
+      ...initialState.params,
+      ...params
+    });
   }, [params]);
 
   useEffect(() => {

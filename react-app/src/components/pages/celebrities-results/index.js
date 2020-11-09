@@ -10,6 +10,8 @@ import {
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { useMemo } from "react";
+import { Redirect } from "react-router";
+import { ROOT_PATH } from "../../../routing/Paths";
 
 const mapStateToProps = ({ celebrities }) => {
   return {
@@ -30,12 +32,14 @@ const CelebritiesResultsPage = ({
   celebrities,
   location
 }) => {
-  const listParams = useMemo(() => queryStringToJSON(location.search), [
-    location.search
+  const queryString = location.search;
+  const listParams = useMemo(() => queryStringToJSON(queryString), [
+    queryString
   ]);
   useEffect(() => {
     fetchCelebrities(listParams);
   }, [listParams]);
+  if (!queryString) return <Redirect to={ROOT_PATH} />;
 
   return (
     <div className="CelebritiesResultsPage">
@@ -43,8 +47,8 @@ const CelebritiesResultsPage = ({
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
       </MetaTags>
-      <PageContainer showFooter={false}>
-        <FiltersSectionLayout queryParams={listParams}/>
+      <PageContainer showFooter={false} queryParams={listParams}>
+        <FiltersSectionLayout queryParams={listParams} />
         {isLoading ? (
           <CelebritiesResultsShimmerCardsLayout />
         ) : (
