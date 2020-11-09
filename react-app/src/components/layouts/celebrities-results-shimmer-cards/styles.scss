@@ -5,21 +5,36 @@
     width: 14rem;
     border-radius: 10px;
     background: #d8d8d8;
+
+    @media only screen and (max-width: 401px) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media only screen and (min-width: 576px) {
+      margin-left: 12%;
+    }
+
+    @media only screen and (min-width: 768px) {
+      margin-left: 7.5%;
+    }
+
+    @media only screen and (min-width: 1200px) {
+      margin-left: 5.5%;
+    }
   }
 
   &__cards-list {
     list-style: none;
-    padding: 0;
-    display: flex;
+    padding: 0 0 2rem;
+    display: grid;
+    gap: 1.1656rem 0.75rem;
     justify-content: center;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, 186.54px);
     overflow: scroll;
   }
 
   &__card-item {
-    margin-right: 0.75rem;
-    margin-bottom: 1.1656rem;
-
     .shimmer-card {
       width: 186.54px;
 

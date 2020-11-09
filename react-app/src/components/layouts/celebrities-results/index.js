@@ -9,7 +9,7 @@ const CelebritiesResultsLayout = ({ celebrities, queryParams, ...props }) => {
     <div className="CelebritiesResultsLayout">
       <section
         className={`celebrities-results-layout container ${
-          hasResults ? "pr-0" : ""
+          hasResults ? "px-2" : ""
         }`}
       >
         {hasResults ? (

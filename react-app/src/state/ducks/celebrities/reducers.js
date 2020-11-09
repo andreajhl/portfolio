@@ -4,7 +4,7 @@ import { getTotalColumns } from "../../utils/gridSystem";
 
 export const updateQueryParamsInitialState = {
   offset: 0,
-  limit: 10
+  limit: getTotalColumns() * 3
 };
 
 const fetchCelebritiesInitialState = {
