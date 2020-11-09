@@ -130,7 +130,9 @@ const NavbarSectionLayout = ({
           </div>
         ) : null}
       </div>
-      <div className="top-bar-helper"></div>
+      <div
+        className={`top-bar-helper ${!showSearch ? "hidden-search" : ""}`}
+      ></div>
     </div>
   );
 };

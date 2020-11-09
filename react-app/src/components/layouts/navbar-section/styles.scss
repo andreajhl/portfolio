@@ -1,9 +1,6 @@
 @import "../../../theme";
 
 .NavbarSectionLayout {
-  &.hidden-hero {
-    top: 0;
-  }
 }
 
 .top-bar {
@@ -15,6 +12,10 @@
 
   &-helper {
     height: 121px;
+
+    &.hidden-search {
+      height: 53px;
+    }
   }
 
   &__dropdown-button {
