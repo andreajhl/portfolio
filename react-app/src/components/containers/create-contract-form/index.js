@@ -21,10 +21,9 @@ class CreateContractForm extends Component {
                 deliveryType: 1,
                 deliveryContact: session.hasEmail() ? (session.getSession().email || "") : "",
                 instructions: "",
-                isPublic: true
+                isPublic: true,
+                occasion: 'BIRTHDAY',
             },
-            showErrors: false,
-            typeMessageSelected: 'fa-birthday-cake',
         };
         this.handleIsPublic = this.handleIsPublic.bind(this);
         this.createContract = this.createContract.bind(this);
@@ -110,10 +109,12 @@ class CreateContractForm extends Component {
     };
 
     changeOcassionOption = (idenfifier) =>{
-        console.log(idenfifier);
+        const updatedContractData = {...this.state.contractData};
+        console.log(updatedContractData)
+        updatedContractData.occasion = idenfifier;
         this.setState({
             ...this.state,
-            typeMessageSelected: idenfifier,
+            contractData: updatedContractData
         });
     }
 
@@ -230,7 +231,7 @@ class CreateContractForm extends Component {
                         </div>
                     </div>
                     <div className={"mt-3"}>{""}</div>
-                    <OcassionsOptions currentChoise={this.state.typeMessageSelected} clicked={this.changeOcassionOption}></OcassionsOptions>
+                    <OcassionsOptions currentChoise={this.state.contractData.occasion} clicked={this.changeOcassionOption}></OcassionsOptions>
                     <div className={"form-custom-vertical-group"}>
                         <label>¿Qué quieres que diga {this.props.celebrityFullName}?</label>
                         <textarea

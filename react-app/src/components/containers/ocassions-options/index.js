@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import {occasionsOp} from '../../../constants/options';
+import {occasionsData} from '../../../constants/options';
 class index extends Component {
     render() {
-        const optionsToRender = Object.keys(occasionsOp)
+        const optionsToRender = Object.keys(occasionsData)
         .map(optionKey =>{
-            console.log(optionKey)
             return (
                 <div className={`col option-container ${this.props.currentChoise === optionKey ? 'choose' : ''}`} key={optionKey} onClick={() => this.props.clicked(optionKey)}>
                   <div className={`container-circle ${this.props.currentChoise === optionKey ? 'choose' : ''}`}>
-                    <i className={'fas ' + optionKey}></i>
+                    <i className={'fas ' + occasionsData[optionKey].icon}></i>
                   </div>
-                <span className='container-legend subtitle'>{occasionsOp[optionKey].title}</span>
+                <span className='container-legend subtitle'>{occasionsData[optionKey].title}</span>
                 </div>
              
             );
