@@ -15,7 +15,6 @@ import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/
 const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
   return {
     countries: countries.countriesReducer.data.results,
-    queryParams: celebrities.queryParamsReducer,
     celebrityCategories:
       celebrityCategories.fetchCelebrityCategoriesReducer.data.results
   };
@@ -30,6 +29,13 @@ const mapDispatchToProps = {
 
 const removeParenthesis = (string) => string.replace(/\([^)]*\)/, "");
 
+const initialState = {
+  params: {
+    currentPage: updateQueryParamsInitialState.currentPage,
+    pageSize: updateQueryParamsInitialState.pageSize
+  }
+};
+
 const FiltersSectionLayout = ({
   countries,
   celebrityCategories,
@@ -39,7 +45,7 @@ const FiltersSectionLayout = ({
   listCelebrityCategories,
   listRestCountries
 }) => {
-  const [params, setParams] = useState(updateQueryParamsInitialState);
+  const [params, setParams] = useState(initialState.params);
 
   const setFilterParam = (paramName) => (paramValues) =>
     setParams((params) => ({
@@ -51,9 +57,8 @@ const FiltersSectionLayout = ({
     setParams((params) => ({ ...params, orderBy }));
 
   useEffect(() => {
-    if (params === updateQueryParamsInitialState) return;
-    const { country_id, category_id, orderBy } = params;
-    updateQueryParams({ ...queryParams, country_id, category_id, orderBy });
+    if (params === initialState.params) return;
+    updateQueryParams({ ...queryParams, ...params });
   }, [params]);
 
   useEffect(() => {
@@ -112,6 +117,10 @@ const FiltersSectionLayout = ({
       </div>
     </section>
   );
+};
+
+FiltersSectionLayout.defaultProps = {
+  queryParams: []
 };
 
 const _FiltersSectionLayout = connect(
