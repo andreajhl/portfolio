@@ -10,9 +10,7 @@ const VideoCardLayout = ({ celebrity }) => {
         className="video-card"
         style={{
           background: `linear-gradient(0deg, #292929 0%, rgba(126, 126, 126, 0) 100%), url(${
-            celebrity.mainVideoPosterUrl ||
-            celebrity.avatar ||
-            "/assets/img/avatar-blank.png"
+            celebrity.videoPosterUrl || "/assets/img/avatar-blank.png"
           }) center`
         }}
       >

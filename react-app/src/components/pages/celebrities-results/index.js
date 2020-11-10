@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import MetaTags from "react-meta-tags";
 import {
@@ -26,20 +26,29 @@ const pageTitle = "Famosos.com - Todos los Famosos";
 const pageDescription =
   "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.";
 
+const offsetInitialValue = 0;
+const resultsLimit = 10;
+
 const CelebritiesResultsPage = ({
   fetchCelebrities,
   isLoading,
   celebrities,
-  location
+  location,
+  history
 }) => {
   const queryString = location.search;
   const listParams = useMemo(() => queryStringToJSON(queryString), [
     queryString
   ]);
+
   useEffect(() => {
+    if (!queryString) return history.push(ROOT_PATH);
     fetchCelebrities(listParams);
   }, [listParams]);
-  if (!queryString) return <Redirect to={ROOT_PATH} />;
+
+  const fetchMoreData = () => {
+    // setParams((offset) => offset + resultsLimit);
+  };
 
   return (
     <div className="CelebritiesResultsPage">
@@ -55,6 +64,7 @@ const CelebritiesResultsPage = ({
           <CelebritiesResultsLayout
             celebrities={celebrities}
             queryParams={listParams}
+            fetchMoreData={fetchMoreData}
           />
         )}
       </PageContainer>
