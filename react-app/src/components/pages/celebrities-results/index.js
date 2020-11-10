@@ -42,7 +42,13 @@ const CelebritiesResultsPage = ({
   ]);
 
   useEffect(() => {
-    if (!queryString) return history.push(ROOT_PATH);
+    const hasSearched =
+      listParams.search ||
+      listParams.country_id ||
+      listParams.category_id ||
+      listParams.orderBy;
+
+    if (!queryString || !hasSearched) return history.push(ROOT_PATH);
     fetchCelebrities(listParams);
   }, [listParams]);
 
@@ -50,14 +56,22 @@ const CelebritiesResultsPage = ({
     // setParams((offset) => offset + resultsLimit);
   };
 
+  const isSearchingByKeyword = Boolean(listParams.search);
+
   return (
     <div className="CelebritiesResultsPage">
       <MetaTags>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
       </MetaTags>
-      <PageContainer showFooter={false} queryParams={listParams}>
-        <FiltersSectionLayout queryParams={listParams} />
+      <PageContainer
+        showFooter={false}
+        queryParams={listParams}
+        showSearch={isSearchingByKeyword}
+      >
+        {!isSearchingByKeyword ? (
+          <FiltersSectionLayout queryParams={listParams} />
+        ) : null}
         {isLoading ? (
           <CelebritiesResultsShimmerCardsLayout />
         ) : (

@@ -4,6 +4,10 @@
   .page-container-children {
     //max-width: $width-1240;
     margin: 0 auto;
+
+    &.hidden-search .FiltersSectionLayout {
+      top: 53px;
+    }
   }
 
   .page-container-children-helper {

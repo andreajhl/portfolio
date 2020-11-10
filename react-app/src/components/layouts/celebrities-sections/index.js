@@ -50,7 +50,6 @@ const CelebritiesSectionsLayout = ({
   }, [offset]);
 
   const fetchMoreData = () => {
-    console.count("fetches");
     setOffset((offset) => {
       const newOffset = offset + resultsLimit;
       return newOffset < totalResults ? newOffset : totalResults;
