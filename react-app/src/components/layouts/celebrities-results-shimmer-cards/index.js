@@ -6,7 +6,7 @@ import "./styles.scss";
 const CelebritiesResultsShimmerCardsLayout = (props) => {
   return (
     <div className="CelebritiesResultsLayout">
-      <section className="celebrities-results-shimmer-layout container">
+      <section className="celebrities-results-shimmer-layout container px-2">
         <div className="celebrities-results-shimmer-layout__title"></div>
         <ul className="celebrities-results-shimmer-layout__cards-list">
           {Array(getTotalColumns() * 4)

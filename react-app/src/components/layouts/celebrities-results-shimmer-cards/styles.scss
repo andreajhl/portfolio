@@ -6,9 +6,8 @@
     border-radius: 10px;
     background: #d8d8d8;
 
-    @media only screen and (max-width: 401px) {
-      margin-left: auto;
-      margin-right: auto;
+    @media only screen and (max-width: 240px) {
+      width: 100%;
     }
 
     @media only screen and (min-width: 576px) {
@@ -32,6 +31,9 @@
     justify-content: center;
     grid-template-columns: repeat(auto-fill, 186.54px);
     overflow: scroll;
+    @media only screen and (max-width: 401px) {
+      grid-template-columns: repeat(2, 45.33333333333333vw);
+    }
   }
 
   &__card-item {
@@ -40,6 +42,13 @@
 
       .shimmerBG {
         height: 186.54px;
+      }
+
+      @media only screen and (max-width: 401px) {
+        width: 45.33333333333333vw;
+        .shimmerBG {
+          height: 45.33333333333333vw;
+        }
       }
     }
   }
