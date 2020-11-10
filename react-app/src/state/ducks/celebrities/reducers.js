@@ -1,10 +1,9 @@
 import { combineReducers } from "redux";
 import * as types from "./types";
-import { getTotalColumns } from "../../utils/gridSystem";
 
 export const updateQueryParamsInitialState = {
   offset: 0,
-  limit: getTotalColumns() * 3
+  limit: 15
 };
 
 const fetchCelebritiesInitialState = {

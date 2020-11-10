@@ -32,7 +32,7 @@ const Loader = (
 );
 
 const offsetInitialValue = 0;
-const resultsLimit = 10;
+const resultsLimit = 4;
 
 const CelebritiesSectionsLayout = ({
   loading,
