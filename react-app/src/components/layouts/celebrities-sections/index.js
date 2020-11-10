@@ -36,8 +36,7 @@ const goBackUp = () => {
 };
 
 const EndMessage = () => (
-  <p className="text-center text-muted">
-    Ups! al parecer no hay más resultados. <br />
+  <p className="text-center">
     <button type="button" onClick={goBackUp} className="btn btn-primary mt-2">
       Volver arriba
     </button>
