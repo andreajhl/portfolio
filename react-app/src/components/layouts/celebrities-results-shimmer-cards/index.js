@@ -1,4 +1,5 @@
 import React from "react";
+import { getTotalColumns } from "../../../state/utils/gridSystem";
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
 import "./styles.scss";
 
@@ -8,8 +9,8 @@ const CelebritiesResultsShimmerCardsLayout = (props) => {
       <section className="celebrities-results-shimmer-layout container">
         <div className="celebrities-results-shimmer-layout__title"></div>
         <ul className="celebrities-results-shimmer-layout__cards-list">
-          {Array(15)
-            .fill(null, 0, 15)
+          {Array(getTotalColumns() * 4)
+            .fill(null, 0, getTotalColumns() * 4)
             .map((item, index) => (
               <li
                 key={index}
