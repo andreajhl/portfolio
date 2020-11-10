@@ -111,7 +111,7 @@ const FiltersSectionLayout = ({
           <li className="filters-section__filters-item filters-section__order-by">
             <CelebritiesOrderBy
               onApplyOrderBy={setOrderByParam}
-              activeValue={params.orderBy}
+              activeValue={queryParams.orderBy}
             />
           </li>
         </ul>

@@ -20,6 +20,10 @@ const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
     orderByOptions.find(({ value }) => value !== "" && value === activeValue)
       ?.label || "";
 
+  useEffect(() => {
+    setCheckedValue(activeValue);
+  }, [activeValue]);
+
   return (
     <ModalSelect
       buttonLabel={`Ordenar por: ${checkItemLabel}`}

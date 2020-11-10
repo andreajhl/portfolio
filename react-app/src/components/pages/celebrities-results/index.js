@@ -29,6 +29,15 @@ const pageDescription =
 const offsetInitialValue = 0;
 const resultsLimit = 10;
 
+const listParamsInitialKeys = ["offset", "limit"];
+
+const hasSearched = (listParams) => {
+  const listParamsEntries = Object.entries(listParams);
+  return listParamsEntries.some(
+    ([key, value]) => !listParamsInitialKeys.includes(key) && Boolean(value)
+  );
+};
+
 const CelebritiesResultsPage = ({
   fetchCelebrities,
   isLoading,
@@ -42,13 +51,8 @@ const CelebritiesResultsPage = ({
   ]);
 
   useEffect(() => {
-    const hasSearched =
-      listParams.search ||
-      listParams.country_id ||
-      listParams.category_id ||
-      listParams.orderBy;
-
-    if (!queryString || !hasSearched) return history.push(ROOT_PATH);
+    if (!queryString || !hasSearched(listParams))
+      return history.push(ROOT_PATH);
     fetchCelebrities(listParams);
   }, [listParams]);
 
