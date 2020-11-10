@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { CelebritiesCardsSectionLayout } from "../celebrities-cards-section";
 import { CelebritiesShimmerCardsSectionLayout } from "../celebrities-shimmer-cards-section";
+import { LoaderLayout } from "../loader";
 import { fetchCelebritySections } from "../../../state/ducks/celebrity-sections/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./styles.scss";
+import { EndMessageLayout } from "../end-message";
 
 const mapStateToProps = ({ celebritySections }) => {
   const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
@@ -17,34 +19,9 @@ const mapStateToProps = ({ celebritySections }) => {
 
 const mapDispatchToProps = { fetchCelebritySections };
 
-const Loader = () => (
-  <div className="loading-section mx-auto text-center">
-    <div className="spinner-grow text-primary" role="status">
-      <span className="sr-only">Loading...</span>
-    </div>
-    <div className="spinner-grow text-primary" role="status">
-      <span className="sr-only">Loading...</span>
-    </div>
-    <div className="spinner-grow text-primary" role="status">
-      <span className="sr-only">Loading...</span>
-    </div>
-  </div>
-);
-
-const goBackUp = () => {
-  document.documentElement.scroll({ top: 150, behavior: "smooth" });
-};
-
-const EndMessage = () => (
-  <p className="text-center">
-    <button type="button" onClick={goBackUp} className="btn btn-primary mt-2">
-      Volver arriba
-    </button>
-  </p>
-);
-
 const offsetInitialValue = 0;
 const resultsLimit = 4;
+const heroSectionHeight = 150;
 
 const CelebritiesSectionsLayout = ({
   loading,
@@ -78,8 +55,8 @@ const CelebritiesSectionsLayout = ({
           dataLength={celebritiesSections.length}
           next={fetchMoreData}
           hasMore={celebritiesSections.length < totalResults}
-          loader={<Loader />}
-          endMessage={<EndMessage />}
+          loader={<LoaderLayout />}
+          endMessage={<EndMessageLayout offsetTop={heroSectionHeight} />}
         >
           {celebritiesSections.map((celebritiesSection) => (
             <CelebritiesCardsSectionLayout
