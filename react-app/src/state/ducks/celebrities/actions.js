@@ -24,7 +24,12 @@ export const updateQueryParams = (params) => (dispatch) => {
     type: types.UPDATE_QUERY_PARAMS,
     payload: { params: { ...updateQueryParamsInitialState, ...newParams } }
   });
-  history.push(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
+  // history.push({pathname: PATHS.SEARCH_PATH, search: jsonToQueryString(newParams)})
+  if (newParams.offset) {
+    history.replace(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
+  } else {
+    history.push(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
+  }
 };
 
 export const get = (object_id, preloaded = false) => {

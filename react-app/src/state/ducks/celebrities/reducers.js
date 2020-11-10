@@ -3,7 +3,7 @@ import * as types from "./types";
 
 export const updateQueryParamsInitialState = {
   offset: 0,
-  limit: 15
+  limit: 10
 };
 
 const fetchCelebritiesInitialState = {
@@ -74,36 +74,18 @@ export function fetchCelebritiesReducer(
         failed: true
       };
     case types.FETCH_CELEBRITIES_REQUEST_SUCCESS:
+      const results = [];
+      if (action.payload.config.params.offset)
+        results.push(...state.data.results);
+      results.push(...action.payload.data.results);
       return {
         ...fetchCelebritiesInitialState,
-        data: action.payload.data
+        data: { ...action.payload.data, results }
       };
-      if (action.payload.data.informationPage.currentPage === 1) {
-        return {
-          ...fetchCelebritiesInitialState,
-          data: action.payload.data
-        };
-      } else if (
-        action.payload.data.informationPage.totalItems <=
-        state.data.informationPage.totalItems
-      ) {
-        let final = [];
-        action.payload.data.results.forEach((x) => {
-          if (!state.data.results.find((i) => i.id === x.id)) {
-            final.push(x);
-          }
-        });
-        action.payload.data.results = state.data.results.concat(final);
-        return {
-          ...fetchCelebritiesInitialState,
-          data: action.payload.data
-        };
-      }
-      break;
     case types.FETCH_CELEBRITIES_REQUEST_COMPLETED:
       return {
-        ...state,
-        data: action.payload.data,
+        ...fetchCelebritiesInitialState,
+        data: { ...state.data },
         completed: true
       };
     default:

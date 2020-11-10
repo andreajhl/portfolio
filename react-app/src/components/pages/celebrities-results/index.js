@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import MetaTags from "react-meta-tags";
 import {
@@ -9,18 +9,19 @@ import {
 } from "../../layouts";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
-import { useMemo } from "react";
-import { Redirect } from "react-router";
 import { ROOT_PATH } from "../../../routing/Paths";
 
 const mapStateToProps = ({ celebrities }) => {
   return {
     isLoading: celebrities.fetchCelebritiesReducer.loading,
-    celebrities: celebrities.fetchCelebritiesReducer.data.results
+    celebrities: celebrities.fetchCelebritiesReducer.data.results,
+    totalResults: celebrities.fetchCelebritiesReducer.data.totalResults
   };
 };
 
-const mapDispatchToProps = { fetchCelebrities: celebrityOperations.list };
+const mapDispatchToProps = {
+  fetchCelebrities: celebrityOperations.list
+};
 
 const pageTitle = "Famosos.com - Todos los Famosos";
 const pageDescription =
@@ -42,9 +43,11 @@ const CelebritiesResultsPage = ({
   fetchCelebrities,
   isLoading,
   celebrities,
+  totalResults,
   location,
   history
 }) => {
+  const [offset, setOffset] = useState(offsetInitialValue);
   const queryString = location.search;
   const listParams = useMemo(() => queryStringToJSON(queryString), [
     queryString
@@ -54,10 +57,16 @@ const CelebritiesResultsPage = ({
     if (!queryString || !hasSearched(listParams))
       return history.push(ROOT_PATH);
     fetchCelebrities(listParams);
+    setOffset(offsetInitialValue);
   }, [listParams]);
 
   const fetchMoreData = () => {
-    // setParams((offset) => offset + resultsLimit);
+    const newOffset = offset ? offset + resultsLimit : resultsLimit;
+    setOffset(newOffset < totalResults ? newOffset : totalResults);
+    fetchCelebrities({
+      ...listParams,
+      offset: newOffset < totalResults ? newOffset : totalResults
+    });
   };
 
   const isSearchingByKeyword = Boolean(listParams.search);
@@ -76,13 +85,14 @@ const CelebritiesResultsPage = ({
         {!isSearchingByKeyword ? (
           <FiltersSectionLayout queryParams={listParams} />
         ) : null}
-        {isLoading ? (
+        {isLoading && offset <= 0 ? (
           <CelebritiesResultsShimmerCardsLayout />
         ) : (
           <CelebritiesResultsLayout
             celebrities={celebrities}
             queryParams={listParams}
             fetchMoreData={fetchMoreData}
+            totalResults={totalResults}
           />
         )}
       </PageContainer>

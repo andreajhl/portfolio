@@ -1,14 +1,25 @@
 import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { CelebrityCardLayout } from "../celebrity-card";
+import { EndMessageLayout } from "../end-message";
+import { LoaderLayout } from "../loader";
 import "./styles.scss";
 
-const CelebritiesResultsLayout = ({ celebrities, queryParams, ...props }) => {
+const totalResultsToShowGoBackButton = 10;
+
+const CelebritiesResultsLayout = ({
+  celebrities,
+  totalResults,
+  queryParams,
+  fetchMoreData,
+  ...props
+}) => {
   const isSearchingByKeyword = Boolean(queryParams.search);
   const hasResults = celebrities.length > 0;
   return (
     <div className="CelebritiesResultsLayout">
       <section
-        className={`celebrities-results-layout container ${
+        className={`celebrities-results-layout container pb-4 ${
           hasResults ? "px-2" : ""
         }`}
       >
@@ -20,26 +31,38 @@ const CelebritiesResultsLayout = ({ celebrities, queryParams, ...props }) => {
                 ? `para ${queryParams.search}`
                 : "de búsqueda"}
             </h2>
-            <ul className="celebrities-results-layout__cards-list">
-              {celebrities.map((celebrity) => (
-                <li
-                  key={celebrity.id}
-                  className="celebrities-results-layout__card-item"
-                >
-                  <CelebrityCardLayout
-                    celebrity={{
-                      fullName: celebrity.full_name,
-                      avatar: celebrity.avatar,
-                      countryCode: celebrity.country_code,
-                      countryName: celebrity.country_name,
-                      title: celebrity.title,
-                      username: celebrity.username,
-                      videoMessagePrice: celebrity.video_message_price
-                    }}
-                  />
-                </li>
-              ))}
-            </ul>
+            <InfiniteScroll
+              dataLength={celebrities.length}
+              next={fetchMoreData}
+              hasMore={celebrities.length < totalResults}
+              loader={<LoaderLayout />}
+              endMessage={
+                celebrities.length > totalResultsToShowGoBackButton ? (
+                  <EndMessageLayout />
+                ) : null
+              }
+            >
+              <ul className="celebrities-results-layout__cards-list">
+                {celebrities.map((celebrity) => (
+                  <li
+                    key={celebrity.id}
+                    className="celebrities-results-layout__card-item"
+                  >
+                    <CelebrityCardLayout
+                      celebrity={{
+                        fullName: celebrity.full_name,
+                        avatar: celebrity.avatar,
+                        countryCode: celebrity.country_code,
+                        countryName: celebrity.country_name,
+                        title: celebrity.title,
+                        username: celebrity.username,
+                        videoMessagePrice: celebrity.video_message_price
+                      }}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </InfiniteScroll>
           </>
         ) : (
           <div className="align-items-center d-flex flex-column no-results">

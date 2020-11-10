@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const goBackUp = (offsetTop) => {
   document.documentElement.scroll({ top: offsetTop, behavior: "smooth" });
@@ -15,3 +16,11 @@ export const EndMessageLayout = ({ offsetTop }) => (
     </button>
   </p>
 );
+
+EndMessageLayout.propTypes = {
+  offsetTop: PropTypes.number
+};
+
+EndMessageLayout.defaultProps = {
+  offsetTop: 0
+};
