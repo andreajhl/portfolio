@@ -1,39 +1,97 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { CelebritiesCardsSectionLayout } from "../celebrities-cards-section";
 import { CelebritiesShimmerCardsSectionLayout } from "../celebrities-shimmer-cards-section";
 import { fetchCelebritySections } from "../../../state/ducks/celebrity-sections/actions";
+import InfiniteScroll from "react-infinite-scroll-component";
 import "./styles.scss";
 
 const mapStateToProps = ({ celebritySections }) => {
   const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
-  return { loading, celebritiesSections: data.results };
+  return {
+    loading,
+    celebritiesSections: data.results,
+    totalResults: data.totalResults
+  };
 };
 
 const mapDispatchToProps = { fetchCelebritySections };
 
+const Loader = () => (
+  <div className="loading-section mx-auto text-center">
+    <div className="spinner-grow text-primary" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+    <div className="spinner-grow text-primary" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+    <div className="spinner-grow text-primary" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+  </div>
+);
+
+const goBackUp = () => {
+  document.documentElement.scroll({ top: 150, behavior: "smooth" });
+};
+
+const EndMessage = () => (
+  <p className="text-center text-muted">
+    Ups! al parecer no hay más resultados. <br />
+    <button type="button" onClick={goBackUp} className="btn btn-primary mt-2">
+      Volver arriba
+    </button>
+  </p>
+);
+
+const offsetInitialValue = 0;
+const resultsLimit = 4;
+
 const CelebritiesSectionsLayout = ({
   loading,
   celebritiesSections,
+  totalResults,
   fetchCelebritySections
 }) => {
+  const [offset, setOffset] = useState(offsetInitialValue);
+
   useEffect(() => {
-    fetchCelebritySections({ offset: 0, limit: 10, orderBy: "position" });
-  }, []);
+    fetchCelebritySections({
+      offset,
+      limit: resultsLimit
+    });
+  }, [offset]);
+
+  const fetchMoreData = () => {
+    setOffset((offset) => {
+      const newOffset = offset + resultsLimit;
+      return newOffset < totalResults ? newOffset : totalResults;
+    });
+  };
 
   return (
     <div className="CelebritiesSectionsLayout">
-      {loading ? <CelebritiesShimmerCardsSectionLayout /> : null}
-      {celebritiesSections.length > 0
-        ? celebritiesSections.map((celebritiesSection) => (
+      {loading && offset === 0 ? (
+        <CelebritiesShimmerCardsSectionLayout />
+      ) : null}
+      {celebritiesSections.length > 0 ? (
+        <InfiniteScroll
+          dataLength={celebritiesSections.length}
+          next={fetchMoreData}
+          hasMore={celebritiesSections.length < totalResults}
+          loader={<Loader />}
+          endMessage={<EndMessage />}
+        >
+          {celebritiesSections.map((celebritiesSection) => (
             <CelebritiesCardsSectionLayout
               key={celebritiesSection.id}
               title={celebritiesSection.title}
               type={celebritiesSection.celebritySectionType}
               celebrities={celebritiesSection.celebrities}
             />
-          ))
-        : null}
+          ))}
+        </InfiniteScroll>
+      ) : null}
     </div>
   );
 };

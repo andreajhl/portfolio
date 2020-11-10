@@ -1,11 +1,9 @@
 import { combineReducers } from "redux";
 import * as types from "./types";
-import { getTotalColumns } from "../../utils/gridSystem";
 
 export const updateQueryParamsInitialState = {
-  currentPage: 1,
-  search: "",
-  pageSize: getTotalColumns() * 7
+  offset: 0,
+  limit: 15
 };
 
 const fetchCelebritiesInitialState = {
@@ -76,6 +74,10 @@ export function fetchCelebritiesReducer(
         failed: true
       };
     case types.FETCH_CELEBRITIES_REQUEST_SUCCESS:
+      return {
+        ...fetchCelebritiesInitialState,
+        data: action.payload.data
+      };
       if (action.payload.data.informationPage.currentPage === 1) {
         return {
           ...fetchCelebritiesInitialState,

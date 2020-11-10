@@ -8,6 +8,7 @@ import {
 import * as API_PATHS from "./paths";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import { updateQueryParamsInitialState } from "./reducers";
 
 const getValidParams = (params) => {
   const paramsEntries = Object.entries(params);
@@ -21,7 +22,7 @@ export const updateQueryParams = (params) => (dispatch) => {
   const newParams = getValidParams(params);
   dispatch({
     type: types.UPDATE_QUERY_PARAMS,
-    payload: { params: newParams }
+    payload: { params: { ...updateQueryParamsInitialState, ...newParams } }
   });
   history.push(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
 };
@@ -112,6 +113,7 @@ export const list = (params) => {
         // }
       })
       .catch((err) => {
+        console.log(err);
         // handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
       });
   };

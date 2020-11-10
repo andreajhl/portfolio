@@ -17,6 +17,7 @@ export function fetchCelebritySectionsReducer(
     case TYPES.FETCH_CELEBRITIES_SECTIONS:
       return {
         ...fetchCelebritySectionsInitialState,
+        data: { ...state.data },
         loading: true
       };
     case TYPES.FETCH_CELEBRITIES_SECTIONS_FAILURE:
@@ -26,14 +27,15 @@ export function fetchCelebritySectionsReducer(
         failed: true
       };
     case TYPES.FETCH_CELEBRITIES_SECTIONS_SUCCESS:
+      const results = [...state.data.results, ...action.payload.data.results];
       return {
         ...fetchCelebritySectionsInitialState,
-        data: action.payload.data
+        data: { ...action.payload.data, results }
       };
     case TYPES.FETCH_CELEBRITIES_SECTIONS_COMPLETED:
       return {
         ...fetchCelebritySectionsInitialState,
-        data: action.payload.data,
+        data: { ...state.data },
         completed: true
       };
     default:

@@ -1,20 +1,20 @@
 @import "../../../theme";
 
 .NavbarSectionLayout {
-  &.hidden-hero {
-    top: 0;
-  }
-}
-
-.top-bar {
   width: 100%;
   position: fixed;
   background-color: white;
   z-index: 10000;
   margin: 0 auto;
+}
 
+.top-bar {
   &-helper {
     height: 121px;
+
+    &.hidden-search {
+      height: 53px;
+    }
   }
 
   &__dropdown-button {

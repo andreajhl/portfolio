@@ -5,13 +5,12 @@
     //max-width: $width-1240;
     margin: 0 auto;
 
-    &.hidden-search {
-      margin-top: 53px !important;
+    &.hidden-search .FiltersSectionLayout {
+      top: 53px;
     }
   }
 
   .page-container-children-helper {
-    max-width: $width-1240;
     margin: 0 auto;
     display: none;
     position: fixed;

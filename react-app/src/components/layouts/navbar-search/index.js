@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import debounce from "lodash.debounce";
 import "./styles.scss";
 import * as GTM from "../../../state/utils/gtm";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
@@ -15,6 +16,7 @@ class NavbarSearchLayout extends Component {
     };
 
     this.goToHome = this.goToHome.bind(this);
+    this.debouncedOnSearchChange = debounce(this.onSearchChange, 200);
   }
 
   componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
@@ -25,18 +27,11 @@ class NavbarSearchLayout extends Component {
     }
   }
 
-  inputHandler(e) {
-    if (e.target.value && e.target.value.length > 1) {
-      if (e.target.value.length % 2 === 0) {
-        if (this.onSearchChange) {
-          this.onSearchChange(e.target.value);
-        }
-      }
-    } else if (e.target.value.length === 0) {
-      this.onSearchChange(e.target.value);
-    }
+  inputHandler({ target }) {
+    const { value } = target;
+    this.debouncedOnSearchChange(value);
     this.setState({
-      keyword: e.target.value
+      keyword: value
     });
   }
 
@@ -98,8 +93,7 @@ NavbarSearchLayout.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
   isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
-  isLoading: state.celebrities.fetchCelebritiesReducer.loading,
-  queryParams: state.celebrities.queryParamsReducer
+  isLoading: state.celebrities.fetchCelebritiesReducer.loading
 });
 
 // mapStateToProps
