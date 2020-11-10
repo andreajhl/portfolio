@@ -26,7 +26,9 @@ const HeroSectionLayout = () => {
               src="/assets/img/credit-card-small-white.svg"
               alt="Pagando"
             />
-            <p className="hero__steps-text">Completa el proceso de pago.</p>
+            <p className="hero__steps-text">
+              Completa el <br /> proceso de pago.
+            </p>
           </li>
           <li className="hero__steps-item">
             <img
