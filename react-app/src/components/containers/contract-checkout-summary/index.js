@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./styles.scss";
 import {ContractPriceLayout} from "../../layouts/contract-price";
-
+import CouponForm from '../coupon-form';
 
 class ContractCheckoutSummary extends Component {
 
@@ -68,6 +68,10 @@ class ContractCheckoutSummary extends Component {
                             this.props.price
                                 ?
                                 <div className="mt-4 f-rounded">
+                                    {/* Coupon code component */}
+                                    <CouponForm/>
+                                    {/* Coupon code component */}
+
                                     <h5 className="font-weight-bold float-left">Total:</h5>
                                     <h5 className="font-weight-bold text-right float-right">
                                         <ContractPriceLayout
