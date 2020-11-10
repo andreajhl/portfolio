@@ -27,7 +27,10 @@ export function fetchCelebritySectionsReducer(
         failed: true
       };
     case TYPES.FETCH_CELEBRITIES_SECTIONS_SUCCESS:
-      const results = [...state.data.results, ...action.payload.data.results];
+      const results = [];
+      if (action.payload.config.params.offset !== 0)
+        results.push(...state.data.results);
+      results.push(...action.payload.data.results);
       return {
         ...fetchCelebritySectionsInitialState,
         data: { ...action.payload.data, results }
