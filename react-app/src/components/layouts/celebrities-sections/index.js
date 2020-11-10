@@ -17,7 +17,7 @@ const mapStateToProps = ({ celebritySections }) => {
 
 const mapDispatchToProps = { fetchCelebritySections };
 
-const Loader = (
+const Loader = () => (
   <div className="loading-section mx-auto text-center">
     <div className="spinner-grow text-primary" role="status">
       <span className="sr-only">Loading...</span>
@@ -29,6 +29,19 @@ const Loader = (
       <span className="sr-only">Loading...</span>
     </div>
   </div>
+);
+
+const goBackUp = () => {
+  document.documentElement.scroll({ top: 150, behavior: "smooth" });
+};
+
+const EndMessage = () => (
+  <p className="text-center text-muted">
+    Ups! al parecer no hay más resultados. <br />
+    <button type="button" onClick={goBackUp} className="btn btn-primary mt-2">
+      Volver arriba
+    </button>
+  </p>
 );
 
 const offsetInitialValue = 0;
@@ -56,10 +69,6 @@ const CelebritiesSectionsLayout = ({
     });
   };
 
-  const goBackUp = () => {
-    document.documentElement.scroll({ top: 150, behavior: "smooth" });
-  };
-
   return (
     <div className="CelebritiesSectionsLayout">
       {loading && offset === 0 ? (
@@ -70,19 +79,8 @@ const CelebritiesSectionsLayout = ({
           dataLength={celebritiesSections.length}
           next={fetchMoreData}
           hasMore={celebritiesSections.length < totalResults}
-          loader={Loader}
-          endMessage={
-            <p className="text-center text-muted">
-              Wao! al parecer no hay más resultados. <br />
-              <button
-                type="button"
-                onClick={goBackUp}
-                className="btn btn-primary mt-2"
-              >
-                Volver arriba
-              </button>
-            </p>
-          }
+          loader={<Loader />}
+          endMessage={<EndMessage />}
         >
           {celebritiesSections.map((celebritiesSection) => (
             <CelebritiesCardsSectionLayout
