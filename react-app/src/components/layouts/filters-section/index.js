@@ -66,9 +66,9 @@ const FiltersSectionLayout = ({
     const shouldFetchFilterOptions =
       !countries.length && !celebrityCategories.length;
     if (!shouldFetchFilterOptions) return;
-    listCountries();
+    listCountries({ orderBy: "name asc" });
     listRestCountries();
-    listCelebrityCategories();
+    listCelebrityCategories({ orderBy: "title asc" });
   }, []);
 
   return (
