@@ -83,7 +83,7 @@ const CelebritiesResultsPage = ({
         showSearch={isSearchingByKeyword}
       >
         {!isSearchingByKeyword ? (
-          <FiltersSectionLayout queryParams={listParams} />
+          <FiltersSectionLayout queryParams={listParams} showCleanFiltersButton />
         ) : null}
         {isLoading && offset <= 0 ? (
           <CelebritiesResultsShimmerCardsLayout />

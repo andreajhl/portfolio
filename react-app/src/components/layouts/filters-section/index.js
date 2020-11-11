@@ -40,7 +40,8 @@ const FiltersSectionLayout = ({
   updateQueryParams,
   listCountries,
   listCelebrityCategories,
-  listRestCountries
+  listRestCountries,
+  showCleanFiltersButton
 }) => {
   const [params, setParams] = useState(initialState.params);
 
@@ -71,11 +72,28 @@ const FiltersSectionLayout = ({
     listCelebrityCategories({ orderBy: "title asc" });
   }, []);
 
+  const cleanFilters = () => {
+    updateQueryParams({
+      ...updateQueryParamsInitialState
+    });
+  };
+
   return (
     <section className="FiltersSectionLayout">
       <div className="filters-section__container container pt-2">
         <h2 className="filters-section__title ml-2">Filtrar por:</h2>
         <ul className="filters-section__filters-list p-0">
+          {showCleanFiltersButton ? (
+            <li className="filters-section__filters-item d-flex align-items-center">
+              <button
+                type="button"
+                class="filters-section__back-btn btn btn-dark"
+                onClick={cleanFilters}
+              >
+                <i class="fa fa-arrow-left text-white"></i>
+              </button>
+            </li>
+          ) : null}
           <li className="filters-section__filters-item">
             <CelebritiesFilter
               buttonLabel="País"
