@@ -147,7 +147,7 @@ class CelebritiesPage extends Component {
             </MetaTags>
           </div>
 
-          <PageContainer showFooter={false} applyFetchCelebrities={true}>
+          <PageContainer showFooter={false} applyFetchUserCelebrityLikes>
             {/*/!* ShowHeader *!/*/}
             {/*{localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}*/}
             {/*/!* End ShowHeader *!/*/}

@@ -6,7 +6,7 @@ import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { connect } from "react-redux";
 import { ContractPriceLayout } from "../contract-price";
-import CelebrityFavoriteButton from "../celebrity-favorite-button";
+import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 
 const CelebrityCardLayout = ({
   celebrity,

@@ -7,6 +7,8 @@ import "./styles.scss";
 import { CookiesConsent } from "../cookies-consent";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
+import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
+import { Session } from "../../../state/utils/session";
 
 class PageContainer extends Component {
   constructor(props) {
@@ -21,6 +23,11 @@ class PageContainer extends Component {
   }
 
   componentDidMount() {
+    this.props.cleanUserCelebrityLikes();
+    const isLogged = new Session().getSession();
+    if (this.props.applyFetchUserCelebrityLikes && isLogged) {
+      this.props.fetchUserCelebrityLikes();
+    }
     /* if (this.props.applyFetchCelebrities === true) {
       const queryParams = this.props.queryParams;
       if (!window.location.search) {
@@ -131,7 +138,10 @@ const mapStateToProps = (state) => ({
 
 // mapStateToProps
 const mapDispatchToProps = {
-  updateQueryParams: celebrityOperations.updateQueryParams
+  updateQueryParams: celebrityOperations.updateQueryParams,
+  fetchUserCelebrityLikes: celebrityLikesOperations.fetchUserCelebrityLikes,
+  cleanUserCelebrityLikes:
+    celebrityLikesOperations.fetchUserCelebrityLikesCleanUp
 };
 
 // Export Class

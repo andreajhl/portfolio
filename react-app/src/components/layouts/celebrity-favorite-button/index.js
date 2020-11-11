@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { SIGN_IN_PATH } from "../../../routing/Paths";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { SIGN_IN_WITH_SPECIFIC_FORM_PATH } from "../../../routing/Paths";
+import { addOrRemoveLike } from "../../../state/ducks/celebrity-likes/actions";
 import { Session } from "../../../state/utils/session";
-
-const initialState = {
-  isHovering: false
-};
 
 const preventRedirectFromParent = (event) => {
   if (event.stopPropagation) {
@@ -13,22 +12,41 @@ const preventRedirectFromParent = (event) => {
   }
 };
 
-const CelebrityFavoriteButton = ({ celebrityId }) => {
-  const [toggle, setToggle] = useState(false);
+const mapStateToProps = ({ celebrityLikes }) => {
+  return {
+    userCelebrityLikes: celebrityLikes.fetchUserCelebrityLikesReducer.data.data
+  };
+};
+
+const CelebrityFavoriteButton = ({
+  celebrityId,
+  userCelebrityLikes,
+  history
+}) => {
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    // getCelebritiesLikesData
-  }, []);
+    if (!userCelebrityLikes) return;
+    setIsFavorite(
+      Boolean(
+        userCelebrityLikes.find(
+          (likeCelebrityId) => likeCelebrityId === celebrityId
+        )
+      )
+    );
+  }, [userCelebrityLikes]);
 
-  const toggleFavorite = (event) => {
+  const toggleFavorite = async (event) => {
     preventRedirectFromParent(event);
     const session = new Session().getSession();
     if (session) {
-      setToggle((toggle) => !toggle);
+      const response = await addOrRemoveLike(celebrityId);
+      if (response.status === "OK") setIsFavorite((isFavorite) => !isFavorite);
     } else {
-      alert(`Redirect a ${SIGN_IN_PATH}`);
-      // localStorage.setItem("finalRedirect", window.location.pathname);
-      // history.push();
+      localStorage.setItem("finalRedirect", window.location.pathname);
+      history.push(
+        SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form")
+      );
     }
   };
 
@@ -66,7 +84,7 @@ const CelebrityFavoriteButton = ({ celebrityId }) => {
   return (
     <img
       src={`/assets/img/${
-        toggle /* || isHovering */ ? "filled" : "outlined"
+        isFavorite /* || isHovering */ ? "filled" : "outlined"
       }-heart.svg`}
       className="like-icon"
       // onMouseOver={fillHeart}
@@ -76,4 +94,7 @@ const CelebrityFavoriteButton = ({ celebrityId }) => {
   );
 };
 
-export default CelebrityFavoriteButton;
+const _CelebrityFavoriteButton = connect(mapStateToProps)(
+  withRouter(CelebrityFavoriteButton)
+);
+export { _CelebrityFavoriteButton as CelebrityFavoriteButton };

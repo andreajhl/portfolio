@@ -81,9 +81,13 @@ const CelebritiesResultsPage = ({
         showFooter={false}
         queryParams={listParams}
         showSearch={isSearchingByKeyword}
+        applyFetchUserCelebrityLikes
       >
         {!isSearchingByKeyword ? (
-          <FiltersSectionLayout queryParams={listParams} showCleanFiltersButton />
+          <FiltersSectionLayout
+            queryParams={listParams}
+            showCleanFiltersButton
+          />
         ) : null}
         {isLoading && offset <= 0 ? (
           <CelebritiesResultsShimmerCardsLayout />

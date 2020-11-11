@@ -87,10 +87,10 @@ const FiltersSectionLayout = ({
             <li className="filters-section__filters-item d-flex align-items-center">
               <button
                 type="button"
-                class="filters-section__back-btn btn btn-dark"
+                className="filters-section__back-btn btn btn-dark"
                 onClick={cleanFilters}
               >
-                <i class="fa fa-arrow-left text-white"></i>
+                <i className="fa fa-arrow-left text-white"></i>
               </button>
             </li>
           ) : null}

@@ -1,1 +1,5 @@
-export { fetchCelebritySections } from "./actions";
+export {
+  fetchUserCelebrityLikes,
+  fetchUserCelebrityLikesCleanUp,
+  addOrRemoveLike
+} from "./actions";

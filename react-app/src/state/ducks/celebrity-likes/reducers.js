@@ -14,27 +14,31 @@ export function fetchUserCelebrityLikesReducer(
   action
 ) {
   switch (action.type) {
-    case TYPES.FETCH_CELEBRITIES_SECTIONS:
+    case TYPES.FETCH_USER_CELEBRITY_LIKES:
       return {
         ...fetchUserCelebrityLikesInitialState,
         loading: true
       };
-    case TYPES.FETCH_CELEBRITIES_SECTIONS_FAILURE:
+    case TYPES.FETCH_USER_CELEBRITY_LIKES_FAILURE:
       return {
         ...fetchUserCelebrityLikesInitialState,
         error_data: action.payload.data,
         failed: true
       };
-    case TYPES.FETCH_CELEBRITIES_SECTIONS_SUCCESS:
+    case TYPES.FETCH_USER_CELEBRITY_LIKES_SUCCESS:
       return {
         ...fetchUserCelebrityLikesInitialState,
         data: { ...action.payload.data }
       };
-    case TYPES.FETCH_CELEBRITIES_SECTIONS_COMPLETED:
+    case TYPES.FETCH_USER_CELEBRITY_LIKES_COMPLETED:
       return {
         ...fetchUserCelebrityLikesInitialState,
         data: { ...state.data },
         completed: true
+      };
+    case TYPES.FETCH_USER_CELEBRITY_LIKES_CLEAN_UP:
+      return {
+        ...fetchUserCelebrityLikesInitialState
       };
     default:
       return state;

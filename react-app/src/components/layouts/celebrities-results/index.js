@@ -50,6 +50,7 @@ const CelebritiesResultsLayout = ({
                   >
                     <CelebrityCardLayout
                       celebrity={{
+                        id: celebrity.id,
                         fullName: celebrity.full_name,
                         avatar: celebrity.avatar,
                         countryCode: celebrity.country_code,

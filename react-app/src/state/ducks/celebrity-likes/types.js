@@ -6,3 +6,13 @@ export const FETCH_USER_CELEBRITY_LIKES_FAILURE =
   "celebrity-sections/FETCH_USER_CELEBRITY_LIKES_FAILURE";
 export const FETCH_USER_CELEBRITY_LIKES_COMPLETED =
   "celebrity-sections/FETCH_USER_CELEBRITY_LIKES_COMPLETED";
+export const FETCH_USER_CELEBRITY_LIKES_CLEAN_UP =
+  "celebrity-sections/FETCH_USER_CELEBRITY_LIKES_CLEAN_UP";
+
+export const ADD_OR_REMOVE_LIKE = "celebrity-sections/ADD_OR_REMOVE_LIKE";
+export const ADD_OR_REMOVE_LIKE_SUCCESS =
+  "celebrity-sections/ADD_OR_REMOVE_LIKE_SUCCESS";
+export const ADD_OR_REMOVE_LIKE_FAILURE =
+  "celebrity-sections/ADD_OR_REMOVE_LIKE_FAILURE";
+export const ADD_OR_REMOVE_LIKE_COMPLETED =
+  "celebrity-sections/ADD_OR_REMOVE_LIKE_COMPLETED";

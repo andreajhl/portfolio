@@ -29,3 +29,30 @@ export const fetchUserCelebrityLikes = (params) => (dispatch) => {
       handleApiErrors(dispatch, TYPE, err);
     });
 };
+
+export const fetchUserCelebrityLikesCleanUp = () => ({
+  type: TYPES.FETCH_USER_CELEBRITY_LIKES_CLEAN_UP
+});
+
+export const addOrRemoveLike = async (celebrityId) => {
+  const TYPE = TYPES.ADD_OR_REMOVE_LIKE;
+  const FINAL_PATH = API_PATHS.ADD_OR_REMOVE_LIKE;
+  // dispatch({ type: TYPE });
+  try {
+    const response = await apiService({
+      method: "POST",
+      action: TYPE,
+      path: FINAL_PATH.replace(":celebrity_id", celebrityId)
+    });
+    if ("status" in response.data && response.data.status === "ERROR") {
+      // handleApiResponseFailure(dispatch, TYPE, response);
+    } else {
+      return response.data;
+      // handleApiResponseSuccess(dispatch, TYPE, response);
+      // dispatch({ type: `${TYPE}_COMPLETED`, payload: response });
+    }
+  } catch (error) {
+    console.log(error);
+    // handleApiErrors(dispatch, TYPE, error);
+  }
+};
