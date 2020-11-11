@@ -6,6 +6,7 @@ import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { connect } from "react-redux";
 import { ContractPriceLayout } from "../contract-price";
+import CelebrityFavoriteButton from "../celebrity-favorite-button";
 
 const CelebrityCardLayout = ({
   celebrity,
@@ -88,7 +89,7 @@ const CelebrityCardLayout = ({
               />
             )}
             <span className="celebrity__category">{celebrity.title}</span>
-            <img src="/assets/img/outlined-heart.svg" className="like-icon" />
+            <CelebrityFavoriteButton celebrityId={celebrity.id} />
           </div>
           <h3 className="celebrity__full-name">{celebrity.fullName}</h3>
         </div>
