@@ -115,18 +115,20 @@ const NavbarSectionLayout = ({
             </NavLink>
           </div>
           <div className="top-bar__right-side col-4 p-0 row m-0">
-            <div className="col d-none d-md-flex align-items-center">
-              <NavLink
-                className="btn btn-outline-primary ml-auto btn-sm top-bar__login-btn"
-                activeClassName=""
-                to={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(
-                  ":form",
-                  "email-form"
-                )}
-              >
-                Ingresar
-              </NavLink>
-            </div>
+            {!isLogged ? (
+              <div className="col d-none d-md-flex align-items-center">
+                <NavLink
+                  className="btn btn-outline-primary ml-auto btn-sm top-bar__login-btn"
+                  activeClassName=""
+                  to={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(
+                    ":form",
+                    "email-form"
+                  )}
+                >
+                  Ingresar
+                </NavLink>
+              </div>
+            ) : null}
             <div className="top-bar__currency mr-2 ml-auto">
               <CurrencyDropdownLayout />
             </div>
