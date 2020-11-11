@@ -1,0 +1,1 @@
+export { fetchCelebritySections } from "./actions";
