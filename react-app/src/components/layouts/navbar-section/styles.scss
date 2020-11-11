@@ -30,6 +30,12 @@
     width: 100%;
   }
 
+  &__login-btn {
+    border-radius: 25px;
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
   &__currency {
     width: 53px;
     right: 7px;
