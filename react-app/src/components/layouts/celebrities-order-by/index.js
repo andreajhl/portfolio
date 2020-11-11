@@ -8,13 +8,12 @@ const ASC = "asc";
 const DESC = "desc";
 
 const orderByOptions = [
-  { label: "No ordenar", value: "" },
   { label: "Precio: De Menor a Mayor", value: `${PRICE} ${ASC}` },
   { label: "Precio: De Mayor a Menor", value: `${PRICE} ${DESC}` }
 ];
 
 const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
-  const [checkedValue, setCheckedValue] = useState("");
+  const [checkedValue, setCheckedValue] = useState(null);
 
   const checkItemLabel =
     orderByOptions.find(({ value }) => value !== "" && value === activeValue)
