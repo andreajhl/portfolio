@@ -91,6 +91,11 @@ class ContractCheckoutSummary extends Component {
                                     <h5 className="font-weight-bold text-right float-right">
                                         <ContractPriceLayout
                                             classes={"text-black font-weight-bold"}
+                                            availableDiscount = {this.props.couponData.completed ? {
+                                                initialPrice: this.props.price,
+                                                isPercentageDiscount : this.props.couponData.data.isPercentageDiscount,
+                                                discountAmount: this.props.couponData.data.discount_amount,
+                                            } : false}
                                             price={this.props.couponData.completed ? this.applyDiscount() : this.props.price}
                                             currency={"USD"}
                                             rounding={false}

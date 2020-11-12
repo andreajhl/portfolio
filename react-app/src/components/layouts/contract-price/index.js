@@ -17,6 +17,23 @@ class ContractPriceLayout extends Component {
         }
     }
 
+    renderText(value) {
+        if(this.props.availableDiscount){
+            return (<div>
+                <span className={(this.props.classes)}> Precio original: <span className="text-dark">{this.props.availableDiscount.initialPrice} {this.props.currency}</span></span> <br></br>
+                <span className={(this.props.classes)}> 
+                Descuento: <span className="text-danger">
+                {this.props.availableDiscount.isPercentageDiscount ? 
+                ` ${this.props.availableDiscount.discountAmount}% | ${((this.props.availableDiscount.discountAmount/ 100) * this.props.price).toFixed(2)} ${this.props.currency}`
+                 :  ` ${this.props.availableDiscount.discountAmount} ${this.props.currency}`} </span>
+               </span><br></br>
+                <span className={(this.props.classes)}> {value} {this.props.currency}</span><br></br>
+                </div>)
+        }else{
+            return (<span className={(this.props.classes)}> {value} {this.props.currency}</span>)
+        }
+    }
+
     render() {
         return (
             <NumberFormat
@@ -25,7 +42,7 @@ class ContractPriceLayout extends Component {
                 thousandSeparator={true}
                 decimalScale={2}
                 prefix={AVAILABLE_CURRENCIES.find(item => item.name === this.props.currency)["symbol"]}
-                renderText={value => <span className={(this.props.classes)}> {value} {this.props.currency}</span>}
+                renderText={value => this.renderText(value)}
             />
         );
     };
