@@ -27,6 +27,7 @@ class PayPalCardForm extends Component {
             this.props.contractReference,
             orderId,
             authorizationId,
+            this.props.discountCouponId,
         )
             .then(res => {
                 if (res.status === 10) {
