@@ -7,6 +7,8 @@ import {contractOperations} from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
 import {Session} from "../../../state/utils/session";
 import OcassionsOptions from '../ocassions-options';
+import {occasionsData} from '../../../constants/options';
+
 class CreateContractForm extends Component {
 
     constructor(props) {
@@ -20,9 +22,9 @@ class CreateContractForm extends Component {
                 deliveryTo: session.hasEmail() ? (session.getSession().fullName || ""): "",
                 deliveryType: 1,
                 deliveryContact: session.hasEmail() ? (session.getSession().email || "") : "",
-                instructions: "",
+                instructions:  "",
                 isPublic: true,
-                occasion: 'BIRTHDAY',
+                occasion: "",
             },
         };
         this.handleIsPublic = this.handleIsPublic.bind(this);
@@ -69,11 +71,16 @@ class CreateContractForm extends Component {
     };
 
     handleContractTypeChange = (value) => {
-        const contractData = this.state.contractData;
-        contractData.contractType = parseInt(value);
+        const updatedContractData = {...this.state.contractData};
+        if(this.state.contractData.occasion !== ""){
+            const newMessage= occasionsData[this.state.contractData.occasion].messages[value - 1].replaceAll('(<<PARA>>)', this.state.contractData.deliveryTo);
+            
+            updatedContractData.instructions = newMessage;
+        }
+        updatedContractData.contractType = parseInt(value);
         this.setState({
             ...this.state,
-            contractData
+            contractData: updatedContractData
         });
     };
 
@@ -108,10 +115,13 @@ class CreateContractForm extends Component {
         return null
     };
 
-    changeOcassionOption = (idenfifier) =>{
+    
+    
+    changeOcassionOption = (identifier) =>{
         const updatedContractData = {...this.state.contractData};
-        console.log(updatedContractData)
-        updatedContractData.occasion = idenfifier;
+        const newMessage= occasionsData[identifier].messages[this.state.contractData.contractType-1].replaceAll('(<<PARA>>)', this.state.contractData.deliveryTo).replaceAll('(<<DE>>)',this.state.contractData.deliveryFrom);
+        updatedContractData.occasion = identifier;
+        updatedContractData.instructions = newMessage;
         this.setState({
             ...this.state,
             contractData: updatedContractData
