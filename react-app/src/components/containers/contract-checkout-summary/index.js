@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./styles.scss";
 import {ContractPriceLayout} from "../../layouts/contract-price";
-import CouponForm from '../coupon-form';
+import DiscountCouponForm from '../discount-coupon-form';
 import {connect} from "react-redux";
 
 
@@ -24,7 +24,7 @@ class ContractCheckoutSummary extends Component {
         }
         return ( this.props.price - discountTotal);
     }
-    
+
     render() {
         return (
             <div className="ContractCheckoutSummary">
@@ -84,7 +84,7 @@ class ContractCheckoutSummary extends Component {
                                 ?
                                 <div className="mt-4 f-rounded">
                                     {/* Coupon code component */}
-                                    <CouponForm/>
+                                    <DiscountCouponForm/>
                                     {/* Coupon code component */}
 
                                     <h5 className="font-weight-bold float-left">Total:</h5>
