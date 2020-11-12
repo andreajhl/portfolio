@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import debounce from "lodash.debounce";
 import "./styles.scss";
 import * as GTM from "../../../state/utils/gtm";
@@ -7,16 +7,31 @@ import { connect } from "react-redux";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 
+const shouldFocusSearchKey = "SHOULD_FOCUS_SEARCH";
+
 class NavbarSearchLayout extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      keyword: this.props.queryParams.search || ""
+      keyword: this.props.queryParams.search || "",
+      shouldFocus: false
     };
+
+    this.searchRef = createRef();
 
     this.goToHome = this.goToHome.bind(this);
     this.debouncedOnSearchChange = debounce(this.onSearchChange, 200);
+  }
+
+  componentDidUpdate() {
+    const shouldFocusSearch = JSON.parse(
+      localStorage.getItem(shouldFocusSearchKey)
+    );
+    if (shouldFocusSearch) {
+      this.searchRef.current.focus();
+      localStorage.setItem(shouldFocusSearchKey, false);
+    }
   }
 
   componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
@@ -29,10 +44,10 @@ class NavbarSearchLayout extends Component {
 
   inputHandler({ target }) {
     const { value } = target;
-    this.debouncedOnSearchChange(value);
     this.setState({
       keyword: value
     });
+    this.debouncedOnSearchChange(value);
   }
 
   handleKeyPress(event) {
@@ -47,6 +62,7 @@ class NavbarSearchLayout extends Component {
 
   onSearchChange(keyword) {
     if (this.props.isLoading) return;
+    if (keyword) localStorage.setItem(shouldFocusSearchKey, true);
     GTM.tagManagerDataLayer("CELEBRITIES_SEARCH_CHANGED", this.state.keyword);
     this.props.onSearchChange(keyword);
     document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
@@ -75,6 +91,7 @@ class NavbarSearchLayout extends Component {
               onKeyPress={this.handleKeyPress.bind(this)}
               onChange={this.inputHandler.bind(this)}
               placeholder={this.props.searchLabel}
+              ref={this.searchRef}
             />
           </div>
         </div>
