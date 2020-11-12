@@ -136,12 +136,13 @@ export const processStripePayment = (contractReference, sourceId, discountCoupon
   });
 };
 
-export const processPayPalPayment = (contractReference, orderId, authorizationId) => {
+export const processPayPalPayment = (contractReference, orderId, authorizationId, discountCouponId) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-paypal-payment";
   const data = {
     contractReference: contractReference,
     orderId: orderId,
-    authorizationId: authorizationId
+    authorizationId: authorizationId,
+    discountCouponId: discountCouponId
   };
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
