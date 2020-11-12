@@ -34,7 +34,7 @@ class NavbarSearchLayout extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+  componentWillReceiveProps(nextProps, nextContext) {
     if (nextProps.removeKeywords) {
       this.setState({
         keyword: ""
@@ -108,7 +108,7 @@ NavbarSearchLayout.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
   isLoading: state.celebrities.fetchCelebritiesReducer.loading
 });
