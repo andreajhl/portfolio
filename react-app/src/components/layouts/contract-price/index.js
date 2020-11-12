@@ -27,7 +27,7 @@ class ContractPriceLayout extends Component {
                 ` ${this.props.availableDiscount.discountAmount}% | ${((this.props.availableDiscount.discountAmount/ 100) * this.props.price).toFixed(2)} ${this.props.currency}`
                  :  ` ${this.props.availableDiscount.discountAmount} ${this.props.currency}`} </span>
                </span><br></br>
-                <span className={(this.props.classes)}> {value} {this.props.currency}</span><br></br>
+                <span className={(this.props.classes)}>Precio total: {value} {this.props.currency}</span><br></br>
                 </div>)
         }else{
             return (<span className={(this.props.classes)}> {value} {this.props.currency}</span>)

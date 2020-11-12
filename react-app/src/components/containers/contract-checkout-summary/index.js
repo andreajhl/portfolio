@@ -16,8 +16,8 @@ class ContractCheckoutSummary extends Component {
         let discountTotal= 0;
         if(this.props.couponData.data.isPercentageDiscount){
             discountTotal = ((this.props.couponData.data.discount_amount/ 100) * this.props.price).toFixed(2);
-            if (discountTotal > this.props.couponData.maxDiscountAmount){
-                discountTotal = this.props.couponData.maxDiscountAmount;
+            if (discountTotal > this.props.couponData.data.maxDiscountAmount){
+                discountTotal = this.props.couponData.data.maxDiscountAmount;
             }
         }else{
             discountTotal = this.props.couponData.data.discount_amount;
@@ -83,13 +83,7 @@ class ContractCheckoutSummary extends Component {
                             this.props.price
                                 ?
                                 <div className="mt-4 f-rounded">
-                                    {/* Coupon code component */}
-<<<<<<< HEAD
-                                    {/* <CouponForm/> */}
-=======
-                                    <DiscountCouponForm/>
->>>>>>> discount-coupons
-                                    {/* Coupon code component */}
+                                   <DiscountCouponForm/>
 
                                     <h5 className="font-weight-bold float-left">Total:</h5>
                                     <h5 className="font-weight-bold text-right float-right">
