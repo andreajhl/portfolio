@@ -1,13 +1,29 @@
 .hero {
   position: relative;
   // top: 123px;
-  height: 150px;
-  background: url("/assets/img/hero-background.jpg") center black;
+  height: 148px;
+  // background: url("/assets/img/hero-background.jpg") center black;
 
   &__container {
-    padding-top: 0.75rem;
-    width: 90%;
+    background-color: black;
+    padding-top: 0.5rem;
+    border-radius: 10px;
     height: 100%;
+    @media only screen and (max-width: 576px) {
+      width: 94%;
+    }
+    @media only screen and (min-width: 576px) {
+      max-width: 510px;
+    }
+    @media only screen and (min-width: 768px) {
+      max-width: 690px;
+    }
+    @media only screen and (min-width: 992px) {
+      max-width: 930px;
+    }
+    @media only screen and (min-width: 1200px) {
+      max-width: 1110px;
+    }
   }
 
   &__title {
@@ -28,9 +44,6 @@
     display: flex;
     justify-content: space-between;
 
-    &-item {
-    }
-
     &-image {
       margin-bottom: 0.5rem;
     }
@@ -44,6 +57,59 @@
       @media only screen and (max-width: 400px) {
         font-size: 2.5vw;
       }
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    height: 184px;
+    &__container {
+      border-radius: 20px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    &__title {
+      text-align: left;
+      flex-basis: 50%;
+      padding-left: 5.625%;
+      font-size: 2.25vw;
+      margin-bottom: 0 !important;
+
+      @media only screen and (min-width: 958px) and (max-width: 992px) {
+        font-size: 2vw;
+      }
+    }
+
+    &__steps {
+      max-width: unset;
+
+      &-item {
+        flex: 1;
+        margin-left: 1.5em;
+      }
+
+      &-image {
+        height: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      &-text {
+        font-size: 1.25vw;
+        max-width: 13em;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__steps-text {
+      font-size: 1.125rem;
     }
   }
 }
