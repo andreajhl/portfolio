@@ -1,5 +1,6 @@
 export const ROOT_PATH = "/";
 export const HOME_PATH = "/inicio/";
+export const LANDING_PATH = "/landing";
 export const SEARCH_PATH = "/buscar";
 export const CELEBRITY_PROFILE = "/:celebrity_username";
 export const CELEBRITY_PROFILE_ERROR = "/:celebrity_username/404-not-found/";

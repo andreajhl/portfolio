@@ -64,9 +64,9 @@ const NavbarSectionLayout = ({
                     </NavLink>
                   </>
                 ) : null}
-                <Link className="dropdown-item" to={PATHS.ROOT_PATH}>
+                <a className="dropdown-item" href={PATHS.LANDING_PATH}>
                   ¿Cómo funciona?
-                </Link>
+                </a>
                 <NavLink
                   className="dropdown-item"
                   activeClassName="active"

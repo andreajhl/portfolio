@@ -9,7 +9,7 @@ const compression = require("compression");
 
 app.use(compression());
 
-// const { getLandingPageSync } = require("./templates/landing");
+const { getLandingPageSync } = require("./templates/landing");
 // ################################################################
 // default OG
 function defaultOG(data) {
@@ -65,11 +65,10 @@ function defaultResponse(res) {
 
 // ################################################################
 // LANDING PAGE
-// const landingPage = getLandingPageSync();
-
-app.get("/", async (request, response) => {
-  defaultResponse(response);
-  // response.send(defaultOG(landingPage));
+const landingPage = getLandingPageSync();
+app.get("/landing", async (request, response) => {
+  // defaultResponse(response);
+  response.send(defaultOG(landingPage));
 });
 // ################################################################
 
