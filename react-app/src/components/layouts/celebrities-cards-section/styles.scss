@@ -1,4 +1,11 @@
 .celebrities-section-layout {
+  position: relative;
+
+  &:hover &__scroll-to-button {
+    visibility: visible;
+    opacity: 1;
+  }
+
   &__title {
     font-weight: bold;
     font-size: 1.125rem;
@@ -16,5 +23,31 @@
 
   &__card-item {
     margin-right: 0.75rem;
+  }
+
+  &__scroll-to-button {
+    will-change: opacity;
+    transition: all 0.25s ease;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.8);
+    top: 1.85rem;
+    border: none;
+    color: white;
+    height: 203px;
+    width: 43px;
+    font-size: 1.25rem;
+    z-index: 10;
+    position: absolute;
+
+    &.scroll-to-right-button {
+      right: 0;
+    }
+  }
+
+  &.celebrities-sections-videos {
+    .celebrities-section-layout__scroll-to-button {
+      height: 344px;
+    }
   }
 }
