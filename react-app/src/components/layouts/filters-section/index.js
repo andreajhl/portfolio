@@ -80,7 +80,7 @@ const FiltersSectionLayout = ({
 
   return (
     <section className="FiltersSectionLayout">
-      <div className="filters-section__container container pt-2">
+      <div className="filters-section__container container pt-3">
         <h2 className="filters-section__title ml-2">Filtrar por:</h2>
         <ul className="filters-section__filters-list p-0">
           {showCleanFiltersButton ? (
