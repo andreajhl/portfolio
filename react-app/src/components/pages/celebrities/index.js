@@ -6,6 +6,8 @@ import {
 } from "../../layouts";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
+import { cursorOperations } from "../../../state/ducks/cursor-position";
+
 import "./styles.scss";
 import * as GTM from "../../../state/utils/gtm";
 import { NewsLetterModal } from "../../containers/newsletter-modal";
@@ -147,7 +149,13 @@ class CelebritiesPage extends Component {
             </MetaTags>
           </div>
 
-          <PageContainer showFooter={false} applyFetchUserCelebrityLikes>
+          <PageContainer
+            showFooter={false}
+            applyFetchUserCelebrityLikes
+            existPreviewResults = {this.props.celebrities.length > 1 ? false : true}
+            applyFetchCelebrities={true}
+            showFiltersSection={true}
+          >
             {/*/!* ShowHeader *!/*/}
             {/*{localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}*/}
             {/*/!* End ShowHeader *!/*/}
@@ -207,7 +215,8 @@ const mapStateToProps = ({
   celebrities,
   restCountries,
   countries,
-  filters
+  filters,
+  cursor
 }) => ({
   isLoading: celebrities.fetchCelebritiesReducer.loading,
   isCompleted: celebrities.fetchCelebritiesReducer.completed,
@@ -217,7 +226,8 @@ const mapStateToProps = ({
   countries: countries.countriesReducer.results,
   restCountries: restCountries.fetchCountriesReducer.data,
   selectedCategory: filters.filtersReducer.selectedCategory,
-  selectedCountry: filters.filtersReducer.selectedCountry
+  selectedCountry: filters.filtersReducer.selectedCountry,
+  cursor : cursor.cursorReducer.Position
 });
 
 // mapStateToProps

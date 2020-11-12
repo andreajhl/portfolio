@@ -41,7 +41,7 @@ const createStripePaymentInitialState = {
     loading: false,
     failed: false,
     completed: false,
-    error_data: {error: ""},
+    error_data: {error: null},
     data: {}
 };
 
@@ -53,6 +53,41 @@ const createPayPalPaymentInitialState = {
     data: {}
 };
 
+const applyDiscountCouponInitialState = {
+    loading: false,
+    data: {},
+    completed: false,
+    error_data : null,
+}
+
+export function fetchDiscountCouponReducer(state= applyDiscountCouponInitialState, action){
+    switch (action.type){
+        case types.APPLY_DISCOUNT_COUPON:
+            return{
+                ...state,
+                loading: true,
+            }
+        case types.APPLY_DISCOUNT_COUPON_SUCCESS:
+            return{
+                ...applyDiscountCouponInitialState,
+                data: action.payload.data.data
+            }
+        case types.APPLY_DISCOUNT_COUPON_FAILURE:
+            return{
+                ...applyDiscountCouponInitialState,
+                error_data: action.payload.error
+            }
+            case types.APLY_DISCOUNT_COUPON_COMPLETED:
+                return{
+                    ...state,
+                    data: action.payload.data.data,
+                    completed: true
+                }
+            
+        default:
+            return state;
+    }
+}
 
 export function fetchPaymentGatewaysReducer(state = fetchPaymentGatewaysInitialState, action) {
     switch (action.type) {
@@ -147,4 +182,5 @@ export default combineReducers({
     fetchPaymentGatewaysReducer,
     currencyExchangeReducer,
     getContractToPayReducer,
+    fetchDiscountCouponReducer
 });

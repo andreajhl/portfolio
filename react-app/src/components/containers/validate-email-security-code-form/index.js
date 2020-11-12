@@ -25,11 +25,9 @@ class ValidateEmailSecurityCodeForm extends Component {
     }
   }
 
-  handleInput({ nativeEvent, target }) {
-    const keyPressedIsNumber = /[0-9]/.test(nativeEvent.data);
-    if (keyPressedIsNumber) {
-      this.setState({ [target.name]: target.value });
-    }
+  handleInput({ target }) {
+    const value = target.value.replace(/[^0-9]/g, "");
+    this.setState({ [target.name]: value });
   }
 
   handleKeyPress = (event) => {

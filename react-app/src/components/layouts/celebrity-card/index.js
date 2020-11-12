@@ -4,6 +4,7 @@ import "./styles.scss";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
+import { cursorOperations } from "../../../state/ducks/cursor-position";
 import { connect } from "react-redux";
 import { ContractPriceLayout } from "../contract-price";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
@@ -116,7 +117,9 @@ const mapStateToProps = (state) => ({
 });
 
 // mapStateToProps
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  updateCursorPosition: cursorOperations.saveCursorPosition
+};
 
 // Export Class
 const _CelebrityCardLayout = connect(

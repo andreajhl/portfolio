@@ -7,13 +7,22 @@ import "./styles.scss";
 import configureStore from "./state";
 import * as SENTRY from "./state/utils/sentry";
 import * as GTM from "./state/utils/gtm";
-import { MyRoutes } from "./routing/Routes";
-import { Session } from "./state/utils/session";
+import {MyRoutes} from "./routing/Routes";
 
-const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
+const jwt_decode = require("jwt-decode");
+const reduxStore = configureStore( window.REDUX_INITIAL_DATA );
 
-const session = new Session();
-session.isDummy();
+
+// OLD SESSIONS VALIDATION
+const token = window.localStorage.getItem("_fs_");
+if (token) {
+    const email = jwt_decode(token).email;
+    const status = jwt_decode(token).status;
+    if ((email.includes("myemail@") || (email.includes("@famosos.com") && email.includes("Anonymous")))) {
+        window.localStorage.removeItem("_fs_");
+    }
+}
+
 
 // Initialize Sentry
 SENTRY.initialize();

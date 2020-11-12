@@ -114,7 +114,10 @@ class CelebrityProfilePage extends Component {
 
                 {/* CelebrityPublicVideosSectionLayout */}
                 <CelebrityPublicContractsSectionLayout
+                  contractTypes={this.props.celebrity.contractTypes}
                   celebrityId={this.props.celebrity.id}
+                  username={this.props.celebrity.username}
+
                 />
                 {/* End CelebrityPublicVideosSectionLayout */}
 

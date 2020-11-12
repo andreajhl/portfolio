@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import {contractOperations} from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
 import {Session} from "../../../state/utils/session";
+import OcassionsOptions from '../ocassions-options';
+import {occasionsData} from '../../../constants/options';
 
 class CreateContractForm extends Component {
 
@@ -20,10 +22,10 @@ class CreateContractForm extends Component {
                 deliveryTo: session.hasEmail() ? (session.getSession().fullName || ""): "",
                 deliveryType: 1,
                 deliveryContact: session.hasEmail() ? (session.getSession().email || "") : "",
-                instructions: "",
-                isPublic: true
+                instructions:  "",
+                isPublic: true,
+                occasion: "",
             },
-            showErrors: false,
         };
         this.handleIsPublic = this.handleIsPublic.bind(this);
         this.createContract = this.createContract.bind(this);
@@ -69,11 +71,15 @@ class CreateContractForm extends Component {
     };
 
     handleContractTypeChange = (value) => {
-        const contractData = this.state.contractData;
-        contractData.contractType = parseInt(value);
+        const updatedContractData = {...this.state.contractData};
+        if(this.state.contractData.occasion !== ""){
+            const newMessage= occasionsData[this.state.contractData.occasion].messages[value - 1].replaceAll('(<<PARA>>)', this.state.contractData.deliveryTo).replaceAll('(Famoso)!', `${this.props.celebrityFullName ? this.props.celebrityFullName : 'Famoso!'}!`);
+            updatedContractData.instructions = newMessage;
+        }
+        updatedContractData.contractType = parseInt(value);
         this.setState({
             ...this.state,
-            contractData
+            contractData: updatedContractData
         });
     };
 
@@ -107,6 +113,19 @@ class CreateContractForm extends Component {
         }
         return null
     };
+
+    
+    
+    changeOcassionOption = (identifier) =>{
+        const updatedContractData = {...this.state.contractData};
+        const newMessage= occasionsData[identifier].messages[this.state.contractData.contractType-1].replaceAll('(<<PARA>>)', this.state.contractData.deliveryTo).replaceAll('(<<DE>>)',this.state.contractData.deliveryFrom).replaceAll('(Famoso)!', `${this.props.celebrityFullName ? this.props.celebrityFullName : 'Famoso!'}!`);
+        updatedContractData.occasion = identifier;
+        updatedContractData.instructions = newMessage;
+        this.setState({
+            ...this.state,
+            contractData: updatedContractData
+        });
+    }
 
     deliveryContactValidator = () => {
         if (!this.state.contractData.deliveryContact.length) {
@@ -221,6 +240,7 @@ class CreateContractForm extends Component {
                         </div>
                     </div>
                     <div className={"mt-3"}>{""}</div>
+                    <OcassionsOptions currentChoise={this.state.contractData.occasion} clicked={this.changeOcassionOption}></OcassionsOptions>
                     <div className={"form-custom-vertical-group"}>
                         <label>¿Qué quieres que diga {this.props.celebrityFullName}?</label>
                         <textarea
