@@ -19,16 +19,35 @@ class ContractPriceLayout extends Component {
 
     renderText(value) {
         if(this.props.availableDiscount){
-            return (<div>
-                <span className={(this.props.classes)}> Precio original: <span className="text-dark">{this.props.availableDiscount.initialPrice} {this.props.currency}</span></span> <br></br>
-                <span className={(this.props.classes)}> 
-                Descuento: <span className="text-danger">
-                {this.props.availableDiscount.isPercentageDiscount ? 
-                ` ${this.props.availableDiscount.discountAmount}% | ${((this.props.availableDiscount.discountAmount/ 100) * this.props.price).toFixed(2)} ${this.props.currency}`
-                 :  ` ${this.props.availableDiscount.discountAmount} ${this.props.currency}`} </span>
-               </span><br></br>
-                <span className={(this.props.classes)}>Precio total: {value} {this.props.currency}</span><br></br>
-                </div>)
+            return (
+              <div>
+                <span className={this.props.classes}>
+                  <span className='float-left'> Precio original: </span>{' '}
+                  <span className='text-dark float-right'>
+                    {this.props.availableDiscount.initialPrice}{' '}
+                    {this.props.currency}
+                  </span>
+                </span>{' '}
+                <br></br>
+                <span className={this.props.classes}>
+                  <span className='float-left'>Descuento: </span>{' '}
+                  <span className='text-danger'>
+                    {this.props.availableDiscount.isPercentageDiscount
+                      ? `${this.props.availableDiscount.discountAmount}% | ${(
+                          (this.props.availableDiscount.discountAmount / 100) *
+                          this.props.price
+                        ).toFixed(2)} ${this.props.currency}`
+                      : ` ${this.props.availableDiscount.discountAmount} ${this.props.currency}`}{' '}
+                  </span>
+                </span>
+                <br></br>
+                <span className={this.props.classes}>
+                  <span className='float-left'>Precio total:</span>
+                  {value} {this.props.currency}
+                </span>
+                <br></br>
+              </div>
+            );
         }else{
             return (<span className={(this.props.classes)}> {value} {this.props.currency}</span>)
         }

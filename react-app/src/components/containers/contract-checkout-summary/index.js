@@ -85,7 +85,7 @@ class ContractCheckoutSummary extends Component {
                                 <div className="mt-4 f-rounded">
                                    <DiscountCouponForm/>
 
-                                    <h5 className="font-weight-bold float-left">Total:</h5>
+                                    <h5 className="font-weight-bold float-left">{this.props.couponData.completed ? null : "Total: "}</h5>
                                     <h5 className="font-weight-bold text-right float-right">
                                         <ContractPriceLayout
                                             classes={"text-black font-weight-bold"}
