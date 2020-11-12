@@ -79,7 +79,7 @@ class StripeCustomerSources extends Component {
                 disableButton: true,
                 errorMessage: null
             });
-            processStripePayment(this.props.contractReference, this.state.selectedSourceId)
+            processStripePayment(this.props.contractReference, this.state.selectedSourceId, this.props.discountCouponId)
                 .then(res => {
                     if (res.data.status === "ERROR") {
                         this.setState({

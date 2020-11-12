@@ -59,6 +59,7 @@ class StripeFlowHandler extends Component {
                 <StripeCardForm
                     contractReference={this.props.contractReference}
                     contractPrice={this.props.contractPrice}
+                    discountCouponId={this.props.discountCouponId}
                 />
             );
         }
@@ -71,6 +72,7 @@ class StripeFlowHandler extends Component {
                     onDeleteSource={this.onDeleteSource}
                     contractReference={this.props.contractReference}
                     availableSources={this.state.availableSources}
+                    discountCouponId={this.props.discountCouponId}
                 />
             );
         }

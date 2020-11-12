@@ -31,11 +31,11 @@ class index extends Component {
     render() {
         return (
           <form onSubmit={this.handleSubmit} className='coupon-container'>
-            <label for='coupon-input'>Ingresa aqui tu cupon de descuento</label>
-            <div class='input-group mb-3'>
+            <label htmlFor='coupon-input'>Ingresa aqui tu cupon de descuento</label>
+            <div className='input-group mb-3'>
               <input
                 type='text'
-                class='form-control'
+                className='form-control'
                 placeholder='Ingrese un cupon'
                 aria-label=''
                 aria-describedby='basic-addon1'
@@ -44,13 +44,13 @@ class index extends Component {
                 onChange={(event) => this.handleChange(event)}
               />
               {this.props.couponData.completed ? (
-                <div class='input-group-append'>
-                  <span class='input-group-text text-success' >
+                <div className='input-group-append'>
+                  <span className='input-group-text text-success' >
                     CUPON AGREGADO
                   </span>
                 </div>
               ) : (
-                <div class='input-group-append'>
+                <div className='input-group-append'>
                   <button className='btn btn-primary' type='submit'>
                     Aplicar
                   </button>

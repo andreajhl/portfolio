@@ -19,7 +19,7 @@ class StripeCardForm extends Component {
             errorMessage: null,
             disableButton: false,
         };
-
+        
     }
 
     handleInput = (e) => {
@@ -110,7 +110,7 @@ class StripeCardForm extends Component {
 
 
     applyStripeAuth = (sourceId) => {
-        processStripePayment(this.props.contractReference, sourceId)
+        processStripePayment(this.props.contractReference, sourceId, this.props.discountCouponId)
             .then(res => {
                 if (res.data.status === "ERROR") {
                     this.setState({
