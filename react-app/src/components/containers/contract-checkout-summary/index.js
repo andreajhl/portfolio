@@ -1,13 +1,28 @@
 import React, {Component} from "react";
 import "./styles.scss";
 import {ContractPriceLayout} from "../../layouts/contract-price";
-import CouponForm from '../coupon-form';
+import DiscountCouponForm from '../discount-coupon-form';
+import {connect} from "react-redux";
+
 
 class ContractCheckoutSummary extends Component {
 
     constructor(props) {
         super(props);
         this.state = {};
+    }
+
+    applyDiscount() {
+        let discountTotal= 0;
+        if(this.props.couponData.data.isPercentageDiscount){
+            discountTotal = ((this.props.couponData.data.discount_amount/ 100) * this.props.price).toFixed(2);
+            if (discountTotal > this.props.couponData.maxDiscountAmount){
+                discountTotal = this.props.couponData.maxDiscountAmount;
+            }
+        }else{
+            discountTotal = this.props.couponData.data.discount_amount;
+        }
+        return ( this.props.price - discountTotal);
     }
 
     render() {
@@ -69,14 +84,23 @@ class ContractCheckoutSummary extends Component {
                                 ?
                                 <div className="mt-4 f-rounded">
                                     {/* Coupon code component */}
+<<<<<<< HEAD
                                     {/* <CouponForm/> */}
+=======
+                                    <DiscountCouponForm/>
+>>>>>>> discount-coupons
                                     {/* Coupon code component */}
 
                                     <h5 className="font-weight-bold float-left">Total:</h5>
                                     <h5 className="font-weight-bold text-right float-right">
                                         <ContractPriceLayout
                                             classes={"text-black font-weight-bold"}
-                                            price={this.props.price}
+                                            availableDiscount = {this.props.couponData.completed ? {
+                                                initialPrice: this.props.price,
+                                                isPercentageDiscount : this.props.couponData.data.isPercentageDiscount,
+                                                discountAmount: this.props.couponData.data.discount_amount,
+                                            } : false}
+                                            price={this.props.couponData.completed ? this.applyDiscount() : this.props.price}
                                             currency={"USD"}
                                             rounding={false}
                                         />
@@ -104,4 +128,11 @@ ContractCheckoutSummary.defaultProps = {
     price: 0,
 };
 
-export {ContractCheckoutSummary};
+// mapStateToProps
+const mapStateToProps = (state: any) => ({
+    couponData: state.payments.fetchDiscountCouponReducer
+});
+
+// Export Class
+const _ContractCheckoutSummary = connect(mapStateToProps)(ContractCheckoutSummary);
+export {_ContractCheckoutSummary as ContractCheckoutSummary};

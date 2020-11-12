@@ -3,7 +3,7 @@ import "./styles.scss";
 import {PayPalCardForm} from "../paypal-card-form";
 import {Elements} from "react-stripe-elements";
 import StripeFlowHandler from "../stripe-flow-handler";
-
+import {connect} from 'react-redux';
 
 class AvailablePaymentMethods extends Component {
 
@@ -14,6 +14,9 @@ class AvailablePaymentMethods extends Component {
             selectedPaymentMethod: "STRIPE",
         };
     }
+    componentDidMount(){
+        console.log(this.props)
+    }
 
     changeToStripe = (e) => {
         e.preventDefault();
@@ -23,6 +26,20 @@ class AvailablePaymentMethods extends Component {
             selectedPaymentMethod: "STRIPE"
         })
     };
+
+    applyDiscount() {
+        let discountTotal= 0;
+        if(this.props.couponData.data.isPercentageDiscount){
+            discountTotal = ((this.props.couponData.data.discount_amount/ 100) * this.props.contractPrice).toFixed(2);
+            if (discountTotal > this.props.couponData.data.maxDiscountAmount){
+                discountTotal = this.props.couponData.data.maxDiscountAmount;
+            }
+        }else{
+            discountTotal = this.props.couponData.data.discount_amount;
+        }
+        return ( parseInt(this.props.contractPrice - discountTotal));
+    }
+
 
     changeToPaypal = (e) => {
         e.preventDefault();
@@ -56,7 +73,8 @@ class AvailablePaymentMethods extends Component {
                             <Elements>
                                 <StripeFlowHandler
                                     contractReference={this.props.contractReference}
-                                    contractPrice={this.props.contractPrice}
+                                    contractPrice={this.props.couponData.completed ? this.applyDiscount() : this.props.contractPrice}
+                                    discountCouponId ={this.props.couponData.data.id}
                                 />
                             </Elements>
                         </div>
@@ -75,7 +93,8 @@ class AvailablePaymentMethods extends Component {
                         <div className={"pl-3 pr-3 pt-4 pb-4 bg-light" + (this.state.selectedPaymentMethod==="PAYPAL" ? "":" d-none ")}>
                             <PayPalCardForm
                                 contractReference={this.props.contractReference}
-                                contractPrice={this.props.contractPrice}
+                                contractPrice={this.props.couponData.completed ? this.applyDiscount() : this.props.contractPrice}
+                                discountCouponId ={this.props.couponData.data.id}
                             />
                         </div>
                     </div>
@@ -93,6 +112,11 @@ AvailablePaymentMethods.defaultProps = {
     contractReference: "",
     contractPrice: 0
 };
+// mapStateToProps
+const mapStateToProps = (state: any) => ({
+    couponData: state.payments.fetchDiscountCouponReducer
+});
 
 // Export Class
-export {AvailablePaymentMethods};
+const _AvailablePaymentMethods = connect(mapStateToProps)(AvailablePaymentMethods);
+export {_AvailablePaymentMethods as AvailablePaymentMethods};
