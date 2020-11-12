@@ -10,7 +10,7 @@
 
 .top-bar {
   &-helper {
-    height: 121px;
+    height: 113px;
 
     &.hidden-search {
       height: 53px;
@@ -19,6 +19,10 @@
 
   &__dropdown-button {
     font-size: 1.35rem;
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
   }
 
   &__logo-link {
@@ -48,17 +52,38 @@
   }
 
   .dropdown {
-    background-color: white;
+    left: -1px;
+    z-index: 10;
     padding: 0;
+    position: relative;
+    width: 18rem;
+
+    &.dropdown-menu-is-open {
+      z-index: 99999;
+      background-color: white;
+      border-right: 1px solid rgba(0, 0, 0, 0.15);
+      border-left: 1px solid rgba(0, 0, 0, 0.15);
+    }
 
     &-menu {
+      overflow: hidden;
       padding: 0;
-      z-index: 99999;
+      margin: 0;
+      border-radius: 0 0 10px 0;
+      left: -1px !important;
+      min-width: 18rem !important;
+
+      @media only screen and (min-width: 576px) {
+        left: -1px !important;
+        border-radius: 0 0 10px 10px;
+      }
     }
 
     .dropdown-item {
-      padding: 10px;
+      padding: 1.25rem 2rem 1.25rem 3rem;
+      font-size: 1rem;
       border-bottom: solid 1px #ccc;
+      font-weight: bold;
     }
 
     .dropdown-toggle::after {
@@ -69,18 +94,5 @@
       background-color: white !important;
       color: $dark !important;
     }
-
-    &:active,
-    &:hover {
-      background-color: white !important;
-      i {
-        color: $dark !important;
-      }
-    }
-
-    position: relative;
-    top: 3px;
-    height: 42px;
-    font-size: 20px;
   }
 }

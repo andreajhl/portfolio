@@ -21,9 +21,13 @@ const NavbarSectionLayout = ({
   return (
     <>
       <div className={`NavbarSectionLayout ${className}`}>
-        <div className="top-bar container mx-auto p-0 row align-items-center">
+        <div className="top-bar container mx-auto p-0 row">
           <div className="top-bar__left-side col-4 p-0">
-            <div className="dropdown">
+            <div
+              className={`dropdown ${
+                dropdownMenuIsOpen ? "dropdown-menu-is-open" : ""
+              }`}
+            >
               <button
                 className="btn top-bar__dropdown-button"
                 type="button"
@@ -33,7 +37,9 @@ const NavbarSectionLayout = ({
                 aria-expanded="false"
                 onClick={() => setDropdownMenuIsOpen(!dropdownMenuIsOpen)}
               >
-                <i className="fa fa-bars" />
+                <i
+                  className={`fa fa-${dropdownMenuIsOpen ? "times" : "bars"}`}
+                />
               </button>
               <div
                 className="dropdown-menu"
@@ -105,7 +111,7 @@ const NavbarSectionLayout = ({
               </div>
             </div>
           </div>
-          <div className="top-bar__center-side col-4 text-center p-0">
+          <div className="top-bar__center-side col-4 text-center p-0 pt-2">
             <NavLink to={HOME_PATH} className="top-bar__logo-link">
               <img
                 className="top-bar__logo"
@@ -134,7 +140,7 @@ const NavbarSectionLayout = ({
             </div>
           </div>
           {showSearch ? (
-            <div className="col-12 pt-3 px-0">
+            <div className="col-12 pt-2 px-0">
               <div className="d-block top-bar__search-sm">
                 <NavbarSearchLayout
                   searchLabel="Buscar famosos"
