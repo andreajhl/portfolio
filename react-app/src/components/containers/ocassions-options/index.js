@@ -17,7 +17,7 @@ class index extends Component {
         });
 
         return (
-          <div className=''>
+          <div style={{marginBottom: '10px'}}>
             <h6 className='subtitle'>Selecciona una ocación</h6>
             <div className='row row-cols-4'>
               {optionsToRender}
