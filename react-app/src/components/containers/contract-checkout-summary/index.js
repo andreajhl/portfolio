@@ -69,7 +69,7 @@ class ContractCheckoutSummary extends Component {
                                 ?
                                 <div className="mt-4 f-rounded">
                                     {/* Coupon code component */}
-                                    <CouponForm/>
+                                    {/* <CouponForm/> */}
                                     {/* Coupon code component */}
 
                                     <h5 className="font-weight-bold float-left">Total:</h5>

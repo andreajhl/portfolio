@@ -73,8 +73,7 @@ class CreateContractForm extends Component {
     handleContractTypeChange = (value) => {
         const updatedContractData = {...this.state.contractData};
         if(this.state.contractData.occasion !== ""){
-            const newMessage= occasionsData[this.state.contractData.occasion].messages[value - 1].replaceAll('(<<PARA>>)', this.state.contractData.deliveryTo);
-            
+            const newMessage= occasionsData[this.state.contractData.occasion].messages[value - 1].replaceAll('(<<PARA>>)', this.state.contractData.deliveryTo).replaceAll('(Famoso)!', `${this.props.celebrityFullName ? this.props.celebrityFullName : 'Famoso!'}!`);
             updatedContractData.instructions = newMessage;
         }
         updatedContractData.contractType = parseInt(value);
@@ -119,7 +118,7 @@ class CreateContractForm extends Component {
     
     changeOcassionOption = (identifier) =>{
         const updatedContractData = {...this.state.contractData};
-        const newMessage= occasionsData[identifier].messages[this.state.contractData.contractType-1].replaceAll('(<<PARA>>)', this.state.contractData.deliveryTo).replaceAll('(<<DE>>)',this.state.contractData.deliveryFrom);
+        const newMessage= occasionsData[identifier].messages[this.state.contractData.contractType-1].replaceAll('(<<PARA>>)', this.state.contractData.deliveryTo).replaceAll('(<<DE>>)',this.state.contractData.deliveryFrom).replaceAll('(Famoso)!', `${this.props.celebrityFullName ? this.props.celebrityFullName : 'Famoso!'}!`);
         updatedContractData.occasion = identifier;
         updatedContractData.instructions = newMessage;
         this.setState({
