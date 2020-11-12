@@ -21,7 +21,7 @@ class NavbarSearchLayout extends Component {
     this.searchRef = createRef();
 
     this.goToHome = this.goToHome.bind(this);
-    this.debouncedOnSearchChange = debounce(this.onSearchChange, 200);
+    this.debouncedOnSearchChange = debounce(this.onSearchChange, 500);
   }
 
   componentDidUpdate() {
