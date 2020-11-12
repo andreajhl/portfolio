@@ -109,7 +109,7 @@ const NavbarSectionLayout = ({
             <NavLink to={HOME_PATH} className="top-bar__logo-link">
               <img
                 className="top-bar__logo"
-                src="/assets/img/logo-color-1.png"
+                src="/assets/img/famosos-logo.svg"
                 alt="Famosos Logo"
               />
             </NavLink>
