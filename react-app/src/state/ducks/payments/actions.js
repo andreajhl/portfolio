@@ -232,3 +232,36 @@ export const removeSource = (sourceId) => {
         });
   })
 };
+
+export const discountCouponsGateways = (contractReference, discountCoupon) => {
+  const data = {
+    contractReference: contractReference,
+    discountCoupon: discountCoupon};
+  return (dispatch) => {
+    const TYPE = types.APPLY_DISCOUNT_COUPON;
+    const FINAL_PATH = 'custom-endpoints/user-payments/apply-discount-coupon';
+    dispatch({ type: TYPE, payload: {} });
+    apiService({
+      method: 'POST',
+        path: FINAL_PATH,
+        async: true,
+        params: null,
+        body: data,
+    })
+      .then(res => {
+        if (res.data.status === "OK") {
+          handleApiResponseSuccess(dispatch, TYPE, res);
+          // Other actions
+          dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+        } else {
+          handleApiResponseFailure(dispatch, TYPE, res);
+          // Other actions
+        }
+      })
+      .catch(err => {
+        if(err.response){
+          handleApiResponseFailure(dispatch, TYPE, err.response.data);
+        }
+      });
+  };  
+};
