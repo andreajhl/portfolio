@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useRef, utilizeFocus} from 'react';
 import "./styles.scss";
 import {connect} from "react-redux";
 import {Form} from "react-bootstrap";
@@ -8,6 +8,7 @@ import * as GTM from "../../../state/utils/gtm";
 import {Session} from "../../../state/utils/session";
 import OcassionsOptions from '../ocassions-options';
 import {occasionsData} from '../../../constants/options';
+
 
 class CreateContractForm extends Component {
 
@@ -24,11 +25,13 @@ class CreateContractForm extends Component {
                 deliveryContact: session.hasEmail() ? (session.getSession().email || "") : "",
                 instructions:  "",
                 isPublic: true,
-                occasion: "",
+                occasion: "OTHER",
             },
         };
         this.handleIsPublic = this.handleIsPublic.bind(this);
         this.createContract = this.createContract.bind(this);
+        this.deliveryToInput=  React.createRef();;
+        this.deliveryFromInput=  React.createRef();;
     }
 
     sendBusinessRequestGTMEvent = () => {
@@ -60,6 +63,14 @@ class CreateContractForm extends Component {
         }
     }
 
+    
+    replacePlaceHolder = (text) =>{
+        const textClear= text.replaceAll('(<<PARA>>)', this.state.contractData.deliveryTo)
+        .replaceAll('(Famoso)!', `${this.props.celebrityFullName ? `${this.props.celebrityFullName}! ` : 'Famoso!'}`)
+        .replaceAll('(<<DE>>)',this.state.contractData.deliveryFrom.length > 1 ? this.state.contractData.deliveryFrom : "");
+        return textClear;
+    }
+
     handleInputChange = (event) => {
         const contractData = this.state.contractData;
         if (event.target.value.length <= 300) {
@@ -72,8 +83,9 @@ class CreateContractForm extends Component {
 
     handleContractTypeChange = (value) => {
         const updatedContractData = {...this.state.contractData};
-        if(this.state.contractData.occasion !== ""){
-            const newMessage= occasionsData[this.state.contractData.occasion].messages[value - 1].replaceAll('(<<PARA>>)', this.state.contractData.deliveryTo).replaceAll('(Famoso)!', `${this.props.celebrityFullName ? this.props.celebrityFullName : 'Famoso!'}!`);
+        const oldMessage= this.replacePlaceHolder(occasionsData[this.state.contractData.occasion]?.messages[this.state.contractData.contractType-1]);
+        if(this.state.contractData.occasion === "" || oldMessage === this.state.contractData.instructions){
+            const newMessage= this.replacePlaceHolder(occasionsData[this.state.contractData.occasion].messages[value - 1]);
             updatedContractData.instructions = newMessage;
         }
         updatedContractData.contractType = parseInt(value);
@@ -95,6 +107,9 @@ class CreateContractForm extends Component {
 
     deliveryFromValidator = () => {
         if (this.state.contractData.contractType === 2 && !this.state.contractData.deliveryFrom.length) {
+            if (this.deliveryFromInput.current){
+                this.deliveryFromInput.current.focus();
+            }
             return "Campo requerido";
         }
         return null
@@ -102,6 +117,9 @@ class CreateContractForm extends Component {
 
     deliveryToValidator = () => {
         if (!this.state.contractData.deliveryTo.length) {
+            if (this.deliveryToInput.current){
+                this.deliveryToInput.current.focus();
+            }
             return "Campo requerido";
         }
         return null
@@ -117,13 +135,26 @@ class CreateContractForm extends Component {
     
     
     changeOcassionOption = (identifier) =>{
+        // ALMACENAR EL MENSAJE ACTUAL QUE SE ENCUENTRA EN EL STATE
+        let oldMessage= 
+        occasionsData[this.state.contractData.occasion]?.messages[this.state.contractData.contractType-1];
+        if (oldMessage) {
+            oldMessage= this.replacePlaceHolder(oldMessage);
+        }
+        const newMessage= this.replacePlaceHolder(occasionsData[identifier].messages[this.state.contractData.contractType-1]);
         const updatedContractData = {...this.state.contractData};
-        const newMessage= occasionsData[identifier].messages[this.state.contractData.contractType-1].replaceAll('(<<PARA>>)', this.state.contractData.deliveryTo).replaceAll('(<<DE>>)',this.state.contractData.deliveryFrom).replaceAll('(Famoso)!', `${this.props.celebrityFullName ? this.props.celebrityFullName : 'Famoso!'}!`);
+        // ACTUALIZAR EL VALOR DE LA OCASSION SELECCIONADA
         updatedContractData.occasion = identifier;
-        updatedContractData.instructions = newMessage;
+        // VERIFICAR SI EL MENSAJE ACTUAL ES DIFERENTE AL PRECARGADO EN LA APP
+        if (this.state.contractData.instructions.length < 1 || oldMessage === this.state.contractData.instructions) {
+            // SI NO HAY INSTRUCCIONES ALMACENADAS,
+            // SI NO HAY MODIFICACIONES REALIZADAS AL MENSAJE PRECARGADO,
+            // ACTUALIZAR EL ESTADO CON TEXTO DEFAULT
+            updatedContractData.instructions = newMessage;
+        }
         this.setState({
-            ...this.state,
-            contractData: updatedContractData
+        ...this.state,
+        contractData: updatedContractData,
         });
     }
 
@@ -213,6 +244,7 @@ class CreateContractForm extends Component {
                                 value={contractData.deliveryTo}
                                 name={"deliveryTo"}
                                 onChange={this.handleInputChange}
+                                ref={this.deliveryToInput}
                             />
                             <span
                                 className={"text-danger" + (this.state.showErrors ? " show-error " : " hide-error ")}>
@@ -232,6 +264,7 @@ class CreateContractForm extends Component {
                                 value={contractData.deliveryFrom}
                                 name={"deliveryFrom"}
                                 onChange={this.handleInputChange}
+                                ref={this.deliveryFromInput}
                             />
                             <span
                                 className={"text-danger" + (this.state.showErrors ? " show-error " : " hide-error ")}>

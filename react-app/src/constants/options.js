@@ -28,7 +28,7 @@ export const occasionsData = {
     title: 'Canción',
     messages: [
       'Hola (Famoso)! Soy la presidenta de tu club de fans aquí en mi ciudad y me muero por ti y tu música, me gustaría que tú me dediques tu último sencillo y me cantes una parte en el video.',
-      'Hola (Famoso)!  (<<PARA>>) es la presidenta de tu club de fans aquí en mi ciudad y se muere por ti y tu música, somos amigas desde pequeñas y me gustaría que tú le dediques tu último sencillo y le cantes una parte en el video.',
+      'Hola (Famoso)! (<<PARA>>) es la presidenta de tu club de fans aquí en mi ciudad y se muere por ti y tu música, somos amigas desde pequeñas y me gustaría que tú le dediques tu último sencillo y le cantes una parte en el video.',
     ],
   },
   CHEER_UP: {
@@ -75,7 +75,7 @@ export const occasionsData = {
     icon: 'fa-hand-holding-heart',
     title: 'Perdón',
     messages: [
-      ' ',
+      '',
       'Hola (Famoso)! Mi esposa y yo llevamos juntos 7 años y justo el aniversario número siete se me olvidó y eso la tiene muy triste, (<<PARA>>) es fanática de tu música, me harías un súper favor si le cantas una canción y me ayudas a pedir perdón por el error.',
     ],
   },
