@@ -86,8 +86,9 @@
       max-width: unset;
 
       &-item {
+        text-align: center;
         flex: 1;
-        margin-left: 1.5em;
+        margin-right: 1.5em;
       }
 
       &-image {
