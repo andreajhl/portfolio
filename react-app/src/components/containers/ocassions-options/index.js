@@ -18,7 +18,7 @@ class index extends Component {
 
         return (
           <div style={{marginBottom: '10px'}}>
-            <h6 className='subtitle'>Selecciona una ocación</h6>
+            <h6 className='subtitle'>Selecciona una ocasión</h6>
             <div className='row row-cols-4'>
               {optionsToRender}
             </div>
