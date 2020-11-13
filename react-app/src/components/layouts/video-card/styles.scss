@@ -58,8 +58,11 @@
       }
     }
 
-    &__celebrity-profile-link {
+    &__footer {
       pointer-events: all;
+    }
+
+    &__celebrity-profile-link {
       &:hover {
         text-decoration: none;
       }

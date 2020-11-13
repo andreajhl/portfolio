@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
+import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 
 const VideoCardLayout = ({ celebrity }) => {
   const videoRef = useRef();
@@ -56,7 +57,7 @@ const VideoCardLayout = ({ celebrity }) => {
               {celebrity.occasion}
             </span>
           </header>
-          <footer className="d-flex align-items-center px-2">
+          <footer className="d-flex align-items-center px-2 video-card__footer">
             <NavLink
               className="d-flex align-items-center video-card__celebrity-profile-link"
               to={celebrity.username}
@@ -69,7 +70,10 @@ const VideoCardLayout = ({ celebrity }) => {
                 {celebrity.fullName}
               </h3>
             </NavLink>
-            <img src="/assets/img/outlined-heart.svg" className="ml-auto" />
+            <CelebrityFavoriteButton
+              celebrityId={celebrity.id}
+              className="ml-auto"
+            />
           </footer>
         </section>
       </div>
