@@ -1,7 +1,8 @@
 
 .option-container{
    
-    text-align: center;
+    text-align: center;  
+
 
     
     .container-circle{ 
@@ -18,7 +19,7 @@
         &.choose{
             background-image: url("/assets/img/ocassion-container-select.svg");
         }
-        
+
     }
     &.choose *{
        color: #FB177D;
@@ -27,12 +28,16 @@
     .container-legend{
         font-size: 11px;
         cursor: pointer;
+        line-height: 1.5;
+        display: block;
+        margin-bottom: 10px;
     }
 
     
     i {
-        font-size: 23px;
-        
+        font-size: 18px;
+        position: absolute;
+        top: 12px;
     }
 
    
