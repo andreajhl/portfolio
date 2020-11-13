@@ -1,5 +1,5 @@
-import {currencyExchange, getContractToPay, listPaymentGateways, discountCouponsGateways} from "./actions";
+import {currencyExchange, getContractToPay, listPaymentGateways, discountCouponsGateways, clearCouponData} from "./actions";
 
 export {
-    listPaymentGateways, currencyExchange, getContractToPay, discountCouponsGateways
+    listPaymentGateways, currencyExchange, getContractToPay, discountCouponsGateways, clearCouponData
 };

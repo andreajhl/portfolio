@@ -235,6 +235,12 @@ export const removeSource = (sourceId) => {
   })
 };
 
+export const clearCouponData = ()=>{
+  return (dispatch) =>{
+    dispatch({ type: types.APLY_DISCOUNT_COUPON_CLEAR, payload: {} });
+  }
+}
+
 export const discountCouponsGateways = (contractReference, discountCoupon) => {
   const data = {
     contractReference: contractReference,
@@ -242,7 +248,7 @@ export const discountCouponsGateways = (contractReference, discountCoupon) => {
   return (dispatch) => {
     const TYPE = types.APPLY_DISCOUNT_COUPON;
     const FINAL_PATH = 'custom-endpoints/user-payments/apply-discount-coupon';
-    dispatch({ type: TYPE, payload: {} });
+    
     apiService({
       method: 'POST',
         path: FINAL_PATH,
