@@ -6,9 +6,12 @@
     padding: 0.75rem 0.625rem;
     width: 258px;
     height: 344px;
-    // background: linear-gradient(0deg, #292929 0%, rgba(126, 126, 126, 0) 100%);
     mix-blend-mode: multiply;
     border-radius: 11px;
+
+    &:hover {
+      text-decoration: none;
+    }
 
     &__category {
       font-size: 0.5625rem;
