@@ -11,13 +11,13 @@ export const occasionsData = {
     icon: 'fa-heart',
     title: 'Amor',
     messages: [
-		'Escribe tu mensaje...',
+		'',
 		'Hola (Famoso)! Estamos cumpliendo aniversario de novios con  (<<PARA>>) y me encantaría regalarle un saludo tuyo. Nos encantan tus canciones, estaría buenísimo si puedes cantar una parte de tu último sencillo.',
     ],
   },
   SPECIAL_OCCASION: {
     icon: 'fa-glass-cheers',
-    title: 'Ocasion especial',
+    title: 'Especial',
     messages: [
       'Hola (Famoso)! Acabo de obtener mi grado como psicóloga, soy fanática de tus canciones y me gustaría que me envíes un saludo por este logro que acabo de alcanzar.',
       'Hola (Famoso)! (<<PARA>>) es mi prima y acaba de obtener su grado como psicóloga, es fanática de tus canciones y me gustaría que la felicites y le envíes un saludo por este logro que acaba de alcanzar.',
@@ -33,7 +33,7 @@ export const occasionsData = {
   },
   CHEER_UP: {
     icon: 'fa-spa',
-    title: 'Animo',
+    title: 'Ánimo',
     messages: [
       'Hola (Famoso)! Acabo de salir de una operación muy difícil, afortunadamente todo salió bien y me estoy recuperando, me gustaría que me envíes unas palabras de ánimo, soy muy fan tuya y sé que eso me va a hacer muy feliz.',
       'Hola (Famoso)!  (<<PARA>>) acaba de salir de una operación muy difícil, afortunadamente todo salió bien y se está recuperando, me gustaría que le envíes unas palabras de ánimo, ella es muy fan tuya y sé que eso la va a hacer muy feliz.',
@@ -43,16 +43,16 @@ export const occasionsData = {
     icon: 'fa-laugh',
     title: 'Hacer sonreir',
     messages: [
-      'Escribe tu mensaje... ',
-      ' Hola (Famoso)! (<<PARA>>) y yo nos conocemos hace 10 años pero los últimos 2 hemos estado discutiendo mucho por bobadas, ella es una fanática tuya y quiero regalarle un video tuyo porque sé que eso le va a sacar una sonrisa',
+      '',
+      'Hola (Famoso)! (<<PARA>>) y yo nos conocemos hace 10 años pero los últimos 2 hemos estado discutiendo mucho por bobadas, ella es una fanática tuya y quiero regalarle un video tuyo porque sé que eso le va a sacar una sonrisa',
     ],
   },
   MOTIVATION: {
     icon: 'fa-bolt',
-    title: 'Motivacion',
+    title: 'Motivación',
     messages: [
       'Hola (Famoso)! Tengo una empresa de diseño y el último mes no me fue muy bien, eso me tiene algo triste los últimos días. No me pierdo ningún partido de tu equipo por lo que sé que me animará mucho escuchar un mensaje de tu parte.',
-      ' Hola (Famoso)! Mi esposo tiene una empresa de diseño y el último mes no le fue muy bien, eso lo tiene algo triste los últimos días. (<<PARA>>) no se pierde ningún partido de tu equipo por lo que sé que lo animará mucho escuchar un mensaje de tu parte',
+      'Hola (Famoso)! Mi esposo tiene una empresa de diseño y el último mes no le fue muy bien, eso lo tiene algo triste los últimos días. (<<PARA>>) no se pierde ningún partido de tu equipo por lo que sé que lo animará mucho escuchar un mensaje de tu parte',
     ],
   },
   JOKE: {
@@ -67,29 +67,29 @@ export const occasionsData = {
     icon: 'fa-dove',
     title: 'Esperanza',
     messages: [
-      'Escribe tu mensaje... ',
+      '',
       'Hola (Famoso)! Nuestra mamá se llama (<<PARA>>) y le acaban de dar una mala noticia sobre su salud. Nos gustaría que le mandes un mensaje de esperanza para que esté motivada, tenemos mucha fe en que todo va a salir bien.',
     ],
   },
   ASK_FOR_FORGIVENESS: {
     icon: 'fa-hand-holding-heart',
-    title: 'Pedir perdon',
+    title: 'Perdón',
     messages: [
-      'Escribe tu mensaje... ',
+      ' ',
       'Hola (Famoso)! Mi esposa y yo llevamos juntos 7 años y justo el aniversario número siete se me olvidó y eso la tiene muy triste, (<<PARA>>) es fanática de tu música, me harías un súper favor si le cantas una canción y me ayudas a pedir perdón por el error.',
     ],
   },
   RECONCILATION: {
     icon: 'fa-hand-peace',
-    title: 'Reconcilizacion',
+    title: 'Reconciliación',
     messages: [
-      'Escribe tu mensaje... ',
+      '',
       'Hola (Famoso)! Soy (<<DE>>) y llevo 2 años de novio con (<<PARA>>), hace dos meses terminamos pero la extraño mucho y quiero volver con ella. Me gustaría que me ayudes con un mensaje de reconciliación que me dé un empujón para reconciliarme con ella.',
     ],
   },
   OTHER: {
     icon: 'fa-paper-plane',
     title: 'Otro',
-    messages: ['Escribe tu mensaje...', 'Escribe tu mensaje...'],
+    messages: ['', ''],
   },
 };
