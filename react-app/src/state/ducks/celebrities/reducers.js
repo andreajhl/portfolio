@@ -3,7 +3,7 @@ import * as types from "./types";
 
 export const updateQueryParamsInitialState = {
   offset: 0,
-  limit: 10
+  limit: 20
 };
 
 const fetchCelebritiesInitialState = {

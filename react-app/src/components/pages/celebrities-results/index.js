@@ -9,7 +9,9 @@ import {
 } from "../../layouts";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
+import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import { ROOT_PATH } from "../../../routing/Paths";
+import { updateQueryParams } from "../../../state/ducks/contracts/actions";
 
 const mapStateToProps = ({ celebrities }) => {
   return {
@@ -26,9 +28,6 @@ const mapDispatchToProps = {
 const pageTitle = "Famosos.com - Todos los Famosos";
 const pageDescription =
   "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.";
-
-const offsetInitialValue = 0;
-const resultsLimit = 10;
 
 const listParamsInitialKeys = ["offset", "limit"];
 
@@ -47,7 +46,7 @@ const CelebritiesResultsPage = ({
   location,
   history
 }) => {
-  const [offset, setOffset] = useState(offsetInitialValue);
+  const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
   const queryString = location.search;
   const listParams = useMemo(() => queryStringToJSON(queryString), [
     queryString
@@ -57,11 +56,12 @@ const CelebritiesResultsPage = ({
     if (!queryString || !hasSearched(listParams))
       return history.push(ROOT_PATH);
     fetchCelebrities(listParams);
-    setOffset(offsetInitialValue);
+    setOffset(updateQueryParamsInitialState.offset);
   }, [listParams]);
 
   const fetchMoreData = () => {
-    const newOffset = offset ? offset + resultsLimit : resultsLimit;
+    const { limit } = updateQueryParamsInitialState;
+    const newOffset = offset ? offset + limit : limit;
     setOffset(newOffset < totalResults ? newOffset : totalResults);
     fetchCelebrities({
       ...listParams,
