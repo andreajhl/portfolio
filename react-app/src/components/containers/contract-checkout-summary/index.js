@@ -84,9 +84,7 @@ class ContractCheckoutSummary extends Component {
                                 ?
                                 <div className="mt-4 f-rounded">
                                    <DiscountCouponForm/>
-
-                                    <h5 className="font-weight-bold float-left">Total:</h5>
-                                    <h5 className="font-weight-bold text-right float-right">
+                                    <div className="text-right w-100">
                                         <ContractPriceLayout
                                             classes={"text-black font-weight-bold"}
                                             availableDiscount = {this.props.couponData.completed ? {
@@ -98,7 +96,7 @@ class ContractCheckoutSummary extends Component {
                                             currency={"USD"}
                                             rounding={false}
                                         />
-                                    </h5>
+                                    </div>
                                 </div>
                                 : <div></div>
                         }
