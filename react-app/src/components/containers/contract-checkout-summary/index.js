@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import "./styles.scss";
 import {ContractPriceLayout} from "../../layouts/contract-price";
 import DiscountCouponForm from '../discount-coupon-form';
+import {paymentsOperations} from "../../../state/ducks/payments";
+
 import {connect} from "react-redux";
 
 
@@ -10,12 +12,13 @@ class ContractCheckoutSummary extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.props.clearCouponData();
     }
 
     applyDiscount() {
         let discountTotal= 0;
         if(this.props.couponData.data.isPercentageDiscount){
-            discountTotal = ((this.props.couponData.data.discount_amount/ 100) * this.props.price).toFixed(2);
+            discountTotal = this.props.couponData.data.discount_amount * this.props.price;
             if (discountTotal > this.props.couponData.data.maxDiscountAmount){
                 discountTotal = this.props.couponData.data.maxDiscountAmount;
             }
@@ -124,7 +127,11 @@ ContractCheckoutSummary.defaultProps = {
 const mapStateToProps = (state: any) => ({
     couponData: state.payments.fetchDiscountCouponReducer
 });
+// mapStateToProps
+const mapDispatchToProps = {
+    clearCouponData: paymentsOperations.clearCouponData,
+};
 
 // Export Class
-const _ContractCheckoutSummary = connect(mapStateToProps)(ContractCheckoutSummary);
+const _ContractCheckoutSummary = connect(mapStateToProps,mapDispatchToProps)(ContractCheckoutSummary);
 export {_ContractCheckoutSummary as ContractCheckoutSummary};
