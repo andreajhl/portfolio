@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { SIGN_IN_WITH_SPECIFIC_FORM_PATH } from "../../../routing/Paths";
 import { addOrRemoveLike } from "../../../state/ducks/celebrity-likes/actions";
 import { Session } from "../../../state/utils/session";
+import PropTypes from "prop-types";
 
 const preventRedirectFromParent = (event) => {
   if (event.stopPropagation) {
@@ -20,6 +21,7 @@ const mapStateToProps = ({ celebrityLikes }) => {
 
 const CelebrityFavoriteButton = ({
   celebrityId,
+  className,
   userCelebrityLikes,
   history
 }) => {
@@ -86,7 +88,7 @@ const CelebrityFavoriteButton = ({
       src={`/assets/img/${
         isFavorite /* || isHovering */ ? "filled" : "outlined"
       }-heart.svg`}
-      className="like-icon"
+      className={`like-icon cursor-pointer ${className}`}
       // onMouseOver={fillHeart}
       // onMouseLeave={unFillHeart}
       onClick={toggleFavorite}
@@ -94,7 +96,19 @@ const CelebrityFavoriteButton = ({
   );
 };
 
+CelebrityFavoriteButton.defaultProps = {
+  className: "",
+  userCelebrityLikes: []
+};
+
+CelebrityFavoriteButton.propTypes = {
+  className: PropTypes.string,
+  celebrityId: PropTypes.number.isRequired,
+  userCelebrityLikes: PropTypes.array
+};
+
 const _CelebrityFavoriteButton = connect(mapStateToProps)(
   withRouter(CelebrityFavoriteButton)
 );
+
 export { _CelebrityFavoriteButton as CelebrityFavoriteButton };

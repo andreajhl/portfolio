@@ -74,7 +74,7 @@ const NavbarSectionLayout = ({
                   ¿Cómo funciona?
                 </a>
                 <NavLink
-                  className="dropdown-item"
+                  className="dropdown-item d-md-none"
                   activeClassName="active"
                   to={PATHS.TRENDING}
                 >
