@@ -90,7 +90,7 @@ const FiltersSectionLayout = ({
                 className="filters-section__back-btn btn btn-dark"
                 onClick={cleanFilters}
               >
-                <i className="fa fa-arrow-left text-white"></i>
+                <i className="fa fa-times text-white"></i>
               </button>
             </li>
           ) : null}
