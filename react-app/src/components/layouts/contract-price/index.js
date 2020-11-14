@@ -45,54 +45,43 @@ class ContractPriceLayout extends Component {
         )
     }
 
-    renderPriceWithoutDiscount(){
-        return (
-          <div>
-            <h5 className='font-weight-bold float-left'>
-              Total:
-            </h5>
-           {this.getPriceFormat()}
-          </div>
-        );
-    }
-
-    renderPriceWithDiscount() {
-             return (
-              <div>
-                  {/* PRECIO ORIGINAL */}
-                  <span className='float-left'> Precio original: </span>{' '}
-                  <span className='text-dark float-right'>
-                    {this.props.availableDiscount.initialPrice}{' '}
-                    {this.props.currency}
-                  </span>
-                <br></br>
-                {/* PRECIO CON DESCUENTO */}
-                  <span className='float-left'>Descuento: </span>{' '}
-                  <span className='text-danger'>
-                    {this.props.availableDiscount.isPercentageDiscount
-                      ? `${this.props.availableDiscount.discountAmount}% | ${(
-                          (this.props.availableDiscount.discountAmount / 100) *
-                          this.props.price
-                        ).toFixed(2)} ${this.props.currency}`
-                      : ` ${this.props.availableDiscount.discountAmount} ${this.props.currency}`}{' '}
-                  </span>
-                <br></br>
-                {/* PRECIO TOTAL */}
-                <span className={(this.props.classes)}>
-                  <span className='float-left'>Precio total:</span>
-                  {this.getPriceFormat()}
-                </span>
-                <br></br>
-              </div>
-            );
-    }
-
     render() {
+        const finalPrice = (
+            <div>
+              <h5 className='font-weight-bold float-left'>
+                Total:
+              </h5>
+             {this.getPriceFormat()}
+            </div>
+          );
+        const originalPrice = this.props.availableDiscount ? 
+        (
+          <div>
+            <span className='float-left'> Precio original: </span>
+            <span className='text-dark float-right'>
+              {this.props.availableDiscount.initialPrice} {this.props.currency}
+            </span>{' '}
+            <br></br>
+          </div>
+        ) : null;
+        const discountValue = this.props.availableDiscount ? 
+        (
+            <div>
+            <span className='float-left'>Descuento: </span>{' '}
+            <span className='text-danger'>
+              {this.props.availableDiscount.isPercentageDiscount
+                ? `${this.props.availableDiscount.discountAmount*100}% | ${(
+                  this.props.availableDiscount.discountAmount * this.props.availableDiscount.initialPrice
+                  ).toFixed(2)} ${this.props.currency}`
+                : ` ${this.props.availableDiscount.discountAmount} ${this.props.currency}`}{' '}
+            </span>
+            </div>
+        ) : null;
         return (
           <div style={{width: "100%"}}>
-            {this.props.availableDiscount
-              ? this.renderPriceWithDiscount()
-              : this.renderPriceWithoutDiscount()}
+              {discountValue}
+              {originalPrice}
+              {finalPrice}
           </div>
         );
     };
