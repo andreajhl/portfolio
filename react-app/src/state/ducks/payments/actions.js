@@ -258,9 +258,13 @@ export const discountCouponsGateways = (contractReference, discountCoupon) => {
     })
       .then(res => {
         if (res.data.status === "OK") {
-          handleApiResponseSuccess(dispatch, TYPE, res);
+        const couponData = res.data;
+        if (couponData.data.isPercentageDiscount && couponData.data.discount_amount > 1){
+            couponData.data.discount_amount = couponData.data.discount_amount / 100; 
+        }
+          handleApiResponseSuccess(dispatch, TYPE, couponData);
           // Other actions
-          dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+          dispatch({ type: `${TYPE}_COMPLETED`, payload: couponData });
         } else {
           handleApiResponseFailure(dispatch, TYPE, res);
           // Other actions
