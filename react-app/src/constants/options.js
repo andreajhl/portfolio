@@ -79,14 +79,6 @@ export const occasionsData = {
       'Hola (Famoso)! Mi esposa y yo llevamos juntos 7 años y justo el aniversario número siete se me olvidó y eso la tiene muy triste, (<<PARA>>) es fanática de tu música, me harías un súper favor si le cantas una canción y me ayudas a pedir perdón por el error.',
     ],
   },
-  RECONCILATION: {
-    icon: 'fa-hand-peace',
-    title: 'Reconciliación',
-    messages: [
-      '',
-      'Hola (Famoso)! Soy (<<DE>>) y llevo 2 años de novio con (<<PARA>>), hace dos meses terminamos pero la extraño mucho y quiero volver con ella. Me gustaría que me ayudes con un mensaje de reconciliación que me dé un empujón para reconciliarme con ella.',
-    ],
-  },
   OTHER: {
     icon: 'fa-paper-plane',
     title: 'Otro',
