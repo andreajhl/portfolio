@@ -30,14 +30,14 @@ class AvailablePaymentMethods extends Component {
     applyDiscount() {
         let discountTotal= 0;
         if(this.props.couponData.data.isPercentageDiscount){
-            discountTotal = (this.props.couponData.data.discount_amount * this.props.contractPrice).toFixed(2);
+            discountTotal = this.props.couponData.data.discount_amount * this.props.contractPrice;
             if (discountTotal > this.props.couponData.data.maxDiscountAmount){
                 discountTotal = this.props.couponData.data.maxDiscountAmount;
             }
         }else{
             discountTotal = this.props.couponData.data.discount_amount;
         }
-        return (this.props.contractPrice - discountTotal);
+        return (parseInt(this.props.contractPrice - discountTotal));
     }
 
 

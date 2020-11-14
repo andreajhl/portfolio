@@ -70,7 +70,7 @@ class ContractPriceLayout extends Component {
             <span className='float-left'>Descuento: </span>{' '}
             <span className='text-danger'>
               {this.props.availableDiscount.isPercentageDiscount
-                ? `${this.props.availableDiscount.discountAmount*100}% | ${(
+                ? `${(this.props.availableDiscount.discountAmount*100).toFixed()}% | ${(
                   this.props.availableDiscount.discountAmount * this.props.availableDiscount.initialPrice
                   ).toFixed(2)} ${this.props.currency}`
                 : ` ${this.props.availableDiscount.discountAmount} ${this.props.currency}`}{' '}
