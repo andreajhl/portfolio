@@ -70,7 +70,7 @@ export function fetchDiscountCouponReducer(state= applyDiscountCouponInitialStat
       case types.APPLY_DISCOUNT_COUPON_SUCCESS:
         return {
           ...applyDiscountCouponInitialState,
-          data: action.payload.data.data,
+          data: action.payload.data,
         };
       case types.APPLY_DISCOUNT_COUPON_FAILURE:
         return {
@@ -80,7 +80,7 @@ export function fetchDiscountCouponReducer(state= applyDiscountCouponInitialStat
       case types.APLY_DISCOUNT_COUPON_COMPLETED:
         return {
           ...state,
-          data: action.payload.data.data,
+          data: action.payload.data,
           completed: true,
         };
       case types.APLY_DISCOUNT_COUPON_CLEAR:
