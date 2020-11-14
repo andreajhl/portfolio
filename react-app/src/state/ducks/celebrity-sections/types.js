@@ -6,3 +6,5 @@ export const FETCH_CELEBRITIES_SECTIONS_FAILURE =
   "celebrity-sections/FETCH_CELEBRITIES_SECTIONS_FAILURE";
 export const FETCH_CELEBRITIES_SECTIONS_COMPLETED =
   "celebrity-sections/FETCH_CELEBRITIES_SECTIONS_COMPLETED";
+
+export const PLAY_VIDEO = "celebrity-sections/PLAY_VIDEO";

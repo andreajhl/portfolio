@@ -1,9 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
+import { setPlayingVideo } from "../../../state/ducks/celebrity-sections/actions";
+import { connect } from "react-redux";
 
-const VideoCardLayout = ({ celebrity }) => {
+const VideoCardLayout = ({
+  celebrity,
+  videoKey,
+  currentVideoKey,
+  setPlayingVideo
+}) => {
   const videoRef = useRef();
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
@@ -11,16 +18,29 @@ const VideoCardLayout = ({ celebrity }) => {
   const playVideo = () => {
     videoRef.current.play();
     setVideoIsPlaying(true);
+    setPlayingVideo(videoKey);
+  };
+
+  const pauseVideo = () => {
+    videoRef.current.pause();
+    setVideoIsPlaying(false);
+    setPlayingVideo(null);
   };
 
   const togglePlay = () => {
     if (!videoIsPlaying) {
       playVideo();
     } else {
-      videoRef.current.pause();
-      setVideoIsPlaying(false);
+      pauseVideo();
     }
   };
+
+  useEffect(() => {
+    if (currentVideoKey && currentVideoKey !== videoKey) pauseVideo();
+    return () => {
+      if (currentVideoKey === videoKey) setPlayingVideo(null);
+    };
+  }, [currentVideoKey]);
 
   return (
     <div className="VideoCardLayout">
@@ -85,4 +105,16 @@ VideoCardLayout.defaultProps = {
   celebrity: {}
 };
 
-export { VideoCardLayout };
+const mapStateToProps = ({ celebritySections }) => ({
+  currentVideoKey: celebritySections.playVideoReducer
+});
+
+const mapDispatchToProps = {
+  setPlayingVideo
+};
+
+const _VideoCardLayout = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(VideoCardLayout);
+export { _VideoCardLayout as VideoCardLayout };

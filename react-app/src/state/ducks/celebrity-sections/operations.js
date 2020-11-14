@@ -1,3 +1,1 @@
-import { fetchCelebritySections } from "./actions";
-
-export { fetchCelebritySections };
+export { fetchCelebritySections, setPlayingVideo } from "./actions";
