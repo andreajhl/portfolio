@@ -25,7 +25,7 @@ class ContractCheckoutSummary extends Component {
         }else{
             discountTotal = this.props.couponData.data.discount_amount;
         }
-        return ( this.props.price - discountTotal);
+        return (this.props.price - discountTotal);
     }
 
     render() {

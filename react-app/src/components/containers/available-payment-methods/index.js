@@ -37,7 +37,7 @@ class AvailablePaymentMethods extends Component {
         }else{
             discountTotal = this.props.couponData.data.discount_amount;
         }
-        return (parseInt(this.props.contractPrice - discountTotal));
+        return (this.props.contractPrice - discountTotal);
     }
 
 
