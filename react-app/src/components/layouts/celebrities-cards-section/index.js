@@ -73,7 +73,7 @@ const CelebritiesCardsSectionLayout = ({ celebritiesSection }) => {
                 key={`${celebritiesSection.id}-${celebrity.id}`}
                 className="celebrities-section-layout__card-item"
               >
-                {celebritiesSection.type !== "MAIN_VIDEO_1" ? (
+                {celebritiesSection.type === "MAIN_VIDEO_1" ? (
                   <VideoCardLayout
                     celebrity={celebrity}
                     videoKey={`${celebritiesSection.id}-${celebrity.id}`}
