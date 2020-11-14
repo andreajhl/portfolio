@@ -9,7 +9,7 @@ const initialState = {
   showRightScrollButton: false
 };
 
-const CelebritiesCardsSectionLayout = ({ title, type, celebrities }) => {
+const CelebritiesCardsSectionLayout = ({ celebritiesSection }) => {
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
     initialState.showLeftScrollButton
   );
@@ -41,13 +41,19 @@ const CelebritiesCardsSectionLayout = ({ title, type, celebrities }) => {
     );
   }, []);
 
+  const { celebrities } = celebritiesSection;
+
   return (
     <section
       className={`celebrities-section-layout container pr-0 ${
-        type === "MAIN_VIDEO_1" ? "celebrities-sections-videos" : ""
+        celebritiesSection.type === "MAIN_VIDEO_1"
+          ? "celebrities-sections-videos"
+          : ""
       }`}
     >
-      <h2 className="celebrities-section-layout__title">{title}</h2>
+      <h2 className="celebrities-section-layout__title">
+        {celebritiesSection.title}
+      </h2>
       {showLeftScrollButton ? (
         <button
           className="celebrities-section-layout__scroll-to-button d-none d-md-block"
@@ -64,11 +70,14 @@ const CelebritiesCardsSectionLayout = ({ title, type, celebrities }) => {
         {celebrities.length > 0
           ? celebrities.map((celebrity, index) => (
               <li
-                key={`${title}-${type}-${celebrity.id}${index}`}
+                key={`${celebritiesSection.id}-${celebrity.id}`}
                 className="celebrities-section-layout__card-item"
               >
-                {type === "MAIN_VIDEO_1" ? (
-                  <VideoCardLayout celebrity={celebrity} />
+                {celebritiesSection.type === "MAIN_VIDEO_1" ? (
+                  <VideoCardLayout
+                    celebrity={celebrity}
+                    videoKey={`${celebritiesSection.id}-${celebrity.id}`}
+                  />
                 ) : (
                   <CelebrityCardLayout celebrity={celebrity} />
                 )}

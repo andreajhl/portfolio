@@ -29,3 +29,8 @@ export const fetchCelebritySections = (params) => (dispatch) => {
       handleApiErrors(dispatch, TYPE, err);
     });
 };
+
+export const setPlayingVideo = (videoKey) => ({
+  type: TYPES.PLAY_VIDEO,
+  payload: videoKey
+});

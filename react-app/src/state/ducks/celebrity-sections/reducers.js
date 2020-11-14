@@ -9,6 +9,10 @@ const fetchCelebritySectionsInitialState = {
   data: { results: [], informationPage: {} }
 };
 
+const playVideoInitialState = {
+  video_key: null
+};
+
 export function fetchCelebritySectionsReducer(
   state = fetchCelebritySectionsInitialState,
   action
@@ -46,6 +50,15 @@ export function fetchCelebritySectionsReducer(
   }
 }
 
+export function playVideoReducer(state = playVideoInitialState, action) {
+  if (action.type === TYPES.PLAY_VIDEO) {
+    return action.payload;
+  } else {
+    return state;
+  }
+}
+
 export default combineReducers({
-  fetchCelebritySectionsReducer
+  fetchCelebritySectionsReducer,
+  playVideoReducer
 });

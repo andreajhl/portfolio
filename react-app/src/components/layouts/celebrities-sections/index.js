@@ -61,9 +61,7 @@ const CelebritiesSectionsLayout = ({
           {celebritiesSections.map((celebritiesSection) => (
             <CelebritiesCardsSectionLayout
               key={celebritiesSection.id}
-              title={celebritiesSection.title}
-              type={celebritiesSection.celebritySectionType}
-              celebrities={celebritiesSection.celebrities}
+              celebritiesSection={celebritiesSection}
             />
           ))}
         </InfiniteScroll>
