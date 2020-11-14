@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "./styles.scss";
-import {ContractPriceLayout} from "../../layouts/contract-price";
+import {ContractPriceLayout} from "../../layouts/checkout-contract-price";
 import DiscountCouponForm from '../discount-coupon-form';
 import {paymentsOperations} from "../../../state/ducks/payments";
 

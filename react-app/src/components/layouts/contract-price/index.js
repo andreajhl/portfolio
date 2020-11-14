@@ -17,72 +17,16 @@ class ContractPriceLayout extends Component {
         }
     }
 
-    getPriceFormat(){
-        return(
-            <NumberFormat
-            value={
-              this.props.price
-                ? this.props.rounding
-                  ? this.rounding()
-                  : this.props.price
-                : 0
-            }
-            displayType={'text'}
-            thousandSeparator={true}
-            decimalScale={2}
-            prefix={
-              AVAILABLE_CURRENCIES.find(
-                (item) => item.name === this.props.currency
-              )['symbol']
-            }
-            renderText={(value) => (
-              <h5 className={this.props.classes}>
-                {' '}
-                {value} {this.props.currency}
-              </h5>
-            )}
-          />
-        )
-    }
-
     render() {
-        const finalPrice = (
-            <div>
-              <h5 className='font-weight-bold float-left'>
-                Total:
-              </h5>
-             {this.getPriceFormat()}
-            </div>
-          );
-        const originalPrice = this.props.availableDiscount ? 
-        (
-          <div>
-            <span className='float-left'> Precio original: </span>
-            <span className='text-dark float-right'>
-              {this.props.availableDiscount.initialPrice} {this.props.currency}
-            </span>{' '}
-            <br></br>
-          </div>
-        ) : null;
-        const discountValue = this.props.availableDiscount ? 
-        (
-            <div>
-            <span className='float-left'>Descuento: </span>{' '}
-            <span className='text-danger'>
-              {this.props.availableDiscount.isPercentageDiscount
-                ? `${this.props.availableDiscount.discountAmount*100}% | ${(
-                  this.props.availableDiscount.discountAmount * this.props.availableDiscount.initialPrice
-                  ).toFixed(2)} ${this.props.currency}`
-                : ` ${this.props.availableDiscount.discountAmount} ${this.props.currency}`}{' '}
-            </span>
-            </div>
-        ) : null;
         return (
-          <div style={{width: "100%"}}>
-              {discountValue}
-              {originalPrice}
-              {finalPrice}
-          </div>
+            <NumberFormat
+                value={this.props.price ? (this.props.rounding ? this.rounding() : this.props.price) : 0}
+                displayType={"text"}
+                thousandSeparator={true}
+                decimalScale={2}
+                prefix={AVAILABLE_CURRENCIES.find(item => item.name === this.props.currency)["symbol"]}
+                renderText={value => <span className={(this.props.classes)}> {value} {this.props.currency}</span>}
+            />
         );
     };
 
