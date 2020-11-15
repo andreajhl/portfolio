@@ -272,9 +272,9 @@ app.get("/hirings/:contract_reference", async (req, res) => {
 
 // ################################################################
 // SIGN IN EMAIL
-app.get("/auth/sign-in/email-form/", function (request, response) {
+app.get("/auth/sign-in/email-form/", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
@@ -304,16 +304,16 @@ app.get("/auth/sign-in/email-form/", function (request, response) {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(defaultOG(data));
+    response.send(data);
   });
 });
 // ################################################################
 
 // ################################################################
 // SIGN IN CELLPHONE
-app.get("/auth/sign-in/cellphone-form/", function (request, response) {
+app.get("/auth/sign-in/cellphone-form/", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
@@ -343,16 +343,16 @@ app.get("/auth/sign-in/cellphone-form/", function (request, response) {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(defaultOG(data));
+    response.send(data);
   });
 });
 // ################################################################
 
 // ################################################################
 // CONTINUE / LOGIN
-app.get("/auth/sign-up", function (request, response) {
+app.get("/auth/sign-up", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
@@ -382,16 +382,16 @@ app.get("/auth/sign-up", function (request, response) {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(defaultOG(data));
+    response.send(data);
   });
 });
 // ################################################################
 
 // ################################################################
 // SIGN UP EMAIL
-app.get("/auth/sign-up/email-form/", function (request, response) {
+app.get("/auth/sign-up/email-form/", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
@@ -421,16 +421,16 @@ app.get("/auth/sign-up/email-form/", function (request, response) {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(defaultOG(data));
+    response.send(data);
   });
 });
 // ################################################################
 
 // ################################################################
 // SIGN UP CELLPHONE
-app.get("/auth/sign-up/cellphone-form/", function (request, response) {
+app.get("/auth/sign-up/cellphone-form/", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
@@ -460,16 +460,16 @@ app.get("/auth/sign-up/cellphone-form/", function (request, response) {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(defaultOG(data));
+    response.send(data);
   });
 });
 // ################################################################
 
 // ################################################################
 // SIGN UP CELLPHONE
-app.get("/auth/reset-password", function (request, response) {
+app.get("/auth/reset-password", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
@@ -499,16 +499,16 @@ app.get("/auth/reset-password", function (request, response) {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(defaultOG(data));
+    response.send(data);
   });
 });
 // ################################################################
 
 // ################################################################
 // TERMS
-app.get("/docs/terminos", function (request, response) {
+app.get("/docs/terminos", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
@@ -541,16 +541,16 @@ app.get("/docs/terminos", function (request, response) {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(defaultOG(data));
+    response.send(data);
   });
 });
 // ################################################################
 
 // ################################################################
 // POLITICAS
-app.get("/docs/politicas", function (request, response) {
+app.get("/docs/politicas", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
@@ -580,16 +580,16 @@ app.get("/docs/politicas", function (request, response) {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(defaultOG(data));
+    response.send(data);
   });
 });
 // ################################################################
 
 // ################################################################
 // APLICAR COMO FAMOSO
-app.get("/forms/aplicar/", function (request, response) {
+app.get("/forms/aplicar/", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
@@ -619,16 +619,16 @@ app.get("/forms/aplicar/", function (request, response) {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(defaultOG(data));
+    response.send(data);
   });
 });
 // ################################################################
 
 // ################################################################
 // TRENDING
-app.get("/tendencias/", function (request, response) {
+app.get("/tendencias/", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
@@ -658,16 +658,16 @@ app.get("/tendencias/", function (request, response) {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(defaultOG(data));
+    response.send(data);
   });
 });
 // ################################################################
 
 // ################################################################
 // TRENDING
-app.get("/docs/faqs", function (request, response) {
+app.get("/docs/faqs", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
@@ -697,7 +697,7 @@ app.get("/docs/faqs", function (request, response) {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(defaultOG(data));
+    response.send(data);
   });
 });
 // ################################################################
@@ -712,9 +712,9 @@ app.use(
 // ################################################################
 // OTHER PAGES
 // ################################################################
-app.get("*", function (request, response) {
+app.get("*", async (request, response) => {
   const filePath = path.resolve(__dirname, "./build", "index.html");
-  fs.readFile(filePath, "utf8", function (err, data) {
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
