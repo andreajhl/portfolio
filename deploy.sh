@@ -12,6 +12,7 @@ echo
 # ENVIRONMENTS
 environments=(
   "Testing"
+  "QA"
   "Production"
 )
 for i in "${!environments[@]}"; do
@@ -34,6 +35,8 @@ if [[ ${environments[selectedOption]} = "Testing" ]]; then
     npm run-script build-testing
 elif [[ ${environments[selectedOption]} = "Production" ]]; then
     npm run-script build-production
+elif [[ ${environments[selectedOption]} = "QA" ]]; then
+    npm run-script build-qa
 else
     echo "Invalid environment"
     exit 1

@@ -273,7 +273,7 @@ class CreateContractForm extends Component {
                         </div>
                     </div>
                     <div className={"mt-3"}>{""}</div>
-                    <OcassionsOptions currentChoise={this.state.contractData.occasion} clicked={this.changeOcassionOption}></OcassionsOptions>
+                    <OcassionsOptions contractType={this.state.contractData.contractType-1} currentChoise={this.state.contractData.occasion} clicked={this.changeOcassionOption}></OcassionsOptions>
                     <div className={"form-custom-vertical-group"}>
                         <label>¿Qué quieres que diga {this.props.celebrityFullName}?</label>
                         <textarea

@@ -46,7 +46,7 @@ const CelebritiesCardsSectionLayout = ({ celebritiesSection }) => {
   return (
     <section
       className={`celebrities-section-layout container pr-0 ${
-        celebritiesSection.type === "MAIN_VIDEO_1"
+        celebritiesSection.celebritySectionType === "MAIN_VIDEO_1"
           ? "celebrities-sections-videos"
           : ""
       }`}
@@ -73,7 +73,7 @@ const CelebritiesCardsSectionLayout = ({ celebritiesSection }) => {
                 key={`${celebritiesSection.id}-${celebrity.id}`}
                 className="celebrities-section-layout__card-item"
               >
-                {celebritiesSection.type === "MAIN_VIDEO_1" ? (
+                {celebritiesSection.celebritySectionType === "MAIN_VIDEO_1" ? (
                   <VideoCardLayout
                     celebrity={celebrity}
                     videoKey={`${celebritiesSection.id}-${celebrity.id}`}

@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import './styles.scss';
 import {occasionsData} from '../../../constants/options';
+
+const optionsForContractType= ['LOVE','MAKE_SMILE','HOPE','ASK_FOR_FORGIVENESS']
+
 class index extends Component {
-    render() {
+  render() {
         const optionsToRender = Object.keys(occasionsData)
         .map(optionKey =>{
             return (
-                <div className={`col option-container ${this.props.currentChoise === optionKey ? 'choose' : ''}`} key={optionKey} onClick={() => this.props.clicked(optionKey)}>
+              this.props.contractType === 0 && optionsForContractType.includes(optionKey) ? null :
+               <div className={`col option-container ${this.props.currentChoise === optionKey ? 'choose' : ''}`} key={optionKey} onClick={() => this.props.clicked(optionKey)}>
                   <div className={`container-circle ${this.props.currentChoise === optionKey ? 'choose' : ''}`}>
                     <i className={'fas ' + occasionsData[optionKey].icon}></i>
                   </div>
                 <span className='container-legend subtitle'>{occasionsData[optionKey].title}</span>
-                </div>
-             
+                </div> 
             );
         });
 
