@@ -46,7 +46,7 @@ const CelebritiesCardsSectionLayout = ({ celebritiesSection }) => {
   return (
     <section
       className={`celebrities-section-layout container pr-0 ${
-        celebritiesSection.type === "MAIN_VIDEO_1"
+        celebritiesSection.celebritySectionType === "MAIN_VIDEO_1"
           ? "celebrities-sections-videos"
           : ""
       }`}
