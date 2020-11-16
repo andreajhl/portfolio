@@ -100,8 +100,8 @@ app.get("/", async (request, response) => {
 // LANDING PAGE
 const landingPage = getLandingPageSync();
 app.get("/landing", async (request, response) => {
-  const finalData = await defaultOG(data);
-  response.send(finalData);
+  // defaultResponse(response);
+  response.send(defaultOG(landingPage));
 });
 // ################################################################
 
@@ -785,14 +785,44 @@ app.use(
 // OTHER PAGES
 // ################################################################
 app.get("*", async (request, response) => {
-  const _filePath = path.resolve(__dirname, "./build", "index.html");
-  await fs.readFile(_filePath, "utf8", async (err, data) => {
+  const filePath = path.resolve(__dirname, "./build", "index.html");
+  await fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
       return console.log(err);
     }
-    data = defaultOG(data);
+    data = data.replace(
+        /\$OG_TITLE/g,
+        "Famosos.com - Videos personalizados de tus famosos favoritos."
+    );
+    data = data.replace(/\$OG_TYPE/, "website");
+    data = data.replace(/\$OG_URL/, "https://www.famosos.com");
+    const isProdEnviroment = process.env.NODE_ENV === "production";
+    data = data.replace(/\$ROBOTS_META/, isProdEnviroment ? "index" : "noindex");
+    data = data.replace(
+        /\$OG_IMAGE/g,
+        "https://www.famosos.com/assets/img/favicon.png"
+    );
+    data = data.replace(/\$OG_SITE_NAME/, "Famosos.com");
+    data = data.replace(
+        /\$OG_DESCRIPTION/,
+        "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
+    );
+    data = data.replace(/\$OG_VIDEO_WITH/, "400");
+    data = data.replace(/\$OG_VIDEO_HEIGHT/, "400");
+    data = data.replace(
+        /\$OG_VIDEO_SECURE_URL/,
+        "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
+    );
+    data = data.replace(
+        /\$OG_VIDEO_URL/,
+        "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
+    );
+    data = data.replace(
+        /\$OG_VIDEO/,
+        "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
+    );
     response.send(data);
-  })
+  });
 });
 // ################################################################
 
