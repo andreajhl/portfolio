@@ -23,7 +23,7 @@ class CelebritiesPage extends Component {
     this.state = {
       showInputSearchSm: false,
       showFFBModal: localStorage.getItem("ffbmodal") === null,
-      metaTagTitle: "Famosos.com - Todos los Famosos",
+      metaTagTitle: "Famosos.com - Videos personalizados de tus famosos favoritos.",
       metaTagDescription:
         "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
     };
