@@ -2,7 +2,7 @@ branch-defaults:
   default:
     environment: FamososFrontend-Testing
   develop:
-    environment: FamososFrontend-QA
+    environment: FamososFrontend-Production
   duvan:
     environment: FamososFrontend-Production
   master:

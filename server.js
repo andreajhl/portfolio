@@ -100,8 +100,7 @@ app.get("/", async (request, response) => {
 // LANDING PAGE
 const landingPage = getLandingPageSync();
 app.get("/landing", async (request, response) => {
-  const finalData = await defaultOG(data);
-  response.send(finalData);
+  response.send(defaultOG(landingPage));
 });
 // ################################################################
 
