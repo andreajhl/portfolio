@@ -45,8 +45,8 @@ class CreateContractForm extends Component {
             ...this.state,
             showErrors: false,
         });
-        if (this.deliveryFromValidator() ||
-            this.deliveryToValidator() ||
+        if (this.deliveryFromValidator(true) ||
+            this.deliveryToValidator(true) ||
             this.instructionsValidator() ||
             this.deliveryContactValidator()) {
             this.setState({
@@ -72,11 +72,12 @@ class CreateContractForm extends Component {
     }
 
     handleInputChange = (event) => {
-        const contractData = this.state.contractData;
+        const updatedContractData = {...this.state.contractData};
         if (event.target.value.length <= 300) {
-            contractData[event.target.name] = event.target.value;
+            updatedContractData[event.target.name] = event.target.value;
             this.setState({
-                contractData: contractData
+                ...this.state,
+                contractData: updatedContractData
             });
         }
     };
@@ -96,7 +97,7 @@ class CreateContractForm extends Component {
     };
 
     handleIsPublic() {
-        const contractData = this.state.contractData;
+        const contractData = {...this.state.contractData};
         contractData.isPublic = !contractData.isPublic;
         this.setState({
             ...this.state,
@@ -105,9 +106,10 @@ class CreateContractForm extends Component {
     }
 
 
-    deliveryFromValidator = () => {
+    deliveryFromValidator = (shouldFocus) => {
         if (this.state.contractData.contractType === 2 && !this.state.contractData.deliveryFrom.length) {
-            if (this.deliveryFromInput.current){
+            if (this.deliveryFromInput.current && shouldFocus){
+                console.log('fired')
                 this.deliveryFromInput.current.focus();
             }
             return "Campo requerido";
@@ -115,9 +117,9 @@ class CreateContractForm extends Component {
         return null
     };
 
-    deliveryToValidator = () => {
+    deliveryToValidator = (shouldFocus) => {
         if (!this.state.contractData.deliveryTo.length) {
-            if (this.deliveryToInput.current){
+            if (this.deliveryToInput.current && shouldFocus){
                 this.deliveryToInput.current.focus();
             }
             return "Campo requerido";
@@ -169,7 +171,7 @@ class CreateContractForm extends Component {
 
 
     render() {
-        const contractData = this.state.contractData;
+        const contractData = {...this.state.contractData};
         return (
             <div className="CreateContractForm">
 
@@ -248,7 +250,7 @@ class CreateContractForm extends Component {
                             />
                             <span
                                 className={"text-danger" + (this.state.showErrors ? " show-error " : " hide-error ")}>
-                                {this.deliveryToValidator()}
+                                {this.deliveryToValidator(false)}
                             </span>
                         </div>
                     </div>
@@ -268,7 +270,7 @@ class CreateContractForm extends Component {
                             />
                             <span
                                 className={"text-danger" + (this.state.showErrors ? " show-error " : " hide-error ")}>
-                                {this.deliveryFromValidator()}
+                                {this.deliveryFromValidator(false)}
                             </span>
                         </div>
                     </div>
