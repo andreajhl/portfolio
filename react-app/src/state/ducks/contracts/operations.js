@@ -9,7 +9,8 @@ import {
   playVideo,
   saveClientContract,
   updateQueryParams,
-  saveContractToPay
+  saveContractToPay,
+  updateClientContract
 } from "./actions";
 
 export {
@@ -23,5 +24,6 @@ export {
   playVideo,
   getContractWithPayments,
   AssociateContract,
-  saveContractToPay
+  saveContractToPay,
+  updateClientContract
 };

@@ -35,8 +35,12 @@ class CreateContractForm extends Component {
     }
 
     componentDidMount(){
-        if(this.props.contractToPayExist){
-            console.log(this.props.contractToPayData)
+        if(this.props.contractToPayExist && this.props.celebrityId === this.props.contractToPayData.celebrityId){
+            this.setState({
+                ...this.state,
+                contractData : this.props.contractToPayData,
+            }
+            )
         }
     }
 
@@ -60,12 +64,20 @@ class CreateContractForm extends Component {
                 showErrors: true,
             })
         } else {
-            const contractData = this.state.contractData;
-            contractData.celebrityId = this.props.celebrityId;
-            GTM.tagManagerDataLayer("CONTRACT_CREATED", contractData);
-            this.setState({contractData}, () => {
-                this.props.saveClientContract(this.state.contractData);
-            });
+            if(this.props.contractToPayExist && this.props.celebrityId === this.props.contractToPayData.celebrityId){
+                const contractData = this.state.contractData;
+                console.log(contractData,'Hacer update')
+                this.setState({contractData}, () => {
+                    this.props.updateClientContract(this.state.contractData);
+                });
+            }else{
+                const contractData = this.state.contractData;
+                contractData.celebrityId = this.props.celebrityId;
+                GTM.tagManagerDataLayer("CONTRACT_CREATED", contractData);
+                this.setState({contractData}, () => {
+                    this.props.saveClientContract(this.state.contractData);
+                });
+            }
         }
     }
 
@@ -381,7 +393,8 @@ const mapStateToProps = (state) => ({
 
 // mapStateToProps
 const mapDispatchToProps = {
-    saveClientContract: contractOperations.saveClientContract
+    saveClientContract: contractOperations.saveClientContract,
+    updateClientContract: contractOperations.updateClientContract
 };
 
 // Export Class

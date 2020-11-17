@@ -195,6 +195,63 @@ export const saveClientContract = contractData => {
   };
 };
 
+// Update Client Contract Data
+
+export const updateClientContract = contractData => {
+  return dispatch => {
+    const TYPE = TYPES.SAVE_CLIENT_CONTRACT_REQUEST;
+    const FINAL_PATH = API_PATHS.UPDATE_CONTRACT;
+    dispatch({ type: TYPE, payload: {} });
+    apiService({
+      method: "PUT",
+      action: TYPE,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: contractData
+    })
+      .then(res => {
+        if ("status" in res.data && res.data.status === "ERROR") {
+          handleApiResponseFailure(dispatch, TYPE, res);
+          // Other actions
+        } else {
+          handleApiResponseSuccess(dispatch, TYPE, res);
+          // dispatch(getContract(res.data.contractReference));
+          dispatch({ type: TYPES.SAVE_CONTRACT_TO_PAY, payload: res.data.data });
+          dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+
+          // Other actions
+          if (res.data.data.sessionToken) {
+
+            const session = new Session();
+            session.setSession(res.data.data.sessionToken);
+            localStorage.setItem("finalRedirect", ROUTING_PATHS.CLIENT_HIRINGS);
+            localStorage.setItem("hash", res.data.data.contractHash);
+
+            history._pushRoute(
+              ROUTING_PATHS.PAYMENT_METHODS.replace(
+                ":contract_reference",
+                  res.data.data.reference
+              )
+            );
+
+          } else {
+            history._pushRoute(
+              ROUTING_PATHS.PAYMENT_METHODS.replace(
+                ":contract_reference",
+                  res.data.data.reference
+              )
+            );
+          }
+        }
+      })
+      .catch(err => {
+        handleApiErrors(dispatch, TYPE, err);
+      });
+  };
+};
+
+
 export const listClientContracts = () => {
   return dispatch => {
     const TYPE = TYPES.LIST_CLIENT_CONTRACTS_REQUEST;
