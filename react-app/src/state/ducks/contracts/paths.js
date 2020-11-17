@@ -11,3 +11,4 @@ export const ADD_OR_REMOVE_CONTRACT_LIKE  = `custom-endpoints/${CONTRACT_MODEL}/
 export const SAVE_CONTRACT_REVIEW  = `custom-endpoints/${CONTRACT_MODEL}/add-or-update-contract-review/`;
 export const ADD_CONTRACT_COMMENTS = `custom-endpoints/${CONTRACT_MODEL}/add-contract-comment/`;
 export const TRENDING_CONTRACTS = `custom-endpoints/${CONTRACT_MODEL}/trending-contracts`;
+export const UPDATE_CONTRACT = `custom-endpoints/${CONTRACT_MODEL}/update-contract`;

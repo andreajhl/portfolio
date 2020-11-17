@@ -71,6 +71,12 @@ const addContractCommmentInitialState = {
   data: {}
 };
 
+const saveContractToPayInitialState = {
+  data: {},
+  completed: false,
+};
+
+
 export function queryParamsReducer(
     state = updateQueryParamsInitialState,
     action
@@ -321,6 +327,20 @@ export function addContractCommentReducer(
   }
 }
 
+export function saveContractToPayReducer(state = saveContractToPayInitialState, action) {
+  switch (action.type) {
+      case TYPES.SAVE_CONTRACT_TO_PAY:
+          return {
+              ...state,
+              data: action.payload,
+              completed: true,
+          };
+          
+      default:
+          return state
+  }
+}
+
 export default combineReducers({
   saveClientContractReducer,
   listClientContractsReducer,
@@ -330,5 +350,6 @@ export default combineReducers({
   fetchTrendingContractsReducer,
   queryParamsReducer,
   playVideoReducer,
-  getContractWithPaymentsReducer
+  getContractWithPaymentsReducer,
+  saveContractToPayReducer
 });

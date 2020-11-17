@@ -34,6 +34,16 @@ class CreateContractForm extends Component {
         this.deliveryFromInput=  React.createRef();;
     }
 
+    componentDidMount(){
+        if(this.props.contractToPayExist && this.props.celebrityId === this.props.contractToPayData.celebrityId){
+            this.setState({
+                ...this.state,
+                contractData : this.props.contractToPayData,
+            }
+            )
+        }
+    }
+
     sendBusinessRequestGTMEvent = () => {
         GTM.tagManagerDataLayer("BUSINESS_REQUEST", this.props.celebrity);
         // window.open("https://wa.me/573212493718?text=" + encodeURI("¡Hola! Estoy interesada/o en contratar a " + this.props.celebrity.fullName + " para que grabe un Video para promocionar mi empresa. ¿Me podrías explicar el proceso?"), "_blank")
@@ -54,12 +64,20 @@ class CreateContractForm extends Component {
                 showErrors: true,
             })
         } else {
-            const contractData = this.state.contractData;
-            contractData.celebrityId = this.props.celebrityId;
-            GTM.tagManagerDataLayer("CONTRACT_CREATED", contractData);
-            this.setState({contractData}, () => {
-                this.props.saveClientContract(this.state.contractData);
-            });
+            if(this.props.contractToPayExist && this.props.celebrityId === this.props.contractToPayData.celebrityId){
+                const contractData = this.state.contractData;
+                console.log(contractData,'Hacer update')
+                this.setState({contractData}, () => {
+                    this.props.updateClientContract(this.state.contractData);
+                });
+            }else{
+                const contractData = this.state.contractData;
+                contractData.celebrityId = this.props.celebrityId;
+                GTM.tagManagerDataLayer("CONTRACT_CREATED", contractData);
+                this.setState({contractData}, () => {
+                    this.props.saveClientContract(this.state.contractData);
+                });
+            }
         }
     }
 
@@ -367,13 +385,16 @@ CreateContractForm.defaultProps = {
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
+    contractToPayExist: state.contracts.saveContractToPayReducer.completed,
+    contractToPayData: state.contracts.saveContractToPayReducer.data,
     saveClientContractLoading: state.contracts.saveClientContractReducer.loading,
     saveClientContractError: state.contracts.saveClientContractReducer.error_data.error
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    saveClientContract: contractOperations.saveClientContract
+    saveClientContract: contractOperations.saveClientContract,
+    updateClientContract: contractOperations.updateClientContract
 };
 
 // Export Class
