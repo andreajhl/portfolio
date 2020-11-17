@@ -161,6 +161,7 @@ export const saveClientContract = contractData => {
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // dispatch(getContract(res.data.contractReference));
+          dispatch({ type: TYPES.SAVE_CONTRACT_TO_PAY, payload: res.data.data });
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
 
           // Other actions
@@ -174,7 +175,7 @@ export const saveClientContract = contractData => {
             history._pushRoute(
               ROUTING_PATHS.PAYMENT_METHODS.replace(
                 ":contract_reference",
-                  res.data.data.contractReference
+                  res.data.data.reference
               )
             );
 
@@ -182,7 +183,7 @@ export const saveClientContract = contractData => {
             history._pushRoute(
               ROUTING_PATHS.PAYMENT_METHODS.replace(
                 ":contract_reference",
-                  res.data.data.contractReference
+                  res.data.data.reference
               )
             );
           }
@@ -346,3 +347,13 @@ export const saveClientContractReview = async (contractReference, reviewData) =>
       .catch(err => console.log(err));
   return response
 };
+
+
+export const saveContractToPay = (contractToPay) =>{
+  return dispatch =>{
+      dispatch({
+          type: TYPES.SAVE_CONTRACT_TO_PAY,
+          payload: contractToPay
+      })
+  }
+}

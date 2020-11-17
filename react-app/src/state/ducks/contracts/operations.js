@@ -8,7 +8,8 @@ import {
   listTrending,
   playVideo,
   saveClientContract,
-  updateQueryParams
+  updateQueryParams,
+  saveContractToPay
 } from "./actions";
 
 export {
@@ -21,5 +22,6 @@ export {
   updateQueryParams,
   playVideo,
   getContractWithPayments,
-  AssociateContract
+  AssociateContract,
+  saveContractToPay
 };
