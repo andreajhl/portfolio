@@ -414,3 +414,10 @@ export const saveContractToPay = (contractToPay) =>{
       })
   }
 }
+export const saveContractToPayClear = () =>{
+  return dispatch =>{
+      dispatch({
+          type: TYPES.SAVE_CONTRACT_TO_PAY_CLEAR,
+      })
+  }
+}

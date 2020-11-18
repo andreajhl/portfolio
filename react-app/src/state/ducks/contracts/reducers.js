@@ -335,6 +335,10 @@ export function saveContractToPayReducer(state = saveContractToPayInitialState, 
               data: action.payload,
               completed: true,
           };
+      case TYPES.SAVE_CONTRACT_TO_PAY_CLEAR:
+          return {
+            saveContractToPayInitialState
+          };
           
       default:
           return state

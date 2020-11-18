@@ -27,6 +27,7 @@ class ContractCreatedPage extends Component {
     }
 
     componentDidMount() {
+        this.props.contractToPayClear();
         GTM.tagManagerDataLayer(
             "CONTYRACT_PENDING_TO_PAY_PAGE_VIEW",
             this.props.match
@@ -193,7 +194,8 @@ const mapStateToProps = state => ({
 });
 // mapStateToProps
 const mapDispatchToProps = {
-    getContract: contractOperations.getContractWithPayments
+    getContract: contractOperations.getContractWithPayments,
+    contractToPayClear: contractOperations.saveContractToPayClear
 };
 
 // Export Class
