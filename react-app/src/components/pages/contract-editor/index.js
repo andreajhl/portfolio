@@ -3,7 +3,11 @@ import "./styles.scss";
 import { connect } from "react-redux";
 import { PageContainer } from "../../layouts";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
-import { saveContractToPayClear } from "../../../state/ducks/contracts/actions";
+import {
+  saveContractToPay,
+  saveContractToPayClear,
+  getContract
+} from "../../../state/ducks/contracts/actions";
 import * as GTM from "../../../state/utils/gtm";
 import { CreateContractForm } from "../../containers";
 import MetaTags from "react-meta-tags";
@@ -17,6 +21,11 @@ class EditContractPage extends Component {
   }
 
   componentDidMount() {
+    const shouldFetchContract =
+      this.props.match.params.contract_reference && !this.props.celebrityId;
+    if (shouldFetchContract) {
+      this.props.getContract(this.props.match.params.contract_reference);
+    }
     // GTM.tagManagerDataLayer("CREATE_CONTRACT_PAGE_VIEW", this.props.match);
     // const session = new Session();
     // if (session.isDummy()) {
@@ -28,14 +37,18 @@ class EditContractPage extends Component {
     // }
   }
 
-  componentWillMount() {
-    // if (this.props.match.params["contract_reference"]) {
-    //   this.props.getCelebrity(this.props.match.params["celebrity_username"]);
-    // }
-  }
-
   componentWillUnmount() {
     this.props.saveContractToPayClear();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { contract } = this.props;
+    if (prevProps.contract !== contract) {
+      this.props.saveContractToPay({
+        ...contract,
+        celebrity: contract.celebrityData
+      });
+    }
   }
 
   render() {
@@ -108,17 +121,19 @@ EditContractPage.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state) => {
-  console.log("state", state.contracts.saveContractToPayReducer.data);
   return {
     isLoading: state.celebrities.getCelebrityReducer.loading,
     celebrity: state.contracts.saveContractToPayReducer.data.celebrity || {},
-    celebrityId: state.contracts.saveContractToPayReducer.data.celebrityId
+    celebrityId: state.contracts.saveContractToPayReducer.data.celebrityId,
+    contract: state.contracts.getContractReducer.data
   };
 };
 
 // mapStateToProps
 const mapDispatchToProps = {
+  getContract,
   getCelebrity: celebrityOperations.get,
+  saveContractToPay,
   saveContractToPayClear
 };
 

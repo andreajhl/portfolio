@@ -129,7 +129,6 @@ class HiringsCardSectionLayout extends Component {
   };
 
   ContractCard = ({ contract }) => {
-    console.log(contract);
     return (
       <div className="contract-card">
         <div className="div-contract-info">
