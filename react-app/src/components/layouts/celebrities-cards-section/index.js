@@ -63,7 +63,10 @@ const CelebritiesCardsSectionLayout = ({
           {celebritiesSection.title}
         </h2>
         {shouldRenderMoreResultsButton ? (
-          <NavLink to={moreResultsPath} className="mb-1 font-weight-bold">
+          <NavLink
+            to={moreResultsPath}
+            className="mb-1 font-weight-bold mr-3 mr-sm-0"
+          >
             Ver más
           </NavLink>
         ) : null}
