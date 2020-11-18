@@ -2,7 +2,7 @@ import React, { Component, createRef } from "react";
 import {
   CelebritiesSectionsLayout,
   PageContainer,
-  CelebritiesResultsLayout
+  UserLikesSectionLayout
 } from "../../layouts";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
@@ -15,15 +15,18 @@ import { HeroSectionLayout } from "../../layouts/hero-section";
 import { FiltersSectionLayout } from "../../layouts/filters-section";
 import MetaTags from "react-meta-tags";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
+import { Session } from "../../../state/utils/session";
 
 class CelebritiesPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      session: new Session().getSession(),
       showInputSearchSm: false,
       showFFBModal: localStorage.getItem("ffbmodal") === null,
-      metaTagTitle: "Famosos.com - Videos personalizados de tus famosos favoritos.",
+      metaTagTitle:
+        "Famosos.com - Videos personalizados de tus famosos favoritos.",
       metaTagDescription:
         "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
     };
@@ -152,7 +155,9 @@ class CelebritiesPage extends Component {
           <PageContainer
             showFooter={false}
             applyFetchUserCelebrityLikes
-            existPreviewResults = {this.props.celebrities.length > 1 ? false : true}
+            existPreviewResults={
+              this.props.celebrities.length > 1 ? false : true
+            }
             applyFetchCelebrities={true}
             showFiltersSection={true}
           >
@@ -174,6 +179,7 @@ class CelebritiesPage extends Component {
 
             <HeroSectionLayout />
             <FiltersSectionLayout />
+            {this.state.session ? <UserLikesSectionLayout /> : null}
             <CelebritiesSectionsLayout />
             {/* <div
               className="scroll-section"
@@ -227,7 +233,7 @@ const mapStateToProps = ({
   restCountries: restCountries.fetchCountriesReducer.data,
   selectedCategory: filters.filtersReducer.selectedCategory,
   selectedCountry: filters.filtersReducer.selectedCountry,
-  cursor : cursor.cursorReducer.Position
+  cursor: cursor.cursorReducer.Position
 });
 
 // mapStateToProps
