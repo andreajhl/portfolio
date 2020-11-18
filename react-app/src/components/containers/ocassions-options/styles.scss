@@ -36,8 +36,13 @@
     
     i {
         font-size: 18px;
-        position: absolute;
-        top: 12px;
+        position: relative;
+        right: 1px;
+        bottom: 3px;
+
+        &.fas.fa-paper-plane{
+            right: 2px;
+        }
     }
 
    
