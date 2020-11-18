@@ -17,7 +17,8 @@ const mapStateToProps = ({ celebrities }) => {
   return {
     isLoading: celebrities.fetchCelebritiesReducer.loading,
     celebrities: celebrities.fetchCelebritiesReducer.data.results,
-    totalResults: celebrities.fetchCelebritiesReducer.data.totalResults
+    totalResults: celebrities.fetchCelebritiesReducer.data.totalResults,
+    previousPath: celebrities.previousPathReducer.pathname
   };
 };
 
@@ -43,9 +44,11 @@ const CelebritiesResultsPage = ({
   isLoading,
   celebrities,
   totalResults,
+  previousPath,
   location,
   history
 }) => {
+  console.log({ previousPath });
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
   const queryString = location.search;
   const listParams = useMemo(() => queryStringToJSON(queryString), [
@@ -54,7 +57,7 @@ const CelebritiesResultsPage = ({
 
   useEffect(() => {
     if (!queryString || !hasSearched(listParams))
-      return history.push(ROOT_PATH);
+      return history.push(previousPath);
     fetchCelebrities(listParams);
     setOffset(updateQueryParamsInitialState.offset);
   }, [listParams]);

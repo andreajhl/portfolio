@@ -74,7 +74,6 @@ export function fetchUserCelebrityLikesWithOffsetReducer(
       if (action.payload.config.params.offset)
         results.push(...state.data.results);
       results.push(...action.payload.data.results);
-      console.log("ACTION", results);
       return {
         ...fetchUserCelebrityLikesWithOffsetInitialState,
         data: { ...action.payload.data, results }

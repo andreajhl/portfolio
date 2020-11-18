@@ -24,10 +24,16 @@ export const updateQueryParams = (params) => (dispatch) => {
     type: types.UPDATE_QUERY_PARAMS,
     payload: { params: { ...updateQueryParamsInitialState, ...newParams } }
   });
-  // history.push({pathname: PATHS.SEARCH_PATH, search: jsonToQueryString(newParams)})
   if (newParams.offset) {
     history.replace(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
   } else {
+    const previousPathname = history.location.pathname;
+    if (previousPathname !== PATHS.SEARCH_PATH) {
+      dispatch({
+        type: types.SET_PREVIOUS_PATH,
+        payload: previousPathname
+      });
+    }
     history.push(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
   }
 };
