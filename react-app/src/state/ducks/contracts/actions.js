@@ -449,3 +449,11 @@ export const updateContract = (body) => {
       });
   };
 };
+
+export const saveContractToPayClear = () => {
+  return (dispatch) => {
+    dispatch({
+      type: TYPES.SAVE_CONTRACT_TO_PAY_CLEAR
+    });
+  };
+};

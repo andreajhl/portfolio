@@ -378,6 +378,16 @@ export function updateContractReducer(
         data: action.payload.data.data,
         completed: true
       };
+    case TYPES.SAVE_CONTRACT_TO_PAY:
+      return {
+        ...state,
+        data: action.payload,
+        completed: true
+      };
+    case TYPES.SAVE_CONTRACT_TO_PAY_CLEAR:
+      return {
+        saveContractToPayInitialState
+      };
     default:
       return state;
   }
