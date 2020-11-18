@@ -2,8 +2,17 @@ import React, { Component, useState } from "react";
 import "./styles.scss";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
+import { updateContract } from "../../../state/ducks/contracts/actions";
+import { connect } from "react-redux";
+import { Form } from "react-bootstrap";
 
 const moment = require("moment");
+
+const mapStateToProps = ({ contracts }) => ({
+  ...contracts.updateContractReducer
+});
+
+const mapDispatchToProps = { updateContract };
 
 class HiringsCardSectionLayout extends Component {
   constructor(props) {
@@ -129,9 +138,14 @@ class HiringsCardSectionLayout extends Component {
       }));
 
     const updateContract = () => {
-      const celebrityId = contractFormData.celebrityData.id;
-      console.log({ ...contractFormData, celebrityId });
+      this.props.updateContract(contractFormData);
     };
+
+    const handleIsPublic = () =>
+      setContractFormData((contractFormData) => ({
+        ...contractFormData,
+        isPublic: !contractFormData.isPublic
+      }));
 
     const cancelUpdate = () => {
       setContractFormData(contract);
@@ -183,9 +197,41 @@ class HiringsCardSectionLayout extends Component {
                 ) : (
                   <div />
                 )}
-                <div className="button-status">
-                  <this.ContractButton contract={contract} />
-                </div>
+                {isEditing ? (
+                  <>
+                    <div>
+                      <label className="mr-2">
+                        Correo eléctronico de notificación:
+                      </label>
+                      <input
+                        type="text"
+                        name="deliveryContact"
+                        value={contractFormData.deliveryContact}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <Form.Check
+                      type="switch"
+                      id={`custom-switch-${contractFormData.reference}`}
+                      label="Publicar este video en Famosos.com"
+                      checked={contractFormData.isPublic}
+                      onChange={handleIsPublic}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <h6 className="mt-2 font-weight-bold">
+                      Correo eléctronico de notificación:
+                      <small className="ml-2">{contract.deliveryContact}</small>
+                    </h6>
+                    {contract.isPublic ? (
+                      <h6 className="mt-2 font-weight-bold">Público</h6>
+                    ) : null}
+                    <div className="button-status">
+                      <this.ContractButton contract={contract} />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             <div className="card-body text-justify contract-instructions">
@@ -325,4 +371,9 @@ HiringsCardSectionLayout.defaultProps = {
   isLoading: true
 };
 
-export { HiringsCardSectionLayout };
+const _HiringsCardSectionLayout = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HiringsCardSectionLayout);
+
+export { _HiringsCardSectionLayout as HiringsCardSectionLayout };
