@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { CLIENT_FAVORITES } from "../../../routing/Paths";
 import { fetchUserCelebrityLikesWithOffset } from "../../../state/ducks/celebrity-likes/actions";
 import { CelebritiesCardsSectionLayout } from "../celebrities-cards-section";
 
-const mapStateToProps = ({ celebrityLikes }) => ({
-  ...celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.data
+const mapStateToProps = ({ celebrityLikes, celebritySections }) => ({
+  ...celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.data,
+  isLoading: celebritySections.fetchCelebritySectionsReducer.loading
 });
 
 const mapDispatchToProps = { fetchUserCelebrityLikesWithOffset };
@@ -12,21 +14,23 @@ const mapDispatchToProps = { fetchUserCelebrityLikesWithOffset };
 const UserLikesSectionLayout = ({
   results,
   totalResults,
+  isLoading,
   fetchUserCelebrityLikesWithOffset
 }) => {
   useEffect(() => {
     fetchUserCelebrityLikesWithOffset({ offset: 0, limit: 10 });
   }, []);
 
-  return results.length > 0 ? (
+  return !isLoading && results.length > 0 ? (
     <CelebritiesCardsSectionLayout
       celebritiesSection={{
+        id: "favorites",
         celebritySectionType: "CELEBRITY_CARD",
         celebrities: results,
         title: "Tus Favoritos"
       }}
       hasMoreResults={results.length < totalResults}
-      moreResultsPath={"/my-account/favs"}
+      moreResultsPath={CLIENT_FAVORITES}
     />
   ) : null;
 };

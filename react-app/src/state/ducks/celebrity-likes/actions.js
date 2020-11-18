@@ -76,6 +76,7 @@ export const fetchUserCelebrityLikesWithOffset = (params) => (dispatch) => {
       }
     })
     .catch((err) => {
+      console.log(err);
       handleApiErrors(dispatch, TYPE, err);
     });
 };

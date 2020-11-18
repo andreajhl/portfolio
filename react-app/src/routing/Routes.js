@@ -142,6 +142,11 @@ class MyRoutes extends Component {
               path={PATHS.CLIENT_HIRINGS}
               component={PAGES.ClientHiringsPage}
             />
+            <PrivateRoute
+              exact
+              path={PATHS.CLIENT_FAVORITES}
+              component={PAGES.ClientFavorites}
+            />
             <Route
               exact
               path={PATHS.ACCOUNT_HIRING_PREVIEW}

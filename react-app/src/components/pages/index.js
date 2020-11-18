@@ -2,6 +2,7 @@ export * from "./celebrities";
 export * from "./celebrities-results";
 export * from "./celebrity-profile";
 export * from "./change-password";
+export * from "./client-favorites";
 export * from "./client-hirings";
 export * from "./client-profile";
 export * from "./complete-profile";
