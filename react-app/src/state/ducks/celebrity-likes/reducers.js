@@ -9,6 +9,14 @@ const fetchUserCelebrityLikesInitialState = {
   data: {}
 };
 
+const fetchUserCelebrityLikesWithOffsetInitialState = {
+  loading: false,
+  failed: false,
+  completed: false,
+  error_data: { error: "" },
+  data: {}
+};
+
 export function fetchUserCelebrityLikesReducer(
   state = fetchUserCelebrityLikesInitialState,
   action
@@ -45,6 +53,39 @@ export function fetchUserCelebrityLikesReducer(
   }
 }
 
+export function fetchUserCelebrityLikesWithOffsetReducer(
+  state = fetchUserCelebrityLikesWithOffsetInitialState,
+  action
+) {
+  switch (action.type) {
+    case TYPES.FETCH_USER_CELEBRITY_LIKES_WITH_OFFSET:
+      return {
+        ...fetchUserCelebrityLikesWithOffsetInitialState,
+        loading: true
+      };
+    case TYPES.FETCH_USER_CELEBRITY_LIKES_WITH_OFFSET_FAILURE:
+      return {
+        ...fetchUserCelebrityLikesWithOffsetInitialState,
+        error_data: action.payload.data,
+        failed: true
+      };
+    case TYPES.FETCH_USER_CELEBRITY_LIKES_WITH_OFFSET_SUCCESS:
+      return {
+        ...fetchUserCelebrityLikesWithOffsetInitialState,
+        data: { ...action.payload.data }
+      };
+    case TYPES.FETCH_USER_CELEBRITY_LIKES_WITH_OFFSET_COMPLETED:
+      return {
+        ...fetchUserCelebrityLikesWithOffsetInitialState,
+        data: { ...state.data },
+        completed: true
+      };
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
-  fetchUserCelebrityLikesReducer
+  fetchUserCelebrityLikesReducer,
+  fetchUserCelebrityLikesWithOffsetReducer
 });
