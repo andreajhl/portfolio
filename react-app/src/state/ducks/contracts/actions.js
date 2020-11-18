@@ -228,6 +228,9 @@ export const updateClientContract = (contractData) => {
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
 
           // Other actions
+          if (contractData.status === 10) {
+            return history.push(ROUTING_PATHS.CLIENT_HIRINGS);
+          }
           if (res.data.data.sessionToken) {
             const session = new Session();
             session.setSession(res.data.data.sessionToken);

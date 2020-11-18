@@ -1,10 +1,11 @@
 import React, { Component, useState } from "react";
 import "./styles.scss";
+import { NavLink } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
-import { updateContract } from "../../../state/ducks/contracts/actions";
+import { saveContractToPay } from "../../../state/ducks/contracts/actions";
 import { connect } from "react-redux";
-import { Form } from "react-bootstrap";
+import { occasionsData } from "../../../constants/options";
 
 const moment = require("moment");
 
@@ -12,7 +13,7 @@ const mapStateToProps = ({ contracts }) => ({
   ...contracts.updateContractReducer
 });
 
-const mapDispatchToProps = { updateContract };
+const mapDispatchToProps = { saveContractToPay };
 
 class HiringsCardSectionLayout extends Component {
   constructor(props) {
@@ -128,30 +129,7 @@ class HiringsCardSectionLayout extends Component {
   };
 
   ContractCard = ({ contract }) => {
-    const [isEditing, setIsEditing] = useState(false);
-    const [contractFormData, setContractFormData] = useState(contract);
-
-    const handleInputChange = ({ target: { name, value } }) =>
-      setContractFormData((contractFormData) => ({
-        ...contractFormData,
-        [name]: value
-      }));
-
-    const updateContract = () => {
-      this.props.updateContract(contractFormData);
-    };
-
-    const handleIsPublic = () =>
-      setContractFormData((contractFormData) => ({
-        ...contractFormData,
-        isPublic: !contractFormData.isPublic
-      }));
-
-    const cancelUpdate = () => {
-      setContractFormData(contract);
-      setIsEditing(false);
-    };
-
+    console.log(contract);
     return (
       <div className="contract-card">
         <div className="div-contract-info">
@@ -169,140 +147,58 @@ class HiringsCardSectionLayout extends Component {
                   <h5 className="mt-2 font-weight-bold">
                     {contract.celebrityData.fullName}
                   </h5>
-                  {contract.status === 10 && !isEditing ? (
-                    <button
-                      className="btn btn-primary ml-auto"
-                      onClick={() => setIsEditing(true)}
+                  {contract.status === 10 ? (
+                    <NavLink
+                      to={PATHS.HIRING_EDITOR.replace(
+                        ":contract_reference",
+                        contract.reference
+                      )}
+                      className="ml-auto"
                     >
-                      Editar
-                    </button>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() =>
+                          this.props.saveContractToPay({
+                            ...contract,
+                            celebrity: contract.celebrityData
+                          })
+                        }
+                      >
+                        Editar
+                      </button>
+                    </NavLink>
                   ) : null}
                 </div>
                 {contract.deliveryFrom ? (
-                  isEditing ? (
-                    <div>
-                      <label className="mr-2">De:</label>
-                      <input
-                        type="text"
-                        name="deliveryFrom"
-                        value={contractFormData.deliveryFrom}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  ) : (
-                    <h6 className="mt-2 font-weight-bold">
-                      De:<small className="ml-2">{contract.deliveryFrom}</small>
-                    </h6>
-                  )
-                ) : (
-                  <div />
-                )}
-                {isEditing ? (
-                  <>
-                    <div>
-                      <label className="mr-2">
-                        Correo eléctronico de notificación:
-                      </label>
-                      <input
-                        type="text"
-                        name="deliveryContact"
-                        value={contractFormData.deliveryContact}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    <Form.Check
-                      type="switch"
-                      id={`custom-switch-${contractFormData.reference}`}
-                      label="Publicar este video en Famosos.com"
-                      checked={contractFormData.isPublic}
-                      onChange={handleIsPublic}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <h6 className="mt-2 font-weight-bold">
-                      Correo eléctronico de notificación:
-                      <small className="ml-2">{contract.deliveryContact}</small>
-                    </h6>
-                    {contract.isPublic ? (
-                      <h6 className="mt-2 font-weight-bold">Público</h6>
-                    ) : null}
-                    <div className="button-status">
-                      <this.ContractButton contract={contract} />
-                    </div>
-                  </>
-                )}
+                  <h6 className="mt-2 font-weight-bold">
+                    De:<small className="ml-2">{contract.deliveryFrom}</small>
+                  </h6>
+                ) : null}
+                <h6 className="mt-2 font-weight-bold">
+                  Correo eléctronico de notificación:
+                  <small className="ml-2">{contract.deliveryContact}</small>
+                </h6>
+                {contract.isPublic ? (
+                  <h6 className="mt-2 font-weight-bold">Público</h6>
+                ) : null}
+                <h6 className="mt-2 font-weight-bold">
+                  Ocasión:{" "}
+                  <small className="ml-2">
+                    {occasionsData[contract.occasion].title}
+                  </small>
+                </h6>
+                <div className="button-status">
+                  <this.ContractButton contract={contract} />
+                </div>
               </div>
             </div>
             <div className="card-body text-justify contract-instructions">
-              {isEditing ? (
-                <div>
-                  <label className="mr-2">Para:</label>
-                  <input
-                    type="text"
-                    name="deliveryTo"
-                    value={contractFormData.deliveryTo}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              ) : (
-                <h6 className="font-weight-bold">
-                  Para:
-                  <small className="ml-2">{contract.deliveryTo}</small>
-                </h6>
-              )}
-
-              {isEditing ? (
-                <div className="mt-3">
-                  <label className="w-100">
-                    ¿Qué quieres que diga {contract.celebrityData.fullName}?
-                  </label>
-                  <textarea
-                    className="w-100"
-                    rows={5}
-                    placeholder={
-                      contractFormData.contractType === 2
-                        ? "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
-                        : "Mis instrucciones son"
-                    }
-                    value={contractFormData.instructions}
-                    name="instructions"
-                    onChange={handleInputChange}
-                  />
-                  <div
-                    className={
-                      "text-left" +
-                      (contractFormData.instructions.length === 300
-                        ? " text-danger "
-                        : " text-muted ")
-                    }
-                  >
-                    {contractFormData.instructions.length}/300 caracteres
-                    permitidos
-                  </div>
-                  {/* <span
-                    className={
-                      "text-danger" +
-                      (this.state.showErrors ? " show-error " : " hide-error ")
-                    }
-                  >
-                    {this.instructionsValidator()}
-                  </span> */}
-                </div>
-              ) : (
-                <p>{contract.instructions}</p>
-              )}
+              <h6 className="font-weight-bold">
+                Para:
+                <small className="ml-2">{contract.deliveryTo}</small>
+              </h6>
+              <p>{contract.instructions}</p>
             </div>
-            {isEditing ? (
-              <div className="card-footer text-right">
-                <button className="btn btn-info mr-2" onClick={cancelUpdate}>
-                  Cancelar
-                </button>
-                <button className="btn btn-primary" onClick={updateContract}>
-                  Guardar
-                </button>
-              </div>
-            ) : null}
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ export * from "./celebrities-results";
 export * from "./celebrity-profile";
 export * from "./change-password";
 export * from "./client-hirings";
+export * from "./contract-editor";
 export * from "./client-profile";
 export * from "./complete-profile";
 export * from "./contract-created";
