@@ -30,6 +30,7 @@ export const COMPLETE_PROFILE_PATH = "/auth/complete-profile";
 // FORMS
 export const CELEBRITY_REQUEST = "/forms/aplicar/";
 // CLIENT
+export const CLIENT_FAVORITES = "/my-account/favorites";
 export const CLIENT_PROFILE = "/my-account/profile";
 export const CLIENT_HIRINGS = "/my-account/hirings";
 export const ACCOUNT_HIRING_PREVIEW =

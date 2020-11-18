@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { ROOT_PATH } from "../../../routing/Paths";
 import * as types from "./types";
 
 export const updateQueryParamsInitialState = {
@@ -45,6 +46,8 @@ const fetchPublicContractsInitialState = {
   error_data: { error: "" },
   data: { results: [], informationPage: {} }
 };
+
+const previousPathInitialState = { pathname: ROOT_PATH };
 
 export function queryParamsReducer(
   state = updateQueryParamsInitialState,
@@ -215,11 +218,21 @@ export function fetchPublicContractsReducer(
   }
 }
 
+export const previousPathReducer = (
+  state = previousPathInitialState,
+  action
+) => {
+  if (action.type === types.SET_PREVIOUS_PATH)
+    return { pathname: action.payload };
+  return state;
+};
+
 export default combineReducers({
   queryParamsReducer,
   fetchCelebritiesReducer,
   fetchSimilarCelebritiesReducer,
   getCelebrityReducer,
   fetchReviewsReducer,
-  fetchPublicContractsReducer
+  fetchPublicContractsReducer,
+  previousPathReducer
 });

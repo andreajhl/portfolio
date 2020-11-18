@@ -24,5 +24,6 @@ export * from "./pagination";
 export * from "./review-creator";
 export * from "./stripe-card-element";
 export * from "./user-profile-details-card";
+export * from "./user-likes-section";
 export * from "./auth-t&c";
 export * from "./video-card";

@@ -1,15 +1,21 @@
-import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import debounce from "lodash.debounce";
 import { CelebrityCardLayout } from "../celebrity-card";
 import { VideoCardLayout } from "../video-card";
 import "./styles.scss";
+import { NavLink } from "react-router-dom";
+import { CelebritiesShimmerCardsSectionLayout } from "../celebrities-shimmer-cards-section";
 
 const initialState = {
   showLeftScrollButton: false,
   showRightScrollButton: false
 };
 
-const CelebritiesCardsSectionLayout = ({ celebritiesSection }) => {
+const CelebritiesCardsSectionLayout = ({
+  celebritiesSection,
+  hasMoreResults,
+  moreResultsPath
+}) => {
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
     initialState.showLeftScrollButton
   );
@@ -43,6 +49,7 @@ const CelebritiesCardsSectionLayout = ({ celebritiesSection }) => {
 
   const { celebrities } = celebritiesSection;
 
+  const shouldRenderMoreResultsButton = hasMoreResults && moreResultsPath;
   return (
     <section
       className={`celebrities-section-layout container pr-0 ${
@@ -51,9 +58,16 @@ const CelebritiesCardsSectionLayout = ({ celebritiesSection }) => {
           : ""
       }`}
     >
-      <h2 className="celebrities-section-layout__title">
-        {celebritiesSection.title}
-      </h2>
+      <header className="celebrities-section__header d-flex align-items-center justify-content-between">
+        <h2 className={`celebrities-section-layout__title`}>
+          {celebritiesSection.title}
+        </h2>
+        {shouldRenderMoreResultsButton ? (
+          <NavLink to={moreResultsPath} className="mb-1 font-weight-bold">
+            Ver más
+          </NavLink>
+        ) : null}
+      </header>
       {showLeftScrollButton ? (
         <button
           className="celebrities-section-layout__scroll-to-button d-none d-md-block"
@@ -73,7 +87,8 @@ const CelebritiesCardsSectionLayout = ({ celebritiesSection }) => {
                 key={`${celebritiesSection.id}-${celebrity.id}`}
                 className="celebrities-section-layout__card-item"
               >
-                {celebritiesSection.celebritySectionType === "MAIN_VIDEO_1" ? (
+                {celebritiesSection.celebritySectionType !==
+                "CELEBRITY_CARD" ? (
                   <VideoCardLayout
                     celebrity={celebrity}
                     videoKey={`${celebritiesSection.id}-${celebrity.id}`}
@@ -95,6 +110,11 @@ const CelebritiesCardsSectionLayout = ({ celebritiesSection }) => {
       ) : null}
     </section>
   );
+};
+
+CelebritiesCardsSectionLayout.defaultProps = {
+  hasMoreResults: false,
+  moreResultsPath: "#"
 };
 
 export { CelebritiesCardsSectionLayout };

@@ -48,18 +48,7 @@ const CelebritiesResultsLayout = ({
                     key={celebrity.id}
                     className="celebrities-results-layout__card-item"
                   >
-                    <CelebrityCardLayout
-                      celebrity={{
-                        id: celebrity.id,
-                        fullName: celebrity.full_name,
-                        avatar: celebrity.avatar,
-                        countryCode: celebrity.country_code,
-                        countryName: celebrity.country_name,
-                        title: celebrity.title,
-                        username: celebrity.username,
-                        videoMessagePrice: celebrity.video_message_price
-                      }}
-                    />
+                    <CelebrityCardLayout celebrity={celebrity} />
                   </li>
                 ))}
               </ul>
@@ -83,7 +72,8 @@ const CelebritiesResultsLayout = ({
 };
 
 CelebritiesResultsLayout.defaultProps = {
-  celebrities: []
+  celebrities: [],
+  queryParams: {}
 };
 
 export { CelebritiesResultsLayout };
