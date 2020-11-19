@@ -180,12 +180,14 @@ class HiringsCardSectionLayout extends Component {
                 {contract.isPublic ? (
                   <h6 className="mt-2 font-weight-bold">Público</h6>
                 ) : null}
-                <h6 className="mt-2 font-weight-bold">
-                  Ocasión:{" "}
-                  <small className="ml-2">
-                    {occasionsData[contract.occasion].title}
-                  </small>
-                </h6>
+                {contract.occasion ? (
+                  <h6 className="mt-2 font-weight-bold">
+                    Ocasión:{" "}
+                    <small className="ml-2">
+                      {occasionsData[contract.occasion]?.title || "Otro"}
+                    </small>
+                  </h6>
+                ) : null}
                 <div className="button-status">
                   <this.ContractButton contract={contract} />
                 </div>
