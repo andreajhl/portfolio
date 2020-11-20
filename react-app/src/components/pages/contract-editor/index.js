@@ -44,6 +44,9 @@ class EditContractPage extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { contract } = this.props;
     if (prevProps.contract !== contract) {
+      if (contract.status !== 10) {
+        return this.props.history.push(PATHS.CLIENT_HIRINGS);
+      }
       this.props.saveContractToPay({
         ...contract,
         celebrity: contract.celebrityData
