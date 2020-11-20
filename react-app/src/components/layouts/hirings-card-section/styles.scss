@@ -53,9 +53,31 @@
           position: relative;
           right: -5px;
         }
+
+        @media only screen and (max-width: 576px) {
+          .celebrity-image {
+            flex-basis: 100%;
+            text-align: center;
+            margin: 0 0 1rem;
+            img {
+              max-width: 200px;
+            }
+          }
+
+          .from-to {
+            flex-basis: 100%;
+          }
+        }
+        @media only screen and (max-width: 300px) {
+          .from-to {
+            h5,
+            h6,
+            button {
+              font-size: 5vw;
+            }
+          }
+        }
       }
     }
   }
-
-
 }

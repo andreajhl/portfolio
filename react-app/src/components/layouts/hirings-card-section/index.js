@@ -133,7 +133,7 @@ class HiringsCardSectionLayout extends Component {
       <div className="contract-card">
         <div className="div-contract-info">
           <div className="card">
-            <div className="card-header">
+            <div className="card-header flex-wrap w-100">
               <div className="celebrity-image">
                 <img
                   width={"100%"}
@@ -141,8 +141,8 @@ class HiringsCardSectionLayout extends Component {
                   src={contract.celebrityData.avatar}
                 />
               </div>
-              <div className="from-to">
-                <div className="d-flex">
+              <div className="from-to w-100">
+                <div className="d-flex align-items-center">
                   <h5 className="mt-2 font-weight-bold">
                     {contract.celebrityData.fullName}
                   </h5>
@@ -155,7 +155,7 @@ class HiringsCardSectionLayout extends Component {
                       className="ml-auto"
                     >
                       <button
-                        className="btn btn-primary"
+                        className="btn btn-lg"
                         onClick={() =>
                           this.props.saveContractToPay({
                             ...contract,
@@ -163,7 +163,7 @@ class HiringsCardSectionLayout extends Component {
                           })
                         }
                       >
-                        Editar
+                        <i className="fa fa-edit text-primary"></i>
                       </button>
                     </NavLink>
                   ) : null}
@@ -242,7 +242,7 @@ class HiringsCardSectionLayout extends Component {
         <div className="row justify-content-center">
           <div className="col-12 col-lg-8">
             <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
-              <div className="row  justify-content-center section">
+              <div className="row  justify-content-center section mx-0">
                 <div className="col-12 text-center">
                   <h6 className="mt-3 font-weight-bold border-bottom pb-3">
                     Mis Contrataciones
