@@ -129,23 +129,32 @@ class HiringsCardSectionLayout extends Component {
   };
 
   ContractCard = ({ contract }) => {
+    const celebrityPath = PATHS.CELEBRITY_PROFILE.replace(
+      ":celebrity_username",
+      contract.celebrityData.username
+    );
+
     return (
       <div className="contract-card">
         <div className="div-contract-info">
           <div className="card">
             <div className="card-header flex-wrap w-100">
               <div className="celebrity-image">
-                <img
-                  width={"100%"}
-                  className={"img-responsive"}
-                  src={contract.celebrityData.avatar}
-                />
+                <NavLink to={celebrityPath}>
+                  <img
+                    width="100%"
+                    className={"img-responsive"}
+                    src={contract.celebrityData.avatar}
+                  />
+                </NavLink>
               </div>
               <div className="from-to w-100">
                 <div className="d-flex align-items-center">
-                  <h5 className="mt-2 font-weight-bold">
-                    {contract.celebrityData.fullName}
-                  </h5>
+                  <NavLink to={celebrityPath} className="text-decoration-none">
+                    <h5 className="mt-2 font-weight-bold">
+                      {contract.celebrityData.fullName}
+                    </h5>
+                  </NavLink>
                   {contract.status === 10 ? (
                     <NavLink
                       to={PATHS.HIRING_EDITOR.replace(
