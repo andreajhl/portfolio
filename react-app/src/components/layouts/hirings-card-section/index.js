@@ -3,11 +3,17 @@ import "./styles.scss";
 import { NavLink } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
-import { saveContractToPay } from "../../../state/ducks/contracts/actions";
+import {
+  saveContractToPay,
+  updateContractIsPublic
+} from "../../../state/ducks/contracts/actions";
 import { connect } from "react-redux";
 import { occasionsData } from "../../../constants/options";
+import { Form } from "react-bootstrap";
 
 const moment = require("moment");
+
+const validStatusToEditIsPublic = [10, 30, 40];
 
 const mapStateToProps = ({ contracts }) => ({
   ...contracts.updateContractReducer
@@ -128,6 +134,38 @@ class HiringsCardSectionLayout extends Component {
     }
   };
 
+  isPublicSwitcher = ({ contract }) => {
+    const [isPublic, setIsPublic] = useState(contract.isPublic);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleIsPublic = () => {
+      if (isLoading) return;
+      setIsLoading(true);
+      const newIsPublicValue = !isPublic;
+      setIsPublic(newIsPublicValue);
+      contract.isPublic = newIsPublicValue;
+      updateContractIsPublic({
+        id: contract.id,
+        reference: contract.reference,
+        isPublic: newIsPublicValue,
+        celebrityId: contract.celebrityData.id
+      }).then(() => setIsLoading(false));
+    };
+
+    return validStatusToEditIsPublic.includes(contract.status) ? (
+      <Form.Check
+        type="switch"
+        id={`custom-switch-${contract.id}`}
+        label="Publicar este video en Famosos.com"
+        checked={isPublic}
+        disabled={isLoading}
+        onChange={handleIsPublic}
+      />
+    ) : contract.isPublic ? (
+      <h6 className="mt-2 font-weight-bold">Es público</h6>
+    ) : null;
+  };
+
   ContractCard = ({ contract }) => {
     const celebrityPath = PATHS.CELEBRITY_PROFILE.replace(
       ":celebrity_username",
@@ -186,9 +224,7 @@ class HiringsCardSectionLayout extends Component {
                   Correo eléctronico de notificación:
                   <small className="ml-2">{contract.deliveryContact}</small>
                 </h6>
-                {contract.isPublic ? (
-                  <h6 className="mt-2 font-weight-bold">Público</h6>
-                ) : null}
+                <this.isPublicSwitcher contract={contract} />
                 {contract.occasion ? (
                   <h6 className="mt-2 font-weight-bold">
                     Ocasión:{" "}

@@ -10,6 +10,7 @@ import * as ROUTING_PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
 import * as types from "../celebrities/types";
 import { Session } from "../../utils/session";
+import { ResponsiveEmbed } from "react-bootstrap";
 
 export const updateQueryParams = (params, applyFetch = true) => {
   return (dispatch) => {
@@ -459,4 +460,22 @@ export const saveContractToPayClear = () => {
       type: TYPES.SAVE_CONTRACT_TO_PAY_CLEAR
     });
   };
+};
+
+export const updateContractIsPublic = async (body) => {
+  const FINAL_PATH = API_PATHS.UPDATE_CONTRACT_IS_PUBLIC;
+  try {
+    const response = await apiService({
+      method: "PUT",
+      path: FINAL_PATH,
+      async: true,
+      body
+    });
+    if (response.data.status !== "OK") {
+      throw response.data;
+    }
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
