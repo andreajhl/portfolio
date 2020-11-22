@@ -10,7 +10,6 @@ import * as ROUTING_PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
 import * as types from "../celebrities/types";
 import { Session } from "../../utils/session";
-import { ResponsiveEmbed } from "react-bootstrap";
 
 export const updateQueryParams = (params, applyFetch = true) => {
   return (dispatch) => {

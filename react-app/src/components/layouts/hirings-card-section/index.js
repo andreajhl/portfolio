@@ -10,6 +10,7 @@ import {
 import { connect } from "react-redux";
 import { occasionsData } from "../../../constants/options";
 import { Form } from "react-bootstrap";
+import { ReviewCreatorLayout } from "../review-creator";
 
 const moment = require("moment");
 
@@ -232,6 +233,11 @@ class HiringsCardSectionLayout extends Component {
                       {occasionsData[contract.occasion]?.title || "Otro"}
                     </small>
                   </h6>
+                ) : null}
+                {contract.status === 40 ? (
+                  <>
+                    <ReviewCreatorLayout contract={contract} />
+                  </>
                 ) : null}
                 <div className="button-status">
                   <this.ContractButton contract={contract} />
