@@ -236,7 +236,10 @@ class HiringsCardSectionLayout extends Component {
                 ) : null}
                 {contract.status === 40 ? (
                   <>
-                    <ReviewCreatorLayout contract={contract} />
+                    <ReviewCreatorLayout
+                      contract={contract}
+                      autoFocus={false}
+                    />
                   </>
                 ) : null}
                 <div className="button-status">
