@@ -4,6 +4,8 @@ import { FlagsSelect } from "../../layouts/flags-select";
 import { celebrityRequestOperations } from "../../../state/ducks/celebrity-requests";
 import { connect } from "react-redux";
 import { history } from "../../../routing/History";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 class CelebrityRequestForm extends Component {
   constructor(props) {
@@ -41,6 +43,7 @@ class CelebrityRequestForm extends Component {
   }
 
   onSelectCountry(country) {
+    console.log(country);
     this.setState({
       ...this.state,
       data: {
@@ -50,6 +53,23 @@ class CelebrityRequestForm extends Component {
       }
     });
   }
+
+  onCellphoneChange = (phone, val) => {
+    const { dialCode } = val;
+    const cellphoneNumber = phone.substring(dialCode.length, phone.length);
+    this.setState(
+      (state) => ({
+        ...state,
+        data: {
+          ...state.data,
+          countryCellphoneCode: "+" + dialCode,
+          cellphoneNumber
+          // countryAlpha3Code: country.alpha3Code
+        }
+      }),
+      console.log(val)
+    );
+  };
 
   handleInput(event) {
     const data = this.state.data;
@@ -165,20 +185,22 @@ class CelebrityRequestForm extends Component {
           value={this.state.data.email}
         />
         <label className="">Télefono de contacto</label>
-        <div className="form-horizontal">
-          <FlagsSelect onSelect={this.onSelectCountry} />
-          <input
-            type="number"
-            className={
-              "form-control mb-3" +
-              (this.state.errors.cellphoneNumberError ? " border-danger " : "")
-            }
-            placeholder="Escribe tu número"
-            name="cellphoneNumber"
-            onChange={this.handleInput}
-            value={this.state.data.cellphoneNumber}
-          />
-        </div>
+        <PhoneInput
+          enableSearch={true}
+          country={this.state.data.countryCode}
+          value={
+            this.state.data.countryCellphoneCode.slice(1) +
+            this.state.data.cellphoneNumber
+          }
+          containerClass="mb-3"
+          inputClass={
+            this.state.errors.cellphoneNumberError ? "border-danger" : ""
+          }
+          dropdownClass={
+            this.state.errors.cellphoneNumberError ? "border-danger" : ""
+          }
+          onChange={this.onCellphoneChange}
+        />
         <label className="">
           Red Social
           <small className="text-danger ml-1">*</small>
