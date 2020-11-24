@@ -110,7 +110,7 @@ class CreateContractForm extends Component {
 
   replacePlaceHolder = (text) => {
     const textClear = text
-      .replaceAll("(<<PARA>>)", this.state.contractData.deliveryTo)
+      .replaceAll("(<<PARA>>)", this.state.contractData.deliveryTo || "[PARA]")
       .replaceAll(
         "(Famoso)!",
         `${
@@ -119,12 +119,7 @@ class CreateContractForm extends Component {
             : "Famoso!"
         }`
       )
-      .replaceAll(
-        "(<<DE>>)",
-        this.state.contractData.deliveryFrom.length > 1
-          ? this.state.contractData.deliveryFrom
-          : ""
-      );
+      .replaceAll("(<<DE>>)", this.state.contractData.deliveryFrom || "[DE]");
     return textClear;
   };
 
@@ -208,19 +203,13 @@ class CreateContractForm extends Component {
     return null;
   };
 
-  changeOccasionOption = (identifier) => {
+  changeOccasionOption = (occasionIdentifier) => {
     this.setState((state) => ({
       ...state,
       contractData: {
         ...state.contractData,
-        occasion: identifier,
-        instructions: state.instructionsIsTouched
-          ? state.contractData.instructions
-          : this.replacePlaceHolder(
-              occasionsData[identifier].messages[
-                state.contractData.contractType - 1
-              ]
-            )
+        occasion: occasionIdentifier,
+        instructions: this.getInstructions(occasionIdentifier)
       }
     }));
   };
@@ -236,6 +225,34 @@ class CreateContractForm extends Component {
       return "Este correo no es válido";
     }
     return null;
+  };
+
+  getInstructions(occasionIdentifier) {
+    return this.state.instructionsIsTouched
+      ? this.state.contractData.instructions
+      : this.replacePlaceHolder(
+          occasionsData[occasionIdentifier].messages[
+            this.state.contractData.contractType - 1
+          ]
+        );
+  }
+
+  handleDeliveryNamesChange = (event) => {
+    if (this.state.instructionsIsTouched) {
+      this.handleInputChange(event);
+    } else {
+      const { name, value } = event.target;
+      this.setState(
+        (state) => ({
+          ...state,
+          contractData: {
+            ...state.contractData,
+            [name]: value
+          }
+        }),
+        () => this.changeOccasionOption(this.state.contractData.occasion)
+      );
+    }
   };
 
   render() {
@@ -326,7 +343,7 @@ class CreateContractForm extends Component {
                 placeholder={"Ana"}
                 value={contractData.deliveryTo}
                 name={"deliveryTo"}
-                onChange={this.handleInputChange}
+                onChange={this.handleDeliveryNamesChange}
                 ref={this.deliveryToInput}
               />
               <span
@@ -354,7 +371,7 @@ class CreateContractForm extends Component {
                 placeholder={"Duvan"}
                 value={contractData.deliveryFrom}
                 name={"deliveryFrom"}
-                onChange={this.handleInputChange}
+                onChange={this.handleDeliveryNamesChange}
                 ref={this.deliveryFromInput}
               />
               <span
