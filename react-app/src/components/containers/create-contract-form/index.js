@@ -14,6 +14,7 @@ class CreateContractForm extends Component {
     super(props);
     const session = new Session();
     this.state = {
+      instructionsIsTouched: false,
       contractData: {
         celebrity: null,
         contractType: 1,
@@ -138,6 +139,13 @@ class CreateContractForm extends Component {
     }
   };
 
+  handleInstructionsChange = (event) => {
+    this.handleInputChange(event);
+    if (!this.state.instructionsIsTouched) {
+      this.setState((state) => ({ ...state, instructionsIsTouched: true }));
+    }
+  };
+
   handleContractTypeChange = (value) => {
     const updatedContractData = { ...this.state.contractData };
     const oldMessage = this.replacePlaceHolder(
@@ -200,37 +208,21 @@ class CreateContractForm extends Component {
     return null;
   };
 
-  changeOcassionOption = (identifier) => {
-    // ALMACENAR EL MENSAJE ACTUAL QUE SE ENCUENTRA EN EL STATE
-    let oldMessage =
-      occasionsData[this.state.contractData.occasion]?.messages[
-        this.state.contractData.contractType - 1
-      ];
-    if (oldMessage) {
-      oldMessage = this.replacePlaceHolder(oldMessage);
-    }
-    const newMessage = this.replacePlaceHolder(
-      occasionsData[identifier].messages[
-        this.state.contractData.contractType - 1
-      ]
-    );
-    const updatedContractData = { ...this.state.contractData };
-    // ACTUALIZAR EL VALOR DE LA OCASSION SELECCIONADA
-    updatedContractData.occasion = identifier;
-    // VERIFICAR SI EL MENSAJE ACTUAL ES DIFERENTE AL PRECARGADO EN LA APP
-    if (
-      this.state.contractData.instructions.length < 1 ||
-      oldMessage === this.state.contractData.instructions
-    ) {
-      // SI NO HAY INSTRUCCIONES ALMACENADAS,
-      // SI NO HAY MODIFICACIONES REALIZADAS AL MENSAJE PRECARGADO,
-      // ACTUALIZAR EL ESTADO CON TEXTO DEFAULT
-      updatedContractData.instructions = newMessage;
-    }
-    this.setState({
-      ...this.state,
-      contractData: updatedContractData
-    });
+  changeOccasionOption = (identifier) => {
+    this.setState((state) => ({
+      ...state,
+      contractData: {
+        ...state.contractData,
+        occasion: identifier,
+        instructions: state.instructionsIsTouched
+          ? state.contractData.instructions
+          : this.replacePlaceHolder(
+              occasionsData[identifier].messages[
+                state.contractData.contractType - 1
+              ]
+            )
+      }
+    }));
   };
 
   deliveryContactValidator = () => {
@@ -379,7 +371,7 @@ class CreateContractForm extends Component {
           <OcassionsOptions
             contractType={this.state.contractData.contractType - 1}
             currentChoise={this.state.contractData.occasion}
-            clicked={this.changeOcassionOption}
+            clicked={this.changeOccasionOption}
           ></OcassionsOptions>
           <div className={"form-custom-vertical-group"}>
             <label>¿Qué quieres que diga {this.props.celebrityFullName}?</label>
@@ -392,7 +384,7 @@ class CreateContractForm extends Component {
               }
               value={contractData.instructions}
               name={"instructions"}
-              onChange={this.handleInputChange}
+              onChange={this.handleInstructionsChange}
             />
             <div
               className={
