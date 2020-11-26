@@ -160,6 +160,7 @@ class CelebritiesPage extends Component {
             }
             applyFetchCelebrities={true}
             showFiltersSection={true}
+            showVideoCallsResearch
           >
             {/*/!* ShowHeader *!/*/}
             {/*{localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}*/}

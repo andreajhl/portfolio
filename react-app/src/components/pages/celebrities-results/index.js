@@ -48,7 +48,6 @@ const CelebritiesResultsPage = ({
   location,
   history
 }) => {
-  console.log({ previousPath });
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
   const queryString = location.search;
   const listParams = useMemo(() => queryStringToJSON(queryString), [

@@ -9,6 +9,7 @@ import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/
 import * as GTM from "../../../state/utils/gtm";
 import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
 import { Session } from "../../../state/utils/session";
+import { VideoCallsResearch } from "../../containers/videocalls-research";
 
 class PageContainer extends Component {
   constructor(props) {
@@ -100,6 +101,7 @@ class PageContainer extends Component {
           alt="None"
         />
 
+        {this.props.showVideoCallsResearch ? <VideoCallsResearch /> : null}
         {/*COOKIES CONSENT*/}
         <CookiesConsent />
 
@@ -126,7 +128,8 @@ PageContainer.defaultProps = {
   showSearchWeb: true,
   showInputSearchSm: true,
   showLogin: true,
-  hideControls: false
+  hideControls: false,
+  showVideoCallsResearch: false
 };
 
 // mapStateToProps

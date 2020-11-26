@@ -57,18 +57,15 @@ class CelebrityRequestForm extends Component {
   onCellphoneChange = (phone, val) => {
     const { dialCode } = val;
     const cellphoneNumber = phone.substring(dialCode.length, phone.length);
-    this.setState(
-      (state) => ({
-        ...state,
-        data: {
-          ...state.data,
-          countryCellphoneCode: "+" + dialCode,
-          cellphoneNumber
-          // countryAlpha3Code: country.alpha3Code
-        }
-      }),
-      console.log(val)
-    );
+    this.setState((state) => ({
+      ...state,
+      data: {
+        ...state.data,
+        countryCellphoneCode: "+" + dialCode,
+        cellphoneNumber
+        // countryAlpha3Code: country.alpha3Code
+      }
+    }));
   };
 
   handleInput(event) {
