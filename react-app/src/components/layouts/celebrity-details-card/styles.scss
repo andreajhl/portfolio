@@ -2,7 +2,6 @@
 
 .CelebrityDetailsCardLayout {
   .f-container {
-
     // PROFILE LG
     .profile-lg {
       position: relative;
@@ -14,6 +13,7 @@
         .f-avatar {
           background-color: transparent;
           padding: 5px;
+          text-align: center;
 
           .rounded-circle {
             background-color: white;
@@ -28,10 +28,9 @@
             img {
               height: 100%;
               width: 100%;
-              object-fit: cover
+              object-fit: cover;
             }
           }
-
         }
 
         .f-names {
@@ -58,7 +57,6 @@
           padding-bottom: 15px;
           color: white;
         }
-
       }
 
       .f-video {
@@ -162,11 +160,11 @@
           color: $soft-grey;
         }
       }
-      .description{
+      .description {
         height: 97px;
         overflow: auto;
       }
-      .reviews{
+      .reviews {
         background-color: #efefef;
         height: 80px;
       }
@@ -187,6 +185,18 @@
           left: -1px;
           right: -1px;
         }
+      }
+
+      .no-main-video {
+        margin-top: 70px;
+
+        .title {
+          top: -35px;
+        }
+      }
+
+      .f-reviews {
+        padding-left: 5vw;
       }
 
       .f-video {
@@ -218,7 +228,6 @@
           object-fit: cover !important;
         }
 
-
         img {
           width: 100%;
           height: 100%;
@@ -247,12 +256,12 @@
 
       h6.title {
         position: relative;
-        left: 120px;
+        left: 136px;
         font-size: 18px;
       }
 
       small.subtitle {
-        font-size: 12px !important
+        font-size: 12px !important;
       }
     }
 
@@ -261,7 +270,7 @@
     }
   }
 
-  .profile-sm-foundation{
+  .profile-sm-foundation {
     .foundation {
       cursor: pointer;
       margin-top: -22px !important;
@@ -329,7 +338,6 @@
         right: 10px;
         color: $soft-grey;
       }
-
     }
   }
 
@@ -352,19 +360,17 @@
     }
   }
 
-
   .f-line {
     border-top: dashed 2px $soft-grey;
   }
 
-  .m-2-6{
+  .m-2-6 {
     margin-top: 3rem !important;
   }
-
 }
 
 .hashtags {
-  *{
+  * {
     color: $soft-grey !important;
   }
 }
@@ -379,11 +385,11 @@ video::-webkit-media-controls {
 
 video {
   &::-webkit-media-controls {
-    display:none !important;
+    display: none !important;
   }
 
   &::-webkit-media-controls-start-playback-button {
-    display: none!important;
+    display: none !important;
     -webkit-appearance: none;
   }
 }

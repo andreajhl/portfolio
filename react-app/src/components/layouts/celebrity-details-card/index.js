@@ -160,7 +160,9 @@ class CelebrityDetailsCardLayout extends Component {
           {/*PROFILE LG*/}
           <div className="d-none d-md-block profile-lg">
             <div className="row f-section mx-auto">
-              <div className="col-8">
+              <div
+                className={this.props.mainVideo ? "col-8" : "col-10 mx-auto"}
+              >
                 <div className="row f-card mx-auto">
                   <div className="col-3 col-md-4 f-avatar my-auto">
                     <div className="rounded-circle f-shadow">
@@ -309,59 +311,20 @@ class CelebrityDetailsCardLayout extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-4 f-video" style={{ padding: "0px" }}>
-                {this.props.mainVideo ? (
+              {this.props.mainVideo ? (
+                <div className="col-4 f-video" style={{ padding: "0px" }}>
                   <i
                     className={
                       "fa fa-2x play-pause " + this.state.videoDesktopPlayIcon
                     }
                     onClick={this.playDesktopVideo.bind(this)}
                   />
-                ) : null}
-                <video
-                  ref={this.videoDesktopRef}
-                  controls={false}
-                  onClick={this.playDesktopVideo.bind(this)}
-                  playsInline={true}
-                  preload="metadata"
-                >
-                  <source
-                    src={this.props.mainVideo + "#t=0.5"}
-                    type="video/mp4"
-                  />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-          </div>
-          {/*PROFILE SM*/}
-          <div className="d-block d-md-none profile-sm">
-            <div className="row f-section mx-auto sm-row">
-              <div className="col-12">
-                <div
-                  className="f-video text-center"
-                  onClick={this.playMobileVideo.bind(this)}
-                >
-                  {this.props.mainVideo ? (
-                    <i
-                      className={
-                        "fa fa-2x play-pause " + this.state.videoMobilePlayIcon
-                      }
-                      onClick={this.playMobileVideo.bind(this)}
-                    />
-                  ) : null}
                   <video
-                    preload="metadata"
-                    style={{
-                      background: "url('" + this.props.avatar + "')",
-                      backgroundSize: "cover"
-                    }}
-                    ref={this.videoMobileRef}
-                    width="100%"
-                    height="460px"
+                    ref={this.videoDesktopRef}
                     controls={false}
+                    onClick={this.playDesktopVideo.bind(this)}
                     playsInline={true}
-                    onClick={this.playMobileVideo.bind(this)}
+                    preload="metadata"
                   >
                     <source
                       src={this.props.mainVideo + "#t=0.5"}
@@ -369,6 +332,52 @@ class CelebrityDetailsCardLayout extends Component {
                     />
                     Your browser does not support the video tag.
                   </video>
+                </div>
+              ) : null}
+            </div>
+          </div>
+          {/*PROFILE SM*/}
+          <div className="d-block d-md-none profile-sm">
+            <div
+              className={`row f-section mx-auto sm-row ${
+                !this.props.mainVideo ? "no-main-video" : ""
+              }`}
+            >
+              <div className="col-12">
+                <div
+                  className="f-video text-center"
+                  onClick={this.playMobileVideo.bind(this)}
+                >
+                  {this.props.mainVideo ? (
+                    <>
+                      <i
+                        className={
+                          "fa fa-2x play-pause " +
+                          this.state.videoMobilePlayIcon
+                        }
+                        onClick={this.playMobileVideo.bind(this)}
+                      />
+                      <video
+                        preload="metadata"
+                        style={{
+                          background: "url('" + this.props.avatar + "')",
+                          backgroundSize: "cover"
+                        }}
+                        ref={this.videoMobileRef}
+                        width="100%"
+                        height="460px"
+                        controls={false}
+                        playsInline={true}
+                        onClick={this.playMobileVideo.bind(this)}
+                      >
+                        <source
+                          src={this.props.mainVideo + "#t=0.5"}
+                          type="video/mp4"
+                        />
+                        Your browser does not support the video tag.
+                      </video>
+                    </>
+                  ) : null}
                   <div className="f-avatar f-shadow">
                     <img
                       onLoad={this.handleImageLoaded}
@@ -387,7 +396,7 @@ class CelebrityDetailsCardLayout extends Component {
                   {this.props.fullName}
                 </h6>
               </div>
-              <div className="col-4 pr-0 mt-2">
+              <div className="col-4 pr-0 mt-2 f-reviews">
                 <small className="title text-warning">
                   <i className="fa fa-star fa-1x mr-1 text-warning" />
                   <i className="fa fa-star fa-1x mr-1 text-warning" />
