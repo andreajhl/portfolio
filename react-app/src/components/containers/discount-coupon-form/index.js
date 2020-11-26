@@ -31,14 +31,14 @@ class index extends Component {
     render() {
         return (
           <form onSubmit={this.handleSubmit} className='coupon-container'>
-            <label htmlFor='coupon-input'>Ingresa aqui tu cupon de descuento</label>
+            <label htmlFor='coupon-input'>Ingresa aquí tu cupón de descuento</label>
             <div className='input-group mb-3'>
               <input
                 type='text'
                 className='form-control'
-                placeholder='Ingrese un cupon'
+                placeholder='Ingrese un cupón'
                 aria-label=''
-                aria-describedby='basic-addon1'
+                aria-describedBy='basic-addon1'
                 id='coupon-input'
                 value={this.state.discountCoupon}
                 onChange={(event) => this.handleChange(event)}
@@ -46,7 +46,7 @@ class index extends Component {
               {this.props.couponData.completed ? (
                 <div className='input-group-append'>
                   <span className='input-group-text text-success' >
-                    CUPON AGREGADO
+                    CUPÓN AGREGADO
                   </span>
                 </div>
               ) : (
@@ -58,7 +58,7 @@ class index extends Component {
               )}
             </div>
             <span className='font-weight-bold text-danger coupon-error'>
-              {this.props.couponData.error_data ? `CUPON NO VALIDO: ${this.props.couponData.error_data}` : null}
+              {this.props.couponData.error_data ? `CUPÓN NO VALIDO: ${this.props.couponData.error_data}` : null}
             </span>
           </form>
         );
