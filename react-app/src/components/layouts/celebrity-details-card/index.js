@@ -156,13 +156,16 @@ class CelebrityDetailsCardLayout extends Component {
   };
 
   autoPlayMainVideo = (deviceType) => (event) => {
-    const isVisible =
+    const userHasGoodInternet = navigator?.connection?.effectiveType === "4g";
+
+    const videoIsVisible =
       getComputedStyle(
         event.target.closest(
           `.profile-${deviceType === "desktop" ? "lg" : "sm"}`
         )
       ).display !== "none";
-    if (isVisible) {
+
+    if (videoIsVisible && userHasGoodInternet) {
       deviceType === "desktop"
         ? this.playDesktopVideo()
         : this.playMobileVideo();
