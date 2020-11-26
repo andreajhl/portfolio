@@ -1,6 +1,7 @@
 {
-  "name": "webapp",
+  "name": "famosos-frontend",
   "version": "0.1.0",
+  "description": "Famosos Webapp",
   "private": true,
   "dependencies": {
     "@sentry/browser": "^5.8.0",

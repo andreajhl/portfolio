@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./styles.scss";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import { description, version } from "../../../../package.json";
 
 class FooterLayout extends Component {
   constructor(props) {
@@ -66,9 +67,9 @@ class FooterLayout extends Component {
                   <br />
                   que conecten personalidades con su fan base.
                 </div>
-                <div className="col-copyright">
-                  &copy; 2019 Famosos, Inc. All Rights Reserved.
-                </div>
+                <p className="mb-0">
+                  {description} v{version}
+                </p>
               </div>
 
               <div className="col-12 col-md-4 col-lg-4 col-two">
@@ -125,6 +126,9 @@ class FooterLayout extends Component {
                     </span>
                   </li>
                 </ul>
+                <div className="col-copyright">
+                  &copy; 2020 Famosos, Inc. All Rights Reserved.
+                </div>
               </div>
             </div>
           </div>
