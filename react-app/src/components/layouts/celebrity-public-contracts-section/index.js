@@ -5,12 +5,11 @@ import { CelebrityPublicContractCardLayout } from "../celebrity-public-contract-
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { PaginationLayout } from "../pagination";
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
-import {ContractPriceLayout} from '../contract-price/index';
+import { ContractPriceLayout } from "../contract-price/index";
 import * as PATHS from "../../../routing/Paths";
-import {history} from "../../../routing/History";
+import { history } from "../../../routing/History";
 
-
-import {Session} from "../../../state/utils/session";
+import { Session } from "../../../state/utils/session";
 
 import * as GTM from "../../../state/utils/gtm";
 
@@ -26,7 +25,6 @@ class CelebrityPublicContractsSectionLayout extends Component {
     this.updateParams = this.updateParams.bind(this);
     this.fetchPublicContracts = this.fetchPublicContracts.bind(this);
     this.goToCreateContract = this.goToCreateContract.bind(this);
-
   }
 
   fetchPublicContracts() {
@@ -52,53 +50,56 @@ class CelebrityPublicContractsSectionLayout extends Component {
   }
 
   goToCreateContract() {
-    GTM.tagManagerDataLayer(
-        "CLICK_ON_CONTRACT_BUTTON",
-        this.props.celebrity
-    );
+    GTM.tagManagerDataLayer("CLICK_ON_CONTRACT_BUTTON", this.props.celebrity);
     const session = new Session();
     if (session.isDummy()) {
-        localStorage.setItem("finalRedirect", "/" + this.props.username + "/contratar");
-        history._pushRoute(PATHS.AUTH_FLOW);
+      localStorage.setItem(
+        "finalRedirect",
+        "/" + this.props.username + "/contratar"
+      );
+      history._pushRoute(PATHS.AUTH_FLOW);
     } else {
-        history._pushRoute(this.props.username + "/contratar");
+      history._pushRoute(this.props.username + "/contratar");
     }
-}
+  }
 
   returnContractPrice() {
-    const res = this.props.contractTypes.find(x => x.contractType === 1);
+    const res = this.props.contractTypes.find((x) => x.contractType === 1);
     let videoMessagePrice = 0;
-    if(res){
-        videoMessagePrice = res.price;
+    if (res) {
+      videoMessagePrice = res.price;
     }
     if (this.props.currencyExchangeData.rate > 1) {
-        return (videoMessagePrice * this.props.currencyExchangeData.rate) + videoMessagePrice
+      return (
+        videoMessagePrice * this.props.currencyExchangeData.rate +
+        videoMessagePrice
+      );
     } else {
-        return videoMessagePrice
+      return videoMessagePrice;
     }
-}
+  }
 
   renderCelebrityPublicVideoCards() {
     return this.props.publicContracts.map((publicContract, index) => {
       return (
         <div
-          className='item mr-4 mb-2 mx-auto'
-          key={index + '-' + publicContract.reference}
+          className="item mr-4 mb-2 mx-auto"
+          key={index + "-" + publicContract.reference}
         >
           <CelebrityPublicContractCardLayout publicContract={publicContract} />
 
-          <div className='col-12 p-0 m-0 d-md-none text-center pr-0'>
+          <div className="col-12 p-0 m-0 d-md-none text-center pr-0">
             {this.returnContractPrice() > 0 ? (
-              <div className='mt-3 mb-3' onClick={this.goToCreateContract}>
-                <button className='btn  btn-sm f-contract-button'>
-                  Comprar Video Personalizado por{' '}
+              <div className="mt-3 mb-3" onClick={this.goToCreateContract}>
+                <button className="btn btn-sm f-contract-button">
+                  Comprar Video Personalizado por{" "}
                   <ContractPriceLayout
-                    classes={'text-white font-weight-bold'}
+                    classes={"text-white font-weight-bold"}
                     price={this.returnContractPrice()}
                     currency={this.props.currencyExchangeData.to}
                     rounding={true}
                   />
-                  <i className='fa fa-arrow-right' />
+                  <i className="fa fa-arrow-right" />
                 </button>
               </div>
             ) : null}
@@ -135,8 +136,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
             <div className={"scrolling-wrapper"}>
               {this.props.isLoading
                 ? this.renderShimmerPublicVideoCards()
-                : this.renderCelebrityPublicVideoCards()
-                }
+                : this.renderCelebrityPublicVideoCards()}
             </div>
             <div className="col-12">
               {/* PaginationLayout */}
