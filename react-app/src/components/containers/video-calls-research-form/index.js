@@ -111,7 +111,9 @@ const getInitialState = (userData) => {
           ...initialState.values,
           userEmail: userData.email,
           userFullName: userData.fullName,
-          cellphoneNumber: userData.cellphoneNumber,
+          cellphoneNumber: `+${
+            userData.cellphoneCode + userData.cellphoneNumber
+          }`,
           cellphoneCountryCode: userData.countryCode.slice(0, -1).toLowerCase()
         }
       }
