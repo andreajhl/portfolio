@@ -14,7 +14,9 @@ class CelebrityDetailsCardLayout extends Component {
     this.state = {
       imageLoaded: false,
       videoMobilePlayIcon: "fa-play",
-      videoDesktopPlayIcon: "fa-play"
+      videoDesktopPlayIcon: "fa-play",
+      videoDesktopIsMuted: true,
+      videoMobileIsMuted: true
     };
 
     this.handleImageLoaded = this.handleImageLoaded.bind(this);
@@ -151,6 +153,30 @@ class CelebrityDetailsCardLayout extends Component {
     } else {
       return <span>{parseInt(this.props.turnaround)} días</span>;
     }
+  };
+
+  autoPlayMainVideo = (deviceType) => (event) => {
+    const isVisible =
+      getComputedStyle(
+        event.target.closest(
+          `.profile-${deviceType === "desktop" ? "lg" : "sm"}`
+        )
+      ).display !== "none";
+    if (isVisible) {
+      deviceType === "desktop"
+        ? this.playDesktopVideo()
+        : this.playMobileVideo();
+    }
+  };
+
+  toggleVideoDesktopIsMuted = () => {
+    this.setState({ videoDesktopIsMuted: !this.state.videoDesktopIsMuted });
+  };
+
+  toggleVideoMobileIsMuted = (event) => {
+    event.preventDefault();
+    if (event.stopPropagation) event.stopPropagation();
+    this.setState({ videoMobileIsMuted: !this.state.videoMobileIsMuted });
   };
 
   render() {
@@ -313,18 +339,29 @@ class CelebrityDetailsCardLayout extends Component {
               </div>
               {this.props.mainVideo ? (
                 <div className="col-4 f-video" style={{ padding: "0px" }}>
-                  <i
-                    className={
-                      "fa fa-2x play-pause " + this.state.videoDesktopPlayIcon
-                    }
-                    onClick={this.playDesktopVideo.bind(this)}
-                  />
+                  <div className="f-video-buttons">
+                    <i
+                      className={
+                        "fa fa-2x play-pause cursor-pointer " +
+                        this.state.videoDesktopPlayIcon
+                      }
+                      onClick={this.playDesktopVideo.bind(this)}
+                    />
+                    <i
+                      className={`fa fa-2x fa-volume-${
+                        this.state.videoDesktopIsMuted ? "mute" : "up"
+                      } volume-icon cursor-pointer`}
+                      onClick={this.toggleVideoDesktopIsMuted}
+                    />
+                  </div>
                   <video
                     ref={this.videoDesktopRef}
                     controls={false}
                     onClick={this.playDesktopVideo.bind(this)}
                     playsInline={true}
                     preload="metadata"
+                    muted={this.state.videoDesktopIsMuted}
+                    onCanPlay={this.autoPlayMainVideo("desktop")}
                   >
                     <source
                       src={this.props.mainVideo + "#t=0.5"}
@@ -350,13 +387,21 @@ class CelebrityDetailsCardLayout extends Component {
                 >
                   {this.props.mainVideo ? (
                     <>
-                      <i
-                        className={
-                          "fa fa-2x play-pause " +
-                          this.state.videoMobilePlayIcon
-                        }
-                        onClick={this.playMobileVideo.bind(this)}
-                      />
+                      <div className="f-video-buttons">
+                        <i
+                          className={
+                            "fa fa-2x play-pause cursor-pointer " +
+                            this.state.videoMobilePlayIcon
+                          }
+                          onClick={this.playMobileVideo.bind(this)}
+                        />
+                        <i
+                          className={`fa fa-2x fa-volume-${
+                            this.state.videoMobileIsMuted ? "mute" : "up"
+                          } volume-icon cursor-pointer`}
+                          onClick={this.toggleVideoMobileIsMuted}
+                        />
+                      </div>
                       <video
                         preload="metadata"
                         style={{
@@ -369,6 +414,8 @@ class CelebrityDetailsCardLayout extends Component {
                         controls={false}
                         playsInline={true}
                         onClick={this.playMobileVideo.bind(this)}
+                        muted={this.state.videoMobileIsMuted}
+                        onCanPlay={this.autoPlayMainVideo("mobile")}
                       >
                         <source
                           src={this.props.mainVideo + "#t=0.5"}
