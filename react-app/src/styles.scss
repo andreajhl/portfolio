@@ -6,8 +6,26 @@
   scrollbar-width: none;
 }
 
-html, body, input, b, h1, h2, h3, h4, h5, h6, small, span, p, textarea, label, div, a, section, header {
-  font-family: 'Avenir Next LT Pro Regular', sans-serif !important;
+html,
+body,
+input,
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small,
+span,
+p,
+textarea,
+label,
+div,
+a,
+section,
+header {
+  font-family: "Avenir Next LT Pro Regular", sans-serif !important;
 }
 
 * {
@@ -40,7 +58,7 @@ b {
 }
 
 .f-shadow {
-  box-shadow: 0 0rem 0.4rem #a1a1a1 !important
+  box-shadow: 0 0rem 0.4rem #a1a1a1 !important;
 }
 
 .f-rounded {
@@ -56,7 +74,6 @@ b {
 }
 
 .modal-content {
-
   z-index: 200000;
   position: absolute;
   zoom: 90%;
@@ -93,11 +110,12 @@ b {
     }
   }
 
-  input, textarea {
+  input,
+  textarea {
     border: 2px solid $dark !important;
   }
 
-  input[type='radio'] {
+  input[type="radio"] {
     border: 2px solid $dark !important;
   }
 
@@ -106,7 +124,6 @@ b {
     position: relative;
     margin-left: 5px;
   }
-
 }
 
 .slick-initialized .slick-slide {
@@ -139,7 +156,6 @@ b {
   right: auto !important;
   left: auto !important;
 }
-
 
 /* Simple CSS3 Fade-in Animation */
 @-webkit-keyframes fadeIn {
@@ -357,13 +373,12 @@ video {
   display: none !important;
 
   .media-controls.inline.ios.uses-ltr-user-interface-layout-direction {
-    display: none !important
+    display: none !important;
   }
-
 }
 
 .media-controls.inline.ios.uses-ltr-user-interface-layout-direction {
-  display: none !important
+  display: none !important;
 }
 
 @media (max-width: 768px) {
@@ -419,7 +434,8 @@ video {
   border-color: $primary;
 }
 
-input, select {
+input,
+select {
   height: 45px !important;
 }
 
@@ -436,7 +452,6 @@ input, select {
     height: 30px !important;
   }
 }
-
 
 .customTooltip {
   position: relative;
@@ -490,8 +505,8 @@ input, select {
 .f-contract-button {
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
-  background: linear-gradient(#FF359B, #FB177D 50%);
-  color: #FFFFFF;
+  background: linear-gradient(#ff359b, #fb177d 50%);
+  color: #ffffff;
   font-weight: 700;
   text-align: left;
   width: 100% !important;
@@ -537,20 +552,26 @@ input, select {
   width: 100% !important;
 }
 
-.react-datepicker-wrapper{
+.react-datepicker-wrapper {
   width: 100%;
 }
 
-.error-container{
+.error-container {
   background-color: #fce8ea !important;
 }
 
-.custom-control-label{
-  font-size: 14px!important;
+.custom-control-label {
+  font-size: 14px !important;
 }
 
 .dv-star-rating {
   i {
     font-size: 30px;
   }
+}
+
+.text-with-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
