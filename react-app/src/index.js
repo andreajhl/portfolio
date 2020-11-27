@@ -7,22 +7,23 @@ import "./styles.scss";
 import configureStore from "./state";
 import * as SENTRY from "./state/utils/sentry";
 import * as GTM from "./state/utils/gtm";
-import {MyRoutes} from "./routing/Routes";
+import { MyRoutes } from "./routing/Routes";
 
 const jwt_decode = require("jwt-decode");
-const reduxStore = configureStore( window.REDUX_INITIAL_DATA );
-
+const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
 
 // OLD SESSIONS VALIDATION
 const token = window.localStorage.getItem("_fs_");
 if (token) {
-    const email = jwt_decode(token).email;
-    const status = jwt_decode(token).status;
-    if ((email.includes("myemail@") || (email.includes("@famosos.com") && email.includes("Anonymous")))) {
-        window.localStorage.removeItem("_fs_");
-    }
+  const email = jwt_decode(token).email;
+  const status = jwt_decode(token).status;
+  if (
+    email.includes("myemail@") ||
+    (email.includes("@famosos.com") && email.includes("Anonymous"))
+  ) {
+    window.localStorage.removeItem("_fs_");
+  }
 }
-
 
 // Initialize Sentry
 SENTRY.initialize();
@@ -40,19 +41,19 @@ GTM.initialize();
 serviceWorker.unregister();
 
 const render = (Component) => {
-	return ReactDOM.render(
-		<Provider store={reduxStore}>
-			<Component />
-		</Provider>,
-		document.getElementById("root")
-	);
+  return ReactDOM.render(
+    <Provider store={reduxStore}>
+      <Component />
+    </Provider>,
+    document.getElementById("root")
+  );
 };
 
 render(MyRoutes);
 
 if (module.hot) {
-	module.hot.accept("./routing/Routes", () => {
-		const NextApp = require("./routing/Routes").MyRoutes;
-		render(NextApp);
-	});
+  module.hot.accept("./routing/Routes", () => {
+    const NextApp = require("./routing/Routes").MyRoutes;
+    render(NextApp);
+  });
 }
