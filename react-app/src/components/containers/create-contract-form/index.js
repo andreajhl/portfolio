@@ -35,6 +35,8 @@ class CreateContractForm extends Component {
     this.createContract = this.createContract.bind(this);
     this.deliveryToInput = React.createRef();
     this.deliveryFromInput = React.createRef();
+    this.deliveryFromMaxLength = 40;
+    this.deliveryToMaxLength = 40;
   }
 
   componentDidMount() {
@@ -174,14 +176,20 @@ class CreateContractForm extends Component {
   }
 
   deliveryFromValidator = (shouldFocus) => {
-    if (
-      this.state.contractData.contractType === 2 &&
-      !this.state.contractData.deliveryFrom.length
-    ) {
+    if (this.state.contractData.contractType !== 2) return null;
+    if (!this.state.contractData.deliveryFrom.length) {
       if (this.deliveryFromInput.current && shouldFocus) {
         this.deliveryFromInput.current.focus();
       }
       return "Campo requerido";
+    }
+    if (
+      this.state.contractData.deliveryFrom.length > this.deliveryFromMaxLength
+    ) {
+      if (this.deliveryFromInput.current && shouldFocus) {
+        this.deliveryFromInput.current.focus();
+      }
+      return `Este campo excede el limite de ${this.deliveryFromMaxLength} caracteres`;
     }
     return null;
   };
@@ -192,6 +200,12 @@ class CreateContractForm extends Component {
         this.deliveryToInput.current.focus();
       }
       return "Campo requerido";
+    }
+    if (this.state.contractData.deliveryTo.length > this.deliveryToMaxLength) {
+      if (this.deliveryToInput.current && shouldFocus) {
+        this.deliveryToInput.current.focus();
+      }
+      return `Este campo excede el limite de ${this.deliveryToMaxLength} caracteres`;
     }
     return null;
   };
@@ -345,6 +359,7 @@ class CreateContractForm extends Component {
                 name={"deliveryTo"}
                 onChange={this.handleDeliveryNamesChange}
                 ref={this.deliveryToInput}
+                maxLength={this.deliveryToMaxLength}
               />
               <span
                 className={
@@ -373,6 +388,7 @@ class CreateContractForm extends Component {
                 name={"deliveryFrom"}
                 onChange={this.handleDeliveryNamesChange}
                 ref={this.deliveryFromInput}
+                maxLength={this.deliveryFromMaxLength}
               />
               <span
                 className={
