@@ -1,0 +1,53 @@
+.carousel-with-buttons-layout {
+  position: relative;
+
+  &:hover &__scroll-to-button {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 1.125rem;
+    line-height: 1.22;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0 0 1rem;
+    margin-bottom: 0;
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: none;
+  }
+
+  &__list-item {
+    margin-right: 0.75rem;
+  }
+
+  &__scroll-to-button {
+    will-change: opacity;
+    transition: all 0.25s ease;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.8);
+    top: 1.815rem;
+    border: none;
+    color: white;
+    height: 205px;
+    width: 43px;
+    font-size: 1.25rem;
+    z-index: 10;
+    position: absolute;
+
+    &.scroll-to-right-button {
+      right: 0;
+    }
+  }
+
+  &.celebrities-sections-videos {
+    .celebrities-section-layout__scroll-to-button {
+      height: 344px;
+    }
+  }
+}

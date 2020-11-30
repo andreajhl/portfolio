@@ -4,7 +4,6 @@ import { CelebrityCardLayout } from "../celebrity-card";
 import { VideoCardLayout } from "../video-card";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
-import { CelebritiesShimmerCardsSectionLayout } from "../celebrities-shimmer-cards-section";
 
 const initialState = {
   showLeftScrollButton: false,
