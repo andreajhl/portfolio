@@ -15,7 +15,9 @@ const BlogPostCardLayout = ({ title, imageUrl, description, postUrl }) => {
             {limitString(description, 150)}
           </span>
         </Card.Text>
-        <Card.Link href={postUrl}>Leer más</Card.Link>
+        <Card.Link href={postUrl} target="_blank">
+          Leer más
+        </Card.Link>
       </Card.Body>
     </Card>
   );
