@@ -168,9 +168,9 @@ const VideoCallsResearchForm = ({ onSubmit, formId, userData }) => {
   return (
     <Form id={formId} onSubmit={validateBeforeSubmit} className="row">
       <p className="text-center mb-4 pb-2 col-12 font-weight-bold">
-        Participa por una video llamada con tu Famoso favorito{" "}
+        Registrándote puedes ser de los primeros en
         <br className="d-none d-md-block" />
-        ayudándonos a responder estas preguntas:
+        tener una llamada 1 a 1 con tu famoso favorito
       </p>
       <FormField
         label="Correo electrónico"
