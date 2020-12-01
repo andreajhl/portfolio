@@ -7,7 +7,7 @@ const initialState = {
   showRightScrollButton: false
 };
 
-const Container = ({ children }) => {
+const Container = ({ children, buttonsStyles }) => {
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
     initialState.showLeftScrollButton
   );
@@ -45,6 +45,7 @@ const Container = ({ children }) => {
         <button
           className="carousel-with-buttons-layout__scroll-to-button d-none d-md-block"
           onClick={scrollTo("left")}
+          style={buttonsStyles}
         >
           <i className="fa fa-chevron-left text-white" />
         </button>
@@ -62,6 +63,7 @@ const Container = ({ children }) => {
         <button
           className="carousel-with-buttons-layout__scroll-to-button scroll-to-right-button d-none d-md-block"
           onClick={scrollTo("right")}
+          style={buttonsStyles}
         >
           <i className="fa fa-chevron-right text-white" />
         </button>
