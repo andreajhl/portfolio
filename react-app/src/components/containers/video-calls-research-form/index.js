@@ -161,7 +161,11 @@ const VideoCallsResearchForm = ({ onSubmit, formId, userData }) => {
     event.preventDefault();
     dispatch({ type: TYPES.FORM_SUBMITTED });
     if (validateFields()) {
-      onSubmit(state.values);
+      const values = {
+        ...state.values,
+        celebrityName: state.values.celebrityName.toUpperCase().trim()
+      };
+      onSubmit(values);
     }
   };
 
@@ -169,8 +173,8 @@ const VideoCallsResearchForm = ({ onSubmit, formId, userData }) => {
     <Form id={formId} onSubmit={validateBeforeSubmit} className="row">
       <p className="text-center mb-4 pb-2 col-12 font-weight-bold">
         Registrándote puedes ser de los primeros en
-        <br className="d-none d-md-block" />
-        tener una llamada 1 a 1 con tu famoso favorito
+        <br className="d-none d-md-block" /> tener una llamada 1 a 1 con tu
+        famoso favorito
       </p>
       <FormField
         label="Correo electrónico"
@@ -243,9 +247,7 @@ const VideoCallsResearchForm = ({ onSubmit, formId, userData }) => {
           }
           onChange={onChangeField}
         >
-          <option value="" selected>
-            Seleccione...
-          </option>
+          <option value="">Seleccione...</option>
           <option value="1-3">De 1 dólar a 3 dólares.</option>
           <option value="4-7">De 4 dólares a 7 dólares.</option>
           <option value="8-12">De 8 dólares a 12 dólares.</option>

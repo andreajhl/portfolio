@@ -29,7 +29,7 @@ const VideoCallsResearchModal = ({ doNotShowVideoCallsResearchAgain }) => {
   };
 
   const closeModalFromFooter = () => {
-    if (doNotShowAgainIsChecked || isSuccess) {
+    if (doNotShowAgainIsChecked) {
       doNotShowVideoCallsResearchAgain();
     }
     closeModal();
@@ -46,6 +46,7 @@ const VideoCallsResearchModal = ({ doNotShowVideoCallsResearchAgain }) => {
       });
       if (response.data.status === "ERROR") throw response.data;
       setIsSuccess(true);
+      doNotShowVideoCallsResearchAgain();
     } catch (error) {
       setError(error);
     } finally {
