@@ -10,7 +10,7 @@ import * as GTM from "../../../state/utils/gtm";
 import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
 import { Session } from "../../../state/utils/session";
 import { VideoCallsResearch } from "../../containers/videocalls-research";
-import { DownloadAppBanner } from "../download-app-banner";
+// import { DownloadAppBanner } from "../download-app-banner";
 
 class PageContainer extends Component {
   constructor(props) {
@@ -104,7 +104,7 @@ class PageContainer extends Component {
 
         {this.props.showVideoCallsResearch ? <VideoCallsResearch /> : null}
         {/*COOKIES CONSENT*/}
-        <DownloadAppBanner />
+        {/* <DownloadAppBanner /> */}
         <CookiesConsent />
 
         {/*<BottomNavbarSectionLayout/>*/}
