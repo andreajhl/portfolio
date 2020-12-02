@@ -7,7 +7,7 @@ const BlogPostCardLayout = ({ title, imageUrl, description, postUrl }) => {
   return (
     <Card className="BlogPostCardLayout">
       <Card.Img variant="top" src={imageUrl} />
-      <Card.Body>
+      <Card.Body className="px-0">
         <Card.Title className="font-weight-bold">{title}</Card.Title>
         <Card.Text>
           <span className="d-sm-none">{limitString(description, 80)}</span>

@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, { Component, createRef, useEffect, useState } from "react";
 import {
   CelebritiesSectionsLayout,
   PageContainer,
@@ -16,7 +16,41 @@ import { FiltersSectionLayout } from "../../layouts/filters-section";
 import MetaTags from "react-meta-tags";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import { Session } from "../../../state/utils/session";
+import * as CarouselWithButtons from "../../layouts/carousel-with-buttons";
+import BlogPostCard from "../../layouts/blog-post-card";
+import BlogPostCardLayout from "../../layouts/blog-post-card";
+import * as mediumApiService from "../../../state/utils/mediumApiService";
 
+const Testing = () => {
+  const [post, setPost] = useState([]);
+
+  const asyncGetPost = async () => {
+    const mediumPost = await mediumApiService.getPost();
+    setPost(mediumPost);
+  };
+  useEffect(() => {
+    asyncGetPost();
+  }, []);
+
+  return (
+    <CarouselWithButtons.Container>
+      <CarouselWithButtons.List>
+        <ul>
+          {post.map(({ title, thumbnail, description, link }) => (
+            <li style={{ marginRight: "12px" }}>
+              <BlogPostCardLayout
+                title={title}
+                imageUrl={thumbnail}
+                description={description}
+                postUrl={link}
+              />
+            </li>
+          ))}
+        </ul>
+      </CarouselWithButtons.List>
+    </CarouselWithButtons.Container>
+  );
+};
 class CelebritiesPage extends Component {
   constructor(props) {
     super(props);
@@ -181,6 +215,8 @@ class CelebritiesPage extends Component {
             <HeroSectionLayout />
             <FiltersSectionLayout />
             {this.state.session ? <UserLikesSectionLayout /> : null}
+            <Testing />
+
             <CelebritiesSectionsLayout />
             {/* <div
               className="scroll-section"
