@@ -1,0 +1,2 @@
+//BLOGS
+export const FETCH_BLOGS_REQUEST = "blogs/FETCH_BLOGS_REQUEST";

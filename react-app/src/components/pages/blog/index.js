@@ -1,4 +1,5 @@
 import React, { Component, Fragment,useState, useEffect } from 'react';
+import {connect} from 'react-redux';
 import { PageContainer } from '../../layouts';
 import './styles.scss';
 import {Container,Row, Col} from 'react-bootstrap';
@@ -7,9 +8,9 @@ import MetaTags from "react-meta-tags";
 import * as mediumApiService from "../../../state/utils/mediumApiService";
 
 
-const Blog = () => {
+const Blog = ({blogsData}) => {
   const [post, setPost] = useState([]);
-
+  console.log(blogsData)
   const asyncGetPost = async () => {
     const mediumPost = await mediumApiService.getPost();
     setPost(mediumPost);
@@ -49,5 +50,13 @@ const Blog = () => {
   );
 }
 
+// mapStateToProps
+const mapStateToProps = ({
+  blog,
+}) => ({
+  blogsData: blog.blogsPostMediumReducer.data
+});
 
-export {Blog};
+const _Blog = connect(
+  mapStateToProps)(Blog);
+export {_Blog as Blog};
