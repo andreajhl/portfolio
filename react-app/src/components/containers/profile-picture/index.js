@@ -1,13 +1,22 @@
-import React, { Component , Fragment} from 'react';
-import Image from 'react-bootstrap/Image'
-class index extends Component {
-    render() {
-        return (
-            <Fragment>
-                <Image roundedCircle width='162px' src={this.props.avatar} />
-            </Fragment>
-        );
-    }
-}
+import React from "react";
+import Image from "react-bootstrap/Image";
+import PropTypes from "prop-types";
 
-export default index;
+const ProfilePicture = ({ avatar, roundedCircle, width }) => (
+  <figure className="mb-0">
+    <Image roundedCircle={roundedCircle} width={width} src={avatar} />
+  </figure>
+);
+
+ProfilePicture.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  roundedCircle: PropTypes.bool,
+  width: PropTypes.oneOf([PropTypes.string, PropTypes.number])
+};
+
+ProfilePicture.defaultProps = {
+  roundedCircle: true,
+  width: "100px"
+};
+
+export { ProfilePicture };

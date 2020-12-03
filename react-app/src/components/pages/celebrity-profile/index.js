@@ -14,7 +14,8 @@ import "./styles.scss";
 import MetaTags from "react-meta-tags";
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
-import CelebritiesDetails from '../../layouts/celebrities-details';
+import { CelebrityDetails } from "../../layouts/celebrity-details";
+
 class CelebrityProfilePage extends Component {
   constructor(props) {
     super(props);
@@ -63,6 +64,7 @@ class CelebrityProfilePage extends Component {
   }
 
   render() {
+    console.log(this.props.celebrity);
     return (
       <div className="CelebrityProfilePage">
         {this.props.celebrity.username && (
@@ -90,18 +92,20 @@ class CelebrityProfilePage extends Component {
         )}
         <PageContainer applyFetchCelebrities={false} showLogin={false}>
           <div style={{ minHeight: "100vh" }}>
-            {this.props.celebrity.username ===
-            this.props.match.params.celebrity_username ? (
-              <>
-              {/* CelebrityDetailsRedisign */}
-                <CelebritiesDetails
-                 avatar={this.props.celebrity.avatar}
-                 countryCode={this.props.celebrity.countryCode}
-                 celebrityId={this.props.celebrity.id}
-                 categoryTitle={this.props.celebrity.categoryTitle}
-                />
-                {/* CelebrityDetailsCardLayout */}
-                <CelebrityDetailsCardLayout
+            {
+              this.props.celebrity.username ===
+              this.props.match.params.celebrity_username ? (
+                <>
+                  <CelebrityDetails
+                    fullName={this.props.celebrity.fullName}
+                    avatar={this.props.celebrity.avatar}
+                    countryCode={this.props.celebrity.countryCode}
+                    celebrityId={this.props.celebrity.id}
+                    categoryTitle={this.props.celebrity.categoryTitle}
+                    contractTypes={this.props.celebrity.contractTypes}
+                  />
+                  {/* CelebrityDetailsCardLayout */}
+                  {/* <CelebrityDetailsCardLayout
                   username={this.props.celebrity.username}
                   causeUrl={this.props.celebrity.causeUrl}
                   avatar={this.props.celebrity.avatar}
@@ -116,46 +120,46 @@ class CelebrityProfilePage extends Component {
                   socialNetworks={this.props.socialNetworks}
                   contractTypes={this.props.celebrity.contractTypes}
                   turnaround={this.props.celebrity.turnaround}
-                />
-                {/* END CelebrityDetailsCardLayout */}
+                /> */}
+                  {/* END CelebrityDetailsCardLayout */}
 
-                {/* CelebrityPublicVideosSectionLayout */}
-                <CelebrityPublicContractsSectionLayout
-                  contractTypes={this.props.celebrity.contractTypes}
-                  celebrityId={this.props.celebrity.id}
-                  username={this.props.celebrity.username}
-
-                />
-                {/* End CelebrityPublicVideosSectionLayout */}
-
-                {/* CelebrityReviewsSection */}
-                <CelebrityReviewsSectionLayout
-                  celebrityId={this.props.celebrity.id}
-                />
-                {/* END CelebrityReviewsSection */}
-
-                <div className="col-12 d-block d-md-none">
-                  <img
-                    width="100%"
-                    style={{
-                      borderTop: "solid 5px #e4e4e4",
-                      borderBottom: "solid 5px rgb(198, 195, 195)",
-                      marginBottom: "10px"
-                    }}
-                    src="/assets/img/steps_mobile_profile.png"
+                  {/* CelebrityPublicVideosSectionLayout */}
+                  <CelebrityPublicContractsSectionLayout
+                    contractTypes={this.props.celebrity.contractTypes}
+                    celebrityId={this.props.celebrity.id}
+                    username={this.props.celebrity.username}
                   />
-                </div>
+                  {/* End CelebrityPublicVideosSectionLayout */}
 
-                {/* CelebrityCardsSectionLayout */}
-                {/*<SimilarCelebritiesLayout*/}
-                {/*    showLoading={this.props.isLoading && this.props.queryParams.page > 1}*/}
-                {/*    celebrities={this.props.similarCelebrities}*/}
-                {/*/>*/}
-                {/* End CelebrityCardsSectionLayout */}
-              </>
-            ) : null /* (
+                  {/* CelebrityReviewsSection */}
+                  <CelebrityReviewsSectionLayout
+                    celebrityId={this.props.celebrity.id}
+                  />
+                  {/* END CelebrityReviewsSection */}
+
+                  <div className="col-12 d-block d-md-none">
+                    <img
+                      width="100%"
+                      style={{
+                        borderTop: "solid 5px #e4e4e4",
+                        borderBottom: "solid 5px rgb(198, 195, 195)",
+                        marginBottom: "10px"
+                      }}
+                      src="/assets/img/steps_mobile_profile.png"
+                    />
+                  </div>
+
+                  {/* CelebrityCardsSectionLayout */}
+                  {/*<SimilarCelebritiesLayout*/}
+                  {/*    showLoading={this.props.isLoading && this.props.queryParams.page > 1}*/}
+                  {/*    celebrities={this.props.similarCelebrities}*/}
+                  {/*/>*/}
+                  {/* End CelebrityCardsSectionLayout */}
+                </>
+              ) : null /* (
               <LoadingOverlay />
-            ) */}
+            ) */
+            }
           </div>
         </PageContainer>
       </div>
