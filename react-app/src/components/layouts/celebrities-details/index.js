@@ -4,6 +4,7 @@ import ProfilePicture from '../../containers/profile-picture';
 import CountryFlag from '../../containers/celebrity-country-flag';
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { ContractPriceLayout } from "../contract-price";
+import CTA from "../../containers/cta-celebrity-profile";
 
 
 class index extends Component {
@@ -19,8 +20,9 @@ class index extends Component {
                     <Col>
                         <h4 className='font-weight-bold'>Andres Cepeda</h4>
                         <CountryFlag countryCode={this.props.countryCode}></CountryFlag>
-                        <CelebrityFavoriteButton celebrityId={this.props.celebrityId}></CelebrityFavoriteButton>
                         <span>{this.props.categoryTitle}</span>
+                        <CelebrityFavoriteButton celebrityId={this.props.celebrityId}></CelebrityFavoriteButton>
+
                     <ContractPriceLayout
                            classes={"text-black font-weight-bold"}
                            price={200}
@@ -28,6 +30,7 @@ class index extends Component {
                            rounding={true}
                         >
                         </ContractPriceLayout>
+                        <CTA></CTA>
                              
                     </Col>
                 
