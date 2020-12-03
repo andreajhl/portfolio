@@ -128,19 +128,21 @@ class CelebrityPublicContractsSectionLayout extends Component {
   render() {
     const hasContracts = this.props.publicContracts.length > 0;
     return this.props.isLoading || hasContracts ? (
-      <CarouselWithButtons.Container>
-        <CarouselWithButtons.List>
-          <ul>
-            {this.props.publicContracts.map((publicContract) => (
-              <li className="mr-4">
-                <CelebrityPublicContractCardLayout
-                  publicContract={publicContract}
-                />
-              </li>
-            ))}
-          </ul>
-        </CarouselWithButtons.List>
-      </CarouselWithButtons.Container>
+      <div className="CelebrityPublicContractsSectionLayout">
+        <CarouselWithButtons.Container>
+          <CarouselWithButtons.List>
+            <ul className="CelebrityPublicContractsSectionLayout__list">
+              {this.props.publicContracts.map((publicContract) => (
+                <li className="mr-3">
+                  <CelebrityPublicContractCardLayout
+                    publicContract={publicContract}
+                  />
+                </li>
+              ))}
+            </ul>
+          </CarouselWithButtons.List>
+        </CarouselWithButtons.Container>
+      </div>
     ) : null;
     return this.props.isLoading || hasContracts ? (
       <div className="CelebrityPublicContractsSectionLayout">

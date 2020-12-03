@@ -1,10 +1,14 @@
 @import "../../../theme";
 
 .CelebrityPublicContractCardLayout {
-  .f-card {
+  &.f-card {
     margin-bottom: 10px;
-    width: 200px;
-    padding: 10px 10px 0 10px;
+    width: 276px;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0 rgba($color: #000000, $alpha: 0.2);
+    border: none;
+    // padding: 10px 10px 0 10px;
   }
 
   .video {
@@ -12,7 +16,7 @@
     width: 100%;
     padding-top: 100%;
     background-color: $dark;
-    border-radius: 0.5rem !important;
+    // border-radius: 0.5rem !important;
   }
 
   .body {
@@ -20,7 +24,6 @@
 
     .title,
     .celebrity-name {
-      width: 87%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -33,7 +36,8 @@
 
     .title {
       * {
-        color: $soft-grey !important;
+        font-size: 1rem;
+        color: #626262 !important;
       }
     }
 
@@ -51,12 +55,12 @@
   }
 
   .play-pause {
-    position: absolute;
+    // position: absolute;
+    // top: 20px;
+    // left: 20px;
     z-index: 1;
-    top: 20px;
-    left: 20px;
     font-size: 25px;
-    color: white;
+    color: black;
   }
 
   video,
