@@ -26,6 +26,7 @@ export const getAsync = async (id) => {
 };
 
 export const list = (params) => {
+    console.log('CALL TO GET COUNTRYS')
     return dispatch => {
         const TYPE = types.FETCH_COUNTRIES_REQUEST;
         dispatch({type: TYPE, payload: {}});

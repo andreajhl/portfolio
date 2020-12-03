@@ -14,7 +14,7 @@ import "./styles.scss";
 import MetaTags from "react-meta-tags";
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
-
+import CelebritiesDetails from '../../layouts/celebrities-details';
 class CelebrityProfilePage extends Component {
   constructor(props) {
     super(props);
@@ -93,6 +93,13 @@ class CelebrityProfilePage extends Component {
             {this.props.celebrity.username ===
             this.props.match.params.celebrity_username ? (
               <>
+              {/* CelebrityDetailsRedisign */}
+                <CelebritiesDetails
+                 avatar={this.props.celebrity.avatar}
+                 countryCode={this.props.celebrity.countryCode}
+                 celebrityId={this.props.celebrity.id}
+                 categoryTitle={this.props.celebrity.categoryTitle}
+                />
                 {/* CelebrityDetailsCardLayout */}
                 <CelebrityDetailsCardLayout
                   username={this.props.celebrity.username}
