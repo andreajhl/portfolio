@@ -92,75 +92,47 @@ class CelebrityProfilePage extends Component {
         )}
         <PageContainer applyFetchCelebrities={false} showLogin={false}>
           <div style={{ minHeight: "100vh" }}>
-            {
-              this.props.celebrity.username ===
-              this.props.match.params.celebrity_username ? (
-                <>
-                  <CelebrityDetails
-                    fullName={this.props.celebrity.fullName}
-                    username={this.props.celebrity.username}
-                    avatar={this.props.celebrity.avatar}
-                    countryCode={this.props.celebrity.countryCode}
-                    celebrityId={this.props.celebrity.id}
-                    categoryTitle={this.props.celebrity.categoryTitle}
-                    contractTypes={this.props.celebrity.contractTypes}
-                  />
-                  {/* CelebrityDetailsCardLayout */}
-                  {/* <CelebrityDetailsCardLayout
-                  username={this.props.celebrity.username}
-                  causeUrl={this.props.celebrity.causeUrl}
-                  avatar={this.props.celebrity.avatar}
+            {this.props.celebrity.username ===
+            this.props.match.params.celebrity_username ? (
+              <>
+                <CelebrityDetails
                   fullName={this.props.celebrity.fullName}
+                  username={this.props.celebrity.username}
+                  avatar={this.props.celebrity.avatar}
+                  countryCode={this.props.celebrity.countryCode}
+                  celebrityId={this.props.celebrity.id}
                   categoryTitle={this.props.celebrity.categoryTitle}
-                  isDonor={this.props.celebrity.isDonor}
-                  description={this.props.celebrity.description}
-                  causeLogo={this.props.celebrity.causeLogo}
-                  causeName={this.props.celebrity.causeName}
-                  mainVideo={this.props.celebrity.mainVideo}
-                  hashtags={this.props.celebrity.hashtags}
-                  socialNetworks={this.props.socialNetworks}
                   contractTypes={this.props.celebrity.contractTypes}
-                  turnaround={this.props.celebrity.turnaround}
-                /> */}
-                  {/* END CelebrityDetailsCardLayout */}
+                />
+                <CelebrityPublicContractsSectionLayout
+                  contractTypes={this.props.celebrity.contractTypes}
+                  celebrityId={this.props.celebrity.id}
+                  username={this.props.celebrity.username}
+                />
+                <CelebrityReviewsSectionLayout
+                  celebrityId={this.props.celebrity.id}
+                />
 
-                  {/* CelebrityPublicVideosSectionLayout */}
-                  <CelebrityPublicContractsSectionLayout
-                    contractTypes={this.props.celebrity.contractTypes}
-                    celebrityId={this.props.celebrity.id}
-                    username={this.props.celebrity.username}
+                <div className="col-12 d-block d-md-none">
+                  <img
+                    width="100%"
+                    style={{
+                      borderTop: "solid 5px #e4e4e4",
+                      borderBottom: "solid 5px rgb(198, 195, 195)",
+                      marginBottom: "10px"
+                    }}
+                    src="/assets/img/steps_mobile_profile.png"
                   />
-                  {/* End CelebrityPublicVideosSectionLayout */}
+                </div>
 
-                  {/* CelebrityReviewsSection */}
-                  <CelebrityReviewsSectionLayout
-                    celebrityId={this.props.celebrity.id}
-                  />
-                  {/* END CelebrityReviewsSection */}
-
-                  <div className="col-12 d-block d-md-none">
-                    <img
-                      width="100%"
-                      style={{
-                        borderTop: "solid 5px #e4e4e4",
-                        borderBottom: "solid 5px rgb(198, 195, 195)",
-                        marginBottom: "10px"
-                      }}
-                      src="/assets/img/steps_mobile_profile.png"
-                    />
-                  </div>
-
-                  {/* CelebrityCardsSectionLayout */}
-                  {/*<SimilarCelebritiesLayout*/}
-                  {/*    showLoading={this.props.isLoading && this.props.queryParams.page > 1}*/}
-                  {/*    celebrities={this.props.similarCelebrities}*/}
-                  {/*/>*/}
-                  {/* End CelebrityCardsSectionLayout */}
-                </>
-              ) : null /* (
-              <LoadingOverlay />
-            ) */
-            }
+                {/* CelebrityCardsSectionLayout */}
+                {/*<SimilarCelebritiesLayout*/}
+                {/*    showLoading={this.props.isLoading && this.props.queryParams.page > 1}*/}
+                {/*    celebrities={this.props.similarCelebrities}*/}
+                {/*/>*/}
+                {/* End CelebrityCardsSectionLayout */}
+              </>
+            ) : null}
           </div>
         </PageContainer>
       </div>
@@ -204,9 +176,47 @@ const mapDispatchToProps = {
   getCelebrity: celebrityOperations.get
 };
 
-// Export Class
 const _CelebrityProfilePage = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CelebrityProfilePage);
+
+// const _CelebrityProfilePage = () => (
+//   <CelebrityProfilePage
+//     getCelebrity={() => {}}
+//     isLoading={false}
+//     celebrity={{
+//       avatar:
+//         "https://famosos-media.s3.amazonaws.com/pictures-develop/1598451091150929028image.jpeg",
+//       categoryId: 11,
+//       categoryTitle: "Adultos",
+//       causeLogo: "",
+//       causeName: "",
+//       causeUrl: "",
+//       contractTypes: [
+//         {
+//           allowInFFB: false,
+//           contractType: 1,
+//           description: "",
+//           name: "VideoMessage",
+//           options: {},
+//           price: 1
+//         }
+//       ],
+//       countryCode: "VEN",
+//       countryId: 31,
+//       countryName: "Venezuela (Bolivarian Republic of)",
+//       description:
+//         "Modelo Venezolana. Ha participado en campañas para marcas como BEBE y ha hecho editoriales para Vogue y Harper's Bazaar.",
+//       fullName: "Yennifer Restrepo Sanchez",
+//       hashtags: ["Modelo", "JBalvin"],
+//       id: 69,
+//       isDonor: false,
+//       mainVideo: "",
+//       turnaround: 0,
+//       username: "yenniferrestrepo2"
+//     }}
+//   />
+// );
+
 export { _CelebrityProfilePage as CelebrityProfilePage };

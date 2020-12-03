@@ -20,7 +20,7 @@ const CountryFlag = ({ countries, fetchCountries, countryCode }) => {
   return celebrityCountry ? (
     <Image
       src={
-        celebrityCountry.alpha3Code === "USA"
+        "/assets/img/usa.svg" || celebrityCountry.alpha3Code === "USA"
           ? "/assets/img/usa.svg"
           : celebrityCountry.flag
       }

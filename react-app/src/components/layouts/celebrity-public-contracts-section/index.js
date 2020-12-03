@@ -8,6 +8,7 @@ import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
 import { ContractPriceLayout } from "../contract-price/index";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
+import * as CarouselWithButtons from "../carousel-with-buttons";
 
 import { Session } from "../../../state/utils/session";
 
@@ -126,6 +127,21 @@ class CelebrityPublicContractsSectionLayout extends Component {
 
   render() {
     const hasContracts = this.props.publicContracts.length > 0;
+    return this.props.isLoading || hasContracts ? (
+      <CarouselWithButtons.Container>
+        <CarouselWithButtons.List>
+          <ul>
+            {this.props.publicContracts.map((publicContract) => (
+              <li className="mr-4">
+                <CelebrityPublicContractCardLayout
+                  publicContract={publicContract}
+                />
+              </li>
+            ))}
+          </ul>
+        </CarouselWithButtons.List>
+      </CarouselWithButtons.Container>
+    ) : null;
     return this.props.isLoading || hasContracts ? (
       <div className="CelebrityPublicContractsSectionLayout">
         <div className="f-container mb-2 pb-2">

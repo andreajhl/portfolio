@@ -42,6 +42,7 @@ const CelebrityDetails = ({
           celebrityUsername={username}
           text="Quiero un video de"
           width="100%"
+          fontSize="1.25em"
         />
       </Col>
     </Row>

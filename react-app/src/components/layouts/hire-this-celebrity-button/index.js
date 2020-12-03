@@ -7,6 +7,7 @@ const HireThisCelebrityButton = ({
   text,
   celebrityFullName,
   celebrityUsername,
+  fontSize,
   width
 }) => {
   return (
@@ -23,6 +24,7 @@ const HireThisCelebrityButton = ({
           color: "white",
           border: "none",
           padding: "0.75em",
+          fontSize,
           width
         }}
         className="font-weight-bold"
