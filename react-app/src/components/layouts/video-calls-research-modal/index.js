@@ -12,9 +12,10 @@ import VideoCallsSignUpAd from "../video-calls-sign-up-ad";
 
 const formId = "video-calls-research-form";
 
-const VideoCallsResearchInitialLayout = () => <div>Epale</div>;
-
-const VideoCallsResearchModal = ({ doNotShowVideoCallsResearchAgain }) => {
+const VideoCallsResearchModal = ({
+  doNotShowVideoCallsResearchAgain,
+  doNotShowVideoCallsResearchAgainInThisSession
+}) => {
   const [modalIsOpen, setModalIsOpen] = useState(true);
   const [doNotShowAgainIsChecked, setDoNotShowAgainIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +26,7 @@ const VideoCallsResearchModal = ({ doNotShowVideoCallsResearchAgain }) => {
     setDoNotShowAgainIsChecked((isChecked) => !isChecked);
 
   const closeModal = () => {
+    doNotShowVideoCallsResearchAgainInThisSession();
     setModalIsOpen(false);
   };
 

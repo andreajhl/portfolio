@@ -12,9 +12,16 @@ const VideoCallsResearch = ({ getToken, userDataIsReady }) => {
     HIDE_VIDEO_CALLS_RESEARCH
   );
 
+  const hideVideoCallsResearchInThisSession = sessionStorage.getItem(
+    HIDE_VIDEO_CALLS_RESEARCH
+  );
+
   const doNotShowVideoCallsResearchAgain = () => {
     localStorage.setItem(HIDE_VIDEO_CALLS_RESEARCH, true);
   };
+
+  const doNotShowVideoCallsResearchAgainInThisSession = () =>
+    sessionStorage.setItem(HIDE_VIDEO_CALLS_RESEARCH, true);
 
   useEffect(() => {
     if (userIsLogged && !hideVideoCallsResearch) {
@@ -22,17 +29,26 @@ const VideoCallsResearch = ({ getToken, userDataIsReady }) => {
     }
   }, []);
 
+  const shouldShowModal =
+    !hideVideoCallsResearch && !hideVideoCallsResearchInThisSession;
+
   if (userIsLogged) {
-    return !hideVideoCallsResearch && userDataIsReady ? (
+    return shouldShowModal && userDataIsReady ? (
       <VideoCallsResearchModal
         doNotShowVideoCallsResearchAgain={doNotShowVideoCallsResearchAgain}
+        doNotShowVideoCallsResearchAgainInThisSession={
+          doNotShowVideoCallsResearchAgainInThisSession
+        }
       />
     ) : null;
   }
 
-  return !hideVideoCallsResearch ? (
+  return shouldShowModal ? (
     <VideoCallsResearchModal
       doNotShowVideoCallsResearchAgain={doNotShowVideoCallsResearchAgain}
+      doNotShowVideoCallsResearchAgainInThisSession={
+        doNotShowVideoCallsResearchAgainInThisSession
+      }
     />
   ) : null;
 };
