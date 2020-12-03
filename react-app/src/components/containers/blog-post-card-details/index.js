@@ -1,18 +1,20 @@
 import React from 'react';
 import {Card, Button} from 'react-bootstrap';
-const index = () => {
+const index = ({title, thumbnail, description, link,pubDate}) => {
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const pubDateParse= new Date(pubDate);
+  console.log(pubDateParse.toDateString())
   return (
     <Card className='mb-5'>
-      <Card.Img variant='top' height='300' src='https://cdn-images-1.medium.com/max/1024/1*YerBirk-i5j6rdXX9dAmEA.png' />
+      <Card.Img variant='top' alt={title} fluid src={thumbnail} />
       <Card.Body>
-        <Card.Title as='h2'>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant='primary'>Go somewhere</Button>
+        <Card.Title className='mb-4' as='h4'>{title}</Card.Title>
+        <Card.Text>{description}</Card.Text>
+        <Button variant='primary' href={link}>
+          Go somewhere
+        </Button>
       </Card.Body>
-      <Card.Footer className="text-muted">2 days ago</Card.Footer>
+    <Card.Footer className='text-muted'>{pubDateParse.toLocaleDateString(undefined,options)}</Card.Footer>
     </Card>
   );
 };
