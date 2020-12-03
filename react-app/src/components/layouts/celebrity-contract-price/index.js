@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { ContractPriceLayout } from "../contract-price";
 
 const getContractPrice = (contractTypes, currencyExchangeData) => {
-  const videoMessageContract = contractTypes.find(({ contractType }) => contractType === 1);
+  const videoMessageContract = contractTypes.find(
+    ({ contractType }) => contractType === 1
+  );
 
   let videoMessagePrice = 0;
   if (videoMessageContract) {
@@ -24,7 +26,7 @@ const CelebrityContractPrice = ({ contractTypes, currencyExchangeData }) => {
 
   return (
     <ContractPriceLayout
-      classes="text-black font-weight-bold"
+      classes="text-black font-weight-bold CelebrityDetails__contract-price"
       price={price}
       currency={currencyExchangeData.to}
       rounding={true}

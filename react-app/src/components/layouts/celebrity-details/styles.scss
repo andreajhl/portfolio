@@ -1,0 +1,21 @@
+.CelebrityDetails {
+  &__full-name {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 26px;
+    color: black;
+  }
+
+  &__category {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  &__contract-price {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    color: black;
+  }
+}

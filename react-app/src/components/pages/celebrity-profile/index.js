@@ -98,6 +98,7 @@ class CelebrityProfilePage extends Component {
                 <>
                   <CelebrityDetails
                     fullName={this.props.celebrity.fullName}
+                    username={this.props.celebrity.username}
                     avatar={this.props.celebrity.avatar}
                     countryCode={this.props.celebrity.countryCode}
                     celebrityId={this.props.celebrity.id}
