@@ -1,3 +1,3 @@
-import { saveBlogData } from './actions';
+import { saveBlogData,getBlogData} from './actions';
 
-export { saveBlogData };
+export { saveBlogData,getBlogData };

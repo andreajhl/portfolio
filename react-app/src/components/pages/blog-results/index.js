@@ -4,32 +4,33 @@ import { PageContainer } from '../../layouts';
 import './styles.scss';
 import {Container,Row, Col} from 'react-bootstrap';
 import BlogPostCards from '../../containers/blog-post-card-details';
+import BlogPostCardShimmer from '../../layouts/blog-post-card-shimmer';
 import MetaTags from "react-meta-tags";
 import * as mediumApiService from "../../../state/utils/mediumApiService";
 import { blogOperations } from "../../../state/ducks/blog";
 
 
-const Blog = ({blogsData, saveBlogData}) => {
-  const [post, setPost] = useState([]);
-  const asyncGetPost = async () => {
-    const mediumPost = await mediumApiService.getPost();
-    saveBlogData(mediumPost)
-    setPost(mediumPost);
-  };
+const Blog = ({blogsData,blogsDataLoading,blogsDataCompleted, saveBlogData,getBlogData}) => { 
   useEffect(() => {
-    asyncGetPost();
+    getBlogData();
   }, []);
+  let renderPosts;
 
-  const renderPosts = post.map(({ title, thumbnail, description, link,pubDate},index) => (
-    <BlogPostCards
-      title={title}
-      thumbnail={thumbnail}
-      description={description}
-      link={link}
-      pubDate={pubDate}
-      idPost={index}
-    />
-  )); 
+  if(blogsDataLoading){
+    renderPosts =(<BlogPostCardShimmer/>);
+  }
+  else{   
+    renderPosts = blogsData.map(({ title, thumbnail, description, link,pubDate},index) => (
+      <BlogPostCards
+        title={title}
+        thumbnail={thumbnail}
+        description={description}
+        link={link}
+        pubDate={pubDate}
+        idPost={index}
+      />
+    )); 
+  }
 
   return (  
     <Fragment>
@@ -55,11 +56,14 @@ const Blog = ({blogsData, saveBlogData}) => {
 const mapStateToProps = ({
   blog,
 }) => ({
-  blogsData: blog.blogsPostMediumReducer.data
+  blogsData: blog.blogsPostMediumReducer.data,
+  blogsDataLoading: blog.blogsPostMediumReducer.loading,
+  blogsDataCompleted: blog.blogsPostMediumReducer.completed
 });
 
 const mapDispatchToProps = {
   saveBlogData: blogOperations.saveBlogData,
+  getBlogData: blogOperations.getBlogData,
 };
 
 const _Blog = connect(

@@ -42,7 +42,7 @@ const Blog_entry = ({blogsData,match,history}) => {
                 <Button  className='mb-3 ml-5' onClick={()=> history.push('/')}>Explorar famosos</Button>
             </Row>
             <Row>
-              <Col className='mx-auto' md='8'>{blog}</Col>
+              <Col className='mx-auto' md='10'>{blog}</Col>
             </Row>
           </Container>
         </PageContainer>
