@@ -1,16 +1,20 @@
 .container-blog{
-    letter-spacing: 1px;
+    letter-spacing: 0.03rem;
     font-size: 1rem;
     color:rgba(41, 41, 41, 1);
     // font-weight: 300;
-    line-height: 32px;
+    // line-height: 32px;
     // text-align: justify;
+    *:not(h3) span.bold{
+        font-weight: bolder;
+    }
     h1,h2,h3,h4,h5{
         margin-top: 2rem;
         margin-bottom: 2rem;
+        font-size: 32px;
     }
     a{
-        text-decoration: underline solid #EB2A7B 3px;
+        text-decoration: underline solid #EB2A7B 1px;
     }
 }
 

@@ -20,7 +20,6 @@ const Blog_entry = ({blogsData,match,history}) => {
     }
     else{
         const blogSelected = blogsData[match.params.id];
-        console.log(blogSelected)
         blog= (<BlogPost
         title={blogSelected.title}
         thumbnail={blogSelected.thumbnail}
@@ -42,7 +41,7 @@ const Blog_entry = ({blogsData,match,history}) => {
                 <Button  className='mb-3 ml-5' onClick={()=> history.push('/')}>Explorar famosos</Button>
             </Row>
             <Row>
-              <Col className='mx-auto' md='10'>{blog}</Col>
+              <Col className='mx-auto' md='8'>{blog}</Col>
             </Row>
           </Container>
         </PageContainer>

@@ -29,6 +29,7 @@ const Blog = ({blogsData,blogsDataLoading,blogsDataCompleted, saveBlogData,getBl
         link={link}
         pubDate={pubDate}
         idPost={index}
+        key={index}
       />
     )); 
   }

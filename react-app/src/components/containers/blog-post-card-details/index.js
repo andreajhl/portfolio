@@ -23,10 +23,9 @@ function transform(node,index) {
 const index = ({title, thumbnail, description, link,pubDate,idPost,history}) => {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const pubDateParse= new Date(pubDate);
-  console.log(pubDateParse.toDateString())
   return (
     <Card className='mb-5'>
-      <Card.Img variant='top' alt={title} fluid src={thumbnail} />
+      <Card.Img variant='top' alt={title} fluid='true' src={thumbnail} />
       <Card.Body>
         <Card.Title className='mb-5' as='h2'>{title}</Card.Title>
         <Card.Text>{ReactHtmlParser(description, {transform})}...</Card.Text>
