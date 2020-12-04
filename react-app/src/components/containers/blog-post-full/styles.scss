@@ -1,6 +1,6 @@
 .container-blog{
     letter-spacing: 1px;
-    font-size: 18px;
+    font-size: 1rem;
     color:rgba(41, 41, 41, 1);
     // font-weight: 300;
     line-height: 32px;
@@ -19,8 +19,6 @@
 @media (min-width: 320px) and (max-width: 768px) {
     .container-blog{
         line-height: 22px;
-        font-size: 15px;
-
         a{
             text-decoration: underline solid #EB2A7B 1px;
         }
