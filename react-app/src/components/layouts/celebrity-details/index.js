@@ -25,7 +25,7 @@ const CelebrityDetails = ({
         <h4 className="CelebrityDetails__full-name">{fullName}</h4>
         <div className="d-flex align-items-center mb-2">
           <CountryFlag countryCode={countryCode} />
-          <span className="ml-3 CelebrityDetails__category">
+          <span className="ml-3 mt-1 CelebrityDetails__category">
             {categoryTitle}
           </span>
         </div>
