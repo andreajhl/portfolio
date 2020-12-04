@@ -2,8 +2,8 @@ import React, { Component, Fragment,useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 import { PageContainer } from '../../layouts';
 // import './styles.scss';
-import {Container,Row, Col} from 'react-bootstrap';
-import {Redirect} from 'react-router-dom';
+import {Container,Row, Col, Button} from 'react-bootstrap';
+import {Redirect, withRouter} from 'react-router-dom';
 
 import BlogPost from '../../containers/blog-post-full';
 import MetaTags from "react-meta-tags";
@@ -11,7 +11,7 @@ import * as mediumApiService from "../../../state/utils/mediumApiService";
 import { blogOperations } from "../../../state/ducks/blog";
 
 
-const Blog_entry = ({blogsData,match}) => {
+const Blog_entry = ({blogsData,match,history}) => {
     let redirect;
     let blog;
     
@@ -36,6 +36,9 @@ const Blog_entry = ({blogsData,match}) => {
         <PageContainer>
           <Container>
             <Row>
+                <Button onClick={()=> history.push('/blog')}>👈 Ver mas blogs</Button>
+            </Row>
+            <Row>
               <Col className='mx-auto' md='8'>{blog}</Col>
             </Row>
           </Container>
@@ -49,5 +52,5 @@ const mapStateToProps = ({ blog }) => ({
   blogsData: blog.blogsPostMediumReducer.data,
 });
 
-const _Blog = connect(mapStateToProps)(Blog_entry);
+const _Blog = withRouter(connect(mapStateToProps)(Blog_entry));
 export { _Blog as Blog_Entry };
