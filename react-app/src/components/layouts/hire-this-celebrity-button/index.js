@@ -29,7 +29,8 @@ const HireThisCelebrityButton = ({
         }}
         className="font-weight-bold"
       >
-        {text} {celebrityFullName.split(" ")[0]}
+        {text}
+        {celebrityFullName ? " " + celebrityFullName.split(" ")[0] : ""}
       </Button>
     </NavLink>
   );

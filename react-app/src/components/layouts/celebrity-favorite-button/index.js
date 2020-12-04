@@ -14,6 +14,7 @@ const preventRedirectFromParent = (event) => {
 };
 
 const mapStateToProps = ({ celebrityLikes }) => {
+  console.log(celebrityLikes.fetchUserCelebrityLikesReducer.data.data);
   return {
     userCelebrityLikes: celebrityLikes.fetchUserCelebrityLikesReducer.data.data
   };
@@ -23,6 +24,9 @@ const CelebrityFavoriteButton = ({
   celebrityId,
   className,
   userCelebrityLikes,
+  filledImageSource,
+  outlinedImageSource,
+  width,
   history
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -85,10 +89,9 @@ const CelebrityFavoriteButton = ({
 
   return (
     <img
-      src={`/assets/img/${
-        isFavorite /* || isHovering */ ? "filled" : "outlined"
-      }-heart.svg`}
+      src={isFavorite ? filledImageSource : outlinedImageSource}
       className={`like-icon cursor-pointer ${className}`}
+      style={{ width }}
       // onMouseOver={fillHeart}
       // onMouseLeave={unFillHeart}
       onClick={toggleFavorite}
@@ -98,13 +101,19 @@ const CelebrityFavoriteButton = ({
 
 CelebrityFavoriteButton.defaultProps = {
   className: "",
-  userCelebrityLikes: []
+  userCelebrityLikes: [],
+  filledImageSource: "/assets/img/filled-heart.svg",
+  outlinedImageSource: "/assets/img/outlined-heart.svg",
+  width: "1rem"
 };
 
 CelebrityFavoriteButton.propTypes = {
   className: PropTypes.string,
   celebrityId: PropTypes.number.isRequired,
-  userCelebrityLikes: PropTypes.array
+  userCelebrityLikes: PropTypes.array,
+  filledImageSource: PropTypes.string,
+  outlinedImageSource: PropTypes.string,
+  width: PropTypes.string
 };
 
 const _CelebrityFavoriteButton = connect(mapStateToProps)(

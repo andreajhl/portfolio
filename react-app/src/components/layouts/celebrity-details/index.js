@@ -29,9 +29,13 @@ const CelebrityDetails = ({
             {categoryTitle}
           </span>
         </div>
-        <div className="d-flex justify-content-between mb-2">
+        <div className="d-flex justify-content-between mb-2 align-items-center">
           <CelebrityContractPrice contractTypes={contractTypes} />
-          <CelebrityFavoriteButton celebrityId={celebrityId} />
+          <CelebrityFavoriteButton
+            celebrityId={celebrityId}
+            outlinedImageSource="assets/img/heart-regular-outlined.svg"
+            width="1.5rem"
+          />
         </div>
       </Col>
     </Row>

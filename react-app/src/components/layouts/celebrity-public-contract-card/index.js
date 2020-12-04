@@ -65,11 +65,26 @@ class CelebrityPublicContractCardLayout extends Component {
   }
 
   returnPoster = (videoURL) => {
-    if (videoURL.includes("watermark")) {
-      let posterURL = videoURL;
-      posterURL = posterURL
-        .replace(".mp4", ".jpg")
-        .replace("watermark", "poster");
+    const posterURL = videoURL.includes("watermark")
+      ? videoURL.replace(".mp4", ".jpg").replace("watermark", "poster")
+      : null;
+
+    if (posterURL) {
+      return (
+        <video
+          ref={this.videoDesktopRef}
+          poster={posterURL}
+          controls={false}
+          onClick={this.goToContract.bind(this)}
+          playsInline={true}
+          onDoubleClick={(e) => {
+            e.preventDefault();
+            this.contractFav.current.addOrRemoveFav();
+          }}
+          preload="metadata"
+          src={videoURL + "#t=0.5"}
+        />
+      );
       return (
         <img
           className="poster"
@@ -123,7 +138,7 @@ class CelebrityPublicContractCardLayout extends Component {
               "text-black fa fa-2x play-pause " +
               this.state.videoDesktopPlayIcon
             }
-            onClick={this.goToContract.bind(this)}
+            onClick={this.playDesktopContract.bind(this)}
           />
         </div>
       </div>

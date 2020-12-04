@@ -23,7 +23,14 @@ class CelebrityReviewCardLayout extends Component {
               })}
               {[...Array(5 - this.props.review.contract_stars)].map(
                 (i, index) => {
-                  return <i key={index} className="fa fa-star fa-1x mr-2" />;
+                  return (
+                    <img
+                      src="assets/img/star-outlined.svg"
+                      width="22.5"
+                      className="mr-2"
+                    />
+                  );
+                  // return <i key={index} className="fa fa-star fa-1x mr-2" />;
                 }
               )}
             </h5>

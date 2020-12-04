@@ -90,7 +90,11 @@ class CelebrityProfilePage extends Component {
             </MetaTags>
           </div>
         )}
-        <PageContainer applyFetchCelebrities={false} showLogin={false}>
+        <PageContainer
+          applyFetchCelebrities={false}
+          showLogin={false}
+          applyFetchUserCelebrityLikes
+        >
           <div style={{ minHeight: "100vh" }}>
             {this.props.celebrity.username ===
             this.props.match.params.celebrity_username ? (
