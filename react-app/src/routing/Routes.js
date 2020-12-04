@@ -26,7 +26,12 @@ class MyRoutes extends Component {
               <Route
               exact
               path={PATHS.BLOG}
-              component={PAGES.Blog}
+              component={PAGES.Blog_Results}
+            />
+            <Route
+              exact
+              path={PATHS.BLOG_ENTRY}
+              component={PAGES.Blog_Entry}
             />
             <Route
               exact
