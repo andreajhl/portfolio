@@ -20,6 +20,7 @@ const Blog = ({blogsData,blogsDataLoading,blogsDataCompleted, saveBlogData,getBl
     renderPosts =(<BlogPostCardShimmer/>);
   }
   else{   
+    console.log(blogsData)
     renderPosts = blogsData.map(({ title, thumbnail, description, link,pubDate},index) => (
       <BlogPostCards
         title={title}

@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, Button} from 'react-bootstrap';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import './styles.scss';
-function transform(node) {
+function transform(node ) {
     // do not render any <span> tags
     if (node.type === 'tag' && node.name === 'figure') {
       return null;

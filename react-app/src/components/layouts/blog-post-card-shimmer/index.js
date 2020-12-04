@@ -5,12 +5,12 @@ import "./styles.scss";
 
 const BlogPostCardLayout = () => {
   return (
-    <div class='card br'>
-      <div class='wrapper'>
-        <div class='picture animate'></div>
-        <div class='comment br animate w80'></div>
-        <div class='comment br animate'></div>
-        <div class='comment br animate'></div>
+    <div className='card br'>
+      <div className='wrapper'>
+        <div className='picture animate'></div>
+        <div className='comment br animate w80'></div>
+        <div className='comment br animate'></div>
+        <div className='comment br animate'></div>
       </div>
     </div>
   );

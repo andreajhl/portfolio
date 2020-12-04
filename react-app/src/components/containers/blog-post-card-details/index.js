@@ -1,8 +1,25 @@
 import React from 'react';
 import {Card, Button} from 'react-bootstrap';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
 import {BLOG_ENTRY} from '../../../routing/Paths';
 import { withRouter } from 'react-router-dom';
-
+function transform(node,index) {
+  if(index >1){
+    return null;
+  }
+  // do not render any <figure>  or <img> tags 
+   if (node.type === 'tag' && node.name === 'p') {
+    node.name = 'span';
+    return convertNodeToElement(node, index, transform);
+  }
+  if (node.type === 'tag' && node.name === 'figure') {
+    return null;
+  }
+  if (node.type === 'tag' && node.name === 'img') {
+    return null;
+  }
+}
 const index = ({title, thumbnail, description, link,pubDate,idPost,history}) => {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const pubDateParse= new Date(pubDate);
@@ -12,7 +29,7 @@ const index = ({title, thumbnail, description, link,pubDate,idPost,history}) => 
       <Card.Img variant='top' alt={title} fluid src={thumbnail} />
       <Card.Body>
         <Card.Title className='mb-4' as='h4'>{title}</Card.Title>
-        <Card.Text>{description}</Card.Text>
+        <Card.Text>{ReactHtmlParser(description, {transform})}...</Card.Text>
         <Button variant='primary' onClick={()=>{
           history.push(BLOG_ENTRY.replace(':id',idPost))
         }}>
