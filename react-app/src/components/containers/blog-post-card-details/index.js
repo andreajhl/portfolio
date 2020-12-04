@@ -28,7 +28,7 @@ const index = ({title, thumbnail, description, link,pubDate,idPost,history}) => 
     <Card className='mb-5'>
       <Card.Img variant='top' alt={title} fluid src={thumbnail} />
       <Card.Body>
-        <Card.Title className='mb-4' as='h4'>{title}</Card.Title>
+        <Card.Title className='mb-5' as='h2'>{title}</Card.Title>
         <Card.Text>{ReactHtmlParser(description, {transform})}...</Card.Text>
         <Button variant='primary' onClick={()=>{
           history.push(BLOG_ENTRY.replace(':id',idPost))

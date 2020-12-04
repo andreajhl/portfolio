@@ -17,7 +17,7 @@ const Blog = ({blogsData,blogsDataLoading,blogsDataCompleted, saveBlogData,getBl
   let renderPosts;
 
   if(blogsDataLoading){
-    renderPosts =(<BlogPostCardShimmer/>);
+    renderPosts =(<Fragment><BlogPostCardShimmer/><BlogPostCardShimmer/><BlogPostCardShimmer/></Fragment>);
   }
   else{   
     console.log(blogsData)
@@ -42,7 +42,7 @@ const Blog = ({blogsData,blogsDataLoading,blogsDataCompleted, saveBlogData,getBl
       <PageContainer>
         <Container>
           <Row>
-            <Col md='8' className='mx-auto'>
+            <Col md='9' className='mx-auto'>
               <h1 className='font-weight-bold'>Blogs</h1>
               {renderPosts}
             </Col>
