@@ -36,13 +36,14 @@ const Testing = () => {
     <CarouselWithButtons.Container>
       <CarouselWithButtons.List>
         <ul>
-          {post.map(({ title, thumbnail, description, link }) => (
-            <li style={{ marginRight: "12px" }}>
+          {post.map(({ title, thumbnail, description, link },index) => (
+            <li style={{ marginRight: "12px" }} key={index}>
               <BlogPostCardLayout
                 title={title}
                 imageUrl={thumbnail}
                 description={description}
                 postUrl={link}
+                idPost={index}
               />
             </li>
           ))}

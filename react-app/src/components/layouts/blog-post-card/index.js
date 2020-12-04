@@ -1,11 +1,12 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
+import {Card,Button} from "react-bootstrap";
 import limitString from "../../../utils/limitString";
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import { withRouter } from 'react-router-dom';
+import {BLOG_ENTRY} from '../../../routing/Paths';
 
 import "./styles.scss";
 
-const BlogPostCardLayout = ({ title, imageUrl, description, postUrl }) => {
+const BlogPostCardLayout = ({ title, imageUrl, description, postUrl, idPost,history }) => {
   var plainString = description.replace(/<[^>]+>/g, '');
   return (
     <Card className="BlogPostCardLayout">
@@ -18,12 +19,15 @@ const BlogPostCardLayout = ({ title, imageUrl, description, postUrl }) => {
             {limitString(plainString, 150)}
           </span>
         </Card.Text>
-        <Card.Link href={postUrl} target="_blank">
-          Leer más
-        </Card.Link>
+        
+        <Button variant='primary' onClick={()=>{
+          history.push(BLOG_ENTRY.replace(':id',idPost))
+        }}>
+          Leer mas...
+        </Button>
       </Card.Body>
     </Card>
   );
 };
 
-export default BlogPostCardLayout;
+export default withRouter(BlogPostCardLayout);
