@@ -5,7 +5,7 @@ import "./styles.scss";
 
 const BlogPostCardLayout = () => {
   return (
-    <div className='card br'>
+    <div className='card_shimmers_blog_post br'>
       <div className='wrapper'>
         <div className='picture animate'></div>
         <div className='comment br animate w80'></div>
