@@ -41,7 +41,7 @@ const Blog = ({blogsData, saveBlogData}) => {
       <PageContainer>
         <Container>
           <Row>
-            <Col md='8'>
+            <Col md='8' className='mx-auto'>
               <h1 className='font-weight-bold'>Blogs</h1>
               {renderPosts}
             </Col>

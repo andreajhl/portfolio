@@ -19,11 +19,13 @@ const Blog_entry = ({blogsData,match,history}) => {
       redirect = <Redirect to='/blog'></Redirect>;
     }
     else{
+        const blogSelected = blogsData[match.params.id];
+        console.log(blogSelected)
         blog= (<BlogPost
-        title={blogsData[match.params.id].title}
-        thumbnail={blogsData[match.params.id].thumbnail}
-        description={blogsData[match.params.id].description}
-        pubDate={blogsData[match.params.id].pubDate}
+        title={blogSelected.title}
+        thumbnail={blogSelected.thumbnail}
+        content={blogSelected.content}
+        pubDate={blogSelected.pubDate}
         />)
     }
     return (
