@@ -11,7 +11,6 @@ import { blogOperations } from "../../../state/ducks/blog";
 
 const Blog = ({blogsData, saveBlogData}) => {
   const [post, setPost] = useState([]);
-  console.log(blogsData)
   const asyncGetPost = async () => {
     const mediumPost = await mediumApiService.getPost();
     saveBlogData(mediumPost)
