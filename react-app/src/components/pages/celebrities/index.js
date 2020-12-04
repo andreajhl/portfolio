@@ -17,41 +17,10 @@ import MetaTags from "react-meta-tags";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import { Session } from "../../../state/utils/session";
 import * as CarouselWithButtons from "../../layouts/carousel-with-buttons";
-import BlogPostCard from "../../layouts/blog-post-card";
 import BlogPostCardLayout from "../../layouts/blog-post-card";
 import * as mediumApiService from "../../../state/utils/mediumApiService";
+import {BlogPostCarousel} from '../../layouts/blog-post-carousel';
 
-const Testing = () => {
-  const [post, setPost] = useState([]);
-
-  const asyncGetPost = async () => {
-    const mediumPost = await mediumApiService.getPost();
-    setPost(mediumPost);
-  };
-  useEffect(() => {
-    asyncGetPost();
-  }, []);
-
-  return (
-    <CarouselWithButtons.Container>
-      <CarouselWithButtons.List>
-        <ul>
-          {post.map(({ title, thumbnail, description, link },index) => (
-            <li style={{ marginRight: "12px" }} key={index}>
-              <BlogPostCardLayout
-                title={title}
-                imageUrl={thumbnail}
-                description={description}
-                postUrl={link}
-                idPost={index}
-              />
-            </li>
-          ))}
-        </ul>
-      </CarouselWithButtons.List>
-    </CarouselWithButtons.Container>
-  );
-};
 class CelebritiesPage extends Component {
   constructor(props) {
     super(props);
@@ -216,7 +185,7 @@ class CelebritiesPage extends Component {
             <HeroSectionLayout />
             <FiltersSectionLayout />
             {this.state.session ? <UserLikesSectionLayout /> : null}
-            <Testing />
+            <BlogPostCarousel></BlogPostCarousel>
 
             <CelebritiesSectionsLayout />
             {/* <div
