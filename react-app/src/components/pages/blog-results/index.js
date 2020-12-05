@@ -37,8 +37,8 @@ const Blog = ({blogsData,blogsDataLoading,blogsDataCompleted, saveBlogData,getBl
   return (  
     <Fragment>
       <MetaTags>
-        <title>Famosos Blog</title>
-        <meta name='description' content='Agregar descripcion' />
+        <title>"Famosos.com - Videos personalizados de tus famosos favoritos.",</title>
+        <meta name='description' content='Un blog acerca de tus famosos favoritos que forman parte de nuestra plataforma. Entérate con quien puedes conectarte' />
       </MetaTags>
       <PageContainer>
         <Container>
