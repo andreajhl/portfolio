@@ -11,7 +11,7 @@ function transform(node,index) {
     }
     if (node.type === 'tag' && node.name === 'strong') {
       console.log(node)
-      node.attribs.class = 'bold';
+      node.attribs.class = 'blog__text-bold';
       node.name = 'span';
       return convertNodeToElement(node, index, transform);
   }
