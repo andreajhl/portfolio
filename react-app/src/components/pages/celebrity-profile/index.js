@@ -17,6 +17,7 @@ import { Session } from "../../../state/utils/session";
 import { CelebrityDetails } from "../../layouts/celebrity-details";
 import { SimilarCelebrityContractsSectionLayout } from "../../layouts/similar-celebrity-contracts-section";
 import { CelebrityMainvVideoSection } from "../../layouts/main-video-section";
+import HowToGetAVideoMessageLayout from "../../layouts/how-to-get-a-video-message";
 
 class CelebrityProfilePage extends Component {
   constructor(props) {
@@ -122,25 +123,7 @@ class CelebrityProfilePage extends Component {
                 <CelebrityReviewsSectionLayout
                   celebrityId={this.props.celebrity.id}
                 />
-
-                <div className="col-12 d-block d-md-none">
-                  <img
-                    width="100%"
-                    style={{
-                      borderTop: "solid 5px #e4e4e4",
-                      borderBottom: "solid 5px rgb(198, 195, 195)",
-                      marginBottom: "10px"
-                    }}
-                    src="/assets/img/steps_mobile_profile.png"
-                  />
-                </div>
-
-                {/* CelebrityCardsSectionLayout */}
-                {/*<SimilarCelebritiesLayout*/}
-                {/*    showLoading={this.props.isLoading && this.props.queryParams.page > 1}*/}
-                {/*    celebrities={this.props.similarCelebrities}*/}
-                {/*/>*/}
-                {/* End CelebrityCardsSectionLayout */}
+                <HowToGetAVideoMessageLayout />
               </>
             ) : null}
           </div>
