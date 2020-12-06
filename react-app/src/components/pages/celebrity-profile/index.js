@@ -15,6 +15,7 @@ import MetaTags from "react-meta-tags";
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
 import { CelebrityDetails } from "../../layouts/celebrity-details";
+import { SimilarCelebrityContractsSectionLayout } from "../../layouts/similar-celebrity-contracts-section";
 
 class CelebrityProfilePage extends Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class CelebrityProfilePage extends Component {
   }
 
   render() {
-    console.log(this.props.celebrity);
+    // console.log(this.props.celebrity);
     return (
       <div className="CelebrityProfilePage">
         {this.props.celebrity.username && (
@@ -113,6 +114,7 @@ class CelebrityProfilePage extends Component {
                   celebrityId={this.props.celebrity.id}
                   username={this.props.celebrity.username}
                 />
+                <SimilarCelebrityContractsSectionLayout />
                 <CelebrityReviewsSectionLayout
                   celebrityId={this.props.celebrity.id}
                 />

@@ -14,7 +14,6 @@ const preventRedirectFromParent = (event) => {
 };
 
 const mapStateToProps = ({ celebrityLikes }) => {
-  console.log(celebrityLikes.fetchUserCelebrityLikesReducer.data.data);
   return {
     userCelebrityLikes: celebrityLikes.fetchUserCelebrityLikesReducer.data.data
   };

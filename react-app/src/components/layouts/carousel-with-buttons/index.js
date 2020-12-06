@@ -83,8 +83,14 @@ const Header = ({ children }) => (
   </header>
 );
 
-const Title = ({ children }) => (
-  <h2 className="carousel-with-buttons-layout__title">{children}</h2>
+const Title = ({ children, className }) => (
+  <h2
+    className={`carousel-with-buttons-layout__title ${
+      className ? className : ""
+    }`}
+  >
+    {children}
+  </h2>
 );
 
 const List = React.forwardRef(({ children, className, ...props }, ref) =>
