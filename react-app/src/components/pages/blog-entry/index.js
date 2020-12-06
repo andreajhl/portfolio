@@ -7,8 +7,6 @@ import {Redirect, withRouter} from 'react-router-dom';
 
 import BlogPost from '../../containers/blog-post-full';
 import MetaTags from "react-meta-tags";
-import * as mediumApiService from "../../../state/utils/mediumApiService";
-import { blogOperations } from "../../../state/ducks/blog";
 
 
 const Blog_entry = ({blogsData,match,history}) => {
