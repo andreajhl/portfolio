@@ -17,7 +17,7 @@ const CelebrityDetails = ({
   contractTypes
 }) => (
   <Container className="mx-auto CelebrityDetails">
-    <Row className="justify-content-md-center align-items-center mb-3">
+    <Row className="justify-content-md-center align-items-center my-3">
       <Col xs="auto">
         <ProfilePicture avatar={avatar} width="139px" />
       </Col>

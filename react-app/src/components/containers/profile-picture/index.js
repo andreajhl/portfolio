@@ -11,7 +11,7 @@ const ProfilePicture = ({ avatar, roundedCircle, width }) => (
 ProfilePicture.propTypes = {
   avatar: PropTypes.string.isRequired,
   roundedCircle: PropTypes.bool,
-  width: PropTypes.oneOf([PropTypes.string, PropTypes.number])
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 ProfilePicture.defaultProps = {

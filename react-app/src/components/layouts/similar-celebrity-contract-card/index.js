@@ -41,7 +41,7 @@ const SimilarCelebrityContractCardLayout = ({
     } else {
       pauseContractVideo();
     }
-  }, [currentVideoPlaying, similarCelebrityContract.reference, videoIsPlaying]);
+  }, [currentVideoPlaying, similarCelebrityContract.reference]);
 
   const getVideoPoster = (videoURL) => {
     const posterURL = videoURL.includes("watermark")

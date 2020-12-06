@@ -16,6 +16,7 @@ import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
 import { CelebrityDetails } from "../../layouts/celebrity-details";
 import { SimilarCelebrityContractsSectionLayout } from "../../layouts/similar-celebrity-contracts-section";
+import { CelebrityMainvVideoSection } from "../../layouts/main-video-section";
 
 class CelebrityProfilePage extends Component {
   constructor(props) {
@@ -100,6 +101,9 @@ class CelebrityProfilePage extends Component {
             {this.props.celebrity.username ===
             this.props.match.params.celebrity_username ? (
               <>
+                <CelebrityMainvVideoSection
+                  mainVideoUrl={this.props.celebrity.mainVideo}
+                />
                 <CelebrityDetails
                   fullName={this.props.celebrity.fullName}
                   username={this.props.celebrity.username}
