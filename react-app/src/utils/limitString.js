@@ -1,5 +1,4 @@
 export default (string, limit = 17) => {
-  console.log(string)
   const newString = [];
   if (string.length < limit) return string;
 

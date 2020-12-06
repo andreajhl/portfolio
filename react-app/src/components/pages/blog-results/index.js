@@ -12,7 +12,9 @@ import { blogOperations } from "../../../state/ducks/blog";
 
 const Blog = ({blogsData,blogsDataLoading,blogsDataCompleted, saveBlogData,getBlogData}) => { 
   useEffect(() => {
-    getBlogData();
+    if(!blogsDataCompleted){
+      getBlogData();
+    }
   }, []);
   let renderPosts;
 
@@ -20,7 +22,6 @@ const Blog = ({blogsData,blogsDataLoading,blogsDataCompleted, saveBlogData,getBl
     renderPosts =(<Fragment><BlogPostCardShimmer/><BlogPostCardShimmer/><BlogPostCardShimmer/></Fragment>);
   }
   else{   
-    console.log(blogsData)
     renderPosts = blogsData.map(({ title, thumbnail, description, link,pubDate},index) => (
       <BlogPostCards
         title={title}
@@ -60,6 +61,7 @@ const mapStateToProps = ({
 }) => ({
   blogsData: blog.blogsPostMediumReducer.data,
   blogsDataLoading: blog.blogsPostMediumReducer.loading,
+  isBlogsDataFetch: blog.blogsPostMediumReducer.completed,
   blogsDataCompleted: blog.blogsPostMediumReducer.completed
 });
 

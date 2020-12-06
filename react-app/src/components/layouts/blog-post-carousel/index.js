@@ -7,9 +7,11 @@ import BlogPostCardLayout from "../../layouts/blog-post-card";
 import { blogOperations } from "../../../state/ducks/blog";
 
 
-const BlogPostCarousel = ({blogsData,blogsDataLoading,saveBlogData,getBlogData}) => {
+const BlogPostCarousel = ({blogsData,isBlogsDataFetch,blogsDataLoading,saveBlogData,getBlogData}) => {
   useEffect(() => {
-    getBlogData();
+    if(!isBlogsDataFetch){
+      getBlogData();
+    };
   }, []);
     return (
       <CarouselWithButtons.Container>
@@ -36,6 +38,7 @@ const mapStateToProps = ({
   blog,
 }) => ({
   blogsData: blog.blogsPostMediumReducer.data,
+  isBlogsDataFetch: blog.blogsPostMediumReducer.completed,
   blogsDataLoading: blog.blogsPostMediumReducer.loading,
 });
 
