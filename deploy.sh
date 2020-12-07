@@ -31,6 +31,7 @@ echo
 
 mkdir build
 cd react-app
+npm install
 if [[ ${environments[selectedOption]} = "Testing" ]]; then
     npm run-script build-testing
 elif [[ ${environments[selectedOption]} = "Production" ]]; then
