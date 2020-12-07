@@ -58,7 +58,7 @@ class CelebrityReviewsSectionLayout extends Component {
     return (
       <div className="CelebrityReviewsSectionLayout">
         {this.props.isLoading || hasReviews ? (
-          <div className="f-container mb-2 pb-2">
+          <div className="container mb-2 pb-2">
             <div className="row f-section mx-auto pt-2">
               <h5 className="col-12 mb-4 CelebrityReviewsSectionLayout__title">
                 Calificaciones

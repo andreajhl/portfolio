@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Resizable, ResizableBox } from "react-resizable";
+import { ResizableBox } from "react-resizable";
 import { connect } from "react-redux";
 import { contractOperations } from "../../../state/ducks/contracts";
+import debounce from "lodash.debounce";
 import "./styles.scss";
 import "react-resizable/css/styles.css";
 
@@ -13,6 +14,7 @@ const CelebrityMainvVideoSection = ({
   const mainVideoReference = "mainVideo " + mainVideoUrl;
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const videoRef = useRef();
 
   const toggleVideoIsMuted = () =>
@@ -48,6 +50,15 @@ const CelebrityMainvVideoSection = ({
     }
   }, [currentVideoPlaying, mainVideoReference]);
 
+  useEffect(
+    () =>
+      window.addEventListener(
+        "resize",
+        debounce(() => setWindowWidth(window.innerWidth), 500)
+      ),
+    []
+  );
+
   const autoPlayMainVideo = (event) => {
     const userHasGoodInternet = navigator?.connection?.effectiveType === "4g";
 
@@ -60,12 +71,10 @@ const CelebrityMainvVideoSection = ({
 
     if (userHasGoodInternet) {
       playVideo({
-        contract_reference: "mainVideo " + mainVideoUrl
+        contract_reference: mainVideoReference
       });
     }
   };
-
-  const windowWidth = window.innerWidth;
 
   return mainVideoUrl ? (
     <ResizableBox
@@ -78,10 +87,11 @@ const CelebrityMainvVideoSection = ({
         <img
           src="assets/img/resize-handle.svg"
           className="handle-icon cursor-pointer"
+          draggable={false}
         />
       }
     >
-      <section className="CelebrityMainvVideoSection">
+      <section className="CelebrityMainvVideoSection container p-0">
         <div className="CelebrityMainvVideoSection__buttons">
           <i
             className={`fa fa-2x fa-volume-${

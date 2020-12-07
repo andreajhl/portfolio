@@ -119,7 +119,9 @@ class CelebrityProfilePage extends Component {
                   celebrityId={this.props.celebrity.id}
                   username={this.props.celebrity.username}
                 />
-                <SimilarCelebrityContractsSectionLayout />
+                <SimilarCelebrityContractsSectionLayout
+                  celebrityUsername={this.props.celebrity.username}
+                />
                 <CelebrityReviewsSectionLayout
                   celebrityId={this.props.celebrity.id}
                 />

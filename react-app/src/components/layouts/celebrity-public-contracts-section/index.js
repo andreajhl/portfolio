@@ -129,7 +129,9 @@ class CelebrityPublicContractsSectionLayout extends Component {
     const hasContracts = this.props.publicContracts.length > 0;
     return this.props.isLoading || hasContracts ? (
       <div className="CelebrityPublicContractsSectionLayout">
-        <CarouselWithButtons.Container>
+        <CarouselWithButtons.Container
+          buttonsStyles={{ top: "1.25rem", height: "335px" }}
+        >
           <CarouselWithButtons.List>
             <ul className="CelebrityPublicContractsSectionLayout__list">
               {this.props.publicContracts.map((publicContract) => (

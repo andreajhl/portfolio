@@ -18,8 +18,11 @@ const CelebrityDetails = ({
 }) => (
   <Container className="mx-auto CelebrityDetails">
     <Row className="justify-content-md-center align-items-center my-3">
-      <Col xs="auto">
+      <Col xs="auto d-md-none">
         <ProfilePicture avatar={avatar} width="139px" />
+      </Col>
+      <Col xs="auto d-none d-md-block">
+        <ProfilePicture avatar={avatar} width="200px" />
       </Col>
       <Col>
         <h4 className="CelebrityDetails__full-name">{fullName}</h4>
@@ -28,19 +31,35 @@ const CelebrityDetails = ({
           <span className="ml-3 mt-1 CelebrityDetails__category">
             {categoryTitle}
           </span>
+          <CelebrityFavoriteButton
+            className="d-none d-md-block CelebrityDetails__fav-button-desktop"
+            celebrityId={celebrityId}
+            outlinedImageSource="assets/img/heart-regular-outlined.svg"
+            width="2.5rem"
+          />
         </div>
-        <div className="d-flex justify-content-between mb-2 align-items-center">
+        <div className="d-flex justify-content-between mb-2 mb-md-4 align-items-center">
           <CelebrityContractPrice contractTypes={contractTypes} />
           <CelebrityFavoriteButton
+            className="d-md-none"
             celebrityId={celebrityId}
             outlinedImageSource="assets/img/heart-regular-outlined.svg"
             width="1.5rem"
           />
         </div>
+        <Col className="d-none d-md-block mx-0 px-0">
+          <HireThisCelebrityButton
+            celebrityFullName={fullName}
+            celebrityUsername={username}
+            text="Quiero un video de"
+            width="100%"
+            fontSize="1.25em"
+          />
+        </Col>
       </Col>
     </Row>
     <Row>
-      <Col>
+      <Col className="d-md-none">
         <HireThisCelebrityButton
           celebrityFullName={fullName}
           celebrityUsername={username}

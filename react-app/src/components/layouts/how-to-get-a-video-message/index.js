@@ -5,31 +5,44 @@ const HowToGetAVideoMessageLayout = () => {
   return (
     <section className="HowToGetAVideoMessageLayout">
       <div className="container">
-        <div className="container">
-          <h2 className="HowToGetAVideoMessageLayout__title mb-4">
-            ¿Comó solicitar <br /> un videomensaje?
-          </h2>
-          <ul className="HowToGetAVideoMessageLayout__steps-list">
-            <li className="HowToGetAVideoMessageLayout__step-item">
-              <img src="assets/img/paper-plain-pink.svg" className="mb-3" />
-              <p className="HowToGetAVideoMessageLayout__step-text">
-                Da clic <br /> en el botón <br /> de arriba.
-              </p>
-            </li>
-            <li className="HowToGetAVideoMessageLayout__step-item">
-              <img src="assets/img/paper-plain-pink.svg" className="mb-3" />
-              <p className="HowToGetAVideoMessageLayout__step-text">
-                Detalla la solicitud y realiza el proceso de compra.
-              </p>
-            </li>
-            <li className="HowToGetAVideoMessageLayout__step-item">
-              <img src="assets/img/paper-plain-pink.svg" className="mb-3" />
-              <p className="HowToGetAVideoMessageLayout__step-text">
-                ¡Y listo! en poco tiempo recibirás tu videomensaje.
-              </p>
-            </li>
-          </ul>
-        </div>
+        <h2 className="HowToGetAVideoMessageLayout__title mb-4 mb-md-5">
+          ¿Comó solicitar <br /> un videomensaje?
+        </h2>
+        <ul className="HowToGetAVideoMessageLayout__steps-list container">
+          <li className="HowToGetAVideoMessageLayout__step-item">
+            <img
+              src="assets/img/tap.svg"
+              className="HowToGetAVideoMessageLayout__step-icon mb-3"
+            />
+            <p className="HowToGetAVideoMessageLayout__step-text">
+              Da clic <br className="d-md-none" /> en{" "}
+              <br className="d-none d-md-inline" /> el botón{" "}
+              <br className="d-md-none" /> de arriba.
+            </p>
+          </li>
+          <li className="HowToGetAVideoMessageLayout__step-item">
+            <img
+              src="assets/img/paper-plain-pink.svg"
+              className="HowToGetAVideoMessageLayout__step-icon mb-3"
+            />
+            <p className="HowToGetAVideoMessageLayout__step-text">
+              Detalla la solicitud y{" "}
+              <br className="d-none d-sm-inline d-md-none" /> realiza el proceso
+              <br className="d-none d-sm-inline d-md-none" />
+              de compra.
+            </p>
+          </li>
+          <li className="HowToGetAVideoMessageLayout__step-item">
+            <img
+              src="assets/img/smile.svg"
+              className="HowToGetAVideoMessageLayout__step-icon mb-3"
+            />
+            <p className="HowToGetAVideoMessageLayout__step-text">
+              ¡Y listo! <br className="d-none d-sm-inline d-md-none" /> en poco
+              tiempo recibirás tu videomensaje.
+            </p>
+          </li>
+        </ul>
       </div>
     </section>
   );

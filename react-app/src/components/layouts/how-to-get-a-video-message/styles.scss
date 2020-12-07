@@ -4,6 +4,10 @@
     text-align: center;
     font-weight: bold;
     font-size: 1rem;
+
+    @media only screen and (min-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
 
   &__steps-list {
@@ -12,6 +16,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    max-width: 800px;
   }
 
   &__step-item {
@@ -19,7 +24,18 @@
     flex-basis: 30%;
   }
 
+  &__step-icon {
+    height: 1rem;
+    @media only screen and (min-width: 768px) {
+      height: 2rem;
+    }
+  }
+
   &__step-text {
     font-size: 0.65rem;
+
+    @media only screen and (min-width: 768px) {
+      font-size: 1rem;
+    }
   }
 }
