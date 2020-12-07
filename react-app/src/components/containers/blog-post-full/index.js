@@ -20,7 +20,6 @@ const BlogPostFull = ({title, thumbnail, content,pubDate}) => {
   const pubDateParse= new Date(pubDate);
   const htmlToParse = content;
   const JSX = ReactHtmlParser(htmlToParse, {transform});
-  console.log(JSX)
   return (
     <Card className='mb-5'>
       <Card.Img variant='top' alt={title} fluid='true' src={thumbnail} />
