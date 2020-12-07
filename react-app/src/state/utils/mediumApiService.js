@@ -8,6 +8,16 @@ export const getPost = async () => {
   try {
     const response = await axios.get(BASE_URL);
     response.data.items = response.data.items.filter(el => el.categories.length > 4);
+    return response.data.items.map(({ description, ...post }) => {
+      const [, descriptionContent] = new RegExp("<p>(.*?)</p>").exec(
+        description
+      );
+    
+      return {
+        ...post,
+        description : descriptionContent
+      };
+    });
     return response.data.items;
   } catch (error) {
     console.log(error, 'Error');
