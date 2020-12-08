@@ -1,11 +1,12 @@
 import React from 'react';
 import {Card, Button} from 'react-bootstrap';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import limitString from "../../../utils/limitString";
 
 import {BLOG_ENTRY} from '../../../routing/Paths';
 import { withRouter } from 'react-router-dom';
 function transform(node,index) {
-  if(index >1){
+  if(index > 3){
     return null;
   }
   // do not render any <figure>  or <img> tags 
@@ -23,12 +24,13 @@ function transform(node,index) {
 const index = ({title, thumbnail, description, link,pubDate,idPost,history}) => {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const pubDateParse= new Date(pubDate);
+  var plainString = description.replace(/<[^>]+>/g, '');
   return (
     <Card className='mb-5'>
       <Card.Img variant='top' alt={title} fluid='true' src={thumbnail} />
       <Card.Body>
-        <Card.Title className='mb-5' as='h2'>{title}</Card.Title>
-        <Card.Text>{ReactHtmlParser(description, {transform})}...</Card.Text>
+        <Card.Title className='mb-2' as='h2'>{title}</Card.Title>
+        <Card.Text> {limitString(plainString, 300)}</Card.Text>
         <Button variant='primary' onClick={()=>{
           history.push(BLOG_ENTRY.replace(':id',idPost))
         }}>
