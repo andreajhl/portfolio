@@ -24,7 +24,7 @@ const BlogPostCardLayout = ({ title, imageUrl, description, postUrl, idPost,hist
         </Card.Text>
         
         <Button variant='primary' onClick={()=> goToBlog()}>
-          Leer mas...
+          Leer más...
         </Button>
       </Card.Body>
     </Card>
