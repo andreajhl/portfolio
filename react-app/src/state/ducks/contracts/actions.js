@@ -479,10 +479,10 @@ export const updateContractIsPublic = async (body) => {
   }
 };
 
-export const getSimilarContracts = (celebrityUsername) => {
+export const fetchSimilarContracts = (celebrityUsername) => {
   return (dispatch) => {
-    const TYPE = TYPES.GET_SIMILAR_CONTRACTS_REQUEST;
-    const FINAL_PATH = API_PATHS.GET_SIMILAR_CONTRACTS + celebrityUsername;
+    const TYPE = TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST;
+    const FINAL_PATH = API_PATHS.SIMILAR_CONTRACTS + celebrityUsername;
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",

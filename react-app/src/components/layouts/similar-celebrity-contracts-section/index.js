@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./styles.scss";
 import { connect } from "react-redux";
 import { SimilarCelebrityContractCardLayout } from "../similar-celebrity-contract-card";
-import { getSimilarContracts } from "../../../state/ducks/contracts/actions";
+import { fetchSimilarContracts } from "../../../state/ducks/contracts/actions";
 import { PaginationLayout } from "../pagination";
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
 import * as PATHS from "../../../routing/Paths";
@@ -147,13 +147,13 @@ SimilarCelebrityContractsSectionLayout.defaultProps = {
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
-  isLoading: state.contracts.getSimilarContractsReducer.loading,
-  similarContracts: state.contracts.getSimilarContractsReducer.data.results
+  isLoading: state.contracts.fetchSimilarContractsReducer.loading,
+  similarContracts: state.contracts.fetchSimilarContractsReducer.data.results
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  getSimilarContracts
+  getSimilarContracts: fetchSimilarContracts
 };
 
 // Export Class

@@ -135,7 +135,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
           <CarouselWithButtons.List>
             <ul className="CelebrityPublicContractsSectionLayout__list">
               {this.props.publicContracts.map((publicContract) => (
-                <li className="mr-3">
+                <li className="mr-3" key={publicContract.contract_id}>
                   <CelebrityPublicContractCardLayout
                     publicContract={publicContract}
                   />

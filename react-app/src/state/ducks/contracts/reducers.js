@@ -84,7 +84,7 @@ const saveContractToPayInitialState = {
   completed: false
 };
 
-const getSimilarContractsInitialState = {
+const fetchSimilarContractsInitialState = {
   loading: false,
   failed: false,
   completed: false,
@@ -395,28 +395,28 @@ export function updateContractReducer(
   }
 }
 
-export function getSimilarContractsReducer(
-  state = getSimilarContractsInitialState,
+export function fetchSimilarContractsReducer(
+  state = fetchSimilarContractsInitialState,
   action
 ) {
   switch (action.type) {
-    case TYPES.GET_SIMILAR_CONTRACTS_REQUEST:
+    case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST:
       return {
         ...state,
         loading: true
       };
-    case TYPES.GET_SIMILAR_CONTRACTS_REQUEST_FAILURE:
+    case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST_FAILURE:
       return {
-        ...getSimilarContractsInitialState,
+        ...fetchSimilarContractsInitialState,
         error_data: action.payload.data,
         failed: true
       };
-    case TYPES.GET_SIMILAR_CONTRACTS_REQUEST_SUCCESS:
+    case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST_SUCCESS:
       return {
-        ...getSimilarContractsInitialState,
+        ...fetchSimilarContractsInitialState,
         data: action.payload.data
       };
-    case TYPES.GET_SIMILAR_CONTRACTS_REQUEST_COMPLETED:
+    case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST_COMPLETED:
       return {
         ...state,
         completed: true
@@ -438,5 +438,5 @@ export default combineReducers({
   getContractWithPaymentsReducer,
   saveContractToPayReducer,
   updateContractReducer,
-  getSimilarContractsReducer
+  fetchSimilarContractsReducer
 });
