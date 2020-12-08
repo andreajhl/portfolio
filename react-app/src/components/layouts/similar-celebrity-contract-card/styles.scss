@@ -1,6 +1,6 @@
 @import "../../../theme";
 
-.CelebrityPublicContractCardLayout {
+.SimilarCelebrityContractCardLayout {
   &__celebrity-name {
     font-weight: bold;
     font-size: 18px;
@@ -84,7 +84,7 @@
     vertical-align: baseline;
     object-fit: cover !important;
     background-color: #eee;
-    border-radius: 0.5rem !important;
+    // border-radius: 0.5rem !important;
     position: absolute;
     top: 0;
     width: 100%;

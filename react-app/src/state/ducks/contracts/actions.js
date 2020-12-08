@@ -478,3 +478,30 @@ export const updateContractIsPublic = async (body) => {
     console.error(error);
   }
 };
+
+export const getSimilarContracts = (celebrityUsername) => {
+  return (dispatch) => {
+    const TYPE = TYPES.GET_SIMILAR_CONTRACTS_REQUEST;
+    const FINAL_PATH = API_PATHS.GET_SIMILAR_CONTRACTS + celebrityUsername;
+    dispatch({ type: TYPE, payload: {} });
+    apiService({
+      method: "GET",
+      action: TYPE,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: null
+    })
+      .then((res) => {
+        if ("status" in res.data && res.data.status === "ERROR") {
+          handleApiResponseFailure(dispatch, TYPE, res);
+        } else {
+          handleApiResponseSuccess(dispatch, TYPE, res);
+          dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+        }
+      })
+      .catch((err) => {
+        handleApiErrors(dispatch, TYPE, err);
+      });
+  };
+};

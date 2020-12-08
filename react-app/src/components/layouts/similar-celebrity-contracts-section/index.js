@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import "./styles.scss";
 import { connect } from "react-redux";
 import { SimilarCelebrityContractCardLayout } from "../similar-celebrity-contract-card";
-import { celebrityOperations } from "../../../state/ducks/celebrities";
+import { getSimilarContracts } from "../../../state/ducks/contracts/actions";
 import { PaginationLayout } from "../pagination";
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
-import { ContractPriceLayout } from "../contract-price/index";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
 import * as CarouselWithButtons from "../carousel-with-buttons";
@@ -64,55 +63,6 @@ class SimilarCelebrityContractsSectionLayout extends Component {
     }
   }
 
-  returnContractPrice() {
-    const res = this.props.contractTypes.find((x) => x.contractType === 1);
-    let videoMessagePrice = 0;
-    if (res) {
-      videoMessagePrice = res.price;
-    }
-    if (this.props.currencyExchangeData.rate > 1) {
-      return (
-        videoMessagePrice * this.props.currencyExchangeData.rate +
-        videoMessagePrice
-      );
-    } else {
-      return videoMessagePrice;
-    }
-  }
-
-  // renderCelebrityPublicVideoCards() {
-  //   return this.props.publicContracts.map((publicContract, index) => {
-  //     return (
-  //       <div
-  //         className="item mr-4 mb-2 mx-auto"
-  //         key={index + "-" + publicContract.reference}
-  //       >
-  //         <CelebrityPublicContractCardLayout publicContract={publicContract} />
-
-  //         <div className="col-12 p-0 m-0 d-md-none text-center pr-0">
-  //           {this.returnContractPrice() > 0 ? (
-  //             <div className="mt-3 mb-3" onClick={this.goToCreateContract}>
-  //               <button className="btn btn-sm f-contract-button">
-  //                 Comprar Video Personalizado por{" "}
-  //                 <ContractPriceLayout
-  //                   classes={"text-white font-weight-bold"}
-  //                   price={this.returnContractPrice()}
-  //                   currency={this.props.currencyExchangeData.to}
-  //                   rounding={true}
-  //                 />
-  //                 <i className="fa fa-arrow-right" />
-  //               </button>
-  //             </div>
-  //           ) : null}
-  //           {/* {this.returnSecondaryButton()} */}
-  //         </div>
-
-  //         {/* Fin del codigo nuevo */}
-  //       </div>
-  //     );
-  //   });
-  // }
-
   renderShimmerPublicVideoCards() {
     const shimmersCards = [];
     for (let index = 0; index < 8; index++) {
@@ -125,9 +75,14 @@ class SimilarCelebrityContractsSectionLayout extends Component {
     return shimmersCards;
   }
 
+  componentDidMount() {
+    this.props.getSimilarContracts(this.props.celebrityUsername);
+  }
+
   render() {
-    // const hasContracts = this.props.publicContracts.length > 0;
-    return /* this.props.isLoading || hasContracts */ true ? (
+    console.log(this.props.similarContracts);
+    const hasContracts = this.props.similarContracts.length > 0;
+    return this.props.isLoading || hasContracts ? (
       <div className="SimilarCelebrityContractsSectionLayout">
         <CarouselWithButtons.Container
           buttonsStyles={{ top: "2.75rem", height: "370px" }}
@@ -139,27 +94,13 @@ class SimilarCelebrityContractsSectionLayout extends Component {
           </CarouselWithButtons.Header>
           <CarouselWithButtons.List>
             <ul className="SimilarCelebrityContractsSectionLayout__list">
-              {Array(7)
-                .fill(null)
-                .map((publicContract, index) => (
-                  <li className="mr-3">
-                    <SimilarCelebrityContractCardLayout
-                      similarCelebrityContract={{
-                        celebrityData: {
-                          avatar:
-                            "https://dqb0851cl2gjs.cloudfront.net/celebrities/70/avatar/famosos-videos-personalizados-giuliomottola-compressed.jpg",
-                          categoryTitle: "Adultos",
-                          fullName: "Giulio Mottola",
-                          countryCode: "VEN"
-                        },
-                        videoUrl:
-                          "https://dqb0851cl2gjs.cloudfront.net/main-videos/70/famosos-videos-personalizados-giuliomottola-crf-video-watermark480.mp4",
-                        deliveryTo: "German Solano",
-                        reference: "test-" + index
-                      }}
-                    />
-                  </li>
-                ))}
+              {this.props.similarContracts.map((similarContract) => (
+                <li className="mr-3" key={similarContract.contractReference}>
+                  <SimilarCelebrityContractCardLayout
+                    similarContract={similarContract}
+                  />
+                </li>
+              ))}
             </ul>
           </CarouselWithButtons.List>
         </CarouselWithButtons.Container>
@@ -200,21 +141,19 @@ SimilarCelebrityContractsSectionLayout.propTypes = {};
 SimilarCelebrityContractsSectionLayout.defaultProps = {
   celebrity: {},
   publicContracts: [],
-  paginationData: {}
+  paginationData: {},
+  similarContracts: []
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
-  currencyExchangeData: state.payments.currencyExchangeReducer.data,
-  isLoading: state.celebrities.fetchPublicContractsReducer.loading,
-  publicContracts: state.celebrities.fetchPublicContractsReducer.data.results,
-  paginationData:
-    state.celebrities.fetchPublicContractsReducer.data.informationPage
+  isLoading: state.contracts.getSimilarContractsReducer.loading,
+  similarContracts: state.contracts.getSimilarContractsReducer.data.results
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  listPublicContracts: celebrityOperations.listPublicContracts
+  getSimilarContracts
 };
 
 // Export Class

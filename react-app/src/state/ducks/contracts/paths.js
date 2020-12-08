@@ -13,3 +13,5 @@ export const ADD_CONTRACT_COMMENTS = `custom-endpoints/${CONTRACT_MODEL}/add-con
 export const TRENDING_CONTRACTS = `custom-endpoints/${CONTRACT_MODEL}/trending-contracts`;
 export const UPDATE_CONTRACT = `custom-endpoints/${CONTRACT_MODEL}/update-contract`;
 export const UPDATE_CONTRACT_IS_PUBLIC = `custom-endpoints/${CONTRACT_MODEL}/update-contract-is-public`;
+
+export const GET_SIMILAR_CONTRACTS = `custom-endpoints/${CONTRACT_MODEL}/similar-contracts/`;

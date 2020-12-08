@@ -6,7 +6,7 @@ import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { connect } from "react-redux";
 
 const SimilarCelebrityContractCardLayout = ({
-  similarCelebrityContract,
+  similarContract,
   currentVideoPlaying,
   playVideo
 }) => {
@@ -26,7 +26,7 @@ const SimilarCelebrityContractCardLayout = ({
   const togglePlay = () => {
     if (!videoIsPlaying) {
       playVideo({
-        contract_reference: similarCelebrityContract.reference
+        contract_reference: similarContract.contractReference
       });
     } else {
       playVideo({
@@ -36,60 +36,42 @@ const SimilarCelebrityContractCardLayout = ({
   };
 
   useEffect(() => {
-    if (currentVideoPlaying === similarCelebrityContract.reference) {
+    if (currentVideoPlaying === similarContract.contractReference) {
       playContractVideo();
     } else {
       pauseContractVideo();
     }
-  }, [currentVideoPlaying, similarCelebrityContract.reference]);
-
-  const getVideoPoster = (videoURL) => {
-    const posterURL = videoURL.includes("watermark")
-      ? videoURL.replace(".mp4", ".jpg").replace("watermark", "poster")
-      : "";
-
-    return (
-      <video
-        ref={videoRef}
-        poster={posterURL}
-        controls={false}
-        playsInline
-        preload="metadata"
-        src={videoURL + "#t=0.5"}
-      />
-    );
-  };
+  }, [currentVideoPlaying, similarContract.contractReference]);
 
   return (
-    <div className="CelebrityPublicContractCardLayout mr-2 card f-card f-rounded hover cursor-pointer">
+    <div className="SimilarCelebrityContractCardLayout mr-2 card f-card f-rounded hover cursor-pointer">
       <div className="video">
-        {getVideoPoster(
-          similarCelebrityContract.videoUrl ||
-            "https://dqb0851cl2gjs.cloudfront.net/main-videos/70/famosos-videos-personalizados-giuliomottola-crf-video-watermark480.mp4"
-        )}
+        <video
+          ref={videoRef}
+          poster={similarContract.contractPosterUrl}
+          controls={false}
+          playsInline
+          preload="metadata"
+          src={similarContract.contractMediaUrl + "#t=0.5"}
+        />
       </div>
       <div className="body px-3 py-3 justify-content-between d-flex align-items-center">
-        <ProfilePicture
-          avatar={similarCelebrityContract.celebrityData.avatar}
-          width="44px"
-        />
+        <ProfilePicture avatar={similarContract.celebrityAvatar} width="44px" />
         <div
-          className="CelebrityPublicContractCardLayout__info"
+          className="SimilarCelebrityContractCardLayout__info"
           onClick={() => {}}
         >
-          <h5 className="text-with-ellipsis CelebrityPublicContractCardLayout__celebrity-name mb-0">
-            {similarCelebrityContract.celebrityData.fullName}
+          <h5 className="text-with-ellipsis SimilarCelebrityContractCardLayout__celebrity-name mb-0">
+            {similarContract.celebrityFullName}
           </h5>
           <div className="d-flex align-items-center">
-            <CountryFlag
-              countryCode={similarCelebrityContract.celebrityData.countryCode}
-            />
+            <CountryFlag countryCode={similarContract.countryCode} />
             <span className="ml-3 mt-1 CelebrityDetails__category">
-              {similarCelebrityContract.celebrityData.categoryTitle}
+              {similarContract.categoryTitle}
             </span>
           </div>
-          <h6 className="text-with-ellipsis CelebrityPublicContractCardLayout__delivery-to mb-0">
-            Para: {similarCelebrityContract.deliveryTo}
+          <h6 className="text-with-ellipsis SimilarCelebrityContractCardLayout__delivery-to mb-0">
+            Para: {similarContract.deliveryTo}
           </h6>
         </div>
         <i
