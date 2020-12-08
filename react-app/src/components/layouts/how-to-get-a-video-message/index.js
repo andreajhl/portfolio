@@ -5,7 +5,7 @@ const HowToGetAVideoMessageLayout = () => {
   return (
     <section className="HowToGetAVideoMessageLayout py-4">
       <div className="container mb-0">
-        <h2 className="HowToGetAVideoMessageLayout__title mb-4 mb-md-5">
+        <h2 className="HowToGetAVideoMessageLayout__title mb-4 mb-md-3">
           ¿Comó solicitar <br /> un videomensaje?
         </h2>
         <ul className="HowToGetAVideoMessageLayout__steps-list container mb-0">
@@ -15,9 +15,7 @@ const HowToGetAVideoMessageLayout = () => {
               className="HowToGetAVideoMessageLayout__step-icon mb-3"
             />
             <p className="HowToGetAVideoMessageLayout__step-text">
-              Da clic <br className="d-md-none" /> en{" "}
-              <br className="d-none d-md-inline" /> el botón{" "}
-              <br className="d-md-none" /> de arriba.
+              Da clic <br /> en el botón <br /> de arriba.
             </p>
           </li>
           <li className="HowToGetAVideoMessageLayout__step-item">
@@ -26,9 +24,8 @@ const HowToGetAVideoMessageLayout = () => {
               className="HowToGetAVideoMessageLayout__step-icon mb-3"
             />
             <p className="HowToGetAVideoMessageLayout__step-text">
-              Detalla la solicitud y{" "}
-              <br className="d-none d-sm-inline d-md-none" /> realiza el proceso
-              <br className="d-none d-sm-inline d-md-none" />
+              Detalla la solicitud y <br /> realiza el proceso
+              <br />
               de compra.
             </p>
           </li>
@@ -38,8 +35,7 @@ const HowToGetAVideoMessageLayout = () => {
               className="HowToGetAVideoMessageLayout__step-icon mb-3"
             />
             <p className="HowToGetAVideoMessageLayout__step-text">
-              ¡Y listo! <br className="d-none d-sm-inline d-md-none" /> en poco
-              tiempo recibirás tu videomensaje.
+              ¡Y listo! en <br /> poco tiempo recibirás tu videomensaje.
             </p>
           </li>
         </ul>
