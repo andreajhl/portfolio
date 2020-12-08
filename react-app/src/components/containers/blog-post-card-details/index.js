@@ -32,7 +32,7 @@ const index = ({title, thumbnail, description, link,pubDate,idPost,history}) => 
         <Button variant='primary' onClick={()=>{
           history.push(BLOG_ENTRY.replace(':id',idPost))
         }}>
-          Leer mas...
+          Leer más...
         </Button>
       </Card.Body>
     <Card.Footer className='text-muted'>{pubDateParse.toLocaleDateString(undefined,options)}</Card.Footer>
