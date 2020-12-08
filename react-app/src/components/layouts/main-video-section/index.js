@@ -6,7 +6,7 @@ import debounce from "lodash.debounce";
 import "./styles.scss";
 import "react-resizable/css/styles.css";
 
-const CelebrityMainvVideoSection = ({
+const CelebrityMainVideoSection = ({
   mainVideoUrl,
   playVideo,
   currentVideoPlaying
@@ -127,9 +127,9 @@ const mapDispatchToProps = {
   playVideo: contractOperations.playVideo
 };
 
-const _CelebrityMainvVideoSection = connect(
+const _CelebrityMainVideoSection = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CelebrityMainvVideoSection);
+)(CelebrityMainVideoSection);
 
-export { _CelebrityMainvVideoSection as CelebrityMainvVideoSection };
+export { _CelebrityMainVideoSection as CelebrityMainVideoSection };

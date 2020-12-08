@@ -15,8 +15,9 @@ import MetaTags from "react-meta-tags";
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
 import { CelebrityDetails } from "../../layouts/celebrity-details";
+import { SimilarCelebritiesCardsSectionLayout } from "../../layouts/similar-celebrities-cards-section";
 import { SimilarCelebrityContractsSectionLayout } from "../../layouts/similar-celebrity-contracts-section";
-import { CelebrityMainvVideoSection } from "../../layouts/main-video-section";
+import { CelebrityMainVideoSection } from "../../layouts/main-video-section";
 import HowToGetAVideoMessageLayout from "../../layouts/how-to-get-a-video-message";
 
 class CelebrityProfilePage extends Component {
@@ -102,7 +103,7 @@ class CelebrityProfilePage extends Component {
             {this.props.celebrity.username ===
             this.props.match.params.celebrity_username ? (
               <>
-                <CelebrityMainvVideoSection
+                <CelebrityMainVideoSection
                   mainVideoUrl={this.props.celebrity.mainVideo}
                 />
                 <CelebrityDetails
@@ -118,6 +119,9 @@ class CelebrityProfilePage extends Component {
                   contractTypes={this.props.celebrity.contractTypes}
                   celebrityId={this.props.celebrity.id}
                   username={this.props.celebrity.username}
+                />
+                <SimilarCelebritiesCardsSectionLayout
+                  celebrityUsername={this.props.celebrity.username}
                 />
                 <SimilarCelebrityContractsSectionLayout
                   celebrityUsername={this.props.celebrity.username}
@@ -175,43 +179,5 @@ const _CelebrityProfilePage = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CelebrityProfilePage);
-
-// const _CelebrityProfilePage = () => (
-//   <CelebrityProfilePage
-//     getCelebrity={() => {}}
-//     isLoading={false}
-//     celebrity={{
-//       avatar:
-//         "https://famosos-media.s3.amazonaws.com/pictures-develop/1598451091150929028image.jpeg",
-//       categoryId: 11,
-//       categoryTitle: "Adultos",
-//       causeLogo: "",
-//       causeName: "",
-//       causeUrl: "",
-//       contractTypes: [
-//         {
-//           allowInFFB: false,
-//           contractType: 1,
-//           description: "",
-//           name: "VideoMessage",
-//           options: {},
-//           price: 1
-//         }
-//       ],
-//       countryCode: "VEN",
-//       countryId: 31,
-//       countryName: "Venezuela (Bolivarian Republic of)",
-//       description:
-//         "Modelo Venezolana. Ha participado en campañas para marcas como BEBE y ha hecho editoriales para Vogue y Harper's Bazaar.",
-//       fullName: "Yennifer Restrepo Sanchez",
-//       hashtags: ["Modelo", "JBalvin"],
-//       id: 69,
-//       isDonor: false,
-//       mainVideo: "",
-//       turnaround: 0,
-//       username: "yenniferrestrepo2"
-//     }}
-//   />
-// );
 
 export { _CelebrityProfilePage as CelebrityProfilePage };

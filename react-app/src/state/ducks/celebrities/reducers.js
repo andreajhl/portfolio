@@ -120,7 +120,7 @@ export function fetchSimilarCelebritiesReducer(
     case types.FETCH_SIMILAR_CELEBRITIES_REQUEST_COMPLETED:
       return {
         ...state,
-        data: action.payload.data,
+        // data: action.payload.data,
         completed: true
       };
     default:

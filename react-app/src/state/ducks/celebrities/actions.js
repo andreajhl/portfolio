@@ -227,3 +227,29 @@ export const listPublicContracts = (celebrity_id, params = {}) => {
       });
   };
 };
+
+export const fetchSimilarCelebrities = (celebrityUsername) => (dispatch) => {
+  const TYPE = types.FETCH_SIMILAR_CELEBRITIES_REQUEST;
+  const FINAL_PATH = API_PATHS.SIMILAR_CELEBRITIES + celebrityUsername;
+  dispatch({ type: TYPE, payload: {} });
+  apiService({
+    method: "GET",
+    action: TYPE,
+    path: FINAL_PATH,
+    async: true,
+    body: null
+  })
+    .then((res) => {
+      if (res.data.status === "OK") {
+        handleApiResponseSuccess(dispatch, TYPE, res);
+        dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+      } else {
+        handleApiResponseFailure(dispatch, TYPE, res);
+      }
+    })
+    .catch((err) => {
+      handleApiErrors(dispatch, TYPE, {
+        data: { api_error: err, error: "Server 500" }
+      });
+    });
+};

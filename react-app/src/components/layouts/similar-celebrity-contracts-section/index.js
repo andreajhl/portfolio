@@ -80,10 +80,9 @@ class SimilarCelebrityContractsSectionLayout extends Component {
   }
 
   render() {
-    console.log(this.props.similarContracts);
     const hasContracts = this.props.similarContracts.length > 0;
     return this.props.isLoading || hasContracts ? (
-      <div className="SimilarCelebrityContractsSectionLayout">
+      <section className="SimilarCelebrityContractsSectionLayout">
         <CarouselWithButtons.Container
           buttonsStyles={{ top: "2.75rem", height: "370px" }}
         >
@@ -104,7 +103,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
             </ul>
           </CarouselWithButtons.List>
         </CarouselWithButtons.Container>
-      </div>
+      </section>
     ) : null;
     return this.props.isLoading || true /* hasContracts */ ? (
       <div className="CelebrityPublicContractsSectionLayout">
