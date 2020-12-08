@@ -15,7 +15,7 @@ const Blog_entry = ({blogsData,match,history}) => {
     let blog;
     
     if (typeof(blogsData[match.params.id]) === 'undefined') {
-      redirect = <Redirect to='/blog'></Redirect>;
+      redirect = <Redirect to={BLOG}></Redirect>;
     }
     else{
         const blogSelected = blogsData[match.params.id];
