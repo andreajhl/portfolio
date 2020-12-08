@@ -9,6 +9,7 @@ import { ContractPriceLayout } from "../contract-price/index";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
 import * as CarouselWithButtons from "../carousel-with-buttons";
+import { CelebrityContractVideoShimmerCardLayout } from "../celebrity-contract-video-shimmer-card";
 
 import { Session } from "../../../state/utils/session";
 
@@ -142,7 +143,13 @@ class CelebrityPublicContractsSectionLayout extends Component {
                       />
                     </li>
                   ))
-                : null}
+                : Array(15)
+                    .fill(null)
+                    .map((item, index) => (
+                      <li className="mr-3" key={index}>
+                        <CelebrityContractVideoShimmerCardLayout />
+                      </li>
+                    ))}
             </ul>
           </CarouselWithButtons.List>
         </CarouselWithButtons.Container>
