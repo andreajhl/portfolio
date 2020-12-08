@@ -15,7 +15,7 @@ const BlogPostCardLayout = ({ title, imageUrl, description, postUrl, idPost,hist
     <Card className="BlogPostCardLayout">
       <Card.Img variant="top" onClick={()=> goToBlog()} src={imageUrl} />
       <Card.Body className="px-0" >
-        <Card.Title className='BlogPostCardLayout__Title' onClick={()=> goToBlog()} className="font-weight-bold" style={{minHeight:'50px'}}>{limitString(title, 70)}</Card.Title>
+        <Card.Title className='BlogPostCardLayout__Title' onClick={()=> goToBlog()} className="font-weight-bold" style={{minHeight:'50px'}}>{limitString(title, 60)}</Card.Title>
         <Card.Text>
           <span className="d-sm-none">{limitString(plainString, 80)}</span>
           <span className="d-none d-sm-block">
