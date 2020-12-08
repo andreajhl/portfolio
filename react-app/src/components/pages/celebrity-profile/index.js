@@ -104,9 +104,11 @@ class CelebrityProfilePage extends Component {
             {this.props.celebrity.username ===
             this.props.match.params.celebrity_username ? (
               <>
-                <CelebrityMainVideoSection
-                  mainVideoUrl={this.props.celebrity.mainVideo}
-                />
+                {this.props.celebrity.mainVideo ? (
+                  <CelebrityMainVideoSection
+                    mainVideoUrl={this.props.celebrity.mainVideo}
+                  />
+                ) : null}
                 <CelebrityDetails
                   fullName={this.props.celebrity.fullName}
                   username={this.props.celebrity.username}

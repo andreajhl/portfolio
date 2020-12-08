@@ -55,40 +55,38 @@ class CelebrityReviewsSectionLayout extends Component {
 
   render() {
     const hasReviews = this.props.reviews.length > 0;
-    return (
+    return this.props.isLoading || hasReviews ? (
       <div className="CelebrityReviewsSectionLayout pt-3 pb-2">
-        {this.props.isLoading || hasReviews ? (
-          <div className="container mb-2 pb-2">
-            <div className="row f-section mx-auto pt-2">
-              <h5 className="col-12 mb-4 CelebrityReviewsSectionLayout__title">
-                Calificaciones
-              </h5>
-              {this.props.isLoading
-                ? this.renderShimmerReviewCards()
-                : this.props.reviews.map((review, index) => {
-                    return (
-                      <div
-                        className="col-12 col-md-6 col-lg-4 col-xl-4 mb-3"
-                        key={review.id + "-" + index}
-                      >
-                        <CelebrityReviewCardLayout review={review} />
-                      </div>
-                    );
-                  })}
-              <div className="col-12">
-                {/* PaginationLayout */}
-                <PaginationLayout
-                  showFmainPadding={false}
-                  pagination={this.props.paginationData}
-                  onPaginationChange={this.onPaginationChange}
-                />
-                {/* End PaginationLayout */}
-              </div>
+        <div className="container mb-2 pb-2">
+          <div className="row f-section mx-auto pt-2">
+            <h5 className="col-12 mb-4 CelebrityReviewsSectionLayout__title">
+              Calificaciones
+            </h5>
+            {this.props.isLoading
+              ? this.renderShimmerReviewCards()
+              : this.props.reviews.map((review, index) => {
+                  return (
+                    <div
+                      className="col-12 col-md-6 col-lg-4 col-xl-4 mb-3"
+                      key={review.id + "-" + index}
+                    >
+                      <CelebrityReviewCardLayout review={review} />
+                    </div>
+                  );
+                })}
+            <div className="col-12">
+              {/* PaginationLayout */}
+              <PaginationLayout
+                showFmainPadding={false}
+                pagination={this.props.paginationData}
+                onPaginationChange={this.onPaginationChange}
+              />
+              {/* End PaginationLayout */}
             </div>
           </div>
-        ) : null}
+        </div>
       </div>
-    );
+    ) : null;
   }
 }
 

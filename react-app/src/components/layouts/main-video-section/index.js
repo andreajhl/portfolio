@@ -76,7 +76,7 @@ const CelebrityMainVideoSection = ({
     }
   };
 
-  return mainVideoUrl ? (
+  return (
     <ResizableBox
       width={windowWidth}
       height={252}
@@ -115,7 +115,7 @@ const CelebrityMainVideoSection = ({
         </video>
       </section>
     </ResizableBox>
-  ) : null;
+  );
 };
 
 const mapStateToProps = ({ contracts }) => ({

@@ -129,7 +129,7 @@ class CelebrityPublicContractCardLayout extends Component {
               />
             </div> */}
           <div className="title" onClick={this.goToContract}>
-            <h6 className="font-weight-bold">
+            <h6 className="font-weight-bold text-with-ellipsis">
               Para: {this.props.publicContract.contract_delivery_to}
             </h6>
           </div>
