@@ -13,24 +13,28 @@ const BlogPostCarousel = ({blogsData,isBlogsDataFetch,blogsDataLoading,saveBlogD
       getBlogData();
     };
   }, []);
+    let renderCarousel= null;
+    if(isBlogsDataFetch){
+      renderCarousel = (<CarouselWithButtons.Container buttonsStyles={{display: 'block'}}>
+      <CarouselWithButtons.List>
+        <ul>
+          {blogsData.map(({ title, thumbnail, description, link }, index) => (
+            <li style={{ marginRight: '12px' }} key={index}>
+              <BlogPostCardLayout
+                title={title}
+                imageUrl={thumbnail}
+                description={description}
+                postUrl={link}
+                idPost={index}
+              />
+            </li>
+          ))}
+        </ul>
+      </CarouselWithButtons.List>
+    </CarouselWithButtons.Container>)
+    }
     return (
-      <CarouselWithButtons.Container>
-        <CarouselWithButtons.List>
-          <ul>
-            {blogsData.map(({ title, thumbnail, description, link }, index) => (
-              <li style={{ marginRight: '12px' }} key={index}>
-                <BlogPostCardLayout
-                  title={title}
-                  imageUrl={thumbnail}
-                  description={description}
-                  postUrl={link}
-                  idPost={index}
-                />
-              </li>
-            ))}
-          </ul>
-        </CarouselWithButtons.List>
-      </CarouselWithButtons.Container>
+      renderCarousel
     );
 }
 
