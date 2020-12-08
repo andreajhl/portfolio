@@ -37,7 +37,7 @@ const Container = ({ children, buttonsStyles }) => {
     setShowRightScrollButton(
       cardListElement.scrollWidth > cardListElement.offsetWidth
     );
-  }, []);
+  }, [children]);
 
   return (
     <section className="carousel-with-buttons-layout container pr-0">
