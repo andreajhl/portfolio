@@ -19,6 +19,7 @@ import { SimilarCelebritiesCardsSectionLayout } from "../../layouts/similar-cele
 import { SimilarCelebrityContractsSectionLayout } from "../../layouts/similar-celebrity-contracts-section";
 import { CelebrityMainVideoSection } from "../../layouts/main-video-section";
 import HowToGetAVideoMessageLayout from "../../layouts/how-to-get-a-video-message";
+import { NavLink } from "react-router-dom";
 
 class CelebrityProfilePage extends Component {
   constructor(props) {
@@ -120,12 +121,31 @@ class CelebrityProfilePage extends Component {
                   celebrityId={this.props.celebrity.id}
                   username={this.props.celebrity.username}
                 />
-                <SimilarCelebritiesCardsSectionLayout
+                <section className="container text-center pt-2 pb-4">
+                  <NavLink to="#">
+                    <button
+                      type="button"
+                      className="btn btn-primary similar-celebrities-button"
+                      style={{
+                        background: "#FFE1F0",
+                        borderRadius: "5px",
+                        border: "none",
+                        padding: "0.75em 1.5em",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                        color: "#FB177D"
+                      }}
+                    >
+                      Ver famosos similares
+                    </button>
+                  </NavLink>
+                </section>
+                {/* <SimilarCelebritiesCardsSectionLayout
                   celebrityUsername={this.props.celebrity.username}
                 />
                 <SimilarCelebrityContractsSectionLayout
                   celebrityUsername={this.props.celebrity.username}
-                />
+                /> */}
                 <CelebrityReviewsSectionLayout
                   celebrityId={this.props.celebrity.id}
                 />

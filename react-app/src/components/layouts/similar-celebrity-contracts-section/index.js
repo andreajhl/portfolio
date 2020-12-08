@@ -88,7 +88,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
         >
           <CarouselWithButtons.Header>
             <CarouselWithButtons.Title className="text-black text-center mb-4 w-100">
-              Famosos similares
+              Videos similares
             </CarouselWithButtons.Title>
           </CarouselWithButtons.Header>
           <CarouselWithButtons.List>

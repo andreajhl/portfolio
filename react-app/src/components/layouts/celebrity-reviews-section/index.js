@@ -56,7 +56,7 @@ class CelebrityReviewsSectionLayout extends Component {
   render() {
     const hasReviews = this.props.reviews.length > 0;
     return (
-      <div className="CelebrityReviewsSectionLayout">
+      <div className="CelebrityReviewsSectionLayout pt-3 pb-2">
         {this.props.isLoading || hasReviews ? (
           <div className="container mb-2 pb-2">
             <div className="row f-section mx-auto pt-2">
@@ -68,7 +68,7 @@ class CelebrityReviewsSectionLayout extends Component {
                 : this.props.reviews.map((review, index) => {
                     return (
                       <div
-                        className="col-12 col-md-4 col-lg-4 col-xl-4 mb-3"
+                        className="col-12 col-md-6 col-lg-4 col-xl-4 mb-3"
                         key={review.id + "-" + index}
                       >
                         <CelebrityReviewCardLayout review={review} />

@@ -3,12 +3,12 @@ import "./styles.scss";
 
 const HowToGetAVideoMessageLayout = () => {
   return (
-    <section className="HowToGetAVideoMessageLayout">
-      <div className="container">
+    <section className="HowToGetAVideoMessageLayout py-4">
+      <div className="container mb-0">
         <h2 className="HowToGetAVideoMessageLayout__title mb-4 mb-md-5">
           ¿Comó solicitar <br /> un videomensaje?
         </h2>
-        <ul className="HowToGetAVideoMessageLayout__steps-list container">
+        <ul className="HowToGetAVideoMessageLayout__steps-list container mb-0">
           <li className="HowToGetAVideoMessageLayout__step-item">
             <img
               src="assets/img/tap.svg"
