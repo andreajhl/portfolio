@@ -11,7 +11,6 @@ require("dotenv").config({ path: ".env" });
 // COMPRESSION SETTINGS
 app.use(compression());
 
-
 const { getLandingPageSync } = require("./templates/landing");
 // ################################################################
 // default OG
@@ -26,7 +25,7 @@ const defaultOG = (data) => {
   data = data.replace(/\$ROBOTS_META/, isProdEnviroment ? "index" : "noindex");
   data = data.replace(
     /\$OG_IMAGE/g,
-    "https://www.famosos.com/assets/img/favicon.png"
+    "https://www.famosos.com/assets/img/famosos-share-icon.png"
   );
   data = data.replace(/\$OG_SITE_NAME/, "Famosos.com");
   data = data.replace(
@@ -61,35 +60,38 @@ app.get("/", async (request, response) => {
       return console.log(err);
     }
     data = data.replace(
-        /\$OG_TITLE/g,
-        "Famosos.com - Videos personalizados de tus famosos favoritos."
+      /\$OG_TITLE/g,
+      "Famosos.com - Videos personalizados de tus famosos favoritos."
     );
     data = data.replace(/\$OG_TYPE/, "website");
     data = data.replace(/\$OG_URL/, "https://www.famosos.com");
     const isProdEnviroment = process.env.NODE_ENV === "production";
-    data = data.replace(/\$ROBOTS_META/, isProdEnviroment ? "index" : "noindex");
     data = data.replace(
-        /\$OG_IMAGE/g,
-        "https://www.famosos.com/assets/img/favicon.png"
+      /\$ROBOTS_META/,
+      isProdEnviroment ? "index" : "noindex"
+    );
+    data = data.replace(
+      /\$OG_IMAGE/g,
+      "https://www.famosos.com/assets/img/favicon.png"
     );
     data = data.replace(/\$OG_SITE_NAME/, "Famosos.com");
     data = data.replace(
-        /\$OG_DESCRIPTION/,
-        "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
+      /\$OG_DESCRIPTION/,
+      "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
     );
     data = data.replace(/\$OG_VIDEO_WITH/, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/, "400");
     data = data.replace(
-        /\$OG_VIDEO_SECURE_URL/,
-        "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
+      /\$OG_VIDEO_SECURE_URL/,
+      "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
     );
     data = data.replace(
-        /\$OG_VIDEO_URL/,
-        "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
+      /\$OG_VIDEO_URL/,
+      "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
     );
     data = data.replace(
-        /\$OG_VIDEO/,
-        "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
+      /\$OG_VIDEO/,
+      "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
     );
     response.send(data);
   });
@@ -196,7 +198,7 @@ app.get("/:celebrity_username", async (req, res) => {
           }
           data = defaultOG(data);
           response.send(data);
-        })
+        });
       });
   } else {
     const _filePath = path.resolve(__dirname, "./build", "index.html");
@@ -206,7 +208,7 @@ app.get("/:celebrity_username", async (req, res) => {
       }
       data = defaultOG(data);
       res.send(data);
-    })
+    });
   }
 });
 // ################################################################
@@ -260,7 +262,7 @@ app.get("/:celebrity_username/contratar", async (req, res) => {
           }
           data = defaultOG(data);
           res.send(data);
-        })
+        });
       }
     })
     .catch((e) => {
@@ -272,7 +274,7 @@ app.get("/:celebrity_username/contratar", async (req, res) => {
         }
         data = defaultOG(data);
         res.send(data);
-      })
+      });
     });
 });
 // ################################################################
@@ -325,7 +327,7 @@ app.get("/hirings/:contract_reference", async (req, res) => {
           }
           data = defaultOG(data);
           res.send(data);
-        })
+        });
       }
     })
     .catch((e) => {
@@ -336,7 +338,7 @@ app.get("/hirings/:contract_reference", async (req, res) => {
         }
         data = defaultOG(data);
         res.send(data);
-      })
+      });
     });
 });
 // ################################################################
@@ -790,35 +792,38 @@ app.get("*", async (request, response) => {
       return console.log(err);
     }
     data = data.replace(
-        /\$OG_TITLE/g,
-        "Famosos.com - Videos personalizados de tus famosos favoritos."
+      /\$OG_TITLE/g,
+      "Famosos.com - Videos personalizados de tus famosos favoritos."
     );
     data = data.replace(/\$OG_TYPE/, "website");
     data = data.replace(/\$OG_URL/, "https://www.famosos.com");
     const isProdEnviroment = process.env.NODE_ENV === "production";
-    data = data.replace(/\$ROBOTS_META/, isProdEnviroment ? "index" : "noindex");
     data = data.replace(
-        /\$OG_IMAGE/g,
-        "https://www.famosos.com/assets/img/favicon.png"
+      /\$ROBOTS_META/,
+      isProdEnviroment ? "index" : "noindex"
+    );
+    data = data.replace(
+      /\$OG_IMAGE/g,
+      "https://www.famosos.com/assets/img/favicon.png"
     );
     data = data.replace(/\$OG_SITE_NAME/, "Famosos.com");
     data = data.replace(
-        /\$OG_DESCRIPTION/,
-        "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
+      /\$OG_DESCRIPTION/,
+      "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
     );
     data = data.replace(/\$OG_VIDEO_WITH/, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/, "400");
     data = data.replace(
-        /\$OG_VIDEO_SECURE_URL/,
-        "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
+      /\$OG_VIDEO_SECURE_URL/,
+      "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
     );
     data = data.replace(
-        /\$OG_VIDEO_URL/,
-        "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
+      /\$OG_VIDEO_URL/,
+      "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
     );
     data = data.replace(
-        /\$OG_VIDEO/,
-        "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
+      /\$OG_VIDEO/,
+      "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
     );
     response.send(data);
   });
