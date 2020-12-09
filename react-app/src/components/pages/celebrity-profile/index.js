@@ -10,6 +10,7 @@ import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
 import { NavLink } from "react-router-dom";
 import { CelebrityProfileLayoutA } from "../../layouts/celebrity-profile-a";
+import { CelebrityProfileLayoutB } from "../../layouts/celebrity-profile-b";
 
 class CelebrityProfilePage extends Component {
   constructor(props) {
@@ -93,7 +94,8 @@ class CelebrityProfilePage extends Component {
           <div style={{ minHeight: "100vh" }}>
             {this.props.celebrity.username ===
             this.props.match.params.celebrity_username ? (
-              <CelebrityProfileLayoutA celebrity={this.props.celebrity} />
+              // <CelebrityProfileLayoutA celebrity={this.props.celebrity} />
+              <CelebrityProfileLayoutB celebrity={this.props.celebrity} />
             ) : null}
           </div>
         </PageContainer>

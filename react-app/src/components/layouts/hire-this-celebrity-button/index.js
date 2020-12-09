@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { CELEBRITY_PROFILE_CONTRACT } from "../../../routing/Paths";
 
 const HireThisCelebrityButton = ({
+  className,
   text,
   celebrityFullName,
   celebrityUsername,
@@ -27,7 +28,7 @@ const HireThisCelebrityButton = ({
           fontSize,
           width
         }}
-        className="font-weight-bold"
+        className={`font-weight-bold ${className ? className : ""}`}
       >
         {text}
         {celebrityFullName ? " " + celebrityFullName.split(" ")[0] : ""}

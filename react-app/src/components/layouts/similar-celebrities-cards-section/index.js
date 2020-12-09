@@ -17,10 +17,10 @@ const SimilarCelebritiesCardsSectionLayout = ({
   }, [celebrityUsername]);
 
   return (
-    <section className="SimilarCelebritiesCardsSectionLayout mb-2">
+    <section className="SimilarCelebritiesCardsSectionLayout mb-2 pt-2">
       <CarouselWithButtons.Container buttonsStyles={{ top: "2.85rem" }}>
         <CarouselWithButtons.Header>
-          <CarouselWithButtons.Title className="text-black text-center mb-4 w-100">
+          <CarouselWithButtons.Title className="text-black text-center mb-4 w-100 font-weight-bold">
             Famosos similares
           </CarouselWithButtons.Title>
         </CarouselWithButtons.Header>
