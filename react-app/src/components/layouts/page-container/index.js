@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { celebrityOperations } from "../../../state/ducks/celebrities";
-import { NavbarSectionLayout } from "../navbar-section";
-import { FooterLayout } from "../footer";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {celebrityOperations} from "../../../state/ducks/celebrities";
+import {NavbarSectionLayout} from "../navbar-section";
+import {FooterLayout} from "../footer";
 import "./styles.scss";
-import { CookiesConsent } from "../cookies-consent";
-import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
+import {CookiesConsent} from "../cookies-consent";
+import {updateQueryParamsInitialState} from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
-import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
-import { Session } from "../../../state/utils/session";
-import { VideoCallsResearch } from "../../containers/videocalls-research";
+import {celebrityLikesOperations} from "../../../state/ducks/celebrity-likes";
+import {Session} from "../../../state/utils/session";
+
 // import { DownloadAppBanner } from "../download-app-banner";
 
 class PageContainer extends Component {
@@ -102,7 +102,7 @@ class PageContainer extends Component {
           alt="None"
         />
 
-        {this.props.showVideoCallsResearch ? <VideoCallsResearch /> : null}
+        {/*{this.props.showVideoCallsResearch ? <VideoCallsResearch /> : null}*/}
         {/*COOKIES CONSENT*/}
         {/* <DownloadAppBanner /> */}
         <CookiesConsent />

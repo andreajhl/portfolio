@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, { Component, createRef, useEffect, useState } from "react";
 import {
   CelebritiesSectionsLayout,
   PageContainer,
@@ -16,6 +16,10 @@ import { FiltersSectionLayout } from "../../layouts/filters-section";
 import MetaTags from "react-meta-tags";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import { Session } from "../../../state/utils/session";
+import * as CarouselWithButtons from "../../layouts/carousel-with-buttons";
+import BlogPostCardLayout from "../../layouts/blog-post-card";
+import * as mediumApiService from "../../../state/utils/mediumApiService";
+import {BlogPostCarousel} from '../../layouts/blog-post-carousel';
 
 class CelebritiesPage extends Component {
   constructor(props) {
@@ -181,6 +185,8 @@ class CelebritiesPage extends Component {
             <HeroSectionLayout />
             <FiltersSectionLayout />
             {this.state.session ? <UserLikesSectionLayout /> : null}
+            <BlogPostCarousel></BlogPostCarousel>
+
             <CelebritiesSectionsLayout />
             {/* <div
               className="scroll-section"

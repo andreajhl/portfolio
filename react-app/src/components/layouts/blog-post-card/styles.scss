@@ -1,11 +1,23 @@
 .BlogPostCardLayout {
+  border: none;
   width: 400px;
   border-radius: 8px;
   overflow: hidden;
 
+  
+  .card-body .card-title{
+    &:hover{
+      cursor: pointer;
+    }
+  }
   .card-img-top {
     height: 250px;
     object-fit: cover;
+    
+
+    &:hover{
+      cursor: pointer;
+    }
   }
 
   @media only screen and (max-width: 576px) {
