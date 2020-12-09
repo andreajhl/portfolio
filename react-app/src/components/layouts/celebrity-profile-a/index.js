@@ -10,7 +10,6 @@ import HowToGetAVideoMessageLayout from "../how-to-get-a-video-message";
 import { connect } from "react-redux";
 
 const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
-  console.log({ hasPublicContracts });
   return (
     <>
       {celebrity.mainVideo ? (
@@ -24,6 +23,7 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
         celebrityId={celebrity.id}
         categoryTitle={celebrity.categoryTitle}
         contractTypes={celebrity.contractTypes}
+        variant="1.1"
       />
       {hasPublicContracts ? (
         <>
