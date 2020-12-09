@@ -79,7 +79,7 @@
           .play-pause {
             position: absolute;
             z-index: 1;
-            top: 65px;
+            top: 2rem;
             left: 32px;
             font-size: 45px;
             color: white;
@@ -88,9 +88,9 @@
           .volume-icon {
             position: absolute;
             z-index: 1;
-            top: 65px;
-            right: 32px;
-            font-size: 50px;
+            top: 20%;
+            right: 10%;
+            font-size: 35px;
             color: white;
           }
         }
