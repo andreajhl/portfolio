@@ -343,13 +343,13 @@ class CelebrityDetailsCardLayout extends Component {
               {this.props.mainVideo ? (
                 <div className="col-4 f-video" style={{ padding: "0px" }}>
                   <div className="f-video-buttons">
-                    <i
+                    {/* <i
                       className={
                         "fa fa-2x play-pause cursor-pointer " +
                         this.state.videoDesktopPlayIcon
                       }
                       onClick={this.playDesktopVideo.bind(this)}
-                    />
+                    /> */}
                     <i
                       className={`fa fa-2x fa-volume-${
                         this.state.videoDesktopIsMuted ? "mute" : "up"
@@ -391,13 +391,13 @@ class CelebrityDetailsCardLayout extends Component {
                   {this.props.mainVideo ? (
                     <>
                       <div className="f-video-buttons">
-                        <i
+                        {/* <i
                           className={
                             "fa fa-2x play-pause cursor-pointer " +
                             this.state.videoMobilePlayIcon
                           }
                           onClick={this.playMobileVideo.bind(this)}
-                        />
+                        /> */}
                         <i
                           className={`fa fa-2x fa-volume-${
                             this.state.videoMobileIsMuted ? "mute" : "up"
