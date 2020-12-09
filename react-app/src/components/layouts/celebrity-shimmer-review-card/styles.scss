@@ -3,7 +3,7 @@
     margin-bottom: 10px;
     position: relative;
     -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
     background-color: #fff;
     border-radius: 6px;
     overflow: hidden;
@@ -42,19 +42,20 @@
       animation-iteration-count: infinite;
       animation-name: shimmer;
       animation-timing-function: linear;
-      background: #e5f0fb;
-      background: linear-gradient(
-        to right,
-        #c1dceb 4%,
-        #a3cbe1 25%,
-        #c1dceb 36%
-      );
-      background-size: 1200px 100%;
+      background: #c4c4c4;
+      // background: #e5f0fb;
+      // background: linear-gradient(
+      //   to right,
+      //   #c1dceb 4%,
+      //   #a3cbe1 25%,
+      //   #c1dceb 36%
+      // );
+      // background-size: 1200px 100%;
     }
 
     .user-full-name {
-      width: 70%;
-      max-width: 300px;
+      width: 7vw;
+      margin-right: auto;
     }
 
     .review-stars {
@@ -62,7 +63,8 @@
     }
 
     .review-star-icon {
-      color: #c1dceb !important;
+      // color: #c1dceb !important;
+      color: #c4c4c4 !important;
     }
 
     .review__first-line {

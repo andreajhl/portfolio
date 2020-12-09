@@ -7,9 +7,9 @@ class CelebrityReviewCardLayout extends Component {
       <div className="CelebrityReviewCardLayout">
         <div className="card card-review px-4 py-3">
           <div className="card-body p-0 d-flex justify-content-between align-items-center">
-            <h6 className="font-weight-bold CelebrityReviewCardLayout__full-name">
+            <h6 className="font-weight-bold CelebrityReviewCardLayout__full-name text-with-ellipsis">
               {this.props.review.user_full_name
-                ? this.props.review.user_full_name
+                ? this.props.review.user_full_name + " asdasd"
                 : "Anónimo"}
             </h6>
             <h5 className="text-warning">
