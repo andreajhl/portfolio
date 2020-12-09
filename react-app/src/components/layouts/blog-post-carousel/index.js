@@ -15,7 +15,7 @@ const BlogPostCarousel = ({blogsData,isBlogsDataFetch,blogsDataLoading,saveBlogD
   }, []);
     let renderCarousel= null;
     if(isBlogsDataFetch){
-      renderCarousel = (<CarouselWithButtons.Container buttonsStyles={{display: 'block'}}>
+      renderCarousel = (<CarouselWithButtons.Container>
       <CarouselWithButtons.List>
         <ul>
           {blogsData.map(({ title, thumbnail, description, link }, index) => (
