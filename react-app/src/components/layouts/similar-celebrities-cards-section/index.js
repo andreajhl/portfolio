@@ -4,6 +4,7 @@ import { CelebrityCardLayout } from "../celebrity-card";
 import { fetchSimilarCelebrities } from "../../../state/ducks/celebrities/actions";
 import * as CarouselWithButtons from "../carousel-with-buttons";
 import "./styles.scss";
+import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
 
 const SimilarCelebritiesCardsSectionLayout = ({
   celebrityUsername,
@@ -15,9 +16,7 @@ const SimilarCelebritiesCardsSectionLayout = ({
     fetchSimilarCelebrities(celebrityUsername);
   }, [celebrityUsername]);
 
-  console.log(similarCelebrities);
-
-  return true ? (
+  return (
     <section className="SimilarCelebritiesCardsSectionLayout mb-2">
       <CarouselWithButtons.Container buttonsStyles={{ top: "2.85rem" }}>
         <CarouselWithButtons.Header>
@@ -27,30 +26,38 @@ const SimilarCelebritiesCardsSectionLayout = ({
         </CarouselWithButtons.Header>
         <CarouselWithButtons.List>
           <ul className="SimilarCelebritiesCardsSectionLayout__list">
-            {similarCelebrities.map((similarCelebrity) => {
-              const celebrity = {
-                ...similarCelebrity,
-                username: similarCelebrity.celebrityUsername,
-                avatar: similarCelebrity.celebrityAvatar,
-                title: similarCelebrity.categoryTitle,
-                id: similarCelebrity.celebrityId,
-                fullName: similarCelebrity.celebrityFullName
-              };
+            {!isLoading && similarCelebrities.length > 0
+              ? similarCelebrities.map((similarCelebrity) => {
+                  const celebrity = {
+                    ...similarCelebrity,
+                    username: similarCelebrity.celebrityUsername,
+                    avatar: similarCelebrity.celebrityAvatar,
+                    title: similarCelebrity.categoryTitle,
+                    id: similarCelebrity.celebrityId,
+                    fullName: similarCelebrity.celebrityFullName
+                  };
 
-              return (
-                <li
-                  className="mr-3"
-                  key={"similar-celebrities-" + celebrity.id}
-                >
-                  <CelebrityCardLayout celebrity={celebrity} />
-                </li>
-              );
-            })}
+                  return (
+                    <li
+                      className="mr-3"
+                      key={"similar-celebrities-" + celebrity.id}
+                    >
+                      <CelebrityCardLayout celebrity={celebrity} />
+                    </li>
+                  );
+                })
+              : Array(15)
+                  .fill(null)
+                  .map((item, index) => (
+                    <li className="mr-3" key={index}>
+                      <CelebrityShimmerCardLayout />
+                    </li>
+                  ))}
           </ul>
         </CarouselWithButtons.List>
       </CarouselWithButtons.Container>
     </section>
-  ) : null;
+  );
 };
 
 // default props

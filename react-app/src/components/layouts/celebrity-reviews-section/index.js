@@ -62,7 +62,7 @@ class CelebrityReviewsSectionLayout extends Component {
             <h5 className="col-12 mb-4 CelebrityReviewsSectionLayout__title">
               Calificaciones
             </h5>
-            {!this.props.isLoading
+            {this.props.isLoading
               ? this.renderShimmerReviewCards()
               : this.props.reviews.map((review, index) => {
                   return (

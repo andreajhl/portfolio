@@ -8,6 +8,7 @@ import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
 import * as CarouselWithButtons from "../carousel-with-buttons";
+import { CelebrityContractVideoShimmerCardLayout } from "../celebrity-contract-video-shimmer-card";
 
 import { Session } from "../../../state/utils/session";
 
@@ -93,13 +94,24 @@ class SimilarCelebrityContractsSectionLayout extends Component {
           </CarouselWithButtons.Header>
           <CarouselWithButtons.List>
             <ul className="SimilarCelebrityContractsSectionLayout__list">
-              {this.props.similarContracts.map((similarContract) => (
-                <li className="mr-3" key={similarContract.contractReference}>
-                  <SimilarCelebrityContractCardLayout
-                    similarContract={similarContract}
-                  />
-                </li>
-              ))}
+              {!this.props.isLoading
+                ? this.props.similarContracts.map((similarContract) => (
+                    <li
+                      className="mr-3"
+                      key={similarContract.contractReference}
+                    >
+                      <SimilarCelebrityContractCardLayout
+                        similarContract={similarContract}
+                      />
+                    </li>
+                  ))
+                : Array(15)
+                    .fill(null)
+                    .map((item, index) => (
+                      <li className="mr-3" key={index}>
+                        <CelebrityContractVideoShimmerCardLayout />
+                      </li>
+                    ))}
             </ul>
           </CarouselWithButtons.List>
         </CarouselWithButtons.Container>

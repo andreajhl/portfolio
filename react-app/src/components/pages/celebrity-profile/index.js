@@ -1,11 +1,5 @@
 import React, { Component, createRef } from "react";
-import {
-  CelebrityDetailsCardLayout,
-  CelebrityPublicContractsSectionLayout,
-  CelebrityReviewsSectionLayout,
-  /* LoadingOverlay, */
-  PageContainer
-} from "../../layouts";
+import { PageContainer } from "../../layouts";
 import * as PropTypes from "prop-types";
 import { CelebrityShape } from "../../../prop-types";
 import { connect } from "react-redux";
@@ -14,12 +8,8 @@ import "./styles.scss";
 import MetaTags from "react-meta-tags";
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
-import { CelebrityDetails } from "../../layouts/celebrity-details";
-import { SimilarCelebritiesCardsSectionLayout } from "../../layouts/similar-celebrities-cards-section";
-import { SimilarCelebrityContractsSectionLayout } from "../../layouts/similar-celebrity-contracts-section";
-import { CelebrityMainVideoSection } from "../../layouts/main-video-section";
-import HowToGetAVideoMessageLayout from "../../layouts/how-to-get-a-video-message";
 import { NavLink } from "react-router-dom";
+import { CelebrityProfileLayoutA } from "../../layouts/celebrity-profile-a";
 
 class CelebrityProfilePage extends Component {
   constructor(props) {
@@ -103,56 +93,7 @@ class CelebrityProfilePage extends Component {
           <div style={{ minHeight: "100vh" }}>
             {this.props.celebrity.username ===
             this.props.match.params.celebrity_username ? (
-              <>
-                {this.props.celebrity.mainVideo ? (
-                  <CelebrityMainVideoSection
-                    mainVideoUrl={this.props.celebrity.mainVideo}
-                  />
-                ) : null}
-                <CelebrityDetails
-                  fullName={this.props.celebrity.fullName}
-                  username={this.props.celebrity.username}
-                  avatar={this.props.celebrity.avatar}
-                  countryCode={this.props.celebrity.countryCode}
-                  celebrityId={this.props.celebrity.id}
-                  categoryTitle={this.props.celebrity.categoryTitle}
-                  contractTypes={this.props.celebrity.contractTypes}
-                />
-                <CelebrityPublicContractsSectionLayout
-                  contractTypes={this.props.celebrity.contractTypes}
-                  celebrityId={this.props.celebrity.id}
-                  username={this.props.celebrity.username}
-                />
-                <section className="container text-center pt-2 pb-4">
-                  <NavLink to="#">
-                    <button
-                      type="button"
-                      className="btn btn-primary similar-celebrities-button"
-                      style={{
-                        background: "#FFE1F0",
-                        borderRadius: "5px",
-                        border: "none",
-                        padding: "0.75em 1.5em",
-                        fontSize: "20px",
-                        fontWeight: "bold",
-                        color: "#FB177D"
-                      }}
-                    >
-                      Ver famosos similares
-                    </button>
-                  </NavLink>
-                </section>
-                {/* <SimilarCelebritiesCardsSectionLayout
-                  celebrityUsername={this.props.celebrity.username}
-                />
-                <SimilarCelebrityContractsSectionLayout
-                  celebrityUsername={this.props.celebrity.username}
-                /> */}
-                <CelebrityReviewsSectionLayout
-                  celebrityId={this.props.celebrity.id}
-                />
-                <HowToGetAVideoMessageLayout />
-              </>
+              <CelebrityProfileLayoutA celebrity={this.props.celebrity} />
             ) : null}
           </div>
         </PageContainer>
