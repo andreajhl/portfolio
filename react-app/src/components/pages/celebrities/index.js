@@ -185,7 +185,7 @@ class CelebritiesPage extends Component {
             <HeroSectionLayout />
             <FiltersSectionLayout />
             {this.state.session ? <UserLikesSectionLayout /> : null}
-            <BlogPostCarousel></BlogPostCarousel>
+            {/* <BlogPostCarousel></BlogPostCarousel> */}
 
             <CelebritiesSectionsLayout />
             {/* <div

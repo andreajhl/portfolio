@@ -23,7 +23,7 @@ class MyRoutes extends Component {
               path={PATHS.ROOT_PATH}
               component={PAGES.CelebritiesPage}
             />
-              <Route
+              {/* <Route
               exact
               path={PATHS.BLOG}
               component={PAGES.Blog_Results}
@@ -32,7 +32,7 @@ class MyRoutes extends Component {
               exact
               path={PATHS.BLOG_ENTRY}
               component={PAGES.Blog_Entry}
-            />
+            /> */}
             <Route
               exact
               path={PATHS.SEARCH_PATH}
