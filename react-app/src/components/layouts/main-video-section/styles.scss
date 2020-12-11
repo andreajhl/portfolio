@@ -35,11 +35,16 @@
   }
 }
 
-.react-resizable .handle-icon {
-  color: white;
+.react-resizable .handle-button {
   position: absolute;
-  bottom: 1.25rem;
+  bottom: 0.5rem;
   left: 50%;
   z-index: 100;
   transform: translateX(-50%);
+
+  &:focus,
+  &.focus {
+    outline: 0;
+    box-shadow: none;
+  }
 }

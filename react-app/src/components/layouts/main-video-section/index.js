@@ -84,11 +84,9 @@ const CelebrityMainVideoSection = ({
       maxConstraints={[windowWidth, 445]}
       axis="y"
       handle={
-        <img
-          src="assets/img/resize-handle.svg"
-          className="handle-icon cursor-pointer"
-          draggable={false}
-        />
+        <button type="button" className="btn handle-button">
+          <img src="assets/img/resize-handle.svg" draggable={false} />
+        </button>
       }
     >
       <section className="CelebrityMainvVideoSection container p-0">
