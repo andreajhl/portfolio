@@ -6,8 +6,9 @@ import { SimilarCelebritiesCardsSectionLayout } from "../similar-celebrities-car
 import { CelebrityMainVideoSection } from "../main-video-section";
 import HowToGetAVideoMessageLayout from "../how-to-get-a-video-message";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
+import { connect } from "react-redux";
 
-const CelebrityProfileLayoutB = ({ celebrity }) => {
+const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
   return (
     <>
       {celebrity.mainVideo ? (
@@ -28,13 +29,15 @@ const CelebrityProfileLayoutB = ({ celebrity }) => {
         celebrityId={celebrity.id}
         username={celebrity.username}
       />
-      <div className="container pb-4 pt-2 text-center">
-        <HireThisCelebrityButton
-          className="get-a-video-button px-md-5 py-3 px-4"
-          text="Quiero un video como este"
-          fontSize="1.25em"
-        />
-      </div>
+      {hasPublicContracts ? (
+        <div className="container pb-4 pt-2 text-center">
+          <HireThisCelebrityButton
+            className="get-a-video-button px-md-5 py-3 px-4"
+            text="Quiero un video como este"
+            fontSize="1.25em"
+          />
+        </div>
+      ) : null}
       <SimilarCelebritiesCardsSectionLayout
         celebrityUsername={celebrity.username}
       />
@@ -45,7 +48,20 @@ const CelebrityProfileLayoutB = ({ celebrity }) => {
 };
 
 CelebrityProfileLayoutB.defaultProps = {
-  celebrity: {}
+  celebrity: {},
+  hasPublicContracts: true
 };
 
-export { CelebrityProfileLayoutB };
+const mapStateToProps = ({ celebrities: { fetchPublicContractsReducer } }) => {
+  return {
+    hasPublicContracts:
+      !fetchPublicContractsReducer.completed ||
+      fetchPublicContractsReducer.data.results.length > 0
+  };
+};
+
+const _CelebrityProfileLayoutB = connect(mapStateToProps)(
+  CelebrityProfileLayoutB
+);
+
+export { _CelebrityProfileLayoutB as CelebrityProfileLayoutB };
