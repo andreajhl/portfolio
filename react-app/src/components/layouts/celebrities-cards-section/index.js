@@ -1,9 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import debounce from "lodash.debounce";
 import { CelebrityCardLayout } from "../celebrity-card";
 import { VideoCardLayout } from "../video-card";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
+import { SEARCH_PATH } from "../../../routing/Paths";
+import { jsonToQueryString } from "../../../state/utils/apiService";
 
 const initialState = {
   showLeftScrollButton: false,
@@ -13,7 +15,8 @@ const initialState = {
 const CelebritiesCardsSectionLayout = ({
   celebritiesSection,
   hasMoreResults,
-  moreResultsPath
+  moreResultsPath,
+  isFavoriteSection
 }) => {
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
     initialState.showLeftScrollButton
@@ -48,6 +51,25 @@ const CelebritiesCardsSectionLayout = ({
 
   const { celebrities } = celebritiesSection;
 
+  const searchMoreResultsPath = useMemo(() => {
+    const searchFilters = celebrities.reduce(
+      (filters, celebrity) => {
+        return {
+          countries: [...filters.countries, celebrity.countryId],
+          categories: [...filters.categories, celebrity.categoryId]
+        };
+      },
+      { countries: [], categories: [] }
+    );
+    return (
+      SEARCH_PATH +
+      jsonToQueryString({
+        country_id: searchFilters.countries.filter(Boolean).join(","),
+        category_id: searchFilters.categories.filter(Boolean).join(",")
+      })
+    );
+  }, [celebrities]);
+
   const shouldRenderMoreResultsButton = hasMoreResults && moreResultsPath;
   return (
     <section
@@ -61,9 +83,16 @@ const CelebritiesCardsSectionLayout = ({
         <h2 className={`celebrities-section-layout__title`}>
           {celebritiesSection.title}
         </h2>
-        {shouldRenderMoreResultsButton ? (
+        {isFavoriteSection ? (
           <NavLink
             to={moreResultsPath}
+            className="mb-1 font-weight-bold mr-3 mr-sm-0"
+          >
+            Ver más
+          </NavLink>
+        ) : celebritiesSection.celebritySectionType === "CELEBRITY_CARD" ? (
+          <NavLink
+            to={searchMoreResultsPath}
             className="mb-1 font-weight-bold mr-3 mr-sm-0"
           >
             Ver más
