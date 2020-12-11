@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { ProfilePicture } from "../../containers/profile-picture";
+import { ProfilePicture } from "../profile-picture";
 import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";

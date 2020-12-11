@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./styles.scss";
 import { contractOperations } from "../../../state/ducks/contracts";
-import { ProfilePicture } from "../../containers/profile-picture";
+import { ProfilePicture } from "../profile-picture";
 import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { connect } from "react-redux";
 
