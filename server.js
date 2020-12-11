@@ -197,7 +197,7 @@ app.get("/:celebrity_username", async (req, res) => {
             return console.log(err);
           }
           data = defaultOG(data);
-          response.send(data);
+          res.send(data);
         });
       });
   } else {
