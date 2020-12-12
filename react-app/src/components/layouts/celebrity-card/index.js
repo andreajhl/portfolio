@@ -8,7 +8,6 @@ import { cursorOperations } from "../../../state/ducks/cursor-position";
 import { connect } from "react-redux";
 import { ContractPriceLayout } from "../celebrity-card-contract-price";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
-import { flashDeliveryCelebritiesUsernames } from "../../../constants/flashDeliveryCelebritiesUsernames";
 import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
 
 const CelebrityCardLayout = ({
@@ -60,11 +59,10 @@ const CelebrityCardLayout = ({
               avatarIsLoaded ? "d-none" : ""
             }`}
           />
-          {flashDeliveryCelebritiesUsernames.find(
-            (celebrityUserName) => celebrity.username === celebrityUserName
-          ) ? (
-            <FlashDeliveryBadgeLayout className="celebrity__flash-delivery" />
-          ) : null}
+          <FlashDeliveryBadgeLayout
+            className="celebrity__flash-delivery"
+            celebrityUsername={celebrity.username}
+          />
           {contractPrice > 0 ? (
             <div className="celebrity__price">
               <ContractPriceLayout
