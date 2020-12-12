@@ -12,6 +12,28 @@ const initialState = {
   showRightScrollButton: false
 };
 
+const getMoreFrequentIds = (celebrities, propertyName) => {
+  const idsCount = celebrities.reduce((idsCount, celebrity) => {
+    const celebrityPropertyValue = celebrity[propertyName];
+    if (idsCount[celebrityPropertyValue]) {
+      return {
+        ...idsCount,
+        [celebrityPropertyValue]: idsCount[celebrityPropertyValue] + 1
+      };
+    } else {
+      return {
+        ...idsCount,
+        [celebrityPropertyValue]: 1
+      };
+    }
+  }, {});
+  return Object.entries(idsCount)
+    .sort(([, firstEntry], [, secondEntry]) => secondEntry - firstEntry)
+    .slice(0, 3)
+    .map(([value]) => value)
+    .join(",");
+};
+
 const CelebritiesCardsSectionLayout = ({
   celebritiesSection,
   hasMoreResults,
@@ -52,20 +74,12 @@ const CelebritiesCardsSectionLayout = ({
   const { celebrities } = celebritiesSection;
 
   const searchMoreResultsPath = useMemo(() => {
-    const searchFilters = celebrities.reduce(
-      (filters, celebrity) => {
-        return {
-          countries: [...filters.countries, celebrity.countryId],
-          categories: [...filters.categories, celebrity.categoryId]
-        };
-      },
-      { countries: [], categories: [] }
-    );
     return (
       SEARCH_PATH +
       jsonToQueryString({
-        country_id: searchFilters.countries.filter(Boolean).join(","),
-        category_id: searchFilters.categories.filter(Boolean).join(",")
+        country_id: getMoreFrequentIds(celebrities, "countryId"),
+        category_id: getMoreFrequentIds(celebrities, "categoryId"),
+        limit: 20
       })
     );
   }, [celebrities]);
