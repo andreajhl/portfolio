@@ -93,7 +93,7 @@ const CelebritiesCardsSectionLayout = ({
           : ""
       }`}
     >
-      <header className="celebrities-section__header d-flex align-items-center justify-content-between">
+      <header className="celebrities-section__header d-flex justify-content-between">
         <h2 className={`celebrities-section-layout__title`}>
           {celebritiesSection.title}
         </h2>
