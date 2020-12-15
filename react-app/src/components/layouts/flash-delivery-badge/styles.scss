@@ -11,4 +11,17 @@
     margin-right: 0.5em;
     color: black;
   }
+
+  &__time {
+    color: #eb2a7b;
+    margin-right: 0.5em;
+    font-weight: bold;
+  }
+
+  &-color-dark {
+    background-color: black;
+    .FlashDeliveryLayout__title {
+      color: white;
+    }
+  }
 }
