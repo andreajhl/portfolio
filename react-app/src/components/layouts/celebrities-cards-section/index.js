@@ -12,7 +12,7 @@ const initialState = {
   showRightScrollButton: false
 };
 
-const getMoreFrequentIds = (celebrities, propertyName) => {
+const getMoreFrequentIds = (celebrities = [], propertyName) => {
   const idsCount = celebrities.reduce((idsCount, celebrity) => {
     const celebrityPropertyValue = celebrity[propertyName];
     if (idsCount[celebrityPropertyValue]) {
@@ -74,6 +74,7 @@ const CelebritiesCardsSectionLayout = ({
   const { celebrities } = celebritiesSection;
 
   const searchMoreResultsPath = useMemo(() => {
+    if (!celebrities) return "#";
     return (
       SEARCH_PATH +
       jsonToQueryString({
@@ -104,7 +105,8 @@ const CelebritiesCardsSectionLayout = ({
           >
             Ver más
           </NavLink>
-        ) : celebritiesSection.celebritySectionType === "CELEBRITY_CARD" ? (
+        ) : celebritiesSection.celebritySectionType === "CELEBRITY_CARD" &&
+          celebrities.length > 0 ? (
           <NavLink
             to={searchMoreResultsPath}
             className="mb-1 font-weight-bold mr-3 mr-sm-0"
