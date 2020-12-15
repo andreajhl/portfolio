@@ -27,10 +27,12 @@ export const tagManagerDataLayer = (event, dataLayer) => {
     });
 
     // Segment
-    window.analytics.track(event, {
-      ...dataLayer,
-      ENVIRONMENT: ENV.toUpperCase()
-    });
+    if (ENV !== "development") {
+      window.analytics.track(event, {
+        ...dataLayer,
+        ENVIRONMENT: ENV.toUpperCase()
+      });
+    }
   } catch (e) {
     console.log("tagManagerDataLayer Error:", e);
   }
