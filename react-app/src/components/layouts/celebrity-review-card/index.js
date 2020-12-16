@@ -12,7 +12,7 @@ class CelebrityReviewCardLayout extends Component {
                 ? this.props.review.user_full_name
                 : "Anónimo"}
             </h6>
-            <h5 className="text-warning">
+            <h5 className="text-warning flex-shrink-0">
               {[...Array(this.props.review.contract_stars)].map((i, index) => {
                 return (
                   <i
