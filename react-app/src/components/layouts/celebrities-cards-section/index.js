@@ -98,17 +98,9 @@ const CelebritiesCardsSectionLayout = ({
         <h2 className={`celebrities-section-layout__title`}>
           {celebritiesSection.title}
         </h2>
-        {isFavoriteSection ? (
+        {hasMoreResults ? (
           <NavLink
-            to={moreResultsPath}
-            className="mb-1 font-weight-bold mr-3 mr-sm-0"
-          >
-            Ver más
-          </NavLink>
-        ) : celebritiesSection.celebritySectionType === "CELEBRITY_CARD" &&
-          celebrities.length > 0 ? (
-          <NavLink
-            to={searchMoreResultsPath}
+            to={moreResultsPath || searchMoreResultsPath}
             className="mb-1 font-weight-bold mr-3 mr-sm-0"
           >
             Ver más
@@ -160,8 +152,7 @@ const CelebritiesCardsSectionLayout = ({
 };
 
 CelebritiesCardsSectionLayout.defaultProps = {
-  hasMoreResults: false,
-  moreResultsPath: "#"
+  hasMoreResults: false
 };
 
 export { CelebritiesCardsSectionLayout };

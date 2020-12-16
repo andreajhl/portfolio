@@ -62,6 +62,10 @@ const CelebritiesSectionsLayout = ({
             <CelebritiesCardsSectionLayout
               key={celebritiesSection.id}
               celebritiesSection={celebritiesSection}
+              hasMoreResults={
+                celebritiesSection.celebritySectionType === "CELEBRITY_CARD" &&
+                celebritiesSection.celebrities.length > 10
+              }
             />
           ))}
         </InfiniteScroll>

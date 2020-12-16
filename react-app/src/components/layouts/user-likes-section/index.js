@@ -29,7 +29,6 @@ const UserLikesSectionLayout = ({
         celebrities: results,
         title: "Tus Favoritos"
       }}
-      isFavoriteSection
       hasMoreResults={results.length < totalResults}
       moreResultsPath={CLIENT_FAVORITES}
     />
