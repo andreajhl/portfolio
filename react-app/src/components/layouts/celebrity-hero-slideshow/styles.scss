@@ -1,0 +1,24 @@
+.CelebrityHeroSlideshow {
+  background-color: red;
+
+  .carousel {
+    &-item {
+      height: 440px;
+    }
+
+    &-indicators {
+      margin-bottom: 0;
+    }
+  }
+
+  [class^="carousel-control-"] {
+    @media (hover: none) {
+      color: white;
+    }
+  }
+
+  .controls-icon {
+    color: inherit;
+    font-size: 24px;
+  }
+}
