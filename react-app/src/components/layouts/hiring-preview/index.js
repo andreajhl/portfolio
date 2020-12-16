@@ -158,6 +158,10 @@ class HiringPreviewLayout extends Component {
     return videoURL;
   };
 
+  changePlayPauseIcon = (event) => {
+    this.setState({ videoDesktopPlayIcon: "fa-pause" });
+  };
+
   render() {
     return (
       <div className={"HiringPreviewLayout"}>
@@ -226,6 +230,7 @@ class HiringPreviewLayout extends Component {
                   ref={this.videoDesktopRef}
                   controls={false}
                   onClick={this.playDesktopVideo.bind(this)}
+                  onPlay={this.changePlayPauseIcon}
                   playsInline={true}
                   preload="metadata"
                 />
