@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
 import { NavbarSearchLayout } from "../navbar-search";
-import { HOME_PATH } from "../../../routing/Paths";
+import { ROOT_PATH } from "../../../routing/Paths";
 import PropTypes from "prop-types";
 import { Session } from "../../../state/utils/session";
 import * as GTM from "../../../state/utils/gtm";
@@ -136,7 +136,7 @@ const NavbarSectionLayout = ({
           </div>
           <div className="top-bar__center-side col-4 text-center p-0 pt-2">
             <NavLink
-              to={HOME_PATH}
+              to={ROOT_PATH}
               className="top-bar__logo-link"
               onClick={registerLogoLinkClick}
             >
