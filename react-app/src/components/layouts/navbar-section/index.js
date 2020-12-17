@@ -19,6 +19,12 @@ const sendDropdownLinkAnalyticsData = (eventName, target) => {
   });
 };
 
+const registerLogoLinkClick = () =>
+  GTM.tagManagerDataLayer("CLICK_LOGO_LINK", {
+    widget: "NavbarSectionLayout",
+    path: window.location.pathname
+  });
+
 const NavbarSectionLayout = ({
   className,
   onSearchChange,
@@ -129,7 +135,11 @@ const NavbarSectionLayout = ({
             </div>
           </div>
           <div className="top-bar__center-side col-4 text-center p-0 pt-2">
-            <NavLink to={HOME_PATH} className="top-bar__logo-link">
+            <NavLink
+              to={HOME_PATH}
+              className="top-bar__logo-link"
+              onClick={registerLogoLinkClick}
+            >
               <img
                 className="top-bar__logo"
                 src="/assets/img/famosos-logo.svg"
