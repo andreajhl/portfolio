@@ -1,25 +1,30 @@
-import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 
 import * as CarouselWithButtons from "../../layouts/carousel-with-buttons";
 import * as mediumApiService from "../../../state/utils/mediumApiService";
 import BlogPostCardLayout from "../../layouts/blog-post-card";
 import { blogOperations } from "../../../state/ducks/blog";
 
-
-const BlogPostCarousel = ({blogsData,isBlogsDataFetch,blogsDataLoading,saveBlogData,getBlogData}) => {
+const BlogPostCarousel = ({
+  blogsData,
+  isBlogsDataFetch,
+  blogsDataLoading,
+  saveBlogData,
+  getBlogData
+}) => {
   useEffect(() => {
-    if(!isBlogsDataFetch){
+    if (!isBlogsDataFetch) {
       getBlogData();
-    };
+    }
   }, []);
-    let renderCarousel= null;
-    if(isBlogsDataFetch){
-      renderCarousel = (<CarouselWithButtons.Container>
+
+  return isBlogsDataFetch ? (
+    <CarouselWithButtons.Container buttonsStyles={{ height: "482px", top: 0 }}>
       <CarouselWithButtons.List>
         <ul>
           {blogsData.map(({ title, thumbnail, description, link }, index) => (
-            <li style={{ marginRight: '12px' }} key={index}>
+            <li style={{ marginRight: "12px" }} key={index}>
               <BlogPostCardLayout
                 title={title}
                 imageUrl={thumbnail}
@@ -31,26 +36,23 @@ const BlogPostCarousel = ({blogsData,isBlogsDataFetch,blogsDataLoading,saveBlogD
           ))}
         </ul>
       </CarouselWithButtons.List>
-    </CarouselWithButtons.Container>)
-    }
-    return (
-      renderCarousel
-    );
-}
+    </CarouselWithButtons.Container>
+  ) : null;
+};
 
-const mapStateToProps = ({
-  blog,
-}) => ({
+const mapStateToProps = ({ blog }) => ({
   blogsData: blog.blogsPostMediumReducer.data,
   isBlogsDataFetch: blog.blogsPostMediumReducer.completed,
-  blogsDataLoading: blog.blogsPostMediumReducer.loading,
+  blogsDataLoading: blog.blogsPostMediumReducer.loading
 });
 
 const mapDispatchToProps = {
   saveBlogData: blogOperations.saveBlogData,
-  getBlogData: blogOperations.getBlogData,
+  getBlogData: blogOperations.getBlogData
 };
 
 const _BlogPostCarousel = connect(
-  mapStateToProps,mapDispatchToProps)(BlogPostCarousel);
-export  {_BlogPostCarousel as BlogPostCarousel};
+  mapStateToProps,
+  mapDispatchToProps
+)(BlogPostCarousel);
+export { _BlogPostCarousel as BlogPostCarousel };
