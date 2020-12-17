@@ -63,7 +63,11 @@ class NavbarSearchLayout extends Component {
   onSearchChange(keyword) {
     if (this.props.isLoading) return;
     if (keyword) localStorage.setItem(shouldFocusSearchKey, true);
-    GTM.tagManagerDataLayer("CELEBRITIES_SEARCH_CHANGED", this.state.keyword);
+    GTM.tagManagerDataLayer("CELEBRITIES_SEARCH_CHANGED", {
+      search: this.state.keyword,
+      widget: this.constructor.name,
+      path: window.location.pathname
+    });
     this.props.onSearchChange(keyword);
     document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -71,6 +75,13 @@ class NavbarSearchLayout extends Component {
   goToHome() {
     history._pushRoute(PATHS.HOME_PATH + "?inputSearchFocus=true");
   }
+
+  sendOnFocusAnalyticsData = () =>
+    GTM.tagManagerDataLayer("FOCUS_CELEBRITIES_SEARCH", {
+      search: this.state.keyword,
+      widget: this.constructor.name,
+      path: window.location.pathname
+    });
 
   render() {
     return (
@@ -82,6 +93,7 @@ class NavbarSearchLayout extends Component {
               onClick={this.handleBlur.bind(this)}
             />
             <input
+              onFocus={this.sendOnFocusAnalyticsData}
               autoFocus={this.props.autoFocus}
               id={"input-search"}
               className="form-control"
