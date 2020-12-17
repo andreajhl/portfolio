@@ -6,7 +6,18 @@ import { NavbarSearchLayout } from "../navbar-search";
 import { HOME_PATH } from "../../../routing/Paths";
 import PropTypes from "prop-types";
 import { Session } from "../../../state/utils/session";
+import * as GTM from "../../../state/utils/gtm";
 import "./styles.scss";
+
+const sendDropdownLinkAnalyticsData = (eventName, target) => {
+  if (!target.matches("a")) return;
+  GTM.tagManagerDataLayer(eventName + "_DROPDOWN_MENU_LINK", {
+    widget: "NavbarSectionLayout",
+    path: window.location.pathname,
+    anchorInnerText: target.innerText,
+    anchorHref: target.pathname
+  });
+};
 
 const NavbarSectionLayout = ({
   className,
@@ -42,6 +53,12 @@ const NavbarSectionLayout = ({
                 />
               </button>
               <div
+                onMouseOver={({ target }) =>
+                  sendDropdownLinkAnalyticsData("HOVER", target)
+                }
+                onClick={({ target }) =>
+                  sendDropdownLinkAnalyticsData("CLICK", target)
+                }
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton"
                 style={
