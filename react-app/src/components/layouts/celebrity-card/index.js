@@ -36,10 +36,14 @@ const CelebrityCardLayout = ({
   const registerClickOnCelebrity = () =>
     GTM.tagManagerDataLayer("CLICK_ON_CELEBRITY_CARD", celebrity);
 
+  const registerHoverOnCelebrity = () =>
+    GTM.tagManagerDataLayer("HOVER_ON_CELEBRITY_CARD", celebrity);
+
   return (
     <NavLink
       to={profileUrl}
       onClick={registerClickOnCelebrity}
+      onMouseOver={registerHoverOnCelebrity}
       className="CelebrityCardLayout"
     >
       <div className="celebrity-card">
