@@ -157,6 +157,12 @@ const NavbarSectionLayout = ({
                     ":form",
                     "email-form"
                   )}
+                  onClick={({ target }) =>
+                    sendDropdownLinkAnalyticsData("CLICK", target)
+                  }
+                  onMouseOver={({ target }) =>
+                    sendDropdownLinkAnalyticsData("HOVER", target)
+                  }
                 >
                   Ingresar
                 </NavLink>
