@@ -1,11 +1,5 @@
 import React, { Component, createRef } from "react";
-import {
-  CelebrityDetailsCardLayout,
-  CelebrityPublicContractsSectionLayout,
-  CelebrityReviewsSectionLayout,
-  /* LoadingOverlay, */
-  PageContainer
-} from "../../layouts";
+import { PageContainer } from "../../layouts";
 import * as PropTypes from "prop-types";
 import { CelebrityShape } from "../../../prop-types";
 import { connect } from "react-redux";
@@ -14,6 +8,20 @@ import "./styles.scss";
 import MetaTags from "react-meta-tags";
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
+import { NavLink } from "react-router-dom";
+import { CelebrityProfileLayoutA } from "../../layouts/celebrity-profile-a";
+import { CelebrityProfileLayoutB } from "../../layouts/celebrity-profile-b";
+import { getCelebrityProfileVersion } from "../../../utils/celebrityProfileVersion";
+
+const CelebrityProfileLayout = ({ celebrity }) => {
+  const celebrityProfileVersion = getCelebrityProfileVersion();
+
+  return celebrityProfileVersion && celebrityProfileVersion === "B" ? (
+    <CelebrityProfileLayoutB celebrity={celebrity} />
+  ) : (
+    <CelebrityProfileLayoutA celebrity={celebrity} />
+  );
+};
 
 class CelebrityProfilePage extends Component {
   constructor(props) {
@@ -63,6 +71,7 @@ class CelebrityProfilePage extends Component {
   }
 
   render() {
+    // console.log(this.props.celebrity);
     return (
       <div className="CelebrityProfilePage">
         {this.props.celebrity.username && (
@@ -88,67 +97,16 @@ class CelebrityProfilePage extends Component {
             </MetaTags>
           </div>
         )}
-        <PageContainer applyFetchCelebrities={false} showLogin={false}>
+        <PageContainer
+          applyFetchCelebrities={false}
+          showLogin={false}
+          applyFetchUserCelebrityLikes
+        >
           <div style={{ minHeight: "100vh" }}>
             {this.props.celebrity.username ===
             this.props.match.params.celebrity_username ? (
-              <>
-                {/* CelebrityDetailsCardLayout */}
-                <CelebrityDetailsCardLayout
-                  username={this.props.celebrity.username}
-                  causeUrl={this.props.celebrity.causeUrl}
-                  avatar={this.props.celebrity.avatar}
-                  fullName={this.props.celebrity.fullName}
-                  categoryTitle={this.props.celebrity.categoryTitle}
-                  isDonor={this.props.celebrity.isDonor}
-                  description={this.props.celebrity.description}
-                  causeLogo={this.props.celebrity.causeLogo}
-                  causeName={this.props.celebrity.causeName}
-                  mainVideo={this.props.celebrity.mainVideo}
-                  hashtags={this.props.celebrity.hashtags}
-                  socialNetworks={this.props.socialNetworks}
-                  contractTypes={this.props.celebrity.contractTypes}
-                  turnaround={this.props.celebrity.turnaround}
-                />
-                {/* END CelebrityDetailsCardLayout */}
-
-                {/* CelebrityPublicVideosSectionLayout */}
-                <CelebrityPublicContractsSectionLayout
-                  contractTypes={this.props.celebrity.contractTypes}
-                  celebrityId={this.props.celebrity.id}
-                  username={this.props.celebrity.username}
-
-                />
-                {/* End CelebrityPublicVideosSectionLayout */}
-
-                {/* CelebrityReviewsSection */}
-                <CelebrityReviewsSectionLayout
-                  celebrityId={this.props.celebrity.id}
-                />
-                {/* END CelebrityReviewsSection */}
-
-                <div className="col-12 d-block d-md-none">
-                  <img
-                    width="100%"
-                    style={{
-                      borderTop: "solid 5px #e4e4e4",
-                      borderBottom: "solid 5px rgb(198, 195, 195)",
-                      marginBottom: "10px"
-                    }}
-                    src="/assets/img/steps_mobile_profile.png"
-                  />
-                </div>
-
-                {/* CelebrityCardsSectionLayout */}
-                {/*<SimilarCelebritiesLayout*/}
-                {/*    showLoading={this.props.isLoading && this.props.queryParams.page > 1}*/}
-                {/*    celebrities={this.props.similarCelebrities}*/}
-                {/*/>*/}
-                {/* End CelebrityCardsSectionLayout */}
-              </>
-            ) : null /* (
-              <LoadingOverlay />
-            ) */}
+              <CelebrityProfileLayout celebrity={this.props.celebrity} />
+            ) : null}
           </div>
         </PageContainer>
       </div>
@@ -192,9 +150,9 @@ const mapDispatchToProps = {
   getCelebrity: celebrityOperations.get
 };
 
-// Export Class
 const _CelebrityProfilePage = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CelebrityProfilePage);
+
 export { _CelebrityProfilePage as CelebrityProfilePage };

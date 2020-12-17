@@ -9,7 +9,8 @@ import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/
 import * as GTM from "../../../state/utils/gtm";
 import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
 import { Session } from "../../../state/utils/session";
-
+// import { VideoCallsResearch } from "../../containers/videocalls-research";
+import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebrityProfileVersion";
 // import { DownloadAppBanner } from "../download-app-banner";
 
 class PageContainer extends Component {
@@ -30,6 +31,9 @@ class PageContainer extends Component {
     if (this.props.applyFetchUserCelebrityLikes && isLogged) {
       this.props.fetchUserCelebrityLikes();
     }
+
+    setCelebrityProfileVersionDependingOfTime();
+
     /* if (this.props.applyFetchCelebrities === true) {
       const queryParams = this.props.queryParams;
       if (!window.location.search) {

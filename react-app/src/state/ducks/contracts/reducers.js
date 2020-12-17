@@ -84,6 +84,14 @@ const saveContractToPayInitialState = {
   completed: false
 };
 
+const fetchSimilarContractsInitialState = {
+  loading: false,
+  failed: false,
+  completed: false,
+  error_data: { error: "" },
+  data: {}
+};
+
 export function queryParamsReducer(
   state = updateQueryParamsInitialState,
   action
@@ -387,6 +395,37 @@ export function updateContractReducer(
   }
 }
 
+export function fetchSimilarContractsReducer(
+  state = fetchSimilarContractsInitialState,
+  action
+) {
+  switch (action.type) {
+    case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST_FAILURE:
+      return {
+        ...fetchSimilarContractsInitialState,
+        error_data: action.payload.data,
+        failed: true
+      };
+    case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST_SUCCESS:
+      return {
+        ...fetchSimilarContractsInitialState,
+        data: action.payload.data
+      };
+    case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST_COMPLETED:
+      return {
+        ...state,
+        completed: true
+      };
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   saveClientContractReducer,
   listClientContractsReducer,
@@ -398,5 +437,6 @@ export default combineReducers({
   playVideoReducer,
   getContractWithPaymentsReducer,
   saveContractToPayReducer,
-  updateContractReducer
+  updateContractReducer,
+  fetchSimilarContractsReducer
 });
