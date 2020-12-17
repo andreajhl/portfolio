@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ModalSelect } from "../modal-select";
 import "./styles.scss";
+import * as GTM from "../../../state/utils/gtm";
 
 const CelebritiesFilter = ({
   buttonLabel,
@@ -24,10 +25,24 @@ const CelebritiesFilter = ({
     }
   };
 
-  const onModalOpen = () => setCheckedItems(activeItems);
-  const onModalClose = () => setSearchQuery("");
+  const analyticsData = {
+    widget: "CelebritiesFilter",
+    path: window.location.pathname,
+    buttonLabel,
+    activeItems
+  };
+
+  const onModalOpen = () => {
+    GTM.tagManagerDataLayer("OPEN_CELEBRITIES_FILTER_MODAL", analyticsData);
+    setCheckedItems(activeItems);
+  };
+  const onModalClose = () => {
+    GTM.tagManagerDataLayer("CLOSE_CELEBRITIES_FILTER_MODAL", analyticsData);
+    setSearchQuery("");
+  };
 
   const applyFilters = () => {
+    GTM.tagManagerDataLayer("APPLY_CELEBRITIES_FILTER", analyticsData);
     onApplyFilters(checkedItems);
   };
 

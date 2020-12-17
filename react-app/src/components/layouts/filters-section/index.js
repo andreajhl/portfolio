@@ -8,6 +8,7 @@ import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import { countriesOperations } from "../../../state/ducks/countries";
 import { celebrityCategoriesOperations } from "../../../state/ducks/celebrity-categories";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
+import * as GTM from "../../../state/utils/gtm";
 
 const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
   return {
@@ -73,6 +74,11 @@ const FiltersSectionLayout = ({
   }, []);
 
   const cleanFilters = () => {
+    GTM.tagManagerDataLayer("CLICK_CLEAN_FILTERS_BUTTON", {
+      widget: "FiltersSectionLayout",
+      path: window.location.pathname,
+      queryParams
+    });
     updateQueryParams({
       ...updateQueryParamsInitialState
     });
