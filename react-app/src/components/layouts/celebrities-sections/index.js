@@ -7,6 +7,7 @@ import { fetchCelebritySections } from "../../../state/ducks/celebrity-sections/
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./styles.scss";
 import { EndMessageLayout } from "../end-message";
+import * as GTM from "../../../state/utils/gtm";
 
 const mapStateToProps = ({ celebritySections }) => {
   const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
@@ -40,10 +41,25 @@ const CelebritiesSectionsLayout = ({
 
   const fetchMoreData = () => {
     setOffset((offset) => {
-      const newOffset = offset + resultsLimit;
-      return newOffset < totalResults ? newOffset : totalResults;
+      const nextOffset = offset + resultsLimit;
+      const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
+      GTM.tagManagerDataLayer("FETCH_MORE_CELEBRITY_SECTIONS", {
+        widget: "CelebritiesSectionsLayout",
+        path: window.location.pathname,
+        newOffset,
+        totalResults,
+        hasReachedEnd: newOffset + resultsLimit >= totalResults
+      });
+      return newOffset;
     });
   };
+
+  const registerGoBackButtonClick = () =>
+    GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTIONS_GO_UP_BUTTON", {
+      widget: "CelebritiesSectionsLayout",
+      path: window.location.pathname,
+      celebritiesSectionsLength: celebritiesSections.length
+    });
 
   return (
     <div className="CelebritiesSectionsLayout">
@@ -56,7 +72,12 @@ const CelebritiesSectionsLayout = ({
           next={fetchMoreData}
           hasMore={celebritiesSections.length < totalResults}
           loader={<LoaderLayout />}
-          endMessage={<EndMessageLayout offsetTop={heroSectionHeight} />}
+          endMessage={
+            <EndMessageLayout
+              offsetTop={heroSectionHeight}
+              onClick={registerGoBackButtonClick}
+            />
+          }
         >
           {celebritiesSections.map((celebritiesSection) => (
             <CelebritiesCardsSectionLayout
