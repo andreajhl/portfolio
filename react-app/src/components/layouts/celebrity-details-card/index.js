@@ -6,6 +6,7 @@ import { ContractPriceLayout } from "../contract-price";
 import { connect } from "react-redux";
 import { Session } from "../../../state/utils/session";
 import * as PATHS from "../../../routing/Paths";
+import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
 
 class CelebrityDetailsCardLayout extends Component {
   constructor(props) {
@@ -209,10 +210,16 @@ class CelebrityDetailsCardLayout extends Component {
                   </div>
                   <div className="col-9 col-md-8 details my-auto">
                     <div className="row p-0 pl-3 pr-3">
-                      <div className="col-8 p-0 m-0 f-names my-auto">
+                      <div className="col-12 p-0 m-0 f-names my-auto d-flex justify-content-between flex-wrap">
                         <h5 className="text-dark font-weight-bold pt-1 m-0">
                           {this.props.fullName}
                         </h5>
+                        <FlashDeliveryBadgeLayout
+                          celebrityUsername={this.props.username}
+                          color="dark"
+                          showTime
+                          className="profile-lg__flash-delivery"
+                        />
                       </div>
                       <div className="col-12 p-0 m-0 text-center pr-0">
                         {this.returnContractPrice() > 0 ? (
@@ -405,6 +412,7 @@ class CelebrityDetailsCardLayout extends Component {
                           onClick={this.toggleVideoMobileIsMuted}
                         />
                       </div>
+
                       <video
                         preload="metadata"
                         style={{
@@ -426,6 +434,12 @@ class CelebrityDetailsCardLayout extends Component {
                         />
                         Your browser does not support the video tag.
                       </video>
+                      <FlashDeliveryBadgeLayout
+                        celebrityUsername={this.props.username}
+                        color="dark"
+                        showTime
+                        className="profile-sm__flash-delivery"
+                      />
                     </>
                   ) : null}
                   <div className="f-avatar f-shadow">
@@ -442,9 +456,17 @@ class CelebrityDetailsCardLayout extends Component {
                 </div>
               </div>
               <div className="col-9 pt-3 pb-1">
-                <h6 className="font-weight-bold title">
+                <h6 className="font-weight-bold title d-flex">
                   {this.props.fullName}
                 </h6>
+                {!this.props.mainVideo ? (
+                  <FlashDeliveryBadgeLayout
+                    celebrityUsername={this.props.username}
+                    color="dark"
+                    showTime
+                    className="mt-3"
+                  />
+                ) : null}
               </div>
               <div className="col-4 pr-0 mt-2 f-reviews">
                 <small className="title text-warning">

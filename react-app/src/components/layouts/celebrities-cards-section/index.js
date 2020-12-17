@@ -1,19 +1,45 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import debounce from "lodash.debounce";
 import { CelebrityCardLayout } from "../celebrity-card";
 import { VideoCardLayout } from "../video-card";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
+import { SEARCH_PATH } from "../../../routing/Paths";
+import { jsonToQueryString } from "../../../state/utils/apiService";
+import * as GTM from "../../../state/utils/gtm";
 
 const initialState = {
   showLeftScrollButton: false,
   showRightScrollButton: false
 };
 
+const getMoreFrequentIds = (celebrities = [], propertyName) => {
+  const idsCount = celebrities.reduce((idsCount, celebrity) => {
+    const celebrityPropertyValue = celebrity[propertyName];
+    if (idsCount[celebrityPropertyValue]) {
+      return {
+        ...idsCount,
+        [celebrityPropertyValue]: idsCount[celebrityPropertyValue] + 1
+      };
+    } else {
+      return {
+        ...idsCount,
+        [celebrityPropertyValue]: 1
+      };
+    }
+  }, {});
+  return Object.entries(idsCount)
+    .sort(([, firstEntry], [, secondEntry]) => secondEntry - firstEntry)
+    .slice(0, 3)
+    .map(([value]) => value)
+    .join(",");
+};
+
 const CelebritiesCardsSectionLayout = ({
   celebritiesSection,
   hasMoreResults,
-  moreResultsPath
+  moreResultsPath,
+  isFavoriteSection
 }) => {
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
     initialState.showLeftScrollButton
@@ -24,6 +50,15 @@ const CelebritiesCardsSectionLayout = ({
 
   const cardListRef = useRef(null);
 
+  const analyticsData = {
+    widget: "CelebritiesCardsSectionLayout",
+    path: window.location.pathname,
+    title: celebritiesSection.title,
+    id: celebritiesSection.id,
+    celebritySectionType: celebritiesSection.celebritySectionType,
+    position: celebritiesSection.position
+  };
+
   const scrollTo = (direction) => () => {
     const cardListElement = cardListRef.current;
     const { offsetWidth } = cardListElement;
@@ -31,12 +66,20 @@ const CelebritiesCardsSectionLayout = ({
       left: direction === "right" ? offsetWidth : offsetWidth * -1,
       behavior: "smooth"
     });
+    GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTION_SCROLL_BUTTON", {
+      ...analyticsData,
+      direction
+    });
   };
 
   const setScrollButtonsVisibility = debounce(() => {
     const { scrollLeft, offsetWidth, scrollWidth } = cardListRef.current;
     setShowLeftScrollButton(scrollLeft !== 0);
     setShowRightScrollButton(scrollLeft + offsetWidth !== scrollWidth);
+    GTM.tagManagerDataLayer("SCROLL_CELEBRITY_SECTION_LIST", {
+      ...analyticsData,
+      hasReachedListEnd: scrollLeft + offsetWidth >= scrollWidth
+    });
   }, 100);
 
   useEffect(() => {
@@ -48,7 +91,29 @@ const CelebritiesCardsSectionLayout = ({
 
   const { celebrities } = celebritiesSection;
 
+  const searchMoreResultsPath = useMemo(() => {
+    if (!celebrities) return "#";
+    return (
+      SEARCH_PATH +
+      jsonToQueryString({
+        country_id: getMoreFrequentIds(celebrities, "countryId"),
+        category_id: getMoreFrequentIds(celebrities, "categoryId"),
+        limit: 20
+      })
+    );
+  }, [celebrities]);
+
   const shouldRenderMoreResultsButton = hasMoreResults && moreResultsPath;
+
+  const registerCelebritySectionHover = () =>
+    GTM.tagManagerDataLayer("HOVER_CELEBRITY_SECTION", analyticsData);
+
+  const registerSeeMoreResultsClick = () =>
+    GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTION_SEE_MORE_LINK", {
+      ...analyticsData,
+      searchMoreResultsPath
+    });
+
   return (
     <section
       className={`celebrities-section-layout container pr-0 ${
@@ -57,14 +122,15 @@ const CelebritiesCardsSectionLayout = ({
           : ""
       }`}
     >
-      <header className="celebrities-section__header d-flex align-items-center justify-content-between">
+      <header className="celebrities-section__header d-flex justify-content-between">
         <h2 className={`celebrities-section-layout__title`}>
           {celebritiesSection.title}
         </h2>
-        {shouldRenderMoreResultsButton ? (
+        {hasMoreResults ? (
           <NavLink
-            to={moreResultsPath}
+            to={moreResultsPath || searchMoreResultsPath}
             className="mb-1 font-weight-bold mr-3 mr-sm-0"
+            onClick={registerSeeMoreResultsClick}
           >
             Ver más
           </NavLink>
@@ -82,6 +148,7 @@ const CelebritiesCardsSectionLayout = ({
         className="celebrities-section-layout__cards-list"
         ref={cardListRef}
         onScroll={setScrollButtonsVisibility}
+        onMouseOver={registerCelebritySectionHover}
       >
         {celebrities.length > 0
           ? celebrities.map((celebrity, index) => (
@@ -115,8 +182,7 @@ const CelebritiesCardsSectionLayout = ({
 };
 
 CelebritiesCardsSectionLayout.defaultProps = {
-  hasMoreResults: false,
-  moreResultsPath: "#"
+  hasMoreResults: false
 };
 
 export { CelebritiesCardsSectionLayout };

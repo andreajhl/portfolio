@@ -1,0 +1,9 @@
+{
+  "conventionalCommits.scopes": [
+    "Celebrity-profile",
+    "Celebrity-sections",
+    "Celebrity-cards",
+    "flash-delivery",
+    "Analytics"
+  ]
+}

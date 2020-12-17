@@ -7,6 +7,14 @@
       position: relative;
       padding-bottom: 20px;
 
+      &__flash-delivery {
+        font-size: 0.75rem;
+
+        i {
+          font-size: 1.25em;
+        }
+      }
+
       .f-card {
         margin-top: 30px;
 
@@ -75,13 +83,14 @@
           position: absolute;
           top: 4%;
           z-index: 100;
+          pointer-events: none;
 
           .play-pause {
             position: absolute;
             z-index: 1;
-            top: 20%;
-            left: 10%;
-            font-size: 32.5px;
+            top: 2rem;
+            left: 32px;
+            font-size: 45px;
             color: white;
           }
 
@@ -92,6 +101,7 @@
             right: 10%;
             font-size: 35px;
             color: white;
+            pointer-events: all;
           }
         }
 
@@ -197,6 +207,17 @@
     .profile-sm {
       position: relative;
       padding-top: 0px;
+
+      &__flash-delivery {
+        font-size: 0.95rem;
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+
+        @media only screen and (max-width: 350px) {
+          font-size: 4vw;
+        }
+      }
 
       .sm-row {
         padding: 0px;

@@ -12,6 +12,7 @@ import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import { ROOT_PATH } from "../../../routing/Paths";
 import { updateQueryParams } from "../../../state/ducks/contracts/actions";
+import * as GTM from "../../../state/utils/gtm";
 
 const mapStateToProps = ({ celebrities }) => {
   return {
@@ -63,11 +64,19 @@ const CelebritiesResultsPage = ({
 
   const fetchMoreData = () => {
     const { limit } = updateQueryParamsInitialState;
-    const newOffset = offset ? offset + limit : limit;
-    setOffset(newOffset < totalResults ? newOffset : totalResults);
+    const nextOffset = offset ? offset + limit : limit;
+    const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
+    setOffset(newOffset);
     fetchCelebrities({
       ...listParams,
-      offset: newOffset < totalResults ? newOffset : totalResults
+      offset: newOffset
+    });
+    GTM.tagManagerDataLayer("FETCH_MORE_CELEBRITIES_RESULTS", {
+      widget: "CelebritiesResultsPage",
+      path: window.location.pathname,
+      listParams,
+      totalResults,
+      offset: newOffset
     });
   };
 

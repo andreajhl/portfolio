@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { setPlayingVideo } from "../../../state/ducks/celebrity-sections/actions";
 import { connect } from "react-redux";
+import * as GTM from "../../../state/utils/gtm";
 
 const VideoCardLayout = ({
   celebrity,
@@ -14,6 +15,12 @@ const VideoCardLayout = ({
   const videoRef = useRef();
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
+
+  const analyticsData = {
+    widget: "VideoCardLayout",
+    path: window.location.pathname,
+    ...celebrity
+  };
 
   const playVideo = () => {
     videoRef.current.play();
@@ -29,8 +36,10 @@ const VideoCardLayout = ({
 
   const togglePlay = () => {
     if (!videoIsPlaying) {
+      GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
       playVideo();
     } else {
+      GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
       pauseVideo();
     }
   };
@@ -42,8 +51,17 @@ const VideoCardLayout = ({
     };
   }, [currentVideoKey]);
 
+  const registerVideoCardHover = () =>
+    GTM.tagManagerDataLayer("HOVER_VIDEO_CARD", analyticsData);
+
+  const registerCelebrityUsernameClick = () =>
+    GTM.tagManagerDataLayer("CLICK_VIDEO_CARD_CELEBRITY_NAME", analyticsData);
+
+  const registerCelebrityUsernameHover = () =>
+    GTM.tagManagerDataLayer("HOVER_VIDEO_CARD_CELEBRITY_NAME", analyticsData);
+
   return (
-    <div className="VideoCardLayout">
+    <div className="VideoCardLayout" onMouseOver={registerVideoCardHover}>
       <div className="video-card">
         <section className="video-card__media">
           {!videoIsLoaded ? (
@@ -81,6 +99,8 @@ const VideoCardLayout = ({
             <NavLink
               className="d-flex align-items-center video-card__celebrity-profile-link"
               to={celebrity.username}
+              onClick={registerCelebrityUsernameClick}
+              onMouseOver={registerCelebrityUsernameHover}
             >
               <img
                 className="video-card__celebrity-photo"

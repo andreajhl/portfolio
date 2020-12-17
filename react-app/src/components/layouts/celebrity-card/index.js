@@ -8,6 +8,7 @@ import { cursorOperations } from "../../../state/ducks/cursor-position";
 import { connect } from "react-redux";
 import { ContractPriceLayout } from "../celebrity-card-contract-price";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
+import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
 
 const CelebrityCardLayout = ({
   celebrity,
@@ -35,10 +36,14 @@ const CelebrityCardLayout = ({
   const registerClickOnCelebrity = () =>
     GTM.tagManagerDataLayer("CLICK_ON_CELEBRITY_CARD", celebrity);
 
+  const registerHoverOnCelebrity = () =>
+    GTM.tagManagerDataLayer("HOVER_ON_CELEBRITY_CARD", celebrity);
+
   return (
     <NavLink
       to={profileUrl}
       onClick={registerClickOnCelebrity}
+      onMouseOver={registerHoverOnCelebrity}
       className="CelebrityCardLayout"
     >
       <div className="celebrity-card">
@@ -57,6 +62,10 @@ const CelebrityCardLayout = ({
             className={`celebrity__profile-photo ${
               avatarIsLoaded ? "d-none" : ""
             }`}
+          />
+          <FlashDeliveryBadgeLayout
+            className="celebrity__flash-delivery"
+            celebrityUsername={celebrity.username}
           />
           {contractPrice > 0 ? (
             <div className="celebrity__price">

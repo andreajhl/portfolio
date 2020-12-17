@@ -1,0 +1,27 @@
+.FlashDeliveryLayout {
+  background-color: white;
+  font-size: 0.75em;
+  padding: 0.425em 0.85em;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 20px;
+
+  &__title {
+    font-weight: bold;
+    margin-right: 0.5em;
+    color: black;
+  }
+
+  &__time {
+    color: #eb2a7b;
+    margin-right: 0.5em;
+    font-weight: bold;
+  }
+
+  &-color-dark {
+    background-color: black;
+    .FlashDeliveryLayout__title {
+      color: white;
+    }
+  }
+}

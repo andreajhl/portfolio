@@ -3,10 +3,27 @@ import { NavLink, Link } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
 import { NavbarSearchLayout } from "../navbar-search";
-import { HOME_PATH } from "../../../routing/Paths";
+import { ROOT_PATH } from "../../../routing/Paths";
 import PropTypes from "prop-types";
 import { Session } from "../../../state/utils/session";
+import * as GTM from "../../../state/utils/gtm";
 import "./styles.scss";
+
+const sendDropdownLinkAnalyticsData = (eventName, target) => {
+  if (!target.matches("a")) return;
+  GTM.tagManagerDataLayer(eventName + "_DROPDOWN_MENU_LINK", {
+    widget: "NavbarSectionLayout",
+    path: window.location.pathname,
+    anchorInnerText: target.innerText,
+    anchorHref: target.pathname
+  });
+};
+
+const registerLogoLinkClick = () =>
+  GTM.tagManagerDataLayer("CLICK_LOGO_LINK", {
+    widget: "NavbarSectionLayout",
+    path: window.location.pathname
+  });
 
 const NavbarSectionLayout = ({
   className,
@@ -42,6 +59,12 @@ const NavbarSectionLayout = ({
                 />
               </button>
               <div
+                onMouseOver={({ target }) =>
+                  sendDropdownLinkAnalyticsData("HOVER", target)
+                }
+                onClick={({ target }) =>
+                  sendDropdownLinkAnalyticsData("CLICK", target)
+                }
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton"
                 style={
@@ -112,7 +135,11 @@ const NavbarSectionLayout = ({
             </div>
           </div>
           <div className="top-bar__center-side col-4 text-center p-0 pt-2">
-            <NavLink to={HOME_PATH} className="top-bar__logo-link">
+            <NavLink
+              to={ROOT_PATH}
+              className="top-bar__logo-link"
+              onClick={registerLogoLinkClick}
+            >
               <img
                 className="top-bar__logo"
                 src="/assets/img/famosos-logo.svg"
@@ -130,6 +157,12 @@ const NavbarSectionLayout = ({
                     ":form",
                     "email-form"
                   )}
+                  onClick={({ target }) =>
+                    sendDropdownLinkAnalyticsData("CLICK", target)
+                  }
+                  onMouseOver={({ target }) =>
+                    sendDropdownLinkAnalyticsData("HOVER", target)
+                  }
                 >
                   Ingresar
                 </NavLink>
