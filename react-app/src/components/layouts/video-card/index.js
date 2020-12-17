@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { setPlayingVideo } from "../../../state/ducks/celebrity-sections/actions";
 import { connect } from "react-redux";
+import * as GTM from "../../../state/utils/gtm";
 
 const VideoCardLayout = ({
   celebrity,
@@ -15,16 +16,24 @@ const VideoCardLayout = ({
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
 
+  const analyticsData = {
+    widget: "VideoCardLayout",
+    path: window.location.pathname,
+    ...celebrity
+  };
+
   const playVideo = () => {
     videoRef.current.play();
     setVideoIsPlaying(true);
     setPlayingVideo(videoKey);
+    GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
   };
 
   const pauseVideo = () => {
     videoRef.current.pause();
     setVideoIsPlaying(false);
     setPlayingVideo(null);
+    GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
   };
 
   const togglePlay = () => {
@@ -42,8 +51,11 @@ const VideoCardLayout = ({
     };
   }, [currentVideoKey]);
 
+  const registerVideoCardHover = () =>
+    GTM.tagManagerDataLayer("HOVER_VIDEO_CARD", analyticsData);
+
   return (
-    <div className="VideoCardLayout">
+    <div className="VideoCardLayout" onMouseOver={registerVideoCardHover}>
       <div className="video-card">
         <section className="video-card__media">
           {!videoIsLoaded ? (
