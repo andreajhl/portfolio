@@ -23,16 +23,8 @@ class MyRoutes extends Component {
               path={PATHS.ROOT_PATH}
               component={PAGES.CelebritiesPage}
             />
-              {/* <Route
-              exact
-              path={PATHS.BLOG}
-              component={PAGES.Blog_Results}
-            />
-            <Route
-              exact
-              path={PATHS.BLOG_ENTRY}
-              component={PAGES.Blog_Entry}
-            /> */}
+            <Route exact path={PATHS.BLOG} component={PAGES.Blog_Results} />
+            <Route exact path={PATHS.BLOG_ENTRY} component={PAGES.Blog_Entry} />
             <Route
               exact
               path={PATHS.SEARCH_PATH}
@@ -84,7 +76,7 @@ class MyRoutes extends Component {
               path={PATHS.STRIPE_3D_SECURE_RESPONSE}
               component={PAGES.ProcessStripe3DResponsePage}
             />
-         
+
             {/*AUTH*/}
             <Route
               exact
@@ -183,7 +175,7 @@ class MyRoutes extends Component {
               path={PATHS.AUTH_FLOW}
               component={PAGES.AuthFlowPage}
             />
-              
+
             {/* ------- */}
             <Route
               exact
