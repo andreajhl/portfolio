@@ -26,20 +26,20 @@ const VideoCardLayout = ({
     videoRef.current.play();
     setVideoIsPlaying(true);
     setPlayingVideo(videoKey);
-    GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
   };
 
   const pauseVideo = () => {
     videoRef.current.pause();
     setVideoIsPlaying(false);
     setPlayingVideo(null);
-    GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
   };
 
   const togglePlay = () => {
     if (!videoIsPlaying) {
+      GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
       playVideo();
     } else {
+      GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
       pauseVideo();
     }
   };
