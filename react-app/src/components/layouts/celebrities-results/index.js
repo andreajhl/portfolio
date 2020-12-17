@@ -1,5 +1,6 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import * as GTM from "../../../state/utils/gtm";
 import { CelebrityCardLayout } from "../celebrity-card";
 import { EndMessageLayout } from "../end-message";
 import { LoaderLayout } from "../loader";
@@ -16,6 +17,15 @@ const CelebritiesResultsLayout = ({
 }) => {
   const isSearchingByKeyword = Boolean(queryParams.search);
   const hasResults = celebrities.length > 0;
+
+  const registerCelebritiesResultsGoUpButtonClick = () =>
+    GTM.tagManagerDataLayer("CLICK_CELEBRITIES_RESULTS_GO_UP_BUTTON", {
+      widget: "CelebritiesResultsLayout",
+      path: window.location.pathname,
+      totalResults,
+      search: queryParams.search
+    });
+
   return (
     <div className="CelebritiesResultsLayout">
       <section
@@ -38,7 +48,9 @@ const CelebritiesResultsLayout = ({
               loader={<LoaderLayout />}
               endMessage={
                 celebrities.length > totalResultsToShowGoBackButton ? (
-                  <EndMessageLayout />
+                  <EndMessageLayout
+                    onClick={registerCelebritiesResultsGoUpButtonClick}
+                  />
                 ) : null
               }
             >
