@@ -54,6 +54,12 @@ const VideoCardLayout = ({
   const registerVideoCardHover = () =>
     GTM.tagManagerDataLayer("HOVER_VIDEO_CARD", analyticsData);
 
+  const registerCelebrityUsernameClick = () =>
+    GTM.tagManagerDataLayer("CLICK_VIDEO_CARD_CELEBRITY_NAME", analyticsData);
+
+  const registerCelebrityUsernameHover = () =>
+    GTM.tagManagerDataLayer("HOVER_VIDEO_CARD_CELEBRITY_NAME", analyticsData);
+
   return (
     <div className="VideoCardLayout" onMouseOver={registerVideoCardHover}>
       <div className="video-card">
@@ -93,6 +99,8 @@ const VideoCardLayout = ({
             <NavLink
               className="d-flex align-items-center video-card__celebrity-profile-link"
               to={celebrity.username}
+              onClick={registerCelebrityUsernameClick}
+              onMouseOver={registerCelebrityUsernameHover}
             >
               <img
                 className="video-card__celebrity-photo"
