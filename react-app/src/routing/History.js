@@ -4,7 +4,7 @@ import * as GTM from "../state/utils/gtm";
 const history = createBrowserHistory();
 history.listen((location) => {
   window.scroll({ top: 0 });
-  const ENVIRONMENT = process.env.REACT_APP_ENVIRONMENT;
+  const ENVIRONMENT = process.env.REACT_APP_ENVIRONMENT.toUpperCase();
   window.analytics.page({
     ...location,
     path: location.pathname,
