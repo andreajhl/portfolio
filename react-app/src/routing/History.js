@@ -4,7 +4,17 @@ import * as GTM from "../state/utils/gtm";
 const history = createBrowserHistory();
 history.listen((location) => {
   window.scroll({ top: 0 });
-  GTM.tagManagerDataLayer("PAGE_VIEW", { ...location, title: document.title });
+  const ENVIRONMENT = process.env.REACT_APP_ENVIRONMENT;
+  window.analytics.page({
+    ...location,
+    path: location.pathname,
+    isReactRouting: true,
+    ENVIRONMENT,
+    userAgent: navigator.userAgent,
+    vendor: navigator.vendor,
+    receivedAt: new Date()
+  });
+  // GTM.tagManagerDataLayer("PAGE_VIEW", { , title: document.title });
 });
 
 history._pushRoute = (route) => {
