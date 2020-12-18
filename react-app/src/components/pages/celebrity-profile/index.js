@@ -70,6 +70,10 @@ class CelebrityProfilePage extends Component {
     });
   }
 
+  componentWillUnmount() {
+    this.props.cleanPublicContracts();
+  }
+
   render() {
     // console.log(this.props.celebrity);
     return (
@@ -147,7 +151,8 @@ const mapStateToProps = (state) => ({
 
 // mapStateToProps
 const mapDispatchToProps = {
-  getCelebrity: celebrityOperations.get
+  getCelebrity: celebrityOperations.get,
+  cleanPublicContracts: celebrityOperations.cleanPublicContracts
 };
 
 const _CelebrityProfilePage = connect(

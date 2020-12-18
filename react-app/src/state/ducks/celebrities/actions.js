@@ -253,3 +253,7 @@ export const fetchSimilarCelebrities = (celebrityUsername) => (dispatch) => {
       });
     });
 };
+
+export const cleanPublicContracts = () => ({
+  type: types.CLEAN_PUBLIC_CONTRACTS
+});

@@ -213,6 +213,8 @@ export function fetchPublicContractsReducer(
         data: action.payload.data,
         completed: true
       };
+    case types.CLEAN_PUBLIC_CONTRACTS:
+      return fetchPublicContractsInitialState;
     default:
       return state;
   }
