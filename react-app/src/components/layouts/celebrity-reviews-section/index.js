@@ -45,7 +45,10 @@ class CelebrityReviewsSectionLayout extends Component {
     const shimmersCards = [];
     for (let index = 0; index < 3; index++) {
       shimmersCards.push(
-        <div className="col-12 col-md-6 col-xl-4 mb-3" key={index}>
+        <div
+          className="col-12 col-md-6 col-xl-4 mb-3 CelebrityReviewsSectionLayout__review"
+          key={index}
+        >
           <CelebrityShimmerReviewCardLayout />
         </div>
       );
@@ -67,7 +70,7 @@ class CelebrityReviewsSectionLayout extends Component {
               : this.props.reviews.map((review, index) => {
                   return (
                     <div
-                      className="col-12 col-md-6 col-xl-4 mb-3"
+                      className="col-12 col-md-6 col-xl-4 mb-3 CelebrityReviewsSectionLayout__review"
                       key={review.id + "-" + index}
                     >
                       <CelebrityReviewCardLayout review={review} />
