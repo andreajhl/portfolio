@@ -37,19 +37,22 @@ class CelebrityProfilePage extends Component {
   }
 
   componentDidMount() {
-    GTM.tagManagerDataLayer("CELEBRITY_PROFILE_PAGE_VIEW", this.props.match);
+    GTM.tagManagerDataLayer("CELEBRITY_PROFILE_PAGE_VIEW", {
+      ...this.props.match,
+      celebrityProfileVersion: getCelebrityProfileVersion()
+    });
     const session = new Session();
     session.isDummy();
+    this.getCelebrity(this.props.match.params.celebrity_username);
   }
 
-  componentWillMount() {
-    if (
-      this.props.celebrity.username !==
-      this.props.match.params.celebrity_username
-    ) {
-      this.getCelebrity(this.props.match.params.celebrity_username);
-    }
-  }
+  // componentWillMount() {
+  //   if (
+  //     this.props.celebrity.username !==
+  //     this.props.match.params.celebrity_username
+  //   ) {
+  //   }
+  // }
 
   componentWillReceiveProps(nextProps, nextContext) {
     if (
@@ -75,7 +78,6 @@ class CelebrityProfilePage extends Component {
   }
 
   render() {
-    // console.log(this.props.celebrity);
     return (
       <div className="CelebrityProfilePage">
         {this.props.celebrity.username && (
