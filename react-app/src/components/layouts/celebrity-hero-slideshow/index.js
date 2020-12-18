@@ -1,22 +1,44 @@
 import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { connect } from "react-redux";
-import { CelebrityMainVideoSection } from "../main-video-section";
+import * as GTM from "../../../state/utils/gtm";
 import { VideoSlideLayout } from "../video-slide";
+import { contractOperations } from "../../../state/ducks/contracts";
 import "./styles.scss";
 
 const CelebrityHeroSlideshow = ({
   celebrityMainVideo,
-  celebrityPublicContracts
+  celebrityPublicContracts,
+  setPlayingVideo
 }) => {
+  const analyticsData = {
+    widget: "CelebrityHeroSlideshow",
+    path: window.location.pathname
+  };
+
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   const handleSelect = (selectedIndex, event) => {
+    setPlayingVideo({ contract_reference: null });
     setActiveSlideIndex(selectedIndex);
+    GTM.tagManagerDataLayer("CHANGE_CELEBRITY_HERO_SLIDESHOW_SLIDE", {
+      ...analyticsData,
+      selectedIndex
+    });
+  };
+
+  const registerCelebrityHeroSlideshowHover = () => {
+    GTM.tagManagerDataLayer(
+      "HOVER_CELEBRITY_HERO_SLIDESHOW_SLIDE",
+      analyticsData
+    );
   };
 
   return (
-    <section className="CelebrityHeroSlideshow container p-0 bg-dark">
+    <section
+      className="CelebrityHeroSlideshow container p-0 bg-dark"
+      onMouseOver={registerCelebrityHeroSlideshowHover}
+    >
       <Carousel
         activeIndex={activeSlideIndex}
         onSelect={handleSelect}
@@ -29,7 +51,11 @@ const CelebrityHeroSlideshow = ({
       >
         {celebrityMainVideo ? (
           <Carousel.Item>
-            <VideoSlideLayout videoUrl={celebrityMainVideo} autoPlayOnCanPlay />
+            <VideoSlideLayout
+              videoUrl={celebrityMainVideo}
+              videoReference={"MAIN_VIDEO"}
+              autoPlayOnCanPlay
+            />
           </Carousel.Item>
         ) : null}
         {celebrityPublicContracts.map((publicContract, index) => (
@@ -51,8 +77,13 @@ const mapStateToProps = ({ celebrities }) => ({
   celebrityPublicContracts: celebrities.fetchPublicContractsReducer.data.results
 });
 
-const _CelebrityHeroSlideshow = connect(mapStateToProps)(
-  CelebrityHeroSlideshow
-);
+const mapDispatchToProps = {
+  setPlayingVideo: contractOperations.playVideo
+};
+
+const _CelebrityHeroSlideshow = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CelebrityHeroSlideshow);
 
 export { _CelebrityHeroSlideshow as CelebrityHeroSlideshow };

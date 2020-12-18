@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import { contractOperations } from "../../../state/ducks/contracts";
 import fullscreen from "fscreen";
+import * as GTM from "../../../state/utils/gtm";
 import "./styles.scss";
 
 const VideoSlideLayout = ({
@@ -10,7 +11,7 @@ const VideoSlideLayout = ({
   isMutedDefault,
   autoPlayOnCanPlay,
   autoPlayVideo,
-  playVideo,
+  setPlayingVideo,
   currentVideoPlaying
 }) => {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
@@ -19,38 +20,58 @@ const VideoSlideLayout = ({
   const videoRef = useRef();
   const sectionRef = useRef();
 
-  const toggleVideoIsMuted = () =>
-    setVideoIsMuted((videoIsMuted) => !videoIsMuted);
+  const analyticsData = {
+    widget: "VideoSlideLayout",
+    path: window.location.pathname,
+    videoUrl,
+    videoReference,
+    videoIsFullscreen,
+    videoIsMuted,
+    videoIsPlaying
+  };
 
-  const playContractVideo = () => {
+  const toggleVideoIsMuted = () => {
+    GTM.tagManagerDataLayer(`${videoIsMuted ? "UN" : ""}MUTE_VIDEO_SLIDE`, {
+      ...analyticsData,
+      videoIsMuted: !videoIsMuted
+    });
+    setVideoIsMuted((videoIsMuted) => !videoIsMuted);
+  };
+
+  const playVideo = useCallback(() => {
     videoRef.current.play();
     setVideoIsPlaying(true);
-  };
+    setPlayingVideo({ contract_reference: videoReference });
+  }, [setPlayingVideo, videoReference]);
 
-  const pauseContractVideo = () => {
-    setVideoIsPlaying(false);
+  const pauseVideo = useCallback(() => {
     videoRef.current.pause();
-  };
+    setVideoIsPlaying(false);
+  }, []);
 
   const togglePlay = () => {
     if (!videoIsPlaying) {
-      playVideo({
-        contract_reference: videoReference
+      GTM.tagManagerDataLayer("PLAY_VIDEO_SLIDE", {
+        ...analyticsData,
+        videoIsPlaying: true
       });
+      playVideo();
     } else {
-      playVideo({
-        contract_reference: null
+      GTM.tagManagerDataLayer("PAUSE_VIDEO_SLIDE", {
+        ...analyticsData,
+        videoIsPlaying: false
       });
+      pauseVideo();
     }
   };
 
   useEffect(() => {
-    if (currentVideoPlaying === videoReference) {
-      playContractVideo();
-    } else {
-      pauseContractVideo();
-    }
-  }, [currentVideoPlaying, videoReference]);
+    if (currentVideoPlaying !== videoReference) pauseVideo();
+    return () => {
+      if (currentVideoPlaying === videoReference)
+        setPlayingVideo({ contract_reference: null });
+    };
+  }, [currentVideoPlaying, videoReference, pauseVideo, setPlayingVideo]);
 
   const autoPlayMainVideo = (event) => {
     if (!autoPlayOnCanPlay) return;
@@ -61,25 +82,39 @@ const VideoSlideLayout = ({
     const userHasGoodInternet = navigator?.connection?.effectiveType === "4g";
 
     if (userHasGoodInternet) {
-      playVideo({
-        contract_reference: videoReference
-      });
+      playVideo();
     }
-  }, [playVideo, videoReference]);
+  }, [playVideo]);
 
   useEffect(() => {
     if (!autoPlayVideo) return;
     playVideoWhenHasGoodConnection();
   }, [autoPlayVideo, playVideoWhenHasGoodConnection]);
 
+  const exitFullscreen = () => {
+    setVideoIsFullscreen(false);
+    fullscreen.exitFullscreen();
+    GTM.tagManagerDataLayer("EXIT_FULLSCREEN_VIDEO_SLIDE", {
+      ...analyticsData,
+      videoIsFullscreen: false
+    });
+  };
+
+  const enterFullscreen = (sectionElement) => {
+    setVideoIsFullscreen(true);
+    fullscreen.requestFullscreen(sectionElement);
+    GTM.tagManagerDataLayer("ENTER_FULLSCREEN_VIDEO_SLIDE", {
+      ...analyticsData,
+      videoIsFullscreen: true
+    });
+  };
+
   const toggleFullscreen = () => {
     const sectionElement = sectionRef.current;
     if (fullscreen.fullscreenElement === sectionElement) {
-      setVideoIsFullscreen(false);
-      fullscreen.exitFullscreen();
+      exitFullscreen();
     } else {
-      setVideoIsFullscreen(true);
-      fullscreen.requestFullscreen(sectionElement);
+      enterFullscreen(sectionElement);
     }
   };
 
@@ -129,13 +164,16 @@ VideoSlideLayout.defaultProps = {
   autoPlay: true
 };
 
-const mapStateToProps = ({ contracts }) => ({
-  currentVideoPlaying: contracts.playVideoReducer.contract_reference
-});
+const mapStateToProps = ({ contracts }) => {
+  console.log(contracts.playVideoReducer);
+  return {
+    currentVideoPlaying: contracts.playVideoReducer.contract_reference
+  };
+};
 
 // mapStateToProps
 const mapDispatchToProps = {
-  playVideo: contractOperations.playVideo
+  setPlayingVideo: contractOperations.playVideo
 };
 
 const _VideoSlideLayout = connect(
