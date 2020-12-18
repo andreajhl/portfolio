@@ -109,7 +109,9 @@ const CelebrityDetails = ({
   variant
 }) => {
   return (
-    <Container className="mx-auto CelebrityDetails">
+    <Container
+      className={`mx-auto CelebrityDetails ${variant === "1" ? "mb-0" : ""}`}
+    >
       <Row className="justify-content-md-center align-items-center my-3">
         <Col xs="auto d-md-none">
           <ProfilePicture avatar={avatar} width="139px" />
@@ -131,9 +133,9 @@ const CelebrityDetails = ({
               celebrityFullName={fullName}
               celebrityUsername={username}
               text={
-                variant.startsWith("1")
-                  ? "Quiero un video de"
-                  : "Obtén un video de"
+                // variant.startsWith("1")
+                /* ?  */ "Quiero un video de"
+                // : "Obtén un video de"
               }
               width="100%"
               fontSize="1.25em"
@@ -146,11 +148,7 @@ const CelebrityDetails = ({
           <HireThisCelebrityButton
             celebrityFullName={fullName}
             celebrityUsername={username}
-            text={
-              variant.startsWith("1")
-                ? "Quiero un video de"
-                : "Obtén un video de"
-            }
+            text="Quiero un video de"
             width="100%"
             fontSize="1.25em"
           />

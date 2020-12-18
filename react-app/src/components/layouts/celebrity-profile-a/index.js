@@ -1,20 +1,18 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { CelebrityDetails } from "../celebrity-details";
 import { CelebrityPublicContractsSectionLayout } from "../celebrity-public-contracts-section";
 import { CelebrityReviewsSectionLayout } from "../celebrity-reviews-section";
 import { SimilarCelebritiesCardsSectionLayout } from "../similar-celebrities-cards-section";
-import { SimilarCelebrityContractsSectionLayout } from "../similar-celebrity-contracts-section";
-import { CelebrityMainVideoSection } from "../main-video-section";
+import { CelebrityHeroSlideshow } from "../celebrity-hero-slideshow";
 import HowToGetAVideoMessageLayout from "../how-to-get-a-video-message";
+import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
+import { CelebrityProfileLayoutB } from "../celebrity-profile-b";
 import { connect } from "react-redux";
 
 const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
-  return (
+  return celebrity.mainVideo || hasPublicContracts ? (
     <>
-      {celebrity.mainVideo ? (
-        <CelebrityMainVideoSection mainVideoUrl={celebrity.mainVideo} />
-      ) : null}
+      <CelebrityHeroSlideshow celebrityMainVideo={celebrity.mainVideo} />
       <CelebrityDetails
         fullName={celebrity.fullName}
         username={celebrity.username}
@@ -23,48 +21,30 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
         celebrityId={celebrity.id}
         categoryTitle={celebrity.categoryTitle}
         contractTypes={celebrity.contractTypes}
-        variant="1.1"
+        variant="2"
+      />
+      {/* <CelebrityPublicContractsSectionLayout
+        contractTypes={celebrity.contractTypes}
+        celebrityId={celebrity.id}
+        username={celebrity.username}
       />
       {hasPublicContracts ? (
-        <>
-          <CelebrityPublicContractsSectionLayout
-            contractTypes={celebrity.contractTypes}
-            celebrityId={celebrity.id}
-            username={celebrity.username}
+        <div className="container pb-4 pt-2 text-center">
+          <HireThisCelebrityButton
+            className="get-a-video-button px-md-5 py-3 px-4"
+            text="Quiero un video como este"
+            fontSize="1.25em"
           />
-          <section className="container text-center pt-2 pb-4">
-            <NavLink to="#">
-              <button
-                type="button"
-                className="btn btn-primary similar-celebrities-button"
-                style={{
-                  background: "#FFE1F0",
-                  borderRadius: "5px",
-                  border: "none",
-                  padding: "0.75em 1.5em",
-                  fontSize: "20px",
-                  fontWeight: "bold",
-                  color: "#FB177D"
-                }}
-              >
-                Ver famosos similares
-              </button>
-            </NavLink>
-          </section>
-        </>
-      ) : (
-        <>
-          <SimilarCelebritiesCardsSectionLayout
-            celebrityUsername={celebrity.username}
-          />
-          <SimilarCelebrityContractsSectionLayout
-            celebrityUsername={celebrity.username}
-          />
-        </>
-      )}
+        </div>
+      ) : null} */}
+      {/* <SimilarCelebritiesCardsSectionLayout
+        celebrityUsername={celebrity.username}
+      /> */}
       <CelebrityReviewsSectionLayout celebrityId={celebrity.id} />
       <HowToGetAVideoMessageLayout />
     </>
+  ) : (
+    <CelebrityProfileLayoutB celebrity={celebrity} />
   );
 };
 
