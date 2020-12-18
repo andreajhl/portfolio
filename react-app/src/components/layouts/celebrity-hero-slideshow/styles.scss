@@ -12,8 +12,10 @@
   }
 
   [class^="carousel-control-"] {
+    opacity: 0.85;
     @media (hover: none) {
       color: white;
+      opacity: 1;
     }
   }
 

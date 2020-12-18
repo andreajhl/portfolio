@@ -27,9 +27,11 @@ const CelebrityHeroSlideshow = ({
         nextIcon={<i className="fa fa-chevron-right controls-icon" />}
         nextLabel="Siguiente"
       >
-        <Carousel.Item>
-          <VideoSlideLayout videoUrl={celebrityMainVideo} autoPlayOnCanPlay />
-        </Carousel.Item>
+        {celebrityMainVideo ? (
+          <Carousel.Item>
+            <VideoSlideLayout videoUrl={celebrityMainVideo} autoPlayOnCanPlay />
+          </Carousel.Item>
+        ) : null}
         {celebrityPublicContracts.map((publicContract, index) => (
           <Carousel.Item key={publicContract.contract_reference}>
             <VideoSlideLayout

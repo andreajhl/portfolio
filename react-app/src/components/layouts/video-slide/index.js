@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import { contractOperations } from "../../../state/ducks/contracts";
 import fullscreen from "fscreen";
@@ -57,16 +57,15 @@ const VideoSlideLayout = ({
     playVideoWhenHasGoodConnection();
   };
 
-  const playVideoWhenHasGoodConnection = () => {
+  const playVideoWhenHasGoodConnection = useCallback(() => {
     const userHasGoodInternet = navigator?.connection?.effectiveType === "4g";
 
-    console.log({ userHasGoodInternet });
     if (userHasGoodInternet) {
       playVideo({
         contract_reference: videoReference
       });
     }
-  };
+  }, [playVideo, videoReference]);
 
   useEffect(() => {
     if (!autoPlayVideo) return;
