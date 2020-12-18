@@ -26,6 +26,11 @@ class EditContractPage extends Component {
     if (shouldFetchContract) {
       this.props.getContract(this.props.match.params.contract_reference);
     }
+    GTM.tagManagerDataLayer("EDIT_CONTRACT_PAGE_VIEW", {
+      ...this.props.match,
+      widget: this.constructor.name,
+      path: this.props.location.pathname
+    });
     // GTM.tagManagerDataLayer("CREATE_CONTRACT_PAGE_VIEW", this.props.match);
     // const session = new Session();
     // if (session.isDummy()) {
