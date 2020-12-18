@@ -8,11 +8,16 @@ import HowToGetAVideoMessageLayout from "../how-to-get-a-video-message";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import { CelebrityProfileLayoutB } from "../celebrity-profile-b";
 import { connect } from "react-redux";
+import { CelebrityMainVideoSection } from "../main-video-section";
 
 const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
   return celebrity.mainVideo || hasPublicContracts ? (
     <>
-      <CelebrityHeroSlideshow celebrityMainVideo={celebrity.mainVideo} />
+      {hasPublicContracts ? (
+        <CelebrityHeroSlideshow celebrityMainVideo={celebrity.mainVideo} />
+      ) : (
+        <CelebrityMainVideoSection mainVideoUrl={celebrity.mainVideo} />
+      )}
       <CelebrityDetails
         fullName={celebrity.fullName}
         username={celebrity.username}
