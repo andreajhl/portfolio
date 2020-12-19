@@ -4,6 +4,7 @@ import { contractOperations } from "../../../state/ducks/contracts";
 import { ProfilePicture } from "../profile-picture";
 import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { connect } from "react-redux";
+import * as GTM from "../../../state/utils/gtm";
 
 const SimilarCelebrityContractCardLayout = ({
   similarContract,
@@ -12,6 +13,12 @@ const SimilarCelebrityContractCardLayout = ({
 }) => {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
   const videoRef = useRef();
+
+  const analyticsData = {
+    ...similarContract,
+    widget: "SimilarCelebrityContractCardLayout",
+    path: window.location.pathname
+  };
 
   const playContractVideo = () => {
     videoRef.current.play();
@@ -25,10 +32,18 @@ const SimilarCelebrityContractCardLayout = ({
 
   const togglePlay = () => {
     if (!videoIsPlaying) {
+      GTM.tagManagerDataLayer("PLAY_SIMILAR_CELEBRITY_CONTRACT_CARD", {
+        ...analyticsData,
+        videoIsPlaying: true
+      });
       playVideo({
         contract_reference: similarContract.contractReference
       });
     } else {
+      GTM.tagManagerDataLayer("PAUSE_SIMILAR_CELEBRITY_CONTRACT_CARD", {
+        ...analyticsData,
+        videoIsPlaying: false
+      });
       playVideo({
         contract_reference: null
       });
@@ -43,8 +58,18 @@ const SimilarCelebrityContractCardLayout = ({
     }
   }, [currentVideoPlaying, similarContract.contractReference]);
 
+  const registerSimilarCelebrityContractCardHover = () => {
+    GTM.tagManagerDataLayer(
+      "HOVER_SIMILAR_CELEBRITY_CONTRACT_CARD",
+      analyticsData
+    );
+  };
+
   return (
-    <div className="SimilarCelebrityContractCardLayout mr-2 card f-card f-rounded hover cursor-pointer">
+    <div
+      className="SimilarCelebrityContractCardLayout mr-2 card f-card f-rounded hover cursor-pointer"
+      onMouseOver={registerSimilarCelebrityContractCardHover}
+    >
       <div className="video">
         <video
           ref={videoRef}

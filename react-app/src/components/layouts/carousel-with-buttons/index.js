@@ -7,7 +7,7 @@ const initialState = {
   showRightScrollButton: false
 };
 
-const Container = ({ children, buttonsStyles }) => {
+const Container = ({ children, buttonsStyles, onScrollTo, onListScroll }) => {
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
     initialState.showLeftScrollButton
   );
@@ -24,12 +24,14 @@ const Container = ({ children, buttonsStyles }) => {
       left: direction === "right" ? offsetWidth : offsetWidth * -1,
       behavior: "smooth"
     });
+    onScrollTo(direction);
   };
 
   const changeScrollButtonsVisibility = debounce(() => {
     const { scrollLeft, offsetWidth, scrollWidth } = childrenListRef.current;
     setShowLeftScrollButton(scrollLeft !== 0);
     setShowRightScrollButton(scrollLeft + offsetWidth !== scrollWidth);
+    onListScroll(scrollLeft + offsetWidth >= scrollWidth);
   }, 100);
 
   useEffect(() => {
@@ -74,7 +76,8 @@ const Container = ({ children, buttonsStyles }) => {
 
 Container.defaultProps = {
   hasMoreResults: false,
-  moreResultsPath: "#"
+  moreResultsPath: "#",
+  onScrollTo: () => {}
 };
 
 const Header = ({ children }) => (

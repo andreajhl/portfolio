@@ -5,6 +5,7 @@ import { fetchSimilarCelebrities } from "../../../state/ducks/celebrities/action
 import * as CarouselWithButtons from "../carousel-with-buttons";
 import "./styles.scss";
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
+import * as GTM from "../../../state/utils/gtm";
 
 const SimilarCelebritiesCardsSectionLayout = ({
   celebrityUsername,
@@ -16,16 +17,50 @@ const SimilarCelebritiesCardsSectionLayout = ({
     fetchSimilarCelebrities(celebrityUsername);
   }, [celebrityUsername]);
 
+  const analyticsData = {
+    widget: "SimilarCelebritiesCardsSectionLayout",
+    path: window.location.pathname,
+    celebrityUsername
+  };
+
+  const registerListHover = () => {
+    GTM.tagManagerDataLayer(
+      "HOVER_SIMILAR_CELEBRITIES_CARD_LIST",
+      analyticsData
+    );
+  };
+
+  const registerListScroll = (hasReachedListEnd) => {
+    GTM.tagManagerDataLayer("SCROLL_SIMILAR_CELEBRITIES_CARD_LIST", {
+      ...analyticsData,
+      hasReachedListEnd
+    });
+  };
+
+  const registerSimilarCelebritiesCardsScrollButtonClick = (direction) => {
+    GTM.tagManagerDataLayer(
+      "CLICK_SIMILAR_CELEBRITIES_CARD_SECTION_SCROLL_BUTTON",
+      { ...analyticsData, direction }
+    );
+  };
+
   return (
     <section className="SimilarCelebritiesCardsSectionLayout mb-2 pt-2">
-      <CarouselWithButtons.Container buttonsStyles={{ top: "2.85rem" }}>
+      <CarouselWithButtons.Container
+        buttonsStyles={{ top: "2.85rem" }}
+        onScrollTo={registerSimilarCelebritiesCardsScrollButtonClick}
+        onListScroll={registerListScroll}
+      >
         <CarouselWithButtons.Header>
           <CarouselWithButtons.Title className="text-black text-center mb-4 w-100 font-weight-bold">
             Famosos similares
           </CarouselWithButtons.Title>
         </CarouselWithButtons.Header>
         <CarouselWithButtons.List>
-          <ul className="SimilarCelebritiesCardsSectionLayout__list">
+          <ul
+            className="SimilarCelebritiesCardsSectionLayout__list"
+            onMouseOver={registerListHover}
+          >
             {!isLoading && similarCelebrities.length > 0
               ? similarCelebrities.map((similarCelebrity) => {
                   const celebrity = {

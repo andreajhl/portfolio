@@ -126,15 +126,48 @@ class CelebrityPublicContractsSectionLayout extends Component {
     return shimmersCards;
   }
 
+  analyticsData = {
+    widget: this.constructor.name,
+    path: window.location.pathname,
+    celebrityId: this.props.celebrityId,
+    username: this.props.username
+  };
+
+  registerListHover = () => {
+    GTM.tagManagerDataLayer(
+      "HOVER_CELEBRITY_PUBLIC_CONTRACTS_LIST",
+      this.analyticsData
+    );
+  };
+
+  registerListScroll = (hasReachedListEnd) => {
+    GTM.tagManagerDataLayer("SCROLL_CELEBRITY_PUBLIC_CONTRACTS_LIST", {
+      ...this.analyticsData,
+      hasReachedListEnd
+    });
+  };
+
+  registerCelebrityPublicContractsScrollButtonClick = (direction) => {
+    GTM.tagManagerDataLayer(
+      "CLICK_CELEBRITY_PUBLIC_CONTRACTS_SECTION_SCROLL_BUTTON",
+      { ...this.analyticsData, direction }
+    );
+  };
+
   render() {
     const hasContracts = this.props.publicContracts.length > 0;
     return this.props.isLoading || hasContracts ? (
       <div className="CelebrityPublicContractsSectionLayout">
         <CarouselWithButtons.Container
           buttonsStyles={{ top: "1.25rem", height: "335px" }}
+          onScrollTo={this.registerCelebrityPublicContractsScrollButtonClick}
+          onListScroll={this.registerListScroll}
         >
           <CarouselWithButtons.List>
-            <ul className="CelebrityPublicContractsSectionLayout__list">
+            <ul
+              className="CelebrityPublicContractsSectionLayout__list"
+              onMouseOver={this.registerListHover}
+            >
               {!this.props.isLoading
                 ? this.props.publicContracts.map((publicContract) => (
                     <li className="mr-3" key={publicContract.contract_id}>

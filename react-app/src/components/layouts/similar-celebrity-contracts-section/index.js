@@ -80,12 +80,42 @@ class SimilarCelebrityContractsSectionLayout extends Component {
     this.props.getSimilarContracts(this.props.celebrityUsername);
   }
 
+  analyticsData = {
+    widget: this.constructor.name,
+    path: window.location.pathname,
+    celebrityUsername: this.props.celebrityUsername
+  };
+
+  registerListHover = () => {
+    GTM.tagManagerDataLayer(
+      "HOVER_SIMILAR_CELEBRITY_CONTRACTS_LIST",
+      this.analyticsData
+    );
+  };
+
+  registerListScroll = (hasReachedListEnd) => {
+    GTM.tagManagerDataLayer("SCROLL_SIMILAR_CELEBRITY_CONTRACTS_LIST", {
+      ...this.analyticsData,
+      hasReachedListEnd
+    });
+  };
+
+  registerSimilarCelebritiesContractsScrollButtonClick = (direction) => {
+    GTM.tagManagerDataLayer(
+      "CLICK_SIMILAR_CELEBRITY_CONTRACTS_SECTION_SCROLL_BUTTON",
+      { ...this.analyticsData, direction }
+    );
+  };
+
   render() {
+    console.log(this.props);
     const hasContracts = this.props.similarContracts.length > 0;
     return this.props.isLoading || hasContracts ? (
       <section className="SimilarCelebrityContractsSectionLayout">
         <CarouselWithButtons.Container
           buttonsStyles={{ top: "2.75rem", height: "370px" }}
+          onScrollTo={this.registerSimilarCelebritiesContractsScrollButtonClick}
+          onListScroll={this.registerListScroll}
         >
           <CarouselWithButtons.Header>
             <CarouselWithButtons.Title className="text-black text-center mb-4 w-100">
@@ -93,7 +123,10 @@ class SimilarCelebrityContractsSectionLayout extends Component {
             </CarouselWithButtons.Title>
           </CarouselWithButtons.Header>
           <CarouselWithButtons.List>
-            <ul className="SimilarCelebrityContractsSectionLayout__list">
+            <ul
+              className="SimilarCelebrityContractsSectionLayout__list"
+              onMouseOver={this.registerListHover}
+            >
               {!this.props.isLoading
                 ? this.props.similarContracts.map((similarContract) => (
                     <li
