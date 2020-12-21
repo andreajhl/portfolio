@@ -108,7 +108,6 @@ class SimilarCelebrityContractsSectionLayout extends Component {
   };
 
   render() {
-    console.log(this.props);
     const hasContracts = this.props.similarContracts.length > 0;
     return this.props.isLoading || hasContracts ? (
       <section className="SimilarCelebrityContractsSectionLayout">

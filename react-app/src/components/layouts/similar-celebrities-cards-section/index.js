@@ -15,7 +15,7 @@ const SimilarCelebritiesCardsSectionLayout = ({
 }) => {
   useEffect(() => {
     fetchSimilarCelebrities(celebrityUsername);
-  }, [celebrityUsername]);
+  }, [celebrityUsername, fetchSimilarCelebrities]);
 
   const analyticsData = {
     widget: "SimilarCelebritiesCardsSectionLayout",
