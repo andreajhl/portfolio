@@ -77,7 +77,8 @@ const Container = ({ children, buttonsStyles, onScrollTo, onListScroll }) => {
 Container.defaultProps = {
   hasMoreResults: false,
   moreResultsPath: "#",
-  onScrollTo: () => {}
+  onScrollTo: () => {},
+  onListScroll: () => {}
 };
 
 const Header = ({ children }) => (
