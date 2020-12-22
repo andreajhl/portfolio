@@ -8,26 +8,33 @@ import HowToGetAVideoMessageLayout from "../how-to-get-a-video-message";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import { CelebrityProfileLayoutB } from "../celebrity-profile-b";
 import { connect } from "react-redux";
-import { CelebrityMainVideoSection } from "../main-video-section";
+import { ResizableMainVideo } from "../resizable-main-video";
 
 const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
   return celebrity.mainVideo || hasPublicContracts ? (
     <>
-      {hasPublicContracts ? (
-        <CelebrityHeroSlideshow celebrityMainVideo={celebrity.mainVideo} />
-      ) : (
-        <CelebrityMainVideoSection mainVideoUrl={celebrity.mainVideo} />
-      )}
-      <CelebrityDetails
-        fullName={celebrity.fullName}
-        username={celebrity.username}
-        avatar={celebrity.avatar}
-        countryCode={celebrity.countryCode}
-        celebrityId={celebrity.id}
-        categoryTitle={celebrity.categoryTitle}
-        contractTypes={celebrity.contractTypes}
-        variant="2"
-      />
+      <div className="row container mx-auto py-lg-4 p-0">
+        <div className="col-12 col-lg-4 order-lg-1 p-0 m-0 px-sm-3">
+          {hasPublicContracts ? (
+            <CelebrityHeroSlideshow celebrityMainVideo={celebrity.mainVideo} />
+          ) : (
+            <ResizableMainVideo mainVideoUrl={celebrity.mainVideo} />
+          )}
+        </div>
+        <div className="col-12 col-lg-8 p-0 m-0 px-sm-3">
+          <CelebrityDetails
+            fullName={celebrity.fullName}
+            username={celebrity.username}
+            avatar={celebrity.avatar}
+            countryCode={celebrity.countryCode}
+            celebrityId={celebrity.id}
+            categoryTitle={celebrity.categoryTitle}
+            contractTypes={celebrity.contractTypes}
+            variant="2"
+          />
+        </div>
+      </div>
+
       {/* <CelebrityPublicContractsSectionLayout
         contractTypes={celebrity.contractTypes}
         celebrityId={celebrity.id}

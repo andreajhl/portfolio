@@ -5,7 +5,7 @@ import { CelebrityPublicContractsSectionLayout } from "../celebrity-public-contr
 import { CelebrityReviewsSectionLayout } from "../celebrity-reviews-section";
 import { SimilarCelebritiesCardsSectionLayout } from "../similar-celebrities-cards-section";
 import { SimilarCelebrityContractsSectionLayout } from "../similar-celebrity-contracts-section";
-import { CelebrityMainVideoSection } from "../main-video-section";
+import { ResizableMainVideo } from "../resizable-main-video";
 import HowToGetAVideoMessageLayout from "../how-to-get-a-video-message";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import { connect } from "react-redux";
@@ -13,19 +13,33 @@ import { connect } from "react-redux";
 const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
   return (
     <>
-      {celebrity.mainVideo ? (
-        <CelebrityMainVideoSection mainVideoUrl={celebrity.mainVideo} />
-      ) : null}
-      <CelebrityDetails
-        fullName={celebrity.fullName}
-        username={celebrity.username}
-        avatar={celebrity.avatar}
-        countryCode={celebrity.countryCode}
-        celebrityId={celebrity.id}
-        categoryTitle={celebrity.categoryTitle}
-        contractTypes={celebrity.contractTypes}
-        variant="1"
-      />
+      <div
+        className={`row container mx-auto py-lg-${
+          celebrity.mainVideo ? "4" : "0"
+        } p-0 justify-content-center`}
+      >
+        {celebrity.mainVideo ? (
+          <div className="col-12 col-lg-4 order-lg-1 p-0 m-0 px-sm-3">
+            <ResizableMainVideo mainVideoUrl={celebrity.mainVideo} />
+          </div>
+        ) : null}
+        <div
+          className={`col-12 col-lg-${
+            celebrity.mainVideo ? "8" : "10"
+          } p-0 m-0 px-sm-3`}
+        >
+          <CelebrityDetails
+            fullName={celebrity.fullName}
+            username={celebrity.username}
+            avatar={celebrity.avatar}
+            countryCode={celebrity.countryCode}
+            celebrityId={celebrity.id}
+            categoryTitle={celebrity.categoryTitle}
+            contractTypes={celebrity.contractTypes}
+            variant="1"
+          />
+        </div>
+      </div>
       <HowToGetAVideoMessageLayout />
       {hasPublicContracts ? (
         <>

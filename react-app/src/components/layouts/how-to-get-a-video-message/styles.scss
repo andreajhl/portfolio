@@ -2,6 +2,11 @@
   .container {
     @media only screen and (min-width: 768px) {
       display: flex;
+      align-items: center;
+    }
+
+    @media only screen and (min-width: 992px) {
+      display: flex;
       max-width: 900px;
       align-items: center;
     }
