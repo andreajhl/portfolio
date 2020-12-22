@@ -1,0 +1,106 @@
+@import "../../../theme";
+
+.TrendingVideoCardLayout {
+
+  max-width: 400px !important;
+  margin:  0 auto;
+
+  .f-card {
+    width: 100%;
+    border: solid 0px !important;
+    border-radius: 0px !important;
+  }
+
+  .celebrity-details {
+    padding: 5px;
+    width: 100%;
+    height: 60px;
+    position: relative;
+
+    .avatar {
+      position: absolute;
+      width: 40px;
+      border-radius: 100%;
+    }
+
+    .full-name {
+      position: absolute;
+      top: 16px;
+      left: 50px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .contract-button {
+      background: $primary;
+      height: 30px;
+      position: absolute;
+      right: 5px;
+      width: 130px;
+      text-align: center;
+      top: 10px;
+      font-size: 15px;
+      padding-top: 5px;
+      padding-bottom: 20px;
+      color: white;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      border-radius: 30px;
+      border-color: $primary;
+      background: linear-gradient(#FF359B,#FB177D 50%) !important;
+
+      img {
+        position: relative;
+        width: 25px;
+        left: 7px;
+        top: -2px;
+      }
+    }
+  }
+
+  .video {
+    position: relative;
+    padding-top: 100%;
+
+    .play-pause {
+      z-index: 1;
+      position: absolute;
+      top: 30px;
+      left: 35px;
+      font-size: 45px;
+      color: white;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      right: 0;
+      position: absolute;
+      display: block;
+      visibility: initial;
+      vertical-align: baseline;
+      object-fit: cover !important;
+      background-color: $dark;
+    }
+  }
+
+  .body {
+    padding: 20px;
+    width: 100%;
+    position: relative;
+
+    .contract-to {
+      position: absolute;
+      float: left;
+    }
+
+    .favs-and-comments {
+      display: flex;
+      float: right;
+    }
+  }
+
+}
+

@@ -1,0 +1,22 @@
+const TEMPLATES_PATH = "./templates";
+const ASSETS_PATH = `${TEMPLATES_PATH}/assets`;
+const HTML_PATH = `${ASSETS_PATH}/html`;
+const DATA_PATH = `${TEMPLATES_PATH}/data`;
+
+const LANDING_PAGE_TEMPLATE_PATH = `${HTML_PATH}/index.html`;
+const CELEBRITY_CARD_TEMPLATE_PATH = `${HTML_PATH}/celebrity-card.html`;
+const CONTRACT_VIDEO_TEMPLATE_PATH = `${HTML_PATH}/contract-video.html`;
+const CELEBRITIES_DATA_PATH = `${DATA_PATH}/celebrities.json`;
+const CONTRACTS_VIDEOS_DATA_PATH = `${DATA_PATH}/contracts-videos.json`;
+
+module.exports = {
+  TEMPLATES_PATH,
+  ASSETS_PATH,
+  HTML_PATH,
+  DATA_PATH,
+  LANDING_PAGE_TEMPLATE_PATH,
+  CELEBRITY_CARD_TEMPLATE_PATH,
+  CONTRACT_VIDEO_TEMPLATE_PATH,
+  CELEBRITIES_DATA_PATH,
+  CONTRACTS_VIDEOS_DATA_PATH
+};

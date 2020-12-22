@@ -1,0 +1,17 @@
+.PaymentMethodsSection {
+  min-height: 80vh;
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 30px;
+
+  .payment-methods-section-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 0;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+}

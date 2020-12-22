@@ -1,0 +1,97 @@
+@import "../../../theme";
+
+.NavbarSectionLayout {
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  z-index: 10000;
+  margin: 0 auto;
+}
+
+.top-bar {
+  &-helper {
+    height: 113px;
+
+    &.hidden-search {
+      height: 53px;
+    }
+  }
+
+  &__dropdown-button {
+    font-size: 1.35rem;
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
+  }
+
+  &__logo-link {
+    display: inline-block;
+    width: 106px;
+  }
+
+  &__logo {
+    width: 100%;
+  }
+
+  &__login-btn {
+    border-radius: 25px;
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  &__currency {
+    width: 53px;
+    right: 7px;
+    position: relative;
+    top: 0.3rem;
+  }
+
+  &__search-sm {
+    margin: 0 0.81rem;
+  }
+
+  .dropdown {
+    left: -1px;
+    padding: 0;
+    position: relative;
+    width: 18rem;
+
+    &.dropdown-menu-is-open {
+      z-index: 99999;
+      background-color: white;
+      border-right: 1px solid rgba(0, 0, 0, 0.15);
+      border-left: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    &-menu {
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+      border-radius: 0 0 10px 0;
+      left: -1px !important;
+      min-width: 18rem !important;
+
+      @media only screen and (min-width: 576px) {
+        left: -1px !important;
+        border-radius: 0 0 10px 10px;
+      }
+    }
+
+    .dropdown-item {
+      padding: 1.25rem 2rem 1.25rem 3rem;
+      font-size: 0.875rem;
+      border-bottom: solid 1px #ccc;
+      font-weight: bold;
+    }
+
+    .dropdown-toggle::after {
+      color: $dark !important;
+      display: none;
+    }
+    .btn-outline-dark:hover {
+      background-color: white !important;
+      color: $dark !important;
+    }
+  }
+}

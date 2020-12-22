@@ -1,0 +1,97 @@
+.VideoCallsResearchModal {
+  &__btn {
+    background: #ffffff;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0.15em 0.25em 0 rgba($color: #000000, $alpha: 0.1);
+    &-text {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-right: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    &-icon {
+      font-size: 1.2rem;
+      top: -0.2rem;
+      position: relative;
+    }
+  }
+
+  &__modal {
+    .modal-content {
+      width: 70vw;
+      border-radius: 10px !important;
+      background-color: white !important;
+
+      @media only screen and (max-width: 400px) {
+        & {
+          width: 95%;
+        }
+      }
+
+      input {
+        border: 1px solid #ced4da !important;
+
+        &.border-danger {
+          border-color: #dc3545 !important;
+
+          & + .flag-dropdown {
+            border-color: #dc3545 !important;
+          }
+        }
+      }
+
+      .modal-header {
+        padding: 1rem 2rem !important;
+        text-align: center;
+        background-color: transparent !important;
+        width: unset;
+        border-bottom-color: #d5d5d5 !important;
+        padding: 10px;
+        border-radius: 0;
+        text-transform: unset;
+
+        .modal-title {
+          width: 100%;
+          text-align: center;
+          margin-right: -2rem;
+          font-size: 1rem;
+          font-weight: bold;
+        }
+      }
+
+      .modal-body,
+      .modal-footer {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+      .modal-body {
+        padding-bottom: 0;
+
+        @media only screen and (max-width: 768px) {
+          max-height: 70vh;
+          overflow: scroll;
+        }
+      }
+
+      .modal-footer {
+        justify-content: center;
+        border: none !important;
+        padding-top: 1.675rem;
+
+        .btn {
+          padding-top: 0.75em;
+          padding-bottom: 0.75em;
+          @media only screen and (min-width: 768px) {
+            width: 25% !important;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.HowToGetAVideoMessageLayout {
+  .container {
+    @media only screen and (min-width: 768px) {
+      display: flex;
+      align-items: center;
+    }
+
+    @media only screen and (min-width: 992px) {
+      display: flex;
+      max-width: 900px;
+      align-items: center;
+    }
+  }
+  &__title {
+    color: rgb(251, 23, 125);
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+
+    @media only screen and (min-width: 768px) {
+      font-size: 1.5rem;
+      flex-basis: 60%;
+      text-align: left;
+    }
+  }
+
+  &__steps-list {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  &__step-item {
+    text-align: center;
+    flex-basis: 30%;
+
+    @media only screen and (min-width: 768px) {
+      text-align: left;
+    }
+  }
+
+  &__step-icon {
+    height: 1rem;
+    @media only screen and (min-width: 768px) {
+      height: 2rem;
+    }
+  }
+
+  &__step-text {
+    font-size: 0.65rem;
+
+    @media only screen and (min-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import "../../../theme";
+
+.ContractFavsLayout{
+
+  margin-bottom: 8px;
+  margin-right: 10px;
+
+  i {
+    font-size: 20px;
+    color: $dark;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  small {
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 10px;
+    color: $dark;
+  }
+
+}

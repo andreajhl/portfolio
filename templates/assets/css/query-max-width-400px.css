@@ -1,0 +1,25 @@
+  :root {
+    font-size: 4vw;
+  }
+
+  .section-block__inner-content {
+    width: 80%;
+  }
+
+  .celebrities__inner-content {
+    width: 90%;
+  }
+
+  .celebrities__main__cards {
+    grid-template-columns: repeat(2, 10rem);
+  }
+}
+
+@media screen and (min-width: 401px) and (max-width: 767px) {
+  :root {
+    font-size: 16px;
+  }
+
+  .hero {
+    background-size: cover;
+  }

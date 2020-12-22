@@ -1,0 +1,5 @@
+  .hero {
+     background: url(../img/hero-background-small.jpg) no-repeat 50% 50% / cover,
+      black; 
+    height: 33.1875rem;
+  }

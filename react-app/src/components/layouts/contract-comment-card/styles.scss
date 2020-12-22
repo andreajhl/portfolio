@@ -1,0 +1,48 @@
+@import "../../../theme";
+
+.ContractCommentCardLayout {
+
+  *{
+    color: $dark;
+  }
+
+  .custom-card-title {
+    display: flex;
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+      text-align: center;
+      background-color: $dark;
+      position: relative;
+      border: solid 1px $dark;
+
+      i {
+        color: white;
+        position: absolute;
+        top: 7px;
+        left: 7px;
+      }
+    }
+
+    .client-name {
+      margin-left: 10px;
+      position: relative;
+      top: 2px;
+      font-weight: bold;
+    }
+
+  }
+
+  .custom-card-body {
+    padding-bottom: 10px;
+    border-bottom: solid 1px #d9d9d9;
+
+    .comment {
+      margin-left: 40px;
+      font-family: "Avenir Next LT Pro Italic", sans-serif !important;
+    }
+  }
+
+}

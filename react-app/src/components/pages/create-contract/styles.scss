@@ -1,0 +1,19 @@
+@import "../../../theme";
+
+.CreateContractPage {
+  margin: 0 auto;
+  max-width: 1000px !important;
+
+  @media (min-width: 900px) {
+    padding: 20px;
+  }
+
+  .steps-image {
+    max-width: 300px;
+    margin: 0 auto;
+
+    img.create-contract-steps {
+      max-width: 300px;
+    }
+  }
+}

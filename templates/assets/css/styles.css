@@ -1,0 +1,427 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+/* ---------------- GENERAL STYLES BEGINS ------------------- */
+
+body {
+  background: white;
+  font-family: "Avenir Next LT Pro Regular", sans-serif !important;
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+h2 {
+  font-size: 0.9907rem;
+}
+
+.hidden {
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+.align-vertically {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-medium {
+  line-height: 1.3125rem;
+  font-size: 0.805rem;
+}
+
+.btn {
+  background: none;
+  cursor: pointer;
+  text-align: center;
+  transition: border 0.5s;
+  border: 0;
+  white-space: normal;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 1.25em;
+  line-height: 120%;
+}
+
+.btn-primary {
+  background: #fb177d;
+  color: white;
+  font-size: 1.1146rem;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+  background: white;
+  color: #fb177d;
+}
+
+.btn-primary-alternative-hover:hover,
+.btn-primary-alternative-hover:active {
+  background: black;
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-with-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.section-block {
+  height: 32.5625rem;
+}
+
+.section-block__inner-content {
+  height: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* ---------------- GENERAL STYLES ENDS ------------------- */
+
+/* ---------------- TOP BAR BEGINS ------------------- */
+.top-bar {
+  background: black;
+  height: 3.3125rem;
+  align-items: center;
+}
+
+.top-bar__logo {
+  width: 10.5rem;
+}
+
+/* ---------------- TOP BAR ENDS ------------------- */
+
+/* ---------------- HERO SECTION BEGINS ------------------- */
+
+.hero {
+   background: url(../img/hero-background-extra-large.jpg) no-repeat 50% 50% /
+      contain,
+    black; 
+}
+
+.hero__header {
+  height: 100%;
+  align-items: center;
+}
+
+.hero__header__heading {
+  color: white;
+  margin-top: 4.5rem;
+  margin-bottom: 1rem;
+  line-height: 2.5625rem;
+  font-size: 2.1053rem;
+}
+
+.hero__header__button {
+  font-size: 1.2384rem;
+}
+
+/* ---------------- HERO SECTION ENDS ------------------- */
+
+/* ---------------- HOW-TO SECTION STARTS ------------------- */
+
+.how-to {
+  background: rgb(247, 247, 247);
+  height: 18.75rem;
+}
+
+.how-to__inner-content {
+  align-items: center;
+}
+
+.how-to__steps {
+  display: flex;
+  width: 100%;
+  position: relative;
+  top: -0.5rem;
+}
+
+.how-to__steps-item {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.how-to__steps-image {
+  height: 3.1875rem;
+  width: 3.1875rem;
+  margin-right: 1.5rem;
+}
+
+/* ---------------- HOW-TO SECTION ENDS ------------------- */
+
+/* ---------------- CELEBRITIES SECTION STARTS ------------------- */
+.celebrities__header {
+  height: auto;
+  padding: 2rem 0 1.25rem;
+  align-items: center;
+}
+
+.celebrities__header__icon {
+  margin-bottom: 1.25rem;
+  height: 3.1875rem;
+  width: 3.125rem;
+}
+
+.celebrities__header__heading {
+  margin-bottom: 1rem;
+}
+
+.celebrities__header__text {
+  line-height: 1.625rem;
+  font-size: 0.9907rem;
+}
+
+.celebrities__main {
+  height: auto;
+  padding: 1rem 0 4rem;
+}
+
+.celebrities__main__cards {
+  display: grid;
+  justify-content: center;
+  align-items: start;
+  grid-template-columns: repeat(2, 11.35rem);
+  grid-gap: 1rem 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.celebrities__card {
+  background: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transition: transform 0.5s ease;
+}
+
+.celebrities__card:hover {
+  transform: scale(1.05);
+}
+
+.celebrities__card__image {
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+  width: 100%;
+}
+
+.celebrities__card__content {
+  padding-left: 0.5rem;
+}
+
+.celebrity__card__info {
+  display: flex;
+  align-items: center;
+}
+
+.celebrity__card__category {
+  font-size: 0.85em;
+  color: #545e76;
+  flex: 1;
+}
+
+.celebrity__card__country {
+  height: 0.625rem;
+  width: 0.9375rem;
+}
+
+.celebrity__card__fullname {
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.celebrity__card__hashtags {
+  font-size: 0.75em;
+  color: #4c5365;
+}
+
+.celebrities__main__bottom {
+  text-align: center;
+}
+
+.celebrities__main__bottom__call-to-action {
+  margin-bottom: 1.5rem;
+}
+/* ---------------- CELEBRITIES SECTION ENDS ------------------- */
+
+/* ---------------- VIDEOS SECTION STARTS ------------------- */
+
+.videos {
+  padding: 3rem 0;
+  height: auto;
+  background: black;
+  color: white;
+}
+
+.videos__title {
+  font-size: 1.5em;
+}
+
+.videos__heading {
+  margin: 1.5rem 0;
+}
+
+.videos__list {
+  justify-content: space-between;
+  width: 100%;
+  max-width: 750px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  display: flex;
+}
+
+.videos__list-item {
+  flex-basis: 100%;
+  margin-bottom: 1rem;
+}
+
+.videos__list-item__video {
+  height: 100%;
+  width: 100%;
+}
+
+.videos__button-wrapper {
+  text-align: center;
+}
+
+.videos__button {
+  margin-top: 2rem;
+  font-size: 1.0526rem;
+  padding: 0.5em 2em !important;
+  width: auto;
+}
+
+.videos__button:hover,
+.videos__button:active {
+  color: black;
+}
+
+/* ---------------- VIDEOS SECTION ENDS ------------------- */
+
+/* ---------------- COOKIES CONSENT STARTS ------------------- */
+.cookies-consent {
+  display: none;
+  will-change: opacity;
+  font-size: 0.75em !important;
+  background-color: #eee;
+  width: 100%;
+  max-width: 65rem;
+  position: fixed;
+  bottom: 0px;
+  /* center the element */
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  padding: 1.25em;
+  text-align: justify;
+  border-radius: 4px;
+  z-index: 10000;
+}
+
+.cookies-consent__text {
+  margin-bottom: 1.25em;
+}
+
+.cookies-consent__options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cookies-consent__terms-link {
+  color: #035277;
+}
+
+.cookies-consent__terms-link:hover {
+  text-decoration: underline;
+}
+
+.cookies-consent__accept-button {
+  float: right;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+/* ---------------- COOKIES CONSENT ENDS ------------------- */
+
+/* ---------------- MAIN FOOTER SECTION STARTS ------------------- */
+
+.main_footer {
+  color: white;
+  background: rgb(40, 40, 40);
+  height: 10rem;
+}
+
+.main_footer__info {
+  height: 100%;
+}
+
+.main_footer__info__logo {
+  height: 1.75rem;
+  width: 8.1875rem;
+  margin-bottom: 0.75rem;
+}
+
+.main_footer__info__what-is {
+  margin-bottom: 2rem;
+}
+
+.main_footer__info__copyright {
+  line-height: 0.9375rem;
+  font-size: 0.6811rem;
+}
+
+.main_footer__socials {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin-bottom: 1.5rem;
+}
+
+.main_footer__socials__text {
+  margin-right: 1rem;
+}
+
+.main_footer__socials__link {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 1rem;
+}
+
+.main_footer__socials__link__image {
+  width: 100%;
+}
+/* ---------------- MAIN FOOTER SECTION ENDS ------------------- */

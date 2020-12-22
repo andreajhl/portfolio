@@ -1,0 +1,26 @@
+.CelebrityReviewsSectionLayout {
+  background-color: #f9f9f9;
+  .f-section {
+    max-width: 900px;
+  }
+  .comment {
+    overflow-y: scroll;
+    height: 45px;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.1875rem;
+    text-align: center;
+    color: #626262;
+  }
+
+  &__review:nth-child(4),
+  &__review:nth-child(5),
+  &__review:nth-child(6) {
+    @media only screen and (max-width: 576px) {
+      display: none;
+    }
+  }
+}

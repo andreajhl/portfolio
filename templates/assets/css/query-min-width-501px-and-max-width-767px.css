@@ -1,0 +1,3 @@
+  .videos__list-item {
+    flex-basis: calc(50% - 0.5rem);
+  }

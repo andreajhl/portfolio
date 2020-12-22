@@ -1,0 +1,15 @@
+/* ---------------- MEDIA QUERIES STARTS ------------------- */
+@supports not (display: grid) {
+  .celebrities__card {
+    margin-bottom: 1rem;
+  }
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .image[src$=".svg"] {
+      width: calc(100% + 1px);
+    }
+  }
+}
+/* ---------------- MEDIA QUERIES ENDS ------------------- */

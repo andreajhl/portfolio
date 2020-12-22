@@ -1,0 +1,13 @@
+.DS_Store
+.env
+.env.*
+.idea
+.idea
+react-app/node_modules
+react-app/.env
+react-app/.env.production
+react-app/.env.testing
+node_modules
+react-app/build
+zip.zip
+build
