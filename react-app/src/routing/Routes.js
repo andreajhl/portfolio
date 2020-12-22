@@ -23,6 +23,7 @@ class MyRoutes extends Component {
               path={PATHS.ROOT_PATH}
               component={PAGES.CelebritiesPage}
             />
+            <Route exact path={PATHS.SUBSCRIPTION} component={PAGES.Subscription} />
             <Route exact path={PATHS.BLOG} component={PAGES.Blog_Results} />
             <Route exact path={PATHS.BLOG_ENTRY} component={PAGES.Blog_Entry} />
             <Route
