@@ -33,11 +33,10 @@ const BlogPostCardLayout = ({
         <Card.Text>
           <span className="d-sm-none">{limitString(plainString, 80)}</span>
           <span className="d-none d-sm-block">
-            {limitString(plainString, 150)}
+            {limitString(plainString, 120)}
           </span>
         </Card.Text>
-
-        <Button variant="primary" onClick={() => goToBlog()}>
+        <Button variant="info" onClick={() => goToBlog()}>
           Leer más
         </Button>
       </Card.Body>
