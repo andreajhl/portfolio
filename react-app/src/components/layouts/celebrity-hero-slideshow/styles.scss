@@ -8,6 +8,18 @@
 
     &-indicators {
       margin-bottom: 0;
+
+      li {
+        width: 1rem;
+        height: 0.8rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        border-radius: 50%;
+
+        @media only screen and (min-width: 576px) {
+          height: 1rem;
+        }
+      }
     }
   }
 

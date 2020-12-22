@@ -22,31 +22,31 @@
     z-index: 100;
     display: flex;
     max-height: 160px;
-    padding: 0 15%;
+    padding: 0 17%;
     align-items: center;
     justify-content: flex-end;
 
     @media only screen and (min-width: 576px) {
-      padding: 0 6.95rem;
+      padding: 0 8.35rem;
     }
 
     @media only screen and (min-width: 768px) {
-      padding: 0 12.75rem;
+      padding: 0 14.05rem;
     }
 
     @media only screen and (min-width: 992px) {
-      padding: 0 20rem;
+      padding: 0 21.5rem;
     }
 
     @media only screen and (min-width: 1200px) {
-      padding: 0 25.75rem;
+      padding: 0 27.15rem;
     }
 
     i {
       color: white;
       font-size: 1.5rem;
       margin-left: 1.25em;
-      margin-top: 3rem;
+      margin-top: 1.5rem;
     }
 
     .volume-icon {
