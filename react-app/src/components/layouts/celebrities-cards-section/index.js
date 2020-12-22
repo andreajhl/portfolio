@@ -129,7 +129,7 @@ const CelebritiesCardsSectionLayout = ({
         {hasMoreResults ? (
           <NavLink
             to={moreResultsPath || searchMoreResultsPath}
-            className="mb-1 font-weight-bold mr-3 mr-sm-0"
+            className="mb-1 font-weight-bold mr-3 mr-sm-0 flex-shrink-0"
             onClick={registerSeeMoreResultsClick}
           >
             Ver más
