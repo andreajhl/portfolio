@@ -9,6 +9,7 @@ import * as API_PATHS from "./paths";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import { updateQueryParamsInitialState } from "./reducers";
+import * as firestoreService from "../../../firebase/firestoreService";
 
 const getValidParams = (params) => {
   const paramsEntries = Object.entries(params);
@@ -257,3 +258,21 @@ export const fetchSimilarCelebrities = (celebrityUsername) => (dispatch) => {
 export const cleanPublicContracts = () => ({
   type: types.CLEAN_PUBLIC_CONTRACTS
 });
+
+export const fetchFlashDeliveryCelebrities = () => async (dispatch) => {
+  const environment = process.env.REACT_APP_ENVIRONMENT;
+
+  const TYPE = types.FETCH_FLASH_DELIVERY_CELEBRITIES_REQUEST;
+  const FINAL_PATH = `${API_PATHS.FLASH_DELIVERY_CELEBRITIES}${
+    environment === "development" ? "_testing" : ""
+  }`;
+  dispatch({ type: TYPE, payload: {} });
+  try {
+    const docs = await firestoreService.getDocuments(FINAL_PATH);
+    dispatch({ type: `${TYPE}_SUCCESS`, payload: docs });
+  } catch (error) {
+    dispatch({ type: `${TYPE}_FAILURE`, payload: error });
+  } finally {
+    dispatch({ type: `${TYPE}_COMPLETED`, payload: {} });
+  }
+};

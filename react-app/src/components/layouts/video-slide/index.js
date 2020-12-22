@@ -164,12 +164,9 @@ VideoSlideLayout.defaultProps = {
   autoPlay: true
 };
 
-const mapStateToProps = ({ contracts }) => {
-  console.log(contracts.playVideoReducer);
-  return {
-    currentVideoPlaying: contracts.playVideoReducer.contract_reference
-  };
-};
+const mapStateToProps = ({ contracts }) => ({
+  currentVideoPlaying: contracts.playVideoReducer.contract_reference
+});
 
 // mapStateToProps
 const mapDispatchToProps = {
