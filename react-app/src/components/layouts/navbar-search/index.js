@@ -43,7 +43,7 @@ class NavbarSearchLayout extends Component {
   }
 
   inputHandler({ target }) {
-    const { value } = target;
+    const value = target.value.replace(/('|%)/g, "");
     this.setState({
       keyword: value
     });
