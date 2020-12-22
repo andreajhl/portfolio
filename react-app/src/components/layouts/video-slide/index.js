@@ -8,14 +8,14 @@ import "./styles.scss";
 const VideoSlideLayout = ({
   videoUrl,
   videoReference,
-  isMutedDefault,
   autoPlayOnCanPlay,
+  videoIsMuted,
+  setVideoIsMuted,
   autoPlayVideo,
   setPlayingVideo,
   currentVideoPlaying
 }) => {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
-  const [videoIsMuted, setVideoIsMuted] = useState(isMutedDefault);
   const [videoIsFullscreen, setVideoIsFullscreen] = useState(false);
   const videoRef = useRef();
   const sectionRef = useRef();

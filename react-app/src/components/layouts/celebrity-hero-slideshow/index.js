@@ -17,6 +17,7 @@ const CelebrityHeroSlideshow = ({
   };
 
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [videoIsMuted, setVideoIsMuted] = useState(true);
 
   const handleSelect = (selectedIndex, event) => {
     setPlayingVideo({ contract_reference: null });
@@ -55,6 +56,9 @@ const CelebrityHeroSlideshow = ({
               videoUrl={celebrityMainVideo}
               videoReference={"MAIN_VIDEO"}
               autoPlayOnCanPlay
+              // autoPlayVideo={activeSlideIndex === 0}
+              videoIsMuted={videoIsMuted}
+              setVideoIsMuted={setVideoIsMuted}
             />
           </Carousel.Item>
         ) : null}
@@ -63,7 +67,9 @@ const CelebrityHeroSlideshow = ({
             <VideoSlideLayout
               videoUrl={publicContract.contract_media}
               videoReference={publicContract.contract_reference}
-              autoPlayVideo={index + 1 === activeSlideIndex}
+              // autoPlayVideo={index + 1 === activeSlideIndex}
+              videoIsMuted={videoIsMuted}
+              setVideoIsMuted={setVideoIsMuted}
             />
           </Carousel.Item>
         ))}
