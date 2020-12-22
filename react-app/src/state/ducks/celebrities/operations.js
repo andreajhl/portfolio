@@ -5,7 +5,8 @@ import {
   listReviews,
   listSimilar,
   updateQueryParams,
-  cleanPublicContracts
+  cleanPublicContracts,
+  fetchFlashDeliveryCelebrities
 } from "./actions";
 
 export {
@@ -15,5 +16,6 @@ export {
   listReviews,
   listPublicContracts,
   updateQueryParams,
-  listSimilar
+  listSimilar,
+  fetchFlashDeliveryCelebrities
 };

@@ -31,8 +31,11 @@ class PageContainer extends Component {
     if (this.props.applyFetchUserCelebrityLikes && isLogged) {
       this.props.fetchUserCelebrityLikes();
     }
-
     setCelebrityProfileVersionDependingOfTime();
+
+    if (this.props.shouldFetchFlashDeliveryCelebrities) {
+      this.props.fetchFlashDeliveryCelebrities();
+    }
 
     /* if (this.props.applyFetchCelebrities === true) {
       const queryParams = this.props.queryParams;
@@ -146,7 +149,10 @@ PageContainer.defaultProps = {
 const mapStateToProps = (state) => ({
   isLoading: state.celebrities.fetchCelebritiesReducer.loading,
   celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
-  paginationData: state.celebrities.fetchCelebritiesReducer.data.informationPage
+  paginationData:
+    state.celebrities.fetchCelebritiesReducer.data.informationPage,
+  shouldFetchFlashDeliveryCelebrities: !state.celebrities
+    .fetchFlashDeliveryCelebritiesReducer.completed
 });
 
 // mapStateToProps
@@ -154,7 +160,9 @@ const mapDispatchToProps = {
   updateQueryParams: celebrityOperations.updateQueryParams,
   fetchUserCelebrityLikes: celebrityLikesOperations.fetchUserCelebrityLikes,
   cleanUserCelebrityLikes:
-    celebrityLikesOperations.fetchUserCelebrityLikesCleanUp
+    celebrityLikesOperations.fetchUserCelebrityLikesCleanUp,
+  fetchFlashDeliveryCelebrities:
+    celebrityOperations.fetchFlashDeliveryCelebrities
 };
 
 // Export Class

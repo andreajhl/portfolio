@@ -1,12 +1,13 @@
 import React from "react";
-import { flashDeliveryCelebritiesUsernames } from "../../../constants/flashDeliveryCelebritiesUsernames";
+import { connect } from "react-redux";
 import "./styles.scss";
 
 const FlashDeliveryBadgeLayout = ({
   celebrityUsername,
   className,
   color,
-  showTime
+  showTime,
+  flashDeliveryCelebritiesUsernames
 }) => {
   const celebrityIsFlashDelivery = flashDeliveryCelebritiesUsernames.find(
     (username) => username === celebrityUsername
@@ -26,4 +27,13 @@ const FlashDeliveryBadgeLayout = ({
   ) : null;
 };
 
-export { FlashDeliveryBadgeLayout };
+const mapStateToProps = ({ celebrities }) => ({
+  flashDeliveryCelebritiesUsernames:
+    celebrities.fetchFlashDeliveryCelebritiesReducer.data.usernames
+});
+
+const _FlashDeliveryBadgeLayout = connect(mapStateToProps)(
+  FlashDeliveryBadgeLayout
+);
+
+export { _FlashDeliveryBadgeLayout as FlashDeliveryBadgeLayout };

@@ -4,8 +4,8 @@ const database = firebase.firestore();
 
 export const getDocuments = async (collectionPath) => {
   try {
-    const querySnapshot = await database.collection(collectionPath).get();
-    return querySnapshot;
+    const { docs } = await database.collection(collectionPath).get();
+    return docs.map((doc) => doc.data());
   } catch (error) {
     console.error(error);
   }
