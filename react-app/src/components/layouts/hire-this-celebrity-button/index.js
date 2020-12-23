@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { CELEBRITY_PROFILE_CONTRACT } from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
+import { parseFullName } from "parse-full-name";
+
+window.parseFullName = parseFullName;
 
 const HireThisCelebrityButton = ({
   className,
@@ -21,6 +24,21 @@ const HireThisCelebrityButton = ({
       celebrityUsername
     });
   };
+
+  const parsedFullName = parseFullName(
+    celebrityFullName,
+    "all",
+    true,
+    false,
+    true
+  );
+
+  const fullNameWords = celebrityFullName.split(" ");
+
+  const displayName =
+    parsedFullName.first === "Papá"
+      ? `${fullNameWords[0]} ${fullNameWords[1]}`
+      : parsedFullName.first || parsedFullName.last;
 
   return (
     <NavLink
@@ -44,7 +62,7 @@ const HireThisCelebrityButton = ({
         className={`font-weight-bold ${className ? className : ""}`}
       >
         {text}
-        {celebrityFullName ? " " + celebrityFullName.split(" ")[0] : ""}
+        {celebrityFullName ? " " + displayName : ""}
       </Button>
     </NavLink>
   );
