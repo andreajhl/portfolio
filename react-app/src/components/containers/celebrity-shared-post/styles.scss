@@ -3,7 +3,6 @@
     border: 1px solid rgb(216, 216, 216);
     width: 80%;
     margin: 0 auto;
-    min-height: 500px;
     border-radius: calc(0.25rem);
     flex-flow: column;
     &__user-avatar{
@@ -27,4 +26,9 @@
         margin: 10px;
         font-size: 14px;
     }
+    // &__media-files{
+    //    &__item{
+    //         max-height: 400px;
+    //     }
+    // }
 }

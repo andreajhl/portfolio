@@ -1,7 +1,9 @@
 import React,{useState} from 'react';
-import {Image, Carousel} from 'react-bootstrap';
+import {Image, Carousel,ResponsiveEmbed,VideoSlide } from 'react-bootstrap';
+import {VideoSlideLayout} from '../../layouts/video-slide/index';
 import './styles.scss';
-const CelebritySharedPost = () => {
+const CelebritySharedPost = (props) => {
+    const {celebrityId, description, id, urls} = props;
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
@@ -15,51 +17,30 @@ const CelebritySharedPost = () => {
             roundedCircle
           />
           <div className='celebrity-shared-post__user-name'>
-            <span>Benito Martinez Ocasio</span>
+            <span>{celebrityId}</span>
           </div>
         </div>
         <div className='celebrity-shared-post__media-files'>
           <Carousel interval={null} activeIndex={index} onSelect={handleSelect}>
-            <Carousel.Item>
-              <Image
-                className='d-block w-100'
-                src='/assets/img/index-header-backeground.png'
-                alt='First slide'
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <Image
-                className='d-block w-100'
-                src='/assets/img/index-header-backeground.png'
-                alt='First slide'
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <Image
-                className='d-block w-100'
-                src='/assets/img/index-header-backeground.png'
-                alt='First slide'
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <Image
-                className='d-block w-100'
-                src='/assets/img/index-header-backeground.png'
-                alt='First slide'
-              />
-            </Carousel.Item>
+            {urls.map((media,index) => {
+              return (
+                <Carousel.Item className='celebrity-shared-post__media-files__item'>
+                  {media.type === 'video' ? (
+                    <VideoSlideLayout videoUrl={media.value} />
+                  ) : (
+                    <Image
+                      className='d-block w-100'
+                      src={media.value}
+                      alt={`media-${index}`}
+                    />
+                  )}
+                </Carousel.Item>
+              );
+            })}
           </Carousel>
         </div>
         <div className='celebrity-shared-post__description'>
-          <span>
-            Consequat sint ex labore velit veniam fugiat sit enim pariatur
-            dolore Lorem qui eu sint. Nisi culpa quis incididunt incididunt
-            deserunt sit consequat proident elit in ea. Id commodo irure ullamco
-            incididunt sit ipsum quis voluptate labore cillum est. Elit cillum
-            irure nulla ut aliquip qui veniam irure Lorem consectetur
-            reprehenderit ut anim. Non adipisicing Lorem qui non non.
-          </span>
-          1
+          <span>{description}</span>
         </div>
       </div>
     );
