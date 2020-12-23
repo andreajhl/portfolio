@@ -9,6 +9,7 @@ import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import { CelebrityProfileLayoutB } from "../celebrity-profile-b";
 import { connect } from "react-redux";
 import { ResizableMainVideo } from "../resizable-main-video";
+import { SimilarCelebrityContractsSectionLayout } from "../similar-celebrity-contracts-section";
 
 const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
   return celebrity.mainVideo || hasPublicContracts ? (
@@ -52,6 +53,9 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
       {/* <SimilarCelebritiesCardsSectionLayout
         celebrityUsername={celebrity.username}
       /> */}
+      <SimilarCelebrityContractsSectionLayout
+        celebrityUsername={celebrity.username}
+      />
       <CelebrityReviewsSectionLayout celebrityId={celebrity.id} />
       <HowToGetAVideoMessageLayout />
     </>
