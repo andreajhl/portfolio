@@ -43,4 +43,6 @@ export const TRENDING = "/tendencias/";
 export const BLOG = "/blogs/all";
 export const BLOG_ENTRY = `${BLOG}/blog-:id`;
 //SUBSCRIPTION
-export const SUBSCRIPTION= "/subscription/:celebrity_username"
+export const SUBSCRIPTION= "/subscription/subscribe/:celebrity_username"
+//SUBSCRIPTION FEED
+export const FEED_SUBSCRIPTION= "/suscription/feed"

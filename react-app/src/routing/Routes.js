@@ -23,7 +23,6 @@ class MyRoutes extends Component {
               path={PATHS.ROOT_PATH}
               component={PAGES.CelebritiesPage}
             />
-            <Route exact path={PATHS.SUBSCRIPTION} component={PAGES.Subscription} />
             <Route exact path={PATHS.BLOG} component={PAGES.Blog_Results} />
             <Route exact path={PATHS.BLOG_ENTRY} component={PAGES.Blog_Entry} />
             <Route
@@ -151,6 +150,12 @@ class MyRoutes extends Component {
               path={PATHS.CLIENT_HIRINGS}
               component={PAGES.ClientHiringsPage}
             />
+            <PrivateRoute
+              exact
+              path={PATHS.FEED_SUBSCRIPTION}
+              component={PAGES.SubscriptionFeed}
+            />
+            <PrivateRoute exact path={PATHS.SUBSCRIPTION} component={PAGES.Subscription} />
             <PrivateRoute
               exact
               path={PATHS.CLIENT_FAVORITES}

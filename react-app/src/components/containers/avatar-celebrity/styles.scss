@@ -1,0 +1,21 @@
+.carousel-subscription-avatar{
+
+    &__image{
+        height: 65px;
+        width:  65px;
+        border: 1px solid #e83e8c;
+    }
+
+    &__celebrity-name{
+        max-width: 74px;
+        text-overflow: ellipsis;
+        font-size: 12px;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
