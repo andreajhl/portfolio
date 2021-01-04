@@ -31,6 +31,7 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
             categoryTitle={celebrity.categoryTitle}
             contractTypes={celebrity.contractTypes}
             description={celebrity.description}
+            turnAround={celebrity.turnaround}
             variant="2"
           />
         </div>
