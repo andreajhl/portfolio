@@ -121,26 +121,28 @@ const VideoSlideLayout = ({
   return (
     <section className="VideoSlideLayout" ref={sectionRef}>
       <div className="VideoSlideLayout__buttons">
-        <i
-          className={`fa fa-2x fa-volume-${
-            videoIsMuted ? "mute" : "up"
-          } volume-icon cursor-pointer`}
-          onClick={toggleVideoIsMuted}
-        />
-        <i
-          className={`fa fa-${
-            videoIsPlaying ? "pause" : "play"
-          } play-pause cursor-pointer`}
-          onClick={togglePlay}
-        />
-        {fullscreen.fullscreenEnabled ? (
+        <div className="d-flex align-items-center justify-content-end">
+          <i
+            className={`fa fa-2x fa-volume-${
+              videoIsMuted ? "mute" : "up"
+            } volume-icon cursor-pointer`}
+            onClick={toggleVideoIsMuted}
+          />
           <i
             className={`fa fa-${
-              videoIsFullscreen ? "compress" : "expand"
-            } fullscreen-icon cursor-pointer`}
-            onClick={toggleFullscreen}
+              videoIsPlaying ? "pause" : "play"
+            } play-pause cursor-pointer`}
+            onClick={togglePlay}
           />
-        ) : null}
+          {fullscreen.fullscreenEnabled ? (
+            <i
+              className={`fa fa-${
+                videoIsFullscreen ? "compress" : "expand"
+              } fullscreen-icon cursor-pointer`}
+              onClick={toggleFullscreen}
+            />
+          ) : null}
+        </div>
       </div>
       <video
         className="VideoSlideLayout__video"
