@@ -7,32 +7,11 @@ import { NavLink } from "react-router-dom";
 import { SEARCH_PATH } from "../../../routing/Paths";
 import { jsonToQueryString } from "../../../state/utils/apiService";
 import * as GTM from "../../../state/utils/gtm";
+import getMoreFrequentIds from "../../../utils/getMoreFrequentIds";
 
 const initialState = {
   showLeftScrollButton: false,
   showRightScrollButton: false
-};
-
-const getMoreFrequentIds = (celebrities = [], propertyName) => {
-  const idsCount = celebrities.reduce((idsCount, celebrity) => {
-    const celebrityPropertyValue = celebrity[propertyName];
-    if (idsCount[celebrityPropertyValue]) {
-      return {
-        ...idsCount,
-        [celebrityPropertyValue]: idsCount[celebrityPropertyValue] + 1
-      };
-    } else {
-      return {
-        ...idsCount,
-        [celebrityPropertyValue]: 1
-      };
-    }
-  }, {});
-  return Object.entries(idsCount)
-    .sort(([, firstEntry], [, secondEntry]) => secondEntry - firstEntry)
-    .slice(0, 3)
-    .map(([value]) => value)
-    .join(",");
 };
 
 const CelebritiesCardsSectionLayout = ({
