@@ -37,13 +37,11 @@ const GoToSimilarCelebritiesButton = ({
     GTM.tagManagerDataLayer(eventName + "_GO_TO_SIMILAR_CELEBRITIES_BUTTON", {
       path: window.location.pathname,
       widget: "GoToSimilarCelebritiesButton",
-      text: children,
+      text: typeof children === "string" ? children : "React.Node",
       celebrityUsername,
       similarCelebritiesPath
     });
   };
-
-  console.log(typeof children);
 
   return (
     <NavLink
