@@ -8,12 +8,16 @@ import "./styles.scss";
 import MetaTags from "react-meta-tags";
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
-import { NavLink } from "react-router-dom";
 import { CelebrityProfileLayoutA } from "../../layouts/celebrity-profile-a";
 import { CelebrityProfileLayoutB } from "../../layouts/celebrity-profile-b";
+import { CelebrityProfileLayoutC } from "../../layouts/celebrity-profile-c";
 import { getCelebrityProfileVersion } from "../../../utils/celebrityProfileVersion";
 
 const CelebrityProfileLayout = ({ celebrity }) => {
+  if (celebrity.showSimilarCelebrities) {
+    return <CelebrityProfileLayoutC celebrity={celebrity} />;
+  }
+
   const celebrityProfileVersion = getCelebrityProfileVersion();
 
   return celebrityProfileVersion && celebrityProfileVersion === "B" ? (
