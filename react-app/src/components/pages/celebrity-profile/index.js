@@ -14,7 +14,7 @@ import { CelebrityProfileLayoutC } from "../../layouts/celebrity-profile-c";
 import { getCelebrityProfileVersion } from "../../../utils/celebrityProfileVersion";
 
 const CelebrityProfileLayout = ({ celebrity }) => {
-  if (celebrity.showSimilarCelebrities) {
+  if (!celebrity.showSimilarCelebrities) {
     return <CelebrityProfileLayoutC celebrity={celebrity} />;
   }
 
