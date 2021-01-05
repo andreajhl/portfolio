@@ -2,12 +2,22 @@ import React, { useState } from "react";
 import { Collapse } from "react-bootstrap";
 import PropTypes from "prop-types";
 import "./styles.scss";
+import * as GTM from "../../../state/utils/gtm";
 
 const CelebritiesProfileDescription = ({ descriptionText }) => {
   const [showMore, setShowMore] = useState(false);
+  const analyticsData = {
+    widget: "CelebritiesProfileDescription",
+    path: window.location.pathname,
+    descriptionText
+  };
 
   const toggleShowMore = () => {
     setShowMore((previousShowMore) => !previousShowMore);
+    GTM.tagManagerDataLayer("TOGGLE_CELEBRITY_PROFILE_DESCRIPTION_SHOW_MORE", {
+      ...analyticsData,
+      showMore: !showMore
+    });
   };
 
   const descriptionTextSpan = (
