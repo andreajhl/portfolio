@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PaypalReactButton from "../paypal-react-button"
+import SubscriptionPaypalReactButton from "../subscription-paypal-react-button"
 import {processPayPalPayment} from "../../../state/ducks/payments/actions";
 import * as GTM from "../../../state/utils/gtm";
 import {history} from "../../../routing/History";
@@ -55,10 +55,11 @@ class SubscriptionPayPalCardForm extends Component {
     };
 
     onPayPalButtonError = (error: string) => {
-        return this.setState({
-            ...this.state,
-            errorMessage: error
-        });
+        console.log(error)
+        // return this.setState({
+        //     ...this.state,
+        //     errorMessage: error
+        // });
     };
 
      renderError = () => {
@@ -105,8 +106,8 @@ class SubscriptionPayPalCardForm extends Component {
             </div>
             {this.renderError()}
             {!this.state.errorMessage && this.props.contractPrice > 0 ? (
-              <PaypalReactButton
-                contractReference={this.props.contractReference}
+              <SubscriptionPaypalReactButton
+                planId={this.props.planId}
                 contractPrice={this.props.contractPrice}
                 onPayPalButtonApprove={this.onPayPalButtonApprove}
                 onPayPalButtonCancel={this.onPayPalButtonCancel}
@@ -121,7 +122,7 @@ class SubscriptionPayPalCardForm extends Component {
 // defaultProps
 SubscriptionPayPalCardForm.defaultProps = {
     contractPrice: null,
-    contractReference: "",
+    planId: "",
 };
 
 export {SubscriptionPayPalCardForm};

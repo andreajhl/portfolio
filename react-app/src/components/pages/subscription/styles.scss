@@ -1,0 +1,42 @@
+$breakpoint-tablet: 768px;
+
+.container-subscription-payment{
+    min-height: 80vh;
+    display: flex;
+    padding: 0px;
+    flex-flow: column;
+    align-items: center;
+    &__header{
+        margin: 0 auto;
+        height: 60px;
+        text-align: center;
+        background-color: #535F74;
+        border-top-left-radius: 0.5rem; 
+        border-top-right-radius: 0.5rem; 
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        h6{
+            color: white;
+        }
+    }
+
+    &__summary{
+        margin-top: 2rem;
+    }
+
+    &__paypalForm{
+        width: 40%;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        background-color: #f8f9fa ;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        padding: 20px;
+        @media (max-width: $breakpoint-tablet) {
+            width: 100%; 
+        }
+    }
+}

@@ -4,6 +4,7 @@ import { ProfilePicture } from "../profile-picture";
 import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
+import { SubscribeToThisCelebrityButton } from "../subscribe-to-this-celebrity-button";
 import { CelebrityContractPrice } from "../celebrity-contract-price";
 import "./styles.scss";
 
@@ -110,14 +111,14 @@ const CelebrityDetails = ({
 }) => {
   return (
     <Container
-      className={`mx-auto CelebrityDetails ${variant === "1" ? "mb-0" : ""}`}
+      className={`mx-auto CelebrityDetails ${variant === '1' ? 'mb-0' : ''}`}
     >
-      <Row className="justify-content-md-center align-items-center my-3">
-        <Col xs="auto d-md-none">
-          <ProfilePicture avatar={avatar} width="139px" />
+      <Row className='justify-content-md-center align-items-center my-3'>
+        <Col xs='auto d-md-none'>
+          <ProfilePicture avatar={avatar} width='139px' />
         </Col>
-        <Col xs="auto d-none d-md-block">
-          <ProfilePicture avatar={avatar} width="200px" />
+        <Col xs='auto d-none d-md-block'>
+          <ProfilePicture avatar={avatar} width='200px' />
         </Col>
         <Col>
           <CelebrityInfo
@@ -128,29 +129,41 @@ const CelebrityDetails = ({
             celebrityId={celebrityId}
             contractTypes={contractTypes}
           />
-          <Col className="d-none d-md-block mx-0 px-0">
+          <Col className='d-none d-md-block mx-0 px-0'>
             <HireThisCelebrityButton
               celebrityFullName={fullName}
               celebrityUsername={username}
               text={
                 // variant.startsWith("1")
-                /* ?  */ "Quiero un video de"
+                /* ?  */ 'Quiero un video de'
                 // : "Obtén un video de"
               }
-              width="100%"
-              fontSize="1.25em"
+              width='100%'
+              fontSize='1.25em'
+            />
+            <SubscribeToThisCelebrityButton
+              className='mt-2'
+              celebrityFullName={fullName}
+              celebrityUsername={username}
+              text={
+                // variant.startsWith("1")
+                /* ?  */ 'Suscribirme a '
+                // : "Obtén un video de"
+              }
+              width='100%'
+              fontSize='1.25em'
             />
           </Col>
         </Col>
       </Row>
       <Row>
-        <Col className="d-md-none">
+        <Col className='d-md-none'>
           <HireThisCelebrityButton
             celebrityFullName={fullName}
             celebrityUsername={username}
-            text="Quiero un video de"
-            width="100%"
-            fontSize="1.25em"
+            text='Quiero un video de'
+            width='100%'
+            fontSize='1.25em'
           />
         </Col>
       </Row>
