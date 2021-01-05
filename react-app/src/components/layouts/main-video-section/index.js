@@ -60,7 +60,7 @@ const CelebrityMainVideoSection = ({
     <section className="CelebrityMainvVideoSection container p-0">
       <div className="CelebrityMainvVideoSection__buttons">
         <i
-          className={`fa fa-2x fa-volume-${
+          className={`fa fa-volume-${
             videoIsMuted ? "mute" : "up"
           } volume-icon cursor-pointer`}
           onClick={toggleVideoIsMuted}
