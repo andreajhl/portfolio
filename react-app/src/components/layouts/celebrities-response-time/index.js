@@ -6,16 +6,17 @@ const getTurnAroundText = (turnAroundTime) => {
   if (turnAroundTime < 1) {
     return "Pocas horas";
   } else if (turnAroundTime === 1) {
-    return `${parseInt(turnAroundTime)} día`;
+    return `${turnAroundTime} día`;
   } else {
-    return `${parseInt(turnAroundTime)} días`;
+    return `${turnAroundTime} días`;
   }
 };
 
 const CelebritiesResponseTime = ({ turnAroundTime }) => {
   return (
     <span className="CelebritiesResponseTime">
-      Respuesta promedio: <span>{getTurnAroundText(turnAroundTime)}</span>
+      Respuesta promedio:{" "}
+      <span>{getTurnAroundText(parseInt(turnAroundTime))}</span>
     </span>
   );
 };
