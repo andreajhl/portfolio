@@ -33,7 +33,7 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
         </div>
       </div>
       <CelebrityReviewsSectionLayout celebrityId={celebrity.id} />
-      <section className="container text-center pt-4 pb-3">
+      <section className="container text-center py-4">
         <GoToSimilarCelebritiesButton celebrityUsername={celebrity.username}>
           Ver famosos similares
         </GoToSimilarCelebritiesButton>
