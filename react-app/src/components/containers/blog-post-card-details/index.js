@@ -17,7 +17,7 @@ const index = ({title, thumbnail, description, link,pubDate,idPost,history}) => 
       <Card.Body>
         <Card.Title onClick={()=> goToBlog()} className='mb-3' as='h2'>{title}</Card.Title>
         <Card.Text> {limitString(plainString, 300)}</Card.Text>
-        <Button variant='primary' onClick={()=> goToBlog()}>
+        <Button variant='info' onClick={()=> goToBlog()}>
           Leer más...
         </Button>
       </Card.Body>

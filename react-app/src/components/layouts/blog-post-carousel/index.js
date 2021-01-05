@@ -20,7 +20,7 @@ const BlogPostCarousel = ({
   }, []);
 
   return isBlogsDataFetch ? (
-    <CarouselWithButtons.Container buttonsStyles={{ height: "482px", top: 0 }}>
+    <CarouselWithButtons.Container buttonsStyles={{ height: "378px", top: 0 }}>
       <CarouselWithButtons.List>
         <ul>
           {blogsData.map(({ title, thumbnail, description, link }, index) => (
