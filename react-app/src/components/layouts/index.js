@@ -27,3 +27,5 @@ export * from "./user-profile-details-card";
 export * from "./user-likes-section";
 export * from "./auth-t&c";
 export * from "./video-card";
+export * from "./carousel-available-subscriptions"
+export * from "./celebrity-feed-posts"

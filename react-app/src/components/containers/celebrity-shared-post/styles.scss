@@ -1,0 +1,36 @@
+.celebrity-shared-post{
+    display: flex;
+    border: 1px solid rgb(216, 216, 216);
+    width: 80%;
+    margin: 0 auto 40px auto;
+    border-radius: calc(0.25rem);
+    flex-flow: column;
+    &__user-avatar{
+        align-self: start;
+        margin-top: 10px;
+        margin-left: 20px;
+        margin-bottom: 10px;
+        align-items: center;
+        display: flex;
+        .user-avatar-image{
+            height: 30px;
+            border: 1px solid #e83e8c;
+        }
+    }  
+    &__user-name{
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+    &__description{
+        margin: 20px;
+        font-size: 14px;
+    }
+    &__media-files{
+       &__item{
+        //    img{
+        //        margin: auto;
+        //    }
+        }
+    }
+}
