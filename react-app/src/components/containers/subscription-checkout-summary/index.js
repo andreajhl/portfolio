@@ -12,9 +12,9 @@ const SubscriptionCheckoutSummary = (props) => {
             <h5>Beneficios de la suscripción</h5>
             <ul className='container-subscription-checkout-summary__benefits-list'>
                 <li><i className="fas fa-check"></i><span>Descuento en compras de videomensajes de {celebrityFullName}.</span></li>
-                <li><i className="fas fa-check"></i><span>Invitacion a eventos gratuis y pagos con {celebrityFullName}.</span></li>
+                <li><i className="fas fa-check"></i><span>Invitación a eventos gratuitos y pagos con {celebrityFullName}.</span></li>
                 <li><i className="fas fa-check"></i><span>Acceso a contenido inédito.</span></li>
-                <li><i className="fas fa-check"></i><span>Muchas Sorpresas!.</span></li>
+                <li><i className="fas fa-check"></i><span>Muchas Sorpresas!</span></li>
             </ul>
             <span>
                 Recuerda que este precio precio es por una suscripción mensual y se renovara automática cada mes

@@ -89,7 +89,7 @@ const NavbarSectionLayout = ({
                       activeClassName="active"
                       to={PATHS.FEED_SUBSCRIPTION}
                     >
-                     Famosos Premium   
+                     Famosos Prime   
                     </NavLink>
                     <NavLink
                       className="dropdown-item"

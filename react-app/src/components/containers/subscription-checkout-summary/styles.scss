@@ -1,4 +1,5 @@
-$breakpoint-tablet: 768px;
+@import  '../../../constants/breakpoints.scss';
+
 
 .container-subscription-checkout-summary{
     text-align: center;
@@ -23,20 +24,21 @@ $breakpoint-tablet: 768px;
                 margin-top: 10px;
                 font-size: 1.2rem;
                 font-weight: 100;
+                margin-left: 10px;
                 
-                @media (max-width: $breakpoint-tablet) {
-                    align-items: flex-start;
-                }
                 i{
                     margin-right: 16px;
                     color: #EB2A7B;
-                    @media (max-width: $breakpoint-tablet) {
-                        margin-right: 0px;   
+                    @media (max-width: $screen-sm-min) and (min-width: $screen-md-min) {
+                        margin-right: 0px;
+                        text-align: start;
                     }
                 }
+
                 span{
-                    @media (max-width: $breakpoint-tablet) {
+                    @media (max-width: $screen-sm-min) {
                         text-align: initial;   
+                        margin-left: 10px;
                     }
                 }
 

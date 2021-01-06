@@ -16,6 +16,18 @@ const CarouselAvailableSubscriptions = () => {
         <div className='subscription-avatar-celebrity'>
           <AvatarCelebrity />
         </div>
+        <div className='subscription-avatar-celebrity'>
+          <AvatarCelebrity />
+        </div>
+        <div className='subscription-avatar-celebrity'>
+          <AvatarCelebrity />
+        </div>
+        <div className='subscription-avatar-celebrity'>
+          <AvatarCelebrity />
+        </div>
+        <div className='subscription-avatar-celebrity'>
+          <AvatarCelebrity />
+        </div>
       </div>
     );
 }

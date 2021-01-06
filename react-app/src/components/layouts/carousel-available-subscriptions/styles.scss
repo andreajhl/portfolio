@@ -7,7 +7,9 @@
     border-radius: calc(0.25rem);
     height: 100px;
     align-items: center;
-    width: 80%;
+    width: 100%;
+    max-width: 800px;
+    overflow: scroll;
     margin: 40px auto;
     .subscription-avatar-celebrity-name{
         max-width: 74px;
