@@ -1,28 +1,28 @@
-.container-celebrities-profile-description{
-    display: flex;
-    flex-flow: column;
-    &__expand{
-        max-height: none;
-    }
-    
-    &__collapse{
-        display:     block;
-        visibility:  visible;
-        overflow:    hidden;
-        &.collapse:not(.show){
-            height : 3rem;
-            display: block;
-        }
-       
-    }
-    &__toggle-description{
-       margin: 0 auto;
-       i {
-        cursor: pointer;
-       }
-    }
+.container-celebrities-profile-description {
+  display: flex;
+  flex-flow: column;
+  &__expand {
+    max-height: none;
+  }
 
-    &__text-span{
-        line-height: 1.6rem;
+  &__collapse {
+    min-height: 3rem;
+    display: block;
+    visibility: visible;
+    overflow: hidden;
+    &.collapse:not(.show) {
+      height: 3rem;
+      display: block;
     }
+  }
+  &__toggle-description {
+    margin: 0 auto;
+    i {
+      cursor: pointer;
+    }
+  }
+
+  &__text-span {
+    line-height: 1.6rem;
+  }
 }

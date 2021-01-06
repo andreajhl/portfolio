@@ -37,12 +37,10 @@ const CelebritiesProfileDescription = ({ descriptionText }) => {
             <div>{descriptionTextSpan}</div>
           </Collapse>
           <div className="container-celebrities-profile-description__toggle-description">
-            {showMore ? null : (
-              <i
-                className={`fas fa-angle-double-down`}
-                onClick={toggleShowMore}
-              />
-            )}
+            <i
+              className={`fas fa-angle-double-${showMore ? "up" : "down"}`}
+              onClick={toggleShowMore}
+            />
           </div>
         </>
       ) : (
