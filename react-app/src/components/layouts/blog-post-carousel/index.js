@@ -19,7 +19,7 @@ const BlogPostCarousel = ({
     }
   }, []);
 
-  return isBlogsDataFetch ? (
+  return isBlogsDataFetch && blogsData.length > 0 ? (
     <CarouselWithButtons.Container buttonsStyles={{ height: "378px", top: 0 }}>
       <CarouselWithButtons.List>
         <ul>
