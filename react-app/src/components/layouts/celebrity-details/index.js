@@ -126,7 +126,7 @@ const CelebrityDetails = ({
 
   const flashDeliveryBadgeLarge = (
     <FlashDeliveryBadgeLayout
-    className="CelebrityDetails__flash-delivery-large"
+      className="CelebrityDetails__flash-delivery-large"
       celebrityUsername={username}
       color="dark"
       showTime
@@ -135,7 +135,9 @@ const CelebrityDetails = ({
 
   return (
     <Container
-      className={`mx-auto CelebrityDetails ${variant === "1" ? "mb-0" : ""}`}
+      className={`mx-auto CelebrityDetails ${variant === "1" ? "mb-0" : ""} ${
+        variant === "2" ? "mb-4 mt-0" : ""
+      }`}
     >
       <Row className="justify-content-md-center align-items-center my-3">
         <Col xs="auto d-md-none" className="text-center">
