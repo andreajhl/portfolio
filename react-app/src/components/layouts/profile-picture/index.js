@@ -23,6 +23,7 @@ const ProfilePicture = ({ avatar, roundedCircle, width, imageStyles }) => {
           roundedCircle={roundedCircle}
           width={width}
           src="assets/img/avatar-blank.png"
+          style={imageStyles}
         />
       ) : null}
     </figure>
