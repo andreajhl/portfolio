@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "react-bootstrap/Image";
 import PropTypes from "prop-types";
 
-const ProfilePicture = ({ avatar, roundedCircle, width }) => {
+const ProfilePicture = ({ avatar, roundedCircle, width, imageStyles }) => {
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
 
   const changeImageIsLoaded = (event) => setImageIsLoaded(true);
@@ -16,6 +16,7 @@ const ProfilePicture = ({ avatar, roundedCircle, width }) => {
         src={avatar}
         onLoad={changeImageIsLoaded}
         alt="Imagen de perfil"
+        style={imageStyles}
       />
       {!imageIsLoaded ? (
         <Image
@@ -31,12 +32,14 @@ const ProfilePicture = ({ avatar, roundedCircle, width }) => {
 ProfilePicture.propTypes = {
   avatar: PropTypes.string.isRequired,
   roundedCircle: PropTypes.bool,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  imageStyles: PropTypes.object
 };
 
 ProfilePicture.defaultProps = {
   roundedCircle: true,
-  width: "100px"
+  width: "100px",
+  imageStyles: null
 };
 
 export { ProfilePicture };

@@ -8,6 +8,7 @@ import { CelebrityContractPrice } from "../celebrity-contract-price";
 import "./styles.scss";
 import { CelebritiesProfileDescription } from "../celebrities-profile-description";
 import { CelebritiesResponseTime } from "../celebrities-response-time";
+import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
 
 const CelebrityInfo = ({
   fullName,
@@ -119,16 +120,43 @@ const CelebrityDetails = ({
   turnAround,
   variant
 }) => {
+  const flashDeliveryBadgeSmall = (
+    <FlashDeliveryBadgeLayout celebrityUsername={username} color="dark" />
+  );
+
+  const flashDeliveryBadgeLarge = (
+    <FlashDeliveryBadgeLayout
+    className="CelebrityDetails__flash-delivery-large"
+      celebrityUsername={username}
+      color="dark"
+      showTime
+    />
+  );
+
   return (
     <Container
       className={`mx-auto CelebrityDetails ${variant === "1" ? "mb-0" : ""}`}
     >
       <Row className="justify-content-md-center align-items-center my-3">
-        <Col xs="auto d-md-none">
-          <ProfilePicture avatar={avatar} width="139px" />
+        <Col xs="auto d-md-none" className="text-center">
+          <ProfilePicture
+            avatar={avatar}
+            width="139px"
+            imageStyles={
+              flashDeliveryBadgeSmall ? { marginBottom: "-2rem" } : null
+            }
+          />
+          {flashDeliveryBadgeSmall}
         </Col>
-        <Col xs="auto d-none d-md-block">
-          <ProfilePicture avatar={avatar} width="200px" />
+        <Col xs="auto d-none d-md-block" className="text-center">
+          <ProfilePicture
+            avatar={avatar}
+            width="200px"
+            imageStyles={
+              flashDeliveryBadgeLarge ? { marginBottom: "-2.5rem" } : null
+            }
+          />
+          {flashDeliveryBadgeLarge}
         </Col>
         <Col>
           <CelebrityInfo
