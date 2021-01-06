@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import scriptLoader from "react-async-script-loader";
 
 let PayPalButton = null;
-const INTENT = "authorize";
+const INTENT = "subscription";
 const CLIENT_ID = process.env.REACT_APP_PAYPAL_KEY;
 const CURRENCY = "USD";
 const LOCALE = "es_CO";
 const PAYPAL_URL = 'https://www.paypal.com/sdk/js?disable-funding=credit,card';
 const VAULT = 'true';
-const SDK_URL = `${PAYPAL_URL}&client-id=${CLIENT_ID}&vault=true`;
+const SDK_URL = `${PAYPAL_URL}&client-id=${CLIENT_ID}&vault=${VAULT}&intent=${INTENT}`;
 
 class SubscriptionPaypalReactButton extends React.Component {
     constructor(props) {
@@ -50,7 +50,7 @@ class SubscriptionPaypalReactButton extends React.Component {
    
     createSubscription= (data,actions)=>{
         return actions.subscription.create({
-            'plan_id': 'P-2UF78835G6983425GLSM44MA'
+            'plan_id': 'P-37H55955PE295851GL726VIQ'
         });
     }
 
@@ -59,7 +59,7 @@ class SubscriptionPaypalReactButton extends React.Component {
             ...this.state,
             approved: true,
         });
-        console.log(data.subscription, 'subscripcion data')
+        console.log(data, 'subscripcion data')
         // // Authorize the transaction
         // let authorizationID = null;
         // actions.order.authorize().then((authorization) => {

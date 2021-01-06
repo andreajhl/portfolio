@@ -34,7 +34,7 @@ const Subscription = (props) => {
                 <h5>Paypal</h5>
                 <SubscriptionPayPalCardForm
                   contractPrice={40}
-                  planId='adsfasd222'
+                  planId='P-37H55955PE295851GL726VIQ'
                 />
               </div>
             </div>
