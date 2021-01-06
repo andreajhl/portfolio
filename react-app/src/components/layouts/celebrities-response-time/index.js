@@ -15,7 +15,7 @@ const getTurnAroundText = (turnAroundTime) => {
 const CelebritiesResponseTime = ({ turnAroundTime }) => {
   return (
     <span className="CelebritiesResponseTime">
-      Respuesta promedio:{" "}
+      Respuesta promedio: <br className="CelebritiesResponseTime__line-break" />{" "}
       <span>{getTurnAroundText(parseInt(turnAroundTime))}</span>
     </span>
   );
