@@ -138,7 +138,13 @@ const CelebritiesCardsSectionLayout = ({
                 {celebritiesSection.celebritySectionType !==
                 "CELEBRITY_CARD" ? (
                   <VideoCardLayout
-                    celebrity={celebrity}
+                    celebrityId={celebrity.id}
+                    celebrityAvatar={celebrity.avatar}
+                    celebrityUsername={celebrity.username}
+                    celebrityFullName={celebrity.fullName}
+                    videoOccasion={celebrity.occasion}
+                    videoUrl={celebrity.videoUrl}
+                    videoPosterUrl={celebrity.videoPosterUrl}
                     videoKey={`${celebritiesSection.id}-${celebrity.id}`}
                   />
                 ) : (

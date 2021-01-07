@@ -1,25 +1,46 @@
 import React, { useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { setPlayingVideo } from "../../../state/ducks/celebrity-sections/actions";
 import { connect } from "react-redux";
 import * as GTM from "../../../state/utils/gtm";
+import hasDesiredAspectRatio from "../../../utils/hasDesiredAspectRatio";
 
 const VideoCardLayout = ({
-  celebrity,
+  celebrityId,
+  celebrityAvatar,
+  celebrityUsername,
+  celebrityFullName,
+  videoOccasion,
+  videoUrl,
+  videoPosterUrl,
   videoKey,
+  footerSection,
   currentVideoKey,
   setPlayingVideo
 }) => {
   const videoRef = useRef();
+  const imageRef = useRef();
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
+  const [posterIsLoaded, setPosterIsLoaded] = useState(false);
+  const [
+    shouldUseMediaAlternativeStyles,
+    setShouldUseMediaAlternativeStyles
+  ] = useState(false);
 
   const analyticsData = {
     widget: "VideoCardLayout",
     path: window.location.pathname,
-    ...celebrity
+    celebrityId,
+    celebrityUsername,
+    celebrityFullName,
+    videoOccasion,
+    videoUrl,
+    videoPosterUrl,
+    videoKey
   };
 
   const playVideo = () => {
@@ -51,6 +72,13 @@ const VideoCardLayout = ({
     };
   }, [currentVideoKey]);
 
+  useEffect(() => {
+    if (!posterIsLoaded) return;
+    setShouldUseMediaAlternativeStyles(
+      !hasDesiredAspectRatio(imageRef.current, "16:9")
+    );
+  }, [posterIsLoaded]);
+
   const registerVideoCardHover = () =>
     GTM.tagManagerDataLayer("HOVER_VIDEO_CARD", analyticsData);
 
@@ -60,22 +88,31 @@ const VideoCardLayout = ({
   const registerCelebrityUsernameHover = () =>
     GTM.tagManagerDataLayer("HOVER_VIDEO_CARD_CELEBRITY_NAME", analyticsData);
 
+  console.dir(videoRef?.current);
   return (
     <div className="VideoCardLayout" onMouseOver={registerVideoCardHover}>
       <div className="video-card">
-        <section className="video-card__media">
+        <section
+          className={`video-card__media ${
+            shouldUseMediaAlternativeStyles
+              ? "video-card__media-alternative"
+              : ""
+          }`}
+        >
           {!videoIsLoaded ? (
             <img
               className="video-card__poster"
-              src={celebrity.videoPosterUrl || "/assets/img/avatar-blank.png"}
-              alt={`Poster de vídeo de ${celebrity.fullName}`}
+              src={videoPosterUrl || "/assets/img/avatar-blank.png"}
+              alt={`Poster de vídeo de ${celebrityFullName}`}
               onClick={playVideo}
+              ref={imageRef}
+              onLoad={() => setPosterIsLoaded(true)}
             />
           ) : null}
           <video
             className="video-card__video"
             style={{ opacity: videoIsLoaded ? 1 : 0 }}
-            src={celebrity.videoUrl}
+            src={videoUrl}
             preload="none"
             playsInline
             onClick={togglePlay}
@@ -91,27 +128,34 @@ const VideoCardLayout = ({
               } ml-2 mt-2`}
               onClick={togglePlay}
             />
-            <span className="video-card__category d-flex align-items-center">
-              {celebrity.occasion}
-            </span>
+            {videoOccasion ? (
+              <span className="video-card__category d-flex align-items-center">
+                {videoOccasion}
+              </span>
+            ) : null}
           </header>
           <footer className="d-flex align-items-center px-2 video-card__footer">
             <NavLink
               className="d-flex align-items-center video-card__celebrity-profile-link"
-              to={celebrity.username}
+              to={celebrityUsername}
               onClick={registerCelebrityUsernameClick}
               onMouseOver={registerCelebrityUsernameHover}
             >
-              <img
-                className="video-card__celebrity-photo"
-                src={celebrity.avatar || "/assets/img/avatar-blank.png"}
-              />
-              <h3 className="video-card__celebrity-full-name">
-                {celebrity.fullName}
-              </h3>
+              {footerSection || (
+                <>
+                  <img
+                    className="video-card__celebrity-photo"
+                    src={celebrityAvatar || "/assets/img/avatar-blank.png"}
+                    alt={`Foto de Perfil de ${celebrityFullName || "famoso"}`}
+                  />
+                  <h3 className="video-card__celebrity-full-name">
+                    {celebrityFullName}
+                  </h3>
+                </>
+              )}
             </NavLink>
             <CelebrityFavoriteButton
-              celebrityId={celebrity.id}
+              celebrityId={celebrityId}
               className="ml-auto"
             />
           </footer>
@@ -122,7 +166,22 @@ const VideoCardLayout = ({
 };
 
 VideoCardLayout.defaultProps = {
-  celebrity: {}
+  celebrity: {},
+  celebrityAvatar: null,
+  videoOccasion: null,
+  videoPosterUrl: null,
+  linkPath: null
+};
+
+VideoCardLayout.propTypes = {
+  celebrityId: PropTypes.number.isRequired,
+  celebrityAvatar: PropTypes.string,
+  celebrityUsername: PropTypes.string.isRequired,
+  celebrityFullName: PropTypes.string.isRequired,
+  videoOccasion: PropTypes.string,
+  videoUrl: PropTypes.string.isRequired,
+  videoPosterUrl: PropTypes.string,
+  videoKey: PropTypes.string.isRequired
 };
 
 const mapStateToProps = ({ celebritySections }) => ({
@@ -137,4 +196,5 @@ const _VideoCardLayout = connect(
   mapStateToProps,
   mapDispatchToProps
 )(VideoCardLayout);
+
 export { _VideoCardLayout as VideoCardLayout };
