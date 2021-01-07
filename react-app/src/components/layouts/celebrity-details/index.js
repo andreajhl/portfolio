@@ -107,6 +107,7 @@ const CelebrityDetails = ({
   categoryTitle,
   celebrityId,
   contractTypes,
+  availableForSubscriptions,
   variant
 }) => {
   return (
@@ -141,18 +142,20 @@ const CelebrityDetails = ({
               width='100%'
               fontSize='1.25em'
             />
-            <SubscribeToThisCelebrityButton
-              className='mt-2'
-              celebrityFullName={fullName}
-              celebrityUsername={username}
-              text={
-                // variant.startsWith("1")
-                /* ?  */ 'Suscribirme a '
-                // : "Obtén un video de"
-              }
-              width='100%'
-              fontSize='1.25em'
-            />
+            {availableForSubscriptions ? (
+              <SubscribeToThisCelebrityButton
+                className='mt-2'
+                celebrityFullName={fullName}
+                celebrityUsername={username}
+                text={
+                  // variant.startsWith("1")
+                  /* ?  */ 'Suscribirme a '
+                  // : "Obtén un video de"
+                }
+                width='100%'
+                fontSize='1.25em'
+              />
+            ) : null}
           </Col>
         </Col>
       </Row>

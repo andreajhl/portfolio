@@ -1,4 +1,6 @@
 import React, { Component, Fragment, useState, useEffect } from "react";
+import { celebrityOperations } from "../../../state/ducks/celebrities";
+
 import { connect } from "react-redux";
 import { PageContainer } from "../../layouts";
 import "./styles.scss";
@@ -8,7 +10,17 @@ import  {PayPalCardForm} from '../../containers/paypal-card-form';
 import {SubscriptionPayPalCardForm} from '../../containers/subscription-paypal-card-form';
 import SubscriptionCheckoutSummary from "../../containers/subscription-checkout-summary";
 const Subscription = (props) => {
- 
+  const {getCelebrity, fetchCelebritySubscriptionPlans,celebrity} = {...props}
+  useEffect(() => {
+    console.log(props.match.params)
+    getCelebrity(props.match.params.celebrity_username, true)
+    fetchCelebritySubscriptionPlans(props.match.params.celebrity_username)
+  },[props.match.params.celebrity_username]);
+  
+  // useEffect(() => {
+    
+  // },[celebrity]);
+
   return (
     <Fragment>
       <MetaTags>
@@ -28,7 +40,7 @@ const Subscription = (props) => {
                 <h6>Resumen de la contratación</h6>
               </div>
               <div className='container-subscription-payment__summary'>
-                <SubscriptionCheckoutSummary celebrityFullName='Andres Cepeda' />
+                <SubscriptionCheckoutSummary celebrityFullName={celebrity.fullName} celebrityAvatar={celebrity.avatar}  />
               </div>
               <div className='container-subscription-payment__paypalForm'>
                 <h5>Paypal</h5>
@@ -46,14 +58,17 @@ const Subscription = (props) => {
 };
 
 // mapStateToProps
-// const mapStateToProps = ({ anyState }) => ({
+const mapStateToProps = (state) => ({
+  isLoading: state.celebrities.getCelebrityReducer.loading,
+  celebrity: state.celebrities.getCelebrityReducer.data,
+});
 
-// });
 
-// const mapDispatchToProps = {
-//   //Dispatch
-// };
-
+// mapStateToProps
+const mapDispatchToProps = {
+  getCelebrity: celebrityOperations.get,
+  fetchCelebritySubscriptionPlans: celebrityOperations.fetchCelebritySubscriptionPlans,
+};
 // Set propTypes
 Subscription.propTypes = {};
 
@@ -62,5 +77,5 @@ Subscription.defaultProps = {
 };
 
 
-const _Subscription = connect(null, null)(Subscription);
+const _Subscription = connect(mapStateToProps, mapDispatchToProps)(Subscription);
 export { _Subscription as Subscription };

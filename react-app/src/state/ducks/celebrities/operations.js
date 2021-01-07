@@ -6,7 +6,8 @@ import {
   listSimilar,
   updateQueryParams,
   cleanPublicContracts,
-  fetchFlashDeliveryCelebrities
+  fetchFlashDeliveryCelebrities,
+  fetchCelebritySubscriptionPlans
 } from "./actions";
 
 export {
@@ -17,5 +18,6 @@ export {
   listPublicContracts,
   updateQueryParams,
   listSimilar,
-  fetchFlashDeliveryCelebrities
+  fetchFlashDeliveryCelebrities,
+  fetchCelebritySubscriptionPlans
 };

@@ -276,3 +276,29 @@ export const fetchFlashDeliveryCelebrities = () => async (dispatch) => {
     dispatch({ type: `${TYPE}_COMPLETED`, payload: {} });
   }
 };
+
+export const fetchCelebritySubscriptionPlans = (celebrityUsername) => (dispatch) => {
+  const TYPE = types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST;
+  const FINAL_PATH = API_PATHS.CELEBRITY_SUBSCRIPTION_PLANS.replace(':celebrity_username',celebrityUsername);
+  dispatch({ type: TYPE, payload: {} });
+  apiService({
+    method: "GET",
+    action: TYPE,
+    path: FINAL_PATH,
+    async: true,
+    body: null
+  })
+    .then((res) => {
+      if (res.data.status === "OK") {
+        handleApiResponseSuccess(dispatch, TYPE, res);
+        dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+      } else {
+        handleApiResponseFailure(dispatch, TYPE, res);
+      }
+    })
+    .catch((err) => {
+      handleApiErrors(dispatch, TYPE, {
+        data: { api_error: err, error: "Server 500" }
+      });
+    });
+};
