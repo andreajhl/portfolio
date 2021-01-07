@@ -15,8 +15,6 @@ const hasDesiredAspectRatio = (
     desiredAspectRatio
   );
 
-  console.log({ imagenAspectRatio, desiredAspectRatioFloat });
-
   return imagenAspectRatio === desiredAspectRatioFloat;
 };
 

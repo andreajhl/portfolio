@@ -88,7 +88,6 @@ const VideoCardLayout = ({
   const registerCelebrityUsernameHover = () =>
     GTM.tagManagerDataLayer("HOVER_VIDEO_CARD_CELEBRITY_NAME", analyticsData);
 
-  console.dir(videoRef?.current);
   return (
     <div className="VideoCardLayout" onMouseOver={registerVideoCardHover}>
       <div className="video-card">

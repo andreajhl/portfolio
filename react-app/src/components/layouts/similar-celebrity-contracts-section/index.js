@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import "./styles.scss";
 import { connect } from "react-redux";
-import { SimilarCelebrityContractCardLayout } from "../similar-celebrity-contract-card";
 import { fetchSimilarContracts } from "../../../state/ducks/contracts/actions";
 import { PaginationLayout } from "../pagination";
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
 import * as CarouselWithButtons from "../carousel-with-buttons";
-import { CelebrityContractVideoShimmerCardLayout } from "../celebrity-contract-video-shimmer-card";
+import { VideoCardLayout } from "../video-card";
+import { VideoShimmerCardLayout } from "../video-shimmer-card";
 
 import { Session } from "../../../state/utils/session";
 
@@ -112,7 +112,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
     return this.props.isLoading || hasContracts ? (
       <section className="SimilarCelebrityContractsSectionLayout">
         <CarouselWithButtons.Container
-          buttonsStyles={{ top: "2.75rem", height: "370px" }}
+          buttonsStyles={{ top: "2.75rem", height: "343px" }}
           onScrollTo={this.registerSimilarCelebritiesContractsScrollButtonClick}
           onListScroll={this.registerListScroll}
         >
@@ -132,8 +132,14 @@ class SimilarCelebrityContractsSectionLayout extends Component {
                       className="mr-3"
                       key={similarContract.contractReference}
                     >
-                      <SimilarCelebrityContractCardLayout
-                        similarContract={similarContract}
+                      <VideoCardLayout
+                        celebrityAvatar={similarContract.celebrityAvatar}
+                        celebrityFullName={similarContract.celebrityFullName}
+                        celebrityId={similarContract.celebrityId}
+                        celebrityUsername={similarContract.celebrityUsername}
+                        videoPosterUrl={similarContract.contractPosterUrl}
+                        videoUrl={similarContract.contractMediaUrl}
+                        videoKey={`similar-videos-${this.props.celebrityUsername}-${similarContract.contractReference}`}
                       />
                     </li>
                   ))
@@ -141,7 +147,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
                     .fill(null)
                     .map((item, index) => (
                       <li className="mr-3" key={index}>
-                        <CelebrityContractVideoShimmerCardLayout />
+                        <VideoShimmerCardLayout />
                       </li>
                     ))}
             </ul>
