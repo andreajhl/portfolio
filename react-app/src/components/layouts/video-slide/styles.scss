@@ -22,34 +22,36 @@
     z-index: 100;
     display: flex;
     max-height: 160px;
-    padding: 0 17% 1.5rem;
+    padding: 0 17% 0.5rem;
     align-items: flex-end;
     justify-content: flex-end;
 
     @media only screen and (min-width: 576px) {
-      padding: 0 7.35rem 1.5rem;
+      padding: 0 7.35rem 0.5rem;
     }
 
     @media only screen and (min-width: 768px) {
-      padding: 0 13rem 1.5rem;
+      padding: 0 13rem 0.5rem;
     }
 
     @media only screen and (min-width: 992px) {
-      padding: 0 3rem 1.5rem;
+      padding: 0 3rem 0.5rem;
     }
 
     @media only screen and (min-width: 1200px) {
-      padding: 0 4.255rem 1.5rem;
+      padding: 0 4.255rem 0.5rem;
     }
 
     i {
       color: white;
       font-size: 1.2rem;
-      margin-left: 1.25em;
+      margin-left: 0.65em;
       margin-top: 1.5rem;
+      padding: 0.5rem;
     }
 
     .volume-icon {
+      padding: 0.25rem;
       font-size: 1.6rem;
     }
   }
