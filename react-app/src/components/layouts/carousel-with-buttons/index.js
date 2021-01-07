@@ -29,8 +29,8 @@ const Container = ({ children, buttonsStyles, onScrollTo, onListScroll }) => {
 
   const changeScrollButtonsVisibility = debounce(() => {
     const { scrollLeft, offsetWidth, scrollWidth } = childrenListRef.current;
-    setShowLeftScrollButton(scrollLeft !== 0);
-    setShowRightScrollButton(scrollLeft + offsetWidth !== scrollWidth);
+    setShowLeftScrollButton(scrollLeft > 0);
+    setShowRightScrollButton(scrollLeft + offsetWidth < scrollWidth);
     onListScroll(scrollLeft + offsetWidth >= scrollWidth);
   }, 100);
 
