@@ -1,11 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Button } from "react-bootstrap";
 import { CELEBRITY_PROFILE_CONTRACT } from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
-
-window.parseFullName = parseFullName;
+import { CallToActionButton } from "../call-to-action-button";
 
 const HireThisCelebrityButton = ({
   className,
@@ -49,21 +47,16 @@ const HireThisCelebrityButton = ({
       onClick={() => registerHireThisCelebrityButtonEvent("CLICK")}
       onMouseOver={() => registerHireThisCelebrityButtonEvent("HOVER")}
     >
-      <Button
-        style={{
-          backgroundColor: "#FB177D",
-          borderRadius: "5px",
-          color: "white",
-          border: "none",
-          padding: "0.75em",
-          fontSize,
-          width
-        }}
-        className={`font-weight-bold ${className ? className : ""}`}
-      >
-        {text}
-        {celebrityFullName ? " " + displayName : ""}
-      </Button>
+      {
+        <CallToActionButton
+          fontSize={fontSize}
+          width={width}
+          className={className}
+        >
+          {text}
+          {celebrityFullName ? " " + displayName : ""}
+        </CallToActionButton>
+      }
     </NavLink>
   );
 };
