@@ -10,7 +10,8 @@ import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
 import * as CarouselWithButtons from "../carousel-with-buttons";
 import { CelebrityContractVideoShimmerCardLayout } from "../celebrity-contract-video-shimmer-card";
-
+import { CelebrityPublicContractCardAlternativeLayout } from "../celebrity-public-contract-card-alternative";
+import { VideoShimmerCardLayout } from "../video-shimmer-card";
 import { Session } from "../../../state/utils/session";
 
 import * as GTM from "../../../state/utils/gtm";
@@ -159,7 +160,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
     return this.props.isLoading || hasContracts ? (
       <div className="CelebrityPublicContractsSectionLayout">
         <CarouselWithButtons.Container
-          buttonsStyles={{ top: "1.25rem", height: "335px" }}
+          buttonsStyles={{ top: "1.25rem", height: "344px" }}
           onScrollTo={this.registerCelebrityPublicContractsScrollButtonClick}
           onListScroll={this.registerListScroll}
         >
@@ -171,8 +172,9 @@ class CelebrityPublicContractsSectionLayout extends Component {
               {!this.props.isLoading
                 ? this.props.publicContracts.map((publicContract) => (
                     <li className="mr-3" key={publicContract.contract_id}>
-                      <CelebrityPublicContractCardLayout
+                      <CelebrityPublicContractCardAlternativeLayout
                         publicContract={publicContract}
+                        videoKey={`${this.props.celebrityId}-${this.props.username}-${publicContract.contract_reference}`}
                       />
                     </li>
                   ))
@@ -180,7 +182,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
                     .fill(null)
                     .map((item, index) => (
                       <li className="mr-3" key={index}>
-                        <CelebrityContractVideoShimmerCardLayout />
+                        <VideoShimmerCardLayout />
                       </li>
                     ))}
             </ul>
