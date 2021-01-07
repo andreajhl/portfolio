@@ -15,10 +15,7 @@ class SubscriptionPayPalCardForm extends Component {
             errorMessage: null,
         }
     }
-    componentDidMount() {
-        console.log(this.props)
-    }
-
+   
     retry = () => {
         return this.setState({
             ...this.state,
