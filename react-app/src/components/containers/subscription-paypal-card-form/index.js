@@ -30,7 +30,7 @@ class SubscriptionPayPalCardForm extends Component {
         data.planID = this.props.planId;
         postProcessSubscription(data)
           .then((res) => {
-            // this.props.history.push('/')
+            this.props.history.push(ROUTING_PATHS.SUBSCRIPTION_SUCCESS.replace(':celebrity_username',this.props.match.params.celebrity_username))
           })
           .catch((error) => {
             this.setState({

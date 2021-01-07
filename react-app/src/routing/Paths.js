@@ -44,5 +44,7 @@ export const BLOG = "/blogs/all";
 export const BLOG_ENTRY = `${BLOG}/blog-:id`;
 //SUBSCRIPTION
 export const SUBSCRIPTION= "/subscription/subscribe/:celebrity_username"
+//SUBSCRIPTION
+export const SUBSCRIPTION_SUCCESS= "/subscription/subscription-success/:celebrity_username"
 //SUBSCRIPTION FEED
 export const FEED_SUBSCRIPTION= "/suscription/feed"
