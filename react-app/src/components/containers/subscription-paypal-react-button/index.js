@@ -58,20 +58,10 @@ class SubscriptionPaypalReactButton extends React.Component {
         this.setState({
             ...this.state,
             approved: true,
+            showButtons: false,
         });
+        this.props.onPayPalButtonApprove(data);
         console.log(data, 'subscripcion data')
-        // // Authorize the transaction
-        // let authorizationID = null;
-        // actions.order.authorize().then((authorization) => {
-        //     // Get the authorization id
-        //     authorizationID = authorization.purchase_units[0].payments.authorizations[0].id;
-        //     this.setState({
-        //         ...this.state,
-        //         showButtons: false,
-        //     }, () => {
-        //         this.props.onPayPalButtonApprove(data["orderID"], authorizationID);
-        //     })
-        // });
     };
 
     onCancel = (data) => {

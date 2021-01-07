@@ -283,21 +283,21 @@ export function fetchCelebritySubscriptionPlansReducer(state = fetchCelebritySub
         ...state,
         loading: true
       };
-    case types.GET_CELEBRITY_REQUEST_FAILURE:
+    case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST_FAILURE:
       return {
         ...fetchCelebritySubscriptionPlansInitialState,
         error_data: action.payload.data,
         failed: true
       };
-    case types.GET_CELEBRITY_REQUEST_SUCCESS:
+    case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST_SUCCESS:
       return {
-        ...getCelebrityInitialState,
-        data: action.payload.data.data
+        ...fetchCelebritySubscriptionPlansInitialState,
+        data: action.payload.data.results
       };
-    case types.GET_CELEBRITY_REQUEST_COMPLETED:
+    case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST_COMPLETED:
       return {
         ...state,
-        data: action.payload.data.data,
+        data: action.payload.data.results,
         completed: true
       };
     default:
@@ -314,5 +314,6 @@ export default combineReducers({
   fetchReviewsReducer,
   fetchPublicContractsReducer,
   previousPathReducer,
-  fetchFlashDeliveryCelebritiesReducer
+  fetchFlashDeliveryCelebritiesReducer,
+  fetchCelebritySubscriptionPlansReducer
 });
