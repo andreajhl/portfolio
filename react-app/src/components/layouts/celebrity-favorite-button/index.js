@@ -31,6 +31,7 @@ const CelebrityFavoriteButton = ({
   location
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const analyticsData = useMemo(
     () => ({
       celebrityId,
@@ -75,16 +76,27 @@ const CelebrityFavoriteButton = ({
     }
   };
 
-  const sendOnHoverAnalyticsData = () =>
+  const addIsHovering = () => {
     GTM.tagManagerDataLayer(`HOVER_LIKE_CELEBRITY`, analyticsData);
+    setIsHovering(true);
+  };
+
+  const removeIsHovering = () => {
+    setIsHovering(false);
+  };
+
+  const alternativeText = `${isFavorite ? "No me" : "Me"} gusta`;
 
   return (
     <img
-      src={isFavorite ? filledImageSource : outlinedImageSource}
+      src={isFavorite !== isHovering ? filledImageSource : outlinedImageSource}
       className={`like-icon cursor-pointer ${className}`}
       style={{ width }}
-      onMouseOver={sendOnHoverAnalyticsData}
+      onMouseOver={addIsHovering}
+      onMouseLeave={removeIsHovering}
       onClick={toggleFavorite}
+      alt={alternativeText}
+      title={alternativeText}
     />
   );
 };
