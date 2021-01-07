@@ -1,4 +1,4 @@
-$breakpoint-tablet: 768px;
+@import  '../../../constants/breakpoints.scss';
 
 .container-subscription-payment{
     min-height: 80vh;
@@ -22,9 +22,28 @@ $breakpoint-tablet: 768px;
             color: white;
         }
     }
-
+    &__not-available{
+        margin-top: 20px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        height: 100px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        h5{
+            font-weight: bold;
+        }
+    }
     &__summary{
         margin-top: 2rem;
+    }
+
+    &__options{
+        margin-top: 20px;
+        width: 40%;
+        @media (max-width: $screen-md-min) {
+            width: 100%; 
+        }
     }
 
     &__paypalForm{
@@ -35,7 +54,7 @@ $breakpoint-tablet: 768px;
         margin-top: 2rem;
         margin-bottom: 2rem;
         padding: 20px;
-        @media (max-width: $breakpoint-tablet) {
+        @media (max-width: $screen-md-min) {
             width: 100%; 
         }
     }

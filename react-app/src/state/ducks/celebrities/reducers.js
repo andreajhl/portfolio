@@ -54,6 +54,13 @@ const fetchFlashDeliveryCelebritiesInitialState = {
   error_data: { error: "" },
   data: { usernames: [] }
 };
+const fetchCelebritySubscriptionPlansInitialState = {
+  loading: false,
+  failed: false,
+  completed: false,
+  error_data: { error: "" },
+  data: { results: [] }
+};
 
 const previousPathInitialState = { pathname: ROOT_PATH };
 
@@ -269,6 +276,36 @@ export function fetchFlashDeliveryCelebritiesReducer(
   }
 }
 
+export function fetchCelebritySubscriptionPlansReducer(state = fetchCelebritySubscriptionPlansInitialState, action) {
+  switch (action.type) {
+    case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST_FAILURE:
+      return {
+        ...fetchCelebritySubscriptionPlansInitialState,
+        error_data: action.payload.data,
+        failed: true
+      };
+    case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST_SUCCESS:
+      return {
+        ...fetchCelebritySubscriptionPlansInitialState,
+        data: action.payload.data.results
+      };
+    case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST_COMPLETED:
+      return {
+        ...state,
+        data: action.payload.data.results,
+        completed: true
+      };
+    default:
+      return state;
+  }
+}
+
+
 export default combineReducers({
   queryParamsReducer,
   fetchCelebritiesReducer,
@@ -277,5 +314,6 @@ export default combineReducers({
   fetchReviewsReducer,
   fetchPublicContractsReducer,
   previousPathReducer,
-  fetchFlashDeliveryCelebritiesReducer
+  fetchFlashDeliveryCelebritiesReducer,
+  fetchCelebritySubscriptionPlansReducer
 });

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import SubscriptionPaypalReactButton from "../subscription-paypal-react-button"
-import {processPayPalPayment} from "../../../state/ducks/payments/actions";
+import { postProcessSubscription } from '../../../state/ducks/subscriptions/actions';
+import { withRouter } from 'react-router-dom';
 import * as GTM from "../../../state/utils/gtm";
-import {history} from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
-
+import {connect} from 'react-redux';
 
 class SubscriptionPayPalCardForm extends Component {
 
@@ -15,6 +15,9 @@ class SubscriptionPayPalCardForm extends Component {
             errorMessage: null,
         }
     }
+    componentDidMount() {
+        console.log(this.props)
+    }
 
     retry = () => {
         return this.setState({
@@ -23,28 +26,18 @@ class SubscriptionPayPalCardForm extends Component {
         });
     };
 
-    onPayPalButtonApprove = (orderId, authorizationId) => {
-        console.log(orderId, authorizationId)
-        console.log('to do')
-        // // connect to out backend
-        // processPayPalPayment(
-        //     //send data required
-        //     this.props.contractReference,
-        //     orderId,
-        //     authorizationId,
-        //     this.props.discountCouponId,
-        // )
-        //     .then(res => {
-        //       //Send data to GTM
-        //         console.log('Response OK')
-        //       //Redirect user
-        //     })
-        //     .catch(error => {
-        //         this.setState({
-        //             ...this.state,
-        //             errorMessage: error
-        //         })
-        //     })
+    onPayPalButtonApprove = (data) => {
+        data.planID = this.props.planId;
+        postProcessSubscription(data)
+          .then((res) => {
+            this.props.history.push(ROUTING_PATHS.SUBSCRIPTION_SUCCESS.replace(':celebrity_username',this.props.match.params.celebrity_username))
+          })
+          .catch((error) => {
+            this.setState({
+              ...this.state,
+              errorMessage: error,
+            });
+          });
     };
 
     onPayPalButtonCancel = (orderId) => {
@@ -55,11 +48,10 @@ class SubscriptionPayPalCardForm extends Component {
     };
 
     onPayPalButtonError = (error: string) => {
-        console.log(error)
-        // return this.setState({
-        //     ...this.state,
-        //     errorMessage: error
-        // });
+        return this.setState({
+            ...this.state,
+            errorMessage: error
+        });
     };
 
      renderError = () => {
@@ -105,10 +97,9 @@ class SubscriptionPayPalCardForm extends Component {
               </li>
             </div>
             {this.renderError()}
-            {!this.state.errorMessage && this.props.contractPrice > 0 ? (
+            {!this.state.errorMessage && this.props.planId.length > 0 ? (
               <SubscriptionPaypalReactButton
                 planId={this.props.planId}
-                contractPrice={this.props.contractPrice}
                 onPayPalButtonApprove={this.onPayPalButtonApprove}
                 onPayPalButtonCancel={this.onPayPalButtonCancel}
                 onPayPalButtonError={this.onPayPalButtonError}
@@ -121,8 +112,14 @@ class SubscriptionPayPalCardForm extends Component {
 
 // defaultProps
 SubscriptionPayPalCardForm.defaultProps = {
-    contractPrice: null,
     planId: "",
 };
 
-export {SubscriptionPayPalCardForm};
+// mapStateToProps
+// const mapDispatchToProps = {
+// };
+
+const _SubscriptionPayPalCardForm = connect(null, null)(withRouter(SubscriptionPayPalCardForm));
+
+
+export {_SubscriptionPayPalCardForm as SubscriptionPayPalCardForm};
