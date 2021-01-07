@@ -172,30 +172,26 @@ const CelebrityDetails = ({
             contractTypes={contractTypes}
             turnAround={turnAround}
           />
-          <Col className='d-none d-md-block mx-0 px-0'>
+          <Col className="d-none d-md-block mx-0 px-0">
             <HireThisCelebrityButton
               celebrityFullName={fullName}
               celebrityUsername={username}
               text={
                 // variant.startsWith("1")
-                /* ?  */ 'Quiero un video de'
+                /* ?  */ "Quiero un video de"
                 // : "Obtén un video de"
               }
-              width='100%'
-              fontSize='1.25em'
+              width="100%"
+              fontSize="1.25em"
             />
             {availableForSubscriptions ? (
               <SubscribeToThisCelebrityButton
-                className='mt-2'
+                className="mt-2"
                 celebrityFullName={fullName}
                 celebrityUsername={username}
-                text={
-                  // variant.startsWith("1")
-                  /* ?  */ 'Suscribirme a '
-                  // : "Obtén un video de"
-                }
-                width='100%'
-                fontSize='1.25em'
+                text={"Suscribirme a "}
+                width="100%"
+                fontSize="1.25em"
               />
             ) : null}
           </Col>
@@ -207,14 +203,28 @@ const CelebrityDetails = ({
         </Col>
       </Row>
       <Row>
-        <Col className='d-md-none'>
+        <Col className="d-md-none">
           <HireThisCelebrityButton
             celebrityFullName={fullName}
             celebrityUsername={username}
-            text='Quiero un video de'
-            width='100%'
-            fontSize='1.25em'
+            text="Quiero un video de"
+            width="100%"
+            fontSize="1.25em"
           />
+          {availableForSubscriptions ? (
+            <SubscribeToThisCelebrityButton
+              className="mt-2"
+              celebrityFullName={fullName}
+              celebrityUsername={username}
+              text={
+                // variant.startsWith("1")
+                /* ?  */ "Suscribirme a "
+                // : "Obtén un video de"
+              }
+              width="100%"
+              fontSize="1.25em"
+            />
+          ) : null}
         </Col>
       </Row>
     </Container>
