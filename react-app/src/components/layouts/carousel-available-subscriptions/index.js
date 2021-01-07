@@ -3,7 +3,8 @@ import AvatarCelebrity from '../../containers/avatar-celebrity/index';
 import debounce from "lodash.debounce";
 
 import './styles.scss';
-const CarouselAvailableSubscriptions = () => {
+const CarouselAvailableSubscriptions = (props) => {
+  const {celebrities,handlerSelectCelebrity} = {...props}
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(false);
   const [showRightScrollButton, setShowRightScrollButton] = useState(false);
   
@@ -17,7 +18,6 @@ const CarouselAvailableSubscriptions = () => {
   }, []);
 
   const setScrollButtonsVisibility = debounce(() => {
-  
     const {
       scrollLeft,
       offsetWidth,
@@ -35,6 +35,10 @@ const CarouselAvailableSubscriptions = () => {
       behavior: 'smooth',
     });
   };
+
+  const handleSelect= (celebrityId) =>{
+    handlerSelectCelebrity(celebrityId)
+  }
     
     return (
       <div className='carousel-available-subscriptions container'>
@@ -52,48 +56,11 @@ const CarouselAvailableSubscriptions = () => {
           className='carousel-available-subscriptions__celebrities-list'
           ref={subscriptionListRef}
         >
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>{' '}
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>{' '}
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
-          <li className='carousel-available-subscriptions__item'>
-            <AvatarCelebrity />
-          </li>
+          {celebrities.map((celebrity, index) => (
+            <li key={index} className='carousel-available-subscriptions__item'>
+              <AvatarCelebrity onClickHandler={handleSelect} celebrity={celebrity}/>
+            </li>
+          ))}
         </ul>
         {showRightScrollButton ? (
           <button

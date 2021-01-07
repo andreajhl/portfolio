@@ -5,6 +5,7 @@ const processSubscriptionInitialState = {
     loading: false,
     failed: false,
     completed: false,
+    data: [],
     error_data: { error: "" },
 };
 
@@ -36,8 +37,38 @@ export function processSubscriptionReducer(state = processSubscriptionInitialSta
     }
   }
   
+export function fetchUserSubscriptionsListReducer(state = processSubscriptionInitialState, action) {
+    switch (action.type) {
+      case types.FETCH_USER_SUBSCRIPTIONS_REQUEST:
+        return {
+          ...state,
+          loading: true
+        };
+      case types.FETCH_USER_SUBSCRIPTIONS_FAILURE:
+        return {
+          ...processSubscriptionInitialState,
+          error_data: action.payload.data,
+          failed: true
+        };
+      case types.FETCH_USER_SUBSCRIPTIONS_SUCCESS:
+        return {
+          ...processSubscriptionInitialState,
+          data: action.payload.data.results
+        };
+      case types.FETCH_USER_SUBSCRIPTIONS_COMPLETED:
+        return {
+          ...state,
+          data: action.payload.data.results,
+          completed: true
+        };
+      default:
+        return state;
+    }
+  }
+  
   
   export default combineReducers({
-    processSubscriptionReducer
+    processSubscriptionReducer,
+    fetchUserSubscriptionsListReducer
   });
   

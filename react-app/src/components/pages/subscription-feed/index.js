@@ -5,46 +5,69 @@ import { PageContainer } from "../../layouts";
 import MetaTags from "react-meta-tags";
 import {CarouselAvailableSubscriptions, CelebrityFeedPosts} from '../../layouts';
 import * as firestoreService from "../../../firebase/firestoreService";
-const SubscriptionFeed = () => {
-    const [posts, setPosts] = useState(false);
-    const fetchPosts= async ()=> {
-        const documents= await firestoreService.getDocuments('dev_posts');
-        setPosts(documents);
-        console.log(documents);
-    }
-    useEffect(() => {
-        if(!posts){
-            fetchPosts()
-        }
-        
-    }, []);
+import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
+const SubscriptionFeed = (props) => {
+  const { getCelebritiesSubscribe, subscriptionList,isSubscriptionListCompletedFetch } = { ...props };
+  const [posts, setPosts] = useState([]);
+  const fetchPosts = async (celebrityId,concat = true) => {
+    const documents = await firestoreService.getPostFromCelebrity('dev_posts',celebrityId)
+    concat
+      ? setPosts((prevState) => prevState.concat(documents))
+      : setPosts(documents); 
+  };
+  
+  useEffect(() => {
+    getCelebritiesSubscribe();
+  }, []);
 
-    return (
-      <Fragment>
-        <MetaTags>
-          <title>
-            Famosos.com - Videos personalizados de tus famosos favoritos.
-          </title>
-          <meta
-            name='description'
-            content='Las ultimas publicaciones de tus famosos favoritos.'
-          />
-        </MetaTags>
-        <PageContainer>
-          <Container>
-            <Row>
-              <Col md='9' className='mx-auto'>
-                <CarouselAvailableSubscriptions />
-                <CelebrityFeedPosts posts={posts}/>
-                
-              </Col>
-            </Row>
-          </Container>
-        </PageContainer>
-      </Fragment>
-    );
+  useEffect(() => {
+    if(isSubscriptionListCompletedFetch && subscriptionList.length > 1 && posts.length === 0){
+      subscriptionList.forEach((celebrityData) =>
+        fetchPosts(celebrityData.celebrityId)
+      );
+    }
+  },[isSubscriptionListCompletedFetch]);
+
+  const fetchPostFromCelebrity = (celebrityID) =>{
+    fetchPosts(celebrityID,false)
+  }
+
+  return (
+    <Fragment>
+      <MetaTags>
+        <title>
+          Famosos.com - Videos personalizados de tus famosos favoritos.
+        </title>
+        <meta
+          name='description'
+          content='Las ultimas publicaciones de tus famosos favoritos.'
+        />
+      </MetaTags>
+      <PageContainer>
+        <Container>
+          <Row>
+            <Col md='9' className='mx-auto'>
+              <CarouselAvailableSubscriptions handlerSelectCelebrity={fetchPostFromCelebrity} celebrities={subscriptionList} />
+              {posts.length > 0  && isSubscriptionListCompletedFetch ? <CelebrityFeedPosts posts={posts} subscriptionList={subscriptionList} /> : null}
+            </Col>
+          </Row>
+        </Container>
+      </PageContainer>
+    </Fragment>
+  );
 }
 
-const _SubscriptionFeed = connect(null, null)(SubscriptionFeed);
+// mapStateToProps
+const mapStateToProps = (state) => ({
+  subscriptionList: state.subscriptions.fetchUserSubscriptionsListReducer.data,
+  isSubscriptionListCompletedFetch: state.subscriptions.fetchUserSubscriptionsListReducer.completed
+});
+
+
+// mapDispatchToProps
+const mapDispatchToProps = {
+  getCelebritiesSubscribe: subscriptionsOperations.fetchUserSubscriptionsList
+};
+const _SubscriptionFeed = connect(mapStateToProps, mapDispatchToProps)(SubscriptionFeed);
 export { _SubscriptionFeed as SubscriptionFeed };
 

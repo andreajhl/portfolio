@@ -1,4 +1,5 @@
 export {
-    postProcessSubscription
+    postProcessSubscription,
+    fetchUserSubscriptionsList
   } from "./actions";
   
