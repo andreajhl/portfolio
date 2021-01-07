@@ -1,0 +1,30 @@
+.carousel-available-subscriptions{
+    display: flex;
+    border: 1px solid rgb(216, 216, 216);
+    padding-bottom: 5px;
+    padding-top: 5px;
+    background-color: white;
+    border-radius: calc(0.25rem);
+    height: 100px;
+    align-items: center;
+    width: 80%;
+    margin: 40px auto;
+    .subscription-avatar-celebrity-name{
+        max-width: 74px;
+        text-overflow: ellipsis;
+        font-size: 12px;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    .subscription-avatar-celebrity{
+        margin: 0 20px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}

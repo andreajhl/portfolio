@@ -87,6 +87,13 @@ const NavbarSectionLayout = ({
                     <NavLink
                       className="dropdown-item"
                       activeClassName="active"
+                      to={PATHS.FEED_SUBSCRIPTION}
+                    >
+                     Famosos Premium   
+                    </NavLink>
+                    <NavLink
+                      className="dropdown-item"
+                      activeClassName="active"
                       to={PATHS.CLIENT_HIRINGS}
                     >
                       Mis contrataciones
