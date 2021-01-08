@@ -109,31 +109,20 @@ const CelebrityInfo = ({
   }
 };
 
-const CelebrityDetails = ({
-  fullName,
-  username,
-  avatar,
-  countryCode,
-  categoryTitle,
-  celebrityId,
-  contractTypes,
-  description,
-  turnAround,
-  availableForSubscriptions,
-  variant
-}) => {
-  const flashDeliveryBadgeSmall = (
-    <FlashDeliveryBadgeLayout celebrityUsername={username} color="dark" />
-  );
-
-  const flashDeliveryBadgeLarge = (
-    <FlashDeliveryBadgeLayout
-      className="CelebrityDetails__flash-delivery-large"
-      celebrityUsername={username}
-      color="dark"
-      showTime
-    />
-  );
+const CelebrityDetails = ({ celebrity, variant }) => {
+  const {
+    fullName,
+    username,
+    avatar,
+    countryCode,
+    categoryTitle,
+    id: celebrityId,
+    contractTypes,
+    description,
+    turnaround,
+    availableForSubscriptions,
+    availableForFlashDeliveries
+  } = celebrity;
 
   return (
     <Container
@@ -147,20 +136,28 @@ const CelebrityDetails = ({
             avatar={avatar}
             width="139px"
             imageStyles={
-              flashDeliveryBadgeSmall ? { marginBottom: "-2rem" } : null
+              availableForFlashDeliveries ? { marginBottom: "-2rem" } : null
             }
           />
-          {flashDeliveryBadgeSmall}
+          {availableForFlashDeliveries ? (
+            <FlashDeliveryBadgeLayout color="dark" />
+          ) : null}
         </Col>
         <Col xs="auto d-none d-md-block" className="text-center">
           <ProfilePicture
             avatar={avatar}
             width="200px"
             imageStyles={
-              flashDeliveryBadgeLarge ? { marginBottom: "-2.5rem" } : null
+              availableForFlashDeliveries ? { marginBottom: "-2.5rem" } : null
             }
           />
-          {flashDeliveryBadgeLarge}
+          {availableForFlashDeliveries ? (
+            <FlashDeliveryBadgeLayout
+              className="CelebrityDetails__flash-delivery-large"
+              color="dark"
+              showTime
+            />
+          ) : null}
         </Col>
         <Col>
           <CelebrityInfo
@@ -170,7 +167,7 @@ const CelebrityDetails = ({
             categoryTitle={categoryTitle}
             celebrityId={celebrityId}
             contractTypes={contractTypes}
-            turnAround={turnAround}
+            turnAround={turnaround}
           />
           <Col className="d-none d-md-block mx-0 px-0">
             <HireThisCelebrityButton
