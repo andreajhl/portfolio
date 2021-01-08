@@ -27,7 +27,7 @@ const SubscriptionFeed = (props) => {
   const [postFetched, setPostFetched] = useState(false);
   const [posts, setPosts] = useState([]);
   const fetchPosts = async (celebrityId,concat = true) => {
-    const documents = await firestoreService.getPostFromCelebrity('dev_posts',celebrityId)
+    const documents = await firestoreService.getDocuments('dev_posts')
     setPostFetched(true);
     concat
       ? setPosts((prevState) => prevState.concat(documents))
