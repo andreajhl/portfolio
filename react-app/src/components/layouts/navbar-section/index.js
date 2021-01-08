@@ -84,13 +84,13 @@ const NavbarSectionLayout = ({
                     >
                       Mi perfil
                     </NavLink>
-                    <NavLink
+                    {/* <NavLink
                       className="dropdown-item"
                       activeClassName="active"
                       to={PATHS.FEED_SUBSCRIPTION}
                     >
                      Famosos Prime   
-                    </NavLink>
+                    </NavLink> */}
                     <NavLink
                       className="dropdown-item"
                       activeClassName="active"

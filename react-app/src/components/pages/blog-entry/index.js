@@ -4,7 +4,7 @@ import { PageContainer } from '../../layouts';
 // import './styles.scss';
 import {Container,Row, Col, Button} from 'react-bootstrap';
 import {Redirect, withRouter} from 'react-router-dom';
-import {BLOG} from '../../../routing/Paths';
+import {BLOG,HOME_PATH} from '../../../routing/Paths';
 
 import BlogPost from '../../containers/blog-post-full';
 import MetaTags from "react-meta-tags";
@@ -36,7 +36,8 @@ const Blog_entry = ({blogsData,match,history}) => {
         <PageContainer>
           <Container>
             <Row className='justify-content-evenly'>
-                <Button sm className='mb-3 ml-5' onClick={()=> history.push(BLOG)}>👈 Volver</Button>
+                <Button sm className='mb-3 ml-5' onClick={()=> history.push(HOME_PATH)}>🏠 Inicio</Button>
+                <Button sm className='mb-3 ml-5' onClick={()=> history.push(BLOG)}>📰 Ver mas blogs</Button>
             </Row>
             <Row>
               <Col className='mx-auto' md='8'>{blog}</Col>

@@ -6,7 +6,6 @@ import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
 
 
 const SubscriptionSuccess = (props) => {
-    console.log(props)
   const {getCelebrity, celebrity, isLoading} = {...props}
   useEffect(() => {
     getCelebrity(props.match.params.celebrity_username, true)

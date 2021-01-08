@@ -3,7 +3,6 @@ import './styles.scss';
 
 const SubscriptionPlanOption = (props) =>{
     const {description, gatewayIdentifier, handlerClick, currentPlanSelected} = {...props};
-    console.log(currentPlanSelected === gatewayIdentifier)
     return (
       <div
         className='container-subscription-plan-option'
@@ -14,7 +13,6 @@ const SubscriptionPlanOption = (props) =>{
         </div>
         <div className='container-subscription-plan-option__details'>
           <div className='container-subscription-plan-option__details-price'>
-            100$ por mes
           </div>
           <div className='container-subscription-plan-option__checked'>
             {currentPlanSelected === gatewayIdentifier ? (

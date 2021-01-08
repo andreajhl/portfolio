@@ -5,12 +5,30 @@ import { PageContainer } from "../../layouts";
 import MetaTags from "react-meta-tags";
 import {CarouselAvailableSubscriptions, CelebrityFeedPosts} from '../../layouts';
 import * as firestoreService from "../../../firebase/firestoreService";
+import { LoaderLayout } from "../../layouts/loader";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
+import './styles.scss';
+
+const NotPostsResults= ({message}) => {
+  return (
+    <div className='container-not-post-results'>
+      <h4>
+        {message}
+        <span role='img' aria-label='crying-face'>
+          😢
+        </span>
+      </h4>
+    </div>
+  );
+}
+
 const SubscriptionFeed = (props) => {
-  const { getCelebritiesSubscribe, subscriptionList,isSubscriptionListCompletedFetch } = { ...props };
+  const {getCelebritiesSubscribe, subscriptionList,isSubscriptionListCompletedFetch } = { ...props };
+  const [postFetched, setPostFetched] = useState(false);
   const [posts, setPosts] = useState([]);
   const fetchPosts = async (celebrityId,concat = true) => {
     const documents = await firestoreService.getPostFromCelebrity('dev_posts',celebrityId)
+    setPostFetched(true);
     concat
       ? setPosts((prevState) => prevState.concat(documents))
       : setPosts(documents); 
@@ -44,11 +62,33 @@ const SubscriptionFeed = (props) => {
         />
       </MetaTags>
       <PageContainer>
-        <Container>
+        <Container className='container-subscription-feed'>
           <Row>
             <Col md='9' className='mx-auto'>
-              <CarouselAvailableSubscriptions handlerSelectCelebrity={fetchPostFromCelebrity} celebrities={subscriptionList} />
-              {posts.length > 0  && isSubscriptionListCompletedFetch ? <CelebrityFeedPosts posts={posts} subscriptionList={subscriptionList} /> : null}
+              {isSubscriptionListCompletedFetch ? (
+                <CarouselAvailableSubscriptions
+                  handlerSelectCelebrity={fetchPostFromCelebrity}
+                  celebrities={subscriptionList}
+                />
+              ) : (
+                <LoaderLayout />
+              )}
+              {isSubscriptionListCompletedFetch &&
+              subscriptionList.length > 0 ? (
+                posts.length > 0 ? (
+                  <CelebrityFeedPosts
+                    posts={posts}
+                    subscriptionList={subscriptionList}
+                  />
+                ) : postFetched ? (
+                  <NotPostsResults message='Oops! Al parecer no hay publicaciones actualmente' />
+                ) : (
+                  <LoaderLayout />
+                )
+              ) : isSubscriptionListCompletedFetch &&
+                subscriptionList.length === 0 ? (
+                <NotPostsResults message='Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime' />
+              ) : null}
             </Col>
           </Row>
         </Container>

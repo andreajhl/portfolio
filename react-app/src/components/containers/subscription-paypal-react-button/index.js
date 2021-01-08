@@ -61,7 +61,6 @@ class SubscriptionPaypalReactButton extends React.Component {
             showButtons: false,
         });
         this.props.onPayPalButtonApprove(data);
-        console.log(data, 'subscripcion data')
     };
 
     onCancel = (data) => {
