@@ -13,6 +13,8 @@ const SubscribeToThisCelebrityButton = ({
   fontSize,
   width
 }) => {
+  // PARA REMOVER TEMPORALMENTE ESTE COMPONENTE.
+  return null;
   const registerSubscribeToThisCelebrityButtonEvent = (eventName) => {
     GTM.tagManagerDataLayer(eventName + "_SUBSCRIBE_TO_THIS_CELEBRITY_BUTTON", {
       path: window.location.pathname,
