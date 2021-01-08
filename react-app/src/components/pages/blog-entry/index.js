@@ -37,7 +37,7 @@ const Blog_entry = ({blogsData,match,history}) => {
           <Container>
             <Row className='justify-content-evenly'>
                 <Button sm className='mb-3 ml-5' onClick={()=> history.push(HOME_PATH)}>🏠 Inicio</Button>
-                <Button sm className='mb-3 ml-5' onClick={()=> history.push(BLOG)}>📰 Ver mas blogs</Button>
+                <Button sm className='mb-3 ml-5' onClick={()=> history.push(BLOG)}>📰 Ver más noticias</Button>
             </Row>
             <Row>
               <Col className='mx-auto' md='8'>{blog}</Col>
