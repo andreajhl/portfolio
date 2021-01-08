@@ -20,23 +20,27 @@ const BlogPostCarousel = ({
   }, []);
 
   return isBlogsDataFetch && blogsData.length > 0 ? (
-    <CarouselWithButtons.Container buttonsStyles={{ height: "378px", top: 0 }}>
-      <CarouselWithButtons.List>
-        <ul>
-          {blogsData.map(({ title, thumbnail, description, link }, index) => (
-            <li style={{ marginRight: "12px" }} key={index}>
-              <BlogPostCardLayout
-                title={title}
-                imageUrl={thumbnail}
-                description={description}
-                postUrl={link}
-                idPost={index}
-              />
-            </li>
-          ))}
-        </ul>
-      </CarouselWithButtons.List>
-    </CarouselWithButtons.Container>
+    <section className='mt-2 mb-2'>
+      <CarouselWithButtons.Container
+        buttonsStyles={{ height: '378px', top: 0 }}
+      >
+        <CarouselWithButtons.List>
+          <ul>
+            {blogsData.map(({ title, thumbnail, description, link }, index) => (
+              <li style={{ marginRight: '12px' }} key={index}>
+                <BlogPostCardLayout
+                  title={title}
+                  imageUrl={thumbnail}
+                  description={description}
+                  postUrl={link}
+                  idPost={index}
+                />
+              </li>
+            ))}
+          </ul>
+        </CarouselWithButtons.List>
+      </CarouselWithButtons.Container>
+    </section>
   ) : null;
 };
 
