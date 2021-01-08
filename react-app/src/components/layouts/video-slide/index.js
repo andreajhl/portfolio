@@ -13,7 +13,9 @@ const VideoSlideLayout = ({
   setVideoIsMuted,
   autoPlayVideo,
   setPlayingVideo,
-  currentVideoPlaying
+  currentVideoPlaying,
+  setIsPlayingVideo,
+  isPlayingVideo
 }) => {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
   const [videoIsFullscreen, setVideoIsFullscreen] = useState(false);
@@ -42,7 +44,7 @@ const VideoSlideLayout = ({
     videoRef.current.play();
     setVideoIsPlaying(true);
     setPlayingVideo({ contract_reference: videoReference });
-  }, [setPlayingVideo, videoReference]);
+  }, [videoReference]);
 
   const pauseVideo = useCallback(() => {
     videoRef.current.pause();
@@ -55,12 +57,14 @@ const VideoSlideLayout = ({
         ...analyticsData,
         videoIsPlaying: true
       });
+      setIsPlayingVideo(true);
       playVideo();
     } else {
       GTM.tagManagerDataLayer("PAUSE_VIDEO_SLIDE", {
         ...analyticsData,
         videoIsPlaying: false
       });
+      setIsPlayingVideo(false);
       pauseVideo();
     }
   };
@@ -82,6 +86,7 @@ const VideoSlideLayout = ({
     const userHasGoodInternet = navigator?.connection?.effectiveType === "4g";
 
     if (userHasGoodInternet) {
+      setIsPlayingVideo(true);
       playVideo();
     }
   }, [playVideo]);
@@ -130,7 +135,7 @@ const VideoSlideLayout = ({
           />
           <i
             className={`fa fa-${
-              videoIsPlaying ? "pause" : "play"
+              videoIsPlaying || isPlayingVideo ? "pause" : "play"
             } play-pause cursor-pointer`}
             onClick={togglePlay}
           />

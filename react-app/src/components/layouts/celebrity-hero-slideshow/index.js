@@ -11,6 +11,7 @@ const CelebrityHeroSlideshow = ({
   celebrityPublicContracts,
   setPlayingVideo
 }) => {
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
   const analyticsData = {
     widget: "CelebrityHeroSlideshow",
     path: window.location.pathname
@@ -56,9 +57,11 @@ const CelebrityHeroSlideshow = ({
               videoUrl={celebrityMainVideo}
               videoReference={"MAIN_VIDEO"}
               autoPlayOnCanPlay
-              // autoPlayVideo={activeSlideIndex === 0}
+              autoPlayVideo={activeSlideIndex === 0 && isPlayingVideo}
               videoIsMuted={videoIsMuted}
               setVideoIsMuted={setVideoIsMuted}
+              setIsPlayingVideo={setIsPlayingVideo}
+              isPlayingVideo={isPlayingVideo}
             />
           </Carousel.Item>
         ) : null}
@@ -67,9 +70,11 @@ const CelebrityHeroSlideshow = ({
             <VideoSlideLayout
               videoUrl={publicContract.contract_media}
               videoReference={publicContract.contract_reference}
-              // autoPlayVideo={index + 1 === activeSlideIndex}
+              autoPlayVideo={index + 1 === activeSlideIndex && isPlayingVideo}
               videoIsMuted={videoIsMuted}
               setVideoIsMuted={setVideoIsMuted}
+              setIsPlayingVideo={setIsPlayingVideo}
+              isPlayingVideo={isPlayingVideo}
             />
           </Carousel.Item>
         ))}
