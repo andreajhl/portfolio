@@ -1,22 +1,11 @@
 import React from "react";
-import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import "./styles.scss";
 
-const FlashDeliveryBadgeLayout = ({
-  celebrityUsername,
-  className,
-  color,
-  showTime,
-  flashDeliveryCelebritiesUsernames
-}) => {
-  const celebrityIsFlashDelivery = flashDeliveryCelebritiesUsernames.find(
-    (username) => username === celebrityUsername
-  );
-  return celebrityIsFlashDelivery ? (
+const FlashDeliveryBadgeLayout = ({ className, color, showTime }) => {
+  return (
     <span
-      className={`FlashDeliveryLayout ${
-        className ? className : ""
-      } FlashDeliveryLayout-color-${color ? color : "white"}`}
+      className={`FlashDeliveryLayout ${className} FlashDeliveryLayout-color-${color}`}
     >
       <span className="FlashDeliveryLayout__title">Entrega Flash</span>
       {showTime ? (
@@ -24,16 +13,19 @@ const FlashDeliveryBadgeLayout = ({
       ) : null}
       <i className="FlashDeliveryLayout__icon fa fa-bolt text-warning" />
     </span>
-  ) : null;
+  );
 };
 
-const mapStateToProps = ({ celebrities }) => ({
-  flashDeliveryCelebritiesUsernames:
-    celebrities.fetchFlashDeliveryCelebritiesReducer.data.usernames
-});
+FlashDeliveryBadgeLayout.defaultProps = {
+  className: "",
+  color: "white",
+  showTime: false
+};
 
-const _FlashDeliveryBadgeLayout = connect(mapStateToProps)(
-  FlashDeliveryBadgeLayout
-);
+FlashDeliveryBadgeLayout.propTypes = {
+  className: PropTypes.string,
+  color: PropTypes.string,
+  showTime: PropTypes.bool
+};
 
-export { _FlashDeliveryBadgeLayout as FlashDeliveryBadgeLayout };
+export { FlashDeliveryBadgeLayout };
