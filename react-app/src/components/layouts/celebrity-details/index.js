@@ -67,6 +67,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             celebrityId={celebrityId}
             contractTypes={contractTypes}
             turnAround={turnaround}
+            availableForFlashDeliveries={availableForFlashDeliveries}
           />
           <Col className="d-none d-md-block mx-0 px-0">
             <HireThisCelebrityButton

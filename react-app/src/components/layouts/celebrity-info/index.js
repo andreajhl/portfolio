@@ -12,6 +12,7 @@ export const CelebrityInfo = ({
   celebrityId,
   contractTypes,
   turnAround,
+  availableForFlashDeliveries,
   variant
 }) => {
   switch (variant) {
@@ -45,7 +46,10 @@ export const CelebrityInfo = ({
             />
           </div>
           <div className="mt-md-2 mb-md-4">
-            <CelebritiesResponseTime turnAroundTime={turnAround} />
+            <CelebritiesResponseTime
+              turnAroundTime={turnAround}
+              availableForFlashDeliveries={availableForFlashDeliveries}
+            />
           </div>
         </>
       );
@@ -102,6 +106,7 @@ export const CelebrityInfo = ({
           <div className="mt-md-2 mb-md-4">
             <CelebritiesResponseTime
               turnAroundTime={turnAround}
+              availableForFlashDeliveries={availableForFlashDeliveries}
               className="CelebrityInfo__contract-price"
             />
           </div>
