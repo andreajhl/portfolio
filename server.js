@@ -172,7 +172,7 @@ app.get("/:celebrity_username", async (req, res) => {
               "No se encontró un famoso con este usuario"
             );
             data = data.replace(
-              /\$OG_VIDEO/g,
+              /\$OG_VIDEO/,
               "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
             );
             data = data.replace(
