@@ -1,0 +1,15 @@
+@import '../../../theme.scss';
+.container-subscription-feed{
+    min-height: 80vh;
+}
+
+.container-not-post-results{
+    height: 200px;
+    background-color: #ebebeb;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+}
