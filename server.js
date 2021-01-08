@@ -122,7 +122,7 @@ app.get("/:celebrity_username", async (req, res) => {
           req.params.celebrity_username
       )
       .then((r) => {
-        if (r.data.data) {
+        if (r.data.data.username) {
           fs.readFile(filePath, "utf8", function (err, data) {
             if (err) {
               return console.log(err);
@@ -185,6 +185,7 @@ app.get("/:celebrity_username", async (req, res) => {
             );
             data = data.replace(/\$OG_VIDEO_WITH/g, "400");
             data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
+            data = data.replace(/\$ROBOTS_META/, "noindex");
             res.status(404).send(data);
           });
         }
