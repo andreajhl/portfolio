@@ -20,15 +20,7 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
         </div>
         <div className="col-12 col-lg-8 p-0 m-0 px-sm-3">
           <CelebrityDetails
-            fullName={celebrity.fullName}
-            username={celebrity.username}
-            avatar={celebrity.avatar}
-            countryCode={celebrity.countryCode}
-            celebrityId={celebrity.id}
-            categoryTitle={celebrity.categoryTitle}
-            contractTypes={celebrity.contractTypes}
-            turnAround={celebrity.turnaround}
-            description={celebrity.description}
+            celebrity={celebrity}
             variant="2"
           />
         </div>

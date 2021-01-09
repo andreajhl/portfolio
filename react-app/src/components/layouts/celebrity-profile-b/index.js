@@ -28,19 +28,7 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
             celebrity.mainVideo ? "8" : "10"
           } p-0 m-0 px-sm-3`}
         >
-          <CelebrityDetails
-            fullName={celebrity.fullName}
-            username={celebrity.username}
-            avatar={celebrity.avatar}
-            countryCode={celebrity.countryCode}
-            celebrityId={celebrity.id}
-            categoryTitle={celebrity.categoryTitle}
-            contractTypes={celebrity.contractTypes}
-            availableForSubscriptions={celebrity.availableForSubscriptions}
-            variant="1"
-            description={celebrity.description}
-            turnAround={celebrity.turnaround}
-          />
+          <CelebrityDetails celebrity={celebrity} variant="1" />
         </div>
       </div>
       <HowToGetAVideoMessageLayout />

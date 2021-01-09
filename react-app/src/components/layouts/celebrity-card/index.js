@@ -63,10 +63,9 @@ const CelebrityCardLayout = ({
               avatarIsLoaded ? "d-none" : ""
             }`}
           />
-          <FlashDeliveryBadgeLayout
-            className="celebrity__flash-delivery"
-            celebrityUsername={celebrity.username}
-          />
+          {celebrity.availableForFlashDeliveries ? (
+            <FlashDeliveryBadgeLayout className="celebrity__flash-delivery" />
+          ) : null}
           {contractPrice > 0 ? (
             <div className="celebrity__price">
               <ContractPriceLayout

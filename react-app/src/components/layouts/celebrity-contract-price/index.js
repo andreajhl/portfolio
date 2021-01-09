@@ -18,7 +18,11 @@ const getContractPrice = (contractTypes, currencyExchangeData) => {
   }
 };
 
-const CelebrityContractPrice = ({ contractTypes, currencyExchangeData }) => {
+const CelebrityContractPrice = ({
+  className,
+  contractTypes,
+  currencyExchangeData
+}) => {
   const price = useMemo(
     () => getContractPrice(contractTypes, currencyExchangeData),
     [contractTypes, currencyExchangeData]
@@ -26,12 +30,20 @@ const CelebrityContractPrice = ({ contractTypes, currencyExchangeData }) => {
 
   return (
     <ContractPriceLayout
-      classes="text-black font-weight-bold CelebrityDetails__contract-price"
+      classes={`text-black font-weight-bold ${className}`}
       price={price}
       currency={currencyExchangeData.to}
       rounding={true}
     />
   );
+};
+
+CelebrityContractPrice.defaultProps = {
+  className: "",
+  contractTypes: [],
+  currencyExchangeData: {
+    rate: 1
+  }
 };
 
 const mapStateToProps = ({ payments }) => ({

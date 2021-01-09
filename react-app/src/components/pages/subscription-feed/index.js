@@ -9,11 +9,11 @@ import { LoaderLayout } from "../../layouts/loader";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
 import './styles.scss';
 
-const NotPostsResults= () => {
+const NotPostsResults= ({message}) => {
   return (
     <div className='container-not-post-results'>
       <h4>
-        Oops! Al parecer no hay publicaciones actualmente
+        {message}
         <span role='img' aria-label='crying-face'>
           😢
         </span>
@@ -23,7 +23,7 @@ const NotPostsResults= () => {
 }
 
 const SubscriptionFeed = (props) => {
-  const { getCelebritiesSubscribe, subscriptionList,isSubscriptionListCompletedFetch } = { ...props };
+  const {getCelebritiesSubscribe, subscriptionList,isSubscriptionListCompletedFetch } = { ...props };
   const [postFetched, setPostFetched] = useState(false);
   const [posts, setPosts] = useState([]);
   const fetchPosts = async (celebrityId,concat = true) => {
@@ -73,17 +73,21 @@ const SubscriptionFeed = (props) => {
               ) : (
                 <LoaderLayout />
               )}
-              {isSubscriptionListCompletedFetch ? (
+              {isSubscriptionListCompletedFetch &&
+              subscriptionList.length > 0 ? (
                 posts.length > 0 ? (
                   <CelebrityFeedPosts
                     posts={posts}
                     subscriptionList={subscriptionList}
                   />
                 ) : postFetched ? (
-                  <NotPostsResults />
+                  <NotPostsResults message='Oops! Al parecer no hay publicaciones actualmente' />
                 ) : (
                   <LoaderLayout />
                 )
+              ) : isSubscriptionListCompletedFetch &&
+                subscriptionList.length === 0 ? (
+                <NotPostsResults message='Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime' />
               ) : null}
             </Col>
           </Row>
