@@ -7,10 +7,6 @@ const NetworkConnectionErrorLayout = (props) => {
     <div className="NetworkConnectionErrorLayout">
       <section className="NetworkConnectionErrorLayout__section">
         <div className="NetworkConnectionErrorLayout__container mx-auto text-center p-4">
-          <h4 className="font-weight-light text-center mb-0">
-            Ha ocurrido un error. Por favor, comprueba tu conexión a internet e
-            intenta nuevamente.
-          </h4>
           <img
             width="200px"
             style={{ opacity: "0.2", marginBottom: "0.35rem" }}
@@ -18,6 +14,11 @@ const NetworkConnectionErrorLayout = (props) => {
             alt="Error de conexión"
           />
           <br />
+          <h2 className="text-center">Ha ocurrido un error</h2>
+          <p className="NetworkConnectionErrorLayout__text">
+            Por favor, comprueba tu conexión a <br /> internet e intenta
+            nuevamente.
+          </p>
           <CallToActionButton
             width="200px"
             onClick={() => window.location.reload()}
