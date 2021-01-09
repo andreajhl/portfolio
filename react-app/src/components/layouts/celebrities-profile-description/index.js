@@ -31,7 +31,7 @@ const CelebritiesProfileDescription = ({ descriptionText }) => {
       {descriptionText.length > 200 ? (
         <>
           <Collapse
-            className={`container-celebrities-profile-description__collapse`}
+            className={`container-celebrities-profile-description__collapse mb-2`}
             in={showMore}
           >
             <div>{descriptionTextSpan}</div>
