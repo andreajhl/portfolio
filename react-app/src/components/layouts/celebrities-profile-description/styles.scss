@@ -6,12 +6,12 @@
   }
 
   &__collapse {
-    min-height: 3rem;
+    min-height: 4.5rem;
     display: block;
     visibility: visible;
     overflow: hidden;
     &.collapse:not(.show) {
-      height: 3rem;
+      height: 4.5rem;
       display: block;
     }
   }
