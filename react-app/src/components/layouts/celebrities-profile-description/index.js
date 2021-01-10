@@ -66,14 +66,16 @@ const CelebritiesProfileDescription = ({
       {descriptionText.length >= totalCharacterLengthToCollapse ? (
         <>
           <Collapse
-            className={`container-celebrities-profile-description__collapse mb-2`}
+            className={`container-celebrities-profile-description__collapse mb-1`}
             in={showMore}
           >
             <div>{descriptionTextSpan}</div>
           </Collapse>
           <div className="container-celebrities-profile-description__toggle-description">
             <i
-              className={`fas fa-angle-double-${showMore ? "up" : "down"}`}
+              className={`container-celebrities-profile-description__toggle-button fas fa-angle-${
+                showMore ? "up" : "down"
+              }`}
               onClick={toggleShowMore}
             />
           </div>
