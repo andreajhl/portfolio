@@ -83,13 +83,13 @@ export const get = (object_id, preloaded = false) => {
         }
       })
       .catch((err) => {
-        history._pushRoute(
-          PATHS.CELEBRITY_PROFILE_ERROR.replace(
-            ":celebrity_username",
-            object_id
-          )
-        );
         handleApiErrors(dispatch, TYPE, err);
+        // history._pushRoute(
+        //   PATHS.CELEBRITY_PROFILE_ERROR.replace(
+        //     ":celebrity_username",
+        //     object_id
+        //   )
+        // );
         // history._pushRoute(PATHS.ROOT_PATH);
         // handleApiErrors(dispatch, TYPE, {
         //   data: { api_error: err, error: "Server 500" }
@@ -277,9 +277,14 @@ export const fetchFlashDeliveryCelebrities = () => async (dispatch) => {
   }
 };
 
-export const fetchCelebritySubscriptionPlans = (celebrityUsername) => (dispatch) => {
+export const fetchCelebritySubscriptionPlans = (celebrityUsername) => (
+  dispatch
+) => {
   const TYPE = types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST;
-  const FINAL_PATH = API_PATHS.CELEBRITY_SUBSCRIPTION_PLANS.replace(':celebrity_username',celebrityUsername);
+  const FINAL_PATH = API_PATHS.CELEBRITY_SUBSCRIPTION_PLANS.replace(
+    ":celebrity_username",
+    celebrityUsername
+  );
   dispatch({ type: TYPE, payload: {} });
   apiService({
     method: "GET",

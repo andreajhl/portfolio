@@ -12,6 +12,7 @@ import { CelebrityProfileLayoutA } from "../../layouts/celebrity-profile-a";
 import { CelebrityProfileLayoutB } from "../../layouts/celebrity-profile-b";
 import { CelebrityProfileLayoutC } from "../../layouts/celebrity-profile-c";
 import { getCelebrityProfileVersion } from "../../../utils/celebrityProfileVersion";
+import { NetworkConnectionErrorLayout } from "../../layouts/network-error-message";
 
 const CelebrityProfileLayout = ({ celebrity }) => {
   if (!celebrity.showSimilarCelebrities) {
@@ -82,6 +83,9 @@ class CelebrityProfilePage extends Component {
   }
 
   render() {
+    const hasNetworkError =
+      this.props.errorData?.api_error?.message === "Network Error";
+
     return (
       <div className="CelebrityProfilePage">
         {this.props.celebrity.username && (
@@ -112,12 +116,16 @@ class CelebrityProfilePage extends Component {
           showLogin={false}
           applyFetchUserCelebrityLikes
         >
-          <div style={{ minHeight: "100vh" }}>
-            {this.props.celebrity.username ===
-            this.props.match.params.celebrity_username ? (
-              <CelebrityProfileLayout celebrity={this.props.celebrity} />
-            ) : null}
-          </div>
+          {!hasNetworkError ? (
+            <div style={{ minHeight: "100vh" }}>
+              {this.props.celebrity.username ===
+              this.props.match.params.celebrity_username ? (
+                <CelebrityProfileLayout celebrity={this.props.celebrity} />
+              ) : null}
+            </div>
+          ) : (
+            <NetworkConnectionErrorLayout />
+          )}
         </PageContainer>
       </div>
     );
@@ -144,6 +152,7 @@ CelebrityProfilePage.defaultProps = {
 const mapStateToProps = (state) => ({
   isLoading: state.celebrities.getCelebrityReducer.loading,
   celebrity: state.celebrities.getCelebrityReducer.data,
+  errorData: state.celebrities.getCelebrityReducer.error_data,
   socialNetworks:
     state.celebritySocialNetworks.fetchCelebritySocialNetworksReducer.data
       .results,
