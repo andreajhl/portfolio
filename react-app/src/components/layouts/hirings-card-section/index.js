@@ -114,7 +114,7 @@ class HiringsCardSectionLayout extends Component {
     } else if (contract.status === 25) {
       return (
         <button
-          className="btn btn-outline-light mt-2"
+          className="btn btn-outline-dark mt-2"
           disabled
           style={{ width: "100%", fontSize: "12px" }}
         >
