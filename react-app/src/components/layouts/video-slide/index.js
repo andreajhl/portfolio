@@ -83,12 +83,8 @@ const VideoSlideLayout = ({
   };
 
   const playVideoWhenHasGoodConnection = useCallback(() => {
-    const userHasGoodInternet = navigator?.connection?.effectiveType === "4g";
-
-    if (userHasGoodInternet) {
-      setIsPlayingVideo(true);
-      playVideo();
-    }
+    setIsPlayingVideo(true);
+    playVideo();
   }, [playVideo]);
 
   useEffect(() => {
@@ -157,6 +153,7 @@ const VideoSlideLayout = ({
         onClick={togglePlay}
         preload="metadata"
         muted={videoIsMuted}
+        autoPlay
         onCanPlay={autoPlayMainVideo}
       >
         <source src={videoUrl} type="video/mp4" />
