@@ -31,6 +31,14 @@ class PayPalCardForm extends Component {
         )
             .then(res => {
                 if (res.status === 10) {
+                    if (typeof window !== "undefined") {
+                        if (window.fbq != null) {
+                          window.fbq('track', 'Purchase', {
+                            value: this.props.contractPrice,
+                            currency: 'USD',
+                          });
+                        }
+                      }
                     GTM.tagManagerDataLayer(
                         "CONTRACT_PAYED",
                         res.data

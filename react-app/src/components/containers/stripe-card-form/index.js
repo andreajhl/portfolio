@@ -118,6 +118,14 @@ class StripeCardForm extends Component {
                         errorMessage: res.data.error,
                     });
                 } else {
+                    if (typeof window !== "undefined") {
+                        if (window.fbq != null) {
+                          window.fbq('track', 'Purchase', {
+                            value: this.props.contractPrice,
+                            currency: 'USD',
+                          });
+                        }
+                      }
                     const route = PATHS.CONTRACT_CREATED.replace(
                         ":contract_reference",
                         res.data.data.reference

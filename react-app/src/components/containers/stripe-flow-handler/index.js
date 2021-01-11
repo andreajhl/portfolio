@@ -73,6 +73,7 @@ class StripeFlowHandler extends Component {
                     contractReference={this.props.contractReference}
                     availableSources={this.state.availableSources}
                     discountCouponId={this.props.discountCouponId}
+                    contractPrice={this.props.contractPrice}
                 />
             );
         }
