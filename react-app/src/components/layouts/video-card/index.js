@@ -1,12 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
-import { setPlayingVideo } from "../../../state/ducks/celebrity-sections/actions";
-import { connect } from "react-redux";
 import * as GTM from "../../../state/utils/gtm";
-import hasDesiredAspectRatio from "../../../utils/hasDesiredAspectRatio";
+import useVideoPlayer from "../../../utils/useVideoPlayer";
+import useLoad from "../../../utils/useLoad";
+import useImageHasDesiredAspectRatio from "../../../utils/useImageHasDesiredAspectRatio";
 
 const VideoCardLayout = ({
   celebrityId,
@@ -17,19 +17,24 @@ const VideoCardLayout = ({
   videoUrl,
   videoPosterUrl,
   videoKey,
-  footerSection,
-  currentVideoKey,
-  setPlayingVideo
+  footerSection
 }) => {
-  const videoRef = useRef();
-  const imageRef = useRef();
-  const [videoIsLoaded, setVideoIsLoaded] = useState(false);
-  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
-  const [posterIsLoaded, setPosterIsLoaded] = useState(false);
-  const [
-    shouldUseMediaAlternativeStyles,
-    setShouldUseMediaAlternativeStyles
-  ] = useState(false);
+  const [videoIsLoaded, onVideoLoadedData] = useLoad();
+  const [imageRef, shouldUseDefaultStyles] = useImageHasDesiredAspectRatio({
+    desiredAspectRatio: "16:9"
+  });
+
+  const { videoRef, videoIsPlaying, playVideo, togglePlay } = useVideoPlayer(
+    videoKey,
+    {
+      onPlayVideo() {
+        GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
+      },
+      onPauseVideo() {
+        GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
+      }
+    }
+  );
 
   const analyticsData = {
     widget: "VideoCardLayout",
@@ -42,42 +47,6 @@ const VideoCardLayout = ({
     videoPosterUrl,
     videoKey
   };
-
-  const playVideo = () => {
-    videoRef.current.play();
-    setVideoIsPlaying(true);
-    setPlayingVideo(videoKey);
-  };
-
-  const pauseVideo = () => {
-    videoRef.current.pause();
-    setVideoIsPlaying(false);
-    setPlayingVideo(null);
-  };
-
-  const togglePlay = () => {
-    if (!videoIsPlaying) {
-      GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
-      playVideo();
-    } else {
-      GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
-      pauseVideo();
-    }
-  };
-
-  useEffect(() => {
-    if (currentVideoKey && currentVideoKey !== videoKey) pauseVideo();
-    return () => {
-      if (currentVideoKey === videoKey) setPlayingVideo(null);
-    };
-  }, [currentVideoKey]);
-
-  useEffect(() => {
-    if (!posterIsLoaded) return;
-    setShouldUseMediaAlternativeStyles(
-      !hasDesiredAspectRatio(imageRef.current, "16:9")
-    );
-  }, [posterIsLoaded]);
 
   const registerVideoCardHover = () =>
     GTM.tagManagerDataLayer("HOVER_VIDEO_CARD", analyticsData);
@@ -93,9 +62,7 @@ const VideoCardLayout = ({
       <div className="video-card">
         <section
           className={`video-card__media ${
-            shouldUseMediaAlternativeStyles
-              ? "video-card__media-alternative"
-              : ""
+            !shouldUseDefaultStyles ? "video-card__media-alternative" : ""
           }`}
         >
           {!videoIsLoaded ? (
@@ -105,7 +72,6 @@ const VideoCardLayout = ({
               alt={`Poster de vídeo de ${celebrityFullName}`}
               onClick={playVideo}
               ref={imageRef}
-              onLoad={() => setPosterIsLoaded(true)}
             />
           ) : null}
           <video
@@ -115,7 +81,7 @@ const VideoCardLayout = ({
             preload="none"
             playsInline
             onClick={togglePlay}
-            onLoadedData={() => setVideoIsLoaded(true)}
+            onLoadedData={onVideoLoadedData}
             ref={videoRef}
           />
         </section>
@@ -183,17 +149,4 @@ VideoCardLayout.propTypes = {
   videoKey: PropTypes.string.isRequired
 };
 
-const mapStateToProps = ({ celebritySections }) => ({
-  currentVideoKey: celebritySections.playVideoReducer
-});
-
-const mapDispatchToProps = {
-  setPlayingVideo
-};
-
-const _VideoCardLayout = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(VideoCardLayout);
-
-export { _VideoCardLayout as VideoCardLayout };
+export { VideoCardLayout };
