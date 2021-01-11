@@ -15,7 +15,7 @@ const NetworkConnectionErrorLayout = ({ onTryAgain }) => {
             alt="Error de conexión"
           />
           <br />
-          <h3 className="text-center">Ha ocurrido un error</h3>
+          <h3 className="text-center font-weight-bold">Ha ocurrido un error</h3>
           <p className="NetworkConnectionErrorLayout__text">
             Por favor, comprueba tu conexión a <br /> internet e intenta
             nuevamente.
