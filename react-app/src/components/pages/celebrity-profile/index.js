@@ -124,7 +124,11 @@ class CelebrityProfilePage extends Component {
               ) : null}
             </div>
           ) : (
-            <NetworkConnectionErrorLayout />
+            <NetworkConnectionErrorLayout
+              onTryAgain={() =>
+                this.getCelebrity(this.props.match.params.celebrity_username)
+              }
+            />
           )}
         </PageContainer>
       </div>

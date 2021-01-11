@@ -1,16 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { CallToActionButton } from "../call-to-action-button";
 import "./styles.scss";
 
-const NetworkConnectionErrorLayout = (props) => {
+const NetworkConnectionErrorLayout = ({ onTryAgain }) => {
   return (
     <div className="NetworkConnectionErrorLayout">
       <section className="NetworkConnectionErrorLayout__section">
         <div className="NetworkConnectionErrorLayout__container mx-auto text-center p-4">
           <img
             width="200px"
-            style={{ opacity: "0.2", marginBottom: "0.35rem" }}
-            src="/assets/img/wifi-connection-error.png"
+            style={{ marginBottom: "0.35rem" }}
+            src="/assets/img/wifi-connection-error.svg"
             alt="Error de conexión"
           />
           <br />
@@ -19,17 +20,21 @@ const NetworkConnectionErrorLayout = (props) => {
             Por favor, comprueba tu conexión a <br /> internet e intenta
             nuevamente.
           </p>
-          <CallToActionButton
-            width="200px"
-            onClick={() => window.location.reload()}
-            className="text-uppercase"
-          >
+          <CallToActionButton width="200px" onClick={onTryAgain}>
             Reintentar
           </CallToActionButton>
         </div>
       </section>
     </div>
   );
+};
+
+NetworkConnectionErrorLayout.defaultProps = {
+  onTryAgain: () => window.location.reload()
+};
+
+NetworkConnectionErrorLayout.propTypes = {
+  onTryAgain: PropTypes.func
 };
 
 export { NetworkConnectionErrorLayout };

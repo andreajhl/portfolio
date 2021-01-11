@@ -106,13 +106,17 @@ class PageContainer extends Component {
         {this.props.showFooter ? <FooterLayout /> : null}
         {/* End FooterLayout */}
 
-        {/*EmptyImage*/}
         <img
           src="/assets/img/avatar-blank.png"
           style={{ display: "none" }}
-          alt="None"
+          alt="Imagen de Avatar vació pre-cagada"
         />
 
+        <img
+          className="d-none"
+          src="/assets/img/wifi-connection-error.svg"
+          alt="Imagen de Error de conexión de internet pre-cargada"
+        />
         {/*{this.props.showVideoCallsResearch ? <VideoCallsResearch /> : null}*/}
         {/*COOKIES CONSENT*/}
         {/* <DownloadAppBanner /> */}
