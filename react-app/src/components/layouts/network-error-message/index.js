@@ -14,7 +14,7 @@ const NetworkConnectionErrorLayout = (props) => {
             alt="Error de conexión"
           />
           <br />
-          <h2 className="text-center">Ha ocurrido un error</h2>
+          <h3 className="text-center">Ha ocurrido un error</h3>
           <p className="NetworkConnectionErrorLayout__text">
             Por favor, comprueba tu conexión a <br /> internet e intenta
             nuevamente.
