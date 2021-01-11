@@ -103,6 +103,11 @@ class CreateContractForm extends Component {
         const contractData = this.state.contractData;
         contractData.celebrityId = this.props.celebrityId;
         GTM.tagManagerDataLayer("CONTRACT_CREATED", contractData);
+        if (typeof window !== "undefined") {
+          if (window.fbq != null) {
+            window.fbq('track', 'InitiateCheckout');
+          }
+        }
         this.setState({ contractData }, () => {
           this.props.saveClientContract(this.state.contractData);
         });
