@@ -38,6 +38,7 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
             contractTypes={celebrity.contractTypes}
             celebrityId={celebrity.id}
             username={celebrity.username}
+            celebrityFullName={celebrity.fullName}
           />
           {/* <section className="container text-center pt-2 pb-4">
             <NavLink to="#">
