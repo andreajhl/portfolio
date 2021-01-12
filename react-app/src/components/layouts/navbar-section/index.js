@@ -52,6 +52,7 @@ const NavbarSectionLayout = ({
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
+                aria-label="dropdown toggle button"
                 onClick={() => setDropdownMenuIsOpen(!dropdownMenuIsOpen)}
               >
                 <i
