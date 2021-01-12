@@ -27,6 +27,7 @@ const CelebrityFavoriteButton = ({
   filledImageSource,
   outlinedImageSource,
   width,
+  height = width,
   history,
   location
 }) => {
@@ -91,7 +92,7 @@ const CelebrityFavoriteButton = ({
     <img
       src={isFavorite !== isHovering ? filledImageSource : outlinedImageSource}
       className={`like-icon cursor-pointer ${className}`}
-      style={{ width }}
+      style={{ width, height }}
       onMouseOver={addIsHovering}
       onMouseLeave={removeIsHovering}
       onClick={toggleFavorite}
@@ -115,7 +116,8 @@ CelebrityFavoriteButton.propTypes = {
   userCelebrityLikes: PropTypes.array,
   filledImageSource: PropTypes.string,
   outlinedImageSource: PropTypes.string,
-  width: PropTypes.string
+  width: PropTypes.string,
+  height: PropTypes.string
 };
 
 const _CelebrityFavoriteButton = connect(mapStateToProps)(
