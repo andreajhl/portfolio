@@ -23,7 +23,7 @@ export const CelebrityInfo = ({
           <h4 className="CelebrityInfo__full-name">{fullName}</h4>
           <div className="d-flex align-items-center mb-2">
             <CountryFlag countryCode={countryCode} />
-            <span className="ml-3 mt-1 CelebrityInfo__category">
+            <span className="ml-3 CelebrityInfo__category">
               {categoryTitle}
             </span>
             <CelebrityFavoriteButton
@@ -66,7 +66,7 @@ export const CelebrityInfo = ({
           <h4 className="CelebrityInfo__full-name">{fullName}</h4>
           <div className="d-flex align-items-center mb-2 mb-md-3">
             <CountryFlag countryCode={countryCode} />
-            <span className="ml-3 mt-1 CelebrityInfo__category">
+            <span className="ml-3 CelebrityInfo__category">
               {categoryTitle}
             </span>
           </div>
@@ -87,7 +87,7 @@ export const CelebrityInfo = ({
           <h4 className="CelebrityInfo__full-name">{fullName}</h4>
           <div className="d-flex align-items-center mb-2">
             <CountryFlag countryCode={countryCode} />
-            <span className="ml-3 mt-1 CelebrityInfo__category">
+            <span className="ml-3 CelebrityInfo__category">
               {categoryTitle}
             </span>
             <CelebrityFavoriteButton
