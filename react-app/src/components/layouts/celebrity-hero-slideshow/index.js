@@ -70,7 +70,10 @@ const CelebrityHeroSlideshow = ({
             <VideoSlideLayout
               videoUrl={publicContract.contract_media}
               videoReference={publicContract.contract_reference}
-              autoPlayVideo={index + 1 === activeSlideIndex && isPlayingVideo}
+              autoPlayVideo={
+                (celebrityMainVideo ? index + 1 : index) === activeSlideIndex &&
+                isPlayingVideo
+              }
               videoIsMuted={videoIsMuted}
               setVideoIsMuted={setVideoIsMuted}
               setIsPlayingVideo={setIsPlayingVideo}
