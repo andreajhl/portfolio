@@ -9,6 +9,8 @@ branch-defaults:
     environment: FamososFrontend-QA
   new-form:
     environment: FamososFrontend-Production
+  staging:
+    environment: FamososFrontend-QA
 deploy:
   artifact: zip.zip
 environment-defaults:
