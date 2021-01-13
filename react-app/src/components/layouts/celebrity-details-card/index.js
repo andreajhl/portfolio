@@ -526,17 +526,19 @@ class CelebrityDetailsCardLayout extends Component {
           <div className="f-line w-100 mt-2 mb-2 text-soft-grey"></div>
           <div className="row f-section mx-auto">
             <div className="col-12 text-justify word-break">
-              <h6>
-                <small className="mr-1 hashtags text-soft-grey">
-                  {this.props.hashtags.map((h, index) => {
-                    return (
-                      <span key={index} className="mr-3">
-                        #{h}
-                      </span>
-                    );
-                  })}
-                </small>
-              </h6>
+              {this.props.hashtags ? (
+                <h6>
+                  <small className="mr-1 hashtags text-soft-grey">
+                    {this.props.hashtags.map((h, index) => {
+                      return (
+                        <span key={index} className="mr-3">
+                          #{h}
+                        </span>
+                      );
+                    })}
+                  </small>
+                </h6>
+              ) : null}
             </div>
           </div>
         </div>

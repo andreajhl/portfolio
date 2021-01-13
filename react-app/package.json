@@ -59,6 +59,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-qa": "env-cmd -f .env.qa react-scripts start",
     "build-development": "env-cmd -f .env react-scripts build",
     "build-production": "env-cmd -f .env.production react-scripts build",
     "build-testing": "env-cmd -f .env.testing react-scripts build",
