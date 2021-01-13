@@ -1,0 +1,102 @@
+.FourZeroFourCelebrityProfile {
+  &__banner {
+    background-color: rgb(251, 34, 113);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+
+    @media only screen and (max-width: 576px) {
+      width: 94%;
+    }
+    @media only screen and (max-width: 767px) {
+      flex-wrap: wrap;
+    }
+    @media only screen and (min-width: 576px) {
+      max-width: 510px;
+    }
+    @media only screen and (min-width: 768px) {
+      max-width: 690px;
+      height: 300px;
+    }
+    @media only screen and (min-width: 992px) {
+      max-width: 930px;
+    }
+    @media only screen and (min-width: 1200px) {
+      max-width: 1110px;
+      justify-content: center;
+    }
+
+    &-img {
+      width: 100%;
+
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+        margin-left: -60px;
+        margin-right: -110px;
+      }
+
+      @media only screen and (min-width: 768px) {
+        height: 100%;
+        width: unset;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @media only screen and (max-width: 767px) {
+        height: 240px;
+      }
+
+      @media only screen and (max-width: 566px) {
+        height: 60vw;
+        max-height: 250px;
+      }
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+        padding: 3.5rem 0 !important;
+      }
+      @media only screen and (min-width: 992px) {
+        padding: 2.5rem 0 !important;
+      }
+    }
+
+    &-title,
+    &-username {
+      color: white;
+
+      @media only screen and (max-width: 566px) {
+        font-size: 6vw;
+      }
+
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+        font-size: 2.5vw;
+      }
+
+      @media only screen and (min-width: 768px) {
+        // font-size: 2rem;
+      }
+    }
+
+    &-username {
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+
+    &-arrow-left {
+      color: inherit;
+      margin-right: 0.4em;
+    }
+
+    &-home-link {
+      color: white;
+      font-size: 18px;
+
+      &:hover {
+        color: var(--dark);
+        text-decoration: none;
+      }
+    }
+  }
+}
