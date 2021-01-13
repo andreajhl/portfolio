@@ -15,12 +15,12 @@ const CountryFlag = ({ countries, fetchCountries, countryCode }) => {
         countries.find((country) => country.alpha3Code === countryCode)
       );
     }
-  }, [countries.length]);
+  }, [countries, countryCode]);
 
   return celebrityCountry ? (
     <Image
       src={
-        "/assets/img/usa.svg" || celebrityCountry.alpha3Code === "USA"
+        celebrityCountry.alpha3Code === "USA"
           ? "/assets/img/usa.svg"
           : celebrityCountry.flag
       }
