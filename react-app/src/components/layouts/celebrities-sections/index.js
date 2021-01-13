@@ -62,7 +62,7 @@ const CelebritiesSectionsLayout = ({
     });
 
   return (
-    <div className='CelebritiesSectionsLayout'>
+    <div className="CelebritiesSectionsLayout">
       {loading && offset === 0 ? (
         <CelebritiesShimmerCardsSectionLayout />
       ) : null}
@@ -81,15 +81,10 @@ const CelebritiesSectionsLayout = ({
         >
           {celebritiesSections.map((celebritiesSection, index) => (
             <React.Fragment>
-              {index === 3 ? <BlogPostCarousel/> : null}
+              {index === 3 ? <BlogPostCarousel /> : null}
               <CelebritiesCardsSectionLayout
                 key={celebritiesSection.id}
                 celebritiesSection={celebritiesSection}
-                hasMoreResults={
-                  celebritiesSection.celebritySectionType ===
-                    'CELEBRITY_CARD' &&
-                  celebritiesSection.celebrities.length >= 10
-                }
               />
             </React.Fragment>
           ))}
