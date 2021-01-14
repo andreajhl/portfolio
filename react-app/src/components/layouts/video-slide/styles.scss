@@ -2,6 +2,12 @@
   height: 100%;
   position: relative;
 
+  &__media-container {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__poster,
   &__video {
     height: 100%;
     width: 100%;

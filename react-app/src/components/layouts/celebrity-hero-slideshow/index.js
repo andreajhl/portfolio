@@ -7,11 +7,12 @@ import { contractOperations } from "../../../state/ducks/contracts";
 import "./styles.scss";
 
 const CelebrityHeroSlideshow = ({
+  celebrityAvatar,
   celebrityMainVideo,
   celebrityPublicContracts,
   setPlayingVideo
 }) => {
-  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+  const [isPlayingVideo, setIsPlayingVideo] = useState(true);
   const analyticsData = {
     widget: "CelebrityHeroSlideshow",
     path: window.location.pathname
@@ -54,8 +55,9 @@ const CelebrityHeroSlideshow = ({
         {celebrityMainVideo ? (
           <Carousel.Item>
             <VideoSlideLayout
+              videoPosterUrl={celebrityAvatar}
               videoUrl={celebrityMainVideo}
-              videoReference={"MAIN_VIDEO"}
+              videoReference={"SLIDESHOW-MAIN_VIDEO"}
               autoPlayOnCanPlay
               autoPlayVideo={activeSlideIndex === 0 && isPlayingVideo}
               videoIsMuted={videoIsMuted}
@@ -68,8 +70,12 @@ const CelebrityHeroSlideshow = ({
         {celebrityPublicContracts.map((publicContract, index) => (
           <Carousel.Item key={publicContract.contract_reference}>
             <VideoSlideLayout
+              shouldLoadPoster={index < activeSlideIndex + 2}
               videoUrl={publicContract.contract_media}
-              videoReference={publicContract.contract_reference}
+              videoReference={"SLIDESHOW-" + publicContract.contract_reference}
+              videoPosterUrl={
+                publicContract.video_poster_url || celebrityAvatar
+              }
               autoPlayVideo={index + 1 === activeSlideIndex && isPlayingVideo}
               videoIsMuted={videoIsMuted}
               setVideoIsMuted={setVideoIsMuted}
