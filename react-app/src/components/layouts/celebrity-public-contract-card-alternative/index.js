@@ -134,21 +134,12 @@ const CelebrityPublicContractCardAlternativeLayout = ({
 };
 
 CelebrityPublicContractCardAlternativeLayout.defaultProps = {
-  celebrity: {},
-  celebrityAvatar: null,
-  videoOccasion: null,
-  videoPosterUrl: null,
-  linkPath: null
+  publicContract: {}
 };
 
 CelebrityPublicContractCardAlternativeLayout.propTypes = {
-  celebrityId: PropTypes.number.isRequired,
+  celebrityFullName: PropTypes.string,
   celebrityAvatar: PropTypes.string,
-  celebrityUsername: PropTypes.string.isRequired,
-  celebrityFullName: PropTypes.string.isRequired,
-  videoOccasion: PropTypes.string,
-  videoUrl: PropTypes.string.isRequired,
-  videoPosterUrl: PropTypes.string,
   videoKey: PropTypes.string.isRequired
 };
 
