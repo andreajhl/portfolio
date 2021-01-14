@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 import { setPlayingVideo } from "../../../state/ducks/celebrity-sections/actions";
 import { connect } from "react-redux";
 import * as GTM from "../../../state/utils/gtm";
-import hasDesiredAspectRatio from "../../../utils/hasDesiredAspectRatio";
 import { HIRING_PREVIEW } from "../../../routing/Paths";
 
 const CelebrityPublicContractCardAlternativeLayout = ({
@@ -18,12 +17,6 @@ const CelebrityPublicContractCardAlternativeLayout = ({
   const videoRef = useRef();
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
-  const imageRef = useRef();
-  const [posterIsLoaded, setPosterIsLoaded] = useState(false);
-  const [
-    shouldUseMediaAlternativeStyles,
-    setShouldUseMediaAlternativeStyles
-  ] = useState(false);
 
   const analyticsData = {
     widget: "CelebrityPublicContractCardAlternativeLayout",
@@ -61,13 +54,6 @@ const CelebrityPublicContractCardAlternativeLayout = ({
     };
   }, [currentVideoKey]);
 
-  useEffect(() => {
-    if (!posterIsLoaded) return;
-    setShouldUseMediaAlternativeStyles(
-      !hasDesiredAspectRatio(imageRef.current, "16:9")
-    );
-  }, [posterIsLoaded]);
-
   const registerVideoCardHover = () =>
     GTM.tagManagerDataLayer(
       "HOVER_CELEBRITY_PUBLIC_CONTRACT_CARD_ALTERNATIVE",
@@ -92,13 +78,7 @@ const CelebrityPublicContractCardAlternativeLayout = ({
       onMouseOver={registerVideoCardHover}
     >
       <div className="video-card">
-        <section
-          className={`video-card__media ${
-            shouldUseMediaAlternativeStyles
-              ? "video-card__media-alternative"
-              : ""
-          }`}
-        >
+        <section className="video-card__media">
           {!videoIsLoaded ? (
             <img
               className="video-card__poster"
@@ -108,8 +88,6 @@ const CelebrityPublicContractCardAlternativeLayout = ({
               }
               alt={`Poster de vídeo de ${celebrityFullName}`}
               onClick={playVideo}
-              ref={imageRef}
-              onLoad={() => setPosterIsLoaded(true)}
             />
           ) : null}
           <video
