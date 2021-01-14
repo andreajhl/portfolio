@@ -21,23 +21,16 @@
       height: 100%;
       display: flex;
       align-items: center;
-
-      &-alternative {
-        .video-card__poster,
-        .video-card__video {
-          height: 100%;
-          transform: translateX(-42.5px);
-          width: initial;
-        }
-      }
     }
 
-    &__poster {
+    &__poster,
+    &__video {
+      height: 100%;
       width: 100%;
+      object-fit: cover;
     }
 
     &__video {
-      width: 100%;
       outline: none;
     }
 
