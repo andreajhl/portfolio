@@ -119,7 +119,10 @@ const CelebrityHeroSlideshow = ({
               videoPosterUrl={
                 publicContract.video_poster_url || celebrityAvatar
               }
-              autoPlayVideo={index + 1 === activeSlideIndex && isPlayingVideo}
+              autoPlayVideo={
+                (celebrityMainVideo ? index + 1 : index) === activeSlideIndex &&
+                isPlayingVideo
+              }
               videoIsMuted={videoIsMuted}
               setVideoIsMuted={setVideoIsMuted}
               setIsPlayingVideo={setIsPlayingVideo}
