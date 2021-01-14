@@ -124,6 +124,9 @@ const CelebrityHeroSlideshow = ({
               setVideoIsMuted={setVideoIsMuted}
               setIsPlayingVideo={setIsPlayingVideo}
               isPlayingVideo={isPlayingVideo}
+              videoIsFullscreen={videoIsFullscreen}
+              toggleFullscreen={toggleFullscreen}
+              showFullscreenToggler={fullscreen.fullscreenEnabled}
             />
           </Carousel.Item>
         ))}
