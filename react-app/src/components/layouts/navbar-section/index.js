@@ -47,7 +47,7 @@ const NavbarSectionLayout = ({
               isLogged={isLogged}
             />
           </div>
-          <div className="top-bar__center-side col-4 text-center p-0 pt-2">
+          <div className="top-bar__center-side col-4">
             <NavLink
               to={ROOT_PATH}
               className="top-bar__logo-link"
