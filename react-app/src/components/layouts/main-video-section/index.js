@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useLoad from "../../../utils/useLoad";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
 import * as GTM from "../../../state/utils/gtm";
@@ -45,6 +45,11 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
   //   }
   // };
 
+  useEffect(() => {
+    if (!videoIsLoaded) return;
+    playVideo();
+  }, [videoIsLoaded]);
+
   return (
     <section className="CelebrityMainvVideoSection container p-0">
       <div className="CelebrityMainvVideoSection__buttons">
@@ -71,14 +76,10 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
           playsInline
           onClick={togglePlay}
           preload="metadata"
-          muted={videoIsMuted}
           src={mainVideoUrl}
+          muted={videoIsMuted}
           onLoadedData={onVideoLoadedData}
-          // onCanPlay={autoPlayMainVideo}
-          autoPlay
-        >
-          Your browser does not support the video tag.
-        </video>
+        ></video>
       </div>
     </section>
   );
