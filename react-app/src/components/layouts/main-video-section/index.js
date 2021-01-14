@@ -51,8 +51,8 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
   }, [videoIsLoaded]);
 
   return (
-    <section className="CelebrityMainvVideoSection container p-0">
-      <div className="CelebrityMainvVideoSection__buttons">
+    <section className="CelebrityMainVideoSection container p-0">
+      <div className="CelebrityMainVideoSection__buttons">
         <i
           className={`fa fa-volume-${
             videoIsMuted ? "mute" : "up"
@@ -60,17 +60,17 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
           onClick={toggleVideoIsMuted}
         />
       </div>
-      <div className="CelebrityMainvVideoSection__media-container">
+      <div className="CelebrityMainVideoSection__media-container">
         {!videoIsLoaded ? (
           <img
-            className="CelebrityMainvVideoSection__poster"
+            className="CelebrityMainVideoSection__poster"
             src={videoPosterUrl || "/assets/img/avatar-blank.png"}
             alt={`Poster de vídeo de famoso`}
             onClick={playVideo}
           />
         ) : null}
         <video
-          className="CelebrityMainvVideoSection__video"
+          className="CelebrityMainVideoSection__video"
           ref={videoRef}
           controls={false}
           playsInline
