@@ -65,6 +65,13 @@ export const DropdownMenuLayout = ({
           ¿Como funciona?
         </a>
         <NavLink
+          className="dropdown-item"
+          activeClassName="active"
+          to={PATHS.BLOG}
+        >
+          Blog
+        </NavLink>
+        <NavLink
           className="dropdown-item d-md-none"
           activeClassName="active"
           to={PATHS.TRENDING}
