@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import fullscreen from "fscreen";
 import * as GTM from "../../../state/utils/gtm";
 import useLoad from "../../../utils/useLoad";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
@@ -15,8 +14,20 @@ const VideoSlideLayout = ({
   setIsPlayingVideo,
   isPlayingVideo,
   preload,
-  videoPosterUrl
+  videoPosterUrl,
+  showFullscreenToggler,
+  videoIsFullscreen,
+  toggleFullscreen
 }) => {
+  const analyticsData = {
+    widget: "VideoSlideLayout",
+    path: window.location.pathname,
+    videoUrl,
+    videoReference,
+    videoIsFullscreen,
+    videoIsMuted,
+    videoIsPlaying: isPlayingVideo
+  };
   const [videoIsLoaded, onVideoLoadedData] = useLoad();
   const { videoRef, videoIsPlaying, playVideo, togglePlay } = useVideoPlayer(
     videoReference,
@@ -38,19 +49,6 @@ const VideoSlideLayout = ({
     }
   );
 
-  const [videoIsFullscreen, setVideoIsFullscreen] = useState(false);
-  const sectionRef = useRef();
-
-  const analyticsData = {
-    widget: "VideoSlideLayout",
-    path: window.location.pathname,
-    videoUrl,
-    videoReference,
-    videoIsFullscreen,
-    videoIsMuted,
-    videoIsPlaying
-  };
-
   const toggleVideoIsMuted = () => {
     GTM.tagManagerDataLayer(`${videoIsMuted ? "UN" : ""}MUTE_VIDEO_SLIDE`, {
       ...analyticsData,
@@ -70,35 +68,8 @@ const VideoSlideLayout = ({
     playVideo();
   }, [autoPlayVideo]);
 
-  const exitFullscreen = () => {
-    setVideoIsFullscreen(false);
-    fullscreen.exitFullscreen();
-    GTM.tagManagerDataLayer("EXIT_FULLSCREEN_VIDEO_SLIDE", {
-      ...analyticsData,
-      videoIsFullscreen: false
-    });
-  };
-
-  const enterFullscreen = (sectionElement) => {
-    setVideoIsFullscreen(true);
-    fullscreen.requestFullscreen(sectionElement);
-    GTM.tagManagerDataLayer("ENTER_FULLSCREEN_VIDEO_SLIDE", {
-      ...analyticsData,
-      videoIsFullscreen: true
-    });
-  };
-
-  const toggleFullscreen = () => {
-    const sectionElement = sectionRef.current;
-    if (fullscreen.fullscreenElement === sectionElement) {
-      exitFullscreen();
-    } else {
-      enterFullscreen(sectionElement);
-    }
-  };
-
   return (
-    <section className="VideoSlideLayout" ref={sectionRef}>
+    <section className="VideoSlideLayout">
       <div className="VideoSlideLayout__buttons">
         <div className="d-flex align-items-center justify-content-end">
           <i
@@ -113,7 +84,7 @@ const VideoSlideLayout = ({
             } play-pause cursor-pointer`}
             onClick={togglePlay}
           />
-          {fullscreen.fullscreenEnabled ? (
+          {showFullscreenToggler ? (
             <i
               className={`fa fa-${
                 videoIsFullscreen ? "compress" : "expand"

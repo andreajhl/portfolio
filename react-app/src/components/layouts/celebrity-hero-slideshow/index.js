@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { connect } from "react-redux";
+import fullscreen from "fscreen";
 import * as GTM from "../../../state/utils/gtm";
 import { VideoSlideLayout } from "../video-slide";
 import { contractOperations } from "../../../state/ducks/contracts";
@@ -13,13 +14,9 @@ const CelebrityHeroSlideshow = ({
   setPlayingVideo
 }) => {
   const [isPlayingVideo, setIsPlayingVideo] = useState(true);
-  const analyticsData = {
-    widget: "CelebrityHeroSlideshow",
-    path: window.location.pathname
-  };
-
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
+  const [videoIsFullscreen, setVideoIsFullscreen] = useState(false);
 
   const handleSelect = (selectedIndex, event) => {
     setPlayingVideo({ contract_reference: null });
@@ -28,6 +25,46 @@ const CelebrityHeroSlideshow = ({
       ...analyticsData,
       selectedIndex
     });
+  };
+
+  const analyticsData = {
+    widget: "CelebrityHeroSlideshow",
+    path: window.location.pathname,
+    activeSlideIndex,
+    videoIsMuted,
+    videoIsFullscreen,
+    isPlayingVideo
+  };
+
+  const sectionRef = useRef();
+
+  useEffect(() => {
+    if (!fullscreen.fullscreenEnabled) return;
+    const onFullscreenChange = () => {
+      if (fullscreen.fullscreenElement === sectionRef.current) {
+        setVideoIsFullscreen(true);
+        GTM.tagManagerDataLayer("ENTER_FULLSCREEN_VIDEO_SLIDE", {
+          ...analyticsData,
+          videoIsFullscreen: true
+        });
+      } else {
+        setVideoIsFullscreen(false);
+        GTM.tagManagerDataLayer("EXIT_FULLSCREEN_VIDEO_SLIDE", {
+          ...analyticsData,
+          videoIsFullscreen: false
+        });
+      }
+    };
+    fullscreen.addEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = () => {
+    const sectionElement = sectionRef.current;
+    if (fullscreen.fullscreenElement === sectionElement) {
+      fullscreen.exitFullscreen();
+    } else {
+      fullscreen.requestFullscreen(sectionElement);
+    }
   };
 
   const registerCelebrityHeroSlideshowHover = () => {
@@ -39,8 +76,11 @@ const CelebrityHeroSlideshow = ({
 
   return (
     <section
-      className="CelebrityHeroSlideshow container p-0 bg-dark"
+      className={`CelebrityHeroSlideshow container p-0 bg-dark ${
+        videoIsFullscreen ? "CelebrityHeroSlideshow--is-fullscreen" : ""
+      }`}
       onMouseOver={registerCelebrityHeroSlideshowHover}
+      ref={sectionRef}
     >
       <Carousel
         activeIndex={activeSlideIndex}
@@ -64,6 +104,9 @@ const CelebrityHeroSlideshow = ({
               setVideoIsMuted={setVideoIsMuted}
               setIsPlayingVideo={setIsPlayingVideo}
               isPlayingVideo={isPlayingVideo}
+              videoIsFullscreen={videoIsFullscreen}
+              toggleFullscreen={toggleFullscreen}
+              showFullscreenToggler={fullscreen.fullscreenEnabled}
             />
           </Carousel.Item>
         ) : null}
