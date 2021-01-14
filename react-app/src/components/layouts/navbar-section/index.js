@@ -64,7 +64,7 @@ const NavbarSectionLayout = ({
             {!isLogged ? (
               <div className="col d-none d-md-flex align-items-center">
                 <NavLink
-                  className="btn btn-outline-primary ml-auto btn-sm top-bar__login-btn"
+                  className="btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1"
                   activeClassName=""
                   to={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(
                     ":form",
