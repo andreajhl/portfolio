@@ -78,6 +78,7 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
           preload="metadata"
           src={mainVideoUrl}
           muted={videoIsMuted}
+          autoPlay
           onLoadedData={onVideoLoadedData}
         ></video>
       </div>
