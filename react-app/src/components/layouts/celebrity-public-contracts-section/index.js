@@ -176,6 +176,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
                         publicContract={publicContract}
                         videoKey={`${this.props.celebrityId}-${this.props.username}-${publicContract.contract_reference}`}
                         celebrityFullName={this.props.celebrityFullName}
+                        celebrityAvatar={this.props.celebrityAvatar}
                       />
                     </li>
                   ))

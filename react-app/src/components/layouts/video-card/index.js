@@ -59,14 +59,17 @@ const VideoCardLayout = ({
           {!videoIsLoaded ? (
             <img
               className="video-card__poster"
-              src={videoPosterUrl || "/assets/img/avatar-blank.png"}
+              src={
+                videoPosterUrl ||
+                celebrityAvatar ||
+                "/assets/img/avatar-blank.png"
+              }
               alt={`Poster de vídeo de ${celebrityFullName}`}
               onClick={playVideo}
             />
           ) : null}
           <video
             className="video-card__video"
-            style={{ opacity: videoIsLoaded ? 1 : 0 }}
             src={videoUrl}
             preload="none"
             playsInline

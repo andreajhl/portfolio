@@ -10,6 +10,7 @@ import { HIRING_PREVIEW } from "../../../routing/Paths";
 const CelebrityPublicContractCardAlternativeLayout = ({
   publicContract,
   celebrityFullName,
+  celebrityAvatar,
   videoKey,
   currentVideoKey,
   setPlayingVideo
@@ -84,6 +85,7 @@ const CelebrityPublicContractCardAlternativeLayout = ({
               className="video-card__poster"
               src={
                 publicContract.video_poster_url ||
+                celebrityAvatar ||
                 "/assets/img/avatar-blank.png"
               }
               alt={`Poster de vídeo de ${celebrityFullName}`}
