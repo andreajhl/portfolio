@@ -8,8 +8,9 @@ import PropTypes from "prop-types";
 import { Session } from "../../../state/utils/session";
 import * as GTM from "../../../state/utils/gtm";
 import "./styles.scss";
+import { DropdownMenuLayout } from "../dropdown-menu";
 
-const sendDropdownLinkAnalyticsData = (eventName, target) => {
+export const sendDropdownLinkAnalyticsData = (eventName, target) => {
   if (!target.matches("a")) return;
   GTM.tagManagerDataLayer(eventName + "_DROPDOWN_MENU_LINK", {
     widget: "NavbarSectionLayout",
@@ -40,107 +41,11 @@ const NavbarSectionLayout = ({
       <div className={`NavbarSectionLayout ${className}`}>
         <div className="top-bar container mx-auto p-0 row">
           <div className="top-bar__left-side col-4 p-0">
-            <div
-              className={`dropdown ${
-                dropdownMenuIsOpen ? "dropdown-menu-is-open" : ""
-              }`}
-            >
-              <button
-                className="btn top-bar__dropdown-button"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                aria-label="dropdown toggle button"
-                onClick={() => setDropdownMenuIsOpen(!dropdownMenuIsOpen)}
-              >
-                <i
-                  className={`fa fa-${dropdownMenuIsOpen ? "times" : "bars"}`}
-                />
-              </button>
-              <div
-                onMouseOver={({ target }) =>
-                  sendDropdownLinkAnalyticsData("HOVER", target)
-                }
-                onClick={({ target }) =>
-                  sendDropdownLinkAnalyticsData("CLICK", target)
-                }
-                className="dropdown-menu"
-                aria-labelledby="dropdownMenuButton"
-                style={
-                  dropdownMenuIsOpen
-                    ? {
-                        display: "block"
-                      }
-                    : {}
-                }
-              >
-                {isLogged ? (
-                  <>
-                    <NavLink
-                      className="dropdown-item"
-                      activeClassName="active"
-                      to={PATHS.CLIENT_PROFILE}
-                    >
-                      Mi perfil
-                    </NavLink>
-                    {/* <NavLink
-                      className="dropdown-item"
-                      activeClassName="active"
-                      to={PATHS.FEED_SUBSCRIPTION}
-                    >
-                     Famosos Prime   
-                    </NavLink> */}
-                    <NavLink
-                      className="dropdown-item"
-                      activeClassName="active"
-                      to={PATHS.CLIENT_HIRINGS}
-                    >
-                      Mis contrataciones
-                    </NavLink>
-                  </>
-                ) : null}
-                <a className="dropdown-item" href={PATHS.LANDING_PATH}>
-                  ¿Cómo funciona?
-                </a>
-                <NavLink
-                  className="dropdown-item d-md-none"
-                  activeClassName="active"
-                  to={PATHS.TRENDING}
-                >
-                  Tendencias
-                </NavLink>
-                {!isLogged ? (
-                  <>
-                    <NavLink
-                      className="dropdown-item d-md-none"
-                      activeClassName="active"
-                      to={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(
-                        ":form",
-                        "email-form"
-                      )}
-                    >
-                      Ingresar
-                    </NavLink>
-                    <NavLink
-                      className="dropdown-item"
-                      activeClassName="active"
-                      to={PATHS.SIGN_UP_PATH}
-                    >
-                      Registrarme
-                    </NavLink>
-                  </>
-                ) : null}
-                <NavLink
-                  className="dropdown-item"
-                  activeClassName="active"
-                  to={PATHS.CELEBRITY_REQUEST}
-                >
-                  Aplicar
-                </NavLink>
-              </div>
-            </div>
+            <DropdownMenuLayout
+              dropdownMenuIsOpen={dropdownMenuIsOpen}
+              setDropdownMenuIsOpen={setDropdownMenuIsOpen}
+              isLogged={isLogged}
+            />
           </div>
           <div className="top-bar__center-side col-4 text-center p-0 pt-2">
             <NavLink
