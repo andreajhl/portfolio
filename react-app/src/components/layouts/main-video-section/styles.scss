@@ -7,11 +7,15 @@
     border-radius: 10px;
   }
 
-  &__video {
+  &__media-container {
     height: 100%;
     width: 100%;
-    // max-width: 720px;
-    // margin: 0 auto;
+  }
+
+  &__video,
+  &__poster {
+    height: 100%;
+    width: 100%;
     object-fit: cover !important;
   }
 

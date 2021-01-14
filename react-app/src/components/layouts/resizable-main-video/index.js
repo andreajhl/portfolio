@@ -26,7 +26,7 @@ const getWidthFromWindowWidth = () => {
   }
 };
 
-const ResizableMainVideo = ({ mainVideoUrl }) => {
+const ResizableMainVideo = ({ mainVideoUrl, videoPosterUrl }) => {
   const [windowWidth, setWindowWidth] = useState(getWidthFromWindowWidth());
   const [isInDesktop, setIsInDesktop] = useState(false);
 
@@ -60,7 +60,10 @@ const ResizableMainVideo = ({ mainVideoUrl }) => {
         </button>
       }
     >
-      <CelebrityMainVideoSection mainVideoUrl={mainVideoUrl} />
+      <CelebrityMainVideoSection
+        mainVideoUrl={mainVideoUrl}
+        videoPosterUrl={videoPosterUrl}
+      />
     </ResizableBox>
   );
 };
