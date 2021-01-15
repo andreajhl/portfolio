@@ -19,17 +19,14 @@ const VideoCardLayout = ({
   footerSection
 }) => {
   const [videoIsLoaded, onVideoLoadedData] = useLoad();
-  const { videoRef, videoIsPlaying, playVideo, togglePlay } = useVideoPlayer(
-    videoKey,
-    {
-      onPlayVideo() {
-        GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
-      },
-      onPauseVideo() {
-        GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
-      }
+  const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
+    onPlayVideo() {
+      GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
+    },
+    onPauseVideo() {
+      GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
     }
-  );
+  });
 
   const analyticsData = {
     widget: "VideoCardLayout",
@@ -65,7 +62,7 @@ const VideoCardLayout = ({
                 "/assets/img/avatar-blank.png"
               }
               alt={`Poster de vídeo de ${celebrityFullName}`}
-              onClick={playVideo}
+              onClick={togglePlay}
             />
           ) : null}
           <video

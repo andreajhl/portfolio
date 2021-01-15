@@ -89,7 +89,7 @@ const CelebrityPublicContractCardAlternativeLayout = ({
                 "/assets/img/avatar-blank.png"
               }
               alt={`Poster de vídeo de ${celebrityFullName}`}
-              onClick={playVideo}
+              onClick={togglePlay}
             />
           ) : null}
           <video
