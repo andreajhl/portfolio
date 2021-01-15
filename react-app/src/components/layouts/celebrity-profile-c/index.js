@@ -10,15 +10,29 @@ import { GoToSimilarCelebritiesButton } from "../go-to-similar-celebrities-butto
 const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
   return (
     <>
-      <div className="row container mx-auto py-lg-4 p-0">
+      <div
+        className={`row container mx-auto py-lg-${
+          celebrity.mainVideo ? "4" : "0"
+        } p-0 justify-content-center`}
+      >
         <div className="col-12 col-lg-4 order-lg-1 p-0 m-0 px-sm-3">
           {hasPublicContracts ? (
-            <CelebrityHeroSlideshow celebrityMainVideo={celebrity.mainVideo} />
+            <CelebrityHeroSlideshow
+              celebrityAvatar={celebrity.avatar}
+              celebrityMainVideo={celebrity.mainVideo}
+            />
           ) : celebrity.mainVideo ? (
-            <ResizableMainVideo mainVideoUrl={celebrity.mainVideo} />
+            <ResizableMainVideo
+              mainVideoUrl={celebrity.mainVideo}
+              videoPosterUrl={celebrity.avatar}
+            />
           ) : null}
         </div>
-        <div className="col-12 col-lg-8 p-0 m-0 px-sm-3">
+        <div
+          className={`col-12 col-lg-${
+            celebrity.mainVideo ? "8" : "10"
+          } p-0 m-0 px-sm-3`}
+        >
           <CelebrityDetails celebrity={celebrity} variant="2" />
         </div>
       </div>

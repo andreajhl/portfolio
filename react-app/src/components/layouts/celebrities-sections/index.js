@@ -8,7 +8,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "./styles.scss";
 import { EndMessageLayout } from "../end-message";
 import * as GTM from "../../../state/utils/gtm";
-import { BlogPostCarousel } from "../../layouts/blog-post-carousel";
+
 const mapStateToProps = ({ celebritySections }) => {
   const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
   return {
@@ -62,7 +62,7 @@ const CelebritiesSectionsLayout = ({
     });
 
   return (
-    <div className='CelebritiesSectionsLayout'>
+    <div className="CelebritiesSectionsLayout">
       {loading && offset === 0 ? (
         <CelebritiesShimmerCardsSectionLayout />
       ) : null}
@@ -80,18 +80,14 @@ const CelebritiesSectionsLayout = ({
           }
         >
           {celebritiesSections.map((celebritiesSection, index) => (
-            <React.Fragment>
-              {index === 3 ? <BlogPostCarousel/> : null}
-              <CelebritiesCardsSectionLayout
-                key={celebritiesSection.id}
-                celebritiesSection={celebritiesSection}
-                hasMoreResults={
-                  celebritiesSection.celebritySectionType ===
-                    'CELEBRITY_CARD' &&
-                  celebritiesSection.celebrities.length >= 10
-                }
-              />
-            </React.Fragment>
+            <CelebritiesCardsSectionLayout
+              key={celebritiesSection.id}
+              celebritiesSection={celebritiesSection}
+              hasMoreResults={
+                celebritiesSection.celebritySectionType === "CELEBRITY_CARD" &&
+                celebritiesSection.celebrities.length >= 10
+              }
+            />
           ))}
         </InfiniteScroll>
       ) : null}
