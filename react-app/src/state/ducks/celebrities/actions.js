@@ -135,6 +135,35 @@ export const list = (params) => {
   };
 };
 
+export const fetchSimilarResults = (params) => {
+  return (dispatch, getStore) => {
+    getStore().celebrities.fetchCelebritiesReducer.requestCancel();
+    const TYPE = types.FETCH_CELEBRITIES_SIMILAR_RESULTS_REQUEST;
+    const FINAL_PATH = API_PATHS.LIST;
+    const request = apiService({
+      method: "GET",
+      action: TYPE,
+      path: FINAL_PATH,
+      async: true,
+      params,
+      body: null,
+      isCancellable: true
+    });
+    dispatch({ type: TYPE, payload: { requestCancel: request.cancel } });
+    request
+      .then((res) => {
+        if (res.data.status === "OK") {
+          handleApiResponseSuccess(dispatch, TYPE, res);
+          dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+        }
+      })
+      .catch((err) => {
+        if (err.constructor.name === "Cancel") return;
+        console.log(err);
+      });
+  };
+};
+
 export const listSimilar = (params) => {
   return (dispatch) => {
     const TYPE = types.FETCH_SIMILAR_CELEBRITIES_REQUEST;
