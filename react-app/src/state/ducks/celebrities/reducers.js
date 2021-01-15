@@ -8,6 +8,7 @@ export const updateQueryParamsInitialState = {
 };
 
 const fetchCelebritiesInitialState = {
+  requestCancel: () => {},
   loading: false,
   failed: false,
   completed: false,
@@ -83,13 +84,15 @@ export function fetchCelebritiesReducer(
     case types.FETCH_CELEBRITIES_REQUEST:
       return {
         ...state,
+        requestCancel: action.payload.requestCancel,
         loading: true
       };
     case types.FETCH_CELEBRITIES_REQUEST_FAILURE:
       return {
         ...state,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
+        requestCancel: fetchCelebritiesInitialState.requestCancel
       };
     case types.FETCH_CELEBRITIES_REQUEST_SUCCESS:
       const results = [];
@@ -276,7 +279,10 @@ export function fetchFlashDeliveryCelebritiesReducer(
   }
 }
 
-export function fetchCelebritySubscriptionPlansReducer(state = fetchCelebritySubscriptionPlansInitialState, action) {
+export function fetchCelebritySubscriptionPlansReducer(
+  state = fetchCelebritySubscriptionPlansInitialState,
+  action
+) {
   switch (action.type) {
     case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST:
       return {
@@ -304,7 +310,6 @@ export function fetchCelebritySubscriptionPlansReducer(state = fetchCelebritySub
       return state;
   }
 }
-
 
 export default combineReducers({
   queryParamsReducer,
