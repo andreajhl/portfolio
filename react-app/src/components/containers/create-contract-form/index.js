@@ -507,6 +507,7 @@ class CreateContractForm extends Component {
 // Set propTypes
 CreateContractForm.propTypes = {
   celebrityId: PropTypes.number,
+  contractPrice: PropTypes.number,
   celebrityFullName: PropTypes.string,
   celebrityUsername: PropTypes.string,
   celebrityAvatar: PropTypes.string
@@ -516,6 +517,7 @@ CreateContractForm.propTypes = {
 CreateContractForm.defaultProps = {
   celebrityId: null,
   celebrityFullName: null,
+  contractPrice: 0,
   celebrityUsername: null,
   celebrityAvatar: null
 };
