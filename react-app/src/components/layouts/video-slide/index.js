@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import * as GTM from "../../../state/utils/gtm";
 import useLoad from "../../../utils/useLoad";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
@@ -11,8 +11,8 @@ const VideoSlideLayout = ({
   videoIsMuted,
   setVideoIsMuted,
   autoPlayVideo,
-  setIsPlayingVideo,
-  isPlayingVideo,
+  setSlideshowIsPlaying,
+  slideshowIsPlaying,
   preload,
   videoPosterUrl,
   showFullscreenToggler,
@@ -26,7 +26,7 @@ const VideoSlideLayout = ({
     videoReference,
     videoIsFullscreen,
     videoIsMuted,
-    videoIsPlaying: isPlayingVideo
+    slideshowIsPlaying
   };
   const [videoIsLoaded, onVideoLoadedData] = useLoad();
   const { videoRef, videoIsPlaying, playVideo, togglePlay } = useVideoPlayer(
@@ -37,14 +37,14 @@ const VideoSlideLayout = ({
           ...analyticsData,
           videoIsPlaying: true
         });
-        setIsPlayingVideo(true);
+        setSlideshowIsPlaying(true);
       },
       onPauseVideo() {
         GTM.tagManagerDataLayer("PAUSE_VIDEO_SLIDE", {
           ...analyticsData,
           videoIsPlaying: false
         });
-        setIsPlayingVideo(false);
+        setSlideshowIsPlaying(false);
       }
     }
   );
@@ -64,7 +64,7 @@ const VideoSlideLayout = ({
 
   useEffect(() => {
     if (!autoPlayVideo) return;
-    setIsPlayingVideo(true);
+    setSlideshowIsPlaying(true);
     playVideo();
   }, [autoPlayVideo]);
 
@@ -80,7 +80,7 @@ const VideoSlideLayout = ({
           />
           <i
             className={`fa fa-${
-              videoIsPlaying || isPlayingVideo ? "pause" : "play"
+              videoIsPlaying || slideshowIsPlaying ? "pause" : "play"
             } play-pause cursor-pointer`}
             onClick={togglePlay}
           />
@@ -100,7 +100,7 @@ const VideoSlideLayout = ({
             className="VideoSlideLayout__poster"
             src={videoPosterUrl || "/assets/img/avatar-blank.png"}
             alt={`Poster de vídeo de famoso`}
-            onClick={playVideo}
+            onClick={togglePlay}
           />
         ) : null}
         <video
