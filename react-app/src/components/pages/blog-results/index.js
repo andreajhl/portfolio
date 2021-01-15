@@ -2,16 +2,16 @@ import React, { Component, Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { PageContainer } from "../../layouts";
 import "./styles.scss";
-import { Container, Row, Col, Button} from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import BlogPostCards from "../../containers/blog-post-card-details";
 import BlogPostCardShimmer from "../../layouts/blog-post-card-shimmer";
 import MetaTags from "react-meta-tags";
 import * as mediumApiService from "../../../state/utils/mediumApiService";
 import { blogOperations } from "../../../state/ducks/blog";
-import {withRouter} from 'react-router-dom';
-import {HOME_PATH} from '../../../routing/Paths';
+import { withRouter } from "react-router-dom";
+import { HOME_PATH } from "../../../routing/Paths";
 
-const Blog = ({
+const BlogResults = ({
   history,
   blogsData,
   blogsDataLoading,
@@ -49,9 +49,9 @@ const Blog = ({
       )
     );
   }
-  const goToHome = () =>{
-    history.push(HOME_PATH)
-  }
+  const goToHome = () => {
+    history.push(HOME_PATH);
+  };
 
   return (
     <Fragment>
@@ -60,22 +60,22 @@ const Blog = ({
           Famosos.com - Videos personalizados de tus famosos favoritos.
         </title>
         <meta
-          name='description'
-          content='Un blog acerca de tus famosos favoritos que forman parte de nuestra plataforma. Entérate con quien puedes conectarte'
+          name="description"
+          content="Un blog acerca de tus famosos favoritos que forman parte de nuestra plataforma. Entérate con quien puedes conectarte"
         />
       </MetaTags>
       <PageContainer>
         <Container>
           <Row>
-            <Col md='9' className='mx-auto'>
+            <Col md="9" className="mx-auto">
               <Button
-                className='mb-2'
-                variant='primary'
+                className="mb-2"
+                variant="primary"
                 onClick={() => goToHome()}
               >
                 🏠 Inicio
               </Button>
-              <h2 className='font-weight-bold'>Blogs</h2>
+              <h2 className="font-weight-bold">Blogs</h2>
               {renderPosts}
             </Col>
           </Row>
@@ -98,5 +98,8 @@ const mapDispatchToProps = {
   getBlogData: blogOperations.getBlogData
 };
 
-const _Blog = connect(mapStateToProps, mapDispatchToProps)(withRouter(Blog));
-export { _Blog as Blog_Results };
+const _BlogResults = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(BlogResults));
+export { _BlogResults as BlogResults };
