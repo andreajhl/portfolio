@@ -9,6 +9,7 @@ import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/
 import * as GTM from "../../../state/utils/gtm";
 import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
 import { Session } from "../../../state/utils/session";
+import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 // import { VideoCallsResearch } from "../../containers/videocalls-research";
 import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebrityProfileVersion";
 // import { DownloadAppBanner } from "../download-app-banner";
@@ -35,6 +36,13 @@ class PageContainer extends Component {
 
     if (this.props.shouldFetchFlashDeliveryCelebrities) {
       this.props.fetchFlashDeliveryCelebrities();
+    }
+
+    if (
+      this.props.shouldFetchRestCountries &&
+      this.props.restCountries.length === 0
+    ) {
+      this.props.listRestCountries();
     }
 
     /* if (this.props.applyFetchCelebrities === true) {
@@ -146,11 +154,13 @@ PageContainer.defaultProps = {
   showInputSearchSm: true,
   showLogin: true,
   hideControls: false,
-  showVideoCallsResearch: false
+  showVideoCallsResearch: false,
+  shouldFetchRestCountries: true
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
+  restCountries: state.restCountries.fetchCountriesReducer.data,
   isLoading: state.celebrities.fetchCelebritiesReducer.loading,
   celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
   paginationData:
@@ -166,7 +176,8 @@ const mapDispatchToProps = {
   cleanUserCelebrityLikes:
     celebrityLikesOperations.fetchUserCelebrityLikesCleanUp,
   fetchFlashDeliveryCelebrities:
-    celebrityOperations.fetchFlashDeliveryCelebrities
+    celebrityOperations.fetchFlashDeliveryCelebrities,
+  listRestCountries: restCountriesOperations.list
 };
 
 // Export Class
