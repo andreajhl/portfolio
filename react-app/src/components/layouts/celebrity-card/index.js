@@ -9,18 +9,11 @@ import { connect } from "react-redux";
 import { ContractPriceLayout } from "../celebrity-card-contract-price";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
+import { CountryFlag } from "../../containers/celebrity-country-flag";
 
-const CelebrityCardLayout = ({
-  celebrity,
-  countries,
-  currencyExchangeData
-}) => {
+const CelebrityCardLayout = ({ celebrity, currencyExchangeData }) => {
   const [avatarIsLoaded, setAvatarIsLoaded] = useState(false);
   const finishAvatarLoad = () => setAvatarIsLoaded(true);
-
-  const celebrityCountry = countries.find(
-    (country) => country.alpha3Code === celebrity.countryCode
-  );
 
   const contractPrice =
     currencyExchangeData.rate > 1
@@ -79,24 +72,10 @@ const CelebrityCardLayout = ({
         </div>
         <div className="celebrity-details">
           <div className="celebrity-info">
-            {celebrityCountry ? (
-              <img
-                src={
-                  celebrityCountry.alpha3Code === "USA"
-                    ? "/assets/img/usa.svg"
-                    : celebrityCountry.flag
-                }
-                alt="Country"
-                className="celebrity__country"
-                width="24px"
-              />
-            ) : (
-              <span
-                className="text-white spinner-grow spinner-grow-sm"
-                role="status"
-                aria-hidden="true"
-              />
-            )}
+            <CountryFlag
+              className="celebrity__country"
+              countryCode={celebrity.countryCode}
+            />
             <span className="celebrity__category">{celebrity.title}</span>
             <CelebrityFavoriteButton celebrityId={celebrity.id} />
           </div>
@@ -120,7 +99,6 @@ CelebrityCardLayout.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
-  countries: state.restCountries.fetchCountriesReducer.data,
   currencyExchangeData: state.payments.currencyExchangeReducer.data
 });
 
