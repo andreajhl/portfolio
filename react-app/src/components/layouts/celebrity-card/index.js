@@ -75,6 +75,7 @@ const CelebrityCardLayout = ({ celebrity, currencyExchangeData }) => {
             <CountryFlag
               className="celebrity__country"
               countryCode={celebrity.countryCode}
+              width="20px"
             />
             <span className="celebrity__category">{celebrity.title}</span>
             <CelebrityFavoriteButton celebrityId={celebrity.id} />
