@@ -22,41 +22,50 @@ const firstQueryHandler = async (collectionPath, celebrityId) => await database
 .limit(2)
 .get();
 
-const paginateQueryHandler = async (collectionPath, celebrityId, filterRange) =>
+const paginateQueryHandler = async (collectionPath, celebrityId, indexFilter) =>
   await database
     .collection(collectionPath)
     .where('celebrityId', '==', celebrityId)
     .where('deleted', '==', null)
     .orderBy('created', 'desc')
     .limit(2)
-    .startAfter(filterRange)
+    .startAfter(indexFilter)
     .get();
 
 export const getPostFromCelebrity = async (
   collectionPath,
   celebrityId,
-  filterRange,
+  indexFilter,
   handlerUpdateFilterRange,
-  firstQuery
+  isFirstQuery,
+  handlerUpdateHasMorePost
 ) => {
   try {
     let results = [];
-    if(firstQuery){
+    if(isFirstQuery){
       const { docs } = await firstQueryHandler(collectionPath, celebrityId);
-        // Get the last visible document
-        const lastVisible = getLastVisibleDocument(docs);
-        handlerUpdateFilterRange(lastVisible);
-        results = docs.map((doc) => doc.data());
+      if(docs.length === 0){
+        handlerUpdateHasMorePost(false);
+        return ;
+      }
+      // Get the last visible document
+      const lastVisible = getLastVisibleDocument(docs);
+      handlerUpdateFilterRange(lastVisible);
+      results = docs.map((doc) => doc.data());
     }else{
       const { docs } = await paginateQueryHandler(
         collectionPath,
         celebrityId,
-        filterRange
+        indexFilter
       );
-         // Get the last visible document
-         const lastVisible = getLastVisibleDocument(docs);
-         handlerUpdateFilterRange(lastVisible);
-        results = docs.map((doc) => doc.data());
+      if(docs.length === 0){
+        handlerUpdateHasMorePost(false)
+        return;
+      }
+      // Get the last visible document
+      const lastVisible = getLastVisibleDocument(docs);
+      handlerUpdateFilterRange(lastVisible);
+      results = docs.map((doc) => doc.data());
     }
     return results;
   } catch (error) {

@@ -8,6 +8,10 @@ import * as firestoreService from "../../../firebase/firestoreService";
 import { LoaderLayout } from "../../layouts/loader";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
 import './styles.scss';
+import index from '../../containers/ocassions-options';
+
+const getCelebritySelected = (celebritiesList, currentChoice) =>
+  celebritiesList.find((celebrity) => celebrity.celebrityId === currentChoice);
 
 const NotPostsResults= ({message}) => {
   return (
@@ -23,28 +27,32 @@ const NotPostsResults= ({message}) => {
 }
 
 const SubscriptionFeed = (props) => {
-  const [filterRange, setFilterRange] = useState(null);
-  const [currenChoice, setCurrenChoice] = useState(null);
+  const [hasMorePost, setHasMorePost] = useState(true);
+  const [indexFilter, setIndexFilter] = useState(null);
+  const [currentChoice, setCurrentChoice] = useState(null);
   const {getCelebritiesSubscribe, subscriptionList,isSubscriptionListCompletedFetch } = { ...props };
   const [postFetched, setPostFetched] = useState(false);
   const [posts, setPosts] = useState([]);
   const handlerUpdateFilterRange= (value) => {
-    setFilterRange(value);
+    setIndexFilter(value);
   }
-  const fetchPosts = async (celebrityId,concat = true) => {
+  const handlerUpdateHasMorePost = (value)=>{
+    setHasMorePost(value);
+  }
+  const fetchPosts = async (celebrityId,concat, indexFilter,isFirstQuery) => {
     let documents = []
     const results = await firestoreService.getPostFromCelebrity(
       'dev_posts',
       celebrityId,
-      filterRange,
+      indexFilter,
       handlerUpdateFilterRange,
-      posts.length === 0
+      isFirstQuery,
+      handlerUpdateHasMorePost
     );
     if(results){
       documents = results;
     }
-    console.log(results);
-    setCurrenChoice(celebrityId);
+    setCurrentChoice(celebrityId);
     setPostFetched(true);
     concat
       ? setPosts((prevState) => prevState.concat(documents))
@@ -55,17 +63,20 @@ const SubscriptionFeed = (props) => {
     getCelebritiesSubscribe();
   }, []);
 
-  // useEffect(() => {
-  //   if(isSubscriptionListCompletedFetch && subscriptionList.length > 1 && posts.length === 0){
-  //     subscriptionList.forEach((celebrityData) =>
-  //       fetchPosts(celebrityData.celebrityId, false)
-  //     );
-  //   }
-  // },[isSubscriptionListCompletedFetch]);
+  useEffect(() => {
+    if(isSubscriptionListCompletedFetch && subscriptionList.length > 1 && posts.length === 0){
+      fetchPosts(subscriptionList[0].celebrityId, false, indexFilter, true);
+    }
+  },[isSubscriptionListCompletedFetch]);
 
   const fetchPostFromCelebrity = (celebrityID) =>{
-    console.log('clicked')
-    fetchPosts(celebrityID, false);
+    setIndexFilter(null);
+    handlerUpdateHasMorePost(true);
+    fetchPosts(celebrityID, false, null, true);
+  }
+
+  const handlerFetchMorePost = () =>{
+    fetchPosts(currentChoice, true, indexFilter, false);
   }
 
   return (
@@ -86,7 +97,7 @@ const SubscriptionFeed = (props) => {
               {isSubscriptionListCompletedFetch ? (
                 subscriptionList.length > 0 ? (
                   <CarouselAvailableSubscriptions
-                    currentChoice={currenChoice}
+                    currentChoice={currentChoice}
                     handlerSelectCelebrity={fetchPostFromCelebrity}
                     celebrities={subscriptionList}
                   />
@@ -98,8 +109,13 @@ const SubscriptionFeed = (props) => {
               subscriptionList.length > 0 ? (
                 posts.length > 0 ? (
                   <CelebrityFeedPosts
+                    hasMorePost={hasMorePost}
+                    onFetchMorePost={handlerFetchMorePost}
                     posts={posts}
-                    subscriptionList={subscriptionList}
+                    celebrityData={getCelebritySelected(
+                      subscriptionList,
+                      currentChoice
+                    )}
                   />
                 ) : postFetched ? (
                   <NotPostsResults message='Oops! Al parecer no hay publicaciones actualmente' />
