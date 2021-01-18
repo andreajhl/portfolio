@@ -152,7 +152,7 @@ class MyRoutes extends Component {
             />
             <PrivateRoute
               exact
-              path={PATHS.FEED_SUBSCRIPTION}
+              path={PATHS.CLIENT_SUBSCRIPTIONS}
               component={PAGES.SubscriptionFeed}
             />
             <PrivateRoute

@@ -23,11 +23,28 @@ const NotPostsResults= ({message}) => {
 }
 
 const SubscriptionFeed = (props) => {
+  const [filterRange, setFilterRange] = useState(null);
+  const [currenChoice, setCurrenChoice] = useState(null);
   const {getCelebritiesSubscribe, subscriptionList,isSubscriptionListCompletedFetch } = { ...props };
   const [postFetched, setPostFetched] = useState(false);
   const [posts, setPosts] = useState([]);
+  const handlerUpdateFilterRange= (value) => {
+    setFilterRange(value);
+  }
   const fetchPosts = async (celebrityId,concat = true) => {
-    const documents = await firestoreService.getDocuments('dev_posts')
+    let documents = []
+    const results = await firestoreService.getPostFromCelebrity(
+      'dev_posts',
+      celebrityId,
+      filterRange,
+      handlerUpdateFilterRange,
+      posts.length === 0
+    );
+    if(results){
+      documents = results;
+    }
+    console.log(results);
+    setCurrenChoice(celebrityId);
     setPostFetched(true);
     concat
       ? setPosts((prevState) => prevState.concat(documents))
@@ -38,16 +55,17 @@ const SubscriptionFeed = (props) => {
     getCelebritiesSubscribe();
   }, []);
 
-  useEffect(() => {
-    if(isSubscriptionListCompletedFetch && subscriptionList.length > 1 && posts.length === 0){
-      subscriptionList.forEach((celebrityData) =>
-        fetchPosts(celebrityData.celebrityId)
-      );
-    }
-  },[isSubscriptionListCompletedFetch]);
+  // useEffect(() => {
+  //   if(isSubscriptionListCompletedFetch && subscriptionList.length > 1 && posts.length === 0){
+  //     subscriptionList.forEach((celebrityData) =>
+  //       fetchPosts(celebrityData.celebrityId, false)
+  //     );
+  //   }
+  // },[isSubscriptionListCompletedFetch]);
 
   const fetchPostFromCelebrity = (celebrityID) =>{
-    fetchPosts(celebrityID,false)
+    console.log('clicked')
+    fetchPosts(celebrityID, false);
   }
 
   return (
@@ -66,10 +84,13 @@ const SubscriptionFeed = (props) => {
           <Row>
             <Col md='9' className='mx-auto'>
               {isSubscriptionListCompletedFetch ? (
-                <CarouselAvailableSubscriptions
-                  handlerSelectCelebrity={fetchPostFromCelebrity}
-                  celebrities={subscriptionList}
-                />
+                subscriptionList.length > 0 ? (
+                  <CarouselAvailableSubscriptions
+                    currentChoice={currenChoice}
+                    handlerSelectCelebrity={fetchPostFromCelebrity}
+                    celebrities={subscriptionList}
+                  />
+                ) : null
               ) : (
                 <LoaderLayout />
               )}

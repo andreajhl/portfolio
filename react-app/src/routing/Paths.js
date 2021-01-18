@@ -33,6 +33,7 @@ export const CELEBRITY_REQUEST = "/forms/aplicar/";
 export const CLIENT_FAVORITES = "/my-account/favorites";
 export const CLIENT_PROFILE = "/my-account/profile";
 export const CLIENT_HIRINGS = "/my-account/hirings";
+export const CLIENT_SUBSCRIPTIONS = "/my-account/subscriptions";
 export const ACCOUNT_HIRING_PREVIEW =
   "/my-account/hirings/:contract_reference/";
 export const HIRING_PREVIEW = "/hirings/:contract_reference";
@@ -47,4 +48,4 @@ export const SUBSCRIPTION= "/subscription/subscribe/:celebrity_username"
 //SUBSCRIPTION
 export const SUBSCRIPTION_SUCCESS= "/subscription/subscription-success/:celebrity_username"
 //SUBSCRIPTION FEED
-export const FEED_SUBSCRIPTION= "/suscription/feed"
+export const FEED_SUBSCRIPTION= "/subscription/feed"
