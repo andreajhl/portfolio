@@ -1,10 +1,18 @@
 .FlashDeliveryLayout {
   background-color: white;
   font-size: 0.75em;
-  padding: 0.425em 0.85em;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: 0.425em 0.85em;
   border-radius: 20px;
+
+  &--without-text {
+    padding: 0;
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+  }
 
   &__title {
     font-weight: bold;
@@ -18,7 +26,7 @@
     font-weight: bold;
   }
 
-  &-color-dark {
+  &--color-dark {
     background-color: black;
     .FlashDeliveryLayout__title {
       color: white;

@@ -12,17 +12,25 @@ const getTurnAroundText = (turnAroundTime) => {
   }
 };
 
-const CelebritiesResponseTime = ({ turnAroundTime }) => {
+const CelebritiesResponseTime = ({
+  turnAroundTime,
+  availableForFlashDeliveries
+}) => {
   return (
     <span className="CelebritiesResponseTime">
-      Respuesta promedio: <br className="CelebritiesResponseTime__line-break" />{" "}
-      <span>{getTurnAroundText(parseInt(turnAroundTime))}</span>
+      Respuesta promedio: <br className={`CelebritiesResponseTime__line-break ${availableForFlashDeliveries ? "isAvailableForFlashDeliveries": ""}`} />{" "}
+      <span>
+        {availableForFlashDeliveries
+          ? "Entrega flash (< de 24 hrs)"
+          : getTurnAroundText(parseInt(turnAroundTime))}
+      </span>
     </span>
   );
 };
 
 CelebritiesResponseTime.propTypes = {
-  turnAroundTime: PropTypes.number
+  turnAroundTime: PropTypes.number,
+  availableForFlashDeliveries: PropTypes.bool
 };
 
 export { CelebritiesResponseTime };

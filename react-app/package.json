@@ -1,6 +1,6 @@
 {
   "name": "famosos-frontend",
-  "version": "0.1.23",
+  "version": "1.0.23",
   "description": "Famosos Webapp",
   "private": true,
   "dependencies": {
@@ -32,6 +32,7 @@
     "react-dom": "^16.10.2",
     "react-flags-select": "^1.1.10",
     "react-gtm-module": "^2.0.8",
+    "react-headroom": "^3.1.0",
     "react-html-parser": "^2.0.2",
     "react-infinite-scroll-component": "^5.1.0",
     "react-meta-tags": "^0.7.4",
@@ -59,11 +60,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-qa": "env-cmd -f .env.qa react-scripts start",
     "build-development": "env-cmd -f .env react-scripts build",
     "build-production": "env-cmd -f .env.production react-scripts build",
     "build-testing": "env-cmd -f .env.testing react-scripts build",
     "build-qa": "env-cmd -f .env.qa react-scripts build",
-    "start-qa": "env-cmd -f .env.qa react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -39,7 +39,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             }
           />
           {availableForFlashDeliveries ? (
-            <FlashDeliveryBadgeLayout color="dark" />
+            <FlashDeliveryBadgeLayout color="dark" showTitle />
           ) : null}
         </Col>
         <Col xs="auto d-none d-md-block" className="text-center">
@@ -55,6 +55,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
               className="CelebrityDetails__flash-delivery-large"
               color="dark"
               showTime
+              showTitle
             />
           ) : null}
         </Col>
@@ -67,6 +68,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             celebrityId={celebrityId}
             contractTypes={contractTypes}
             turnAround={turnaround}
+            availableForFlashDeliveries={availableForFlashDeliveries}
           />
           <Col className="d-none d-md-block mx-0 px-0">
             <HireThisCelebrityButton

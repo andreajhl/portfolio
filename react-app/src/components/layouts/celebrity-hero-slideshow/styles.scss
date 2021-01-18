@@ -1,4 +1,13 @@
 .CelebrityHeroSlideshow {
+  &--is-fullscreen {
+    .carousel-item {
+      height: 100vh !important;
+      max-width: 70%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
   @media only screen and (min-width: 992px) {
     border-radius: 10px;
     overflow: hidden;

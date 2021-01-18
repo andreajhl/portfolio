@@ -24,14 +24,11 @@
 
       .celebrity__flash-delivery {
         position: absolute;
-        width: 115px;
-        left: 50%;
-        transform: translateX(-50%);
         top: 0.5rem;
+        right: 0.5rem;
       }
 
       .celebrity__price {
-        font-weight: bold;
         font-size: 0.75rem;
         display: flex;
         align-items: center;
@@ -47,6 +44,7 @@
 
         &__text {
           color: black;
+          font-weight: bold;
         }
       }
     }

@@ -1,10 +1,10 @@
 @import "../../../theme";
 
 .FiltersSectionLayout {
-  position: sticky;
-  z-index: 1000;
-  top: 113px;
-  padding-bottom: 0.25rem;
+  // position: sticky;
+  // z-index: 1000;
+  // top: 0;
+  padding-bottom: 0.001rem;
   // margin-top: 123px;
   background-color: white;
 
@@ -28,7 +28,7 @@
       font-weight: bold;
       font-size: 0.625rem;
       line-height: 1.4;
-      color: #8d8d8d;
+      color: #555454;
     }
 
     &__filters-list {

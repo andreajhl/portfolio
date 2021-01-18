@@ -2,15 +2,15 @@ import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
-import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { setPlayingVideo } from "../../../state/ducks/celebrity-sections/actions";
 import { connect } from "react-redux";
 import * as GTM from "../../../state/utils/gtm";
-import hasDesiredAspectRatio from "../../../utils/hasDesiredAspectRatio";
 import { HIRING_PREVIEW } from "../../../routing/Paths";
 
 const CelebrityPublicContractCardAlternativeLayout = ({
   publicContract,
+  celebrityFullName,
+  celebrityAvatar,
   videoKey,
   currentVideoKey,
   setPlayingVideo
@@ -18,12 +18,6 @@ const CelebrityPublicContractCardAlternativeLayout = ({
   const videoRef = useRef();
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
-  // const imageRef = useRef();
-  /* const [posterIsLoaded, setPosterIsLoaded] = useState(false);
-  const [
-    shouldUseMediaAlternativeStyles,
-    setShouldUseMediaAlternativeStyles
-  ] = useState(false); */
 
   const analyticsData = {
     widget: "CelebrityPublicContractCardAlternativeLayout",
@@ -61,13 +55,6 @@ const CelebrityPublicContractCardAlternativeLayout = ({
     };
   }, [currentVideoKey]);
 
-  // useEffect(() => {
-  //   if (!posterIsLoaded) return;
-  //   setShouldUseMediaAlternativeStyles(
-  //     !hasDesiredAspectRatio(imageRef.current, "16:9")
-  //   );
-  // }, [posterIsLoaded]);
-
   const registerVideoCardHover = () =>
     GTM.tagManagerDataLayer(
       "HOVER_CELEBRITY_PUBLIC_CONTRACT_CARD_ALTERNATIVE",
@@ -92,11 +79,24 @@ const CelebrityPublicContractCardAlternativeLayout = ({
       onMouseOver={registerVideoCardHover}
     >
       <div className="video-card">
-        <section className={`video-card__media`}>
+        <section className="video-card__media">
+          {!videoIsLoaded ? (
+            <img
+              className="video-card__poster"
+              src={
+                publicContract.video_poster_url ||
+                celebrityAvatar ||
+                "/assets/img/avatar-blank.png"
+              }
+              alt={`Poster de vídeo de ${celebrityFullName}`}
+              onClick={togglePlay}
+            />
+          ) : null}
           <video
             className="video-card__video"
+            style={{ opacity: videoIsLoaded ? 1 : 0 }}
             src={publicContract.contract_media}
-            preload="metadata"
+            preload="none"
             playsInline
             onClick={togglePlay}
             onLoadedData={() => setVideoIsLoaded(true)}
@@ -134,21 +134,12 @@ const CelebrityPublicContractCardAlternativeLayout = ({
 };
 
 CelebrityPublicContractCardAlternativeLayout.defaultProps = {
-  celebrity: {},
-  celebrityAvatar: null,
-  videoOccasion: null,
-  videoPosterUrl: null,
-  linkPath: null
+  publicContract: {}
 };
 
 CelebrityPublicContractCardAlternativeLayout.propTypes = {
-  celebrityId: PropTypes.number.isRequired,
+  celebrityFullName: PropTypes.string,
   celebrityAvatar: PropTypes.string,
-  celebrityUsername: PropTypes.string.isRequired,
-  celebrityFullName: PropTypes.string.isRequired,
-  videoOccasion: PropTypes.string,
-  videoUrl: PropTypes.string.isRequired,
-  videoPosterUrl: PropTypes.string,
   videoKey: PropTypes.string.isRequired
 };
 

@@ -20,7 +20,10 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
       >
         {celebrity.mainVideo ? (
           <div className="col-12 col-lg-4 order-lg-1 p-0 m-0 px-sm-3">
-            <ResizableMainVideo mainVideoUrl={celebrity.mainVideo} />
+            <ResizableMainVideo
+              mainVideoUrl={celebrity.mainVideo}
+              videoPosterUrl={celebrity.avatar}
+            />
           </div>
         ) : null}
         <div
@@ -38,6 +41,8 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
             contractTypes={celebrity.contractTypes}
             celebrityId={celebrity.id}
             username={celebrity.username}
+            celebrityFullName={celebrity.fullName}
+            celebrityAvatar={celebrity.avatar}
           />
           {/* <section className="container text-center pt-2 pb-4">
             <NavLink to="#">

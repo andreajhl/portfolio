@@ -1,7 +1,11 @@
-import axios from "axios";
+import axios, { CancelToken } from "axios";
 import { Session } from "./session";
 
-const setHeaders = (params = {}, addFamososAuthorizationHeader = true) => {
+const setHeaders = (
+  params = {},
+  addFamososAuthorizationHeader = true,
+  cancelToken
+) => {
   const session = new Session();
   let options = {};
   if (session.getSession() && addFamososAuthorizationHeader) {
@@ -11,6 +15,10 @@ const setHeaders = (params = {}, addFamososAuthorizationHeader = true) => {
   }
   if (params !== "?") {
     options.params = params;
+  }
+
+  if (cancelToken) {
+    options.cancelToken = cancelToken;
   }
   return options;
 };
@@ -53,36 +61,33 @@ const apiService = (meta) => {
     addFamososAuthorizationHeader = true;
   }
 
+  const source = meta.isCancellable ? CancelToken.source() : null;
+
+  const configuration = setHeaders(
+    meta.params,
+    addFamososAuthorizationHeader,
+    source?.token
+  );
+
   let request = axios.create();
   switch (meta.method) {
     case "GET":
     default:
-      request = axios.get(
-        url,
-        setHeaders(meta.params, addFamososAuthorizationHeader)
-      );
+      request = axios.get(url, configuration);
       break;
     case "POST":
-      request = axios.post(
-        url,
-        meta.body,
-        setHeaders(meta.params, addFamososAuthorizationHeader)
-      );
+      request = axios.post(url, meta.body, configuration);
       break;
     case "PUT":
-      request = axios.put(
-        url,
-        meta.body,
-        setHeaders(meta.params, addFamososAuthorizationHeader)
-      );
+      request = axios.put(url, meta.body, configuration);
       break;
     case "DELETE":
-      request = axios.delete(
-        url,
-        setHeaders(meta.params, addFamososAuthorizationHeader)
-      );
+      request = axios.delete(url, configuration);
       break;
   }
+
+  if (source) request.cancel = source.cancel;
+
   return request;
 };
 

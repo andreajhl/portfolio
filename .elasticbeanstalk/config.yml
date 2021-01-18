@@ -6,9 +6,11 @@ branch-defaults:
   duvan:
     environment: FamososFrontend-Production
   master:
-    environment: FamososFrontend-Production
+    environment: FamososFrontend-QA
   new-form:
     environment: FamososFrontend-Production
+  staging:
+    environment: FamososFrontend-QA
 deploy:
   artifact: zip.zip
 environment-defaults:

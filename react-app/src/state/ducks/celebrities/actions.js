@@ -83,13 +83,13 @@ export const get = (object_id, preloaded = false) => {
         }
       })
       .catch((err) => {
-        history._pushRoute(
-          PATHS.CELEBRITY_PROFILE_ERROR.replace(
-            ":celebrity_username",
-            object_id
-          )
-        );
         handleApiErrors(dispatch, TYPE, err);
+        // history._pushRoute(
+        //   PATHS.CELEBRITY_PROFILE_ERROR.replace(
+        //     ":celebrity_username",
+        //     object_id
+        //   )
+        // );
         // history._pushRoute(PATHS.ROOT_PATH);
         // handleApiErrors(dispatch, TYPE, {
         //   data: { api_error: err, error: "Server 500" }
@@ -99,18 +99,21 @@ export const get = (object_id, preloaded = false) => {
 };
 
 export const list = (params) => {
-  return (dispatch) => {
+  return (dispatch, getStore) => {
+    getStore().celebrities.fetchCelebritiesReducer.requestCancel();
     const TYPE = types.FETCH_CELEBRITIES_REQUEST;
     const FINAL_PATH = API_PATHS.LIST;
-    dispatch({ type: TYPE, payload: {} });
-    apiService({
+    const request = apiService({
       method: "GET",
       action: TYPE,
       path: FINAL_PATH,
       async: true,
       params: params,
-      body: null
-    })
+      body: null,
+      isCancellable: true
+    });
+    dispatch({ type: TYPE, payload: { requestCancel: request.cancel } });
+    request
       .then((res) => {
         if (res.data.status === "OK") {
           handleApiResponseSuccess(dispatch, TYPE, res);
@@ -125,8 +128,38 @@ export const list = (params) => {
         // }
       })
       .catch((err) => {
+        if (err.constructor.name === "Cancel") return;
         console.log(err);
         // handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+      });
+  };
+};
+
+export const fetchSimilarResults = (params) => {
+  return (dispatch, getStore) => {
+    getStore().celebrities.fetchCelebritiesReducer.requestCancel();
+    const TYPE = types.FETCH_CELEBRITIES_SIMILAR_RESULTS_REQUEST;
+    const FINAL_PATH = API_PATHS.LIST;
+    const request = apiService({
+      method: "GET",
+      action: TYPE,
+      path: FINAL_PATH,
+      async: true,
+      params,
+      body: null,
+      isCancellable: true
+    });
+    dispatch({ type: TYPE, payload: { requestCancel: request.cancel } });
+    request
+      .then((res) => {
+        if (res.data.status === "OK") {
+          handleApiResponseSuccess(dispatch, TYPE, res);
+          dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+        }
+      })
+      .catch((err) => {
+        if (err.constructor.name === "Cancel") return;
+        console.log(err);
       });
   };
 };
@@ -277,9 +310,14 @@ export const fetchFlashDeliveryCelebrities = () => async (dispatch) => {
   }
 };
 
-export const fetchCelebritySubscriptionPlans = (celebrityUsername) => (dispatch) => {
+export const fetchCelebritySubscriptionPlans = (celebrityUsername) => (
+  dispatch
+) => {
   const TYPE = types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST;
-  const FINAL_PATH = API_PATHS.CELEBRITY_SUBSCRIPTION_PLANS.replace(':celebrity_username',celebrityUsername);
+  const FINAL_PATH = API_PATHS.CELEBRITY_SUBSCRIPTION_PLANS.replace(
+    ":celebrity_username",
+    celebrityUsername
+  );
   dispatch({ type: TYPE, payload: {} });
   apiService({
     method: "GET",

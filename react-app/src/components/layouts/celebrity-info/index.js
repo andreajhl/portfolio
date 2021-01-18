@@ -12,6 +12,7 @@ export const CelebrityInfo = ({
   celebrityId,
   contractTypes,
   turnAround,
+  availableForFlashDeliveries,
   variant
 }) => {
   switch (variant) {
@@ -22,7 +23,7 @@ export const CelebrityInfo = ({
           <h4 className="CelebrityInfo__full-name">{fullName}</h4>
           <div className="d-flex align-items-center mb-2">
             <CountryFlag countryCode={countryCode} />
-            <span className="ml-3 mt-1 CelebrityInfo__category">
+            <span className="ml-3 CelebrityInfo__category">
               {categoryTitle}
             </span>
             <CelebrityFavoriteButton
@@ -45,7 +46,10 @@ export const CelebrityInfo = ({
             />
           </div>
           <div className="mt-md-2 mb-md-4">
-            <CelebritiesResponseTime turnAroundTime={turnAround} />
+            <CelebritiesResponseTime
+              turnAroundTime={turnAround}
+              availableForFlashDeliveries={availableForFlashDeliveries}
+            />
           </div>
         </>
       );
@@ -62,7 +66,7 @@ export const CelebrityInfo = ({
           <h4 className="CelebrityInfo__full-name">{fullName}</h4>
           <div className="d-flex align-items-center mb-2 mb-md-3">
             <CountryFlag countryCode={countryCode} />
-            <span className="ml-3 mt-1 CelebrityInfo__category">
+            <span className="ml-3 CelebrityInfo__category">
               {categoryTitle}
             </span>
           </div>
@@ -83,7 +87,7 @@ export const CelebrityInfo = ({
           <h4 className="CelebrityInfo__full-name">{fullName}</h4>
           <div className="d-flex align-items-center mb-2">
             <CountryFlag countryCode={countryCode} />
-            <span className="ml-3 mt-1 CelebrityInfo__category">
+            <span className="ml-3 CelebrityInfo__category">
               {categoryTitle}
             </span>
             <CelebrityFavoriteButton
@@ -102,6 +106,7 @@ export const CelebrityInfo = ({
           <div className="mt-md-2 mb-md-4">
             <CelebritiesResponseTime
               turnAroundTime={turnAround}
+              availableForFlashDeliveries={availableForFlashDeliveries}
               className="CelebrityInfo__contract-price"
             />
           </div>
