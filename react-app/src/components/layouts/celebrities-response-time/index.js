@@ -18,10 +18,10 @@ const CelebritiesResponseTime = ({
 }) => {
   return (
     <span className="CelebritiesResponseTime">
-      Respuesta promedio: <br className="CelebritiesResponseTime__line-break" />{" "}
+      Respuesta promedio: <br className={`CelebritiesResponseTime__line-break ${availableForFlashDeliveries ? "isAvailableForFlashDeliveries": ""}`} />{" "}
       <span>
         {availableForFlashDeliveries
-          ? "Entrega flash"
+          ? "Entrega flash (< de 24 hrs)"
           : getTurnAroundText(parseInt(turnAroundTime))}
       </span>
     </span>

@@ -2,12 +2,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./styles.scss";
 
-const FlashDeliveryBadgeLayout = ({ className, color, showTime }) => {
+const FlashDeliveryBadgeLayout = ({
+  className,
+  color,
+  showTitle,
+  showTime
+}) => {
   return (
     <span
-      className={`FlashDeliveryLayout ${className} FlashDeliveryLayout-color-${color}`}
+      className={`FlashDeliveryLayout ${className} ${
+        showTitle || showTime ? "" : "FlashDeliveryLayout--without-text"
+      } FlashDeliveryLayout--color-${color}`}
     >
-      <span className="FlashDeliveryLayout__title">Entrega Flash</span>
+      {showTitle ? (
+        <span className="FlashDeliveryLayout__title">Entrega Flash</span>
+      ) : null}
       {showTime ? (
         <span className="FlashDeliveryLayout__time">24 hrs.</span>
       ) : null}
@@ -19,13 +28,15 @@ const FlashDeliveryBadgeLayout = ({ className, color, showTime }) => {
 FlashDeliveryBadgeLayout.defaultProps = {
   className: "",
   color: "white",
-  showTime: false
+  showTime: false,
+  showTitle: false
 };
 
 FlashDeliveryBadgeLayout.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string,
-  showTime: PropTypes.bool
+  showTime: PropTypes.bool,
+  showTitle: PropTypes.bool
 };
 
 export { FlashDeliveryBadgeLayout };

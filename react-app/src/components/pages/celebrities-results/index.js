@@ -10,13 +10,14 @@ import {
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
-import { ROOT_PATH } from "../../../routing/Paths";
-import { updateQueryParams } from "../../../state/ducks/contracts/actions";
 import * as GTM from "../../../state/utils/gtm";
+import { CelebritiesAdditionalResultsLayout } from "../../layouts/celebrities-additional-results";
 
 const mapStateToProps = ({ celebrities }) => {
   return {
     isLoading: celebrities.fetchCelebritiesReducer.loading,
+    isCompleted: celebrities.fetchCelebritiesReducer.completed,
+    requestCancel: celebrities.fetchCelebritiesReducer.requestCancel,
     celebrities: celebrities.fetchCelebritiesReducer.data.results,
     totalResults: celebrities.fetchCelebritiesReducer.data.totalResults,
     previousPath: celebrities.previousPathReducer.pathname
@@ -46,6 +47,8 @@ const CelebritiesResultsPage = ({
   celebrities,
   totalResults,
   previousPath,
+  requestCancel,
+  isCompleted,
   location,
   history
 }) => {
@@ -55,9 +58,12 @@ const CelebritiesResultsPage = ({
     queryString
   ]);
 
+  useEffect(() => requestCancel, [requestCancel]);
+
   useEffect(() => {
-    if (!queryString || !hasSearched(listParams))
+    if (!queryString || !hasSearched(listParams)) {
       return history.push(previousPath);
+    }
     fetchCelebrities(listParams);
     setOffset(updateQueryParamsInitialState.offset);
   }, [listParams]);
@@ -93,13 +99,8 @@ const CelebritiesResultsPage = ({
         queryParams={listParams}
         showSearch={isSearchingByKeyword}
         applyFetchUserCelebrityLikes
+        showFiltersSection={!isSearchingByKeyword}
       >
-        {!isSearchingByKeyword ? (
-          <FiltersSectionLayout
-            queryParams={listParams}
-            showCleanFiltersButton
-          />
-        ) : null}
         {isLoading && offset <= 0 ? (
           <CelebritiesResultsShimmerCardsLayout />
         ) : (
@@ -110,6 +111,12 @@ const CelebritiesResultsPage = ({
             totalResults={totalResults}
           />
         )}
+        <CelebritiesAdditionalResultsLayout
+          searchCelebrities={celebrities}
+          isCompleted={isCompleted}
+          totalResults={totalResults}
+          isSearchingByKeyword={isSearchingByKeyword}
+        />
       </PageContainer>
     </div>
   );

@@ -105,7 +105,10 @@ class CreateContractForm extends Component {
         GTM.tagManagerDataLayer("CONTRACT_CREATED", contractData);
         if (typeof window !== "undefined") {
           if (window.fbq != null) {
-            window.fbq('track', 'InitiateCheckout');
+            window.fbq('track', 'InitiateCheckout', {
+              value: this.props.contractPrice,
+              currency: 'USD',
+            });
           }
         }
         this.setState({ contractData }, () => {
@@ -504,6 +507,7 @@ class CreateContractForm extends Component {
 // Set propTypes
 CreateContractForm.propTypes = {
   celebrityId: PropTypes.number,
+  contractPrice: PropTypes.number,
   celebrityFullName: PropTypes.string,
   celebrityUsername: PropTypes.string,
   celebrityAvatar: PropTypes.string
@@ -513,6 +517,7 @@ CreateContractForm.propTypes = {
 CreateContractForm.defaultProps = {
   celebrityId: null,
   celebrityFullName: null,
+  contractPrice: 0,
   celebrityUsername: null,
   celebrityAvatar: null
 };

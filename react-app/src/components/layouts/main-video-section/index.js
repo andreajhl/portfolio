@@ -1,64 +1,58 @@
-import React, { useRef, useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { contractOperations } from "../../../state/ducks/contracts";
+import React, { useEffect, useState } from "react";
+import useLoad from "../../../utils/useLoad";
+import useVideoPlayer from "../../../utils/useVideoPlayer";
+import * as GTM from "../../../state/utils/gtm";
 import "./styles.scss";
 
-const CelebrityMainVideoSection = ({
-  mainVideoUrl,
-  playVideo,
-  currentVideoPlaying
-}) => {
+const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
   const mainVideoReference = "mainVideo " + mainVideoUrl;
-  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
+  const [videoIsLoaded, onVideoLoadedData] = useLoad();
+  const analyticsData = {
+    widget: "CelebrityMainVideoSection",
+    path: window.location.pathname,
+    videoIsLoaded,
+    mainVideoUrl
+  };
+  const { videoRef, playVideo, togglePlay } = useVideoPlayer(
+    mainVideoReference,
+    {
+      onPlayVideo() {
+        GTM.tagManagerDataLayer("PLAY_MAIN_VIDEO_SECTION", {
+          ...analyticsData,
+          videoIsPlaying: true
+        });
+      },
+      onPauseVideo() {
+        GTM.tagManagerDataLayer("PAUSE_MAIN_VIDEO_SECTION", {
+          ...analyticsData,
+          videoIsPlaying: false
+        });
+      }
+    }
+  );
   const [videoIsMuted, setVideoIsMuted] = useState(true);
-  const videoRef = useRef();
 
   const toggleVideoIsMuted = () =>
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
 
-  const playContractVideo = () => {
-    videoRef.current.play();
-    setVideoIsPlaying(true);
-  };
+  // const autoPlayMainVideo = (event) => {
+  //   const userHasGoodInternet = navigator?.connection?.effectiveType === "4g";
 
-  const pauseContractVideo = () => {
-    setVideoIsPlaying(false);
-    videoRef.current.pause();
-  };
-
-  const togglePlay = () => {
-    if (!videoIsPlaying) {
-      playVideo({
-        contract_reference: mainVideoReference
-      });
-    } else {
-      playVideo({
-        contract_reference: null
-      });
-    }
-  };
+  //   if (userHasGoodInternet) {
+  //     playVideo({
+  //       contract_reference: mainVideoReference
+  //     });
+  //   }
+  // };
 
   useEffect(() => {
-    if (currentVideoPlaying === mainVideoReference) {
-      playContractVideo();
-    } else {
-      pauseContractVideo();
-    }
-  }, [currentVideoPlaying, mainVideoReference]);
-
-  const autoPlayMainVideo = (event) => {
-    const userHasGoodInternet = navigator?.connection?.effectiveType === "4g";
-
-    if (userHasGoodInternet) {
-      playVideo({
-        contract_reference: mainVideoReference
-      });
-    }
-  };
+    if (!videoIsLoaded) return;
+    playVideo();
+  }, [videoIsLoaded]);
 
   return (
-    <section className="CelebrityMainvVideoSection container p-0">
-      <div className="CelebrityMainvVideoSection__buttons">
+    <section className="CelebrityMainVideoSection container p-0">
+      <div className="CelebrityMainVideoSection__buttons">
         <i
           className={`fa fa-volume-${
             videoIsMuted ? "mute" : "up"
@@ -66,35 +60,30 @@ const CelebrityMainVideoSection = ({
           onClick={toggleVideoIsMuted}
         />
       </div>
-      <video
-        className="CelebrityMainvVideoSection__video"
-        ref={videoRef}
-        controls={false}
-        playsInline
-        onClick={togglePlay}
-        preload="metadata"
-        muted={videoIsMuted}
-        onCanPlay={autoPlayMainVideo}
-      >
-        <source src={mainVideoUrl + "#t=0.5"} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <div className="CelebrityMainVideoSection__media-container">
+        {!videoIsLoaded ? (
+          <img
+            className="CelebrityMainVideoSection__poster"
+            src={videoPosterUrl || "/assets/img/avatar-blank.png"}
+            alt={`Poster de vídeo de famoso`}
+            onClick={playVideo}
+          />
+        ) : null}
+        <video
+          className="CelebrityMainVideoSection__video"
+          ref={videoRef}
+          controls={false}
+          playsInline
+          onClick={togglePlay}
+          preload="metadata"
+          src={mainVideoUrl}
+          muted={videoIsMuted}
+          autoPlay
+          onLoadedData={onVideoLoadedData}
+        ></video>
+      </div>
     </section>
   );
 };
 
-const mapStateToProps = ({ contracts }) => ({
-  currentVideoPlaying: contracts.playVideoReducer.contract_reference
-});
-
-// mapStateToProps
-const mapDispatchToProps = {
-  playVideo: contractOperations.playVideo
-};
-
-const _CelebrityMainVideoSection = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CelebrityMainVideoSection);
-
-export { _CelebrityMainVideoSection as CelebrityMainVideoSection };
+export { CelebrityMainVideoSection };

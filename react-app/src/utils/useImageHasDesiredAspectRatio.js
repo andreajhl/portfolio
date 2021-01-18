@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import hasDesiredAspectRatio from "./hasDesiredAspectRatio";
+import useLoad from "./useLoad";
 
 const useImageHasDesiredAspectRatio = ({
   passedImageRef,
@@ -7,12 +8,10 @@ const useImageHasDesiredAspectRatio = ({
 }) => {
   const alternativeImageRef = useRef();
   const imageRef = passedImageRef || alternativeImageRef;
-  const [imageIsLoaded, setImageIsLoaded] = useState(false);
+  const [imageIsLoaded, onImageLoad] = useLoad(false);
   const [imageHasDesiredAspectRatio, setImagenHasDesiredAspectRatio] = useState(
     false
   );
-
-  const onImageLoad = () => setImageIsLoaded(true);
 
   useEffect(() => {
     imageRef.current.addEventListener("load", onImageLoad);

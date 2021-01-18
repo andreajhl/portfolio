@@ -1,25 +1,28 @@
 import { useState, useRef, useEffect } from "react";
-import { setPlayingVideo } from "../state/ducks/celebrity-sections/actions";
-import { useSelector, useDispatch } from "react-redux";
+import useCurrentVideoPlaying from "./useCurrentVideoPlaying";
 
-const useVideoPlayer = (videoKey, { onPlayVideo, onPauseVideo }) => {
-  const currentVideoKey = useSelector(
-    ({ celebritySections }) => celebritySections.playVideoReducer
-  );
-  const dispatch = useDispatch();
+const useVideoPlayer = (
+  videoKey,
+  {
+    onPlayVideo = () => {},
+    onPauseVideo = () => {},
+    onInterruptPlay = () => {}
+  }
+) => {
+  const [currentVideoKey, setPlayingVideo] = useCurrentVideoPlaying();
   const videoRef = useRef();
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
 
   const playVideo = () => {
     videoRef.current.play();
     setVideoIsPlaying(true);
-    dispatch(setPlayingVideo(videoKey));
+    setPlayingVideo(videoKey);
   };
 
   const pauseVideo = () => {
     videoRef.current.pause();
     setVideoIsPlaying(false);
-    dispatch(setPlayingVideo(null));
+    setPlayingVideo(null);
   };
 
   const togglePlay = () => {
@@ -33,11 +36,14 @@ const useVideoPlayer = (videoKey, { onPlayVideo, onPauseVideo }) => {
   };
 
   useEffect(() => {
-    if (currentVideoKey && currentVideoKey !== videoKey) pauseVideo();
+    if (!videoIsPlaying || !currentVideoKey) return;
+    if (currentVideoKey !== videoKey) {
+      pauseVideo();
+    }
     return () => {
       if (currentVideoKey === videoKey) setPlayingVideo(null);
     };
-  }, [currentVideoKey]);
+  }, [currentVideoKey, videoIsPlaying]);
 
   return {
     videoRef,
