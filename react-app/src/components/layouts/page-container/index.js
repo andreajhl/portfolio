@@ -12,6 +12,8 @@ import { Session } from "../../../state/utils/session";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 // import { VideoCallsResearch } from "../../containers/videocalls-research";
 import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebrityProfileVersion";
+import Headroom from "react-headroom";
+import { FiltersSectionLayout } from "../filters-section";
 // import { DownloadAppBanner } from "../download-app-banner";
 
 class PageContainer extends Component {
@@ -80,22 +82,26 @@ class PageContainer extends Component {
     return (
       <div className="PageContainer">
         {/* NavbarSectionLayout */}
-        {this.props.showNavbar ? (
-          <NavbarSectionLayout
-            className={hasSearchedOrFiltered ? "hidden-hero" : ""}
-            onSearchChange={this.onSearchChange}
-            showInputSearchSm={this.props.showInputSearchSm}
-            showSearch={this.props.showSearch}
-            showNavbarButtons={this.props.showNavbarButtons}
-            showSearchWeb={this.props.showSearchWeb}
-            showLogin={this.props.showLogin}
-            showFiltersSection={this.props.showFiltersSection}
-            hideControls={this.props.hideControls}
-            dropdownMenuIsOpen={this.state.dropdownMenuIsOpen}
-            setDropdownMenuIsOpen={this.setDropdownMenuIsOpen}
-            queryParams={this.props.queryParams}
-          />
-        ) : null}
+        <Headroom style={{ zIndex: 100000 }}>
+          {this.props.showNavbar ? (
+            <NavbarSectionLayout
+              className={hasSearchedOrFiltered ? "hidden-hero" : ""}
+              onSearchChange={this.onSearchChange}
+              showInputSearchSm={this.props.showInputSearchSm}
+              showSearch={this.props.showSearch}
+              showNavbarButtons={this.props.showNavbarButtons}
+              showSearchWeb={this.props.showSearchWeb}
+              showLogin={this.props.showLogin}
+              showFiltersSection={this.props.showFiltersSection}
+              hideControls={this.props.hideControls}
+              dropdownMenuIsOpen={this.state.dropdownMenuIsOpen}
+              setDropdownMenuIsOpen={this.setDropdownMenuIsOpen}
+              queryParams={this.props.queryParams}
+            />
+          ) : null}
+          {this.props.showFiltersSection ? <FiltersSectionLayout /> : null}
+        </Headroom>
+
         {/* End NavbarSectionLayout */}
         <div
           className={`page-container-children ${
