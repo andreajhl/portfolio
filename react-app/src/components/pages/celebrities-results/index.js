@@ -99,13 +99,8 @@ const CelebritiesResultsPage = ({
         queryParams={listParams}
         showSearch={isSearchingByKeyword}
         applyFetchUserCelebrityLikes
+        showFiltersSection={!isSearchingByKeyword}
       >
-        {!isSearchingByKeyword ? (
-          <FiltersSectionLayout
-            queryParams={listParams}
-            showCleanFiltersButton
-          />
-        ) : null}
         {isLoading && offset <= 0 ? (
           <CelebritiesResultsShimmerCardsLayout />
         ) : (
