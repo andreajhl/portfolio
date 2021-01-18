@@ -47,6 +47,8 @@ class PageContainer extends Component {
       this.props.listRestCountries();
     }
 
+    this.changeBotmakerDisplay();
+
     /* if (this.props.applyFetchCelebrities === true) {
       const queryParams = this.props.queryParams;
       if (!window.location.search) {
@@ -55,6 +57,19 @@ class PageContainer extends Component {
       }
     } */
   }
+
+  changeBotmakerDisplay = () => {
+    const botMakerFrame = document.querySelector("iframe[title='Botmaker']");
+    if (!botMakerFrame) return;
+
+    let botmakerParentDisplay = "none";
+
+    if (this.props.showBotMakerFrame) {
+      botmakerParentDisplay = "flex";
+    }
+
+    botMakerFrame.parentElement.style.display = botmakerParentDisplay;
+  };
 
   onSearchChange(keyword) {
     const queryParams = {
@@ -73,6 +88,10 @@ class PageContainer extends Component {
       path: window.location.pathname
     });
     this.setState({ dropdownMenuIsOpen });
+  };
+
+  componentDidUpdate = (prevProps) => {
+    this.changeBotmakerDisplay();
   };
 
   render() {
@@ -161,7 +180,8 @@ PageContainer.defaultProps = {
   showLogin: true,
   hideControls: false,
   showVideoCallsResearch: false,
-  shouldFetchRestCountries: true
+  shouldFetchRestCountries: true,
+  showBotMakerFrame: false
 };
 
 // mapStateToProps
