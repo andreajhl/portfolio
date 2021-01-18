@@ -10,7 +10,16 @@ import { Session } from "../../../state/utils/session";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 
-const getContractPriceVideoMessage= (contractsTypes) => contractsTypes.find(contract => contract.contractType === 1).price;
+const getContractPriceVideoMessage = (contractTypes = []) => {
+  const videoMessageContract = contractTypes.find(
+      ({ contractType }) => contractType === 1
+    );
+  let videoMessagePrice = 0;
+  if (videoMessageContract) {
+    videoMessagePrice = videoMessageContract.price;
+  }
+  return videoMessagePrice;
+};
 
 class CreateContractPage extends Component {
   constructor(props) {
