@@ -49,3 +49,5 @@ export const SUBSCRIPTION= "/subscription/subscribe/:celebrity_username"
 export const SUBSCRIPTION_SUCCESS= "/subscription/subscription-success/:celebrity_username"
 //SUBSCRIPTION FEED
 export const FEED_SUBSCRIPTION= "/subscription/feed"
+//SESSION REDIRECT
+export const SESSION_REDIRECT= "/session/redirect/"

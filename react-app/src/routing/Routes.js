@@ -191,6 +191,11 @@ class MyRoutes extends Component {
               component={PAGES.AuthFlowPage}
             />
 
+            <Route
+                exact
+                path={PATHS.SESSION_REDIRECT}
+                component={PAGES.SessionRedirectPage}
+            />
             {/* ------- */}
             <Route
               exact
