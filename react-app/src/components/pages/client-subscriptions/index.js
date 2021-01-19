@@ -36,7 +36,6 @@ const ClientSubscriptions = (props) => {
             <LoaderLayout />
           )}
         </div>
-        }
       </PageContainer>
     </Fragment>
   );

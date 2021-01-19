@@ -93,7 +93,7 @@ const SubscriptionFeed = (props) => {
       <PageContainer>
         <Container className='container-subscription-feed'>
           <Row>
-            <Col md='9' className='mx-auto'>
+            <Col md='9' className='mx-auto' style={{ padding: '0px' }}>
               {isSubscriptionListCompletedFetch ? (
                 subscriptionList.length > 0 ? (
                   <CarouselAvailableSubscriptions
