@@ -139,7 +139,7 @@ export const fetchSimilarResults = (params) => {
   return (dispatch, getStore) => {
     getStore().celebrities.fetchCelebritiesReducer.requestCancel();
     const TYPE = types.FETCH_CELEBRITIES_SIMILAR_RESULTS_REQUEST;
-    const FINAL_PATH = API_PATHS.LIST;
+    const FINAL_PATH = API_PATHS.SUGGESTED_PUBLIC_LIST;
     const request = apiService({
       method: "GET",
       action: TYPE,
