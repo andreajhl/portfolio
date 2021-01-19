@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import "./styles.scss";
 import Moment from 'moment';
 import moment from "moment";
+import {getDiscountCouponBanner} from "../../../state/ducks/discount_coupons/actions";
 
 class BannerPromoLayout extends Component {
     constructor() {
@@ -10,19 +11,26 @@ class BannerPromoLayout extends Component {
         this.state = {
             showDiv: true,
             diffTime: null,
-            coupon: "MOON21",
-            discount: 20,
-            dateFinish: new Moment("2021-01-19 14:50:0"),
+            coupon: "",
+            discount: 0,
+            dateFinish: null,
         };
         this.calculateDiff();
     }
 
     componentDidMount(): void {
         this.runTimer();
+        getDiscountCouponBanner().then(res => {
+            this.setState({
+                coupon: res['couponCode'],
+                discount: parseFloat(res['discount_amount']) * 10,
+                dateFinish: moment(res['expirationDate'],'YYYY-MM-DD HH:mm:ss'),
+            });
+        });
     }
 
     calculateDiff() {
-        this.setState({diffTime: moment.utc(moment(this.state.dateFinish, "DD/MM/YYYY HH:mm:ss").diff(moment(new Moment(), "DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss")});
+        this.setState({diffTime: moment.utc(moment(this.state.dateFinish, "YYYY-MM-DD HH:mm:ss").diff(moment(new Moment(), "YYYY-MM-DD HH:mm:ss"))).format("HH:mm:ss")});
 
     }
 
@@ -75,7 +83,6 @@ class BannerPromoLayout extends Component {
         );
     }
 }
-
 
 const _BannerPromoLayout = connect()(BannerPromoLayout);
 export {_BannerPromoLayout as BannerPromoLayout};
