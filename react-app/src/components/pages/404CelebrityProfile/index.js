@@ -36,7 +36,7 @@ const FourZeroFourCelebrityProfile = ({ match }) => {
           </div>
         </header>
         <div className="container py-4">
-          <h3 className="font-weight-bold text-center">
+          <h3 className="font-weight-bold text-center mb-0">
             Quizás pueda <br className="d-sm-none" /> interesarte
           </h3>
         </div>

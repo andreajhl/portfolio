@@ -32,15 +32,16 @@ const FourZeroFourCelebritiesSectionsLayout = ({
 
   return (
     <section className="FourZeroFourCelebritiesSectionsLayout">
-      {loading ? <CelebritiesShimmerCardsSectionLayout /> : null}
-      {celebritiesSections.length > 0
-        ? celebritiesSections.map((celebritiesSection) => (
-            <CelebritiesCardsSectionLayout
-              key={celebritiesSection.id}
-              celebritiesSection={celebritiesSection}
-            />
-          ))
-        : null}
+      {loading ? (
+        <CelebritiesShimmerCardsSectionLayout />
+      ) : celebritiesSections.length > 0 ? (
+        celebritiesSections.map((celebritiesSection) => (
+          <CelebritiesCardsSectionLayout
+            key={celebritiesSection.id}
+            celebritiesSection={celebritiesSection}
+          />
+        ))
+      ) : null}
     </section>
   );
 };
