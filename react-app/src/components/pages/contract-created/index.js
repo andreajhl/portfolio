@@ -92,6 +92,7 @@ class ContractCreatedPage extends Component {
         showNavbar={false}
         showFiltersSection={false}
         showFooter={false}
+        showBotMakerFrame
       >
         <div className="ContractCreatedPage container-fluid">
           <div className="row justify-content-center f-container">
