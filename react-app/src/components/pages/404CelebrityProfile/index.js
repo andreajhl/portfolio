@@ -37,11 +37,11 @@ const FourZeroFourCelebrityProfile = ({ match }) => {
         </header>
         <div className="container py-4">
           <h3 className="font-weight-bold text-center">
-            Quizás pueda <br /> interesarte
+            Quizás pueda <br className="d-sm-none" /> interesarte
           </h3>
         </div>
         <FourZeroFourCelebritiesSectionsLayout />
-        <div className="container py-4 text-center">
+        <div className="container pb-4 pt-2 text-center">
           <NavLink to={ROUTING_PATHS.HOME_PATH}>
             <CallToActionButton
               className="FourZeroFourCelebrityProfile__see-more-button"
