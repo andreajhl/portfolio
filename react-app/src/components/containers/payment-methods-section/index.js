@@ -21,7 +21,7 @@ class PaymentMethodsSection extends Component {
         <div
           className={"row justify-content-center payment-methods-section-row"}
         >
-          <div className="col-12 col-md-8 p-0 mx-0 my-4 f-rounded f-shadow">
+          <div className="col-12 col-md-8 p-0 mx-0 mt-2 mb-4 f-rounded f-shadow">
             {/* CONTRACT SUMMARY */}
             <ContractCheckoutSummary
               celebrityAvatar={this.props.contractData.celebrity_avatar}
