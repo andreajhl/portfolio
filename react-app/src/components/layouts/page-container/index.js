@@ -14,6 +14,7 @@ import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebrityProfileVersion";
 import Headroom from "react-headroom";
 import { FiltersSectionLayout } from "../filters-section";
+import waitFor from "../../../utils/waitFor";
 // import { DownloadAppBanner } from "../download-app-banner";
 
 class PageContainer extends Component {
@@ -58,12 +59,15 @@ class PageContainer extends Component {
     } */
   }
 
-  changeBotmakerDisplay = () => {
-    const botMakerFrame =
-      document.querySelector("iframe[title='Botmaker']") ||
-      document.querySelector(
-        "img[src='https://storage.googleapis.com/m-infra.appspot.com/public/whatsapp/Whatsapp_logo.svg']"
-      )?.parentElement;
+  changeBotmakerDisplay = async () => {
+    const botMakerFrame = await waitFor(
+      () =>
+        document.querySelector("iframe[title='Botmaker']") ||
+        document.querySelector(
+          "img[src='https://storage.googleapis.com/m-infra.appspot.com/public/whatsapp/Whatsapp_logo.svg']"
+        )?.parentElement,
+      1000
+    );
 
     if (!botMakerFrame) return;
 
@@ -96,7 +100,9 @@ class PageContainer extends Component {
   };
 
   componentDidUpdate = (prevProps) => {
-    this.changeBotmakerDisplay();
+    if (this.props.showBotMakerFrame !== prevProps.showBotMakerFrame) {
+      this.changeBotmakerDisplay();
+    }
   };
 
   render() {
