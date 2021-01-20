@@ -70,8 +70,6 @@ class PageContainer extends Component {
       100
     );
 
-    console.log(botMakerFrame);
-
     if (!botMakerFrame) return;
 
     let botmakerParentDisplay = "none";
