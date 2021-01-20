@@ -32,6 +32,7 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
           <CelebrityDetails celebrity={celebrity} variant="2" />
         </div>
       </div>
+      <HowToGetAVideoMessageLayout />
 
       {/* <CelebrityPublicContractsSectionLayout
         contractTypes={celebrity.contractTypes}
@@ -50,11 +51,12 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
       {/* <SimilarCelebritiesCardsSectionLayout
         celebrityUsername={celebrity.username}
       /> */}
-      <SimilarCelebrityContractsSectionLayout
-        celebrityUsername={celebrity.username}
-      />
       <CelebrityReviewsSectionLayout celebrityId={celebrity.id} />
-      <HowToGetAVideoMessageLayout />
+      <div className="py-4">
+        <SimilarCelebrityContractsSectionLayout
+          celebrityUsername={celebrity.username}
+        />
+      </div>
     </>
   ) : (
     <CelebrityProfileLayoutB celebrity={celebrity} />

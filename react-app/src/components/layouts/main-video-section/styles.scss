@@ -42,5 +42,14 @@
       color: white;
       font-size: 25.6px;
     }
+
+    .restart-icon {
+      transform: translateX(-50%);
+      position: relative;
+      left: 50%;
+      align-self: center;
+      color: white;
+      font-size: 4rem;
+    }
   }
 }
