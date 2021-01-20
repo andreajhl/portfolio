@@ -59,7 +59,12 @@ class PageContainer extends Component {
   }
 
   changeBotmakerDisplay = () => {
-    const botMakerFrame = document.querySelector("iframe[title='Botmaker']");
+    const botMakerFrame =
+      document.querySelector("iframe[title='Botmaker']") ||
+      document.querySelector(
+        "img[src='https://storage.googleapis.com/m-infra.appspot.com/public/whatsapp/Whatsapp_logo.svg']"
+      )?.parentElement;
+
     if (!botMakerFrame) return;
 
     let botmakerParentDisplay = "none";
