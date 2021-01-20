@@ -1,27 +1,24 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
-import { connect } from "react-redux";
-import { contractOperations } from "../../../state/ducks/contracts";
-import fullscreen from "fscreen";
+import React, { useEffect } from "react";
 import * as GTM from "../../../state/utils/gtm";
+import useLoad from "../../../utils/useLoad";
+import useVideoPlayer from "../../../utils/useVideoPlayer";
 import "./styles.scss";
 
 const VideoSlideLayout = ({
   videoUrl,
   videoReference,
-  autoPlayOnCanPlay,
+  shouldLoadPoster,
   videoIsMuted,
   setVideoIsMuted,
   autoPlayVideo,
-  setPlayingVideo,
-  currentVideoPlaying,
-  setIsPlayingVideo,
-  isPlayingVideo
+  setSlideshowIsPlaying,
+  slideshowIsPlaying,
+  preload,
+  videoPosterUrl,
+  showFullscreenToggler,
+  videoIsFullscreen,
+  toggleFullscreen
 }) => {
-  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
-  const [videoIsFullscreen, setVideoIsFullscreen] = useState(false);
-  const videoRef = useRef();
-  const sectionRef = useRef();
-
   const analyticsData = {
     widget: "VideoSlideLayout",
     path: window.location.pathname,
@@ -29,8 +26,28 @@ const VideoSlideLayout = ({
     videoReference,
     videoIsFullscreen,
     videoIsMuted,
-    videoIsPlaying
+    slideshowIsPlaying
   };
+  const [videoIsLoaded, onVideoLoadedData] = useLoad();
+  const { videoRef, videoIsPlaying, playVideo, togglePlay } = useVideoPlayer(
+    videoReference,
+    {
+      onPlayVideo() {
+        GTM.tagManagerDataLayer("PLAY_VIDEO_SLIDE", {
+          ...analyticsData,
+          videoIsPlaying: true
+        });
+        setSlideshowIsPlaying(true);
+      },
+      onPauseVideo() {
+        GTM.tagManagerDataLayer("PAUSE_VIDEO_SLIDE", {
+          ...analyticsData,
+          videoIsPlaying: false
+        });
+        setSlideshowIsPlaying(false);
+      }
+    }
+  );
 
   const toggleVideoIsMuted = () => {
     GTM.tagManagerDataLayer(`${videoIsMuted ? "UN" : ""}MUTE_VIDEO_SLIDE`, {
@@ -40,87 +57,19 @@ const VideoSlideLayout = ({
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
 
-  const playVideo = useCallback(() => {
-    videoRef.current.play();
-    setVideoIsPlaying(true);
-    setPlayingVideo({ contract_reference: videoReference });
-  }, [videoReference]);
-
-  const pauseVideo = useCallback(() => {
-    videoRef.current.pause();
-    setVideoIsPlaying(false);
-  }, []);
-
-  const togglePlay = () => {
-    if (!videoIsPlaying) {
-      GTM.tagManagerDataLayer("PLAY_VIDEO_SLIDE", {
-        ...analyticsData,
-        videoIsPlaying: true
-      });
-      setIsPlayingVideo(true);
-      playVideo();
-    } else {
-      GTM.tagManagerDataLayer("PAUSE_VIDEO_SLIDE", {
-        ...analyticsData,
-        videoIsPlaying: false
-      });
-      setIsPlayingVideo(false);
-      pauseVideo();
-    }
-  };
-
-  useEffect(() => {
-    if (currentVideoPlaying !== videoReference) pauseVideo();
-    return () => {
-      if (currentVideoPlaying === videoReference)
-        setPlayingVideo({ contract_reference: null });
-    };
-  }, [currentVideoPlaying, videoReference, pauseVideo, setPlayingVideo]);
-
-  const autoPlayMainVideo = (event) => {
-    if (!autoPlayOnCanPlay) return;
-    playVideoWhenHasGoodConnection();
-  };
-
-  const playVideoWhenHasGoodConnection = useCallback(() => {
-    setIsPlayingVideo(true);
-    playVideo();
-  }, [playVideo]);
+  // const playVideoWhenHasGoodConnection = useCallback(() => {
+  //   setIsPlayingVideo(true);
+  //   playVideo();
+  // }, [playVideo, setIsPlayingVideo]);
 
   useEffect(() => {
     if (!autoPlayVideo) return;
-    playVideoWhenHasGoodConnection();
-  }, [autoPlayVideo, playVideoWhenHasGoodConnection]);
-
-  const exitFullscreen = () => {
-    setVideoIsFullscreen(false);
-    fullscreen.exitFullscreen();
-    GTM.tagManagerDataLayer("EXIT_FULLSCREEN_VIDEO_SLIDE", {
-      ...analyticsData,
-      videoIsFullscreen: false
-    });
-  };
-
-  const enterFullscreen = (sectionElement) => {
-    setVideoIsFullscreen(true);
-    fullscreen.requestFullscreen(sectionElement);
-    GTM.tagManagerDataLayer("ENTER_FULLSCREEN_VIDEO_SLIDE", {
-      ...analyticsData,
-      videoIsFullscreen: true
-    });
-  };
-
-  const toggleFullscreen = () => {
-    const sectionElement = sectionRef.current;
-    if (fullscreen.fullscreenElement === sectionElement) {
-      exitFullscreen();
-    } else {
-      enterFullscreen(sectionElement);
-    }
-  };
+    setSlideshowIsPlaying(true);
+    playVideo();
+  }, [autoPlayVideo]);
 
   return (
-    <section className="VideoSlideLayout" ref={sectionRef}>
+    <section className="VideoSlideLayout">
       <div className="VideoSlideLayout__buttons">
         <div className="d-flex align-items-center justify-content-end">
           <i
@@ -131,11 +80,11 @@ const VideoSlideLayout = ({
           />
           <i
             className={`fa fa-${
-              videoIsPlaying || isPlayingVideo ? "pause" : "play"
+              videoIsPlaying || slideshowIsPlaying ? "pause" : "play"
             } play-pause cursor-pointer`}
             onClick={togglePlay}
           />
-          {fullscreen.fullscreenEnabled ? (
+          {showFullscreenToggler ? (
             <i
               className={`fa fa-${
                 videoIsFullscreen ? "compress" : "expand"
@@ -145,41 +94,41 @@ const VideoSlideLayout = ({
           ) : null}
         </div>
       </div>
-      <video
-        className="VideoSlideLayout__video"
-        ref={videoRef}
-        controls={false}
-        playsInline
-        onClick={togglePlay}
-        preload="metadata"
-        muted={videoIsMuted}
-        autoPlay
-        onCanPlay={autoPlayMainVideo}
-      >
-        <source src={videoUrl} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <div className="VideoSlideLayout__media-container">
+        {shouldLoadPoster && preload === "none" && !videoIsLoaded ? (
+          <img
+            className="VideoSlideLayout__poster"
+            src={videoPosterUrl || "/assets/img/avatar-blank.png"}
+            alt={`Poster de vídeo de famoso`}
+            onClick={togglePlay}
+          />
+        ) : null}
+        <video
+          className="VideoSlideLayout__video"
+          ref={videoRef}
+          controls={false}
+          playsInline
+          onClick={togglePlay}
+          preload={preload}
+          muted={videoIsMuted}
+          src={videoUrl}
+          onLoadedData={onVideoLoadedData}
+        >
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </section>
   );
 };
 
 VideoSlideLayout.defaultProps = {
-  isMutedDefault: true,
-  autoPlay: true
+  shouldLoadPoster: true,
+  videoIsMuted: true,
+  setVideoIsMuted: () => {},
+  autoPlayVideo: false,
+  setIsPlayingVideo: () => {},
+  isPlayingVideo: false,
+  preload: "none"
 };
 
-const mapStateToProps = ({ contracts }) => ({
-  currentVideoPlaying: contracts.playVideoReducer.contract_reference
-});
-
-// mapStateToProps
-const mapDispatchToProps = {
-  setPlayingVideo: contractOperations.playVideo
-};
-
-const _VideoSlideLayout = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(VideoSlideLayout);
-
-export { _VideoSlideLayout as VideoSlideLayout };
+export { VideoSlideLayout };

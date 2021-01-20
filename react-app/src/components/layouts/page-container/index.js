@@ -9,8 +9,11 @@ import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/
 import * as GTM from "../../../state/utils/gtm";
 import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
 import { Session } from "../../../state/utils/session";
+import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 // import { VideoCallsResearch } from "../../containers/videocalls-research";
 import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebrityProfileVersion";
+import Headroom from "react-headroom";
+import { FiltersSectionLayout } from "../filters-section";
 // import { DownloadAppBanner } from "../download-app-banner";
 
 class PageContainer extends Component {
@@ -35,6 +38,13 @@ class PageContainer extends Component {
 
     if (this.props.shouldFetchFlashDeliveryCelebrities) {
       this.props.fetchFlashDeliveryCelebrities();
+    }
+
+    if (
+      this.props.shouldFetchRestCountries &&
+      this.props.restCountries.length === 0
+    ) {
+      this.props.listRestCountries();
     }
 
     /* if (this.props.applyFetchCelebrities === true) {
@@ -72,22 +82,26 @@ class PageContainer extends Component {
     return (
       <div className="PageContainer">
         {/* NavbarSectionLayout */}
-        {this.props.showNavbar ? (
-          <NavbarSectionLayout
-            className={hasSearchedOrFiltered ? "hidden-hero" : ""}
-            onSearchChange={this.onSearchChange}
-            showInputSearchSm={this.props.showInputSearchSm}
-            showSearch={this.props.showSearch}
-            showNavbarButtons={this.props.showNavbarButtons}
-            showSearchWeb={this.props.showSearchWeb}
-            showLogin={this.props.showLogin}
-            showFiltersSection={this.props.showFiltersSection}
-            hideControls={this.props.hideControls}
-            dropdownMenuIsOpen={this.state.dropdownMenuIsOpen}
-            setDropdownMenuIsOpen={this.setDropdownMenuIsOpen}
-            queryParams={this.props.queryParams}
-          />
-        ) : null}
+        <Headroom style={{ zIndex: 100000 }}>
+          {this.props.showNavbar ? (
+            <NavbarSectionLayout
+              className={hasSearchedOrFiltered ? "hidden-hero" : ""}
+              onSearchChange={this.onSearchChange}
+              showInputSearchSm={this.props.showInputSearchSm}
+              showSearch={this.props.showSearch}
+              showNavbarButtons={this.props.showNavbarButtons}
+              showSearchWeb={this.props.showSearchWeb}
+              showLogin={this.props.showLogin}
+              showFiltersSection={this.props.showFiltersSection}
+              hideControls={this.props.hideControls}
+              dropdownMenuIsOpen={this.state.dropdownMenuIsOpen}
+              setDropdownMenuIsOpen={this.setDropdownMenuIsOpen}
+              queryParams={this.props.queryParams}
+            />
+          ) : null}
+          {this.props.showFiltersSection ? <FiltersSectionLayout /> : null}
+        </Headroom>
+
         {/* End NavbarSectionLayout */}
         <div
           className={`page-container-children ${
@@ -146,11 +160,13 @@ PageContainer.defaultProps = {
   showInputSearchSm: true,
   showLogin: true,
   hideControls: false,
-  showVideoCallsResearch: false
+  showVideoCallsResearch: false,
+  shouldFetchRestCountries: true
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
+  restCountries: state.restCountries.fetchCountriesReducer.data,
   isLoading: state.celebrities.fetchCelebritiesReducer.loading,
   celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
   paginationData:
@@ -166,7 +182,8 @@ const mapDispatchToProps = {
   cleanUserCelebrityLikes:
     celebrityLikesOperations.fetchUserCelebrityLikesCleanUp,
   fetchFlashDeliveryCelebrities:
-    celebrityOperations.fetchFlashDeliveryCelebrities
+    celebrityOperations.fetchFlashDeliveryCelebrities,
+  listRestCountries: restCountriesOperations.list
 };
 
 // Export Class

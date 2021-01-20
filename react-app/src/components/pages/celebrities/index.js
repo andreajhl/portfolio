@@ -20,7 +20,6 @@ import * as CarouselWithButtons from "../../layouts/carousel-with-buttons";
 import BlogPostCardLayout from "../../layouts/blog-post-card";
 import * as mediumApiService from "../../../state/utils/mediumApiService";
 
-
 class CelebritiesPage extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +31,9 @@ class CelebritiesPage extends Component {
       metaTagTitle:
         "Famosos.com - Videos personalizados de tus famosos favoritos.",
       metaTagDescription:
-        "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
+        "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
+      showHeaderFiltersSection: false,
+      previousScrollTopPosition: 0
     };
     this.scrollDiv = createRef();
     this.openModal = this.openModal.bind(this);
@@ -41,7 +42,35 @@ class CelebritiesPage extends Component {
 
   componentDidMount() {
     GTM.tagManagerDataLayer("CELEBRITIES_PAGE_VIEW", this.props.queryParams);
+    window.addEventListener("scroll", this.toggleDynamicHeader);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.toggleDynamicHeader);
+  }
+
+  toggleDynamicHeader = () => {
+    const scrollTopPosition =
+      window.scrollY ||
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop;
+
+    const positionToDisplayDynamicHeaderOnScrollDown = 354;
+    const positionToDisplayDynamicHeaderOnScrollUp = 249;
+
+    const isScrollingDown =
+      scrollTopPosition >= this.state.previousScrollTopPosition;
+
+    const showHeaderFiltersSection = isScrollingDown
+      ? scrollTopPosition >= positionToDisplayDynamicHeaderOnScrollDown
+      : scrollTopPosition >= positionToDisplayDynamicHeaderOnScrollUp;
+
+    this.setState({
+      showHeaderFiltersSection,
+      previousScrollTopPosition: scrollTopPosition
+    });
+  };
 
   componentWillReceiveProps(nextProps, nextContext) {
     /* const queryParams = this.props.queryParams;
@@ -162,8 +191,8 @@ class CelebritiesPage extends Component {
             existPreviewResults={
               this.props.celebrities.length > 1 ? false : true
             }
-            applyFetchCelebrities={true}
-            showFiltersSection={true}
+            applyFetchCelebrities
+            showFiltersSection={this.state.showHeaderFiltersSection}
             showVideoCallsResearch
           >
             {/*/!* ShowHeader *!/*/}

@@ -21,23 +21,16 @@
       height: 100%;
       display: flex;
       align-items: center;
-
-      &-alternative {
-        .video-card__poster,
-        .video-card__video {
-          height: 100%;
-          transform: translateX(-42.5px);
-          width: initial;
-        }
-      }
     }
 
-    &__poster {
+    &__poster,
+    &__video {
+      height: 100%;
       width: 100%;
+      object-fit: cover !important;
     }
 
     &__video {
-      width: 100%;
       outline: none;
     }
 
@@ -47,8 +40,9 @@
       top: 0;
       background-image: linear-gradient(
         0deg,
-        #292929 0%,
-        rgba(126, 126, 126, 0) 100%
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.65) 10%,
+        transparent 100%
       );
       height: 100%;
       width: 100%;

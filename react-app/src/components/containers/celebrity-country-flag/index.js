@@ -4,17 +4,18 @@ import Image from "react-bootstrap/Image";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import limitString from "../../../utils/limitString";
 
-const CountryFlag = ({ countries, fetchCountries, countryCode }) => {
+const CountryFlag = ({
+  className = "",
+  width = "24px",
+  countries = [],
+  countryCode = "USA"
+}) => {
   const [celebrityCountry, setCelebrityCountry] = useState(null);
 
   useEffect(() => {
-    if (countries.length === 0) {
-      fetchCountries();
-    } else {
-      setCelebrityCountry(
-        countries.find((country) => country.alpha3Code === countryCode)
-      );
-    }
+    setCelebrityCountry(
+      countries?.find?.((country) => country.alpha3Code === countryCode)
+    );
   }, [countries, countryCode]);
 
   return celebrityCountry ? (
@@ -25,19 +26,22 @@ const CountryFlag = ({ countries, fetchCountries, countryCode }) => {
           : celebrityCountry.flag
       }
       alt={limitString(celebrityCountry.name, 10)}
-      className="celebrity__country"
-      width="24px"
+      className={className}
+      width={width}
     />
-  ) : null;
+  ) : (
+    <span
+      className={`${className} text-primary spinner-grow spinner-grow-sm`}
+      role="status"
+      aria-hidden="true"
+    />
+  );
 };
 
 const mapStateToProps = (state) => ({
   countries: state.restCountries.fetchCountriesReducer.data
 });
 
-const mapDispatchToProps = {
-  fetchCountries: restCountriesOperations.list
-};
+const _CountryFlag = connect(mapStateToProps)(CountryFlag);
 
-const _CountryFlag = connect(mapStateToProps, mapDispatchToProps)(CountryFlag);
 export { _CountryFlag as CountryFlag };

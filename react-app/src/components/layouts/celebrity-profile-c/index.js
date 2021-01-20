@@ -17,9 +17,15 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
       >
         <div className="col-12 col-lg-4 order-lg-1 p-0 m-0 px-sm-3">
           {hasPublicContracts ? (
-            <CelebrityHeroSlideshow celebrityMainVideo={celebrity.mainVideo} />
+            <CelebrityHeroSlideshow
+              celebrityAvatar={celebrity.avatar}
+              celebrityMainVideo={celebrity.mainVideo}
+            />
           ) : celebrity.mainVideo ? (
-            <ResizableMainVideo mainVideoUrl={celebrity.mainVideo} />
+            <ResizableMainVideo
+              mainVideoUrl={celebrity.mainVideo}
+              videoPosterUrl={celebrity.avatar}
+            />
           ) : null}
         </div>
         <div
