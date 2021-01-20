@@ -8,12 +8,19 @@ import {getDiscountCouponBanner} from "../../../state/ducks/discount_coupons/act
 class BannerPromoLayout extends Component {
     constructor() {
         super();
+        let dateFinish = moment(new Moment().add(10, "minutes"), "YYYY-MM-DD HH:mm:ss");
+        if (localStorage.getItem("discount_coupon_banner") != null) {
+            dateFinish = moment(localStorage.getItem("discount_coupon_banner"));
+        } else {
+            localStorage.setItem("discount_coupon_banner", dateFinish);
+        }
+
         this.state = {
             showDiv: true,
             diffTime: null,
             coupon: "",
             discount: 0,
-            dateFinish: null,
+            dateFinish: dateFinish,
         };
         this.calculateDiff();
     }
@@ -24,14 +31,12 @@ class BannerPromoLayout extends Component {
             this.setState({
                 coupon: res['couponCode'],
                 discount: parseFloat(res['discount_amount']) * 10,
-                dateFinish: moment(res['expirationDate'],'YYYY-MM-DD HH:mm:ss'),
             });
         });
     }
 
     calculateDiff() {
         this.setState({diffTime: moment.utc(moment(this.state.dateFinish, "YYYY-MM-DD HH:mm:ss").diff(moment(new Moment(), "YYYY-MM-DD HH:mm:ss"))).format("HH:mm:ss")});
-
     }
 
     runTimer() {
