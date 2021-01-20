@@ -65,8 +65,7 @@ const CelebritiesSectionsLayout = ({
     <div className="CelebritiesSectionsLayout">
       {loading && offset === 0 ? (
         <CelebritiesShimmerCardsSectionLayout />
-      ) : null}
-      {celebritiesSections.length > 0 ? (
+      ) : celebritiesSections.length > 0 ? (
         <InfiniteScroll
           dataLength={celebritiesSections.length}
           next={fetchMoreData}

@@ -14,6 +14,7 @@ import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebrityProfileVersion";
 import Headroom from "react-headroom";
 import { FiltersSectionLayout } from "../filters-section";
+import waitFor from "../../../utils/waitFor";
 // import { DownloadAppBanner } from "../download-app-banner";
 
 class PageContainer extends Component {
@@ -47,6 +48,8 @@ class PageContainer extends Component {
       this.props.listRestCountries();
     }
 
+    this.changeBotmakerDisplay();
+
     /* if (this.props.applyFetchCelebrities === true) {
       const queryParams = this.props.queryParams;
       if (!window.location.search) {
@@ -55,6 +58,27 @@ class PageContainer extends Component {
       }
     } */
   }
+
+  changeBotmakerDisplay = async () => {
+    const botMakerFrame = await waitFor(
+      () =>
+        document.querySelector("iframe[title='Botmaker']") ||
+        document.querySelector(
+          "img[src='https://storage.googleapis.com/m-infra.appspot.com/public/whatsapp/Whatsapp_logo.svg']"
+        )?.parentElement,
+      1000
+    );
+
+    if (!botMakerFrame) return;
+
+    let botmakerParentDisplay = "none";
+
+    if (this.props.showBotMakerFrame) {
+      botmakerParentDisplay = "flex";
+    }
+
+    botMakerFrame.parentElement.style.display = botmakerParentDisplay;
+  };
 
   onSearchChange(keyword) {
     const queryParams = {
@@ -73,6 +97,12 @@ class PageContainer extends Component {
       path: window.location.pathname
     });
     this.setState({ dropdownMenuIsOpen });
+  };
+
+  componentDidUpdate = (prevProps) => {
+    if (this.props.showBotMakerFrame !== prevProps.showBotMakerFrame) {
+      this.changeBotmakerDisplay();
+    }
   };
 
   render() {
@@ -161,7 +191,8 @@ PageContainer.defaultProps = {
   showLogin: true,
   hideControls: false,
   showVideoCallsResearch: false,
-  shouldFetchRestCountries: true
+  shouldFetchRestCountries: true,
+  showBotMakerFrame: false
 };
 
 // mapStateToProps

@@ -4,7 +4,11 @@
         height: 65px;
         width:  65px;
         border: 1px solid #e83e8c;
+        &.selected{
+            border: 1px solid black
+        }
     }
+   
 
     &__celebrity-name{
         max-width: 74px;

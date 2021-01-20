@@ -16,7 +16,6 @@ const initialState = {
 
 const CelebritiesCardsSectionLayout = ({
   celebritiesSection,
-  hasMoreResults,
   moreResultsPath,
   isFavoriteSection
 }) => {
@@ -81,6 +80,10 @@ const CelebritiesCardsSectionLayout = ({
       })
     );
   }, [celebrities]);
+
+  const hasMoreResults =
+    celebritiesSection.celebritySectionType === "CELEBRITY_CARD" &&
+    celebritiesSection.celebrities.length >= 10;
 
   const shouldRenderMoreResultsButton = hasMoreResults && moreResultsPath;
 

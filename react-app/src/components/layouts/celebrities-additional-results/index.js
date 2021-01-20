@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import { CelebritiesSimilarResultsLayout } from "../celebrities-similar-results";
 import getMoreFrequentIds from "../../../utils/getMoreFrequentIds";
 
@@ -7,29 +6,23 @@ const CelebritiesAdditionalResultsLayout = ({
   isCompleted,
   totalResults,
   isSearchingByKeyword,
-  searchCelebrities
+  searchCelebrities,
+  listParams
 }) => {
-  const isTopCelebritiesResults =
-    searchCelebrities.length === 0 || !isSearchingByKeyword;
   const similarResultsParams = useMemo(() => {
-    if (isTopCelebritiesResults) {
-      return {
-        top_celebrity: true,
-        limit: updateQueryParamsInitialState.limit
-      };
-    }
+    if (searchCelebrities.length === 0 || !listParams.search) return listParams;
+
     return {
+      ...listParams,
       country_id: getMoreFrequentIds(searchCelebrities, "countryId"),
-      category_id: getMoreFrequentIds(searchCelebrities, "categoryId"),
-      limit: updateQueryParamsInitialState.limit
+      category_id: getMoreFrequentIds(searchCelebrities, "categoryId")
     };
-  }, [searchCelebrities, isTopCelebritiesResults]);
+  }, [searchCelebrities, listParams]);
   if (!isCompleted) return null;
   if (totalResults >= 6) return null;
   return (
     <CelebritiesSimilarResultsLayout
       similarResultsParams={similarResultsParams}
-      isTopCelebritiesResults={isTopCelebritiesResults}
     />
   );
 };

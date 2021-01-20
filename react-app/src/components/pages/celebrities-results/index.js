@@ -113,6 +113,7 @@ const CelebritiesResultsPage = ({
         )}
         <CelebritiesAdditionalResultsLayout
           searchCelebrities={celebrities}
+          listParams={listParams}
           isCompleted={isCompleted}
           totalResults={totalResults}
           isSearchingByKeyword={isSearchingByKeyword}

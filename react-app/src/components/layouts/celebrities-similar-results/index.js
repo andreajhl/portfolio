@@ -27,8 +27,7 @@ const CelebritiesSimilarResultsLayout = ({
   celebrities,
   totalResults,
   fetchSimilarResults,
-  similarResultsParams,
-  isTopCelebritiesResults
+  similarResultsParams
 }) => {
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
 
@@ -36,7 +35,7 @@ const CelebritiesSimilarResultsLayout = ({
     widget: "CelebritiesSimilarResultsLayout",
     path: window.location.pathname,
     totalResults,
-    isTopCelebritiesResults,
+
     similarResultsParams
   };
 
@@ -72,9 +71,7 @@ const CelebritiesSimilarResultsLayout = ({
     <CelebritiesResultsShimmerCardsLayout />
   ) : (
     <CelebritiesInfinityScrollLayout
-      sectionTitleText={
-        isTopCelebritiesResults ? "Famosos destacados" : "Resultados similares"
-      }
+      sectionTitleText="Quizás te pueda interesar"
       onEndMessageButtonClick={registerCelebritiesResultsGoUpButtonClick}
       noResultsText="No se encontraron resultados esta búsqueda"
       celebrities={celebrities}

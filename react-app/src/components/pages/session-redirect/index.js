@@ -25,21 +25,13 @@ class SessionRedirectPage extends Component {
 
     checkToken(token, url) {
         if (token) {
-            this.setState({
-                ...this.state,
-                session: new Session()
-            }, () => {
-                if(!this.state.session.tokenExpired()){
-                    this.redirectTo(url);
-                }
-                this.state.session.setSession(token);
-                let isValid = !this.state.session.tokenExpired()
-                if (isValid) {
-                    this.redirectTo(url);
-                } else {
-                    this.redirectToHome();
-                }
-            });
+            const session = new Session();
+            session.setSession(token);
+            if (!session.tokenExpired()) {
+                this.redirectTo(url);
+            } else {
+                this.redirectToHome();
+            }
         } else {
             this.redirectToHome();
         }
