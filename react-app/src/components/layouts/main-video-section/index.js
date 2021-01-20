@@ -5,6 +5,7 @@ import * as GTM from "../../../state/utils/gtm";
 import "./styles.scss";
 
 const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
+  const [IsFinished, setIsFinished] = useState(false);
   const mainVideoReference = "mainVideo " + mainVideoUrl;
   const [videoIsLoaded, onVideoLoadedData] = useLoad();
   const analyticsData = {
@@ -50,9 +51,27 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
     playVideo();
   }, [videoIsLoaded]);
 
+  const showRestartButton = () => setIsFinished(true);
+
+  const hideRestartButton = () => {
+    const { currentTime, duration } = videoRef.current;
+    if (currentTime >= duration || IsFinished === false) return;
+    setIsFinished(false);
+  };
+
   return (
     <section className="CelebrityMainVideoSection container p-0">
-      <div className="CelebrityMainVideoSection__buttons">
+      <div
+        className={`CelebrityMainVideoSection__buttons ${
+          IsFinished ? "h-100" : ""
+        }`}
+      >
+        {IsFinished ? (
+          <i
+            className={`fa fa-undo-alt restart-icon cursor-pointer`}
+            onClick={playVideo}
+          />
+        ) : null}
         <i
           className={`fa fa-volume-${
             videoIsMuted ? "mute" : "up"
@@ -79,6 +98,8 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
           src={mainVideoUrl}
           muted={videoIsMuted}
           autoPlay
+          onEnded={showRestartButton}
+          onTimeUpdate={hideRestartButton}
           onLoadedData={onVideoLoadedData}
         ></video>
       </div>
