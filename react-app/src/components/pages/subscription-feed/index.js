@@ -8,7 +8,6 @@ import * as firestoreService from "../../../firebase/firestoreService";
 import { LoaderLayout } from "../../layouts/loader";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
 import './styles.scss';
-import index from '../../containers/ocassions-options';
 
 const getCelebritySelected = (celebritiesList, currentChoice) =>
   celebritiesList.find((celebrity) => celebrity.celebrityId === currentChoice);
