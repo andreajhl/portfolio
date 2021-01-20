@@ -29,7 +29,7 @@ const FourZeroFourCelebrityProfile = ({
     <>
       <PageContainer applyFetchCelebrities={false} showFooter>
         <div className="FourZeroFourCelebrityProfile">
-          {previousUsername ? (
+          {previousUsername === celebrityUsername ? (
             <Redirect
               to={ROUTING_PATHS.CELEBRITY_PROFILE.replace(
                 ":celebrity_username",
