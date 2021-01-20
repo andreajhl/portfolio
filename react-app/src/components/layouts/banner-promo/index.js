@@ -34,7 +34,7 @@ class BannerPromoLayout extends Component {
         getDiscountCouponBanner().then(res => {
             this.setState({
                 coupon: res['couponCode'],
-                discount: parseFloat(res['discount_amount']) * 10,
+                discount: parseFloat(res['discount_amount']) * 100,
             });
         });
     }
