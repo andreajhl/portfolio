@@ -1,6 +1,11 @@
 @import '../../../theme.scss';
+@import '../../../constants/breakpoints.scss';
+
 .container-subscription-feed{
     min-height: 80vh;
+    @media only screen and (max-width: $screen-md-min) {
+        padding: 0;
+    }
 }
 
 .container-not-post-results{
