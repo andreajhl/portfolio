@@ -66,7 +66,7 @@ class PageContainer extends Component {
         document.querySelector(
           "img[src='https://storage.googleapis.com/m-infra.appspot.com/public/whatsapp/Whatsapp_logo.svg']"
         )?.parentElement,
-      1000,
+      2500,
       100
     );
 
