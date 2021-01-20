@@ -51,7 +51,10 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
     playVideo();
   }, [videoIsLoaded]);
 
-  const showRestartButton = () => setIsFinished(true);
+  const showRestartButton = () => {
+    setIsFinished(true);
+    togglePlay();
+  };
 
   const hideRestartButton = () => {
     const { currentTime, duration } = videoRef.current;
@@ -69,7 +72,7 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
         {IsFinished ? (
           <i
             className={`fa fa-undo-alt restart-icon cursor-pointer`}
-            onClick={playVideo}
+            onClick={togglePlay}
           />
         ) : null}
         <i
