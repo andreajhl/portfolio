@@ -9,10 +9,14 @@ class BannerPromoLayout extends Component {
     constructor() {
         super();
         let dateFinish = moment(new Moment().add(10, "minutes"), "YYYY-MM-DD HH:mm:ss");
-        if (localStorage.getItem("discount_coupon_banner") != null) {
-            dateFinish = moment(localStorage.getItem("discount_coupon_banner"));
-        } else {
-            localStorage.setItem("discount_coupon_banner", dateFinish);
+        if (localStorage.getItem('new_user') != null) {
+            if (localStorage.getItem("discount_coupon_banner") != null) {
+                dateFinish = moment(localStorage.getItem("discount_coupon_banner"));
+            } else {
+                localStorage.setItem("discount_coupon_banner", dateFinish);
+            }
+        }else {
+            dateFinish = moment(new Moment().subtract(10, "minutes"), "YYYY-MM-DD HH:mm:ss");
         }
 
         this.state = {
