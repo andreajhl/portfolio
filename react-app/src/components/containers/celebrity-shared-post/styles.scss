@@ -34,8 +34,16 @@
     }
     &__media-files{
        &__item{
-           img{
-               margin: auto;
+            background-color: rgba(240, 240, 240, 0.192);
+            height: 600px;
+           &-image{
+             object-fit: contain !important;
+             width: 100%;
+             height: 100%;
+            //  height: 500px;
+           }
+           &-video{
+             object-fit: contain !important;
            }
         }
         &__video-control{
@@ -58,12 +66,12 @@
         }
           
         @media only screen and (min-width: 992px) {
-            border-radius: 10px;
+            // border-radius: 10px;
             overflow: hidden;
         }
         .carousel {
               &-item {
-            //    height: 440px;
+              //  height: 600px;
           }
           
            &-indicators {
@@ -77,6 +85,7 @@
                margin-left: 0.5rem;
                margin-right: 0.5rem;
                border-radius: 50%;
+               background-color: #0000007a;
           
                   @media only screen and (min-width: 576px) {
                     height: 0.8rem;
@@ -103,8 +112,27 @@
               }
             }
             .controls-icon {
-              color: inherit;
-              font-size: 24px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 100%;
+              font-size: 18px;
+              height: 30px;
+              width: 30px;
+              background-color: #0000007a;
+              color: rgba(255, 255, 255, 0.589);
             }
           }
+    &__media-file{
+      // height: 600px;
+      &__item-image{
+        object-fit: cover !important;
+        width: 100%;
+        height: 100%;      
+      }
+      &__item-video{
+        height: 600px;      
+        object-fit: contain !important;
+      }
+    }
 }

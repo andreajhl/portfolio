@@ -18,7 +18,8 @@ const VideoSlideLayout = ({
   showFullscreenToggler,
   videoIsFullscreen,
   toggleFullscreen,
-  classNameVideoSlideButtons
+  classNameVideoSlideButtons,
+  classNameSlideLayoutVideo
 }) => {
   const analyticsData = {
     widget: "VideoSlideLayout",
@@ -109,7 +110,9 @@ const VideoSlideLayout = ({
           />
         ) : null}
         <video
-          className='VideoSlideLayout__video'
+          className={`VideoSlideLayout__video  ${
+            classNameSlideLayoutVideo? classNameSlideLayoutVideo: ''
+          }`}
           ref={videoRef}
           controls={false}
           playsInline
@@ -133,8 +136,9 @@ VideoSlideLayout.defaultProps = {
   autoPlayVideo: false,
   setIsPlayingVideo: () => {},
   isPlayingVideo: false,
-  preload: "none",
-  classNameVideoSlideButtons: ""
+  preload: 'none',
+  classNameVideoSlideButtons: '',
+  classNameSlideLayoutVideo: '',
 };
 
 export { VideoSlideLayout };
