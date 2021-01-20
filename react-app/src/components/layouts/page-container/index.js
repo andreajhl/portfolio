@@ -113,7 +113,7 @@ class PageContainer extends Component {
     return (
       <div className="PageContainer">
         {/* NavbarSectionLayout */}
-        <Headroom style={{ zIndex: 100000 }}>
+        <Headroom style={{ zIndex: 100000 }} upTolerance={2.5}>
           {this.props.showNavbar ? (
             <NavbarSectionLayout
               className={hasSearchedOrFiltered ? "hidden-hero" : ""}
