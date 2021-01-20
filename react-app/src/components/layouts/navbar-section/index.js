@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
 import { NavbarSearchLayout } from "../navbar-search";
@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import { Session } from "../../../state/utils/session";
 import * as GTM from "../../../state/utils/gtm";
 import "./styles.scss";
+import {BannerPromoLayout} from "../banner-promo";
 import { DropdownMenuLayout } from "../dropdown-menu";
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
@@ -39,6 +40,7 @@ const NavbarSectionLayout = ({
   return (
     <>
       <div className={`NavbarSectionLayout ${className}`}>
+        <BannerPromoLayout/>
         <div className="top-bar container mx-auto p-0 row">
           <div className="top-bar__left-side col-4 p-0">
             <DropdownMenuLayout

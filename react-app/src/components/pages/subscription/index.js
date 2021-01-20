@@ -9,17 +9,52 @@ import  {PayPalCardForm} from '../../containers/paypal-card-form';
 import {SubscriptionPayPalCardForm} from '../../containers/subscription-paypal-card-form';
 import SubscriptionCheckoutSummary from "../../containers/subscription-checkout-summary";
 import SubscriptionPlansOptions from "../../layouts/subscription-plans-options";
+import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
+import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
+
+const isAlreadySubscribe = (subscriptionList, celebrityUsername) => {
+  if (subscriptionList.length > 0) {
+    const result = subscriptionList.filter(
+      (subscription) => subscription.celebrityUsername === celebrityUsername
+    );
+    console.log(result)
+    if(result.length > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  return false;
+};
 
 const Subscription = (props) => {
-  const {getCelebrity, fetchCelebritySubscriptionPlans,celebrity,celebritySubscriptionPlans, isLoading, isLoadingPlans} = {...props}
+  const {
+    getCelebrity,
+    fetchCelebritySubscriptionPlans,
+    celebrity,
+    celebritySubscriptionPlans,
+    isLoading,
+    isLoadingPlans,
+    getCelebritiesSubscribe,
+    subscriptionList,
+    isSubscriptionListCompletedFetch,
+    history,
+  } = props;
+  console.log(history)
+  const [currentPlanSelected, setCurrentPlanSelected] = useState(null);
+  const onSelectPlan = (planId) => {
+    setCurrentPlanSelected(planId);
+  };
   useEffect(() => {
-    getCelebrity(props.match.params.celebrity_username, true)
+    if(celebritySubscriptionPlans.length > 0){
+      setCurrentPlanSelected(celebritySubscriptionPlans[0].gatewayIdentifier);
+    }
+  }, [celebritySubscriptionPlans]);
+  useEffect(() => {
+    getCelebritiesSubscribe(props.match.params.celebrity_username);
+    getCelebrity(props.match.params.celebrity_username, true);
     fetchCelebritySubscriptionPlans(props.match.params.celebrity_username)
   },[props.match.params.celebrity_username]);
-  const [currentPlanSelected, setCurrentPlanSelected] = useState(null);
-  const onSelectPlan= (planId) =>{
-    setCurrentPlanSelected(planId)
-   }
   
    return (
      <Fragment>
@@ -47,32 +82,52 @@ const Subscription = (props) => {
                </div>
                {isLoadingPlans ? null : celebritySubscriptionPlans.length >
                  0 ? (
-                 <React.Fragment>
-                   <div className='container-subscription-payment__options'>
-                     <SubscriptionPlansOptions
-                       onOptionClicked={onSelectPlan}
-                       currentPlanSelected={currentPlanSelected}
-                       optionsList={celebritySubscriptionPlans}
-                     />
+                 !isAlreadySubscribe(
+                   subscriptionList,
+                   props.match.params.celebrity_username
+                 ) ? (
+                   <React.Fragment>
+                     <div className='container-subscription-payment__options'>
+                       <SubscriptionPlansOptions
+                         onOptionClicked={onSelectPlan}
+                         currentPlanSelected={currentPlanSelected}
+                         optionsList={celebritySubscriptionPlans}
+                       />
+                     </div>
+                     <div
+                       className={`container-subscription-payment__paypalForm ${
+                         currentPlanSelected ? '' : 'd-none'
+                       }`}
+                     >
+                       {currentPlanSelected ? (
+                         <React.Fragment>
+                           <SubscriptionPayPalCardForm
+                             planId={currentPlanSelected}
+                           />
+                         </React.Fragment>
+                       ) : null}
+                     </div>
+                   </React.Fragment>
+                 ) : (
+                   <div className='container-subscription-payment__not-available'>
+                     <h5>
+                       Ya estas suscrito a este famoso
+                       <span role='img' aria-label='smile-face'>
+                         😄
+                       </span>
+                     </h5>
+                     <button
+                       className='btn btn-primary'
+                       onClick={() => props.history.push(FEED_SUBSCRIPTION)}
+                     >
+                       Ver mis suscripciones
+                     </button>
                    </div>
-                   <div
-                     className={`container-subscription-payment__paypalForm ${
-                       currentPlanSelected ? '' : 'd-none'
-                     }`}
-                   >
-                     {currentPlanSelected ? (
-                       <React.Fragment>
-                         <SubscriptionPayPalCardForm
-                           planId={currentPlanSelected}
-                         />
-                       </React.Fragment>
-                     ) : null}
-                   </div>
-                 </React.Fragment>
+                 )
                ) : (
                  <div className='container-subscription-payment__not-available'>
                    <h5>
-                     Actualmente este famoso no tiene planes habilitados{' '}
+                     Actualmente este famoso no tiene planes habilitados
                      <span role='img' aria-label='crying-face'>
                        😢
                      </span>
@@ -89,6 +144,9 @@ const Subscription = (props) => {
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
+  subscriptionList: state.subscriptions.fetchUserSubscriptionsListReducer.data,
+  isSubscriptionListCompletedFetch:
+    state.subscriptions.fetchUserSubscriptionsListReducer.completed,
   isLoading: state.celebrities.getCelebrityReducer.loading,
   isLoadingPlans:
     state.celebrities.fetchCelebritySubscriptionPlansReducer.loading,
@@ -100,6 +158,7 @@ const mapStateToProps = (state) => ({
 
 // mapStateToProps
 const mapDispatchToProps = {
+  getCelebritiesSubscribe: subscriptionsOperations.fetchUserSubscriptionsList,
   getCelebrity: celebrityOperations.get,
   fetchCelebritySubscriptionPlans: celebrityOperations.fetchCelebritySubscriptionPlans,
 };

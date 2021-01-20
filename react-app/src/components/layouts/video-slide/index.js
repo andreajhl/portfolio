@@ -17,7 +17,9 @@ const VideoSlideLayout = ({
   videoPosterUrl,
   showFullscreenToggler,
   videoIsFullscreen,
-  toggleFullscreen
+  toggleFullscreen,
+  classNameVideoSlideButtons,
+  classNameSlideLayoutVideo
 }) => {
   const analyticsData = {
     widget: "VideoSlideLayout",
@@ -69,42 +71,48 @@ const VideoSlideLayout = ({
   }, [autoPlayVideo]);
 
   return (
-    <section className="VideoSlideLayout">
-      <div className="VideoSlideLayout__buttons">
-        <div className="d-flex align-items-center justify-content-end">
+    <section className='VideoSlideLayout'>
+      <div
+        className={`VideoSlideLayout__buttons  ${
+          classNameVideoSlideButtons ? classNameVideoSlideButtons : ''
+        }`}
+      >
+        <div className={`d-flex align-items-center justify-content-end`}>
           <i
             className={`fa fa-2x fa-volume-${
-              videoIsMuted ? "mute" : "up"
+              videoIsMuted ? 'mute' : 'up'
             } volume-icon cursor-pointer`}
             onClick={toggleVideoIsMuted}
           />
           <i
             className={`fa fa-${
-              videoIsPlaying || slideshowIsPlaying ? "pause" : "play"
+              videoIsPlaying || slideshowIsPlaying ? 'pause' : 'play'
             } play-pause cursor-pointer`}
             onClick={togglePlay}
           />
           {showFullscreenToggler ? (
             <i
               className={`fa fa-${
-                videoIsFullscreen ? "compress" : "expand"
+                videoIsFullscreen ? 'compress' : 'expand'
               } fullscreen-icon cursor-pointer`}
               onClick={toggleFullscreen}
             />
           ) : null}
         </div>
       </div>
-      <div className="VideoSlideLayout__media-container">
-        {shouldLoadPoster && preload === "none" && !videoIsLoaded ? (
+      <div className='VideoSlideLayout__media-container'>
+        {shouldLoadPoster && preload === 'none' && !videoIsLoaded ? (
           <img
-            className="VideoSlideLayout__poster"
-            src={videoPosterUrl || "/assets/img/avatar-blank.png"}
+            className='VideoSlideLayout__poster'
+            src={videoPosterUrl || '/assets/img/avatar-blank.png'}
             alt={`Poster de vídeo de famoso`}
             onClick={togglePlay}
           />
         ) : null}
         <video
-          className="VideoSlideLayout__video"
+          className={`VideoSlideLayout__video  ${
+            classNameSlideLayoutVideo? classNameSlideLayoutVideo: ''
+          }`}
           ref={videoRef}
           controls={false}
           playsInline
@@ -128,7 +136,9 @@ VideoSlideLayout.defaultProps = {
   autoPlayVideo: false,
   setIsPlayingVideo: () => {},
   isPlayingVideo: false,
-  preload: "none"
+  preload: 'none',
+  classNameVideoSlideButtons: '',
+  classNameSlideLayoutVideo: '',
 };
 
 export { VideoSlideLayout };

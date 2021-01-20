@@ -1,0 +1,43 @@
+@import "../../../theme";
+
+.ContentBanner {
+  width: 100%;
+  min-height: 70px;
+  background-color: #D14D45;
+  margin: 0 auto;
+}
+
+.display-none {
+  display: none;
+}
+
+.text-style {
+  text-align: center;
+  align-content: center;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.text-button {
+  text-align: center;
+  align-content: center;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  font-size: 16px !important;
+}
+
+.high-text {
+  color: #FBDD35;
+}
+
+.time-style {
+  margin-left: 10px;
+  margin-right: 5px;
+  width: 30px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
