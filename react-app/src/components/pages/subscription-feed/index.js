@@ -40,6 +40,7 @@ const SubscriptionFeed = (props) => {
     setHasMorePost(value);
   }
   const fetchPosts = async (celebrityId,concat, indexFilter,isFirstQuery) => {
+    console.log(celebrityId)
     let documents = []
     const results = await firestoreService.getPostFromCelebrity(
       'dev_posts',
@@ -64,7 +65,7 @@ const SubscriptionFeed = (props) => {
   }, []);
 
   useEffect(() => {
-    if(isSubscriptionListCompletedFetch && subscriptionList.length > 1 && posts.length === 0){
+    if(isSubscriptionListCompletedFetch && subscriptionList.length > 0 && posts.length === 0){
       fetchPosts(subscriptionList[0].celebrityId, false, indexFilter, true);
     }
   },[isSubscriptionListCompletedFetch]);
@@ -78,6 +79,7 @@ const SubscriptionFeed = (props) => {
   const handlerFetchMorePost = () =>{
     fetchPosts(currentChoice, true, indexFilter, false);
   }
+
 
   return (
     <Fragment>
