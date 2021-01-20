@@ -12,14 +12,19 @@ import SubscriptionPlansOptions from "../../layouts/subscription-plans-options";
 
 const Subscription = (props) => {
   const {getCelebrity, fetchCelebritySubscriptionPlans,celebrity,celebritySubscriptionPlans, isLoading, isLoadingPlans} = {...props}
+  const [currentPlanSelected, setCurrentPlanSelected] = useState(null);
+  const onSelectPlan = (planId) => {
+    setCurrentPlanSelected(planId);
+  };
+  useEffect(() => {
+    if(celebritySubscriptionPlans.length > 0){
+      setCurrentPlanSelected(celebritySubscriptionPlans[0].gatewayIdentifier);
+    }
+  }, [celebritySubscriptionPlans]);
   useEffect(() => {
     getCelebrity(props.match.params.celebrity_username, true)
     fetchCelebritySubscriptionPlans(props.match.params.celebrity_username)
   },[props.match.params.celebrity_username]);
-  const [currentPlanSelected, setCurrentPlanSelected] = useState(null);
-  const onSelectPlan= (planId) =>{
-    setCurrentPlanSelected(planId)
-   }
   
    return (
      <Fragment>
