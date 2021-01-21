@@ -50,8 +50,6 @@ const allowedParams = [
   "category_id"
 ];
 
-window.pick = pick;
-
 const CelebritiesResultsPage = ({
   fetchCelebrities,
   isLoading,
