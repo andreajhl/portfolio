@@ -24,8 +24,9 @@ echo
 # shellcheck disable=SC2162
 read -p 'Select an option: ' selectedOption
 clear
-echo
-echo "Deploying ====> ${environments[selectedOption]}..."
+_commitId=$(git log --format="%H" -n 1)
+_branchName=$(git symbolic-ref --short -q HEAD)
+echo "Deploying ====> ${environments[selectedOption]} - ${_commitId}..."
 echo
 
 
@@ -44,7 +45,6 @@ else
 fi
 cp -R build/ ../build
 rm -rf build
-
 cd ../
 
 zip -r zip.zip . \
@@ -58,7 +58,7 @@ zip -r zip.zip . \
  --exclude=.elasticbeanstalk/*
 
 eb use "FamososFrontend-${environments[selectedOption]}"
-eb deploy
+eb deploy -l "${_commitId}"
 
 rm -rf zip.zip
 rm -rf build

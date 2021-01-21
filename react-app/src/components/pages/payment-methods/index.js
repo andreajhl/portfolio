@@ -1,11 +1,11 @@
-import React, {Component} from "react";
-import {PageContainer} from "../../layouts";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { PageContainer } from "../../layouts";
+import { connect } from "react-redux";
 import "./styles.scss";
-import {paymentsOperations} from "../../../state/ducks/payments";
+import { paymentsOperations } from "../../../state/ducks/payments";
 import * as GTM from "../../../state/utils/gtm";
-import {StripeProvider} from "react-stripe-elements";
-import {PaymentMethodsSection} from "../../containers/payment-methods-section";
+import { StripeProvider } from "react-stripe-elements";
+import { PaymentMethodsSection } from "../../containers/payment-methods-section";
 import * as PATHS from "../../../routing/Paths";
 
 class PaymentMethodsPage extends Component {
@@ -16,30 +16,26 @@ class PaymentMethodsPage extends Component {
 
   componentDidMount() {
     this.props.getContractToPay(this.props.match.params.contract_reference);
-    GTM.tagManagerDataLayer(
-        "PAYMENT_METHODS_PAGE_VIEW",
-        this.props.match
-    );
+    GTM.tagManagerDataLayer("PAYMENT_METHODS_PAGE_VIEW", this.props.match);
   }
 
   render() {
     return (
-        <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
-            <PageContainer
-                applyFetchCelebrities={false}
-                showSearch={false}
-                showNavbarButtons={false}
-                showSearchWeb={false}
-                showInputSearchSm={false}
-                showLogin={false}
-                showFooter={false}
-                hideControls={true}
-            >
-              <PaymentMethodsSection
-                  contractData={this.props.contract}
-              />
-            </PageContainer>
-        </StripeProvider>
+      <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
+        <PageContainer
+          applyFetchCelebrities={false}
+          showSearch={false}
+          showNavbarButtons={false}
+          showSearchWeb={false}
+          showInputSearchSm={false}
+          showLogin={false}
+          showFooter={false}
+          hideControls={true}
+          showBotMakerFrame
+        >
+          <PaymentMethodsSection contractData={this.props.contract} />
+        </PageContainer>
+      </StripeProvider>
     );
   }
 }
@@ -66,7 +62,7 @@ const mapDispatchToProps = {
 
 // Export Class
 const _PaymentMethodsPage = connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(PaymentMethodsPage);
 export { _PaymentMethodsPage as PaymentMethodsPage };

@@ -61,7 +61,7 @@ class NavbarSearchLayout extends Component {
   }
 
   onSearchChange(keyword) {
-    if (this.props.isLoading) return;
+    // if (this.props.isLoading) return; EVITAR QUE SE REALICEN MÁS PETICIONES
     if (keyword) localStorage.setItem(shouldFocusSearchKey, true);
     GTM.tagManagerDataLayer("CELEBRITIES_SEARCH_CHANGED", {
       search: this.state.keyword,

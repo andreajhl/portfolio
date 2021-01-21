@@ -6,7 +6,7 @@ import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import * as GTM from "../../../state/utils/gtm";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
 import useLoad from "../../../utils/useLoad";
-import useImageHasDesiredAspectRatio from "../../../utils/useImageHasDesiredAspectRatio";
+import { CELEBRITY_PROFILE } from "../../../routing/Paths";
 
 const VideoCardLayout = ({
   celebrityId,
@@ -20,21 +20,14 @@ const VideoCardLayout = ({
   footerSection
 }) => {
   const [videoIsLoaded, onVideoLoadedData] = useLoad();
-  const [imageRef, shouldUseDefaultStyles] = useImageHasDesiredAspectRatio({
-    desiredAspectRatio: "16:9"
-  });
-
-  const { videoRef, videoIsPlaying, playVideo, togglePlay } = useVideoPlayer(
-    videoKey,
-    {
-      onPlayVideo() {
-        GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
-      },
-      onPauseVideo() {
-        GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
-      }
+  const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
+    onPlayVideo() {
+      GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
+    },
+    onPauseVideo() {
+      GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
     }
-  );
+  });
 
   const analyticsData = {
     widget: "VideoCardLayout",
@@ -60,23 +53,21 @@ const VideoCardLayout = ({
   return (
     <div className="VideoCardLayout" onMouseOver={registerVideoCardHover}>
       <div className="video-card">
-        <section
-          className={`video-card__media ${
-            !shouldUseDefaultStyles ? "video-card__media-alternative" : ""
-          }`}
-        >
+        <section className="video-card__media">
           {!videoIsLoaded ? (
             <img
               className="video-card__poster"
-              src={videoPosterUrl || "/assets/img/avatar-blank.png"}
+              src={
+                videoPosterUrl ||
+                celebrityAvatar ||
+                "/assets/img/avatar-blank.png"
+              }
               alt={`Poster de vídeo de ${celebrityFullName}`}
-              onClick={playVideo}
-              ref={imageRef}
+              onClick={togglePlay}
             />
           ) : null}
           <video
             className="video-card__video"
-            style={{ opacity: videoIsLoaded ? 1 : 0 }}
             src={videoUrl}
             preload="none"
             playsInline
@@ -102,7 +93,10 @@ const VideoCardLayout = ({
           <footer className="d-flex align-items-center px-2 video-card__footer">
             <NavLink
               className="d-flex align-items-center video-card__celebrity-profile-link"
-              to={celebrityUsername}
+              to={CELEBRITY_PROFILE.replace(
+                ":celebrity_username",
+                celebrityUsername
+              )}
               onClick={registerCelebrityUsernameClick}
               onMouseOver={registerCelebrityUsernameHover}
             >
