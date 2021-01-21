@@ -66,7 +66,8 @@ class PageContainer extends Component {
         document.querySelector(
           "img[src='https://storage.googleapis.com/m-infra.appspot.com/public/whatsapp/Whatsapp_logo.svg']"
         )?.parentElement,
-      1000
+      2500,
+      100
     );
 
     if (!botMakerFrame) return;
@@ -112,7 +113,7 @@ class PageContainer extends Component {
     return (
       <div className="PageContainer">
         {/* NavbarSectionLayout */}
-        <Headroom style={{ zIndex: 100000 }}>
+        <Headroom style={{ zIndex: 100000 }} upTolerance={2.5}>
           {this.props.showNavbar ? (
             <NavbarSectionLayout
               className={hasSearchedOrFiltered ? "hidden-hero" : ""}

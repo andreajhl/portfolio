@@ -29,7 +29,7 @@ const FourZeroFourCelebrityProfile = ({
     <>
       <PageContainer applyFetchCelebrities={false} showFooter>
         <div className="FourZeroFourCelebrityProfile">
-          {previousUsername ? (
+          {previousUsername === celebrityUsername ? (
             <Redirect
               to={ROUTING_PATHS.CELEBRITY_PROFILE.replace(
                 ":celebrity_username",
@@ -48,7 +48,7 @@ const FourZeroFourCelebrityProfile = ({
                 <div className="FourZeroFourCelebrityProfile__banner-content p-4">
                   <h3 className="FourZeroFourCelebrityProfile__banner-title order-1 order-md-0">
                     No se encontró un <br />
-                    famoso con el usuario{" "}
+                    famoso con el usuario <br className="d-none d-lg-inline" />
                     <span className="FourZeroFourCelebrityProfile__banner-username">
                       {celebrityUsername}
                     </span>

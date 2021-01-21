@@ -9,20 +9,24 @@
 }
 
 .top-bar {
-  & > * {
-    // border: 1px solid black;
-  }
-
   &__center-side {
     display: flex;
     align-items: center;
     justify-content: center;
   }
   &-helper {
-    height: 200px;
+    height: 113px;
 
     &.hidden-search {
-      height: 120px;
+      height: 53px;
+    }
+
+    &.show-coupon-banner {
+      height: 200px;
+
+      &.hidden-search {
+        height: 120px;
+      }
     }
   }
 

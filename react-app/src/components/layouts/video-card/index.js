@@ -6,6 +6,7 @@ import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import * as GTM from "../../../state/utils/gtm";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
 import useLoad from "../../../utils/useLoad";
+import { CELEBRITY_PROFILE } from "../../../routing/Paths";
 
 const VideoCardLayout = ({
   celebrityId,
@@ -92,7 +93,10 @@ const VideoCardLayout = ({
           <footer className="d-flex align-items-center px-2 video-card__footer">
             <NavLink
               className="d-flex align-items-center video-card__celebrity-profile-link"
-              to={celebrityUsername}
+              to={CELEBRITY_PROFILE.replace(
+                ":celebrity_username",
+                celebrityUsername
+              )}
               onClick={registerCelebrityUsernameClick}
               onMouseOver={registerCelebrityUsernameHover}
             >
