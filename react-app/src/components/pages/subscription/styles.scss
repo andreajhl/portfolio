@@ -26,10 +26,14 @@
         margin-top: 20px;
         background-color: #f8f9fa;
         border-radius: 5px;
-        height: 100px;
+        height: 150px;
         padding: 20px;
         display: flex;
+        flex-flow: column;
+        margin-bottom: 30px;
+        justify-content: center;
         align-items: center;
+        text-align: center;
         h5{
             font-weight: bold;
         }

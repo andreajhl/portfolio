@@ -152,6 +152,11 @@ class MyRoutes extends Component {
             />
             <PrivateRoute
               exact
+              path={PATHS.CLIENT_SUBSCRIPTIONS}
+              component={PAGES.ClientSubscriptions}
+            />
+            <PrivateRoute
+              exact
               path={PATHS.FEED_SUBSCRIPTION}
               component={PAGES.SubscriptionFeed}
             />
@@ -191,6 +196,11 @@ class MyRoutes extends Component {
               component={PAGES.AuthFlowPage}
             />
 
+            <Route
+                exact
+                path={PATHS.SESSION_REDIRECT}
+                component={PAGES.SessionRedirectPage}
+            />
             {/* ------- */}
             <Route
               exact

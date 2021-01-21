@@ -4,7 +4,7 @@ import debounce from "lodash.debounce";
 
 import './styles.scss';
 const CarouselAvailableSubscriptions = (props) => {
-  const {celebrities,handlerSelectCelebrity} = {...props}
+  const { celebrities, handlerSelectCelebrity, currentChoice } = { ...props };
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(false);
   const [showRightScrollButton, setShowRightScrollButton] = useState(false);
   
@@ -57,8 +57,15 @@ const CarouselAvailableSubscriptions = (props) => {
           ref={subscriptionListRef}
         >
           {celebrities.map((celebrity, index) => (
-            <li key={index} className='carousel-available-subscriptions__item'>
-              <AvatarCelebrity onClickHandler={handleSelect} celebrity={celebrity}/>
+            <li
+              key={index}
+              className='carousel-available-subscriptions__item selected'
+            >
+              <AvatarCelebrity
+                isSelected={celebrity.celebrityId === currentChoice}
+                onClickHandler={handleSelect}
+                celebrity={celebrity}
+              />
             </li>
           ))}
         </ul>

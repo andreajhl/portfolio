@@ -17,15 +17,22 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
       <div className="row container mx-auto py-lg-4 p-0">
         <div className="col-12 col-lg-4 order-lg-1 p-0 m-0 px-sm-3">
           {hasPublicContracts ? (
-            <CelebrityHeroSlideshow celebrityMainVideo={celebrity.mainVideo} />
+            <CelebrityHeroSlideshow
+              celebrityAvatar={celebrity.avatar}
+              celebrityMainVideo={celebrity.mainVideo}
+            />
           ) : (
-            <ResizableMainVideo mainVideoUrl={celebrity.mainVideo} />
+            <ResizableMainVideo
+              mainVideoUrl={celebrity.mainVideo}
+              videoPosterUrl={celebrity.avatar}
+            />
           )}
         </div>
         <div className="col-12 col-lg-8 p-0 m-0 px-sm-3">
           <CelebrityDetails celebrity={celebrity} variant="2" />
         </div>
       </div>
+      <HowToGetAVideoMessageLayout />
 
       {/* <CelebrityPublicContractsSectionLayout
         contractTypes={celebrity.contractTypes}
@@ -44,11 +51,12 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
       {/* <SimilarCelebritiesCardsSectionLayout
         celebrityUsername={celebrity.username}
       /> */}
-      <SimilarCelebrityContractsSectionLayout
-        celebrityUsername={celebrity.username}
-      />
       <CelebrityReviewsSectionLayout celebrityId={celebrity.id} />
-      <HowToGetAVideoMessageLayout />
+      <div className="py-4">
+        <SimilarCelebrityContractsSectionLayout
+          celebrityUsername={celebrity.username}
+        />
+      </div>
     </>
   ) : (
     <CelebrityProfileLayoutB celebrity={celebrity} />

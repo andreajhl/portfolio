@@ -9,6 +9,9 @@ import { LoaderLayout } from "../../layouts/loader";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
 import './styles.scss';
 
+const getCelebritySelected = (celebritiesList, currentChoice) =>
+  celebritiesList.find((celebrity) => celebrity.celebrityId === currentChoice);
+
 const NotPostsResults= ({message}) => {
   return (
     <div className='container-not-post-results'>
@@ -23,11 +26,33 @@ const NotPostsResults= ({message}) => {
 }
 
 const SubscriptionFeed = (props) => {
+  const [hasMorePost, setHasMorePost] = useState(true);
+  const [indexFilter, setIndexFilter] = useState(null);
+  const [currentChoice, setCurrentChoice] = useState(null);
   const {getCelebritiesSubscribe, subscriptionList,isSubscriptionListCompletedFetch } = { ...props };
   const [postFetched, setPostFetched] = useState(false);
   const [posts, setPosts] = useState([]);
-  const fetchPosts = async (celebrityId,concat = true) => {
-    const documents = await firestoreService.getPostFromCelebrity('dev_posts',celebrityId)
+  const handlerUpdateFilterRange= (value) => {
+    setIndexFilter(value);
+  }
+  const handlerUpdateHasMorePost = (value)=>{
+    setHasMorePost(value);
+  }
+  const fetchPosts = async (celebrityId,concat, indexFilter,isFirstQuery) => {
+    console.log(celebrityId)
+    let documents = []
+    const results = await firestoreService.getPostFromCelebrity(
+      'dev_posts',
+      celebrityId,
+      indexFilter,
+      handlerUpdateFilterRange,
+      isFirstQuery,
+      handlerUpdateHasMorePost
+    );
+    if(results){
+      documents = results;
+    }
+    setCurrentChoice(celebrityId);
     setPostFetched(true);
     concat
       ? setPosts((prevState) => prevState.concat(documents))
@@ -39,16 +64,21 @@ const SubscriptionFeed = (props) => {
   }, []);
 
   useEffect(() => {
-    if(isSubscriptionListCompletedFetch && subscriptionList.length > 1 && posts.length === 0){
-      subscriptionList.forEach((celebrityData) =>
-        fetchPosts(celebrityData.celebrityId)
-      );
+    if(isSubscriptionListCompletedFetch && subscriptionList.length > 0 && posts.length === 0){
+      fetchPosts(subscriptionList[0].celebrityId, false, indexFilter, true);
     }
   },[isSubscriptionListCompletedFetch]);
 
   const fetchPostFromCelebrity = (celebrityID) =>{
-    fetchPosts(celebrityID,false)
+    setIndexFilter(null);
+    handlerUpdateHasMorePost(true);
+    fetchPosts(celebrityID, false, null, true);
   }
+
+  const handlerFetchMorePost = () =>{
+    fetchPosts(currentChoice, true, indexFilter, false);
+  }
+
 
   return (
     <Fragment>
@@ -64,12 +94,15 @@ const SubscriptionFeed = (props) => {
       <PageContainer>
         <Container className='container-subscription-feed'>
           <Row>
-            <Col md='9' className='mx-auto'>
+            <Col md='9' className='mx-auto' style={{ padding: '0px' }}>
               {isSubscriptionListCompletedFetch ? (
-                <CarouselAvailableSubscriptions
-                  handlerSelectCelebrity={fetchPostFromCelebrity}
-                  celebrities={subscriptionList}
-                />
+                subscriptionList.length > 0 ? (
+                  <CarouselAvailableSubscriptions
+                    currentChoice={currentChoice}
+                    handlerSelectCelebrity={fetchPostFromCelebrity}
+                    celebrities={subscriptionList}
+                  />
+                ) : null
               ) : (
                 <LoaderLayout />
               )}
@@ -77,8 +110,13 @@ const SubscriptionFeed = (props) => {
               subscriptionList.length > 0 ? (
                 posts.length > 0 ? (
                   <CelebrityFeedPosts
+                    hasMorePost={hasMorePost}
+                    onFetchMorePost={handlerFetchMorePost}
                     posts={posts}
-                    subscriptionList={subscriptionList}
+                    celebrityData={getCelebritySelected(
+                      subscriptionList,
+                      currentChoice
+                    )}
                   />
                 ) : postFetched ? (
                   <NotPostsResults message='Oops! Al parecer no hay publicaciones actualmente' />

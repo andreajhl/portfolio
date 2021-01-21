@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { CelebritiesFilter } from "../celebrities-filter";
 import { CelebritiesOrderBy } from "../celebrities-order-by";
@@ -9,6 +9,8 @@ import { countriesOperations } from "../../../state/ducks/countries";
 import { celebrityCategoriesOperations } from "../../../state/ducks/celebrity-categories";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
+import { queryStringToJSON } from "../../../state/utils/apiService";
+import { withRouter } from "react-router";
 
 const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
   return {
@@ -35,16 +37,19 @@ const initialState = {
 };
 
 const FiltersSectionLayout = ({
+  className = "",
   countries,
   celebrityCategories,
-  queryParams,
   updateQueryParams,
   listCountries,
   listCelebrityCategories,
-  listRestCountries,
-  showCleanFiltersButton
+  location
 }) => {
   const [params, setParams] = useState(initialState.params);
+  const queryString = location.search;
+  const queryParams = useMemo(() => queryStringToJSON(queryString), [
+    queryString
+  ]);
 
   const setFilterParam = (paramName) => (paramValues) =>
     setParams((params) => ({
@@ -69,7 +74,6 @@ const FiltersSectionLayout = ({
       !countries.length && !celebrityCategories.length;
     if (!shouldFetchFilterOptions) return;
     listCountries({ orderBy: "name asc" });
-    listRestCountries();
     listCelebrityCategories({ orderBy: "title asc" });
   }, []);
 
@@ -84,9 +88,11 @@ const FiltersSectionLayout = ({
     });
   };
 
+  const showCleanFiltersButton = queryString !== "" && !queryParams.search;
+
   return (
-    <section className="FiltersSectionLayout">
-      <div className="filters-section__container container pt-3">
+    <section className={`FiltersSectionLayout ${className}`}>
+      <div className="filters-section__container container pt-1">
         <h2 className="filters-section__title ml-2">Filtrar por:</h2>
         <ul className="filters-section__filters-list p-0">
           {showCleanFiltersButton ? (
@@ -151,5 +157,6 @@ FiltersSectionLayout.defaultProps = {
 const _FiltersSectionLayout = connect(
   mapStateToProps,
   mapDispatchToProps
-)(FiltersSectionLayout);
+)(withRouter(FiltersSectionLayout));
+
 export { _FiltersSectionLayout as FiltersSectionLayout };
