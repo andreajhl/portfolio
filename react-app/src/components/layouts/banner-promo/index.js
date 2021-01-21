@@ -71,7 +71,7 @@ class BannerPromoLayout extends Component {
                 <div className={!this.props.showCouponBanner ? "d-none" : ""}>
                     <div
                         className="ContentBanner row mx-auto p-0 text-center align-items-center justify-content-center">
-                        <div className="col-md-2 text-style text-center">
+                        <div className="col-md-3 text-style text-center">
                             Usa el código: {this.state.coupon}
                         </div>
                         <div className="col-md-2 text-style high-text text-center">
