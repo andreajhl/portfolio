@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import "./styles.scss";
-import Moment from 'moment';
+import Moment from "moment";
 import moment from "moment";
 import {getDiscountCouponBanner} from "../../../state/ducks/discount_coupons/actions";
 
@@ -9,73 +9,96 @@ class BannerPromoLayout extends Component {
     constructor() {
         super();
         this.state = {
-            showDiv: true,
             diffTime: null,
             coupon: "",
             discount: 0,
             dateFinish: null,
         };
-        this.calculateDiff();
+
     }
 
     componentDidMount(): void {
-        this.runTimer();
-        getDiscountCouponBanner().then(res => {
-            let dateFinish = moment(new Moment().add(10, "minutes"), "YYYY-MM-DD HH:mm:ss");
+        getDiscountCouponBanner().then((res) => {
+            this.setState({
+                coupon: res?.couponCode,
+                discount: parseFloat(res?.discount_amount || 0) * 100,
+                bannerTime: res?.bannerTime,
+            });
+            let dateFinish = moment(
+                new Moment().add(this.state.bannerTime, "minutes"),
+                "YYYY-MM-DD HH:mm:ss"
+            );
+
             if (localStorage.getItem("discount_coupon_banner") != null) {
                 dateFinish = moment(localStorage.getItem("discount_coupon_banner"));
             } else {
                 localStorage.setItem("discount_coupon_banner", dateFinish);
             }
             this.setState({
-                coupon: res['couponCode'],
-                discount: parseFloat(res['discount_amount']) * 100,
                 dateFinish: dateFinish,
             });
+            this.runTimer();
         });
     }
 
     calculateDiff() {
-        this.setState({diffTime: moment.utc(moment(this.state.dateFinish, "YYYY-MM-DD HH:mm:ss").diff(moment(new Moment(), "YYYY-MM-DD HH:mm:ss"))).format("HH:mm:ss")});
+        this.setState({
+            diffTime: moment
+                .utc(
+                    moment(this.state.dateFinish, "YYYY-MM-DD HH:mm:ss").diff(
+                        moment(new Moment(), "YYYY-MM-DD HH:mm:ss")
+                    )
+                )
+                .format("HH:mm:ss")
+        });
     }
 
-  runTimer() {
-    this.timerId = setInterval(() => {
-      this.calculateDiff();
-      if (this.state.dateFinish.diff(new Moment()) <= 0) {
-        clearInterval(this.timerId);
-        this.props.setShowCouponBanner(false);
-      } else {
-        this.props.setShowCouponBanner(true);
-      }
-    }, 1000);
-  }
+    runTimer() {
+        this.timerId = setInterval(() => {
+            this.calculateDiff();
+            if (this.state.dateFinish.diff(new Moment()) <= 0) {
+                clearInterval(this.timerId);
+                this.props.setShowCouponBanner(false);
+            } else {
+                this.props.setShowCouponBanner(true);
+            }
+        }, 1000);
+    }
 
     render() {
         return (
             <>
-                <div className={this.state.showDiv && this.state.dateFinish != null ? "display-none" : ""}>
+                <div className={!this.props.showCouponBanner ? "d-none" : ""}>
                     <div
                         className="ContentBanner row mx-auto p-0 text-center align-items-center justify-content-center">
-                        <div className="col-md-3 text-style text-center">Usa el código: {this.state.coupon}</div>
-                        <div className="col-md-2 text-style high-text text-center">{this.state.discount}% de descuento
+                        <div className="col-md-2 text-style text-center">
+                            Usa el código: {this.state.coupon}
+                        </div>
+                        <div className="col-md-2 text-style high-text text-center">
+                            {this.state.discount}% de descuento
                         </div>
                         <div className="col-md-3 text-center align-items-center justify-content-center">
                             <div className="row text-style text-center align-items-center justify-content-center mb-1">
                                 Termina en
                                 <div className="time-style">
-                                    {this.state.diffTime != null ? moment(this.state.diffTime, "hh:mm:ss").hours() : 0}
+                                    {this.state.diffTime != null
+                                        ? moment(this.state.diffTime, "hh:mm:ss").hours()
+                                        : 0}
                                 </div>
                                 H
                                 <div className="">
                                     <div className="time-style">
-                                        {this.state.diffTime != null ? moment(this.state.diffTime, "hh:mm:ss").minutes() : 0}
+                                        {this.state.diffTime != null
+                                            ? moment(this.state.diffTime, "hh:mm:ss").minutes()
+                                            : 0}
                                     </div>
                                 </div>
                                 M
                                 <div className="">
                                     <div className="time-style">
-                                        {this.state.diffTime != null ? moment(this.state.diffTime, "hh:mm:ss").seconds() : 0}
+                                        {this.state.diffTime != null
+                                            ? moment(this.state.diffTime, "hh:mm:ss").seconds()
+                                            : 0}
                                     </div>
                                 </div>
                                 S
@@ -86,50 +109,7 @@ class BannerPromoLayout extends Component {
             </>
         );
     }
-  render() {
-    return (
-      <>
-        <div className={!this.props.showCouponBanner ? "d-none" : ""}>
-          <div className="ContentBanner row mx-auto p-0 text-center align-items-center justify-content-center">
-            <div className="col-md-2 text-style text-center">
-              Usa el código: {this.state.coupon}
-            </div>
-            <div className="col-md-2 text-style high-text text-center">
-              {this.state.discount}% de descuento
-            </div>
-            <div className="col-md-3 text-center align-items-center justify-content-center">
-              <div className="row text-style text-center align-items-center justify-content-center mb-1">
-                Termina en
-                <div className="time-style">
-                  {this.state.diffTime != null
-                    ? moment(this.state.diffTime, "hh:mm:ss").hours()
-                    : 0}
-                </div>
-                H
-                <div className="">
-                  <div className="time-style">
-                    {this.state.diffTime != null
-                      ? moment(this.state.diffTime, "hh:mm:ss").minutes()
-                      : 0}
-                  </div>
-                </div>
-                M
-                <div className="">
-                  <div className="time-style">
-                    {this.state.diffTime != null
-                      ? moment(this.state.diffTime, "hh:mm:ss").seconds()
-                      : 0}
-                  </div>
-                </div>
-                S
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
 }
 
 const _BannerPromoLayout = connect()(BannerPromoLayout);
-export { _BannerPromoLayout as BannerPromoLayout };
+export {_BannerPromoLayout as BannerPromoLayout};
