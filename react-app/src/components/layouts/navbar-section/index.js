@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import { Session } from "../../../state/utils/session";
 import * as GTM from "../../../state/utils/gtm";
 import "./styles.scss";
-import {BannerPromoLayout} from "../banner-promo";
+import { BannerPromoLayout } from "../banner-promo";
 import { DropdownMenuLayout } from "../dropdown-menu";
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
@@ -36,11 +36,15 @@ const NavbarSectionLayout = ({
   dropdownMenuIsOpen,
   setDropdownMenuIsOpen
 }) => {
+  const [showCouponBanner, setShowCouponBanner] = useState(false);
   const isLogged = new Session().getSession();
   return (
     <>
       <div className={`NavbarSectionLayout ${className}`}>
-        <BannerPromoLayout/>
+        <BannerPromoLayout
+          showCouponBanner={showCouponBanner}
+          setShowCouponBanner={setShowCouponBanner}
+        />
         <div className="top-bar container mx-auto p-0 row">
           <div className="top-bar__left-side col-4 p-0">
             <DropdownMenuLayout
@@ -101,7 +105,9 @@ const NavbarSectionLayout = ({
         </div>
       </div>
       <div
-        className={`top-bar-helper ${!showSearch ? "hidden-search" : ""}`}
+        className={`top-bar-helper ${!showSearch ? "hidden-search" : ""} ${
+          showCouponBanner ? "show-coupon-banner" : ""
+        }`}
       ></div>
     </>
   );
