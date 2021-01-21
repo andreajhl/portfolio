@@ -12,6 +12,7 @@ import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
 import { CelebritiesAdditionalResultsLayout } from "../../layouts/celebrities-additional-results";
+import pick from "lodash.pick";
 
 const mapStateToProps = ({ celebrities }) => {
   return {
@@ -41,6 +42,14 @@ const hasSearched = (listParams) => {
   );
 };
 
+const allowedParams = [
+  "search",
+  "limit",
+  "offset",
+  "country_id",
+  "category_id"
+];
+
 const CelebritiesResultsPage = ({
   fetchCelebrities,
   isLoading,
@@ -54,9 +63,10 @@ const CelebritiesResultsPage = ({
 }) => {
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
   const queryString = location.search;
-  const listParams = useMemo(() => queryStringToJSON(queryString), [
-    queryString
-  ]);
+  const listParams = useMemo(
+    () => pick(queryStringToJSON(queryString), allowedParams),
+    [queryString]
+  );
 
   useEffect(() => requestCancel, [requestCancel]);
 

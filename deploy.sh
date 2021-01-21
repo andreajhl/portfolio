@@ -58,7 +58,7 @@ zip -r zip.zip . \
  --exclude=.elasticbeanstalk/*
 
 eb use "FamososFrontend-${environments[selectedOption]}"
-eb deploy -l "${_commitId}"
+eb deploy -l "${_commitId}"-${environments[selectedOption]}
 
 rm -rf zip.zip
 rm -rf build
