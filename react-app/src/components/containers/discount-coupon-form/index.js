@@ -27,8 +27,11 @@ class index extends Component {
     const error = message.split(" ");
     if (error[0] === "MINIMUN_PURCHASE_ERROR") {
       const minimumPurchaseAmount = parseInt(error[1]);
-      const contractPrice =
-        minimumPurchaseAmount * this.props.currencyExchangeData.rate;
+      let contractPrice = minimumPurchaseAmount;
+      if (this.props.currencyExchangeData.rate) {
+        contractPrice =
+          minimumPurchaseAmount * this.props.currencyExchangeData.rate;
+      }
       return (
         <React.Fragment>
           Este cupón es válido para compras mayores o iguales a

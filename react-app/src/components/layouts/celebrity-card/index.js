@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./styles.scss";
 import { history } from "../../../routing/History";
@@ -14,12 +14,14 @@ import { CountryFlag } from "../../containers/celebrity-country-flag";
 const CelebrityCardLayout = ({ celebrity, currencyExchangeData }) => {
   const [avatarIsLoaded, setAvatarIsLoaded] = useState(false);
   const finishAvatarLoad = () => setAvatarIsLoaded(true);
-
-  const contractPrice =
-    currencyExchangeData.rate > 1
-      ? celebrity.videoMessagePrice * currencyExchangeData.rate +
-        celebrity.videoMessagePrice
-      : celebrity.videoMessagePrice;
+  const [contractPrice, setContractPrice] = useState(0);
+  useEffect(() => {
+    let convertedPrice = celebrity.videoMessagePrice;
+    if (currencyExchangeData.rate) {
+      convertedPrice = celebrity.videoMessagePrice * currencyExchangeData.rate;
+    }
+    setContractPrice(convertedPrice);
+  }, [currencyExchangeData]);
 
   const profileUrl = PATHS.CELEBRITY_PROFILE.replace(
     ":celebrity_username",
@@ -37,12 +39,12 @@ const CelebrityCardLayout = ({ celebrity, currencyExchangeData }) => {
       to={profileUrl}
       onClick={registerClickOnCelebrity}
       onMouseOver={registerHoverOnCelebrity}
-      className="CelebrityCardLayout"
+      className='CelebrityCardLayout'
     >
-      <div className="celebrity-card">
-        <div className="thumbnail">
+      <div className='celebrity-card'>
+        <div className='thumbnail'>
           <img
-            alt="avatar"
+            alt='avatar'
             className={`celebrity__profile-photo ${
               !avatarIsLoaded ? "d-none" : ""
             }`}
@@ -50,19 +52,19 @@ const CelebrityCardLayout = ({ celebrity, currencyExchangeData }) => {
             src={celebrity.avatar}
           />
           <img
-            src="/assets/img/avatar-blank.png"
-            alt="avatar"
+            src='/assets/img/avatar-blank.png'
+            alt='avatar'
             className={`celebrity__profile-photo ${
               avatarIsLoaded ? "d-none" : ""
             }`}
           />
           {celebrity.availableForFlashDeliveries ? (
-            <FlashDeliveryBadgeLayout className="celebrity__flash-delivery" />
+            <FlashDeliveryBadgeLayout className='celebrity__flash-delivery' />
           ) : null}
           {contractPrice > 0 ? (
-            <div className="celebrity__price">
+            <div className='celebrity__price'>
               <ContractPriceLayout
-                classes="celebrity__price__text"
+                classes='celebrity__price__text'
                 price={contractPrice}
                 currency={currencyExchangeData.to}
                 rounding={true}
@@ -70,17 +72,17 @@ const CelebrityCardLayout = ({ celebrity, currencyExchangeData }) => {
             </div>
           ) : null}
         </div>
-        <div className="celebrity-details">
-          <div className="celebrity-info">
+        <div className='celebrity-details'>
+          <div className='celebrity-info'>
             <CountryFlag
-              className="celebrity__country"
+              className='celebrity__country'
               countryCode={celebrity.countryCode}
-              width="20px"
+              width='20px'
             />
-            <span className="celebrity__category">{celebrity.title}</span>
+            <span className='celebrity__category'>{celebrity.title}</span>
             <CelebrityFavoriteButton celebrityId={celebrity.id} />
           </div>
-          <h3 className="celebrity__full-name">{celebrity.fullName}</h3>
+          <h3 className='celebrity__full-name'>{celebrity.fullName}</h3>
         </div>
       </div>
     </NavLink>
