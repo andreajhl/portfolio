@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import MetaTags from "react-meta-tags";
 import {
   PageContainer,
-  FiltersSectionLayout,
   CelebritiesResultsShimmerCardsLayout,
   CelebritiesResultsLayout
 } from "../../layouts";
@@ -47,7 +46,8 @@ const allowedParams = [
   "limit",
   "offset",
   "country_id",
-  "category_id"
+  "category_id",
+  "orderBy"
 ];
 
 const CelebritiesResultsPage = ({
