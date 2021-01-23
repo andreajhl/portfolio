@@ -12,9 +12,15 @@ const waitFor = (
   if (typeof totalTries !== "number") {
     throw new TypeError("Received `totalTries` arg must be a number");
   }
+  let tries = totalTries;
+
+  const firstTry = resultCallback();
+  tries--;
+  if (firstTry) {
+    return firstTry;
+  }
 
   let interval;
-  let tries = totalTries;
 
   return new Promise((resolve) => {
     interval = setInterval(() => {
