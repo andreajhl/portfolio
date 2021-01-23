@@ -74,14 +74,13 @@ class PageContainer extends Component {
           "img[src='https://storage.googleapis.com/m-infra.appspot.com/public/whatsapp/Whatsapp_logo.svg']"
         )?.parentElement,
       500,
-      100
+      500
     );
     const isAsync = typeof botMakerChild.then === "function";
 
     if (isAsync) {
-      this.setState({ botMakerChild }, () => {
-        botMakerChild.then(this.setBotmakerDisplay);
-      });
+      botMakerChild.then(this.setBotmakerDisplay);
+      this.setState({ botMakerChild });
     } else {
       this.setBotmakerDisplay(botMakerChild);
     }
