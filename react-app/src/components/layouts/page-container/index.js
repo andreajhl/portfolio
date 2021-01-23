@@ -49,7 +49,6 @@ class PageContainer extends Component {
     }
 
     this.changeBotmakerDisplay();
-
     /* if (this.props.applyFetchCelebrities === true) {
       const queryParams = this.props.queryParams;
       if (!window.location.search) {
@@ -59,8 +58,8 @@ class PageContainer extends Component {
     } */
   }
 
-  changeBotmakerDisplay = async () => {
-    const botMakerFrame = await waitFor(
+  changeBotmakerDisplay = () => {
+    const botMakerChild = waitFor(
       () =>
         document.querySelector("iframe[title='Botmaker']") ||
         document.querySelector(
@@ -69,8 +68,16 @@ class PageContainer extends Component {
       2500,
       100
     );
+    const isAsync = typeof botMakerChild.then === "function";
+    if (isAsync) {
+      botMakerChild.then(this.setBotmakerDisplay);
+    } else {
+      this.setBotmakerDisplay(botMakerChild);
+    }
+  };
 
-    if (!botMakerFrame) return;
+  setBotmakerDisplay = (botMakerChild) => {
+    if (!botMakerChild) return;
 
     let botmakerParentDisplay = "none";
 
@@ -78,7 +85,7 @@ class PageContainer extends Component {
       botmakerParentDisplay = "flex";
     }
 
-    botMakerFrame.parentElement.style.display = botmakerParentDisplay;
+    botMakerChild.parentElement.style.display = botmakerParentDisplay;
   };
 
   onSearchChange(keyword) {
