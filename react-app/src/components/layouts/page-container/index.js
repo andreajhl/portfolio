@@ -58,19 +58,30 @@ class PageContainer extends Component {
     } */
   }
 
+  cancelPreviousWaitFor = () => {
+    const { botMakerChild } = this.state;
+    if (botMakerChild && botMakerChild.cancel) {
+      botMakerChild.cancel();
+    }
+  };
+
   changeBotmakerDisplay = () => {
+    this.cancelPreviousWaitFor();
     const botMakerChild = waitFor(
       () =>
         document.querySelector("iframe[title='Botmaker']") ||
         document.querySelector(
           "img[src='https://storage.googleapis.com/m-infra.appspot.com/public/whatsapp/Whatsapp_logo.svg']"
         )?.parentElement,
-      2500,
+      500,
       100
     );
     const isAsync = typeof botMakerChild.then === "function";
+
     if (isAsync) {
-      botMakerChild.then(this.setBotmakerDisplay);
+      this.setState({ botMakerChild }, () => {
+        botMakerChild.then(this.setBotmakerDisplay);
+      });
     } else {
       this.setBotmakerDisplay(botMakerChild);
     }
@@ -111,6 +122,10 @@ class PageContainer extends Component {
     if (this.props.showBotMakerFrame !== prevProps.showBotMakerFrame) {
       this.changeBotmakerDisplay();
     }
+  };
+
+  componentWillUnmount = () => {
+    this.cancelPreviousWaitFor();
   };
 
   render() {
