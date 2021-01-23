@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import MetaTags from "react-meta-tags";
 import {
   PageContainer,
-  FiltersSectionLayout,
   CelebritiesResultsShimmerCardsLayout,
   CelebritiesResultsLayout
 } from "../../layouts";
@@ -12,6 +11,7 @@ import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
 import { CelebritiesAdditionalResultsLayout } from "../../layouts/celebrities-additional-results";
+import pickPropertiesFromAObject from "../../../utils/pickPropertiesFromAObject";
 
 const mapStateToProps = ({ celebrities }) => {
   return {
@@ -41,6 +41,15 @@ const hasSearched = (listParams) => {
   );
 };
 
+const allowedParams = [
+  "search",
+  "limit",
+  "offset",
+  "country_id",
+  "category_id",
+  "orderBy"
+];
+
 const CelebritiesResultsPage = ({
   fetchCelebrities,
   isLoading,
@@ -54,9 +63,11 @@ const CelebritiesResultsPage = ({
 }) => {
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
   const queryString = location.search;
-  const listParams = useMemo(() => queryStringToJSON(queryString), [
-    queryString
-  ]);
+  const listParams = useMemo(
+    () =>
+      pickPropertiesFromAObject(queryStringToJSON(queryString), allowedParams),
+    [queryString]
+  );
 
   useEffect(() => requestCancel, [requestCancel]);
 
