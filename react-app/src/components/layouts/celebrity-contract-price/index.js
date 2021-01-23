@@ -11,8 +11,8 @@ const getContractPrice = (contractTypes, currencyExchangeData) => {
   if (videoMessageContract) {
     videoMessagePrice = videoMessageContract.price;
   }
-  if (currencyExchangeData.rate > 1) {
-    return videoMessagePrice * currencyExchangeData.rate + videoMessagePrice;
+  if (currencyExchangeData.rate) {
+    return videoMessagePrice * currencyExchangeData.rate;
   } else {
     return videoMessagePrice;
   }

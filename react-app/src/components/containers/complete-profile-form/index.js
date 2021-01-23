@@ -53,8 +53,6 @@ class CompleteProfileForm extends Component {
     }
 
     completeProfile() {
-        localStorage.setItem("new_user", true);
-        localStorage.removeItem("discount_coupon_banner");
         this.props.completeProfile(this.state)
     }
 
