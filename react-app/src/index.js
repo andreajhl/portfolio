@@ -18,8 +18,8 @@ if (token) {
   const email = jwt_decode(token).email;
   const status = jwt_decode(token).status;
   if (
-    email.includes("myemail@") ||
-    (email.includes("@famosos.com") && email.includes("Anonymous"))
+    email?.includes("myemail@") ||
+    (email?.includes("@famosos.com") && email?.includes("Anonymous"))
   ) {
     window.localStorage.removeItem("_fs_");
   }

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import MetaTags from "react-meta-tags";
 import {
   PageContainer,
-  FiltersSectionLayout,
   CelebritiesResultsShimmerCardsLayout,
   CelebritiesResultsLayout
 } from "../../layouts";
@@ -12,7 +11,7 @@ import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
 import { CelebritiesAdditionalResultsLayout } from "../../layouts/celebrities-additional-results";
-import pick from "lodash.pick";
+import pickPropertiesFromAObject from "../../../utils/pickPropertiesFromAObject";
 
 const mapStateToProps = ({ celebrities }) => {
   return {
@@ -47,7 +46,8 @@ const allowedParams = [
   "limit",
   "offset",
   "country_id",
-  "category_id"
+  "category_id",
+  "orderBy"
 ];
 
 const CelebritiesResultsPage = ({
@@ -64,7 +64,8 @@ const CelebritiesResultsPage = ({
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
   const queryString = location.search;
   const listParams = useMemo(
-    () => pick(queryStringToJSON(queryString), allowedParams),
+    () =>
+      pickPropertiesFromAObject(queryStringToJSON(queryString), allowedParams),
     [queryString]
   );
 
