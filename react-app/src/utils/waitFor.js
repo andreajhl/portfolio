@@ -1,3 +1,5 @@
+import CancellablePromise from "./CancellablePromise";
+
 const waitFor = (
   resultCallback = () => true,
   intervalInSeconds = 1000,
@@ -22,7 +24,7 @@ const waitFor = (
 
   let interval;
 
-  return new Promise((resolve) => {
+  const cancellablePromise = new CancellablePromise((resolve) => {
     interval = setInterval(() => {
       if (!tries) resolve(null);
       const result = resultCallback();
@@ -34,6 +36,10 @@ const waitFor = (
       }
     }, intervalInSeconds);
   });
+
+  cancellablePromise.catch(() => clearInterval(interval));
+
+  return cancellablePromise;
 };
 
 export default waitFor;
