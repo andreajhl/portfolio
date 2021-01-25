@@ -14,5 +14,6 @@ export const getCountryCode = () => (dispatch) => {
       handleApiResponseFailure(dispatch, TYPE, {
         errorMessage: "There was an error getting the localization information."
       })
-    );
+    )
+    .finally(() => dispatch({ type: `${TYPE}_COMPLETED`, payload: {} }));
 };
