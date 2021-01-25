@@ -61,7 +61,7 @@ class MyRoutes extends Component {
               path={PATHS.CONTRACT_PENDING}
               component={PAGES.ContractCreatedPage}
             />
-            <Route
+            <PrivateRoute
               exact
               path={PATHS.PAYMENT_METHODS}
               component={PAGES.PaymentMethodsPage}
@@ -197,9 +197,9 @@ class MyRoutes extends Component {
             />
 
             <Route
-                exact
-                path={PATHS.SESSION_REDIRECT}
-                component={PAGES.SessionRedirectPage}
+              exact
+              path={PATHS.SESSION_REDIRECT}
+              component={PAGES.SessionRedirectPage}
             />
             {/* ------- */}
             <Route
