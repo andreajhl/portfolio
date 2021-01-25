@@ -31,7 +31,8 @@ const FourZeroFourCelebritiesSectionsLayout = ({
     if (!countryCode) return;
     fetchCelebritySections({
       offset: offsetInitialValue,
-      limit: resultsLimit
+      limit: resultsLimit,
+      alpha2Code: countryCode
     });
   }, [countryCode]);
 

@@ -41,7 +41,7 @@ const CelebritiesSectionsLayout = ({
     fetchCelebritySections({
       offset,
       limit: resultsLimit,
-      countryCode
+      alpha2Code: countryCode
     });
   }, [countryCode, offset]);
 
