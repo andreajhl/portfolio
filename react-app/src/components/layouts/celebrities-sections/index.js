@@ -9,12 +9,15 @@ import "./styles.scss";
 import { EndMessageLayout } from "../end-message";
 import * as GTM from "../../../state/utils/gtm";
 
-const mapStateToProps = ({ celebritySections }) => {
-  const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
+const mapStateToProps = ({ celebritySections, userLocation }) => {
+  const { data } = celebritySections.fetchCelebritySectionsReducer;
   return {
-    loading,
+    loading:
+      celebritySections.fetchCelebritySectionsReducer.loading ||
+      userLocation.getCountryCodeReducer.loading,
     celebritiesSections: data.results,
-    totalResults: data.totalResults
+    totalResults: data.totalResults,
+    countryCode: userLocation.getCountryCodeReducer.data.country_code
   };
 };
 
@@ -28,16 +31,19 @@ const CelebritiesSectionsLayout = ({
   loading,
   celebritiesSections,
   totalResults,
-  fetchCelebritySections
+  fetchCelebritySections,
+  countryCode
 }) => {
   const [offset, setOffset] = useState(offsetInitialValue);
 
   useEffect(() => {
+    if (!countryCode) return;
     fetchCelebritySections({
       offset,
-      limit: resultsLimit
+      limit: resultsLimit,
+      countryCode
     });
-  }, [offset]);
+  }, [countryCode, offset]);
 
   const fetchMoreData = () => {
     setOffset((offset) => {
@@ -63,7 +69,7 @@ const CelebritiesSectionsLayout = ({
 
   return (
     <div className="CelebritiesSectionsLayout">
-      {loading && offset === 0 ? (
+      {!countryCode || (loading && offset === 0) ? (
         <CelebritiesShimmerCardsSectionLayout />
       ) : celebritiesSections.length > 0 ? (
         <InfiniteScroll
@@ -89,7 +95,9 @@ const CelebritiesSectionsLayout = ({
             />
           ))}
         </InfiniteScroll>
-      ) : null}
+      ) : (
+        console.log("AQUI") || null
+      )}
     </div>
   );
 };
