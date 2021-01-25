@@ -95,9 +95,7 @@ const CelebritiesSectionsLayout = ({
             />
           ))}
         </InfiniteScroll>
-      ) : (
-        console.log("AQUI") || null
-      )}
+      ) : null}
     </div>
   );
 };
