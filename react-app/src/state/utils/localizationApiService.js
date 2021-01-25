@@ -14,6 +14,10 @@ export const getIpAddress = async () => {
 const IPSTACK_API_URL = "http://api.ipstack.com/";
 
 const getLocalizationInfo = async (params) => {
+  if (typeof params !== "object") {
+    throw new TypeError("The arg 'params' must be an object");
+  }
+
   try {
     const ipAddress = await getIpAddress();
     const response = await axios.get(IPSTACK_API_URL + ipAddress, {
