@@ -87,13 +87,13 @@ class CelebrityProfilePage extends Component {
       this.props.errorData?.api_error?.message === "Network Error";
 
     return (
-      <div className="CelebrityProfilePage">
+      <div className='CelebrityProfilePage'>
         {this.props.celebrity.username && (
           <div>
             <MetaTags>
               <title>Famosos.com - {this.props.celebrity.fullName}</title>
               <meta
-                name="description"
+                name='description'
                 content={
                   "Perfil oficial de " +
                   this.props.celebrity.fullName +
@@ -101,11 +101,11 @@ class CelebrityProfilePage extends Component {
                 }
               />
               <meta
-                property="og:title"
+                property='og:title'
                 content={"Famosos.com - " + this.props.celebrity.fullName}
               />
               <meta
-                property="og:url"
+                property='og:url'
                 content={"https://famosos.com/" + this.props.celebrity.username}
               />
             </MetaTags>
