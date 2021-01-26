@@ -16,13 +16,13 @@ export const DropdownMenuLayout = ({
       }`}
     >
       <button
-        className="btn DropdownMenuLayout__dropdown-button"
-        type="button"
-        id="dropdownMenuButton"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-        aria-label="dropdown toggle button"
+        className='btn DropdownMenuLayout__dropdown-button ml-2'
+        type='button'
+        id='dropdownMenuButton'
+        data-toggle='dropdown'
+        aria-haspopup='true'
+        aria-expanded='false'
+        aria-label='dropdown toggle button'
         onClick={() => setDropdownMenuIsOpen(!dropdownMenuIsOpen)}
       >
         <i className={`fa fa-${dropdownMenuIsOpen ? "times" : "bars"}`} />
@@ -32,8 +32,8 @@ export const DropdownMenuLayout = ({
           sendDropdownLinkAnalyticsData("HOVER", target)
         }
         onClick={({ target }) => sendDropdownLinkAnalyticsData("CLICK", target)}
-        className="dropdown-menu"
-        aria-labelledby="dropdownMenuButton"
+        className='dropdown-menu'
+        aria-labelledby='dropdownMenuButton'
         style={
           dropdownMenuIsOpen
             ? {
@@ -45,35 +45,35 @@ export const DropdownMenuLayout = ({
         {isLogged ? (
           <>
             <NavLink
-              className="dropdown-item"
-              activeClassName="active"
+              className='dropdown-item'
+              activeClassName='active'
               to={PATHS.CLIENT_PROFILE}
             >
               Mi perfil
             </NavLink>
 
             <NavLink
-              className="dropdown-item"
-              activeClassName="active"
+              className='dropdown-item'
+              activeClassName='active'
               to={PATHS.CLIENT_HIRINGS}
             >
               Mis contrataciones
             </NavLink>
           </>
         ) : null}
-        <a className="dropdown-item" href={PATHS.LANDING_PATH}>
+        <a className='dropdown-item' href={PATHS.LANDING_PATH}>
           ¿Como funciona?
         </a>
         <NavLink
-          className="dropdown-item"
-          activeClassName="active"
+          className='dropdown-item'
+          activeClassName='active'
           to={PATHS.BLOG}
         >
           Blog
         </NavLink>
         <NavLink
-          className="dropdown-item d-md-none"
-          activeClassName="active"
+          className='dropdown-item d-md-none'
+          activeClassName='active'
           to={PATHS.TRENDING}
         >
           Tendencias
@@ -81,8 +81,8 @@ export const DropdownMenuLayout = ({
         {!isLogged ? (
           <>
             <NavLink
-              className="dropdown-item d-md-none"
-              activeClassName="active"
+              className='dropdown-item d-md-none'
+              activeClassName='active'
               to={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(
                 ":form",
                 "email-form"
@@ -91,8 +91,8 @@ export const DropdownMenuLayout = ({
               Ingresar
             </NavLink>
             <NavLink
-              className="dropdown-item"
-              activeClassName="active"
+              className='dropdown-item'
+              activeClassName='active'
               to={PATHS.SIGN_UP_PATH}
             >
               Registrarme
@@ -100,8 +100,8 @@ export const DropdownMenuLayout = ({
           </>
         ) : null}
         <NavLink
-          className="dropdown-item"
-          activeClassName="active"
+          className='dropdown-item'
+          activeClassName='active'
           to={PATHS.CELEBRITY_REQUEST}
         >
           Aplicar
