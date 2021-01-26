@@ -21,4 +21,10 @@
     line-height: 1.25;
     color: black;
   }
+
+  &__cause-name {
+    display: inline-block;
+    margin-bottom: -0.25rem;
+    width: 38ch;
+  }
 }
