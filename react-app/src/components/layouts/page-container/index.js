@@ -10,6 +10,7 @@ import * as GTM from "../../../state/utils/gtm";
 import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
 import { Session } from "../../../state/utils/session";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
+import { getCountryCode } from "../../../state/ducks/userLocation/actions";
 // import { VideoCallsResearch } from "../../containers/videocalls-research";
 import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebrityProfileVersion";
 import Headroom from "react-headroom";
@@ -50,6 +51,13 @@ class PageContainer extends Component {
 
     this.changeBotmakerDisplay();
 
+    if (
+      this.props.shouldFetchCountryCode &&
+      !this.props.countryCodeHasBeenFetched
+    ) {
+      this.props.getCountryCode();
+    }
+
     /* if (this.props.applyFetchCelebrities === true) {
       const queryParams = this.props.queryParams;
       if (!window.location.search) {
@@ -59,18 +67,36 @@ class PageContainer extends Component {
     } */
   }
 
-  changeBotmakerDisplay = async () => {
-    const botMakerFrame = await waitFor(
+  cancelPreviousWaitFor = () => {
+    const { botMakerChild } = this.state;
+    if (botMakerChild && botMakerChild.cancel) {
+      botMakerChild.cancel();
+    }
+  };
+
+  changeBotmakerDisplay = () => {
+    this.cancelPreviousWaitFor();
+    const botMakerChild = waitFor(
       () =>
         document.querySelector("iframe[title='Botmaker']") ||
         document.querySelector(
           "img[src='https://storage.googleapis.com/m-infra.appspot.com/public/whatsapp/Whatsapp_logo.svg']"
         )?.parentElement,
-      2500,
-      100
+      500,
+      500
     );
+    const isAsync = typeof botMakerChild.then === "function";
 
-    if (!botMakerFrame) return;
+    if (isAsync) {
+      botMakerChild.then(this.setBotmakerDisplay);
+      this.setState({ botMakerChild });
+    } else {
+      this.setBotmakerDisplay(botMakerChild);
+    }
+  };
+
+  setBotmakerDisplay = (botMakerChild) => {
+    if (!botMakerChild) return;
 
     let botmakerParentDisplay = "none";
 
@@ -78,7 +104,7 @@ class PageContainer extends Component {
       botmakerParentDisplay = "flex";
     }
 
-    botMakerFrame.parentElement.style.display = botmakerParentDisplay;
+    botMakerChild.parentElement.style.display = botmakerParentDisplay;
   };
 
   onSearchChange(keyword) {
@@ -104,6 +130,10 @@ class PageContainer extends Component {
     if (this.props.showBotMakerFrame !== prevProps.showBotMakerFrame) {
       this.changeBotmakerDisplay();
     }
+  };
+
+  componentWillUnmount = () => {
+    this.cancelPreviousWaitFor();
   };
 
   render() {
@@ -193,7 +223,8 @@ PageContainer.defaultProps = {
   hideControls: false,
   showVideoCallsResearch: false,
   shouldFetchRestCountries: true,
-  showBotMakerFrame: false
+  showBotMakerFrame: false,
+  shouldFetchCountryCode: false
 };
 
 // mapStateToProps
@@ -204,7 +235,10 @@ const mapStateToProps = (state) => ({
   paginationData:
     state.celebrities.fetchCelebritiesReducer.data.informationPage,
   shouldFetchFlashDeliveryCelebrities: !state.celebrities
-    .fetchFlashDeliveryCelebritiesReducer.completed
+    .fetchFlashDeliveryCelebritiesReducer.completed,
+  countryCodeHasBeenFetched:
+    !state.userLocation.getCountryCodeReducer.loading &&
+    state.userLocation.getCountryCodeReducer.completed
 });
 
 // mapStateToProps
@@ -215,7 +249,8 @@ const mapDispatchToProps = {
     celebrityLikesOperations.fetchUserCelebrityLikesCleanUp,
   fetchFlashDeliveryCelebrities:
     celebrityOperations.fetchFlashDeliveryCelebrities,
-  listRestCountries: restCountriesOperations.list
+  listRestCountries: restCountriesOperations.list,
+  getCountryCode
 };
 
 // Export Class

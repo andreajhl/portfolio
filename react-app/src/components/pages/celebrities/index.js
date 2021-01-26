@@ -194,6 +194,7 @@ class CelebritiesPage extends Component {
             applyFetchCelebrities
             showFiltersSection={this.state.showHeaderFiltersSection}
             showVideoCallsResearch
+            shouldFetchCountryCode
           >
             {/*/!* ShowHeader *!/*/}
             {/*{localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}*/}
