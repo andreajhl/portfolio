@@ -11,3 +11,5 @@ node_modules
 react-app/build
 zip.zip
 build
+.elasticbeanstalk/config.yml
+react-app/package-lock.json
