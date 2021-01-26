@@ -24,21 +24,19 @@ const mapDispatchToProps = { fetchCelebritySections };
 const FourZeroFourCelebritiesSectionsLayout = ({
   fetchCelebritySections,
   loading,
-  celebritiesSections,
-  countryCode
+  celebritiesSections
 }) => {
   useEffect(() => {
-    if (!countryCode) return;
     fetchCelebritySections({
       offset: offsetInitialValue,
       limit: resultsLimit,
-      alpha2Code: countryCode
+      alpha2Code: window.userLocation.countryCode
     });
-  }, [countryCode]);
+  }, []);
 
   return (
     <section className="FourZeroFourCelebritiesSectionsLayout">
-      {!countryCode || loading ? (
+      {loading ? (
         <CelebritiesShimmerCardsSectionLayout />
       ) : celebritiesSections.length > 0 ? (
         celebritiesSections.map((celebritiesSection) => (
