@@ -6,6 +6,7 @@ import HowToGetAVideoMessageLayout from "../how-to-get-a-video-message";
 import { connect } from "react-redux";
 import { ResizableMainVideo } from "../resizable-main-video";
 import { GoToSimilarCelebritiesButton } from "../go-to-similar-celebrities-button";
+import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 
 const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
   return (
@@ -36,17 +37,30 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
           <CelebrityDetails celebrity={celebrity} variant="2" />
         </div>
       </div>
+      <HowToGetAVideoMessageLayout />
       <CelebrityReviewsSectionLayout celebrityId={celebrity.id} />
       <section
         className={`container text-center ${
           hasPublicContracts ? "py-4" : "pb-4"
         }`}
       >
-        <GoToSimilarCelebritiesButton celebrityUsername={celebrity.username}>
+        <div className="row justify-content-center mb-2">
+          <HireThisCelebrityButton
+            celebrityFullName={celebrity.fullName}
+            celebrityUsername={celebrity.username}
+            text="Quiero un video de"
+            fontSize="1.25em"
+            width="320px"
+          />
+        </div>
+        <GoToSimilarCelebritiesButton
+          celebrityUsername={celebrity.username}
+          fontSize="1.25em"
+          width="320px"
+        >
           Ver famosos similares
         </GoToSimilarCelebritiesButton>
       </section>
-      <HowToGetAVideoMessageLayout />
     </>
   );
 };
