@@ -46,7 +46,7 @@ class NewsLetterModal extends Component {
     };
 
     saveData = async () => {
-        if (this.state.email && this.state.email.includes("@")) {
+        if (this.state.email && this.state.email?.includes("@")) {
             Mixpanel.identify(this.state.email);
             Mixpanel.people.set({
                 "NEWSLETTER": true,

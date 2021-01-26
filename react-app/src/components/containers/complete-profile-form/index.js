@@ -33,7 +33,7 @@ class CompleteProfileForm extends Component {
         if (nextProps.session.userId) {
             // this.setState({
             //     fullName: nextProps.session.fullName,
-            //     email: nextProps.session.email.includes("myemail@") ? "" : nextProps.session.email,
+            //     email: nextProps.session.email?.includes("myemail@") ? "" : nextProps.session.email,
             // });
         }
     }
@@ -53,8 +53,6 @@ class CompleteProfileForm extends Component {
     }
 
     completeProfile() {
-        localStorage.setItem("new_user", true);
-        localStorage.removeItem("discount_coupon_banner");
         this.props.completeProfile(this.state)
     }
 
