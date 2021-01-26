@@ -21,16 +21,16 @@ const getUserLocationCountryCode = async (request) => {
     const response = await axios.get(
       `http://api.ipstack.com/${userIp}?access_key=ac1c0a88db0de9da13fcdba5d6742384&fields=country_code`
     );
-    return response.data["country_code"];
+    return response.data["country_code"] || "";
   } catch (error) {
-    return null;
+    return "";
   }
 };
 
 const { getLandingPageSync } = require("./templates/landing");
 // ################################################################
 // default OG
-const defaultOG = (data) => {
+const defaultOG = async (data, request) => {
   data = data.replace(
     /\$OG_TITLE/g,
     "Famosos.com - Videos personalizados de tus famosos favoritos."
@@ -61,6 +61,10 @@ const defaultOG = (data) => {
   data = data.replace(
     /\$OG_VIDEO/,
     "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
+  );
+  data = data.replace(
+    "$COUNTRY_CODE",
+    await getUserLocationCountryCode(request)
   );
   return data;
 };
@@ -109,7 +113,10 @@ app.get("/", async (request, response) => {
       /\$OG_VIDEO/,
       "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
     );
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -118,7 +125,7 @@ app.get("/", async (request, response) => {
 // LANDING PAGE
 const landingPage = getLandingPageSync();
 app.get("/landing", async (request, response) => {
-  response.send(defaultOG(landingPage));
+  response.send(await defaultOG(landingPage, request));
 });
 // ################################################################
 
@@ -168,7 +175,10 @@ app.get("/:celebrity_username", async (req, res) => {
             );
             data = data.replace(/\$OG_VIDEO_WITH/g, "400");
             data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-            res.send(data);
+            getUserLocationCountryCode(req).then((userLocationCountryCode) => {
+              data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+              res.send(data);
+            });
           });
         } else {
           fs.readFile(filePath, "utf8", function (err, data) {
@@ -202,7 +212,10 @@ app.get("/:celebrity_username", async (req, res) => {
             data = data.replace(/\$OG_VIDEO_WITH/g, "400");
             data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
             data = data.replace(/\$ROBOTS_META/, "noindex");
-            res.status(404).send(data);
+            getUserLocationCountryCode(req).then((userLocationCountryCode) => {
+              data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+              res.status(404).send(data);
+            });
           });
         }
       })
@@ -213,8 +226,7 @@ app.get("/:celebrity_username", async (req, res) => {
           if (err) {
             return console.log(err);
           }
-          data = defaultOG(data);
-          res.send(data);
+          defaultOG(data, req).then(res.send);
         });
       });
   } else {
@@ -223,7 +235,7 @@ app.get("/:celebrity_username", async (req, res) => {
       if (err) {
         return console.log(err);
       }
-      data = defaultOG(data);
+      data = defaultOG(data, req);
       res.send(data);
     });
   }
@@ -269,7 +281,10 @@ app.get("/:celebrity_username/contratar", async (req, res) => {
           data = data.replace(/\$OG_VIDEO_SECURE_URL/g, r.data.data.mainVideo);
           data = data.replace(/\$OG_VIDEO_WITH/g, "400");
           data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-          res.send(data);
+          getUserLocationCountryCode(req).then((userLocationCountryCode) => {
+            data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+            res.send(data);
+          });
         });
       } else {
         const _filePath = path.resolve(__dirname, "./build", "index.html");
@@ -277,8 +292,7 @@ app.get("/:celebrity_username/contratar", async (req, res) => {
           if (err) {
             return console.log(err);
           }
-          data = defaultOG(data);
-          res.send(data);
+          defaultOG(data, req).then(res.send);
         });
       }
     })
@@ -289,8 +303,7 @@ app.get("/:celebrity_username/contratar", async (req, res) => {
         if (err) {
           return console.log(err);
         }
-        data = defaultOG(data);
-        res.send(data);
+        defaultOG(data, req).then(res.send);
       });
     });
 });
@@ -334,7 +347,10 @@ app.get("/hirings/:contract_reference", async (req, res) => {
           data = data.replace(/\$OG_VIDEO_SECURE_URL/g, r.data.data.media);
           data = data.replace(/\$OG_VIDEO_WITH/g, "400");
           data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-          res.send(data);
+          getUserLocationCountryCode(req).then((userLocationCountryCode) => {
+            data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+            res.send(data);
+          });
         });
       } else {
         const _filePath = path.resolve(__dirname, "./build", "index.html");
@@ -342,8 +358,7 @@ app.get("/hirings/:contract_reference", async (req, res) => {
           if (err) {
             return console.log(err);
           }
-          data = defaultOG(data);
-          res.send(data);
+          defaultOG(data, req).then(res.send);
         });
       }
     })
@@ -353,8 +368,7 @@ app.get("/hirings/:contract_reference", async (req, res) => {
         if (err) {
           return console.log(err);
         }
-        data = defaultOG(data);
-        res.send(data);
+        defaultOG(data).then(res.send);
       });
     });
 });
@@ -394,7 +408,10 @@ app.get("/auth/sign-in/email-form/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -433,7 +450,10 @@ app.get("/auth/sign-in/cellphone-form/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -472,7 +492,10 @@ app.get("/auth/sign-up", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -511,7 +534,10 @@ app.get("/auth/sign-up/email-form/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -550,7 +576,10 @@ app.get("/auth/sign-up/cellphone-form/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -589,7 +618,10 @@ app.get("/auth/reset-password", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -631,7 +663,10 @@ app.get("/docs/terminos", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -670,7 +705,10 @@ app.get("/docs/politicas", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -709,7 +747,10 @@ app.get("/forms/aplicar/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -748,7 +789,10 @@ app.get("/tendencias/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -787,7 +831,10 @@ app.get("/docs/faqs", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
@@ -842,7 +889,10 @@ app.get("*", async (request, response) => {
       /\$OG_VIDEO/,
       "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
     );
-    response.send(data);
+    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+      data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
+      response.send(data);
+    });
   });
 });
 // ################################################################
