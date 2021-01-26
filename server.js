@@ -11,6 +11,22 @@ require("dotenv").config({ path: ".env" });
 // COMPRESSION SETTINGS
 app.use(compression());
 
+const getUserLocationCountryCode = async (request) => {
+  const userIp = (
+    request.headers["x-forwarded-for"] || request.connection.remoteAddress
+  )
+    .split(",")[0]
+    .trim();
+  try {
+    const response = await axios.get(
+      `http://api.ipstack.com/${userIp}?access_key=ac1c0a88db0de9da13fcdba5d6742384&fields=country_code`
+    );
+    return response.data["country_code"];
+  } catch (error) {
+    return null;
+  }
+};
+
 const { getLandingPageSync } = require("./templates/landing");
 // ################################################################
 // default OG
