@@ -8,14 +8,11 @@ import "./styles.scss";
 const offsetInitialValue = 0;
 const resultsLimit = 3;
 
-const mapStateToProps = ({ celebritySections, userLocation }) => {
-  const { data } = celebritySections.fetchCelebritySectionsReducer;
+const mapStateToProps = ({ celebritySections }) => {
+  const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
   return {
-    loading:
-      celebritySections.fetchCelebritySectionsReducer.loading ||
-      userLocation.getCountryCodeReducer.loading,
-    celebritiesSections: data.results,
-    countryCode: userLocation.getCountryCodeReducer.data.country_code
+    loading: loading,
+    celebritiesSections: data.results
   };
 };
 
@@ -24,21 +21,19 @@ const mapDispatchToProps = { fetchCelebritySections };
 const FourZeroFourCelebritiesSectionsLayout = ({
   fetchCelebritySections,
   loading,
-  celebritiesSections,
-  countryCode
+  celebritiesSections
 }) => {
   useEffect(() => {
-    if (!countryCode) return;
     fetchCelebritySections({
       offset: offsetInitialValue,
       limit: resultsLimit,
-      alpha2Code: countryCode
+      alpha2Code: window.userLocation.countryCode
     });
-  }, [countryCode]);
+  }, []);
 
   return (
     <section className="FourZeroFourCelebritiesSectionsLayout">
-      {!countryCode || loading ? (
+      {loading ? (
         <CelebritiesShimmerCardsSectionLayout />
       ) : celebritiesSections.length > 0 ? (
         celebritiesSections.map((celebritiesSection) => (

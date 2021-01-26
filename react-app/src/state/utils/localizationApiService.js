@@ -22,7 +22,7 @@ const getLocalizationInfo = async (params) => {
     const ipAddress = await getIpAddress();
     const response = await axios.get(IPSTACK_API_URL + ipAddress, {
       params: {
-        access_key: process.env.REACT_APP_IPSTACK_ACCESS_KEY,
+        access_key: null,
         ...params
       }
     });

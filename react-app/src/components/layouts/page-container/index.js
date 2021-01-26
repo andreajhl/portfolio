@@ -10,7 +10,6 @@ import * as GTM from "../../../state/utils/gtm";
 import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
 import { Session } from "../../../state/utils/session";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
-import { getCountryCode } from "../../../state/ducks/userLocation/actions";
 // import { VideoCallsResearch } from "../../containers/videocalls-research";
 import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebrityProfileVersion";
 import Headroom from "react-headroom";
@@ -50,13 +49,6 @@ class PageContainer extends Component {
     }
 
     this.changeBotmakerDisplay();
-
-    if (
-      this.props.shouldFetchCountryCode &&
-      !this.props.countryCodeHasBeenFetched
-    ) {
-      this.props.getCountryCode();
-    }
 
     /* if (this.props.applyFetchCelebrities === true) {
       const queryParams = this.props.queryParams;
@@ -223,8 +215,7 @@ PageContainer.defaultProps = {
   hideControls: false,
   showVideoCallsResearch: false,
   shouldFetchRestCountries: true,
-  showBotMakerFrame: false,
-  shouldFetchCountryCode: false
+  showBotMakerFrame: false
 };
 
 // mapStateToProps
@@ -235,10 +226,7 @@ const mapStateToProps = (state) => ({
   paginationData:
     state.celebrities.fetchCelebritiesReducer.data.informationPage,
   shouldFetchFlashDeliveryCelebrities: !state.celebrities
-    .fetchFlashDeliveryCelebritiesReducer.completed,
-  countryCodeHasBeenFetched:
-    !state.userLocation.getCountryCodeReducer.loading &&
-    state.userLocation.getCountryCodeReducer.completed
+    .fetchFlashDeliveryCelebritiesReducer.completed
 });
 
 // mapStateToProps
@@ -249,8 +237,7 @@ const mapDispatchToProps = {
     celebrityLikesOperations.fetchUserCelebrityLikesCleanUp,
   fetchFlashDeliveryCelebrities:
     celebrityOperations.fetchFlashDeliveryCelebrities,
-  listRestCountries: restCountriesOperations.list,
-  getCountryCode
+  listRestCountries: restCountriesOperations.list
 };
 
 // Export Class
