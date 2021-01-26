@@ -7,6 +7,7 @@ import { CelebritiesProfileDescription } from "../celebrities-profile-descriptio
 import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
 import { CelebrityInfo } from "../celebrity-info";
 import "./styles.scss";
+import { CelebrityDonorAlert } from "../celebrity-donor-alert";
 
 const CelebrityDetails = ({ celebrity, variant }) => {
   const {
@@ -20,7 +21,10 @@ const CelebrityDetails = ({ celebrity, variant }) => {
     description,
     turnaround,
     availableForSubscriptions,
-    availableForFlashDeliveries
+    availableForFlashDeliveries,
+    isDonor,
+    causeName,
+    causeUrl
   } = celebrity;
 
   return (
@@ -92,10 +96,27 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                 fontSize="1.25em"
               />
             ) : null}
+            {isDonor ? (
+              <CelebrityDonorAlert
+                fullName={fullName}
+                causeName={causeName}
+                causeUrl={causeUrl}
+                className="mt-2"
+              />
+            ) : null}
           </Col>
         </Col>
       </Row>
       <Row>
+        {isDonor ? (
+          <Col xs="12" className="d-md-none">
+            <CelebrityDonorAlert
+              fullName={fullName}
+              causeName={causeName}
+              causeUrl={causeUrl}
+            />
+          </Col>
+        ) : null}
         <Col className="mx-3 my-3 px-0">
           <CelebritiesProfileDescription descriptionText={description} />
         </Col>
