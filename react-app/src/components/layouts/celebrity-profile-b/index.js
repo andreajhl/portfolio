@@ -19,7 +19,7 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
         } p-0 justify-content-center`}
       >
         {celebrity.mainVideo ? (
-          <div className="col-12 col-lg-4 order-lg-1 p-0 m-0 px-sm-3">
+          <div className="col-12 col-lg-4 p-0 m-0 px-sm-3">
             <ResizableMainVideo
               mainVideoUrl={celebrity.mainVideo}
               videoPosterUrl={celebrity.avatar}
