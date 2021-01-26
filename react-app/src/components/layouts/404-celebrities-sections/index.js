@@ -8,14 +8,11 @@ import "./styles.scss";
 const offsetInitialValue = 0;
 const resultsLimit = 3;
 
-const mapStateToProps = ({ celebritySections, userLocation }) => {
-  const { data } = celebritySections.fetchCelebritySectionsReducer;
+const mapStateToProps = ({ celebritySections }) => {
+  const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
   return {
-    loading:
-      celebritySections.fetchCelebritySectionsReducer.loading ||
-      userLocation.getCountryCodeReducer.loading,
-    celebritiesSections: data.results,
-    countryCode: userLocation.getCountryCodeReducer.data.country_code
+    loading: loading,
+    celebritiesSections: data.results
   };
 };
 

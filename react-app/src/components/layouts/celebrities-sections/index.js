@@ -9,15 +9,12 @@ import "./styles.scss";
 import { EndMessageLayout } from "../end-message";
 import * as GTM from "../../../state/utils/gtm";
 
-const mapStateToProps = ({ celebritySections, userLocation }) => {
-  const { data } = celebritySections.fetchCelebritySectionsReducer;
+const mapStateToProps = ({ celebritySections }) => {
+  const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
   return {
-    loading:
-      celebritySections.fetchCelebritySectionsReducer.loading ||
-      userLocation.getCountryCodeReducer.loading,
+    loading,
     celebritiesSections: data.results,
-    totalResults: data.totalResults,
-    countryCode: userLocation.getCountryCodeReducer.data.country_code
+    totalResults: data.totalResults
   };
 };
 
