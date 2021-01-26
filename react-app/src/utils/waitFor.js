@@ -1,3 +1,5 @@
+import CancellablePromise from "./CancellablePromise";
+
 const waitFor = (
   resultCallback = () => true,
   intervalInSeconds = 1000,
@@ -12,11 +14,17 @@ const waitFor = (
   if (typeof totalTries !== "number") {
     throw new TypeError("Received `totalTries` arg must be a number");
   }
-
-  let interval;
   let tries = totalTries;
 
-  return new Promise((resolve) => {
+  const firstTry = resultCallback();
+  tries--;
+  if (firstTry) {
+    return firstTry;
+  }
+
+  let interval;
+
+  const cancellablePromise = new CancellablePromise((resolve) => {
     interval = setInterval(() => {
       if (!tries) resolve(null);
       const result = resultCallback();
@@ -28,6 +36,10 @@ const waitFor = (
       }
     }, intervalInSeconds);
   });
+
+  cancellablePromise.catch(() => clearInterval(interval));
+
+  return cancellablePromise;
 };
 
 export default waitFor;
