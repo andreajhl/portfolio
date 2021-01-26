@@ -36,6 +36,7 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
           <CelebrityDetails celebrity={celebrity} variant="2" />
         </div>
       </div>
+      <HowToGetAVideoMessageLayout />
       <CelebrityReviewsSectionLayout celebrityId={celebrity.id} />
       <section
         className={`container text-center ${
