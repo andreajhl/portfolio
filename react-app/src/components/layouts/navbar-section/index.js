@@ -10,6 +10,9 @@ import * as GTM from "../../../state/utils/gtm";
 import "./styles.scss";
 import { BannerPromoLayout } from "../banner-promo";
 import { DropdownMenuLayout } from "../dropdown-menu";
+import LoginButton from "../../containers/login-button/login-button";
+import { useAuth0 } from "@auth0/auth0-react";
+import LogoutButton from "../../containers/logout-button/logout-button";
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
   if (!target.matches("a")) return;
@@ -38,6 +41,8 @@ const NavbarSectionLayout = ({
 }) => {
   const [showCouponBanner, setShowCouponBanner] = useState(false);
   const isLogged = new Session().getSession();
+  const { isAuthenticated, user } = useAuth0();
+  console.log(isAuthenticated, user);
   return (
     <>
       <div className={`NavbarSectionLayout ${className}`}>
@@ -66,6 +71,8 @@ const NavbarSectionLayout = ({
               />
             </NavLink>
           </div>
+          {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+
           <div className='top-bar__right-side col-4 p-0 row m-0'>
             {!isLogged ? (
               <div className='col d-none d-md-flex align-items-center'>
