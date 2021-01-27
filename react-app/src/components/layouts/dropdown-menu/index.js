@@ -79,13 +79,13 @@ export const DropdownMenuLayout = ({
         >
           Blog
         </NavLink>
-        <NavLink
+        {/* <NavLink
           className="dropdown-item d-md-none"
           activeClassName="active"
           to={PATHS.TRENDING}
         >
           Tendencias
-        </NavLink>
+        </NavLink> */}
         {!isLogged ? (
           <>
             <NavLink
