@@ -92,6 +92,7 @@ class ContractCheckoutSummary extends Component {
             </div>
             {this.props.price ? (
               <div className="mt-4 f-rounded">
+                <p className="h5 font-weight-bold">¿Tienes un cupón?</p>
                 <DiscountCouponForm />
                 <div className="text-right w-100">
                   <ContractPriceLayout
