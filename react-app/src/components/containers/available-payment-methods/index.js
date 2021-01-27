@@ -61,9 +61,9 @@ class AvailablePaymentMethods extends Component {
         >
           <div className="titles text-center mb-3">
             <img
-              src="/assets/img/paypal-logo.png"
+              src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg"
               alt="Logo de Paypal"
-              width="100px"
+              width="125px"
             />
           </div>
           <div
