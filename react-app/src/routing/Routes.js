@@ -30,7 +30,7 @@ class MyRoutes extends Component {
               path={PATHS.SEARCH_PATH}
               component={PAGES.CelebritiesResultsPage}
             />
-            <Route exact path={PATHS.TRENDING} component={PAGES.TrendingPage} />
+            {/* <Route exact path={PATHS.TRENDING} component={PAGES.TrendingPage} /> */}
             <Route
               exact
               path={PATHS.CELEBRITY_PROFILE}
