@@ -46,7 +46,7 @@ class ReviewCreatorLayout extends Component {
     });
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.setState({
       ...this.state,
       reviewData: {

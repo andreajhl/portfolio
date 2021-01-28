@@ -134,7 +134,7 @@ SignUpWithEmailForm.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   // validateIfEmailIsRegisteredReducer
   validateIfEmailIsRegisteredLoading:
     state.authentication.validateIfEmailIsRegisteredReducer.loading,

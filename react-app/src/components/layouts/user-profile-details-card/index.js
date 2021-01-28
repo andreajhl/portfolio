@@ -113,7 +113,7 @@ UserProfileDetailsCardLayout.propTypes = {};
 UserProfileDetailsCardLayout.defaultProps = {};
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   isLoading: state.session.updateSessionReducer.loading,
   sessionData: state.session.getSessionReducer.data,
   updateSessionData: state.session.updateSessionReducer.data
