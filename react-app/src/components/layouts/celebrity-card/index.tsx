@@ -25,7 +25,9 @@ const CelebrityCardLayout = ({
 }: CelebrityCardLayoutI) => {
   const [avatarIsLoaded, setAvatarIsLoaded] = useState(false);
   const finishAvatarLoad = () => setAvatarIsLoaded(true);
-  const [contractPrice, setContractPrice] = useState(0);
+  const [contractPrice, setContractPrice] = useState(
+    celebrity.videoMessagePrice
+  );
 
   useEffect(() => {
     let convertedPrice = celebrity.videoMessagePrice;
@@ -112,5 +114,7 @@ const _CelebrityCardLayout = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CelebrityCardLayout);
+
+export default CelebrityCardLayout;
 
 export { _CelebrityCardLayout as CelebrityCardLayout };
