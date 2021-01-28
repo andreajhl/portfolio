@@ -5,6 +5,8 @@ branch-defaults:
     environment: FamososFrontend-Testing
   duvan:
     environment: FamososFrontend-Production
+  hotfix/chatbot-payment-methods:
+    environment: FamososFrontend-QA
   master:
     environment: FamososFrontend-QA
   new-form:
