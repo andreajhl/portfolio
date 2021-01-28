@@ -92,7 +92,7 @@ ContractPriceLayout.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
   currencyExchangeData: state.payments.currencyExchangeReducer.data
 });

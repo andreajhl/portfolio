@@ -16,7 +16,7 @@ class ContractCommentCreatorLayout extends Component {
     this.state = {};
   }
 
-  componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+  componentWillReceiveProps(nextProps, nextContext) {
     if (nextProps.isCompleted) {
       this.setState({ comment: "" });
     }
@@ -72,7 +72,7 @@ ContractCommentCreatorLayout.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   isLoading: state.contracts.addContractCommentReducer.loading,
   contractComment: state.contracts.addContractCommentReducer.data,
   isCompleted: state.contracts.addContractCommentReducer.completed

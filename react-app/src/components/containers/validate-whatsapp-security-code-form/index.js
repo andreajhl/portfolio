@@ -19,7 +19,7 @@ class ValidateWhatsAppSecurityCodeForm extends Component {
     this.goBack = this.goBack.bind(this);
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
     if (!this.state.cellphoneNumber) {
       history.goBack();
     }
@@ -111,7 +111,7 @@ ValidateWhatsAppSecurityCodeForm.propTypes = {};
 ValidateWhatsAppSecurityCodeForm.defaultProps = {};
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   // sendSMSSecurityCode
   sendSMSSecurityCodeData: state.authentication.sendSMSSecurityCodeReducer.data,
   // validateSMSSecurityCode

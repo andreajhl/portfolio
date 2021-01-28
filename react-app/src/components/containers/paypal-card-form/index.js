@@ -65,7 +65,7 @@ class PayPalCardForm extends Component {
     });
   };
 
-  onPayPalButtonError = (error: string) => {
+  onPayPalButtonError = (error) => {
     return this.setState({
       ...this.state,
       errorMessage: error

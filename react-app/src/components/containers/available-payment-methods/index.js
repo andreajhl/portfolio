@@ -133,7 +133,7 @@ AvailablePaymentMethods.defaultProps = {
   contractPrice: 0
 };
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   couponData: state.payments.fetchDiscountCouponReducer
 });
 

@@ -142,7 +142,7 @@ ContractCheckoutSummary.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   couponData: state.payments.fetchDiscountCouponReducer
 });
 // mapStateToProps
