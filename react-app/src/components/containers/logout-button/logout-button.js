@@ -1,19 +1,27 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import * as GTM from "../../../state/utils/gtm";
 
-const LogoutButton = () => {
+const LogoutButton = (props) => {
+  const { children, className, redirectTo } = props;
+
   const { logout } = useAuth0();
+
+  const handlerLogoutSession = () => {
+    GTM.tagManagerDataLayer("CLICK_LOGOUT");
+    logout({
+      redirectUri: redirectTo ? redirectTo : window.location.origin
+    });
+  };
   return (
-    <button
-      className='btn btn-danger btn-block'
-      onClick={() =>
-        logout({
-          returnTo: window.location.origin
-        })
-      }
+    <div
+      className={`${className ? className : ""} `}
+      onClick={() => {
+        handlerLogoutSession();
+      }}
     >
-      Cerrar Sesion
-    </button>
+      {children}
+    </div>
   );
 };
 

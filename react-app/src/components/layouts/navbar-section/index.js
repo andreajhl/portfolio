@@ -41,8 +41,7 @@ const NavbarSectionLayout = ({
 }) => {
   const [showCouponBanner, setShowCouponBanner] = useState(false);
   const isLogged = new Session().getSession();
-  const { isAuthenticated, user } = useAuth0();
-  console.log(isAuthenticated, user);
+  const { isLoading, isAuthenticated, user } = useAuth0();
   return (
     <>
       <div className={`NavbarSectionLayout ${className}`}>
@@ -71,12 +70,15 @@ const NavbarSectionLayout = ({
               />
             </NavLink>
           </div>
-          {isAuthenticated ? <LogoutButton /> : <LoginButton />}
 
           <div className='top-bar__right-side col-4 p-0 row m-0'>
-            {!isLogged ? (
+            {!isAuthenticated && !isLoading ? (
               <div className='col d-none d-md-flex align-items-center'>
-                <NavLink
+                <LoginButton
+                  className='btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1'
+                  redirectUrl='/'
+                />
+                {/* <NavLink
                   className='btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1'
                   activeClassName=''
                   to={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(
@@ -91,7 +93,7 @@ const NavbarSectionLayout = ({
                   }
                 >
                   Ingresar
-                </NavLink>
+                </NavLink> */}
               </div>
             ) : null}
             <div className='top-bar__currency mr-2 ml-auto'>
