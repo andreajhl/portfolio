@@ -6,8 +6,8 @@ import { LoaderLayout } from "../components/layouts/loader";
 const PrivateRoute = ({ component, ...rest }) => {
   const Comp = withAuthenticationRequired(component, {
     onRedirecting: () => <LoaderLayout />,
-    returnTo: localStorage.getItem("redirectPath")
-      ? localStorage.getItem("redirectPath")
+    returnTo: localStorage.getItem("finalRedirect")
+      ? localStorage.getItem("finalRedirect")
       : window.location.href
   });
   return useMemo(

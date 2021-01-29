@@ -44,10 +44,11 @@ export const TRENDING = "/tendencias/";
 export const BLOG = "/blogs/all";
 export const BLOG_ENTRY = `${BLOG}/blog-:id`;
 //SUBSCRIPTION
-export const SUBSCRIPTION= "/subscription/subscribe/:celebrity_username"
+export const SUBSCRIPTION = "/subscription/subscribe/:celebrity_username";
 //SUBSCRIPTION
-export const SUBSCRIPTION_SUCCESS= "/subscription/subscription-success/:celebrity_username"
+export const SUBSCRIPTION_SUCCESS =
+  "/subscription/subscription-success/:celebrity_username";
 //SUBSCRIPTION FEED
-export const FEED_SUBSCRIPTION= "/subscription/feed"
+export const FEED_SUBSCRIPTION = "/subscription/feed";
 //SESSION REDIRECT
-export const SESSION_REDIRECT= "/session/redirect/"
+export const SESSION_REDIRECT = "/session/redirect/";
