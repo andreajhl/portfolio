@@ -1,0 +1,29 @@
+import React, { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Session } from "./session";
+const Auth0UserHandler = ({ children }) => {
+  const session = new Session();
+  const [tokenUser, setTokenUser] = useState(null);
+  const { user, getIdTokenClaims } = useAuth0();
+  useEffect(() => {
+    const fetchToken = async () => {
+      const result = await getIdTokenClaims();
+      if (result) {
+        setTokenUser(result.__raw);
+      } else {
+        setTokenUser(null);
+      }
+    };
+    fetchToken();
+  }, [user]);
+  useEffect(() => {
+    if (tokenUser) {
+      localStorage.setItem(session.sessionName, tokenUser);
+    } else {
+      localStorage.removeItem(session.sessionName);
+    }
+  }, [tokenUser]);
+  return children;
+};
+
+export default Auth0UserHandler;
