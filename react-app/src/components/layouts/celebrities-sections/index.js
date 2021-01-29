@@ -28,7 +28,8 @@ const CelebritiesSectionsLayout = ({
   loading,
   celebritiesSections,
   totalResults,
-  fetchCelebritySections
+  fetchCelebritySections,
+  landingId
 }) => {
   const [offset, setOffset] = useState(offsetInitialValue);
 
@@ -36,6 +37,7 @@ const CelebritiesSectionsLayout = ({
     fetchCelebritySections({
       offset,
       limit: resultsLimit,
+      landingId,
       alpha2Code: window.userLocation.countryCode
     });
   }, [offset]);
