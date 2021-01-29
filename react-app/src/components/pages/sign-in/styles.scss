@@ -1,84 +1,29 @@
 @import "../../../theme";
 
-.SignInPage {
-  background-color: #f7f7f7;
+.container-sign-in-page {
+  background-color: #ffffff;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
+  flex-flow: column;
+  min-height: 80vh;
 
-  .section {
+  &__login-details {
+    margin-top: 150px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 90vh;
-    //position: relative;
-    //top: -30px;
+    flex-flow: row;
+    width: 500px;
+  }
 
-    .auth-container {
-      margin-top: 20px;
-      background: #fff;
-      max-width: 400px;
-      width: 90vw;
-      position: relative;
-      border-radius: 8px;
-      padding: 80px 0;
-
-      .logo {
-        text-align: center;
-        width: 100%;
-        cursor: pointer;
-
-        img {
-          width: 180px;
-        }
-      }
-
-      .custom-form {
-        padding: 0;
-        max-width: 410px;
-        width: 90%;
-        margin: 20px auto 0;
-
-        button[disabled="disabled"],
-        button:disabled {
-          background-color: #eb2a7b66;
-          border-color: #eb2a7b66;
-          cursor: not-allowed;
-        }
-
-        .instructions {
-          color: #9faab7;
-          font-size: 14px;
-          margin-top: 10px;
-          text-align: left;
-          line-height: 1.2;
-        }
-
-        .login-type-button {
-          font-size: 12px;
-          padding-top: 20px;
-          text-decoration: underline;
-          color: $primary;
-          display: block;
-          padding-bottom: 50px;
-          text-align: center;
-          cursor: pointer;
-        }
-
-        .reset-password {
-          font-size: 12px;
-          text-decoration: underline;
-          color: #c7c7c7;
-          display: block;
-          cursor: pointer;
-          text-align: right;
-        }
-
-        .terms {
-          font-size: 10px;
-          text-align: left;
-        }
-      }
+  &__instructions {
+    h1 {
+      font-weight: bold;
     }
+  }
+  &__login-button {
+    width: 400px;
+    margin-top: 20px;
+    height: 60px;
+    color: white;
   }
 }
