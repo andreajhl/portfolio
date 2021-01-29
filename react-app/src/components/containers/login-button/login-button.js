@@ -4,7 +4,6 @@ import { AUTH_SUCCESS } from "../../../routing/Paths";
 
 const LoginButton = (props) => {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
   const { className, redirectUrl } = props;
   const {
     loginWithPopup,
@@ -14,7 +13,11 @@ const LoginButton = (props) => {
   } = useAuth0();
   const handlerClickToLogin = () => {
     if (isMobile) {
-      loginWithRedirect({ redirectUri: window.location.origin + AUTH_SUCCESS });
+      loginWithRedirect({
+        redirectUri: redirectUrl
+          ? redirectUrl
+          : window.location.origin + AUTH_SUCCESS
+      });
     } else {
       loginWithPopup();
     }
