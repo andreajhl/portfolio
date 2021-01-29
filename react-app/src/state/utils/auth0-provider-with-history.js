@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
-
+import Auth0UserHandler from "./auth0UserHandler";
 const Auth0ProviderWithHistory = ({ children }) => {
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -19,8 +19,9 @@ const Auth0ProviderWithHistory = ({ children }) => {
       clientId={clientId}
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
+      cacheLocation='localstorage'
     >
-      {children}
+      <Auth0UserHandler>{children}</Auth0UserHandler>
     </Auth0Provider>
   );
 };
