@@ -14,9 +14,7 @@ const LoginButton = (props) => {
   const handlerClickToLogin = () => {
     if (isMobile) {
       loginWithRedirect({
-        redirectUri: redirectUrl
-          ? redirectUrl
-          : window.location.origin + AUTH_SUCCESS
+        redirectUri: window.location.origin + AUTH_SUCCESS
       });
     } else {
       loginWithPopup();

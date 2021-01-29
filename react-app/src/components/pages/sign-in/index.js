@@ -42,10 +42,7 @@ const SignInPage = () => {
               </h1>
             </div>
           </div>
-          <LoginButton
-            className='container-sign-in-page__login-button btn-primary'
-            redirectUrl={localStorage.getItem("finalRedirect")}
-          ></LoginButton>
+          <LoginButton className='container-sign-in-page__login-button btn-primary'></LoginButton>
         </div>
       </PageContainer>
     </React.Fragment>
