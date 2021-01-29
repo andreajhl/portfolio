@@ -25,14 +25,6 @@ class CreateContractPage extends Component {
     console.log(this.props);
     GTM.tagManagerDataLayer("CREATE_CONTRACT_PAGE_VIEW", this.props.match);
     // const session = new Session();
-    // if (!this.props.auth0.isAuthenticated) {
-    // console.log(this.props.auth0.isAuthenticated);
-    // localStorage.setItem(
-    //   "finalRedirect",
-    //   "/" + this.props.match.params["celebrity_username"] + "/contratar"
-    // );
-    // history._pushRoute(PATHS.AUTH_FLOW);
-    // }
   }
 
   componentWillMount() {
@@ -42,6 +34,14 @@ class CreateContractPage extends Component {
   }
 
   render() {
+    if (!this.props.auth0.isLoading) {
+      if (!this.props.auth0.isAuthenticated) {
+        localStorage.setItem(
+          "finalRedirect",
+          "/" + this.props.match.params["celebrity_username"] + "/contratar"
+        );
+      }
+    }
     let RedirectTo = !this.props.auth0.isLoading ? (
       this.props.auth0.isAuthenticated ? null : (
         <Redirect to={PATHS.SIGN_IN_PATH}></Redirect>
