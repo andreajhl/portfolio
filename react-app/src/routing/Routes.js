@@ -8,6 +8,7 @@ import * as PAGES from "../components/pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { history } from "./History";
 import Auth0ProviderWithHistory from "../state/utils/auth0-provider-with-history";
+import { Auth0Provider, withAuthenticationRequired } from "@auth0/auth0-react";
 
 class MyRoutes extends Component {
   render() {
@@ -85,8 +86,7 @@ class MyRoutes extends Component {
                 exact
                 path={PATHS.STRIPE_3D_SECURE_RESPONSE}
                 component={PAGES.ProcessStripe3DResponsePage}
-              />
-
+              />{" "}
               {/*AUTH*/}
               <Route
                 exact
@@ -132,7 +132,7 @@ class MyRoutes extends Component {
                 exact
                 path={PATHS.COMPLETE_PROFILE_PATH}
                 component={PAGES.CompleteProfilePage}
-              />
+              />{" "}
               {/*END AUTH*/}
               {/*DOCS*/}
               <Route
@@ -152,7 +152,7 @@ class MyRoutes extends Component {
                 exact
                 path={PATHS.CELEBRITY_REQUEST}
                 component={PAGES.CelebrityRequestPage}
-              />
+              />{" "}
               {/*END FORMS*/}
               <PrivateRoute
                 exact
@@ -209,12 +209,11 @@ class MyRoutes extends Component {
                 path={PATHS.AUTH_FLOW}
                 component={PAGES.AuthFlowPage}
               />
-
               <Route
                 exact
                 path={PATHS.SESSION_REDIRECT}
                 component={PAGES.SessionRedirectPage}
-              />
+              />{" "}
               {/* ------- */}
               <Route
                 exact
@@ -230,8 +229,8 @@ class MyRoutes extends Component {
   }
 }
 
-const mapStateToProps = (store) => {
-  return { store };
-};
-const _MyRoutes = connect(mapStateToProps)(MyRoutes);
+// const mapStateToProps = (store) => {
+//   return { store };
+// };
+const _MyRoutes = MyRoutes;
 export { _MyRoutes as MyRoutes };

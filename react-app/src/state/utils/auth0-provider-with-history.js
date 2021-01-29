@@ -7,11 +7,10 @@ const Auth0ProviderWithHistory = ({ children }) => {
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
   const history = useHistory();
-  console.log(domain);
 
   const onRedirectCallback = (appState) => {
-    console.log(appState);
-    history.push(appState?.returnTo || window.location.pathname);
+    // Use the router's history module to replace the url
+    history.replace(appState?.returnTo || window.location.pathname);
   };
 
   return (
