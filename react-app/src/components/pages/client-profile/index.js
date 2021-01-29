@@ -21,6 +21,7 @@ class ClientProfilePage extends Component {
   }
 
   async componentDidMount(): void {
+    console.log(this.props.authentication);
     document.getElementsByClassName("f-main-body")[0].style.background =
       "#f7f7f7";
     GTM.tagManagerDataLayer("CLIENT_PROFILE_PAGE_VIEW", this.props.session);
@@ -36,7 +37,10 @@ class ClientProfilePage extends Component {
       <>
         <div className='ClientProfilePage'>
           <PageContainer applyFetchCelebrities={false}>
-            <UserProfileDetailsCardLayout session={this.props.session} />
+            <UserProfileDetailsCardLayout
+              userInformation={this.props.userInformation}
+              session={this.props.session}
+            />
           </PageContainer>
         </div>
       </>
@@ -52,7 +56,8 @@ ClientProfilePage.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state: any) => ({
-  session: state.session.getSessionReducer.data
+  session: state.session.getSessionReducer.data,
+  userInformation: state.authentication.getUserInformationReducer.data
 });
 
 // mapStateToProps

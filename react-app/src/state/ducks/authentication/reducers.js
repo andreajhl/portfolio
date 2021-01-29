@@ -422,23 +422,23 @@ export function completeProfileReducer(
   action
 ) {
   switch (action.type) {
-    case types.GET_USER_INFORMATION:
+    case types.COMPLETE_PROFILE_REQUEST:
       return {
         ...completeProfileInitialState,
         loading: true
       };
-    case types.GET_USER_INFORMATION_FAILURE:
+    case types.COMPLETE_PROFILE_REQUEST_FAILURE:
       return {
         ...completeProfileInitialState,
         error_data: action.payload.data,
         failed: true
       };
-    case types.GET_USER_INFORMATION_SUCCESS:
+    case types.COMPLETE_PROFILE_REQUEST_SUCCESS:
       return {
         ...completeProfileInitialState,
         data: action.payload.data
       };
-    case types.GET_USER_INFORMATION_COMPLETED:
+    case types.COMPLETE_PROFILE_REQUEST_COMPLETED:
       return {
         ...completeProfileInitialState,
         data: action.payload.data,
@@ -454,26 +454,26 @@ export function getUserInformationReducer(
   action
 ) {
   switch (action.type) {
-    case types.COMPLETE_PROFILE_REQUEST:
+    case types.GET_USER_INFORMATION:
       return {
         ...getUserInformationInitialState,
         loading: true
       };
-    case types.COMPLETE_PROFILE_REQUEST_FAILURE:
+    case types.GET_USER_INFORMATION_FAILURE:
       return {
         ...getUserInformationInitialState,
         error_data: action.payload.data,
         failed: true
       };
-    case types.COMPLETE_PROFILE_REQUEST_SUCCESS:
+    case types.GET_USER_INFORMATION_SUCCESS:
       return {
         ...getUserInformationInitialState,
-        data: action.payload.data
+        data: action.payload.data.data
       };
-    case types.COMPLETE_PROFILE_REQUEST_COMPLETED:
+    case types.GET_USER_INFORMATION_COMPLETED:
       return {
         ...getUserInformationInitialState,
-        data: action.payload.data,
+        data: action.payload.data.data,
         completed: true
       };
     default:
@@ -492,5 +492,6 @@ export default combineReducers({
   completeProfileReducer,
   sendEmailSecurityCodeReducer,
   validateEmailSecurityCodeReducer,
-  validateIfEmailIsRegisteredReducer
+  validateIfEmailIsRegisteredReducer,
+  getUserInformationReducer
 });

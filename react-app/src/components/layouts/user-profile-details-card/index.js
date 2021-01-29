@@ -45,15 +45,19 @@ class UserProfileDetailsCardLayout extends Component {
             <div className='col-12 text-center p-2'>
               <img
                 className='rounded-circle'
-                src='/assets/img/avatar-blank.png'
+                src={
+                  this.props.userInformation.picture
+                    ? this.props.userInformation.picture
+                    : "/assets/img/avatar-blank.png"
+                }
                 width={"120px"}
                 alt={"avatar"}
               />
               <h5 className='font-weight-bold mt-2'>
                 {this.props.session.fullName}
               </h5>
-              <h6 className='mt-2'>{this.props.session.email}</h6>
-              <h6 className='mt-2'>{this.props.session.cellphoneNumber}</h6>
+              <h6 className='mt-2'>{this.props.userInformation.email}</h6>
+              {/* <h6 className='mt-2'>{this.props.session.cellphoneNumber}</h6> */}
               <LogoutButton
                 redirectTo={window.location.origin + "/"}
                 className='d-inline'
