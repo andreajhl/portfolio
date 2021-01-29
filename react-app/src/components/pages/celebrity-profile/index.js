@@ -122,7 +122,9 @@ class CelebrityProfilePage extends Component {
               {this.props.celebrity.username ===
               this.props.match.params.celebrity_username ? (
                   <div>
-                    <LastVideosAvailableBanner celebrityFullName={this.props.celebrity?.fullName}/>
+                    <LastVideosAvailableBanner
+                        celebrityUsername={this.props.celebrity?.username}
+                        celebrityFullName={this.props.celebrity?.fullName}/>
                     <CelebrityProfileLayout celebrity={this.props.celebrity}/>
                   </div>
               ) : null}
