@@ -95,6 +95,11 @@ class MyRoutes extends Component {
               />
               <Route
                 exact
+                path={PATHS.AUTH_SUCCESS}
+                component={PAGES.AuthSuccess}
+              />
+              <Route
+                exact
                 path={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH}
                 component={PAGES.SignInPage}
               />
