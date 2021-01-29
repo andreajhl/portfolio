@@ -8,11 +8,11 @@ const setHeaders = (
 ) => {
   const session = new Session();
   let options = {};
-  if (session.getSession() && addFamososAuthorizationHeader) {
-    options.headers = {
-      authorization: "JWT " + localStorage.getItem(session.sessionName)
-    };
-  }
+  // if (session.getSession() && addFamososAuthorizationHeader) {
+  options.headers = {
+    authorization: "Bearer " + localStorage.getItem(session.sessionName)
+  };
+  // }
   if (params !== "?") {
     options.params = params;
   }
