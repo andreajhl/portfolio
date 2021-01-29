@@ -1,74 +1,3 @@
-// class SignInPage extends Component {
-
-//     constructor(props) {
-//         super(props);
-
-//         this.state = {
-//         };
-
-//         this.goToRoot = this.goToRoot.bind(this);
-//     }
-
-//     componentWillMount() {
-//         const session = new Session();
-//         session.checkSession();
-//     }
-
-//     componentDidMount() {
-//         GTM.tagManagerDataLayer(
-//             "SIGN_IN_PAGE_VIEW",
-//             this.props.match
-//         );
-//     }
-
-//     goToRoot() {
-//         history._pushRoute(PATHS.HOME_PATH)
-//     }
-
-//     returnSpecificForm() {
-//         const search = history.location.search;
-//         const params = new URLSearchParams(search);
-//         if (this.props.match.params.form === "cellphone-form") {
-//             return <SignInWithCellphoneForm title={params.get("title") ? params.get("title") : "Ingresa con tu número de celular"}/>
-//         } else if (this.props.match.params.form === "email-form") {
-//             const email = params.get("email");
-//             return <SignInWithEmailForm email={email}/>
-//         } else if (this.props.match.params.form === "whatsapp-form") {
-//             return <SignInWithWhatsAppForm/>
-//         } else {
-//             return <SignInWithCellphoneForm title={params.get("title") ? params.get("title") : "Ingresa con tu número de celular"}/>
-//         }
-//     }
-
-//     render() {
-//         return (
-//             <>
-
-//                 <MetaTags>
-//                     <title>Famosos.com - Iniciar Sesión</title>
-//                     <meta name="description" content="Inicia sesión en Famosos.com. Reserva tu video y disfruta de experiencias únicas."/>
-//                 </MetaTags>
-
-//                 <PageContainer applyFetchCelebrities={false} showFooter={false}>
-//                     <div className="SignInPage">
-//                         <div className="section">
-//                             <div className="auth-container">
-//                                 <h3 className="font-weight-bold text-center">Inicia sesión</h3>
-//                                 <div className="custom-form">
-//                                     {this.returnSpecificForm()}
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </PageContainer>
-//             </>
-//         );
-//     };
-
-// }
-
-// export {SignInPage};
-
 import React, { Component } from "react";
 import "./styles.scss";
 import {
@@ -88,7 +17,6 @@ import { Redirect } from "react-router-dom";
 
 const SignInPage = () => {
   const { isLoading, isAuthenticated } = useAuth0();
-  console.log(isLoading, isAuthenticated);
   let RedirectTo = !isLoading ? (
     !isAuthenticated ? null : (
       <Redirect to={PATHS.HOME_PATH}></Redirect>
@@ -116,7 +44,7 @@ const SignInPage = () => {
           </div>
           <LoginButton
             className='container-sign-in-page__login-button btn-primary'
-            redirectUrl={PATHS.BLOG}
+            redirectUrl={localStorage.getItem("finalRedirect")}
           ></LoginButton>
         </div>
       </PageContainer>
