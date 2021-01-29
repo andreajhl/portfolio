@@ -19,6 +19,7 @@ import { Session } from "../../../state/utils/session";
 import * as CarouselWithButtons from "../../layouts/carousel-with-buttons";
 import BlogPostCardLayout from "../../layouts/blog-post-card";
 import * as mediumApiService from "../../../state/utils/mediumApiService";
+import { queryStringToJSON } from "src/state/utils/apiService";
 
 class CelebritiesPage extends Component {
   constructor(props) {
@@ -216,7 +217,11 @@ class CelebritiesPage extends Component {
             <FiltersSectionLayout />
             {this.state.session ? <UserLikesSectionLayout /> : null}
 
-            <CelebritiesSectionsLayout />
+            <CelebritiesSectionsLayout
+              landingId={
+                queryStringToJSON(this.props.location.search)?.landingId
+              }
+            />
             {/* <div
               className="scroll-section"
               style={{
