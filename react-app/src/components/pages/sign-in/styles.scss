@@ -3,15 +3,16 @@
 .container-sign-in-page {
   background-color: #ffffff;
   display: flex;
-  // justify-content: center;
-  align-items: center;
-  flex-flow: column;
+  justify-content: center;
+  // align-items: center;
+  flex-flow: row;
   min-height: 80vh;
+  flex-wrap: wrap;
 
   &__login-details {
-    margin-top: 150px;
+    margin-top: 200px;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     width: 500px;
   }
 
@@ -25,5 +26,10 @@
     margin-top: 20px;
     height: 60px;
     color: white;
+  }
+  &__create-contract-steps {
+    margin-top: 50px;
+    width: 400px;
+    // height: 80%;
   }
 }

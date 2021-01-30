@@ -14,6 +14,7 @@ import MetaTags from "react-meta-tags";
 import LoginButton from "../../containers/login-button/login-button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Redirect } from "react-router-dom";
+import CreateContractStepsLayout from "../../containers/create-contracts-steps";
 
 const SignInPage = () => {
   const { isLoading, isAuthenticated } = useAuth0();
@@ -41,8 +42,11 @@ const SignInPage = () => {
                 experiencias únicas
               </h1>
             </div>
+            <LoginButton className='container-sign-in-page__login-button btn-primary'></LoginButton>
           </div>
-          <LoginButton className='container-sign-in-page__login-button btn-primary'></LoginButton>
+          <div className='container-sign-in-page__create-contract-steps'>
+            <CreateContractStepsLayout></CreateContractStepsLayout>
+          </div>
         </div>
       </PageContainer>
     </React.Fragment>
