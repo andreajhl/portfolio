@@ -1,26 +1,9 @@
-import React, { Component, useState, useEffect } from "react";
-import Moment from "moment";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { getDiscountCouponBanner } from "../../../state/ducks/discount_coupons/actions";
 import { DISCOUNT_COUPON_BANNER_FINISH_TIME } from "../../../constants/localStorageKeys";
 import "./styles.scss";
-
-const calculateDateDifference = (
-  startDate,
-  finishDate,
-  inputFormat = "YYYY-MM-DD HH:mm:ss",
-  outputFormat = inputFormat
-) => {
-  //   if (startDate) {
-  //   }
-  return moment
-    .utc(
-      moment(finishDate, inputFormat).diff(
-        moment(startDate || moment(), inputFormat)
-      )
-    )
-    .format(outputFormat);
-};
+import calculateDateDifference from "../../../utils/calculateDateDifference";
 
 const BannerPromoLayout = ({ showCouponBanner, setShowCouponBanner }) => {
   const [coupon, setCoupon] = useState("");
@@ -56,9 +39,9 @@ const BannerPromoLayout = ({ showCouponBanner, setShowCouponBanner }) => {
   useEffect(() => {
     if (!dateFinish) return;
     const timer = setTimeout(() => {
-      const hasTimeDifference = dateFinish.diff(moment()) <= 0;
+      const hasTimeDifference = dateFinish.diff(moment()) > 0;
       setShowCouponBanner(hasTimeDifference);
-      if (hasTimeDifference) return;
+      if (!hasTimeDifference) return;
       const timeDifference = calculateDateDifference(
         moment(),
         dateFinish,
@@ -75,7 +58,7 @@ const BannerPromoLayout = ({ showCouponBanner, setShowCouponBanner }) => {
   const dateDifferenceMoment = moment(timeDifference, "hh:mm:ss");
 
   return (
-    <div className={showCouponBanner ? "d-none" : ""}>
+    <div className={!showCouponBanner ? "d-none" : ""}>
       <div className="ContentBanner row mx-auto p-0 text-center align-items-center justify-content-center">
         <div className="col-md-3 text-style text-center">
           Usa el código: {coupon}
