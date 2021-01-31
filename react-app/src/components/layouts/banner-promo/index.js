@@ -37,6 +37,7 @@ const BannerPromoLayout = ({ showCouponBanner, setShowCouponBanner }) => {
   }, [setShowCouponBanner]);
 
   useEffect(() => {
+    console.log({ dateFinish, timeDifference, setShowCouponBanner });
     if (!dateFinish) return;
     const timer = setTimeout(() => {
       const hasTimeDifference = dateFinish.diff(moment()) > 0;
@@ -58,21 +59,15 @@ const BannerPromoLayout = ({ showCouponBanner, setShowCouponBanner }) => {
   const dateDifferenceMoment = moment(timeDifference, "hh:mm:ss");
 
   return (
-    <div className={!showCouponBanner ? "d-none" : ""}>
-      <div className="ContentBanner row mx-auto p-0 text-center align-items-center justify-content-center">
-        <div className="col-md-3 text-style text-center">
+    <div className={`BannerPromoLayout ${!showCouponBanner ? "d-none" : ""}`}>
+      <div className="ContentBanner container h-100 row mx-auto p-0 align-items-center justify-content-center">
+        <div className="col text-style">
+          {discount}% de descuento en tu compra. <br className="d-lg-none" />{" "}
           Usa el código: {coupon}
         </div>
-        <div className="col-md-2 text-style high-text text-center">
-          {discount}% de descuento
-        </div>
-        <div className="col-md-3 text-center align-items-center justify-content-center">
-          <div className="row text-style text-center align-items-center justify-content-center mb-1">
+        <div className="col-lg-3 col-md-auto text-center align-items-center justify-content-center">
+          <div className="row text-style justify-content-center justify-content-lg-end mb-1">
             Termina en
-            <div className="time-style">
-              {dateDifferenceMoment.hours() || 0}
-            </div>
-            H
             <div>
               <div className="time-style">
                 {dateDifferenceMoment.minutes() || 0}
