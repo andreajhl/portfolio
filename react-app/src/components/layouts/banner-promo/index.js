@@ -51,7 +51,7 @@ const BannerPromoLayout = ({
     const timer = setTimeout(() => {
       const hasTimeDifference = dateFinish.diff(moment()) > 0;
       setShowCouponBanner(hasTimeDifference);
-      if (!hasTimeDifference) return;
+      if (!hasTimeDifference) return setTimeDifference(null);
       const timeDifference = calculateDateDifference(
         moment(),
         dateFinish,

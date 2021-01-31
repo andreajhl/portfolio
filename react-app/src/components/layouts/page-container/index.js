@@ -237,9 +237,9 @@ const mapStateToProps = (state) => {
       state.celebrities.fetchCelebritiesReducer.data.informationPage,
     shouldFetchFlashDeliveryCelebrities: !state.celebrities
       .fetchFlashDeliveryCelebritiesReducer.completed,
-    hasDiscountCoupon: Boolean(
-      state.discountCoupons.getDiscountCouponBannerReducer.data.couponCode
-    )
+    hasDiscountCoupon:
+      state.discountCoupons.getDiscountCouponBannerReducer.data.couponCode &&
+      state.discountCoupons.timeDifferenceReducer
   };
 };
 
