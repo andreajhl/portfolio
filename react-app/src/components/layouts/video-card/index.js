@@ -51,33 +51,29 @@ const VideoCardLayout = ({
     GTM.tagManagerDataLayer("HOVER_VIDEO_CARD_CELEBRITY_NAME", analyticsData);
 
   return (
-    <div className="VideoCardLayout" onMouseOver={registerVideoCardHover}>
-      <div className="video-card">
-        <section className="video-card__media">
-          {!videoIsLoaded ? (
-            <img
-              className="video-card__poster"
-              src={
-                videoPosterUrl ||
-                celebrityAvatar ||
-                "/assets/img/avatar-blank.png"
-              }
-              alt={`Poster de vídeo de ${celebrityFullName}`}
-              onClick={togglePlay}
-            />
-          ) : null}
+    <div className='VideoCardLayout' onMouseOver={registerVideoCardHover}>
+      <div className='video-card'>
+        <section
+          className='video-card__media'
+          style={{
+            backgroundImage: videoIsLoaded ? "" : `url(${videoPosterUrl})`,
+            backgroundSize: videoIsLoaded ? "" : `cover`,
+            width: "100%"
+          }}
+          onClick={togglePlay}
+        >
           <video
-            className="video-card__video"
+            className='video-card__video'
             src={videoUrl}
-            preload="none"
+            preload='none'
             playsInline
             onClick={togglePlay}
             onLoadedData={onVideoLoadedData}
             ref={videoRef}
           />
         </section>
-        <section className="video-card__overlay">
-          <header className="d-flex justify-content-between align-items-center">
+        <section className='video-card__overlay'>
+          <header className='d-flex justify-content-between align-items-center'>
             <i
               className={`fa fa-2x text-white fa-${
                 videoIsPlaying ? "pause" : "play"
@@ -85,14 +81,14 @@ const VideoCardLayout = ({
               onClick={togglePlay}
             />
             {videoOccasion ? (
-              <span className="video-card__category d-flex align-items-center">
+              <span className='video-card__category d-flex align-items-center'>
                 {videoOccasion}
               </span>
             ) : null}
           </header>
-          <footer className="d-flex align-items-center px-2 video-card__footer">
+          <footer className='d-flex align-items-center px-2 video-card__footer'>
             <NavLink
-              className="d-flex align-items-center video-card__celebrity-profile-link"
+              className='d-flex align-items-center video-card__celebrity-profile-link'
               to={CELEBRITY_PROFILE.replace(
                 ":celebrity_username",
                 celebrityUsername
@@ -103,11 +99,11 @@ const VideoCardLayout = ({
               {footerSection || (
                 <>
                   <img
-                    className="video-card__celebrity-photo"
+                    className='video-card__celebrity-photo'
                     src={celebrityAvatar || "/assets/img/avatar-blank.png"}
                     alt={`Foto de Perfil de ${celebrityFullName || "famoso"}`}
                   />
-                  <h3 className="video-card__celebrity-full-name">
+                  <h3 className='video-card__celebrity-full-name'>
                     {celebrityFullName}
                   </h3>
                 </>
@@ -115,7 +111,7 @@ const VideoCardLayout = ({
             </NavLink>
             <CelebrityFavoriteButton
               celebrityId={celebrityId}
-              className="ml-auto"
+              className='ml-auto'
             />
           </footer>
         </section>

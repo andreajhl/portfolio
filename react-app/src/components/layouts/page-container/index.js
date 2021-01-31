@@ -23,11 +23,16 @@ class PageContainer extends Component {
 
     this.state = {
       params: { status: 50 },
-      dropdownMenuIsOpen: false
+      dropdownMenuIsOpen: false,
+      showCouponBanner: false
     };
 
     this.onSearchChange = this.onSearchChange.bind(this);
   }
+
+  setShowCouponBanner = (showCouponBanner) => {
+    this.setState({ showCouponBanner });
+  };
 
   componentDidMount() {
     this.props.cleanUserCelebrityLikes();
@@ -150,6 +155,8 @@ class PageContainer extends Component {
               dropdownMenuIsOpen={this.state.dropdownMenuIsOpen}
               setDropdownMenuIsOpen={this.setDropdownMenuIsOpen}
               queryParams={this.props.queryParams}
+              showCouponBanner={this.state.showCouponBanner}
+              setShowCouponBanner={this.setShowCouponBanner}
             />
           ) : null}
           {this.props.showFiltersSection ? <FiltersSectionLayout /> : null}
