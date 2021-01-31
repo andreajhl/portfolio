@@ -34,9 +34,10 @@ const NavbarSectionLayout = ({
   showLogin,
   queryParams,
   dropdownMenuIsOpen,
-  setDropdownMenuIsOpen
+  setDropdownMenuIsOpen,
+  showCouponBanner,
+  setShowCouponBanner
 }) => {
-  const [showCouponBanner, setShowCouponBanner] = useState(false);
   const isLogged = new Session().getSession();
   return (
     <>
