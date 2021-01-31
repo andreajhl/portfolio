@@ -82,7 +82,7 @@ class PageContainer extends Component {
           "img[src='https://storage.googleapis.com/m-infra.appspot.com/public/whatsapp/Whatsapp_logo.svg']"
         )?.parentElement,
       500,
-      500
+      1000
     );
     const isAsync = typeof botMakerChild.then === "function";
 
@@ -97,13 +97,18 @@ class PageContainer extends Component {
   setBotmakerDisplay = (botMakerChild) => {
     if (!botMakerChild) return;
 
-    let botmakerParentDisplay = "none";
+    let botmakerDisplay = "none";
+    let botmakerPointerEvents = "none";
 
     if (this.props.showBotMakerFrame) {
-      botmakerParentDisplay = "flex";
+      botmakerDisplay = "flex";
+      botmakerPointerEvents = "all";
     }
 
-    botMakerChild.parentElement.style.display = botmakerParentDisplay;
+    botMakerChild.parentElement.style.display = botmakerDisplay;
+    botMakerChild.parentElement.style.pointerEvents = botmakerPointerEvents;
+    botMakerChild.style.display = botmakerDisplay;
+    botMakerChild.style.pointerEvents = botmakerPointerEvents;
   };
 
   onSearchChange(keyword) {
