@@ -1,113 +1,112 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./styles.scss";
+import React, { Component, useState, useEffect } from "react";
 import Moment from "moment";
 import moment from "moment";
 import { getDiscountCouponBanner } from "../../../state/ducks/discount_coupons/actions";
+import { DISCOUNT_COUPON_BANNER_FINISH_TIME } from "../../../constants/localStorageKeys";
+import "./styles.scss";
 
-class BannerPromoLayout extends Component {
-  constructor() {
-    super();
-    this.state = {
-      diffTime: null,
-      coupon: "",
-      discount: 0,
-      dateFinish: null
-    };
-  }
+const calculateDateDifference = (
+  startDate,
+  finishDate,
+  inputFormat = "YYYY-MM-DD HH:mm:ss",
+  outputFormat = inputFormat
+) => {
+  //   if (startDate) {
+  //   }
+  return moment
+    .utc(
+      moment(finishDate, inputFormat).diff(
+        moment(startDate || moment(), inputFormat)
+      )
+    )
+    .format(outputFormat);
+};
 
-  componentDidMount() {
-    getDiscountCouponBanner().then((res) => {
-      this.setState({
-        coupon: res?.couponCode,
-        discount: parseFloat(res?.discount_amount || 0) * 100,
-        bannerTime: res?.bannerTime
-      });
+const BannerPromoLayout = ({ showCouponBanner, setShowCouponBanner }) => {
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [dateFinish, setDateFinish] = useState(null);
+  const [timeDifference, setTimeDifference] = useState(null);
+
+  useEffect(() => {
+    getDiscountCouponBanner().then((response) => {
+      if (!response) return setShowCouponBanner(false);
+      setCoupon(response.couponCode);
+      setDiscount(parseFloat(response.discount_amount || 0) * 100);
+
       let dateFinish = moment(
-        new Moment().add(this.state.bannerTime, "minutes"),
+        moment().add(response.bannerTime, "minutes"),
         "YYYY-MM-DD HH:mm:ss"
       );
 
-      if (localStorage.getItem("discount_coupon_banner") != null) {
-        dateFinish = moment(localStorage.getItem("discount_coupon_banner"));
-      } else {
-        localStorage.setItem("discount_coupon_banner", dateFinish);
-      }
-      this.setState({
-        dateFinish: dateFinish
-      });
-      this.runTimer();
-    });
-  }
+      const storeDateFinish = localStorage.getItem(
+        DISCOUNT_COUPON_BANNER_FINISH_TIME
+      );
 
-  calculateDiff() {
-    this.setState({
-      diffTime: moment
-        .utc(
-          moment(this.state.dateFinish, "YYYY-MM-DD HH:mm:ss").diff(
-            moment(new Moment(), "YYYY-MM-DD HH:mm:ss")
-          )
-        )
-        .format("HH:mm:ss")
-    });
-  }
-
-  runTimer() {
-    this.timerId = setInterval(() => {
-      this.calculateDiff();
-      if (this.state.dateFinish.diff(new Moment()) <= 0) {
-        clearInterval(this.timerId);
-        this.props.setShowCouponBanner(false);
+      if (storeDateFinish != null) {
+        dateFinish = moment(storeDateFinish);
       } else {
-        this.props.setShowCouponBanner(true);
+        localStorage.setItem(DISCOUNT_COUPON_BANNER_FINISH_TIME, dateFinish);
       }
+
+      setDateFinish(dateFinish);
+    });
+  }, [setShowCouponBanner]);
+
+  useEffect(() => {
+    if (!dateFinish) return;
+    const timer = setTimeout(() => {
+      const hasTimeDifference = dateFinish.diff(moment()) <= 0;
+      setShowCouponBanner(hasTimeDifference);
+      if (hasTimeDifference) return;
+      const timeDifference = calculateDateDifference(
+        moment(),
+        dateFinish,
+        "YYYY-MM-DD HH:mm:ss",
+        "HH:mm:ss"
+      );
+      setTimeDifference(timeDifference);
     }, 1000);
-  }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [dateFinish, timeDifference, setShowCouponBanner]);
 
-  render() {
-    return (
-      <>
-        <div className={!this.props.showCouponBanner ? "d-none" : ""}>
-          <div className="ContentBanner row mx-auto p-0 text-center align-items-center justify-content-center">
-            <div className="col-md-3 text-style text-center">
-              Usa el código: {this.state.coupon}
+  const dateDifferenceMoment = moment(timeDifference, "hh:mm:ss");
+
+  return (
+    <div className={showCouponBanner ? "d-none" : ""}>
+      <div className="ContentBanner row mx-auto p-0 text-center align-items-center justify-content-center">
+        <div className="col-md-3 text-style text-center">
+          Usa el código: {coupon}
+        </div>
+        <div className="col-md-2 text-style high-text text-center">
+          {discount}% de descuento
+        </div>
+        <div className="col-md-3 text-center align-items-center justify-content-center">
+          <div className="row text-style text-center align-items-center justify-content-center mb-1">
+            Termina en
+            <div className="time-style">
+              {dateDifferenceMoment.hours() || 0}
             </div>
-            <div className="col-md-2 text-style high-text text-center">
-              {this.state.discount}% de descuento
-            </div>
-            <div className="col-md-3 text-center align-items-center justify-content-center">
-              <div className="row text-style text-center align-items-center justify-content-center mb-1">
-                Termina en
-                <div className="time-style">
-                  {this.state.diffTime != null
-                    ? moment(this.state.diffTime, "hh:mm:ss").hours()
-                    : 0}
-                </div>
-                H
-                <div className="">
-                  <div className="time-style">
-                    {this.state.diffTime != null
-                      ? moment(this.state.diffTime, "hh:mm:ss").minutes()
-                      : 0}
-                  </div>
-                </div>
-                M
-                <div className="">
-                  <div className="time-style">
-                    {this.state.diffTime != null
-                      ? moment(this.state.diffTime, "hh:mm:ss").seconds()
-                      : 0}
-                  </div>
-                </div>
-                S
+            H
+            <div>
+              <div className="time-style">
+                {dateDifferenceMoment.minutes() || 0}
               </div>
             </div>
+            M
+            <div>
+              <div className="time-style">
+                {dateDifferenceMoment.seconds() || 0}
+              </div>
+            </div>
+            S
           </div>
         </div>
-      </>
-    );
-  }
-}
+      </div>
+    </div>
+  );
+};
 
-const _BannerPromoLayout = connect()(BannerPromoLayout);
-export { _BannerPromoLayout as BannerPromoLayout };
+export { BannerPromoLayout };
