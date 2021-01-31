@@ -21,10 +21,12 @@ class PageContainer extends Component {
   constructor(props) {
     super(props);
 
+    console.log(this.props.hasDiscountCoupon);
+
     this.state = {
       params: { status: 50 },
       dropdownMenuIsOpen: false,
-      showCouponBanner: false
+      showCouponBanner: this.props.hasDiscountCoupon
     };
 
     this.onSearchChange = this.onSearchChange.bind(this);
@@ -226,15 +228,20 @@ PageContainer.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state) => ({
-  restCountries: state.restCountries.fetchCountriesReducer.data,
-  isLoading: state.celebrities.fetchCelebritiesReducer.loading,
-  celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
-  paginationData:
-    state.celebrities.fetchCelebritiesReducer.data.informationPage,
-  shouldFetchFlashDeliveryCelebrities: !state.celebrities
-    .fetchFlashDeliveryCelebritiesReducer.completed
-});
+const mapStateToProps = (state) => {
+  return {
+    restCountries: state.restCountries.fetchCountriesReducer.data,
+    isLoading: state.celebrities.fetchCelebritiesReducer.loading,
+    celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
+    paginationData:
+      state.celebrities.fetchCelebritiesReducer.data.informationPage,
+    shouldFetchFlashDeliveryCelebrities: !state.celebrities
+      .fetchFlashDeliveryCelebritiesReducer.completed,
+    hasDiscountCoupon: Boolean(
+      state.discountCoupons.getDiscountCouponBannerReducer.data.couponCode
+    )
+  };
+};
 
 // mapStateToProps
 const mapDispatchToProps = {

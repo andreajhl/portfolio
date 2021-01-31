@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
-import { getDiscountCouponBanner } from "../../../state/ducks/discount-coupons/actions";
+import {
+  getDiscountCouponBanner,
+  setTimeDifference
+} from "../../../state/ducks/discount-coupons/actions";
 import { DISCOUNT_COUPON_BANNER_FINISH_TIME } from "../../../constants/localStorageKeys";
 import "./styles.scss";
 import calculateDateDifference from "../../../utils/calculateDateDifference";
@@ -13,10 +16,11 @@ const BannerPromoLayout = ({
   bannerTime,
   discount,
   coupon,
-  shouldFetchCoupon
+  shouldFetchCoupon,
+  setTimeDifference,
+  timeDifference
 }) => {
   const [dateFinish, setDateFinish] = useState(null);
-  const [timeDifference, setTimeDifference] = useState(null);
 
   useEffect(() => {
     if (!shouldFetchCoupon) return;
@@ -43,7 +47,6 @@ const BannerPromoLayout = ({
   }, [bannerTime]);
 
   useEffect(() => {
-    console.log({ dateFinish, timeDifference, setShowCouponBanner });
     if (!dateFinish) return;
     const timer = setTimeout(() => {
       const hasTimeDifference = dateFinish.diff(moment()) > 0;
@@ -60,7 +63,7 @@ const BannerPromoLayout = ({
     return () => {
       clearTimeout(timer);
     };
-  }, [dateFinish, timeDifference, setShowCouponBanner]);
+  }, [dateFinish, timeDifference, setShowCouponBanner, setTimeDifference]);
 
   const dateDifferenceMoment = moment(timeDifference, "hh:mm:ss");
 
@@ -94,16 +97,18 @@ const BannerPromoLayout = ({
 };
 
 const mapStateToProps = ({ discountCoupons }) => {
+  const timeDifference = discountCoupons.timeDifferenceReducer;
   const { data, completed } = discountCoupons.getDiscountCouponBannerReducer;
-  const { bannerTime, coupon, discount_amount } = data;
+  const { bannerTime, couponCode: coupon, discount_amount } = data;
   return {
     bannerTime,
     coupon,
     discount: parseFloat(discount_amount || 0) * 100,
-    shouldFetchCoupon: !completed && !coupon
+    shouldFetchCoupon: !completed && !coupon,
+    timeDifference
   };
 };
-const mapDispatchToProps = { getDiscountCouponBanner };
+const mapDispatchToProps = { getDiscountCouponBanner, setTimeDifference };
 
 const _BannerPromoLayout = connect(
   mapStateToProps,

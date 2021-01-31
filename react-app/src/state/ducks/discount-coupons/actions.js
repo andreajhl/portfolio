@@ -30,3 +30,8 @@ export const getDiscountCouponBanner = () => (dispatch) => {
       dispatch({ type: `${TYPE}_COMPLETED`, payload: {} });
     });
 };
+
+export const setTimeDifference = (payload) => ({
+  type: TYPES.SET_TIME_DIFFERENCE,
+  payload
+});

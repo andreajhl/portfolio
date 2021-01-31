@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import pickPropertiesFromAObject from "src/utils/pickPropertiesFromAObject";
 import * as types from "./types";
 
 const getDiscountCouponBannerInitialState = {
@@ -7,11 +8,23 @@ const getDiscountCouponBannerInitialState = {
   completed: false,
   error_data: { error: "" },
   data: {
-    coupon: "",
+    couponCode: "",
     discount: 0,
     bannerTime: 0
   }
 };
+
+const timeDifferenceInitialState = null;
+
+export function timeDifferenceReducer(
+  state = timeDifferenceInitialState,
+  action
+) {
+  if (action.type === types.SET_TIME_DIFFERENCE) {
+    return action.payload;
+  }
+  return state;
+}
 
 export function getDiscountCouponBannerReducer(
   state = getDiscountCouponBannerInitialState,
@@ -32,7 +45,11 @@ export function getDiscountCouponBannerReducer(
     case types.GET_DISCOUNT_COUPONS_BANNER_SUCCESS:
       return {
         ...getDiscountCouponBannerInitialState,
-        data: action.payload.data
+        data: pickPropertiesFromAObject(action.payload.data.data, [
+          "bannerTime",
+          "couponCode",
+          "discount_amount"
+        ])
       };
     case types.GET_DISCOUNT_COUPONS_BANNER_COMPLETED:
       return {
@@ -44,4 +61,7 @@ export function getDiscountCouponBannerReducer(
   }
 }
 
-export default combineReducers({ getDiscountCouponBannerReducer });
+export default combineReducers({
+  getDiscountCouponBannerReducer,
+  timeDifferenceReducer
+});
