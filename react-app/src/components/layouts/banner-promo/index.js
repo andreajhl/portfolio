@@ -1,40 +1,46 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import moment from "moment";
-import { getDiscountCouponBanner } from "../../../state/ducks/discount_coupons/actions";
+import { getDiscountCouponBanner } from "../../../state/ducks/discount-coupons/actions";
 import { DISCOUNT_COUPON_BANNER_FINISH_TIME } from "../../../constants/localStorageKeys";
 import "./styles.scss";
 import calculateDateDifference from "../../../utils/calculateDateDifference";
 
-const BannerPromoLayout = ({ showCouponBanner, setShowCouponBanner }) => {
-  const [coupon, setCoupon] = useState("");
-  const [discount, setDiscount] = useState(0);
+const BannerPromoLayout = ({
+  showCouponBanner,
+  setShowCouponBanner,
+  getDiscountCouponBanner,
+  bannerTime,
+  discount,
+  coupon,
+  shouldFetchCoupon
+}) => {
   const [dateFinish, setDateFinish] = useState(null);
   const [timeDifference, setTimeDifference] = useState(null);
 
   useEffect(() => {
-    getDiscountCouponBanner().then((response) => {
-      if (!response) return setShowCouponBanner(false);
-      setCoupon(response.couponCode);
-      setDiscount(parseFloat(response.discount_amount || 0) * 100);
+    if (!shouldFetchCoupon) return;
+    getDiscountCouponBanner();
+  }, [getDiscountCouponBanner, shouldFetchCoupon]);
 
-      let dateFinish = moment(
-        moment().add(response.bannerTime, "minutes"),
-        "YYYY-MM-DD HH:mm:ss"
-      );
+  useEffect(() => {
+    if (!bannerTime) return;
+    let dateFinish = moment(
+      moment().add(bannerTime, "minutes"),
+      "YYYY-MM-DD HH:mm:ss"
+    );
 
-      const storeDateFinish = localStorage.getItem(
-        DISCOUNT_COUPON_BANNER_FINISH_TIME
-      );
+    const storeDateFinish = localStorage.getItem(
+      DISCOUNT_COUPON_BANNER_FINISH_TIME
+    );
 
-      if (storeDateFinish != null) {
-        dateFinish = moment(storeDateFinish);
-      } else {
-        localStorage.setItem(DISCOUNT_COUPON_BANNER_FINISH_TIME, dateFinish);
-      }
-
-      setDateFinish(dateFinish);
-    });
-  }, [setShowCouponBanner]);
+    if (storeDateFinish != null) {
+      dateFinish = moment(storeDateFinish);
+    } else {
+      localStorage.setItem(DISCOUNT_COUPON_BANNER_FINISH_TIME, dateFinish);
+    }
+    setDateFinish(dateFinish);
+  }, [bannerTime]);
 
   useEffect(() => {
     console.log({ dateFinish, timeDifference, setShowCouponBanner });
@@ -87,4 +93,21 @@ const BannerPromoLayout = ({ showCouponBanner, setShowCouponBanner }) => {
   );
 };
 
-export { BannerPromoLayout };
+const mapStateToProps = ({ discountCoupons }) => {
+  const { data, completed } = discountCoupons.getDiscountCouponBannerReducer;
+  const { bannerTime, coupon, discount_amount } = data;
+  return {
+    bannerTime,
+    coupon,
+    discount: parseFloat(discount_amount || 0) * 100,
+    shouldFetchCoupon: !completed && !coupon
+  };
+};
+const mapDispatchToProps = { getDiscountCouponBanner };
+
+const _BannerPromoLayout = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BannerPromoLayout);
+
+export { _BannerPromoLayout as BannerPromoLayout };
