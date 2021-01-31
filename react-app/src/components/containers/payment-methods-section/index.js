@@ -11,11 +11,12 @@ class PaymentMethodsSection extends Component {
   }
 
   render() {
+    const isLoading = !this.props.contractData.reference;
     return (
       <div
         className="PaymentMethodsSection"
         style={{
-          opacity: this.props.contractData.celebrity_avatar ? "1" : "0.3"
+          opacity: isLoading ? "0.3" : "1"
         }}
       >
         <div
