@@ -24,7 +24,7 @@ export const DropdownMenuLayout = ({
       }`}
     >
       <button
-        className="btn DropdownMenuLayout__dropdown-button ml-2"
+        className="btn DropdownMenuLayout__dropdown-button ml-3"
         type="button"
         id="dropdownMenuButton"
         data-toggle="dropdown"
