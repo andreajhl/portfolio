@@ -1,35 +1,45 @@
 @import "../../../theme";
-
+@import "../../../constants/breakpoints.scss";
 .container-sign-in-page {
   background-color: #ffffff;
   display: flex;
   justify-content: center;
-  // align-items: center;
   flex-flow: row;
   min-height: 80vh;
   flex-wrap: wrap;
 
   &__login-details {
-    margin-top: 200px;
     display: flex;
     flex-flow: column;
     width: 500px;
+    align-items: center;
+    margin-top: 10px;
   }
 
   &__instructions {
+    padding: 20px;
+    @media screen and (min-width: $screen-md-min) {
+      padding: 0px;
+    }
+    @media screen and (min-width: $screen-lg-min) {
+      margin-top: 30%;
+    }
     h1 {
+      font-size: 30px;
       font-weight: bold;
+      @media screen and (min-width: $screen-md-min) {
+        margin-top: 40px;
+      }
     }
   }
   &__login-button {
-    width: 400px;
+    width: 300px;
     margin-top: 20px;
     height: 60px;
     color: white;
   }
   &__create-contract-steps {
-    margin-top: 50px;
+    margin-top: 20px;
     width: 400px;
-    // height: 80%;
   }
 }
