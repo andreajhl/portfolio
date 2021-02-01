@@ -5,7 +5,7 @@ import { Mixpanel } from "./mixPanel";
 
 export class Session {
   constructor() {
-    this.sessionName = "_fs_";
+    this.sessionName = "_a0_";
     this.visitKey = "_visit_";
     this.session = this.getSession();
   }
