@@ -17,13 +17,13 @@ const Auth0UserHandler = ({ children }) => {
       }
     };
     fetchToken();
-    if (localStorage.getItem("finalRedirect")) {
-      history.push(localStorage.getItem("finalRedirect"));
-      localStorage.removeItem("finalRedirect");
-    }
   }, [user]);
   useEffect(() => {
     if (tokenUser) {
+      if (localStorage.getItem("finalRedirect")) {
+        history.push(localStorage.getItem("finalRedirect"));
+        localStorage.removeItem("finalRedirect");
+      }
       localStorage.setItem(session.sessionName, tokenUser);
     } else {
       localStorage.removeItem(session.sessionName);
