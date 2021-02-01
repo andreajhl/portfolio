@@ -15,9 +15,14 @@ class PaymentMethodsSection extends Component {
     return (
       <div
         className="PaymentMethodsSection"
-        style={{
-          opacity: isLoading ? "0.3" : "1"
-        }}
+        style={
+          isLoading
+            ? {
+                opacity: "0.3",
+                pointerEvents: "none"
+              }
+            : null
+        }
       >
         <div
           className={"row justify-content-center payment-methods-section-row"}
