@@ -11,6 +11,7 @@ echo
 
 # ENVIRONMENTS
 environments=(
+  "Development"
   "Testing"
   "QA"
   "Production"
