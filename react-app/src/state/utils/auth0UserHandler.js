@@ -6,13 +6,14 @@ import { history } from "../../routing/History";
 const Auth0UserHandler = ({ children }) => {
   const session = new Session();
   const [tokenUser, setTokenUser] = useState(null);
-  const { user, getIdTokenClaims } = useAuth0();
+  const { user, getIdTokenClaims, isLoading } = useAuth0();
   useEffect(() => {
     const fetchToken = async () => {
       const result = await getIdTokenClaims();
       if (result) {
         setTokenUser(result.__raw);
-      } else {
+      } else if (!isLoading) {
+        console.log(isLoading);
         setTokenUser(null);
       }
     };
@@ -25,7 +26,7 @@ const Auth0UserHandler = ({ children }) => {
         localStorage.removeItem("finalRedirect");
       }
       localStorage.setItem(session.sessionName, tokenUser);
-    } else {
+    } else if (!isLoading) {
       localStorage.removeItem(session.sessionName);
     }
   }, [tokenUser]);
