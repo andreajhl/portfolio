@@ -98,14 +98,14 @@ export class Session {
     }
   };
 
-  isFirstVisit() {
-    const isFirstVisit = localStorage.getItem(this.visitKey);
-    if (isFirstVisit == null) {
-      localStorage.setItem(this.visitKey, "true");
-      return true;
-    }
-    return false;
-  }
+  // isFirstVisit() {
+  //   const isFirstVisit = localStorage.getItem(this.visitKey);
+  //   if (isFirstVisit == null) {
+  //     localStorage.setItem(this.visitKey, "true");
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   isDummy = () => {
     try {

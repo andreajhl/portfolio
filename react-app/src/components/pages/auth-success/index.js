@@ -5,12 +5,8 @@ import { HOME_PATH } from "../../../routing/Paths";
 
 const AuthSuccess = () => {
   let RedirectTo = null;
-  const shouldRedirect = localStorage.getItem("finalRedirect");
-  if (shouldRedirect) {
-    RedirectTo = <Redirect to={shouldRedirect} />;
-  } else {
-    RedirectTo = <Redirect to={HOME_PATH} />;
-  }
+
+  // RedirectTo = <Redirect to={HOME_PATH} />;
   return (
     <React.Fragment>
       {RedirectTo}
