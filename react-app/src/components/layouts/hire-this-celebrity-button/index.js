@@ -35,7 +35,7 @@ const HireThisCelebrityButton = ({
 
   const displayName =
     parsedFullName.first.length <= 4
-      ? `${fullNameWords[0]} ${fullNameWords?.[1]}`
+      ? fullNameWords.slice(0, 2).join(" ")
       : parsedFullName.first || parsedFullName.last;
 
   return (
