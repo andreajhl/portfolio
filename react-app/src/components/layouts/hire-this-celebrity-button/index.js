@@ -5,8 +5,6 @@ import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
 import { CallToActionButton } from "../call-to-action-button";
 
-const titles = ["Papá", "Don", "Dón", "Papa"];
-
 const HireThisCelebrityButton = ({
   className,
   text,
@@ -35,9 +33,10 @@ const HireThisCelebrityButton = ({
 
   const fullNameWords = celebrityFullName.split(" ");
 
-  const displayName = titles.includes(parsedFullName.first)
-    ? `${fullNameWords[0]} ${fullNameWords[1]}`
-    : parsedFullName.first || parsedFullName.last;
+  const displayName =
+    parsedFullName.first.length <= 4
+      ? `${fullNameWords[0]} ${fullNameWords?.[1]}`
+      : parsedFullName.first || parsedFullName.last;
 
   return (
     <NavLink
