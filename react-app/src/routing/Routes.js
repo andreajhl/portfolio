@@ -98,41 +98,41 @@ class MyRoutes extends Component {
                 path={PATHS.AUTH_SUCCESS}
                 component={PAGES.AuthSuccess}
               />
-              <Route
+              {/* <Route
                 exact
                 path={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH}
                 component={PAGES.SignInPage}
-              />
-              <Route
+              /> */}
+              {/* <Route
                 exact
                 path={PATHS.SIGN_UP_PATH}
                 component={PAGES.SignUpPage}
-              />
-              <Route
+              /> */}
+              {/* <Route
                 exact
                 path={PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH}
                 component={PAGES.SignUpPage}
-              />
+              /> */}
               <Route
                 exact
                 path={PATHS.VALIDATE_SECURITY_CODE}
                 component={PAGES.ValidateSecurityCodePage}
               />
-              <Route
+              {/* <Route
                 exact
                 path={PATHS.RESET_PASSWORD_PATH}
                 component={PAGES.ResetPasswordPage}
-              />
-              <Route
+              /> */}
+              {/* <Route
                 exact
                 path={PATHS.CHANGE_PASSWORD_PATH}
                 component={PAGES.ChangePasswordPage}
-              />
-              <PrivateRoute
+              /> */}
+              {/* <PrivateRoute
                 exact
                 path={PATHS.CREATE_PASSWORD_PATH}
                 component={PAGES.CreatePasswordPage}
-              />
+              /> */}
               <PrivateRoute
                 exact
                 path={PATHS.COMPLETE_PROFILE_PATH}
