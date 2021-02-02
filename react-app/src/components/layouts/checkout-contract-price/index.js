@@ -10,6 +10,7 @@ class ContractPriceLayout extends Component {
     const res = AVAILABLE_CURRENCIES.find(
       (item) => item.name === this.props.currency
     );
+
     if (this.props.price < res.round) {
       return res.round;
     } else {
@@ -18,29 +19,56 @@ class ContractPriceLayout extends Component {
   }
 
   getPriceFormat() {
+    let price = this.props.price;
+
+    if (this.props.currencyExchangeData.to !== "USD") {
+      const convertedPrice = Math.ceil(
+        this.props.price * (this.props.currencyExchangeData.rate || 1)
+      );
+
+      const round = parseFloat(
+        AVAILABLE_CURRENCIES.find(
+          (item) => item.name === this.props.currencyExchangeData.to
+        )?.round
+      );
+
+      price =
+        convertedPrice < round
+          ? round
+          : round + convertedPrice - (convertedPrice % round);
+    }
+
     return (
       <NumberFormat
-        value={
-          this.props.price
-            ? this.props.rounding
-              ? this.rounding()
-              : this.props.price
-            : 0
-        }
+        value={price ? (this.props.rounding ? this.rounding() : price) : 0}
         displayType={"text"}
         thousandSeparator={true}
         decimalScale={2}
         prefix={
           AVAILABLE_CURRENCIES.find(
-            (item) => item.name === this.props.currency
+            (item) => item.name === this.props.currencyExchangeData.to
           )["symbol"]
         }
         renderText={(value) => (
           <h5 className={this.props.classes}>
-            {" "}
-            {value} {this.props.currency}
+            {value} {this.props.currencyExchangeData.to}
           </h5>
         )}
+      />
+    );
+  }
+
+  getInitialPriceFormat() {
+    return (
+      <NumberFormat
+        value={this.props.price || 0}
+        displayType={"text"}
+        thousandSeparator={true}
+        decimalScale={2}
+        prefix={
+          AVAILABLE_CURRENCIES.find((item) => item.name === "USD")["symbol"]
+        }
+        renderText={(value) => `${value} USD`}
       />
     );
   }
@@ -48,7 +76,17 @@ class ContractPriceLayout extends Component {
   render() {
     const finalPrice = (
       <div>
-        <h5 className="font-weight-bold float-left">Total:</h5>
+        <h5 className="font-weight-bold float-left text-left">
+          Total:
+          <br />
+          {this.props.currencyExchangeData.to !== "USD" ? (
+            <span style={{ fontSize: "10px", lineHeight: "1" }}>
+              El valor en {this.props.currencyExchangeData.to} es aproximado{" "}
+              <br />
+              El cobro que se hará en dólares es: {this.getInitialPriceFormat()}
+            </span>
+          ) : null}
+        </h5>
         {this.getPriceFormat()}
       </div>
     );

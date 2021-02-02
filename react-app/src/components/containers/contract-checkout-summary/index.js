@@ -114,6 +114,7 @@ class ContractCheckoutSummary extends Component {
                         : this.props.price
                     }
                     currency={"USD"}
+                    currencyExchangeData={this.props.currencyExchangeData}
                     rounding={false}
                   />
                 </div>
@@ -142,9 +143,12 @@ ContractCheckoutSummary.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state) => ({
-  couponData: state.payments.fetchDiscountCouponReducer
-});
+const mapStateToProps = (state) => {
+  return {
+    couponData: state.payments.fetchDiscountCouponReducer,
+    currencyExchangeData: state.payments.currencyExchangeReducer.data
+  };
+};
 // mapStateToProps
 const mapDispatchToProps = {
   clearCouponData: paymentsOperations.clearCouponData
