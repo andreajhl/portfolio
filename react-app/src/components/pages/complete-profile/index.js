@@ -1,62 +1,54 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import "./styles.scss";
-import {history} from "../../../routing/History";
+import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
-import {CompleteProfileForm} from "../../containers/complete-profile-form";
-import {sessionOperations} from "../../../state/ducks/session";
-import {connect} from "react-redux";
-import {PageContainer} from "../../layouts/page-container";
+import { CompleteProfileForm } from "../../containers/complete-profile-form";
+import { sessionOperations } from "../../../state/ducks/session";
+import { connect } from "react-redux";
+import { PageContainer } from "../../layouts/page-container";
 import * as GTM from "../../../state/utils/gtm";
 
-
 class CompleteProfilePage extends Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props) {
-        super(props);
+    this.state = {};
+    this.goToRoot = this.goToRoot.bind(this);
+  }
 
-        this.state = {};
-        this.goToRoot = this.goToRoot.bind(this);
+  componentWillMount() {
+    this.props.getToken();
+  }
 
-    }
+  componentDidMount() {
+    GTM.tagManagerDataLayer("COMPLETE_PROFILE_PAGE_VIEW", this.props.session);
+  }
 
-    componentWillMount() {
-        this.props.getToken()
-    }
+  goToRoot() {
+    history._pushRoute(PATHS.HOME_PATH);
+  }
 
-    componentDidMount() {
-        GTM.tagManagerDataLayer(
-            "COMPLETE_PROFILE_PAGE_VIEW",
-            this.props.session
-        );
-    }
-
-    goToRoot() {
-        history._pushRoute(PATHS.HOME_PATH)
-    }
-
-    render() {
-        return (
-            <>
-                <PageContainer applyFetchCelebrities={false} showFooter={false}>
-                    <div className="SignInPage">
-                        <div className="section">
-                            <div className="auth-container">
-                                <div className="logo">
-                                    <img src={"/assets/img/logo-color.png"} alt="famosos-logo"/>
-                                </div>
-                                <div className="custom-form">
-                                    <CompleteProfileForm session={this.props.session}/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </PageContainer>
-            </>
-        );
-    };
-
+  render() {
+    return (
+      <>
+        <PageContainer applyFetchCelebrities={false} showFooter={false}>
+          <div className="SignInPage">
+            <div className="section">
+              <div className="auth-container">
+                <div className="logo">
+                  <img src={"/assets/img/logo-color.png"} alt="famosos-logo" />
+                </div>
+                <div className="custom-form">
+                  <CompleteProfileForm session={this.props.session} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </PageContainer>
+      </>
+    );
+  }
 }
-
 
 // Set propTypes
 CompleteProfilePage.propTypes = {};
@@ -65,17 +57,18 @@ CompleteProfilePage.propTypes = {};
 CompleteProfilePage.defaultProps = {};
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
-    session: state.session.getSessionReducer.data
+const mapStateToProps = (state) => ({
+  session: state.session.getSessionReducer.data
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getToken: sessionOperations.getToken
+  getToken: sessionOperations.getToken
 };
 
 // Export Class
-const _CompleteProfilePage = connect(mapStateToProps, mapDispatchToProps)(CompleteProfilePage);
-export {_CompleteProfilePage as CompleteProfilePage};
-
-
+const _CompleteProfilePage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CompleteProfilePage);
+export { _CompleteProfilePage as CompleteProfilePage };

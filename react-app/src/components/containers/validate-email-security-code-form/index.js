@@ -19,7 +19,7 @@ class ValidateEmailSecurityCodeForm extends Component {
     this.goBack = this.goBack.bind(this);
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
     if (!this.props.validateIfEmailIsRegisteredData.email) {
       history.goBack();
     }
@@ -108,7 +108,7 @@ ValidateEmailSecurityCodeForm.propTypes = {};
 ValidateEmailSecurityCodeForm.defaultProps = {};
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   // validateIfEmailIsRegistered
   validateIfEmailIsRegisteredData:
     state.authentication.validateIfEmailIsRegisteredReducer.data,

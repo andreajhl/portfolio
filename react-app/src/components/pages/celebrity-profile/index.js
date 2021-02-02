@@ -1,28 +1,29 @@
-import React, { Component, createRef } from "react";
-import { PageContainer } from "../../layouts";
+import React, {Component, createRef} from "react";
+import {PageContainer} from "../../layouts";
 import * as PropTypes from "prop-types";
-import { CelebrityShape } from "../../../prop-types";
-import { connect } from "react-redux";
-import { celebrityOperations } from "../../../state/ducks/celebrities";
+import {CelebrityShape} from "../../../prop-types";
+import {connect} from "react-redux";
+import {celebrityOperations} from "../../../state/ducks/celebrities";
 import "./styles.scss";
 import MetaTags from "react-meta-tags";
 import * as GTM from "../../../state/utils/gtm";
-import { Session } from "../../../state/utils/session";
-import { CelebrityProfileLayoutA } from "../../layouts/celebrity-profile-a";
-import { CelebrityProfileLayoutB } from "../../layouts/celebrity-profile-b";
-import { CelebrityProfileLayoutC } from "../../layouts/celebrity-profile-c";
-import { getCelebrityProfileVersion } from "../../../utils/celebrityProfileVersion";
-import { NetworkConnectionErrorLayout } from "../../layouts/network-error-message";
+import {Session} from "../../../state/utils/session";
+import {CelebrityProfileLayoutA} from "../../layouts/celebrity-profile-a";
+import {CelebrityProfileLayoutB} from "../../layouts/celebrity-profile-b";
+import {CelebrityProfileLayoutC} from "../../layouts/celebrity-profile-c";
+import {getCelebrityProfileVersion} from "../../../utils/celebrityProfileVersion";
+import {NetworkConnectionErrorLayout} from "../../layouts/network-error-message";
+import {LastVideosAvailableBanner} from "../../layouts/last-videos-available-banner";
 
-const CelebrityProfileLayout = ({ celebrity }) => {
+const CelebrityProfileLayout = ({celebrity}) => {
   if (!celebrity.showSimilarCelebrities) {
-    return <CelebrityProfileLayoutC celebrity={celebrity} />;
+    return <CelebrityProfileLayoutC celebrity={celebrity}/>;
   }
 
   const celebrityProfileVersion = getCelebrityProfileVersion();
 
   return celebrityProfileVersion && celebrityProfileVersion === "B" ? (
-    <CelebrityProfileLayoutB celebrity={celebrity} />
+      <CelebrityProfileLayoutB celebrity={celebrity}/>
   ) : (
     <CelebrityProfileLayoutA celebrity={celebrity} />
   );
@@ -120,7 +121,12 @@ class CelebrityProfilePage extends Component {
             <div style={{ minHeight: "100vh" }}>
               {this.props.celebrity.username ===
               this.props.match.params.celebrity_username ? (
-                <CelebrityProfileLayout celebrity={this.props.celebrity} />
+                  <div>
+                    <LastVideosAvailableBanner
+                        celebrityUsername={this.props.celebrity?.username}
+                        celebrityFullName={this.props.celebrity?.fullName}/>
+                    <CelebrityProfileLayout celebrity={this.props.celebrity}/>
+                  </div>
               ) : null}
             </div>
           ) : (

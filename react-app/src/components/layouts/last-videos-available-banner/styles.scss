@@ -1,0 +1,30 @@
+.LastVideosAvailableBanner {
+
+  * {
+    color: white !important;
+  }
+
+  .banner-container {
+    height: 62px;
+    width: 100vw;
+    background-color: #000000;
+    text-align: center;
+
+    .banner-container-text {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+  }
+
+  @media (min-width: 800px) {
+    .banner-container-text {
+      font-size: 16px !important;
+    }
+  }
+
+}
