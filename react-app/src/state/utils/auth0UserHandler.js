@@ -13,8 +13,8 @@ const Auth0UserHandler = ({ children }) => {
       if (result) {
         setTokenUser(result.__raw);
       } else if (!isLoading) {
-        console.log(isLoading);
         setTokenUser(null);
+        localStorage.removeItem(session.sessionName);
       }
     };
     fetchToken();
