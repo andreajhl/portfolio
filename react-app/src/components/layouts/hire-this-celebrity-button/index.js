@@ -34,8 +34,8 @@ const HireThisCelebrityButton = ({
   const fullNameWords = celebrityFullName.split(" ");
 
   const displayName =
-    parsedFullName.first === "Papá"
-      ? `${fullNameWords[0]} ${fullNameWords[1]}`
+    parsedFullName.first.length <= 4
+      ? fullNameWords.slice(0, 2).join(" ")
       : parsedFullName.first || parsedFullName.last;
 
   return (
