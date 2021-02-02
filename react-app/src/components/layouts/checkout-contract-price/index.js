@@ -18,25 +18,26 @@ class ContractPriceLayout extends Component {
     }
   }
 
+  getConvertedPrice(price) {
+    if (this.props.currencyExchangeData.to === "USD") return price;
+
+    const convertedPrice = Math.ceil(
+      price * (this.props.currencyExchangeData.rate || 1)
+    );
+
+    const round = parseFloat(
+      AVAILABLE_CURRENCIES.find(
+        (item) => item.name === this.props.currencyExchangeData.to
+      )?.round
+    );
+
+    return convertedPrice < round
+      ? round
+      : round + convertedPrice - (convertedPrice % round);
+  }
+
   getPriceFormat() {
-    let price = this.props.price;
-
-    if (this.props.currencyExchangeData.to !== "USD") {
-      const convertedPrice = Math.ceil(
-        this.props.price * (this.props.currencyExchangeData.rate || 1)
-      );
-
-      const round = parseFloat(
-        AVAILABLE_CURRENCIES.find(
-          (item) => item.name === this.props.currencyExchangeData.to
-        )?.round
-      );
-
-      price =
-        convertedPrice < round
-          ? round
-          : round + convertedPrice - (convertedPrice % round);
-    }
+    const price = this.getConvertedPrice(this.props.price);
 
     return (
       <NumberFormat
@@ -58,17 +59,20 @@ class ContractPriceLayout extends Component {
     );
   }
 
-  getInitialPriceFormat() {
+  getFormattedPrice(price = 0, currencyName) {
+    console.log(currencyName);
     return (
       <NumberFormat
-        value={this.props.price || 0}
+        value={price || 0}
         displayType={"text"}
         thousandSeparator={true}
         decimalScale={2}
         prefix={
-          AVAILABLE_CURRENCIES.find((item) => item.name === "USD")["symbol"]
+          AVAILABLE_CURRENCIES.find((item) => item.name === currencyName)?.[
+            "symbol"
+          ]
         }
-        renderText={(value) => `${value} USD`}
+        renderText={(value) => `${value} ${currencyName}`}
       />
     );
   }
@@ -76,14 +80,15 @@ class ContractPriceLayout extends Component {
   render() {
     const finalPrice = (
       <div>
-        <h5 className="font-weight-bold float-left text-left">
+        <h5 className="font-weight-bold float-left text-left col-6 col-md-8 p-0 m-0 pr-1">
           Total:
           <br />
-          {this.props.currencyExchangeData.to !== "USD" ? (
+          {this.props.currencyExchangeData.to !== this.props.currency ? (
             <span style={{ fontSize: "10px", lineHeight: "1" }}>
               El valor en {this.props.currencyExchangeData.to} es aproximado{" "}
               <br />
-              El cobro que se hará en dólares es: {this.getInitialPriceFormat()}
+              El cobro que se hará en dólares es:{" "}
+              {this.getFormattedPrice(this.props.price, this.props.currency)}
             </span>
           ) : null}
         </h5>
@@ -94,7 +99,14 @@ class ContractPriceLayout extends Component {
       <div>
         <span className="float-left"> Precio original: </span>
         <span className="text-dark float-right">
-          {this.props.availableDiscount.initialPrice} {this.props.currency}
+          {this.props.currencyExchangeData.to !== this.props.currency
+            ? this.getFormattedPrice(
+                this.getConvertedPrice(
+                  this.props.availableDiscount.initialPrice
+                ),
+                this.props.currencyExchangeData.to
+              )
+            : `$${this.props.availableDiscount.initialPrice} ${this.props.currency}`}
         </span>{" "}
         <br></br>
       </div>
@@ -103,14 +115,45 @@ class ContractPriceLayout extends Component {
       <div>
         <span className="float-left">Descuento: </span>{" "}
         <span className="text-danger">
-          {this.props.availableDiscount.isPercentageDiscount
-            ? `${(
-                this.props.availableDiscount.discountAmount * 100
-              ).toFixed()}% | ${(
-                this.props.availableDiscount.discountAmount *
-                this.props.availableDiscount.initialPrice
-              ).toFixed(2)} ${this.props.currency}`
-            : ` ${this.props.availableDiscount.discountAmount} ${this.props.currency}`}{" "}
+          {this.props.availableDiscount.isPercentageDiscount ? (
+            <>
+              {(this.props.availableDiscount.discountAmount * 100).toFixed()}% |{" "}
+              {this.props.currencyExchangeData.to !== this.props.currency ? (
+                this.getFormattedPrice(
+                  this.getConvertedPrice(
+                    parseFloat(
+                      (
+                        this.props.availableDiscount.discountAmount *
+                        this.props.availableDiscount.initialPrice
+                      ).toFixed(2)
+                    )
+                  ),
+                  this.props.currencyExchangeData.to
+                )
+              ) : (
+                <>
+                  $
+                  {(
+                    this.props.availableDiscount.discountAmount *
+                    this.props.availableDiscount.initialPrice
+                  ).toFixed(2)}{" "}
+                  {this.props.currency}
+                </>
+              )}
+            </>
+          ) : this.props.currencyExchangeData.to !== this.props.currency ? (
+            this.getFormattedPrice(
+              this.getConvertedPrice(
+                this.props.availableDiscount.discountAmount
+              ),
+              this.props.currencyExchangeData.to
+            )
+          ) : (
+            <>
+              ${this.props.availableDiscount.discountAmount}{" "}
+              {this.props.currency}
+            </>
+          )}
         </span>
       </div>
     ) : null;
