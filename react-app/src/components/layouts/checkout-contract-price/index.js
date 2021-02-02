@@ -80,7 +80,7 @@ class ContractPriceLayout extends Component {
   render() {
     const finalPrice = (
       <div>
-        <h5 className="font-weight-bold float-left text-left">
+        <h5 className="font-weight-bold float-left text-left col-6 col-md-8 p-0 m-0 pr-1">
           Total:
           <br />
           {this.props.currencyExchangeData.to !== this.props.currency ? (
