@@ -44,7 +44,7 @@ export class Session {
 
   removeSession = () => {
     localStorage.removeItem(this.sessionName);
-    history._pushRoute(PATHS.ROOT_PATH);
+    // history._pushRoute(PATHS.ROOT_PATH);
   };
 
   tokenExpired() {
