@@ -11,6 +11,7 @@ echo
 
 # ENVIRONMENTS
 environments=(
+  "Development"
   "Testing"
   "QA"
   "Production"
@@ -33,12 +34,14 @@ echo
 mkdir build
 cd react-app
 npm install
-if [[ ${environments[selectedOption]} = "Testing" ]]; then
+if [[ ${environments[selectedOption]} = "Development" ]]; then
+    npm run-script build-development
+elif [[ ${environments[selectedOption]} = "Testing" ]]; then
     npm run-script build-testing
-elif [[ ${environments[selectedOption]} = "Production" ]]; then
-    npm run-script build-production
 elif [[ ${environments[selectedOption]} = "QA" ]]; then
     npm run-script build-qa
+elif [[ ${environments[selectedOption]} = "Production" ]]; then
+    npm run-script build-production
 else
     echo "Invalid environment"
     exit 1
