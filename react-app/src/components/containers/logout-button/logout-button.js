@@ -10,7 +10,7 @@ const LogoutButton = (props) => {
   const handlerLogoutSession = () => {
     GTM.tagManagerDataLayer("CLICK_LOGOUT");
     logout({
-      redirectUri: window.location.origin
+      returnTo: window.location.origin
     });
   };
   return (
