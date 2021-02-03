@@ -33,31 +33,31 @@ const CelebrityDetails = ({ celebrity, variant }) => {
         variant === "2" ? "mb-4 mt-0" : ""
       }`}
     >
-      <Row className="justify-content-md-center align-items-center my-3">
-        <Col xs="auto d-md-none" className="text-center">
+      <Row className='justify-content-md-center align-items-center my-3'>
+        <Col xs='auto d-md-none' className='text-center'>
           <ProfilePicture
             avatar={avatar}
-            width="139px"
+            width='139px'
             imageStyles={
               availableForFlashDeliveries ? { marginBottom: "-2rem" } : null
             }
           />
           {availableForFlashDeliveries ? (
-            <FlashDeliveryBadgeLayout color="dark" showTitle />
+            <FlashDeliveryBadgeLayout color='dark' showTitle />
           ) : null}
         </Col>
-        <Col xs="auto d-none d-md-block" className="text-center">
+        <Col xs='auto d-none d-md-block' className='text-center'>
           <ProfilePicture
             avatar={avatar}
-            width="200px"
+            width='200px'
             imageStyles={
               availableForFlashDeliveries ? { marginBottom: "-2.5rem" } : null
             }
           />
           {availableForFlashDeliveries ? (
             <FlashDeliveryBadgeLayout
-              className="CelebrityDetails__flash-delivery-large"
-              color="dark"
+              className='CelebrityDetails__flash-delivery-large'
+              color='dark'
               showTime
               showTitle
             />
@@ -74,26 +74,26 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             turnAround={turnaround}
             availableForFlashDeliveries={availableForFlashDeliveries}
           />
-          <Col className="d-none d-md-block mx-0 px-0">
+          <Col className='d-none d-md-block mx-0 px-0'>
             <HireThisCelebrityButton
-              celebrityFullName={fullName}
+              celebrityFullName={""}
               celebrityUsername={username}
               text={
                 // variant.startsWith("1")
-                /* ?  */ "Quiero un video de"
+                /* ?  */ "🤩 ¡Comprar video ahora! 🤩"
                 // : "Obtén un video de"
               }
-              width="100%"
-              fontSize="1.25em"
+              width='100%'
+              fontSize='1.25em'
             />
             {availableForSubscriptions ? (
               <SubscribeToThisCelebrityButton
-                className="mt-2"
+                className='mt-2'
                 celebrityFullName={fullName}
                 celebrityUsername={username}
                 text={"Suscribirme a "}
-                width="100%"
-                fontSize="1.25em"
+                width='100%'
+                fontSize='1.25em'
               />
             ) : null}
             {isDonor ? (
@@ -101,7 +101,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                 fullName={fullName}
                 causeName={causeName}
                 causeUrl={causeUrl}
-                className="mt-2"
+                className='mt-2'
               />
             ) : null}
           </Col>
@@ -109,7 +109,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
       </Row>
       <Row>
         {isDonor ? (
-          <Col xs="12" className="d-md-none">
+          <Col xs='12' className='d-md-none'>
             <CelebrityDonorAlert
               fullName={fullName}
               causeName={causeName}
@@ -117,22 +117,22 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             />
           </Col>
         ) : null}
-        <Col className="mx-3 my-3 px-0">
+        <Col className='mx-3 my-3 px-0'>
           <CelebritiesProfileDescription descriptionText={description} />
         </Col>
       </Row>
       <Row>
-        <Col className="d-md-none">
+        <Col className='d-md-none'>
           <HireThisCelebrityButton
-            celebrityFullName={fullName}
+            className={"button-hire-this-celebrity"}
+            celebrityFullName={""}
             celebrityUsername={username}
-            text="Quiero un video de"
-            width="100%"
-            fontSize="1.25em"
+            text='🤩 ¡Comprar video ahora! 🤩'
+            width='100%'
           />
           {availableForSubscriptions ? (
             <SubscribeToThisCelebrityButton
-              className="mt-2"
+              className='mt-2'
               celebrityFullName={fullName}
               celebrityUsername={username}
               text={
@@ -140,8 +140,8 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                 /* ?  */ "Suscribirme a "
                 // : "Obtén un video de"
               }
-              width="100%"
-              fontSize="1.25em"
+              width='100%'
+              fontSize='1.25em'
             />
           ) : null}
         </Col>
