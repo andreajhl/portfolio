@@ -16,11 +16,11 @@ class ClientProfilePage extends Component {
     };
   }
 
-  componentWillMount(): void {
+  componentWillMount() {
     this.props.getToken();
   }
 
-  async componentDidMount(): void {
+  async componentDidMount() {
     console.log(this.props.authentication);
     document.getElementsByClassName("f-main-body")[0].style.background =
       "#f7f7f7";
@@ -28,7 +28,7 @@ class ClientProfilePage extends Component {
     this.props.getUserInformation();
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
   }
 
@@ -55,7 +55,7 @@ ClientProfilePage.propTypes = {};
 ClientProfilePage.defaultProps = {};
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   session: state.session.getSessionReducer.data,
   userInformation: state.authentication.getUserInformationReducer.data
 });
