@@ -10,6 +10,9 @@ import * as GTM from "../../../state/utils/gtm";
 import "./styles.scss";
 import { BannerPromoLayout } from "../banner-promo";
 import { DropdownMenuLayout } from "../dropdown-menu";
+import LoginButton from "../../containers/login-button/login-button";
+import { useAuth0 } from "@auth0/auth0-react";
+import LogoutButton from "../../containers/logout-button/logout-button";
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
   if (!target.matches("a")) return;
@@ -39,6 +42,7 @@ const NavbarSectionLayout = ({
   setShowCouponBanner
 }) => {
   const isLogged = new Session().getSession();
+  const { isLoading, isAuthenticated, user } = useAuth0();
   return (
     <>
       <div className={`NavbarSectionLayout ${className}`}>
@@ -67,16 +71,14 @@ const NavbarSectionLayout = ({
               />
             </NavLink>
           </div>
+
           <div className='top-bar__right-side col-4 p-0 row m-0'>
-            {!isLogged ? (
+            {!isAuthenticated && !isLoading ? (
               <div className='col d-none d-md-flex align-items-center'>
                 <NavLink
                   className='btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1'
                   activeClassName=''
-                  to={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(
-                    ":form",
-                    "email-form"
-                  )}
+                  to={PATHS.SIGN_IN_PATH}
                   onClick={({ target }) =>
                     sendDropdownLinkAnalyticsData("CLICK", target)
                   }

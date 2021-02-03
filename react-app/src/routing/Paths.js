@@ -18,6 +18,7 @@ export const POLICIES_PATH = "/docs/politicas";
 export const FAQS_PATH = "/docs/faqs";
 // AUTH
 export const AUTH_FLOW = "/auth/select-flow/";
+export const AUTH_SUCCESS = "/authentication/success";
 export const SIGN_IN_PATH = "/auth/sign-in/";
 export const SIGN_IN_WITH_SPECIFIC_FORM_PATH = "/auth/sign-in/:form/";
 export const SIGN_UP_PATH = "/auth/sign-up";
@@ -44,10 +45,11 @@ export const TRENDING = "/tendencias/";
 export const BLOG = "/blogs/all";
 export const BLOG_ENTRY = `${BLOG}/blog-:id`;
 //SUBSCRIPTION
-export const SUBSCRIPTION= "/subscription/subscribe/:celebrity_username"
+export const SUBSCRIPTION = "/subscription/subscribe/:celebrity_username";
 //SUBSCRIPTION
-export const SUBSCRIPTION_SUCCESS= "/subscription/subscription-success/:celebrity_username"
+export const SUBSCRIPTION_SUCCESS =
+  "/subscription/subscription-success/:celebrity_username";
 //SUBSCRIPTION FEED
-export const FEED_SUBSCRIPTION= "/subscription/feed"
+export const FEED_SUBSCRIPTION = "/subscription/feed";
 //SESSION REDIRECT
-export const SESSION_REDIRECT= "/session/redirect/"
+export const SESSION_REDIRECT = "/session/redirect/";

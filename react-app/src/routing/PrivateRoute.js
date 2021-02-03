@@ -1,26 +1,19 @@
-import React from 'react';
-import {Redirect, Route} from 'react-router-dom';
-import {Session} from "../state/utils/session";
-import * as PATHS from "./Paths"
+import React, { useMemo } from "react";
+import { Route } from "react-router-dom";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { LoaderLayout } from "../components/layouts/loader";
 
-const checkSession = (Component, props, groups, requireClientID) => {
-
-    const session = new Session();
-
-    const redirectToLogin = <Redirect to={{pathname: PATHS.SIGN_IN_PATH, state: {from: props.location}}}/>;
-    // const redirectToNotFound = <Redirect to={{pathname: PATHS.NOT_FOUND_PATH, state: {from: props.location}}}/>;
-    // const redirectToNotAuthorized = <Redirect to={{pathname: PATHS.NOT_AUTHORIZED_PATH, state: {from: props.location}}}/>;
-    // const redirectToHome = <Redirect to={{pathname: PATHS.HOME_PATH, state: {from: props.location}}}/>;
-    const renderComponent = <Component {...props} />;
-
-    if (!session.getSession() || session.tokenExpired()) {
-        return redirectToLogin
-    } else {
-        return renderComponent
-    }
-
+const PrivateRoute = ({ component, ...rest }) => {
+  const Comp = withAuthenticationRequired(component, {
+    onRedirecting: () => <LoaderLayout />,
+    returnTo: localStorage.getItem("finalRedirect")
+      ? localStorage.getItem("finalRedirect")
+      : window.location.href
+  });
+  return useMemo(
+    () => <Route {...rest} render={(props) => <Comp {...props}></Comp>} />,
+    [component, rest]
+  );
 };
 
-export const PrivateRoute = ({component: Component, groups, requireClientID, ...rest}) => (
-    <Route {...rest} render={props => (checkSession(Component, props, groups, requireClientID))}/>
-);
+export { PrivateRoute };

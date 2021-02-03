@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { UserProfileDetailsCardLayout } from "../../layouts/user-profile-details-card";
 import "./styles.scss";
 import { sessionOperations } from "../../../state/ducks/session";
+import { authenticationOperations } from "../../../state/ducks/authentication";
 import * as GTM from "../../../state/utils/gtm";
 
 class ClientProfilePage extends Component {
@@ -15,26 +16,31 @@ class ClientProfilePage extends Component {
     };
   }
 
-  componentWillMount() {
+  componentWillMount(): void {
     this.props.getToken();
   }
 
-  componentDidMount() {
+  async componentDidMount(): void {
+    console.log(this.props.authentication);
     document.getElementsByClassName("f-main-body")[0].style.background =
       "#f7f7f7";
     GTM.tagManagerDataLayer("CLIENT_PROFILE_PAGE_VIEW", this.props.session);
+    this.props.getUserInformation();
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
   }
 
   render() {
     return (
       <>
-        <div className="ClientProfilePage">
+        <div className='ClientProfilePage'>
           <PageContainer applyFetchCelebrities={false}>
-            <UserProfileDetailsCardLayout session={this.props.session} />
+            <UserProfileDetailsCardLayout
+              userInformation={this.props.userInformation}
+              session={this.props.session}
+            />
           </PageContainer>
         </div>
       </>
@@ -49,13 +55,15 @@ ClientProfilePage.propTypes = {};
 ClientProfilePage.defaultProps = {};
 
 // mapStateToProps
-const mapStateToProps = (state) => ({
-  session: state.session.getSessionReducer.data
+const mapStateToProps = (state: any) => ({
+  session: state.session.getSessionReducer.data,
+  userInformation: state.authentication.getUserInformationReducer.data
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  getToken: sessionOperations.getToken
+  getToken: sessionOperations.getToken,
+  getUserInformation: authenticationOperations.getUserInformation
 };
 
 // Export Class

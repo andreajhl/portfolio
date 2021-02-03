@@ -9,6 +9,9 @@ import MetaTags from "react-meta-tags";
 import { Session } from "../../../state/utils/session";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import { Redirect } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import auth0HOC from "../../../state/utils/auth0HOC";
 
 const getContractPriceVideoMessage = (contractsTypes) =>
   contractsTypes?.find?.((contract) => contract.contractType === 1)?.price || 0;
@@ -19,15 +22,9 @@ class CreateContractPage extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     GTM.tagManagerDataLayer("CREATE_CONTRACT_PAGE_VIEW", this.props.match);
-    const session = new Session();
-    if (session.isDummy()) {
-      localStorage.setItem(
-        "finalRedirect",
-        "/" + this.props.match.params["celebrity_username"] + "/contratar"
-      );
-      history._pushRoute(PATHS.AUTH_FLOW);
-    }
+    // const session = new Session();
   }
 
   componentWillMount() {
@@ -37,20 +34,34 @@ class CreateContractPage extends Component {
   }
 
   render() {
+    if (!this.props.auth0.isLoading) {
+      if (!this.props.auth0.isAuthenticated) {
+        localStorage.setItem(
+          "finalRedirect",
+          "/" + this.props.match.params["celebrity_username"] + "/contratar"
+        );
+      }
+    }
+    let RedirectTo = !this.props.auth0.isLoading ? (
+      this.props.auth0.isAuthenticated ? null : (
+        <Redirect to={PATHS.SIGN_IN_PATH}></Redirect>
+      )
+    ) : null;
     return (
       <>
+        {RedirectTo}
         {this.props.celebrity.id ? (
           <MetaTags>
             <title>
-              Famosos.com - Comprar video personalizado de{' '}
+              Famosos.com - Comprar video personalizado de{" "}
               {this.props.celebrity.fullName}
             </title>
             <meta
               name='description'
               content={
-                'Comprar video personalizado de ' +
+                "Comprar video personalizado de " +
                 this.props.celebrity.fullName +
-                ' en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.'
+                " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
               }
             />
           </MetaTags>
@@ -65,9 +76,9 @@ class CreateContractPage extends Component {
           fetchCelebrities={false}
           hideControls={true}
         >
-          <div className={'CreateContractPage row mx-auto my-auto'}>
+          <div className={"CreateContractPage row mx-auto my-auto"}>
             {/* FORM */}
-            <div className={'col-sm-12 col-lg-6 mx-auto my-auto p-0 m-0'}>
+            <div className={"col-sm-12 col-lg-6 mx-auto my-auto p-0 m-0"}>
               <CreateContractForm
                 contractPrice={getContractPriceVideoMessage(
                   this.props.celebrity.contractTypes
@@ -81,21 +92,21 @@ class CreateContractPage extends Component {
             {/* STEPS COMMUNICATION */}
             <div
               className={
-                'col-sm-12 col-md-6 col-lg-6 mx-auto my-auto p-4 text-center'
+                "col-sm-12 col-md-6 col-lg-6 mx-auto my-auto p-4 text-center"
               }
             >
-              <div className={'steps-image ml-2 mb-2 mx-auto my-auto'}>
-                <div className={'text-left'}>
+              <div className={"steps-image ml-2 mb-2 mx-auto my-auto"}>
+                <div className={"text-left"}>
                   <i
-                    className={'ml-2 fas fa-question-circle'}
-                    style={{ fontSize: '20px' }}
+                    className={"ml-2 fas fa-question-circle"}
+                    style={{ fontSize: "20px" }}
                   />
                 </div>
                 <img
                   width='100%'
-                  className={'create-contract-steps'}
-                  src={'/assets/img/create-contract-steps.svg'}
-                  alt={'create-contract-steps'}
+                  className={"create-contract-steps"}
+                  src={"/assets/img/create-contract-steps.svg"}
+                  alt={"create-contract-steps"}
                 />
               </div>
             </div>
@@ -124,5 +135,5 @@ const mapDispatchToProps = {
 const _CreateContractPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateContractPage);
+)(auth0HOC(CreateContractPage));
 export { _CreateContractPage as CreateContractPage };

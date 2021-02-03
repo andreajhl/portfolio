@@ -13,7 +13,7 @@ const jwt_decode = require("jwt-decode");
 const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
 
 // OLD SESSIONS VALIDATION
-const token = window.localStorage.getItem("_fs_");
+const token = window.localStorage.getItem("_a0_");
 if (token) {
   const email = jwt_decode(token).email;
   const status = jwt_decode(token).status;
@@ -21,7 +21,7 @@ if (token) {
     email?.includes("myemail@") ||
     (email?.includes("@famosos.com") && email?.includes("Anonymous"))
   ) {
-    window.localStorage.removeItem("_fs_");
+    window.localStorage.removeItem("_a0_");
   }
 }
 

@@ -8,12 +8,12 @@ export * from "./contract-editor";
 export * from "./client-profile";
 export * from "./complete-profile";
 export * from "./contract-created";
-export * from "./create-password";
+// export * from "./create-password";
 export * from "./hiring-preview";
 export * from "./not-found";
-export * from "./reset-password";
+// export * from "./reset-password";
 export * from "./sign-in";
-export * from "./sign-up";
+// export * from "./sign-up";
 export * from "./validate-security-code";
 export * from "./faqs";
 export * from "./policies";
@@ -28,10 +28,11 @@ export * from "./404";
 export * from "./stripe_3d_response";
 export * from "./stripe_3d_form";
 export * from "./404CelebrityProfile";
-export * from "./blog-results"
-export * from "./blog-entry"
-export * from "./subscription"
-export * from "./subscription-feed"
-export * from "./subscribe_success"
-export * from "./session-redirect"
-export * from './client-subscriptions';
+export * from "./blog-results";
+export * from "./blog-entry";
+export * from "./subscription";
+export * from "./subscription-feed";
+export * from "./subscribe_success";
+export * from "./session-redirect";
+export * from "./client-subscriptions";
+export * from "./auth-success";

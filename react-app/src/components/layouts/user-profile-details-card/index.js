@@ -5,6 +5,7 @@ import { CelebritiesMultiselect } from "../celebrities-multiselect";
 import { sessionOperations } from "../../../state/ducks/session";
 import { connect } from "react-redux";
 import * as GTM from "../../../state/utils/gtm";
+import LogoutButton from "../../containers/logout-button/logout-button";
 
 class UserProfileDetailsCardLayout extends Component {
   constructor(props) {
@@ -18,13 +19,7 @@ class UserProfileDetailsCardLayout extends Component {
     this.celebritiesMultiSelectChanged = this.celebritiesMultiSelectChanged.bind(
       this
     );
-    this.logout = this.logout.bind(this);
     this.updateSession = this.updateSession.bind(this);
-  }
-
-  logout() {
-    GTM.tagManagerDataLayer("CLICK_LOGOUT", this.sesion);
-    this.sesion.removeSession();
   }
 
   celebritiesMultiSelectChanged(value) {
@@ -39,59 +34,65 @@ class UserProfileDetailsCardLayout extends Component {
 
   render() {
     return (
-      <div className="UserProfileDetailsCardLayout">
-        <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
-          <div className="row justify-content-center">
-            <div className="col-12 text-center">
-              <h6 className="mt-3 font-weight-bold border-bottom pb-3">
+      <div className='UserProfileDetailsCardLayout'>
+        <div className='f-main-padding mt-4 f-shadow rounded f-rounded'>
+          <div className='row justify-content-center'>
+            <div className='col-12 text-center'>
+              <h6 className='mt-3 font-weight-bold border-bottom pb-3'>
                 Mi Perfil
               </h6>
             </div>
-            <div className="col-12 text-center p-2">
+            <div className='col-12 text-center p-2'>
               <img
-                className="rounded-circle"
-                src="/assets/img/avatar-blank.png"
+                className='rounded-circle'
+                src={
+                  this.props.userInformation.picture
+                    ? this.props.userInformation.picture
+                    : "/assets/img/avatar-blank.png"
+                }
                 width={"120px"}
                 alt={"avatar"}
               />
-              <h5 className="font-weight-bold mt-2">
+              <h5 className='font-weight-bold mt-2'>
                 {this.props.session.fullName}
               </h5>
-              <h6 className="mt-2">{this.props.session.email}</h6>
-              <h6 className="mt-2">{this.props.session.cellphoneNumber}</h6>
-              <small
-                className="text-muted cursor-pointer"
-                onClick={this.logout}
+              <h6 className='mt-2'>{this.props.userInformation.email}</h6>
+              {/* <h6 className='mt-2'>{this.props.session.cellphoneNumber}</h6> */}
+              <LogoutButton
+                redirectTo={window.location.origin + "/"}
+                className='d-inline'
               >
-                Cerrar sesión
-              </small>
+                <small className='text-muted cursor-pointer'>
+                  Cerrar sesión
+                </small>
+              </LogoutButton>
             </div>
-            <div className="col-12 text-center">
+            <div className='col-12 text-center'>
               <hr />
             </div>
-            <div className="col-6 text-center border-right p-2">
-              <h6 className="mt-2">Siguiendo</h6>
-              <h2 className="font-weight-bold mt-4">0</h2>
+            <div className='col-6 text-center border-right p-2'>
+              <h6 className='mt-2'>Siguiendo</h6>
+              <h2 className='font-weight-bold mt-4'>0</h2>
             </div>
-            <div className="col-6 text-center p-2 border-left">
-              <h6 className="mt-2">Contratos</h6>
-              <h2 className="font-weight-bold mt-4">
+            <div className='col-6 text-center p-2 border-left'>
+              <h6 className='mt-2'>Contratos</h6>
+              <h2 className='font-weight-bold mt-4'>
                 {this.props.session.totalContracts}
               </h2>
             </div>
-            <div className="col-12 text-center">
+            <div className='col-12 text-center'>
               <hr />
             </div>
-            <div className="col-12 text-center p-2">
-              <h6 className="font-weight-bold mt-2">Famosos Favoritos</h6>
-              <div className="mt-2 mb-2">
+            <div className='col-12 text-center p-2'>
+              <h6 className='font-weight-bold mt-2'>Famosos Favoritos</h6>
+              <div className='mt-2 mb-2'>
                 <CelebritiesMultiselect
                   currentValue={this.props.session.favCelebrities}
                   onChange={this.celebritiesMultiSelectChanged}
                 />
               </div>
               <button
-                className="btn btn-primary mb-4"
+                className='btn btn-primary mb-4'
                 onClick={this.updateSession}
               >
                 Guardar
