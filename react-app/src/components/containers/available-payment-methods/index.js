@@ -51,40 +51,11 @@ class AvailablePaymentMethods extends Component {
 
   render() {
     return (
-      <div className="AvailablePaymentMethods mx-auto mt-2">
-        <p className="font-weight-bold h5 mb-3">
-          Pagar con Paypal (recomendado)
-        </p>
-        <div
-          className="payment-type mb-4 cursor-pointer"
-          onClick={this.changeToPaypal}
-        >
-          <div className="titles text-center mb-3">
-            <img
-              src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg"
-              alt="Logo de Paypal"
-              width="125px"
-            />
-          </div>
-          <div
-            className={
-              "pl-3 pr-3 pt-4 pb-4 bg-light" +
-              (this.state.selectedPaymentMethod === "PAYPAL" ? "" : " d-none ")
-            }
-          >
-            <PayPalCardForm
-              contractReference={this.props.contractReference}
-              contractPrice={
-                this.props.couponData.completed
-                  ? this.applyDiscount()
-                  : this.props.contractPrice
-              }
-              discountCouponId={this.props.couponData.data.id}
-            />
-          </div>
-        </div>
-        <p className="font-weight-bold h5 mb-4">Pagar con tarjeta de crédito</p>
+      <div className="AvailablePaymentMethods mx-auto">
         <div className={"payment-types f-rounded"}>
+          <div className={"font-weight-bold pt-2 pl-3 pb-2 mb-2 bg-light"}>
+            Selecciona un método de pago
+          </div>
           <div className="payment-type mb-3" onClick={this.changeToStripe}>
             <div className="titles">
               <div className="icon">
@@ -116,6 +87,36 @@ class AvailablePaymentMethods extends Component {
                   discountCouponId={this.props.couponData.data.id}
                 />
               </Elements>
+            </div>
+          </div>
+          <div className="payment-type mb-3" onClick={this.changeToPaypal}>
+            <div className="titles">
+              <div className="icon">
+                <i className="ml-2 fa fa-plus" />
+              </div>
+              <div className="payment-type-title">
+                <h6 className={"font-weight-normal"}>
+                  <span>PayPal</span>
+                </h6>
+              </div>
+            </div>
+            <div
+              className={
+                "pl-3 pr-3 pt-4 pb-4 bg-light" +
+                (this.state.selectedPaymentMethod === "PAYPAL"
+                  ? ""
+                  : " d-none ")
+              }
+            >
+              <PayPalCardForm
+                contractReference={this.props.contractReference}
+                contractPrice={
+                  this.props.couponData.completed
+                    ? this.applyDiscount()
+                    : this.props.contractPrice
+                }
+                discountCouponId={this.props.couponData.data.id}
+              />
             </div>
           </div>
         </div>
