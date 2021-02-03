@@ -80,9 +80,18 @@ const CelebrityDetails = ({ celebrity, variant }) => {
               celebrityFullName={""}
               celebrityUsername={username}
               text={
-                // variant.startsWith("1")
-                /* ?  */ "🤩 ¡Comprar video ahora! 🤩"
-                // : "Obtén un video de"
+                <>
+                  <Emoji label='star-struck' symbol='🤩' />
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      color: "white"
+                    }}
+                  >
+                    ¡Comprar video ahora!
+                  </span>
+                  <Emoji label='star-struck' symbol='🤩' />
+                </>
               }
               width='100%'
               fontSize='1.25em'
@@ -130,12 +139,18 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             celebrityUsername={username}
             text={
               <>
-                <Emoji label='star-struck' symbol='😄' />
-                <span>¡Comprar video ahora!</span>
-                <Emoji label='star-struck' symbol='😄' />
+                <Emoji label='star-struck' symbol='🤩' />
+                <span
+                  style={{
+                    fontWeight: "bold",
+                    color: "white"
+                  }}
+                >
+                  ¡Comprar video ahora!
+                </span>
+                <Emoji label='star-struck' symbol='🤩' />
               </>
             }
-            // text='🤩 ¡Comprar video ahora! 🤩'
             width='100%'
           />
           {availableForSubscriptions ? (
