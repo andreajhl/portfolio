@@ -8,6 +8,7 @@ import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
 import { CelebrityInfo } from "../celebrity-info";
 import "./styles.scss";
 import { CelebrityDonorAlert } from "../celebrity-donor-alert";
+import Emoji from "src/components/containers/emoji/emoji";
 
 const CelebrityDetails = ({ celebrity, variant }) => {
   const {
@@ -127,7 +128,14 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             className={"button-hire-this-celebrity"}
             celebrityFullName={""}
             celebrityUsername={username}
-            text='🤩 ¡Comprar video ahora! 🤩'
+            text={
+              <>
+                <Emoji label='star-struck' symbol='😄' />
+                <span>¡Comprar video ahora!</span>
+                <Emoji label='star-struck' symbol='😄' />
+              </>
+            }
+            // text='🤩 ¡Comprar video ahora! 🤩'
             width='100%'
           />
           {availableForSubscriptions ? (
