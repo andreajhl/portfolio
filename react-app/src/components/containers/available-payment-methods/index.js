@@ -4,6 +4,7 @@ import { PayPalCardForm } from "../paypal-card-form";
 import { Elements } from "react-stripe-elements";
 import StripeFlowHandler from "../stripe-flow-handler";
 import { connect } from "react-redux";
+import { WhatsappContact } from "../whatsapp-contact";
 
 class AvailablePaymentMethods extends Component {
   constructor(props) {
@@ -127,6 +128,9 @@ class AvailablePaymentMethods extends Component {
                 discountCouponId={this.props.couponData.data.id}
               />
             </div>
+          </div>
+          <div>
+            <WhatsappContact />
           </div>
         </div>
       </div>
