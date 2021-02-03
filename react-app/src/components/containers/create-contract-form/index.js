@@ -105,9 +105,9 @@ class CreateContractForm extends Component {
         GTM.tagManagerDataLayer("CONTRACT_CREATED", contractData);
         if (typeof window !== "undefined") {
           if (window.fbq != null) {
-            window.fbq('track', 'InitiateCheckout', {
+            window.fbq("track", "InitiateCheckout", {
               value: this.props.contractPrice,
-              currency: 'USD',
+              currency: "USD"
             });
           }
         }
@@ -119,17 +119,26 @@ class CreateContractForm extends Component {
   }
 
   replacePlaceHolder = (text) => {
-    const textClear = text
-      .replaceAll("(<<PARA>>)", this.state.contractData.deliveryTo || "[PARA]")
-      .replaceAll(
-        "(Famoso)!",
-        `${
-          this.props.celebrityFullName
-            ? `${this.props.celebrityFullName}! `
-            : "Famoso!"
-        }`
-      )
-      .replaceAll("(<<DE>>)", this.state.contractData.deliveryFrom || "[DE]");
+    const replacePlaceHolders = (str, find, replace) => {
+      return str.replace(new RegExp(find, "g"), replace);
+    };
+
+    let textClear = text;
+
+    textClear = replacePlaceHolders(
+      textClear,
+      "PLACEHOLDER_FAMOSO_NAME",
+      this.props.celebrityFullName
+        ? `${this.props.celebrityFullName}`
+        : "Famoso!"
+    );
+
+    textClear = replacePlaceHolders(
+      textClear,
+      "PLACEHOLDER_PARA",
+      this.state.contractData.deliveryTo || "[PARA]"
+    );
+
     return textClear;
   };
 
@@ -280,21 +289,21 @@ class CreateContractForm extends Component {
   render() {
     const contractData = { ...this.state.contractData };
     return (
-      <div className="CreateContractForm">
+      <div className='CreateContractForm'>
         <div className={"form-container"}>
           {/* CELEBRITY DETAILS */}
-          <div className="celebrity-details">
+          <div className='celebrity-details'>
             <div className={"celebrity-avatar"}>
               <img src={this.props.celebrityAvatar} alt={"avatar"} />
             </div>
-            <h5 className="celebrity-name">
+            <h5 className='celebrity-name'>
               Video Personalizado de {this.props.celebrityFullName}
             </h5>
           </div>
 
           {/* DELIVERY TO OPTIONS */}
-          <div className="mt-3">
-            <h6 className="subtitle">¿Para quién es este video?</h6>
+          <div className='mt-3'>
+            <h6 className='subtitle'>¿Para quién es este video?</h6>
             <div
               className={"delivery-option"}
               onClick={(e) => {
@@ -303,12 +312,12 @@ class CreateContractForm extends Component {
               }}
             >
               <div className={"delivery-option-icon"}>
-                <i className="far fa-grin-stars" />
+                <i className='far fa-grin-stars' />
               </div>
               <div className={"delivery-option-text"}>
                 <span>Para mi</span>
               </div>
-              <div className="delivery-option-control">
+              <div className='delivery-option-control'>
                 <div
                   className={
                     "switch" +
@@ -327,12 +336,12 @@ class CreateContractForm extends Component {
               }}
             >
               <div className={"delivery-option-icon"}>
-                <i className="fas fa-gift" />
+                <i className='fas fa-gift' />
               </div>
               <div className={"delivery-option-text"}>
                 <span>Para un amigo o familiar</span>
               </div>
-              <div className="delivery-option-control">
+              <div className='delivery-option-control'>
                 <div
                   className={
                     "switch" +
@@ -343,7 +352,7 @@ class CreateContractForm extends Component {
                 </div>
               </div>
             </div>
-            <div className="business-option">
+            <div className='business-option'>
               Si quieres un video comercial para tu marca haz click{" "}
               <span
                 className={"text-primary"}
@@ -466,9 +475,9 @@ class CreateContractForm extends Component {
           </div>
           <div className={"mt-3"}>{""}</div>
           <Form.Check
-            type="switch"
-            id="custom-switch"
-            label="Publicar este video en Famosos.com"
+            type='switch'
+            id='custom-switch'
+            label='Publicar este video en Famosos.com'
             checked={contractData.isPublic}
             onChange={this.handleIsPublic}
           />
@@ -492,7 +501,7 @@ class CreateContractForm extends Component {
           <div className={"mt-3 mb-4 mx-auto text-center"}>
             <br />
             <img
-              width="300px"
+              width='300px'
               src={"/assets/img/pago-seguro.png"}
               alt={"pago-seguro"}
             />
