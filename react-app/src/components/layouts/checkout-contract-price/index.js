@@ -60,7 +60,6 @@ class ContractPriceLayout extends Component {
   }
 
   getFormattedPrice(price = 0, currencyName) {
-    console.log(currencyName);
     return (
       <NumberFormat
         value={price || 0}
