@@ -14,8 +14,8 @@ import { SimilarCelebrityContractsSectionLayout } from "../similar-celebrity-con
 const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
   return celebrity.mainVideo || hasPublicContracts ? (
     <>
-      <div className="row container mx-auto py-lg-4 p-0">
-        <div className="col-12 col-lg-4 order-lg-1 p-0 m-0 px-sm-3">
+      <div className='row container mx-auto py-lg-4 p-0'>
+        <div className='col-12 col-lg-4 p-0 m-0 px-sm-3'>
           {hasPublicContracts ? (
             <CelebrityHeroSlideshow
               celebrityAvatar={celebrity.avatar}
@@ -28,11 +28,10 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
             />
           )}
         </div>
-        <div className="col-12 col-lg-8 p-0 m-0 px-sm-3">
-          <CelebrityDetails celebrity={celebrity} variant="2" />
+        <div className='col-12 col-lg-8 p-0 m-0 px-sm-3'>
+          <CelebrityDetails celebrity={celebrity} variant='2' />
         </div>
       </div>
-      <HowToGetAVideoMessageLayout />
 
       {/* <CelebrityPublicContractsSectionLayout
         contractTypes={celebrity.contractTypes}
@@ -52,7 +51,9 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
         celebrityUsername={celebrity.username}
       /> */}
       <CelebrityReviewsSectionLayout celebrityId={celebrity.id} />
-      <div className="py-4">
+      <HowToGetAVideoMessageLayout />
+
+      <div className='py-4'>
         <SimilarCelebrityContractsSectionLayout
           celebrityUsername={celebrity.username}
         />

@@ -161,7 +161,7 @@ SignInWithEmailForm.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   signInWithEmailLoading: state.authentication.signInWithEmailReducer.loading,
   signInWithEmailCompleted:
     state.authentication.signInWithEmailReducer.completed,

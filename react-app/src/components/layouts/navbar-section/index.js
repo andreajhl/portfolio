@@ -46,33 +46,33 @@ const NavbarSectionLayout = ({
           showCouponBanner={showCouponBanner}
           setShowCouponBanner={setShowCouponBanner}
         />
-        <div className="top-bar container mx-auto p-0 row">
-          <div className="top-bar__left-side col-4 p-0">
+        <div className='top-bar container mx-auto p-0 row'>
+          <div className='top-bar__left-side col-4 p-0'>
             <DropdownMenuLayout
               dropdownMenuIsOpen={dropdownMenuIsOpen}
               setDropdownMenuIsOpen={setDropdownMenuIsOpen}
               isLogged={isLogged}
             />
           </div>
-          <div className="top-bar__center-side col-4">
+          <div className='top-bar__center-side col-4'>
             <NavLink
               to={ROOT_PATH}
-              className="top-bar__logo-link"
+              className='top-bar__logo-link'
               onClick={registerLogoLinkClick}
             >
               <img
-                className="top-bar__logo"
-                src="/assets/img/famosos-logo.svg"
-                alt="Famosos Logo"
+                className='top-bar__logo'
+                src='/assets/img/famosos-logo.svg'
+                alt='Famosos Logo'
               />
             </NavLink>
           </div>
-          <div className="top-bar__right-side col-4 p-0 row m-0">
+          <div className='top-bar__right-side col-4 p-0 row m-0'>
             {!isLogged ? (
-              <div className="col d-none d-md-flex align-items-center">
+              <div className='col d-none d-md-flex align-items-center'>
                 <NavLink
-                  className="btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1"
-                  activeClassName=""
+                  className='btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1'
+                  activeClassName=''
                   to={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(
                     ":form",
                     "email-form"
@@ -88,15 +88,15 @@ const NavbarSectionLayout = ({
                 </NavLink>
               </div>
             ) : null}
-            <div className="top-bar__currency mr-2 ml-auto">
+            <div className='top-bar__currency mr-2 ml-auto'>
               <CurrencyDropdownLayout />
             </div>
           </div>
           {showSearch ? (
-            <div className="col-12 pt-2 px-0">
-              <div className="d-block top-bar__search-sm">
+            <div className='col-12 pt-2 px-0'>
+              <div className='d-block top-bar__search-sm'>
                 <NavbarSearchLayout
-                  searchLabel="Buscar famosos"
+                  searchLabel='Buscar famosos'
                   onSearchChange={onSearchChange}
                   queryParams={queryParams}
                 />

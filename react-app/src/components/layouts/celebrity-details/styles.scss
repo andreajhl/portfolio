@@ -9,4 +9,10 @@
   &__flash-delivery-large {
     font-size: 0.85rem;
   }
+  .button-hire-this-celebrity {
+    font-size: 1.15rem;
+    @media screen and (min-width: 320px) {
+      font-size: 1.25rem;
+    }
+  }
 }

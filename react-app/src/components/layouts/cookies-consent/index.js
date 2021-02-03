@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import "react-flags-select/scss/react-flags-select.scss";
 import "./styles.scss";
-import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 
 class CookiesConsent extends Component {
@@ -12,10 +12,6 @@ class CookiesConsent extends Component {
       showBanner: localStorage.getItem("hasAcceptedCookiesConsent") !== "true"
     };
   }
-
-  goToTerms = () => {
-    history._pushRoute(PATHS.POLICIES_PATH);
-  };
 
   hideBanner = () => {
     localStorage.setItem("hasAcceptedCookiesConsent", true);
@@ -43,18 +39,18 @@ class CookiesConsent extends Component {
           el uso de estas cookies.
         </div>
         <div className="cookies-consent__options">
-          <a
-            onClick={this.goToTerms}
-            className="cookies-consent__terms-link float-left"
-          >
-            Ver las políticas de privacidad
-          </a>
           <button
-            className="cookies-consent__accept-button"
+            className="cookies-consent__accept-button mr-3"
             onClick={this.hideBanner}
           >
             Aceptar
           </button>
+          <NavLink
+            to={PATHS.POLICIES_PATH}
+            className="cookies-consent__terms-link"
+          >
+            Ver las políticas de privacidad
+          </NavLink>
         </div>
       </div>
     ) : null;

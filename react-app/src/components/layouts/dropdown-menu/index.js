@@ -1,8 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import UAParser from "ua-parser-js";
 import * as PATHS from "../../../routing/Paths";
 import { sendDropdownLinkAnalyticsData } from "../navbar-section/index";
+import { LessImportantCallToActionButton } from "../less-important-call-to-action-button";
 import "./styles.scss";
+
+const { type, vendor } = new UAParser().getDevice();
+const isAppleDevice = vendor === "Apple";
+const isHuaweiDevice = vendor === "Huawei";
+const shouldRenderDownloadAppLink =
+  type === "mobile" && !isAppleDevice && !isHuaweiDevice;
 
 export const DropdownMenuLayout = ({
   dropdownMenuIsOpen,
@@ -16,7 +24,7 @@ export const DropdownMenuLayout = ({
       }`}
     >
       <button
-        className="btn DropdownMenuLayout__dropdown-button"
+        className="btn DropdownMenuLayout__dropdown-button ml-3"
         type="button"
         id="dropdownMenuButton"
         data-toggle="dropdown"
@@ -71,13 +79,13 @@ export const DropdownMenuLayout = ({
         >
           Blog
         </NavLink>
-        <NavLink
+        {/* <NavLink
           className="dropdown-item d-md-none"
           activeClassName="active"
           to={PATHS.TRENDING}
         >
           Tendencias
-        </NavLink>
+        </NavLink> */}
         {!isLogged ? (
           <>
             <NavLink
@@ -106,6 +114,21 @@ export const DropdownMenuLayout = ({
         >
           Aplicar
         </NavLink>
+        {shouldRenderDownloadAppLink ? (
+          <a
+            href="market://details?id=com.famosos.users"
+            target="_top"
+            className="text-decoration-none"
+          >
+            <LessImportantCallToActionButton
+              className="dropdown-item border-0"
+              width="100%"
+              fontSize="0.875rem"
+            >
+              Descargar app de Android
+            </LessImportantCallToActionButton>
+          </a>
+        ) : null}
       </div>
     </div>
   );

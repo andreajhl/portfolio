@@ -10,6 +10,7 @@ const HireThisCelebrityButton = ({
   text,
   celebrityFullName,
   celebrityUsername,
+  showCelebrityName,
   fontSize,
   width
 }) => {
@@ -34,8 +35,8 @@ const HireThisCelebrityButton = ({
   const fullNameWords = celebrityFullName.split(" ");
 
   const displayName =
-    parsedFullName.first === "Papá"
-      ? `${fullNameWords[0]} ${fullNameWords[1]}`
+    parsedFullName.first.length <= 4
+      ? fullNameWords.slice(0, 2).join(" ")
       : parsedFullName.first || parsedFullName.last;
 
   return (
@@ -54,7 +55,7 @@ const HireThisCelebrityButton = ({
           className={className}
         >
           {text}
-          {celebrityFullName ? " " + displayName : ""}
+          {celebrityFullName && showCelebrityName ? " " + displayName : ""}
         </CallToActionButton>
       }
     </NavLink>

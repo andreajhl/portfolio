@@ -20,7 +20,7 @@ class CheckoutBuyerData extends Component {
     this.handleInput = this.handleInput.bind(this);
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.props.onBuyerDataChange(this.state.buyerData);
   }
 

@@ -1,24 +1,24 @@
 .HowToGetAVideoMessageLayout {
-  .container {
-    @media only screen and (min-width: 768px) {
-      display: flex;
-      align-items: center;
-    }
+  $gray: rgb(67, 74, 91);
 
+  .container {
+    color: $gray;
     @media only screen and (min-width: 992px) {
       display: flex;
-      max-width: 900px;
       align-items: center;
     }
   }
   &__title {
-    color: rgb(251, 23, 125);
+    color: inherit;
     text-align: center;
     font-weight: bold;
     font-size: 1rem;
 
     @media only screen and (min-width: 768px) {
       font-size: 1.5rem;
+    }
+
+    @media only screen and (min-width: 992px) {
       flex-basis: 60%;
       text-align: left;
     }
@@ -34,22 +34,38 @@
   }
 
   &__step-item {
-    text-align: center;
-    flex-basis: 30%;
-
     @media only screen and (min-width: 768px) {
       text-align: left;
     }
   }
 
-  &__step-icon {
-    height: 1rem;
+  // &__step-icon {
+  //   height: 1rem;
+  //   @media only screen and (min-width: 768px) {
+  //     height: 2rem;
+  //   }
+  // }
+
+  &__step-number {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background-color: $gray;
+    margin-bottom: 0.75em;
+
     @media only screen and (min-width: 768px) {
-      height: 2rem;
+      font-size: 1.5rem;
     }
   }
 
   &__step-text {
+    color: $gray;
     font-size: 0.65rem;
 
     @media only screen and (min-width: 768px) {

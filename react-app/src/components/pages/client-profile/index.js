@@ -1,50 +1,45 @@
-import React, {Component} from 'react';
-import {PageContainer} from "../../layouts";
-import {connect} from "react-redux";
-import {UserProfileDetailsCardLayout} from "../../layouts/user-profile-details-card";
-import "./styles.scss"
-import {sessionOperations} from "../../../state/ducks/session";
+import React, { Component } from "react";
+import { PageContainer } from "../../layouts";
+import { connect } from "react-redux";
+import { UserProfileDetailsCardLayout } from "../../layouts/user-profile-details-card";
+import "./styles.scss";
+import { sessionOperations } from "../../../state/ducks/session";
 import * as GTM from "../../../state/utils/gtm";
 
 class ClientProfilePage extends Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            params: {}
-        };
-
-    }
-
-    componentWillMount(): void {
-        this.props.getToken()
-    }
-
-    componentDidMount(): void {
-        document.getElementsByClassName("f-main-body")[0].style.background = "#f7f7f7"
-        GTM.tagManagerDataLayer(
-            "CLIENT_PROFILE_PAGE_VIEW",
-            this.props.session
-        );
-    }
-
-    componentWillUnmount(): void {
-        document.getElementsByClassName("f-main-body")[0].style.background = "#fff"
-    }
-
-    render() {
-        return (
-            <>
-                <div className="ClientProfilePage">
-                    <PageContainer applyFetchCelebrities={false}>
-                        <UserProfileDetailsCardLayout session={this.props.session}/>
-                    </PageContainer>
-                </div>
-            </>
-        );
+    this.state = {
+      params: {}
     };
+  }
 
+  componentWillMount() {
+    this.props.getToken();
+  }
+
+  componentDidMount() {
+    document.getElementsByClassName("f-main-body")[0].style.background =
+      "#f7f7f7";
+    GTM.tagManagerDataLayer("CLIENT_PROFILE_PAGE_VIEW", this.props.session);
+  }
+
+  componentWillUnmount() {
+    document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
+  }
+
+  render() {
+    return (
+      <>
+        <div className="ClientProfilePage">
+          <PageContainer applyFetchCelebrities={false}>
+            <UserProfileDetailsCardLayout session={this.props.session} />
+          </PageContainer>
+        </div>
+      </>
+    );
+  }
 }
 
 // Set propTypes
@@ -54,15 +49,18 @@ ClientProfilePage.propTypes = {};
 ClientProfilePage.defaultProps = {};
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
-    session: state.session.getSessionReducer.data
+const mapStateToProps = (state) => ({
+  session: state.session.getSessionReducer.data
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-    getToken: sessionOperations.getToken
+  getToken: sessionOperations.getToken
 };
 
 // Export Class
-const _UserProfilePage = connect(mapStateToProps, mapDispatchToProps)(ClientProfilePage);
-export {_UserProfilePage as ClientProfilePage};
+const _UserProfilePage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ClientProfilePage);
+export { _UserProfilePage as ClientProfilePage };
