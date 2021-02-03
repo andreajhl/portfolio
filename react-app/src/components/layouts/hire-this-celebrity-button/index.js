@@ -10,6 +10,7 @@ const HireThisCelebrityButton = ({
   text,
   celebrityFullName,
   celebrityUsername,
+  showCelebrityName,
   fontSize,
   width
 }) => {
@@ -54,7 +55,7 @@ const HireThisCelebrityButton = ({
           className={className}
         >
           {text}
-          {celebrityFullName ? " " + displayName : ""}
+          {celebrityFullName && showCelebrityName ? " " + displayName : ""}
         </CallToActionButton>
       }
     </NavLink>

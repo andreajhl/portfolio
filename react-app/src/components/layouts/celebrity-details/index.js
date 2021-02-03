@@ -77,7 +77,8 @@ const CelebrityDetails = ({ celebrity, variant }) => {
           />
           <Col className='d-none d-md-block mx-0 px-0'>
             <HireThisCelebrityButton
-              celebrityFullName={""}
+              showCelebrityName={false}
+              celebrityFullName={fullName}
               celebrityUsername={username}
               text={
                 <>
@@ -134,8 +135,9 @@ const CelebrityDetails = ({ celebrity, variant }) => {
       <Row>
         <Col className='d-md-none'>
           <HireThisCelebrityButton
+            showCelebrityName={false}
             className={"button-hire-this-celebrity"}
-            celebrityFullName={""}
+            celebrityFullName={fullName}
             celebrityUsername={username}
             text={
               <>
