@@ -88,7 +88,11 @@ const FiltersSectionLayout = ({
     });
   };
 
-  const showCleanFiltersButton = queryString !== "" && !queryParams.search;
+  const showCleanFiltersButton =
+    (queryParams.orderBy ||
+      queryParams["country_id"] ||
+      queryParams["category_id"]) &&
+    !queryParams.search;
 
   return (
     <section className={`FiltersSectionLayout ${className}`}>

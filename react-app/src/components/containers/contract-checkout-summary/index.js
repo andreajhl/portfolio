@@ -92,6 +92,7 @@ class ContractCheckoutSummary extends Component {
             </div>
             {this.props.price ? (
               <div className="mt-4 f-rounded">
+                <p className="h5 font-weight-bold">¿Tienes un cupón?</p>
                 <DiscountCouponForm />
                 <div className="text-right w-100">
                   <ContractPriceLayout
@@ -113,6 +114,7 @@ class ContractCheckoutSummary extends Component {
                         : this.props.price
                     }
                     currency={"USD"}
+                    currencyExchangeData={this.props.currencyExchangeData}
                     rounding={false}
                   />
                 </div>
@@ -141,9 +143,12 @@ ContractCheckoutSummary.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
-  couponData: state.payments.fetchDiscountCouponReducer
-});
+const mapStateToProps = (state) => {
+  return {
+    couponData: state.payments.fetchDiscountCouponReducer,
+    currencyExchangeData: state.payments.currencyExchangeReducer.data
+  };
+};
 // mapStateToProps
 const mapDispatchToProps = {
   clearCouponData: paymentsOperations.clearCouponData

@@ -364,7 +364,7 @@ CelebrityRequestForm.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   saveCelebrityRequestLoading:
     state.celebrityRequests.saveCelebrityRequestReducer.loading,
   saveCelebrityRequestCompleted:

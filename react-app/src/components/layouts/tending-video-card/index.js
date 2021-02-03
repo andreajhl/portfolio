@@ -26,11 +26,7 @@ class TrendingVideoCardLayout extends Component {
     this.contractFav = React.createRef();
   }
 
-  componentWillUpdate(
-    nextProps: Readonly<P>,
-    nextState: Readonly<S>,
-    nextContext: any
-  ): void {
+  componentWillUpdate(nextProps, nextState, nextContext) {
     if (
       this.props.currentVideoPlaying !== null &&
       nextProps.currentVideoPlaying !== this.props.publicContract.reference &&
@@ -175,7 +171,7 @@ TrendingVideoCardLayout.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state) => ({
   currentVideoPlaying: state.contracts.playVideoReducer.reference
 });
 

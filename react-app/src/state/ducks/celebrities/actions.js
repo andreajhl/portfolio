@@ -108,7 +108,10 @@ export const list = (params) => {
       action: TYPE,
       path: FINAL_PATH,
       async: true,
-      params: params,
+      params: {
+        ...params,
+        limit: params.limit || updateQueryParamsInitialState.limit
+      },
       body: null,
       isCancellable: true
     });
@@ -145,7 +148,10 @@ export const fetchSimilarResults = (params) => {
       action: TYPE,
       path: FINAL_PATH,
       async: true,
-      params,
+      params: {
+        ...params,
+        limit: params.limit || updateQueryParamsInitialState.limit
+      },
       body: null,
       isCancellable: true
     });

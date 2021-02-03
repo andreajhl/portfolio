@@ -7,14 +7,17 @@ import { jsonToQueryString } from "../../../state/utils/apiService";
 import getMoreFrequentIds from "../../../utils/getMoreFrequentIds";
 import * as GTM from "../../../state/utils/gtm";
 import PropTypes from "prop-types";
-import "./styles.scss";
+import { LessImportantCallToActionButton } from "../less-important-call-to-action-button";
 
 const GoToSimilarCelebritiesButton = ({
   celebrityUsername,
   isLoading,
   similarCelebrities,
   fetchSimilarCelebrities,
-  children
+  children,
+  fontSize,
+  width,
+  className
 }) => {
   useEffect(() => {
     if (similarCelebrities.length > 0 || isLoading) return;
@@ -49,12 +52,13 @@ const GoToSimilarCelebritiesButton = ({
       onClick={() => registerGoToSimilarCelebritiesButtonEvent("CLICK")}
       onMouseDown={() => registerGoToSimilarCelebritiesButtonEvent("HOVER")}
     >
-      <button
-        type="button"
-        className="btn btn-primary GoToSimilarCelebritiesButton similar-celebrities-button"
+      <LessImportantCallToActionButton
+        fontSize={fontSize}
+        width={width}
+        className={className}
       >
         {children}
-      </button>
+      </LessImportantCallToActionButton>
     </NavLink>
   );
 };

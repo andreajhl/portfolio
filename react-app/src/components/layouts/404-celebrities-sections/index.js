@@ -11,7 +11,7 @@ const resultsLimit = 3;
 const mapStateToProps = ({ celebritySections }) => {
   const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
   return {
-    loading,
+    loading: loading,
     celebritiesSections: data.results
   };
 };
@@ -26,7 +26,8 @@ const FourZeroFourCelebritiesSectionsLayout = ({
   useEffect(() => {
     fetchCelebritySections({
       offset: offsetInitialValue,
-      limit: resultsLimit
+      limit: resultsLimit,
+      alpha2Code: window.userLocation.countryCode
     });
   }, []);
 
