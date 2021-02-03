@@ -74,6 +74,7 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
       />
       <div className='container pb-4 pt-2 text-center'>
         <HireThisCelebrityButton
+          showCelebrityName={true}
           className='get-a-video-button px-md-5 py-3 px-4'
           text='Quiero un video de'
           fontSize='1.25em'
