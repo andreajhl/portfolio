@@ -11,6 +11,11 @@
   .steps-image {
     max-width: 300px;
     margin: 0 auto;
+    @media screen and(min-width: 1024px) {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 15rem;
+    }
 
     img.create-contract-steps {
       max-width: 300px;
