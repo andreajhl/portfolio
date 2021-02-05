@@ -51,21 +51,25 @@ class AvailablePaymentMethods extends Component {
 
   render() {
     return (
-      <div className="AvailablePaymentMethods mx-auto">
+      <div className='AvailablePaymentMethods mx-auto'>
         <div className={"payment-types f-rounded"}>
-          <div className={"font-weight-bold pt-2 pl-3 pb-2 mb-2 bg-light"}>
-            Selecciona un método de pago
+          <div className={"font-weight-bold pt-2 pl-3 pb-2 mb-2"}>
+            Elige el método de pago
           </div>
-          <div className="payment-type mb-3" onClick={this.changeToStripe}>
-            <div className="titles">
-              <div className="icon">
-                <i className="ml-2 fa fa-credit-card" />
+          <div className='payment-type mb-3' onClick={this.changeToStripe}>
+            <div className='titles'>
+              <div className='icon'>
+                {this.state.selectedPaymentMethod === "STRIPE" ? (
+                  <i className={`far  fa-dot-circle`}></i>
+                ) : (
+                  <i class='far fa-circle'></i>
+                )}
               </div>
-              <div className="payment-type-title">
+              <div className='payment-type-title'>
                 <h6 className={"font-weight-normal"}>
                   <span>Tarjeta de Crédito o Débito</span>
-                  {/*Pago con tarjeta de crédito*/}
                 </h6>
+                <i class='far fa-credit-card'></i>
               </div>
             </div>
             <div
@@ -89,15 +93,20 @@ class AvailablePaymentMethods extends Component {
               </Elements>
             </div>
           </div>
-          <div className="payment-type mb-3" onClick={this.changeToPaypal}>
-            <div className="titles">
-              <div className="icon">
-                <i className="ml-2 fa fa-plus" />
+          <div className='payment-type mb-3' onClick={this.changeToPaypal}>
+            <div className='titles'>
+              <div className='icon'>
+                {this.state.selectedPaymentMethod === "PAYPAL" ? (
+                  <i className={`far  fa-dot-circle`}></i>
+                ) : (
+                  <i class='far fa-circle'></i>
+                )}
               </div>
-              <div className="payment-type-title">
+              <div className='payment-type-title'>
                 <h6 className={"font-weight-normal"}>
                   <span>PayPal</span>
                 </h6>
+                <i class='fab fa-paypal'></i>
               </div>
             </div>
             <div

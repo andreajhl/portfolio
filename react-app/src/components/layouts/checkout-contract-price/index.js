@@ -78,8 +78,11 @@ class ContractPriceLayout extends Component {
 
   render() {
     const finalPrice = (
-      <div style={{ width: "100%" }} className='d-flex justify-content-around'>
-        <span className='float-left text-left col-6 col-md-8 p-0 m-0 pr-1'>
+      <div
+        style={{ width: "100%" }}
+        className='d-flex justify-content-between '
+      >
+        <span>
           Total:
           <br />
           {this.props.currencyExchangeData.to !== this.props.currency ? (
@@ -97,7 +100,7 @@ class ContractPriceLayout extends Component {
       </div>
     );
     const originalPrice = this.props.availableDiscount ? (
-      <div className='d-flex justify-content-around'>
+      <div className='d-flex justify-content-between '>
         <span className='float-left'> Precio original: </span>
         <span className='text-dark float-right'>
           {this.props.currencyExchangeData.to !== this.props.currency
@@ -113,7 +116,7 @@ class ContractPriceLayout extends Component {
       </div>
     ) : null;
     const discountValue = this.props.availableDiscount ? (
-      <div className='d-flex justify-content-around'>
+      <div className='d-flex justify-content-between '>
         <span className='float-left'>Descuento: </span>{" "}
         <span className='text-danger font-weight-bold'>
           {this.props.availableDiscount.isPercentageDiscount ? (

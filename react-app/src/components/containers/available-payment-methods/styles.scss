@@ -1,7 +1,6 @@
 @import "../../../theme";
 
 .AvailablePaymentMethods {
-
   max-width: 500px;
   padding-top: 20px;
   padding-left: 20px;
@@ -10,7 +9,9 @@
   .payment-types {
     .payment-type {
       border-bottom: none;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      // height: 56px;
       cursor: pointer;
       position: relative;
 
@@ -26,8 +27,10 @@
       }
 
       .titles {
+        height: 56px;
         min-height: 40px;
         display: flex;
+        align-items: center;
 
         .circle {
           width: 100px;
@@ -56,12 +59,12 @@
           text-align: left;
           position: relative;
 
-          .fa.fa-credit-card,
+          .far.fa-circle,
+          .fa-dot-circle,
           .fa.fa-money-bill-alt,
           .fa.fa-dollar-sign,
           .fa-plus {
             font-size: 25px;
-            color: $secundary-color-blue;
             position: absolute;
             left: 50%;
             top: 50%;
@@ -83,6 +86,15 @@
             -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
             width: 100%;
+          }
+          .fa-credit-card,
+          .fa-paypal {
+            font-size: 20px;
+            margin-right: 30px;
+            float: right;
+          }
+          .fa-paypal {
+            color: #3b7bbf;
           }
         }
 

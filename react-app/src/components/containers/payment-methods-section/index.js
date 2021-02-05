@@ -39,12 +39,12 @@ class PaymentMethodsSection extends Component {
                 price={this.props.contractData.price}
               />
             </div>
-            {/* 
-            PAYMENT METHODS
+
+            {/* PAYMENT METHODS */}
             <AvailablePaymentMethods
               contractReference={this.props.contractData.reference}
               contractPrice={this.props.contractData.price}
-            /> */}
+            />
 
             {/* TERMS */}
             <div className={"p-4 text-center"}>
