@@ -23,19 +23,19 @@ export const WhatsappContact: FunctionComponent<WhatsappContactProps> = ({
           </span>
         </div>
         <div className='mx-auto' style={{ width: "80%" }}>
-          <button
-            style={{ backgroundColor: "#1BD741" }}
-            className='btn btn-outline-none mt-3 w-100'
+          <a
+            href={
+              placeHolderMessage
+                ? `https://wa.me/${numberPhone}?text=${encodeURIComponent(
+                    placeHolderMessage
+                  )}`
+                : `https://wa.me/${numberPhone}`
+            }
+            target='_blank'
           >
-            <a
-              href={
-                placeHolderMessage
-                  ? `https://wa.me/${numberPhone}?text=${encodeURIComponent(
-                      placeHolderMessage
-                    )}`
-                  : `https://wa.me/${numberPhone}`
-              }
-              target='_blank'
+            <button
+              style={{ backgroundColor: "#1BD741" }}
+              className='btn btn-outline-none mt-3 w-100'
             >
               <i
                 className='fab fa-whatsapp'
@@ -44,8 +44,8 @@ export const WhatsappContact: FunctionComponent<WhatsappContactProps> = ({
                   fontSize: "32px"
                 }}
               ></i>
-            </a>
-          </button>
+            </button>
+          </a>
         </div>
       </div>
     </React.Fragment>

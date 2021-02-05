@@ -50,7 +50,7 @@ class AvailablePaymentMethods extends Component {
     });
   };
   changeToWhatsapp = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     this.setState({
       ...this.state,
