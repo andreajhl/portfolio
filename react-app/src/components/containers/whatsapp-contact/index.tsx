@@ -13,12 +13,19 @@ export const WhatsappContact: FunctionComponent<WhatsappContactProps> = ({
 }) => {
   return (
     <React.Fragment>
-      <div className='d-flex'>
-        <span className='text-justify'>{text}</span>
-        <div>
+      <div className='d-flex flex-column'>
+        <div className='mx-auto' style={{ width: "80%" }}>
+          <span
+            className='text-justify'
+            style={{ color: "#505050", fontSize: "16px" }}
+          >
+            {text}
+          </span>
+        </div>
+        <div className='mx-auto' style={{ width: "80%" }}>
           <button
-            style={{ backgroundColor: "#00e676" }}
-            className='btn btn-outline-none ml-4'
+            style={{ backgroundColor: "#1BD741" }}
+            className='btn btn-outline-none mt-3 w-100'
           >
             <a
               href={

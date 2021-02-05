@@ -137,33 +137,42 @@ class AvailablePaymentMethods extends Component {
               />
             </div>
           </div>
-          <div className='payment-type mb-3' onClick={this.changeToWhatsapp}>
-            <div className='titles'>
-              <div className='icon'>
-                {this.state.selectedPaymentMethod === "WHATSAPP" ? (
-                  <i className={`far  fa-dot-circle`}></i>
-                ) : (
-                  <i class='far fa-circle'></i>
-                )}
+          {true || window.userLocation.countryCode === "MX" ? (
+            <div className='payment-type mb-3' onClick={this.changeToWhatsapp}>
+              <div className='titles'>
+                <div className='icon'>
+                  {this.state.selectedPaymentMethod === "WHATSAPP" ? (
+                    <i className={`far  fa-dot-circle`}></i>
+                  ) : (
+                    <i class='far fa-circle'></i>
+                  )}
+                </div>
+                <div className='payment-type-title'>
+                  <h6 className={"font-weight-normal"}>
+                    <span>Transferencia bancaria</span>
+                  </h6>
+                  <i class='fas fa-exchange-alt'></i>{" "}
+                </div>
               </div>
-              <div className='payment-type-title'>
-                <h6 className={"font-weight-normal"}>
-                  <span>Transferencia bancaria</span>
-                </h6>
-                <i class='fas fa-exchange-alt'></i>{" "}
+
+              <div
+                className={
+                  "pl-3 pr-3 pt-4 pb-4 bg-light" +
+                  (this.state.selectedPaymentMethod === "WHATSAPP"
+                    ? ""
+                    : " d-none ")
+                }
+              >
+                <WhatsappContact
+                  text={
+                    "Haz clic en el botón de WhatsApp para que a través de este canal te podamos dar las instrucciones para concretar el pago de tu videomensaje."
+                  }
+                  numberPhone={18559107580}
+                  placeHolderMessage='Quiero pagar con transferencia bancaria'
+                />
               </div>
             </div>
-            <div
-              className={
-                "pl-3 pr-3 pt-4 pb-4 bg-light" +
-                (this.state.selectedPaymentMethod === "WHATSAPP"
-                  ? ""
-                  : " d-none ")
-              }
-            >
-              <WhatsappContact />
-            </div>
-          </div>
+          ) : null}
         </div>
       </div>
     );
