@@ -1,6 +1,22 @@
 .StripeCardForm {
   button.btn-primary {
-    width: 100% !important;
+    margin-top: 1rem;
+    width: 361px !important;
     height: 45px;
+    color: #fb177d !important;
+    span {
+      color: white;
+      font-weight: bold;
+    }
   }
+
+  .label-stripe-form {
+    color: #838383;
+  }
+  .input-stripe-form {
+    height: 56px !important;
+  }
+}
+.__PrivateStripeElement-input {
+  height: 56px !important;
 }

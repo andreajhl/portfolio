@@ -62,12 +62,12 @@ class index extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className='coupon-container'>
-        <label htmlFor='coupon-input'>Ingresa aquí tu cupón de descuento</label>
+        <label htmlFor='coupon-input'>¿Tienes un cupón de descuento?</label>
         <div className='input-group mb-3'>
           <input
             type='text'
             className='form-control'
-            placeholder='Ingrese un cupón'
+            placeholder='Ingrese el código aquí'
             aria-label=''
             aria-describedBy='basic-addon1'
             id='coupon-input'
@@ -82,7 +82,10 @@ class index extends Component {
             </div>
           ) : (
             <div className='input-group-append'>
-              <button className='btn btn-primary' type='submit'>
+              <button
+                className='btn btn-primary button-discount-coupon-form'
+                type='submit'
+              >
                 Aplicar
               </button>
             </div>

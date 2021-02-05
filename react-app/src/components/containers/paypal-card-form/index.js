@@ -90,7 +90,7 @@ class PayPalCardForm extends Component {
     if (this.state.errorMessage) {
       return (
         <div className={"mx-auto p-4 error-container"}>
-          <div className="text-danger text-center mb-3">
+          <div className='text-danger text-center mb-3'>
             <small className={"text-danger font-weight-bold"}>
               {this.state.errorMessage}
             </small>
@@ -100,13 +100,13 @@ class PayPalCardForm extends Component {
               Volver a intentar
             </button>
           </div>
-          <div className="mb-3 text-justify ">
+          <div className='mb-3 text-justify '>
             <small>
               Si el problema persiste puedes comunicarte con nuestro equipo de
               soporte a{" "}
               <a
                 className={"font-weight-bold"}
-                href="mailto:experiencias@famosos.com"
+                href='mailto:experiencias@famosos.com'
               >
                 experiencias@famosos.com
               </a>{" "}
@@ -121,12 +121,15 @@ class PayPalCardForm extends Component {
   render() {
     return (
       <div className={""}>
-        <ul className="mb-4 px-4" style={{ fontSize: "15px" }}>
-          <li className="mb-2">
+        <ul
+          className='mb-4 px-4'
+          style={{ fontSize: "15px", listStyle: "none" }}
+        >
+          <li className='mb-2' style={{ color: "#505050" }}>
             Haz click sobre el siguiente botón para hacer el pago usando tu
             cuenta de PayPal.
           </li>
-          <li>
+          <li style={{ color: "#505050" }}>
             Serás redirigido a la pagina oficial de PayPal para continuar con el
             pago.
           </li>
