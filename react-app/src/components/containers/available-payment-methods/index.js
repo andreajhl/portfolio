@@ -5,6 +5,7 @@ import { Elements } from "react-stripe-elements";
 import StripeFlowHandler from "../stripe-flow-handler";
 import { connect } from "react-redux";
 import { WhatsappContact } from "../whatsapp-contact";
+import DiscountCouponForm from "../discount-coupon-form";
 
 class AvailablePaymentMethods extends Component {
   constructor(props) {
@@ -173,6 +174,7 @@ class AvailablePaymentMethods extends Component {
               </div>
             </div>
           ) : null}
+          <DiscountCouponForm />
         </div>
       </div>
     );
