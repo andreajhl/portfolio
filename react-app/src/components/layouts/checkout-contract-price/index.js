@@ -51,7 +51,7 @@ class ContractPriceLayout extends Component {
           )["symbol"]
         }
         renderText={(value) => (
-          <h5 className={this.props.classes}>
+          <h5 className='font-weight-bold'>
             {value} {this.props.currencyExchangeData.to}
           </h5>
         )}
@@ -78,8 +78,8 @@ class ContractPriceLayout extends Component {
 
   render() {
     const finalPrice = (
-      <div>
-        <h5 className="font-weight-bold float-left text-left col-6 col-md-8 p-0 m-0 pr-1">
+      <div style={{ width: "100%" }} className='d-flex justify-content-around'>
+        <span className='float-left text-left col-6 col-md-8 p-0 m-0 pr-1'>
           Total:
           <br />
           {this.props.currencyExchangeData.to !== this.props.currency ? (
@@ -87,17 +87,19 @@ class ContractPriceLayout extends Component {
               El valor en {this.props.currencyExchangeData.to} es aproximado{" "}
               <br />
               El cobro que se hará en dólares es:{" "}
-              {this.getFormattedPrice(this.props.price, this.props.currency)}
+              <span>
+                {this.getFormattedPrice(this.props.price, this.props.currency)}
+              </span>
             </span>
           ) : null}
-        </h5>
+        </span>
         {this.getPriceFormat()}
       </div>
     );
     const originalPrice = this.props.availableDiscount ? (
-      <div>
-        <span className="float-left"> Precio original: </span>
-        <span className="text-dark float-right">
+      <div className='d-flex justify-content-around'>
+        <span className='float-left'> Precio original: </span>
+        <span className='text-dark float-right'>
           {this.props.currencyExchangeData.to !== this.props.currency
             ? this.getFormattedPrice(
                 this.getConvertedPrice(
@@ -111,9 +113,9 @@ class ContractPriceLayout extends Component {
       </div>
     ) : null;
     const discountValue = this.props.availableDiscount ? (
-      <div>
-        <span className="float-left">Descuento: </span>{" "}
-        <span className="text-danger">
+      <div className='d-flex justify-content-around'>
+        <span className='float-left'>Descuento: </span>{" "}
+        <span className='text-danger font-weight-bold'>
           {this.props.availableDiscount.isPercentageDiscount ? (
             <>
               {(this.props.availableDiscount.discountAmount * 100).toFixed()}% |{" "}
@@ -180,12 +182,15 @@ ContractPriceLayout.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state) => ({
   currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
+  currencyExchangeData: state.payments.currencyExchangeReducer.data,
+  couponData: state.payments.fetchDiscountCouponReducer,
   currencyExchangeData: state.payments.currencyExchangeReducer.data
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  currencyExchange: paymentsOperations.currencyExchange
+  currencyExchange: paymentsOperations.currencyExchange,
+  clearCouponData: paymentsOperations.clearCouponData
 };
 
 // Export Class

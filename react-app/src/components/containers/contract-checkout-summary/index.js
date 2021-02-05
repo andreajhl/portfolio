@@ -46,6 +46,8 @@ const ContractCheckoutSummary = ({
               {instructions}
             </span>
           </div>
+          <hr className='w-100'></hr>
+          <ContractPriceLayout price={price} />
         </div>
       </div>
     </>
