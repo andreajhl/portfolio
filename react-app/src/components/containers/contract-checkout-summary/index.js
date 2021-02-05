@@ -49,19 +49,23 @@ const ContractCheckoutSummary = ({
         </div>
         <hr className='w-100'></hr>
         <div className='container-contract-checkout-summary__delivery-details'>
-          <div className='d-flex'>
-            <div className='container-contract-checkout-summary__name-user'>
-              <span className='container-contract-checkout-summary__to-label'>
-                Para:
-              </span>{" "}
-              <span>{deliveryTo}</span>
-            </div>
-            <div className='container-contract-checkout-summary__name-user'>
-              <span className='container-contract-checkout-summary__to-label ml-5'>
-                De:{" "}
-              </span>
-              <span>{deliveryFrom}</span>
-            </div>
+          <div className='d-flex text-justify'>
+            {deliveryTo ? (
+              <div className='container-contract-checkout-summary__name-user'>
+                <span className='container-contract-checkout-summary__to-label'>
+                  Para:
+                </span>{" "}
+                <span>{deliveryTo}</span>
+              </div>
+            ) : null}
+            {deliveryFrom ? (
+              <div className='container-contract-checkout-summary__name-user ml-5'>
+                <span className='container-contract-checkout-summary__to-label ml-5'>
+                  De:{" "}
+                </span>
+                <span>{deliveryFrom}</span>
+              </div>
+            ) : null}
           </div>
           <div className='container-contract-checkout-summary__message'>
             <span className='container-contract-checkout-summary__message-title'>
