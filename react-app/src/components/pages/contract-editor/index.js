@@ -51,8 +51,7 @@ class EditContractPage extends Component {
     if (contract === null) return;
     if (prevProps.contract !== contract) {
       if (contract.status !== 10 || contract.status !== 5) {
-        console.log(contract.status);
-        // return this.props.history.push(PATHS.CLIENT_HIRINGS);
+        return this.props.history.push(PATHS.CLIENT_HIRINGS);
       }
       this.props.saveContractToPay({
         ...contract,
