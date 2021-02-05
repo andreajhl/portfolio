@@ -138,7 +138,8 @@ class AvailablePaymentMethods extends Component {
               />
             </div>
           </div>
-          {true || window.userLocation.countryCode === "MX" ? (
+          {window.userLocation.countryCode === "CO" ||
+          window.userLocation.countryCode === "MX" ? (
             <div className='payment-type mb-3' onClick={this.changeToWhatsapp}>
               <div className='titles'>
                 <div className='icon'>
