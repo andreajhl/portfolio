@@ -1,50 +1,50 @@
 @import "../../../theme";
 
-.ContractCheckoutSummary {
-
-  .contract-summary {
-    margin: 0;
-    padding: 0;
-
-    .custom-card-title {
-      height: 60px;
-      text-align: center;
-      position: relative;
-      border-bottom-right-radius: 0 !important;
-      border-bottom-left-radius: 0 !important;
-      background-color: $base-tone;
-
-      h6 {
-        width: 100%;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-      }
+.container-contract-checkout-summary {
+  display: flex;
+  flex-flow: column;
+  width: 500px;
+  margin: 0 auto;
+  &__celebrity-details {
+    justify-content: space-around;
+    flex: 0 0 auto;
+    display: flex;
+    width: 500px;
+    align-items: center;
+    margin: 0 auto;
+  }
+  &__title {
+    margin-left: 1rem;
+    width: 300px;
+    span {
+      font-weight: bold;
+      font-size: 26px;
     }
+  }
 
-    .contract-details {
-      padding: 20px 20px 0px 20px;
+  &__delivery-details {
+    display: flex;
+    flex-flow: column;
+  }
+  &__delivery-details > *,
+  &__name-user > *,
+  &__message-title,
+  &__message-content {
+    color: #838383;
+  }
+  &__from-label,
+  &__message-title,
+  &__to-label {
+    font-weight: bold;
+  }
 
-      .text-colored {
-        color: $soft-grey;
-      }
-    }
+  &__message {
+    display: flex;
+    margin-top: 10px;
+    flex-flow: column;
+  }
 
-    .contract-button {
-      width: 200px;
-      display: flex;
-      justify-content: center;
-      &.disabled {
-        background-color: #a1a1a1 !important;
-      }
-    }
-
-    .total{
-      background-color: #f9f9f9;
-      padding: 10px;
-      height: 42px;
-    }
+  &__message-content {
+    margin-top: 1rem;
   }
 }

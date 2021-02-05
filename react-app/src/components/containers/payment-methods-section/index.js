@@ -14,7 +14,7 @@ class PaymentMethodsSection extends Component {
     const isLoading = !this.props.contractData.reference;
     return (
       <div
-        className="PaymentMethodsSection"
+        className='PaymentMethodsSection'
         style={
           isLoading
             ? {
@@ -27,22 +27,24 @@ class PaymentMethodsSection extends Component {
         <div
           className={"row justify-content-center payment-methods-section-row"}
         >
-          <div className="col-12 col-md-8 p-0 mx-0 mt-2 mb-4 f-rounded f-shadow">
+          <div className='col-12 col-md-8 p-0 mx-0 mb-4 mt-2 f-rounded f-shadow'>
             {/* CONTRACT SUMMARY */}
-            <ContractCheckoutSummary
-              celebrityAvatar={this.props.contractData.celebrity_avatar}
-              celebrityFullName={this.props.contractData.celebrity_full_name}
-              deliveryFrom={this.props.contractData.delivery_from}
-              deliveryTo={this.props.contractData.delivery_to}
-              instructions={this.props.contractData.instructions}
-              price={this.props.contractData.price}
-            />
-
-            {/* PAYMENT METHODS */}
+            <div className='mt-5'>
+              <ContractCheckoutSummary
+                celebrityAvatar={this.props.contractData.celebrity_avatar}
+                celebrityFullName={this.props.contractData.celebrity_full_name}
+                deliveryFrom={this.props.contractData.delivery_from}
+                deliveryTo={this.props.contractData.delivery_to}
+                instructions={this.props.contractData.instructions}
+                price={this.props.contractData.price}
+              />
+            </div>
+            {/* 
+            PAYMENT METHODS
             <AvailablePaymentMethods
               contractReference={this.props.contractData.reference}
               contractPrice={this.props.contractData.price}
-            />
+            /> */}
 
             {/* TERMS */}
             <div className={"p-4 text-center"}>
@@ -57,9 +59,9 @@ class PaymentMethodsSection extends Component {
                 </a>
                 &nbsp;
               </small>
-              <div className="mt-2 mx-auto text-center">
+              <div className='mt-2 mx-auto text-center'>
                 <img
-                  width="230px"
+                  width='230px'
                   src={"/assets/img/pago-seguro.png"}
                   alt={"pago-seguro"}
                 />
