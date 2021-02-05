@@ -48,9 +48,11 @@ class EditContractPage extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { contract } = this.props;
+    if (contract === null) return;
     if (prevProps.contract !== contract) {
-      if (contract.status !== 10) {
-        return this.props.history.push(PATHS.CLIENT_HIRINGS);
+      if (contract.status !== 10 || contract.status !== 5) {
+        console.log(contract.status);
+        // return this.props.history.push(PATHS.CLIENT_HIRINGS);
       }
       this.props.saveContractToPay({
         ...contract,
@@ -69,7 +71,7 @@ class EditContractPage extends Component {
               {this.props.celebrity.fullName}
             </title>
             <meta
-              name="description"
+              name='description'
               content={
                 "Comprar video personalizado de " +
                 this.props.celebrity.fullName +
@@ -110,7 +112,7 @@ class EditContractPage extends Component {
                   />
                 </div>
                 <img
-                  width="100%"
+                  width='100%'
                   className={"create-contract-steps"}
                   src={"/assets/img/create-contract-steps.svg"}
                   alt={"create-contract-steps"}

@@ -37,6 +37,7 @@ class PaymentMethodsSection extends Component {
                 deliveryTo={this.props.contractData.delivery_to}
                 instructions={this.props.contractData.instructions}
                 price={this.props.contractData.price}
+                contractReference={this.props.contractData.reference}
               />
             </div>
 

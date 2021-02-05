@@ -4,7 +4,8 @@ import { ContractPriceLayout } from "../../layouts/checkout-contract-price";
 import { paymentsOperations } from "../../../state/ducks/payments";
 import { Image } from "react-bootstrap";
 import { connect } from "react-redux";
-
+import { NavLink } from "react-router-dom";
+import { HIRING_EDITOR } from "../../../routing/Paths";
 const ContractCheckoutSummary = ({
   celebrityAvatar,
   celebrityFullName,
@@ -14,7 +15,8 @@ const ContractCheckoutSummary = ({
   price,
   couponData,
   currencyExchangeData,
-  clearCouponData
+  clearCouponData,
+  contractReference
 }) => {
   useEffect(() => {
     clearCouponData();
@@ -59,13 +61,27 @@ const ContractCheckoutSummary = ({
               </div>
             ) : null}
             {deliveryFrom ? (
-              <div className='container-contract-checkout-summary__name-user ml-5'>
-                <span className='container-contract-checkout-summary__to-label ml-5'>
+              <div className='container-contract-checkout-summary__name-user ml-5 mr-5'>
+                <span className='container-contract-checkout-summary__to-label '>
                   De:{" "}
                 </span>
                 <span>{deliveryFrom}</span>
               </div>
             ) : null}
+            <div
+              style={{
+                marginLeft: "auto"
+              }}
+            >
+              <NavLink
+                to={HIRING_EDITOR.replace(
+                  ":contract_reference",
+                  contractReference
+                )}
+              >
+                <span className='font-weight-bold'>Editar</span>
+              </NavLink>
+            </div>
           </div>
           <div className='container-contract-checkout-summary__message'>
             <span className='container-contract-checkout-summary__message-title'>
