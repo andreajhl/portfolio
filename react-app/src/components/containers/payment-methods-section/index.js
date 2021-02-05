@@ -48,13 +48,24 @@ class PaymentMethodsSection extends Component {
 
             {/* TERMS */}
             <div className={"p-4 text-center"}>
-              <small className={"text-muted text-center"}>
+              <small
+                className={"text-muted text-center"}
+                style={{ color: "#838383" }}
+              >
                 Al continuar estás aceptando nuestros&nbsp;
-                <a href={ROUTING_PATHS.TERMS_PATH} target={"_blank"}>
+                <a
+                  href={ROUTING_PATHS.TERMS_PATH}
+                  style={{ color: "#838383", textDecorationLine: "underline" }}
+                  target={"_blank"}
+                >
                   Términos y Condiciones
                 </a>
                 &nbsp; y nuestra&nbsp;
-                <a href={ROUTING_PATHS.POLICIES_PATH} target={"_blank"}>
+                <a
+                  href={ROUTING_PATHS.POLICIES_PATH}
+                  style={{ color: "#838383", textDecorationLine: "underline" }}
+                  target={"_blank"}
+                >
                   Política de Privacidad
                 </a>
                 &nbsp;
