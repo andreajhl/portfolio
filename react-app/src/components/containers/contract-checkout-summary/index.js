@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import "./styles.scss";
 import { ContractPriceLayout } from "../../layouts/checkout-contract-price";
 import { paymentsOperations } from "../../../state/ducks/payments";
@@ -11,8 +11,29 @@ const ContractCheckoutSummary = ({
   deliveryFrom,
   deliveryTo,
   instructions,
-  price
+  price,
+  couponData,
+  currencyExchangeData,
+  clearCouponData
 }) => {
+  useEffect(() => {
+    clearCouponData();
+    return () => {
+      clearCouponData();
+    };
+  }, []);
+  const applyDiscount = () => {
+    let discountTotal = 0;
+    if (couponData.data.isPercentageDiscount) {
+      discountTotal = couponData.data.discount_amount * price;
+      if (discountTotal > couponData.data.maxDiscountAmount) {
+        discountTotal = couponData.data.maxDiscountAmount;
+      }
+    } else {
+      discountTotal = couponData.data.discount_amount;
+    }
+    return price - discountTotal;
+  };
   return (
     <>
       <div className='container-contract-checkout-summary'>
@@ -47,7 +68,22 @@ const ContractCheckoutSummary = ({
             </span>
           </div>
           <hr className='w-100'></hr>
-          <ContractPriceLayout price={price} />
+          <ContractPriceLayout
+            classes={"text-black font-weight-bold"}
+            availableDiscount={
+              couponData.completed
+                ? {
+                    initialPrice: price,
+                    isPercentageDiscount: couponData.data.isPercentageDiscount,
+                    discountAmount: couponData.data.discount_amount
+                  }
+                : false
+            }
+            price={couponData.completed ? applyDiscount() : price}
+            currency={"USD"}
+            currencyExchangeData={currencyExchangeData}
+            rounding={false}
+          />
         </div>
       </div>
     </>
@@ -65,9 +101,19 @@ ContractCheckoutSummary.defaultProps = {
 };
 
 // mapStateToProps
-
+const mapStateToProps = (state) => {
+  return {
+    couponData: state.payments.fetchDiscountCouponReducer,
+    currencyExchangeData: state.payments.currencyExchangeReducer.data
+  };
+};
 // mapStateToProps
-
+const mapDispatchToProps = {
+  clearCouponData: paymentsOperations.clearCouponData
+};
 // Export Class
-const _ContractCheckoutSummary = connect(null, null)(ContractCheckoutSummary);
+const _ContractCheckoutSummary = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ContractCheckoutSummary);
 export { _ContractCheckoutSummary as ContractCheckoutSummary };
