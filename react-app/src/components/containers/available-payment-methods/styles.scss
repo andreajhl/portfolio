@@ -92,9 +92,21 @@
           .fa-credit-card,
           .fa-paypal,
           .fa-exchange-alt {
-            font-size: 26px;
-            margin-right: 30px;
+            font-size: 16px;
+            margin-right: 10px;
             float: right;
+
+            @media screen and (min-width: 375px) {
+              font-size: 22px;
+              margin-right: 10px;
+              float: right;
+            }
+
+            @media screen and (min-width: 375px) {
+              font-size: 26px;
+              margin-right: 30px;
+              float: right;
+            }
           }
           .fa-paypal {
             color: #3b7bbf;
