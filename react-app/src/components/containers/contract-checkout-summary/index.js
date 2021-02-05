@@ -38,7 +38,11 @@ const ContractCheckoutSummary = ({
     <>
       <div className='container-contract-checkout-summary'>
         <div className='container-contract-checkout-summary__celebrity-details'>
-          <Image height='90' src={celebrityAvatar} roundedCircle />
+          <Image
+            className='container-contract-checkout-summary__celebrity-avatar'
+            src={celebrityAvatar}
+            roundedCircle
+          />
           <div className='container-contract-checkout-summary__title'>
             <span>Video personalizado de {celebrityFullName}</span>
           </div>

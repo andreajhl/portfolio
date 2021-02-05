@@ -17,7 +17,16 @@
     margin-left: 1rem;
     span {
       font-weight: bold;
-      font-size: 26px;
+      font-size: 20px;
+      @media screen and (min-width: 425px) {
+        font-size: 26px;
+      }
+    }
+  }
+  &__celebrity-avatar {
+    height: 60px;
+    @media screen and (min-width: 425px) {
+      height: 90px;
     }
   }
 
