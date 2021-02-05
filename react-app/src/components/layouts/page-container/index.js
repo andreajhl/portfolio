@@ -96,19 +96,10 @@ class PageContainer extends Component {
 
   setBotmakerDisplay = (botMakerChild) => {
     if (!botMakerChild) return;
-
-    let botmakerDisplay = "none";
-    let botmakerPointerEvents = "none";
-
-    if (this.props.showBotMakerFrame) {
-      botmakerDisplay = "flex";
-      botmakerPointerEvents = "all";
-    }
-
-    botMakerChild.parentElement.style.display = botmakerDisplay;
-    botMakerChild.parentElement.style.pointerEvents = botmakerPointerEvents;
-    botMakerChild.style.display = botmakerDisplay;
-    botMakerChild.style.pointerEvents = botmakerPointerEvents;
+    botMakerChild.parentElement.classList.toggle(
+      "d-none",
+      !this.props.showBotMakerFrame
+    );
   };
 
   onSearchChange(keyword) {
