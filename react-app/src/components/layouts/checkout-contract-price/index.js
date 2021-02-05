@@ -100,9 +100,9 @@ class ContractPriceLayout extends Component {
       </div>
     );
     const originalPrice = this.props.availableDiscount ? (
-      <div className='d-flex justify-content-between '>
-        <span className='float-left'> Precio original: </span>
-        <span className='text-dark float-right'>
+      <div className='d-flex  justify-content-between '>
+        <span> Precio original: </span>
+        <span className='text-dark'>
           {this.props.currencyExchangeData.to !== this.props.currency
             ? this.getFormattedPrice(
                 this.getConvertedPrice(
@@ -112,7 +112,6 @@ class ContractPriceLayout extends Component {
               )
             : `$${this.props.availableDiscount.initialPrice} ${this.props.currency}`}
         </span>{" "}
-        <br></br>
       </div>
     ) : null;
     const discountValue = this.props.availableDiscount ? (
