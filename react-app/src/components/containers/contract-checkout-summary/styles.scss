@@ -3,19 +3,18 @@
 .container-contract-checkout-summary {
   display: flex;
   flex-flow: column;
-  width: 500px;
+
   margin: 0 auto;
   &__celebrity-details {
     justify-content: space-around;
     flex: 0 0 auto;
     display: flex;
-    width: 500px;
+
     align-items: center;
     margin: 0 auto;
   }
   &__title {
     margin-left: 1rem;
-    width: 300px;
     span {
       font-weight: bold;
       font-size: 26px;

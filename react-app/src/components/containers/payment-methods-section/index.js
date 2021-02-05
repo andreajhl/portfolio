@@ -29,7 +29,7 @@ class PaymentMethodsSection extends Component {
         >
           <div className='col-12 col-md-8 p-0 mx-0 mb-4 mt-2 f-rounded f-shadow'>
             {/* CONTRACT SUMMARY */}
-            <div className='mt-5'>
+            <div className='col-12 col-md-12 col-lg-8 col-xl-4 mx-auto mt-5'>
               <ContractCheckoutSummary
                 celebrityAvatar={this.props.contractData.celebrity_avatar}
                 celebrityFullName={this.props.contractData.celebrity_full_name}
