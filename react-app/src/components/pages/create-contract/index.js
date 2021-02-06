@@ -91,9 +91,7 @@ class CreateContractPage extends Component {
             </div>
             {/* STEPS COMMUNICATION */}
             <div
-              className={
-                "col-sm-12 col-md-6 col-lg-6 mx-auto my-auto p-4 text-center"
-              }
+              className={"col-sm-12 col-md-6 col-lg-6 mx-auto p-4 text-center"}
             >
               <div className={"steps-image ml-2 mb-2 mx-auto my-auto"}>
                 <div className={"text-left"}>

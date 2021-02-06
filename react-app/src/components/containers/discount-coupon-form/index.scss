@@ -1,8 +1,25 @@
-.coupon-container{
-    padding: 5px;
-    margin-bottom: 10px;
-    margin-left: auto;
-    .coupon-error{
-        font-size: 0.9rem;
-    }
+.coupon-container {
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  .coupon-error {
+    font-size: 0.9rem;
+  }
+  .button-discount-coupon-form {
+    border-radius: 10px;
+    border: 1px solid #dedede;
+    background: #dedede;
+    color: #838383;
+  }
+  .button-discount-coupon-form:active,
+  .button-discount-coupon-form:focus {
+    background-color: black !important;
+    border-radius: 10px;
+    border: 1px solid #dedede;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    color: white;
+    border-color: black !important;
+    box-shadow: none;
+  }
 }
