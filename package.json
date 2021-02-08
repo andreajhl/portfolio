@@ -1,0 +1,84 @@
+{
+  "name": "famosos-frontend",
+  "version": "2.0.0",
+  "description": "Famosos Webapp",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc --pretty --noEmit",
+    "format": "prettier --write .",
+    "lint": "eslint . --ext ts --ext tsx --ext js",
+    "test": "jest",
+    "test-all": "yarn lint && yarn type-check && yarn test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn run type-check"
+    }
+  },
+  "lint-staged": {
+    "*.@(ts|tsx)": [
+      "yarn lint",
+      "yarn format"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "jwt-decode": "^3.1.2",
+    "lodash.debounce": "^4.0.8",
+    "mixpanel-browser": "^2.40.0",
+    "next": "latest",
+    "next-redux-wrapper": "^6.0.2",
+    "path-to-regexp": "^6.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-gtm-module": "^2.0.11",
+    "react-infinite-scroll-component": "^5.1.0",
+    "react-number-format": "^4.4.4",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-batched-actions": "^0.5.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.10.8",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.5",
+    "@types/react": "^16.9.27",
+    "@types/react-redux": "^7.1.16",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "babel-jest": "^25.2.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-react": "^7.19.0",
+    "husky": "^4.2.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.2.3",
+    "jest-watch-typeahead": "^0.5.0",
+    "lint-staged": "^10.0.10",
+    "node-sass": "^5.0.0",
+    "prettier": "^2.0.2",
+    "styled-jsx-plugin-sass": "^1.0.0",
+    "typescript": "^3.8.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
