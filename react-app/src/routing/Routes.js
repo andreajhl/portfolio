@@ -103,11 +103,11 @@ class MyRoutes extends Component {
                 path={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH}
                 component={PAGES.SignInPage}
               /> */}
-              {/* <Route
+              <Route
                 exact
                 path={PATHS.SIGN_UP_PATH}
                 component={PAGES.SignUpPage}
-              /> */}
+              />
               {/* <Route
                 exact
                 path={PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH}
