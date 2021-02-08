@@ -1,6 +1,5 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-import "./styles.scss";
 
 const VideoCallsSignUpAd = ({ modalIsOpen, closeModal, nextModal }) => {
   return (

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./styles.scss";
+
 import { PageContainer } from "../../layouts/page-container";
 import MetaTags from "react-meta-tags";
 import { history } from "../../../routing/History";

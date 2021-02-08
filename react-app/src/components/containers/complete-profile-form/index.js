@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { authenticationOperations } from "../../../state/ducks/authentication";
 import { connect } from "react-redux";
 import "react-tagsinput/react-tagsinput.css";

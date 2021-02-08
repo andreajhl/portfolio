@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { fetchCelebritySections } from "../../../state/ducks/celebrity-sections/actions";
 import { CelebritiesCardsSectionLayout } from "../celebrities-cards-section";
 import { CelebritiesShimmerCardsSectionLayout } from "../celebrities-shimmer-cards-section";
-import "./styles.scss";
 
 const offsetInitialValue = 0;
 const resultsLimit = 3;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { connect } from "react-redux";
 import { fetchSimilarContracts } from "../../../state/ducks/contracts/actions";
 import { PaginationLayout } from "../pagination";

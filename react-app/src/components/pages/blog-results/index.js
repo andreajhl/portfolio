@@ -1,7 +1,7 @@
 import React, { Component, Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { PageContainer } from "../../layouts";
-import "./styles.scss";
+
 import { Container, Row, Col, Button } from "react-bootstrap";
 import BlogPostCards from "../../containers/blog-post-card-details";
 import BlogPostCardShimmer from "../../layouts/blog-post-card-shimmer";

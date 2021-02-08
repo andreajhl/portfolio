@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import "react-flags-select/scss/react-flags-select.scss";
-import "./styles.scss";
+
 import { Session } from "../../../state/utils/session";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";

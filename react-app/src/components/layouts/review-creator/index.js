@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import StarRatingComponent from "react-star-rating-component";
 import { Session } from "../../../state/utils/session";
-import "./styles.scss";
+
 import { saveClientContractReview } from "../../../state/ducks/contracts/actions";
 
 class ReviewCreatorLayout extends Component {

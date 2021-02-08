@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { FlagsSelect } from "../../layouts/flags-select";
 import { authenticationOperations } from "../../../state/ducks/authentication";
 import { connect } from "react-redux";

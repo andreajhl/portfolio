@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./styles.scss";
+
 import { contractOperations } from "../../../state/ducks/contracts";
 
 class ClientHiringPage extends Component {

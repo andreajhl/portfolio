@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles.scss";
 
 const onlyMobileLineBreak = <br className="d-sm-none" />;
 const onlyDesktopLineBreak = <br className="d-none d-sm-inline" />;

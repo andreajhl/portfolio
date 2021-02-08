@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import {
   SignInWithCellphoneForm,
   SignInWithEmailForm,
@@ -29,22 +29,22 @@ const SignInPage = () => {
       <MetaTags>
         <title>Famosos.com - Iniciar Sesión</title>
         <meta
-          name='description'
-          content='Inicia sesión en Famosos.com. Reserva tu video y disfruta de experiencias únicas.'
+          name="description"
+          content="Inicia sesión en Famosos.com. Reserva tu video y disfruta de experiencias únicas."
         />
       </MetaTags>
       <PageContainer>
-        <div className='container-sign-in-page'>
-          <div className='container-sign-in-page__login-details'>
-            <div className='container-sign-in-page__instructions'>
+        <div className="container-sign-in-page">
+          <div className="container-sign-in-page__login-details">
+            <div className="container-sign-in-page__instructions">
               <h1>
                 Crea una cuenta ahora para conectar con los famosos y vivir
                 experiencias únicas
               </h1>
             </div>
-            <LoginButton className='container-sign-in-page__login-button btn-primary'></LoginButton>
+            <LoginButton className="container-sign-in-page__login-button btn-primary"></LoginButton>
           </div>
-          <div className='container-sign-in-page__create-contract-steps'>
+          <div className="container-sign-in-page__create-contract-steps">
             <CreateContractStepsLayout></CreateContractStepsLayout>
           </div>
         </div>

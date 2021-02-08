@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { withRouter } from "react-router";
 import { loadStripe } from "@stripe/stripe-js";
 import { processStripePayment } from "../../../state/ducks/payments/actions";

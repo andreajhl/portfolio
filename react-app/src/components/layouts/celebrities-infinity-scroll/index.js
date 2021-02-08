@@ -4,7 +4,6 @@ import { CelebrityCardLayout } from "../celebrity-card";
 import { EndMessageLayout } from "../end-message";
 import { LoaderLayout } from "../loader";
 import PropTypes from "prop-types";
-import "./styles.scss";
 
 const CelebritiesInfinityScrollLayout = ({
   celebrities,

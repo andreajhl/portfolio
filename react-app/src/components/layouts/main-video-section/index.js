@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import useLoad from "../../../utils/useLoad";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
 import * as GTM from "../../../state/utils/gtm";
-import "./styles.scss";
 
 const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
   const [IsFinished, setIsFinished] = useState(false);

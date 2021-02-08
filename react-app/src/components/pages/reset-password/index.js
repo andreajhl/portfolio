@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { Session } from "../../../state/utils/session";
 import { ResetPasswordForm } from "../../containers";
 import { history } from "../../../routing/History";

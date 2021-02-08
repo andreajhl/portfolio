@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { ShareContractLayout } from "../share-contract";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";

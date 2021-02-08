@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useMemo } from "react";
 import debounce from "lodash.debounce";
 import { CelebrityCardLayout } from "../celebrity-card";
 import { VideoCardLayout } from "../video-card";
-import "./styles.scss";
+
 import { NavLink } from "react-router-dom";
 import { SEARCH_PATH } from "../../../routing/Paths";
 import { jsonToQueryString } from "../../../state/utils/apiService";

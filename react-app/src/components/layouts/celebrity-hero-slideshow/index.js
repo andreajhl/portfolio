@@ -6,7 +6,6 @@ import * as GTM from "../../../state/utils/gtm";
 import { VideoSlideLayout } from "../video-slide";
 import { contractOperations } from "../../../state/ducks/contracts";
 import useCurrentVideoPlaying from "../../../utils/useCurrentVideoPlaying";
-import "./styles.scss";
 
 const CelebrityHeroSlideshow = ({
   celebrityAvatar,

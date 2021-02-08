@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
-import { description, version } from "../../../../package.json";
+// import { description, version } from "../../../../package.json";
+const description = (version = "");
 
 class FooterLayout extends Component {
   constructor(props) {

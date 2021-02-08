@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { cursorOperations } from "../../../state/ducks/cursor-position";
 
-import "./styles.scss";
 import * as GTM from "../../../state/utils/gtm";
 import { NewsLetterModal } from "../../containers/newsletter-modal";
 import { HeroSectionLayout } from "../../layouts/hero-section";
@@ -19,7 +18,7 @@ import { Session } from "../../../state/utils/session";
 import * as CarouselWithButtons from "../../layouts/carousel-with-buttons";
 import BlogPostCardLayout from "../../layouts/blog-post-card";
 import * as mediumApiService from "../../../state/utils/mediumApiService";
-import { queryStringToJSON } from "src/state/utils/apiService";
+import { queryStringToJSON } from "../../../state/utils/apiService";
 
 class CelebritiesPage extends Component {
   constructor(props) {

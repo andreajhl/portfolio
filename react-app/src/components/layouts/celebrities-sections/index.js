@@ -5,7 +5,7 @@ import { CelebritiesShimmerCardsSectionLayout } from "../celebrities-shimmer-car
 import { LoaderLayout } from "../loader";
 import { fetchCelebritySections } from "../../../state/ducks/celebrity-sections/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
-import "./styles.scss";
+
 import { EndMessageLayout } from "../end-message";
 import * as GTM from "../../../state/utils/gtm";
 

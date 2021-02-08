@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { PageContainer } from "../../layouts";
 import { connect } from "react-redux";
 import { UserProfileDetailsCardLayout } from "../../layouts/user-profile-details-card";
-import "./styles.scss";
+
 import { sessionOperations } from "../../../state/ducks/session";
 import { authenticationOperations } from "../../../state/ducks/authentication";
 import * as GTM from "../../../state/utils/gtm";
@@ -35,7 +35,7 @@ class ClientProfilePage extends Component {
   render() {
     return (
       <>
-        <div className='ClientProfilePage'>
+        <div className="ClientProfilePage">
           <PageContainer applyFetchCelebrities={false}>
             <UserProfileDetailsCardLayout
               userInformation={this.props.userInformation}

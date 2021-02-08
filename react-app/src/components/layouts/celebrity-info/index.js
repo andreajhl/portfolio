@@ -3,7 +3,6 @@ import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { CelebrityContractPrice } from "../celebrity-contract-price";
 import { CelebritiesResponseTime } from "../celebrities-response-time";
-import "./styles.scss";
 
 export const CelebrityInfo = ({
   fullName,

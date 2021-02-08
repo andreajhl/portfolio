@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { NavbarSectionLayout } from "../navbar-section";
 import { FooterLayout } from "../footer";
-import "./styles.scss";
+
 import { CookiesConsent } from "../cookies-consent";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";

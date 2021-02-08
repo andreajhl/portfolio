@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form } from "react-bootstrap";
-import "./styles.scss";
+
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { Session } from "../../../state/utils/session";
 import * as PATHS from "../../../routing/Paths";
@@ -208,7 +208,7 @@ class StripeCardForm extends Component {
     if (this.state.errorMessage) {
       return (
         <div className={"mx-auto p-4 error-container"}>
-          <div className='text-danger text-center mb-3'>
+          <div className="text-danger text-center mb-3">
             <small className={"text-danger font-weight-bold"}>
               {this.state.errorMessage}
             </small>
@@ -218,13 +218,13 @@ class StripeCardForm extends Component {
               Volver a intentar
             </button>
           </div>
-          <div className='mb-3 text-justify '>
+          <div className="mb-3 text-justify ">
             <small>
               Si el problema persiste puedes comunicarte con nuestro equipo de
               soporte a{" "}
               <a
                 className={"font-weight-bold"}
-                href='mailto:experiencias@famosos.com'
+                href="mailto:experiencias@famosos.com"
               >
                 experiencias@famosos.com
               </a>{" "}
@@ -238,16 +238,16 @@ class StripeCardForm extends Component {
 
   render() {
     return (
-      <div className='StripeCardForm'>
+      <div className="StripeCardForm">
         <Form.Group>
           <h6 className={"font-weight-light label-stripe-form"}>
             Correo del titular de la tarjeta
           </h6>
           <input
-            type='text'
-            className='form-control mb-3 input-stripe-form'
-            placeholder='Escribe aquí el correo'
-            name='ownerEmail'
+            type="text"
+            className="form-control mb-3 input-stripe-form"
+            placeholder="Escribe aquí el correo"
+            name="ownerEmail"
             onChange={this.handleInput || ""}
             value={this.state.ownerEmail}
           />
@@ -255,10 +255,10 @@ class StripeCardForm extends Component {
             Nombre del titular de la tarjeta
           </h6>
           <input
-            type='text'
-            className='form-control mb-3 input-stripe-form'
-            placeholder='Escribe aquí el nombre'
-            name='ownerName'
+            type="text"
+            className="form-control mb-3 input-stripe-form"
+            placeholder="Escribe aquí el nombre"
+            name="ownerName"
             onChange={this.handleInput || ""}
             value={this.state.ownerName}
           />
@@ -266,10 +266,10 @@ class StripeCardForm extends Component {
             Datos de la tarjeta
           </h6>
           <div
-            className='StripeCardElementLayout'
+            className="StripeCardElementLayout"
             style={{ border: "solid 2px !important" }}
           >
-            <div className='checkout'>
+            <div className="checkout">
               <CardElement />
             </div>
           </div>

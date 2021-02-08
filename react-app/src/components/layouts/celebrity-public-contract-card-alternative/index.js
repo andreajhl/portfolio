@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import "./styles.scss";
+
 import { NavLink } from "react-router-dom";
 import { setPlayingVideo } from "../../../state/ducks/celebrity-sections/actions";
 import { connect } from "react-redux";

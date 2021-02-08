@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { connect } from "react-redux";
 import { PageContainer } from "../../layouts";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
@@ -57,7 +57,7 @@ class CreateContractPage extends Component {
               {this.props.celebrity.fullName}
             </title>
             <meta
-              name='description'
+              name="description"
               content={
                 "Comprar video personalizado de " +
                 this.props.celebrity.fullName +
@@ -101,7 +101,7 @@ class CreateContractPage extends Component {
                   />
                 </div>
                 <img
-                  width='100%'
+                  width="100%"
                   className={"create-contract-steps"}
                   src={"/assets/img/create-contract-steps.svg"}
                   alt={"create-contract-steps"}

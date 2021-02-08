@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PageContainer } from "../../layouts";
 import { connect } from "react-redux";
-import "./styles.scss";
+
 import { paymentsOperations } from "../../../state/ducks/payments";
 import * as GTM from "../../../state/utils/gtm";
 import { StripeProvider } from "react-stripe-elements";

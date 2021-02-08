@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { PageContainer } from "../../layouts/page-container";
 import { Stripe3dSecureIframe } from "../../containers/stripe-3d-secure-iframe";
 import * as ROUTING_PATHS from "../../../routing/Paths";

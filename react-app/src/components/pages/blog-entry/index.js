@@ -1,7 +1,7 @@
 import React, { Component, Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { PageContainer } from "../../layouts";
-// import './styles.scss';
+//
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Redirect, withRouter } from "react-router-dom";
 import { BLOG, HOME_PATH } from "../../../routing/Paths";

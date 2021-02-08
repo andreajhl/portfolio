@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./styles.scss";
+
 import { ContractPriceLayout } from "../../layouts/checkout-contract-price";
 import { paymentsOperations } from "../../../state/ducks/payments";
 import { Image } from "react-bootstrap";
@@ -38,31 +38,31 @@ const ContractCheckoutSummary = ({
   };
   return (
     <>
-      <div className='container-contract-checkout-summary'>
-        <div className='container-contract-checkout-summary__celebrity-details'>
+      <div className="container-contract-checkout-summary">
+        <div className="container-contract-checkout-summary__celebrity-details">
           <Image
-            className='container-contract-checkout-summary__celebrity-avatar'
+            className="container-contract-checkout-summary__celebrity-avatar"
             src={celebrityAvatar}
             roundedCircle
           />
-          <div className='container-contract-checkout-summary__title'>
+          <div className="container-contract-checkout-summary__title">
             <span>Video personalizado de {celebrityFullName}</span>
           </div>
         </div>
-        <hr className='w-100'></hr>
-        <div className='container-contract-checkout-summary__delivery-details'>
-          <div className='d-flex text-justify'>
+        <hr className="w-100"></hr>
+        <div className="container-contract-checkout-summary__delivery-details">
+          <div className="d-flex text-justify">
             {deliveryTo ? (
-              <div className='container-contract-checkout-summary__name-user'>
-                <span className='container-contract-checkout-summary__to-label'>
+              <div className="container-contract-checkout-summary__name-user">
+                <span className="container-contract-checkout-summary__to-label">
                   Para:
                 </span>{" "}
                 <span>{deliveryTo}</span>
               </div>
             ) : null}
             {deliveryFrom ? (
-              <div className='container-contract-checkout-summary__name-user ml-5 mr-5'>
-                <span className='container-contract-checkout-summary__to-label '>
+              <div className="container-contract-checkout-summary__name-user ml-5 mr-5">
+                <span className="container-contract-checkout-summary__to-label ">
                   De:{" "}
                 </span>
                 <span>{deliveryFrom}</span>
@@ -79,19 +79,19 @@ const ContractCheckoutSummary = ({
                   contractReference
                 )}
               >
-                <span className='font-weight-bold'>Editar</span>
+                <span className="font-weight-bold">Editar</span>
               </NavLink>
             </div>
           </div>
-          <div className='container-contract-checkout-summary__message'>
-            <span className='container-contract-checkout-summary__message-title'>
+          <div className="container-contract-checkout-summary__message">
+            <span className="container-contract-checkout-summary__message-title">
               Mensaje
             </span>
-            <span className='container-contract-checkout-summary__message-content'>
+            <span className="container-contract-checkout-summary__message-content">
               {instructions}
             </span>
           </div>
-          <hr className='w-100'></hr>
+          <hr className="w-100"></hr>
           <ContractPriceLayout
             classes={"text-black font-weight-bold"}
             availableDiscount={

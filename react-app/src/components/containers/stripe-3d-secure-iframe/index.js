@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./styles.scss";
 
 class Stripe3dSecureIframe extends Component {
   constructor(props) {

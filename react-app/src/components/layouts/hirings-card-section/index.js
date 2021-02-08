@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import "./styles.scss";
+
 import { NavLink } from "react-router-dom";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";

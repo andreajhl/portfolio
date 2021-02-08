@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { CelebrityReviewCardLayout } from "../../layouts/celebrity-review-card";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";

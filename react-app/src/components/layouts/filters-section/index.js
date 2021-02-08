@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { CelebritiesFilter } from "../celebrities-filter";
 import { CelebritiesOrderBy } from "../celebrities-order-by";
-import "./styles.scss";
+
 import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import { countriesOperations } from "../../../state/ducks/countries";

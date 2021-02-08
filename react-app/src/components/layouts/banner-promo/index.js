@@ -6,7 +6,7 @@ import {
   setTimeDifference
 } from "../../../state/ducks/discount-coupons/actions";
 import { DISCOUNT_COUPON_BANNER_FINISH_TIME } from "../../../constants/localStorageKeys";
-import "./styles.scss";
+
 import calculateDateDifference from "../../../utils/calculateDateDifference";
 
 const BannerPromoLayout = ({
@@ -69,22 +69,22 @@ const BannerPromoLayout = ({
 
   return (
     <div className={`BannerPromoLayout ${!showCouponBanner ? "d-none" : ""}`}>
-      <div className='ContentBanner container h-100 row mx-auto p-0 align-items-center justify-content-center'>
-        <div className='col text-style'>
-          {discount}% de descuento en tu compra. <br className='d-lg-none' />{" "}
+      <div className="ContentBanner container h-100 row mx-auto p-0 align-items-center justify-content-center">
+        <div className="col text-style">
+          {discount}% de descuento en tu compra. <br className="d-lg-none" />{" "}
           Usa el código: {coupon}
         </div>
-        <div className='col-lg-3 col-md-auto text-center align-items-center justify-content-center'>
-          <div className='row text-style justify-content-center justify-content-lg-end mb-1'>
+        <div className="col-lg-3 col-md-auto text-center align-items-center justify-content-center">
+          <div className="row text-style justify-content-center justify-content-lg-end mb-1">
             Termina en
             <div>
-              <div className='time-style'>
+              <div className="time-style">
                 {dateDifferenceMoment.minutes() || 0}
               </div>
             </div>
             M
             <div>
-              <div className='time-style'>
+              <div className="time-style">
                 {dateDifferenceMoment.seconds() || 0}
               </div>
             </div>

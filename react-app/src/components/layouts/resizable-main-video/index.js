@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ResizableBox } from "react-resizable";
 import debounce from "lodash.debounce";
 import { CelebrityMainVideoSection } from "../main-video-section";
-import "./styles.scss";
+
 import "react-resizable/css/styles.css";
 
 const smallBreakpoint = 576;

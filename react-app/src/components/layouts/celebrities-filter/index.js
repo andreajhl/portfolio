@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ModalSelect } from "../modal-select";
-import "./styles.scss";
+
 import * as GTM from "../../../state/utils/gtm";
 
 const CelebritiesFilter = ({

@@ -1,6 +1,5 @@
 import React from "react";
 import * as GTM from "../../../state/utils/gtm";
-import "./styles.scss";
 
 const CelebrityReviewCardLayout = ({ review }) => {
   const registerCelebrityReviewCardHover = () => {

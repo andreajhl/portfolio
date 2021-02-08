@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import "react-flags-select/scss/react-flags-select.scss";
-import "./styles.scss";
+
 import * as PATHS from "../../../routing/Paths";
 
 class CookiesConsent extends Component {

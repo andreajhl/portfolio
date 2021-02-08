@@ -577,3 +577,7 @@ select {
   overflow: hidden;
   white-space: nowrap;
 }
+
+@import "./components/layouts/styles.scss";
+@import "./components/containers/styles.scss";
+@import "react-flags-select/scss/react-flags-select.scss";

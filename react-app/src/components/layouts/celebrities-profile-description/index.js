@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import * as GTM from "../../../state/utils/gtm";
 import debounce from "lodash.debounce";
 import getElementTotalCharacterByLine from "../../../utils/getElementTotalCharacterByLine";
-import "./styles.scss";
 
 const TotalCharactersInThreeLinesOnSmallBreakpoint = 135;
 

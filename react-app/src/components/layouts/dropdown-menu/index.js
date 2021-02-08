@@ -4,7 +4,6 @@ import UAParser from "ua-parser-js";
 import * as PATHS from "../../../routing/Paths";
 import { sendDropdownLinkAnalyticsData } from "../navbar-section/index";
 import { LessImportantCallToActionButton } from "../less-important-call-to-action-button";
-import "./styles.scss";
 
 const { type, vendor } = new UAParser().getDevice();
 const isAppleDevice = vendor === "Apple";

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import * as GTM from "../../../state/utils/gtm";
 import { history } from "../../../routing/History";
 import { ContractPriceLayout } from "../contract-price";

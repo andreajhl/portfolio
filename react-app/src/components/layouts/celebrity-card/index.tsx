@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import "./styles.scss";
+import { NavLink } from "../../common/routing/nav-link";
+
 import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { cursorOperations } from "../../../state/ducks/cursor-position";
@@ -23,19 +23,23 @@ const CelebrityCardLayout = ({
   celebrity,
   currencyExchangeData
 }: CelebrityCardLayoutI) => {
-  const [avatarIsLoaded, setAvatarIsLoaded] = useState(false);
-  const finishAvatarLoad = () => setAvatarIsLoaded(true);
-  const [contractPrice, setContractPrice] = useState(
-    celebrity.videoMessagePrice
-  );
+  // const [avatarIsLoaded, setAvatarIsLoaded] = useState(false);
+  // const finishAvatarLoad = () => setAvatarIsLoaded(true);
+  // const [contractPrice, setContractPrice] = useState(
+  //   celebrity.videoMessagePrice
+  // );
 
-  useEffect(() => {
-    let convertedPrice = celebrity.videoMessagePrice;
-    if (currencyExchangeData.rate) {
-      convertedPrice = celebrity.videoMessagePrice * currencyExchangeData.rate;
-    }
-    setContractPrice(convertedPrice);
-  }, [currencyExchangeData]);
+  // useEffect(() => {
+  //   let convertedPrice = celebrity.videoMessagePrice;
+  //   if (currencyExchangeData.rate) {
+  //     convertedPrice = celebrity.videoMessagePrice * currencyExchangeData.rate;
+  //   }
+  //   setContractPrice(convertedPrice);
+  // }, [currencyExchangeData]);
+
+  const avatarIsLoaded = true;
+  const finishAvatarLoad = () => {};
+  const contractPrice = 5;
 
   const profileUrl = PATHS.CELEBRITY_PROFILE.replace(
     ":celebrity_username",

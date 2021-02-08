@@ -4,8 +4,6 @@ import limitString from "../../../utils/limitString";
 import { withRouter } from "react-router-dom";
 import { BLOG_ENTRY } from "../../../routing/Paths";
 
-import "./styles.scss";
-
 const BlogPostCardLayout = ({
   title,
   imageUrl,
