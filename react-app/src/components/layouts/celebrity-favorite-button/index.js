@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "../../common/routing/with-router";
 import { connect } from "react-redux";
 import { SIGN_IN_WITH_SPECIFIC_FORM_PATH } from "../../../routing/Paths";
 import { addOrRemoveLike } from "../../../state/ducks/celebrity-likes/actions";

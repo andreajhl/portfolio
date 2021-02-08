@@ -1,6 +1,8 @@
 {
   "conventionalCommits.scopes": [
-    "dependencies"
+    "dependencies",
+    "stylesheets",
+    "components"
   ],
   "git.ignoreLimitWarning": true
 }

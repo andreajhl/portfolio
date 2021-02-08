@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import Image from "react-bootstrap/Image";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import limitString from "../../../utils/limitString";
 
@@ -19,7 +18,7 @@ const CountryFlag = ({
   }, [countries, countryCode]);
 
   return celebrityCountry ? (
-    <Image
+    <img
       src={
         celebrityCountry.alpha3Code === "USA"
           ? "/assets/img/usa.svg"

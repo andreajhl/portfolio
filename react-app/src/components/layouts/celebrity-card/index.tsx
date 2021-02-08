@@ -23,23 +23,19 @@ const CelebrityCardLayout = ({
   celebrity,
   currencyExchangeData
 }: CelebrityCardLayoutI) => {
-  // const [avatarIsLoaded, setAvatarIsLoaded] = useState(false);
-  // const finishAvatarLoad = () => setAvatarIsLoaded(true);
-  // const [contractPrice, setContractPrice] = useState(
-  //   celebrity.videoMessagePrice
-  // );
+  const [avatarIsLoaded, setAvatarIsLoaded] = useState(false);
+  const finishAvatarLoad = () => setAvatarIsLoaded(true);
+  const [contractPrice, setContractPrice] = useState(
+    celebrity.videoMessagePrice
+  );
 
-  // useEffect(() => {
-  //   let convertedPrice = celebrity.videoMessagePrice;
-  //   if (currencyExchangeData.rate) {
-  //     convertedPrice = celebrity.videoMessagePrice * currencyExchangeData.rate;
-  //   }
-  //   setContractPrice(convertedPrice);
-  // }, [currencyExchangeData]);
-
-  const avatarIsLoaded = true;
-  const finishAvatarLoad = () => {};
-  const contractPrice = 5;
+  useEffect(() => {
+    let convertedPrice = celebrity.videoMessagePrice;
+    if (currencyExchangeData.rate) {
+      convertedPrice = celebrity.videoMessagePrice * currencyExchangeData.rate;
+    }
+    setContractPrice(convertedPrice);
+  }, [currencyExchangeData]);
 
   const profileUrl = PATHS.CELEBRITY_PROFILE.replace(
     ":celebrity_username",
