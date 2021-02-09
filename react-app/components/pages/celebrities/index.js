@@ -1,23 +1,15 @@
-import React, { Component, createRef, useEffect, useState } from "react";
-import {
-  CelebritiesSectionsLayout,
-  PageContainer,
-  UserLikesSectionLayout
-} from "../../layouts";
+import React, { Component, createRef } from "react";
+import { CelebritiesSectionsLayout } from "../../layouts/celebrities-sections";
+import { PageContainer } from "../../layouts/page-container";
+import { UserLikesSectionLayout } from "../../layouts/user-likes-section";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
-import { cursorOperations } from "../../../state/ducks/cursor-position";
 
 import * as GTM from "../../../state/utils/gtm";
-import { NewsLetterModal } from "../../containers/newsletter-modal";
 import { HeroSectionLayout } from "../../layouts/hero-section";
 import { FiltersSectionLayout } from "../../layouts/filters-section";
 import MetaTags from "react-meta-tags";
-import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import { Session } from "../../../state/utils/session";
-import * as CarouselWithButtons from "../../layouts/carousel-with-buttons";
-import BlogPostCardLayout from "../../layouts/blog-post-card";
-import * as mediumApiService from "../../../state/utils/mediumApiService";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 
 class CelebritiesPage extends Component {
@@ -71,67 +63,6 @@ class CelebritiesPage extends Component {
       previousScrollTopPosition: scrollTopPosition
     });
   };
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    /* const queryParams = this.props.queryParams;
-    if (nextProps.selectedCountry.id !== this.props.selectedCountry.id) {
-      const categoryId = this.props.selectedCategory.id;
-      const countryId =
-        nextProps.selectedCountry.id > 0 ? nextProps.selectedCountry.id : null;
-
-      console.log("nextProps.selectedCountry", nextProps.selectedCountry);
-
-      if (countryId) {
-        queryParams["country_id"] = countryId;
-      } else {
-        delete queryParams["country_id"];
-      }
-      if (categoryId) {
-        queryParams["category_id"] = categoryId;
-      } else {
-        delete queryParams["category_id"];
-      }
-      queryParams["currentPage"] = 1;
-      this.props.updateQueryParams(queryParams);
-      // this.props.history.push({
-      //     pathname: this.props.history.pathname,
-      //     search: jsonToQueryString(queryParams),
-      //     metaTagTitle: "Famosos.com - Famosos de " + nextProps.selectedCountry.name,
-      //     metaTagDescription: "Encuentra aqui los Famosos de " + nextProps.selectedCountry.name + " para grabar tu video personalizado. Reserva tu video y disfruta de experiencias únicas.",
-      // });
-    }
-    if (nextProps.selectedCategory.id !== this.props.selectedCategory.id) {
-      const categoryId =
-        nextProps.selectedCategory.id > 0
-          ? nextProps.selectedCategory.id
-          : null;
-
-      console.log("nextProps.selectedCategory", nextProps.selectedCategory);
-
-      const countryId = this.props.selectedCountry.id;
-      if (countryId) {
-        queryParams["country_id"] = countryId;
-      } else {
-        delete queryParams["country_id"];
-      }
-      if (categoryId) {
-        queryParams["category_id"] = categoryId;
-      } else {
-        delete queryParams["category_id"];
-      }
-      queryParams["currentPage"] = 1;
-      this.props.updateQueryParams(queryParams);
-      // this.props.history.push({
-      //     pathname: this.props.history.pathname,
-      //     search: jsonToQueryString(queryParams),
-      //     // metaTagTitle: "Famosos.com - " + nextProps.selectedCategory.name,
-      //     // metaTagDescription: "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
-      // });
-    }
-    if (queryParams.page === 1 && nextProps.isLoading) {
-      this.scrollDiv.current.scrollTop = 0;
-    } */
-  }
 
   openModal() {
     this.setState({
@@ -196,22 +127,6 @@ class CelebritiesPage extends Component {
             showVideoCallsResearch
             shouldFetchCountryCode
           >
-            {/*/!* ShowHeader *!/*/}
-            {/*{localStorage.getItem("hideIndexHeader") === null ? <IndexHeaderLayout/> : null}*/}
-            {/*/!* End ShowHeader *!/*/}
-
-            {/* Modal FFB */}
-            {/*<FamososForBusinessModal showModal={this.state.showFFBModal}  onHide={this.closeModal}/>*/}
-            {/* End Modal FFB */}
-
-            {/* NEWSLETTER MODAL */}
-            {/*<NewsLetterModal/>*/}
-            {/* End NEWSLETTER MODAL */}
-
-            {/*/!* MainMenuLayout *!/*/}
-            {/*<MainMenuLayout/>*/}
-            {/*/! End MainMenuLayout *!/*/}
-
             <HeroSectionLayout />
             <FiltersSectionLayout />
             {this.state.session ? <UserLikesSectionLayout /> : null}
@@ -221,42 +136,20 @@ class CelebritiesPage extends Component {
                 queryStringToJSON(this.props.location.search)?.landingId
               }
             />
-            {/* <div
-              className="scroll-section"
-              style={{
-                height: "calc(100vh - 50px)",
-                overflow: "scroll"
-              }}
-              ref={this.scrollDiv}
-            ></div> */}
-            {/*<pre>this.props.paginationData.currentPage {this.props.paginationData.currentPage}</pre>*/}
-            {/*<pre>this.props.paginationData.totalPages {this.props.paginationData.totalPages}</pre>*/}
-            {/*<pre>state.params.page {this.state.params.page}</pre>*/}
-            {/*<pre>celebrities: {this.props.celebrities.length}</pre>*/}
-            {/*<pre>totalItems: {this.props.paginationData.totalItems}</pre>*/}
-            {/* End CelebrityCardsSectionLayout */}
           </PageContainer>
-          {/*{*/}
-          {/*    this.props.celebrities.length === this.props.paginationData.totalItems*/}
-          {/*    &&*/}
-          {/*    <FooterLayout/>*/}
-          {/*}*/}
         </div>
       </>
     );
   }
 }
 
-// Set propTypes
 CelebritiesPage.propTypes = {};
 
-// Set defaultProps
 CelebritiesPage.defaultProps = {
   celebrities: [],
   paginationData: {}
 };
 
-// mapStateToProps
 const mapStateToProps = ({
   celebrities,
   restCountries,
@@ -276,15 +169,14 @@ const mapStateToProps = ({
   cursor: cursor.cursorReducer.Position
 });
 
-// mapStateToProps
 const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list,
   updateQueryParams: celebrityOperations.updateQueryParams
 };
 
-// Export Class
 const _CelebritiesPage = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CelebritiesPage);
+
 export { _CelebritiesPage as CelebritiesPage };

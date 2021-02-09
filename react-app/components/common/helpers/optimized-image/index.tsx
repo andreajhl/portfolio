@@ -8,7 +8,7 @@ const OptimizedImage = ({
   ...props
 }: ImageProps & {
   placeholderUrl: string;
-  placeholderSize: string;
+  placeholderSize?: string;
 }) => {
   return (
     <div

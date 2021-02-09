@@ -3,7 +3,13 @@ import * as PATHS from "../../routing/Paths";
 import jwt_decode from "jwt-decode";
 import { Mixpanel } from "./mixPanel";
 
+const noop = () => {};
 export class Session {
+  setSession = noop;
+  getSession = noop;
+  tokenExpired = noop;
+}
+export class Session1 {
   constructor() {
     this.sessionName = "_a0_";
     this.visitKey = "_visit_";

@@ -46,7 +46,7 @@ export const get = (object_id, preloaded = false) => {
     const TYPE = types.GET_CELEBRITY_REQUEST;
     const FINAL_PATH = API_PATHS.GET + object_id;
     dispatch({ type: TYPE, payload: {} });
-    apiService({
+    return apiService({
       method: "GET",
       action: TYPE,
       path: FINAL_PATH,
@@ -60,42 +60,17 @@ export const get = (object_id, preloaded = false) => {
           !res.data.data.username
         ) {
           handleApiResponseFailure(dispatch, TYPE, res);
-          // Other actions
-          history._pushRoute(
-            PATHS.CELEBRITY_PROFILE_ERROR.replace(
-              ":celebrity_username",
-              object_id
-            )
-          );
-          // history._pushRoute(PATHS.ROOT_PATH);
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
-          // Other actions
           if (preloaded) {
             dispatch(listReviews(res.data.data.id, { currentPage: 1 }));
             dispatch(listPublicContracts(res.data.data.id, { currentPage: 1 }));
-            // dispatch(
-            //   listSimilar({
-            //     country_id: res.data.data.country_id,
-            //     category_id: res.data.data.category_id
-            //   })
-            // );
           }
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
         }
       })
       .catch((err) => {
         handleApiErrors(dispatch, TYPE, err);
-        // history._pushRoute(
-        //   PATHS.CELEBRITY_PROFILE_ERROR.replace(
-        //     ":celebrity_username",
-        //     object_id
-        //   )
-        // );
-        // history._pushRoute(PATHS.ROOT_PATH);
-        // handleApiErrors(dispatch, TYPE, {
-        //   data: { api_error: err, error: "Server 500" }
-        // });
       });
   };
 };

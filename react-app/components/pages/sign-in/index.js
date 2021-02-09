@@ -1,10 +1,4 @@
 import React from "react";
-
-import { Session } from "../../../state/utils/session";
-import { history } from "../../../routing/History";
-import * as PATHS from "../../../routing/Paths";
-import { PageContainer } from "../../layouts/page-container";
-import * as GTM from "../../../state/utils/gtm";
 import Link from "next/link";
 import LoginButton from "../../containers/login-button/login-button";
 import CreateContractStepsLayout from "../../containers/create-contracts-steps";
@@ -22,7 +16,9 @@ const SignInPage = () => {
 
         <LoginButton className="container-sign-in-page__login-button btn-primary">
           <Link href="/api/login">
-            <a>Ingresar</a>
+            <a>
+              <span style={{ color: "white" }}>Ingresar</span>
+            </a>
           </Link>
         </LoginButton>
       </div>

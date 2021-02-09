@@ -1,14 +1,14 @@
-import React from "react";
 import { NavLink } from "react-app/components/common/routing";
 import { HOME_PATH } from "react-app/routing/Paths";
 
-const FourZeroFour = () => {
+const CustomError = () => {
   return (
     <div className="SignInPage">
       <div className="section">
         <div className="auth-container mx-auto text-center p-4">
           <h3 className="font-weight-light text-center">
-            Lo sentimos, esta página no fue encontrada
+            Ha ocurrido un error. <br />
+            Estamos haciendo lo posible por resolverlo.
           </h3>
           <br />
           <img
@@ -32,4 +32,4 @@ const FourZeroFour = () => {
         showFooter={false}
       ></PageContainer> */
 
-export { FourZeroFour };
+export default CustomError;

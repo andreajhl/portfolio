@@ -1,4 +1,4 @@
-export default (string, limit = 17) => {
+const limitString = (string, limit = 17) => {
   const newString = [];
   if (string.length < limit) return string;
 
@@ -17,3 +17,5 @@ export default (string, limit = 17) => {
 
   return `${newString.join(" ")} ...`;
 };
+
+export default limitString;
