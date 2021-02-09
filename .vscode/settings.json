@@ -2,7 +2,8 @@
   "conventionalCommits.scopes": [
     "dependencies",
     "stylesheets",
-    "components"
+    "components",
+    "folder-structure"
   ],
   "git.ignoreLimitWarning": true
 }
