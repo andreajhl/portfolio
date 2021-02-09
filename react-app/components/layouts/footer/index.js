@@ -2,8 +2,7 @@ import React, { Component } from "react";
 
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
-// import { description, version } from "../../../../package.json";
-const description = (version = "");
+import { description, version } from "../../../../package.json";
 
 class FooterLayout extends Component {
   constructor(props) {

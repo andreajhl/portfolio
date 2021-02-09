@@ -21,8 +21,6 @@ class PageContainer extends Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props.hasDiscountCoupon);
-
     this.state = {
       params: { status: 50 },
       dropdownMenuIsOpen: false,
@@ -37,33 +35,22 @@ class PageContainer extends Component {
   };
 
   componentDidMount() {
-    this.props.cleanUserCelebrityLikes();
-    const isLogged = new Session().getSession();
-    if (this.props.applyFetchUserCelebrityLikes && isLogged) {
-      this.props.fetchUserCelebrityLikes();
-    }
-    setCelebrityProfileVersionDependingOfTime();
-
-    if (this.props.shouldFetchFlashDeliveryCelebrities) {
-      this.props.fetchFlashDeliveryCelebrities();
-    }
-
-    if (
-      this.props.shouldFetchRestCountries &&
-      this.props.restCountries.length === 0
-    ) {
-      this.props.listRestCountries();
-    }
-
-    this.changeBotmakerDisplay();
-
-    /* if (this.props.applyFetchCelebrities === true) {
-      const queryParams = this.props.queryParams;
-      if (!window.location.search) {
-        queryParams["currentPage"] = 1;
-        this.props.updateQueryParams(queryParams);
-      }
-    } */
+    // this.props.cleanUserCelebrityLikes();
+    // const isLogged = new Session().getSession();
+    // if (this.props.applyFetchUserCelebrityLikes && isLogged) {
+    //   this.props.fetchUserCelebrityLikes();
+    // }
+    // setCelebrityProfileVersionDependingOfTime();
+    // if (this.props.shouldFetchFlashDeliveryCelebrities) {
+    //   this.props.fetchFlashDeliveryCelebrities();
+    // }
+    // if (
+    //   this.props.shouldFetchRestCountries &&
+    //   this.props.restCountries.length === 0
+    // ) {
+    //   this.props.listRestCountries();
+    // }
+    // this.changeBotmakerDisplay();
   }
 
   cancelPreviousWaitFor = () => {
@@ -141,6 +128,8 @@ class PageContainer extends Component {
         <Headroom style={{ zIndex: 100000 }} upTolerance={2.5}>
           {this.props.showNavbar ? (
             <NavbarSectionLayout
+              user={this.props.user}
+              loading={this.props.loading}
               className={hasSearchedOrFiltered ? "hidden-hero" : ""}
               onSearchChange={this.onSearchChange}
               showInputSearchSm={this.props.showInputSearchSm}
@@ -192,7 +181,7 @@ class PageContainer extends Component {
         {/*{this.props.showVideoCallsResearch ? <VideoCallsResearch /> : null}*/}
         {/*COOKIES CONSENT*/}
         {/* <DownloadAppBanner /> */}
-        <CookiesConsent />
+        {/* <CookiesConsent /> */}
 
         {/*<BottomNavbarSectionLayout/>*/}
       </div>

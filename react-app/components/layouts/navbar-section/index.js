@@ -7,12 +7,9 @@ import { ROOT_PATH } from "../../../routing/Paths";
 import PropTypes from "prop-types";
 import { Session } from "../../../state/utils/session";
 import * as GTM from "../../../state/utils/gtm";
-
-import { BannerPromoLayout } from "../banner-promo";
+import Link from "next/link";
+// import { BannerPromoLayout } from "../banner-promo";
 import { DropdownMenuLayout } from "../dropdown-menu";
-import LoginButton from "../../containers/login-button/login-button";
-import { useAuth0 } from "@auth0/auth0-react";
-import LogoutButton from "../../containers/logout-button/logout-button";
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
   if (!target.matches("a")) return;
@@ -39,23 +36,23 @@ const NavbarSectionLayout = ({
   dropdownMenuIsOpen,
   setDropdownMenuIsOpen,
   showCouponBanner,
-  setShowCouponBanner
+  setShowCouponBanner,
+  loading,
+  user
 }) => {
-  const isLogged = new Session().getSession();
-  const { isLoading, isAuthenticated, user } = useAuth0();
   return (
     <>
       <div className={`NavbarSectionLayout ${className}`}>
-        <BannerPromoLayout
+        {/* <BannerPromoLayout
           showCouponBanner={showCouponBanner}
           setShowCouponBanner={setShowCouponBanner}
-        />
+        /> */}
         <div className="top-bar container mx-auto p-0 row">
           <div className="top-bar__left-side col-4 p-0">
             <DropdownMenuLayout
               dropdownMenuIsOpen={dropdownMenuIsOpen}
               setDropdownMenuIsOpen={setDropdownMenuIsOpen}
-              isLogged={isLogged}
+              isLogged={!loading && user}
             />
           </div>
           <div className="top-bar__center-side col-4">
@@ -73,7 +70,7 @@ const NavbarSectionLayout = ({
           </div>
 
           <div className="top-bar__right-side col-4 p-0 row m-0">
-            {!isAuthenticated && !isLoading ? (
+            {!user && !loading ? (
               <div className="col d-none d-md-flex align-items-center">
                 <NavLink
                   className="btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1"
