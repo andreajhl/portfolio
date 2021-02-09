@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "../../common/routing/nav-link";
+import { NavLink } from "../../common/routing";
 
 import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
