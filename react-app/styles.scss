@@ -580,6 +580,7 @@ select {
   white-space: nowrap;
 }
 
+@import "./components/pages/styles.scss";
 @import "./components/layouts/styles.scss";
 @import "./components/containers/styles.scss";
 // @import "react-flags-select/scss/react-flags-select.scss";

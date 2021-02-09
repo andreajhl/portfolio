@@ -26,7 +26,7 @@ const FourZeroFourCelebritiesSectionsLayout = ({
     fetchCelebritySections({
       offset: offsetInitialValue,
       limit: resultsLimit,
-      alpha2Code: window.userLocation.countryCode
+      alpha2Code: window?.userLocation?.countryCode
     });
   }, []);
 
