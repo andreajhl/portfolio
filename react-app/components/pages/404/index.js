@@ -1,52 +1,35 @@
-import React, { Component } from "react";
+import React from "react";
+import { NavLink } from "react-app/components/common/routing";
+import { HOME_PATH } from "react-app/routing/Paths";
 
-import { PageContainer } from "../../layouts/page-container";
-import MetaTags from "react-meta-tags";
-import { history } from "../../../routing/History";
-import * as ROUTING_PATHS from "../../../routing/Paths";
-
-class FourZeroFour extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <>
-        <PageContainer applyFetchCelebrities={false} showFooter={false}>
-          <div className="SignInPage">
-            <div className="section">
-              <div className="auth-container mx-auto text-center p-4">
-                <h3 className="font-weight-light text-center">
-                  Lo sentimos, esta página no fue encontrada
-                </h3>
-                <br />
-                <img
-                  width="200px"
-                  style={{ opacity: "0.2" }}
-                  src="/assets/img/sad-face-in-rounded-square.svg"
-                  alt="sad-face"
-                />
-                <br />
-                <br />
-                <button
-                  className={"btn btn-primary"}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    history._pushRoute(ROUTING_PATHS.HOME_PATH);
-                  }}
-                >
-                  Volver a inicio
-                </button>
-              </div>
-            </div>
-          </div>
-        </PageContainer>
-      </>
-    );
-  }
-}
+const FourZeroFour = () => {
+  return (
+    <div className="SignInPage">
+      <div className="section">
+        <div className="auth-container mx-auto text-center p-4">
+          <h3 className="font-weight-light text-center">
+            Lo sentimos, esta página no fue encontrada
+          </h3>
+          <br />
+          <img
+            width="200px"
+            style={{ opacity: "0.2" }}
+            src="/assets/img/sad-face-in-rounded-square.svg"
+            alt="sad-face"
+          />
+          <br />
+          <br />
+          <NavLink to={HOME_PATH}>
+            <button className="btn btn-primary">Volver a inicio</button>
+          </NavLink>
+        </div>
+      </div>
+    </div>
+  );
+};
+/* <PageContainer
+        applyFetchCelebrities={false}
+        showFooter={false}
+      ></PageContainer> */
 
 export { FourZeroFour };
