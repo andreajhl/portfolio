@@ -8,6 +8,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import { EndMessageLayout } from "../end-message";
 import * as GTM from "../../../state/utils/gtm";
+import getWindow from "react-app/utils/getWindow";
 
 const mapStateToProps = ({ celebritySections }) => {
   const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
@@ -38,7 +39,7 @@ const CelebritiesSectionsLayout = ({
       offset,
       limit: resultsLimit,
       landingId,
-      alpha2Code: window.userLocation.countryCode
+      alpha2Code: getWindow().userLocation?.countryCode
     });
   }, [offset]);
 

@@ -21,7 +21,7 @@ class PaymentMethodsPage extends Component {
 
   render() {
     return (
-      <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
+      <StripeProvider apiKey={process.env.NEXT_PUBLIC_STRIPE_KEY}>
         <PageContainer
           applyFetchCelebrities={false}
           showSearch={false}

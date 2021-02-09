@@ -4,7 +4,7 @@ import { PageContainer } from "../../layouts/page-container";
 import { Stripe3dSecureIframe } from "../../containers/stripe-3d-secure-iframe";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 
-const stripe = require("stripe")(process.env.REACT_APP_STRIPE_KEY);
+const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 class ProcessStripe3DFormPage extends Component {
   constructor(props) {

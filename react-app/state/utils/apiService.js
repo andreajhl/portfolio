@@ -57,7 +57,7 @@ const apiService = (meta) => {
   // Final URL
   let url = meta.path;
   if (!meta.custom_endpoint) {
-    url = `${process.env.REACT_APP_ENDPOINT}${meta.path}`;
+    url = `${process.env.NEXT_PUBLIC_ENDPOINT}${meta.path}`;
     addFamososAuthorizationHeader = true;
   }
 

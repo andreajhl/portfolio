@@ -1,7 +1,7 @@
 import TagManager from "react-gtm-module";
 import { Mixpanel } from "./mixPanel";
 
-const ENV = process.env.REACT_APP_ENVIRONMENT;
+const ENV = process.env.NEXT_PUBLIC_ENVIRONMENT;
 
 export const initialize = () => {
   if (ENV === "production") {

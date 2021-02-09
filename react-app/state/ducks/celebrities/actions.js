@@ -301,7 +301,7 @@ export const cleanPublicContracts = () => ({
 });
 
 export const fetchFlashDeliveryCelebrities = () => async (dispatch) => {
-  const environment = process.env.REACT_APP_ENVIRONMENT;
+  const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
 
   const TYPE = types.FETCH_FLASH_DELIVERY_CELEBRITIES_REQUEST;
   const FINAL_PATH = `${API_PATHS.FLASH_DELIVERY_CELEBRITIES}${

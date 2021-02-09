@@ -4,7 +4,7 @@
 // const history = createBrowserHistory();
 // history.listen((location) => {
 //   window.scroll({ top: 0 });
-//   const ENVIRONMENT = process.env.REACT_APP_ENVIRONMENT.toUpperCase();
+//   const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
 //   window.analytics.page({
 //     ...location,
 //     path: location.pathname,
