@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import CelebrityCardLayout from "./";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-app/components/common/routing";
 import { shallow } from "enzyme";
 import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";

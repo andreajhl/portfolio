@@ -10,7 +10,7 @@ import { celebrityCategoriesOperations } from "../../../state/ducks/celebrity-ca
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
 import { queryStringToJSON } from "../../../state/utils/apiService";
-import { withRouter } from "react-router";
+import { withRouter } from "react-app/components/common/routing";
 
 const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
   return {
@@ -46,7 +46,7 @@ const FiltersSectionLayout = ({
   location
 }) => {
   const [params, setParams] = useState(initialState.params);
-  const queryString = location.search;
+  const queryString = location.search || "";
   const queryParams = useMemo(() => queryStringToJSON(queryString), [
     queryString
   ]);

@@ -3,7 +3,7 @@ import debounce from "lodash.debounce";
 import { CelebrityCardLayout } from "../celebrity-card";
 import { VideoCardLayout } from "../video-card";
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-app/components/common/routing";
 import { SEARCH_PATH } from "../../../routing/Paths";
 import { jsonToQueryString } from "../../../state/utils/apiService";
 import * as GTM from "../../../state/utils/gtm";

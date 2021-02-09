@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { injectStripe } from "react-stripe-elements";
 import { Session } from "../../../state/utils/session";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "react-app/components/common/routing";
 import { processStripePayment } from "../../../state/ducks/payments/actions";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";

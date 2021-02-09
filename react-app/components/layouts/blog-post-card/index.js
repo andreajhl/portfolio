@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import limitString from "../../../utils/limitString";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "react-app/components/common/routing";
 import { BLOG_ENTRY } from "../../../routing/Paths";
 
 const BlogPostCardLayout = ({

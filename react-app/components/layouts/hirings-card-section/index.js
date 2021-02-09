@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-app/components/common/routing";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
 import {

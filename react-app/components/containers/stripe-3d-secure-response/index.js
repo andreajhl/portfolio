@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { withRouter } from "react-router";
+import { withRouter } from "react-app/components/common/routing";
 import { loadStripe } from "@stripe/stripe-js";
 import { processStripePayment } from "../../../state/ducks/payments/actions";
 import * as PATHS from "../../../routing/Paths";

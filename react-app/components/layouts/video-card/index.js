@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-app/components/common/routing";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import * as GTM from "../../../state/utils/gtm";
 import useVideoPlayer from "../../../utils/useVideoPlayer";

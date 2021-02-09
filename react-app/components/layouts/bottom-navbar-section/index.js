@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import * as PATHS from "../../../routing/Paths";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-app/components/common/routing";
 import { history } from "../../../routing/History";
 
 class BottomNavbarSectionLayout extends Component {

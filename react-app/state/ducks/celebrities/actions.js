@@ -9,7 +9,9 @@ import * as API_PATHS from "./paths";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import { updateQueryParamsInitialState } from "./reducers";
-import * as firestoreService from "../../../firebase/firestoreService";
+// import * as firestoreService from "../../../firebase/firestoreService";
+
+const firestoreService = { getDocuments() {} };
 
 const getValidParams = (params) => {
   const paramsEntries = Object.entries(params);

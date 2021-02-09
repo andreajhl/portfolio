@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { PageContainer } from "../../layouts";
 //
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { Redirect, withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-app/components/common/routing-dom";
 import { BLOG, HOME_PATH } from "../../../routing/Paths";
 
 import BlogPost from "../../containers/blog-post-full";

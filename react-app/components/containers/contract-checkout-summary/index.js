@@ -4,7 +4,7 @@ import { ContractPriceLayout } from "../../layouts/checkout-contract-price";
 import { paymentsOperations } from "../../../state/ducks/payments";
 import { Image } from "react-bootstrap";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-app/components/common/routing";
 import { HIRING_EDITOR } from "../../../routing/Paths";
 const ContractCheckoutSummary = ({
   celebrityAvatar,

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-app/components/common/routing";
 import UAParser from "ua-parser-js";
 import * as PATHS from "../../../routing/Paths";
 import { sendDropdownLinkAnalyticsData } from "../navbar-section/index";

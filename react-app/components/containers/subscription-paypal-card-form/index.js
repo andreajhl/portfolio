@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SubscriptionPaypalReactButton from "../subscription-paypal-react-button";
 import { postProcessSubscription } from "../../../state/ducks/subscriptions/actions";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "react-app/components/common/routing";
 import * as GTM from "../../../state/utils/gtm";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { connect } from "react-redux";

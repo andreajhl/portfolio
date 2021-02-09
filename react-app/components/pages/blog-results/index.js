@@ -8,7 +8,7 @@ import BlogPostCardShimmer from "../../layouts/blog-post-card-shimmer";
 import MetaTags from "react-meta-tags";
 import * as mediumApiService from "../../../state/utils/mediumApiService";
 import { blogOperations } from "../../../state/ducks/blog";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "react-app/components/common/routing";
 import { HOME_PATH } from "../../../routing/Paths";
 
 const BlogResults = ({

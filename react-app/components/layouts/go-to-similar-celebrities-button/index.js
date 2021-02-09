@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-app/components/common/routing";
 import { connect } from "react-redux";
 import { fetchSimilarCelebrities } from "../../../state/ducks/celebrities/actions";
 import { SEARCH_PATH } from "../../../routing/Paths";

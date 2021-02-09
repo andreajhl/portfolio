@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-app/components/common/routing";
 import { CelebrityDetails } from "../celebrity-details";
 import { CelebrityPublicContractsSectionLayout } from "../celebrity-public-contracts-section";
 import { CelebrityReviewsSectionLayout } from "../celebrity-reviews-section";
@@ -19,7 +19,7 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
         } p-0 justify-content-center`}
       >
         {celebrity.mainVideo ? (
-          <div className='col-12 col-lg-4 p-0 m-0 px-sm-3'>
+          <div className="col-12 col-lg-4 p-0 m-0 px-sm-3">
             <ResizableMainVideo
               mainVideoUrl={celebrity.mainVideo}
               videoPosterUrl={celebrity.avatar}
@@ -31,7 +31,7 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
             celebrity.mainVideo ? "8" : "10"
           } p-0 m-0 px-sm-3`}
         >
-          <CelebrityDetails celebrity={celebrity} variant='1' />
+          <CelebrityDetails celebrity={celebrity} variant="1" />
         </div>
       </div>
       <HowToGetAVideoMessageLayout />
@@ -72,12 +72,12 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
       <SimilarCelebrityContractsSectionLayout
         celebrityUsername={celebrity.username}
       />
-      <div className='container pb-4 pt-2 text-center'>
+      <div className="container pb-4 pt-2 text-center">
         <HireThisCelebrityButton
           showCelebrityName={true}
-          className='get-a-video-button px-md-5 py-3 px-4'
-          text='Quiero un video de'
-          fontSize='1.25em'
+          className="get-a-video-button px-md-5 py-3 px-4"
+          text="Quiero un video de"
+          fontSize="1.25em"
           celebrityFullName={celebrity.fullName}
           celebrityUsername={celebrity.username}
         />

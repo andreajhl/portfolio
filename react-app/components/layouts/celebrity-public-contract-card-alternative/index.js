@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-app/components/common/routing";
 import { setPlayingVideo } from "../../../state/ducks/celebrity-sections/actions";
 import { connect } from "react-redux";
 import * as GTM from "../../../state/utils/gtm";
