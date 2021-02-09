@@ -1,31 +1,25 @@
 import React, { useState } from "react";
-import Image from "react-bootstrap/Image";
 import PropTypes from "prop-types";
+import OptimizedImage from "react-app/components/common/helpers/optimized-image";
 
-const ProfilePicture = ({ avatar, roundedCircle, width, imageStyles }) => {
-  const [imageIsLoaded, setImageIsLoaded] = useState(false);
-
-  const changeImageIsLoaded = (event) => setImageIsLoaded(true);
-
+const ProfilePicture = ({
+  avatar,
+  roundedCircle,
+  width,
+  height = width,
+  imageStyles
+}) => {
   return (
     <figure className="mb-0">
-      <Image
-        className={imageIsLoaded ? "" : "d-none"}
-        roundedCircle={roundedCircle}
+      <OptimizedImage
+        className={roundedCircle ? "rounded-circle overflow-hidden" : ""}
         width={width}
+        height={height}
         src={avatar}
-        onLoad={changeImageIsLoaded}
         alt="Imagen de perfil"
         style={imageStyles}
+        placeholderSrc="assets/img/avatar-blank.png"
       />
-      {!imageIsLoaded ? (
-        <Image
-          roundedCircle={roundedCircle}
-          width={width}
-          src="assets/img/avatar-blank.png"
-          style={imageStyles}
-        />
-      ) : null}
     </figure>
   );
 };

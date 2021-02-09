@@ -62,7 +62,7 @@ const CelebrityCardLayout = ({
             src={celebrity.avatar}
             width={150}
             height={150}
-            placeholderUrl="/assets/img/avatar-blank.png"
+            placeholderSrc="/assets/img/avatar-blank.png"
           />
           {celebrity.availableForFlashDeliveries ? (
             <FlashDeliveryBadgeLayout className="celebrity__flash-delivery" />

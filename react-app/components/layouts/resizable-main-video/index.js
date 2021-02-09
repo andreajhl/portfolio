@@ -4,6 +4,7 @@ import debounce from "lodash.debounce";
 import { CelebrityMainVideoSection } from "../main-video-section";
 
 import "react-resizable/css/styles.css";
+import getWindow from "react-app/utils/getWindow";
 
 const smallBreakpoint = 576;
 const containerSmallSize = 508;
@@ -12,7 +13,7 @@ const largeBreakPoint = 991;
 const containerMediumSize = 688;
 
 const getWidthFromWindowWidth = () => {
-  const { innerWidth } = window;
+  const { innerWidth } = getWindow();
 
   if (innerWidth < smallBreakpoint) {
     return innerWidth;

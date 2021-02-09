@@ -8,6 +8,7 @@ export class Session {
   setSession = noop;
   getSession = noop;
   tokenExpired = noop;
+  isDummy = noop;
 }
 export class Session1 {
   constructor() {

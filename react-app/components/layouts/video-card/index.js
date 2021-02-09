@@ -59,7 +59,7 @@ const VideoCardLayout = ({
           <Maybe it={!videoIsLoaded}>
             <OptimizedImage
               src={videoPosterUrl}
-              placeholderUrl="/assets/img/avatar-blank.png"
+              placeholderSrc="/assets/img/avatar-blank.png"
               width={258}
               height={344}
               objectFit="cover"
@@ -106,7 +106,7 @@ const VideoCardLayout = ({
                   className="video-card__celebrity-photo"
                   src={celebrityAvatar || "/assets/img/avatar-blank.png"}
                   alt={`Foto de Perfil de ${celebrityFullName || "famoso"}`}
-                  placeholderUrl="/assets/img/avatar-blank.png"
+                  placeholderSrc="/assets/img/avatar-blank.png"
                 />
                 <h3 className="video-card__celebrity-full-name">
                   {celebrityFullName}

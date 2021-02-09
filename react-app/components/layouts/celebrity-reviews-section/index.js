@@ -11,13 +11,17 @@ class CelebrityReviewsSectionLayout extends Component {
     super(props);
 
     this.state = {
-      params: {}
+      params: { currentPage: 1 }
     };
 
     this.onPaginationChange = this.onPaginationChange.bind(this);
     this.updateParams = this.updateParams.bind(this);
     this.fetchReviews = this.fetchReviews.bind(this);
   }
+
+  componentDidMount = () => {
+    this.fetchReviews();
+  };
 
   fetchReviews() {
     this.props.listReviews(this.props.celebrityId, this.state.params);

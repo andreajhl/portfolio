@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useLoad from "../../../utils/useLoad";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
 import * as GTM from "../../../state/utils/gtm";
+import getWindow from "react-app/utils/getWindow";
 
 const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
   const [IsFinished, setIsFinished] = useState(false);
@@ -9,7 +10,7 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
   const [videoIsLoaded, onVideoLoadedData] = useLoad();
   const analyticsData = {
     widget: "CelebrityMainVideoSection",
-    path: window.location.pathname,
+    path: getWindow().location.pathname,
     videoIsLoaded,
     mainVideoUrl
   };

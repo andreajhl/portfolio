@@ -3,11 +3,11 @@ import Image, { ImageProps } from "next/image";
 
 const OptimizedImage = ({
   className,
-  placeholderUrl,
+  placeholderSrc,
   placeholderSize: backgroundSize = "cover",
   ...props
 }: ImageProps & {
-  placeholderUrl: string;
+  placeholderSrc: string;
   placeholderSize?: string;
 }) => {
   return (
@@ -15,7 +15,7 @@ const OptimizedImage = ({
       style={{
         width: props.width,
         height: props.height,
-        backgroundImage: `url(${placeholderUrl})`,
+        backgroundImage: `url(${placeholderSrc})`,
         backgroundPosition: "center",
         backgroundSize
       }}

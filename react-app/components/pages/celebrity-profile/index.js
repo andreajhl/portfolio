@@ -1,11 +1,10 @@
-import React, { Component, createRef } from "react";
-import { PageContainer } from "../../layouts";
+import React, { Component } from "react";
+import { PageContainer } from "../../layouts/page-container";
 import * as PropTypes from "prop-types";
 import { CelebrityShape } from "../../../prop-types";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 
-import MetaTags from "react-meta-tags";
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
 import { CelebrityProfileLayoutA } from "../../layouts/celebrity-profile-a";
@@ -32,14 +31,6 @@ const CelebrityProfileLayout = ({ celebrity }) => {
 class CelebrityProfilePage extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      params: {}
-    };
-
-    this.getCelebrity = this.getCelebrity.bind(this);
-
-    this.scrollDiv = createRef();
   }
 
   componentDidMount() {
@@ -49,16 +40,8 @@ class CelebrityProfilePage extends Component {
     });
     const session = new Session();
     session.isDummy();
-    this.getCelebrity(this.props.match.params.celebrity_username);
+    // this.getCelebrity(this.props.match.params.celebrity_username);
   }
-
-  // componentWillMount() {
-  //   if (
-  //     this.props.celebrity.username !==
-  //     this.props.match.params.celebrity_username
-  //   ) {
-  //   }
-  // }
 
   componentWillReceiveProps(nextProps, nextContext) {
     if (
@@ -69,9 +52,9 @@ class CelebrityProfilePage extends Component {
     }
   }
 
-  getCelebrity(username) {
+  getCelebrity = (username) => {
     this.props.getCelebrity(username, true);
-  }
+  };
 
   similarCelebrities() {
     return this.props.similarCelebrities.filter((item) => {
@@ -89,29 +72,6 @@ class CelebrityProfilePage extends Component {
 
     return (
       <div className="CelebrityProfilePage">
-        {this.props.celebrity.username && (
-          <div>
-            <MetaTags>
-              <title>Famosos.com - {this.props.celebrity.fullName}</title>
-              <meta
-                name="description"
-                content={
-                  "Perfil oficial de " +
-                  this.props.celebrity.fullName +
-                  " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
-                }
-              />
-              <meta
-                property="og:title"
-                content={"Famosos.com - " + this.props.celebrity.fullName}
-              />
-              <meta
-                property="og:url"
-                content={"https://famosos.com/" + this.props.celebrity.username}
-              />
-            </MetaTags>
-          </div>
-        )}
         <PageContainer
           applyFetchCelebrities={false}
           showLogin={false}
@@ -119,8 +79,7 @@ class CelebrityProfilePage extends Component {
         >
           {!hasNetworkError ? (
             <div style={{ minHeight: "100vh" }}>
-              {this.props.celebrity.username ===
-              this.props.match.params.celebrity_username ? (
+              {this.props.celebrity.id ? (
                 <div>
                   <LastVideosAvailableBanner
                     celebrityUsername={this.props.celebrity?.username}
@@ -163,16 +122,7 @@ CelebrityProfilePage.defaultProps = {
 const mapStateToProps = (state) => ({
   isLoading: state.celebrities.getCelebrityReducer.loading,
   celebrity: state.celebrities.getCelebrityReducer.data,
-  errorData: state.celebrities.getCelebrityReducer.error_data,
-  socialNetworks:
-    state.celebritySocialNetworks.fetchCelebritySocialNetworksReducer.data
-      .results,
-  similarCelebritiesLoading:
-    state.celebrities.fetchSimilarCelebritiesReducer.loading,
-  similarCelebrities:
-    state.celebrities.fetchSimilarCelebritiesReducer.data.results,
-  similarCelebritiesPaginationData:
-    state.celebrities.fetchSimilarCelebritiesReducer.data.informationPage
+  errorData: state.celebrities.getCelebrityReducer.error_data
 });
 
 // mapStateToProps

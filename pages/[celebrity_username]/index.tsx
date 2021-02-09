@@ -1,7 +1,10 @@
 import { GetServerSideProps } from "next";
 import { wrapper } from "react-app/state/store";
-import { get } from "react-app/state/ducks/celebrities/actions";
-import { CelebrityProfileLayoutC } from "react-app/components/layouts/celebrity-profile-c";
+import {
+  get,
+  listPublicContracts
+} from "react-app/state/ducks/celebrities/actions";
+import { CelebrityProfilePage } from "react-app/components/pages/celebrity-profile";
 import { CELEBRITY_PROFILE_ERROR } from "react-app/routing/Paths";
 import CustomHead from "react-app/components/common/helpers/custom-head";
 
@@ -21,6 +24,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         }
       };
     }
+    await listPublicContracts(celebrity.id, { currentPage: 1 })(store.dispatch);
     return {
       props: {
         celebrity
@@ -38,7 +42,7 @@ const CelebrityProfile = ({ celebrity }) => {
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
       />
-      <CelebrityProfileLayoutC celebrity={celebrity} />
+      <CelebrityProfilePage celebrity={celebrity} />
     </>
   );
 };

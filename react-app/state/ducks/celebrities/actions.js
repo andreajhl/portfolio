@@ -218,7 +218,7 @@ export const listPublicContracts = (celebrity_id, params = {}) => {
     const TYPE = types.FETCH_PUBLIC_CONTRACTS_REQUEST;
     const FINAL_PATH = API_PATHS.PUBLIC_CONTRACTS + celebrity_id;
     dispatch({ type: TYPE, payload: {} });
-    apiService({
+    return apiService({
       method: "GET",
       action: TYPE,
       path: FINAL_PATH,
