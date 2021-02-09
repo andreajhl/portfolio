@@ -2,6 +2,7 @@ import React from "react";
 import Image, { ImageProps } from "next/image";
 
 const OptimizedImage = ({
+  className,
   placeholderUrl,
   placeholderSize: backgroundSize = "cover",
   ...props
@@ -18,6 +19,7 @@ const OptimizedImage = ({
         backgroundPosition: "center",
         backgroundSize
       }}
+      className={className}
     >
       <Image {...props} />
     </div>

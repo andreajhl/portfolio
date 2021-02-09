@@ -7,6 +7,8 @@ import * as GTM from "../../../state/utils/gtm";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
 import useLoad from "../../../utils/useLoad";
 import { CELEBRITY_PROFILE } from "../../../routing/Paths";
+import OptimizedImage from "react-app/components/common/helpers/optimized-image";
+import Maybe from "react-app/components/common/helpers/maybe";
 
 const VideoCardLayout = ({
   celebrityId,
@@ -53,15 +55,16 @@ const VideoCardLayout = ({
   return (
     <div className="VideoCardLayout" onMouseOver={registerVideoCardHover}>
       <div className="video-card">
-        <section
-          className="video-card__media"
-          style={{
-            backgroundImage: videoIsLoaded ? "" : `url(${videoPosterUrl})`,
-            backgroundSize: videoIsLoaded ? "" : `cover`,
-            width: "100%"
-          }}
-          onClick={togglePlay}
-        >
+        <section className="video-card__media" onClick={togglePlay}>
+          <Maybe it={!videoIsLoaded}>
+            <OptimizedImage
+              src={videoPosterUrl}
+              placeholderUrl="/assets/img/avatar-blank.png"
+              width={258}
+              height={344}
+              objectFit="cover"
+            />
+          </Maybe>
           <video
             className="video-card__video"
             src={videoUrl}
@@ -80,11 +83,11 @@ const VideoCardLayout = ({
               } ml-2 mt-2`}
               onClick={togglePlay}
             />
-            {videoOccasion ? (
+            <Maybe it={videoOccasion}>
               <span className="video-card__category d-flex align-items-center">
                 {videoOccasion}
               </span>
-            ) : null}
+            </Maybe>
           </header>
           <footer className="d-flex align-items-center px-2 video-card__footer">
             <NavLink
@@ -96,18 +99,19 @@ const VideoCardLayout = ({
               onClick={registerCelebrityUsernameClick}
               onMouseOver={registerCelebrityUsernameHover}
             >
-              {footerSection || (
-                <>
-                  <img
-                    className="video-card__celebrity-photo"
-                    src={celebrityAvatar || "/assets/img/avatar-blank.png"}
-                    alt={`Foto de Perfil de ${celebrityFullName || "famoso"}`}
-                  />
-                  <h3 className="video-card__celebrity-full-name">
-                    {celebrityFullName}
-                  </h3>
-                </>
-              )}
+              <Maybe it={!footerSection} orElse={footerSection}>
+                <OptimizedImage
+                  width={53.65}
+                  height={53.65}
+                  className="video-card__celebrity-photo"
+                  src={celebrityAvatar || "/assets/img/avatar-blank.png"}
+                  alt={`Foto de Perfil de ${celebrityFullName || "famoso"}`}
+                  placeholderUrl="/assets/img/avatar-blank.png"
+                />
+                <h3 className="video-card__celebrity-full-name">
+                  {celebrityFullName}
+                </h3>
+              </Maybe>
             </NavLink>
             <CelebrityFavoriteButton
               celebrityId={celebrityId}
