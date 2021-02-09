@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 const withRouter = (Component) => (props) => {
   const router = useRouter();
-  const location = { pathname: router.asPath };
+  const location = { pathname: router.asPath, search: router.query };
 
   return <Component {...{ ...props, history: router, location }} />;
 };

@@ -46,10 +46,7 @@ const FiltersSectionLayout = ({
   location
 }) => {
   const [params, setParams] = useState(initialState.params);
-  const queryString = location.search || "";
-  const queryParams = useMemo(() => queryStringToJSON(queryString), [
-    queryString
-  ]);
+  const queryParams = location.search;
 
   const setFilterParam = (paramName) => (paramValues) =>
     setParams((params) => ({

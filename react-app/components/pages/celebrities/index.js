@@ -8,9 +8,9 @@ import { celebrityOperations } from "../../../state/ducks/celebrities";
 import * as GTM from "../../../state/utils/gtm";
 import { HeroSectionLayout } from "../../layouts/hero-section";
 import { FiltersSectionLayout } from "../../layouts/filters-section";
-import MetaTags from "react-meta-tags";
 import { Session } from "../../../state/utils/session";
 import { queryStringToJSON } from "../../../state/utils/apiService";
+import { withRouter } from "react-app/components/common/routing";
 
 class CelebritiesPage extends Component {
   constructor(props) {
@@ -19,17 +19,9 @@ class CelebritiesPage extends Component {
     this.state = {
       session: new Session().getSession(),
       showInputSearchSm: false,
-      showFFBModal: localStorage.getItem("ffbmodal") === null,
-      metaTagTitle:
-        "Famosos.com - Videos personalizados de tus famosos favoritos.",
-      metaTagDescription:
-        "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
       showHeaderFiltersSection: false,
       previousScrollTopPosition: 0
     };
-    this.scrollDiv = createRef();
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
@@ -64,58 +56,10 @@ class CelebritiesPage extends Component {
     });
   };
 
-  openModal() {
-    this.setState({
-      showFFBModal: true
-    });
-  }
-
-  closeModal() {
-    this.setState(
-      {
-        showFFBModal: false
-      },
-      () => localStorage.setItem("ffbmodal", "")
-    );
-  }
-
-  onPaginationChange(page) {
-    const queryParams = this.props.queryParams;
-    queryParams["currentPage"] = page;
-    this.props.updateQueryParams(queryParams);
-  }
-
-  returnTitle = () => {
-    if (!this.props.selectedCategory.id && !this.props.selectedCountry.id) {
-      return "Famosos destacados";
-    } else if (
-      this.props.celebrities.length &&
-      (this.props.selectedCategory.id ||
-        this.props.selectedCountry.id ||
-        this.props.queryParams.search)
-    ) {
-      return "Famosos encontrados";
-    } else if (!this.props.celebrities.length && this.props.isLoading) {
-      return "Buscando...";
-    } else if (!this.props.celebrities.length && this.props.isCompleted) {
-      return "No se encontraron famosos para esta busqueda";
-    }
-  };
-
   render() {
     return (
       <>
         <div className={"CelebritiesPage "}>
-          <div>
-            <MetaTags>
-              <title>{this.state.metaTagTitle}</title>
-              <meta
-                name="description"
-                content={this.state.metaTagDescription}
-              />
-            </MetaTags>
-          </div>
-
           <PageContainer
             showFooter={false}
             applyFetchUserCelebrityLikes
@@ -132,9 +76,7 @@ class CelebritiesPage extends Component {
             {this.state.session ? <UserLikesSectionLayout /> : null}
 
             <CelebritiesSectionsLayout
-              landingId={
-                queryStringToJSON(this.props.location.search)?.landingId
-              }
+              landingId={this.props.location.search?.landingId}
             />
           </PageContainer>
         </div>
@@ -177,6 +119,6 @@ const mapDispatchToProps = {
 const _CelebritiesPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CelebritiesPage);
+)(withRouter(CelebritiesPage));
 
 export { _CelebritiesPage as CelebritiesPage };
