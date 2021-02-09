@@ -3,7 +3,8 @@
     "dependencies",
     "stylesheets",
     "components",
-    "folder-structure"
+    "folder-structure",
+    "development-flow"
   ],
   "git.ignoreLimitWarning": true
 }
