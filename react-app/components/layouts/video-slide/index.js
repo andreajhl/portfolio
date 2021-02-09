@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import getWindow from "react-app/utils/getWindow";
 import * as GTM from "../../../state/utils/gtm";
 import useLoad from "../../../utils/useLoad";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
@@ -22,7 +23,7 @@ const VideoSlideLayout = ({
 }) => {
   const analyticsData = {
     widget: "VideoSlideLayout",
-    path: window.location.pathname,
+    path: getWindow().location.pathname,
     videoUrl,
     videoReference,
     videoIsFullscreen,

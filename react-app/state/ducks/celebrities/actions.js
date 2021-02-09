@@ -46,7 +46,7 @@ export const get = (object_id, preloaded = false) => {
     const TYPE = types.GET_CELEBRITY_REQUEST;
     const FINAL_PATH = API_PATHS.GET + object_id;
     dispatch({ type: TYPE, payload: {} });
-    apiService({
+    return apiService({
       method: "GET",
       action: TYPE,
       path: FINAL_PATH,
