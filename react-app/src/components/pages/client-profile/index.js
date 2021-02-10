@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { PageContainer } from "../../layouts";
+import { PageContainer } from "../../layouts/page-container";
 import { connect } from "react-redux";
 import { UserProfileDetailsCardLayout } from "../../layouts/user-profile-details-card";
-
 import { sessionOperations } from "../../../state/ducks/session";
 import { authenticationOperations } from "../../../state/ducks/authentication";
 import * as GTM from "../../../state/utils/gtm";
@@ -22,15 +21,15 @@ class ClientProfilePage extends Component {
 
   async componentDidMount() {
     console.log(this.props.authentication);
-    document.getElementsByClassName("f-main-body")[0].style.background =
-      "#f7f7f7";
+    // document.getElementsByClassName("f-main-body")[0].style.background =
+    //   "#f7f7f7";
     GTM.tagManagerDataLayer("CLIENT_PROFILE_PAGE_VIEW", this.props.session);
     this.props.getUserInformation();
   }
 
-  componentWillUnmount() {
-    document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
-  }
+  // componentWillUnmount() {
+  //   document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
+  // }
 
   render() {
     return (

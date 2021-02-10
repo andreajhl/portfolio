@@ -5,7 +5,8 @@ import { CelebritiesMultiselect } from "../celebrities-multiselect";
 import { sessionOperations } from "../../../state/ducks/session";
 import { connect } from "react-redux";
 import * as GTM from "../../../state/utils/gtm";
-import LogoutButton from "../../containers/logout-button/logout-button";
+import Link from "next/link";
+// import LogoutButton from "../../containers/logout-button/logout-button";
 
 class UserProfileDetailsCardLayout extends Component {
   constructor(props) {
@@ -58,14 +59,14 @@ class UserProfileDetailsCardLayout extends Component {
               </h5>
               <h6 className="mt-2">{this.props.userInformation.email}</h6>
               {/* <h6 className='mt-2'>{this.props.session.cellphoneNumber}</h6> */}
-              <LogoutButton
-                redirectTo={window.location.origin + "/"}
-                className="d-inline"
-              >
+              <Link href="/api/logout">
+                <a>Cerrar sesión</a>
+              </Link>
+              {/* <LogoutButton className="d-inline">
                 <small className="text-muted cursor-pointer">
                   Cerrar sesión
                 </small>
-              </LogoutButton>
+              </LogoutButton> */}
             </div>
             <div className="col-12 text-center">
               <hr />
