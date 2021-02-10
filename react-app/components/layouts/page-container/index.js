@@ -45,12 +45,12 @@ class PageContainer extends Component {
     // if (this.props.shouldFetchFlashDeliveryCelebrities) {
     //   this.props.fetchFlashDeliveryCelebrities();
     // }
-    // if (
-    //   this.props.shouldFetchRestCountries &&
-    //   this.props.restCountries.length === 0
-    // ) {
-    //   this.props.listRestCountries();
-    // }
+    if (
+      this.props.shouldFetchRestCountries &&
+      this.props.restCountries.length === 0
+    ) {
+      this.props.listRestCountries();
+    }
     // this.changeBotmakerDisplay();
   }
 
