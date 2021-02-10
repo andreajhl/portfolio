@@ -1,26 +1,15 @@
-import React, { Component } from "react";
-import { PageContainer } from "../../layouts/page-container";
-
+import React, { useEffect } from "react";
+import { PageContainer } from "react-app/components/layouts/page-container";
 import * as GTM from "../../../state/utils/gtm";
-//TODO: Refactorizar
-// import MetaTags from "react-meta-tags";
 
-class FaqsPage extends Component {
-  componentDidMount() {
+const FaqsPage = () => {
+  useEffect(() => {
     GTM.tagManagerDataLayer("FAQS_PAGE_VIEW", this.props.match);
-  }
+  }, []);
 
-  render() {
-    return (
-      <div className="PoliciesPage">
-        {/* <MetaTags>
-          <title>Famosos.com - Preguntas frecuentes</title>
-          <meta
-            name="description"
-            content="¿Qué es Famosos.com? Famosos es una plataforma en dónde puedes comprar video-mensajes de tus famosos favoritos. ¿Cómo puedo comprar un video?"
-          />
-        </MetaTags> */}
-
+  return (
+    <div className="PoliciesPage">
+      <PageContainer>
         <div className="container-text">
           <h5 className="font-weight-bold">FAQS</h5>
           <ul>
@@ -199,9 +188,9 @@ class FaqsPage extends Component {
             </li>
           </ul>
         </div>
-      </div>
-    );
-  }
-}
+      </PageContainer>
+    </div>
+  );
+};
 
 export { FaqsPage };

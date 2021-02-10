@@ -1,13 +1,13 @@
-import React from "react";
-import { PageContainer } from "react-app/components/layouts/page-container";
+import CustomHead from "react-app/components/common/helpers/custom-head";
 import { BlogResults } from "../../react-app/components/pages/blog-results";
 
-const all = () => {
+const All = () => {
   return (
-    <PageContainer>
-      <BlogResults></BlogResults>
-    </PageContainer>
+    <>
+      <CustomHead />
+      <BlogResults />
+    </>
   );
 };
 
-export default all;
+export default All;

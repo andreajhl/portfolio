@@ -1,11 +1,14 @@
-import React, { Component, Fragment, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import BlogPostCards from "../../containers/blog-post-card-details";
 import BlogPostCardShimmer from "../../layouts/blog-post-card-shimmer";
 import { blogOperations } from "../../../state/ducks/blog";
-import { withRouter } from "react-app/components/common/routing";
+import { NavLink, withRouter } from "react-app/components/common/routing";
 import Link from "next/link";
+import { PageContainer } from "react-app/components/layouts/page-container";
+import { HOME_PATH } from "react-app/routing/Paths";
+
 const BlogResults = ({
   blogsData,
   blogsDataLoading,
@@ -21,11 +24,11 @@ const BlogResults = ({
 
   if (blogsDataLoading) {
     renderPosts = (
-      <Fragment>
+      <>
         <BlogPostCardShimmer />
         <BlogPostCardShimmer />
         <BlogPostCardShimmer />
-      </Fragment>
+      </>
     );
   } else {
     renderPosts = blogsData.map(
@@ -44,23 +47,21 @@ const BlogResults = ({
   }
 
   return (
-    <Fragment>
+    <PageContainer>
       <Container>
         <Row>
           <Col md="9" className="mx-auto">
-            <Link href="/">
-              <a>
-                <Button className="mb-2" variant="primary">
-                  🏠 Inicio
-                </Button>
-              </a>
-            </Link>
+            <NavLink to={HOME_PATH}>
+              <Button className="mb-2" variant="primary">
+                🏠 Inicio
+              </Button>
+            </NavLink>
             <h2 className="font-weight-bold">Blogs</h2>
             {renderPosts}
           </Col>
         </Row>
       </Container>
-    </Fragment>
+    </PageContainer>
   );
 };
 

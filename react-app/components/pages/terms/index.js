@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { PageContainer } from "../../layouts/page-container";
-
 import * as GTM from "../../../state/utils/gtm";
-import MetaTags from "react-meta-tags";
 
 class TermsPage extends Component {
   componentDidMount() {
@@ -12,14 +10,6 @@ class TermsPage extends Component {
   render() {
     return (
       <div className="TermsPage">
-        <MetaTags>
-          <title>Famosos.com - Términos de servicio de usuario</title>
-          <meta
-            name="description"
-            content="Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
-          />
-        </MetaTags>
-
         <PageContainer>
           <div className="container-text">
             <h5 className="font-weight-bold">
