@@ -1,7 +1,13 @@
-import React from "react";
-import { PoliciesPage } from "../react-app/components/pages/policies";
-const Terms = () => {
-  return <PoliciesPage></PoliciesPage>;
+import CustomHead from "react-app/src/components/common/helpers/custom-head";
+import { PoliciesPage } from "react-app/src/components/pages/policies";
+
+const Policies = () => {
+  return (
+    <>
+      <CustomHead title="Famosos.com - Política de privacidad" />
+      <PoliciesPage />
+    </>
+  );
 };
 
-export default Terms;
+export default Policies;

@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next";
-import { wrapper } from "react-app/state/store";
-import { get } from "react-app/state/ducks/celebrities/actions";
-import { CELEBRITY_PROFILE_ERROR } from "react-app/routing/Paths";
-import CustomHead from "react-app/components/common/helpers/custom-head";
+import { wrapper } from "react-app/src/state/store";
+import { get } from "react-app/src/state/ducks/celebrities/actions";
+import { CELEBRITY_PROFILE_ERROR } from "react-app/src/routing/Paths";
+import CustomHead from "react-app/src/components/common/helpers/custom-head";
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {

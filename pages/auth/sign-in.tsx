@@ -1,7 +1,7 @@
 import React from "react";
-import CustomHead from "react-app/components/common/helpers/custom-head";
-import { SignInPage } from "react-app/components/pages/sign-in";
-import { PageContainer } from "react-app/components/layouts/page-container";
+import CustomHead from "react-app/src/components/common/helpers/custom-head";
+import { SignInPage } from "react-app/src/components/pages/sign-in";
+import { PageContainer } from "react-app/src/components/layouts/page-container";
 import { useFetchUser } from "../../lib/user";
 import auth0 from "../../lib/auth0";
 

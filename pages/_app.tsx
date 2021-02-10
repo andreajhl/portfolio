@@ -1,6 +1,6 @@
 import React from "react";
-import { wrapper } from "react-app/state/store";
-import "react-app/styles.scss";
+import { wrapper } from "react-app/src/state/store";
+import "react-app/src/styles.scss";
 
 const App = ({ Component, pageProps }) => <Component {...pageProps} />;
 

@@ -1,5 +1,5 @@
-import CustomHead from "react-app/components/common/helpers/custom-head";
-import { CelebritiesResultsPage } from "react-app/components/pages/celebrities-results";
+import CustomHead from "react-app/src/components/common/helpers/custom-head";
+import { CelebritiesResultsPage } from "react-app/src/components/pages/celebrities-results";
 
 const CelebritiesSearchResults = () => {
   return (

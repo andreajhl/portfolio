@@ -1,0 +1,176 @@
+import React, { useState, useRef, useEffect, useMemo } from "react";
+import debounce from "lodash.debounce";
+import { CelebrityCardLayout } from "../celebrity-card";
+import { VideoCardLayout } from "../video-card";
+
+import { NavLink } from "react-app/src/components/common/routing";
+import { SEARCH_PATH } from "../../../routing/Paths";
+import { jsonToQueryString } from "../../../state/utils/apiService";
+import * as GTM from "../../../state/utils/gtm";
+import getMoreFrequentIds from "../../../utils/getMoreFrequentIds";
+
+const initialState = {
+  showLeftScrollButton: false,
+  showRightScrollButton: false
+};
+
+const CelebritiesCardsSectionLayout = ({
+  celebritiesSection,
+  moreResultsPath,
+  isFavoriteSection
+}) => {
+  const [showLeftScrollButton, setShowLeftScrollButton] = useState(
+    initialState.showLeftScrollButton
+  );
+  const [showRightScrollButton, setShowRightScrollButton] = useState(
+    initialState.showRightScrollButton
+  );
+
+  const cardListRef = useRef(null);
+
+  const analyticsData = {
+    widget: "CelebritiesCardsSectionLayout",
+    path: window.location.pathname,
+    title: celebritiesSection.title,
+    id: celebritiesSection.id,
+    celebritySectionType: celebritiesSection.celebritySectionType,
+    position: celebritiesSection.position
+  };
+
+  const scrollTo = (direction) => () => {
+    const cardListElement = cardListRef.current;
+    const { offsetWidth } = cardListElement;
+    cardListElement.scrollBy({
+      left: direction === "right" ? offsetWidth : offsetWidth * -1,
+      behavior: "smooth"
+    });
+    GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTION_SCROLL_BUTTON", {
+      ...analyticsData,
+      direction
+    });
+  };
+
+  const setScrollButtonsVisibility = debounce(() => {
+    const { scrollLeft, offsetWidth, scrollWidth } = cardListRef.current;
+    setShowLeftScrollButton(scrollLeft !== 0);
+    setShowRightScrollButton(scrollLeft + offsetWidth !== scrollWidth);
+    GTM.tagManagerDataLayer("SCROLL_CELEBRITY_SECTION_LIST", {
+      ...analyticsData,
+      hasReachedListEnd: scrollLeft + offsetWidth >= scrollWidth
+    });
+  }, 100);
+
+  useEffect(() => {
+    const cardListElement = cardListRef.current;
+    setShowRightScrollButton(
+      cardListElement.scrollWidth > cardListElement.offsetWidth
+    );
+  }, []);
+
+  const { celebrities } = celebritiesSection;
+
+  const searchMoreResultsPath = useMemo(() => {
+    if (!celebrities) return "#";
+    return (
+      SEARCH_PATH +
+      jsonToQueryString({
+        country_id: getMoreFrequentIds(celebrities, "countryId"),
+        category_id: getMoreFrequentIds(celebrities, "categoryId"),
+        limit: 20
+      })
+    );
+  }, [celebrities]);
+
+  const hasMoreResults =
+    celebritiesSection.celebritySectionType === "CELEBRITY_CARD" &&
+    celebritiesSection.celebrities.length >= 10;
+
+  const shouldRenderMoreResultsButton = hasMoreResults && moreResultsPath;
+
+  const registerCelebritySectionHover = () =>
+    GTM.tagManagerDataLayer("HOVER_CELEBRITY_SECTION", analyticsData);
+
+  const registerSeeMoreResultsClick = () =>
+    GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTION_SEE_MORE_LINK", {
+      ...analyticsData,
+      searchMoreResultsPath
+    });
+
+  return (
+    <section
+      className={`celebrities-section-layout container pr-0 ${
+        celebritiesSection.celebritySectionType === "MAIN_VIDEO_1"
+          ? "celebrities-sections-videos"
+          : ""
+      }`}
+    >
+      <header className="celebrities-section__header d-flex justify-content-between">
+        <h2 className={`celebrities-section-layout__title`}>
+          {celebritiesSection.title}
+        </h2>
+        {hasMoreResults ? (
+          <NavLink
+            to={moreResultsPath || searchMoreResultsPath}
+            className="mb-1 font-weight-bold mr-3 mr-sm-0 flex-shrink-0"
+            onClick={registerSeeMoreResultsClick}
+          >
+            Ver más
+          </NavLink>
+        ) : null}
+      </header>
+      {showLeftScrollButton ? (
+        <button
+          className="celebrities-section-layout__scroll-to-button d-none d-md-block"
+          onClick={scrollTo("left")}
+        >
+          <i className="fa fa-chevron-left text-white" />
+        </button>
+      ) : null}
+      <ul
+        className="celebrities-section-layout__cards-list"
+        ref={cardListRef}
+        onScroll={setScrollButtonsVisibility}
+        onMouseOver={registerCelebritySectionHover}
+      >
+        {celebrities.length > 0
+          ? celebrities.map((celebrity, index) => (
+              <li
+                key={`${celebritiesSection.id}-${celebrity.id}`}
+                className="celebrities-section-layout__card-item"
+              >
+                {celebritiesSection.celebritySectionType !==
+                "CELEBRITY_CARD" ? (
+                  <VideoCardLayout
+                    celebrityId={celebrity.id}
+                    celebrityAvatar={celebrity.avatar}
+                    celebrityUsername={celebrity.username}
+                    celebrityFullName={celebrity.fullName}
+                    videoOccasion={celebrity.occasion}
+                    videoUrl={celebrity.videoUrl}
+                    videoPosterUrl={celebrity.videoPosterUrl}
+                    videoKey={`${celebritiesSection.id}-${celebrity.id}`}
+                  />
+                ) : (
+                  <CelebrityCardLayout celebrity={celebrity} />
+                )}
+              </li>
+            ))
+          : null}
+      </ul>
+      {showRightScrollButton ? (
+        <button
+          className="celebrities-section-layout__scroll-to-button scroll-to-right-button d-none d-md-block"
+          onClick={scrollTo("right")}
+        >
+          <i className="fa fa-chevron-right text-white" />
+        </button>
+      ) : null}
+    </section>
+  );
+};
+
+CelebritiesCardsSectionLayout.defaultProps = {
+  hasMoreResults: false
+};
+
+export { CelebritiesCardsSectionLayout };

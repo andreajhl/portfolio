@@ -1,5 +1,5 @@
-import CustomHead from "react-app/components/common/helpers/custom-head";
-import { TrendingPage } from "react-app/components/pages/trending";
+import CustomHead from "react-app/src/components/common/helpers/custom-head";
+import { TrendingPage } from "react-app/src/components/pages/trending";
 
 const Trending = () => {
   return (

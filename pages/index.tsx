@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import CustomHead from "react-app/components/common/helpers/custom-head";
-import { CelebritiesPage } from "react-app/components/pages/celebrities";
-import getWindow from "react-app/utils/getWindow";
+import CustomHead from "react-app/src/components/common/helpers/custom-head";
+import { CelebritiesPage } from "react-app/src/components/pages/celebrities";
+import getWindow from "react-app/src/utils/getWindow";
 import auth0 from "../lib/auth0";
 
 const Home = ({ token }) => {

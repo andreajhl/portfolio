@@ -1,5 +1,5 @@
-import { NavLink } from "react-app/components/common/routing";
-import { HOME_PATH } from "react-app/routing/Paths";
+import { NavLink } from "react-app/src/components/common/routing";
+import { HOME_PATH } from "react-app/src/routing/Paths";
 
 const CustomError = () => {
   return (

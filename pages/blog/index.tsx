@@ -1,5 +1,5 @@
-import CustomHead from "react-app/components/common/helpers/custom-head";
-import { BlogResults } from "../../react-app/components/pages/blog-results";
+import CustomHead from "react-app/src/components/common/helpers/custom-head";
+import { BlogResults } from "../../react-app/src/components/pages/blog-results";
 
 const Blog = () => {
   return (

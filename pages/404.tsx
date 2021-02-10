@@ -1,1 +1,1 @@
-export { FourZeroFour as default } from "react-app/components/pages/404";
+export { FourZeroFour as default } from "react-app/src/components/pages/404";

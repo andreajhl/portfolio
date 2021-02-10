@@ -1,5 +1,5 @@
-import CustomHead from "react-app/components/common/helpers/custom-head";
-import { TermsPage } from "react-app/components/pages/terms";
+import CustomHead from "react-app/src/components/common/helpers/custom-head";
+import { TermsPage } from "react-app/src/components/pages/terms";
 
 const Terms = () => {
   return (
