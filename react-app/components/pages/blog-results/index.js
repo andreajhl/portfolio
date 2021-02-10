@@ -1,22 +1,15 @@
 import React, { Component, Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { PageContainer } from "../../layouts";
-
 import { Container, Row, Col, Button } from "react-bootstrap";
 import BlogPostCards from "../../containers/blog-post-card-details";
 import BlogPostCardShimmer from "../../layouts/blog-post-card-shimmer";
-import MetaTags from "react-meta-tags";
-import * as mediumApiService from "../../../state/utils/mediumApiService";
 import { blogOperations } from "../../../state/ducks/blog";
 import { withRouter } from "react-app/components/common/routing";
-import { HOME_PATH } from "../../../routing/Paths";
-
+import Link from "next/link";
 const BlogResults = ({
-  history,
   blogsData,
   blogsDataLoading,
   blogsDataCompleted,
-  saveBlogData,
   getBlogData
 }) => {
   useEffect(() => {
@@ -49,38 +42,24 @@ const BlogResults = ({
       )
     );
   }
-  const goToHome = () => {
-    history.push(HOME_PATH);
-  };
 
   return (
     <Fragment>
-      <MetaTags>
-        <title>
-          Famosos.com - Videos personalizados de tus famosos favoritos.
-        </title>
-        <meta
-          name="description"
-          content="Un blog acerca de tus famosos favoritos que forman parte de nuestra plataforma. Entérate con quien puedes conectarte"
-        />
-      </MetaTags>
-      <PageContainer>
-        <Container>
-          <Row>
-            <Col md="9" className="mx-auto">
-              <Button
-                className="mb-2"
-                variant="primary"
-                onClick={() => goToHome()}
-              >
-                🏠 Inicio
-              </Button>
-              <h2 className="font-weight-bold">Blogs</h2>
-              {renderPosts}
-            </Col>
-          </Row>
-        </Container>
-      </PageContainer>
+      <Container>
+        <Row>
+          <Col md="9" className="mx-auto">
+            <Link href="/">
+              <a>
+                <Button className="mb-2" variant="primary">
+                  🏠 Inicio
+                </Button>
+              </a>
+            </Link>
+            <h2 className="font-weight-bold">Blogs</h2>
+            {renderPosts}
+          </Col>
+        </Row>
+      </Container>
     </Fragment>
   );
 };
@@ -94,7 +73,6 @@ const mapStateToProps = ({ blog }) => ({
 });
 
 const mapDispatchToProps = {
-  saveBlogData: blogOperations.saveBlogData,
   getBlogData: blogOperations.getBlogData
 };
 
