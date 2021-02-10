@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { NavbarSectionLayout } from "../navbar-section";
@@ -16,53 +16,61 @@ import Headroom from "react-headroom";
 import { FiltersSectionLayout } from "../filters-section";
 import waitFor from "../../../utils/waitFor";
 import { withRouter } from "react-app/src/components/common/routing";
-// import { DownloadAppBanner } from "../download-app-banner";
+import { useFetchUser } from "../../../../../lib/user";
 
-class PageContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      params: { status: 50 },
-      dropdownMenuIsOpen: false,
-      showCouponBanner: this.props.hasDiscountCoupon
-    };
-
-    this.onSearchChange = this.onSearchChange.bind(this);
-  }
-
-  setShowCouponBanner = (showCouponBanner) => {
-    this.setState({ showCouponBanner });
-  };
-
-  componentDidMount() {
-    // this.props.cleanUserCelebrityLikes();
-    // const isLogged = new Session().getSession();
-    // if (this.props.applyFetchUserCelebrityLikes && isLogged) {
-    //   this.props.fetchUserCelebrityLikes();
-    // }
-    // setCelebrityProfileVersionDependingOfTime();
-    // if (this.props.shouldFetchFlashDeliveryCelebrities) {
-    //   this.props.fetchFlashDeliveryCelebrities();
-    // }
-    if (
-      this.props.shouldFetchRestCountries &&
-      this.props.restCountries.length === 0
-    ) {
-      this.props.listRestCountries();
-    }
-    // this.changeBotmakerDisplay();
-  }
-
-  cancelPreviousWaitFor = () => {
-    const { botMakerChild } = this.state;
+const PageContainer = (props) => {
+  const {
+    hasDiscountCoupon,
+    cleanUserCelebrityLikes,
+    restCountries,
+    shouldFetchFlashDeliveryCelebrities,
+    applyFetchUserCelebrityLikes,
+    fetchUserCelebrityLikes,
+    fetchFlashDeliveryCelebrities,
+    shouldFetchRestCountries,
+    queryParams,
+    updateQueryParams,
+    showBotMakerFrame
+  } = props;
+  const [botMakerChild, setBotMakerChild] = useState(undefined);
+  const [params, setParams] = useState({ status: 50 });
+  const [dropdownMenuIsOpen, setDropdownMenuIsOpen] = useState(false);
+  const [showCouponBanner, setShowCouponBanner] = useState(hasDiscountCoupon);
+  const cancelPreviousWaitFor = () => {
     if (botMakerChild && botMakerChild.cancel) {
       botMakerChild.cancel();
     }
   };
+  const setBotmakerDisplay = (botMakerChild) => {
+    if (!botMakerChild) return;
+    botMakerChild.parentElement.classList.toggle(
+      "d-none",
+      !props.showBotMakerFrame
+    );
+  };
+  const onSearchChange = (keyword) => {
+    const newQueryParams = {
+      ...props.queryParams,
+      offset: updateQueryParamsInitialState.offset,
+      limit: updateQueryParamsInitialState.limit,
+      search: keyword
+    };
+    props.updateQueryParams(newQueryParams, props.router);
+  };
+  useEffect(() => {
+    changeBotmakerDisplay();
+  }, [showBotMakerFrame]);
+  const handleChangeDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
+    GTM.tagManagerDataLayer("CLICK_ON_DROPDOWN_MENU", {
+      dropdownMenuIsOpen,
+      widget: "NavbarSectionLayout",
+      path: window.location.pathname
+    });
+    setDropdownMenuIsOpen(dropdownMenuIsOpen);
+  };
 
-  changeBotmakerDisplay = () => {
-    this.cancelPreviousWaitFor();
+  const changeBotmakerDisplay = () => {
+    cancelPreviousWaitFor();
     const botMakerChild = waitFor(
       () =>
         document.querySelector("iframe[title='Botmaker']") ||
@@ -75,120 +83,98 @@ class PageContainer extends Component {
     const isAsync = typeof botMakerChild.then === "function";
 
     if (isAsync) {
-      botMakerChild.then(this.setBotmakerDisplay);
-      this.setState({ botMakerChild });
+      botMakerChild.then(setBotmakerDisplay);
+      setBotMakerChild(botMakerChild);
     } else {
-      this.setBotmakerDisplay(botMakerChild);
+      setBotmakerDisplay(botMakerChild);
     }
   };
-
-  setBotmakerDisplay = (botMakerChild) => {
-    if (!botMakerChild) return;
-    botMakerChild.parentElement.classList.toggle(
-      "d-none",
-      !this.props.showBotMakerFrame
-    );
-  };
-
-  onSearchChange(keyword) {
-    const queryParams = {
-      ...this.props.queryParams,
-      offset: updateQueryParamsInitialState.offset,
-      limit: updateQueryParamsInitialState.limit,
-      search: keyword
+  useEffect(() => {
+    cleanUserCelebrityLikes();
+    if (applyFetchUserCelebrityLikes) {
+      fetchUserCelebrityLikes();
+    }
+    setCelebrityProfileVersionDependingOfTime();
+    if (shouldFetchFlashDeliveryCelebrities) {
+      fetchFlashDeliveryCelebrities();
+    }
+    if (shouldFetchRestCountries && restCountries.lenght === 0) {
+      listRestCountries();
+    }
+    changeBotmakerDisplay();
+    return () => {
+      cancelPreviousWaitFor();
     };
-    this.props.updateQueryParams(queryParams, this.props.router);
-  }
+  }, []);
+  const { user, loading } = useFetchUser();
 
-  setDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
-    GTM.tagManagerDataLayer("CLICK_ON_DROPDOWN_MENU", {
-      dropdownMenuIsOpen,
-      widget: "NavbarSectionLayout",
-      path: window.location.pathname
-    });
-    this.setState({ dropdownMenuIsOpen });
-  };
+  const hasSearchedOrFiltered = queryParams !== updateQueryParamsInitialState;
 
-  componentDidUpdate = (prevProps) => {
-    if (this.props.showBotMakerFrame !== prevProps.showBotMakerFrame) {
-      this.changeBotmakerDisplay();
-    }
-  };
-
-  componentWillUnmount = () => {
-    this.cancelPreviousWaitFor();
-  };
-
-  render() {
-    const hasSearchedOrFiltered =
-      this.props.queryParams !== updateQueryParamsInitialState;
-
-    return (
-      <div className="PageContainer">
-        {/* NavbarSectionLayout */}
-        <Headroom style={{ zIndex: 100000 }} upTolerance={2.5}>
-          {this.props.showNavbar ? (
-            <NavbarSectionLayout
-              user={this.props.user}
-              loading={this.props.loading}
-              className={hasSearchedOrFiltered ? "hidden-hero" : ""}
-              onSearchChange={this.onSearchChange}
-              showInputSearchSm={this.props.showInputSearchSm}
-              showSearch={this.props.showSearch}
-              showNavbarButtons={this.props.showNavbarButtons}
-              showSearchWeb={this.props.showSearchWeb}
-              showLogin={this.props.showLogin}
-              showFiltersSection={this.props.showFiltersSection}
-              hideControls={this.props.hideControls}
-              dropdownMenuIsOpen={this.state.dropdownMenuIsOpen}
-              setDropdownMenuIsOpen={this.setDropdownMenuIsOpen}
-              queryParams={this.props.queryParams}
-              showCouponBanner={this.state.showCouponBanner}
-              setShowCouponBanner={this.setShowCouponBanner}
-            />
-          ) : null}
-          {this.props.showFiltersSection ? <FiltersSectionLayout /> : null}
-        </Headroom>
-
-        {/* End NavbarSectionLayout */}
-        <div
-          className={`page-container-children ${
-            !this.props.showSearch ? "hidden-search" : ""
-          }`}
-        >
-          {this.props.children}
-          <div
-            className={`page-container-children-helper ${
-              this.state.dropdownMenuIsOpen ? "active" : ""
-            }`}
+  return (
+    <div className="PageContainer">
+      {/* NavbarSectionLayout */}
+      <Headroom style={{ zIndex: 100000 }} upTolerance={2.5}>
+        {props.showNavbar ? (
+          <NavbarSectionLayout
+            user={user}
+            loading={loading}
+            className={hasSearchedOrFiltered ? "hidden-hero" : ""}
+            onSearchChange={onSearchChange}
+            showInputSearchSm={props.showInputSearchSm}
+            showSearch={props.showSearch}
+            showNavbarButtons={props.showNavbarButtons}
+            showSearchWeb={props.showSearchWeb}
+            showLogin={props.showLogin}
+            showFiltersSection={props.showFiltersSection}
+            hideControls={props.hideControls}
+            dropdownMenuIsOpen={dropdownMenuIsOpen}
+            setDropdownMenuIsOpen={setDropdownMenuIsOpen}
+            queryParams={props.queryParams}
+            showCouponBanner={showCouponBanner}
+            setShowCouponBanner={setShowCouponBanner}
           />
-        </div>
+        ) : null}
+        {props.showFiltersSection ? <FiltersSectionLayout /> : null}
+      </Headroom>
 
-        {/* FooterLayout */}
-        {this.props.showFooter ? <FooterLayout /> : null}
-        {/* End FooterLayout */}
-
-        <img
-          src="/assets/img/avatar-blank.png"
-          style={{ display: "none" }}
-          alt="Imagen de Avatar vació pre-cagada"
+      {/* End NavbarSectionLayout */}
+      <div
+        className={`page-container-children ${
+          !props.showSearch ? "hidden-search" : ""
+        }`}
+      >
+        {props.children}
+        <div
+          className={`page-container-children-helper ${
+            dropdownMenuIsOpen ? "active" : ""
+          }`}
         />
-
-        <img
-          className="d-none"
-          src="/assets/img/wifi-connection-error.svg"
-          alt="Imagen de Error de conexión de internet pre-cargada"
-        />
-        {/*{this.props.showVideoCallsResearch ? <VideoCallsResearch /> : null}*/}
-        {/*COOKIES CONSENT*/}
-        {/* <DownloadAppBanner /> */}
-        {/* <CookiesConsent /> */}
-
-        {/*<BottomNavbarSectionLayout/>*/}
       </div>
-    );
-  }
-}
+
+      {/* FooterLayout */}
+      {props.showFooter ? <FooterLayout /> : null}
+      {/* End FooterLayout */}
+
+      <img
+        src="/assets/img/avatar-blank.png"
+        style={{ display: "none" }}
+        alt="Imagen de Avatar vació pre-cagada"
+      />
+
+      <img
+        className="d-none"
+        src="/assets/img/wifi-connection-error.svg"
+        alt="Imagen de Error de conexión de internet pre-cargada"
+      />
+      {/*{this.props.showVideoCallsResearch ? <VideoCallsResearch /> : null}*/}
+      {/*COOKIES CONSENT*/}
+      {/* <DownloadAppBanner /> */}
+      {/* <CookiesConsent /> */}
+
+      {/*<BottomNavbarSectionLayout/>*/}
+    </div>
+  );
+};
 
 // Set propTypes
 PageContainer.propTypes = {};
