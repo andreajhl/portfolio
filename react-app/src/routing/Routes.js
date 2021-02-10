@@ -188,13 +188,13 @@ class MyRoutes extends Component {
                 path={PATHS.ACCOUNT_HIRING_PREVIEW}
                 component={PAGES.ClientHiringPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.HIRING_PREVIEW}
                 component={PAGES.HiringPreviewPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.HIRING_PREVIEW_WITHOUT_SESSION}

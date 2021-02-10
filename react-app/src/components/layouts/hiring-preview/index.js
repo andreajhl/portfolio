@@ -7,7 +7,7 @@ import { Session } from "../../../state/utils/session";
 import { ContractFavsLayout } from "../contract-favs";
 import { ReviewCreatorLayout } from "../review-creator";
 import { ContractCommentSectionLayout } from "../contract-comments-section";
-import MetaTags from "react-meta-tags";
+import Head from "next/head";
 
 class HiringPreviewLayout extends Component {
   constructor(props) {
@@ -167,7 +167,7 @@ class HiringPreviewLayout extends Component {
       <div className={"HiringPreviewLayout"}>
         {this.props.contract.celebrityData.username && (
           <div>
-            <MetaTags>
+            <Head>
               <title>
                 Famosos.com - {this.props.contract.celebrityData.fullName}
               </title>
@@ -192,7 +192,7 @@ class HiringPreviewLayout extends Component {
                   this.props.contract.celebrityData.username
                 }
               />
-            </MetaTags>
+            </Head>
           </div>
         )}
 
