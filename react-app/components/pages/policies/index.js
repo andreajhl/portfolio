@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { PageContainer } from "../../layouts/page-container";
 
 import * as GTM from "../../../state/utils/gtm";
-import MetaTags from "react-meta-tags";
+// import MetaTags from "react-meta-tags";
 
 class PoliciesPage extends Component {
   componentDidMount() {
@@ -12,13 +12,13 @@ class PoliciesPage extends Component {
   render() {
     return (
       <div className="PoliciesPage">
-        <MetaTags>
+        {/* <MetaTags>
           <title>Famosos.com - Política de privacidad</title>
           <meta
             name="description"
             content="Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
           />
-        </MetaTags>
+        </MetaTags> */}
 
         <PageContainer>
           <div className="container-text">
