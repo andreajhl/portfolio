@@ -133,7 +133,7 @@ class MyRoutes extends Component {
               <Route exact path={PATHS.FAQS_PATH} component={PAGES.FaqsPage} />
               {/*END DOCS*/}
               {/*FORMS*/}
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.CELEBRITY_REQUEST}

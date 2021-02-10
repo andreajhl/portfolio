@@ -29,7 +29,7 @@ export const CHANGE_PASSWORD_PATH = "/auth/change-password";
 export const CREATE_PASSWORD_PATH = "/auth/create-password";
 export const COMPLETE_PROFILE_PATH = "/auth/complete-profile";
 // FORMS
-export const CELEBRITY_REQUEST = "/forms/aplicar/";
+export const CELEBRITY_REQUEST = "/forms/aplicar";
 // CLIENT
 export const CLIENT_FAVORITES = "/my-account/favorites";
 export const CLIENT_PROFILE = "/my-account/profile";

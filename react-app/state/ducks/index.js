@@ -6,7 +6,7 @@ export { default as contracts } from "./contracts";
 export { default as restCountries } from "./rest-countries";
 // export { default as restCelebrities } from "./rest-celebrities";
 // export { default as session } from "./session";
-// export { default as celebrityRequests } from "./celebrity-requests";
+export { default as celebrityRequests } from "./celebrity-requests";
 export { default as payments } from "./payments";
 export { default as filters } from "./filters";
 export { default as celebrityCategories } from "./celebrity-categories";

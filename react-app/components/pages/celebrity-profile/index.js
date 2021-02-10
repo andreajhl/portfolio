@@ -43,14 +43,14 @@ class CelebrityProfilePage extends Component {
     // this.getCelebrity(this.props.match.params.celebrity_username);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    if (
-      nextProps.match.params.celebrity_username !==
-      this.props.match.params.celebrity_username
-    ) {
-      this.getCelebrity(nextProps.match.params.celebrity_username);
-    }
-  }
+  // componentWillReceiveProps(nextProps, nextContext) {
+  //   if (
+  //     nextProps.match.params.celebrity_username !==
+  //     this.props.match.params.celebrity_username
+  //   ) {
+  //     this.getCelebrity(nextProps.match.params.celebrity_username);
+  //   }
+  // }
 
   getCelebrity = (username) => {
     this.props.getCelebrity(username, true);

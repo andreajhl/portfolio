@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import { FlagsSelect } from "../../layouts/flags-select";
 import { celebrityRequestOperations } from "../../../state/ducks/celebrity-requests";
 import { connect } from "react-redux";
-import { history } from "../../../routing/History";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { withRouter } from "react-app/components/common/routing";
 
 class CelebrityRequestForm extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class CelebrityRequestForm extends Component {
         email: "",
         socialNetworkName: "",
         socialNetworkUsername: "",
-        referral: new URLSearchParams(history.location.search).get("r") || ""
+        referral: new URLSearchParams(this.props.location.search).get("r") || ""
       },
       errors: {
         fullNameError: false,
@@ -384,5 +384,6 @@ const mapDispatchToProps = {
 const _CelebrityRequestForm = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CelebrityRequestForm);
+)(withRouter(CelebrityRequestForm));
+
 export { _CelebrityRequestForm as CelebrityRequestForm };
