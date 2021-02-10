@@ -42,8 +42,8 @@ export const HIRING_EDITOR = "/hirings/:contract_reference/editor";
 export const HIRING_PREVIEW_WITHOUT_SESSION = "/hirings/:contract_reference";
 // TRENDING
 export const TRENDING = "/tendencias/";
-export const BLOG = "/blogs/all";
-export const BLOG_ENTRY = `${BLOG}/blog-:id`;
+export const BLOG = "/blog";
+export const BLOG_ENTRY = `${BLOG}/:id`;
 //SUBSCRIPTION
 export const SUBSCRIPTION = "/subscription/subscribe/:celebrity_username";
 //SUBSCRIPTION

@@ -1,22 +1,21 @@
-import React, { Component, Fragment, useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { PageContainer } from "../../layouts";
-//
+import { PageContainer } from "../../layouts/page-container";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { Redirect, withRouter } from "react-app/components/common/routing-dom";
+import { Redirect, withRouter } from "react-app/components/common/routing";
 import { BLOG, HOME_PATH } from "../../../routing/Paths";
-
 import BlogPost from "../../containers/blog-post-full";
-import MetaTags from "react-meta-tags";
 
-const BlogEntry = ({ blogsData, match, history }) => {
+const BlogEntry = ({ blogsData, router }) => {
   let redirect;
   let blog;
 
-  if (typeof blogsData[match.params.id] === "undefined") {
+  const entryId = router.query.entry_id;
+
+  if (typeof blogsData[entryId] === "undefined") {
     redirect = <Redirect to={BLOG}></Redirect>;
   } else {
-    const blogSelected = blogsData[match.params.id];
+    const blogSelected = blogsData[entryId];
     blog = (
       <BlogPost
         title={blogSelected.title}
@@ -27,23 +26,19 @@ const BlogEntry = ({ blogsData, match, history }) => {
     );
   }
   return (
-    <Fragment>
+    <>
       {redirect}
-      <MetaTags>
-        <title>Famosos Blog</title>
-        <meta name="description" content="Agregar descripcion" />
-      </MetaTags>
       <PageContainer>
         <Container>
           <Row className="justify-content-evenly">
             <Button
               sm
               className="mb-3 ml-5"
-              onClick={() => history.push(HOME_PATH)}
+              onClick={() => router.push(HOME_PATH)}
             >
               🏠 Inicio
             </Button>
-            <Button sm className="mb-3 ml-5" onClick={() => history.push(BLOG)}>
+            <Button sm className="mb-3 ml-5" onClick={() => router.push(BLOG)}>
               📰 Ver más noticias
             </Button>
           </Row>
@@ -54,7 +49,7 @@ const BlogEntry = ({ blogsData, match, history }) => {
           </Row>
         </Container>
       </PageContainer>
-    </Fragment>
+    </>
   );
 };
 

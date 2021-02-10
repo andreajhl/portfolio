@@ -4,7 +4,7 @@ import * as GTM from "../../../state/utils/gtm";
 
 const FaqsPage = () => {
   useEffect(() => {
-    GTM.tagManagerDataLayer("FAQS_PAGE_VIEW", this.props.match);
+    GTM.tagManagerDataLayer("FAQS_PAGE_VIEW");
   }, []);
 
   return (

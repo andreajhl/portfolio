@@ -56,7 +56,7 @@ const BlogResults = ({
                 🏠 Inicio
               </Button>
             </NavLink>
-            <h2 className="font-weight-bold">Blogs</h2>
+            <h2 className="font-weight-bold">Blog</h2>
             {renderPosts}
           </Col>
         </Row>
