@@ -30,7 +30,7 @@ class MyRoutes extends Component {
               />
               {/* DONE */}
               <Route exact path={PATHS.BLOG} component={PAGES.BlogResults} />
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.BLOG_ENTRY}
@@ -42,7 +42,7 @@ class MyRoutes extends Component {
                 path={PATHS.SEARCH_PATH}
                 component={PAGES.CelebritiesResultsPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.TRENDING}
