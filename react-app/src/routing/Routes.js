@@ -60,7 +60,7 @@ class MyRoutes extends Component {
                 path={PATHS.CELEBRITY_PROFILE_ERROR}
                 component={PAGES.FourZeroFourCelebrityProfile}
               />
-              {/* TODO: */}
+              {/* TOFINISH: */}
               <Route
                 exact
                 path={PATHS.CELEBRITY_PROFILE_CONTRACT}

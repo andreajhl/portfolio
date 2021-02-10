@@ -1,17 +1,13 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
-import { PageContainer } from "../../layouts";
+import { PageContainer } from "../../layouts/page-container";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import * as GTM from "../../../state/utils/gtm";
-import { CreateContractForm } from "../../containers";
-import MetaTags from "react-meta-tags";
+import { CreateContractForm } from "../../containers/create-contract-form";
 import { Session } from "../../../state/utils/session";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
-import { Redirect } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-import auth0HOC from "../../../state/utils/auth0HOC";
+// import { Redirect } from "react-router-dom";
 
 const getContractPriceVideoMessage = (contractsTypes) =>
   contractsTypes?.find?.((contract) => contract.contractType === 1)?.price || 0;
@@ -27,48 +23,24 @@ class CreateContractPage extends Component {
     // const session = new Session();
   }
 
-  componentWillMount() {
-    if (this.props.match.params["celebrity_username"]) {
-      this.props.getCelebrity(this.props.match.params["celebrity_username"]);
-    }
-  }
-
   render() {
-    if (!this.props.auth0.isLoading) {
-      if (!this.props.auth0.isAuthenticated) {
-        localStorage.setItem(
-          "finalRedirect",
-          "/" + this.props.match.params["celebrity_username"] + "/contratar"
-        );
-      }
-    }
-    let RedirectTo = !this.props.auth0.isLoading ? (
-      this.props.auth0.isAuthenticated ? null : (
-        <Redirect to={PATHS.SIGN_IN_PATH}></Redirect>
-      )
-    ) : null;
+    // if (!this.props.auth0.isLoading) {
+    //   if (!this.props.auth0.isAuthenticated) {
+    //     localStorage.setItem(
+    //       "finalRedirect",
+    //       "/" + this.props.match.params["celebrity_username"] + "/contratar"
+    //     );
+    //   }
+    // }
+    // let RedirectTo = !this.props.auth0.isLoading ? (
+    //   this.props.auth0.isAuthenticated ? null : (
+    //     <Redirect to={PATHS.SIGN_IN_PATH}></Redirect>
+    //   )
+    // ) : null;
+
     return (
       <>
-        {RedirectTo}
-        {this.props.celebrity.id ? (
-          <MetaTags>
-            <title>
-              Famosos.com - Comprar video personalizado de{" "}
-              {this.props.celebrity.fullName}
-            </title>
-            <meta
-              name="description"
-              content={
-                "Comprar video personalizado de " +
-                this.props.celebrity.fullName +
-                " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
-              }
-            />
-          </MetaTags>
-        ) : (
-          <div></div>
-        )}
-
+        {/* {RedirectTo} */}
         <PageContainer
           showFooter={false}
           showLogin={false}
@@ -133,5 +105,6 @@ const mapDispatchToProps = {
 const _CreateContractPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(auth0HOC(CreateContractPage));
+)(CreateContractPage);
+
 export { _CreateContractPage as CreateContractPage };
