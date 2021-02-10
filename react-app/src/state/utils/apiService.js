@@ -1,4 +1,5 @@
 import axios, { CancelToken } from "axios";
+import isBrowser from "react-app/src/utils/isBrowser";
 import { Session } from "./session";
 
 const setHeaders = (
@@ -10,7 +11,9 @@ const setHeaders = (
   let options = {};
   if (session.getSession() && addFamososAuthorizationHeader) {
     options.headers = {
-      authorization: "Bearer " + localStorage.getItem(session.sessionName)
+      authorization: isBrowser()
+        ? "Bearer " + localStorage.getItem(session.sessionName)
+        : ""
     };
   }
   if (params !== "?") {
