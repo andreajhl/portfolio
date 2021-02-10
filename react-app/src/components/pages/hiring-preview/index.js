@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { HiringPreviewLayout, PageContainer } from "../../layouts";
+import { PageContainer } from "../../layouts/page-container";
+import { HiringPreviewLayout } from "../../layouts/hiring-preview";
 import { connect } from "react-redux";
-
 import { contractOperations } from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
-import MetaTags from "react-meta-tags";
+import Maybe from "../../common/helpers/maybe";
+import { withRouter } from "next/router";
 
 class HiringPreviewPage extends Component {
   constructor(props) {
@@ -15,18 +16,25 @@ class HiringPreviewPage extends Component {
     };
   }
 
-  componentWillMount() {
-    this.props.getContract(this.props.match.params.contract_reference);
-  }
-
   componentDidMount() {
-    document.getElementsByClassName("f-main-body")[0].style.background =
-      "#f7f7f7";
-    GTM.tagManagerDataLayer("HIRING_PREVIEW_PAGE_VIEW", this.props.match);
+    this.props.getContract(this.props.router.query.contract_reference);
+
+    // document.getElementsByClassName("f-main-body")[0].style.background =
+    //   "#f7f7f7";
+    GTM.tagManagerDataLayer("HIRING_PREVIEW_PAGE_VIEW", this.props.router);
   }
 
   componentWillUnmount() {
-    document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
+    // document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
+  }
+
+  componentDidUpdate(previousProps) {
+    if (
+      this.props.router.query.contract_reference &&
+      previousProps.router.query.contract_reference !==
+        this.props.router.query.contract_reference
+    )
+      this.props.getContract(this.props.router.query.contract_reference);
   }
 
   render() {
@@ -37,9 +45,9 @@ class HiringPreviewPage extends Component {
             applyFetchCelebrities={false}
             showFooter={this.props.isCompleted}
           >
-            {this.props.contract.reference ? (
+            <Maybe it={Boolean(this.props.contract.reference)}>
               <HiringPreviewLayout contract={this.props.contract} />
-            ) : null}
+            </Maybe>
             <br />
           </PageContainer>
         </div>
@@ -72,5 +80,6 @@ const mapDispatchToProps = {
 const _HiringPreviewPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(HiringPreviewPage);
+)(withRouter(HiringPreviewPage));
+
 export { _HiringPreviewPage as HiringPreviewPage };

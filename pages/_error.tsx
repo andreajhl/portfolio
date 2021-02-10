@@ -1,35 +1,34 @@
 import { NavLink } from "react-app/src/components/common/routing";
-import { HOME_PATH } from "react-app/src/routing/Paths";
+import { PageContainer } from "react-app/src/components/layouts/page-container";
+import { ROOT_PATH } from "react-app/src/routing/Paths";
 
 const CustomError = () => {
   return (
-    <div className="SignInPage">
-      <div className="section">
-        <div className="auth-container mx-auto text-center p-4">
-          <h3 className="font-weight-light text-center">
-            Ha ocurrido un error. <br />
-            Estamos haciendo lo posible por resolverlo.
-          </h3>
-          <br />
-          <img
-            width="200px"
-            style={{ opacity: "0.2" }}
-            src="/assets/img/sad-face-in-rounded-square.svg"
-            alt="sad-face"
-          />
-          <br />
-          <br />
-          <NavLink to={HOME_PATH}>
-            <button className="btn btn-primary">Volver a inicio</button>
-          </NavLink>
+    <PageContainer applyFetchCelebrities={false} showFooter={false}>
+      <div className="SignInPage">
+        <div className="section">
+          <div className="auth-container mx-auto text-center p-4">
+            <h3 className="font-weight-light text-center">
+              Ha ocurrido un error.
+            </h3>
+            <p className="h6">Estamos haciendo lo posible por resolverlo.</p>
+            <br />
+            <img
+              width="200px"
+              style={{ opacity: "0.2" }}
+              src="/assets/img/sad-face-in-rounded-square.svg"
+              alt="sad-face"
+            />
+            <br />
+            <br />
+            <NavLink to={ROOT_PATH}>
+              <button className="btn btn-primary">Volver a inicio</button>
+            </NavLink>
+          </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 };
-/* <PageContainer
-        applyFetchCelebrities={false}
-        showFooter={false}
-      ></PageContainer> */
 
 export default CustomError;
