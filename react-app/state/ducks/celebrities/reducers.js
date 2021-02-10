@@ -8,7 +8,7 @@ export const updateQueryParamsInitialState = {
 };
 
 const fetchCelebritiesInitialState = {
-  // requestCancel: () => {},
+  requestCancel: null,
   loading: false,
   failed: false,
   completed: false,
@@ -17,7 +17,7 @@ const fetchCelebritiesInitialState = {
 };
 
 const fetchCelebritiesSimilarResultsInitialState = {
-  // requestCancel: () => {},
+  requestCancel: null,
   loading: false,
   failed: false,
   completed: false,

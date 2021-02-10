@@ -6,7 +6,6 @@ import {
   handleApiResponseSuccess
 } from "../../utils";
 import * as API_PATHS from "./paths";
-import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import { updateQueryParamsInitialState } from "./reducers";
 // import * as firestoreService from "../../../firebase/firestoreService";
@@ -21,23 +20,23 @@ const getValidParams = (params) => {
   return Object.fromEntries(onlyValidParamsEntries);
 };
 
-export const updateQueryParams = (params) => (dispatch) => {
+export const updateQueryParams = (params, router) => (dispatch) => {
   const newParams = getValidParams(params);
   dispatch({
     type: types.UPDATE_QUERY_PARAMS,
     payload: { params: { ...updateQueryParamsInitialState, ...newParams } }
   });
   if (newParams.offset) {
-    history.replace(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
+    router.replace(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
   } else {
-    const previousPathname = history.location.pathname;
+    const previousPathname = router.pathname;
     if (previousPathname !== PATHS.SEARCH_PATH) {
       dispatch({
         type: types.SET_PREVIOUS_PATH,
         payload: previousPathname
       });
     }
-    history.push(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
+    router.push(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
   }
 };
 
@@ -77,7 +76,7 @@ export const get = (object_id, preloaded = false) => {
 
 export const list = (params) => {
   return (dispatch, getStore) => {
-    getStore().celebrities.fetchCelebritiesReducer.requestCancel();
+    getStore().celebrities.fetchCelebritiesReducer?.requestCancel?.();
     const TYPE = types.FETCH_CELEBRITIES_REQUEST;
     const FINAL_PATH = API_PATHS.LIST;
     const request = apiService({
@@ -117,7 +116,7 @@ export const list = (params) => {
 
 export const fetchSimilarResults = (params) => {
   return (dispatch, getStore) => {
-    getStore().celebrities.fetchCelebritiesReducer.requestCancel();
+    getStore().celebrities.fetchCelebritiesReducer?.requestCancel?.();
     const TYPE = types.FETCH_CELEBRITIES_SIMILAR_RESULTS_REQUEST;
     const FINAL_PATH = API_PATHS.SUGGESTED_PUBLIC_LIST;
     const request = apiService({

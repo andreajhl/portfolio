@@ -43,10 +43,11 @@ const FiltersSectionLayout = ({
   updateQueryParams,
   listCountries,
   listCelebrityCategories,
-  location
+  location,
+  router
 }) => {
   const [params, setParams] = useState(initialState.params);
-  const queryParams = location.search;
+  const queryParams = queryStringToJSON(location.search);
 
   const setFilterParam = (paramName) => (paramValues) =>
     setParams((params) => ({
@@ -59,11 +60,14 @@ const FiltersSectionLayout = ({
 
   useEffect(() => {
     if (params === initialState.params) return;
-    updateQueryParams({
-      ...queryParams,
-      ...initialState.params,
-      ...params
-    });
+    updateQueryParams(
+      {
+        ...queryParams,
+        ...initialState.params,
+        ...params
+      },
+      router
+    );
   }, [params]);
 
   useEffect(() => {
@@ -80,9 +84,12 @@ const FiltersSectionLayout = ({
       path: window.location.pathname,
       queryParams
     });
-    updateQueryParams({
-      ...updateQueryParamsInitialState
-    });
+    updateQueryParams(
+      {
+        ...updateQueryParamsInitialState
+      },
+      router
+    );
   };
 
   const showCleanFiltersButton =

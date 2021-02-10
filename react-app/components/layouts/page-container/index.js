@@ -15,6 +15,7 @@ import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebr
 import Headroom from "react-headroom";
 import { FiltersSectionLayout } from "../filters-section";
 import waitFor from "../../../utils/waitFor";
+import { withRouter } from "react-app/components/common/routing";
 // import { DownloadAppBanner } from "../download-app-banner";
 
 class PageContainer extends Component {
@@ -96,7 +97,7 @@ class PageContainer extends Component {
       limit: updateQueryParamsInitialState.limit,
       search: keyword
     };
-    this.props.updateQueryParams(queryParams);
+    this.props.updateQueryParams(queryParams, this.props.router);
   }
 
   setDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
@@ -243,5 +244,6 @@ const mapDispatchToProps = {
 const _PageContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PageContainer);
+)(withRouter(PageContainer));
+
 export { _PageContainer as PageContainer };

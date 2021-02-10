@@ -34,6 +34,6 @@ export const tagManagerDataLayer = (event, dataLayer) => {
       });
     }
   } catch (e) {
-    console.log("tagManagerDataLayer Error:", e);
+    console.warn("tagManagerDataLayer Error:", e);
   }
 };

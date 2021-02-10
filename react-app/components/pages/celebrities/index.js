@@ -76,7 +76,9 @@ class CelebritiesPage extends Component {
             {this.state.session ? <UserLikesSectionLayout /> : null}
 
             <CelebritiesSectionsLayout
-              landingId={this.props.location.search?.landingId}
+              landingId={
+                queryStringToJSON(this.props.location.search)?.landingId
+              }
             />
           </PageContainer>
         </div>
