@@ -20,212 +20,194 @@ class MyRoutes extends Component {
               {/* ############### */}
               {/* GENERAL PATHS */}
               {/* ############### */}
+              {/* DONE */}
               <Redirect from={PATHS.HOME_PATH} to={PATHS.ROOT_PATH} />
+              {/* DONE */}
               <Route
                 exact
                 path={PATHS.ROOT_PATH}
                 component={PAGES.CelebritiesPage}
               />
+              {/* DONE */}
               <Route exact path={PATHS.BLOG} component={PAGES.BlogResults} />
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.BLOG_ENTRY}
                 component={PAGES.BlogEntry}
               />
+              {/* DONE */}
               <Route
                 exact
                 path={PATHS.SEARCH_PATH}
                 component={PAGES.CelebritiesResultsPage}
               />
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.TRENDING}
                 component={PAGES.TrendingPage}
               />
+              {/* DONE */}
               <Route
                 exact
                 path={PATHS.CELEBRITY_PROFILE}
                 component={PAGES.CelebrityProfilePage}
               />
+              {/* DONE */}
               <Route
                 exact
                 path={PATHS.CELEBRITY_PROFILE_ERROR}
                 component={PAGES.FourZeroFourCelebrityProfile}
               />
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.CELEBRITY_PROFILE_CONTRACT}
                 component={PAGES.CreateContractPage}
               />
+              {/* TODO: */}
               <PrivateRoute
                 exact
                 path={PATHS.HIRING_EDITOR}
                 component={PAGES.EditContractPage}
               />
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.CONTRACT_CREATED}
                 component={PAGES.ContractCreatedPage}
               />
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.CONTRACT_PENDING}
                 component={PAGES.ContractCreatedPage}
               />
+              {/* TODO: */}
               <PrivateRoute
                 exact
                 path={PATHS.PAYMENT_METHODS}
                 component={PAGES.PaymentMethodsPage}
               />
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.STRIPE_3D_SECURE_IFRAME}
                 component={PAGES.ProcessStripe3DFormPage}
               />
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.STRIPE_3D_SECURE_RESPONSE}
                 component={PAGES.ProcessStripe3DResponsePage}
               />{" "}
               {/*AUTH*/}
+              {/*DONE*/}
               <Route
                 exact
                 path={PATHS.SIGN_IN_PATH}
                 component={PAGES.SignInPage}
               />
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.AUTH_SUCCESS}
                 component={PAGES.AuthSuccess}
               />
-              {/* <Route
-                exact
-                path={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH}
-                component={PAGES.SignInPage}
-              /> */}
-              {/* <Route
-                exact
-                path={PATHS.SIGN_UP_PATH}
-                component={PAGES.SignUpPage}
-              /> */}
-              {/* <Route
-                exact
-                path={PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH}
-                component={PAGES.SignUpPage}
-              /> */}
-              <Route
-                exact
-                path={PATHS.VALIDATE_SECURITY_CODE}
-                component={PAGES.ValidateSecurityCodePage}
-              />
-              {/* <Route
-                exact
-                path={PATHS.RESET_PASSWORD_PATH}
-                component={PAGES.ResetPasswordPage}
-              /> */}
-              {/* <Route
-                exact
-                path={PATHS.CHANGE_PASSWORD_PATH}
-                component={PAGES.ChangePasswordPage}
-              /> */}
-              {/* <PrivateRoute
-                exact
-                path={PATHS.CREATE_PASSWORD_PATH}
-                component={PAGES.CreatePasswordPage}
-              /> */}
-              <PrivateRoute
-                exact
-                path={PATHS.COMPLETE_PROFILE_PATH}
-                component={PAGES.CompleteProfilePage}
-              />{" "}
               {/*END AUTH*/}
               {/*DOCS*/}
+              {/*DONE*/}
               <Route
                 exact
                 path={PATHS.POLICIES_PATH}
                 component={PAGES.PoliciesPage}
               />
+              {/*DONE*/}
               <Route
                 exact
                 path={PATHS.TERMS_PATH}
                 component={PAGES.TermsPage}
               />
+              {/*DONE*/}
               <Route exact path={PATHS.FAQS_PATH} component={PAGES.FaqsPage} />
               {/*END DOCS*/}
               {/*FORMS*/}
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.CELEBRITY_REQUEST}
                 component={PAGES.CelebrityRequestPage}
               />{" "}
               {/*END FORMS*/}
+              {/* TODO: */}
               <PrivateRoute
                 exact
                 path={PATHS.CLIENT_PROFILE}
                 component={PAGES.ClientProfilePage}
               />
+              {/* TODO: */}
               <PrivateRoute
                 exact
                 path={PATHS.CLIENT_HIRINGS}
                 component={PAGES.ClientHiringsPage}
               />
+              {/* TODO: */}
               <PrivateRoute
                 exact
                 path={PATHS.CLIENT_SUBSCRIPTIONS}
                 component={PAGES.ClientSubscriptions}
               />
+              {/* TODO: */}
               <PrivateRoute
                 exact
                 path={PATHS.FEED_SUBSCRIPTION}
                 component={PAGES.SubscriptionFeed}
               />
+              {/* TODO: */}
               <PrivateRoute
                 exact
                 path={PATHS.SUBSCRIPTION}
                 component={PAGES.Subscription}
               />
+              {/* TODO: */}
               <PrivateRoute
                 exact
                 path={PATHS.SUBSCRIPTION_SUCCESS}
                 component={PAGES.SubscriptionSuccess}
               />
+              {/* TODO: */}
               <PrivateRoute
                 exact
                 path={PATHS.CLIENT_FAVORITES}
                 component={PAGES.ClientFavorites}
               />
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.ACCOUNT_HIRING_PREVIEW}
                 component={PAGES.ClientHiringPage}
               />
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.HIRING_PREVIEW}
                 component={PAGES.HiringPreviewPage}
               />
+              {/* TODO: */}
               <Route
                 exact
                 path={PATHS.HIRING_PREVIEW_WITHOUT_SESSION}
                 component={PAGES.HiringPreviewPage}
               />
-              <Route
-                exact
-                path={PATHS.AUTH_FLOW}
-                component={PAGES.AuthFlowPage}
-              />
-              <Route
-                exact
-                path={PATHS.SESSION_REDIRECT}
-                component={PAGES.SessionRedirectPage}
-              />{" "}
+              {/* DONE */}
               {/* ------- */}
               <Route
                 exact
-                path='/page-not-found/404/'
+                path="/page-not-found/404/"
                 component={PAGES.FourZeroFour}
               />
-              <Redirect from='*' to='/page-not-found/404/' />
+              <Redirect from="*" to="/page-not-found/404/" />
             </Switch>
           </Auth0ProviderWithHistory>
         </Router>
