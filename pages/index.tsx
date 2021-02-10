@@ -1,4 +1,3 @@
-import AuthenticationHandler from "components/auth0/authenticationHandler";
 import { useEffect } from "react";
 import CustomHead from "react-app/components/common/helpers/custom-head";
 import { CelebritiesPage } from "react-app/components/pages/celebrities";
