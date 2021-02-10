@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import { CelebritiesSectionsLayout } from "../../layouts/celebrities-sections";
 import { PageContainer } from "../../layouts/page-container";
 import { UserLikesSectionLayout } from "../../layouts/user-likes-section";
@@ -11,6 +11,7 @@ import { FiltersSectionLayout } from "../../layouts/filters-section";
 import { Session } from "../../../state/utils/session";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { withRouter } from "react-app/src/components/common/routing";
+import Maybe from "../../common/helpers/maybe";
 
 class CelebritiesPage extends Component {
   constructor(props) {
@@ -63,9 +64,7 @@ class CelebritiesPage extends Component {
           <PageContainer
             showFooter={false}
             applyFetchUserCelebrityLikes
-            existPreviewResults={
-              this.props.celebrities.length > 1 ? false : true
-            }
+            existPreviewResults={this.props.celebrities.length <= 1}
             applyFetchCelebrities
             showFiltersSection={this.state.showHeaderFiltersSection}
             showVideoCallsResearch
@@ -73,8 +72,9 @@ class CelebritiesPage extends Component {
           >
             <HeroSectionLayout />
             <FiltersSectionLayout />
-            {this.state.session ? <UserLikesSectionLayout /> : null}
-
+            <Maybe it="this.state.session">
+              <UserLikesSectionLayout />
+            </Maybe>
             <CelebritiesSectionsLayout
               landingId={
                 queryStringToJSON(this.props.location.search)?.landingId
