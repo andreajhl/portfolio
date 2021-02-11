@@ -38,7 +38,7 @@ class MyDocument extends Document {
           />
           <script src="https://js.stripe.com/v3/" />
         </Head>
-        <body>
+        <body className="f-main-body">
           <Main />
           <NextScript />
         </body>

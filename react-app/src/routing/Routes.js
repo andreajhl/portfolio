@@ -176,13 +176,13 @@ class MyRoutes extends Component {
                 path={PATHS.SUBSCRIPTION_SUCCESS}
                 component={PAGES.SubscriptionSuccess}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <PrivateRoute
                 exact
                 path={PATHS.CLIENT_FAVORITES}
                 component={PAGES.ClientFavorites}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.ACCOUNT_HIRING_PREVIEW}

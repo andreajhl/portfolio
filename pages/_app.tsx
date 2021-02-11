@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }) => {
   }, []);
   return (
     <Auth0ProviderWithHistory>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </Auth0ProviderWithHistory>
   );
 };

@@ -1,27 +1,20 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import MetaTags from "react-meta-tags";
 import { PageContainer } from "../../layouts/page-container";
 import { FiltersSectionLayout } from "../../layouts/filters-section";
 import { CelebritiesResultsShimmerCardsLayout } from "../../layouts/celebrities-results-shimmer-cards";
 import { CelebritiesResultsLayout } from "../../layouts/celebrities-results";
-import { queryStringToJSON } from "../../../state/utils/apiService";
-import { celebrityOperations } from "../../../state/ducks/celebrities";
-import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
-import { ROOT_PATH } from "../../../routing/Paths";
-import { updateQueryParams } from "../../../state/ducks/contracts/actions";
 import { fetchUserCelebrityLikesWithOffset } from "../../../state/ducks/celebrity-likes/actions";
+import Maybe from "../../common/helpers/maybe";
 
 const mapStateToProps = ({ celebrityLikes }) => ({
-  ...celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.data,
+  results: celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.data.results,
+  totalResults:
+    celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.data.totalResults,
   isLoading: celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.loading
 });
 
 const mapDispatchToProps = { fetchUserCelebrityLikesWithOffset };
-
-const pageTitle = "Famosos.com - Mis Famosos Favoritos";
-const pageDescription =
-  "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.";
 
 const initialState = {
   offset: 0,
@@ -53,21 +46,18 @@ const ClientFavoritesPage = ({
 
   return (
     <div className="CelebritiesResultsPage">
-      <MetaTags>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-      </MetaTags>
       <PageContainer showFooter={false} showSearch applyFetchUserCelebrityLikes>
         <FiltersSectionLayout />
-        {isLoading && offset <= 0 ? (
-          <CelebritiesResultsShimmerCardsLayout />
-        ) : (
+        <Maybe
+          it={!isLoading && offset >= 0}
+          orElse={<CelebritiesResultsShimmerCardsLayout />}
+        >
           <CelebritiesResultsLayout
             celebrities={results}
             fetchMoreData={fetchMoreData}
             totalResults={totalResults}
           />
-        )}
+        </Maybe>
       </PageContainer>
     </div>
   );

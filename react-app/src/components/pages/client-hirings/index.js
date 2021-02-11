@@ -1,54 +1,34 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { HiringsCardSectionLayout } from "../../layouts/hirings-card-section";
 import { PageContainer } from "../../layouts/page-container";
 import { connect } from "react-redux";
-
 import { contractOperations } from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
 
-class ClientHiringsPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      params: {}
-    };
-  }
-
-  componentDidMount() {
-    this.props.listClientContracts();
-    // document.getElementsByClassName("f-main-body")[0].style.background =
-    //   "#f7f7f7";
+const ClientHiringsPage = ({ listClientContracts, isLoading, contracts }) => {
+  useEffect(() => {
     GTM.tagManagerDataLayer("CLIENT_HIRINGS_PAGE_VIEW");
-  }
+    listClientContracts();
+  }, []);
 
-  componentWillUnmount() {
-    // document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
-  }
+  useEffect(() => {
+    document.getElementsByClassName("f-main-body")[0].style.background =
+      "#f7f7f7";
+    return () => {
+      document.getElementsByClassName("f-main-body")[0].style.background =
+        "#fff";
+    };
+  }, []);
 
-  render() {
-    return (
-      <>
-        <div className="ClientHiringsPage">
-          <PageContainer applyFetchCelebrities={false}>
-            <HiringsCardSectionLayout
-              isLoading={this.props.isLoading}
-              contracts={this.props.contracts}
-            />
-          </PageContainer>
-        </div>
-      </>
-    );
-  }
-}
+  return (
+    <div className="ClientHiringsPage">
+      <PageContainer applyFetchCelebrities={false}>
+        <HiringsCardSectionLayout isLoading={isLoading} contracts={contracts} />
+      </PageContainer>
+    </div>
+  );
+};
 
-// Set propTypes
-ClientHiringsPage.propTypes = {};
-
-// Set defaultProps
-ClientHiringsPage.defaultProps = {};
-
-// mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.listClientContractsReducer.loading,
   contracts: state.contracts.listClientContractsReducer.data

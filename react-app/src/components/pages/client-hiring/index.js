@@ -1,65 +1,53 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import { connect } from "react-redux";
-
 import { contractOperations } from "../../../state/ducks/contracts";
+import { PageContainer } from "../../layouts/page-container";
 
-class ClientHiringPage extends Component {
-  constructor(props) {
-    super(props);
+const ClientHiringPage = ({ getContract, contract = {} }) => {
+  const {
+    query: { contract_reference }
+  } = useRouter();
 
-    this.state = {
-      params: {}
-    };
-  }
+  useEffect(() => {
+    if (!contract_reference) return;
+    getContract(contract_reference);
+  }, [contract_reference, getContract]);
 
-  componentWillMount() {
-    this.props.getContract(this.props.match.params.contract_reference);
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     document.getElementsByClassName("f-main-body")[0].style.background =
       "#f7f7f7";
-  }
+    return () => {
+      document.getElementsByClassName("f-main-body")[0].style.background =
+        "#fff";
+    };
+  }, []);
 
-  componentWillUnmount() {
-    document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
-  }
-
-  render() {
-    return (
-      <>
-        <div className="ClientHiringPage">
+  return (
+    <div className="ClientHiringPage">
+      <PageContainer>
+        <div style={{ height: "82vh" }}>
           contract:
-          <pre>{JSON.stringify(this.props.contract)}</pre>
+          <pre>{JSON.stringify(contract)}</pre>
         </div>
-      </>
-    );
-  }
-}
-
-// Set propTypes
-ClientHiringPage.propTypes = {};
-
-// Set defaultProps
-ClientHiringPage.defaultProps = {
-  contract: {}
+      </PageContainer>
+    </div>
+  );
 };
 
-// mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.getContractReducer.loading,
   contract: state.contracts.getContractReducer.data.contract,
   isCompleted: state.contracts.getContractReducer.completed
 });
 
-// mapStateToProps
 const mapDispatchToProps = {
   getContract: contractOperations.getContract
 };
 
-// Export Class
 const _ClientHiringPage = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ClientHiringPage);
+
 export { _ClientHiringPage as ClientHiringPage };

@@ -1,70 +1,44 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { PageContainer } from "../../layouts/page-container";
 import { HiringPreviewLayout } from "../../layouts/hiring-preview";
 import { connect } from "react-redux";
 import { contractOperations } from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
 import Maybe from "../../common/helpers/maybe";
-import { withRouter } from "next/router";
+import { useRouter, withRouter } from "next/router";
 
-class HiringPreviewPage extends Component {
-  constructor(props) {
-    super(props);
+const HiringPreviewPage = ({ getContract, contract, isCompleted }) => {
+  const {
+    query: { contract_reference }
+  } = useRouter();
 
-    this.state = {
-      params: {}
+  useEffect(() => {
+    if (!contract_reference) return;
+    getContract(contract_reference);
+    GTM.tagManagerDataLayer("HIRING_PREVIEW_PAGE_VIEW", { contract_reference });
+  }, [contract_reference]);
+
+  useEffect(() => {
+    document.getElementsByClassName("f-main-body")[0].style.background =
+      "#f7f7f7";
+    return () => {
+      document.getElementsByClassName("f-main-body")[0].style.background =
+        "#fff";
     };
-  }
+  }, []);
 
-  componentDidMount() {
-    this.props.getContract(this.props.router.query.contract_reference);
-
-    // document.getElementsByClassName("f-main-body")[0].style.background =
-    //   "#f7f7f7";
-    GTM.tagManagerDataLayer("HIRING_PREVIEW_PAGE_VIEW", this.props.router);
-  }
-
-  componentWillUnmount() {
-    // document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
-  }
-
-  componentDidUpdate(previousProps) {
-    if (
-      this.props.router.query.contract_reference &&
-      previousProps.router.query.contract_reference !==
-        this.props.router.query.contract_reference
-    )
-      this.props.getContract(this.props.router.query.contract_reference);
-  }
-
-  render() {
-    return (
-      <>
-        <div className="HiringPreviewPage">
-          <PageContainer
-            applyFetchCelebrities={false}
-            showFooter={this.props.isCompleted}
-          >
-            <Maybe it={Boolean(this.props.contract.reference)}>
-              <HiringPreviewLayout contract={this.props.contract} />
-            </Maybe>
-            <br />
-          </PageContainer>
-        </div>
-      </>
-    );
-  }
-}
-
-// Set propTypes
-HiringPreviewPage.propTypes = {};
-
-// Set defaultProps
-HiringPreviewPage.defaultProps = {
-  contract: {}
+  return (
+    <div className="HiringPreviewPage">
+      <PageContainer applyFetchCelebrities={false} showFooter={isCompleted}>
+        <Maybe it={Boolean(contract.reference)}>
+          <HiringPreviewLayout contract={contract} />
+        </Maybe>
+        <br />
+      </PageContainer>
+    </div>
+  );
 };
 
-// mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.getContractReducer.loading,
   contract: state.contracts.getContractReducer.data,
