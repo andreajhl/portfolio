@@ -1,7 +1,7 @@
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { ClientSubscriptions } from "react-app/src/components/pages/client-subscriptions";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { LoaderLayout } from "react-app/src/components/layouts/loader";
+import LoadingPage from "react-app/src/components/layouts/loading-page";
 
 const Subscriptions = () => {
   return (
@@ -12,5 +12,5 @@ const Subscriptions = () => {
   );
 };
 export default withAuthenticationRequired(Subscriptions, {
-  onRedirecting: () => <LoaderLayout></LoaderLayout>
+  onRedirecting: () => <LoadingPage></LoadingPage>
 });
