@@ -106,7 +106,6 @@ const PageContainer = (props) => {
       cancelPreviousWaitFor();
     };
   }, []);
-  const { user, loading } = useFetchUser();
 
   const hasSearchedOrFiltered = queryParams !== updateQueryParamsInitialState;
 
@@ -116,8 +115,6 @@ const PageContainer = (props) => {
       <Headroom style={{ zIndex: 100000 }} upTolerance={2.5}>
         {props.showNavbar ? (
           <NavbarSectionLayout
-            user={user}
-            loading={loading}
             className={hasSearchedOrFiltered ? "hidden-hero" : ""}
             onSearchChange={onSearchChange}
             showInputSearchSm={props.showInputSearchSm}
