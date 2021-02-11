@@ -4,7 +4,8 @@ import { get } from "react-app/src/state/ducks/celebrities/actions";
 import { CELEBRITY_PROFILE_ERROR } from "react-app/src/routing/Paths";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { CreateContractPage } from "react-app/src/components/pages/create-contract";
-
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import LoadingPage from "react-app/src/components/layouts/loading-page";
 /* ESTA RUTA ES PROTEGIDA */
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
@@ -45,4 +46,6 @@ const CreateContract = ({ celebrity }) => {
   );
 };
 
-export default CreateContract;
+export default withAuthenticationRequired(CreateContract, {
+  onRedirecting: () => <LoadingPage></LoadingPage>
+});
