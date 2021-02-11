@@ -2,9 +2,9 @@ import Auth0ProviderWithHistory from "lib/auth0-provider-with-history";
 import React, { useEffect } from "react";
 import { wrapper } from "react-app/src/state/store";
 import { useRouter } from "next/router";
-
 import "react-app/src/styles.scss";
-const handleRouteChange = (url: any, { shallow }: boolean) => {
+
+const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
   const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
 
   console.log("MANDAR ESTO POR 'window.analytics.page':", {
@@ -29,6 +29,7 @@ const App = ({ Component, pageProps }) => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);
     };
   }, []);
+
   return (
     <Auth0ProviderWithHistory>
       <Component {...pageProps} />
