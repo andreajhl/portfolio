@@ -73,17 +73,15 @@ export const getContractWithPayments = (contractReference) => {
       .then((res) => {
         if ("status" in res.data && res.data.status === "ERROR") {
           handleApiResponseFailure(dispatch, TYPE, res);
-          // Other actions
           history._pushRoute(ROUTING_PATHS.HOME_PATH);
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
-          // Other actions
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
         }
       })
       .catch((err) => {
-        history._pushRoute(ROUTING_PATHS.HOME_PATH);
         handleApiErrors(dispatch, TYPE, err);
+        history._pushRoute(ROUTING_PATHS.HOME_PATH);
       });
   };
 };
@@ -453,13 +451,9 @@ export const updateContract = (body) => {
   };
 };
 
-export const saveContractToPayClear = () => {
-  return (dispatch) => {
-    dispatch({
-      type: TYPES.SAVE_CONTRACT_TO_PAY_CLEAR
-    });
-  };
-};
+export const saveContractToPayClear = () => ({
+  type: TYPES.SAVE_CONTRACT_TO_PAY_CLEAR
+});
 
 export const updateContractIsPublic = async (body) => {
   const FINAL_PATH = API_PATHS.UPDATE_CONTRACT_IS_PUBLIC;
