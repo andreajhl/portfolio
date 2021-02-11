@@ -11,7 +11,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   };
 };
 
-const HiringPreview = ({ contract_reference, pathname }) => {
+const HiringEditor = ({ contract_reference, pathname }) => {
   return (
     <>
       <CustomHead />
@@ -23,4 +23,4 @@ const HiringPreview = ({ contract_reference, pathname }) => {
   );
 };
 
-export default HiringPreview;
+export default HiringEditor;

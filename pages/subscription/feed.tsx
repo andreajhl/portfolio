@@ -1,13 +1,13 @@
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { ClientSubscriptions } from "react-app/src/components/pages/client-subscriptions";
+import { SubscriptionFeed } from "react-app/src/components/pages/subscription-feed";
 
-const Subscriptions = () => {
+const Feed = () => {
   return (
     <>
       <CustomHead description="Las ultimas publicaciones de tus famosos favoritos." />
-      <ClientSubscriptions />
+      <SubscriptionFeed />
     </>
   );
 };
 
-export default Subscriptions;
+export default Feed;

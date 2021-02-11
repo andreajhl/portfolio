@@ -1,13 +1,13 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import { PageContainer } from "../../layouts/page-container";
-import MetaTags from "react-meta-tags";
 import { CarouselAvailableSubscriptions } from "../../layouts/carousel-available-subscriptions";
 import { CelebrityFeedPosts } from "../../layouts/celebrity-feed-posts";
 import * as firestoreService from "../../../firebase/firestoreService";
 import { LoaderLayout } from "../../layouts/loader";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
+import Maybe from "../../common/helpers/maybe";
 
 const getCelebritySelected = (celebritiesList, currentChoice) =>
   celebritiesList.find((celebrity) => celebrity.celebrityId === currentChoice);
@@ -88,57 +88,57 @@ const SubscriptionFeed = (props) => {
   };
 
   return (
-    <Fragment>
-      <MetaTags>
-        <title>
-          Famosos.com - Videos personalizados de tus famosos favoritos.
-        </title>
-        <meta
-          name="description"
-          content="Las ultimas publicaciones de tus famosos favoritos."
-        />
-      </MetaTags>
-      <PageContainer>
-        <Container className="container-subscription-feed">
-          <Row>
-            <Col md="9" className="mx-auto" style={{ padding: "0px" }}>
-              {isSubscriptionListCompletedFetch ? (
-                subscriptionList.length > 0 ? (
-                  <CarouselAvailableSubscriptions
-                    currentChoice={currentChoice}
-                    handlerSelectCelebrity={fetchPostFromCelebrity}
-                    celebrities={subscriptionList}
-                  />
-                ) : null
+    <PageContainer>
+      <Container className="container-subscription-feed">
+        <Row>
+          <Col md="9" className="mx-auto" style={{ padding: "0px" }}>
+            <Maybe
+              it={isSubscriptionListCompletedFetch}
+              orElse={<LoaderLayout />}
+            >
+              <Maybe it={subscriptionList.length > 0}>
+                <CarouselAvailableSubscriptions
+                  currentChoice={currentChoice}
+                  handlerSelectCelebrity={fetchPostFromCelebrity}
+                  celebrities={subscriptionList}
+                />
+              </Maybe>
+            </Maybe>
+            {/* {isSubscriptionListCompletedFetch ? (
+              subscriptionList.length > 0 ? (
+                <CarouselAvailableSubscriptions
+                  currentChoice={currentChoice}
+                  handlerSelectCelebrity={fetchPostFromCelebrity}
+                  celebrities={subscriptionList}
+                />
+              ) : null
+            ) : (
+              <LoaderLayout />
+            )} */}
+            {isSubscriptionListCompletedFetch && subscriptionList.length > 0 ? (
+              posts.length > 0 ? (
+                <CelebrityFeedPosts
+                  hasMorePost={hasMorePost}
+                  onFetchMorePost={handlerFetchMorePost}
+                  posts={posts}
+                  celebrityData={getCelebritySelected(
+                    subscriptionList,
+                    currentChoice
+                  )}
+                />
+              ) : postFetched ? (
+                <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
               ) : (
                 <LoaderLayout />
-              )}
-              {isSubscriptionListCompletedFetch &&
-              subscriptionList.length > 0 ? (
-                posts.length > 0 ? (
-                  <CelebrityFeedPosts
-                    hasMorePost={hasMorePost}
-                    onFetchMorePost={handlerFetchMorePost}
-                    posts={posts}
-                    celebrityData={getCelebritySelected(
-                      subscriptionList,
-                      currentChoice
-                    )}
-                  />
-                ) : postFetched ? (
-                  <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
-                ) : (
-                  <LoaderLayout />
-                )
-              ) : isSubscriptionListCompletedFetch &&
-                subscriptionList.length === 0 ? (
-                <NotPostsResults message="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
-              ) : null}
-            </Col>
-          </Row>
-        </Container>
-      </PageContainer>
-    </Fragment>
+              )
+            ) : isSubscriptionListCompletedFetch &&
+              subscriptionList.length === 0 ? (
+              <NotPostsResults message="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+            ) : null}
+          </Col>
+        </Row>
+      </Container>
+    </PageContainer>
   );
 };
 

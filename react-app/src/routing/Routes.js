@@ -158,19 +158,19 @@ class MyRoutes extends Component {
                 path={PATHS.CLIENT_SUBSCRIPTIONS}
                 component={PAGES.ClientSubscriptions}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <PrivateRoute
                 exact
                 path={PATHS.FEED_SUBSCRIPTION}
                 component={PAGES.SubscriptionFeed}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <PrivateRoute
                 exact
                 path={PATHS.SUBSCRIPTION}
                 component={PAGES.Subscription}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <PrivateRoute
                 exact
                 path={PATHS.SUBSCRIPTION_SUCCESS}

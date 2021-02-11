@@ -1,7 +1,7 @@
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { ClientHiringsPage } from "react-app/src/components/pages/client-hirings";
 
-const Profile = () => {
+const Hiring = () => {
   return (
     <>
       <CustomHead />
@@ -10,4 +10,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Hiring;

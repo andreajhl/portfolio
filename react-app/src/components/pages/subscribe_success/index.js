@@ -1,14 +1,19 @@
-import React, { Component, Fragment, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { connect } from "react-redux";
-
 import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
+import { useRouter } from "next/router";
 
-const SubscriptionSuccess = (props) => {
-  const { getCelebrity, celebrity, isLoading } = { ...props };
+const SubscriptionSuccess = ({ getCelebrity, celebrity, isLoading }) => {
+  const router = useRouter();
+  const celebrity_username = router.query.celebrity_username;
+
   useEffect(() => {
-    getCelebrity(props.match.params.celebrity_username, true);
-  }, [props.match.params.celebrity_username]);
+    if (!celebrity_username) return;
+
+    getCelebrity(celebrity_username, true);
+  }, [celebrity_username]);
+
   return (
     <div className="container-subscribe-success container-fluid">
       <div className="row justify-content-center f-container">
@@ -60,7 +65,7 @@ const SubscriptionSuccess = (props) => {
           </p>
           <button
             className="btn btn-primary mb-4"
-            onClick={() => props.history.push(FEED_SUBSCRIPTION)}
+            onClick={() => router.push(FEED_SUBSCRIPTION)}
           >
             Ver mis suscripciones
           </button>
@@ -90,4 +95,5 @@ const _SubscriptionSuccess = connect(
   mapStateToProps,
   mapDispatchToProps
 )(SubscriptionSuccess);
+
 export { _SubscriptionSuccess as SubscriptionSuccess };

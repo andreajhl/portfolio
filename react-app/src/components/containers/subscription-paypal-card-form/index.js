@@ -61,7 +61,7 @@ class SubscriptionPayPalCardForm extends Component {
         <div className={"mx-auto p-4 error-container"}>
           <div className="text-danger text-center mb-3">
             <small className={"text-danger font-weight-bold"}>
-              {this.state.errorMessage}
+              {String(this.state.errorMessage)}
             </small>
           </div>
           <div className={"mx-auto text-center mb-3"}>

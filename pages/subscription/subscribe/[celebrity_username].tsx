@@ -1,13 +1,13 @@
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { ClientSubscriptions } from "react-app/src/components/pages/client-subscriptions";
+import { Subscription as SubscriptionPage } from "react-app/src/components/pages/subscription";
 
-const Subscriptions = () => {
+const Subscription = () => {
   return (
     <>
       <CustomHead description="Las ultimas publicaciones de tus famosos favoritos." />
-      <ClientSubscriptions />
+      <SubscriptionPage />
     </>
   );
 };
 
-export default Subscriptions;
+export default Subscription;
