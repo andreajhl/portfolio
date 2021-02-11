@@ -5,7 +5,7 @@ import { UserProfileDetailsCardLayout } from "../../layouts/user-profile-details
 import { sessionOperations } from "../../../state/ducks/session";
 import { authenticationOperations } from "../../../state/ducks/authentication";
 
-const ClientProfilePage = ({ getToken }) => {
+const ClientProfilePage = ({ getToken, ...props }) => {
   useEffect(() => {
     getToken();
   }, []);
@@ -23,8 +23,8 @@ const ClientProfilePage = ({ getToken }) => {
     <div className="ClientProfilePage">
       <PageContainer applyFetchCelebrities={false}>
         <UserProfileDetailsCardLayout
-          userInformation={this.props.userInformation}
-          session={this.props.session}
+          userInformation={props.userInformation}
+          session={props.session}
         />
       </PageContainer>
     </div>
