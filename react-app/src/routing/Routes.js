@@ -60,7 +60,7 @@ class MyRoutes extends Component {
                 path={PATHS.CELEBRITY_PROFILE_ERROR}
                 component={PAGES.FourZeroFourCelebrityProfile}
               />
-              {/* TOFINISH: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.CELEBRITY_PROFILE_CONTRACT}
@@ -84,7 +84,7 @@ class MyRoutes extends Component {
                 path={PATHS.CONTRACT_PENDING}
                 component={PAGES.ContractCreatedPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <PrivateRoute
                 exact
                 path={PATHS.PAYMENT_METHODS}
