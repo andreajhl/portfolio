@@ -5,6 +5,7 @@ import { UserProfileDetailsCardLayout } from "../../layouts/user-profile-details
 import { sessionOperations } from "../../../state/ducks/session";
 import { authenticationOperations } from "../../../state/ducks/authentication";
 import * as GTM from "../../../state/utils/gtm";
+import isBrowser from "react-app/src/utils/isBrowser";
 
 class ClientProfilePage extends Component {
   constructor(props) {
@@ -20,7 +21,6 @@ class ClientProfilePage extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.props.authentication);
     // document.getElementsByClassName("f-main-body")[0].style.background =
     //   "#f7f7f7";
     GTM.tagManagerDataLayer("CLIENT_PROFILE_PAGE_VIEW", this.props.session);

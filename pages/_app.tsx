@@ -1,8 +1,9 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import Auth0ProviderWithHistory from "lib/auth0-provider-with-history";
+import React, { useEffect } from "react";
 import { wrapper } from "react-app/src/state/store";
-import "react-app/src/styles.scss";
+import { useRouter } from "next/router";
 
+import "react-app/src/styles.scss";
 const handleRouteChange = (url: any, { shallow }: boolean) => {
   const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
 
@@ -28,15 +29,18 @@ const App = ({ Component, pageProps }) => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);
     };
   }, []);
-
-  return <Component {...pageProps} />;
+  return (
+    <Auth0ProviderWithHistory>
+      <Component {...pageProps} />;
+    </Auth0ProviderWithHistory>
+  );
 };
+
+export default wrapper.withRedux(App);
 
 // App.getInitialProps = async ({ Component, ctx }) => {
 //   const pageProps = Component.getInitialProps
 //     ? await Component.getInitialProps(ctx)
 //     : {};
 //   return { pageProps };
-// };
-
-export default wrapper.withRedux(App);
+// }

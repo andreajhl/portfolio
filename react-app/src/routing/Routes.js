@@ -7,7 +7,7 @@ import * as PATHS from "./Paths";
 import * as PAGES from "../components/pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { history } from "./History";
-import Auth0ProviderWithHistory from "../state/utils/auth0-provider-with-history";
+import Auth0ProviderWithHistory from "../../../lib/auth0-provider-with-history";
 import { Auth0Provider, withAuthenticationRequired } from "@auth0/auth0-react";
 
 class MyRoutes extends Component {

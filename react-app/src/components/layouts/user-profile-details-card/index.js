@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-
 import { Session } from "../../../state/utils/session";
 import { CelebritiesMultiselect } from "../celebrities-multiselect";
 import { sessionOperations } from "../../../state/ducks/session";
 import { connect } from "react-redux";
 import * as GTM from "../../../state/utils/gtm";
-import Link from "next/link";
-// import LogoutButton from "../../containers/logout-button/logout-button";
-
+import { HOME_PATH } from "../../../routing/Paths";
+import LogoutButton from "../../containers/logout-button/logout-button";
+import useRouter from "next/router";
 class UserProfileDetailsCardLayout extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +26,11 @@ class UserProfileDetailsCardLayout extends Component {
     this.setState({ favCelebrities: value });
   }
 
+  logout() {
+    this.sesion.removeSession();
+    const router = useRouter();
+    router.push(HOME_PATH);
+  }
   updateSession() {
     const session = this.props.sessionData;
     session.favCelebrities = this.state.favCelebrities;
@@ -47,7 +51,7 @@ class UserProfileDetailsCardLayout extends Component {
               <img
                 className="rounded-circle"
                 src={
-                  this.props.userInformation.picture
+                  this.props.userInformation?.picture
                     ? this.props.userInformation.picture
                     : "/assets/img/avatar-blank.png"
                 }
@@ -55,18 +59,15 @@ class UserProfileDetailsCardLayout extends Component {
                 alt={"avatar"}
               />
               <h5 className="font-weight-bold mt-2">
-                {this.props.session.fullName}
+                {this.props.session?.fullName}
               </h5>
-              <h6 className="mt-2">{this.props.userInformation.email}</h6>
+              <h6 className="mt-2">{this.props.userInformation?.email}</h6>
               {/* <h6 className='mt-2'>{this.props.session.cellphoneNumber}</h6> */}
-              <Link href="/api/logout">
-                <a>Cerrar sesión</a>
-              </Link>
-              {/* <LogoutButton className="d-inline">
+              <LogoutButton className="d-inline">
                 <small className="text-muted cursor-pointer">
                   Cerrar sesión
                 </small>
-              </LogoutButton> */}
+              </LogoutButton>
             </div>
             <div className="col-12 text-center">
               <hr />

@@ -1,31 +1,33 @@
 import React from "react";
-import Link from "next/link";
 import LoginButton from "../../containers/login-button/login-button";
 import CreateContractStepsLayout from "../../containers/create-contracts-steps";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useRouter } from "next/router";
+import { HOME_PATH } from "../../../routing/Paths";
 
 const SignInPage = () => {
+  const router = useRouter();
+  const { isLoading, isAuthenticated } = useAuth0();
+  if (!isLoading & isAuthenticated) {
+    router.replace(HOME_PATH);
+  }
   return (
-    <div className="container-sign-in-page">
-      <div className="container-sign-in-page__login-details">
-        <div className="container-sign-in-page__instructions">
-          <h1>
-            Crea una cuenta ahora para conectar con los famosos y vivir
-            experiencias únicas
-          </h1>
+    <React.Fragment>
+      <div className="container-sign-in-page">
+        <div className="container-sign-in-page__login-details">
+          <div className="container-sign-in-page__instructions">
+            <h1>
+              Crea una cuenta ahora para conectar con los famosos y vivir
+              experiencias únicas
+            </h1>
+          </div>
+          <LoginButton className="container-sign-in-page__login-button btn-primary"></LoginButton>
         </div>
-
-        <LoginButton className="container-sign-in-page__login-button btn-primary">
-          <Link href="/api/login">
-            <a>
-              <span style={{ color: "white" }}>Ingresar</span>
-            </a>
-          </Link>
-        </LoginButton>
+        <div className="container-sign-in-page__create-contract-steps">
+          <CreateContractStepsLayout></CreateContractStepsLayout>
+        </div>
       </div>
-      <div className="container-sign-in-page__create-contract-steps">
-        <CreateContractStepsLayout></CreateContractStepsLayout>
-      </div>
-    </div>
+    </React.Fragment>
   );
 };
 
