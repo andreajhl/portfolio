@@ -17,12 +17,14 @@ class PaymentMethodsPage extends Component {
 
   componentDidMount() {
     this.props.getContractToPay(this.props.contractReference);
-    // GTM.tagManagerDataLayer("PAYMENT_METHODS_PAGE_VIEW", this.props.match);
+    GTM.tagManagerDataLayer(
+      "PAYMENT_METHODS_PAGE_VIEW",
+      this.props.contractReference
+    );
     this.setState({ isMounted: true });
   }
 
   render() {
-    console.log("CONTRACT:", this.props);
     return (
       <PageContainer
         applyFetchCelebrities={false}
