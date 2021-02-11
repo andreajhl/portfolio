@@ -14,6 +14,6 @@ export { default as celebritySections } from "./celebrity-sections";
 export { default as countries } from "./countries";
 export { default as cursor } from "./cursor-position";
 export { default as blog } from "./blog";
-// export { default as subscriptions } from "./subscriptions";
+export { default as subscriptions } from "./subscriptions";
 // export { default as userLocation } from "./userLocation";
 export { default as discountCoupons } from "./discount-coupons";

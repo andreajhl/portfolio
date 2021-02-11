@@ -1,7 +1,7 @@
 import React, { Component, Fragment, useState, useEffect } from "react";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { connect } from "react-redux";
-import { PageContainer } from "../../layouts";
+import { PageContainer } from "../../layouts/page-container";
 
 import { Container, Row, Col } from "react-bootstrap";
 import MetaTags from "react-meta-tags";

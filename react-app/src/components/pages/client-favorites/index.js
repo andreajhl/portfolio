@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import MetaTags from "react-meta-tags";
-import {
-  PageContainer,
-  FiltersSectionLayout,
-  CelebritiesResultsShimmerCardsLayout,
-  CelebritiesResultsLayout
-} from "../../layouts";
+import { PageContainer } from "../../layouts/page-container";
+import { FiltersSectionLayout } from "../../layouts/filters-section";
+import { CelebritiesResultsShimmerCardsLayout } from "../../layouts/celebrities-results-shimmer-cards";
+import { CelebritiesResultsLayout } from "../../layouts/celebrities-results";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";

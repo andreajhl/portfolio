@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { HiringsCardSectionLayout, PageContainer } from "../../layouts";
+import { HiringsCardSectionLayout } from "../../layouts/hirings-card-section";
+import { PageContainer } from "../../layouts/page-container";
 import { connect } from "react-redux";
 
 import { contractOperations } from "../../../state/ducks/contracts";
@@ -14,18 +15,15 @@ class ClientHiringsPage extends Component {
     };
   }
 
-  componentWillMount() {
-    this.props.listClientContracts();
-  }
-
   componentDidMount() {
-    document.getElementsByClassName("f-main-body")[0].style.background =
-      "#f7f7f7";
-    GTM.tagManagerDataLayer("CLIENT_HIRINGS_PAGE_VIEW", {});
+    this.props.listClientContracts();
+    // document.getElementsByClassName("f-main-body")[0].style.background =
+    //   "#f7f7f7";
+    GTM.tagManagerDataLayer("CLIENT_HIRINGS_PAGE_VIEW");
   }
 
   componentWillUnmount() {
-    document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
+    // document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
   }
 
   render() {

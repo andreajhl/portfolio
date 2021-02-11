@@ -90,13 +90,13 @@ class MyRoutes extends Component {
                 path={PATHS.PAYMENT_METHODS}
                 component={PAGES.PaymentMethodsPage}
               />
-              {/* TODO: */}
+              {/* TOBEFORE */}
               <Route
                 exact
                 path={PATHS.STRIPE_3D_SECURE_IFRAME}
                 component={PAGES.ProcessStripe3DFormPage}
               />
-              {/* TODO: */}
+              {/* TOBEFORE */}
               <Route
                 exact
                 path={PATHS.STRIPE_3D_SECURE_RESPONSE}
@@ -140,19 +140,19 @@ class MyRoutes extends Component {
                 component={PAGES.CelebrityRequestPage}
               />{" "}
               {/*END FORMS*/}
-              {/* TODO: */}
+              {/* DONE: */}
               <PrivateRoute
                 exact
                 path={PATHS.CLIENT_PROFILE}
                 component={PAGES.ClientProfilePage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <PrivateRoute
                 exact
                 path={PATHS.CLIENT_HIRINGS}
                 component={PAGES.ClientHiringsPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <PrivateRoute
                 exact
                 path={PATHS.CLIENT_SUBSCRIPTIONS}

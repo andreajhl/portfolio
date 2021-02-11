@@ -1,12 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
-import { PageContainer } from "../../layouts";
+import { PageContainer } from "../../layouts/page-container";
 import MetaTags from "react-meta-tags";
-import {
-  CarouselAvailableSubscriptions,
-  CelebrityFeedPosts
-} from "../../layouts";
+import { CarouselAvailableSubscriptions } from "../../layouts/carousel-available-subscriptions";
+import { CelebrityFeedPosts } from "../../layouts/celebrity-feed-posts";
 import * as firestoreService from "../../../firebase/firestoreService";
 import { LoaderLayout } from "../../layouts/loader";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
