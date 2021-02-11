@@ -60,31 +60,31 @@ class MyRoutes extends Component {
                 path={PATHS.CELEBRITY_PROFILE_ERROR}
                 component={PAGES.FourZeroFourCelebrityProfile}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.CELEBRITY_PROFILE_CONTRACT}
                 component={PAGES.CreateContractPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <PrivateRoute
                 exact
                 path={PATHS.HIRING_EDITOR}
                 component={PAGES.EditContractPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.CONTRACT_CREATED}
                 component={PAGES.ContractCreatedPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.CONTRACT_PENDING}
                 component={PAGES.ContractCreatedPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <PrivateRoute
                 exact
                 path={PATHS.PAYMENT_METHODS}

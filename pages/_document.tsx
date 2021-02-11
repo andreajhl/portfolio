@@ -36,6 +36,7 @@ class MyDocument extends Document {
             name="robots"
             content={isProdEnvironment ? "index" : "noindex"}
           />
+          <script src="https://js.stripe.com/v3/" />
         </Head>
         <body>
           <Main />

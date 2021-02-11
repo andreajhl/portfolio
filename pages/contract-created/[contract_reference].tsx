@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { PaymentMethodsPage } from "react-app/src/components/pages/payment-methods";
+import { ContractCreatedPage } from "react-app/src/components/pages/contract-created";
 
 export const getServerSideProps: GetServerSideProps = async ({
   params: { contract_reference }
@@ -10,13 +10,13 @@ export const getServerSideProps: GetServerSideProps = async ({
   };
 };
 
-const PaymentMethods = ({ contract_reference }) => {
+const ContractCreated = ({ contract_reference }) => {
   return (
     <>
       <CustomHead />
-      <PaymentMethodsPage contractReference={contract_reference} />
+      <ContractCreatedPage contractReference={contract_reference} />
     </>
   );
 };
 
-export default PaymentMethods;
+export default ContractCreated;

@@ -3,6 +3,9 @@ import { wrapper } from "react-app/src/state/store";
 import { get } from "react-app/src/state/ducks/celebrities/actions";
 import { CELEBRITY_PROFILE_ERROR } from "react-app/src/routing/Paths";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
+import { CreateContractPage } from "react-app/src/components/pages/create-contract";
+
+/* ESTA RUTA ES PROTEGIDA */
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
@@ -37,7 +40,7 @@ const CreateContract = ({ celebrity }) => {
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
       />
-      Contratar
+      <CreateContractPage />
     </>
   );
 };

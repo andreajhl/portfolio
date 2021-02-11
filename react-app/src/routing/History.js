@@ -1,34 +1,9 @@
-// import { createBrowserHistory } from "history";
-// import * as GTM from "../state/utils/gtm";
+import * as GTM from "../state/utils/gtm";
+import Router from "next/router";
 
-// const history = createBrowserHistory();
-// history.listen((location) => {
-//   window.scroll({ top: 0 });
-//   const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
-//   window.analytics.page({
-//     ...location,
-//     path: location.pathname,
-//     isReactRouting: true,
-//     ENVIRONMENT,
-//     userAgent: navigator.userAgent,
-//     vendor: navigator.vendor,
-//     receivedAt: new Date()
-//   });
-//   // GTM.tagManagerDataLayer("PAGE_VIEW", { , title: document.title });
-// });
-
-// history._pushRoute = (route) => {
-//   GTM.tagManagerDataLayer("PAGE_VIEW", history.location);
-//   history.push(route);
-//   window.scroll({ top: 0 });
-// };
-
-const noOp = () => {};
-
-const history = {
-  _pushRoute: noOp,
-  replace: noOp,
-  push: noOp
+Router._pushRoute = function (route) {
+  GTM.tagManagerDataLayer("PAGE_VIEW", this.asPath);
+  this.push(route);
 };
 
-export { history };
+export { Router as history };

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { NavbarSectionLayout } from "../navbar-section";
 import { FooterLayout } from "../footer";
-
 import { CookiesConsent } from "../cookies-consent";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
@@ -16,50 +15,53 @@ import Headroom from "react-headroom";
 import { FiltersSectionLayout } from "../filters-section";
 import waitFor from "../../../utils/waitFor";
 import { withRouter } from "react-app/src/components/common/routing";
-import { useFetchUser } from "../../../../../lib/user";
+import { useFetchUser } from "lib/user";
 
-const PageContainer = (props) => {
-  const {
-    hasDiscountCoupon,
-    cleanUserCelebrityLikes,
-    restCountries,
-    shouldFetchFlashDeliveryCelebrities,
-    applyFetchUserCelebrityLikes,
-    fetchUserCelebrityLikes,
-    fetchFlashDeliveryCelebrities,
-    shouldFetchRestCountries,
-    queryParams,
-    updateQueryParams,
-    showBotMakerFrame
-  } = props;
+const PageContainer = ({
+  hasDiscountCoupon,
+  cleanUserCelebrityLikes,
+  restCountries,
+  shouldFetchFlashDeliveryCelebrities,
+  applyFetchUserCelebrityLikes,
+  fetchUserCelebrityLikes,
+  fetchFlashDeliveryCelebrities,
+  shouldFetchRestCountries,
+  listRestCountries,
+  queryParams,
+  updateQueryParams,
+  showBotMakerFrame,
+  router,
+  ...props
+}) => {
   const [botMakerChild, setBotMakerChild] = useState(undefined);
-  const [params, setParams] = useState({ status: 50 });
   const [dropdownMenuIsOpen, setDropdownMenuIsOpen] = useState(false);
   const [showCouponBanner, setShowCouponBanner] = useState(hasDiscountCoupon);
+
   const cancelPreviousWaitFor = () => {
     if (botMakerChild && botMakerChild.cancel) {
       botMakerChild.cancel();
     }
   };
+
   const setBotmakerDisplay = (botMakerChild) => {
     if (!botMakerChild) return;
-    botMakerChild.parentElement.classList.toggle(
-      "d-none",
-      !props.showBotMakerFrame
-    );
+    botMakerChild.parentElement.classList.toggle("d-none", !showBotMakerFrame);
   };
+
   const onSearchChange = (keyword) => {
     const newQueryParams = {
-      ...props.queryParams,
+      ...queryParams,
       offset: updateQueryParamsInitialState.offset,
       limit: updateQueryParamsInitialState.limit,
       search: keyword
     };
-    props.updateQueryParams(newQueryParams, props.router);
+    updateQueryParams(newQueryParams, router);
   };
+
   useEffect(() => {
     changeBotmakerDisplay();
   }, [showBotMakerFrame]);
+
   const handleChangeDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
     GTM.tagManagerDataLayer("CLICK_ON_DROPDOWN_MENU", {
       dropdownMenuIsOpen,
@@ -89,6 +91,7 @@ const PageContainer = (props) => {
       setBotmakerDisplay(botMakerChild);
     }
   };
+
   useEffect(() => {
     cleanUserCelebrityLikes();
     if (applyFetchUserCelebrityLikes) {
@@ -98,7 +101,7 @@ const PageContainer = (props) => {
     if (shouldFetchFlashDeliveryCelebrities) {
       fetchFlashDeliveryCelebrities();
     }
-    if (shouldFetchRestCountries && restCountries.lenght === 0) {
+    if (shouldFetchRestCountries && restCountries.length === 0) {
       listRestCountries();
     }
     changeBotmakerDisplay();
@@ -126,7 +129,7 @@ const PageContainer = (props) => {
             hideControls={props.hideControls}
             dropdownMenuIsOpen={dropdownMenuIsOpen}
             setDropdownMenuIsOpen={setDropdownMenuIsOpen}
-            queryParams={props.queryParams}
+            queryParams={queryParams}
             showCouponBanner={showCouponBanner}
             setShowCouponBanner={setShowCouponBanner}
           />
@@ -163,7 +166,7 @@ const PageContainer = (props) => {
         src="/assets/img/wifi-connection-error.svg"
         alt="Imagen de Error de conexión de internet pre-cargada"
       />
-      {/*{this.props.showVideoCallsResearch ? <VideoCallsResearch /> : null}*/}
+      {/*{this.showVideoCallsResearch ? <VideoCallsResearch /> : null}*/}
       {/*COOKIES CONSENT*/}
       {/* <DownloadAppBanner /> */}
       {/* <CookiesConsent /> */}
