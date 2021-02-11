@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   };
 };
 
-const PaymentMethods = ({ contract_reference }) => {
+const ContractCreated = ({ contract_reference }) => {
   return (
     <>
       <CustomHead />
@@ -19,4 +19,4 @@ const PaymentMethods = ({ contract_reference }) => {
   );
 };
 
-export default PaymentMethods;
+export default ContractCreated;

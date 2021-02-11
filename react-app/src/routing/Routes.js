@@ -66,19 +66,19 @@ class MyRoutes extends Component {
                 path={PATHS.CELEBRITY_PROFILE_CONTRACT}
                 component={PAGES.CreateContractPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <PrivateRoute
                 exact
                 path={PATHS.HIRING_EDITOR}
                 component={PAGES.EditContractPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.CONTRACT_CREATED}
                 component={PAGES.ContractCreatedPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.CONTRACT_PENDING}
