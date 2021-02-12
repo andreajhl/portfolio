@@ -55,7 +55,7 @@ const NavbarSectionLayout = ({
             <DropdownMenuLayout
               dropdownMenuIsOpen={dropdownMenuIsOpen}
               setDropdownMenuIsOpen={setDropdownMenuIsOpen}
-              isLogged={isLogged}
+              isLogged={!isLoading && isAuthenticated}
             />
           </div>
           <div className='top-bar__center-side col-4'>
