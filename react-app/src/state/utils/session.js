@@ -29,7 +29,7 @@ export class Session {
   }
 
   getSession = () => {
-    const token = isBrowser() ? localStorage.getItem(this.sessionName) : "";
+    const token = isBrowser() ? localStorage.getItem(this.sessionName) : null;
     return token ? this.jwtDecode(token) : null;
   };
 
