@@ -28,8 +28,12 @@ export class Session {
     history._pushRoute(PATHS.ROOT_PATH);
   }
 
+  getToken = () => {
+    return isBrowser() ? localStorage.getItem(this.sessionName) : null;
+  };
+
   getSession = () => {
-    const token = isBrowser() ? localStorage.getItem(this.sessionName) : null;
+    const token = this.getToken();
     return token ? this.jwtDecode(token) : null;
   };
 

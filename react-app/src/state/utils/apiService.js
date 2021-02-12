@@ -6,7 +6,7 @@ const setHeaders = (
   addFamososAuthorizationHeader = true,
   cancelToken
 ) => {
-  const sessionToken = new Session().getSession();
+  const sessionToken = new Session().getToken();
   let options = {};
   if (sessionToken && addFamososAuthorizationHeader) {
     options.headers = {
