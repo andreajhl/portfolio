@@ -6,4 +6,8 @@ Router._pushRoute = function (route) {
   this.push(route);
 };
 
+// Router.location = {
+//   search: String(Router.asPath).replace(Router.pathname, "")
+// };
+
 export { Router as history };

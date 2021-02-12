@@ -4,13 +4,6 @@ import jwt_decode from "jwt-decode";
 import { Mixpanel } from "./mixPanel";
 import isBrowser from "react-app/src/utils/isBrowser";
 
-// export class Session {
-//   setSession = noop;
-//   getSession = noop;
-//   tokenExpired = noop;
-//   isDummy = noop;
-//   hasEmail = noop;
-// }
 export class Session {
   constructor() {
     this.sessionName = "_a0_";
