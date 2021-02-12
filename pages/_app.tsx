@@ -8,6 +8,7 @@ import "react-app/src/styles.scss";
 const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
   const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
   (window as any)?.analytics.page({
+    path: url,
     url,
     shallow,
     isReactRouting: true,
