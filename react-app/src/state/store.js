@@ -47,7 +47,9 @@ const makeStore = (context) =>
   );
 
 // export an assembled wrapper
-export const wrapper = createWrapper(makeStore, { debug: true });
+export const wrapper = createWrapper(makeStore, {
+  debug: process.env.NEXT_PUBLIC_ENVIRONMENT === "development"
+});
 
 export default function initStore(initialState) {
   const rootReducer = combineReducers({ ...reducers, hidrateReducer });

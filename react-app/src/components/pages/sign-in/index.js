@@ -4,15 +4,18 @@ import CreateContractStepsLayout from "../../containers/create-contracts-steps";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
 import { HOME_PATH } from "../../../routing/Paths";
+import { PageContainer } from "../../layouts/page-container";
 
 const SignInPage = () => {
   const router = useRouter();
+
   const { isLoading, isAuthenticated } = useAuth0();
   if (!isLoading & isAuthenticated) {
     router.replace(HOME_PATH);
   }
+
   return (
-    <React.Fragment>
+    <PageContainer>
       <div className="container-sign-in-page">
         <div className="container-sign-in-page__login-details">
           <div className="container-sign-in-page__instructions">
@@ -27,7 +30,7 @@ const SignInPage = () => {
           <CreateContractStepsLayout></CreateContractStepsLayout>
         </div>
       </div>
-    </React.Fragment>
+    </PageContainer>
   );
 };
 
