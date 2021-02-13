@@ -15,22 +15,31 @@ const SignInPage = () => {
   }
 
   return (
-    <PageContainer>
-      <div className="container-sign-in-page">
-        <div className="container-sign-in-page__login-details">
-          <div className="container-sign-in-page__instructions">
-            <h1>
-              Crea una cuenta ahora para conectar con los famosos y vivir
-              experiencias únicas
-            </h1>
+    <React.Fragment>
+      <MetaTags>
+        <title>Famosos.com - Iniciar Sesión</title>
+        <meta
+          name="description"
+          content="Inicia sesión en Famosos.com. Reserva tu video y disfruta de experiencias únicas."
+        />
+      </MetaTags>
+      <PageContainer>
+        <div className="container-sign-in-page">
+          <div className="container-sign-in-page__login-details">
+            <div className="container-sign-in-page__instructions">
+              <h1>
+                Ingresa a tu cuenta ahora para conectar con los famosos y vivir
+                experiencias únicas
+              </h1>
+            </div>
+            <LoginButton className="container-sign-in-page__login-button btn-primary"></LoginButton>
           </div>
-          <LoginButton className="container-sign-in-page__login-button btn-primary"></LoginButton>
+          <div className="container-sign-in-page__create-contract-steps">
+            <CreateContractStepsLayout></CreateContractStepsLayout>
+          </div>
         </div>
-        <div className="container-sign-in-page__create-contract-steps">
-          <CreateContractStepsLayout></CreateContractStepsLayout>
-        </div>
-      </div>
-    </PageContainer>
+      </PageContainer>
+    </React.Fragment>
   );
 };
 

@@ -7,7 +7,8 @@ const CallToActionButton = ({
   width,
   className,
   children,
-  onClick
+  onClick,
+  onHover
 }) => {
   return (
     <Button
@@ -28,7 +29,8 @@ CallToActionButton.propTypes = {
   width: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  onHover: PropTypes.func
 };
 
 CallToActionButton.defaultProps = {
@@ -36,6 +38,7 @@ CallToActionButton.defaultProps = {
   width: "auto",
   className: "",
   children: null,
+  onClick: () => {},
   onClick: () => {}
 };
 

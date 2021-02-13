@@ -1,10 +1,15 @@
 import React from "react";
-import { NavLink } from "react-app/src/components/common/routing";
-import { CELEBRITY_PROFILE_CONTRACT } from "../../../routing/Paths";
+import { withRouter } from "../../common/routing";
+import {
+  CELEBRITY_PROFILE_CONTRACT,
+  AUTH_SUCCESS
+} from "../../../routing/Paths";
+// import { NavLink, useHistory } from "react-router-dom";
 import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
 import { CallToActionButton } from "../call-to-action-button";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import getWindow from "../../../utils/getWindow";
 const HireThisCelebrityButton = ({
   className,
   text,
@@ -12,8 +17,43 @@ const HireThisCelebrityButton = ({
   celebrityUsername,
   showCelebrityName,
   fontSize,
-  width
+  width,
+  history
 }) => {
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(
+    getWindow().navigator.userAgent
+  );
+  const {
+    loginWithPopup,
+    isLoading,
+    isAuthenticated,
+    loginWithRedirect
+  } = useAuth0();
+
+  const handlerClickToLogin = () => {
+    registerHireThisCelebrityButtonEvent("CLICK");
+    if (!isLoading && !isAuthenticated) {
+      localStorage.setItem(
+        "finalRedirect",
+        "/" + celebrityUsername + "/contratar"
+      );
+      if (true) {
+        loginWithRedirect({
+          redirectUri: window.location.origin + AUTH_SUCCESS
+        });
+      } else {
+        loginWithPopup();
+      }
+    } else {
+      history.push(
+        CELEBRITY_PROFILE_CONTRACT.replace(
+          ":celebrity_username",
+          celebrityUsername
+        )
+      );
+    }
+  };
+
   const registerHireThisCelebrityButtonEvent = (eventName) => {
     GTM.tagManagerDataLayer(eventName + "_HIRE_THIS_CELEBRITY_BUTTON", {
       path: window.location.pathname,
@@ -40,26 +80,31 @@ const HireThisCelebrityButton = ({
       : parsedFullName.first || parsedFullName.last;
 
   return (
-    <NavLink
-      to={CELEBRITY_PROFILE_CONTRACT.replace(
-        ":celebrity_username",
-        celebrityUsername
+    <React.Fragment>
+      <CallToActionButton
+        onClick={() => handlerClickToLogin()}
+        onMouseOver={() => registerHireThisCelebrityButtonEvent("HOVER")}
+        fontSize={fontSize}
+        width={width}
+        className={className}
+      >
+        {text}
+        {celebrityFullName && showCelebrityName ? " " + displayName : ""}
+      </CallToActionButton>
+      {!isLoading && !isAuthenticated && (
+        <div className="d-flex align-items-center justify-content-center py-2 px-2 px-xl-5">
+          <span
+            style={{
+              fontSize: "12px"
+            }}
+          >
+            *Al hacer click Iniciarás Sesión
+          </span>
+        </div>
       )}
-      onClick={() => registerHireThisCelebrityButtonEvent("CLICK")}
-      onMouseOver={() => registerHireThisCelebrityButtonEvent("HOVER")}
-    >
-      {
-        <CallToActionButton
-          fontSize={fontSize}
-          width={width}
-          className={className}
-        >
-          {text}
-          {celebrityFullName && showCelebrityName ? " " + displayName : ""}
-        </CallToActionButton>
-      }
-    </NavLink>
+    </React.Fragment>
   );
 };
+const _HireThisCelebrityButton = withRouter(HireThisCelebrityButton);
 
-export { HireThisCelebrityButton };
+export { _HireThisCelebrityButton as HireThisCelebrityButton };

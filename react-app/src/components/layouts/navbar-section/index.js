@@ -11,6 +11,7 @@ import Link from "next/link";
 // import { BannerPromoLayout } from "../banner-promo";
 import { DropdownMenuLayout } from "../dropdown-menu";
 import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "../../containers/login-button/login-button";
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
   if (!target.matches("a")) return;
@@ -71,11 +72,16 @@ const NavbarSectionLayout = ({
           </div>
 
           <div className="top-bar__right-side col-4 p-0 row m-0">
-            {!isLoading && !isAuthenticated ? (
+            {!isAuthenticated && !isLoading ? (
               <div className="col d-none d-md-flex align-items-center">
-                <NavLink
-                  className="btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1"
-                  activeClassName=""
+                <LoginButton
+                  className={
+                    "btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1"
+                  }
+                ></LoginButton>
+                {/* <NavLink
+                  className='btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1'
+                  activeClassName=''
                   to={PATHS.SIGN_IN_PATH}
                   onClick={({ target }) =>
                     sendDropdownLinkAnalyticsData("CLICK", target)
@@ -85,7 +91,7 @@ const NavbarSectionLayout = ({
                   }
                 >
                   Ingresar
-                </NavLink>
+                </NavLink> */}
               </div>
             ) : null}
             <div className="top-bar__currency mr-2 ml-auto">
