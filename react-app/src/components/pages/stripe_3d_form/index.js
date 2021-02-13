@@ -4,7 +4,7 @@ import { PageContainer } from "../../layouts/page-container";
 import { Stripe3dSecureIframe } from "../../containers/stripe-3d-secure-iframe";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 
-const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_KEY);
+// const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 class ProcessStripe3DFormPage extends Component {
   constructor(props) {
@@ -17,13 +17,17 @@ class ProcessStripe3DFormPage extends Component {
     window.addEventListener("message", this.handleIframeTask);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("message", this.handleIframeTask);
+  }
+
   handleIframeTask = (message) => {
     if (typeof message.data === "string") {
       if (message.data === "GO_TO_PAYMENT_METHODS") {
         this.props.history._pushRoute(
           ROUTING_PATHS.PAYMENT_METHODS.replace(
             ":contract_reference",
-            this.props.match.params.contract_reference
+            this.props.contract_reference
           )
         );
       } else if (message.data.includes("CONTRACT_CREATED")) {
@@ -64,11 +68,7 @@ class ProcessStripe3DFormPage extends Component {
                   </div>
                 </div>
                 <Stripe3dSecureIframe
-                  iframeUrl={
-                    this.props.location.state
-                      ? this.props.location.state.url
-                      : ""
-                  }
+                  iframeUrl={this.props.history?.query?.url || ""}
                 />
                 <div className={"p-4 text-center"}>
                   <div className="mt-4 mx-auto text-center">

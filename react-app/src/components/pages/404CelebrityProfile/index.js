@@ -1,6 +1,5 @@
 import React from "react";
-
-// import { PageContainer } from "../../layouts/page-container";
+import { PageContainer } from "../../layouts/page-container";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { NavLink } from "../../common/routing";
 import { FourZeroFourCelebritiesSectionsLayout } from "../../layouts/404-celebrities-sections";
@@ -8,7 +7,7 @@ import { CallToActionButton } from "../../layouts/call-to-action-button";
 
 const FourZeroFourCelebrityProfile = ({ celebrityUsername }) => {
   return (
-    <>
+    <PageContainer applyFetchCelebrities={false} showFooter>
       <div className="FourZeroFourCelebrityProfile">
         <header className="FourZeroFourCelebrityProfile__banner container">
           <img
@@ -50,8 +49,7 @@ const FourZeroFourCelebrityProfile = ({ celebrityUsername }) => {
           </NavLink>
         </div>
       </div>
-      {/* <PageContainer applyFetchCelebrities={false} showFooter></PageContainer> */}
-    </>
+    </PageContainer>
   );
 };
 

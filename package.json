@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
@@ -16,6 +16,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
     "@auth0/nextjs-auth0": "^0.16.1",
+    "@stripe/stripe-js": "^1.12.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "firebase": "^8.2.6",
@@ -94,5 +95,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": "12.4.0"
   }
 }

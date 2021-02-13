@@ -90,13 +90,13 @@ class MyRoutes extends Component {
                 path={PATHS.PAYMENT_METHODS}
                 component={PAGES.PaymentMethodsPage}
               />
-              {/* TOBEFORE */}
+              {/* DONE */}
               <Route
                 exact
                 path={PATHS.STRIPE_3D_SECURE_IFRAME}
                 component={PAGES.ProcessStripe3DFormPage}
               />
-              {/* TOBEFORE */}
+              {/* DONE */}
               <Route
                 exact
                 path={PATHS.STRIPE_3D_SECURE_RESPONSE}
@@ -109,7 +109,7 @@ class MyRoutes extends Component {
                 path={PATHS.SIGN_IN_PATH}
                 component={PAGES.SignInPage}
               />
-              {/* TODO: */}
+              {/* DONE: */}
               <Route
                 exact
                 path={PATHS.AUTH_SUCCESS}

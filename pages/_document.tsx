@@ -140,6 +140,9 @@ class MyDocument extends Document {
                 analytics.SNIPPET_VERSION = "4.13.1";
                 analytics.load("QFYr0foJEBPV2edPGtHTqT5dpsxAUAPa");
                 analytics.page({
+                  ENV: "${String(
+                    process.env.NEXT_PUBLIC_ENVIRONMENT
+                  ).toUpperCase()}",
                   isReactRouting: false,
                   path: window.location.pathname,
                   userAgent: navigator.userAgent,

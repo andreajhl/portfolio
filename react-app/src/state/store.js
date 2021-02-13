@@ -3,10 +3,7 @@ import thunkMiddleware from "redux-thunk";
 import * as reducers from "./ducks";
 import { batchDispatchMiddleware } from "redux-batched-actions";
 import { checkNext } from "./middlewares";
-import { useMemo } from "react";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
-
-// let store;
 
 const hidrateReducer = (state = {}, action) => {
   switch (action.type) {
@@ -25,18 +22,11 @@ const reducer = (state, action) => {
       ...state, // use previous state
       ...action.payload // apply delta from hydration
     };
-    // if (state.count.count) nextState.count.count = state.count.count; // preserve count value on client side navigation
     return nextState;
   } else {
     return rootReducer(state, action);
   }
 };
-
-// const store = createStore(
-//   rootReducer,
-//   initialState,
-//   applyMiddleware(batchDispatchMiddleware, checkNext, thunkMiddleware)
-// );
 
 // create a makeStore function
 const makeStore = (context) =>
@@ -58,12 +48,6 @@ export default function initStore(initialState) {
     initialState,
     applyMiddleware(batchDispatchMiddleware, checkNext, thunkMiddleware)
   );
-  //   if (process.env.NODE_ENV !== "production" && module.hot) {
-  //     module.hot.accept("./reducerExport", () => {
-  //       store.replaceReducer(rootReducer);
-  //     });
-  //   }
-
   return store;
 }
 

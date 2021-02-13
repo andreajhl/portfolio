@@ -7,6 +7,8 @@ branch-defaults:
     environment: FamososFrontend-Production
   feature/auth0-integration:
     environment: FamososFrontend-Development
+  feature/nextjs-migration:
+    environment: FamososFrontend-Development
   hotfix/chatbot-payment-methods:
     environment: FamososFrontend-QA
   master:
@@ -15,8 +17,6 @@ branch-defaults:
     environment: FamososFrontend-Production
   staging:
     environment: FamososFrontend-QA
-deploy:
-  artifact: zip.zip
 environment-defaults:
   FamososFrontend-Testing:
     branch: null
