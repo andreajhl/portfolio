@@ -191,7 +191,7 @@ class StripeCardForm extends Component {
         // GO TO IFRAME
         this.props.history.push({
           pathname: iframeUrl,
-          state: { url: response.source.redirect.url }
+          query: { url: response.source.redirect.url }
         });
       });
   };

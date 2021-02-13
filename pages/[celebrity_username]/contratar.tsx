@@ -6,7 +6,6 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { CreateContractPage } from "react-app/src/components/pages/create-contract";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
-/* ESTA RUTA ES PROTEGIDA */
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
@@ -47,5 +46,5 @@ const CreateContract = ({ celebrity }) => {
 };
 
 export default withAuthenticationRequired(CreateContract, {
-  onRedirecting: () => <LoadingPage></LoadingPage>
+  onRedirecting: () => <LoadingPage />
 });

@@ -21,7 +21,7 @@ export const tagManagerDataLayer = (event, dataLayer) => {
     // Mixpanel.track(event, { ...dataLayer });
 
     // GTM NOTIFICATION
-    window.dataLayer.push({
+    window?.dataLayer?.push?.({
       ...dataLayer,
       event
     });
