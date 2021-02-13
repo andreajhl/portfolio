@@ -30,10 +30,6 @@ _branchName=$(git symbolic-ref --short -q HEAD)
 echo "Deploying ====> ${environments[selectedOption]} - ${_commitId}..."
 echo
 
-
-mkdir build
-cd react-app
-npm install
 if [[ ${environments[selectedOption]} = "Development" ]]; then
     npm run-script build-development
 elif [[ ${environments[selectedOption]} = "Testing" ]]; then
@@ -46,22 +42,6 @@ else
     echo "Invalid environment"
     exit 1
 fi
-cp -R build/ ../build
-rm -rf build
-cd ../
-
-zip -r zip.zip . \
- --exclude=*.git* \
- --exclude=node_modules/ \
- --exclude=node_modules/* \
- --exclude=*.env* \
- --exclude=react-app/ \
- --exclude=react-app/* \
- --exclude=.ebextensions/* \
- --exclude=.elasticbeanstalk/*
 
 eb use "FamososFrontend-${environments[selectedOption]}"
 eb deploy -l "${_commitId}"-${environments[selectedOption]}
-
-rm -rf zip.zip
-rm -rf build
