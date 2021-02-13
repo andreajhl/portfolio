@@ -1,4 +1,3 @@
-import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { FourZeroFourCelebrityProfile as FourZeroFourCelebrityProfileLayout } from "react-app/src/components/pages/404CelebrityProfile";

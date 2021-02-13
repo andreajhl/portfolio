@@ -13,9 +13,12 @@ import { CelebrityProfileLayoutC } from "../../layouts/celebrity-profile-c";
 import { getCelebrityProfileVersion } from "../../../utils/celebrityProfileVersion";
 import { NetworkConnectionErrorLayout } from "../../layouts/network-error-message";
 import { LastVideosAvailableBanner } from "../../layouts/last-videos-available-banner";
+import useIsInBrowser from "../../../utils/useIsInBrowser";
 
 const CelebrityProfileLayout = ({ celebrity }) => {
-  if (!celebrity.showSimilarCelebrities) {
+  const isInBrowser = useIsInBrowser();
+
+  if (!celebrity.showSimilarCelebrities || !isInBrowser) {
     return <CelebrityProfileLayoutC celebrity={celebrity} />;
   }
 
