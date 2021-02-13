@@ -27,13 +27,6 @@ class HiringsCardSectionLayout extends Component {
     super(props);
   }
 
-  goToContract(contract_reference) {
-    history._pushRoute(
-      PATHS.HIRING_PREVIEW.replace(":contract_reference", "") +
-        contract_reference
-    );
-  }
-
   goToHome() {
     history._pushRoute(PATHS.HOME_PATH);
   }
@@ -126,7 +119,7 @@ class HiringsCardSectionLayout extends Component {
       return (
         <button
           className="btn btn-outline-primary mt-2"
-          onClick={this.goToContract.bind(this, contract.reference)}
+          onClick={GoToContract.bind(this, contract.reference)}
         >
           Ver video
           <i className="fa fa-play text-primary" />
@@ -266,29 +259,18 @@ class HiringsCardSectionLayout extends Component {
     ));
   }
 
-  renderEmptyCard() {
-    if (!this.props.isLoading) {
-      return (
-        <div className="col-sm-10 col-md-5 mt-2 pt-2 text-center">
-          <br />
-          <img
-            width="200px"
-            style={{ opacity: "0.2" }}
-            src="/assets/img/sad-face-in-rounded-square.svg"
-            alt="sad-face"
-          />
-          <br />
-          <h4 className="text-muted mt-3">
-            Aún no has realizado una contratación
-          </h4>
-          <button className="btn btn-sm btn-primary" onClick={this.goToHome}>
-            Ir a contratar
-            <i className="ml-2 text-white fa fa-arrow-right" />
-          </button>
-        </div>
-      );
-    }
-  }
+  GoToContract = (contract_reference) => {
+    history._pushRoute(
+      PATHS.HIRING_PREVIEW.replace(":contract_reference", "") +
+        contract_reference
+    );
+  };
+
+  goToPay = (contract_reference) => {
+    history._pushRoute(
+      PATHS.PAYMENT_METHODS.replace(":contract_reference", contract_reference)
+    );
+  };
 
   render() {
     return (
