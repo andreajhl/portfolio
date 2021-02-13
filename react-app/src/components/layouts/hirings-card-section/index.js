@@ -24,13 +24,6 @@ class HiringsCardSectionLayout extends Component {
     super(props);
   }
 
-  goToContract(contract_reference) {
-    history._pushRoute(
-        PATHS.HIRING_PREVIEW.replace(":contract_reference", "") +
-        contract_reference
-    );
-  }
-
   goToHome() {
     history._pushRoute(PATHS.HOME_PATH);
   }
@@ -289,7 +282,7 @@ const ContractButton = ({contract}) => {
     return (
         <button
             className="btn btn-outline-primary mt-2"
-            onClick={this.goToContract.bind(this, contract.reference)}
+            onClick={GoToContract.bind(this, contract.reference)}
         >
           Ver video
           <i className="fa fa-play text-primary"/>
@@ -297,6 +290,13 @@ const ContractButton = ({contract}) => {
     );
   }
 };
+
+const GoToContract = (contract_reference) => {
+  history._pushRoute(
+      PATHS.HIRING_PREVIEW.replace(":contract_reference", "") +
+      contract_reference
+  );
+}
 
 const goToPay = (contract_reference) => {
   history._pushRoute(
