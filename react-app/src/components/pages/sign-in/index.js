@@ -16,13 +16,6 @@ const SignInPage = () => {
 
   return (
     <React.Fragment>
-      <MetaTags>
-        <title>Famosos.com - Iniciar Sesión</title>
-        <meta
-          name="description"
-          content="Inicia sesión en Famosos.com. Reserva tu video y disfruta de experiencias únicas."
-        />
-      </MetaTags>
       <PageContainer>
         <div className="container-sign-in-page">
           <div className="container-sign-in-page__login-details">
