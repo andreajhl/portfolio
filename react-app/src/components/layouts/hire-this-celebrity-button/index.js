@@ -30,7 +30,7 @@ const HireThisCelebrityButton = ({
 
   const handlerClickToLogin = () => {
     registerHireThisCelebrityButtonEvent("CLICK");
-    if (!isLoading && !isAuthenticated) {
+    if (!isAuthenticated) {
       localStorage.setItem(
         "finalRedirect",
         "/" + celebrityUsername + "/contratar"
@@ -42,7 +42,7 @@ const HireThisCelebrityButton = ({
       } else {
         loginWithPopup();
       }
-    } else {
+    } else if (isAuthenticated) {
       history.push(
         CELEBRITY_PROFILE_CONTRACT.replace(
           ":celebrity_username",
