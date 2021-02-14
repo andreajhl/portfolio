@@ -30,6 +30,8 @@ _branchName=$(git symbolic-ref --short -q HEAD)
 echo "Deploying ====> ${environments[selectedOption]} - ${_commitId}..."
 echo
 
+npm install
+
 if [[ ${environments[selectedOption]} = "Development" ]]; then
     npm run-script build-development
 elif [[ ${environments[selectedOption]} = "Testing" ]]; then
