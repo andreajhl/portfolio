@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import { PageContainer } from "../../layouts/page-container";
-import MetaTags from "react-meta-tags";
 import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 
@@ -33,14 +32,6 @@ class AuthFlowPage extends Component {
   render() {
     return (
       <>
-        <MetaTags>
-          <title>Famosos.com - Iniciar Sesión</title>
-          <meta
-            name="description"
-            content="Inicia sesión en Famosos.com. Reserva tu video y disfruta de experiencias únicas."
-          />
-        </MetaTags>
-
         <PageContainer applyFetchCelebrities={false} showFooter={false}>
           <div className="SignInPage">
             <div className="section">
