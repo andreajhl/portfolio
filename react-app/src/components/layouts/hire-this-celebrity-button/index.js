@@ -78,7 +78,7 @@ const HireThisCelebrityButton = ({
       : parsedFullName.first || parsedFullName.last;
 
   return (
-    <React.Fragment>
+    <div className='d-flex flex-column justify-content-center  align-items-center'>
       <CallToActionButton
         onClick={() => handlerClickToLogin()}
         onMouseOver={() => registerHireThisCelebrityButtonEvent("HOVER")}
@@ -100,7 +100,7 @@ const HireThisCelebrityButton = ({
           </span>
         </div>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 
