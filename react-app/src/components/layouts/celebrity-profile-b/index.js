@@ -1,14 +1,39 @@
 import React from "react";
 import { NavLink } from "react-app/src/components/common/routing";
-import { CelebrityDetails } from "../celebrity-details";
-import { CelebrityPublicContractsSectionLayout } from "../celebrity-public-contracts-section";
-import { CelebrityReviewsSectionLayout } from "../celebrity-reviews-section";
-import { SimilarCelebritiesCardsSectionLayout } from "../similar-celebrities-cards-section";
-import { SimilarCelebrityContractsSectionLayout } from "../similar-celebrity-contracts-section";
-import { ResizableMainVideo } from "../resizable-main-video";
-import HowToGetAVideoMessageLayout from "../how-to-get-a-video-message";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import { connect } from "react-redux";
+import dynamic from "next/dynamic";
+const HowToGetAVideoMessageLayout = dynamic(() =>
+  import("../how-to-get-a-video-message").then(
+    (mod) => mod.HowToGetAVideoMessageLayout
+  )
+);
+const SimilarCelebritiesCardsSectionLayout = dynamic(() =>
+  import("../similar-celebrities-cards-section").then(
+    (mod) => mod.HowToGetAVideoMessageLayout
+  )
+);
+const SimilarCelebrityContractsSectionLayout = dynamic(() =>
+  import("../similar-celebrity-contracts-section").then(
+    (mod) => mod.HowToGetAVideoMessageLayout
+  )
+);
+const CelebrityPublicContractsSectionLayout = dynamic(() =>
+  import("../celebrity-public-contracts-section").then(
+    (mod) => mod.CelebrityPublicContractsSectionLayout
+  )
+);
+const ResizableMainVideo = dynamic(() =>
+  import("../resizable-main-video").then((mod) => mod.ResizableMainVideo)
+);
+const CelebrityDetails = dynamic(() =>
+  import("../celebrity-details").then((mod) => mod.CelebrityDetails)
+);
+const CelebrityReviewsSectionLayout = dynamic(() =>
+  import("../celebrity-reviews-section").then(
+    (mod) => mod.CelebrityReviewsSectionLayout
+  )
+);
 
 const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
   return (
