@@ -1,19 +1,42 @@
 import React, { Component } from "react";
-import { PageContainer } from "../../layouts/page-container";
 import * as PropTypes from "prop-types";
 import { CelebrityShape } from "../../../prop-types";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
-
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
-import { CelebrityProfileLayoutA } from "../../layouts/celebrity-profile-a";
-import { CelebrityProfileLayoutB } from "../../layouts/celebrity-profile-b";
-import { CelebrityProfileLayoutC } from "../../layouts/celebrity-profile-c";
 import { getCelebrityProfileVersion } from "../../../utils/celebrityProfileVersion";
-import { NetworkConnectionErrorLayout } from "../../layouts/network-error-message";
-import { LastVideosAvailableBanner } from "../../layouts/last-videos-available-banner";
 import useIsInBrowser from "../../../utils/useIsInBrowser";
+import dynamic from "next/dynamic";
+
+const LastVideosAvailableBanner = dynamic(() =>
+  import("../../layouts/last-videos-available-banner").then(
+    (mod) => mod.LastVideosAvailableBanner
+  )
+);
+const PageContainer = dynamic(() =>
+  import("../../layouts/page-container").then((mod) => mod.PageContainer)
+);
+const NetworkConnectionErrorLayout = dynamic(() =>
+  import("../../layouts/network-error-message").then(
+    (mod) => mod.NetworkConSnectionErrorLayout
+  )
+);
+const CelebrityProfileLayoutA = dynamic(() =>
+  import("../../layouts/celebrity-profile-a").then(
+    (mod) => mod.CelebrityProfileLayoutA
+  )
+);
+const CelebrityProfileLayoutB = dynamic(() =>
+  import("../../layouts/celebrity-profile-b").then(
+    (mod) => mod.CelebrityProfileLayoutB
+  )
+);
+const CelebrityProfileLayoutC = dynamic(() =>
+  import("../../layouts/celebrity-profile-c").then(
+    (mod) => mod.CelebrityProfileLayoutC
+  )
+);
 
 const CelebrityProfileLayout = ({ celebrity }) => {
   const isInBrowser = useIsInBrowser();
