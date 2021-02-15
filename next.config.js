@@ -1,5 +1,5 @@
 module.exports = {
-  compress: false,
+  compress: true,
   images: {
     domains: [
       "famosos-media.s3.amazonaws.com",

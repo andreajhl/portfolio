@@ -61,7 +61,7 @@ const apiService = (meta) => {
     addFamososAuthorizationHeader = true;
   }
 
-  const source = meta.isCancellable ? CancelToken.source() : null;
+  const source = meta.isCancellable ? axios.CancelToken.source() : null;
 
   const configuration = setHeaders(
     meta.params,

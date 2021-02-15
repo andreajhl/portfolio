@@ -31,6 +31,7 @@ echo "Deploying ====> ${environments[selectedOption]} - ${_commitId}..."
 echo
 
 npm install
+npm audit fix
 
 if [[ ${environments[selectedOption]} = "Development" ]]; then
     npm run-script build-development
