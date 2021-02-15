@@ -4,12 +4,33 @@ const axios = require("axios");
 const fs = require("fs");
 const app = express();
 const compression = require("compression");
+const cookieParser = require("cookie-parser");
 
 // DOTENV SETTINGS
 require("dotenv").config({ path: ".env" });
 
 // COMPRESSION SETTINGS
 app.use(compression());
+
+// COOKIES MIDDLEWARE
+app.use(cookieParser());
+
+const getUserLocationCountryCode2 = async (request) => {
+  return "";
+  // const userIp = (
+  //   request.headers["x-forwarded-for"] || request.connection.remoteAddress
+  // )
+  //   .split(",")[0]
+  //   .trim();
+  // try {
+  //   const response = await axios.get(
+  //     `http://api.ipstack.com/${userIp}?access_key=ac1c0a88db0de9da13fcdba5d6742384&fields=country_code`
+  //   );
+  //   return response.data["country_code"] || "";
+  // } catch (error) {
+  //   return "";
+  // }
+};
 
 const getUserLocationCountryCode = async (request) => {
   const userIp = (
@@ -28,6 +49,7 @@ const getUserLocationCountryCode = async (request) => {
 };
 
 const { getLandingPageSync } = require("./templates/landing");
+const { response } = require("express");
 // ################################################################
 // default OG
 const defaultOG = async (data, request) => {
@@ -64,12 +86,25 @@ const defaultOG = async (data, request) => {
   );
   data = data.replace(
     "$COUNTRY_CODE",
-    await getUserLocationCountryCode(request)
+    await getUserLocationCountryCode2(request)
   );
   return data;
 };
 
 // ################################################################
+const USER_LOCATION_KEY = "userLocation";
+
+const getUserLocationMiddleware = async (request, response, next) => {
+  if (request.cookies[USER_LOCATION_KEY]) return next();
+  const userLocationValue = await getUserLocationCountryCode(request);
+  const oneYearInMilliseconds = 365 * 24 * 60 * 60 * 1000;
+  response.cookie(USER_LOCATION_KEY, userLocationValue, {
+    maxAge: oneYearInMilliseconds
+  });
+  next();
+};
+
+app.use(getUserLocationMiddleware);
 
 // ################################################################
 // ROOT
@@ -113,7 +148,7 @@ app.get("/", async (request, response) => {
       /\$OG_VIDEO/,
       "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
     );
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -175,7 +210,7 @@ app.get("/:celebrity_username", async (req, res) => {
             );
             data = data.replace(/\$OG_VIDEO_WITH/g, "400");
             data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-            getUserLocationCountryCode(req).then((userLocationCountryCode) => {
+            getUserLocationCountryCode2(req).then((userLocationCountryCode) => {
               data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
               res.send(data);
             });
@@ -212,7 +247,7 @@ app.get("/:celebrity_username", async (req, res) => {
             data = data.replace(/\$OG_VIDEO_WITH/g, "400");
             data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
             data = data.replace(/\$ROBOTS_META/, "noindex");
-            getUserLocationCountryCode(req).then((userLocationCountryCode) => {
+            getUserLocationCountryCode2(req).then((userLocationCountryCode) => {
               data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
               res.status(404).send(data);
             });
@@ -281,7 +316,7 @@ app.get("/:celebrity_username/contratar", async (req, res) => {
           data = data.replace(/\$OG_VIDEO_SECURE_URL/g, r.data.data.mainVideo);
           data = data.replace(/\$OG_VIDEO_WITH/g, "400");
           data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-          getUserLocationCountryCode(req).then((userLocationCountryCode) => {
+          getUserLocationCountryCode2(req).then((userLocationCountryCode) => {
             data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
             res.send(data);
           });
@@ -347,7 +382,7 @@ app.get("/hirings/:contract_reference", async (req, res) => {
           data = data.replace(/\$OG_VIDEO_SECURE_URL/g, r.data.data.media);
           data = data.replace(/\$OG_VIDEO_WITH/g, "400");
           data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-          getUserLocationCountryCode(req).then((userLocationCountryCode) => {
+          getUserLocationCountryCode2(req).then((userLocationCountryCode) => {
             data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
             res.send(data);
           });
@@ -408,7 +443,7 @@ app.get("/auth/sign-in/email-form/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -450,7 +485,7 @@ app.get("/auth/sign-in/cellphone-form/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -492,7 +527,7 @@ app.get("/auth/sign-up", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -534,7 +569,7 @@ app.get("/auth/sign-up/email-form/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -576,7 +611,7 @@ app.get("/auth/sign-up/cellphone-form/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -618,7 +653,7 @@ app.get("/auth/reset-password", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -663,7 +698,7 @@ app.get("/docs/terminos", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -705,7 +740,7 @@ app.get("/docs/politicas", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -747,7 +782,7 @@ app.get("/forms/aplicar/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -789,7 +824,7 @@ app.get("/tendencias/", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -831,7 +866,7 @@ app.get("/docs/faqs", async (request, response) => {
     );
     data = data.replace(/\$OG_VIDEO_WITH/g, "400");
     data = data.replace(/\$OG_VIDEO_HEIGHT/g, "400");
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
@@ -889,7 +924,7 @@ app.get("*", async (request, response) => {
       /\$OG_VIDEO/,
       "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5"
     );
-    getUserLocationCountryCode(request).then((userLocationCountryCode) => {
+    getUserLocationCountryCode2(request).then((userLocationCountryCode) => {
       data = data.replace("$COUNTRY_CODE", userLocationCountryCode);
       response.send(data);
     });
