@@ -18,7 +18,7 @@ const LoginButton = (props) => {
     loginWithRedirect
   } = useAuth0();
   const handlerClickToLogin = () => {
-    if (true) {
+    if (isMobile) {
       loginWithRedirect({
         redirectUri: locationOrigin
       });
