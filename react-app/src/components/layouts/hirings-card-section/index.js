@@ -1,5 +1,4 @@
 import React, { Component, useState } from "react";
-
 import { NavLink } from "react-app/src/components/common/routing";
 import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
@@ -30,135 +29,6 @@ class HiringsCardSectionLayout extends Component {
   goToHome() {
     history._pushRoute(PATHS.HOME_PATH);
   }
-
-  goToPay(contract_reference) {
-    history._pushRoute(
-      PATHS.PAYMENT_METHODS.replace(":contract_reference", contract_reference)
-    );
-  }
-
-  renderExpirationMessage = (date) => {
-    const _date = new Date(date);
-    require("moment/locale/es");
-    _date.setDate(_date.getDate() + 7);
-    return (
-      "Esta solicitud expira el " + moment(_date.toISOString()).format("L")
-    );
-  };
-
-  ContractButton = ({ contract }) => {
-    // CONTRACT_CREATED = 5
-    // CONTRACT_PENDING_TO_PAY = 6
-    // CONTRACT_PAYED_BY_CLIENT = 10
-    // CONTRACT_REJECTED = 20
-    // CONTRACT_EXPIRED = 25
-    // CONTRACT_RECORDED = 30
-    // CONTRACT_COMPLETED = 40
-
-    if (contract.status === 5) {
-      return (
-        <button
-          className="btn btn-outline-primary mt-2"
-          style={{ width: "100%", fontSize: "12px" }}
-          onClick={this.goToPay.bind(this, contract.reference)}
-        >
-          Finalizar compra
-          <i className="fa fa-arrow-right text-primary" />
-        </button>
-      );
-    } else if (contract.status === 6) {
-      return (
-        <button
-          className="btn btn-outline-dark mt-2"
-          disabled
-          style={{ width: "100%", fontSize: "12px" }}
-        >
-          Validando el pago
-          <i className="fa fa-clock" />
-        </button>
-      );
-    } else if (contract.status === 10) {
-      return (
-        <>
-          <div>
-            <small>{this.renderExpirationMessage(contract.paymentDate)}</small>
-          </div>
-          <button
-            className="btn btn-outline-dark mt-2"
-            disabled
-            style={{ width: "100%", fontSize: "12px" }}
-          >
-            En espera de grabación
-            <i className="fa fa-clock" />
-          </button>
-        </>
-      );
-    } else if (contract.status === 20) {
-      return (
-        <button
-          className="btn btn-outline-danger mt-2"
-          disabled
-          style={{ width: "100%", fontSize: "12px" }}
-        >
-          Contrato rechazado
-          <i className="fa fa-times-circle text-danger" />
-        </button>
-      );
-    } else if (contract.status === 25) {
-      return (
-        <button
-          className="btn btn-outline-dark mt-2"
-          disabled
-          style={{ width: "100%", fontSize: "12px" }}
-        >
-          Contrato Expirado
-          <i className="fa fa-times-circle text-dark" />
-        </button>
-      );
-    } else if (contract.status === 30 || contract.status === 40) {
-      return (
-        <button
-          className="btn btn-outline-primary mt-2"
-          onClick={GoToContract.bind(this, contract.reference)}
-        >
-          Ver video
-          <i className="fa fa-play text-primary" />
-        </button>
-      );
-    }
-  };
-
-  isPublicSwitcher = ({ contract }) => {
-    const [isPublic, setIsPublic] = useState(contract.isPublic);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const handleIsPublic = () => {
-      if (isLoading) return;
-      setIsLoading(true);
-      const newIsPublicValue = !isPublic;
-      setIsPublic(newIsPublicValue);
-      contract.isPublic = newIsPublicValue;
-      updateContractIsPublic({
-        id: contract.id,
-        reference: contract.reference,
-        isPublic: newIsPublicValue,
-        celebrityId: contract.celebrityData.id
-      }).then(() => setIsLoading(false));
-    };
-
-    return validStatusToEditIsPublic.includes(contract.status) ? (
-      <Form.Check
-        type="switch"
-        id={`custom-switch-${contract.id}`}
-        label="Publicar este video en Famosos.com"
-        checked={isPublic}
-        disabled={isLoading}
-        onChange={handleIsPublic}
-      />
-    ) : contract.isPublic ? (
-      <h6 className="mt-2 font-weight-bold">Es público</h6>
-    ) : null;
-  };
 
   ContractCard = ({ contract }) => {
     const celebrityPath = PATHS.CELEBRITY_PROFILE.replace(
@@ -218,7 +88,7 @@ class HiringsCardSectionLayout extends Component {
                   Correo eléctronico de notificación:
                   <small className="ml-2">{contract.deliveryContact}</small>
                 </h6>
-                <this.isPublicSwitcher contract={contract} />
+                <IsPublicSwitcher contract={contract} />
                 {contract.occasion ? (
                   <h6 className="mt-2 font-weight-bold">
                     Ocasión:{" "}
@@ -236,7 +106,7 @@ class HiringsCardSectionLayout extends Component {
                   </>
                 ) : null}
                 <div className="button-status">
-                  <this.ContractButton contract={contract} />
+                  <ContractButton contract={contract} />
                 </div>
               </div>
             </div>
@@ -259,18 +129,29 @@ class HiringsCardSectionLayout extends Component {
     ));
   }
 
-  GoToContract = (contract_reference) => {
-    history._pushRoute(
-      PATHS.HIRING_PREVIEW.replace(":contract_reference", "") +
-        contract_reference
-    );
-  };
-
-  goToPay = (contract_reference) => {
-    history._pushRoute(
-      PATHS.PAYMENT_METHODS.replace(":contract_reference", contract_reference)
-    );
-  };
+  renderEmptyCard() {
+    if (!this.props.isLoading) {
+      return (
+        <div className="col-sm-10 col-md-5 mt-2 pt-2 text-center">
+          <br />
+          <img
+            width="200px"
+            style={{ opacity: "0.2" }}
+            src="/assets/img/sad-face-in-rounded-square.svg"
+            alt="sad-face"
+          />
+          <br />
+          <h4 className="text-muted mt-3">
+            Aún no has realizado una contratación
+          </h4>
+          <button className="btn btn-sm btn-primary" onClick={this.goToHome}>
+            Ir a contratar
+            <i className="ml-2 text-white fa fa-arrow-right" />
+          </button>
+        </div>
+      );
+    }
+  }
 
   render() {
     return (
@@ -297,6 +178,139 @@ class HiringsCardSectionLayout extends Component {
     );
   }
 }
+
+const IsPublicSwitcher = ({ contract }) => {
+  const [isPublic, setIsPublic] = useState(contract.isPublic);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleIsPublic = () => {
+    if (isLoading) return;
+    setIsLoading(true);
+    const newIsPublicValue = !isPublic;
+    setIsPublic(newIsPublicValue);
+    contract.isPublic = newIsPublicValue;
+    updateContractIsPublic({
+      id: contract.id,
+      reference: contract.reference,
+      isPublic: newIsPublicValue,
+      celebrityId: contract.celebrityData.id
+    }).then(() => setIsLoading(false));
+  };
+
+  return validStatusToEditIsPublic.includes(contract.status) ? (
+    <Form.Check
+      type="switch"
+      id={`custom-switch-${contract.id}`}
+      label="Publicar este video en Famosos.com"
+      checked={isPublic}
+      disabled={isLoading}
+      onChange={handleIsPublic}
+    />
+  ) : contract.isPublic ? (
+    <h6 className="mt-2 font-weight-bold">Es público</h6>
+  ) : null;
+};
+
+const ContractButton = ({ contract }) => {
+  // CONTRACT_CREATED = 5
+  // CONTRACT_PENDING_TO_PAY = 6
+  // CONTRACT_PAYED_BY_CLIENT = 10
+  // CONTRACT_REJECTED = 20
+  // CONTRACT_EXPIRED = 25
+  // CONTRACT_RECORDED = 30
+  // CONTRACT_COMPLETED = 40
+
+  if (contract.status === 5) {
+    return (
+      <button
+        className="btn btn-outline-primary mt-2"
+        style={{ width: "100%", fontSize: "12px" }}
+        onClick={goToPay.bind(this, contract.reference)}
+      >
+        Finalizar compra
+        <i className="fa fa-arrow-right text-primary" />
+      </button>
+    );
+  } else if (contract.status === 6) {
+    return (
+      <button
+        className="btn btn-outline-dark mt-2"
+        disabled
+        style={{ width: "100%", fontSize: "12px" }}
+      >
+        Validando el pago
+        <i className="fa fa-clock" />
+      </button>
+    );
+  } else if (contract.status === 10) {
+    return (
+      <>
+        <div>
+          <small>{RenderExpirationMessage(contract.paymentDate)}</small>
+        </div>
+        <button
+          className="btn btn-outline-dark mt-2"
+          disabled
+          style={{ width: "100%", fontSize: "12px" }}
+        >
+          En espera de grabación
+          <i className="fa fa-clock" />
+        </button>
+      </>
+    );
+  } else if (contract.status === 20) {
+    return (
+      <button
+        className="btn btn-outline-danger mt-2"
+        disabled
+        style={{ width: "100%", fontSize: "12px" }}
+      >
+        Contrato rechazado
+        <i className="fa fa-times-circle text-danger" />
+      </button>
+    );
+  } else if (contract.status === 25) {
+    return (
+      <button
+        className="btn btn-outline-dark mt-2"
+        disabled
+        style={{ width: "100%", fontSize: "12px" }}
+      >
+        Contrato Expirado
+        <i className="fa fa-times-circle text-dark" />
+      </button>
+    );
+  } else if (contract.status === 30 || contract.status === 40) {
+    return (
+      <button
+        className="btn btn-outline-primary mt-2"
+        onClick={GoToContract.bind(this, contract.reference)}
+      >
+        Ver video
+        <i className="fa fa-play text-primary" />
+      </button>
+    );
+  }
+};
+
+const GoToContract = (contract_reference) => {
+  history._pushRoute(
+    PATHS.HIRING_PREVIEW.replace(":contract_reference", "") + contract_reference
+  );
+};
+
+const goToPay = (contract_reference) => {
+  history._pushRoute(
+    PATHS.PAYMENT_METHODS.replace(":contract_reference", contract_reference)
+  );
+};
+
+const RenderExpirationMessage = (date) => {
+  const _date = new Date(date);
+  require("moment/locale/es");
+  _date.setDate(_date.getDate() + 7);
+  return "Esta solicitud expira el " + moment(_date.toISOString()).format("L");
+};
 
 //default props
 HiringsCardSectionLayout.defaultProps = {
