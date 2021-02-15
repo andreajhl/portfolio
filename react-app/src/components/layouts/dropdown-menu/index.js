@@ -5,7 +5,8 @@ import * as PATHS from "../../../routing/Paths";
 import { sendDropdownLinkAnalyticsData } from "../navbar-section/index";
 import { LessImportantCallToActionButton } from "../less-important-call-to-action-button";
 import "./styles.scss";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "src/components/containers/login-button/login-button";
 const { type, vendor } = new UAParser().getDevice();
 const isAppleDevice = vendor === "Apple";
 const isHuaweiDevice = vendor === "Huawei";
@@ -88,20 +89,18 @@ export const DropdownMenuLayout = ({
         </NavLink> */}
         {!isLogged ? (
           <>
-            <NavLink
+            <LoginButton className='dropdown-item d-md-none'></LoginButton>
+            {/* <NavLink
               className='dropdown-item d-md-none'
               activeClassName='active'
               to={PATHS.SIGN_IN_PATH}
             >
               Ingresar
-            </NavLink>
-            <NavLink
-              className='dropdown-item'
-              activeClassName='active'
-              to={PATHS.SIGN_UP_PATH}
-            >
-              Registrarme
-            </NavLink>
+            </NavLink> */}
+            <LoginButton
+              className='dropdown-item d-md-none'
+              text={"Registrarme"}
+            ></LoginButton>
           </>
         ) : null}
         <NavLink
