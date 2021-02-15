@@ -18,11 +18,16 @@ export interface CelebrityCardLayoutI {
     to: string;
     rate?: number;
   };
+  celebrityCardLayout: {
+    width?: number | string;
+    height?: number | string;
+  };
 }
 
 const CelebrityCardLayout = ({
   celebrity,
-  currencyExchangeData
+  currencyExchangeData,
+  celebrityCardLayout
 }: CelebrityCardLayoutI) => {
   const [contractPrice, setContractPrice] = useState(
     celebrity.videoMessagePrice
@@ -60,8 +65,9 @@ const CelebrityCardLayout = ({
             alt="avatar"
             className="celebrity__profile-photo"
             src={celebrity.avatar}
-            width={150}
-            height={150}
+            height={celebrityCardLayout?.height || 156}
+            objectFit="cover"
+            width={celebrityCardLayout?.width || 156}
             placeholderSrc="/assets/img/avatar-blank.png"
           />
           {celebrity.availableForFlashDeliveries ? (

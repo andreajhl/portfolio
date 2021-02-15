@@ -44,7 +44,13 @@ const CelebritiesInfinityScrollLayout = ({
                   key={celebrity.id}
                   className="celebrities-results-layout__card-item"
                 >
-                  <CelebrityCardLayout celebrity={celebrity} />
+                  <CelebrityCardLayout
+                    celebrityCardLayout={{
+                      height: "100%",
+                      width: "100%"
+                    }}
+                    celebrity={celebrity}
+                  />
                 </li>
               ))}
             </ul>
