@@ -10,8 +10,9 @@
   "author": "famosos inc",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
     "dotenv": "latest",
     "express": "^4.16.3"
   }

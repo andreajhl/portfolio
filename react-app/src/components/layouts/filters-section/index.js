@@ -94,6 +94,16 @@ const FiltersSectionLayout = ({
       queryParams["category_id"]) &&
     !queryParams.search;
 
+  const activeCountryItems = useMemo(
+    () => (queryParams.country_id ? queryParams.country_id.split(",") : []),
+    [queryParams.country_id]
+  );
+
+  const activeCategoryItems = useMemo(
+    () => (queryParams.category_id ? queryParams.category_id.split(",") : []),
+    [queryParams.category_id]
+  );
+
   return (
     <section className={`FiltersSectionLayout ${className}`}>
       <div className="filters-section__container container pt-1">
@@ -115,9 +125,7 @@ const FiltersSectionLayout = ({
               buttonLabel="País"
               modalTitle="Filtrar por país"
               searchPlaceholder="Buscar país"
-              activeItems={
-                queryParams.country_id ? queryParams.country_id.split(",") : []
-              }
+              activeItems={activeCountryItems}
               onApplyFilters={setFilterParam("country_id")}
               options={countries.map((country) => ({
                 label: removeParenthesis(country.name),
@@ -130,11 +138,7 @@ const FiltersSectionLayout = ({
               buttonLabel="Categoría"
               modalTitle="Filtrar por categoría"
               searchPlaceholder="Buscar categoría"
-              activeItems={
-                queryParams.category_id
-                  ? queryParams.category_id.split(",")
-                  : []
-              }
+              activeItems={activeCategoryItems}
               onApplyFilters={setFilterParam("category_id")}
               options={celebrityCategories.map((category) => ({
                 label: category.title,
