@@ -6,12 +6,14 @@ import * as GTM from "../../../state/utils/gtm";
 import { StripeProvider } from "react-stripe-elements";
 import { PaymentMethodsSection } from "../../containers/payment-methods-section";
 import Maybe from "../../common/helpers/maybe";
+import { STRIPE_SCRIPT_ID } from "constants/keys";
 
 class PaymentMethodsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isMounted: false
+      isMounted: false,
+      stripe: null
     };
   }
 
@@ -22,7 +24,21 @@ class PaymentMethodsPage extends Component {
       this.props.contractReference
     );
     this.setState({ isMounted: true });
+
+    if (window?.Stripe) {
+      this.setStripe();
+    } else {
+      document
+        .querySelector("#" + STRIPE_SCRIPT_ID)
+        .addEventListener("load", this.setStripe);
+    }
   }
+
+  setStripe = () => {
+    this.setState({
+      stripe: window.Stripe(process.env.NEXT_PUBLIC_STRIPE_KEY)
+    });
+  };
 
   render() {
     return (
@@ -38,7 +54,7 @@ class PaymentMethodsPage extends Component {
         showBotMakerFrame
       >
         <Maybe it={this.state.isMounted}>
-          <StripeProvider apiKey={process.env.NEXT_PUBLIC_STRIPE_KEY}>
+          <StripeProvider stripe={this.state.stripe}>
             <PaymentMethodsSection contractData={this.props.contract} />
           </StripeProvider>
         </Maybe>
