@@ -4,7 +4,7 @@ import { AUTH_SUCCESS } from "../../../routing/Paths";
 
 const LoginButton = (props) => {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  const { className, redirectUrl } = props;
+  const { className, text, redirectUrl } = props;
   const {
     loginWithPopup,
     isLoading,
@@ -25,7 +25,7 @@ const LoginButton = (props) => {
       className={`btn btn-outline-primary  ${className ? className : ""}`}
       onClick={() => handlerClickToLogin()}
     >
-      Ingresar
+      {text ? text : "Ingresar"}
     </button>
   );
 };

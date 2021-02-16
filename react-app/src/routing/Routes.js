@@ -52,7 +52,7 @@ class MyRoutes extends Component {
                 path={PATHS.CELEBRITY_PROFILE_ERROR}
                 component={PAGES.FourZeroFourCelebrityProfile}
               />
-              <Route
+              <PrivateRoute
                 exact
                 path={PATHS.CELEBRITY_PROFILE_CONTRACT}
                 component={PAGES.CreateContractPage}
@@ -62,12 +62,12 @@ class MyRoutes extends Component {
                 path={PATHS.HIRING_EDITOR}
                 component={PAGES.EditContractPage}
               />
-              <Route
+              <PrivateRoute
                 exact
                 path={PATHS.CONTRACT_CREATED}
                 component={PAGES.ContractCreatedPage}
               />
-              <Route
+              <PrivateRoute
                 exact
                 path={PATHS.CONTRACT_PENDING}
                 component={PAGES.ContractCreatedPage}
@@ -103,11 +103,11 @@ class MyRoutes extends Component {
                 path={PATHS.SIGN_IN_WITH_SPECIFIC_FORM_PATH}
                 component={PAGES.SignInPage}
               /> */}
-              {/* <Route
+              <Route
                 exact
                 path={PATHS.SIGN_UP_PATH}
                 component={PAGES.SignUpPage}
-              /> */}
+              />
               {/* <Route
                 exact
                 path={PATHS.SIGN_UP_WITH_SPECIFIC_FORM_PATH}

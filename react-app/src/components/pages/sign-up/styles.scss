@@ -1,27 +1,19 @@
 @import "../../../theme";
 @import "../../../constants/breakpoints.scss";
-.container-sign-in-page {
+.container-sign-up-page {
   background-color: #ffffff;
   display: flex;
   justify-content: center;
-  flex-flow: column;
+  flex-flow: row;
   min-height: 80vh;
   flex-wrap: wrap;
 
-  @media screen and (min-width: 375px) {
-    align-items: center;
-  }
   &__login-details {
     display: flex;
     flex-flow: column;
-    width: 320px;
+    width: 500px;
     align-items: center;
     margin-top: 10px;
-    @media screen and (min-width: $screen-md-min) {
-      width: 500px;
-      padding: 0px;
-      margin-top: 50px;
-    }
   }
 
   &__instructions {
@@ -29,13 +21,12 @@
     @media screen and (min-width: $screen-md-min) {
       padding: 0px;
     }
-    // @media screen and (min-width: $screen-lg-min) {
-    //   margin-top: 30%;
-    // }
+    @media screen and (min-width: $screen-lg-min) {
+      margin-top: 30%;
+    }
     h1 {
       font-size: 30px;
       font-weight: bold;
-      text-align: center;
       @media screen and (min-width: $screen-md-min) {
         margin-top: 40px;
       }
@@ -46,16 +37,9 @@
     margin-top: 20px;
     height: 60px;
     color: white;
-    background-color: #fb177d;
-    border-radius: 10px;
   }
   &__create-contract-steps {
-    background-color: #f9f9f9;
-    width: 100%;
-    flex: 1 0 100%;
-    margin-top: 10px;
-    @media screen and (min-width: $screen-md-min) {
-      margin-top: 50px;
-    }
+    margin-top: 20px;
+    width: 400px;
   }
 }

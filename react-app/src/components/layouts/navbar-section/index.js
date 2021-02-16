@@ -55,7 +55,7 @@ const NavbarSectionLayout = ({
             <DropdownMenuLayout
               dropdownMenuIsOpen={dropdownMenuIsOpen}
               setDropdownMenuIsOpen={setDropdownMenuIsOpen}
-              isLogged={isLogged}
+              isLogged={!isLoading && isAuthenticated}
             />
           </div>
           <div className='top-bar__center-side col-4'>
@@ -73,21 +73,13 @@ const NavbarSectionLayout = ({
           </div>
 
           <div className='top-bar__right-side col-4 p-0 row m-0'>
-            {!isAuthenticated && !isLoading ? (
+            {!isAuthenticated ? (
               <div className='col d-none d-md-flex align-items-center'>
-                <NavLink
-                  className='btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1'
-                  activeClassName=''
-                  to={PATHS.SIGN_IN_PATH}
-                  onClick={({ target }) =>
-                    sendDropdownLinkAnalyticsData("CLICK", target)
+                <LoginButton
+                  className={
+                    "btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1"
                   }
-                  onMouseOver={({ target }) =>
-                    sendDropdownLinkAnalyticsData("HOVER", target)
-                  }
-                >
-                  Ingresar
-                </NavLink>
+                ></LoginButton>
               </div>
             ) : null}
             <div className='top-bar__currency mr-2 ml-auto'>

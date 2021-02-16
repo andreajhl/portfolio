@@ -38,7 +38,7 @@ const SignInPage = () => {
           <div className='container-sign-in-page__login-details'>
             <div className='container-sign-in-page__instructions'>
               <h1>
-                Crea una cuenta ahora para conectar con los famosos y vivir
+                Ingresa a tu cuenta ahora para conectar con los famosos y vivir
                 experiencias únicas
               </h1>
             </div>
