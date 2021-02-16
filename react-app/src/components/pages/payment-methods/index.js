@@ -24,15 +24,16 @@ class PaymentMethodsPage extends Component {
       this.props.contractReference
     );
     this.setState({ isMounted: true });
-
-    if (window?.Stripe) {
-      this.setStripe();
-    } else {
-      document
-        .querySelector("#" + STRIPE_SCRIPT_ID)
-        .addEventListener("load", this.setStripe);
-    }
+    this.loadStripe();
   }
+
+  loadStripe = () => {
+    const stripeJs = document.createElement("script");
+    stripeJs.src = "https://js.stripe.com/v3/";
+    stripeJs.async = true;
+    stripeJs.onload = this.setStripe;
+    if (document.body) document.body.appendChild(stripeJs);
+  };
 
   setStripe = () => {
     this.setState({

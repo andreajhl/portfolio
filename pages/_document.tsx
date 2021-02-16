@@ -1,6 +1,5 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { STRIPE_SCRIPT_ID } from "constants/keys";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -37,7 +36,6 @@ class MyDocument extends Document {
             name="robots"
             content={isProdEnvironment ? "index" : "noindex"}
           />
-          <script id={STRIPE_SCRIPT_ID} src="https://js.stripe.com/v3/" async />
           {/* Global Site Code Pixel - Facebook Pixel  */}
           <script
             dangerouslySetInnerHTML={{
