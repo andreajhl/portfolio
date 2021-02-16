@@ -10,8 +10,8 @@ import { wrapper } from "react-app/src/state/store";
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   async ({ store }) => {
     await fetchCelebritySections({ limit: 4, offset: 0 })(store.dispatch);
-    const oneHourInSeconds = 3600;
-    return { revalidate: oneHourInSeconds };
+    const quarterHourInSeconds = 900;
+    return { revalidate: quarterHourInSeconds };
   }
 );
 
