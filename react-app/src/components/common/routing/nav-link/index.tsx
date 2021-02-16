@@ -1,7 +1,6 @@
 import React from "react";
-import Link, { LinkProps } from "next/link";
+import Link /* , { LinkProps }  */ from "next/link";
 import { useRouter } from "next/router";
-import { pathToRegexp } from "path-to-regexp";
 
 export interface NavLinkProps {
   to: string;
