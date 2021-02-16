@@ -1,8 +1,19 @@
 // import { useEffect } from "react";
+import { GetStaticProps } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { CelebritiesPage } from "react-app/src/components/pages/celebrities";
+import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
+import { wrapper } from "react-app/src/state/store";
 // import isBrowser from "react-app/src/utils/isBrowser";
 // import auth0 from "../lib/auth0";
+
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
+  async ({ store }) => {
+    await fetchCelebritySections({ limit: 4, offset: 0 })(store.dispatch);
+    const oneHourInSeconds = 3600;
+    return { revalidate: oneHourInSeconds };
+  }
+);
 
 const Home = ({ session }) => {
   // useEffect(() => {

@@ -9,6 +9,7 @@ import useLoad from "../../../utils/useLoad";
 import { CELEBRITY_PROFILE } from "../../../routing/Paths";
 import OptimizedImage from "react-app/src/components/common/helpers/optimized-image";
 import Maybe from "react-app/src/components/common/helpers/maybe";
+import getWindow from "react-app/src/utils/getWindow";
 
 const VideoCardLayout = ({
   celebrityId,
@@ -33,7 +34,7 @@ const VideoCardLayout = ({
 
   const analyticsData = {
     widget: "VideoCardLayout",
-    path: window.location.pathname,
+    path: getWindow().location.pathname,
     celebrityId,
     celebrityUsername,
     celebrityFullName,

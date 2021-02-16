@@ -35,6 +35,7 @@ const CelebritiesSectionsLayout = ({
   const [offset, setOffset] = useState(offsetInitialValue);
 
   useEffect(() => {
+    if (offset === offsetInitialValue) return;
     fetchCelebritySections({
       offset,
       limit: resultsLimit,

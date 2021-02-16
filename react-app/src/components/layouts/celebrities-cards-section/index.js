@@ -8,6 +8,7 @@ import { SEARCH_PATH } from "../../../routing/Paths";
 import { jsonToQueryString } from "../../../state/utils/apiService";
 import * as GTM from "../../../state/utils/gtm";
 import getMoreFrequentIds from "../../../utils/getMoreFrequentIds";
+import getWindow from "react-app/src/utils/getWindow";
 
 const initialState = {
   showLeftScrollButton: false,
@@ -30,7 +31,7 @@ const CelebritiesCardsSectionLayout = ({
 
   const analyticsData = {
     widget: "CelebritiesCardsSectionLayout",
-    path: window.location.pathname,
+    path: getWindow().location.pathname,
     title: celebritiesSection.title,
     id: celebritiesSection.id,
     celebritySectionType: celebritiesSection.celebritySectionType,
