@@ -1,0 +1,101 @@
+.CreateContractsStepsLayout {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  .container-CreateContractsStepsLayout {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    // align-items: center;
+    background-color: #f9f9f9;
+    width: 100%;
+    @media only screen and (min-width: 375px) {
+      padding: 20px;
+    }
+  }
+  .title {
+    color: #3f3f3f;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+
+    @media only screen and (min-width: 768px) {
+      flex-basis: 60%;
+      text-align: left;
+    }
+  }
+  &__steps-list {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1024px;
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+    @media only screen and (min-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+  &__step-item {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    // justify-content: space-around;
+    min-width: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+    @media only screen and (min-width: 375px) {
+      min-width: none;
+      margin-top: 0px;
+    }
+    @media only screen and (min-width: 768px) {
+      min-width: 400px;
+    }
+    @media only screen and (min-width: 1024px) {
+      min-width: 300px;
+    }
+  }
+  &__step-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // align-self: center;
+    // border: 1px solid black;
+    // border-radius: 25px;
+    // height: 35px;
+    // width: 35px;
+    @media only screen and (min-width: 375px) {
+      border-radius: 25px;
+      height: 50px;
+      // width: 50px;
+    }
+  }
+  &__step-text {
+    max-width: 300px;
+    font-size: 16px;
+  }
+
+  .CreateContractsStepsLayout__safe-money {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+    align-items: center;
+    margin-top: 40px;
+    @media only screen and (min-width: 768px) {
+      margin-top: 10px;
+    }
+    @media only screen and (min-width: 1024px) {
+      margin-left: 20px;
+      align-items: unset;
+    }
+    &-icon {
+      margin-right: 20px;
+    }
+  }
+}

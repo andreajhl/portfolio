@@ -9,6 +9,9 @@ import MetaTags from "react-meta-tags";
 import { Session } from "../../../state/utils/session";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import { Redirect } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import auth0HOC from "../../../state/utils/auth0HOC";
 
 const getContractPriceVideoMessage = (contractsTypes) =>
   contractsTypes?.find?.((contract) => contract.contractType === 1)?.price || 0;
@@ -19,15 +22,9 @@ class CreateContractPage extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     GTM.tagManagerDataLayer("CREATE_CONTRACT_PAGE_VIEW", this.props.match);
-    const session = new Session();
-    if (session.isDummy()) {
-      localStorage.setItem(
-        "finalRedirect",
-        "/" + this.props.match.params["celebrity_username"] + "/contratar"
-      );
-      history._pushRoute(PATHS.AUTH_FLOW);
-    }
+    // const session = new Session();
   }
 
   componentWillMount() {
@@ -37,8 +34,22 @@ class CreateContractPage extends Component {
   }
 
   render() {
+    if (!this.props.auth0.isLoading) {
+      if (!this.props.auth0.isAuthenticated) {
+        localStorage.setItem(
+          "finalRedirect",
+          "/" + this.props.match.params["celebrity_username"] + "/contratar"
+        );
+      }
+    }
+    let RedirectTo = !this.props.auth0.isLoading ? (
+      this.props.auth0.isAuthenticated ? null : (
+        <Redirect to={PATHS.SIGN_IN_PATH}></Redirect>
+      )
+    ) : null;
     return (
       <>
+        {RedirectTo}
         {this.props.celebrity.id ? (
           <MetaTags>
             <title>
@@ -122,5 +133,5 @@ const mapDispatchToProps = {
 const _CreateContractPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateContractPage);
+)(auth0HOC(CreateContractPage));
 export { _CreateContractPage as CreateContractPage };

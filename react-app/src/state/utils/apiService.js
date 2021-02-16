@@ -10,7 +10,7 @@ const setHeaders = (
   let options = {};
   if (session.getSession() && addFamososAuthorizationHeader) {
     options.headers = {
-      authorization: "JWT " + localStorage.getItem(session.sessionName)
+      authorization: "Bearer " + localStorage.getItem(session.sessionName)
     };
   }
   if (params !== "?") {

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { UserProfileDetailsCardLayout } from "../../layouts/user-profile-details-card";
 import "./styles.scss";
 import { sessionOperations } from "../../../state/ducks/session";
+import { authenticationOperations } from "../../../state/ducks/authentication";
 import * as GTM from "../../../state/utils/gtm";
 
 class ClientProfilePage extends Component {
@@ -19,10 +20,12 @@ class ClientProfilePage extends Component {
     this.props.getToken();
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    console.log(this.props.authentication);
     document.getElementsByClassName("f-main-body")[0].style.background =
       "#f7f7f7";
     GTM.tagManagerDataLayer("CLIENT_PROFILE_PAGE_VIEW", this.props.session);
+    this.props.getUserInformation();
   }
 
   componentWillUnmount() {
@@ -32,9 +35,12 @@ class ClientProfilePage extends Component {
   render() {
     return (
       <>
-        <div className="ClientProfilePage">
+        <div className='ClientProfilePage'>
           <PageContainer applyFetchCelebrities={false}>
-            <UserProfileDetailsCardLayout session={this.props.session} />
+            <UserProfileDetailsCardLayout
+              userInformation={this.props.userInformation}
+              session={this.props.session}
+            />
           </PageContainer>
         </div>
       </>
@@ -50,12 +56,14 @@ ClientProfilePage.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
-  session: state.session.getSessionReducer.data
+  session: state.session.getSessionReducer.data,
+  userInformation: state.authentication.getUserInformationReducer.data
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  getToken: sessionOperations.getToken
+  getToken: sessionOperations.getToken,
+  getUserInformation: authenticationOperations.getUserInformation
 };
 
 // Export Class

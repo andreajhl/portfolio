@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import "./styles.scss";
 import {
   SignInWithCellphoneForm,
-  SignInWithWhatsAppForm,
-  SignUpWithEmailForm
+  SignInWithEmailForm,
+  SignInWithWhatsAppForm
 } from "../../containers";
 import { Session } from "../../../state/utils/session";
 import { history } from "../../../routing/History";
@@ -10,68 +11,46 @@ import * as PATHS from "../../../routing/Paths";
 import { PageContainer } from "../../layouts/page-container";
 import * as GTM from "../../../state/utils/gtm";
 import MetaTags from "react-meta-tags";
+import LoginButton from "../../containers/login-button/login-button";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Redirect } from "react-router-dom";
+import CreateContractStepsLayout from "../../containers/create-contracts-steps";
 
-class SignUpPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-
-    this.goToRoot = this.goToRoot.bind(this);
-  }
-
-  componentWillMount() {
-    const session = new Session();
-    session.checkSession();
-  }
-
-  componentDidMount() {
-    GTM.tagManagerDataLayer("SIGN_UP_PAGE_VIEW", this.props.match);
-  }
-
-  goToRoot() {
-    history._pushRoute(PATHS.HOME_PATH);
-  }
-
-  returnSpecificForm() {
-    const search = history.location.search;
-    const params = new URLSearchParams(search);
-    if (this.props.match.params.form === "cellphone-form") {
-      return <SignInWithCellphoneForm signUp={true} />;
-    } else if (this.props.match.params.form === "email-form") {
-      const email = params.get("email");
-      return <SignUpWithEmailForm email={email} />;
-    } else if (this.props.match.params.form === "whatsapp-form") {
-      return <SignInWithWhatsAppForm signUp={true} />;
-    } else {
-      return <SignInWithCellphoneForm signUp={true} />;
-    }
-  }
-
-  render() {
-    return (
-      <>
-        <MetaTags>
-          <title>Famosos.com - Crear una cuenta</title>
-          <meta
-            name="description"
-            content="Crea una cuenta en Famosos.com. Reserva tu video y disfruta de experiencias únicas."
-          />
-        </MetaTags>
-
-        <PageContainer applyFetchCelebrities={false} showFooter={false}>
-          <div className="SignInPage">
-            <div className="section">
-              <div className="auth-container">
-                <h3 className="font-weight-bold text-center">Regístrate</h3>
-                <div className="custom-form">{this.returnSpecificForm()}</div>
-              </div>
+const SignUpPage = () => {
+  const { isLoading, isAuthenticated } = useAuth0();
+  let RedirectTo = !isLoading ? (
+    !isAuthenticated ? null : (
+      <Redirect to={PATHS.HOME_PATH}></Redirect>
+    )
+  ) : null;
+  return (
+    <React.Fragment>
+      {RedirectTo}
+      <MetaTags>
+        <title>Famosos.com - Iniciar Sesión</title>
+        <meta
+          name='description'
+          content='Registrarte en Famosos.com. Reserva tu video y disfruta de experiencias únicas.'
+        />
+      </MetaTags>
+      <PageContainer>
+        <div className='container-sign-up-page'>
+          <div className='container-sign-up-page__login-details'>
+            <div className='container-sign-up-page__instructions'>
+              <h1>
+                Crea una cuenta ahora para conectar con los famosos y vivir
+                experiencias únicas
+              </h1>
             </div>
+            <LoginButton className='container-sign-up-page__login-button btn-primary'></LoginButton>
           </div>
-        </PageContainer>
-      </>
-    );
-  }
-}
+          <div className='container-sign-up-page__create-contract-steps'>
+            <CreateContractStepsLayout></CreateContractStepsLayout>
+          </div>
+        </div>
+      </PageContainer>
+    </React.Fragment>
+  );
+};
 
 export { SignUpPage };
