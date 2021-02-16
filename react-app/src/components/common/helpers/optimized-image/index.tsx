@@ -15,7 +15,7 @@ const OptimizedImage = ({
       style={{
         width: props.width,
         height: props.height,
-        backgroundImage: `url(${placeholderSrc})`,
+        backgroundImage: placeholderSrc && `url(${placeholderSrc})`,
         backgroundPosition: "center",
         backgroundSize
       }}
