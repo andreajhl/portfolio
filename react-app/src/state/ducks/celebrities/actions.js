@@ -111,6 +111,7 @@ export const list = (params) => {
         console.log(err);
         // handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
       });
+    return request
   };
 };
 
