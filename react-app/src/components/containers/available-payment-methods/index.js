@@ -7,19 +7,41 @@ import { connect } from "react-redux";
 import { WhatsappContact } from "../whatsapp-contact";
 import DiscountCouponForm from "../discount-coupon-form";
 import getWindow from "react-app/src/utils/getWindow";
+import DLocalPaymentsMethods from "../d-local-payments-methods";
+import { listPaymentGatewaysMethodsDLocal } from "../../../state/ducks/payments/operations";
 
 class AvailablePaymentMethods extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedPaymentMethod: "STRIPE"
+      selectedPaymentMethod: "STRIPE",
+      currencySelected: "USD"
     };
   }
   componentDidMount() {
-    console.log(this.props);
+    this.setState({
+      ...this.state,
+      currencySelected: this.props.currentCurrencySelected
+    });
+    this.getPaymentsGatewaysMethods();
   }
 
+  getPaymentsGatewaysMethods = () => {
+    this.props.listPaymentGatewaysMethodsDLocal(
+      this.state.currentCurrencySelected
+    );
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.props.currentCurrencySelected !== prevProps.currentCurrencySelected
+    ) {
+      console.log(prevProps);
+      console.log("Son diferentes:");
+      this.getPaymentsGatewaysMethods();
+    }
+  }
   changeToStripe = (e) => {
     e.preventDefault();
 
@@ -60,11 +82,19 @@ class AvailablePaymentMethods extends Component {
     });
   };
 
+  changeToDLocal = (e) => {
+    console.log("D Local Payment Method Selected");
+  };
+
   render() {
     return (
       <div className="AvailablePaymentMethods mx-auto">
         <div className={"payment-types f-rounded"}>
-          <div className={"font-weight-bold pt-2 pl-3 pb-2 mb-2"}>
+          <div
+            className={
+              "payment-types__steps font-weight-bold pt-2 pl-3 pb-2 mb-2"
+            }
+          >
             Elige el método de pago
           </div>
           <div className="payment-type mb-3" onClick={this.changeToStripe}>
@@ -139,6 +169,21 @@ class AvailablePaymentMethods extends Component {
               />
             </div>
           </div>
+          <div className="mt-2 mb-2">Otros metodos de pagos</div>
+          <>
+            <DLocalPaymentsMethods
+              reference={this.props.contractReference}
+              paymentsMethodsAvailable={
+                this.props.paymentMethodsAvailableDLocal
+              }
+              contractPrice={
+                this.props.couponData.completed
+                  ? this.applyDiscount()
+                  : this.props.contractPrice
+              }
+              // discountCouponId={this.props.couponData.data.id}
+            />
+          </>
           {getWindow().userLocation?.countryCode === "CO" ||
           getWindow().userLocation?.countryCode === "MX" ? (
             <div className="payment-type mb-3" onClick={this.changeToWhatsapp}>
@@ -193,11 +238,16 @@ AvailablePaymentMethods.defaultProps = {
 };
 // mapStateToProps
 const mapStateToProps = (state) => ({
-  couponData: state.payments.fetchDiscountCouponReducer
+  paymentMethodsAvailableDLocalIsLoading:
+    state.payments.fetchPaymentGatewaysDLocalReducer.loading,
+  paymentMethodsAvailableDLocal:
+    state.payments.fetchPaymentGatewaysDLocalReducer.data,
+  couponData: state.payments.fetchDiscountCouponReducer,
+  currencyExchangeData: state.payments.currencyExchangeReducer
 });
 
 // Export Class
-const _AvailablePaymentMethods = connect(mapStateToProps)(
-  AvailablePaymentMethods
-);
+const _AvailablePaymentMethods = connect(mapStateToProps, {
+  listPaymentGatewaysMethodsDLocal
+})(AvailablePaymentMethods);
 export { _AvailablePaymentMethods as AvailablePaymentMethods };
