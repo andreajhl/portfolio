@@ -137,39 +137,6 @@ export function fetchPaymentGatewaysReducer(
   }
 }
 
-export function fetchPaymentGatewaysDLocalReducer(
-  state = fetchPaymentGatewaysDLocalInitialState,
-  action
-) {
-  switch (action.type) {
-    case types.FETCH_AVAILABLE_PAYMENT_METHODS_DLOCAL:
-      return {
-        ...state,
-        loading: true
-      };
-    case types.FETCH_AVAILABLE_PAYMENT_METHODS_DLOCAL_FAILURE:
-      return {
-        ...fetchPaymentGatewaysDLocalInitialState,
-        error_data: action.payload.data,
-        failed: true
-      };
-    case types.FETCH_AVAILABLE_PAYMENT_METHODS_DLOCAL_SUCCESS:
-      return {
-        ...fetchPaymentGatewaysDLocalInitialState,
-        data: action.payload.data.data
-      };
-    case types.FETCH_AVAILABLE_PAYMENT_METHODS_DLOCAL_COMPLETED:
-      const data = action.payload.data.data;
-      return {
-        ...state,
-        data: data,
-        completed: true
-      };
-    default:
-      return state;
-  }
-}
-
 export function currencyExchangeReducer(
   state = currencyExchangeInitialState,
   action
@@ -236,7 +203,6 @@ export function getContractToPayReducer(
 
 export default combineReducers({
   fetchPaymentGatewaysReducer,
-  fetchPaymentGatewaysDLocalReducer,
   currencyExchangeReducer,
   getContractToPayReducer,
   fetchDiscountCouponReducer

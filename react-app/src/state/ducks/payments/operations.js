@@ -3,8 +3,7 @@ import {
   getContractToPay,
   listPaymentGateways,
   discountCouponsGateways,
-  clearCouponData,
-  listPaymentGatewaysMethodsDLocal
+  clearCouponData
 } from "./actions";
 
 export {
@@ -12,6 +11,5 @@ export {
   currencyExchange,
   getContractToPay,
   discountCouponsGateways,
-  clearCouponData,
-  listPaymentGatewaysMethodsDLocal
+  clearCouponData
 };

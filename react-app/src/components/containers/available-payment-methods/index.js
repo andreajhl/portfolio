@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import { PayPalCardForm } from "../paypal-card-form";
 import { Elements } from "react-stripe-elements";
 import StripeFlowHandler from "../stripe-flow-handler";
@@ -8,7 +7,7 @@ import { WhatsappContact } from "../whatsapp-contact";
 import DiscountCouponForm from "../discount-coupon-form";
 import getWindow from "react-app/src/utils/getWindow";
 import DLocalPaymentsMethods from "../d-local-payments-methods";
-import { listPaymentGatewaysMethodsDLocal } from "../../../state/ducks/payments/operations";
+import { listPaymentGateways } from "../../../state/ducks/payments/operations";
 
 class AvailablePaymentMethods extends Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class AvailablePaymentMethods extends Component {
   }
 
   getPaymentsGatewaysMethods = (currency) => {
-    this.props.listPaymentGatewaysMethodsDLocal(currency);
+    this.props.listPaymentGateways(currency);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -252,6 +251,6 @@ const mapStateToProps = (state) => ({
 
 // Export Class
 const _AvailablePaymentMethods = connect(mapStateToProps, {
-  listPaymentGatewaysMethodsDLocal
+  listPaymentGateways
 })(AvailablePaymentMethods);
 export { _AvailablePaymentMethods as AvailablePaymentMethods };

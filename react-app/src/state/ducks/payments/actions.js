@@ -43,41 +43,6 @@ export const listPaymentGateways = (currency) => {
   };
 };
 
-export const listPaymentGatewaysMethodsDLocal = (countryCode) => {
-  return (dispatch) => {
-    const TYPE = types.FETCH_AVAILABLE_PAYMENT_METHODS_DLOCAL;
-    const FINAL_PATH =
-      "/custom-endpoints/gateway-payment-methods/available-payment-methods/" +
-      countryCode;
-    dispatch({ type: TYPE, payload: {} });
-    apiService({
-      method: "GET",
-      action: TYPE,
-      path: FINAL_PATH,
-      async: true,
-      params: null,
-      body: null,
-      custom_endpoint: false
-    })
-      .then((res) => {
-        if (res.data.status === "OK") {
-          handleApiResponseSuccess(dispatch, TYPE, res);
-          // Other actions
-          dispatch({
-            type: types.FETCH_AVAILABLE_PAYMENT_METHODS_DLOCAL_COMPLETED,
-            payload: res
-          });
-        } else {
-          handleApiResponseFailure(dispatch, TYPE, res);
-          // Other actions
-        }
-      })
-      .catch((err) => {
-        handleApiErrors(dispatch, TYPE, err);
-      });
-  };
-};
-
 export const currencyExchange = (params) => {
   return (dispatch) => {
     const TYPE = types.CURRENCY_EXCHANGE_REQUEST;
