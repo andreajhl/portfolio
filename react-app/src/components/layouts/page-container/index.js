@@ -10,7 +10,6 @@ import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
 import { Session } from "../../../state/utils/session";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 // import { VideoCallsResearch } from "../../containers/videocalls-research";
-import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebrityProfileVersion";
 import Headroom from "react-headroom";
 import { FiltersSectionLayout } from "../filters-section";
 import waitFor from "../../../utils/waitFor";
@@ -97,7 +96,6 @@ const PageContainer = ({
     if (applyFetchUserCelebrityLikes) {
       fetchUserCelebrityLikes();
     }
-    setCelebrityProfileVersionDependingOfTime();
     if (shouldFetchFlashDeliveryCelebrities) {
       fetchFlashDeliveryCelebrities();
     }

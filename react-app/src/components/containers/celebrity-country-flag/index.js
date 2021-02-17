@@ -1,36 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import limitString from "../../../utils/limitString";
-import Maybe from "../../common/helpers/maybe";
-import OptimizedImage from "../../common/helpers/optimized-image";
-
-const heavyFlagsSvgs = ["mex", "esp", "ecu"];
-
-const isHeavyFlag = (flag) =>
-  heavyFlagsSvgs.includes(String(flag).split("/").pop().split(".").shift());
-
-const OptimizedFlagImage = ({ className, ...props }) => {
-  return (
-    <div
-      style={{ position: "relative", width: props.width, height: props.height }}
-      className={className}
-    >
-      <span
-        className={`text-primary spinner-grow spinner-grow-sm position-absolute`}
-        role="status"
-        aria-hidden="true"
-      />
-      <OptimizedImage {...props} />
-    </div>
-  );
-};
-
-const getHeight = (width) => {
-  const heightProportion = 1.25;
-  return typeof width === "number"
-    ? width / heightProportion
-    : Number(width.replace(/\D/g, "")) / heightProportion;
-};
 
 const CountryFlag = ({
   className = "",
