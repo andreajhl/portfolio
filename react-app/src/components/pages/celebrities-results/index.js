@@ -10,12 +10,10 @@ import * as GTM from "../../../state/utils/gtm";
 import { CelebritiesAdditionalResultsLayout } from "../../layouts/celebrities-additional-results";
 import pickPropertiesFromAObject from "../../../utils/pickPropertiesFromAObject";
 import { withRouter } from "react-app/src/components/common/routing";
-import useIsInBrowser from "react-app/src/utils/useIsInBrowser";
 
 function noop() {}
 
 const mapStateToProps = ({ celebrities }) => {
-  console.log(celebrities.fetchCelebritiesReducer.loading);
   return {
     isLoading: celebrities.fetchCelebritiesReducer.loading,
     isCompleted: celebrities.fetchCelebritiesReducer.completed,
