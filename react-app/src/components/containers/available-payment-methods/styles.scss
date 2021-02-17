@@ -7,6 +7,21 @@
   padding-right: 20px;
 
   .payment-types {
+    &__steps {
+      span {
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 50%;
+        background-color: rgb(67, 74, 91);
+        margin-bottom: 0.75em;
+      }
+    }
     .payment-type {
       border-bottom: none;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
