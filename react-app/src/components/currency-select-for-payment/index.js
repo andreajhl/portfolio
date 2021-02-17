@@ -18,7 +18,8 @@ const defaultCurrencyExchange = () => {};
 const CurrencyDropdownSelect = ({
   currencyExchange = defaultCurrencyExchange,
   currencyExchangeData = defaultCurrencyExchangeData,
-  available_currencies = AVAILABLE_CURRENCIES_FOR_PAYMENTS
+  available_currencies = AVAILABLE_CURRENCIES_FOR_PAYMENTS,
+  className
 }) => {
   const handleCurrentCurrency = ({ target: { value } }) => {
     const newCurrencyExchange = findAvailableCurrencyByName(value);
@@ -36,17 +37,16 @@ const CurrencyDropdownSelect = ({
       style={{
         borderRadius: "10px",
         border: "0px",
-        boxShadow: "0px 0px 10px rgb(0 0 0 / 10%)",
-        width: "70px"
+        boxShadow: "0px 0px 10px rgb(0 0 0 / 10%)"
       }}
-      className="form-select font-weight-bold"
+      className={`form-select font-weight-bold ${className ? className : ""}`}
       value={currentCurrency.name}
       onChange={handleCurrentCurrency}
     >
       {available_currencies.map((item, index) => {
         return (
           <option key={index} value={item.name}>
-            {item.name}
+            {item.label}
           </option>
         );
       })}

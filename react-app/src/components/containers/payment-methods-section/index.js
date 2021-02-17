@@ -46,19 +46,22 @@ class PaymentMethodsSection extends Component {
                 contractReference={this.props.contractData.reference}
               />
             </div>
-            <div className="row justify-content-center mx-auto mt-4">
+            <div className="row d-flex flex-column align-items-center justify-content-center mx-auto mt-4">
               <div
                 className="container-dropdown-currency d-flex align-items-center  col-12 col-md-8 p-0 mx-0"
                 style={{
                   maxWidth: "440px"
                 }}
               >
-                <span className="font-weight-bold pl-1">
-                  En que moneda te gustaria pagar
-                </span>
-                <div className="ml-5">
-                  <CurrencyDropdownSelect></CurrencyDropdownSelect>
+                <div className="d-flex pl-1">
+                  <span className="payment-methods__steps-to-pay">1</span>{" "}
+                  <span className="ml-2 font-weight-bold">
+                    En que moneda te gustaria pagar
+                  </span>
                 </div>
+              </div>
+              <div className="d-flex col-12 col-md-10 col-lg-6 col-xl-4 p-0">
+                <CurrencyDropdownSelect className="mx-auto"></CurrencyDropdownSelect>
               </div>
             </div>
             {/* PAYMENT METHODS */}
