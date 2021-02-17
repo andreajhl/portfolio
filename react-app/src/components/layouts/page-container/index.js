@@ -7,14 +7,12 @@ import { CookiesConsent } from "../cookies-consent";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
 import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
-import { Session } from "../../../state/utils/session";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
-// import { VideoCallsResearch } from "../../containers/videocalls-research";
 import Headroom from "react-headroom";
 import { FiltersSectionLayout } from "../filters-section";
 import waitFor from "../../../utils/waitFor";
 import { withRouter } from "react-app/src/components/common/routing";
-import { useFetchUser } from "lib/user";
+import Maybe from "../../common/helpers/maybe";
 
 const PageContainer = ({
   hasDiscountCoupon,
@@ -112,9 +110,8 @@ const PageContainer = ({
 
   return (
     <div className="PageContainer">
-      {/* NavbarSectionLayout */}
       <Headroom style={{ zIndex: 100000 }} upTolerance={2.5}>
-        {props.showNavbar ? (
+        <Maybe it={props.showNavbar}>
           <NavbarSectionLayout
             className={hasSearchedOrFiltered ? "hidden-hero" : ""}
             onSearchChange={onSearchChange}
@@ -131,11 +128,12 @@ const PageContainer = ({
             showCouponBanner={showCouponBanner}
             setShowCouponBanner={setShowCouponBanner}
           />
-        ) : null}
-        {props.showFiltersSection ? <FiltersSectionLayout /> : null}
+        </Maybe>
+        <Maybe it={props.showFiltersSection}>
+          <FiltersSectionLayout />
+        </Maybe>
       </Headroom>
 
-      {/* End NavbarSectionLayout */}
       <div
         className={`page-container-children ${
           !props.showSearch ? "hidden-search" : ""
@@ -149,9 +147,9 @@ const PageContainer = ({
         />
       </div>
 
-      {/* FooterLayout */}
-      {props.showFooter ? <FooterLayout /> : null}
-      {/* End FooterLayout */}
+      <Maybe it={props.showFooter}>
+        <FooterLayout />
+      </Maybe>
 
       <img
         src="/assets/img/avatar-blank.png"
@@ -165,7 +163,6 @@ const PageContainer = ({
         alt="Imagen de Error de conexión de internet pre-cargada"
       />
       {/*{this.showVideoCallsResearch ? <VideoCallsResearch /> : null}*/}
-      {/*COOKIES CONSENT*/}
       {/* <DownloadAppBanner /> */}
       <CookiesConsent />
 
