@@ -8,8 +8,17 @@ import { CurrencyDropdownSelect } from "../../../components/currency-select-for-
 class PaymentMethodsSection extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentCurrencySelected: "USD"
+    };
   }
+
+  handlerCurrencySelectedChange = (newCurrency) => {
+    this.setState({
+      ...this.state,
+      currentCurrencySelected: newCurrency
+    });
+  };
 
   render() {
     const isLoading = !this.props.contractData.reference;
@@ -61,11 +70,17 @@ class PaymentMethodsSection extends Component {
                 </div>
               </div>
               <div className="d-flex col-12 col-md-10 col-lg-6 col-xl-4 p-0">
-                <CurrencyDropdownSelect className="mx-auto"></CurrencyDropdownSelect>
+                <CurrencyDropdownSelect
+                  onChangeCurrency={(newCurrency) =>
+                    this.handlerCurrencySelectedChange(newCurrency)
+                  }
+                  className="mx-auto"
+                ></CurrencyDropdownSelect>
               </div>
             </div>
             {/* PAYMENT METHODS */}
             <AvailablePaymentMethods
+              currentCurrencySelected={this.state.currentCurrencySelected}
               contractReference={this.props.contractData.reference}
               contractPrice={this.props.contractData.price}
             />

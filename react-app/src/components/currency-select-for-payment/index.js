@@ -19,10 +19,12 @@ const CurrencyDropdownSelect = ({
   currencyExchange = defaultCurrencyExchange,
   currencyExchangeData = defaultCurrencyExchangeData,
   available_currencies = AVAILABLE_CURRENCIES_FOR_PAYMENTS,
-  className
+  className,
+  onChangeCurrency
 }) => {
   const handleCurrentCurrency = ({ target: { value } }) => {
     const newCurrencyExchange = findAvailableCurrencyByName(value);
+    onChangeCurrency(newCurrencyExchange.name);
     currencyExchange({
       from: currencyExchangeData.to.name,
       to: newCurrencyExchange.name
