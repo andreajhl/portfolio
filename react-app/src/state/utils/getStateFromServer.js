@@ -3,10 +3,14 @@ export const getStateFromServer = (fromClient, fromServer) => {
     ...fromClient,
     celebritySections: {
       ...fromClient.celebritySections,
-      fetchCelebritySectionsReducer: fromServer.celebritySections.fetchCelebritySectionsReducer
+      fetchCelebritySectionsReducer:
+        fromServer.celebritySections.fetchCelebritySectionsReducer
     },
     celebrities: {
       ...fromClient.celebrities,
+      celebrityProfileVersionReducer:
+        fromClient.celebrities.celebrityProfileVersionReducer ||
+        fromServer.celebrities.celebrityProfileVersionReducer,
       getCelebrityReducer: fromServer.celebrities.getCelebrityReducer
     }
   };

@@ -111,7 +111,7 @@ export const list = (params) => {
         console.log(err);
         // handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
       });
-    return request
+    return request;
   };
 };
 
@@ -323,3 +323,8 @@ export const fetchCelebritySubscriptionPlans = (celebrityUsername) => (
       });
     });
 };
+
+export const setCelebrityProfileVersion = (payload) => ({
+  type: types.SET_CELEBRITY_PROFILE_VERSION,
+  payload
+});
