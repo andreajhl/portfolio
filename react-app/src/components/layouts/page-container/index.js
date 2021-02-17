@@ -13,6 +13,7 @@ import { FiltersSectionLayout } from "../filters-section";
 import waitFor from "../../../utils/waitFor";
 import { withRouter } from "react-app/src/components/common/routing";
 import Maybe from "../../common/helpers/maybe";
+import initializeBotMaker from "react-app/src/utils/initializeBotMaker";
 
 const PageContainer = ({
   hasDiscountCoupon,
@@ -55,19 +56,6 @@ const PageContainer = ({
     updateQueryParams(newQueryParams, router);
   };
 
-  useEffect(() => {
-    changeBotmakerDisplay();
-  }, [showBotMakerFrame]);
-
-  const handleChangeDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
-    GTM.tagManagerDataLayer("CLICK_ON_DROPDOWN_MENU", {
-      dropdownMenuIsOpen,
-      widget: "NavbarSectionLayout",
-      path: window.location.pathname
-    });
-    setDropdownMenuIsOpen(dropdownMenuIsOpen);
-  };
-
   const changeBotmakerDisplay = () => {
     cancelPreviousWaitFor();
     const botMakerChild = waitFor(
@@ -90,6 +78,25 @@ const PageContainer = ({
   };
 
   useEffect(() => {
+    if (showBotMakerFrame) {
+      initializeBotMaker(document);
+    }
+    changeBotmakerDisplay();
+    return () => {
+      cancelPreviousWaitFor();
+    };
+  }, [showBotMakerFrame]);
+
+  const handleChangeDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
+    GTM.tagManagerDataLayer("CLICK_ON_DROPDOWN_MENU", {
+      dropdownMenuIsOpen,
+      widget: "NavbarSectionLayout",
+      path: window.location.pathname
+    });
+    setDropdownMenuIsOpen(dropdownMenuIsOpen);
+  };
+
+  useEffect(() => {
     cleanUserCelebrityLikes();
     if (applyFetchUserCelebrityLikes) {
       fetchUserCelebrityLikes();
@@ -100,10 +107,6 @@ const PageContainer = ({
     if (shouldFetchRestCountries && restCountries.length === 0) {
       listRestCountries();
     }
-    changeBotmakerDisplay();
-    return () => {
-      cancelPreviousWaitFor();
-    };
   }, []);
 
   const hasSearchedOrFiltered = queryParams !== updateQueryParamsInitialState;
