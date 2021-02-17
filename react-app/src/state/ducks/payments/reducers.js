@@ -15,9 +15,7 @@ const fetchPaymentGatewaysDLocalInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: {
-    paymentMethods: []
-  }
+  data: []
 };
 
 const currencyExchangeInitialState = {
@@ -158,10 +156,12 @@ export function fetchPaymentGatewaysDLocalReducer(
     case types.FETCH_AVAILABLE_PAYMENT_METHODS_DLOCAL_SUCCESS:
       return {
         ...fetchPaymentGatewaysDLocalInitialState,
-        data: action.payload.data.data[0]
+        data: action.payload.data.data
       };
     case types.FETCH_AVAILABLE_PAYMENT_METHODS_DLOCAL_COMPLETED:
-      const data = action.payload.data.data[0];
+      console.log("dLocal Data");
+      console.log(action.payload.data.data);
+      const data = action.payload.data.data;
       return {
         ...state,
         data: data,
