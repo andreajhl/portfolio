@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { NavbarSectionLayout } from "../navbar-section";
 import { FooterLayout } from "../footer";
-import { CookiesConsent } from "../cookies-consent";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
 import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
@@ -14,6 +13,12 @@ import waitFor from "../../../utils/waitFor";
 import { withRouter } from "react-app/src/components/common/routing";
 import Maybe from "../../common/helpers/maybe";
 import initializeBotMaker from "react-app/src/utils/initializeBotMaker";
+import dynamic from "next/dynamic";
+
+const CookiesConsent = dynamic(
+  () => import("../cookies-consent").then((mod) => mod.CookiesConsent),
+  { ssr: false }
+);
 
 const PageContainer = ({
   hasDiscountCoupon,
