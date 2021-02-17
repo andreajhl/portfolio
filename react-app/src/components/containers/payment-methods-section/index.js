@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { ContractCheckoutSummary } from "../../containers/contract-checkout-summary";
 import { AvailablePaymentMethods } from "../../containers/available-payment-methods";
 import * as ROUTING_PATHS from "../../../routing/Paths";
+import { CurrencyDropdownSelect } from "../../../components/currency-select-for-payment";
 
 class PaymentMethodsSection extends Component {
   constructor(props) {
@@ -45,7 +46,21 @@ class PaymentMethodsSection extends Component {
                 contractReference={this.props.contractData.reference}
               />
             </div>
-
+            <div className="row justify-content-center mx-auto mt-4">
+              <div
+                className="container-dropdown-currency d-flex align-items-center  col-12 col-md-8 p-0 mx-0"
+                style={{
+                  maxWidth: "440px"
+                }}
+              >
+                <span className="font-weight-bold pl-1">
+                  En que moneda te gustaria pagar
+                </span>
+                <div className="ml-5">
+                  <CurrencyDropdownSelect></CurrencyDropdownSelect>
+                </div>
+              </div>
+            </div>
             {/* PAYMENT METHODS */}
             <AvailablePaymentMethods
               contractReference={this.props.contractData.reference}
