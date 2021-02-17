@@ -167,7 +167,7 @@ const PageContainer = ({
       {/*{this.showVideoCallsResearch ? <VideoCallsResearch /> : null}*/}
       {/*COOKIES CONSENT*/}
       {/* <DownloadAppBanner /> */}
-      {/* <CookiesConsent /> */}
+      <CookiesConsent />
 
       {/*<BottomNavbarSectionLayout/>*/}
     </div>
