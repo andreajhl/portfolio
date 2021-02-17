@@ -17,7 +17,8 @@ const defaultCurrencyExchange = () => {};
 
 const CurrencyDropdownLayout = ({
   currencyExchange = defaultCurrencyExchange,
-  currencyExchangeData = defaultCurrencyExchangeData
+  currencyExchangeData = defaultCurrencyExchangeData,
+  available_currencies = AVAILABLE_CURRENCIES
 }) => {
   const handleCurrentCurrency = ({ target: { value } }) => {
     const newCurrencyExchange = findAvailableCurrencyByName(value);
@@ -50,7 +51,7 @@ const CurrencyDropdownLayout = ({
         value={currentCurrency.name}
         onChange={handleCurrentCurrency}
       >
-        {AVAILABLE_CURRENCIES.map((item, index) => {
+        {available_currencies.map((item, index) => {
           return (
             <option key={index} value={item.name}>
               {item.name}
