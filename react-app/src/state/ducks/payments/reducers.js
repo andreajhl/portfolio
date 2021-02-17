@@ -159,8 +159,6 @@ export function fetchPaymentGatewaysDLocalReducer(
         data: action.payload.data.data
       };
     case types.FETCH_AVAILABLE_PAYMENT_METHODS_DLOCAL_COMPLETED:
-      console.log("dLocal Data");
-      console.log(action.payload.data.data);
       const data = action.payload.data.data;
       return {
         ...state,

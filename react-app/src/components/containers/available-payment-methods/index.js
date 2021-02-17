@@ -16,7 +16,7 @@ class AvailablePaymentMethods extends Component {
 
     this.state = {
       selectedPaymentMethod: "STRIPE",
-      currencySelected: "USD"
+      currencySelected: this.props.currentCurrencySelected
     };
   }
   componentDidMount() {
@@ -24,22 +24,26 @@ class AvailablePaymentMethods extends Component {
       ...this.state,
       currencySelected: this.props.currentCurrencySelected
     });
-    this.getPaymentsGatewaysMethods();
+    this.getPaymentsGatewaysMethods(this.props.currentCurrencySelected);
   }
 
-  getPaymentsGatewaysMethods = () => {
-    this.props.listPaymentGatewaysMethodsDLocal(
-      this.state.currentCurrencySelected
-    );
+  getPaymentsGatewaysMethods = (currency) => {
+    this.props.listPaymentGatewaysMethodsDLocal(currency);
   };
 
   componentDidUpdate(prevProps, prevState) {
+    console.log(this.props.paymentMethodsAvailableDLocal);
     if (
       this.props.currentCurrencySelected !== prevProps.currentCurrencySelected
     ) {
-      console.log(prevProps);
-      console.log("Son diferentes:");
-      this.getPaymentsGatewaysMethods();
+      this.setState(
+        {
+          ...this.state,
+          currencySelected: this.props.currentCurrencySelected
+        },
+        () =>
+          this.getPaymentsGatewaysMethods(this.props.currentCurrencySelected)
+      );
     }
   }
   changeToStripe = (e) => {
