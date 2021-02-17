@@ -29,7 +29,6 @@ const DLocalPaymentsMethods = ({
   isSelected
 }: DLocalPaymentsMethodsProps) => {
   const handleChangePaymentMethod = (name) => {
-    console.log(name);
     setCurrentOption(name);
   };
   const [currentOption, setCurrentOption] = useState(null);
@@ -59,7 +58,7 @@ const DLocalPaymentsMethods = ({
               <input
                 className="form-check-input"
                 type="radio"
-                name="paymentMethod"
+                name={`paymentMethod-${paymentMethodType}`}
                 value={paymentMethod.name}
                 checked={currentOption === paymentMethod.name}
                 onChange={() => handleChangePaymentMethod(paymentMethod.name)}
