@@ -47,29 +47,12 @@ const CountryFlag = ({
   }, [countries, countryCode]);
 
   return celebrityCountry ? (
-    <Maybe
-      it={isHeavyFlag(celebrityCountry.flag)}
-      orElse={
-        <img
-          src={
-            celebrityCountry.alpha3Code === "USA"
-              ? "/assets/img/usa.svg"
-              : celebrityCountry.flag
-          }
-          alt={limitString(celebrityCountry.name, 10)}
-          className={className}
-          width={width}
-        />
-      }
-    >
-      <OptimizedFlagImage
-        src={celebrityCountry.flag}
-        alt={limitString(celebrityCountry.name, 10)}
-        className={className}
-        width={width}
-        height={getHeight(width)}
-      />
-    </Maybe>
+    <img
+      src={`https://flagcdn.com/w20/${celebrityCountry.alpha2Code.toLowerCase()}.webp`}
+      alt={limitString(celebrityCountry.name, 10)}
+      className={className}
+      width={width}
+    />
   ) : (
     <span
       className={`${className} text-primary spinner-grow spinner-grow-sm`}
