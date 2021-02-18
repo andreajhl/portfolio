@@ -97,7 +97,15 @@ const DLocalPaymentsMethods = ({
                 className="form-check-label w-100 cursor-pointer"
                 htmlFor={`paymentMethod-${paymentMethod.name}-${index}`}
               >
-                {paymentMethod.name}
+                <span>{paymentMethod.name}</span>
+                <img
+                  style={{
+                    position: "absolute",
+                    left: "90%"
+                  }}
+                  height="20px"
+                  src={paymentMethod.logo}
+                />
               </label>
             </div>
           ))}
