@@ -6,9 +6,7 @@ const fetchPaymentGatewaysInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: {
-    gateways: []
-  }
+  data: []
 };
 const fetchPaymentGatewaysDLocalInitialState = {
   loading: false,
@@ -122,14 +120,14 @@ export function fetchPaymentGatewaysReducer(
     case types.FETCH_PAYMENT_GATEWAYS_REQUEST_SUCCESS:
       return {
         ...fetchPaymentGatewaysInitialState,
-        data: action.payload.data
+        data: action.payload.data.data
       };
     case types.FETCH_PAYMENT_GATEWAYS_REQUEST_COMPLETED:
-      const data = action.payload.data;
-      data.data = action.payload.data.data.reverse();
+      // const data = action.payload.data;
+      // data.data = action.payload.data.data.reverse();
       return {
         ...state,
-        data: data,
+        data: action.payload.data.data,
         completed: true
       };
     default:

@@ -1,5 +1,5 @@
-import { type } from "os";
 import React, { useState } from "react";
+import { processDlocalPayment } from "../../../state/ducks/payments/actions";
 type DLocalPaymentsMethodsProps = {
   paymentMethodType: string;
   contractReference: string | number;
@@ -28,10 +28,34 @@ const DLocalPaymentsMethods = ({
   discountCounponId,
   isSelected
 }: DLocalPaymentsMethodsProps) => {
-  const handleChangePaymentMethod = (name) => {
-    setCurrentOption(name);
+  const handleChangePaymentMethod = (name, paymentMethodId) => {
+    setCurrentOption({ name, paymentMethodId });
   };
-  const [currentOption, setCurrentOption] = useState(null);
+  const [currentOption, setCurrentOption] = useState({
+    name: "",
+    paymentMethodId: ""
+  });
+
+  const handleStartPayment = async () => {
+    try {
+      processDlocalPayment(
+        contractReference,
+        currentOption.paymentMethodId,
+        buyerData.buyerFullname,
+        buyerData.buyerEmail,
+        buyerData.buyerDocument,
+        discountCounponId
+      )
+        .then((response) => {
+          if (response.requiredRedirect) {
+            window.location.replace(response.redirectUri);
+          }
+        })
+        .catch((e) => console.log("Error", e));
+    } catch (e) {
+      console.log("Error", e);
+    }
+  };
   return (
     <React.Fragment>
       <div className="titles">
@@ -60,8 +84,13 @@ const DLocalPaymentsMethods = ({
                 type="radio"
                 name={`paymentMethod-${paymentMethodType}`}
                 value={paymentMethod.name}
-                checked={currentOption === paymentMethod.name}
-                onChange={() => handleChangePaymentMethod(paymentMethod.name)}
+                checked={currentOption.name === paymentMethod.name}
+                onChange={() =>
+                  handleChangePaymentMethod(
+                    paymentMethod.name,
+                    paymentMethod.id
+                  )
+                }
                 id={`paymentMethod-${paymentMethod.name}-${index}`}
               />
               <label
@@ -73,6 +102,18 @@ const DLocalPaymentsMethods = ({
             </div>
           ))}
         </div>
+        <button
+          style={{
+            borderRadius: "10px",
+            color: "white",
+            fontWeight: "bold",
+            height: "45px"
+          }}
+          className="btn btn-primary w-100"
+          onClick={() => handleStartPayment()}
+        >
+          Botón de prueba
+        </button>
       </div>
     </React.Fragment>
   );

@@ -149,6 +149,44 @@ export const processStripePayment = (
     custom_endpoint: false
   });
 };
+export const processDlocalPayment = (
+  contractReference,
+  paymentMethodId,
+  buyerFullName,
+  buyerEmail,
+  buyerDocument,
+  discountCouponId
+) => {
+  const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
+  const data = {
+    contractReference: contractReference,
+    paymentMethodId: paymentMethodId,
+    buyerFullName: buyerFullName,
+    buyerEmail: buyerEmail,
+    buyerDocument: buyerDocument,
+    discountCouponId: discountCouponId
+  };
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false
+    })
+      .then((res) => {
+        if (res.data.status === "OK") {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err, "Error");
+        rejectionFunc("Ha ocurrido un error inesperado");
+      });
+  });
+};
 
 export const processPayPalPayment = (
   contractReference,
