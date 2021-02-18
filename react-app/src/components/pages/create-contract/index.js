@@ -18,7 +18,6 @@ class CreateContractPage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     GTM.tagManagerDataLayer("CREATE_CONTRACT_PAGE_VIEW", this.props.match);
     // const session = new Session();
   }

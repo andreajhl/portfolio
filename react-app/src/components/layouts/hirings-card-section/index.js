@@ -22,10 +22,6 @@ const mapStateToProps = ({ contracts }) => ({
 const mapDispatchToProps = { saveContractToPay };
 
 class HiringsCardSectionLayout extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   goToHome() {
     history._pushRoute(PATHS.HOME_PATH);
   }
@@ -44,6 +40,7 @@ class HiringsCardSectionLayout extends Component {
               <div className="celebrity-image">
                 <NavLink to={celebrityPath}>
                   <img
+                    alt="Avatar"
                     width="100%"
                     className={"img-responsive"}
                     src={contract.celebrityData.avatar}
@@ -98,12 +95,7 @@ class HiringsCardSectionLayout extends Component {
                   </h6>
                 ) : null}
                 {contract.status === 40 ? (
-                  <>
-                    <ReviewCreatorLayout
-                      contract={contract}
-                      autoFocus={false}
-                    />
-                  </>
+                  <ReviewCreatorLayout contract={contract} autoFocus={false} />
                 ) : null}
                 <div className="button-status">
                   <ContractButton contract={contract} />

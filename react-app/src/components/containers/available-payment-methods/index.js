@@ -6,7 +6,7 @@ import StripeFlowHandler from "../stripe-flow-handler";
 import { connect } from "react-redux";
 import { WhatsappContact } from "../whatsapp-contact";
 import DiscountCouponForm from "../discount-coupon-form";
-import getWindow from "react-app/src/utils/getWindow";
+import getCookie from "../../../utils/getCookie";
 
 class AvailablePaymentMethods extends Component {
   constructor(props) {
@@ -61,6 +61,8 @@ class AvailablePaymentMethods extends Component {
   };
 
   render() {
+    const userCountryCode = getCookie("userLocation");
+
     return (
       <div className="AvailablePaymentMethods mx-auto">
         <div className={"payment-types f-rounded"}>
@@ -139,8 +141,7 @@ class AvailablePaymentMethods extends Component {
               />
             </div>
           </div>
-          {getWindow().userLocation?.countryCode === "CO" ||
-          getWindow().userLocation?.countryCode === "MX" ? (
+          {userCountryCode === "CO" || userCountryCode === "MX" ? (
             <div className="payment-type mb-3" onClick={this.changeToWhatsapp}>
               <div className="titles">
                 <div className="icon">
