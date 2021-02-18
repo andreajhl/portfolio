@@ -75,7 +75,7 @@ class CelebrityProfilePage extends Component {
           applyFetchUserCelebrityLikes
         >
           {!hasNetworkError ? (
-            <div style={{ minHeight: "100vh" }}>
+            <div>
               {this.props.celebrity.id ? (
                 <div>
                   <LastVideosAvailableBanner

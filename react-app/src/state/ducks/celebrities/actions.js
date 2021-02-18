@@ -185,7 +185,7 @@ export const listReviews = (celebrity_id, params = {}) => {
     const TYPE = types.FETCH_REVIEWS_REQUEST;
     const FINAL_PATH = API_PATHS.REVIEWS + celebrity_id;
     dispatch({ type: TYPE, payload: {} });
-    apiService({
+    return apiService({
       method: "GET",
       action: TYPE,
       path: FINAL_PATH,

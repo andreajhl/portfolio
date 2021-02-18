@@ -3,6 +3,7 @@ import { wrapper } from "react-app/src/state/store";
 import {
   get,
   listPublicContracts,
+  listReviews,
   setCelebrityProfileVersion
 } from "react-app/src/state/ducks/celebrities/actions";
 import { CelebrityProfilePage } from "react-app/src/components/pages/celebrity-profile";
@@ -33,6 +34,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     );
 
     await listPublicContracts(celebrity.id, { currentPage: 1 })(store.dispatch);
+    await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
+    
     return {
       props: {
         celebrity
