@@ -39,9 +39,12 @@ const CurrencyDropdownSelect = ({
       style={{
         borderRadius: "10px",
         border: "0px",
-        boxShadow: "0px 0px 10px rgb(0 0 0 / 10%)"
+        boxShadow: "0px 0px 10px rgb(0 0 0 / 10%)",
+        textIndent: "10px"
       }}
-      className={`form-select font-weight-bold ${className ? className : ""}`}
+      className={`form-select font-weight-bold w-100 ${
+        className ? className : ""
+      }`}
       value={currentCurrency.name}
       onChange={handleCurrentCurrency}
     >
