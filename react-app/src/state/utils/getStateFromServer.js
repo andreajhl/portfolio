@@ -11,7 +11,9 @@ export const getStateFromServer = (fromClient, fromServer) => {
       celebrityProfileVersionReducer:
         fromClient.celebrities.celebrityProfileVersionReducer ||
         fromServer.celebrities.celebrityProfileVersionReducer,
-      getCelebrityReducer: fromServer.celebrities.getCelebrityReducer
+      getCelebrityReducer: fromServer.celebrities.getCelebrityReducer,
+      fetchPublicContractsReducer:
+        fromServer.celebrities.fetchPublicContractsReducer
     }
   };
 };

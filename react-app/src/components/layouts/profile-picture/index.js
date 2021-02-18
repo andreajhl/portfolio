@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "react-bootstrap/Image";
 import PropTypes from "prop-types";
+import Maybe from "../../common/helpers/maybe";
 
 const ProfilePicture = ({ avatar, roundedCircle, width, imageStyles }) => {
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
@@ -8,9 +9,9 @@ const ProfilePicture = ({ avatar, roundedCircle, width, imageStyles }) => {
   const changeImageIsLoaded = (event) => setImageIsLoaded(true);
 
   return (
-    <figure className="mb-0">
+    <figure className="mb-0" style={{ width, height: width }}>
       <Image
-        className={imageIsLoaded ? "" : "d-none"}
+        className="position-absolute"
         roundedCircle={roundedCircle}
         width={width}
         src={avatar}
@@ -18,14 +19,14 @@ const ProfilePicture = ({ avatar, roundedCircle, width, imageStyles }) => {
         alt="Imagen de perfil"
         style={imageStyles}
       />
-      {!imageIsLoaded ? (
+      <Maybe it={!imageIsLoaded}>
         <Image
           roundedCircle={roundedCircle}
           width={width}
           src="assets/img/avatar-blank.png"
           style={imageStyles}
         />
-      ) : null}
+      </Maybe>
     </figure>
   );
 };
