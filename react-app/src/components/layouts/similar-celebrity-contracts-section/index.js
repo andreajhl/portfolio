@@ -13,6 +13,7 @@ import { VideoShimmerCardLayout } from "../video-shimmer-card";
 import { Session } from "../../../state/utils/session";
 
 import * as GTM from "../../../state/utils/gtm";
+import getWindow from "react-app/src/utils/getWindow";
 
 class SimilarCelebrityContractsSectionLayout extends Component {
   constructor(props) {
@@ -82,7 +83,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
 
   analyticsData = {
     widget: this.constructor.name,
-    path: window.location.pathname,
+    path: getWindow().location.pathname,
     celebrityUsername: this.props.celebrityUsername
   };
 
