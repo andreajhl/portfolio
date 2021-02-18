@@ -24,10 +24,8 @@ const PageContainer = ({
   hasDiscountCoupon,
   cleanUserCelebrityLikes,
   restCountries,
-  shouldFetchFlashDeliveryCelebrities,
   applyFetchUserCelebrityLikes,
   fetchUserCelebrityLikes,
-  fetchFlashDeliveryCelebrities,
   shouldFetchRestCountries,
   listRestCountries,
   queryParams,
@@ -105,9 +103,6 @@ const PageContainer = ({
     cleanUserCelebrityLikes();
     if (applyFetchUserCelebrityLikes) {
       fetchUserCelebrityLikes();
-    }
-    if (shouldFetchFlashDeliveryCelebrities) {
-      fetchFlashDeliveryCelebrities();
     }
     if (shouldFetchRestCountries && restCountries.length === 0) {
       listRestCountries();
@@ -210,8 +205,6 @@ const mapStateToProps = (state) => {
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
     paginationData:
       state.celebrities.fetchCelebritiesReducer.data.informationPage,
-    shouldFetchFlashDeliveryCelebrities: !state.celebrities
-      .fetchFlashDeliveryCelebritiesReducer.completed,
     hasDiscountCoupon:
       state.discountCoupons.getDiscountCouponBannerReducer.data.couponCode &&
       state.discountCoupons.timeDifferenceReducer
@@ -224,8 +217,6 @@ const mapDispatchToProps = {
   fetchUserCelebrityLikes: celebrityLikesOperations.fetchUserCelebrityLikes,
   cleanUserCelebrityLikes:
     celebrityLikesOperations.fetchUserCelebrityLikesCleanUp,
-  fetchFlashDeliveryCelebrities:
-    celebrityOperations.fetchFlashDeliveryCelebrities,
   listRestCountries: restCountriesOperations.list
 };
 
