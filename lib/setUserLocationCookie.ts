@@ -61,7 +61,7 @@ const setUserLocationCookie = async ({
   if (isBot(req.headers["user-agent"])) {
     return debug("Este es un bot solicitando", req.url);
   }
-  const cookies = req ? parse(req.headers.cookie) : {};
+  const cookies = parse(req?.headers?.cookie || "");
   if (USER_LOCATION_KEY in cookies) return;
 
   await setLocationCookieHeader(req, res);
