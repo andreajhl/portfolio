@@ -1,5 +1,7 @@
+import { AVAILABLE_PAYMENTS_METHODS } from "constants/availablePaymentsMethods";
 import React, { useState } from "react";
 import { processDlocalPayment } from "../../../state/ducks/payments/actions";
+
 type DLocalPaymentsMethodsProps = {
   paymentMethodType: string;
   contractReference: string | number;
@@ -68,7 +70,7 @@ const DLocalPaymentsMethods = ({
         </div>
         <div className="payment-type-title">
           <h6 className={"font-weight-normal"}>
-            <span>{paymentMethodType}</span>
+            <span>{AVAILABLE_PAYMENTS_METHODS[paymentMethodType]}</span>
           </h6>
           <i className="far fa-credit-card"></i>
         </div>
