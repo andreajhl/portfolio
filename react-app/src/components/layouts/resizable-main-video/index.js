@@ -1,55 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { ResizableBox } from "react-resizable";
-import debounce from "lodash.debounce";
 import { CelebrityMainVideoSection } from "../main-video-section";
-
+import useGetViewportWidthOnResize from "react-app/src/utils/useGetViewportWidthOnResize";
+import getContainerWidthFromWindowWidth from "../../../utils/getContainerWidthFromWindowWidth";
+import { largeBreakPoint } from "../../../constants/bootstrapBreakpoint";
 import "react-resizable/css/styles.css";
-import getWindow from "react-app/src/utils/getWindow";
 
-const smallBreakpoint = 576;
-const containerSmallSize = 508;
-const mediumBreakpoint = 768;
-const largeBreakPoint = 991;
-const containerMediumSize = 688;
-
-const getWidthFromWindowWidth = () => {
-  const { innerWidth } = getWindow();
-
-  if (innerWidth < smallBreakpoint) {
-    return innerWidth;
-  } else if (innerWidth >= smallBreakpoint && innerWidth <= mediumBreakpoint) {
-    return containerSmallSize;
-  } else if (innerWidth >= mediumBreakpoint && innerWidth <= largeBreakPoint) {
-    return containerMediumSize;
-  } else {
-    const newWidth = innerWidth * 0.25;
-    return newWidth >= 370 ? 370 : newWidth;
-  }
+const getWidthForDesktop = (windowWidth) => {
+  const fourthPartOfViewport = windowWidth * 0.25;
+  const minimumWidth = 370;
+  return fourthPartOfViewport >= minimumWidth
+    ? minimumWidth
+    : fourthPartOfViewport;
 };
 
 const ResizableMainVideo = ({ mainVideoUrl, videoPosterUrl }) => {
-  const [windowWidth, setWindowWidth] = useState(getWidthFromWindowWidth());
+  const windowWidth = useGetViewportWidthOnResize();
   const [isInDesktop, setIsInDesktop] = useState(false);
 
+  const containerWidth = isInDesktop
+    ? getWidthForDesktop(windowWidth)
+    : getContainerWidthFromWindowWidth(windowWidth);
+
   useEffect(() => {
-    const updateSize = () => {
-      setWindowWidth(getWidthFromWindowWidth());
-      if (window.innerWidth >= 992) {
-        setIsInDesktop(true);
-      } else {
-        setIsInDesktop(false);
-      }
-    };
-    window.addEventListener("resize", debounce(updateSize, 500));
-    updateSize();
-  }, []);
+    setIsInDesktop(windowWidth > largeBreakPoint);
+  }, [windowWidth]);
 
   return (
     <ResizableBox
-      width={windowWidth}
+      width={containerWidth}
       height={isInDesktop ? 445 : 252}
-      minConstraints={[windowWidth, 252]}
-      maxConstraints={[windowWidth, 445]}
+      minConstraints={[containerWidth, 252]}
+      maxConstraints={[containerWidth, 445]}
       axis="y"
       handle={
         <button type="button" className="btn handle-button d-lg-none">
