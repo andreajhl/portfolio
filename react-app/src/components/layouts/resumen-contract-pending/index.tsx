@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ResumenStatusPayment from "../../containers/resumen-status-payment";
-
+import Link from "next/link";
 const ResumenContractPending = ({ resumen }) => {
   const HeroDiv = styled.div`
     background-color: black;
@@ -255,18 +255,20 @@ const ResumenContractPending = ({ resumen }) => {
                   Puedes consultar el estado de tu video en “Mis Contrataciones”
                 </span>
               </div>
-              <ButtonPink className="btn">
-                <span className="font-weight-bold">
-                  Ir nuevamente a mis contrataciones{" "}
-                </span>
-                <i
-                  style={{
-                    fontSize: "20px",
-                    color: "white"
-                  }}
-                  className="fas fa-long-arrow-alt-right"
-                ></i>
-              </ButtonPink>
+              <Link href="/my-account/hirings">
+                <ButtonPink className="btn">
+                  <span className="font-weight-bold">
+                    Ir nuevamente a mis contrataciones{" "}
+                  </span>
+                  <i
+                    style={{
+                      fontSize: "20px",
+                      color: "white"
+                    }}
+                    className="fas fa-long-arrow-alt-right"
+                  ></i>
+                </ButtonPink>
+              </Link>
             </PaymentRejectedActions>
           </ResumenContainer>
         </ResumenPaymentRejected>
