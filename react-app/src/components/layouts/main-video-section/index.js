@@ -7,11 +7,9 @@ import getWindow from "react-app/src/utils/getWindow";
 const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
   const [IsFinished, setIsFinished] = useState(false);
   const mainVideoReference = "mainVideo " + mainVideoUrl;
-  const [videoIsLoaded, onVideoLoadedData] = useLoad();
   const analyticsData = {
     widget: "CelebrityMainVideoSection",
     path: getWindow().location.pathname,
-    videoIsLoaded,
     mainVideoUrl
   };
   const { videoRef, playVideo, togglePlay } = useVideoPlayer(
@@ -31,6 +29,7 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
       }
     }
   );
+  const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
 
   const toggleVideoIsMuted = () =>
