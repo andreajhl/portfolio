@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import NextStepsAfterPaymentBanner from "../../containers/next-steps-after-payment-banner";
 import ResumenStatusPayment from "../../containers/resumen-status-payment";
 
 const ResumenContractRejected = ({ resumen }) => {
@@ -47,14 +46,6 @@ const ResumenContractRejected = ({ resumen }) => {
     margin-left: auto;
     margin-right: auto;
     max-width: 500px;
-  `;
-
-  const ContractsSteps = styled.div`
-    display: flex;
-    flex: 1 1 60%;
-    align-content: center;
-    justify-content: center;
-    background-color: white;
   `;
 
   const InstructionsDetails = styled.div`
