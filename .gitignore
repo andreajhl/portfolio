@@ -23,6 +23,7 @@ _node_modules
 .env.production
 .env.qa
 .env.testing
+.env*
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
