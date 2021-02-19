@@ -9,8 +9,7 @@ import getWindow from "react-app/src/utils/getWindow";
 import { DLocalPaymentsMethods } from "../d-local-payments-methods/index";
 import DLocalPaymentsForm from "../d-local-payments-form";
 import { listPaymentGateways } from "../../../state/ducks/payments/operations";
-import getCookie from "../../../utils/getCookie";
-
+import { AVAILABLE_PAYMENTS_METHODS } from "constants/availablePaymentsMethods";
 class AvailablePaymentMethods extends Component {
   constructor(props) {
     super(props);
@@ -111,8 +110,6 @@ class AvailablePaymentMethods extends Component {
   };
 
   render() {
-    const userCountryCode = getCookie("userLocation");
-
     return (
       <div className="AvailablePaymentMethods mx-auto">
         <div className={"payment-types f-rounded"}>
@@ -346,7 +343,7 @@ AvailablePaymentMethods.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state) => ({
   paymentMethodsAvailableIsLoading:
-    state.payments.fetchPaymentGatewaysReducer.loading,
+  state.payments.fetchPaymentGatewaysReducer.loading,
   paymentMethodsAvailable: state.payments.fetchPaymentGatewaysReducer.data,
   couponData: state.payments.fetchDiscountCouponReducer,
   currencyExchangeData: state.payments.currencyExchangeReducer
