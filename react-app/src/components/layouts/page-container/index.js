@@ -3,28 +3,29 @@ import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { NavbarSectionLayout } from "../navbar-section";
 import { FooterLayout } from "../footer";
-import { CookiesConsent } from "../cookies-consent";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
 import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
-import { Session } from "../../../state/utils/session";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
-// import { VideoCallsResearch } from "../../containers/videocalls-research";
-import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebrityProfileVersion";
 import Headroom from "react-headroom";
 import { FiltersSectionLayout } from "../filters-section";
 import waitFor from "../../../utils/waitFor";
 import { withRouter } from "react-app/src/components/common/routing";
-import { useFetchUser } from "lib/user";
+import Maybe from "../../common/helpers/maybe";
+import initializeBotMaker from "react-app/src/utils/initializeBotMaker";
+import dynamic from "next/dynamic";
+
+const CookiesConsent = dynamic(
+  () => import("../cookies-consent").then((mod) => mod.CookiesConsent),
+  { ssr: false }
+);
 
 const PageContainer = ({
   hasDiscountCoupon,
   cleanUserCelebrityLikes,
   restCountries,
-  shouldFetchFlashDeliveryCelebrities,
   applyFetchUserCelebrityLikes,
   fetchUserCelebrityLikes,
-  fetchFlashDeliveryCelebrities,
   shouldFetchRestCountries,
   listRestCountries,
   queryParams,
@@ -58,19 +59,6 @@ const PageContainer = ({
     updateQueryParams(newQueryParams, router);
   };
 
-  useEffect(() => {
-    changeBotmakerDisplay();
-  }, [showBotMakerFrame]);
-
-  const handleChangeDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
-    GTM.tagManagerDataLayer("CLICK_ON_DROPDOWN_MENU", {
-      dropdownMenuIsOpen,
-      widget: "NavbarSectionLayout",
-      path: window.location.pathname
-    });
-    setDropdownMenuIsOpen(dropdownMenuIsOpen);
-  };
-
   const changeBotmakerDisplay = () => {
     cancelPreviousWaitFor();
     const botMakerChild = waitFor(
@@ -93,30 +81,40 @@ const PageContainer = ({
   };
 
   useEffect(() => {
-    cleanUserCelebrityLikes();
-    if (applyFetchUserCelebrityLikes) {
-      fetchUserCelebrityLikes();
-    }
-    setCelebrityProfileVersionDependingOfTime();
-    if (shouldFetchFlashDeliveryCelebrities) {
-      fetchFlashDeliveryCelebrities();
-    }
-    if (shouldFetchRestCountries && restCountries.length === 0) {
-      listRestCountries();
+    if (showBotMakerFrame) {
+      initializeBotMaker(document);
     }
     changeBotmakerDisplay();
     return () => {
       cancelPreviousWaitFor();
     };
+  }, [showBotMakerFrame]);
+
+  const handleChangeDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
+    GTM.tagManagerDataLayer("CLICK_ON_DROPDOWN_MENU", {
+      dropdownMenuIsOpen,
+      widget: "NavbarSectionLayout",
+      path: window.location.pathname
+    });
+    setDropdownMenuIsOpen(dropdownMenuIsOpen);
+  };
+
+  useEffect(() => {
+    cleanUserCelebrityLikes();
+    if (applyFetchUserCelebrityLikes) {
+      fetchUserCelebrityLikes();
+    }
+    if (shouldFetchRestCountries && restCountries.length === 0) {
+      listRestCountries();
+    }
   }, []);
 
   const hasSearchedOrFiltered = queryParams !== updateQueryParamsInitialState;
 
   return (
     <div className="PageContainer">
-      {/* NavbarSectionLayout */}
       <Headroom style={{ zIndex: 100000 }} upTolerance={2.5}>
-        {props.showNavbar ? (
+        <Maybe it={props.showNavbar}>
           <NavbarSectionLayout
             className={hasSearchedOrFiltered ? "hidden-hero" : ""}
             onSearchChange={onSearchChange}
@@ -133,11 +131,12 @@ const PageContainer = ({
             showCouponBanner={showCouponBanner}
             setShowCouponBanner={setShowCouponBanner}
           />
-        ) : null}
-        {props.showFiltersSection ? <FiltersSectionLayout /> : null}
+        </Maybe>
+        <Maybe it={props.showFiltersSection}>
+          <FiltersSectionLayout />
+        </Maybe>
       </Headroom>
 
-      {/* End NavbarSectionLayout */}
       <div
         className={`page-container-children ${
           !props.showSearch ? "hidden-search" : ""
@@ -151,9 +150,9 @@ const PageContainer = ({
         />
       </div>
 
-      {/* FooterLayout */}
-      {props.showFooter ? <FooterLayout /> : null}
-      {/* End FooterLayout */}
+      <Maybe it={props.showFooter}>
+        <FooterLayout />
+      </Maybe>
 
       <img
         src="/assets/img/avatar-blank.png"
@@ -167,9 +166,8 @@ const PageContainer = ({
         alt="Imagen de Error de conexión de internet pre-cargada"
       />
       {/*{this.showVideoCallsResearch ? <VideoCallsResearch /> : null}*/}
-      {/*COOKIES CONSENT*/}
       {/* <DownloadAppBanner /> */}
-      {/* <CookiesConsent /> */}
+      <CookiesConsent />
 
       {/*<BottomNavbarSectionLayout/>*/}
     </div>
@@ -207,8 +205,6 @@ const mapStateToProps = (state) => {
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
     paginationData:
       state.celebrities.fetchCelebritiesReducer.data.informationPage,
-    shouldFetchFlashDeliveryCelebrities: !state.celebrities
-      .fetchFlashDeliveryCelebritiesReducer.completed,
     hasDiscountCoupon:
       state.discountCoupons.getDiscountCouponBannerReducer.data.couponCode &&
       state.discountCoupons.timeDifferenceReducer
@@ -221,8 +217,6 @@ const mapDispatchToProps = {
   fetchUserCelebrityLikes: celebrityLikesOperations.fetchUserCelebrityLikes,
   cleanUserCelebrityLikes:
     celebrityLikesOperations.fetchUserCelebrityLikesCleanUp,
-  fetchFlashDeliveryCelebrities:
-    celebrityOperations.fetchFlashDeliveryCelebrities,
   listRestCountries: restCountriesOperations.list
 };
 

@@ -47,7 +47,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             <FlashDeliveryBadgeLayout color="dark" showTitle />
           ) : null}
         </Col>
-        <Col xs="auto d-none d-md-block" className="text-center">
+        <Col xs="auto d-none d-md-block">
           <ProfilePicture
             avatar={avatar}
             width="200px"

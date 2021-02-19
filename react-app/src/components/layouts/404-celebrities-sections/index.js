@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import getCookie from "../../../utils/getCookie";
 import { fetchCelebritySections } from "../../../state/ducks/celebrity-sections/actions";
 import { CelebritiesCardsSectionLayout } from "../celebrities-cards-section";
 import { CelebritiesShimmerCardsSectionLayout } from "../celebrities-shimmer-cards-section";
@@ -26,7 +27,7 @@ const FourZeroFourCelebritiesSectionsLayout = ({
     fetchCelebritySections({
       offset: offsetInitialValue,
       limit: resultsLimit,
-      alpha2Code: window?.userLocation?.countryCode
+      alpha2Code: getCookie("userLocation")
     });
   }, []);
 

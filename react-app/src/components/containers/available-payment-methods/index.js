@@ -9,7 +9,8 @@ import getWindow from "react-app/src/utils/getWindow";
 import { DLocalPaymentsMethods } from "../d-local-payments-methods/index";
 import DLocalPaymentsForm from "../d-local-payments-form";
 import { listPaymentGateways } from "../../../state/ducks/payments/operations";
-import { AVAILABLE_PAYMENTS_METHODS } from "constants/availablePaymentsMethods";
+import getCookie from "../../../utils/getCookie";
+
 class AvailablePaymentMethods extends Component {
   constructor(props) {
     super(props);
@@ -110,6 +111,8 @@ class AvailablePaymentMethods extends Component {
   };
 
   render() {
+    const userCountryCode = getCookie("userLocation");
+
     return (
       <div className="AvailablePaymentMethods mx-auto">
         <div className={"payment-types f-rounded"}>
