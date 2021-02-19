@@ -10,6 +10,12 @@ import * as GTM from "../../../state/utils/gtm";
 import getMoreFrequentIds from "../../../utils/getMoreFrequentIds";
 import getWindow from "react-app/src/utils/getWindow";
 import Maybe from "../../common/helpers/maybe";
+import useGetViewportWidthOnResize from "react-app/src/utils/useGetViewportWidthOnResize";
+import getContainerWidthFromWindowWidth from "react-app/src/utils/getContainerWidthFromWindowWidth";
+import {
+  largeBreakPoint,
+  smallBreakpoint
+} from "react-app/src/constants/bootstrapBreakpoint";
 
 const celebrityCardWidth = 150;
 const videoCardWidth = 258;
@@ -49,7 +55,18 @@ const getColumn = (isVideoCardSection, celebritiesSectionId) => ({
 
 const initialState = {
   showLeftScrollButton: false,
-  showRightScrollButton: false
+  showRightScrollButton: false,
+  sectionWidth: 524
+};
+
+const getSectionWidth = (windowWidth) => {
+  const containerWidth = getContainerWidthFromWindowWidth(windowWidth);
+  if (windowWidth >= largeBreakPoint) {
+    return containerWidth - 15;
+  } else if (windowWidth >= smallBreakpoint) {
+    return containerWidth + 16;
+  }
+  return containerWidth - 15;
 };
 
 const CelebritiesCardsSectionLayout = ({
@@ -63,8 +80,13 @@ const CelebritiesCardsSectionLayout = ({
   const [showRightScrollButton, setShowRightScrollButton] = useState(
     initialState.showRightScrollButton
   );
-
   const cardListRef = useRef(null);
+  const windowWidth = useGetViewportWidthOnResize();
+  const [sectionWidth, setSectionWidth] = useState(initialState.sectionWidth);
+
+  useEffect(() => {
+    setSectionWidth(getSectionWidth(windowWidth));
+  }, [windowWidth]);
 
   const analyticsData = {
     widget: "CelebritiesCardsSectionLayout",
@@ -184,13 +206,12 @@ const CelebritiesCardsSectionLayout = ({
             : celebrityCardSectionHeight
         }
         ref={cardListRef}
-        width={345}
+        width={sectionWidth}
         layout="horizontal"
         itemCount={celebrities.length}
         itemData={celebrities}
         onScroll={setScrollButtonsVisibility}
         className="celebrities-section-layout__cards-list"
-        useIsScrolling
         itemSize={
           (isVideoCardSection ? videoCardWidth : celebrityCardWidth) + cardGap
         }

@@ -12,25 +12,16 @@ import {
 } from "../constants/bootstrapContainerSize";
 
 const getContainerWidthFromWindowWidth = (windowWidth) => {
-  if (windowWidth < smallBreakpoint) {
-    return windowWidth;
-  } else if (
-    windowWidth >= smallBreakpoint &&
-    windowWidth <= mediumBreakpoint
-  ) {
-    return containerSmallSize;
-  } else if (
-    windowWidth >= mediumBreakpoint &&
-    windowWidth <= largeBreakPoint
-  ) {
-    return containerMediumSize;
-  } else if (
-    windowWidth >= largeBreakPoint &&
-    windowWidth <= extraLargeBreakPoint
-  ) {
+  if (windowWidth >= extraLargeBreakPoint) {
+    return containerExtraLargeSize;
+  } else if (windowWidth >= largeBreakPoint) {
     return containerLargeSize;
+  } else if (windowWidth >= mediumBreakpoint) {
+    return containerMediumSize;
+  } else if (windowWidth >= smallBreakpoint) {
+    return containerSmallSize;
   }
-  return containerExtraLargeSize;
+  return windowWidth;
 };
 
 export default getContainerWidthFromWindowWidth;
