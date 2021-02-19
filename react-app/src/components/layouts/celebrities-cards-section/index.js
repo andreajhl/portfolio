@@ -56,7 +56,8 @@ const getColumn = (isVideoCardSection, celebritiesSectionId) => ({
 const initialState = {
   showLeftScrollButton: false,
   showRightScrollButton: false,
-  sectionWidth: 524
+  mobileSectionWidth: 524,
+  desktopSectionWidth: 1125
 };
 
 const getSectionWidth = (windowWidth) => {
@@ -72,6 +73,7 @@ const getSectionWidth = (windowWidth) => {
 const CelebritiesCardsSectionLayout = ({
   celebritiesSection,
   moreResultsPath,
+  isMobile,
   isFavoriteSection
 }) => {
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
@@ -82,7 +84,9 @@ const CelebritiesCardsSectionLayout = ({
   );
   const cardListRef = useRef(null);
   const windowWidth = useGetViewportWidthOnResize();
-  const [sectionWidth, setSectionWidth] = useState(initialState.sectionWidth);
+  const [sectionWidth, setSectionWidth] = useState(
+    initialState[isMobile ? "mobileSectionWidth" : "desktopSectionWidth"]
+  );
 
   useEffect(() => {
     setSectionWidth(getSectionWidth(windowWidth));
@@ -170,7 +174,7 @@ const CelebritiesCardsSectionLayout = ({
 
   return (
     <section
-      className={`celebrities-section-layout container pr-0 ${
+      className={`celebrities-section-layout container overflow-hidden pr-0 ${
         celebritiesSection.celebritySectionType === "MAIN_VIDEO_1"
           ? "celebrities-sections-videos"
           : ""

@@ -30,7 +30,8 @@ const CelebritiesSectionsLayout = ({
   celebritiesSections,
   totalResults,
   fetchCelebritySections,
-  landingId
+  landingId,
+  isMobile
 }) => {
   const [offset, setOffset] = useState(offsetInitialValue);
 
@@ -91,6 +92,7 @@ const CelebritiesSectionsLayout = ({
                 celebritiesSection.celebritySectionType === "CELEBRITY_CARD" &&
                 celebritiesSection.celebrities.length >= 10
               }
+              isMobile={isMobile}
             />
           ))}
         </InfiniteScroll>
