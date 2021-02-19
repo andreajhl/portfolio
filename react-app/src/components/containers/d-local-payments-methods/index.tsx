@@ -1,4 +1,4 @@
-import { AVAILABLE_PAYMENTS_METHODS } from "constants/availablePaymentsMethods";
+import { AVAILABLE_PAYMENTS_METHODS } from "../../../../../constants/availablePaymentsMethods";
 import React, { useState } from "react";
 import { processDlocalPayment } from "../../../state/ducks/payments/actions";
 
@@ -25,7 +25,7 @@ type DLocalPaymentsMethodsProps = {
 const DLocalPaymentsMethods = ({
   contractReference,
   paymentMethodType,
-  paymentsMethodsAvailable,
+  paymentsMethodsAvailable = [],
   buyerData,
   discountCounponId,
   isSelected
