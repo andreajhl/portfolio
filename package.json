@@ -27,11 +27,7 @@
     "env-cmd": "^10.1.0",
     "firebase": "^8.2.6",
     "fscreen": "^1.1.0",
-<<<<<<< HEAD
-    "is-symbol": "^1.0.3",
-=======
     "isbot": "^3.0.24",
->>>>>>> 6bb20c97ef57d6fd4b4aeba9f7d8a8936425792f
     "jwt-decode": "^3.1.2",
     "lodash.debounce": "^4.0.8",
     "mixpanel-browser": "^2.41.0",
