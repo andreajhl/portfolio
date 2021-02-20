@@ -127,7 +127,7 @@ app.get("/", async (request, response) => {
     );
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/, "Famosos.com");
     data = data.replace(
@@ -225,7 +225,7 @@ app.get("/:celebrity_username", async (req, res) => {
             data = data.replace(/\$OG_URL/g, "https://www.famosos.com/");
             data = data.replace(
               /\$OG_IMAGE/g,
-              "https://www.famosos.com/assets/img/favicon.png"
+              "https://www.famosos.com/assets/img/famosos-share-img.jpg"
             );
             data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
             data = data.replace(
@@ -422,7 +422,7 @@ app.get("/auth/sign-in/email-form/", async (request, response) => {
     data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
     data = data.replace(
@@ -464,7 +464,7 @@ app.get("/auth/sign-in/cellphone-form/", async (request, response) => {
     data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
     data = data.replace(
@@ -506,7 +506,7 @@ app.get("/auth/sign-up", async (request, response) => {
     data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
     data = data.replace(
@@ -548,7 +548,7 @@ app.get("/auth/sign-up/email-form/", async (request, response) => {
     data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
     data = data.replace(
@@ -590,7 +590,7 @@ app.get("/auth/sign-up/cellphone-form/", async (request, response) => {
     data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
     data = data.replace(
@@ -632,7 +632,7 @@ app.get("/auth/reset-password", async (request, response) => {
     data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
     data = data.replace(
@@ -677,7 +677,7 @@ app.get("/docs/terminos", async (request, response) => {
     data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
     data = data.replace(
@@ -719,7 +719,7 @@ app.get("/docs/politicas", async (request, response) => {
     data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
     data = data.replace(
@@ -761,7 +761,7 @@ app.get("/forms/aplicar/", async (request, response) => {
     data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
     data = data.replace(
@@ -803,7 +803,7 @@ app.get("/tendencias/", async (request, response) => {
     data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
     data = data.replace(
@@ -845,7 +845,7 @@ app.get("/docs/faqs", async (request, response) => {
     data = data.replace(/\$OG_URL/g, "https://www.famosos.com");
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/g, "Famosos.com");
     data = data.replace(
@@ -903,7 +903,7 @@ app.get("*", async (request, response) => {
     );
     data = data.replace(
       /\$OG_IMAGE/g,
-      "https://www.famosos.com/assets/img/favicon.png"
+      "https://www.famosos.com/assets/img/famosos-share-img.jpg"
     );
     data = data.replace(/\$OG_SITE_NAME/, "Famosos.com");
     data = data.replace(

@@ -1,1 +1,0 @@
-{"ast":null,"code":"import reducer from \"./reducers\";\nimport * as discountCouponsOperations from \"./operations\";\nexport { discountCouponsOperations };\nexport default reducer;","map":null,"metadata":{},"sourceType":"module"}

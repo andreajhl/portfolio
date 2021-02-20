@@ -1,1 +1,0 @@
-{"ast":null,"code":"import reducer from \"./reducers\";\nimport * as subscriptionsOperations from \"./operations\";\nimport * as subscriptionsEndpoints from \"./paths\";\nexport { subscriptionsOperations, subscriptionsEndpoints };\nexport default reducer;","map":null,"metadata":{},"sourceType":"module"}

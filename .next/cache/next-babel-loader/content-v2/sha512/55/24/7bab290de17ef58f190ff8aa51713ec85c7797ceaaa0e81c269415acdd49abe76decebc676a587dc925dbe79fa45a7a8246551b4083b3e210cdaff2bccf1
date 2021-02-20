@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var MODEL = \"discount-coupon\";\nexport var GET_DISCOUNT_COUPONS_BANNER = \"custom-endpoints/\".concat(MODEL, \"/public-get-coupon/\");","map":null,"metadata":{},"sourceType":"module"}

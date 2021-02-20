@@ -1,1 +1,0 @@
-{"ast":null,"code":"var isBrowser = function isBrowser() {\n  return true;\n};\n\nexport default isBrowser;","map":null,"metadata":{},"sourceType":"module"}

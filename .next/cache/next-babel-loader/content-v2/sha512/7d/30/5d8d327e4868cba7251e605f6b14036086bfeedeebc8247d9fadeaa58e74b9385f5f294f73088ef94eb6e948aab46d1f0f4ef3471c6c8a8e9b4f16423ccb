@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { useState } from \"react\";\n\nconst useLoad = (defaultIsLoaded = false) => {\n  const {\n    0: isLoaded,\n    1: setIsLoaded\n  } = useState(defaultIsLoaded);\n\n  const onLoad = () => setIsLoaded(true);\n\n  return [isLoaded, onLoad];\n};\n\nexport default useLoad;","map":null,"metadata":{},"sourceType":"module"}

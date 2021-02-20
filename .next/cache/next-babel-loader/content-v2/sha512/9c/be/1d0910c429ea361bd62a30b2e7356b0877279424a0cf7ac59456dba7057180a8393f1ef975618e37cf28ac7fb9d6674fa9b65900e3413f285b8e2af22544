@@ -1,1 +1,0 @@
-{"ast":null,"code":"export const MODEL = `countries`;\nexport const PUBLIC_LIST = `custom-endpoints/${MODEL}/public-list`;\nexport const PUBLIC_GET = `custom-endpoints/${MODEL}/public-get/`;","map":null,"metadata":{},"sourceType":"module"}

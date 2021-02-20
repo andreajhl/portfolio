@@ -1,1 +1,0 @@
-{"ast":null,"code":"export * from \"./groups\";\nexport * from \"./pagination\";\nexport * from \"./permission\";\nexport * from \"./celebrities\";\nexport * from \"./users\";","map":null,"metadata":{},"sourceType":"module"}

@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { useEffect, useState } from \"react\";\n\nconst useIsInBrowser = () => {\n  const {\n    0: isInBrowser,\n    1: setIsInBrowser\n  } = useState(false);\n  useEffect(() => {\n    setIsInBrowser(true);\n  }, []);\n  return isInBrowser;\n};\n\nexport default useIsInBrowser;","map":null,"metadata":{},"sourceType":"module"}
