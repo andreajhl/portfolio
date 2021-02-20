@@ -1,1 +1,0 @@
-{"ast":null,"code":"import * as PropTypes from \"prop-types\";\nvar PermissionShape = PropTypes.shape({// Data\n});\nexport { PermissionShape };","map":null,"metadata":{},"sourceType":"module"}

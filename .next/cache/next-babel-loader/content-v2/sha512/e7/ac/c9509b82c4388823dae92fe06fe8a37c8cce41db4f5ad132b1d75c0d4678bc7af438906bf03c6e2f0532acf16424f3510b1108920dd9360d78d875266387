@@ -1,1 +1,0 @@
-{"ast":null,"code":"var checkNext = function checkNext() {\n  return function (next) {\n    return function (action) {\n      next(action); // console.log(action)\n    };\n  };\n};\n\nexport default checkNext;","map":null,"metadata":{},"sourceType":"module"}

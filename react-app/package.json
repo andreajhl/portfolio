@@ -1,6 +1,6 @@
 {
   "name": "famosos-frontend",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Famosos Webapp",
   "private": true,
   "dependencies": {

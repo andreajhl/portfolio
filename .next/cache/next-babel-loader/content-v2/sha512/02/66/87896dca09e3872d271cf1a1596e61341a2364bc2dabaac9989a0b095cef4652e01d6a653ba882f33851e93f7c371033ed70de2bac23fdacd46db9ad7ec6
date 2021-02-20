@@ -1,1 +1,0 @@
-{"ast":null,"code":"var CELEBRITY_SECTIONS_MODEL = \"celebrity-sections\";\nexport var FETCH_CELEBRITY_SECTIONS = \"custom-endpoints/\".concat(CELEBRITY_SECTIONS_MODEL, \"/public-list\");","map":null,"metadata":{},"sourceType":"module"}

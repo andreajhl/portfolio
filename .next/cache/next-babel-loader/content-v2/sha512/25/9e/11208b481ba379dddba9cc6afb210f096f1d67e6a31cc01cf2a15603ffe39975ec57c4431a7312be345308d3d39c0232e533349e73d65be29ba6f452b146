@@ -1,1 +1,0 @@
-{"ast":null,"code":"var apiVersion = \"v1\";\nexport var GET_SESSION = \"custom-endpoints/users/get-session-details\";\nexport var UPDATE_SESSION = \"custom-endpoints/users/update-session-details\";","map":null,"metadata":{},"sourceType":"module"}

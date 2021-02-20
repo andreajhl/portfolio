@@ -1,1 +1,0 @@
-{"ast":null,"code":"const apiVersion = \"v1\";\nexport const BASE_PATH = `api/${apiVersion}/payment-viewsets/`;","map":null,"metadata":{},"sourceType":"module"}

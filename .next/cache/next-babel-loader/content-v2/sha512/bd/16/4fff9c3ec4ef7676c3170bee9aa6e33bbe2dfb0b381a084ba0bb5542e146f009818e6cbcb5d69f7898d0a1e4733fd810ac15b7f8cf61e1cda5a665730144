@@ -1,1 +1,0 @@
-{"ast":null,"code":"const checkNext = () => next => action => {\n  next(action); // console.log(action)\n};\n\nexport default checkNext;","map":null,"metadata":{},"sourceType":"module"}
