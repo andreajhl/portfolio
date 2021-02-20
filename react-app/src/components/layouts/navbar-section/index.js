@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-app/src/components/common/routing";
-import * as PATHS from "../../../routing/Paths";
 import { CurrencyDropdownLayout } from "../currency-dropdown";
 import { NavbarSearchLayout } from "../navbar-search";
 import { ROOT_PATH } from "../../../routing/Paths";
 import PropTypes from "prop-types";
-import { Session } from "../../../state/utils/session";
 import * as GTM from "../../../state/utils/gtm";
-import Link from "next/link";
-// import { BannerPromoLayout } from "../banner-promo";
 import { DropdownMenuLayout } from "../dropdown-menu";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../../containers/login-button/login-button";
+import Maybe from "../../common/helpers/maybe";
+import dynamic from "next/dynamic";
+
+const BannerPromoLayout = dynamic(
+  () => import("../banner-promo").then((mod) => mod.BannerPromoLayout),
+  { ssr: false }
+);
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
   if (!target.matches("a")) return;
@@ -33,22 +36,21 @@ const NavbarSectionLayout = ({
   className,
   onSearchChange,
   showSearch,
-  showLogin,
   queryParams,
   dropdownMenuIsOpen,
   setDropdownMenuIsOpen,
   showCouponBanner,
   setShowCouponBanner
 }) => {
-  const { isLoading, isAuthenticated, user } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth0();
 
   return (
     <>
       <div className={`NavbarSectionLayout ${className}`}>
-        {/* <BannerPromoLayout
+        <BannerPromoLayout
           showCouponBanner={showCouponBanner}
           setShowCouponBanner={setShowCouponBanner}
-        /> */}
+        />
         <div className="top-bar container mx-auto p-0 row">
           <div className="top-bar__left-side col-4 p-0">
             <DropdownMenuLayout
@@ -72,20 +74,20 @@ const NavbarSectionLayout = ({
           </div>
 
           <div className="top-bar__right-side col-4 p-0 row m-0">
-            {!isAuthenticated ? (
+            <Maybe it={!isAuthenticated}>
               <div className="col d-none d-md-flex  align-items-center">
                 <LoginButton
                   className={
                     "btn btn-outline-primary ml-auto btn-sm top-bar__login-btn mt-1"
                   }
-                ></LoginButton>
+                />
               </div>
-            ) : null}
+            </Maybe>
             <div className="top-bar__currency mr-2 ml-auto">
               <CurrencyDropdownLayout />
             </div>
           </div>
-          {showSearch ? (
+          <Maybe it={showSearch}>
             <div className="col-12 pt-2 px-0">
               <div className="d-block top-bar__search-sm">
                 <NavbarSearchLayout
@@ -95,14 +97,9 @@ const NavbarSectionLayout = ({
                 />
               </div>
             </div>
-          ) : null}
+          </Maybe>
         </div>
       </div>
-      <div
-        className={`top-bar-helper ${!showSearch ? "hidden-search" : ""} ${
-          showCouponBanner ? "show-coupon-banner" : ""
-        }`}
-      ></div>
     </>
   );
 };

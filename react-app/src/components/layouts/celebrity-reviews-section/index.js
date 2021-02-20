@@ -16,15 +16,6 @@ class CelebrityReviewsSectionLayout extends Component {
 
     this.onPaginationChange = this.onPaginationChange.bind(this);
     this.updateParams = this.updateParams.bind(this);
-    this.fetchReviews = this.fetchReviews.bind(this);
-  }
-
-  componentDidMount = () => {
-    this.fetchReviews();
-  };
-
-  fetchReviews() {
-    this.props.listReviews(this.props.celebrityId, this.state.params);
   }
 
   onPaginationChange(page) {
@@ -40,8 +31,8 @@ class CelebrityReviewsSectionLayout extends Component {
     this.setState(
       {
         params: params
-      },
-      () => this.fetchReviews()
+      }
+      // () => this.fetchReviews()
     );
   }
 

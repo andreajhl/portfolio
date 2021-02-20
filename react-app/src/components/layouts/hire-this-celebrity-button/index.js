@@ -4,12 +4,12 @@ import {
   CELEBRITY_PROFILE_CONTRACT,
   AUTH_SUCCESS
 } from "../../../routing/Paths";
-// import { NavLink, useHistory } from "react-router-dom";
 import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
 import { CallToActionButton } from "../call-to-action-button";
 import { useAuth0 } from "@auth0/auth0-react";
-import getWindow from "../../../utils/getWindow";
+import { useWindow } from "../../../utils/useWindow";
+
 const HireThisCelebrityButton = ({
   className,
   text,
@@ -20,9 +20,9 @@ const HireThisCelebrityButton = ({
   width,
   history
 }) => {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(
-    getWindow().navigator.userAgent
-  );
+  const userAgent = useWindow()?.navigator?.userAgent;
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
+
   const {
     loginWithPopup,
     isLoading,
@@ -37,7 +37,7 @@ const HireThisCelebrityButton = ({
         "finalRedirect",
         "/" + celebrityUsername + "/contratar"
       );
-      if (true) {
+      if (isMobile) {
         loginWithRedirect({
           redirectUri: window.location.origin + AUTH_SUCCESS
         });
@@ -80,31 +80,19 @@ const HireThisCelebrityButton = ({
       : parsedFullName.first || parsedFullName.last;
 
   return (
-    <React.Fragment>
-      <CallToActionButton
-        onClick={() => handlerClickToLogin()}
-        onMouseOver={() => registerHireThisCelebrityButtonEvent("HOVER")}
-        fontSize={fontSize}
-        width={width}
-        className={className}
-      >
-        {text}
-        {celebrityFullName && showCelebrityName ? " " + displayName : ""}
-      </CallToActionButton>
-      {!isLoading && !isAuthenticated && (
-        <div className="d-flex align-items-center justify-content-center py-2 px-2 px-xl-5">
-          <span
-            style={{
-              fontSize: "12px"
-            }}
-          >
-            *Al hacer click Iniciarás Sesión
-          </span>
-        </div>
-      )}
-    </React.Fragment>
+    <CallToActionButton
+      onClick={() => handlerClickToLogin()}
+      onMouseOver={() => registerHireThisCelebrityButtonEvent("HOVER")}
+      fontSize={fontSize}
+      width={width}
+      className={className}
+    >
+      {text}
+      {celebrityFullName && showCelebrityName ? " " + displayName : ""}
+    </CallToActionButton>
   );
 };
+
 const _HireThisCelebrityButton = withRouter(HireThisCelebrityButton);
 
 export { _HireThisCelebrityButton as HireThisCelebrityButton };

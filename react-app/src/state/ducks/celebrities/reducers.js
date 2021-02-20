@@ -74,6 +74,8 @@ const fetchCelebritySubscriptionPlansInitialState = {
 
 const previousPathInitialState = { pathname: ROOT_PATH };
 
+const celebrityProfileVersionInitialState = null;
+
 export function queryParamsReducer(
   state = updateQueryParamsInitialState,
   action
@@ -358,6 +360,11 @@ export function fetchCelebritySubscriptionPlansReducer(
   }
 }
 
+export const celebrityProfileVersionReducer = (
+  state = celebrityProfileVersionInitialState,
+  { type, payload }
+) => (type === types.SET_CELEBRITY_PROFILE_VERSION ? payload : state);
+
 export default combineReducers({
   queryParamsReducer,
   fetchCelebritiesReducer,
@@ -368,5 +375,6 @@ export default combineReducers({
   previousPathReducer,
   fetchFlashDeliveryCelebritiesReducer,
   fetchCelebritySubscriptionPlansReducer,
-  fetchCelebritiesSimilarResultsReducer
+  fetchCelebritiesSimilarResultsReducer,
+  celebrityProfileVersionReducer
 });

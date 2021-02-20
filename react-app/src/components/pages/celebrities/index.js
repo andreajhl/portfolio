@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { CelebritiesSectionsLayout } from "../../layouts/celebrities-sections";
 import { PageContainer } from "../../layouts/page-container";
-import { UserLikesSectionLayout } from "../../layouts/user-likes-section";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
-
 import * as GTM from "../../../state/utils/gtm";
 import { HeroSectionLayout } from "../../layouts/hero-section";
 import { FiltersSectionLayout } from "../../layouts/filters-section";
@@ -12,6 +10,16 @@ import { Session } from "../../../state/utils/session";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { withRouter } from "react-app/src/components/common/routing";
 import Maybe from "../../common/helpers/maybe";
+import { withAuth0 } from "@auth0/auth0-react";
+import dynamic from "next/dynamic";
+
+const UserLikesSectionLayout = dynamic(
+  () =>
+    import("../../layouts/user-likes-section").then(
+      (mod) => mod.UserLikesSectionLayout
+    ),
+  { ssr: false }
+);
 
 class CelebritiesPage extends Component {
   constructor(props) {
@@ -58,12 +66,14 @@ class CelebritiesPage extends Component {
   };
 
   render() {
+    const { isAuthenticated } = this.props.auth0;
+
     return (
       <>
         <div className={"CelebritiesPage "}>
           <PageContainer
             showFooter={false}
-            applyFetchUserCelebrityLikes
+            applyFetchUserCelebrityLikes={isAuthenticated}
             existPreviewResults={this.props.celebrities.length <= 1}
             applyFetchCelebrities
             showFiltersSection={this.state.showHeaderFiltersSection}
@@ -72,7 +82,7 @@ class CelebritiesPage extends Component {
           >
             <HeroSectionLayout />
             <FiltersSectionLayout />
-            <Maybe it="this.state.session">
+            <Maybe it={isAuthenticated}>
               <UserLikesSectionLayout />
             </Maybe>
             <CelebritiesSectionsLayout
@@ -121,6 +131,6 @@ const mapDispatchToProps = {
 const _CelebritiesPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(CelebritiesPage));
+)(withRouter(withAuth0(CelebritiesPage)));
 
 export { _CelebritiesPage as CelebritiesPage };

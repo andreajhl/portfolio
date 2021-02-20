@@ -12,6 +12,10 @@ export const removeCelebrityProfileVersion = () =>
 
 export const setCelebrityProfileVersionDependingOfTime = () => {
   if (getCelebrityProfileVersion()) return;
-  const profileVersionDependingOfTime = Date.now() % 2 === 0 ? "A" : "B";
-  setCelebrityProfileVersion(profileVersionDependingOfTime);
+  const profileVersionDependingOnTime = getProfileVersionDependingOnTime();
+  setCelebrityProfileVersion(profileVersionDependingOnTime);
 };
+
+export function getProfileVersionDependingOnTime() {
+  return Date.now() % 2 === 0 ? "A" : "B";
+}

@@ -6,6 +6,7 @@ const getWindow = () =>
   isBrowser()
     ? window
     : {
+        document: { cookie: "" },
         location: {
           pathname: "",
           userLocation: { countryCode: "" },

@@ -343,7 +343,7 @@ AvailablePaymentMethods.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state) => ({
   paymentMethodsAvailableIsLoading:
-    state.payments.fetchPaymentGatewaysReducer.loading,
+  state.payments.fetchPaymentGatewaysReducer.loading,
   paymentMethodsAvailable: state.payments.fetchPaymentGatewaysReducer.data,
   couponData: state.payments.fetchDiscountCouponReducer,
   currencyExchangeData: state.payments.currencyExchangeReducer

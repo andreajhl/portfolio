@@ -1,15 +1,6 @@
-import React, { Component } from "react";
-import "./styles.scss";
-import {
-  SignInWithCellphoneForm,
-  SignInWithEmailForm,
-  SignInWithWhatsAppForm
-} from "../../containers";
-import { Session } from "../../../state/utils/session";
-import { history } from "../../../routing/History";
+import React from "react";
 import * as PATHS from "../../../routing/Paths";
 import { PageContainer } from "../../layouts/page-container";
-import * as GTM from "../../../state/utils/gtm";
 import LoginButton from "../../containers/login-button/login-button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Redirect } from "react-router-dom";
@@ -23,7 +14,7 @@ const SignUpPage = () => {
     )
   ) : null;
   return (
-    <React.Fragment>
+    <>
       {RedirectTo}
       <PageContainer>
         <div className="container-sign-up-page">
@@ -34,14 +25,14 @@ const SignUpPage = () => {
                 experiencias únicas
               </h1>
             </div>
-            <LoginButton className="container-sign-up-page__login-button btn-primary"></LoginButton>
+            <LoginButton className="container-sign-up-page__login-button btn-primary" />
           </div>
           <div className="container-sign-up-page__create-contract-steps">
-            <CreateContractStepsLayout></CreateContractStepsLayout>
+            <CreateContractStepsLayout />
           </div>
         </div>
       </PageContainer>
-    </React.Fragment>
+    </>
   );
 };
 

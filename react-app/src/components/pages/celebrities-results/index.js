@@ -107,7 +107,7 @@ const CelebritiesResultsPage = ({
         applyFetchUserCelebrityLikes
         showFiltersSection={!isSearchingByKeyword}
       >
-        {isLoading && offset <= 0 ? (
+        {!isCompleted && offset <= 0 ? (
           <CelebritiesResultsShimmerCardsLayout />
         ) : (
           <CelebritiesResultsLayout

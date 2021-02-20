@@ -111,6 +111,7 @@ export const list = (params) => {
         console.log(err);
         // handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
       });
+    return request;
   };
 };
 
@@ -184,7 +185,7 @@ export const listReviews = (celebrity_id, params = {}) => {
     const TYPE = types.FETCH_REVIEWS_REQUEST;
     const FINAL_PATH = API_PATHS.REVIEWS + celebrity_id;
     dispatch({ type: TYPE, payload: {} });
-    apiService({
+    return apiService({
       method: "GET",
       action: TYPE,
       path: FINAL_PATH,
@@ -322,3 +323,8 @@ export const fetchCelebritySubscriptionPlans = (celebrityUsername) => (
       });
     });
 };
+
+export const setCelebrityProfileVersion = (payload) => ({
+  type: types.SET_CELEBRITY_PROFILE_VERSION,
+  payload
+});

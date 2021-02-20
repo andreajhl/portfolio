@@ -30,6 +30,10 @@ _branchName=$(git symbolic-ref --short -q HEAD)
 echo "Deploying ====> ${environments[selectedOption]} - ${_commitId}..."
 echo
 
+rm -rf node_modules
+rm -rf package-lock.json
+rm -rf react-app/node_modules
+rm -rf react-app/package-lock.json
 npm install
 npm audit fix
 
