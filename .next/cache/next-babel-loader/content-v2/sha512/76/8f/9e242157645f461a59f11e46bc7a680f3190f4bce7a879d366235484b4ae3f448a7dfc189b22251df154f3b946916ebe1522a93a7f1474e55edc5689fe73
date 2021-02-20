@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const MODEL = `user-subscriptions`;\nexport const PROCESS_SUBSCRIPTION_PATH = `custom-endpoints/${MODEL}/process-subscription`;\nexport const USER_SUBSCRIPTIONS_PATH = `custom-endpoints/${MODEL}/list`;","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\n\nconst Emoji = ({\n  label = \"\",\n  symbol\n}) => __jsx(\"span\", {\n  className: \"emoji\",\n  role: \"img\",\n  \"aria-label\": label,\n  \"aria-hidden\": !label\n}, symbol);\n\nexport default Emoji;","map":null,"metadata":{},"sourceType":"module"}

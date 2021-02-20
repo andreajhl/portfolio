@@ -63,7 +63,7 @@ const defaultOG = async (data, request) => {
   data = data.replace(/\$ROBOTS_META/, isProdEnviroment ? "index" : "noindex");
   data = data.replace(
     /\$OG_IMAGE/g,
-    "https://www.famosos.com/assets/img/famosos-share-icon.png"
+    "https://www.famosos.com/assets/img/famosos-share-img.jpg"
   );
   data = data.replace(/\$OG_SITE_NAME/, "Famosos.com");
   data = data.replace(

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var AVAILABLE_PAYMENTS_METHODS = {\n  CARD: 'Tarjeta de crédito o débito',\n  BANK_TRANSFER: 'Transferencia bancaria',\n  TICKET: 'Efectivo',\n  PAYPAL: 'Paypal'\n};","map":null,"metadata":{},"sourceType":"module"}

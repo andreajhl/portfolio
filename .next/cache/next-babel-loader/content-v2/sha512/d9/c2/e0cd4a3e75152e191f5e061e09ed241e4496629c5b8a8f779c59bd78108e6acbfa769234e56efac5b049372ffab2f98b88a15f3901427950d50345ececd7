@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var smallBreakpoint = 576;\nexport var mediumBreakpoint = 768;\nexport var largeBreakPoint = 991;\nexport var extraLargeBreakPoint = 1200;","map":null,"metadata":{},"sourceType":"module"}

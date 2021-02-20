@@ -1,0 +1,1 @@
+{"ast":null,"code":"import getWindow from \"./getWindow\";\nimport useIsInBrowser from \"./useIsInBrowser\";\nexport var useWindow = function useWindow() {\n  var isInBrowser = useIsInBrowser();\n  return isInBrowser ? window : getWindow();\n};","map":null,"metadata":{},"sourceType":"module"}
