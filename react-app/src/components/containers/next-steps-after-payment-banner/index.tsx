@@ -51,9 +51,15 @@ const NextStepsAfterPaymentBanner = ({
   const SpanLink = styled.span`
     color: white;
     font-weight: bold;
+    cursor: pointer;
     &:hover {
       color: white;
     }
+  `;
+  const SpanWithMousePointer = styled.span`
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
   `;
 
   return (
@@ -96,7 +102,7 @@ const NextStepsAfterPaymentBanner = ({
           pronto podrás disfrutar de tu videomensaje.
         </TextSteps>
       </div>
-      <div>
+      <div className="mt-3">
         <TextSteps>
           Si por alguna razón tu video no pudo ser grabado, nos pondremos en
           contacto contigo para notificarte.
@@ -108,18 +114,13 @@ const NextStepsAfterPaymentBanner = ({
             <SpanLink>Seguir Comprando</SpanLink>
           </Link>
         </ButtonBlack>
-        <br />
         <Link href="/my-account/hirings">
-          <span
-            className="mt-2 font-weight-bold"
-            style={{
-              textDecorationLine: "underline",
-              textDecorationColor: "black"
-            }}
-          >
-            Ir a Mis Contrataciones{" "}
-            <i className="fas fa-long-arrow-alt-right"></i>
-          </span>
+          <React.Fragment>
+            <SpanWithMousePointer>
+              Ir a Mis Contrataciones{" "}
+              <i className="fas fa-long-arrow-alt-right"></i>
+            </SpanWithMousePointer>
+          </React.Fragment>
         </Link>
       </ContainerNavigationButtons>
     </ContainerBanner>
