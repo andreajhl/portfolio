@@ -42,4 +42,4 @@ const HowToGetAVideoMessageLayout = () => {
   );
 };
 
-export default HowToGetAVideoMessageLayout;
+export { HowToGetAVideoMessageLayout };
