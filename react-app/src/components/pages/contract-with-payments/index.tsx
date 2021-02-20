@@ -1,27 +1,59 @@
 import React, { useEffect } from "react";
-import { history } from "../../../routing/History";
-import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { connect } from "react-redux";
 import { contractOperations } from "../../../state/ducks/contracts";
 import { PageContainer } from "../../layouts/page-container";
-import moment from "moment";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
-import { jsonToQueryString } from "react-app/src/state/utils/apiService";
-import ResumenStatusPayment from "../../containers/resumen-status-payment";
-import NextStepsAfterPaymentBanner from "../../containers/next-steps-after-payment-banner";
 import ResumenContractApproved from "../../layouts/resumen-contract-approved";
 import ResumenContractRejected from "../../layouts/resumen-contract-rejected";
 import ResumenContractPending from "../../layouts/resumen-contract-pending";
 import ResumenContractAuthorized from "../../layouts/resumen-contract-authorized";
 
-const ContractWithPayments = ({ getContract, isLoading, resumen }) => {
+type ContractWithPaymentsProps = {
+  resumen: {
+    contract: {
+      isPublic: boolean;
+      instructions: string;
+      deliveryContact: string;
+      deliveryContactCellphone: string;
+      deliveryTo: string;
+      reference: string;
+      status: number;
+      authorizationDate: string;
+    };
+    celebrity: {
+      username: string;
+      avatar: string;
+      fullName: string;
+    };
+    user: {
+      id: number;
+      fullName: string;
+    };
+    lastPayment: {
+      id: number;
+      createdAt: string;
+      price: number;
+      status: number;
+      transactionChargeId: string;
+      paymentMethodLogo: string;
+    };
+  };
+  isLoading: boolean;
+  getContract: Function;
+};
+
+const ContractWithPayments = ({
+  getContract,
+  isLoading,
+  resumen
+}: ContractWithPaymentsProps) => {
   const router = useRouter();
   const { contract_reference } = router.query;
   const { lastPayment } = resumen;
-  const status = 90;
+  const { status } = lastPayment;
   useEffect(() => {
     getContract(contract_reference);
   }, [contract_reference]);
