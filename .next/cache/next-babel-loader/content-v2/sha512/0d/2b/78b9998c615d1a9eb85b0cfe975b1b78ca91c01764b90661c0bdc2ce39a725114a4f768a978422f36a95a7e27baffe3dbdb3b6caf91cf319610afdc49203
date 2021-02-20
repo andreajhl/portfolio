@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var MODEL = \"user-subscriptions\";\nexport var PROCESS_SUBSCRIPTION_PATH = \"custom-endpoints/\".concat(MODEL, \"/process-subscription\");\nexport var USER_SUBSCRIPTIONS_PATH = \"custom-endpoints/\".concat(MODEL, \"/list\");","map":null,"metadata":{},"sourceType":"module"}

@@ -1,1 +1,0 @@
-{"ast":null,"code":"import reducer from \"./reducers\";\nimport * as celebrityLikesOperations from \"./operations\";\nimport * as celebrityLikesEndpoints from \"./paths\";\nexport { celebrityLikesOperations, celebrityLikesEndpoints };\nexport default reducer;","map":null,"metadata":{},"sourceType":"module"}

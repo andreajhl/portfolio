@@ -1,1 +1,0 @@
-{"ast":null,"code":"//BLOGS\nexport var FETCH_BLOGS_REQUEST = \"blogs/FETCH_BLOGS_REQUEST\";\nexport var FETCH_BLOGS_DATA = \"blogs/FETCH_BLOGS_DATA\";\nexport var FETCH_BLOGS_DATA_SUCCESS = \"blogs/FETCH_BLOGS_DATA_SUCCESS\";\nexport var FETCH_BLOGS_DATA_FAILURE = \"blogs/FETCH_BLOG_DATA_FAILURE\";","map":null,"metadata":{},"sourceType":"module"}

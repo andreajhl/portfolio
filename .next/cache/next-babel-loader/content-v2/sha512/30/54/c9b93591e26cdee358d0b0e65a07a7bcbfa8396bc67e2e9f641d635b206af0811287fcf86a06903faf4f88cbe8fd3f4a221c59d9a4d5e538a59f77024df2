@@ -1,1 +1,0 @@
-{"ast":null,"code":"var CELEBRITY_REQUEST_MODEL = \"celebrity-requests\";\nexport var CREATE_CELEBRITY_REQUET = \"custom-endpoints/celebrities/create-lead\";","map":null,"metadata":{},"sourceType":"module"}

@@ -1,1 +1,0 @@
-{"ast":null,"code":"var apiVersion = \"v1\";\nexport var BASE_PATH = \"api/\".concat(apiVersion, \"/payment-viewsets/\");","map":null,"metadata":{},"sourceType":"module"}
