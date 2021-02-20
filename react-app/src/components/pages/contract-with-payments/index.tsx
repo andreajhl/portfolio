@@ -52,8 +52,6 @@ const ContractWithPayments = ({
 }: ContractWithPaymentsProps) => {
   const router = useRouter();
   const { contract_reference } = router.query;
-  const { lastPayment } = resumen;
-  const { status } = lastPayment;
   useEffect(() => {
     getContract(contract_reference);
   }, [contract_reference]);
@@ -75,13 +73,13 @@ const ContractWithPayments = ({
             <LoaderLayout></LoaderLayout>
           </div>
         </LoadingScreen>
-      ) : status === 100 ? (
-        <ResumenContractApproved resumen={resumen}></ResumenContractApproved>
-      ) : status === 30 ? (
-        <ResumenContractRejected resumen={resumen}></ResumenContractRejected>
-      ) : status === 40 ? (
+      ) : resumen?.lastPayment?.status === 100 ? (
+        <ResumenContractApproved resumen={resumen} />
+      ) : resumen?.lastPayment?.status === 30 ? (
+        <ResumenContractRejected resumen={resumen} />
+      ) : resumen?.lastPayment?.status === 40 ? (
         <ResumenContractPending resumen={resumen} />
-      ) : status === 90 ? (
+      ) : resumen?.lastPayment?.status === 90 ? (
         <ResumenContractAuthorized resumen={resumen} />
       ) : null}
     </PageContainer>
