@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var __N_SSP = true;\nexport { default } from \"pages/contract-created/[contract_reference]\";","map":null,"metadata":{},"sourceType":"module"}

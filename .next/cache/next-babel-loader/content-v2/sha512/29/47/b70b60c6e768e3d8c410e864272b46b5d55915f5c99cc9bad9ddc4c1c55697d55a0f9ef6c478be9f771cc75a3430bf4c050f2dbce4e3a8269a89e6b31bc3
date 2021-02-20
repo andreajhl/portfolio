@@ -1,0 +1,1 @@
+{"ast":null,"code":"import * as PropTypes from \"prop-types\";\nconst CelebrityShape = PropTypes.shape({// Data\n});\nexport { CelebrityShape };","map":null,"metadata":{},"sourceType":"module"}

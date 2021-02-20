@@ -1,0 +1,1 @@
+{"ast":null,"code":"const isBrowser = () => false;\n\nexport default isBrowser;","map":null,"metadata":{},"sourceType":"module"}

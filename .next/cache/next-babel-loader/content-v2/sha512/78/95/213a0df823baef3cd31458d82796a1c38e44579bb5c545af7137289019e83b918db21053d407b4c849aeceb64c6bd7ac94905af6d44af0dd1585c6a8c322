@@ -1,0 +1,1 @@
+{"ast":null,"code":"import * as types from \"./types\";\nexport var saveCursorPosition = function saveCursorPosition(currentPosition) {\n  return function (dispatch) {\n    dispatch({\n      type: types.SAVE_CURSOR_POSITION,\n      payload: currentPosition\n    });\n  };\n};","map":null,"metadata":{},"sourceType":"module"}
