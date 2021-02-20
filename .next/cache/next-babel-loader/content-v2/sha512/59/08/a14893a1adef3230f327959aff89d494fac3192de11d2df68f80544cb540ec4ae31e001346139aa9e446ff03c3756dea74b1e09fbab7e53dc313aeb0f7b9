@@ -1,1 +1,0 @@
-{"ast":null,"code":"const createReducer = initialState => reducerMap => (state = initialState, action) => {\n  const reducer = reducerMap[action.type];\n  return reducer ? reducer(state, action) : state;\n};\n\nexport default createReducer;","map":null,"metadata":{},"sourceType":"module"}

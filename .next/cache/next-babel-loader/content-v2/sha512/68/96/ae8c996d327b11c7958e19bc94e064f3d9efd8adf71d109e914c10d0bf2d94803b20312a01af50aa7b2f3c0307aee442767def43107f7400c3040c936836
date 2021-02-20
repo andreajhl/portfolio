@@ -1,1 +1,0 @@
-{"ast":null,"code":"export { default, getServerSideProps } from \"pages/contract-created/[contract_reference]\";","map":null,"metadata":{},"sourceType":"module"}

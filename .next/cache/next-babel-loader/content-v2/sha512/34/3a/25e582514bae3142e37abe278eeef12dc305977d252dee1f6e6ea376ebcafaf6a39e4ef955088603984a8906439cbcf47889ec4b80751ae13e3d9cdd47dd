@@ -1,1 +1,0 @@
-{"ast":null,"code":"import reducer from \"./reducers\";\nimport * as countriesOperations from \"./operations\";\nimport * as countriesEndpoints from \"./paths\";\nexport { countriesOperations, countriesEndpoints };\nexport default reducer;","map":null,"metadata":{},"sourceType":"module"}
