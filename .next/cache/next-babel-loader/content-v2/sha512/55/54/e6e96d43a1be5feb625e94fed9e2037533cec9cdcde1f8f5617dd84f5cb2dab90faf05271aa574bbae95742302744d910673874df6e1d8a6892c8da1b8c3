@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const containerSmallSize = 508;\nexport const containerMediumSize = 688;\nexport const containerLargeSize = 960;\nexport const containerExtraLargeSize = 1140;","map":null,"metadata":{},"sourceType":"module"}

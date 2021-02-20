@@ -1,0 +1,1 @@
+{"ast":null,"code":"import * as PropTypes from \"prop-types\";\nvar GroupShape = PropTypes.shape({\n  // Data\n  permissions: PropTypes.array\n});\nexport { GroupShape };","map":null,"metadata":{},"sourceType":"module"}

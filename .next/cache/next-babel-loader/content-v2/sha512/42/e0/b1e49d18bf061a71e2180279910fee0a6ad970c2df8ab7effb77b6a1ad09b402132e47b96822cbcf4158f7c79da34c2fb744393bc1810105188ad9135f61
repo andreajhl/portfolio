@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const MODEL = `discount-coupon`;\nexport const GET_DISCOUNT_COUPONS_BANNER = `custom-endpoints/${MODEL}/public-get-coupon/`;","map":null,"metadata":{},"sourceType":"module"}

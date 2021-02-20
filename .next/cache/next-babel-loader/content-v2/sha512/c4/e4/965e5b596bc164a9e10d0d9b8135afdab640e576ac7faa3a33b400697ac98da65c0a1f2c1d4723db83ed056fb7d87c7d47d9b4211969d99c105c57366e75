@@ -1,0 +1,1 @@
+{"ast":null,"code":"const debug = (...data) => {\n  if (process.env.NEXT_PUBLIC_SHOW_DEBUG_LOGS !== \"true\") return;\n  const currentDate = new Date().toLocaleString(\"es-Es\");\n  console.log(\"DEBUG LOG:\", currentDate, \"DATA:\", ...data);\n};\n\nexport default debug;","map":null,"metadata":{},"sourceType":"module"}

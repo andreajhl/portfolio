@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var containerSmallSize = 508;\nexport var containerMediumSize = 688;\nexport var containerLargeSize = 960;\nexport var containerExtraLargeSize = 1140;","map":null,"metadata":{},"sourceType":"module"}

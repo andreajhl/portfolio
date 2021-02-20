@@ -1,0 +1,1 @@
+{"ast":null,"code":"import reducer from \"./reducers\";\nimport * as filtersOperations from \"./operations\";\nexport { filtersOperations };\nexport default reducer;","map":null,"metadata":{},"sourceType":"module"}
