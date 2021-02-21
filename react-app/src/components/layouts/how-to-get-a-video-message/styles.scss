@@ -52,7 +52,7 @@
     background-color: $gray;
     margin-bottom: 0.75em;
 
-    .number {
+    &.number {
       &--1 {
         padding-right: 0.035em;
         padding-top: 0.05em;
@@ -62,7 +62,7 @@
         padding-top: 0.035em;
       }
       &--3 {
-        padding-top: 0.025em;
+        padding-top: 0.04em;
         padding-left: 0.025em;
       }
     }
