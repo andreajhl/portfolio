@@ -20,18 +20,20 @@ export const CelebrityInfo = ({
     default:
       return (
         <>
-          <h4 className="CelebrityInfo__full-name">{fullName}</h4>
+          <h4 className="CelebrityInfo__full-name d-md-inline-block">
+            {fullName}
+          </h4>
+          <CelebrityFavoriteButton
+            className="d-none d-md-inline CelebrityInfo__fav-button-desktop"
+            celebrityId={celebrityId}
+            outlinedImageSource="assets/img/heart-regular-outlined.svg"
+            width="2rem"
+          />
           <div className="d-flex align-items-center mb-2">
             <CountryFlag countryCode={countryCode} />
             <span className="ml-3 CelebrityInfo__category">
               {categoryTitle}
             </span>
-            <CelebrityFavoriteButton
-              className="d-none d-md-block CelebrityInfo__fav-button-desktop"
-              celebrityId={celebrityId}
-              outlinedImageSource="assets/img/heart-regular-outlined.svg"
-              width="2.5rem"
-            />
           </div>
           <div className="d-flex justify-content-between align-items-center">
             <CelebrityContractPrice
@@ -76,26 +78,27 @@ export const CelebrityInfo = ({
     case "2":
       return (
         <>
-          <div className="text-right mb-2">
+          <div className="text-right mb-2 d-md-none">
             <CelebrityFavoriteButton
-              className="d-md-none"
               celebrityId={celebrityId}
               outlinedImageSource="assets/img/heart-regular-outlined.svg"
               width="1.25rem"
             />
           </div>
-          <h4 className="CelebrityInfo__full-name">{fullName}</h4>
+          <h4 className="CelebrityInfo__full-name d-md-inline-block">
+            {fullName}
+          </h4>
+          <CelebrityFavoriteButton
+            className="d-none d-md-inline CelebrityInfo__fav-button-desktop"
+            celebrityId={celebrityId}
+            outlinedImageSource="assets/img/heart-regular-outlined.svg"
+            width="2rem"
+          />
           <div className="d-flex align-items-center mb-2">
             <CountryFlag countryCode={countryCode} />
             <span className="ml-3 CelebrityInfo__category">
               {categoryTitle}
             </span>
-            <CelebrityFavoriteButton
-              className="d-none d-md-inline ml-auto"
-              celebrityId={celebrityId}
-              outlinedImageSource="assets/img/heart-regular-outlined.svg"
-              width="2.5rem"
-            />
           </div>
           <div className="d-flex justify-content-between align-items-center">
             <CelebrityContractPrice
