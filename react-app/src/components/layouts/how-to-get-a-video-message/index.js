@@ -14,7 +14,9 @@ const HowToGetAVideoMessageLayout = () => {
         </h2>
         <ul className="HowToGetAVideoMessageLayout__steps-list container mb-0">
           <li className="HowToGetAVideoMessageLayout__step-item">
-            <div className="HowToGetAVideoMessageLayout__step-number">1</div>
+            <div className="HowToGetAVideoMessageLayout__step-number number--1">
+              1
+            </div>
             <p className="HowToGetAVideoMessageLayout__step-text">
               Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak}{" "}
               "Quiero
@@ -22,7 +24,9 @@ const HowToGetAVideoMessageLayout = () => {
             </p>
           </li>
           <li className="HowToGetAVideoMessageLayout__step-item">
-            <div className="HowToGetAVideoMessageLayout__step-number">2</div>
+            <div className="HowToGetAVideoMessageLayout__step-number number--2">
+              2
+            </div>
             <p className="HowToGetAVideoMessageLayout__step-text">
               Detalla la solicitud y {onlyMobileLineBreak} realiza{" "}
               {onlyDesktopLineBreak}
@@ -30,7 +34,9 @@ const HowToGetAVideoMessageLayout = () => {
             </p>
           </li>
           <li className="HowToGetAVideoMessageLayout__step-item">
-            <div className="HowToGetAVideoMessageLayout__step-number">3</div>
+            <div className="HowToGetAVideoMessageLayout__step-number number--3">
+              3
+            </div>
             <p className="HowToGetAVideoMessageLayout__step-text">
               ¡Y listo! en poco {onlyMobileLineBreak} tiempo
               {onlyDesktopLineBreak} recibirás tu {onlyMobileLineBreak}{" "}
