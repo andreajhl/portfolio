@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
+import { PageContainer } from "../../layouts/page-container";
 import dynamic from "next/dynamic";
 
 const LastVideosAvailableBanner = dynamic(() =>
@@ -12,9 +13,7 @@ const LastVideosAvailableBanner = dynamic(() =>
     (mod) => mod.LastVideosAvailableBanner
   )
 );
-const PageContainer = dynamic(() =>
-  import("../../layouts/page-container").then((mod) => mod.PageContainer)
-);
+
 const NetworkConnectionErrorLayout = dynamic(() =>
   import("../../layouts/network-error-message").then(
     (mod) => mod.NetworkConnectionErrorLayout
