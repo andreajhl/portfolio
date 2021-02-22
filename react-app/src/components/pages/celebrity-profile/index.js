@@ -20,20 +20,33 @@ const NetworkConnectionErrorLayout = dynamic(() =>
     (mod) => mod.NetworkConnectionErrorLayout
   )
 );
-const CelebrityProfileLayoutA = dynamic(() =>
-  import("../../layouts/celebrity-profile-a").then(
-    (mod) => mod.CelebrityProfileLayoutA
-  )
+
+const LoadingLayout = () => <div style={{ minHeight: "100vh" }} />;
+
+const profileLayoutsConfig = { loading: LoadingLayout };
+
+const CelebrityProfileLayoutA = dynamic(
+  () =>
+    import("../../layouts/celebrity-profile-a").then(
+      (mod) => mod.CelebrityProfileLayoutA
+    ),
+  profileLayoutsConfig
 );
-const CelebrityProfileLayoutB = dynamic(() =>
-  import("../../layouts/celebrity-profile-b").then(
-    (mod) => mod.CelebrityProfileLayoutB
-  )
+
+const CelebrityProfileLayoutB = dynamic(
+  () =>
+    import("../../layouts/celebrity-profile-b").then(
+      (mod) => mod.CelebrityProfileLayoutB
+    ),
+  profileLayoutsConfig
 );
-const CelebrityProfileLayoutC = dynamic(() =>
-  import("../../layouts/celebrity-profile-c").then(
-    (mod) => mod.CelebrityProfileLayoutC
-  )
+
+const CelebrityProfileLayoutC = dynamic(
+  () =>
+    import("../../layouts/celebrity-profile-c").then(
+      (mod) => mod.CelebrityProfileLayoutC
+    ),
+  profileLayoutsConfig
 );
 
 const CelebrityProfileLayout = ({ celebrity, celebrityProfileVersion }) => {
