@@ -8,7 +8,7 @@ export const updateQueryParamsInitialState = {
 };
 
 const fetchCelebritiesInitialState = {
-  requestCancel: () => {},
+  requestCancel: null,
   loading: false,
   failed: false,
   completed: false,
@@ -17,7 +17,7 @@ const fetchCelebritiesInitialState = {
 };
 
 const fetchCelebritiesSimilarResultsInitialState = {
-  requestCancel: () => {},
+  requestCancel: null,
   loading: false,
   failed: false,
   completed: false,
@@ -73,6 +73,8 @@ const fetchCelebritySubscriptionPlansInitialState = {
 };
 
 const previousPathInitialState = { pathname: ROOT_PATH };
+
+const celebrityProfileVersionInitialState = null;
 
 export function queryParamsReducer(
   state = updateQueryParamsInitialState,
@@ -358,6 +360,11 @@ export function fetchCelebritySubscriptionPlansReducer(
   }
 }
 
+export const celebrityProfileVersionReducer = (
+  state = celebrityProfileVersionInitialState,
+  { type, payload }
+) => (type === types.SET_CELEBRITY_PROFILE_VERSION ? payload : state);
+
 export default combineReducers({
   queryParamsReducer,
   fetchCelebritiesReducer,
@@ -368,5 +375,6 @@ export default combineReducers({
   previousPathReducer,
   fetchFlashDeliveryCelebritiesReducer,
   fetchCelebritySubscriptionPlansReducer,
-  fetchCelebritiesSimilarResultsReducer
+  fetchCelebritiesSimilarResultsReducer,
+  celebrityProfileVersionReducer
 });

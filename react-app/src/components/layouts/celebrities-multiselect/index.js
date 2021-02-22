@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as PropTypes from "prop-types";
 import { restCelebritiesOperations } from "../../../state/ducks/rest-celebrities";
 import { connect } from "react-redux";
-import "./styles.scss";
+
 import Creatable from "react-select/creatable";
 
 class CelebritiesMultiselect extends Component {

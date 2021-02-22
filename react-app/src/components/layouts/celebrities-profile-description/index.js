@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import * as GTM from "../../../state/utils/gtm";
 import debounce from "lodash.debounce";
 import getElementTotalCharacterByLine from "../../../utils/getElementTotalCharacterByLine";
-import "./styles.scss";
+import getWindow from "react-app/src/utils/getWindow";
 
 const TotalCharactersInThreeLinesOnSmallBreakpoint = 135;
 
@@ -20,7 +20,7 @@ const CelebritiesProfileDescription = ({
   const [showMore, setShowMore] = useState(false);
   const analyticsData = {
     widget: "CelebritiesProfileDescription",
-    path: window.location.pathname,
+    path: getWindow().location.pathname,
     descriptionText
   };
 

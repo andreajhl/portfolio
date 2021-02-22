@@ -6,7 +6,7 @@ import * as GTM from "../../../state/utils/gtm";
 import { VideoSlideLayout } from "../video-slide";
 import { contractOperations } from "../../../state/ducks/contracts";
 import useCurrentVideoPlaying from "../../../utils/useCurrentVideoPlaying";
-import "./styles.scss";
+import getWindow from "react-app/src/utils/getWindow";
 
 const CelebrityHeroSlideshow = ({
   celebrityAvatar,
@@ -30,7 +30,7 @@ const CelebrityHeroSlideshow = ({
 
   const analyticsData = {
     widget: "CelebrityHeroSlideshow",
-    path: window.location.pathname,
+    path: getWindow().location.pathname,
     activeSlideIndex,
     videoIsMuted,
     videoIsFullscreen,

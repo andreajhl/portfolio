@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import pickPropertiesFromAObject from "src/utils/pickPropertiesFromAObject";
+import pickPropertiesFromAObject from "../../../utils/pickPropertiesFromAObject";
 import * as types from "./types";
 
 const getDiscountCouponBannerInitialState = {

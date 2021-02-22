@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import useLoad from "../../../utils/useLoad";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
 import * as GTM from "../../../state/utils/gtm";
-import "./styles.scss";
+import getWindow from "react-app/src/utils/getWindow";
 
 const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
   const [IsFinished, setIsFinished] = useState(false);
   const mainVideoReference = "mainVideo " + mainVideoUrl;
-  const [videoIsLoaded, onVideoLoadedData] = useLoad();
   const analyticsData = {
     widget: "CelebrityMainVideoSection",
-    path: window.location.pathname,
-    videoIsLoaded,
+    path: getWindow().location.pathname,
     mainVideoUrl
   };
   const { videoRef, playVideo, togglePlay } = useVideoPlayer(
@@ -31,6 +29,7 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
       }
     }
   );
+  const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
 
   const toggleVideoIsMuted = () =>

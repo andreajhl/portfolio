@@ -1,82 +1,74 @@
-import React, {Component, createRef} from "react";
-import {PageContainer} from "../../layouts";
+import React, { Component } from "react";
 import * as PropTypes from "prop-types";
-import {CelebrityShape} from "../../../prop-types";
-import {connect} from "react-redux";
-import {celebrityOperations} from "../../../state/ducks/celebrities";
-import "./styles.scss";
-import MetaTags from "react-meta-tags";
+import { CelebrityShape } from "../../../prop-types";
+import { connect } from "react-redux";
+import { celebrityOperations } from "../../../state/ducks/celebrities";
 import * as GTM from "../../../state/utils/gtm";
-import {Session} from "../../../state/utils/session";
-import {CelebrityProfileLayoutA} from "../../layouts/celebrity-profile-a";
-import {CelebrityProfileLayoutB} from "../../layouts/celebrity-profile-b";
-import {CelebrityProfileLayoutC} from "../../layouts/celebrity-profile-c";
-import {getCelebrityProfileVersion} from "../../../utils/celebrityProfileVersion";
-import {NetworkConnectionErrorLayout} from "../../layouts/network-error-message";
-import {LastVideosAvailableBanner} from "../../layouts/last-videos-available-banner";
+import { Session } from "../../../state/utils/session";
+import { PageContainer } from "../../layouts/page-container";
+import dynamic from "next/dynamic";
 
-const CelebrityProfileLayout = ({celebrity}) => {
+const LastVideosAvailableBanner = dynamic(() =>
+  import("../../layouts/last-videos-available-banner").then(
+    (mod) => mod.LastVideosAvailableBanner
+  )
+);
+
+const NetworkConnectionErrorLayout = dynamic(() =>
+  import("../../layouts/network-error-message").then(
+    (mod) => mod.NetworkConnectionErrorLayout
+  )
+);
+
+const LoadingLayout = () => <div style={{ minHeight: "100vh" }} />;
+
+const profileLayoutsConfig = { loading: LoadingLayout };
+
+const CelebrityProfileLayoutA = dynamic(
+  () =>
+    import("../../layouts/celebrity-profile-a").then(
+      (mod) => mod.CelebrityProfileLayoutA
+    ),
+  profileLayoutsConfig
+);
+
+const CelebrityProfileLayoutB = dynamic(
+  () =>
+    import("../../layouts/celebrity-profile-b").then(
+      (mod) => mod.CelebrityProfileLayoutB
+    ),
+  profileLayoutsConfig
+);
+
+const CelebrityProfileLayoutC = dynamic(
+  () =>
+    import("../../layouts/celebrity-profile-c").then(
+      (mod) => mod.CelebrityProfileLayoutC
+    ),
+  profileLayoutsConfig
+);
+
+const CelebrityProfileLayout = ({ celebrity, celebrityProfileVersion }) => {
   if (!celebrity.showSimilarCelebrities) {
-    return <CelebrityProfileLayoutC celebrity={celebrity}/>;
+    return <CelebrityProfileLayoutC celebrity={celebrity} />;
   }
 
-  const celebrityProfileVersion = getCelebrityProfileVersion();
-
   return celebrityProfileVersion && celebrityProfileVersion === "B" ? (
-      <CelebrityProfileLayoutB celebrity={celebrity}/>
+    <CelebrityProfileLayoutB celebrity={celebrity} />
   ) : (
     <CelebrityProfileLayoutA celebrity={celebrity} />
   );
 };
 
 class CelebrityProfilePage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      params: {}
-    };
-
-    this.getCelebrity = this.getCelebrity.bind(this);
-
-    this.scrollDiv = createRef();
-  }
-
   componentDidMount() {
     GTM.tagManagerDataLayer("CELEBRITY_PROFILE_PAGE_VIEW", {
       ...this.props.match,
-      celebrityProfileVersion: getCelebrityProfileVersion()
+      celebrity: this.props.celebrity,
+      celebrityProfileVersion: this.props.celebrityProfileVersion
     });
     const session = new Session();
     session.isDummy();
-    this.getCelebrity(this.props.match.params.celebrity_username);
-  }
-
-  // componentWillMount() {
-  //   if (
-  //     this.props.celebrity.username !==
-  //     this.props.match.params.celebrity_username
-  //   ) {
-  //   }
-  // }
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    if (
-      nextProps.match.params.celebrity_username !==
-      this.props.match.params.celebrity_username
-    ) {
-      this.getCelebrity(nextProps.match.params.celebrity_username);
-    }
-  }
-
-  getCelebrity(username) {
-    this.props.getCelebrity(username, true);
-  }
-
-  similarCelebrities() {
-    return this.props.similarCelebrities.filter((item) => {
-      return item.id !== this.props.celebrity.id;
-    });
   }
 
   componentWillUnmount() {
@@ -88,45 +80,25 @@ class CelebrityProfilePage extends Component {
       this.props.errorData?.api_error?.message === "Network Error";
 
     return (
-      <div className='CelebrityProfilePage'>
-        {this.props.celebrity.username && (
-          <div>
-            <MetaTags>
-              <title>Famosos.com - {this.props.celebrity.fullName}</title>
-              <meta
-                name='description'
-                content={
-                  "Perfil oficial de " +
-                  this.props.celebrity.fullName +
-                  " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
-                }
-              />
-              <meta
-                property='og:title'
-                content={"Famosos.com - " + this.props.celebrity.fullName}
-              />
-              <meta
-                property='og:url'
-                content={"https://famosos.com/" + this.props.celebrity.username}
-              />
-            </MetaTags>
-          </div>
-        )}
+      <div className="CelebrityProfilePage">
         <PageContainer
           applyFetchCelebrities={false}
           showLogin={false}
           applyFetchUserCelebrityLikes
         >
           {!hasNetworkError ? (
-            <div style={{ minHeight: "100vh" }}>
-              {this.props.celebrity.username ===
-              this.props.match.params.celebrity_username ? (
-                  <div>
-                    <LastVideosAvailableBanner
-                        celebrityUsername={this.props.celebrity?.username}
-                        celebrityFullName={this.props.celebrity?.fullName}/>
-                    <CelebrityProfileLayout celebrity={this.props.celebrity}/>
-                  </div>
+            <div>
+              {this.props.celebrity.id ? (
+                <div>
+                  <LastVideosAvailableBanner
+                    celebrityUsername={this.props.celebrity?.username}
+                    celebrityFullName={this.props.celebrity?.fullName}
+                  />
+                  <CelebrityProfileLayout
+                    celebrity={this.props.celebrity}
+                    celebrityProfileVersion={this.props.celebrityProfileVersion}
+                  />
+                </div>
               ) : null}
             </div>
           ) : (
@@ -163,15 +135,7 @@ const mapStateToProps = (state) => ({
   isLoading: state.celebrities.getCelebrityReducer.loading,
   celebrity: state.celebrities.getCelebrityReducer.data,
   errorData: state.celebrities.getCelebrityReducer.error_data,
-  socialNetworks:
-    state.celebritySocialNetworks.fetchCelebritySocialNetworksReducer.data
-      .results,
-  similarCelebritiesLoading:
-    state.celebrities.fetchSimilarCelebritiesReducer.loading,
-  similarCelebrities:
-    state.celebrities.fetchSimilarCelebritiesReducer.data.results,
-  similarCelebritiesPaginationData:
-    state.celebrities.fetchSimilarCelebritiesReducer.data.informationPage
+  celebrityProfileVersion: state.celebrities.celebrityProfileVersionReducer
 });
 
 // mapStateToProps

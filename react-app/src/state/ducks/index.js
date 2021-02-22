@@ -1,6 +1,6 @@
 export { default as authentication } from "./authentication";
 export { default as celebrities } from "./celebrities";
-export { default as celebritySocialNetworks } from "./celebrity-social-networks";
+// export { default as celebritySocialNetworks } from "./celebrity-social-networks";
 export { default as celebrityLikes } from "./celebrity-likes";
 export { default as contracts } from "./contracts";
 export { default as restCountries } from "./rest-countries";
@@ -15,5 +15,5 @@ export { default as countries } from "./countries";
 export { default as cursor } from "./cursor-position";
 export { default as blog } from "./blog";
 export { default as subscriptions } from "./subscriptions";
-export { default as userLocation } from "./userLocation";
+// export { default as userLocation } from "./userLocation";
 export { default as discountCoupons } from "./discount-coupons";

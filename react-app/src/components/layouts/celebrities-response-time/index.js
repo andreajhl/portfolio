@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./styles.scss";
 
 const getTurnAroundText = (turnAroundTime) => {
   if (turnAroundTime < 1) {
@@ -18,7 +17,12 @@ const CelebritiesResponseTime = ({
 }) => {
   return (
     <span className="CelebritiesResponseTime">
-      Respuesta promedio: <br className={`CelebritiesResponseTime__line-break ${availableForFlashDeliveries ? "isAvailableForFlashDeliveries": ""}`} />{" "}
+      Respuesta promedio:{" "}
+      <br
+        className={`CelebritiesResponseTime__line-break ${
+          availableForFlashDeliveries ? "isAvailableForFlashDeliveries" : ""
+        }`}
+      />{" "}
       <span>
         {availableForFlashDeliveries
           ? "Entrega flash (< de 24 hrs)"

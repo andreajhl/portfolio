@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { paymentsOperations } from "../../../state/ducks/payments";
 import { connect } from "react-redux";
 import NumberFormat from "react-number-format";
-import "./styles.scss";
+
 import { AVAILABLE_CURRENCIES } from "../currency-dropdown/constants";
 
 class ContractPriceLayout extends Component {

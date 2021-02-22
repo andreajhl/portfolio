@@ -5,7 +5,6 @@ import ReactHtmlParser, {
   convertNodeToElement,
   htmlparser2
 } from "react-html-parser";
-import "./styles.scss";
 
 function transform(node, index) {
   // do not render any <span> tags

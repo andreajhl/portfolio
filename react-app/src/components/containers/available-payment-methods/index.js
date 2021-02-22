@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { PayPalCardForm } from "../paypal-card-form";
 import { Elements } from "react-stripe-elements";
 import StripeFlowHandler from "../stripe-flow-handler";
 import { connect } from "react-redux";
 import { WhatsappContact } from "../whatsapp-contact";
 import DiscountCouponForm from "../discount-coupon-form";
-import getCookie from "src/utils/getCookie";
+import getCookie from "../../../utils/getCookie";
 
 class AvailablePaymentMethods extends Component {
   constructor(props) {
@@ -82,7 +82,7 @@ class AvailablePaymentMethods extends Component {
                 <h6 className={"font-weight-normal"}>
                   <span>Tarjeta de Crédito o Débito</span>
                 </h6>
-                <i class="far fa-credit-card"></i>
+                <i className="far fa-credit-card"></i>
               </div>
             </div>
             <div
@@ -112,7 +112,7 @@ class AvailablePaymentMethods extends Component {
                 {this.state.selectedPaymentMethod === "PAYPAL" ? (
                   <i className={`far  fa-dot-circle`}></i>
                 ) : (
-                  <i class="far fa-circle"></i>
+                  <i className="far fa-circle"></i>
                 )}
               </div>
               <div className="payment-type-title">

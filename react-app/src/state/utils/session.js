@@ -2,6 +2,7 @@ import { history } from "../../routing/History";
 import * as PATHS from "../../routing/Paths";
 import jwt_decode from "jwt-decode";
 import { Mixpanel } from "./mixPanel";
+import isBrowser from "react-app/src/utils/isBrowser";
 
 export class Session {
   constructor() {
@@ -27,8 +28,12 @@ export class Session {
     history._pushRoute(PATHS.ROOT_PATH);
   }
 
+  getToken = () => {
+    return isBrowser() ? localStorage.getItem(this.sessionName) : null;
+  };
+
   getSession = () => {
-    const token = localStorage.getItem(this.sessionName);
+    const token = this.getToken();
     return token ? this.jwtDecode(token) : null;
   };
 

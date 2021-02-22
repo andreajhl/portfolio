@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ModalSelect } from "../modal-select";
-import "./styles.scss";
+
 import * as GTM from "../../../state/utils/gtm";
+import getWindow from "react-app/src/utils/getWindow";
 
 const PRICE = "price";
 const ASC = "asc";
@@ -28,7 +29,7 @@ const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
 
   const analyticsData = {
     widget: "CelebritiesOrderBy",
-    path: window.location.pathname,
+    path: getWindow().location.pathname,
     checkItemLabel
   };
 

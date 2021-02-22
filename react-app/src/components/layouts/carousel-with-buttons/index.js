@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import debounce from "lodash.debounce";
-import "./styles.scss";
 
 const initialState = {
   showLeftScrollButton: false,

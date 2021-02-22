@@ -3,7 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
 import { SearchInputLayout } from "../search-input";
-import "./styles.scss";
 
 const ModalSelect = ({
   buttonLabel,

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { ContractCheckoutSummary } from "../../containers/contract-checkout-summary";
 import { AvailablePaymentMethods } from "../../containers/available-payment-methods";
 import * as ROUTING_PATHS from "../../../routing/Paths";
@@ -14,7 +14,7 @@ class PaymentMethodsSection extends Component {
     const isLoading = !this.props.contractData.reference;
     return (
       <div
-        className='PaymentMethodsSection'
+        className="PaymentMethodsSection"
         style={
           isLoading
             ? {
@@ -27,10 +27,10 @@ class PaymentMethodsSection extends Component {
         <div
           className={"row justify-content-center payment-methods-section-row"}
         >
-          <div className='col-12 col-md-8 p-0 mx-0 mb-4 mt-2 f-rounded f-shadow'>
+          <div className="col-12 col-md-8 p-0 mx-0 mb-4 mt-2 f-rounded f-shadow">
             {/* CONTRACT SUMMARY */}
             <div
-              className='col-12 col-md-12 col-lg-8 col-xl-6 mx-auto mt-5'
+              className="col-12 col-md-12 col-lg-8 col-xl-6 mx-auto mt-5"
               style={{
                 maxWidth: "440px"
               }}
@@ -76,9 +76,9 @@ class PaymentMethodsSection extends Component {
                 </a>
                 &nbsp;
               </small>
-              <div className='mt-2 mx-auto text-center'>
+              <div className="mt-2 mx-auto text-center">
                 <img
-                  width='230px'
+                  width="230px"
                   src={"/assets/img/pago-seguro.png"}
                   alt={"pago-seguro"}
                 />

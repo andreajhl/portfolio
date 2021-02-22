@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import * as PropTypes from "prop-types";
 import { authenticationOperations } from "../../../state/ducks/authentication";
 import { connect } from "react-redux";

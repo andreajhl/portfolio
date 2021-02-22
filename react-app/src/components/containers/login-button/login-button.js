@@ -1,9 +1,15 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { AUTH_SUCCESS } from "../../../routing/Paths";
+import isBrowser from "react-app/src/utils/isBrowser";
 
 const LoginButton = (props) => {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  let isMobile;
+  let locationOrigin;
+  if (isBrowser()) {
+    isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    locationOrigin = window.location.origin + AUTH_SUCCESS;
+  }
   const { className, text, redirectUrl } = props;
   const {
     loginWithPopup,
@@ -14,7 +20,7 @@ const LoginButton = (props) => {
   const handlerClickToLogin = () => {
     if (isMobile) {
       loginWithRedirect({
-        redirectUri: window.location.origin + AUTH_SUCCESS
+        redirectUri: locationOrigin
       });
     } else {
       loginWithPopup();

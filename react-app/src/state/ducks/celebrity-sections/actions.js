@@ -11,7 +11,7 @@ export const fetchCelebritySections = (params) => (dispatch) => {
   const TYPE = TYPES.FETCH_CELEBRITIES_SECTIONS;
   const FINAL_PATH = API_PATHS.FETCH_CELEBRITY_SECTIONS;
   dispatch({ type: TYPE });
-  apiService({
+  return apiService({
     method: "GET",
     action: TYPE,
     path: FINAL_PATH,

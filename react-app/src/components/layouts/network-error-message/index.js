@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { CallToActionButton } from "../call-to-action-button";
-import "./styles.scss";
 
 const NetworkConnectionErrorLayout = ({ onTryAgain }) => {
   return (

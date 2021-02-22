@@ -4,7 +4,6 @@ import { CelebrityCardLayout } from "../celebrity-card";
 import { EndMessageLayout } from "../end-message";
 import { LoaderLayout } from "../loader";
 import PropTypes from "prop-types";
-import "./styles.scss";
 
 const CelebritiesInfinityScrollLayout = ({
   celebrities,
@@ -45,7 +44,13 @@ const CelebritiesInfinityScrollLayout = ({
                   key={celebrity.id}
                   className="celebrities-results-layout__card-item"
                 >
-                  <CelebrityCardLayout celebrity={celebrity} />
+                  <CelebrityCardLayout
+                    celebrityCardLayout={{
+                      height: "100%",
+                      width: "100%"
+                    }}
+                    celebrity={celebrity}
+                  />
                 </li>
               ))}
             </ul>
