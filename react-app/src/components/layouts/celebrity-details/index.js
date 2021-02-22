@@ -34,7 +34,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
         variant === "2" ? "mb-4 mt-0" : ""
       }`}
     >
-      <Row className="justify-content-md-center align-items-center my-3">
+      <Row className="justify-content-md-center align-items-center align-items-md-start mt-3 mb-3 mt-lg-0">
         <Col xs="auto d-md-none" className="text-center">
           <ProfilePicture
             avatar={avatar}
@@ -50,7 +50,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
         <Col xs="auto d-none d-md-block" className="text-center">
           <ProfilePicture
             avatar={avatar}
-            width="200px"
+            width="150px"
             imageStyles={
               availableForFlashDeliveries ? { marginBottom: "-2.5rem" } : null
             }
