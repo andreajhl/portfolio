@@ -2,8 +2,9 @@ import { AVAILABLE_PAYMENTS_METHODS } from "../../../../../constants/availablePa
 import React, { useState } from "react";
 import { processDlocalPayment } from "../../../state/ducks/payments/actions";
 import DLocalFormCard from "../dLocal-form-card";
-import Select from "react-select";
 import SelectCardBankPaymentMethod from "../select-cardbank-payment-method";
+import { useRouter } from "next/router";
+import Contract_reference from "pages/contract-created/[contract_reference]";
 
 type DLocalPaymentsMethodsProps = {
   paymentMethodType: string;
@@ -33,6 +34,7 @@ const DLocalPaymentsMethods = ({
   discountCouponId,
   isSelected
 }: DLocalPaymentsMethodsProps) => {
+  const router = useRouter();
   const handleChangePaymentMethod = (name, paymentMethodId) => {
     setCurrentOption({ name, paymentMethodId });
   };
@@ -40,8 +42,10 @@ const DLocalPaymentsMethods = ({
     name: "",
     paymentMethodId: ""
   });
-
+  const [paymentError, setPaymentError] = useState("");
+  const [paymentInProcess, setPaymentInProcess] = useState(false);
   const handleStartPayment = async (cardToken) => {
+    setPaymentInProcess(true);
     try {
       processDlocalPayment(
         contractReference,
@@ -53,14 +57,17 @@ const DLocalPaymentsMethods = ({
         cardToken
       )
         .then((response) => {
-          console.log(response);
-          // if (response.requiredRedirect) {
-          //   window.location.replace(response.redirectUri);
-          // }
+          if (response.chargeStatus === "AUTHORIZED") {
+            router.push(`/metodos-de-pago/${contractReference}`);
+          }
         })
-        .catch((e) => console.log("Error", e));
+        .catch((e) => {
+          setPaymentError(e);
+          setPaymentInProcess(false);
+        });
     } catch (e) {
-      console.log("Error", e);
+      setPaymentInProcess(false);
+      setPaymentError(e);
     }
   };
 
@@ -141,11 +148,12 @@ const DLocalPaymentsMethods = ({
             </div>
           </div>
         )}
-
         <div className="mt-2">
           <DLocalFormCard
+            paymentInProcess={paymentInProcess}
             handleStartPayment={(token) => onStartPayment(token)}
           ></DLocalFormCard>
+          <span className="font-weight-bold text-danger">{paymentError}</span>
         </div>
       </div>
     </React.Fragment>
