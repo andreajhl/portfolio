@@ -46,7 +46,7 @@ const CurrencyDropdownSelect = ({
         className ? className : ""
       }`}
       value={currentCurrency.name}
-      onChange={handleCurrentCurrency}
+      onChange={(event) => handleCurrentCurrency(event)}
     >
       {available_currencies.map((item, index) => {
         return (
