@@ -74,6 +74,7 @@ const DLocalFormCard = ({
       </div>
       <button
         onClick={(e) => handlerSubmitCreditCardDetails(e)}
+        disabled={paymentInProcess}
         className="btn btn-primary mx-auto"
         style={{
           backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
@@ -82,7 +83,7 @@ const DLocalFormCard = ({
           width: "80%"
         }}
       >
-        <LoaderLayout></LoaderLayout>
+        {paymentInProcess ? <LoaderLayout /> : "Pagar"}
       </button>
     </form>
   ) : (
