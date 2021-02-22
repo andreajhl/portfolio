@@ -7,6 +7,12 @@ const DLOCALKEY = process.env.NEXT_PUBLIC_DLOCAL_API_KEY;
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
 const scriptSrc = "https://js-sandbox.dlocal.com/";
 
+declare global {
+  interface Window {
+    dlocal: any;
+  }
+}
+
 const DLocalFormCard = ({
   isScriptLoaded,
   isScriptLoadSucceed,
