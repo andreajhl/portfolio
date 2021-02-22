@@ -1,6 +1,9 @@
 import { AVAILABLE_PAYMENTS_METHODS } from "../../../../../constants/availablePaymentsMethods";
 import React, { useState } from "react";
 import { processDlocalPayment } from "../../../state/ducks/payments/actions";
+import DLocalFormCard from "../dLocal-form-card";
+import Select from "react-select";
+import SelectCardBankPaymentMethod from "../select-cardbank-payment-method";
 
 type DLocalPaymentsMethodsProps = {
   paymentMethodType: string;
@@ -14,11 +17,11 @@ type DLocalPaymentsMethodsProps = {
     redirect: boolean;
   }>;
   buyerData: {
-    buyerFullname: string;
+    buyerFullName: string;
     buyerEmail: string;
     buyerDocument: string;
   };
-  discountCounponId: null | string | number;
+  discountCouponId: null | string | number;
   isSelected: boolean;
 };
 
@@ -27,7 +30,7 @@ const DLocalPaymentsMethods = ({
   paymentMethodType,
   paymentsMethodsAvailable = [],
   buyerData,
-  discountCounponId,
+  discountCouponId,
   isSelected
 }: DLocalPaymentsMethodsProps) => {
   const handleChangePaymentMethod = (name, paymentMethodId) => {
@@ -38,26 +41,33 @@ const DLocalPaymentsMethods = ({
     paymentMethodId: ""
   });
 
-  const handleStartPayment = async () => {
+  const handleStartPayment = async (cardToken) => {
     try {
       processDlocalPayment(
         contractReference,
         currentOption.paymentMethodId,
-        buyerData.buyerFullname,
+        buyerData.buyerFullName,
         buyerData.buyerEmail,
         buyerData.buyerDocument,
-        discountCounponId
+        discountCouponId ? discountCouponId : null,
+        cardToken
       )
         .then((response) => {
-          if (response.requiredRedirect) {
-            window.location.replace(response.redirectUri);
-          }
+          console.log(response);
+          // if (response.requiredRedirect) {
+          //   window.location.replace(response.redirectUri);
+          // }
         })
         .catch((e) => console.log("Error", e));
     } catch (e) {
       console.log("Error", e);
     }
   };
+
+  const onStartPayment = (token) => {
+    handleStartPayment(token);
+  };
+
   return (
     <React.Fragment>
       <div className="titles">
@@ -78,52 +88,65 @@ const DLocalPaymentsMethods = ({
       <div
         className={`pl-3 pr-3 pt-4 pb-4 bg-light ${isSelected ? "" : "d-none"}`}
       >
-        <div className="form-check d-flex flex-column ">
-          {paymentsMethodsAvailable.map((paymentMethod, index) => (
-            <div className="mt-1 mb-1">
-              <input
-                className="form-check-input"
-                type="radio"
-                name={`paymentMethod-${paymentMethodType}`}
-                value={paymentMethod.name}
-                checked={currentOption.name === paymentMethod.name}
-                onChange={() =>
-                  handleChangePaymentMethod(
-                    paymentMethod.name,
-                    paymentMethod.id
-                  )
-                }
-                id={`paymentMethod-${paymentMethod.name}-${index}`}
-              />
-              <label
-                className="form-check-label w-100 cursor-pointer"
-                htmlFor={`paymentMethod-${paymentMethod.name}-${index}`}
-              >
-                <span>{paymentMethod.name}</span>
-                <img
-                  style={{
-                    position: "absolute",
-                    left: "90%"
-                  }}
-                  height="20px"
-                  src={paymentMethod.logo}
-                />
-              </label>
+        {paymentMethodType === "CREDIT_CARD" ||
+        paymentMethodType === "DEBIT_CARD" ? (
+          <div className="form-check d-flex p-0 flex-column ">
+            <SelectCardBankPaymentMethod
+              onChangeOptionSelected={(selected) =>
+                handleChangePaymentMethod(selected.name, selected.value)
+              }
+              options={paymentsMethodsAvailable.map((paymentMethod) => ({
+                value: paymentMethod.id,
+                label: paymentMethod.name
+              }))}
+            />
+          </div>
+        ) : (
+          <div className="form-check d-flex p-0 flex-column ">
+            <div className="form-check d-flex flex-column ">
+              {paymentsMethodsAvailable.map((paymentMethod, index) => (
+                <div className="mt-1 mb-1">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name={`paymentMethod-${paymentMethodType}`}
+                    value={paymentMethod.name}
+                    checked={currentOption.name === paymentMethod.name}
+                    onChange={() =>
+                      handleChangePaymentMethod(
+                        paymentMethod.name,
+                        paymentMethod.id
+                      )
+                    }
+                    id={`paymentMethod-${paymentMethod.name}-${index}`}
+                  />
+                  <label
+                    className="form-check-label w-100 cursor-pointer"
+                    htmlFor={`paymentMethod-${paymentMethod.name}-${index}`}
+                  >
+                    <span>{paymentMethod.name}</span>
+                    <img
+                      alt="Card Logo"
+                      style={{
+                        position: "absolute",
+                        left: "90%"
+                      }}
+                      className="rounded-circle"
+                      height="30px"
+                      src={paymentMethod.logo}
+                    />
+                  </label>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+        )}
+
+        <div className="mt-2">
+          <DLocalFormCard
+            handleStartPayment={(token) => onStartPayment(token)}
+          ></DLocalFormCard>
         </div>
-        <button
-          style={{
-            borderRadius: "10px",
-            color: "white",
-            fontWeight: "bold",
-            height: "45px"
-          }}
-          className="btn btn-primary w-100"
-          onClick={() => handleStartPayment()}
-        >
-          Botón de prueba
-        </button>
       </div>
     </React.Fragment>
   );
