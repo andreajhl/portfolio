@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
 import { ContractCheckoutSummary } from "../../containers/contract-checkout-summary";
 import { AvailablePaymentMethods } from "../../containers/available-payment-methods";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { CurrencyDropdownSelect } from "../../../components/currency-select-for-payment";
+import { LoaderLayout } from "../../layouts/loader";
 
 class PaymentMethodsSection extends Component {
   constructor(props) {
@@ -55,69 +56,90 @@ class PaymentMethodsSection extends Component {
                 contractReference={this.props.contractData.reference}
               />
             </div>
-            <div className="row d-flex flex-column align-items-center justify-content-center mx-auto mt-4">
+            {this.props.currencyExchangeLoading ? (
               <div
-                className="container-dropdown-currency d-flex align-items-center  col-12 col-md-8 p-0 mx-0"
-                style={{
-                  maxWidth: "440px"
-                }}
+                style={{ minHeight: "10vh" }}
+                className="d-flex justify-content-center align-items-center  "
               >
-                <div className="d-flex pl-1">
-                  <span className="payment-methods__steps-to-pay">1</span>{" "}
-                  <span className="ml-2 font-weight-bold">
-                    En que moneda te gustaria pagar
-                  </span>
+                <LoaderLayout></LoaderLayout>
+              </div>
+            ) : (
+              <React.Fragment>
+                <div
+                  className="mx-auto mt-4"
+                  style={{
+                    maxWidth: "500px",
+                    paddingLeft: "20px",
+                    paddingRight: "20px",
+                    paddingTop: "20px"
+                  }}
+                >
+                  <div className="container-dropdown-currency d-flex align-items-center  col-12 col-md-8 p-0 mx-0">
+                    <div className="d-flex pl-1">
+                      <span className="payment-methods__steps-to-pay">1</span>{" "}
+                      <span className="ml-2 font-weight-bold">
+                        ¿En qué moneda te gustaría pagar?
+                      </span>
+                    </div>
+                  </div>
+                  <div className="pt-4">
+                    <CurrencyDropdownSelect
+                      onChangeCurrency={(newCurrency) =>
+                        this.handlerCurrencySelectedChange(newCurrency)
+                      }
+                      className="mx-auto"
+                    ></CurrencyDropdownSelect>
+                  </div>
                 </div>
-              </div>
-              <div className="d-flex col-12 col-md-10 col-lg-6 col-xl-4 p-0">
-                <CurrencyDropdownSelect
-                  onChangeCurrency={(newCurrency) =>
-                    this.handlerCurrencySelectedChange(newCurrency)
-                  }
-                  className="mx-auto"
-                ></CurrencyDropdownSelect>
-              </div>
-            </div>
-            {/* PAYMENT METHODS */}
-            <AvailablePaymentMethods
-              currentCurrencySelected={this.state.currentCurrencySelected}
-              contractReference={this.props.contractData.reference}
-              contractPrice={this.props.contractData.price}
-            />
-
-            {/* TERMS */}
-            <div className={"p-4 text-center"}>
-              <small
-                className={"text-muted text-center"}
-                style={{ color: "#838383" }}
-              >
-                Al continuar estás aceptando nuestros&nbsp;
-                <a
-                  href={ROUTING_PATHS.TERMS_PATH}
-                  style={{ color: "#838383", textDecorationLine: "underline" }}
-                  target={"_blank"}
-                >
-                  Términos y Condiciones
-                </a>
-                &nbsp; y nuestra&nbsp;
-                <a
-                  href={ROUTING_PATHS.POLICIES_PATH}
-                  style={{ color: "#838383", textDecorationLine: "underline" }}
-                  target={"_blank"}
-                >
-                  Política de Privacidad
-                </a>
-                &nbsp;
-              </small>
-              <div className="mt-2 mx-auto text-center">
-                <img
-                  width="230px"
-                  src={"/assets/img/pago-seguro.png"}
-                  alt={"pago-seguro"}
+                {/* // PAYMENT METHODS */}
+                <AvailablePaymentMethods
+                  currentCurrencySelected={this.state.currentCurrencySelected}
+                  contractReference={this.props.contractData.reference}
+                  contractPrice={this.props.contractData.price}
                 />
-              </div>
-              <br />
-            </div>
+                {/* // TERMS */}
+                <div className={"p-4 text-center"}>
+                  <small
+                    className={"text-muted text-center"}
+                    style={{ color: "#838383" }}
+                  >
+                    Al continuar estás aceptando nuestros&nbsp;
+                    <a
+                      rel="noreferrer"
+                      href={ROUTING_PATHS.TERMS_PATH}
+                      style={{
+                        color: "#838383",
+                        textDecorationLine: "underline"
+                      }}
+                      target={"_blank"}
+                    >
+                      Términos y Condiciones
+                    </a>
+                    &nbsp; y nuestra&nbsp;
+                    <a
+                      rel="noreferrer"
+                      href={ROUTING_PATHS.POLICIES_PATH}
+                      style={{
+                        color: "#838383",
+                        textDecorationLine: "underline"
+                      }}
+                      target={"_blank"}
+                    >
+                      Política de Privacidad
+                    </a>
+                    &nbsp;
+                  </small>
+                  <div className="mt-2 mx-auto text-center">
+                    <img
+                      width="230px"
+                      src={"/assets/img/pago-seguro.png"}
+                      alt={"pago-seguro"}
+                    />
+                  </div>
+                  <br />
+                </div>
+              </React.Fragment>
+            )}
 
             {/* HELP */}
             {/*<div className={"mb-4 text-center"}>*/}
@@ -137,6 +159,18 @@ PaymentMethodsSection.propTypes = {};
 PaymentMethodsSection.defaultProps = {
   contractData: {}
 };
+// mapStateToProps
+const mapStateToProps = ({
+  payments: { currencyExchangeReducer, fetchPaymentGatewaysReducer }
+}) => ({
+  currencyExchangeLoading: currencyExchangeReducer.loading,
+  paymentGatewayLoading: fetchPaymentGatewaysReducer.loading
+});
+
+const _PaymentMethodsSection = connect(
+  mapStateToProps,
+  null
+)(PaymentMethodsSection);
 
 // Export Class
-export { PaymentMethodsSection };
+export { _PaymentMethodsSection as PaymentMethodsSection };
