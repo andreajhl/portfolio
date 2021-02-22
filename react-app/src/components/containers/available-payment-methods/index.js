@@ -9,7 +9,7 @@ import getWindow from "react-app/src/utils/getWindow";
 import { DLocalPaymentsMethods } from "../d-local-payments-methods/index";
 import DLocalPaymentsForm from "../d-local-payments-form";
 import { listPaymentGateways } from "../../../state/ducks/payments/operations";
-import { AVAILABLE_PAYMENTS_METHODS } from "constants/availablePaymentsMethods";
+import { LoaderLayout } from "../../layouts/loader";
 class AvailablePaymentMethods extends Component {
   constructor(props) {
     super(props);
@@ -25,8 +25,6 @@ class AvailablePaymentMethods extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.props.paymentMethodsAvailable);
-
     this.setState({
       ...this.state,
       currencySelected: this.props.currentCurrencySelected
@@ -39,7 +37,6 @@ class AvailablePaymentMethods extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.props.paymentMethodsAvailable);
     if (
       this.props.currentCurrencySelected !== prevProps.currentCurrencySelected
     ) {
@@ -110,10 +107,23 @@ class AvailablePaymentMethods extends Component {
   };
 
   render() {
-    return (
+    const shouldDisplayBuyerForm = this.props.paymentMethodsAvailable.some(
+      (payment) =>
+        ["BANK_TRANSFER", "TICKET", "CREDIT_CARD"].includes(
+          payment.paymentMethodType
+        )
+    );
+    return this.props.paymentMethodsAvailableIsLoading ? (
+      <div
+        style={{ minHeight: "10vh" }}
+        className="d-flex justify-content-center align-items-center"
+      >
+        <LoaderLayout></LoaderLayout>
+      </div>
+    ) : (
       <div className="AvailablePaymentMethods mx-auto">
         <div className={"payment-types f-rounded"}>
-          {this.state.currencySelected !== "USD" ? (
+          {shouldDisplayBuyerForm ? (
             <React.Fragment>
               <div className="d-flex pl-1">
                 <span className="payment-methods__steps-to-pay">2</span>{" "}
@@ -130,7 +140,7 @@ class AvailablePaymentMethods extends Component {
           ) : null}
           <div className="d-flex pl-1">
             <span className="payment-methods__steps-to-pay">
-              {this.state.currencySelected !== "USD" ? "3" : "2"}
+              {shouldDisplayBuyerForm ? "3" : "2"}
             </span>{" "}
             <span className="pl-1 font-weight-bold">
               Elige el método de pago
@@ -179,73 +189,49 @@ class AvailablePaymentMethods extends Component {
                   </div>
                 </div>
               );
-            } else if (paymentMethod.paymentMethodType === "CARD") {
-              if (
-                paymentMethod.availablePaymentMethods[0].identifier === "STRIPE"
-              ) {
-                return (
-                  <div
-                    className="payment-type mb-3"
-                    onClick={() => this.changeMethodPayment("STRIPE")}
-                  >
-                    <div className="titles">
-                      <div className="icon">
-                        {this.state.selectedPaymentMethod === "STRIPE" ? (
-                          <i className={`far  fa-dot-circle`}></i>
-                        ) : (
-                          <i className="far fa-circle"></i>
-                        )}
-                      </div>
-                      <div className="payment-type-title">
-                        <h6 className={"font-weight-normal"}>
-                          <span>Tarjeta de Crédito o Débito</span>
-                        </h6>
-                        <i className="far fa-credit-card"></i>
-                      </div>
+            } else if (paymentMethod.paymentMethodType === "STRIPE") {
+              return (
+                <div
+                  className="payment-type mb-3"
+                  onClick={() => this.changeMethodPayment("STRIPE")}
+                >
+                  <div className="titles">
+                    <div className="icon">
+                      {this.state.selectedPaymentMethod === "STRIPE" ? (
+                        <i className={`far  fa-dot-circle`}></i>
+                      ) : (
+                        <i className="far fa-circle"></i>
+                      )}
                     </div>
-                    <div
-                      className={
-                        "pl-3 pr-3 pt-4 pb-4 bg-light" +
-                        (this.state.selectedPaymentMethod === "STRIPE"
-                          ? ""
-                          : " d-none ")
-                      }
-                    >
-                      <Elements>
-                        <StripeFlowHandler
-                          contractReference={this.props.contractReference}
-                          contractPrice={
-                            this.props.couponData.completed
-                              ? this.applyDiscount()
-                              : this.props.contractPrice
-                          }
-                          discountCouponId={this.props.couponData.data.id}
-                        />
-                      </Elements>
+                    <div className="payment-type-title">
+                      <h6 className={"font-weight-normal"}>
+                        <span>Tarjeta de Crédito o Débito</span>
+                      </h6>
+                      <i className="far fa-credit-card"></i>
                     </div>
                   </div>
-                );
-              } else {
-                return (
                   <div
-                    className="payment-type mb-3"
-                    onClick={() => this.changeMethodPayment("DLOCALCARD")}
+                    className={
+                      "pl-3 pr-3 pt-4 pb-4 bg-light" +
+                      (this.state.selectedPaymentMethod === "STRIPE"
+                        ? ""
+                        : " d-none ")
+                    }
                   >
-                    <DLocalPaymentsMethods
-                      isSelected={
-                        this.state.selectedPaymentMethod === "DLOCALCARD"
-                      }
-                      paymentMethodType={paymentMethod.paymentMethodType}
-                      paymentsMethodsAvailable={
-                        paymentMethod.availablePaymentMethods
-                      }
-                      buyerData={this.state.buyerData}
-                      contractReference={this.props.contractReference}
-                      discountCouponId={this.props.couponData.data.id}
-                    />
+                    <Elements>
+                      <StripeFlowHandler
+                        contractReference={this.props.contractReference}
+                        contractPrice={
+                          this.props.couponData.completed
+                            ? this.applyDiscount()
+                            : this.props.contractPrice
+                        }
+                        discountCouponId={this.props.couponData.data.id}
+                      />
+                    </Elements>
                   </div>
-                );
-              }
+                </div>
+              );
             } else if (paymentMethod.paymentMethodType === "BANK_TRANSFER") {
               return (
                 <div
@@ -275,6 +261,45 @@ class AvailablePaymentMethods extends Component {
                   <DLocalPaymentsMethods
                     isSelected={this.state.selectedPaymentMethod === "TICKET"}
                     paymentMethodType={paymentMethod.paymentMethodType}
+                    paymentsMethodsAvailable={
+                      paymentMethod.availablePaymentMethods
+                    }
+                    buyerData={this.state.buyerData}
+                    contractReference={this.props.contractReference}
+                    discountCouponId={this.props.couponData.data.id}
+                  />
+                </div>
+              );
+            } else if (paymentMethod.paymentMethodType === "CREDIT_CARD") {
+              return (
+                <div
+                  className="payment-type mb-3"
+                  onClick={() => this.changeMethodPayment("CREDIT_CARD")}
+                >
+                  <DLocalPaymentsMethods
+                    isSelected={
+                      this.state.selectedPaymentMethod === "CREDIT_CARD"
+                    }
+                    paymentMethodType={paymentMethod.paymentMethodType}
+                    paymentsMethodsAvailable={
+                      paymentMethod.availablePaymentMethods
+                    }
+                    buyerData={this.state.buyerData}
+                    contractReference={this.props.contractReference}
+                    discountCouponId={this.props.couponData.data.id}
+                  />
+                </div>
+              );
+            } else if (paymentMethod.paymentMethodType === "DEBIT_CARD") {
+              return (
+                <div
+                  className="payment-type mb-3"
+                  onClick={() => this.changeMethodPayment("DEBIT_CARD")}
+                >
+                  <DLocalPaymentsMethods
+                    isSelected={
+                      this.state.selectedPaymentMethod === "DEBIT_CARD"
+                    }
                     paymentMethodType={paymentMethod.paymentMethodType}
                     paymentsMethodsAvailable={
                       paymentMethod.availablePaymentMethods
@@ -343,7 +368,7 @@ AvailablePaymentMethods.defaultProps = {
 // mapStateToProps
 const mapStateToProps = (state) => ({
   paymentMethodsAvailableIsLoading:
-  state.payments.fetchPaymentGatewaysReducer.loading,
+    state.payments.fetchPaymentGatewaysReducer.loading,
   paymentMethodsAvailable: state.payments.fetchPaymentGatewaysReducer.data,
   couponData: state.payments.fetchDiscountCouponReducer,
   currencyExchangeData: state.payments.currencyExchangeReducer
