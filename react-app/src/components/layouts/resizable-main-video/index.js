@@ -28,7 +28,7 @@ const ResizableMainVideo = ({ mainVideoUrl, videoPosterUrl }) => {
 
   return (
     <ResizableBox
-      width={containerWidth}
+      width={containerWidth || 400}
       height={isInDesktop ? 445 : 252}
       minConstraints={[containerWidth, 252]}
       maxConstraints={[containerWidth, 445]}
