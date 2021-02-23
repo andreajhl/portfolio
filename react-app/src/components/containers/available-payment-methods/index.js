@@ -7,7 +7,7 @@ import { WhatsappContact } from "../whatsapp-contact";
 import DiscountCouponForm from "../discount-coupon-form";
 import getWindow from "react-app/src/utils/getWindow";
 import { DLocalPaymentsMethods } from "../d-local-payments-methods/index";
-import DLocalPaymentsForm from "../d-local-payments-form";
+import { DLocalPaymentsForm } from "../d-local-payments-form";
 import { listPaymentGateways } from "../../../state/ducks/payments/operations";
 import { LoaderLayout } from "../../layouts/loader";
 class AvailablePaymentMethods extends Component {
