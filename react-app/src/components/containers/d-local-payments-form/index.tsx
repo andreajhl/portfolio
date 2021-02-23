@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { sessionOperations } from "../../../state/ducks/session";
 import { connect } from "react-redux";
+import { AVAILABLE_CURRENCIES_FOR_PAYMENTS } from "constants/availableCurrencyForPayments";
+
 type DLocalPaymentsFormProps = {
   handleChangedInputs: Function;
   userInformation: {
@@ -10,6 +12,7 @@ type DLocalPaymentsFormProps = {
   userInformationLoading: boolean;
   getToken: Function;
   userInformationCompleted: boolean;
+  currencyExchangeData: any;
 };
 
 const DLocalPaymentsForm = ({
@@ -17,7 +20,8 @@ const DLocalPaymentsForm = ({
   userInformation,
   userInformationLoading,
   userInformationCompleted,
-  getToken
+  getToken,
+  currencyExchangeData
 }: DLocalPaymentsFormProps) => {
   const [buyerFullName, setBuyerFullName] = useState("");
   const [buyerEmail, setBuyerEmail] = useState("");
@@ -64,7 +68,13 @@ const DLocalPaymentsForm = ({
           className="form-control"
           placeholder="Escribe aquí tu correo electronico"
         ></input>
-        <label className="font-weight-bold">Cedula de identidad</label>
+        <label className="font-weight-bold">
+          {
+            AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
+              (data) => data.name === currencyExchangeData.to
+            ).document_name
+          }
+        </label>
         <input
           style={{
             borderRadius: "10px"
@@ -83,7 +93,8 @@ const DLocalPaymentsForm = ({
 const mapStateToProps = (state) => ({
   userInformation: state.session.getSessionReducer.data,
   userInformationLoading: state.session.getSessionReducer.loading,
-  userInformationCompleted: state.session.getSessionReducer.completed
+  userInformationCompleted: state.session.getSessionReducer.completed,
+  currencyExchangeData: state.payments.currencyExchangeReducer.data
 });
 
 const mapDispatchToProps = {
