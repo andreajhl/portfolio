@@ -310,6 +310,8 @@ class AvailablePaymentMethods extends Component {
                   />
                 </div>
               );
+            } else {
+              return null;
             }
           })}
 
