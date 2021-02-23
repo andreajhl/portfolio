@@ -180,7 +180,7 @@ export const processDlocalPayment = (
     })
       .then((res) => {
         if (res.data.status === "OK") {
-          resolutionFunc(res.data);
+          resolutionFunc(res.data.data);
         }
       })
       .catch((err) => {
