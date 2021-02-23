@@ -5,7 +5,7 @@ export const AVAILABLE_CURRENCIES_FOR_PAYMENTS = [
     symbol: "$",
     implemented_by_dlocal: true,
     flag: "/assets/img/usa.svg",
-    document_name: "SSN",
+    document_name: "Social Security Number / SSN",
     decimal_separator: ".",
     thousand_separator: ",",
     round: "1"
@@ -16,7 +16,7 @@ export const AVAILABLE_CURRENCIES_FOR_PAYMENTS = [
     symbol: "$",
     implemented_by_dlocal: true,
     flag: "https://restcountries.eu/data/arg.svg",
-    document_name: "DNI o CUIT",
+    document_name: "Código Único de Identificación Tributaria",
     decimal_separator: ",",
     thousand_separator: ".",
     round: "100"
@@ -38,7 +38,7 @@ export const AVAILABLE_CURRENCIES_FOR_PAYMENTS = [
     symbol: "$",
     implemented_by_dlocal: true,
     flag: "https://restcountries.eu/data/col.svg",
-    document_name: "CC",
+    document_name: "Cédula de Ciudadanía",
     decimal_separator: ",",
     thousand_separator: ".",
     round: "1000"
@@ -49,7 +49,7 @@ export const AVAILABLE_CURRENCIES_FOR_PAYMENTS = [
     symbol: "$",
     implemented_by_dlocal: true,
     flag: "https://restcountries.eu/data/mex.svg",
-    document_name: "CURP",
+    document_name: "Clave Única de Registro de Población",
     decimal_separator: ".",
     thousand_separator: ",",
     round: "5"
