@@ -187,12 +187,22 @@ export const processPayPalPayment = (
     })
       .then((res) => {
         if (res.data.status === "ERROR") {
+          handleApiErrors(
+            reduxStore.dispatch,
+            types.CREATE_PAYPAL_PAYMENT_REQUEST,
+            res
+          );
           rejectionFunc(res.data.error);
         } else {
           resolutionFunc(res.data.data);
         }
       })
       .catch((error) => {
+        handleApiErrors(
+          reduxStore.dispatch,
+          types.CREATE_PAYPAL_PAYMENT_REQUEST,
+          error
+        );
         if (error.response) {
           if (error.response.data) {
             rejectionFunc(error.response.data.error);
