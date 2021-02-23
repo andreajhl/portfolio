@@ -31,6 +31,39 @@ const IconPaymentMethod = styled.i`
   }
 `;
 
+const Label = styled.label`
+  cursor: pointer;
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: 0.5em;
+  color: #fb177d;
+`;
+
+const RadioControl = styled.span`
+  display: block;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  transform: translateY(-0.05em);
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.15);
+`;
+const RadioLabel = styled.span`
+  line-height: 1;
+`;
+const RadioInput = styled.span`
+  display: flex;
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    // ...existing styles
+    &:checked + ${RadioControl} {
+      background: radial-gradient(#fb177d 25%, rgba(255, 0, 0, 0) 40%);
+    }
+  }
+`;
+
 type DLocalPaymentsMethodsProps = {
   paymentMethodType: string;
   contractReference: string | number;
@@ -143,28 +176,27 @@ const DLocalPaymentsMethods = ({
             <div className="form-check d-flex flex-column ">
               {paymentsMethodsAvailable.map((paymentMethod, index) => (
                 <div
-                  className="mt-2 mb-1"
                   key={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
                 >
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name={`paymentMethod-${paymentMethodType}`}
-                    value={paymentMethod.name}
-                    checked={currentOption.name === paymentMethod.name}
-                    onChange={() =>
-                      handleChangePaymentMethod(
-                        paymentMethod.name,
-                        paymentMethod.id
-                      )
-                    }
-                    id={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
-                  />
-                  <label
-                    className="form-check-label w-100 cursor-pointer"
+                  <Label
                     htmlFor={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
                   >
-                    <span>{paymentMethod.name}</span>
+                    <RadioInput>
+                      <input
+                        type="radio"
+                        name={`paymentMethod-${paymentMethodType}`}
+                        value={paymentMethod.name}
+                        checked={currentOption.name === paymentMethod.name}
+                        onChange={() =>
+                          handleChangePaymentMethod(
+                            paymentMethod.name,
+                            paymentMethod.id
+                          )
+                        }
+                        id={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
+                      />
+                      <RadioControl />
+                    </RadioInput>
                     {index < 3 ? (
                       <img
                         alt="Card Logo"
@@ -177,7 +209,9 @@ const DLocalPaymentsMethods = ({
                         src={paymentMethod.logo}
                       />
                     ) : null}
-                  </label>
+
+                    <RadioLabel>{paymentMethod.name}</RadioLabel>
+                  </Label>
                 </div>
               ))}
             </div>
