@@ -57,7 +57,14 @@ const DLocalPaymentsForm = ({
           }}
           placeholder="Escribe aquí tu nombre"
         ></input>
-        <label className="font-weight-bold">Email</label>
+        <label
+          className="font-weight-bold"
+          style={{
+            marginTop: "0.5rem"
+          }}
+        >
+          Email
+        </label>
         <input
           style={{
             borderRadius: "10px"
@@ -68,7 +75,12 @@ const DLocalPaymentsForm = ({
           className="form-control"
           placeholder="Escribe aquí tu correo electronico"
         ></input>
-        <label className="font-weight-bold">
+        <label
+          className="font-weight-bold"
+          style={{
+            marginTop: "0.5rem"
+          }}
+        >
           {
             AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
               (data) => data.name === currencyExchangeData.to
