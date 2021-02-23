@@ -5,6 +5,7 @@ import DLocalFormCard from "../dLocal-form-card";
 import SelectCardBankPaymentMethod from "../select-cardbank-payment-method";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { LoaderLayout } from "../../layouts/loader";
 
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
@@ -82,6 +83,7 @@ type DLocalPaymentsMethodsProps = {
   };
   discountCouponId: null | string | number;
   isSelected: boolean;
+  cardIsRequired?: boolean;
 };
 
 const DLocalPaymentsMethods = ({
@@ -90,7 +92,8 @@ const DLocalPaymentsMethods = ({
   paymentsMethodsAvailable = [],
   buyerData,
   discountCouponId,
-  isSelected
+  isSelected,
+  cardIsRequired
 }: DLocalPaymentsMethodsProps) => {
   const router = useRouter();
   const handleChangePaymentMethod = (name, paymentMethodId) => {
@@ -217,11 +220,27 @@ const DLocalPaymentsMethods = ({
             </div>
           </div>
         )}
-        <div className="mt-2">
-          <DLocalFormCard
-            paymentInProcess={paymentInProcess}
-            handleStartPayment={(token) => onStartPayment(token)}
-          ></DLocalFormCard>
+        <div className="mt-2 d-flex align-items-center w-100">
+          {cardIsRequired ? (
+            <DLocalFormCard
+              paymentInProcess={paymentInProcess}
+              handleStartPayment={(token) => onStartPayment(token)}
+            ></DLocalFormCard>
+          ) : (
+            <button
+              onClick={(e) => onStartPayment(null)}
+              disabled={paymentInProcess}
+              className="btn btn-primary mx-auto mt-2"
+              style={{
+                backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
+                height: "50px",
+                borderRadius: "10px",
+                width: "100%"
+              }}
+            >
+              {paymentInProcess ? <LoaderLayout /> : "Pagar"}
+            </button>
+          )}
           <span className="font-weight-bold text-danger">{paymentError}</span>
         </div>
       </div>
