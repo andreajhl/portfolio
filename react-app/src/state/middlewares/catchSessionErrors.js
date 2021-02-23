@@ -12,11 +12,11 @@ const UNAUTHORIZED_STATUS_CODE = 401;
 
 export const invalidSessionWatcher = (store) => (next) => (action) => {
   if (
-    action.type.endsWith(_FAILURE) ||
-    AUTH0_INVALID_TOKEN_ERRORS.includes(action.payload?.data?.error) ||
-    action.payload?.data?.error === UNAUTHORIZED_ERROR ||
-    action.payload?.data?.api_error?.response?.status ===
-      UNAUTHORIZED_STATUS_CODE
+    action.type.endsWith(_FAILURE) &&
+    (AUTH0_INVALID_TOKEN_ERRORS.includes(action.payload?.data?.error) ||
+      action.payload?.data?.error === UNAUTHORIZED_ERROR ||
+      action.payload?.data?.api_error?.response?.status ===
+        UNAUTHORIZED_STATUS_CODE)
   ) {
     return store.dispatch(setRedirectUnauthorized(true));
   }
