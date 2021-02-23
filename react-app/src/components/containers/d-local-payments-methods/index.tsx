@@ -4,7 +4,32 @@ import { processDlocalPayment } from "../../../state/ducks/payments/actions";
 import DLocalFormCard from "../dLocal-form-card";
 import SelectCardBankPaymentMethod from "../select-cardbank-payment-method";
 import { useRouter } from "next/router";
-import Contract_reference from "pages/contract-created/[contract_reference]";
+import styled from "styled-components";
+
+const iconsClasses = {
+  CREDIT_CARD: "far fa-credit-card",
+  DEBIT_CARD: "far fa-credit-card",
+  BANK_TRANSFER: "fas fa-exchange-alt",
+  TICKET: "fas fa-money-bill-wave-alt"
+};
+
+const IconPaymentMethod = styled.i`
+  font-size: 16px;
+  margin-right: 10px;
+  float: right;
+
+  @media screen and (min-width: 375px) {
+    font-size: 22px;
+    margin-right: 10px;
+    float: right;
+  }
+
+  @media screen and (min-width: 425px) {
+    font-size: 26px;
+    margin-right: 30px;
+    float: right;
+  }
+`;
 
 type DLocalPaymentsMethodsProps = {
   paymentMethodType: string;
@@ -89,7 +114,7 @@ const DLocalPaymentsMethods = ({
           <h6 className={"font-weight-normal"}>
             <span>{AVAILABLE_PAYMENTS_METHODS[paymentMethodType]}</span>
           </h6>
-          <i className="far fa-credit-card"></i>
+          <IconPaymentMethod className={`${iconsClasses[paymentMethodType]}`} />
         </div>
       </div>
       <div
