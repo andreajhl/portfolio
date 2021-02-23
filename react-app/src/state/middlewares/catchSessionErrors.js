@@ -1,7 +1,7 @@
 import { setRedirectUnauthorized } from "../ducks/authentication/actions";
 const _FAILURE = "_FAILURE";
-const UNAUTHORIZED_ERROR = "unauthorized, a User Session is required";
-const AUTH0_INVALID_TOKEN_ERRORS = [
+const INVALID_TOKEN_ERRORS = [
+  "unauthorized, a User Session is required",
   "token contains an invalid number of segments",
   "Invalid audience.",
   "no token string was provided",
@@ -14,10 +14,9 @@ const UNAUTHORIZED_STATUS_CODE = 401;
 export const invalidSessionWatcher = (store) => (next) => (action) => {
   if (
     action.type.endsWith(_FAILURE) &&
-    (AUTH0_INVALID_TOKEN_ERRORS.includes(action.payload?.data?.error) ||
-      action.payload?.data?.error === UNAUTHORIZED_ERROR ||
-      action.payload?.data?.api_error?.response?.status ===
-        UNAUTHORIZED_STATUS_CODE)
+    action.payload?.data?.api_error?.response?.status ===
+      UNAUTHORIZED_STATUS_CODE &&
+    INVALID_TOKEN_ERRORS.includes(action.payload?.data?.error)
   ) {
     return store.dispatch(setRedirectUnauthorized(true));
   }
