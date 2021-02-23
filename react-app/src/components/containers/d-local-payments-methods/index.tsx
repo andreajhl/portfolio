@@ -88,6 +88,7 @@ const DLocalPaymentsMethods = ({
             router.push(`/resumen-de-compra/${contractReference}`);
           } else {
             setPaymentError(response.statusDetails);
+            setPaymentInProcess(true);
           }
         })
         .catch((e) => {
