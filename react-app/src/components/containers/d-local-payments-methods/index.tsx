@@ -141,7 +141,10 @@ const DLocalPaymentsMethods = ({
           <div className="form-check d-flex p-0 flex-column ">
             <div className="form-check d-flex flex-column ">
               {paymentsMethodsAvailable.map((paymentMethod, index) => (
-                <div className="mt-1 mb-1">
+                <div
+                  className="mt-1 mb-1"
+                  key={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
+                >
                   <input
                     className="form-check-input"
                     type="radio"
@@ -161,16 +164,18 @@ const DLocalPaymentsMethods = ({
                     htmlFor={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
                   >
                     <span>{paymentMethod.name}</span>
-                    <img
-                      alt="Card Logo"
-                      style={{
-                        position: "absolute",
-                        left: "90%"
-                      }}
-                      className="rounded-circle"
-                      height="30px"
-                      src={paymentMethod.logo}
-                    />
+                    {index < 3 ? (
+                      <img
+                        alt="Card Logo"
+                        style={{
+                          position: "absolute",
+                          left: "90%"
+                        }}
+                        className="rounded-circle"
+                        height="30px"
+                        src={paymentMethod.logo}
+                      />
+                    ) : null}
                   </label>
                 </div>
               ))}
