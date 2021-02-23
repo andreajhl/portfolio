@@ -150,11 +150,11 @@ const DLocalPaymentsMethods = ({
                         paymentMethod.id
                       )
                     }
-                    id={`paymentMethod-${paymentMethod.name}-${index}`}
+                    id={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
                   />
                   <label
                     className="form-check-label w-100 cursor-pointer"
-                    htmlFor={`paymentMethod-${paymentMethod.name}-${index}`}
+                    htmlFor={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
                   >
                     <span>{paymentMethod.name}</span>
                     <img
