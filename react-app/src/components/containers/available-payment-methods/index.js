@@ -125,7 +125,7 @@ class AvailablePaymentMethods extends Component {
         <div className={"payment-types f-rounded"}>
           {shouldDisplayBuyerForm ? (
             <React.Fragment>
-              <div className="d-flex pl-1">
+              <div className="d-flex mb-2 pl-1">
                 <span className="payment-methods__steps-to-pay">2</span>{" "}
                 <span className="ml-2 font-weight-bold">
                   Datos de la persona que realiza el pago
@@ -138,11 +138,11 @@ class AvailablePaymentMethods extends Component {
               />
             </React.Fragment>
           ) : null}
-          <div className="d-flex pl-1">
+          <div className="d-flex pl-1 mb-4 mt-4">
             <span className="payment-methods__steps-to-pay">
               {shouldDisplayBuyerForm ? "3" : "2"}
             </span>{" "}
-            <span className="pl-1 font-weight-bold">
+            <span className="ml-2 font-weight-bold">
               Elige el método de pago
             </span>
           </div>

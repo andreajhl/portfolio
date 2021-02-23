@@ -109,6 +109,7 @@ const ContractCheckoutSummary = ({
             rounding={false}
           />
         </div>
+        <hr className="w-100"></hr>
       </div>
     </>
   );

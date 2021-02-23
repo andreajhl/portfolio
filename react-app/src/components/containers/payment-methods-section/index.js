@@ -74,7 +74,7 @@ class PaymentMethodsSection extends Component {
             ) : (
               <React.Fragment>
                 <div
-                  className="mx-auto mt-4"
+                  className="mx-auto mt-4 mb-4"
                   style={{
                     maxWidth: "500px",
                     paddingLeft: "20px",
@@ -82,13 +82,11 @@ class PaymentMethodsSection extends Component {
                     paddingTop: "20px"
                   }}
                 >
-                  <div className="container-dropdown-currency d-flex align-items-center  col-12 col-md-8 p-0 mx-0">
-                    <div className="d-flex pl-1">
-                      <span className="payment-methods__steps-to-pay">1</span>{" "}
-                      <span className="ml-2 font-weight-bold">
-                        ¿En qué moneda te gustaría pagar?
-                      </span>
-                    </div>
+                  <div className="d-flex col-12 col-md-10 p-0 ">
+                    <span className="payment-methods__steps-to-pay">1</span>{" "}
+                    <span className="ml-2 font-weight-bold">
+                      ¿En qué moneda te gustaría pagar?
+                    </span>
                   </div>
                   <div className="pt-4">
                     <CurrencyDropdownSelect
