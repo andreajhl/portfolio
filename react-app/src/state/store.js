@@ -2,7 +2,7 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
 import * as reducers from "./ducks";
 import { batchDispatchMiddleware } from "redux-batched-actions";
-import { checkNext } from "./middlewares";
+import { checkNext, invalidSessionWatcher } from "./middlewares";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
 import { getStateFromServer } from "./utils/getStateFromServer";
 
@@ -18,7 +18,12 @@ const makeStore = (context) =>
   createStore(
     rootReducer,
     {},
-    applyMiddleware(batchDispatchMiddleware, checkNext, thunkMiddleware)
+    applyMiddleware(
+      batchDispatchMiddleware,
+      checkNext,
+      thunkMiddleware,
+      invalidSessionWatcher
+    )
   );
 
 // export an assembled wrapper

@@ -9,6 +9,11 @@ import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { AVAILABLE_CURRENCIES } from "../../../components/layouts/currency-dropdown/constants";
 import * as GTM from "../../utils/gtm";
+// import { reduxStore } from "../../../";
+
+const reduxStore = {
+  dispatch() {}
+};
 
 export const listPaymentGateways = (currency) => {
   return (dispatch) => {
@@ -139,14 +144,25 @@ export const processStripePayment = (
     sourceId: sourceId,
     discountCouponId: discountCouponId
   };
-  return apiService({
-    method: "POST",
-    action: null,
-    path: FINAL_PATH,
-    async: true,
-    params: null,
-    body: data,
-    custom_endpoint: false
+  return new Promise((resolve, reject) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false
+    })
+      .then(resolve)
+      .catch((error) => {
+        handleApiErrors(
+          reduxStore.dispatch,
+          types.CREATE_STRIPE_PAYMENT_REQUEST,
+          error
+        );
+        reject(error);
+      });
   });
 };
 
@@ -175,12 +191,22 @@ export const processPayPalPayment = (
     })
       .then((res) => {
         if (res.data.status === "ERROR") {
+          handleApiErrors(
+            reduxStore.dispatch,
+            types.CREATE_PAYPAL_PAYMENT_REQUEST,
+            res
+          );
           rejectionFunc(res.data.error);
         } else {
           resolutionFunc(res.data.data);
         }
       })
       .catch((error) => {
+        handleApiErrors(
+          reduxStore.dispatch,
+          types.CREATE_PAYPAL_PAYMENT_REQUEST,
+          error
+        );
         if (error.response) {
           if (error.response.data) {
             rejectionFunc(error.response.data.error);
