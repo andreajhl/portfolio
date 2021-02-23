@@ -50,6 +50,7 @@ const Auth0UserHandler = ({
   useEffect(() => {
     if (!hasInvalidToken) return;
     setRedirectUnauthorized(false);
+    localStorage.setItem("shouldAuthenticate", true);
     localStorage.setItem("finalRedirect", window.location.pathname);
     localStorage.removeItem(session.sessionName);
     logout();

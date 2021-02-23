@@ -15,6 +15,7 @@ import { setCelebrityProfileVersionDependingOfTime } from "../../../utils/celebr
 import Headroom from "react-headroom";
 import { FiltersSectionLayout } from "../filters-section";
 import waitFor from "../../../utils/waitFor";
+import { withLoginHandler } from "src/utils/withLoginHandler";
 // import { DownloadAppBanner } from "../download-app-banner";
 
 class PageContainer extends Component {
@@ -37,8 +38,15 @@ class PageContainer extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     this.props.cleanUserCelebrityLikes();
     const isLogged = new Session().getSession();
+    const shouldAuthenticate = localStorage.getItem("shouldAuthenticate");
+    const finalRedirect = localStorage.getItem("finalRedirect");
+    if (shouldAuthenticate === "true" && finalRedirect && !isLogged) {
+      localStorage.removeItem("shouldAuthenticate");
+      this.props.loginHandler();
+    }
     if (this.props.applyFetchUserCelebrityLikes && isLogged) {
       this.props.fetchUserCelebrityLikes();
     }
@@ -254,5 +262,5 @@ const mapDispatchToProps = {
 const _PageContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PageContainer);
+)(withLoginHandler(PageContainer));
 export { _PageContainer as PageContainer };
