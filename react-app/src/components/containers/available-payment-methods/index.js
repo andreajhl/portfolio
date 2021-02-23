@@ -239,6 +239,7 @@ class AvailablePaymentMethods extends Component {
                   onClick={() => this.changeMethodPayment("BANK_TRANSFER")}
                 >
                   <DLocalPaymentsMethods
+                    cardIsRequired={false}
                     buyerData={this.state.buyerData}
                     isSelected={
                       this.state.selectedPaymentMethod === "BANK_TRANSFER"
@@ -259,6 +260,7 @@ class AvailablePaymentMethods extends Component {
                   onClick={() => this.changeMethodPayment("TICKET")}
                 >
                   <DLocalPaymentsMethods
+                    cardIsRequired={false}
                     isSelected={this.state.selectedPaymentMethod === "TICKET"}
                     paymentMethodType={paymentMethod.paymentMethodType}
                     paymentsMethodsAvailable={
@@ -277,6 +279,7 @@ class AvailablePaymentMethods extends Component {
                   onClick={() => this.changeMethodPayment("CREDIT_CARD")}
                 >
                   <DLocalPaymentsMethods
+                    cardIsRequired={true}
                     isSelected={
                       this.state.selectedPaymentMethod === "CREDIT_CARD"
                     }
@@ -300,6 +303,7 @@ class AvailablePaymentMethods extends Component {
                     isSelected={
                       this.state.selectedPaymentMethod === "DEBIT_CARD"
                     }
+                    cardIsRequired={true}
                     paymentMethodType={paymentMethod.paymentMethodType}
                     paymentsMethodsAvailable={
                       paymentMethod.availablePaymentMethods
