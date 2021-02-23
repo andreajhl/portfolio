@@ -82,8 +82,12 @@ const DLocalPaymentsMethods = ({
         cardToken
       )
         .then((response) => {
-          if (response.chargeStatus === "AUTHORIZED") {
-            router.push(`/metodos-de-pago/${contractReference}`);
+          if (
+            ["PAID", "AUTHORIZED", "PENDING"].includes(response.chargeStatus)
+          ) {
+            router.push(`/resumen-de-compra/${contractReference}`);
+          } else {
+            setPaymentError(response.statusDetails);
           }
         })
         .catch((e) => {
