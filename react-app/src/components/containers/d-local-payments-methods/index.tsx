@@ -142,7 +142,7 @@ const DLocalPaymentsMethods = ({
             <div className="form-check d-flex flex-column ">
               {paymentsMethodsAvailable.map((paymentMethod, index) => (
                 <div
-                  className="mt-1 mb-1"
+                  className="mt-2 mb-1"
                   key={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
                 >
                   <input
