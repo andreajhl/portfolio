@@ -22,8 +22,6 @@ class PageContainer extends Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props.hasDiscountCoupon);
-
     this.state = {
       params: { status: 50 },
       dropdownMenuIsOpen: false,

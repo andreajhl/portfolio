@@ -1,15 +1,22 @@
 import * as types from "./types";
 import apiService from "../../utils/apiService";
-import {handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess} from "../../utils";
-import {history} from "../../../routing/History";
+import {
+  handleApiErrors,
+  handleApiResponseFailure,
+  handleApiResponseSuccess
+} from "../../utils";
+import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
-import {AVAILABLE_CURRENCIES} from "../../../components/layouts/currency-dropdown/constants";
+import { AVAILABLE_CURRENCIES } from "../../../components/layouts/currency-dropdown/constants";
 import * as GTM from "../../utils/gtm";
+import { reduxStore } from "../../../";
 
-export const listPaymentGateways = currency => {
-  return dispatch => {
+export const listPaymentGateways = (currency) => {
+  return (dispatch) => {
     const TYPE = types.FETCH_PAYMENT_GATEWAYS_REQUEST;
-    const FINAL_PATH = "/custom-endpoints/gateway-payment-methods/available-payment-methods/" + currency;
+    const FINAL_PATH =
+      "/custom-endpoints/gateway-payment-methods/available-payment-methods/" +
+      currency;
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",
@@ -20,7 +27,7 @@ export const listPaymentGateways = currency => {
       body: null,
       custom_endpoint: false
     })
-      .then(res => {
+      .then((res) => {
         if (res.data.status === "OK") {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
@@ -31,16 +38,17 @@ export const listPaymentGateways = currency => {
           // Other actions
         }
       })
-      .catch(err => {
+      .catch((err) => {
         handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
 
-export const currencyExchange = params => {
-  return dispatch => {
+export const currencyExchange = (params) => {
+  return (dispatch) => {
     const TYPE = types.CURRENCY_EXCHANGE_REQUEST;
-    const FINAL_PATH = "custom-endpoints/gateway-payment-methods/currency-exchange";
+    const FINAL_PATH =
+      "custom-endpoints/gateway-payment-methods/currency-exchange";
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",
@@ -51,17 +59,19 @@ export const currencyExchange = params => {
       body: null,
       custom_endpoint: false
     })
-      .then(res => {
+      .then((res) => {
         if (res.data.status === "OK") {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
 
-          if (!AVAILABLE_CURRENCIES.find(
-              x => x.implemented_by_dlocal === false && x.name ===params.to
-          )) {
-            dispatch(listPaymentGateways(params.to))
+          if (
+            !AVAILABLE_CURRENCIES.find(
+              (x) => x.implemented_by_dlocal === false && x.name === params.to
+            )
+          ) {
+            dispatch(listPaymentGateways(params.to));
           } else {
-            dispatch(listPaymentGateways("USD"))
+            dispatch(listPaymentGateways("USD"));
           }
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
         } else {
@@ -69,18 +79,19 @@ export const currencyExchange = params => {
           // Other actions
         }
       })
-      .catch(err => {
+      .catch((err) => {
         handleApiErrors(dispatch, TYPE, err);
       });
   };
 };
 
-export const getContractToPay = contractReference => {
-  return async dispatch => {
-    setTimeout(function() {
+export const getContractToPay = (contractReference) => {
+  return async (dispatch) => {
+    setTimeout(function () {
       // Get Contract to Pay
       const TYPE = types.GET_CONTRACT_TO_PAY_REQUEST;
-      const FINAL_PATH = "custom-endpoints/contracts/contract-to-pay/" + contractReference;
+      const FINAL_PATH =
+        "custom-endpoints/contracts/contract-to-pay/" + contractReference;
       dispatch({ type: TYPE, payload: {} });
       apiService({
         method: "GET",
@@ -90,53 +101,73 @@ export const getContractToPay = contractReference => {
         params: null,
         body: null
       })
-          .then(res => {
-            if ("status" in res.data && res.data.status === "ERROR") {
-              handleApiResponseFailure(dispatch, TYPE, res);
-              // Other actions
-              history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
+        .then((res) => {
+          if ("status" in res.data && res.data.status === "ERROR") {
+            handleApiResponseFailure(dispatch, TYPE, res);
+            // Other actions
+            history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
+          } else {
+            if (res.data.data.status >= 6) {
+              history._pushRoute(
+                ROUTING_PATHS.CONTRACT_CREATED.replace(
+                  ":contract_reference",
+                  res.data.data.reference
+                )
+              );
             } else {
-              if (res.data.data.status >= 6) {
-                history._pushRoute(
-                    ROUTING_PATHS.CONTRACT_CREATED.replace(
-                        ":contract_reference",
-                        res.data.data.reference
-                    )
-                );
-              } else {
-                handleApiResponseSuccess(dispatch, TYPE, res);
-                // Other actions
-                dispatch({type: `${TYPE}_COMPLETED`, payload: res});
-              }
+              handleApiResponseSuccess(dispatch, TYPE, res);
+              // Other actions
+              dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
             }
-          })
-          .catch(err => {
-            // history._pushRoute(ROUTING_PATHS.HOME_PATH);
-            handleApiErrors(dispatch, TYPE, err);
-          });
+          }
+        })
+        .catch((err) => {
+          // history._pushRoute(ROUTING_PATHS.HOME_PATH);
+          handleApiErrors(dispatch, TYPE, err);
+        });
     }, 1000);
   };
 };
 
-export const processStripePayment = (contractReference, sourceId, discountCouponId) => {
+export const processStripePayment = (
+  contractReference,
+  sourceId,
+  discountCouponId
+) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-stripe-payment";
   const data = {
     contractReference: contractReference,
     sourceId: sourceId,
     discountCouponId: discountCouponId
   };
-  return apiService({
-    method: "POST",
-    action: null,
-    path: FINAL_PATH,
-    async: true,
-    params: null,
-    body: data,
-    custom_endpoint: false
+  return new Promise((resolve, reject) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false
+    })
+      .then(resolve)
+      .catch((error) => {
+        handleApiErrors(
+          reduxStore.dispatch,
+          types.CREATE_STRIPE_PAYMENT_REQUEST,
+          error
+        );
+        reject(error);
+      });
   });
 };
 
-export const processPayPalPayment = (contractReference, orderId, authorizationId, discountCouponId) => {
+export const processPayPalPayment = (
+  contractReference,
+  orderId,
+  authorizationId,
+  discountCouponId
+) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-paypal-payment";
   const data = {
     contractReference: contractReference,
@@ -154,27 +185,28 @@ export const processPayPalPayment = (contractReference, orderId, authorizationId
       body: data,
       custom_endpoint: false
     })
-        .then(res => {
-          if (res.data.status === "ERROR") {
-            rejectionFunc(res.data.error);
-          } else {
-            resolutionFunc(res.data.data);
+      .then((res) => {
+        if (res.data.status === "ERROR") {
+          rejectionFunc(res.data.error);
+        } else {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.data) {
+            rejectionFunc(error.response.data.error);
           }
-        })
-        .catch(error => {
-          if (error.response) {
-            if (error.response.data) {
-              rejectionFunc(error.response.data.error);
-            }
-          } else {
-            rejectionFunc("Ocurrió un error procesando tu pago,");
-          }
-        });
-  })
+        } else {
+          rejectionFunc("Ocurrió un error procesando tu pago,");
+        }
+      });
+  });
 };
 
 export const retrieveUserCards = () => {
-  const FINAL_PATH = "custom-endpoints/user-payments/retrieve-stripe-customer-sources";
+  const FINAL_PATH =
+    "custom-endpoints/user-payments/retrieve-stripe-customer-sources";
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
       method: "GET",
@@ -185,27 +217,28 @@ export const retrieveUserCards = () => {
       body: null,
       custom_endpoint: false
     })
-        .then(res => {
-          if (res.data.status === "ERROR") {
-            rejectionFunc(res.data.error);
-          } else {
-            resolutionFunc(res.data.data);
+      .then((res) => {
+        if (res.data.status === "ERROR") {
+          rejectionFunc(res.data.error);
+        } else {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.data) {
+            rejectionFunc(error.response.data.error);
           }
-        })
-        .catch(error => {
-          if (error.response) {
-            if (error.response.data) {
-              rejectionFunc(error.response.data.error);
-            }
-          } else {
-            rejectionFunc("ERROR");
-          }
-        });
-  })
+        } else {
+          rejectionFunc("ERROR");
+        }
+      });
+  });
 };
 
 export const removeSource = (sourceId) => {
-  const FINAL_PATH = "custom-endpoints/user-payments/remove-stripe-source/" + sourceId;
+  const FINAL_PATH =
+    "custom-endpoints/user-payments/remove-stripe-source/" + sourceId;
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
       method: "DELETE",
@@ -216,52 +249,57 @@ export const removeSource = (sourceId) => {
       body: null,
       custom_endpoint: false
     })
-        .then(res => {
-          if (res.data.status === "ERROR") {
-            rejectionFunc(res.data.error);
-          } else {
-            resolutionFunc(res.data.data);
+      .then((res) => {
+        if (res.data.status === "ERROR") {
+          rejectionFunc(res.data.error);
+        } else {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.data) {
+            rejectionFunc(error.response.data.error);
           }
-        })
-        .catch(error => {
-          if (error.response) {
-            if (error.response.data) {
-              rejectionFunc(error.response.data.error);
-            }
-          } else {
-            rejectionFunc("ERROR");
-          }
-        });
-  })
+        } else {
+          rejectionFunc("ERROR");
+        }
+      });
+  });
 };
 
-export const clearCouponData = ()=>{
-  return (dispatch) =>{
+export const clearCouponData = () => {
+  return (dispatch) => {
     dispatch({ type: types.APLY_DISCOUNT_COUPON_CLEAR, payload: {} });
-  }
-}
+  };
+};
 
 export const discountCouponsGateways = (contractReference, discountCoupon) => {
   const data = {
     contractReference: contractReference,
-    discountCoupon: discountCoupon};
+    discountCoupon: discountCoupon
+  };
   return (dispatch) => {
     const TYPE = types.APPLY_DISCOUNT_COUPON;
-    const FINAL_PATH = 'custom-endpoints/user-payments/apply-discount-coupon';
-    
+    const FINAL_PATH = "custom-endpoints/user-payments/apply-discount-coupon";
+
     apiService({
-      method: 'POST',
-        path: FINAL_PATH,
-        async: true,
-        params: null,
-        body: data,
+      method: "POST",
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data
     })
-      .then(res => {
+      .then((res) => {
         if (res.data.status === "OK") {
-        const couponData = res.data;
-        if (couponData.data.isPercentageDiscount && couponData.data.discount_amount > 1){
-            couponData.data.discount_amount = couponData.data.discount_amount / 100; 
-        }
+          const couponData = res.data;
+          if (
+            couponData.data.isPercentageDiscount &&
+            couponData.data.discount_amount > 1
+          ) {
+            couponData.data.discount_amount =
+              couponData.data.discount_amount / 100;
+          }
           handleApiResponseSuccess(dispatch, TYPE, couponData);
           // Other actions
           dispatch({ type: `${TYPE}_COMPLETED`, payload: couponData });
@@ -270,10 +308,10 @@ export const discountCouponsGateways = (contractReference, discountCoupon) => {
           // Other actions
         }
       })
-      .catch(err => {
-        if(err.response){
+      .catch((err) => {
+        if (err.response) {
           handleApiResponseFailure(dispatch, TYPE, err.response.data);
         }
       });
-  };  
+  };
 };

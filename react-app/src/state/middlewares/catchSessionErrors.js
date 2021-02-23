@@ -5,7 +5,8 @@ const AUTH0_INVALID_TOKEN_ERRORS = [
   "token contains an invalid number of segments",
   "Invalid audience.",
   "no token string was provided",
-  "Unable to find appropriate key."
+  "Unable to find appropriate key.",
+  "illegal base64 data at input byte 121"
 ];
 
 const UNAUTHORIZED_STATUS_CODE = 401;
