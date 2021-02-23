@@ -1,15 +1,41 @@
 import React, { useState, useEffect } from "react";
-
+import { sessionOperations } from "../../../state/ducks/session";
+import { connect } from "react-redux";
 type DLocalPaymentsFormProps = {
   handleChangedInputs: Function;
+  userInformation: {
+    email: string;
+    fullName: string;
+  };
+  userInformationLoading: boolean;
+  getToken: Function;
+  userInformationCompleted: boolean;
 };
 
 const DLocalPaymentsForm = ({
-  handleChangedInputs
+  handleChangedInputs,
+  userInformation,
+  userInformationLoading,
+  userInformationCompleted,
+  getToken
 }: DLocalPaymentsFormProps) => {
   const [buyerFullName, setBuyerFullName] = useState("");
   const [buyerEmail, setBuyerEmail] = useState("");
   const [buyerDocument, setBuyerDocument] = useState("");
+  useEffect(() => {
+    if (!userInformationLoading) {
+      getToken();
+    }
+  }, []);
+  useEffect(() => {
+    console.log(userInformation);
+    if (userInformation.email) {
+      setBuyerEmail(userInformation.email);
+    }
+    if (userInformation.fullName) {
+      setBuyerFullName(userInformation.fullName);
+    }
+  }, [userInformation]);
   useEffect(() => {
     handleChangedInputs({ buyerFullName, buyerDocument, buyerEmail });
   }, [buyerDocument, buyerEmail, buyerFullName]);
@@ -18,6 +44,7 @@ const DLocalPaymentsForm = ({
       <div className="form-group">
         <label className="font-weight-bold">Nombre</label>
         <input
+          value={buyerFullName}
           type="text"
           onChange={(e) => setBuyerFullName(e.target.value)}
           className="form-control"
@@ -32,6 +59,7 @@ const DLocalPaymentsForm = ({
             borderRadius: "10px"
           }}
           type="email"
+          value={buyerEmail}
           onChange={(e) => setBuyerEmail(e.target.value)}
           className="form-control"
           placeholder="Escribe aquí tu correo electronico"
@@ -42,6 +70,7 @@ const DLocalPaymentsForm = ({
             borderRadius: "10px"
           }}
           type="text"
+          value={buyerDocument}
           onChange={(e) => setBuyerDocument(e.target.value)}
           className="form-control"
           placeholder="Escribe aquí tu numero de identificación"
@@ -51,4 +80,19 @@ const DLocalPaymentsForm = ({
   );
 };
 
-export default DLocalPaymentsForm;
+const mapStateToProps = (state) => ({
+  userInformation: state.session.getSessionReducer.data,
+  userInformationLoading: state.session.getSessionReducer.loading,
+  userInformationCompleted: state.session.getSessionReducer.completed
+});
+
+const mapDispatchToProps = {
+  getToken: sessionOperations.getToken
+};
+
+const _DLocalPaymentsForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DLocalPaymentsForm);
+
+export { _DLocalPaymentsForm as DLocalPaymentsForm };
