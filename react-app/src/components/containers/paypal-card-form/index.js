@@ -40,7 +40,7 @@ class PayPalCardForm extends Component {
           }
           GTM.tagManagerDataLayer("CONTRACT_PAYED", res.data);
           history._pushRoute(
-            ROUTING_PATHS.CONTRACT_CREATED.replace(
+            ROUTING_PATHS.CLIENT_HIRINGS.replace(
               ":contract_reference",
               res.reference
             )
@@ -90,7 +90,7 @@ class PayPalCardForm extends Component {
     if (this.state.errorMessage) {
       return (
         <div className={"mx-auto p-4 error-container"}>
-          <div className='text-danger text-center mb-3'>
+          <div className="text-danger text-center mb-3">
             <small className={"text-danger font-weight-bold"}>
               {this.state.errorMessage}
             </small>
@@ -100,13 +100,13 @@ class PayPalCardForm extends Component {
               Volver a intentar
             </button>
           </div>
-          <div className='mb-3 text-justify '>
+          <div className="mb-3 text-justify ">
             <small>
               Si el problema persiste puedes comunicarte con nuestro equipo de
               soporte a{" "}
               <a
                 className={"font-weight-bold"}
-                href='mailto:experiencias@famosos.com'
+                href="mailto:experiencias@famosos.com"
               >
                 experiencias@famosos.com
               </a>{" "}
@@ -122,10 +122,10 @@ class PayPalCardForm extends Component {
     return (
       <div className={""}>
         <ul
-          className='mb-4 px-4'
+          className="mb-4 px-4"
           style={{ fontSize: "15px", listStyle: "none" }}
         >
-          <li className='mb-2' style={{ color: "#505050" }}>
+          <li className="mb-2" style={{ color: "#505050" }}>
             Haz click sobre el siguiente botón para hacer el pago usando tu
             cuenta de PayPal.
           </li>
