@@ -61,7 +61,7 @@ const DLocalFormCard = ({
     }
   }, [isScriptLoaded, isScriptLoadSucceed]);
   return isScriptLoaded ? (
-    <form className="d-flex flex-column">
+    <form className="d-flex flex-column w-100">
       <div className="form-group">
         <label htmlFor="card-holdername" className="font-weight-bold">
           CardHolder Name
@@ -85,7 +85,7 @@ const DLocalFormCard = ({
           backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
           height: "50px",
           borderRadius: "10px",
-          width: "80%"
+          width: "100%"
         }}
       >
         {paymentInProcess ? <LoaderLayout /> : "Pagar"}
