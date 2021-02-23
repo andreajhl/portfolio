@@ -383,3 +383,8 @@ export const newsletterSubscrition = (email) => {
     .then((res) => {})
     .catch((err) => {});
 };
+
+export const setRedirectUnauthorized = (payload) => ({
+  type: types.SET_REDIRECT_UNAUTHORIZED,
+  payload
+});
