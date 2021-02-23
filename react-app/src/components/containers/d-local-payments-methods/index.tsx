@@ -220,7 +220,7 @@ const DLocalPaymentsMethods = ({
             </div>
           </div>
         )}
-        <div className="mt-2 d-flex align-items-center w-100">
+        <div className="mt-2">
           {cardIsRequired ? (
             <DLocalFormCard
               paymentInProcess={paymentInProcess}
