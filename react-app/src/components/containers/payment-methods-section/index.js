@@ -37,8 +37,16 @@ class PaymentMethodsSection extends Component {
       >
         <div
           className={"row justify-content-center payment-methods-section-row"}
+          style={{
+            minHeight: "80vh"
+          }}
         >
-          <div className="col-12 col-md-8 p-0 mx-0 mb-4 mt-2 f-rounded f-shadow">
+          <div
+            className="col-12 col-md-8 p-0 mx-0 mb-4 mt-2 f-rounded f-shadow"
+            style={{
+              minHeight: "80vh"
+            }}
+          >
             {/* CONTRACT SUMMARY */}
             <div
               className="col-12 col-md-12 col-lg-8 col-xl-6 mx-auto mt-5"
