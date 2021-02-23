@@ -68,12 +68,11 @@ const DLocalFormCard = ({
         </label>
         <input
           type="text"
-          className="form-control"
+          className="form-control mb-4"
           value={buyerName}
           onChange={(e) => setBuyerName(e.target.value)}
           id="card-holdername"
         ></input>
-        <label htmlFor="card-field mt-4">Numero de tarjeta</label>
         <div id="card-field" ref={inputEl}></div>
         <div id="card-errors" role="alert"></div>
         <div>{tokenError}</div>
@@ -81,7 +80,7 @@ const DLocalFormCard = ({
       <button
         onClick={(e) => handlerSubmitCreditCardDetails(e)}
         disabled={paymentInProcess}
-        className="btn btn-primary mx-auto"
+        className="btn btn-primary mx-auto mt-2"
         style={{
           backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
           height: "50px",
