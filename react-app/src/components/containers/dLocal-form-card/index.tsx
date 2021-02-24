@@ -2,10 +2,15 @@ import React, { useEffect, useState, useRef } from "react";
 import getWindow from "react-app/src/utils/getWindow";
 import { findDOMNode } from "react-dom";
 import scriptLoader from "react-async-script-loader";
+import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
 const DLOCALKEY = process.env.NEXT_PUBLIC_DLOCAL_API_KEY;
-const scriptSrc = "https://js-sandbox.dlocal.com/";
-import styled from "styled-components";
+const isProdEnvironment =
+  process.env.NEXT_PUBLIC_ENVIRONMENT === "production" ||
+  process.env.NEXT_PUBLIC_ENVIRONMENT === "qa";
+const scriptSrc = isProdEnvironment
+  ? "https://js.dlocal.com/"
+  : "https://js-sandbox.dlocal.com/";
 declare global {
   interface Window {
     dlocal: any;
@@ -31,7 +36,8 @@ const DLocalFormCard = ({
   onScriptLoaded,
   handleStartPayment,
   paymentInProcess,
-  paymentErrorMessage
+  paymentErrorMessage,
+  paymentMethodType
 }) => {
   const [card, setCard] = useState(null);
   const [buyerName, setBuyerName] = useState("");
@@ -91,7 +97,7 @@ const DLocalFormCard = ({
         <LabelElement htmlFor="card-field">Datos de la tarjeta</LabelElement>
         <CardField>
           <div
-            id="card-field"
+            id={`card-field-${paymentMethodType}`}
             className="mx-auto"
             style={{
               width: "96%"
