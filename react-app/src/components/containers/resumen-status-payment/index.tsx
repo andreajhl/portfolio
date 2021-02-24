@@ -1,6 +1,8 @@
 import { type } from "os";
 import React from "react";
 import styled from "styled-components";
+import moment from "moment";
+
 type ResumenStatusPaymentsProps = {
   status: number;
   paymentDate: string;
@@ -30,7 +32,7 @@ const ResumenStatusPayment = ({
         ESTADO DEL PAGO: {status}
       </SpanGray>
       <SpanGray textColor={textColor} className="mt-3">
-        FECHA DE PAGO: {paymentDate}
+        FECHA DE PAGO: {moment(paymentDate).format("L")}
       </SpanGray>
       <SpanGray textColor={textColor} className="mt-3">
         ID DEL SEGUIMIENTO: {idFollow}
