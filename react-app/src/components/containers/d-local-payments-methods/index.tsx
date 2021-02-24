@@ -227,6 +227,7 @@ const DLocalPaymentsMethods = ({
         <div className="mt-2">
           {cardIsRequired ? (
             <DLocalFormCard
+              paymentErrorMessage={paymentError}
               paymentInProcess={paymentInProcess}
               handleStartPayment={(token) => onStartPayment(token)}
             ></DLocalFormCard>
@@ -245,7 +246,6 @@ const DLocalPaymentsMethods = ({
               {paymentInProcess ? <LoaderLayout /> : "Pagar"}
             </button>
           )}
-          <span className="font-weight-bold text-danger">{paymentError}</span>
         </div>
       </div>
     </React.Fragment>
