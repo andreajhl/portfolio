@@ -29,7 +29,8 @@ const DLocalFormCard = ({
   isScriptLoadSucceed,
   onScriptLoaded,
   handleStartPayment,
-  paymentInProcess
+  paymentInProcess,
+  paymentErrorMessage
 }) => {
   const [card, setCard] = useState(null);
   const [buyerName, setBuyerName] = useState("");
@@ -108,6 +109,7 @@ const DLocalFormCard = ({
           Código postal
         </span>
       </div>
+      <div className="mx-auto text-danger">{paymentErrorMessage}</div>
       <button
         onClick={(e) => handlerSubmitCreditCardDetails(e)}
         disabled={paymentInProcess}
