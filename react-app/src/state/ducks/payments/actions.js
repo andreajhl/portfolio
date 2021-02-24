@@ -106,7 +106,7 @@ export const getContractToPay = (contractReference) => {
             // Other actions
             // history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
           } else {
-            if (res.data.data.status >= 6) {
+            if (res.data.data.status >= 7) {
               history._pushRoute(
                 ROUTING_PATHS.RESUMEN_DE_COMPRA.replace(
                   ":contract_reference",
