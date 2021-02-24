@@ -184,8 +184,11 @@ export const processDlocalPayment = (
         }
       })
       .catch((err) => {
-        console.log(err, "Error");
-        rejectionFunc("Ha ocurrido un error inesperado");
+        if (err.response && err.response.data) {
+          rejectionFunc(err.response.data.error);
+        } else {
+          rejectionFunc("Ha ocurrido un error inesperado");
+        }
       });
   });
 };
