@@ -195,8 +195,9 @@ const ResumenContractAuthorized = ({ resumen }) => {
             </span>
             <hr className="w-100"></hr>
             <ResumenStatusPayment
-              status={resumen.contract.status}
+              status={resumen.lastPayment.status}
               idFollow={resumen.contract.reference}
+              idTransaction={resumen.lastPayment.transactionChargeId}
               paymentDate={resumen.contract.createdAt}
             />
             <hr className="w-100"></hr>

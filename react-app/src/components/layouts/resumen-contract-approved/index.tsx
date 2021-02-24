@@ -178,9 +178,10 @@ const ResumenContractApproved = ({ resumen }) => {
             </span>
             <hr className="w-100"></hr>
             <ResumenStatusPayment
-              status={resumen.contract.status}
-              idFollow={resumen.contract.reference}
-              paymentDate={resumen.contract.createdAt}
+              status={resumen.lastPayment.status}
+              idFollow={resumen.contract?.reference}
+              idTransaction={resumen.lastPayment?.transactionChargeId}
+              paymentDate={resumen.contract?.createdAt}
             />
           </DetailsContracDiv>
         </ContainerDetailsContractDiv>

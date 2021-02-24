@@ -234,8 +234,9 @@ const ResumenContractPending = ({ resumen }) => {
             <hr className="d-none d-md-block "></hr>
             <ResumenStatusPayment
               textColor={"#000000"}
-              status={resumen.contract.status}
+              status={resumen.lastPayment.status}
               idFollow={resumen.contract.reference}
+              idTransaction={resumen.lastPayment.transactionChargeId}
               paymentDate={resumen.contract.createdAt}
             />
             <hr></hr>

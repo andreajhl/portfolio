@@ -230,9 +230,10 @@ const ResumenContractRejected = ({ resumen }) => {
         <ResumenPaymentRejected>
           <ResumenContainer>
             <ResumenStatusPayment
-              status={resumen.contract.status}
-              idFollow={resumen.contract.reference}
-              paymentDate={resumen.lastPayment.createdAt}
+              status={resumen.lastPayment.status}
+              idFollow={resumen.contract?.reference}
+              idTransaction={resumen.lastPayment?.transactionChargeId}
+              paymentDate={resumen.contract?.createdAt}
             />
             <PaymentRejectedActions>
               <div>
