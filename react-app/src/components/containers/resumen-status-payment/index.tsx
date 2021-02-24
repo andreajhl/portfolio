@@ -12,6 +12,14 @@ type ResumenStatusPaymentsProps = {
   textColor?: string;
 };
 
+const ContainerResumenStatusPayment = styled.div`
+  display: flex;
+  flex-flow: column;
+`;
+
+const SpanGray = styled.span`
+  color: ${(props) => (props.textColor ? props.textColor : "#838383")};
+`;
 const ResumenStatusPayment = ({
   status,
   paymentDate,
@@ -19,14 +27,6 @@ const ResumenStatusPayment = ({
   idTransaction,
   textColor
 }: ResumenStatusPaymentsProps) => {
-  const ContainerResumenStatusPayment = styled.div`
-    display: flex;
-    flex-flow: column;
-  `;
-
-  const SpanGray = styled.span`
-    color: ${(props) => (props.textColor ? props.textColor : "#838383")};
-  `;
   return (
     <ContainerResumenStatusPayment>
       <SpanGray textColor={textColor} className="mt-3">

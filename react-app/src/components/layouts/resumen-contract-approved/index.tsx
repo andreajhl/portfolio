@@ -5,92 +5,91 @@ import ResumenStatusPayment from "../../containers/resumen-status-payment";
 import { useRouter } from "next/router";
 import { HIRING_EDITOR } from "../../../routing/Paths";
 
-const ResumenContractApproved = ({ resumen }) => {
-  const HeroDiv = styled.div`
-    background-color: #fb177d;
-    height: 180px;
-    display: flex;
-    justify-content: center;
-    flex-flow: column;
-    align-items: center;
-  `;
-  const HeroTextApproved = styled.div`
-    h2 {
-      text-align: center;
-      color: white;
-      font-weight: bold;
-      margin-top: 20px;
-      font-size: 22px;
-    }
-    /* font-weight: bold; */
-  `;
-
-  const ResumendContractDiv = styled.div`
-    display: flex;
-    height: min-height;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-  `;
-
-  const ContainerDetailsContractDiv = styled.div`
-    display: flex;
-    flex: 1 1 40%;
-    padding-top: 40px;
-    align-content: center;
-    background-color: #fcfcfc;
-    flex-flow: column;
-  `;
-
-  const DetailsContracDiv = styled.div`
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 500px;
-  `;
-
-  const ContractsSteps = styled.div`
-    display: flex;
-    flex: 1 1 60%;
-    align-content: center;
-    justify-content: center;
-    background-color: white;
-  `;
-
-  const InstructionsDetails = styled.div`
-    display: flex;
-    flex-flow: column;
-  `;
-
-  const SpanBoldGray = styled.span`
+const HeroDiv = styled.div`
+  background-color: #fb177d;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+`;
+const HeroTextApproved = styled.div`
+  h2 {
+    text-align: center;
+    color: white;
     font-weight: bold;
-    color: #535353;
-  `;
+    margin-top: 20px;
+    font-size: 22px;
+  }
+  /* font-weight: bold; */
+`;
 
-  const SpanGray = styled.span`
-    color: #535353;
-  `;
+const ResumendContractDiv = styled.div`
+  display: flex;
+  height: min-height;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+`;
 
-  const CelebrityDetails = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    img {
-      height: 70px;
+const ContainerDetailsContractDiv = styled.div`
+  display: flex;
+  flex: 1 1 40%;
+  padding-top: 40px;
+  align-content: center;
+  background-color: #fcfcfc;
+  flex-flow: column;
+`;
+
+const DetailsContracDiv = styled.div`
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+`;
+
+const ContractsSteps = styled.div`
+  display: flex;
+  flex: 1 1 60%;
+  align-content: center;
+  justify-content: center;
+  background-color: white;
+`;
+
+const InstructionsDetails = styled.div`
+  display: flex;
+  flex-flow: column;
+`;
+
+const SpanBoldGray = styled.span`
+  font-weight: bold;
+  color: #535353;
+`;
+
+const SpanGray = styled.span`
+  color: #535353;
+`;
+
+const CelebrityDetails = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  img {
+    height: 70px;
+  }
+  div {
+    flex: 0 1 200px;
+    span {
+      font-weight: bold;
+      text-align: center;
+      font-size: 0.85rem;
     }
-    div {
-      flex: 0 1 200px;
-      span {
-        font-weight: bold;
-        text-align: center;
-        font-size: 0.85rem;
-      }
-    }
-  `;
-
+  }
+`;
+const ResumenContractApproved = ({ resumen }) => {
   const router = useRouter();
   const redirectToEditContract = () => {
     router.push(
