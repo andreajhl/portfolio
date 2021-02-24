@@ -4,14 +4,25 @@ import { findDOMNode } from "react-dom";
 import scriptLoader from "react-async-script-loader";
 import { LoaderLayout } from "../../layouts/loader";
 const DLOCALKEY = process.env.NEXT_PUBLIC_DLOCAL_API_KEY;
-const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
 const scriptSrc = "https://js-sandbox.dlocal.com/";
-
+import styled from "styled-components";
 declare global {
   interface Window {
     dlocal: any;
   }
 }
+const InputElement = styled.input`
+  height: 56px !important;
+`;
+const LabelElement = styled.label`
+  font-weight: 300;
+  color: #838383;
+`;
+
+const CardField = styled.div`
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+`;
 
 const DLocalFormCard = ({
   isScriptLoaded,
@@ -42,8 +53,9 @@ const DLocalFormCard = ({
   const inputEl = useRef(null);
   const style = {
     base: {
-      fontSize: "16px",
-      color: "#32325d"
+      fontSize: "1rem",
+      lineHeight: "50px",
+      color: "#838383"
     }
   };
   useEffect(() => {
@@ -63,19 +75,38 @@ const DLocalFormCard = ({
   return isScriptLoaded ? (
     <form className="d-flex flex-column w-100">
       <div className="form-group">
-        <label htmlFor="card-holdername" className="font-weight-bold">
+        <LabelElement htmlFor="card-holdername">
           Nombre del titular de la tarjeta
-        </label>
-        <input
+        </LabelElement>
+        <InputElement
+          placeholder="Escribe aquí el nombre"
           type="text"
           className="form-control mb-4"
           value={buyerName}
           onChange={(e) => setBuyerName(e.target.value)}
           id="card-holdername"
-        ></input>
-        <div id="card-field" ref={inputEl}></div>
+        ></InputElement>
+        <LabelElement htmlFor="card-field">Datos de la tarjeta</LabelElement>
+        <CardField>
+          <div
+            id="card-field"
+            className="mx-auto"
+            style={{
+              width: "96%"
+            }}
+            ref={inputEl}
+          ></div>
+        </CardField>
         <div id="card-errors" role="alert"></div>
         <div>{tokenError}</div>
+        <span
+          style={{
+            fontSize: "10px"
+          }}
+        >
+          Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP =
+          Código postal
+        </span>
       </div>
       <button
         onClick={(e) => handlerSubmitCreditCardDetails(e)}
