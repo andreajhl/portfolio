@@ -160,7 +160,7 @@ const ButtonPink = styled.button`
     height: 60px;
   }
   @media (min-width: 1024px) {
-    width: 50%;
+    width: 40%;
     height: 60px;
     margin-top: 50px;
   }
@@ -307,7 +307,7 @@ const ResumenContractPending = ({ resumen }) => {
               <Link href="/my-account/hirings">
                 <ButtonPink className="btn">
                   <span className="font-weight-bold">
-                    Ir nuevamente a mis contrataciones{" "}
+                    Ir a mis contrataciones{" "}
                   </span>
                   <i
                     style={{
