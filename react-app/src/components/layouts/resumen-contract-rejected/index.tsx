@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import ResumenStatusPayment from "../../containers/resumen-status-payment";
+import { useRouter } from "next/router";
+import { HIRING_EDITOR } from "../../../routing/Paths";
 
 const ResumenContractRejected = ({ resumen }) => {
   const HeroDiv = styled.div`
@@ -130,7 +132,12 @@ const ResumenContractRejected = ({ resumen }) => {
       height: 60px;
     }
   `;
-
+  const router = useRouter();
+  const redirectToEditContract = () => {
+    router.push(
+      HIRING_EDITOR.replace(":contract_reference", resumen.contract.reference)
+    );
+  };
   return (
     <>
       <HeroDiv>
@@ -186,7 +193,12 @@ const ResumenContractRejected = ({ resumen }) => {
                     </SpanBoldGray>
                   ) : null}
                 </div>
-                <div>Prueba</div>
+                <div
+                  className="cursor-pointer font-weight-bold"
+                  onClick={() => redirectToEditContract()}
+                >
+                  Editar
+                </div>
               </div>
               <div className="d-flex mt-3 flex-column">
                 <SpanBoldGray>Mensaje</SpanBoldGray>
