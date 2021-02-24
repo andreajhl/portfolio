@@ -2,6 +2,7 @@ import { type } from "os";
 import React from "react";
 import styled from "styled-components";
 import moment from "moment";
+import { paymentStatus } from "constants/paymentStatus";
 
 type ResumenStatusPaymentsProps = {
   status: number;
@@ -29,16 +30,20 @@ const ResumenStatusPayment = ({
   return (
     <ContainerResumenStatusPayment>
       <SpanGray textColor={textColor} className="mt-3">
-        ESTADO DEL PAGO: {status}
+        ESTADO DEL PAGO: {paymentStatus[status]}
       </SpanGray>
       <SpanGray textColor={textColor} className="mt-3">
         FECHA DE PAGO: {moment(paymentDate).format("L")}
       </SpanGray>
-      <SpanGray textColor={textColor} className="mt-3">
-        ID DEL SEGUIMIENTO: {idFollow}
-      </SpanGray>
       {idTransaction ? (
-        <SpanGray className="mt-3">ID DE TRANSACCIÓN: {idTransaction}</SpanGray>
+        <SpanGray textColor={textColor} className="mt-3">
+          ID DE TRANSACCIÓN: {idTransaction}
+        </SpanGray>
+      ) : null}
+      {idFollow ? (
+        <SpanGray textColor={textColor} className="mt-3">
+          ID DE SEGUIMIENTO: {idFollow}
+        </SpanGray>
       ) : null}
     </ContainerResumenStatusPayment>
   );
