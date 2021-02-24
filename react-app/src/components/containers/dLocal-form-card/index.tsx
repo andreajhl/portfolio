@@ -22,6 +22,7 @@ const LabelElement = styled.label`
 const CardField = styled.div`
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
+  background-color: white;
 `;
 
 const DLocalFormCard = ({
