@@ -113,7 +113,7 @@ export const getContractToPay = (contractReference) => {
           } else {
             if (res.data.data.status >= 6) {
               history._pushRoute(
-                ROUTING_PATHS.CONTRACT_CREATED.replace(
+                ROUTING_PATHS.RESUMEN_DE_COMPRA.replace(
                   ":contract_reference",
                   res.data.data.reference
                 )
@@ -162,6 +162,49 @@ export const processStripePayment = (
           error
         );
         reject(error);
+      });
+  });
+};
+export const processDlocalPayment = (
+  contractReference,
+  paymentMethodId,
+  buyerFullName,
+  buyerEmail,
+  buyerDocument,
+  discountCouponId,
+  cardToken
+) => {
+  const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
+  const data = {
+    contractReference: contractReference,
+    paymentMethodId: paymentMethodId,
+    buyerFullName: buyerFullName,
+    buyerEmail: buyerEmail,
+    buyerDocument: buyerDocument,
+    discountCouponId: discountCouponId,
+    cardToken: cardToken
+  };
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false
+    })
+      .then((res) => {
+        if (res.data.status === "OK") {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((err) => {
+        if (err.response && err.response.data) {
+          rejectionFunc(err.response.data.error);
+        } else {
+          rejectionFunc("Ha ocurrido un error inesperado");
+        }
       });
   });
 };

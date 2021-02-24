@@ -52,3 +52,5 @@ export const SUBSCRIPTION_SUCCESS =
 export const FEED_SUBSCRIPTION = "/subscription/feed";
 //SESSION REDIRECT
 export const SESSION_REDIRECT = "/session/redirect/";
+//RESUMEN DE COMPRA
+export const RESUMEN_DE_COMPRA = "/resumen-de-compra/:contract_reference";

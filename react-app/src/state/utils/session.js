@@ -2,7 +2,7 @@ import { history } from "../../routing/History";
 import * as PATHS from "../../routing/Paths";
 import jwt_decode from "jwt-decode";
 import { Mixpanel } from "./mixPanel";
-import isBrowser from "react-app/src/utils/isBrowser";
+import isBrowser from "../../../src/utils/isBrowser";
 
 export class Session {
   constructor() {
