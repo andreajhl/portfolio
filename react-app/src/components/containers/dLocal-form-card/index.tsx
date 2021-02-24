@@ -64,7 +64,7 @@ const DLocalFormCard = ({
     <form className="d-flex flex-column w-100">
       <div className="form-group">
         <label htmlFor="card-holdername" className="font-weight-bold">
-          CardHolder Name
+          Nombre del titular de la tarjeta
         </label>
         <input
           type="text"
