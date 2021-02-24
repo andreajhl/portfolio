@@ -105,7 +105,9 @@ const CelebrityDetails = styled.div`
   span {
     font-weight: bold;
     text-align: initial;
-    font-size: 0.85rem;
+    font-size: 1rem;
+    max-width: 180px;
+    margin-left: 16%;
     @media (min-width: 1024px) {
       margin-left: 10%;
       max-width: 250px;
