@@ -10,7 +10,7 @@ class PaymentMethodsSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCurrencySelected: "USD"
+      currentCurrencySelected: this.props.currencyExchangeData.to
     };
   }
 
@@ -170,7 +170,8 @@ const mapStateToProps = ({
   payments: { currencyExchangeReducer, fetchPaymentGatewaysReducer }
 }) => ({
   currencyExchangeLoading: currencyExchangeReducer.loading,
-  paymentGatewayLoading: fetchPaymentGatewaysReducer.loading
+  paymentGatewayLoading: fetchPaymentGatewaysReducer.loading,
+  currencyExchangeData: currencyExchangeReducer.data
 });
 
 const _PaymentMethodsSection = connect(
