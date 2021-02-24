@@ -43,15 +43,20 @@ type ContractWithPaymentsProps = {
   };
   isLoading: boolean;
   getContract: Function;
+  contractToPayClear: Function;
 };
 
 const ContractWithPayments = ({
   getContract,
   isLoading,
-  resumen
+  resumen,
+  contractToPayClear
 }: ContractWithPaymentsProps) => {
   const router = useRouter();
   const { contract_reference } = router.query;
+  useEffect(() => {
+    contractToPayClear();
+  }, [contractToPayClear]);
   useEffect(() => {
     getContract(contract_reference);
   }, [contract_reference]);
