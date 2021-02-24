@@ -61,13 +61,13 @@ const ContractWithPayments = ({
     getContract(contract_reference);
   }, [contract_reference]);
   const LoadingScreen = styled.div`
-    height: 80vh;
+    height: 90vh;
     display: flex;
     align-content: center;
     justify-content: center;
   `;
   return (
-    <PageContainer showSearch={false}>
+    <PageContainer showFooter={false} showSearch={false}>
       {isLoading ? (
         <LoadingScreen>
           <div

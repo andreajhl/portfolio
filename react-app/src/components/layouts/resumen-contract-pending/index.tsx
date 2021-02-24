@@ -31,9 +31,8 @@ const ResumendContractDiv = styled.div`
   justify-content: center;
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 2rem;
   @media (min-width: 1024px) {
-    min-height: 60vh;
+    min-height: 78vh;
   }
 `;
 
@@ -52,16 +51,36 @@ const DetailsContracDiv = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 500px;
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    height: 70%;
+  }
+  @media (min-width: 1440px) {
+    margin-left: calc(50% + 50px);
+    transform: translateX(-50%);
+  }
 `;
 
 const InstructionsDetails = styled.div`
   display: flex;
   flex-flow: column;
+  @media (min-width: 1024px) {
+    flex: 0 1 40%;
+    display: flex;
+    justify-content: space-around;
+  }
 `;
 
 const SpanBoldGray = styled.span`
   font-weight: bold;
   color: #535353;
+  font-size: 1.3rem;
+`;
+const SpanBoldBlack = styled(SpanBoldGray)`
+  color: black;
+  text-decoration-line: underline;
 `;
 
 const SpanGray = styled.span`
@@ -71,75 +90,90 @@ const SpanGray = styled.span`
 const CelebrityDetails = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   width: 100%;
   img {
-    height: 70px;
+    height: 50px;
+    @media (min-width: 425px) {
+      height: 70px;
+    }
+    @media (min-width: 1024px) {
+      height: 115px;
+    }
   }
-  div {
-    flex: 0 1 200px;
-    span {
-      font-weight: bold;
-      text-align: center;
-      font-size: 0.85rem;
+
+  span {
+    font-weight: bold;
+    text-align: initial;
+    font-size: 0.85rem;
+    @media (min-width: 1024px) {
+      margin-left: 10%;
+      max-width: 250px;
+      font-size: 1.55rem;
     }
   }
 `;
-const ResumenContractPending = ({ resumen }) => {
-  const ResumenContainer = styled.div`
-    @media (min-width: 600px) {
-      width: 80%;
-      margin: 0 auto;
-    }
-  `;
-
-  const ResumenPaymentRejected = styled.div`
-    display: flex;
+const HorizontalLine = styled.hr`
+  width: 100%;
+`;
+const ResumenPaymentRejected = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  flex: 0 0 80%;
+  @media (min-width: 600px) {
+    flex: 0 0 50%;
+    width: 100%;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    flex-flow: column;
-    flex: 0 0 80%;
-    @media (min-width: 600px) {
-      flex: 0 0 50%;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-    }
-    @media (min-width: 1024px) {
-      flex: 0 0 50%;
-      width: 80%;
-      align-items: flex-start;
-      justify-content: center;
-    }
-  `;
-  const PaymentRejectedActions = styled.div`
-    display: flex;
-    flex-flow: column;
-    margin-top: 20px;
-  `;
+  }
+  @media (min-width: 1024px) {
+    flex: 0 0 50%;
+    width: 80%;
+    align-items: flex-start;
+    justify-content: center;
+  }
+`;
+const PaymentRejectedActions = styled.div`
+  display: flex;
+  flex-flow: column;
+  margin-top: 20px;
+`;
 
-  const ButtonPink = styled.button`
-    width: "80%";
-    background-color: #fb177d;
-    border-radius: "5px";
-    margin-top: 20px;
-    height: 55px;
+const ButtonPink = styled.button`
+  width: "80%";
+  background-color: #fb177d;
+  border-radius: "5px";
+  margin-top: 20px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  span {
+    color: white;
+  }
+  @media (min-width: 768px) {
+    width: 70%;
+    height: 60px;
+  }
+  @media (min-width: 1024px) {
+    width: 50%;
+    height: 60px;
+    margin-top: 50px;
+  }
+`;
+const ResumenContainer = styled.div`
+  @media (min-width: 600px) {
+    width: 80%;
+    margin: 0 auto;
     display: flex;
-    align-items: center;
+    flex-flow: column;
     justify-content: space-around;
-    span {
-      color: white;
-    }
-    @media (min-width: 768px) {
-      width: 70%;
-      height: 60px;
-    }
-    @media (min-width: 1024px) {
-      width: 50%;
-      height: 60px;
-      margin-top: 50px;
-    }
-  `;
+    flex: 0 0 80%;
+  }
+`;
+const ResumenContractPending = ({ resumen }) => {
   const router = useRouter();
   const redirectToEditContract = () => {
     router.push(
@@ -173,7 +207,7 @@ const ResumenContractPending = ({ resumen }) => {
               ></img>
 
               <span
-                className="text-center font-weight-bold"
+                className="font-weight-bold"
                 style={{
                   color: "black"
                 }}
@@ -205,7 +239,7 @@ const ResumenContractPending = ({ resumen }) => {
                   className="cursor-pointer font-weight-bold"
                   onClick={() => redirectToEditContract()}
                 >
-                  Editar
+                  <SpanBoldBlack>Editar</SpanBoldBlack>
                 </div>
               </div>
               <div className="d-flex mt-3 flex-column">
@@ -218,19 +252,19 @@ const ResumenContractPending = ({ resumen }) => {
             <hr className="w-100"></hr>
             <span
               style={{
-                fontSize: "12px",
+                fontSize: "14px",
                 color: "#535353"
               }}
             >
               *Puedes editar las instrucciones de tu video mientras está
               pendiente de grabación.
             </span>
-            <hr className="w-100"></hr>
+            <HorizontalLine></HorizontalLine>
           </DetailsContracDiv>
         </ContainerDetailsContractDiv>
         <ResumenPaymentRejected>
           <ResumenContainer>
-            <hr className="d-none d-md-block "></hr>
+            <hr className="d-none d-md-block w-100"></hr>
             <ResumenStatusPayment
               textColor={"#000000"}
               status={resumen.lastPayment.status}
@@ -238,7 +272,7 @@ const ResumenContractPending = ({ resumen }) => {
               idTransaction={resumen.lastPayment.transactionChargeId}
               paymentDate={resumen.contract.createdAt}
             />
-            <hr></hr>
+            <hr className="w-100"></hr>
 
             <PaymentRejectedActions>
               <div className="d-flex flex-column">

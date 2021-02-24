@@ -19,6 +19,8 @@ const ContainerResumenStatusPayment = styled.div`
 
 const SpanGray = styled.span`
   color: ${(props) => (props.textColor ? props.textColor : "#838383")};
+  font-size: 1.1rem;
+  text-transform: uppercase;
 `;
 const ResumenStatusPayment = ({
   status,
