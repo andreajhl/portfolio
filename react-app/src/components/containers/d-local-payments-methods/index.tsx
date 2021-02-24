@@ -168,6 +168,14 @@ const DLocalPaymentsMethods = ({
         {paymentMethodType === "CREDIT_CARD" ||
         paymentMethodType === "DEBIT_CARD" ? (
           <div className="form-check d-flex p-0 flex-column ">
+            <label
+              style={{
+                fontWeight: "lighter",
+                color: "#838383"
+              }}
+            >
+              Selecciona una tarjeta
+            </label>
             <SelectCardBankPaymentMethod
               onChangeOptionSelected={(selected) =>
                 handleChangePaymentMethod(selected.name, selected.value)
