@@ -246,6 +246,7 @@ const DLocalPaymentsMethods = ({
         <div className="mt-2">
           {cardIsRequired ? (
             <DLocalFormCard
+              paymentMethodType={paymentMethodType}
               paymentErrorMessage={paymentError}
               paymentInProcess={paymentInProcess}
               handleStartPayment={(token) => onStartPayment(token)}
