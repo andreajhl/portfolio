@@ -115,12 +115,10 @@ const NextStepsAfterPaymentBanner = ({
           </Link>
         </ButtonBlack>
         <Link href="/my-account/hirings">
-          <React.Fragment>
-            <SpanWithMousePointer>
-              Ir a Mis Contrataciones{" "}
-              <i className="fas fa-long-arrow-alt-right"></i>
-            </SpanWithMousePointer>
-          </React.Fragment>
+          <SpanWithMousePointer>
+            Ir a Mis Contrataciones{" "}
+            <i className="fas fa-long-arrow-alt-right"></i>
+          </SpanWithMousePointer>
         </Link>
       </ContainerNavigationButtons>
     </ContainerBanner>
