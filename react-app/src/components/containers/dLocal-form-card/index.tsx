@@ -43,20 +43,26 @@ const DLocalFormCard = ({
   const [buyerName, setBuyerName] = useState("");
   const [tokenError, settokenError] = useState("");
   const [dLocalInstance, setDLocalInstance] = useState(null);
+  const buyerNameCard = useRef<HTMLInputElement>(null);
   const handlerSubmitCreditCardDetails = (e) => {
     e.preventDefault();
-    dLocalInstance
-      .createToken(card, {
-        name: buyerName
-      })
-      .then((result) => {
-        handleStartPayment(result.token);
-      })
-      .catch((err) => {
-        err.result
-          ? settokenError(err.result)
-          : settokenError("Los datos de su tarjeta no son validos");
-      });
+    if (buyerName) {
+      dLocalInstance
+        .createToken(card, {
+          name: buyerName
+        })
+        .then((result) => {
+          handleStartPayment(result.token);
+        })
+        .catch((err) => {
+          err.result
+            ? settokenError(err.result)
+            : settokenError("Los datos de su tarjeta no son validos.");
+        });
+    } else {
+      const nodeDocument = buyerNameCard.current;
+      nodeDocument?.focus();
+    }
   };
   const inputEl = useRef(null);
   const style = {
@@ -89,6 +95,7 @@ const DLocalFormCard = ({
         <InputElement
           placeholder="Escribe aquí el nombre"
           type="text"
+          ref={buyerNameCard}
           className="form-control mb-4"
           value={buyerName}
           onChange={(e) => setBuyerName(e.target.value)}
