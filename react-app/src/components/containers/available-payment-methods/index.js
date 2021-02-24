@@ -92,10 +92,7 @@ class AvailablePaymentMethods extends Component {
   };
 
   changeMethodPayment = (e) => {
-    this.setState({
-      ...this.state,
-      selectedPaymentMethod: e
-    });
+    this.setState((prevState) => ({ ...prevState, selectedPaymentMethod: e }));
   };
 
   onChangeFormDLocal = (buyerData) => {
@@ -107,10 +104,10 @@ class AvailablePaymentMethods extends Component {
     });
   };
   onBuyerDataIncomplete = () => {
-    this.setState({
-      ...this.state,
-      buyerDataIncomplete: true
-    });
+    this.setState(
+      (prevState) => ({ ...prevState, buyerDataIncomplete: true }),
+      () => console.log(this.state)
+    );
   };
 
   render() {
@@ -155,10 +152,11 @@ class AvailablePaymentMethods extends Component {
             </span>
           </div>
 
-          {this.props.paymentMethodsAvailable.map((paymentMethod) => {
+          {this.props.paymentMethodsAvailable.map((paymentMethod, index) => {
             if (paymentMethod.paymentMethodType === "PAYPAL") {
               return (
                 <div
+                  key={`${index}-${paymentMethod.paymentMethodType}`}
                   className="payment-type mb-3"
                   onClick={() => this.changeMethodPayment("PAYPAL")}
                 >
@@ -201,6 +199,7 @@ class AvailablePaymentMethods extends Component {
               return (
                 <div
                   className="payment-type mb-3"
+                  key={`${index}-${paymentMethod.paymentMethodType}`}
                   onClick={() => this.changeMethodPayment("STRIPE")}
                 >
                   <div className="titles">
@@ -243,6 +242,7 @@ class AvailablePaymentMethods extends Component {
             } else if (paymentMethod.paymentMethodType === "BANK_TRANSFER") {
               return (
                 <div
+                  key={`${index}-${paymentMethod.paymentMethodType}`}
                   className="payment-type mb-3"
                   onClick={() => this.changeMethodPayment("BANK_TRANSFER")}
                 >
@@ -265,6 +265,7 @@ class AvailablePaymentMethods extends Component {
             } else if (paymentMethod.paymentMethodType === "TICKET") {
               return (
                 <div
+                  key={`${index}-${paymentMethod.paymentMethodType}`}
                   className="payment-type mb-3"
                   onClick={() => this.changeMethodPayment("TICKET")}
                 >
@@ -285,6 +286,7 @@ class AvailablePaymentMethods extends Component {
             } else if (paymentMethod.paymentMethodType === "CREDIT_CARD") {
               return (
                 <div
+                  key={`${index}-${paymentMethod.paymentMethodType}`}
                   className="payment-type mb-3"
                   onClick={() => this.changeMethodPayment("CREDIT_CARD")}
                 >
@@ -307,6 +309,7 @@ class AvailablePaymentMethods extends Component {
             } else if (paymentMethod.paymentMethodType === "DEBIT_CARD") {
               return (
                 <div
+                  key={`${index}-${paymentMethod.paymentMethodType}`}
                   className="payment-type mb-3"
                   onClick={() => this.changeMethodPayment("DEBIT_CARD")}
                 >
