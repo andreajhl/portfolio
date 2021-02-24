@@ -103,8 +103,9 @@ const PageContainer = ({
   };
 
   useEffect(() => {
+    const isLogged = new Session().getSession();
     cleanUserCelebrityLikes();
-    if (applyFetchUserCelebrityLikes) {
+    if (applyFetchUserCelebrityLikes && isLogged) {
       fetchUserCelebrityLikes();
     }
     if (shouldFetchRestCountries && restCountries.length === 0) {
