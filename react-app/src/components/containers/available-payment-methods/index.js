@@ -21,7 +21,8 @@ class AvailablePaymentMethods extends Component {
         buyerFullName: "",
         buyerEmail: "",
         buyerDocment: ""
-      }
+      },
+      buyerDataIncomplete: false
     };
   }
   componentDidMount() {
@@ -105,6 +106,12 @@ class AvailablePaymentMethods extends Component {
       }
     });
   };
+  onBuyerDataIncomplete = () => {
+    this.setState({
+      ...this.state,
+      buyerDataIncomplete: true
+    });
+  };
 
   render() {
     const shouldDisplayBuyerForm = this.props.paymentMethodsAvailable.some(
@@ -132,6 +139,7 @@ class AvailablePaymentMethods extends Component {
                 </span>
               </div>
               <DLocalPaymentsForm
+                buyerDataIncomplete={this.state.buyerDataIncomplete}
                 handleChangedInputs={(buyerData) =>
                   this.onChangeFormDLocal(buyerData)
                 }
@@ -239,6 +247,7 @@ class AvailablePaymentMethods extends Component {
                   onClick={() => this.changeMethodPayment("BANK_TRANSFER")}
                 >
                   <DLocalPaymentsMethods
+                    handleBuyerDataIncomplete={this.onBuyerDataIncomplete}
                     cardIsRequired={false}
                     buyerData={this.state.buyerData}
                     isSelected={
@@ -260,6 +269,7 @@ class AvailablePaymentMethods extends Component {
                   onClick={() => this.changeMethodPayment("TICKET")}
                 >
                   <DLocalPaymentsMethods
+                    handleBuyerDataIncomplete={this.onBuyerDataIncomplete}
                     cardIsRequired={false}
                     isSelected={this.state.selectedPaymentMethod === "TICKET"}
                     paymentMethodType={paymentMethod.paymentMethodType}
@@ -290,6 +300,7 @@ class AvailablePaymentMethods extends Component {
                     buyerData={this.state.buyerData}
                     contractReference={this.props.contractReference}
                     discountCouponId={this.props.couponData.data.id}
+                    handleBuyerDataIncomplete={this.onBuyerDataIncomplete}
                   />
                 </div>
               );
@@ -303,6 +314,7 @@ class AvailablePaymentMethods extends Component {
                     isSelected={
                       this.state.selectedPaymentMethod === "DEBIT_CARD"
                     }
+                    handleBuyerDataIncomplete={this.onBuyerDataIncomplete}
                     cardIsRequired={true}
                     paymentMethodType={paymentMethod.paymentMethodType}
                     paymentsMethodsAvailable={

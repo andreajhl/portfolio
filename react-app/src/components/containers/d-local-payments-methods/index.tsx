@@ -84,6 +84,7 @@ type DLocalPaymentsMethodsProps = {
   discountCouponId: null | string | number;
   isSelected: boolean;
   cardIsRequired?: boolean;
+  handleBuyerDataIncomplete: Function;
 };
 
 const DLocalPaymentsMethods = ({
@@ -93,7 +94,8 @@ const DLocalPaymentsMethods = ({
   buyerData,
   discountCouponId,
   isSelected,
-  cardIsRequired
+  cardIsRequired,
+  handleBuyerDataIncomplete
 }: DLocalPaymentsMethodsProps) => {
   const router = useRouter();
   const handleChangePaymentMethod = (name, paymentMethodId) => {
@@ -142,7 +144,16 @@ const DLocalPaymentsMethods = ({
   };
 
   const onStartPayment = (token) => {
-    handleStartPayment(token);
+    // Check if buyer daya is completed
+    if (
+      buyerData.buyerDocument.length &&
+      buyerData.buyerEmail &&
+      buyerData.buyerFullName
+    ) {
+      handleStartPayment(token);
+    } else {
+      handleBuyerDataIncomplete();
+    }
   };
 
   return (
