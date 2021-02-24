@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ResumenStatusPayment from "../../containers/resumen-status-payment";
 import { useRouter } from "next/router";
-import { HIRING_EDITOR } from "../../../routing/Paths";
+import { HIRING_EDITOR, PAYMENT_METHODS } from "../../../routing/Paths";
 
 const ResumenContractRejected = ({ resumen }) => {
   const HeroDiv = styled.div`
@@ -138,6 +138,13 @@ const ResumenContractRejected = ({ resumen }) => {
       HIRING_EDITOR.replace(":contract_reference", resumen.contract.reference)
     );
   };
+
+  const redirectToPaymentMethods = () => {
+    router.push(
+      PAYMENT_METHODS.replace(":contract_reference", resumen.contract.reference)
+    );
+  };
+
   return (
     <>
       <HeroDiv>
@@ -225,7 +232,7 @@ const ResumenContractRejected = ({ resumen }) => {
             <ResumenStatusPayment
               status={resumen.contract.status}
               idFollow={resumen.contract.reference}
-              paymentDate={resumen.contract.createdAt}
+              paymentDate={resumen.lastPayment.createdAt}
             />
             <PaymentRejectedActions>
               <div>
@@ -238,7 +245,10 @@ const ResumenContractRejected = ({ resumen }) => {
                   contactar a nuestro equipo de soporte.
                 </span>
               </div>
-              <ButtonPink className="btn">
+              <ButtonPink
+                className="btn"
+                onClick={() => redirectToPaymentMethods()}
+              >
                 <span className="font-weight-bold">
                   Hacer nuevo intento de pago
                 </span>
