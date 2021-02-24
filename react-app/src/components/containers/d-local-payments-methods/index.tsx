@@ -232,19 +232,29 @@ const DLocalPaymentsMethods = ({
               handleStartPayment={(token) => onStartPayment(token)}
             ></DLocalFormCard>
           ) : (
-            <button
-              onClick={(e) => onStartPayment(null)}
-              disabled={paymentInProcess}
-              className="btn btn-primary mx-auto mt-2"
-              style={{
-                backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
-                height: "50px",
-                borderRadius: "10px",
-                width: "100%"
-              }}
-            >
-              {paymentInProcess ? <LoaderLayout /> : "Pagar"}
-            </button>
+            <div className="d-flex align-items-center flex-column">
+              <span
+                className="text-danger"
+                style={{
+                  fontSize: "10px"
+                }}
+              >
+                {paymentError}
+              </span>
+              <button
+                onClick={(e) => onStartPayment(null)}
+                disabled={paymentInProcess}
+                className="btn btn-primary mx-auto mt-2"
+                style={{
+                  backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
+                  height: "50px",
+                  borderRadius: "10px",
+                  width: "100%"
+                }}
+              >
+                {paymentInProcess ? <LoaderLayout /> : "Pagar"}
+              </button>
+            </div>
           )}
         </div>
       </div>
