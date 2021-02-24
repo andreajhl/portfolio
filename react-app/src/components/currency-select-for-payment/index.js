@@ -40,7 +40,8 @@ const CurrencyDropdownSelect = ({
         borderRadius: "10px",
         border: "0px",
         boxShadow: "0px 0px 10px rgb(0 0 0 / 10%)",
-        textIndent: "10px"
+        textIndent: "10px",
+        background: "white"
       }}
       className={`form-select font-weight-bold w-100 ${
         className ? className : ""
