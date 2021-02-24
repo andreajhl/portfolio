@@ -121,7 +121,11 @@ const DLocalPaymentsMethods = ({
           if (
             ["PAID", "AUTHORIZED", "PENDING"].includes(response.chargeStatus)
           ) {
-            router.push(`/resumen-de-compra/${contractReference}`);
+            if (response.requiredRedirect) {
+              window.location.replace(response.redirectUri);
+            } else {
+              router.push(`/resumen-de-compra/${contractReference}`);
+            }
           } else {
             setPaymentError(response.statusDetails);
             setPaymentInProcess(false);
