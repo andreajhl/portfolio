@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Card } from "../../common/cards";
 
 export const Hero = styled.header`
   height: 219px;
@@ -33,11 +34,6 @@ export const CelebrityInfoSubtitle = styled.h3`
   font-size: 14px;
   font-weight: 700;
   line-height: 17px;
-`;
-const Card = styled.div`
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  padding: 14px;
 `;
 export const PlanInfoSection = styled(Card)`
   text-align: center;

@@ -19,6 +19,15 @@ import {
   SubscriptionPostsHeader,
   SubscriptionPostsSection
 } from "../../layouts/subscription-posts";
+import {
+  SubscriptionPostCard,
+  SubscriptionPostHiddenContent
+} from "../../common/cards/subscription-posts-card";
+import {
+  PostMedia,
+  PostImage,
+  PostText
+} from "../../common/cards/subscription-posts-card/styles";
 
 const mapStateToProps = ({ celebrities }) => ({
   celebrity: celebrities.getCelebrityReducer.data.celebrity
@@ -59,7 +68,19 @@ const SubscribePage = ({
       <SubscriptionPostsHeader>
         <LastsPostsTitle>Últimas publicaciones de {fullName}</LastsPostsTitle>
       </SubscriptionPostsHeader>
-      <SubscriptionPostsSection></SubscriptionPostsSection>
+      <SubscriptionPostsSection>
+        <SubscriptionPostCard avatar={avatar} fullName={fullName}>
+          <SubscriptionPostHiddenContent imageSrc={avatar} />
+        </SubscriptionPostCard>
+        <SubscriptionPostCard avatar={avatar} fullName={fullName}>
+          <PostMedia>
+            <PostImage src={avatar} />
+          </PostMedia>
+          <PostText>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, beatae.
+          </PostText>
+        </SubscriptionPostCard>
+      </SubscriptionPostsSection>
     </PageContainer>
   );
 };
