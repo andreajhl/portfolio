@@ -31,7 +31,7 @@ const ResumenContractRejected = ({ resumen }) => {
     justify-content: center;
     width: 100%;
     margin: 0 auto;
-    margin-bottom: 2rem;
+    height: 70vh;
   `;
 
   const ContainerDetailsContractDiv = styled.div`
@@ -41,6 +41,7 @@ const ResumenContractRejected = ({ resumen }) => {
     align-content: center;
     background-color: #fcfcfc;
     flex-flow: column;
+    justify-content: center;
   `;
 
   const DetailsContracDiv = styled.div`
@@ -230,7 +231,7 @@ const ResumenContractRejected = ({ resumen }) => {
         <ResumenPaymentRejected>
           <ResumenContainer>
             <ResumenStatusPayment
-              status={resumen.lastPayment.status}
+              status={resumen.lastPayment?.status}
               idFollow={resumen.contract?.reference}
               idTransaction={resumen.lastPayment?.transactionChargeId}
               paymentDate={resumen.contract?.createdAt}
