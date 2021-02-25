@@ -99,7 +99,7 @@ const DLocalPaymentsMethods = ({
 }: DLocalPaymentsMethodsProps) => {
   const router = useRouter();
   const handleChangePaymentMethod = (name, paymentMethodId) => {
-    setCurrentOption({ name, paymentMethodId });
+    setCurrentOption({ name: name, paymentMethodId: paymentMethodId });
   };
   const [currentOption, setCurrentOption] = useState({
     name: "",
@@ -160,7 +160,7 @@ const DLocalPaymentsMethods = ({
   };
 
   const checkOptionSelected = () => {
-    if (currentOption.paymentMethodId && currentOption.name) {
+    if (currentOption.paymentMethodId || currentOption.name) {
       return true;
     } else {
       return false;
