@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { paymentsOperations } from "../../../state/ducks/payments";
 import { connect } from "react-redux";
 import { AVAILABLE_CURRENCIES } from "../../layouts/currency-dropdown/constants";

@@ -2,7 +2,6 @@
 
 .NavbarSectionLayout {
   width: 100%;
-  position: fixed;
   background-color: white;
   z-index: 10000;
   margin: 0 auto;
@@ -13,21 +12,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  &-helper {
-    height: 113px;
-
-    &.hidden-search {
-      height: 53px;
-    }
-
-    &.show-coupon-banner {
-      height: 200px;
-
-      &.hidden-search {
-        height: 120px;
-      }
-    }
   }
 
   &__logo-link {

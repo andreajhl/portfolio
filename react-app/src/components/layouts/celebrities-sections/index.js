@@ -5,7 +5,7 @@ import { CelebritiesShimmerCardsSectionLayout } from "../celebrities-shimmer-car
 import { LoaderLayout } from "../loader";
 import { fetchCelebritySections } from "../../../state/ducks/celebrity-sections/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
-import "./styles.scss";
+
 import { EndMessageLayout } from "../end-message";
 import * as GTM from "../../../state/utils/gtm";
 import getCookie from "../../../utils/getCookie";
@@ -30,11 +30,13 @@ const CelebritiesSectionsLayout = ({
   celebritiesSections,
   totalResults,
   fetchCelebritySections,
-  landingId
+  landingId,
+  isMobile
 }) => {
   const [offset, setOffset] = useState(offsetInitialValue);
 
   useEffect(() => {
+    if (offset === offsetInitialValue) return;
     fetchCelebritySections({
       offset,
       limit: resultsLimit,
@@ -90,6 +92,7 @@ const CelebritiesSectionsLayout = ({
                 celebritiesSection.celebritySectionType === "CELEBRITY_CARD" &&
                 celebritiesSection.celebrities.length >= 10
               }
+              isMobile={isMobile}
             />
           ))}
         </InfiniteScroll>

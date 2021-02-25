@@ -1,6 +1,6 @@
 import React, { Component, createRef } from "react";
 import debounce from "lodash.debounce";
-import "./styles.scss";
+
 import * as GTM from "../../../state/utils/gtm";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { connect } from "react-redux";

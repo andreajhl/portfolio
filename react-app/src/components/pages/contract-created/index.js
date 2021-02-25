@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import "./styles.scss";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import { Session } from "../../../state/utils/session";
 import * as GTM from "../../../state/utils/gtm";
 import { connect } from "react-redux";
 import { contractOperations } from "../../../state/ducks/contracts";
-import { PageContainer } from "../../layouts";
-
-var moment = require("moment");
+import { PageContainer } from "../../layouts/page-container";
+import moment from "moment";
 
 class ContractCreatedPage extends Component {
   constructor(props) {
@@ -23,15 +21,12 @@ class ContractCreatedPage extends Component {
     this.session = new Session();
   }
 
-  componentWillMount() {
-    this.props.getContract(this.props.match.params.contract_reference);
-  }
-
   componentDidMount() {
     this.props.contractToPayClear();
+    this.props.getContract(this.props.contractReference);
     GTM.tagManagerDataLayer(
       "CONTYRACT_PENDING_TO_PAY_PAGE_VIEW",
-      this.props.match
+      this.props.contractReference
     );
   }
 

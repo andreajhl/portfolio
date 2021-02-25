@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import UAParser from "ua-parser-js";
 import { FixedBanner } from "../fixed-banner";
-import "./styles.scss";
 
 const DownloadAppBanner = () => {
   const { type, vendor } = useMemo(() => new UAParser().getDevice());

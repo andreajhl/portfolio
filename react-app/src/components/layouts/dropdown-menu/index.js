@@ -1,12 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-app/src/components/common/routing";
 import UAParser from "ua-parser-js";
 import * as PATHS from "../../../routing/Paths";
 import { sendDropdownLinkAnalyticsData } from "../navbar-section/index";
 import { LessImportantCallToActionButton } from "../less-important-call-to-action-button";
-import "./styles.scss";
-import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from "src/components/containers/login-button/login-button";
+import LoginButton from "../../containers/login-button/login-button";
+
 const { type, vendor } = new UAParser().getDevice();
 const isAppleDevice = vendor === "Apple";
 const isHuaweiDevice = vendor === "Huawei";
@@ -25,13 +24,13 @@ export const DropdownMenuLayout = ({
       }`}
     >
       <button
-        className='btn DropdownMenuLayout__dropdown-button ml-3'
-        type='button'
-        id='dropdownMenuButton'
-        data-toggle='dropdown'
-        aria-haspopup='true'
-        aria-expanded='false'
-        aria-label='dropdown toggle button'
+        className="btn DropdownMenuLayout__dropdown-button ml-3"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-label="dropdown toggle button"
         onClick={() => setDropdownMenuIsOpen(!dropdownMenuIsOpen)}
       >
         <i className={`fa fa-${dropdownMenuIsOpen ? "times" : "bars"}`} />
@@ -41,8 +40,8 @@ export const DropdownMenuLayout = ({
           sendDropdownLinkAnalyticsData("HOVER", target)
         }
         onClick={({ target }) => sendDropdownLinkAnalyticsData("CLICK", target)}
-        className='dropdown-menu'
-        aria-labelledby='dropdownMenuButton'
+        className="dropdown-menu"
+        aria-labelledby="dropdownMenuButton"
         style={
           dropdownMenuIsOpen
             ? {
@@ -54,72 +53,58 @@ export const DropdownMenuLayout = ({
         {isLogged ? (
           <>
             <NavLink
-              className='dropdown-item'
-              activeClassName='active'
+              className="dropdown-item"
+              activeClassName="active"
               to={PATHS.CLIENT_PROFILE}
             >
               Mi perfil
             </NavLink>
 
             <NavLink
-              className='dropdown-item'
-              activeClassName='active'
+              className="dropdown-item"
+              activeClassName="active"
               to={PATHS.CLIENT_HIRINGS}
             >
               Mis contrataciones
             </NavLink>
           </>
         ) : null}
-        <a className='dropdown-item' href={PATHS.LANDING_PATH}>
+        <a className="dropdown-item" href={PATHS.LANDING_PATH}>
           ¿Como funciona?
         </a>
         <NavLink
-          className='dropdown-item'
-          activeClassName='active'
+          className="dropdown-item"
+          activeClassName="active"
           to={PATHS.BLOG}
         >
           Blog
         </NavLink>
-        {/* <NavLink
-          className="dropdown-item d-md-none"
-          activeClassName="active"
-          to={PATHS.TRENDING}
-        >
-          Tendencias
-        </NavLink> */}
         {!isLogged ? (
           <>
-            <LoginButton className='dropdown-item d-md-none'></LoginButton>
-            {/* <NavLink
-              className='dropdown-item d-md-none'
-              activeClassName='active'
-              to={PATHS.SIGN_IN_PATH}
-            >
-              Ingresar
-            </NavLink> */}
+            <LoginButton className="dropdown-item d-md-none" />
             <LoginButton
-              className='dropdown-item d-md-none'
-              text={"Registrarme"}
-            ></LoginButton>
+              className="dropdown-item d-md-none"
+              text="Registrarme"
+            />
           </>
         ) : null}
         <NavLink
-          className='dropdown-item'
-          activeClassName='active'
+          className="dropdown-item"
+          activeClassName="active"
           to={PATHS.CELEBRITY_REQUEST}
         >
           Aplicar como Famoso
         </NavLink>
         {shouldRenderDownloadAppLink ? (
           <a
-            href='market://details?id=com.famosos.users'
-            target='_top'
-            className='text-decoration-none'
+            href="market://details?id=com.famosos.users"
+            target="_top"
+            className="text-decoration-none"
           >
             <LessImportantCallToActionButton
-              className='dropdown-item border-0'
-              width='100%'
-              fontSize='0.875rem'
+              className="dropdown-item border-0"
+              width="100%"
+              fontSize="0.875rem"
             >
               Descargar app de Android
             </LessImportantCallToActionButton>

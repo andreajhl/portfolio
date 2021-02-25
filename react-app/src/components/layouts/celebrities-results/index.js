@@ -1,7 +1,6 @@
 import React from "react";
 import * as GTM from "../../../state/utils/gtm";
 import { CelebritiesInfinityScrollLayout } from "../celebrities-infinity-scroll";
-import "./styles.scss";
 
 const CelebritiesResultsLayout = ({
   celebrities,

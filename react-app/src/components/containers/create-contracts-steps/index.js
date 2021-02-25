@@ -1,49 +1,48 @@
 import React from "react";
-import "./styles.scss";
 
 const CreateContractStepsLayout = () => {
   return (
-    <section className='CreateContractsStepsLayout py-4'>
-      <h2 className='title mb-4 mb-md-3'>
+    <section className="CreateContractsStepsLayout py-4">
+      <h2 className="title mb-4 mb-md-3">
         ¿Que sucede después de que enviás la solicitud a un Famoso?
       </h2>
-      <div className='container-CreateContractsStepsLayout mb-0'>
-        <ul className='CreateContractsStepsLayout__steps-list mb-0'>
-          <li className='CreateContractsStepsLayout__step-item'>
-            <div className='CreateContractsStepsLayout__step-icon'>
-              <img src={"/assets/img/callendar.svg"} alt={"img"} width='26px' />
+      <div className="container-CreateContractsStepsLayout mb-0">
+        <ul className="CreateContractsStepsLayout__steps-list mb-0">
+          <li className="CreateContractsStepsLayout__step-item">
+            <div className="CreateContractsStepsLayout__step-icon">
+              <img src={"/assets/img/callendar.svg"} alt={"img"} width="26px" />
             </div>
-            <div className='CreateContractsStepsLayout__step-text'>
+            <div className="CreateContractsStepsLayout__step-text">
               <p>
                 <span>Tu solicitud será completada en menos 7 días</span>.
               </p>
             </div>
           </li>
 
-          <li className='CreateContractsStepsLayout__step-item'>
-            <div className='CreateContractsStepsLayout__step-icon'>
+          <li className="CreateContractsStepsLayout__step-item">
+            <div className="CreateContractsStepsLayout__step-icon">
               <img
                 src={"/assets/img/checked-arrow.svg"}
                 alt={"img"}
-                width='26px'
+                width="26px"
               />
             </div>
-            <div className='CreateContractsStepsLayout__step-text'>
+            <div className="CreateContractsStepsLayout__step-text">
               <p>
                 <span>La confirmación de tu compra será enviada a tu mail</span>
               </p>
             </div>
           </li>
 
-          <li className='CreateContractsStepsLayout__step-item'>
-            <div className='CreateContractsStepsLayout__step-icon'>
+          <li className="CreateContractsStepsLayout__step-item">
+            <div className="CreateContractsStepsLayout__step-icon">
               <img
                 src={"/assets/img/notification.svg"}
                 alt={"img"}
-                width='26px'
+                width="26px"
               />
             </div>
-            <div className='CreateContractsStepsLayout__step-text'>
+            <div className="CreateContractsStepsLayout__step-text">
               <p>
                 <span>
                   Te notificaremos cuando tu video ya esté grabado y disponible
@@ -54,11 +53,11 @@ const CreateContractStepsLayout = () => {
           </li>
         </ul>
       </div>
-      <div className='CreateContractsStepsLayout__safe-money'>
-        <div className='CreateContractsStepsLayout__safe-money-icon'>
-          <img src={"/assets/img/cashback.svg"} alt={"img"} width='26px' />
+      <div className="CreateContractsStepsLayout__safe-money">
+        <div className="CreateContractsStepsLayout__safe-money-icon">
+          <img src={"/assets/img/cashback.svg"} alt={"img"} width="26px" />
         </div>
-        <div className='CreateContractsStepsLayout__safe-money-text'>
+        <div className="CreateContractsStepsLayout__safe-money-text">
           <p>
             <span>
               Si por alguna razón tu video no pudo ser grabado, te

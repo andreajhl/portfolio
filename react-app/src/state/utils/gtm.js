@@ -1,10 +1,12 @@
 import TagManager from "react-gtm-module";
-import { Mixpanel } from "./mixPanel";
+// import { Mixpanel } from "./mixPanel";
 
-const ENV = process.env.REACT_APP_ENVIRONMENT;
+const ENV = process.env.NEXT_PUBLIC_ENVIRONMENT;
+const INITIALIZE_GTM_PROD_MODE =
+  process.env.NEXT_PUBLIC_INITIALIZE_GTM_PROD_MODE === "true";
 
 export const initialize = () => {
-  if (ENV === "production") {
+  if (ENV === "production" || INITIALIZE_GTM_PROD_MODE) {
     TagManager.initialize({
       gtmId: "GTM-TCDSJ3Q"
     });
@@ -18,10 +20,10 @@ export const initialize = () => {
 export const tagManagerDataLayer = (event, dataLayer) => {
   try {
     // MIX PANEL
-    Mixpanel.track(event, { ...dataLayer });
+    // Mixpanel.track(event, { ...dataLayer });
 
     // GTM NOTIFICATION
-    window.dataLayer.push({
+    window?.dataLayer?.push?.({
       ...dataLayer,
       event
     });
@@ -34,6 +36,6 @@ export const tagManagerDataLayer = (event, dataLayer) => {
       });
     }
   } catch (e) {
-    console.log("tagManagerDataLayer Error:", e);
+    console.warn("tagManagerDataLayer Error:", e);
   }
 };

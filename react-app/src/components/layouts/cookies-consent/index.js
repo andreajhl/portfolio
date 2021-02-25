@@ -1,36 +1,36 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import "react-flags-select/scss/react-flags-select.scss";
-import "./styles.scss";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-app/src/components/common/routing";
+import { HAS_ACCEPTED_COOKIES_CONSENT } from "react-app/src/constants/localStorageKeys";
+import getWindow from "react-app/src/utils/getWindow";
+import Maybe from "../../common/helpers/maybe";
 import * as PATHS from "../../../routing/Paths";
 
-class CookiesConsent extends Component {
-  constructor(props) {
-    super(props);
+const CookiesConsent = () => {
+  const [showBanner, setShowBanner] = useState(false);
+  const [bannerIsHidden, setBannerIsHidden] = useState(false);
 
-    this.state = {
-      showBanner: localStorage.getItem("hasAcceptedCookiesConsent") !== "true"
-    };
-  }
+  useEffect(() => {
+    setShowBanner(
+      localStorage.getItem(HAS_ACCEPTED_COOKIES_CONSENT) !== "true"
+    );
+  }, []);
 
-  hideBanner = () => {
-    localStorage.setItem("hasAcceptedCookiesConsent", true);
-    this.setState({
-      hideBanner: true
-    });
+  const hideBanner = () => {
+    getWindow()?.localStorage?.setItem?.(HAS_ACCEPTED_COOKIES_CONSENT, true);
+    setBannerIsHidden(true);
   };
 
-  removeCookieConsent = ({ propertyName }) => {
+  const removeCookieConsent = ({ propertyName }) => {
     if (propertyName === "opacity") {
-      this.setState({ showBanner: false });
+      setShowBanner(false);
     }
   };
 
-  render() {
-    return this.state.showBanner ? (
+  return (
+    <Maybe it={showBanner}>
       <div
-        className={`cookies-consent ${this.state.hideBanner ? "hidden" : ""}`}
-        onTransitionEnd={this.removeCookieConsent}
+        className={`cookies-consent ${bannerIsHidden ? "hidden" : ""}`}
+        onTransitionEnd={removeCookieConsent}
       >
         <div className="cookies-consent__text">
           En nuestro sitio web utilizamos cookies propias y de terceros para
@@ -41,7 +41,7 @@ class CookiesConsent extends Component {
         <div className="cookies-consent__options">
           <button
             className="cookies-consent__accept-button mr-3"
-            onClick={this.hideBanner}
+            onClick={hideBanner}
           >
             Aceptar
           </button>
@@ -53,10 +53,8 @@ class CookiesConsent extends Component {
           </NavLink>
         </div>
       </div>
-    ) : null;
-  }
-}
+    </Maybe>
+  );
+};
 
-// Set defaultProps
-CookiesConsent.defaultProps = {};
 export { CookiesConsent };

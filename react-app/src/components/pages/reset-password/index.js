@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import { Session } from "../../../state/utils/session";
 import { ResetPasswordForm } from "../../containers";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import { PageContainer } from "../../layouts/page-container";
 import * as GTM from "../../../state/utils/gtm";
-import MetaTags from "react-meta-tags";
 
 class ResetPasswordPage extends Component {
   constructor(props) {
@@ -48,14 +47,6 @@ class ResetPasswordPage extends Component {
   render() {
     return (
       <>
-        <MetaTags>
-          <title>Famosos.com - Recupera tu contraseña</title>
-          <meta
-            name="description"
-            content="Recupera la contraseña de tu cuenta de Famosos.com. Reserva tu video y disfruta de experiencias únicas."
-          />
-        </MetaTags>
-
         <PageContainer applyFetchCelebrities={false} showFooter={false}>
           <div className="SignInPage">
             <div className="section">

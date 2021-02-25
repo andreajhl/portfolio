@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { CelebrityCardLayout } from "../celebrity-card";
 import { fetchSimilarCelebrities } from "../../../state/ducks/celebrities/actions";
 import * as CarouselWithButtons from "../carousel-with-buttons";
-import "./styles.scss";
+
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
 import * as GTM from "../../../state/utils/gtm";
 

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import "./styles.scss";
 import { connect } from "react-redux";
-import { PageContainer } from "../../layouts";
+import { PageContainer } from "../../layouts/page-container";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import {
   saveContractToPay,
@@ -9,27 +8,23 @@ import {
   getContract
 } from "../../../state/ducks/contracts/actions";
 import * as GTM from "../../../state/utils/gtm";
-import { CreateContractForm } from "../../containers";
-import MetaTags from "react-meta-tags";
-import { Session } from "../../../state/utils/session";
-import { history } from "../../../routing/History";
+import { CreateContractForm } from "../../containers/create-contract-form";
+import Head from "next/head";
 import * as PATHS from "../../../routing/Paths";
+import { withRouter } from "../../common/routing";
 
 class EditContractPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const shouldFetchContract =
-      this.props.match.params.contract_reference && !this.props.celebrityId;
+      this.props.contract_reference && !this.props.celebrityId;
     if (shouldFetchContract) {
-      this.props.getContract(this.props.match.params.contract_reference);
+      this.props.getContract(this.props.contract_reference);
     }
+
     GTM.tagManagerDataLayer("EDIT_CONTRACT_PAGE_VIEW", {
-      ...this.props.match,
+      contract_reference: this.props.contract_reference,
       widget: this.constructor.name,
-      path: this.props.location.pathname
+      path: this.props.pathname
     });
     // GTM.tagManagerDataLayer("CREATE_CONTRACT_PAGE_VIEW", this.props.match);
     // const session = new Session();
@@ -50,7 +45,8 @@ class EditContractPage extends Component {
     const { contract } = this.props;
     if (contract === null) return;
     if (prevProps.contract !== contract) {
-      if (contract.status !== 10 || contract.status !== 5) {
+      const canEditContract = [10, 5].includes(contract.status);
+      if (!canEditContract) {
         return this.props.history.push(PATHS.CLIENT_HIRINGS);
       }
       this.props.saveContractToPay({
@@ -64,20 +60,20 @@ class EditContractPage extends Component {
     return (
       <>
         {this.props.celebrityId ? (
-          <MetaTags>
+          <Head>
             <title>
               Famosos.com - Editar video personalizado de{" "}
               {this.props.celebrity.fullName}
             </title>
             <meta
-              name='description'
+              name="description"
               content={
                 "Comprar video personalizado de " +
                 this.props.celebrity.fullName +
                 " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
               }
             />
-          </MetaTags>
+          </Head>
         ) : null}
 
         <PageContainer
@@ -111,7 +107,7 @@ class EditContractPage extends Component {
                   />
                 </div>
                 <img
-                  width='100%'
+                  width="100%"
                   className={"create-contract-steps"}
                   src={"/assets/img/create-contract-steps.svg"}
                   alt={"create-contract-steps"}
@@ -150,5 +146,5 @@ const mapDispatchToProps = {
 const _EditContractPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditContractPage);
+)(withRouter(EditContractPage));
 export { _EditContractPage as EditContractPage };

@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import "./styles.scss";
-import { NavLink } from "react-router-dom";
+
+import { NavLink } from "react-app/src/components/common/routing";
 import { setPlayingVideo } from "../../../state/ducks/celebrity-sections/actions";
 import { connect } from "react-redux";
 import * as GTM from "../../../state/utils/gtm";
 import { HIRING_PREVIEW } from "../../../routing/Paths";
+import getWindow from "react-app/src/utils/getWindow";
 
 const CelebrityPublicContractCardAlternativeLayout = ({
   publicContract,
@@ -21,7 +22,7 @@ const CelebrityPublicContractCardAlternativeLayout = ({
 
   const analyticsData = {
     widget: "CelebrityPublicContractCardAlternativeLayout",
-    path: window.location.pathname,
+    path: getWindow().location.pathname,
     ...publicContract,
     videoKey
   };

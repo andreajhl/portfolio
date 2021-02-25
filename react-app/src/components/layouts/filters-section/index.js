@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { CelebritiesFilter } from "../celebrities-filter";
 import { CelebritiesOrderBy } from "../celebrities-order-by";
-import "./styles.scss";
+
 import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import { countriesOperations } from "../../../state/ducks/countries";
@@ -10,7 +10,7 @@ import { celebrityCategoriesOperations } from "../../../state/ducks/celebrity-ca
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
 import { queryStringToJSON } from "../../../state/utils/apiService";
-import { withRouter } from "react-router";
+import { withRouter } from "react-app/src/components/common/routing";
 
 const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
   return {
@@ -43,13 +43,11 @@ const FiltersSectionLayout = ({
   updateQueryParams,
   listCountries,
   listCelebrityCategories,
-  location
+  location,
+  router
 }) => {
   const [params, setParams] = useState(initialState.params);
-  const queryString = location.search;
-  const queryParams = useMemo(() => queryStringToJSON(queryString), [
-    queryString
-  ]);
+  const queryParams = queryStringToJSON(location.search);
 
   const setFilterParam = (paramName) => (paramValues) =>
     setParams((params) => ({
@@ -62,11 +60,14 @@ const FiltersSectionLayout = ({
 
   useEffect(() => {
     if (params === initialState.params) return;
-    updateQueryParams({
-      ...queryParams,
-      ...initialState.params,
-      ...params
-    });
+    updateQueryParams(
+      {
+        ...queryParams,
+        ...initialState.params,
+        ...params
+      },
+      router
+    );
   }, [params]);
 
   useEffect(() => {
@@ -83,9 +84,12 @@ const FiltersSectionLayout = ({
       path: window.location.pathname,
       queryParams
     });
-    updateQueryParams({
-      ...updateQueryParamsInitialState
-    });
+    updateQueryParams(
+      {
+        ...updateQueryParamsInitialState
+      },
+      router
+    );
   };
 
   const showCleanFiltersButton =

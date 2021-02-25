@@ -71,14 +71,15 @@
     }
 
     &__celebrity-photo {
+      overflow: hidden;
       width: 53.65px;
       flex-basis: auto;
-      margin-right: 0.75rem;
       border-radius: 50%;
     }
 
     &__celebrity-full-name {
       margin: 0;
+      margin-left: 0.75rem;
       flex-basis: 137px;
       padding-right: 1em;
       font-size: 1.125rem;

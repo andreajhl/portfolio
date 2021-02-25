@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ReactFlagsSelect from "react-flags-select";
-import "react-flags-select/scss/react-flags-select.scss";
-import "./styles.scss";
+
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import { connect } from "react-redux";
 import * as PropTypes from "prop-types";

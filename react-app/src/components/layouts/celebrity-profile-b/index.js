@@ -1,14 +1,39 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { CelebrityDetails } from "../celebrity-details";
-import { CelebrityPublicContractsSectionLayout } from "../celebrity-public-contracts-section";
-import { CelebrityReviewsSectionLayout } from "../celebrity-reviews-section";
-import { SimilarCelebritiesCardsSectionLayout } from "../similar-celebrities-cards-section";
-import { SimilarCelebrityContractsSectionLayout } from "../similar-celebrity-contracts-section";
-import { ResizableMainVideo } from "../resizable-main-video";
-import HowToGetAVideoMessageLayout from "../how-to-get-a-video-message";
+import { NavLink } from "react-app/src/components/common/routing";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import { connect } from "react-redux";
+import dynamic from "next/dynamic";
+const HowToGetAVideoMessageLayout = dynamic(() =>
+  import("../how-to-get-a-video-message").then(
+    (mod) => mod.HowToGetAVideoMessageLayout
+  )
+);
+const SimilarCelebritiesCardsSectionLayout = dynamic(() =>
+  import("../similar-celebrities-cards-section").then(
+    (mod) => mod.HowToGetAVideoMessageLayout
+  )
+);
+const SimilarCelebrityContractsSectionLayout = dynamic(() =>
+  import("../similar-celebrity-contracts-section").then(
+    (mod) => mod.HowToGetAVideoMessageLayout
+  )
+);
+const CelebrityPublicContractsSectionLayout = dynamic(() =>
+  import("../celebrity-public-contracts-section").then(
+    (mod) => mod.CelebrityPublicContractsSectionLayout
+  )
+);
+const ResizableMainVideo = dynamic(() =>
+  import("../resizable-main-video").then((mod) => mod.ResizableMainVideo)
+);
+const CelebrityDetails = dynamic(() =>
+  import("../celebrity-details").then((mod) => mod.CelebrityDetails)
+);
+const CelebrityReviewsSectionLayout = dynamic(() =>
+  import("../celebrity-reviews-section").then(
+    (mod) => mod.CelebrityReviewsSectionLayout
+  )
+);
 
 const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
   return (
@@ -19,7 +44,7 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
         } p-0 justify-content-center`}
       >
         {celebrity.mainVideo ? (
-          <div className='col-12 col-lg-4 p-0 m-0 px-sm-3'>
+          <div className="col-12 col-lg-4 p-0 m-0 px-sm-3">
             <ResizableMainVideo
               mainVideoUrl={celebrity.mainVideo}
               videoPosterUrl={celebrity.avatar}
@@ -31,7 +56,7 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
             celebrity.mainVideo ? "8" : "10"
           } p-0 m-0 px-sm-3`}
         >
-          <CelebrityDetails celebrity={celebrity} variant='1' />
+          <CelebrityDetails celebrity={celebrity} variant="1" />
         </div>
       </div>
       <HowToGetAVideoMessageLayout />
@@ -72,12 +97,12 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
       <SimilarCelebrityContractsSectionLayout
         celebrityUsername={celebrity.username}
       />
-      <div className='container pb-4 pt-2 text-center'>
+      <div className="container pb-4 pt-2 text-center">
         <HireThisCelebrityButton
           showCelebrityName={true}
-          className='get-a-video-button px-md-5 py-3 px-4'
-          text='Quiero un video de'
-          fontSize='1.25em'
+          className="get-a-video-button px-md-5 py-3 px-4"
+          text="Quiero un video de"
+          fontSize="1.25em"
           celebrityFullName={celebrity.fullName}
           celebrityUsername={celebrity.username}
         />

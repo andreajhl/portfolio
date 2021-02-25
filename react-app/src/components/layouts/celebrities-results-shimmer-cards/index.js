@@ -1,7 +1,6 @@
 import React from "react";
 import { getTotalColumns } from "../../../state/utils/gridSystem";
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
-import "./styles.scss";
 
 const CelebritiesResultsShimmerCardsLayout = (props) => {
   return (

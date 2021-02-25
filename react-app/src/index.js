@@ -10,7 +10,7 @@ import * as GTM from "./state/utils/gtm";
 import { MyRoutes } from "./routing/Routes";
 
 const jwt_decode = require("jwt-decode");
-const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
+export const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
 
 // OLD SESSIONS VALIDATION
 const token = window.localStorage.getItem("_a0_");

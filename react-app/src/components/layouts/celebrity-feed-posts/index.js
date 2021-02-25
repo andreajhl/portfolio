@@ -1,6 +1,6 @@
-import React from 'react';
-import './styles.scss';
-import CelebritySharedPost from '../../containers/celebrity-shared-post/index';
+import React from "react";
+
+import CelebritySharedPost from "../../containers/celebrity-shared-post/index";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { LoaderLayout } from "../../layouts/loader";
 
@@ -10,18 +10,18 @@ const CelebrityFeedPosts = (props) => {
     onFetchMorePost();
   };
   return (
-    <div className='celebrity-feed-posts'>
-      <div className='celebrity-feed-posts__result'>
+    <div className="celebrity-feed-posts">
+      <div className="celebrity-feed-posts__result">
         <InfiniteScroll
           dataLength={posts.length}
           next={fetchMoreData}
           hasMore={hasMorePost}
           loader={<LoaderLayout />}
           endMessage={
-            <p style={{ textAlign: 'center' }}>
+            <p style={{ textAlign: "center" }}>
               <b>
-                {`Al parecer ${celebrityData.celebrityFullName} no ha publicado nada mas por los momentos.`}{' '}
-                <span role='img' aria-label='crying-face'>
+                {`Al parecer ${celebrityData.celebrityFullName} no ha publicado nada mas por los momentos.`}{" "}
+                <span role="img" aria-label="crying-face">
                   😢
                 </span>
               </b>
@@ -43,13 +43,13 @@ const CelebrityFeedPosts = (props) => {
       </div>
     </div>
   );
-}
+};
 
 CelebritySharedPost.defaultProps = {
   posts: [],
   celebrityData: {},
   onFetchMorePost: () => {},
-  hasMorePost: true,
+  hasMorePost: true
 };
 
-export { CelebrityFeedPosts};
+export { CelebrityFeedPosts };

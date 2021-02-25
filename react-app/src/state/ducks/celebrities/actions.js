@@ -6,10 +6,11 @@ import {
   handleApiResponseSuccess
 } from "../../utils";
 import * as API_PATHS from "./paths";
-import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
 import { updateQueryParamsInitialState } from "./reducers";
-import * as firestoreService from "../../../firebase/firestoreService";
+// import * as firestoreService from "../../../firebase/firestoreService";
+
+const firestoreService = { getDocuments() {} };
 
 const getValidParams = (params) => {
   const paramsEntries = Object.entries(params);
@@ -19,23 +20,23 @@ const getValidParams = (params) => {
   return Object.fromEntries(onlyValidParamsEntries);
 };
 
-export const updateQueryParams = (params) => (dispatch) => {
+export const updateQueryParams = (params, router) => (dispatch) => {
   const newParams = getValidParams(params);
   dispatch({
     type: types.UPDATE_QUERY_PARAMS,
     payload: { params: { ...updateQueryParamsInitialState, ...newParams } }
   });
   if (newParams.offset) {
-    history.replace(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
+    router.replace(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
   } else {
-    const previousPathname = history.location.pathname;
+    const previousPathname = router.pathname;
     if (previousPathname !== PATHS.SEARCH_PATH) {
       dispatch({
         type: types.SET_PREVIOUS_PATH,
         payload: previousPathname
       });
     }
-    history.push(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
+    router.push(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
   }
 };
 
@@ -44,7 +45,7 @@ export const get = (object_id, preloaded = false) => {
     const TYPE = types.GET_CELEBRITY_REQUEST;
     const FINAL_PATH = API_PATHS.GET + object_id;
     dispatch({ type: TYPE, payload: {} });
-    apiService({
+    return apiService({
       method: "GET",
       action: TYPE,
       path: FINAL_PATH,
@@ -58,49 +59,24 @@ export const get = (object_id, preloaded = false) => {
           !res.data.data.username
         ) {
           handleApiResponseFailure(dispatch, TYPE, res);
-          // Other actions
-          history._pushRoute(
-            PATHS.CELEBRITY_PROFILE_ERROR.replace(
-              ":celebrity_username",
-              object_id
-            )
-          );
-          // history._pushRoute(PATHS.ROOT_PATH);
         } else {
           handleApiResponseSuccess(dispatch, TYPE, res);
-          // Other actions
           if (preloaded) {
             dispatch(listReviews(res.data.data.id, { currentPage: 1 }));
             dispatch(listPublicContracts(res.data.data.id, { currentPage: 1 }));
-            // dispatch(
-            //   listSimilar({
-            //     country_id: res.data.data.country_id,
-            //     category_id: res.data.data.category_id
-            //   })
-            // );
           }
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
         }
       })
       .catch((err) => {
         handleApiErrors(dispatch, TYPE, err);
-        // history._pushRoute(
-        //   PATHS.CELEBRITY_PROFILE_ERROR.replace(
-        //     ":celebrity_username",
-        //     object_id
-        //   )
-        // );
-        // history._pushRoute(PATHS.ROOT_PATH);
-        // handleApiErrors(dispatch, TYPE, {
-        //   data: { api_error: err, error: "Server 500" }
-        // });
       });
   };
 };
 
 export const list = (params) => {
   return (dispatch, getStore) => {
-    getStore().celebrities.fetchCelebritiesReducer.requestCancel();
+    getStore().celebrities.fetchCelebritiesReducer?.requestCancel?.();
     const TYPE = types.FETCH_CELEBRITIES_REQUEST;
     const FINAL_PATH = API_PATHS.LIST;
     const request = apiService({
@@ -135,12 +111,13 @@ export const list = (params) => {
         console.log(err);
         // handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
       });
+    return request;
   };
 };
 
 export const fetchSimilarResults = (params) => {
   return (dispatch, getStore) => {
-    getStore().celebrities.fetchCelebritiesReducer.requestCancel();
+    getStore().celebrities.fetchCelebritiesReducer?.requestCancel?.();
     const TYPE = types.FETCH_CELEBRITIES_SIMILAR_RESULTS_REQUEST;
     const FINAL_PATH = API_PATHS.SUGGESTED_PUBLIC_LIST;
     const request = apiService({
@@ -208,7 +185,7 @@ export const listReviews = (celebrity_id, params = {}) => {
     const TYPE = types.FETCH_REVIEWS_REQUEST;
     const FINAL_PATH = API_PATHS.REVIEWS + celebrity_id;
     dispatch({ type: TYPE, payload: {} });
-    apiService({
+    return apiService({
       method: "GET",
       action: TYPE,
       path: FINAL_PATH,
@@ -241,7 +218,7 @@ export const listPublicContracts = (celebrity_id, params = {}) => {
     const TYPE = types.FETCH_PUBLIC_CONTRACTS_REQUEST;
     const FINAL_PATH = API_PATHS.PUBLIC_CONTRACTS + celebrity_id;
     dispatch({ type: TYPE, payload: {} });
-    apiService({
+    return apiService({
       method: "GET",
       action: TYPE,
       path: FINAL_PATH,
@@ -299,7 +276,7 @@ export const cleanPublicContracts = () => ({
 });
 
 export const fetchFlashDeliveryCelebrities = () => async (dispatch) => {
-  const environment = process.env.REACT_APP_ENVIRONMENT;
+  const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
 
   const TYPE = types.FETCH_FLASH_DELIVERY_CELEBRITIES_REQUEST;
   const FINAL_PATH = `${API_PATHS.FLASH_DELIVERY_CELEBRITIES}${
@@ -346,3 +323,8 @@ export const fetchCelebritySubscriptionPlans = (celebrityUsername) => (
       });
     });
 };
+
+export const setCelebrityProfileVersion = (payload) => ({
+  type: types.SET_CELEBRITY_PROFILE_VERSION,
+  payload
+});

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./styles.scss";
+
 import { TrendingVideoCardLayout } from "../tending-video-card";
 import { PaginationLayout } from "../pagination";
 import { contractOperations } from "../../../state/ducks/contracts";

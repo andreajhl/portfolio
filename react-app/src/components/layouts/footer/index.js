@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import "./styles.scss";
-import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
-import { description, version } from "../../../../package.json";
+import { description, version } from "../../../../../package.json";
+import { withRouter } from "next/router";
 
 class FooterLayout extends Component {
   constructor(props) {
@@ -18,15 +17,15 @@ class FooterLayout extends Component {
   }
 
   goToFAQs() {
-    history._pushRoute(PATHS.FAQS_PATH);
+    this.props.router.push(PATHS.FAQS_PATH);
   }
 
   goToPolicies() {
-    history._pushRoute(PATHS.POLICIES_PATH);
+    this.props.router.push(PATHS.POLICIES_PATH);
   }
 
   goToTerms() {
-    history._pushRoute(PATHS.TERMS_PATH);
+    this.props.router.push(PATHS.TERMS_PATH);
   }
 
   goToFamososTwitter() {
@@ -42,7 +41,7 @@ class FooterLayout extends Component {
   }
 
   goToApply() {
-    history._pushRoute(PATHS.CELEBRITY_REQUEST);
+    this.props.router.push(PATHS.CELEBRITY_REQUEST);
   }
 
   render() {
@@ -96,6 +95,7 @@ class FooterLayout extends Component {
                       className="cursor-pointer"
                       src="/assets/img/facebook-white.svg"
                       width="30px"
+                      alt="Facebook"
                     />
                   </li>
                   <li
@@ -106,6 +106,7 @@ class FooterLayout extends Component {
                       className="cursor-pointer"
                       src="/assets/img/instagram-white.svg"
                       width="30px"
+                      alt="Instagram"
                     />
                   </li>
                 </ul>
@@ -138,4 +139,6 @@ class FooterLayout extends Component {
   }
 }
 
-export { FooterLayout };
+const _FooterLayout = withRouter(FooterLayout);
+
+export { _FooterLayout as FooterLayout };

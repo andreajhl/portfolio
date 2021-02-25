@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles.scss";
+
 import "react-tagsinput/react-tagsinput.css";
 import { Session } from "../../../state/utils/session";
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import "./styles.scss";
+import { NavLink } from "../../common/routing";
+
 import * as PATHS from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { cursorOperations } from "../../../state/ducks/cursor-position";
@@ -10,6 +10,7 @@ import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
 import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { celebrityType } from "../../../types/celebrityType";
+import OptimizedImage from "../../common/helpers/optimized-image";
 
 export interface CelebrityCardLayoutI {
   celebrity: celebrityType;
@@ -17,14 +18,17 @@ export interface CelebrityCardLayoutI {
     to: string;
     rate?: number;
   };
+  celebrityCardLayout: {
+    width?: number | string;
+    height?: number | string;
+  };
 }
 
 const CelebrityCardLayout = ({
   celebrity,
-  currencyExchangeData
+  currencyExchangeData,
+  celebrityCardLayout
 }: CelebrityCardLayoutI) => {
-  const [avatarIsLoaded, setAvatarIsLoaded] = useState(false);
-  const finishAvatarLoad = () => setAvatarIsLoaded(true);
   const [contractPrice, setContractPrice] = useState(
     celebrity.videoMessagePrice
   );
@@ -57,20 +61,14 @@ const CelebrityCardLayout = ({
     >
       <div className="celebrity-card">
         <div className="thumbnail">
-          <img
+          <OptimizedImage
             alt="avatar"
-            className={`celebrity__profile-photo ${
-              !avatarIsLoaded ? "d-none" : ""
-            }`}
-            onLoad={finishAvatarLoad}
+            className="celebrity__profile-photo"
             src={celebrity.avatar}
-          />
-          <img
-            src="/assets/img/avatar-blank.png"
-            alt="avatar"
-            className={`celebrity__profile-photo ${
-              avatarIsLoaded ? "d-none" : ""
-            }`}
+            height={celebrityCardLayout?.height || 156}
+            objectFit="cover"
+            width={celebrityCardLayout?.width || 156}
+            placeholderSrc="/assets/img/avatar-blank.png"
           />
           {celebrity.availableForFlashDeliveries ? (
             <FlashDeliveryBadgeLayout className="celebrity__flash-delivery" />
