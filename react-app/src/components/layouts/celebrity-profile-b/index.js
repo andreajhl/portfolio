@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-app/src/components/common/routing";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import { connect } from "react-redux";
 import dynamic from "next/dynamic";
@@ -69,25 +68,6 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
             celebrityFullName={celebrity.fullName}
             celebrityAvatar={celebrity.avatar}
           />
-          {/* <section className="container text-center pt-2 pb-4">
-            <NavLink to="#">
-              <button
-                type="button"
-                className="btn btn-primary similar-celebrities-button"
-                style={{
-                  background: "#FFE1F0",
-                  borderRadius: "5px",
-                  border: "none",
-                  padding: "0.75em 1.5em",
-                  fontSize: "20px",
-                  fontWeight: "bold",
-                  color: "#FB177D"
-                }}
-              >
-                Ver famosos similares
-              </button>
-            </NavLink>
-          </section> */}
         </>
       ) : null}
       <CelebrityReviewsSectionLayout celebrityId={celebrity.id} />
