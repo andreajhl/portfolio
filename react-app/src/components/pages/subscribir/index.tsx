@@ -11,8 +11,14 @@ import {
   PlanInfoSection,
   PlanInfoStar,
   PlanInfoDescription,
-  PlanInfoPrice
+  PlanInfoPrice,
+  LastsPostsTitle
 } from "./styles";
+
+import {
+  SubscriptionPostsHeader,
+  SubscriptionPostsSection
+} from "../../layouts/subscription-posts";
 
 const mapStateToProps = ({ celebrities }) => ({
   celebrity: celebrities.getCelebrityReducer.data.celebrity
@@ -50,6 +56,10 @@ const SubscribePage = ({
           <CallToActionButton width="100%">Subscribirse</CallToActionButton>
         </PlanInfoSection>
       </div>
+      <SubscriptionPostsHeader>
+        <LastsPostsTitle>Últimas publicaciones de {fullName}</LastsPostsTitle>
+      </SubscriptionPostsHeader>
+      <SubscriptionPostsSection></SubscriptionPostsSection>
     </PageContainer>
   );
 };
