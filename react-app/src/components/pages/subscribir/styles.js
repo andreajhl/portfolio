@@ -1,0 +1,64 @@
+import styled from "styled-components";
+
+export const Hero = styled.header`
+  height: 219px;
+  > * {
+    width: 100%;
+    height: 100%;
+    > img {
+      object-fit: cover;
+      height: 100%;
+    }
+  }
+`;
+export const CelebrityInfoSection = styled.section`
+  margin-top: -4rem;
+  margin-bottom: 2.3125rem;
+  text-align: center;
+
+  figure {
+    margin-bottom: 19px !important;
+    img {
+      border: 4px solid black;
+    }
+  }
+`;
+export const CelebrityInfoTitle = styled.h2`
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 29px;
+  margin-bottom: 6px;
+`;
+export const CelebrityInfoSubtitle = styled.h3`
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+`;
+const Card = styled.div`
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 14px;
+`;
+export const PlanInfoSection = styled(Card)`
+  text-align: center;
+  height: 237px;
+`;
+
+export const PlanInfoStar = styled.img.attrs({
+  src: "/assets/img/subscription-star.svg"
+})`
+  margin-top: -52px;
+  width: 50px;
+  height: 50px;
+`;
+export const PlanInfoDescription = styled.p`
+  margin-top: 1rem;
+  font-size: 14px;
+  line-height: 17px;
+`;
+export const PlanInfoPrice = styled.p`
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 26px;
+  margin-bottom: 20px;
+`;
