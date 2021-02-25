@@ -92,7 +92,7 @@ const VideoCardLayout = ({
           </header>
           <footer className="d-flex align-items-center px-2 video-card__footer">
             <NavLink
-              className="d-flex align-items-center video-card__celebrity-profile-link"
+              className="d-flex align-items-center video-card__celebrity-profile-link flex-grow-1"
               to={CELEBRITY_PROFILE.replace(
                 ":celebrity_username",
                 celebrityUsername
@@ -114,10 +114,7 @@ const VideoCardLayout = ({
                 </h3>
               </Maybe>
             </NavLink>
-            <CelebrityFavoriteButton
-              celebrityId={celebrityId}
-              className="ml-auto"
-            />
+            <CelebrityFavoriteButton celebrityId={celebrityId} />
           </footer>
         </section>
       </div>

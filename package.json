@@ -56,12 +56,14 @@
     "react-star-rating-component": "^1.4.1",
     "react-stripe-elements": "^6.1.2",
     "react-tagsinput": "^3.19.0",
+    "react-window": "^1.8.6",
     "redux": "^4.0.5",
     "redux-batched-actions": "^0.5.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.1",
     "ua-parser-js": "^0.7.23",
-    "validator": "^13.5.2"
+    "validator": "^13.5.2",
+    "@next/bundle-analyzer": "^10.0.7"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.8",

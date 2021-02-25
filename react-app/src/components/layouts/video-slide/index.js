@@ -30,7 +30,6 @@ const VideoSlideLayout = ({
     videoIsMuted,
     slideshowIsPlaying
   };
-  const [videoIsLoaded, onVideoLoadedData] = useLoad();
   const { videoRef, videoIsPlaying, playVideo, togglePlay } = useVideoPlayer(
     videoReference,
     {
@@ -50,6 +49,8 @@ const VideoSlideLayout = ({
       }
     }
   );
+
+  const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
 
   const toggleVideoIsMuted = () => {
     GTM.tagManagerDataLayer(`${videoIsMuted ? "UN" : ""}MUTE_VIDEO_SLIDE`, {

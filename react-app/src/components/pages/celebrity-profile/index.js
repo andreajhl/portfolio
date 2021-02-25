@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
+import { PageContainer } from "../../layouts/page-container";
 import dynamic from "next/dynamic";
 
 const LastVideosAvailableBanner = dynamic(() =>
@@ -12,28 +13,39 @@ const LastVideosAvailableBanner = dynamic(() =>
     (mod) => mod.LastVideosAvailableBanner
   )
 );
-const PageContainer = dynamic(() =>
-  import("../../layouts/page-container").then((mod) => mod.PageContainer)
-);
+
 const NetworkConnectionErrorLayout = dynamic(() =>
   import("../../layouts/network-error-message").then(
     (mod) => mod.NetworkConnectionErrorLayout
   )
 );
-const CelebrityProfileLayoutA = dynamic(() =>
-  import("../../layouts/celebrity-profile-a").then(
-    (mod) => mod.CelebrityProfileLayoutA
-  )
+
+const LoadingLayout = () => <div style={{ minHeight: "100vh" }} />;
+
+const profileLayoutsConfig = { loading: LoadingLayout };
+
+const CelebrityProfileLayoutA = dynamic(
+  () =>
+    import("../../layouts/celebrity-profile-a").then(
+      (mod) => mod.CelebrityProfileLayoutA
+    ),
+  profileLayoutsConfig
 );
-const CelebrityProfileLayoutB = dynamic(() =>
-  import("../../layouts/celebrity-profile-b").then(
-    (mod) => mod.CelebrityProfileLayoutB
-  )
+
+const CelebrityProfileLayoutB = dynamic(
+  () =>
+    import("../../layouts/celebrity-profile-b").then(
+      (mod) => mod.CelebrityProfileLayoutB
+    ),
+  profileLayoutsConfig
 );
-const CelebrityProfileLayoutC = dynamic(() =>
-  import("../../layouts/celebrity-profile-c").then(
-    (mod) => mod.CelebrityProfileLayoutC
-  )
+
+const CelebrityProfileLayoutC = dynamic(
+  () =>
+    import("../../layouts/celebrity-profile-c").then(
+      (mod) => mod.CelebrityProfileLayoutC
+    ),
+  profileLayoutsConfig
 );
 
 const CelebrityProfileLayout = ({ celebrity, celebrityProfileVersion }) => {

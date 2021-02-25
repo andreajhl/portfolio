@@ -29,6 +29,11 @@ class MyDocument extends Document {
             name="google-site-verification"
             content="-rnH5_p9oxmohFsI8i9w1lE-A48k-AGGRWevPanUiKE"
           />
+          {/* <!-- Facebook --> */}
+          <meta
+            name="facebook-domain-verification"
+            content="ta1dz0xy5fjizha2ii49to5aw9dvfk"
+          />
           <link rel="canonical" href="https://famosos.com/" />
           <link
             rel="shortcut icon"

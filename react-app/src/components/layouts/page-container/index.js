@@ -14,6 +14,8 @@ import { withRouter } from "react-app/src/components/common/routing";
 import Maybe from "../../common/helpers/maybe";
 import initializeBotMaker from "react-app/src/utils/initializeBotMaker";
 import dynamic from "next/dynamic";
+import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
+import { Session } from "react-app/src/state/utils/session.js";
 
 const CookiesConsent = dynamic(
   () => import("../cookies-consent").then((mod) => mod.CookiesConsent),
@@ -37,6 +39,7 @@ const PageContainer = ({
   const [botMakerChild, setBotMakerChild] = useState(undefined);
   const [dropdownMenuIsOpen, setDropdownMenuIsOpen] = useState(false);
   const [showCouponBanner, setShowCouponBanner] = useState(hasDiscountCoupon);
+  const loginHandler = useLoginHandler();
 
   const cancelPreviousWaitFor = () => {
     if (botMakerChild && botMakerChild.cancel) {
@@ -100,14 +103,25 @@ const PageContainer = ({
   };
 
   useEffect(() => {
+    const isLogged = new Session().getSession();
     cleanUserCelebrityLikes();
-    if (applyFetchUserCelebrityLikes) {
+    if (applyFetchUserCelebrityLikes && isLogged) {
       fetchUserCelebrityLikes();
     }
     if (shouldFetchRestCountries && restCountries.length === 0) {
       listRestCountries();
     }
   }, []);
+
+  useEffect(() => {
+    const isLogged = new Session().getSession();
+    const shouldAuthenticate = localStorage.getItem("shouldAuthenticate");
+    const finalRedirect = localStorage.getItem("finalRedirect");
+    if (shouldAuthenticate === "true" && finalRedirect && !isLogged) {
+      localStorage.removeItem("shouldAuthenticate");
+      loginHandler();
+    }
+  }, [loginHandler]);
 
   const hasSearchedOrFiltered = queryParams !== updateQueryParamsInitialState;
 

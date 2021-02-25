@@ -65,6 +65,32 @@ const applyDiscountCouponInitialState = {
   error_data: null
 };
 
+export const processStripePaymentReducer = (
+  state = { error_data: { error: "" } },
+  { type, action }
+) => {
+  if (type === types.CREATE_STRIPE_PAYMENT_REQUEST_FAILURE) {
+    return {
+      ...state,
+      error_data: action.payload.error
+    };
+  }
+  return state;
+};
+
+export const processPaypalPaymentReducer = (
+  state = { error_data: { error: "" } },
+  { type, action }
+) => {
+  if (type === types.CREATE_PAYPAL_PAYMENT_REQUEST_FAILURE) {
+    return {
+      ...state,
+      error_data: action.payload.error
+    };
+  }
+  return state;
+};
+
 export function fetchDiscountCouponReducer(
   state = applyDiscountCouponInitialState,
   action

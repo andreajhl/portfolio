@@ -1,12 +1,14 @@
 // import { useEffect } from "react";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { CelebritiesPage } from "react-app/src/components/pages/celebrities";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
 import { wrapper } from "react-app/src/state/store";
+import UAParser from "ua-parser-js";
 // import isBrowser from "react-app/src/utils/isBrowser";
 // import auth0 from "../lib/auth0";
 
+/* 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   async ({ store }) => {
     await fetchCelebritySections({ limit: 4, offset: 0 })(store.dispatch);
@@ -14,8 +16,21 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
     return { revalidate: quarterHourInSeconds };
   }
 );
+*/
 
-const Home = ({ session }) => {
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+  async ({ req, store }) => {
+    await fetchCelebritySections({ limit: 4, offset: 0 })(store.dispatch);
+    return {
+      props: {
+        isMobile:
+          new UAParser(req.headers["user-agent"]).getDevice().type === "mobile"
+      }
+    };
+  }
+);
+
+const Home = ({ isMobile }) => {
   // useEffect(() => {
   //   if (isBrowser && session) {
   //     if (session.idToken) {
@@ -27,7 +42,7 @@ const Home = ({ session }) => {
   return (
     <>
       <CustomHead />
-      <CelebritiesPage />
+      <CelebritiesPage isMobile={isMobile} />
     </>
   );
 };

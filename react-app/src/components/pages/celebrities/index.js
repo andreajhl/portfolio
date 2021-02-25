@@ -89,6 +89,7 @@ class CelebritiesPage extends Component {
               landingId={
                 queryStringToJSON(this.props.location.search)?.landingId
               }
+              isMobile={this.props.isMobile}
             />
           </PageContainer>
         </div>

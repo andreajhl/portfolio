@@ -96,6 +96,16 @@ const getUserInformationInitialState = {
   data: {}
 };
 
+const setRedirectUnauthorizedInitialState = false;
+
+export const setRedirectUnauthorizedReducer = (
+  state = setRedirectUnauthorizedInitialState,
+  { type, payload }
+) => {
+  if (type === types.SET_REDIRECT_UNAUTHORIZED) return payload;
+  return state;
+};
+
 export function signInWithEmailReducer(
   state = signInWithEmailInitialState,
   action
@@ -493,5 +503,6 @@ export default combineReducers({
   sendEmailSecurityCodeReducer,
   validateEmailSecurityCodeReducer,
   validateIfEmailIsRegisteredReducer,
-  getUserInformationReducer
+  getUserInformationReducer,
+  setRedirectUnauthorizedReducer
 });
