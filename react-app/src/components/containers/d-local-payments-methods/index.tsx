@@ -1,5 +1,5 @@
+import React, { useState, useRef } from "react";
 import { AVAILABLE_PAYMENTS_METHODS } from "../../../../../constants/availablePaymentsMethods";
-import React, { useState } from "react";
 import { processDlocalPayment } from "../../../state/ducks/payments/actions";
 import DLocalFormCard from "../dLocal-form-card";
 import SelectCardBankPaymentMethod from "../select-cardbank-payment-method";
@@ -107,6 +107,11 @@ const DLocalPaymentsMethods = ({
   });
   const [paymentError, setPaymentError] = useState("");
   const [paymentInProcess, setPaymentInProcess] = useState(false);
+  const selectCardDiv = useRef<HTMLInputElement>(null);
+  const inputLabel = useRef<HTMLInputElement>(null);
+  const [labelIncomplete, setLabelIncomplete] = useState(false);
+  const [cardIsIncomplete, setCardIsIncomplete] = useState(false);
+
   const handleStartPayment = async (cardToken) => {
     setPaymentInProcess(true);
     try {
@@ -143,14 +148,48 @@ const DLocalPaymentsMethods = ({
     }
   };
 
-  const onStartPayment = (token) => {
-    // Check if buyer daya is completed
+  const checkBuyerData = () => {
     if (
-      buyerData.buyerDocument.length &&
+      buyerData.buyerDocument &&
       buyerData.buyerEmail &&
       buyerData.buyerFullName
     ) {
-      handleStartPayment(token);
+      return true;
+    }
+    return false;
+  };
+
+  const checkOptionSelected = () => {
+    if (currentOption.paymentMethodId && currentOption.name) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const handleOptionSelectedIncomplete = () => {
+    if (
+      paymentMethodType === "CREDIT_CARD" ||
+      paymentMethodType === "DEBIT_CARD"
+    ) {
+      setCardIsIncomplete(true);
+      const nodeDocument = selectCardDiv.current;
+      nodeDocument?.focus();
+    } else {
+      setLabelIncomplete(true);
+      const nodeDocument = inputLabel.current;
+      nodeDocument?.focus();
+    }
+  };
+
+  const onStartPayment = (token) => {
+    // Check if buyer daya is completed
+    if (checkBuyerData()) {
+      if (checkOptionSelected()) {
+        handleStartPayment(token);
+      } else {
+        handleOptionSelectedIncomplete();
+      }
     } else {
       handleBuyerDataIncomplete();
     }
@@ -196,10 +235,15 @@ const DLocalPaymentsMethods = ({
                 label: paymentMethod.name
               }))}
             />
+            {cardIsIncomplete ? (
+              <span className="text-danger text-center">
+                Por favor seleccione una tarjeta
+              </span>
+            ) : null}
           </div>
         ) : (
           <div className="form-check d-flex p-0 flex-column ">
-            <div className="form-check d-flex flex-column ">
+            <div ref={inputLabel} className="form-check d-flex flex-column">
               {paymentsMethodsAvailable.map((paymentMethod, index) => (
                 <div
                   key={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
@@ -241,6 +285,11 @@ const DLocalPaymentsMethods = ({
                 </div>
               ))}
             </div>
+            {labelIncomplete ? (
+              <span className="text-center text-danger">
+                Por favor seleccione una opción
+              </span>
+            ) : null}
           </div>
         )}
         <div className="mt-2">
