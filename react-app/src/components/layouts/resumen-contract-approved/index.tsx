@@ -13,6 +13,7 @@ const HeroDiv = styled.div`
   flex-flow: column;
   align-items: center;
 `;
+
 const HeroTextApproved = styled.div`
   h2 {
     text-align: center;
@@ -21,7 +22,6 @@ const HeroTextApproved = styled.div`
     margin-top: 20px;
     font-size: 22px;
   }
-  /* font-weight: bold; */
 `;
 
 const ResumendContractDiv = styled.div`
@@ -31,16 +31,21 @@ const ResumendContractDiv = styled.div`
   justify-content: center;
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 2rem;
+  height: 76vh;
 `;
 
 const ContainerDetailsContractDiv = styled.div`
   display: flex;
-  flex: 1 1 40%;
+  flex: 1 0 45%;
   padding-top: 40px;
   align-content: center;
   background-color: #fcfcfc;
   flex-flow: column;
+  min-width: 320px;
+  justify-content: center;
+  @media (min-width: 1024px) {
+    padding-bottom: 1rem;
+  }
 `;
 
 const DetailsContracDiv = styled.div`
@@ -52,7 +57,9 @@ const DetailsContracDiv = styled.div`
 
 const ContractsSteps = styled.div`
   display: flex;
-  flex: 1 1 60%;
+  min-width: 320px;
+
+  flex: 1 0 55%;
   align-content: center;
   justify-content: center;
   background-color: white;
@@ -79,13 +86,23 @@ const CelebrityDetails = styled.div`
   width: 100%;
   img {
     height: 70px;
+    @media (min-width: 1024px) {
+      height: 120px;
+    }
   }
-  div {
-    flex: 0 1 200px;
-    span {
-      font-weight: bold;
-      text-align: center;
-      font-size: 0.85rem;
+  span {
+    font-weight: bold;
+    font-size: 1rem;
+    width: 160px;
+    @media (min-width: 375px) {
+      width: 180px;
+    }
+    @media (min-width: 1024px) {
+      width: 200px;
+      font-size: 1.3rem;
+    }
+    @media (min-width: 1440px) {
+      width: 300px;
     }
   }
 `;
@@ -107,8 +124,11 @@ const ResumenContractApproved = ({ resumen }) => {
           className="far fa-check-circle"
         />
         <HeroTextApproved>
-          <h2>¡Felicidades!</h2>
-          <h2>Tu pago ha sido aprobado.</h2>
+          <h2 className="d-md-none">¡Felicidades!</h2>
+          <h2 className="d-md-none">Tu pago ha sido aprobado.</h2>
+          <h2 className="d-none d-md-block">
+            ¡Felicidades! Tu pago ha sido aprobado
+          </h2>
         </HeroTextApproved>
       </HeroDiv>
 
@@ -123,7 +143,7 @@ const ResumenContractApproved = ({ resumen }) => {
               ></img>
 
               <span
-                className="text-center font-weight-bold"
+                className=" text-left font-weight-bold"
                 style={{
                   color: "black"
                 }}
@@ -152,10 +172,10 @@ const ResumenContractApproved = ({ resumen }) => {
                   ) : null}
                 </div>
                 <div
-                  className="cursor-pointer font-weight-bold"
+                  className="cursor-pointer font-weight-bold "
                   onClick={() => redirectToEditContract()}
                 >
-                  Editar
+                  <u>Editar</u>
                 </div>
               </div>
               <div className="d-flex mt-3 flex-column">
@@ -182,11 +202,12 @@ const ResumenContractApproved = ({ resumen }) => {
               idTransaction={resumen.lastPayment?.transactionChargeId}
               paymentDate={resumen.contract?.createdAt}
             />
+            <hr className="w-100"></hr>
           </DetailsContracDiv>
         </ContainerDetailsContractDiv>
         <ContractsSteps>
           <div
-            className="mx-auto mt-4"
+            className="mx-auto d-flex align-items-center mt-4"
             style={{
               width: "80%"
             }}
