@@ -129,11 +129,11 @@ const NextStepsAfterPaymentBanner = ({
         </TextSteps>
       </div>
       <ContainerNavigationButtons>
-        <ButtonBlack className="btn mb-4">
-          <Link href="/">
+        <Link href="/">
+          <ButtonBlack className="btn mb-4">
             <SpanLink>Seguir Comprando</SpanLink>
-          </Link>
-        </ButtonBlack>
+          </ButtonBlack>
+        </Link>
         <Link href="/my-account/hirings">
           <SpanWithMousePointer>
             Ir a Mis Contrataciones{" "}
