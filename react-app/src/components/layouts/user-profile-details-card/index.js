@@ -3,10 +3,11 @@ import { Session } from "../../../state/utils/session";
 import { CelebritiesMultiselect } from "../celebrities-multiselect";
 import { sessionOperations } from "../../../state/ducks/session";
 import { connect } from "react-redux";
-import * as GTM from "../../../state/utils/gtm";
 import { HOME_PATH } from "../../../routing/Paths";
 import LogoutButton from "../../containers/logout-button/logout-button";
-import useRouter from "next/router";
+import Router from "next/router";
+import Maybe from "../../common/helpers/maybe";
+
 class UserProfileDetailsCardLayout extends Component {
   constructor(props) {
     super(props);
@@ -28,9 +29,9 @@ class UserProfileDetailsCardLayout extends Component {
 
   logout() {
     this.sesion.removeSession();
-    const router = useRouter();
-    router.push(HOME_PATH);
+    Router.push(HOME_PATH);
   }
+
   updateSession() {
     const session = this.props.sessionData;
     session.favCelebrities = this.state.favCelebrities;
@@ -51,8 +52,8 @@ class UserProfileDetailsCardLayout extends Component {
               <img
                 className="rounded-circle"
                 src={
-                  this.props.userInformation?.picture
-                    ? this.props.userInformation.picture
+                  this.props.session?.avatar
+                    ? this.props.session?.avatar
                     : "/assets/img/avatar-blank.png"
                 }
                 width={"120px"}
@@ -61,8 +62,15 @@ class UserProfileDetailsCardLayout extends Component {
               <h5 className="font-weight-bold mt-2">
                 {this.props.session?.fullName}
               </h5>
-              <h6 className="mt-2">{this.props.userInformation?.email}</h6>
-              {/* <h6 className='mt-2'>{this.props.session.cellphoneNumber}</h6> */}
+              <h6 className="mt-2">{this.props.session?.email}</h6>
+              <Maybe it={this.props.session?.cellphoneNumber}>
+                <h6 className="mt-2">
+                  {this.props.session?.cellphoneCode
+                    ? "+" + this.props.session?.cellphoneCode
+                    : null}{" "}
+                  {this.props.session?.cellphoneNumber}
+                </h6>
+              </Maybe>
               <LogoutButton className="d-inline">
                 <small className="text-muted cursor-pointer">
                   Cerrar sesión
