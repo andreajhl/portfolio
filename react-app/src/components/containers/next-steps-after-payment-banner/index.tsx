@@ -20,6 +20,9 @@ const TextSteps = styled.span`
   font-size: 16px;
   color: #535353;
 `;
+const LinkSteps = styled(TextSteps)`
+  text-decoration-line: underline;
+`;
 
 const ButtonBlack = styled.button`
   width: 100%;
@@ -104,7 +107,14 @@ const NextStepsAfterPaymentBanner = ({
         </TextSteps>
       </div>
       <div className="mt-3">
-        <TextSteps>¿Qué significa una autorización de pago?</TextSteps>
+        <a
+          target="_blank"
+          referrerPolicy="no-referrer"
+          rel="noreferrer"
+          href="https://pagos.famosos.com/autorizaciondepago"
+        >
+          <LinkSteps>¿Qué significa una autorización de pago?</LinkSteps>
+        </a>
       </div>
       <div className="mt-3">
         <TextSteps>
