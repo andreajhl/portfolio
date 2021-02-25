@@ -80,7 +80,9 @@ const ContractWithPayments = ({
         </LoadingScreen>
       ) : resumen?.lastPayment?.status === 100 ? (
         <ResumenContractApproved resumen={resumen} />
-      ) : resumen?.lastPayment?.status === 30 ? (
+      ) : resumen?.lastPayment?.status === 30 ||
+        resumen?.lastPayment?.status === 55 ||
+        resumen?.lastPayment?.status === 60 ? (
         <ResumenContractRejected resumen={resumen} />
       ) : resumen?.lastPayment?.status === 40 ? (
         <ResumenContractPending resumen={resumen} />

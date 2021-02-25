@@ -98,7 +98,7 @@ const CelebrityDetails = styled.div`
       height: 70px;
     }
     @media (min-width: 1024px) {
-      height: 115px;
+      height: 110px;
     }
   }
 
@@ -111,7 +111,7 @@ const CelebrityDetails = styled.div`
     @media (min-width: 1024px) {
       margin-left: 10%;
       max-width: 250px;
-      font-size: 1.55rem;
+      font-size: 1.4rem;
     }
   }
 `;
@@ -160,9 +160,9 @@ const ButtonPink = styled.button`
     height: 60px;
   }
   @media (min-width: 1024px) {
-    width: 40%;
+    width: 50%;
     height: 60px;
-    margin-top: 50px;
+    margin-top: 40px;
   }
 `;
 const ResumenContainer = styled.div`
@@ -279,15 +279,15 @@ const ResumenContractPending = ({ resumen }) => {
             <PaymentRejectedActions>
               <div className="d-flex flex-column">
                 <span
-                  className="mt-4"
+                  className="mt-3"
                   style={{
                     color: "#535353"
                   }}
                 >
-                  El proceso de aprobación puede tardar alrededor de 24 hrs.
+                  El proceso de aprobación puede tardar alrededor de 23 hrs.
                 </span>
                 <span
-                  className="mt-4"
+                  className="mt-3"
                   style={{
                     color: "#535353"
                   }}
@@ -296,7 +296,7 @@ const ResumenContractPending = ({ resumen }) => {
                   haya sido aprobado.
                 </span>
                 <span
-                  className="mt-4"
+                  className="mt-3"
                   style={{
                     color: "#535353"
                   }}
