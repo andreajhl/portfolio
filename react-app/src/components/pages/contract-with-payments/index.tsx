@@ -78,11 +78,9 @@ const ContractWithPayments = ({
             <LoaderLayout></LoaderLayout>
           </div>
         </LoadingScreen>
-      ) : resumen?.lastPayment?.status === 100 ? (
+      ) : [10, 50, 70, 100].includes(resumen?.lastPayment?.status) ? (
         <ResumenContractApproved resumen={resumen} />
-      ) : resumen?.lastPayment?.status === 30 ||
-        resumen?.lastPayment?.status === 55 ||
-        resumen?.lastPayment?.status === 60 ? (
+      ) : [20, 30, 55, 60, 80].includes(resumen?.lastPayment?.status) ? (
         <ResumenContractRejected resumen={resumen} />
       ) : resumen?.lastPayment?.status === 40 ? (
         <ResumenContractPending resumen={resumen} />
@@ -93,6 +91,10 @@ const ContractWithPayments = ({
   );
 };
 
+// ResumenContractApproved [10,50,70,100]
+// ResumenContractRejected [20,30,55,60,80]
+// ResumenContractAuthorized [90]
+// ResumenContractPending [40]
 // PaymentCreated      = 10
 // PaymentCancelled    = 20
 // PaymentRejected     = 30
