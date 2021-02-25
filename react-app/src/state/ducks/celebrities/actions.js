@@ -245,6 +245,28 @@ export const listPublicContracts = (celebrity_id, params = {}) => {
   };
 };
 
+export const subscribeToEmailNotifications = (celebrity_id) => {
+  const FINAL_PATH = "custom-endpoints/";
+  const data = {
+    celebrity_id: celebrity_id
+  };
+  return new Promise((resolve, reject) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false
+    })
+      .then(resolve)
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
 export const fetchSimilarCelebrities = (celebrityUsername) => (dispatch) => {
   const TYPE = types.FETCH_SIMILAR_CELEBRITIES_REQUEST;
   const FINAL_PATH = API_PATHS.SIMILAR_CELEBRITIES + celebrityUsername;
