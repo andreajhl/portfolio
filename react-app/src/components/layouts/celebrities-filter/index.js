@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ModalSelect } from "../modal-select";
-import "./styles.scss";
+
 import * as GTM from "../../../state/utils/gtm";
+import getWindow from "../../../utils/getWindow";
 
 const CelebritiesFilter = ({
   buttonLabel,
@@ -27,7 +28,7 @@ const CelebritiesFilter = ({
 
   const analyticsData = {
     widget: "CelebritiesFilter",
-    path: window.location.pathname,
+    path: getWindow().location?.pathname,
     buttonLabel,
     activeItems
   };

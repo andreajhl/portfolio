@@ -3,7 +3,6 @@ import { CelebrityCardLayout } from "../celebrity-card";
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
 import { VideoCardLayout } from "../video-card";
 import { VideoShimmerCardLayout } from "../video-shimmer-card";
-import "./styles.scss";
 
 const CelebritiesShimmerCardsSectionLayout = () => {
   const shimmerCelebritiesCardsItems = Array(15)

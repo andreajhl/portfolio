@@ -1,16 +1,21 @@
 import { CELEBRITY_PROFILE_VERSION } from "../constants/localStorageKeys";
+import getWindow from "./getWindow";
 
 export const getCelebrityProfileVersion = () =>
-  sessionStorage.getItem(CELEBRITY_PROFILE_VERSION);
+  getWindow().sessionStorage.getItem(CELEBRITY_PROFILE_VERSION);
 
 export const setCelebrityProfileVersion = (value) =>
-  sessionStorage.setItem(CELEBRITY_PROFILE_VERSION, value);
+  getWindow().sessionStorage.setItem(CELEBRITY_PROFILE_VERSION, value);
 
-export const removeCelebrityProfileVersion = (value) =>
-  sessionStorage.removeItem(CELEBRITY_PROFILE_VERSION);
+export const removeCelebrityProfileVersion = () =>
+  getWindow().sessionStorage.removeItem(CELEBRITY_PROFILE_VERSION);
 
 export const setCelebrityProfileVersionDependingOfTime = () => {
   if (getCelebrityProfileVersion()) return;
-  const profileVersionDependingOfTime = Date.now() % 2 === 0 ? "A" : "B";
-  setCelebrityProfileVersion(profileVersionDependingOfTime);
+  const profileVersionDependingOnTime = getProfileVersionDependingOnTime();
+  setCelebrityProfileVersion(profileVersionDependingOnTime);
 };
+
+export function getProfileVersionDependingOnTime() {
+  return Date.now() % 2 === 0 ? "A" : "B";
+}

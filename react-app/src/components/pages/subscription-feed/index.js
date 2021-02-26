@@ -1,151 +1,160 @@
-import React, {Fragment, useState, useEffect} from 'react';
-import {connect} from 'react-redux';
-import {Container, Row, Col} from 'react-bootstrap';
-import { PageContainer } from "../../layouts";
-import MetaTags from "react-meta-tags";
-import {CarouselAvailableSubscriptions, CelebrityFeedPosts} from '../../layouts';
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { Container, Row, Col } from "react-bootstrap";
+import { PageContainer } from "../../layouts/page-container";
+import { CarouselAvailableSubscriptions } from "../../layouts/carousel-available-subscriptions";
+import { CelebrityFeedPosts } from "../../layouts/celebrity-feed-posts";
 import * as firestoreService from "../../../firebase/firestoreService";
 import { LoaderLayout } from "../../layouts/loader";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
-import './styles.scss';
+import Maybe from "../../common/helpers/maybe";
 
 const getCelebritySelected = (celebritiesList, currentChoice) =>
   celebritiesList.find((celebrity) => celebrity.celebrityId === currentChoice);
 
-const NotPostsResults= ({message}) => {
+const NotPostsResults = ({ message }) => {
   return (
-    <div className='container-not-post-results'>
+    <div className="container-not-post-results">
       <h4>
         {message}
-        <span role='img' aria-label='crying-face'>
+        <span role="img" aria-label="crying-face">
           😢
         </span>
       </h4>
     </div>
   );
-}
+};
 
 const SubscriptionFeed = (props) => {
   const [hasMorePost, setHasMorePost] = useState(true);
   const [indexFilter, setIndexFilter] = useState(null);
   const [currentChoice, setCurrentChoice] = useState(null);
-  const {getCelebritiesSubscribe, subscriptionList,isSubscriptionListCompletedFetch } = { ...props };
+  const {
+    getCelebritiesSubscribe,
+    subscriptionList,
+    isSubscriptionListCompletedFetch
+  } = { ...props };
   const [postFetched, setPostFetched] = useState(false);
   const [posts, setPosts] = useState([]);
-  const handlerUpdateFilterRange= (value) => {
+  const handlerUpdateFilterRange = (value) => {
     setIndexFilter(value);
-  }
-  const handlerUpdateHasMorePost = (value)=>{
+  };
+  const handlerUpdateHasMorePost = (value) => {
     setHasMorePost(value);
-  }
-  const fetchPosts = async (celebrityId,concat, indexFilter,isFirstQuery) => {
-    console.log(celebrityId)
-    let documents = []
+  };
+  const fetchPosts = async (celebrityId, concat, indexFilter, isFirstQuery) => {
+    console.log(celebrityId);
+    let documents = [];
     const results = await firestoreService.getPostFromCelebrity(
-      'dev_posts',
+      "dev_posts",
       celebrityId,
       indexFilter,
       handlerUpdateFilterRange,
       isFirstQuery,
       handlerUpdateHasMorePost
     );
-    if(results){
+    if (results) {
       documents = results;
     }
     setCurrentChoice(celebrityId);
     setPostFetched(true);
     concat
       ? setPosts((prevState) => prevState.concat(documents))
-      : setPosts(documents); 
+      : setPosts(documents);
   };
-  
+
   useEffect(() => {
     getCelebritiesSubscribe();
   }, []);
 
   useEffect(() => {
-    if(isSubscriptionListCompletedFetch && subscriptionList.length > 0 && posts.length === 0){
+    if (
+      isSubscriptionListCompletedFetch &&
+      subscriptionList.length > 0 &&
+      posts.length === 0
+    ) {
       fetchPosts(subscriptionList[0].celebrityId, false, indexFilter, true);
     }
-  },[isSubscriptionListCompletedFetch]);
+  }, [isSubscriptionListCompletedFetch]);
 
-  const fetchPostFromCelebrity = (celebrityID) =>{
+  const fetchPostFromCelebrity = (celebrityID) => {
     setIndexFilter(null);
     handlerUpdateHasMorePost(true);
     fetchPosts(celebrityID, false, null, true);
-  }
+  };
 
-  const handlerFetchMorePost = () =>{
+  const handlerFetchMorePost = () => {
     fetchPosts(currentChoice, true, indexFilter, false);
-  }
-
+  };
 
   return (
-    <Fragment>
-      <MetaTags>
-        <title>
-          Famosos.com - Videos personalizados de tus famosos favoritos.
-        </title>
-        <meta
-          name='description'
-          content='Las ultimas publicaciones de tus famosos favoritos.'
-        />
-      </MetaTags>
-      <PageContainer>
-        <Container className='container-subscription-feed'>
-          <Row>
-            <Col md='9' className='mx-auto' style={{ padding: '0px' }}>
-              {isSubscriptionListCompletedFetch ? (
-                subscriptionList.length > 0 ? (
-                  <CarouselAvailableSubscriptions
-                    currentChoice={currentChoice}
-                    handlerSelectCelebrity={fetchPostFromCelebrity}
-                    celebrities={subscriptionList}
-                  />
-                ) : null
+    <PageContainer>
+      <Container className="container-subscription-feed">
+        <Row>
+          <Col md="9" className="mx-auto" style={{ padding: "0px" }}>
+            <Maybe
+              it={isSubscriptionListCompletedFetch}
+              orElse={<LoaderLayout />}
+            >
+              <Maybe it={subscriptionList.length > 0}>
+                <CarouselAvailableSubscriptions
+                  currentChoice={currentChoice}
+                  handlerSelectCelebrity={fetchPostFromCelebrity}
+                  celebrities={subscriptionList}
+                />
+              </Maybe>
+            </Maybe>
+            {/* {isSubscriptionListCompletedFetch ? (
+              subscriptionList.length > 0 ? (
+                <CarouselAvailableSubscriptions
+                  currentChoice={currentChoice}
+                  handlerSelectCelebrity={fetchPostFromCelebrity}
+                  celebrities={subscriptionList}
+                />
+              ) : null
+            ) : (
+              <LoaderLayout />
+            )} */}
+            {isSubscriptionListCompletedFetch && subscriptionList.length > 0 ? (
+              posts.length > 0 ? (
+                <CelebrityFeedPosts
+                  hasMorePost={hasMorePost}
+                  onFetchMorePost={handlerFetchMorePost}
+                  posts={posts}
+                  celebrityData={getCelebritySelected(
+                    subscriptionList,
+                    currentChoice
+                  )}
+                />
+              ) : postFetched ? (
+                <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
               ) : (
                 <LoaderLayout />
-              )}
-              {isSubscriptionListCompletedFetch &&
-              subscriptionList.length > 0 ? (
-                posts.length > 0 ? (
-                  <CelebrityFeedPosts
-                    hasMorePost={hasMorePost}
-                    onFetchMorePost={handlerFetchMorePost}
-                    posts={posts}
-                    celebrityData={getCelebritySelected(
-                      subscriptionList,
-                      currentChoice
-                    )}
-                  />
-                ) : postFetched ? (
-                  <NotPostsResults message='Oops! Al parecer no hay publicaciones actualmente' />
-                ) : (
-                  <LoaderLayout />
-                )
-              ) : isSubscriptionListCompletedFetch &&
-                subscriptionList.length === 0 ? (
-                <NotPostsResults message='Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime' />
-              ) : null}
-            </Col>
-          </Row>
-        </Container>
-      </PageContainer>
-    </Fragment>
+              )
+            ) : isSubscriptionListCompletedFetch &&
+              subscriptionList.length === 0 ? (
+              <NotPostsResults message="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+            ) : null}
+          </Col>
+        </Row>
+      </Container>
+    </PageContainer>
   );
-}
+};
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   subscriptionList: state.subscriptions.fetchUserSubscriptionsListReducer.data,
-  isSubscriptionListCompletedFetch: state.subscriptions.fetchUserSubscriptionsListReducer.completed
+  isSubscriptionListCompletedFetch:
+    state.subscriptions.fetchUserSubscriptionsListReducer.completed
 });
-
 
 // mapDispatchToProps
 const mapDispatchToProps = {
   getCelebritiesSubscribe: subscriptionsOperations.fetchUserSubscriptionsList
 };
-const _SubscriptionFeed = connect(mapStateToProps, mapDispatchToProps)(SubscriptionFeed);
+const _SubscriptionFeed = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SubscriptionFeed);
 export { _SubscriptionFeed as SubscriptionFeed };
-

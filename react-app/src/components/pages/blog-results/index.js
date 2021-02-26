@@ -1,22 +1,18 @@
-import React, { Component, Fragment, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { PageContainer } from "../../layouts";
-import "./styles.scss";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import BlogPostCards from "../../containers/blog-post-card-details";
 import BlogPostCardShimmer from "../../layouts/blog-post-card-shimmer";
-import MetaTags from "react-meta-tags";
-import * as mediumApiService from "../../../state/utils/mediumApiService";
 import { blogOperations } from "../../../state/ducks/blog";
-import { withRouter } from "react-router-dom";
-import { HOME_PATH } from "../../../routing/Paths";
+import { NavLink, withRouter } from "react-app/src/components/common/routing";
+import Link from "next/link";
+import { PageContainer } from "react-app/src/components/layouts/page-container";
+import { HOME_PATH } from "react-app/src/routing/Paths";
 
 const BlogResults = ({
-  history,
   blogsData,
   blogsDataLoading,
   blogsDataCompleted,
-  saveBlogData,
   getBlogData
 }) => {
   useEffect(() => {
@@ -28,11 +24,11 @@ const BlogResults = ({
 
   if (blogsDataLoading) {
     renderPosts = (
-      <Fragment>
+      <>
         <BlogPostCardShimmer />
         <BlogPostCardShimmer />
         <BlogPostCardShimmer />
-      </Fragment>
+      </>
     );
   } else {
     renderPosts = blogsData.map(
@@ -49,39 +45,23 @@ const BlogResults = ({
       )
     );
   }
-  const goToHome = () => {
-    history.push(HOME_PATH);
-  };
 
   return (
-    <Fragment>
-      <MetaTags>
-        <title>
-          Famosos.com - Videos personalizados de tus famosos favoritos.
-        </title>
-        <meta
-          name="description"
-          content="Un blog acerca de tus famosos favoritos que forman parte de nuestra plataforma. Entérate con quien puedes conectarte"
-        />
-      </MetaTags>
-      <PageContainer>
-        <Container>
-          <Row>
-            <Col md="9" className="mx-auto">
-              <Button
-                className="mb-2"
-                variant="primary"
-                onClick={() => goToHome()}
-              >
+    <PageContainer>
+      <Container>
+        <Row>
+          <Col md="9" className="mx-auto">
+            <NavLink to={HOME_PATH}>
+              <Button className="mb-2" variant="primary">
                 🏠 Inicio
               </Button>
-              <h2 className="font-weight-bold">Blogs</h2>
-              {renderPosts}
-            </Col>
-          </Row>
-        </Container>
-      </PageContainer>
-    </Fragment>
+            </NavLink>
+            <h2 className="font-weight-bold">Blog</h2>
+            {renderPosts}
+          </Col>
+        </Row>
+      </Container>
+    </PageContainer>
   );
 };
 
@@ -94,7 +74,6 @@ const mapStateToProps = ({ blog }) => ({
 });
 
 const mapDispatchToProps = {
-  saveBlogData: blogOperations.saveBlogData,
   getBlogData: blogOperations.getBlogData
 };
 

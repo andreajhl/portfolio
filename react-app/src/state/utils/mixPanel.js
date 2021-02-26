@@ -1,24 +1,25 @@
-import mixpanel from 'mixpanel-browser';
+import mixpanel from "mixpanel-browser";
 
-mixpanel.init('3c06764cad281ce6f4ca117975c119ef');
+mixpanel.init("3c06764cad281ce6f4ca117975c119ef");
 
-let env_check = process.env.REACT_APP_ENVIRONMENT === 'production';
+const isProductionEnvironment =
+  process.env.NEXT_PUBLIC_ENVIRONMENT === "production";
 
-let actions = {
-    identify: (id) => {
-        if (env_check) mixpanel.identify(id);
-    },
-    alias: (id) => {
-        if (env_check) mixpanel.alias(id);
-    },
-    track: (name, props) => {
-        if (env_check) mixpanel.track(name, props);
-    },
-    people: {
-        set: (props) => {
-            if (env_check) mixpanel.people.set(props);
-        },
-    },
+const Mixpanel = {
+  identify: (id) => {
+    if (isProductionEnvironment) mixpanel.identify(id);
+  },
+  alias: (id) => {
+    if (isProductionEnvironment) mixpanel.alias(id);
+  },
+  track: (name, props) => {
+    if (isProductionEnvironment) mixpanel.track(name, props);
+  },
+  people: {
+    set: (props) => {
+      if (isProductionEnvironment) mixpanel.people.set(props);
+    }
+  }
 };
 
-export let Mixpanel = actions;
+export { Mixpanel };

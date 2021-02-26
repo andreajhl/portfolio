@@ -8,7 +8,7 @@ const useImageHasDesiredAspectRatio = ({
 }) => {
   const alternativeImageRef = useRef();
   const imageRef = passedImageRef || alternativeImageRef;
-  const [imageIsLoaded, onImageLoad] = useLoad(false);
+  const [imageIsLoaded, onImageLoad] = useLoad(imageRef);
   const [imageHasDesiredAspectRatio, setImagenHasDesiredAspectRatio] = useState(
     false
   );

@@ -1,6 +1,8 @@
 //styles.scss
 @import "theme";
 @import "~bootstrap/scss/bootstrap";
+@import "/public/assets/css/fonts";
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css);
 
 * {
   scrollbar-width: none;
@@ -577,3 +579,8 @@ select {
   overflow: hidden;
   white-space: nowrap;
 }
+
+@import "./components/pages/styles.scss";
+@import "./components/layouts/styles.scss";
+@import "./components/containers/styles.scss";
+// @import "react-flags-select/scss/react-flags-select.scss";

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { paymentsOperations } from "../../../state/ducks/payments";
 import { connect } from "react-redux";
 import NumberFormat from "react-number-format";
-import "./styles.scss";
+
 import { AVAILABLE_CURRENCIES } from "../currency-dropdown/constants";
 
 class ContractPriceLayout extends Component {
@@ -51,7 +51,7 @@ class ContractPriceLayout extends Component {
           )["symbol"]
         }
         renderText={(value) => (
-          <h5 className='font-weight-bold'>
+          <h5 className="font-weight-bold">
             {value} {this.props.currencyExchangeData.to}
           </h5>
         )}
@@ -80,7 +80,7 @@ class ContractPriceLayout extends Component {
     const finalPrice = (
       <div
         style={{ width: "100%" }}
-        className='d-flex justify-content-between '
+        className="d-flex justify-content-between "
       >
         <span>
           Total:
@@ -100,9 +100,9 @@ class ContractPriceLayout extends Component {
       </div>
     );
     const originalPrice = this.props.availableDiscount ? (
-      <div className='d-flex  justify-content-between '>
+      <div className="d-flex  justify-content-between ">
         <span> Precio original: </span>
-        <span className='text-dark'>
+        <span className="text-dark">
           {this.props.currencyExchangeData.to !== this.props.currency
             ? this.getFormattedPrice(
                 this.getConvertedPrice(
@@ -115,9 +115,9 @@ class ContractPriceLayout extends Component {
       </div>
     ) : null;
     const discountValue = this.props.availableDiscount ? (
-      <div className='d-flex justify-content-between '>
-        <span className='float-left'>Descuento: </span>{" "}
-        <span className='text-danger font-weight-bold'>
+      <div className="d-flex justify-content-between ">
+        <span className="float-left">Descuento: </span>{" "}
+        <span className="text-danger font-weight-bold">
           {this.props.availableDiscount.isPercentageDiscount ? (
             <>
               {(this.props.availableDiscount.discountAmount * 100).toFixed()}% |{" "}

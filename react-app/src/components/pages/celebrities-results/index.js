@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
-import MetaTags from "react-meta-tags";
-import {
-  PageContainer,
-  CelebritiesResultsShimmerCardsLayout,
-  CelebritiesResultsLayout
-} from "../../layouts";
+import { PageContainer } from "../../layouts/page-container";
+import { CelebritiesResultsShimmerCardsLayout } from "../../layouts/celebrities-results-shimmer-cards";
+import { CelebritiesResultsLayout } from "../../layouts/celebrities-results";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
 import * as GTM from "../../../state/utils/gtm";
 import { CelebritiesAdditionalResultsLayout } from "../../layouts/celebrities-additional-results";
 import pickPropertiesFromAObject from "../../../utils/pickPropertiesFromAObject";
+import { withRouter } from "react-app/src/components/common/routing";
+
+function noop() {}
 
 const mapStateToProps = ({ celebrities }) => {
   return {
     isLoading: celebrities.fetchCelebritiesReducer.loading,
     isCompleted: celebrities.fetchCelebritiesReducer.completed,
-    requestCancel: celebrities.fetchCelebritiesReducer.requestCancel,
+    requestCancel: celebrities.fetchCelebritiesReducer.requestCancel || noop,
     celebrities: celebrities.fetchCelebritiesReducer.data.results,
     totalResults: celebrities.fetchCelebritiesReducer.data.totalResults,
     previousPath: celebrities.previousPathReducer.pathname
@@ -27,10 +27,6 @@ const mapStateToProps = ({ celebrities }) => {
 const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list
 };
-
-const pageTitle = "Famosos.com - Todos los Famosos";
-const pageDescription =
-  "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.";
 
 const listParamsInitialKeys = ["offset", "limit"];
 
@@ -62,22 +58,25 @@ const CelebritiesResultsPage = ({
   history
 }) => {
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
-  const queryString = location.search;
   const listParams = useMemo(
     () =>
-      pickPropertiesFromAObject(queryStringToJSON(queryString), allowedParams),
-    [queryString]
+      pickPropertiesFromAObject(
+        queryStringToJSON(location.search),
+        allowedParams
+      ),
+    [location.search]
   );
 
   useEffect(() => requestCancel, [requestCancel]);
 
   useEffect(() => {
-    if (!queryString || !hasSearched(listParams)) {
-      return history.push(previousPath);
+    if (Object.keys(listParams).length === 0 || !hasSearched(listParams)) {
+      history.push(previousPath);
+    } else {
+      fetchCelebrities(listParams);
+      setOffset(updateQueryParamsInitialState.offset);
     }
-    fetchCelebrities(listParams);
-    setOffset(updateQueryParamsInitialState.offset);
-  }, [listParams]);
+  }, [fetchCelebrities, listParams, previousPath]);
 
   const fetchMoreData = () => {
     const { limit } = updateQueryParamsInitialState;
@@ -101,10 +100,6 @@ const CelebritiesResultsPage = ({
 
   return (
     <div className="CelebritiesResultsPage">
-      <MetaTags>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-      </MetaTags>
       <PageContainer
         showFooter={false}
         queryParams={listParams}
@@ -112,7 +107,7 @@ const CelebritiesResultsPage = ({
         applyFetchUserCelebrityLikes
         showFiltersSection={!isSearchingByKeyword}
       >
-        {isLoading && offset <= 0 ? (
+        {!isCompleted && offset <= 0 ? (
           <CelebritiesResultsShimmerCardsLayout />
         ) : (
           <CelebritiesResultsLayout
@@ -137,6 +132,6 @@ const CelebritiesResultsPage = ({
 const _CelebritiesResultsPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CelebritiesResultsPage);
+)(withRouter(CelebritiesResultsPage));
 
 export { _CelebritiesResultsPage as CelebritiesResultsPage };

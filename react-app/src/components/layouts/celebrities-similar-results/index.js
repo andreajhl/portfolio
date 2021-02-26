@@ -6,11 +6,13 @@ import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/
 import { connect } from "react-redux";
 import { CelebritiesResultsShimmerCardsLayout } from "../celebrities-results-shimmer-cards";
 
+function noop() {}
+
 const mapStateToProps = ({ celebrities }) => {
   return {
     isLoading: celebrities.fetchCelebritiesSimilarResultsReducer.loading,
     requestCancel:
-      celebrities.fetchCelebritiesSimilarResultsReducer.requestCancel,
+      celebrities.fetchCelebritiesSimilarResultsReducer.requestCancel || noop,
     celebrities: celebrities.fetchCelebritiesSimilarResultsReducer.data.results,
     totalResults:
       celebrities.fetchCelebritiesSimilarResultsReducer.data.totalResults

@@ -1,12 +1,12 @@
 import React from "react";
-import "./styles.scss";
 
 const HeroSectionLayout = () => {
   return (
     <section className="hero">
       <div className="container hero__container">
         <h1 className="hero__title mb-3">
-          Videos Personalizados<br />
+          Videos Personalizados
+          <br />
           de tus Famosos Favoritos
         </h1>
         <ol className="hero__steps p-0">

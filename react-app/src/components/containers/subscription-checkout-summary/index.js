@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import "./styles.scss";
+
 import Image from "react-bootstrap/Image";
 
 const SubscriptionCheckoutSummary = (props) => {

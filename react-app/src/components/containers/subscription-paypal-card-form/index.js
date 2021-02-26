@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SubscriptionPaypalReactButton from "../subscription-paypal-react-button";
 import { postProcessSubscription } from "../../../state/ducks/subscriptions/actions";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "react-app/src/components/common/routing";
 import * as GTM from "../../../state/utils/gtm";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { connect } from "react-redux";
@@ -61,7 +61,7 @@ class SubscriptionPayPalCardForm extends Component {
         <div className={"mx-auto p-4 error-container"}>
           <div className="text-danger text-center mb-3">
             <small className={"text-danger font-weight-bold"}>
-              {this.state.errorMessage}
+              {String(this.state.errorMessage)}
             </small>
           </div>
           <div className={"mx-auto text-center mb-3"}>

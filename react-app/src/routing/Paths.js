@@ -29,21 +29,20 @@ export const CHANGE_PASSWORD_PATH = "/auth/change-password";
 export const CREATE_PASSWORD_PATH = "/auth/create-password";
 export const COMPLETE_PROFILE_PATH = "/auth/complete-profile";
 // FORMS
-export const CELEBRITY_REQUEST = "/forms/aplicar/";
+export const CELEBRITY_REQUEST = "/forms/aplicar";
 // CLIENT
 export const CLIENT_FAVORITES = "/my-account/favorites";
 export const CLIENT_PROFILE = "/my-account/profile";
 export const CLIENT_HIRINGS = "/my-account/hirings";
 export const CLIENT_SUBSCRIPTIONS = "/my-account/subscriptions";
-export const ACCOUNT_HIRING_PREVIEW =
-  "/my-account/hirings/:contract_reference/";
+export const ACCOUNT_HIRING_PREVIEW = "/my-account/hirings/:contract_reference";
 export const HIRING_PREVIEW = "/hirings/:contract_reference";
 export const HIRING_EDITOR = "/hirings/:contract_reference/editor";
 export const HIRING_PREVIEW_WITHOUT_SESSION = "/hirings/:contract_reference";
 // TRENDING
-export const TRENDING = "/tendencias/";
-export const BLOG = "/blogs/all";
-export const BLOG_ENTRY = `${BLOG}/blog-:id`;
+export const TRENDING = "/tendencias";
+export const BLOG = "/blog";
+export const BLOG_ENTRY = `${BLOG}/:id`;
 //SUBSCRIPTION
 export const SUBSCRIPTION = "/subscription/subscribe/:celebrity_username";
 //SUBSCRIPTION

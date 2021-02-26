@@ -1,7 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import Image from "react-bootstrap/Image";
-import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import limitString from "../../../utils/limitString";
 
 const CountryFlag = ({
@@ -19,12 +17,8 @@ const CountryFlag = ({
   }, [countries, countryCode]);
 
   return celebrityCountry ? (
-    <Image
-      src={
-        celebrityCountry.alpha3Code === "USA"
-          ? "/assets/img/usa.svg"
-          : celebrityCountry.flag
-      }
+    <img
+      src={`https://flagcdn.com/w20/${celebrityCountry.alpha2Code.toLowerCase()}.webp`}
       alt={limitString(celebrityCountry.name, 10)}
       className={className}
       width={width}

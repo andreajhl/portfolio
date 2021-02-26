@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
+import getWindow from "react-app/src/utils/getWindow";
 import * as GTM from "../../../state/utils/gtm";
 import useLoad from "../../../utils/useLoad";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
-import "./styles.scss";
 
 const VideoSlideLayout = ({
   videoUrl,
@@ -23,14 +23,13 @@ const VideoSlideLayout = ({
 }) => {
   const analyticsData = {
     widget: "VideoSlideLayout",
-    path: window.location.pathname,
+    path: getWindow().location.pathname,
     videoUrl,
     videoReference,
     videoIsFullscreen,
     videoIsMuted,
     slideshowIsPlaying
   };
-  const [videoIsLoaded, onVideoLoadedData] = useLoad();
   const { videoRef, videoIsPlaying, playVideo, togglePlay } = useVideoPlayer(
     videoReference,
     {
@@ -50,6 +49,8 @@ const VideoSlideLayout = ({
       }
     }
   );
+
+  const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
 
   const toggleVideoIsMuted = () => {
     GTM.tagManagerDataLayer(`${videoIsMuted ? "UN" : ""}MUTE_VIDEO_SLIDE`, {
@@ -71,47 +72,47 @@ const VideoSlideLayout = ({
   }, [autoPlayVideo]);
 
   return (
-    <section className='VideoSlideLayout'>
+    <section className="VideoSlideLayout">
       <div
         className={`VideoSlideLayout__buttons  ${
-          classNameVideoSlideButtons ? classNameVideoSlideButtons : ''
+          classNameVideoSlideButtons ? classNameVideoSlideButtons : ""
         }`}
       >
         <div className={`d-flex align-items-center justify-content-end`}>
           <i
             className={`fa fa-2x fa-volume-${
-              videoIsMuted ? 'mute' : 'up'
+              videoIsMuted ? "mute" : "up"
             } volume-icon cursor-pointer`}
             onClick={toggleVideoIsMuted}
           />
           <i
             className={`fa fa-${
-              videoIsPlaying || slideshowIsPlaying ? 'pause' : 'play'
+              videoIsPlaying || slideshowIsPlaying ? "pause" : "play"
             } play-pause cursor-pointer`}
             onClick={togglePlay}
           />
           {showFullscreenToggler ? (
             <i
               className={`fa fa-${
-                videoIsFullscreen ? 'compress' : 'expand'
+                videoIsFullscreen ? "compress" : "expand"
               } fullscreen-icon cursor-pointer`}
               onClick={toggleFullscreen}
             />
           ) : null}
         </div>
       </div>
-      <div className='VideoSlideLayout__media-container'>
-        {shouldLoadPoster && preload === 'none' && !videoIsLoaded ? (
+      <div className="VideoSlideLayout__media-container">
+        {shouldLoadPoster && preload === "none" && !videoIsLoaded ? (
           <img
-            className='VideoSlideLayout__poster'
-            src={videoPosterUrl || '/assets/img/avatar-blank.png'}
+            className="VideoSlideLayout__poster"
+            src={videoPosterUrl || "/assets/img/avatar-blank.png"}
             alt={`Poster de vídeo de famoso`}
             onClick={togglePlay}
           />
         ) : null}
         <video
           className={`VideoSlideLayout__video  ${
-            classNameSlideLayoutVideo? classNameSlideLayoutVideo: ''
+            classNameSlideLayoutVideo ? classNameSlideLayoutVideo : ""
           }`}
           ref={videoRef}
           controls={false}
@@ -136,9 +137,9 @@ VideoSlideLayout.defaultProps = {
   autoPlayVideo: false,
   setIsPlayingVideo: () => {},
   isPlayingVideo: false,
-  preload: 'none',
-  classNameVideoSlideButtons: '',
-  classNameSlideLayoutVideo: '',
+  preload: "none",
+  classNameVideoSlideButtons: "",
+  classNameSlideLayoutVideo: ""
 };
 
 export { VideoSlideLayout };

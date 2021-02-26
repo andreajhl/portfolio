@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { VideoCallsResearchForm } from "../../containers/video-calls-research-form";
 import apiService from "../../../state/utils/apiService";
 import { VideoCallsResearchSuccessLayout } from "../video-calls-research-success";
-import "./styles.scss";
+
 import VideoCallsSignUpAd from "../video-calls-sign-up-ad";
 
 const formId = "video-calls-research-form";

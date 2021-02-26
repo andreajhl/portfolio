@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./styles.scss";
-import { withRouter } from "react-router";
+
+import { withRouter } from "react-app/src/components/common/routing";
 import { loadStripe } from "@stripe/stripe-js";
 import { processStripePayment } from "../../../state/ducks/payments/actions";
 import * as PATHS from "../../../routing/Paths";
@@ -28,7 +28,7 @@ class Stripe3dSecureResponse extends Component {
   }
 
   getSource = async () => {
-    const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY);
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
     stripe
       .retrieveSource({
         id: this.props.sourceId,

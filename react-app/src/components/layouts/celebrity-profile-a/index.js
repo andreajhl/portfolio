@@ -1,21 +1,57 @@
 import React from "react";
-import { CelebrityDetails } from "../celebrity-details";
-import { CelebrityPublicContractsSectionLayout } from "../celebrity-public-contracts-section";
-import { CelebrityReviewsSectionLayout } from "../celebrity-reviews-section";
-import { SimilarCelebritiesCardsSectionLayout } from "../similar-celebrities-cards-section";
-import { CelebrityHeroSlideshow } from "../celebrity-hero-slideshow";
-import HowToGetAVideoMessageLayout from "../how-to-get-a-video-message";
-import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
-import { CelebrityProfileLayoutB } from "../celebrity-profile-b";
 import { connect } from "react-redux";
-import { ResizableMainVideo } from "../resizable-main-video";
-import { SimilarCelebrityContractsSectionLayout } from "../similar-celebrity-contracts-section";
+import dynamic from "next/dynamic";
+
+const CelebrityHeroSlideshow = dynamic(() =>
+  import("../celebrity-hero-slideshow").then(
+    (mod) => mod.CelebrityHeroSlideshow
+  )
+);
+const HowToGetAVideoMessageLayout = dynamic(() =>
+  import("../how-to-get-a-video-message").then(
+    (mod) => mod.HowToGetAVideoMessageLayout
+  )
+);
+const ResizableMainVideo = dynamic(() =>
+  import("../resizable-main-video").then((mod) => mod.ResizableMainVideo)
+);
+const CelebrityDetails = dynamic(() =>
+  import("../celebrity-details").then((mod) => mod.CelebrityDetails)
+);
+const CelebrityReviewsSectionLayout = dynamic(() =>
+  import("../celebrity-reviews-section").then(
+    (mod) => mod.CelebrityReviewsSectionLayout
+  )
+);
+const CelebrityPublicContractsSectionLayout = dynamic(() =>
+  import("../celebrity-public-contracts-section").then(
+    (mod) => mod.CelebrityPublicContractsSectionLayout
+  )
+);
+const SimilarCelebritiesCardsSectionLayout = dynamic(() =>
+  import("../similar-celebrities-cards-section").then(
+    (mod) => mod.SimilarCelebritiesCardsSectionLayout
+  )
+);
+const HireThisCelebrityButton = dynamic(() =>
+  import("../hire-this-celebrity-button").then(
+    (mod) => mod.HireThisCelebrityButton
+  )
+);
+const CelebrityProfileLayoutB = dynamic(() =>
+  import("../celebrity-profile-b").then((mod) => mod.CelebrityProfileLayoutB)
+);
+const SimilarCelebrityContractsSectionLayout = dynamic(() =>
+  import("../similar-celebrity-contracts-section").then(
+    (mod) => mod.SimilarCelebrityContractsSectionLayout
+  )
+);
 
 const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
   return celebrity.mainVideo || hasPublicContracts ? (
     <>
-      <div className='row container mx-auto py-lg-4 p-0'>
-        <div className='col-12 col-lg-4 p-0 m-0 px-sm-3'>
+      <div className="row container mx-auto py-lg-4 p-0">
+        <div className="col-12 col-lg-4 p-0 m-0 px-sm-3">
           {hasPublicContracts ? (
             <CelebrityHeroSlideshow
               celebrityAvatar={celebrity.avatar}
@@ -28,8 +64,8 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
             />
           )}
         </div>
-        <div className='col-12 col-lg-8 p-0 m-0 px-sm-3'>
-          <CelebrityDetails celebrity={celebrity} variant='2' />
+        <div className="col-12 col-lg-8 p-0 m-0 px-sm-3">
+          <CelebrityDetails celebrity={celebrity} variant="2" />
         </div>
       </div>
 
@@ -53,7 +89,7 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
       <CelebrityReviewsSectionLayout celebrityId={celebrity.id} />
       <HowToGetAVideoMessageLayout />
 
-      <div className='py-4'>
+      <div className="py-4">
         <SimilarCelebrityContractsSectionLayout
           celebrityUsername={celebrity.username}
         />

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./styles.scss";
 
 const FixedBanner = ({ position, children, localStorageKey }) => {
   const [showBanner, setShowBanner] = useState(

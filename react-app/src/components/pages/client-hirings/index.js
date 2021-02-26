@@ -1,56 +1,34 @@
-import React, { Component } from "react";
-import { HiringsCardSectionLayout, PageContainer } from "../../layouts";
+import React, { useEffect } from "react";
+import { HiringsCardSectionLayout } from "../../layouts/hirings-card-section";
+import { PageContainer } from "../../layouts/page-container";
 import { connect } from "react-redux";
-import "./styles.scss";
 import { contractOperations } from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
 
-class ClientHiringsPage extends Component {
-  constructor(props) {
-    super(props);
+const ClientHiringsPage = ({ listClientContracts, isLoading, contracts }) => {
+  useEffect(() => {
+    GTM.tagManagerDataLayer("CLIENT_HIRINGS_PAGE_VIEW");
+    listClientContracts();
+  }, []);
 
-    this.state = {
-      params: {}
-    };
-  }
-
-  componentWillMount() {
-    this.props.listClientContracts();
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     document.getElementsByClassName("f-main-body")[0].style.background =
       "#f7f7f7";
-    GTM.tagManagerDataLayer("CLIENT_HIRINGS_PAGE_VIEW", {});
-  }
+    return () => {
+      document.getElementsByClassName("f-main-body")[0].style.background =
+        "#fff";
+    };
+  }, []);
 
-  componentWillUnmount() {
-    document.getElementsByClassName("f-main-body")[0].style.background = "#fff";
-  }
+  return (
+    <div className="ClientHiringsPage">
+      <PageContainer applyFetchCelebrities={false}>
+        <HiringsCardSectionLayout isLoading={isLoading} contracts={contracts} />
+      </PageContainer>
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <>
-        <div className="ClientHiringsPage">
-          <PageContainer applyFetchCelebrities={false}>
-            <HiringsCardSectionLayout
-              isLoading={this.props.isLoading}
-              contracts={this.props.contracts}
-            />
-          </PageContainer>
-        </div>
-      </>
-    );
-  }
-}
-
-// Set propTypes
-ClientHiringsPage.propTypes = {};
-
-// Set defaultProps
-ClientHiringsPage.defaultProps = {};
-
-// mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.listClientContractsReducer.loading,
   contracts: state.contracts.listClientContractsReducer.data

@@ -1,4 +1,4 @@
-import axios, { CancelToken } from "axios";
+import axios from "axios";
 import { Session } from "./session";
 
 const setHeaders = (
@@ -6,11 +6,11 @@ const setHeaders = (
   addFamososAuthorizationHeader = true,
   cancelToken
 ) => {
-  const session = new Session();
+  const sessionToken = new Session().getToken();
   let options = {};
-  if (session.getSession() && addFamososAuthorizationHeader) {
+  if (sessionToken && addFamososAuthorizationHeader) {
     options.headers = {
-      authorization: "Bearer " + localStorage.getItem(session.sessionName)
+      authorization: "Bearer " + sessionToken
     };
   }
   if (params !== "?") {
@@ -57,11 +57,11 @@ const apiService = (meta) => {
   // Final URL
   let url = meta.path;
   if (!meta.custom_endpoint) {
-    url = `${process.env.REACT_APP_ENDPOINT}${meta.path}`;
+    url = `${process.env.NEXT_PUBLIC_ENDPOINT}${meta.path}`;
     addFamososAuthorizationHeader = true;
   }
 
-  const source = meta.isCancellable ? CancelToken.source() : null;
+  const source = meta.isCancellable ? axios.CancelToken.source() : null;
 
   const configuration = setHeaders(
     meta.params,

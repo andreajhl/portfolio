@@ -1,12 +1,30 @@
 import React from "react";
-import { CelebrityDetails } from "../celebrity-details";
-import { CelebrityReviewsSectionLayout } from "../celebrity-reviews-section";
-import { CelebrityHeroSlideshow } from "../celebrity-hero-slideshow";
-import HowToGetAVideoMessageLayout from "../how-to-get-a-video-message";
 import { connect } from "react-redux";
-import { ResizableMainVideo } from "../resizable-main-video";
 import { GoToSimilarCelebritiesButton } from "../go-to-similar-celebrities-button";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
+import dynamic from "next/dynamic";
+
+const CelebrityHeroSlideshow = dynamic(() =>
+  import("../celebrity-hero-slideshow").then(
+    (mod) => mod.CelebrityHeroSlideshow
+  )
+);
+const HowToGetAVideoMessageLayout = dynamic(() =>
+  import("../how-to-get-a-video-message").then(
+    (mod) => mod.HowToGetAVideoMessageLayout
+  )
+);
+const ResizableMainVideo = dynamic(() =>
+  import("../resizable-main-video").then((mod) => mod.ResizableMainVideo)
+);
+const CelebrityDetails = dynamic(() =>
+  import("../celebrity-details").then((mod) => mod.CelebrityDetails)
+);
+const CelebrityReviewsSectionLayout = dynamic(() =>
+  import("../celebrity-reviews-section").then(
+    (mod) => mod.CelebrityReviewsSectionLayout
+  )
+);
 
 const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
   const hasVideos = celebrity.mainVideo || hasPublicContracts;
@@ -17,7 +35,7 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
           hasVideos ? "4" : "0"
         } p-0 justify-content-center`}
       >
-        <div className='col-12 col-lg-4 p-0 m-0 px-sm-3'>
+        <div className="col-12 col-lg-4 p-0 m-0 px-sm-3">
           {hasPublicContracts ? (
             <CelebrityHeroSlideshow
               celebrityAvatar={celebrity.avatar}
@@ -33,7 +51,7 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
         <div
           className={`col-12 col-lg-${hasVideos ? "8" : "10"} p-0 m-0 px-sm-3`}
         >
-          <CelebrityDetails celebrity={celebrity} variant='2' />
+          <CelebrityDetails celebrity={celebrity} variant="2" />
         </div>
       </div>
       <HowToGetAVideoMessageLayout />
@@ -43,20 +61,20 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
           hasPublicContracts ? "py-4" : "pb-4"
         }`}
       >
-        <div className='row justify-content-center mb-2'>
+        <div className="row justify-content-center mb-2">
           <HireThisCelebrityButton
             showCelebrityName={true}
             celebrityFullName={celebrity.fullName}
             celebrityUsername={celebrity.username}
-            text='Quiero un video de'
-            fontSize='1.25em'
-            width='320px'
+            text="Quiero un video de"
+            fontSize="1.25em"
+            width="320px"
           />
         </div>
         <GoToSimilarCelebritiesButton
           celebrityUsername={celebrity.username}
-          fontSize='1.25em'
-          width='320px'
+          fontSize="1.25em"
+          width="320px"
         >
           Ver famosos similares
         </GoToSimilarCelebritiesButton>

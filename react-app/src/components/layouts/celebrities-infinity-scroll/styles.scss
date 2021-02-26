@@ -38,18 +38,23 @@
 
   &__card-item {
     // margin-bottom: 1.1656rem;
-
-    .celebrity-card {
-      width: 186.54px;
-
-      .thumbnail {
-        height: 186.54px;
-      }
-
-      @media only screen and (max-width: 401px) {
-        width: 45.33333333333333vw;
+    .CelebrityCardLayout {
+      .celebrity-card {
+        width: 186.54px;
         .thumbnail {
-          height: 45.33333333333333vw;
+          height: 186.54px;
+          .celebrity__profile-photo {
+            div {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+        @media only screen and (max-width: 401px) {
+          width: 45.33333333333333vw;
+          .thumbnail {
+            height: 45.33333333333333vw;
+          }
         }
       }
     }
