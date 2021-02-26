@@ -58,7 +58,9 @@ const ContractWithPayments = ({
     contractToPayClear();
   }, [contractToPayClear]);
   useEffect(() => {
-    getContract(contract_reference);
+    if (contract_reference) {
+      getContract(contract_reference);
+    }
   }, [contract_reference]);
   const LoadingScreen = styled.div`
     height: 90vh;
