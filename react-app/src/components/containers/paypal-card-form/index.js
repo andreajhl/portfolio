@@ -40,7 +40,7 @@ class PayPalCardForm extends Component {
           }
           GTM.tagManagerDataLayer("CONTRACT_PAYED", res.data);
           history._pushRoute(
-            ROUTING_PATHS.RESUMEN_DE_COMPRA.replace(
+            ROUTING_PATHS.PURCHASE_SUMMARY.replace(
               ":contract_reference",
               res.reference
             )

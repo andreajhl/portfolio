@@ -80,7 +80,7 @@ class Stripe3dSecureResponse extends Component {
             errorMessage: res.data.error
           });
         } else {
-          const route = PATHS.RESUMEN_DE_COMPRA.replace(
+          const route = PATHS.PURCHASE_SUMMARY.replace(
             ":contract_reference",
             res.data.data.reference
           );
