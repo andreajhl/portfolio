@@ -62,9 +62,9 @@ const SubscriptionPostFooter = () => {
         width="20px"
         outlinedImageSource="/assets/img/heart-regular-outlined.svg"
       />{" "}
-      <PostInteractionCount>24</PostInteractionCount>
+      <PostInteractionCount>0</PostInteractionCount>
       <img src="/assets/img/comment-icon.svg" alt="Comentarios" />
-      <PostInteractionCount>12</PostInteractionCount>
+      <PostInteractionCount>0</PostInteractionCount>
     </PostFooter>
   );
 };
@@ -84,7 +84,15 @@ function SubscriptionPostHeader({
     <PostHeader>
       <ProfilePicture width="47px" avatar={avatar} />
       <h3 className="font-weight-bold h6 ml-3 mb-0">{fullName}</h3>
-      <PostDate>{date}</PostDate>
+      <PostDate>
+        {String(
+          new Date(date).toLocaleDateString("es-US", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+          })
+        ).replace(/(de|\.)/g, "")}
+      </PostDate>
     </PostHeader>
   );
 }

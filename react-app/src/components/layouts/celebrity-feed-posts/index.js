@@ -4,6 +4,14 @@ import CelebritySharedPost from "../../containers/celebrity-shared-post/index";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { LoaderLayout } from "../../layouts/loader";
 
+import Maybe from "../../common/helpers/maybe";
+import { SubscriptionPostCard } from "../../common/cards/subscription-posts-card";
+import {
+  PostImage,
+  PostMedia,
+  PostText
+} from "../../common/cards/subscription-posts-card/styles";
+
 const CelebrityFeedPosts = (props) => {
   const { posts, celebrityData, onFetchMorePost, hasMorePost } = { ...props };
   const fetchMoreData = () => {
@@ -29,13 +37,31 @@ const CelebrityFeedPosts = (props) => {
           }
         >
           {posts
-            ? posts.map((post, index) => {
+            ? posts.map(({ celebrityId, created, description, urls }) => {
+                const { celebrityAvatar, celebrityFullName } =
+                  celebrityData || {};
+
+                const media = urls?.[0] || {};
+
                 return (
-                  <CelebritySharedPost
-                    key={`celebrity-shared-post-${index}`}
-                    celebrityData={celebrityData}
-                    {...post}
-                  />
+                  <SubscriptionPostCard
+                    avatar={celebrityAvatar}
+                    fullName={celebrityFullName}
+                    date={created}
+                  >
+                    <Maybe
+                      it={media.index !== undefined && media.type === "image"}
+                    >
+                      <PostMedia>
+                        <Maybe it={media.type === "image"}>
+                          <PostImage src={media.value} />
+                        </Maybe>
+                      </PostMedia>
+                    </Maybe>
+                    <Maybe it={description}>
+                      <PostText>{description}</PostText>
+                    </Maybe>
+                  </SubscriptionPostCard>
                 );
               })
             : null}

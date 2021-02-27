@@ -24,17 +24,17 @@ export const PostMedia = styled.div`
   overflow: hidden;
 `;
 export const PostText = styled.p`
-  margin-bottom: 0;
+  margin-bottom: 9px;
   font-size: 1rem;
   line-height: 19px;
 `;
 export const PostBody = styled.div`
   padding: 0 14px 16px;
-  margin-bottom: 9px;
   position: relative;
 
   ${PostMedia} + ${PostText} {
     margin-top: 12px;
+    margin-bottom: 0;
   }
 `;
 export const PostImage = styled.img`

@@ -8,6 +8,20 @@ import * as firestoreService from "../../../firebase/firestoreService";
 import { LoaderLayout } from "../../layouts/loader";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
 import Maybe from "../../common/helpers/maybe";
+import SubscriptionsFilter from "../../subscription-feed/subscription-filter";
+
+import {
+  SubscriptionPostsHeader,
+  SubscriptionPostsSection
+} from "../../layouts/subscription-posts";
+
+import styled from "styled-components";
+
+const MySubscriptionsTitle = styled.h2`
+  font-size: 24px;
+  margin-bottom: 19px;
+  font-weight: bold;
+`;
 
 const getCelebritySelected = (celebritiesList, currentChoice) =>
   celebritiesList.find((celebrity) => celebrity.celebrityId === currentChoice);
@@ -89,55 +103,40 @@ const SubscriptionFeed = (props) => {
 
   return (
     <PageContainer>
-      <Container className="container-subscription-feed">
-        <Row>
-          <Col md="9" className="mx-auto" style={{ padding: "0px" }}>
-            <Maybe
-              it={isSubscriptionListCompletedFetch}
-              orElse={<LoaderLayout />}
-            >
-              <Maybe it={subscriptionList.length > 0}>
-                <CarouselAvailableSubscriptions
-                  currentChoice={currentChoice}
-                  handlerSelectCelebrity={fetchPostFromCelebrity}
-                  celebrities={subscriptionList}
-                />
-              </Maybe>
-            </Maybe>
-            {/* {isSubscriptionListCompletedFetch ? (
-              subscriptionList.length > 0 ? (
-                <CarouselAvailableSubscriptions
-                  currentChoice={currentChoice}
-                  handlerSelectCelebrity={fetchPostFromCelebrity}
-                  celebrities={subscriptionList}
-                />
-              ) : null
-            ) : (
-              <LoaderLayout />
-            )} */}
-            {isSubscriptionListCompletedFetch && subscriptionList.length > 0 ? (
-              posts.length > 0 ? (
-                <CelebrityFeedPosts
-                  hasMorePost={hasMorePost}
-                  onFetchMorePost={handlerFetchMorePost}
-                  posts={posts}
-                  celebrityData={getCelebritySelected(
-                    subscriptionList,
-                    currentChoice
-                  )}
-                />
-              ) : postFetched ? (
-                <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
-              ) : (
-                <LoaderLayout />
-              )
-            ) : isSubscriptionListCompletedFetch &&
-              subscriptionList.length === 0 ? (
-              <NotPostsResults message="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
-            ) : null}
-          </Col>
-        </Row>
-      </Container>
+      <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
+        <SubscriptionPostsHeader>
+          <MySubscriptionsTitle>Mis suscripciones</MySubscriptionsTitle>
+          <Maybe it={subscriptionList.length > 0}>
+            <SubscriptionsFilter
+              currentChoice={currentChoice}
+              handlerSelectCelebrity={fetchPostFromCelebrity}
+              celebritiesSubscriptions={subscriptionList}
+            />
+          </Maybe>
+        </SubscriptionPostsHeader>
+      </Maybe>
+      <SubscriptionPostsSection>
+        {isSubscriptionListCompletedFetch && subscriptionList.length > 0 ? (
+          posts.length > 0 ? (
+            <CelebrityFeedPosts
+              hasMorePost={hasMorePost}
+              onFetchMorePost={handlerFetchMorePost}
+              posts={posts}
+              celebrityData={getCelebritySelected(
+                subscriptionList,
+                currentChoice
+              )}
+            />
+          ) : postFetched ? (
+            <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
+          ) : (
+            <LoaderLayout />
+          )
+        ) : isSubscriptionListCompletedFetch &&
+          subscriptionList.length === 0 ? (
+          <NotPostsResults message="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+        ) : null}
+      </SubscriptionPostsSection>
     </PageContainer>
   );
 };
