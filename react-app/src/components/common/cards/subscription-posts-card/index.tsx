@@ -4,6 +4,7 @@ import { LikeButton } from "../../buttons/LikeButton";
 import {
   PostCard,
   PostBody,
+  PostHiddenDiv,
   PostHiddenImage,
   PostHiddenText,
   PostSubscribeButton,
@@ -42,7 +43,8 @@ export const SubscriptionPostHiddenContent = ({
 }: SubscriptionPostHiddenContentProps) => {
   return (
     <PostMedia>
-      <PostHiddenImage imageSrc={imageSrc}>
+      <PostHiddenImage src={imageSrc} />
+      <PostHiddenDiv imageSrc={imageSrc}>
         <img src="/assets/img/lock.svg" alt="Cerradura" />
         <PostHiddenText>
           Únete al club de Mark para desbloquear este contenido
@@ -50,7 +52,7 @@ export const SubscriptionPostHiddenContent = ({
         <PostSubscribeButton>
           Suscríbete ahora por 19.99 USD/mes
         </PostSubscribeButton>
-      </PostHiddenImage>
+      </PostHiddenDiv>
     </PostMedia>
   );
 };

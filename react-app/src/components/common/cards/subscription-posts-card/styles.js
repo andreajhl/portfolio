@@ -43,7 +43,7 @@ export const PostImage = styled.img`
   height: 100%;
   object-fit: cover;
 `;
-export const PostHiddenImage = styled.div`
+export const PostHiddenDiv = styled.div`
   padding: 0 3rem;
   display: flex;
   align-items: center;
@@ -53,18 +53,20 @@ export const PostHiddenImage = styled.div`
   height: calc(100% - 16px);
   top: 0;
   left: 14px;
-  background-position: center;
-  background-size: cover;
   background-image: linear-gradient(
-      180deg,
-      #272727 0%,
-      rgba(0, 0, 0, 0.61) 100%
-    ),
-    url(${({ imageSrc }) => imageSrc});
-  mix-blend-mode: multiply;
+    180deg,
+    #272727 0%,
+    rgba(0, 0, 0, 0.61) 100%
+  );
   border-radius: 10px;
   position: absolute;
 `;
+
+export const PostHiddenImage = styled(PostImage)`
+  filter: blur(4px);
+  transform: scale(1.2);
+`;
+
 export const PostHiddenText = styled.p`
   text-align: center;
   margin: 18px 0;

@@ -23,12 +23,6 @@ import {
   SubscriptionPostCard,
   SubscriptionPostHiddenContent
 } from "../../common/cards/subscription-posts-card";
-import {
-  PostMedia,
-  PostImage,
-  PostText,
-  PostSubscribeButton
-} from "../../common/cards/subscription-posts-card/styles";
 import { SubscriptionPostType } from "react-app/src/types/subscriptionPostType";
 
 const mapStateToProps = ({ celebrities }) => ({
@@ -75,7 +69,11 @@ const SubscribePage = ({
       </SubscriptionPostsHeader>
       <SubscriptionPostsSection>
         {posts.map((post) => (
-          <SubscriptionPostCard avatar={avatar} fullName={fullName}>
+          <SubscriptionPostCard
+            avatar={avatar}
+            fullName={fullName}
+            date={post.created}
+          >
             <SubscriptionPostHiddenContent imageSrc={post.urls[0].value} />
           </SubscriptionPostCard>
         ))}
