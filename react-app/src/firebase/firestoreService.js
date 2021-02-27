@@ -14,6 +14,26 @@ export const getDocuments = async (collectionPath) => {
   }
 };
 
+export const getPostsFromCelebrity = async (
+  collectionPath,
+  celebrityId,
+  limit = 2
+) => {
+  try {
+    const { docs } = await database
+      .collection(collectionPath)
+      .where("celebrityId", "==", celebrityId)
+      .where("deleted", "==", null)
+      .orderBy("created", "desc")
+      .limit(limit)
+      .get();
+    return docs.map((doc) => doc.data());
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
 const getLastVisibleDocument = (docs) => docs[docs.length - 1];
 
 const firstQueryHandler = async (collectionPath, celebrityId) =>

@@ -26,8 +26,10 @@ import {
 import {
   PostMedia,
   PostImage,
-  PostText
+  PostText,
+  PostSubscribeButton
 } from "../../common/cards/subscription-posts-card/styles";
+import { SubscriptionPostType } from "react-app/src/types/subscriptionPostType";
 
 const mapStateToProps = ({ celebrities }) => ({
   celebrity: celebrities.getCelebrityReducer.data.celebrity
@@ -38,10 +40,13 @@ const mapDispatchToProps = {};
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
-type SubscribePageProps = {};
+type SubscribePageProps = {
+  posts: SubscriptionPostType[];
+};
 
 const SubscribePage = ({
-  celebrity
+  celebrity,
+  posts
 }: SubscribePageProps & StateProps & DispatchProps) => {
   const { avatar, fullName } = celebrity;
   return (
@@ -69,17 +74,11 @@ const SubscribePage = ({
         <LastsPostsTitle>Últimas publicaciones de {fullName}</LastsPostsTitle>
       </SubscriptionPostsHeader>
       <SubscriptionPostsSection>
-        <SubscriptionPostCard avatar={avatar} fullName={fullName}>
-          <SubscriptionPostHiddenContent imageSrc={avatar} />
-        </SubscriptionPostCard>
-        <SubscriptionPostCard avatar={avatar} fullName={fullName}>
-          <PostMedia>
-            <PostImage src={avatar} />
-          </PostMedia>
-          <PostText>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, beatae.
-          </PostText>
-        </SubscriptionPostCard>
+        {posts.map((post) => (
+          <SubscriptionPostCard avatar={avatar} fullName={fullName}>
+            <SubscriptionPostHiddenContent imageSrc={post.urls[0].value} />
+          </SubscriptionPostCard>
+        ))}
       </SubscriptionPostsSection>
     </PageContainer>
   );

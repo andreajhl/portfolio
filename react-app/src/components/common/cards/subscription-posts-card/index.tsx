@@ -69,30 +69,43 @@ const SubscriptionPostFooter = () => {
   );
 };
 
+type dateType = string | Date;
+
 type SubscriptionPostHeaderProps = {
   avatar: string;
   fullName: string;
-  date?: string | Date;
+  date?: dateType;
+};
+
+const dateFormat = {
+  day: "2-digit",
+  month: "short",
+  year: "numeric"
+};
+
+const formatDate = (date: dateType) => {
+  return String(new Date(date).toLocaleDateString("es-US", dateFormat)).replace(
+    /(de|\.)/g,
+    ""
+  );
 };
 
 function SubscriptionPostHeader({
   avatar,
   fullName,
-  date = "14 Ene 2021"
+  date
 }: SubscriptionPostHeaderProps) {
+  const formattedDate = date ? formatDate(date) : null;
+
+  if (formattedDate === "Invalid Date") {
+    throw new TypeError("The 'date' props provided is invalid");
+  }
+
   return (
     <PostHeader>
       <ProfilePicture width="47px" avatar={avatar} />
       <h3 className="font-weight-bold h6 ml-3 mb-0">{fullName}</h3>
-      <PostDate>
-        {String(
-          new Date(date).toLocaleDateString("es-US", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric"
-          })
-        ).replace(/(de|\.)/g, "")}
-      </PostDate>
+      <PostDate>{formattedDate}</PostDate>
     </PostHeader>
   );
 }
