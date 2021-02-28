@@ -9,21 +9,7 @@ import SubscriptionPlansOptions from "../../layouts/subscription-plans-options";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
 import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
 import { useRouter } from "next/router";
-
-const isAlreadySubscribe = (subscriptionList, celebrityUsername) => {
-  if (subscriptionList.length > 0) {
-    const result = subscriptionList.filter(
-      (subscription) => subscription.celebrityUsername === celebrityUsername
-    );
-    console.log(result);
-    if (result.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-  return false;
-};
+import isAlreadySubscribe from "../../../utils/isAlreadySubscribe";
 
 const Subscription = (props) => {
   const {
