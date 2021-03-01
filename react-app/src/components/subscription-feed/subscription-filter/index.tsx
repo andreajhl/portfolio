@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import CelebritiesSelect from "../../common/forms/celebrity-select";
 
-const SubscriptionsFilter = ({ celebritiesSubscriptions }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
+const defaultOption = {
+  value: null,
+  label: "Mostrar todas mis suscripciones"
+};
 
+const SubscriptionsFilter = ({
+  celebritiesSubscriptions,
+  onChangeCelebrity
+}) => {
   return (
     <CelebritiesSelect
       celebrities={celebritiesSubscriptions.map(
@@ -13,9 +19,10 @@ const SubscriptionsFilter = ({ celebritiesSubscriptions }) => {
           fullName: celebrityFullName
         })
       )}
-      defaultOption={{ value: "", label: "Mostrar todas mis suscripciones" }}
-      selectedOption={selectedOption}
-      onChange={(option) => setSelectedOption(option)}
+      defaultOption={defaultOption}
+      onChange={(option) => {
+        onChangeCelebrity(option.value);
+      }}
     />
   );
 };

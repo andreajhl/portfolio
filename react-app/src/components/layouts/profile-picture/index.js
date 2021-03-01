@@ -30,7 +30,7 @@ const ProfilePicture = ({ avatar, roundedCircle, width, imageStyles }) => {
         <Image
           roundedCircle={roundedCircle}
           width={width}
-          src="assets/img/avatar-blank.png"
+          src="/assets/img/avatar-blank.png"
           style={imageStyles}
         />
       </Maybe>

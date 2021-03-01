@@ -25,7 +25,6 @@ const CelebrityOptionLabel = ({
 
 const CelebritiesSelect = ({
   onChange = (option) => {},
-  selectedOption,
   defaultOption,
   celebrities = []
 }) => {
@@ -44,7 +43,6 @@ const CelebritiesSelect = ({
       isMulti={false}
       options={options}
       defaultValue={defaultOption}
-      selectOption={selectedOption}
       onChange={onChange}
       styles={styles}
     />

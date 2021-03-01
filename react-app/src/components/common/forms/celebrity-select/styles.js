@@ -19,16 +19,16 @@ export const styles = {
     borderRadius: "5px",
     borderColor: "#C4C4C4 !important",
     boxShadow: "none",
-    zIndex: "7"
+    zIndex: 7
   }),
   valueContainer: (styles) => ({ ...styles }),
-  option: (styles, { isFocused }) => {
+  option: (styles, { isFocused, isSelected }) => {
     return {
       ...styles,
       fontSize: "14px",
       paddingLeft: "22px",
       height: SelectHeight,
-      backgroundColor: isFocused ? "#ffe1f0" : null,
+      backgroundColor: isFocused ? "rgba(0, 0, 0, 0.1)" : null,
       color: null,
       display: "flex",
       alignItems: "center"
