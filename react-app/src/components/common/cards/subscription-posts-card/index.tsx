@@ -1,8 +1,13 @@
-import { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
+import {
+  PostSlideshow,
+  VideoLayout
+} from "react-app/src/components/containers/celebrity-shared-post";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
 import { SUBSCRIPTION } from "react-app/src/routing/Paths";
 import { getFirstName } from "react-app/src/utils/getFirstName";
 import { LikeButton } from "../../buttons/LikeButton";
+import Maybe from "../../helpers/maybe";
 import { Link } from "../../routing/link";
 import {
   PostCard,
@@ -15,7 +20,9 @@ import {
   PostInteractionCount,
   PostHeader,
   PostDate,
-  PostMedia
+  PostMedia,
+  PostImage,
+  PostText
 } from "./styles";
 
 type SubscriptionPostCardProps = {
@@ -78,6 +85,46 @@ export const SubscriptionPostHiddenContent = ({
         </Link>
       </PostHiddenDiv>
     </PostMedia>
+  );
+};
+
+export const SubscriptionPostContent = ({ urls, description }) => (
+  <>
+    <Maybe it={urls.length > 0}>
+      <PostMedia>
+        <Maybe
+          it={urls.length > 1}
+          orElse={<PostSingleMedia media={urls[0]} />}
+        >
+          <PostSlideshow urls={urls} />
+        </Maybe>
+      </PostMedia>
+    </Maybe>
+    <Maybe it={description}>
+      <PostText>{description}</PostText>
+    </Maybe>
+  </>
+);
+
+const PostSingleMedia = ({ media: { type, value } }) => {
+  const [videoIsMuted, setVideoIsMuted] = useState(true);
+  const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(false);
+  return (
+    <Maybe
+      it={type === "image"}
+      orElse={
+        <VideoLayout
+          videoIsMuted={videoIsMuted}
+          setVideoIsMuted={setVideoIsMuted}
+          media={{ value }}
+          classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video"
+          setSlideshowIsPlaying={setSlideshowIsPlaying}
+          /* <PostVideo src={value} preload="metadata" playsInline controls /> */
+        />
+      }
+    >
+      <PostImage src={value} />
+    </Maybe>
   );
 };
 

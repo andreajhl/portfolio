@@ -19,7 +19,10 @@ export const PostDate = styled.span`
 `;
 export const PostMedia = styled.div`
   width: 100%;
-  height: 367.64px;
+  /* height: 367.64px; */
+  height: 86.06vw;
+  max-width: 542px;
+  max-height: 542px;
   border-radius: 10px;
   overflow: hidden;
 `;
