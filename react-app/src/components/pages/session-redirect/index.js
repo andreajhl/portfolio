@@ -16,8 +16,8 @@ const SessionRedirectPage = ({ query: { r: redirectUrl } }) => {
     if (isAuthenticated) {
       router.push(redirectUrl || HOME_PATH);
     } else {
-      loginHandler();
       localStorage.setItem(FINAL_REDIRECT, redirectUrl);
+      loginHandler();
     }
   }, [isAuthenticated, isLoading, redirectUrl, router]);
 
