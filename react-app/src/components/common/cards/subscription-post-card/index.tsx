@@ -45,7 +45,7 @@ export const SubscriptionPostCard = ({
         username={username}
       />
       <PostBody>{children}</PostBody>
-      <SubscriptionPostFooter />
+      {/* <SubscriptionPostFooter /> Para un proximo release */}
     </PostCard>
   );
 };

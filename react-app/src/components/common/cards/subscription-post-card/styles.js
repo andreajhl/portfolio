@@ -32,7 +32,7 @@ export const PostText = styled.p`
   line-height: 19px;
 `;
 export const PostBody = styled.div`
-  padding: 0 14px 16px;
+  padding: 0 14px /* 16px PARA CUANDO SE AÑADA EL FOOTER */;
   position: relative;
 
   ${PostMedia} + ${PostText} {
