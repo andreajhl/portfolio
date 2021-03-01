@@ -52,4 +52,4 @@ else
 fi
 
 eb use "FamososFrontend-${environments[selectedOption]}"
-eb deploy -l "${_commitId}"-${environments[selectedOption]}
+eb deploy -l "${_commitId}"-${environments[selectedOption]}-$(date +%F_%H-%M-%S)
