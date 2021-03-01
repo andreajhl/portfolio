@@ -32,7 +32,7 @@ const HireThisCelebrityButton = ({
 
   const handlerClickToLogin = () => {
     registerHireThisCelebrityButtonEvent("CLICK");
-    if (!isLoading && !isAuthenticated) {
+    if (!isAuthenticated) {
       localStorage.setItem(
         "finalRedirect",
         "/" + celebrityUsername + "/contratar"
