@@ -22,20 +22,22 @@ const Subscription = (props) => {
     celebritySubscriptionPlans,
     isLoadingPlans,
     getCelebritiesSubscribe,
-    subscriptionList,
-    history,
-    router
+    subscriptionList
   } = props;
-  console.log(history);
   const [currentPlanSelected, setCurrentPlanSelected] = useState(null);
   const onSelectPlan = (planId) => {
     setCurrentPlanSelected(planId);
   };
+
+  const monthlySubscription = celebritySubscriptionPlans?.find?.(
+    ({ frequencyType }) => frequencyType === "MONTH"
+  );
+
   useEffect(() => {
-    if (celebritySubscriptionPlans.length > 0) {
-      setCurrentPlanSelected(celebritySubscriptionPlans[0].gatewayIdentifier);
-    }
-  }, [celebritySubscriptionPlans]);
+    if (!monthlySubscription) return;
+    setCurrentPlanSelected(monthlySubscription.plans[0].planId);
+  }, [monthlySubscription]);
+
   useEffect(() => {
     if (!celebrity_username) return;
     getCelebritiesSubscribe(celebrity_username);
@@ -64,7 +66,8 @@ const Subscription = (props) => {
                     <SubscriptionPlansOptions
                       onOptionClicked={onSelectPlan}
                       currentPlanSelected={currentPlanSelected}
-                      optionsList={celebritySubscriptionPlans}
+                      optionsList={monthlySubscription.plans}
+                      price={monthlySubscription?.priceTier}
                     />
                   </div>
                   <div
