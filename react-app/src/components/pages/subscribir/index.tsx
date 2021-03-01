@@ -73,12 +73,6 @@ const SubscribePage = ({
   posts
 }: SubscribePageProps) => {
   const { avatar, fullName, username } = celebrity;
-  console.log({
-    isLoading,
-    isSubscribed,
-    celebritySubscriptionPlans,
-    subscriptionList
-  });
 
   useEffect(() => {
     if (!username) return;
