@@ -63,7 +63,6 @@ const SubscriptionFeed = (props) => {
       isFirstQuery,
       handlerUpdateHasMorePost
     );
-    console.log({ results });
     if (results) {
       documents = results;
     }
@@ -81,16 +80,16 @@ const SubscriptionFeed = (props) => {
     getCelebritiesSubscribe();
   }, []);
 
+  const subscriptionsIds = subscriptionList
+    .map(({ celebrityId }) => celebrityId)
+    .slice(0, 9);
+
   const fetchPostFromCelebrity = (celebrityID) => {
     setIndexFilter(null);
     handlerUpdateHasMorePost(true);
     setCurrentChoice(celebrityID);
-    fetchPosts(celebrityID || subscriptionList, false, null, true);
+    fetchPosts(celebrityID || subscriptionsIds, false, null, true);
   };
-
-  const subscriptionsIds = subscriptionList
-    .map(({ celebrityId }) => celebrityId)
-    .slice(0, 9);
 
   const handlerFetchMorePost = () => {
     fetchPosts(currentChoice || subscriptionsIds, true, indexFilter, false);
