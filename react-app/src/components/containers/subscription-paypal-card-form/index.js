@@ -29,7 +29,7 @@ class SubscriptionPayPalCardForm extends Component {
         this.props.history.push(
           ROUTING_PATHS.SUBSCRIPTION_SUCCESS.replace(
             ":celebrity_username",
-            this.props.match.params.celebrity_username
+            this.props.router.query?.celebrity_username
           )
         );
       })

@@ -3,10 +3,18 @@ import { Card } from "../../common/cards";
 
 export const Hero = styled.header`
   height: 219px;
-  > * {
+
+  @media only screen and (min-width: 768px) {
+    height: 340px;
+  }
+
+  div {
+    height: 100%;
+  }
+  figure {
     width: 100%;
     height: 100%;
-    > img {
+    img {
       object-fit: cover;
       height: 100%;
     }
@@ -37,7 +45,9 @@ export const CelebrityInfoSubtitle = styled.h3`
 `;
 export const PlanInfoSection = styled(Card)`
   text-align: center;
-  height: 237px;
+  /* height: 237px; */
+  max-width: 570px;
+  margin: 0 auto;
 `;
 
 export const PlanInfoStar = styled.img.attrs({
@@ -48,9 +58,10 @@ export const PlanInfoStar = styled.img.attrs({
   height: 50px;
 `;
 export const PlanInfoDescription = styled.p`
-  margin-top: 1rem;
   font-size: 14px;
   line-height: 17px;
+  max-width: 360px;
+  margin: 1rem auto;
 `;
 export const PlanInfoPrice = styled.p`
   font-size: 22px;

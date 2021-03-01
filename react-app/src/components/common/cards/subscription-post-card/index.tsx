@@ -4,7 +4,7 @@ import {
   VideoLayout
 } from "react-app/src/components/containers/celebrity-shared-post";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
-import { SUBSCRIPTION } from "react-app/src/routing/Paths";
+import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
 import { getFirstName } from "react-app/src/utils/getFirstName";
 import { LikeButton } from "../../buttons/LikeButton";
 import Maybe from "../../helpers/maybe";
@@ -147,7 +147,7 @@ type dateType = string | Date;
 type SubscriptionPostHeaderProps = {
   avatar: string;
   fullName: string;
-  username?: string;
+  username: string;
   date?: dateType;
 };
 
@@ -176,17 +176,17 @@ function SubscriptionPostHeader({
     throw new TypeError("The 'date' props provided is invalid");
   }
 
-  const subscriptionPath = SUBSCRIPTION.replace(
+  const profilePath = CELEBRITY_PROFILE.replace(
     ":celebrity_username",
     username
   );
 
   return (
     <PostHeader>
-      <Link href={subscriptionPath}>
+      <Link href={profilePath}>
         <ProfilePicture width="47px" avatar={avatar} />
       </Link>
-      <Link href={subscriptionPath} className="text-decoration-none">
+      <Link href={profilePath} className="text-decoration-none">
         <h3 className="font-weight-bold h6 ml-3 mb-0">{fullName}</h3>
       </Link>
       <PostDate>{formattedDate}</PostDate>

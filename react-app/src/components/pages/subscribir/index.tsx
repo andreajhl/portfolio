@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PageContainer } from "../../layouts/page-container";
 import { ProfilePicture } from "../../layouts/profile-picture";
 import { connect } from "react-redux";
@@ -20,8 +20,9 @@ import {
 } from "../../layouts/subscription-posts";
 import {
   SubscriptionPostCard,
+  SubscriptionPostContent,
   SubscriptionPostHiddenContent
-} from "../../common/cards/subscription-posts-card";
+} from "../../common/cards/subscription-post-card";
 import { SubscriptionPostType } from "react-app/src/types/subscriptionPostType";
 import { fetchUserSubscriptionsList } from "react-app/src/state/ducks/subscriptions/actions";
 import { fetchCelebritySubscriptionPlans } from "react-app/src/state/ducks/celebrities/actions";
@@ -30,7 +31,19 @@ import Maybe from "../../common/helpers/maybe";
 import LoadingPage from "../../layouts/loading-page";
 import { PriceLayout } from "../../price-layout";
 import { Link } from "../../common/routing/link";
-import { SUBSCRIPTION } from "react-app/src/routing/Paths";
+import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
+import { useRouter } from "next/router";
+import { getPostsFromCelebrity } from "react-app/src/firebase/firestoreService";
+
+const isTypeImage = ({ type }: { type: string }): boolean => type === "image";
+
+const getOnlyPreviewPosts = (results: any[]) =>
+  results
+    .filter(({ urls }) => urls.some(isTypeImage))
+    .map(({ urls, ...posts }) => ({
+      ...posts,
+      urls: urls.filter(isTypeImage).slice(0, 1)
+    }));
 
 const mapStateToProps = ({
   celebrities: { getCelebrityReducer, fetchCelebritySubscriptionPlansReducer },
@@ -39,7 +52,7 @@ const mapStateToProps = ({
   subscriptionList: fetchUserSubscriptionsListReducer.data,
   isSubscribed: isAlreadySubscribe(
     fetchUserSubscriptionsListReducer.data,
-    getCelebrityReducer.data.username
+    getCelebrityReducer.data?.celebrity?.username
   ),
   isLoading:
     fetchCelebritySubscriptionPlansReducer.loading ||
@@ -57,10 +70,7 @@ const mapDispatchToProps = {
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
-type SubscribePageProps = {
-  posts: SubscriptionPostType[];
-} & StateProps &
-  DispatchProps;
+type SubscribePageProps = {} & StateProps & DispatchProps;
 
 const SubscribePage = ({
   celebrity,
@@ -69,16 +79,35 @@ const SubscribePage = ({
   subscriptionList,
   celebritySubscriptionPlans,
   fetchUserSubscriptionsList,
-  fetchCelebritySubscriptionPlans,
-  posts
+  fetchCelebritySubscriptionPlans
 }: SubscribePageProps) => {
-  const { avatar, fullName, username } = celebrity;
+  const router = useRouter();
+  const { avatar, fullName, username, availableForSubscriptions } = celebrity;
+  const [posts, setPosts] = useState<SubscriptionPostType[]>([]);
 
   useEffect(() => {
     if (!username) return;
-    fetchUserSubscriptionsList();
-    fetchCelebritySubscriptionPlans(username);
-  }, [username]);
+    if (availableForSubscriptions) {
+      fetchUserSubscriptionsList();
+      fetchCelebritySubscriptionPlans(username);
+    } else {
+      alert("Este famoso no esta disponible para suscripciones");
+      router.push(CELEBRITY_PROFILE.replace(":celebrity_username", username));
+    }
+  }, [availableForSubscriptions, router, username]);
+
+  useEffect(() => {
+    if (isLoading) return;
+    const fetchPosts = async () => {
+      const posts = await getPostsFromCelebrity(
+        "dev_posts",
+        celebrity.id,
+        !isSubscribed ? 10 : 3
+      );
+      setPosts(!isSubscribed ? getOnlyPreviewPosts(posts) : posts);
+    };
+    fetchPosts();
+  }, [isLoading, isSubscribed, celebrity.id]);
 
   const monthlySubscription = celebritySubscriptionPlans?.find?.(
     (plan) => plan.frequencyType === "MONTH"
@@ -92,7 +121,20 @@ const SubscribePage = ({
     <PageContainer>
       <Maybe it={!isLoading} orElse={<LoadingPage />}>
         <Hero>
-          <ProfilePicture avatar={avatar} roundedCircle={false} width="100%" />
+          <div className="d-md-none">
+            <ProfilePicture
+              avatar={avatar}
+              roundedCircle={false}
+              width="100%"
+            />
+          </div>
+          <div className="container d-none d-md-block">
+            <ProfilePicture
+              avatar={avatar}
+              roundedCircle={false}
+              width="100%"
+            />
+          </div>
         </Hero>
         <div className="container">
           <CelebrityInfoSection>
@@ -106,10 +148,16 @@ const SubscribePage = ({
               Al ser parte del club de Fans de {fullName} tendrás acceso a
               contenido exclusivo, sesiones live, sorteos y/o eventos privados.
             </PlanInfoDescription>
-            <PlanInfoPrice>{priceLayout} /mes</PlanInfoPrice>
-            <Link href={SUBSCRIPTION.replace(":celebrity_username", username)}>
-              <CallToActionButton width="100%">Subscribirse</CallToActionButton>
-            </Link>
+            <Maybe it={!isSubscribed}>
+              <PlanInfoPrice>{priceLayout} /mes</PlanInfoPrice>
+              <Link
+                href={SUBSCRIPTION.replace(":celebrity_username", username)}
+              >
+                <CallToActionButton width="100%">
+                  Subscribirse
+                </CallToActionButton>
+              </Link>
+            </Maybe>
           </PlanInfoSection>
         </div>
         <SubscriptionPostsHeader>
@@ -123,12 +171,22 @@ const SubscribePage = ({
               username={username}
               date={post.created}
             >
-              <SubscriptionPostHiddenContent
-                imageSrc={post.urls[0].value}
-                username={username}
-                price={priceLayout}
-                fullName={fullName}
-              />
+              <Maybe
+                it={isSubscribed}
+                orElse={
+                  <SubscriptionPostHiddenContent
+                    imageSrc={post.urls[0].value}
+                    username={username}
+                    price={priceLayout}
+                    fullName={fullName}
+                  />
+                }
+              >
+                <SubscriptionPostContent
+                  urls={post.urls}
+                  description={post.description}
+                />
+              </Maybe>
             </SubscriptionPostCard>
           ))}
         </SubscriptionPostsSection>

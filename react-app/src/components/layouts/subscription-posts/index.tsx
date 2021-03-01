@@ -5,6 +5,10 @@ type ChildrenProp = {
   children?: ReactNode;
 };
 
+const Container = styled.div.attrs({ className: "container" })`
+  max-width: 600px;
+`;
+
 const PostsSection = styled.section`
   background-color: #f6f8fc;
   padding: 14px 0;
@@ -12,7 +16,7 @@ const PostsSection = styled.section`
 
 export const SubscriptionPostsSection = ({ children = null }: ChildrenProp) => (
   <PostsSection>
-    <div className="container">{children}</div>
+    <Container>{children}</Container>
   </PostsSection>
 );
 
@@ -25,6 +29,6 @@ const PostsHeader = styled.header`
 
 export const SubscriptionPostsHeader = ({ children = null }: ChildrenProp) => (
   <PostsHeader>
-    <div className="container">{children}</div>
+    <Container>{children}</Container>
   </PostsHeader>
 );
