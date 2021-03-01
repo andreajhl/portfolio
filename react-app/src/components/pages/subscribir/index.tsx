@@ -52,13 +52,13 @@ const mapStateToProps = ({
   subscriptionList: fetchUserSubscriptionsListReducer.data,
   isSubscribed: isAlreadySubscribe(
     fetchUserSubscriptionsListReducer.data,
-    getCelebrityReducer.data?.celebrity?.username
+    getCelebrityReducer.data?.username
   ),
   isLoading:
     fetchCelebritySubscriptionPlansReducer.loading ||
     fetchUserSubscriptionsListReducer.loading ||
     !fetchUserSubscriptionsListReducer.completed,
-  celebrity: getCelebrityReducer.data?.celebrity || {},
+  celebrity: getCelebrityReducer.data,
   celebritySubscriptionPlans: fetchCelebritySubscriptionPlansReducer.data
 });
 
