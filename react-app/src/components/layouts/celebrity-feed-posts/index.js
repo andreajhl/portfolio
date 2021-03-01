@@ -1,19 +1,23 @@
 import React from "react";
-
-import CelebritySharedPost from "../../containers/celebrity-shared-post/index";
 import InfiniteScroll from "react-infinite-scroll-component";
+import CelebritySharedPost from "../../containers/celebrity-shared-post/index";
 import { LoaderLayout } from "../../layouts/loader";
-
-import Maybe from "../../common/helpers/maybe";
-import { SubscriptionPostCard } from "../../common/cards/subscription-posts-card";
 import {
-  PostImage,
-  PostMedia,
-  PostText
-} from "../../common/cards/subscription-posts-card/styles";
+  SubscriptionPostCard,
+  SubscriptionPostContent
+} from "../../common/cards/subscription-post-card";
 
-const CelebrityFeedPosts = (props) => {
-  const { posts, celebrityData, onFetchMorePost, hasMorePost } = { ...props };
+const getCelebrity = (subscriptionList, celebrityId) =>
+  subscriptionList.find((celebrity) => celebrity.celebrityId === celebrityId);
+
+const CelebrityFeedPosts = ({
+  posts,
+  subscriptionList,
+  onFetchMorePost,
+  hasMorePost,
+  currentChoice
+}) => {
+  const celebrityData = getCelebrity(subscriptionList, currentChoice);
   const fetchMoreData = () => {
     onFetchMorePost();
   };
@@ -26,9 +30,11 @@ const CelebrityFeedPosts = (props) => {
           hasMore={hasMorePost}
           loader={<LoaderLayout />}
           endMessage={
-            <p style={{ textAlign: "center" }}>
+            <p style={{ textAlign: "center", marginTop: "2rem" }}>
               <b>
-                {`Al parecer ${celebrityData.celebrityFullName} no ha publicado nada mas por los momentos.`}{" "}
+                {celebrityData?.celebrityFullName
+                  ? `Al parecer ${celebrityData?.celebrityFullName} no ha publicado nada mas por los momentos.`
+                  : `Al parecer no hay publicado nada mas por los momentos.`}{" "}
                 <span role="img" aria-label="crying-face">
                   😢
                 </span>
@@ -37,30 +43,26 @@ const CelebrityFeedPosts = (props) => {
           }
         >
           {posts
-            ? posts.map(({ celebrityId, created, description, urls }) => {
-                const { celebrityAvatar, celebrityFullName } =
-                  celebrityData || {};
-
-                const media = urls?.[0] || {};
+            ? posts.map(({ id, created, description, urls, celebrityId }) => {
+                const {
+                  celebrityAvatar,
+                  celebrityFullName,
+                  celebrityUsername
+                } =
+                  celebrityData || getCelebrity(subscriptionList, celebrityId);
 
                 return (
                   <SubscriptionPostCard
                     avatar={celebrityAvatar}
                     fullName={celebrityFullName}
+                    username={celebrityUsername}
                     date={created}
+                    key={id}
                   >
-                    <Maybe
-                      it={media.index !== undefined && media.type === "image"}
-                    >
-                      <PostMedia>
-                        <Maybe it={media.type === "image"}>
-                          <PostImage src={media.value} />
-                        </Maybe>
-                      </PostMedia>
-                    </Maybe>
-                    <Maybe it={description}>
-                      <PostText>{description}</PostText>
-                    </Maybe>
+                    <SubscriptionPostContent
+                      urls={urls}
+                      description={description}
+                    />
                   </SubscriptionPostCard>
                 );
               })

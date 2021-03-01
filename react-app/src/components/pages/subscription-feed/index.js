@@ -23,9 +23,6 @@ const MySubscriptionsTitle = styled.h2`
   font-weight: bold;
 `;
 
-const getCelebritySelected = (celebritiesList, currentChoice) =>
-  celebritiesList.find((celebrity) => celebrity.celebrityId === currentChoice);
-
 const NotPostsResults = ({ message }) => {
   return (
     <div className="container-not-post-results">
@@ -57,7 +54,6 @@ const SubscriptionFeed = (props) => {
     setHasMorePost(value);
   };
   const fetchPosts = async (celebrityId, concat, indexFilter, isFirstQuery) => {
-    console.log(celebrityId);
     let documents = [];
     const results = await firestoreService.getPostFromCelebrity(
       "dev_posts",
@@ -67,10 +63,14 @@ const SubscriptionFeed = (props) => {
       isFirstQuery,
       handlerUpdateHasMorePost
     );
+    console.log({ results });
     if (results) {
       documents = results;
     }
-    setCurrentChoice(celebrityId);
+    if (!Array.isArray(celebrityId)) {
+      setCurrentChoice(celebrityId);
+    }
+
     setPostFetched(true);
     concat
       ? setPosts((prevState) => prevState.concat(documents))
@@ -81,25 +81,30 @@ const SubscriptionFeed = (props) => {
     getCelebritiesSubscribe();
   }, []);
 
+  const fetchPostFromCelebrity = (celebrityID) => {
+    setIndexFilter(null);
+    handlerUpdateHasMorePost(true);
+    setCurrentChoice(celebrityID);
+    fetchPosts(celebrityID || subscriptionList, false, null, true);
+  };
+
+  const subscriptionsIds = subscriptionList
+    .map(({ celebrityId }) => celebrityId)
+    .slice(0, 9);
+
+  const handlerFetchMorePost = () => {
+    fetchPosts(currentChoice || subscriptionsIds, true, indexFilter, false);
+  };
+
   useEffect(() => {
     if (
       isSubscriptionListCompletedFetch &&
       subscriptionList.length > 0 &&
       posts.length === 0
     ) {
-      fetchPosts(subscriptionList[0].celebrityId, false, indexFilter, true);
+      fetchPosts(subscriptionsIds, false, indexFilter, true);
     }
   }, [isSubscriptionListCompletedFetch]);
-
-  const fetchPostFromCelebrity = (celebrityID) => {
-    setIndexFilter(null);
-    handlerUpdateHasMorePost(true);
-    fetchPosts(celebrityID, false, null, true);
-  };
-
-  const handlerFetchMorePost = () => {
-    fetchPosts(currentChoice, true, indexFilter, false);
-  };
 
   return (
     <PageContainer>
@@ -109,7 +114,7 @@ const SubscriptionFeed = (props) => {
           <Maybe it={subscriptionList.length > 0}>
             <SubscriptionsFilter
               currentChoice={currentChoice}
-              handlerSelectCelebrity={fetchPostFromCelebrity}
+              onChangeCelebrity={fetchPostFromCelebrity}
               celebritiesSubscriptions={subscriptionList}
             />
           </Maybe>
@@ -122,10 +127,8 @@ const SubscriptionFeed = (props) => {
               hasMorePost={hasMorePost}
               onFetchMorePost={handlerFetchMorePost}
               posts={posts}
-              celebrityData={getCelebritySelected(
-                subscriptionList,
-                currentChoice
-              )}
+              currentChoice={currentChoice}
+              subscriptionList={subscriptionList}
             />
           ) : postFetched ? (
             <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />

@@ -23,7 +23,7 @@ export const SubscriptionPostsSection = ({ children = null }: ChildrenProp) => (
 const PostsHeader = styled.header`
   padding: 1.5rem 0 0.8125rem;
   position: relative;
-  z-index: 2;
+  z-index: 27;
   box-shadow: 0px 8px 10px -8px rgba(0, 0, 0, 0.1);
 `;
 

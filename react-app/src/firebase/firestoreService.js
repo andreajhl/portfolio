@@ -39,7 +39,7 @@ const getLastVisibleDocument = (docs) => docs[docs.length - 1];
 const firstQueryHandler = async (collectionPath, celebrityId) =>
   await database
     .collection(collectionPath)
-    .where("celebrityId", "==", celebrityId)
+    .where("celebrityId", Array.isArray(celebrityId) ? "in" : "==", celebrityId)
     .where("deleted", "==", null)
     .orderBy("created", "desc")
     .limit(2)
@@ -48,7 +48,7 @@ const firstQueryHandler = async (collectionPath, celebrityId) =>
 const paginateQueryHandler = async (collectionPath, celebrityId, indexFilter) =>
   await database
     .collection(collectionPath)
-    .where("celebrityId", "==", celebrityId)
+    .where("celebrityId", Array.isArray(celebrityId) ? "in" : "==", celebrityId)
     .where("deleted", "==", null)
     .orderBy("created", "desc")
     .limit(2)
