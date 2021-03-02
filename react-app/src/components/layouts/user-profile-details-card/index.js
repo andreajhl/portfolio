@@ -3,10 +3,15 @@ import { Session } from "../../../state/utils/session";
 import { CelebritiesMultiselect } from "../celebrities-multiselect";
 import { sessionOperations } from "../../../state/ducks/session";
 import { connect } from "react-redux";
-import { HOME_PATH } from "../../../routing/Paths";
+import {
+  CLIENT_FAVORITES,
+  CLIENT_HIRINGS,
+  HOME_PATH
+} from "../../../routing/Paths";
 import LogoutButton from "../../containers/logout-button/logout-button";
 import Router from "next/router";
 import Maybe from "../../common/helpers/maybe";
+import { NavLink } from "../../common/routing";
 
 class UserProfileDetailsCardLayout extends Component {
   constructor(props) {
@@ -81,16 +86,20 @@ class UserProfileDetailsCardLayout extends Component {
               <hr />
             </div>
             <div className="col-6 text-center border-right p-2">
-              <h6 className="mt-2">Siguiendo</h6>
-              <h2 className="font-weight-bold mt-4">
-                {this.props.userCelebrityLikesCount}
-              </h2>
+              <NavLink to={CLIENT_FAVORITES} className="text-decoration-none">
+                <h6 className="mt-2">Siguiendo</h6>
+                <h2 className="font-weight-bold mt-4">
+                  {this.props.userCelebrityLikesCount}
+                </h2>
+              </NavLink>
             </div>
             <div className="col-6 text-center p-2 border-left">
-              <h6 className="mt-2">Contratos</h6>
-              <h2 className="font-weight-bold mt-4">
-                {this.props.session.totalContracts}
-              </h2>
+              <NavLink to={CLIENT_HIRINGS} className="text-decoration-none">
+                <h6 className="mt-2">Contratos</h6>
+                <h2 className="font-weight-bold mt-4">
+                  {this.props.session.totalContracts}
+                </h2>
+              </NavLink>
             </div>
             <div className="col-12 text-center">
               <hr />
