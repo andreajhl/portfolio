@@ -82,7 +82,9 @@ class UserProfileDetailsCardLayout extends Component {
             </div>
             <div className="col-6 text-center border-right p-2">
               <h6 className="mt-2">Siguiendo</h6>
-              <h2 className="font-weight-bold mt-4">0</h2>
+              <h2 className="font-weight-bold mt-4">
+                {this.props.userCelebrityLikesCount}
+              </h2>
             </div>
             <div className="col-6 text-center p-2 border-left">
               <h6 className="mt-2">Contratos</h6>
@@ -127,7 +129,9 @@ UserProfileDetailsCardLayout.defaultProps = {};
 const mapStateToProps = (state) => ({
   isLoading: state.session.updateSessionReducer.loading,
   sessionData: state.session.getSessionReducer.data,
-  updateSessionData: state.session.updateSessionReducer.data
+  updateSessionData: state.session.updateSessionReducer.data,
+  userCelebrityLikesCount:
+    state.celebrityLikes.fetchUserCelebrityLikesReducer?.data?.data?.length || 0
 });
 
 // mapStateToProps
