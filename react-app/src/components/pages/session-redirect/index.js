@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import { LoadingOverlay } from "../../layouts/loading-overlay";
-import { HOME_PATH } from "../../../routing/Paths";
+import { AUTH_SUCCESS, HOME_PATH } from "../../../routing/Paths";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { useRouter } from "next/router";
 import { FINAL_REDIRECT } from "constants/keys";
 
 const SessionRedirectPage = ({ query: { r: redirectUrl } }) => {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const router = useRouter();
-  const loginHandler = useLoginHandler();
 
   useEffect(() => {
     if (isLoading) return;
@@ -17,9 +15,11 @@ const SessionRedirectPage = ({ query: { r: redirectUrl } }) => {
       router.push(redirectUrl || HOME_PATH);
     } else {
       localStorage.setItem(FINAL_REDIRECT, redirectUrl);
-      loginHandler();
+      loginWithRedirect({
+        redirectUri: window.location.origin + AUTH_SUCCESS
+      });
     }
-  }, [isAuthenticated, isLoading, redirectUrl, router]);
+  }, [isAuthenticated, isLoading, redirectUrl]);
 
   return <LoadingOverlay />;
 };
