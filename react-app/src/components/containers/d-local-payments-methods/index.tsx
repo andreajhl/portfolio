@@ -6,6 +6,7 @@ import SelectCardBankPaymentMethod from "../select-cardbank-payment-method";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
+import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
 
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
@@ -114,6 +115,7 @@ const DLocalPaymentsMethods = ({
 
   const handleStartPayment = async (cardToken) => {
     setPaymentInProcess(true);
+    const deviceId = generateDeviceId();
     try {
       processDlocalPayment(
         contractReference,
@@ -122,7 +124,8 @@ const DLocalPaymentsMethods = ({
         buyerData.buyerEmail,
         buyerData.buyerDocument,
         discountCouponId ? discountCouponId : null,
-        cardToken
+        cardToken,
+        deviceId
       )
         .then((response) => {
           if (
