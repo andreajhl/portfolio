@@ -36,7 +36,7 @@ const CurrencyDropdownLayout = ({
       <svg
         data-v-19e79a88=""
         xmlns="http://www.w3.org/2000/svg"
-        width="100"
+        width="24"
         height="24"
         viewBox="0 0 24 24"
       >
