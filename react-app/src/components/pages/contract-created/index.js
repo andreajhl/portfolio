@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { contractOperations } from "../../../state/ducks/contracts";
 import { PageContainer } from "../../layouts/page-container";
 import moment from "moment";
+import Maybe from "../../common/helpers/maybe";
 
 class ContractCreatedPage extends Component {
   constructor(props) {
@@ -82,6 +83,8 @@ class ContractCreatedPage extends Component {
   };
 
   renderStripe() {
+    const lastPayment = this.props?.resumen?.lastPayment;
+
     return (
       <PageContainer
         showNavbar={false}
@@ -146,41 +149,46 @@ class ContractCreatedPage extends Component {
                 Ver mis contrataciones
               </button>
               <div className="w-100 mx-auto mb-4">
-                {this.props.resumen.payments.map((pay, index) => {
-                  return (
-                    <div key={index} className="card mb-3">
-                      <div
-                        className={
-                          "card-header d-flex justify-content-between align-items-center"
-                        }
-                      >
-                        <>
-                          <h5 className="mb-0">
-                            {this.returnPaymentStatusLabel(pay.status)[0]}
-                          </h5>
-                          <i
-                            className={
-                              this.returnPaymentStatusLabel(pay.status)[1]
-                            }
-                          />
-                        </>
-                      </div>
-                      <div className="card-body">
-                        <div>
-                          <p className="card-text text-muted text-left">
-                            Fecha: {moment(pay["createdAt"]).format("L")}
-                          </p>
-                          <p className="card-text text-muted text-left">
-                            Hora: {moment(pay["createdAt"]).format("LT")}
-                          </p>
-                          <p className="card-text text-muted text-left">
-                            Transacción Reference: {pay["transactionChargeId"]}
-                          </p>
-                        </div>
+                <Maybe it={lastPayment}>
+                  <div className="card mb-3">
+                    <div
+                      className={
+                        "card-header d-flex justify-content-between align-items-center"
+                      }
+                    >
+                      <>
+                        <h5 className="mb-0">
+                          {
+                            this.returnPaymentStatusLabel(
+                              lastPayment?.status
+                            )[0]
+                          }
+                        </h5>
+                        <i
+                          className={
+                            this.returnPaymentStatusLabel(
+                              lastPayment?.status
+                            )[1]
+                          }
+                        />
+                      </>
+                    </div>
+                    <div className="card-body">
+                      <div>
+                        <p className="card-text text-muted text-left">
+                          Fecha: {moment(lastPayment?.createdAt).format("L")}
+                        </p>
+                        <p className="card-text text-muted text-left">
+                          Hora: {moment(lastPayment?.createdAt).format("LT")}
+                        </p>
+                        <p className="card-text text-muted text-left">
+                          Transacción Reference:{" "}
+                          {lastPayment?.transactionChargeId}
+                        </p>
                       </div>
                     </div>
-                  );
-                })}
+                  </div>
+                </Maybe>
               </div>
             </div>
           </div>
