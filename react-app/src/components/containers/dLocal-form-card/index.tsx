@@ -37,7 +37,8 @@ const DLocalFormCard = ({
   handleStartPayment,
   paymentInProcess,
   paymentErrorMessage,
-  paymentMethodType
+  paymentMethodType,
+  disabled
 }) => {
   const [card, setCard] = useState(null);
   const [buyerName, setBuyerName] = useState("");
@@ -126,7 +127,7 @@ const DLocalFormCard = ({
       <div className="mx-auto text-danger">{paymentErrorMessage}</div>
       <button
         onClick={(e) => handlerSubmitCreditCardDetails(e)}
-        disabled={paymentInProcess}
+        disabled={disabled}
         className="btn btn-primary mx-auto mt-2"
         style={{
           backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
