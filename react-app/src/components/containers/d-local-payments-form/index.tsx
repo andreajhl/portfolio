@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { sessionOperations } from "../../../state/ducks/session";
 import { connect } from "react-redux";
 import { AVAILABLE_CURRENCIES_FOR_PAYMENTS } from "constants/availableCurrencyForPayments";
+import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCurrency";
 
 type DLocalPaymentsFormProps = {
   handleChangedInputs: Function;
@@ -14,6 +15,8 @@ type DLocalPaymentsFormProps = {
   userInformationCompleted: boolean;
   currencyExchangeData: any;
   buyerDataIncomplete: boolean;
+  currency: string;
+  handleValidateData: (result: boolean) => {};
 };
 
 const DLocalPaymentsForm = ({
@@ -23,11 +26,14 @@ const DLocalPaymentsForm = ({
   userInformationCompleted,
   getToken,
   currencyExchangeData,
-  buyerDataIncomplete
+  buyerDataIncomplete,
+  currency,
+  handleValidateData
 }: DLocalPaymentsFormProps) => {
   const buyerFullNameInput = useRef<HTMLInputElement>(null);
   const buyerEmailInput = useRef<HTMLInputElement>(null);
   const buyerDocumentInput = useRef<HTMLInputElement>(null);
+  const [invalidFormatDocument, setInvalidFormatDocument] = useState(false);
   const [buyerFullName, setBuyerFullName] = useState("");
   const [buyerEmail, setBuyerEmail] = useState("");
   const [buyerDocument, setBuyerDocument] = useState("");
@@ -66,6 +72,19 @@ const DLocalPaymentsForm = ({
   useEffect(() => {
     handleChangedInputs({ buyerFullName, buyerDocument, buyerEmail });
   }, [buyerDocument, buyerEmail, buyerFullName]);
+
+  const checkDocumentFormat = () => {
+    const checkDocument = allowedFormatDocuments[currency];
+    const isValid = checkDocument(buyerDocument);
+    if (!isValid) {
+      setInvalidFormatDocument(true);
+      handleValidateData(true);
+    } else {
+      setInvalidFormatDocument(false);
+      handleValidateData(false);
+    }
+  };
+
   return (
     <form>
       <div className="form-group">
@@ -121,8 +140,12 @@ const DLocalPaymentsForm = ({
           value={buyerDocument}
           onChange={(e) => setBuyerDocument(e.target.value)}
           className="form-control"
+          onBlur={() => checkDocumentFormat()}
           placeholder="Escribe aquí tu numero de identificación"
         ></input>
+        {invalidFormatDocument ? (
+          <span className="text-danger">Formato no valido</span>
+        ) : null}
         {buyerDataIncomplete ? (
           <span className="text-danger">
             Por favor introduzca todos los datos
