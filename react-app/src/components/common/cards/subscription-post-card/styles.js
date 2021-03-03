@@ -53,7 +53,7 @@ export const PostHiddenDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   width: calc(100% - 28px);
-  height: calc(100% - 16px);
+  height: 100%;
   top: 0;
   left: 14px;
   background-image: linear-gradient(
