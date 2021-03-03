@@ -1,5 +1,5 @@
 import { parse, serialize } from "cookie";
-import { USER_LOCATION_KEY } from "constants/keys";
+import { USER_LOCATION_KEY, USER_IP_ADDRESS } from "constants/keys";
 import axios from "axios";
 import isBot from "isbot";
 import { IncomingMessage, ServerResponse } from "http";
@@ -45,9 +45,16 @@ async function setLocationCookieHeader(
   res: ServerResponse
 ) {
   const userLocationValue = await getUserLocationCountryCode(req);
+  const userIpAddress = getUserIp(req);
   res.setHeader(
     "Set-Cookie",
     serialize(USER_LOCATION_KEY, userLocationValue, {
+      maxAge: ONE_YEAR_IN_MILLISECONDS
+    })
+  );
+  res.setHeader(
+    "Set-Cookie",
+    serialize(USER_IP_ADDRESS, userIpAddress, {
       maxAge: ONE_YEAR_IN_MILLISECONDS
     })
   );
@@ -62,8 +69,7 @@ const setUserLocationCookie = async ({
     return debug("Este es un bot solicitando", req.url);
   }
   const cookies = parse(req?.headers?.cookie || "");
-  if (USER_LOCATION_KEY in cookies) return;
-
+  if (USER_LOCATION_KEY in cookies && USER_IP_ADDRESS in cookies) return;
   await setLocationCookieHeader(req, res);
 };
 
