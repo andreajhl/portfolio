@@ -22,7 +22,8 @@ class AvailablePaymentMethods extends Component {
         buyerEmail: "",
         buyerDocment: ""
       },
-      buyerDataIncomplete: false
+      buyerDataIncomplete: false,
+      disabledDLocalButton: false
     };
   }
   componentDidMount() {
@@ -104,12 +105,15 @@ class AvailablePaymentMethods extends Component {
     });
   };
   onBuyerDataIncomplete = () => {
-    this.setState(
-      (prevState) => ({ ...prevState, buyerDataIncomplete: true }),
-      () => console.log(this.state)
-    );
+    this.setState((prevState) => ({ ...prevState, buyerDataIncomplete: true }));
   };
 
+  onValidBuyerDataForDLocal = (boolean) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      disabledDLocalButton: boolean
+    }));
+  };
   render() {
     const shouldDisplayBuyerForm = this.props.paymentMethodsAvailable.some(
       (payment) =>
@@ -136,6 +140,8 @@ class AvailablePaymentMethods extends Component {
                 </span>
               </div>
               <DLocalPaymentsForm
+                handleValidateData={this.onValidBuyerDataForDLocal}
+                currency={this.props.currentCurrencySelected}
                 buyerDataIncomplete={this.state.buyerDataIncomplete}
                 handleChangedInputs={(buyerData) =>
                   this.onChangeFormDLocal(buyerData)
@@ -247,6 +253,7 @@ class AvailablePaymentMethods extends Component {
                   onClick={() => this.changeMethodPayment("BANK_TRANSFER")}
                 >
                   <DLocalPaymentsMethods
+                    disabledButton={this.state.disabledDLocalButton}
                     handleBuyerDataIncomplete={this.onBuyerDataIncomplete}
                     cardIsRequired={false}
                     buyerData={this.state.buyerData}
@@ -270,6 +277,7 @@ class AvailablePaymentMethods extends Component {
                   onClick={() => this.changeMethodPayment("TICKET")}
                 >
                   <DLocalPaymentsMethods
+                    disabledButton={this.state.disabledDLocalButton}
                     handleBuyerDataIncomplete={this.onBuyerDataIncomplete}
                     cardIsRequired={false}
                     isSelected={this.state.selectedPaymentMethod === "TICKET"}
@@ -291,6 +299,7 @@ class AvailablePaymentMethods extends Component {
                   onClick={() => this.changeMethodPayment("CREDIT_CARD")}
                 >
                   <DLocalPaymentsMethods
+                    disabledButton={this.state.disabledDLocalButton}
                     cardIsRequired={true}
                     isSelected={
                       this.state.selectedPaymentMethod === "CREDIT_CARD"
@@ -314,6 +323,7 @@ class AvailablePaymentMethods extends Component {
                   onClick={() => this.changeMethodPayment("DEBIT_CARD")}
                 >
                   <DLocalPaymentsMethods
+                    disabledButton={this.state.disabledDLocalButton}
                     isSelected={
                       this.state.selectedPaymentMethod === "DEBIT_CARD"
                     }
