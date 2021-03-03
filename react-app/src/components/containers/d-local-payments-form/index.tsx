@@ -141,7 +141,11 @@ const DLocalPaymentsForm = ({
           onChange={(e) => setBuyerDocument(e.target.value)}
           className="form-control"
           onBlur={() => checkDocumentFormat()}
-          placeholder="Escribe aquí tu numero de identificación"
+          placeholder={`Escribe aquí tu ${
+            AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
+              (data) => data.name === currencyExchangeData.to
+            ).document_name
+          }`}
         ></input>
         {invalidFormatDocument ? (
           <span className="text-danger">Formato no valido</span>
