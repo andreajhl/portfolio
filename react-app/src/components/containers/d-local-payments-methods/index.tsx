@@ -86,6 +86,7 @@ type DLocalPaymentsMethodsProps = {
   isSelected: boolean;
   cardIsRequired?: boolean;
   handleBuyerDataIncomplete: Function;
+  disabledButton?: boolean;
 };
 
 const DLocalPaymentsMethods = ({
@@ -96,7 +97,8 @@ const DLocalPaymentsMethods = ({
   discountCouponId,
   isSelected,
   cardIsRequired,
-  handleBuyerDataIncomplete
+  handleBuyerDataIncomplete,
+  disabledButton
 }: DLocalPaymentsMethodsProps) => {
   const router = useRouter();
   const handleChangePaymentMethod = (name, paymentMethodId) => {
@@ -300,6 +302,7 @@ const DLocalPaymentsMethods = ({
             <DLocalFormCard
               paymentMethodType={paymentMethodType}
               paymentErrorMessage={paymentError}
+              disabled={paymentInProcess || disabledButton}
               paymentInProcess={paymentInProcess}
               handleStartPayment={(token) => onStartPayment(token)}
             ></DLocalFormCard>
@@ -315,7 +318,7 @@ const DLocalPaymentsMethods = ({
               </span>
               <button
                 onClick={(e) => onStartPayment(null)}
-                disabled={paymentInProcess}
+                disabled={paymentInProcess || disabledButton}
                 className="btn btn-primary mx-auto mt-2"
                 style={{
                   backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
