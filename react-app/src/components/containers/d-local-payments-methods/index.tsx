@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
 import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
+import { getCookie } from "lib/getCookie";
+import { USER_IP_ADDRESS } from "constants/keys";
 
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
@@ -118,6 +120,8 @@ const DLocalPaymentsMethods = ({
   const handleStartPayment = async (cardToken) => {
     setPaymentInProcess(true);
     const deviceId = generateDeviceId();
+    const userIp = getCookie(USER_IP_ADDRESS);
+    console.log(userIp);
     try {
       processDlocalPayment(
         contractReference,
@@ -127,7 +131,8 @@ const DLocalPaymentsMethods = ({
         buyerData.buyerDocument,
         discountCouponId ? discountCouponId : null,
         cardToken,
-        deviceId
+        deviceId,
+        userIp
       )
         .then((response) => {
           if (
