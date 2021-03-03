@@ -6,6 +6,11 @@ export const Hero = styled.header`
 
   @media only screen and (min-width: 768px) {
     height: 340px;
+
+    figure {
+      border-radius: 10px;
+      overflow: hidden;
+    }
   }
 
   div {
@@ -20,6 +25,7 @@ export const Hero = styled.header`
     }
   }
 `;
+
 export const CelebrityInfoSection = styled.section`
   margin-top: -4rem;
   margin-bottom: 2.3125rem;
