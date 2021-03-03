@@ -21,7 +21,7 @@ const ClientProfilePage = ({ getToken, ...props }) => {
 
   return (
     <div className="ClientProfilePage">
-      <PageContainer applyFetchCelebrities={false}>
+      <PageContainer applyFetchCelebrities={false} applyFetchUserCelebrityLikes>
         <UserProfileDetailsCardLayout
           userInformation={props.userInformation}
           session={props.session}
