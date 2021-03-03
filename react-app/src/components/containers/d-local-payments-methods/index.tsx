@@ -9,7 +9,7 @@ import { LoaderLayout } from "../../layouts/loader";
 import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
 import { getCookie } from "lib/getCookie";
 import { USER_IP_ADDRESS } from "constants/keys";
-
+import { getIpAddress } from "react-app/src/state/utils/localizationApiService";
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
   DEBIT_CARD: "far fa-credit-card",
@@ -119,9 +119,15 @@ const DLocalPaymentsMethods = ({
 
   const handleStartPayment = async (cardToken) => {
     setPaymentInProcess(true);
+    let IP = null;
     const deviceId = generateDeviceId();
-    const userIp = getCookie(USER_IP_ADDRESS);
-    console.log(userIp);
+    const userIpFromCookies = getCookie(USER_IP_ADDRESS);
+    if (userIpFromCookies) {
+      IP = userIpFromCookies;
+    } else {
+      const userIpGetFromExternalService = await getIpAddress();
+      IP = userIpGetFromExternalService;
+    }
     try {
       processDlocalPayment(
         contractReference,
@@ -132,7 +138,7 @@ const DLocalPaymentsMethods = ({
         discountCouponId ? discountCouponId : null,
         cardToken,
         deviceId,
-        userIp
+        IP
       )
         .then((response) => {
           if (
