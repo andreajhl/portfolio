@@ -61,7 +61,8 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.1",
     "ua-parser-js": "^0.7.23",
-    "validator": "^13.5.2"
+    "validator": "^13.5.2",
+    "@next/bundle-analyzer": "^10.0.7"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^10.0.7",
