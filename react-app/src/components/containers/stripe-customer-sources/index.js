@@ -99,7 +99,7 @@ class StripeCustomerSources extends Component {
                 });
               }
             }
-            const route = PATHS.RESUMEN_DE_COMPRA.replace(
+            const route = PATHS.PURCHASE_SUMMARY.replace(
               ":contract_reference",
               res.data.data.reference
             );

@@ -7,9 +7,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
 import ResumenContractApproved from "../../layouts/resumen-contract-approved";
-import ResumenContractRejected from "../../layouts/resumen-contract-rejected";
-import ResumenContractPending from "../../layouts/resumen-contract-pending";
-import ResumenContractAuthorized from "../../layouts/resumen-contract-authorized";
+import { CLIENT_HIRINGS } from "react-app/src/routing/Paths";
 
 type ContractWithPaymentsProps = {
   resumen: {
@@ -46,7 +44,7 @@ type ContractWithPaymentsProps = {
   contractToPayClear: Function;
 };
 
-const ContractWithPayments = ({
+const ContractCreatedPage = ({
   getContract,
   isLoading,
   resumen,
@@ -54,14 +52,25 @@ const ContractWithPayments = ({
 }: ContractWithPaymentsProps) => {
   const router = useRouter();
   const { contract_reference } = router.query;
+
   useEffect(() => {
     contractToPayClear();
   }, [contractToPayClear]);
+
   useEffect(() => {
     if (contract_reference) {
       getContract(contract_reference);
     }
   }, [contract_reference]);
+
+  useEffect(() => {
+    if (
+      resumen?.lastPayment?.status &&
+      ![10, 40, 50, 70, 100, 90].includes(resumen?.lastPayment?.status)
+    ) {
+      router.push(CLIENT_HIRINGS);
+    }
+  }, [resumen]);
   const LoadingScreen = styled.div`
     height: 90vh;
     display: flex;
@@ -80,34 +89,26 @@ const ContractWithPayments = ({
             <LoaderLayout></LoaderLayout>
           </div>
         </LoadingScreen>
-      ) : [10, 50, 70, 100].includes(resumen?.lastPayment?.status) ? (
+      ) : [10, 40, 50, 70, 100, 90].includes(resumen?.lastPayment?.status) ? (
         <ResumenContractApproved resumen={resumen} />
-      ) : [20, 30, 55, 60, 80].includes(resumen?.lastPayment?.status) ? (
-        <ResumenContractRejected resumen={resumen} />
-      ) : resumen?.lastPayment?.status === 40 ? (
-        <ResumenContractPending resumen={resumen} />
-      ) : resumen?.lastPayment?.status === 90 ? (
-        <ResumenContractAuthorized resumen={resumen} />
-      ) : null}
+      ) : (
+        <LoadingScreen>
+          <div
+            style={{
+              margin: "auto"
+            }}
+          >
+            <LoaderLayout></LoaderLayout>
+          </div>
+        </LoadingScreen>
+      )}
     </PageContainer>
   );
 };
 
 // ResumenContractApproved [10,50,70,100]
-// ResumenContractRejected [20,30,55,60,80]
 // ResumenContractAuthorized [90]
 // ResumenContractPending [40]
-// PaymentCreated      = 10
-// PaymentCancelled    = 20
-// PaymentRejected     = 30
-// PaymentPending      = 40
-// PaymentFailedRefund = 50
-// PaymentFailedAuth   = 55
-// PaymentFailedCharge = 60
-// PaymentRefunded     = 70
-// PaymentExpired      = 80
-// PaymentAuthorized   = 90
-// PaymentPaid         = 100
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
@@ -122,8 +123,8 @@ const mapDispatchToProps = {
 };
 
 // Export Class
-const _ContractWithPayments = connect(
+const _ContractCreatedPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ContractWithPayments);
-export { _ContractWithPayments as ContractWithPayments };
+)(ContractCreatedPage);
+export { _ContractCreatedPage as ContractCreatedPage };
