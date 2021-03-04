@@ -33,7 +33,7 @@ const ResumendContractDiv = styled.div`
   margin: 0 auto;
   margin-bottom: 2rem;
   @media (min-width: 1024px) {
-    min-height: 66vh;
+    min-height: 75vh;
   }
 `;
 
