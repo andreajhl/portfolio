@@ -6,11 +6,6 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import { SubscribePage } from "react-app/src/components/pages/subscribir";
-import {
-  GET_CELEBRITY_REQUEST_COMPLETED,
-  GET_CELEBRITY_REQUEST_SUCCESS
-} from "react-app/src/state/ducks/celebrities/types";
-import { getPostsFromCelebrity } from "react-app/src/firebase/firestoreService";
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
@@ -37,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   }
 );
 
-const Subscribe = ({ celebrity, posts }) => {
+const Subscribe = ({ celebrity }) => {
   return (
     <>
       <CustomHead
@@ -51,6 +46,6 @@ const Subscribe = ({ celebrity, posts }) => {
   );
 };
 
-export default Subscribe; /* withAuthenticationRequired(Subscribe, {
+export default withAuthenticationRequired(Subscribe, {
   onRedirecting: LoadingPage
-}); */
+});
