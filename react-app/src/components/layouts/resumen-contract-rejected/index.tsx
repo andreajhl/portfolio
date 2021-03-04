@@ -31,7 +31,7 @@ const ResumenContractRejected = ({ resumen }) => {
     justify-content: center;
     width: 100%;
     margin: 0 auto;
-    height: 70vh;
+    height: 75vh;
   `;
 
   const ContainerDetailsContractDiv = styled.div`
