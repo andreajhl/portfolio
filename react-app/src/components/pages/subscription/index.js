@@ -41,7 +41,7 @@ const Subscription = (props) => {
   useEffect(() => {
     if (!celebrity_username) return;
     getCelebritiesSubscribe(celebrity_username);
-    getCelebrity(celebrity_username, true);
+    getCelebrity(celebrity_username);
     fetchCelebritySubscriptionPlans(celebrity_username);
   }, [celebrity_username]);
 
