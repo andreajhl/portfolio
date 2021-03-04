@@ -105,9 +105,17 @@ class CreateContractForm extends Component {
         this.props.celebrityId === this.props.contractToPayData.celebrityId
       ) {
         const contractData = this.state.contractData;
-        this.setState({ contractData }, () => {
-          this.props.updateClientContract(this.state.contractData);
-        });
+        this.setState(
+          {
+            contractData: {
+              ...contractData,
+              deliveryType: contractData.deliveryType || 1
+            }
+          },
+          () => {
+            this.props.updateClientContract(this.state.contractData);
+          }
+        );
       } else {
         const contractData = this.state.contractData;
         contractData.celebrityId = this.props.celebrityId;
@@ -120,9 +128,17 @@ class CreateContractForm extends Component {
             });
           }
         }
-        this.setState({ contractData }, () => {
-          this.props.saveClientContract(this.state.contractData);
-        });
+        this.setState(
+          {
+            contractData: {
+              ...contractData,
+              deliveryType: contractData.deliveryType || 1
+            }
+          },
+          () => {
+            this.props.saveClientContract(this.state.contractData);
+          }
+        );
       }
     }
   }
