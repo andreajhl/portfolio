@@ -49,6 +49,10 @@ const ResumenContractRejected = ({ resumen }) => {
     margin-left: auto;
     margin-right: auto;
     max-width: 500px;
+    display: flex;
+    height: 70%;
+    justify-content: space-around;
+    flex-flow: column;
   `;
 
   const InstructionsDetails = styled.div`
