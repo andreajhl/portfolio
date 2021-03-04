@@ -10,6 +10,7 @@ import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
 import { getCookie } from "lib/getCookie";
 import { USER_IP_ADDRESS } from "constants/keys";
 import { getIpAddress } from "react-app/src/state/utils/localizationApiService";
+import { PURCHASE_SUMMARY } from "react-app/src/routing/Paths";
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
   DEBIT_CARD: "far fa-credit-card",
@@ -147,7 +148,12 @@ const DLocalPaymentsMethods = ({
             if (response.requiredRedirect) {
               window.location.replace(response.redirectUri);
             } else {
-              router.push(`/resumen-de-compra/${contractReference}`);
+              router.push(
+                PURCHASE_SUMMARY.replace(
+                  ":contract_reference",
+                  String(contractReference)
+                )
+              );
             }
           } else {
             setPaymentError(response.statusDetails);
