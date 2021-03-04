@@ -137,7 +137,7 @@ const DLocalPaymentsMethods = ({
         buyerData.buyerDocument,
         discountCouponId ? discountCouponId : null,
         cardToken,
-        deviceId,
+        String(deviceId),
         IP
       )
         .then((response) => {
