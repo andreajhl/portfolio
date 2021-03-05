@@ -19,9 +19,9 @@ export const CelebrityInfo = ({
     default:
       return (
         <>
-          <h4 className="CelebrityInfo__full-name d-md-inline-block">
+          <h1 className="CelebrityInfo__full-name d-md-inline-block">
             {fullName}
-          </h4>
+          </h1>
           <CelebrityFavoriteButton
             className="d-none d-md-inline CelebrityInfo__fav-button-desktop"
             celebrityId={celebrityId}
@@ -64,7 +64,7 @@ export const CelebrityInfo = ({
             outlinedImageSource="assets/img/heart-regular-outlined.svg"
             width="1.25rem"
           />
-          <h4 className="CelebrityInfo__full-name">{fullName}</h4>
+          <h1 className="CelebrityInfo__full-name">{fullName}</h1>
           <div className="d-flex align-items-center mb-2 mb-md-3">
             <CountryFlag countryCode={countryCode} />
             <span className="ml-3 CelebrityInfo__category">
@@ -84,9 +84,9 @@ export const CelebrityInfo = ({
               width="1.25rem"
             />
           </div>
-          <h4 className="CelebrityInfo__full-name d-md-inline-block">
+          <h1 className="CelebrityInfo__full-name d-md-inline-block">
             {fullName}
-          </h4>
+          </h1>
           <CelebrityFavoriteButton
             className="d-none d-md-inline CelebrityInfo__fav-button-desktop"
             celebrityId={celebrityId}
