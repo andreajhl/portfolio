@@ -20,7 +20,7 @@ class MyDocument extends Document {
       process.env.NEXT_PUBLIC_ENVIRONMENT === "production";
 
     return (
-      <Html>
+      <Html lang="es">
         <Head>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
