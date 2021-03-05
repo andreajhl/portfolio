@@ -25,6 +25,8 @@ const CustomHead = ({
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
       />
       <title key="title">{title}</title>
+      <meta property="description" content={description} />
+
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={ogUrl} />
