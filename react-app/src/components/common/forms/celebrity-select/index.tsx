@@ -1,7 +1,12 @@
+import dynamic from "next/dynamic";
 import { celebrityType } from "react-app/src/types/celebrityType";
-import Select from "react-select";
 import { ProfilePicture } from "../../../layouts/profile-picture";
 import { OptionDiv, OptionText, styles } from "./styles";
+
+const Select = dynamic(() => import("react-select"), {
+  ssr: false,
+  loading: () => <div style={{ height: "63px" }} />
+});
 
 type CelebrityOptionLabelProps = {
   celebrity: celebrityType;
