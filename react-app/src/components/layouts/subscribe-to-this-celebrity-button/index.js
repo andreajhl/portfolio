@@ -3,7 +3,7 @@ import { NavLink } from "react-app/src/components/common/routing";
 import { SUBSCRIPTION } from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
-import { CallToActionButton } from "../call-to-action-button";
+import { LessImportantCallToActionButton } from "../less-important-call-to-action-button";
 
 const SubscribeToThisCelebrityButton = ({
   className,
@@ -13,8 +13,6 @@ const SubscribeToThisCelebrityButton = ({
   fontSize,
   width
 }) => {
-  // PARA REMOVER TEMPORALMENTE ESTE COMPONENTE.
-  return null;
   const registerSubscribeToThisCelebrityButtonEvent = (eventName) => {
     GTM.tagManagerDataLayer(eventName + "_SUBSCRIBE_TO_THIS_CELEBRITY_BUTTON", {
       path: window.location.pathname,
@@ -47,14 +45,14 @@ const SubscribeToThisCelebrityButton = ({
       onMouseOver={() => registerSubscribeToThisCelebrityButtonEvent("HOVER")}
     >
       {
-        <CallToActionButton
+        <LessImportantCallToActionButton
           fontSize={fontSize}
           width={width}
           className={className}
         >
           {text}
           {celebrityFullName ? " " + displayName : ""}
-        </CallToActionButton>
+        </LessImportantCallToActionButton>
       }
     </NavLink>
   );
