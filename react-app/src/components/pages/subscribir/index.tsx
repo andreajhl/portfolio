@@ -145,8 +145,14 @@ const SubscribePage = ({
           <PlanInfoSection as="section">
             <PlanInfoStar />
             <PlanInfoDescription>
-              Al ser parte del club de Fans de {fullName} tendrás acceso a
-              contenido exclusivo, sesiones live, sorteos y/o eventos privados.
+              <Maybe
+                it={isSubscribed}
+                orElse={`Al ser parte del club de Fans de ${fullName} tendrás`}
+              >
+                Formas parte del Club de Fans de {fullName}. Ahora tienes
+              </Maybe>{" "}
+              acceso a contenido exclusivo, sesiones live, sorteos y/o eventos
+              privados.
             </PlanInfoDescription>
             <Maybe it={!isSubscribed}>
               <PlanInfoPrice>{priceLayout} /mes</PlanInfoPrice>
