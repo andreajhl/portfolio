@@ -20,6 +20,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
     "@auth0/nextjs-auth0": "^0.16.1",
+    "@next/bundle-analyzer": "^10.0.7",
     "@stripe/stripe-js": "^1.12.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
@@ -61,8 +62,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.1",
     "ua-parser-js": "^0.7.23",
-    "validator": "^13.5.2",
-    "@next/bundle-analyzer": "^10.0.7"
+    "validator": "^13.5.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^10.0.7",
@@ -72,6 +72,7 @@
     "@types/node": "^13.9.5",
     "@types/react": "^16.9.27",
     "@types/react-redux": "^7.1.16",
+    "@types/react-select": "^4.0.13",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "babel-eslint": "^10.1.0",
