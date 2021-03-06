@@ -102,7 +102,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                 className="mt-2"
                 celebrityFullName={fullName}
                 celebrityUsername={username}
-                text={"Suscribirme a "}
+                text="Club de fans de "
                 width="100%"
                 fontSize="1.25em"
               />
@@ -162,7 +162,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
               celebrityUsername={username}
               text={
                 // variant.startsWith("1")
-                /* ?  */ "Suscribirme a "
+                /* ?  */ "Club de fans de "
                 // : "Obtén un video de"
               }
               width="100%"
