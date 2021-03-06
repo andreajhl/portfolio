@@ -99,11 +99,7 @@ const SubscribePage = ({
   useEffect(() => {
     if (isLoading) return;
     const fetchPosts = async () => {
-      const posts = await getPostsFromCelebrity(
-        "dev_posts",
-        celebrity.id,
-        !isSubscribed ? 10 : 3
-      );
+      const posts = await getPostsFromCelebrity("dev_posts", celebrity.id, 10);
       setPosts(!isSubscribed ? getOnlyPreviewPosts(posts) : posts);
     };
     fetchPosts();
