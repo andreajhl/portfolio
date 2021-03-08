@@ -34,6 +34,7 @@ import { Link } from "../../common/routing/link";
 import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
 import { useRouter } from "next/router";
 import { getPostsFromCelebrity } from "react-app/src/firebase/firestoreService";
+import { NotPostsResults } from "../subscription-feed";
 
 const isTypeImage = ({ type }: { type: string }): boolean => type === "image";
 
@@ -191,6 +192,9 @@ const SubscribePage = ({
               </Maybe>
             </SubscriptionPostCard>
           ))}
+          <Maybe it={posts?.length === 0}>
+            <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
+          </Maybe>
         </SubscriptionPostsSection>
       </Maybe>
     </PageContainer>
