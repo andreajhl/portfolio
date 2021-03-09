@@ -5,9 +5,10 @@ import { AUTH_SUCCESS } from "../routing/Paths";
 const withLoginHandler = (Component) =>
   withAuth0(({ auth0: { loginWithPopup, loginWithRedirect }, ...props }) => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
     const loginHandler = (redirectUrl = AUTH_SUCCESS) => {
-      if (isMobile) {
+      if (isMobile | isSafari) {
         loginWithRedirect({
           redirectUri: window.location.origin + redirectUrl
         });
