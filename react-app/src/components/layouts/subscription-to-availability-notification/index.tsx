@@ -7,6 +7,25 @@ import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { subscribeToEmailNotifications } from "react-app/src/state/ducks/subscription-celebrity-alarm/actions";
 import { connect } from "react-redux";
 import { subscriptionCelebrityAlarmOperations } from "../../../state/ducks/subscription-celebrity-alarm";
+import styled from "styled-components";
+
+const ContainerDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  background-color: #f1f8ff;
+  border-radius: 10px;
+  font-size: 1rem;
+  /* height: 2rem; */
+  padding: 10px;
+  text-align: center;
+`;
+const SpanCTA = styled.span`
+  font-size: 0.8rem;
+  text-decoration: underline;
+  cursor: pointer;
+`;
 
 type SubscriptionToAvailabilityNotificationProps = {
   className?: string;
@@ -82,7 +101,8 @@ const SubscriptionToAvailabilityNotification = ({
       ? fullNameWords.slice(0, 2).join(" ")
       : parsedFullName.first || parsedFullName.last;
 
-  return userSubscriptionsCelebrityAlarmsFetchCompleted ? (
+  return userSubscriptionsCelebrityAlarmsFetchCompleted &&
+    checkSubscriptionToThisCelebrity() ? (
     <CallToActionButton
       onClick={handleSuscriptionRequest}
       fontSize={fontSize}
@@ -90,12 +110,21 @@ const SubscriptionToAvailabilityNotification = ({
       className={className}
     >
       {text}
-      {checkSubscriptionToThisCelebrity()
-        ? "No recibir notificación cuando este disponible"
-        : "Notificarme cuando este disponible"}
+      {"Notificarme cuando este disponible"}
       {celebrityFullName && showCelebrityName ? " " + displayName : ""}
     </CallToActionButton>
-  ) : null;
+  ) : (
+    userSubscriptionsCelebrityAlarmsFetchCompleted && (
+      <ContainerDiv>
+        Actualmente no esta disponible este famoso. Cuando se active, te
+        notificaremos
+        <br />
+        <SpanCTA onClick={() => handleSuscriptionRequest()}>
+          Desactivar Notificación
+        </SpanCTA>
+      </ContainerDiv>
+    )
+  );
 };
 
 const mapStateToProps = ({ subscriptionCelebrityAlarm }) => {
