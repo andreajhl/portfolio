@@ -22,6 +22,7 @@ const HireThisCelebrityButton = ({
 }) => {
   const userAgent = useWindow()?.navigator?.userAgent;
   const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
+  const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
 
   const {
     loginWithPopup,
@@ -37,7 +38,7 @@ const HireThisCelebrityButton = ({
         "finalRedirect",
         "/" + celebrityUsername + "/contratar"
       );
-      if (isMobile) {
+      if (isMobile | isSafari) {
         loginWithRedirect({
           redirectUri: window.location.origin + AUTH_SUCCESS
         });
