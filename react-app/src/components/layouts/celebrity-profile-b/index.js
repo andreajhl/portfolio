@@ -89,14 +89,6 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
             celebrityUsername={celebrity.username}
           />
         ) : null}{" "}
-        {celebrity.status === 60 ? (
-          <SubscriptionToAvailabilityNotification
-            celebrityId={celebrity.id}
-            fontSize="1.25em"
-            celebrityFullName={celebrity.fullName}
-            showCelebrityName={false}
-          />
-        ) : null}
       </div>
     </>
   );

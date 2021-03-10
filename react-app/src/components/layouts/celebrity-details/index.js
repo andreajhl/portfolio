@@ -175,7 +175,6 @@ const CelebrityDetails = ({ celebrity, variant }) => {
               showCelebrityName={false}
               celebrityId={celebrity.id}
               width="100%"
-              // fontSize="1rem"
             />
           ) : null}
           {availableForSubscriptions ? (
