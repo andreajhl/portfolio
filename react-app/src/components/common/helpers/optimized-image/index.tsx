@@ -1,5 +1,7 @@
-import React from "react";
-import Image, { ImageProps } from "next/image";
+/* eslint-disable jsx-a11y/alt-text */
+import React, { useRef } from "react";
+import { ImageProps } from "next/image";
+import useLoad from "react-app/src/utils/useLoad";
 
 const OptimizedImage = ({
   className,
@@ -10,6 +12,9 @@ const OptimizedImage = ({
   placeholderSrc: string;
   placeholderSize?: string;
 }) => {
+  const imageRef = useRef();
+  const [imageIsLoaded, imageOnLoad] = useLoad(imageRef);
+
   return (
     <div
       style={{
@@ -21,7 +26,12 @@ const OptimizedImage = ({
       }}
       className={className}
     >
-      <Image {...props} />
+      <img
+        {...props}
+        ref={imageRef}
+        style={{ objectFit: "cover", opacity: Number(imageIsLoaded) }}
+        onLoad={imageOnLoad}
+      />
     </div>
   );
 };
