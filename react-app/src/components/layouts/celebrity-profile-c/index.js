@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { GoToSimilarCelebritiesButton } from "../go-to-similar-celebrities-button";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import dynamic from "next/dynamic";
+import { SubscriptionToAvailabilityNotification } from "../subscription-to-availability-notification";
 
 const CelebrityHeroSlideshow = dynamic(() =>
   import("../celebrity-hero-slideshow").then(
@@ -62,14 +63,24 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
         }`}
       >
         <div className="row justify-content-center mb-2">
-          <HireThisCelebrityButton
-            showCelebrityName={true}
-            celebrityFullName={celebrity.fullName}
-            celebrityUsername={celebrity.username}
-            text="Quiero un video de"
-            fontSize="1.25em"
-            width="320px"
-          />
+          {celebrity.status === 50 ? (
+            <HireThisCelebrityButton
+              showCelebrityName={true}
+              className="get-a-video-button px-md-5 py-3 px-4"
+              text="Quiero un video de"
+              fontSize="1.25em"
+              celebrityFullName={celebrity.fullName}
+              celebrityUsername={celebrity.username}
+            />
+          ) : null}{" "}
+          {celebrity.status === 60 ? (
+            <SubscriptionToAvailabilityNotification
+              celebrityId={celebrity.id}
+              fontSize="1.25em"
+              celebrityFullName={celebrity.fullName}
+              showCelebrityName={false}
+            />
+          ) : null}
         </div>
         <GoToSimilarCelebritiesButton
           celebrityUsername={celebrity.username}

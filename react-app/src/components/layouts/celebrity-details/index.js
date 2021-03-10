@@ -9,6 +9,7 @@ import { CelebrityInfo } from "../celebrity-info";
 
 import { CelebrityDonorAlert } from "../celebrity-donor-alert";
 import Emoji from "../../containers/emoji/emoji";
+import { SubscriptionToAvailabilityNotification } from "../subscription-to-availability-notification";
 
 const CelebrityDetails = ({ celebrity, variant }) => {
   const {
@@ -76,27 +77,38 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             availableForFlashDeliveries={availableForFlashDeliveries}
           />
           <Col className="d-none d-md-block mx-0 px-0">
-            <HireThisCelebrityButton
-              showCelebrityName={false}
-              celebrityFullName={fullName}
-              celebrityUsername={username}
-              text={
-                <>
-                  <Emoji label="star-struck" symbol="🤩" />
-                  <span
-                    style={{
-                      fontWeight: "bold",
-                      color: "white"
-                    }}
-                  >
-                    ¡Comprar video ahora!
-                  </span>
-                  <Emoji label="star-struck" symbol="🤩" />
-                </>
-              }
-              width="100%"
-              fontSize="1.25em"
-            />
+            {celebrity.status === 50 ? (
+              <HireThisCelebrityButton
+                showCelebrityName={false}
+                celebrityFullName={fullName}
+                celebrityUsername={username}
+                text={
+                  <>
+                    <Emoji label="star-struck" symbol="🤩" />
+                    <span
+                      style={{
+                        fontWeight: "bold",
+                        color: "white"
+                      }}
+                    >
+                      ¡Comprar video ahora!
+                    </span>
+                    <Emoji label="star-struck" symbol="🤩" />
+                  </>
+                }
+                width="100%"
+                fontSize="1.25em"
+              />
+            ) : null}{" "}
+            {celebrity.status === 60 ? (
+              <SubscriptionToAvailabilityNotification
+                celebrityFullName={celebrity.fullName}
+                showCelebrityName={false}
+                celebrityId={celebrity.id}
+                width="100%"
+                fontSize="1.25rem"
+              />
+            ) : null}
             {availableForSubscriptions ? (
               <SubscribeToThisCelebrityButton
                 className="mt-2"
@@ -134,27 +146,38 @@ const CelebrityDetails = ({ celebrity, variant }) => {
       </Row>
       <Row>
         <Col className="d-md-none">
-          <HireThisCelebrityButton
-            showCelebrityName={false}
-            className={"button-hire-this-celebrity"}
-            celebrityFullName={fullName}
-            celebrityUsername={username}
-            text={
-              <>
-                <Emoji label="star-struck" symbol="🤩" />
-                <span
-                  style={{
-                    fontWeight: "bold",
-                    color: "white"
-                  }}
-                >
-                  ¡Comprar video ahora!
-                </span>
-                <Emoji label="star-struck" symbol="🤩" />
-              </>
-            }
-            width="100%"
-          />
+          {celebrity.status === 50 ? (
+            <HireThisCelebrityButton
+              showCelebrityName={false}
+              className={"button-hire-this-celebrity"}
+              celebrityFullName={fullName}
+              celebrityUsername={username}
+              text={
+                <>
+                  <Emoji label="star-struck" symbol="🤩" />
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      color: "white"
+                    }}
+                  >
+                    ¡Comprar video ahora!
+                  </span>
+                  <Emoji label="star-struck" symbol="🤩" />
+                </>
+              }
+              width="100%"
+            />
+          ) : null}{" "}
+          {celebrity.status === 60 ? (
+            <SubscriptionToAvailabilityNotification
+              celebrityFullName={celebrity.fullName}
+              showCelebrityName={false}
+              celebrityId={celebrity.id}
+              width="100%"
+              // fontSize="1rem"
+            />
+          ) : null}
           {availableForSubscriptions ? (
             <SubscribeToThisCelebrityButton
               className="mt-2"

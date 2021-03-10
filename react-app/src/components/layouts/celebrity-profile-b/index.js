@@ -2,6 +2,7 @@ import React from "react";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import { connect } from "react-redux";
 import dynamic from "next/dynamic";
+import { SubscriptionToAvailabilityNotification } from "../subscription-to-availability-notification";
 const HowToGetAVideoMessageLayout = dynamic(() =>
   import("../how-to-get-a-video-message").then(
     (mod) => mod.HowToGetAVideoMessageLayout
@@ -78,14 +79,24 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
         celebrityUsername={celebrity.username}
       />
       <div className="container pb-4 pt-2 text-center">
-        <HireThisCelebrityButton
-          showCelebrityName={true}
-          className="get-a-video-button px-md-5 py-3 px-4"
-          text="Quiero un video de"
-          fontSize="1.25em"
-          celebrityFullName={celebrity.fullName}
-          celebrityUsername={celebrity.username}
-        />
+        {celebrity.status === 50 ? (
+          <HireThisCelebrityButton
+            showCelebrityName={true}
+            className="get-a-video-button px-md-5 py-3 px-4"
+            text="Quiero un video de"
+            fontSize="1.25em"
+            celebrityFullName={celebrity.fullName}
+            celebrityUsername={celebrity.username}
+          />
+        ) : null}{" "}
+        {celebrity.status === 60 ? (
+          <SubscriptionToAvailabilityNotification
+            celebrityId={celebrity.id}
+            fontSize="1.25em"
+            celebrityFullName={celebrity.fullName}
+            showCelebrityName={false}
+          />
+        ) : null}
       </div>
     </>
   );
