@@ -41,11 +41,11 @@ const isTypeImage = ({ type }: { type: string }): boolean => type === "image";
 
 const getOnlyPreviewPosts = (results: any[]) =>
   results
-    .filter(({ urls }) => urls.some(isTypeImage))
     .map(({ urls, ...posts }) => ({
       ...posts,
       urls: urls.filter(isTypeImage).slice(0, 1)
-    }));
+    }))
+    .filter(({ urls, description }) => urls.length > 0 || description);
 
 const mapStateToProps = ({
   celebrities: { getCelebrityReducer, fetchCelebritySubscriptionPlansReducer },
@@ -158,9 +158,7 @@ const SubscribePage = ({
             </PlanInfoDescription>
             <Maybe it={!isSubscribed}>
               <PlanInfoPrice>{priceLayout} /mes</PlanInfoPrice>
-              <ConvertedPriceCopy
-                price={monthlySubscription?.priceTier}
-              />
+              <ConvertedPriceCopy price={monthlySubscription?.priceTier} />
               <Link
                 href={SUBSCRIPTION.replace(":celebrity_username", username)}
               >
@@ -192,6 +190,7 @@ const SubscribePage = ({
                     username={username}
                     price={priceLayout}
                     fullName={fullName}
+                    description={post.description}
                   />
                 }
               >
