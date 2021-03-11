@@ -134,10 +134,14 @@ const CelebrityDetails = ({ celebrity, variant }) => {
         </Col>
       </Row>
       <Row>
-        <Col className="d-md-none">
+        <Col className="d-md-none mb-4">
           <AdWarrantyVideoPurchase
             celebrityFullName={fullName}
           ></AdWarrantyVideoPurchase>
+        </Col>
+      </Row>
+      <Row>
+        <Col className="d-md-none">
           <HireThisCelebrityButton
             showCelebrityName={false}
             className={"button-hire-this-celebrity"}
