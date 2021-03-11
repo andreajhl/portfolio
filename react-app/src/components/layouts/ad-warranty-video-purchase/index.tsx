@@ -17,9 +17,14 @@ const AdWarrantyVideoPurchase = ({
         <SC.AdWarrantyTitle>Garantía Famosos</SC.AdWarrantyTitle>
       </SC.AdWarrantyHeader>
       <SC.InfoSection>
-        <SC.InfoDescription></SC.InfoDescription>
-        <hr></hr>
-        <SC.InfoDescription></SC.InfoDescription>
+        <SC.InfoDescription>
+          Video grabado por {celebrityFullName} 100% personalizado.
+        </SC.InfoDescription>
+
+        <SC.VLine></SC.VLine>
+        <SC.InfoDescription>
+          Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero.
+        </SC.InfoDescription>
       </SC.InfoSection>
     </SC.AdWarrantyVideoPurchaseWrapper>
   );
