@@ -102,7 +102,7 @@ const SubscriptionToAvailabilityNotification = ({
       : parsedFullName.first || parsedFullName.last;
 
   return userSubscriptionsCelebrityAlarmsFetchCompleted &&
-    checkSubscriptionToThisCelebrity() ? (
+    !checkSubscriptionToThisCelebrity() ? (
     <CallToActionButton
       onClick={handleSuscriptionRequest}
       fontSize={fontSize}
