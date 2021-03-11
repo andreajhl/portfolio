@@ -9,7 +9,11 @@ const AdWarrantyVideoPurchase = ({
   return (
     <SC.AdWarrantyVideoPurchaseWrapper>
       <SC.AdWarrantyHeader>
-        <SC.AdWarrantyImg></SC.AdWarrantyImg>
+        <SC.AdWarrantyImg
+          height={"29px"}
+          width={"24px"}
+          src={"/assets/img/shield-icon.png"}
+        ></SC.AdWarrantyImg>
         <SC.AdWarrantyTitle>Garantía Famosos</SC.AdWarrantyTitle>
       </SC.AdWarrantyHeader>
       <SC.InfoSection>
