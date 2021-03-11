@@ -181,7 +181,7 @@ class CreateContractForm extends Component {
 
   handleInputChange = (event) => {
     const updatedContractData = { ...this.state.contractData };
-    if (event.target.value.length <= 300) {
+    if (event.target.value.length <= 400) {
       updatedContractData[event.target.name] = event.target.value;
       this.setState({
         ...this.state,
@@ -476,12 +476,12 @@ class CreateContractForm extends Component {
             <div
               className={
                 "text-left" +
-                (contractData.instructions.length === 300
+                (contractData.instructions.length === 400
                   ? " text-danger "
                   : " text-muted ")
               }
             >
-              {contractData.instructions.length}/300 caracteres permitidos
+              {contractData.instructions.length}/400 caracteres permitidos
             </div>
             <span
               className={
