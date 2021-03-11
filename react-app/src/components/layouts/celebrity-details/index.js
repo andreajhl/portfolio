@@ -9,6 +9,7 @@ import { CelebrityInfo } from "../celebrity-info";
 
 import { CelebrityDonorAlert } from "../celebrity-donor-alert";
 import Emoji from "../../containers/emoji/emoji";
+import AdWarrantyVideoPurchase from "../ad-warranty-video-purchase";
 
 const CelebrityDetails = ({ celebrity, variant }) => {
   const {
@@ -134,6 +135,9 @@ const CelebrityDetails = ({ celebrity, variant }) => {
       </Row>
       <Row>
         <Col className="d-md-none">
+          <AdWarrantyVideoPurchase
+            celebrityFullName={fullName}
+          ></AdWarrantyVideoPurchase>
           <HireThisCelebrityButton
             showCelebrityName={false}
             className={"button-hire-this-celebrity"}
