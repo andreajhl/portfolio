@@ -55,13 +55,15 @@ type SubscriptionPostHiddenContentProps = {
   fullName: string;
   username: string;
   price?: ReactNode;
+  description: string;
 };
 
 export const SubscriptionPostHiddenContent = ({
   imageSrc,
   fullName,
   username,
-  price = 0
+  price = 0,
+  description
 }: SubscriptionPostHiddenContentProps) => {
   const firstName = getFirstName(fullName);
 
@@ -71,20 +73,27 @@ export const SubscriptionPostHiddenContent = ({
   );
 
   return (
-    <PostMedia>
-      <PostHiddenImage src={imageSrc} />
-      <PostHiddenDiv imageSrc={imageSrc}>
-        <img src="/assets/img/lock.svg" alt="Cerradura" />
-        <PostHiddenText>
-          Únete al club de {firstName} para desbloquear este contenido
-        </PostHiddenText>
-        <Link href={subscriptionPath}>
-          <PostSubscribeButton>
-            Suscríbete ahora por {price}/mes
-          </PostSubscribeButton>
-        </Link>
-      </PostHiddenDiv>
-    </PostMedia>
+    <>
+      <Maybe it={Boolean(imageSrc)}>
+        <PostMedia>
+          <PostHiddenImage src={imageSrc} />
+          <PostHiddenDiv imageSrc={imageSrc}>
+            <img src="/assets/img/lock.svg" alt="Cerradura" />
+            <PostHiddenText>
+              Únete al club de {firstName} para desbloquear este contenido
+            </PostHiddenText>
+            <Link href={subscriptionPath}>
+              <PostSubscribeButton>
+                Suscríbete ahora por {price}/mes
+              </PostSubscribeButton>
+            </Link>
+          </PostHiddenDiv>
+        </PostMedia>
+      </Maybe>
+      <Maybe it={Boolean(description)}>
+        <PostText>{description}</PostText>
+      </Maybe>
+    </>
   );
 };
 
