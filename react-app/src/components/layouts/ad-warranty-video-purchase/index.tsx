@@ -23,7 +23,8 @@ const AdWarrantyVideoPurchase = ({
 
         <SC.VLine></SC.VLine>
         <SC.InfoDescription>
-          Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero.
+          Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero.{" "}
+          <i className="fas fa-info-circle"></i>
         </SC.InfoDescription>
       </SC.InfoSection>
     </SC.AdWarrantyVideoPurchaseWrapper>
