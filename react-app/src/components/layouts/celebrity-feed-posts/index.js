@@ -32,12 +32,11 @@ const CelebrityFeedPosts = ({
           endMessage={
             <p style={{ textAlign: "center", marginTop: "2rem" }}>
               <b>
+                Por ahora no hay más publicaciones
                 {celebrityData?.celebrityFullName
-                  ? `Al parecer ${celebrityData?.celebrityFullName} no ha publicado nada mas por los momentos.`
-                  : `Al parecer no hay publicado nada mas por los momentos.`}{" "}
-                <span role="img" aria-label="crying-face">
-                  😢
-                </span>
+                  ? ` de ${celebrityData?.celebrityFullName}`
+                  : ""}
+                .
               </b>
             </p>
           }
