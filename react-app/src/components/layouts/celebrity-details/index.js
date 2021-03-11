@@ -10,6 +10,7 @@ import { CelebrityInfo } from "../celebrity-info";
 import { CelebrityDonorAlert } from "../celebrity-donor-alert";
 import Emoji from "../../containers/emoji/emoji";
 import { SubscriptionToAvailabilityNotification } from "../subscription-to-availability-notification";
+import AdWarrantyVideoPurchase from "../ad-warranty-video-purchase";
 
 const CelebrityDetails = ({ celebrity, variant }) => {
   const {
@@ -142,6 +143,13 @@ const CelebrityDetails = ({ celebrity, variant }) => {
         ) : null}
         <Col className="mx-3 my-3 px-0">
           <CelebritiesProfileDescription descriptionText={description} />
+        </Col>
+      </Row>
+      <Row>
+        <Col className="d-md-none mb-4">
+          <AdWarrantyVideoPurchase
+            celebrityFullName={fullName}
+          ></AdWarrantyVideoPurchase>
         </Col>
       </Row>
       <Row>
