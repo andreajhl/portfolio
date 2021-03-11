@@ -35,6 +35,7 @@ import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
 import { useRouter } from "next/router";
 import { getPostsFromCelebrity } from "react-app/src/firebase/firestoreService";
 import { NotPostsResults } from "../subscription-feed";
+import { ConvertedPriceCopy } from "../../layouts/converted-price-copy";
 
 const isTypeImage = ({ type }: { type: string }): boolean => type === "image";
 
@@ -111,7 +112,11 @@ const SubscribePage = ({
   );
 
   const priceLayout = (
-    <PriceLayout price={monthlySubscription?.priceTier} showPrefix={false} />
+    <PriceLayout
+      price={monthlySubscription?.priceTier}
+      rounding
+      showPrefix={false}
+    />
   );
 
   return (
@@ -153,12 +158,17 @@ const SubscribePage = ({
             </PlanInfoDescription>
             <Maybe it={!isSubscribed}>
               <PlanInfoPrice>{priceLayout} /mes</PlanInfoPrice>
+              <ConvertedPriceCopy
+                price={monthlySubscription?.priceTier}
+              />
               <Link
                 href={SUBSCRIPTION.replace(":celebrity_username", username)}
               >
-                <CallToActionButton width="100%">
-                  Subscribirse
-                </CallToActionButton>
+                <div style={{ marginTop: "20px" }}>
+                  <CallToActionButton width="100%">
+                    Subscribirse
+                  </CallToActionButton>
+                </div>
               </Link>
             </Maybe>
           </PlanInfoSection>

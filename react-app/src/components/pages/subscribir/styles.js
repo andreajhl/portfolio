@@ -73,7 +73,7 @@ export const PlanInfoPrice = styled.p`
   font-size: 22px;
   font-weight: bold;
   line-height: 26px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 `;
 
 export const LastsPostsTitle = styled.h2`
