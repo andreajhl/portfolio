@@ -79,6 +79,7 @@ const Subscription = (props) => {
                       <>
                         <SubscriptionPayPalCardForm
                           planId={currentPlanSelected}
+                          celebrityId={celebrity.id}
                         />
                       </>
                     ) : null}
