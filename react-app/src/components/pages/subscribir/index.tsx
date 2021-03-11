@@ -101,7 +101,6 @@ const SubscribePage = ({
     if (isLoading) return;
     const fetchPosts = async () => {
       const posts = await getPostsFromCelebrity("dev_posts", celebrity.id, 10);
-      alert(JSON.stringify({ isSubscribed }));
       setPosts(!isSubscribed ? getOnlyPreviewPosts(posts) : posts);
     };
     fetchPosts();
