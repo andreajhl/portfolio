@@ -5,27 +5,21 @@ import { Form } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { contractOperations } from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
-import { Session } from "../../../state/utils/session";
 import OcassionsOptions from "../ocassions-options";
 import { occasionsData } from "../../../constants/options";
-
+import { getToken } from "react-app/src/state/ducks/session/actions";
 class CreateContractForm extends Component {
   constructor(props) {
     super(props);
-    const session = new Session();
     this.state = {
       instructionsIsTouched: false,
       contractData: {
         celebrity: null,
         contractType: 1,
         deliveryFrom: "",
-        deliveryTo: session.hasEmail()
-          ? session.getSession().fullName || ""
-          : "",
+        deliveryTo: "",
         deliveryType: 1,
-        deliveryContact: session.hasEmail()
-          ? session.getSession().email || ""
-          : "",
+        deliveryContact: "",
         instructions: "",
         isPublic: true,
         occasion: "OTHER"
@@ -48,6 +42,8 @@ class CreateContractForm extends Component {
         ...this.state,
         contractData: this.props.contractToPayData
       });
+    } else {
+      this.props.getToken();
     }
   }
 
@@ -57,6 +53,19 @@ class CreateContractForm extends Component {
         ...this.state,
         contractData: this.props.contractToPayData
       });
+    } else if (
+      prevProps.sessionData?.userId !== this.props.sessionData?.userId
+    ) {
+      this.setState((state) => ({
+        ...state,
+        contractData: {
+          ...state.contractData,
+          deliveryTo:
+            state.deliveryTo || this.props.sessionData?.fullName || "",
+          deliveryContact:
+            state.deliveryContact || this.props.sessionData?.email || ""
+        }
+      }));
     }
     // if (
     //   this.props.contractToPayExist &&
@@ -96,9 +105,17 @@ class CreateContractForm extends Component {
         this.props.celebrityId === this.props.contractToPayData.celebrityId
       ) {
         const contractData = this.state.contractData;
-        this.setState({ contractData }, () => {
-          this.props.updateClientContract(this.state.contractData);
-        });
+        this.setState(
+          {
+            contractData: {
+              ...contractData,
+              deliveryType: contractData.deliveryType || 1
+            }
+          },
+          () => {
+            this.props.updateClientContract(this.state.contractData);
+          }
+        );
       } else {
         const contractData = this.state.contractData;
         contractData.celebrityId = this.props.celebrityId;
@@ -111,9 +128,17 @@ class CreateContractForm extends Component {
             });
           }
         }
-        this.setState({ contractData }, () => {
-          this.props.saveClientContract(this.state.contractData);
-        });
+        this.setState(
+          {
+            contractData: {
+              ...contractData,
+              deliveryType: contractData.deliveryType || 1
+            }
+          },
+          () => {
+            this.props.saveClientContract(this.state.contractData);
+          }
+        );
       }
     }
   }
@@ -532,8 +557,9 @@ CreateContractForm.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = ({ contracts }) => {
+const mapStateToProps = ({ contracts, session }) => {
   return {
+    sessionData: session.getSessionReducer.data,
     contractToPayExist: contracts.saveContractToPayReducer.completed,
     contractToPayData: contracts.saveContractToPayReducer.data,
     saveClientContractLoading: contracts.saveClientContractReducer.loading,
@@ -544,6 +570,7 @@ const mapStateToProps = ({ contracts }) => {
 
 // mapStateToProps
 const mapDispatchToProps = {
+  getToken,
   saveClientContract: contractOperations.saveClientContract,
   updateClientContract: contractOperations.updateClientContract
 };

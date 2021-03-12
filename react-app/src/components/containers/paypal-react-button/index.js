@@ -117,10 +117,10 @@ class PaypalReactButton extends React.Component {
           <div style={divStyles}>
             <PayPalButton
               styles={buttonStyles}
-              createOrder={(data, actions) => this.createOrder(data, actions)}
-              onApprove={(data, actions) => this.onApprove(data, actions)}
-              onError={this.props.onError}
-              onCancel={this.props.onCancel}
+              createOrder={this.createOrder}
+              onApprove={this.onApprove}
+              onError={this.onError}
+              onCancel={this.onCancel}
             />
           </div>
         )}

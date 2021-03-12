@@ -14,7 +14,7 @@ const CustomHead = ({
   title = "Famosos.com - Videos personalizados de tus famosos favoritos.",
   description = "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
   ogUrl = "https://www.famosos.com",
-  ogImage = "/assets/img/famosos-share-icon.png",
+  ogImage = "/assets/img/famosos-share-img.jpg",
   ogVideo = "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5",
   children
 }: CustomHeadProps) => {

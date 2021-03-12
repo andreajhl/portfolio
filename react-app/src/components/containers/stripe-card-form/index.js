@@ -58,8 +58,8 @@ class StripeCardForm extends Component {
     const amount = this.props.contractPrice * 100;
     const currency = "USD";
     const ownerData = {
-      name: this.state.ownerName,
-      email: this.state.ownerEmail
+      name: this.state.ownerName.trim(),
+      email: this.state.ownerEmail.trim()
     };
 
     // CREATE A SOURCE CARD

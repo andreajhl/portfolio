@@ -94,12 +94,10 @@ class SubscriptionPaypalReactButton extends React.Component {
           <div style={divStyles}>
             <PayPalButton
               styles={buttonStyles}
-              createSubscription={(data, actions) =>
-                this.createSubscription(data, actions)
-              }
-              onApprove={(data, actions) => this.onApprove(data, actions)}
+              createSubscription={this.createSubscription}
+              onApprove={this.onApprove}
               onError={this.onError}
-              onCancel={this.props.onCancel}
+              onCancel={this.onCancel}
             />
           </div>
         )}

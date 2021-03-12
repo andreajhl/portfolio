@@ -52,7 +52,7 @@ class SubscriptionPayPalCardForm extends Component {
   onPayPalButtonError = (error) => {
     return this.setState({
       ...this.state,
-      errorMessage: error
+      errorMessage: String(error)
     });
   };
 

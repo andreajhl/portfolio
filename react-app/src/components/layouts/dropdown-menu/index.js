@@ -69,9 +69,9 @@ export const DropdownMenuLayout = ({
             </NavLink>
           </>
         ) : null}
-        <a className="dropdown-item" href={PATHS.LANDING_PATH}>
+        {/* <a className="dropdown-item" href={PATHS.LANDING_PATH}>
           ¿Como funciona?
-        </a>
+        </a> */}
         <NavLink
           className="dropdown-item"
           activeClassName="active"
