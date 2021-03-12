@@ -8,7 +8,7 @@ import { subscribeToEmailNotifications } from "react-app/src/state/ducks/subscri
 import { connect } from "react-redux";
 import { subscriptionCelebrityAlarmOperations } from "../../../state/ducks/subscription-celebrity-alarm";
 import styled from "styled-components";
-
+import { Session } from "react-app/src/state/utils/session";
 const ContainerDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -62,12 +62,29 @@ const SubscriptionToAvailabilityNotification = ({
   listUsersSubscriptionsAlarms
 }: SubscriptionToAvailabilityNotificationProps) => {
   const router = useRouter();
+  const session = new Session();
   const { isLoading, isAuthenticated } = useAuth0();
   const fullNameWords = celebrityFullName.split(" ");
   const triggerLogin = useLoginHandler();
+  let setTimeoutStatus = false;
+  const handleListSubscriptionsAlarms = () => {
+    if (
+      localStorage.getItem(session.sessionName) &&
+      !userSubscriptionsCelebrityAlarmsIsLoading
+    ) {
+      listUsersSubscriptionsAlarms();
+    } else {
+      setTimeoutStatus = true;
+      setTimeout(() => {
+        handleListSubscriptionsAlarms();
+      }, 3000);
+    }
+  };
   useEffect(() => {
-    listUsersSubscriptionsAlarms();
-  }, [listUsersSubscriptionsAlarms]);
+    if (!isLoading && isAuthenticated && !setTimeoutStatus) {
+      handleListSubscriptionsAlarms();
+    }
+  }, [listUsersSubscriptionsAlarms, isAuthenticated, isLoading]);
   const handleSuscriptionRequest = async () => {
     if (!isAuthenticated) {
       triggerLogin();
@@ -83,6 +100,9 @@ const SubscriptionToAvailabilityNotification = ({
   };
 
   const checkSubscriptionToThisCelebrity = () => {
+    if (!isAuthenticated) {
+      return true;
+    }
     const result = userSubscriptionsCelebrityAlarmsData.results.some(
       (celebrityData) => celebrityData.celebrityId === celebrityId
     );
@@ -101,8 +121,9 @@ const SubscriptionToAvailabilityNotification = ({
       ? fullNameWords.slice(0, 2).join(" ")
       : parsedFullName.first || parsedFullName.last;
 
-  return userSubscriptionsCelebrityAlarmsFetchCompleted &&
-    !checkSubscriptionToThisCelebrity() ? (
+  return !isAuthenticated ||
+    (userSubscriptionsCelebrityAlarmsFetchCompleted &&
+      !checkSubscriptionToThisCelebrity()) ? (
     <CallToActionButton
       onClick={handleSuscriptionRequest}
       fontSize={fontSize}
