@@ -131,13 +131,13 @@ const SubscriptionToAvailabilityNotification = ({
       className={className}
     >
       {text}
-      {"Notificarme cuando este disponible"}
+      {"Notificarme cuando esté disponible"}
       {celebrityFullName && showCelebrityName ? " " + displayName : ""}
     </CallToActionButton>
   ) : (
     userSubscriptionsCelebrityAlarmsFetchCompleted && (
       <ContainerDiv>
-        Actualmente no esta disponible este famoso. Cuando se active, te
+        Actualmente no está disponible este famoso. Cuando se active, te
         notificaremos
         <br />
         <SpanCTA onClick={() => handleSuscriptionRequest()}>
