@@ -11,6 +11,7 @@ import { CelebrityDonorAlert } from "../celebrity-donor-alert";
 import Emoji from "../../containers/emoji/emoji";
 import { SubscriptionToAvailabilityNotification } from "../subscription-to-availability-notification";
 import AdWarrantyVideoPurchase from "../ad-warranty-video-purchase";
+import { HireThisCelebrityForcompaniesButton } from "../hire-this-celebrity-for-companies-button";
 
 const CelebrityDetails = ({ celebrity, variant }) => {
   const {
@@ -29,7 +30,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
     causeName,
     causeUrl
   } = celebrity;
-
+  console.log(celebrityId);
   return (
     <Container
       className={`mx-auto CelebrityDetails ${variant === "1" ? "mb-0" : ""} ${
@@ -101,6 +102,13 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                 fontSize="1.25em"
               />
             ) : null}{" "}
+            {celebrityId === 2530 ? (
+              <HireThisCelebrityForcompaniesButton
+                className={"button-hire-this-celebrity-for-companies mt-2"}
+                text={"Contratar para Empresa"}
+                width="100%"
+              />
+            ) : null}
             {celebrity.status === 60 ? (
               <SubscriptionToAvailabilityNotification
                 celebrityFullName={celebrity.fullName}
@@ -197,6 +205,17 @@ const CelebrityDetails = ({ celebrity, variant }) => {
               }
               width="100%"
               fontSize="1.25em"
+            />
+          ) : null}
+        </Col>
+      </Row>
+      <Row>
+        <Col className="d-md-none  mt-4">
+          {celebrityId === 2530 ? (
+            <HireThisCelebrityForcompaniesButton
+              className={"button-hire-this-celebrity-for-companies"}
+              text={"Contratar para Empresa"}
+              width="100%"
             />
           ) : null}
         </Col>
