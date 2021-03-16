@@ -1,11 +1,11 @@
 import styles from "./styles.module.scss";
 import classes from "classnames";
-import Link from "next/link";
 import {
   BellIcon,
   CartIcon,
   CurrencyIcon
 } from "desktop-app/components/common/icon";
+import { FamososLogo } from "../../common/logo";
 
 function TopBar() {
   return (
@@ -32,22 +32,3 @@ function TopBar() {
 }
 
 export { TopBar };
-
-function FamososLogo() {
-  return (
-    <Link href="/">
-      <a href="/" className={styles.FamososLogo}>
-        <img
-          className={styles.FamososLogoInactive}
-          src="/assets/img/Famosos-logo-white.png"
-          alt="Logo de Famosos"
-        />
-        <img
-          className={styles.FamososLogoActive}
-          src="/assets/img/Famosos-logo-white-hover.svg"
-          alt="Logo de Famosos"
-        />
-      </a>
-    </Link>
-  );
-}
