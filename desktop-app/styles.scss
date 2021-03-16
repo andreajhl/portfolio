@@ -1,25 +1,26 @@
 @import "/public/assets/css/manrope-fonts.scss";
 
 .desktop {
-  --primary: #eb2a7b;
+  --primary: #fb177d;
   --primary-gradient: linear-gradient(180deg, #fb177d 0%, #ff2063 100%);
   --primary-darken: #b71157;
-  --primary-lighten: rgb(235 42 123 / 25%);
+  --primary-lighten: #ffd6e8;
   --primary-hover: #da1467;
   --primary-hover-border-color: #cf1362;
   --primary-focus-box-shadow: 0 0 0 0.2rem rgb(238 74 143 / 50%);
   --primary-focus-box-shadow-alt: 0 0 0 0.2rem rgb(235 42 123 / 25%);
   --dark: #000;
   --secondary: #6970c6;
-  --secondary-lighten: #46cef0;
+  --secondary-lighten: #bfc4ff;
   --secondary-darken: #41479b;
   --secondary-gradient: linear-gradient(180deg, #3d87f3 0%, #fb177d 100%);
-  --tertiary: #02bceb;
-  --tertiary-lighten: #46cef0;
-  --gray-4: gray;
-  --gray-3: rgb(160, 159, 159);
-  --gray-2: rgb(182, 180, 180);
-  --gray-1: rgb(231, 226, 226);
+  --tertiary: #3d87f3;
+  --tertiary-lighten: #a0c6ff;
+  --tertiary-darken: #41479b;
+  --gray-4: #5c5c5c;
+  --gray-3: #838383;
+  --gray-2: #bebebe;
+  --gray-1: #f6f6f6;
   --warning-lighten: #fff5ca;
   --font-family: Manrope;
 
@@ -56,10 +57,17 @@
     font-size: 14px;
   }
 
+  .btn {
+    border-radius: 7px;
+  }
+
   .btn-primary {
     background: var(--primary-gradient);
-    &:hover {
-      color: #fff;
+    border: 2px solid var(--primary) !important;
+
+    &:hover,
+    &:focus,
+    &:active {
       background: linear-gradient(180deg, #e01085 0%, #db0646 100%),
         linear-gradient(0deg, #c4c4c4, #c4c4c4);
     }
@@ -71,13 +79,29 @@
 
   .btn-secondary {
     background: var(--secondary);
+    border: 2px solid var(--secondary) !important;
+
     &:hover,
-    &:focus {
-      color: #fff;
-      background: var(--secondary-darken);
+    &:focus,
+    &:active {
+      background: var(--secondary-darken) !important;
     }
     &:disabled {
-      background: #bfc4ff;
+      background: var(--secondary-lighten);
+    }
+  }
+
+  .btn-tertiary {
+    border: 2px solid currentColor;
+    color: var(--tertiary);
+    box-shadow: none !important;
+
+    &:hover,
+    &:active {
+      color: var(--tertiary-darken);
+    }
+    &:disabled {
+      color: var(--tertiary-lighten);
     }
   }
 }
