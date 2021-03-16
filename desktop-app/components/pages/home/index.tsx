@@ -1,9 +1,10 @@
 import { Button } from "react-bootstrap";
+import PageContainer from "desktop-app/components/layouts/page-container";
 import styles from "./styles.module.scss";
 
 function HomePage() {
   return (
-    <>
+    <PageContainer showFooter={true}>
       <header className={styles.header}>
         <div className={"container " + styles.headerContainer}>
           <h1 className={styles.headerTitle}>Guía de estilos</h1>{" "}
@@ -83,7 +84,8 @@ function HomePage() {
           <Button variant="tertiary">Tertiary</Button>
         </div>
       </section>
-    </>
+      <div>Hello desktop</div>
+    </PageContainer>
   );
 }
 
