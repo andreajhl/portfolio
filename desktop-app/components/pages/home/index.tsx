@@ -1,19 +1,10 @@
+import PageContainer from "desktop-app/components/layouts/page-container";
 import { Button } from "react-bootstrap";
 import styles from "./styles.module.scss";
 
 function HomePage() {
   return (
-    <>
-      <header className={styles.header}>
-        <div className={"container " + styles.headerContainer}>
-          <h1 className={styles.headerTitle}>Guía de estilos</h1>{" "}
-          <img
-            className={styles.headerImg}
-            src="/assets/img/famosos-logo-light.svg"
-            alt="Logo"
-          />
-        </div>
-      </header>
+    <PageContainer>
       <section className={"mb-5" + " " + styles.section}>
         <div className="container">
           <header className={styles.sectionHeader}>
@@ -83,7 +74,7 @@ function HomePage() {
           <Button variant="tertiary">Tertiary</Button>
         </div>
       </section>
-    </>
+    </PageContainer>
   );
 }
 
