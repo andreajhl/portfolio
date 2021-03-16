@@ -1,10 +1,10 @@
-import { Button } from "react-bootstrap";
 import PageContainer from "desktop-app/components/layouts/page-container";
+import { Button } from "react-bootstrap";
 import styles from "./styles.module.scss";
 
 function HomePage() {
   return (
-    <PageContainer showFooter={true}>
+    <PageContainer showTopBar={true} showFooter={true}>
       <header className={styles.header}>
         <div className={"container " + styles.headerContainer}>
           <h1 className={styles.headerTitle}>Guía de estilos</h1>{" "}

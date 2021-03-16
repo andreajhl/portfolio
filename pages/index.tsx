@@ -1,4 +1,4 @@
-/* ts-ignore */
+import { useEffect } from "react";
 import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
@@ -29,6 +29,14 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 );
 
 const Home = ({ isMobile }) => {
+  useEffect(() => {
+    if (isMobile) return;
+    document.documentElement.classList.add("desktop");
+    return () => {
+      document.documentElement.classList.remove("desktop");
+    };
+  }, []);
+
   return (
     <>
       <CustomHead />
