@@ -4,6 +4,7 @@ import { wrapper } from "react-app/src/state/store";
 import { useRouter } from "next/router";
 import { initialize as gtmInitialize } from "react-app/src/state/utils/gtm";
 import "react-app/src/styles.scss";
+import "desktop-app/styles.scss";
 import Auth0UserHandler from "lib/auth0UserHandler";
 
 const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
