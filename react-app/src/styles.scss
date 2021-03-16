@@ -1,17 +1,25 @@
 @import "bootstrap.css";
-@import "/public/assets/css/fonts";
+@import "/public/assets/css/avenir-fonts.scss";
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css);
 
 :root {
   --active: #ffcc58;
   --primary: #eb2a7b;
   --primary-darken: #b71157;
+  --primary-lighten: rgb(235 42 123 / 25%);
   --primary-hover: #da1467;
   --primary-hover-border-color: #cf1362;
   --primary-focus-box-shadow: 0 0 0 0.2rem rgb(238 74 143 / 50%);
   --primary-focus-box-shadow-alt: 0 0 0 0.2rem rgb(235 42 123 / 25%);
   --dark: #303542;
   --secondary: #02bceb;
+  --secondary-lighten: #46cef0;
+  --tertiary: #02bceb;
+  --tertiary-lighten: #46cef0;
+  --gray-4: gray;
+  --gray-3: rgb(160, 159, 159);
+  --gray-2: rgb(182, 180, 180);
+  --gray-1: rgb(231, 226, 226);
   --muted: red;
   --purple: rgba(0, 220, 198, 0.05);
   --soft-grey: #8d9cc1;
