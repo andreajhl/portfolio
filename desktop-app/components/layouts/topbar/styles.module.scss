@@ -28,10 +28,39 @@
       transition: 0.15s ease all;
     }
 
+    &:hover,
     &:focus-within {
       .TopBarSearchIcon {
         color: var(--primary);
       }
+    }
+  }
+}
+
+.FamososLogo {
+  position: relative;
+  display: inline-block;
+  width: 222px;
+  height: 44px;
+
+  &Active,
+  &Inactive {
+    width: 100%;
+    height: 100%;
+  }
+
+  &Active {
+    position: absolute;
+    display: none;
+    transform: scale(1.04);
+  }
+
+  &:hover {
+    .FamososLogoActive {
+      display: inline;
+    }
+    .FamososLogoInactive {
+      display: none;
     }
   }
 }

@@ -1,5 +1,11 @@
 import styles from "./styles.module.scss";
 import classes from "classnames";
+import Link from "next/link";
+import {
+  BellIcon,
+  CartIcon,
+  CurrencyIcon
+} from "desktop-app/components/common/icon";
 
 function TopBar() {
   return (
@@ -15,6 +21,11 @@ function TopBar() {
           />
           <i className={classes("fa fa-search", styles.TopBarSearchIcon)} />
         </div>
+        <div className="row m-0 p-0">
+          <CurrencyIcon />
+          <CartIcon />
+          <BellIcon />
+        </div>
       </div>
     </header>
   );
@@ -23,5 +34,20 @@ function TopBar() {
 export { TopBar };
 
 function FamososLogo() {
-  return <img src="/assets/img/Famosos-logo-white.png" alt="Logo de Famosos" />;
+  return (
+    <Link href="/">
+      <a href="/" className={styles.FamososLogo}>
+        <img
+          className={styles.FamososLogoInactive}
+          src="/assets/img/Famosos-logo-white.png"
+          alt="Logo de Famosos"
+        />
+        <img
+          className={styles.FamososLogoActive}
+          src="/assets/img/Famosos-logo-white-hover.svg"
+          alt="Logo de Famosos"
+        />
+      </a>
+    </Link>
+  );
 }
