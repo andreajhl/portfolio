@@ -3,7 +3,7 @@ import {
   BellIcon,
   CartIcon,
   CurrencyIcon
-} from "desktop-app/components/common/icon";
+} from "desktop-app/components/common/icons";
 import { FamososLogo } from "../../common/logo";
 import { AccountDropdown } from "../account-dropdown";
 

@@ -1,3 +1,4 @@
+import { CelebrityCard } from "desktop-app/components/common/cards/celebrity-card";
 import HeroSection from "desktop-app/components/home/hero-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { Button } from "react-bootstrap";
@@ -7,6 +8,9 @@ function HomePage() {
   return (
     <PageContainer>
       <HeroSection />
+      <div className="container mt-4">
+        <CelebrityCard />
+      </div>
       <section className={"mb-5" + " " + styles.section}>
         <div className="container">
           <header className={styles.sectionHeader}>

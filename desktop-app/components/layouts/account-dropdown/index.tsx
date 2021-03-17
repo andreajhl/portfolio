@@ -5,7 +5,7 @@ import {
   PlayIcon,
   StarIcon,
   UserIcon
-} from "desktop-app/components/common/icon";
+} from "desktop-app/components/common/icons";
 import { ReactNode } from "react";
 import { NavLink } from "desktop-app/components/common/routing/nav-link";
 import styles from "./styles.module.scss";
