@@ -1,3 +1,4 @@
+import HeroSection from "desktop-app/components/home/hero-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { Button } from "react-bootstrap";
 import styles from "./styles.module.scss";
@@ -5,6 +6,7 @@ import styles from "./styles.module.scss";
 function HomePage() {
   return (
     <PageContainer>
+      <HeroSection />
       <section className={"mb-5" + " " + styles.section}>
         <div className="container">
           <header className={styles.sectionHeader}>

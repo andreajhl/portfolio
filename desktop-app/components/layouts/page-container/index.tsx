@@ -5,14 +5,14 @@ import { TopBar } from "../topbar";
 import styles from "./styles.module.scss";
 
 type PageContainerProps = {
-  showTopBar: boolean;
-  showFooter: boolean;
+  showTopBar?: boolean;
+  showFooter?: boolean;
   children: React.ReactNode;
 };
 
 const PageContainer = ({
   showTopBar = true,
-  showFooter,
+  showFooter = true,
   children
 }: PageContainerProps) => {
   return (
