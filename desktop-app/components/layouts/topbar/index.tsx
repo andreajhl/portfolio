@@ -1,12 +1,11 @@
 import styles from "./styles.module.scss";
-import classes from "classnames";
 import {
-  AvatarIcon,
   BellIcon,
   CartIcon,
   CurrencyIcon
 } from "desktop-app/components/common/icon";
 import { FamososLogo } from "../../common/logo";
+import { AccountDropdown } from "../account-dropdown";
 
 function TopBar() {
   return (
@@ -31,7 +30,7 @@ function TopBar() {
               <CartIcon />
               <BellIcon />
             </div>
-            <AvatarIcon />
+            <AccountDropdown />
           </div>
         </div>
       </div>
