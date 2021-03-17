@@ -1,7 +1,6 @@
-import { IncomingMessage } from "http";
 import UAParser from "ua-parser-js";
 
-const isMobile = (req: IncomingMessage): boolean =>
-  new UAParser(req.headers["user-agent"]).getDevice().type === "mobile";
+const isMobile = (userAgent: string): boolean =>
+  new UAParser(userAgent).getDevice().type === "mobile";
 
 export default isMobile;
