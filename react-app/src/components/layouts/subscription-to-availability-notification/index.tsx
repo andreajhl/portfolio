@@ -137,7 +137,7 @@ const SubscriptionToAvailabilityNotification = ({
   ) : (
     userSubscriptionsCelebrityAlarmsFetchCompleted && (
       <ContainerDiv>
-        Actualmente no está disponible este famoso. Te notificaremos cuando se active.
+        Te notificaremos cuando se active.
         <br />
         <SpanCTA onClick={() => handleSuscriptionRequest()}>
           Desactivar Notificación
