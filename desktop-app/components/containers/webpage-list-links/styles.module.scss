@@ -1,9 +1,13 @@
+@import "../../../styles.scss";
+
 .WebPageListLinks{
     display: flex;
     list-style: none;
     padding: 0px;
     justify-content: space-between;
+    margin: 0px;
     li {
-        color: white;
+        color:var(--gray-3);
+        font-size: 12px;
     }
 }
