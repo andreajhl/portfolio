@@ -1,13 +1,16 @@
+import InputWithSubmitHandler from "desktop-app/components/common/form/InputWithSubmitHandler";
 import React from "react";
 import styles from "./styles.module.scss";
 const SubscriptionNewsletterForm = () => {
   return (
-    <div className={styles.SubscriptionNewsLetterFormContainer}>
+    <div className={styles.SubscriptionNewsletterForm}>
       <p>Entérate de nuestras últimas noticias y promociones</p>
-      {/* TODO: reemplazar con componente input reutilizable */}
-      <form>
-        <input></input>
-      </form>
+      <div className={styles.SubscriptionNewsLetterFormInputElement}>
+        <InputWithSubmitHandler
+          className={styles.SubscriptionNewsLetterFormInputElementModifier}
+          btnType={"btn-secondary"}
+        />
+      </div>
     </div>
   );
 };
