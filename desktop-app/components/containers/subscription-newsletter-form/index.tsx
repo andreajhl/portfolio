@@ -7,6 +7,7 @@ const SubscriptionNewsletterForm = () => {
       <p>Entérate de nuestras últimas noticias y promociones</p>
       <div className={styles.SubscriptionNewsLetterFormInputElement}>
         <InputWithSubmitHandler
+          placeHolderInput={"E-mail"}
           className={styles.SubscriptionNewsLetterFormInputElementModifier}
           btnType={"btn-secondary"}
         />
