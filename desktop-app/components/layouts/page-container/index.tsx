@@ -3,6 +3,7 @@ import Maybe from "react-app/src/components/common/helpers/maybe";
 import { TopBar } from "../topbar";
 import FooterPage from "../footer-page";
 import styles from "./styles.module.scss";
+import CouponBanner from "desktop-app/components/containers/coupon-banner";
 
 type PageContainerProps = {
   showTopBar?: boolean;
@@ -17,11 +18,13 @@ const PageContainer = ({
 }: PageContainerProps) => {
   return (
     <div className={styles.PageContainer}>
+      <div className={styles.CouponBannerSection}>
+        <CouponBanner />
+      </div>
       <Maybe it={showTopBar}>
         <TopBar />
       </Maybe>
       <div className={styles.PageContainerChildren}>{children}</div>
-
       <Maybe it={showFooter}>
         {" "}
         <FooterPage></FooterPage>
