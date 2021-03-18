@@ -1,6 +1,8 @@
 import { CelebrityCard } from "desktop-app/components/common/cards/celebrity-card";
+import InputWithSubmitHandler from "desktop-app/components/common/form/InputWithSubmitHandler";
 import HeroSection from "desktop-app/components/home/hero-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
+import SearchBarHomePage from "desktop-app/components/layouts/search-bar-home-page";
 import { Button } from "react-bootstrap";
 import styles from "./styles.module.scss";
 
@@ -9,6 +11,9 @@ function HomePage() {
     <PageContainer showFooter={true} showTopBar={true}>
       <HeroSection />
       <div className="container mt-4">
+        <div className="mb-4">
+          <SearchBarHomePage />
+        </div>
         <CelebrityCard />
       </div>
       <section className={"mb-5" + " " + styles.section}>
