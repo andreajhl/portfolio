@@ -1,3 +1,5 @@
+@import "../../../styles.scss";
+
 .Footer{
     background: rgba(0, 0, 0, 1);
     width: 100%;
@@ -7,37 +9,39 @@
     margin: 0 auto;
     min-height: 321px;
     display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
     flex-flow: row wrap;
 }
 
 .FooterContainerSectionForm{
-    flex: 1 1 50%;
+    flex: 1 1 30%;
     display: flex;
     flex-flow: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .FooterContainerSectionFormElements{
     display: flex;
     flex-flow: column;
-
 }
+
+
 .FooterContainerSectionFormElements div:first-of-type {
     margin-bottom: 20px;
 }
 .FooterContainerSectionAppsLinks{
     flex: 1 1 50%;
     display: flex;
+    justify-content: center;
+}
 
-}
-.FooterContainerSectionAppsLinks div:first-of-type {
-    margin-top: 20px;
-}
 .FooterContainerSectionGeneralLinks{
     display: flex;
+    padding-top: 30px;
+    padding-bottom: 30px;
     flex-flow: row wrap;
     justify-content: space-between;
+    align-items: CENTER;
     width: 100%;
 }
 .FooterContainerSectionGeneralLinks >  div:first-child{
@@ -54,7 +58,10 @@
 }
 
 .FooterCopyright{
+    display: flex;
+    align-items: center;
     span{
-        color: white;
+        font-size: 10px;
+        color: var(--gray-3);
     }
 }
