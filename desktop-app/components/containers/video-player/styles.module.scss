@@ -1,0 +1,13 @@
+.VideoCard{    
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.VideoPoster, .VideoElement, .VideoCard{
+    height: 350px;
+    width: 263px;
+    border-radius: 10px;
+}
+.VideoElement,.VideoPoster{
+    object-fit: cover !important;
+}
