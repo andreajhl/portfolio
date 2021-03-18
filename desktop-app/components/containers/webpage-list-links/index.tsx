@@ -4,8 +4,8 @@ const WebPageListLinks = () => {
   return (
     <ul className={styles.WebPageListLinks}>
       <li>Preguntas Frecuentes</li>
-      <li>Terminos y Condiciones</li>
-      <li>Politica y Privacidad</li>
+      <li>Términos y Condiciones</li>
+      <li>Política y Privacidad</li>
       <li>Ayuda</li>
       <li>Blog</li>
       <li>Prensa</li>
