@@ -5,6 +5,8 @@ import SearchBarSection from "desktop-app/components/home/search-bar-section";
 import { Button } from "react-bootstrap";
 import styles from "./styles.module.scss";
 import { CategoryCard } from "desktop-app/components/common/cards/category";
+import VideoPlayer from "desktop-app/components/containers/video-player";
+import ContractVideo from "desktop-app/components/layouts/contract-video";
 
 function HomePage() {
   return (
@@ -15,6 +17,11 @@ function HomePage() {
           <SearchBarSection />
         </div>
         <CelebrityCard />
+        <div className="d-flex justify-content-around flex-wrap">
+          <div>
+            <ContractVideo></ContractVideo>
+          </div>
+        </div>
         <CategoryCard
           category={{
             title: "Músicos",
