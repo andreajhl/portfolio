@@ -1,4 +1,5 @@
 import { celebrityType } from "desktop-app/types/celebrityType";
+import { LikeButton } from "../../button/like";
 import OptimizedImage from "../../helpers/optimized-image";
 import PriceLayout from "../../helpers/price-layout";
 import { Link } from "../../routing/link";
@@ -41,6 +42,15 @@ function CelebrityCard({ celebrity = testCelebrity }: CelebrityCardProps) {
           src={celebrity.avatar}
           className={styles.CelebrityCardAvatar}
         />
+        <div className={styles.CelebrityCardThumbnailFooter}>
+          <span className={styles.CelebrityCardCategory}>
+            {celebrity.title}
+          </span>
+          <LikeButton />
+        </div>
+        {/* <div className={styles.CelebrityCardThumbnailHeader}>
+          <span className={styles.CelebrityCardDiscountPercentage}>-40%</span>
+        </div> */}
       </div>
       <div className={styles.CelebrityCardInfo}>
         <h4 className={styles.CelebrityCardHeading}>

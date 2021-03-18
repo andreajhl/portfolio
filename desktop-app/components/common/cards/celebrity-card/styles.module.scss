@@ -1,10 +1,50 @@
 .CelebrityCard {
   width: 170px;
   &Thumbnail {
+    position: relative;
     height: 210px;
     width: 100%;
     border-radius: 10px;
     overflow: hidden;
+
+    &Footer,
+    &Header {
+      position: absolute;
+      padding: 0.5rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &Header {
+      top: 0;
+    }
+
+    &Footer {
+      bottom: 0;
+    }
+  }
+
+  &Category {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 0.33333em 0.5em;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border-radius: 5px;
+  }
+
+  &Discount {
+    &Percentage {
+      font-size: 14px;
+      padding: 0.33333em 0.5em;
+      background: #ff3844;
+      border-radius: 5px;
+      color: white;
+      margin-left: auto;
+    }
   }
 
   &Avatar {

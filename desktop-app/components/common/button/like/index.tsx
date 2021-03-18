@@ -39,7 +39,7 @@ const LikeButton = ({
   return (
     <img
       src={isFavorite !== isHovering ? filledImageSource : outlinedImageSource}
-      className={`like-icon cursor-pointer ${className}`}
+      className={`cursor-pointer ${className}`}
       style={{ width, height }}
       onMouseOver={addIsHovering}
       onMouseLeave={removeIsHovering}
