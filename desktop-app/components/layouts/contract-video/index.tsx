@@ -28,8 +28,9 @@ const testCelebrity = {
   availableForFlashDeliveries: false,
   availableForSubscriptions: false,
   videoPosterUrl:
-    "https://d3dxo4xx2lwk55.cloudfront.net/videos/941/14118/famosos-videos-personalizados-sabrinasabrok-202102122322-7467880-14118-crf-video-poster480.jpg",
-  videoUrl: "/assets/felipe.mp4",
+    "https://d3dxo4xx2lwk55.cloudfront.net/videos/557/14909/famosos-videos-personalizados-felipepelaez-202102190320-6000872-14909-crf-video-poster480.jpg",
+  videoUrl:
+    "https://d3dxo4xx2lwk55.cloudfront.net/videos/557/14909/famosos-videos-personalizados-felipepelaez-202102190320-6000872-14909-crf-video-watermark480.mp4",
   occasion: ""
 };
 const ContractVideo = ({ celebrity = testCelebrity, style, className }) => {
@@ -125,7 +126,7 @@ const ContractVideo = ({ celebrity = testCelebrity, style, className }) => {
           alt="Avatar de Famoso"
         ></img>
         <span className={`${styles.CelebrityName} text-with-ellipsis`}>
-          Nombre de Celebrity Nombre de Celebrity Nombre de Celebrity
+          {testCelebrity.fullName}
         </span>
       </div>
     </div>
