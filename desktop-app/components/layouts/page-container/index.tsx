@@ -1,7 +1,7 @@
 import React from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { TopBar } from "../topbar";
-// import FooterPage from "../footer-page";
+import FooterPage from "../footer-page";
 import styles from "./styles.module.scss";
 
 type PageContainerProps = {
@@ -21,7 +21,9 @@ const PageContainer = ({
         <TopBar />
       </Maybe>
       <div className={styles.PageContainerChildren}>{children}</div>
-      <Maybe it={showFooter}>{/* <FooterPage></FooterPage> */}</Maybe>
+      <Maybe it={showFooter}>
+        <FooterPage></FooterPage>
+      </Maybe>
     </div>
   );
 };
