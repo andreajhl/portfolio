@@ -1,0 +1,9 @@
+.ReelSection {
+  position: relative;
+  display: flex;
+
+  &Button {
+    position: absolute;
+    z-index: 2;
+  }
+}

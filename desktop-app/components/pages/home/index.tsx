@@ -5,9 +5,8 @@ import SearchBarSection from "desktop-app/components/home/search-bar-section";
 import { Button } from "react-bootstrap";
 import styles from "./styles.module.scss";
 import { CategoryCard } from "desktop-app/components/common/cards/category";
-import VideoPlayer from "desktop-app/components/containers/video-player";
+import ReelSection from "desktop-app/components/layouts/reel-section";
 import ContractVideo from "desktop-app/components/layouts/contract-video";
-
 function HomePage() {
   return (
     <PageContainer showFooter={true} showTopBar={true}>
@@ -16,12 +15,22 @@ function HomePage() {
         <div className="mb-4">
           <SearchBarSection />
         </div>
+        <ReelSection height={288} itemSize={186} itemCount={15}>
+          {({ style }) => (
+            <div style={style}>
+              <CelebrityCard />
+            </div>
+          )}
+        </ReelSection>
         <CelebrityCard />
-        <div className="d-flex justify-content-around flex-wrap">
-          <div>
-            <ContractVideo></ContractVideo>
-          </div>
-        </div>
+        <ReelSection height={350} itemSize={290} itemCount={15}>
+          {({ style }) => (
+            <div style={style}>
+              <ContractVideo />
+            </div>
+          )}
+        </ReelSection>
+        <div className="d-flex justify-content-around flex-wrap"></div>
         <CategoryCard
           category={{
             title: "Músicos",
