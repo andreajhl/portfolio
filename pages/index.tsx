@@ -1,11 +1,15 @@
-import { useEffect } from "react";
+import isMobile from "lib/utils/isMobile";
 import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
 import { wrapper } from "react-app/src/state/store";
-import isMobile from "../lib/utils/isMobile";
+
+const HomePage = dynamic(() =>
+  import("desktop-app/components/pages/home").then((mod) => mod.HomePage)
+);
 
 const CelebritiesPage = dynamic<{ isMobile: boolean }>(() =>
   import("react-app/src/components/pages/celebrities").then(
@@ -13,16 +17,12 @@ const CelebritiesPage = dynamic<{ isMobile: boolean }>(() =>
   )
 );
 
-const HomePage = dynamic(() =>
-  import("desktop-app/components/pages/home").then((mod) => mod.HomePage)
-);
-
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ req, store }) => {
-    await fetchCelebritySections({ limit: 4, offset: 0 })(store.dispatch);
+    // await fetchCelebritySections({ limit: 4, offset: 0 })(store.dispatch);
     return {
       props: {
-        isMobile: isMobile(req)
+        isMobile: isMobile(req.headers["user-agent"])
       }
     };
   }

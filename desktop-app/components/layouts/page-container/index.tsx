@@ -5,14 +5,14 @@ import FooterPage from "../footer-page";
 import styles from "./styles.module.scss";
 
 type PageContainerProps = {
-  showTopBar: boolean;
-  showFooter: boolean;
+  showTopBar?: boolean;
+  showFooter?: boolean;
   children: React.ReactNode;
 };
 
 const PageContainer = ({
   showTopBar = true,
-  showFooter,
+  showFooter = true,
   children
 }: PageContainerProps) => {
   return (
@@ -21,7 +21,9 @@ const PageContainer = ({
         <TopBar />
       </Maybe>
       <div className={styles.PageContainerChildren}>{children}</div>
+
       <Maybe it={showFooter}>
+        {" "}
         <FooterPage></FooterPage>
       </Maybe>
     </div>

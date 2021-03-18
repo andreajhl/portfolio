@@ -1,0 +1,85 @@
+.HeroSection {
+  background-color: var(--dark);
+  height: 278px;
+  position: relative;
+
+  * {
+    color: var(--light);
+  }
+
+  &Header {
+    height: 278px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  & &Title {
+    font-size: 40px;
+    margin-bottom: 1.5rem;
+
+    span {
+      &::after {
+        animation: change-word 2s linear infinite;
+        content: "";
+      }
+    }
+
+    @keyframes change-word {
+      0% {
+        content: "actores";
+      }
+      100% {
+        content: "futbolistas";
+      }
+    }
+  }
+
+  & &Copy {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    line-height: 1.3125rem;
+  }
+
+  & &Steps {
+    margin: 0;
+    display: flex;
+    list-style: none;
+    text-indent: 0;
+    padding: 0;
+    justify-content: space-between;
+
+    li {
+      text-align: center;
+      font-size: 12px;
+
+      i {
+        margin-bottom: 0.5em;
+        color: var(--secondary);
+      }
+    }
+  }
+
+  &Content {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    img {
+      object-fit: cover;
+    }
+
+    img:first-child {
+      height: 278px;
+      width: 157px;
+      margin-right: 0.5rem;
+    }
+
+    img:last-child {
+      height: 278px;
+      width: 530px;
+    }
+  }
+}

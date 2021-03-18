@@ -1,0 +1,47 @@
+.CelebrityCard {
+  width: 170px;
+  &Thumbnail {
+    height: 210px;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  &Avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &Info {
+    padding: 6px 0;
+  }
+
+  &Heading {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+
+    span {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 22px;
+    }
+  }
+
+  &Hashtags {
+    font-size: 14px;
+    line-height: 19px;
+    margin: 0;
+
+    * {
+      transition: 0.15s ease all;
+      color: var(--gray-4) !important;
+      text-decoration: none !important;
+
+      &:hover {
+        color: var(--dark) !important;
+      }
+    }
+  }
+}

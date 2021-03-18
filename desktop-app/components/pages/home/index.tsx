@@ -1,20 +1,16 @@
+import { CelebrityCard } from "desktop-app/components/common/cards/celebrity-card";
+import HeroSection from "desktop-app/components/home/hero-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { Button } from "react-bootstrap";
 import styles from "./styles.module.scss";
 
 function HomePage() {
   return (
-    <PageContainer showTopBar={true} showFooter={true}>
-      <header className={styles.header}>
-        <div className={"container " + styles.headerContainer}>
-          <h1 className={styles.headerTitle}>Guía de estilos</h1>{" "}
-          <img
-            className={styles.headerImg}
-            src="/assets/img/famosos-logo-light.svg"
-            alt="Logo"
-          />
-        </div>
-      </header>
+    <PageContainer showFooter={true} showTopBar={true}>
+      <HeroSection />
+      <div className="container mt-4">
+        <CelebrityCard />
+      </div>
       <section className={"mb-5" + " " + styles.section}>
         <div className="container">
           <header className={styles.sectionHeader}>
@@ -84,7 +80,6 @@ function HomePage() {
           <Button variant="tertiary">Tertiary</Button>
         </div>
       </section>
-      <div>Hello desktop</div>
     </PageContainer>
   );
 }

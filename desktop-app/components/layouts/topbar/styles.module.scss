@@ -1,10 +1,19 @@
 .TopBar {
+  height: 58px;
   background-color: var(--dark);
+
+  &Logo {
+    width: 111px;
+    height: 22px;
+    position: relative;
+    top: -4px;
+  }
 
   &Search {
     background-color: #323232;
     height: 32px;
     width: 324px;
+    margin-right: 18px;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -34,5 +43,25 @@
         color: var(--primary);
       }
     }
+  }
+
+  &Options {
+    margin-right: 1.125rem !important;
+    & > * {
+      margin-right: 1rem;
+    }
+
+    & > *:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.Dropdown {
+  &Menu {
+    position: absolute;
+    inset: 0px auto auto 0px;
+    margin: 0px;
+    transform: translate(0px, 42px);
   }
 }
