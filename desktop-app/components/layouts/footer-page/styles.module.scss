@@ -1,0 +1,60 @@
+.Footer{
+    background: rgba(0, 0, 0, 1);
+    width: 100%;
+}
+.FooterContainer {
+    max-width: 1280px;
+    margin: 0 auto;
+    min-height: 321px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.FooterContainerSectionForm{
+    flex: 1 1 50%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.FooterContainerSectionFormElements{
+    display: flex;
+    flex-flow: column;
+
+}
+.FooterContainerSectionFormElements div:first-of-type {
+    margin-bottom: 20px;
+}
+.FooterContainerSectionAppsLinks{
+    flex: 1 1 50%;
+    display: flex;
+
+}
+.FooterContainerSectionAppsLinks div:first-of-type {
+    margin-top: 20px;
+}
+.FooterContainerSectionGeneralLinks{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+.FooterContainerSectionGeneralLinks >  div:first-child{
+    flex: 0 1 70%;
+}
+
+.FooterContainerSectionGeneralLinks >  div:nth-child(2){
+    flex: 0 1 10%;
+}
+.FooterContainerSectionMetaPage{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.FooterCopyright{
+    span{
+        color: white;
+    }
+}
