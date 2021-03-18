@@ -23,7 +23,7 @@ function HomePage() {
           )}
         </ReelSection>
         <CelebrityCard />
-        <ReelSection height={350} itemSize={290} itemCount={15}>
+        <ReelSection height={400} itemSize={290} itemCount={15}>
           {({ style }) => (
             <div style={style}>
               <ContractVideo />
