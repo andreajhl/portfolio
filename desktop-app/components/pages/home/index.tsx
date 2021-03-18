@@ -1,9 +1,10 @@
-import { CelebrityCard } from "desktop-app/components/common/cards/celebrity-card";
+import { CelebrityCard } from "desktop-app/components/common/cards/celebrity";
 import HeroSection from "desktop-app/components/home/hero-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import SearchBarSection from "desktop-app/components/home/search-bar-section";
 import { Button } from "react-bootstrap";
 import styles from "./styles.module.scss";
+import { CategoryCard } from "desktop-app/components/common/cards/category";
 
 function HomePage() {
   return (
@@ -14,6 +15,13 @@ function HomePage() {
           <SearchBarSection />
         </div>
         <CelebrityCard />
+        <CategoryCard
+          category={{
+            title: "Músicos",
+            image: "/assets/img/musicos.png",
+            url: "/"
+          }}
+        />
       </div>
       <section className={"mb-5" + " " + styles.section}>
         <div className="container">
