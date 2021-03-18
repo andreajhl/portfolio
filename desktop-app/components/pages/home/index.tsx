@@ -5,6 +5,7 @@ import SearchBarSection from "desktop-app/components/home/search-bar-section";
 import { Button } from "react-bootstrap";
 import styles from "./styles.module.scss";
 import { CategoryCard } from "desktop-app/components/common/cards/category";
+import ReelSection from "desktop-app/components/layouts/reel-section";
 
 function HomePage() {
   return (
@@ -14,6 +15,13 @@ function HomePage() {
         <div className="mb-4">
           <SearchBarSection />
         </div>
+        <ReelSection height={288} itemSize={186} itemCount={15}>
+          {({ style }) => (
+            <div style={style}>
+              <CelebrityCard />
+            </div>
+          )}
+        </ReelSection>
         <CelebrityCard />
         <CategoryCard
           category={{
