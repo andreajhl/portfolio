@@ -13,15 +13,20 @@ type CategoryCardProps = {
 
 function CategoryCard({ category }: CategoryCardProps) {
   return (
-    <Link href={category.url} className={styles.CategoryCard}>
-      <img
-        className={styles.CategoryCardImage}
-        src={category.image}
-        alt={`Categoría "${category.title}"`}
-      />
-      <div className={styles.CategoryCardOverlay}>
-        <span className={styles.CategoryCardTitle}>{category.title}</span>
-      </div>
+    <Link
+      href={category.url}
+      className={styles.CategoryCard}
+      style={{
+        backgroundImage: `linear-gradient(
+          90deg,
+          #000000 10.94%,
+          rgba(255, 255, 255, 0) 100%
+        ),
+        url("${category.image}")`
+      }}
+      title={`Ir a categoría "${category.title}"`}
+    >
+      <span className={styles.CategoryCardTitle}>{category.title}</span>
     </Link>
   );
 }
