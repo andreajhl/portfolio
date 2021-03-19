@@ -19,7 +19,7 @@ const CelebritiesPage = dynamic<{ isMobile: boolean }>(() =>
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ req, store }) => {
-    // await fetchCelebritySections({ limit: 4, offset: 0 })(store.dispatch);
+    await fetchCelebritySections({ limit: 4, offset: 0 })(store.dispatch);
     return {
       props: {
         isMobile: isMobile(req.headers["user-agent"])

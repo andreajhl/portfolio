@@ -9,29 +9,7 @@ type CelebrityCardProps = {
   celebrity: celebrityType;
 };
 
-const testCelebrity = {
-  id: 1200,
-  fullName: "Alexis Ayala Testing",
-  username: "alexisayala",
-  avatar: "https://via.placeholder.com/600/19f9f0",
-  mainVideo:
-    "https://dqb0851cl2gjs.cloudfront.net/main-videos/1200/famosos-videos-personalizados-alexisayala-crf-video480.mp4",
-  hashtags: ["Actor", "CDMX"],
-  title: "Actores",
-  categoryId: 4,
-  videoMessagePrice: 12,
-  countryCode: "MEX",
-  countryId: 25,
-  countryName: "Mexico",
-  showSimilarCelebrities: false,
-  availableForFlashDeliveries: false,
-  availableForSubscriptions: false,
-  videoPosterUrl: "",
-  videoUrl: "",
-  occasion: ""
-};
-
-function CelebrityCard({ celebrity = testCelebrity }: CelebrityCardProps) {
+function CelebrityCard({ celebrity }: CelebrityCardProps) {
   return (
     <div className={styles.CelebrityCard}>
       <div className={styles.CelebrityCardThumbnail}>
@@ -114,7 +92,7 @@ function CelebrityCard({ celebrity = testCelebrity }: CelebrityCardProps) {
           </svg>
           <span className="text-with-ellipsis">{celebrity.fullName}</span>
         </h4>
-        <p className={styles.CelebrityCardHashtags}>
+        <p className={"text-with-ellipsis " + styles.CelebrityCardHashtags}>
           {celebrity.hashtags.map((hashtag) => (
             <Link href={hashtag}>#{hashtag} </Link>
           ))}
