@@ -1,8 +1,13 @@
-.SocialNetWorksWebPage{
-    display: flex;
-    justify-content: space-around;
-    i {
-        color: white;
-        font-size: 20px;
+@import "../../../styles.scss";
+.SocialNetWorksWebPage {
+  display: flex;
+  justify-content: space-around;
+  i {
+    color: white;
+    font-size: 20px;
+    transition: 0.15s ease all;
+    &:hover {
+      color: var(--primary);
     }
+  }
 }
