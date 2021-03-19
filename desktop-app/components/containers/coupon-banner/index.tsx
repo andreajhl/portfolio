@@ -51,7 +51,6 @@ const CouponBanner = ({
     if (!dateFinish) return;
     const timer = setTimeout(() => {
       const hasTimeDifference = dateFinish.diff(moment()) > 0;
-      console.log(hasTimeDifference);
       // setShowCouponBanner(hasTimeDifference);
       if (!hasTimeDifference) return setTimeDifference(null);
       const timeDifference = calculateDateDifference(
@@ -68,7 +67,7 @@ const CouponBanner = ({
   }, [dateFinish, timeDifference, setTimeDifference]);
 
   const dateDifferenceMoment = moment(timeDifference, "hh:mm:ss");
-  return (
+  return timeDifference ? (
     <div className={`${styles.CouponBanner}`}>
       <div>
         <span>
@@ -78,11 +77,11 @@ const CouponBanner = ({
       <div>
         <span>
           LA OFERTA FINALIZA EN {dateDifferenceMoment.minutes() || 0} M{" "}
-          {dateDifferenceMoment.seconds() || 0} :
+          {dateDifferenceMoment.seconds() || 0} S
         </span>
       </div>
     </div>
-  );
+  ) : null;
 };
 const mapStateToProps = ({ discountCoupons }) => {
   const timeDifference = discountCoupons.timeDifferenceReducer;
