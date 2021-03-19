@@ -1,12 +1,17 @@
-.AppLinksBannerContainer{
-    p{
-        color: white;
-        font-size: 14px;
+.AppLinksBannerContainer {
+  display: flex;
+  flex-flow: column;
+  p {
+    color: white;
+    font-size: 14px;
+  }
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    img:not(:first-child) {
+      margin-left: 18px;
     }
-    div {
-        margin-top: 30px;
-        img:not(:first-child){
-            margin-left: 18px;
-        }
-    }
+  }
 }
