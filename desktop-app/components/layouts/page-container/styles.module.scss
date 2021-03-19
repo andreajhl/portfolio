@@ -1,8 +1,10 @@
+@import "../../../styles.scss";
 .PageContainerChildren {
   width: 100%;
 }
-.CouponBannerSection{
+.CouponBannerSection {
   position: sticky;
   top: 0;
   z-index: 100;
+  background-color: rgba(255, 56, 68, 1);
 }
