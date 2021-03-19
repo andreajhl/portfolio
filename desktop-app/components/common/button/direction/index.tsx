@@ -27,12 +27,14 @@ function DirectionButton({
   onClick = noop,
   style = defaultButtonsStyle
 }: DirectionButtonProps) {
+  const width = style?.size || defaultButtonStylesSize;
+  delete style?.size;
   return (
     <button
       type="button"
       className={`${styles.DirectionButton} ${className}`}
       onClick={onClick}
-      style={style}
+      style={{ ...style, width, height: width }}
     >
       <i className={`fa fa-caret-${direction}`} />
     </button>

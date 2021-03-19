@@ -1,5 +1,6 @@
+import { ReactNode } from "react";
+import classes from "classnames";
 import { Link } from "desktop-app/components/common/routing/link";
-import { Children, ReactNode } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import Reel, { ReelProps } from "../reel";
 import styles from "./styles.module.scss";
@@ -10,6 +11,7 @@ type CardsReelSectionProps = ReelProps & {
   showHeader?: boolean;
   title?: ReactNode;
   children: Render;
+  className?: string;
   gap?: number;
 };
 
@@ -19,9 +21,8 @@ const getRenderColumn = (renderFn: Render, gap: number) => ({
   style
 }) => {
   const currentData = data[index];
-  const isLastItem = index >= data.length - 1;
   return (
-    <div style={isLastItem ? { ...style, width: style.width - gap } : style}>
+    <div style={{ ...style, left: style.left + gap * index }}>
       {renderFn(currentData)}
     </div>
   );
@@ -34,12 +35,13 @@ function CardsReelSection({
   title = null,
   children: render,
   gap = OneRemInPixels,
+  className = "",
   itemWidth,
   itemHeight,
   ...reelProps
 }: CardsReelSectionProps) {
   return (
-    <section className={styles.CardsReelSection}>
+    <section className={classes(styles.CardsReelSection, className)}>
       <Maybe it={showHeader}>
         <header className={styles.CardsReelSectionHeader}>
           <Maybe it={typeof title === "string"} orElse={title}>
@@ -50,7 +52,7 @@ function CardsReelSection({
           </Link>
         </header>
       </Maybe>
-      <Reel itemSize={itemWidth + gap} height={itemHeight} {...reelProps}>
+      <Reel itemSize={itemWidth} height={itemHeight} {...reelProps}>
         {getRenderColumn(render, gap)}
       </Reel>
     </section>
