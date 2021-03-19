@@ -2,7 +2,6 @@ import HeroSection from "desktop-app/components/home/hero-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import SearchBarSection from "desktop-app/components/home/search-bar-section";
 import { CategoryCard } from "desktop-app/components/common/cards/category";
-import CelebritiesSection from "desktop-app/components/layouts/celebrities-sections";
 
 function HomePage() {
   return (
@@ -12,8 +11,6 @@ function HomePage() {
         <div className="mb-4">
           <SearchBarSection />
         </div>
-
-        <CelebritiesSection></CelebritiesSection>
 
         <div className="d-flex justify-content-around flex-wrap"></div>
         <CategoryCard
