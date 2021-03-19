@@ -11,7 +11,7 @@ type CelebrityCardProps = {
 
 function CelebrityCard({ celebrity }: CelebrityCardProps) {
   return (
-    <div className={styles.CelebrityCard}>
+    <Link href={"/" + celebrity.username} className={styles.CelebrityCard}>
       <div className={styles.CelebrityCardThumbnail}>
         <OptimizedImage
           placeholderSrc="/assets/img/avatar-blank.png"
@@ -24,7 +24,14 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           <span className={styles.CelebrityCardCategory}>
             {celebrity.title}
           </span>
-          <LikeButton />
+          <LikeButton
+            onClick={(event) => {
+              if (event.stopPropagation) {
+                event.stopPropagation();
+                event.preventDefault();
+              }
+            }}
+          />
         </div>
         {/* <div className={styles.CelebrityCardThumbnailHeader}>
           <span className={styles.CelebrityCardDiscountPercentage}>-40%</span>
@@ -101,7 +108,7 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           <PriceLayout decimalScale={0} price={celebrity.videoMessagePrice} />
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
 

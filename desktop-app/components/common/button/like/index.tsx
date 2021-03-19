@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function noop() {}
+function noop(event: any) {}
 
 export type LikeButtonProps = {
   isFavorite?: boolean;

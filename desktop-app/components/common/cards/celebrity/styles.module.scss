@@ -1,5 +1,8 @@
 .CelebrityCard {
   width: 170px;
+  &:hover {
+    text-decoration: none;
+  }
   &Thumbnail {
     position: relative;
     height: 210px;
