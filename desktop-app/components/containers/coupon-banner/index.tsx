@@ -70,14 +70,17 @@ const CouponBanner = ({
   return timeDifference ? (
     <div className={`${styles.CouponBanner}`}>
       <div>
-        <span>
+        <span className={styles.CouponBannerInfo}>
           ¡{discount}% de descuento en tus videomensajes! Cupón: {coupon}
         </span>
       </div>
       <div>
-        <span>
-          LA OFERTA FINALIZA EN {dateDifferenceMoment.minutes() || 0} M{" "}
-          {dateDifferenceMoment.seconds() || 0} S
+        <span className={styles.CouponBannerTimer}>
+          LA OFERTA FINALIZA EN{" "}
+          <span className={styles.CouponBannerTimerCount}>
+            {dateDifferenceMoment.minutes() || 0} M{" "}
+            {dateDifferenceMoment.seconds() || 0} S
+          </span>
         </span>
       </div>
     </div>
