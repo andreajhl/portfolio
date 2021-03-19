@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function noop(event: any) {}
+function noop() {}
 
 export type LikeButtonProps = {
   isFavorite?: boolean;
@@ -10,7 +10,7 @@ export type LikeButtonProps = {
   width?: string;
   height?: string;
   onHovering?: typeof noop;
-  onClick?: typeof noop;
+  onClick?: (event: any) => void;
   alternativeText?: string;
 };
 

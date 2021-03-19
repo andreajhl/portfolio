@@ -3,14 +3,15 @@ import { CelebrityCard } from "desktop-app/components/common/cards/celebrity";
 import ContractVideo from "desktop-app/components/common/cards/contract-video";
 import { CelebritySectionType } from "desktop-app/types/celebritySectionType";
 import React from "react";
-import { CardsReelSection } from "../cards-section-reel";
-import { ReelProps } from "../reel";
+import { CardsReelSection, CardsReelSectionProps } from "../cards-section-reel";
 
 type CelebritiesSectionProps = {
   celebritySection: CelebritySectionType;
 };
 
-const celebrityTypeReelProps: { [key: string]: ReelProps } = {
+const celebrityTypeReelProps: {
+  [key: string]: Omit<CardsReelSectionProps, "itemCount">;
+} = {
   CELEBRITY_CARD: {
     itemWidth: 170,
     itemHeight: 288,

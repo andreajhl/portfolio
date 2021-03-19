@@ -21,8 +21,8 @@ function Reel({
   listClassName,
   buttonsStyle = { size: 35, top: "50%" }
 }: ReelProps) {
-  const containerRef = useRef();
-  const listRef = useRef();
+  const containerRef = useRef<HTMLDivElement>();
+  const listRef = useRef<HTMLDivElement>();
   const [containerWidth, setContainerWidth] = useState(1140);
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(false);
   const [showRightScrollButton, setShowRightScrollButton] = useState(false);
@@ -43,20 +43,20 @@ function Reel({
   }, []);
 
   const setScrollButtonsVisibility = debounce(() => {
-    const { scrollLeft, offsetWidth, scrollWidth } = listRef.current._outerRef;
+    const { scrollLeft, offsetWidth, scrollWidth } = listRef.current;
     setShowLeftScrollButton(scrollLeft !== 0);
     setShowRightScrollButton(scrollLeft + offsetWidth !== scrollWidth);
   }, 100);
 
   useEffect(() => {
-    const cardListElement = listRef.current._outerRef;
+    const cardListElement = listRef.current;
     setShowRightScrollButton(
       cardListElement.scrollWidth > cardListElement.offsetWidth
     );
   }, []);
 
   const scrollTo = (direction: "right" | "left") => () => {
-    const listElement = listRef.current._outerRef;
+    const listElement = listRef.current;
     const { offsetWidth } = listElement;
     listElement.scrollBy({
       left: direction === "right" ? offsetWidth : offsetWidth * -1,
@@ -77,7 +77,7 @@ function Reel({
         />
       </Maybe>
       <FixedSizeList
-        ref={listRef}
+        outerRef={listRef}
         width={containerWidth}
         layout="horizontal"
         onScroll={setScrollButtonsVisibility}

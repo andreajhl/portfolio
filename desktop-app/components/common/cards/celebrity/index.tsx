@@ -1,3 +1,4 @@
+import { getCelebrityProfilePath } from "constants/paths";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { LikeButton } from "../../button/like";
 import OptimizedImage from "../../helpers/optimized-image";
@@ -11,7 +12,10 @@ type CelebrityCardProps = {
 
 function CelebrityCard({ celebrity }: CelebrityCardProps) {
   return (
-    <Link href={"/" + celebrity.username} className={styles.CelebrityCard}>
+    <Link
+      href={getCelebrityProfilePath(celebrity.username)}
+      className={styles.CelebrityCard}
+    >
       <div className={styles.CelebrityCardThumbnail}>
         <OptimizedImage
           placeholderSrc="/assets/img/avatar-blank.png"
@@ -24,14 +28,7 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           <span className={styles.CelebrityCardCategory}>
             {celebrity.title}
           </span>
-          <LikeButton
-            onClick={(event) => {
-              if (event.stopPropagation) {
-                event.stopPropagation();
-                event.preventDefault();
-              }
-            }}
-          />
+          <LikeButton />
         </div>
         {/* <div className={styles.CelebrityCardThumbnailHeader}>
           <span className={styles.CelebrityCardDiscountPercentage}>-40%</span>
@@ -105,7 +102,11 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           ))}
         </p>
         <p className={styles.CelebrityCardPrice}>
-          <PriceLayout decimalScale={0} price={celebrity.videoMessagePrice} />
+          <PriceLayout
+            currencyData={{ to: "USD" }}
+            decimalScale={0}
+            price={celebrity.videoMessagePrice}
+          />
         </p>
       </div>
     </Link>
