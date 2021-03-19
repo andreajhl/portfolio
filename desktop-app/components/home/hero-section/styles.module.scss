@@ -1,14 +1,19 @@
 .HeroSection {
+  font-size: 16px;
   background-color: var(--dark);
-  height: 278px;
+  height: 17.375em;
   position: relative;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: 1.25vw;
+  }
 
   * {
     color: var(--light);
   }
 
   &Header {
-    height: 278px;
+    height: 17.375em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,8 +21,8 @@
   }
 
   & &Title {
-    font-size: 40px;
-    margin-bottom: 1.5rem;
+    font-size: 2.5em;
+    margin-bottom: 0.6em;
 
     span {
       &::after {
@@ -37,10 +42,10 @@
   }
 
   & &Copy {
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 500;
-    margin-bottom: 1.25rem;
-    line-height: 1.3125rem;
+    margin-bottom: 1.25em;
+    line-height: 1.3125em;
   }
 
   & &Steps {
@@ -53,7 +58,7 @@
 
     li {
       text-align: center;
-      font-size: 12px;
+      font-size: 0.75em;
 
       i {
         margin-bottom: 0.5em;
@@ -73,14 +78,14 @@
     }
 
     img:first-child {
-      height: 278px;
-      width: 157px;
-      margin-right: 0.5rem;
+      height: 17.375em;
+      width: 9.8125em;
+      margin-right: 0.5em;
     }
 
     img:last-child {
-      height: 278px;
-      width: 530px;
+      height: 17.375em;
+      width: 33.125em;
     }
   }
 }
