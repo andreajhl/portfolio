@@ -19,7 +19,7 @@ const celebrityTypeReelProps: { [key: string]: ReelProps } = {
       top: 105,
       transform: "translateY(-50%)"
     },
-    gap: 18,
+    gap: 22.5,
     children: (celebrity) => <CelebrityCard celebrity={celebrity} />
   },
   MAIN_VIDEO_1: {
@@ -30,7 +30,7 @@ const celebrityTypeReelProps: { [key: string]: ReelProps } = {
       top: 175,
       transform: "translateY(-50%)"
     },
-    gap: 19,
+    gap: 26.75,
     children: (celebrity) => <ContractVideo celebrity={celebrity} />
   },
   CATEGORY_CARD: {
@@ -41,7 +41,7 @@ const celebrityTypeReelProps: { [key: string]: ReelProps } = {
       top: 45,
       transform: "translateY(-50%)"
     },
-    gap: 12,
+    gap: 18,
     children: (category) => <CategoryCard category={category} />
   }
 };
