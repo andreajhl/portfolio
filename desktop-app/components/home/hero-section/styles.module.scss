@@ -26,17 +26,23 @@
 
     span {
       &::after {
-        animation: change-word 2s linear infinite;
-        content: "";
+        animation: change-word 5s linear infinite;
+        content: "músicos";
       }
     }
 
     @keyframes change-word {
       0% {
-        content: "actores";
+        content: "músicos";
+      }
+      33% {
+        content: "influencers";
+      }
+      66% {
+        content: "deportistas";
       }
       100% {
-        content: "futbolistas";
+        content: "actores";
       }
     }
   }
