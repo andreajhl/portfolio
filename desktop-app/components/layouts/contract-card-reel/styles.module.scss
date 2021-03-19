@@ -1,0 +1,21 @@
+.CelebrityContractCardReelDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  > p {
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 41px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: black;
+  }
+}
+.ShowMoreButton {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 19px;
+  letter-spacing: 0em;
+}
