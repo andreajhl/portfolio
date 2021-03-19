@@ -1,8 +1,7 @@
 import HeroSection from "desktop-app/components/home/hero-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import SearchBarSection from "desktop-app/components/home/search-bar-section";
-import { sections } from "constants/celebrities-sections";
-import InfinityCelebritySections from "desktop-app/components/home/infinity-celebrity-sections";
+import { InfinityCelebritySections } from "desktop-app/components/home/infinity-celebrity-sections";
 
 function HomePage() {
   return (
@@ -12,7 +11,7 @@ function HomePage() {
         <div className="mb-4">
           <SearchBarSection />
         </div>
-        <InfinityCelebritySections celebritiesSections={sections} />
+        <InfinityCelebritySections />
       </div>
     </PageContainer>
   );
