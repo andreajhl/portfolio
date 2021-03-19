@@ -1,13 +1,15 @@
-.CouponBanner{
-    display: flex;
-    align-items: center;
-    position: sticky;
-    min-height: 60px;
+.CouponBanner {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  min-height: 60px;
+  color: white;
+  margin: 0 auto;
+  background-color: rgba(255, 56, 68, 1);
+  justify-content: space-between;
+  max-width: 1140px;
+  div span,
+  div {
     color: white;
-    background-color: rgba(255,56,68,1);
-    justify-content: space-around;
-
-    div span, div{
-        color: white;
-    }
+  }
 }
