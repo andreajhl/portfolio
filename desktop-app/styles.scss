@@ -24,6 +24,7 @@
   --gray-1: #f6f6f6;
   --warning-lighten: #fff5ca;
   --font-family: Manrope;
+  --font-size-heading-1: 30px;
 
   .bg-gradient-primary {
     background: var(--primary-gradient);
@@ -43,7 +44,7 @@
   }
 
   h1 {
-    font-size: 30px;
+    font-size: var(--font-size-heading-1);
   }
   h2 {
     font-size: 20px;

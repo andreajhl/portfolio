@@ -1,0 +1,21 @@
+.CardsReelSection {
+  &Title {
+    font-size: var(--font-size-heading-1) !important;
+  }
+
+  &Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+
+    > * {
+      color: var(--dark) !important;
+      font-weight: bold;
+    }
+  }
+
+  &ShowMore {
+    margin-left: auto;
+  }
+}

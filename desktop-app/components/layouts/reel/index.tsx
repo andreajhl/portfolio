@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import debounce from "lodash.debounce";
 import { FixedSizeList, FixedSizeListProps } from "react-window";
 import styles from "./styles.module.scss";
@@ -7,12 +7,12 @@ import DirectionButton, {
   ButtonStyle
 } from "desktop-app/components/common/button/direction";
 
-type ReelProps = {
+export type ReelProps = {
   listClassName?: string;
   buttonsStyle?: ButtonStyle;
 } & Omit<FixedSizeListProps, "width">;
 
-function ReelSection({
+function Reel({
   height,
   itemSize,
   itemCount,
@@ -21,16 +21,16 @@ function ReelSection({
   listClassName,
   buttonsStyle = { size: 35, top: "50%" }
 }: ReelProps) {
-  const sectionRef = useRef();
+  const containerRef = useRef();
   const listRef = useRef();
-  const [sectionWidth, setSectionWidth] = useState(1140);
+  const [containerWidth, setContainerWidth] = useState(1140);
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(false);
   const [showRightScrollButton, setShowRightScrollButton] = useState(false);
 
   function updateSectionWidth() {
-    if (!sectionRef.current) return;
-    if (!sectionRef.current.offsetWidth) return;
-    setSectionWidth(sectionRef.current.offsetWidth);
+    if (!containerRef.current) return;
+    if (!containerRef.current.offsetWidth) return;
+    setContainerWidth(containerRef.current.offsetWidth);
   }
 
   useEffect(() => {
@@ -67,18 +67,18 @@ function ReelSection({
   const halfButtonSize = buttonsStyle.size / 2;
 
   return (
-    <section className={styles.ReelSection} ref={sectionRef}>
+    <div className={styles.Reel} ref={containerRef}>
       <Maybe it={showLeftScrollButton}>
         <DirectionButton
           onClick={scrollTo("left")}
           direction="left"
-          className={styles.ReelSectionButton}
+          className={styles.ReelButton}
           style={{ ...buttonsStyle, left: -halfButtonSize }}
         />
       </Maybe>
       <FixedSizeList
         ref={listRef}
-        width={sectionWidth}
+        width={containerWidth}
         layout="horizontal"
         onScroll={setScrollButtonsVisibility}
         height={height}
@@ -93,12 +93,12 @@ function ReelSection({
         <DirectionButton
           onClick={scrollTo("right")}
           direction="right"
-          className={styles.ReelSectionButton}
+          className={styles.ReelButton}
           style={{ ...buttonsStyle, right: -halfButtonSize }}
         />
       </Maybe>
-    </section>
+    </div>
   );
 }
 
-export default ReelSection;
+export default Reel;
