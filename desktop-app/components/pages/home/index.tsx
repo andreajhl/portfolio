@@ -7,6 +7,9 @@ import styles from "./styles.module.scss";
 import { CategoryCard } from "desktop-app/components/common/cards/category";
 import ReelSection from "desktop-app/components/layouts/reel-section";
 import ContractVideo from "desktop-app/components/layouts/contract-video";
+import CelebrityContractVideoReel from "desktop-app/components/layouts/contract-video-reel";
+import CelebrityContractCardReel from "desktop-app/components/layouts/contract-card-reel";
+import CelebritiesSection from "desktop-app/components/layouts/celebrities-sections";
 function HomePage() {
   return (
     <PageContainer showFooter={true} showTopBar={true}>
@@ -15,21 +18,9 @@ function HomePage() {
         <div className="mb-4">
           <SearchBarSection />
         </div>
-        <ReelSection height={288} itemSize={186} itemCount={15}>
-          {({ style }) => (
-            <div style={style}>
-              <CelebrityCard />
-            </div>
-          )}
-        </ReelSection>
-        <CelebrityCard />
-        <ReelSection height={400} itemSize={290} itemCount={15}>
-          {({ style }) => (
-            <div style={style}>
-              <ContractVideo />
-            </div>
-          )}
-        </ReelSection>
+
+        <CelebritiesSection></CelebritiesSection>
+
         <div className="d-flex justify-content-around flex-wrap"></div>
         <CategoryCard
           category={{
