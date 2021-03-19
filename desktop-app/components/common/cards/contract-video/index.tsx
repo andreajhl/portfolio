@@ -4,71 +4,63 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { useRef, useState } from "react";
 import { LikeButton } from "desktop-app/components/common/button/like";
+import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
+import useLoad from "react-app/src/utils/useLoad";
 
 type ContractVideoProps = {
-  celebrity?: celebrityType;
+  celebrity: celebrityType & {
+    videoUrl: string;
+    videoPosterUrl: string;
+  };
   className?: string;
   style?: object;
 };
-const testCelebrity = {
-  id: 1200,
-  fullName: "Alexis Ayala Testing",
-  username: "alexisayala",
-  avatar: "https://via.placeholder.com/600/19f9f0",
-  mainVideo:
-    "https://dqb0851cl2gjs.cloudfront.net/main-videos/1200/famosos-videos-personalizados-alexisayala-crf-video480.mp4",
-  hashtags: ["Actor", "CDMX"],
-  title: "Actores",
-  categoryId: 4,
-  videoMessagePrice: 12,
-  countryCode: "MEX",
-  countryId: 25,
-  countryName: "Mexico",
-  showSimilarCelebrities: false,
-  availableForFlashDeliveries: false,
-  availableForSubscriptions: false,
-  videoPosterUrl:
-    "https://d3dxo4xx2lwk55.cloudfront.net/videos/557/14909/famosos-videos-personalizados-felipepelaez-202102190320-6000872-14909-crf-video-poster480.jpg",
-  videoUrl:
-    "https://d3dxo4xx2lwk55.cloudfront.net/videos/557/14909/famosos-videos-personalizados-felipepelaez-202102190320-6000872-14909-crf-video-watermark480.mp4",
-  occasion: ""
-};
-const ContractVideo = ({ celebrity = testCelebrity, style, className }) => {
-  // TODO: Conectar con redux state para manejar reproducción de video
-  const videoRef = useRef<HTMLVideoElement>();
-  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
-  const playVideo = () => {
-    videoRef.current.play();
-    setVideoIsPlaying(true);
-  };
 
-  const pauseVideo = () => {
-    videoRef.current.pause();
-    setVideoIsPlaying(false);
-  };
-
-  const togglePlay = () => {
-    if (!videoIsPlaying) {
-      playVideo();
-    } else {
-      pauseVideo();
+const ContractVideo = ({
+  celebrity,
+  style = {},
+  className = ""
+}: ContractVideoProps) => {
+  const videoKey = `contract-video-${celebrity.videoUrl}`;
+  const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
+    onPlayVideo() {
+      // TODO: conectar GTM
+      console.log("onPlayVideo()");
+      // GTM.tagManagerDataLayer("PLAY_MAIN_VIDEO_SECTION", {
+      //   ...analyticsData,
+      //   videoIsPlaying: true
+      // });
+    },
+    onPauseVideo() {
+      // TODO: conectar GTM
+      console.log("onPauseVideo()");
+      // GTM.tagManagerDataLayer("PAUSE_MAIN_VIDEO_SECTION", {
+      //   ...analyticsData,
+      //   videoIsPlaying: false
+      // });
     }
-  };
+  });
+  const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
 
   return (
     <div className={styles.ContractVideo}>
       <div className={styles.ContractVideoMedia}>
-        <section onClick={togglePlay} className={styles.ContractVideoPlayer}>
-          <Maybe it={!videoIsPlaying}>
+        <section
+          onClick={togglePlay}
+          onMouseEnter={!videoIsPlaying ? togglePlay : undefined}
+          className={styles.ContractVideoPlayer}
+        >
+          <Maybe it={!videoIsLoaded}>
             <img
-              src={testCelebrity.videoPosterUrl}
+              src={celebrity.videoPosterUrl}
               alt={`Poster de vídeo de famoso`}
               className={styles.VideoPoster}
             ></img>
           </Maybe>
           <video
             ref={videoRef}
-            src={testCelebrity.videoUrl}
+            onLoadedData={onVideoLoadedData}
+            src={celebrity.videoUrl}
             preload="none"
             className={styles.VideoElement}
           ></video>
@@ -122,11 +114,11 @@ const ContractVideo = ({ celebrity = testCelebrity, style, className }) => {
       <div className={styles.CelebrityInfo}>
         <img
           className={styles.CelebrityAvatar}
-          src={testCelebrity.avatar}
+          src={celebrity.avatar}
           alt="Avatar de Famoso"
         ></img>
         <span className={`${styles.CelebrityName} text-with-ellipsis`}>
-          {testCelebrity.fullName}
+          {celebrity.fullName}
         </span>
       </div>
     </div>
