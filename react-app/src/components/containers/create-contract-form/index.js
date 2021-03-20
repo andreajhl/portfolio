@@ -511,7 +511,7 @@ class CreateContractForm extends Component {
             </span>
           </div>
           <div className={"form-custom-vertical-group"}>
-            <label>¿Quieres recibir el video a tu WhatsApp?</label>
+            <label>¿Quieres recibir el video a tu WhatsApp? (Opcional)</label>
             <PhoneInput
               value={this.state.contractData.deliveryContactCellphone}
               className="form-control mb-3"
