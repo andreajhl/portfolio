@@ -14,7 +14,12 @@ const useVideoPlayer = (
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
 
   const playVideo = () => {
-    videoRef.current.play();
+    const playPromise = videoRef.current.play();
+    playPromise
+      .then((_) => {})
+      .catch((error) => {
+        console.log("Error", error);
+      });
     setVideoIsPlaying(true);
     setPlayingVideo(videoKey);
   };
