@@ -48,6 +48,7 @@ const ContractVideo = ({
         <section
           onClick={togglePlay}
           onMouseEnter={!videoIsPlaying ? togglePlay : undefined}
+          onMouseOut={videoIsPlaying ? togglePlay : undefined}
           className={styles.ContractVideoPlayer}
         >
           <Maybe it={!videoIsLoaded}>
