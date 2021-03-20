@@ -11,9 +11,9 @@ function TopBar() {
   return (
     <header className={styles.TopBar}>
       <div className="container h-100">
-        <div className="row align-items-center h-100">
+        <div className="d-flex align-items-center h-100">
           <FamososLogo className={styles.TopBarLogo} />
-          <div className="row ml-auto">
+          <div className="d-flex ml-auto">
             <div className={styles.TopBarSearch}>
               <input
                 className={styles.TopBarSearchInput}
@@ -24,7 +24,7 @@ function TopBar() {
               <i className={`fa fa-search ${styles.TopBarSearchIcon}`} />
             </div>
             <div
-              className={`row m-0 p-0 align-items-center ${styles.TopBarOptions}`}
+              className={`d-flex align-items-center ${styles.TopBarOptions}`}
             >
               <CurrencyIcon />
               <CartIcon />

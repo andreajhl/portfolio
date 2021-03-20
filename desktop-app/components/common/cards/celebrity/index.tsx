@@ -1,3 +1,4 @@
+import { getCelebrityProfilePath } from "constants/paths";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { LikeButton } from "../../button/like";
 import OptimizedImage from "../../helpers/optimized-image";
@@ -11,7 +12,10 @@ type CelebrityCardProps = {
 
 function CelebrityCard({ celebrity }: CelebrityCardProps) {
   return (
-    <div className={styles.CelebrityCard}>
+    <Link
+      href={getCelebrityProfilePath(celebrity.username)}
+      className={styles.CelebrityCard}
+    >
       <div className={styles.CelebrityCardThumbnail}>
         <OptimizedImage
           placeholderSrc="/assets/img/avatar-blank.png"
@@ -98,10 +102,14 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           ))}
         </p>
         <p className={styles.CelebrityCardPrice}>
-          <PriceLayout decimalScale={0} price={celebrity.videoMessagePrice} />
+          <PriceLayout
+            currencyData={{ to: "USD" }}
+            decimalScale={0}
+            price={celebrity.videoMessagePrice}
+          />
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
 

@@ -7,20 +7,26 @@ import Document, {
   DocumentContext
 } from "next/document";
 import setUserLocationCookie from "../lib/setUserLocationCookie";
+import isMobile from "lib/utils/isMobile";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
     await setUserLocationCookie(ctx);
-    return initialProps;
+    return {
+      ...initialProps,
+      isMobile: isMobile(ctx?.req?.headers?.["user-agent"])
+    };
   }
 
   render() {
     const isProdEnvironment =
       process.env.NEXT_PUBLIC_ENVIRONMENT === "production";
 
+    const { isMobile } = this.props as any;
+
     return (
-      <Html>
+      <Html className={isMobile ? "" : "desktop"}>
         <Head>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />

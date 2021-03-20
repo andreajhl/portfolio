@@ -1,11 +1,11 @@
 import isMobile from "lib/utils/isMobile";
 import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
 import { wrapper } from "react-app/src/state/store";
+import { useDesktopClass } from "../lib/utils/useDesktopClass";
 
 const HomePage = dynamic(() =>
   import("desktop-app/components/pages/home").then((mod) => mod.HomePage)
@@ -29,13 +29,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 );
 
 const Home = ({ isMobile }) => {
-  useEffect(() => {
-    if (isMobile) return;
-    document.documentElement.classList.add("desktop");
-    return () => {
-      document.documentElement.classList.remove("desktop");
-    };
-  }, []);
+  useDesktopClass(isMobile);
 
   return (
     <>
@@ -48,3 +42,5 @@ const Home = ({ isMobile }) => {
 };
 
 export default Home;
+
+

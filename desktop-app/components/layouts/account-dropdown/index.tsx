@@ -9,6 +9,12 @@ import {
 import { ReactNode } from "react";
 import { NavLink } from "desktop-app/components/common/routing/nav-link";
 import styles from "./styles.module.scss";
+import {
+  CLIENT_HIRINGS,
+  CLIENT_PROFILE,
+  FEED_SUBSCRIPTION,
+  FAQS_PATH
+} from "constants/paths";
 
 type MenuItemType = {
   id: string;
@@ -18,20 +24,25 @@ type MenuItemType = {
 };
 
 const menuItems: MenuItemType[] = [
-  { id: "my-profile", icon: <UserIcon />, label: "Mi Perfil", to: "asd" },
+  {
+    id: "my-profile",
+    icon: <UserIcon />,
+    label: "Mi Perfil",
+    to: CLIENT_PROFILE
+  },
   {
     id: "my-hiring",
     icon: <PlayIcon />,
     label: "Mis solicitudes",
-    to: "asd"
+    to: CLIENT_HIRINGS
   },
   {
     id: "my-subscriptions",
     icon: <StarIcon />,
     label: "Mis suscripciones",
-    to: "asd"
+    to: FEED_SUBSCRIPTION
   },
-  { id: "help", icon: <HelpIcon />, label: "Ayuda", to: "asd" }
+  { id: "help", icon: <HelpIcon />, label: "Ayuda", to: FAQS_PATH }
 ];
 
 const toMenuItem = ({ id, to, icon, label }) => (

@@ -10,7 +10,7 @@ export type LikeButtonProps = {
   width?: string;
   height?: string;
   onHovering?: typeof noop;
-  onClick?: typeof noop;
+  onClick?: (event: any) => void;
   alternativeText?: string;
 };
 
