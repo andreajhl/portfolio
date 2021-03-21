@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import { LikeButton } from "desktop-app/components/common/button/like";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import useLoad from "react-app/src/utils/useLoad";
+import { PauseIcon, PlayIcon, VolumeIcon } from "../../icons";
 
 type ContractVideoProps = {
   celebrity: celebrityType & {
@@ -41,16 +42,18 @@ const ContractVideo = ({
     }
   });
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
-
+  const [videoIsMuted, setVideoIsMuted] = useState(false);
+  const toggleVideoIsMuted = () => {
+    setVideoIsMuted((videoIsMuted) => !videoIsMuted);
+  };
   return (
-    <div className={styles.ContractVideo}>
+    <div
+      className={styles.ContractVideo}
+      onMouseEnter={!videoIsPlaying ? togglePlay : undefined}
+      onMouseLeave={videoIsPlaying ? togglePlay : undefined}
+    >
       <div className={styles.ContractVideoMedia}>
-        <section
-          onClick={togglePlay}
-          onMouseEnter={!videoIsPlaying ? togglePlay : undefined}
-          onMouseOut={videoIsPlaying ? togglePlay : undefined}
-          className={styles.ContractVideoPlayer}
-        >
+        <section onClick={togglePlay} className={styles.ContractVideoPlayer}>
           <Maybe it={!videoIsLoaded}>
             <img
               src={celebrity.videoPosterUrl}
@@ -59,6 +62,7 @@ const ContractVideo = ({
             ></img>
           </Maybe>
           <video
+            muted={videoIsMuted}
             ref={videoRef}
             onLoadedData={onVideoLoadedData}
             src={celebrity.videoUrl}
@@ -67,6 +71,14 @@ const ContractVideo = ({
           ></video>
         </section>
         <section className={styles.ContractVideoOverlay}>
+          <div className={styles.ContractVideoControls}>
+            <div onClick={togglePlay}>
+              {videoIsPlaying ? <PauseIcon /> : <PlayIcon />}
+            </div>
+            <div onClick={toggleVideoIsMuted}>
+              <VolumeIcon />
+            </div>
+          </div>
           <div className={styles.ContractVideoDetails}>
             <div className={styles.ContractVideoOcassion}>
               <div className={styles.ContractVideoOcassionIcon}>
