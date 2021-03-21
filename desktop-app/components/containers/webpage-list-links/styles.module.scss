@@ -12,7 +12,8 @@
     font-size: 12px;
     transition: 0.15s ease all;
     &:hover {
-      color: var(--gray-2) !important;
+      color: white !important;
+      text-decoration: none;
     }
   }
 }

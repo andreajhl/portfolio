@@ -1,11 +1,14 @@
-.CelebritiesFormCTA{
-    p {
-        font-size: 14px;
-        color: white;
-    }
+.CelebritiesFormCTA {
+  p {
+    font-size: 14px;
+    color: white;
+  }
 }
-.SubmitButton{
-    border: 2px solid  white !important;
+.SubmitButton {
+  width: 170px;
+
+  &:not(:hover) {
+    border: 2px solid white !important;
     color: white !important;
-    width: 170px;
+  }
 }
