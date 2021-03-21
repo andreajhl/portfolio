@@ -44,7 +44,8 @@
 }
 .ContractVideoOverlay {
   display: flex;
-  align-items: flex-end;
+  justify-content: space-between;
+  flex-flow: column;
   position: absolute;
   pointer-events: none;
   top: 0;
@@ -56,9 +57,18 @@
     rgba(179, 179, 179, 0) 100%
   );
 }
+.ContractVideoControls {
+  padding: 1.25rem 1.25rem 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  svg {
+    color: white !important;
+    cursor: pointer;
+    pointer-events: all;
+  }
+}
 
 .ContractVideoDetails {
-  flex: 1 1 100%;
   display: flex;
   flex-wrap: wrap;
   padding: 1.25rem 1.25rem 1rem 1.25rem;
