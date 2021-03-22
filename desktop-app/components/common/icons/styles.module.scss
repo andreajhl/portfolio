@@ -25,12 +25,8 @@
   }
 }
 .PlayIcon {
-  color: white;
   & > * {
     stroke: currentColor;
     color: currentColor;
-  }
-  & > path {
-    fill: currentColor;
   }
 }

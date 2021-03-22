@@ -75,6 +75,7 @@ function InfinityCelebritySections({
       next={fetchMoreData}
       hasMore={celebritiesSections.length < totalResults}
       loader={null}
+      style={{ overflow: "visible" }}
     >
       {celebritiesSections.map((celebritySection, index) => (
         <>

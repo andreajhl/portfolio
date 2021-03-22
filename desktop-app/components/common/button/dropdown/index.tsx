@@ -2,12 +2,21 @@ import classes from "classnames";
 import React, { useState } from "react";
 import styles from "./styles.module.scss";
 
+const addDropdownItemClass = (
+  child: React.DetailedReactHTMLElement<{ className?: string }, HTMLElement>
+) =>
+  React.cloneElement(child, {
+    className: classes("dropdown-item", child?.props?.className)
+  });
+
 function Dropdown({
   id = "dropdown-icon-button",
   buttonChildren,
   children,
   className = "",
-  menuClassName = ""
+  buttonClassName = "",
+  menuClassName = "",
+  showClassName = ""
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -18,7 +27,7 @@ function Dropdown({
   return (
     <div className={classes("dropdown", { show: isOpen }, className)}>
       <button
-        className={styles.DropdownButton}
+        className={classes(styles.DropdownButton, buttonClassName)}
         onClick={toggleIsOpen}
         aria-haspopup="true"
         aria-expanded={isOpen}
@@ -29,7 +38,11 @@ function Dropdown({
       </button>
       <div
         aria-labelledby={id}
-        className={classes("dropdown-menu", { show: isOpen }, menuClassName)}
+        className={classes(
+          "dropdown-menu",
+          { [showClassName]: isOpen, show: isOpen },
+          menuClassName
+        )}
       >
         {React.Children.map(children, addDropdownItemClass)}
       </div>
@@ -38,10 +51,3 @@ function Dropdown({
 }
 
 export { Dropdown };
-
-const addDropdownItemClass = (
-  child: React.DetailedReactHTMLElement<{ className?: string }, HTMLElement>
-) =>
-  React.cloneElement(child, {
-    className: classes("dropdown-item", child?.props?.className)
-  });
