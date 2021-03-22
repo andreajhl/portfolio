@@ -42,7 +42,7 @@ const ContractVideo = ({
     }
   });
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
-  const [videoIsMuted, setVideoIsMuted] = useState(false);
+  const [videoIsMuted, setVideoIsMuted] = useState(true);
   const toggleVideoIsMuted = () => {
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
