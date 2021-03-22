@@ -7,11 +7,14 @@ import { LikeButton } from "desktop-app/components/common/button/like";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import useLoad from "react-app/src/utils/useLoad";
 import { MutedIcon, PauseIcon, PlayIcon, VolumeIcon } from "../../icons";
+import { Link } from "../../routing/link";
+import { CELEBRITY_PROFILE } from "react-app/src/routing/Paths";
 
 type ContractVideoProps = {
   celebrity: celebrityType & {
     videoUrl: string;
     videoPosterUrl: string;
+    occasion: string;
   };
   className?: string;
   style?: object;
@@ -96,7 +99,7 @@ const ContractVideo = ({
                 </svg>
               </div>
               <span className={styles.ContractVideoOcassionName}>
-                Cumpleaños
+                {celebrity.occasion}
               </span>
             </div>
             <div className={styles.ContractVideoViewsCounter}>
@@ -131,7 +134,14 @@ const ContractVideo = ({
           alt="Avatar de Famoso"
         ></img>
         <span className={`${styles.CelebrityName} text-with-ellipsis`}>
-          {celebrity.fullName}
+          <Link
+            href={CELEBRITY_PROFILE.replace(
+              ":celebrity_username",
+              celebrity.username
+            )}
+          >
+            {celebrity.fullName}
+          </Link>
         </span>
       </div>
     </div>
