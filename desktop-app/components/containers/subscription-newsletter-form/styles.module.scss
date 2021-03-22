@@ -1,25 +1,24 @@
-@import '../../../styles.scss';
-.SubscriptionNewsletterForm{
-    p { 
-        font-size: 14px;
-        color: white;
-    }
+@import "../../../styles.scss";
+.SubscriptionNewsletterForm {
+  p {
+    font-size: 14px;
+    color: white;
+  }
 }
-.SubscriptionNewsLetterFormInputElement{
-    height: 40px;
+.SubscriptionNewsLetterFormInputElement {
+  height: 40px;
 }
-.SubscriptionNewsLetterFormInputElementModifier{
-
-    background-color: rgba(50,50,50,1);
-    input {
-        color: white 
-    }
-    input::placeholder {
-        color: rgba(73,73,73,1);
-    }
-   
+.SubscriptionNewsLetterFormInputElementModifier {
+  background-color: rgba(50, 50, 50, 1);
+  input {
+    color: white;
+    text-indent: 17px;
+  }
+  input::placeholder {
+    color: rgba(73, 73, 73, 1);
+  }
 }
-.SubscriptionNewsLetterFormSubmitButton{
-    height: 250px;
-    border: 4px solid black !important;
+.SubscriptionNewsLetterFormSubmitButton {
+  height: 250px;
+  border: 4px solid black !important;
 }
