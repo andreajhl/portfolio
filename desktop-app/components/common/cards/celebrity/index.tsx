@@ -1,6 +1,8 @@
 import { getCelebrityProfilePath } from "constants/paths";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { LikeButton } from "../../button/like";
+import { FlashDeliveryBadgeLayout } from "../../flash-delivery-badge";
+import Maybe from "../../helpers/maybe";
 import OptimizedImage from "../../helpers/optimized-image";
 import PriceLayout from "../../helpers/price-layout";
 import { Link } from "../../routing/link";
@@ -30,9 +32,12 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           </span>
           <LikeButton />
         </div>
-        {/* <div className={styles.CelebrityCardThumbnailHeader}>
-          <span className={styles.CelebrityCardDiscountPercentage}>-40%</span>
-        </div> */}
+        <div className={styles.CelebrityCardThumbnailHeader}>
+          {/* <span className={styles.CelebrityCardDiscountPercentage}>-40%</span> */}
+          <Maybe it={celebrity.availableForFlashDeliveries}>
+            <FlashDeliveryBadgeLayout />
+          </Maybe>
+        </div>
       </div>
       <div className={styles.CelebrityCardInfo}>
         <h4 className={styles.CelebrityCardHeading}>

@@ -1,0 +1,35 @@
+.FlashDeliveryLayout {
+  background-color: white;
+  font-size: 0.75em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.425em 0.85em;
+  border-radius: 20px;
+
+  &--without-text {
+    padding: 0;
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+  }
+
+  &Title {
+    font-weight: bold;
+    margin-right: 0.5em;
+    color: black;
+  }
+
+  &Time {
+    color: #eb2a7b;
+    margin-right: 0.5em;
+    font-weight: bold;
+  }
+
+  &--color-dark {
+    background-color: black;
+    .FlashDeliveryLayout__title {
+      color: white;
+    }
+  }
+}
