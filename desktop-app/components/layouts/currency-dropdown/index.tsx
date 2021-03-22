@@ -40,7 +40,7 @@ function CurrencyDropdown({
       menuClassName={styles.CurrencyDropdownMenu}
       showClassName={styles.CurrencyDropdownMenuShow}
     >
-      {AVAILABLE_CURRENCIES.map(({ name }) => (
+      {AVAILABLE_CURRENCIES.map(({ name, flag }) => (
         <div
           className={classes(
             styles.CurrencyDropdownItem,
@@ -49,6 +49,11 @@ function CurrencyDropdown({
           key={name}
           onClick={() => handleCurrentCurrency(name)}
         >
+          <img
+            src={flag}
+            alt={`Bandera de ${name}`}
+            className={styles.CurrencyDropdownFlag}
+          />{" "}
           <span>{name}</span>
         </div>
       ))}
