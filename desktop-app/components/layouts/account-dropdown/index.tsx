@@ -15,6 +15,8 @@ import {
   FEED_SUBSCRIPTION,
   FAQS_PATH
 } from "constants/paths";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "react-app/src/components/containers/login-button/login-button";
 
 type MenuItemType = {
   id: string;
@@ -53,7 +55,8 @@ const toMenuItem = ({ id, to, icon, label }) => (
 );
 
 function AccountDropdown() {
-  return (
+  const { isAuthenticated } = useAuth0();
+  return isAuthenticated ? (
     <Dropdown
       buttonChildren={<AvatarIcon />}
       buttonClassName="p-0"
@@ -61,6 +64,8 @@ function AccountDropdown() {
     >
       {menuItems.map(toMenuItem)}
     </Dropdown>
+  ) : (
+    <LoginButton className={styles.AccountDropdownLoginButton}/>
   );
 }
 

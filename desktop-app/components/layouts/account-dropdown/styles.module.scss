@@ -22,4 +22,19 @@
       font-weight: bold;
     }
   }
+
+  &LoginButton {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 12px 4px;
+    border-color: currentColor;
+    box-shadow: none !important;
+
+    &:hover,
+    &:active {
+      color: var(--primary) !important;
+      background: none !important;
+    }
+  }
 }
