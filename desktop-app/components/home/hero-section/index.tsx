@@ -29,7 +29,7 @@ function HeroSection() {
           </ul>
         </header>
       </div>
-      <div className={styles.HeroSectionContent}>
+      <div className={styles.HeroSectionVideo}>
         <video
           src="/assets/video/reinoso-hero-video.mp4"
           muted
@@ -37,10 +37,6 @@ function HeroSection() {
           loop
           preload="metadata"
         />
-        {/* <img
-          src="/assets/img/reinoso-video-cap.jpg"
-          alt="Poster de video de Reinoso"
-        /> */}
         <video
           src="/assets/video/noel-hero-video.mp4"
           muted
@@ -48,10 +44,7 @@ function HeroSection() {
           loop
           preload="metadata"
         />
-        {/* <img
-          src="/assets/img/noel-video-poster.jpg"
-          alt="Poster de video de Noel"
-        /> */}
+        <div className={styles.HeroSectionOverlay}></div>
       </div>
     </section>
   );
