@@ -12,6 +12,8 @@ export type ReelProps = {
   buttonsStyle?: ButtonStyle;
 } & Omit<FixedSizeListProps, "width">;
 
+const defaultContainerWidthOnDesktop = 1140;
+
 function Reel({
   height,
   itemSize,
@@ -23,7 +25,9 @@ function Reel({
 }: ReelProps) {
   const containerRef = useRef<HTMLDivElement>();
   const listRef = useRef<HTMLDivElement>();
-  const [containerWidth, setContainerWidth] = useState(1140);
+  const [containerWidth, setContainerWidth] = useState(
+    defaultContainerWidthOnDesktop
+  );
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(false);
   const [showRightScrollButton, setShowRightScrollButton] = useState(false);
 
@@ -73,7 +77,11 @@ function Reel({
           onClick={scrollTo("left")}
           direction="left"
           className={styles.ReelButton}
-          style={{ ...buttonsStyle, left: -halfButtonSize }}
+          style={{
+            ...buttonsStyle,
+            fontSize: halfButtonSize * 1.3,
+            left: -halfButtonSize
+          }}
         />
       </Maybe>
       <FixedSizeList
@@ -94,7 +102,11 @@ function Reel({
           onClick={scrollTo("right")}
           direction="right"
           className={styles.ReelButton}
-          style={{ ...buttonsStyle, right: -halfButtonSize }}
+          style={{
+            ...buttonsStyle,
+            fontSize: halfButtonSize * 1.3,
+            right: -halfButtonSize
+          }}
         />
       </Maybe>
     </div>
