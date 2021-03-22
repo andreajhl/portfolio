@@ -26,6 +26,7 @@
 }
 .PlayIcon {
   & > * {
+    fill: currentColor;
     stroke: currentColor;
     color: currentColor;
   }
