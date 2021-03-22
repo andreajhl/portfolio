@@ -1,5 +1,9 @@
 import styles from "./styles.module.scss";
-import { BellIcon, CartIcon } from "desktop-app/components/common/icons";
+import {
+  BellIcon,
+  CartIcon,
+  SearchIcon
+} from "desktop-app/components/common/icons";
 import { FamososLogo } from "../../common/logo";
 import { AccountDropdown } from "../account-dropdown";
 import { CurrencyDropdown } from "../currency-dropdown";
@@ -18,7 +22,7 @@ function TopBar() {
                 name="TopBarSearchInput"
                 id="TopBarSearchInput"
               />
-              <i className={`fa fa-search ${styles.TopBarSearchIcon}`} />
+              <SearchIcon className={styles.TopBarSearchIcon} />
             </div>
             <div
               className={`d-flex align-items-center ${styles.TopBarOptions}`}
