@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 function HeroSection() {
   return (
     <section className={styles.HeroSection}>
-      <div className="container">
+      <div className={"container " + styles.HeroSectionContainer}>
         <header className={styles.HeroSectionHeader}>
           <h1 className={styles.HeroSectionTitle}>
             Los <span className="text-primary font-weight-bold ml-2"></span>{" "}
@@ -28,23 +28,23 @@ function HeroSection() {
             </li>
           </ul>
         </header>
-      </div>
-      <div className={styles.HeroSectionVideo}>
-        <video
-          src="/assets/video/reinoso-hero-video.mp4"
-          muted
-          autoPlay
-          loop
-          preload="metadata"
-        />
-        <video
-          src="/assets/video/noel-hero-video.mp4"
-          muted
-          autoPlay
-          loop
-          preload="metadata"
-        />
-        <div className={styles.HeroSectionOverlay}></div>
+        <div className={styles.HeroSectionVideo}>
+          <video
+            src="/assets/video/reinoso-hero-video.mp4"
+            muted
+            autoPlay
+            loop
+            preload="metadata"
+          />
+          <video
+            src="/assets/video/noel-hero-video.mp4"
+            muted
+            autoPlay
+            loop
+            preload="metadata"
+          />
+          <div className={styles.HeroSectionOverlay}></div>
+        </div>
       </div>
     </section>
   );

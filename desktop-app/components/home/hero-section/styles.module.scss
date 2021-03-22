@@ -8,6 +8,13 @@
     font-size: 1.25vw;
   }
 
+  @media only screen and (min-width: 1200px) {
+    &Container {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
   * {
     color: var(--light);
   }
@@ -74,27 +81,36 @@
   }
 
   &Video {
+    position: relative;
     display: flex;
-    position: absolute;
-    top: 0;
-    right: 0;
+
+    @media only screen and (max-width: 1400px) {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
 
     img,
     video {
-      object-fit: cover;
+      object-fit: cover !important;
     }
 
-    video:first-child {
+    video:first-of-type {
       height: 17.375em;
       width: 9.8125em;
       margin-right: 0.5em;
     }
 
-    video:last-child {
+    video:last-of-type {
       height: 17.375em;
       width: 33.125em;
+
+      @media only screen and (min-width: 1401px) {
+        width: 29.4375em;
+      }
     }
   }
+
   &Overlay {
     position: absolute;
     height: 100%;
