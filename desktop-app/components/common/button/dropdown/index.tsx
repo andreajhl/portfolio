@@ -14,6 +14,7 @@ function Dropdown({
   buttonChildren,
   children,
   className = "",
+  buttonClassName = "",
   menuClassName = "",
   showClassName = ""
 }) {
@@ -26,7 +27,7 @@ function Dropdown({
   return (
     <div className={classes("dropdown", { show: isOpen }, className)}>
       <button
-        className={styles.DropdownButton}
+        className={classes(styles.DropdownButton, buttonClassName)}
         onClick={toggleIsOpen}
         aria-haspopup="true"
         aria-expanded={isOpen}

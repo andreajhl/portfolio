@@ -56,6 +56,7 @@ function AccountDropdown() {
   return (
     <Dropdown
       buttonChildren={<AvatarIcon />}
+      buttonClassName="p-0"
       menuClassName={styles.AccountDropdownMenu}
     >
       {menuItems.map(toMenuItem)}

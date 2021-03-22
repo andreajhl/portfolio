@@ -36,6 +36,7 @@ function CurrencyDropdown({
   return (
     <Dropdown
       buttonChildren={<CurrencyIcon />}
+      buttonClassName="p-0"
       menuClassName={styles.CurrencyDropdownMenu}
       showClassName={styles.CurrencyDropdownMenuShow}
     >
