@@ -79,17 +79,18 @@
     top: 0;
     right: 0;
 
-    img {
+    img,
+    video {
       object-fit: cover;
     }
 
-    img:first-child {
+    video:first-child {
       height: 17.375em;
       width: 9.8125em;
       margin-right: 0.5em;
     }
 
-    img:last-child {
+    video:last-child {
       height: 17.375em;
       width: 33.125em;
     }
