@@ -10,6 +10,7 @@ type Render = (data: any) => JSX.Element;
 export type CardsReelSectionProps = Omit<ReelProps, "itemSize" | "height"> & {
   showHeader?: boolean;
   title?: ReactNode;
+  showMorePath?: string;
   children: Render;
   className?: string;
   itemWidth: number;
@@ -35,6 +36,7 @@ const OneRemInPixels = 16;
 function CardsReelSection({
   showHeader = true,
   title = null,
+  showMorePath,
   children: render,
   gap = OneRemInPixels,
   className = "",
@@ -49,9 +51,14 @@ function CardsReelSection({
           <Maybe it={typeof title === "string"} orElse={title}>
             <h2 className={styles.CardsReelSectionTitle}>{title}</h2>
           </Maybe>
-          <Link href="/" className={styles.CardsReelSectionShowMore}>
-            Ver más
-          </Link>
+          <Maybe it={Boolean(showMorePath)}>
+            <Link
+              href={showMorePath}
+              className={styles.CardsReelSectionShowMore}
+            >
+              Ver más
+            </Link>
+          </Maybe>
         </header>
       </Maybe>
       <Reel itemSize={itemWidth} height={itemHeight} {...reelProps}>

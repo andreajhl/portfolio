@@ -1,8 +1,11 @@
+import { SEARCH_PATH } from "constants/paths";
 import { CategoryCard } from "desktop-app/components/common/cards/category";
 import { CelebrityCard } from "desktop-app/components/common/cards/celebrity";
 import ContractVideo from "desktop-app/components/common/cards/contract-video";
 import { CelebritySectionType } from "desktop-app/types/celebritySectionType";
-import React from "react";
+import { useMemo } from "react";
+import { jsonToQueryString } from "react-app/src/state/utils/apiService";
+import getMoreFrequentIds from "react-app/src/utils/getMoreFrequentIds";
 import { CardsReelSection, CardsReelSectionProps } from "../cards-section-reel";
 
 type CelebritiesSectionProps = {
@@ -48,12 +51,30 @@ const celebrityTypeReelProps: {
 };
 
 function CelebritiesSection({ celebritySection }: CelebritiesSectionProps) {
-  const reelProps =
-    celebrityTypeReelProps[celebritySection.celebritySectionType];
+  const { celebrities, celebritySectionType } = celebritySection;
+
+  const searchMoreResultsPath = useMemo(() => {
+    if (
+      (!celebrities && celebrities.length < 10) ||
+      celebritySectionType === "CATEGORY_CARD"
+    )
+      return null;
+    return (
+      SEARCH_PATH +
+      jsonToQueryString({
+        country_id: getMoreFrequentIds(celebrities, "countryId"),
+        category_id: getMoreFrequentIds(celebrities, "categoryId"),
+        limit: 20
+      })
+    );
+  }, [celebrities, celebritySectionType]);
+
+  const reelProps = celebrityTypeReelProps[celebritySectionType];
 
   return (
     <CardsReelSection
       title={celebritySection.title}
+      showMorePath={searchMoreResultsPath}
       itemCount={celebritySection.celebrities.length}
       itemData={celebritySection.celebrities}
       itemWidth={reelProps.itemWidth}
