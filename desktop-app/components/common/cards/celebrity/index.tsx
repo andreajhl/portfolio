@@ -4,7 +4,7 @@ import { LikeButton } from "../../button/like";
 import { FlashDeliveryBadgeLayout } from "../../flash-delivery-badge";
 import Maybe from "../../helpers/maybe";
 import OptimizedImage from "../../helpers/optimized-image";
-import PriceLayout from "../../helpers/price-layout";
+import { PriceLayout } from "../../helpers/price-layout";
 import { Link } from "../../routing/link";
 import styles from "./styles.module.scss";
 
@@ -106,12 +106,8 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
             <Link href={hashtag}>#{hashtag} </Link>
           ))}
         </p>
-        <p className={styles.CelebrityCardPrice}>
-          <PriceLayout
-            currencyData={{ to: "USD" }}
-            decimalScale={0}
-            price={celebrity.videoMessagePrice}
-          />
+        <p className={"text-with-ellipsis " + styles.CelebrityCardPrice}>
+          <PriceLayout decimalScale={0} price={celebrity.videoMessagePrice} />
         </p>
       </div>
     </Link>
