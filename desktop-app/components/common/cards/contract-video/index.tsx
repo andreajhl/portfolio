@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import { LikeButton } from "desktop-app/components/common/button/like";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import useLoad from "react-app/src/utils/useLoad";
-import { PauseIcon, PlayIcon, VolumeIcon } from "../../icons";
+import { MutedIcon, PauseIcon, PlayIcon, VolumeIcon } from "../../icons";
 
 type ContractVideoProps = {
   celebrity: celebrityType & {
@@ -76,7 +76,7 @@ const ContractVideo = ({
               {videoIsPlaying ? <PauseIcon /> : <PlayIcon />}
             </div>
             <div onClick={toggleVideoIsMuted}>
-              <VolumeIcon />
+              {!videoIsMuted ? <VolumeIcon /> : <MutedIcon />}
             </div>
           </div>
           <div className={styles.ContractVideoDetails}>
