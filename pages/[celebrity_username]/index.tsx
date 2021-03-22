@@ -10,6 +10,8 @@ import { CelebrityProfilePage } from "react-app/src/components/pages/celebrity-p
 import { CELEBRITY_PROFILE_ERROR } from "react-app/src/routing/Paths";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { getProfileVersionDependingOnTime } from "react-app/src/utils/celebrityProfileVersion";
+import MicroDataTags from "react-app/src/components/common/helpers/micro-data-tags";
+import getContractPrice from "react-app/src/utils/getContractPrice";
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
@@ -35,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
     await listPublicContracts(celebrity.id, { currentPage: 1 })(store.dispatch);
     await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
-    
+
     return {
       props: {
         celebrity
@@ -45,6 +47,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 );
 
 const CelebrityProfile = ({ celebrity }) => {
+  const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
+
   return (
     <>
       <CustomHead
@@ -52,6 +56,13 @@ const CelebrityProfile = ({ celebrity }) => {
         description={`Perfil oficial de ${celebrity.fullName} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.`}
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
+      />
+      <MicroDataTags
+        productId={"VIDEO_MESSAGE_" + celebrity.id}
+        priceAmount={videoMessagePrice}
+        productAvailability={
+          celebrity.status === 50 ? "available for order" : "out of stock"
+        }
       />
       <CelebrityProfilePage celebrity={celebrity} />
     </>
