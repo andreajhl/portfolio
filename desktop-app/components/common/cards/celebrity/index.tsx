@@ -53,7 +53,7 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           />
           <span className="text-with-ellipsis">{celebrity.fullName}</span>
         </h4>
-        <p className={"text-with-ellipsis " + styles.CelebrityCardHashtags}>
+        <p className={styles.CelebrityCardHashtags}>
           {celebrity.hashtags
             .filter((hashtag, index, { length }) => {
               if (index !== 0 || length === 1) return true;
