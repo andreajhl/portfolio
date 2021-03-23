@@ -43,7 +43,7 @@ const celebrityTypeReelProps: {
     itemHeight: 121,
     buttonsStyle: {
       size: 35,
-      top: 45,
+      top: 60.5,
       transform: "translateY(-50%)"
     },
     gap: 18,
