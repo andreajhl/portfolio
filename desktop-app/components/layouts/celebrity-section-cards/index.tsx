@@ -1,9 +1,13 @@
+import { SEARCH_PATH } from "constants/paths";
 import { CategoryCard } from "desktop-app/components/common/cards/category";
 import { CelebrityCard } from "desktop-app/components/common/cards/celebrity";
 import ContractVideo from "desktop-app/components/common/cards/contract-video";
 import { CelebritySectionType } from "desktop-app/types/celebritySectionType";
-import React from "react";
+import { useMemo } from "react";
+import { jsonToQueryString } from "react-app/src/state/utils/apiService";
+import getMoreFrequentIds from "react-app/src/utils/getMoreFrequentIds";
 import { CardsReelSection, CardsReelSectionProps } from "../cards-section-reel";
+import styles from "./styles.module.scss";
 
 type CelebritiesSectionProps = {
   celebritySection: CelebritySectionType;
@@ -14,7 +18,7 @@ const celebrityTypeReelProps: {
 } = {
   CELEBRITY_CARD: {
     itemWidth: 170,
-    itemHeight: 288,
+    itemHeight: 282,
     buttonsStyle: {
       size: 35,
       top: 105,
@@ -39,7 +43,7 @@ const celebrityTypeReelProps: {
     itemHeight: 121,
     buttonsStyle: {
       size: 35,
-      top: 45,
+      top: 60.5,
       transform: "translateY(-50%)"
     },
     gap: 18,
@@ -48,19 +52,37 @@ const celebrityTypeReelProps: {
 };
 
 function CelebritiesSection({ celebritySection }: CelebritiesSectionProps) {
-  const reelProps =
-    celebrityTypeReelProps[celebritySection.celebritySectionType];
+  const { celebrities, celebritySectionType } = celebritySection;
+
+  const searchMoreResultsPath = useMemo(() => {
+    if (
+      (!celebrities && celebrities.length < 10) ||
+      celebritySectionType === "CATEGORY_CARD"
+    )
+      return null;
+    return (
+      SEARCH_PATH +
+      jsonToQueryString({
+        country_id: getMoreFrequentIds(celebrities, "countryId"),
+        category_id: getMoreFrequentIds(celebrities, "categoryId"),
+        limit: 20
+      })
+    );
+  }, [celebrities, celebritySectionType]);
+
+  const reelProps = celebrityTypeReelProps[celebritySectionType];
 
   return (
     <CardsReelSection
       title={celebritySection.title}
+      showMorePath={searchMoreResultsPath}
       itemCount={celebritySection.celebrities.length}
       itemData={celebritySection.celebrities}
       itemWidth={reelProps.itemWidth}
       itemHeight={reelProps.itemHeight}
       buttonsStyle={reelProps.buttonsStyle}
       gap={reelProps.gap}
-      className="mb-4"
+      className={styles.CelebritiesSection}
     >
       {reelProps.children}
     </CardsReelSection>

@@ -1,4 +1,4 @@
-import { getCelebrityProfilePath } from "constants/paths";
+import { getCelebrityProfilePath, getSearchPath } from "constants/paths";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { LikeButton } from "../../button/like";
 import { FlashDeliveryBadgeLayout } from "../../flash-delivery-badge";
@@ -27,9 +27,11 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           className={styles.CelebrityCardAvatar}
         />
         <div className={styles.CelebrityCardThumbnailFooter}>
-          <span className={styles.CelebrityCardCategory}>
-            {celebrity.title}
-          </span>
+          <Link href={getSearchPath({ category_id: celebrity.categoryId })}>
+            <span className={styles.CelebrityCardCategory}>
+              {celebrity.title}
+            </span>
+          </Link>
           <LikeButton />
         </div>
         <div className={styles.CelebrityCardThumbnailHeader}>
@@ -51,10 +53,16 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           />
           <span className="text-with-ellipsis">{celebrity.fullName}</span>
         </h4>
-        <p className={"text-with-ellipsis " + styles.CelebrityCardHashtags}>
-          {celebrity.hashtags.map((hashtag) => (
-            <Link href={hashtag}>#{hashtag} </Link>
-          ))}
+        <p className={styles.CelebrityCardHashtags}>
+          {celebrity.hashtags
+            .filter((hashtag, index, { length }) => {
+              if (index !== 0 || length === 1) return true;
+              const hashtagRegExp = new RegExp(hashtag, "gi");
+              return !hashtagRegExp.test(celebrity.title);
+            })
+            .map((hashtag) => (
+              <Link href={hashtag}>#{hashtag} </Link>
+            ))}
         </p>
         <p className={"text-with-ellipsis " + styles.CelebrityCardPrice}>
           <PriceLayout decimalScale={0} price={celebrity.videoMessagePrice} />

@@ -57,7 +57,7 @@
   }
 
   &Info {
-    padding: 6px 0;
+    padding: 6px 0 0;
   }
 
   &Heading {
@@ -76,14 +76,19 @@
     font-size: 14px;
     line-height: 19px;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    height: 1.5em;
+    overflow: hidden;
 
     * {
+      margin-right: 0.25em;
       transition: 0.15s ease all;
       color: var(--gray-4) !important;
-      text-decoration: none !important;
 
       &:hover {
         color: var(--dark) !important;
+        font-weight: bold;
       }
     }
   }

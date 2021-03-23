@@ -5,15 +5,8 @@ import { connect } from "react-redux";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CelebritySectionType } from "desktop-app/types/celebritySectionType";
-
-const categories = Array(5).fill(
-  {
-    title: "Músicos",
-    image: "/assets/img/musicos.png",
-    url: "/"
-  },
-  0
-);
+import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
+import { categories } from "../../../../constants/categories";
 
 const mapStateToProps = ({ celebritySections }) => {
   const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
@@ -58,13 +51,13 @@ function InfinityCelebritySections({
     setOffset((offset) => {
       const nextOffset = offset + resultsLimit;
       const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
-      // GTM.tagManagerDataLayer("FETCH_MORE_CELEBRITY_SECTIONS", {
-      //   widget: "CelebritiesSectionsLayout",
-      //   path: window.location.pathname,
-      //   newOffset,
-      //   totalResults,
-      //   hasReachedEnd: newOffset + resultsLimit >= totalResults
-      // });
+      tagManagerDataLayer("FETCH_MORE_CELEBRITY_SECTIONS", {
+        widget: "InfinityCelebritySections",
+        path: window.location.pathname,
+        newOffset,
+        totalResults,
+        hasReachedEnd: newOffset + resultsLimit >= totalResults
+      });
       return newOffset;
     });
   };
@@ -83,7 +76,7 @@ function InfinityCelebritySections({
             key={celebritySection.id}
             celebritySection={celebritySection}
           />
-          <Maybe it={index === 3}>
+          <Maybe it={index === 2}>
             <CelebritiesSection
               key="celebritySection-categories"
               celebritySection={{

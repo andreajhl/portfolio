@@ -10,6 +10,7 @@ import DirectionButton, {
 export type ReelProps = {
   listClassName?: string;
   buttonsStyle?: ButtonStyle;
+  scrollByOffset?: number;
 } & Omit<FixedSizeListProps, "width">;
 
 const defaultContainerWidthOnDesktop = 1140;
@@ -20,6 +21,7 @@ function Reel({
   itemCount,
   itemData,
   children: renderItem,
+  scrollByOffset = 0,
   listClassName,
   buttonsStyle = { size: 35, top: "50%" }
 }: ReelProps) {
@@ -61,7 +63,8 @@ function Reel({
 
   const scrollTo = (direction: "right" | "left") => () => {
     const listElement = listRef.current;
-    const { offsetWidth } = listElement;
+    const offsetWidth = listElement.offsetWidth + scrollByOffset;
+
     listElement.scrollBy({
       left: direction === "right" ? offsetWidth : offsetWidth * -1,
       behavior: "smooth"

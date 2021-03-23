@@ -1,12 +1,39 @@
 import styles from "./styles.module.scss";
+import TypistLoop from "react-typist-loop";
+import Typist from "react-typist";
+
+function toTypist(text: string): JSX.Element {
+  return (
+    <Typist
+      key={text}
+      className={styles.HeroSectionAnimatedText}
+      cursor={{ show: false }}
+    >
+      {text}
+      <Typist.Backspace count={text.length} delay={3000} />
+    </Typist>
+  );
+}
 
 function HeroSection() {
   return (
     <section className={styles.HeroSection}>
-      <div className="container">
+      <div className={"container " + styles.HeroSectionContainer}>
         <header className={styles.HeroSectionHeader}>
           <h1 className={styles.HeroSectionTitle}>
-            Los <span className="text-primary font-weight-bold ml-2"></span>{" "}
+            Los{" "}
+            <TypistLoop interval={0}>
+              {["músicos", "influencers", "deportistas", "actores"].map(
+                toTypist
+              )}
+            </TypistLoop>
+            {/* <span
+              className={classes(
+                "d-none",
+                styles.HeroSectionAnimatedText,
+                styles.HeroSectionTextAnimation
+              )}
+            ></span>{" "} */}
             <br />a un clic de distancia.
           </h1>
           <p className={styles.HeroSectionCopy}>
@@ -28,30 +55,23 @@ function HeroSection() {
             </li>
           </ul>
         </header>
-      </div>
-      <div className={styles.HeroSectionContent}>
-        <video
-          src="/assets/video/reinoso-hero-video.mp4"
-          muted
-          autoPlay
-          loop
-          preload="metadata"
-        />
-        {/* <img
-          src="/assets/img/reinoso-video-cap.jpg"
-          alt="Poster de video de Reinoso"
-        /> */}
-        <video
-          src="/assets/video/noel-hero-video.mp4"
-          muted
-          autoPlay
-          loop
-          preload="metadata"
-        />
-        {/* <img
-          src="/assets/img/noel-video-poster.jpg"
-          alt="Poster de video de Noel"
-        /> */}
+        <div className={styles.HeroSectionVideo}>
+          <video
+            src="/assets/video/reinoso-hero-video.mp4"
+            muted
+            autoPlay
+            loop
+            preload="metadata"
+          />
+          <video
+            src="/assets/video/noel-hero-video.mp4"
+            muted
+            autoPlay
+            loop
+            preload="metadata"
+          />
+          <div className={styles.HeroSectionOverlay}></div>
+        </div>
       </div>
     </section>
   );

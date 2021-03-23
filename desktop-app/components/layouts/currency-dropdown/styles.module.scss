@@ -12,10 +12,16 @@
     }
   }
 
+  &Flag {
+    width: 16px;
+  }
+
   &Item {
     cursor: pointer;
     padding: 0.25rem 0;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 
     span {
       font-weight: bold;
