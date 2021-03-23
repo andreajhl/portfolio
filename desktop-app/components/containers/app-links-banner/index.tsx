@@ -5,11 +5,15 @@ const AppLinksBanner = () => {
     <div className={styles.AppLinksBannerContainer}>
       <p>Descarga la app para Fans</p>
       <div>
-        <a href="/" target="_top">
+        <a
+          href="https://play.google.com/store/apps/details?id=com.famosos.users"
+          target="_blank"
+          rel="noreferrer"
+        >
           <img
-            height={"55px"}
+            height={"55"}
             width={"142px"}
-            src="/assets/img/app-google-play-badge.png"
+            src="/assets/img/google-play-badge.png"
             alt="Descargar APP desde Google Play Store"
           />
         </a>
