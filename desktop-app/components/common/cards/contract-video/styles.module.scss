@@ -22,11 +22,15 @@
 
 .CelebrityName {
   margin-left: 10px;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 30px;
-  letter-spacing: 0em;
+  a {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-decoration: none;
+    color: black;
+  }
 }
 
 .ContractVideoViewsCounter {
@@ -36,15 +40,19 @@
   span {
     margin-left: 6px;
     color: white;
+    font-size: 13px;
   }
 }
 .ContractVideoLikeButton {
   pointer-events: all;
   margin-left: auto;
+  > * {
+    margin-bottom: 3px;
+  }
 }
 .ContractVideoOverlay {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex-flow: column;
   position: absolute;
   pointer-events: none;
@@ -57,9 +65,11 @@
     rgba(179, 179, 179, 0) 100%
   );
 }
+
 .ContractVideoControls {
-  padding: 1.25rem 1.25rem 1rem 1.25rem;
-  display: flex;
+  padding: 14px 18px 0 18px;
+  display: none;
+  align-items: center;
   justify-content: space-between;
   svg {
     color: white !important;
@@ -67,30 +77,39 @@
     pointer-events: all;
   }
 }
+.ContractVideo:hover .ContractVideoControls {
+  display: flex;
+}
 
 .ContractVideoDetails {
   display: flex;
   flex-wrap: wrap;
-  padding: 1.25rem 1.25rem 1rem 1.25rem;
+  padding-left: 18px;
+  padding-right: 20px;
+  padding-bottom: 13px;
+  margin-top: auto;
 }
 .ContractVideoOcassion {
   display: flex;
   flex: 1 0 100%;
+  align-items: center;
   &Icon {
     width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 20px;
     border-radius: 10px;
-    background-color: var(--secondary);
+    background-color: rgba(191, 196, 255, 1);
   }
 
   &Name {
     margin-left: 10px;
     color: white;
-    font-size: 12px;
+    text-decoration-line: underline;
+    font-size: 14px;
     font-weight: 700;
+    margin-bottom: 2px;
   }
 }
 .VideoCard {

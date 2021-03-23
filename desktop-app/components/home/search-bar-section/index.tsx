@@ -19,7 +19,7 @@ const SearchBarSection = () => {
       <InputWithSubmitHandler
         style={{ height: "50px", width: "600px" }}
         placeHolderButton={"Buscar"}
-        placeHolderInput={"Ej: Pibe Valderrama, Músicos, México..."}
+        placeHolderInput={"Ej: Pibe Valderrama, Netflix, Músicos, México..."}
         setInputValue={setInputValue}
         inputValue={inputValue}
         onSubmit={goToSearch}
