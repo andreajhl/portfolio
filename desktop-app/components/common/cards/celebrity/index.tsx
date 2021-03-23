@@ -54,9 +54,15 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           <span className="text-with-ellipsis">{celebrity.fullName}</span>
         </h4>
         <p className={"text-with-ellipsis " + styles.CelebrityCardHashtags}>
-          {celebrity.hashtags.map((hashtag) => (
-            <Link href={hashtag}>#{hashtag} </Link>
-          ))}
+          {celebrity.hashtags
+            .filter((hashtag, index, { length }) => {
+              if (index !== 0 || length === 1) return true;
+              const hashtagRegExp = new RegExp(hashtag, "gi");
+              return !hashtagRegExp.test(celebrity.title);
+            })
+            .map((hashtag) => (
+              <Link href={hashtag}>#{hashtag} </Link>
+            ))}
         </p>
         <p className={"text-with-ellipsis " + styles.CelebrityCardPrice}>
           <PriceLayout decimalScale={0} price={celebrity.videoMessagePrice} />
