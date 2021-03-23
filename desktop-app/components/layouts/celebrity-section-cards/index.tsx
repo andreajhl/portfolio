@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import { jsonToQueryString } from "react-app/src/state/utils/apiService";
 import getMoreFrequentIds from "react-app/src/utils/getMoreFrequentIds";
 import { CardsReelSection, CardsReelSectionProps } from "../cards-section-reel";
+import styles from "./styles.module.scss";
 
 type CelebritiesSectionProps = {
   celebritySection: CelebritySectionType;
@@ -17,7 +18,7 @@ const celebrityTypeReelProps: {
 } = {
   CELEBRITY_CARD: {
     itemWidth: 170,
-    itemHeight: 288,
+    itemHeight: 282,
     buttonsStyle: {
       size: 35,
       top: 105,
@@ -81,7 +82,7 @@ function CelebritiesSection({ celebritySection }: CelebritiesSectionProps) {
       itemHeight={reelProps.itemHeight}
       buttonsStyle={reelProps.buttonsStyle}
       gap={reelProps.gap}
-      className="mb-4"
+      className={styles.CelebritiesSection}
     >
       {reelProps.children}
     </CardsReelSection>
