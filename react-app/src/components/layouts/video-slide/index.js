@@ -122,6 +122,7 @@ const VideoSlideLayout = ({
           muted={videoIsMuted}
           src={videoUrl}
           onLoadedData={onVideoLoadedData}
+          loop
         >
           Your browser does not support the video tag.
         </video>
