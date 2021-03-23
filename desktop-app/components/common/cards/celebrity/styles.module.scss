@@ -80,10 +80,10 @@
     * {
       transition: 0.15s ease all;
       color: var(--gray-4) !important;
-      text-decoration: none !important;
 
       &:hover {
         color: var(--dark) !important;
+        font-weight: bold;
       }
     }
   }
