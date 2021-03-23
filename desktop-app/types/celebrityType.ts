@@ -6,6 +6,7 @@ export type celebrityType = {
   availableForFlashDeliveries: boolean;
   countryCode: string;
   alpha2Code: string;
+  categoryId: number;
   title: string;
   fullName: string;
   id: number;

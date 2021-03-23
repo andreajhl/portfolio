@@ -1,3 +1,5 @@
+import { jsonToQueryString } from "react-app/src/state/utils/apiService";
+
 export const ROOT_PATH = "/";
 export const HOME_PATH = "/inicio/";
 export const LANDING_PATH = "/landing";
@@ -55,3 +57,7 @@ export const SESSION_REDIRECT = "/session/redirect/";
 
 export const getCelebrityProfilePath = (celebrityUsername) =>
   CELEBRITY_PROFILE.replace(":celebrity_username", celebrityUsername);
+
+export const getSearchPath = ({ limit = 20, ...params }) => {
+  return SEARCH_PATH + jsonToQueryString({ ...params, limit });
+};

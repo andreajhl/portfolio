@@ -1,4 +1,4 @@
-import { getCelebrityProfilePath } from "constants/paths";
+import { getCelebrityProfilePath, getSearchPath } from "constants/paths";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { LikeButton } from "../../button/like";
 import { FlashDeliveryBadgeLayout } from "../../flash-delivery-badge";
@@ -27,9 +27,11 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           className={styles.CelebrityCardAvatar}
         />
         <div className={styles.CelebrityCardThumbnailFooter}>
-          <span className={styles.CelebrityCardCategory}>
-            {celebrity.title}
-          </span>
+          <Link href={getSearchPath({ category_id: celebrity.categoryId })}>
+            <span className={styles.CelebrityCardCategory}>
+              {celebrity.title}
+            </span>
+          </Link>
           <LikeButton />
         </div>
         <div className={styles.CelebrityCardThumbnailHeader}>
