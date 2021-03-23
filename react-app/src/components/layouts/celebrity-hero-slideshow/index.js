@@ -90,6 +90,25 @@ const CelebrityHeroSlideshow = ({
     setSlideshowIsPlaying(false);
   }, [currentVideoPlayingKey, slidesVideosReferences]);
 
+  const playNextVideo = () => {
+    // Chequear si existen celebrityPublicContracts para reproducir
+    // Sino existen, el main video deberia estar en loop
+    if (celebrityPublicContracts.length > 0) {
+      //
+      let nextIndex =
+        activeSlideIndex === celebrityPublicContracts.length
+          ? 0
+          : activeSlideIndex + 1;
+      // Sino existe mainVideo y nextIndex === celebrityPublicContracts.length-1, nextIndex debe de ser 0
+      if (
+        !celebrityMainVideo &&
+        nextIndex === celebrityPublicContracts.length
+      ) {
+        nextIndex = 0;
+      }
+      setActiveSlideIndex(nextIndex);
+    }
+  };
   return (
     <section
       className={`CelebrityHeroSlideshow container p-0 bg-dark ${
@@ -123,6 +142,8 @@ const CelebrityHeroSlideshow = ({
               videoIsFullscreen={videoIsFullscreen}
               toggleFullscreen={toggleFullscreen}
               showFullscreenToggler={fullscreen.fullscreenEnabled}
+              onEndVideo={playNextVideo}
+              shouldLoop={!celebrityPublicContracts.length > 0}
             />
           </Carousel.Item>
         ) : null}
@@ -146,6 +167,7 @@ const CelebrityHeroSlideshow = ({
               videoIsFullscreen={videoIsFullscreen}
               toggleFullscreen={toggleFullscreen}
               showFullscreenToggler={fullscreen.fullscreenEnabled}
+              onEndVideo={playNextVideo}
             />
           </Carousel.Item>
         ))}
