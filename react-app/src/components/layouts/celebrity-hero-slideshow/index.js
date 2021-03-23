@@ -168,6 +168,9 @@ const CelebrityHeroSlideshow = ({
               toggleFullscreen={toggleFullscreen}
               showFullscreenToggler={fullscreen.fullscreenEnabled}
               onEndVideo={playNextVideo}
+              shouldLoop={
+                !celebrityMainVideo && celebrityPublicContracts.length === 1
+              }
             />
           </Carousel.Item>
         ))}
