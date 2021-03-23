@@ -1,4 +1,19 @@
 import styles from "./styles.module.scss";
+import TypistLoop from "react-typist-loop";
+import Typist from "react-typist";
+
+function toTypist(text: string): JSX.Element {
+  return (
+    <Typist
+      key={text}
+      className={styles.HeroSectionAnimatedText}
+      cursor={{ show: false }}
+    >
+      {text}
+      <Typist.Backspace count={text.length} delay={3000} />
+    </Typist>
+  );
+}
 
 function HeroSection() {
   return (
@@ -6,7 +21,19 @@ function HeroSection() {
       <div className={"container " + styles.HeroSectionContainer}>
         <header className={styles.HeroSectionHeader}>
           <h1 className={styles.HeroSectionTitle}>
-            Los <span className="text-primary font-weight-bold ml-2"></span>{" "}
+            Los{" "}
+            <TypistLoop interval={0}>
+              {["músicos", "influencers", "deportistas", "actores"].map(
+                toTypist
+              )}
+            </TypistLoop>
+            {/* <span
+              className={classes(
+                "d-none",
+                styles.HeroSectionAnimatedText,
+                styles.HeroSectionTextAnimation
+              )}
+            ></span>{" "} */}
             <br />a un clic de distancia.
           </h1>
           <p className={styles.HeroSectionCopy}>

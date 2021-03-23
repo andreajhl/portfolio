@@ -30,12 +30,19 @@
   & &Title {
     font-size: 2.5em;
     margin-bottom: 0.6em;
+  }
 
-    span {
-      &::after {
-        animation: change-word 5s linear infinite;
-        content: "músicos";
-      }
+  &AnimatedText {
+    display: inline-block;
+    color: var(--primary);
+    font-weight: bold;
+    margin-left: 0.04em;
+  }
+
+  &TextAnimation {
+    &::after {
+      animation: change-word 5s linear infinite;
+      content: "músicos";
     }
 
     @keyframes change-word {
