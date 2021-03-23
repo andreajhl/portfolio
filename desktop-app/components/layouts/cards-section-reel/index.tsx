@@ -61,7 +61,12 @@ function CardsReelSection({
           </Maybe>
         </header>
       </Maybe>
-      <Reel itemSize={itemWidth} height={itemHeight} {...reelProps}>
+      <Reel
+        itemSize={itemWidth}
+        height={itemHeight}
+        scrollByOffset={gap}
+        {...reelProps}
+      >
         {getRenderColumn(render, gap)}
       </Reel>
     </section>

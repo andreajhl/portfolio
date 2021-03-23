@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CelebritySectionType } from "desktop-app/types/celebritySectionType";
+import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
 
 const categories = Array(5).fill(
   {
@@ -58,13 +59,13 @@ function InfinityCelebritySections({
     setOffset((offset) => {
       const nextOffset = offset + resultsLimit;
       const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
-      // GTM.tagManagerDataLayer("FETCH_MORE_CELEBRITY_SECTIONS", {
-      //   widget: "CelebritiesSectionsLayout",
-      //   path: window.location.pathname,
-      //   newOffset,
-      //   totalResults,
-      //   hasReachedEnd: newOffset + resultsLimit >= totalResults
-      // });
+      tagManagerDataLayer("FETCH_MORE_CELEBRITY_SECTIONS", {
+        widget: "InfinityCelebritySections",
+        path: window.location.pathname,
+        newOffset,
+        totalResults,
+        hasReachedEnd: newOffset + resultsLimit >= totalResults
+      });
       return newOffset;
     });
   };
