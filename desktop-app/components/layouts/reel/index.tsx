@@ -82,7 +82,7 @@ function Reel({
           className={styles.ReelButton}
           style={{
             ...buttonsStyle,
-            fontSize: halfButtonSize * 1.3,
+            fontSize: halfButtonSize * 0.85,
             left: -halfButtonSize
           }}
         />
@@ -107,7 +107,7 @@ function Reel({
           className={styles.ReelButton}
           style={{
             ...buttonsStyle,
-            fontSize: halfButtonSize * 1.3,
+            fontSize: halfButtonSize * 0.85,
             right: -halfButtonSize
           }}
         />

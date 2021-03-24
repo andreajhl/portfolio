@@ -36,7 +36,7 @@ function DirectionButton({
       onClick={onClick}
       style={{ ...style, width, height: width }}
     >
-      <i className={`fa fa-caret-${direction}`} />
+      <i className={`fa fa-chevron-${direction}`} />
     </button>
   );
 }
