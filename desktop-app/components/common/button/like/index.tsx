@@ -1,4 +1,7 @@
+import styles from "./styles.module.scss";
 import { useState } from "react";
+import { HeartIcon } from "../../icons";
+import classes from "classnames";
 
 function noop() {}
 
@@ -16,10 +19,10 @@ export type LikeButtonProps = {
 
 const LikeButton = ({
   isFavorite = false,
-  filledImageSource = "/assets/img/filled-heart.svg",
-  outlinedImageSource = "/assets/img/outlined-heart.svg",
+  // filledImageSource = "/assets/img/filled-heart.svg",
+  // outlinedImageSource = "/assets/img/outlined-heart.svg",
   className = "",
-  width = "1rem",
+  width = "15px",
   height = width,
   onHovering = noop,
   onClick = noop,
@@ -37,17 +40,28 @@ const LikeButton = ({
   };
 
   return (
-    <img
-      src={isFavorite !== isHovering ? filledImageSource : outlinedImageSource}
-      className={`cursor-pointer ${className}`}
+    <HeartIcon
       style={{ width, height }}
-      onMouseOver={addIsHovering}
-      onMouseLeave={removeIsHovering}
-      onClick={onClick}
-      alt={alternativeText}
-      title={alternativeText}
+      className={classes(
+        styles.LikeButton,
+        className,
+        isFavorite && styles.LikeButtonIsFavorite
+      )}
     />
   );
+
+  // return (
+  //   <img
+  //     src={isFavorite !== isHovering ? filledImageSource : outlinedImageSource}
+  //     className={`cursor-pointer ${className}`}
+  //     style={{ width, height }}
+  //     onMouseOver={addIsHovering}
+  //     onMouseLeave={removeIsHovering}
+  //     onClick={onClick}
+  //     alt={alternativeText}
+  //     title={alternativeText}
+  //   />
+  // );
 };
 
 export { LikeButton };
