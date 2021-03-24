@@ -44,8 +44,11 @@ const CelebrityDetails = ({ celebrity, variant }) => {
           <ProfilePicture
             avatar={avatar}
             width="139px"
+            height="139px"
             imageStyles={
-              availableForFlashDeliveries ? { marginBottom: "-2rem" } : null
+              availableForFlashDeliveries
+                ? { objectFit: "cover", marginBottom: "-2rem" }
+                : { objectFit: "cover" }
             }
           />
           <Maybe it={availableForFlashDeliveries}>
@@ -56,8 +59,11 @@ const CelebrityDetails = ({ celebrity, variant }) => {
           <ProfilePicture
             avatar={avatar}
             width="150px"
+            height="150px"
             imageStyles={
-              availableForFlashDeliveries ? { marginBottom: "-2.5rem" } : null
+              availableForFlashDeliveries
+                ? { objectFit: "cover", marginBottom: "-2.5rem" }
+                : { objectFit: "cover" }
             }
           />
           <Maybe it={availableForFlashDeliveries}>

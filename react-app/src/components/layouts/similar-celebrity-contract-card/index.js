@@ -81,7 +81,12 @@ const SimilarCelebrityContractCardLayout = ({
         />
       </div>
       <div className="body px-3 py-3 justify-content-between d-flex align-items-center">
-        <ProfilePicture avatar={similarContract.celebrityAvatar} width="44px" />
+        <ProfilePicture
+          avatar={similarContract.celebrityAvatar}
+          width="44px"
+          height="44px"
+          imageStyles={{ objectFit: "cover" }}
+        />
         <div
           className="SimilarCelebrityContractCardLayout__info"
           onClick={() => {}}
