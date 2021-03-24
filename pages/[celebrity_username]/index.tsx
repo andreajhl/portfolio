@@ -46,6 +46,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   }
 );
 
+const GIFT_GIVING_CATEGORY_CODE = "2559";
+
 const CelebrityProfile = ({ celebrity }) => {
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
 
@@ -63,6 +65,7 @@ const CelebrityProfile = ({ celebrity }) => {
         productAvailability={
           celebrity.status === 50 ? "available for order" : "out of stock"
         }
+        productCategory={GIFT_GIVING_CATEGORY_CODE}
       />
       <CelebrityProfilePage celebrity={celebrity} />
     </>

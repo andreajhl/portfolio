@@ -10,6 +10,7 @@ type MicroDataTagsProps = {
     | "available for order"
     | "discontinued";
   productCondition?: "new" | "refurbished" | "used";
+  productCategory: string;
   productId: string;
 };
 
@@ -19,6 +20,7 @@ function MicroDataTags({
   productBrand = "Famosos Inc.",
   productAvailability = "in stock",
   productCondition = "new",
+  productCategory,
   productId
 }: MicroDataTagsProps) {
   return (
@@ -26,6 +28,7 @@ function MicroDataTags({
       <meta name="og:price:amount" content={priceAmount} />
       <meta name="og:price:currency" content={priceCurrency} />
       <meta property="product:brand" content={productBrand} />
+      <meta property="product:category" content={productCategory} />
       <meta property="product:availability" content={productAvailability} />
       <meta property="product:condition" content={productCondition} />
       <meta property="product:price:amount" content={priceAmount} />
