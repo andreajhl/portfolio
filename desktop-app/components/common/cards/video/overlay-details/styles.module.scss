@@ -1,0 +1,51 @@
+.OverlayVideoDetails {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 18px;
+  padding-right: 20px;
+  padding-bottom: 13px;
+  margin-top: auto;
+}
+.OverlayVideoDetailsOcassion {
+  display: flex;
+  flex: 1 0 100%;
+  align-items: center;
+
+  &Icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: rgba(191, 196, 255, 1);
+  }
+
+  &Name {
+    margin-left: 10px;
+    color: white;
+    text-decoration-line: underline;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+}
+
+.ViewsCounter {
+  svg {
+    width: 15px;
+  }
+  span {
+    margin-left: 6px;
+    color: white;
+    font-size: 13px;
+  }
+}
+
+.LikeButton {
+  pointer-events: all;
+  margin-left: auto;
+  > * {
+    margin-bottom: 3px;
+  }
+}
