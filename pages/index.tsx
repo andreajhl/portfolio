@@ -5,7 +5,7 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
 import { wrapper } from "react-app/src/state/store";
-import { useDesktopClass } from "../lib/utils/useDesktopClass";
+import { useDesktopClass } from "../lib/hooks/useDesktopClass";
 
 const HomePage = dynamic(() =>
   import("desktop-app/components/pages/home").then((mod) => mod.HomePage)
@@ -42,5 +42,3 @@ const Home = ({ isMobile }) => {
 };
 
 export default Home;
-
-
