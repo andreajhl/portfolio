@@ -1,12 +1,12 @@
 import { SEARCH_PATH } from "constants/paths";
 import { CategoryCard } from "desktop-app/components/common/cards/category";
 import { CelebrityCard } from "desktop-app/components/common/cards/celebrity";
-import ContractVideo from "desktop-app/components/common/cards/contract-video";
 import { CelebritySectionType } from "desktop-app/types/celebritySectionType";
 import { useMemo } from "react";
 import { jsonToQueryString } from "react-app/src/state/utils/apiService";
 import getMoreFrequentIds from "react-app/src/utils/getMoreFrequentIds";
 import { CardsReelSection, CardsReelSectionProps } from "../cards-section-reel";
+import CelebritySectionVideoCard from "../celebrity-section-video-card";
 import styles from "./styles.module.scss";
 
 type CelebritiesSectionProps = {
@@ -36,7 +36,7 @@ const celebrityTypeReelProps: {
       transform: "translateY(-50%)"
     },
     gap: 26.75,
-    children: (celebrity) => <ContractVideo celebrity={celebrity} />
+    children: (celebrity) => <CelebritySectionVideoCard celebrity={celebrity} />
   },
   CATEGORY_CARD: {
     itemWidth: 212,
