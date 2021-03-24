@@ -4,7 +4,7 @@ import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
 import { CallToActionButton } from "../call-to-action-button";
 
-const HireThisCelebrityForcompaniesButton = ({
+const HireThisCelebrityForCompaniesButton = ({
   className,
   text,
   celebrityFullName,
@@ -41,8 +41,8 @@ const HireThisCelebrityForcompaniesButton = ({
   );
 };
 
-const _HireThisCelebrityForcompaniesButton = withRouter(
-  HireThisCelebrityForcompaniesButton
+const _HireThisCelebrityFoCompaniesButton = withRouter(
+  HireThisCelebrityForCompaniesButton
 );
 
-export { _HireThisCelebrityForcompaniesButton as HireThisCelebrityForcompaniesButton };
+export { _HireThisCelebrityFoCompaniesButton as HireThisCelebrityForCompaniesButton };

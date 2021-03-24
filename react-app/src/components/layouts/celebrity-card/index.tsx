@@ -11,6 +11,7 @@ import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
 import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { celebrityType } from "../../../types/celebrityType";
 import OptimizedImage from "../../common/helpers/optimized-image";
+import Maybe from "../../common/helpers/maybe";
 
 export interface CelebrityCardLayoutI {
   celebrity: celebrityType;
@@ -73,7 +74,7 @@ const CelebrityCardLayout = ({
           {celebrity.availableForFlashDeliveries ? (
             <FlashDeliveryBadgeLayout className="celebrity__flash-delivery" />
           ) : null}
-          {contractPrice > 0 ? (
+          <Maybe it={contractPrice > 0 && celebrity.status === 50}>
             <div className="celebrity__price">
               <ContractPriceLayout
                 classes="celebrity__price__text"
@@ -82,7 +83,7 @@ const CelebrityCardLayout = ({
                 rounding={true}
               />
             </div>
-          ) : null}
+          </Maybe>
         </div>
         <div className="celebrity-details">
           <div className="celebrity-info">

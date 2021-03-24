@@ -3,7 +3,13 @@ import Image from "react-bootstrap/Image";
 import PropTypes from "prop-types";
 import Maybe from "../../common/helpers/maybe";
 
-const ProfilePicture = ({ avatar, roundedCircle, width, imageStyles }) => {
+const ProfilePicture = ({
+  avatar,
+  roundedCircle,
+  width,
+  height = "auto",
+  imageStyles
+}) => {
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
   const imageRef = useRef();
 
@@ -20,6 +26,7 @@ const ProfilePicture = ({ avatar, roundedCircle, width, imageStyles }) => {
         className={!imageIsLoaded ? "d-none" : ""}
         roundedCircle={roundedCircle}
         width={width}
+        height={height}
         src={avatar}
         onLoad={changeImageIsLoaded}
         alt="Imagen de perfil"
@@ -30,6 +37,7 @@ const ProfilePicture = ({ avatar, roundedCircle, width, imageStyles }) => {
         <Image
           roundedCircle={roundedCircle}
           width={width}
+          height={height}
           src="assets/img/avatar-blank.png"
           style={imageStyles}
         />

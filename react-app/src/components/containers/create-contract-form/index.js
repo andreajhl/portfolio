@@ -511,11 +511,14 @@ class CreateContractForm extends Component {
             </span>
           </div>
           <div className={"form-custom-vertical-group"}>
-            <label>¿Quieres recibir el video a tu WhatsApp?</label>
+            <label>¿Quieres recibir el video a tu WhatsApp? (Opcional)</label>
             <PhoneInput
+              enableSearch
+              searchClass="d-flex align-items-center p-2"
+              searchPlaceholder="Buscar país"
+              placeholder="+57 55555555"
               value={this.state.contractData.deliveryContactCellphone}
               className="form-control mb-3"
-              disableSearchIcon={false}
               containerClass="mb-3"
               country={"co"}
               onChange={(cellphoneNumber) => {

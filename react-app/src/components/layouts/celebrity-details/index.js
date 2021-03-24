@@ -11,7 +11,8 @@ import { CelebrityDonorAlert } from "../celebrity-donor-alert";
 import Emoji from "../../containers/emoji/emoji";
 import { SubscriptionToAvailabilityNotification } from "../subscription-to-availability-notification";
 import AdWarrantyVideoPurchase from "../ad-warranty-video-purchase";
-import { HireThisCelebrityForcompaniesButton } from "../hire-this-celebrity-for-companies-button";
+import { HireThisCelebrityForCompaniesButton } from "../hire-this-celebrity-for-companies-button";
+import Maybe from "../../common/helpers/maybe";
 
 const CelebrityDetails = ({ celebrity, variant }) => {
   const {
@@ -28,9 +29,10 @@ const CelebrityDetails = ({ celebrity, variant }) => {
     availableForFlashDeliveries,
     isDonor,
     causeName,
-    causeUrl
+    causeUrl,
+    status
   } = celebrity;
-  console.log(celebrityId);
+
   return (
     <Container
       className={`mx-auto CelebrityDetails ${variant === "1" ? "mb-0" : ""} ${
@@ -42,30 +44,36 @@ const CelebrityDetails = ({ celebrity, variant }) => {
           <ProfilePicture
             avatar={avatar}
             width="139px"
+            height="139px"
             imageStyles={
-              availableForFlashDeliveries ? { marginBottom: "-2rem" } : null
+              availableForFlashDeliveries
+                ? { objectFit: "cover", marginBottom: "-2rem" }
+                : { objectFit: "cover" }
             }
           />
-          {availableForFlashDeliveries ? (
+          <Maybe it={availableForFlashDeliveries}>
             <FlashDeliveryBadgeLayout color="dark" showTitle />
-          ) : null}
+          </Maybe>
         </Col>
         <Col xs="auto d-none d-md-block" className="text-center">
           <ProfilePicture
             avatar={avatar}
             width="150px"
+            height="150px"
             imageStyles={
-              availableForFlashDeliveries ? { marginBottom: "-2.5rem" } : null
+              availableForFlashDeliveries
+                ? { objectFit: "cover", marginBottom: "-2.5rem" }
+                : { objectFit: "cover" }
             }
           />
-          {availableForFlashDeliveries ? (
+          <Maybe it={availableForFlashDeliveries}>
             <FlashDeliveryBadgeLayout
               className="CelebrityDetails__flash-delivery-large"
               color="dark"
               showTime
               showTitle
             />
-          ) : null}
+          </Maybe>
         </Col>
         <Col>
           <CelebrityInfo
@@ -77,9 +85,10 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             contractTypes={contractTypes}
             turnAround={turnaround}
             availableForFlashDeliveries={availableForFlashDeliveries}
+            status={status}
           />
           <Col className="d-none d-md-block mx-0 px-0">
-            {celebrity.status === 50 ? (
+            <Maybe it={status === 50}>
               <HireThisCelebrityButton
                 showCelebrityName={false}
                 celebrityFullName={fullName}
@@ -101,15 +110,15 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                 width="100%"
                 fontSize="1.25em"
               />
-            ) : null}{" "}
-            {celebrityId === 2530 ? (
-              <HireThisCelebrityForcompaniesButton
+            </Maybe>
+            <Maybe it={celebrityId === 2530}>
+              <HireThisCelebrityForCompaniesButton
                 className={"button-hire-this-celebrity-for-companies mt-2"}
                 text={"Contratar para Empresa"}
                 width="100%"
               />
-            ) : null}
-            {celebrity.status === 60 ? (
+            </Maybe>
+            <Maybe it={status === 60}>
               <SubscriptionToAvailabilityNotification
                 celebrityFullName={celebrity.fullName}
                 showCelebrityName={false}
@@ -117,8 +126,8 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                 width="100%"
                 fontSize="1.25rem"
               />
-            ) : null}
-            {availableForSubscriptions ? (
+            </Maybe>
+            <Maybe it={availableForSubscriptions}>
               <SubscribeToThisCelebrityButton
                 className="mt-2"
                 celebrityFullName={fullName}
@@ -127,20 +136,20 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                 width="100%"
                 fontSize="1.25em"
               />
-            ) : null}
-            {isDonor ? (
+            </Maybe>
+            <Maybe it={isDonor}>
               <CelebrityDonorAlert
                 fullName={fullName}
                 causeName={causeName}
                 causeUrl={causeUrl}
                 className="mt-2"
               />
-            ) : null}
+            </Maybe>
           </Col>
         </Col>
       </Row>
       <Row>
-        {isDonor ? (
+        <Maybe it={isDonor}>
           <Col xs="12" className="d-md-none">
             <CelebrityDonorAlert
               fullName={fullName}
@@ -148,7 +157,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
               causeUrl={causeUrl}
             />
           </Col>
-        ) : null}
+        </Maybe>
         <Col className="mx-3 my-3 px-0">
           <CelebritiesProfileDescription descriptionText={description} />
         </Col>
@@ -162,7 +171,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
       </Row>
       <Row>
         <Col className="d-md-none">
-          {celebrity.status === 50 ? (
+          <Maybe it={status === 50}>
             <HireThisCelebrityButton
               showCelebrityName={false}
               className={"button-hire-this-celebrity"}
@@ -184,16 +193,16 @@ const CelebrityDetails = ({ celebrity, variant }) => {
               }
               width="100%"
             />
-          ) : null}{" "}
-          {celebrity.status === 60 ? (
+          </Maybe>
+          <Maybe it={status === 60}>
             <SubscriptionToAvailabilityNotification
               celebrityFullName={celebrity.fullName}
               showCelebrityName={false}
               celebrityId={celebrity.id}
               width="100%"
             />
-          ) : null}
-          {availableForSubscriptions ? (
+          </Maybe>
+          <Maybe it={availableForSubscriptions}>
             <SubscribeToThisCelebrityButton
               className="mt-2"
               celebrityFullName={fullName}
@@ -206,18 +215,18 @@ const CelebrityDetails = ({ celebrity, variant }) => {
               width="100%"
               fontSize="1.25em"
             />
-          ) : null}
+          </Maybe>
         </Col>
       </Row>
       <Row>
         <Col className="d-md-none  mt-4">
-          {celebrityId === 2530 ? (
-            <HireThisCelebrityForcompaniesButton
+          <Maybe it={celebrityId === 2530}>
+            <HireThisCelebrityForCompaniesButton
               className={"button-hire-this-celebrity-for-companies"}
               text={"Contratar para Empresa"}
               width="100%"
             />
-          ) : null}
+          </Maybe>
         </Col>
       </Row>
     </Container>
