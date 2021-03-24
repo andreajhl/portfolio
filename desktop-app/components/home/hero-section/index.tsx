@@ -1,19 +1,5 @@
 import styles from "./styles.module.scss";
-import TypistLoop from "react-typist-loop";
-import Typist from "react-typist";
-
-function toTypist(text: string): JSX.Element {
-  return (
-    <Typist
-      key={text}
-      className={styles.HeroSectionAnimatedText}
-      cursor={{ show: false }}
-    >
-      {text}
-      <Typist.Backspace count={text.length} delay={3000} />
-    </Typist>
-  );
-}
+import { TypingEffectLooped } from "../../common/helpers/typing-effect-looped";
 
 function HeroSection() {
   return (
@@ -22,18 +8,15 @@ function HeroSection() {
         <header className={styles.HeroSectionHeader}>
           <h1 className={styles.HeroSectionTitle}>
             Los{" "}
-            <TypistLoop interval={0}>
-              {["músicos", "influencers", "deportistas", "actores"].map(
-                toTypist
-              )}
-            </TypistLoop>
-            {/* <span
-              className={classes(
-                "d-none",
-                styles.HeroSectionAnimatedText,
-                styles.HeroSectionTextAnimation
-              )}
-            ></span>{" "} */}
+            <TypingEffectLooped
+              words={["músicos", "influencers", "deportistas", "actores"]}
+              className={styles.HeroSectionAnimatedText}
+            />
+            <noscript>
+              <span
+                className={`${styles.HeroSectionAnimatedText} ${styles.HeroSectionTextAnimation}`}
+              ></span>
+            </noscript>{" "}
             <br />a un clic de distancia.
           </h1>
           <p className={styles.HeroSectionCopy}>

@@ -6,13 +6,27 @@ import {
   listReviews,
   setCelebrityProfileVersion
 } from "react-app/src/state/ducks/celebrities/actions";
-import { CelebrityProfilePage } from "react-app/src/components/pages/celebrity-profile";
 import { CELEBRITY_PROFILE_ERROR } from "react-app/src/routing/Paths";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { getProfileVersionDependingOnTime } from "react-app/src/utils/celebrityProfileVersion";
+import isMobile from "lib/utils/isMobile";
+import dynamic from "next/dynamic";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+
+const CelebrityProfilePage = dynamic<{ celebrity: any }>(() =>
+  import("react-app/src/components/pages/celebrity-profile").then(
+    (mod) => mod.CelebrityProfilePage
+  )
+);
+
+const CelebrityProfilePageDesktop = dynamic<{ celebrity: any }>(() =>
+  import("desktop-app/components/pages/celebrity-profile").then(
+    (mod) => mod.CelebrityProfilePage
+  )
+);
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  async ({ params: { celebrity_username }, store }) => {
+  async ({ params: { celebrity_username }, store, req }) => {
     await get(celebrity_username, true)(store.dispatch);
 
     const { celebrities } = store.getState();
@@ -35,16 +49,17 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
     await listPublicContracts(celebrity.id, { currentPage: 1 })(store.dispatch);
     await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
-    
+
     return {
       props: {
-        celebrity
+        celebrity,
+        isMobile: isMobile(req.headers["user-agent"])
       }
     };
   }
 );
 
-const CelebrityProfile = ({ celebrity }) => {
+const CelebrityProfile = ({ celebrity, isMobile }) => {
   return (
     <>
       <CustomHead
@@ -53,7 +68,12 @@ const CelebrityProfile = ({ celebrity }) => {
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
       />
-      <CelebrityProfilePage celebrity={celebrity} />
+      <Maybe
+        it={isMobile}
+        orElse={<CelebrityProfilePageDesktop celebrity={celebrity} />}
+      >
+        <CelebrityProfilePage celebrity={celebrity} />
+      </Maybe>
     </>
   );
 };
