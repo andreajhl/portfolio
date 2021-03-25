@@ -30,7 +30,7 @@ const CardReview = ({
           value={contract_stars}
         ></StarRatingDisplay>
       </div>
-      <p>{user_full_name}</p>
+      <p className={styles.UserName}>{user_full_name}</p>
       <p>{contract_review}</p>
     </div>
   );

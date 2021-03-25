@@ -1,0 +1,28 @@
+.LastReviewsModal {
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 617px;
+  overflow: scroll;
+  // max-height: 900px;
+
+  &Header {
+    display: flex;
+    align-items: center;
+    height: 91px;
+    span {
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      //   line-height: 33px;
+      margin-left: 57px;
+    }
+  }
+  hr {
+    margin: 0;
+  }
+}
+
+.ReviewItem {
+  min-height: 172px;
+}
