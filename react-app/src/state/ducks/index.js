@@ -17,3 +17,4 @@ export { default as blog } from "./blog";
 export { default as subscriptions } from "./subscriptions";
 // export { default as userLocation } from "./userLocation";
 export { default as discountCoupons } from "./discount-coupons";
+export { default as subscriptionCelebrityAlarm } from "./subscription-celebrity-alarm";

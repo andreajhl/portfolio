@@ -1,13 +1,14 @@
 import React, { Component, useRef, utilizeFocus } from "react";
-
 import { connect } from "react-redux";
 import { Form } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { contractOperations } from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
+import PhoneInput from "react-phone-input-2";
 import OcassionsOptions from "../ocassions-options";
 import { occasionsData } from "../../../constants/options";
 import { getToken } from "react-app/src/state/ducks/session/actions";
+import "react-phone-input-2/lib/style.css";
 class CreateContractForm extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,8 @@ class CreateContractForm extends Component {
         deliveryContact: "",
         instructions: "",
         isPublic: true,
-        occasion: "OTHER"
+        occasion: "OTHER",
+        deliveryContactCellphone: ""
       }
     };
     this.handleIsPublic = this.handleIsPublic.bind(this);
@@ -143,6 +145,16 @@ class CreateContractForm extends Component {
     }
   }
 
+  onCellphoneChange = (cellphoneNumber) => {
+    this.setState((state) => ({
+      ...state,
+      contractData: {
+        ...state.contractData,
+        deliveryContactCellphone: cellphoneNumber
+      }
+    }));
+  };
+
   replacePlaceHolder = (text) => {
     const replacePlaceHolders = (str, find, replace) => {
       return str.replace(new RegExp(find, "g"), replace);
@@ -169,7 +181,7 @@ class CreateContractForm extends Component {
 
   handleInputChange = (event) => {
     const updatedContractData = { ...this.state.contractData };
-    if (event.target.value.length <= 300) {
+    if (event.target.value.length <= 400) {
       updatedContractData[event.target.name] = event.target.value;
       this.setState({
         ...this.state,
@@ -464,12 +476,12 @@ class CreateContractForm extends Component {
             <div
               className={
                 "text-left" +
-                (contractData.instructions.length === 300
+                (contractData.instructions.length === 400
                   ? " text-danger "
                   : " text-muted ")
               }
             >
-              {contractData.instructions.length}/300 caracteres permitidos
+              {contractData.instructions.length}/400 caracteres permitidos
             </div>
             <span
               className={
@@ -497,6 +509,22 @@ class CreateContractForm extends Component {
             >
               {this.deliveryContactValidator()}
             </span>
+          </div>
+          <div className={"form-custom-vertical-group"}>
+            <label>¿Quieres recibir el video a tu WhatsApp? (Opcional)</label>
+            <PhoneInput
+              enableSearch
+              searchClass="d-flex align-items-center p-2"
+              searchPlaceholder="Buscar país"
+              placeholder="+57 55555555"
+              value={this.state.contractData.deliveryContactCellphone}
+              className="form-control mb-3"
+              containerClass="mb-3"
+              country={"co"}
+              onChange={(cellphoneNumber) => {
+                this.onCellphoneChange(cellphoneNumber);
+              }}
+            />
           </div>
           <div className={"mt-3"}>{""}</div>
           <Form.Check

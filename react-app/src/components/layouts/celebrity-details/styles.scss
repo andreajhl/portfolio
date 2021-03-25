@@ -15,4 +15,17 @@
       font-size: 1.25rem;
     }
   }
+  .button-hire-this-celebrity-for-companies {
+    font-size: 1.15rem;
+    color: rgba(61, 135, 243, 1);
+    background-color: rgba(225, 237, 255, 1);
+    @media screen and (min-width: 320px) {
+      font-size: 1.25rem;
+    }
+  }
+  .button-hire-this-celebrity-for-companies:focus,.button-hire-this-celebrity-for-companies:active {
+    box-shadow: 0 0 0 0.2rem rgb(245, 245, 245) !important;
+    color: rgba(61, 135, 243, 1) !important;
+    background-color: rgba(225, 237, 255, 1) !important;
+  }
 }

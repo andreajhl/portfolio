@@ -19,7 +19,9 @@ const VideoSlideLayout = ({
   videoIsFullscreen,
   toggleFullscreen,
   classNameVideoSlideButtons,
-  classNameSlideLayoutVideo
+  classNameSlideLayoutVideo,
+  onEndVideo,
+  shouldLoop
 }) => {
   const analyticsData = {
     widget: "VideoSlideLayout",
@@ -70,7 +72,9 @@ const VideoSlideLayout = ({
     setSlideshowIsPlaying(true);
     playVideo();
   }, [autoPlayVideo]);
-
+  const handleEndVideo = () => {
+    onEndVideo();
+  };
   return (
     <section className="VideoSlideLayout">
       <div
@@ -121,7 +125,9 @@ const VideoSlideLayout = ({
           preload={preload}
           muted={videoIsMuted}
           src={videoUrl}
+          onEnded={handleEndVideo}
           onLoadedData={onVideoLoadedData}
+          loop={shouldLoop}
         >
           Your browser does not support the video tag.
         </video>
@@ -139,7 +145,9 @@ VideoSlideLayout.defaultProps = {
   isPlayingVideo: false,
   preload: "none",
   classNameVideoSlideButtons: "",
-  classNameSlideLayoutVideo: ""
+  classNameSlideLayoutVideo: "",
+  onEndVideo: () => {},
+  shouldLoop: false
 };
 
 export { VideoSlideLayout };
