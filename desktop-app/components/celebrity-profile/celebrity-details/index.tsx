@@ -7,7 +7,7 @@ import { DonorAlert } from "desktop-app/components/celebrity-profile/donor-alert
 import styles from "./styles.module.scss";
 import { CelebrityHashtags } from "desktop-app/components/celebrity-profile/celebrity-hashtags";
 import { CelebrityInfo } from "../celebrity-info";
-import { CelebrityMainVideoWidget } from "desktop-app/components/celebrity-main-video-widget";
+import { CelebrityMainVideoWidget } from "desktop-app/components/celebrity-profile/celebrity-main-video-widget";
 
 type CelebrityDetailsProps = {
   celebrity: celebrityType;

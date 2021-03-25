@@ -15,4 +15,5 @@ export type celebrityType = {
   description: string;
   causeName: string;
   isDonor: boolean;
+  mainVideo: string;
 };

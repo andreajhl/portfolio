@@ -47,4 +47,12 @@
       font-size: 16px;
     }
   }
+
+  &VideoContainer {
+    height: 95vh;
+
+    video {
+      height: 100%;
+    }
+  }
 }

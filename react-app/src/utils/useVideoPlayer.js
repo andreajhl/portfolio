@@ -1,33 +1,35 @@
 import { useState, useRef, useEffect } from "react";
 import useCurrentVideoPlaying from "./useCurrentVideoPlaying";
 
+const noVideoPlaying = null;
+
 const useVideoPlayer = (
   videoKey,
   {
     onPlayVideo = () => {},
     onPauseVideo = () => {},
     onInterruptPlay = () => {}
-  }
+  } = {}
 ) => {
   const [currentVideoKey, setPlayingVideo] = useCurrentVideoPlaying();
   const videoRef = useRef();
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
 
   const playVideo = () => {
+    setPlayingVideo(videoKey);
+    setVideoIsPlaying(true);
     const playPromise = videoRef.current.play();
     playPromise
       .then((_) => {})
       .catch((error) => {
         console.log("Error", error);
       });
-    setVideoIsPlaying(true);
-    setPlayingVideo(videoKey);
   };
 
   const pauseVideo = () => {
-    videoRef.current.pause();
     setVideoIsPlaying(false);
-    setPlayingVideo(null);
+    setPlayingVideo(noVideoPlaying);
+    videoRef.current?.pause?.();
   };
 
   const togglePlay = () => {
@@ -46,7 +48,7 @@ const useVideoPlayer = (
       pauseVideo();
     }
     return () => {
-      if (currentVideoKey === videoKey) setPlayingVideo(null);
+      if (currentVideoKey === videoKey) setPlayingVideo(noVideoPlaying);
     };
   }, [currentVideoKey, videoIsPlaying]);
 
