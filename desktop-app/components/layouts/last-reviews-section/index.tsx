@@ -2,23 +2,27 @@ import CardReview from "desktop-app/components/common/cards/review";
 import React from "react";
 import styles from "./styles.module.scss";
 import { CardReviewProps } from "../../../types/cardReviewProps";
+import Popup from "reactjs-popup";
+import LastReviewsModal from "../last-reviews-modal";
 
 type LastReviewsSectionProps = {
   reviews: Array<CardReviewProps>;
-  onShowMore: () => void;
   showMore: boolean;
 };
 
 const LastReviewsSection = ({
   reviews = [],
-  onShowMore,
   showMore = true
 }: LastReviewsSectionProps) => {
+  const getMoreData = () => {
+    console.log("TODO -> Realizar dispatch");
+  };
+
   return (
     <div className={styles.LastReviewsSection}>
       <h2>Calificaciones</h2>
       <div className={styles.ReviewsCards}>
-        {reviews.map((review) => (
+        {[...reviews].slice(0, 2).map((review) => (
           <CardReview
             contract_review={review.contract_review}
             user_full_name={review.user_full_name}
@@ -28,9 +32,13 @@ const LastReviewsSection = ({
         ))}
       </div>
       {showMore ? (
-        <p className={styles.SeeMoreCTA} onClick={onShowMore}>
-          Ver todas las calificaciones
-        </p>
+        <LastReviewsModal reviews={reviews} fetchMoreData={getMoreData}>
+          {{
+            triggerElement: (
+              <p className={styles.SeeMoreCTA}>Ver todas las calificaciones</p>
+            )
+          }}
+        </LastReviewsModal>
       ) : null}
     </div>
   );
