@@ -48,6 +48,7 @@ class PaymentMethodsSection extends Component {
 
             {/* PAYMENT METHODS */}
             <AvailablePaymentMethods
+              celebrityId={this.props.contractData.celebrity_id}
               contractReference={this.props.contractData.reference}
               contractPrice={this.props.contractData.price}
             />
