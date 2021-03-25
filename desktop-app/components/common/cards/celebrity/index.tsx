@@ -1,4 +1,5 @@
 import { getCelebrityProfilePath, getSearchPath } from "constants/paths";
+import { CelebrityFlag } from "desktop-app/components/common/celebrity-flag";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { LikeButton } from "../../button/like";
 import { FlashDeliveryBadgeLayout } from "../../flash-delivery-badge";
@@ -43,14 +44,7 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
       </div>
       <div className={styles.CelebrityCardInfo}>
         <h4 className={styles.CelebrityCardHeading}>
-          <img
-            src={`https://flagcdn.com/w20/${
-              celebrity?.alpha2Code?.toLowerCase?.() || "co"
-            }.webp`}
-            alt={`Bandera ${celebrity.countryCode}`}
-            className="mr-2"
-            width={20}
-          />
+          <CelebrityFlag alpha2Code={celebrity.alpha2Code} className="mr-2" />
           <span className="text-with-ellipsis">{celebrity.fullName}</span>
         </h4>
         <p className={styles.CelebrityCardHashtags}>

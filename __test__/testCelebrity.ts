@@ -1,0 +1,91 @@
+const testCelebrity = {
+  id: 864,
+  fullName: "Mark Tacher Testing",
+  username: "marktacher",
+  avatar: "https://via.placeholder.com/600/e0c586",
+  hashtags: ["Actor", "TvHost", "CDMX"],
+  description: "Actor, Host, Music, Producer.",
+  mainVideo:
+    "https://dqb0851cl2gjs.cloudfront.net/main-videos/864/famosos-videos-personalizados-marktacher-crf-video480.mp4",
+  isDonor: false,
+  causeUrl: "",
+  causeLogo: "",
+  causeName: "",
+  categoryId: 4,
+  categoryTitle: "Actores",
+  countryId: 25,
+  countryCode: "MEX",
+  countryName: "Mexico",
+  turnaround: 0,
+  showSimilarCelebrities: true,
+  availableForFlashDeliveries: true,
+  availableForSubscriptions: true,
+  contractTypes: [
+    {
+      contractType: 3,
+      name: "VideoMessageSpecial2",
+      description: "",
+      price: 0,
+      allowInFFB: false,
+      options: {}
+    },
+    {
+      contractType: 1,
+      name: "VideoMessage",
+      description: "",
+      price: 125,
+      allowInFFB: false,
+      options: {}
+    },
+    {
+      contractType: 2,
+      name: "VideoMessageSpecial1",
+      description: "",
+      price: 0,
+      allowInFFB: false,
+      options: { url: "", buttonLabel: "Contratar Evento Privado" }
+    },
+    {
+      contractType: 4,
+      name: "VideoMessageSpecial3",
+      description: "",
+      price: 0,
+      allowInFFB: false,
+      options: {}
+    },
+    {
+      contractType: 5,
+      name: "1 Story",
+      description: "",
+      price: 0,
+      allowInFFB: true,
+      options: {}
+    },
+    {
+      contractType: 6,
+      name: "1 Post Video",
+      description: "",
+      price: 0,
+      allowInFFB: true,
+      options: {}
+    },
+    {
+      contractType: 7,
+      name: "1 Post Image",
+      description: "",
+      price: 0,
+      allowInFFB: true,
+      options: {}
+    },
+    {
+      contractType: 8,
+      name: "1 Post Carousel",
+      description: "",
+      price: 0,
+      allowInFFB: true,
+      options: {}
+    }
+  ]
+};
+
+export default testCelebrity;

@@ -61,3 +61,8 @@ export const getCelebrityProfilePath = (celebrityUsername) =>
 export const getSearchPath = ({ limit = 20, ...params }) => {
   return SEARCH_PATH + jsonToQueryString({ ...params, limit });
 };
+
+export const getSearchCategoryPath = (categoryId) =>
+  getSearchPath({ category_id: categoryId });
+
+export const getSearchHashtagPath = (hashtag) => getSearchPath({ hashtag });
