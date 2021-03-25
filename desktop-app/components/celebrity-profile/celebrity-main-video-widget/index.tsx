@@ -3,7 +3,7 @@ import OptimizedImage from "../../common/helpers/optimized-image";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
-import { AnimatedPopup } from "desktop-app/components/animated-popup";
+import { AnimatedPopup } from "desktop-app/components/common/animated-popup";
 
 type AvatarProps = {
   width: number;

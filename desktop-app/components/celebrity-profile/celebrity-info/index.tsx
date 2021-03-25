@@ -5,11 +5,12 @@ import styles from "./styles.module.scss";
 
 type CelebrityInfoProps = {
   celebrity: celebrityType;
+  className?: string;
 };
 
-function CelebrityInfo({ celebrity }) {
+function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
   return (
-    <div className={styles.CelebrityInfo}>
+    <div className={`${styles.CelebrityInfo} ${className}`}>
       <span className={styles.CelebrityInfoItemWithSeparator}>
         <CelebrityFlag
           alpha2Code={celebrity.alpha2Code}

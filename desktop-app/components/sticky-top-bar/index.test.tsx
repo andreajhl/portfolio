@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import { AnimatedPopup } from "./";
+import { StickyTopBar } from "./";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<AnimatedPopup>Prueba</AnimatedPopup>);
+  const wrapper = shallow(<StickyTopBar />);
   expect(wrapper.exists()).toBeTruthy();
 });
