@@ -8,6 +8,11 @@ export type celebrityType = {
   alpha2Code: string;
   categoryId: number;
   title: string;
+  categoryTitle: string;
   fullName: string;
   id: number;
+  turnaround: number;
+  description: string;
+  causeName: string;
+  isDonor: boolean;
 };
