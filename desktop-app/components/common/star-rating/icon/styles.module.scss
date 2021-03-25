@@ -1,0 +1,7 @@
+.StarRatingIcon {
+  display: flex;
+  align-items: center;
+  > svg > path {
+    stroke: rgba(255, 201, 11, 1);
+  }
+}

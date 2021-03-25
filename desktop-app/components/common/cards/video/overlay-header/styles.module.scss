@@ -1,0 +1,11 @@
+.VideoControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  svg {
+    color: white !important;
+    cursor: pointer;
+    pointer-events: all;
+  }
+}

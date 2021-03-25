@@ -13,7 +13,7 @@ const AppLinksBanner = () => {
           <img
             height={"55"}
             width={"142px"}
-            src="/assets/img/google-play-badge.png"
+            src="/assets/img/app-google-play-badge.png"
             alt="Descargar APP desde Google Play Store"
           />
         </a>
