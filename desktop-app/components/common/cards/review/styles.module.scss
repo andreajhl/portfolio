@@ -1,0 +1,34 @@
+.CardReview {
+  padding: 20px 22px 21px 29px;
+  background: #ffffff;
+}
+.CardReviewBox {
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+.ReviewDetails {
+  display: flex;
+  align-items: center;
+  & > :last-child {
+    margin-left: auto;
+  }
+}
+.ReviewStarValue {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: left;
+
+  margin-left: 12px;
+}
+
+.ReviewDate {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+
+  text-align: left;
+  margin-left: 14px;
+}
