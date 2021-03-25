@@ -1,0 +1,20 @@
+.CelebrityInfo {
+  display: flex;
+
+  &Item,
+  &ItemWithSeparator {
+    font-size: 14px;
+  }
+
+  &ItemWithSeparator {
+    padding-right: 1rem;
+    border-right: 1px solid #9d9d9d;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &Flag {
+    margin-right: 14px;
+  }
+}

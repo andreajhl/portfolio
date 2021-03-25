@@ -1,0 +1,14 @@
+.DonorAlert {
+  display: flex;
+  align-items: center;
+  margin-bottom: 36px;
+
+  img {
+    width: 20px;
+    margin-right: 1rem;
+  }
+  p {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+}

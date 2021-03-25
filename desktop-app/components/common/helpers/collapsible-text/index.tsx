@@ -3,18 +3,18 @@ import limitString from "react-app/src/utils/limitString";
 
 export function CollapsibleText({
   children,
-  className = ""
+  className = "",
+  lengthLimit = 200
 }: {
   children: string;
   className?: string;
+  lengthLimit?: number;
 }) {
   const [isCollapse, setIsCollapse] = useState(true);
 
   function toggleCollapse() {
     setIsCollapse((isCollapse) => !isCollapse);
   }
-
-  const lengthLimit = 200;
 
   return (
     <p className={className}>
