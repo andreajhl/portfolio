@@ -1,5 +1,4 @@
 import { LikeButton } from "desktop-app/components/common/button/like";
-import OptimizedImage from "desktop-app/components/common/helpers/optimized-image";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import Maybe from "../../common/helpers/maybe";
 import { CollapsibleText } from "../../common/helpers/collapsible-text";
@@ -8,6 +7,7 @@ import { DonorAlert } from "desktop-app/components/celebrity-profile/donor-alert
 import styles from "./styles.module.scss";
 import { CelebrityHashtags } from "desktop-app/components/celebrity-profile/celebrity-hashtags";
 import { CelebrityInfo } from "../celebrity-info";
+import { CelebrityMainVideoWidget } from "desktop-app/components/celebrity-main-video-widget";
 
 type CelebrityDetailsProps = {
   celebrity: celebrityType;
@@ -25,12 +25,13 @@ function CelebrityDetails({ celebrity }: CelebrityDetailsProps) {
         <CelebrityInfo celebrity={celebrity} />
       </header>
       <div className={styles.CelebrityDetailsAvatarContainer}>
-        <OptimizedImage
-          className={styles.CelebrityDetailsAvatar}
-          placeholderSrc="/assets/img/avatar-blank.png"
-          src={celebrity.avatar}
-          width={220}
-          height={220}
+        <CelebrityMainVideoWidget
+          celebrity={celebrity}
+          className={styles.CelebrityDetailsMainVideo}
+          avatarProps={{
+            width: 220,
+            height: 220
+          }}
         />
         <WarrantyAd />
       </div>
