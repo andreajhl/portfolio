@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import { CelebrityFlag } from ".";
+import { CountryFlag } from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<CelebrityFlag alpha2Code="CO" />);
+  const wrapper = shallow(<CountryFlag alpha2Code="CO" />);
   expect(wrapper.find("img")).toHaveLength(1);
 });

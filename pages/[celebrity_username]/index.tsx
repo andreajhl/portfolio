@@ -12,6 +12,7 @@ import { getProfileVersionDependingOnTime } from "react-app/src/utils/celebrityP
 import isMobile from "lib/utils/isMobile";
 import dynamic from "next/dynamic";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 
 const CelebrityProfilePage = dynamic<{ celebrity: any }>(() =>
   import("react-app/src/components/pages/celebrity-profile").then(
@@ -60,6 +61,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 );
 
 const CelebrityProfile = ({ celebrity, isMobile }) => {
+  useDesktopClass(isMobile);
   return (
     <>
       <CustomHead

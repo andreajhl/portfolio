@@ -1,15 +1,14 @@
-import { celebrityType } from "desktop-app/types/celebrityType";
-
-type CelebrityFlagProps = {
+type CountryFlagProps = {
+  alpha2Code: string;
   width?: number;
   className?: string;
-} & Pick<celebrityType, "alpha2Code">;
+};
 
-function CelebrityFlag({
+function CountryFlag({
   alpha2Code,
   width = 20,
   className = ""
-}: CelebrityFlagProps) {
+}: CountryFlagProps) {
   return (
     <img
       src={`https://flagcdn.com/w20/${
@@ -22,4 +21,4 @@ function CelebrityFlag({
   );
 }
 
-export { CelebrityFlag };
+export { CountryFlag };
