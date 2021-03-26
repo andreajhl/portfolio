@@ -47,7 +47,7 @@ function CelebritySimilarVideosReel({
   }, []);
 
   return (
-    <Maybe it={similarVideos.length > 0}>
+    <Maybe it={similarVideos?.length > 0}>
       <CardsReelSection
         title="Las personas que vieron este perfil también vieron"
         itemData={similarVideos}
