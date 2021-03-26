@@ -66,7 +66,6 @@ function CelebrityProfilePage({
 }: CelebrityProfilePageProps) {
   return (
     <PageContainer>
-      <StickyCallToActionTopBar celebrity={celebrity} />
       <PageHeading showHomeLink>
         <Link
           href={getSearchCategoryPath(celebrity.categoryId)}
@@ -78,6 +77,10 @@ function CelebrityProfilePage({
           {celebrity.categoryTitle}
         </Link>
       </PageHeading>
+      <StickyCallToActionTopBar
+        appearancePosition={560} // por ser definido correctamente.
+        celebrity={celebrity}
+      />
       <div className="container">
         <div style={{ width: "616px" }}>
           <CelebrityDetails celebrity={celebrity} />

@@ -6,13 +6,15 @@ import styles from "./styles.module.scss";
 
 type StickyCallToActionTopBarProps = {
   celebrity: celebrityType;
+  appearancePosition: number;
 };
 
 function StickyCallToActionTopBar({
-  celebrity
+  celebrity,
+  appearancePosition
 }: StickyCallToActionTopBarProps) {
   return (
-    <StickyTopBar>
+    <StickyTopBar appearancePosition={appearancePosition}>
       <div className={"container " + styles.StickyCTAContainer}>
         <img
           src={celebrity.avatar}
