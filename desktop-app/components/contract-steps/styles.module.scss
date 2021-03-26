@@ -11,7 +11,9 @@
   flex-flow: column;
   flex-wrap: wrap;
   flex: 1 1 100%;
-  padding: 21px 41px 8px;
+  padding: 20px 41px 7px;
+  max-height: 350px;
+  max-width: 545px;
 
   h2 {
     font-size: 16px;
@@ -115,6 +117,8 @@
 
 .ContractStepsPartialLayout {
   flex-flow: column;
+  max-height: 350px;
+
   h2 {
     margin-top: 36px;
     margin-bottom: 59px;
