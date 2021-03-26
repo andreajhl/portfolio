@@ -20,6 +20,14 @@ export const getCelebrityFromSimilarCelebrity = ({
     availableForFlashDeliveries,
     countryCode,
     categoryId,
-    title: categoryTitle
+    title: categoryTitle,
+    alpha2Code: null,
+    categoryTitle,
+    turnaround: 0,
+    description: "",
+    causeName: null,
+    isDonor: false,
+    mainVideo: "",
+    showSimilarCelebrities: false
   };
 };

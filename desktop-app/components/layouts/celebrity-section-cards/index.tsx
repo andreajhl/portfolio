@@ -14,7 +14,10 @@ type CelebritiesSectionProps = {
 };
 
 const celebrityTypeReelProps: {
-  [key: string]: Omit<CardsReelSectionProps, "itemCount">;
+  [key: string]: Omit<
+    CardsReelSectionProps,
+    "itemCount" | "itemData" | "itemCount"
+  >;
 } = {
   CELEBRITY_CARD: {
     itemWidth: 170,

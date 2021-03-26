@@ -11,9 +11,9 @@ import styles from "./styles.module.scss";
 
 type CelebrityCardProps = {
   celebrity: celebrityType;
-  thumbnailWidth: number;
-  thumbnailHeight: number;
-  showPrice: boolean;
+  thumbnailWidth?: number;
+  thumbnailHeight?: number;
+  showPrice?: boolean;
 };
 
 function CelebrityCard({
