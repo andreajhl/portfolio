@@ -4,7 +4,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { Link } from "desktop-app/components/common/routing/link";
 import { ContractSteps } from "desktop-app/components/contract-steps";
 import { CelebrityPublicContractsReel } from "desktop-app/components/layouts/celebrity-public-contracts-reel";
-import LastReviewsSection from "desktop-app/components/layouts/last-reviews-section";
+import { LastReviewsSection } from "desktop-app/components/layouts/last-reviews-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { PageHeading } from "desktop-app/components/layouts/page-heading";
 import { StickyCallToActionTopBar } from "desktop-app/components/sticky-call-to-action-top-bar";
@@ -118,10 +118,7 @@ function CelebrityProfilePage({
             </div>
           </Maybe>
         </div>
-        <LastReviewsSection
-          reviews={mockData}
-          showMore={true}
-        ></LastReviewsSection>
+        <LastReviewsSection showMore={true}></LastReviewsSection>
 
         <div className="mt-5">
           <Maybe it={!isLoadingPublicContracts && publicContracts?.length >= 3}>
