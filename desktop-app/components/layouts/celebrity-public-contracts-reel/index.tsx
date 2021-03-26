@@ -88,6 +88,7 @@ const CelebrityPublicContractsReel = ({
         itemWidth={publicContractsVideoReelProps.itemWidth}
         itemHeight={publicContractsVideoReelProps.itemHeight}
         buttonsStyle={publicContractsVideoReelProps.buttonsStyle}
+        gap={publicContractsVideoReelProps.gap}
       >
         {publicContractsVideoReelProps.children}
       </CardsReelSection>
