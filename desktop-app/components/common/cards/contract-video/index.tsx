@@ -47,6 +47,7 @@ const ContractVideo = ({
   const toggleVideoIsMuted = () => {
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
+
   return (
     <div
       className={styles.ContractVideo}
@@ -66,7 +67,7 @@ const ContractVideo = ({
             muted={videoIsMuted}
             ref={videoRef}
             onLoadedData={onVideoLoadedData}
-            src={"/assets/testing.mp4"}
+            src={videoUrl}
             preload="none"
             className={styles.VideoElement}
           ></video>
