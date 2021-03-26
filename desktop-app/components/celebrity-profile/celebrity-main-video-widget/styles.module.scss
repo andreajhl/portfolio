@@ -8,7 +8,7 @@
 
   $border: 4px;
 
-  &:before {
+  &::before {
     content: "";
     position: absolute;
     top: 0;
@@ -19,6 +19,10 @@
     margin: -$border;
     border-radius: inherit;
     background: linear-gradient(180deg, #6970c6, #6970c6 50%, transparent);
+  }
+
+  &NoVideo::before {
+    background: none;
   }
 
   &Avatar {
