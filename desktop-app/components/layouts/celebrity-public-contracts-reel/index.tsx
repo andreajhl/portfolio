@@ -3,6 +3,29 @@ import React, { useEffect } from "react";
 import { celebrityOperations } from "react-app/src/state/ducks/celebrities";
 import { CardsReelSection, CardsReelSectionProps } from "../cards-section-reel";
 import { connect } from "react-redux";
+import styles from "./styles.module.scss";
+const mockData = [
+  {
+    contract_id: 9951,
+    contract_reference: "202102231457-1532892-9951",
+    contract_delivery_to: "Juanito",
+    user_full_name: "Isaac Peña",
+    contract_media:
+      "https://famosos-output-videos-testing.s3.amazonaws.com/videos/609/9951/famosos-videos-personalizados-enriquearce-202102231457-1532892-9951-crf-video-watermark480.mp4",
+    video_poster_url:
+      "https://famosos-output-videos-testing.s3.amazonaws.com/videos/609/9951/famosos-videos-personalizados-enriquearce-202102231457-1532892-9951-crf-video-poster480.jpg"
+  }
+  // {
+  //   contract_id: 9950,
+  //   contract_reference: "202102231451-1855905-9950",
+  //   contract_delivery_to: "Juanito",
+  //   user_full_name: "Isaac Peña",
+  //   contract_media:
+  //     "https://famosos-output-videos-testing.s3.amazonaws.com/videos/609/9950/famosos-videos-personalizados-enriquearce-202102231451-1855905-9950-crf-video-watermark480.mp4",
+  //   video_poster_url:
+  //     "https://famosos-output-videos-testing.s3.amazonaws.com/videos/609/9950/famosos-videos-personalizados-enriquearce-202102231451-1855905-9950-crf-video-poster480.jpg"
+  // }
+];
 
 const publicContractsVideoReelProps = {
   itemWidth: 263,
@@ -38,8 +61,10 @@ const CelebrityPublicContractsReel = ({
   }, [listPublicContracts]);
   return (
     <div>
-      <h2>Últimos videos</h2>
       <CardsReelSection
+        className={
+          publicContracts.length < 4 ? styles.ReelContainerFitContent : ""
+        }
         showHeader={false}
         itemCount={publicContracts.length}
         itemData={publicContracts}
@@ -55,7 +80,6 @@ const CelebrityPublicContractsReel = ({
             }}
           />
         )}
-        {/* {publicContractsVideoReelProps.children} */}
       </CardsReelSection>
     </div>
   );
