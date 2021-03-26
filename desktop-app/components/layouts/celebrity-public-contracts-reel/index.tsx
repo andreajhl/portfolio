@@ -1,7 +1,7 @@
 import ContractVideo from "desktop-app/components/common/cards/contract-video";
 import React, { useEffect } from "react";
 import { celebrityOperations } from "react-app/src/state/ducks/celebrities";
-import { CardsReelSection, CardsReelSectionProps } from "../cards-section-reel";
+import { CardsReelSection } from "../cards-section-reel";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 const mockData = [
@@ -36,29 +36,46 @@ const publicContractsVideoReelProps = {
     transform: "translateY(-50%)"
   },
   gap: 27,
-  children: (celebrity) => <ContractVideo celebrity={celebrity} />
+  children: (contract) => (
+    <ContractVideo
+      videoUrl={contract.contract_media}
+      videoPosterUrl={contract.video_poster_url}
+    />
+  )
 };
 
+// mapStateToProps
+const mapStateToProps = (state) => ({
+  isLoading: state.celebrities.fetchPublicContractsReducer.loading,
+  publicContracts: state.celebrities.fetchPublicContractsReducer.data.results
+});
+
+// mapStateToProps
+const mapDispatchToProps = {
+  listPublicContracts: celebrityOperations.listPublicContracts
+};
+
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = typeof mapDispatchToProps;
+
 type CelebrityPublicContractsReelProps = {
-  isLoading: boolean;
-  publicContracts: [];
-  listPublicContracts: (arg) => {};
   celebrityId: number;
   username: string;
   celebrityFullName: string;
   celebrityAvatar: string;
-};
+} & StateProps &
+  DispatchProps;
+
 const CelebrityPublicContractsReel = ({
   isLoading,
   publicContracts,
   listPublicContracts,
-  celebrityId,
-  celebrityAvatar,
-  celebrityFullName
+  celebrityId
 }: CelebrityPublicContractsReelProps) => {
   useEffect(() => {
     listPublicContracts(celebrityId);
-  }, [listPublicContracts]);
+  }, [celebrityId, listPublicContracts]);
+
   return (
     <div>
       <CardsReelSection
@@ -72,27 +89,10 @@ const CelebrityPublicContractsReel = ({
         itemHeight={publicContractsVideoReelProps.itemHeight}
         buttonsStyle={publicContractsVideoReelProps.buttonsStyle}
       >
-        {(publicContract) => (
-          <ContractVideo
-            celebrity={{
-              videoUrl: publicContract.contract_media,
-              videoPosterUrl: publicContract.video_poster_url
-            }}
-          />
-        )}
+        {publicContractsVideoReelProps.children}
       </CardsReelSection>
     </div>
   );
-};
-// mapStateToProps
-const mapStateToProps = (state) => ({
-  isLoading: state.celebrities.fetchPublicContractsReducer.loading,
-  publicContracts: state.celebrities.fetchPublicContractsReducer.data.results
-});
-
-// mapStateToProps
-const mapDispatchToProps = {
-  listPublicContracts: celebrityOperations.listPublicContracts
 };
 
 // Export Class
