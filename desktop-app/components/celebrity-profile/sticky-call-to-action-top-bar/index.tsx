@@ -1,18 +1,20 @@
 import { celebrityType } from "desktop-app/types/celebrityType";
-import { CelebrityInfo } from "../celebrity-profile/celebrity-info";
-import { PriceLayout } from "../common/helpers/price-layout";
-import { StickyTopBar } from "../sticky-top-bar";
+import { CelebrityInfo } from "../celebrity-info";
+import { PriceLayout } from "../../common/helpers/price-layout";
+import { StickyTopBar } from "../../common/sticky-top-bar";
 import styles from "./styles.module.scss";
 
 type StickyCallToActionTopBarProps = {
   celebrity: celebrityType;
+  appearancePosition: number;
 };
 
 function StickyCallToActionTopBar({
-  celebrity
+  celebrity,
+  appearancePosition
 }: StickyCallToActionTopBarProps) {
   return (
-    <StickyTopBar>
+    <StickyTopBar appearancePosition={appearancePosition}>
       <div className={"container " + styles.StickyCTAContainer}>
         <img
           src={celebrity.avatar}

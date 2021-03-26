@@ -7,9 +7,10 @@ import { CelebrityPublicContractsReel } from "desktop-app/components/layouts/cel
 import { LastReviewsSection } from "desktop-app/components/layouts/last-reviews-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { PageHeading } from "desktop-app/components/layouts/page-heading";
-import { StickyCallToActionTopBar } from "desktop-app/components/sticky-call-to-action-top-bar";
+import { StickyCallToActionTopBar } from "desktop-app/components/celebrity-profile/sticky-call-to-action-top-bar";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { connect } from "react-redux";
+import { SimilarCelebritiesCardsReel } from "desktop-app/components/celebrity-profile/similar-celebrities-cards-reel";
 
 const mockData = [
   {
@@ -79,7 +80,6 @@ function CelebrityProfilePage({
   console.log(publicContracts);
   return (
     <PageContainer>
-      <StickyCallToActionTopBar celebrity={celebrity} />
       <PageHeading showHomeLink>
         <Link
           href={getSearchCategoryPath(celebrity.categoryId)}
@@ -91,6 +91,10 @@ function CelebrityProfilePage({
           {celebrity.categoryTitle}
         </Link>
       </PageHeading>
+      <StickyCallToActionTopBar
+        appearancePosition={560} // por ser definido correctamente.
+        celebrity={celebrity}
+      />
       <div className="container">
         <div style={{ width: "616px" }}>
           <CelebrityDetails celebrity={celebrity} />
@@ -131,6 +135,13 @@ function CelebrityProfilePage({
             </div>
           </Maybe>
         </div>
+        <Maybe it={celebrity.showSimilarCelebrities}>
+          <div className="mb-5">
+            <SimilarCelebritiesCardsReel
+              celebrityUsername={celebrity.username}
+            />
+          </div>
+        </Maybe>
       </div>
     </PageContainer>
   );

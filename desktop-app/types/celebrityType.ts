@@ -16,4 +16,5 @@ export type celebrityType = {
   causeName: string;
   isDonor: boolean;
   mainVideo: string;
+  showSimilarCelebrities: boolean;
 };

@@ -17,4 +17,12 @@
   &Flag {
     margin-right: 14px;
   }
+
+  &Reviews {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline var(--dark);
+    }
+  }
 }
