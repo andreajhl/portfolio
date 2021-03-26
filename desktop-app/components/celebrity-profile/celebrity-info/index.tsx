@@ -1,4 +1,4 @@
-import { CelebrityFlag } from "desktop-app/components/common/celebrity-flag";
+import { CountryFlag } from "desktop-app/components/common/country-flag";
 import { CelebrityResponseTime } from "desktop-app/components/common/celebrity-response-time";
 import LastReviewsModal from "desktop-app/components/layouts/last-reviews-modal";
 import { celebrityType } from "desktop-app/types/celebrityType";
@@ -13,7 +13,7 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
   return (
     <div className={`${styles.CelebrityInfo} ${className}`}>
       <span className={styles.CelebrityInfoItemWithSeparator}>
-        <CelebrityFlag
+        <CountryFlag
           alpha2Code={celebrity.alpha2Code}
           width={23}
           className={styles.CelebrityInfoFlag}

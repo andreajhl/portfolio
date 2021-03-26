@@ -1,5 +1,5 @@
 import { getCelebrityProfilePath, getSearchPath } from "constants/paths";
-import { CelebrityFlag } from "desktop-app/components/common/celebrity-flag";
+import { CountryFlag } from "desktop-app/components/common/country-flag";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { LikeButton } from "../../button/like";
 import { FlashDeliveryBadgeLayout } from "../../flash-delivery-badge";
@@ -52,7 +52,7 @@ function CelebrityCard({
       </div>
       <div className={styles.CelebrityCardInfo}>
         <h4 className={styles.CelebrityCardHeading}>
-          <CelebrityFlag alpha2Code={celebrity.alpha2Code} className="mr-2" />
+          <CountryFlag alpha2Code={celebrity.alpha2Code} className="mr-2" />
           <span className="text-with-ellipsis">{celebrity.fullName}</span>
         </h4>
         <Maybe it={Array.isArray(celebrity.hashtags)}>
