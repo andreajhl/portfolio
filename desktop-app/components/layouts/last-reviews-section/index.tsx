@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { CardReviewProps } from "../../../types/cardReviewProps";
 import Popup from "reactjs-popup";
-import LastReviewsModal from "../last-reviews-modal";
+import { LastReviewsModal } from "../last-reviews-modal";
 import { celebrityOperations } from "react-app/src/state/ducks/celebrities";
 import { connect } from "react-redux";
 import { listReviews } from "react-app/src/state/ducks/celebrities/actions";
@@ -34,16 +34,6 @@ const LastReviewsSection = ({
   paginationData,
   isLoading
 }: LastReviewsSectionProps) => {
-  const getMoreData = () => {
-    console.log("TODO: fetch more data");
-    // const params = {
-    //   currentPage: paginationData.currentPage + 1
-    // };
-    // const merge = true;
-    // console.log(params, "params");
-    // listReviews(609, params, merge);
-  };
-
   return (
     <div className={styles.LastReviewsSection}>
       <h2>Calificaciones</h2>
@@ -58,7 +48,7 @@ const LastReviewsSection = ({
         ))}
       </div>
       {showMore ? (
-        <LastReviewsModal reviews={reviews} fetchMoreData={getMoreData}>
+        <LastReviewsModal>
           {{
             triggerElement: (
               <p className={styles.SeeMoreCTA}>Ver todas las calificaciones</p>

@@ -1,6 +1,6 @@
 import { CountryFlag } from "desktop-app/components/common/country-flag";
 import { CelebrityResponseTime } from "desktop-app/components/common/celebrity-response-time";
-import LastReviewsModal from "desktop-app/components/layouts/last-reviews-modal";
+import { LastReviewsModal } from "desktop-app/components/layouts/last-reviews-modal";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import styles from "./styles.module.scss";
 
@@ -21,7 +21,7 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
         {celebrity.categoryTitle}
       </span>
       <span className={styles.CelebrityInfoItemWithSeparator}>
-        <LastReviewsModal reviews={[]} fetchMoreData={() => {}}>
+        <LastReviewsModal>
           {{
             triggerElement: (
               <span className={styles.CelebrityInfoReviews}>
