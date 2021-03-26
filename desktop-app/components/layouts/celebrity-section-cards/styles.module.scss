@@ -1,3 +1,7 @@
 .CelebritiesSection {
   margin-bottom: 30px;
+
+  &Title {
+    font-size: var(--font-size-heading-1) !important;
+  }
 }

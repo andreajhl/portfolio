@@ -82,7 +82,11 @@ function CelebritiesSection({ celebritySection }: CelebritiesSectionProps) {
 
   return (
     <CardsReelSection
-      title={celebritySection.title}
+      title={
+        <h2 className={styles.CelebritiesSectionTitle}>
+          {celebritySection.title}
+        </h2>
+      }
       showMorePath={searchMoreResultsPath}
       itemCount={celebritySection.celebrities.length}
       itemData={celebritySection.celebrities}

@@ -49,7 +49,7 @@ function CardsReelSection({
       <Maybe it={showHeader}>
         <header className={styles.CardsReelSectionHeader}>
           <Maybe it={typeof title === "string"} orElse={title}>
-            <h2 className={styles.CardsReelSectionTitle}>{title}</h2>
+            <h2>{title}</h2>
           </Maybe>
           <Maybe it={Boolean(showMorePath)}>
             <Link
