@@ -4,6 +4,7 @@ import { celebrityOperations } from "react-app/src/state/ducks/celebrities";
 import { CardsReelSection } from "../cards-section-reel";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
+import Maybe from "react-app/src/components/common/helpers/maybe";
 const mockData = [
   {
     contract_id: 9951,
@@ -75,24 +76,25 @@ const CelebrityPublicContractsReel = ({
   useEffect(() => {
     listPublicContracts(celebrityId);
   }, [celebrityId, listPublicContracts]);
-
   return (
-    <div>
-      <CardsReelSection
-        title={<h2>Últimos videos</h2>}
-        className={
-          publicContracts.length < 4 ? styles.ReelContainerFitContent : ""
-        }
-        itemCount={publicContracts.length}
-        itemData={publicContracts}
-        itemWidth={publicContractsVideoReelProps.itemWidth}
-        itemHeight={publicContractsVideoReelProps.itemHeight}
-        buttonsStyle={publicContractsVideoReelProps.buttonsStyle}
-        gap={publicContractsVideoReelProps.gap}
-      >
-        {publicContractsVideoReelProps.children}
-      </CardsReelSection>
-    </div>
+    <Maybe it={publicContracts.length > 0}>
+      <div>
+        <CardsReelSection
+          title={<h2>Últimos videos</h2>}
+          className={
+            publicContracts.length < 4 ? styles.ReelContainerFitContent : ""
+          }
+          itemCount={publicContracts.length}
+          itemData={publicContracts}
+          itemWidth={publicContractsVideoReelProps.itemWidth}
+          itemHeight={publicContractsVideoReelProps.itemHeight}
+          buttonsStyle={publicContractsVideoReelProps.buttonsStyle}
+          gap={publicContractsVideoReelProps.gap}
+        >
+          {publicContractsVideoReelProps.children}
+        </CardsReelSection>
+      </div>
+    </Maybe>
   );
 };
 
