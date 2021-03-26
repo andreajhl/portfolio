@@ -4,18 +4,44 @@ import styles from "./styles.module.scss";
 import { CardReviewProps } from "../../../types/cardReviewProps";
 import Popup from "reactjs-popup";
 import LastReviewsModal from "../last-reviews-modal";
+import { celebrityOperations } from "react-app/src/state/ducks/celebrities";
+import { connect } from "react-redux";
+import { listReviews } from "react-app/src/state/ducks/celebrities/actions";
+
+// mapStateToProps
+const mapStateToProps = ({ celebrities }) => ({
+  isLoading: celebrities.fetchReviewsReducer.loading,
+  reviews: celebrities.fetchReviewsReducer.data.results,
+  paginationData: celebrities.fetchReviewsReducer.data.informationPage
+});
+
+// mapStateToProps
+const mapDispatchToProps = {
+  listReviews: celebrityOperations.listReviews
+};
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = typeof mapDispatchToProps;
 
 type LastReviewsSectionProps = {
-  reviews: Array<CardReviewProps>;
   showMore: boolean;
-};
+} & StateProps &
+  DispatchProps;
 
 const LastReviewsSection = ({
   reviews = [],
-  showMore = true
+  showMore = true,
+  listReviews,
+  paginationData,
+  isLoading
 }: LastReviewsSectionProps) => {
   const getMoreData = () => {
-    console.log("TODO -> Realizar dispatch");
+    console.log("TODO: fetch more data");
+    // const params = {
+    //   currentPage: paginationData.currentPage + 1
+    // };
+    // const merge = true;
+    // console.log(params, "params");
+    // listReviews(609, params, merge);
   };
 
   return (
@@ -44,4 +70,9 @@ const LastReviewsSection = ({
   );
 };
 
-export default LastReviewsSection;
+const _LastReviewsSection = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LastReviewsSection);
+
+export { _LastReviewsSection as LastReviewsSection };
