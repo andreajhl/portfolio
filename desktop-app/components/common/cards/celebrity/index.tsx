@@ -11,9 +11,17 @@ import styles from "./styles.module.scss";
 
 type CelebrityCardProps = {
   celebrity: celebrityType;
+  thumbnailWidth: number;
+  thumbnailHeight: number;
+  showPrice: boolean;
 };
 
-function CelebrityCard({ celebrity }: CelebrityCardProps) {
+function CelebrityCard({
+  celebrity,
+  thumbnailWidth = 170,
+  thumbnailHeight = 210,
+  showPrice = true
+}: CelebrityCardProps) {
   return (
     <Link
       href={getCelebrityProfilePath(celebrity.username)}
@@ -22,8 +30,8 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
       <div className={styles.CelebrityCardThumbnail}>
         <OptimizedImage
           placeholderSrc="/assets/img/avatar-blank.png"
-          height={210}
-          width={170}
+          height={thumbnailHeight}
+          width={thumbnailWidth}
           src={celebrity.avatar}
           className={styles.CelebrityCardAvatar}
         />
@@ -47,20 +55,24 @@ function CelebrityCard({ celebrity }: CelebrityCardProps) {
           <CelebrityFlag alpha2Code={celebrity.alpha2Code} className="mr-2" />
           <span className="text-with-ellipsis">{celebrity.fullName}</span>
         </h4>
-        <p className={styles.CelebrityCardHashtags}>
-          {celebrity.hashtags
-            .filter((hashtag, index, { length }) => {
-              if (index !== 0 || length === 1) return true;
-              const hashtagRegExp = new RegExp(hashtag, "gi");
-              return !hashtagRegExp.test(celebrity.title);
-            })
-            .map((hashtag) => (
-              <Link href={hashtag}>#{hashtag} </Link>
-            ))}
-        </p>
-        <p className={"text-with-ellipsis " + styles.CelebrityCardPrice}>
-          <PriceLayout decimalScale={0} price={celebrity.videoMessagePrice} />
-        </p>
+        <Maybe it={Array.isArray(celebrity.hashtags)}>
+          <p className={styles.CelebrityCardHashtags}>
+            {celebrity?.hashtags
+              ?.filter?.((hashtag, index, { length }) => {
+                if (index !== 0 || length === 1) return true;
+                const hashtagRegExp = new RegExp(hashtag, "gi");
+                return !hashtagRegExp.test(celebrity.title);
+              })
+              .map((hashtag) => (
+                <Link href={hashtag}>#{hashtag.replace("#", "")} </Link>
+              ))}
+          </p>
+        </Maybe>
+        <Maybe it={showPrice}>
+          <p className={"text-with-ellipsis " + styles.CelebrityCardPrice}>
+            <PriceLayout decimalScale={0} price={celebrity.videoMessagePrice} />
+          </p>
+        </Maybe>
       </div>
     </Link>
   );

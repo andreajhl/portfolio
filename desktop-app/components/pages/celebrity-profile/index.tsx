@@ -10,6 +10,7 @@ import { PageHeading } from "desktop-app/components/layouts/page-heading";
 import { StickyCallToActionTopBar } from "desktop-app/components/celebrity-profile/sticky-call-to-action-top-bar";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { connect } from "react-redux";
+import { SimilarCelebritiesCardsReel } from "desktop-app/components/celebrity-profile/similar-celebrities-cards-reel";
 
 const mockData = [
   {
@@ -137,6 +138,13 @@ function CelebrityProfilePage({
             </div>
           </Maybe>
         </div>
+        <Maybe it={celebrity.showSimilarCelebrities}>
+          <div className="mb-5">
+            <SimilarCelebritiesCardsReel
+              celebrityUsername={celebrity.username}
+            />
+          </div>
+        </Maybe>
       </div>
     </PageContainer>
   );
