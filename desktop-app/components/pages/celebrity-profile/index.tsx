@@ -11,6 +11,7 @@ import { StickyCallToActionTopBar } from "desktop-app/components/celebrity-profi
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { connect } from "react-redux";
 import { SimilarCelebritiesCardsReel } from "desktop-app/components/celebrity-profile/similar-celebrities-cards-reel";
+import { CelebritySimilarVideosReel } from "desktop-app/components/celebrity-profile/celebrity-similar-videos-reel";
 
 const mockData = [
   {
@@ -180,9 +181,18 @@ function CelebrityProfilePage({
         </div>
         <Maybe it={celebrity.showSimilarCelebrities}>
           <div className="mb-5">
-            <SimilarCelebritiesCardsReel
-              celebrityUsername={celebrity.username}
-            />
+            <Maybe
+              it={publicContracts.length > 0}
+              orElse={
+                <CelebritySimilarVideosReel
+                  celebrityUsername={celebrity.username}
+                />
+              }
+            >
+              <SimilarCelebritiesCardsReel
+                celebrityUsername={celebrity.username}
+              />
+            </Maybe>
           </div>
         </Maybe>
       </div>
