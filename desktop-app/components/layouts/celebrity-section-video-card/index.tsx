@@ -1,6 +1,6 @@
 import ContractVideo from "desktop-app/components/common/cards/contract-video";
 import VideoFooter from "desktop-app/components/common/cards/video/footer";
-import { ContractVideoProps } from "desktop-app/types/ContractVideoProps";
+import { ContractVideoProps } from "desktop-app/types/contractVideoProps";
 import React from "react";
 import styles from "./styles.module.scss";
 
