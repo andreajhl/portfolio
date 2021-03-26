@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { CelebrityCard } from "../../common/cards/celebrity";
 import styles from "./styles.module.scss";
 import Maybe from "react-app/src/components/common/helpers/maybe";
+import { getCelebrityFromSimilarCelebrity } from "../../../../lib/utils/getCelebrityFromSimilarCelebrity";
 
 const mapStateToProps = ({ celebrities }) => {
   return {
@@ -24,32 +25,6 @@ type SimilarCelebritiesCardsReelProps = {
   celebrityUsername: string;
 } & StateProps &
   DispatchProps;
-
-const getCelebrityFromSimilarCelebrity = ({
-  celebrityId,
-  celebrityUsername,
-  celebrityFullName,
-  celebrityAvatar,
-  celebrityHashTags,
-  videoMessagePrice,
-  availableForFlashDeliveries,
-  countryCode,
-  categoryId,
-  categoryTitle
-}: any) => {
-  return {
-    id: celebrityId,
-    avatar: celebrityAvatar,
-    username: celebrityUsername,
-    fullName: celebrityFullName,
-    hashtags: celebrityHashTags,
-    videoMessagePrice,
-    availableForFlashDeliveries,
-    countryCode,
-    categoryId,
-    title: categoryTitle
-  };
-};
 
 function SimilarCelebritiesCardsReel({
   celebrityUsername,
