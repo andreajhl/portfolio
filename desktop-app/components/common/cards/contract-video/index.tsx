@@ -1,20 +1,12 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { celebrityType } from "desktop-app/types/celebrityType";
+import { ContractVideoProps } from "desktop-app/types/contractVideoProps";
 import { useState } from "react";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import useLoad from "react-app/src/utils/useLoad";
 import OverlayHeader from "../video/overlay-header";
 import OverlayDetails from "../video/overlay-details";
-
-type ContractVideoProps = {
-  videoUrl: string;
-  videoPosterUrl: string;
-  occasion?: string;
-  className?: string;
-  style?: object;
-};
 
 const ContractVideo = ({
   videoUrl,
