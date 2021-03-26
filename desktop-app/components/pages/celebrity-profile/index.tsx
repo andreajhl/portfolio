@@ -1,16 +1,15 @@
 import { getSearchCategoryPath, getSearchPath } from "constants/paths";
 import { CelebrityDetails } from "desktop-app/components/celebrity-profile/celebrity-details";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 import { Link } from "desktop-app/components/common/routing/link";
+import { ContractSteps } from "desktop-app/components/contract-steps";
 import { CelebrityPublicContractsReel } from "desktop-app/components/layouts/celebrity-public-contracts-reel";
 import LastReviewsSection from "desktop-app/components/layouts/last-reviews-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { PageHeading } from "desktop-app/components/layouts/page-heading";
 import { StickyCallToActionTopBar } from "desktop-app/components/sticky-call-to-action-top-bar";
 import { celebrityType } from "desktop-app/types/celebrityType";
-
-type CelebrityProfilePageProps = {
-  celebrity: celebrityType;
-};
+import { connect } from "react-redux";
 
 const mockData = [
   {
@@ -60,10 +59,24 @@ const mockData = [
   }
 ];
 
+const mapStateToProps = ({ celebrities }) => ({
+  publicContracts: celebrities.fetchPublicContractsReducer.data.results,
+  isLoadingPublicContracts: celebrities.fetchPublicContractsReducer.loading
+});
+
+type StateProps = ReturnType<typeof mapStateToProps>;
+
+type CelebrityProfilePageProps = {
+  celebrity: celebrityType;
+} & StateProps;
+
 function CelebrityProfilePage({
   celebrity,
+  isLoadingPublicContracts,
+  publicContracts,
   ...props
 }: CelebrityProfilePageProps) {
+  console.log(publicContracts);
   return (
     <PageContainer>
       <StickyCallToActionTopBar celebrity={celebrity} />
@@ -82,19 +95,49 @@ function CelebrityProfilePage({
         <div style={{ width: "616px" }}>
           <CelebrityDetails celebrity={celebrity} />
         </div>
-        <CelebrityPublicContractsReel
-          celebrityId={celebrity.id}
-          username={celebrity.username}
-          celebrityFullName={celebrity.fullName}
-          celebrityAvatar={celebrity.avatar}
-        />
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center"
+          }}
+        >
+          <CelebrityPublicContractsReel
+            celebrityId={celebrity.id}
+            username={celebrity.username}
+            celebrityFullName={celebrity.fullName}
+            celebrityAvatar={celebrity.avatar}
+          />
+          <Maybe it={!isLoadingPublicContracts && publicContracts?.length < 3}>
+            <div
+              style={{
+                flex: "1"
+              }}
+            >
+              <ContractSteps></ContractSteps>
+            </div>
+          </Maybe>
+        </div>
         <LastReviewsSection
           reviews={mockData}
           showMore={true}
         ></LastReviewsSection>
+
+        <div className="mt-5">
+          <Maybe it={!isLoadingPublicContracts && publicContracts?.length >= 3}>
+            <div
+              style={{
+                flex: "1"
+              }}
+            >
+              <ContractSteps></ContractSteps>
+            </div>
+          </Maybe>
+        </div>
       </div>
     </PageContainer>
   );
 }
+const _CelebrityProfilePage = connect(mapStateToProps)(CelebrityProfilePage);
 
-export { CelebrityProfilePage };
+export { _CelebrityProfilePage as CelebrityProfilePage };
