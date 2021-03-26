@@ -1,3 +1,4 @@
+import { AnimatedPopup } from "desktop-app/components/common/animated-popup";
 import { CardReviewProps } from "desktop-app/types/cardReviewProps";
 import React, { ReactNode } from "react";
 import { CelebrityReviewCardLayout } from "react-app/src/components/layouts/celebrity-review-card";
@@ -14,13 +15,19 @@ type LastReviewsModalProps = {
   fetchMoreData: () => void;
 };
 
+// mapStateToProps
+const mapStateToProps = (state) => ({
+  isLoading: state.celebrities.fetchPublicContractsReducer.loading,
+  publicContracts: state.celebrities.fetchPublicContractsReducer.data.results
+});
+
 const LastReviewsModal = ({
   children,
   reviews,
   fetchMoreData
 }: LastReviewsModalProps) => {
   return (
-    <Popup trigger={children.triggerElement} modal>
+    <AnimatedPopup trigger={children.triggerElement} modal>
       <div className={styles.LastReviewsModal}>
         <div className={styles.LastReviewsModalHeader}>
           <span>Últimas valoraciones</span>
@@ -51,7 +58,7 @@ const LastReviewsModal = ({
           ))}
         </InfiniteScroll>
       </div>
-    </Popup>
+    </AnimatedPopup>
   );
 };
 export default LastReviewsModal;
