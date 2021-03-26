@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import { byText } from "__test__/utils";
-import { CelebrityResponseTime } from "./";
+import { CelebrityResponseTime } from ".";
 
 it("renders without crashing", () => {
   const wrapper = shallow(

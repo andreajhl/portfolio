@@ -1,0 +1,31 @@
+.WarrantyAd {
+  text-align: center;
+  padding: 1rem;
+  height: 237px;
+  width: 232px;
+  border-radius: 7px;
+  background: #fafafa;
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 19px;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 16.39px;
+    margin-bottom: 0;
+  }
+
+  p:first-of-type {
+    margin-bottom: 19px;
+  }
+
+  img {
+    width: 24px;
+    margin-bottom: 16px;
+  }
+  &InfoIcon {
+    margin-right: -1em;
+  }
+}

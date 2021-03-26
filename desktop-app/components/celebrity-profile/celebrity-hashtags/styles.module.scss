@@ -1,0 +1,22 @@
+.CelebrityHashtags {
+  a {
+    margin-right: 0.625rem;
+    margin-bottom: 0.625rem;
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  span {
+    background: #ffedf5;
+    border-radius: 5px;
+    padding: 0.375em 0.75em;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+}
