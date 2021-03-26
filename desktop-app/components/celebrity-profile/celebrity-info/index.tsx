@@ -1,5 +1,6 @@
 import { CelebrityFlag } from "desktop-app/components/common/celebrity-flag";
 import { CelebrityResponseTime } from "desktop-app/components/common/celebrity-response-time";
+import LastReviewsModal from "desktop-app/components/layouts/last-reviews-modal";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import styles from "./styles.module.scss";
 
@@ -20,8 +21,16 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
         {celebrity.categoryTitle}
       </span>
       <span className={styles.CelebrityInfoItemWithSeparator}>
-        <i className="fa fa-star text-warning mr-2"></i>
-        4.5
+        <LastReviewsModal reviews={[]} fetchMoreData={() => {}}>
+          {{
+            triggerElement: (
+              <span className={styles.CelebrityInfoReviews}>
+                <i className="fa fa-star text-warning mr-2" />
+                4.5
+              </span>
+            )
+          }}
+        </LastReviewsModal>
       </span>
       <span className={styles.CelebrityInfoItem}>
         Respuesta promedio:{" "}

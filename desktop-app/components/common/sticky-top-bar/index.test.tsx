@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import { StickyTopBar } from "./";
+import { StickyTopBar } from ".";
 
 it("renders without crashing", () => {
   const wrapper = shallow(

@@ -5,7 +5,7 @@ import { CelebrityPublicContractsReel } from "desktop-app/components/layouts/cel
 import LastReviewsSection from "desktop-app/components/layouts/last-reviews-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { PageHeading } from "desktop-app/components/layouts/page-heading";
-import { StickyCallToActionTopBar } from "desktop-app/components/sticky-call-to-action-top-bar";
+import { StickyCallToActionTopBar } from "desktop-app/components/celebrity-profile/sticky-call-to-action-top-bar";
 import { celebrityType } from "desktop-app/types/celebrityType";
 
 type CelebrityProfilePageProps = {

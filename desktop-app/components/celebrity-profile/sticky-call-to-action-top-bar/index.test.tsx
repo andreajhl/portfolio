@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import testCelebrity from "__test__/testCelebrity";
-import { StickyCallToActionTopBar } from "./";
+import { StickyCallToActionTopBar } from ".";
 
 it("renders without crashing", () => {
   const wrapper = shallow(
