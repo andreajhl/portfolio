@@ -1,18 +1,8 @@
-import React from 'react'
-import { mount, shallow } from 'enzyme';
-import { create } from 'react-test-renderer';
-import { CategoryCard } from '../../pages/index'
+import { categories } from "constants/categories";
+import { shallow } from "enzyme";
+import { CategoryCard } from ".";
 
-describe('<CategoryCard />', () => {
-  it('matches snapshot', () => {
-    const { asFragment } = render(<CategoryCard />, {})
-    expect(asFragment()).toMatchSnapshot()
-  })
-
-  it('clicking button triggers alert', () => {
-    const { getByText } = render(<CategoryCard />, {})
-    window.alert = jest.fn()
-    fireEvent.click(getByText('Test Button'))
-    expect(window.alert).toHaveBeenCalledWith('With typescript and Jest')
-  })
-})
+it("renders without crashing", () => {
+  const wrapper = shallow(<CategoryCard category={categories[0]} />);
+  expect(wrapper.exists()).toBeTruthy();
+});
