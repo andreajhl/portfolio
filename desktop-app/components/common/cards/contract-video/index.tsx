@@ -1,29 +1,21 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { celebrityType } from "desktop-app/types/celebrityType";
+import { ContractVideoProps } from "desktop-app/types/contractVideoProps";
 import { useState } from "react";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import useLoad from "react-app/src/utils/useLoad";
 import OverlayHeader from "../video/overlay-header";
 import OverlayDetails from "../video/overlay-details";
 
-type ContractVideoProps = {
-  celebrity: celebrityType & {
-    videoUrl: string;
-    videoPosterUrl: string;
-    occasion: string;
-  };
-  className?: string;
-  style?: object;
-};
-
 const ContractVideo = ({
-  celebrity,
+  videoUrl,
+  videoPosterUrl,
+  occasion,
   style = {},
   className = ""
 }: ContractVideoProps) => {
-  const videoKey = `contract-video-${celebrity.videoUrl}`;
+  const videoKey = `contract-video-${videoUrl}`;
   const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
     onPlayVideo() {
       // TODO: conectar GTM
@@ -47,6 +39,7 @@ const ContractVideo = ({
   const toggleVideoIsMuted = () => {
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
+
   return (
     <div
       className={styles.ContractVideo}
@@ -57,7 +50,7 @@ const ContractVideo = ({
         <section onClick={togglePlay} className={styles.ContractVideoPlayer}>
           <Maybe it={!videoIsLoaded}>
             <img
-              src={celebrity.videoPosterUrl}
+              src={videoPosterUrl}
               alt={`Poster de vídeo de famoso`}
               className={styles.VideoPoster}
             ></img>
@@ -66,7 +59,7 @@ const ContractVideo = ({
             muted={videoIsMuted}
             ref={videoRef}
             onLoadedData={onVideoLoadedData}
-            src={"/assets/testing.mp4"}
+            src={videoUrl}
             preload="none"
             className={styles.VideoElement}
           ></video>
@@ -81,7 +74,7 @@ const ContractVideo = ({
             />
           </div>
           <OverlayDetails
-            ocassion={celebrity.occasion}
+            ocassion={occasion}
             onLikevideo={() => {
               console.log("video like it");
             }}
