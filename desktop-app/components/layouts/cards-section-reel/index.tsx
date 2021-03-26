@@ -7,7 +7,10 @@ import styles from "./styles.module.scss";
 
 type Render = (data: any) => JSX.Element;
 
-export type CardsReelSectionProps = Omit<ReelProps, "itemSize" | "height"> & {
+export type CardsReelSectionProps = Omit<
+  ReelProps,
+  "itemData" | "itemSize" | "height"
+> & {
   showHeader?: boolean;
   title?: ReactNode;
   showMorePath?: string;
@@ -15,6 +18,7 @@ export type CardsReelSectionProps = Omit<ReelProps, "itemSize" | "height"> & {
   className?: string;
   itemWidth: number;
   itemHeight: number | string;
+  itemData: any[];
   gap?: number;
 };
 
