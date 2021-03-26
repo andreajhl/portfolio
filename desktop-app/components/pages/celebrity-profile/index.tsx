@@ -147,7 +147,8 @@ function CelebrityProfilePage({
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            marginTop: "28px"
           }}
         >
           <CelebrityPublicContractsReel
@@ -166,9 +167,20 @@ function CelebrityProfilePage({
             </div>
           </Maybe>
         </div>
-        <LastReviewsSection showMore={true}></LastReviewsSection>
+        <div
+          style={{
+            marginTop: "35px",
+            marginBottom: "37px"
+          }}
+        >
+          <LastReviewsSection showMore={true}></LastReviewsSection>
+        </div>
 
-        <div className="mt-5">
+        <div
+          style={{
+            marginBottom: "36px"
+          }}
+        >
           <Maybe it={!isLoadingPublicContracts && publicContracts?.length >= 3}>
             <div
               style={{
