@@ -1,4 +1,4 @@
-import { getSearchCategoryPath, getSearchPath } from "constants/paths";
+import { getSearchCategoryPath } from "constants/paths";
 import { CelebrityDetails } from "desktop-app/components/celebrity-profile/celebrity-details";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { Link } from "desktop-app/components/common/routing/link";
@@ -12,54 +12,6 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 import { connect } from "react-redux";
 import { SimilarCelebritiesCardsReel } from "desktop-app/components/celebrity-profile/similar-celebrities-cards-reel";
 import { CelebritySimilarVideosReel } from "desktop-app/components/celebrity-profile/celebrity-similar-videos-reel";
-
-const mockData = [
-  {
-    contract_id: 9260,
-    contract_review:
-      "Oleeee, hermoso. Muchas gracias Enrique, que rápido wow. Éxitos, que Dios te Bendiga.",
-    contract_stars: 5,
-    user_full_name: "Duvan vargas",
-    date: "20/dic/2020"
-  },
-  {
-    contract_id: 7310,
-    contract_review: "Gracias ",
-    contract_stars: 5,
-    user_full_name: "Duvan vargas",
-    date: "20/dic/2020"
-  },
-  {
-    contract_id: 6955,
-    contract_review: "Excelente muchísimas gracias, un abrazo!!",
-    contract_stars: 5,
-    user_full_name: "Duvan vargas",
-    date: "20/dic/2020"
-  },
-  {
-    contract_id: 5407,
-    contract_review:
-      " ¡Gracias Enrique! Esta fantástico no se lo va a creer. Significa mucho. Algo tan pequeño para ti puede tener un impacto enorme en otro persona.  ",
-    contract_stars: 5,
-    user_full_name: "Duvan vargas",
-    date: "20/dic/2020"
-  },
-  {
-    contract_id: 4583,
-    contract_review: "Gracias amigooo hermoso regaloo",
-    contract_stars: 5,
-    user_full_name: "Duvan vargas",
-    date: "20/dic/2020"
-  },
-  {
-    contract_id: 4503,
-    contract_review:
-      "Excelente mi hermanito  espectacularrr espectacular esssssspectacular.   Fuerte abrazo ",
-    contract_stars: 5,
-    user_full_name: "Duvan vargas",
-    date: "20/dic/2020"
-  }
-];
 
 const mapStateToProps = ({ celebrities }) => ({
   publicContracts: celebrities.fetchPublicContractsReducer.data.results,
