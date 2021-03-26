@@ -12,6 +12,12 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { getProfileVersionDependingOnTime } from "react-app/src/utils/celebrityProfileVersion";
 import MicroDataTags from "react-app/src/components/common/helpers/micro-data-tags";
 import getContractPrice from "react-app/src/utils/getContractPrice";
+import {
+  VIDEO_MESSAGE_PRODUCT_ID_PREFIX,
+  GIFT_GIVING_CATEGORY_CODE
+} from "../../constants/dynamicAds";
+import { useEffect } from "react";
+import waitFor from "react-app/src/utils/waitFor";
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
@@ -46,10 +52,21 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   }
 );
 
-const GIFT_GIVING_CATEGORY_CODE = "2559";
-
 const CelebrityProfile = ({ celebrity }) => {
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
+  const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
+
+  useEffect(() => {
+    async function captureProfileViewEvent() {
+      const fbq = await waitFor(() => (window as any)?.fbq);
+      if (typeof fbq !== "function") return;
+      fbq("track", "ViewContent", {
+        content_type: "product",
+        content_ids: productId
+      });
+    }
+    captureProfileViewEvent();
+  }, []);
 
   return (
     <>
@@ -60,7 +77,7 @@ const CelebrityProfile = ({ celebrity }) => {
         ogVideo={celebrity.mainVideo}
       />
       <MicroDataTags
-        productId={"VIDEO_MESSAGE_" + celebrity.id}
+        productId={productId}
         priceAmount={videoMessagePrice}
         productAvailability={
           celebrity.status === 50 ? "available for order" : "out of stock"

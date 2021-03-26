@@ -9,6 +9,8 @@ import OcassionsOptions from "../ocassions-options";
 import { occasionsData } from "../../../constants/options";
 import { getToken } from "react-app/src/state/ducks/session/actions";
 import "react-phone-input-2/lib/style.css";
+import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
+
 class CreateContractForm extends Component {
   constructor(props) {
     super(props);
@@ -125,6 +127,9 @@ class CreateContractForm extends Component {
         if (typeof window !== "undefined") {
           if (window.fbq != null) {
             window.fbq("track", "InitiateCheckout", {
+              content_type: "product",
+              content_ids:
+                VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
               value: this.props.contractPrice,
               currency: "USD"
             });
