@@ -78,12 +78,15 @@
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
+
+  margin-left: 7px;
 }
 
 .ContractStepsFullLayout .ContractStep {
   flex-flow: row;
   flex: 0 1 300px;
+
   .ContractStepTitle {
     display: flex;
     flex-flow: column;
