@@ -7,6 +7,7 @@ import { LastReviewsModal } from "../last-reviews-modal";
 import { celebrityOperations } from "react-app/src/state/ducks/celebrities";
 import { connect } from "react-redux";
 import { listReviews } from "react-app/src/state/ducks/celebrities/actions";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 
 // mapStateToProps
 const mapStateToProps = ({ celebrities }) => ({
@@ -35,28 +36,32 @@ const LastReviewsSection = ({
   isLoading
 }: LastReviewsSectionProps) => {
   return (
-    <div className={styles.LastReviewsSection}>
-      <h2>Calificaciones</h2>
-      <div className={styles.ReviewsCards}>
-        {[...reviews].slice(0, 2).map((review) => (
-          <CardReview
-            contract_review={review.contract_review}
-            user_full_name={review.user_full_name}
-            date="20/dic/2020"
-            contract_stars={review.contract_stars}
-          ></CardReview>
-        ))}
+    <Maybe it={reviews.length > 0}>
+      <div className={styles.LastReviewsSection}>
+        <h2>Calificaciones</h2>
+        <div className={styles.ReviewsCards}>
+          {[...reviews].slice(0, 2).map((review) => (
+            <CardReview
+              contract_review={review.contract_review}
+              user_full_name={review.user_full_name}
+              date="20/dic/2020"
+              contract_stars={review.contract_stars}
+            ></CardReview>
+          ))}
+        </div>
+        {showMore ? (
+          <LastReviewsModal>
+            {{
+              triggerElement: (
+                <p className={styles.SeeMoreCTA}>
+                  Ver todas las calificaciones
+                </p>
+              )
+            }}
+          </LastReviewsModal>
+        ) : null}
       </div>
-      {showMore ? (
-        <LastReviewsModal>
-          {{
-            triggerElement: (
-              <p className={styles.SeeMoreCTA}>Ver todas las calificaciones</p>
-            )
-          }}
-        </LastReviewsModal>
-      ) : null}
-    </div>
+    </Maybe>
   );
 };
 
