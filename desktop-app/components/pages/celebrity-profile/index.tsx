@@ -145,8 +145,8 @@ function CelebrityProfilePage({
         <div
           style={{
             display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center"
+            alignItems: "center",
+            justifyContent: "space-between"
           }}
         >
           <CelebrityPublicContractsReel
@@ -158,7 +158,7 @@ function CelebrityProfilePage({
           <Maybe it={!isLoadingPublicContracts && publicContracts?.length < 3}>
             <div
               style={{
-                flex: "1"
+                marginTop: "auto"
               }}
             >
               <ContractSteps></ContractSteps>
