@@ -79,10 +79,10 @@ const CelebrityPublicContractsReel = ({
   return (
     <div>
       <CardsReelSection
+        title={<h2>Últimos videos</h2>}
         className={
           publicContracts.length < 4 ? styles.ReelContainerFitContent : ""
         }
-        showHeader={false}
         itemCount={publicContracts.length}
         itemData={publicContracts}
         itemWidth={publicContractsVideoReelProps.itemWidth}
