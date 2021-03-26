@@ -92,13 +92,56 @@ function CelebrityProfilePage({
         </Link>
       </PageHeading>
       <StickyCallToActionTopBar
-        appearancePosition={560} // por ser definido correctamente.
+        appearancePosition={600} // por ser definido correctamente.
         celebrity={celebrity}
       />
-      <div className="container">
-        <div style={{ width: "616px" }}>
-          <CelebrityDetails celebrity={celebrity} />
+      <div style={{ paddingBottom: "28px", borderBottom: "1px solid #DEDEDE" }}>
+        <div className="container d-flex">
+          <div style={{ width: "616px", marginRight: "3rem" }}>
+            <CelebrityDetails celebrity={celebrity} />
+          </div>
+          <div>
+            <div
+              style={{
+                marginTop: "25px",
+                marginBottom: "21px",
+                height: "587px",
+                width: "461px",
+                borderRadius: "20px",
+                boxShadow: "0px 0px 30px rgba(0, 0, 0, 0.1)",
+                padding: "54px 36px"
+              }}
+            >
+              <h3>
+                Video personalizado
+                <br /> de {celebrity.fullName}
+              </h3>
+            </div>
+            <div
+              style={{
+                height: 63,
+                borderRadius: 7,
+                boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
+                padding: "12px 36px",
+                fontSize: "14px",
+                display: "flex"
+              }}
+            >
+              <span>
+                Accede a contenido exclusivo <br /> de {celebrity.fullName}.
+              </span>
+              <button
+                type="button"
+                className="btn btn-tertiary"
+                style={{ fontSize: "14px", marginLeft: "auto" }}
+              >
+                Unirme al Club de Fans
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+      <div className="container">
         <div
           style={{
             display: "flex",
