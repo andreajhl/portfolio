@@ -1,6 +1,6 @@
 import { getCelebrityFanClubPath } from "constants/paths";
 import { celebrityType } from "react-app/src/types/celebrityType";
-import { Link } from "../common/routing/link";
+import { Link } from "../../common/routing/link";
 import styles from "./styles.module.scss";
 
 type FanClubAdvertiseProps = {

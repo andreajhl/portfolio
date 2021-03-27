@@ -2,7 +2,7 @@ import { getSearchCategoryPath } from "constants/paths";
 import { CelebrityDetails } from "desktop-app/components/celebrity-profile/celebrity-details";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { Link } from "desktop-app/components/common/routing/link";
-import { ContractSteps } from "desktop-app/components/contract-steps";
+import { ContractSteps } from "desktop-app/components/celebrity-profile/contract-steps";
 import { CelebrityPublicContractsReel } from "desktop-app/components/layouts/celebrity-public-contracts-reel";
 import { LastReviewsSection } from "desktop-app/components/layouts/last-reviews-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
@@ -12,7 +12,7 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 import { connect } from "react-redux";
 import { SimilarCelebritiesCardsReel } from "desktop-app/components/celebrity-profile/similar-celebrities-cards-reel";
 import { CelebritySimilarVideosReel } from "desktop-app/components/celebrity-profile/celebrity-similar-videos-reel";
-import { FanClubAdvertise } from "desktop-app/components/fan-club-advertise";
+import { FanClubAdvertise } from "desktop-app/components/celebrity-profile/fan-club-advertise";
 
 const mapStateToProps = ({ celebrities }) => ({
   publicContracts: celebrities.fetchPublicContractsReducer.data.results,
@@ -28,10 +28,8 @@ type CelebrityProfilePageProps = {
 function CelebrityProfilePage({
   celebrity,
   isLoadingPublicContracts,
-  publicContracts,
-  ...props
+  publicContracts
 }: CelebrityProfilePageProps) {
-  console.log(publicContracts);
   return (
     <PageContainer>
       <PageHeading showHomeLink>

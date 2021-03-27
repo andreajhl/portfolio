@@ -3,9 +3,9 @@ import {
   CommentAlt,
   ShoppingBag,
   SurpriseBox
-} from "../../components/common/icons/index";
+} from "../../common/icons/index";
 import classes from "classnames";
-import Maybe from "../common/helpers/maybe";
+import Maybe from "../../common/helpers/maybe";
 import { connect } from "react-redux";
 
 // mapStateToProps
