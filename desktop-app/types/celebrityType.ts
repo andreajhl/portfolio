@@ -1,4 +1,5 @@
 export type celebrityType = {
+  availableForSubscriptions: boolean;
   videoMessagePrice: number;
   hashtags: string[];
   username: string;

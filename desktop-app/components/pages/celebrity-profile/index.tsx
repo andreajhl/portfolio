@@ -12,6 +12,7 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 import { connect } from "react-redux";
 import { SimilarCelebritiesCardsReel } from "desktop-app/components/celebrity-profile/similar-celebrities-cards-reel";
 import { CelebritySimilarVideosReel } from "desktop-app/components/celebrity-profile/celebrity-similar-videos-reel";
+import { FanClubAdvertise } from "desktop-app/components/fan-club-advertise";
 
 const mapStateToProps = ({ celebrities }) => ({
   publicContracts: celebrities.fetchPublicContractsReducer.data.results,
@@ -70,27 +71,9 @@ function CelebrityProfilePage({
                 <br /> de {celebrity.fullName}
               </h3>
             </div>
-            <div
-              style={{
-                height: 63,
-                borderRadius: 7,
-                boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
-                padding: "12px 36px",
-                fontSize: "14px",
-                display: "flex"
-              }}
-            >
-              <span>
-                Accede a contenido exclusivo <br /> de {celebrity.fullName}.
-              </span>
-              <button
-                type="button"
-                className="btn btn-tertiary"
-                style={{ fontSize: "14px", marginLeft: "auto" }}
-              >
-                Unirme al Club de Fans
-              </button>
-            </div>
+            <Maybe it={celebrity.availableForSubscriptions}>
+              <FanClubAdvertise celebrity={celebrity} />
+            </Maybe>
           </div>
         </div>
       </div>
