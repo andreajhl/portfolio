@@ -18,11 +18,13 @@ function CategoryCard({ category }: CategoryCardProps) {
       href={getSearchPath({ category_id: category.id })}
       className={styles.CategoryCard}
       style={{
-        backgroundImage: `url("${category.image}")`
+        backgroundImage: `linear-gradient(90deg, rgb(0, 0, 0, 0.85) 10.94%, rgba(255, 255, 255, 0) 100%),
+          url("/assets/img/categories/${category.title}.jpg")`,
+        backgroundBlendMode: "multiply"
       }}
       title={`Ir a categoría "${category.title}"`}
     >
-      {/* <span className={styles.CategoryCardTitle}>{category.title}</span> */}
+      <span className={styles.CategoryCardTitle}>{category.title}</span>
     </Link>
   );
 }
