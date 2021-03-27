@@ -5,11 +5,12 @@ import styles from "./styles.module.scss";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import dynamic from "next/dynamic";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import OverlayHeader from "desktop-app/components/common/cards/video/overlay-header";
 
 const AnimatedPopup = dynamic<{
   trigger?: JSX.Element | ((isOpen: boolean) => JSX.Element);
-  children: ReactNode;
+  children: ReactNode | ((closePopup: () => void) => ReactNode);
   modal?: boolean;
   onOpen?: () => any;
   onClose?: () => any;
@@ -36,9 +37,17 @@ function CelebrityMainVideoWidget({
   className = "",
   avatarProps: { className: avatarClassName = "", ...avatarProps }
 }: CelebrityMainVideoWidgetProps) {
-  const { videoRef, playVideo, pauseVideo, togglePlay } = useVideoPlayer(
-    celebrity.mainVideo || "NO_MAIN_VIDEO_KEY"
-  );
+  const {
+    videoRef,
+    playVideo,
+    pauseVideo,
+    togglePlay,
+    videoIsPlaying
+  } = useVideoPlayer(celebrity.mainVideo || "NO_MAIN_VIDEO_KEY");
+  const [videoIsMuted, setVideoIsMuted] = useState(false);
+  const toggleVideoIsMuted = () => {
+    setVideoIsMuted((videoIsMuted) => !videoIsMuted);
+  };
 
   const hasMainVideo = Boolean(celebrity.mainVideo);
 
@@ -80,14 +89,34 @@ function CelebrityMainVideoWidget({
         onClose={pauseVideo}
         modal
       >
-        <div className={styles.CelebrityMainVideoWidgetVideoContainer}>
-          <video
-            ref={videoRef}
-            src={celebrity.mainVideo}
-            preload="metadata"
-            onClick={togglePlay}
-          />
-        </div>
+        {(closePopup) => (
+          <>
+            <button
+              type="button"
+              className={"btn " + styles.CelebrityMainVideoWidgetCloseButton}
+              onClick={closePopup}
+            >
+              <i className="fa fa-times" />
+            </button>
+            <div className={styles.CelebrityMainVideoWidgetVideoContainer}>
+              <video
+                ref={videoRef}
+                src={celebrity.mainVideo}
+                preload="metadata"
+                onClick={togglePlay}
+                muted={videoIsMuted}
+              />
+              <div className={styles.CelebrityMainVideoWidgetVideoOverlay}>
+                <OverlayHeader
+                  IsMuted={videoIsMuted}
+                  isPlaying={videoIsPlaying}
+                  onToggleAudio={toggleVideoIsMuted}
+                  onTogglePlay={togglePlay}
+                />
+              </div>
+            </div>
+          </>
+        )}
       </AnimatedPopup>
     </Maybe>
   );
