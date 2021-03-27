@@ -5,9 +5,15 @@ import styles from "./styles.module.scss";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import dynamic from "next/dynamic";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { PopupProps } from "reactjs-popup/dist/types";
+import { ReactNode } from "react";
 
-const AnimatedPopup = dynamic<PopupProps>(() =>
+const AnimatedPopup = dynamic<{
+  trigger?: JSX.Element | ((isOpen: boolean) => JSX.Element);
+  children: ReactNode;
+  modal?: boolean;
+  onOpen?: () => any;
+  onClose?: () => any;
+}>(() =>
   import("desktop-app/components/common/animated-popup").then(
     (mod) => mod.AnimatedPopup
   )
@@ -31,12 +37,12 @@ function CelebrityMainVideoWidget({
   avatarProps: { className: avatarClassName = "", ...avatarProps }
 }: CelebrityMainVideoWidgetProps) {
   const { videoRef, playVideo, pauseVideo, togglePlay } = useVideoPlayer(
-    celebrity.mainVideo
+    celebrity.mainVideo || "NO_MAIN_VIDEO_KEY"
   );
 
   const hasMainVideo = Boolean(celebrity.mainVideo);
 
-  return (
+  const celebrityAvatar = (
     <div
       className={classes(
         styles.CelebrityMainVideoWidget,
@@ -56,30 +62,34 @@ function CelebrityMainVideoWidget({
         height={avatarProps.height - 8}
       />
       <Maybe it={hasMainVideo}>
-        <AnimatedPopup
-          trigger={
-            <button
-              type="button"
-              className={"btn " + styles.CelebrityMainVideoWidgetButton}
-            >
-              <i className="fa fa-play text-primary" />
-            </button>
-          }
-          onOpen={playVideo}
-          onClose={pauseVideo}
-          modal
+        <button
+          type="button"
+          className={"btn " + styles.CelebrityMainVideoWidgetButton}
         >
-          <div className={styles.CelebrityMainVideoWidgetVideoContainer}>
-            <video
-              ref={videoRef}
-              src={celebrity.mainVideo}
-              preload="metadata"
-              onClick={togglePlay}
-            />
-          </div>
-        </AnimatedPopup>
+          <i className="fa fa-play text-primary" />
+        </button>
       </Maybe>
     </div>
+  );
+
+  return (
+    <Maybe it={hasMainVideo} orElse={celebrityAvatar}>
+      <AnimatedPopup
+        trigger={celebrityAvatar}
+        onOpen={playVideo}
+        onClose={pauseVideo}
+        modal
+      >
+        <div className={styles.CelebrityMainVideoWidgetVideoContainer}>
+          <video
+            ref={videoRef}
+            src={celebrity.mainVideo}
+            preload="metadata"
+            onClick={togglePlay}
+          />
+        </div>
+      </AnimatedPopup>
+    </Maybe>
   );
 }
 
