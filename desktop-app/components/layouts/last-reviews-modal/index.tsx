@@ -1,10 +1,11 @@
 import { AnimatedPopup } from "desktop-app/components/common/animated-popup";
-import React from "react";
+import React, { useState } from "react";
+import { REVIEWS } from "react-app/src/state/ducks/celebrities/paths";
+import apiService from "react-app/src/state/utils/apiService";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 import CardReview from "../../../components/common/cards/review";
 import styles from "./styles.module.scss";
-
 // mapStateToProps
 const mapStateToProps = ({ celebrities }) => ({
   isLoading: celebrities.fetchReviewsReducer.loading,
@@ -20,10 +21,33 @@ type LastReviewsModalProps = {
   };
 } & StateProps;
 
-const LastReviewsModal = ({ children, reviews }: LastReviewsModalProps) => {
-  const fetchMoreData = () => {
-    console.log("fetchMoreData");
+const LastReviewsModal = ({
+  children,
+  reviews,
+  paginationData
+}: LastReviewsModalProps) => {
+  const [dataReviews, setDataReviews] = useState(reviews);
+  const [informationPage, setInformationPage] = useState(paginationData);
+  const FINAL_PATH = REVIEWS + 609;
+  const [error, setError] = useState(null);
+  const fetchMoreData = async () => {
+    try {
+      const response: any = await apiService({
+        method: "GET",
+        path: FINAL_PATH,
+        params: {
+          currentPage: 2
+        }
+      });
+      console.log(response);
+      if (response.data.status === "ERROR") throw response.data;
+      setDataReviews((state) => [...state, ...response.data.results]);
+      setInformationPage(response.data.informationPage);
+    } catch (error) {
+      setError(error);
+    }
   };
+
   return (
     <AnimatedPopup trigger={children.triggerElement} modal>
       <div className={styles.LastReviewsModal}>
@@ -32,17 +56,16 @@ const LastReviewsModal = ({ children, reviews }: LastReviewsModalProps) => {
         </div>
         <InfiniteScroll
           height={"75vh"}
-          dataLength={reviews.length}
+          dataLength={dataReviews.length}
           next={fetchMoreData}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-          endMessage={
-            <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
-            </p>
+          hasMore={
+            informationPage.currentPage * informationPage.pageSize <=
+            dataReviews.length
           }
+          // TODO: add loading banner
+          loader={<h4>Loading...</h4>}
         >
-          {reviews.map((review) => (
+          {dataReviews.map((review) => (
             <div className={styles.ReviewItem}>
               <hr></hr>
               <CardReview
