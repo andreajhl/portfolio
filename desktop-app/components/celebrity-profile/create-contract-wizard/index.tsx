@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Wizard, Steps as StepsList, Step } from "react-albus";
 import styles from "./styles.module.scss";
 import { WizardTopNavigation } from "desktop-app/components/wizard-top-navigation";
-import useForm from "lib/hooks/useForm";
 import { VideoDetailsForm } from "desktop-app/components/video-details-form";
 
 const mapStateToProps = (state) => ({ ...state });
@@ -15,8 +14,7 @@ type DispatchProps = typeof mapDispatchToProps;
 
 type CreateContractWizardProps = {
   celebrity: celebrityType;
-} & StateProps &
-  DispatchProps;
+};
 
 function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
   return (
