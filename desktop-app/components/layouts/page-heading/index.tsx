@@ -25,7 +25,9 @@ function PageHeading({
           <button
             type="button"
             className={"btn " + styles.PageHeadingBackButton}
-            onClick={() => router.back()}
+            onClick={() => {
+              window.history.length > 2 ? router.back() : router.push("/");
+            }}
           >
             <LeftArrowIcon />
           </button>

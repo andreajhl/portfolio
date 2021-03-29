@@ -28,7 +28,7 @@ const LastReviewsModal = ({ children, reviews }: LastReviewsModalProps) => {
     <AnimatedPopup trigger={children.triggerElement} modal>
       <div className={styles.LastReviewsModal}>
         <div className={styles.LastReviewsModalHeader}>
-          <span>Últimas valoraciones</span>
+          <span>Últimas calificaciones</span>
         </div>
         <InfiniteScroll
           height={"75vh"}
