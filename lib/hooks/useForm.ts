@@ -72,6 +72,10 @@ function useForm<InitialValuesType>({
     dispatch({ type: TYPES.SET_FIELD_VALUE, payload: target });
   }
 
+  function setFieldValue(name: string, value: any) {
+    dispatch({ type: TYPES.SET_FIELD_VALUE, payload: { name, value } });
+  }
+
   function onFocusField({ target }) {
     dispatch({
       type: TYPES.SET_FIELD_TOUCHED,
@@ -103,6 +107,7 @@ function useForm<InitialValuesType>({
 
   return {
     ...state,
+    setFieldValue,
     onChangeField,
     onFocusField,
     validateBeforeSubmit
