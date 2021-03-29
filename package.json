@@ -39,6 +39,7 @@
     "parse-full-name": "^1.2.5",
     "path-to-regexp": "^6.2.0",
     "react": "^16.13.1",
+    "react-albus": "^2.0.0",
     "react-async-script-loader": "^0.3.0",
     "react-bootstrap": "^1.4.3",
     "react-confirm-alert": "^2.7.0",

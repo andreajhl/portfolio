@@ -3,7 +3,7 @@ import Typist from "react-typist";
 
 type TypingEffectLoopedProps = {
   words: string[];
-  className: string;
+  className?: string;
 };
 
 function TypingEffectLooped({

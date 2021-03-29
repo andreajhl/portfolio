@@ -5,9 +5,16 @@ import styles from "./styles.module.scss";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import dynamic from "next/dynamic";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { PopupProps } from "reactjs-popup/dist/types";
+import { ReactNode, useState } from "react";
+import OverlayHeader from "desktop-app/components/common/cards/video/overlay-header";
 
-const AnimatedPopup = dynamic<PopupProps>(() =>
+const AnimatedPopup = dynamic<{
+  trigger?: JSX.Element | ((isOpen: boolean) => JSX.Element);
+  children: ReactNode | ((closePopup: () => void) => ReactNode);
+  modal?: boolean;
+  onOpen?: () => any;
+  onClose?: () => any;
+}>(() =>
   import("desktop-app/components/common/animated-popup").then(
     (mod) => mod.AnimatedPopup
   )
@@ -30,13 +37,21 @@ function CelebrityMainVideoWidget({
   className = "",
   avatarProps: { className: avatarClassName = "", ...avatarProps }
 }: CelebrityMainVideoWidgetProps) {
-  const { videoRef, playVideo, pauseVideo, togglePlay } = useVideoPlayer(
-    celebrity.mainVideo
-  );
+  const {
+    videoRef,
+    playVideo,
+    pauseVideo,
+    togglePlay,
+    videoIsPlaying
+  } = useVideoPlayer(celebrity.mainVideo || "NO_MAIN_VIDEO_KEY");
+  const [videoIsMuted, setVideoIsMuted] = useState(false);
+  const toggleVideoIsMuted = () => {
+    setVideoIsMuted((videoIsMuted) => !videoIsMuted);
+  };
 
   const hasMainVideo = Boolean(celebrity.mainVideo);
 
-  return (
+  const celebrityAvatar = (
     <div
       className={classes(
         styles.CelebrityMainVideoWidget,
@@ -56,30 +71,54 @@ function CelebrityMainVideoWidget({
         height={avatarProps.height - 8}
       />
       <Maybe it={hasMainVideo}>
-        <AnimatedPopup
-          trigger={
-            <button
-              type="button"
-              className={"btn " + styles.CelebrityMainVideoWidgetButton}
-            >
-              <i className="fa fa-play text-primary" />
-            </button>
-          }
-          onOpen={playVideo}
-          onClose={pauseVideo}
-          modal
+        <button
+          type="button"
+          className={"btn " + styles.CelebrityMainVideoWidgetButton}
         >
-          <div className={styles.CelebrityMainVideoWidgetVideoContainer}>
-            <video
-              ref={videoRef}
-              src={celebrity.mainVideo}
-              preload="metadata"
-              onClick={togglePlay}
-            />
-          </div>
-        </AnimatedPopup>
+          <i className="fa fa-play text-primary" />
+        </button>
       </Maybe>
     </div>
+  );
+
+  return (
+    <Maybe it={hasMainVideo} orElse={celebrityAvatar}>
+      <AnimatedPopup
+        trigger={celebrityAvatar}
+        onOpen={playVideo}
+        onClose={pauseVideo}
+        modal
+      >
+        {(closePopup) => (
+          <>
+            <button
+              type="button"
+              className={"btn " + styles.CelebrityMainVideoWidgetCloseButton}
+              onClick={closePopup}
+            >
+              <i className="fa fa-times" />
+            </button>
+            <div className={styles.CelebrityMainVideoWidgetVideoContainer}>
+              <video
+                ref={videoRef}
+                src={celebrity.mainVideo}
+                preload="metadata"
+                onClick={togglePlay}
+                muted={videoIsMuted}
+              />
+              <div className={styles.CelebrityMainVideoWidgetVideoOverlay}>
+                <OverlayHeader
+                  IsMuted={videoIsMuted}
+                  isPlaying={videoIsPlaying}
+                  onToggleAudio={toggleVideoIsMuted}
+                  onTogglePlay={togglePlay}
+                />
+              </div>
+            </div>
+          </>
+        )}
+      </AnimatedPopup>
+    </Maybe>
   );
 }
 

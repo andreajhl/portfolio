@@ -46,6 +46,7 @@ export const TRENDING = "/tendencias";
 export const BLOG = "/blog";
 export const BLOG_ENTRY = `${BLOG}/:id`;
 //SUBSCRIPTION
+export const CELEBRITY_SUBSCRIBE = "/:celebrity_username/club";
 export const SUBSCRIPTION = "/subscription/subscribe/:celebrity_username";
 //SUBSCRIPTION
 export const SUBSCRIPTION_SUCCESS =
@@ -57,6 +58,9 @@ export const SESSION_REDIRECT = "/session/redirect/";
 
 export const getCelebrityProfilePath = (celebrityUsername) =>
   CELEBRITY_PROFILE.replace(":celebrity_username", celebrityUsername);
+
+export const getCelebrityFanClubPath = (celebrityUsername) =>
+  CELEBRITY_SUBSCRIBE.replace(":celebrity_username", celebrityUsername);
 
 export const getSearchPath = ({ limit = 20, ...params }) => {
   return SEARCH_PATH + jsonToQueryString({ ...params, limit });

@@ -2,7 +2,7 @@ import { getSearchCategoryPath } from "constants/paths";
 import { CelebrityDetails } from "desktop-app/components/celebrity-profile/celebrity-details";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { Link } from "desktop-app/components/common/routing/link";
-import { ContractSteps } from "desktop-app/components/contract-steps";
+import { ContractSteps } from "desktop-app/components/celebrity-profile/contract-steps";
 import { CelebrityPublicContractsReel } from "desktop-app/components/layouts/celebrity-public-contracts-reel";
 import { LastReviewsSection } from "desktop-app/components/layouts/last-reviews-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
@@ -12,6 +12,8 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 import { connect } from "react-redux";
 import { SimilarCelebritiesCardsReel } from "desktop-app/components/celebrity-profile/similar-celebrities-cards-reel";
 import { CelebritySimilarVideosReel } from "desktop-app/components/celebrity-profile/celebrity-similar-videos-reel";
+import { FanClubAdvertise } from "desktop-app/components/celebrity-profile/fan-club-advertise";
+import { CreateContractWizard } from "desktop-app/components/celebrity-profile/create-contract-wizard";
 
 const mapStateToProps = ({ celebrities }) => ({
   publicContracts: celebrities.fetchPublicContractsReducer.data.results,
@@ -27,10 +29,8 @@ type CelebrityProfilePageProps = {
 function CelebrityProfilePage({
   celebrity,
   isLoadingPublicContracts,
-  publicContracts,
-  ...props
+  publicContracts
 }: CelebrityProfilePageProps) {
-  console.log(publicContracts);
   return (
     <PageContainer>
       <PageHeading showHomeLink>
@@ -54,43 +54,10 @@ function CelebrityProfilePage({
             <CelebrityDetails celebrity={celebrity} />
           </div>
           <div>
-            <div
-              style={{
-                marginTop: "25px",
-                marginBottom: "21px",
-                height: "587px",
-                width: "461px",
-                borderRadius: "20px",
-                boxShadow: "0px 0px 30px rgba(0, 0, 0, 0.1)",
-                padding: "54px 36px"
-              }}
-            >
-              <h3>
-                Video personalizado
-                <br /> de {celebrity.fullName}
-              </h3>
-            </div>
-            <div
-              style={{
-                height: 63,
-                borderRadius: 7,
-                boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
-                padding: "12px 36px",
-                fontSize: "14px",
-                display: "flex"
-              }}
-            >
-              <span>
-                Accede a contenido exclusivo <br /> de {celebrity.fullName}.
-              </span>
-              <button
-                type="button"
-                className="btn btn-tertiary"
-                style={{ fontSize: "14px", marginLeft: "auto" }}
-              >
-                Unirme al Club de Fans
-              </button>
-            </div>
+            <CreateContractWizard celebrity={celebrity} />
+            <Maybe it={celebrity.availableForSubscriptions}>
+              <FanClubAdvertise celebrity={celebrity} />
+            </Maybe>
           </div>
         </div>
       </div>
