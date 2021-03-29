@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { SimilarCelebritiesCardsReel } from "desktop-app/components/celebrity-profile/similar-celebrities-cards-reel";
 import { CelebritySimilarVideosReel } from "desktop-app/components/celebrity-profile/celebrity-similar-videos-reel";
 import { FanClubAdvertise } from "desktop-app/components/celebrity-profile/fan-club-advertise";
+import { CreateContractWizard } from "desktop-app/components/celebrity-profile/create-contract-wizard";
 
 const mapStateToProps = ({ celebrities }) => ({
   publicContracts: celebrities.fetchPublicContractsReducer.data.results,
@@ -53,22 +54,7 @@ function CelebrityProfilePage({
             <CelebrityDetails celebrity={celebrity} />
           </div>
           <div>
-            <div
-              style={{
-                marginTop: "25px",
-                marginBottom: "21px",
-                height: "587px",
-                width: "461px",
-                borderRadius: "20px",
-                boxShadow: "0px 0px 30px rgba(0, 0, 0, 0.1)",
-                padding: "54px 36px"
-              }}
-            >
-              <h3>
-                Video personalizado
-                <br /> de {celebrity.fullName}
-              </h3>
-            </div>
+            <CreateContractWizard celebrity={celebrity} />
             <Maybe it={celebrity.availableForSubscriptions}>
               <FanClubAdvertise celebrity={celebrity} />
             </Maybe>
