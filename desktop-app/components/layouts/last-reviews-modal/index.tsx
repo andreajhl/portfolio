@@ -36,7 +36,8 @@ const LastReviewsModal = ({
         method: "GET",
         path: FINAL_PATH,
         params: {
-          currentPage: 2
+          currentPage: informationPage.currentPage + 1,
+          pageSize: informationPage.pageSize
         }
       });
       console.log(response);
