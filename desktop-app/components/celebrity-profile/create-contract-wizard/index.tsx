@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Wizard, Steps as StepsList, Step } from "react-albus";
 import styles from "./styles.module.scss";
 import { WizardTopNavigation } from "desktop-app/components/wizard-top-navigation";
-import useForm from "lib/hooks/useForm";
+import { VideoDetailsForm } from "desktop-app/components/video-details-form";
 
 const mapStateToProps = (state) => ({ ...state });
 
@@ -14,51 +14,27 @@ type DispatchProps = typeof mapDispatchToProps;
 
 type CreateContractWizardProps = {
   celebrity: celebrityType;
-} & StateProps &
-  DispatchProps;
-
-const initialValues = {
-  deliveryTo: "",
-  deliveryFrom: ""
 };
 
 function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
-  const form = useForm<typeof initialValues>({
-    initialValues,
-    onSubmit(values) {
-      console.log(values);
-    }
-  });
-
   return (
     <div className={styles.CreateContractWizard}>
       <Wizard>
         <WizardTopNavigation enableNavigation />
         <StepsList>
-          <Step id="detalles">
-            <h3>
-              Video personalizado
-              <br /> de {celebrity.fullName}
-            </h3>
-            <input
-              type="text"
-              name="deliveryFrom"
-              value={form.values.deliveryFrom}
-              onChange={form.onChangeField}
-            />
+          {/* <Step id="delivery"></Step> */}
+          <Step id="video-details">
+            {({ next }) => (
+              <VideoDetailsForm
+                deliveryTo={"German"}
+                celebrityFullName={celebrity.fullName}
+                contractType={1}
+                celebrityUsername={celebrity.username}
+                onSubmit={console.log}
+              />
+            )}
           </Step>
-          <Step id="detalles1">
-            <h3>
-              Video personalizado1
-              <br /> de {celebrity.fullName}
-            </h3>
-          </Step>
-          <Step id="detalles2">
-            <h3>
-              Video personalizado2
-              <br /> de {celebrity.fullName}
-            </h3>
-          </Step>
+          <Step id="notification"></Step>
         </StepsList>
       </Wizard>
     </div>

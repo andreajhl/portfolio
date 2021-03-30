@@ -28,6 +28,7 @@ export const getCelebrityFromSimilarCelebrity = ({
     causeName: null,
     isDonor: false,
     mainVideo: "",
-    showSimilarCelebrities: false
+    showSimilarCelebrities: false,
+    availableForSubscriptions: false
   };
 };
