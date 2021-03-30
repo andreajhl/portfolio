@@ -4,7 +4,7 @@ import SubmitButton from "../common/button/submit-button";
 import Maybe from "../common/helpers/maybe";
 import styles from "./styles.module.scss";
 
-const occasionsForContractTypeOne = [
+const occasionsOnlyForContractTypeOne = [
   "LOVE",
   "MAKE_SMILE",
   "HOPE",
@@ -51,7 +51,7 @@ function VideoDetailsForm({
     textClear = replacePlaceHolders(
       textClear,
       "PLACEHOLDER_FAMOSO_NAME",
-      celebrityFullName ? celebrityFullName : "Famoso!"
+      celebrityFullName || "Famoso!"
     );
 
     textClear = replacePlaceHolders(
@@ -71,7 +71,7 @@ function VideoDetailsForm({
           <Maybe
             it={
               contractType !== 0 ||
-              !occasionsForContractTypeOne.includes(occasionKey)
+              !occasionsOnlyForContractTypeOne.includes(occasionKey)
             }
           >
             <div
