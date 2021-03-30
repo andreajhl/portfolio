@@ -1,0 +1,16 @@
+.WhatsapAdForContracts {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+
+  span {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 67px;
+  }
+}
