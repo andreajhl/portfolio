@@ -446,3 +446,21 @@ export function BusinessBriefcase(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function WarningIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={11}
+      height={11}
+      viewBox="0 0 11 11"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M11 5.5a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0zM5.5 6.609a1.02 1.02 0 100 2.04 1.02 1.02 0 000-2.04zm-.969-3.667l.165 3.016a.266.266 0 00.266.252h1.076c.142 0 .258-.11.266-.252l.165-3.016a.266.266 0 00-.266-.28H4.797a.266.266 0 00-.266.28z"
+        fill="#FF3844"
+      />
+    </svg>
+  );
+}
