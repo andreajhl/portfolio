@@ -9,6 +9,7 @@ type VideoDeliveryFormFieldsElementsProps = {
   onChange: (arg1: string, arg2: string) => void;
   contractType: number;
   onSubmit: () => void;
+  errors: { [key: string]: any };
 };
 
 const VideoDeliveryFormFieldsElements = ({
@@ -16,7 +17,8 @@ const VideoDeliveryFormFieldsElements = ({
   deliveryFrom,
   onChange,
   contractType,
-  onSubmit
+  onSubmit,
+  errors
 }: VideoDeliveryFormFieldsElementsProps) => {
   return (
     <>
@@ -29,6 +31,7 @@ const VideoDeliveryFormFieldsElements = ({
               value={deliveryTo}
               onChangeValue={(e) => onChange("deliveryTo", e)}
               placeholder="¿Quién recibirá el video?"
+              errorMessage={errors.deliveryTo}
             ></InputWithFloatLabel>
           </div>
         </Maybe>
@@ -37,6 +40,7 @@ const VideoDeliveryFormFieldsElements = ({
             <span className={styles.ExtraLabel}>De:</span>
             <InputWithFloatLabel
               className={styles.InputFieldModififier}
+              errorMessage={errors.deliveryFrom}
               value={deliveryFrom}
               onChangeValue={(e) => onChange("deliveryFrom", e)}
               placeholder="¿Quién envía el video?"
