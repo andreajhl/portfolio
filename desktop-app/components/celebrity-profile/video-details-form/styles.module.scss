@@ -21,15 +21,18 @@
 
       cursor: pointer;
 
-      i,
+      img,
       p {
         transition: opacity 0.15s;
+      }
+
+      img {
+        height: 30px;
       }
 
       p {
         opacity: 0;
         text-align: center;
-        width: 90%;
         position: absolute;
         margin: 0;
         font-weight: bold;
@@ -37,7 +40,7 @@
       }
 
       &:hover {
-        i {
+        img {
           opacity: 0;
         }
         p {

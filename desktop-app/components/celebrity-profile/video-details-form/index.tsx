@@ -1,7 +1,7 @@
 import occasions from "constants/occasions";
 import useForm from "lib/hooks/useForm";
-import SubmitButton from "../common/button/submit-button";
-import Maybe from "../common/helpers/maybe";
+import SubmitButton from "../../common/button/submit-button";
+import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
 
 const occasionsOnlyForContractTypeOne = [
@@ -82,8 +82,15 @@ function VideoDetailsForm({
               }`}
               onClick={() => setFieldValue("occasion", occasionKey)}
             >
-              <i className={"fa " + icon}></i>
-              <p>{title}</p>
+              <img src={`/assets/img/occasions/${occasionKey}.png`} alt="" />
+              <p>
+                {title.split(" ").map((word) => (
+                  <>
+                    {word}
+                    <br />
+                  </>
+                ))}
+              </p>
             </div>
           </Maybe>
         ))}

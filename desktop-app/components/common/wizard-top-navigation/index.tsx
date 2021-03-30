@@ -1,8 +1,8 @@
 import styles from "./styles.module.scss";
 import { WithWizard } from "react-albus";
-import { LeftArrowIcon } from "../common/icons";
+import { LeftArrowIcon } from "../icons";
 import classes from "classnames";
-import Maybe from "../common/helpers/maybe";
+import Maybe from "../helpers/maybe";
 
 type WizardTopNavigationProps = {
   className?: string;

@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import { VideoDetailsForm } from "./";
+import { WizardTopNavigation } from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<VideoDetailsForm />);
+  const wrapper = shallow(<WizardTopNavigation />);
   expect(wrapper.exists()).toBeTruthy();
 });

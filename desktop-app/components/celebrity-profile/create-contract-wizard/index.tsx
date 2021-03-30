@@ -1,9 +1,9 @@
-import { celebrityType } from "react-app/src/types/celebrityType";
+import { celebrityType } from "desktop-app/types/celebrityType";
 import { connect } from "react-redux";
 import { Wizard, Steps as StepsList, Step } from "react-albus";
 import styles from "./styles.module.scss";
-import { WizardTopNavigation } from "desktop-app/components/wizard-top-navigation";
-import { VideoDetailsForm } from "desktop-app/components/video-details-form";
+import { WizardTopNavigation } from "../../common/wizard-top-navigation";
+import { VideoDetailsForm } from "../video-details-form";
 
 const mapStateToProps = (state) => ({ ...state });
 
