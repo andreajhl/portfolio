@@ -1,28 +1,31 @@
-.InputField {
+.InputFieldElements {
+  margin-top: 12px;
+  margin-bottom: 46px;
   display: flex;
-  align-items: center;
-  border-bottom: 1px solid black;
-  margin-bottom: 37px;
-}
-.ExtraLabel {
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 22px;
-  letter-spacing: 0em;
-  text-align: center;
-  margin-right: 8px;
+  flex-flow: column;
+  height: 220px;
 }
 
-.InputFieldElements {
-  margin-top: 45px;
-  margin-bottom: 46px;
-}
-.InputFieldModififier {
-  width: 100%;
-  input,
-  input:active,
-  input:focus {
-    border: 0px solid;
+.VideoDeliveryFormHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 37px;
+  h3 {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  span {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: center;
+
+    margin-top: auto;
   }
 }
