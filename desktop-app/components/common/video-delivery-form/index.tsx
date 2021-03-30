@@ -29,12 +29,22 @@ const VideoDeliveryForm = ({
   showBussinessPrice = true,
   onSubmit
 }: VideoDeliveryFormProps) => {
+  const validations = {
+    deliveryTo: (value: string) => {
+      if (value.length === 0) return "Debes introducir un nombre";
+    },
+    deliveryFrom: (value: string) => {
+      if (value.length === 0) return "Debes introducir un nombre";
+    }
+  };
   const {
     values,
+    errors,
     setFieldValue,
     validateBeforeSubmit
   } = useForm<InitialValues>({
     initialValues,
+    validations,
     onSubmit
   });
   return (
@@ -64,6 +74,7 @@ const VideoDeliveryForm = ({
           contractType={values.contractType}
           onSubmit={validateBeforeSubmit}
           onChange={(field, value) => setFieldValue(field, value)}
+          errors={errors}
         ></VideoDeliveryFormFieldsElements>
         <Maybe it={values.contractType === 3}>
           <WhatsapAdForContracts
