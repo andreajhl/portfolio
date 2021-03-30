@@ -32,7 +32,11 @@ function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
           <Step id="delivery">
             {({ next }) => (
               <VideoDeliveryForm
+                videoMessagePrice={celebrity.videoMessagePrice}
                 celebrityFullName={celebrity.fullName}
+                // TODO: agregar estos datos en modelo celebrity
+                bussinessPrice={celebrity.videoMessagePrice}
+                showBussinessPrice={true}
                 onSubmit={(data) => {
                   setVideoDeliveryData(data);
                   next();
