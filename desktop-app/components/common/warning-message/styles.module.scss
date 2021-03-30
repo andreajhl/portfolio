@@ -1,0 +1,10 @@
+.WarningMessage {
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: 4px;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+  }
+}
