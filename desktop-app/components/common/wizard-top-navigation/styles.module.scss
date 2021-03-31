@@ -1,6 +1,10 @@
 .WizardTopNavigation {
   display: flex;
 
+  &BackButton {
+    cursor: pointer;
+  }
+
   &StepsList {
     list-style: none;
     padding: 0;

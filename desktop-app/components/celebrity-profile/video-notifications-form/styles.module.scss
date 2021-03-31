@@ -1,5 +1,54 @@
+.VideoNotificationForm {
+  padding-top: 36px;
+
+  &Title {
+    margin-bottom: 1em;
+  }
+
+  &PhoneInputContainer {
+    margin-bottom: 24px;
+  }
+
+  &Radio {
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    &Text {
+      font-size: 14px;
+      margin-right: 1em;
+    }
+
+    &Label {
+      cursor: pointer;
+      font-size: 12px;
+      margin-right: 1em;
+      margin-bottom: 0;
+      font-weight: bold;
+
+      i {
+        border: 1px solid var(--gray-2);
+        color: white;
+        border-radius: 50%;
+        font-size: 9px;
+        margin-right: 1em;
+        width: 17px;
+        height: 17px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &Checked {
+        background: black;
+        border-color: black !important;
+      }
+    }
+  }
+}
+
 .ContainerPhoneInput {
   height: 45px;
+  margin-bottom: 4px;
 
   :global(.invalid-number-message) {
     display: flex;
@@ -24,24 +73,78 @@
   }
 }
 
+.Form {
+  &Label {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 19px;
+    margin-bottom: 12px;
+  }
+  &Field {
+    outline: none;
+    width: 100%;
+    padding: 0.625em;
+    margin-bottom: 4px;
+    height: 45px;
+    background: #f9f9ff;
+    box-sizing: border-box;
+    border-radius: 7px;
+    border: 1px solid var(--gray-2);
+
+    &:focus,
+    &:hover {
+      // border-color: var(--gray-3);
+    }
+
+    &HasError {
+      border-color: #ff3844 !important;
+      background-color: #ffedf5 !important;
+    }
+  }
+
+  &Error {
+    height: 15px;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    visibility: hidden;
+
+    &IsVisible {
+      visibility: visible;
+    }
+  }
+}
+
 .InputClassPhoneInput,
 .ButtonClassPhoneInput {
-  background-color: rgba(249, 249, 255, 1) !important;
+  background-color: rgba(249, 249, 255, 1);
 }
 .ButtonClassPhoneInput {
   width: 71px;
 }
 .InputClassPhoneInput {
   text-indent: 35px;
+
+  &:focus {
+    box-shadow: none !important;
+  }
 }
 .ButtonClassPhoneInput {
   > div {
     width: 69px !important;
-    background-color: rgba(249, 249, 255, 1) !important;
+    background-color: rgba(249, 249, 255, 1);
     align-items: center;
     > div {
       left: 30%;
       //   width: 20px !important;
     }
+  }
+}
+
+.FormFieldHasError {
+  :global(.selected-flag) {
+    background-color: #ffedf5 !important;
+  }
+  .ButtonClassPhoneInput {
+    border-right-color: #dedede !important;
   }
 }

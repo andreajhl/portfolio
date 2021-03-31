@@ -109,7 +109,7 @@ function useForm<InitialValuesType>({
           `The validation for field '${field}' is not a valid function.`
         );
       }
-      const fieldError = fieldValidator(value);
+      const fieldError = fieldValidator(value, state);
       setFieldError(field, fieldError);
       if (fieldError) fieldsAreValid = false;
     });

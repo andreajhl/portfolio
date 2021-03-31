@@ -1,48 +1,157 @@
-import { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { isMobilePhone } from "lib/utils/isMobilePhone";
 import styles from "./styles.module.scss";
-const VideoNotificationForm = () => {
-  const [numberPhoneRaw, setNumberPhoneRaw] = useState("");
-  const [dialCode, setDialCode] = useState("");
-  useEffect(() => {
-    console.log(numberPhoneRaw);
-    console.log(dialCode);
-  }, [numberPhoneRaw, setNumberPhoneRaw, dialCode, setDialCode]);
-  return (
-    <div>
-      <h2>¡Este video quedará genial! Te notificaremos cuando esté listo.</h2>
-      <h3>Correo electrónico de notificación</h3>
-      <input type="text"></input>
-      <h3>Notificarme también por Whatsapp (opcional)</h3>
-      <PhoneInput
-        isValid={(value, country) => {
-          const valueWithPlusOperator = `+${value}`;
-          if (
-            valueWithPlusOperator.match(
-              /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/g
-            )
-          ) {
-            return true;
-          } else {
-            return "Ingresa un número de teléfono válido";
-          }
-        }}
-        containerClass={styles.ContainerPhoneInput}
-        inputClass={styles.InputClassPhoneInput}
-        buttonClass={styles.ButtonClassPhoneInput}
-        dropdownClass={styles.DropdownClassPhoneInput}
-        country={"co"}
-        onChange={(value, data: any) => {
-          setDialCode(data.dialCode);
-          setNumberPhoneRaw(value.slice(data.dialCode.length));
-        }}
-      />
-      <div>
-        <span>Permitir que mi video sea público</span>
-      </div>
-    </div>
-  );
+import classes from "classnames";
+import WarningMessage from "desktop-app/components/common/warning-message";
+import SubmitButton from "desktop-app/components/common/button/submit-button";
+import useForm from "lib/hooks/useForm";
+import isEmail from "validator/es/lib/isEmail";
+
+const initialValues = {
+  deliveryContact: "",
+  deliveryContactCellphone: "57",
+  isPublic: true
 };
+
+type InitialValues = typeof initialValues;
+
+const validations = {
+  deliveryContact(value) {
+    if (!isEmail(value)) return "Ingresa un correo electrónico válido.";
+  },
+  deliveryContactCellphone(value) {
+    if (!isMobilePhone(value)) return "Ingresa un número de teléfono válido.";
+  }
+};
+
+function VideoNotificationForm(props) {
+  const {
+    values,
+    errors,
+    onChangeField,
+    setFieldValue,
+    validateBeforeSubmit
+  } = useForm<InitialValues>({
+    initialValues,
+    validations,
+    onSubmit(values) {
+      console.log(values);
+    }
+  });
+
+  return (
+    <section className={styles.VideoNotificationForm}>
+      <h2 className={styles.VideoNotificationFormTitle}>
+        ¡Este video quedará genial!
+        <br /> Te notificaremos cuando esté listo.
+      </h2>
+      <div>
+        <label className={styles.FormLabel} htmlFor="deliveryContact">
+          Correo electrónico de notificación
+        </label>
+        <input
+          type="text"
+          name="deliveryContact"
+          id="deliveryContact"
+          value={values.deliveryContact}
+          onChange={onChangeField}
+          className={classes(
+            styles.FormField,
+            errors?.deliveryContact && styles.FormFieldHasError
+          )}
+        />
+        <WarningMessage
+          message={errors?.deliveryContact || null}
+          className={classes(
+            styles.FormError,
+            errors?.deliveryContact && styles.FormErrorIsVisible
+          )}
+        />
+      </div>
+      <div className={styles.VideoNotificationFormPhoneInputContainer}>
+        <label className={styles.FormLabel}>
+          Notificarme también por Whatsapp (opcional)
+        </label>
+        <PhoneInput
+          value={values.deliveryContactCellphone}
+          containerClass={classes(
+            styles.ContainerPhoneInput,
+            errors?.deliveryContactCellphone && styles.FormFieldHasError
+          )}
+          inputClass={classes(
+            styles.InputClassPhoneInput,
+            errors?.deliveryContactCellphone && styles.FormFieldHasError
+          )}
+          buttonClass={classes(
+            styles.ButtonClassPhoneInput,
+            errors?.deliveryContactCellphone && styles.FormFieldHasError
+          )}
+          dropdownClass={styles.DropdownClassPhoneInput}
+          country="co"
+          onChange={(value) => {
+            setFieldValue("deliveryContactCellphone", value);
+          }}
+        />
+        <WarningMessage
+          message={errors?.deliveryContactCellphone || null}
+          className={classes(
+            styles.FormError,
+            errors?.deliveryContactCellphone && styles.FormErrorIsVisible
+          )}
+        />
+      </div>
+      <div
+        className={styles.VideoNotificationFormRadio}
+        onChange={({ target: { value } }: { target: any }) => {
+          setFieldValue("isPublic", Boolean(value));
+        }}
+      >
+        <span className={styles.VideoNotificationFormRadioText}>
+          Permitir que mi video sea público
+        </span>
+        <label
+          htmlFor="isPublic-true"
+          className={styles.VideoNotificationFormRadioLabel}
+        >
+          <i
+            className={classes(
+              "fa fa-check",
+              values.isPublic && styles.VideoNotificationFormRadioLabelChecked
+            )}
+          />
+          Sí
+        </label>
+        <input
+          type="radio"
+          name="isPublic"
+          id="isPublic-true"
+          hidden
+          value={1}
+        />
+        <label
+          htmlFor="isPublic-false"
+          className={styles.VideoNotificationFormRadioLabel}
+        >
+          <i
+            className={classes(
+              "fa fa-times",
+              !values.isPublic && styles.VideoNotificationFormRadioLabelChecked
+            )}
+          />
+          No
+        </label>
+        <input
+          type="radio"
+          name="isPublic"
+          id="isPublic-false"
+          hidden
+          value=""
+        />
+      </div>
+      <SubmitButton onClick={validateBeforeSubmit}>Continuar</SubmitButton>
+    </section>
+  );
+}
 
 export default VideoNotificationForm;

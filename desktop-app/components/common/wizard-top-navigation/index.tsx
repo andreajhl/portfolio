@@ -34,8 +34,11 @@ function WizardTopNavigation({
     <WithWizard>
       {({ steps, step, previous, push }) => (
         <div className={classes(styles.WizardTopNavigation, className)}>
-          <Maybe it={steps.indexOf(step) !== 0}>
-            <LeftArrowIcon onClick={previous} />
+          <Maybe it={steps.indexOf(step) !== 0 && enableNavigation}>
+            <LeftArrowIcon
+              onClick={previous}
+              className={styles.WizardTopNavigationBackButton}
+            />
           </Maybe>
           <ul className={styles.WizardTopNavigationStepsList}>
             {steps.map((stepItem, index) => (

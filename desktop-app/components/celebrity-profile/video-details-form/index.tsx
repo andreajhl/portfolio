@@ -25,7 +25,6 @@ const validations = {
     if (isEmpty(value)) return "Debes seleccionar una ocasión";
   },
   instructions(value: string | string[]) {
-    console.log(value);
     if (Array.isArray(value)) return "Olvidaste editar el texto.";
     if (isEmpty(value)) return "Debes escribir tus instrucciones.";
   }
@@ -62,8 +61,6 @@ function VideoDetailsForm({
   const [textareaText, setTextareaText] = useState(
     replacePlaceHolder(occasions[values.occasion].messages[contractType - 1])
   );
-
-  console.log(values);
 
   function replacePlaceHolder(text: string) {
     if (!text) return text;
