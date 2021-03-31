@@ -63,6 +63,8 @@ function VideoDetailsForm({
     replacePlaceHolder(occasions[values.occasion].messages[contractType])
   );
 
+  console.log(values);
+
   function replacePlaceHolder(text: string) {
     if (!text) return text;
     const bracketsRegExp = /(\[|\])/g;
