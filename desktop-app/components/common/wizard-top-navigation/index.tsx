@@ -18,8 +18,8 @@ function WizardTopNavigation({
   function getClassName(steps, step, index, stepItem) {
     if (steps.indexOf(step) === index) {
       return styles.WizardTopNavigationStepDoing;
-    } else if (steps.indexOf(step) > index || stepItem.isDone) {
-      stepItem.isDone = true;
+    } else if (steps.indexOf(step) > index /* || stepItem.isDone */) {
+      // stepItem.isDone = true;
       return styles.WizardTopNavigationStepDone;
     }
   }
