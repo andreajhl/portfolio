@@ -8,7 +8,7 @@ import isEmpty from "validator/es/lib/isEmpty";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import classes from "classnames";
 
-const occasionsOnlyForContractTypeOne = [
+const occasionsOnlyToGiftContract = [
   "LOVE",
   "MAKE_SMILE",
   "HOPE",
@@ -60,7 +60,7 @@ function VideoDetailsForm({
     onSubmit
   });
   const [textareaText, setTextareaText] = useState(
-    replacePlaceHolder(occasions[values.occasion].messages[contractType])
+    replacePlaceHolder(occasions[values.occasion].messages[contractType - 1])
   );
 
   console.log(values);
@@ -98,7 +98,7 @@ function VideoDetailsForm({
     setFieldValue("occasion", occasionKey);
     if (touched.instructions) return;
     const text = replacePlaceHolder(
-      occasions[occasionKey].messages[contractType]
+      occasions[occasionKey].messages[contractType - 1]
     );
     setTextareaText(text);
     setFieldValue("instructions", text);
@@ -111,8 +111,8 @@ function VideoDetailsForm({
         {Object.entries(occasions).map(([occasionKey, { icon, title }]) => (
           <Maybe
             it={
-              contractType !== 0 ||
-              !occasionsOnlyForContractTypeOne.includes(occasionKey)
+              contractType !== 1 ||
+              !occasionsOnlyToGiftContract.includes(occasionKey)
             }
           >
             <div

@@ -6,7 +6,7 @@ import { WizardTopNavigation } from "../../common/wizard-top-navigation";
 import { VideoDetailsForm } from "../video-details-form";
 import VideoDeliveryForm from "desktop-app/components/common/video-delivery-form";
 import { useState } from "react";
-import VideoNotificationForm from "desktop-app/components/video-notifications-form";
+import VideoNotificationForm from "desktop-app/components/celebrity-profile/video-notifications-form";
 
 const mapStateToProps = (state) => ({ ...state });
 
@@ -48,9 +48,9 @@ function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
           <Step id="video-details">
             {({ next }) => (
               <VideoDetailsForm
-                deliveryTo={"German"}
+                deliveryTo={videoDeliveryData?.deliveryTo}
                 celebrityFullName={celebrity.fullName}
-                contractType={1}
+                contractType={videoDeliveryData?.contractType}
                 onSubmit={console.log}
               />
             )}
