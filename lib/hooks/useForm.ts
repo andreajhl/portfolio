@@ -103,6 +103,7 @@ function useForm<InitialValuesType>({
     const valuesEntries = Object.entries(state.values);
     valuesEntries.forEach(([field, value]) => {
       const fieldValidator = validations[field];
+      if (!fieldValidator) return;
       if (typeof fieldValidator !== "function") {
         throw new TypeError(
           `The validation for field '${field}' is not a valid function.`
