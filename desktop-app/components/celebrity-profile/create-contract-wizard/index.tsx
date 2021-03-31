@@ -19,7 +19,11 @@ type CreateContractWizardProps = {
 };
 
 function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
-  const [videoDeliveryData, setVideoDeliveryData] = useState(null);
+  const [videoDeliveryData, setVideoDeliveryData] = useState<{
+    contractType: number;
+    deliveryTo: string;
+    deliveryFrom: string;
+  } | null>(null);
   return (
     <div className={styles.CreateContractWizard}>
       <Wizard>
@@ -42,7 +46,6 @@ function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
                 deliveryTo={"German"}
                 celebrityFullName={celebrity.fullName}
                 contractType={1}
-                celebrityUsername={celebrity.username}
                 onSubmit={console.log}
               />
             )}

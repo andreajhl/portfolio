@@ -83,16 +83,33 @@ function useForm<InitialValuesType>({
     });
   }
 
+  function setFieldTouched(name: string, value: boolean) {
+    dispatch({
+      type: TYPES.SET_FIELD_TOUCHED,
+      payload: { name, value }
+    });
+  }
+
+  function setFieldError(name: string, error: any) {
+    dispatch({
+      type: TYPES.SET_FIELD_ERROR,
+      payload: { name, value: error }
+    });
+  }
+
   function validateFields() {
     if (!validations) return true;
     let fieldsAreValid = true;
     const valuesEntries = Object.entries(state.values);
     valuesEntries.forEach(([field, value]) => {
-      const fieldError = validations[field]?.(value);
-      dispatch({
-        type: TYPES.SET_FIELD_ERROR,
-        payload: { name: field, value: fieldError }
-      });
+      const fieldValidator = validations[field];
+      if (typeof fieldValidator !== "function") {
+        throw new TypeError(
+          `The validation for field '${field}' is not a valid function.`
+        );
+      }
+      const fieldError = fieldValidator(value);
+      setFieldError(field, fieldError);
       if (fieldError) fieldsAreValid = false;
     });
     return fieldsAreValid;
@@ -109,6 +126,8 @@ function useForm<InitialValuesType>({
     ...state,
     setFieldValue,
     onChangeField,
+    setFieldTouched,
+    setFieldError,
     onFocusField,
     validateBeforeSubmit
   };

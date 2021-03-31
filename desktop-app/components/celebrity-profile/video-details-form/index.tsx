@@ -1,8 +1,10 @@
 import occasions from "constants/occasions";
 import useForm from "lib/hooks/useForm";
+import { useState } from "react";
 import SubmitButton from "../../common/button/submit-button";
 import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
+import isEmpty from "validator/es/lib/isEmpty";
 
 const occasionsOnlyForContractTypeOne = [
   "LOVE",
@@ -16,13 +18,22 @@ const initialValues = {
   instructions: ""
 };
 
+const validations = {
+  occasion(value: string) {
+    if (isEmpty(value)) return "Debes seleccionar una ocasión";
+  },
+  instructions(value: string | string[]) {
+    if (Array.isArray(value)) return "Olvidaste editar el texto.";
+    if (isEmpty(value)) return "Debes escribir tus instrucciones.";
+  }
+};
+
 type InitialValues = typeof initialValues;
 
 type VideoDetailsFormProps = {
   contractType: number;
   deliveryTo: string;
   celebrityFullName: string;
-  celebrityUsername: string;
   onSubmit: (values: InitialValues) => void;
 };
 
@@ -30,37 +41,60 @@ function VideoDetailsForm({
   contractType,
   deliveryTo,
   celebrityFullName,
-  celebrityUsername,
   onSubmit
 }: VideoDetailsFormProps) {
   const {
     values,
+    touched,
+    errors,
     setFieldValue,
+    setFieldTouched,
+    setFieldError,
     validateBeforeSubmit
   } = useForm<InitialValues>({
     initialValues,
+    validations,
     onSubmit
   });
+  const [textareaText, setTextareaText] = useState(
+    replacePlaceHolder(occasions[values.occasion].messages[contractType])
+  );
 
-  function replacePlaceHolder(text) {
-    const replacePlaceHolders = (str, find, replace) =>
-      str.replace(new RegExp(find, "g"), replace);
+  function replacePlaceHolder(text: string) {
+    if (!text) return text;
+    const bracketsRegExp = /(\[|\])/g;
 
-    let textClear = text;
+    return text
+      .replace(/PLACEHOLDER_FAMOSO_NAME/g, celebrityFullName || "Famoso")
+      .replace(/PLACEHOLDER_PARA/g, deliveryTo || "[PARA]")
+      .split(bracketsRegExp)
+      .filter((part) => !bracketsRegExp.test(part))
+      .map((part, index) => {
+        if (index % 2 === 0) return part;
+        return (
+          <span
+            data-is-placeholder
+            onClick={() => {
+              try {
+                const selection = document.getSelection();
+                selection.setPosition(selection.anchorNode, 1);
+              } catch (error) {
+                console.log(error);
+              }
+            }}
+          >
+            {`[${part}]`}
+          </span>
+        );
+      });
+  }
 
-    textClear = replacePlaceHolders(
-      textClear,
-      "PLACEHOLDER_FAMOSO_NAME",
-      celebrityFullName || "Famoso!"
+  function changeOccasion(occasionKey) {
+    setFieldValue("occasion", occasionKey);
+    if (touched.instructions) return;
+    setTextareaText(
+      replacePlaceHolder(occasions[occasionKey].messages[contractType])
     );
-
-    textClear = replacePlaceHolders(
-      textClear,
-      "PLACEHOLDER_PARA",
-      deliveryTo || "[PARA]"
-    );
-
-    return textClear;
   }
 
   return (
@@ -80,7 +114,7 @@ function VideoDetailsForm({
                   ? styles.VideoDetailsFormOccasionsSelected
                   : ""
               }`}
-              onClick={() => setFieldValue("occasion", occasionKey)}
+              onClick={() => changeOccasion(occasionKey)}
             >
               <img src={`/assets/img/occasions/${occasionKey}.png`} alt="" />
               <p>
@@ -97,10 +131,39 @@ function VideoDetailsForm({
       </div>
       <div>
         <label className={styles.VideoDetailsFormInstructionsLabel}>
-          Dale instrucciones a {celebrityUsername} para que tu video quede como
-          esperas. <span>(Edita este texto base o escribe uno)</span>
+          Dale instrucciones a {celebrityFullName} para que tu video quede como
+          esperas.
+          <br /> <span>(Edita este texto base o escribe uno)</span>
         </label>
-        {replacePlaceHolder(occasions[values.occasion].messages[contractType])}
+        <div
+          className={styles.VideoDetailsFormInstructionsTextarea}
+          contentEditable
+          suppressContentEditableWarning
+          onKeyDown={() => {
+            try {
+              const { focusNode } = document.getSelection();
+              const parent = focusNode?.parentElement;
+              if (parent.matches("span[data-is-placeholder]")) parent.remove();
+            } catch (error) {
+              console.log(error);
+            }
+          }}
+          onKeyUp={() => {
+            setFieldError("instructions", null);
+            setFieldTouched("instructions", true);
+          }}
+          onBlur={({ target: { childNodes } }) => {
+            setFieldValue(
+              "instructions",
+              Array.from(childNodes)
+                .map(({ textContent }) => textContent)
+                .join("")
+            );
+          }}
+        >
+          {textareaText}
+        </div>
+        {errors.instructions || null}
       </div>
       <SubmitButton onClick={validateBeforeSubmit}>Siguiente</SubmitButton>
     </section>
