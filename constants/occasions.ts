@@ -17,7 +17,7 @@ const occasions = {
   },
   SPECIAL_OCCASION: {
     icon: "fa-glass-cheers",
-    title: "Especial",
+    title: "Ocasión especial",
     messages: [
       "¡Hola PLACEHOLDER_FAMOSO_NAME! Pronto celebraré [OCASIÓN ESPECIAL] y me encantaría tener un mensaje tuyo felicitándome. ",
       "¡Hola PLACEHOLDER_FAMOSO_NAME! Me encantaría sorprender a PLACEHOLDER_PARA en esta [OCASIÓN ESPECIAL]."
@@ -25,7 +25,7 @@ const occasions = {
   },
   SONG: {
     icon: "fa-music",
-    title: "Canción",
+    title: "Dedicar canción",
     messages: [
       "¡Hola PLACEHOLDER_FAMOSO_NAME! ¿Podrías cantarme un pedazo de la canción [CANCIÓN]? ¡Es una de mis favoritas! Muchas gracias.",
       "¡Hola PLACEHOLDER_FAMOSO_NAME! ¿Podrías cantarle a PLACEHOLDER_PARA un pedazo de la canción [CANCIÓN], de mi parte? Muchas gracias."
@@ -33,7 +33,7 @@ const occasions = {
   },
   CHEER_UP: {
     icon: "fa-spa",
-    title: "Ánimo",
+    title: "Dar ánimo",
     messages: [
       "¡Hola PLACEHOLDER_FAMOSO_NAME! Estos días he estado con los ánimos muy bajos. ¿Podrías por favor mandarme un mensaje de ánimo? Muchas gracias.",
       "¡Hola PLACEHOLDER_FAMOSO_NAME! PLACEHOLDER_PARA ha estado muy bajo de ánimo. ¿Podrías por favor mandarle un mensaje para animarlo? Muchas gracias."
@@ -49,7 +49,7 @@ const occasions = {
   },
   MOTIVATION: {
     icon: "fa-bolt",
-    title: "Motivación",
+    title: "Motivar",
     messages: [
       "¡Hola PLACEHOLDER_FAMOSO_NAME! Estos días he estado muy desmotivado. ¿Me podrías enviar un mensaje que me motive? Muchas gracias.",
       "¡Hola PLACEHOLDER_FAMOSO_NAME! Por favor ayúdame a motivar a PLACEHOLDER_PARA."
@@ -65,7 +65,7 @@ const occasions = {
   },
   HOPE: {
     icon: "fa-dove",
-    title: "Esperanza",
+    title: "Dar esperanza",
     messages: [
       "",
       "¡Hola PLACEHOLDER_FAMOSO_NAME! Estos meses han sido difíciles para PLACEHOLDER_PARA. ¿Podrías enviarle un mensaje de esperanza?"
@@ -73,7 +73,7 @@ const occasions = {
   },
   ASK_FOR_FORGIVENESS: {
     icon: "fa-hand-holding-heart",
-    title: "Perdón",
+    title: "Pedir perdón",
     messages: [
       "",
       "¡Hola PLACEHOLDER_FAMOSO_NAME! Quisiera que PLACEHOLDER_PARA me perdone por [SITUACIÓN]. Me ayudas por favor diciéndole este mensaje. Gracias."

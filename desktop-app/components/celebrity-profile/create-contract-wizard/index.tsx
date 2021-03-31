@@ -1,9 +1,9 @@
-import { celebrityType } from "react-app/src/types/celebrityType";
+import { celebrityType } from "desktop-app/types/celebrityType";
 import { connect } from "react-redux";
 import { Wizard, Steps as StepsList, Step } from "react-albus";
 import styles from "./styles.module.scss";
-import { WizardTopNavigation } from "desktop-app/components/wizard-top-navigation";
-import { VideoDetailsForm } from "desktop-app/components/video-details-form";
+import { WizardTopNavigation } from "../../common/wizard-top-navigation";
+import { VideoDetailsForm } from "../video-details-form";
 import VideoDeliveryForm from "desktop-app/components/common/video-delivery-form";
 import { useState } from "react";
 import VideoNotificationForm from "desktop-app/components/video-notifications-form";
@@ -20,7 +20,11 @@ type CreateContractWizardProps = {
 };
 
 function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
-  const [videoDeliveryData, setVideoDeliveryData] = useState(null);
+  const [videoDeliveryData, setVideoDeliveryData] = useState<{
+    contractType: number;
+    deliveryTo: string;
+    deliveryFrom: string;
+  } | null>(null);
   return (
     <div className={styles.CreateContractWizard}>
       <Wizard>
@@ -47,7 +51,6 @@ function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
                 deliveryTo={"German"}
                 celebrityFullName={celebrity.fullName}
                 contractType={1}
-                celebrityUsername={celebrity.username}
                 onSubmit={console.log}
               />
             )}
