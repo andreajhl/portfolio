@@ -141,7 +141,8 @@ function VideoDetailsForm({
           className={styles.VideoDetailsFormInstructionsTextarea}
           contentEditable
           suppressContentEditableWarning
-          onKeyDown={() => {
+          onKeyDown={({ key }) => {
+            if (key.startsWith("Arrow")) return;
             try {
               const { focusNode } = document.getSelection();
               const parent = focusNode?.parentElement;
