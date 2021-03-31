@@ -4,9 +4,9 @@ import { Wizard, Steps as StepsList, Step } from "react-albus";
 import styles from "./styles.module.scss";
 import { WizardTopNavigation } from "desktop-app/components/wizard-top-navigation";
 import { VideoDetailsForm } from "desktop-app/components/video-details-form";
-import useForm from "lib/hooks/useForm";
 import VideoDeliveryForm from "desktop-app/components/common/video-delivery-form";
 import { useState } from "react";
+import VideoNotificationForm from "desktop-app/components/video-notifications-form";
 
 const mapStateToProps = (state) => ({ ...state });
 
@@ -52,12 +52,12 @@ function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
               />
             )}
           </Step>
-          <Step id="detalles">
+          <Step id="notifications">
             <h3>
               Video personalizado
               <br /> de {celebrity.fullName}
             </h3>
-
+            <VideoNotificationForm />
             {/* <input
               type="text"
               name="deliveryFrom"
