@@ -35,6 +35,9 @@ const VideoDeliveryForm = ({
     },
     deliveryFrom: (value: string) => {
       if (value.length === 0) return "Debes introducir un nombre";
+    },
+    contractType: (value: number) => {
+      if (value === null) return "Debes selecciona un tipo de contrato";
     }
   };
   const {
