@@ -5,6 +5,8 @@ import SubmitButton from "../../common/button/submit-button";
 import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
 import isEmpty from "validator/es/lib/isEmpty";
+import WarningMessage from "desktop-app/components/common/warning-message";
+import classes from "classnames";
 
 const occasionsOnlyForContractTypeOne = [
   "LOVE",
@@ -109,11 +111,11 @@ function VideoDetailsForm({
             }
           >
             <div
-              className={`${styles.VideoDetailsFormOccasionsItem} ${
-                occasionKey === values.occasion
-                  ? styles.VideoDetailsFormOccasionsSelected
-                  : ""
-              }`}
+              className={classes(
+                styles.VideoDetailsFormOccasionsItem,
+                occasionKey === values.occasion &&
+                  styles.VideoDetailsFormOccasionsSelected
+              )}
               onClick={() => changeOccasion(occasionKey)}
             >
               <img src={`/assets/img/occasions/${occasionKey}.png`} alt="" />
@@ -129,7 +131,7 @@ function VideoDetailsForm({
           </Maybe>
         ))}
       </div>
-      <div>
+      <div className={styles.VideoDetailsFormInstructions}>
         <label className={styles.VideoDetailsFormInstructionsLabel}>
           Dale instrucciones a {celebrityFullName} para que tu video quede como
           esperas.
@@ -163,7 +165,14 @@ function VideoDetailsForm({
         >
           {textareaText}
         </div>
-        {errors.instructions || null}
+        <WarningMessage
+          className={classes(
+            styles.VideoDetailsFormInstructionsMessage,
+            Boolean(errors?.instructions) &&
+              styles.VideoDetailsFormInstructionsMessageVisible
+          )}
+          message={errors?.instructions || null}
+        />
       </div>
       <SubmitButton onClick={validateBeforeSubmit}>Siguiente</SubmitButton>
     </section>
