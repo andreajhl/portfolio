@@ -18,4 +18,5 @@ export type celebrityType = {
   isDonor: boolean;
   mainVideo: string;
   showSimilarCelebrities: boolean;
+  contractTypes: any[];
 };

@@ -19,12 +19,20 @@ type CreateContractWizardProps = {
   celebrity: celebrityType;
 };
 
+const getContractPriceVideoMessage = (contractsTypes) =>
+  contractsTypes?.find?.((contract) => contract.contractType === 1)?.price || 0;
+
 function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
   const [videoDeliveryData, setVideoDeliveryData] = useState<{
     contractType: number;
     deliveryTo: string;
     deliveryFrom: string;
   } | null>(null);
+
+  const videoMessagePrice = getContractPriceVideoMessage(
+    celebrity.contractTypes
+  );
+
   return (
     <div className={styles.CreateContractWizard}>
       <Wizard>
@@ -33,16 +41,16 @@ function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
           <Step id="delivery">
             {({ next }) => (
               <VideoDeliveryForm
-                videoMessagePrice={celebrity.videoMessagePrice}
+                videoMessagePrice={videoMessagePrice}
                 celebrityFullName={celebrity.fullName}
                 // TODO: agregar estos datos en modelo celebrity
-                bussinessPrice={celebrity.videoMessagePrice}
-                showBussinessPrice={true}
+                businessPrice={500}
+                showBusinessPrice
                 onSubmit={(data) => {
                   setVideoDeliveryData(data);
                   next();
                 }}
-              ></VideoDeliveryForm>
+              />
             )}
           </Step>
           <Step id="video-details">
@@ -56,17 +64,7 @@ function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
             )}
           </Step>
           <Step id="notifications">
-            <h3>
-              Video personalizado
-              <br /> de {celebrity.fullName}
-            </h3>
             <VideoNotificationForm />
-            {/* <input
-              type="text"
-              name="deliveryFrom"
-              value={form.values.deliveryFrom}
-              onChange={form.onChangeField}
-            /> */}
           </Step>
         </StepsList>
       </Wizard>

@@ -10,8 +10,8 @@ import { PriceLayout } from "../helpers/price-layout";
 type VideoDeliveryFormProps = {
   celebrityFullName: string;
   videoMessagePrice: number;
-  bussinessPrice: number;
-  showBussinessPrice: boolean;
+  businessPrice: number;
+  showBusinessPrice: boolean;
   onSubmit: (values: InitialValues) => void;
 };
 
@@ -25,19 +25,17 @@ type InitialValues = typeof initialValues;
 const VideoDeliveryForm = ({
   celebrityFullName,
   videoMessagePrice = 200,
-  bussinessPrice = 222,
-  showBussinessPrice = true,
+  businessPrice,
+  showBusinessPrice = false,
   onSubmit
 }: VideoDeliveryFormProps) => {
   const validations = {
     deliveryTo: (value: string) => {
       if (value.length === 0) return "Debes introducir un nombre";
     },
-    deliveryFrom: (value: string) => {
+    deliveryFrom: (value: string, { values: { contractType } }) => {
+      if (contractType === 1) return;
       if (value.length === 0) return "Debes introducir un nombre";
-    },
-    contractType: (value: number) => {
-      if (value === null) return "Debes selecciona un tipo de contrato";
     }
   };
   const {
@@ -62,8 +60,12 @@ const VideoDeliveryForm = ({
             <PriceLayout decimalScale={0} price={videoMessagePrice} />
           </span>
         </Maybe>
-        <Maybe it={values.contractType === 3 && showBussinessPrice}>
-          <span>{bussinessPrice}$</span>
+        <Maybe it={values.contractType === 3}>
+          <span>
+            <Maybe it={showBusinessPrice} orElse="$ A convenir">
+              <PriceLayout decimalScale={0} price={businessPrice} />
+            </Maybe>
+          </span>
         </Maybe>
       </div>
       <ContractTypeCards
