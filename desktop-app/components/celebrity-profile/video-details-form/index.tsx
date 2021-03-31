@@ -25,6 +25,7 @@ const validations = {
     if (isEmpty(value)) return "Debes seleccionar una ocasión";
   },
   instructions(value: string | string[]) {
+    console.log(value);
     if (Array.isArray(value)) return "Olvidaste editar el texto.";
     if (isEmpty(value)) return "Debes escribir tus instrucciones.";
   }
@@ -62,6 +63,8 @@ function VideoDetailsForm({
     replacePlaceHolder(occasions[values.occasion].messages[contractType])
   );
 
+  console.log(values);
+
   function replacePlaceHolder(text: string) {
     if (!text) return text;
     const bracketsRegExp = /(\[|\])/g;
@@ -94,9 +97,11 @@ function VideoDetailsForm({
   function changeOccasion(occasionKey) {
     setFieldValue("occasion", occasionKey);
     if (touched.instructions) return;
-    setTextareaText(
-      replacePlaceHolder(occasions[occasionKey].messages[contractType])
+    const text = replacePlaceHolder(
+      occasions[occasionKey].messages[contractType]
     );
+    setTextareaText(text);
+    setFieldValue("instructions", text);
   }
 
   return (
@@ -151,11 +156,16 @@ function VideoDetailsForm({
               console.log(error);
             }
           }}
-          onKeyUp={() => {
+          onKeyUp={({ key }) => {
+            if (key.startsWith("Arrow")) return;
             setFieldError("instructions", null);
             setFieldTouched("instructions", true);
           }}
           onBlur={({ target: { childNodes } }) => {
+            // TODO: Luego de darle submit, se coloca touched,
+            // por ende en el segundo intento no valida
+            // que se haya removido el placeholder.
+            if (!touched?.instructions) return;
             setFieldValue(
               "instructions",
               Array.from(childNodes)
