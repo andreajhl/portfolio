@@ -7,7 +7,31 @@ const TYPES = {
   FORM_SUBMITTED: "FORM_SUBMITTED"
 };
 
-const setFieldProperty = (state, property, payload) => ({
+const useFormInitialState = {
+  errors: {},
+  values: {},
+  touched: {}
+};
+
+type PayloadType =
+  | any
+  | {
+      name: any;
+      value: any;
+    };
+
+type ActionType = {
+  type: string;
+  payload?: PayloadType;
+};
+
+type UseFormInitialState = typeof useFormInitialState;
+
+const setFieldProperty = (
+  state: UseFormInitialState,
+  property: string,
+  payload: PayloadType
+) => ({
   ...state,
   [property]: {
     ...state[property],
@@ -15,13 +39,10 @@ const setFieldProperty = (state, property, payload) => ({
   }
 });
 
-const initialState = {
-  errors: {},
-  values: {},
-  touched: {}
-};
-
-function formReducer(state, action) {
+function formReducer(
+  state: UseFormInitialState,
+  action: ActionType
+): UseFormInitialState {
   const { type, payload } = action;
   switch (type) {
     case TYPES.SET_FIELD_VALUE:
@@ -39,17 +60,19 @@ function formReducer(state, action) {
         )
       };
     default:
-      break;
+      return state;
   }
 }
 
-const getInitialState = (initialValues) => {
+const getInitialState = <InitialValuesType>(
+  initialValues: InitialValuesType | { [key: string]: any } | null
+) => {
   return initialValues
     ? {
-        ...initialState,
+        ...useFormInitialState,
         values: { ...initialValues }
       }
-    : initialState;
+    : useFormInitialState;
 };
 
 type UseFormParam<InitialValuesType> = {
@@ -58,14 +81,14 @@ type UseFormParam<InitialValuesType> = {
   onSubmit: (values: InitialValuesType) => void;
 };
 
-function useForm<InitialValuesType>({
+function useForm<InitialValuesType = { [key: string]: any }>({
   initialValues,
   validations,
   onSubmit
 }: UseFormParam<InitialValuesType>) {
   const [state, dispatch] = useReducer(
     formReducer,
-    getInitialState(initialValues)
+    getInitialState<InitialValuesType>(initialValues)
   );
 
   function onChangeField({ target }) {
@@ -116,11 +139,11 @@ function useForm<InitialValuesType>({
     return fieldsAreValid;
   }
 
-  function validateBeforeSubmit(event) {
+  function validateBeforeSubmit(event: { preventDefault: () => void }) {
     event.preventDefault();
     dispatch({ type: TYPES.FORM_SUBMITTED });
     if (!validateFields()) return;
-    onSubmit(state.values);
+    onSubmit(state.values as InitialValuesType);
   }
 
   return {
