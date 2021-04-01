@@ -27,6 +27,22 @@ type ActionType = {
 
 type UseFormInitialState = typeof useFormInitialState;
 
+type TouchedType<ValuesType> = {
+  [Property in keyof ValuesType]: boolean;
+};
+
+type ErrorType = string | null;
+
+type ErrorsType<ValuesType> = {
+  [Property in keyof ValuesType]?: ErrorType;
+};
+
+type State<ValuesType> = {
+  values: ValuesType;
+  errors: ErrorsType<ValuesType>;
+  touched: TouchedType<ValuesType>;
+};
+
 const setFieldProperty = (
   state: UseFormInitialState,
   property: string,
@@ -65,7 +81,7 @@ function formReducer(
 }
 
 const getInitialState = <InitialValuesType>(
-  initialValues: InitialValuesType | { [key: string]: any } | null
+  initialValues: InitialValuesType | null
 ) => {
   return initialValues
     ? {
@@ -75,9 +91,16 @@ const getInitialState = <InitialValuesType>(
     : useFormInitialState;
 };
 
+export type ValidationsType<ValuesType> = {
+  [Property in keyof ValuesType]?: (
+    value: ValuesType[Property],
+    state: State<ValuesType>
+  ) => ErrorType;
+};
+
 type UseFormParam<InitialValuesType> = {
-  initialValues: InitialValuesType | { [key: string]: any };
-  validations?: { [key: string]: any };
+  initialValues: InitialValuesType;
+  validations?: ValidationsType<InitialValuesType>;
   onSubmit: (values: InitialValuesType) => void;
 };
 
@@ -147,7 +170,7 @@ function useForm<InitialValuesType = { [key: string]: any }>({
   }
 
   return {
-    ...state,
+    ...(state as State<InitialValuesType>),
     setFieldValue,
     onChangeField,
     setFieldTouched,
