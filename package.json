@@ -16,11 +16,14 @@
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "test": "jest",
-    "test-all": "yarn lint && yarn type-check && yarn test"
+    "test-all": "yarn lint && yarn type-check && yarn test",
+    "extract:i18n": "formatjs extract {pages,react-app}/**/*.{js,tsx} --format crowdin --id-interpolation-pattern [sha512:contenthash:base64:6] --out-file lang/es.json",
+    "compile": "formatjs compile-folder --ast --format crowdin lang compiled-lang"
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
     "@auth0/nextjs-auth0": "^0.16.1",
+    "@formatjs/cli": "^4.2.4",
     "@next/bundle-analyzer": "^10.0.7",
     "@stripe/stripe-js": "^1.12.1",
     "axios": "^0.21.1",
@@ -49,6 +52,7 @@
     "react-headroom": "^3.1.0",
     "react-html-parser": "^2.0.2",
     "react-infinite-scroll-component": "^5.1.0",
+    "react-intl": "^5.15.5",
     "react-number-format": "^4.4.4",
     "react-phone-input-2": "^2.13.9",
     "react-redux": "^7.2.2",
@@ -76,6 +80,7 @@
     "@typescript-eslint/parser": "^4.15.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.2.3",
+    "babel-plugin-formatjs": "^10.2.4",
     "babel-plugin-styled-components": "^1.12.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
