@@ -72,8 +72,8 @@ const VideoDeliveryForm = ({
       </div>
       <ContractTypeCards
         currentType={values.contractType}
-        onChangeType={(e) => setFieldValue("contractType", e)}
-      ></ContractTypeCards>
+        onChangeType={(type) => setFieldValue("contractType", type)}
+      />
       <div className={styles.InputFieldElements}>
         <VideoDeliveryFormFieldsElements
           deliveryFrom={values.deliveryFrom}
@@ -82,11 +82,9 @@ const VideoDeliveryForm = ({
           onSubmit={validateBeforeSubmit}
           onChange={(field, value) => setFieldValue(field, value)}
           errors={errors}
-        ></VideoDeliveryFormFieldsElements>
+        />
         <Maybe it={values.contractType === 3}>
-          <WhatsappAdForContracts
-            celebrityFullName={celebrityFullName}
-          ></WhatsappAdForContracts>
+          <WhatsappAdForContracts celebrityFullName={celebrityFullName} />
         </Maybe>
       </div>
     </div>

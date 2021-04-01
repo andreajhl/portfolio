@@ -21,13 +21,22 @@ const validations: ValidationsType<InitialValues> = {
     if (!isEmail(value)) return "Ingresa un correo electrónico válido.";
   },
   deliveryContactCellphone(value) {
-    if (value === initialValues.deliveryContactCellphone) return null;
-    if (value.length < 4) return null;
+    if (!deliveryContactCellphoneHasChanged(value)) return null;
     if (!isMobilePhone(value)) return "Ingresa un número de teléfono válido.";
   }
 };
 
-function VideoNotificationForm() {
+const deliveryContactCellphoneHasChanged = (deliveryContactCellphone: string) =>
+  deliveryContactCellphone !== initialValues.deliveryContactCellphone ||
+  deliveryContactCellphone.length > 4;
+
+function VideoNotificationForm({
+  onSubmit,
+  isLoading
+}: {
+  onSubmit: (values: InitialValues) => void;
+  isLoading: boolean;
+}) {
   const {
     values,
     errors,
@@ -37,8 +46,14 @@ function VideoNotificationForm() {
   } = useForm<InitialValues>({
     initialValues,
     validations,
-    onSubmit(values) {
-      console.log(values);
+    onSubmit(data) {
+      const values = { ...data };
+      if (
+        !deliveryContactCellphoneHasChanged(values.deliveryContactCellphone)
+      ) {
+        delete values.deliveryContactCellphone;
+      }
+      onSubmit(values);
     }
   });
 

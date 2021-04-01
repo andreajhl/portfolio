@@ -7,26 +7,39 @@ import { VideoDetailsForm } from "../video-details-form";
 import VideoDeliveryForm from "desktop-app/components/celebrity-profile/video-delivery-form";
 import { useState } from "react";
 import VideoNotificationForm from "desktop-app/components/celebrity-profile/video-notifications-form";
+import { saveClientContract } from "react-app/src/state/ducks/contracts/actions";
 
-const mapStateToProps = (state) => ({ ...state });
+const mapStateToProps = ({ contracts }) => ({
+  isLoading: contracts.saveClientContractReducer.loading
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { saveClientContract };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
 type CreateContractWizardProps = {
   celebrity: celebrityType;
-};
+} & DispatchProps &
+  StateProps;
 
 const getContractPriceVideoMessage = (contractsTypes) =>
   contractsTypes?.find?.((contract) => contract.contractType === 1)?.price || 0;
 
-function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
+function CreateContractWizard({
+  celebrity,
+  isLoading,
+  saveClientContract
+}: CreateContractWizardProps) {
   const [videoDeliveryData, setVideoDeliveryData] = useState<{
     contractType: number;
     deliveryTo: string;
     deliveryFrom: string;
+  } | null>(null);
+
+  const [videoDetailsData, setVideoDetailsData] = useState<{
+    occasion: string;
+    instructions: string;
   } | null>(null);
 
   const videoMessagePrice = getContractPriceVideoMessage(
@@ -59,12 +72,30 @@ function CreateContractWizard({ celebrity }: CreateContractWizardProps) {
                 deliveryTo={videoDeliveryData?.deliveryTo}
                 celebrityFullName={celebrity.fullName}
                 contractType={videoDeliveryData?.contractType}
-                onSubmit={console.log}
+                onSubmit={(values) => {
+                  setVideoDetailsData(values);
+                  next();
+                }}
               />
             )}
           </Step>
           <Step id="notifications">
-            <VideoNotificationForm />
+            <VideoNotificationForm
+              isLoading={isLoading}
+              onSubmit={(values) => {
+                saveClientContract(
+                  Object.assign(
+                    {
+                      deliveryType: 1,
+                      celebrityId: celebrity.id
+                    },
+                    videoDeliveryData,
+                    videoDetailsData,
+                    values
+                  )
+                );
+              }}
+            />
           </Step>
         </StepsList>
       </Wizard>
