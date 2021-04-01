@@ -8,7 +8,7 @@ type VideoDeliveryFormFieldsElementsProps = {
   deliveryFrom: string;
   onChange: (arg1: string, arg2: string) => void;
   contractType: number;
-  onSubmit: () => void;
+  onSubmit: (event: any) => void;
   errors: { [key: string]: any };
 };
 

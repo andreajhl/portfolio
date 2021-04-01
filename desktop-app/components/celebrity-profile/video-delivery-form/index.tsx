@@ -1,11 +1,11 @@
 import React from "react";
-import ContractTypeCards from "../cards/contract-type";
+import ContractTypeCards from "../../common/cards/contract-type";
 import styles from "./styles.module.scss";
-import useForm from "lib/hooks/useForm";
-import Maybe from "../helpers/maybe";
-import WhatsapAdForContracts from "../whatsapp-ad-for-contracts";
-import VideoDeliveryFormFieldsElements from "../video-delivery-form-fields-elements";
-import { PriceLayout } from "../helpers/price-layout";
+import useForm, { ValidationsType } from "lib/hooks/useForm";
+import Maybe from "../../common/helpers/maybe";
+import WhatsappAdForContracts from "../../common/whatsapp-ad-for-contracts";
+import VideoDeliveryFormFieldsElements from "../../common/video-delivery-form-fields-elements";
+import { PriceLayout } from "../../common/helpers/price-layout";
 
 type VideoDeliveryFormProps = {
   celebrityFullName: string;
@@ -21,7 +21,18 @@ const initialValues = {
   deliveryFrom: ""
 };
 
+const validations: ValidationsType<InitialValues> = {
+  deliveryTo(value) {
+    if (value.length === 0) return "Debes introducir un nombre";
+  },
+  deliveryFrom(value, { values: { contractType } }) {
+    if (contractType === 1) return;
+    if (value.length === 0) return "Debes introducir un nombre";
+  }
+};
+
 type InitialValues = typeof initialValues;
+
 const VideoDeliveryForm = ({
   celebrityFullName,
   videoMessagePrice = 200,
@@ -29,15 +40,6 @@ const VideoDeliveryForm = ({
   showBusinessPrice = false,
   onSubmit
 }: VideoDeliveryFormProps) => {
-  const validations = {
-    deliveryTo: (value: string) => {
-      if (value.length === 0) return "Debes introducir un nombre";
-    },
-    deliveryFrom: (value: string, { values: { contractType } }) => {
-      if (contractType === 1) return;
-      if (value.length === 0) return "Debes introducir un nombre";
-    }
-  };
   const {
     values,
     errors,
@@ -82,9 +84,9 @@ const VideoDeliveryForm = ({
           errors={errors}
         ></VideoDeliveryFormFieldsElements>
         <Maybe it={values.contractType === 3}>
-          <WhatsapAdForContracts
+          <WhatsappAdForContracts
             celebrityFullName={celebrityFullName}
-          ></WhatsapAdForContracts>
+          ></WhatsappAdForContracts>
         </Maybe>
       </div>
     </div>

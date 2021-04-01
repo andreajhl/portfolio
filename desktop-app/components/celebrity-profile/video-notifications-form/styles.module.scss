@@ -114,9 +114,18 @@
   }
 }
 
-.InputClassPhoneInput,
+.InputClassPhoneInput {
+  &:not(.FormFieldHasError) {
+    background-color: rgba(249, 249, 255, 1) !important;
+  }
+}
 .ButtonClassPhoneInput {
   background-color: rgba(249, 249, 255, 1);
+}
+.SearchClassPhoneInput {
+  input {
+    width: 86%;
+  }
 }
 .ButtonClassPhoneInput {
   width: 71px;

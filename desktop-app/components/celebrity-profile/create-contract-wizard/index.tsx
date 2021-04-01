@@ -4,7 +4,7 @@ import { Wizard, Steps as StepsList, Step } from "react-albus";
 import styles from "./styles.module.scss";
 import { WizardTopNavigation } from "../../common/wizard-top-navigation";
 import { VideoDetailsForm } from "../video-details-form";
-import VideoDeliveryForm from "desktop-app/components/common/video-delivery-form";
+import VideoDeliveryForm from "desktop-app/components/celebrity-profile/video-delivery-form";
 import { useState } from "react";
 import VideoNotificationForm from "desktop-app/components/celebrity-profile/video-notifications-form";
 

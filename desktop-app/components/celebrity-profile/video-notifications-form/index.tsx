@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 import classes from "classnames";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
-import useForm from "lib/hooks/useForm";
+import useForm, { ValidationsType } from "lib/hooks/useForm";
 import isEmail from "validator/es/lib/isEmail";
 
 const initialValues = {
@@ -16,16 +16,18 @@ const initialValues = {
 
 type InitialValues = typeof initialValues;
 
-const validations = {
+const validations: ValidationsType<InitialValues> = {
   deliveryContact(value) {
     if (!isEmail(value)) return "Ingresa un correo electrónico válido.";
   },
   deliveryContactCellphone(value) {
+    if (value === initialValues.deliveryContactCellphone) return null;
+    if (value.length < 4) return null;
     if (!isMobilePhone(value)) return "Ingresa un número de teléfono válido.";
   }
 };
 
-function VideoNotificationForm(props) {
+function VideoNotificationForm() {
   const {
     values,
     errors,
@@ -89,6 +91,9 @@ function VideoNotificationForm(props) {
           )}
           dropdownClass={styles.DropdownClassPhoneInput}
           country="co"
+          enableSearch
+          searchPlaceholder="Buscar país"
+          searchClass={styles.SearchClassPhoneInput}
           onChange={(value) => {
             setFieldValue("deliveryContactCellphone", value);
           }}

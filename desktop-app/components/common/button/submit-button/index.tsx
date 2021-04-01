@@ -1,8 +1,8 @@
 import styles from "./styles.module.scss";
-import { ReactNode } from "react";
+import { ReactNode, MouseEvent } from "react";
 
 type SubmitButtonProps = {
-  onClick?: () => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   children?: ReactNode;
 };
 
