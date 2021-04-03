@@ -176,6 +176,7 @@ function useForm<InitialValuesType = { [key: string]: any }>({
     setFieldTouched,
     setFieldError,
     onFocusField,
+    validateFields,
     validateBeforeSubmit
   };
 }

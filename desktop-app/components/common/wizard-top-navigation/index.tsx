@@ -7,13 +7,13 @@ import Maybe from "../helpers/maybe";
 type WizardTopNavigationProps = {
   className?: string;
   enableNavigation?: boolean;
-  onNavigationClick?: (any) => void;
+  onStepClick?: (goToClickedStep: () => void) => void;
 };
 
 function WizardTopNavigation({
   className = "",
   enableNavigation = false,
-  onNavigationClick = () => {}
+  onStepClick = () => {}
 }: WizardTopNavigationProps) {
   function getClassName(steps, step, index, stepItem) {
     const stepIndex = steps.indexOf(step);
@@ -25,10 +25,12 @@ function WizardTopNavigation({
     }
   }
 
-  function itemClick(stepItem, push) {
+  function stepClick(stepItem, push) {
     if (!enableNavigation) return;
-    push(stepItem.id);
-    // topNavigationClick(stepItem, push);
+    function goToClickedStep() {
+      push(stepItem.id);
+    }
+    onStepClick(goToClickedStep);
   }
 
   return (
@@ -41,8 +43,8 @@ function WizardTopNavigation({
             <Maybe it={currentStepIndex !== 0 && enableNavigation}>
               <LeftArrowIcon
                 onClick={() => {
-                  const previousStepId = steps[currentStepIndex - 1]?.id;
-                  push(previousStepId);
+                  const previousStep = steps[currentStepIndex - 1];
+                  stepClick(previousStep, push);
                 }}
                 className={styles.WizardTopNavigationBackButton}
               />
@@ -56,7 +58,7 @@ function WizardTopNavigation({
                       styles.WizardTopNavigationStepEnabledNavigation,
                     getClassName(steps, step, index, stepItem)
                   )}
-                  onClick={() => itemClick(stepItem, push)}
+                  onClick={() => stepClick(stepItem, push)}
                 />
               ))}
             </ul>

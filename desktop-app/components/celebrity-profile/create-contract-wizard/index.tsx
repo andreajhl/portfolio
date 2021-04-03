@@ -2,7 +2,6 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 import { connect } from "react-redux";
 import { Wizard, Steps as StepsList, Step } from "react-albus";
 import styles from "./styles.module.scss";
-import { WizardTopNavigation } from "../../common/wizard-top-navigation";
 import { VideoDetailsForm } from "../video-details-form";
 import VideoDeliveryForm from "desktop-app/components/celebrity-profile/video-delivery-form";
 import { useState } from "react";
@@ -10,7 +9,8 @@ import VideoNotificationForm from "desktop-app/components/celebrity-profile/vide
 import { saveClientContract } from "react-app/src/state/ducks/contracts/actions";
 import ContractDataType, {
   ContractDeliveryType,
-  ContractDetailsType
+  ContractDetailsType,
+  ContractNotificationsType
 } from "desktop-app/types/contractDataType";
 
 const mapStateToProps = ({ contracts }) => ({
@@ -35,15 +35,18 @@ function CreateContractWizard({
   isLoading,
   saveClientContract
 }: CreateContractWizardProps) {
-  const [
-    videoDeliveryData,
-    setVideoDeliveryData
-  ] = useState<ContractDeliveryType | null>(null);
+  const [deliveryData, setDeliveryData] = useState<ContractDeliveryType | null>(
+    null
+  );
+
+  const [detailsData, setDetailsData] = useState<ContractDetailsType | null>(
+    null
+  );
 
   const [
-    videoDetailsData,
-    setVideoDetailsData
-  ] = useState<ContractDetailsType | null>(null);
+    notificationsData,
+    setNotificationsData
+  ] = useState<ContractNotificationsType | null>(null);
 
   const videoMessagePrice = getContractPriceVideoMessage(
     celebrity.contractTypes
@@ -52,7 +55,6 @@ function CreateContractWizard({
   return (
     <div className={styles.CreateContractWizard}>
       <Wizard>
-        <WizardTopNavigation enableNavigation />
         <StepsList>
           <Step id="delivery">
             {({ next }) => (
@@ -62,8 +64,10 @@ function CreateContractWizard({
                 // TODO: agregar estos datos en modelo celebrity
                 businessPrice={500}
                 showBusinessPrice
+                initialValues={deliveryData}
+                onStepChange={setDeliveryData}
                 onSubmit={(data) => {
-                  setVideoDeliveryData(data);
+                  setDeliveryData(data);
                   next();
                 }}
               />
@@ -72,11 +76,13 @@ function CreateContractWizard({
           <Step id="video-details">
             {({ next }) => (
               <VideoDetailsForm
-                deliveryTo={videoDeliveryData?.deliveryTo}
+                deliveryTo={deliveryData?.deliveryTo}
                 celebrityFullName={celebrity.fullName}
-                contractType={videoDeliveryData?.contractType}
+                contractType={deliveryData?.contractType}
+                initialValues={detailsData}
+                onStepChange={setDetailsData}
                 onSubmit={(values) => {
-                  setVideoDetailsData(values);
+                  setDetailsData(values);
                   next();
                 }}
               />
@@ -85,13 +91,15 @@ function CreateContractWizard({
           <Step id="notifications">
             <VideoNotificationForm
               isLoading={isLoading}
+              initialValues={notificationsData}
+              onStepChange={setNotificationsData}
               onSubmit={(values) => {
                 const contractData: ContractDataType = Object.assign(
                   {
                     celebrityId: celebrity.id
                   },
-                  videoDeliveryData,
-                  videoDetailsData,
+                  deliveryData,
+                  detailsData,
                   values
                 );
                 saveClientContract(contractData);

@@ -8,6 +8,7 @@ import SubmitButton from "desktop-app/components/common/button/submit-button";
 import useForm, { ValidationsType } from "lib/hooks/useForm";
 import isEmail from "validator/es/lib/isEmail";
 import { ContractNotificationsType } from "desktop-app/types/contractDataType";
+import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
 
 const initialValues: ContractNotificationsType = {
   deliveryContact: "",
@@ -31,9 +32,13 @@ const deliveryContactCellphoneHasChanged = (deliveryContactCellphone: string) =>
 
 function VideoNotificationForm({
   onSubmit,
+  onStepChange,
+  initialValues: initialValuesFromProps,
   isLoading
 }: {
   onSubmit: (values: ContractNotificationsType) => void;
+  onStepChange: (values: ContractNotificationsType) => void;
+  initialValues?: ContractNotificationsType;
   isLoading: boolean;
 }) {
   const {
@@ -41,9 +46,10 @@ function VideoNotificationForm({
     errors,
     onChangeField,
     setFieldValue,
+    validateFields,
     validateBeforeSubmit
   } = useForm<ContractNotificationsType>({
-    initialValues,
+    initialValues: initialValuesFromProps || initialValues,
     validations,
     onSubmit(data) {
       const values = { ...data };
@@ -58,6 +64,14 @@ function VideoNotificationForm({
 
   return (
     <section className={styles.VideoNotificationForm}>
+      <WizardTopNavigation
+        enableNavigation
+        onStepClick={(goToClickedStep) => {
+          if (!validateFields()) return;
+          onStepChange(values);
+          goToClickedStep();
+        }}
+      />
       <h2 className={styles.VideoNotificationFormTitle}>
         ¡Este video quedará genial!
         <br /> Te notificaremos cuando esté listo.

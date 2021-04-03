@@ -7,13 +7,16 @@ import WhatsappAdForContracts from "../../common/whatsapp-ad-for-contracts";
 import VideoDeliveryFormFieldsElements from "../../common/video-delivery-form-fields-elements";
 import { PriceLayout } from "../../common/helpers/price-layout";
 import { ContractDeliveryType } from "desktop-app/types/contractDataType";
+import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
 
 type VideoDeliveryFormProps = {
   celebrityFullName: string;
   videoMessagePrice: number;
   businessPrice: number;
   showBusinessPrice: boolean;
+  initialValues?: ContractDeliveryType;
   onSubmit: (values: ContractDeliveryType) => void;
+  onStepChange: (values: ContractDeliveryType) => void;
 };
 
 const initialValues: ContractDeliveryType = {
@@ -24,6 +27,9 @@ const initialValues: ContractDeliveryType = {
 };
 
 const validations: ValidationsType<ContractDeliveryType> = {
+  contractType(value) {
+    if (value === 3) return "No puedes continuar si seleccionas esta opción";
+  },
   deliveryTo(value) {
     if (value.length === 0) return "Debes introducir un nombre";
   },
@@ -38,21 +44,33 @@ const VideoDeliveryForm = ({
   videoMessagePrice = 200,
   businessPrice,
   showBusinessPrice = false,
-  onSubmit
+  initialValues: initialValuesFromProps,
+  onSubmit,
+  onStepChange
 }: VideoDeliveryFormProps) => {
   const {
     values,
     errors,
     setFieldValue,
+    validateFields,
     validateBeforeSubmit
   } = useForm<ContractDeliveryType>({
-    initialValues,
+    initialValues: initialValuesFromProps || initialValues,
     validations,
     onSubmit
   });
+
   return (
-    <div className={styles.VideoDeliveryForm}>
-      <div className={styles.VideoDeliveryFormHeader}>
+    <section className={styles.VideoDeliveryForm}>
+      <WizardTopNavigation
+        enableNavigation
+        onStepClick={(goToClickedStep) => {
+          if (!validateFields()) return;
+          onStepChange(values);
+          goToClickedStep();
+        }}
+      />
+      <header className={styles.VideoDeliveryFormHeader}>
         <h3>
           Video personalizado
           <br /> de {celebrityFullName}
@@ -69,7 +87,7 @@ const VideoDeliveryForm = ({
             </Maybe>
           </span>
         </Maybe>
-      </div>
+      </header>
       <ContractTypeCards
         currentType={values.contractType}
         onChangeType={(type) => setFieldValue("contractType", type)}
@@ -87,7 +105,7 @@ const VideoDeliveryForm = ({
           <WhatsappAdForContracts celebrityFullName={celebrityFullName} />
         </Maybe>
       </div>
-    </div>
+    </section>
   );
 };
 

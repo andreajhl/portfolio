@@ -1,6 +1,6 @@
 import occasions from "constants/occasions";
 import useForm, { ValidationsType } from "lib/hooks/useForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SubmitButton from "../../common/button/submit-button";
 import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
@@ -8,6 +8,7 @@ import isEmpty from "validator/es/lib/isEmpty";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import classes from "classnames";
 import { ContractDetailsType } from "desktop-app/types/contractDataType";
+import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
 
 const occasionsOnlyToGiftContract = [
   "LOVE",
@@ -35,13 +36,26 @@ type VideoDetailsFormProps = {
   contractType: number;
   deliveryTo: string;
   celebrityFullName: string;
+  initialValues?: ContractDetailsType;
   onSubmit: (values: ContractDetailsType) => void;
+  onStepChange: (values: ContractDetailsType) => void;
 };
+
+function moveCursorToWordStart() {
+  try {
+    const selection = document.getSelection();
+    selection.setPosition(selection.anchorNode, 1);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function VideoDetailsForm({
   contractType,
   deliveryTo,
   celebrityFullName,
+  initialValues: initialValuesFromProps,
+  onStepChange,
   onSubmit
 }: VideoDetailsFormProps) {
   const {
@@ -50,16 +64,23 @@ function VideoDetailsForm({
     errors,
     setFieldValue,
     setFieldTouched,
+    validateFields,
     setFieldError,
     validateBeforeSubmit
   } = useForm<ContractDetailsType>({
-    initialValues,
+    initialValues: initialValuesFromProps || initialValues,
     validations,
     onSubmit
   });
   const [textareaText, setTextareaText] = useState(
-    replacePlaceHolder(occasions[values.occasion].messages[contractType - 1])
+    initialValuesFromProps?.instructions ||
+      replacePlaceHolder(occasions[values.occasion].messages[contractType - 1])
   );
+
+  useEffect(() => {
+    if (!initialValuesFromProps?.instructions) return;
+    setFieldTouched("instructions", true);
+  }, []);
 
   function replacePlaceHolder(text: string) {
     if (!text) return text;
@@ -73,17 +94,7 @@ function VideoDetailsForm({
       .map((part, index) => {
         if (index % 2 === 0) return part;
         return (
-          <span
-            data-is-placeholder
-            onClick={() => {
-              try {
-                const selection = document.getSelection();
-                selection.setPosition(selection.anchorNode, 1);
-              } catch (error) {
-                console.log(error);
-              }
-            }}
-          >
+          <span data-is-placeholder onClick={moveCursorToWordStart}>
             {`[${part}]`}
           </span>
         );
@@ -102,6 +113,14 @@ function VideoDetailsForm({
 
   return (
     <section className={styles.VideoDetailsForm}>
+      <WizardTopNavigation
+        enableNavigation
+        onStepClick={(goToClickedStep) => {
+          if (!validateFields()) return;
+          onStepChange(values);
+          goToClickedStep();
+        }}
+      />
       <h2 className={styles.VideoDetailsFormTitle}>Selecciona una ocasión</h2>
       <div className={styles.VideoDetailsFormOccasionsGrid}>
         {Object.entries(occasions).map(([occasionKey, { icon, title }]) => (
