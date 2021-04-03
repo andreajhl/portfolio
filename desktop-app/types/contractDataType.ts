@@ -1,14 +1,18 @@
 import occasions from "constants/occasions";
 
+export type ContractTypeType = 1 | 2 | 3;
+
 export type ContractDeliveryType = {
-  contractType: 1 | 2 | 3;
+  contractType: ContractTypeType;
   deliveryTo: string;
   deliveryFrom?: string;
   deliveryType: 1;
 };
 
+export type OccasionType = keyof typeof occasions;
+
 export type ContractDetailsType = {
-  occasion: keyof typeof occasions;
+  occasion: OccasionType;
   instructions: string;
 };
 

@@ -2,7 +2,6 @@ import occasions from "constants/occasions";
 import useForm, { ValidationsType } from "lib/hooks/useForm";
 import { useEffect, useState } from "react";
 import SubmitButton from "../../common/button/submit-button";
-import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
 import isEmpty from "validator/es/lib/isEmpty";
 import WarningMessage from "desktop-app/components/common/warning-message";
@@ -13,13 +12,7 @@ import {
   getTextContent,
   TextInputWithPlaceholders
 } from "desktop-app/components/common/form/text-input-with-placeholders";
-
-const occasionsOnlyToGiftContract = [
-  "LOVE",
-  "MAKE_SMILE",
-  "HOPE",
-  "ASK_FOR_FORGIVENESS"
-];
+import { OccasionsGrid } from "desktop-app/components/celebrity-profile/occasions-grid";
 
 const initialValues: ContractDetailsType = {
   occasion: "OTHER",
@@ -105,35 +98,12 @@ function VideoDetailsForm({
         }}
       />
       <h2 className={styles.VideoDetailsFormTitle}>Selecciona una ocasión</h2>
-      <div className={styles.VideoDetailsFormOccasionsGrid}>
-        {Object.entries(occasions).map(([occasionKey, { icon, title }]) => (
-          <Maybe
-            it={
-              contractType !== 1 ||
-              !occasionsOnlyToGiftContract.includes(occasionKey)
-            }
-          >
-            <div
-              className={classes(
-                styles.VideoDetailsFormOccasionsItem,
-                occasionKey === values.occasion &&
-                  styles.VideoDetailsFormOccasionsSelected
-              )}
-              onClick={() => changeOccasion(occasionKey)}
-            >
-              <img src={`/assets/img/occasions/${occasionKey}.png`} alt="" />
-              <p>
-                {title.split(" ").map((word) => (
-                  <>
-                    {word}
-                    <br />
-                  </>
-                ))}
-              </p>
-            </div>
-          </Maybe>
-        ))}
-      </div>
+      <OccasionsGrid
+        contractType={contractType}
+        selectedOccasion={values.occasion}
+        className={styles.VideoDetailsFormOccasionsGrid}
+        onClickOccasion={changeOccasion}
+      />
       <div className={styles.VideoDetailsFormInstructions}>
         <label className={styles.VideoDetailsFormInstructionsLabel}>
           Dale instrucciones a {celebrityFullName} para que tu video quede como
