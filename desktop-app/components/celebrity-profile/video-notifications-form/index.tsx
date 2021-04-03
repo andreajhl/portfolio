@@ -9,6 +9,8 @@ import useForm, { ValidationsType } from "lib/hooks/useForm";
 import isEmail from "validator/es/lib/isEmail";
 import { ContractNotificationsType } from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 
 const initialValues: ContractNotificationsType = {
   deliveryContact: "",
@@ -61,6 +63,12 @@ function VideoNotificationForm({
       onSubmit(values);
     }
   });
+  const { user } = useAuth0();
+
+  useEffect(() => {
+    if (initialValues.deliveryContact || !user) return;
+    setFieldValue("deliveryContact", user?.email);
+  }, []);
 
   return (
     <section className={styles.VideoNotificationForm}>

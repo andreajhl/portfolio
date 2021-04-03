@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import ContractTypeCards from "../../common/cards/contract-type";
 import styles from "./styles.module.scss";
 import useForm, { ValidationsType } from "lib/hooks/useForm";
@@ -8,6 +8,7 @@ import VideoDeliveryFormFieldsElements from "../../common/video-delivery-form-fi
 import { PriceLayout } from "../../common/helpers/price-layout";
 import { ContractDeliveryType } from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
+import { useAuth0 } from "@auth0/auth0-react";
 
 type VideoDeliveryFormProps = {
   celebrityFullName: string;
@@ -60,6 +61,13 @@ const VideoDeliveryForm = ({
     onSubmit
   });
 
+  const { user } = useAuth0();
+
+  useEffect(() => {
+    if (values.deliveryTo || !user) return;
+    setFieldValue("deliveryTo", user.given_name);
+  }, [user]);
+
   return (
     <section className={styles.VideoDeliveryForm}>
       <WizardTopNavigation
@@ -98,7 +106,7 @@ const VideoDeliveryForm = ({
           deliveryTo={values.deliveryTo}
           contractType={values.contractType}
           onSubmit={validateBeforeSubmit}
-          onChange={(field, value) => setFieldValue(field, value)}
+          onChange={setFieldValue}
           errors={errors}
         />
         <Maybe it={values.contractType === 3}>

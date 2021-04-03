@@ -3,6 +3,7 @@ import SubmitButton from "../button/submit-button";
 import InputWithFloatLabel from "../form/input-with-float-label";
 import Maybe from "../helpers/maybe";
 import styles from "./styles.module.scss";
+
 type VideoDeliveryFormFieldsElementsProps = {
   deliveryTo: string;
   deliveryFrom: string;
@@ -27,24 +28,24 @@ const VideoDeliveryFormFieldsElements = ({
           <div className={styles.InputField}>
             <span className={styles.ExtraLabel}>Para:</span>
             <InputWithFloatLabel
-              className={styles.InputFieldModififier}
+              className={styles.InputFieldModifier}
               value={deliveryTo}
               onChangeValue={(e) => onChange("deliveryTo", e)}
               placeholder="¿Quién recibirá el video?"
               errorMessage={errors.deliveryTo}
-            ></InputWithFloatLabel>
+            />
           </div>
         </Maybe>
         <Maybe it={contractType === 2}>
           <div className={styles.InputField}>
             <span className={styles.ExtraLabel}>De:</span>
             <InputWithFloatLabel
-              className={styles.InputFieldModififier}
+              className={styles.InputFieldModifier}
               errorMessage={errors.deliveryFrom}
               value={deliveryFrom}
               onChangeValue={(e) => onChange("deliveryFrom", e)}
               placeholder="¿Quién envía el video?"
-            ></InputWithFloatLabel>
+            />
           </div>
         </Maybe>
       </div>
