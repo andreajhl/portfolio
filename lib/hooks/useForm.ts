@@ -101,12 +101,14 @@ export type ValidationsType<ValuesType> = {
 type UseFormParam<InitialValuesType> = {
   initialValues: InitialValuesType;
   validations?: ValidationsType<InitialValuesType>;
+  validateOnChange?: boolean;
   onSubmit: (values: InitialValuesType) => void;
 };
 
 function useForm<InitialValuesType = { [key: string]: any }>({
   initialValues,
   validations,
+  validateOnChange = true,
   onSubmit
 }: UseFormParam<InitialValuesType>) {
   const [state, dispatch] = useReducer(
@@ -114,12 +116,31 @@ function useForm<InitialValuesType = { [key: string]: any }>({
     getInitialState<InitialValuesType>(initialValues)
   );
 
-  function onChangeField({ target }) {
-    dispatch({ type: TYPES.SET_FIELD_VALUE, payload: target });
+  function validateField(field: string, value?: any) {
+    const fieldValidator = validations[field];
+    if (!fieldValidator) return true;
+    if (typeof fieldValidator !== "function") {
+      throw new TypeError(
+        `The validation for field '${field}' is not a valid function.`
+      );
+    }
+    const fieldError = fieldValidator(value ?? state.values[field], state);
+    setFieldError(field, fieldError);
+    return !fieldError;
   }
 
-  function setFieldValue(name: string, value: any) {
+  function setFieldValue(
+    name: string,
+    value: any,
+    shouldValidate = validateOnChange
+  ) {
     dispatch({ type: TYPES.SET_FIELD_VALUE, payload: { name, value } });
+    if (!shouldValidate) return;
+    validateField(name, value);
+  }
+
+  function onChangeField({ target: { name, value } }) {
+    setFieldValue(name, value);
   }
 
   function onFocusField({ target }) {
@@ -148,16 +169,7 @@ function useForm<InitialValuesType = { [key: string]: any }>({
     let fieldsAreValid = true;
     const valuesEntries = Object.entries(state.values);
     valuesEntries.forEach(([field, value]) => {
-      const fieldValidator = validations[field];
-      if (!fieldValidator) return;
-      if (typeof fieldValidator !== "function") {
-        throw new TypeError(
-          `The validation for field '${field}' is not a valid function.`
-        );
-      }
-      const fieldError = fieldValidator(value, state);
-      setFieldError(field, fieldError);
-      if (fieldError) fieldsAreValid = false;
+      if (!validateField(field)) fieldsAreValid = false;
     });
     return fieldsAreValid;
   }

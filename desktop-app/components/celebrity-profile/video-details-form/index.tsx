@@ -108,7 +108,7 @@ function VideoDetailsForm({
       occasions[occasionKey].messages[contractType - 1]
     );
     setTextareaText(text);
-    setFieldValue("instructions", text);
+    setFieldValue("instructions", text, false);
   }
 
   return (
