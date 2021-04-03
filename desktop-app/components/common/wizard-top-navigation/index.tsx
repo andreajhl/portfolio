@@ -16,9 +16,10 @@ function WizardTopNavigation({
   onNavigationClick = () => {}
 }: WizardTopNavigationProps) {
   function getClassName(steps, step, index, stepItem) {
-    if (steps.indexOf(step) === index) {
+    const stepIndex = steps.indexOf(step);
+    if (stepIndex === index) {
       return styles.WizardTopNavigationStepDoing;
-    } else if (steps.indexOf(step) > index /* || stepItem.isDone */) {
+    } else if (stepIndex > index /* || stepItem.isDone */) {
       // stepItem.isDone = true;
       return styles.WizardTopNavigationStepDone;
     }
@@ -32,29 +33,36 @@ function WizardTopNavigation({
 
   return (
     <WithWizard>
-      {({ steps, step, previous, push }) => (
-        <div className={classes(styles.WizardTopNavigation, className)}>
-          <Maybe it={steps.indexOf(step) !== 0 && enableNavigation}>
-            <LeftArrowIcon
-              onClick={previous}
-              className={styles.WizardTopNavigationBackButton}
-            />
-          </Maybe>
-          <ul className={styles.WizardTopNavigationStepsList}>
-            {steps.map((stepItem, index) => (
-              <li
-                className={classes(
-                  styles.WizardTopNavigationStep,
-                  enableNavigation &&
-                    styles.WizardTopNavigationStepEnabledNavigation,
-                  getClassName(steps, step, index, stepItem)
-                )}
-                onClick={() => itemClick(stepItem, push)}
+      {({ steps, step, previous, push, ...rest }) => {
+        const currentStepIndex = steps.indexOf(step);
+
+        return (
+          <div className={classes(styles.WizardTopNavigation, className)}>
+            <Maybe it={currentStepIndex !== 0 && enableNavigation}>
+              <LeftArrowIcon
+                onClick={() => {
+                  const previousStepId = steps[currentStepIndex - 1]?.id;
+                  push(previousStepId);
+                }}
+                className={styles.WizardTopNavigationBackButton}
               />
-            ))}
-          </ul>
-        </div>
-      )}
+            </Maybe>
+            <ul className={styles.WizardTopNavigationStepsList}>
+              {steps.map((stepItem, index) => (
+                <li
+                  className={classes(
+                    styles.WizardTopNavigationStep,
+                    enableNavigation &&
+                      styles.WizardTopNavigationStepEnabledNavigation,
+                    getClassName(steps, step, index, stepItem)
+                  )}
+                  onClick={() => itemClick(stepItem, push)}
+                />
+              ))}
+            </ul>
+          </div>
+        );
+      }}
     </WithWizard>
   );
 }
