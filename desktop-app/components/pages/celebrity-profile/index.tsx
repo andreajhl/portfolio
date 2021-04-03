@@ -47,6 +47,10 @@ function CelebrityProfilePage({
       <StickyCallToActionTopBar
         appearancePosition={600} // por ser definido correctamente.
         celebrity={celebrity}
+        onCTAButtonClick={() => {
+          if (typeof window === "undefined") return;
+          window.scrollTo({ top: 110, behavior: "smooth" }); // posición de la acción deseada.
+        }}
       />
       <div style={{ paddingBottom: "28px", borderBottom: "1px solid #DEDEDE" }}>
         <div className="container d-flex">

@@ -6,12 +6,14 @@ import styles from "./styles.module.scss";
 
 type StickyCallToActionTopBarProps = {
   celebrity: celebrityType;
-  appearancePosition: number;
+  appearancePosition?: number;
+  onCTAButtonClick?: () => void;
 };
 
 function StickyCallToActionTopBar({
   celebrity,
-  appearancePosition
+  appearancePosition,
+  onCTAButtonClick = function () {}
 }: StickyCallToActionTopBarProps) {
   return (
     <StickyTopBar appearancePosition={appearancePosition}>
@@ -31,6 +33,7 @@ function StickyCallToActionTopBar({
         <button
           type="button"
           className={"btn btn-primary " + styles.StickyCTAButton}
+          onClick={onCTAButtonClick}
         >
           Comprar video personalizado
         </button>
