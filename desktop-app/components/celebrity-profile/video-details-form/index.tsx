@@ -1,5 +1,5 @@
 import occasions from "constants/occasions";
-import useForm from "lib/hooks/useForm";
+import useForm, { ValidationsType } from "lib/hooks/useForm";
 import { useState } from "react";
 import SubmitButton from "../../common/button/submit-button";
 import Maybe from "../../common/helpers/maybe";
@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 import isEmpty from "validator/es/lib/isEmpty";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import classes from "classnames";
+import { ContractDetailsType } from "desktop-app/types/contractDataType";
 
 const occasionsOnlyToGiftContract = [
   "LOVE",
@@ -15,28 +16,26 @@ const occasionsOnlyToGiftContract = [
   "ASK_FOR_FORGIVENESS"
 ];
 
-const initialValues = {
+const initialValues: ContractDetailsType = {
   occasion: "OTHER",
   instructions: ""
 };
 
-const validations = {
-  occasion(value: string) {
+const validations: ValidationsType<ContractDetailsType> = {
+  occasion(value) {
     if (isEmpty(value)) return "Debes seleccionar una ocasión";
   },
-  instructions(value: string | string[]) {
+  instructions(value) {
     if (Array.isArray(value)) return "Olvidaste editar el texto.";
     if (isEmpty(value)) return "Debes escribir tus instrucciones.";
   }
 };
 
-type InitialValues = typeof initialValues;
-
 type VideoDetailsFormProps = {
   contractType: number;
   deliveryTo: string;
   celebrityFullName: string;
-  onSubmit: (values: InitialValues) => void;
+  onSubmit: (values: ContractDetailsType) => void;
 };
 
 function VideoDetailsForm({
@@ -53,7 +52,7 @@ function VideoDetailsForm({
     setFieldTouched,
     setFieldError,
     validateBeforeSubmit
-  } = useForm<InitialValues>({
+  } = useForm<ContractDetailsType>({
     initialValues,
     validations,
     onSubmit

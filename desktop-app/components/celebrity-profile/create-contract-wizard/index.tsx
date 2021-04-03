@@ -8,6 +8,10 @@ import VideoDeliveryForm from "desktop-app/components/celebrity-profile/video-de
 import { useState } from "react";
 import VideoNotificationForm from "desktop-app/components/celebrity-profile/video-notifications-form";
 import { saveClientContract } from "react-app/src/state/ducks/contracts/actions";
+import ContractDataType, {
+  ContractDeliveryType,
+  ContractDetailsType
+} from "desktop-app/types/contractDataType";
 
 const mapStateToProps = ({ contracts }) => ({
   isLoading: contracts.saveClientContractReducer.loading
@@ -31,16 +35,15 @@ function CreateContractWizard({
   isLoading,
   saveClientContract
 }: CreateContractWizardProps) {
-  const [videoDeliveryData, setVideoDeliveryData] = useState<{
-    contractType: number;
-    deliveryTo: string;
-    deliveryFrom: string;
-  } | null>(null);
+  const [
+    videoDeliveryData,
+    setVideoDeliveryData
+  ] = useState<ContractDeliveryType | null>(null);
 
-  const [videoDetailsData, setVideoDetailsData] = useState<{
-    occasion: string;
-    instructions: string;
-  } | null>(null);
+  const [
+    videoDetailsData,
+    setVideoDetailsData
+  ] = useState<ContractDetailsType | null>(null);
 
   const videoMessagePrice = getContractPriceVideoMessage(
     celebrity.contractTypes
@@ -83,17 +86,15 @@ function CreateContractWizard({
             <VideoNotificationForm
               isLoading={isLoading}
               onSubmit={(values) => {
-                saveClientContract(
-                  Object.assign(
-                    {
-                      deliveryType: 1,
-                      celebrityId: celebrity.id
-                    },
-                    videoDeliveryData,
-                    videoDetailsData,
-                    values
-                  )
+                const contractData: ContractDataType = Object.assign(
+                  {
+                    celebrityId: celebrity.id
+                  },
+                  videoDeliveryData,
+                  videoDetailsData,
+                  values
                 );
+                saveClientContract(contractData);
               }}
             />
           </Step>

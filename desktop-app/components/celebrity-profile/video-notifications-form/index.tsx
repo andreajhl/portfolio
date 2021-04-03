@@ -7,16 +7,15 @@ import WarningMessage from "desktop-app/components/common/warning-message";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
 import useForm, { ValidationsType } from "lib/hooks/useForm";
 import isEmail from "validator/es/lib/isEmail";
+import { ContractNotificationsType } from "desktop-app/types/contractDataType";
 
-const initialValues = {
+const initialValues: ContractNotificationsType = {
   deliveryContact: "",
   deliveryContactCellphone: "",
   isPublic: true
 };
 
-type InitialValues = typeof initialValues;
-
-const validations: ValidationsType<InitialValues> = {
+const validations: ValidationsType<ContractNotificationsType> = {
   deliveryContact(value) {
     if (!isEmail(value)) return "Ingresa un correo electrónico válido.";
   },
@@ -34,7 +33,7 @@ function VideoNotificationForm({
   onSubmit,
   isLoading
 }: {
-  onSubmit: (values: InitialValues) => void;
+  onSubmit: (values: ContractNotificationsType) => void;
   isLoading: boolean;
 }) {
   const {
@@ -43,7 +42,7 @@ function VideoNotificationForm({
     onChangeField,
     setFieldValue,
     validateBeforeSubmit
-  } = useForm<InitialValues>({
+  } = useForm<ContractNotificationsType>({
     initialValues,
     validations,
     onSubmit(data) {

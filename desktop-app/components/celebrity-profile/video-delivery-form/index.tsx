@@ -6,22 +6,24 @@ import Maybe from "../../common/helpers/maybe";
 import WhatsappAdForContracts from "../../common/whatsapp-ad-for-contracts";
 import VideoDeliveryFormFieldsElements from "../../common/video-delivery-form-fields-elements";
 import { PriceLayout } from "../../common/helpers/price-layout";
+import { ContractDeliveryType } from "desktop-app/types/contractDataType";
 
 type VideoDeliveryFormProps = {
   celebrityFullName: string;
   videoMessagePrice: number;
   businessPrice: number;
   showBusinessPrice: boolean;
-  onSubmit: (values: InitialValues) => void;
+  onSubmit: (values: ContractDeliveryType) => void;
 };
 
-const initialValues = {
+const initialValues: ContractDeliveryType = {
   contractType: 1,
   deliveryTo: "",
-  deliveryFrom: ""
+  deliveryFrom: "",
+  deliveryType: 1
 };
 
-const validations: ValidationsType<InitialValues> = {
+const validations: ValidationsType<ContractDeliveryType> = {
   deliveryTo(value) {
     if (value.length === 0) return "Debes introducir un nombre";
   },
@@ -30,8 +32,6 @@ const validations: ValidationsType<InitialValues> = {
     if (value.length === 0) return "Debes introducir un nombre";
   }
 };
-
-type InitialValues = typeof initialValues;
 
 const VideoDeliveryForm = ({
   celebrityFullName,
@@ -45,7 +45,7 @@ const VideoDeliveryForm = ({
     errors,
     setFieldValue,
     validateBeforeSubmit
-  } = useForm<InitialValues>({
+  } = useForm<ContractDeliveryType>({
     initialValues,
     validations,
     onSubmit
