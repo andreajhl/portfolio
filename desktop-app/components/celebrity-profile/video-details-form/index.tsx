@@ -140,6 +140,7 @@ function VideoDetailsForm({
           <br /> <span>(Edita este texto base o escribe uno)</span>
         </label>
         <div
+          data-placeholder={`¡Hola ${celebrityFullName}! Me gustaría que...`}
           className={styles.VideoDetailsFormInstructionsTextarea}
           contentEditable
           suppressContentEditableWarning

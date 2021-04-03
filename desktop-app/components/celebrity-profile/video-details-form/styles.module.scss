@@ -82,6 +82,12 @@
       border-radius: 10px;
       transition: border-color 0.15s;
 
+      &:empty::after {
+        cursor: text;
+        content: attr(data-placeholder);
+        color: var(--gray-3);
+      }
+
       &:hover,
       &:focus {
         border-color: var(--gray-3);

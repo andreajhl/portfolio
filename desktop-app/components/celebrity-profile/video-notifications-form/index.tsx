@@ -10,7 +10,7 @@ import isEmail from "validator/es/lib/isEmail";
 
 const initialValues = {
   deliveryContact: "",
-  deliveryContactCellphone: "57",
+  deliveryContactCellphone: "",
   isPublic: true
 };
 
@@ -68,9 +68,11 @@ function VideoNotificationForm({
           Correo electrónico de notificación
         </label>
         <input
-          type="text"
+          type="email"
+          formNoValidate
           name="deliveryContact"
           id="deliveryContact"
+          placeholder="usuario@dominio.com"
           value={values.deliveryContact}
           onChange={onChangeField}
           className={classes(
@@ -104,6 +106,7 @@ function VideoNotificationForm({
             styles.ButtonClassPhoneInput,
             errors?.deliveryContactCellphone && styles.FormFieldHasError
           )}
+          placeholder="+57 310 1234567"
           dropdownClass={styles.DropdownClassPhoneInput}
           country="co"
           enableSearch
