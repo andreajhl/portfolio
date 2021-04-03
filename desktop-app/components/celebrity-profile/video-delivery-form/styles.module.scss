@@ -12,20 +12,16 @@
   margin-top: 1rem;
   h3 {
     font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
     line-height: 30px;
     letter-spacing: 0em;
-    text-align: left;
+    margin-bottom: 0;
   }
   span {
+    flex-shrink: 0;
     font-size: 22px;
-    font-style: normal;
     font-weight: 700;
-    line-height: 30px;
     letter-spacing: 0em;
     text-align: center;
-
     margin-top: auto;
   }
 }
