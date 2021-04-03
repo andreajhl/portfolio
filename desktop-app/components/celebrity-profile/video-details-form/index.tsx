@@ -9,6 +9,10 @@ import WarningMessage from "desktop-app/components/common/warning-message";
 import classes from "classnames";
 import { ContractDetailsType } from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
+import {
+  getTextContent,
+  TextInputWithPlaceholders
+} from "desktop-app/components/common/form/text-input-with-placeholders";
 
 const occasionsOnlyToGiftContract = [
   "LOVE",
@@ -40,15 +44,6 @@ type VideoDetailsFormProps = {
   onSubmit: (values: ContractDetailsType) => void;
   onStepChange: (values: ContractDetailsType) => void;
 };
-
-function moveCursorToWordStart() {
-  try {
-    const selection = document.getSelection();
-    selection.setPosition(selection.anchorNode, 1);
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 function VideoDetailsForm({
   contractType,
@@ -84,21 +79,9 @@ function VideoDetailsForm({
 
   function replacePlaceHolder(text: string) {
     if (!text) return text;
-    const bracketsRegExp = /(\[|\])/g;
-
     return text
       .replace(/PLACEHOLDER_FAMOSO_NAME/g, celebrityFullName || "Famoso")
-      .replace(/PLACEHOLDER_PARA/g, deliveryTo || "[PARA]")
-      .split(bracketsRegExp)
-      .filter((part) => !bracketsRegExp.test(part))
-      .map((part, index) => {
-        if (index % 2 === 0) return part;
-        return (
-          <span data-is-placeholder onClick={moveCursorToWordStart}>
-            {`[${part}]`}
-          </span>
-        );
-      });
+      .replace(/PLACEHOLDER_PARA/g, deliveryTo || "[PARA]");
   }
 
   function changeOccasion(occasionKey) {
@@ -157,41 +140,23 @@ function VideoDetailsForm({
           esperas.
           <br /> <span>(Edita este texto base o escribe uno)</span>
         </label>
-        <div
-          data-placeholder={`¡Hola ${celebrityFullName}! Me gustaría que...`}
+        <TextInputWithPlaceholders
+          placeholder={`¡Hola ${celebrityFullName}! Me gustaría que...`}
           className={styles.VideoDetailsFormInstructionsTextarea}
-          contentEditable
-          suppressContentEditableWarning
-          onKeyDown={({ key }) => {
-            if (key.startsWith("Arrow")) return;
-            try {
-              const { focusNode } = document.getSelection();
-              const parent = focusNode?.parentElement;
-              if (parent.matches("span[data-is-placeholder]")) parent.remove();
-            } catch (error) {
-              console.log(error);
-            }
-          }}
           onKeyUp={({ key }) => {
             if (key.startsWith("Arrow")) return;
             setFieldError("instructions", null);
             setFieldTouched("instructions", true);
           }}
-          onBlur={({ target: { childNodes } }) => {
+          onBlur={({ target }) => {
             // TODO: Luego de darle submit, se coloca touched,
             // por ende en el segundo intento no valida
             // que se haya removido el placeholder.
             if (!touched?.instructions) return;
-            setFieldValue(
-              "instructions",
-              Array.from(childNodes)
-                .map(({ textContent }) => textContent)
-                .join("")
-            );
+            setFieldValue("instructions", getTextContent(target));
           }}
-        >
-          {textareaText}
-        </div>
+          value={textareaText}
+        />
         <WarningMessage
           className={classes(
             styles.VideoDetailsFormInstructionsMessage,

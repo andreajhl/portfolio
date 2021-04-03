@@ -77,39 +77,19 @@
       margin-bottom: 4px;
       line-height: 1.4em;
       font-size: 13px;
-      padding: 18px 22px;
-      background: #f9f9ff;
-      border: 1px solid #dedede;
-      border-radius: 10px;
+      background: #f9f9ff !important;
+      border: 1px solid #dedede !important;
+      border-radius: 10px !important;
       transition: border-color 0.15s;
-
-      &:empty::after {
-        cursor: text;
-        content: attr(data-placeholder);
-        color: var(--gray-3);
-      }
 
       &:hover,
       &:focus {
-        border-color: var(--gray-3);
-      }
-
-      &:focus {
-        span[data-is-placeholder] {
-          opacity: 0.75;
-          cursor: text;
-        }
+        border-color: var(--gray-3) !important;
       }
 
       span[data-is-placeholder] {
-        cursor: pointer;
         font-weight: bold;
         color: #6970c6;
-        transition: opacity 0.15s ease;
-
-        &:hover {
-          text-decoration: underline;
-        }
       }
     }
 
