@@ -13,6 +13,7 @@ import { SubscriptionToAvailabilityNotification } from "../subscription-to-avail
 import AdWarrantyVideoPurchase from "../ad-warranty-video-purchase";
 import { HireThisCelebrityForCompaniesButton } from "../hire-this-celebrity-for-companies-button";
 import Maybe from "../../common/helpers/maybe";
+import { FormattedMessage } from "react-intl";
 
 const CelebrityDetails = ({ celebrity, variant }) => {
   const {
@@ -102,7 +103,10 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                         color: "white"
                       }}
                     >
-                      ¡Comprar video ahora!
+                      <FormattedMessage
+                        defaultMessage="¡Comprar video ahora!"
+                        description=""
+                      />
                     </span>
                     <Emoji label="star-struck" symbol="🤩" />
                   </>
@@ -114,7 +118,12 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             <Maybe it={celebrityId === 2530}>
               <HireThisCelebrityForCompaniesButton
                 className={"button-hire-this-celebrity-for-companies mt-2"}
-                text={"Contratar para Empresa"}
+                text={
+                  <FormattedMessage
+                    defaultMessage="Contratar para Empresa"
+                    description=""
+                  />
+                }
                 width="100%"
               />
             </Maybe>
@@ -186,7 +195,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                       color: "white"
                     }}
                   >
-                    ¡Comprar video ahora!
+                    <FormattedMessage defaultMessage="¡Comprar video ahora!" />
                   </span>
                   <Emoji label="star-struck" symbol="🤩" />
                 </>
@@ -223,7 +232,9 @@ const CelebrityDetails = ({ celebrity, variant }) => {
           <Maybe it={celebrityId === 2530}>
             <HireThisCelebrityForCompaniesButton
               className={"button-hire-this-celebrity-for-companies"}
-              text={"Contratar para Empresa"}
+              text={
+                <FormattedMessage defaultMessage="Contratar para Empresa" />
+              }
               width="100%"
             />
           </Maybe>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
 
 class PaginationLayout extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ class PaginationLayout extends Component {
                     className="page-link cursor-pointer"
                     onClick={this.previousPage.bind(this)}
                   >
-                    Anterior página
+                    <FormattedMessage defaultMessage="Anterior página" />
                   </span>
                 </li>
                 {/*{*/}
@@ -93,7 +94,7 @@ class PaginationLayout extends Component {
                     className="page-link cursor-pointer"
                     onClick={this.nextPage.bind(this)}
                   >
-                    Siguiente página
+                    <FormattedMessage defaultMessage="Siguiente página" />
                   </span>
                 </li>
               </ul>

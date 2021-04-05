@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 const FlashDeliveryBadgeLayout = ({
   className,
@@ -14,7 +15,14 @@ const FlashDeliveryBadgeLayout = ({
       } FlashDeliveryLayout--color-${color}`}
     >
       {showTitle ? (
-        <span className="FlashDeliveryLayout__title">Entrega Flash</span>
+        <span className="FlashDeliveryLayout__title">
+          <FormattedMessage
+            defaultMessage="Entrega Flas"
+            description=""
+            id="react-app.src.components.layouts.flash-delivery-badge.index.1328933600"
+          />
+          h
+        </span>
       ) : null}
       {showTime ? (
         <span className="FlashDeliveryLayout__time">24 hrs.</span>

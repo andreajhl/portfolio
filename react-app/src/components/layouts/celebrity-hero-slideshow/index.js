@@ -7,6 +7,7 @@ import { VideoSlideLayout } from "../video-slide";
 import { contractOperations } from "../../../state/ducks/contracts";
 import useCurrentVideoPlaying from "../../../utils/useCurrentVideoPlaying";
 import getWindow from "react-app/src/utils/getWindow";
+import { FormattedMessage } from "react-intl";
 
 const CelebrityHeroSlideshow = ({
   celebrityAvatar,
@@ -123,9 +124,13 @@ const CelebrityHeroSlideshow = ({
         fade
         interval={null}
         prevIcon={<i className="fa fa-chevron-left controls-icon" />}
-        prevLabel="Anterior"
+        prevLabel={
+          <FormattedMessage defaultMessage="Anterior" description="" />
+        }
         nextIcon={<i className="fa fa-chevron-right controls-icon" />}
-        nextLabel="Siguiente"
+        nextLabel={
+          <FormattedMessage defaultMessage="Siguiente" description="" />
+        }
       >
         {celebrityMainVideo ? (
           <Carousel.Item>
