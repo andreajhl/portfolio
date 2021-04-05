@@ -16,6 +16,7 @@ import {
   largeBreakPoint,
   smallBreakpoint
 } from "react-app/src/constants/bootstrapBreakpoint";
+import { FormattedMessage } from "react-intl";
 
 const celebrityCardWidth = 150;
 const videoCardWidth = 258;
@@ -191,7 +192,7 @@ const CelebritiesCardsSectionLayout = ({
             className="mb-1 font-weight-bold mr-3 mr-sm-0 flex-shrink-0"
             onClick={registerSeeMoreResultsClick}
           >
-            Ver más
+            <FormattedMessage defaultMessage="Ver más" description="" />
           </NavLink>
         </Maybe>
       </header>

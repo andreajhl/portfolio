@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ModalSelect } from "../modal-select";
+import { useIntl, defineMessage } from "react-intl";
 
 import * as GTM from "../../../state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
@@ -14,12 +15,19 @@ const orderByOptions = [
   { label: "Precio: De Mayor a Menor", value: `${PRICE} ${DESC}` }
 ];
 
+const messageForModalTitle = defineMessage({
+  defaultMessage: "Ordenar por"
+});
+const messageForFooterButtonLabel = defineMessage({
+  defaultMessage: "Ordenar"
+});
 const getCheckItemLabel = (activeValue) =>
   orderByOptions.find(({ value }) => value !== "" && value === activeValue)
     ?.label || "";
 
 const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
   const [checkedValue, setCheckedValue] = useState(null);
+  const intl = useIntl();
 
   const checkItemLabel = getCheckItemLabel(activeValue);
 
@@ -50,8 +58,8 @@ const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
   return (
     <ModalSelect
       buttonLabel={`Ordenar por: ${checkItemLabel}`}
-      modalTitle="Ordenar por"
-      footerButtonLabel="Ordenar"
+      modalTitle={intl.formatMessage(messageForModalTitle)}
+      footerButtonLabel={intl.formatMessage(messageForFooterButtonLabel)}
       footerButtonOnClick={applyOrderBy}
       onModalOpen={registerOrderByFilterOpen}
       onModalClose={registerOrderByFilterClose}

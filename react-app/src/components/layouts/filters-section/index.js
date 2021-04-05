@@ -11,6 +11,7 @@ import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/
 import * as GTM from "../../../state/utils/gtm";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { withRouter } from "react-app/src/components/common/routing";
+import { useIntl, defineMessage } from "react-intl";
 
 const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
   return {
@@ -35,6 +36,18 @@ const initialState = {
     limit: updateQueryParamsInitialState.limit
   }
 };
+const messageForLabelButton = defineMessage({
+  description: "Label button for search component",
+  defaultMessage: "Categoria"
+});
+const messageForModalTitle = defineMessage({
+  description: "ModalTitle for search component",
+  defaultMessage: "Filtrar por categoría"
+});
+const messageForSearchPlaceholder = defineMessage({
+  description: "Modal Title for search celebrity",
+  defaultMessage: "Buscar categoría"
+});
 
 const FiltersSectionLayout = ({
   className = "",
@@ -46,6 +59,8 @@ const FiltersSectionLayout = ({
   location,
   router
 }) => {
+  const intl = useIntl();
+
   const [params, setParams] = useState(initialState.params);
   const queryParams = queryStringToJSON(location.search);
 
@@ -139,9 +154,12 @@ const FiltersSectionLayout = ({
           </li>
           <li className="filters-section__filters-item">
             <CelebritiesFilter
-              buttonLabel="Categoría"
-              modalTitle="Filtrar por categoría"
-              searchPlaceholder="Buscar categoría"
+              // TODO: REACT INTL formatting numbers
+              buttonLabel={intl.formatMessage(messageForLabelButton)}
+              modalTitle={intl.formatMessage(messageForModalTitle)}
+              searchPlaceholder={intl.formatMessage(
+                messageForSearchPlaceholder
+              )}
               activeItems={activeCategoryItems}
               onApplyFilters={setFilterParam("category_id")}
               options={celebrityCategories.map((category) => ({

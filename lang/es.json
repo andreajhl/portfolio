@@ -1,2 +1,82 @@
 {
+  "/+/C1u": {
+    "message": "Ordenar por"
+  },
+  "0Il3lQ": {
+    "message": "Ordenar"
+  },
+  "0NnInu": {
+    "description": "",
+    "message": "Aplicar como Famoso"
+  },
+  "3Dy+Ix": {
+    "message": "Buscar famosos"
+  },
+  "Aa51Eo": {
+    "description": "",
+    "message": "Completa el <br></br> proceso de pago."
+  },
+  "C2oD0J": {
+    "description": "",
+    "message": "Ver más"
+  },
+  "GdV31V": {
+    "description": "",
+    "message": "Videos Personalizados <br></br> de tus Famosos Favoritos"
+  },
+  "JNf21W": {
+    "description": "",
+    "message": "En nuestro sitio web utilizamos cookies propias y de terceros para mejorar la experiencia de usuario, rendimiento, análisis y otro fines. Al hacer clic en aceptar o utilizar nuestro sitio, estarás aceptando el uso de estas cookies."
+  },
+  "LsqQep": {
+    "description": "",
+    "message": "Ver las políticas de privacidad"
+  },
+  "NROWdz": {
+    "message": "Tus Favoritos"
+  },
+  "Nizqzm": {
+    "description": "",
+    "message": "Elige a tu Famoso y solicita el mensaje."
+  },
+  "NyA8g2": {
+    "description": "",
+    "message": "Volver arriba"
+  },
+  "SvDN5n": {
+    "description": "",
+    "message": "¡Recibe tu video personalizado!"
+  },
+  "To88dw": {
+    "description": "",
+    "message": "Descargar app de Android"
+  },
+  "WaqkKh": {
+    "description": "ModalTitle for search component",
+    "message": "Filtrar por categoría"
+  },
+  "fmWs+e": {
+    "description": "Label button for search component",
+    "message": "Categoria"
+  },
+  "gxungj": {
+    "description": "",
+    "message": "Ingresar"
+  },
+  "tDU6jz": {
+    "description": "",
+    "message": "Mis contrataciones"
+  },
+  "tdx+EV": {
+    "description": "",
+    "message": "Mi perfil"
+  },
+  "tv5FG3": {
+    "description": "",
+    "message": "Blog"
+  },
+  "wHXIev": {
+    "description": "Modal Title for search celebrity",
+    "message": "Buscar categoría"
+  }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { useLoginHandler } from "../../../utils/useLoginHandler";
 
 const LoginButton = (props) => {
@@ -10,7 +11,11 @@ const LoginButton = (props) => {
       className={`btn btn-outline-primary  ${className ? className : ""}`}
       onClick={() => handlerClickToLogin()}
     >
-      {text ? text : "Ingresar"}
+      {text ? (
+        text
+      ) : (
+        <FormattedMessage defaultMessage="Ingresar" description="" />
+      )}
     </button>
   );
 };

@@ -10,6 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../../containers/login-button/login-button";
 import Maybe from "../../common/helpers/maybe";
 import dynamic from "next/dynamic";
+import { useIntl, defineMessage } from "react-intl";
 
 const BannerPromoLayout = dynamic(
   () => import("../banner-promo").then((mod) => mod.BannerPromoLayout),
@@ -32,6 +33,10 @@ const registerLogoLinkClick = () =>
     path: window.location.pathname
   });
 
+const messageSearchLabel = defineMessage({
+  defaultMessage: "Buscar famosos"
+});
+
 const NavbarSectionLayout = ({
   className,
   onSearchChange,
@@ -43,6 +48,7 @@ const NavbarSectionLayout = ({
   setShowCouponBanner
 }) => {
   const { isLoading, isAuthenticated } = useAuth0();
+  const intl = useIntl();
 
   return (
     <>
@@ -91,7 +97,7 @@ const NavbarSectionLayout = ({
             <div className="col-12 pt-2 px-0">
               <div className="d-block top-bar__search-sm">
                 <NavbarSearchLayout
-                  searchLabel="Buscar famosos"
+                  searchLabel={intl.formatMessage(messageSearchLabel)}
                   onSearchChange={onSearchChange}
                   queryParams={queryParams}
                 />
