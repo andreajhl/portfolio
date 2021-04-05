@@ -2,6 +2,13 @@
   "/+/C1u": {
     "message": "Ordenar por"
   },
+  "/IN8Tc": {
+    "message": "Por favor, comprueba tu conexión a <br></br> internet e intenta nuevamente."
+  },
+  "/eYgis": {
+    "description": "",
+    "message": "Respuesta promedio:"
+  },
   "0Il3lQ": {
     "message": "Ordenar"
   },
@@ -9,28 +16,78 @@
     "description": "",
     "message": "Aplicar como Famoso"
   },
+  "1JuMPJ": {
+    "message": "Continuar"
+  },
+  "2O8ofL": {
+    "message": "De:"
+  },
   "3Dy+Ix": {
     "message": "Buscar famosos"
+  },
+  "3O5yL3": {
+    "description": "",
+    "message": "{fullName} dona de sus ingresos a: <span> {causeName} </span>"
+  },
+  "3tygVI": {
+    "message": "{instructionsLength}/400 caracteres permitidos"
+  },
+  "4rhIbe": {
+    "message": "No se encontró un {breakLine} famoso con el usuario <br></br> <span>{celebrityUsername}</span>"
+  },
+  "7Vvfe3": {
+    "message": "Campo requerido"
+  },
+  "8fYxkw": {
+    "message": "¿Qué quieres que diga {celebrityFullName}?"
   },
   "Aa51Eo": {
     "description": "",
     "message": "Completa el <br></br> proceso de pago."
   },
+  "BqJL4O": {
+    "description": "",
+    "message": "Entrega flash (< de 24 hrs)"
+  },
   "C2oD0J": {
     "description": "",
     "message": "Ver más"
+  },
+  "DVO6hk": {
+    "message": "Ha ocurrido un error"
+  },
+  "Dn7sTk": {
+    "message": "Correo eléctronico de notificación"
+  },
+  "GbabRf": {
+    "message": "Para:"
   },
   "GdV31V": {
     "description": "",
     "message": "Videos Personalizados <br></br> de tus Famosos Favoritos"
   },
+  "GfM0Pj": {
+    "message": "Para mi"
+  },
+  "HmvnFO": {
+    "message": "Reintentar"
+  },
   "JNf21W": {
     "description": "",
     "message": "En nuestro sitio web utilizamos cookies propias y de terceros para mejorar la experiencia de usuario, rendimiento, análisis y otro fines. Al hacer clic en aceptar o utilizar nuestro sitio, estarás aceptando el uso de estas cookies."
   },
+  "KjMaxy": {
+    "message": "¿Comó solicitar {onlyMobileLineBreak} un {onlyDesktopLineBreak} videomensaje en Famosos?"
+  },
   "LsqQep": {
     "description": "",
     "message": "Ver las políticas de privacidad"
+  },
+  "M6qLyM": {
+    "message": "Imagen de perfil"
+  },
+  "N9nBRn": {
+    "message": "¡Y listo! en poco {onlyMobileLineBreak} tiempo {onlyDesktopLineBreak} recibirás tu {onlyMobileLineBreak} videomensaje."
   },
   "NROWdz": {
     "message": "Tus Favoritos"
@@ -43,6 +100,9 @@
     "description": "",
     "message": "Volver arriba"
   },
+  "O1JDs+": {
+    "message": "Si quieres un video comercial para tu marca haz click <span> aquí.</span>"
+  },
   "SvDN5n": {
     "description": "",
     "message": "¡Recibe tu video personalizado!"
@@ -51,17 +111,93 @@
     "description": "",
     "message": "Descargar app de Android"
   },
+  "Vrpqh3": {
+    "message": "Garantía Famosos"
+  },
+  "W1OXQI": {
+    "description": "",
+    "message": "Desactivar Notificación"
+  },
   "WaqkKh": {
     "description": "ModalTitle for search component",
     "message": "Filtrar por categoría"
+  },
+  "Y6sFMj": {
+    "description": "",
+    "message": "Anterior"
+  },
+  "YKrx19": {
+    "message": "Anterior página"
+  },
+  "YTlQrN": {
+    "message": "Para un amigo o familiar"
+  },
+  "Yskoha": {
+    "message": "Este campo excede el limite de {deliveryToMaxLength} caracteres"
+  },
+  "ZgMpuD": {
+    "message": "Siguiente página"
+  },
+  "aPX+PI": {
+    "message": "Contratar para Empresa"
+  },
+  "bSHMVy": {
+    "message": "¡Comprar video ahora!"
+  },
+  "bwRze1": {
+    "message": "Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak} \"Quiero {onlyMobileLineBreak} un video\""
+  },
+  "dYz8lM": {
+    "message": "Quizás pueda <br></br> interesarte"
+  },
+  "fcUqul": {
+    "message": "Quiero un video de"
   },
   "fmWs+e": {
     "description": "Label button for search component",
     "message": "Categoria"
   },
+  "gBauKO": {
+    "message": "Comprar Video Personalizado por"
+  },
+  "gWk0k1": {
+    "message": "Video grabado por {celebrityFullName} 100% personalizado."
+  },
   "gxungj": {
     "description": "",
     "message": "Ingresar"
+  },
+  "h9zXst": {
+    "message": "Anónimo"
+  },
+  "hmpcGI": {
+    "description": "",
+    "message": "Notificarme cuando esté disponible"
+  },
+  "per8Dq": {
+    "message": "Ver más famosos"
+  },
+  "qXeQds": {
+    "message": "Volver al inicio"
+  },
+  "react-app.src.components.layouts.flash-delivery-badge.index.1328933600": {
+    "description": "",
+    "message": "Entrega Flas"
+  },
+  "rjFhkr": {
+    "message": "¿Quieres recibir el video a tu WhatsApp? (Opcional)"
+  },
+  "sXLa3f": {
+    "message": "Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero."
+  },
+  "t+gzvS": {
+    "message": "Este correo no es válido"
+  },
+  "t02ibc": {
+    "message": "Ver famosos similares"
+  },
+  "t2/Gvc": {
+    "message": "Detalla la solicitud y {onlyMobileLineBreak} realiza {onlyDesktopLineBreak} el proceso {onlyMobileLineBreak} de compra."
   },
   "tDU6jz": {
     "description": "",
@@ -75,8 +211,28 @@
     "description": "",
     "message": "Blog"
   },
+  "ut6hvz": {
+    "message": "Calificaciones"
+  },
+  "v82s2O": {
+    "message": "Video Personalizado de {celebrityFullName}"
+  },
+  "w2xatL": {
+    "description": "",
+    "message": "Siguiente"
+  },
   "wHXIev": {
     "description": "Modal Title for search celebrity",
     "message": "Buscar categoría"
+  },
+  "wms1Jl": {
+    "message": "Este campo excede el limite de {deliveryFromMaxLength} caracteres"
+  },
+  "xTsa8e": {
+    "description": "",
+    "message": "Te notificaremos cuando se active."
+  },
+  "yJWcBD": {
+    "message": "¿Para quién es este video?"
   }
 }
