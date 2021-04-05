@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import VideoNotificationForm from ".";
+import ContractNotificationsForm from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<VideoNotificationForm />);
+  const wrapper = shallow(<ContractNotificationsForm />);
   expect(wrapper.exists()).toBeTruthy();
 });

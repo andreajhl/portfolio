@@ -1,9 +1,9 @@
 import { shallow } from "enzyme";
-import VideoDeliveryForm from ".";
+import ContractDeliveryForm from ".";
 
 it("renders without crashing", () => {
   const wrapper = shallow(
-    <VideoDeliveryForm
+    <ContractDeliveryForm
       videoMessagePrice={200}
       bussinessPrice={200}
       showBussinessPrice={true}

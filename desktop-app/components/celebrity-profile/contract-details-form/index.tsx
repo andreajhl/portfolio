@@ -3,7 +3,6 @@ import useForm, { ValidationsType } from "lib/hooks/useForm";
 import { useEffect, useState } from "react";
 import SubmitButton from "../../common/button/submit-button";
 import styles from "./styles.module.scss";
-import isEmpty from "validator/es/lib/isEmpty";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import classes from "classnames";
 import { ContractDetailsType } from "desktop-app/types/contractDataType";
@@ -21,15 +20,18 @@ const initialValues: ContractDetailsType = {
 
 const validations: ValidationsType<ContractDetailsType> = {
   occasion(value) {
-    if (isEmpty(value)) return "Debes seleccionar una ocasión";
+    if (value.length === 0) return "Debes seleccionar una ocasión";
   },
   instructions(value) {
     if (Array.isArray(value)) return "Olvidaste editar el texto.";
-    if (isEmpty(value)) return "Debes escribir tus instrucciones.";
+    if (value.length === 0) return "Debes escribir tus instrucciones.";
+    if (value.length > 300) {
+      return "Debes introducir un máximo de 300 caracteres.";
+    }
   }
 };
 
-type VideoDetailsFormProps = {
+type ContractDetailsFormProps = {
   contractType: number;
   deliveryTo: string;
   celebrityFullName: string;
@@ -38,14 +40,14 @@ type VideoDetailsFormProps = {
   onStepChange: (values: ContractDetailsType) => void;
 };
 
-function VideoDetailsForm({
+function ContractDetailsForm({
   contractType,
   deliveryTo,
   celebrityFullName,
   initialValues: initialValuesFromProps,
   onStepChange,
   onSubmit
-}: VideoDetailsFormProps) {
+}: ContractDetailsFormProps) {
   const {
     values,
     touched,
@@ -87,6 +89,8 @@ function VideoDetailsForm({
     setFieldValue("instructions", text, false);
   }
 
+  // console.log({ values });
+
   return (
     <section className={styles.VideoDetailsForm}>
       <WizardTopNavigation
@@ -113,6 +117,7 @@ function VideoDetailsForm({
         <TextInputWithPlaceholders
           placeholder={`¡Hola ${celebrityFullName}! Me gustaría que...`}
           className={styles.VideoDetailsFormInstructionsTextarea}
+          maxLength={300}
           onKeyUp={({ key }) => {
             if (key.startsWith("Arrow")) return;
             setFieldError("instructions", null);
@@ -141,4 +146,4 @@ function VideoDetailsForm({
   );
 }
 
-export { VideoDetailsForm };
+export { ContractDetailsForm };

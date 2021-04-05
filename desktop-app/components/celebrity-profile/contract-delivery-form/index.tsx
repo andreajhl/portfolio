@@ -10,7 +10,7 @@ import { ContractDeliveryType } from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
 import { useAuth0 } from "@auth0/auth0-react";
 
-type VideoDeliveryFormProps = {
+type ContractDeliveryFormProps = {
   celebrityFullName: string;
   videoMessagePrice: number;
   businessPrice: number;
@@ -33,14 +33,20 @@ const validations: ValidationsType<ContractDeliveryType> = {
   },
   deliveryTo(value) {
     if (value.length === 0) return "Debes introducir un nombre";
+    if (value.length > 40) {
+      return "Debes introducir un máximo de 40 caracteres.";
+    }
   },
   deliveryFrom(value, { values: { contractType } }) {
     if (contractType === 1) return;
     if (value.length === 0) return "Debes introducir un nombre";
+    if (value.length > 40) {
+      return "Debes introducir un máximo de 40 caracteres.";
+    }
   }
 };
 
-const VideoDeliveryForm = ({
+const ContractDeliveryForm = ({
   celebrityFullName,
   videoMessagePrice = 200,
   businessPrice,
@@ -48,7 +54,7 @@ const VideoDeliveryForm = ({
   initialValues: initialValuesFromProps,
   onSubmit,
   onStepChange
-}: VideoDeliveryFormProps) => {
+}: ContractDeliveryFormProps) => {
   const {
     values,
     errors,
@@ -117,4 +123,4 @@ const VideoDeliveryForm = ({
   );
 };
 
-export default VideoDeliveryForm;
+export default ContractDeliveryForm;

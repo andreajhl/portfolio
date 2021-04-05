@@ -18,6 +18,14 @@ function removeSelectedPlaceholderSpan({ key }) {
   }
 }
 
+function limitLength(event, maxLength: number) {
+  const hasTypedACharacter = event?.key?.length === 1;
+  const { target } = event as { target: any };
+  if (hasTypedACharacter && getTextContent(target).length >= maxLength) {
+    event.preventDefault();
+  }
+}
+
 export const getTextContent = ({
   childNodes
 }: {
@@ -62,6 +70,7 @@ function TextInputWithPlaceholders({
   contentEditable,
   suppressContentEditableWarning,
   onKeyDown = function () {},
+  maxLength = Infinity,
   ...props
 }: TextInputWithPlaceholdersProps) {
   return (
@@ -71,6 +80,7 @@ function TextInputWithPlaceholders({
       contentEditable
       suppressContentEditableWarning
       onKeyDown={(event) => {
+        limitLength(event, maxLength);
         removeSelectedPlaceholderSpan(event);
         onKeyDown(event);
       }}

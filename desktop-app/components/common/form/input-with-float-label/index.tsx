@@ -11,6 +11,7 @@ type InputWithFloatLabelProps = {
   inputType?: string;
   errorMessage: null | string;
   className?: string;
+  maxLength?: number;
 };
 
 const InputWithFloatLabel = ({
@@ -19,7 +20,8 @@ const InputWithFloatLabel = ({
   inputType = "text",
   className = "",
   value,
-  errorMessage
+  errorMessage,
+  maxLength
 }: InputWithFloatLabelProps) => {
   return (
     <div className={classes(styles.InputWithFloatLabelContainer, className)}>
@@ -28,6 +30,7 @@ const InputWithFloatLabel = ({
         onChange={(e) => onChangeValue(e.target.value)}
         type={inputType}
         placeholder={placeholder}
+        maxLength={maxLength}
       />
       <label>{placeholder}</label>
       <Maybe it={typeof errorMessage === "string" && errorMessage.length > 0}>

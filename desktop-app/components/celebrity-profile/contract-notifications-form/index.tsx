@@ -32,17 +32,19 @@ const deliveryContactCellphoneHasChanged = (deliveryContactCellphone: string) =>
   deliveryContactCellphone !== initialValues.deliveryContactCellphone ||
   deliveryContactCellphone.length > 4;
 
-function VideoNotificationForm({
-  onSubmit,
-  onStepChange,
-  initialValues: initialValuesFromProps,
-  isLoading
-}: {
+type ContractNotificationsFormProps = {
   onSubmit: (values: ContractNotificationsType) => void;
   onStepChange: (values: ContractNotificationsType) => void;
   initialValues?: ContractNotificationsType;
   isLoading: boolean;
-}) {
+};
+
+function ContractNotificationsForm({
+  onSubmit,
+  onStepChange,
+  initialValues: initialValuesFromProps,
+  isLoading
+}: ContractNotificationsFormProps) {
   const {
     values,
     errors,
@@ -198,4 +200,4 @@ function VideoNotificationForm({
   );
 }
 
-export default VideoNotificationForm;
+export default ContractNotificationsForm;

@@ -2,10 +2,10 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 import { connect } from "react-redux";
 import { Wizard, Steps as StepsList, Step } from "react-albus";
 import styles from "./styles.module.scss";
-import { VideoDetailsForm } from "../video-details-form";
-import VideoDeliveryForm from "desktop-app/components/celebrity-profile/video-delivery-form";
+import { ContractDetailsForm } from "../contract-details-form";
+import ContractDeliveryForm from "desktop-app/components/celebrity-profile/contract-delivery-form";
 import { useState } from "react";
-import VideoNotificationForm from "desktop-app/components/celebrity-profile/video-notifications-form";
+import ContractNotificationsForm from "desktop-app/components/celebrity-profile/contract-notifications-form";
 import { saveClientContract } from "react-app/src/state/ducks/contracts/actions";
 import ContractDataType, {
   ContractDeliveryType,
@@ -58,7 +58,7 @@ function CreateContractWizard({
         <StepsList>
           <Step id="delivery">
             {({ next }) => (
-              <VideoDeliveryForm
+              <ContractDeliveryForm
                 videoMessagePrice={videoMessagePrice}
                 celebrityFullName={celebrity.fullName}
                 // TODO: agregar estos datos en modelo celebrity
@@ -75,7 +75,7 @@ function CreateContractWizard({
           </Step>
           <Step id="video-details">
             {({ next }) => (
-              <VideoDetailsForm
+              <ContractDetailsForm
                 deliveryTo={deliveryData?.deliveryTo}
                 celebrityFullName={celebrity.fullName}
                 contractType={deliveryData?.contractType}
@@ -89,7 +89,7 @@ function CreateContractWizard({
             )}
           </Step>
           <Step id="notifications">
-            <VideoNotificationForm
+            <ContractNotificationsForm
               isLoading={isLoading}
               initialValues={notificationsData}
               onStepChange={setNotificationsData}

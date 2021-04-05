@@ -33,6 +33,7 @@ const VideoDeliveryFormFieldsElements = ({
               onChangeValue={(e) => onChange("deliveryTo", e)}
               placeholder="¿Quién recibirá el video?"
               errorMessage={errors.deliveryTo}
+              maxLength={40}
             />
           </div>
         </Maybe>
@@ -45,6 +46,7 @@ const VideoDeliveryFormFieldsElements = ({
               value={deliveryFrom}
               onChangeValue={(e) => onChange("deliveryFrom", e)}
               placeholder="¿Quién envía el video?"
+              maxLength={40}
             />
           </div>
         </Maybe>
