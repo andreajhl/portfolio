@@ -1,4 +1,7 @@
-import { getCelebrityProfilePath, getSearchPath } from "constants/paths";
+import {
+  getCelebrityProfilePath,
+  getSearchCategoryPath
+} from "constants/paths";
 import { CountryFlag } from "desktop-app/components/common/country-flag";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { LikeButton } from "../../button/like";
@@ -36,7 +39,7 @@ function CelebrityCard({
           className={styles.CelebrityCardAvatar}
         />
         <div className={styles.CelebrityCardThumbnailFooter}>
-          <Link href={getSearchPath({ category_id: celebrity.categoryId })}>
+          <Link href={getSearchCategoryPath(celebrity.categoryId)}>
             <span className={styles.CelebrityCardCategory}>
               {celebrity.title}
             </span>

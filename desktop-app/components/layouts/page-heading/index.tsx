@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 import styles from "./styles.module.scss";
 
 type PageHeadingProps = {
-  children: ReactNode;
+  children?: ReactNode;
   showBackButton?: boolean;
   showHomeLink?: boolean;
 };

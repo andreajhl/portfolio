@@ -3,6 +3,8 @@ import { CelebrityResponseTime } from "desktop-app/components/common/celebrity-r
 import { LastReviewsModal } from "desktop-app/components/layouts/last-reviews-modal";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import styles from "./styles.module.scss";
+import { Link } from "desktop-app/components/common/routing/link";
+import { getSearchCountryPath } from "constants/paths";
 
 type CelebrityInfoProps = {
   celebrity: celebrityType;
@@ -19,7 +21,12 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
           width={23}
           className={styles.CelebrityInfoFlag}
         />
-        {celebrity.categoryTitle}
+        <Link
+          href={getSearchCountryPath(celebrity.categoryId)}
+          className={styles.CelebrityInfoCategory}
+        >
+          {celebrity.categoryTitle}
+        </Link>
       </span>
       <span className={styles.CelebrityInfoItemWithSeparator}>
         <LastReviewsModal>

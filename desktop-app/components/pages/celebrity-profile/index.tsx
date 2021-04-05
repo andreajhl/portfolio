@@ -1,7 +1,5 @@
-import { getSearchCategoryPath } from "constants/paths";
 import { CelebrityDetails } from "desktop-app/components/celebrity-profile/celebrity-details";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { Link } from "desktop-app/components/common/routing/link";
 import { ContractSteps } from "desktop-app/components/celebrity-profile/contract-steps";
 import { CelebrityPublicContractsReel } from "desktop-app/components/layouts/celebrity-public-contracts-reel";
 import { LastReviewsSection } from "desktop-app/components/layouts/last-reviews-section";
@@ -33,17 +31,7 @@ function CelebrityProfilePage({
 }: CelebrityProfilePageProps) {
   return (
     <PageContainer>
-      <PageHeading showHomeLink>
-        <Link
-          href={getSearchCategoryPath(celebrity.categoryId)}
-          className="font-weight-bold"
-          style={{
-            color: "var(--dark)"
-          }}
-        >
-          {celebrity.categoryTitle}
-        </Link>
-      </PageHeading>
+      <PageHeading showHomeLink />
       <StickyCallToActionTopBar
         appearancePosition={600} // por ser definido correctamente.
         celebrity={celebrity}
