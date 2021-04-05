@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ReactNode, useState } from "react";
 import OverlayHeader from "desktop-app/components/common/cards/video/overlay-header";
+import { usePreloadVideo } from "../../../../lib/hooks/usePreloadVideo";
 
 const AnimatedPopup = dynamic<{
   trigger?: JSX.Element | ((isOpen: boolean) => JSX.Element);
@@ -48,6 +49,7 @@ function CelebrityMainVideoWidget({
   const toggleVideoIsMuted = () => {
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
+  const isReady = usePreloadVideo(celebrity.mainVideo);
 
   const hasMainVideo = Boolean(celebrity.mainVideo);
 
@@ -55,6 +57,7 @@ function CelebrityMainVideoWidget({
     <div
       className={classes(
         styles.CelebrityMainVideoWidget,
+        isReady && styles.CelebrityMainVideoWidgetIsReady,
         !hasMainVideo && styles.CelebrityMainVideoWidgetNoVideo,
         className
       )}
@@ -70,7 +73,7 @@ function CelebrityMainVideoWidget({
         width={avatarProps.width - 8}
         height={avatarProps.height - 8}
       />
-      <Maybe it={hasMainVideo}>
+      <Maybe it={hasMainVideo && isReady}>
         <button
           type="button"
           className={"btn " + styles.CelebrityMainVideoWidgetButton}
@@ -82,7 +85,7 @@ function CelebrityMainVideoWidget({
   );
 
   return (
-    <Maybe it={hasMainVideo} orElse={celebrityAvatar}>
+    <Maybe it={hasMainVideo && isReady} orElse={celebrityAvatar}>
       <AnimatedPopup
         trigger={celebrityAvatar}
         onOpen={playVideo}

@@ -1,5 +1,4 @@
 .CelebrityMainVideoWidget {
-  cursor: pointer;
   text-align: center;
   position: relative;
   background: white;
@@ -22,8 +21,12 @@
     background: linear-gradient(180deg, #6970c6, #6970c6 50%, transparent);
   }
 
+  &IsReady {
+    cursor: pointer;
+  }
+
   &NoVideo {
-    cursor: unset;
+    cursor: unset !important;
     &::before {
       background: none;
     }
