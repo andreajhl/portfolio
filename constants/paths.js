@@ -69,4 +69,7 @@ export const getSearchPath = ({ limit = 20, ...params }) => {
 export const getSearchCategoryPath = (categoryId) =>
   getSearchPath({ category_id: categoryId });
 
+export const getSearchCountryPath = (countryId) =>
+  getSearchPath({ country_id: countryId });
+
 export const getSearchHashtagPath = (hashtag) => getSearchPath({ hashtag });

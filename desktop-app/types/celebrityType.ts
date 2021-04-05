@@ -19,4 +19,5 @@ export type celebrityType = {
   mainVideo: string;
   showSimilarCelebrities: boolean;
   contractTypes?: any[];
+  countryId: number;
 };

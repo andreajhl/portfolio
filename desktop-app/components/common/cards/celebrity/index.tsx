@@ -52,7 +52,11 @@ function CelebrityCard({
       </div>
       <div className={styles.CelebrityCardInfo}>
         <h4 className={styles.CelebrityCardHeading}>
-          <CountryFlag alpha2Code={celebrity.alpha2Code} className="mr-2" />
+          <CountryFlag
+            countryId={celebrity.countryId}
+            alpha2Code={celebrity.alpha2Code}
+            className="mr-2"
+          />
           <span className="text-with-ellipsis">{celebrity.fullName}</span>
         </h4>
         <Maybe it={Array.isArray(celebrity.hashtags)}>

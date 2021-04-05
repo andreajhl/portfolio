@@ -14,6 +14,7 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
     <div className={`${styles.CelebrityInfo} ${className}`}>
       <span className={styles.CelebrityInfoItemWithSeparator}>
         <CountryFlag
+          countryId={celebrity.countryId}
           alpha2Code={celebrity.alpha2Code}
           width={23}
           className={styles.CelebrityInfoFlag}
