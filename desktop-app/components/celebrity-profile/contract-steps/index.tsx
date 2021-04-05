@@ -1,14 +1,7 @@
 import styles from "./styles.module.scss";
-import {
-  CommentAlt,
-  ShoppingBag,
-  SurpriseBox
-} from "../../common/icons/index";
-import classes from "classnames";
-import Maybe from "../../common/helpers/maybe";
+import { CommentAlt, ShoppingBag, SurpriseBox } from "../../common/icons/index";
 import { connect } from "react-redux";
 
-// mapStateToProps
 const mapStateToProps = ({ celebrities }) => ({
   publicContracts: celebrities.fetchPublicContractsReducer.data.results
 });
