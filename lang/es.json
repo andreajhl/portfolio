@@ -19,8 +19,17 @@
   "1JuMPJ": {
     "message": "Continuar"
   },
+  "21fIxh": {
+    "message": "Debes seleccionar una tarjeta"
+  },
+  "23rhxu": {
+    "message": "Si el problema persiste puedes comunicarte con nuestro equipo de soporte a <a>experiencias@famosos.com</a> para más información."
+  },
   "2O8ofL": {
     "message": "De:"
+  },
+  "2XI8xH": {
+    "message": "Correo del titular de la tarjeta"
   },
   "3Dy+Ix": {
     "message": "Buscar famosos"
@@ -31,6 +40,9 @@
   },
   "3tygVI": {
     "message": "{instructionsLength}/400 caracteres permitidos"
+  },
+  "4MRzR1": {
+    "message": "Te notificaremos cuando tu video ya esté grabado y disponible para verlo y compartilo"
   },
   "4rhIbe": {
     "message": "No se encontró un {breakLine} famoso con el usuario <br></br> <span>{celebrityUsername}</span>"
@@ -59,14 +71,32 @@
     "description": "",
     "message": "Ver más"
   },
+  "Cb+oyf": {
+    "message": "Volver a intentar"
+  },
+  "CfGC5M": {
+    "message": "Serás redirigido a la pagina oficial de PayPal para continuar con el pago."
+  },
+  "DNBYPO": {
+    "message": "Datos de la tarjeta"
+  },
   "DVO6hk": {
     "message": "Ha ocurrido un error"
   },
   "Dn7sTk": {
     "message": "Correo eléctronico de notificación"
   },
+  "DnplYU": {
+    "message": "Si por alguna razón tu video no pudo ser grabado, te reembolsaremos tu dinero en un plazo de 5-7 días aproximadamente"
+  },
+  "ErSRb8": {
+    "message": "Selecciona una tarjeta"
+  },
   "FNwlEO": {
     "message": "El valor en es aproximado"
+  },
+  "FnHHT0": {
+    "message": "Guardando..."
   },
   "GbabRf": {
     "message": "Para:"
@@ -81,9 +111,15 @@
   "HmvnFO": {
     "message": "Reintentar"
   },
+  "JILqD1": {
+    "message": "¿Eliminar tarjeta?"
+  },
   "JNf21W": {
     "description": "",
     "message": "En nuestro sitio web utilizamos cookies propias y de terceros para mejorar la experiencia de usuario, rendimiento, análisis y otro fines. Al hacer clic en aceptar o utilizar nuestro sitio, estarás aceptando el uso de estas cookies."
+  },
+  "KFphJU": {
+    "message": "Pagar"
   },
   "KjMaxy": {
     "message": "¿Comó solicitar {onlyMobileLineBreak} un {onlyDesktopLineBreak} videomensaje en Famosos?"
@@ -114,6 +150,15 @@
   },
   "O1JDs+": {
     "message": "Si quieres un video comercial para tu marca haz click <span> aquí.</span>"
+  },
+  "P6ZBac": {
+    "message": "Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP = Código postal"
+  },
+  "P8Dkhf": {
+    "message": "Tu solicitud será completada en menos 7 días"
+  },
+  "RqwRuU": {
+    "message": "Si, eliminar"
   },
   "SvDN5n": {
     "description": "",
@@ -153,11 +198,17 @@
   "Yskoha": {
     "message": "Este campo excede el limite de {deliveryToMaxLength} caracteres"
   },
+  "ZcJeQh": {
+    "message": "La confirmación de tu compra será enviada a tu mail"
+  },
   "ZgMpuD": {
     "message": "Siguiente página"
   },
   "aPX+PI": {
     "message": "Contratar para Empresa"
+  },
+  "b2Ea7D": {
+    "message": "Haz click sobre el siguiente botón para hacer el pago usando tu cuenta de PayPal."
   },
   "b9prTq": {
     "message": "Mensaje"
@@ -167,6 +218,9 @@
   },
   "bwRze1": {
     "message": "Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak} \"Quiero {onlyMobileLineBreak} un video\""
+  },
+  "dUl69m": {
+    "message": "Acción cancelada por el usuario"
   },
   "dYz8lM": {
     "message": "Quizás pueda <br></br> interesarte"
@@ -178,12 +232,18 @@
   "eYHsf6": {
     "message": "Tarjeta de Crédito o Débito"
   },
+  "fH+OCT": {
+    "message": "Seleccionar una tarjeta"
+  },
   "fcUqul": {
     "message": "Quiero un video de"
   },
   "fmWs+e": {
     "description": "Label button for search component",
     "message": "Categoria"
+  },
+  "gBLEge": {
+    "message": "Nombre del titular de la tarjeta"
   },
   "gBauKO": {
     "message": "Comprar Video Personalizado por"
@@ -198,6 +258,9 @@
   "h9zXst": {
     "message": "Anónimo"
   },
+  "hCreI6": {
+    "message": "Al continuar estás aceptando nuestros&nbsp; <linkTerms> Términos y Condiciones </linkTerms> &nbsp; y nuestra&nbsp; <linkPolicies> Política de Privacidad </linkPolicies> &nbsp;"
+  },
   "hmpcGI": {
     "description": "",
     "message": "Notificarme cuando esté disponible"
@@ -206,11 +269,32 @@
     "description": "Mensaje de error para formulario de stripe",
     "message": "El campo de nombre del titular de la tarjeta es obligatorio"
   },
+  "lkQYB7": {
+    "message": "¿Que sucede después de que enviás la solicitud a un Famoso?"
+  },
+  "lp4qtJ": {
+    "message": "Ocurrió un error procesando tu pago."
+  },
+  "oUWADl": {
+    "message": "No"
+  },
+  "ozB97A": {
+    "message": "Ingresa a tu cuenta ahora para conectar con los famosos y vivir experiencias únicas"
+  },
   "per8Dq": {
     "message": "Ver más famosos"
   },
+  "pfCRkk": {
+    "message": "Haz clic en el botón de WhatsApp para que a través de este canal te podamos dar las instrucciones para concretar el pago de tu videomensaje."
+  },
+  "qMbb2M": {
+    "message": "Agregar nueva tarjeta"
+  },
   "qXeQds": {
     "message": "Volver al inicio"
+  },
+  "qyxCOs": {
+    "message": "Si el problema persiste puedes comunicarte con nuestro equipo de soporte a <a> experiencias@famosos.com </a> para más información."
   },
   "react-app.src.components.layouts.flash-delivery-badge.index.1328933600": {
     "description": "",
@@ -246,6 +330,9 @@
   "tv5FG3": {
     "description": "",
     "message": "Blog"
+  },
+  "ueZmN4": {
+    "message": "Transferencia bancaria"
   },
   "ut6hvz": {
     "message": "Calificaciones"
