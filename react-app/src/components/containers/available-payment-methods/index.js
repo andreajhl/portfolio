@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { WhatsappContact } from "../whatsapp-contact";
 import DiscountCouponForm from "../discount-coupon-form";
 import getCookie from "../../../utils/getCookie";
+import { FormattedMessage } from "react-intl";
 
 class AvailablePaymentMethods extends Component {
   constructor(props) {
@@ -67,7 +68,7 @@ class AvailablePaymentMethods extends Component {
       <div className="AvailablePaymentMethods mx-auto">
         <div className={"payment-types f-rounded"}>
           <div className={"font-weight-bold pt-2 pl-3 pb-2 mb-2"}>
-            Elige el método de pago
+            <FormattedMessage defaultMessage="Elige el método de pago" />
           </div>
           <div className="payment-type mb-3" onClick={this.changeToStripe}>
             <div className="titles">
@@ -80,7 +81,9 @@ class AvailablePaymentMethods extends Component {
               </div>
               <div className="payment-type-title">
                 <h6 className={"font-weight-normal"}>
-                  <span>Tarjeta de Crédito o Débito</span>
+                  <span>
+                    <FormattedMessage defaultMessage="Tarjeta de Crédito o Débito" />
+                  </span>
                 </h6>
                 <i className="far fa-credit-card"></i>
               </div>
@@ -155,7 +158,9 @@ class AvailablePaymentMethods extends Component {
                 </div>
                 <div className="payment-type-title">
                   <h6 className={"font-weight-normal"}>
-                    <span>Transferencia bancaria</span>
+                    <span>
+                      <FormattedMessage defaultMessage="Transferencia bancaria" />
+                    </span>
                   </h6>
                   <i class="fas fa-exchange-alt"></i>{" "}
                 </div>
@@ -171,7 +176,7 @@ class AvailablePaymentMethods extends Component {
               >
                 <WhatsappContact
                   text={
-                    "Haz clic en el botón de WhatsApp para que a través de este canal te podamos dar las instrucciones para concretar el pago de tu videomensaje."
+                    <FormattedMessage defaultMessage="Haz clic en el botón de WhatsApp para que a través de este canal te podamos dar las instrucciones para concretar el pago de tu videomensaje." />
                   }
                   numberPhone={18559107580}
                   placeHolderMessage="Quiero pagar con transferencia bancaria"

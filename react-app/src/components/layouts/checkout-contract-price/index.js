@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import NumberFormat from "react-number-format";
 
 import { AVAILABLE_CURRENCIES } from "../currency-dropdown/constants";
+import { FormattedMessage } from "react-intl";
 
 class ContractPriceLayout extends Component {
   rounding() {
@@ -87,9 +88,14 @@ class ContractPriceLayout extends Component {
           <br />
           {this.props.currencyExchangeData.to !== this.props.currency ? (
             <span style={{ fontSize: "10px", lineHeight: "1" }}>
-              El valor en {this.props.currencyExchangeData.to} es aproximado{" "}
+              <FormattedMessage
+                defaultMessage="El valor en  es aproximado"
+                values={{
+                  currencyExchangeData: this.props.currencyExchangeData.to
+                }}
+              />
               <br />
-              El cobro que se hará en dólares es:{" "}
+              <FormattedMessage defaultMessage="El cobro que se hará en dólares es:" />
               <span>
                 {this.getFormattedPrice(this.props.price, this.props.currency)}
               </span>
@@ -101,7 +107,9 @@ class ContractPriceLayout extends Component {
     );
     const originalPrice = this.props.availableDiscount ? (
       <div className="d-flex  justify-content-between ">
-        <span> Precio original: </span>
+        <span>
+          <FormattedMessage defaultMessage="Precio original:" />
+        </span>
         <span className="text-dark">
           {this.props.currencyExchangeData.to !== this.props.currency
             ? this.getFormattedPrice(
@@ -116,7 +124,9 @@ class ContractPriceLayout extends Component {
     ) : null;
     const discountValue = this.props.availableDiscount ? (
       <div className="d-flex justify-content-between ">
-        <span className="float-left">Descuento: </span>{" "}
+        <span className="float-left">
+          <FormattedMessage defaultMessage="Descuento:" />
+        </span>{" "}
         <span className="text-danger font-weight-bold">
           {this.props.availableDiscount.isPercentageDiscount ? (
             <>

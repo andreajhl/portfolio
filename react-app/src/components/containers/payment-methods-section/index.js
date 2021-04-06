@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { ContractCheckoutSummary } from "../../containers/contract-checkout-summary";
 import { AvailablePaymentMethods } from "../../containers/available-payment-methods";
 import * as ROUTING_PATHS from "../../../routing/Paths";
+import { FormattedMessage } from "react-intl";
 
 class PaymentMethodsSection extends Component {
   constructor(props) {
@@ -59,23 +60,37 @@ class PaymentMethodsSection extends Component {
                 className={"text-muted text-center"}
                 style={{ color: "#838383" }}
               >
-                Al continuar estás aceptando nuestros&nbsp;
-                <a
-                  href={ROUTING_PATHS.TERMS_PATH}
-                  style={{ color: "#838383", textDecorationLine: "underline" }}
-                  target={"_blank"}
-                >
-                  Términos y Condiciones
-                </a>
-                &nbsp; y nuestra&nbsp;
-                <a
-                  href={ROUTING_PATHS.POLICIES_PATH}
-                  style={{ color: "#838383", textDecorationLine: "underline" }}
-                  target={"_blank"}
-                >
-                  Política de Privacidad
-                </a>
-                &nbsp;
+                <FormattedMessage
+                  defaultMessage="Al continuar estás aceptando nuestros&nbsp; <linkTerms>  Términos y Condiciones </linkTerms> &nbsp; y nuestra&nbsp; <linkPolicies> Política de Privacidad </linkPolicies> &nbsp;"
+                  values={{
+                    linkPolicies: (chunks) => (
+                      <a
+                        rel="noreferrer"
+                        href={ROUTING_PATHS.POLICIES_PATH}
+                        style={{
+                          color: "#838383",
+                          textDecorationLine: "underline"
+                        }}
+                        target={"_blank"}
+                      >
+                        {chunks}
+                      </a>
+                    ),
+                    linkTerms: (chunks) => (
+                      <a
+                        rel="noreferrer"
+                        target={"_blank"}
+                        style={{
+                          color: "#838383",
+                          textDecorationLine: "underline"
+                        }}
+                        href={ROUTING_PATHS.TERMS_PATH}
+                      >
+                        {chunks}
+                      </a>
+                    )
+                  }}
+                />
               </small>
               <div className="mt-2 mx-auto text-center">
                 <img

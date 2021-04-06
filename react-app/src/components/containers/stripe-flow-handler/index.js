@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
 
 import {
   removeSource,
@@ -48,7 +49,9 @@ class StripeFlowHandler extends Component {
     if (this.state.showLoading) {
       return (
         <div className={"text-center p-4"}>
-          <h6>Cargando...</h6>
+          <h6>
+            <FormattedMessage defaultMessage="Cargando..." />
+          </h6>
         </div>
       );
     }
@@ -100,13 +103,17 @@ class StripeFlowHandler extends Component {
     if (this.state.availableSources.length && this.state.showCardForm) {
       return (
         <div className={"p-4 text-center"} onClick={this.changeContainer}>
-          <h6>Seleccionar una tarjeta</h6>
+          <h6>
+            <FormattedMessage defaultMessage="Seleccionar una tarjeta" />
+          </h6>
         </div>
       );
     } else if (this.state.availableSources && !this.state.showCardForm) {
       return (
         <div className={"p-4 text-center"} onClick={this.changeContainer}>
-          <h6>Agregar nueva tarjeta</h6>
+          <h6>
+            <FormattedMessage defaultMessage="Agregar nueva tarjeta" />
+          </h6>
         </div>
       );
     }

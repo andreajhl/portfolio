@@ -35,11 +35,17 @@
   "4rhIbe": {
     "message": "No se encontró un {breakLine} famoso con el usuario <br></br> <span>{celebrityUsername}</span>"
   },
+  "6i3tAy": {
+    "message": "El cobro que se hará en dólares es:"
+  },
   "7Vvfe3": {
     "message": "Campo requerido"
   },
   "8fYxkw": {
     "message": "¿Qué quieres que diga {celebrityFullName}?"
+  },
+  "ARhEHP": {
+    "message": "Cargando..."
   },
   "Aa51Eo": {
     "description": "",
@@ -58,6 +64,9 @@
   },
   "Dn7sTk": {
     "message": "Correo eléctronico de notificación"
+  },
+  "FNwlEO": {
+    "message": "El valor en es aproximado"
   },
   "GbabRf": {
     "message": "Para:"
@@ -78,6 +87,9 @@
   },
   "KjMaxy": {
     "message": "¿Comó solicitar {onlyMobileLineBreak} un {onlyDesktopLineBreak} videomensaje en Famosos?"
+  },
+  "Lbiy9R": {
+    "message": "Precio original:"
   },
   "LsqQep": {
     "description": "",
@@ -111,6 +123,9 @@
     "description": "",
     "message": "Descargar app de Android"
   },
+  "VGHwB5": {
+    "message": "Editar"
+  },
   "Vrpqh3": {
     "message": "Garantía Famosos"
   },
@@ -121,6 +136,9 @@
   "WaqkKh": {
     "description": "ModalTitle for search component",
     "message": "Filtrar por categoría"
+  },
+  "Wu3wG5": {
+    "message": "Descuento:"
   },
   "Y6sFMj": {
     "description": "",
@@ -141,6 +159,9 @@
   "aPX+PI": {
     "message": "Contratar para Empresa"
   },
+  "b9prTq": {
+    "message": "Mensaje"
+  },
   "bSHMVy": {
     "message": "¡Comprar video ahora!"
   },
@@ -149,6 +170,13 @@
   },
   "dYz8lM": {
     "message": "Quizás pueda <br></br> interesarte"
+  },
+  "dy8DmF": {
+    "description": "Mensaje de error para creación de tarjeta Stripe",
+    "message": "Ocurrió un error procesando tu pago."
+  },
+  "eYHsf6": {
+    "message": "Tarjeta de Crédito o Débito"
   },
   "fcUqul": {
     "message": "Quiero un video de"
@@ -173,6 +201,10 @@
   "hmpcGI": {
     "description": "",
     "message": "Notificarme cuando esté disponible"
+  },
+  "lSxRsO": {
+    "description": "Mensaje de error para formulario de stripe",
+    "message": "El campo de nombre del titular de la tarjeta es obligatorio"
   },
   "per8Dq": {
     "message": "Ver más famosos"
@@ -203,6 +235,10 @@
     "description": "",
     "message": "Mis contrataciones"
   },
+  "tEedOi": {
+    "description": "Mensaje de error para formulario de stripe",
+    "message": "El campo de correo electrónico del titular de la tarjeta es obligatorio"
+  },
   "tdx+EV": {
     "description": "",
     "message": "Mi perfil"
@@ -216,6 +252,10 @@
   },
   "v82s2O": {
     "message": "Video Personalizado de {celebrityFullName}"
+  },
+  "v9XTPm": {
+    "description": "Mensaje de error para creación de tarjeta Stripe",
+    "message": "Ocurrió un error inesperado."
   },
   "w2xatL": {
     "description": "",
@@ -232,7 +272,13 @@
     "description": "",
     "message": "Te notificaremos cuando se active."
   },
+  "xkoDM2": {
+    "message": "Video personalizado de {celebrityFullName}"
+  },
   "yJWcBD": {
     "message": "¿Para quién es este video?"
+  },
+  "zADCtw": {
+    "message": "Elige el método de pago"
   }
 }
