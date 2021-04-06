@@ -5,6 +5,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { Redirect, withRouter } from "react-app/src/components/common/routing";
 import { BLOG, HOME_PATH } from "../../../routing/Paths";
 import BlogPost from "../../containers/blog-post-full";
+import { FormattedMessage } from "react-intl";
 
 const BlogEntry = ({ blogsData, router }) => {
   let redirect;
@@ -36,10 +37,10 @@ const BlogEntry = ({ blogsData, router }) => {
               className="mb-3 ml-5"
               onClick={() => router.push(HOME_PATH)}
             >
-              🏠 Inicio
+              🏠 <FormattedMessage defaultMessage="Inicio" />
             </Button>
             <Button sm className="mb-3 ml-5" onClick={() => router.push(BLOG)}>
-              📰 Ver más noticias
+              📰 <FormattedMessage defaultMessage="Ver más noticias" />
             </Button>
           </Row>
           <Row>
