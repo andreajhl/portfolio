@@ -1,0 +1,33 @@
+.CurrencyDropdown {
+  &Menu {
+    padding: 1.125rem 0;
+    overflow-y: scroll;
+    height: 240px;
+    width: 58px;
+    min-width: initial;
+
+    &.CurrencyDropdownMenuShow {
+      margin-top: 0.5rem;
+      right: -100% !important;
+    }
+  }
+
+  &Flag {
+    width: 16px;
+  }
+
+  &Item {
+    cursor: pointer;
+    padding: 0.25rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    span {
+      font-weight: bold;
+    }
+    &Active {
+      background: var(--gray-2);
+    }
+  }
+}
