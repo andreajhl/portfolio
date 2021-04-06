@@ -22,12 +22,12 @@
       transform: scale(1.15);
     }
 
-    img,
+    &Icon,
     p {
       transition: opacity 0.15s;
     }
 
-    img {
+    &Icon {
       height: 30px;
     }
 
@@ -41,7 +41,7 @@
     }
 
     &:hover {
-      img {
+      .OccasionsItemIcon {
         opacity: 0;
       }
       p {
@@ -52,5 +52,46 @@
   &Selected {
     border: 2px solid var(--dark);
     background: #ffebf4;
+  }
+
+  &LOVE {
+    width: 32px;
+    height: 33px;
+  }
+  &SPECIAL_OCCASION {
+    height: 32.75px;
+    width: 33.35px;
+  }
+  &SONG {
+    height: 31.4px;
+    width: 32.6px;
+  }
+  &MAKE_SMILE {
+    height: 28px;
+    width: 29px;
+  }
+  &MOTIVATION {
+    height: 32px;
+    width: 20.8px;
+  }
+  &ASK_FOR_FORGIVENESS {
+    height: 32.6px;
+    width: 16.4px;
+  }
+  &CHEER_UP {
+    height: 23px;
+    width: 37px;
+  }
+  &HOPE {
+    height: 29.5px;
+    width: 29.7px;
+  }
+  &JOKE {
+    height: 28px;
+    width: 28px;
+  }
+  &OTHER {
+    height: 26px;
+    width: 26px;
   }
 }

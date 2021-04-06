@@ -48,7 +48,14 @@ function OccasionsGrid({
               )}
               onClick={() => onClickOccasion(occasionKey)}
             >
-              <img src={`/assets/img/occasions/${occasionKey}.png`} alt="" />
+              <img
+                className={classes(
+                  styles.OccasionsItemIcon,
+                  styles[`Occasions${occasionKey}`]
+                )}
+                src={`/assets/img/occasions/${occasionKey}.png`}
+                alt={title}
+              />
               <p>
                 {title.split(" ").map((word) => (
                   <>
