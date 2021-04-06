@@ -39,13 +39,14 @@ const celebrityTypeReelProps: {
       transform: "translateY(-50%)"
     },
     gap: 26.75,
-    children: (celebrity) => (
+    children: (celebrityVideo) => (
       <CelebritySectionVideoCard
-        username={celebrity.username}
-        videoUrl={celebrity.videoUrl}
-        fullName={celebrity.fullName}
-        videoPosterUrl={celebrity.videoPosterUrl}
-        avatar={celebrity.avatar}
+        occasion={celebrityVideo.occasion}
+        username={celebrityVideo.username}
+        videoUrl={celebrityVideo.videoUrl}
+        fullName={celebrityVideo.fullName}
+        videoPosterUrl={celebrityVideo.videoPosterUrl}
+        avatar={celebrityVideo.avatar}
       />
     )
   },

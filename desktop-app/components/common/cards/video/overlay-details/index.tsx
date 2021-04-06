@@ -13,7 +13,7 @@ const OverlayDetails = ({ ocassion, onLikevideo }: OverlayDetailsProps) => {
     <div className={styles.OverlayVideoDetails}>
       <Maybe it={ocassion?.length > 0}>
         <div className={styles.OverlayVideoDetailsOcassion}>
-          <div className={styles.OverlayVideoDetailsOcassionIcon}>
+          {/* <div className={styles.OverlayVideoDetailsOcassionIcon}>
             <svg
               width="10"
               height="11"
@@ -26,13 +26,13 @@ const OverlayDetails = ({ ocassion, onLikevideo }: OverlayDetailsProps) => {
                 fill="black"
               />
             </svg>
-          </div>
+          </div> */}
           <span className={styles.OverlayVideoDetailsOcassionName}>
             {ocassion}
           </span>
         </div>
       </Maybe>
-      <div className={styles.ViewsCounter}>
+      {/* <div className={styles.ViewsCounter}>
         <svg
           width="14"
           height="13"
@@ -50,7 +50,7 @@ const OverlayDetails = ({ ocassion, onLikevideo }: OverlayDetailsProps) => {
           />
         </svg>
         <span>8,200</span>
-      </div>
+      </div> */}
       <div className={styles.LikeButton}>
         <LikeButton onClick={onLikevideo} />
       </div>

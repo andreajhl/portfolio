@@ -12,7 +12,6 @@ export function usePreloadVideo(src: string) {
     video.preload = "metadata";
     video.addEventListener("loadeddata", () => {
       setIsReady(true);
-      console.log(video);
     });
 
     video.src = src;
