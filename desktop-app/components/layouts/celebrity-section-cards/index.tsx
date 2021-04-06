@@ -21,7 +21,7 @@ const celebrityTypeReelProps: {
 } = {
   CELEBRITY_CARD: {
     itemWidth: 170,
-    itemHeight: 282,
+    itemHeight: 284,
     buttonsStyle: {
       size: 35,
       top: 105,
