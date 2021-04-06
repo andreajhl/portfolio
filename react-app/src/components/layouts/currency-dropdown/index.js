@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { AVAILABLE_CURRENCIES } from "./constants";
 import { currencyExchange } from "../../../state/ducks/payments/actions";
 import findAvailableCurrencyByName from "../../../utils/findAvailableCurrencyByName";
-import CurrencyIcon from "../../common/icons";
+import { CurrencyIcon } from "../../common/icons";
 import styles from "./styles.module.scss";
 import { Dropdown } from "../../common/button/dropdown";
 import classes from "classnames";
