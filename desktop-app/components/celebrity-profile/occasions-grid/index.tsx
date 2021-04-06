@@ -40,6 +40,7 @@ function OccasionsGrid({
               contractType !== 1 ||
               !occasionsOnlyToGiftContract.includes(occasionKey)
             }
+            key={occasionKey}
           >
             <div
               className={classes(
