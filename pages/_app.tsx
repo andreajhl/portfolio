@@ -40,12 +40,17 @@ const App = ({ Component, pageProps }) => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);
     };
   }, []);
-  const messages = languages["en"];
+  const { locale, defaultLocale } = router;
+  const messages = languages[locale];
 
   return (
     <Auth0ProviderWithHistory>
       <Auth0UserHandler>
-        <IntlProvider messages={messages} locale={"en"} defaultLocale={"en"}>
+        <IntlProvider
+          messages={messages}
+          locale={locale}
+          defaultLocale={defaultLocale}
+        >
           <Component {...pageProps} />
         </IntlProvider>
       </Auth0UserHandler>
