@@ -7,7 +7,7 @@ import Maybe from "../helpers/maybe";
 type WizardTopNavigationProps = {
   className?: string;
   enableNavigation?: boolean;
-  onStepClick?: (goToClickedStep: () => void) => void;
+  onStepClick?: (goToClickedStep: () => void, isPreviousStep: boolean) => void;
 };
 
 function WizardTopNavigation({
@@ -15,22 +15,29 @@ function WizardTopNavigation({
   enableNavigation = false,
   onStepClick = () => {}
 }: WizardTopNavigationProps) {
-  function getClassName(steps, step, index, stepItem) {
-    const stepIndex = steps.indexOf(step);
-    if (stepIndex === index) {
+  function getClassName(currentStepIndex, stepIndex, stepItem) {
+    if (currentStepIndex + 1 < stepIndex) {
+      return styles.WizardTopNavigationStepUnreachable;
+    } else if (currentStepIndex === stepIndex) {
       return styles.WizardTopNavigationStepDoing;
-    } else if (stepIndex > index /* || stepItem.isDone */) {
+    } else if (currentStepIndex > stepIndex /* || stepItem.isDone */) {
       // stepItem.isDone = true;
       return styles.WizardTopNavigationStepDone;
     }
   }
 
-  function stepClick(stepItem, push) {
+  function stepClick(steps, currentStepIndex, clickedStepItem, push) {
     if (!enableNavigation) return;
+    const clickedStepIndex = steps.indexOf(clickedStepItem);
+    if (
+      currentStepIndex === clickedStepIndex ||
+      currentStepIndex + 1 < clickedStepIndex
+    )
+      return;
     function goToClickedStep() {
-      push(stepItem.id);
+      push(clickedStepItem.id);
     }
-    onStepClick(goToClickedStep);
+    onStepClick(goToClickedStep, currentStepIndex > clickedStepIndex);
   }
 
   return (
@@ -44,7 +51,7 @@ function WizardTopNavigation({
               <LeftArrowIcon
                 onClick={() => {
                   const previousStep = steps[currentStepIndex - 1];
-                  stepClick(previousStep, push);
+                  stepClick(steps, currentStepIndex, previousStep, push);
                 }}
                 className={styles.WizardTopNavigationBackButton}
               />
@@ -56,9 +63,11 @@ function WizardTopNavigation({
                     styles.WizardTopNavigationStep,
                     enableNavigation &&
                       styles.WizardTopNavigationStepEnabledNavigation,
-                    getClassName(steps, step, index, stepItem)
+                    getClassName(currentStepIndex, index, stepItem)
                   )}
-                  onClick={() => stepClick(stepItem, push)}
+                  onClick={() =>
+                    stepClick(steps, currentStepIndex, stepItem, push)
+                  }
                 />
               ))}
             </ul>

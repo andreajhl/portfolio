@@ -5,13 +5,17 @@ import SubmitButton from "../../common/button/submit-button";
 import styles from "./styles.module.scss";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import classes from "classnames";
-import { ContractDetailsType } from "desktop-app/types/contractDataType";
+import {
+  ContractDetailsType,
+  OccasionType
+} from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
 import {
   getTextContent,
   TextInputWithPlaceholders
 } from "desktop-app/components/common/form/text-input-with-placeholders";
 import { OccasionsGrid } from "desktop-app/components/celebrity-profile/occasions-grid";
+import objectHasProperties from "lib/utils/objectHasProperties";
 
 const initialValues: ContractDetailsType = {
   occasion: "OTHER",
@@ -54,11 +58,12 @@ function ContractDetailsForm({
     errors,
     setFieldValue,
     setFieldTouched,
+    getTouchedFieldValues,
     validateFields,
     setFieldError,
     validateBeforeSubmit
   } = useForm<ContractDetailsType>({
-    initialValues: initialValuesFromProps || initialValues,
+    initialValues: Object.assign(initialValues, initialValuesFromProps),
     validations,
     onSubmit
   });
@@ -79,7 +84,8 @@ function ContractDetailsForm({
       .replace(/PLACEHOLDER_PARA/g, deliveryTo || "[PARA]");
   }
 
-  function changeOccasion(occasionKey) {
+  function changeOccasion(occasionKey: OccasionType) {
+    if (!touched?.occasion) setFieldTouched("occasion", true);
     setFieldValue("occasion", occasionKey);
     if (touched.instructions) return;
     const text = replacePlaceHolder(
@@ -89,15 +95,22 @@ function ContractDetailsForm({
     setFieldValue("instructions", text, false);
   }
 
-  // console.log({ values });
-
   return (
     <section className={styles.VideoDetailsForm}>
       <WizardTopNavigation
         enableNavigation
-        onStepClick={(goToClickedStep) => {
-          if (!validateFields()) return;
-          onStepChange(values);
+        onStepClick={(goToClickedStep, isPreviousStep) => {
+          if (!isPreviousStep && !validateFields()) return;
+          const valuesToSave = isPreviousStep
+            ? getTouchedFieldValues()
+            : values;
+          if (!valuesToSave) return;
+
+          onStepChange(
+            (objectHasProperties(valuesToSave)
+              ? valuesToSave
+              : null) as ContractDetailsType
+          );
           goToClickedStep();
         }}
       />

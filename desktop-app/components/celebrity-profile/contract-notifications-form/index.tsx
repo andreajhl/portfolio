@@ -11,6 +11,7 @@ import { ContractNotificationsType } from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
+import objectHasProperties from "lib/utils/objectHasProperties";
 
 const initialValues: ContractNotificationsType = {
   deliveryContact: "",
@@ -51,9 +52,12 @@ function ContractNotificationsForm({
     onChangeField,
     setFieldValue,
     validateFields,
+    getTouchedFieldValues,
+    setFieldTouched,
+    onFocusField,
     validateBeforeSubmit
   } = useForm<ContractNotificationsType>({
-    initialValues: initialValuesFromProps || initialValues,
+    initialValues: Object.assign(initialValues, initialValuesFromProps),
     validations,
     onSubmit(data) {
       const values = { ...data };
@@ -68,7 +72,7 @@ function ContractNotificationsForm({
   const { user } = useAuth0();
 
   useEffect(() => {
-    if (initialValues.deliveryContact || !user) return;
+    if (values.deliveryContact || !user) return;
     setFieldValue("deliveryContact", user?.email);
   }, []);
 
@@ -76,9 +80,19 @@ function ContractNotificationsForm({
     <section className={styles.VideoNotificationForm}>
       <WizardTopNavigation
         enableNavigation
-        onStepClick={(goToClickedStep) => {
-          if (!validateFields()) return;
-          onStepChange(values);
+        onStepClick={(goToClickedStep, isPreviousStep) => {
+          if (!isPreviousStep && !validateFields()) return;
+          const valuesToSave = isPreviousStep
+            ? getTouchedFieldValues()
+            : values;
+          if (!valuesToSave) return;
+          console.log(valuesToSave);
+
+          onStepChange(
+            (objectHasProperties(valuesToSave)
+              ? valuesToSave
+              : null) as ContractNotificationsType
+          );
           goToClickedStep();
         }}
       />
@@ -97,6 +111,7 @@ function ContractNotificationsForm({
           id="deliveryContact"
           placeholder="usuario@dominio.com"
           value={values.deliveryContact}
+          onFocus={onFocusField}
           onChange={onChangeField}
           className={classes(
             styles.FormField,
@@ -136,6 +151,7 @@ function ContractNotificationsForm({
           searchPlaceholder="Buscar país"
           searchClass={styles.SearchClassPhoneInput}
           onChange={(value) => {
+            setFieldTouched("deliveryContactCellphone", true);
             setFieldValue("deliveryContactCellphone", value);
           }}
         />
@@ -151,6 +167,7 @@ function ContractNotificationsForm({
         className={styles.VideoNotificationFormRadio}
         onChange={({ target: { value } }: { target: any }) => {
           setFieldValue("isPublic", Boolean(value));
+          setFieldTouched("isPublic", true);
         }}
       >
         <span className={styles.VideoNotificationFormRadioText}>

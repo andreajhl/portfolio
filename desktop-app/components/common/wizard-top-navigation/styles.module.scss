@@ -25,6 +25,10 @@
     &Done {
       background-color: var(--gray-2);
     }
+
+    &Unreachable {
+      cursor: unset !important;
+    }
   }
   &StepEnabledNavigation {
     cursor: pointer;
