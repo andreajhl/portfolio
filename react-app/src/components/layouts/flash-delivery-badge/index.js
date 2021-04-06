@@ -16,12 +16,7 @@ const FlashDeliveryBadgeLayout = ({
     >
       {showTitle ? (
         <span className="FlashDeliveryLayout__title">
-          <FormattedMessage
-            defaultMessage="Entrega Flas"
-            description=""
-            id="react-app.src.components.layouts.flash-delivery-badge.index.1328933600"
-          />
-          h
+          <FormattedMessage defaultMessage="Entrega Flash" />
         </span>
       ) : null}
       {showTime ? (
