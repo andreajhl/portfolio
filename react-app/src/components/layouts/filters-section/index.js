@@ -36,17 +36,29 @@ const initialState = {
     limit: updateQueryParamsInitialState.limit
   }
 };
-const messageForLabelButton = defineMessage({
-  description: "Label button for search component",
+const messageForLabelButtonCategoryFilter = defineMessage({
+  description: "Label button for search CategoryFilter",
   defaultMessage: "Categoria"
 });
-const messageForModalTitle = defineMessage({
-  description: "ModalTitle for search component",
+const messageForModalTitleCategoryFilter = defineMessage({
+  description: "ModalTitle for search CategoryFilter",
   defaultMessage: "Filtrar por categoría"
 });
-const messageForSearchPlaceholder = defineMessage({
-  description: "Modal Title for search celebrity",
+const messageForSearchPlaceholderCategoryFilter = defineMessage({
+  description: "Modal Title for search CategoryFilter",
   defaultMessage: "Buscar categoría"
+});
+const messageForLabelButtonCategoryCountry = defineMessage({
+  description: "buttonLabel search by country",
+  defaultMessage: "País"
+});
+const messageForModalTitleCategoryCountry = defineMessage({
+  description: "ModalTitle for search CategoryFilter",
+  defaultMessage: "Filtrar por país"
+});
+const messageForSearchPlaceholderCategoryCountry = defineMessage({
+  description: "Modal Title for search CategoryFilter",
+  defaultMessage: "Buscar país"
 });
 
 const FiltersSectionLayout = ({
@@ -141,9 +153,15 @@ const FiltersSectionLayout = ({
           ) : null}
           <li className="filters-section__filters-item">
             <CelebritiesFilter
-              buttonLabel="País"
-              modalTitle="Filtrar por país"
-              searchPlaceholder="Buscar país"
+              buttonLabel={intl.formatMessage(
+                messageForLabelButtonCategoryCountry
+              )}
+              modalTitle={intl.formatMessage(
+                messageForModalTitleCategoryCountry
+              )}
+              searchPlaceholder={intl.formatMessage(
+                messageForSearchPlaceholderCategoryCountry
+              )}
               activeItems={activeCountryItems}
               onApplyFilters={setFilterParam("country_id")}
               options={countries.map((country) => ({
@@ -154,11 +172,14 @@ const FiltersSectionLayout = ({
           </li>
           <li className="filters-section__filters-item">
             <CelebritiesFilter
-              // TODO: REACT INTL formatting numbers
-              buttonLabel={intl.formatMessage(messageForLabelButton)}
-              modalTitle={intl.formatMessage(messageForModalTitle)}
+              buttonLabel={intl.formatMessage(
+                messageForLabelButtonCategoryFilter
+              )}
+              modalTitle={intl.formatMessage(
+                messageForModalTitleCategoryFilter
+              )}
               searchPlaceholder={intl.formatMessage(
-                messageForSearchPlaceholder
+                messageForSearchPlaceholderCategoryFilter
               )}
               activeItems={activeCategoryItems}
               onApplyFilters={setFilterParam("category_id")}

@@ -12,6 +12,7 @@ import LogoutButton from "../../containers/logout-button/logout-button";
 import Router from "next/router";
 import Maybe from "../../common/helpers/maybe";
 import { NavLink } from "../../common/routing";
+import { FormattedMessage } from "react-intl";
 
 class UserProfileDetailsCardLayout extends Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class UserProfileDetailsCardLayout extends Component {
               </Maybe>
               <LogoutButton className="d-inline">
                 <small className="text-muted cursor-pointer">
-                  Cerrar sesión
+                  <FormattedMessage defaultMessage="Cerrar sesión" />
                 </small>
               </LogoutButton>
             </div>
@@ -87,7 +88,9 @@ class UserProfileDetailsCardLayout extends Component {
             </div>
             <div className="col-6 text-center border-right p-2">
               <NavLink to={CLIENT_FAVORITES} className="text-decoration-none">
-                <h6 className="mt-2">Siguiendo</h6>
+                <h6 className="mt-2">
+                  <FormattedMessage defaultMessage="Siguiendo" />
+                </h6>
                 <h2 className="font-weight-bold mt-4">
                   {this.props.userCelebrityLikesCount}
                 </h2>
@@ -95,7 +98,9 @@ class UserProfileDetailsCardLayout extends Component {
             </div>
             <div className="col-6 text-center p-2 border-left">
               <NavLink to={CLIENT_HIRINGS} className="text-decoration-none">
-                <h6 className="mt-2">Contratos</h6>
+                <h6 className="mt-2">
+                  <FormattedMessage defaultMessage="Contratos" />
+                </h6>
                 <h2 className="font-weight-bold mt-4">
                   {this.props.session.totalContracts}
                 </h2>

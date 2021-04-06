@@ -8,6 +8,7 @@ import { ContractFavsLayout } from "../contract-favs";
 import { ReviewCreatorLayout } from "../review-creator";
 import { ContractCommentSectionLayout } from "../contract-comments-section";
 import Head from "next/head";
+import { FormattedMessage } from "react-intl";
 
 class HiringPreviewLayout extends Component {
   constructor(props) {
@@ -275,7 +276,9 @@ class HiringPreviewLayout extends Component {
                     </div>
                     <br />
                     <div className="mb-4">
-                      <h6 className="font-weight-bold">Compartir video en:</h6>
+                      <h6 className="font-weight-bold">
+                        <FormattedMessage defaultMessage="Compartir video en:" />
+                      </h6>
                       <ShareContractLayout contract={this.props.contract} />
                     </div>
                   </div>
