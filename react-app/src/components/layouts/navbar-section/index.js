@@ -11,6 +11,7 @@ import LoginButton from "../../containers/login-button/login-button";
 import Maybe from "../../common/helpers/maybe";
 import dynamic from "next/dynamic";
 import { useIntl, defineMessage } from "react-intl";
+import { Dropdown } from "../../common/button/dropdown";
 
 const BannerPromoLayout = dynamic(
   () => import("../banner-promo").then((mod) => mod.BannerPromoLayout),
