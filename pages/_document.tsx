@@ -45,6 +45,7 @@ class MyDocument extends Document {
           <meta property="og:video:type" content="video/mp4" />
           <meta property="og:video:width" content="400" />
           <meta property="og:video:height" content="400" />
+          <meta property="twitter:card" content="summary_large_image"/>
           <meta
             name="robots"
             content={isProdEnvironment ? "index" : "noindex"}

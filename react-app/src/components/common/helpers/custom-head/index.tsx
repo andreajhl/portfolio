@@ -14,7 +14,7 @@ const CustomHead = ({
   title = "Famosos.com - Videos personalizados de tus famosos favoritos.",
   description = "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
   ogUrl = "https://www.famosos.com",
-  ogImage = "/assets/img/famosos-share-img.jpg",
+  ogImage = "https://www.famosos.com/assets/img/famosos-share-img.jpg", // la url relativa no funciona para Twitter TODO: implementar una mejor solucion
   ogVideo = "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5",
   children
 }: CustomHeadProps) => {
@@ -34,6 +34,12 @@ const CustomHead = ({
       <meta property="og:video" content={ogVideo} />
       <meta property="og:video:url" content={ogVideo} />
       <meta property="og:video:secure_url" content={ogVideo} />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content={ogUrl} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImage} />
       {children}
     </Head>
   );
