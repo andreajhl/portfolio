@@ -1,0 +1,33 @@
+.ProgressCircle {
+  transform: rotate(180deg);
+  &LoadedPortion {
+    stroke-dasharray: 728.849495632832 728.849495632832;
+    transition: all 2s;
+    stroke-dashoffset: 175;
+    animation: loading 3s ease;
+    transform-origin: center;
+    transform: rotateZ(270deg);
+  }
+
+  @keyframes loading {
+    0% {
+      stroke-dashoffset: 728.849495632832;
+    }
+    100% {
+      stroke-dashoffset: 175;
+    }
+  }
+
+  &Done {
+    stroke-dashoffset: 0;
+    animation: doneAnimation 1s ease;
+  }
+  @keyframes doneAnimation {
+    0% {
+      stroke-dashoffset: 175;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+}

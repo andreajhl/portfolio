@@ -8,6 +8,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ReactNode, useState } from "react";
 import OverlayHeader from "desktop-app/components/common/cards/video/overlay-header";
 import { usePreloadVideo } from "../../../../lib/hooks/usePreloadVideo";
+import { ProgressCircle } from "desktop-app/components/progress-circle";
 
 const AnimatedPopup = dynamic<{
   trigger?: JSX.Element | ((isOpen: boolean) => JSX.Element);
@@ -15,6 +16,7 @@ const AnimatedPopup = dynamic<{
   modal?: boolean;
   onOpen?: () => any;
   onClose?: () => any;
+  disabled: boolean;
 }>(() =>
   import("desktop-app/components/common/animated-popup").then(
     (mod) => mod.AnimatedPopup
@@ -49,20 +51,27 @@ function CelebrityMainVideoWidget({
   const toggleVideoIsMuted = () => {
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
-  const isReady = usePreloadVideo(celebrity.mainVideo);
+  const [animationIsFinished, setAnimationIsFinished] = useState(false);
 
+  const mainVideoIsReady = usePreloadVideo(celebrity.mainVideo);
   const hasMainVideo = Boolean(celebrity.mainVideo);
 
   const celebrityAvatar = (
     <div
       className={classes(
         styles.CelebrityMainVideoWidget,
-        isReady && styles.CelebrityMainVideoWidgetIsReady,
+        mainVideoIsReady && styles.CelebrityMainVideoWidgetIsReady,
         !hasMainVideo && styles.CelebrityMainVideoWidgetNoVideo,
         className
       )}
-      style={{ width: avatarProps.width, height: avatarProps.height }}
+      style={{ width: avatarProps.width + 24, height: avatarProps.height + 24 }}
     >
+      <Maybe it={hasMainVideo}>
+        <ProgressCircle
+          isDone={mainVideoIsReady}
+          onAnimationFinish={() => setAnimationIsFinished(true)}
+        />
+      </Maybe>
       <OptimizedImage
         placeholderSrc="/assets/img/avatar-blank.png"
         src={celebrity.avatar}
@@ -70,13 +79,17 @@ function CelebrityMainVideoWidget({
           styles.CelebrityMainVideoWidgetAvatar,
           avatarClassName
         )}
-        width={avatarProps.width - 8}
-        height={avatarProps.height - 8}
+        width={avatarProps.width}
+        height={avatarProps.height}
       />
-      <Maybe it={hasMainVideo && isReady}>
+      <Maybe it={hasMainVideo}>
         <button
           type="button"
-          className={"btn " + styles.CelebrityMainVideoWidgetButton}
+          className={classes(
+            "btn",
+            styles.CelebrityMainVideoWidgetButton,
+            animationIsFinished && styles.CelebrityMainVideoWidgetButtonShow
+          )}
         >
           <i className="fa fa-play text-primary" />
         </button>
@@ -85,8 +98,9 @@ function CelebrityMainVideoWidget({
   );
 
   return (
-    <Maybe it={hasMainVideo && isReady} orElse={celebrityAvatar}>
+    <Maybe it={hasMainVideo} orElse={celebrityAvatar}>
       <AnimatedPopup
+        disabled={!mainVideoIsReady}
         trigger={celebrityAvatar}
         onOpen={playVideo}
         onClose={pauseVideo}
