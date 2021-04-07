@@ -40,8 +40,9 @@ function Reel({
 
   const scrollTo = (direction: "right" | "left") => () => {
     const listElement = listRef.current;
-    const offsetWidth = listElement.offsetWidth + scrollByOffset;
-
+    const offsetWidth =
+      (itemSize + scrollByOffset) *
+      Math.floor(itemCount / 3); /* listElement.offsetWidth + scrollByOffset */
     listElement.scrollBy({
       left: direction === "right" ? offsetWidth : offsetWidth * -1,
       behavior: "smooth"
