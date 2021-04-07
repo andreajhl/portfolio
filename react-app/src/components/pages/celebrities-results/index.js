@@ -10,22 +10,25 @@ import * as GTM from "../../../state/utils/gtm";
 import { CelebritiesAdditionalResultsLayout } from "../../layouts/celebrities-additional-results";
 import pickPropertiesFromAObject from "../../../utils/pickPropertiesFromAObject";
 import { withRouter } from "react-app/src/components/common/routing";
+import { cursorOperations } from "../../../state/ducks/cursor-position";
 
 function noop() {}
-
-const mapStateToProps = ({ celebrities }) => {
+const PATH_KEY = "CelebritiesResultPage";
+const mapStateToProps = ({ celebrities, cursor }) => {
   return {
     isLoading: celebrities.fetchCelebritiesReducer.loading,
     isCompleted: celebrities.fetchCelebritiesReducer.completed,
     requestCancel: celebrities.fetchCelebritiesReducer.requestCancel || noop,
     celebrities: celebrities.fetchCelebritiesReducer.data.results,
     totalResults: celebrities.fetchCelebritiesReducer.data.totalResults,
-    previousPath: celebrities.previousPathReducer.pathname
+    previousPath: celebrities.previousPathReducer.pathname,
+    cursor: cursor.positionReducer.data
   };
 };
 
 const mapDispatchToProps = {
-  fetchCelebrities: celebrityOperations.list
+  fetchCelebrities: celebrityOperations.list,
+  saveCursor: cursorOperations.saveCursorPosition
 };
 
 const listParamsInitialKeys = ["offset", "limit"];
@@ -55,7 +58,9 @@ const CelebritiesResultsPage = ({
   requestCancel,
   isCompleted,
   location,
-  history
+  cursor,
+  history,
+  saveCursor
 }) => {
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
   const listParams = useMemo(
@@ -66,6 +71,19 @@ const CelebritiesResultsPage = ({
       ),
     [location.search]
   );
+  useEffect(() => {
+    if (hasSearched) {
+      if (cursor.view === PATH_KEY) {
+        window.scrollTo(0, cursor.position);
+      }
+    }
+    return () => {
+      saveCursor({
+        view: PATH_KEY,
+        position: window.scrollY
+      });
+    };
+  }, []);
 
   useEffect(() => requestCancel, [requestCancel]);
 
