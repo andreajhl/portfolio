@@ -1,53 +1,49 @@
 import { AnimatedPopup } from "desktop-app/components/common/animated-popup";
-import React, { useState } from "react";
-import { REVIEWS } from "react-app/src/state/ducks/celebrities/paths";
-import apiService from "react-app/src/state/utils/apiService";
+import React from "react";
+import { listReviews } from "react-app/src/state/ducks/celebrities/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 import CardReview from "../../../components/common/cards/review";
 import styles from "./styles.module.scss";
-// mapStateToProps
+
 const mapStateToProps = ({ celebrities }) => ({
+  celebrityId: celebrities.getCelebrityReducer.data.id,
   isLoading: celebrities.fetchReviewsReducer.loading,
   reviews: celebrities.fetchReviewsReducer.data.results,
-  paginationData: celebrities.fetchReviewsReducer.data.informationPage
+  informationPage: celebrities.fetchReviewsReducer.data.informationPage
 });
 
+const mapDispatchToProps = {
+  listReviews
+};
+
 type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = typeof mapDispatchToProps;
 
 type LastReviewsModalProps = {
   children: {
     triggerElement: JSX.Element;
   };
-} & StateProps;
+} & StateProps &
+  DispatchProps;
 
 const LastReviewsModal = ({
   children,
+  listReviews,
   reviews,
-  paginationData
+  celebrityId,
+  informationPage
 }: LastReviewsModalProps) => {
-  const [dataReviews, setDataReviews] = useState(reviews);
-  const [informationPage, setInformationPage] = useState(paginationData);
-  const FINAL_PATH = REVIEWS + 609;
-  const [error, setError] = useState(null);
-  const fetchMoreData = async () => {
-    try {
-      const response: any = await apiService({
-        method: "GET",
-        path: FINAL_PATH,
-        params: {
-          currentPage: informationPage.currentPage + 1,
-          pageSize: informationPage.pageSize
-        }
-      });
-      console.log(response);
-      if (response.data.status === "ERROR") throw response.data;
-      setDataReviews((state) => [...state, ...response.data.results]);
-      setInformationPage(response.data.informationPage);
-    } catch (error) {
-      setError(error);
-    }
-  };
+  function fetchMoreData() {
+    listReviews(
+      celebrityId,
+      {
+        ...informationPage,
+        currentPage: informationPage.currentPage + 1
+      },
+      true
+    );
+  }
 
   return (
     <AnimatedPopup trigger={children.triggerElement} modal>
@@ -57,16 +53,16 @@ const LastReviewsModal = ({
         </div>
         <InfiniteScroll
           height={"75vh"}
-          dataLength={dataReviews.length}
+          dataLength={reviews.length}
           next={fetchMoreData}
           hasMore={
             informationPage.currentPage * informationPage.pageSize <=
-            dataReviews.length
+            reviews.length
           }
           // TODO: add loading banner
           loader={<h4>Loading...</h4>}
         >
-          {dataReviews.map((review) => (
+          {reviews.map((review) => (
             <div className={styles.ReviewItem}>
               <hr></hr>
               <CardReview
@@ -84,6 +80,9 @@ const LastReviewsModal = ({
   );
 };
 
-const _LastReviewsModal = connect(mapStateToProps)(LastReviewsModal);
+const _LastReviewsModal = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LastReviewsModal);
 
 export { _LastReviewsModal as LastReviewsModal };

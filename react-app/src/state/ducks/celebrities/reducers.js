@@ -238,14 +238,18 @@ export function fetchReviewsReducer(state = fetchReviewsInitialState, action) {
         failed: true
       };
     case types.FETCH_REVIEWS_REQUEST_SUCCESS:
+      const results = [];
+      if (action.payload.mergeResults) {
+        results.push(...state.data.results);
+      }
+      results.push(...action.payload.data.results);
       return {
         ...fetchReviewsInitialState,
-        data: action.payload.data
+        data: { ...action.payload.data, results }
       };
     case types.FETCH_REVIEWS_REQUEST_COMPLETED:
       return {
         ...state,
-        data: action.payload.data,
         completed: true
       };
     default:

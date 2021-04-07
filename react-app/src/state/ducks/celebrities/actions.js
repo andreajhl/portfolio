@@ -179,7 +179,11 @@ export const listSimilar = (params) => {
   };
 };
 
-export const listReviews = (celebrity_id, params = {}) => {
+export const listReviews = (
+  celebrity_id,
+  params = {},
+  mergeResults = false
+) => {
   if (params["pageSize"] === undefined) params["pageSize"] = 6;
   return (dispatch) => {
     const TYPE = types.FETCH_REVIEWS_REQUEST;
@@ -195,10 +199,11 @@ export const listReviews = (celebrity_id, params = {}) => {
     })
       .then((res) => {
         if (res.data.status === "OK") {
-          handleApiResponseSuccess(dispatch, TYPE, res);
+          const payload = { data: res.data, mergeResults };
+          handleApiResponseSuccess(dispatch, TYPE, payload);
           // Other actions
 
-          dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+          dispatch({ type: `${TYPE}_COMPLETED`, payload });
         } else {
           handleApiResponseFailure(dispatch, TYPE, res);
           // Other actions
