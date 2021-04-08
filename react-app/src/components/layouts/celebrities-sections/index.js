@@ -76,7 +76,7 @@ const CelebritiesSectionsLayout = ({
           dataLength={celebritiesSections.length}
           next={fetchMoreData}
           hasMore={celebritiesSections.length < totalResults}
-          scrollThreshold="0.6"
+          scrollThreshold="60%"
           loader={<LoaderLayout />}
           endMessage={
             <EndMessageLayout
