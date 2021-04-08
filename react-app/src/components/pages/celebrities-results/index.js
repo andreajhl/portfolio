@@ -21,6 +21,7 @@ const mapStateToProps = ({ celebrities, cursor }) => {
     requestCancel: celebrities.fetchCelebritiesReducer.requestCancel || noop,
     celebrities: celebrities.fetchCelebritiesReducer.data.results,
     totalResults: celebrities.fetchCelebritiesReducer.data.totalResults,
+    queryParamsStore: celebrities.saveLastQueryParamsReducer,
     previousPath: celebrities.previousPathReducer.pathname,
     cursor: cursor.positionReducer.data
   };
@@ -28,6 +29,7 @@ const mapStateToProps = ({ celebrities, cursor }) => {
 
 const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list,
+  saveQueryParams: celebrityOperations.saveLastQueryParams,
   saveCursor: cursorOperations.saveCursorPosition
 };
 
@@ -60,7 +62,9 @@ const CelebritiesResultsPage = ({
   location,
   cursor,
   history,
-  saveCursor
+  saveCursor,
+  saveQueryParams,
+  queryParamsStore
 }) => {
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
   const listParams = useMemo(
@@ -71,10 +75,12 @@ const CelebritiesResultsPage = ({
       ),
     [location.search]
   );
+  console.log(queryParamsStore, "queryParamsStore");
+  console.log(listParams);
   useEffect(() => {
     if (hasSearched) {
       if (cursor.view === PATH_KEY) {
-        window.scrollTo(0, cursor.position);
+        window.scrollTo({ top: cursor.position, behavior: "smooth" });
       }
     }
     return () => {
@@ -91,8 +97,16 @@ const CelebritiesResultsPage = ({
     if (Object.keys(listParams).length === 0 || !hasSearched(listParams)) {
       history.push(previousPath);
     } else {
-      fetchCelebrities(listParams);
-      setOffset(updateQueryParamsInitialState.offset);
+      if (queryParamsStore.search !== listParams?.search) {
+        fetchCelebrities(listParams);
+        setOffset(updateQueryParamsInitialState.offset);
+      } else {
+        setOffset(
+          queryParamsStore?.offset
+            ? queryParamsStore?.offset
+            : updateQueryParamsInitialState.offset
+        );
+      }
     }
   }, [fetchCelebrities, listParams, previousPath]);
 
@@ -101,6 +115,7 @@ const CelebritiesResultsPage = ({
     const nextOffset = offset ? offset + limit : limit;
     const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
     setOffset(newOffset);
+    saveQueryParams({ offset: newOffset, search: listParams?.search });
     fetchCelebrities({
       ...listParams,
       offset: newOffset
