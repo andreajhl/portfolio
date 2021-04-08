@@ -10,6 +10,7 @@ import { occasionsData } from "../../../constants/options";
 import { getToken } from "react-app/src/state/ducks/session/actions";
 import "react-phone-input-2/lib/style.css";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
+import isMobilePhone from "react-app/src/state/utils/isMobilePhone";
 
 class CreateContractForm extends Component {
   constructor(props) {
@@ -97,7 +98,8 @@ class CreateContractForm extends Component {
       this.deliveryFromValidator(true) ||
       this.deliveryToValidator(true) ||
       this.instructionsValidator() ||
-      this.deliveryContactValidator()
+      this.deliveryContactValidator() ||
+      this.deliveryContactCellphoneValidator()
     ) {
       this.setState({
         ...this.state,
@@ -296,6 +298,17 @@ class CreateContractForm extends Component {
       )
     ) {
       return "Este correo no es válido";
+    }
+    return null;
+  };
+
+  deliveryContactCellphoneValidator = () => {
+    if (
+      !isMobilePhone(
+        String(`${this.state.contractData.deliveryContactCellphone}`)
+      )
+    ) {
+      return "Ingrese un numero telefónico valido";
     }
     return null;
   };
@@ -526,10 +539,18 @@ class CreateContractForm extends Component {
               className="form-control mb-3"
               containerClass="mb-3"
               country={"co"}
-              onChange={(cellphoneNumber) => {
+              onChange={(cellphoneNumber, data) => {
                 this.onCellphoneChange(cellphoneNumber);
               }}
             />
+            <span
+              className={
+                "text-danger" +
+                (this.state.showErrors ? " show-error " : " hide-error ")
+              }
+            >
+              {this.deliveryContactCellphoneValidator()}
+            </span>
           </div>
           <div className={"mt-3"}>{""}</div>
           <Form.Check
