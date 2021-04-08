@@ -71,6 +71,9 @@ const phones = {
   "es-PY": /^(\+?595|0)9[9876]\d{7}$/,
   "es-UY": /^(\+598|0)9[1-9][\d]{6}$/,
   "es-VE": /^(?:(?:00|\+)58|0)(?:2(?:12|4[0-9]|5[1-9]|6[0-9]|7[0-8]|8[1-35-8]|9[1-5]|3[45789])|4(?:1[246]|2[46]))\d{7}$/,
+  "es-NI": /^(\+?505)(\d{8})$/,
+  "es-GT": /^(\+?502)(\d{8})$/,
+  "es-SV": /^(\+?503)(\d{7,8})$/,
   "et-EE": /^(\+?372)?\s?(5|8[1-4])\s?([0-9]\s?){6,7}$/,
   "fa-IR": /^(\+?98[\-\s]?|0)9[0-39]\d[\-\s]?\d{3}[\-\s]?\d{4}$/,
   "fi-FI": /^(\+?358|0)\s?(4(0|1|2|4|5|6)?|50)\s?(\d\s?){4,8}\d$/,
@@ -146,11 +149,12 @@ phones["uy"] = phones["es-UY"];
 phones["us"] = phones["en-US"];
 phones["gb"] = phones["en-GB"];
 phones["ve"] = phones["es-VE"];
-// TODO: agregar regex para los siguientes country:
-// phones["sv"] = phones["es-SV"];
-// phones["gt"] = phones["es-GT"];
-// phones["ht"] = phones["ht-HT"];
-// phones["ni"] = phones["es-NI"];
+phones["au"] = phones["en-AU"];
+phones["ie"] = phones["en-IE"];
+phones["in"] = phones["en-IN"];
+phones["ni"] = phones["es-NI"];
+phones["gt"] = phones["es-GT"];
+phones["sv"] = phones["es-SV"];
 
 export default function isMobilePhone(str, locale, options) {
   assertString(str);
