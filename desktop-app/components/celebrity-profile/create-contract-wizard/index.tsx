@@ -4,7 +4,7 @@ import { Wizard, Steps as StepsList, Step } from "react-albus";
 import styles from "./styles.module.scss";
 import { ContractDetailsForm } from "../contract-details-form";
 import ContractDeliveryForm from "desktop-app/components/celebrity-profile/contract-delivery-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ContractNotificationsForm from "desktop-app/components/celebrity-profile/contract-notifications-form";
 import { saveClientContract } from "react-app/src/state/ducks/contracts/actions";
 import ContractDataType, {
@@ -12,6 +12,7 @@ import ContractDataType, {
   ContractDetailsType,
   ContractNotificationsType
 } from "desktop-app/types/contractDataType";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const mapStateToProps = ({ contracts }) => ({
   isLoading: contracts.saveClientContractReducer.loading
@@ -35,6 +36,8 @@ function CreateContractWizard({
   isLoading,
   saveClientContract
 }: CreateContractWizardProps) {
+  const { loginWithPopup, isAuthenticated } = useAuth0();
+  const [onLoggingCallback, setOnLoggingCallback] = useState(() => () => {});
   const [deliveryData, setDeliveryData] = useState<ContractDeliveryType | null>(
     null
   );
@@ -52,6 +55,11 @@ function CreateContractWizard({
     celebrity.contractTypes
   );
 
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    onLoggingCallback?.();
+  }, [isAuthenticated, onLoggingCallback]);
+
   return (
     <div className={styles.CreateContractWizard}>
       <Wizard>
@@ -66,9 +74,17 @@ function CreateContractWizard({
                 showBusinessPrice
                 initialValues={deliveryData}
                 onStepChange={setDeliveryData}
-                onSubmit={(data) => {
-                  setDeliveryData(data);
-                  next();
+                onSubmit={async (data) => {
+                  function continueToNextStep() {
+                    setDeliveryData(data);
+                    next();
+                  }
+                  if (!isAuthenticated) {
+                    setOnLoggingCallback(() => continueToNextStep);
+                    loginWithPopup();
+                  } else {
+                    continueToNextStep();
+                  }
                 }}
               />
             )}
