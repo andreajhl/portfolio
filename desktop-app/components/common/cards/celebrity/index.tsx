@@ -3,6 +3,10 @@ import {
   getSearchCategoryPath
 } from "constants/paths";
 import { CountryFlag } from "desktop-app/components/common/country-flag";
+import {
+  TextWithOverflow,
+  parentElementClass
+} from "desktop-app/components/text-with-overflow";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { LikeButton } from "../../button/like";
 import { FlashDeliveryBadgeLayout } from "../../flash-delivery-badge";
@@ -19,6 +23,37 @@ type CelebrityCardProps = {
   showPrice?: boolean;
 };
 
+// function TextWithOverflow({
+//   celebrityFullName
+// }: {
+//   celebrityFullName: string;
+// }) {
+//   const spanRef = useRef<HTMLSpanElement>(null);
+//   const [hiddenPortionWidthInPx, setHiddenPortionWidthInPx] = useState(
+//     (celebrityFullName.length - 18) * 8
+//   );
+
+//   useEffect(() => {
+//     if (!spanRef.current) return;
+//     setHiddenPortionWidthInPx(
+//       spanRef.current?.scrollWidth - spanRef.current?.offsetWidth + 1 // to give a little of space to garante that nothing is hidden
+//     );
+//   }, []);
+
+//   return (
+//     <div className={styles.CelebrityCardFullName}>
+//       <span
+//         ref={spanRef}
+//         style={{
+//           transform: `translateX(-${hiddenPortionWidthInPx}px)`
+//         }}
+//       >
+//         {celebrityFullName}
+//       </span>
+//     </div>
+//   );
+// }
+
 function CelebrityCard({
   celebrity,
   thumbnailWidth = 170,
@@ -28,7 +63,7 @@ function CelebrityCard({
   return (
     <Link
       href={getCelebrityProfilePath(celebrity.username)}
-      className={styles.CelebrityCard}
+      className={`${styles.CelebrityCard} ${parentElementClass}`}
     >
       <div className={styles.CelebrityCardThumbnail}>
         <OptimizedImage
@@ -60,7 +95,10 @@ function CelebrityCard({
             alpha2Code={celebrity.alpha2Code}
             className="mr-2"
           />
-          <span className="text-with-ellipsis">{celebrity.fullName}</span>
+          <TextWithOverflow
+            textClassName={styles.CelebrityCardFullName}
+            text={celebrity.fullName}
+          />
         </h4>
         <Maybe it={Array.isArray(celebrity.hashtags)}>
           <p className={styles.CelebrityCardHashtags}>

@@ -62,12 +62,12 @@
     display: flex;
     align-items: center;
     margin-bottom: 4px;
+  }
 
-    span {
-      font-size: 16px;
-      font-weight: 800;
-      line-height: 22px;
-    }
+  &FullName {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 22px;
   }
 
   &Hashtags {
