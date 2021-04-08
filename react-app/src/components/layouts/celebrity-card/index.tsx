@@ -10,8 +10,8 @@ import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
 import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { celebrityType } from "../../../types/celebrityType";
-import OptimizedImage from "../../common/helpers/optimized-image";
 import Maybe from "../../common/helpers/maybe";
+import LazyLoadingImage from "../../common/lazy-loading-image";
 
 export interface CelebrityCardLayoutI {
   celebrity: celebrityType;
@@ -62,7 +62,7 @@ const CelebrityCardLayout = ({
     >
       <div className="celebrity-card">
         <div className="thumbnail">
-          <OptimizedImage
+          <LazyLoadingImage
             alt="avatar"
             className="celebrity__profile-photo"
             src={celebrity.avatar}
