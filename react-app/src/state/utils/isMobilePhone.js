@@ -1,5 +1,7 @@
 import assertString from "./assertString";
 
+// reference
+// http://www.sean-crist.com/professional/pages/language_region_codes/index.html
 /* eslint-disable max-len */
 const phones = {
   "am-AM": /^(\+?374|0)((10|[9|7][0-9])\d{6}$|[2-4]\d{7}$)/,
@@ -126,6 +128,29 @@ phones["zh-MO"] = phones["en-MO"];
 phones["ga-IE"] = phones["en-IE"];
 phones["fr-CH"] = phones["de-CH"];
 phones["it-CH"] = phones["fr-CH"];
+
+// aliases for iso2 format
+phones["ar"] = phones["es-AR"];
+phones["bo"] = phones["es-BO"];
+phones["br"] = phones["pt-BR"];
+phones["cl"] = phones["es-CL"];
+phones["co"] = phones["es-CO"];
+phones["cr"] = phones["es-CR"];
+phones["ec"] = phones["es-EC"];
+phones["hn"] = phones["es-HN"];
+phones["mx"] = phones["es-MX"];
+phones["pa"] = phones["es-PA"];
+phones["py"] = phones["es-PY"];
+phones["pe"] = phones["es-PE"];
+phones["uy"] = phones["es-UY"];
+phones["us"] = phones["en-US"];
+phones["gb"] = phones["en-GB"];
+phones["ve"] = phones["es-VE"];
+// TODO: agregar regex para los siguientes country:
+// phones["sv"] = phones["es-SV"];
+// phones["gt"] = phones["es-GT"];
+// phones["ht"] = phones["ht-HT"];
+// phones["ni"] = phones["es-NI"];
 
 export default function isMobilePhone(str, locale, options) {
   assertString(str);
