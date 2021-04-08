@@ -155,6 +155,7 @@ phones["in"] = phones["en-IN"];
 phones["ni"] = phones["es-NI"];
 phones["gt"] = phones["es-GT"];
 phones["sv"] = phones["es-SV"];
+phones["fr"] = phones["fr-fr"];
 
 export default function isMobilePhone(str, locale, options) {
   assertString(str);

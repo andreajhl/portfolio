@@ -547,7 +547,6 @@ class CreateContractForm extends Component {
               containerClass="mb-3"
               country={this.state.deliveryContactCellphoneCountryCode}
               onChange={(cellphoneNumber, data) => {
-                console.log(data.countryCode);
                 this.onCellphoneChange(cellphoneNumber, data.countryCode);
               }}
             />
