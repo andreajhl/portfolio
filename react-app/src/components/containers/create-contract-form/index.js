@@ -305,18 +305,19 @@ class CreateContractForm extends Component {
   };
 
   deliveryContactCellphoneValidator = () => {
-    if (
-      !isMobilePhone(
-        String(`+${this.state.contractData.deliveryContactCellphone}`),
-        this.state.deliveryContactCellphoneCountryCode,
-        {
-          strictMode: "true"
-        }
-      )
-    ) {
-      return "Ingrese un numero telefónico valido";
+    try {
+      if (
+        !isMobilePhone(
+          String(`+${this.state.contractData.deliveryContactCellphone}`),
+          this.state.deliveryContactCellphoneCountryCode
+        )
+      ) {
+        return "Ingrese un numero telefónico valido";
+      }
+      return null;
+    } catch (error) {
+      return null;
     }
-    return null;
   };
 
   getInstructions(occasionIdentifier) {
@@ -546,6 +547,7 @@ class CreateContractForm extends Component {
               containerClass="mb-3"
               country={this.state.deliveryContactCellphoneCountryCode}
               onChange={(cellphoneNumber, data) => {
+                console.log(data.countryCode);
                 this.onCellphoneChange(cellphoneNumber, data.countryCode);
               }}
             />
