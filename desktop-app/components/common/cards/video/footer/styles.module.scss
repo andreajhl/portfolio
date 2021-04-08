@@ -1,21 +1,19 @@
 .CelebrityInfo {
   display: flex;
   align-items: center;
+  text-decoration: none !important;
 }
 .CelebrityAvatar {
   height: 42px;
   border-radius: 50%;
+  margin-right: 10px;
 }
 
 .CelebrityName {
-  margin-left: 10px;
-  a {
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 30px;
-    letter-spacing: 0em;
-    text-decoration: none;
-    color: black;
-  }
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-decoration: none;
+  color: black;
 }

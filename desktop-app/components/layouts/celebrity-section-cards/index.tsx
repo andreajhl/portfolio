@@ -32,10 +32,10 @@ const celebrityTypeReelProps: {
   },
   MAIN_VIDEO_1: {
     itemWidth: 263,
-    itemHeight: 400,
+    itemHeight: 402,
     buttonsStyle: {
       size: 49,
-      top: 175,
+      top: 171,
       transform: "translateY(-50%)"
     },
     gap: 26.75,

@@ -12,7 +12,7 @@ type LinkProps = {
 const Link = ({
   children = null,
   className = null,
-  title = "",
+  title,
   style = {},
   ...nextLinkProps
 }: LinkProps) => (

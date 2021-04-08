@@ -18,8 +18,8 @@
 
   &:hover {
     .TextWithOverflow span {
-      transition: transform 2s ease;
-      animation: showRestOfText 2s 2s ease-in-out infinite alternate;
+      transition: transform 2.5s ease;
+      animation: showRestOfText 2.5s 2.5s ease-in-out infinite alternate;
     }
 
     @keyframes showRestOfText {

@@ -1,7 +1,11 @@
 import React from "react";
-import { CELEBRITY_PROFILE } from "constants/paths";
+import { getCelebrityProfilePath } from "constants/paths";
 import { Link } from "desktop-app/components/common/routing/link";
 import styles from "./styles.module.scss";
+import {
+  TextWithOverflow,
+  parentElementClass
+} from "desktop-app/components/text-with-overflow";
 type FooterProps = {
   avatarURL: string;
   fullName: string;
@@ -9,18 +13,14 @@ type FooterProps = {
 };
 const VideoFooter = ({ avatarURL, fullName, userName }: FooterProps) => {
   return (
-    <div className={styles.CelebrityInfo}>
-      <img
-        className={styles.CelebrityAvatar}
-        src={avatarURL}
-        alt="Avatar de Famoso"
-      ></img>
-      <span className={`${styles.CelebrityName} text-with-ellipsis`}>
-        <Link href={CELEBRITY_PROFILE.replace(":celebrity_username", userName)}>
-          {fullName}
-        </Link>
-      </span>
-    </div>
+    <Link
+      title={`Ir al perfil de ${fullName}`}
+      className={`${styles.CelebrityInfo} ${parentElementClass}`}
+      href={getCelebrityProfilePath(userName)}
+    >
+      <img className={styles.CelebrityAvatar} src={avatarURL} alt={fullName} />
+      <TextWithOverflow text={fullName} textClassName={styles.CelebrityName} />
+    </Link>
   );
 };
 

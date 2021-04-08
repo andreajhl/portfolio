@@ -53,10 +53,10 @@ function CelebritySimilarVideosReel({
         itemData={similarVideos}
         itemCount={similarVideos?.length}
         itemWidth={263}
-        itemHeight={400}
+        itemHeight={402}
         buttonsStyle={{
           size: 49,
-          top: 175,
+          top: 176,
           transform: "translateY(-50%)"
         }}
         gap={26.75}
