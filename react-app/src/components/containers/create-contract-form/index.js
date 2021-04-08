@@ -28,7 +28,8 @@ class CreateContractForm extends Component {
         isPublic: true,
         occasion: "OTHER",
         deliveryContactCellphone: ""
-      }
+      },
+      deliveryContactCellphoneCountryCode: "co"
     };
     this.handleIsPublic = this.handleIsPublic.bind(this);
     this.createContract = this.createContract.bind(this);
@@ -152,13 +153,14 @@ class CreateContractForm extends Component {
     }
   }
 
-  onCellphoneChange = (cellphoneNumber) => {
+  onCellphoneChange = (cellphoneNumber, countryCode) => {
     this.setState((state) => ({
       ...state,
       contractData: {
         ...state.contractData,
         deliveryContactCellphone: cellphoneNumber
-      }
+      },
+      deliveryContactCellphoneCountryCode: countryCode
     }));
   };
 
@@ -305,7 +307,11 @@ class CreateContractForm extends Component {
   deliveryContactCellphoneValidator = () => {
     if (
       !isMobilePhone(
-        String(`${this.state.contractData.deliveryContactCellphone}`)
+        String(`+${this.state.contractData.deliveryContactCellphone}`),
+        this.state.deliveryContactCellphoneCountryCode,
+        {
+          strictMode: "true"
+        }
       )
     ) {
       return "Ingrese un numero telefónico valido";
@@ -538,9 +544,9 @@ class CreateContractForm extends Component {
               value={this.state.contractData.deliveryContactCellphone}
               className="form-control mb-3"
               containerClass="mb-3"
-              country={"co"}
+              country={this.state.deliveryContactCellphoneCountryCode}
               onChange={(cellphoneNumber, data) => {
-                this.onCellphoneChange(cellphoneNumber);
+                this.onCellphoneChange(cellphoneNumber, data.countryCode);
               }}
             />
             <span
