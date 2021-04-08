@@ -22,7 +22,7 @@ const mapStateToProps = ({ celebritySections }) => {
 const mapDispatchToProps = { fetchCelebritySections };
 
 const offsetInitialValue = 0;
-const resultsLimit = 4;
+const resultsLimit = 10;
 const heroSectionHeight = 184;
 
 const CelebritiesSectionsLayout = ({
