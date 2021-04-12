@@ -247,6 +247,12 @@
       "value": "Por favor imprima una copia de estos Términos para usted los registros y consulte el sitio con frecuencia para cualquier cambio a estos Términos."
     }
   ],
+  "4aS11Q": [
+    {
+      "type": 0,
+      "value": "Aplicar"
+    }
+  ],
   "4rhIbe": [
     {
       "type": 0,
@@ -415,6 +421,12 @@
       "value": "EN LA MEDIDA MÁXIMA PERMITIDA POR LA LEY, NUESTRA responsabilidad total acumulada ante usted o cualquier tercero bajo estos términos, DE TODAS LAS CAUSAS DE ACCIÓN Y TODAS LAS TEORÍAS DE RESPONSABILIDAD, SERÁ LIMITADO A, y no excederá los honorarios que en realidad han pagado US DURANTE los doce (12) meses anteriores a la que da lugar a dicha responsabilidad."
     }
   ],
+  "9mcAHp": [
+    {
+      "type": 0,
+      "value": "CUPÓN AGREGADO"
+    }
+  ],
   "9p5jZI": [
     {
       "type": 0,
@@ -515,6 +527,12 @@
     {
       "type": 0,
       "value": "¿Qué pasa si no me gusta mi video?"
+    }
+  ],
+  "Bo4qJd": [
+    {
+      "type": 0,
+      "value": "CUPÓN NO VALIDO:"
     }
   ],
   "BqJL4O": [
@@ -1031,6 +1049,12 @@
       "value": "Tu solicitud será completada en menos 7 días"
     }
   ],
+  "P9xOfc": [
+    {
+      "type": 0,
+      "value": "Ingrese el código aquí"
+    }
+  ],
   "PsZKr3": [
     {
       "type": 0,
@@ -1085,6 +1109,36 @@
       "value": "Filtrar por país"
     }
   ],
+  "SNXFr/": [
+    {
+      "type": 0,
+      "value": "Al continuar estás aceptando nuestros "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Términos y Condiciones "
+        }
+      ],
+      "type": 8,
+      "value": "linkTerms"
+    },
+    {
+      "type": 0,
+      "value": " y nuestra "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Política de Privacidad "
+        }
+      ],
+      "type": 8,
+      "value": "linkPolicies"
+    }
+  ],
   "SvDN5n": [
     {
       "type": 0,
@@ -1133,6 +1187,12 @@
       "value": "Estos Términos se regirán e interpretarán de conformidad con las leyes del Estado de Florida, sin dar efecto a cualquier conflicto de leyes o disposiciones."
     }
   ],
+  "VbJXnl": [
+    {
+      "type": 0,
+      "value": "Filtrar por:"
+    }
+  ],
   "Vrpqh3": [
     {
       "type": 0,
@@ -1143,6 +1203,12 @@
     {
       "type": 0,
       "value": "Desactivar Notificación"
+    }
+  ],
+  "WDhqRO": [
+    {
+      "type": 0,
+      "value": "Selecciona una ocasión"
     }
   ],
   "WH+aqY": [
@@ -1585,44 +1651,20 @@
       "value": "Anónimo"
     }
   ],
+  "hCGL6t": [
+    {
+      "type": 0,
+      "value": "Ordenar por: "
+    },
+    {
+      "type": 1,
+      "value": "checkItemLabel"
+    }
+  ],
   "hCOqfl": [
     {
       "type": 0,
       "value": "Nombre"
-    }
-  ],
-  "hCreI6": [
-    {
-      "type": 0,
-      "value": "Al continuar estás aceptando nuestros&nbsp; "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Términos y Condiciones "
-        }
-      ],
-      "type": 8,
-      "value": "linkTerms"
-    },
-    {
-      "type": 0,
-      "value": " &nbsp; y nuestra&nbsp; "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Política de Privacidad "
-        }
-      ],
-      "type": 8,
-      "value": "linkPolicies"
-    },
-    {
-      "type": 0,
-      "value": " &nbsp;"
     }
   ],
   "hSj5kq": [
@@ -2379,6 +2421,12 @@
       "value": "A través del Sitio y los Servicios, usted tiene la oportunidad de comprar vídeos personalizados (“Famosos”) Vídeos de los atletas y personas influyentes ( “Usuarios de talento”). Usted va a presentar una solicitud de un vídeo Famosos a un usuario Talento. El Usuario Talento tiene hasta 10 dias hábiles para aceptar o rechazar su solicitud. Su pago se hará efectivo apenas complete su contratación y cree su solicitud. En el caso tal de que el talento o Famosos rechaze su solicitud, se le hará el reembolso a su metodo de pago elegido (el reembolso podría tardar desde 5-10 días hábiles en aparecer). En el caso tal de que su solicitud sea aceptada, no habrán devoluciones ni reembolsos."
     }
   ],
+  "r3u9Hf": [
+    {
+      "type": 0,
+      "value": "Publicar este video en Famosos.com"
+    }
+  ],
   "rA53fB": [
     {
       "type": 0,
@@ -2425,6 +2473,12 @@
     {
       "type": 0,
       "value": "Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero."
+    }
+  ],
+  "se5FEq": [
+    {
+      "type": 0,
+      "value": "¿Tienes un cupón de descuento?"
     }
   ],
   "sn8X2t": [
@@ -2508,7 +2562,7 @@
   "tv5FG3": [
     {
       "type": 0,
-      "value": "Blogsss"
+      "value": "Blog"
     }
   ],
   "twKVEA": [

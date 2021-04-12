@@ -101,6 +101,9 @@
   "4USECx": {
     "message": "Por favor imprima una copia de estos Términos para usted los registros y consulte el sitio con frecuencia para cualquier cambio a estos Términos."
   },
+  "4aS11Q": {
+    "message": "Aplicar"
+  },
   "4rhIbe": {
     "message": "No se encontró un {breakLine} famoso con el usuario <br></br> <span>{celebrityUsername}</span>"
   },
@@ -167,6 +170,9 @@
   "9Svalq": {
     "message": "EN LA MEDIDA MÁXIMA PERMITIDA POR LA LEY, NUESTRA responsabilidad total acumulada ante usted o cualquier tercero bajo estos términos, DE TODAS LAS CAUSAS DE ACCIÓN Y TODAS LAS TEORÍAS DE RESPONSABILIDAD, SERÁ LIMITADO A, y no excederá los honorarios que en realidad han pagado US DURANTE los doce (12) meses anteriores a la que da lugar a dicha responsabilidad."
   },
+  "9mcAHp": {
+    "message": "CUPÓN AGREGADO"
+  },
   "9p5jZI": {
     "message": "Recibirás una notificación a <b>{contractDeliveryContact}</b> cuando tu video esté listo."
   },
@@ -197,6 +203,9 @@
   },
   "BiLnNi": {
     "message": "¿Qué pasa si no me gusta mi video?"
+  },
+  "Bo4qJd": {
+    "message": "CUPÓN NO VALIDO:"
   },
   "BqJL4O": {
     "description": "",
@@ -413,6 +422,9 @@
   "P8Dkhf": {
     "message": "Tu solicitud será completada en menos 7 días"
   },
+  "P9xOfc": {
+    "message": "Ingrese el código aquí"
+  },
   "PsZKr3": {
     "message": "FAQS"
   },
@@ -441,6 +453,9 @@
     "description": "ModalTitle for search CategoryFilter",
     "message": "Filtrar por país"
   },
+  "SNXFr/": {
+    "message": "Al continuar estás aceptando nuestros <linkTerms> Términos y Condiciones </linkTerms> y nuestra <linkPolicies> Política de Privacidad </linkPolicies>"
+  },
   "SvDN5n": {
     "description": "",
     "message": "¡Recibe tu video personalizado!"
@@ -467,12 +482,18 @@
   "VVZi/2": {
     "message": "Estos Términos se regirán e interpretarán de conformidad con las leyes del Estado de Florida, sin dar efecto a cualquier conflicto de leyes o disposiciones."
   },
+  "VbJXnl": {
+    "message": "Filtrar por:"
+  },
   "Vrpqh3": {
     "message": "Garantía Famosos"
   },
   "W1OXQI": {
     "description": "",
     "message": "Desactivar Notificación"
+  },
+  "WDhqRO": {
+    "message": "Selecciona una ocasión"
   },
   "WH+aqY": {
     "message": "intentar descifrar, compilar o realizar ingeniería inversa a cualquiera del software u otro código subyacente utilizado para proporcionar el Sitio o los Servicios;"
@@ -674,11 +695,11 @@
   "h9zXst": {
     "message": "Anónimo"
   },
+  "hCGL6t": {
+    "message": "Ordenar por: {checkItemLabel}"
+  },
   "hCOqfl": {
     "message": "Nombre"
-  },
-  "hCreI6": {
-    "message": "Al continuar estás aceptando nuestros&nbsp; <linkTerms> Términos y Condiciones </linkTerms> &nbsp; y nuestra&nbsp; <linkPolicies> Política de Privacidad </linkPolicies> &nbsp;"
   },
   "hSj5kq": {
     "message": "Una declaración de que usted cree de buena fe que el contenido ha sido eliminado o inhabilitado como consecuencia de un error o una identificación errónea del contenido; y su nombre, dirección física, número de teléfono y dirección de correo electrónico, una declaración en la que consienta a la jurisdicción de la corte federal de Miami, Florida, y una declaración de que acepta el servicio del proceso de la persona que presentó la notificación de la supuesta infracción."
@@ -813,6 +834,9 @@
   "r28+70": {
     "message": "A través del Sitio y los Servicios, usted tiene la oportunidad de comprar vídeos personalizados (“Famosos”) Vídeos de los atletas y personas influyentes ( “Usuarios de talento”). Usted va a presentar una solicitud de un vídeo Famosos a un usuario Talento. El Usuario Talento tiene hasta 10 dias hábiles para aceptar o rechazar su solicitud. Su pago se hará efectivo apenas complete su contratación y cree su solicitud. En el caso tal de que el talento o Famosos rechaze su solicitud, se le hará el reembolso a su metodo de pago elegido (el reembolso podría tardar desde 5-10 días hábiles en aparecer). En el caso tal de que su solicitud sea aceptada, no habrán devoluciones ni reembolsos."
   },
+  "r3u9Hf": {
+    "message": "Publicar este video en Famosos.com"
+  },
   "rA53fB": {
     "message": "Podemos ceder nuestros derechos y obligaciones bajo estos términos, incluso en relación con una fusión, adquisición, venta de activos o patrimonio, o por ministerio de la ley."
   },
@@ -836,6 +860,9 @@
   },
   "sXLa3f": {
     "message": "Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero."
+  },
+  "se5FEq": {
+    "message": "¿Tienes un cupón de descuento?"
   },
   "sn8X2t": {
     "message": "Nosotros te garantizamos que tu famoso va a ver tu solicitud si cumple con nuestras políticas. Nos reservamos el derecho de no mostrarle al famoso solicitudes que consideremos inapropiadas, en ese caso te devolvemos tu dinero. También te garantizamos que te devolvemos tu dinero si el video no es grabado antes de 10 días."
