@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 import {
   TextWithOverflow,
   parentElementClass
-} from "desktop-app/components/text-with-overflow";
+} from "../../../text-with-overflow";
 type FooterProps = {
   avatarURL: string;
   fullName: string;

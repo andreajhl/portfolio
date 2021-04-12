@@ -3,7 +3,7 @@ import Maybe from "react-app/src/components/common/helpers/maybe";
 import { TopBar } from "../topbar";
 import FooterPage from "../footer-page";
 import styles from "./styles.module.scss";
-import { CouponBanner } from "desktop-app/components/containers/coupon-banner";
+import { CouponBanner } from "desktop-app/components/layouts/coupon-banner";
 
 type PageContainerProps = {
   showTopBar?: boolean;

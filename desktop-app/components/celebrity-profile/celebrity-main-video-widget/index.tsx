@@ -8,7 +8,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ReactNode, useState } from "react";
 import OverlayHeader from "desktop-app/components/common/cards/video/overlay-header";
 import { usePreloadVideo } from "../../../../lib/hooks/usePreloadVideo";
-import { ProgressCircle } from "desktop-app/components/progress-circle";
+import { ProgressCircle } from "desktop-app/components/common/progress-circle";
 
 const AnimatedPopup = dynamic<{
   trigger?: JSX.Element | ((isOpen: boolean) => JSX.Element);

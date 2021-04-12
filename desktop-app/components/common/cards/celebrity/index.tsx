@@ -3,10 +3,7 @@ import {
   getSearchCategoryPath
 } from "constants/paths";
 import { CountryFlag } from "desktop-app/components/common/country-flag";
-import {
-  TextWithOverflow,
-  parentElementClass
-} from "desktop-app/components/text-with-overflow";
+import { TextWithOverflow, parentElementClass } from "../../text-with-overflow";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { LikeButton } from "../../button/like";
 import { FlashDeliveryBadgeLayout } from "../../flash-delivery-badge";

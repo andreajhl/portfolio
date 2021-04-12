@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import { ProgressCircle } from "./";
+import { ProgressCircle } from ".";
 
 it("renders without crashing", () => {
   const wrapper = shallow(<ProgressCircle isDone />);
