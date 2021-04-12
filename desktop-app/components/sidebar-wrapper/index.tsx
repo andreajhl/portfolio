@@ -1,4 +1,4 @@
-import { Children, ReactNode } from "react";
+import { Children, ReactNode, StyleHTMLAttributes } from "react";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 
@@ -24,16 +24,30 @@ function isAllowed(child: { type: any }) {
   return child.type && [Sidebar, MainContent].includes(child.type);
 }
 
-function Sidebar({ children, width = 100 }) {
+type SidebarProps = {
+  children: ReactNode;
+  width: string | number;
+  className?: string;
+};
+
+function Sidebar({ children, width = 100, className = "" }: SidebarProps) {
   return (
-    <aside className={styles.Sidebar} style={{ width }}>
+    <aside className={classes(styles.Sidebar, className)} style={{ width }}>
       {children}
     </aside>
   );
 }
 
-function MainContent({ children }) {
-  return <main className={styles.MainContent}>{children}</main>;
+function MainContent({
+  children,
+  className = ""
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <main className={classes(styles.MainContent, className)}>{children}</main>
+  );
 }
 
 export { SidebarWrapper, Sidebar, MainContent };
