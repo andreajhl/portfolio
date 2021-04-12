@@ -61,6 +61,7 @@ function CelebrityCard({
     <Link
       href={getCelebrityProfilePath(celebrity.username)}
       className={`${styles.CelebrityCard} ${parentElementClass}`}
+      style={{ width: thumbnailWidth }}
     >
       <div className={styles.CelebrityCardThumbnail}>
         <OptimizedImage

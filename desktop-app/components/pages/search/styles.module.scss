@@ -3,9 +3,61 @@
   height: 100vh;
 }
 
+.SearchPageSidebar {
+  height: 992px;
+  border-radius: 0px 0px 10px 0px;
+}
+
+.SearchPageSidebarTopBar {
+  margin-left: 75px;
+  margin-right: 25px;
+  justify-content: space-between;
+}
+
+.SearchPageSidebarTitle {
+  font-size: 1rem !important;
+  margin-bottom: 0;
+}
+
+.SearchPageSidebarClose {
+  margin-top: 0.25em;
+  font-size: 12px;
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.SearchPageTopBar {
+  height: 53px;
+  border-bottom: 1px solid #f2f2f2;
+  display: flex;
+  align-items: center;
+}
+
 .ContainerSidebarIsOpen {
   transition: all 0.5s;
   width: 830px !important;
-  margin-left: 29px;
-  // margin-right: auto;
+  margin-left: 30px;
+}
+
+.SearchPageMainContentTopBar {
+  margin-bottom: 25px;
+}
+.SearchPageMainContentTopBarContainer {
+  display: flex;
+  align-items: center;
+
+  > * {
+    margin-right: 28px;
+  }
+}
+
+.SearchPageMainContentSidebarToggler {
+  margin-right: calc(28px - 0.75em);
+}
+
+.SearchPageMainContentCardGrid {
+  display: grid;
+  gap: 26px 24px;
+  grid-template-columns: repeat(auto-fill, 186px);
 }

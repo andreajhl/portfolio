@@ -14,8 +14,11 @@ function TextWithOverflow({ textClassName = "", text }: TextWithOverflowProps) {
 
   useEffect(() => {
     if (!spanRef.current) return;
+    const remainingSpace =
+      spanRef.current?.scrollWidth - spanRef.current?.offsetWidth;
+    const spaceToGaranteThatNothingIsHidden = 1;
     setHiddenPortionWidthInPx(
-      spanRef.current?.scrollWidth - spanRef.current?.offsetWidth + 1 // to give a little of space to garante that nothing is hidden
+      remainingSpace ? remainingSpace + spaceToGaranteThatNothingIsHidden : 0
     );
   }, []);
 

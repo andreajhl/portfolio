@@ -1,7 +1,6 @@
-import { ROOT_PATH } from "constants/paths";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { HouseIcon, LeftArrowIcon } from "desktop-app/components/common/icons";
-import { Link } from "desktop-app/components/common/routing/link";
+import { LeftArrowIcon } from "desktop-app/components/common/icons";
+import { HomeButton } from "desktop-app/components/common/button/home-button";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import styles from "./styles.module.scss";
@@ -29,13 +28,11 @@ function PageHeading({
               window.history.length > 2 ? router.back() : router.push("/");
             }}
           >
-            <LeftArrowIcon />
+            <LeftArrowIcon className={styles.PageHeadingHomeButton} />
           </button>
         </Maybe>
         <Maybe it={showHomeLink}>
-          <Link href={ROOT_PATH} className={styles.PageHeadingHomeButton}>
-            <HouseIcon />
-          </Link>
+          <HomeButton />
         </Maybe>
         <Maybe it={typeof children === "string"} orElse={children}>
           <span className="font-weight-bold">{children}</span>

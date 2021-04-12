@@ -1,3 +1,8 @@
+import { sections } from "constants/celebrities-sections";
+import { CelebrityCard } from "desktop-app/components/common/cards/celebrity";
+import { SettingsIcon } from "desktop-app/components/common/icons";
+import { HomeButton } from "desktop-app/components/common/button/home-button";
+import { IconButton } from "desktop-app/components/icon-button";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import {
   Sidebar,
@@ -5,12 +10,13 @@ import {
   MainContent
 } from "desktop-app/components/sidebar-wrapper";
 import { useState } from "react";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 import styles from "./styles.module.scss";
 
 type SearchPageProps = {};
 
 function SearchPage({ ...props }: SearchPageProps) {
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  const [sidebarIsOpen, setSidebarIsOpen] = useState(true);
 
   function toggleSidebar() {
     setSidebarIsOpen((isOpen) => !isOpen);
@@ -20,18 +26,56 @@ function SearchPage({ ...props }: SearchPageProps) {
     <PageContainer>
       <SidebarWrapper isOpen={sidebarIsOpen}>
         <Sidebar width={358}>
-          <h2>Filtrar por</h2>
+          <div className={styles.SearchPageSidebar}>
+            <div
+              className={`${styles.SearchPageTopBar} ${styles.SearchPageSidebarTopBar}`}
+            >
+              <h2 className={styles.SearchPageSidebarTitle}>Filtrar por</h2>
+              <button
+                type="button"
+                className={`btn ${styles.SearchPageSidebarClose}`}
+                onClick={toggleSidebar}
+              >
+                <i className="fa fa-times" />
+              </button>
+            </div>
+          </div>
         </Sidebar>
         <MainContent>
+          <div
+            className={`${styles.SearchPageTopBar} ${styles.SearchPageMainContentTopBar}`}
+          >
+            <div
+              className={`container ${
+                styles.SearchPageMainContentTopBarContainer
+              } ${sidebarIsOpen ? styles.ContainerSidebarIsOpen : ""}`}
+            >
+              <Maybe it={!sidebarIsOpen}>
+                <IconButton
+                  className={styles.SearchPageMainContentSidebarToggler}
+                  onClick={toggleSidebar}
+                >
+                  <SettingsIcon />
+                </IconButton>
+                <HomeButton />
+              </Maybe>
+              <h2 style={{ marginBottom: 0 }}>Hello Content</h2>
+            </div>
+          </div>
           <div
             className={`container ${
               sidebarIsOpen ? styles.ContainerSidebarIsOpen : ""
             }`}
           >
-            <h2>Hello Content</h2>
-            <button type="button" onClick={toggleSidebar}>
-              Toggle
-            </button>
+            <div className={styles.SearchPageMainContentCardGrid}>
+              {sections[0].celebrities.map((celebrity) => (
+                <CelebrityCard
+                  thumbnailHeight={230}
+                  thumbnailWidth={186}
+                  celebrity={celebrity}
+                />
+              ))}
+            </div>
           </div>
         </MainContent>
       </SidebarWrapper>
