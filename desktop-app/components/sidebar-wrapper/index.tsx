@@ -1,4 +1,4 @@
-import { Children, ReactNode, StyleHTMLAttributes } from "react";
+import { Children, cloneElement, ReactNode, StyleHTMLAttributes } from "react";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 
@@ -15,12 +15,16 @@ function SidebarWrapper({ children, isOpen }: SidebarWrapperProps) {
         !isOpen && styles.SidebarWrapperIsClosed
       )}
     >
-      {Children.map(children, (child) => (isAllowed(child) ? child : null))}
+      {Children.map(children, (child: any) =>
+        isAllowed(child)
+          ? cloneElement(child, Object.assign({ isOpen }, child.props))
+          : null
+      )}
     </div>
   );
 }
 
-function isAllowed(child: { type: any }) {
+function isAllowed(child: any) {
   return child.type && [Sidebar, MainContent].includes(child.type);
 }
 
@@ -28,11 +32,20 @@ type SidebarProps = {
   children: ReactNode;
   width: string | number;
   className?: string;
+  isOpen?: boolean;
 };
 
-function Sidebar({ children, width = 100, className = "" }: SidebarProps) {
+function Sidebar({
+  children,
+  width = 100,
+  className = "",
+  isOpen = false
+}: SidebarProps) {
   return (
-    <aside className={classes(styles.Sidebar, className)} style={{ width }}>
+    <aside
+      className={classes(styles.Sidebar, className)}
+      style={{ width, marginLeft: isOpen ? 0 : -width }}
+    >
       {children}
     </aside>
   );

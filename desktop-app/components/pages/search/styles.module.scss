@@ -2,3 +2,10 @@
   position: relative;
   height: 100vh;
 }
+
+.ContainerSidebarIsOpen {
+  transition: all 0.5s;
+  width: 830px !important;
+  margin-left: 29px;
+  // margin-right: auto;
+}
