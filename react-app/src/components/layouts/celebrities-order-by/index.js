@@ -21,6 +21,9 @@ const messageForModalTitle = defineMessage({
 const messageForFooterButtonLabel = defineMessage({
   defaultMessage: "Ordenar"
 });
+const messageForButtonLabel = defineMessage({
+  defaultMessage: "Ordenar por: {checkItemLabel}"
+});
 const getCheckItemLabel = (activeValue) =>
   orderByOptions.find(({ value }) => value !== "" && value === activeValue)
     ?.label || "";
@@ -57,7 +60,9 @@ const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
 
   return (
     <ModalSelect
-      buttonLabel={`Ordenar por: ${checkItemLabel}`}
+      buttonLabel={intl.formatMessage(messageForButtonLabel, {
+        checkItemLabel: checkItemLabel
+      })}
       modalTitle={intl.formatMessage(messageForModalTitle)}
       footerButtonLabel={intl.formatMessage(messageForFooterButtonLabel)}
       footerButtonOnClick={applyOrderBy}

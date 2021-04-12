@@ -587,7 +587,9 @@ class CreateContractForm extends Component {
           <Form.Check
             type="switch"
             id="custom-switch"
-            label="Publicar este video en Famosos.com"
+            label={
+              <FormattedMessage defaultMessage="Publicar este video en Famosos.com" />
+            }
             checked={contractData.isPublic}
             onChange={this.handleIsPublic}
           />

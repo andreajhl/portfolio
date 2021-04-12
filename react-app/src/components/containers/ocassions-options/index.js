@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
 
 import { occasionsData } from "../../../constants/options";
 
@@ -37,7 +38,9 @@ class index extends Component {
 
     return (
       <div style={{ marginBottom: "10px" }}>
-        <h6 className="subtitle">Selecciona una ocasión</h6>
+        <h6 className="subtitle">
+          <FormattedMessage defaultMessage="Selecciona una ocasión" />
+        </h6>
         <div className="row row-cols-4">{optionsToRender}</div>
       </div>
     );

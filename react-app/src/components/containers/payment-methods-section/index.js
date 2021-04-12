@@ -61,7 +61,7 @@ class PaymentMethodsSection extends Component {
                 style={{ color: "#838383" }}
               >
                 <FormattedMessage
-                  defaultMessage="Al continuar estás aceptando nuestros&nbsp; <linkTerms>  Términos y Condiciones </linkTerms> &nbsp; y nuestra&nbsp; <linkPolicies> Política de Privacidad </linkPolicies> &nbsp;"
+                  defaultMessage="Al continuar estás aceptando nuestros <linkTerms>  Términos y Condiciones </linkTerms>  y nuestra <linkPolicies> Política de Privacidad </linkPolicies> "
                   values={{
                     linkPolicies: (chunks) => (
                       <a

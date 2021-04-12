@@ -11,7 +11,7 @@ import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/
 import * as GTM from "../../../state/utils/gtm";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { withRouter } from "react-app/src/components/common/routing";
-import { useIntl, defineMessage } from "react-intl";
+import { useIntl, defineMessage, FormattedMessage } from "react-intl";
 
 const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
   return {
@@ -138,7 +138,9 @@ const FiltersSectionLayout = ({
   return (
     <section className={`FiltersSectionLayout ${className}`}>
       <div className="filters-section__container container pt-1">
-        <h2 className="filters-section__title ml-2">Filtrar por:</h2>
+        <h2 className="filters-section__title ml-2">
+          <FormattedMessage defaultMessage="Filtrar por:" />
+        </h2>
         <ul className="filters-section__filters-list p-0">
           {showCleanFiltersButton ? (
             <li className="filters-section__filters-item d-flex align-items-center">
