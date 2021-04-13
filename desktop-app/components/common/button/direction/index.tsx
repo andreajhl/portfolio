@@ -30,13 +30,14 @@ function DirectionButton({
   style = defaultButtonsStyle
 }: DirectionButtonProps) {
   const width = style?.size || defaultButtonStylesSize;
-  delete style?.size;
+  const appliedStyles = style;
+  delete appliedStyles?.size;
   return (
     <button
       type="button"
       className={`${styles.DirectionButton} ${className}`}
       onClick={onClick}
-      style={{ ...style, width, height: width }}
+      style={{ ...appliedStyles, width, height: width }}
     >
       {iconButtonVariant ? (
         iconButtonVariant

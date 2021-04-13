@@ -1,4 +1,5 @@
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import isMobile from "lib/utils/isMobile";
 import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
@@ -61,6 +62,8 @@ const DesktopSearchPage = dynamic(() =>
 );
 
 const CelebritiesSearchResults = ({ isMobile }) => {
+  useDesktopClass(isMobile);
+
   return (
     <>
       <CustomHead />

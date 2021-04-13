@@ -36,13 +36,15 @@ function SearchPage({ ...props }: SearchPageProps) {
             <div
               className={`${styles.SearchPageTopBar} ${styles.SearchPageSidebarTopBar}`}
             >
-              <h2 className={styles.SearchPageSidebarTitle}>Filtrar por</h2>
-              <IconButton
-                className={styles.SearchPageSidebarClose}
-                onClick={toggleSidebar}
-              >
-                <i className="fa fa-times" />
-              </IconButton>
+              <div className={styles.SearchPageSidebarTopBarContainer}>
+                <h2 className={styles.SearchPageSidebarTitle}>Filtrar por</h2>
+                <IconButton
+                  className={styles.SearchPageSidebarClose}
+                  onClick={toggleSidebar}
+                >
+                  <i className="fa fa-times" />
+                </IconButton>
+              </div>
             </div>
           </div>
         </Sidebar>
