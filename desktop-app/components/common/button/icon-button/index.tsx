@@ -7,7 +7,11 @@ type IconButtonProps = {
 
 function IconButton({ children, className = "", ...props }: IconButtonProps) {
   return (
-    <button className={`btn ${styles.IconButton} ${className}`} {...props}>
+    <button
+      type="button"
+      className={`btn ${styles.IconButton} ${className}`}
+      {...props}
+    >
       {children}
     </button>
   );

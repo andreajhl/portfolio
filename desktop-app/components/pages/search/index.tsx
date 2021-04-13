@@ -2,13 +2,13 @@ import { sections } from "constants/celebrities-sections";
 import { CelebrityCard } from "desktop-app/components/common/cards/celebrity";
 import { SettingsIcon } from "desktop-app/components/common/icons";
 import { HomeButton } from "desktop-app/components/common/button/home-button";
-import { IconButton } from "desktop-app/components/icon-button";
+import { IconButton } from "desktop-app/components/common/button/icon-button";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import {
   Sidebar,
   SidebarWrapper,
   MainContent
-} from "desktop-app/components/sidebar-wrapper";
+} from "desktop-app/components/layouts/sidebar-wrapper";
 import { useState } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import styles from "./styles.module.scss";
@@ -31,13 +31,12 @@ function SearchPage({ ...props }: SearchPageProps) {
               className={`${styles.SearchPageTopBar} ${styles.SearchPageSidebarTopBar}`}
             >
               <h2 className={styles.SearchPageSidebarTitle}>Filtrar por</h2>
-              <button
-                type="button"
-                className={`btn ${styles.SearchPageSidebarClose}`}
+              <IconButton
+                className={styles.SearchPageSidebarClose}
                 onClick={toggleSidebar}
               >
                 <i className="fa fa-times" />
-              </button>
+              </IconButton>
             </div>
           </div>
         </Sidebar>

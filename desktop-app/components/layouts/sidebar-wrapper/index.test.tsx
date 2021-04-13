@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import { SidebarWrapper } from "./";
+import { SidebarWrapper } from ".";
 
 it("renders without crashing", () => {
   const wrapper = shallow(<SidebarWrapper />);
