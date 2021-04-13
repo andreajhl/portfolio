@@ -80,7 +80,7 @@ const CelebritiesResultsPage = ({
   useEffect(() => {
     if (hasSearched) {
       if (cursor.view === PATH_KEY) {
-        window.scrollTo({ top: cursor.position, behavior: "smooth" });
+        window.scrollTo({ top: cursor.position });
       }
     }
     return () => {
