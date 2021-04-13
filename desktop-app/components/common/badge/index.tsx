@@ -10,6 +10,7 @@ type BadgeProps = {
   onClick?: () => void;
   style?: React.CSSProperties;
   className?: string;
+  showIconBorder?: boolean;
 };
 
 function Badge({
@@ -18,6 +19,7 @@ function Badge({
   style,
   iconVariant = <XIcon className={styles.XIcon} />,
   className,
+  showIconBorder = true,
   onClick
 }: BadgeProps) {
   return (
@@ -29,7 +31,10 @@ function Badge({
     >
       <span className={styles.BadgeText}>{text}</span>
       {showIcon ? (
-        <div className={styles.IconContainer} onClick={() => onClick()}>
+        <div
+          className={classes(showIconBorder ? styles.IconContainer : "")}
+          onClick={() => onClick()}
+        >
           {iconVariant}
         </div>
       ) : null}
