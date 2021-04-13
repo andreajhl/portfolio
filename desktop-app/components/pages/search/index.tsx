@@ -14,6 +14,7 @@ import { useState } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 
 import styles from "./styles.module.scss";
+import { SearchFilters } from "desktop-app/components/search/search-filters";
 
 type SearchPageProps = {};
 
@@ -36,7 +37,9 @@ function SearchPage({ ...props }: SearchPageProps) {
             <div
               className={`${styles.SearchPageTopBar} ${styles.SearchPageSidebarTopBar}`}
             >
-              <div className={styles.SearchPageSidebarTopBarContainer}>
+              <div
+                className={`${styles.SearchPageSidebarContainer} ${styles.SearchPageSidebarTopBarContainer}`}
+              >
                 <h2 className={styles.SearchPageSidebarTitle}>Filtrar por</h2>
                 <IconButton
                   className={styles.SearchPageSidebarClose}
@@ -45,6 +48,9 @@ function SearchPage({ ...props }: SearchPageProps) {
                   <i className="fa fa-times" />
                 </IconButton>
               </div>
+            </div>
+            <div className={styles.SearchPageSidebarContainer}>
+              <SearchFilters />
             </div>
           </div>
         </Sidebar>

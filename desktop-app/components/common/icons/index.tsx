@@ -482,3 +482,18 @@ export function SettingsIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function HandleIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={7}
+      height={5}
+      viewBox="0 0 7 5"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path stroke="#000" d="M0 .5h7M0 2.5h7M0 4.5h7" />
+    </svg>
+  );
+}

@@ -1,0 +1,30 @@
+.RangeSlider {
+  padding: 10px 0 6px 13px;
+
+  &Background {
+    margin-left: -13px;
+    height: 1px;
+    background-color: var(--dark);
+  }
+
+  &Handle {
+    width: 19px;
+    height: 19px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(0, -35%);
+    padding: 0;
+    border-radius: 50% !important;
+    background-color: var(--light);
+    border: 1px solid var(--dark);
+    z-index: 2;
+  }
+
+  &ProgressBar {
+    position: relative;
+    top: -1.25px;
+    height: 2.5px;
+    background-image: var(--primary-gradient);
+  }
+}
