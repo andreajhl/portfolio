@@ -8,7 +8,7 @@
 }
 
 .ParentElement {
-  &:not(&:hover) {
+  &:not(:hover) {
     .TextWithOverflow span {
       text-overflow: ellipsis;
       overflow: hidden;
