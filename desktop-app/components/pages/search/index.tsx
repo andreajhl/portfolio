@@ -3,6 +3,7 @@ import { CelebrityCard } from "desktop-app/components/common/cards/celebrity";
 import { SettingsIcon } from "desktop-app/components/common/icons";
 import { HomeButton } from "desktop-app/components/common/button/home-button";
 import { IconButton } from "desktop-app/components/icon-button";
+import Pagination from "desktop-app/components/common/pagination";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import {
   Sidebar,
@@ -11,6 +12,7 @@ import {
 } from "desktop-app/components/sidebar-wrapper";
 import { useState } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+
 import styles from "./styles.module.scss";
 
 type SearchPageProps = {};
@@ -21,6 +23,10 @@ function SearchPage({ ...props }: SearchPageProps) {
   function toggleSidebar() {
     setSidebarIsOpen((isOpen) => !isOpen);
   }
+  const [informationPage, setInformationPage] = useState({
+    currentPage: 1,
+    totalPage: 25
+  });
 
   return (
     <PageContainer>
@@ -77,6 +83,16 @@ function SearchPage({ ...props }: SearchPageProps) {
               ))}
             </div>
           </div>
+          <Pagination
+            onChangePage={(nextPage) =>
+              setInformationPage((prevState) => ({
+                ...prevState,
+                currentPage: nextPage
+              }))
+            }
+            totalPage={informationPage.totalPage}
+            currentPage={informationPage.currentPage}
+          />
         </MainContent>
       </SidebarWrapper>
     </PageContainer>
