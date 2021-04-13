@@ -18,12 +18,14 @@ type DirectionButtonProps = {
   direction?: "right" | "left";
   className?: string;
   style?: ButtonStyle;
+  iconButtonVariant?: React.ReactNode;
   onClick?: typeof noop;
 };
 
 function DirectionButton({
   direction = "right",
   className = "",
+  iconButtonVariant,
   onClick = noop,
   style = defaultButtonsStyle
 }: DirectionButtonProps) {
@@ -36,7 +38,11 @@ function DirectionButton({
       onClick={onClick}
       style={{ ...style, width, height: width }}
     >
-      <i className={`fa fa-chevron-${direction}`} />
+      {iconButtonVariant ? (
+        iconButtonVariant
+      ) : (
+        <i className={`fa fa-chevron-${direction}`} />
+      )}
     </button>
   );
 }
