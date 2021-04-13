@@ -15,6 +15,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 
 import styles from "./styles.module.scss";
 import { SearchFilters } from "desktop-app/components/search/search-filters";
+import Badge from "desktop-app/components/common/badge";
 
 type SearchPageProps = {};
 
@@ -72,7 +73,8 @@ function SearchPage({ ...props }: SearchPageProps) {
                 </IconButton>
                 <HomeButton />
               </Maybe>
-              <h2 style={{ marginBottom: 0 }}>Hello Content</h2>
+              {/* <h2 style={{ marginBottom: 0 }}>Hello Content</h2> */}
+              <Badge text="Actores" onClick={() => console.log("Clicked")} />
             </div>
           </div>
           <div
