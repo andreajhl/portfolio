@@ -1,3 +1,4 @@
+import { withRouter } from "next/router";
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -12,29 +13,32 @@ const optionsForContractType = [
 
 class index extends Component {
   render() {
-    const optionsToRender = Object.keys(occasionsData).map((optionKey) => {
-      return this.props.contractType === 0 &&
-        optionsForContractType.includes(optionKey) ? null : (
-        <div
-          className={`col option-container ${
-            this.props.currentChoise === optionKey ? "choose" : ""
-          }`}
-          key={optionKey}
-          onClick={() => this.props.clicked(optionKey)}
-        >
+    const locale = this.props.router.locale;
+    const optionsToRender = Object.keys(occasionsData[locale]).map(
+      (optionKey) => {
+        return this.props.contractType === 0 &&
+          optionsForContractType.includes(optionKey) ? null : (
           <div
-            className={`container-circle ${
+            className={`col option-container ${
               this.props.currentChoise === optionKey ? "choose" : ""
             }`}
+            key={optionKey}
+            onClick={() => this.props.clicked(optionKey)}
           >
-            <i className={"fas " + occasionsData[optionKey].icon}></i>
+            <div
+              className={`container-circle ${
+                this.props.currentChoise === optionKey ? "choose" : ""
+              }`}
+            >
+              <i className={"fas " + occasionsData[locale][optionKey].icon}></i>
+            </div>
+            <span className="container-legend subtitle">
+              {occasionsData[locale][optionKey].title}
+            </span>
           </div>
-          <span className="container-legend subtitle">
-            {occasionsData[optionKey].title}
-          </span>
-        </div>
-      );
-    });
+        );
+      }
+    );
 
     return (
       <div style={{ marginBottom: "10px" }}>
@@ -47,4 +51,4 @@ class index extends Component {
   }
 }
 
-export default index;
+export default withRouter(index);

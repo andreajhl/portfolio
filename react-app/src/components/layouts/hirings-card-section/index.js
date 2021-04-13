@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { occasionsData } from "../../../constants/options";
 import { Form } from "react-bootstrap";
 import { ReviewCreatorLayout } from "../review-creator";
+import { withRouter } from "next/router";
 
 const moment = require("moment");
 
@@ -90,7 +91,9 @@ class HiringsCardSectionLayout extends Component {
                   <h6 className="mt-2 font-weight-bold">
                     Ocasión:{" "}
                     <small className="ml-2">
-                      {occasionsData[contract.occasion]?.title || "Otro"}
+                      {occasionsData[this.props.router.locale][
+                        contract.occasion
+                      ]?.title || "Otro"}
                     </small>
                   </h6>
                 ) : null}
@@ -313,6 +316,6 @@ HiringsCardSectionLayout.defaultProps = {
 const _HiringsCardSectionLayout = connect(
   mapStateToProps,
   mapDispatchToProps
-)(HiringsCardSectionLayout);
+)(withRouter(HiringsCardSectionLayout));
 
 export { _HiringsCardSectionLayout as HiringsCardSectionLayout };

@@ -11,6 +11,7 @@ import { getToken } from "react-app/src/state/ducks/session/actions";
 import "react-phone-input-2/lib/style.css";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import { FormattedMessage } from "react-intl";
+import { withRouter } from "next/router";
 
 class CreateContractForm extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class CreateContractForm extends Component {
     this.deliveryFromInput = React.createRef();
     this.deliveryFromMaxLength = 40;
     this.deliveryToMaxLength = 40;
+    this.locale = this.props.router.locale;
   }
 
   componentDidMount() {
@@ -206,7 +208,7 @@ class CreateContractForm extends Component {
   handleContractTypeChange = (value) => {
     const updatedContractData = { ...this.state.contractData };
     const oldMessage = this.replacePlaceHolder(
-      occasionsData[this.state.contractData.occasion]?.messages[
+      occasionsData[this.locale][this.state.contractData.occasion]?.messages[
         this.state.contractData.contractType - 1
       ]
     );
@@ -215,7 +217,9 @@ class CreateContractForm extends Component {
       oldMessage === this.state.contractData.instructions
     ) {
       const newMessage = this.replacePlaceHolder(
-        occasionsData[this.state.contractData.occasion].messages[value - 1]
+        occasionsData[this.locale][this.state.contractData.occasion].messages[
+          value - 1
+        ]
       );
       updatedContractData.instructions = newMessage;
     }
@@ -319,7 +323,7 @@ class CreateContractForm extends Component {
     return this.state.instructionsIsTouched
       ? this.state.contractData.instructions
       : this.replacePlaceHolder(
-          occasionsData[occasionIdentifier].messages[
+          occasionsData[this.locale][occasionIdentifier].messages[
             this.state.contractData.contractType - 1
           ]
         );
@@ -666,5 +670,5 @@ const mapDispatchToProps = {
 const _CreateContractForm = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateContractForm);
+)(withRouter(CreateContractForm));
 export { _CreateContractForm as CreateContractForm };
