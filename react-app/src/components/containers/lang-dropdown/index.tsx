@@ -9,9 +9,9 @@ type localeAvailables = "es" | "en" | "pt";
 
 export default function LangDropdown() {
   const router = useRouter();
-  const { locale } = router;
+  const { locale, pathname, query, asPath } = router;
   const handleChangeLang = (lang: string) => {
-    router.push(router.route, router.route, { locale: lang });
+    router.push({ pathname, query }, asPath, { locale: lang });
   };
   return (
     <Dropdown
