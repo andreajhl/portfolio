@@ -56,7 +56,7 @@ const phones = {
   "en-ZA": /^(\+?27|0)\d{9}$/,
   "en-ZM": /^(\+?26)?09[567]\d{7}$/,
   "en-ZW": /^(\+263)[0-9]{9}$/,
-  "es-AR": /^\+?549(11|[2368]\d)\d{8}$/,
+  "es-AR": /^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/,
   "es-BO": /^(\+?591)?(6|7)\d{7}$/,
   "es-CO": /^(\+?57)?3(0(0|1|2|4|5)|1\d|2[0-4]|5(0|1))\d{7}$/,
   "es-CL": /^(\+?56|0)[2-9]\d{1}\d{7}$/,
@@ -175,6 +175,10 @@ export default function isMobilePhone(str, locale, options) {
       return false;
     });
   } else if (locale in phones) {
+    if (locale === "ar") {
+      const num = str.replace(/[^\d]/g, "");
+      return phones[locale].test(num);
+    }
     return phones[locale].test(str);
     // alias falsey locale as 'any'
   } else if (!locale || locale === "any") {
