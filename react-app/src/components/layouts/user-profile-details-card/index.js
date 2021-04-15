@@ -9,11 +9,11 @@ import {
   HOME_PATH
 } from "../../../routing/Paths";
 import LogoutButton from "../../containers/logout-button/logout-button";
-import Router from "next/router";
+import Router, { withRouter } from "next/router";
 import Maybe from "../../common/helpers/maybe";
 import { NavLink } from "../../common/routing";
 import { FormattedMessage } from "react-intl";
-
+import NotificationLangOptions from "../../containers/notification-lang-option";
 class UserProfileDetailsCardLayout extends Component {
   constructor(props) {
     super(props);
@@ -45,6 +45,8 @@ class UserProfileDetailsCardLayout extends Component {
   }
 
   render() {
+    console.log(this.props.sessionData);
+    console.log(this.props.session?.avatar);
     return (
       <div className="UserProfileDetailsCardLayout">
         <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
@@ -106,6 +108,11 @@ class UserProfileDetailsCardLayout extends Component {
                 </h2>
               </NavLink>
             </div>
+            <div className="col-12 p-5">
+              <NotificationLangOptions
+                currentUserLang={this.props.session?.lang}
+              />
+            </div>
             {/* <div className="col-12 text-center">
               <hr />
             </div>
@@ -157,5 +164,5 @@ const mapDispatchToProps = {
 const _UserProfileDetailsCardLayout = connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserProfileDetailsCardLayout);
+)(withRouter(UserProfileDetailsCardLayout));
 export { _UserProfileDetailsCardLayout as UserProfileDetailsCardLayout };
