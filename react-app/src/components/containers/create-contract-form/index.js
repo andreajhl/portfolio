@@ -28,7 +28,8 @@ class CreateContractForm extends Component {
         instructions: "",
         isPublic: true,
         occasion: "OTHER",
-        deliveryContactCellphone: ""
+        deliveryContactCellphone: "",
+        lang: this.props.router.locale
       }
     };
     this.handleIsPublic = this.handleIsPublic.bind(this);
