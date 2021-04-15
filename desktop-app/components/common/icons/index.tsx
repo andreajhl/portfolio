@@ -516,3 +516,23 @@ export function HandleIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function OrderByIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={19}
+      height={14}
+      viewBox="0 0 19 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M8.826 8.342l.426.415a.44.44 0 010 .635l-3.732 3.64a.468.468 0 01-.65 0l-3.734-3.64a.44.44 0 010-.635l.426-.415a.47.47 0 01.659.007l2.205 2.256V1.181c0-.25.205-.45.46-.45h.615c.256 0 .461.2.461.45v9.424l2.205-2.256a.466.466 0 01.659-.007zM10.175 5.553l-.427-.416a.44.44 0 010-.634L13.48.863a.468.468 0 01.651 0l3.734 3.64a.44.44 0 010 .634l-.426.416a.47.47 0 01-.66-.008L14.576 3.29v9.425c0 .249-.206.449-.461.449h-.615c-.255 0-.46-.2-.46-.45V3.29l-2.206 2.255a.466.466 0 01-.658.008z"
+        fill="#000"
+        stroke="#000"
+        strokeWidth={0.5}
+      />
+    </svg>
+  );
+}

@@ -24,6 +24,9 @@ function Dropdown({
     setIsOpen((isOpen) => !isOpen);
   }
 
+  const childNodes =
+    typeof children === "function" ? children(isOpen, toggleIsOpen) : children;
+
   return (
     <div className={classes("dropdown", { show: isOpen }, className)}>
       <button
@@ -44,7 +47,7 @@ function Dropdown({
           menuClassName
         )}
       >
-        {React.Children.map(children, addDropdownItemClass)}
+        {React.Children.map(childNodes, addDropdownItemClass)}
       </div>
     </div>
   );

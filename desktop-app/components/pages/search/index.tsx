@@ -16,6 +16,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import styles from "./styles.module.scss";
 import { SearchFilters } from "desktop-app/components/search/search-filters";
 import Badge from "desktop-app/components/common/badge";
+import { OrderByDropdown } from "desktop-app/components/search/order-by-dropdown";
 
 type SearchPageProps = {};
 
@@ -29,6 +30,8 @@ function SearchPage({ ...props }: SearchPageProps) {
     currentPage: 1,
     totalPage: 25
   });
+
+  const [orderBy, setOrderBy] = useState();
 
   return (
     <PageContainer>
@@ -73,8 +76,16 @@ function SearchPage({ ...props }: SearchPageProps) {
                 </IconButton>
                 <HomeButton />
               </Maybe>
-              {/* <h2 style={{ marginBottom: 0 }}>Hello Content</h2> */}
               <Badge text="Actores" onClick={() => console.log("Clicked")} />
+              <OrderByDropdown
+                className={styles.SearchPageOrderByDropdown}
+                onChange={setOrderBy}
+                selectedOption={orderBy}
+                options={[
+                  { label: "Menor a mayor precio", value: "price asc" },
+                  { label: "Mayor a menor precio", value: "price desc" }
+                ]}
+              />
             </div>
           </div>
           <div
