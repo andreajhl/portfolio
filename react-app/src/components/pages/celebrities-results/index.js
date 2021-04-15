@@ -11,6 +11,7 @@ import { CelebritiesAdditionalResultsLayout } from "../../layouts/celebrities-ad
 import pickPropertiesFromAObject from "../../../utils/pickPropertiesFromAObject";
 import { withRouter } from "react-app/src/components/common/routing";
 import { cursorOperations } from "../../../state/ducks/cursor-position";
+import { checkIfObjectContainsSamePairKeyValue } from "react-app/src/utils/checkIfObjectContainsSamePairKeyValue";
 
 function noop() {}
 const PATH_KEY = "CelebritiesResultPage";
@@ -75,10 +76,12 @@ const CelebritiesResultsPage = ({
       ),
     [location.search]
   );
-  console.log(queryParamsStore, "queryParamsStore");
-  console.log(listParams);
+
   useEffect(() => {
-    if (hasSearched) {
+    if (
+      hasSearched &&
+      checkIfObjectContainsSamePairKeyValue(listParams, queryParamsStore)
+    ) {
       if (cursor.view === PATH_KEY) {
         window.scrollTo({ top: cursor.position });
       }
@@ -97,7 +100,9 @@ const CelebritiesResultsPage = ({
     if (Object.keys(listParams).length === 0 || !hasSearched(listParams)) {
       history.push(previousPath);
     } else {
-      if (queryParamsStore.search !== listParams?.search) {
+      if (
+        !checkIfObjectContainsSamePairKeyValue(listParams, queryParamsStore)
+      ) {
         fetchCelebrities(listParams);
         setOffset(updateQueryParamsInitialState.offset);
       } else {
@@ -115,7 +120,7 @@ const CelebritiesResultsPage = ({
     const nextOffset = offset ? offset + limit : limit;
     const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
     setOffset(newOffset);
-    saveQueryParams({ offset: newOffset, search: listParams?.search });
+    saveQueryParams({ ...listParams, offset: newOffset });
     fetchCelebrities({
       ...listParams,
       offset: newOffset

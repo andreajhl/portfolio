@@ -7,10 +7,7 @@ export const updateQueryParamsInitialState = {
   limit: 20
 };
 
-export const queryParamsInitialState = {
-  offset: 0,
-  limit: 20
-};
+export const queryParamsInitialState = {};
 
 const fetchCelebritiesInitialState = {
   requestCancel: null,
