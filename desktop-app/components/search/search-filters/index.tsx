@@ -14,7 +14,7 @@ type DispatchProps = typeof mapDispatchToProps;
 type SearchFiltersProps = {} & StateProps & DispatchProps;
 
 function SearchFilters({ ...props }: SearchFiltersProps) {
-  const [values, setValues] = useState<[number, number]>([0, 500]);
+  const [values, setValues] = useState<[number, number]>([5, 500]);
   const [countryFilters, setCountryFilters] = useState([
     { label: "Argentina", value: "Argentina", checked: true },
     { label: "Venezuela", value: "Venezuela", checked: true },

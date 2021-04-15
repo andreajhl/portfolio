@@ -1,5 +1,9 @@
 .RangeSlider {
-  padding: 10px 6.5px 6px 13px;
+  padding: 10px 6.5px 8.5px 13px;
+
+  &IsTouched {
+    padding-bottom: 6px;
+  }
 
   &Background {
     margin-left: -13px;

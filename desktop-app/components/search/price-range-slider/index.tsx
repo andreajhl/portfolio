@@ -1,31 +1,33 @@
-import { RangeSlider } from "desktop-app/components/common/form/range-slider";
+import {
+  RangeSlider,
+  RangeSliderProps
+} from "desktop-app/components/common/form/range-slider";
 import { PriceLayout } from "desktop-app/components/common/helpers/price-layout";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-
-type ValuesType = [number, number];
 
 type PriceRangeSliderProps = {
   min?: number;
   max?: number;
-  onValuesUpdated?: (data: { values: ValuesType; [key: string]: any }) => void;
-  values: ValuesType;
-};
+} & Omit<RangeSliderProps, "algorithm" | "isTouched">;
 
 function PriceRangeSliderInput({
   initialPrice,
   value,
   name,
-  onChange
+  onChange = function () {},
+  isTouched = true
 }: {
   initialPrice: number;
   value: number;
   name: string;
+  isTouched?: boolean;
   onChange?: (value: string) => void;
 }) {
   const [inputValue, setInputValue] = useState(String(initialPrice));
 
   useEffect(() => {
+    console.log("Actualizar", value);
     if (typeof value === "undefined") return;
     setInputValue(String(value));
   }, [value]);
@@ -39,7 +41,9 @@ function PriceRangeSliderInput({
       </label>
       <div
         className={`${styles.PriceRangeSliderInputControl} ${
-          inputValue === "" ? styles.PriceRangeSliderInputControlEmpty : ""
+          inputValue === "" || !isTouched
+            ? styles.PriceRangeSliderInputControlEmpty
+            : ""
         }`}
       >
         <span className={styles.PriceRangeSliderInputControlSign}>$</span>
@@ -63,13 +67,22 @@ function PriceRangeSliderInput({
                 }}
                 name={inputId}
                 id={inputId}
-                className={styles.PriceRangeSliderInput}
+                className={`${styles.PriceRangeSliderInput} ${
+                  isTouched ? styles.PriceRangeSliderInputIsTouched : ""
+                }`}
                 placeholder={String(initialPrice)}
                 onChange={({ target: { value } }) => {
-                  setInputValue(value);
-                  if (value === "") return;
-                  onChange(value);
+                  const newValue = value.replace(/[^0-9.]/g, "");
+                  setInputValue(newValue);
+                  if (newValue === "") return;
+                  onChange(newValue);
                 }}
+                onBlur={({ target: { value } }) => {
+                  if (value !== "") return;
+                  setInputValue(String(initialPrice));
+                  onChange(String(initialPrice));
+                }}
+                autoComplete="off"
               />
               <span>{currency}</span>
             </>
@@ -84,9 +97,11 @@ function PriceRangeSlider({
   min = 0,
   max = 100,
   values,
-  onValuesUpdated = function () {}
+  onValuesUpdated = function () {},
+  onClick = function () {}
 }: PriceRangeSliderProps) {
   const [low, high] = values;
+  const [isTouched, setIsTouched] = useState(false);
 
   return (
     <div className={styles.PriceRangeSlider}>
@@ -94,7 +109,15 @@ function PriceRangeSlider({
         min={min}
         max={max}
         values={values}
-        onValuesUpdated={onValuesUpdated}
+        isTouched={isTouched}
+        onValuesUpdated={(state) => {
+          if (!isTouched) setIsTouched(true);
+          onValuesUpdated(state);
+        }}
+        onClick={() => {
+          if (!isTouched) setIsTouched(true);
+          onClick();
+        }}
         className={styles.PriceRangeSliderSlider}
       />
       <div className={styles.PriceRangeSliderInputs}>
@@ -102,7 +125,9 @@ function PriceRangeSlider({
           initialPrice={min}
           value={low}
           name="minimum"
+          isTouched={isTouched}
           onChange={(value) => {
+            if (!isTouched) setIsTouched(true);
             let newLow = Number(value);
             if (value !== "" && newLow < min) newLow = min;
             else if (newLow > max) newLow = max;
@@ -114,7 +139,9 @@ function PriceRangeSlider({
           initialPrice={max}
           value={high}
           name="maximum"
+          isTouched={isTouched}
           onChange={(value) => {
+            if (!isTouched) setIsTouched(true);
             let newHigh = Number(value);
             if (newHigh < min) newHigh = min;
             else if (newHigh > max) newHigh = max;

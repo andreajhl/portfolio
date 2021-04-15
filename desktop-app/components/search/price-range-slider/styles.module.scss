@@ -8,6 +8,11 @@
     background: none;
     border: none;
     margin-right: 0.2em;
+    color: var(--gray-3);
+
+    &IsTouched {
+      color: black;
+    }
 
     &Control {
       display: flex;
