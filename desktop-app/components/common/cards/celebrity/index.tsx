@@ -20,37 +20,6 @@ type CelebrityCardProps = {
   showPrice?: boolean;
 };
 
-// function TextWithOverflow({
-//   celebrityFullName
-// }: {
-//   celebrityFullName: string;
-// }) {
-//   const spanRef = useRef<HTMLSpanElement>(null);
-//   const [hiddenPortionWidthInPx, setHiddenPortionWidthInPx] = useState(
-//     (celebrityFullName.length - 18) * 8
-//   );
-
-//   useEffect(() => {
-//     if (!spanRef.current) return;
-//     setHiddenPortionWidthInPx(
-//       spanRef.current?.scrollWidth - spanRef.current?.offsetWidth + 1 // to give a little of space to garante that nothing is hidden
-//     );
-//   }, []);
-
-//   return (
-//     <div className={styles.CelebrityCardFullName}>
-//       <span
-//         ref={spanRef}
-//         style={{
-//           transform: `translateX(-${hiddenPortionWidthInPx}px)`
-//         }}
-//       >
-//         {celebrityFullName}
-//       </span>
-//     </div>
-//   );
-// }
-
 function CelebrityCard({
   celebrity,
   thumbnailWidth = 170,
