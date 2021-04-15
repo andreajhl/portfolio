@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 import { useState } from "react";
-import { RangeSlider } from "desktop-app/components/range-slider";
+import { PriceRangeSlider } from "../price-range-slider";
 
 const mapStateToProps = (state) => ({ ...state });
 
@@ -19,10 +19,8 @@ function SearchFilters({ ...props }: SearchFiltersProps) {
     <div className={styles.SearchFilters}>
       <label>Precio</label>
       <br />
-      Min: {min} <br />
-      max: {max} <br />
-      <RangeSlider
-        min={1}
+      <PriceRangeSlider
+        min={5}
         max={500}
         values={values}
         onValuesUpdated={({ values }) => {

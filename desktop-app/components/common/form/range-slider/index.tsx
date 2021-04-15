@@ -1,10 +1,10 @@
 import "rheostat/initialize";
 import Slider from "rheostat";
-import log10 from "rheostat/src/algorithms/log10";
 import "rheostat/css/rheostat.css";
 import styles from "./styles.module.scss";
-import { IconButton } from "../common/button/icon-button";
-import { HandleIcon } from "../common/icons";
+import { IconButton } from "../../button/icon-button";
+import { HandleIcon } from "../../icons";
+import rangeSliderLog10Algorithm from "lib/utils/rangeSliderLog10Algorithm";
 
 type RangeSliderProps = {
   className?: string;
@@ -32,7 +32,7 @@ const RangeSliderProgressBar = (props) => (
 
 function RangeSlider({
   className = "",
-  algorithm = log10,
+  algorithm = rangeSliderLog10Algorithm,
   ...props
 }: RangeSliderProps) {
   return (

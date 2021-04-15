@@ -1,8 +1,9 @@
 .RangeSlider {
-  padding: 10px 0 6px 13px;
+  padding: 10px 6.5px 6px 13px;
 
   &Background {
     margin-left: -13px;
+    margin-right: -5.5px;
     height: 1px;
     background-color: var(--dark);
   }

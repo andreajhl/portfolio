@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import { RangeSlider } from "./";
+import { PriceRangeSlider } from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<RangeSlider />);
+  const wrapper = shallow(<PriceRangeSlider />);
   expect(wrapper.exists()).toBeTruthy();
 });
