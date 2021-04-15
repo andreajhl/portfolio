@@ -10,9 +10,15 @@ const PRICE = "price";
 const ASC = "asc";
 const DESC = "desc";
 
+const messageForPriceAsc = defineMessage({
+  defaultMessage: "Precio: De Menor a Mayor"
+});
+const messageForPriceDesc = defineMessage({
+  defaultMessage: "Precio: De Mayor a Menor"
+});
 const orderByOptions = [
-  { label: "Precio: De Menor a Mayor", value: `${PRICE} ${ASC}` },
-  { label: "Precio: De Mayor a Menor", value: `${PRICE} ${DESC}` }
+  { label: messageForPriceAsc, value: `${PRICE} ${ASC}` },
+  { label: messageForPriceDesc, value: `${PRICE} ${DESC}` }
 ];
 
 const messageForModalTitle = defineMessage({
@@ -68,7 +74,10 @@ const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
       footerButtonOnClick={applyOrderBy}
       onModalOpen={registerOrderByFilterOpen}
       onModalClose={registerOrderByFilterClose}
-      options={orderByOptions}
+      options={orderByOptions.map((options) => ({
+        label: intl.formatMessage(options.label),
+        value: options.value
+      }))}
       showSearch={false}
       onInputChange={({ target }) => setCheckedValue(target.value)}
       isChecked={(optionValue) => checkedValue === optionValue}
