@@ -40,14 +40,7 @@ function HeroSection() {
         </header>
         <div className={styles.HeroSectionVideo}>
           <video
-            src="/assets/video/reinoso-hero-video.mp4"
-            muted
-            autoPlay
-            loop
-            preload="metadata"
-          />
-          <video
-            src="/assets/video/noel-hero-video.mp4"
+            src="/assets/video/video-home-compressed.mp4"
             muted
             autoPlay
             loop
