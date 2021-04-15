@@ -1,0 +1,55 @@
+.LabelContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.CheckboxContainer {
+  display: inline-block;
+  vertical-align: middle;
+}
+.HiddenCheckbox {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.StyledCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  transition: all 150ms;
+  background: white;
+  border: 1px solid #bebebe;
+
+  > svg {
+    opacity: 0;
+  }
+}
+
+.StyledCheckbox__Checked {
+  background: black;
+  border: 0px;
+
+  > svg {
+    opacity: 1;
+  }
+}
+
+.Label {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  margin-left: 15px;
+}

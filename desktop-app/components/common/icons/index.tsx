@@ -410,6 +410,24 @@ export function SparklesIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+export function CheckIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={9}
+      height={8}
+      viewBox="0 0 9 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M8.891 1.207L8.185.481a.37.37 0 00-.531-.003L3.227 4.962 1.354 3.034a.37.37 0 00-.531-.002l-.712.72a.39.39 0 00-.002.543l2.843 2.926a.37.37 0 00.532.002L8.889 1.75a.39.39 0 00.002-.543z"
+        fill="#fff"
+      />
+    </svg>
+  );
+}
+
 export function GiftBox(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
