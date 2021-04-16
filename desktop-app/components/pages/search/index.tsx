@@ -31,12 +31,13 @@ function SearchPage({ ...props }: SearchPageProps) {
 
   useEffect(() => {
     // Para asegurar que el valor se actualice al tener disponible el "window".
-    setCelebrityCardHeight(getPixelsFromViewportWidth(sidebarIsOpen ? 16.83 : 18.3));
+    setCelebrityCardHeight(
+      getPixelsFromViewportWidth(sidebarIsOpen ? 16.83 : 18.3)
+    );
   }, [sidebarIsOpen]);
 
   function toggleSidebar() {
     setSidebarIsOpen((isOpen) => !isOpen);
-    console.log("TEST:");
   }
   const [informationPage, setInformationPage] = useState({
     currentPage: 1,
