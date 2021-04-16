@@ -1,3 +1,14 @@
 .SearchFilters {
-  
+}
+
+.SearchFiltersButton {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0.45em 1.6em;
+  border-width: 1px !important;
+  color: var(--dark) !important;
+
+  &:hover {
+    color: var(--tertiary-darken) !important;
+  }
 }

@@ -78,6 +78,13 @@ function SearchFilters({ ...props }: SearchFiltersProps) {
         onCheckOption={(checked, option) => console.log(checked, option)}
       />
       <hr></hr>
+      <CheckBoxList
+        title="Categoria"
+        controlled
+        options={categoryFilters}
+        onCheckOption={(checked, option) => console.log(checked, option)}
+      />
+      <hr></hr>
       <label>Precio</label>
       <br />
       <PriceRangeSlider
@@ -89,13 +96,7 @@ function SearchFilters({ ...props }: SearchFiltersProps) {
         }}
       />
       <hr></hr>
-      <CheckBoxList
-        title="Categoria"
-        controlled
-        options={categoryFilters}
-        onCheckOption={(checked, option) => console.log(checked, option)}
-      />
-      <hr></hr>
+
       <CheckBoxList
         controlled
         title="Tiempo de entrega"
@@ -103,7 +104,11 @@ function SearchFilters({ ...props }: SearchFiltersProps) {
         onCheckOption={(checked, option) => console.log(checked, option)}
       />
       <hr></hr>
-      <button className="btn btn-tertiary" onClick={() => resetFilters()}>
+      <button
+        type="button"
+        className={`btn btn-tertiary ${styles.SearchFiltersButton}`}
+        onClick={resetFilters}
+      >
         Limpiar filtros
       </button>
     </div>
