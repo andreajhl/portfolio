@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
+import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import { connect } from "react-redux";
 import Badge from "../../common/badge";
 import { HomeButton } from "../../common/button/home-button";
@@ -8,9 +9,11 @@ import { SettingsIcon } from "../../common/icons";
 import { OrderByDropdown } from "../order-by-dropdown";
 import styles from "./styles.module.scss";
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = ({ searchFilters }) => ({
+  filtersOrderBy: searchFilters.orderBy
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { updateSearchFilters };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
@@ -27,11 +30,18 @@ const orderByOptions = [
   { label: "Mayor a menor precio", value: "price desc" }
 ];
 
+const getOptionByValue = (value) =>
+  orderByOptions.find((option) => option.value === value);
+
 function MainContentTopBar({
   sidebarIsOpen,
-  toggleSidebar
+  toggleSidebar,
+  filtersOrderBy,
+  updateSearchFilters
 }: MainContentTopBarProps) {
-  const [orderBy, setOrderBy] = useState(orderByOptions[0]);
+  const [orderBy, setOrderBy] = useState(
+    getOptionByValue(filtersOrderBy) || orderByOptions[0]
+  );
 
   return (
     <div
@@ -48,10 +58,13 @@ function MainContentTopBar({
         </IconButton>
         <HomeButton />
       </Maybe>
-      <Badge text="Actores" onClick={() => console.log("Clicked")} />
+      {/* <Badge text="Actores" onClick={() => console.log("Clicked")} /> */}
       <OrderByDropdown
         className={styles.MainContentTopBarOrderByDropdown}
-        onChange={setOrderBy}
+        onChange={(option) => {
+          setOrderBy(option);
+          updateSearchFilters({ orderBy: option.value });
+        }}
         selectedOption={orderBy}
         options={orderByOptions}
       />

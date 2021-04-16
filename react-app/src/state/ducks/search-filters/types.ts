@@ -1,6 +1,7 @@
 const MODEL = "search-filters/";
 
 export type SearchFiltersType = {
+  orderBy?: string;
   country_id?: string;
   category_id?: string;
   price_gt?: number;
