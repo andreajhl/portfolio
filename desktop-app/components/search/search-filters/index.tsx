@@ -109,49 +109,64 @@ function SearchFilters({ ...props }: SearchFiltersProps) {
 
   return (
     <div className={styles.SearchFilters}>
-      <CheckBoxList
-        title="Paises"
-        options={memoizedValuesForCountries}
-        handleChange={(event) =>
-          handleChangeCheckbox(event, setCountriesChecked)
-        }
-      />
-      <hr></hr>
-      <CheckBoxList
-        title="Categoria"
-        options={memoizedValueForCategoryFilters}
-        handleChange={(event) =>
-          handleChangeCheckbox(event, setCategoriesChecked)
-        }
-      />
-      <hr></hr>
-      <label>Precio</label>
-      <br />
-      <PriceRangeSlider
-        min={5}
-        max={500}
-        values={values}
-        onValuesUpdated={({ values }) => {
-          setValues(values);
-        }}
-      />
-      <hr></hr>
-
-      <CheckBoxList
-        title="Tiempo de entrega"
-        options={memoizedValuesForDeliveryTimeFilter}
-        handleChange={(event) =>
-          handleChangeCheckbox(event, setDeliveriesTimeChecked)
-        }
-      />
-      <hr></hr>
-      <button
-        type="button"
-        className={`btn btn-tertiary ${styles.SearchFiltersButton}`}
-        onClick={resetFilters}
-      >
-        Limpiar filtros
-      </button>
+      <div className={styles.SearchFilterRow}>
+        <div className={styles.SearchFilterItem}>
+          <CheckBoxList
+            title="Paises"
+            options={memoizedValuesForCountries}
+            handleChange={(event) =>
+              handleChangeCheckbox(event, setCountriesChecked)
+            }
+          />
+        </div>
+      </div>
+      <div className={styles.SearchFilterRow}>
+        <div className={styles.SearchFilterItem}>
+          <CheckBoxList
+            title="Categoria"
+            options={memoizedValueForCategoryFilters}
+            handleChange={(event) =>
+              handleChangeCheckbox(event, setCategoriesChecked)
+            }
+          />
+        </div>
+      </div>
+      <div className={styles.SearchFilterRow}>
+        <div className={styles.SearchFilterItem}>
+          <label>Precio</label>
+          <br />
+          <PriceRangeSlider
+            min={5}
+            max={500}
+            values={values}
+            onValuesUpdated={({ values }) => {
+              setValues(values);
+            }}
+          />
+        </div>
+      </div>
+      <div className={styles.SearchFilterRow}>
+        <div className={styles.SearchFilterItem}>
+          <CheckBoxList
+            title="Tiempo de entrega"
+            options={memoizedValuesForDeliveryTimeFilter}
+            handleChange={(event) =>
+              handleChangeCheckbox(event, setDeliveriesTimeChecked)
+            }
+          />
+        </div>
+      </div>
+      <div className={styles.SearchFilterRow}>
+        <div className={styles.SearchFilterItem}>
+          <button
+            type="button"
+            className={`btn btn-tertiary ${styles.SearchFiltersButton}`}
+            onClick={resetFilters}
+          >
+            Limpiar filtros
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

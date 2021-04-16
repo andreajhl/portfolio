@@ -12,3 +12,16 @@
     color: var(--tertiary-darken) !important;
   }
 }
+
+.SearchFilterRow {
+  margin-top: 17px;
+  &:not(:last-child) {
+    border-bottom: 1px solid #f2f2f2;
+  }
+}
+
+.SearchFilterItem {
+  margin-left: 75px;
+  margin-right: 25px;
+  margin-bottom: 27px;
+}

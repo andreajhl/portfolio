@@ -54,7 +54,7 @@ function SearchPage({ ...props }: SearchPageProps) {
                 </IconButton>
               </div>
             </div>
-            <div className={styles.SearchPageSidebarContainer}>
+            <div>
               <SearchFilters />
             </div>
           </div>
