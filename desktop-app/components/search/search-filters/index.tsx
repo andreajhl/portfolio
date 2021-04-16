@@ -1,19 +1,16 @@
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 import { PriceRangeSlider } from "../price-range-slider";
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState
-} from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import CheckBoxList from "desktop-app/components/common/checkbox-list";
-import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
+import {
+  updateSearchFilters,
+  resetSearchFilters
+} from "react-app/src/state/ducks/search-filters/actions";
 import { searchFiltersInitialState } from "react-app/src/state/ducks/search-filters/reducers";
 import { countriesOperations } from "react-app/src/state/ducks/countries";
 import { celebrityCategoriesOperations } from "react-app/src/state/ducks/celebrity-categories";
+import { CountryFilter } from "../country-filter";
 
 const mapStateToProps = ({ countries, searchFilters, celebrityCategories }) => {
   return {
@@ -27,7 +24,8 @@ const mapStateToProps = ({ countries, searchFilters, celebrityCategories }) => {
 const mapDispatchToProps = {
   listCountries: countriesOperations.list,
   listCelebrityCategories: celebrityCategoriesOperations.list,
-  updateSearchFilters
+  updateSearchFilters,
+  resetSearchFilters
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -42,17 +40,17 @@ function SearchFilters({
   countries,
   updateSearchFilters,
   celebrityCategories,
+  resetSearchFilters,
   listCountries,
   listCelebrityCategories,
   searchFilters
 }: SearchFiltersProps) {
   useEffect(() => {
-    const shouldFetchFilterOptions =
-      !countries.length && !celebrityCategories.length;
+    const shouldFetchFilterOptions = !celebrityCategories.length;
     if (!shouldFetchFilterOptions) return;
-    listCountries({ orderBy: "name asc" });
     listCelebrityCategories({ orderBy: "title asc" });
   }, []);
+
   const [values, setValues] = useState<[number, number]>([5, 500]);
   console.log(searchFilters);
   const [deliveryTimeFilter, setDeliveryTimeFilter] = useState([
@@ -61,14 +59,11 @@ function SearchFilters({
     { label: "3-4 dias", value: "3-4 dias" },
     { label: "5-7 dias", value: "5-7 dias" }
   ]);
-  const [countriesChecked, setCountriesChecked] = useState(new Map());
   const [categoriesChecked, setCategoriesChecked] = useState(new Map());
   const [deliveriesTimeChecked, setDeliveriesTimeChecked] = useState(new Map());
 
   const resetFilters = () => {
-    setCountriesChecked(new Map());
-    setCategoriesChecked(new Map());
-    setDeliveriesTimeChecked(new Map());
+    resetSearchFilters();
   };
 
   const handleChangeCheckbox = (
@@ -82,17 +77,6 @@ function SearchFilters({
         new Map([...Array.from(prevState.entries()), [item, isChecked]])
     );
   };
-
-  const memoizedValuesForCountries = useMemo(
-    () =>
-      countries.map((country, index) => ({
-        label: country.name,
-        value: country.id,
-        name: country.name + index,
-        checked: countriesChecked.get(country.name + index)
-      })),
-    [countriesChecked, countries]
-  );
 
   const memoizedValueForCategoryFilters = useMemo(
     () =>
@@ -124,13 +108,7 @@ function SearchFilters({
     <div className={styles.SearchFilters}>
       <div className={styles.SearchFilterRow}>
         <div className={styles.SearchFilterItem}>
-          <CheckBoxList
-            title="Paises"
-            options={memoizedValuesForCountries}
-            handleChange={(event) =>
-              handleChangeCheckbox(event, setCountriesChecked)
-            }
-          />
+          <CountryFilter />
         </div>
       </div>
       <div className={styles.SearchFilterRow}>
