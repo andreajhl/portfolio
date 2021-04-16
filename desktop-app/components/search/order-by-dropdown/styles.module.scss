@@ -9,22 +9,18 @@
 }
 
 .OrderByDropdownButton {
+  font-size: 14px;
   padding: 0.375em 0.75em !important;
 }
 
 .OrderByDropdownTitle {
-  padding-top: 14px;
-  padding-bottom: 17px;
-  padding-left: 41px;
-  border-bottom: 1px solid #f2f2f2;
-  font-size: 14px;
+  margin-right: 1em;
   font-weight: bold;
   color: var(--dark) !important;
+}
 
-  &:hover,
-  &:active {
-    background: white !important;
-  }
+.OrderByDropdownSelectedLabel {
+  margin-right: 0.75em;
 }
 
 .OrderByDropdownItem {

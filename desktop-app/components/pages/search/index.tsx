@@ -17,11 +17,15 @@ import styles from "./styles.module.scss";
 import { SearchFilters } from "desktop-app/components/search/search-filters";
 import Badge from "desktop-app/components/common/badge";
 import { OrderByDropdown } from "desktop-app/components/search/order-by-dropdown";
-import { NoResultsBanner } from "desktop-app/components/search/no-results-banner";
 import { getPixelsFromViewportWidth } from "../../../../lib/utils/getPixelsFromViewportWidth";
 
 type SearchPageProps = {};
 
+const orderByOptions = [
+  { label: "Destacados", value: "" },
+  { label: "Menor a mayor precio", value: "price asc" },
+  { label: "Mayor a menor precio", value: "price desc" }
+];
 function SearchPage({ ...props }: SearchPageProps) {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(true);
 
@@ -44,7 +48,7 @@ function SearchPage({ ...props }: SearchPageProps) {
     totalPage: 25
   });
 
-  const [orderBy, setOrderBy] = useState();
+  const [orderBy, setOrderBy] = useState(orderByOptions[0]);
 
   return (
     <PageContainer>
@@ -94,10 +98,7 @@ function SearchPage({ ...props }: SearchPageProps) {
                 className={styles.SearchPageOrderByDropdown}
                 onChange={setOrderBy}
                 selectedOption={orderBy}
-                options={[
-                  { label: "Menor a mayor precio", value: "price asc" },
-                  { label: "Mayor a menor precio", value: "price desc" }
-                ]}
+                options={orderByOptions}
               />
             </div>
           </div>
@@ -106,7 +107,6 @@ function SearchPage({ ...props }: SearchPageProps) {
               sidebarIsOpen ? styles.ContainerSidebarIsOpen : ""
             }`}
           >
-            {/* <NoResultsBanner className={styles.SearchPageNoResultsBanner} /> */}
             <div
               className={`${styles.SearchPageMainContentCardGrid} ${
                 !sidebarIsOpen
