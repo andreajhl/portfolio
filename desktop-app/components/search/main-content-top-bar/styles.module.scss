@@ -1,0 +1,24 @@
+.MainContentTopBarSidebarIsOpen {
+  transition: all 0.5s;
+  width: 830px !important;
+  margin-left: 30px;
+}
+
+.MainContentTopBarContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  > * {
+    margin-right: 28px;
+  }
+}
+
+.MainContentTopBarSidebarToggler {
+  margin-right: calc(28px - 0.75em);
+}
+
+.MainContentTopBarOrderByDropdown {
+  margin-right: 0;
+  margin-left: auto;
+}
