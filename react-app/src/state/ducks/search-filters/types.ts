@@ -1,0 +1,12 @@
+const MODEL = "search-filters/";
+
+export type SearchFiltersType = {
+  country_id?: string;
+  category_id?: string;
+  price_gt?: number;
+  price_lt?: number;
+};
+
+export const UPDATE_FILTERS = MODEL + "UPDATE_FILTERS";
+
+export const RESET_FILTERS = MODEL + "RESET_FILTERS";
