@@ -10,18 +10,28 @@ import {
   useState
 } from "react";
 import CheckBoxList from "desktop-app/components/common/checkbox-list";
+import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
+import { searchFiltersInitialState } from "react-app/src/state/ducks/search-filters/reducers";
 
-const mapStateToProps = (state) => ({ ...state });
+const mapStateToProps = ({ searchFilters }) => ({ searchFilters });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  updateSearchFilters
+};
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
 type SearchFiltersProps = {} & StateProps & DispatchProps;
 
-function SearchFilters({ ...props }: SearchFiltersProps) {
-  const [values, setValues] = useState<[number, number]>([5, 500]);
+const minPrice = searchFiltersInitialState.price_gt;
+const maxPrice = searchFiltersInitialState.price_lt;
+
+function SearchFilters({
+  updateSearchFilters,
+  searchFilters
+}: SearchFiltersProps) {
+  console.log(searchFilters);
   const [countryFilters, setCountryFilters] = useState([
     { label: "Argentina", value: "Argentina" },
     { label: "Venezuela", value: "Venezuela" },
@@ -56,8 +66,6 @@ function SearchFilters({ ...props }: SearchFiltersProps) {
   const [countriesChecked, setCountriesChecked] = useState(new Map());
   const [categoriesChecked, setCategoriesChecked] = useState(new Map());
   const [deliveriesTimeChecked, setDeliveriesTimeChecked] = useState(new Map());
-
-  const [min, max] = values;
 
   const resetFilters = () => {
     setCountriesChecked(new Map());
@@ -107,6 +115,11 @@ function SearchFilters({ ...props }: SearchFiltersProps) {
     [deliveryTimeFilter, deliveriesTimeChecked]
   );
 
+  const priceRangeSliderValues = [
+    searchFilters.price_gt,
+    searchFilters.price_lt
+  ];
+
   return (
     <div className={styles.SearchFilters}>
       <div className={styles.SearchFilterRow}>
@@ -133,14 +146,16 @@ function SearchFilters({ ...props }: SearchFiltersProps) {
       </div>
       <div className={styles.SearchFilterRow}>
         <div className={styles.SearchFilterItem}>
-          <label>Precio</label>
-          <br />
+          <label className={styles.SearchFilterItemTitle}>Precio</label>
           <PriceRangeSlider
-            min={5}
-            max={500}
-            values={values}
-            onValuesUpdated={({ values }) => {
-              setValues(values);
+            min={minPrice}
+            max={maxPrice}
+            initialValues={priceRangeSliderValues}
+            onChange={({ values: [price_gt, price_lt] }) => {
+              updateSearchFilters({
+                price_gt,
+                price_lt
+              });
             }}
           />
         </div>

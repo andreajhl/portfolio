@@ -6,11 +6,6 @@ import { PriceLayout } from "desktop-app/components/common/helpers/price-layout"
 import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 
-type PriceRangeSliderProps = {
-  min?: number;
-  max?: number;
-} & Omit<RangeSliderProps, "algorithm" | "isTouched">;
-
 function PriceRangeSliderInput({
   initialPrice,
   value,
@@ -27,7 +22,6 @@ function PriceRangeSliderInput({
   const [inputValue, setInputValue] = useState(String(initialPrice));
 
   useEffect(() => {
-    console.log("Actualizar", value);
     if (typeof value === "undefined") return;
     setInputValue(String(value));
   }, [value]);
@@ -93,15 +87,23 @@ function PriceRangeSliderInput({
   );
 }
 
+type PriceRangeSliderProps = {
+  min?: number;
+  max?: number;
+} & Omit<RangeSliderProps, "algorithm" | "isTouched">;
+
 function PriceRangeSlider({
   min = 0,
   max = 100,
-  values,
+  initialValues,
   onValuesUpdated = function () {},
+  onChange,
   onClick = function () {}
 }: PriceRangeSliderProps) {
-  const [low, high] = values;
+  const [values, setValues] = useState(initialValues);
   const [isTouched, setIsTouched] = useState(false);
+
+  const [low, high] = values;
 
   return (
     <div className={styles.PriceRangeSlider}>
@@ -112,12 +114,13 @@ function PriceRangeSlider({
         isTouched={isTouched}
         onValuesUpdated={(state) => {
           if (!isTouched) setIsTouched(true);
-          onValuesUpdated(state);
+          setValues(state.values);
         }}
         onClick={() => {
           if (!isTouched) setIsTouched(true);
           onClick();
         }}
+        onChange={onChange}
         className={styles.PriceRangeSliderSlider}
       />
       <div className={styles.PriceRangeSliderInputs}>
@@ -131,7 +134,8 @@ function PriceRangeSlider({
             let newLow = Number(value);
             if (value !== "" && newLow < min) newLow = min;
             else if (newLow > max) newLow = max;
-            onValuesUpdated({ values: [newLow, high] });
+            setValues([newLow, high]);
+            onChange({ values: [newLow, high] });
           }}
         />
         <span className={styles.PriceRangeSliderInputsSeparator}>-</span>
@@ -145,7 +149,8 @@ function PriceRangeSlider({
             let newHigh = Number(value);
             if (newHigh < min) newHigh = min;
             else if (newHigh > max) newHigh = max;
-            onValuesUpdated({ values: [low, newHigh] });
+            setValues([low, newHigh]);
+            onChange({ values: [low, newHigh] });
           }}
         />
       </div>
