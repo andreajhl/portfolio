@@ -1,7 +1,14 @@
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 import { PriceRangeSlider } from "../price-range-slider";
-import { useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState
+} from "react";
 import CheckBoxList from "desktop-app/components/common/checkbox-list";
 
 const mapStateToProps = (state) => ({ ...state });
@@ -16,73 +23,106 @@ type SearchFiltersProps = {} & StateProps & DispatchProps;
 function SearchFilters({ ...props }: SearchFiltersProps) {
   const [values, setValues] = useState<[number, number]>([5, 500]);
   const [countryFilters, setCountryFilters] = useState([
-    { label: "Argentina", value: "Argentina", checked: true },
-    { label: "Venezuela", value: "Venezuela", checked: true },
-    { label: "Peru", value: "Peru", checked: true },
-    { label: "Chile", value: "Chile", checked: true },
-    { label: "Colombia", value: "Colombia", checked: false },
-    { label: "Mexico", value: "Mexico", checked: false },
-    { label: "Estados unidos", value: "Estados unidos", checked: false },
-    { label: "China", value: "China", checked: false },
-    { label: "Japon", value: "Japon", checked: false }
+    { label: "Argentina", value: "Argentina" },
+    { label: "Venezuela", value: "Venezuela" },
+    { label: "Peru", value: "Peru" },
+    { label: "Chile", value: "Chile" },
+    { label: "Colombia", value: "Colombia" },
+    { label: "Mexico", value: "Mexico" },
+    { label: "Estados unidos", value: "Estados unidos" },
+    { label: "China", value: "China" },
+    { label: "Japon", value: "Japon" }
   ]);
   const [categoryFilters, setCategoryFilters] = useState([
-    { label: "Actores", value: "Actores", checked: false },
-    { label: "Adultos", value: "Adultos", checked: false },
-    { label: "Bailarines", value: "Bailarines", checked: false },
-    { label: "Chef", value: "Chef", checked: false },
-    { label: "Coach", value: "Coach", checked: false },
-    { label: "Comediantes", value: "Comediantes", checked: false },
-    { label: "Doblaje", value: "Doblaje", checked: false },
-    { label: "Fitness", value: "Fitness", checked: false },
-    { label: "Imitadores", value: "Imitadores", checked: false },
-    { label: "Influencers", value: "Influencers", checked: false },
-    { label: "Modelos", value: "Modelos", checked: false },
-    { label: "Periodistas", value: "Periodistas", checked: false }
+    { label: "Actores", value: "Actores" },
+    { label: "Adultos", value: "Adultos" },
+    { label: "Bailarines", value: "Bailarines" },
+    { label: "Chef", value: "Chef" },
+    { label: "Coach", value: "Coach" },
+    { label: "Comediantes", value: "Comediantes" },
+    { label: "Doblaje", value: "Doblaje" },
+    { label: "Fitness", value: "Fitness" },
+    { label: "Imitadores", value: "Imitadores" },
+    { label: "Influencers", value: "Influencers" },
+    { label: "Modelos", value: "Modelos" },
+    { label: "Periodistas", value: "Periodistas" }
   ]);
-  const [develiveryTimeFilter, setDeveliveryTimeFilter] = useState([
-    { label: "Flash (24hrs)", value: "flash", checked: true },
-    { label: "1-2 dias", value: "1-2 dias", checked: true },
-    { label: "3-4 dias", value: "3-4 dias", checked: true },
-    { label: "5-7 dias", value: "5-7 dias", checked: true }
+  const [deliveryTimeFilter, setDeliveryTimeFilter] = useState([
+    { label: "Flash (24hrs)", value: "flash" },
+    { label: "1-2 dias", value: "1-2 dias" },
+    { label: "3-4 dias", value: "3-4 dias" },
+    { label: "5-7 dias", value: "5-7 dias" }
   ]);
+  const [countriesChecked, setCountriesChecked] = useState(new Map());
+  const [categoriesChecked, setCategoriesChecked] = useState(new Map());
+  const [deliveriesTimeChecked, setDeliveriesTimeChecked] = useState(new Map());
+
   const [min, max] = values;
+
   const resetFilters = () => {
-    setCountryFilters((prevState) =>
-      prevState.map((option) => ({
-        ...option,
-        checked: false
-      }))
-    );
-    setCategoryFilters((prevState) =>
-      prevState.map((option) => ({
-        ...option,
-        checked: false
-      }))
-    );
-    setDeveliveryTimeFilter((prevState) =>
-      prevState.map((option) => ({
-        ...option,
-        checked: false
-      }))
+    setCountriesChecked(new Map());
+    setCategoriesChecked(new Map());
+    setDeliveriesTimeChecked(new Map());
+  };
+
+  const handleChangeCheckbox = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setter: Dispatch<SetStateAction<Map<any, any>>>
+  ) => {
+    const item = e.target.name;
+    const isChecked = e.target.checked;
+    setter(
+      (prevState) =>
+        new Map([...Array.from(prevState.entries()), [item, isChecked]])
     );
   };
-  useEffect(() => {
-    console.log(countryFilters);
-  }, [countryFilters]);
+
+  const memoizedValuesForCountries = useMemo(
+    () =>
+      countryFilters.map((country, index) => ({
+        ...country,
+        name: country.label + index,
+        checked: countriesChecked.get(country.label + index)
+      })),
+    [countriesChecked, countryFilters]
+  );
+
+  const memoizedValueForCategoryFilters = useMemo(
+    () =>
+      categoryFilters.map((category, index) => ({
+        ...category,
+        name: category.label + index,
+        checked: categoriesChecked.get(category.label + index)
+      })),
+    [categoryFilters, categoriesChecked]
+  );
+
+  const memoizedValuesForDeliveryTimeFilter = useMemo(
+    () =>
+      deliveryTimeFilter.map((time, index) => ({
+        ...time,
+        name: time.label + index,
+        checked: deliveriesTimeChecked.get(time.label + index)
+      })),
+    [deliveryTimeFilter, deliveriesTimeChecked]
+  );
+
   return (
     <div className={styles.SearchFilters}>
       <CheckBoxList
         title="Paises"
-        options={countryFilters}
-        onCheckOption={(checked, option) => console.log(checked, option)}
+        options={memoizedValuesForCountries}
+        handleChange={(event) =>
+          handleChangeCheckbox(event, setCountriesChecked)
+        }
       />
       <hr></hr>
       <CheckBoxList
         title="Categoria"
-        controlled
-        options={categoryFilters}
-        onCheckOption={(checked, option) => console.log(checked, option)}
+        options={memoizedValueForCategoryFilters}
+        handleChange={(event) =>
+          handleChangeCheckbox(event, setCategoriesChecked)
+        }
       />
       <hr></hr>
       <label>Precio</label>
@@ -98,10 +138,11 @@ function SearchFilters({ ...props }: SearchFiltersProps) {
       <hr></hr>
 
       <CheckBoxList
-        controlled
         title="Tiempo de entrega"
-        options={develiveryTimeFilter}
-        onCheckOption={(checked, option) => console.log(checked, option)}
+        options={memoizedValuesForDeliveryTimeFilter}
+        handleChange={(event) =>
+          handleChangeCheckbox(event, setDeliveriesTimeChecked)
+        }
       />
       <hr></hr>
       <button

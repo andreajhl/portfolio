@@ -1,23 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Checkbox from "../form/checkbox";
 import Maybe from "../helpers/maybe";
 import styles from "./styles.module.scss";
 
-type option = { label: string; value: any; checked?: boolean };
+type option = { label: string; name: string; checked: boolean };
 
 type CheckBoxListProps = {
   options: option[];
   title: string;
-  controlled?: boolean;
-  onCheckOption: (checked: boolean, option: option) => void;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-function CheckBoxList({
-  options,
-  onCheckOption,
-  title,
-  controlled = false
-}: CheckBoxListProps) {
+function CheckBoxList({ options, handleChange, title }: CheckBoxListProps) {
   const [showMore, setShowMore] = useState(false);
   return (
     <div>
@@ -28,10 +22,10 @@ function CheckBoxList({
             style={{
               margin: "0 0 11px 0"
             }}
-            controlled={controlled}
+            name={option.name}
             label={option.label}
             checked={option.checked}
-            onChangeChecked={(value) => onCheckOption(value, option)}
+            onChange={(event) => handleChange(event)}
           ></Checkbox>
         </>
       ))}
@@ -42,10 +36,10 @@ function CheckBoxList({
               style={{
                 margin: "0 0 11px 0"
               }}
-              controlled={controlled}
               label={option.label}
+              name={option.name}
               checked={option.checked}
-              onChangeChecked={(value) => onCheckOption(value, option)}
+              onChange={(event) => handleChange(event)}
             ></Checkbox>
           ))}
         </div>
