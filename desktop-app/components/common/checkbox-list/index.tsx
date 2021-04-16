@@ -3,7 +3,7 @@ import Checkbox from "../form/checkbox";
 import Maybe from "../helpers/maybe";
 import styles from "./styles.module.scss";
 
-type option = { label: string; name: string; checked: boolean };
+type option = { label: string; value: any; name: string; checked: boolean };
 
 type CheckBoxListProps = {
   options: option[];
@@ -58,6 +58,7 @@ function CheckBoxList({
             }}
             name={option.name}
             label={option.label}
+            value={option.value}
             checked={option.checked}
             onChange={(event) => handleChange(event)}
           ></Checkbox>
@@ -79,6 +80,7 @@ function CheckBoxList({
               }}
               label={option.label}
               name={option.name}
+              value={option.value}
               checked={option.checked}
               onChange={(event) => handleChange(event)}
             ></Checkbox>

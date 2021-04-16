@@ -12,10 +12,21 @@ import {
 import CheckBoxList from "desktop-app/components/common/checkbox-list";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import { searchFiltersInitialState } from "react-app/src/state/ducks/search-filters/reducers";
+import { countriesOperations } from "react-app/src/state/ducks/countries";
+import { celebrityCategoriesOperations } from "react-app/src/state/ducks/celebrity-categories";
 
-const mapStateToProps = ({ searchFilters }) => ({ searchFilters });
+const mapStateToProps = ({ countries, searchFilters, celebrityCategories }) => {
+  return {
+    countries: countries.countriesReducer.data.results,
+    celebrityCategories:
+      celebrityCategories.fetchCelebrityCategoriesReducer.data.results,
+    searchFilters
+  };
+};
 
 const mapDispatchToProps = {
+  listCountries: countriesOperations.list,
+  listCelebrityCategories: celebrityCategoriesOperations.list,
   updateSearchFilters
 };
 
@@ -28,35 +39,22 @@ const minPrice = searchFiltersInitialState.price_gt;
 const maxPrice = searchFiltersInitialState.price_lt;
 
 function SearchFilters({
+  countries,
   updateSearchFilters,
+  celebrityCategories,
+  listCountries,
+  listCelebrityCategories,
   searchFilters
 }: SearchFiltersProps) {
+  useEffect(() => {
+    const shouldFetchFilterOptions =
+      !countries.length && !celebrityCategories.length;
+    if (!shouldFetchFilterOptions) return;
+    listCountries({ orderBy: "name asc" });
+    listCelebrityCategories({ orderBy: "title asc" });
+  }, []);
+  const [values, setValues] = useState<[number, number]>([5, 500]);
   console.log(searchFilters);
-  const [countryFilters, setCountryFilters] = useState([
-    { label: "Argentina", value: "Argentina" },
-    { label: "Venezuela", value: "Venezuela" },
-    { label: "Peru", value: "Peru" },
-    { label: "Chile", value: "Chile" },
-    { label: "Colombia", value: "Colombia" },
-    { label: "Mexico", value: "Mexico" },
-    { label: "Estados unidos", value: "Estados unidos" },
-    { label: "China", value: "China" },
-    { label: "Japon", value: "Japon" }
-  ]);
-  const [categoryFilters, setCategoryFilters] = useState([
-    { label: "Actores", value: "Actores" },
-    { label: "Adultos", value: "Adultos" },
-    { label: "Bailarines", value: "Bailarines" },
-    { label: "Chef", value: "Chef" },
-    { label: "Coach", value: "Coach" },
-    { label: "Comediantes", value: "Comediantes" },
-    { label: "Doblaje", value: "Doblaje" },
-    { label: "Fitness", value: "Fitness" },
-    { label: "Imitadores", value: "Imitadores" },
-    { label: "Influencers", value: "Influencers" },
-    { label: "Modelos", value: "Modelos" },
-    { label: "Periodistas", value: "Periodistas" }
-  ]);
   const [deliveryTimeFilter, setDeliveryTimeFilter] = useState([
     { label: "Flash (24hrs)", value: "flash" },
     { label: "1-2 dias", value: "1-2 dias" },
@@ -87,22 +85,24 @@ function SearchFilters({
 
   const memoizedValuesForCountries = useMemo(
     () =>
-      countryFilters.map((country, index) => ({
-        ...country,
-        name: country.label + index,
-        checked: countriesChecked.get(country.label + index)
+      countries.map((country, index) => ({
+        label: country.name,
+        value: country.id,
+        name: country.name + index,
+        checked: countriesChecked.get(country.name + index)
       })),
-    [countriesChecked, countryFilters]
+    [countriesChecked, countries]
   );
 
   const memoizedValueForCategoryFilters = useMemo(
     () =>
-      categoryFilters.map((category, index) => ({
-        ...category,
-        name: category.label + index,
-        checked: categoriesChecked.get(category.label + index)
+      celebrityCategories.map((category, index) => ({
+        label: category.title,
+        value: category.id,
+        name: category.title + index,
+        checked: categoriesChecked.get(category.title + index)
       })),
-    [categoryFilters, categoriesChecked]
+    [celebrityCategories, categoriesChecked]
   );
 
   const memoizedValuesForDeliveryTimeFilter = useMemo(
