@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Checkbox from "../form/checkbox";
 import Maybe from "../helpers/maybe";
 import styles from "./styles.module.scss";
@@ -9,14 +9,20 @@ type CheckBoxListProps = {
   options: option[];
   title: string;
   handleChange: React.ChangeEventHandler<HTMLInputElement>;
+  initialListLength?: number;
 };
 
-function CheckBoxList({ options, handleChange, title }: CheckBoxListProps) {
+function CheckBoxList({
+  options,
+  handleChange,
+  title,
+  initialListLength = 4
+}: CheckBoxListProps) {
   const [showMore, setShowMore] = useState(false);
   return (
     <div>
       <p className={styles.Title}>{title}</p>
-      {options.slice(0, 5).map((option) => (
+      {options.slice(0, initialListLength).map((option) => (
         <>
           <Checkbox
             style={{
@@ -31,7 +37,7 @@ function CheckBoxList({ options, handleChange, title }: CheckBoxListProps) {
       ))}
       {showMore ? (
         <div>
-          {options.slice(5).map((option) => (
+          {options.slice(initialListLength).map((option) => (
             <Checkbox
               style={{
                 margin: "0 0 11px 0"
@@ -44,7 +50,7 @@ function CheckBoxList({ options, handleChange, title }: CheckBoxListProps) {
           ))}
         </div>
       ) : null}
-      <Maybe it={options.length > 5}>
+      <Maybe it={options.length > 4}>
         <div>
           <span
             onClick={() => setShowMore((prevState) => !prevState)}
