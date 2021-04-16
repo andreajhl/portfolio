@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { connect } from "react-redux";
+import Maybe from "../../common/helpers/maybe";
 import { ContractPriceLayout } from "../contract-price";
 
 const getContractPrice = (contractTypes, currencyExchangeData) => {
@@ -21,7 +22,9 @@ const getContractPrice = (contractTypes, currencyExchangeData) => {
 const CelebrityContractPrice = ({
   className,
   contractTypes,
-  currencyExchangeData
+  currencyExchangeData,
+  discountPercentage = 0,
+  discountClassName = ""
 }) => {
   const price = useMemo(
     () => getContractPrice(contractTypes, currencyExchangeData),
@@ -29,12 +32,23 @@ const CelebrityContractPrice = ({
   );
 
   return (
-    <ContractPriceLayout
-      classes={`text-black font-weight-bold ${className}`}
-      price={price}
-      currency={currencyExchangeData.to}
-      rounding={true}
-    />
+    <div>
+      <ContractPriceLayout
+        classes={`text-black font-weight-bold ${className}`}
+        price={price}
+        currency={currencyExchangeData.to}
+        rounding={true}
+      />
+      <Maybe it={discountPercentage > 0}>
+        <br className="d-md-none" />
+        <ContractPriceLayout
+          classes={`text-black font-weight-bold ${discountClassName}`}
+          price={price - price * discountPercentage}
+          currency={currencyExchangeData.to}
+          rounding={true}
+        />
+      </Maybe>
+    </div>
   );
 };
 

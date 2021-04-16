@@ -30,6 +30,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
     isDonor,
     causeName,
     causeUrl,
+    discountPercentage,
     status
   } = celebrity;
 
@@ -85,6 +86,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
             contractTypes={contractTypes}
             turnAround={turnaround}
             availableForFlashDeliveries={availableForFlashDeliveries}
+            discountPercentage={discountPercentage}
             status={status}
           />
           <Col className="d-none d-md-block mx-0 px-0">

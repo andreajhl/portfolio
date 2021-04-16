@@ -14,6 +14,7 @@ export const CelebrityInfo = ({
   turnAround,
   availableForFlashDeliveries,
   variant,
+  discountPercentage,
   status
 }) => {
   switch (variant) {
@@ -48,7 +49,13 @@ export const CelebrityInfo = ({
             <div className="d-flex align-items-center">
               <CelebrityContractPrice
                 contractTypes={contractTypes}
-                className="CelebrityInfo__contract-price"
+                className={`CelebrityInfo__contract-price ${
+                  discountPercentage > 0
+                    ? "CelebrityInfo__contract-price--invalid"
+                    : ""
+                }`}
+                discountPercentage={discountPercentage}
+                discountClassName="CelebrityInfo__contract-price-discount"
               />
               <CelebrityFavoriteButton
                 className="d-md-none ml-auto"
@@ -115,7 +122,13 @@ export const CelebrityInfo = ({
             <Maybe it={status === 50}>
               <CelebrityContractPrice
                 contractTypes={contractTypes}
-                className="CelebrityInfo__contract-price"
+                className={`CelebrityInfo__contract-price ${
+                  discountPercentage > 0
+                    ? "CelebrityInfo__contract-price--invalid"
+                    : ""
+                }`}
+                discountPercentage={discountPercentage}
+                discountClassName="CelebrityInfo__contract-price-discount"
               />
             </Maybe>
           </div>
