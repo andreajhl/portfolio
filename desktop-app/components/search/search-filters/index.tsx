@@ -20,14 +20,14 @@ const mapStateToProps = ({ countries, searchFilters, celebrityCategories }) => {
     countries: countries.countriesReducer.data.results,
     celebrityCategories:
       celebrityCategories.fetchCelebrityCategoriesReducer.data.results,
-    updateSearchFilters,
     searchFilters
   };
 };
 
 const mapDispatchToProps = {
   listCountries: countriesOperations.list,
-  listCelebrityCategories: celebrityCategoriesOperations.list
+  listCelebrityCategories: celebrityCategoriesOperations.list,
+  updateSearchFilters
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -53,9 +53,8 @@ function SearchFilters({
     listCountries({ orderBy: "name asc" });
     listCelebrityCategories({ orderBy: "title asc" });
   }, []);
-  console.log(celebrityCategories);
   const [values, setValues] = useState<[number, number]>([5, 500]);
-
+  console.log(searchFilters);
   const [deliveryTimeFilter, setDeliveryTimeFilter] = useState([
     { label: "Flash (24hrs)", value: "flash" },
     { label: "1-2 dias", value: "1-2 dias" },
