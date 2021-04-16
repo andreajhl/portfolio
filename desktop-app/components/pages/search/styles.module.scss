@@ -75,5 +75,9 @@
 .SearchPageMainContentCardGrid {
   display: grid;
   gap: 26px 24px;
-  grid-template-columns: repeat(auto-fill, 186px);
+  grid-template-columns: repeat(auto-fill, 13.8vw);
+}
+
+.SearchPageMainContentCardGridExpanded {
+  grid-template-columns: repeat(auto-fill, 15.17vw);
 }
