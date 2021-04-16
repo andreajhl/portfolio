@@ -8,6 +8,7 @@ type CheckboxProps = {
   checked: boolean;
   style?: React.CSSProperties;
   name: string;
+  value: any;
 };
 
 function Checkbox({
@@ -15,7 +16,8 @@ function Checkbox({
   onChange,
   checked = false,
   style,
-  name
+  name,
+  value
 }: CheckboxProps) {
   return (
     <label className={styles.LabelContainer} style={style}>
@@ -24,6 +26,7 @@ function Checkbox({
           className={styles.HiddenCheckbox}
           checked={checked}
           onChange={onChange}
+          value={value}
           name={name}
           type="checkbox"
         ></input>
