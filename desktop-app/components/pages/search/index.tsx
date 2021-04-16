@@ -17,6 +17,7 @@ import styles from "./styles.module.scss";
 import { SearchFilters } from "desktop-app/components/search/search-filters";
 import Badge from "desktop-app/components/common/badge";
 import { OrderByDropdown } from "desktop-app/components/search/order-by-dropdown";
+import { NoResultsBanner } from "desktop-app/components/no-results-banner";
 
 type SearchPageProps = {};
 
@@ -93,6 +94,7 @@ function SearchPage({ ...props }: SearchPageProps) {
               sidebarIsOpen ? styles.ContainerSidebarIsOpen : ""
             }`}
           >
+            <NoResultsBanner className={styles.SearchPageNoResultsBanner} />
             <div className={styles.SearchPageMainContentCardGrid}>
               {sections[0].celebrities.map((celebrity) => (
                 <CelebrityCard
