@@ -14,66 +14,18 @@
   border-bottom: 1px solid #f2f2f2;
 }
 
-.SearchPageSidebarTopBarContainer {
+.SearchPageSidebarTopBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
-}
-
-.SearchPageSidebarContainer {
-  margin-left: 75px;
-  margin-right: 25px;
-}
-
-.SearchPageSidebarTitle {
-  font-size: 1rem !important;
-  margin-bottom: 0;
-}
-
-.SearchPageSidebarClose {
-  margin-top: 0.25em;
-  margin-right: -0.75em;
-  font-size: 12px;
-  &:focus {
-    box-shadow: none;
-  }
-}
-
-.ContainerSidebarIsOpen {
-  transition: all 0.5s;
-  width: 830px !important;
-  margin-left: 30px;
+  padding-left: 75px;
+  padding-right: 25px;
 }
 
 .SearchPageMainContentTopBar {
   margin-bottom: 25px;
 }
-.SearchPageMainContentTopBarContainer {
-  height: 100%;
-  display: flex;
-  align-items: center;
-
-  > * {
-    margin-right: 28px;
-  }
-}
-
-.SearchPageMainContentSidebarToggler {
-  margin-right: calc(28px - 0.75em);
-}
-
-.SearchPageOrderByDropdown {
-  margin-right: 0;
-  margin-left: auto;
-}
 
 .SearchPageNoResultsBanner {
   margin-bottom: 30px;
-}
-
-.SearchPageMainContentCardGrid {
-  display: grid;
-  gap: 26px 24px;
-  grid-template-columns: repeat(auto-fill, 186px);
 }

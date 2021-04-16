@@ -1,4 +1,3 @@
-import { OrderByIcon } from "desktop-app/components/common/icons";
 import { ReactNode } from "react";
 import { Dropdown } from "../../common/button/dropdown";
 import styles from "./styles.module.scss";
@@ -17,7 +16,7 @@ type OrderByDropdownProps = {
 };
 
 function OrderByDropdown({
-  title = "Ordenar por:",
+  title = "Ordenar por",
   className = "",
   options,
   selectedOption,
@@ -26,26 +25,33 @@ function OrderByDropdown({
   return (
     <Dropdown
       className={className}
-      buttonChildren={<OrderByIcon />}
+      buttonChildren={
+        <>
+          <span className={styles.OrderByDropdownTitle}>{title}</span>
+          <span className={styles.OrderByDropdownSelectedLabel}>
+            {selectedOption.label}
+          </span>
+          <i className={`fa fa-chevron-down ${styles.OrderByDropdownIcon}`} />
+        </>
+      }
       menuClassName={styles.OrderByDropdown}
       buttonClassName={styles.OrderByDropdownButton}
     >
-      {(_isOpen, toggleIsOpen) => [
-        <div className={styles.OrderByDropdownTitle}>{title}</div>,
-        options.map(({ label, value }) => (
+      {(_isOpen, toggleIsOpen) =>
+        options.map((option) => (
           <div
             className={`${styles.OrderByDropdownItem} ${
-              selectedOption === value ? styles.OrderByDropdownItemActive : ""
+              selectedOption === option ? styles.OrderByDropdownItemActive : ""
             }`}
             onClick={() => {
               toggleIsOpen();
-              onChange(value);
+              onChange(option);
             }}
           >
-            {label}
+            {option.label}
           </div>
         ))
-      ]}
+      }
     </Dropdown>
   );
 }

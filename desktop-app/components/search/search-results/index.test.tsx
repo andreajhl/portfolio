@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import { NoResultsBanner } from "./";
+import { SearchResults } from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<NoResultsBanner />);
+  const wrapper = shallow(<SearchResults />);
   expect(wrapper.exists()).toBeTruthy();
 });
