@@ -8,6 +8,7 @@ type PaginationProps = {
 };
 
 function Pagination({ onChangePage, totalPage, currentPage }: PaginationProps) {
+  if (totalPage < 2) return null;
   return (
     <div className={styles.Pagination}>
       {currentPage === 1 ? null : (

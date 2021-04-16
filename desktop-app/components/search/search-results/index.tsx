@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import { connect } from "react-redux";
 import Pagination from "../../common/pagination";
 import { ResultsCardGrid } from "../results-card-grid";
 import styles from "./styles.module.scss";
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = ({ searchFilters, celebrities }) => {
+  return {
+    informationPage: {
+      pageSize: searchFilters.limit,
+      totalPage:
+        Math.ceil(
+          celebrities.fetchCelebritiesReducer.data.totalResults /
+            searchFilters.limit
+        ) || 1,
+      currentPage: searchFilters.offset / searchFilters.limit + 1
+    }
+  };
+};
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  updateSearchFilters
+};
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
@@ -16,11 +30,11 @@ type SearchResultsProps = {
 } & StateProps &
   DispatchProps;
 
-function SearchResults({ sidebarIsOpen }: SearchResultsProps) {
-  const [informationPage, setInformationPage] = useState({
-    currentPage: 1,
-    totalPage: 25
-  });
+function SearchResults({
+  sidebarIsOpen,
+  informationPage,
+  updateSearchFilters
+}: SearchResultsProps) {
   return (
     <main
       className={`container ${
@@ -28,14 +42,13 @@ function SearchResults({ sidebarIsOpen }: SearchResultsProps) {
       }`}
     >
       <ResultsCardGrid expanded={!sidebarIsOpen} />
-      <div className="d-flex justify-content-center py-5">
+      <div className={styles.PaginationContainer}>
         <Pagination
-          onChangePage={(nextPage) =>
-            setInformationPage((prevState) => ({
-              ...prevState,
-              currentPage: nextPage
-            }))
-          }
+          onChangePage={(nextPage) => {
+            updateSearchFilters({
+              offset: (nextPage - 1) * informationPage.pageSize
+            });
+          }}
           totalPage={informationPage.totalPage}
           currentPage={informationPage.currentPage}
         />
