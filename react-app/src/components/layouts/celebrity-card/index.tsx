@@ -53,6 +53,8 @@ const CelebrityCardLayout = ({
   const registerHoverOnCelebrity = () =>
     GTM.tagManagerDataLayer("HOVER_ON_CELEBRITY_CARD", celebrity);
 
+  const { discountPercentage } = celebrity;
+
   return (
     <NavLink
       to={profileUrl}
@@ -71,14 +73,27 @@ const CelebrityCardLayout = ({
             width={celebrityCardLayout?.width || 156}
             placeholderSrc="/assets/img/avatar-blank.png"
           />
+          <Maybe it={discountPercentage > 0}>
+            <span className="celebrity__discount">
+              -{discountPercentage * 100}%
+            </span>
+          </Maybe>
           {celebrity.availableForFlashDeliveries ? (
             <FlashDeliveryBadgeLayout className="celebrity__flash-delivery" />
           ) : null}
           <Maybe it={contractPrice > 0 && celebrity.status === 50}>
-            <div className="celebrity__price">
+            <div
+              className={`celebrity__price ${
+                discountPercentage ? "celebrity__price--discounted" : ""
+              }`}
+            >
               <ContractPriceLayout
                 classes="celebrity__price__text"
-                price={contractPrice}
+                price={
+                  discountPercentage
+                    ? contractPrice - contractPrice * discountPercentage
+                    : contractPrice
+                }
                 currency={currencyExchangeData.to}
                 rounding={true}
               />
