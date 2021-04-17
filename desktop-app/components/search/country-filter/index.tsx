@@ -52,11 +52,6 @@ function CountryFilter({
     const newState = new Map();
     parse_IDs.forEach((id) => newState.set(id, true));
     setCountriesChecked(newState);
-    // parse_IDs.forEach((id) => {
-    //   setCountriesChecked(
-    //     (prevState) => new Map([...Array.from(prevState.entries()), [id, true]])
-    //   );
-    // });
   }, [searchFilters]);
 
   useEffect(() => {
