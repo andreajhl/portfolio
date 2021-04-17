@@ -8,6 +8,7 @@ export type SearchFiltersType = {
   category_id?: string;
   price_gt?: number;
   price_lt?: number;
+  max_delivery_time?: number;
 };
 
 export const UPDATE_FILTERS = MODEL + "UPDATE_FILTERS";

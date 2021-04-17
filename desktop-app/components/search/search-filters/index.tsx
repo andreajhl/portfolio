@@ -10,6 +10,7 @@ import {
 import { searchFiltersInitialState } from "react-app/src/state/ducks/search-filters/reducers";
 import { CountryFilter } from "../country-filter";
 import { CategoryFilter } from "../category-filter";
+import { DeliveryTimeFilter } from "../delivery-time-filter";
 
 const mapStateToProps = ({ searchFilters }) => {
   return {
@@ -36,39 +37,10 @@ function SearchFilters({
   searchFilters
 }: SearchFiltersProps) {
   const [values, setValues] = useState<[number, number]>([5, 500]);
-  const [deliveryTimeFilter, setDeliveryTimeFilter] = useState([
-    { label: "Flash (24hrs)", value: "flash" },
-    { label: "1-2 dias", value: "1-2 dias" },
-    { label: "3-4 dias", value: "3-4 dias" },
-    { label: "5-7 dias", value: "5-7 dias" }
-  ]);
-  const [deliveriesTimeChecked, setDeliveriesTimeChecked] = useState(new Map());
-
+  console.log(searchFilters);
   const resetFilters = () => {
     resetSearchFilters();
   };
-
-  const handleChangeCheckbox = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    setter: Dispatch<SetStateAction<Map<any, any>>>
-  ) => {
-    const item = e.target.name;
-    const isChecked = e.target.checked;
-    setter(
-      (prevState) =>
-        new Map([...Array.from(prevState.entries()), [item, isChecked]])
-    );
-  };
-
-  const memoizedValuesForDeliveryTimeFilter = useMemo(
-    () =>
-      deliveryTimeFilter.map((time, index) => ({
-        ...time,
-        name: time.label + index,
-        checked: deliveriesTimeChecked.get(time.label + index)
-      })),
-    [deliveryTimeFilter, deliveriesTimeChecked]
-  );
 
   const priceRangeSliderValues = [
     searchFilters.price_gt,
@@ -105,13 +77,7 @@ function SearchFilters({
       </div>
       <div className={styles.SearchFilterRow}>
         <div className={styles.SearchFilterItem}>
-          <CheckBoxList
-            title="Tiempo de entrega"
-            options={memoizedValuesForDeliveryTimeFilter}
-            handleChange={(event) =>
-              handleChangeCheckbox(event, setDeliveriesTimeChecked)
-            }
-          />
+          <DeliveryTimeFilter />
         </div>
       </div>
       <div className={styles.SearchFilterRow}>
