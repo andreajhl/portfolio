@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import NumberFormat from "react-number-format";
 
 import { AVAILABLE_CURRENCIES } from "../currency-dropdown/constants";
+import Maybe from "../../common/helpers/maybe";
 
 class ContractPriceLayout extends Component {
   rounding() {
@@ -77,6 +78,8 @@ class ContractPriceLayout extends Component {
   }
 
   render() {
+    const hasCelebrityDiscount = this.props.celebrityDiscountPercentage > 0;
+
     const finalPrice = (
       <div
         style={{ width: "100%" }}
@@ -99,28 +102,60 @@ class ContractPriceLayout extends Component {
         {this.getPriceFormat()}
       </div>
     );
-    const originalPrice = this.props.availableDiscount ? (
-      <div className="d-flex  justify-content-between ">
-        <span> Precio original: </span>
-        <span className="text-dark">
-          {this.props.currencyExchangeData.to !== this.props.currency
-            ? this.getFormattedPrice(
-                this.getConvertedPrice(
-                  this.props.availableDiscount.initialPrice
-                ),
+
+    const originalPrice =
+      this.props.availableDiscount || hasCelebrityDiscount ? (
+        <div className="d-flex  justify-content-between ">
+          <span> Precio original: </span>
+          <span
+            className={`text-${hasCelebrityDiscount ? "danger" : "dark"}`}
+            style={
+              hasCelebrityDiscount
+                ? {
+                    textDecoration: "line-through",
+                    marginLeft: "auto",
+                    marginRight: "0.4em"
+                  }
+                : null
+            }
+          >
+            {this.props.currencyExchangeData.to !== this.props.currency
+              ? this.getFormattedPrice(
+                  this.getConvertedPrice(
+                    hasCelebrityDiscount
+                      ? this.props.originalPrice
+                      : this.props.availableDiscount.initialPrice
+                  ),
+                  this.props.currencyExchangeData.to
+                )
+              : `$${
+                  hasCelebrityDiscount
+                    ? this.props.originalPrice
+                    : this.props.availableDiscount.initialPrice
+                } ${this.props.currency}`}
+          </span>{" "}
+          <Maybe it={hasCelebrityDiscount}>
+            {this.props.currencyExchangeData.to !== this.props.currency ? (
+              this.getFormattedPrice(
+                this.getConvertedPrice(this.props.contractPrice),
                 this.props.currencyExchangeData.to
               )
-            : `$${this.props.availableDiscount.initialPrice} ${this.props.currency}`}
-        </span>{" "}
-      </div>
-    ) : null;
+            ) : (
+              <>
+                ${this.props.contractPrice} {this.props.currency}
+              </>
+            )}
+          </Maybe>
+        </div>
+      ) : null;
     const discountValue = this.props.availableDiscount ? (
       <div className="d-flex justify-content-between ">
-        <span className="float-left">Descuento: </span>{" "}
+        <span className="float-left">Cupón: </span>{" "}
         <span className="text-danger font-weight-bold">
           {this.props.availableDiscount.isPercentageDiscount ? (
             <>
-              {(this.props.availableDiscount.discountAmount * 100).toFixed()}% |{" "}
+              -{(this.props.availableDiscount.discountAmount * 100).toFixed()}%
+              |{" "}
               {this.props.currencyExchangeData.to !== this.props.currency ? (
                 this.getFormattedPrice(
                   this.getConvertedPrice(
@@ -162,8 +197,8 @@ class ContractPriceLayout extends Component {
     ) : null;
     return (
       <div style={{ width: "100%" }}>
-        {discountValue}
         {originalPrice}
+        {discountValue}
         {finalPrice}
       </div>
     );

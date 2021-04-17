@@ -8,4 +8,5 @@ export type celebrityType = {
   fullName: string;
   id: number;
   status: number;
+  discountPercentage?: number;
 };

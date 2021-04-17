@@ -14,6 +14,7 @@ export const CelebrityInfo = ({
   turnAround,
   availableForFlashDeliveries,
   variant,
+  discountPercentage,
   status
 }) => {
   switch (variant) {
@@ -49,6 +50,8 @@ export const CelebrityInfo = ({
               <CelebrityContractPrice
                 contractTypes={contractTypes}
                 className="CelebrityInfo__contract-price"
+                oldPriceClassName="CelebrityInfo__contract-price--invalid"
+                discountClassName="CelebrityInfo__contract-price-discount"
               />
               <CelebrityFavoriteButton
                 className="d-md-none ml-auto"
@@ -116,6 +119,8 @@ export const CelebrityInfo = ({
               <CelebrityContractPrice
                 contractTypes={contractTypes}
                 className="CelebrityInfo__contract-price"
+                oldPriceClassName="CelebrityInfo__contract-price--invalid"
+                discountClassName="CelebrityInfo__contract-price-discount"
               />
             </Maybe>
           </div>

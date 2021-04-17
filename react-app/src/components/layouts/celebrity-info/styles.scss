@@ -19,6 +19,17 @@
     color: black;
   }
 
+  &__contract-price--invalid {
+    margin-right: 1em;
+    font-size: 14px;
+    text-decoration: line-through;
+  }
+
+  &__contract-price-discount {
+    font-size: 18px;
+    color: #fb177d;
+  }
+
   &__fav-button-desktop {
     float: right;
     margin-top: -0.2rem;
