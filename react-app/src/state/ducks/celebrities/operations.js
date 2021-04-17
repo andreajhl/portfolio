@@ -7,7 +7,8 @@ import {
   updateQueryParams,
   cleanPublicContracts,
   fetchFlashDeliveryCelebrities,
-  fetchCelebritySubscriptionPlans
+  fetchCelebritySubscriptionPlans,
+  saveLastQueryParams
 } from "./actions";
 
 export {
@@ -19,5 +20,6 @@ export {
   updateQueryParams,
   listSimilar,
   fetchFlashDeliveryCelebrities,
-  fetchCelebritySubscriptionPlans
+  fetchCelebritySubscriptionPlans,
+  saveLastQueryParams
 };
