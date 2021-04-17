@@ -107,6 +107,8 @@ const ContractCheckoutSummary = ({
             currency={"USD"}
             currencyExchangeData={currencyExchangeData}
             rounding={false}
+            celebrityDiscountPercentage={0.1}
+            contractPrice={price}
           />
         </div>
       </div>
