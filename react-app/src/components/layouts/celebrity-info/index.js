@@ -49,12 +49,8 @@ export const CelebrityInfo = ({
             <div className="d-flex align-items-center">
               <CelebrityContractPrice
                 contractTypes={contractTypes}
-                className={`CelebrityInfo__contract-price ${
-                  discountPercentage > 0
-                    ? "CelebrityInfo__contract-price--invalid"
-                    : ""
-                }`}
-                discountPercentage={discountPercentage}
+                className="CelebrityInfo__contract-price"
+                oldPriceClassName="CelebrityInfo__contract-price--invalid"
                 discountClassName="CelebrityInfo__contract-price-discount"
               />
               <CelebrityFavoriteButton
@@ -122,12 +118,8 @@ export const CelebrityInfo = ({
             <Maybe it={status === 50}>
               <CelebrityContractPrice
                 contractTypes={contractTypes}
-                className={`CelebrityInfo__contract-price ${
-                  discountPercentage > 0
-                    ? "CelebrityInfo__contract-price--invalid"
-                    : ""
-                }`}
-                discountPercentage={discountPercentage}
+                className="CelebrityInfo__contract-price"
+                oldPriceClassName="CelebrityInfo__contract-price--invalid"
                 discountClassName="CelebrityInfo__contract-price-discount"
               />
             </Maybe>

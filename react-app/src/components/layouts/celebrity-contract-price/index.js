@@ -4,42 +4,46 @@ import Maybe from "../../common/helpers/maybe";
 import { ContractPriceLayout } from "../contract-price";
 
 const getContractPrice = (contractTypes, currencyExchangeData) => {
-  const videoMessageContract = contractTypes.find(
-    ({ contractType }) => contractType === 1
-  );
+  const videoMessageContract =
+    contractTypes.find(({ contractType }) => contractType === 1) || {};
+
+  const { discountPercentage = 0 } = videoMessageContract;
 
   let videoMessagePrice = 0;
   if (videoMessageContract) {
     videoMessagePrice = videoMessageContract.price;
   }
   if (currencyExchangeData.rate) {
-    return videoMessagePrice * currencyExchangeData.rate;
-  } else {
-    return videoMessagePrice;
+    videoMessagePrice *= currencyExchangeData.rate;
   }
+  return [videoMessagePrice, discountPercentage];
 };
 
 const CelebrityContractPrice = ({
   className,
   contractTypes,
   currencyExchangeData,
-  discountPercentage = 0,
+  oldPriceClassName = "",
   discountClassName = ""
 }) => {
-  const price = useMemo(
+  const [price, discountPercentage] = useMemo(
     () => getContractPrice(contractTypes, currencyExchangeData),
     [contractTypes, currencyExchangeData]
   );
 
+  const hasDiscount = discountPercentage > 0;
+
   return (
     <div>
       <ContractPriceLayout
-        classes={`text-black font-weight-bold ${className}`}
+        classes={`text-black font-weight-bold ${
+          hasDiscount ? oldPriceClassName : ""
+        } ${className}`}
         price={price}
         currency={currencyExchangeData.to}
         rounding={true}
       />
-      <Maybe it={discountPercentage > 0}>
+      <Maybe it={hasDiscount}>
         <br className="d-md-none" />
         <ContractPriceLayout
           classes={`text-black font-weight-bold ${discountClassName}`}
