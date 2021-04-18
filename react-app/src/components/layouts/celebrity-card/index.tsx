@@ -95,7 +95,9 @@ const CelebrityCardLayout = ({
                     : contractPrice
                 }
                 currency={currencyExchangeData.to}
-                rounding={true}
+                rounding={
+                  currencyExchangeData.to !== "USD" || !discountPercentage
+                }
               />
             </div>
           </Maybe>
