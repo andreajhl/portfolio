@@ -1,8 +1,7 @@
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 import { PriceRangeSlider } from "../price-range-slider";
-import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
-import CheckBoxList from "desktop-app/components/common/checkbox-list";
+import { useEffect, useState } from "react";
 import {
   updateSearchFilters,
   resetSearchFilters
@@ -28,24 +27,27 @@ type DispatchProps = typeof mapDispatchToProps;
 
 type SearchFiltersProps = {} & StateProps & DispatchProps;
 
-const minPrice = searchFiltersInitialState.price_gt;
-const maxPrice = searchFiltersInitialState.price_lt;
+const minPrice = 5;
+const maxPrice = 500;
+
+const priceRangeSliderInitialValues = [minPrice, maxPrice];
+
+function arrayAreEquals(firstArray, lastArray) {
+  return (
+    Array.isArray(firstArray) &&
+    Array.isArray(lastArray) &&
+    firstArray.length === lastArray.length &&
+    firstArray.every((value, index) => value === lastArray[index])
+  );
+}
 
 function SearchFilters({
   updateSearchFilters,
   resetSearchFilters,
   searchFilters
 }: SearchFiltersProps) {
-  const [values, setValues] = useState<[number, number]>([5, 500]);
+  const [values, setValues] = useState(priceRangeSliderInitialValues);
   console.log(searchFilters);
-  const resetFilters = () => {
-    resetSearchFilters();
-  };
-
-  const priceRangeSliderValues = [
-    searchFilters.price_gt,
-    searchFilters.price_lt
-  ];
 
   return (
     <div className={styles.SearchFilters}>
@@ -65,7 +67,8 @@ function SearchFilters({
           <PriceRangeSlider
             min={minPrice}
             max={maxPrice}
-            initialValues={priceRangeSliderValues}
+            values={values}
+            setValues={setValues}
             onChange={({ values: [price_gt, price_lt] }) => {
               updateSearchFilters({
                 price_gt,
@@ -85,7 +88,10 @@ function SearchFilters({
           <button
             type="button"
             className={`btn btn-tertiary ${styles.SearchFiltersButton}`}
-            onClick={resetFilters}
+            onClick={() => {
+              resetSearchFilters();
+              setValues(priceRangeSliderInitialValues);
+            }}
           >
             Limpiar filtros
           </button>

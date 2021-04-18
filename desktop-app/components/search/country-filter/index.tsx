@@ -87,7 +87,7 @@ function CountryFilter({
   );
   return (
     <CheckBoxList
-      title="Paises"
+      title="Países"
       options={memoizedValuesForCountries}
       handleChange={(event) => handleChangeCheckbox(event, setCountriesChecked)}
     />

@@ -59,7 +59,6 @@ function CategoryFilter({
       return setCategoriesChecked(new Map<string, boolean>());
 
     const categories_IDs = Array.from(categoriesChecked.keys()).join();
-    console.log(categories_IDs);
     // Si searchFilters realiza un update pero category_id posee los mismos valores
     // que el actual state no actualizar estado
     if (categories_IDs === searchFilters.category_id) return;
@@ -95,7 +94,7 @@ function CategoryFilter({
 
   return (
     <CheckBoxList
-      title="Categoria"
+      title="Categoría"
       options={memoizedValueForCategoryFilters}
       handleChange={(event) =>
         handleChangeCheckbox(event, setCategoriesChecked)

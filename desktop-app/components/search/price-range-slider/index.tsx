@@ -95,12 +95,11 @@ type PriceRangeSliderProps = {
 function PriceRangeSlider({
   min = 0,
   max = 100,
-  initialValues,
-  onValuesUpdated = function () {},
+  values = [0, 100],
+  setValues = function () {},
   onChange,
   onClick = function () {}
 }: PriceRangeSliderProps) {
-  const [values, setValues] = useState(initialValues);
   const [isTouched, setIsTouched] = useState(false);
 
   const [low, high] = values;

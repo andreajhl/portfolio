@@ -9,8 +9,17 @@ import { SettingsIcon } from "../../common/icons";
 import { OrderByDropdown } from "../order-by-dropdown";
 import styles from "./styles.module.scss";
 
+const orderByOptions = [
+  { label: "Destacados", value: "" },
+  { label: "Menor a mayor precio", value: "price asc" },
+  { label: "Mayor a menor precio", value: "price desc" }
+];
+
+const getOptionByValue = (value) =>
+  orderByOptions.find((option) => option.value === value);
+
 const mapStateToProps = ({ searchFilters }) => ({
-  filtersOrderBy: searchFilters.orderBy
+  filtersOrderBy: getOptionByValue(searchFilters.orderBy) || orderByOptions[0]
 });
 
 const mapDispatchToProps = { updateSearchFilters };
@@ -24,25 +33,12 @@ type MainContentTopBarProps = {
 } & StateProps &
   DispatchProps;
 
-const orderByOptions = [
-  { label: "Destacados", value: "" },
-  { label: "Menor a mayor precio", value: "price asc" },
-  { label: "Mayor a menor precio", value: "price desc" }
-];
-
-const getOptionByValue = (value) =>
-  orderByOptions.find((option) => option.value === value);
-
 function MainContentTopBar({
   sidebarIsOpen,
   toggleSidebar,
   filtersOrderBy,
   updateSearchFilters
 }: MainContentTopBarProps) {
-  const [orderBy, setOrderBy] = useState(
-    getOptionByValue(filtersOrderBy) || orderByOptions[0]
-  );
-
   return (
     <div
       className={`container ${styles.MainContentTopBarContainer} ${
@@ -62,10 +58,9 @@ function MainContentTopBar({
       <OrderByDropdown
         className={styles.MainContentTopBarOrderByDropdown}
         onChange={(option) => {
-          setOrderBy(option);
           updateSearchFilters({ orderBy: option.value });
         }}
-        selectedOption={orderBy}
+        selectedOption={filtersOrderBy}
         options={orderByOptions}
       />
     </div>
