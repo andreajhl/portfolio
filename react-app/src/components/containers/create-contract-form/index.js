@@ -1,4 +1,4 @@
-import React, { Component, useRef, utilizeFocus } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form } from "react-bootstrap";
 import PropTypes from "prop-types";
@@ -306,13 +306,15 @@ class CreateContractForm extends Component {
 
   deliveryContactCellphoneValidator = () => {
     try {
-      if (
-        !isMobilePhone(
-          String(`+${this.state.contractData.deliveryContactCellphone}`),
-          this.state.deliveryContactCellphoneCountryCode
-        )
-      ) {
-        return "Ingrese un numero telefónico valido";
+      if (this.state.contractData.deliveryContactCellphone !== "") {
+        if (
+          !isMobilePhone(
+            String(`+${this.state.contractData.deliveryContactCellphone}`),
+            this.state.deliveryContactCellphoneCountryCode
+          )
+        ) {
+          return "Ingrese un numero telefónico valido";
+        }
       }
       return null;
     } catch (error) {
