@@ -27,6 +27,12 @@ type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 type CategoryFilterProps = StateProps & DispatchProps;
 
+const generateNewMapForKeysValueOfArray = (array, value = true) => {
+  const newState = new Map();
+  array.forEach((id) => newState.set(id, value));
+  return newState;
+};
+
 function CategoryFilter({
   celebrityCategories,
   listCelebrityCategories,
@@ -39,7 +45,15 @@ function CategoryFilter({
     listCelebrityCategories({ orderBy: "title asc" });
   }, []);
 
-  const [categoriesChecked, setCategoriesChecked] = useState(new Map());
+  const [categoriesChecked, setCategoriesChecked] = useState(
+    new Map(
+      searchFilters.category_id
+        ? generateNewMapForKeysValueOfArray(
+            searchFilters.category_id.split(",")
+          )
+        : []
+    )
+  );
 
   const memoizedValueForCategoryFilters = useMemo(
     () =>
@@ -54,29 +68,41 @@ function CategoryFilter({
 
   useEffect(() => {
     // Si no existe el key category_id en redux store
-    // realizar reset de todos los countries checked
+    // realizar reset de todas las categorías checked
     if (!searchFilters.category_id)
       return setCategoriesChecked(new Map<string, boolean>());
 
     const categories_IDs = Array.from(categoriesChecked.keys()).join();
-    console.log(categories_IDs);
     // Si searchFilters realiza un update pero category_id posee los mismos valores
     // que el actual state no actualizar estado
     if (categories_IDs === searchFilters.category_id) return;
     const parse_IDs = searchFilters.category_id.split(",");
-    const newState = new Map();
-    parse_IDs.forEach((id) => newState.set(id, true));
-    setCategoriesChecked(newState);
+    setCategoriesChecked(generateNewMapForKeysValueOfArray(parse_IDs));
   }, [searchFilters]);
 
   useEffect(() => {
-    const categories_IDs = Array.from(categoriesChecked.keys()).join();
+    let categories_IDs = Array.from(categoriesChecked).filter(
+      ([_, isChecked]) => isChecked === true
+    );
+    const categoriesIDKeys = categories_IDs.map(([id]) => id).join();
+
     if (
-      categories_IDs !== searchFilters.category_id &&
+      categories_IDs.length === 0 &&
+      searchFilters?.category_id &&
+      searchFilters?.category_id?.length !== 0
+    ) {
+      updateSearchFilters({
+        category_id: categoriesIDKeys
+      });
+      return;
+    }
+
+    if (
+      categoriesIDKeys !== searchFilters.category_id &&
       categories_IDs.length > 0
     ) {
       updateSearchFilters({
-        category_id: categories_IDs
+        category_id: categoriesIDKeys
       });
     }
   }, [categoriesChecked]);

@@ -33,32 +33,56 @@ function DeliveryTimeFilter({
     { label: "3-4 dias", value: 96 },
     { label: "5-7 dias", value: 168 }
   ]);
-  const [deliveriesTimeChecked, setDeliveriesTimeChecked] = useState(new Map());
+  const [deliveriesTimeChecked, setDeliveriesTimeChecked] = useState(
+    new Map(
+      searchFilters.max_delivery_time
+        ? [[String(searchFilters.max_delivery_time), true]]
+        : []
+    )
+  );
 
   useEffect(() => {
     // Si no existe el key max_delivery_time en redux store
     // realizar reset de todos los countries checked
     if (!searchFilters.max_delivery_time)
       return setDeliveriesTimeChecked(new Map());
+    const deliveryTime = Array.from(deliveriesTimeChecked).filter(
+      ([_, isChecked]) => isChecked === true
+    );
+    const deliveryTimeValue = deliveryTime.map(([id]) => id).join();
 
-    const deliveryTime = Array.from(deliveriesTimeChecked.keys()).join();
     // Si searchFilters realiza un update pero country_id posee los mismos valores
     // que el actual state no actualizar estado
 
-    if (deliveryTime === searchFilters.max_delivery_time) return;
-    const newState = new Map([[searchFilters.max_delivery_time, true]]);
-
+    if (Number(deliveryTimeValue) === searchFilters.max_delivery_time) return;
+    const newState = new Map([[String(searchFilters.max_delivery_time), true]]);
     setDeliveriesTimeChecked(newState);
   }, [searchFilters]);
 
   useEffect(() => {
-    const deliveryTime = Array.from(deliveriesTimeChecked.keys()).join();
+    const deliveryTime = Array.from(deliveriesTimeChecked).filter(
+      ([_, isChecked]) => isChecked === true
+    );
+
+    const deliveryTimeValue = deliveryTime.map(([id]) => id).join();
+
     if (
-      Number(deliveryTime) !== Number(searchFilters.max_delivery_time) &&
+      deliveryTime.length === 0 &&
+      searchFilters?.max_delivery_time &&
+      searchFilters?.max_delivery_time !== 0
+    ) {
+      updateSearchFilters({
+        max_delivery_time: Number(deliveryTimeValue)
+      });
+      return;
+    }
+
+    if (
+      Number(deliveryTimeValue) !== Number(searchFilters.max_delivery_time) &&
       deliveryTime.length > 0
     ) {
       updateSearchFilters({
-        max_delivery_time: Number(deliveryTime)
+        max_delivery_time: Number(deliveryTimeValue)
       });
     }
   }, [deliveriesTimeChecked]);
@@ -69,7 +93,7 @@ function DeliveryTimeFilter({
         label: time.label,
         value: time.value,
         name: time.label + index,
-        checked: deliveriesTimeChecked.get(time.value)
+        checked: deliveriesTimeChecked.get(String(time.value))
       })),
     [deliveryTimeFilter, deliveriesTimeChecked]
   );

@@ -24,6 +24,11 @@ const mapDispatchToProps = {
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
+const generateMapForKeysValue = (array, value = true) => {
+  const newState = new Map();
+  array.forEach((id) => newState.set(id, value));
+  return newState;
+};
 type CountryFilterProps = StateProps & DispatchProps;
 function CountryFilter({
   countries,
@@ -31,8 +36,13 @@ function CountryFilter({
   updateSearchFilters,
   searchFilters
 }: CountryFilterProps) {
-  const [countriesChecked, setCountriesChecked] = useState(new Map());
-
+  const [countriesChecked, setCountriesChecked] = useState(
+    new Map(
+      searchFilters.country_id
+        ? generateMapForKeysValue(searchFilters.country_id.split(","))
+        : []
+    )
+  );
   useEffect(() => {
     const shouldFetchFilterOptions = !countries.length;
     if (!shouldFetchFilterOptions) return;
@@ -55,10 +65,28 @@ function CountryFilter({
   }, [searchFilters]);
 
   useEffect(() => {
-    const country_IDs = Array.from(countriesChecked.keys()).join();
-    if (country_IDs !== searchFilters.country_id && country_IDs.length > 0) {
+    let country_IDs = Array.from(countriesChecked).filter(
+      ([_, isChecked]) => isChecked === true
+    );
+    const countriesIDKeys = country_IDs.map(([id]) => id).join();
+
+    if (
+      country_IDs.length === 0 &&
+      searchFilters?.country_id &&
+      searchFilters?.country_id?.length !== 0
+    ) {
       updateSearchFilters({
-        country_id: country_IDs
+        country_id: countriesIDKeys
+      });
+      return;
+    }
+
+    if (
+      countriesIDKeys !== searchFilters.country_id &&
+      country_IDs.length > 0
+    ) {
+      updateSearchFilters({
+        country_id: countriesIDKeys
       });
     }
   }, [countriesChecked]);

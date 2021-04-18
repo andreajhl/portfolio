@@ -37,7 +37,6 @@ function SearchFilters({
   searchFilters
 }: SearchFiltersProps) {
   const [values, setValues] = useState<[number, number]>([5, 500]);
-  console.log(searchFilters);
   const resetFilters = () => {
     resetSearchFilters();
   };
