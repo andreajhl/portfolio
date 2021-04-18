@@ -33,6 +33,8 @@ const CelebrityContractPrice = ({
 
   const hasDiscount = discountPercentage > 0;
 
+  const shouldRoundPrice = currencyExchangeData.to !== "USD";
+
   return (
     <div>
       <ContractPriceLayout
@@ -41,7 +43,7 @@ const CelebrityContractPrice = ({
         } ${className}`}
         price={price}
         currency={currencyExchangeData.to}
-        rounding={true}
+        rounding={shouldRoundPrice}
       />
       <Maybe it={hasDiscount}>
         <br className="d-md-none" />
@@ -49,7 +51,7 @@ const CelebrityContractPrice = ({
           classes={`text-black font-weight-bold ${discountClassName}`}
           price={price - price * discountPercentage}
           currency={currencyExchangeData.to}
-          rounding={true}
+          rounding={shouldRoundPrice}
         />
       </Maybe>
     </div>

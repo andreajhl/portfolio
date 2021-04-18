@@ -119,32 +119,36 @@ class ContractPriceLayout extends Component {
                 : null
             }
           >
-            {this.props.currencyExchangeData.to !== this.props.currency
-              ? this.getFormattedPrice(
-                  this.getConvertedPrice(
-                    hasCelebrityDiscount
-                      ? this.props.originalPrice
-                      : this.props.availableDiscount.initialPrice
-                  ),
-                  this.props.currencyExchangeData.to
-                )
-              : `$${
+            {this.props.currencyExchangeData.to !== this.props.currency ? (
+              this.getFormattedPrice(
+                this.getConvertedPrice(
                   hasCelebrityDiscount
                     ? this.props.originalPrice
                     : this.props.availableDiscount.initialPrice
-                } ${this.props.currency}`}
-          </span>{" "}
-          <Maybe it={hasCelebrityDiscount}>
-            {this.props.currencyExchangeData.to !== this.props.currency ? (
-              this.getFormattedPrice(
-                this.getConvertedPrice(this.props.contractPrice),
+                ),
                 this.props.currencyExchangeData.to
               )
             ) : (
               <>
-                ${this.props.contractPrice} {this.props.currency}
+                {this.getFormattedPrice(
+                  hasCelebrityDiscount
+                    ? this.props.originalPrice
+                    : this.props.availableDiscount.initialPrice,
+                  this.props.currency
+                )}
               </>
             )}
+          </span>{" "}
+          <Maybe it={hasCelebrityDiscount}>
+            {this.props.currencyExchangeData.to !== this.props.currency
+              ? this.getFormattedPrice(
+                  this.getConvertedPrice(this.props.contractPrice),
+                  this.props.currencyExchangeData.to
+                )
+              : this.getFormattedPrice(
+                  this.props.contractPrice,
+                  this.props.currency
+                )}
           </Maybe>
         </div>
       ) : null;
