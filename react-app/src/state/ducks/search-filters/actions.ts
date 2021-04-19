@@ -14,10 +14,20 @@ const allowedParams = [
   "orderBy"
 ];
 
+const getValidParams = (params) => {
+  const paramsEntries = Object.entries(params);
+  const onlyValidParamsEntries = paramsEntries.filter(([key, value]) =>
+    Boolean(value)
+  );
+  return Object.fromEntries(onlyValidParamsEntries);
+};
+
 function changeQueryParams(getState: any) {
   const currentParams = getState().searchFilters;
   if (!isBrowser()) return;
-  Router.replace(SEARCH_PATH + jsonToQueryString(currentParams));
+  Router.replace(
+    SEARCH_PATH + jsonToQueryString(getValidParams(currentParams))
+  );
 }
 
 export const updateSearchFilters = (
