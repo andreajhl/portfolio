@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import { HashtagsFilter } from "./";
+import { HashtagsFilter } from ".";
 
 it("renders without crashing", () => {
   const wrapper = shallow(<HashtagsFilter />);

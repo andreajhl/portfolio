@@ -1,7 +1,7 @@
 import { celebrityType } from "desktop-app/types/celebrityType";
 import objectHasProperties from "lib/utils/objectHasProperties";
 import { connect } from "react-redux";
-import Maybe from "../common/helpers/maybe";
+import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
 
 type HashtagsObjectType = {

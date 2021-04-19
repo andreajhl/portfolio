@@ -1,16 +1,15 @@
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 import { PriceRangeSlider } from "../price-range-slider";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   updateSearchFilters,
   resetSearchFilters
 } from "react-app/src/state/ducks/search-filters/actions";
-import { searchFiltersInitialState } from "react-app/src/state/ducks/search-filters/reducers";
 import { CountryFilter } from "../country-filter";
 import { CategoryFilter } from "../category-filter";
 import { DeliveryTimeFilter } from "../delivery-time-filter";
-import { HashtagsFilter } from "desktop-app/components/hashtags-filter";
+import { HashtagsFilter } from "desktop-app/components/search/hashtags-filter";
 
 const mapStateToProps = ({ searchFilters }) => {
   return {
