@@ -10,6 +10,7 @@ import { searchFiltersInitialState } from "react-app/src/state/ducks/search-filt
 import { CountryFilter } from "../country-filter";
 import { CategoryFilter } from "../category-filter";
 import { DeliveryTimeFilter } from "../delivery-time-filter";
+import { HashtagsFilter } from "desktop-app/components/hashtags-filter";
 
 const mapStateToProps = ({ searchFilters }) => {
   return {
@@ -31,15 +32,6 @@ const minPrice = 5;
 const maxPrice = 500;
 
 const priceRangeSliderInitialValues = [minPrice, maxPrice];
-
-function arrayAreEquals(firstArray, lastArray) {
-  return (
-    Array.isArray(firstArray) &&
-    Array.isArray(lastArray) &&
-    firstArray.length === lastArray.length &&
-    firstArray.every((value, index) => value === lastArray[index])
-  );
-}
 
 function SearchFilters({
   updateSearchFilters,
@@ -85,6 +77,7 @@ function SearchFilters({
       </div>
       <div className={styles.SearchFilterRow}>
         <div className={styles.SearchFilterItem}>
+          <HashtagsFilter className={styles.SearchFiltersHashtagsFilter} />
           <button
             type="button"
             className={`btn btn-tertiary ${styles.SearchFiltersButton}`}
