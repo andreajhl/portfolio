@@ -1,5 +1,6 @@
 import Router from "next/router";
 import { SEARCH_PATH } from "react-app/src/routing/Paths";
+import isBrowser from "react-app/src/utils/isBrowser";
 import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 import { jsonToQueryString } from "../../utils/apiService";
 import * as TYPES from "./types";
@@ -14,22 +15,21 @@ const allowedParams = [
 ];
 
 function changeQueryParams(getState: any) {
-  const currentParams = pickPropertiesFromAObject(
-    getState().searchFilters,
-    allowedParams
-  );
+  const currentParams = getState().searchFilters;
+  if (!isBrowser()) return;
   Router.replace(SEARCH_PATH + jsonToQueryString(currentParams));
 }
 
-export const updateSearchFilters = (payload: TYPES.SearchFiltersType) => (
-  dispatch,
-  getState
-) => {
+export const updateSearchFilters = (
+  payload: TYPES.SearchFiltersType,
+  updateQueryParams = true
+) => (dispatch, getState) => {
   dispatch({
     type: TYPES.UPDATE_FILTERS,
-    payload
+    payload: pickPropertiesFromAObject(payload, allowedParams)
   });
-  changeQueryParams(getState);
+
+  if (updateQueryParams) changeQueryParams(getState);
 };
 
 export const resetSearchFilters = () => (dispatch, getState) => {
