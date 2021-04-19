@@ -64,7 +64,11 @@ function HashtagsFilter({
             className={styles.HashtagsFilterHashtag}
             onClick={() => onHashtagClick(hashtag)}
           >
-            {hashtag}{" "}
+            <span
+              className={`text-with-ellipsis ${styles.HashtagsFilterHashtagName}`}
+            >
+              {hashtag}
+            </span>{" "}
             <span className={styles.HashtagsFilterHashtagCount}>{count}</span>
           </div>
         ))}

@@ -10,12 +10,17 @@
   cursor: pointer;
   width: auto;
   background: var(--gray-1);
-  color: var(--dark);
   padding: 0.325em 0.75em 0.325em 1.5em;
   border-radius: 40px;
+  max-width: 100%;
+  text-align: center;
+  display: flex;
+}
+
+.HashtagsFilterHashtagName {
   font-size: 14px;
   font-weight: bold;
-  text-align: center;
+  color: var(--dark);
   flex-shrink: 1;
 }
 
