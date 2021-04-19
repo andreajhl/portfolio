@@ -74,7 +74,7 @@ export const get = (object_id, preloaded = false) => {
   };
 };
 
-export const list = (params) => {
+export const list = (params, mergeResults = true) => {
   return (dispatch, getStore) => {
     getStore().celebrities.fetchCelebritiesReducer?.requestCancel?.();
     const TYPE = types.FETCH_CELEBRITIES_REQUEST;
@@ -91,11 +91,14 @@ export const list = (params) => {
       body: null,
       isCancellable: true
     });
-    dispatch({ type: TYPE, payload: { requestCancel: request.cancel } });
+    dispatch({
+      type: TYPE,
+      payload: { requestCancel: request.cancel, mergeResults }
+    });
     request
       .then((res) => {
         if (res.data.status === "OK") {
-          handleApiResponseSuccess(dispatch, TYPE, res);
+          handleApiResponseSuccess(dispatch, TYPE, { ...res, mergeResults });
           // Other actions
 
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });

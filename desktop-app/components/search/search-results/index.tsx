@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { list } from "react-app/src/state/ducks/celebrities/actions";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import { connect } from "react-redux";
 import Pagination from "../../common/pagination";
@@ -6,6 +8,7 @@ import styles from "./styles.module.scss";
 
 const mapStateToProps = ({ searchFilters, celebrities }) => {
   return {
+    searchFilters,
     informationPage: {
       pageSize: searchFilters.limit,
       totalPage:
@@ -19,7 +22,8 @@ const mapStateToProps = ({ searchFilters, celebrities }) => {
 };
 
 const mapDispatchToProps = {
-  updateSearchFilters
+  updateSearchFilters,
+  fetchCelebrities: list
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -33,8 +37,14 @@ type SearchResultsProps = {
 function SearchResults({
   sidebarIsOpen,
   informationPage,
+  searchFilters,
+  fetchCelebrities,
   updateSearchFilters
 }: SearchResultsProps) {
+  useEffect(() => {
+    fetchCelebrities(searchFilters, false);
+  }, [searchFilters]);
+
   return (
     <main
       className={`container ${

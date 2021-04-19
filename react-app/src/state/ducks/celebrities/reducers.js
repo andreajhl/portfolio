@@ -93,8 +93,11 @@ export function fetchCelebritiesReducer(
 ) {
   switch (action.type) {
     case types.FETCH_CELEBRITIES_REQUEST:
+      const previousState = action.payload.mergeResults
+        ? state
+        : fetchCelebritiesInitialState;
       return {
-        ...state,
+        ...previousState,
         requestCancel: action.payload.requestCancel,
         loading: true
       };
@@ -107,7 +110,7 @@ export function fetchCelebritiesReducer(
       };
     case types.FETCH_CELEBRITIES_REQUEST_SUCCESS:
       const results = [];
-      if (action.payload.config.params.offset)
+      if (action.payload.mergeResults && action.payload.config.params.offset)
         results.push(...state.data.results);
       results.push(...action.payload.data.results);
       return {
