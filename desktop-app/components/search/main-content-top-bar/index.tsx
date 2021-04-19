@@ -18,8 +18,19 @@ const orderByOptions = [
 const getOptionByValue = (value) =>
   orderByOptions.find((option) => option.value === value);
 
-const mapStateToProps = ({ searchFilters }) => ({
-  filtersOrderBy: getOptionByValue(searchFilters.orderBy) || orderByOptions[0]
+const listParamsInitialKeys = ["offset", "limit"];
+
+const hasSearched = (listParams) => {
+  const listParamsEntries = Object.entries(listParams);
+  return listParamsEntries.some(
+    ([key, value]) => !listParamsInitialKeys.includes(key) && Boolean(value)
+  );
+};
+
+const mapStateToProps = ({ searchFilters, celebrities }) => ({
+  filtersOrderBy: getOptionByValue(searchFilters.orderBy) || orderByOptions[0],
+  hasSearched: hasSearched(searchFilters),
+  totalResults: celebrities.fetchCelebritiesReducer.data.totalResults
 });
 
 const mapDispatchToProps = { updateSearchFilters };
@@ -37,6 +48,8 @@ function MainContentTopBar({
   sidebarIsOpen,
   toggleSidebar,
   filtersOrderBy,
+  hasSearched,
+  totalResults,
   updateSearchFilters
 }: MainContentTopBarProps) {
   return (
@@ -53,6 +66,18 @@ function MainContentTopBar({
           <SettingsIcon />
         </IconButton>
         <HomeButton />
+      </Maybe>
+      <Maybe
+        it={hasSearched}
+        orElse={
+          <h2 className={styles.MainContentTopBarTitle}>Famosos destacados</h2>
+        }
+      >
+        <Maybe it={totalResults !== undefined}>
+          <span className={styles.MainContentTopBarTotalResults}>
+            {totalResults} resultados
+          </span>
+        </Maybe>
       </Maybe>
       {/* <Badge text="Actores" onClick={() => console.log("Clicked")} /> */}
       <OrderByDropdown
