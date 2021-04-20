@@ -5,14 +5,20 @@ import styles from "./styles.module.scss";
 type SidebarWrapperProps = {
   children: ReactNode;
   isOpen: boolean;
+  className?: string;
 };
 
-function SidebarWrapper({ children, isOpen }: SidebarWrapperProps) {
+function SidebarWrapper({
+  children,
+  isOpen,
+  className = ""
+}: SidebarWrapperProps) {
   return (
     <div
       className={classes(
         styles.SidebarWrapper,
-        !isOpen && styles.SidebarWrapperIsClosed
+        !isOpen && styles.SidebarWrapperIsClosed,
+        className
       )}
     >
       {Children.map(children, (child: any) =>
