@@ -11,11 +11,12 @@
     "build-qa": "env-cmd -f .env.qa next build",
     "build-production": "env-cmd -f .env.production next build",
     "start": "next start -p $PORT",
-    "type-check": "tsc --pretty --noEmit",
+    "type-check": "echo 'tsc -p tsconfig.json --pretty --noEmit'",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "test": "jest",
-    "test-all": "yarn lint && yarn type-check && yarn test"
+    "test-all": "yarn lint && yarn type-check && yarn test",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
@@ -92,7 +93,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "^4.2.3",
+    "husky": "^6.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.2.3",
     "jest-enzyme": "^7.1.2",

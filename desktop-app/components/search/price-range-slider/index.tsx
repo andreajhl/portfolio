@@ -53,7 +53,7 @@ function PriceRangeSliderInput({
                 value={inputValue}
                 style={{
                   width:
-                    (inputValue.length || String(initialPrice).length) + ".2ch",
+                    (inputValue.length || String(initialPrice).length) + ".5ch",
                   marginRight:
                     (4 - (inputValue.length || String(initialPrice).length)) /
                       10 +

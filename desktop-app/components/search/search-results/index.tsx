@@ -1,3 +1,4 @@
+import { AdditionalResultsSection } from "desktop-app/components/search/additional-results-section";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useEffect } from "react";
 import { list } from "react-app/src/state/ducks/celebrities/actions";
@@ -5,7 +6,7 @@ import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/ac
 import { connect } from "react-redux";
 import Pagination from "../../common/pagination";
 import { NoResultsBanner } from "../no-results-banner";
-import { ResultsCardGrid } from "../results-card-grid";
+import { SearchResultsCardGrid } from "../search-results-card-grid";
 import styles from "./styles.module.scss";
 
 const mapStateToProps = ({ searchFilters, celebrities }) => {
@@ -13,6 +14,9 @@ const mapStateToProps = ({ searchFilters, celebrities }) => {
     showNoResultsBanner:
       celebrities.fetchCelebritiesReducer.completed &&
       celebrities.fetchCelebritiesReducer.data.totalResults < 1,
+    showAdditionalResults:
+      celebrities.fetchCelebritiesReducer.completed &&
+      celebrities.fetchCelebritiesReducer.data.totalResults < 5,
     searchFilters,
     informationPage: {
       pageSize: searchFilters.limit,
@@ -45,6 +49,7 @@ function SearchResults({
   informationPage,
   searchFilters,
   showNoResultsBanner,
+  showAdditionalResults,
   fetchCelebrities,
   updateSearchFilters
 }: SearchResultsProps) {
@@ -60,9 +65,12 @@ function SearchResults({
     >
       <Maybe
         it={showNoResultsBanner}
-        orElse={<ResultsCardGrid expanded={!sidebarIsOpen} />}
+        orElse={<SearchResultsCardGrid expanded={!sidebarIsOpen} />}
       >
         <NoResultsBanner />
+      </Maybe>
+      <Maybe it={showAdditionalResults}>
+        <AdditionalResultsSection sidebarIsClosed={!sidebarIsOpen} />
       </Maybe>
       <div className={styles.PaginationContainer}>
         <Pagination

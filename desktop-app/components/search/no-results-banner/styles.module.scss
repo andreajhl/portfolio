@@ -1,20 +1,25 @@
 .NoResultsBanner {
-  text-align: center;
-  padding: 2.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0 6px;
 }
 
 .NoResultsBannerIllustration {
+  width: 92px;
+  margin-right: 52px;
   mix-blend-mode: luminosity;
-  margin-bottom: 12px;
 }
 
 .NoResultsBannerTitle {
+  margin-bottom: 0;
   font-size: 22px !important;
   font-weight: bold;
-  line-height: 30px;
+  line-height: 1.5;
 }
 
 .NoResultsBannerCopy {
+  margin-bottom: 0;
   letter-spacing: 0.5px;
   line-height: 30px;
   font-size: 16px;
