@@ -121,7 +121,7 @@ function CategoryFilter({
 
   return (
     <CheckBoxList
-      title="Categoría"
+      title="Categorías"
       options={memoizedValueForCategoryFilters}
       handleChange={(event) =>
         handleChangeCheckbox(event, setCategoriesChecked)
