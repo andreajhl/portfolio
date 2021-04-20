@@ -1,28 +1,19 @@
+import { celebrityType } from "desktop-app/types/celebrityType";
 import { getPixelsFromViewportWidth } from "lib/utils/getPixelsFromViewportWidth";
 import { useEffect, useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
-import { connect } from "react-redux";
 import { CelebrityCard } from "../../common/cards/celebrity";
 import styles from "./styles.module.scss";
 
-const mapStateToProps = ({ celebrities }) => ({
-  isLoading: celebrities.fetchCelebritiesReducer.loading,
-  celebrities: celebrities.fetchCelebritiesReducer.data.results
-});
-
-const mapDispatchToProps = {};
-
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
-
 type ResultsCardGridProps = {
   expanded?: boolean;
-} & StateProps &
-  DispatchProps;
+  isLoading?: boolean;
+  celebrities: celebrityType[];
+};
 
 function ResultsCardGrid({
   expanded = false,
-  isLoading,
+  isLoading = false,
   celebrities
 }: ResultsCardGridProps) {
   const [celebrityCardHeight, setCelebrityCardHeight] = useState(
@@ -40,8 +31,8 @@ function ResultsCardGrid({
         expanded ? styles.ResultsCardGridExpanded : ""
       }`}
     >
-      <Maybe it={!isLoading}>
-        {celebrities.map((celebrity) => (
+      <Maybe it={!isLoading && celebrities?.map !== undefined}>
+        {celebrities?.map?.((celebrity) => (
           <CelebrityCard
             key={celebrity.id}
             thumbnailHeight={celebrityCardHeight}
@@ -54,9 +45,4 @@ function ResultsCardGrid({
   );
 }
 
-const _ResultsCardGrid = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ResultsCardGrid);
-
-export { _ResultsCardGrid as ResultsCardGrid };
+export { ResultsCardGrid };
