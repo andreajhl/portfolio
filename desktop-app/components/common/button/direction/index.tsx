@@ -20,6 +20,7 @@ type DirectionButtonProps = {
   style?: ButtonStyle;
   iconButtonVariant?: React.ReactNode;
   onClick?: typeof noop;
+  disabled?: boolean;
 };
 
 function DirectionButton({
@@ -27,13 +28,15 @@ function DirectionButton({
   className = "",
   iconButtonVariant,
   onClick = noop,
-  style = defaultButtonsStyle
+  style = defaultButtonsStyle,
+  disabled
 }: DirectionButtonProps) {
   const width = style?.size || defaultButtonStylesSize;
   const appliedStyles = style;
   delete appliedStyles?.size;
   return (
     <button
+      disabled={disabled}
       type="button"
       className={`${styles.DirectionButton} ${className}`}
       onClick={onClick}

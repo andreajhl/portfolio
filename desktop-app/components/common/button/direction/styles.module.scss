@@ -11,3 +11,12 @@
   align-items: center;
   justify-content: center;
 }
+.DirectionButton:disabled {
+  background: none;
+  box-shadow: none;
+  border: 1px solid var(--gray-2);
+
+  > i  {
+    color: var(--gray-2);
+  }
+}
