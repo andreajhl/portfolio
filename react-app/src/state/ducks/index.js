@@ -18,3 +18,4 @@ export { default as subscriptions } from "./subscriptions";
 // export { default as userLocation } from "./userLocation";
 export { default as discountCoupons } from "./discount-coupons";
 export { default as searchFilters } from "./search-filters";
+export { default as searchFiltersMemory } from "./search-filters-memory";

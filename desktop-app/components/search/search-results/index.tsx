@@ -3,13 +3,30 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useEffect } from "react";
 import { list } from "react-app/src/state/ducks/celebrities/actions";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
+
 import { connect } from "react-redux";
 import Pagination from "../../common/pagination";
 import { NoResultsBanner } from "../no-results-banner";
 import { SearchResultsCardGrid } from "../search-results-card-grid";
 import styles from "./styles.module.scss";
+import { cursorOperations } from "react-app/src/state/ducks/cursor-position";
+import { updateSearchFiltersMemory } from "react-app/src/state/ducks/search-filters-memory/actions";
 
-const mapStateToProps = ({ searchFilters, celebrities }) => {
+function checkIfObjectContains(one, two) {
+  for (var i in one) {
+    if (!two.hasOwnProperty(i)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+const mapStateToProps = ({
+  searchFiltersMemory,
+  searchFilters,
+  celebrities,
+  cursor
+}) => {
   return {
     showNoResultsBanner:
       celebrities.fetchCelebritiesReducer.completed &&
@@ -18,6 +35,7 @@ const mapStateToProps = ({ searchFilters, celebrities }) => {
       celebrities.fetchCelebritiesReducer.completed &&
       celebrities.fetchCelebritiesReducer.data.totalResults < 5,
     searchFilters,
+    searchFiltersMemory,
     informationPage: {
       pageSize: searchFilters.limit,
       totalPage:
@@ -26,13 +44,16 @@ const mapStateToProps = ({ searchFilters, celebrities }) => {
             searchFilters.limit
         ) || 1,
       currentPage: searchFilters.offset / searchFilters.limit + 1
-    }
+    },
+    lastScrollPosition: cursor.cursorReducer?.Position
   };
 };
 
 const mapDispatchToProps = {
   updateSearchFilters,
-  fetchCelebrities: list
+  fetchCelebrities: list,
+  saveCursorPosition: cursorOperations.saveCursorPosition,
+  updateSearchFiltersMemory
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -49,12 +70,27 @@ function SearchResults({
   informationPage,
   searchFilters,
   showNoResultsBanner,
+  searchFiltersMemory,
   showAdditionalResults,
   fetchCelebrities,
-  updateSearchFilters
+  updateSearchFilters,
+  saveCursorPosition,
+  updateSearchFiltersMemory,
+  lastScrollPosition
 }: SearchResultsProps) {
   useEffect(() => {
-    fetchCelebrities(searchFilters, false);
+    return () => {
+      updateSearchFiltersMemory(searchFilters);
+      saveCursorPosition(window.scrollY);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (checkIfObjectContains(searchFilters, searchFiltersMemory)) {
+      window.scrollTo(0, lastScrollPosition);
+    } else {
+      fetchCelebrities(searchFilters, false);
+    }
   }, [searchFilters]);
 
   return (
