@@ -12,12 +12,14 @@ function NoResultsBanner({ className = "" }: NoResultsBannerProps) {
         src="/assets/img/empty-illustration.svg"
         alt="Caja vacía"
       />
-      <h3 className={styles.NoResultsBannerTitle}>
-        No se encontraron resultados
-      </h3>
-      <p className={styles.NoResultsBannerCopy}>
-        Intenta quitando o cambiando algunos filtros.
-      </p>
+      <div>
+        <h3 className={styles.NoResultsBannerTitle}>
+          No se encontraron resultados
+        </h3>
+        <p className={styles.NoResultsBannerCopy}>
+          Intenta quitando o cambiando algunos filtros.
+        </p>
+      </div>
     </div>
   );
 }
