@@ -94,8 +94,8 @@ export const occasionsData = {
       icon: "fa-birthday-cake",
       title: "Birthday",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME!. I'm turning [AMOUNT] years old on [DATE] and I would like you to please congratulate me. I am your fan and I love what you do.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! Thank you for this opportunity. PLACEHOLDER_PARA turns [AMOUNT] years old soon. I would like you to please send him a super special congratulations."
+        "Hello PLACEHOLDER_FAMOSO_NAME! On [DATE] is my [NUMBER] birthday and I would like you to please congratulate me. I am your fan and I love what you do.",
+        "Hello PLACEHOLDER_FAMOSO_NAME! Thank you very much for this opportunity. PLACEHOLDER_PARA turns [QUANTITY] years soon. I would like you to please send him/her an special congratulation."
       ]
     },
     LOVE: {
@@ -108,7 +108,7 @@ export const occasionsData = {
     },
     SPECIAL_OCCASION: {
       icon: "fa-glass-cheers",
-      title: "Special",
+      title: "Special Occasion",
       messages: [
         "Hello PLACEHOLDER_FAMOSO_NAME! Soon I will celebrate [SPECIAL OCCASION] and I would love to have a message from you congratulating me.",
         "Hello PLACEHOLDER_FAMOSO_NAME! I would love to surprise PLACEHOLDER_PARA on this [SPECIAL OCCASION]."
@@ -118,31 +118,31 @@ export const occasionsData = {
       icon: "fa-music",
       title: "Song",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! Could you sing me a piece of the song [SONG]? It is one of my favorites! Thank you.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! Could you sing to PLACEHOLDER_FOR a piece of the song [SONG], for me? Thank you."
+        "Hello PLACEHOLDER_FAMOSO_NAME! Could you please sing for me a piece of the song [SONG]? It is one of my favorites! Thank you very much.",
+        "Hello PLACEHOLDER_FAMOSO_NAME! Could you please sing to PLACEHOLDER_PARA a piece of the song [SONG] from me? Thank you very much."
       ]
     },
     CHEER_UP: {
       icon: "fa-spa",
       title: "Cheer up",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! These days I have been in very low spirits. Could you please send me a message of encouragement? Thank you.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! PLACEHOLDER_PARA has been in very low spirits. Could you please send him a message to cheer him up? Thank you."
+        "Hello PLACEHOLDER_FAMOSO_NAME! These days I have been down. Could you please send me a message to cheer up? Thank you very much.",
+        "Hello PLACEHOLDER_FAMOSO_NAME! PLACEHOLDER_PARA has been down. Could you please send him/her a message to cheer up? Thank you very much."
       ]
     },
     MAKE_SMILE: {
       icon: "fa-laugh",
       title: "Make Smile",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! I admire you a lot and I would like you to send me a message that makes me smile.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would like you to please give PLACEHOLDER_PARA a smile and wish her a great day."
+        "Hello PLACEHOLDER_FAMOSO_NAME! I really admire you, and I would like you to send me a message that makes me smile.",
+        "Hello PLACEHOLDER_FAMOSO_NAME! I would like you to please make PLACEHOLDER_PARA smile and wish him/her a great day."
       ]
     },
     MOTIVATION: {
       icon: "fa-bolt",
       title: "Motivation",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! These days I have been very unmotivated. Could you send me a message that motivates me? Thank you.",
+        "Hello PLACEHOLDER_FAMOSO_NAME! These days I have been very unmotivated. Could you please send me a message that will motivate me? Thank you very much.",
         "Hello PLACEHOLDER_FAMOSO_NAME! Please help me motivate PLACEHOLDER_PARA."
       ]
     },
@@ -150,8 +150,8 @@ export const occasionsData = {
       icon: "fa-grin-squint",
       title: "Joke",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! I'm your fan and you make me laugh a lot. I'd love for you to say something funny to me. Thanks!.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I'd love to play a prank on PLACEHOLDER_PARA. Do it very your style! Thanks."
+        "Hello PLACEHOLDER_FAMOSO_NAME! I am your fan and you make me laugh a lot. I would love to hear something funny. Thank you!",
+        "Hello PLACEHOLDER_FAMOSO_NAME! I would love to make a joke to PLACEHOLDER_PARA. Do it your own way! Thank you."
       ]
     },
     HOPE: {
@@ -159,7 +159,7 @@ export const occasionsData = {
       title: "Hope",
       messages: [
         "",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I'd love to play a prank on PLACEHOLDER_PARA. Do it very your style! Thanks."
+        "Hello PLACEHOLDER_FAMOSO_NAME! These months have been difficult for PLACEHOLDER_PARA. Could you send him/her a message of hope?"
       ]
     },
     ASK_FOR_FORGIVENESS: {
@@ -167,7 +167,7 @@ export const occasionsData = {
       title: "Forgiveness",
       messages: [
         "",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would like PLACEHOLDER_PARA to forgive me for [SITUATION]. Please help me by telling him this message. Thanks."
+        "Hello PLACEHOLDER_FAMOSO_NAME! I would like PLACEHOLDER_PARA to forgive me for [SITUATION]. Please help me by telling him/her this message. Thank you."
       ]
     },
     OTHER: {
