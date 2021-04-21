@@ -67,7 +67,9 @@ const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
   return (
     <ModalSelect
       buttonLabel={intl.formatMessage(messageForButtonLabel, {
-        checkItemLabel: intl.formatMessage(checkItemLabel)
+        checkItemLabel: checkedValue
+          ? intl.formatMessage(getCheckItemLabel(checkedValue))
+          : ""
       })}
       modalTitle={intl.formatMessage(messageForModalTitle)}
       footerButtonLabel={intl.formatMessage(messageForFooterButtonLabel)}
