@@ -1,9 +1,15 @@
 .ResultsCardGrid {
   display: grid;
   gap: 26px 24px;
-  grid-template-columns: repeat(auto-fill, 13.8vw);
+  grid-template-columns: repeat(4, 1fr);
+  @media only screen and (max-width: 1919px) {
+    grid-template-columns: repeat(auto-fill, 13.8vw);
+  }
 }
 
 .ResultsCardGridExpanded {
-  grid-template-columns: repeat(auto-fill, 15.17vw);
+  grid-template-columns: repeat(5, 207px);
+  @media only screen and (max-width: 1919px) {
+    grid-template-columns: repeat(auto-fill, 15.17vw);
+  }
 }

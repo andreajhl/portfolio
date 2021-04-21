@@ -1,5 +1,6 @@
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { getPixelsFromViewportWidth } from "lib/utils/getPixelsFromViewportWidth";
+import debounce from "lodash.debounce";
 import { useEffect, useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { CelebrityCard } from "../../common/cards/celebrity";
@@ -17,12 +18,27 @@ function ResultsCardGrid({
   celebrities
 }: ResultsCardGridProps) {
   const [celebrityCardHeight, setCelebrityCardHeight] = useState(
-    getPixelsFromViewportWidth(expanded ? 16.83 : 18.3)
+    getPixelsFromViewportWidth(expanded ? 16.83 : 18.3, expanded ? 248 : 318)
   );
 
   useEffect(() => {
-    // Para asegurar que el valor se actualice al tener disponible el "window".
-    setCelebrityCardHeight(getPixelsFromViewportWidth(expanded ? 18.3 : 16.83));
+    function updateHeight() {
+      setCelebrityCardHeight(
+        getPixelsFromViewportWidth(
+          expanded ? 18.3 : 16.83,
+          expanded ? 248 : 318
+        )
+      );
+    }
+
+    updateHeight();
+    const debouncedUpdateHeight = debounce(updateHeight, 500);
+
+    window.addEventListener("resize", debouncedUpdateHeight);
+
+    return () => {
+      window.removeEventListener("resize", debouncedUpdateHeight);
+    };
   }, [expanded]);
 
   return (
