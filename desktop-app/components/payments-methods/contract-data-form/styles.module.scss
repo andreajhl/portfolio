@@ -1,0 +1,12 @@
+.ContractDataFormDeliveryInputs {
+  display: flex;
+
+  > * + * {
+    margin-left: 1em;
+  }
+}
+
+.ContractDataFormInstructionsTextarea {
+  width: 100%;
+  max-width: 400px;
+}

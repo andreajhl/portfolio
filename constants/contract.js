@@ -1,0 +1,13 @@
+const contract = {
+  reference: "202104202026-5858081-10173",
+  price: 15,
+  celebrity_full_name: "Jhon Vega Testing",
+  celebrity_avatar:
+    "https://famosos-output-media-testing.s3.amazonaws.com/celebrities/1448/avatar/famosos-videos-personalizados-jhonvegamas-compressed.jpeg",
+  delivery_to: "German",
+  delivery_from: "",
+  instructions: "¡Hola Jhon Vega Testing! Soy german",
+  status: 5
+};
+
+export default contract;
