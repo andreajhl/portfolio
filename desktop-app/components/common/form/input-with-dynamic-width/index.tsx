@@ -10,6 +10,7 @@ function InputWithDynamicWidth({
   removeBorder = false,
   name,
   className,
+  value,
   ...inputProps
 }: InputWithDynamicWidthProps) {
   return (
@@ -17,13 +18,14 @@ function InputWithDynamicWidth({
       className={`${styles.InputWithDynamicWidth} ${
         removeBorder ? styles.InputWithDynamicWidthWithoutBorder : ""
       }`}
+      data-value={value}
     >
-      <span aria-hidden>{inputProps.value}</span>
       <input
         type="text"
         name={name}
         id={name}
         className={`${styles.InputWithDynamicWidthInput} ${className}`}
+        value={value}
         {...inputProps}
       />
     </span>

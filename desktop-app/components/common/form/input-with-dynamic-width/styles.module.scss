@@ -2,14 +2,16 @@
   display: inline;
   position: relative;
 
-  span {
+  &::before {
+    content: attr(data-value);
+    white-space: pre-wrap;
     opacity: 0;
     padding: 0 calc(0.5em + 1px) 0 calc(0.5em + 1px);
   }
 }
 
 .InputWithDynamicWidthWithoutBorder {
-  span {
+  &::before {
     padding: 0 0.5em 0 0.5em;
   }
 
