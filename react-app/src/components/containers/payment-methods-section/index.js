@@ -62,6 +62,10 @@ class PaymentMethodsSection extends Component {
                 instructions={this.props.contractData.instructions}
                 price={this.props.contractData.price}
                 contractReference={this.props.contractData.reference}
+                celebrityDiscountPercentage={
+                  this.props.contractData.discount_percentage
+                }
+                originalPrice={this.props.contractData.original_price}
               />
             </div>
             {this.props.currencyExchangeLoading ? (

@@ -7,6 +7,7 @@ import * as PATHS from "../../../routing/Paths";
 import { withRouter } from "react-app/src/components/common/routing";
 import { processStripePayment } from "../../../state/ducks/payments/actions";
 import { history } from "../../../routing/History";
+import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 
 class StripeCardForm extends Component {
   constructor(props) {
@@ -58,8 +59,8 @@ class StripeCardForm extends Component {
     const amount = this.props.contractPrice * 100;
     const currency = "USD";
     const ownerData = {
-      name: this.state.ownerName,
-      email: this.state.ownerEmail
+      name: this.state.ownerName.trim(),
+      email: this.state.ownerEmail.trim()
     };
 
     // CREATE A SOURCE CARD
@@ -127,6 +128,9 @@ class StripeCardForm extends Component {
           if (typeof window !== "undefined") {
             if (window.fbq != null) {
               window.fbq("track", "Purchase", {
+                content_type: "product",
+                content_ids:
+                  VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
                 value: this.props.contractPrice,
                 currency: "USD"
               });

@@ -1,51 +1,27 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { LoadingOverlay } from "../../layouts/loading-overlay";
-import { history } from "../../../routing/History";
-import * as ROUTING_PATHS from "../../../routing/Paths";
-import { Session } from "../../../state/utils/session";
+import { AUTH_SUCCESS, HOME_PATH } from "../../../routing/Paths";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useRouter } from "next/router";
+import { FINAL_REDIRECT } from "constants/keys";
 
-class SessionRedirectPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const SessionRedirectPage = ({ query: { r: redirectUrl } }) => {
+  const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+  const router = useRouter();
 
-  render() {
-    return (
-      <>
-        <LoadingOverlay />
-      </>
-    );
-  }
-
-  componentDidMount() {
-    const query = new URLSearchParams(this.props.location.search);
-    this.checkToken(query.get("s"), query.get("r"));
-  }
-
-  checkToken(token, url) {
-    if (token) {
-      const session = new Session();
-      session.setSession(token);
-      if (!session.tokenExpired()) {
-        this.redirectTo(url);
-      } else {
-        this.redirectToHome();
-      }
+  useEffect(() => {
+    if (isLoading) return;
+    if (isAuthenticated) {
+      router.push(redirectUrl || HOME_PATH);
     } else {
-      this.redirectToHome();
+      localStorage.setItem(FINAL_REDIRECT, redirectUrl);
+      loginWithRedirect({
+        redirectUri: window.location.origin + AUTH_SUCCESS
+      });
     }
-  }
+  }, [isAuthenticated, isLoading, redirectUrl]);
 
-  redirectTo(url) {
-    if (url) {
-      history._pushRoute(url);
-    }
-  }
-
-  redirectToHome() {
-    history._pushRoute(ROUTING_PATHS.HOME_PATH);
-  }
-}
+  return <LoadingOverlay />;
+};
 
 export { SessionRedirectPage };

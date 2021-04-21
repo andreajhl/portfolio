@@ -142,6 +142,10 @@ export const listTrending = (params) => {
 };
 
 export const saveClientContract = (contractData) => {
+  // eliminates leading and trailing spaces
+  if (contractData.deliveryContact) {
+    contractData.deliveryContact.trim();
+  }
   return (dispatch) => {
     const TYPE = TYPES.SAVE_CLIENT_CONTRACT_REQUEST;
     const FINAL_PATH = API_PATHS.CREATE_CONTRACT;

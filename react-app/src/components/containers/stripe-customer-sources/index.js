@@ -8,6 +8,7 @@ import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 
 class StripeCustomerSources extends Component {
   constructor(props) {
@@ -94,6 +95,9 @@ class StripeCustomerSources extends Component {
             if (typeof window !== "undefined") {
               if (window.fbq != null) {
                 window.fbq("track", "Purchase", {
+                  content_type: "product",
+                  content_ids:
+                    VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
                   value: this.props.contractPrice,
                   currency: "USD"
                 });

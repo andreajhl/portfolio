@@ -10,10 +10,12 @@ class ContractPriceLayout extends Component {
     const res = AVAILABLE_CURRENCIES.find(
       (item) => item.name === this.props.currency
     );
-    if (this.props.price < res.round) {
-      return res.round;
+    const round = parseFloat(res.round);
+    if (this.props.price < round) {
+      return round;
     } else {
-      return Math.round(this.props.price / res.round) * res.round;
+      return round + this.props.price - (this.props.price % round);
+      // return Math.round(this.props.price / res.round) * res.round;
     }
   }
 

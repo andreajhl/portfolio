@@ -1,35 +1,35 @@
-import React, { Component, useRef, utilizeFocus } from "react";
-
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { contractOperations } from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
-import { Session } from "../../../state/utils/session";
+import PhoneInput from "react-phone-input-2";
 import OcassionsOptions from "../ocassions-options";
 import { occasionsData } from "../../../constants/options";
+import { getToken } from "react-app/src/state/ducks/session/actions";
+import "react-phone-input-2/lib/style.css";
+import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
+import isMobilePhone from "react-app/src/state/utils/isMobilePhone";
 
 class CreateContractForm extends Component {
   constructor(props) {
     super(props);
-    const session = new Session();
     this.state = {
       instructionsIsTouched: false,
       contractData: {
         celebrity: null,
         contractType: 1,
         deliveryFrom: "",
-        deliveryTo: session.hasEmail()
-          ? session.getSession().fullName || ""
-          : "",
+        deliveryTo: "",
         deliveryType: 1,
-        deliveryContact: session.hasEmail()
-          ? session.getSession().email || ""
-          : "",
+        deliveryContact: "",
         instructions: "",
         isPublic: true,
-        occasion: "OTHER"
-      }
+        occasion: "OTHER",
+        deliveryContactCellphone: ""
+      },
+      deliveryContactCellphoneCountryCode: "co"
     };
     this.handleIsPublic = this.handleIsPublic.bind(this);
     this.createContract = this.createContract.bind(this);
@@ -48,6 +48,8 @@ class CreateContractForm extends Component {
         ...this.state,
         contractData: this.props.contractToPayData
       });
+    } else {
+      this.props.getToken();
     }
   }
 
@@ -57,6 +59,19 @@ class CreateContractForm extends Component {
         ...this.state,
         contractData: this.props.contractToPayData
       });
+    } else if (
+      prevProps.sessionData?.userId !== this.props.sessionData?.userId
+    ) {
+      this.setState((state) => ({
+        ...state,
+        contractData: {
+          ...state.contractData,
+          deliveryTo:
+            state.deliveryTo || this.props.sessionData?.fullName || "",
+          deliveryContact:
+            state.deliveryContact || this.props.sessionData?.email || ""
+        }
+      }));
     }
     // if (
     //   this.props.contractToPayExist &&
@@ -84,7 +99,8 @@ class CreateContractForm extends Component {
       this.deliveryFromValidator(true) ||
       this.deliveryToValidator(true) ||
       this.instructionsValidator() ||
-      this.deliveryContactValidator()
+      this.deliveryContactValidator() ||
+      this.deliveryContactCellphoneValidator()
     ) {
       this.setState({
         ...this.state,
@@ -96,9 +112,17 @@ class CreateContractForm extends Component {
         this.props.celebrityId === this.props.contractToPayData.celebrityId
       ) {
         const contractData = this.state.contractData;
-        this.setState({ contractData }, () => {
-          this.props.updateClientContract(this.state.contractData);
-        });
+        this.setState(
+          {
+            contractData: {
+              ...contractData,
+              deliveryType: contractData.deliveryType || 1
+            }
+          },
+          () => {
+            this.props.updateClientContract(this.state.contractData);
+          }
+        );
       } else {
         const contractData = this.state.contractData;
         contractData.celebrityId = this.props.celebrityId;
@@ -106,17 +130,39 @@ class CreateContractForm extends Component {
         if (typeof window !== "undefined") {
           if (window.fbq != null) {
             window.fbq("track", "InitiateCheckout", {
+              content_type: "product",
+              content_ids:
+                VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
               value: this.props.contractPrice,
               currency: "USD"
             });
           }
         }
-        this.setState({ contractData }, () => {
-          this.props.saveClientContract(this.state.contractData);
-        });
+        this.setState(
+          {
+            contractData: {
+              ...contractData,
+              deliveryType: contractData.deliveryType || 1
+            }
+          },
+          () => {
+            this.props.saveClientContract(this.state.contractData);
+          }
+        );
       }
     }
   }
+
+  onCellphoneChange = (cellphoneNumber, countryCode) => {
+    this.setState((state) => ({
+      ...state,
+      contractData: {
+        ...state.contractData,
+        deliveryContactCellphone: cellphoneNumber
+      },
+      deliveryContactCellphoneCountryCode: countryCode
+    }));
+  };
 
   replacePlaceHolder = (text) => {
     const replacePlaceHolders = (str, find, replace) => {
@@ -144,7 +190,7 @@ class CreateContractForm extends Component {
 
   handleInputChange = (event) => {
     const updatedContractData = { ...this.state.contractData };
-    if (event.target.value.length <= 300) {
+    if (event.target.value.length <= 400) {
       updatedContractData[event.target.name] = event.target.value;
       this.setState({
         ...this.state,
@@ -256,6 +302,24 @@ class CreateContractForm extends Component {
       return "Este correo no es válido";
     }
     return null;
+  };
+
+  deliveryContactCellphoneValidator = () => {
+    try {
+      if (this.state.contractData.deliveryContactCellphone !== "") {
+        if (
+          !isMobilePhone(
+            String(`+${this.state.contractData.deliveryContactCellphone}`),
+            this.state.deliveryContactCellphoneCountryCode
+          )
+        ) {
+          return "Ingrese un numero telefónico valido";
+        }
+      }
+      return null;
+    } catch (error) {
+      return null;
+    }
   };
 
   getInstructions(occasionIdentifier) {
@@ -439,12 +503,12 @@ class CreateContractForm extends Component {
             <div
               className={
                 "text-left" +
-                (contractData.instructions.length === 300
+                (contractData.instructions.length === 400
                   ? " text-danger "
                   : " text-muted ")
               }
             >
-              {contractData.instructions.length}/300 caracteres permitidos
+              {contractData.instructions.length}/400 caracteres permitidos
             </div>
             <span
               className={
@@ -471,6 +535,31 @@ class CreateContractForm extends Component {
               }
             >
               {this.deliveryContactValidator()}
+            </span>
+          </div>
+          <div className={"form-custom-vertical-group"}>
+            <label>¿Quieres recibir el video a tu WhatsApp? (Opcional)</label>
+            <PhoneInput
+              enableLongNumbers={true}
+              enableSearch
+              searchClass="d-flex align-items-center p-2"
+              searchPlaceholder="Buscar país"
+              placeholder="+57 55555555"
+              value={this.state.contractData.deliveryContactCellphone}
+              className="form-control mb-3"
+              containerClass="mb-3"
+              country={this.state.deliveryContactCellphoneCountryCode}
+              onChange={(cellphoneNumber, data) => {
+                this.onCellphoneChange(cellphoneNumber, data.countryCode);
+              }}
+            />
+            <span
+              className={
+                "text-danger" +
+                (this.state.showErrors ? " show-error " : " hide-error ")
+              }
+            >
+              {this.deliveryContactCellphoneValidator()}
             </span>
           </div>
           <div className={"mt-3"}>{""}</div>
@@ -532,8 +621,9 @@ CreateContractForm.defaultProps = {
 };
 
 // mapStateToProps
-const mapStateToProps = ({ contracts }) => {
+const mapStateToProps = ({ contracts, session }) => {
   return {
+    sessionData: session.getSessionReducer.data,
     contractToPayExist: contracts.saveContractToPayReducer.completed,
     contractToPayData: contracts.saveContractToPayReducer.data,
     saveClientContractLoading: contracts.saveClientContractReducer.loading,
@@ -544,6 +634,7 @@ const mapStateToProps = ({ contracts }) => {
 
 // mapStateToProps
 const mapDispatchToProps = {
+  getToken,
   saveClientContract: contractOperations.saveClientContract,
   updateClientContract: contractOperations.updateClientContract
 };

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /_next/static/
+
+Sitemap: https://www.famosos.com/sitemap.xml

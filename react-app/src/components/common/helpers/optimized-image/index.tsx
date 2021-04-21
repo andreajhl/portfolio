@@ -21,7 +21,7 @@ const OptimizedImage = ({
       }}
       className={className}
     >
-      <Image {...props} />
+      <Image {...props} unoptimized />
     </div>
   );
 };

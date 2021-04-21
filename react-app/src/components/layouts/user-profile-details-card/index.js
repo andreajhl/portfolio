@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import { Session } from "../../../state/utils/session";
-import { CelebritiesMultiselect } from "../celebrities-multiselect";
+// import { CelebritiesMultiselect } from "../celebrities-multiselect";
 import { sessionOperations } from "../../../state/ducks/session";
 import { connect } from "react-redux";
-import * as GTM from "../../../state/utils/gtm";
-import { HOME_PATH } from "../../../routing/Paths";
+import {
+  CLIENT_FAVORITES,
+  CLIENT_HIRINGS,
+  HOME_PATH
+} from "../../../routing/Paths";
 import LogoutButton from "../../containers/logout-button/logout-button";
-import useRouter from "next/router";
+import Router from "next/router";
+import Maybe from "../../common/helpers/maybe";
+import { NavLink } from "../../common/routing";
+
 class UserProfileDetailsCardLayout extends Component {
   constructor(props) {
     super(props);
@@ -16,21 +22,21 @@ class UserProfileDetailsCardLayout extends Component {
     };
 
     this.sesion = new Session();
-    this.celebritiesMultiSelectChanged = this.celebritiesMultiSelectChanged.bind(
-      this
-    );
+    // this.celebritiesMultiSelectChanged = this.celebritiesMultiSelectChanged.bind(
+    //   this
+    // );
     this.updateSession = this.updateSession.bind(this);
   }
 
-  celebritiesMultiSelectChanged(value) {
-    this.setState({ favCelebrities: value });
-  }
+  // celebritiesMultiSelectChanged(value) {
+  //   this.setState({ favCelebrities: value });
+  // }
 
   logout() {
     this.sesion.removeSession();
-    const router = useRouter();
-    router.push(HOME_PATH);
+    Router.push(HOME_PATH);
   }
+
   updateSession() {
     const session = this.props.sessionData;
     session.favCelebrities = this.state.favCelebrities;
@@ -51,8 +57,8 @@ class UserProfileDetailsCardLayout extends Component {
               <img
                 className="rounded-circle"
                 src={
-                  this.props.userInformation?.picture
-                    ? this.props.userInformation.picture
+                  this.props.session?.avatar
+                    ? this.props.session?.avatar
                     : "/assets/img/avatar-blank.png"
                 }
                 width={"120px"}
@@ -61,8 +67,15 @@ class UserProfileDetailsCardLayout extends Component {
               <h5 className="font-weight-bold mt-2">
                 {this.props.session?.fullName}
               </h5>
-              <h6 className="mt-2">{this.props.userInformation?.email}</h6>
-              {/* <h6 className='mt-2'>{this.props.session.cellphoneNumber}</h6> */}
+              <h6 className="mt-2">{this.props.session?.email}</h6>
+              <Maybe it={this.props.session?.cellphoneNumber}>
+                <h6 className="mt-2">
+                  {this.props.session?.cellphoneCode
+                    ? "+" + this.props.session?.cellphoneCode
+                    : null}{" "}
+                  {this.props.session?.cellphoneNumber}
+                </h6>
+              </Maybe>
               <LogoutButton className="d-inline">
                 <small className="text-muted cursor-pointer">
                   Cerrar sesión
@@ -73,19 +86,25 @@ class UserProfileDetailsCardLayout extends Component {
               <hr />
             </div>
             <div className="col-6 text-center border-right p-2">
-              <h6 className="mt-2">Siguiendo</h6>
-              <h2 className="font-weight-bold mt-4">0</h2>
+              <NavLink to={CLIENT_FAVORITES} className="text-decoration-none">
+                <h6 className="mt-2">Siguiendo</h6>
+                <h2 className="font-weight-bold mt-4">
+                  {this.props.userCelebrityLikesCount}
+                </h2>
+              </NavLink>
             </div>
             <div className="col-6 text-center p-2 border-left">
-              <h6 className="mt-2">Contratos</h6>
-              <h2 className="font-weight-bold mt-4">
-                {this.props.session.totalContracts}
-              </h2>
+              <NavLink to={CLIENT_HIRINGS} className="text-decoration-none">
+                <h6 className="mt-2">Contratos</h6>
+                <h2 className="font-weight-bold mt-4">
+                  {this.props.session.totalContracts}
+                </h2>
+              </NavLink>
             </div>
-            <div className="col-12 text-center">
+            {/* <div className="col-12 text-center">
               <hr />
             </div>
-            <div className="col-12 text-center p-2">
+             <div className="col-12 text-center p-2">
               <h6 className="font-weight-bold mt-2">Famosos Favoritos</h6>
               <div className="mt-2 mb-2">
                 <CelebritiesMultiselect
@@ -99,7 +118,7 @@ class UserProfileDetailsCardLayout extends Component {
               >
                 Guardar
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <br />
@@ -119,7 +138,9 @@ UserProfileDetailsCardLayout.defaultProps = {};
 const mapStateToProps = (state) => ({
   isLoading: state.session.updateSessionReducer.loading,
   sessionData: state.session.getSessionReducer.data,
-  updateSessionData: state.session.updateSessionReducer.data
+  updateSessionData: state.session.updateSessionReducer.data,
+  userCelebrityLikesCount:
+    state.celebrityLikes.fetchUserCelebrityLikesReducer?.data?.data?.length || 0
 });
 
 // mapStateToProps
