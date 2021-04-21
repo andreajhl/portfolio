@@ -1,0 +1,27 @@
+.Header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  height: 150px;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+.ContractSummaryDetails {
+  display: flex;
+}
+.ContractDetails {
+  background-color: white;
+  flex: 50%;
+}
+
+.ContractInstructions {
+  flex: 50%;
+  background-color: rgba(246, 247, 255, 1);
+}
+
+.ContractDetails,
+.ContractInstructions {
+  padding-bottom: 10%;
+}
