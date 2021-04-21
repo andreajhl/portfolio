@@ -1,0 +1,64 @@
+.ContractDetails {
+  display: flex;
+  position: relative;
+  flex-flow: column;
+  margin: 41px 42px 0 74px;
+}
+.Avatar {
+  border-radius: 50%;
+}
+.Title {
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  margin-left: 23px;
+}
+
+.ContractInstructions {
+  display: flex;
+  flex-flow: column;
+  margin-top: 27px;
+}
+
+.WhoSend,
+.WhoReceive,
+.InstructionsDetails,
+.EditionNoticie {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #5c5c5c;
+}
+.WhoSend {
+  margin-left: 30px;
+}
+.InstructionsDetails {
+  margin-top: 16px;
+}
+
+.EditionNoticie {
+  margin-top: 17px;
+}
+.EmailDetails {
+  p {
+    font-family: Manrope;
+    font-size: 14px;
+    line-height: 19px;
+    color: #838383;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+  }
+  span {
+    font-family: Manrope;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: bold;
+    color: #000000;
+  }
+}
