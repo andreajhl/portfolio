@@ -16,7 +16,8 @@
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "test": "jest",
     "test-all": "yarn lint && yarn type-check && yarn test",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build-check": "rm -rf .next && npm run build"
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
