@@ -6,6 +6,7 @@ import { ContractFavsLayout } from "../contract-favs";
 import { ContractCommentsLayout } from "../contract-comments";
 import { contractOperations } from "../../../state/ducks/contracts";
 import { connect } from "react-redux";
+import { FormattedMessage } from "react-intl";
 
 class CelebrityPublicContractCardLayout extends Component {
   constructor(props) {
@@ -126,7 +127,8 @@ class CelebrityPublicContractCardLayout extends Component {
             </div> */}
           <div className="title" onClick={this.goToContract}>
             <h6 className="font-weight-bold text-with-ellipsis">
-              Para: {this.props.publicContract.contract_delivery_to}
+              <FormattedMessage defaultMessage="Para:" />{" "}
+              {this.props.publicContract.contract_delivery_to}
             </h6>
           </div>
           <i

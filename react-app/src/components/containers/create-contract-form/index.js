@@ -26,6 +26,12 @@ const intlMessages = defineMessages({
   },
   deliveryContactCellphone: {
     defaultMessage: "Buscar país"
+  },
+  celebrityNameFallback: {
+    defaultMessage: "Famoso!"
+  },
+  deliveryToFallback: {
+    defaultMessage: "[PARA]"
   }
 });
 
@@ -186,19 +192,20 @@ class CreateContractForm extends Component {
     };
 
     let textClear = text;
+    const { formatMessage } = this.props.intl;
 
     textClear = replacePlaceHolders(
       textClear,
       "PLACEHOLDER_FAMOSO_NAME",
-      this.props.celebrityFullName
-        ? `${this.props.celebrityFullName}`
-        : "Famoso!"
+      this.props.celebrityFullName ||
+        formatMessage(intlMessages.celebrityNameFallback)
     );
 
     textClear = replacePlaceHolders(
       textClear,
       "PLACEHOLDER_PARA",
-      this.state.contractData.deliveryTo || "[PARA]"
+      this.state.contractData.deliveryTo ||
+        formatMessage(intlMessages.deliveryToFallback)
     );
 
     return textClear;
@@ -325,7 +332,7 @@ class CreateContractForm extends Component {
 
   deliveryContactValidator = () => {
     if (!this.state.contractData.deliveryContact.length) {
-      return "Campo requerido";
+      return <FormattedMessage defaultMessage="Campo requerido" />;
     } else if (
       !this.state.contractData.deliveryContact.match(
         /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i

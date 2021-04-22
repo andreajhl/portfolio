@@ -32,14 +32,12 @@ const FourZeroFourCelebrityProfile = ({ celebrityUsername }) => {
                 }}
               />
             </h3>
-            {/*  */}
-            {/*  */}
             <NavLink
               to={ROUTING_PATHS.HOME_PATH}
               className="FourZeroFourCelebrityProfile__banner-home-link"
             >
               <i className="fa fa-arrow-left FourZeroFourCelebrityProfile__banner-arrow-left" />{" "}
-              <FormattedMessage defaultMessage=" Volver al inicio" />
+              <FormattedMessage defaultMessage="Volver al inicio" />
             </NavLink>
           </div>
         </header>
