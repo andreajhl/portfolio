@@ -89,13 +89,13 @@ class ContractPriceLayout extends Component {
           {this.props.currencyExchangeData.to !== this.props.currency ? (
             <span style={{ fontSize: "10px", lineHeight: "1" }}>
               <FormattedMessage
-                defaultMessage="El valor en  es aproximado"
+                defaultMessage="El valor en {currency} es aproximado"
                 values={{
-                  currencyExchangeData: this.props.currencyExchangeData.to
+                  currency: this.props.currencyExchangeData.to
                 }}
               />
               <br />
-              <FormattedMessage defaultMessage="El cobro que se hará en dólares es:" />
+              <FormattedMessage defaultMessage="El cobro que se hará en dólares es:" />{" "}
               <span>
                 {this.getFormattedPrice(this.props.price, this.props.currency)}
               </span>

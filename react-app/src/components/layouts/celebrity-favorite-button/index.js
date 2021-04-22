@@ -6,6 +6,16 @@ import { addOrRemoveLike } from "../../../state/ducks/celebrity-likes/actions";
 import { Session } from "../../../state/utils/session";
 import PropTypes from "prop-types";
 import * as GTM from "../../../state/utils/gtm";
+import { defineMessages, useIntl } from "react-intl";
+
+const intlMessages = defineMessages({
+  isLikedAlternativeText: {
+    defaultMessage: "No me gusta"
+  },
+  isNotLikedAlternativeText: {
+    defaultMessage: "Me gusta"
+  }
+});
 
 const preventRedirectFromParent = (event) => {
   if (event.stopPropagation) {
@@ -31,6 +41,7 @@ const CelebrityFavoriteButton = ({
   history,
   location
 }) => {
+  const { formatMessage } = useIntl();
   const [isFavorite, setIsFavorite] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const analyticsData = useMemo(
@@ -86,7 +97,9 @@ const CelebrityFavoriteButton = ({
     setIsHovering(false);
   };
 
-  const alternativeText = `${isFavorite ? "No me" : "Me"} gusta`;
+  const alternativeText = isFavorite
+    ? formatMessage(intlMessages.isLikedAlternativeText)
+    : formatMessage(intlMessages.isNotLikedAlternativeText);
 
   return (
     <img

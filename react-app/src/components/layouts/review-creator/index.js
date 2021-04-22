@@ -3,6 +3,7 @@ import StarRatingComponent from "react-star-rating-component";
 import { Session } from "../../../state/utils/session";
 
 import { saveClientContractReview } from "../../../state/ducks/contracts/actions";
+import { FormattedMessage } from "react-intl";
 
 class ReviewCreatorLayout extends Component {
   constructor(props) {
@@ -90,25 +91,29 @@ class ReviewCreatorLayout extends Component {
     }
   }
 
-  returnCountStars = () => {
-    if (this.state.reviewData.stars === 1) {
-      return "1 Estrella";
-    }
-    return this.state.reviewData.stars + " Estrellas";
-  };
+  returnCountStars = () =>
+    this.state.reviewData.stars === 1 ? (
+      <FormattedMessage defaultMessage="1 Estrella" />
+    ) : (
+      <FormattedMessage
+        values={{ starsCount: this.state.reviewData.stars }}
+        defaultMessage="{starsCount} Estrellas"
+      />
+    );
 
   renderReviewFormCreator() {
     if (this.state.isCompleted) {
       return (
         <h6 className="">
-          El comentario ha sido enviado. <i className="fa fa-check ml-2" />
+          <FormattedMessage defaultMessage="El comentario ha sido enviado." />{" "}
+          <i className="fa fa-check ml-2" />
         </h6>
       );
     } else {
       return (
         <>
           <h5 className="font-weight-bold">
-            Envíale un comentario a{" "}
+            <FormattedMessage defaultMessage="Envíale un comentario a" />{" "}
             {this.props.contract.celebrityData
               ? this.props.contract.celebrityData.fullName
               : null}
@@ -117,7 +122,7 @@ class ReviewCreatorLayout extends Component {
           <div className="mt-2">
             <div className="mb-2">
               <h6 className={"font-weight-bold"}>
-                ¿Cuántas estrellas le das a este video?
+                <FormattedMessage defaultMessage="¿Cuántas estrellas le das a este video?" />
               </h6>
               <StarRatingComponent
                 name="rate1"
@@ -129,7 +134,9 @@ class ReviewCreatorLayout extends Component {
                 <small>{this.returnCountStars()}</small>
               </div>
             </div>
-            <h6 className={"font-weight-bold"}>Escribe un comentario</h6>
+            <h6 className={"font-weight-bold"}>
+              <FormattedMessage defaultMessage="Escribe un comentario" />
+            </h6>
             <textarea
               className={
                 "form-control" +
@@ -151,7 +158,9 @@ class ReviewCreatorLayout extends Component {
                   aria-hidden="true"
                 />
               ) : (
-                <span className="text-white">Enviar comentario</span>
+                <span className="text-white">
+                  <FormattedMessage defaultMessage="Enviar comentario" />
+                </span>
               )}
             </button>
           </div>
@@ -164,21 +173,24 @@ class ReviewCreatorLayout extends Component {
     if (this.state.isCompleted) {
       return (
         <h6 className="">
-          El comentario ha sido actualizado. <i className="fa fa-check ml-2" />
+          <FormattedMessage defaultMessage="El comentario ha sido actualizado." />{" "}
+          <i className="fa fa-check ml-2" />
         </h6>
       );
     } else {
       return (
         <>
           <h5 className="font-weight-bold">
-            Actualiza tu comentario a{" "}
+            <FormattedMessage defaultMessage="Actualiza tu comentario a" />{" "}
             {this.props.contract.celebrityData
               ? this.props.contract.celebrityData.fullName
               : null}
           </h5>
           <div className="mt-2">
             <div className="mb-2">
-              <h6>¿Cuántas estrellas le das a este video?</h6>
+              <h6>
+                <FormattedMessage defaultMessage="¿Cuántas estrellas le das a este video?" />
+              </h6>
               <br />
               <StarRatingComponent
                 name="rate1"
@@ -208,7 +220,9 @@ class ReviewCreatorLayout extends Component {
                   aria-hidden="true"
                 />
               ) : (
-                <span className="text-white">Actualizar comentario</span>
+                <span className="text-white">
+                  <FormattedMessage defaultMessage="Actualizar comentario" />
+                </span>
               )}
             </button>
           </div>

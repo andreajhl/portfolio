@@ -10,8 +10,24 @@ import { occasionsData } from "../../../constants/options";
 import { getToken } from "react-app/src/state/ducks/session/actions";
 import "react-phone-input-2/lib/style.css";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
-import { FormattedMessage } from "react-intl";
+import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 import { withRouter } from "next/router";
+
+const intlMessages = defineMessages({
+  instructionsPlaceholderForOther: {
+    defaultMessage:
+      "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
+  },
+  instructionsPlaceholderForMe: {
+    defaultMessage: "Mis instrucciones son"
+  },
+  deliveryContactPlaceholder: {
+    defaultMessage: "correo@dominio.com"
+  },
+  deliveryContactCellphone: {
+    defaultMessage: "Buscar país"
+  }
+});
 
 class CreateContractForm extends Component {
   constructor(props) {
@@ -349,6 +365,7 @@ class CreateContractForm extends Component {
   };
 
   render() {
+    const { formatMessage } = this.props.intl;
     const contractData = { ...this.state.contractData };
     return (
       <div className="CreateContractForm">
@@ -505,7 +522,7 @@ class CreateContractForm extends Component {
             contractType={this.state.contractData.contractType - 1}
             currentChoise={this.state.contractData.occasion}
             clicked={this.changeOccasionOption}
-          ></OcassionsOptions>
+          />
           <div className={"form-custom-vertical-group"}>
             <label>
               <FormattedMessage
@@ -519,8 +536,8 @@ class CreateContractForm extends Component {
               rows={5}
               placeholder={
                 contractData.contractType === 2
-                  ? "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
-                  : "Mis instrucciones son"
+                  ? formatMessage(intlMessages.instructionsPlaceholderForOther)
+                  : formatMessage(intlMessages.instructionsPlaceholderForMe)
               }
               value={contractData.instructions}
               name={"instructions"}
@@ -556,7 +573,9 @@ class CreateContractForm extends Component {
             </label>
             <input
               type={"email"}
-              placeholder={"correo@dominio.com"}
+              placeholder={formatMessage(
+                intlMessages.deliveryContactPlaceholder
+              )}
               value={contractData.deliveryContact}
               name={"deliveryContact"}
               onChange={this.handleInputChange}
@@ -577,7 +596,9 @@ class CreateContractForm extends Component {
             <PhoneInput
               enableSearch
               searchClass="d-flex align-items-center p-2"
-              searchPlaceholder="Buscar país"
+              searchPlaceholder={formatMessage(
+                intlMessages.deliveryContactCellphone
+              )}
               placeholder="+57 55555555"
               value={this.state.contractData.deliveryContactCellphone}
               className="form-control mb-3"
@@ -671,5 +692,5 @@ const mapDispatchToProps = {
 const _CreateContractForm = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(CreateContractForm));
+)(withRouter(injectIntl(CreateContractForm)));
 export { _CreateContractForm as CreateContractForm };

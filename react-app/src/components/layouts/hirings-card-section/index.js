@@ -11,6 +11,7 @@ import { occasionsData } from "../../../constants/options";
 import { Form } from "react-bootstrap";
 import { ReviewCreatorLayout } from "../review-creator";
 import { withRouter } from "next/router";
+import { FormattedMessage } from "react-intl";
 
 const moment = require("moment");
 
@@ -79,17 +80,21 @@ class HiringsCardSectionLayout extends Component {
                 </div>
                 {contract.deliveryFrom ? (
                   <h6 className="mt-2 font-weight-bold">
-                    De:<small className="ml-2">{contract.deliveryFrom}</small>
+                    <FormattedMessage
+                      defaultMessage="De:"
+                      description="Quién esta enviando el video."
+                    />
+                    <small className="ml-2">{contract.deliveryFrom}</small>
                   </h6>
                 ) : null}
                 <h6 className="mt-2 font-weight-bold">
-                  Correo eléctronico de notificación:
+                  <FormattedMessage defaultMessage="Correo electrónico de notificación:" />
                   <small className="ml-2">{contract.deliveryContact}</small>
                 </h6>
                 <IsPublicSwitcher contract={contract} />
                 {contract.occasion ? (
                   <h6 className="mt-2 font-weight-bold">
-                    Ocasión:{" "}
+                    <FormattedMessage defaultMessage="Ocasión:" />{" "}
                     <small className="ml-2">
                       {occasionsData[this.props.router.locale][
                         contract.occasion
@@ -107,7 +112,10 @@ class HiringsCardSectionLayout extends Component {
             </div>
             <div className="card-body text-justify contract-instructions">
               <h6 className="font-weight-bold">
-                Para:
+                <FormattedMessage
+                  defaultMessage="Para:"
+                  description="Quien recibirá el video"
+                />
                 <small className="ml-2">{contract.deliveryTo}</small>
               </h6>
               <p>{contract.instructions}</p>
@@ -137,10 +145,10 @@ class HiringsCardSectionLayout extends Component {
           />
           <br />
           <h4 className="text-muted mt-3">
-            Aún no has realizado una contratación
+            <FormattedMessage defaultMessage="Aún no has realizado una contratación" />
           </h4>
           <button className="btn btn-sm btn-primary" onClick={this.goToHome}>
-            Ir a contratar
+            <FormattedMessage defaultMessage="Ir a contratar" />
             <i className="ml-2 text-white fa fa-arrow-right" />
           </button>
         </div>
@@ -157,7 +165,7 @@ class HiringsCardSectionLayout extends Component {
               <div className="row  justify-content-center section mx-0">
                 <div className="col-12 text-center">
                   <h6 className="mt-3 font-weight-bold border-bottom pb-3">
-                    Mis Contrataciones
+                    <FormattedMessage defaultMessage="Mis Contrataciones" />
                   </h6>
                 </div>
                 {this.props.contracts.length
@@ -202,7 +210,9 @@ const IsPublicSwitcher = ({ contract }) => {
       onChange={handleIsPublic}
     />
   ) : contract.isPublic ? (
-    <h6 className="mt-2 font-weight-bold">Es público</h6>
+    <h6 className="mt-2 font-weight-bold">
+      <FormattedMessage defaultMessage="Es público" />
+    </h6>
   ) : null;
 };
 
@@ -222,7 +232,7 @@ const ContractButton = ({ contract }) => {
         style={{ width: "100%", fontSize: "12px" }}
         onClick={goToPay.bind(this, contract.reference)}
       >
-        Finalizar compra
+        <FormattedMessage defaultMessage="Finalizar compra" />
         <i className="fa fa-arrow-right text-primary" />
       </button>
     );
@@ -233,7 +243,7 @@ const ContractButton = ({ contract }) => {
         disabled
         style={{ width: "100%", fontSize: "12px" }}
       >
-        Validando el pago
+        <FormattedMessage defaultMessage="Validando el pago" />
         <i className="fa fa-clock" />
       </button>
     );
@@ -248,7 +258,7 @@ const ContractButton = ({ contract }) => {
           disabled
           style={{ width: "100%", fontSize: "12px" }}
         >
-          En espera de grabación
+          <FormattedMessage defaultMessage="En espera de grabación" />
           <i className="fa fa-clock" />
         </button>
       </>
@@ -260,7 +270,7 @@ const ContractButton = ({ contract }) => {
         disabled
         style={{ width: "100%", fontSize: "12px" }}
       >
-        Contrato rechazado
+        <FormattedMessage defaultMessage="Contrato rechazado" />
         <i className="fa fa-times-circle text-danger" />
       </button>
     );
@@ -271,7 +281,7 @@ const ContractButton = ({ contract }) => {
         disabled
         style={{ width: "100%", fontSize: "12px" }}
       >
-        Contrato Expirado
+        <FormattedMessage defaultMessage="Contrato Expirado" />
         <i className="fa fa-times-circle text-dark" />
       </button>
     );
@@ -281,7 +291,7 @@ const ContractButton = ({ contract }) => {
         className="btn btn-outline-primary mt-2"
         onClick={GoToContract.bind(this, contract.reference)}
       >
-        Ver video
+        <FormattedMessage defaultMessage="Ver video" />
         <i className="fa fa-play text-primary" />
       </button>
     );
@@ -304,7 +314,12 @@ const RenderExpirationMessage = (date) => {
   const _date = new Date(date);
   require("moment/locale/es");
   _date.setDate(_date.getDate() + 7);
-  return "Esta solicitud expira el " + moment(_date.toISOString()).format("L");
+  return (
+    <FormattedMessage
+      defaultMessage="Esta solicitud expira el {date}"
+      values={{ date: moment(_date.toISOString()).format("L") }}
+    />
+  );
 };
 
 //default props
