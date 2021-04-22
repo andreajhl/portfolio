@@ -5,6 +5,7 @@ import { PageHeading } from "desktop-app/components/layouts/page-heading";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 import { PaymentsMethodsSelectorCard } from "desktop-app/components/payments-methods/payments-methods-selector-card";
+import { WhatHappensBeforeBanner } from "desktop-app/components/payments-methods/what-happens-before-banner";
 
 const mapStateToProps = (state) => ({ contractData });
 
@@ -18,7 +19,7 @@ type PaymentMethodsProps = { contractReference: string } & StateProps &
 
 function PaymentMethodsPage({ contractData }: PaymentMethodsProps) {
   return (
-    <PageContainer>
+    <PageContainer showFooter={false}>
       <PageHeading showHomeLink={false}>Confirmación de compra</PageHeading>
       <div className={`container ${styles.PaymentMethodsPageContent}`}>
         <div className={styles.PaymentMethodsPageContentLeftSide}>
@@ -38,6 +39,7 @@ function PaymentMethodsPage({ contractData }: PaymentMethodsProps) {
           <PaymentsMethodsSelectorCard />
         </div>
       </div>
+      <WhatHappensBeforeBanner />
     </PageContainer>
   );
 }
