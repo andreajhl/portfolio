@@ -6,7 +6,8 @@ const contract = {
     "https://famosos-output-media-testing.s3.amazonaws.com/celebrities/1448/avatar/famosos-videos-personalizados-jhonvegamas-compressed.jpeg",
   delivery_to: "German",
   delivery_from: "",
-  instructions: "¡Hola Jhon Vega Testing! Soy german",
+  instructions:
+    "Hola Andrés, porfavor dile a Camila que la amo con todo mi corazón y cántale un pedazo de la canción “X”.",
   status: 5
 };
 

@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import { ContractDataFormInput } from "./";
+import { ContractDataFormInput } from ".";
 
 it("renders without crashing", () => {
   const wrapper = shallow(<ContractDataFormInput />);

@@ -18,7 +18,7 @@ function InputWithDynamicWidth({
       className={`${styles.InputWithDynamicWidth} ${
         removeBorder ? styles.InputWithDynamicWidthWithoutBorder : ""
       }`}
-      data-value={value}
+      data-value={value || inputProps.placeholder || ""}
     >
       <input
         type="text"

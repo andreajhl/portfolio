@@ -1,5 +1,7 @@
-import { ContractDataFormInput } from "desktop-app/components/contract-data-form-input";
+import { IconButton } from "desktop-app/components/common/button/icon-button";
+import { ContractDataFormInput } from "desktop-app/components/payments-methods/contract-data-form-input";
 import useForm from "lib/hooks/useForm";
+import { useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
@@ -24,6 +26,7 @@ function ContractDataForm({
   deliveryFrom,
   instructions
 }: ContractDataFormProps) {
+  const [isEditing, setIsEditing] = useState(false);
   const { values, onChangeField } = useForm<FormValuesType>({
     initialValues: {
       deliveryTo,
@@ -35,12 +38,37 @@ function ContractDataForm({
     }
   });
 
-  console.log(values);
-
   return (
-    <form className={styles.ContractDataForm}>
+    <form className={styles.ContractDataForm} method="post">
+      <div className={styles.ContractDataFormEditButtonWrapper}>
+        <Maybe
+          it={isEditing}
+          orElse={
+            <IconButton
+              className={styles.ContractDataFormEditButton}
+              onClick={() => {
+                setIsEditing((isEditing) => !isEditing);
+              }}
+            >
+              <i className="far fa-edit" />
+            </IconButton>
+          }
+        >
+          <button
+            className={"btn " + styles.ContractDataFormSaveButton}
+            onClick={() => {
+              setIsEditing((isEditing) => !isEditing);
+            }}
+          >
+            Guardar
+          </button>
+        </Maybe>
+      </div>
+
       <div className={styles.ContractDataFormDeliveryInputs}>
         <ContractDataFormInput
+          placeholder="Camila"
+          disabled={!isEditing}
           label="Para"
           value={values.deliveryTo}
           onChange={(event) => {
@@ -48,12 +76,16 @@ function ContractDataForm({
             onChangeField(event);
           }}
           name="deliveryTo"
+          maxLength={40}
         />
         <Maybe it={deliveryFrom !== ""}>
           <ContractDataFormInput
+            placeholder="Marco"
             label="De"
             value={values.deliveryFrom}
             name="deliveryFrom"
+            disabled={!isEditing}
+            maxLength={40}
           />
         </Maybe>
       </div>
@@ -68,7 +100,8 @@ function ContractDataForm({
         name="instructions"
         id="instructions"
         value={values.instructions}
-      ></textarea>
+        disabled={!isEditing}
+      />
     </form>
   );
 }
