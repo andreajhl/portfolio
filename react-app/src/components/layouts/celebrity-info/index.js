@@ -4,6 +4,12 @@ import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { CelebrityContractPrice } from "../celebrity-contract-price";
 import { CelebritiesResponseTime } from "../celebrities-response-time";
 import Maybe from "../../common/helpers/maybe";
+import { useIntl } from "react-intl";
+import { celebrityCategories } from "react-app/src/state/ducks";
+import {
+  CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE,
+  labelMessagesForCategoriesFilter
+} from "react-app/src/constants/messages";
 
 export const CelebrityInfo = ({
   fullName,
@@ -16,6 +22,8 @@ export const CelebrityInfo = ({
   variant,
   status
 }) => {
+  const intl = useIntl();
+
   switch (variant) {
     case "1":
     default:
@@ -33,7 +41,13 @@ export const CelebrityInfo = ({
           <div className="d-flex align-items-center mb-2">
             <CountryFlag countryCode={countryCode} />
             <span className="ml-3 CelebrityInfo__category">
-              {categoryTitle}
+              {CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
+                categoryTitle
+              )
+                ? intl.formatMessage(
+                    labelMessagesForCategoriesFilter[categoryTitle]
+                  )
+                : categoryTitle}
             </span>
             <Maybe it={status !== 50}>
               <CelebrityFavoriteButton
@@ -80,7 +94,13 @@ export const CelebrityInfo = ({
           <div className="d-flex align-items-center mb-2 mb-md-3">
             <CountryFlag countryCode={countryCode} />
             <span className="ml-3 CelebrityInfo__category">
-              {categoryTitle}
+              {CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
+                categoryTitle
+              )
+                ? intl.formatMessage(
+                    labelMessagesForCategoriesFilter[categoryTitle]
+                  )
+                : categoryTitle}
             </span>
           </div>
         </>
@@ -108,7 +128,13 @@ export const CelebrityInfo = ({
           <div className="d-flex align-items-center mb-2">
             <CountryFlag countryCode={countryCode} />
             <span className="ml-3 CelebrityInfo__category">
-              {categoryTitle}
+              {CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
+                categoryTitle
+              )
+                ? intl.formatMessage(
+                    labelMessagesForCategoriesFilter[categoryTitle]
+                  )
+                : categoryTitle}
             </span>
           </div>
           <div className="d-flex align-items-center">

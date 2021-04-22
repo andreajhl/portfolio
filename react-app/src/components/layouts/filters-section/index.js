@@ -11,106 +11,16 @@ import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/
 import * as GTM from "../../../state/utils/gtm";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { withRouter } from "react-app/src/components/common/routing";
+import { useIntl, defineMessage, FormattedMessage } from "react-intl";
 import {
-  useIntl,
-  defineMessage,
-  defineMessages,
-  FormattedMessage
-} from "react-intl";
+  CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE,
+  COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE,
+  labelMessagesForCategoriesFilter,
+  labelMessagesForCountryCodeFilter
+} from "react-app/src/constants/messages";
 
 // LISTA DE ID CON TRADUCCIONES DISPONIBLE. CUALQUIER NUEVO ID QUE SE REGISTRE
 // EN EL BACKEND DEBE DE SER AGREGADO EN ESTA LISTA Y ADEMAS SU RESPECTIVA TRADUCCIÓN
-const COUNTRY_ID_WITH_TRANSLATIONS_AVAILABLE = [
-  27,
-  156,
-  28,
-  29,
-  30,
-  150,
-  26,
-  234,
-  158,
-  10,
-  148,
-  25,
-  126,
-  149,
-  151,
-  159,
-  24,
-  233,
-  11,
-  133,
-  2,
-  161,
-  31
-];
-
-const CATEGORIES_ID_WITH_TRANSLATION_AVAILABLE = [
-  4,
-  21,
-  25,
-  8,
-  3,
-  24,
-  28,
-  22,
-  16,
-  2,
-  6,
-  7,
-  5,
-  23,
-  27,
-  13,
-  29
-];
-
-const labelMessagesForCategoriesFilter = defineMessages({
-  4: { defaultMessage: "Actores" },
-  21: { defaultMessage: "Adultos" },
-  25: { defaultMessage: "Bailarines" },
-  8: { defaultMessage: "Coach" },
-  3: { defaultMessage: "Comediantes" },
-  24: { defaultMessage: "Deportistas" },
-  28: { defaultMessage: "Doblaje" },
-  22: { defaultMessage: "Fitness" },
-  16: { defaultMessage: "Imitadores" },
-  2: { defaultMessage: "Influencers" },
-  6: { defaultMessage: "Modelos" },
-  7: { defaultMessage: "Motivacional" },
-  5: { defaultMessage: "Músicos" },
-  23: { defaultMessage: "Otros" },
-  27: { defaultMessage: "Periodistas" },
-  13: { defaultMessage: "Presentadores" },
-  29: { defaultMessage: "Tiktok" }
-});
-
-const labelMessagesForCountryFilter = defineMessages({
-  27: { defaultMessage: "Argentina" },
-  156: { defaultMessage: "Bolivia (Plurinational State of)" },
-  28: { defaultMessage: "Brazil" },
-  29: { defaultMessage: "Chile" },
-  30: { defaultMessage: "Colombia" },
-  150: { defaultMessage: "Costa Rica" },
-  26: { defaultMessage: "Cuba" },
-  234: { defaultMessage: "Dominican Republic (the)" },
-  158: { defaultMessage: "Ecuador" },
-  10: { defaultMessage: "France" },
-  148: { defaultMessage: "Honduras" },
-  25: { defaultMessage: "Mexico" },
-  126: { defaultMessage: "Moldova (the Republic of)" },
-  149: { defaultMessage: "Nicaragua" },
-  151: { defaultMessage: "Panama" },
-  159: { defaultMessage: "Paraguay" },
-  24: { defaultMessage: "Peru" },
-  233: { defaultMessage: "Puerto Rico" },
-  11: { defaultMessage: "Spain" },
-  133: { defaultMessage: "Ukraine" },
-  2: { defaultMessage: "United States of America (the)" },
-  161: { defaultMessage: "Uruguay" },
-  31: { defaultMessage: "Venezuela (Bolivarian Republic of)" }
-});
 
 const messageForLabelButtonCategoryFilter = defineMessage({
   description: "Label button for search CategoryFilter",
@@ -266,12 +176,12 @@ const FiltersSectionLayout = ({
               activeItems={activeCountryItems}
               onApplyFilters={setFilterParam("country_id")}
               options={countries.map((country) => ({
-                label: COUNTRY_ID_WITH_TRANSLATIONS_AVAILABLE.includes(
-                  country.id
+                label: COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE.includes(
+                  country.countryCode
                 )
                   ? removeParenthesis(
                       intl.formatMessage(
-                        labelMessagesForCountryFilter[country.id]
+                        labelMessagesForCountryCodeFilter[country.countryCode]
                       )
                     )
                   : removeParenthesis(country.name),
@@ -293,11 +203,11 @@ const FiltersSectionLayout = ({
               activeItems={activeCategoryItems}
               onApplyFilters={setFilterParam("category_id")}
               options={celebrityCategories.map((category) => ({
-                label: CATEGORIES_ID_WITH_TRANSLATION_AVAILABLE.includes(
-                  category.id
+                label: CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
+                  category.title
                 )
                   ? intl.formatMessage(
-                      labelMessagesForCategoriesFilter[category.id]
+                      labelMessagesForCategoriesFilter[category.title]
                     )
                   : category.title,
                 value: category.id

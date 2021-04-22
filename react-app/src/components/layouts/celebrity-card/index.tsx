@@ -12,6 +12,11 @@ import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { celebrityType } from "../../../types/celebrityType";
 import OptimizedImage from "../../common/helpers/optimized-image";
 import Maybe from "../../common/helpers/maybe";
+import {
+  CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE,
+  labelMessagesForCategoriesFilter
+} from "react-app/src/constants/messages";
+import { useIntl } from "react-intl";
 
 export interface CelebrityCardLayoutI {
   celebrity: celebrityType;
@@ -33,6 +38,7 @@ const CelebrityCardLayout = ({
   const [contractPrice, setContractPrice] = useState(
     celebrity.videoMessagePrice
   );
+  const intl = useIntl();
 
   useEffect(() => {
     let convertedPrice = celebrity.videoMessagePrice;
@@ -92,7 +98,15 @@ const CelebrityCardLayout = ({
               countryCode={celebrity.countryCode}
               width="20px"
             />
-            <span className="celebrity__category">{celebrity.title}</span>
+            <span className="celebrity__category">
+              {CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
+                celebrity.title
+              )
+                ? intl.formatMessage(
+                    labelMessagesForCategoriesFilter[celebrity.title]
+                  )
+                : celebrity.title}{" "}
+            </span>
             <CelebrityFavoriteButton celebrityId={celebrity.id} />
           </div>
           <h3 className="celebrity__full-name">{celebrity.fullName}</h3>

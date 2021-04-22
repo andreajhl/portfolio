@@ -57,27 +57,60 @@ class ContractCreatedPage extends Component {
   returnPaymentStatusLabel = (status) => {
     switch (status) {
       case 10:
-        return ["Pago creado", "far fa-check-circle"];
+        return [
+          <FormattedMessage defaultMessage="Pago creado" />,
+          "far fa-check-circle"
+        ];
       case 20:
-        return ["Pago cancelado", "far fa-window-close"];
+        return [
+          <FormattedMessage defaultMessage="Pago cancelado" />,
+          "far fa-window-close"
+        ];
       case 30:
-        return ["Pago rechazado", "fas fa-ban"];
+        return [
+          <FormattedMessage defaultMessage="Pago rechazado" />,
+          "fas fa-ban"
+        ];
       case 40:
-        return ["Pago pendiente", "far fa-clock"];
+        return [
+          <FormattedMessage defaultMessage="Pago pendiente" />,
+          "far fa-clock"
+        ];
       case 50:
-        return ["Reembolso fallido", "fas fa-ban"];
+        return [
+          <FormattedMessage defaultMessage="Reembolso fallido" />,
+          "fas fa-ban"
+        ];
       case 55:
-        return ["Falló autorizacion de cobro", "fas fa-ban"];
+        return [
+          <FormattedMessage defaultMessage="Falló autorización de cobro" />,
+          "fas fa-ban"
+        ];
       case 60:
-        return ["Cobro fallido", "fas fa-ban"];
+        return [
+          <FormattedMessage defaultMessage="Cobro fallido" />,
+          "fas fa-ban"
+        ];
       case 70:
-        return ["Reembolso exitoso", "far fa-check-circle"];
+        return [
+          <FormattedMessage defaultMessage="Reembolso exitoso" />,
+          "far fa-check-circle"
+        ];
       case 80:
-        return ["Pago expirado", "far fa-clock"];
+        return [
+          <FormattedMessage defaultMessage="Pago expirado" />,
+          "far fa-clock"
+        ];
       case 90:
-        return ["Pago autorizado", "far fa-check-circle text-success"];
+        return [
+          <FormattedMessage defaultMessage="Pago autorizado" />,
+          "far fa-check-circle text-success"
+        ];
       case 100:
-        return ["Pago completado", "far fa-check-circle text-success"];
+        return [
+          <FormattedMessage defaultMessage="Pago completado" />,
+          "far fa-check-circle text-success"
+        ];
       default:
         return ["", ""];
     }
@@ -128,14 +161,17 @@ class ContractCreatedPage extends Component {
                 </h5>
               </p>
               <p className="mt-4 pl-3 pr-3 font-weight-light text-left">
-                <h6>Ten en cuenta:</h6>
+                <h6>
+                  <FormattedMessage defaultMessage="Ten en cuenta:" />
+                </h6>
                 <li>
                   <FormattedMessage
                     defaultMessage="
                   {celebrityFullName} tiene un plazo de
                   <b>7 días</b> para grabar tu video a partir de hoy."
                     values={{
-                      celebrityFullName: this.props.resumen.celebrity.fullName
+                      celebrityFullName: this.props.resumen.celebrity.fullName,
+                      b: (chunks) => <b>{chunks}</b>
                     }}
                   />
                 </li>
@@ -152,12 +188,12 @@ class ContractCreatedPage extends Component {
                 <li>
                   <FormattedMessage
                     defaultMessage="Recibirás una notificación a
-                  <b>{contractDeliveryContact}</b> cuando tu
+                  <b></b> cuando tu
                   video esté listo."
                     values={{
-                      b: (chunks) => <b>{chunks}</b>,
-                      contractDeliveryContact: this.props.resumen.contract
-                        .deliveryContact
+                      b: (chunks) => (
+                        <b>{this.props.resumen.contract.deliveryContact}</b>
+                      )
                     }}
                   />
                 </li>
