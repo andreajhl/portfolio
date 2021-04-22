@@ -4,6 +4,7 @@ import PageContainer from "desktop-app/components/layouts/page-container";
 import { PageHeading } from "desktop-app/components/layouts/page-heading";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
+import { PaymentsMethodsSelectorCard } from "desktop-app/components/payments-methods/payments-methods-selector-card";
 
 const mapStateToProps = (state) => ({ contractData });
 
@@ -19,15 +20,23 @@ function PaymentMethodsPage({ contractData }: PaymentMethodsProps) {
   return (
     <PageContainer>
       <PageHeading showHomeLink={false}>Confirmación de compra</PageHeading>
-      <div className="container">
-        <ContractInfo
-          celebrityAvatar={contractData.celebrity_avatar}
-          celebrityFullName={contractData.celebrity_full_name}
-          occasion={"BIRTHDAY"}
-          deliveryTo={contractData.delivery_to}
-          deliveryFrom={contractData.delivery_from}
-          instructions={contractData.instructions}
-        />
+      <div className={`container ${styles.PaymentMethodsPageContent}`}>
+        <div className={styles.PaymentMethodsPageContentLeftSide}>
+          <ContractInfo
+            celebrityAvatar={contractData.celebrity_avatar}
+            celebrityFullName={contractData.celebrity_full_name}
+            occasion={"BIRTHDAY"}
+            deliveryTo={contractData.delivery_to}
+            deliveryFrom={contractData.delivery_from}
+            instructions={contractData.instructions}
+            price={contractData.price}
+            celebrityDiscountPercentage={contractData.discount_percentage}
+            priceBeforeCelebrityDiscount={contractData.original_price}
+          />
+        </div>
+        <div className={styles.PaymentMethodsPageContentRightSide}>
+          <PaymentsMethodsSelectorCard />
+        </div>
       </div>
     </PageContainer>
   );

@@ -1,8 +1,6 @@
 import { ContractInfoHeader } from "desktop-app/components/payments-methods/contract-info-header";
-import { ContractPriceSummary } from "desktop-app/components/contract-price-summary";
+import { ContractPriceSummary } from "desktop-app/components/payments-methods/contract-price-summary";
 import { ContractDataForm } from "desktop-app/components/payments-methods/contract-data-form";
-import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
-import { occasionsData } from "react-app/src/constants/options";
 import styles from "./styles.module.scss";
 
 type ContractInfoProps = {
@@ -12,6 +10,9 @@ type ContractInfoProps = {
   deliveryTo: string;
   deliveryFrom: string;
   instructions: string;
+  price: number;
+  celebrityDiscountPercentage: number;
+  priceBeforeCelebrityDiscount: number;
 };
 
 function ContractInfo({
@@ -45,7 +46,7 @@ function ContractInfo({
       <div
         className={`${styles.ContractInfoSection} ${styles.ContractInfoPricing}`}
       >
-        Total
+        <ContractPriceSummary />
       </div>
     </div>
   );
