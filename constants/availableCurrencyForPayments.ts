@@ -21,17 +21,17 @@ export const AVAILABLE_CURRENCIES_FOR_PAYMENTS = [
     thousand_separator: ".",
     round: "100"
   },
-  {
-    name: "BRL",
-    label: "Real Brasileño",
-    symbol: "$",
-    implemented_by_dlocal: true,
-    flag: "https://restcountries.eu/data/bra.svg",
-    document_name: "CPF o CNPJ",
-    decimal_separator: ",",
-    thousand_separator: ".",
-    round: "5"
-  },
+  // {
+  //   name: "BRL",
+  //   label: "Real Brasileño",
+  //   symbol: "$",
+  //   implemented_by_dlocal: true,
+  //   flag: "https://restcountries.eu/data/bra.svg",
+  //   document_name: "CPF o CNPJ",
+  //   decimal_separator: ",",
+  //   thousand_separator: ".",
+  //   round: "5"
+  // },
   {
     name: "COP",
     label: "Pesos Colombianos",
