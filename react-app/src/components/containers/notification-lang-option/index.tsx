@@ -32,7 +32,7 @@ function NotificationLangOptions({
     <Form>
       <Form.Group>
         <Form.Label>
-          <FormattedMessage defaultMessage="Idioma de notificaciones"></FormattedMessage>
+          <FormattedMessage defaultMessage="Idioma de notificaciones" />
         </Form.Label>
         <Form.Control
           onChange={(event) => updateLang(event.target.value)}
