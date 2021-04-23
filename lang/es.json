@@ -146,6 +146,9 @@
   "4USECx": {
     "message": "Por favor imprima una copia de estos Términos para usted los registros y consulte el sitio con frecuencia para cualquier cambio a estos Términos."
   },
+  "4YpaCX": {
+    "message": "Inicia sesión para agregar un comentario"
+  },
   "4aS11Q": {
     "message": "Aplicar"
   },
@@ -526,6 +529,9 @@
   "Mp68c+": {
     "message": "FAQ's"
   },
+  "Mwm1HV": {
+    "message": "Iniciar sesión"
+  },
   "MyQOKB": {
     "message": "Ingresa a Famosos.com, selecciona o busca a tu famoso favorito. Haz click en contratar a mi famoso. Estamos trabajando en diversos métodos de pago para que puedas adquirir tu video."
   },
@@ -566,6 +572,9 @@
   },
   "Odx1FO": {
     "message": "El <b>cobro se realizará</b> una vez que {celebrityFullName} grabe tu video."
+  },
+  "OkYBCB": {
+    "message": "Sé el primero en agregar un comentario."
   },
   "P6ZBac": {
     "message": "Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP = Código postal"
@@ -727,6 +736,9 @@
   },
   "WuHK3B": {
     "message": "Imitadores"
+  },
+  "XNGk+R": {
+    "message": "Tu comentario ha sido enviado."
   },
   "XQqpuU": {
     "message": "Usted es responsable del uso del sitio y los servicios, y para cualquier uso del sitio o servicios puestos a través de tu cuenta. Nuestro objetivo es crear una experiencia de usuario positiva, útil y segura. Para promover este objetivo, prohibimos ciertos tipos de conducta que pueden ser perjudiciales para otros usuarios o para nosotros. Cuando se utiliza el sitio o los servicios, usted no puede: Violar cualquier ley o regulación; violar, infringir, o apropiarse indebidamente de otras personas de la propiedad intelectual, privacidad, publicidad, u otros derechos legales; publicar o compartir cualquier cosa que sea ilegal, abusivo, acosador, perjudicial para la reputación, pornográfico, indecente, profano, obsceno, odioso, racista, o de cualquier otra forma; enviar comunicaciones publicitarias o comerciales no solicitados o no autorizados, tales como correo no deseado; participar en el rastreo o la cosecha, o participar en el uso de software, como software espía, diseñado para recoger datos del sitio o los servicios; transmitir cualquier tipo de virus u otras instrucciones de ordenador o medios tecnológicos cuyo propósito es alterar, dañar o interferir con el uso de ordenadores o sistemas relacionados; acechar, acosar o dañar a otra persona; hacerse pasar por otra persona o entidad, o realizar cualquier otra actividad fraudulenta similar, como el phishing;"
@@ -1007,6 +1019,10 @@
   "m3LBSj": {
     "message": "Algunos de nuestros servicios tienen términos y condiciones (“Términos Adicionales\") adicionales. Cuando las Condiciones adicionales se aplican a un servicio, vamos a hacer que estén disponibles para su lectura a través del uso de ese servicio. Mediante el uso de ese Servicio, acepta los términos adicionales."
   },
+  "m4ziQM": {
+    "description": "Otra red social",
+    "message": "Otra"
+  },
   "m7UHCq": {
     "message": "violar cualquier ley o regulación;"
   },
@@ -1067,6 +1083,9 @@
   },
   "oUWADl": {
     "message": "No"
+  },
+  "ohq0mF": {
+    "message": "Crea una cuenta"
   },
   "oxKkpJ": {
     "description": "Modal Title for search CategoryFilter",
@@ -1137,6 +1156,9 @@
   },
   "rG1grK": {
     "message": "Síguenos en Redes"
+  },
+  "rMXI9i": {
+    "message": "Agregar Comentario"
   },
   "rNIqUr": {
     "message": "Un video promocional es un video que promueve una compañia/organización/producto en las redes sociales o en la página de dicha compañia."
@@ -1226,6 +1248,9 @@
   "v9XTPm": {
     "description": "Mensaje de error para creación de tarjeta Stripe",
     "message": "Ocurrió un error inesperado."
+  },
+  "vf4Bo1": {
+    "message": "¿Aún no tienes cuenta?"
   },
   "vjMBPO": {
     "message": "Una declaración suya de que usted tiene una creencia de buena fe que el uso disputado no está autorizado por usted, el propietario del copyright, su agente o la ley."
