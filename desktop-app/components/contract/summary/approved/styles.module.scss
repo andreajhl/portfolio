@@ -60,18 +60,6 @@
   }
 }
 
-.StatusPaymentDetails {
-  p {
-    font-weight: bold;
-    font-family: Manrope;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 0.875rem;
-    line-height: 1.5rem;
-    text-transform: uppercase;
-  }
-}
-
 .HeaderContractApproved {
   display: flex;
   flex-flow: column;
@@ -92,4 +80,8 @@
     line-height: 25px;
     color: #ffffff;
   }
+}
+
+.EmailClient {
+  font-weight: bold;
 }
