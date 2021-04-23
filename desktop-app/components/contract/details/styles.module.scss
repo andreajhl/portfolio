@@ -2,25 +2,25 @@
   display: flex;
   position: relative;
   flex-flow: column;
-  margin: 41px 42px 0 74px;
+  margin: 2.5625rem 2.625rem 0 4.625rem;
 }
 .Avatar {
   border-radius: 50%;
 }
 .Title {
   font-family: Manrope;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 22px;
+  line-height: 1.375rem;
   letter-spacing: 0em;
-  margin-left: 23px;
+  margin-left: 1.4375rem;
 }
 
 .ContractInstructions {
   display: flex;
   flex-flow: column;
-  margin-top: 27px;
+  margin-top: 1.6875rem;
 }
 
 .WhoSend,
@@ -30,25 +30,25 @@
   font-family: Manrope;
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: #5c5c5c;
 }
 .WhoSend {
-  margin-left: 30px;
+  margin-left: 1.875rem;
 }
 .InstructionsDetails {
-  margin-top: 16px;
+  margin-top: 1rem;
 }
 
 .EditionNoticie {
-  margin-top: 17px;
+  margin-top: 1.0625rem;
 }
 .EmailDetails {
   p {
     font-family: Manrope;
-    font-size: 14px;
-    line-height: 19px;
+    font-size: 0.875rem;
+    line-height: 1.1875rem;
     color: #838383;
     padding: 0;
     margin: 0;
@@ -56,9 +56,15 @@
   }
   span {
     font-family: Manrope;
-    font-size: 14px;
-    line-height: 19px;
+    font-size: 0.875rem;
+    line-height: 1.1875rem;
     font-weight: bold;
     color: #000000;
   }
+}
+
+.StatusPayment {
+  display: flex;
+  flex-flow: column;
+  margin-top: 2.5rem;
 }

@@ -1,12 +1,33 @@
+import Maybe from "desktop-app/components/common/helpers/maybe";
 import { PencilIcon } from "desktop-app/components/common/icons";
 import React from "react";
 import styles from "./styles.module.scss";
 
 type ContractDetailsProps = {
-  celebrity_name: string;
+  contract: {
+    isPublic: boolean;
+    instructions: string;
+    deliveryContact: string;
+    deliveryContactCellphone: string;
+    deliveryTo: string;
+    deliveryFrom?: string;
+    reference: string;
+    status: number;
+    authorizationDate: string;
+  };
+  celebrity: {
+    username: string;
+    avatar: string;
+    fullName: string;
+  };
+  status_payment: React.ReactNode;
 };
 
-function ContractDetails({ celebrity_name }: ContractDetailsProps) {
+function ContractDetails({
+  contract,
+  celebrity,
+  status_payment = null
+}: ContractDetailsProps) {
   return (
     <div
       onClick={() => console.log("me clickearon, no puede ser")}
@@ -18,16 +39,18 @@ function ContractDetails({ celebrity_name }: ContractDetailsProps) {
           width="75px"
           className={styles.Avatar}
           alt={`Avatar de Famoso`}
-          src="https://dqb0851cl2gjs.cloudfront.net/celebrities/1107/avatar/famosos-videos-personalizados-andrescepeda-compressed.jpg"
-        ></img>{" "}
+          src={celebrity.avatar}
+        ></img>
         <span className={styles.Title}>
-          Video Personalizado de {celebrity_name}
+          Video Personalizado de {celebrity.fullName}
         </span>
       </div>
       <div className={styles.ContractInstructions}>
         <div>
-          <span className={styles.WhoReceive}>Para: Camila</span>
-          <span className={styles.WhoSend}>De: Marco</span>
+          <span className={styles.WhoReceive}>Para: {contract.deliveryTo}</span>
+          <Maybe it={typeof contract.deliveryFrom === "string"}>
+            <span className={styles.WhoSend}>De: {contract.deliveryFrom}</span>
+          </Maybe>
         </div>
         <PencilIcon
           style={{
@@ -36,11 +59,7 @@ function ContractDetails({ celebrity_name }: ContractDetailsProps) {
           }}
         />
         <span className={styles.InstructionsDetails}>
-          ¡Hola Andrés Cepeda! Muchas gracias por esta oportunidad. Ana cumple
-          [CANTIDAD] años pronto. Quisiera que por favor le envíes una
-          felicitación súper especial. Hola Andrés Cepeda, muchas gracias por
-          esta oportunidad. Ana cumple años y me gustaría que le cantaras una
-          canción. Muchas gracias.
+          {contract.instructions}
         </span>
       </div>
       <span className={styles.EditionNoticie}>
@@ -50,8 +69,19 @@ function ContractDetails({ celebrity_name }: ContractDetailsProps) {
       <br />
       <div className={styles.EmailDetails}>
         <p>Correo electrónico de notificación</p>
-        <span>correo@domiminio.com</span>
+        <span>{contract.deliveryContact}</span>
       </div>
+      <Maybe it={React.isValidElement(status_payment)}>
+        <div className={styles.StatusPayment}>
+          <hr
+            style={{
+              width: "233px",
+              marginRight: "100%"
+            }}
+          />
+          {status_payment}
+        </div>
+      </Maybe>
     </div>
   );
 }
