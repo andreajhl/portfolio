@@ -21,11 +21,23 @@
   "/gs8NU": {
     "message": "Escribe tu nombre"
   },
+  "/lbU6C": {
+    "message": "Envíale un comentario a"
+  },
+  "/lhqVJ": {
+    "message": "Quedan pocos videos disponibles de {celebrityFullName}"
+  },
   "/sg4dM": {
     "message": "Descargo de responsabilidad y limitaciones de nuestra responsabilidad"
   },
+  "01UxAr": {
+    "message": "Esta solicitud expira el {date}"
+  },
   "095Wot": {
     "message": "Hora:"
+  },
+  "0I2iWG": {
+    "message": "Aplica como Famoso"
   },
   "0Il3lQ": {
     "message": "Ordenar"
@@ -49,11 +61,17 @@
   "1Faz6l": {
     "message": "¿Qué es un video promocional?"
   },
+  "1GkUZK": {
+    "message": "No me gusta"
+  },
   "1JuMPJ": {
     "message": "Continuar"
   },
   "1L1kzy": {
     "message": "Si deseas hacer parte de nuestro equipo envíanos una carta de motivación de por qué quieres unirte a nuestro equipo de Rock stars a jobs@famosos.com"
+  },
+  "1U8RoX": {
+    "message": "Mantenga esta ventana abierta mientras se válida su información"
   },
   "1UwvvG": {
     "message": "No se pudo guardar tu cambio. Intenta de nuevo."
@@ -85,6 +103,9 @@
   "2XI8xH": {
     "message": "Correo del titular de la tarjeta"
   },
+  "2iUQj7": {
+    "message": "Aún no has realizado una contratación"
+  },
   "2rdLv9": {
     "message": "Tiktok"
   },
@@ -98,6 +119,12 @@
   "3T2iOg": {
     "message": "Ukraine"
   },
+  "3mq/Uo": {
+    "message": "El comentario ha sido enviado."
+  },
+  "3pxwni": {
+    "message": "Verificación de autenticidad de la tarjeta"
+  },
   "3tygVI": {
     "message": "{instructionsLength}/400 caracteres permitidos"
   },
@@ -109,6 +136,9 @@
   },
   "4BNPS0": {
     "message": "Red Social"
+  },
+  "4FqAB/": {
+    "message": "Mis Contrataciones"
   },
   "4MRzR1": {
     "message": "Te notificaremos cuando tu video ya esté grabado y disponible para verlo y compartilo"
@@ -146,6 +176,9 @@
   "5gmrTZ": {
     "message": "Nota:"
   },
+  "5sQzpi": {
+    "message": "No se pudo autenticar esta tarjeta correctamente"
+  },
   "66AwbQ": {
     "message": "¿Puedo editar mi solicitud de video después de realizarla?"
   },
@@ -161,8 +194,14 @@
   "6qOZYA": {
     "message": "Cuba"
   },
+  "6y8Fx1": {
+    "message": "Pago autorizado"
+  },
   "6yJ3E1": {
     "message": "De vez en cuando, podemos cambiar estas Condiciones. Si cambiamos estas condiciones, vamos a darle un aviso mediante la publicación de los términos revisados ​​en el sitio. Estos cambios entrarán en vigor en la fecha de revisión se muestra en los términos revisados. Al continuar utilizando el Sitio o los Servicios, usted está de acuerdo con los términos revisados."
+  },
+  "747qfi": {
+    "message": "Si el problema persiste puedes comunicarte con nuestro equipo de soporte a {link} para más información."
   },
   "7La/lT": {
     "message": "hacerse pasar por otra persona o entidad o realizar cualquier otra actividad fraudulenta similar, como phishing;"
@@ -173,8 +212,14 @@
   "7v9dpV": {
     "message": "El sitio y algunos de nuestros servicios le permiten cargar, enviar, almacenar, enviar o recibir contenido y datos, incluyendo sus videomensajes y materiales promocionales (“Contenido de Usuario\"). Usted conserva la propiedad de los derechos de propiedad intelectual que usted tiene en su contenido de usuario."
   },
+  "8+5qCg": {
+    "message": "correo@dominio.com"
+  },
   "8HOoZU": {
     "message": "Debe tener al menos 13 años para utilizar el Sitio o los Servicios. Si usted es menor de edad en su estado de residencia, un menor de edad, su padre o tutor legal deben estar de acuerdo con estos términos en su nombre y que sólo pueden acceder y utilizar el Sitio y los Servicios con el permiso de su padre o tutor legal."
+  },
+  "8IF6tp": {
+    "message": "Finalizar compra"
   },
   "8LcwU2": {
     "message": "Otras provisiones"
@@ -203,11 +248,11 @@
   "9Svalq": {
     "message": "EN LA MEDIDA MÁXIMA PERMITIDA POR LA LEY, NUESTRA responsabilidad total acumulada ante usted o cualquier tercero bajo estos términos, DE TODAS LAS CAUSAS DE ACCIÓN Y TODAS LAS TEORÍAS DE RESPONSABILIDAD, SERÁ LIMITADO A, y no excederá los honorarios que en realidad han pagado US DURANTE los doce (12) meses anteriores a la que da lugar a dicha responsabilidad."
   },
+  "9etNPX": {
+    "message": "{starsCount} Estrellas"
+  },
   "9mcAHp": {
     "message": "CUPÓN AGREGADO"
-  },
-  "9p5jZI": {
-    "message": "Recibirás una notificación a <b>{contractDeliveryContact}</b> cuando tu video esté listo."
   },
   "9z5k20": {
     "message": "Este acuerdo de arbitraje no le impide o Famosos de buscar qué acción federal, estatal, o agencias gubernamentales locales. Usted y Famosos también tiene el derecho a presentar reclamaciones de clasificación en la corte de reclamos. Además, usted y Famosos retiene el derecho de solicitar a cualquier tribunal de jurisdicción competente para el alivio provisional, incluidos los accesorios pre-arbitrales o de medidas cautelares, y dicha solicitud no se considerará incompatible con estos términos, ni una renuncia al derecho de tienen controversias sometidas a arbitraje conforme a lo dispuesto en las presentes Condiciones."
@@ -293,6 +338,9 @@
   "DVO6hk": {
     "message": "Ha ocurrido un error"
   },
+  "Diph5x": {
+    "message": "Ir a contratar"
+  },
   "DmXn7V": {
     "message": "Nuestro equipo analizará tu solicitud y se pondrá en contacto contigo muy pronto."
   },
@@ -321,17 +369,20 @@
   "EbbVcC": {
     "message": "Uruguay"
   },
+  "Eq0gTc": {
+    "message": "Enviar comentario"
+  },
   "ErSRb8": {
     "message": "Selecciona una tarjeta"
   },
   "F03q+a": {
     "message": "Usted se compromete a indemnizar y mantener indemne Famosos y sus afiliados de y contra cualquier y todo reclamo, costos, procedimientos, demandas, pérdidas, daños y gastos (incluyendo, sin limitación, de los honorarios y gastos legales razonables de abogados) de cualquier tipo o naturaleza, derivados de o relacionados a, (a) cualquier violación real o supuesta de estos Términos por usted o cualquier persona que utilice su cuenta, (b) su, o cualquier persona que utilice su cuenta, la violación de las leyes o reglamentos, o (c) su negligencia grave o dolo. Si asumimos la defensa de un asunto tan, usted deberá cooperar razonablemente con nosotros en dicha defensa."
   },
-  "FNwlEO": {
-    "message": "El valor en es aproximado"
-  },
   "FnHHT0": {
     "message": "Guardando..."
+  },
+  "FrT1vp": {
+    "message": "Reembolso exitoso"
   },
   "Fy+ISg": {
     "message": "Identificación del contenido que ha sido eliminado o cuyo acceso ha sido inhabilitado y el lugar en el que aparecía antes de ser eliminado o desactivado el contenido;"
@@ -355,6 +406,9 @@
   "GfM0Pj": {
     "message": "Para mi"
   },
+  "HG1X7k": {
+    "message": "Pago completado"
+  },
   "HdR30r": {
     "message": "Materiales adicionales promocionales. Usted nos proporcione los siguientes materiales promocionales (“Materiales de Promoción\") tras la finalización del registro de la cuenta y la creación de: (1) a diez (10) imágenes de alta resolución del mismo y (2) Sitio perfil bio. De vez en cuando podemos solicitar materiales promocionales adicionales."
   },
@@ -376,8 +430,18 @@
   "IeYjFw": {
     "message": "Nicaragua"
   },
+  "Iuyaxf": {
+    "message": "Leer más..."
+  },
+  "IxXZto": {
+    "description": "Quién esta enviando el video.",
+    "message": "De:"
+  },
   "J1nkYm": {
     "message": "Si no se encuentra ninguna disposición de esta sección es inválida o inaplicable, dicha disposición específica será de ninguna fuerza y ​​efecto y será separada, pero el resto de esta sección continuará en pleno vigor y efecto. Ninguna renuncia a cualquier disposición de esta sección de los Términos será eficaz o ejecutable a menos registrados en un escrito firmado por la parte que renuncia un derecho o requisito. tal renuncia no se dejará sin efecto o afectar a cualquier otra parte de estos Términos. Esta sección de los Términos sobrevivirá la finalización de su relación con Famosos."
+  },
+  "J518q6": {
+    "message": "Famosos similares"
   },
   "J5xdEq": {
     "message": "Fitness"
@@ -395,6 +459,9 @@
   "Jkn28/": {
     "message": "Usted otorga a nosotros una licencia no exclusiva, libre de regalías, totalmente pagada, sin límite, en todo el mundo, sublicenciable (a través de múltiples niveles de sublicencias), licencia perpetua, irrevocable, en todas y cada una manera y los medios de comunicación, ya sea conocido o inventado (incluyendo pero no limitado a los canales de medios sociales y otros sitios web y plataformas), para reproducir, licenciar, distribuir, modificar, adaptar, ejecutar públicamente, mostrar públicamente, crear trabajos derivados, y de otra manera utilice el siguiente a efectos de funcionamiento y la disponibilidad del sitio y servicios para usted y otros usuarios, para desarrollar y mejorar nuestros productos y servicios, y para publicitar, comercializar y promover el sitio, servicios, y cualesquiera otros productos y servicios de Famosos: (i) cualquier solicitud que haga a cualquier Talento Usuario; y (ii) cualquier presentación que haga a Famosos a través del Sitio, incluyendo los Servicios, a través de cualquier medio de comunicación social o de otra cuenta utilizada por Famosos, o de otra manera, incluyendo cualquier vídeo de reacción, opinión, foto, correo electrónico, texto, correo, u otra comunicación, ya sea relacionada con usted, el destinatario de cualquier vídeo FAMOSOS, o cualquier otro tercero ((i) y (ii) colectivamente una “Presentación”). Usted se compromete a indemnizar y mantener indemne Famosos Famosos dba, Inc. con respecto a la Presentación y todo uso de la comunicación de conformidad con los términos del artículo 13 de las Condiciones de servicio de usuario."
   },
+  "K8SMPu": {
+    "message": "Ocasión:"
+  },
   "KFphJU": {
     "message": "Pagar"
   },
@@ -406,6 +473,9 @@
   },
   "KjMaxy": {
     "message": "¿Comó solicitar {onlyMobileLineBreak} un {onlyDesktopLineBreak} videomensaje en Famosos?"
+  },
+  "KkJHVF": {
+    "message": "Ver video"
   },
   "LMVeQk": {
     "message": "Sus obligaciones"
@@ -432,17 +502,29 @@
   "MB/B5r": {
     "message": "Al cargar, enviar, almacenar, enviar o recibir contenido de usuario a través del sitio o los servicios, usted nos da permiso para reproducir y utilizar su contenido de usuario de la siguiente manera: se otorga a nosotros y aquellos que trabajamos con una licencia de uso, alojar, almacenar, reproducir, modificar, crear trabajos derivados (tales como traducciones, adaptaciones u otros cambios que hacemos para que el contenido del usuario funciona mejor con el sitio y los servicios), ejecutar públicamente, mostrar públicamente y distribuir su contenido de usuario en el sitio y también en las redes sociales y en otros sitios web y medios de comunicación. Esta licencia es para el propósito limitado de operar, promover y mejorar el sitio y los servicios, y para desarrollar nuevos servicios. Nuestra licencia para su contenido de usuario no es exclusiva, lo que significa que puede usar el contenido de usuario para sus propios fines o dejar que otros utilizan su contenido de usuario para sus propósitos. Esta licencia es totalmente pagada y libre de regalías, lo que significa que no te debo nada más en relación con el uso de su contenido de usuario. Podemos ejercer nuestros derechos bajo esta licencia en cualquier parte del mundo. Podemos sublicenciar nuestros derechos a los usuarios finales y de otra manera, según sea necesario para proporcionar el sitio y los servicios. Por último, esta licencia es perpetua, lo que significa que nuestros derechos bajo esta licencia continúan incluso después de dejar de utilizar el Sitio y Servicios. Usted acepta que podemos mostrar publicidad con o en conexión con su contenido de usuario. lo que significa que nuestros derechos bajo esta licencia continúan incluso después de dejar de utilizar el Sitio y Servicios. Usted acepta que podemos mostrar publicidad con o en conexión con su contenido de usuario. lo que significa que nuestros derechos bajo esta licencia continúan incluso después de dejar de utilizar el Sitio y Servicios. Usted acepta que podemos mostrar publicidad con o en conexión con su contenido de usuario."
   },
+  "ML6BTv": {
+    "message": "Videos similares"
+  },
+  "MQJt4R": {
+    "message": "Procesando..."
+  },
   "MSP5Du": {
     "message": "Referido por:"
   },
   "MURhbO": {
     "message": "La solicitud de reembolso se realiza de forma automatica, el tiempo en el que se vera reflejado en tu tarjeta depende de tu banco y puede ser entre 5 y 10 dias."
   },
+  "MdA9+B": {
+    "message": "Volver a métodos de pago"
+  },
   "MfaP/A": {
     "message": "Algunos de nuestros servicios tienen términos y condiciones ( “Términos Adicionales”) adicionales. Cuando las Condiciones adicionales se aplican a un servicio, vamos a hacer que estén disponibles para su lectura a través del uso de ese servicio. Mediante el uso de ese Servicio, acepta los términos adicionales."
   },
   "MjU+Wq": {
     "message": "Su nombre, dirección física, número de teléfono y dirección de correo electrónico, una declaración en la que consienta a la jurisdicción de la corte federal de Miami, Florida, y una declaración de que acepta el servicio del proceso de la persona que presentó la notificación de la supuesta infracción."
+  },
+  "Mp68c+": {
+    "message": "FAQ's"
   },
   "MyQOKB": {
     "message": "Ingresa a Famosos.com, selecciona o busca a tu famoso favorito. Haz click en contratar a mi famoso. Estamos trabajando en diversos métodos de pago para que puedas adquirir tu video."
@@ -462,6 +544,9 @@
   },
   "Nrtdo8": {
     "message": "Deportistas"
+  },
+  "NvD/jI": {
+    "message": "Escribe un comentario"
   },
   "NyA8g2": {
     "description": "",
@@ -494,6 +579,9 @@
   "PZh7w+": {
     "message": "Colombia"
   },
+  "Ps1z8P": {
+    "message": "Actualiza tu comentario a"
+  },
   "PsZKr3": {
     "message": "FAQS"
   },
@@ -509,14 +597,23 @@
   "QXG+La": {
     "message": "Mexico"
   },
+  "Qdbxny": {
+    "message": "¿Cuántas estrellas le das a este video?"
+  },
   "QtvgOo": {
     "message": "Chile"
+  },
+  "RMN4N0": {
+    "message": "Pago rechazado"
   },
   "RWLUps": {
     "message": "Contratos"
   },
   "Rcsl93": {
     "message": "Cerrar"
+  },
+  "Rfh4ih": {
+    "message": "Mi Perfil"
   },
   "RqwRuU": {
     "message": "Si, eliminar"
@@ -531,12 +628,21 @@
   "SNXFr/": {
     "message": "Al continuar estás aceptando nuestros <linkTerms> Términos y Condiciones </linkTerms> y nuestra <linkPolicies> Política de Privacidad </linkPolicies>"
   },
+  "STAtvd": {
+    "message": "El comentario ha sido actualizado."
+  },
   "ScPFOw": {
     "message": "Bolivia (Plurinational State of)"
   },
   "SvDN5n": {
     "description": "",
     "message": "¡Recibe tu video personalizado!"
+  },
+  "T3dwiQ": {
+    "message": "Ten en cuenta:"
+  },
+  "TT/YZP": {
+    "message": "Privacidad"
   },
   "TjibFs": {
     "message": "¿Cuándo me cobran por mi video?"
@@ -554,6 +660,12 @@
   "UWzihk": {
     "message": "Usted reconoce que no estamos obligados a controlar su (o de cualquier otra persona) el acceso o uso del Sitio o los Servicios, pero tenemos el derecho de hacerlo con el fin de operar el sitio o servicios, para asegurar su cumplimiento con los presentes Términos , o para cumplir con la ley aplicable o la orden o requerimiento de un tribunal, agencia administrativa u otra entidad gubernamental."
   },
+  "UcOT6A": {
+    "message": "Cobro fallido"
+  },
+  "VBvZa2": {
+    "message": "Recibirás una notificación a <b></b> cuando tu video esté listo."
+  },
   "VGHwB5": {
     "message": "Editar"
   },
@@ -566,12 +678,18 @@
   "VbJXnl": {
     "message": "Filtrar por:"
   },
+  "VkHZxm": {
+    "message": "Términos y Condiciones"
+  },
   "Vrpqh3": {
     "message": "Garantía Famosos"
   },
   "W1OXQI": {
     "description": "",
     "message": "Desactivar Notificación"
+  },
+  "WBt4dS": {
+    "message": "Es público"
   },
   "WDhqRO": {
     "message": "Selecciona una ocasión"
@@ -585,12 +703,18 @@
   "WLyA7N": {
     "message": "Aparte de contenido de usuario, poseemos o licencia todos los derechos, títulos e intereses sobre y para (a) el sitio y los servicios, incluyendo todo el software, texto, multimedia y otros contenidos disponibles en el sitio y los servicios (“Nuestro contenido\") ; y (b) las marcas registradas, logotipos y elementos de marca ( \"Marcas\"). El sitio y los servicios, nuestro contenido, y Marks están protegidos por las leyes estadounidenses e internacionales. El aspecto y la sensación del sitio y los servicios son los derechos de autor © Famosos, Inc. Todos los derechos reservados. El usuario no puede duplicar, copiar, reutilizar o cualquier parte del HTML / CSS, JavaScript, o elementos de diseño visual o conceptos sin autorización expresa por escrito de nosotros."
   },
+  "WW0RFT": {
+    "message": "Me gusta"
+  },
   "Wdu5tQ": {
     "message": "Otros"
   },
   "WduoUG": {
     "description": "ModalTitle for search CategoryFilter",
     "message": "Filtrar por categoría"
+  },
+  "WmWz59": {
+    "message": "Contrato Expirado"
   },
   "WrNQNN": {
     "message": "Usted manifiesta y garantiza que:"
@@ -612,6 +736,9 @@
   },
   "XkEajZ": {
     "message": "Después de haber recibido su contra-notificación, la remitiremos a la parte que presentó la reclamación original de infracción de derechos de autor. Tenga en cuenta que cuando remitamos la contra-notificación, que incluye su información personal. Al presentar una contra-notificación, consentimiento para que se revele su información de esta manera. No vamos a pasar la contra-notificación a cualquier parte que no sea el demandante original."
+  },
+  "XlP2E5": {
+    "message": "Es una compañía dedicada a crear tecnologías <br></br> que conecten personalidades con su fan base."
   },
   "Y6+mfe": {
     "message": "Una descripción de donde se encuentra el presunto material infractor."
@@ -651,8 +778,14 @@
   "ZcJeQh": {
     "message": "La confirmación de tu compra será enviada a tu mail"
   },
+  "ZedcEG": {
+    "message": "Actualizar comentario"
+  },
   "ZgMpuD": {
     "message": "Siguiente página"
+  },
+  "ZvLd+7": {
+    "message": "Validando el pago"
   },
   "a/2tCB": {
     "message": "Al recibir el pago total de su Famosos vídeo, se le concede una licencia no exclusiva, a nivel mundial para utilizar el vídeo Famosos para sus propios fines personales, no comerciales, y no promocionales. Los Famosos Videos tienen licencia y no se vende. El usuario no puede volver a vender sus derechos en el vídeo Famosos. Sólo se puede sublicenciar sus derechos según sea necesario para que pueda utilizar el vídeo Famosos de lo permitido en estas Condiciones. Sólo se puede utilizar el vídeo Famosos de conformidad con estas Condiciones, incluyendo las restricciones de uso aceptable en la Sección 5 más adelante. Si usted no cumple con cualquiera de las disposiciones de las Condiciones, se termina su licencia a la Famosos vídeo."
@@ -665,6 +798,9 @@
   },
   "aJWEZ8": {
     "message": "El costo del video depende de tu famoso. Nosotros somos la tecnología que hace posible la entrega oportuna de tu video."
+  },
+  "aLZTdq": {
+    "message": "Mis instrucciones son"
   },
   "aPX+PI": {
     "message": "Contratar para Empresa"
@@ -693,6 +829,9 @@
   "bSHMVy": {
     "message": "¡Comprar video ahora!"
   },
+  "baAemn": {
+    "message": "En espera de grabación"
+  },
   "bnyCF4": {
     "message": "Si todo está bien con tu solicitud de acuerdo a nuestras políticas, muy pronto podrás disfrutar de tu videomensaje."
   },
@@ -717,6 +856,9 @@
   "d4p33Q": {
     "message": "¿Como te encontramos? Ej: andresito"
   },
+  "d6Ac8W": {
+    "message": "Correo electrónico de notificación:"
+  },
   "dUl69m": {
     "message": "Acción cancelada por el usuario"
   },
@@ -728,6 +870,9 @@
   },
   "dkJkXx": {
     "message": "Músicos"
+  },
+  "dmBWFQ": {
+    "message": "Contrato rechazado"
   },
   "dy8DmF": {
     "description": "Mensaje de error para creación de tarjeta Stripe",
@@ -790,6 +935,9 @@
   "gWk0k1": {
     "message": "Video grabado por {celebrityFullName} 100% personalizado."
   },
+  "ggPZbL": {
+    "message": "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
+  },
   "gwzUyi": {
     "message": "Propiedad"
   },
@@ -825,6 +973,9 @@
   "iTP7rd": {
     "message": "United States of America (the)"
   },
+  "iWkyFQ": {
+    "message": "¿Eres una celebridad o influencer?"
+  },
   "j5jEEO": {
     "message": "Motivacional"
   },
@@ -844,6 +995,9 @@
     "description": "Mensaje de error para formulario de stripe",
     "message": "El campo de nombre del titular de la tarjeta es obligatorio"
   },
+  "lX+x05": {
+    "message": "1 Estrella"
+  },
   "lkQYB7": {
     "message": "¿Que sucede después de que enviás la solicitud a un Famoso?"
   },
@@ -859,6 +1013,9 @@
   "mC/anA": {
     "message": "Precio: De Menor a Mayor"
   },
+  "mJ6Hl3": {
+    "message": "Falló autorización de cobro"
+  },
   "mNZnPy": {
     "message": "Paraguay"
   },
@@ -867,6 +1024,9 @@
   },
   "mYcV0v": {
     "message": "Si usted demuestra que las costas del arbitraje serán prohibitivos en comparación con los costos del litigio, Famosos pagará la suma de los costos administrativos y los honorarios del árbitro necesario para el arbitraje como lo considere necesario, el árbitro para evitar que el costo del arbitraje de ser prohibitivo . En el premio final, el árbitro puede prorratear los costes de arbitraje y la compensación del árbitro entre las partes en cantidades tales que el árbitro considere apropiado."
+  },
+  "mcWafv": {
+    "message": "Reembolso fallido"
   },
   "mlRLdw": {
     "message": "Escribe tu correo electrónico"
@@ -877,8 +1037,17 @@
   "nJ/lbc": {
     "message": "¿Cómo puedo comprar un video?"
   },
+  "nJJJOt": {
+    "message": "Pago expirado"
+  },
+  "nMFRRt": {
+    "message": "Pago pendiente"
+  },
   "nazVl1": {
     "message": "Usted y Famosos acepta que vamos a resolver cualquier disputa entre nosotros a través de un arbitraje vinculante y definitivo en lugar de a través de los procesos judiciales. Usted y Famosos presente renuncia a cualquier derecho a un juicio con jurado de cualquier reclamación (se define a continuación). Todas las controversias, reclamos, reconvenciones, u otros conflictos que surjan entre usted y Famosos relacionada con estos Términos, el Sitio y los Servicios (cada una \"Demanda\") serán sometidas a arbitraje de acuerdo con las Reglas de la Asociación Americana de Arbitraje ( \"Reglas AAA\"). El arbitraje se resolverá de por un solo árbitro. La decisión del árbitro en dicho arbitraje será definitiva y vinculante para las partes y puede ser ejecutada en cualquier tribunal de jurisdicción competente."
+  },
+  "nnRGWT": {
+    "message": "Pago cancelado"
   },
   "o/y0YW": {
     "message": "Revisado: 28 de Marzo 2020"
@@ -917,6 +1086,9 @@
   },
   "p2GPHF": {
     "message": "Usted puede cancelar su cuenta en cualquier momento a través de un enlace que aparece en su cuenta en el sitio. Nos reservamos el derecho de no proporcionar el Sitio o los Servicios para cualquier persona. También nos reservamos el derecho de suspender el derecho de cualquier usuario para acceder al sitio o servicios en cualquier momento, a nuestra discreción. Si usted viola cualquiera de estos Términos, su permiso para utilizar el sitio y los servicios se termina automáticamente."
+  },
+  "p6AMrr": {
+    "message": "Famoso!"
   },
   "pPCiwO": {
     "message": "Correo electrónico"
@@ -962,6 +1134,9 @@
   },
   "rD8e46": {
     "message": "Fecha:"
+  },
+  "rG1grK": {
+    "message": "Síguenos en Redes"
   },
   "rNIqUr": {
     "message": "Un video promocional es un video que promueve una compañia/organización/producto en las redes sociales o en la página de dicha compañia."
@@ -1035,6 +1210,10 @@
   "ueZmN4": {
     "message": "Transferencia bancaria"
   },
+  "ujraGu": {
+    "description": "Quien recibirá el video",
+    "message": "Para:"
+  },
   "ut6hvz": {
     "message": "Calificaciones"
   },
@@ -1061,6 +1240,9 @@
     "description": "",
     "message": "Siguiente"
   },
+  "wCc+84": {
+    "message": "[PARA]"
+  },
   "wHkOq4": {
     "message": "Argentina"
   },
@@ -1073,11 +1255,20 @@
   "wwFRnk": {
     "message": "El Sitio y los Servicios pueden contener enlaces a otros sitios web y recursos en línea. Un enlace a la página web de un tercero no significa que estamos de acuerdo con ella o que la que están afiliados con ella. No somos responsables por cualquier daño o pérdida relacionada con el uso de cualquier sitio web de terceros. Siempre debe leer los términos y condiciones y la política de privacidad de un sitio web de terceros antes de usarlo."
   },
+  "wwfK17": {
+    "message": "Buscar país"
+  },
   "wyqjAw": {
     "message": "Abogado, alentar o ayudar a un tercero en hacer cualquiera de las anteriores."
   },
+  "x15tum": {
+    "message": "El valor en {currency} es aproximado"
+  },
   "x2QGjg": {
     "message": "Mejoramos y actualizar el sitio y servicios a menudo. Podemos cambiar o interrumpir el Sitio o los Servicios en cualquier momento, con o sin previo aviso."
+  },
+  "xKYHEI": {
+    "message": "2020 Famosos, Inc. All Rights Reserved."
   },
   "xKx6PF": {
     "message": "¡Aplica y Reserva tu Subdominio Ahora!"
@@ -1121,6 +1312,9 @@
   },
   "zX425H": {
     "message": "Comediantes"
+  },
+  "zxOTCH": {
+    "message": "Pago creado"
   },
   "zzBOdK": {
     "message": "Aplicar filtro"
