@@ -25,7 +25,6 @@ class StripeFlowHandler extends Component {
   retrieveUserCards = () => {
     retrieveUserCards()
       .then((res) => {
-        console.log("res:", res);
         this.setState({
           ...this.state,
           showLoading: false,
