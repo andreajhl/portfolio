@@ -20,7 +20,7 @@ type ContractDetailsProps = {
     avatar: string;
     fullName: string;
   };
-  status_payment: React.ReactNode;
+  status_payment?: React.ReactNode;
 };
 
 function ContractDetails({
