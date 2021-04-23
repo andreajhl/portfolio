@@ -128,7 +128,7 @@ const DLocalPaymentsForm = ({
           {
             AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
               (data) => data.name === currencyExchangeData.to
-            ).document_name
+            )?.document_name
           }
         </label>
         <input
@@ -144,7 +144,7 @@ const DLocalPaymentsForm = ({
           placeholder={`Escribe aquí tu ${
             AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
               (data) => data.name === currencyExchangeData.to
-            ).document_name
+            )?.document_name
           }`}
         ></input>
         {invalidFormatDocument ? (
