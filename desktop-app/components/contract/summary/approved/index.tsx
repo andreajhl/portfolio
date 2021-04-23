@@ -9,9 +9,9 @@ import React from "react";
 import ContractDetails from "../../details";
 import styles from "./styles.module.scss";
 import classes from "classnames";
-import moment from "moment";
 import { useRouter } from "next/router";
 import { CLIENT_HIRINGS } from "constants/paths";
+import StatusPaymentDetails from "../../status-payment";
 
 type ContractWithPaymentsProps = {
   contract: {
@@ -42,16 +42,12 @@ type ContractWithPaymentsProps = {
 
 type InstructionsContractApprovedProps = {
   celebrity_fullName: string;
-};
-
-type StatusPaymentDetailsProps = {
-  payment_date: string;
-  transaction_charge_id: string;
-  payment_id: number;
+  email_client: string;
 };
 
 function InstructionsContractApproved({
-  celebrity_fullName
+  celebrity_fullName,
+  email_client
 }: InstructionsContractApprovedProps) {
   const router = useRouter();
   return (
@@ -72,7 +68,8 @@ function InstructionsContractApproved({
         <div className={styles.InstructionListItem}>
           <LetterIcon className={styles.InstructionListItemIcon} />
           <span>
-            Recibirás una notificación a correocliente@dominio.com cuando tu
+            Recibirás una notificación a{" "}
+            <span className={styles.EmailClient}>{email_client}</span> cuando tu
             video esté listo.
           </span>
         </div>
@@ -113,21 +110,6 @@ function InstructionsContractApproved({
   );
 }
 
-function StatusPaymentDetails({
-  payment_date,
-  transaction_charge_id,
-  payment_id
-}: StatusPaymentDetailsProps) {
-  return (
-    <div className={styles.StatusPaymentDetails}>
-      <p>ESTADO DEL PAGO: APROBADO</p>
-      <p>FECHA DE PAGO: {moment(payment_date).format("L")}</p>
-      <p>ID DE TRANSACCION: {transaction_charge_id}</p>
-      <p>ID DE SEGUIMIENTO: {payment_id}</p>
-    </div>
-  );
-}
-
 function HeaderContractApproved() {
   return (
     <div className={styles.HeaderContractApproved}>
@@ -146,7 +128,10 @@ function ContractSummaryApproved({
     <ContractSummaryLayout
       header={<HeaderContractApproved />}
       instructions={
-        <InstructionsContractApproved celebrity_fullName={celebrity.fullName} />
+        <InstructionsContractApproved
+          email_client={contract.deliveryContact}
+          celebrity_fullName={celebrity.fullName}
+        />
       }
       contractDetails={
         <>
