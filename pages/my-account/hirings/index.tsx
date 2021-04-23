@@ -1,17 +1,37 @@
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { ClientHiringsPage } from "react-app/src/components/pages/client-hirings";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
+import dynamic from "next/dynamic";
+import isMobile from "lib/utils/isMobile";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 
-const Hiring = () => {
+const ClientHiringsPage = dynamic(() =>
+  import("react-app/src/components/pages/client-hirings").then(
+    (mod) => mod.ClientHiringsPage
+  )
+);
+
+const MyHirings = dynamic(() =>
+  import("desktop-app/components/pages/my-hirings").then((mod) => mod.MyHirings)
+);
+
+export const getServerSideProp = async ({ req }) => {
+  return {
+    props: { isMobile: isMobile(req.headers["user-agent"]) }
+  };
+};
+
+function Hiring({ isMobile }) {
   return (
     <>
       <CustomHead />
-      <ClientHiringsPage />
+      <Maybe it={isMobile} orElse={<MyHirings />}>
+        <ClientHiringsPage />
+      </Maybe>
     </>
   );
-};
+}
 
 export default withAuthenticationRequired(Hiring, {
-  onRedirecting: () => <LoadingPage></LoadingPage>
+  onRedirecting: LoadingPage
 });
