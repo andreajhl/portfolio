@@ -1,4 +1,4 @@
-.HeaderContractPending {
+.HeaderContractRejected {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -20,7 +20,7 @@
   }
 }
 
-.InstructionsContractPending {
+.InstructionsContractRejected {
   margin-top: 6.375rem;
   margin-left: 5.5rem;
   margin-right: 3.125rem;
@@ -32,5 +32,17 @@
   margin-top: 3rem;
   p:first-of-type {
     margin-bottom: 4.5rem;
+  }
+}
+
+.FooterInstructionsCTA .FooterInstructionsCTAButton {
+  margin-right: 2.3125rem;
+  border: 2px solid black !important;
+  background: #000000 !important;
+  &:hover,
+  &:active,
+  &:focus {
+    border: 2px solid black !important;
+    background: #000000 !important;
   }
 }

@@ -34,28 +34,28 @@ type ContractWithPaymentsProps = {
   };
 };
 
-type InstructionsContractPendingProps = {
+type InstructionsContractRejectedProps = {
   payment_date: string;
   payment_id: number;
   transaction_charge_id: string;
 };
-function HeaderContractPending() {
+function HeaderContractRejected() {
   return (
-    <div className={styles.HeaderContractPending}>
+    <div className={styles.HeaderContractRejected}>
       <XIcon />
       <p>Tu pago ha sido rechazado.</p>
     </div>
   );
 }
 
-function InstructionsContractPending({
+function InstructionsContractRejected({
   payment_id,
   transaction_charge_id,
   payment_date
-}: InstructionsContractPendingProps) {
+}: InstructionsContractRejectedProps) {
   const router = useRouter();
   return (
-    <div className={styles.InstructionsContractPending}>
+    <div className={styles.InstructionsContractRejected}>
       <div className={styles.StatusPaymentsDetails}>
         <StatusPaymentDetails
           payment_id={payment_id}
@@ -86,21 +86,21 @@ function InstructionsContractPending({
   );
 }
 
-function ContractsummaryPending({
+function ContractsummaryRejected({
   contract,
   celebrity,
   lastPayment
 }: ContractWithPaymentsProps) {
   return (
     <ContractSummaryLayout
-      header={<HeaderContractPending />}
+      header={<HeaderContractRejected />}
       contractDetails={
         <>
           <ContractDetails celebrity={celebrity} contract={contract} />
         </>
       }
       instructions={
-        <InstructionsContractPending
+        <InstructionsContractRejected
           payment_date={lastPayment.createdAt}
           transaction_charge_id={lastPayment.transactionChargeId}
           payment_id={lastPayment.id}
@@ -110,4 +110,4 @@ function ContractsummaryPending({
   );
 }
 
-export default ContractsummaryPending;
+export default ContractsummaryRejected;
