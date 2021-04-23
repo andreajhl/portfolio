@@ -617,3 +617,22 @@ export function CashBackIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+export function ClockIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={36}
+      height={36}
+      viewBox="0 0 36 36"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M17.953 1C8.588 1 1 8.588 1 17.953c0 9.365 7.588 16.953 16.953 16.953 9.365 0 16.953-7.588 16.953-16.953C34.906 8.588 27.318 1 17.953 1zm0 30.625c-7.554 0-13.672-6.118-13.672-13.672S10.4 4.281 17.953 4.281 31.625 10.4 31.625 17.953s-6.118 13.672-13.672 13.672zm4.225-7.137l-5.804-4.218a.826.826 0 01-.335-.663V8.383c0-.451.37-.82.82-.82h2.188c.451 0 .82.369.82.82v9.686l4.567 3.323a.82.82 0 01.177 1.148l-1.285 1.77a.826.826 0 01-1.148.178z"
+        fill="#fff"
+        stroke="#fff"
+        strokeWidth={0.3}
+      />
+    </svg>
+  );
+}

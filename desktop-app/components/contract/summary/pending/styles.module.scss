@@ -1,0 +1,81 @@
+.HeaderContractPending {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  svg {
+    margin-bottom: 20px;
+  }
+  p {
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 25px;
+    color: #ffffff;
+  }
+}
+
+.InstructionsContractPending {
+  margin-top: 5rem;
+  margin-left: 5.5rem;
+  margin-right: 3.125rem;
+  display: flex;
+  flex-flow: column;
+}
+
+.ConsultationNoticies {
+  p:first-of-type {
+    margin-bottom: 2.5rem;
+  }
+}
+.FooterInstructionsCTA {
+  span {
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.625rem;
+    text-decoration-line: underline;
+    color: #000000;
+  }
+}
+.FooterInstructionsCTA .FooterInstructionsCTAButton {
+  margin-right: 2.3125rem;
+  border: 2px solid black !important;
+  background: #000000 !important;
+  &:hover,
+  &:active,
+  &:focus {
+    border: 2px solid black !important;
+    background: #000000 !important;
+  }
+}
+
+.InstructionList {
+  > div:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+  > :last-child {
+    margin-bottom: 2.9375rem;
+  }
+}
+.InstructionListItem {
+  display: flex;
+  align-items: center;
+}
+.InstructionListItemIcon {
+  margin-right: 1.25rem;
+  flex: 0 0 auto;
+  width: 20px;
+  path {
+    fill: black;
+    stroke: black;
+  }
+}
+
+.StatusPaymentsDetails {
+  margin-bottom: 3.4375rem;
+  p {
+    margin-block-end: 0px;
+  }
+}
