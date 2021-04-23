@@ -536,3 +536,25 @@ export function OrderByIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function ExclamationCircleIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={15}
+      height={15}
+      viewBox="0 0 17 17"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M8.5 0A8.499 8.499 0 000 8.5C0 13.196 3.804 17 8.5 17S17 13.196 17 8.5 13.196 0 8.5 0zm0 15.355A6.853 6.853 0 011.645 8.5 6.853 6.853 0 018.5 1.645 6.853 6.853 0 0115.355 8.5 6.853 6.853 0 018.5 15.355z"
+        fill="#000"
+      />
+      <path
+        d="M10 12.438C10 13.299 9.327 14 8.5 14S7 13.3 7 12.437c0-.861.673-1.562 1.5-1.562s1.5.7 1.5 1.563zM7.174 4.492l.255 5.313c.012.25.21.445.45.445h1.243c.24 0 .437-.196.45-.445l.254-5.313A.46.46 0 009.376 4H7.624a.46.46 0 00-.45.492z"
+        fill="#000"
+      />
+    </svg>
+  );
+}
