@@ -29,10 +29,7 @@ function ContractDetails({
   status_payment = null
 }: ContractDetailsProps) {
   return (
-    <div
-      onClick={() => console.log("me clickearon, no puede ser")}
-      className={styles.ContractDetails}
-    >
+    <div className={styles.ContractDetails}>
       <div>
         <img
           height="75px"
