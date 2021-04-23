@@ -242,7 +242,12 @@ class CelebrityRequestForm extends Component {
             <option>Twitter</option>
             <option>Youtube</option>
             <option>TikTok</option>
-            <option>Otra</option>
+            <option>
+              <FormattedMessage
+                defaultMessage="Otra"
+                description="Otra red social"
+              />
+            </option>
           </select>
           <input
             type="text"
