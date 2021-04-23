@@ -86,7 +86,7 @@ function InstructionsContractRejected({
   );
 }
 
-function ContractsummaryRejected({
+function ContractSummaryRejected({
   contract,
   celebrity,
   lastPayment
@@ -110,4 +110,4 @@ function ContractsummaryRejected({
   );
 }
 
-export default ContractsummaryRejected;
+export default ContractSummaryRejected;

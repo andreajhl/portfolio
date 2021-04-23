@@ -116,7 +116,7 @@ function InstructionsContractPending({
   );
 }
 
-function ContractsummaryPending({
+function ContractSummaryPending({
   contract,
   celebrity,
   lastPayment
@@ -141,4 +141,4 @@ function ContractsummaryPending({
   );
 }
 
-export default ContractsummaryPending;
+export default ContractSummaryPending;
