@@ -1,3 +1,4 @@
+import { ContractOccasion } from "desktop-app/components/common/widgets/contract-occasion";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
 import { occasionsData } from "react-app/src/constants/options";
 import styles from "./styles.module.scss";
@@ -13,8 +14,6 @@ function ContractInfoHeader({
   celebrityAvatar,
   celebrityFullName
 }: ContractInfoHeaderProps) {
-  const occasionKey = occasion || "OTHER";
-  const contractOccasion = occasionsData[occasionKey];
   return (
     <>
       <div className={styles.ContractInfoCelebrityInfo}>
@@ -31,15 +30,7 @@ function ContractInfoHeader({
           Video personalizado de {celebrityFullName}
         </h1>
       </div>
-      <div className={styles.ContractInfoOccasion}>
-        <div className={styles.ContractInfoOccasionIcon}>
-          <img
-            src={`/assets/img/occasions/${occasionKey}.png`}
-            alt={contractOccasion.title}
-          />
-        </div>
-        {contractOccasion.title}
-      </div>
+      <ContractOccasion occasion={occasion} />
     </>
   );
 }

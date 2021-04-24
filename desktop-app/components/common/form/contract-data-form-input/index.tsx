@@ -9,12 +9,15 @@ type ContractDataFormInputProps = Omit<
   "containerClassName" | "labelClassName"
 >;
 
-function ContractDataFormInput(props: ContractDataFormInputProps) {
+function ContractDataFormInput({
+  className = "",
+  ...props
+}: ContractDataFormInputProps) {
   return (
     <InputWithLeftLabel
       containerClassName={`${styles.ContractDataFormControl} ${
         !props.disabled ? styles.ContractDataFormControlEditing : ""
-      }`}
+      } ${className}`}
       labelClassName={styles.ContractDataFormControlLabel}
       inputClassName={styles.ContractDataFormControlInput}
       {...props}
