@@ -17,7 +17,14 @@
     "test": "jest",
     "test-all": "yarn lint && yarn type-check && yarn test",
     "prepare": "husky install",
-    "build-check": "rm -rf .next && npm run build"
+    "build-check": "rm -rf .next && npm run build",
+    "check-staged-files": "lint-staged"
+  },
+  "lint-staged": {
+    ".(ts|tsx|js|jsx)": [
+      "prettier --write",
+      "npm run type-check"
+    ]
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
