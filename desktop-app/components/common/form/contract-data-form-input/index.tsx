@@ -1,7 +1,7 @@
 import {
   InputWithLeftLabel,
   InputWithLeftLabelProps
-} from "../../common/form/input-with-left-label";
+} from "../input-with-left-label";
 import styles from "./styles.module.scss";
 
 type ContractDataFormInputProps = Omit<
