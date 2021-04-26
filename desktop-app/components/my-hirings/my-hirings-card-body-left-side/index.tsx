@@ -17,7 +17,9 @@ function MyHiringsCardBodyLeftSide({
         className={styles.MyHiringsCardBodyLeftSideIsPublicChanger}
         contractStatus={contractData.status}
         contractId={contractData.id}
-        isPublic={contractData.isPublic}
+        contractIsPublic={contractData.isPublic}
+        contractReference={contractData.reference}
+        celebrityId={contractData.celebrityId}
       />
     </>
   );

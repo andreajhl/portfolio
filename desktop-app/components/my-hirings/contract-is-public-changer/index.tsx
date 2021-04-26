@@ -1,5 +1,8 @@
 import { BooleanRadiosInputs } from "desktop-app/components/common/form/boolean-checkboxes";
+import { useState } from "react";
+import { updateContractIsPublic } from "react-app/src/state/ducks/contracts/actions";
 import { connect } from "react-redux";
+import classes from "classnames";
 import styles from "./styles.module.scss";
 
 const mapStateToProps = (state) => ({});
@@ -13,22 +16,51 @@ type ContractIsPublicChangerProps = {
   className?: string;
   contractStatus: number;
   contractId: number;
-  isPublic: boolean;
+  contractIsPublic: boolean;
+  contractReference: string;
+  celebrityId: number;
 } & StateProps &
   DispatchProps;
+
+const validStatusesToEditIsPublic = [10, 30, 40];
 
 function ContractIsPublicChanger({
   className = "",
   contractStatus,
   contractId,
-  isPublic,
+  contractIsPublic,
+  contractReference,
+  celebrityId,
 }: ContractIsPublicChangerProps) {
+  const [isPublic, setIsPublic] = useState(contractIsPublic);
+  const [isLoading, setIsLoading] = useState(false);
+
+  function handleIsPublic(newIsPublicValue) {
+    if (isLoading && validStatusesToEditIsPublic.includes(contractStatus)) {
+      return;
+    }
+    setIsLoading(true);
+    setIsPublic(newIsPublicValue);
+    updateContractIsPublic({
+      id: contractId,
+      reference: contractReference,
+      isPublic: newIsPublicValue,
+      celebrityId: celebrityId,
+    }).then(() => setIsLoading(false));
+  }
+
   return (
-    <div className={`${styles.ContractIsPublicChanger} ${className}`}>
+    <div className={classes(styles.ContractIsPublicChanger, className)}>
       <span className={styles.ContractIsPublicChangerText}>
         Permitir que este video sea público
       </span>
-      <BooleanRadiosInputs value={isPublic} />
+      <BooleanRadiosInputs
+        value={isPublic}
+        onChange={handleIsPublic}
+        containerClass={classes(
+          isLoading && styles.ContractIsPublicChangerIsLoading
+        )}
+      />
     </div>
   );
 }
