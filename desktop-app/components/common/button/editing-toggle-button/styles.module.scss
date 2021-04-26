@@ -21,3 +21,10 @@
     color: var(--primary) !important;
   }
 }
+
+.removeSaveButtonPadding {
+  padding: 0;
+  &:focus {
+    box-shadow: none;
+  }
+}
