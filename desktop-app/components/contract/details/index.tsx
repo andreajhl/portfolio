@@ -1,7 +1,8 @@
+import React, { useState } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { PencilIcon } from "desktop-app/components/common/icons";
-import React from "react";
 import styles from "./styles.module.scss";
+import ContractInstructionsEdit from "../instructions/edit";
+import ContractInstructionsView from "../instructions/view";
 
 type ContractDetailsProps = {
   contract: {
@@ -26,8 +27,13 @@ type ContractDetailsProps = {
 function ContractDetails({
   contract,
   celebrity,
-  status_payment = null
+  status_payment = null,
 }: ContractDetailsProps) {
+  const [isEditing, setIsEditing] = useState(false);
+  const saveNewInstructions = (newInstructions) => {
+    console.log("TODO CONECTAR CON BACKEND");
+    setIsEditing(false);
+  };
   return (
     <div className={styles.ContractDetails}>
       <div>
@@ -42,23 +48,22 @@ function ContractDetails({
           Video Personalizado de {celebrity.fullName}
         </span>
       </div>
-      <div className={styles.ContractInstructions}>
-        <div>
-          <span className={styles.WhoReceive}>Para: {contract.deliveryTo}</span>
-          <Maybe it={typeof contract.deliveryFrom === "string"}>
-            <span className={styles.WhoSend}>De: {contract.deliveryFrom}</span>
-          </Maybe>
-        </div>
-        <PencilIcon
-          style={{
-            position: "absolute",
-            right: 0
-          }}
+      <Maybe it={!isEditing}>
+        <ContractInstructionsView
+          deliveryTo={contract.deliveryTo}
+          deliveryFrom={contract.deliveryFrom}
+          instructions={contract.instructions}
+          onToggleEdit={() => setIsEditing((prevState) => !prevState)}
         />
-        <span className={styles.InstructionsDetails}>
-          {contract.instructions}
-        </span>
-      </div>
+      </Maybe>
+      <Maybe it={isEditing}>
+        <ContractInstructionsEdit
+          deliveryTo={contract.deliveryTo}
+          deliveryFrom={contract.deliveryFrom}
+          instructions={contract.instructions}
+          onSaveChanges={(newValues) => saveNewInstructions(newValues)}
+        />
+      </Maybe>
       <span className={styles.EditionNoticie}>
         *Puedes editar las instrucciones de tu video mientras está pendiente de
         grabación.
@@ -73,7 +78,7 @@ function ContractDetails({
           <hr
             style={{
               width: "233px",
-              marginRight: "100%"
+              marginRight: "100%",
             }}
           />
           {status_payment}
