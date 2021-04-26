@@ -4,7 +4,7 @@ import Document, {
   Head,
   Main,
   NextScript,
-  DocumentContext
+  DocumentContext,
 } from "next/document";
 import setUserLocationCookie from "../lib/setUserLocationCookie";
 import isMobile from "lib/utils/isMobile";
@@ -15,7 +15,7 @@ class MyDocument extends Document {
     await setUserLocationCookie(ctx);
     return {
       ...initialProps,
-      isMobile: isMobile(ctx?.req?.headers?.["user-agent"])
+      isMobile: isMobile(ctx?.req?.headers?.["user-agent"]),
     };
   }
 
@@ -67,7 +67,7 @@ class MyDocument extends Document {
                 t.src=v;s=b.getElementsByTagName(e)[0];
                 s.parentNode.insertBefore(t,s)}(window, document,'script',
                 'https://connect.facebook.net/en_US/fbevents.js');
-                fbq('init', "430558828300567");fbq("track", "PageView");`
+                fbq('init', "430558828300567");fbq("track", "PageView");`,
             }}
           />
           <noscript>
@@ -95,8 +95,12 @@ class MyDocument extends Document {
             vendor: navigator.vendor,
             receivedAt: new Date()
           });
-          }}();`
+          }}();`,
             }}
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
           />
         </Head>
         <body className="f-main-body">
