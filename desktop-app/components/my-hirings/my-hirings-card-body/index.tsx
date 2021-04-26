@@ -1,5 +1,5 @@
+import { MyHiringsCardBodyLeftSide } from "desktop-app/components/my-hirings/my-hirings-card-body-left-side";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
-import { MyHiringsCardDetails } from "../my-hirings-card-details";
 import styles from "./styles.module.scss";
 
 type MyHiringsCardBodyProps = {
@@ -9,10 +9,10 @@ type MyHiringsCardBodyProps = {
 function MyHiringsCardBody({ contractData }: MyHiringsCardBodyProps) {
   return (
     <div className={styles.MyHiringsCardBody}>
-      <div className={styles.MyHiringsCardBodyLeftSide}>
-        <MyHiringsCardDetails contractData={contractData} />
+      <div className={styles.MyHiringsCardBodyLeftSideContainer}>
+        <MyHiringsCardBodyLeftSide contractData={contractData} />
       </div>
-      <div className={styles.MyHiringsCardBodyRightSide}>world</div>
+      <div className={styles.MyHiringsCardBodyRightSideContainer}>world</div>
     </div>
   );
 }
