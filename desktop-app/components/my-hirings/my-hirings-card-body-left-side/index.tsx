@@ -1,3 +1,5 @@
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import { canEditContract } from "desktop-app/constants/contractStatuses";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import { ContractIsPublicChanger } from "../contract-is-public-changer";
 import { MyHiringsCardDetails } from "../my-hirings-card-details";
@@ -10,17 +12,24 @@ type MyHiringsCardBodyLeftSideProps = {
 function MyHiringsCardBodyLeftSide({
   contractData,
 }: MyHiringsCardBodyLeftSideProps) {
+  const canEdit = canEditContract(contractData.status);
   return (
     <>
       <MyHiringsCardDetails contractData={contractData} />
       <ContractIsPublicChanger
-        className={styles.MyHiringsCardBodyLeftSideIsPublicChanger}
+        className={styles.IsPublicChanger}
         contractStatus={contractData.status}
         contractId={contractData.id}
         contractIsPublic={contractData.isPublic}
         contractReference={contractData.reference}
         celebrityId={contractData.celebrityId}
       />
+      <Maybe it={canEdit}>
+        <p className={styles.EditingCopy}>
+          *Puedes editar las instrucciones de tu video y la información de
+          entrega mientras tu video esté pendiente de grabación.
+        </p>
+      </Maybe>
     </>
   );
 }
