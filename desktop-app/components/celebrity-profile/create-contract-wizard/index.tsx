@@ -10,12 +10,12 @@ import { saveClientContract } from "react-app/src/state/ducks/contracts/actions"
 import ContractDataType, {
   ContractDeliveryType,
   ContractDetailsType,
-  ContractNotificationsType
+  ContractNotificationsType,
 } from "desktop-app/types/contractDataType";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const mapStateToProps = ({ contracts }) => ({
-  isLoading: contracts.saveClientContractReducer.loading
+  isLoading: contracts.saveClientContractReducer.loading,
 });
 
 const mapDispatchToProps = { saveClientContract };
@@ -34,7 +34,7 @@ const getContractPriceVideoMessage = (contractsTypes) =>
 function CreateContractWizard({
   celebrity,
   isLoading,
-  saveClientContract
+  saveClientContract,
 }: CreateContractWizardProps) {
   const { loginWithPopup, isAuthenticated } = useAuth0();
   const [onLoggingCallback, setOnLoggingCallback] = useState(() => () => {});
@@ -48,7 +48,7 @@ function CreateContractWizard({
 
   const [
     notificationsData,
-    setNotificationsData
+    setNotificationsData,
   ] = useState<ContractNotificationsType | null>(null);
 
   const videoMessagePrice = getContractPriceVideoMessage(
@@ -112,7 +112,7 @@ function CreateContractWizard({
               onSubmit={(values) => {
                 const contractData: ContractDataType = Object.assign(
                   {
-                    celebrityId: celebrity.id
+                    celebrityId: celebrity.id,
                   },
                   deliveryData,
                   detailsData,

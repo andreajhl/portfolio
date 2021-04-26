@@ -1,5 +1,7 @@
 import { IconButton } from "desktop-app/components/common/button/icon-button";
-import { ContractDataFormInput } from "desktop-app/components/payments-methods/contract-data-form-input";
+import { ContractInstructionsTextarea } from "desktop-app/components/common/form/contract-instructions-textarea";
+import { EditingToggleButton } from "desktop-app/components/common/button/editing-toggle-button";
+import { ContractDataFormInput } from "desktop-app/components/common/form/contract-data-form-input";
 import useForm from "lib/hooks/useForm";
 import { useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
@@ -41,28 +43,12 @@ function ContractDataForm({
   return (
     <form className={styles.ContractDataForm} method="post">
       <div className={styles.ContractDataFormEditButtonWrapper}>
-        <Maybe
-          it={isEditing}
-          orElse={
-            <IconButton
-              className={styles.ContractDataFormEditButton}
-              onClick={() => {
-                setIsEditing((isEditing) => !isEditing);
-              }}
-            >
-              <i className="far fa-edit" />
-            </IconButton>
-          }
-        >
-          <button
-            className={"btn " + styles.ContractDataFormSaveButton}
-            onClick={() => {
-              setIsEditing((isEditing) => !isEditing);
-            }}
-          >
-            Guardar
-          </button>
-        </Maybe>
+        <EditingToggleButton
+          isEditing={isEditing}
+          editButtonColor={"var(--dark)"}
+          onClickEdit={() => setIsEditing((isEditing) => !isEditing)}
+          onClickSave={() => setIsEditing((isEditing) => !isEditing)}
+        />
       </div>
 
       <div className={styles.ContractDataFormDeliveryInputs}>
@@ -89,16 +75,10 @@ function ContractDataForm({
           />
         </Maybe>
       </div>
-      <label
-        className={styles.ContractDataFormInstructionsLabel}
-        htmlFor="instructions"
-      >
-        Mensaje
-      </label>
-      <textarea
-        className={styles.ContractDataFormInstructionsTextarea}
-        name="instructions"
+      <ContractInstructionsTextarea
+        labelClass={styles.ContractDataFormInstructionsLabel}
         id="instructions"
+        name="instruction"
         value={values.instructions}
         disabled={!isEditing}
       />
