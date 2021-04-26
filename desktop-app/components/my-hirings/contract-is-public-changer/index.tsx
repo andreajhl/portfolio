@@ -1,16 +1,9 @@
 import { BooleanRadiosInputs } from "desktop-app/components/common/form/boolean-checkboxes";
 import { useState } from "react";
 import { updateContractIsPublic } from "react-app/src/state/ducks/contracts/actions";
-import { connect } from "react-redux";
 import classes from "classnames";
 import styles from "./styles.module.scss";
-
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = {};
-
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+import { canEditIsPublic } from "desktop-app/constants/contractStatuses";
 
 type ContractIsPublicChangerProps = {
   className?: string;
@@ -19,10 +12,7 @@ type ContractIsPublicChangerProps = {
   contractIsPublic: boolean;
   contractReference: string;
   celebrityId: number;
-} & StateProps &
-  DispatchProps;
-
-const validStatusesToEditIsPublic = [10, 30, 40];
+};
 
 function ContractIsPublicChanger({
   className = "",
@@ -36,7 +26,7 @@ function ContractIsPublicChanger({
   const [isLoading, setIsLoading] = useState(false);
 
   function handleIsPublic(newIsPublicValue) {
-    if (isLoading && validStatusesToEditIsPublic.includes(contractStatus)) {
+    if (isLoading || !canEditIsPublic(contractStatus)) {
       return;
     }
     setIsLoading(true);
@@ -65,9 +55,4 @@ function ContractIsPublicChanger({
   );
 }
 
-const _ContractIsPublicChanger = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ContractIsPublicChanger);
-
-export { _ContractIsPublicChanger as ContractIsPublicChanger };
+export { ContractIsPublicChanger };
