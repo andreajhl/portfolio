@@ -1,158 +1,123 @@
-.VideoNotificationForm {
-  &Title {
-    margin-top: 40px;
-    margin-bottom: 1em;
-  }
+.VideoNotificationFormTitle {
+  margin-top: 40px;
+  margin-bottom: 1em;
+}
 
-  &PhoneInputContainer {
-    margin-bottom: 24px;
-  }
+.VideoNotificationFormPhoneInputContainer {
+  margin-bottom: 24px;
+}
 
-  &Radio {
-    margin-bottom: 36px;
-    display: flex;
-    align-items: center;
-    &Text {
-      font-size: 14px;
-      margin-right: 1em;
-    }
+.VideoNotificationFormRadioWrapper {
+  margin-bottom: 36px;
+  display: flex;
+}
 
-    &Label {
-      cursor: pointer;
-      font-size: 12px;
-      margin-right: 1em;
-      margin-bottom: 0;
-      font-weight: bold;
-
-      i {
-        border: 1px solid var(--gray-2);
-        color: white;
-        border-radius: 50%;
-        font-size: 9px;
-        margin-right: 1em;
-        width: 17px;
-        height: 17px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      &Checked {
-        background: black;
-        border-color: black !important;
-      }
-    }
-  }
+.VideoNotificationFormRadioText {
+  font-size: 14px;
+  margin-right: 1em;
 }
 
 .ContainerPhoneInput {
   height: 45px;
   margin-bottom: 4px;
-
-  :global(.invalid-number-message) {
-    display: flex;
-    align-items: center;
-    left: 50%;
-    top: 110%;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 10px;
-    line-height: 14px;
-    background-color: transparent;
-    color: #000000;
-    &::before {
-      content: "";
-      margin-right: 4px;
-      width: 11px;
-      height: 11px;
-      display: inline-flex;
-      background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' viewBox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 5.5C11 8.53824 8.53735 11 5.5 11C2.46265 11 0 8.53824 0 5.5C0 2.46353 2.46265 0 5.5 0C8.53735 0 11 2.46353 11 5.5ZM5.5 6.60887C4.93658 6.60887 4.47984 7.06561 4.47984 7.62903C4.47984 8.19245 4.93658 8.64919 5.5 8.64919C6.06342 8.64919 6.52016 8.19245 6.52016 7.62903C6.52016 7.06561 6.06342 6.60887 5.5 6.60887ZM4.53145 2.94192L4.69596 5.95805C4.70365 6.09919 4.82035 6.20968 4.96169 6.20968H6.03831C6.17965 6.20968 6.29635 6.09919 6.30404 5.95805L6.46855 2.94192C6.47687 2.78948 6.35549 2.66129 6.20282 2.66129H4.79715C4.64448 2.66129 4.52313 2.78948 4.53145 2.94192Z' fill='%23FF3844'/%3E%3C/svg%3E%0A");
-      background-repeat: no-repeat;
-    }
-  }
 }
 
-.Form {
-  &Label {
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 19px;
-    margin-bottom: 12px;
-  }
-  &Field {
-    outline: none;
-    width: 100%;
-    padding: 0.625em;
-    margin-bottom: 4px;
-    height: 45px;
-    background: #f9f9ff;
-    box-sizing: border-box;
-    border-radius: 7px;
-    border: 1px solid var(--gray-2);
-
-    &:focus,
-    &:hover {
-      // border-color: var(--gray-3);
-    }
-
-    &HasError {
-      border-color: #ff3844 !important;
-      background-color: #ffedf5 !important;
-    }
-  }
-
-  &Error {
-    height: 15px;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-    visibility: hidden;
-
-    &IsVisible {
-      visibility: visible;
-    }
-  }
+.ContainerPhoneInput :global(.invalid-number-message) {
+  display: flex;
+  align-items: center;
+  left: 50%;
+  top: 110%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+  background-color: transparent;
+  color: #000000;
 }
 
-.InputClassPhoneInput {
-  &:not(.FormFieldHasError) {
-    background-color: rgba(249, 249, 255, 1) !important;
-  }
+.ContainerPhoneInput :global(.invalid-number-message)::before {
+  content: "";
+  margin-right: 4px;
+  width: 11px;
+  height: 11px;
+  display: inline-flex;
+  background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' viewBox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 5.5C11 8.53824 8.53735 11 5.5 11C2.46265 11 0 8.53824 0 5.5C0 2.46353 2.46265 0 5.5 0C8.53735 0 11 2.46353 11 5.5ZM5.5 6.60887C4.93658 6.60887 4.47984 7.06561 4.47984 7.62903C4.47984 8.19245 4.93658 8.64919 5.5 8.64919C6.06342 8.64919 6.52016 8.19245 6.52016 7.62903C6.52016 7.06561 6.06342 6.60887 5.5 6.60887ZM4.53145 2.94192L4.69596 5.95805C4.70365 6.09919 4.82035 6.20968 4.96169 6.20968H6.03831C6.17965 6.20968 6.29635 6.09919 6.30404 5.95805L6.46855 2.94192C6.47687 2.78948 6.35549 2.66129 6.20282 2.66129H4.79715C4.64448 2.66129 4.52313 2.78948 4.53145 2.94192Z' fill='%23FF3844'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
 }
-.ButtonClassPhoneInput {
-  background-color: rgba(249, 249, 255, 1);
-}
-.SearchClassPhoneInput {
-  input {
-    width: 86%;
-  }
-}
-.ButtonClassPhoneInput {
-  width: 71px;
-}
-.InputClassPhoneInput {
-  text-indent: 35px;
 
-  &:focus {
-    box-shadow: none !important;
-  }
+.FormLabel {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 19px;
+  margin-bottom: 12px;
 }
-.ButtonClassPhoneInput {
-  > div {
-    width: 69px !important;
-    background-color: rgba(249, 249, 255, 1);
-    align-items: center;
-    > div {
-      left: 30%;
-      //   width: 20px !important;
-    }
-  }
+
+.FormField {
+  outline: none;
+  width: 100%;
+  padding: 0.625em;
+  margin-bottom: 4px;
+  height: 45px;
+  background: #f9f9ff;
+  box-sizing: border-box;
+  border-radius: 7px;
+  border: 1px solid var(--gray-2);
 }
 
 .FormFieldHasError {
-  :global(.selected-flag) {
-    background-color: #ffedf5 !important;
-  }
-  .ButtonClassPhoneInput {
-    border-right-color: #dedede !important;
-  }
+  border-color: #ff3844 !important;
+  background-color: #ffedf5 !important;
+}
+
+.FormError {
+  height: 15px;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  visibility: hidden;
+}
+
+.FormErrorIsVisible {
+  visibility: visible;
+}
+
+.InputClassPhoneInput:not(.FormFieldHasError) {
+  background-color: #f9f9ff !important;
+}
+
+.ButtonClassPhoneInput {
+  background-color: #f9f9ff;
+}
+
+.SearchClassPhoneInput input {
+  width: 86%;
+}
+
+.ButtonClassPhoneInput {
+  width: 71px;
+}
+
+.InputClassPhoneInput {
+  text-indent: 35px;
+}
+
+.InputClassPhoneInput:focus {
+  box-shadow: none !important;
+}
+
+.ButtonClassPhoneInput > div {
+  width: 69px !important;
+  background-color: #f9f9ff;
+  align-items: center;
+}
+
+.ButtonClassPhoneInput > div > div {
+  left: 30%;
+}
+
+.FormFieldHasError :global(.selected-flag) {
+  background-color: #ffedf5 !important;
+}
+
+.FormFieldHasError .ButtonClassPhoneInput {
+  border-right-color: #dedede !important;
 }

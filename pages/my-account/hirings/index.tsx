@@ -4,6 +4,7 @@ import LoadingPage from "react-app/src/components/layouts/loading-page";
 import dynamic from "next/dynamic";
 import isMobile from "lib/utils/isMobile";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 
 const ClientHiringsPage = dynamic(() =>
   import("react-app/src/components/pages/client-hirings").then(
@@ -17,11 +18,12 @@ const MyHirings = dynamic(() =>
 
 export const getServerSideProp = async ({ req }) => {
   return {
-    props: { isMobile: isMobile(req.headers["user-agent"]) }
+    props: { isMobile: isMobile(req.headers["user-agent"]) },
   };
 };
 
 function Hiring({ isMobile }) {
+  useDesktopClass(isMobile);
   return (
     <>
       <CustomHead />
@@ -33,5 +35,5 @@ function Hiring({ isMobile }) {
 }
 
 export default withAuthenticationRequired(Hiring, {
-  onRedirecting: LoadingPage
+  onRedirecting: LoadingPage,
 });

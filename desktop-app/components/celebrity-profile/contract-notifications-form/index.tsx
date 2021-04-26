@@ -12,11 +12,12 @@ import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-na
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import objectHasProperties from "lib/utils/objectHasProperties";
+import { BooleanRadiosInputs } from "desktop-app/components/common/form/boolean-checkboxes";
 
 const initialValues: ContractNotificationsType = {
   deliveryContact: "",
   deliveryContactCellphone: "",
-  isPublic: true
+  isPublic: true,
 };
 
 const validations: ValidationsType<ContractNotificationsType> = {
@@ -26,7 +27,7 @@ const validations: ValidationsType<ContractNotificationsType> = {
   deliveryContactCellphone(value) {
     if (!deliveryContactCellphoneHasChanged(value)) return null;
     if (!isMobilePhone(value)) return "Ingresa un número de teléfono válido.";
-  }
+  },
 };
 
 const deliveryContactCellphoneHasChanged = (deliveryContactCellphone: string) =>
@@ -44,7 +45,7 @@ function ContractNotificationsForm({
   onSubmit,
   onStepChange,
   initialValues: initialValuesFromProps,
-  isLoading
+  isLoading,
 }: ContractNotificationsFormProps) {
   const {
     values,
@@ -55,7 +56,7 @@ function ContractNotificationsForm({
     getTouchedFieldValues,
     setFieldTouched,
     onFocusField,
-    validateBeforeSubmit
+    validateBeforeSubmit,
   } = useForm<ContractNotificationsType>({
     initialValues: Object.assign(initialValues, initialValuesFromProps),
     validations,
@@ -67,7 +68,7 @@ function ContractNotificationsForm({
         delete values.deliveryContactCellphone;
       }
       onSubmit(values);
-    }
+    },
   });
   const { user } = useAuth0();
 
@@ -163,53 +164,17 @@ function ContractNotificationsForm({
           )}
         />
       </div>
-      <div
-        className={styles.VideoNotificationFormRadio}
-        onChange={({ target: { value } }: { target: any }) => {
-          setFieldValue("isPublic", Boolean(value));
-          setFieldTouched("isPublic", true);
-        }}
-      >
+      <div className={styles.VideoNotificationFormRadioWrapper}>
         <span className={styles.VideoNotificationFormRadioText}>
           Permitir que mi video sea público
         </span>
-        <label
-          htmlFor="isPublic-true"
-          className={styles.VideoNotificationFormRadioLabel}
-        >
-          <i
-            className={classes(
-              "fa fa-check",
-              values.isPublic && styles.VideoNotificationFormRadioLabelChecked
-            )}
-          />
-          Sí
-        </label>
-        <input
-          type="radio"
-          name="isPublic"
-          id="isPublic-true"
-          hidden
-          value={1}
-        />
-        <label
-          htmlFor="isPublic-false"
-          className={styles.VideoNotificationFormRadioLabel}
-        >
-          <i
-            className={classes(
-              "fa fa-times",
-              !values.isPublic && styles.VideoNotificationFormRadioLabelChecked
-            )}
-          />
-          No
-        </label>
-        <input
-          type="radio"
-          name="isPublic"
-          id="isPublic-false"
-          hidden
-          value=""
+        <BooleanRadiosInputs
+          value={values.isPublic}
+          className={styles.VideoNotificationFormRadio}
+          onChange={(value) => {
+            setFieldValue("isPublic", value);
+            setFieldTouched("isPublic", true);
+          }}
         />
       </div>
       <SubmitButton onClick={validateBeforeSubmit}>Continuar</SubmitButton>
