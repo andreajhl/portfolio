@@ -1,0 +1,19 @@
+.PaymentMethodsPageContent {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4.1875rem;
+
+  > * {
+    width: 100%;
+  }
+}
+
+.PaymentMethodsPageContentLeftSide {
+  max-width: 524px;
+  margin-right: 1.5rem;
+}
+
+.PaymentMethodsPageContentRightSide {
+  max-width: 462px;
+  padding-top: 2rem;
+}

@@ -40,7 +40,7 @@ function HeroSection() {
         </header>
         <div className={styles.HeroSectionVideo}>
           <video
-            src="/assets/video/video-home-compressed.mp4"
+            src="https://famosos-media.s3.amazonaws.com/famosos-com-assets/home/banner-video.mp4"
             muted
             autoPlay
             loop

@@ -1,0 +1,48 @@
+.WhatHappensBeforeBanner {
+  padding: 26px 0;
+  background: #f6f7ff;
+}
+
+.WhatHappensBeforeBannerTitle {
+  font-size: 1rem !important;
+  margin-bottom: 32px;
+}
+
+.WhatHappensBeforeBannerStepsList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+
+  > .WhatHappensBeforeBannerStepItem + .WhatHappensBeforeBannerStepItem {
+    margin-left: 38px;
+  }
+
+  > .WhatHappensBeforeBannerStepItem:first-child {
+    p {
+      max-width: 280px;
+    }
+  }
+}
+
+.WhatHappensBeforeBannerStepItem {
+  p {
+    color: var(--gray-4);
+    font-size: 14px;
+    margin-top: 1em;
+    max-width: 392px;
+  }
+}
+
+.WhatHappensBeforeBannerIconContainer {
+  height: 38px;
+  display: flex;
+  > * {
+    margin-top: auto;
+  }
+}
+
+.WhatHappensBeforeBannerLink {
+  color: var(--gray-4);
+  font-weight: bold;
+  text-decoration: underline;
+}

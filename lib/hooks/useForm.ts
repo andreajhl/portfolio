@@ -117,7 +117,7 @@ function useForm<InitialValuesType = { [key: string]: any }>({
   );
 
   function validateField(field: string, value?: any) {
-    const fieldValidator = validations[field];
+    const fieldValidator = validations?.[field];
     if (!fieldValidator) return true;
     if (typeof fieldValidator !== "function") {
       throw new TypeError(
