@@ -1,4 +1,5 @@
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
+import { ContractIsPublicChanger } from "../contract-is-public-changer";
 import { MyHiringsCardDetails } from "../my-hirings-card-details";
 import styles from "./styles.module.scss";
 
@@ -12,6 +13,12 @@ function MyHiringsCardBodyLeftSide({
   return (
     <>
       <MyHiringsCardDetails contractData={contractData} />
+      <ContractIsPublicChanger
+        className={styles.MyHiringsCardBodyLeftSideIsPublicChanger}
+        contractStatus={contractData.status}
+        contractId={contractData.id}
+        isPublic={contractData.isPublic}
+      />
     </>
   );
 }
