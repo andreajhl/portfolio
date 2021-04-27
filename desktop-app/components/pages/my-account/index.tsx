@@ -4,6 +4,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import classes from "classnames";
 import SettingsUser from "desktop-app/components/user-profile/settings";
+import { CelebritiesFavoritesEdit } from "desktop-app/components/user-profile/celebrities-favorites";
 
 function ClientProfilePage() {
   return (
@@ -28,7 +29,7 @@ function ClientProfilePage() {
 
         {/* FAMOSOS FAVORITOS */}
         <div className={styles.SettingsSection}>
-          <span>Seccion</span>
+          <CelebritiesFavoritesEdit />
         </div>
 
         {/* VIDEOS FAVORITOS */}
