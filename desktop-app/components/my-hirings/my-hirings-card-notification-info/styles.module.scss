@@ -5,4 +5,8 @@
 
 .EditableInputField {
   font-size: 14px;
+
+  > div > input:disabled {
+    margin-bottom: 12px;
+  }
 }
