@@ -1,8 +1,11 @@
 import getWindow from "./getWindow";
 
-const getCookie = (cookieName: string): String | undefined => {
+const getCookie = (
+  cookieName: string,
+  cookiesString = getWindow().document.cookie
+): string | undefined => {
   const name = cookieName + "=";
-  const decodedCookie = decodeURIComponent(getWindow().document.cookie);
+  const decodedCookie = decodeURIComponent(cookiesString);
   const cookieArray = decodedCookie.split(";");
   return cookieArray
     .map((cookie) => cookie.trim())
