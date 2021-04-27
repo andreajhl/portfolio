@@ -11,7 +11,15 @@
 .StepsGrayBannerStepsList {
   list-style: none;
   padding: 0;
+  margin-bottom: 0;
   display: flex;
+}
+
+.StepsGrayBannerStepsList.medium .StepsGrayBannerIconContainer {
+  transform: scale(0.825);
+  position: relative;
+  left: -36px;
+  margin-bottom: -2px;
 }
 
 .StepsGrayBannerStepsRow > .StepsGrayBannerStepItem + .StepsGrayBannerStepItem {
@@ -26,6 +34,7 @@
   color: var(--gray-4);
   font-size: 14px;
   margin-top: 1em;
+  line-height: 19.12px;
   margin-bottom: 0;
 }
 

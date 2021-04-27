@@ -14,6 +14,7 @@ type StepsGrayBannerProps = {
   title?: ReactNode;
   steps?: StepItemType[];
   direction?: "row" | "column";
+  iconSize?: "default" | "medium";
 };
 
 const toListItem = ({ iconAlternativeText, iconName, description }) => (
@@ -34,6 +35,7 @@ function StepsGrayBanner({
   title = null,
   direction = "row",
   steps = [],
+  iconSize = "default",
 }: StepsGrayBannerProps) {
   return (
     <section className={classes(styles.StepsGrayBanner, className)}>
@@ -46,7 +48,8 @@ function StepsGrayBanner({
             styles.StepsGrayBannerStepsList,
             direction === "column"
               ? styles.StepsGrayBannerStepsColumn
-              : styles.StepsGrayBannerStepsRow
+              : styles.StepsGrayBannerStepsRow,
+            styles[iconSize]
           )}
         >
           {steps?.map?.(toListItem) || null}
