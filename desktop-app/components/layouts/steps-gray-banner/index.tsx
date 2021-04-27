@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Maybe from "../../common/helpers/maybe";
+import classes from "classnames";
 import styles from "./styles.module.scss";
 
 type StepItemType = {
@@ -9,8 +10,10 @@ type StepItemType = {
 };
 
 type StepsGrayBannerProps = {
+  className?: string;
   title?: ReactNode;
-  steps: StepItemType[];
+  steps?: StepItemType[];
+  direction?: "row" | "column";
 };
 
 const toListItem = ({ iconAlternativeText, iconName, description }) => (
@@ -26,15 +29,27 @@ const toListItem = ({ iconAlternativeText, iconName, description }) => (
   </li>
 );
 
-function StepsGrayBanner({ title = null, steps }: StepsGrayBannerProps) {
+function StepsGrayBanner({
+  className = "",
+  title = null,
+  direction = "row",
+  steps = [],
+}: StepsGrayBannerProps) {
   return (
-    <section className={styles.StepsGrayBanner}>
+    <section className={classes(styles.StepsGrayBanner, className)}>
       <div className="container">
         <Maybe it={typeof title === "string"} orElse={title}>
           <h2 className={styles.StepsGrayBannerTitle}>{title}</h2>
         </Maybe>
-        <ul className={styles.StepsGrayBannerStepsList}>
-          {steps.map(toListItem)}
+        <ul
+          className={classes(
+            styles.StepsGrayBannerStepsList,
+            direction === "column"
+              ? styles.StepsGrayBannerStepsColumn
+              : styles.StepsGrayBannerStepsRow
+          )}
+        >
+          {steps?.map?.(toListItem) || null}
         </ul>
       </div>
     </section>

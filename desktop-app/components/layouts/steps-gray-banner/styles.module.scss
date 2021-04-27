@@ -14,13 +14,11 @@
   display: flex;
 }
 
-.StepsGrayBannerStepsList
-  > .StepsGrayBannerStepItem
-  + .StepsGrayBannerStepItem {
+.StepsGrayBannerStepsRow > .StepsGrayBannerStepItem + .StepsGrayBannerStepItem {
   margin-left: 38px;
 }
 
-.StepsGrayBannerStepsList > .StepsGrayBannerStepItem:first-child p {
+.StepsGrayBannerStepsRow > .StepsGrayBannerStepItem:first-child p {
   max-width: 280px;
 }
 
@@ -28,14 +26,32 @@
   color: var(--gray-4);
   font-size: 14px;
   margin-top: 1em;
+  margin-bottom: 0;
+}
+
+.StepsGrayBannerStepsRow .StepsGrayBannerStepItem p {
   max-width: 392px;
 }
 
 .StepsGrayBannerIconContainer {
+  margin: 0;
+}
+
+.StepsGrayBannerStepsRow .StepsGrayBannerIconContainer {
   height: 38px;
   display: flex;
 }
 
-.StepsGrayBannerIconContainer > * {
+.StepsGrayBannerStepsRow .StepsGrayBannerIconContainer > * {
   margin-top: auto;
+}
+
+.StepsGrayBannerStepsColumn {
+  flex-direction: column;
+}
+
+.StepsGrayBannerStepsColumn
+  > .StepsGrayBannerStepItem
+  + .StepsGrayBannerStepItem {
+  margin-top: 1.5rem;
 }
