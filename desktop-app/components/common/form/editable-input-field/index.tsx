@@ -14,6 +14,7 @@ type EditableInputFieldProps = {
   containerClass?: string;
   inputClass?: string;
   labelClass?: string;
+  initialIsEditing?: boolean;
   onClickSave?: (setIsEditing: Dispatch<SetStateAction<boolean>>) => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
@@ -25,10 +26,11 @@ function EditableInputField({
   containerClass = className,
   inputClass = "",
   labelClass,
+  initialIsEditing = false,
   onClickSave = function () {},
   ...inputProps
 }: EditableInputFieldProps) {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(initialIsEditing);
 
   return (
     <div className={classes(styles.EditableInputField, containerClass)}>
