@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 type InputWithDynamicWidthProps = {
   removeBorder?: boolean;
   name: string;
-  className: string;
+  className?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 function InputWithDynamicWidth({
