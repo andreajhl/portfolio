@@ -1,0 +1,19 @@
+.ClientProfilePageContainer {
+  margin-top: 1.375rem;
+}
+
+.SettingsSection {
+  margin-top: 1.875rem;
+}
+
+.GridOfSettings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  > div {
+    flex: 0 0 50%;
+    // border: 1px solid #ccc;
+    height: fit-content;
+    min-height: 200px;
+  }
+}

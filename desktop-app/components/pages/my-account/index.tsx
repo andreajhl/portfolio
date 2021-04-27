@@ -1,21 +1,40 @@
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { PageHeading } from "desktop-app/components/layouts/page-heading";
 import React from "react";
+import styles from "./styles.module.scss";
+import classes from "classnames";
+import SettingsUser from "desktop-app/components/user-profile/settings";
 
 function ClientProfilePage() {
   return (
     <PageContainer>
       <PageHeading showBackButton={false}>Mi Perfil</PageHeading>
-      <main>
+      <main className={classes("container", styles.ClientProfilePageContainer)}>
         {/* INFORMACION DE CUENTA */}
-
+        <div className={styles.SettingsSection}>
+          <span>Seccion</span>
+        </div>
         {/* MULTIPLE SETTINGS */}
+        <div className={styles.SettingsSection}>
+          <div className={styles.GridOfSettings}>
+            <div></div>
+            <div></div>
+            <div>
+              <SettingsUser />
+            </div>
+            <div></div>
+          </div>
+        </div>
 
         {/* FAMOSOS FAVORITOS */}
+        <div className={styles.SettingsSection}>
+          <span>Seccion</span>
+        </div>
 
         {/* VIDEOS FAVORITOS */}
-
-        <span>hola mundo</span>
+        <div className={styles.SettingsSection}>
+          <span>Seccion</span>
+        </div>
       </main>
     </PageContainer>
   );
