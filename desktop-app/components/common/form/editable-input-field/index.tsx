@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import { useState } from "react";
 import { Dispatch } from "react";
 import { SetStateAction } from "react";
+import { InputField } from "../input-field";
 
 type EditableInputFieldProps = {
   id?: string;
@@ -20,7 +21,7 @@ type EditableInputFieldProps = {
 
 function EditableInputField({
   id = `EditableInputField-${Date.now()}`,
-  InputComponent = "input",
+  InputComponent = InputField,
   label,
   className = "",
   containerClass = className,
