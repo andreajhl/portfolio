@@ -1,5 +1,5 @@
-import { CellphoneNumberInput } from "../common/form/cellphone-number-input";
-import Maybe from "../common/helpers/maybe";
+import { CellphoneNumberInput } from "../../common/form/cellphone-number-input";
+import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
 
 type DeliveryCellphoneInputProps = {

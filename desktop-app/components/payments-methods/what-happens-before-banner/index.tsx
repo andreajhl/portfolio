@@ -1,27 +1,21 @@
 import { Link } from "desktop-app/components/common/routing/link";
-import { ReactNode } from "react";
+import { StepsGrayBanner } from "desktop-app/components/layouts/steps-gray-banner";
 import styles from "./styles.module.scss";
 
 type WhatHappensBeforeBannerProps = {};
 
-type StepItemType = {
-  iconAlternativeText: string;
-  iconName: string;
-  description: string | ReactNode;
-};
-
-const stepsItems: StepItemType[] = [
+const stepsItems = [
   {
     iconAlternativeText: "El famoso recibe",
     iconName: "celebrity-receive",
     description:
-      "El famoso recibirá tu solicitud y grabará tu video en un plazo de 7 días."
+      "El famoso recibirá tu solicitud y grabará tu video en un plazo de 7 días.",
   },
   {
     iconAlternativeText: "Te notificaremos",
     iconName: "notification",
     description:
-      "Te notificaremos vía mail o Whatsapp cuando tu video esté listo."
+      "Te notificaremos vía mail o Whatsapp cuando tu video esté listo.",
   },
   {
     iconAlternativeText: "Te respaldamos",
@@ -34,38 +28,16 @@ const stepsItems: StepItemType[] = [
           Conoce más acerca de esto.
         </Link>
       </>
-    )
-  }
+    ),
+  },
 ];
-
-const toListItem = ({ iconAlternativeText, iconName, description }) => (
-  <li
-    key={iconAlternativeText}
-    className={styles.WhatHappensBeforeBannerStepItem}
-  >
-    <figure className={styles.WhatHappensBeforeBannerIconContainer}>
-      <img
-        className={styles[iconName]}
-        src={`/assets/img/what-happens-before-banner/${iconName}.svg`}
-        alt={iconAlternativeText}
-      />
-    </figure>
-    <p>{description}</p>
-  </li>
-);
 
 function WhatHappensBeforeBanner({ ...props }: WhatHappensBeforeBannerProps) {
   return (
-    <section className={styles.WhatHappensBeforeBanner}>
-      <div className="container">
-        <h2 className={styles.WhatHappensBeforeBannerTitle}>
-          ¿Qué sucede después de tu compra?
-        </h2>
-        <ul className={styles.WhatHappensBeforeBannerStepsList}>
-          {stepsItems.map(toListItem)}
-        </ul>
-      </div>
-    </section>
+    <StepsGrayBanner
+      title="¿Qué sucede después de tu compra?"
+      steps={stepsItems}
+    />
   );
 }
 

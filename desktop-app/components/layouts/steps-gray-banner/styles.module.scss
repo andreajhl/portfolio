@@ -1,0 +1,41 @@
+.StepsGrayBanner {
+  padding: 26px 0;
+  background: #f6f7ff;
+}
+
+.StepsGrayBannerTitle {
+  font-size: 1rem !important;
+  margin-bottom: 32px;
+}
+
+.StepsGrayBannerStepsList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.StepsGrayBannerStepsList
+  > .StepsGrayBannerStepItem
+  + .StepsGrayBannerStepItem {
+  margin-left: 38px;
+}
+
+.StepsGrayBannerStepsList > .StepsGrayBannerStepItem:first-child p {
+  max-width: 280px;
+}
+
+.StepsGrayBannerStepItem p {
+  color: var(--gray-4);
+  font-size: 14px;
+  margin-top: 1em;
+  max-width: 392px;
+}
+
+.StepsGrayBannerIconContainer {
+  height: 38px;
+  display: flex;
+}
+
+.StepsGrayBannerIconContainer > * {
+  margin-top: auto;
+}
