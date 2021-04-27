@@ -1,0 +1,59 @@
+.FormFieldHasError {
+  border-color: #ff3844 !important;
+  background-color: #ffedf5 !important;
+}
+
+.InputClassPhoneInput:not(.FormFieldHasError) {
+  background-color: #f9f9ff !important;
+}
+
+.ButtonClassPhoneInput {
+  background-color: #f9f9ff;
+}
+
+.SearchClassPhoneInput input {
+  width: 86%;
+}
+
+.ButtonClassPhoneInput {
+  background-color: #f9f9ff;
+}
+
+.SearchClassPhoneInput input {
+  width: 86%;
+}
+
+.ButtonClassPhoneInput {
+  width: 71px;
+}
+
+.InputClassPhoneInput {
+  color: var(--dark, #000) !important;
+  text-indent: 35px;
+}
+
+.InputClassPhoneInput:focus {
+  box-shadow: none !important;
+}
+
+.ButtonClassPhoneInput > div {
+  width: 69px !important;
+  background-color: #f9f9ff;
+  align-items: center;
+
+  &:hover {
+    background-color: #f9f9ff !important;
+  }
+}
+
+.ButtonClassPhoneInput > div > div {
+  left: 30%;
+}
+
+.FormFieldHasError :global(.selected-flag) {
+  background-color: #ffedf5 !important;
+}
+
+.FormFieldHasError .ButtonClassPhoneInput {
+  border-right-color: #dedede !important;
+}

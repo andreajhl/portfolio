@@ -1,5 +1,3 @@
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
 import { isMobilePhone } from "lib/utils/isMobilePhone";
 import styles from "./styles.module.scss";
 import classes from "classnames";
@@ -13,6 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import objectHasProperties from "lib/utils/objectHasProperties";
 import { BooleanRadiosInputs } from "desktop-app/components/common/form/boolean-checkboxes";
+import { CellphoneNumberInput } from "desktop-app/components/common/form/cellphone-number-input";
 
 const initialValues: ContractNotificationsType = {
   deliveryContact: "",
@@ -131,26 +130,13 @@ function ContractNotificationsForm({
         <label className={styles.FormLabel}>
           Notificarme también por Whatsapp (opcional)
         </label>
-        <PhoneInput
-          value={values.deliveryContactCellphone}
-          containerClass={classes(
-            styles.ContainerPhoneInput,
-            errors?.deliveryContactCellphone && styles.FormFieldHasError
-          )}
-          inputClass={classes(
-            styles.InputClassPhoneInput,
-            errors?.deliveryContactCellphone && styles.FormFieldHasError
-          )}
-          buttonClass={classes(
-            styles.ButtonClassPhoneInput,
-            errors?.deliveryContactCellphone && styles.FormFieldHasError
-          )}
+        <CellphoneNumberInput
+          containerClass={styles.ContainerPhoneInput}
+          hasError={Boolean(errors?.deliveryContactCellphone)}
           placeholder="+57 310 1234567"
-          dropdownClass={styles.DropdownClassPhoneInput}
           country="co"
           enableSearch
           searchPlaceholder="Buscar país"
-          searchClass={styles.SearchClassPhoneInput}
           onChange={(value) => {
             setFieldTouched("deliveryContactCellphone", true);
             setFieldValue("deliveryContactCellphone", value);
