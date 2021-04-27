@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 import { TypingEffectLooped } from "../../common/helpers/typing-effect-looped";
 
-function HeroSection() {
+function HeroSection({ userLocation }: { userLocation: string }) {
   return (
     <section className={styles.HeroSection}>
       <div className={"container " + styles.HeroSectionContainer}>
