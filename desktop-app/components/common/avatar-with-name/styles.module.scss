@@ -1,0 +1,20 @@
+.AvatarWithNameContainer {
+  display: flex;
+  flex-flow: column;
+  width: 88px;
+}
+.AvatarImg {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+}
+
+.AvatarName {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+  margin-top: 1rem;
+  text-align: center;
+}
