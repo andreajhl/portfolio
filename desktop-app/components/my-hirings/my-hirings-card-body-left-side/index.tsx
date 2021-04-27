@@ -2,6 +2,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { canEditContract } from "desktop-app/constants/contractStatuses";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import { ContractIsPublicChanger } from "../contract-is-public-changer";
+import { MyHiringsCardNotificationInfo } from "../my-hirings-card-notification-info";
 import { MyHiringsCardDetails } from "../my-hirings-card-details";
 import styles from "./styles.module.scss";
 
@@ -16,6 +17,7 @@ function MyHiringsCardBodyLeftSide({
   return (
     <>
       <MyHiringsCardDetails contractData={contractData} />
+      <MyHiringsCardNotificationInfo contractData={contractData} />
       <ContractIsPublicChanger
         className={styles.IsPublicChanger}
         contractStatus={contractData.status}

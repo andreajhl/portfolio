@@ -4,13 +4,13 @@ const TYPES = {
   SET_FIELD_VALUE: "SET_FIELD_VALUE",
   SET_FIELD_TOUCHED: "SET_FIELD_TOUCHED",
   SET_FIELD_ERROR: "SET_FIELD_ERROR",
-  FORM_SUBMITTED: "FORM_SUBMITTED"
+  FORM_SUBMITTED: "FORM_SUBMITTED",
 };
 
 const useFormInitialState = {
   errors: {},
   values: {},
-  touched: {}
+  touched: {},
 };
 
 type PayloadType =
@@ -51,8 +51,8 @@ const setFieldProperty = (
   ...state,
   [property]: {
     ...state[property],
-    [payload.name]: payload.value
-  }
+    [payload.name]: payload.value,
+  },
 });
 
 function formReducer(
@@ -73,7 +73,7 @@ function formReducer(
         touched: Object.assign(
           {},
           ...Object.keys(state.values).map((key) => ({ [key]: true }))
-        )
+        ),
       };
     default:
       return state;
@@ -86,7 +86,7 @@ const getInitialState = <InitialValuesType>(
   return initialValues
     ? {
         ...useFormInitialState,
-        values: { ...initialValues }
+        values: { ...initialValues },
       }
     : useFormInitialState;
 };
@@ -102,14 +102,14 @@ type UseFormParam<InitialValuesType> = {
   initialValues: InitialValuesType;
   validations?: ValidationsType<InitialValuesType>;
   validateOnChange?: boolean;
-  onSubmit: (values: InitialValuesType) => void;
+  onSubmit: (values: InitialValuesType) => any;
 };
 
 function useForm<InitialValuesType = { [key: string]: any }>({
   initialValues,
   validations,
   validateOnChange = true,
-  onSubmit
+  onSubmit,
 }: UseFormParam<InitialValuesType>) {
   const [state, dispatch] = useReducer(
     formReducer,
@@ -146,21 +146,21 @@ function useForm<InitialValuesType = { [key: string]: any }>({
   function onFocusField({ target }) {
     dispatch({
       type: TYPES.SET_FIELD_TOUCHED,
-      payload: { name: target.name, value: true }
+      payload: { name: target.name, value: true },
     });
   }
 
   function setFieldTouched(name: string, value: boolean) {
     dispatch({
       type: TYPES.SET_FIELD_TOUCHED,
-      payload: { name, value }
+      payload: { name, value },
     });
   }
 
   function setFieldError(name: string, error: any) {
     dispatch({
       type: TYPES.SET_FIELD_ERROR,
-      payload: { name, value: error }
+      payload: { name, value: error },
     });
   }
 
@@ -174,11 +174,11 @@ function useForm<InitialValuesType = { [key: string]: any }>({
     return fieldsAreValid;
   }
 
-  function validateBeforeSubmit(event: { preventDefault: () => void }) {
-    event.preventDefault();
+  function validateBeforeSubmit(event?: { preventDefault: () => void }) {
+    event?.preventDefault?.();
     dispatch({ type: TYPES.FORM_SUBMITTED });
     if (!validateFields()) return;
-    onSubmit(state.values as InitialValuesType);
+    return onSubmit(state.values as InitialValuesType);
   }
 
   function touchedFieldsAreInvalid() {
@@ -208,7 +208,8 @@ function useForm<InitialValuesType = { [key: string]: any }>({
     validateFields,
     validateField,
     getTouchedFieldValues,
-    validateBeforeSubmit
+    validateBeforeSubmit,
+    submitForm: validateBeforeSubmit,
   };
 }
 
