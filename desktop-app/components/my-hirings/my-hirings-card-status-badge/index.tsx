@@ -1,3 +1,9 @@
+import {
+  COMPLETED,
+  EXPIRED,
+  PAYED_BY_CLIENT,
+  REJECTED,
+} from "desktop-app/constants/contractStatuses";
 import { ReactNode } from "react";
 import Maybe from "../../common/helpers/maybe";
 import { ExclamationCircleIcon } from "../../common/icons";
@@ -14,34 +20,34 @@ type StatusInfoType = {
 };
 
 const statusesInfo: { [statusCode: number]: StatusInfoType } = {
-  40: {
-    backgroundColor: "#FFDCEC",
-    icon: "far fa-check-circle",
-    label: "Entregado"
-  },
-  10: {
+  [PAYED_BY_CLIENT]: {
     backgroundColor: "#BFC4FF",
     icon: "far fa-clock",
-    label: "Pendiente"
+    label: "Pendiente",
   },
-  20: {
+  [REJECTED]: {
     backgroundColor: "#F6F6F6",
     icon: "far fa-times-circle",
-    label: "Rechazado"
+    label: "Rechazado",
   },
-  25: {
+  [EXPIRED]: {
     backgroundColor: "#F6F6F6",
     icon: (
       <ExclamationCircleIcon className={styles.MyHiringsCardStatusBadgeIcon} />
     ),
-    label: "Expirado"
-  }
+    label: "Expirado",
+  },
+  [COMPLETED]: {
+    backgroundColor: "#FFDCEC",
+    icon: "far fa-check-circle",
+    label: "Entregado",
+  },
 };
 
 statusesInfo[30] = statusesInfo[40];
 
 function MyHiringsCardStatusBadge({ status }: MyHiringsCardStatusBadgeProps) {
-  const { backgroundColor, icon, label } = statusesInfo[status];
+  const { backgroundColor, icon, label } = statusesInfo[status] || {};
 
   return (
     <span

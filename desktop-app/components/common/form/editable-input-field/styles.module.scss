@@ -1,0 +1,35 @@
+.EditableInputField {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Label {
+  font-weight: bold;
+  display: block;
+}
+
+.Input {
+  width: 100%;
+}
+
+.Input:disabled {
+  color: var(--gray-4);
+  line-height: 1;
+  background: none;
+  border: none;
+  padding: 0;
+
+  &::placeholder {
+    color: var(--gray-3);
+  }
+}
+
+.EditingButtonWrapperRight {
+  margin-left: 16px;
+  margin-top: -0.5em;
+}
+
+.EditingButtonWrapperBottom {
+  flex-basis: 100%;
+  margin-top: 6px;
+}

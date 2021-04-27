@@ -1,41 +1,58 @@
 import { BooleanRadiosInputs } from "desktop-app/components/common/form/boolean-checkboxes";
-import { connect } from "react-redux";
+import { useState } from "react";
+import { updateContractIsPublic } from "react-app/src/state/ducks/contracts/actions";
+import classes from "classnames";
 import styles from "./styles.module.scss";
-
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = {};
-
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+import { canEditIsPublic } from "desktop-app/constants/contractStatuses";
 
 type ContractIsPublicChangerProps = {
   className?: string;
   contractStatus: number;
   contractId: number;
-  isPublic: boolean;
-} & StateProps &
-  DispatchProps;
+  contractIsPublic: boolean;
+  contractReference: string;
+  celebrityId: number;
+};
 
 function ContractIsPublicChanger({
   className = "",
   contractStatus,
   contractId,
-  isPublic,
+  contractIsPublic,
+  contractReference,
+  celebrityId,
 }: ContractIsPublicChangerProps) {
+  const [isPublic, setIsPublic] = useState(contractIsPublic);
+  const [isLoading, setIsLoading] = useState(false);
+
+  function handleIsPublic(newIsPublicValue) {
+    if (isLoading || !canEditIsPublic(contractStatus)) {
+      return;
+    }
+    setIsLoading(true);
+    setIsPublic(newIsPublicValue);
+    updateContractIsPublic({
+      id: contractId,
+      reference: contractReference,
+      isPublic: newIsPublicValue,
+      celebrityId: celebrityId,
+    }).then(() => setIsLoading(false));
+  }
+
   return (
-    <div className={`${styles.ContractIsPublicChanger} ${className}`}>
+    <div className={classes(styles.ContractIsPublicChanger, className)}>
       <span className={styles.ContractIsPublicChangerText}>
         Permitir que este video sea público
       </span>
-      <BooleanRadiosInputs value={isPublic} />
+      <BooleanRadiosInputs
+        value={isPublic}
+        onChange={handleIsPublic}
+        containerClass={classes(
+          isLoading && styles.ContractIsPublicChangerIsLoading
+        )}
+      />
     </div>
   );
 }
 
-const _ContractIsPublicChanger = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ContractIsPublicChanger);
-
-export { _ContractIsPublicChanger as ContractIsPublicChanger };
+export { ContractIsPublicChanger };

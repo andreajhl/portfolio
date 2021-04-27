@@ -3,6 +3,7 @@ import { IconButton } from "../icon-button";
 import styles from "./styles.module.scss";
 
 type EditingToggleButtonProps = {
+  removeSaveButtonPadding?: boolean;
   isEditing?: boolean;
   editButtonColor?: string;
   saveButtonColor?: string;
@@ -15,11 +16,12 @@ type EditingToggleButtonProps = {
 };
 
 function EditingToggleButton({
+  removeSaveButtonPadding = false,
   isEditing = false,
   editButtonColor = "var(--tertiary)",
   saveButtonColor = "var(--tertiary)",
   onClickEdit = function () {},
-  onClickSave = function () {}
+  onClickSave = function () {},
 }: EditingToggleButtonProps) {
   return (
     <Maybe
@@ -34,7 +36,9 @@ function EditingToggleButton({
       }
     >
       <button
-        className={"btn " + styles.EditingToggleButtonSaveButton}
+        className={`btn ${styles.EditingToggleButtonSaveButton} ${
+          removeSaveButtonPadding ? styles.removeSaveButtonPadding : ""
+        }`}
         onClick={onClickSave}
         style={{ color: saveButtonColor }}
       >
