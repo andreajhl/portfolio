@@ -5,9 +5,10 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
 import { wrapper } from "react-app/src/state/store";
+import getCookie from "react-app/src/utils/getCookie";
 import { useDesktopClass } from "../lib/hooks/useDesktopClass";
 
-const HomePage = dynamic(() =>
+const HomePage = dynamic<{ userLocation: string }>(() =>
   import("desktop-app/components/pages/home").then((mod) => mod.HomePage)
 );
 
@@ -20,21 +21,23 @@ const CelebritiesPage = dynamic<{ isMobile: boolean }>(() =>
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ req, store }) => {
     await fetchCelebritySections({ limit: 4, offset: 0 })(store.dispatch);
+
     return {
       props: {
-        isMobile: isMobile(req.headers["user-agent"])
-      }
+        isMobile: isMobile(req.headers["user-agent"]),
+        userLocation: getCookie("userLocation", req?.headers?.cookie) || "",
+      },
     };
   }
 );
 
-const Home = ({ isMobile }) => {
+const Home = ({ isMobile, userLocation }) => {
   useDesktopClass(isMobile);
 
   return (
     <>
       <CustomHead />
-      <Maybe it={isMobile} orElse={<HomePage />}>
+      <Maybe it={isMobile} orElse={<HomePage userLocation={userLocation} />}>
         <CelebritiesPage isMobile={isMobile} />
       </Maybe>
     </>

@@ -1,0 +1,17 @@
+.CellphoneNumberInput {
+  height: 37px !important;
+  padding-left: 44px !important;
+}
+
+.CellphoneNumberInputButton {
+  width: 66px !important;
+
+  > div {
+    width: 64px !important;
+  }
+}
+
+.CellphoneNumberInputDisabled {
+  font-size: 14px;
+  color: var(--gray-4);
+}

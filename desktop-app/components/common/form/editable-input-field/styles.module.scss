@@ -15,8 +15,8 @@
 .Input:disabled {
   color: var(--gray-4);
   line-height: 1;
-  background: none;
-  border: none;
+  background: none !important;
+  border: none !important;
   padding: 0;
 
   &::placeholder {

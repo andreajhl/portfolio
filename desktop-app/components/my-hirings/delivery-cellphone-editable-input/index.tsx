@@ -4,6 +4,7 @@ import classes from "classnames";
 import styles from "./styles.module.scss";
 import { useState } from "react";
 import { EditableInputEmpty } from "desktop-app/components/common/form/editable-input-empty";
+import { DeliveryCellphoneInput } from "desktop-app/components/delivery-cellphone-input";
 
 type DeliveryCellphoneEditableInputProps = {
   className?: string;
@@ -13,9 +14,9 @@ const label = "Whatsapp de notificación (opcional)";
 
 function DeliveryCellphoneEditableInput({
   className = "",
-  deliveryContactCellphone,
 }: DeliveryCellphoneEditableInputProps) {
   const [hasDeliveryCellphone, setHasDeliveryCellphone] = useState(false);
+
   return (
     <Maybe
       it={hasDeliveryCellphone}
@@ -28,9 +29,12 @@ function DeliveryCellphoneEditableInput({
       }
     >
       <EditableInputField
+        value={"+584125220585"}
         className={className}
         label={label}
         initialIsEditing={true}
+        onClickSave={(setIsEditing) => setIsEditing(false)}
+        InputComponent={DeliveryCellphoneInput}
       />
     </Maybe>
   );

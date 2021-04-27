@@ -1,7 +1,8 @@
 import styles from "./styles.module.scss";
 import { TypingEffectLooped } from "../../common/helpers/typing-effect-looped";
+import { HeroSectionVideo } from "../hero-section-video";
 
-function HeroSection() {
+function HeroSection({ userLocation }: { userLocation: string }) {
   return (
     <section className={styles.HeroSection}>
       <div className={"container " + styles.HeroSectionContainer}>
@@ -38,14 +39,8 @@ function HeroSection() {
             </li>
           </ul>
         </header>
-        <div className={styles.HeroSectionVideo}>
-          <video
-            src="https://famosos-media.s3.amazonaws.com/famosos-com-assets/home/banner-video.mp4"
-            muted
-            autoPlay
-            loop
-            preload="metadata"
-          />
+        <div className={styles.HeroSectionVideoContainer}>
+          <HeroSectionVideo userLocation={userLocation} />
           <div className={styles.HeroSectionOverlay}></div>
         </div>
       </div>
