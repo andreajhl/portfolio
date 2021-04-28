@@ -50,9 +50,9 @@ const CarouselItemsLayout = ({
       activeIndex={index}
       onSelect={handleSelect}
       interval={null}
-      prevIcon={<i className="fa fa-chevron-left controls-icon" />}
+      prevIcon={<i className="fa fa-chevron-circle-left controls-icon" />}
       prevLabel="Anterior"
-      nextIcon={<i className="fa fa-chevron-right controls-icon" />}
+      nextIcon={<i className="fa fa-chevron-circle-right controls-icon" />}
       nextLabel="Siguiente"
       className="post-carousel"
     >
