@@ -1,3 +1,4 @@
+import { ContractReviewCard } from "desktop-app/components/contract-review-card";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import { MyHiringsCardStepsBanner } from "../my-hirings-card-steps-banner";
 import styles from "./styles.module.scss";
@@ -11,7 +12,8 @@ function MyHiringsCardBodyRightSide({
 }: MyHiringsCardBodyRightSideProps) {
   return (
     <>
-      <MyHiringsCardStepsBanner contractData={contractData} />
+      {/* <MyHiringsCardStepsBanner contractData={contractData} /> */}
+      <ContractReviewCard contractData={contractData} />
     </>
   );
 }
