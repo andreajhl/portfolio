@@ -18,6 +18,7 @@ export const PostDate = styled.span`
   margin-left: auto;
 `;
 export const PostMedia = styled.div`
+  display: block;
   width: 100%;
   /* height: 367.64px; */
   height: 86.06vw;
@@ -84,6 +85,10 @@ export const PostSubscribeButton = styled.button`
   background: #ffffff;
   border-radius: 10px;
   border: none;
+
+  &:hover {
+    background: #f5f4f2;
+  }
 `;
 export const PostFooter = styled.footer`
   display: flex;

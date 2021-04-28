@@ -75,18 +75,16 @@ export const SubscriptionPostHiddenContent = ({
   return (
     <>
       <Maybe it={Boolean(imageSrc)}>
-        <PostMedia>
+        <PostMedia as={Link} href={subscriptionPath}>
           <PostHiddenImage src={imageSrc} />
           <PostHiddenDiv imageSrc={imageSrc}>
             <img src="/assets/img/lock.svg" alt="Cerradura" />
             <PostHiddenText>
               Únete al club de {firstName} para desbloquear este contenido
             </PostHiddenText>
-            <Link href={subscriptionPath}>
-              <PostSubscribeButton>
-                Suscríbete ahora por {price}/mes
-              </PostSubscribeButton>
-            </Link>
+            <PostSubscribeButton>
+              Suscríbete ahora por {price}/mes
+            </PostSubscribeButton>
           </PostHiddenDiv>
         </PostMedia>
       </Maybe>
