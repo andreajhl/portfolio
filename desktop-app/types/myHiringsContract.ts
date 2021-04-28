@@ -17,6 +17,7 @@ type MyHiringsContract = {
   review: string;
   celebrityData: CelebrityData;
   // fecha de grabación
+  // deliveryCellphone
 };
 
 type CelebrityData = {

@@ -7,11 +7,11 @@ type MyHiringsCardBodyRightSideProps = {
 };
 
 function MyHiringsCardBodyRightSide({
-  ...props
+  contractData,
 }: MyHiringsCardBodyRightSideProps) {
   return (
     <>
-      <MyHiringsCardStepsBanner />
+      <MyHiringsCardStepsBanner contractData={contractData} />
     </>
   );
 }

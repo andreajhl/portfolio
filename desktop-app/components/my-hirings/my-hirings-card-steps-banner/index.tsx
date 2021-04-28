@@ -1,17 +1,25 @@
+import Maybe from "desktop-app/components/common/helpers/maybe";
 import { Link } from "desktop-app/components/common/routing/link";
 import { StepsGrayBanner } from "desktop-app/components/layouts/steps-gray-banner";
+import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import styles from "./styles.module.scss";
 
-type MyHiringsCardStepsBannerProps = {};
+type MyHiringsCardStepsBannerProps = {
+  contractData: MyHiringsContract;
+};
 
-const stepsItems = [
+const getStepsItems = ({
+  celebrityData,
+  deliveryContact,
+}: MyHiringsContract) => [
   {
     iconAlternativeText: "El famoso recibe",
     iconName: "celebrity-receive",
     description: (
       <>
-        Hemos enviado tu solicitud a Andrés Cepeda, tu video será grabado en un
-        plazo de <span className={styles.TextBold}>1 a 7 días</span>.
+        Hemos enviado tu solicitud a {celebrityData.fullName}, tu video será
+        grabado en un plazo de{" "}
+        <span className={styles.TextBold}>1 a 7 días</span>.
       </>
     ),
   },
@@ -21,9 +29,11 @@ const stepsItems = [
     description: (
       <>
         Te notificaremos a{" "}
-        <span className={styles.TextBold}>erika@famosos.com</span> y a{" "}
-        <span className={styles.TextBold}>+52 55 4375 0949</span> cuando tu
-        video esté listo.
+        <span className={styles.TextBold}>{deliveryContact}</span>{" "}
+        <Maybe it={false}>
+          y a <span className={styles.TextBold}>+52 55 4375 0949</span>{" "}
+        </Maybe>
+        cuando tu video esté listo.
       </>
     ),
   },
@@ -45,13 +55,15 @@ const stepsItems = [
   },
 ];
 
-function MyHiringsCardStepsBanner({ ...props }: MyHiringsCardStepsBannerProps) {
+function MyHiringsCardStepsBanner({
+  contractData,
+}: MyHiringsCardStepsBannerProps) {
   return (
     <StepsGrayBanner
       direction="column"
       iconSize="medium"
       className={styles.MyHiringsCardStepsBanner}
-      steps={stepsItems}
+      steps={getStepsItems(contractData)}
     />
   );
 }
