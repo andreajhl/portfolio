@@ -22,8 +22,58 @@ export const hirings = [
       username: "marktacher",
       avatar:
         "https://dqb0851cl2gjs.cloudfront.net/celebrities/864/avatar/famosos-videos-personalizados-marktacher-compressed.jpg",
-      fullName: "Mark Tacher Testing"
-    }
+      fullName: "Mark Tacher Testing",
+    },
+  },
+  {
+    status: 10,
+    id: 10160,
+    reference: "202104171832-9813836-10160",
+    contractType: 1,
+    deliveryContact: "german@famosos.com",
+    deliveryFrom: "",
+    deliveryTo: "German Solano",
+    deliveryType: 1,
+    instructions: "¡Hola Fernando Fiore El Presidente  Testing! ",
+    isPublic: true,
+    occasion: "OTHER",
+    userId: 462,
+    celebrityId: 8,
+    paymentDate: "0001-01-01T00:00:00Z",
+    stars: 0,
+    review: "",
+    celebrityData: {
+      id: 8,
+      username: "ferfiore",
+      avatar:
+        "https://dqb0851cl2gjs.cloudfront.net/celebrities/8/avatar/famosos-videos-personalizados-ferfiore-compressed.jpg",
+      fullName: "Fernando Fiore El Presidente  Testing",
+    },
+  },
+  {
+    status: 20,
+    id: 10205,
+    reference: "202104221036-7465585-10205",
+    contractType: 1,
+    deliveryContact: "german@famosos.com",
+    deliveryFrom: "",
+    deliveryTo: "German Solano",
+    deliveryType: 1,
+    instructions: "¡Hola Mark Tacher Testing! ",
+    isPublic: true,
+    occasion: "OTHER",
+    userId: 462,
+    celebrityId: 864,
+    paymentDate: "2021-04-23T16:19:49.502103-04:00",
+    stars: 0,
+    review: "",
+    celebrityData: {
+      id: 864,
+      username: "marktacher",
+      avatar:
+        "https://dqb0851cl2gjs.cloudfront.net/celebrities/864/avatar/famosos-videos-personalizados-marktacher-compressed.jpg",
+      fullName: "Mark Tacher Testing",
+    },
   },
   {
     status: 25,
@@ -47,57 +97,7 @@ export const hirings = [
       username: "marktacher",
       avatar:
         "https://dqb0851cl2gjs.cloudfront.net/celebrities/864/avatar/famosos-videos-personalizados-marktacher-compressed.jpg",
-      fullName: "Mark Tacher Testing"
-    }
+      fullName: "Mark Tacher Testing",
+    },
   },
-  {
-    status: 25,
-    id: 9794,
-    reference: "202102011820-3142789-9794",
-    contractType: 1,
-    deliveryContact: "german@famosos.com",
-    deliveryFrom: "",
-    deliveryTo: "Adrian",
-    deliveryType: 1,
-    instructions: "¡Hola Enrique Arce Testing!  ",
-    isPublic: true,
-    occasion: "OTHER",
-    userId: 462,
-    celebrityId: 609,
-    paymentDate: "2021-03-02T13:19:06.021866-05:00",
-    stars: 0,
-    review: "",
-    celebrityData: {
-      id: 609,
-      username: "enriquearce",
-      avatar:
-        "https://dqb0851cl2gjs.cloudfront.net/celebrities/609/avatar/famosos-videos-personalizados-enriquearce-compressed.jpg",
-      fullName: "Enrique Arce Testing"
-    }
-  },
-  {
-    status: 5,
-    id: 10205,
-    reference: "202104221036-7465585-10205",
-    contractType: 1,
-    deliveryContact: "german@famosos.com",
-    deliveryFrom: "",
-    deliveryTo: "German Solano",
-    deliveryType: 1,
-    instructions: "¡Hola Mark Tacher Testing! ",
-    isPublic: true,
-    occasion: "OTHER",
-    userId: 462,
-    celebrityId: 864,
-    paymentDate: "0001-01-01T00:00:00Z",
-    stars: 0,
-    review: "",
-    celebrityData: {
-      id: 864,
-      username: "marktacher",
-      avatar:
-        "https://dqb0851cl2gjs.cloudfront.net/celebrities/864/avatar/famosos-videos-personalizados-marktacher-compressed.jpg",
-      fullName: "Mark Tacher Testing"
-    }
-  }
 ];

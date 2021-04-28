@@ -8,6 +8,7 @@ import {
 import { useEffect } from "react";
 import { listClientContracts } from "react-app/src/state/ducks/contracts/actions";
 import { connect } from "react-redux";
+import { hirings } from "constants/hires";
 import styles from "./styles.module.scss";
 
 const allowedStatuses = [PAYED_BY_CLIENT, COMPLETED, REJECTED, EXPIRED];
@@ -15,9 +16,11 @@ const allowedStatuses = [PAYED_BY_CLIENT, COMPLETED, REJECTED, EXPIRED];
 const mapStateToProps = ({ contracts }) => ({
   isLoading: contracts.listClientContractsReducer.loading,
   contracts:
+    hirings ||
     contracts.listClientContractsReducer.data?.filter?.(({ status }) =>
       allowedStatuses.includes(status)
-    ) || [],
+    ) ||
+    [],
 });
 
 const mapDispatchToProps = {
@@ -35,13 +38,16 @@ function MyHiringsCardsSection({
 }: MyHiringsCardsSectionProps) {
   useEffect(() => {
     // GTM.tagManagerDataLayer("CLIENT_HIRINGS_PAGE_VIEW");
-    listClientContracts();
+    // listClientContracts();
   }, []);
 
   return (
     <div className="container">
       {contracts.map((contractData) => (
-        <MyHiringsCard className={styles.MyHiringsCard} contractData={contractData} />
+        <MyHiringsCard
+          className={styles.MyHiringsCard}
+          contractData={contractData}
+        />
       ))}
     </div>
   );
