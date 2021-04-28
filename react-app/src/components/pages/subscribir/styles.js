@@ -28,7 +28,7 @@ export const Hero = styled.header`
 
 export const CelebrityInfoSection = styled.section`
   margin-top: -5.6rem;
-  margin-bottom: 2.3125rem;
+  margin-bottom: 2.75rem;
   text-align: center;
 
   figure {
@@ -39,16 +39,17 @@ export const CelebrityInfoSection = styled.section`
   }
 `;
 export const CelebrityInfoTitle = styled.h2`
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
   line-height: 29px;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
 `;
 export const CelebrityInfoSubtitle = styled.h3`
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 17px;
 `;
+
 export const PlanInfoSection = styled(Card)`
   text-align: center;
   /* height: 237px; */
@@ -77,7 +78,7 @@ export const PlanInfoPrice = styled.p`
 `;
 
 export const LastsPostsTitle = styled.h2`
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   line-height: 22px;
   margin-top: 14px;
