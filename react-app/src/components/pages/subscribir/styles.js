@@ -27,7 +27,7 @@ export const Hero = styled.header`
 `;
 
 export const CelebrityInfoSection = styled.section`
-  margin-top: -4rem;
+  margin-top: -5.6rem;
   margin-bottom: 2.3125rem;
   text-align: center;
 

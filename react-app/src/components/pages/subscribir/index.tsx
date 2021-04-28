@@ -142,7 +142,7 @@ const SubscribePage = ({
         <SectionWrapper>
           <div className="container">
             <CelebrityInfoSection>
-              <ProfilePicture avatar={avatar} width="126px" />
+              <ProfilePicture avatar={avatar} width="176px" />
               <CelebrityInfoTitle>{fullName}</CelebrityInfoTitle>
               <CelebrityInfoSubtitle>Club de Fans</CelebrityInfoSubtitle>
             </CelebrityInfoSection>
