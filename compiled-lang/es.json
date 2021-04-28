@@ -51,16 +51,48 @@
       "value": "Escribe tu nombre"
     }
   ],
+  "/lbU6C": [
+    {
+      "type": 0,
+      "value": "Envíale un comentario a"
+    }
+  ],
+  "/lhqVJ": [
+    {
+      "type": 0,
+      "value": "Quedan pocos videos disponibles de "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    }
+  ],
   "/sg4dM": [
     {
       "type": 0,
       "value": "Descargo de responsabilidad y limitaciones de nuestra responsabilidad"
     }
   ],
+  "01UxAr": [
+    {
+      "type": 0,
+      "value": "Esta solicitud expira el "
+    },
+    {
+      "type": 1,
+      "value": "date"
+    }
+  ],
   "095Wot": [
     {
       "type": 0,
       "value": "Hora:"
+    }
+  ],
+  "0I2iWG": [
+    {
+      "type": 0,
+      "value": "Aplica como Famoso"
     }
   ],
   "0Il3lQ": [
@@ -105,6 +137,12 @@
       "value": "¿Qué es un video promocional?"
     }
   ],
+  "1GkUZK": [
+    {
+      "type": 0,
+      "value": "No me gusta"
+    }
+  ],
   "1JuMPJ": [
     {
       "type": 0,
@@ -115,6 +153,12 @@
     {
       "type": 0,
       "value": "Si deseas hacer parte de nuestro equipo envíanos una carta de motivación de por qué quieres unirte a nuestro equipo de Rock stars a jobs@famosos.com"
+    }
+  ],
+  "1U8RoX": [
+    {
+      "type": 0,
+      "value": "Mantenga esta ventana abierta mientras se válida su información"
     }
   ],
   "1UwvvG": [
@@ -191,6 +235,12 @@
       "value": "Correo del titular de la tarjeta"
     }
   ],
+  "2iUQj7": [
+    {
+      "type": 0,
+      "value": "Aún no has realizado una contratación"
+    }
+  ],
   "2rdLv9": [
     {
       "type": 0,
@@ -237,6 +287,18 @@
       "value": "Ukraine"
     }
   ],
+  "3mq/Uo": [
+    {
+      "type": 0,
+      "value": "El comentario ha sido enviado."
+    }
+  ],
+  "3pxwni": [
+    {
+      "type": 0,
+      "value": "Verificación de autenticidad de la tarjeta"
+    }
+  ],
   "3tygVI": [
     {
       "type": 1,
@@ -265,6 +327,12 @@
       "value": "Red Social"
     }
   ],
+  "4FqAB/": [
+    {
+      "type": 0,
+      "value": "Mis Contrataciones"
+    }
+  ],
   "4MRzR1": [
     {
       "type": 0,
@@ -275,6 +343,12 @@
     {
       "type": 0,
       "value": "Por favor imprima una copia de estos Términos para usted los registros y consulte el sitio con frecuencia para cualquier cambio a estos Términos."
+    }
+  ],
+  "4YpaCX": [
+    {
+      "type": 0,
+      "value": "Inicia sesión para agregar un comentario"
     }
   ],
   "4aS11Q": [
@@ -365,6 +439,12 @@
       "value": "Nota:"
     }
   ],
+  "5sQzpi": [
+    {
+      "type": 0,
+      "value": "No se pudo autenticar esta tarjeta correctamente"
+    }
+  ],
   "66AwbQ": [
     {
       "type": 0,
@@ -395,10 +475,30 @@
       "value": "Cuba"
     }
   ],
+  "6y8Fx1": [
+    {
+      "type": 0,
+      "value": "Pago autorizado"
+    }
+  ],
   "6yJ3E1": [
     {
       "type": 0,
       "value": "De vez en cuando, podemos cambiar estas Condiciones. Si cambiamos estas condiciones, vamos a darle un aviso mediante la publicación de los términos revisados ​​en el sitio. Estos cambios entrarán en vigor en la fecha de revisión se muestra en los términos revisados. Al continuar utilizando el Sitio o los Servicios, usted está de acuerdo con los términos revisados."
+    }
+  ],
+  "747qfi": [
+    {
+      "type": 0,
+      "value": "Si el problema persiste puedes comunicarte con nuestro equipo de soporte a "
+    },
+    {
+      "type": 1,
+      "value": "link"
+    },
+    {
+      "type": 0,
+      "value": " para más información."
     }
   ],
   "7La/lT": [
@@ -419,10 +519,22 @@
       "value": "El sitio y algunos de nuestros servicios le permiten cargar, enviar, almacenar, enviar o recibir contenido y datos, incluyendo sus videomensajes y materiales promocionales (“Contenido de Usuario\"). Usted conserva la propiedad de los derechos de propiedad intelectual que usted tiene en su contenido de usuario."
     }
   ],
+  "8+5qCg": [
+    {
+      "type": 0,
+      "value": "correo@dominio.com"
+    }
+  ],
   "8HOoZU": [
     {
       "type": 0,
       "value": "Debe tener al menos 13 años para utilizar el Sitio o los Servicios. Si usted es menor de edad en su estado de residencia, un menor de edad, su padre o tutor legal deben estar de acuerdo con estos términos en su nombre y que sólo pueden acceder y utilizar el Sitio y los Servicios con el permiso de su padre o tutor legal."
+    }
+  ],
+  "8IF6tp": [
+    {
+      "type": 0,
+      "value": "Finalizar compra"
     }
   ],
   "8LcwU2": [
@@ -487,30 +599,20 @@
       "value": "EN LA MEDIDA MÁXIMA PERMITIDA POR LA LEY, NUESTRA responsabilidad total acumulada ante usted o cualquier tercero bajo estos términos, DE TODAS LAS CAUSAS DE ACCIÓN Y TODAS LAS TEORÍAS DE RESPONSABILIDAD, SERÁ LIMITADO A, y no excederá los honorarios que en realidad han pagado US DURANTE los doce (12) meses anteriores a la que da lugar a dicha responsabilidad."
     }
   ],
+  "9etNPX": [
+    {
+      "type": 1,
+      "value": "starsCount"
+    },
+    {
+      "type": 0,
+      "value": " Estrellas"
+    }
+  ],
   "9mcAHp": [
     {
       "type": 0,
       "value": "CUPÓN AGREGADO"
-    }
-  ],
-  "9p5jZI": [
-    {
-      "type": 0,
-      "value": "Recibirás una notificación a "
-    },
-    {
-      "children": [
-        {
-          "type": 1,
-          "value": "contractDeliveryContact"
-        }
-      ],
-      "type": 8,
-      "value": "b"
-    },
-    {
-      "type": 0,
-      "value": " cuando tu video esté listo."
     }
   ],
   "9z5k20": [
@@ -703,6 +805,12 @@
       "value": "Ha ocurrido un error"
     }
   ],
+  "Diph5x": [
+    {
+      "type": 0,
+      "value": "Ir a contratar"
+    }
+  ],
   "DmXn7V": [
     {
       "type": 0,
@@ -757,6 +865,12 @@
       "value": "Uruguay"
     }
   ],
+  "Eq0gTc": [
+    {
+      "type": 0,
+      "value": "Enviar comentario"
+    }
+  ],
   "ErSRb8": [
     {
       "type": 0,
@@ -769,16 +883,16 @@
       "value": "Usted se compromete a indemnizar y mantener indemne Famosos y sus afiliados de y contra cualquier y todo reclamo, costos, procedimientos, demandas, pérdidas, daños y gastos (incluyendo, sin limitación, de los honorarios y gastos legales razonables de abogados) de cualquier tipo o naturaleza, derivados de o relacionados a, (a) cualquier violación real o supuesta de estos Términos por usted o cualquier persona que utilice su cuenta, (b) su, o cualquier persona que utilice su cuenta, la violación de las leyes o reglamentos, o (c) su negligencia grave o dolo. Si asumimos la defensa de un asunto tan, usted deberá cooperar razonablemente con nosotros en dicha defensa."
     }
   ],
-  "FNwlEO": [
-    {
-      "type": 0,
-      "value": "El valor en es aproximado"
-    }
-  ],
   "FnHHT0": [
     {
       "type": 0,
       "value": "Guardando..."
+    }
+  ],
+  "FrT1vp": [
+    {
+      "type": 0,
+      "value": "Reembolso exitoso"
     }
   ],
   "Fy+ISg": [
@@ -851,6 +965,12 @@
       "value": "Para mi"
     }
   ],
+  "HG1X7k": [
+    {
+      "type": 0,
+      "value": "Pago completado"
+    }
+  ],
   "HdR30r": [
     {
       "type": 0,
@@ -893,10 +1013,28 @@
       "value": "Nicaragua"
     }
   ],
+  "Iuyaxf": [
+    {
+      "type": 0,
+      "value": "Leer más..."
+    }
+  ],
+  "IxXZto": [
+    {
+      "type": 0,
+      "value": "De:"
+    }
+  ],
   "J1nkYm": [
     {
       "type": 0,
       "value": "Si no se encuentra ninguna disposición de esta sección es inválida o inaplicable, dicha disposición específica será de ninguna fuerza y ​​efecto y será separada, pero el resto de esta sección continuará en pleno vigor y efecto. Ninguna renuncia a cualquier disposición de esta sección de los Términos será eficaz o ejecutable a menos registrados en un escrito firmado por la parte que renuncia un derecho o requisito. tal renuncia no se dejará sin efecto o afectar a cualquier otra parte de estos Términos. Esta sección de los Términos sobrevivirá la finalización de su relación con Famosos."
+    }
+  ],
+  "J518q6": [
+    {
+      "type": 0,
+      "value": "Famosos similares"
     }
   ],
   "J5xdEq": [
@@ -927,6 +1065,12 @@
     {
       "type": 0,
       "value": "Usted otorga a nosotros una licencia no exclusiva, libre de regalías, totalmente pagada, sin límite, en todo el mundo, sublicenciable (a través de múltiples niveles de sublicencias), licencia perpetua, irrevocable, en todas y cada una manera y los medios de comunicación, ya sea conocido o inventado (incluyendo pero no limitado a los canales de medios sociales y otros sitios web y plataformas), para reproducir, licenciar, distribuir, modificar, adaptar, ejecutar públicamente, mostrar públicamente, crear trabajos derivados, y de otra manera utilice el siguiente a efectos de funcionamiento y la disponibilidad del sitio y servicios para usted y otros usuarios, para desarrollar y mejorar nuestros productos y servicios, y para publicitar, comercializar y promover el sitio, servicios, y cualesquiera otros productos y servicios de Famosos: (i) cualquier solicitud que haga a cualquier Talento Usuario; y (ii) cualquier presentación que haga a Famosos a través del Sitio, incluyendo los Servicios, a través de cualquier medio de comunicación social o de otra cuenta utilizada por Famosos, o de otra manera, incluyendo cualquier vídeo de reacción, opinión, foto, correo electrónico, texto, correo, u otra comunicación, ya sea relacionada con usted, el destinatario de cualquier vídeo FAMOSOS, o cualquier otro tercero ((i) y (ii) colectivamente una “Presentación”). Usted se compromete a indemnizar y mantener indemne Famosos Famosos dba, Inc. con respecto a la Presentación y todo uso de la comunicación de conformidad con los términos del artículo 13 de las Condiciones de servicio de usuario."
+    }
+  ],
+  "K8SMPu": [
+    {
+      "type": 0,
+      "value": "Ocasión:"
     }
   ],
   "KFphJU": [
@@ -967,6 +1111,12 @@
     {
       "type": 0,
       "value": " videomensaje en Famosos?"
+    }
+  ],
+  "KkJHVF": [
+    {
+      "type": 0,
+      "value": "Ver video"
     }
   ],
   "LMVeQk": [
@@ -1017,6 +1167,18 @@
       "value": "Al cargar, enviar, almacenar, enviar o recibir contenido de usuario a través del sitio o los servicios, usted nos da permiso para reproducir y utilizar su contenido de usuario de la siguiente manera: se otorga a nosotros y aquellos que trabajamos con una licencia de uso, alojar, almacenar, reproducir, modificar, crear trabajos derivados (tales como traducciones, adaptaciones u otros cambios que hacemos para que el contenido del usuario funciona mejor con el sitio y los servicios), ejecutar públicamente, mostrar públicamente y distribuir su contenido de usuario en el sitio y también en las redes sociales y en otros sitios web y medios de comunicación. Esta licencia es para el propósito limitado de operar, promover y mejorar el sitio y los servicios, y para desarrollar nuevos servicios. Nuestra licencia para su contenido de usuario no es exclusiva, lo que significa que puede usar el contenido de usuario para sus propios fines o dejar que otros utilizan su contenido de usuario para sus propósitos. Esta licencia es totalmente pagada y libre de regalías, lo que significa que no te debo nada más en relación con el uso de su contenido de usuario. Podemos ejercer nuestros derechos bajo esta licencia en cualquier parte del mundo. Podemos sublicenciar nuestros derechos a los usuarios finales y de otra manera, según sea necesario para proporcionar el sitio y los servicios. Por último, esta licencia es perpetua, lo que significa que nuestros derechos bajo esta licencia continúan incluso después de dejar de utilizar el Sitio y Servicios. Usted acepta que podemos mostrar publicidad con o en conexión con su contenido de usuario. lo que significa que nuestros derechos bajo esta licencia continúan incluso después de dejar de utilizar el Sitio y Servicios. Usted acepta que podemos mostrar publicidad con o en conexión con su contenido de usuario. lo que significa que nuestros derechos bajo esta licencia continúan incluso después de dejar de utilizar el Sitio y Servicios. Usted acepta que podemos mostrar publicidad con o en conexión con su contenido de usuario."
     }
   ],
+  "ML6BTv": [
+    {
+      "type": 0,
+      "value": "Videos similares"
+    }
+  ],
+  "MQJt4R": [
+    {
+      "type": 0,
+      "value": "Procesando..."
+    }
+  ],
   "MSP5Du": [
     {
       "type": 0,
@@ -1029,6 +1191,12 @@
       "value": "La solicitud de reembolso se realiza de forma automatica, el tiempo en el que se vera reflejado en tu tarjeta depende de tu banco y puede ser entre 5 y 10 dias."
     }
   ],
+  "MdA9+B": [
+    {
+      "type": 0,
+      "value": "Volver a métodos de pago"
+    }
+  ],
   "MfaP/A": [
     {
       "type": 0,
@@ -1039,6 +1207,18 @@
     {
       "type": 0,
       "value": "Su nombre, dirección física, número de teléfono y dirección de correo electrónico, una declaración en la que consienta a la jurisdicción de la corte federal de Miami, Florida, y una declaración de que acepta el servicio del proceso de la persona que presentó la notificación de la supuesta infracción."
+    }
+  ],
+  "Mp68c+": [
+    {
+      "type": 0,
+      "value": "FAQ's"
+    }
+  ],
+  "Mwm1HV": [
+    {
+      "type": 0,
+      "value": "Iniciar sesión"
     }
   ],
   "MyQOKB": [
@@ -1099,6 +1279,12 @@
     {
       "type": 0,
       "value": "Deportistas"
+    }
+  ],
+  "NvD/jI": [
+    {
+      "type": 0,
+      "value": "Escribe un comentario"
     }
   ],
   "NyA8g2": [
@@ -1169,6 +1355,12 @@
       "value": " grabe tu video."
     }
   ],
+  "OkYBCB": [
+    {
+      "type": 0,
+      "value": "Sé el primero en agregar un comentario."
+    }
+  ],
   "P6ZBac": [
     {
       "type": 0,
@@ -1191,6 +1383,12 @@
     {
       "type": 0,
       "value": "Colombia"
+    }
+  ],
+  "Ps1z8P": [
+    {
+      "type": 0,
+      "value": "Actualiza tu comentario a"
     }
   ],
   "PsZKr3": [
@@ -1223,10 +1421,22 @@
       "value": "Mexico"
     }
   ],
+  "Qdbxny": [
+    {
+      "type": 0,
+      "value": "¿Cuántas estrellas le das a este video?"
+    }
+  ],
   "QtvgOo": [
     {
       "type": 0,
       "value": "Chile"
+    }
+  ],
+  "RMN4N0": [
+    {
+      "type": 0,
+      "value": "Pago rechazado"
     }
   ],
   "RWLUps": [
@@ -1239,6 +1449,12 @@
     {
       "type": 0,
       "value": "Cerrar"
+    }
+  ],
+  "Rfh4ih": [
+    {
+      "type": 0,
+      "value": "Mi Perfil"
     }
   ],
   "RqwRuU": [
@@ -1289,6 +1505,12 @@
       "value": "linkPolicies"
     }
   ],
+  "STAtvd": [
+    {
+      "type": 0,
+      "value": "El comentario ha sido actualizado."
+    }
+  ],
   "ScPFOw": [
     {
       "type": 0,
@@ -1299,6 +1521,18 @@
     {
       "type": 0,
       "value": "¡Recibe tu video personalizado!"
+    }
+  ],
+  "T3dwiQ": [
+    {
+      "type": 0,
+      "value": "Ten en cuenta:"
+    }
+  ],
+  "TT/YZP": [
+    {
+      "type": 0,
+      "value": "Privacidad"
     }
   ],
   "TjibFs": [
@@ -1331,6 +1565,28 @@
       "value": "Usted reconoce que no estamos obligados a controlar su (o de cualquier otra persona) el acceso o uso del Sitio o los Servicios, pero tenemos el derecho de hacerlo con el fin de operar el sitio o servicios, para asegurar su cumplimiento con los presentes Términos , o para cumplir con la ley aplicable o la orden o requerimiento de un tribunal, agencia administrativa u otra entidad gubernamental."
     }
   ],
+  "UcOT6A": [
+    {
+      "type": 0,
+      "value": "Cobro fallido"
+    }
+  ],
+  "VBvZa2": [
+    {
+      "type": 0,
+      "value": "Recibirás una notificación a "
+    },
+    {
+      "children": [
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " cuando tu video esté listo."
+    }
+  ],
   "VGHwB5": [
     {
       "type": 0,
@@ -1355,6 +1611,12 @@
       "value": "Filtrar por:"
     }
   ],
+  "VkHZxm": [
+    {
+      "type": 0,
+      "value": "Términos y Condiciones"
+    }
+  ],
   "Vrpqh3": [
     {
       "type": 0,
@@ -1365,6 +1627,12 @@
     {
       "type": 0,
       "value": "Desactivar Notificación"
+    }
+  ],
+  "WBt4dS": [
+    {
+      "type": 0,
+      "value": "Es público"
     }
   ],
   "WDhqRO": [
@@ -1391,6 +1659,12 @@
       "value": "Aparte de contenido de usuario, poseemos o licencia todos los derechos, títulos e intereses sobre y para (a) el sitio y los servicios, incluyendo todo el software, texto, multimedia y otros contenidos disponibles en el sitio y los servicios (“Nuestro contenido\") ; y (b) las marcas registradas, logotipos y elementos de marca ( \"Marcas\"). El sitio y los servicios, nuestro contenido, y Marks están protegidos por las leyes estadounidenses e internacionales. El aspecto y la sensación del sitio y los servicios son los derechos de autor © Famosos, Inc. Todos los derechos reservados. El usuario no puede duplicar, copiar, reutilizar o cualquier parte del HTML / CSS, JavaScript, o elementos de diseño visual o conceptos sin autorización expresa por escrito de nosotros."
     }
   ],
+  "WW0RFT": [
+    {
+      "type": 0,
+      "value": "Me gusta"
+    }
+  ],
   "Wdu5tQ": [
     {
       "type": 0,
@@ -1401,6 +1675,12 @@
     {
       "type": 0,
       "value": "Filtrar por categoría"
+    }
+  ],
+  "WmWz59": [
+    {
+      "type": 0,
+      "value": "Contrato Expirado"
     }
   ],
   "WrNQNN": [
@@ -1427,6 +1707,12 @@
       "value": "Imitadores"
     }
   ],
+  "XNGk+R": [
+    {
+      "type": 0,
+      "value": "Tu comentario ha sido enviado."
+    }
+  ],
   "XQqpuU": [
     {
       "type": 0,
@@ -1443,6 +1729,22 @@
     {
       "type": 0,
       "value": "Después de haber recibido su contra-notificación, la remitiremos a la parte que presentó la reclamación original de infracción de derechos de autor. Tenga en cuenta que cuando remitamos la contra-notificación, que incluye su información personal. Al presentar una contra-notificación, consentimiento para que se revele su información de esta manera. No vamos a pasar la contra-notificación a cualquier parte que no sea el demandante original."
+    }
+  ],
+  "XlP2E5": [
+    {
+      "type": 0,
+      "value": "Es una compañía dedicada a crear tecnologías "
+    },
+    {
+      "children": [
+      ],
+      "type": 8,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " que conecten personalidades con su fan base."
     }
   ],
   "Y6+mfe": [
@@ -1525,10 +1827,22 @@
       "value": "La confirmación de tu compra será enviada a tu mail"
     }
   ],
+  "ZedcEG": [
+    {
+      "type": 0,
+      "value": "Actualizar comentario"
+    }
+  ],
   "ZgMpuD": [
     {
       "type": 0,
       "value": "Siguiente página"
+    }
+  ],
+  "ZvLd+7": [
+    {
+      "type": 0,
+      "value": "Validando el pago"
     }
   ],
   "a/2tCB": [
@@ -1553,6 +1867,12 @@
     {
       "type": 0,
       "value": "El costo del video depende de tu famoso. Nosotros somos la tecnología que hace posible la entrega oportuna de tu video."
+    }
+  ],
+  "aLZTdq": [
+    {
+      "type": 0,
+      "value": "Mis instrucciones son"
     }
   ],
   "aPX+PI": [
@@ -1607,6 +1927,12 @@
     {
       "type": 0,
       "value": "¡Comprar video ahora!"
+    }
+  ],
+  "baAemn": [
+    {
+      "type": 0,
+      "value": "En espera de grabación"
     }
   ],
   "bnyCF4": [
@@ -1681,6 +2007,12 @@
       "value": "¿Como te encontramos? Ej: andresito"
     }
   ],
+  "d6Ac8W": [
+    {
+      "type": 0,
+      "value": "Correo electrónico de notificación:"
+    }
+  ],
   "dUl69m": [
     {
       "type": 0,
@@ -1713,6 +2045,12 @@
     {
       "type": 0,
       "value": "Músicos"
+    }
+  ],
+  "dmBWFQ": [
+    {
+      "type": 0,
+      "value": "Contrato rechazado"
     }
   ],
   "dy8DmF": [
@@ -1843,6 +2181,12 @@
       "value": " 100% personalizado."
     }
   ],
+  "ggPZbL": [
+    {
+      "type": 0,
+      "value": "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
+    }
+  ],
   "gwzUyi": [
     {
       "type": 0,
@@ -1913,6 +2257,12 @@
       "value": "United States of America (the)"
     }
   ],
+  "iWkyFQ": [
+    {
+      "type": 0,
+      "value": "¿Eres una celebridad o influencer?"
+    }
+  ],
   "j5jEEO": [
     {
       "type": 0,
@@ -1949,6 +2299,12 @@
       "value": "El campo de nombre del titular de la tarjeta es obligatorio"
     }
   ],
+  "lX+x05": [
+    {
+      "type": 0,
+      "value": "1 Estrella"
+    }
+  ],
   "lkQYB7": [
     {
       "type": 0,
@@ -1967,6 +2323,12 @@
       "value": "Algunos de nuestros servicios tienen términos y condiciones (“Términos Adicionales\") adicionales. Cuando las Condiciones adicionales se aplican a un servicio, vamos a hacer que estén disponibles para su lectura a través del uso de ese servicio. Mediante el uso de ese Servicio, acepta los términos adicionales."
     }
   ],
+  "m4ziQM": [
+    {
+      "type": 0,
+      "value": "Otra"
+    }
+  ],
   "m7UHCq": [
     {
       "type": 0,
@@ -1977,6 +2339,12 @@
     {
       "type": 0,
       "value": "Precio: De Menor a Mayor"
+    }
+  ],
+  "mJ6Hl3": [
+    {
+      "type": 0,
+      "value": "Falló autorización de cobro"
     }
   ],
   "mNZnPy": [
@@ -1997,6 +2365,12 @@
       "value": "Si usted demuestra que las costas del arbitraje serán prohibitivos en comparación con los costos del litigio, Famosos pagará la suma de los costos administrativos y los honorarios del árbitro necesario para el arbitraje como lo considere necesario, el árbitro para evitar que el costo del arbitraje de ser prohibitivo . En el premio final, el árbitro puede prorratear los costes de arbitraje y la compensación del árbitro entre las partes en cantidades tales que el árbitro considere apropiado."
     }
   ],
+  "mcWafv": [
+    {
+      "type": 0,
+      "value": "Reembolso fallido"
+    }
+  ],
   "mlRLdw": [
     {
       "type": 0,
@@ -2015,10 +2389,28 @@
       "value": "¿Cómo puedo comprar un video?"
     }
   ],
+  "nJJJOt": [
+    {
+      "type": 0,
+      "value": "Pago expirado"
+    }
+  ],
+  "nMFRRt": [
+    {
+      "type": 0,
+      "value": "Pago pendiente"
+    }
+  ],
   "nazVl1": [
     {
       "type": 0,
       "value": "Usted y Famosos acepta que vamos a resolver cualquier disputa entre nosotros a través de un arbitraje vinculante y definitivo en lugar de a través de los procesos judiciales. Usted y Famosos presente renuncia a cualquier derecho a un juicio con jurado de cualquier reclamación (se define a continuación). Todas las controversias, reclamos, reconvenciones, u otros conflictos que surjan entre usted y Famosos relacionada con estos Términos, el Sitio y los Servicios (cada una \"Demanda\") serán sometidas a arbitraje de acuerdo con las Reglas de la Asociación Americana de Arbitraje ( \"Reglas AAA\"). El arbitraje se resolverá de por un solo árbitro. La decisión del árbitro en dicho arbitraje será definitiva y vinculante para las partes y puede ser ejecutada en cualquier tribunal de jurisdicción competente."
+    }
+  ],
+  "nnRGWT": [
+    {
+      "type": 0,
+      "value": "Pago cancelado"
     }
   ],
   "o/y0YW": [
@@ -2057,6 +2449,12 @@
       "value": "No"
     }
   ],
+  "ohq0mF": [
+    {
+      "type": 0,
+      "value": "Crea una cuenta"
+    }
+  ],
   "oxKkpJ": [
     {
       "type": 0,
@@ -2091,6 +2489,12 @@
     {
       "type": 0,
       "value": "Usted puede cancelar su cuenta en cualquier momento a través de un enlace que aparece en su cuenta en el sitio. Nos reservamos el derecho de no proporcionar el Sitio o los Servicios para cualquier persona. También nos reservamos el derecho de suspender el derecho de cualquier usuario para acceder al sitio o servicios en cualquier momento, a nuestra discreción. Si usted viola cualquiera de estos Términos, su permiso para utilizar el sitio y los servicios se termina automáticamente."
+    }
+  ],
+  "p6AMrr": [
+    {
+      "type": 0,
+      "value": "Famoso!"
     }
   ],
   "pPCiwO": [
@@ -2679,6 +3083,18 @@
       "value": "Fecha:"
     }
   ],
+  "rG1grK": [
+    {
+      "type": 0,
+      "value": "Síguenos en Redes"
+    }
+  ],
+  "rMXI9i": [
+    {
+      "type": 0,
+      "value": "Agregar Comentario"
+    }
+  ],
   "rNIqUr": [
     {
       "type": 0,
@@ -2841,6 +3257,12 @@
       "value": "Transferencia bancaria"
     }
   ],
+  "ujraGu": [
+    {
+      "type": 0,
+      "value": "Para:"
+    }
+  ],
   "ut6hvz": [
     {
       "type": 0,
@@ -2869,6 +3291,12 @@
       "value": "Ocurrió un error inesperado."
     }
   ],
+  "vf4Bo1": [
+    {
+      "type": 0,
+      "value": "¿Aún no tienes cuenta?"
+    }
+  ],
   "vjMBPO": [
     {
       "type": 0,
@@ -2891,6 +3319,12 @@
     {
       "type": 0,
       "value": "Siguiente"
+    }
+  ],
+  "wCc+84": [
+    {
+      "type": 0,
+      "value": "[PARA]"
     }
   ],
   "wHkOq4": [
@@ -2925,16 +3359,42 @@
       "value": "El Sitio y los Servicios pueden contener enlaces a otros sitios web y recursos en línea. Un enlace a la página web de un tercero no significa que estamos de acuerdo con ella o que la que están afiliados con ella. No somos responsables por cualquier daño o pérdida relacionada con el uso de cualquier sitio web de terceros. Siempre debe leer los términos y condiciones y la política de privacidad de un sitio web de terceros antes de usarlo."
     }
   ],
+  "wwfK17": [
+    {
+      "type": 0,
+      "value": "Buscar país"
+    }
+  ],
   "wyqjAw": [
     {
       "type": 0,
       "value": "Abogado, alentar o ayudar a un tercero en hacer cualquiera de las anteriores."
     }
   ],
+  "x15tum": [
+    {
+      "type": 0,
+      "value": "El valor en "
+    },
+    {
+      "type": 1,
+      "value": "currency"
+    },
+    {
+      "type": 0,
+      "value": " es aproximado"
+    }
+  ],
   "x2QGjg": [
     {
       "type": 0,
       "value": "Mejoramos y actualizar el sitio y servicios a menudo. Podemos cambiar o interrumpir el Sitio o los Servicios en cualquier momento, con o sin previo aviso."
+    }
+  ],
+  "xKYHEI": [
+    {
+      "type": 0,
+      "value": "2020 Famosos, Inc. All Rights Reserved."
     }
   ],
   "xKx6PF": [
@@ -3023,6 +3483,12 @@
     {
       "type": 0,
       "value": "Comediantes"
+    }
+  ],
+  "zxOTCH": [
+    {
+      "type": 0,
+      "value": "Pago creado"
     }
   ],
   "zzBOdK": [

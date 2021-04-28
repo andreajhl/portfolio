@@ -1097,5 +1097,227 @@
   },
   "zzBOdK": {
     "message": "Apply filters"
+  },
+  "4YpaCX": {
+    "message": "Log in to add a comment"
+  },
+  "Mwm1HV": {
+    "message": "Log in"
+  },
+  "OkYBCB": {
+    "message": "Be the first to add a comment."
+  },
+  "XNGk+R": {
+    "message": "Your comment has been sent."
+  },
+  "m4ziQM": {
+    "message": "Other social network"
+  },
+  "ohq0mF": {
+    "message": "Create an account"
+  },
+  "rMXI9i": {
+    "message": "Add Comment"
+  },
+  "vf4Bo1": {
+    "message": "Don't have an account?"
+  },
+  "/lbU6C": {
+    "message": "Send a comment to"
+  },
+  "/lhqVJ": {
+    "message": "Few videos are available from {celebrityFullName}"
+  },
+  "01UxAr": {
+    "message": "This request expires on {date}"
+  },
+  "0I2iWG": {
+    "message": "Applies as Celebrity"
+  },
+  "1GkUZK": {
+    "message": "I don't like it / Dislike"
+  },
+  "1U8RoX": {
+    "message": "Keep this tab open while your information is valid"
+  },
+  "2iUQj7": {
+    "message": "You have not yet made a hiring"
+  },
+  "3mq/Uo": {
+    "message": "The comment has been sent."
+  },
+  "3pxwni": {
+    "message": "Verification of payment card authenticity"
+  },
+  "4FqAB/": {
+    "message": "My Hires"
+  },
+  "5sQzpi": {
+    "message": "Failed to authenticate this payment card correctly"
+  },
+  "6y8Fx1": {
+    "message": "Authorized payment"
+  },
+  "747qfi": {
+    "message": "If the problem persists you can contact our support team at {link} for more information."
+  },
+  "8+5qCg": {
+    "message": "correo@dominio.com"
+  },
+  "8IF6tp": {
+    "message": "Proceed to checkout"
+  },
+  "9etNPX": {
+    "message": "{starsCount} Stars"
+  },
+  "Diph5x": {
+    "message": "Go to hire"
+  },
+  "Eq0gTc": {
+    "message": "Send comment"
+  },
+  "FrT1vp": {
+    "message": "Successful repayment"
+  },
+  "HG1X7k": {
+    "message": "Payout completed"
+  },
+  "Iuyaxf": {
+    "message": "Read more…"
+  },
+  "IxXZto": {
+    "message": "Who is sending the video."
+  },
+  "J518q6": {
+    "message": "Similar celebrities"
+  },
+  "K8SMPu": {
+    "message": "Occasion:"
+  },
+  "KkJHVF": {
+    "message": "Watch video"
+  },
+  "ML6BTv": {
+    "message": "Similar Videos"
+  },
+  "MQJt4R": {
+    "message": "On process… "
+  },
+  "MdA9+B": {
+    "message": "Back to payment methods"
+  },
+  "Mp68c+": {
+    "message": "FAQ's"
+  },
+  "NvD/jI": {
+    "message": "Write a comment"
+  },
+  "Ps1z8P": {
+    "message": "Update your comment to"
+  },
+  "Qdbxny": {
+    "message": "How many stars do you give to this video?"
+  },
+  "RMN4N0": {
+    "message": "Declined payment"
+  },
+  "Rfh4ih": {
+    "message": "My Profile"
+  },
+  "STAtvd": {
+    "message": "The comment has been updated."
+  },
+  "T3dwiQ": {
+    "message": "Keep in mind:"
+  },
+  "TT/YZP": {
+    "message": "Privacy"
+  },
+  "UcOT6A": {
+    "message": "Failed collection"
+  },
+  "VBvZa2": {
+    "message": "You will receive a notification to <b></b> when your video is ready."
+  },
+  "VkHZxm": {
+    "message": "Terms & Conditions"
+  },
+  "WBt4dS": {
+    "message": "It is public"
+  },
+  "WW0RFT": {
+    "message": "I like it / Like"
+  },
+  "WmWz59": {
+    "message": "Expired contract"
+  },
+  "XlP2E5": {
+    "message": "It is a company dedicated to creating <br></br> technologies that connect personalities with their core fan."
+  },
+  "ZedcEG": {
+    "message": "Update comment"
+  },
+  "ZvLd+7": {
+    "message": "Validating the payment"
+  },
+  "aLZTdq": {
+    "message": "My instructions are"
+  },
+  "baAemn": {
+    "message": "Awaiting recording"
+  },
+  "d6Ac8W": {
+    "message": "Notification email:"
+  },
+  "dmBWFQ": {
+    "message": "Rejected contract"
+  },
+  "ggPZbL": {
+    "message": "Example: My friend Ana turns 12 on August, I would like you to congratulate her."
+  },
+  "iWkyFQ": {
+    "message": "Are you a celebrity or influencer?"
+  },
+  "lX+x05": {
+    "message": "1 Star"
+  },
+  "mJ6Hl3": {
+    "message": "Collection authorization failed"
+  },
+  "mcWafv": {
+    "message": "Failed repayment"
+  },
+  "nJJJOt": {
+    "message": "Expired payment"
+  },
+  "nMFRRt": {
+    "message": "Pending payment"
+  },
+  "nnRGWT": {
+    "message": "Canceled payment"
+  },
+  "p6AMrr": {
+    "message": "Celebrity!"
+  },
+  "rG1grK": {
+    "message": "Follow us on our social media"
+  },
+  "ujraGu": {
+    "message": "Who will receive the video"
+  },
+  "wCc+84": {
+    "message": "[TO]"
+  },
+  "wwfK17": {
+    "message": "Country search"
+  },
+  "x15tum": {
+    "message": "The amount in {currency} is approximate"
+  },
+  "xKYHEI": {
+    "message": "2020 Famosos, Inc. All Rights Reserved."
+  },
+  "zxOTCH": {
+    "message": "Payment created"
   }
 }
