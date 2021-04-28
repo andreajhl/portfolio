@@ -80,6 +80,14 @@ export const LastsPostsTitle = styled.h2`
   font-size: 18px;
   font-weight: bold;
   line-height: 22px;
-  margin-bottom: 0;
+  margin-top: 14px;
+  margin-bottom: 18px;
   text-align: center;
+`;
+
+export const SectionWrapper = styled.div`
+  padding-bottom: 2rem;
+  box-shadow: 0px 8px 10px -8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 3;
 `;

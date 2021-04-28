@@ -12,6 +12,7 @@ import {
   PlanInfoStar,
   PlanInfoDescription,
   PlanInfoPrice,
+  SectionWrapper,
   LastsPostsTitle
 } from "./styles";
 import {
@@ -138,43 +139,43 @@ const SubscribePage = ({
             />
           </div>
         </Hero>
-        <div className="container">
-          <CelebrityInfoSection>
-            <ProfilePicture avatar={avatar} width="126px" />
-            <CelebrityInfoTitle>{fullName}</CelebrityInfoTitle>
-            <CelebrityInfoSubtitle>Club de Fans</CelebrityInfoSubtitle>
-          </CelebrityInfoSection>
-          <PlanInfoSection as="section">
-            <PlanInfoStar />
-            <PlanInfoDescription>
-              <Maybe
-                it={isSubscribed}
-                orElse={`Al ser parte del club de Fans de ${fullName} tendrás`}
-              >
-                Formas parte del Club de Fans de {fullName}. Ahora tienes
-              </Maybe>{" "}
-              acceso a contenido exclusivo, sesiones live, sorteos y/o eventos
-              privados.
-            </PlanInfoDescription>
-            <Maybe it={!isSubscribed}>
-              <PlanInfoPrice>{priceLayout} /mes</PlanInfoPrice>
-              <ConvertedPriceCopy price={monthlySubscription?.priceTier} />
-              <Link
-                href={SUBSCRIPTION.replace(":celebrity_username", username)}
-              >
-                <div style={{ marginTop: "20px" }}>
-                  <CallToActionButton width="100%">
-                    Subscribirse
-                  </CallToActionButton>
-                </div>
-              </Link>
-            </Maybe>
-          </PlanInfoSection>
-        </div>
-        <SubscriptionPostsHeader>
-          <LastsPostsTitle>Últimas publicaciones de {fullName}</LastsPostsTitle>
-        </SubscriptionPostsHeader>
+        <SectionWrapper>
+          <div className="container">
+            <CelebrityInfoSection>
+              <ProfilePicture avatar={avatar} width="126px" />
+              <CelebrityInfoTitle>{fullName}</CelebrityInfoTitle>
+              <CelebrityInfoSubtitle>Club de Fans</CelebrityInfoSubtitle>
+            </CelebrityInfoSection>
+            <PlanInfoSection as="section">
+              <PlanInfoStar />
+              <PlanInfoDescription>
+                <Maybe
+                  it={isSubscribed}
+                  orElse={`Al ser parte del club de Fans de ${fullName} tendrás`}
+                >
+                  Formas parte del Club de Fans de {fullName}. Ahora tienes
+                </Maybe>{" "}
+                acceso a contenido exclusivo, sesiones live, sorteos y/o eventos
+                privados.
+              </PlanInfoDescription>
+              <Maybe it={!isSubscribed}>
+                <PlanInfoPrice>{priceLayout} /mes</PlanInfoPrice>
+                <ConvertedPriceCopy price={monthlySubscription?.priceTier} />
+                <Link
+                  href={SUBSCRIPTION.replace(":celebrity_username", username)}
+                >
+                  <div style={{ marginTop: "20px" }}>
+                    <CallToActionButton width="100%">
+                      Subscribirse
+                    </CallToActionButton>
+                  </div>
+                </Link>
+              </Maybe>
+            </PlanInfoSection>
+          </div>
+        </SectionWrapper>
         <SubscriptionPostsSection>
+          <LastsPostsTitle>Últimas publicaciones de {fullName}</LastsPostsTitle>
           {posts.map((post) => (
             <SubscriptionPostCard
               avatar={avatar}
