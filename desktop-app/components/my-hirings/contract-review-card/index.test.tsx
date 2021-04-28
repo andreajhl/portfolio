@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import { ContractReviewCard } from "./";
+import { ContractReviewCard } from ".";
 
 it("should renders without crashing", () => {
   const wrapper = shallow(<ContractReviewCard />);

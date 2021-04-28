@@ -1,4 +1,4 @@
-import { ContractReviewCard } from "desktop-app/components/contract-review-card";
+import { ContractReviewCard } from "desktop-app/components/my-hirings/contract-review-card";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import { MyHiringsCardStepsBanner } from "../my-hirings-card-steps-banner";
 import styles from "./styles.module.scss";

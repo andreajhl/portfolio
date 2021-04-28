@@ -3,7 +3,7 @@ import useForm from "lib/hooks/useForm";
 import StarRatingDisplay from "desktop-app/components/common/star-rating/display";
 import { connect } from "react-redux";
 import classes from "classnames";
-import WarningMessage from "../common/warning-message";
+import WarningMessage from "../../common/warning-message";
 import styles from "./styles.module.scss";
 
 const mapStateToProps = (state) => ({ ...state });
