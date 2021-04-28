@@ -64,6 +64,7 @@ function MyHiringsCardStepsBanner({
       iconSize="medium"
       className={styles.MyHiringsCardStepsBanner}
       steps={getStepsItems(contractData)}
+      renderContainer={false}
     />
   );
 }
