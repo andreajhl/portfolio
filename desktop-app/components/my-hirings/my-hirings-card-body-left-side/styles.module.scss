@@ -11,3 +11,18 @@
   margin-bottom: 0;
   color: var(--gray-4);
 }
+
+.WatchVideoLink {
+  margin-top: auto;
+}
+
+.WatchVideoButton {
+  width: 100%;
+  font-weight: bold;
+
+  i {
+    vertical-align: middle;
+    color: inherit;
+    margin-left: 0.5em;
+  }
+}

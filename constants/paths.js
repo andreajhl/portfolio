@@ -73,3 +73,6 @@ export const getSearchCountryPath = (countryId) =>
   getSearchPath({ country_id: countryId });
 
 export const getSearchHashtagPath = (hashtag) => getSearchPath({ hashtag });
+
+export const getHiringPreviewPath = (contractReference) =>
+  HIRING_PREVIEW.replace(":contract_reference", contractReference);
