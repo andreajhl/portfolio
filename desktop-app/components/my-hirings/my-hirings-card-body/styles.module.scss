@@ -10,6 +10,11 @@
   flex-grow: 1;
 }
 
+.MyHiringsCardBodyLeftSideCancelled {
+  opacity: 0.5;
+  mix-blend-mode: luminosity;
+}
+
 .MyHiringsCardBodyRightSideContainer {
   width: 100%;
   margin-left: 46px;
