@@ -2,6 +2,8 @@ import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import useForm from "lib/hooks/useForm";
 import StarRatingDisplay from "desktop-app/components/common/star-rating/display";
 import { connect } from "react-redux";
+import classes from "classnames";
+import WarningMessage from "../common/warning-message";
 import styles from "./styles.module.scss";
 
 const mapStateToProps = (state) => ({ ...state });
@@ -58,12 +60,21 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
       <textarea
         id="review-textarea"
         name="review"
-        className={styles.ContractReviewCardTextarea}
+        className={classes(
+          styles.ContractReviewCardTextarea,
+          errors?.review && styles.ContractReviewCardTextareaHasError
+        )}
         value={values.review}
         placeholder="¡Me encantó el video 😍! ¡quedó espectacular 💖! ..."
         onChange={onChangeField}
       />
-      {errors?.review || null}
+      <WarningMessage
+        message={errors?.review || null}
+        className={classes(
+          styles.FormError,
+          errors?.review && styles.ErrorIsVisible
+        )}
+      />
       <button
         type="button"
         className={`btn btn-tertiary ${styles.ContractReviewCardButton}`}
