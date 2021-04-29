@@ -7,39 +7,38 @@ const SubscriptionCheckoutSummary = (props) => {
   const { celebrityAvatar, celebrityFullName } = { ...props };
   return (
     <div className="container-subscription-checkout-summary">
-      <Image roundedCircle height="100px" src={celebrityAvatar}></Image>
-      <h5 className="container-subscription-checkout-summary__celebrity-name">
-        {celebrityFullName}
-      </h5>
-      <div className="container-subscription-checkout-summary__benefits">
-        <h5>Beneficios de la suscripción</h5>
+      <Image roundedCircle height="210px" src={celebrityAvatar}></Image>
+      <section className="container-subscription-checkout-summary__benefits">
+        <header className="container-subscription-checkout-summary__benefits-header">
+          <img
+            src="/assets/img/subscription-star-pink.svg"
+            alt="Estrella de Club de Fans"
+          />
+          <h5>Beneficios del Club de Fans</h5>
+        </header>
         <ul className="container-subscription-checkout-summary__benefits-list">
           <li>
-            <i className="fas fa-check"></i>
+            <i className="fas fa-check-circle"></i>
             <span>
               Descuento en compras de videomensajes de {celebrityFullName}.
             </span>
           </li>
           <li>
-            <i className="fas fa-check"></i>
+            <i className="fas fa-check-circle"></i>
             <span>
-              Invitación a eventos gratuitos y pagos con {celebrityFullName}.
+              Invitación a eventos premium y gratuitos con {celebrityFullName}.
             </span>
           </li>
           <li>
-            <i className="fas fa-check"></i>
+            <i className="fas fa-check-circle"></i>
             <span>Acceso a contenido inédito.</span>
           </li>
           <li>
-            <i className="fas fa-check"></i>
-            <span>Muchas Sorpresas!</span>
+            <i className="fas fa-check-circle"></i>
+            <span>¡Muchas sorpresas más!</span>
           </li>
         </ul>
-        <span>
-          Recuerda que este precio precio es por una suscripción mensual y se
-          renovara automática cada mes
-        </span>
-      </div>
+      </section>
     </div>
   );
 };

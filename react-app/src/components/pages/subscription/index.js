@@ -49,9 +49,11 @@ const Subscription = (props) => {
     <PageContainer>
       <Container>
         <Row>
-          <div className="container-subscription-payment col-12 my-4 mx-auto f-rounded f-shadow">
+          <div className="container-subscription-payment col-sm-12 my-4 mx-auto f-rounded f-shadow">
             <div className="container-subscription-payment__header">
-              <h6>Resumen de la contratación</h6>
+              <h6 className="mb-0 font-weight-bold container-subscription-payment__title">
+                Suscripción al Club de Fans de {celebrity.fullName}
+              </h6>
             </div>
             <div className="container-subscription-payment__summary">
               <SubscriptionCheckoutSummary
@@ -70,6 +72,10 @@ const Subscription = (props) => {
                       price={monthlySubscription?.priceTier}
                     />
                   </div>
+                  <p className="container-subscription-payment__copy">
+                    Este precio es por una suscripción mensual y se renovará
+                    automáticamente cada mes.
+                  </p>
                   <div
                     className={`container-subscription-payment__paypalForm ${
                       currentPlanSelected ? "" : "d-none"
