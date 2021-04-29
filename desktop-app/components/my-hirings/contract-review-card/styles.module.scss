@@ -62,3 +62,40 @@
 .ErrorIsVisible {
   visibility: visible;
 }
+
+.Wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  font-weight: inherit;
+}
+
+.Text {
+  color: inherit;
+  font-weight: inherit;
+}
+
+.NotIdle {
+  visibility: hidden;
+}
+
+.Spinner,
+.Check {
+  position: absolute;
+}
+
+.Spinner {
+  color: inherit;
+  animation: rotate 1.5s infinite;
+}
+
+.Check {
+  color: inherit;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
