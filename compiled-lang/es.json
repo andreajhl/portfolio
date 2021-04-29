@@ -5,6 +5,12 @@
       "value": "Panama"
     }
   ],
+  "+jX0dw": [
+    {
+      "type": 0,
+      "value": "*Puedes editar las instrucciones de tu video mientras está pendiente de grabación."
+    }
+  ],
   "/+/C1u": [
     {
       "type": 0,
@@ -167,6 +173,12 @@
       "value": "No se pudo guardar tu cambio. Intenta de nuevo."
     }
   ],
+  "1YGzpj": [
+    {
+      "type": 0,
+      "value": "¡Felicidades!"
+    }
+  ],
   "1aq5W2": [
     {
       "type": 0,
@@ -177,6 +189,12 @@
     {
       "type": 0,
       "value": "Ni usted ni Famosos puede actuar como un representante de la clase o el abogado general privado, ni participar como miembro de un grupo de demandantes, con respecto a cualquier reclamación. Reclamaciones no pueden ser arbitradas en una clase o base representativa. El árbitro puede decidir solamente sus reclamaciones individuales y / o Famosos'. El árbitro no podrá consolidar ni unir los reclamos de otras personas o partes que pueden estar situados de manera similar."
+    }
+  ],
+  "1iUuaq": [
+    {
+      "type": 0,
+      "value": "¡Felicidades! Tu pago ha sido aprobado"
     }
   ],
   "1qfzR5": [
@@ -251,6 +269,12 @@
     {
       "type": 0,
       "value": "Buscar famosos"
+    }
+  ],
+  "3IrNpH": [
+    {
+      "type": 0,
+      "value": "ID DE TRANSACCIÓN:"
     }
   ],
   "3O5yL3": [
@@ -427,6 +451,12 @@
       "value": "Su privacidad es muy importante para nosotros. Nuestra política de privacidad explica cómo recopilamos, usamos, protegemos, y cuando compartimos información personal y otros datos con otros. Usted es responsable de mantener la confidencialidad de la información de su cuenta, incluyendo su nombre de usuario y contraseña. Usted es responsable de todas las actividades que ocurran bajo su cuenta y usted se compromete a notificarnos inmediatamente de cualquier acceso o uso no autorizado de su cuenta. No somos responsables por cualquier daño o pérdida relacionada con cualquier acceso o uso no autorizado de su cuenta."
     }
   ],
+  "5KDn6A": [
+    {
+      "type": 0,
+      "value": "ID DE SEGUIMIENTO:"
+    }
+  ],
   "5fTLVa": [
     {
       "type": 0,
@@ -437,6 +467,12 @@
     {
       "type": 0,
       "value": "Nota:"
+    }
+  ],
+  "5h/jE9": [
+    {
+      "type": 0,
+      "value": "Formato no valido"
     }
   ],
   "5sQzpi": [
@@ -451,6 +487,12 @@
       "value": "¿Puedo editar mi solicitud de video después de realizarla?"
     }
   ],
+  "67YQ5Y": [
+    {
+      "type": 0,
+      "value": "De :"
+    }
+  ],
   "6O+PLI": [
     {
       "type": 0,
@@ -461,6 +503,12 @@
     {
       "type": 0,
       "value": "Tu firma física o electrónica;"
+    }
+  ],
+  "6aQTMU": [
+    {
+      "type": 0,
+      "value": "Por favor seleccione una opción"
     }
   ],
   "6i3tAy": [
@@ -513,6 +561,12 @@
       "value": "Campo requerido"
     }
   ],
+  "7qAY7x": [
+    {
+      "type": 0,
+      "value": "Tu pago esta pendiente de aprobación."
+    }
+  ],
   "7v9dpV": [
     {
       "type": 0,
@@ -523,6 +577,12 @@
     {
       "type": 0,
       "value": "correo@dominio.com"
+    }
+  ],
+  "8F0yts": [
+    {
+      "type": 0,
+      "value": "Si por alguna razón tu video no pudo ser grabado, nos pondremos en contacto contigo para notificarte."
     }
   ],
   "8HOoZU": [
@@ -663,6 +723,12 @@
       "value": "Bailarines"
     }
   ],
+  "AZgVtc": [
+    {
+      "type": 0,
+      "value": "Si todo está bien con tu solicitud de acuerdo a nuestra políticas, muy pronto podrás disfrutar de tu videomensaje."
+    }
+  ],
   "Aa51Eo": [
     {
       "type": 0,
@@ -677,6 +743,12 @@
     {
       "type": 0,
       "value": " proceso de pago."
+    }
+  ],
+  "AcGanx": [
+    {
+      "type": 0,
+      "value": "Ir a Mis Contrataciones"
     }
   ],
   "AnfpP+": [
@@ -1091,6 +1163,12 @@
       "value": "Moldova (the Republic of)"
     }
   ],
+  "KcvTuJ": [
+    {
+      "type": 0,
+      "value": "Por favor introduzca todos los datos"
+    }
+  ],
   "KjMaxy": [
     {
       "type": 0,
@@ -1183,6 +1261,16 @@
     {
       "type": 0,
       "value": "Referido por:"
+    }
+  ],
+  "MU1M4J": [
+    {
+      "type": 1,
+      "value": "celebrityName"
+    },
+    {
+      "type": 0,
+      "value": " tiene un plazo de 7 días para grabar tu video a partir de ahora."
     }
   ],
   "MURhbO": [
@@ -1433,6 +1521,18 @@
       "value": "Chile"
     }
   ],
+  "R8MBZf": [
+    {
+      "type": 0,
+      "value": "Recibirás una notificación a correocliente@dominio.com cuando tu video esté listo."
+    }
+  ],
+  "RG+TGy": [
+    {
+      "type": 0,
+      "value": "Tu pago ha sido Rechazado."
+    }
+  ],
   "RMN4N0": [
     {
       "type": 0,
@@ -1473,6 +1573,12 @@
     {
       "type": 0,
       "value": "Filtrar por país"
+    }
+  ],
+  "SJlNke": [
+    {
+      "type": 0,
+      "value": "Tu pago ha sido aprobado."
     }
   ],
   "SNXFr/": [
@@ -1677,6 +1783,12 @@
       "value": "Filtrar por categoría"
     }
   ],
+  "WkJEIw": [
+    {
+      "type": 0,
+      "value": "Escribe aquí tu correo electrónico"
+    }
+  ],
   "WmWz59": [
     {
       "type": 0,
@@ -1705,6 +1817,12 @@
     {
       "type": 0,
       "value": "Imitadores"
+    }
+  ],
+  "X9uKOS": [
+    {
+      "type": 0,
+      "value": "Siguientes pasos:"
     }
   ],
   "XNGk+R": [
@@ -1745,6 +1863,12 @@
     {
       "type": 0,
       "value": " que conecten personalidades con su fan base."
+    }
+  ],
+  "XvIJA8": [
+    {
+      "type": 0,
+      "value": "¿En qué moneda te gustaría pagar?"
     }
   ],
   "Y6+mfe": [
@@ -1819,6 +1943,12 @@
     {
       "type": 0,
       "value": " caracteres"
+    }
+  ],
+  "Yxo8MA": [
+    {
+      "type": 0,
+      "value": "Ir a mis contrataciones"
     }
   ],
   "ZcJeQh": [
@@ -2001,6 +2131,12 @@
       "value": "Mis Suscripciones"
     }
   ],
+  "d/7Z6V": [
+    {
+      "type": 0,
+      "value": "Si quieres saber más sobre el estado de tu transacción puedes contactar a nuestro equipo de soporte."
+    }
+  ],
   "d4p33Q": [
     {
       "type": 0,
@@ -2053,6 +2189,12 @@
       "value": "Contrato rechazado"
     }
   ],
+  "duDNCn": [
+    {
+      "type": 0,
+      "value": "Para :"
+    }
+  ],
   "dy8DmF": [
     {
       "type": 0,
@@ -2093,6 +2235,12 @@
     {
       "type": 0,
       "value": "Contenido de terceros e Interacciones"
+    }
+  ],
+  "exOORp": [
+    {
+      "type": 0,
+      "value": "ESTADO DEL PAGO:"
     }
   ],
   "fH+OCT": [
@@ -2197,6 +2345,12 @@
     {
       "type": 0,
       "value": "Ingresar"
+    }
+  ],
+  "h7uQIl": [
+    {
+      "type": 0,
+      "value": "Te notificaremos a correocliente@dominio.com cuando tu pago haya sido aprobado."
     }
   ],
   "h9zXst": [
@@ -2305,6 +2459,12 @@
       "value": "1 Estrella"
     }
   ],
+  "lb33Yc": [
+    {
+      "type": 0,
+      "value": "FECHA DE PAGO:"
+    }
+  ],
   "lkQYB7": [
     {
       "type": 0,
@@ -2383,6 +2543,26 @@
       "value": "AL UTILIZAR EL SITIO O LOS SERVICIOS, USTED ACEPTA ESTOS TÉRMINOS. POR FAVOR LEA CON CUIDADO."
     }
   ],
+  "n7+zt7": [
+    {
+      "type": 0,
+      "value": "El cobro a tu cuenta se realizará una vez que "
+    },
+    {
+      "type": 1,
+      "value": "celebrityName"
+    },
+    {
+      "type": 0,
+      "value": " grabe tu video. (por ahora solo se realizó una autorización por parte de tu banco)."
+    }
+  ],
+  "n9i+Em": [
+    {
+      "type": 0,
+      "value": "Escribe aquí tu nombre"
+    }
+  ],
   "nJ/lbc": [
     {
       "type": 0,
@@ -2413,6 +2593,12 @@
       "value": "Pago cancelado"
     }
   ],
+  "nwKHl2": [
+    {
+      "type": 0,
+      "value": "Puedes consultar el estado de tu video en “Mis Contrataciones”"
+    }
+  ],
   "o/y0YW": [
     {
       "type": 0,
@@ -2423,6 +2609,12 @@
     {
       "type": 0,
       "value": "¡Tu solicitud ha sido enviada!"
+    }
+  ],
+  "oEbrJV": [
+    {
+      "type": 0,
+      "value": "Seguir Comprando"
     }
   ],
   "oKcEry": [
@@ -3149,6 +3341,12 @@
       "value": "Nosotros te garantizamos que tu famoso va a ver tu solicitud si cumple con nuestras políticas. Nos reservamos el derecho de no mostrarle al famoso solicitudes que consideremos inapropiadas, en ese caso te devolvemos tu dinero. También te garantizamos que te devolvemos tu dinero si el video no es grabado antes de 10 días."
     }
   ],
+  "sy+pv5": [
+    {
+      "type": 0,
+      "value": "Email"
+    }
+  ],
   "t+gzvS": [
     {
       "type": 0,
@@ -3189,6 +3387,12 @@
     {
       "type": 0,
       "value": " de compra."
+    }
+  ],
+  "t7y7Vl": [
+    {
+      "type": 0,
+      "value": "Datos de la persona que realiza el pago"
     }
   ],
   "tDU6jz": [
@@ -3291,6 +3495,12 @@
       "value": "Ocurrió un error inesperado."
     }
   ],
+  "vMft8+": [
+    {
+      "type": 0,
+      "value": "La autorización de tu pago se ha realizado con éxito."
+    }
+  ],
   "vf4Bo1": [
     {
       "type": 0,
@@ -3337,6 +3547,12 @@
     {
       "type": 0,
       "value": "Si utilizas el link de referido de uno de los Famosos registrados en la plataforma tendrás más oportunidades de ser aprobado, este link es único por cuenta y está disponible en la sección de Mi Perfil de la aplicación de los Famosos."
+    }
+  ],
+  "wlTYUV": [
+    {
+      "type": 0,
+      "value": "Hacer nuevo intento de pago"
     }
   ],
   "wms1Jl": [
@@ -3409,6 +3625,12 @@
       "value": "Te notificaremos cuando se active."
     }
   ],
+  "xfEeAv": [
+    {
+      "type": 0,
+      "value": "Por favor seleccione una tarjeta"
+    }
+  ],
   "xkoDM2": [
     {
       "type": 0,
@@ -3455,6 +3677,12 @@
       "value": "Es el propietario de todos los derechos y de su contenido de usuario y que tiene el derecho de darnos los derechos antes mencionados; que ha pagado y pagará la totalidad de los honorarios u otros pagos que pueden estar relacionados con el uso de su contenido de usuario; y su contenido de usuario no infringe los derechos de propiedad intelectual, derechos de privacidad, derechos de publicidad, u otros derechos legales de terceros."
     }
   ],
+  "yyUOQR": [
+    {
+      "type": 0,
+      "value": "El proceso de aprobación puede tardar alrededor de 23 hrs."
+    }
+  ],
   "z276Tc": [
     {
       "type": 0,
@@ -3477,6 +3705,12 @@
     {
       "type": 0,
       "value": "Brazil"
+    }
+  ],
+  "zM4Sw/": [
+    {
+      "type": 0,
+      "value": "¿Qué significa una autorización de pago?"
     }
   ],
   "zX425H": [
