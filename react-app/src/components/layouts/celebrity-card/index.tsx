@@ -71,9 +71,16 @@ const CelebrityCardLayout = ({
             width={celebrityCardLayout?.width || 156}
             placeholderSrc="/assets/img/avatar-blank.png"
           />
-          {celebrity.availableForFlashDeliveries ? (
+          <Maybe it={celebrity.availableForFlashDeliveries}>
             <FlashDeliveryBadgeLayout className="celebrity__flash-delivery" />
-          ) : null}
+          </Maybe>
+          <Maybe it={celebrity.availableForSubscriptions}>
+            <img
+              className="celebrity__subscription-star"
+              src="/assets/img/subscription-star-pink.svg"
+              alt="Icono de Club de fans"
+            />
+          </Maybe>
           <Maybe it={contractPrice > 0 && celebrity.status === 50}>
             <div className="celebrity__price">
               <ContractPriceLayout

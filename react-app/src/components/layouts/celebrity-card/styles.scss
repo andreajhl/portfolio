@@ -26,6 +26,12 @@
         position: absolute;
         top: 0.5rem;
         right: 0.5rem;
+        width: 18px;
+        height: 18px;
+
+        i {
+          font-size: 10px;
+        }
       }
 
       .celebrity__price {
@@ -81,4 +87,11 @@
       }
     }
   }
+}
+
+.celebrity__subscription-star {
+  width: 18px;
+  position: absolute;
+  right: 0.5rem;
+  bottom: 34px;
 }

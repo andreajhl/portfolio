@@ -3,6 +3,7 @@ export type celebrityType = {
   username: string;
   avatar: string;
   availableForFlashDeliveries: boolean;
+  availableForSubscriptions?: boolean;
   countryCode: string;
   title: string;
   fullName: string;
