@@ -1,0 +1,54 @@
+.UserInformationConfigContainer {
+  padding: 1.6875rem 2.4375rem;
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.UserInformationConfigTitle {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+}
+
+.ConfigOptionsSections {
+  padding: 0.875rem 1.625rem 2.125rem;
+  display: flex;
+  > div:first-child {
+    flex: 0 1 33%;
+  }
+  > :first-child {
+    padding-top: 0.6875rem;
+    padding-bottom: 0.6875rem;
+  }
+  > div:not(first-child) {
+    flex: 1;
+  }
+}
+
+.labelInputFields {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--gray-4);
+}
+
+.inputClass:disabled {
+  color: black;
+  font-weight: bold;
+}
+
+.ConfigOptionsPersonalData > :not(:first-child) {
+  margin-top: 2rem;
+}
+.OptionsItems {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
