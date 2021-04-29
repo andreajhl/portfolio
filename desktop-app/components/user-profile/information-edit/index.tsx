@@ -13,7 +13,7 @@ type FormValuesType = {
   gender: string;
 };
 
-function UserInformationConfig() {
+function UserInformationEdit() {
   const { values, onChangeField } = useForm<FormValuesType>({
     initialValues: {
       fullName: "Isaac",
@@ -86,4 +86,4 @@ function UserInformationConfig() {
   );
 }
 
-export default UserInformationConfig;
+export default UserInformationEdit;

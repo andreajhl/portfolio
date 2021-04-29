@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import UserInformationConfig from ".";
+import UserInformationEdit from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<UserInformationConfig />);
+  const wrapper = shallow(<UserInformationEdit />);
   expect(wrapper.exists()).toBeTruthy();
 });
