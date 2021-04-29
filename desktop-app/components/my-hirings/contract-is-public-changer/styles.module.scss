@@ -7,7 +7,11 @@
   font-size: 12px;
 }
 
+.ContractIsPublicChangerNotEditable label,
+.ContractIsPublicChangerIsLoading label {
+  cursor: default;
+}
+
 .ContractIsPublicChangerIsLoading label {
   opacity: 0.7;
-  cursor: default;
 }

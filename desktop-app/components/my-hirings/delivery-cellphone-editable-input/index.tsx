@@ -4,7 +4,7 @@ import classes from "classnames";
 import styles from "./styles.module.scss";
 import { useState } from "react";
 import { EditableInputEmpty } from "desktop-app/components/common/form/editable-input-empty";
-import { DeliveryCellphoneInput } from "desktop-app/components/delivery-cellphone-input";
+import { DeliveryCellphoneInput } from "desktop-app/components/my-hirings/delivery-cellphone-input";
 
 type DeliveryCellphoneEditableInputProps = {
   className?: string;

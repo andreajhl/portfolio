@@ -20,3 +20,8 @@ const canEditContractStatuses = [CREATED, PAYED_BY_CLIENT];
 
 export const canEditContract = (contractStatus: number) =>
   canEditContractStatuses.includes(contractStatus);
+
+const cancelledStatuses = [REJECTED, EXPIRED];
+
+export const contractIsCancelled = (contractStatus: number) =>
+  cancelledStatuses.includes(contractStatus);

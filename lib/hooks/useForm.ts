@@ -102,7 +102,7 @@ type UseFormParam<InitialValuesType> = {
   initialValues: InitialValuesType;
   validations?: ValidationsType<InitialValuesType>;
   validateOnChange?: boolean;
-  onSubmit: (values: InitialValuesType) => any;
+  onSubmit?: (values: InitialValuesType) => any;
 };
 
 function useForm<InitialValuesType = { [key: string]: any }>({
@@ -178,7 +178,7 @@ function useForm<InitialValuesType = { [key: string]: any }>({
     event?.preventDefault?.();
     dispatch({ type: TYPES.FORM_SUBMITTED });
     if (!validateFields()) return;
-    return onSubmit(state.values as InitialValuesType);
+    return onSubmit?.(state.values as InitialValuesType);
   }
 
   function touchedFieldsAreInvalid() {

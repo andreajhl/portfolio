@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import { DeliveryCellphoneInput } from "./";
+import { StepsGrayBanner } from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<DeliveryCellphoneInput />);
+  const wrapper = shallow(<StepsGrayBanner />);
   expect(wrapper.exists()).toBeTruthy();
 });
