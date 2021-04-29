@@ -6,7 +6,7 @@ import classes from "classnames";
 import WarningMessage from "../../common/warning-message";
 import styles from "./styles.module.scss";
 
-const mapStateToProps = (state) => ({ ...state });
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = {};
 
