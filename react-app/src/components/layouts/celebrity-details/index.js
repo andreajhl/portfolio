@@ -13,6 +13,7 @@ import { SubscriptionToAvailabilityNotification } from "../subscription-to-avail
 import AdWarrantyVideoPurchase from "../ad-warranty-video-purchase";
 import { HireThisCelebrityForCompaniesButton } from "../hire-this-celebrity-for-companies-button";
 import Maybe from "../../common/helpers/maybe";
+import { FansClubBadge } from "../fans-club-badge";
 
 const CelebrityDetails = ({ celebrity, variant }) => {
   const {
@@ -54,6 +55,9 @@ const CelebrityDetails = ({ celebrity, variant }) => {
           <Maybe it={availableForFlashDeliveries}>
             <FlashDeliveryBadgeLayout color="dark" showTitle />
           </Maybe>
+          <Maybe it={availableForSubscriptions}>
+            <FansClubBadge className="CelebrityDetails__fans-club-badge" />
+          </Maybe>
         </Col>
         <Col xs="auto d-none d-md-block" className="text-center">
           <ProfilePicture
@@ -73,6 +77,9 @@ const CelebrityDetails = ({ celebrity, variant }) => {
               showTime
               showTitle
             />
+          </Maybe>
+          <Maybe it={availableForSubscriptions}>
+            <FansClubBadge className="CelebrityDetails__fans-club-badge-large" />
           </Maybe>
         </Col>
         <Col>
