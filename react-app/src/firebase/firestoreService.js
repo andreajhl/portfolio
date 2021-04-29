@@ -42,7 +42,7 @@ const firstQueryHandler = async (collectionPath, celebrityId) =>
     .where("celebrityId", Array.isArray(celebrityId) ? "in" : "==", celebrityId)
     .where("deleted", "==", null)
     .orderBy("created", "desc")
-    .limit(2)
+    .limit(5)
     .get();
 
 const paginateQueryHandler = async (collectionPath, celebrityId, indexFilter) =>
@@ -51,7 +51,7 @@ const paginateQueryHandler = async (collectionPath, celebrityId, indexFilter) =>
     .where("celebrityId", Array.isArray(celebrityId) ? "in" : "==", celebrityId)
     .where("deleted", "==", null)
     .orderBy("created", "desc")
-    .limit(2)
+    .limit(5)
     .startAfter(indexFilter)
     .get();
 
