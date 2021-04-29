@@ -4,14 +4,15 @@ import { Session } from "../../../state/utils/session";
 import { sessionOperations } from "../../../state/ducks/session";
 import { connect } from "react-redux";
 import {
-  CLIENT_FAVORITES,
   CLIENT_HIRINGS,
+  FEED_SUBSCRIPTION,
   HOME_PATH
 } from "../../../routing/Paths";
 import LogoutButton from "../../containers/logout-button/logout-button";
 import Router from "next/router";
 import Maybe from "../../common/helpers/maybe";
 import { NavLink } from "../../common/routing";
+import { fetchUserSubscriptionsList } from "react-app/src/state/ducks/subscriptions/actions";
 
 class UserProfileDetailsCardLayout extends Component {
   constructor(props) {
@@ -31,6 +32,10 @@ class UserProfileDetailsCardLayout extends Component {
   // celebritiesMultiSelectChanged(value) {
   //   this.setState({ favCelebrities: value });
   // }
+
+  componentDidMount() {
+    this.props.fetchUserSubscriptionsList();
+  }
 
   logout() {
     this.sesion.removeSession();
@@ -86,10 +91,11 @@ class UserProfileDetailsCardLayout extends Component {
               <hr />
             </div>
             <div className="col-6 text-center border-right p-2">
-              <NavLink to={CLIENT_FAVORITES} className="text-decoration-none">
+              <NavLink to={FEED_SUBSCRIPTION} className="text-decoration-none">
                 <h6 className="mt-2">Siguiendo</h6>
                 <h2 className="font-weight-bold mt-4">
-                  {this.props.userCelebrityLikesCount}
+                  {this.props.userSubscriptionListLength}
+                  {/* {this.props.userCelebrityLikesCount} */}
                 </h2>
               </NavLink>
             </div>
@@ -136,6 +142,10 @@ UserProfileDetailsCardLayout.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
+  userSubscriptionListLength: state.subscriptions
+    .fetchUserSubscriptionsListReducer.completed
+    ? state.subscriptions.fetchUserSubscriptionsListReducer.data?.length || 0
+    : "",
   isLoading: state.session.updateSessionReducer.loading,
   sessionData: state.session.getSessionReducer.data,
   updateSessionData: state.session.updateSessionReducer.data,
@@ -145,6 +155,7 @@ const mapStateToProps = (state) => ({
 
 // mapStateToProps
 const mapDispatchToProps = {
+  fetchUserSubscriptionsList,
   updateSession: sessionOperations.updateSession
 };
 
