@@ -6,9 +6,12 @@ import { ContractInstructionsTextarea } from "../../common/form/contract-instruc
 import { ContractOccasion } from "../../common/widgets/contract-occasion";
 import { EditingToggleButton } from "../../common/button/editing-toggle-button";
 import { ContractDataFormInput } from "../../common/form/contract-data-form-input";
-import styles from "./styles.module.scss";
 import { Link } from "desktop-app/components/common/routing/link";
 import { getCelebrityProfilePath } from "constants/paths";
+import classes from "classnames";
+import { canEditContract } from "desktop-app/constants/contractStatuses";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import styles from "./styles.module.scss";
 
 const mapStateToProps = (state) => ({});
 
@@ -52,21 +55,22 @@ function MyHiringsCardDetails({ contractData }: MyHiringsCardDetailsProps) {
             disabled={!isEditing}
           />
         </div>
-        <div
-          className={`${styles.MyHiringsCardDetailsEditButtonWrapper} ${
-            isEditing
-              ? styles.MyHiringsCardDetailsEditButtonWrapperIsEditing
-              : ""
-          }`}
-        >
-          <EditingToggleButton
-            isEditing={isEditing}
-            editButtonColor={"var(--secondary)"}
-            saveButtonColor={"var(--secondary)"}
-            onClickEdit={() => setIsEditing((isEditing) => !isEditing)}
-            onClickSave={() => setIsEditing((isEditing) => !isEditing)}
-          />
-        </div>
+        <Maybe it={canEditContract(contractData.status)}>
+          <div
+            className={classes(
+              styles.MyHiringsCardDetailsEditButtonWrapper,
+              isEditing && styles.MyHiringsCardDetailsEditButtonWrapperIsEditing
+            )}
+          >
+            <EditingToggleButton
+              isEditing={isEditing}
+              editButtonColor={"var(--secondary)"}
+              saveButtonColor={"var(--secondary)"}
+              onClickEdit={() => setIsEditing((isEditing) => !isEditing)}
+              onClickSave={() => setIsEditing((isEditing) => !isEditing)}
+            />
+          </div>
+        </Maybe>
       </div>
       <div className={styles.MyHiringsCardDetailsInstructionWrapper}>
         <ContractInstructionsTextarea
