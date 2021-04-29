@@ -1,4 +1,4 @@
-import { defineMessages } from "react-intl";
+import { defineMessages, FormattedMessage } from "react-intl";
 import React from "react";
 export const CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE = [
   "Actores",
@@ -90,3 +90,65 @@ export const labelMessagesForCountryCodeFilter = defineMessages({
   URY: { defaultMessage: "Uruguay" },
   VEN: { defaultMessage: "Venezuela (Bolivarian Republic of)" }
 });
+
+export const returnPaymentStatusLabel = (status) => {
+  switch (status) {
+    case 10:
+      return [
+        <FormattedMessage defaultMessage="Pago creado" />,
+        "far fa-check-circle"
+      ];
+    case 20:
+      return [
+        <FormattedMessage defaultMessage="Pago cancelado" />,
+        "far fa-window-close"
+      ];
+    case 30:
+      return [
+        <FormattedMessage defaultMessage="Pago rechazado" />,
+        "fas fa-ban"
+      ];
+    case 40:
+      return [
+        <FormattedMessage defaultMessage="Pago pendiente" />,
+        "far fa-clock"
+      ];
+    case 50:
+      return [
+        <FormattedMessage defaultMessage="Reembolso fallido" />,
+        "fas fa-ban"
+      ];
+    case 55:
+      return [
+        <FormattedMessage defaultMessage="Falló autorización de cobro" />,
+        "fas fa-ban"
+      ];
+    case 60:
+      return [
+        <FormattedMessage defaultMessage="Cobro fallido" />,
+        "fas fa-ban"
+      ];
+    case 70:
+      return [
+        <FormattedMessage defaultMessage="Reembolso exitoso" />,
+        "far fa-check-circle"
+      ];
+    case 80:
+      return [
+        <FormattedMessage defaultMessage="Pago expirado" />,
+        "far fa-clock"
+      ];
+    case 90:
+      return [
+        <FormattedMessage defaultMessage="Pago autorizado" />,
+        "far fa-check-circle text-success"
+      ];
+    case 100:
+      return [
+        <FormattedMessage defaultMessage="Pago completado" />,
+        "far fa-check-circle text-success"
+      ];
+    default:
+      return ["", ""];
+  }
+};

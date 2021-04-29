@@ -2,8 +2,8 @@ import { type } from "os";
 import React from "react";
 import styled from "styled-components";
 import moment from "moment";
-import { paymentStatus } from "constants/paymentStatus";
 import { FormattedMessage } from "react-intl";
+import { returnPaymentStatusLabel } from "react-app/src/constants/messages";
 
 type ResumenStatusPaymentsProps = {
   status: number;
@@ -35,7 +35,7 @@ const ResumenStatusPayment = ({
     <ContainerResumenStatusPayment>
       <SpanGray textColor={textColor} className="mt-3">
         <FormattedMessage defaultMessage="ESTADO DEL PAGO:" />{" "}
-        {paymentStatus[status]}
+        {returnPaymentStatusLabel(status)[0]}
       </SpanGray>
       <SpanGray textColor={textColor} className="mt-3">
         <FormattedMessage defaultMessage="FECHA DE PAGO:" />{" "}
