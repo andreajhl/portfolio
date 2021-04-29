@@ -1,4 +1,4 @@
-import React, { Component, useRef, utilizeFocus } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form } from "react-bootstrap";
 import PropTypes from "prop-types";
@@ -11,6 +11,7 @@ import { getToken } from "react-app/src/state/ducks/session/actions";
 import "react-phone-input-2/lib/style.css";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
+import isMobilePhone from "react-app/src/state/utils/isMobilePhone";
 import { withRouter } from "next/router";
 
 const intlMessages = defineMessages({
@@ -123,7 +124,8 @@ class CreateContractForm extends Component {
       this.deliveryFromValidator(true) ||
       this.deliveryToValidator(true) ||
       this.instructionsValidator() ||
-      this.deliveryContactValidator()
+      this.deliveryContactValidator() ||
+      this.deliveryContactCellphoneValidator()
     ) {
       this.setState({
         ...this.state,
@@ -176,13 +178,14 @@ class CreateContractForm extends Component {
     }
   }
 
-  onCellphoneChange = (cellphoneNumber) => {
+  onCellphoneChange = (cellphoneNumber, countryCode) => {
     this.setState((state) => ({
       ...state,
       contractData: {
         ...state.contractData,
         deliveryContactCellphone: cellphoneNumber
-      }
+      },
+      deliveryContactCellphoneCountryCode: countryCode
     }));
   };
 
@@ -341,6 +344,24 @@ class CreateContractForm extends Component {
       return <FormattedMessage defaultMessage="Este correo no es válido" />;
     }
     return null;
+  };
+
+  deliveryContactCellphoneValidator = () => {
+    try {
+      if (this.state.contractData.deliveryContactCellphone !== "") {
+        if (
+          !isMobilePhone(
+            String(`+${this.state.contractData.deliveryContactCellphone}`),
+            this.state.deliveryContactCellphoneCountryCode
+          )
+        ) {
+          return "Ingrese un numero telefónico valido";
+        }
+      }
+      return null;
+    } catch (error) {
+      return null;
+    }
   };
 
   getInstructions(occasionIdentifier) {
@@ -601,6 +622,7 @@ class CreateContractForm extends Component {
               <FormattedMessage defaultMessage="¿Quieres recibir el video a tu WhatsApp? (Opcional)" />
             </label>
             <PhoneInput
+              enableLongNumbers={true}
               enableSearch
               searchClass="d-flex align-items-center p-2"
               searchPlaceholder={formatMessage(
@@ -610,11 +632,19 @@ class CreateContractForm extends Component {
               value={this.state.contractData.deliveryContactCellphone}
               className="form-control mb-3"
               containerClass="mb-3"
-              country={"co"}
-              onChange={(cellphoneNumber) => {
-                this.onCellphoneChange(cellphoneNumber);
+              country={this.state.deliveryContactCellphoneCountryCode}
+              onChange={(cellphoneNumber, data) => {
+                this.onCellphoneChange(cellphoneNumber, data.countryCode);
               }}
             />
+            <span
+              className={
+                "text-danger" +
+                (this.state.showErrors ? " show-error " : " hide-error ")
+              }
+            >
+              {this.deliveryContactCellphoneValidator()}
+            </span>
           </div>
           <div className={"mt-3"}>{""}</div>
           <Form.Check

@@ -5,9 +5,9 @@ export const SEARCH_PATH = "/buscar";
 export const CELEBRITY_PROFILE = "/:celebrity_username";
 export const CELEBRITY_PROFILE_ERROR = "/:celebrity_username/404-not-found/";
 export const CELEBRITY_PROFILE_CONTRACT = "/:celebrity_username/contratar";
-export const PAYMENT_METHODS = "/metodos-de-pago/:contract_reference";
+export const PAYMENT_METHODS = "/payments-methods/:contract_reference";
 export const STRIPE_3D_SECURE_IFRAME =
-  "/metodos-de-pago/:contract_reference/stripe-3d-secure/iframe";
+  "/paymentds-methods/:contract_reference/stripe-3d-secure/iframe";
 export const STRIPE_3D_SECURE_RESPONSE =
   "/metodos-de-pago/:contract_reference/stripe-3d-secure/response";
 export const CONTRACT_CREATED = "/contract-created/:contract_reference";
@@ -52,3 +52,7 @@ export const SUBSCRIPTION_SUCCESS =
 export const FEED_SUBSCRIPTION = "/subscription/feed";
 //SESSION REDIRECT
 export const SESSION_REDIRECT = "/session/redirect/";
+//RESUMEN DE COMPRA
+export const RESUMEN_DE_COMPRA = "/resumen-de-compra/:contract_reference";
+//RESUMEN DE COMPRA
+export const PURCHASE_SUMMARY = "/purchase-summary/:contract_reference";

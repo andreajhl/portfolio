@@ -161,7 +161,7 @@ class StripeCardForm extends Component {
               });
             }
           }
-          const route = PATHS.CONTRACT_CREATED.replace(
+          const route = PATHS.PURCHASE_SUMMARY.replace(
             ":contract_reference",
             res.data.data.reference
           );

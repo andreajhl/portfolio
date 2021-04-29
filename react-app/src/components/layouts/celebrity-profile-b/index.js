@@ -11,12 +11,12 @@ const HowToGetAVideoMessageLayout = dynamic(() =>
 );
 const SimilarCelebritiesCardsSectionLayout = dynamic(() =>
   import("../similar-celebrities-cards-section").then(
-    (mod) => mod.HowToGetAVideoMessageLayout
+    (mod) => mod.SimilarCelebritiesCardsSectionLayout
   )
 );
 const SimilarCelebrityContractsSectionLayout = dynamic(() =>
   import("../similar-celebrity-contracts-section").then(
-    (mod) => mod.HowToGetAVideoMessageLayout
+    (mod) => mod.SimilarCelebrityContractsSectionLayout
   )
 );
 const CelebrityPublicContractsSectionLayout = dynamic(() =>

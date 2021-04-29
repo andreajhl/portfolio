@@ -17,6 +17,8 @@ const ContractCheckoutSummary = ({
   couponData,
   currencyExchangeData,
   clearCouponData,
+  originalPrice,
+  celebrityDiscountPercentage,
   contractReference
 }) => {
   useEffect(() => {
@@ -117,8 +119,12 @@ const ContractCheckoutSummary = ({
             currency={"USD"}
             currencyExchangeData={currencyExchangeData}
             rounding={false}
+            contractPrice={price}
+            originalPrice={originalPrice}
+            celebrityDiscountPercentage={celebrityDiscountPercentage}
           />
         </div>
+        <hr className="w-100"></hr>
       </div>
     </>
   );

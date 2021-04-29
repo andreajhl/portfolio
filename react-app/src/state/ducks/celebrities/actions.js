@@ -115,6 +115,16 @@ export const list = (params) => {
   };
 };
 
+export const saveLastQueryParams = (params) => {
+  return (dispatch) => {
+    const TYPE = types.SAVE_LAST_QUERY_PARAMS;
+    dispatch({
+      type: TYPE,
+      payload: params
+    });
+  };
+};
+
 export const fetchSimilarResults = (params) => {
   return (dispatch, getStore) => {
     getStore().celebrities.fetchCelebritiesReducer?.requestCancel?.();
