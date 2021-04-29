@@ -37,6 +37,7 @@ import { useRouter } from "next/router";
 import { getPostsFromCelebrity } from "react-app/src/firebase/firestoreService";
 import { NotPostsResults } from "../subscription-feed";
 import { ConvertedPriceCopy } from "../../layouts/converted-price-copy";
+import { PoweredByFamososBanner } from "../../layouts/powered-by-famosos-banner";
 
 const isTypeImage = ({ type }: { type: string }): boolean => type === "image";
 
@@ -205,6 +206,7 @@ const SubscribePage = ({
           <Maybe it={posts?.length === 0}>
             <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
           </Maybe>
+          <PoweredByFamososBanner />
         </SubscriptionPostsSection>
       </Maybe>
     </PageContainer>
