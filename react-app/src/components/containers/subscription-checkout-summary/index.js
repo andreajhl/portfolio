@@ -16,8 +16,16 @@ const SubscriptionCheckoutSummary = (props) => {
           />
           <h5>Beneficios del Club de Fans</h5>
         </header>
+        <h6 className="container-subscription-checkout-summary__welcome-title">
+          ¡Bienvenido!
+        </h6>
+        <p className="container-subscription-checkout-summary__copy">
+          Esta suscripción te permitirá estar más cerca de {celebrityFullName} y
+          conocer todas las novedades de tu famoso favorito antes que los demás.
+        </p>
         <CheckIconList
           className="container-subscription-checkout-summary__benefits-list"
+          title="Disfrutarás de beneficios especiales para súper fans, como:"
           items={[
             "Felicitación en tu cumpleaños.",
             "Descuento en tu próxima compra de video personalizado.",
