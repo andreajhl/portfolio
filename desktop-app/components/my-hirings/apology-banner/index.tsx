@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { getCelebrityProfilePath } from "constants/paths";
+import { getHireCelebrityPath } from "constants/paths";
 import { REJECTED } from "desktop-app/constants/contractStatuses";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import Maybe from "../../common/helpers/maybe";
@@ -49,7 +49,10 @@ function ApologyBanner({ contractData }: ApologyBannerProps) {
       <button type="button" className={`btn btn-tertiary ${styles.CTAButton}`}>
         Descargar comprobante de devolución
       </button>
-      <Link href={getCelebrityProfilePath(contractData.celebrityData.username)}>
+      <Link
+        className={styles.CTALink}
+        href={getHireCelebrityPath(contractData.celebrityData.username)}
+      >
         <button type="button" className={`btn btn-primary ${styles.CTAButton}`}>
           Volver a solicitar un video a {contractData.celebrityData.fullName}
         </button>

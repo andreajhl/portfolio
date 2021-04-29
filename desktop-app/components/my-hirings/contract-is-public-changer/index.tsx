@@ -25,8 +25,10 @@ function ContractIsPublicChanger({
   const [isPublic, setIsPublic] = useState(contractIsPublic);
   const [isLoading, setIsLoading] = useState(false);
 
+  const canEdit = canEditIsPublic(contractStatus);
+
   function handleIsPublic(newIsPublicValue) {
-    if (isLoading || !canEditIsPublic(contractStatus)) {
+    if (isLoading || !canEdit) {
       return;
     }
     setIsLoading(true);
@@ -48,6 +50,7 @@ function ContractIsPublicChanger({
         value={isPublic}
         onChange={handleIsPublic}
         containerClass={classes(
+          !canEdit && styles.ContractIsPublicChangerNotEditable,
           isLoading && styles.ContractIsPublicChangerIsLoading
         )}
       />

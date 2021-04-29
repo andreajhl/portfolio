@@ -59,6 +59,9 @@ export const SESSION_REDIRECT = "/session/redirect/";
 export const getCelebrityProfilePath = (celebrityUsername) =>
   CELEBRITY_PROFILE.replace(":celebrity_username", celebrityUsername);
 
+export const getHireCelebrityPath = (celebrityUsername) =>
+  CELEBRITY_PROFILE_CONTRACT.replace(":celebrity_username", celebrityUsername);
+
 export const getCelebrityFanClubPath = (celebrityUsername) =>
   CELEBRITY_SUBSCRIBE.replace(":celebrity_username", celebrityUsername);
 

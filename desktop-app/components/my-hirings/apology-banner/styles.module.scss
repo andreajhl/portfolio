@@ -17,6 +17,12 @@ p.DynamicText {
   margin-bottom: 24px;
 }
 
+.CTALink {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .CTAButton {
   height: 40px;
   font-size: 14px;
