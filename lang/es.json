@@ -2,6 +2,9 @@
   "+c9FIk": {
     "message": "Panama"
   },
+  "+jX0dw": {
+    "message": "*Puedes editar las instrucciones de tu video mientras está pendiente de grabación."
+  },
   "/+/C1u": {
     "message": "Ordenar por"
   },
@@ -76,11 +79,17 @@
   "1UwvvG": {
     "message": "No se pudo guardar tu cambio. Intenta de nuevo."
   },
+  "1YGzpj": {
+    "message": "¡Felicidades!"
+  },
   "1aq5W2": {
     "message": "ESTA sección Límites CIERTOS DERECHOS, INCLUYENDO el derecho de mantener una acción judicial, el derecho a juicio por jurado, el derecho a PARTICIPAR EN CUALQUIER FORMA DE CLASE O RECLAMO representante, el derecho a participar en DISCOVERY SALVO AS previsto en las reglas AAA, Y EL DERECHO DE RECURSOS Y FORMAS DE SOCORRO CIERTAS. OTROS DERECHOS QUE USTED O FAMOSOS tendría al tribunal también no estar disponibles EN EL ARBITRAJE."
   },
   "1hbKb8": {
     "message": "Ni usted ni Famosos puede actuar como un representante de la clase o el abogado general privado, ni participar como miembro de un grupo de demandantes, con respecto a cualquier reclamación. Reclamaciones no pueden ser arbitradas en una clase o base representativa. El árbitro puede decidir solamente sus reclamaciones individuales y / o Famosos'. El árbitro no podrá consolidar ni unir los reclamos de otras personas o partes que pueden estar situados de manera similar."
+  },
+  "1iUuaq": {
+    "message": "¡Felicidades! Tu pago ha sido aprobado"
   },
   "1qfzR5": {
     "message": "intento de descifrar, compilar o realizar ingeniería inversa a cualquiera del software u otro código subyacente utilizado para proporcionar el Sitio o los Servicios; o promover, alentar o ayudar a un tercero en hacer cualquiera de las anteriores."
@@ -111,6 +120,9 @@
   },
   "3Dy+Ix": {
     "message": "Buscar famosos"
+  },
+  "3IrNpH": {
+    "message": "ID DE TRANSACCIÓN:"
   },
   "3O5yL3": {
     "description": "",
@@ -173,11 +185,17 @@
   "5HZna2": {
     "message": "Su privacidad es muy importante para nosotros. Nuestra política de privacidad explica cómo recopilamos, usamos, protegemos, y cuando compartimos información personal y otros datos con otros. Usted es responsable de mantener la confidencialidad de la información de su cuenta, incluyendo su nombre de usuario y contraseña. Usted es responsable de todas las actividades que ocurran bajo su cuenta y usted se compromete a notificarnos inmediatamente de cualquier acceso o uso no autorizado de su cuenta. No somos responsables por cualquier daño o pérdida relacionada con cualquier acceso o uso no autorizado de su cuenta."
   },
+  "5KDn6A": {
+    "message": "ID DE SEGUIMIENTO:"
+  },
   "5fTLVa": {
     "message": "Si pagas con tarjeta de crédito internacional, nosotros hacemos una autorización del cobro y únicamente hacemos el cobro real cuando se completa la solicitud por parte del famoso. Si utilizas otro método de pago debes pagar antes de que te realicen tu video."
   },
   "5gmrTZ": {
     "message": "Nota:"
+  },
+  "5h/jE9": {
+    "message": "Formato no valido"
   },
   "5sQzpi": {
     "message": "No se pudo autenticar esta tarjeta correctamente"
@@ -185,11 +203,17 @@
   "66AwbQ": {
     "message": "¿Puedo editar mi solicitud de video después de realizarla?"
   },
+  "67YQ5Y": {
+    "message": "De :"
+  },
   "6O+PLI": {
     "message": "Inicio"
   },
   "6Vw0/u": {
     "message": "Tu firma física o electrónica;"
+  },
+  "6aQTMU": {
+    "message": "Por favor seleccione una opción"
   },
   "6i3tAy": {
     "message": "El cobro que se hará en dólares es:"
@@ -212,11 +236,17 @@
   "7Vvfe3": {
     "message": "Campo requerido"
   },
+  "7qAY7x": {
+    "message": "Tu pago esta pendiente de aprobación."
+  },
   "7v9dpV": {
     "message": "El sitio y algunos de nuestros servicios le permiten cargar, enviar, almacenar, enviar o recibir contenido y datos, incluyendo sus videomensajes y materiales promocionales (“Contenido de Usuario\"). Usted conserva la propiedad de los derechos de propiedad intelectual que usted tiene en su contenido de usuario."
   },
   "8+5qCg": {
     "message": "correo@dominio.com"
+  },
+  "8F0yts": {
+    "message": "Si por alguna razón tu video no pudo ser grabado, nos pondremos en contacto contigo para notificarte."
   },
   "8HOoZU": {
     "message": "Debe tener al menos 13 años para utilizar el Sitio o los Servicios. Si usted es menor de edad en su estado de residencia, un menor de edad, su padre o tutor legal deben estar de acuerdo con estos términos en su nombre y que sólo pueden acceder y utilizar el Sitio y los Servicios con el permiso de su padre o tutor legal."
@@ -272,9 +302,15 @@
   "AWmP/v": {
     "message": "Bailarines"
   },
+  "AZgVtc": {
+    "message": "Si todo está bien con tu solicitud de acuerdo a nuestra políticas, muy pronto podrás disfrutar de tu videomensaje."
+  },
   "Aa51Eo": {
     "description": "",
     "message": "Completa el <br></br> proceso de pago."
+  },
+  "AcGanx": {
+    "message": "Ir a Mis Contrataciones"
   },
   "AnfpP+": {
     "message": "Entrega Flash"
@@ -474,6 +510,9 @@
   "Kb3TOE": {
     "message": "Moldova (the Republic of)"
   },
+  "KcvTuJ": {
+    "message": "Por favor introduzca todos los datos"
+  },
   "KjMaxy": {
     "message": "¿Comó solicitar {onlyMobileLineBreak} un {onlyDesktopLineBreak} videomensaje en Famosos?"
   },
@@ -513,6 +552,9 @@
   },
   "MSP5Du": {
     "message": "Referido por:"
+  },
+  "MU1M4J": {
+    "message": "{celebrityName} tiene un plazo de 7 días para grabar tu video a partir de ahora."
   },
   "MURhbO": {
     "message": "La solicitud de reembolso se realiza de forma automatica, el tiempo en el que se vera reflejado en tu tarjeta depende de tu banco y puede ser entre 5 y 10 dias."
@@ -612,6 +654,12 @@
   "QtvgOo": {
     "message": "Chile"
   },
+  "R8MBZf": {
+    "message": "Recibirás una notificación a correocliente@dominio.com cuando tu video esté listo."
+  },
+  "RG+TGy": {
+    "message": "Tu pago ha sido Rechazado."
+  },
   "RMN4N0": {
     "message": "Pago rechazado"
   },
@@ -633,6 +681,9 @@
   "SDtXEV": {
     "description": "ModalTitle for search CategoryFilter",
     "message": "Filtrar por país"
+  },
+  "SJlNke": {
+    "message": "Tu pago ha sido aprobado."
   },
   "SNXFr/": {
     "message": "Al continuar estás aceptando nuestros <linkTerms> Términos y Condiciones </linkTerms> y nuestra <linkPolicies> Política de Privacidad </linkPolicies>"
@@ -722,6 +773,9 @@
     "description": "ModalTitle for search CategoryFilter",
     "message": "Filtrar por categoría"
   },
+  "WkJEIw": {
+    "message": "Escribe aquí tu correo electrónico"
+  },
   "WmWz59": {
     "message": "Contrato Expirado"
   },
@@ -737,6 +791,9 @@
   "WuHK3B": {
     "message": "Imitadores"
   },
+  "X9uKOS": {
+    "message": "Siguientes pasos:"
+  },
   "XNGk+R": {
     "message": "Tu comentario ha sido enviado."
   },
@@ -751,6 +808,9 @@
   },
   "XlP2E5": {
     "message": "Es una compañía dedicada a crear tecnologías <br></br> que conecten personalidades con su fan base."
+  },
+  "XvIJA8": {
+    "message": "¿En qué moneda te gustaría pagar?"
   },
   "Y6+mfe": {
     "message": "Una descripción de donde se encuentra el presunto material infractor."
@@ -786,6 +846,9 @@
   },
   "Yskoha": {
     "message": "Este campo excede el limite de {deliveryToMaxLength} caracteres"
+  },
+  "Yxo8MA": {
+    "message": "Ir a mis contrataciones"
   },
   "ZcJeQh": {
     "message": "La confirmación de tu compra será enviada a tu mail"
@@ -865,6 +928,9 @@
   "crQQc4": {
     "message": "Mis Suscripciones"
   },
+  "d/7Z6V": {
+    "message": "Si quieres saber más sobre el estado de tu transacción puedes contactar a nuestro equipo de soporte."
+  },
   "d4p33Q": {
     "message": "¿Como te encontramos? Ej: andresito"
   },
@@ -885,6 +951,9 @@
   },
   "dmBWFQ": {
     "message": "Contrato rechazado"
+  },
+  "duDNCn": {
+    "message": "Para :"
   },
   "dy8DmF": {
     "description": "Mensaje de error para creación de tarjeta Stripe",
@@ -907,6 +976,9 @@
   },
   "erYRhy": {
     "message": "Contenido de terceros e Interacciones"
+  },
+  "exOORp": {
+    "message": "ESTADO DEL PAGO:"
   },
   "fH+OCT": {
     "message": "Seleccionar una tarjeta"
@@ -956,6 +1028,9 @@
   "gxungj": {
     "description": "",
     "message": "Ingresar"
+  },
+  "h7uQIl": {
+    "message": "Te notificaremos a correocliente@dominio.com cuando tu pago haya sido aprobado."
   },
   "h9zXst": {
     "message": "Anónimo"
@@ -1010,6 +1085,9 @@
   "lX+x05": {
     "message": "1 Estrella"
   },
+  "lb33Yc": {
+    "message": "FECHA DE PAGO:"
+  },
   "lkQYB7": {
     "message": "¿Que sucede después de que enviás la solicitud a un Famoso?"
   },
@@ -1050,6 +1128,12 @@
   "mxvRQ7": {
     "message": "AL UTILIZAR EL SITIO O LOS SERVICIOS, USTED ACEPTA ESTOS TÉRMINOS. POR FAVOR LEA CON CUIDADO."
   },
+  "n7+zt7": {
+    "message": "El cobro a tu cuenta se realizará una vez que {celebrityName} grabe tu video. (por ahora solo se realizó una autorización por parte de tu banco)."
+  },
+  "n9i+Em": {
+    "message": "Escribe aquí tu nombre"
+  },
   "nJ/lbc": {
     "message": "¿Cómo puedo comprar un video?"
   },
@@ -1065,11 +1149,17 @@
   "nnRGWT": {
     "message": "Pago cancelado"
   },
+  "nwKHl2": {
+    "message": "Puedes consultar el estado de tu video en “Mis Contrataciones”"
+  },
   "o/y0YW": {
     "message": "Revisado: 28 de Marzo 2020"
   },
   "oACmv6": {
     "message": "¡Tu solicitud ha sido enviada!"
+  },
+  "oEbrJV": {
+    "message": "Seguir Comprando"
   },
   "oKcEry": {
     "description": "buttonLabel search by country",
@@ -1187,6 +1277,9 @@
   "sn8X2t": {
     "message": "Nosotros te garantizamos que tu famoso va a ver tu solicitud si cumple con nuestras políticas. Nos reservamos el derecho de no mostrarle al famoso solicitudes que consideremos inapropiadas, en ese caso te devolvemos tu dinero. También te garantizamos que te devolvemos tu dinero si el video no es grabado antes de 10 días."
   },
+  "sy+pv5": {
+    "message": "Email"
+  },
   "t+gzvS": {
     "message": "Este correo no es válido"
   },
@@ -1195,6 +1288,9 @@
   },
   "t2/Gvc": {
     "message": "Detalla la solicitud y {onlyMobileLineBreak} realiza {onlyDesktopLineBreak} el proceso {onlyMobileLineBreak} de compra."
+  },
+  "t7y7Vl": {
+    "message": "Datos de la persona que realiza el pago"
   },
   "tDU6jz": {
     "description": "",
@@ -1249,6 +1345,9 @@
     "description": "Mensaje de error para creación de tarjeta Stripe",
     "message": "Ocurrió un error inesperado."
   },
+  "vMft8+": {
+    "message": "La autorización de tu pago se ha realizado con éxito."
+  },
   "vf4Bo1": {
     "message": "¿Aún no tienes cuenta?"
   },
@@ -1273,6 +1372,9 @@
   },
   "wJ61N6": {
     "message": "Si utilizas el link de referido de uno de los Famosos registrados en la plataforma tendrás más oportunidades de ser aprobado, este link es único por cuenta y está disponible en la sección de Mi Perfil de la aplicación de los Famosos."
+  },
+  "wlTYUV": {
+    "message": "Hacer nuevo intento de pago"
   },
   "wms1Jl": {
     "message": "Este campo excede el limite de {deliveryFromMaxLength} caracteres"
@@ -1302,6 +1404,9 @@
     "description": "",
     "message": "Te notificaremos cuando se active."
   },
+  "xfEeAv": {
+    "message": "Por favor seleccione una tarjeta"
+  },
   "xkoDM2": {
     "message": "Video personalizado de {celebrityFullName}"
   },
@@ -1323,6 +1428,9 @@
   "yQqITL": {
     "message": "Es el propietario de todos los derechos y de su contenido de usuario y que tiene el derecho de darnos los derechos antes mencionados; que ha pagado y pagará la totalidad de los honorarios u otros pagos que pueden estar relacionados con el uso de su contenido de usuario; y su contenido de usuario no infringe los derechos de propiedad intelectual, derechos de privacidad, derechos de publicidad, u otros derechos legales de terceros."
   },
+  "yyUOQR": {
+    "message": "El proceso de aprobación puede tardar alrededor de 23 hrs."
+  },
   "z276Tc": {
     "message": "Después de haber recibido su contranotificación, la remitiremos a la parte que presentó la reclamación original de infracción de derechos de autor. Tenga en cuenta que cuando remitamos la contranotificación, que incluye su información personal. Al presentar una contra-notificación, consentimiento para que se revele su información de esta manera. No vamos a pasar la contra-notificación a cualquier parte que no sea el demandante original."
   },
@@ -1334,6 +1442,9 @@
   },
   "zJ+Qdi": {
     "message": "Brazil"
+  },
+  "zM4Sw/": {
+    "message": "¿Qué significa una autorización de pago?"
   },
   "zX425H": {
     "message": "Comediantes"

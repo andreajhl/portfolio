@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { FormattedMessage } from "react-intl";
 
 type NextStepsAfterPaymentBannerProps = {
   celebrityName: string;
@@ -85,25 +86,39 @@ const NextStepsAfterPaymentBanner = ({
 }: NextStepsAfterPaymentBannerProps) => {
   return (
     <ContainerBanner>
-      <BannerTitle>Siguientes pasos:</BannerTitle>
+      <BannerTitle>
+        <FormattedMessage defaultMessage="Siguientes pasos:" />
+      </BannerTitle>
       <br></br>
       <div className="mt-3">
         <TextSteps>
-          {celebrityName} tiene un plazo de 7 días para grabar tu video a partir
-          de ahora.
+          <FormattedMessage
+            defaultMessage="{celebrityName} tiene un plazo de 7 días para grabar tu video a partir
+          de ahora."
+            values={{
+              celebrityName: celebrityName
+            }}
+          />
         </TextSteps>
       </div>
       <div className="mt-3">
         <TextSteps>
-          Recibirás una notificación a correocliente@dominio.com cuando tu video
-          esté listo.
+          <FormattedMessage
+            defaultMessage="Recibirás una notificación a correocliente@dominio.com cuando tu video
+          esté listo."
+          />
         </TextSteps>
       </div>
       <div className="mt-3">
         <TextSteps>
-          El cobro a tu cuenta se realizará una vez que {celebrityName} grabe tu
+          <FormattedMessage
+            defaultMessage=" El cobro a tu cuenta se realizará una vez que {celebrityName} grabe tu
           video. (por ahora solo se realizó una autorización por parte de tu
-          banco).{" "}
+          banco)."
+            values={{
+              celebrityName: celebrityName
+            }}
+          />
         </TextSteps>
       </div>
       <div className="mt-3">
@@ -113,30 +128,38 @@ const NextStepsAfterPaymentBanner = ({
           rel="noreferrer"
           href="https://pagos.famosos.com/autorizaciondepago"
         >
-          <LinkSteps>¿Qué significa una autorización de pago?</LinkSteps>
+          <LinkSteps>
+            <FormattedMessage defaultMessage="¿Qué significa una autorización de pago?" />
+          </LinkSteps>
         </a>
       </div>
       <div className="mt-3">
         <TextSteps>
-          Si todo está bien con tu solicitud de acuerdo a nuestra políticas, muy
-          pronto podrás disfrutar de tu videomensaje.
+          <FormattedMessage
+            defaultMessage="Si todo está bien con tu solicitud de acuerdo a nuestra políticas, muy
+          pronto podrás disfrutar de tu videomensaje."
+          />
         </TextSteps>
       </div>
       <div className="mt-3">
         <TextSteps>
-          Si por alguna razón tu video no pudo ser grabado, nos pondremos en
-          contacto contigo para notificarte.
+          <FormattedMessage
+            defaultMessage="Si por alguna razón tu video no pudo ser grabado, nos pondremos en
+          contacto contigo para notificarte."
+          />
         </TextSteps>
       </div>
       <ContainerNavigationButtons>
         <Link href="/">
           <ButtonBlack className="btn mb-4">
-            <SpanLink>Seguir Comprando</SpanLink>
+            <SpanLink>
+              <FormattedMessage defaultMessage="Seguir Comprando" />
+            </SpanLink>
           </ButtonBlack>
         </Link>
         <Link href="/my-account/hirings">
           <SpanWithMousePointer>
-            Ir a Mis Contrataciones{" "}
+            <FormattedMessage defaultMessage="Ir a Mis Contrataciones" />
             <i className="fas fa-long-arrow-alt-right"></i>
           </SpanWithMousePointer>
         </Link>

@@ -138,7 +138,7 @@ class AvailablePaymentMethods extends Component {
               <div className="d-flex mb-2 pl-1">
                 <span className="payment-methods__steps-to-pay">2</span>{" "}
                 <span className="ml-2 font-weight-bold">
-                  Datos de la persona que realiza el pago
+                  <FormattedMessage defaultMessage="Datos de la persona que realiza el pago" />
                 </span>
               </div>
               <DLocalPaymentsForm
@@ -156,7 +156,7 @@ class AvailablePaymentMethods extends Component {
               {shouldDisplayBuyerForm ? "3" : "2"}
             </span>{" "}
             <span className="ml-2 font-weight-bold">
-              Elige el método de pago
+              <FormattedMessage defaultMessage="Elige el método de pago" />
             </span>
           </div>
 
@@ -220,7 +220,9 @@ class AvailablePaymentMethods extends Component {
                     </div>
                     <div className="payment-type-title">
                       <h6 className={"font-weight-normal"}>
-                        <span>Tarjeta de Crédito o Débito</span>
+                        <span>
+                          <FormattedMessage defaultMessage="Tarjeta de Crédito o Débito" />
+                        </span>
                       </h6>
                       <i className="far fa-credit-card"></i>
                     </div>

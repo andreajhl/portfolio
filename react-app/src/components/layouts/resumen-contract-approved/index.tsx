@@ -4,6 +4,7 @@ import NextStepsAfterPaymentBanner from "../../containers/next-steps-after-payme
 import ResumenStatusPayment from "../../containers/resumen-status-payment";
 import { useRouter } from "next/router";
 import { HIRING_EDITOR } from "../../../routing/Paths";
+import { FormattedMessage } from "react-intl";
 
 const HeroDiv = styled.div`
   background-color: #fb177d;
@@ -124,10 +125,14 @@ const ResumenContractApproved = ({ resumen }) => {
           className="far fa-check-circle"
         />
         <HeroTextApproved>
-          <h2 className="d-md-none">¡Felicidades!</h2>
-          <h2 className="d-md-none">Tu pago ha sido aprobado.</h2>
+          <h2 className="d-md-none">
+            <FormattedMessage defaultMessage="¡Felicidades!" />
+          </h2>
+          <h2 className="d-md-none">
+            <FormattedMessage defaultMessage="Tu pago ha sido aprobado." />
+          </h2>
           <h2 className="d-none d-md-block">
-            ¡Felicidades! Tu pago ha sido aprobado
+            <FormattedMessage defaultMessage="¡Felicidades! Tu pago ha sido aprobado" />
           </h2>
         </HeroTextApproved>
       </HeroDiv>
@@ -148,7 +153,12 @@ const ResumenContractApproved = ({ resumen }) => {
                   color: "black"
                 }}
               >
-                Video personalizado de {resumen.celebrity.fullName}
+                <FormattedMessage
+                  defaultMessage="Video personalizado de {celebrityFullName}"
+                  values={{
+                    celebrityFullName: resumen.celebrity.fullName
+                  }}
+                />
               </span>
             </CelebrityDetails>
             <hr className="w-100"></hr>
@@ -162,12 +172,14 @@ const ResumenContractApproved = ({ resumen }) => {
                 >
                   {resumen.contract.deliveryTo ? (
                     <SpanBoldGray>
-                      Para : <SpanGray>{resumen.contract.deliveryTo}</SpanGray>
+                      <FormattedMessage defaultMessage="Para :" />{" "}
+                      <SpanGray>{resumen.contract.deliveryTo}</SpanGray>
                     </SpanBoldGray>
                   ) : null}
                   {resumen.contract.deliveryFrom ? (
                     <SpanBoldGray>
-                      De : <SpanGray>{resumen.contract.deliveryFrom}</SpanGray>
+                      <FormattedMessage defaultMessage="De :" />{" "}
+                      <SpanGray>{resumen.contract.deliveryFrom}</SpanGray>
                     </SpanBoldGray>
                   ) : null}
                 </div>
@@ -175,11 +187,15 @@ const ResumenContractApproved = ({ resumen }) => {
                   className="cursor-pointer font-weight-bold "
                   onClick={() => redirectToEditContract()}
                 >
-                  <u>Editar</u>
+                  <u>
+                    <FormattedMessage defaultMessage="Editar" />
+                  </u>
                 </div>
               </div>
               <div className="d-flex mt-3 flex-column">
-                <SpanBoldGray>Mensaje</SpanBoldGray>
+                <SpanBoldGray>
+                  <FormattedMessage defaultMessage="Mensaje" />
+                </SpanBoldGray>
                 <SpanGray className="mt-2">
                   {resumen.contract.instructions}
                 </SpanGray>
@@ -192,8 +208,10 @@ const ResumenContractApproved = ({ resumen }) => {
                 color: "#535353"
               }}
             >
-              *Puedes editar las instrucciones de tu video mientras está
-              pendiente de grabación.
+              <FormattedMessage
+                defaultMessage="*Puedes editar las instrucciones de tu video mientras está
+              pendiente de grabación."
+              />
             </span>
             <hr className="w-100"></hr>
             <ResumenStatusPayment

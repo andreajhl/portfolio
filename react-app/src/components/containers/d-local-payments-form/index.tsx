@@ -3,6 +3,16 @@ import { sessionOperations } from "../../../state/ducks/session";
 import { connect } from "react-redux";
 import { AVAILABLE_CURRENCIES_FOR_PAYMENTS } from "constants/availableCurrencyForPayments";
 import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCurrency";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const intlMessages = defineMessages({
+  placeholderBuyerNameInput: {
+    defaultMessage: "Escribe aquí tu nombre"
+  },
+  placeholderBuyerEmailInput: {
+    defaultMessage: "Escribe aquí tu correo electrónico"
+  }
+});
 
 type DLocalPaymentsFormProps = {
   handleChangedInputs: Function;
@@ -30,6 +40,8 @@ const DLocalPaymentsForm = ({
   currency,
   handleValidateData
 }: DLocalPaymentsFormProps) => {
+  const intl = useIntl();
+
   const buyerFullNameInput = useRef<HTMLInputElement>(null);
   const buyerEmailInput = useRef<HTMLInputElement>(null);
   const buyerDocumentInput = useRef<HTMLInputElement>(null);
@@ -88,7 +100,9 @@ const DLocalPaymentsForm = ({
   return (
     <form>
       <div className="form-group">
-        <label className="font-weight-bold">Nombre</label>
+        <label className="font-weight-bold">
+          <FormattedMessage defaultMessage="Nombre" />
+        </label>
         <input
           ref={buyerFullNameInput}
           value={buyerFullName}
@@ -98,7 +112,9 @@ const DLocalPaymentsForm = ({
           style={{
             borderRadius: "10px"
           }}
-          placeholder="Escribe aquí tu nombre"
+          placeholder={intl.formatMessage(
+            intlMessages.placeholderBuyerNameInput
+          )}
         ></input>
         <label
           className="font-weight-bold"
@@ -106,7 +122,7 @@ const DLocalPaymentsForm = ({
             marginTop: "0.5rem"
           }}
         >
-          Email
+          <FormattedMessage defaultMessage="Email" />
         </label>
         <input
           style={{
@@ -117,7 +133,9 @@ const DLocalPaymentsForm = ({
           value={buyerEmail}
           onChange={(e) => setBuyerEmail(e.target.value)}
           className="form-control"
-          placeholder="Escribe aquí tu correo electrónico"
+          placeholder={intl.formatMessage(
+            intlMessages.placeholderBuyerEmailInput
+          )}
         ></input>
         <label
           className="font-weight-bold"
@@ -148,11 +166,13 @@ const DLocalPaymentsForm = ({
           }`}
         ></input>
         {invalidFormatDocument ? (
-          <span className="text-danger">Formato no valido</span>
+          <span className="text-danger">
+            <FormattedMessage defaultMessage="Formato no valido" />
+          </span>
         ) : null}
         {buyerDataIncomplete ? (
           <span className="text-danger">
-            Por favor introduzca todos los datos
+            <FormattedMessage defaultMessage=" Por favor introduzca todos los datos" />
           </span>
         ) : (
           ""

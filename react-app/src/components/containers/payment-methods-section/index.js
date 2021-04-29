@@ -90,7 +90,7 @@ class PaymentMethodsSection extends Component {
                   <div className="d-flex col-12 col-md-10 p-0 ">
                     <span className="payment-methods__steps-to-pay">1</span>{" "}
                     <span className="ml-2 font-weight-bold">
-                      ¿En qué moneda te gustaría pagar?
+                      <FormattedMessage defaultMessage="¿En qué moneda te gustaría pagar?" />
                     </span>
                   </div>
                   <div className="pt-4">

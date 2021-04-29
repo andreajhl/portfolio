@@ -11,6 +11,11 @@ import ResumenContractRejected from "../../layouts/resumen-contract-rejected";
 import ResumenContractPending from "../../layouts/resumen-contract-pending";
 import ResumenContractAuthorized from "../../layouts/resumen-contract-authorized";
 
+const PAYMENTS_ID_WITH_RESUMEN_APPROVED = [10, 50, 70, 100];
+const PAYMENTS_ID_WITH_RESUMEN_REJECTED = [20, 30, 55, 60, 80];
+const PAYMENTS_ID_WITH_RESUMEN_PENDING = [40];
+const PAYMENTS_ID_WITH_RESUMEN_AUTHORIZED = [90];
+
 type ContractWithPaymentsProps = {
   resumen: {
     contract: {
@@ -80,13 +85,21 @@ const ContractWithPayments = ({
             <LoaderLayout></LoaderLayout>
           </div>
         </LoadingScreen>
-      ) : [10, 50, 70, 100].includes(resumen?.lastPayment?.status) ? (
+      ) : PAYMENTS_ID_WITH_RESUMEN_APPROVED.includes(
+          resumen?.lastPayment?.status
+        ) ? (
         <ResumenContractApproved resumen={resumen} />
-      ) : [20, 30, 55, 60, 80].includes(resumen?.lastPayment?.status) ? (
+      ) : PAYMENTS_ID_WITH_RESUMEN_REJECTED.includes(
+          resumen?.lastPayment?.status
+        ) ? (
         <ResumenContractRejected resumen={resumen} />
-      ) : resumen?.lastPayment?.status === 40 ? (
+      ) : PAYMENTS_ID_WITH_RESUMEN_PENDING.includes(
+          resumen?.lastPayment?.status
+        ) ? (
         <ResumenContractPending resumen={resumen} />
-      ) : resumen?.lastPayment?.status === 90 ? (
+      ) : PAYMENTS_ID_WITH_RESUMEN_AUTHORIZED.includes(
+          resumen?.lastPayment?.status
+        ) ? (
         <ResumenContractAuthorized resumen={resumen} />
       ) : null}
     </PageContainer>

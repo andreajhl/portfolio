@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 import { paymentStatus } from "constants/paymentStatus";
+import { FormattedMessage } from "react-intl";
 
 type ResumenStatusPaymentsProps = {
   status: number;
@@ -33,19 +34,22 @@ const ResumenStatusPayment = ({
   return (
     <ContainerResumenStatusPayment>
       <SpanGray textColor={textColor} className="mt-3">
-        ESTADO DEL PAGO: {paymentStatus[status]}
+        <FormattedMessage defaultMessage="ESTADO DEL PAGO:" />{" "}
+        {paymentStatus[status]}
       </SpanGray>
       <SpanGray textColor={textColor} className="mt-3">
-        FECHA DE PAGO: {moment(paymentDate).format("L")}
+        <FormattedMessage defaultMessage="FECHA DE PAGO:" />{" "}
+        {moment(paymentDate).format("L")}
       </SpanGray>
       {idTransaction ? (
         <SpanGray textColor={textColor} className="mt-3">
-          ID DE TRANSACCIÓN: {idTransaction}
+          <FormattedMessage defaultMessage="ID DE TRANSACCIÓN:" />{" "}
+          {idTransaction}
         </SpanGray>
       ) : null}
       {idFollow ? (
         <SpanGray textColor={textColor} className="mt-3">
-          ID DE SEGUIMIENTO: {idFollow}
+          <FormattedMessage defaultMessage="ID DE SEGUIMIENTO:" /> {idFollow}
         </SpanGray>
       ) : null}
     </ContainerResumenStatusPayment>

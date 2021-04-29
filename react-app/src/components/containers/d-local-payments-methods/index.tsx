@@ -11,6 +11,7 @@ import { getCookie } from "lib/getCookie";
 import { USER_IP_ADDRESS } from "constants/keys";
 import { getIpAddress } from "react-app/src/state/utils/localizationApiService";
 import { PURCHASE_SUMMARY } from "react-app/src/routing/Paths";
+import { FormattedMessage } from "react-intl";
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
   DEBIT_CARD: "far fa-credit-card",
@@ -246,7 +247,7 @@ const DLocalPaymentsMethods = ({
                 color: "#838383"
               }}
             >
-              Selecciona una tarjeta
+              <FormattedMessage defaultMessage="Selecciona una tarjeta" />
             </label>
             <SelectCardBankPaymentMethod
               onChangeOptionSelected={(selected) =>
@@ -259,7 +260,7 @@ const DLocalPaymentsMethods = ({
             />
             {cardIsIncomplete ? (
               <span className="text-danger text-center">
-                Por favor seleccione una tarjeta
+                <FormattedMessage defaultMessage="Por favor seleccione una tarjeta" />
               </span>
             ) : null}
           </div>
@@ -309,7 +310,7 @@ const DLocalPaymentsMethods = ({
             </div>
             {labelIncomplete ? (
               <span className="text-center text-danger">
-                Por favor seleccione una opción
+                <FormattedMessage defaultMessage="Por favor seleccione una opción" />
               </span>
             ) : null}
           </div>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ResumenStatusPayment from "../../containers/resumen-status-payment";
 import { useRouter } from "next/router";
 import { HIRING_EDITOR, PAYMENT_METHODS } from "../../../routing/Paths";
+import { FormattedMessage } from "react-intl";
 
 const ResumenContractRejected = ({ resumen }) => {
   const HeroDiv = styled.div`
@@ -162,7 +163,9 @@ const ResumenContractRejected = ({ resumen }) => {
         />
 
         <HeroTextApproved>
-          <h2>Tu pago ha sido Rechazado.</h2>
+          <h2>
+            <FormattedMessage defaultMessage="Tu pago ha sido Rechazado." />
+          </h2>
         </HeroTextApproved>
       </HeroDiv>
 
@@ -182,7 +185,12 @@ const ResumenContractRejected = ({ resumen }) => {
                   color: "black"
                 }}
               >
-                Video personalizado de {resumen.celebrity.fullName}
+                <FormattedMessage
+                  defaultMessage="Video personalizado de {celebrityFullName}"
+                  values={{
+                    celebrityFullName: resumen.celebrity.fullName
+                  }}
+                />
               </span>
             </CelebrityDetails>
             <hr className="w-100"></hr>
@@ -196,12 +204,14 @@ const ResumenContractRejected = ({ resumen }) => {
                 >
                   {resumen.contract.deliveryTo ? (
                     <SpanBoldGray>
-                      Para : <SpanGray>{resumen.contract.deliveryTo}</SpanGray>
+                      <FormattedMessage defaultMessage="Para :" />{" "}
+                      <SpanGray>{resumen.contract.deliveryTo}</SpanGray>
                     </SpanBoldGray>
                   ) : null}
                   {resumen.contract.deliveryFrom ? (
                     <SpanBoldGray>
-                      De : <SpanGray>{resumen.contract.deliveryFrom}</SpanGray>
+                      <FormattedMessage defaultMessage="De :" />{" "}
+                      <SpanGray>{resumen.contract.deliveryFrom}</SpanGray>
                     </SpanBoldGray>
                   ) : null}
                 </div>
@@ -209,11 +219,13 @@ const ResumenContractRejected = ({ resumen }) => {
                   className="cursor-pointer font-weight-bold"
                   onClick={() => redirectToEditContract()}
                 >
-                  Editar
+                  <FormattedMessage defaultMessage="Editar" />
                 </div>
               </div>
               <div className="d-flex mt-3 flex-column">
-                <SpanBoldGray>Mensaje</SpanBoldGray>
+                <SpanBoldGray>
+                  <FormattedMessage defaultMessage="Mensaje" />
+                </SpanBoldGray>
                 <SpanGray className="mt-2">
                   {resumen.contract.instructions}
                 </SpanGray>
@@ -226,8 +238,10 @@ const ResumenContractRejected = ({ resumen }) => {
                 color: "#535353"
               }}
             >
-              *Puedes editar las instrucciones de tu video mientras está
-              pendiente de grabación.
+              <FormattedMessage
+                defaultMessage="*Puedes editar las instrucciones de tu video mientras está
+              pendiente de grabación."
+              />
             </span>
             <hr className="w-100"></hr>
           </DetailsContracDiv>
@@ -247,8 +261,10 @@ const ResumenContractRejected = ({ resumen }) => {
                     color: "#535353"
                   }}
                 >
-                  Si quieres saber más sobre el estado de tu transacción puedes
-                  contactar a nuestro equipo de soporte.
+                  <FormattedMessage
+                    defaultMessage="Si quieres saber más sobre el estado de tu transacción puedes
+                  contactar a nuestro equipo de soporte."
+                  />
                 </span>
               </div>
               <ButtonPink
@@ -256,7 +272,7 @@ const ResumenContractRejected = ({ resumen }) => {
                 onClick={() => redirectToPaymentMethods()}
               >
                 <span className="font-weight-bold">
-                  Hacer nuevo intento de pago
+                  <FormattedMessage defaultMessage="Hacer nuevo intento de pago" />
                 </span>
               </ButtonPink>
             </PaymentRejectedActions>

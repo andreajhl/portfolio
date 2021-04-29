@@ -4,6 +4,7 @@ import { findDOMNode } from "react-dom";
 import scriptLoader from "react-async-script-loader";
 import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
+import { FormattedMessage } from "react-intl";
 const DLOCALKEY = process.env.NEXT_PUBLIC_DLOCAL_API_KEY;
 const isProdEnvironment =
   process.env.NEXT_PUBLIC_ENVIRONMENT === "production" ||
@@ -91,7 +92,7 @@ const DLocalFormCard = ({
     <form className="d-flex flex-column w-100">
       <div className="form-group">
         <LabelElement htmlFor="card-holdername">
-          Nombre del titular de la tarjeta
+          <FormattedMessage defaultMessage="Nombre del titular de la tarjeta" />
         </LabelElement>
         <InputElement
           placeholder="Escribe aquí el nombre"
@@ -102,7 +103,9 @@ const DLocalFormCard = ({
           onChange={(e) => setBuyerName(e.target.value)}
           id="card-holdername"
         ></InputElement>
-        <LabelElement htmlFor="card-field">Datos de la tarjeta</LabelElement>
+        <LabelElement htmlFor="card-field">
+          <FormattedMessage defaultMessage="Datos de la tarjeta" />
+        </LabelElement>
         <CardField>
           <div
             id={`card-field-${paymentMethodType}`}
@@ -120,8 +123,10 @@ const DLocalFormCard = ({
             fontSize: "10px"
           }}
         >
-          Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP =
-          Código postal
+          <FormattedMessage
+            defaultMessage="Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP =
+          Código postal"
+          />
         </span>
       </div>
       <div className="mx-auto text-danger">{paymentErrorMessage}</div>

@@ -4,6 +4,7 @@ import ResumenStatusPayment from "../../containers/resumen-status-payment";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { HIRING_EDITOR } from "../../../routing/Paths";
+import { FormattedMessage } from "react-intl";
 
 const HeroDiv = styled.div`
   background-color: black;
@@ -194,7 +195,9 @@ const ResumenContractPending = ({ resumen }) => {
         />
 
         <HeroTextApproved>
-          <h2>Tu pago esta pendiente de aprobación.</h2>
+          <h2>
+            <FormattedMessage defaultMessage="Tu pago esta pendiente de aprobación." />
+          </h2>
         </HeroTextApproved>
       </HeroDiv>
 
@@ -214,7 +217,12 @@ const ResumenContractPending = ({ resumen }) => {
                   color: "black"
                 }}
               >
-                Video personalizado de {resumen.celebrity.fullName}
+                <FormattedMessage
+                  defaultMessage="Video personalizado de {celebrityFullName}"
+                  values={{
+                    celebrityFullName: resumen.celebrity.fullName
+                  }}
+                />
               </span>
             </CelebrityDetails>
             <hr className="w-100"></hr>
@@ -228,12 +236,14 @@ const ResumenContractPending = ({ resumen }) => {
                 >
                   {resumen.contract.deliveryTo ? (
                     <SpanBoldGray>
-                      Para : <SpanGray>{resumen.contract.deliveryTo}</SpanGray>
+                      <FormattedMessage defaultMessage="Para :" />{" "}
+                      <SpanGray>{resumen.contract.deliveryTo}</SpanGray>
                     </SpanBoldGray>
                   ) : null}
                   {resumen.contract.deliveryFrom ? (
                     <SpanBoldGray>
-                      De : <SpanGray>{resumen.contract.deliveryFrom}</SpanGray>
+                      <FormattedMessage defaultMessage="De :" />{" "}
+                      <SpanGray>{resumen.contract.deliveryFrom}</SpanGray>
                     </SpanBoldGray>
                   ) : null}
                 </div>
@@ -241,11 +251,15 @@ const ResumenContractPending = ({ resumen }) => {
                   className="cursor-pointer font-weight-bold"
                   onClick={() => redirectToEditContract()}
                 >
-                  <SpanBoldBlack>Editar</SpanBoldBlack>
+                  <SpanBoldBlack>
+                    <FormattedMessage defaultMessage="Editar" />
+                  </SpanBoldBlack>
                 </div>
               </div>
               <div className="d-flex mt-3 flex-column">
-                <SpanBoldGray>Mensaje</SpanBoldGray>
+                <SpanBoldGray>
+                  <FormattedMessage defaultMessage="Mensaje" />
+                </SpanBoldGray>
                 <SpanGray className="mt-2">
                   {resumen.contract.instructions}
                 </SpanGray>
@@ -258,8 +272,10 @@ const ResumenContractPending = ({ resumen }) => {
                 color: "#535353"
               }}
             >
-              *Puedes editar las instrucciones de tu video mientras está
-              pendiente de grabación.
+              <FormattedMessage
+                defaultMessage="*Puedes editar las instrucciones de tu video mientras está
+              pendiente de grabación."
+              />
             </span>
             <HorizontalLine></HorizontalLine>
           </DetailsContracDiv>
@@ -284,7 +300,7 @@ const ResumenContractPending = ({ resumen }) => {
                     color: "#535353"
                   }}
                 >
-                  El proceso de aprobación puede tardar alrededor de 23 hrs.
+                  <FormattedMessage defaultMessage="El proceso de aprobación puede tardar alrededor de 23 hrs." />
                 </span>
                 <span
                   className="mt-3"
@@ -292,8 +308,10 @@ const ResumenContractPending = ({ resumen }) => {
                     color: "#535353"
                   }}
                 >
-                  Te notificaremos a correocliente@dominio.com cuando tu pago
-                  haya sido aprobado.
+                  <FormattedMessage
+                    defaultMessage="Te notificaremos a correocliente@dominio.com cuando tu pago
+                  haya sido aprobado."
+                  />
                 </span>
                 <span
                   className="mt-3"
@@ -301,13 +319,13 @@ const ResumenContractPending = ({ resumen }) => {
                     color: "#535353"
                   }}
                 >
-                  Puedes consultar el estado de tu video en “Mis Contrataciones”
+                  <FormattedMessage defaultMessage="Puedes consultar el estado de tu video en “Mis Contrataciones”" />
                 </span>
               </div>
               <Link href="/my-account/hirings">
                 <ButtonPink className="btn">
                   <span className="font-weight-bold">
-                    Ir a mis contrataciones{" "}
+                    <FormattedMessage defaultMessage="Ir a mis contrataciones" />{" "}
                   </span>
                   <i
                     style={{
