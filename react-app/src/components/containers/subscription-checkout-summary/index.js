@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
-
 import Image from "react-bootstrap/Image";
+import { CheckIconList } from "../../layouts/check-icon-list";
 
 const SubscriptionCheckoutSummary = (props) => {
   const { celebrityAvatar, celebrityFullName } = { ...props };
@@ -16,28 +16,18 @@ const SubscriptionCheckoutSummary = (props) => {
           />
           <h5>Beneficios del Club de Fans</h5>
         </header>
-        <ul className="container-subscription-checkout-summary__benefits-list">
-          <li>
-            <i className="fas fa-check-circle"></i>
-            <span>
-              Descuento en compras de videomensajes de {celebrityFullName}.
-            </span>
-          </li>
-          <li>
-            <i className="fas fa-check-circle"></i>
-            <span>
-              Invitación a eventos premium y gratuitos con {celebrityFullName}.
-            </span>
-          </li>
-          <li>
-            <i className="fas fa-check-circle"></i>
-            <span>Acceso a contenido inédito.</span>
-          </li>
-          <li>
-            <i className="fas fa-check-circle"></i>
-            <span>¡Muchas sorpresas más!</span>
-          </li>
-        </ul>
+        <CheckIconList
+          className="container-subscription-checkout-summary__benefits-list"
+          items={[
+            "Felicitación en tu cumpleaños.",
+            "Descuento en tu próxima compra de video personalizado.",
+            "Invitación a sesiones exclusivas en vivo.",
+            "Entrada con descuento a eventos.",
+            `Acceso a contenido exclusivo de ${celebrityFullName}.`,
+            "Participación en sorteos y posibilidad de recibir artículos autografiados.",
+            "¡Sorpresas que te harán reír y suspirar!  "
+          ]}
+        />
       </section>
     </div>
   );

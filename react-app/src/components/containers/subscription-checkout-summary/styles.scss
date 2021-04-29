@@ -45,39 +45,21 @@
 }
 
 .container-subscription-checkout-summary__benefits-list {
-  list-style: none;
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
-  -webkit-padding-start: 0px;
-  padding-inline-start: 0px;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
 
-  @media only screen and (max-width: 767px) {
-    padding: 0 36px;
-  }
-}
-
-.container-subscription-checkout-summary__benefits-list li {
-  display: flex;
-  align-items: center;
-}
-
-.container-subscription-checkout-summary__benefits-list li + li {
-  margin-top: 21px;
-}
-
-.container-subscription-checkout-summary__benefits-list li i {
-  margin-right: 27px;
-  color: #eb2a7b;
-
-  @media only screen and (max-width: 767px) {
-    align-self: start;
-    margin-top: 0.3em;
+  @media only screen and (max-width: 991px) {
+    padding: 0 5% !important;
   }
 }
 
 .container-subscription-checkout-summary__benefits-list li span {
   text-align: initial;
+}
+
+.container-subscription-checkout-summary__benefits-list li i {
+  @media only screen and (max-width: 767px) {
+    align-self: start;
+    margin-top: 0.3em;
+  }
 }

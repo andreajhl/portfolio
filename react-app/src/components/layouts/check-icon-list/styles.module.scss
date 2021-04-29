@@ -1,0 +1,21 @@
+.CheckIconList {
+  list-style: none;
+  padding: 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.CheckIconList li {
+  display: flex;
+  align-items: center;
+}
+
+.CheckIconList li + li {
+  margin-top: 21px;
+}
+
+.CheckIconList li i {
+  margin-right: 27px;
+  color: #eb2a7b;
+}
