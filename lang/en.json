@@ -1319,5 +1319,116 @@
   },
   "zxOTCH": {
     "message": "Payment created"
+  },
+  "+jX0dw": {
+    "message": "*You can edit the instructions of your video while it is pending of being record."
+  },
+  "1YGzpj": {
+    "message": "Congratulations!"
+  },
+  "1iUuaq": {
+    "message": "Congratulations! Your payment has been approved"
+  },
+  "3IrNpH": {
+    "message": "TRANSACTION ID:"
+  },
+  "5KDn6A": {
+    "message": "ID DE SEGUIMIENTO:"
+  },
+  "5h/jE9": {
+    "message": "Invalid format"
+  },
+  "67YQ5Y": {
+    "message": "From : "
+  },
+  "6aQTMU": {
+    "message": "Please select an option"
+  },
+  "7qAY7x": {
+    "message": "Your payment is pending approval."
+  },
+  "8F0yts": {
+    "message": "If for any reason your video could not be recorded, we will contact and notify you."
+  },
+  "AZgVtc": {
+    "message": "If everything is fine with your request according to our policies, you will soon be able to enjoy your video message."
+  },
+  "AcGanx": {
+    "message": "Go to My Hires"
+  },
+  "KcvTuJ": {
+    "message": "Please enter all the data"
+  },
+  "MU1M4J": {
+    "message": "{celebrityName} has 7 days to record your video from now on."
+  },
+  "R8MBZf": {
+    "message": "You will receive a notification to correocliente@dominio.com when your video is ready."
+  },
+  "RG+TGy": {
+    "message": "Your payment has been declined."
+  },
+  "SJlNke": {
+    "message": "Your payment has been approved."
+  },
+  "WkJEIw": {
+    "message": "Write your email here"
+  },
+  "X9uKOS": {
+    "message": "Following steps: "
+  },
+  "XvIJA8": {
+    "message": "In what currency would you like to pay?"
+  },
+  "Yxo8MA": {
+    "message": "Go to My Hires"
+  },
+  "d/7Z6V": {
+    "message": "If you want to know more about the status of your transaction you can contact our support team."
+  },
+  "duDNCn": {
+    "message": "To : "
+  },
+  "exOORp": {
+    "message": "PAYMENT STATUS:"
+  },
+  "h7uQIl": {
+    "message": "We will notify you to correocliente@dominio.com when your payment has been approved."
+  },
+  "lb33Yc": {
+    "message": "PAYMENT DATE:"
+  },
+  "n7+zt7": {
+    "message": "The charge to your account will be made once {celebrityName} records your video. (for now only an authorization was made by your bank)"
+  },
+  "n9i+Em": {
+    "message": "Write your name here"
+  },
+  "nwKHl2": {
+    "message": "You can check the status of your video in “My Hires“"
+  },
+  "oEbrJV": {
+    "message": "Keep Buying."
+  },
+  "sy+pv5": {
+    "message": "Email"
+  },
+  "t7y7Vl": {
+    "message": "Details of the person making the payment"
+  },
+  "vMft8+": {
+    "message": "Congratulations! The authorization of your payment has been made successfully."
+  },
+  "wlTYUV": {
+    "message": "Try a new attempt to make the payment"
+  },
+  "xfEeAv": {
+    "message": "Write your name here"
+  },
+  "yyUOQR": {
+    "message": "The approval process can take around 23 hrs."
+  },
+  "zM4Sw/": {
+    "message": "What does a payment authorization mean?"
   }
 }
