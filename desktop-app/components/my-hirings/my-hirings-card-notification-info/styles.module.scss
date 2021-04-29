@@ -14,3 +14,22 @@
     margin-bottom: 12px;
   }
 }
+
+.InfoWrapper {
+  margin-bottom: 12px;
+}
+
+.InfoWrapper + .InfoWrapper {
+  margin-left: 45px;
+}
+
+.InfoTitle {
+  font-size: 14px !important;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.InfoValue {
+  color: var(--gray-4);
+  font-size: 14px;
+}
