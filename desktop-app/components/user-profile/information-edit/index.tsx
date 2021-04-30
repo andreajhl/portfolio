@@ -3,6 +3,7 @@ import PhotoUploader from "desktop-app/components/common/photo-uploader";
 import TriggerPopupEditButton from "desktop-app/components/common/trigger-popup-edit-button";
 import useForm from "lib/hooks/useForm";
 import React from "react";
+import UpdateUserEmail from "../update-user-email";
 import styles from "./styles.module.scss";
 type FormValuesType = {
   fullName: string;
@@ -49,11 +50,7 @@ function UserInformationEdit() {
               }
               name="fullName"
             ></EditableInputField>
-            <TriggerPopupEditButton
-              label="Correo Electronico"
-              value={values.email}
-              popupContent={<span>hola</span>}
-            ></TriggerPopupEditButton>
+            <UpdateUserEmail email={values.email} />
           </div>
           <div className={styles.OptionsItems}>
             <EditableInputField
