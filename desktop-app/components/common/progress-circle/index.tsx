@@ -1,21 +1,16 @@
-import { AnimationEvent, useState } from "react";
+import { useState } from "react";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 
-type ProgressCircleProps = { isDone: boolean; onAnimationFinish?: () => void };
+type ProgressCircleProps = { isDone: boolean; onFinish?: () => void };
 
 function ProgressCircle({
   isDone,
-  onAnimationFinish = function () {}
+  onFinish = function () {},
 }: ProgressCircleProps) {
-  const [animationFinished, setAnimationFinished] = useState(false);
-
-  function updateAnimationFinished(event: AnimationEvent<SVGCircleElement>) {
-    if (event.animationName === styles.doneAnimation) {
-      return onAnimationFinish();
-    }
-    setAnimationFinished(true);
-  }
+  const [loadingAnimationFinished, setLoadingAnimationFinished] = useState(
+    false
+  );
 
   return (
     <svg
@@ -30,9 +25,17 @@ function ProgressCircle({
       <circle
         className={classes(
           styles.ProgressCircleLoadedPortion,
-          isDone && animationFinished && styles.ProgressCircleDone
+          isDone && loadingAnimationFinished && styles.ProgressCircleDone
         )}
-        onAnimationEnd={updateAnimationFinished}
+        onAnimationEnd={({ animationName }) => {
+          if (animationName === styles.loading) {
+            return setLoadingAnimationFinished(true);
+          }
+
+          if (animationName === styles.finishAnimation) {
+            return onFinish?.();
+          }
+        }}
         cx={118}
         cy={118}
         r={116}

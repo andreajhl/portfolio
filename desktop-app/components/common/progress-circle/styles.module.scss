@@ -20,9 +20,9 @@
 
   &Done {
     stroke-dashoffset: 0;
-    animation: doneAnimation 1s ease;
+    animation: finishAnimation 1s ease;
   }
-  @keyframes doneAnimation {
+  @keyframes finishAnimation {
     0% {
       stroke-dashoffset: 175;
     }
