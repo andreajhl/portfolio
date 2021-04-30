@@ -653,3 +653,22 @@ export function ExclamationCircleIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function CheckedCircleIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={113}
+      height={113}
+      viewBox="0 0 113 113"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <circle cx={56.5} cy={56.5} r={54} stroke="#FB177D" strokeWidth={5} />
+      <path
+        d="M48.322 74.254L31.747 57.692a2.547 2.547 0 010-3.603l3.606-3.603a2.552 2.552 0 013.606 0l11.166 11.156 23.916-23.896a2.552 2.552 0 013.606 0l3.606 3.603a2.547 2.547 0 010 3.604l-29.325 29.3a2.551 2.551 0 01-3.606 0z"
+        fill="#FB177D"
+      />
+    </svg>
+  );
+}
