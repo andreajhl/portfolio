@@ -1,0 +1,18 @@
+.InputWithUpperLabelWrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  input {
+    width: 100%;
+  }
+}
+.InputLabel {
+  margin-bottom: 1.5625rem;
+  align-self: center;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+}
