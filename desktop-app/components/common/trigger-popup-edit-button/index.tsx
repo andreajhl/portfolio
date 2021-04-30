@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { IconButton } from "desktop-app/components/common/button/icon-button";
 import styles from "./styles.module.scss";
 import classes from "classnames";
 import { AnimatedPopup } from "../animated-popup";
+
+const noOp = () => {};
 
 type TriggerPopupEditButtonProps = {
   label: string;
   value: string | number;
   popupContent: React.ReactNode;
   editButtonColor?;
+  onClosePopup?: typeof noOp;
 };
 
 function TriggerPopupEditButton({
@@ -16,7 +19,13 @@ function TriggerPopupEditButton({
   popupContent,
   value,
   editButtonColor = "var(--secondary)",
+  onClosePopup = noOp,
 }: TriggerPopupEditButtonProps) {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const handlerClosePopup = () => {
+    setIsPopupOpen((prevState) => !prevState);
+    onClosePopup();
+  };
   return (
     <div className={styles.TriggerPopupEditButtonContainer}>
       <div>
@@ -26,11 +35,16 @@ function TriggerPopupEditButton({
         </div>
       </div>
       <div className={styles.EditButtonWrapper}>
-        <IconButton className={styles.EditingToggleButtonEditButton}>
+        <IconButton
+          onClick={() => setIsPopupOpen((prevStateve) => !prevStateve)}
+          className={styles.EditingToggleButtonEditButton}
+        >
           <i className="far fa-edit" style={{ color: editButtonColor }} />
         </IconButton>
       </div>
-      <AnimatedPopup>{popupContent}</AnimatedPopup>
+      <AnimatedPopup onClose={handlerClosePopup} modal open={isPopupOpen}>
+        {popupContent}
+      </AnimatedPopup>
     </div>
   );
 }
