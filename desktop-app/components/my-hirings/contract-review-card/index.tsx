@@ -43,7 +43,7 @@ function SubmitButtonText({
   return (
     <span className={styles.Wrapper}>
       <span
-        className={classes(styles.Text, status !== "idle" && styles.NotIdle)}
+        className={classes(styles.Text, status === "idle" && styles.TextIdle)}
       >
         {initialText}
       </span>
@@ -65,6 +65,7 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
     },
     validations,
     async onSubmit(reviewData) {
+      if (status !== "idle") return;
       setStatus("loading");
       try {
         const response = await saveClientContractReview(
@@ -82,7 +83,7 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
   });
 
   useEffect(() => {
-    if (status === "completed") setTimeout(() => setStatus("idle"), 5000);
+    if (status === "completed") setTimeout(() => setStatus("idle"), 2000);
   }, [status]);
 
   const isUpdatingReview = contractData.review;
