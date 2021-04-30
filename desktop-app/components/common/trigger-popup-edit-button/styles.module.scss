@@ -1,0 +1,38 @@
+.TriggerPopupEditButtonContainer {
+  position: relative;
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.EditingToggleButtonEditButton {
+  i {
+    font-size: 17.85px;
+    transition: color 0.2s;
+  }
+
+  &:hover {
+    i {
+      color: var(--primary) !important;
+    }
+  }
+}
+
+.EditButtonWrapper {
+  margin-left: 16px;
+  margin-top: -0.5em;
+}
+
+.Label {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: #5c5c5c;
+}
+
+.ValueSpanWrapper {
+  max-width: 150px;
+}

@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import classes from "classnames";
 import SettingsUser from "desktop-app/components/user-profile/settings";
 import { CelebritiesFavoritesEdit } from "desktop-app/components/user-profile/celebrities-favorites";
+import UserInformationEdit from "desktop-app/components/user-profile/information-edit";
 
 function ClientProfilePage() {
   return (
@@ -13,7 +14,7 @@ function ClientProfilePage() {
       <main className={classes("container", styles.ClientProfilePageContainer)}>
         {/* INFORMACION DE CUENTA */}
         <div className={styles.SettingsSection}>
-          <span>Seccion</span>
+          <UserInformationEdit />
         </div>
         {/* MULTIPLE SETTINGS */}
         <div className={styles.SettingsSection}>
