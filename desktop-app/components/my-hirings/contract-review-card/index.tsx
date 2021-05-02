@@ -6,7 +6,7 @@ import WarningMessage from "../../common/warning-message";
 import styles from "./styles.module.scss";
 import { saveClientContractReview } from "react-app/src/state/ducks/contracts/actions";
 import { useEffect, useState } from "react";
-import { ReactNode } from "react";
+import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 
 type ContractReviewCardProps = {
   contractData: MyHiringsContract;
@@ -24,33 +24,6 @@ const validations = {
 };
 
 const additionalValueFromComponent = 1;
-
-function SubmitButtonText({
-  initialText = "Guardar",
-  status,
-}: {
-  initialText?: ReactNode;
-  status: "idle" | "loading" | "completed";
-}) {
-  let icon = null;
-
-  if (status === "loading")
-    icon = <i className={classes("fa fa-circle-notch", styles.Spinner)} />;
-
-  if (status === "completed")
-    icon = <i className={classes("fa fa-check", styles.Check)} />;
-
-  return (
-    <span className={styles.Wrapper}>
-      <span
-        className={classes(styles.Text, status === "idle" && styles.TextIdle)}
-      >
-        {initialText}
-      </span>
-      {icon}
-    </span>
-  );
-}
 
 function ContractReviewCard({ contractData }: ContractReviewCardProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "completed">(
@@ -128,8 +101,8 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
         className={`btn btn-tertiary ${styles.ContractReviewCardButton}`}
         onClick={submitForm}
       >
-        <SubmitButtonText
-          initialText={`${
+        <SubmitText
+          baseText={`${
             isUpdatingReview ? "Actualizar" : "Enviar"
           } calificación`}
           status={status}
