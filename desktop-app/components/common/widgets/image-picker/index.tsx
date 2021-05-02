@@ -3,6 +3,8 @@ import styles from "./styles.module.scss";
 
 const ONLY_IMAGE_FORMATS = "image/*,image/heif,image/heic";
 
+const restartInput = (input: HTMLInputElement) => (input.value = null);
+
 type ImagePickerProps = {
   id?: string;
   previewImageSrc: string;
@@ -28,7 +30,11 @@ function ImagePicker({
         id={id}
         accept={ONLY_IMAGE_FORMATS}
         hidden
-        onChange={({ target }) => onPickImage(target?.files?.[0])}
+        onChange={({ target }) => {
+          const pickedImage = target?.files?.[0];
+          onPickImage(pickedImage);
+          restartInput(target);
+        }}
       />
       <label htmlFor={id} className={classes("btn", styles.CTAUploadPhoto)}>
         {label}
