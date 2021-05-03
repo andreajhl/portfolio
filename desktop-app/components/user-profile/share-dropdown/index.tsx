@@ -1,4 +1,4 @@
-import { Dropdown } from "../common/button/dropdown";
+import { Dropdown } from "../../common/button/dropdown";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { ReactNode } from "react";
@@ -8,14 +8,14 @@ import {
   TwitterIcon,
   WhatsappIcon,
   MailIcon,
-} from "../common/icons";
-import copyTextToClipboard from "../../../lib/utils/copyTextToClipboard";
+} from "../../common/icons";
+import copyTextToClipboard from "../../../../lib/utils/copyTextToClipboard";
 import {
   getWhatsappSharingLink,
   getFacebookShareLink,
   getTwitterSharingLink,
   getMailShareLink,
-} from "../../../lib/utils/getSocialMediaLink";
+} from "../../../../lib/utils/getSocialMediaLink";
 
 type ShareDropdownProps = {
   buttonClassName?: string;
