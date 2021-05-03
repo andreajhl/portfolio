@@ -6,6 +6,7 @@ import classes from "classnames";
 import SettingsUser from "desktop-app/components/user-profile/settings";
 import { CelebritiesFavoritesEdit } from "desktop-app/components/user-profile/celebrities-favorites";
 import UserInformationEdit from "desktop-app/components/user-profile/information-edit";
+import { SharingSection } from "desktop-app/components/user-profile/sharing-section";
 
 function ClientProfilePage() {
   return (
@@ -24,7 +25,9 @@ function ClientProfilePage() {
             <div>
               <SettingsUser />
             </div>
-            <div></div>
+            <div>
+              <SharingSection />
+            </div>
           </div>
         </div>
 
