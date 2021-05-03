@@ -16,11 +16,10 @@ const allowedStatuses = [PAYED_BY_CLIENT, COMPLETED, REJECTED, EXPIRED];
 const mapStateToProps = ({ contracts }) => ({
   isLoading: contracts.listClientContractsReducer.loading,
   contracts:
-    hirings ||
+    // hirings ||
     contracts.listClientContractsReducer.data?.filter?.(({ status }) =>
       allowedStatuses.includes(status)
-    ) ||
-    [],
+    ) || [],
 });
 
 const mapDispatchToProps = {
@@ -38,7 +37,7 @@ function MyHiringsCardsSection({
 }: MyHiringsCardsSectionProps) {
   useEffect(() => {
     // GTM.tagManagerDataLayer("CLIENT_HIRINGS_PAGE_VIEW");
-    // listClientContracts();
+    listClientContracts();
   }, []);
 
   return (

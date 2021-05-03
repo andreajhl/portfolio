@@ -5,6 +5,7 @@ import { GetServerSideProps } from "next";
 import isMobile from "lib/utils/isMobile";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import dynamic from "next/dynamic";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 
 const ClientProfilePage = dynamic(() =>
   import("react-app/src/components/pages/client-profile").then(
@@ -26,6 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 };
 
 const Profile = ({ isMobile }) => {
+  useDesktopClass(isMobile);
   return (
     <>
       <CustomHead />
@@ -37,5 +39,5 @@ const Profile = ({ isMobile }) => {
 };
 
 export default withAuthenticationRequired(Profile, {
-  onRedirecting: () => <LoadingPage></LoadingPage>,
+  onRedirecting: LoadingPage,
 });

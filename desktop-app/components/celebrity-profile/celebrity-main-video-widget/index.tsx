@@ -38,14 +38,14 @@ type CelebrityMainVideoWidgetProps = {
 function CelebrityMainVideoWidget({
   celebrity,
   className = "",
-  avatarProps: { className: avatarClassName = "", ...avatarProps }
+  avatarProps: { className: avatarClassName = "", ...avatarProps },
 }: CelebrityMainVideoWidgetProps) {
   const {
     videoRef,
     playVideo,
     pauseVideo,
     togglePlay,
-    videoIsPlaying
+    videoIsPlaying,
   } = useVideoPlayer(celebrity.mainVideo || "NO_MAIN_VIDEO_KEY");
   const [videoIsMuted, setVideoIsMuted] = useState(false);
   const toggleVideoIsMuted = () => {
@@ -69,7 +69,7 @@ function CelebrityMainVideoWidget({
       <Maybe it={hasMainVideo}>
         <ProgressCircle
           isDone={mainVideoIsReady}
-          onAnimationFinish={() => setAnimationIsFinished(true)}
+          onFinish={() => setAnimationIsFinished(true)}
         />
       </Maybe>
       <OptimizedImage

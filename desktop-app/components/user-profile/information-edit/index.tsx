@@ -3,6 +3,7 @@ import PhotoUploader from "desktop-app/components/common/photo-uploader";
 import useForm from "lib/hooks/useForm";
 import React from "react";
 import UpdateUserEmail from "../update-user-email";
+import { UserAvatarUploader } from "../user-avatar-uploader";
 import UpdateUserPhone from "../update-user-phonenumber";
 import styles from "./styles.module.scss";
 import UpdateUserGender from "../update-user-gender";
@@ -37,7 +38,7 @@ function UserInformationEdit() {
       </h2>
       <div className={styles.ConfigOptionsSections}>
         <div>
-          <PhotoUploader />
+          <UserAvatarUploader />
         </div>
         <div className={styles.ConfigOptionsPersonalData}>
           <div className={styles.OptionsItems}>

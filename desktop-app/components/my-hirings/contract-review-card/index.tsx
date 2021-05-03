@@ -1,22 +1,16 @@
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import useForm from "lib/hooks/useForm";
 import StarRatingDisplay from "desktop-app/components/common/star-rating/display";
-import { connect } from "react-redux";
 import classes from "classnames";
 import WarningMessage from "../../common/warning-message";
 import styles from "./styles.module.scss";
-
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = {};
-
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+import { saveClientContractReview } from "react-app/src/state/ducks/contracts/actions";
+import { useEffect, useState } from "react";
+import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 
 type ContractReviewCardProps = {
   contractData: MyHiringsContract;
-} & StateProps &
-  DispatchProps;
+};
 
 const initialValues = {
   review: "",
@@ -29,16 +23,43 @@ const validations = {
   },
 };
 
+const additionalValueFromComponent = 1;
+
 function ContractReviewCard({ contractData }: ContractReviewCardProps) {
+  const [status, setStatus] = useState<"idle" | "loading" | "completed">(
+    "idle"
+  );
   const { values, onChangeField, setFieldValue, submitForm, errors } = useForm<
     typeof initialValues
   >({
-    initialValues,
+    initialValues: {
+      review: contractData.review,
+      stars: contractData.stars || 5,
+    },
     validations,
-    onSubmit(values) {
-      console.log(values);
+    async onSubmit(reviewData) {
+      if (status !== "idle") return;
+      setStatus("loading");
+      try {
+        const response = await saveClientContractReview(
+          contractData.reference,
+          {
+            ...reviewData,
+            stars: reviewData.stars - additionalValueFromComponent,
+          }
+        );
+        if (response.status === "OK") {
+          setStatus("completed");
+        }
+      } catch (error) {}
     },
   });
+
+  useEffect(() => {
+    if (status === "completed") setTimeout(() => setStatus("idle"), 2000);
+  }, [status]);
+
+  const isUpdatingReview = contractData.review;
 
   return (
     <div className={styles.ContractReviewCard}>
@@ -80,15 +101,15 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
         className={`btn btn-tertiary ${styles.ContractReviewCardButton}`}
         onClick={submitForm}
       >
-        Enviar calificación
+        <SubmitText
+          baseText={`${
+            isUpdatingReview ? "Actualizar" : "Enviar"
+          } calificación`}
+          status={status}
+        />
       </button>
     </div>
   );
 }
 
-const _ContractReviewCard = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ContractReviewCard);
-
-export { _ContractReviewCard as ContractReviewCard };
+export { ContractReviewCard };

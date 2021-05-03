@@ -1,0 +1,54 @@
+.Card {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 100vw;
+  max-width: 700px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.CardHeader,
+.CardBody,
+.CardFooter {
+  padding: 16px;
+}
+
+.CardHeader {
+  position: relative;
+  border-bottom: 1px solid var(--soft-gray-border, #dedede);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CardTitle {
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 1.25rem !important;
+}
+
+.CloseButton {
+  position: absolute;
+  right: 16px;
+}
+
+.CardFooter {
+  border-top: 1px solid var(--soft-gray-border, #dedede);
+  text-align: right;
+}
+
+.CancelButton,
+.SaveButton {
+  font-weight: bold;
+}
+
+.CancelButton {
+  color: var(--secondary);
+
+  &:hover {
+    color: var(--secondary-darken);
+  }
+}
+
+.SaveButton {
+  margin-left: 0.5em;
+}
