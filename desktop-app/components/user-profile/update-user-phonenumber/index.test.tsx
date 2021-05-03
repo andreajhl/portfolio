@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import UpdateUserEmail from ".";
+import UpdateUserPhone from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<UpdateUserEmail email="" />);
+  const wrapper = shallow(<UpdateUserPhone numberPhone="1234" />);
   expect(wrapper.exists()).toBeTruthy();
 });
