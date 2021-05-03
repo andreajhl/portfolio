@@ -3,21 +3,21 @@ import React, { useState } from "react";
 import styles from "./styles.module.scss";
 type genders = "male" | "female";
 type UpdateUserGenderProps = {
-  gener: genders;
+  gender: genders;
 };
-function UpdateUserGender({ gener }: UpdateUserGenderProps) {
-  const [currentGenerSelect, setCurrentGenerSelect] = useState(gener);
-  const handleGenerChange = (gener: genders) => {
-    setCurrentGenerSelect(gener);
+function UpdateUserGender({ gender }: UpdateUserGenderProps) {
+  const [currentgenderSelect, setCurrentgenderSelect] = useState(gender);
+  const handlegenderChange = (gender: genders) => {
+    setCurrentgenderSelect(gender);
   };
   return (
     <div className={styles.UpdateUserGenderWrapper}>
       <Checkbox
         alignLabel="left"
         label="Hombre"
-        onChange={(e) => handleGenerChange("male")}
+        onChange={(e) => handlegenderChange("male")}
         value="male"
-        checked={currentGenerSelect === "male"}
+        checked={currentgenderSelect === "male"}
         name="male"
         checkboxLayout="circle"
         className={styles.Checkbox}
@@ -25,9 +25,9 @@ function UpdateUserGender({ gener }: UpdateUserGenderProps) {
       <Checkbox
         alignLabel="left"
         label="Mujer"
-        onChange={(e) => handleGenerChange("female")}
+        onChange={(e) => handlegenderChange("female")}
         value="female"
-        checked={currentGenerSelect === "female"}
+        checked={currentgenderSelect === "female"}
         name="female"
         checkboxLayout="circle"
         className={styles.Checkbox}

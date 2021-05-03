@@ -69,7 +69,7 @@ function UserInformationEdit() {
             ></EditableInputField>
           </div>
           <div className={styles.OptionsItems}>
-            <UpdateUserGender gener={"male"} />
+            <UpdateUserGender gender={"male"} />
           </div>
         </div>
       </div>
