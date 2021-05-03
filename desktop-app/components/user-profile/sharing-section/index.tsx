@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 type SharingSectionProps = {};
 
 function SharingSection(props: SharingSectionProps) {
+  const link = "https://famosos.com";
   return (
     <section className={styles.SharingSection}>
       <h2 className={styles.Title}>Háblale a tus amigos de Famosos</h2>
@@ -13,9 +14,9 @@ function SharingSection(props: SharingSectionProps) {
           className={classes("text-with-ellipsis", styles.SharingLink)}
           href="http://www.famosos.com/micuenta"
         >
-          http://www.famosos.com/micuenta
+          {link}
         </a>
-        <ShareDropdown buttonClassName={styles.ShareButton} />
+        <ShareDropdown link={link} buttonClassName={styles.ShareButton} />
       </div>
     </section>
   );

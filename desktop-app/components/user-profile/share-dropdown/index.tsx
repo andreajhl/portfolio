@@ -19,6 +19,7 @@ import {
 
 type ShareDropdownProps = {
   buttonClassName?: string;
+  link: string;
 };
 
 type MenuItemType = {
@@ -41,14 +42,15 @@ const toMenuItem = ({ id, to, icon, label }) => (
   </a>
 );
 
-function ShareDropdown({ buttonClassName = "" }: ShareDropdownProps) {
+function ShareDropdown({ buttonClassName = "", link }: ShareDropdownProps) {
   const socialMedias: MenuItemType[] = [
     {
       id: "mail",
       icon: <MailIcon />,
       label: "Compartir por e-mail",
       to: getMailShareLink(
-        `Me gustaría contarte sobre la plataforma Famosos, conoce más con este link`
+        "Me gustaría contarte sobre la plataforma Famosos",
+        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`
       ),
     },
     {
@@ -56,21 +58,23 @@ function ShareDropdown({ buttonClassName = "" }: ShareDropdownProps) {
       icon: <WhatsappIcon />,
       label: "Compartir por Whatsapp",
       to: getWhatsappSharingLink(
-        `Me gustaría contarte sobre la plataforma Famosos, conoce más con este link`
+        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`
       ),
     },
     {
       id: "facebook",
       icon: <FacebookIcon />,
       label: "Compartir por Facebook",
-      to: getFacebookShareLink(),
+      to: getFacebookShareLink(link),
     },
     {
       id: "twitter",
       icon: <TwitterIcon />,
       label: "Compartir por Twitter",
       to: getTwitterSharingLink(
-        `Me gustaría contarte sobre la plataforma Famosos, conoce más con este link.`
+        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`,
+        link,
+        "contratafamosos"
       ),
     },
   ];
@@ -87,7 +91,7 @@ function ShareDropdown({ buttonClassName = "" }: ShareDropdownProps) {
     >
       <div
         className={styles.ShareDropdownItem}
-        onClick={() => copyTextToClipboard("https://famosos.com")}
+        onClick={() => copyTextToClipboard(link)}
       >
         <HyperlinkIcon />
         <span>Copiar enlace</span>
