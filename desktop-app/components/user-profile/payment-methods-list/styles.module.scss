@@ -23,3 +23,17 @@
 .PaymentMethodNumber {
   font-weight: bold;
 }
+
+.ItemSkeleton {
+  > span {
+    line-height: 0.1;
+  }
+}
+
+.ItemSkeleton + .ItemSkeleton {
+  margin-top: 19.28px;
+}
+
+.RemoveButtonSkeleton {
+  margin: 0 0.75em;
+}

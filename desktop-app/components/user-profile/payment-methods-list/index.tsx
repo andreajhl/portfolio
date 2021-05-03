@@ -1,25 +1,42 @@
 import { IconButton } from "../../common/button/icon-button";
-import Maybe from "../../common/helpers/maybe";
 import { VisaCardIcon } from "../../common/icons";
 import { removeSource } from "react-app/src/state/ducks/payments/actions";
+import classes from "classnames";
 import styles from "./styles.module.scss";
-
-const noResultsMessage = (
-  <span className={styles.NoResultsMessage}>
-    No posees métodos para mostrar
-  </span>
-);
+import Skeleton from "react-loading-skeleton";
 
 function CardBrandIcon({ cardBrand }) {
   return <VisaCardIcon />;
 }
 
+function ItemSkeleton() {
+  return (
+    <div className={classes(styles.PaymentMethodItem, styles.ItemSkeleton)}>
+      <Skeleton width={58} height={38} />
+      <Skeleton width={127} />
+      <Skeleton
+        className={styles.RemoveButtonSkeleton}
+        width={14}
+        height={16}
+      />
+    </div>
+  );
+}
+
+const noResultMessage = (
+  <span className={styles.NoResultsMessage}>
+    No posees métodos para mostrar
+  </span>
+);
+
 type PaymentMethodsListProps = {
+  isLoading: boolean;
   availableSources: any[];
   removeSourceFromList: (cardSourceId: string) => void;
 };
 
 function PaymentMethodsList({
+  isLoading,
   availableSources,
   removeSourceFromList,
 }: PaymentMethodsListProps) {
@@ -31,10 +48,18 @@ function PaymentMethodsList({
     } catch (error) {}
   }
 
+  if (isLoading) {
+    return <ItemSkeleton />;
+  }
+
+  if (availableSources.length === 0) {
+    return noResultMessage;
+  }
+
   return (
-    <Maybe it={availableSources.length > 0} orElse={noResultsMessage}>
+    <>
       {availableSources.map((card) => (
-        <div className={styles.PaymentMethodItem}>
+        <div className={styles.PaymentMethodItem} key={card.sourceId}>
           <div className={styles.PaymentMethodBrand}>
             <CardBrandIcon cardBrand={card.typeData.brand} />
           </div>
@@ -46,7 +71,7 @@ function PaymentMethodsList({
           </IconButton>
         </div>
       ))}
-    </Maybe>
+    </>
   );
 }
 
