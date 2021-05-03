@@ -10,12 +10,9 @@ function SharingSection(props: SharingSectionProps) {
     <section className={styles.SharingSection}>
       <h2 className={styles.Title}>Háblale a tus amigos de Famosos</h2>
       <div className={styles.Wrapper}>
-        <a
-          className={classes("text-with-ellipsis", styles.SharingLink)}
-          href="http://www.famosos.com/micuenta"
-        >
+        <span className={classes("text-with-ellipsis", styles.SharingLink)}>
           {link}
-        </a>
+        </span>
         <ShareDropdown link={link} buttonClassName={styles.ShareButton} />
       </div>
     </section>
