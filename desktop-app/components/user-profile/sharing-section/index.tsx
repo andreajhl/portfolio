@@ -8,7 +8,9 @@ function SharingSection(props: SharingSectionProps) {
   const link = "https://famosos.com";
   return (
     <section className={styles.SharingSection}>
-      <h2 className={styles.Title}>Háblale a tus amigos de Famosos</h2>
+      <h2 className={styles.Title}>
+        Invita a tus amigos a que conozcan Famosos
+      </h2>
       <div className={styles.Wrapper}>
         <span className={classes("text-with-ellipsis", styles.SharingLink)}>
           {link}
