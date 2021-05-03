@@ -13,10 +13,10 @@ const getWindow = () =>
           sessionStorage: {
             setItem: noop,
             getItem: noop,
-            removeItem: noop
-          }
+            removeItem: noop,
+          },
         },
-        navigator: { userAgent: "" }
+        navigator: { userAgent: "", clipboard: { writeText: noop } },
       };
 
 export default getWindow;
