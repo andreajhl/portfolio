@@ -4,10 +4,11 @@ import TriggerPopupEditButton from "desktop-app/components/common/trigger-popup-
 import useForm from "lib/hooks/useForm";
 import React from "react";
 import UpdateUserEmail from "../update-user-email";
+import UpdateUserPhone from "../update-user-phonenumber";
 import styles from "./styles.module.scss";
 type FormValuesType = {
   fullName: string;
-  cellphoneNumber: string | number;
+  cellphoneNumber: string;
   avatar: string;
   email: string;
   birthdayDate: string;
@@ -53,25 +54,16 @@ function UserInformationEdit() {
             <UpdateUserEmail email={values.email} />
           </div>
           <div className={styles.OptionsItems}>
+            <UpdateUserPhone numberPhone={values.cellphoneNumber} />
             <EditableInputField
               inputClass={styles.inputClass}
               labelClass={styles.labelInputFields}
-              value={values.fullName}
-              label="Nombre"
+              value={values.birthdayDate}
+              label="Fecha de nacimiento"
               onClickSave={(setIsEditing) =>
                 setIsEditing((isEditing) => !isEditing)
               }
-              name="fullName"
-            ></EditableInputField>
-            <EditableInputField
-              inputClass={styles.inputClass}
-              labelClass={styles.labelInputFields}
-              value={values.fullName}
-              label="Nombre"
-              onClickSave={(setIsEditing) =>
-                setIsEditing((isEditing) => !isEditing)
-              }
-              name="fullName"
+              name="birthdayDate"
             ></EditableInputField>
           </div>
           <div className={styles.OptionsItems}>
