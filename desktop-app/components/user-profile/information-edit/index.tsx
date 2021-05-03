@@ -1,11 +1,12 @@
 import { EditableInputField } from "desktop-app/components/common/form/editable-input-field";
 import PhotoUploader from "desktop-app/components/common/photo-uploader";
-import TriggerPopupEditButton from "desktop-app/components/common/trigger-popup-edit-button";
 import useForm from "lib/hooks/useForm";
 import React from "react";
 import UpdateUserEmail from "../update-user-email";
 import UpdateUserPhone from "../update-user-phonenumber";
 import styles from "./styles.module.scss";
+import UpdateUserGender from "../update-user-gender";
+
 type FormValuesType = {
   fullName: string;
   cellphoneNumber: string;
@@ -67,7 +68,7 @@ function UserInformationEdit() {
             ></EditableInputField>
           </div>
           <div className={styles.OptionsItems}>
-            <span>Genero</span>
+            <UpdateUserGender gener={"male"} />
           </div>
         </div>
       </div>
