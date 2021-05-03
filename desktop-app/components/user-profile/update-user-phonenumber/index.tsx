@@ -15,7 +15,7 @@ function HeaderPopup() {
           height="60px"
         ></img>
       </div>
-      <p>Cambiar correo electrónico</p>
+      <p>Cambiar número de celular</p>
     </div>
   );
 }
