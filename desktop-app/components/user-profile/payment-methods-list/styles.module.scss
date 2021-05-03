@@ -1,0 +1,25 @@
+.NoResultsMessage {
+  font-size: 14px;
+  color: var(--gray-4, #5c5c5c);
+}
+
+.PaymentMethodItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 320px;
+}
+
+.PaymentMethodItem + .PaymentMethodItem {
+  margin-top: 18px;
+}
+
+.PaymentMethodBrand {
+  padding: 5px;
+  border: 1px solid var(--gray-2, #bebebe);
+  border-radius: 5px;
+}
+
+.PaymentMethodNumber {
+  font-weight: bold;
+}
