@@ -6,9 +6,15 @@ type ContractOccasionProps = {
   occasion?: string;
 };
 
-function ContractOccasion({ className = "", occasion }: ContractOccasionProps) {
-  const occasionKey = occasion || "OTHER";
-  const contractOccasion = occasionsData[occasionKey] || occasionsData.OTHER;
+function ContractOccasion({
+  className = "",
+  occasion = "OTHER",
+}: ContractOccasionProps) {
+  const occasionKey = occasionsData.hasOwnProperty(occasion)
+    ? occasion
+    : "OTHER";
+
+  const contractOccasion = occasionsData[occasionKey];
 
   return (
     <div className={`${styles.ContractOccasion} ${className}`}>
