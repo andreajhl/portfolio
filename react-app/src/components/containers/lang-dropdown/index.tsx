@@ -22,6 +22,7 @@ export default function LangDropdown() {
     >
       {AVAILABLE_LANGS[locale as localeAvailables].map((lang) => (
         <div
+          key={lang.lang}
           onClick={() => handleChangeLang(lang.lang)}
           className={classes(
             styles.CurrencyDropdownItem,
