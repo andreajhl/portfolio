@@ -1,4 +1,5 @@
 import classes from "classnames";
+import { CSSProperties } from "react";
 import styles from "./styles.module.scss";
 
 const ONLY_IMAGE_FORMATS = "image/*,image/heif,image/heic";
@@ -8,6 +9,7 @@ const restartInput = (input: HTMLInputElement) => (input.value = null);
 type ImagePickerProps = {
   id?: string;
   previewImageSrc: string;
+  previewImageBorderRadius?: CSSProperties["borderRadius"];
   label?: string;
   onPickImage?: (imageFile: File) => void;
 };
@@ -15,6 +17,7 @@ type ImagePickerProps = {
 function ImagePicker({
   id = "image-picker-input",
   previewImageSrc,
+  previewImageBorderRadius = "0",
   label = "Seleccionar imagen",
   onPickImage = function () {},
 }: ImagePickerProps) {
@@ -23,6 +26,7 @@ function ImagePicker({
       <img
         className={styles.Preview}
         alt="Previsualización"
+        style={{ borderRadius: previewImageBorderRadius }}
         src={previewImageSrc}
       />
       <input
