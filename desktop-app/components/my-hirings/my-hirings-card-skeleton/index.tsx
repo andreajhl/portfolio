@@ -59,8 +59,8 @@ function MyHiringsCardSkeleton({ className = "" }: MyHiringsCardSkeletonProps) {
           </div>
         </div>
         <div className={styles.MyHiringsCardSkeletonBodyRightSideContainer}>
-          {getArrayOfLength(3).map(() => (
-            <div className={styles.MyHiringsCardSkeletonBannerItem}>
+          {getArrayOfLength(3).map((_, index) => (
+            <div className={styles.MyHiringsCardSkeletonBannerItem} key={index}>
               <Skeleton
                 className={styles.MyHiringsCardSkeletonBannerIcon}
                 width={29}
