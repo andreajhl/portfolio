@@ -12,6 +12,8 @@ import classes from "classnames";
 import { canEditContract } from "desktop-app/constants/contractStatuses";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import styles from "./styles.module.scss";
+import useForm from "lib/hooks/useForm";
+import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 
 const mapStateToProps = (state) => ({});
 
@@ -25,8 +27,24 @@ type MyHiringsCardDetailsProps = {
 } & StateProps &
   DispatchProps;
 
+const initialValues = {
+  deliveryTo: "",
+  deliveryFrom: "",
+  instructions: "",
+};
+
+type InitialValuesType = typeof initialValues;
+
 function MyHiringsCardDetails({ contractData }: MyHiringsCardDetailsProps) {
   const [isEditing, setIsEditing] = useState(false);
+  const { values, onChangeField } = useForm<InitialValuesType>({
+    initialValues: {
+      ...initialValues,
+      ...pickPropertiesFromAObject(contractData, Object.keys(initialValues)),
+    },
+  });
+
+  const contractIsForOther = contractData.contractType === 2;
 
   return (
     <div className={styles.MyHiringsCardDetails}>
@@ -44,16 +62,23 @@ function MyHiringsCardDetails({ contractData }: MyHiringsCardDetailsProps) {
           />
           <ContractDataFormInput
             label="Para"
-            value="Ana"
+            name="deliveryTo"
+            value={values.deliveryTo}
+            onChange={onChangeField}
             disabled={!isEditing}
-            className={styles.MyHiringsCardDetailsDeliveryTo}
+            maxLength={40}
           />
-          <br />
-          <ContractDataFormInput
-            label="De"
-            value="Camilo"
-            disabled={!isEditing}
-          />
+          <Maybe it={contractIsForOther}>
+            <br />
+            <ContractDataFormInput
+              label="De"
+              name="deliveryFrom"
+              value={values.deliveryFrom}
+              disabled={!isEditing}
+              className={styles.MyHiringsCardDetailsDeliveryFrom}
+              maxLength={40}
+            />
+          </Maybe>
         </div>
         <Maybe it={canEditContract(contractData.status)}>
           <div
@@ -75,7 +100,10 @@ function MyHiringsCardDetails({ contractData }: MyHiringsCardDetailsProps) {
       <div className={styles.MyHiringsCardDetailsInstructionWrapper}>
         <ContractInstructionsTextarea
           disabled={!isEditing}
-          value={contractData.instructions}
+          value={values.instructions}
+          onChange={onChangeField}
+          name="instructions"
+          maxLength={300}
         />
       </div>
     </div>
