@@ -17,24 +17,25 @@ function UserAvatarUploader(props: UserAvatarUploaderProps) {
   const [pickedImage, setPickedImage] = useState(null);
   const [previewSrc, setPreviewSrc] = useState("/assets/img/user-logo.svg");
 
-  console.log(pickedImage);
-
   return (
     <>
       <ImagePicker
         previewImageSrc={previewSrc}
+        previewImageBorderRadius={"50%"}
         label="Agregar foto"
         onPickImage={(image) => {
           setPickedImage(URL.createObjectURL(image));
           setModalIsOpen(true);
         }}
       />
-      <AvatarUploaderModal
-        initialImageSrc={pickedImage}
-        isOpen={modalIsOpen}
-        setIsOpen={setModalIsOpen}
-        onImageUploaded={setPreviewSrc}
-      />
+      <Maybe it={modalIsOpen}>
+        <AvatarUploaderModal
+          initialImageSrc={pickedImage}
+          isOpen={modalIsOpen}
+          setIsOpen={setModalIsOpen}
+          onImageUploaded={setPreviewSrc}
+        />
+      </Maybe>
     </>
   );
 }
