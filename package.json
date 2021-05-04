@@ -11,7 +11,7 @@
     "build-testing": "env-cmd -f .env.testing next build",
     "build-qa": "env-cmd -f .env.qa next build",
     "build-production": "env-cmd -f .env.production next build",
-    "start": "next start -p $PORT",
+    "start": "next start -p 8081",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
