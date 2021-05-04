@@ -1,6 +1,6 @@
 import {
   getCelebrityProfilePath,
-  getSearchCategoryPath
+  getSearchCategoryPath,
 } from "constants/paths";
 import { CountryFlag } from "desktop-app/components/common/country-flag";
 import { TextWithOverflow, parentElementClass } from "../../text-with-overflow";
@@ -24,7 +24,7 @@ function CelebrityCard({
   celebrity,
   thumbnailWidth = 170,
   thumbnailHeight = 210,
-  showPrice = true
+  showPrice = true,
 }: CelebrityCardProps) {
   return (
     <Link
@@ -76,7 +76,9 @@ function CelebrityCard({
                 return !hashtagRegExp.test(celebrity.title);
               })
               .map((hashtag) => (
-                <Link href={hashtag}>#{hashtag.replace("#", "")} </Link>
+                <Link href={hashtag} key={hashtag}>
+                  #{hashtag.replace("#", "")}{" "}
+                </Link>
               ))}
           </p>
         </Maybe>

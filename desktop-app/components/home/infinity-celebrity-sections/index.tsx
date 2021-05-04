@@ -7,13 +7,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { CelebritySectionType } from "desktop-app/types/celebritySectionType";
 import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
 import { categories } from "../../../../constants/categories";
+import { Fragment } from "react";
 
 const mapStateToProps = ({ celebritySections }) => {
   const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
   return {
     loading,
     celebritiesSections: data.results,
-    totalResults: data.totalResults
+    totalResults: data.totalResults,
   };
 };
 
@@ -33,7 +34,7 @@ type InfinityCelebritySectionsProps = {
 function InfinityCelebritySections({
   celebritiesSections,
   totalResults,
-  fetchCelebritySections
+  fetchCelebritySections,
 }: InfinityCelebritySectionsProps) {
   const [offset, setOffset] = useState(offsetInitialValue);
 
@@ -41,7 +42,7 @@ function InfinityCelebritySections({
     if (offset === offsetInitialValue) return;
     fetchCelebritySections({
       offset,
-      limit: resultsLimit
+      limit: resultsLimit,
       /* landingId,
       alpha2Code: getCookie("userLocation") */
     });
@@ -56,7 +57,7 @@ function InfinityCelebritySections({
         path: window.location.pathname,
         newOffset,
         totalResults,
-        hasReachedEnd: newOffset + resultsLimit >= totalResults
+        hasReachedEnd: newOffset + resultsLimit >= totalResults,
       });
       return newOffset;
     });
@@ -71,24 +72,20 @@ function InfinityCelebritySections({
       style={{ overflow: "visible" }}
     >
       {celebritiesSections.map((celebritySection, index) => (
-        <>
-          <CelebritiesSection
-            key={celebritySection.id}
-            celebritySection={celebritySection}
-          />
+        <Fragment key={celebritySection.id}>
+          <CelebritiesSection celebritySection={celebritySection} />
           <Maybe it={index === 2}>
             <CelebritiesSection
-              key="celebritySection-categories"
               celebritySection={{
                 celebritySectionType: "CATEGORY_CARD",
                 position: 999,
                 id: 0,
                 title: "Categorías destacadas",
-                celebrities: categories
+                celebrities: categories,
               }}
             />
           </Maybe>
-        </>
+        </Fragment>
       ))}
     </InfiniteScroll>
   );
