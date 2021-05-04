@@ -8,18 +8,26 @@ import {
 import { useEffect } from "react";
 import { listClientContracts } from "react-app/src/state/ducks/contracts/actions";
 import { connect } from "react-redux";
-import { hirings } from "constants/hires";
 import styles from "./styles.module.scss";
+import { MyHiringsCardSkeleton } from "desktop-app/components/my-hirings-card-skeleton";
+import MyHiringsContract from "desktop-app/types/myHiringsContract";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 
 const allowedStatuses = [PAYED_BY_CLIENT, COMPLETED, REJECTED, EXPIRED];
 
+const loadingSkeletons = (
+  <>
+    <MyHiringsCardSkeleton className={styles.MyHiringsCard} />
+    <MyHiringsCardSkeleton className={styles.MyHiringsCard} />
+  </>
+);
+
 const mapStateToProps = ({ contracts }) => ({
-  isLoading: contracts.listClientContractsReducer.loading,
   contracts:
-    // hirings ||
     contracts.listClientContractsReducer.data?.filter?.(({ status }) =>
       allowedStatuses.includes(status)
     ) || [],
+  isCompleted: contracts.listClientContractsReducer.completed,
 });
 
 const mapDispatchToProps = {
@@ -32,6 +40,7 @@ type DispatchProps = typeof mapDispatchToProps;
 type MyHiringsCardsSectionProps = {} & StateProps & DispatchProps;
 
 function MyHiringsCardsSection({
+  isCompleted,
   listClientContracts,
   contracts,
 }: MyHiringsCardsSectionProps) {
@@ -42,12 +51,14 @@ function MyHiringsCardsSection({
 
   return (
     <div className="container">
-      {contracts.map((contractData) => (
-        <MyHiringsCard
-          className={styles.MyHiringsCard}
-          contractData={contractData}
-        />
-      ))}
+      <Maybe it={isCompleted} orElse={loadingSkeletons}>
+        {contracts.map((contractData: MyHiringsContract) => (
+          <MyHiringsCard
+            className={styles.MyHiringsCard}
+            contractData={contractData}
+          />
+        ))}
+      </Maybe>
     </div>
   );
 }
