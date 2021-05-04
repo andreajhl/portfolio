@@ -26,6 +26,7 @@
     "@formatjs/cli": "^4.2.11",
     "@next/bundle-analyzer": "^10.0.7",
     "@stripe/stripe-js": "^1.12.1",
+    "@types/react-select": "^4.0.15",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "classnames": "^2.3.1",
