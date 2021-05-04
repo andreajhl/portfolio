@@ -4,12 +4,12 @@ import Maybe from "../maybe";
 import styles from "./styles.module.scss";
 
 type SkeletonTextProps = {
-  isLoading: boolean;
+  isLoading?: boolean;
   children?: ReactNode;
 } & SkeletonProps;
 
 function SkeletonText({
-  isLoading,
+  isLoading = true,
   children,
   ...skeletonProps
 }: SkeletonTextProps) {
