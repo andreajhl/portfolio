@@ -9,7 +9,6 @@ type MyHiringsCardProps = {
 };
 
 function MyHiringsCard({ className = "", contractData }: MyHiringsCardProps) {
-  console.log(contractData);
   return (
     <div className={`${styles.MyHiringsCard} ${className}`}>
       <MyHiringsCardHeader contractData={contractData} />
