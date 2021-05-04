@@ -7,4 +7,6 @@ export type celebrityType = {
   title: string;
   fullName: string;
   id: number;
+  status: number;
+  discountPercentage?: number;
 };

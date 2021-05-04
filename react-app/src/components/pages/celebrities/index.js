@@ -109,8 +109,7 @@ const mapStateToProps = ({
   celebrities,
   restCountries,
   countries,
-  filters,
-  cursor
+  filters
 }) => ({
   isLoading: celebrities.fetchCelebritiesReducer.loading,
   isCompleted: celebrities.fetchCelebritiesReducer.completed,
@@ -120,8 +119,7 @@ const mapStateToProps = ({
   countries: countries.countriesReducer.results,
   restCountries: restCountries.fetchCountriesReducer.data,
   selectedCategory: filters.filtersReducer.selectedCategory,
-  selectedCountry: filters.filtersReducer.selectedCountry,
-  cursor: cursor.cursorReducer.Position
+  selectedCountry: filters.filtersReducer.selectedCountry
 });
 
 const mapDispatchToProps = {

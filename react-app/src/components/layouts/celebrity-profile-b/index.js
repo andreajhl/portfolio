@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink } from "react-app/src/components/common/routing";
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import { connect } from "react-redux";
 import dynamic from "next/dynamic";
+import { SubscriptionToAvailabilityNotification } from "../subscription-to-availability-notification";
 const HowToGetAVideoMessageLayout = dynamic(() =>
   import("../how-to-get-a-video-message").then(
     (mod) => mod.HowToGetAVideoMessageLayout
@@ -10,12 +10,12 @@ const HowToGetAVideoMessageLayout = dynamic(() =>
 );
 const SimilarCelebritiesCardsSectionLayout = dynamic(() =>
   import("../similar-celebrities-cards-section").then(
-    (mod) => mod.HowToGetAVideoMessageLayout
+    (mod) => mod.SimilarCelebritiesCardsSectionLayout
   )
 );
 const SimilarCelebrityContractsSectionLayout = dynamic(() =>
   import("../similar-celebrity-contracts-section").then(
-    (mod) => mod.HowToGetAVideoMessageLayout
+    (mod) => mod.SimilarCelebrityContractsSectionLayout
   )
 );
 const CelebrityPublicContractsSectionLayout = dynamic(() =>
@@ -69,25 +69,6 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
             celebrityFullName={celebrity.fullName}
             celebrityAvatar={celebrity.avatar}
           />
-          {/* <section className="container text-center pt-2 pb-4">
-            <NavLink to="#">
-              <button
-                type="button"
-                className="btn btn-primary similar-celebrities-button"
-                style={{
-                  background: "#FFE1F0",
-                  borderRadius: "5px",
-                  border: "none",
-                  padding: "0.75em 1.5em",
-                  fontSize: "20px",
-                  fontWeight: "bold",
-                  color: "#FB177D"
-                }}
-              >
-                Ver famosos similares
-              </button>
-            </NavLink>
-          </section> */}
         </>
       ) : null}
       <CelebrityReviewsSectionLayout celebrityId={celebrity.id} />
@@ -98,14 +79,16 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
         celebrityUsername={celebrity.username}
       />
       <div className="container pb-4 pt-2 text-center">
-        <HireThisCelebrityButton
-          showCelebrityName={true}
-          className="get-a-video-button px-md-5 py-3 px-4"
-          text="Quiero un video de"
-          fontSize="1.25em"
-          celebrityFullName={celebrity.fullName}
-          celebrityUsername={celebrity.username}
-        />
+        {celebrity.status === 50 ? (
+          <HireThisCelebrityButton
+            showCelebrityName={true}
+            className="get-a-video-button px-md-5 py-3 px-4"
+            text="Quiero un video de"
+            fontSize="1.25em"
+            celebrityFullName={celebrity.fullName}
+            celebrityUsername={celebrity.username}
+          />
+        ) : null}{" "}
       </div>
     </>
   );

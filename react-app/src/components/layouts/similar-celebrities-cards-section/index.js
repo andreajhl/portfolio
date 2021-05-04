@@ -6,6 +6,7 @@ import * as CarouselWithButtons from "../carousel-with-buttons";
 
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
 import * as GTM from "../../../state/utils/gtm";
+import getWindow from "react-app/src/utils/getWindow";
 
 const SimilarCelebritiesCardsSectionLayout = ({
   celebrityUsername,
@@ -14,12 +15,13 @@ const SimilarCelebritiesCardsSectionLayout = ({
   fetchSimilarCelebrities
 }) => {
   useEffect(() => {
+    if (!celebrityUsername) return;
     fetchSimilarCelebrities(celebrityUsername);
   }, [celebrityUsername, fetchSimilarCelebrities]);
 
   const analyticsData = {
     widget: "SimilarCelebritiesCardsSectionLayout",
-    path: window.location.pathname,
+    path: getWindow().location.pathname,
     celebrityUsername
   };
 
@@ -69,6 +71,7 @@ const SimilarCelebritiesCardsSectionLayout = ({
                     avatar: similarCelebrity.celebrityAvatar,
                     title: similarCelebrity.categoryTitle,
                     id: similarCelebrity.celebrityId,
+                    discountPercentage: similarCelebrity.discountPercentage,
                     fullName: similarCelebrity.celebrityFullName
                   };
 

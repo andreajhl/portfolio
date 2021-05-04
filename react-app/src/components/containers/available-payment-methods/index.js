@@ -95,6 +95,7 @@ class AvailablePaymentMethods extends Component {
             >
               <Elements>
                 <StripeFlowHandler
+                  celebrityId={this.props.celebrityId}
                   contractReference={this.props.contractReference}
                   contractPrice={
                     this.props.couponData.completed
@@ -138,6 +139,7 @@ class AvailablePaymentMethods extends Component {
                     : this.props.contractPrice
                 }
                 discountCouponId={this.props.couponData.data.id}
+                celebrityId={this.props.celebrityId}
               />
             </div>
           </div>

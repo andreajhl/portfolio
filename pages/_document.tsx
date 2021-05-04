@@ -26,7 +26,7 @@ class MyDocument extends Document {
     const { isMobile } = this.props as any;
 
     return (
-      <Html className={isMobile ? "" : "desktop"}>
+      <Html lang="es" className={isMobile ? "" : "desktop"}>
         <Head>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -51,6 +51,7 @@ class MyDocument extends Document {
           <meta property="og:video:type" content="video/mp4" />
           <meta property="og:video:width" content="400" />
           <meta property="og:video:height" content="400" />
+          <meta property="twitter:card" content="summary_large_image"/>
           <meta
             name="robots"
             content={isProdEnvironment ? "index" : "noindex"}

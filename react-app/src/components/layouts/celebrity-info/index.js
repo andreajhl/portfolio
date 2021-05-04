@@ -3,6 +3,7 @@ import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { CelebrityContractPrice } from "../celebrity-contract-price";
 import { CelebritiesResponseTime } from "../celebrities-response-time";
+import Maybe from "../../common/helpers/maybe";
 
 export const CelebrityInfo = ({
   fullName,
@@ -12,16 +13,18 @@ export const CelebrityInfo = ({
   contractTypes,
   turnAround,
   availableForFlashDeliveries,
-  variant
+  variant,
+  discountPercentage,
+  status
 }) => {
   switch (variant) {
     case "1":
     default:
       return (
         <>
-          <h4 className="CelebrityInfo__full-name d-md-inline-block">
+          <h1 className="CelebrityInfo__full-name d-md-inline-block">
             {fullName}
-          </h4>
+          </h1>
           <CelebrityFavoriteButton
             className="d-none d-md-inline CelebrityInfo__fav-button-desktop"
             celebrityId={celebrityId}
@@ -33,19 +36,31 @@ export const CelebrityInfo = ({
             <span className="ml-3 CelebrityInfo__category">
               {categoryTitle}
             </span>
+            <Maybe it={status !== 50}>
+              <CelebrityFavoriteButton
+                className="d-md-none ml-auto"
+                celebrityId={celebrityId}
+                outlinedImageSource="assets/img/heart-regular-outlined.svg"
+                width="1.5rem"
+              />
+            </Maybe>
           </div>
-          <div className="d-flex justify-content-between align-items-center">
-            <CelebrityContractPrice
-              contractTypes={contractTypes}
-              className="CelebrityInfo__contract-price"
-            />
-            <CelebrityFavoriteButton
-              className="d-md-none"
-              celebrityId={celebrityId}
-              outlinedImageSource="assets/img/heart-regular-outlined.svg"
-              width="1.5rem"
-            />
-          </div>
+          <Maybe it={status === 50}>
+            <div className="d-flex align-items-center">
+              <CelebrityContractPrice
+                contractTypes={contractTypes}
+                className="CelebrityInfo__contract-price"
+                oldPriceClassName="CelebrityInfo__contract-price--invalid"
+                discountClassName="CelebrityInfo__contract-price-discount"
+              />
+              <CelebrityFavoriteButton
+                className="d-md-none ml-auto"
+                celebrityId={celebrityId}
+                outlinedImageSource="assets/img/heart-regular-outlined.svg"
+                width="1.5rem"
+              />
+            </div>
+          </Maybe>
           <div className="mt-md-2 mb-md-4">
             <CelebritiesResponseTime
               turnAroundTime={turnAround}
@@ -64,7 +79,7 @@ export const CelebrityInfo = ({
             outlinedImageSource="assets/img/heart-regular-outlined.svg"
             width="1.25rem"
           />
-          <h4 className="CelebrityInfo__full-name">{fullName}</h4>
+          <h1 className="CelebrityInfo__full-name">{fullName}</h1>
           <div className="d-flex align-items-center mb-2 mb-md-3">
             <CountryFlag countryCode={countryCode} />
             <span className="ml-3 CelebrityInfo__category">
@@ -84,9 +99,9 @@ export const CelebrityInfo = ({
               width="1.25rem"
             />
           </div>
-          <h4 className="CelebrityInfo__full-name d-md-inline-block">
+          <h1 className="CelebrityInfo__full-name d-md-inline-block">
             {fullName}
-          </h4>
+          </h1>
           <CelebrityFavoriteButton
             className="d-none d-md-inline CelebrityInfo__fav-button-desktop"
             celebrityId={celebrityId}
@@ -99,11 +114,15 @@ export const CelebrityInfo = ({
               {categoryTitle}
             </span>
           </div>
-          <div className="d-flex justify-content-between align-items-center">
-            <CelebrityContractPrice
-              contractTypes={contractTypes}
-              className="CelebrityInfo__contract-price"
-            />
+          <div className="d-flex align-items-center">
+            <Maybe it={status === 50}>
+              <CelebrityContractPrice
+                contractTypes={contractTypes}
+                className="CelebrityInfo__contract-price"
+                oldPriceClassName="CelebrityInfo__contract-price--invalid"
+                discountClassName="CelebrityInfo__contract-price-discount"
+              />
+            </Maybe>
           </div>
           <div className="mt-md-2 mb-md-4">
             <CelebritiesResponseTime
