@@ -25,7 +25,7 @@ function ItemSkeleton() {
 
 const noResultMessage = (
   <span className={styles.NoResultsMessage}>
-    No posees métodos para mostrar
+    Aún no tienes ningún método de pago registrado.
   </span>
 );
 
