@@ -54,6 +54,7 @@ function MyHiringsCardsSection({
       <Maybe it={isCompleted} orElse={loadingSkeletons}>
         {contracts.map((contractData: MyHiringsContract) => (
           <MyHiringsCard
+            key={contractData.id}
             className={styles.MyHiringsCard}
             contractData={contractData}
           />
