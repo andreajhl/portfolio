@@ -56,10 +56,11 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
   });
 
   useEffect(() => {
-    if (status === "completed") setTimeout(() => setStatus("idle"), 2000);
+    if (status !== "completed") return;
+    setTimeout(() => setStatus("idle"), 2000);
   }, [status]);
 
-  const isUpdatingReview = contractData.review;
+  const isUpdatingReview = contractData.review !== "";
 
   return (
     <div className={styles.ContractReviewCard}>
@@ -97,6 +98,7 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
         )}
       />
       <button
+        disabled={status === "loading"}
         type="button"
         className={`btn btn-tertiary ${styles.ContractReviewCardButton}`}
         onClick={submitForm}
