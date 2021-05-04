@@ -14,8 +14,9 @@ function PaymentMethodsSection(props: PaymentMethodsSectionProps) {
     async function getAvailableSources() {
       try {
         const response = await retrieveUserCards();
-        setAvailableSources(response.availableSources);
         setIsLoading(false);
+        if (Array.isArray(response.availableSources)) return;
+        setAvailableSources(response.availableSources);
       } catch (error) {}
     }
 

@@ -52,7 +52,7 @@ function PaymentMethodsList({
     return <ItemSkeleton />;
   }
 
-  if (availableSources.length === 0) {
+  if (!Array.isArray(availableSources) || availableSources.length === 0) {
     return noResultMessage;
   }
 
