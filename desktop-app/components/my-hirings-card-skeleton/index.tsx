@@ -54,7 +54,7 @@ function MyHiringsCardSkeleton({ className = "" }: MyHiringsCardSkeletonProps) {
               <label>
                 <SkeletonText>Mensaje</SkeletonText>
               </label>
-              <Skeleton count={2} />
+              <Skeleton count={3} />
             </div>
           </div>
         </div>
