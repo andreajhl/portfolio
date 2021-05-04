@@ -7,7 +7,7 @@ import Maybe from "../../helpers/maybe";
 import { Dispatch } from "react";
 import { SetStateAction } from "react";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
-
+import { StatusType } from "desktop-app/components/common/helpers/submit-button-text";
 type FileUploaderModalProps = {
   isOpen: boolean;
   setIsOpen?: Dispatch<SetStateAction<boolean>>;
@@ -16,6 +16,7 @@ type FileUploaderModalProps = {
   onFileUploaded?: (url: string, file: Blob) => void;
 };
 
+// "idle" | "loading" | "completed"
 function useUploadFile() {
   const [status, setStatus] = useState<
     "idle" | "uploading" | "rejected" | "completed"
@@ -57,7 +58,7 @@ function FileUploaderModal({
     closeModal();
   }
 
-  const buttonStatus = status === "uploading" ? "loading" : status;
+  const buttonStatus: any = status === "uploading" ? "loading" : status;
 
   return (
     <AnimatedPopup open={isOpen} modal>
