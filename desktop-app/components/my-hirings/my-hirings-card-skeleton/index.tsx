@@ -2,7 +2,7 @@ import classes from "classnames";
 import getArrayOfLength from "lib/utils/getArrayOfLength";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
-import { SkeletonText } from "../common/helpers/skeleton-text";
+import { SkeletonText } from "../../common/helpers/skeleton-text";
 import styles from "./styles.module.scss";
 
 type MyHiringsCardSkeletonProps = {

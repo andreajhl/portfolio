@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { listClientContracts } from "react-app/src/state/ducks/contracts/actions";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
-import { MyHiringsCardSkeleton } from "desktop-app/components/my-hirings-card-skeleton";
+import { MyHiringsCardSkeleton } from "desktop-app/components/my-hirings/my-hirings-card-skeleton";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 
