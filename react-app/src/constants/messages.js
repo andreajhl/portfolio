@@ -152,3 +152,11 @@ export const returnPaymentStatusLabel = (status) => {
       return ["", ""];
   }
 };
+
+export const AVAILABLE_PAYMENTS_METHODS = {
+  CREDIT_CARD: <FormattedMessage defaultMessage="Tarjeta de Crédito" />,
+  DEBIT_CARD: <FormattedMessage defaultMessage="Tarjeta de Débito" />,
+  BANK_TRANSFER: <FormattedMessage defaultMessage="Transferencia Bancaria" />,
+  TICKET: <FormattedMessage defaultMessage="Efectivo" />,
+  PAYPAL: <FormattedMessage defaultMessage="Paypal" />
+};

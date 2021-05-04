@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { AVAILABLE_PAYMENTS_METHODS } from "../../../../../constants/availablePaymentsMethods";
 import { processDlocalPayment } from "../../../state/ducks/payments/actions";
 import DLocalFormCard from "../dLocal-form-card";
 import SelectCardBankPaymentMethod from "../select-cardbank-payment-method";
@@ -12,6 +11,8 @@ import { USER_IP_ADDRESS } from "constants/keys";
 import { getIpAddress } from "react-app/src/state/utils/localizationApiService";
 import { PURCHASE_SUMMARY } from "react-app/src/routing/Paths";
 import { FormattedMessage } from "react-intl";
+import { AVAILABLE_PAYMENTS_METHODS } from "react-app/src/constants/messages";
+
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
   DEBIT_CARD: "far fa-credit-card",

@@ -125,6 +125,12 @@
       "value": "Idioma de notificaciones"
     }
   ],
+  "0r77bg": [
+    {
+      "type": 0,
+      "value": "Tarjeta de Débito"
+    }
+  ],
   "129NDS": [
     {
       "type": 0,
@@ -1037,10 +1043,22 @@
       "value": "Para mi"
     }
   ],
+  "H4PL1G": [
+    {
+      "type": 0,
+      "value": "Paypal"
+    }
+  ],
   "HG1X7k": [
     {
       "type": 0,
       "value": "Pago completado"
+    }
+  ],
+  "HINYAw": [
+    {
+      "type": 0,
+      "value": "Efectivo"
     }
   ],
   "HdR30r": [
@@ -2113,6 +2131,12 @@
       "value": "Una descripción de la obra con derechos de autor que usted afirma han sido violadas."
     }
   ],
+  "cEDqkt": [
+    {
+      "type": 0,
+      "value": "Tarjeta de Crédito"
+    }
+  ],
   "cGtJag": [
     {
       "type": 0,
@@ -2711,6 +2735,12 @@
     {
       "type": 0,
       "value": "Bajo ninguna circunstancia se hace responsable de cualquier retraso o fallo en el rendimiento debido en su totalidad o en parte, a ningún acto de la naturaleza o por otras causas fuera de nuestro control."
+    }
+  ],
+  "pfhsIr": [
+    {
+      "type": 0,
+      "value": "Transferencia Bancaria"
     }
   ],
   "qMbb2M": [

@@ -125,6 +125,12 @@
       "value": "Notification language"
     }
   ],
+  "0r77bg": [
+    {
+      "type": 0,
+      "value": "Debit Card"
+    }
+  ],
   "129NDS": [
     {
       "type": 0,
@@ -1043,10 +1049,22 @@
       "value": "For me"
     }
   ],
+  "H4PL1G": [
+    {
+      "type": 0,
+      "value": "Paypal"
+    }
+  ],
   "HG1X7k": [
     {
       "type": 0,
       "value": "Payout completed"
+    }
+  ],
+  "HINYAw": [
+    {
+      "type": 0,
+      "value": "Cash"
     }
   ],
   "HdR30r": [
@@ -2119,6 +2137,12 @@
       "value": "A description of the copyrighted work you claim has been violated."
     }
   ],
+  "cEDqkt": [
+    {
+      "type": 0,
+      "value": "Credit Card"
+    }
+  ],
   "cGtJag": [
     {
       "type": 0,
@@ -2350,7 +2374,7 @@
   "gxungj": [
     {
       "type": 0,
-      "value": "Enter"
+      "value": "Sign in"
     }
   ],
   "h7uQIl": [
@@ -2719,6 +2743,12 @@
       "value": "Under no circumstances shall you be liable for any delay or failure in performance due in whole or in part to any act of nature or for any other cause beyond our control."
     }
   ],
+  "pfhsIr": [
+    {
+      "type": 0,
+      "value": "Bank transfer"
+    }
+  ],
   "qMbb2M": [
     {
       "type": 0,
@@ -2838,7 +2868,7 @@
   "ruSOFj": [
     {
       "type": 0,
-      "value": "Presenters"
+      "value": "Host"
     }
   ],
   "rzseUb": [

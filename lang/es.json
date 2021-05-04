@@ -55,6 +55,9 @@
   "0UHyeJ": {
     "message": "Idioma de notificaciones"
   },
+  "0r77bg": {
+    "message": "Tarjeta de Débito"
+  },
   "129NDS": {
     "message": "EN PARTICULAR, FAMOSOS Y SUS AFILIADOS, NO representa ni garantiza la exactitud o integridad de contenido disponible en oa través del sitio o servicios, o el contenido de los sitios web o servicios en línea vinculados o integrado con el SITIO o servicios. FAMOSOS y sus afiliados RESPONSABLE DE CUALQUIER: ERRORES (A), errores, o inexactitudes de los contenidos; (B) LESIONES O daños materiales ocasionados por SU ACCESO O USO DEL SITIO o servicios; (C) cualquier acceso no autorizado o uso de nuestros servidores o de cualquier información personal o datos de usuario; (D) cualquier interrupción de la transmisión A, O DESDE EL SITIO o servicios; (E) cualquier error, virus, troyanos, O SIMILARES que pueden transmitirse EN O MEDIANTE EL SITIO o servicios por cualquier tercero;"
   },
@@ -445,8 +448,14 @@
   "GfM0Pj": {
     "message": "Para mi"
   },
+  "H4PL1G": {
+    "message": "Paypal"
+  },
   "HG1X7k": {
     "message": "Pago completado"
+  },
+  "HINYAw": {
+    "message": "Efectivo"
   },
   "HdR30r": {
     "message": "Materiales adicionales promocionales. Usted nos proporcione los siguientes materiales promocionales (“Materiales de Promoción\") tras la finalización del registro de la cuenta y la creación de: (1) a diez (10) imágenes de alta resolución del mismo y (2) Sitio perfil bio. De vez en cuando podemos solicitar materiales promocionales adicionales."
@@ -919,6 +928,9 @@
   "c7lM10": {
     "message": "Una descripción de la obra con derechos de autor que usted afirma han sido violadas."
   },
+  "cEDqkt": {
+    "message": "Tarjeta de Crédito"
+  },
   "cGtJag": {
     "message": "Actualmente no puedes realizar videos promocionales. Los videos que cumplen nuestras políticas son netamente video-mensajes."
   },
@@ -1210,6 +1222,9 @@
   },
   "pfSPt8": {
     "message": "Bajo ninguna circunstancia se hace responsable de cualquier retraso o fallo en el rendimiento debido en su totalidad o en parte, a ningún acto de la naturaleza o por otras causas fuera de nuestro control."
+  },
+  "pfhsIr": {
+    "message": "Transferencia Bancaria"
   },
   "qMbb2M": {
     "message": "Agregar nueva tarjeta"

@@ -669,7 +669,7 @@
     "message": "Property"
   },
   "gxungj": {
-    "message": "Enter"
+    "message": "Sign in"
   },
   "h9zXst": {
     "message": "Anonymous"
@@ -1081,7 +1081,7 @@
     "message": "Journalists"
   },
   "ruSOFj": {
-    "message": "Presenters"
+    "message": "Host"
   },
   "uQg6Uc": {
     "message": "Coach"
@@ -1430,5 +1430,20 @@
   },
   "zM4Sw/": {
     "message": "What does a payment authorization mean?"
+  },
+  "0r77bg": {
+    "message": "Debit Card"
+  },
+  "H4PL1G": {
+    "message": "Paypal"
+  },
+  "HINYAw": {
+    "message": "Cash"
+  },
+  "cEDqkt": {
+    "message": "Credit Card"
+  },
+  "pfhsIr": {
+    "message": "Bank transfer"
   }
 }
