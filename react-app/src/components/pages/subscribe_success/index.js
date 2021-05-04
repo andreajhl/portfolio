@@ -11,7 +11,7 @@ const SubscriptionSuccess = ({ getCelebrity, celebrity, isLoading }) => {
   useEffect(() => {
     if (!celebrity_username) return;
 
-    getCelebrity(celebrity_username, true);
+    getCelebrity(celebrity_username);
   }, [celebrity_username]);
 
   return (

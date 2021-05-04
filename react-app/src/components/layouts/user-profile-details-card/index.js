@@ -48,7 +48,7 @@ class UserProfileDetailsCardLayout extends Component {
     return (
       <div className="UserProfileDetailsCardLayout">
         <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
-          <div className="row justify-content-center">
+          <div className="row justify-content-center mx-0">
             <div className="col-12 text-center">
               <h6 className="mt-3 font-weight-bold border-bottom pb-3">
                 <FormattedMessage defaultMessage="Mi Perfil" />

@@ -7,6 +7,7 @@ import { Session } from "../../../state/utils/session";
 import PropTypes from "prop-types";
 import * as GTM from "../../../state/utils/gtm";
 import { defineMessages, useIntl } from "react-intl";
+import { LikeButton } from "../../common/buttons/LikeButton";
 
 const intlMessages = defineMessages({
   isLikedAlternativeText: {
@@ -43,7 +44,6 @@ const CelebrityFavoriteButton = ({
 }) => {
   const { formatMessage } = useIntl();
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
   const analyticsData = useMemo(
     () => ({
       celebrityId,
@@ -88,29 +88,20 @@ const CelebrityFavoriteButton = ({
     }
   };
 
-  const addIsHovering = () => {
+  const onHovering = () => {
     GTM.tagManagerDataLayer(`HOVER_LIKE_CELEBRITY`, analyticsData);
-    setIsHovering(true);
   };
-
-  const removeIsHovering = () => {
-    setIsHovering(false);
-  };
-
-  const alternativeText = isFavorite
-    ? formatMessage(intlMessages.isLikedAlternativeText)
-    : formatMessage(intlMessages.isNotLikedAlternativeText);
 
   return (
-    <img
-      src={isFavorite !== isHovering ? filledImageSource : outlinedImageSource}
-      className={`like-icon cursor-pointer ${className}`}
-      style={{ width, height }}
-      onMouseOver={addIsHovering}
-      onMouseLeave={removeIsHovering}
+    <LikeButton
+      isFavorite={isFavorite}
+      onHovering={onHovering}
+      filledImageSource={filledImageSource}
+      outlinedImageSource={outlinedImageSource}
+      className={className}
+      width={width}
+      height={height}
       onClick={toggleFavorite}
-      alt={alternativeText}
-      title={alternativeText}
     />
   );
 };

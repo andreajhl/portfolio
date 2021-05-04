@@ -1,11 +1,23 @@
 import React from "react";
-
-import CelebritySharedPost from "../../containers/celebrity-shared-post/index";
 import InfiniteScroll from "react-infinite-scroll-component";
+import CelebritySharedPost from "../../containers/celebrity-shared-post/index";
 import { LoaderLayout } from "../../layouts/loader";
+import {
+  SubscriptionPostCard,
+  SubscriptionPostContent
+} from "../../common/cards/subscription-post-card";
 
-const CelebrityFeedPosts = (props) => {
-  const { posts, celebrityData, onFetchMorePost, hasMorePost } = { ...props };
+const getCelebrity = (subscriptionList, celebrityId) =>
+  subscriptionList.find((celebrity) => celebrity.celebrityId === celebrityId);
+
+const CelebrityFeedPosts = ({
+  posts,
+  subscriptionList,
+  onFetchMorePost,
+  hasMorePost,
+  currentChoice
+}) => {
+  const celebrityData = getCelebrity(subscriptionList, currentChoice);
   const fetchMoreData = () => {
     onFetchMorePost();
   };
@@ -18,9 +30,11 @@ const CelebrityFeedPosts = (props) => {
           hasMore={hasMorePost}
           loader={<LoaderLayout />}
           endMessage={
-            <p style={{ textAlign: "center" }}>
+            <p style={{ textAlign: "center", marginTop: "2rem" }}>
               <b>
-                {`Al parecer ${celebrityData.celebrityFullName} no ha publicado nada mas por los momentos.`}{" "}
+                {celebrityData?.celebrityFullName
+                  ? `Al parecer ${celebrityData?.celebrityFullName} no ha publicado nada mas por los momentos.`
+                  : `Al parecer no hay publicado nada mas por los momentos.`}{" "}
                 <span role="img" aria-label="crying-face">
                   😢
                 </span>
@@ -29,13 +43,27 @@ const CelebrityFeedPosts = (props) => {
           }
         >
           {posts
-            ? posts.map((post, index) => {
+            ? posts.map(({ id, created, description, urls, celebrityId }) => {
+                const {
+                  celebrityAvatar,
+                  celebrityFullName,
+                  celebrityUsername
+                } =
+                  celebrityData || getCelebrity(subscriptionList, celebrityId);
+
                 return (
-                  <CelebritySharedPost
-                    key={`celebrity-shared-post-${index}`}
-                    celebrityData={celebrityData}
-                    {...post}
-                  />
+                  <SubscriptionPostCard
+                    avatar={celebrityAvatar}
+                    fullName={celebrityFullName}
+                    username={celebrityUsername}
+                    date={created}
+                    key={id}
+                  >
+                    <SubscriptionPostContent
+                      urls={urls}
+                      description={description}
+                    />
+                  </SubscriptionPostCard>
                 );
               })
             : null}

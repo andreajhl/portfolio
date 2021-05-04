@@ -1,5 +1,7 @@
+import dynamic from "next/dynamic";
 import React, { useState } from "react";
-import Select from "react-select";
+
+const Select = dynamic(() => import("react-select"), { ssr: false });
 
 type SelectCardBankPaymentMethodProps = {
   options: Array<{
