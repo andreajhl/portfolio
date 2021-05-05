@@ -1,13 +1,17 @@
-import React, { Component, useRef, utilizeFocus } from "react";
-
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { contractOperations } from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
+import PhoneInput from "react-phone-input-2";
 import OcassionsOptions from "../ocassions-options";
 import { occasionsData } from "../../../constants/options";
 import { getToken } from "react-app/src/state/ducks/session/actions";
+import "react-phone-input-2/lib/style.css";
+import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
+import isMobilePhone from "react-app/src/state/utils/isMobilePhone";
+
 class CreateContractForm extends Component {
   constructor(props) {
     super(props);
@@ -22,8 +26,10 @@ class CreateContractForm extends Component {
         deliveryContact: "",
         instructions: "",
         isPublic: true,
-        occasion: "OTHER"
-      }
+        occasion: "OTHER",
+        deliveryContactCellphone: ""
+      },
+      deliveryContactCellphoneCountryCode: "co"
     };
     this.handleIsPublic = this.handleIsPublic.bind(this);
     this.createContract = this.createContract.bind(this);
@@ -93,7 +99,8 @@ class CreateContractForm extends Component {
       this.deliveryFromValidator(true) ||
       this.deliveryToValidator(true) ||
       this.instructionsValidator() ||
-      this.deliveryContactValidator()
+      this.deliveryContactValidator() ||
+      this.deliveryContactCellphoneValidator()
     ) {
       this.setState({
         ...this.state,
@@ -123,6 +130,9 @@ class CreateContractForm extends Component {
         if (typeof window !== "undefined") {
           if (window.fbq != null) {
             window.fbq("track", "InitiateCheckout", {
+              content_type: "product",
+              content_ids:
+                VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
               value: this.props.contractPrice,
               currency: "USD"
             });
@@ -142,6 +152,17 @@ class CreateContractForm extends Component {
       }
     }
   }
+
+  onCellphoneChange = (cellphoneNumber, countryCode) => {
+    this.setState((state) => ({
+      ...state,
+      contractData: {
+        ...state.contractData,
+        deliveryContactCellphone: cellphoneNumber
+      },
+      deliveryContactCellphoneCountryCode: countryCode
+    }));
+  };
 
   replacePlaceHolder = (text) => {
     const replacePlaceHolders = (str, find, replace) => {
@@ -169,7 +190,7 @@ class CreateContractForm extends Component {
 
   handleInputChange = (event) => {
     const updatedContractData = { ...this.state.contractData };
-    if (event.target.value.length <= 300) {
+    if (event.target.value.length <= 400) {
       updatedContractData[event.target.name] = event.target.value;
       this.setState({
         ...this.state,
@@ -281,6 +302,24 @@ class CreateContractForm extends Component {
       return "Este correo no es válido";
     }
     return null;
+  };
+
+  deliveryContactCellphoneValidator = () => {
+    try {
+      if (this.state.contractData.deliveryContactCellphone !== "") {
+        if (
+          !isMobilePhone(
+            String(`+${this.state.contractData.deliveryContactCellphone}`),
+            this.state.deliveryContactCellphoneCountryCode
+          )
+        ) {
+          return "Ingrese un numero telefónico valido";
+        }
+      }
+      return null;
+    } catch (error) {
+      return null;
+    }
   };
 
   getInstructions(occasionIdentifier) {
@@ -464,12 +503,12 @@ class CreateContractForm extends Component {
             <div
               className={
                 "text-left" +
-                (contractData.instructions.length === 300
+                (contractData.instructions.length === 400
                   ? " text-danger "
                   : " text-muted ")
               }
             >
-              {contractData.instructions.length}/300 caracteres permitidos
+              {contractData.instructions.length}/400 caracteres permitidos
             </div>
             <span
               className={
@@ -496,6 +535,31 @@ class CreateContractForm extends Component {
               }
             >
               {this.deliveryContactValidator()}
+            </span>
+          </div>
+          <div className={"form-custom-vertical-group"}>
+            <label>¿Quieres recibir el video a tu WhatsApp? (Opcional)</label>
+            <PhoneInput
+              enableLongNumbers={true}
+              enableSearch
+              searchClass="d-flex align-items-center p-2"
+              searchPlaceholder="Buscar país"
+              placeholder="+57 55555555"
+              value={this.state.contractData.deliveryContactCellphone}
+              className="form-control mb-3"
+              containerClass="mb-3"
+              country={this.state.deliveryContactCellphoneCountryCode}
+              onChange={(cellphoneNumber, data) => {
+                this.onCellphoneChange(cellphoneNumber, data.countryCode);
+              }}
+            />
+            <span
+              className={
+                "text-danger" +
+                (this.state.showErrors ? " show-error " : " hide-error ")
+              }
+            >
+              {this.deliveryContactCellphoneValidator()}
             </span>
           </div>
           <div className={"mt-3"}>{""}</div>

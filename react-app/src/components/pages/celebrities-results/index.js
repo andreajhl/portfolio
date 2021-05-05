@@ -10,22 +10,28 @@ import * as GTM from "../../../state/utils/gtm";
 import { CelebritiesAdditionalResultsLayout } from "../../layouts/celebrities-additional-results";
 import pickPropertiesFromAObject from "../../../utils/pickPropertiesFromAObject";
 import { withRouter } from "react-app/src/components/common/routing";
+import { cursorOperations } from "../../../state/ducks/cursor-position";
+import { checkIfObjectContainsSamePairKeyValue } from "react-app/src/utils/checkIfObjectContainsSamePairKeyValue";
 
 function noop() {}
-
-const mapStateToProps = ({ celebrities }) => {
+const PATH_KEY = "CelebritiesResultPage";
+const mapStateToProps = ({ celebrities, cursor }) => {
   return {
     isLoading: celebrities.fetchCelebritiesReducer.loading,
     isCompleted: celebrities.fetchCelebritiesReducer.completed,
     requestCancel: celebrities.fetchCelebritiesReducer.requestCancel || noop,
     celebrities: celebrities.fetchCelebritiesReducer.data.results,
     totalResults: celebrities.fetchCelebritiesReducer.data.totalResults,
-    previousPath: celebrities.previousPathReducer.pathname
+    queryParamsStore: celebrities.saveLastQueryParamsReducer,
+    previousPath: celebrities.previousPathReducer.pathname,
+    cursor: cursor.positionReducer.data
   };
 };
 
 const mapDispatchToProps = {
-  fetchCelebrities: celebrityOperations.list
+  fetchCelebrities: celebrityOperations.list,
+  saveQueryParams: celebrityOperations.saveLastQueryParams,
+  saveCursor: cursorOperations.saveCursorPosition
 };
 
 const listParamsInitialKeys = ["offset", "limit"];
@@ -55,7 +61,11 @@ const CelebritiesResultsPage = ({
   requestCancel,
   isCompleted,
   location,
-  history
+  cursor,
+  history,
+  saveCursor,
+  saveQueryParams,
+  queryParamsStore
 }) => {
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
   const listParams = useMemo(
@@ -67,14 +77,41 @@ const CelebritiesResultsPage = ({
     [location.search]
   );
 
+  useEffect(() => {
+    if (
+      hasSearched &&
+      checkIfObjectContainsSamePairKeyValue(listParams, queryParamsStore)
+    ) {
+      if (cursor.view === PATH_KEY) {
+        window.scrollTo({ top: cursor.position });
+      }
+    }
+    return () => {
+      saveCursor({
+        view: PATH_KEY,
+        position: window.scrollY
+      });
+    };
+  }, []);
+
   useEffect(() => requestCancel, [requestCancel]);
 
   useEffect(() => {
     if (Object.keys(listParams).length === 0 || !hasSearched(listParams)) {
       history.push(previousPath);
     } else {
-      fetchCelebrities(listParams);
-      setOffset(updateQueryParamsInitialState.offset);
+      if (
+        !checkIfObjectContainsSamePairKeyValue(listParams, queryParamsStore)
+      ) {
+        fetchCelebrities(listParams);
+        setOffset(updateQueryParamsInitialState.offset);
+      } else {
+        setOffset(
+          queryParamsStore?.offset
+            ? queryParamsStore?.offset
+            : updateQueryParamsInitialState.offset
+        );
+      }
     }
   }, [fetchCelebrities, listParams, previousPath]);
 
@@ -83,6 +120,7 @@ const CelebritiesResultsPage = ({
     const nextOffset = offset ? offset + limit : limit;
     const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
     setOffset(newOffset);
+    saveQueryParams({ ...listParams, offset: newOffset });
     fetchCelebrities({
       ...listParams,
       offset: newOffset

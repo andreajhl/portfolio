@@ -4,6 +4,7 @@ import { processPayPalPayment } from "../../../state/ducks/payments/actions";
 import * as GTM from "../../../state/utils/gtm";
 import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
+import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 
 class PayPalCardForm extends Component {
   constructor(props) {
@@ -33,6 +34,9 @@ class PayPalCardForm extends Component {
           if (typeof window !== "undefined") {
             if (window.fbq != null) {
               window.fbq("track", "Purchase", {
+                content_type: "product",
+                content_ids:
+                  VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
                 value: this.props.contractPrice,
                 currency: "USD"
               });

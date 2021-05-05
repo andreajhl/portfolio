@@ -15,19 +15,19 @@ import { CreateContractWizard } from "desktop-app/components/celebrity-profile/c
 
 const mapStateToProps = ({ celebrities }) => ({
   publicContracts: celebrities.fetchPublicContractsReducer.data.results,
-  isLoadingPublicContracts: celebrities.fetchPublicContractsReducer.loading
+  isLoadingPublicContracts: celebrities.fetchPublicContractsReducer.loading,
 });
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 
 type CelebrityProfilePageProps = {
-  celebrity: celebrityType;
+  celebrity: { status: number } & celebrityType;
 } & StateProps;
 
 function CelebrityProfilePage({
   celebrity,
   isLoadingPublicContracts,
-  publicContracts
+  publicContracts,
 }: CelebrityProfilePageProps) {
   return (
     <PageContainer>
@@ -59,7 +59,7 @@ function CelebrityProfilePage({
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            marginTop: "28px"
+            marginTop: "28px",
           }}
         >
           <CelebrityPublicContractsReel
@@ -71,7 +71,7 @@ function CelebrityProfilePage({
           <Maybe it={!isLoadingPublicContracts && publicContracts?.length < 3}>
             <div
               style={{
-                marginTop: "auto"
+                marginTop: "auto",
               }}
             >
               <ContractSteps></ContractSteps>
@@ -81,7 +81,7 @@ function CelebrityProfilePage({
         <div
           style={{
             marginTop: "35px",
-            marginBottom: "37px"
+            marginBottom: "37px",
           }}
         >
           <LastReviewsSection showMore={true}></LastReviewsSection>
@@ -89,13 +89,13 @@ function CelebrityProfilePage({
 
         <div
           style={{
-            marginBottom: "36px"
+            marginBottom: "36px",
           }}
         >
           <Maybe it={!isLoadingPublicContracts && publicContracts?.length >= 3}>
             <div
               style={{
-                flex: "1"
+                flex: "1",
               }}
             >
               <ContractSteps></ContractSteps>

@@ -8,6 +8,7 @@ import { CelebritiesFavoritesEdit } from "desktop-app/components/user-profile/ce
 import UserInformationEdit from "desktop-app/components/user-profile/information-edit";
 import { SharingSection } from "desktop-app/components/user-profile/sharing-section";
 import { PaymentMethodsSection } from "desktop-app/components/user-profile/payment-methods-section";
+import UpdatePasswordForm from "desktop-app/components/user-profile/update-password-form";
 
 function ClientProfilePage() {
   return (
@@ -21,7 +22,9 @@ function ClientProfilePage() {
         {/* MULTIPLE SETTINGS */}
         <div className={styles.SettingsSection}>
           <div className={styles.GridOfSettings}>
-            <div></div>
+            <div>
+              <UpdatePasswordForm />
+            </div>
             <div>
               <PaymentMethodsSection />
             </div>

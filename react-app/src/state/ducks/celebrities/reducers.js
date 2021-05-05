@@ -7,6 +7,8 @@ export const updateQueryParamsInitialState = {
   limit: 20
 };
 
+export const queryParamsInitialState = {};
+
 const fetchCelebritiesInitialState = {
   requestCancel: null,
   loading: false,
@@ -123,6 +125,18 @@ export function fetchCelebritiesReducer(
         data: { ...state.data },
         completed: true
       };
+    default:
+      return state;
+  }
+}
+
+export function saveLastQueryParamsReducer(
+  state = queryParamsInitialState,
+  action
+) {
+  switch (action.type) {
+    case types.SAVE_LAST_QUERY_PARAMS:
+      return action.payload;
     default:
       return state;
   }
@@ -383,5 +397,6 @@ export default combineReducers({
   fetchFlashDeliveryCelebritiesReducer,
   fetchCelebritySubscriptionPlansReducer,
   fetchCelebritiesSimilarResultsReducer,
-  celebrityProfileVersionReducer
+  celebrityProfileVersionReducer,
+  saveLastQueryParamsReducer
 });

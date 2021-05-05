@@ -10,7 +10,8 @@ import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
 import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { celebrityType } from "../../../types/celebrityType";
-import OptimizedImage from "../../common/helpers/optimized-image";
+import Maybe from "../../common/helpers/maybe";
+import LazyLoadingImage from "../../common/lazy-loading-image";
 
 export interface CelebrityCardLayoutI {
   celebrity: celebrityType;
@@ -52,6 +53,8 @@ const CelebrityCardLayout = ({
   const registerHoverOnCelebrity = () =>
     GTM.tagManagerDataLayer("HOVER_ON_CELEBRITY_CARD", celebrity);
 
+  const { discountPercentage } = celebrity;
+
   return (
     <NavLink
       to={profileUrl}
@@ -61,7 +64,7 @@ const CelebrityCardLayout = ({
     >
       <div className="celebrity-card">
         <div className="thumbnail">
-          <OptimizedImage
+          <LazyLoadingImage
             alt="avatar"
             className="celebrity__profile-photo"
             src={celebrity.avatar}
@@ -70,19 +73,34 @@ const CelebrityCardLayout = ({
             width={celebrityCardLayout?.width || 156}
             placeholderSrc="/assets/img/avatar-blank.png"
           />
+          <Maybe it={discountPercentage > 0}>
+            <span className="celebrity__discount">
+              -{discountPercentage * 100}%
+            </span>
+          </Maybe>
           {celebrity.availableForFlashDeliveries ? (
             <FlashDeliveryBadgeLayout className="celebrity__flash-delivery" />
           ) : null}
-          {contractPrice > 0 ? (
-            <div className="celebrity__price">
+          <Maybe it={contractPrice > 0 && celebrity.status === 50}>
+            <div
+              className={`celebrity__price ${
+                discountPercentage ? "celebrity__price--discounted" : ""
+              }`}
+            >
               <ContractPriceLayout
                 classes="celebrity__price__text"
-                price={contractPrice}
+                price={
+                  discountPercentage
+                    ? contractPrice - contractPrice * discountPercentage
+                    : contractPrice
+                }
                 currency={currencyExchangeData.to}
-                rounding={true}
+                rounding={
+                  currencyExchangeData.to !== "USD" || !discountPercentage
+                }
               />
             </div>
-          ) : null}
+          </Maybe>
         </div>
         <div className="celebrity-details">
           <div className="celebrity-info">
