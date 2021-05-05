@@ -1,11 +1,11 @@
 import React from "react";
-import NotificationSlangForm from "../notification-slang-form";
+import { NotificationLangForm } from "../notification-lang-form";
 import styles from "./styles.module.scss";
 function SettingsUser() {
   return (
     <div className={styles.SettingsUserContainer}>
       <h5>Ajustes</h5>
-      <NotificationSlangForm />
+      <NotificationLangForm />
     </div>
   );
 }

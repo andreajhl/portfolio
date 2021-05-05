@@ -10,9 +10,9 @@ const mapDispatchToProps = {};
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
-type NotificationSlangFormProps = StateProps & DispatchProps;
+type NotificationLangFormProps = StateProps & DispatchProps;
 // TODO: conectar con endpoint creado en branch master
-function NotificationSlangForm(props: NotificationSlangFormProps) {
+function NotificationLangForm(props: NotificationLangFormProps) {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 5000);
@@ -38,11 +38,9 @@ function NotificationSlangForm(props: NotificationSlangFormProps) {
   );
 }
 
-export default NotificationSlangForm;
-
-const _NotificationSlangForm = connect(
+const _NotificationLangForm = connect(
   mapStateToProps,
   mapDispatchToProps
-)(NotificationSlangForm);
+)(NotificationLangForm);
 
-export { _NotificationSlangForm as NotificationSlangForm };
+export { _NotificationLangForm as NotificationLangForm };

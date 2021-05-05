@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import { NotificationSlangForm } from ".";
+import { NotificationLangForm } from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<NotificationSlangForm />);
+  const wrapper = shallow(<NotificationLangForm />);
   expect(wrapper.exists()).toBeTruthy();
 });
