@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 
 const mapStateToProps = ({ session }) => ({
-  isLoadingUserData: session.getSessionReducer.loading,
+  isLoadingUserData: !session.getSessionReducer.completed,
   userData: session.getSessionReducer.data,
 });
 
