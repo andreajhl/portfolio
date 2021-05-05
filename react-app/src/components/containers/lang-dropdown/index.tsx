@@ -1,10 +1,11 @@
 import React from "react";
 import { GlobeEarth } from "../../common/icons";
 import styles from "./styles.module.scss";
-import { Dropdown } from "../../common/button/dropdown";
 import { AVAILABLE_LANGS } from "constants/langs";
 import { useRouter } from "next/router";
 import classes from "classnames";
+import Popup from "reactjs-popup";
+
 type localeAvailables = "es" | "en" | "pt";
 
 export default function LangDropdown() {
@@ -13,25 +14,32 @@ export default function LangDropdown() {
   const handleChangeLang = (lang: string) => {
     router.push({ pathname, query }, asPath, { locale: lang });
   };
+
   return (
-    <Dropdown
-      buttonChildren={<GlobeEarth />}
-      buttonClassName="p-0"
-      menuClassName={styles.CurrencyDropdownMenu}
-      showClassName={styles.CurrencyDropdownMenuShow}
+    <Popup
+      on="hover"
+      arrow={false}
+      trigger={(props) => (
+        <button className={classes("btn btn-outline", styles.ButtonDropdown)}>
+          <GlobeEarth />{" "}
+        </button>
+      )}
+      closeOnDocumentClick
     >
-      {AVAILABLE_LANGS[locale as localeAvailables].map((lang) => (
-        <div
-          key={lang.lang}
-          onClick={() => handleChangeLang(lang.lang)}
-          className={classes(
-            styles.CurrencyDropdownItem,
-            locale === lang.lang ? styles.CurrencyDropdownItemActive : null
-          )}
-        >
-          <span>{lang.name}</span>
-        </div>
-      ))}
-    </Dropdown>
+      <div className={styles.CurrencyDropdownMenu}>
+        {AVAILABLE_LANGS[locale as localeAvailables].map((lang) => (
+          <div
+            key={lang.lang}
+            onClick={() => handleChangeLang(lang.lang)}
+            className={classes(
+              styles.CurrencyDropdownItem,
+              locale === lang.lang ? styles.CurrencyDropdownItemActive : null
+            )}
+          >
+            <span>{lang.name}</span>
+          </div>
+        ))}
+      </div>
+    </Popup>
   );
 }
