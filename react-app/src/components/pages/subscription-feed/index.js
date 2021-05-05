@@ -23,7 +23,7 @@ const MySubscriptionsTitle = styled.h2`
   font-weight: bold;
 `;
 
-const NotPostsResults = ({ message }) => {
+export const NotPostsResults = ({ message }) => {
   return (
     <div className="container-not-post-results">
       <h4>

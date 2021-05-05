@@ -50,7 +50,7 @@ class SubscriptionPaypalReactButton extends React.Component {
 
   createSubscription = (data, actions) => {
     return actions.subscription.create({
-      plan_id: "P-37H55955PE295851GL726VIQ"
+      plan_id: this.props.planId
     });
   };
 

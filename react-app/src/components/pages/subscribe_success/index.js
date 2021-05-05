@@ -3,6 +3,7 @@ import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { connect } from "react-redux";
 import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
 import { useRouter } from "next/router";
+import { CheckIconList } from "../../layouts/check-icon-list";
 
 const SubscriptionSuccess = ({ getCelebrity, celebrity, isLoading }) => {
   const router = useRouter();
@@ -39,29 +40,34 @@ const SubscriptionSuccess = ({ getCelebrity, celebrity, isLoading }) => {
           <div className="mt-4 font-weight-bold">
             <h5 className={"font-weight-bold"}>¡Felicitaciones!</h5>
             <h5 className={"font-weight-bold"}>
-              {" "}
-              Se ha realizado con éxito la suscripción a {celebrity.fullName}.
+              Tu suscripción con {celebrity.fullName || "Famoso"} fue exitosa.
             </h5>
           </div>
           <div className="mt-4 pl-3 pr-3 font-weight-light text-left">
             <h6>
-              Ahora haces parte de Famosos Prime {celebrity.fullName}, eso
-              quiere decir accedes a los siguientes beneficios:
+              A partir de ahora disfrutarás de beneficios únicos que te harán
+              quererl@ todavía más.
             </h6>
-            <ul>
-              <li>Acceso a contenido exclusivo de {celebrity.fullName}</li>
-              <li>
-                Descuento en compras de videomensajes de {celebrity.fullName}
-              </li>
-              <li>
-                Invitación a eventos gratuitos y pagos con {celebrity.fullName}
-              </li>
-              <li>Muchas sorpresas más.</li>
-            </ul>
+            <CheckIconList
+              className="SubscriptionSuccessBenefitsList"
+              items={[
+                "Felicitación en tu cumpleaños.",
+                "Descuento en tu próxima compra de video personalizado.",
+                "Invitación a sesiones exclusivas en vivo.",
+                "Entrada con descuento a eventos.",
+                `Acceso a contenido exclusivo de ${
+                  celebrity.fullName || "Famoso"
+                }.`,
+                "Participación en sorteos y posibilidad de recibir artículos autografiados.",
+                "¡Sorpresas que te harán reír y suspirar!  "
+              ]}
+            />
           </div>
           <p>
-            El cobro de la suscripción se hará recurrente cada 30 días.
-            Recibirás una notificación cada vez que se realice tu cobro.
+            <span className="font-weight-bold">¡Recuerda!</span> Cada 30 días se
+            hará el cobro de la suscripción de manera automática. Te enviaremos
+            una notificación cuando se realice el cobro a tu TDC o PayPal
+            asociado.
           </p>
           <button
             className="btn btn-primary mb-4"

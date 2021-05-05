@@ -6,6 +6,7 @@ import {
   SubscriptionPostCard,
   SubscriptionPostContent
 } from "../../common/cards/subscription-post-card";
+import { PoweredByFamososBanner } from "../powered-by-famosos-banner";
 
 const getCelebrity = (subscriptionList, celebrityId) =>
   subscriptionList.find((celebrity) => celebrity.celebrityId === celebrityId);
@@ -18,29 +19,16 @@ const CelebrityFeedPosts = ({
   currentChoice
 }) => {
   const celebrityData = getCelebrity(subscriptionList, currentChoice);
-  const fetchMoreData = () => {
-    onFetchMorePost();
-  };
+
   return (
     <div className="celebrity-feed-posts">
       <div className="celebrity-feed-posts__result">
         <InfiniteScroll
           dataLength={posts.length}
-          next={fetchMoreData}
+          next={onFetchMorePost}
           hasMore={hasMorePost}
           loader={<LoaderLayout />}
-          endMessage={
-            <p style={{ textAlign: "center", marginTop: "2rem" }}>
-              <b>
-                {celebrityData?.celebrityFullName
-                  ? `Al parecer ${celebrityData?.celebrityFullName} no ha publicado nada mas por los momentos.`
-                  : `Al parecer no hay publicado nada mas por los momentos.`}{" "}
-                <span role="img" aria-label="crying-face">
-                  😢
-                </span>
-              </b>
-            </p>
-          }
+          endMessage={<PoweredByFamososBanner />}
         >
           {posts
             ? posts.map(({ id, created, description, urls, celebrityId }) => {

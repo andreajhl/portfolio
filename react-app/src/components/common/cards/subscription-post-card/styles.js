@@ -18,6 +18,7 @@ export const PostDate = styled.span`
   margin-left: auto;
 `;
 export const PostMedia = styled.div`
+  display: block;
   width: 100%;
   /* height: 367.64px; */
   height: 86.06vw;
@@ -25,6 +26,7 @@ export const PostMedia = styled.div`
   max-height: 542px;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 `;
 export const PostText = styled.p`
   margin-bottom: 9px;
@@ -52,10 +54,9 @@ export const PostHiddenDiv = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  width: calc(100% - 28px);
+  width: 100%;
   height: 100%;
   top: 0;
-  left: 14px;
   background-image: linear-gradient(
     180deg,
     #272727 0%,
@@ -84,6 +85,10 @@ export const PostSubscribeButton = styled.button`
   background: #ffffff;
   border-radius: 10px;
   border: none;
+
+  &:hover {
+    background: #f5f4f2;
+  }
 `;
 export const PostFooter = styled.footer`
   display: flex;

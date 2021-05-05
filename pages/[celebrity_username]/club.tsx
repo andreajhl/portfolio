@@ -32,12 +32,12 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   }
 );
 
-const Subscribe = ({ celebrity }) => {
+const Club = ({ celebrity }) => {
   return (
     <>
       <CustomHead
-        title={`Famosos.com - Subscribirse a ${celebrity.fullName}`}
-        description={`Subscribirse a ${celebrity.fullName} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.`}
+        title={`Famosos.com - Club de fans de ${celebrity.fullName}`}
+        description={`Club de fans de ${celebrity.fullName} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.`}
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
       />
@@ -46,6 +46,6 @@ const Subscribe = ({ celebrity }) => {
   );
 };
 
-export default withAuthenticationRequired(Subscribe, {
+export default withAuthenticationRequired(Club, {
   onRedirecting: LoadingPage
 });

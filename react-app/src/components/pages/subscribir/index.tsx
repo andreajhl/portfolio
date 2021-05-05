@@ -12,6 +12,7 @@ import {
   PlanInfoStar,
   PlanInfoDescription,
   PlanInfoPrice,
+  SectionWrapper,
   LastsPostsTitle
 } from "./styles";
 import {
@@ -34,16 +35,19 @@ import { Link } from "../../common/routing/link";
 import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
 import { useRouter } from "next/router";
 import { getPostsFromCelebrity } from "react-app/src/firebase/firestoreService";
+import { NotPostsResults } from "../subscription-feed";
+import { ConvertedPriceCopy } from "../../layouts/converted-price-copy";
+import { PoweredByFamososBanner } from "../../layouts/powered-by-famosos-banner";
 
 const isTypeImage = ({ type }: { type: string }): boolean => type === "image";
 
 const getOnlyPreviewPosts = (results: any[]) =>
   results
-    .filter(({ urls }) => urls.some(isTypeImage))
     .map(({ urls, ...posts }) => ({
       ...posts,
       urls: urls.filter(isTypeImage).slice(0, 1)
-    }));
+    }))
+    .filter(({ urls, description }) => urls.length > 0 || description);
 
 const mapStateToProps = ({
   celebrities: { getCelebrityReducer, fetchCelebritySubscriptionPlansReducer },
@@ -99,11 +103,7 @@ const SubscribePage = ({
   useEffect(() => {
     if (isLoading) return;
     const fetchPosts = async () => {
-      const posts = await getPostsFromCelebrity(
-        "dev_posts",
-        celebrity.id,
-        !isSubscribed ? 10 : 3
-      );
+      const posts = await getPostsFromCelebrity("dev_posts", celebrity.id, 10);
       setPosts(!isSubscribed ? getOnlyPreviewPosts(posts) : posts);
     };
     fetchPosts();
@@ -114,7 +114,11 @@ const SubscribePage = ({
   );
 
   const priceLayout = (
-    <PriceLayout price={monthlySubscription?.priceTier} showPrefix={false} />
+    <PriceLayout
+      price={monthlySubscription?.priceTier}
+      rounding
+      showPrefix={false}
+    />
   );
 
   return (
@@ -136,34 +140,43 @@ const SubscribePage = ({
             />
           </div>
         </Hero>
-        <div className="container">
-          <CelebrityInfoSection>
-            <ProfilePicture avatar={avatar} width="126px" />
-            <CelebrityInfoTitle>{fullName}</CelebrityInfoTitle>
-            <CelebrityInfoSubtitle>Club de Fans</CelebrityInfoSubtitle>
-          </CelebrityInfoSection>
-          <PlanInfoSection as="section">
-            <PlanInfoStar />
-            <PlanInfoDescription>
-              Al ser parte del club de Fans de {fullName} tendrás acceso a
-              contenido exclusivo, sesiones live, sorteos y/o eventos privados.
-            </PlanInfoDescription>
-            <Maybe it={!isSubscribed}>
-              <PlanInfoPrice>{priceLayout} /mes</PlanInfoPrice>
-              <Link
-                href={SUBSCRIPTION.replace(":celebrity_username", username)}
-              >
-                <CallToActionButton width="100%">
-                  Subscribirse
-                </CallToActionButton>
-              </Link>
-            </Maybe>
-          </PlanInfoSection>
-        </div>
-        <SubscriptionPostsHeader>
-          <LastsPostsTitle>Últimas publicaciones de {fullName}</LastsPostsTitle>
-        </SubscriptionPostsHeader>
+        <SectionWrapper>
+          <div className="container">
+            <CelebrityInfoSection>
+              <ProfilePicture avatar={avatar} width="176px" />
+              <CelebrityInfoTitle>{fullName}</CelebrityInfoTitle>
+              <CelebrityInfoSubtitle>Club de Fans</CelebrityInfoSubtitle>
+            </CelebrityInfoSection>
+            <PlanInfoSection as="section">
+              <PlanInfoStar />
+              <PlanInfoDescription>
+                <Maybe
+                  it={isSubscribed}
+                  orElse={`Al ser parte del club de Fans de ${fullName} tendrás`}
+                >
+                  Formas parte del Club de Fans de {fullName}. Ahora tienes
+                </Maybe>{" "}
+                acceso a contenido exclusivo, sesiones live, sorteos y/o eventos
+                privados.
+              </PlanInfoDescription>
+              <Maybe it={!isSubscribed}>
+                <PlanInfoPrice>{priceLayout} /mes</PlanInfoPrice>
+                <ConvertedPriceCopy price={monthlySubscription?.priceTier} />
+                <Link
+                  href={SUBSCRIPTION.replace(":celebrity_username", username)}
+                >
+                  <div style={{ marginTop: "20px" }}>
+                    <CallToActionButton width="100%">
+                      Subscribirse
+                    </CallToActionButton>
+                  </div>
+                </Link>
+              </Maybe>
+            </PlanInfoSection>
+          </div>
+        </SectionWrapper>
         <SubscriptionPostsSection>
+          <LastsPostsTitle>Últimas publicaciones de {fullName}</LastsPostsTitle>
           {posts.map((post) => (
             <SubscriptionPostCard
               avatar={avatar}
@@ -175,10 +188,11 @@ const SubscribePage = ({
                 it={isSubscribed}
                 orElse={
                   <SubscriptionPostHiddenContent
-                    imageSrc={post.urls[0].value}
+                    imageSrc={post?.urls?.[0]?.value}
                     username={username}
                     price={priceLayout}
                     fullName={fullName}
+                    description={post.description}
                   />
                 }
               >
@@ -189,6 +203,10 @@ const SubscribePage = ({
               </Maybe>
             </SubscriptionPostCard>
           ))}
+          <Maybe it={posts?.length === 0}>
+            <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
+          </Maybe>
+          <PoweredByFamososBanner />
         </SubscriptionPostsSection>
       </Maybe>
     </PageContainer>

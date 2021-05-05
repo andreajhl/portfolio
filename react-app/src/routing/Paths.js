@@ -43,13 +43,14 @@ export const HIRING_PREVIEW_WITHOUT_SESSION = "/hirings/:contract_reference";
 export const TRENDING = "/tendencias";
 export const BLOG = "/blog";
 export const BLOG_ENTRY = `${BLOG}/:id`;
+
 //SUBSCRIPTION
+export const CELEBRITY_SUBSCRIBE = "/:celebrity_username/club";
 export const SUBSCRIPTION = "/subscription/subscribe/:celebrity_username";
-//SUBSCRIPTION
 export const SUBSCRIPTION_SUCCESS =
   "/subscription/subscription-success/:celebrity_username";
-//SUBSCRIPTION FEED
 export const FEED_SUBSCRIPTION = "/subscription/feed";
+
 //SESSION REDIRECT
 export const SESSION_REDIRECT = "/session/redirect/";
 //RESUMEN DE COMPRA

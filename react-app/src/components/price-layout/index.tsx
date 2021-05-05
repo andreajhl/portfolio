@@ -17,8 +17,11 @@ export type PriceLayoutProps = {
   renderText?: (formattedValue: string, suffix?: string) => ReactNode;
 } & StateProps;
 
-const roundPrice = (price: number, round: number): number =>
-  price < round ? round : round + price - (price % round);
+const roundPrice = (price: number, round: number): number => {
+  if (price <= round) return round;
+  const basePrice = round > 1 ? round + price : price;
+  return basePrice - (price % round);
+};
 
 const PriceLayout = ({
   price = 0,
