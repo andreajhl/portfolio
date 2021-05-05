@@ -11,7 +11,7 @@
 }
 
 .ConfigOptionsSections {
-  padding: 0.875rem 0 2.125rem;
+  padding: 0.875rem 0 0;
   display: flex;
   > div:first-child {
     flex: 25%;
@@ -66,4 +66,15 @@
   margin-top: auto;
   font-weight: bold;
   color: var(--gray-3, #838383);
+}
+
+.GridOfInputs {
+  display: grid;
+  column-gap: 15%;
+  row-gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.InputContainer > div:first-child {
+  flex: 1;
 }

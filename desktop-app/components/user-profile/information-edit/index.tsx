@@ -24,7 +24,7 @@ function UserInformationEdit({ userData }) {
       gender: "Masculino",
       email: userData.email,
       cellphoneNumber: userData.cellphoneCode + userData.cellphoneNumber,
-      birthdayDate: "27/23/2012",
+      birthdayDate: "02 - 01 - 1992",
     },
     onSubmit() {
       console.log("Enviado");
@@ -41,8 +41,9 @@ function UserInformationEdit({ userData }) {
           <UserAvatarUploader />
         </div>
         <div className={styles.ConfigOptionsPersonalData}>
-          <div className={styles.OptionsItems}>
+          <div className={styles.GridOfInputs}>
             <EditableInputField
+              containerClass={styles.InputContainer}
               inputClass={styles.inputClass}
               labelClass={styles.labelInputFields}
               value={values.fullName}
@@ -52,12 +53,11 @@ function UserInformationEdit({ userData }) {
                 setIsEditing((isEditing) => !isEditing)
               }
               name="fullName"
-            ></EditableInputField>
+            />
             <UpdateUserEmail email={values.email} />
-          </div>
-          <div className={styles.OptionsItems}>
             <UpdateUserPhone numberPhone={values.cellphoneNumber} />
             <EditableInputField
+              containerClass={styles.InputContainer}
               inputClass={styles.inputClass}
               labelClass={styles.labelInputFields}
               value={values.birthdayDate}
@@ -66,7 +66,7 @@ function UserInformationEdit({ userData }) {
                 setIsEditing((isEditing) => !isEditing)
               }
               name="birthdayDate"
-            ></EditableInputField>
+            />
           </div>
           <div className={styles.OptionsItems}>
             <UpdateUserGender gender={"male"} />

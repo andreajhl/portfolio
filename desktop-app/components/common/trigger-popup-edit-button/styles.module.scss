@@ -1,6 +1,5 @@
 .TriggerPopupEditButtonContainer {
   position: relative;
-  width: 244px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -34,13 +33,8 @@
 }
 
 .ValueSpanWrapper {
-  max-width: 150px;
   span {
-    font-family: Manrope;
-    font-style: normal;
     font-weight: bold;
     font-size: 14px;
-    line-height: 19px;
-    color: #000000;
   }
 }
