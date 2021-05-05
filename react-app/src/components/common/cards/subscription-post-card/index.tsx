@@ -55,13 +55,15 @@ type SubscriptionPostHiddenContentProps = {
   fullName: string;
   username: string;
   price?: ReactNode;
+  description: string;
 };
 
 export const SubscriptionPostHiddenContent = ({
   imageSrc,
   fullName,
   username,
-  price = 0
+  price = 0,
+  description
 }: SubscriptionPostHiddenContentProps) => {
   const firstName = getFirstName(fullName);
 
@@ -71,20 +73,25 @@ export const SubscriptionPostHiddenContent = ({
   );
 
   return (
-    <PostMedia>
-      <PostHiddenImage src={imageSrc} />
-      <PostHiddenDiv imageSrc={imageSrc}>
-        <img src="/assets/img/lock.svg" alt="Cerradura" />
-        <PostHiddenText>
-          Únete al club de {firstName} para desbloquear este contenido
-        </PostHiddenText>
-        <Link href={subscriptionPath}>
-          <PostSubscribeButton>
-            Suscríbete ahora por {price}/mes
-          </PostSubscribeButton>
-        </Link>
-      </PostHiddenDiv>
-    </PostMedia>
+    <>
+      <Maybe it={Boolean(imageSrc)}>
+        <PostMedia as={Link} href={subscriptionPath}>
+          <PostHiddenImage src={imageSrc} />
+          <PostHiddenDiv imageSrc={imageSrc}>
+            <img src="/assets/img/lock.svg" alt="Cerradura" />
+            <PostHiddenText>
+              Únete al club de {firstName} para desbloquear este contenido
+            </PostHiddenText>
+            <PostSubscribeButton>
+              Suscríbete ahora por {price}/mes
+            </PostSubscribeButton>
+          </PostHiddenDiv>
+        </PostMedia>
+      </Maybe>
+      <Maybe it={Boolean(description)}>
+        <PostText>{description}</PostText>
+      </Maybe>
+    </>
   );
 };
 
@@ -172,10 +179,6 @@ function SubscriptionPostHeader({
 }: SubscriptionPostHeaderProps) {
   const formattedDate = date ? formatDate(date) : null;
 
-  if (formattedDate === "Invalid Date") {
-    throw new TypeError("The 'date' props provided is invalid");
-  }
-
   const profilePath = CELEBRITY_PROFILE.replace(
     ":celebrity_username",
     username
@@ -183,13 +186,15 @@ function SubscriptionPostHeader({
 
   return (
     <PostHeader>
-      <Link href={profilePath}>
-        <ProfilePicture width="47px" avatar={avatar} />
+      {/* <Link href={profilePath}>
       </Link>
       <Link href={profilePath} className="text-decoration-none">
-        <h3 className="font-weight-bold h6 ml-3 mb-0">{fullName}</h3>
-      </Link>
-      <PostDate>{formattedDate}</PostDate>
+      </Link> */}
+      <ProfilePicture width="47px" avatar={avatar} />
+      <h3 className="font-weight-bold h6 ml-3 mb-0">{fullName}</h3>
+      <PostDate>
+        <Maybe it={formattedDate !== "Invalid Date"}>{formattedDate}</Maybe>
+      </PostDate>
     </PostHeader>
   );
 }
