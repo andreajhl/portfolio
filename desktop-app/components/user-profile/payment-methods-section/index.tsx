@@ -16,7 +16,7 @@ function PaymentMethodsSection(props: PaymentMethodsSectionProps) {
       try {
         const response = await retrieveUserCards();
         setIsLoading(false);
-        if (Array.isArray(response.availableSources)) return;
+        if (!Array.isArray(response.availableSources)) return;
         setAvailableSources(response.availableSources);
       } catch (error) {}
     }
