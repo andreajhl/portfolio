@@ -1,18 +1,27 @@
 import React from "react";
 import { NavLink } from "react-app/src/components/common/routing";
-import { CELEBRITY_SUBSCRIBE } from "../../../routing/Paths";
+import { AUTH_SUCCESS, CELEBRITY_SUBSCRIBE } from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
 import { LessImportantCallToActionButton } from "../less-important-call-to-action-button";
+import { useWindow } from "react-app/src/utils/useWindow";
+import { useAuth0 } from "@auth0/auth0-react";
+import { history } from "react-app/src/routing/History";
 
-const SubscribeToThisCelebrityButton = ({
+function SubscribeToThisCelebrityButton({
   className,
   text,
   celebrityFullName,
   celebrityUsername,
   fontSize,
   width
-}) => {
+}) {
+  const userAgent = useWindow()?.navigator?.userAgent;
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
+  const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
+
+  const { loginWithPopup, isAuthenticated, loginWithRedirect } = useAuth0();
+
   const registerSubscribeToThisCelebrityButtonEvent = (eventName) => {
     GTM.tagManagerDataLayer(eventName + "_SUBSCRIBE_TO_THIS_CELEBRITY_BUTTON", {
       path: window.location.pathname,
@@ -22,6 +31,26 @@ const SubscribeToThisCelebrityButton = ({
       celebrityUsername
     });
   };
+
+  function handlerClickToLogin() {
+    registerSubscribeToThisCelebrityButtonEvent("CLICK");
+    const postLoginPath = CELEBRITY_SUBSCRIBE.replace(
+      ":celebrity_username",
+      celebrityUsername
+    );
+    if (!isAuthenticated) {
+      localStorage.setItem("finalRedirect", postLoginPath);
+      if (isMobile | isSafari) {
+        loginWithRedirect({
+          redirectUri: window.location.origin + AUTH_SUCCESS
+        });
+      } else {
+        loginWithPopup();
+      }
+    } else {
+      history.push(postLoginPath);
+    }
+  }
 
   const parsedFullName = parseFullName(
     celebrityFullName,
@@ -39,23 +68,17 @@ const SubscribeToThisCelebrityButton = ({
       : parsedFullName.first || parsedFullName.last;
 
   return (
-    <NavLink
-      to={CELEBRITY_SUBSCRIBE.replace(":celebrity_username", celebrityUsername)}
-      onClick={() => registerSubscribeToThisCelebrityButtonEvent("CLICK")}
+    <LessImportantCallToActionButton
+      fontSize={fontSize}
+      width={width}
+      className={className}
+      onClick={handlerClickToLogin}
       onMouseOver={() => registerSubscribeToThisCelebrityButtonEvent("HOVER")}
     >
-      {
-        <LessImportantCallToActionButton
-          fontSize={fontSize}
-          width={width}
-          className={className}
-        >
-          {text}
-          {celebrityFullName ? " " + displayName : ""}
-        </LessImportantCallToActionButton>
-      }
-    </NavLink>
+      {text}
+      {celebrityFullName ? " " + displayName : ""}
+    </LessImportantCallToActionButton>
   );
-};
+}
 
 export { SubscribeToThisCelebrityButton };
