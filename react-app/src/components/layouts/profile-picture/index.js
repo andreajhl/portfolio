@@ -3,13 +3,13 @@ import Image from "react-bootstrap/Image";
 import PropTypes from "prop-types";
 import Maybe from "../../common/helpers/maybe";
 
-const ProfilePicture = ({
+function ProfilePicture({
   avatar,
   roundedCircle,
   width,
   height = "auto",
-  imageStyles
-}) => {
+  imageStyles,
+}) {
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
   const imageRef = useRef();
 
@@ -38,7 +38,7 @@ const ProfilePicture = ({
           roundedCircle={roundedCircle}
           width={width}
           height={height}
-          src="assets/img/avatar-blank.png"
+          src="/assets/img/avatar-blank.png"
           style={imageStyles}
         />
       </Maybe>
