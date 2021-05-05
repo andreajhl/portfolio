@@ -12,6 +12,7 @@ import UpdatePasswordForm from "desktop-app/components/user-profile/update-passw
 import { getToken } from "react-app/src/state/ducks/session/actions";
 import { connect } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { SkeletonItems as SkeletonInformacionEdit } from "desktop-app/components/user-profile/information-edit/Skeleton";
 
 const mapStateToProps = ({ session }) => ({
   isLoadingUserData: !session.getSessionReducer.completed,
@@ -42,7 +43,7 @@ function ClientProfilePage({
       <PageHeading showBackButton={false}>Mi Perfil</PageHeading>
       <main className={classes("container", styles.ClientProfilePageContainer)}>
         <div className={styles.Section}>
-          <Maybe it={!isLoadingUserData}>
+          <Maybe it={!isLoadingUserData} orElse={<SkeletonInformacionEdit />}>
             <UserInformationEdit userData={userData} />
           </Maybe>
         </div>
