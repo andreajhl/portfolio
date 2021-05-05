@@ -15,12 +15,10 @@ function ClientProfilePage() {
     <PageContainer>
       <PageHeading showBackButton={false}>Mi Perfil</PageHeading>
       <main className={classes("container", styles.ClientProfilePageContainer)}>
-        {/* INFORMACION DE CUENTA */}
-        <div className={styles.SettingsSection}>
+        <div className={styles.Section}>
           <UserInformationEdit />
         </div>
-        {/* MULTIPLE SETTINGS */}
-        <div className={styles.SettingsSection}>
+        <div className={styles.Section}>
           <div className={styles.GridOfSettings}>
             <div>
               <UpdatePasswordForm />
@@ -36,15 +34,11 @@ function ClientProfilePage() {
             </div>
           </div>
         </div>
-
-        {/* FAMOSOS FAVORITOS */}
-        <div className={styles.SettingsSection}>
+        <div className={styles.Section}>
           <CelebritiesFavoritesEdit />
         </div>
-
-        {/* VIDEOS FAVORITOS */}
-        <div className={styles.SettingsSection}>
-          <span>Seccion</span>
+        <div className={styles.Section}>
+          
         </div>
       </main>
     </PageContainer>
