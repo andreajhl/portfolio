@@ -20,26 +20,16 @@ function ClientProfilePage() {
         </div>
         <div className={styles.Section}>
           <div className={styles.GridOfSettings}>
-            <div>
-              <UpdatePasswordForm />
-            </div>
-            <div>
-              <PaymentMethodsSection />
-            </div>
-            <div>
-              <SettingsUser />
-            </div>
-            <div>
-              <SharingSection />
-            </div>
+            <UpdatePasswordForm />
+            <PaymentMethodsSection />
+            <SettingsUser />
+            <SharingSection />
           </div>
         </div>
         <div className={styles.Section}>
           <CelebritiesFavoritesEdit />
         </div>
-        <div className={styles.Section}>
-          
-        </div>
+        <div className={styles.Section}></div>
       </main>
     </PageContainer>
   );
