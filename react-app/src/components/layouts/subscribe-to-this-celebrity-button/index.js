@@ -7,6 +7,7 @@ import { LessImportantCallToActionButton } from "../less-important-call-to-actio
 import { useWindow } from "react-app/src/utils/useWindow";
 import { useAuth0 } from "@auth0/auth0-react";
 import { history } from "react-app/src/routing/History";
+import { useRouter } from "next/router";
 
 function SubscribeToThisCelebrityButton({
   className,
@@ -16,6 +17,7 @@ function SubscribeToThisCelebrityButton({
   fontSize,
   width
 }) {
+  const { locale } = useRouter();
   const userAgent = useWindow()?.navigator?.userAgent;
   const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
   const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
@@ -42,10 +44,13 @@ function SubscribeToThisCelebrityButton({
       localStorage.setItem("finalRedirect", postLoginPath);
       if (isMobile | isSafari) {
         loginWithRedirect({
-          redirectUri: window.location.origin + AUTH_SUCCESS
+          redirectUri: window.location.origin + AUTH_SUCCESS,
+          ui_locales: locale
         });
       } else {
-        loginWithPopup();
+        loginWithPopup({
+          ui_locales: locale
+        });
       }
     } else {
       history.push(postLoginPath);
