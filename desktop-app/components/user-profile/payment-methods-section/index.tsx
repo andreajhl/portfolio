@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { retrieveUserCards } from "react-app/src/state/ducks/payments/actions";
-import styles from "./styles.module.scss";
 import { PaymentMethodsList } from "desktop-app/components/user-profile/payment-methods-list";
 import { SkeletonText } from "../../common/helpers/skeleton-text";
+import classes from "classnames";
+import styles from "./styles.module.scss";
 
 type PaymentMethodsSectionProps = {};
 
@@ -23,9 +24,13 @@ function PaymentMethodsSection(props: PaymentMethodsSectionProps) {
     getAvailableSources();
   }, []);
 
+  const hasResults = !isLoading && availableSources.length > 0;
+
   return (
     <section className={styles.PaymentMethodsSection}>
-      <h2 className={styles.Title}>
+      <h2
+        className={classes(styles.Title, !hasResults && styles.NoResultsTitle)}
+      >
         <SkeletonText isLoading={isLoading}>Métodos de pago</SkeletonText>
       </h2>
       <PaymentMethodsList
