@@ -4,7 +4,12 @@ import { findDOMNode } from "react-dom";
 import scriptLoader from "react-async-script-loader";
 import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl, defineMessage } from "react-intl";
+
+const inputcardHoldername = defineMessage({
+  defaultMessage: "Escribe aquí el nombre"
+});
+
 const DLOCALKEY = process.env.NEXT_PUBLIC_DLOCAL_API_KEY;
 const isProdEnvironment =
   process.env.NEXT_PUBLIC_ENVIRONMENT === "production" ||
@@ -41,6 +46,7 @@ const DLocalFormCard = ({
   paymentMethodType,
   disabled
 }) => {
+  const intl = useIntl();
   const [card, setCard] = useState(null);
   const [buyerName, setBuyerName] = useState("");
   const [tokenError, settokenError] = useState("");
@@ -95,7 +101,7 @@ const DLocalFormCard = ({
           <FormattedMessage defaultMessage="Nombre del titular de la tarjeta" />
         </LabelElement>
         <InputElement
-          placeholder="Escribe aquí el nombre"
+          placeholder={intl.formatMessage(inputcardHoldername)}
           type="text"
           ref={buyerNameCard}
           className="form-control mb-4"

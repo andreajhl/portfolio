@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 import { AVAILABLE_CURRENCIES_FOR_PAYMENTS } from "constants/availableCurrencyForPayments";
 import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCurrency";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+import {
+  AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES,
+  DOCUMENT_NAME_FOR_COUNTRIES
+} from "react-app/src/constants/messages";
 
 const intlMessages = defineMessages({
   placeholderBuyerNameInput: {
@@ -11,6 +15,9 @@ const intlMessages = defineMessages({
   },
   placeholderBuyerEmailInput: {
     defaultMessage: "Escribe aquí tu correo electrónico"
+  },
+  placeholderBuyerDocumentInput: {
+    defaultMessage: "Escribe aquí tu {document_name}"
   }
 });
 
@@ -96,7 +103,9 @@ const DLocalPaymentsForm = ({
       handleValidateData(false);
     }
   };
-
+  const document_name_available = AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
+    (data) => data.name === currencyExchangeData.to
+  );
   return (
     <form>
       <div className="form-group">
@@ -159,11 +168,20 @@ const DLocalPaymentsForm = ({
           onChange={(e) => setBuyerDocument(e.target.value)}
           className="form-control"
           onBlur={() => checkDocumentFormat()}
-          placeholder={`Escribe aquí tu ${
-            AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
-              (data) => data.name === currencyExchangeData.to
-            )?.document_name
-          }`}
+          placeholder={intl.formatMessage(
+            intlMessages.placeholderBuyerDocumentInput,
+            {
+              document_name: AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES.includes(
+                document_name_available?.document_name
+              )
+                ? intl.formatMessage(
+                    DOCUMENT_NAME_FOR_COUNTRIES[
+                      document_name_available?.document_name
+                    ]
+                  )
+                : document_name_available?.document_name
+            }
+          )}
         ></input>
         {invalidFormatDocument ? (
           <span className="text-danger">

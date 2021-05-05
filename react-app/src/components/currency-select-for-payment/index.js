@@ -1,4 +1,9 @@
 import React from "react";
+import {
+  AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES,
+  DOCUMENT_NAME_FOR_COUNTRIES
+} from "react-app/src/constants/messages";
+import { useIntl } from "react-intl";
 import { connect } from "react-redux";
 import { AVAILABLE_CURRENCIES_FOR_PAYMENTS } from "../../../../constants/availableCurrencyForPayments";
 import { currencyExchange } from "../../state/ducks/payments/actions";
@@ -22,6 +27,7 @@ const CurrencyDropdownSelect = ({
   className,
   onChangeCurrency
 }) => {
+  const intl = useIntl();
   const handleCurrentCurrency = ({ target: { value } }) => {
     const newCurrencyExchange = findAvailableCurrencyByName(value);
     onChangeCurrency(newCurrencyExchange.name);
@@ -52,7 +58,9 @@ const CurrencyDropdownSelect = ({
       {available_currencies.map((item, index) => {
         return (
           <option key={index} value={item.name}>
-            {item.label}
+            {AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES.includes(item.name)
+              ? intl.formatMessage(DOCUMENT_NAME_FOR_COUNTRIES[item.name])
+              : item.label}
           </option>
         );
       })}

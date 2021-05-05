@@ -29,6 +29,14 @@ const errorMessages = defineMessages({
     description: "Mensaje de error para creación de tarjeta Stripe"
   }
 });
+const placeholders = defineMessages({
+  ownerName: {
+    defaultMessage: "Escribe aquí el nombre"
+  },
+  ownerEmail: {
+    defaultMessage: "Escribe aquí el correo"
+  }
+});
 
 class StripeCardForm extends Component {
   constructor(props) {
@@ -283,7 +291,7 @@ class StripeCardForm extends Component {
           <input
             type="text"
             className="form-control mb-3 input-stripe-form"
-            placeholder="Escribe aquí el correo"
+            placeholder={this.props.intl.formatMessage(placeholders.ownerEmail)}
             name="ownerEmail"
             onChange={this.handleInput || ""}
             value={this.state.ownerEmail}
@@ -294,7 +302,7 @@ class StripeCardForm extends Component {
           <input
             type="text"
             className="form-control mb-3 input-stripe-form"
-            placeholder="Escribe aquí el nombre"
+            placeholder={this.props.intl.formatMessage(placeholders.ownerName)}
             name="ownerName"
             onChange={this.handleInput || ""}
             value={this.state.ownerName}

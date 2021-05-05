@@ -160,3 +160,16 @@ export const AVAILABLE_PAYMENTS_METHODS = {
   TICKET: <FormattedMessage defaultMessage="Efectivo" />,
   PAYPAL: <FormattedMessage defaultMessage="Paypal" />
 };
+export const AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES = [
+  "MXN",
+  "COP",
+  "ARS",
+  "USD"
+];
+
+export const DOCUMENT_NAME_FOR_COUNTRIES = defineMessages({
+  MXN: { defaultMessage: "Clave Única de Registro de Población" },
+  COP: { defaultMessage: "Cédula de Ciudadanía" },
+  ARS: { defaultMessage: "Código Único de Identificación Tributaria" },
+  USD: { defaultMessage: "Social Security Number / SSN" }
+});
