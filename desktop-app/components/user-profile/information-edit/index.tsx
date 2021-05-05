@@ -1,5 +1,4 @@
 import { EditableInputField } from "desktop-app/components/common/form/editable-input-field";
-import PhotoUploader from "desktop-app/components/common/photo-uploader";
 import useForm from "lib/hooks/useForm";
 import React from "react";
 import UpdateUserEmail from "../update-user-email";
@@ -11,26 +10,25 @@ import UpdateUserGender from "../update-user-gender";
 type FormValuesType = {
   fullName: string;
   cellphoneNumber: string;
-  avatar: string;
   email: string;
   birthdayDate: string;
   gender: string;
 };
 
-function UserInformationEdit() {
+function UserInformationEdit({ userData }) {
   const { values, onChangeField } = useForm<FormValuesType>({
     initialValues: {
-      fullName: "Isaac",
-      avatar: "",
+      fullName: userData.fullName,
       gender: "Masculino",
-      email: "uncorreomuylargodelusuario.pr99@gmail.com",
-      cellphoneNumber: "04245902830",
+      email: userData.email,
+      cellphoneNumber: userData.cellphoneCode + userData.cellphoneNumber,
       birthdayDate: "27/23/2012",
     },
     onSubmit() {
       console.log("Enviado");
     },
   });
+
   return (
     <div className={styles.UserInformationConfigContainer}>
       <h2 className={styles.UserInformationConfigTitle}>
