@@ -21,8 +21,7 @@
     padding-bottom: 0.6875rem;
   }
   > div:not(:first-child) {
-    flex: calc(80% - 133px);
-    margin-right: 133px;
+    flex: 70%;
   }
 }
 
@@ -54,4 +53,17 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.LogoutButtonWrapper {
+  display: flex;
+  margin-left: 54px;
+  flex: 133px !important;
+}
+
+.LogoutButton {
+  padding: 0;
+  margin-top: auto;
+  font-weight: bold;
+  color: var(--gray-3, #838383);
 }
