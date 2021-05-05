@@ -11,17 +11,18 @@
 }
 
 .ConfigOptionsSections {
-  padding: 0.875rem 1.625rem 2.125rem;
+  padding: 0.875rem 0 2.125rem;
   display: flex;
   > div:first-child {
-    flex: 0 1 33%;
+    flex: 25%;
   }
   > :first-child {
     padding-top: 0.6875rem;
     padding-bottom: 0.6875rem;
   }
-  > div:not(first-child) {
-    flex: 1;
+  > div:not(:first-child) {
+    flex: calc(80% - 133px);
+    margin-right: 133px;
   }
 }
 
@@ -34,11 +35,17 @@
   color: var(--gray-4);
 }
 
+.inputClass {
+  font-size: 14px;
+}
+
 .inputClass:disabled {
   color: black;
   font-weight: bold;
 }
-
+.ConfigOptionsPersonalData {
+  margin-left: 78px;
+}
 .ConfigOptionsPersonalData > :not(:first-child) {
   margin-top: 2rem;
 }
