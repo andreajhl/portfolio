@@ -277,6 +277,12 @@
       "value": "Buscar famosos"
     }
   ],
+  "3GqTly": [
+    {
+      "type": 0,
+      "value": "Escribe aquí el correo"
+    }
+  ],
   "3IrNpH": [
     {
       "type": 0,
@@ -585,6 +591,12 @@
       "value": "correo@dominio.com"
     }
   ],
+  "8/GNPR": [
+    {
+      "type": 0,
+      "value": "Cédula de Ciudadanía"
+    }
+  ],
   "8F0yts": [
     {
       "type": 0,
@@ -651,6 +663,12 @@
     {
       "type": 0,
       "value": "Usted y Famosos acepta y declara que estas condiciones de crear una relación de contratista independiente y es intención expresa de las partes de que su relación se interpreta y se mantuvo a ser la de contratista independiente a todos los efectos. Usted no está en negociaciones de franquicia, ni es socio, agente o empleado de Famosos. Usted es el único y exclusivo responsable de determinar la forma, el método, detalles y medio de su rendimiento bajo estas condiciones. No tenemos derecho a, y no será, controlar la manera o determinar el método para lograr su rendimiento. Usted asume la responsabilidad exclusiva para y pagará todos los impuestos de empleo (incluida la seguridad social), impuestos sobre la renta y otros informes requeridos por sus actividades en virtud de estos Términos y cumplirá con todas las leyes federales, estatales y locales que rigen las leyes de su funcionamiento bajo estas condiciones. Que va a utilizar su propio equipo para llevar a cabo sus obligaciones bajo estos términos. Usted es el único responsable de cualquier información requerida por la ley o cualquier acuerdo que pueda tener con terceros a cualquier persona o entidad en relación con el cumplimiento de este Acuerdo. relación entre las partes es no exclusiva, lo que significa que puede proporcionar servicios similares a otras organizaciones en términos y tiempos determinados por usted y que podemos y no involucrar a otros para proporcionar servicios similares a los contemplados en las presentes Condiciones."
+    }
+  ],
+  "8u0DFM": [
+    {
+      "type": 0,
+      "value": "Ha ocurrido un error."
     }
   ],
   "9KADbj": [
@@ -773,6 +791,12 @@
     {
       "type": 0,
       "value": "Escribe tu Subdominio Ej: /andresito"
+    }
+  ],
+  "BbTBEe": [
+    {
+      "type": 0,
+      "value": "Código Único de Identificación Tributaria"
     }
   ],
   "BiLnNi": [
@@ -1503,6 +1527,12 @@
       "value": "FAQS"
     }
   ],
+  "Q7jxHe": [
+    {
+      "type": 0,
+      "value": "Social Security Number / SSN"
+    }
+  ],
   "QKaY1n": [
     {
       "type": 0,
@@ -1677,6 +1707,12 @@
       "value": "Descargar app de Android"
     }
   ],
+  "U48f7q": [
+    {
+      "type": 0,
+      "value": "Volver a inicio"
+    }
+  ],
   "UOKryr": [
     {
       "type": 0,
@@ -1693,6 +1729,12 @@
     {
       "type": 0,
       "value": "Cobro fallido"
+    }
+  ],
+  "V1RqDv": [
+    {
+      "type": 0,
+      "value": "Clave Única de Registro de Población"
     }
   ],
   "VBvZa2": [
@@ -2567,6 +2609,12 @@
       "value": "AL UTILIZAR EL SITIO O LOS SERVICIOS, USTED ACEPTA ESTOS TÉRMINOS. POR FAVOR LEA CON CUIDADO."
     }
   ],
+  "n0TzKv": [
+    {
+      "type": 0,
+      "value": "Escribe aquí el nombre"
+    }
+  ],
   "n7+zt7": [
     {
       "type": 0,
@@ -3237,6 +3285,16 @@
       "value": "p"
     }
   ],
+  "qV0c9N": [
+    {
+      "type": 0,
+      "value": "Escribe aquí tu "
+    },
+    {
+      "type": 1,
+      "value": "document_name"
+    }
+  ],
   "qXeQds": [
     {
       "type": 0,
@@ -3339,6 +3397,12 @@
     {
       "type": 0,
       "value": "¿Quieres recibir el video a tu WhatsApp? (Opcional)"
+    }
+  ],
+  "rr64CW": [
+    {
+      "type": 0,
+      "value": "Estamos haciendo lo posible por resolverlo."
     }
   ],
   "ruSOFj": [
