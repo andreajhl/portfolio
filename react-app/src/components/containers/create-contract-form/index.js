@@ -403,7 +403,12 @@ class CreateContractForm extends Component {
           {/* CELEBRITY DETAILS */}
           <div className="celebrity-details">
             <div className={"celebrity-avatar"}>
-              <img src={this.props.celebrityAvatar} alt={"avatar"} />
+              <img
+                src={
+                  this.props.celebrityAvatar || `/assets/img/avatar-blank.png`
+                }
+                alt={"avatar"}
+              />
             </div>
             <h5 className="celebrity-name">
               <FormattedMessage
