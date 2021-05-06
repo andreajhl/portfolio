@@ -2,30 +2,15 @@ import React, { Component } from "react";
 import * as PATHS from "../../../routing/Paths";
 import { description, version } from "../../../../../package.json";
 import { withRouter } from "next/router";
+import { Link } from "../../common/routing/link";
 
 class FooterLayout extends Component {
   constructor(props) {
     super(props);
 
-    this.goToFAQs = this.goToFAQs.bind(this);
-    this.goToPolicies = this.goToPolicies.bind(this);
-    this.goToTerms = this.goToTerms.bind(this);
     this.goToFamososTwitter = this.goToFamososTwitter.bind(this);
     this.goToFamososFacebook = this.goToFamososFacebook.bind(this);
     this.goToFamososInstagran = this.goToFamososInstagran.bind(this);
-    this.goToApply = this.goToApply.bind(this);
-  }
-
-  goToFAQs() {
-    this.props.router.push(PATHS.FAQS_PATH);
-  }
-
-  goToPolicies() {
-    this.props.router.push(PATHS.POLICIES_PATH);
-  }
-
-  goToTerms() {
-    this.props.router.push(PATHS.TERMS_PATH);
   }
 
   goToFamososTwitter() {
@@ -38,10 +23,6 @@ class FooterLayout extends Component {
 
   goToFamososInstagran() {
     window.open("https://www.instagram.com/famosos/", "_blank").focus();
-  }
-
-  goToApply() {
-    this.props.router.push(PATHS.CELEBRITY_REQUEST);
   }
 
   render() {
@@ -76,9 +57,11 @@ class FooterLayout extends Component {
                   ¿Eres una celebridad o influencer?
                 </div>
                 <div className="col-button">
-                  <button className="btn btn-apply" onClick={this.goToApply}>
-                    Aplica como Famoso
-                  </button>
+                  <Link href={PATHS.CELEBRITY_REQUEST}>
+                    <button className="btn btn-apply">
+                      Aplica como Famoso
+                    </button>
+                  </Link>
                 </div>
               </div>
 
@@ -110,21 +93,40 @@ class FooterLayout extends Component {
                     />
                   </li>
                 </ul>
-                <ul className="list-inline">
+                <ul className="list-inline links-lists">
                   <li className="list-inline-item mr-2 cursor-pointer font-weight-bold">
-                    <span className="small" onClick={this.goToFAQs}>
+                    <Link
+                      href={PATHS.FAQS_PATH}
+                      className="small link text-decoration-none"
+                    >
                       FAQ's
-                    </span>
-                  </li>
-                  <li className="list-inline-item ml-2 mr-2 cursor-pointer font-weight-bold">
-                    <span className="small" onClick={this.goToPolicies}>
-                      Privacidad
-                    </span>
+                    </Link>
                   </li>
                   <li className="list-inline-item ml-2 cursor-pointer font-weight-bold">
-                    <span className="small" onClick={this.goToTerms}>
+                    <Link
+                      href={PATHS.TERMS_PATH}
+                      className="small link text-decoration-none"
+                    >
                       Términos y Condiciones
-                    </span>
+                    </Link>
+                  </li>
+                  <li className="list-inline-item mr-2 mt-1 cursor-pointer font-weight-bold">
+                    <Link
+                      href={PATHS.POLICIES_PATH}
+                      className="small link text-decoration-none"
+                    >
+                      Privacidad
+                    </Link>
+                  </li>
+                  <li className="list-inline-item ml-2 cursor-pointer font-weight-bold">
+                    <a
+                      className="small text-decoration-none link"
+                      href="https://jobs.lever.co/famosos"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Trabaja con nosotros
+                    </a>
                   </li>
                 </ul>
                 <div className="col-copyright">
