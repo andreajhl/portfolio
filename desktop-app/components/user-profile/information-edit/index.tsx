@@ -11,8 +11,6 @@ import styles from "./styles.module.scss";
 
 type FormValuesType = {
   fullName: string;
-  cellphoneNumber: string;
-  email: string;
   birthdayDate: string;
   gender: string;
 };
@@ -22,8 +20,6 @@ function UserInformationEdit({ userData }) {
     initialValues: {
       fullName: userData.fullName,
       gender: "Masculino",
-      email: userData.email,
-      cellphoneNumber: userData.cellphoneCode + userData.cellphoneNumber,
       birthdayDate: "02 - 01 - 1992",
     },
     onSubmit() {
@@ -54,8 +50,10 @@ function UserInformationEdit({ userData }) {
               }
               name="fullName"
             />
-            <UpdateUserEmail email={values.email} />
-            <UpdateUserPhone numberPhone={values.cellphoneNumber} />
+            <UpdateUserEmail email={userData.email} />
+            <UpdateUserPhone
+              numberPhone={`+${userData.cellphoneCode} ${userData.cellphoneNumber}`}
+            />
             <EditableInputField
               containerClass={styles.InputContainer}
               inputClass={styles.inputClass}
