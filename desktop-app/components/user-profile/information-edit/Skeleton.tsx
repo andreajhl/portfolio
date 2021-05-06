@@ -12,8 +12,6 @@ function SkeletonItems() {
           style={{
             width: "100%",
             display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
           }}
         >
           <Skeleton circle={true} height={128} width={128} />
@@ -62,6 +60,9 @@ function SkeletonItems() {
 
           <div className={styles.OptionsItems}>
             <Skeleton width={270} height={37} />
+            <div className={styles.LogoutButton}>
+              <Skeleton height={19} width={92} />
+            </div>
           </div>
         </div>
       </div>

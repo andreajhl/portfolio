@@ -11,15 +11,17 @@
 }
 
 .ConfigOptionsSections {
-  padding: 0.875rem 1.625rem 2.125rem;
   display: flex;
+  padding-top: 0.875rem;
   > div:first-child {
-    flex: 0 1 33%;
+    flex: 0 1 300px;
+    display: flex;
+    padding-left: 50px;
   }
-  > :first-child {
-    padding-top: 0.6875rem;
-    padding-bottom: 0.6875rem;
-  }
+  // > :first-child {
+  //   padding-top: 0.6875rem;
+  //   padding-bottom: 0.6875rem;
+  // }
   > div:not(first-child) {
     flex: 1;
   }
@@ -46,5 +48,19 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+
+  & > :first-child {
+    margin-right: 109px;
+  }
+}
+.LogoutButton {
+  margin-left: auto;
+  span {
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 19px;
+    color: #838383;
+  }
 }

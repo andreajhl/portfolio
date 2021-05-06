@@ -6,6 +6,7 @@ import { UserAvatarUploader } from "../user-avatar-uploader";
 import UpdateUserPhone from "../update-user-phonenumber";
 import styles from "./styles.module.scss";
 import UpdateUserGender from "../update-user-gender";
+import LogoutButtonHOC from "desktop-app/components/common/logout-button";
 
 type FormValuesType = {
   fullName: string;
@@ -68,6 +69,11 @@ function UserInformationEdit({ userData }) {
           </div>
           <div className={styles.OptionsItems}>
             <UpdateUserGender gender={"male"} />
+            <LogoutButtonHOC className={styles.LogoutButton}>
+              <button className="btn btn-outline">
+                <span>Cerrar Sesion</span>
+              </button>
+            </LogoutButtonHOC>
           </div>
         </div>
       </div>
