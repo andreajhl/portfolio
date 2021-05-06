@@ -13,6 +13,7 @@ import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 import isMobilePhone from "react-app/src/state/utils/isMobilePhone";
 import { withRouter } from "next/router";
+import { secure_payment_img } from "constants/external_assets_by_lang";
 
 const intlMessages = defineMessages({
   instructionsPlaceholderForOther: {
@@ -53,7 +54,8 @@ class CreateContractForm extends Component {
         occasion: "OTHER",
         deliveryContactCellphone: "",
         lang: this.props.router.locale
-      }
+      },
+      deliveryContactCellphoneCountryCode: "co"
     };
     this.handleIsPublic = this.handleIsPublic.bind(this);
     this.createContract = this.createContract.bind(this);
@@ -677,7 +679,7 @@ class CreateContractForm extends Component {
             <br />
             <img
               width="300px"
-              src={"/assets/img/pago-seguro.png"}
+              src={secure_payment_img[this.props.router?.locale]}
               alt={"pago-seguro"}
             />
             <br />

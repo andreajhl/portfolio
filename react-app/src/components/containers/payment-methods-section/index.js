@@ -5,7 +5,9 @@ import { AvailablePaymentMethods } from "../../containers/available-payment-meth
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { FormattedMessage } from "react-intl";
 import { CurrencyDropdownSelect } from "../../../components/currency-select-for-payment";
+import { withRouter } from "next/router";
 import { LoaderLayout } from "../../layouts/loader";
+import { secure_payment_img } from "constants/external_assets_by_lang";
 
 class PaymentMethodsSection extends Component {
   constructor(props) {
@@ -149,7 +151,7 @@ class PaymentMethodsSection extends Component {
                   <div className="mt-2 mx-auto text-center">
                     <img
                       width="230px"
-                      src={"/assets/img/pago-seguro.png"}
+                      src={secure_payment_img[this.props.router?.locale]}
                       alt={"pago-seguro"}
                     />
                   </div>
@@ -188,7 +190,7 @@ const mapStateToProps = ({
 const _PaymentMethodsSection = connect(
   mapStateToProps,
   null
-)(PaymentMethodsSection);
+)(withRouter(PaymentMethodsSection));
 
 // Export Class
 export { _PaymentMethodsSection as PaymentMethodsSection };
