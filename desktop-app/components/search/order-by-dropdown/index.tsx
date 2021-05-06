@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Dropdown } from "../../common/button/dropdown";
+import classes from "classnames";
 import styles from "./styles.module.scss";
 
 type OptionType = {
@@ -20,11 +21,11 @@ function OrderByDropdown({
   className = "",
   options,
   selectedOption,
-  onChange = function () {}
+  onChange = function () {},
 }: OrderByDropdownProps) {
   return (
     <Dropdown
-      className={className}
+      menuPosition="bottom right"
       buttonChildren={
         <>
           <span className={styles.OrderByDropdownTitle}>{title}</span>
@@ -35,7 +36,7 @@ function OrderByDropdown({
         </>
       }
       menuClassName={styles.OrderByDropdown}
-      buttonClassName={styles.OrderByDropdownButton}
+      buttonClassName={classes(styles.OrderByDropdownButton, className)}
     >
       {(_isOpen, toggleIsOpen) =>
         options.map((option) => (
