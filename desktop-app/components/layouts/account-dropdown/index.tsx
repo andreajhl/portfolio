@@ -67,6 +67,7 @@ function AccountDropdown() {
       orElse={<LoginButton className={styles.AccountDropdownLoginButton} />}
     >
       <Dropdown
+        menuPosition="bottom right"
         buttonChildren={
           <Maybe it={userAvatar !== ""} orElse={<AvatarIcon />}>
             <ProfilePicture avatar={userAvatar} width={34} />
