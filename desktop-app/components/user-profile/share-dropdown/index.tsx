@@ -91,6 +91,7 @@ function ShareDropdown({ buttonClassName = "", link }: ShareDropdownProps) {
       )}
     >
       <div
+        tabIndex={0}
         className={styles.ShareDropdownItem}
         onClick={() => copyTextToClipboard(link)}
       >
