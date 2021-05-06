@@ -1,6 +1,7 @@
 import AvatarWithName from "desktop-app/components/common/avatar-with-name";
 import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
+import { CelebritiesFavoritesEditReelSkeleton } from "./skeleton";
 import { CardsReelSection } from "desktop-app/components/layouts/cards-section-reel";
 import classes from "classnames";
 import {
@@ -11,9 +12,9 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { connect } from "react-redux";
 import { CLIENT_FAVORITES } from "constants/paths";
 
-const mapStateToProps = ({ celebrityLikes, celebritySections }) => ({
+const mapStateToProps = ({ celebrityLikes }) => ({
   ...celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.data,
-  isLoading: celebritySections.fetchCelebritySectionsReducer.loading,
+  isLoading: celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.loading,
 });
 
 const mapDispatchToProps = {
@@ -36,18 +37,18 @@ function CelebritiesFavoritesEdit({
 
   const deleteFavorite = async (celebrityId: number) => {
     const response = await addOrRemoveLike(celebrityId);
-    if (response.status === "OK")
-      fetchUserCelebrityLikesWithOffset({ offset: 0, limit: 10 });
+    if (response.status !== "OK") return;
+    fetchUserCelebrityLikesWithOffset({ offset: 0, limit: 10 });
   };
 
   return (
-    <Maybe it={!isLoading && results.length > 0}>
-      <div className={styles.CelebritiesFavoritesEditContainer}>
+    <div className={styles.CelebritiesFavoritesEditContainer}>
+      <Maybe it={!isLoading} orElse={<CelebritiesFavoritesEditReelSkeleton />}>
         <CardsReelSection
           itemWidth={88}
           itemHeight={151}
           gap={34}
-          title={"Famosos Favoritos"}
+          title="Famosos Favoritos"
           itemCount={results.length}
           itemData={results}
           buttonsStyle={{ size: 35, top: 36 }}
@@ -69,8 +70,8 @@ function CelebritiesFavoritesEdit({
             </div>
           )}
         </CardsReelSection>
-      </div>
-    </Maybe>
+      </Maybe>
+    </div>
   );
 }
 

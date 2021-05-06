@@ -32,3 +32,17 @@
     color: #ff4b55;
   }
 }
+
+.SkeletonList {
+  margin-top: 35px;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.SkeletonList > * + * {
+  margin-left: 46px;
+}
+
+.SkeletonAvatarImg {
+  margin-bottom: 1rem;
+}
