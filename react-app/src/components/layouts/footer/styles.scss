@@ -1,7 +1,6 @@
 @import "../../../theme";
 
 .FooterLayout {
-
   .footer {
     background-color: $dark !important;
 
@@ -33,7 +32,6 @@
       }
 
       .col-copyright {
-
       }
     }
 
@@ -54,11 +52,20 @@
     }
 
     .col-three {
-      margin-top: 65px;
-      height: 116px;
-
+      margin-top: 35px;
     }
+  }
 
+  .links-lists {
+    width: 250px;
+  }
+
+  .link {
+    transition: 0.15s color;
+  }
+
+  .link:hover {
+    color: var(--primary) !important;
   }
 
   // Large devices (desktops, 768px and up)
@@ -72,11 +79,8 @@
       height: 40px !important;
     }
     .col-three {
-      height: 150px !important;
+      margin-top: 70px !important;
+      height: 180px !important;
     }
   }
-
 }
-
-
-
