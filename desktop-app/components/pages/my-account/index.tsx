@@ -13,6 +13,7 @@ import { getToken } from "react-app/src/state/ducks/session/actions";
 import { connect } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { SkeletonItems as SkeletonInformationEdit } from "desktop-app/components/user-profile/information-edit/Skeleton";
+import VideoContractsFavorites from "desktop-app/components/user-profile/video-contracts-favorites";
 
 const mapStateToProps = ({ session }) => ({
   isLoadingUserData: !session.getSessionReducer.completed,
@@ -58,7 +59,9 @@ function ClientProfilePage({
         <div className={styles.Section}>
           <CelebritiesFavoritesEdit />
         </div>
-        <div className={styles.Section}></div>
+        <div className={styles.Section}>
+          <VideoContractsFavorites />
+        </div>
       </main>
     </PageContainer>
   );
