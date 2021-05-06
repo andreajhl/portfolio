@@ -11,8 +11,8 @@
 }
 
 .ConfigOptionsSections {
-  padding: 0.875rem 0 0;
   display: flex;
+  padding-top: 0.875rem;
   > div:first-child {
     flex: 25%;
   }
@@ -52,7 +52,21 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+
+  & > :first-child {
+    margin-right: 109px;
+  }
+}
+.LogoutButton {
+  margin-left: auto;
+  span {
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 19px;
+    color: #838383;
+  }
 }
 
 .LogoutButtonWrapper {

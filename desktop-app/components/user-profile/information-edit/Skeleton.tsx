@@ -16,7 +16,6 @@ function SkeletonItems() {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
           }}
         >
           <div
@@ -32,7 +31,7 @@ function SkeletonItems() {
           </div>
         </div>
         <div className={styles.ConfigOptionsPersonalData}>
-          <div className={styles.OptionsItems}>
+          <div className={styles.GridOfInputs}>
             <div
               style={{
                 display: "flex",
@@ -51,8 +50,6 @@ function SkeletonItems() {
               <Skeleton height={19} width={53} />
               <Skeleton width={270} height={30} />
             </div>
-          </div>
-          <div className={styles.OptionsItems}>
             <div
               style={{
                 display: "flex",
