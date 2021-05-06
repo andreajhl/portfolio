@@ -49,7 +49,7 @@ export const AVAILABLE_CURRENCIES_FOR_PAYMENTS = [
     symbol: "$",
     implemented_by_dlocal: true,
     flag: "https://restcountries.eu/data/mex.svg",
-    document_name: "Clave Única de Registro de Población",
+    document_name: "RFC",
     decimal_separator: ".",
     thousand_separator: ",",
     round: "5"
