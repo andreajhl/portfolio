@@ -47,6 +47,12 @@ function MyHiringsCardBodyLeftSide({
             Ver video <i className="fa fa-play" />
           </button>
         </Link>
+        <button
+          type="button"
+          className={`btn btn-tertiary ${styles.CTAButton}`}
+        >
+          Descargar comprobante de pago
+        </button>
       </Maybe>
     </>
   );
