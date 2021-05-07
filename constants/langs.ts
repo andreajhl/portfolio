@@ -6,7 +6,7 @@ export const AVAILABLE_LANGS = {
     },
     {
       lang: "en",
-      name: "Ingles"
+      name: "Inglés"
     }
     // {
     //   lang: "pt",
