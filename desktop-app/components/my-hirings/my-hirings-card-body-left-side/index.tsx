@@ -18,11 +18,17 @@ function MyHiringsCardBodyLeftSide({
   contractData,
 }: MyHiringsCardBodyLeftSideProps) {
   const canEdit = canEditContract(contractData.status);
+
+  const isCompleted = contractData.status === COMPLETED;
   return (
     <>
       <MyHiringsCardContractInfo contractData={contractData} />
       <ContractIsPublicChanger
-        className={styles.IsPublicChanger}
+        className={
+          isCompleted
+            ? styles.IsPublicChangerIsCompleted
+            : styles.IsPublicChanger
+        }
         contractStatus={contractData.status}
         contractId={contractData.id}
         contractIsPublic={contractData.isPublic}
@@ -35,7 +41,7 @@ function MyHiringsCardBodyLeftSide({
           entrega mientras tu video esté pendiente de grabación.
         </p>
       </Maybe>
-      <Maybe it={contractData.status === COMPLETED}>
+      <Maybe it={isCompleted}>
         <Link
           href={getHiringPreviewPath(contractData.reference)}
           className={styles.WatchVideoLink}
