@@ -29,6 +29,10 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "completed">(
     "idle"
   );
+  const [isUpdatingReview, setIsUpdatingReview] = useState(
+    contractData.review !== ""
+  );
+
   const { values, onChangeField, setFieldValue, submitForm, errors } = useForm<
     typeof initialValues
   >({
@@ -50,6 +54,7 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
         );
         if (response.status === "OK") {
           setStatus("completed");
+          setIsUpdatingReview(true);
         }
       } catch (error) {}
     },
@@ -59,8 +64,6 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
     if (status !== "completed") return;
     setTimeout(() => setStatus("idle"), 2000);
   }, [status]);
-
-  const isUpdatingReview = contractData.review !== "";
 
   return (
     <div className={styles.ContractReviewCard}>
