@@ -3,25 +3,33 @@
   color: var(--gray-4, #5c5c5c);
 }
 
+.PaymentMethodsList {
+  display: flex;
+  justify-content: space-between;
+}
+
 .PaymentMethodItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 320px;
-}
-
-.PaymentMethodItem + .PaymentMethodItem {
-  margin-top: 18px;
+  font-size: 14px;
 }
 
 .PaymentMethodBrand {
   padding: 5px;
   border: 1px solid var(--gray-2, #bebebe);
   border-radius: 5px;
+  margin-right: 22px;
 }
 
 .PaymentMethodNumber {
   font-weight: bold;
+  margin-right: 22px;
+}
+
+.PaymentMethodItem i {
+  font-size: 14px;
+  color: var(--gray-4, #5c5c5c);
 }
 
 .ItemSkeleton {
@@ -30,10 +38,10 @@
   }
 }
 
-.ItemSkeleton + .ItemSkeleton {
-  margin-top: 19.28px;
+.ItemSkeletonBrand {
+  margin-right: 22px;
 }
 
 .RemoveButtonSkeleton {
-  margin: 0 0.75em;
+  margin: 0 0.75em 0 20px;
 }
