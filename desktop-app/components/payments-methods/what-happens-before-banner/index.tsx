@@ -1,3 +1,4 @@
+import { PAYMENT_AUTHORIZATION_INFO } from "constants/paths";
 import { Link } from "desktop-app/components/common/routing/link";
 import { StepsGrayBanner } from "desktop-app/components/layouts/steps-gray-banner";
 import styles from "./styles.module.scss";
@@ -24,7 +25,10 @@ const stepsItems = [
       <>
         Si por alguna razón tu video no pudo ser grabado, tu dinero estará
         nuevamente disponible en un plazo de 1 a 10 hábiles aproximadamente.{" "}
-        <Link href="#" className={styles.WhatHappensBeforeBannerLink}>
+        <Link
+          href={PAYMENT_AUTHORIZATION_INFO}
+          className={styles.WhatHappensBeforeBannerLink}
+        >
           Conoce más acerca de esto.
         </Link>
       </>
