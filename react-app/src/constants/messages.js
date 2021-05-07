@@ -168,7 +168,7 @@ export const AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES = [
 ];
 
 export const DOCUMENT_NAME_FOR_COUNTRIES = defineMessages({
-  MXN: { defaultMessage: "Clave Única de Registro de Población" },
+  MXN: { defaultMessage: "RFC" },
   COP: { defaultMessage: "Cédula de Ciudadanía" },
   ARS: { defaultMessage: "Código Único de Identificación Tributaria" },
   USD: { defaultMessage: "Social Security Number / SSN" }

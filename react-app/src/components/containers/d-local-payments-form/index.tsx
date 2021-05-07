@@ -152,11 +152,13 @@ const DLocalPaymentsForm = ({
             marginTop: "0.5rem"
           }}
         >
-          {
-            AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
-              (data) => data.name === currencyExchangeData.to
-            )?.document_name
-          }
+          {AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES.includes(
+            document_name_available?.name
+          )
+            ? intl.formatMessage(
+                DOCUMENT_NAME_FOR_COUNTRIES[document_name_available?.name]
+              )
+            : document_name_available?.document_name}
         </label>
         <input
           ref={buyerDocumentInput}
@@ -172,12 +174,10 @@ const DLocalPaymentsForm = ({
             intlMessages.placeholderBuyerDocumentInput,
             {
               document_name: AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES.includes(
-                document_name_available?.document_name
+                document_name_available?.name
               )
                 ? intl.formatMessage(
-                    DOCUMENT_NAME_FOR_COUNTRIES[
-                      document_name_available?.document_name
-                    ]
+                    DOCUMENT_NAME_FOR_COUNTRIES[document_name_available?.name]
                   )
                 : document_name_available?.document_name
             }

@@ -753,9 +753,6 @@
   "UcOT6A": {
     "message": "Cobro fallido"
   },
-  "V1RqDv": {
-    "message": "Clave Única de Registro de Población"
-  },
   "VBvZa2": {
     "message": "Recibirás una notificación a <b></b> cuando tu video esté listo."
   },
@@ -1426,6 +1423,9 @@
   },
   "wms1Jl": {
     "message": "Este campo excede el limite de {deliveryFromMaxLength} caracteres"
+  },
+  "wvCzn7": {
+    "message": "RFC"
   },
   "wwFRnk": {
     "message": "El Sitio y los Servicios pueden contener enlaces a otros sitios web y recursos en línea. Un enlace a la página web de un tercero no significa que estamos de acuerdo con ella o que la que están afiliados con ella. No somos responsables por cualquier daño o pérdida relacionada con el uso de cualquier sitio web de terceros. Siempre debe leer los términos y condiciones y la política de privacidad de un sitio web de terceros antes de usarlo."

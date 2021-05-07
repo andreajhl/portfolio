@@ -1448,5 +1448,39 @@
   },
   "pfhsIr": {
     "message": "Bank transfer"
+  },
+
+  "3GqTly": {
+    "message": "Write your email here"
+  },
+  "8/GNPR": {
+    "message": "ID"
+  },
+  "8LqOa5": {
+    "message": "Sorry, this page wasn't found"
+  },
+  "BbTBEe": {
+    "message": "Unique Tax Identification Code"
+  },
+  "Q7jxHe": {
+    "message": "Social Security Number / SSN"
+  },
+  "U48f7q": {
+    "message": "Go back to home"
+  },
+  "V1RqDv": {
+    "message": "Clave Única de Registro de Población"
+  },
+  "n0TzKv": {
+    "message": "Write your name here"
+  },
+  "qV0c9N": {
+    "message": "Write your {document_name} here"
+  },
+  "rr64CW": {
+    "message": "We are trying our best to solve it."
+  },
+  "wvCzn7": {
+    "message": "RFC"
   }
 }
