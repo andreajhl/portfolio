@@ -1,3 +1,7 @@
-.UserAvatarUploader {
-  
+.EditButton {
+  color: var(--secondary, #6970c6);
+
+  &:hover {
+    color: var(--tertiary, #3d87f3);
+  }
 }
