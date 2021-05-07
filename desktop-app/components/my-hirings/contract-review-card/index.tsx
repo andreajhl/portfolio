@@ -80,7 +80,7 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
         htmlFor="review-textarea"
         className={styles.ContractReviewCardLabel}
       >
-        Escribe un comentario
+        Cuéntanos algo sobre tu experiencia
       </label>
       <textarea
         id="review-textarea"
@@ -90,7 +90,7 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
           errors?.review && styles.ContractReviewCardTextareaHasError
         )}
         value={values.review}
-        placeholder="Ingresa aquí tu comentario"
+        placeholder="Escribe algo aquí..."
         onChange={onChangeField}
       />
       <WarningMessage
