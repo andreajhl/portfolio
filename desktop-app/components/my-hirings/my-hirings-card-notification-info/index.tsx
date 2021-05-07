@@ -1,5 +1,4 @@
 import { DeliveryCellphoneEditableInput } from "desktop-app/components/my-hirings/delivery-cellphone-editable-input";
-import { DeliveryContactEditableInput } from "desktop-app/components/my-hirings/delivery-contact-editable-input";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import classes from "classnames";
 import {
@@ -8,6 +7,9 @@ import {
 } from "desktop-app/constants/contractStatuses";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import styles from "./styles.module.scss";
+import { InputField } from "desktop-app/components/common/form/input-field";
+import { DeliveryCellphoneInput } from "desktop-app/components/my-hirings/delivery-cellphone-input";
+import { useState } from "react";
 
 function InfoField({ title, value }: { title: string; value: string }) {
   return (
@@ -20,11 +22,14 @@ function InfoField({ title, value }: { title: string; value: string }) {
 
 type MyHiringsCardNotificationInfoProps = {
   contractData: MyHiringsContract;
+  isEditing: boolean;
 };
 
 function MyHiringsCardNotificationInfo({
   contractData,
+  isEditing,
 }: MyHiringsCardNotificationInfoProps) {
+  const [hasAddedCellphoneNumber, setHasAddedCellphoneNumber] = useState(false);
   const canEdit = canEditContract(contractData.status);
 
   const deliveryCellphone = "+52 55 4375 0949";
@@ -54,11 +59,35 @@ function MyHiringsCardNotificationInfo({
           </>
         }
       >
-        <DeliveryContactEditableInput
-          deliveryContact={contractData.deliveryContact}
-          className={styles.EditableInputField}
-        />
-        <DeliveryCellphoneEditableInput className={styles.EditableInputField} />
+        <div className={styles.InputWrapper}>
+          <label className={styles.InputLabel}>
+            Correo electrónico de notificación
+          </label>
+          <InputField
+            className={styles.InputField}
+            value={contractData.deliveryContact}
+            disabled={!isEditing}
+          />
+        </div>
+        <Maybe
+          it={hasAddedCellphoneNumber || isEditing}
+          orElse={
+            <DeliveryCellphoneEditableInput
+              className={styles.EditableInputField}
+              onSave={() => setHasAddedCellphoneNumber(true)}
+            />
+          }
+        >
+          <div className={styles.InputWrapper}>
+            <label className={styles.InputLabel}>
+              Whatsapp de notificación (opcional)
+            </label>
+            <DeliveryCellphoneInput
+              value={deliveryCellphone}
+              disabled={!isEditing}
+            />
+          </div>
+        </Maybe>
       </Maybe>
     </div>
   );

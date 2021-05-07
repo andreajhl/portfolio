@@ -5,11 +5,10 @@ import {
 } from "desktop-app/constants/contractStatuses";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import { ContractIsPublicChanger } from "../contract-is-public-changer";
-import { MyHiringsCardNotificationInfo } from "../my-hirings-card-notification-info";
-import { MyHiringsCardDetails } from "../my-hirings-card-details";
 import styles from "./styles.module.scss";
 import { Link } from "desktop-app/components/common/routing/link";
 import { getHiringPreviewPath } from "constants/paths";
+import { MyHiringsCardContractInfo } from "desktop-app/components/my-hirings/my-hirings-card-contract-info";
 
 type MyHiringsCardBodyLeftSideProps = {
   contractData: MyHiringsContract;
@@ -21,8 +20,7 @@ function MyHiringsCardBodyLeftSide({
   const canEdit = canEditContract(contractData.status);
   return (
     <>
-      <MyHiringsCardDetails contractData={contractData} />
-      <MyHiringsCardNotificationInfo contractData={contractData} />
+      <MyHiringsCardContractInfo contractData={contractData} />
       <ContractIsPublicChanger
         className={styles.IsPublicChanger}
         contractStatus={contractData.status}

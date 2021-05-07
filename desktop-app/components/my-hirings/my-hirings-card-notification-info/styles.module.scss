@@ -7,7 +7,8 @@
   margin-top: auto;
 }
 
-.EditableInputField {
+.EditableInputField,
+.InputField {
   font-size: 14px;
 
   > div > input:disabled {
@@ -15,15 +16,38 @@
   }
 }
 
-.InfoWrapper {
+.InputField {
+  font-size: 14px;
+
+  &:disabled {
+    padding: 0;
+    background: none !important;
+    border: none !important;
+    color: var(--gray-4, #5c5c5c);
+  }
+}
+
+.InfoWrapper,
+.InputWrapper {
   margin-bottom: 12px;
+}
+
+.InputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+}
+
+.InputWrapper + .InputWrapper {
+  margin-right: 20px;
 }
 
 .InfoWrapper + .InfoWrapper {
   margin-left: 45px;
 }
 
-.InfoTitle {
+.InfoTitle,
+.InputLabel {
   font-size: 14px !important;
   font-weight: bold;
   margin-bottom: 8px;
