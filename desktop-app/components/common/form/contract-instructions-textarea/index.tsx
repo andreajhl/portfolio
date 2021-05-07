@@ -20,7 +20,7 @@ function ContractInstructionsTextarea({
         className={`${styles.ContractInstructionsLabel} ${labelClass}`}
         htmlFor={id}
       >
-        Mensaje
+        Instrucciones
       </label>
       <textarea
         id={id}
