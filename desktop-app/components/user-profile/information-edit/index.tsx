@@ -72,7 +72,7 @@ function UserInformationEdit({ userData }) {
         </div>
         <div className={styles.LogoutButtonWrapper}>
           <LogoutButton className={classes("btn", styles.LogoutButton)}>
-            Cerrar Sesión
+            Cerrar sesión
           </LogoutButton>
         </div>
       </div>
