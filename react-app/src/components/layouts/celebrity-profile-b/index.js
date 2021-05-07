@@ -23,8 +23,9 @@ const CelebrityPublicContractsSectionLayout = dynamic(() =>
     (mod) => mod.CelebrityPublicContractsSectionLayout
   )
 );
-const ResizableMainVideo = dynamic(() =>
-  import("../resizable-main-video").then((mod) => mod.ResizableMainVideo)
+const ResizableMainVideo = dynamic(
+  () => import("../resizable-main-video").then((mod) => mod.ResizableMainVideo),
+  { ssr: false }
 );
 const CelebrityDetails = dynamic(() =>
   import("../celebrity-details").then((mod) => mod.CelebrityDetails)
