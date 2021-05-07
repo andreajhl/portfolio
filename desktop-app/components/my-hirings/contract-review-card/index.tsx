@@ -87,7 +87,7 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
           errors?.review && styles.ContractReviewCardTextareaHasError
         )}
         value={values.review}
-        placeholder="¡Me encantó el video 😍! ¡quedó espectacular 💖! ..."
+        placeholder="Ingresa aquí tu comentario"
         onChange={onChangeField}
       />
       <WarningMessage
