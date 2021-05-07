@@ -52,6 +52,10 @@
   padding: 0.375em 24px;
   margin-top: 12px;
 
+  background: #c9deff;
+  color: #3d87f3;
+  border-color: #c9deff !important;
+
   &:disabled {
     opacity: 1 !important;
   }
