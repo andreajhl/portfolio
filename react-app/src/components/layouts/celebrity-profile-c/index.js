@@ -5,18 +5,23 @@ import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import dynamic from "next/dynamic";
 import { SubscriptionToAvailabilityNotification } from "../subscription-to-availability-notification";
 
-const CelebrityHeroSlideshow = dynamic(() =>
-  import("../celebrity-hero-slideshow").then(
-    (mod) => mod.CelebrityHeroSlideshow
-  )
+const renderOnlyOnBrowser = { ssr: false };
+
+const CelebrityHeroSlideshow = dynamic(
+  () =>
+    import("../celebrity-hero-slideshow").then(
+      (mod) => mod.CelebrityHeroSlideshow
+    ),
+  renderOnlyOnBrowser
 );
 const HowToGetAVideoMessageLayout = dynamic(() =>
   import("../how-to-get-a-video-message").then(
     (mod) => mod.HowToGetAVideoMessageLayout
   )
 );
-const ResizableMainVideo = dynamic(() =>
-  import("../resizable-main-video").then((mod) => mod.ResizableMainVideo)
+const ResizableMainVideo = dynamic(
+  () => import("../resizable-main-video").then((mod) => mod.ResizableMainVideo),
+  renderOnlyOnBrowser
 );
 const CelebrityDetails = dynamic(() =>
   import("../celebrity-details").then((mod) => mod.CelebrityDetails)
