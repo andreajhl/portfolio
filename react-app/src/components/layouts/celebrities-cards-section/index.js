@@ -21,8 +21,9 @@ import { useRouter } from "next/router";
 
 const celebrityCardWidth = 150;
 const videoCardWidth = 258;
-const celebrityCardSectionHeight = 219;
-const videoCardSectionHeight = 360;
+const additionalVerticalSpace = 10;
+const celebrityCardSectionHeight = 219 + additionalVerticalSpace;
+const videoCardSectionHeight = 360 + additionalVerticalSpace;
 const cardGap = 12;
 
 const getColumn = (isVideoCardSection, celebritiesSectionId) => ({
