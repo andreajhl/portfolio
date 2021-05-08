@@ -7,12 +7,16 @@ import classes from "classnames";
 import Popup from "reactjs-popup";
 // import { parse, serialize } from "cookie";
 type localeAvailables = "es" | "en" | "pt";
+const ONE_YEAR_IN_MILLISECONDS = 365 * 24 * 3600 * 1000;
 
 export default function LangDropdown() {
   const router = useRouter();
   const { locale, pathname, query, asPath } = router;
   const handleChangeLang = (lang: string) => {
-    document.cookie = `NEXT_LOCALE=${lang}`;
+    const date = new Date();
+    date.setTime(date.getTime() + ONE_YEAR_IN_MILLISECONDS);
+    const expiresTime = "expires=" + date.toUTCString();
+    document.cookie = `NEXT_LOCALE=${lang},expires=${expiresTime}`;
     router.push({ pathname, query }, asPath, { locale: lang });
   };
 
