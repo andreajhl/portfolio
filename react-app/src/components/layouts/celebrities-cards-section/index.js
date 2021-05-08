@@ -16,6 +16,8 @@ import {
   largeBreakPoint,
   smallBreakpoint
 } from "react-app/src/constants/bootstrapBreakpoint";
+import { FormattedMessage } from "react-intl";
+import { useRouter } from "next/router";
 
 const celebrityCardWidth = 150;
 const videoCardWidth = 258;
@@ -76,6 +78,7 @@ const CelebritiesCardsSectionLayout = ({
   isMobile,
   isFavoriteSection
 }) => {
+  const { locale } = useRouter();
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
     initialState.showLeftScrollButton
   );
@@ -171,7 +174,14 @@ const CelebritiesCardsSectionLayout = ({
     () => getColumn(isVideoCardSection, celebritiesSection.id),
     []
   );
+  const getTitle = () => {
+    if (typeof celebritiesSection.title === "string")
+      return celebritiesSection.title;
 
+    return (
+      celebritiesSection.title[locale] || celebritiesSection.title["es"] || ""
+    );
+  };
   return (
     <section
       className={`celebrities-section-layout container overflow-hidden pr-0 ${
@@ -182,16 +192,14 @@ const CelebritiesCardsSectionLayout = ({
       onMouseEnter={registerCelebritySectionHover}
     >
       <header className="celebrities-section__header d-flex justify-content-between">
-        <h2 className={`celebrities-section-layout__title`}>
-          {celebritiesSection.title}
-        </h2>
+        <h2 className={`celebrities-section-layout__title`}>{getTitle()}</h2>
         <Maybe it={hasMoreResults}>
           <NavLink
             to={moreResultsPath || searchMoreResultsPath}
             className="mb-1 font-weight-bold mr-3 mr-sm-0 flex-shrink-0"
             onClick={registerSeeMoreResultsClick}
           >
-            Ver más
+            <FormattedMessage defaultMessage="Ver más" description="" />
           </NavLink>
         </Maybe>
       </header>

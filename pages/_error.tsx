@@ -1,6 +1,7 @@
 import { NavLink } from "react-app/src/components/common/routing";
 import { PageContainer } from "react-app/src/components/layouts/page-container";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
+import { FormattedMessage } from "react-intl";
 
 const CustomError = () => {
   return (
@@ -9,9 +10,11 @@ const CustomError = () => {
         <div className="section">
           <div className="auth-container mx-auto text-center p-4">
             <h3 className="font-weight-light text-center">
-              Ha ocurrido un error.
+              <FormattedMessage defaultMessage="Ha ocurrido un error." />
             </h3>
-            <p className="h6">Estamos haciendo lo posible por resolverlo.</p>
+            <p className="h6">
+              <FormattedMessage defaultMessage="Estamos haciendo lo posible por resolverlo." />
+            </p>
             <br />
             <img
               width="200px"
@@ -22,7 +25,9 @@ const CustomError = () => {
             <br />
             <br />
             <NavLink to={ROOT_PATH}>
-              <button className="btn btn-primary">Volver a inicio</button>
+              <button className="btn btn-primary">
+                <FormattedMessage defaultMessage="Volver a inicio" />
+              </button>
             </NavLink>
           </div>
         </div>

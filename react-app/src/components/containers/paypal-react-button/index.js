@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import scriptLoader from "react-async-script-loader";
+import { FormattedMessage } from "react-intl";
 
 let PayPalButton = null;
 const INTENT = "authorize";
@@ -124,7 +125,11 @@ class PaypalReactButton extends React.Component {
             />
           </div>
         )}
-        {approved && <h6 className={"text-center"}>Guardando...</h6>}
+        {approved && (
+          <h6 className={"text-center"}>
+            <FormattedMessage defaultMessage="Guardando..." />
+          </h6>
+        )}
       </div>
     );
   }

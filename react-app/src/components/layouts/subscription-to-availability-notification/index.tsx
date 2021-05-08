@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { subscriptionCelebrityAlarmOperations } from "../../../state/ducks/subscription-celebrity-alarm";
 import styled from "styled-components";
 import { Session } from "react-app/src/state/utils/session";
+import { FormattedMessage } from "react-intl";
 const ContainerDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -131,16 +132,27 @@ const SubscriptionToAvailabilityNotification = ({
       className={className}
     >
       {text}
-      {"Notificarme cuando esté disponible"}
+      {
+        <FormattedMessage
+          defaultMessage="Notificarme cuando esté disponible"
+          description=""
+        />
+      }
       {celebrityFullName && showCelebrityName ? " " + displayName : ""}
     </CallToActionButton>
   ) : (
     userSubscriptionsCelebrityAlarmsFetchCompleted && (
       <ContainerDiv>
-        Te notificaremos cuando se active.
+        <FormattedMessage
+          defaultMessage="Te notificaremos cuando se active."
+          description=""
+        />{" "}
         <br />
         <SpanCTA onClick={() => handleSuscriptionRequest()}>
-          Desactivar Notificación
+          <FormattedMessage
+            defaultMessage="Desactivar Notificación"
+            description=""
+          />
         </SpanCTA>
       </ContainerDiv>
     )

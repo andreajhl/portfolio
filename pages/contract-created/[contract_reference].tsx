@@ -4,19 +4,11 @@ import { ContractCreatedPage } from "react-app/src/components/pages/contract-cre
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params: { contract_reference }
-}) => {
-  return {
-    props: { contract_reference }
-  };
-};
-
-const ContractCreated = ({ contract_reference }) => {
+const ContractCreated = () => {
   return (
     <>
       <CustomHead />
-      <ContractCreatedPage contractReference={contract_reference} />
+      <ContractCreatedPage />
     </>
   );
 };

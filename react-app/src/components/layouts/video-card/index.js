@@ -10,6 +10,8 @@ import { CELEBRITY_PROFILE } from "../../../routing/Paths";
 import OptimizedImage from "react-app/src/components/common/helpers/optimized-image";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import getWindow from "react-app/src/utils/getWindow";
+import { useRouter } from "next/router";
+import { occasionsData } from "react-app/src/constants/options";
 
 const VideoCardLayout = ({
   celebrityId,
@@ -31,6 +33,7 @@ const VideoCardLayout = ({
       GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
     }
   });
+  const { locale } = useRouter();
 
   const analyticsData = {
     widget: "VideoCardLayout",
@@ -84,9 +87,11 @@ const VideoCardLayout = ({
               } ml-2 mt-2`}
               onClick={togglePlay}
             />
-            <Maybe it={videoOccasion}>
+            <Maybe it={occasionsData[locale][videoOccasion]?.title}>
               <span className="video-card__category d-flex align-items-center">
-                {videoOccasion}
+                {occasionsData[locale][videoOccasion]?.title
+                  ? occasionsData[locale][videoOccasion]?.title
+                  : null}
               </span>
             </Maybe>
           </header>
