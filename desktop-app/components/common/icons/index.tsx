@@ -93,7 +93,7 @@ export function UserIcon() {
   );
 }
 
-export function PlayIcon(props) {
+export function PlayIcon({ fill = "currentColor", ...props }) {
   return (
     <svg
       width="12"
@@ -108,6 +108,7 @@ export function PlayIcon(props) {
         d="M10.5 6.13398C11.1667 6.51887 11.1667 7.48112 10.5 7.86602L3 12.1962C2.33333 12.5811 1.5 12.0999 1.5 11.3301L1.5 2.66987C1.5 1.90007 2.33333 1.41895 3 1.80385L10.5 6.13398Z"
         stroke="black"
         strokeWidth="2"
+        fill={fill}
       />
     </svg>
   );

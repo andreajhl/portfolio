@@ -36,7 +36,7 @@ const menuItems: MenuItemType[] = [
   },
   {
     id: "my-hiring",
-    icon: <PlayIcon />,
+    icon: <PlayIcon fill="none" />,
     label: "Mis solicitudes",
     to: CLIENT_HIRINGS,
   },
