@@ -6,6 +6,7 @@ import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sect
 import { wrapper } from "react-app/src/state/store";
 import UAParser from "ua-parser-js";
 import debug from "react-app/src/utils/debug";
+import { parse, serialize } from "cookie";
 
 // import isBrowser from "react-app/src/utils/isBrowser";
 // import auth0 from "../lib/auth0";
@@ -21,16 +22,16 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
 */
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  async ({ req, store }) => {
-    try {
-      await fetchCelebritySections({ limit: 10, offset: 0 })(store.dispatch);
-    } catch (e) {
-      debug("ERROR getServerSideProps", e);
-      debug(
-        store.getState().celebritySections?.fetchCelebritySectionsReducer
-          ?.error_data
-      );
-    }
+  async ({ req, store, query }) => {
+    const cookies = parse(req?.headers?.cookie || "");
+
+    await fetchCelebritySections({
+      landingId: query.landingId,
+      alpha2Code: cookies["userLocation"],
+      limit: 10,
+      offset: 0
+    })(store.dispatch);
+
     return {
       props: {
         isMobile:
