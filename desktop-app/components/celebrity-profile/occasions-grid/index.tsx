@@ -8,7 +8,7 @@ const occasionsOnlyToGiftContract = [
   "LOVE",
   "MAKE_SMILE",
   "HOPE",
-  "ASK_FOR_FORGIVENESS"
+  "ASK_FOR_FORGIVENESS",
 ];
 
 type OccasionsGridProps = {
@@ -22,7 +22,7 @@ function OccasionsGrid({
   contractType,
   selectedOccasion,
   className = "",
-  onClickOccasion
+  onClickOccasion,
 }: OccasionsGridProps) {
   return (
     <div className={classes(styles.OccasionsGrid, className)}>
@@ -54,7 +54,7 @@ function OccasionsGrid({
                   styles.OccasionsItemIcon,
                   styles[`Occasions${occasionKey}`]
                 )}
-                src={`/assets/img/occasions/${occasionKey}.png`}
+                src={`/assets/img/occasions/${occasionKey}.svg`}
                 alt={title}
               />
               <p>
