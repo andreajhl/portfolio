@@ -5,13 +5,14 @@ import { AVAILABLE_LANGS } from "constants/langs";
 import { useRouter } from "next/router";
 import classes from "classnames";
 import Popup from "reactjs-popup";
-
+// import { parse, serialize } from "cookie";
 type localeAvailables = "es" | "en" | "pt";
 
 export default function LangDropdown() {
   const router = useRouter();
   const { locale, pathname, query, asPath } = router;
   const handleChangeLang = (lang: string) => {
+    document.cookie = `NEXT_LOCALE=${lang}`;
     router.push({ pathname, query }, asPath, { locale: lang });
   };
 
