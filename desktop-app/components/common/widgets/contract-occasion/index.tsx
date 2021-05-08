@@ -20,7 +20,7 @@ function ContractOccasion({
     <div className={`${styles.ContractOccasion} ${className}`}>
       <div className={styles.ContractOccasionIcon}>
         <img
-          src={`/assets/img/occasions/${occasionKey}.png`}
+          src={`/assets/img/occasions/${occasionKey}.svg`}
           alt={contractOccasion.title}
         />
       </div>
