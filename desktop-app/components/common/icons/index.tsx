@@ -114,7 +114,10 @@ export function PlayIcon({ fill = "currentColor", ...props }) {
   );
 }
 
-export function StarIcon(props: React.SVGProps<SVGSVGElement>) {
+export function StarIcon({
+  stroke = "#000",
+  ...props
+}: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={14}
@@ -126,7 +129,7 @@ export function StarIcon(props: React.SVGProps<SVGSVGElement>) {
     >
       <path
         d="M4.69 5.095l.527-.08.228-.481L7 1.239l1.556 3.295.227.481.526.08 3.569.544-2.611 2.658-.356.362.082.501.608 3.696-3.12-1.713L7 10.878l-.481.265-3.12 1.713.608-3.696.082-.5-.356-.363-2.61-2.658 3.568-.544zm8.343.386h0zm-2.132 7.54s0 0 0 0h0zM.868 5.678H.867h0z"
-        stroke="#000"
+        stroke={stroke}
         strokeWidth={2}
       />
     </svg>
