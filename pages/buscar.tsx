@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { CelebritiesResultsPage } from "react-app/src/components/pages/celebrities-results";
 import { wrapper } from "react-app/src/state/store";
+import debug from "react-app/src/utils/debug";
 import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 
 const allowedParams = [
@@ -24,25 +25,26 @@ const hasSearched = (listParams) => {
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ query, store }) => {
-    const listParams = pickPropertiesFromAObject(query, allowedParams);
-
-    if (Object.keys(listParams).length === 0 || !hasSearched(listParams)) {
-      const previousPath = store.getState()?.celebrities?.previousPathReducer
-        ?.pathname;
-
+    try {
+      const listParams = pickPropertiesFromAObject(query, allowedParams);
+      if (Object.keys(listParams).length === 0 || !hasSearched(listParams)) {
+        const previousPath = store.getState()?.celebrities?.previousPathReducer
+          ?.pathname;
+        return {
+          redirect: {
+            destination: previousPath,
+            permanent: false
+          }
+        };
+      }
+    } catch {
+      debug("ERROR getServerSideProps");
       return {
-        redirect: {
-          destination: previousPath,
-          permanent: false
-        }
+        props: {}
       };
     }
 
     // await list(listParams)(store.dispatch, store.getState);
-
-    return {
-      props: {}
-    };
   }
 );
 

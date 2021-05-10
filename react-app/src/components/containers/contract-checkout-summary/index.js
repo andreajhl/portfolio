@@ -6,6 +6,7 @@ import { Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import { NavLink } from "react-app/src/components/common/routing";
 import { HIRING_EDITOR } from "../../../routing/Paths";
+import { FormattedMessage } from "react-intl";
 const ContractCheckoutSummary = ({
   celebrityAvatar,
   celebrityFullName,
@@ -48,7 +49,14 @@ const ContractCheckoutSummary = ({
             roundedCircle
           />
           <div className="container-contract-checkout-summary__title">
-            <span>Video personalizado de {celebrityFullName}</span>
+            <span>
+              <FormattedMessage
+                defaultMessage="Video personalizado de {celebrityFullName}"
+                values={{
+                  celebrityFullName: celebrityFullName
+                }}
+              />
+            </span>
           </div>
         </div>
         <hr className="w-100"></hr>
@@ -57,7 +65,7 @@ const ContractCheckoutSummary = ({
             {deliveryTo ? (
               <div className="container-contract-checkout-summary__name-user">
                 <span className="container-contract-checkout-summary__to-label">
-                  Para:
+                  <FormattedMessage defaultMessage=" Para:" />
                 </span>{" "}
                 <span>{deliveryTo}</span>
               </div>
@@ -65,7 +73,7 @@ const ContractCheckoutSummary = ({
             {deliveryFrom ? (
               <div className="container-contract-checkout-summary__name-user ml-5 mr-5">
                 <span className="container-contract-checkout-summary__to-label ">
-                  De:{" "}
+                  <FormattedMessage defaultMessage=" De:" />{" "}
                 </span>
                 <span>{deliveryFrom}</span>
               </div>
@@ -81,13 +89,15 @@ const ContractCheckoutSummary = ({
                   contractReference
                 )}
               >
-                <span className="font-weight-bold">Editar</span>
+                <span className="font-weight-bold">
+                  <FormattedMessage defaultMessage="Editar" />
+                </span>
               </NavLink>
             </div>
           </div>
           <div className="container-contract-checkout-summary__message">
             <span className="container-contract-checkout-summary__message-title">
-              Mensaje
+              <FormattedMessage defaultMessage="Mensaje" />
             </span>
             <span className="container-contract-checkout-summary__message-content">
               {instructions}
@@ -114,6 +124,7 @@ const ContractCheckoutSummary = ({
             celebrityDiscountPercentage={celebrityDiscountPercentage}
           />
         </div>
+        <hr className="w-100"></hr>
       </div>
     </>
   );

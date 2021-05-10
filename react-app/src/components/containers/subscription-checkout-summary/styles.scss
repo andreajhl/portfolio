@@ -1,48 +1,81 @@
-@import  '../../../constants/breakpoints.scss';
+@import "../../../constants/breakpoints.scss";
 
+.container-subscription-checkout-summary {
+  text-align: center;
+}
 
-.container-subscription-checkout-summary{
-    text-align: center;
-    &__celebrity-name{
-        margin-top: 1rem;
-        font-weight: bold;
-    }
-    &__benefits{
-        h5{
-            // font-weight: bold;
-            color: gray;
-            margin-top: 2rem;
-        }
-        &-list{
-            list-style: none;
-            margin-top: 1rem;
-            padding-inline-start: 0px;
-            
+.container-subscription-checkout-summary__benefits {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 38px;
+  border: 1px solid #fb177d;
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.1));
+  border-radius: 10px;
+}
 
-            li {
-                display: flex;
-                margin-top: 10px;
-                font-size: 1.2rem;
-                font-weight: 100;
-                margin-left: 10px;
-                
-                i{
-                    margin-right: 16px;
-                    color: #EB2A7B;
-                    @media (max-width: $screen-sm-min) and (min-width: $screen-md-min) {
-                        margin-right: 0px;
-                        text-align: start;
-                    }
-                }
+.container-subscription-checkout-summary__benefits-header {
+  background: #ffffff;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px 10px 0px 0px;
+  height: 87px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-                span{
-                    @media (max-width: $screen-sm-min) {
-                        text-align: initial;   
-                        margin-left: 10px;
-                    }
-                }
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+    height: 132px;
+  }
+}
 
-            }
-        }
-    }
+.container-subscription-checkout-summary__benefits h5 {
+  font-weight: bold;
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.container-subscription-checkout-summary__benefits img {
+  margin-bottom: 15px;
+
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 0;
+    position: absolute;
+    right: 23px;
+  }
+}
+
+.container-subscription-checkout-summary__benefits-list {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+
+  @media only screen and (max-width: 991px) {
+    padding: 0 5% !important;
+  }
+}
+
+.container-subscription-checkout-summary__benefits-list li,
+.container-subscription-checkout-summary__benefits-list li span {
+  text-align: initial;
+}
+
+.container-subscription-checkout-summary__benefits-list li i {
+  @media only screen and (max-width: 767px) {
+    align-self: start;
+    margin-top: 0.3em;
+  }
+}
+
+.container-subscription-checkout-summary__welcome-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 1em;
+}
+
+.container-subscription-checkout-summary__copy {
+  color: #5c5c5c;
+  font-size: 12.36px;
+  width: 80%;
+  max-width: 460px;
+  margin: 0 auto;
 }

@@ -4,6 +4,7 @@ import { ModalSelect } from "../modal-select";
 
 import * as GTM from "../../../state/utils/gtm";
 import getWindow from "../../../utils/getWindow";
+import { FormattedMessage } from "react-intl";
 
 const CelebritiesFilter = ({
   buttonLabel,
@@ -64,7 +65,7 @@ const CelebritiesFilter = ({
         activeItems.length > 0 ? `(${activeItems.length})` : ""
       }`}
       modalTitle={modalTitle}
-      footerButtonLabel="Aplicar filtro"
+      footerButtonLabel={<FormattedMessage defaultMessage="Aplicar filtro" />}
       footerButtonOnClick={applyFilters}
       searchPlaceholder={searchPlaceholder}
       onModalOpen={onModalOpen}

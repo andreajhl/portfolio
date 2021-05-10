@@ -8,6 +8,7 @@ import { contractOperations } from "../../../state/ducks/contracts";
 import { PageContainer } from "../../layouts/page-container";
 import moment from "moment";
 import Maybe from "../../common/helpers/maybe";
+import { FormattedMessage } from "react-intl";
 
 class ContractCreatedPage extends Component {
   constructor(props) {
@@ -56,27 +57,60 @@ class ContractCreatedPage extends Component {
   returnPaymentStatusLabel = (status) => {
     switch (status) {
       case 10:
-        return ["Pago creado", "far fa-check-circle"];
+        return [
+          <FormattedMessage defaultMessage="Pago creado" />,
+          "far fa-check-circle"
+        ];
       case 20:
-        return ["Pago cancelado", "far fa-window-close"];
+        return [
+          <FormattedMessage defaultMessage="Pago cancelado" />,
+          "far fa-window-close"
+        ];
       case 30:
-        return ["Pago rechazado", "fas fa-ban"];
+        return [
+          <FormattedMessage defaultMessage="Pago rechazado" />,
+          "fas fa-ban"
+        ];
       case 40:
-        return ["Pago pendiente", "far fa-clock"];
+        return [
+          <FormattedMessage defaultMessage="Pago pendiente" />,
+          "far fa-clock"
+        ];
       case 50:
-        return ["Reembolso fallido", "fas fa-ban"];
+        return [
+          <FormattedMessage defaultMessage="Reembolso fallido" />,
+          "fas fa-ban"
+        ];
       case 55:
-        return ["Falló autorizacion de cobro", "fas fa-ban"];
+        return [
+          <FormattedMessage defaultMessage="Falló autorización de cobro" />,
+          "fas fa-ban"
+        ];
       case 60:
-        return ["Cobro fallido", "fas fa-ban"];
+        return [
+          <FormattedMessage defaultMessage="Cobro fallido" />,
+          "fas fa-ban"
+        ];
       case 70:
-        return ["Reembolso exitoso", "far fa-check-circle"];
+        return [
+          <FormattedMessage defaultMessage="Reembolso exitoso" />,
+          "far fa-check-circle"
+        ];
       case 80:
-        return ["Pago expirado", "far fa-clock"];
+        return [
+          <FormattedMessage defaultMessage="Pago expirado" />,
+          "far fa-clock"
+        ];
       case 90:
-        return ["Pago autorizado", "far fa-check-circle text-success"];
+        return [
+          <FormattedMessage defaultMessage="Pago autorizado" />,
+          "far fa-check-circle text-success"
+        ];
       case 100:
-        return ["Pago completado", "far fa-check-circle text-success"];
+        return [
+          <FormattedMessage defaultMessage="Pago completado" />,
+          "far fa-check-circle text-success"
+        ];
       default:
         return ["", ""];
     }
@@ -114,39 +148,67 @@ class ContractCreatedPage extends Component {
                 />
               </div>
               <p className="mt-4 font-weight-bold">
-                <h5 className={"font-weight-bold"}>¡Felicitaciones!</h5>
+                <h5 className={"font-weight-bold"}>
+                  <FormattedMessage defaultMessage="¡Felicitaciones!" />
+                </h5>
                 <h5 className={"font-weight-bold"}>
                   {" "}
-                  Se ha realizado con éxito la pre-autorización del cobro a tu
-                  cuenta.
+                  <FormattedMessage
+                    defaultMessage="  Se ha realizado con éxito la pre-autorización del cobro a tu
+                  cuenta"
+                  />
+                  .
                 </h5>
               </p>
               <p className="mt-4 pl-3 pr-3 font-weight-light text-left">
-                <h6>Ten en cuenta:</h6>
+                <h6>
+                  <FormattedMessage defaultMessage="Ten en cuenta:" />
+                </h6>
                 <li>
-                  {this.props.resumen.celebrity.fullName} tiene un plazo de{" "}
-                  <b>7 días</b> para grabar tu video a partir de hoy.
+                  <FormattedMessage
+                    defaultMessage="
+                  {celebrityFullName} tiene un plazo de
+                  <b>7 días</b> para grabar tu video a partir de hoy."
+                    values={{
+                      celebrityFullName: this.props.resumen.celebrity.fullName,
+                      b: (chunks) => <b>{chunks}</b>
+                    }}
+                  />
                 </li>
                 <li>
-                  El <b>cobro se realizará</b> una vez que{" "}
-                  {this.props.resumen.celebrity.fullName} grabe tu video.
+                  <FormattedMessage
+                    defaultMessage="El <b>cobro se realizará</b> una vez que
+                  {celebrityFullName} grabe tu video."
+                    values={{
+                      celebrityFullName: this.props.resumen.celebrity.fullName,
+                      b: (chunks) => <b>{chunks}</b>
+                    }}
+                  />
                 </li>
                 <li>
-                  Recibirás una notificación a{" "}
-                  <b>{this.props.resumen.contract.deliveryContact}</b> cuando tu
-                  video esté listo.
+                  <FormattedMessage
+                    defaultMessage="Recibirás una notificación a
+                  <b></b> cuando tu
+                  video esté listo."
+                    values={{
+                      b: (chunks) => (
+                        <b>{this.props.resumen.contract.deliveryContact}</b>
+                      )
+                    }}
+                  />
                 </li>
                 <li>
-                  {" "}
-                  Si todo está bien con tu solicitud de acuerdo a nuestras
-                  políticas, muy pronto podrás disfrutar de tu videomensaje.
+                  <FormattedMessage
+                    defaultMessage="Si todo está bien con tu solicitud de acuerdo a nuestras
+                  políticas, muy pronto podrás disfrutar de tu videomensaje."
+                  />
                 </li>
               </p>
               <button
                 className="btn btn-primary mb-4"
                 onClick={this.goToMyHirings}
               >
-                Ver mis contrataciones
+                <FormattedMessage defaultMessage="Ver mis contrataciones" />
               </button>
               <div className="w-100 mx-auto mb-4">
                 <Maybe it={lastPayment}>
@@ -176,13 +238,15 @@ class ContractCreatedPage extends Component {
                     <div className="card-body">
                       <div>
                         <p className="card-text text-muted text-left">
-                          Fecha: {moment(lastPayment?.createdAt).format("L")}
+                          <FormattedMessage defaultMessage="Fecha:" />{" "}
+                          {moment(lastPayment?.createdAt).format("L")}
                         </p>
                         <p className="card-text text-muted text-left">
-                          Hora: {moment(lastPayment?.createdAt).format("LT")}
+                          <FormattedMessage defaultMessage="Hora:" />{" "}
+                          {moment(lastPayment?.createdAt).format("LT")}
                         </p>
                         <p className="card-text text-muted text-left">
-                          Transacción Reference:{" "}
+                          <FormattedMessage defaultMessage="Transacción Reference:" />{" "}
                           {lastPayment?.transactionChargeId}
                         </p>
                       </div>

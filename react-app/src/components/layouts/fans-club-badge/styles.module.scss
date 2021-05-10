@@ -1,0 +1,18 @@
+.FanClubBadge {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0.5em;
+  background-color: #ffffff;
+  box-shadow: 0 0 0.333em rgba(0, 0, 0, 0.1);
+  border-radius: 1.625em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.FanClubBadgeIcon {
+  width: 1.5em;
+  position: absolute;
+  left: 0.5em;
+}

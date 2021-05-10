@@ -129,7 +129,7 @@ ModalSelect.propTypes = {
   searchPlaceholder: PropTypes.string,
   onSearchChange: PropTypes.func,
   options: PropTypes.array,
-  footerButtonLabel: PropTypes.string,
+  footerButtonLabel: PropTypes.string || PropTypes.node,
   footerButtonOnClick: PropTypes.func,
   onInputChange: PropTypes.func,
   isChecked: PropTypes.func,

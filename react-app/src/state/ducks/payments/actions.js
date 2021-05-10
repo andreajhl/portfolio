@@ -111,9 +111,9 @@ export const getContractToPay = (contractReference) => {
             // Other actions
             // history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
           } else {
-            if (res.data.data.status >= 6) {
+            if (res.data.data.status >= 7) {
               history._pushRoute(
-                ROUTING_PATHS.CONTRACT_CREATED.replace(
+                ROUTING_PATHS.PURCHASE_SUMMARY.replace(
                   ":contract_reference",
                   res.data.data.reference
                 )
@@ -162,6 +162,53 @@ export const processStripePayment = (
           error
         );
         reject(error);
+      });
+  });
+};
+export const processDlocalPayment = (
+  contractReference,
+  paymentMethodId,
+  buyerFullName,
+  buyerEmail,
+  buyerDocument,
+  discountCouponId,
+  cardToken,
+  deviceId,
+  userIp
+) => {
+  const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
+  const data = {
+    contractReference: contractReference,
+    paymentMethodId: paymentMethodId,
+    buyerFullName: buyerFullName,
+    buyerEmail: buyerEmail,
+    buyerDocument: buyerDocument,
+    discountCouponId: discountCouponId,
+    cardToken: cardToken,
+    deviceId: deviceId,
+    IP: userIp
+  };
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false
+    })
+      .then((res) => {
+        if (res.data.status === "OK") {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((err) => {
+        if (err.response && err.response.data) {
+          rejectionFunc(err.response.data.error);
+        } else {
+          rejectionFunc("Ha ocurrido un error inesperado");
+        }
       });
   });
 };

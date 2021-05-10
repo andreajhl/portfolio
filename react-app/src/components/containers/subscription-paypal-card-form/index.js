@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import SubscriptionPaypalReactButton from "../subscription-paypal-react-button";
 import { postProcessSubscription } from "../../../state/ducks/subscriptions/actions";
 import { withRouter } from "react-app/src/components/common/routing";
-import * as GTM from "../../../state/utils/gtm";
 import * as ROUTING_PATHS from "../../../routing/Paths";
-import { connect } from "react-redux";
 
 class SubscriptionPayPalCardForm extends Component {
   constructor(props) {
@@ -23,13 +21,16 @@ class SubscriptionPayPalCardForm extends Component {
   };
 
   onPayPalButtonApprove = (data) => {
-    data.planID = this.props.planId;
-    postProcessSubscription(data)
+    postProcessSubscription({
+      ...data,
+      planID: this.props.planId,
+      celebrityId: this.props.celebrityId
+    })
       .then((res) => {
         this.props.history.push(
           ROUTING_PATHS.SUBSCRIPTION_SUCCESS.replace(
             ":celebrity_username",
-            this.props.match.params.celebrity_username
+            this.props.router.query?.celebrity_username
           )
         );
       })
@@ -123,9 +124,6 @@ SubscriptionPayPalCardForm.defaultProps = {
 // const mapDispatchToProps = {
 // };
 
-const _SubscriptionPayPalCardForm = connect(
-  null,
-  null
-)(withRouter(SubscriptionPayPalCardForm));
+const _SubscriptionPayPalCardForm = withRouter(SubscriptionPayPalCardForm);
 
 export { _SubscriptionPayPalCardForm as SubscriptionPayPalCardForm };

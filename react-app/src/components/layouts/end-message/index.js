@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 const goBackUp = (offsetTop) => {
   document.documentElement.scroll({ top: offsetTop, behavior: "smooth" });
@@ -15,7 +16,7 @@ export const EndMessageLayout = ({ offsetTop, onClick }) => (
       }}
       className="btn btn-primary mt-2"
     >
-      Volver arriba
+      <FormattedMessage defaultMessage="Volver arriba" description="" />
     </button>
   </p>
 );

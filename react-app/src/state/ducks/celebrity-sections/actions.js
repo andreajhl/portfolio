@@ -6,6 +6,7 @@ import {
   handleApiResponseSuccess
 } from "../../utils";
 import * as API_PATHS from "./paths";
+import debug from "react-app/src/utils/debug";
 
 export const fetchCelebritySections = (params) => (dispatch) => {
   const TYPE = TYPES.FETCH_CELEBRITIES_SECTIONS;
@@ -19,6 +20,7 @@ export const fetchCelebritySections = (params) => (dispatch) => {
   })
     .then((res) => {
       if ("status" in res.data && res.data.status === "ERROR") {
+        debug("ERROR fetchCelebritySections", res.data);
         handleApiResponseFailure(dispatch, TYPE, res);
       } else {
         handleApiResponseSuccess(dispatch, TYPE, res);
@@ -26,6 +28,8 @@ export const fetchCelebritySections = (params) => (dispatch) => {
       }
     })
     .catch((err) => {
+      debug("ERROR fetchCelebritySection", err);
+
       handleApiErrors(dispatch, TYPE, err);
     });
 };
