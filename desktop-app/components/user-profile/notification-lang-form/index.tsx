@@ -29,7 +29,7 @@ function NotificationLangForm(props: NotificationLangFormProps) {
           id="notifications_slang_select"
         >
           <option value="es">Español</option>
-          <option value="en">Ingles</option>
+          <option value="en">Inglés</option>
         </select>
       ) : (
         <Skeleton height={40} width={156} />
