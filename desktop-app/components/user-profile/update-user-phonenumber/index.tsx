@@ -4,6 +4,7 @@ import TriggerPopupEditButton from "desktop-app/components/common/trigger-popup-
 import InputWithUpperLabel from "desktop-app/components/common/form/input-with-upper-label";
 import { CheckedCircleIcon } from "desktop-app/components/common/icons";
 import classes from "classnames";
+import { CellphoneNumberInput } from "desktop-app/components/common/form/cellphone-number-input";
 
 function HeaderPopup() {
   return (
@@ -23,13 +24,13 @@ function UpdateUserPhonePopupForm() {
       <div className={styles.UpdateUserPhonePopup}>
         <HeaderPopup />
         <div className={styles.InputFields}>
-          <InputWithUpperLabel
-            inputId="user_phonenumber"
-            label="Ingresa el nuevo número de celular."
-            placeholder="Número celular nuevo"
+          <CellphoneNumberInput
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          ></InputWithUpperLabel>
+            onChange={(value) => {
+              console.log(value);
+            }}
+          />
+
           <button
             onClick={() => setCurrentStep(1)}
             className={classes("btn btn-primary", styles.CTAButton)}
