@@ -16,7 +16,7 @@ export default function LangDropdown() {
     const date = new Date();
     date.setTime(date.getTime() + ONE_YEAR_IN_MILLISECONDS);
     const expiresTime = "expires=" + date.toUTCString();
-    document.cookie = `NEXT_LOCALE=${lang},expires=${expiresTime}`;
+    document.cookie = `NEXT_LOCALE=${lang};${expiresTime}`;
     router.push({ pathname, query }, asPath, { locale: lang });
   };
 
