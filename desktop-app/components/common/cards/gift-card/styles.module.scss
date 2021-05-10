@@ -1,0 +1,30 @@
+.GiftCard {
+  font-size: 16px;
+  padding: 2em 2.75em;
+  background: #e8e8ff;
+  border-radius: 0.4375em;
+}
+
+.Occasion {
+  background: #ffffff;
+  border-radius: 50%;
+  width: 3.625em;
+  height: 3.625em;
+  margin-bottom: 1.65em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Title {
+  font-size: 2.25em !important;
+  line-height: 1.366;
+  margin-bottom: 0;
+}
+
+.SpecialText {
+  margin-top: 1.428571428571429em;
+  font-size: 0.875rem;
+  max-width: 40ch;
+  line-height: 1.365;
+}
