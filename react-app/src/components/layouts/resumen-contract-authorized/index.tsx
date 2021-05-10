@@ -221,7 +221,8 @@ const ResumenContractAuthorized = ({ resumen }) => {
         <ContractsSteps>
           <ContainerNextStepsAfterPayment>
             <NextStepsAfterPaymentBanner
-              celebrityName={resumen.celebrity.fullName}
+              deliveryContact={resumen.contract?.deliveryContact}
+              celebrityName={resumen.celebrity?.fullName}
             ></NextStepsAfterPaymentBanner>
           </ContainerNextStepsAfterPayment>
         </ContractsSteps>

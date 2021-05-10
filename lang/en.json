@@ -1368,6 +1368,9 @@
   "R8MBZf": {
     "message": "You will receive a notification to correocliente@dominio.com when your video is ready."
   },
+  "/OzI+S": {
+    "message": "You will receive a notification to {deliveryContact} when your video is ready."
+  },
   "RG+TGy": {
     "message": "Your payment has been declined."
   },

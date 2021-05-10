@@ -29,13 +29,28 @@
       "value": "Please check your connection to "
     },
     {
-      "children": [],
+      "children": [
+      ],
       "type": 8,
       "value": "br"
     },
     {
       "type": 0,
       "value": " internet and try again."
+    }
+  ],
+  "/OzI+S": [
+    {
+      "type": 0,
+      "value": "You will receive a notification to "
+    },
+    {
+      "type": 1,
+      "value": "deliveryContact"
+    },
+    {
+      "type": 0,
+      "value": " when your video is ready."
     }
   ],
   "/eYgis": [
@@ -398,7 +413,8 @@
       "value": " was found with the user "
     },
     {
-      "children": [],
+      "children": [
+      ],
       "type": 8,
       "value": "br"
     },
@@ -763,7 +779,8 @@
       "value": "Complete the "
     },
     {
-      "children": [],
+      "children": [
+      ],
       "type": 8,
       "value": "br"
     },
@@ -1018,7 +1035,8 @@
       "value": "No results were found "
     },
     {
-      "children": [],
+      "children": [
+      ],
       "type": 8,
       "value": "br"
     },
@@ -1059,7 +1077,8 @@
       "value": "Custom Videos "
     },
     {
-      "children": [],
+      "children": [
+      ],
       "type": 8,
       "value": "br"
     },
@@ -1750,7 +1769,8 @@
       "value": "You will receive a notification to "
     },
     {
-      "children": [],
+      "children": [
+      ],
       "type": 8,
       "value": "b"
     },
@@ -1921,7 +1941,8 @@
       "value": "It is a company dedicated to creating "
     },
     {
-      "children": [],
+      "children": [
+      ],
       "type": 8,
       "value": "br"
     },
@@ -2232,7 +2253,8 @@
       "value": "Maybe it can "
     },
     {
-      "children": [],
+      "children": [
+      ],
       "type": 8,
       "value": "br"
     },

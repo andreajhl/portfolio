@@ -39,6 +39,20 @@
       "value": " internet e intenta nuevamente."
     }
   ],
+  "/OzI+S": [
+    {
+      "type": 0,
+      "value": "Recibirás una notificación a "
+    },
+    {
+      "type": 1,
+      "value": "deliveryContact"
+    },
+    {
+      "type": 0,
+      "value": " cuando tu video esté listo."
+    }
+  ],
   "/eYgis": [
     {
       "type": 0,
@@ -1573,12 +1587,6 @@
     {
       "type": 0,
       "value": "Chile"
-    }
-  ],
-  "R8MBZf": [
-    {
-      "type": 0,
-      "value": "Recibirás una notificación a correocliente@dominio.com cuando tu video esté listo."
     }
   ],
   "RG+TGy": [

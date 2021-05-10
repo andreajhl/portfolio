@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 
 type NextStepsAfterPaymentBannerProps = {
   celebrityName: string;
+  deliveryContact: string;
 };
 
 const ContainerBanner = styled.div`
@@ -82,7 +83,8 @@ const SpanWithMousePointer = styled.span`
   }
 `;
 const NextStepsAfterPaymentBanner = ({
-  celebrityName
+  celebrityName,
+  deliveryContact
 }: NextStepsAfterPaymentBannerProps) => {
   return (
     <ContainerBanner>
@@ -104,8 +106,11 @@ const NextStepsAfterPaymentBanner = ({
       <div className="mt-3">
         <TextSteps>
           <FormattedMessage
-            defaultMessage="Recibirás una notificación a correocliente@dominio.com cuando tu video
+            defaultMessage="Recibirás una notificación a {deliveryContact} cuando tu video
           esté listo."
+            values={{
+              deliveryContact: deliveryContact
+            }}
           />
         </TextSteps>
       </div>

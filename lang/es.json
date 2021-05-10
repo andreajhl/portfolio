@@ -14,6 +14,9 @@
   "/IN8Tc": {
     "message": "Por favor, comprueba tu conexión a <br></br> internet e intenta nuevamente."
   },
+  "/OzI+S": {
+    "message": "Recibirás una notificación a {deliveryContact} cuando tu video esté listo."
+  },
   "/eYgis": {
     "description": "",
     "message": "Respuesta promedio:"
@@ -680,9 +683,6 @@
   },
   "QtvgOo": {
     "message": "Chile"
-  },
-  "R8MBZf": {
-    "message": "Recibirás una notificación a correocliente@dominio.com cuando tu video esté listo."
   },
   "RG+TGy": {
     "message": "Tu pago ha sido Rechazado."
