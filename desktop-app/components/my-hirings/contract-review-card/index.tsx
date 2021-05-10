@@ -14,7 +14,7 @@ type ContractReviewCardProps = {
 
 const initialValues = {
   review: "",
-  stars: 5,
+  stars: 3,
 };
 
 const validations = {
