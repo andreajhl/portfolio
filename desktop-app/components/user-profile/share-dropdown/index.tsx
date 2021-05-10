@@ -81,6 +81,7 @@ function ShareDropdown({ buttonClassName = "", link }: ShareDropdownProps) {
 
   return (
     <Dropdown
+      menuPosition="bottom right"
       menuClassName={styles.ShareDropdownMenu}
       buttonChildren="Compartir"
       buttonClassName={classes(
@@ -90,6 +91,7 @@ function ShareDropdown({ buttonClassName = "", link }: ShareDropdownProps) {
       )}
     >
       <div
+        tabIndex={0}
         className={styles.ShareDropdownItem}
         onClick={() => copyTextToClipboard(link)}
       >
