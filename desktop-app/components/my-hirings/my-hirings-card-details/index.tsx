@@ -1,7 +1,5 @@
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
-import { useState } from "react";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
-import { connect } from "react-redux";
 import { ContractInstructionsTextarea } from "../../common/form/contract-instructions-textarea";
 import { ContractOccasion } from "../../common/widgets/contract-occasion";
 import { EditingToggleButton } from "../../common/button/editing-toggle-button";
@@ -12,38 +10,23 @@ import classes from "classnames";
 import { canEditContract } from "desktop-app/constants/contractStatuses";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import styles from "./styles.module.scss";
-import useForm from "lib/hooks/useForm";
-import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
-
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = {};
-
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+import { Dispatch, SetStateAction } from "react";
 
 type MyHiringsCardDetailsProps = {
   contractData: MyHiringsContract;
-} & StateProps &
-  DispatchProps;
-
-const initialValues = {
-  deliveryTo: "",
-  deliveryFrom: "",
-  instructions: "",
+  isEditing: boolean;
+  setIsEditing: Dispatch<SetStateAction<boolean>>;
+  values: { deliveryTo: string; deliveryFrom: string; instructions: string };
+  onChangeField: (event) => void;
 };
 
-type InitialValuesType = typeof initialValues;
-
-function MyHiringsCardDetails({ contractData }: MyHiringsCardDetailsProps) {
-  const [isEditing, setIsEditing] = useState(false);
-  const { values, onChangeField } = useForm<InitialValuesType>({
-    initialValues: {
-      ...initialValues,
-      ...pickPropertiesFromAObject(contractData, Object.keys(initialValues)),
-    },
-  });
-
+function MyHiringsCardDetails({
+  contractData,
+  isEditing,
+  setIsEditing,
+  values,
+  onChangeField,
+}: MyHiringsCardDetailsProps) {
   const contractIsForOther = contractData.contractType === 2;
 
   return (
@@ -110,9 +93,4 @@ function MyHiringsCardDetails({ contractData }: MyHiringsCardDetailsProps) {
   );
 }
 
-const _MyHiringsCardDetails = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MyHiringsCardDetails);
-
-export { _MyHiringsCardDetails as MyHiringsCardDetails };
+export { MyHiringsCardDetails };

@@ -1,3 +1,4 @@
+import { PAYMENT_AUTHORIZATION_INFO } from "constants/paths";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { Link } from "desktop-app/components/common/routing/link";
 import { StepsGrayBanner } from "desktop-app/components/layouts/steps-gray-banner";
@@ -47,7 +48,10 @@ const getStepsItems = ({
         <span className={styles.TextBold}>5 a 10 días hábiles</span>{" "}
         aproximadamente, dependiendo de tu banco.
         <br />
-        <Link href="#" className={styles.LearnMoreLink}>
+        <Link
+          href={PAYMENT_AUTHORIZATION_INFO}
+          className={styles.LearnMoreLink}
+        >
           Conoce más acerca de esto.
         </Link>
       </>

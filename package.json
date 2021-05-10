@@ -22,9 +22,8 @@
     "check-staged-files": "lint-staged"
   },
   "lint-staged": {
-    ".(ts|tsx|js|jsx)": [
-      "prettier --write",
-      "npm run type-check"
+    "*.(js|ts|jsx|tsx)": [
+      "prettier --write"
     ]
   },
   "dependencies": {

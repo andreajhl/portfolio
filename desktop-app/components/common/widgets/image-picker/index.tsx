@@ -1,5 +1,7 @@
 import classes from "classnames";
+import { ReactNode } from "react";
 import { CSSProperties } from "react";
+import Maybe from "../../helpers/maybe";
 import styles from "./styles.module.scss";
 
 const ONLY_IMAGE_FORMATS = "image/*,image/heif,image/heic";
@@ -10,7 +12,9 @@ type ImagePickerProps = {
   id?: string;
   previewImageSrc: string;
   previewImageBorderRadius?: CSSProperties["borderRadius"];
-  label?: string;
+  label?: ReactNode;
+  showDeleteButton?: boolean;
+  onClickDelete?: () => void;
   onPickImage?: (imageFile: File) => void;
 };
 
@@ -19,7 +23,9 @@ function ImagePicker({
   previewImageSrc,
   previewImageBorderRadius = "0",
   label = "Seleccionar imagen",
+  showDeleteButton = false,
   onPickImage = function () {},
+  onClickDelete = function () {},
 }: ImagePickerProps) {
   return (
     <div className={styles.Container}>
@@ -43,6 +49,15 @@ function ImagePicker({
       <label htmlFor={id} className={classes("btn", styles.CTAUploadPhoto)}>
         {label}
       </label>
+      <Maybe it={showDeleteButton}>
+        <button
+          type="button"
+          className={classes("btn", styles.DeleteButton)}
+          onClick={onClickDelete}
+        >
+          Eliminar foto
+        </button>
+      </Maybe>
     </div>
   );
 }

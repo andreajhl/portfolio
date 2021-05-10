@@ -5,11 +5,10 @@ import {
 } from "desktop-app/constants/contractStatuses";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import { ContractIsPublicChanger } from "../contract-is-public-changer";
-import { MyHiringsCardNotificationInfo } from "../my-hirings-card-notification-info";
-import { MyHiringsCardDetails } from "../my-hirings-card-details";
 import styles from "./styles.module.scss";
 import { Link } from "desktop-app/components/common/routing/link";
 import { getHiringPreviewPath } from "constants/paths";
+import { MyHiringsCardContractInfo } from "desktop-app/components/my-hirings/my-hirings-card-contract-info";
 
 type MyHiringsCardBodyLeftSideProps = {
   contractData: MyHiringsContract;
@@ -19,12 +18,17 @@ function MyHiringsCardBodyLeftSide({
   contractData,
 }: MyHiringsCardBodyLeftSideProps) {
   const canEdit = canEditContract(contractData.status);
+
+  const isCompleted = contractData.status === COMPLETED;
   return (
     <>
-      <MyHiringsCardDetails contractData={contractData} />
-      <MyHiringsCardNotificationInfo contractData={contractData} />
+      <MyHiringsCardContractInfo contractData={contractData} />
       <ContractIsPublicChanger
-        className={styles.IsPublicChanger}
+        className={
+          isCompleted
+            ? styles.IsPublicChangerIsCompleted
+            : styles.IsPublicChanger
+        }
         contractStatus={contractData.status}
         contractId={contractData.id}
         contractIsPublic={contractData.isPublic}
@@ -37,7 +41,7 @@ function MyHiringsCardBodyLeftSide({
           entrega mientras tu video esté pendiente de grabación.
         </p>
       </Maybe>
-      <Maybe it={contractData.status === COMPLETED}>
+      <Maybe it={isCompleted}>
         <Link
           href={getHiringPreviewPath(contractData.reference)}
           className={styles.WatchVideoLink}
@@ -49,6 +53,12 @@ function MyHiringsCardBodyLeftSide({
             Ver video <i className="fa fa-play" />
           </button>
         </Link>
+        <button
+          type="button"
+          className={`btn btn-tertiary ${styles.CTAButton}`}
+        >
+          Descargar comprobante de pago
+        </button>
       </Maybe>
     </>
   );

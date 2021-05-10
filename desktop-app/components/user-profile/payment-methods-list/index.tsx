@@ -34,7 +34,12 @@ function PaymentMethodsList({
   }
 
   if (isLoading) {
-    return <ItemSkeleton />;
+    return (
+      <div className={styles.PaymentMethodsList}>
+        <ItemSkeleton />
+        <ItemSkeleton />
+      </div>
+    );
   }
 
   if (!Array.isArray(availableSources) || availableSources.length === 0) {
@@ -42,21 +47,21 @@ function PaymentMethodsList({
   }
 
   return (
-    <>
+    <div className={styles.PaymentMethodsList}>
       {availableSources.map((card) => (
         <div className={styles.PaymentMethodItem} key={card.sourceId}>
           <div className={styles.PaymentMethodBrand}>
             <CardBrandIcon cardBrand={card.typeData.brand} />
           </div>
           <span className={styles.PaymentMethodNumber}>
-            **** **** **** {card.typeData.last4}
+            **********{card.typeData.last4}
           </span>
           <IconButton onClick={() => removeCard(card.sourceId)}>
             <i className="far fa-trash-alt" />
           </IconButton>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

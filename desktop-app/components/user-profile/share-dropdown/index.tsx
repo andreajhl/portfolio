@@ -1,7 +1,7 @@
 import { Dropdown } from "../../common/button/dropdown";
 import classes from "classnames";
 import styles from "./styles.module.scss";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import {
   HyperlinkIcon,
   FacebookIcon,
@@ -16,6 +16,7 @@ import {
   getTwitterSharingLink,
   getMailShareLink,
 } from "../../../../lib/utils/getSocialMediaLink";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 
 type ShareDropdownProps = {
   buttonClassName?: string;
@@ -79,6 +80,21 @@ function ShareDropdown({ buttonClassName = "", link }: ShareDropdownProps) {
     },
   ];
 
+  const [hasCopiedLink, setHasCopiedLink] = useState(false);
+
+  function copyLinkToClipboard() {
+    copyTextToClipboard(link);
+    setHasCopiedLink(true);
+  }
+
+  useEffect(() => {
+    if (!hasCopiedLink) return;
+
+    const timeout = setTimeout(() => setHasCopiedLink(false), 5000);
+
+    return () => clearTimeout(timeout);
+  }, [hasCopiedLink]);
+
   return (
     <Dropdown
       menuPosition="bottom right"
@@ -93,10 +109,20 @@ function ShareDropdown({ buttonClassName = "", link }: ShareDropdownProps) {
       <div
         tabIndex={0}
         className={styles.ShareDropdownItem}
-        onClick={() => copyTextToClipboard(link)}
+        onClick={copyLinkToClipboard}
       >
-        <HyperlinkIcon />
-        <span>Copiar enlace</span>
+        <Maybe
+          it={hasCopiedLink}
+          orElse={
+            <>
+              <HyperlinkIcon />
+              <span>Copiar enlace</span>
+            </>
+          }
+        >
+          <i className={classes("fa fa-check-circle", styles.CheckIcon)} />
+          <span>Enlace copiado</span>
+        </Maybe>
       </div>
       {socialMedias.map(toMenuItem)}
     </Dropdown>

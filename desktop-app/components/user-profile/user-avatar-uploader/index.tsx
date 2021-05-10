@@ -2,7 +2,9 @@ import { ImagePicker } from "desktop-app/components/common/widgets/image-picker"
 import { useState } from "react";
 import { AvatarUploaderModal } from "desktop-app/components/common/modals/avatar-uploader-modal";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import classes from "classnames";
 import { useAuth0 } from "@auth0/auth0-react";
+import styles from "./styles.module.scss";
 
 type UserAvatarUploaderProps = {};
 
@@ -16,16 +18,27 @@ function UserAvatarUploader(props: UserAvatarUploaderProps) {
   const { user } = useAuth0();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [pickedImage, setPickedImage] = useState(null);
-  const [previewSrc, setPreviewSrc] = useState(
-    user.picture || "/assets/img/user-logo.svg"
-  );
+  const initialPreviewSrc = user.picture || "/assets/img/user-logo.svg";
+  const [previewSrc, setPreviewSrc] = useState(initialPreviewSrc);
+
+  const hasChangedPreview = previewSrc !== initialPreviewSrc;
 
   return (
     <>
       <ImagePicker
         previewImageSrc={previewSrc}
         previewImageBorderRadius={"50%"}
-        label="Agregar foto"
+        label={
+          hasChangedPreview ? (
+            <i className={classes("fa fa-edit", styles.EditButton)} />
+          ) : (
+            "Agregar foto"
+          )
+        }
+        showDeleteButton={hasChangedPreview}
+        onClickDelete={() => {
+          setPreviewSrc(initialPreviewSrc);
+        }}
         onPickImage={(image) => {
           setPickedImage(URL.createObjectURL(image));
           setModalIsOpen(true);
