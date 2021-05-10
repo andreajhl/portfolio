@@ -75,38 +75,33 @@ const ContractWithPayments = ({
   `;
   return (
     <PageContainer showFooter={false} showSearch={false}>
-      {
-        isLoading ? (
-          <LoadingScreen>
-            <div
-              style={{
-                margin: "auto"
-              }}
-            >
-              <LoaderLayout></LoaderLayout>
-            </div>
-          </LoadingScreen>
-        ) : (
-          <ResumenContractAuthorized resumen={resumen} />
-        )
-        // : PAYMENTS_ID_WITH_RESUMEN_APPROVED.includes(
-        //     resumen?.lastPayment?.status
-        //   ) ? (
-        //   <ResumenContractApproved resumen={resumen} />
-        // ) : PAYMENTS_ID_WITH_RESUMEN_REJECTED.includes(
-        //     resumen?.lastPayment?.status
-        //   ) ? (
-        //   <ResumenContractRejected resumen={resumen} />
-        // ) : PAYMENTS_ID_WITH_RESUMEN_PENDING.includes(
-        //     resumen?.lastPayment?.status
-        //   ) ? (
-        //   <ResumenContractPending resumen={resumen} />
-        // ) : PAYMENTS_ID_WITH_RESUMEN_AUTHORIZED.includes(
-        //     resumen?.lastPayment?.status
-        //   ) ? (
-        //   <ResumenContractAuthorized resumen={resumen} />
-        // ) : null
-      }
+      {isLoading ? (
+        <LoadingScreen>
+          <div
+            style={{
+              margin: "auto"
+            }}
+          >
+            <LoaderLayout></LoaderLayout>
+          </div>
+        </LoadingScreen>
+      ) : PAYMENTS_ID_WITH_RESUMEN_APPROVED.includes(
+          resumen?.lastPayment?.status
+        ) ? (
+        <ResumenContractApproved resumen={resumen} />
+      ) : PAYMENTS_ID_WITH_RESUMEN_REJECTED.includes(
+          resumen?.lastPayment?.status
+        ) ? (
+        <ResumenContractRejected resumen={resumen} />
+      ) : PAYMENTS_ID_WITH_RESUMEN_PENDING.includes(
+          resumen?.lastPayment?.status
+        ) ? (
+        <ResumenContractPending resumen={resumen} />
+      ) : PAYMENTS_ID_WITH_RESUMEN_AUTHORIZED.includes(
+          resumen?.lastPayment?.status
+        ) ? (
+        <ResumenContractAuthorized resumen={resumen} />
+      ) : null}
     </PageContainer>
   );
 };
