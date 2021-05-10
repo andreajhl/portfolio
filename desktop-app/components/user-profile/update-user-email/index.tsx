@@ -8,13 +8,6 @@ import classes from "classnames";
 function HeaderPopup() {
   return (
     <div className={styles.HeaderPopupWrapper}>
-      <div>
-        <img
-          src="/assets/img/favicon.png"
-          alt="Famosos Logo"
-          height="60px"
-        ></img>
-      </div>
       <p>Cambiar correo electrónico</p>
     </div>
   );
