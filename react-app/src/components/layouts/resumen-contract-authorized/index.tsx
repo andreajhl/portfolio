@@ -49,7 +49,7 @@ const ContainerDetailsContractDiv = styled.div`
 `;
 
 const DetailsContracDiv = styled.div`
-  width: 80%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
   max-width: 500px;
@@ -57,7 +57,7 @@ const DetailsContracDiv = styled.div`
 
 const ContractsSteps = styled.div`
   display: flex;
-  flex: 1 1 60%;
+  flex: 1 1 50%;
   align-content: center;
   justify-content: center;
   background-color: white;
