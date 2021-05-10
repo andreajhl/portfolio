@@ -1,0 +1,18 @@
+.EditorForm {
+}
+
+.EditorForm .GiftCardPreview {
+  border-radius: 7px 7px 0 0;
+}
+
+.TitleEditToggler {
+  font-size: 14px;
+  margin-top: 16.3px;
+  margin-left: -0.75rem;
+  color: var(--tertiary, #3d87f3);
+  font-weight: bold;
+
+  &:hover {
+    color: var(--secondary, #6970c6);
+  }
+}
