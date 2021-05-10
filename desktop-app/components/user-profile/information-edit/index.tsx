@@ -8,6 +8,7 @@ import UpdateUserGender from "../update-user-gender";
 import LogoutButton from "react-app/src/components/containers/logout-button/logout-button";
 import classes from "classnames";
 import styles from "./styles.module.scss";
+import { ActiveInputField } from "desktop-app/components/common/form/active-input-field";
 
 type FormValuesType = {
   fullName: string;
@@ -38,32 +39,32 @@ function UserInformationEdit({ userData }) {
         </div>
         <div className={styles.ConfigOptionsPersonalData}>
           <div className={styles.GridOfInputs}>
-            <EditableInputField
+            <ActiveInputField
               containerClass={styles.InputContainer}
               inputClass={styles.inputClass}
               labelClass={styles.labelInputFields}
               value={values.fullName}
               onChange={onChangeField}
+              onClickSave={() => console.log("fullName save")}
               label="Nombre"
-              onClickSave={(setIsEditing) =>
-                setIsEditing((isEditing) => !isEditing)
-              }
               name="fullName"
+              showSaveButton={values.fullName !== userData.fullName}
             />
+
             <UpdateUserEmail email={userData.email} />
             <UpdateUserPhone
               numberPhone={`+${userData.cellphoneCode} ${userData.cellphoneNumber}`}
             />
-            <EditableInputField
+            <ActiveInputField
               containerClass={styles.InputContainer}
               inputClass={styles.inputClass}
               labelClass={styles.labelInputFields}
               value={values.birthdayDate}
               label="Fecha de nacimiento"
-              onClickSave={(setIsEditing) =>
-                setIsEditing((isEditing) => !isEditing)
-              }
+              type="date"
               name="birthdayDate"
+              onClickSave={() => console.log("birthdayDate save")}
+              showSaveButton={values.birthdayDate !== userData.birthdayDate}
             />
           </div>
           <div className={styles.OptionsItems}>
