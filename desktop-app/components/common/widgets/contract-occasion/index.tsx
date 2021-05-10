@@ -1,4 +1,4 @@
-import { occasionsData } from "react-app/src/constants/options";
+import { getOccasion } from "constants/occasions";
 import styles from "./styles.module.scss";
 
 type ContractOccasionProps = {
@@ -10,11 +10,7 @@ function ContractOccasion({
   className = "",
   occasion = "OTHER",
 }: ContractOccasionProps) {
-  const occasionKey = occasionsData.hasOwnProperty(occasion)
-    ? occasion
-    : "OTHER";
-
-  const contractOccasion = occasionsData[occasionKey];
+  const [occasionKey, contractOccasion] = getOccasion(occasion);
 
   return (
     <div className={`${styles.ContractOccasion} ${className}`}>
