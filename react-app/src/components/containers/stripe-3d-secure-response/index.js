@@ -4,6 +4,7 @@ import { withRouter } from "react-app/src/components/common/routing";
 import { loadStripe } from "@stripe/stripe-js";
 import { processStripePayment } from "../../../state/ducks/payments/actions";
 import * as PATHS from "../../../routing/Paths";
+import { FormattedMessage } from "react-intl";
 
 class Stripe3dSecureResponse extends Component {
   constructor(props) {
@@ -80,7 +81,7 @@ class Stripe3dSecureResponse extends Component {
             errorMessage: res.data.error
           });
         } else {
-          const route = PATHS.CONTRACT_CREATED.replace(
+          const route = PATHS.PURCHASE_SUMMARY.replace(
             ":contract_reference",
             res.data.data.reference
           );
@@ -114,10 +115,12 @@ class Stripe3dSecureResponse extends Component {
         <div className="section">
           {!this.state.errorMessage ? (
             <div className={"text-center p-4 mx-auto my-auto"}>
-              <h4 className="font-weight-bold text-center">Procesando...</h4>
+              <h4 className="font-weight-bold text-center">
+                <FormattedMessage defaultMessage="Procesando..." />
+              </h4>
               <hr />
               <h6 className={"mb-4"}>
-                Mantenga esta ventana abierta mientras se válida su información
+                <FormattedMessage defaultMessage="Mantenga esta ventana abierta mientras se válida su información" />
               </h6>
             </div>
           ) : (
@@ -130,7 +133,7 @@ class Stripe3dSecureResponse extends Component {
               </div>
               <div className={"mx-auto text-center mt-3 mb-3"}>
                 <h5 className={"font-weight-bold"}>
-                  No se pudo autenticar esta tarjeta correctamente
+                  <FormattedMessage defaultMessage="No se pudo autenticar esta tarjeta correctamente" />
                 </h5>
               </div>
               <div className="text-danger text-center mb-3">
@@ -146,20 +149,25 @@ class Stripe3dSecureResponse extends Component {
                     this.goToPaymentMethods();
                   }}
                 >
-                  Volver a métodos de pago
+                  <FormattedMessage defaultMessage="Volver a métodos de pago" />
                 </button>
               </div>
               <div className="mb-3 text-justify ">
                 <small>
-                  Si el problema persiste puedes comunicarte con nuestro equipo
-                  de soporte a{" "}
-                  <a
-                    className={"font-weight-bold"}
-                    href="mailto:experiencias@famosos.com"
-                  >
-                    experiencias@famosos.com
-                  </a>{" "}
-                  para más información.
+                  <FormattedMessage
+                    defaultMessage="Si el problema persiste puedes comunicarte con nuestro equipo
+                  de soporte a {link} para más información."
+                    values={{
+                      link: (
+                        <a
+                          className={"font-weight-bold"}
+                          href="mailto:experiencias@famosos.com"
+                        >
+                          experiencias@famosos.com
+                        </a>
+                      )
+                    }}
+                  />
                 </small>
               </div>
             </div>

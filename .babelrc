@@ -4,8 +4,25 @@
       "next/babel",
       {
         "styled-jsx": {
-          "plugins": ["styled-jsx-plugin-sass"]
+          "plugins": [
+            "styled-jsx-plugin-sass"
+          ]
         }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "formatjs",
+      {
+        "idInterpolationPattern": "[sha512:contenthash:base64:6]",
+        "ast": true
+      }
+    ],
+    [
+      "babel-plugin-styled-components",
+      {
+        "displayName": true
       }
     ]
   ]

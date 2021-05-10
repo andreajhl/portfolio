@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import * as GTM from "../../../state/utils/gtm";
 import { CelebritiesInfinityScrollLayout } from "../celebrities-infinity-scroll";
 
@@ -26,8 +27,15 @@ const CelebritiesResultsLayout = ({
       onEndMessageButtonClick={registerCelebritiesResultsGoUpButtonClick}
       noResultsText={
         <>
-          No se encontraron resultados <br /> para{" "}
-          {isSearchingByKeyword ? `"${queryParams.search}"` : "esta búsqueda"}.
+          <FormattedMessage
+            defaultMessage=" No se encontraron resultados <br></br> para {search}."
+            values={{
+              br: (chunks) => <br></br>,
+              search: isSearchingByKeyword
+                ? `"${queryParams.search}"`
+                : "esta búsqueda"
+            }}
+          />
         </>
       }
       celebrities={celebrities}

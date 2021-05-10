@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 class LastVideosAvailableBanner extends Component {
   constructor(props) {
@@ -39,7 +40,10 @@ class LastVideosAvailableBanner extends Component {
                   fill="#EC1C24"
                 />
               </svg>{" "}
-              Quedan pocos videos disponibles de {this.props.celebrityFullName}{" "}
+              <FormattedMessage
+                defaultMessage="Quedan pocos videos disponibles de {celebrityFullName}"
+                values={{ celebrityFullName: this.props.celebrityFullName }}
+              />{" "}
               <svg
                 width="4"
                 height="16"

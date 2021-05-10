@@ -9,7 +9,16 @@ import { history } from "../../../routing/History";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
+import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
 
+const errorMessages = defineMessages({
+  errorMessageApplyStripeAuthWithoutSourceID: {
+    defaultMessage: "Debes seleccionar una tarjeta"
+  },
+  errorMessageApplyStripeAuth: {
+    defaultMessage: "Ocurrió un error procesando tu pago."
+  }
+});
 class StripeCustomerSources extends Component {
   constructor(props) {
     super(props);
@@ -38,20 +47,24 @@ class StripeCustomerSources extends Component {
           </div>
           <div className={"mx-auto text-center mb-3"}>
             <button className={"btn btn-primary"} onClick={this.retry}>
-              Volver a intentar
+              <FormattedMessage defaultMessage="Volver a intentar" />
             </button>
           </div>
           <div className="mb-3 text-justify ">
             <small>
-              Si el problema persiste puedes comunicarte con nuestro equipo de
-              soporte a{" "}
-              <a
-                className={"font-weight-bold"}
-                href="mailto:experiencias@famosos.com"
-              >
-                experiencias@famosos.com
-              </a>{" "}
-              para más información.
+              <FormattedMessage
+                defaultMessage="Si el problema persiste puedes comunicarte con nuestro equipo de soporte a <a> experiencias@famosos.com </a> para más información."
+                values={{
+                  a: (chunks) => (
+                    <a
+                      className={"font-weight-bold"}
+                      href="mailto:experiencias@famosos.com"
+                    >
+                      {chunks}
+                    </a>
+                  )
+                }}
+              />
             </small>
           </div>
         </div>
@@ -72,7 +85,9 @@ class StripeCustomerSources extends Component {
       this.setState({
         ...this.state,
         disableButton: false,
-        errorMessage: "Debes seleccionar una tarjeta"
+        errorMessage: this.props.intl.formatMessage(
+          errorMessages.errorMessageApplyStripeAuthWithoutSourceID
+        )
       });
     } else {
       this.setState({
@@ -103,7 +118,7 @@ class StripeCustomerSources extends Component {
                 });
               }
             }
-            const route = PATHS.CONTRACT_CREATED.replace(
+            const route = PATHS.PURCHASE_SUMMARY.replace(
               ":contract_reference",
               res.data.data.reference
             );
@@ -121,7 +136,9 @@ class StripeCustomerSources extends Component {
           } else {
             this.setState({
               ...this.state,
-              errorMessage: "Ocurrió un error procesando tu pago,"
+              errorMessage: this.props.intl.formatMessage(
+                errorMessages.errorMessageApplyStripeAuthWithoutSourceID
+              )
             });
           }
         });
@@ -134,7 +151,9 @@ class StripeCustomerSources extends Component {
       customUI: ({ onClose }) => {
         return (
           <div className="custom-ui">
-            <h4>¿Eliminar tarjeta?</h4>
+            <h4>
+              <FormattedMessage defaultMessage="¿Eliminar tarjeta?" />
+            </h4>
             <br />
             <button
               className={"btn btn-danger mr-2"}
@@ -143,7 +162,7 @@ class StripeCustomerSources extends Component {
                 onClose();
               }}
             >
-              Si, eliminar
+              <FormattedMessage defaultMessage="Si, eliminar" />
             </button>
             <button
               className={"btn mr-2"}
@@ -151,7 +170,7 @@ class StripeCustomerSources extends Component {
                 onClose();
               }}
             >
-              No
+              <FormattedMessage defaultMessage="No" />
             </button>
           </div>
         );
@@ -163,7 +182,9 @@ class StripeCustomerSources extends Component {
     return (
       <div className={"sources-section"}>
         <div className={"mb-3"}>
-          <h6>Selecciona una tarjeta</h6>
+          <h6>
+            <FormattedMessage defaultMessage="Selecciona una tarjeta" />
+          </h6>
         </div>
         {this.props.availableSources.map((s, index) => {
           return (
@@ -204,7 +225,7 @@ class StripeCustomerSources extends Component {
                 onClick={this.applyStripeAuth}
                 disabled={this.state.disableButton}
               >
-                Pagar
+                <FormattedMessage defaultMessage="Pagar" />
               </button>
             </div>
           )}
@@ -229,4 +250,4 @@ StripeCustomerSources.defaultProps = {
   availableSources: [],
   onDeleteSource: () => {}
 };
-export default withRouter(injectStripe(StripeCustomerSources));
+export default withRouter(injectIntl(injectStripe(StripeCustomerSources)));

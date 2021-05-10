@@ -18,37 +18,45 @@ import {
 } from "../../constants/dynamicAds";
 import { useEffect } from "react";
 import waitFor from "react-app/src/utils/waitFor";
+import debug from "react-app/src/utils/debug";
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
-    await get(celebrity_username, true)(store.dispatch);
+    try {
+      await get(celebrity_username, true)(store.dispatch);
+      const { celebrities } = store.getState();
 
-    const { celebrities } = store.getState();
-    const celebrity = celebrities.getCelebrityReducer.data;
-    if (!celebrity.id) {
+      const celebrity = celebrities.getCelebrityReducer.data;
+      if (!celebrity.id) {
+        return {
+          redirect: {
+            destination: CELEBRITY_PROFILE_ERROR.replace(
+              ":celebrity_username",
+              String(celebrity_username)
+            ),
+            permanent: false
+          }
+        };
+      }
+      store.dispatch(
+        setCelebrityProfileVersion(getProfileVersionDependingOnTime())
+      );
+      await listPublicContracts(celebrity.id, { currentPage: 1 })(
+        store.dispatch
+      );
+      await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
+
       return {
-        redirect: {
-          destination: CELEBRITY_PROFILE_ERROR.replace(
-            ":celebrity_username",
-            String(celebrity_username)
-          ),
-          permanent: false
+        props: {
+          celebrity
         }
       };
+    } catch (e) {
+      debug("ERROR getServerSideProps", e);
+      return {
+        props: {}
+      };
     }
-
-    store.dispatch(
-      setCelebrityProfileVersion(getProfileVersionDependingOnTime())
-    );
-
-    await listPublicContracts(celebrity.id, { currentPage: 1 })(store.dispatch);
-    await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
-
-    return {
-      props: {
-        celebrity
-      }
-    };
   }
 );
 

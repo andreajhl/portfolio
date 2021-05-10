@@ -14,6 +14,7 @@ import { Session } from "../../../state/utils/session";
 
 import * as GTM from "../../../state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
+import { FormattedMessage } from "react-intl";
 
 class SimilarCelebrityContractsSectionLayout extends Component {
   constructor(props) {
@@ -119,7 +120,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
         >
           <CarouselWithButtons.Header>
             <CarouselWithButtons.Title className="text-black text-center mb-4 w-100">
-              Videos similares
+              <FormattedMessage defaultMessage="Videos similares" />
             </CarouselWithButtons.Title>
           </CarouselWithButtons.Header>
           <CarouselWithButtons.List>

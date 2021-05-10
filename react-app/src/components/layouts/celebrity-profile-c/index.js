@@ -4,6 +4,7 @@ import { GoToSimilarCelebritiesButton } from "../go-to-similar-celebrities-butto
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import dynamic from "next/dynamic";
 import { SubscriptionToAvailabilityNotification } from "../subscription-to-availability-notification";
+import { FormattedMessage } from "react-intl";
 
 const renderOnlyOnBrowser = { ssr: false };
 
@@ -72,7 +73,7 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
             <HireThisCelebrityButton
               showCelebrityName={true}
               className="get-a-video-button px-md-5 py-3 px-4"
-              text="Quiero un video de"
+              text={<FormattedMessage defaultMessage="Quiero un video de" />}
               fontSize="1.25em"
               celebrityFullName={celebrity.fullName}
               celebrityUsername={celebrity.username}
@@ -84,7 +85,7 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
           fontSize="1.25em"
           width="320px"
         >
-          Ver famosos similares
+          <FormattedMessage defaultMessage="Ver famosos similares" />
         </GoToSimilarCelebritiesButton>
       </section>
     </>

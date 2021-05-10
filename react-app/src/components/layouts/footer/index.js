@@ -3,6 +3,7 @@ import * as PATHS from "../../../routing/Paths";
 import { description, version } from "../../../../../package.json";
 import { withRouter } from "next/router";
 import { Link } from "../../common/routing/link";
+import { FormattedMessage } from "react-intl";
 
 class FooterLayout extends Component {
   constructor(props) {
@@ -43,9 +44,12 @@ class FooterLayout extends Component {
                   />
                 </div>
                 <div className="col-description">
-                  Es una compañía dedicada a crear tecnologías
-                  <br />
-                  que conecten personalidades con su fan base.
+                  <FormattedMessage
+                    defaultMessage="Es una compañía dedicada a crear tecnologías <br></br> que conecten personalidades con su fan base."
+                    values={{
+                      br: (chunks) => <br></br>
+                    }}
+                  />
                 </div>
                 <p className="mb-0">
                   {description} v{version}
@@ -54,12 +58,12 @@ class FooterLayout extends Component {
 
               <div className="col-12 col-md-4 col-lg-4 col-two">
                 <div className="col-title">
-                  ¿Eres una celebridad o influencer?
+                  <FormattedMessage defaultMessage=" ¿Eres una celebridad o influencer?" />
                 </div>
                 <div className="col-button">
                   <Link href={PATHS.CELEBRITY_REQUEST}>
                     <button className="btn btn-apply">
-                      Aplica como Famoso
+                      <FormattedMessage defaultMessage="Aplica como Famoso" />
                     </button>
                   </Link>
                 </div>
@@ -68,7 +72,7 @@ class FooterLayout extends Component {
               <div className="col-12 col-md-4 col-lg-4 col-three">
                 <ul className="list-inline">
                   <li className="list-inline-item mr-3 font-weight-bold">
-                    Síguenos en Redes
+                    <FormattedMessage defaultMessage="Síguenos en Redes" />
                   </li>
                   <li
                     className="list-inline-item mr-3"
@@ -99,7 +103,7 @@ class FooterLayout extends Component {
                       href={PATHS.FAQS_PATH}
                       className="small link text-decoration-none"
                     >
-                      FAQ's
+                      <FormattedMessage defaultMessage="FAQ's" />
                     </Link>
                   </li>
                   <li className="list-inline-item ml-2 cursor-pointer font-weight-bold">
@@ -107,7 +111,7 @@ class FooterLayout extends Component {
                       href={PATHS.TERMS_PATH}
                       className="small link text-decoration-none"
                     >
-                      Términos y Condiciones
+                      <FormattedMessage defaultMessage="Términos y Condiciones" />
                     </Link>
                   </li>
                   <li className="list-inline-item mr-2 mt-1 cursor-pointer font-weight-bold">
@@ -115,7 +119,7 @@ class FooterLayout extends Component {
                       href={PATHS.POLICIES_PATH}
                       className="small link text-decoration-none"
                     >
-                      Privacidad
+                      <FormattedMessage defaultMessage="Privacidad" />
                     </Link>
                   </li>
                   <li className="list-inline-item ml-2 cursor-pointer font-weight-bold">
@@ -130,7 +134,8 @@ class FooterLayout extends Component {
                   </li>
                 </ul>
                 <div className="col-copyright">
-                  &copy; 2020 Famosos, Inc. All Rights Reserved.
+                  &copy;{" "}
+                  <FormattedMessage defaultMessage="2020 Famosos, Inc. All Rights Reserved." />
                 </div>
               </div>
             </div>

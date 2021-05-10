@@ -11,6 +11,6 @@ const Subscriptions = () => {
     </>
   );
 };
-export default withAuthenticationRequired(Subscriptions, {
+export default Subscriptions; /* withAuthenticationRequired(Subscriptions, {
   onRedirecting: () => <LoadingPage></LoadingPage>
-});
+}); */
