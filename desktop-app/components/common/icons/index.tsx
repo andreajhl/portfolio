@@ -93,7 +93,10 @@ export function UserIcon() {
   );
 }
 
-export function PlayIcon({ fill = "currentColor", ...props }) {
+export function PlayIcon({
+  fill = "currentColor",
+  ...props
+}: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="12"
