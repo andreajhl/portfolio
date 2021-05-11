@@ -1,0 +1,13 @@
+.ColorOption {
+  border: 2px solid transparent;
+  background: #f8f8fe;
+  border-radius: 50%;
+  width: 39px;
+  height: 39px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.SelectedColor .ColorOption {
+  border-color: #6970c6;
+}

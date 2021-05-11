@@ -1,0 +1,20 @@
+.backgroundOption {
+  border: 1px solid #ededed;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.SelectedBackground .backgroundOption {
+  border-color: #6970c6;
+  border-width: 2px;
+}
+
+.ResetButton {
+  font-size: 14px;
+  font-weight: bold;
+  color: #8d8d8d;
+  text-decoration: underline !important;
+  margin-left: -0.75rem;
+}

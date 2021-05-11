@@ -1,2 +1,16 @@
 .HiringPreviewEditorPage {
 }
+
+.Container {
+  padding: 2.625rem 0 !important;
+}
+
+.LeftSide {
+  width: 362px;
+  display: flex;
+  flex-direction: column;
+}
+
+.LeftSide > * + * {
+  margin-top: 30px;
+}
