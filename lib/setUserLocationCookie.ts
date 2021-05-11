@@ -1,5 +1,9 @@
 import { parse, serialize } from "cookie";
-import { USER_LOCATION_KEY, USER_IP_ADDRESS } from "constants/keys";
+import {
+  USER_LOCATION_KEY,
+  USER_IP_ADDRESS,
+  USER_CURRENCY_CODE
+} from "constants/keys";
 import axios from "axios";
 import isBot from "isbot";
 import { IncomingMessage, ServerResponse } from "http";
@@ -20,23 +24,41 @@ function getUserIp(request: IncomingMessage) {
   return userIp[0].trim();
 }
 
-async function getIpCountryCode(userIp: string) {
-  const response = await axios.get(
-    `http://api.ipstack.com/${userIp}?access_key=ac1c0a88db0de9da13fcdba5d6742384&fields=country_code`
+async function getIpData(userIp: string) {
+  const response = await axios.get<{
+    country_code: string;
+    currency: {
+      code: string;
+    };
+  }>(
+    `http://api.ipstack.com/${userIp}?access_key=ac1c0a88db0de9da13fcdba5d6742384&fields=country_code,currency.code`
   );
-  return response.data["country_code"] || "";
+  return {
+    country_code: response.data["country_code"] || "",
+    currency_code: response.data?.currency?.code || ""
+  };
 }
 
-const getUserLocationCountryCode = async (
+const getUserLocationData = async (
   request: IncomingMessage
-): Promise<string> => {
+): Promise<{
+  country_code: string;
+  currency_code: string;
+}> => {
   try {
     let userIp = getUserIp(request);
-    if (!userIp || invalidIpAddresses.includes(userIp)) return "";
+    if (!userIp || invalidIpAddresses.includes(userIp))
+      return {
+        country_code: "",
+        currency_code: ""
+      };
     debug("Se va a llamar a IPStack con la IP", userIp);
-    return await getIpCountryCode(userIp);
+    return await getIpData(userIp);
   } catch (error) {
-    return "";
+    return {
+      country_code: "",
+      currency_code: ""
+    };
   }
 };
 
@@ -44,11 +66,17 @@ async function setLocationCookieHeader(
   req: IncomingMessage,
   res: ServerResponse
 ) {
-  const userLocationValue = await getUserLocationCountryCode(req);
+  const userLocationValue = await getUserLocationData(req);
   const userIpAddress = getUserIp(req);
   res.setHeader(
     "Set-Cookie",
-    serialize(USER_LOCATION_KEY, userLocationValue, {
+    serialize(USER_LOCATION_KEY, userLocationValue.country_code, {
+      maxAge: ONE_YEAR_IN_MILLISECONDS
+    })
+  );
+  res.setHeader(
+    "Set-Cookie",
+    serialize(USER_CURRENCY_CODE, userLocationValue.currency_code, {
       maxAge: ONE_YEAR_IN_MILLISECONDS
     })
   );
