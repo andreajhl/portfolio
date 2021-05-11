@@ -1,4 +1,6 @@
 .EditorForm {
+  border: 1px solid #e6e6e6;
+  border-radius: 7px;
 }
 
 .EditorForm .GiftCardPreview {
@@ -15,4 +17,30 @@
   &:hover {
     color: var(--secondary, #6970c6);
   }
+}
+
+.FormFields {
+  padding: 22px 26px 32px;
+  height: 380px;
+}
+
+.FieldTitle {
+  font-size: 16px !important;
+  margin-bottom: 1em;
+}
+
+.FormButtons {
+  display: flex;
+  margin-top: 28px;
+}
+
+.FormButtons > * {
+  flex: 1;
+  font-size: 14px;
+  font-weight: bold;
+  height: 40px;
+}
+
+.FormButtons > * + * {
+  margin-left: 18px;
 }
