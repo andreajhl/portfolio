@@ -7,6 +7,8 @@ export const availableCardColors = [
 ] as const;
 
 export const availablePageBackgroundsUrls = [
-  null,
-  "/assets/hirings-backgrounds/first.jpg",
+  "/assets/img/hirings-preview-backgrounds/background-1.png",
+  "/assets/img/hirings-preview-backgrounds/background-2.png",
+  "/assets/img/hirings-preview-backgrounds/background-3.png",
+  "/assets/img/hirings-preview-backgrounds/background-4.png",
 ] as const;
