@@ -4,7 +4,7 @@ type OccasionType = {
   messages: string[];
 };
 
-const occasions: { [key: string]: OccasionType } = {
+const occasions = {
   BIRTHDAY: {
     icon: "fa-birthday-cake",
     title: "Cumpleaños",
