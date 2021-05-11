@@ -1,0 +1,18 @@
+.ActionButton {
+  height: 48px;
+  width: 48px;
+  background: #ffffff;
+  border-radius: 50% !important;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+.LikeButtonModifier {
+  width: 22px !important;
+  height: 19px !important;
+  color: black;
+  fill: none;
+  &:hover {
+    width: 20px !important;
+    height: 17px !important;
+    fill: var(--primary);
+  }
+}
