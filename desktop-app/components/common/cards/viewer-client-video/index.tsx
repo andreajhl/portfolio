@@ -12,6 +12,7 @@ type ViewerClientVideoProps = {
   username: string;
   videoUrl?: string;
   videoPosterUrl: string;
+  previewMode?: boolean;
 };
 
 function ViewerClientVideo({
@@ -20,6 +21,7 @@ function ViewerClientVideo({
   username,
   videoUrl,
   videoPosterUrl,
+  previewMode = false,
 }: ViewerClientVideoProps) {
   const videoKey = `client-video-${videoUrl}`;
   const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
@@ -42,7 +44,10 @@ function ViewerClientVideo({
   });
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
-
+  const handleTogglePlay = () => {
+    if (previewMode) return;
+    togglePlay();
+  };
   return (
     <div className={styles.ViewerClientVideoWrapper}>
       <section onClick={togglePlay} className={styles.ContractVideoPlayer}>
@@ -62,7 +67,7 @@ function ViewerClientVideo({
           className={styles.VideoElement}
         ></video>
         <Maybe it={!videoIsPlaying}>
-          <PlayIcon className={styles.CTAPlayIcon} onClick={togglePlay} />
+          <PlayIcon className={styles.CTAPlayIcon} onClick={handleTogglePlay} />
         </Maybe>
       </section>
       <div className={styles.CelebrityDetails}>
