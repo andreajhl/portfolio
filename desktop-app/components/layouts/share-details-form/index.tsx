@@ -1,9 +1,12 @@
 import Checkbox from "desktop-app/components/common/form/checkbox";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CellphoneNumberInput } from "../../common/form/cellphone-number-input";
 import { InputField } from "../../common/form/input-field";
 import styles from "./styles.module.scss";
 
-type ShareDetailsFormProps = {};
+type ShareDetailsFormProps = {
+  type?: "whatsapp" | "mail";
+};
 
 function FormField({ label, name = "", type = "text" }) {
   return (
@@ -16,19 +19,34 @@ function FormField({ label, name = "", type = "text" }) {
   );
 }
 
-function ShareDetailsForm({ ...props }: ShareDetailsFormProps) {
+function ShareDetailsForm({ type = "whatsapp" }: ShareDetailsFormProps) {
+  const isWhatsappType = type === "whatsapp";
+
   return (
     <section className={styles.ShareDetailsForm}>
-      <h2 className={styles.Title}>Entrega tu videomensaje por Whatsapp</h2>
+      <h2 className={styles.Title}>
+        Entrega tu videomensaje por{" "}
+        <Maybe it={isWhatsappType} orElse="correo">
+          Whatsapp
+        </Maybe>
+      </h2>
       <div className={styles.CellphoneNumberField}>
         <label htmlFor="cellPhoneNumber" className={styles.Label}>
-          Whatsapp del destinatario
+          <Maybe it={isWhatsappType} orElse="Correo">
+            Whatsapp
+          </Maybe>{" "}
+          del destinatario
         </label>
-        <CellphoneNumberInput
-          value="+52 55 4375 09 49"
-          containerClass={styles.Input}
-          inputClass={styles.CellphoneInput}
-        />
+        <Maybe
+          it={isWhatsappType}
+          orElse={<InputField name="mail" className={styles.Input} />}
+        >
+          <CellphoneNumberInput
+            value="+52 55 4375 09 49"
+            containerClass={styles.Input}
+            inputClass={styles.CellphoneInput}
+          />
+        </Maybe>
       </div>
       <div className={styles.DeliveryInfo}>
         <FormField label="Para" />
