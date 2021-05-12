@@ -28,7 +28,9 @@ const currencyExchangeInitialState = {
   error_data: { error: "" },
   data: {
     to:
-      typeof window !== "undefined" ? getCookie(CURRENT_CURRENCY_TRM_CODE) : "",
+      typeof window !== "undefined"
+        ? getCookie(CURRENT_CURRENCY_TRM_CODE)
+        : "USD",
     rate:
       typeof window !== "undefined" ? getCookie(CURRENT_CURRENCY_TRM_RATE) : ""
   }
