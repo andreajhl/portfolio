@@ -253,7 +253,7 @@ class AvailablePaymentMethods extends Component {
     }));
   };
   render() {
-    const shouldDisplayBuyerForm = this.props.paymentMethodsAvailable.some(
+    const shouldDisplayBuyerForm = this.props.paymentMethodsAvailable?.some(
       (payment) =>
         ["BANK_TRANSFER", "TICKET", "CREDIT_CARD"].includes(
           payment.paymentMethodType
@@ -297,7 +297,7 @@ class AvailablePaymentMethods extends Component {
             </span>
           </div>
 
-          {this.props.paymentMethodsAvailable.map((paymentMethod, index) => {
+          {this.props.paymentMethodsAvailable?.map((paymentMethod, index) => {
             if (paymentMethod.paymentMethodType === "PAYPAL")
               return this.renderPaypalForm(index);
 
