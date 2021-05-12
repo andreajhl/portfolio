@@ -731,6 +731,12 @@
       "value": "The pre-authorisation of the collection to your account has been carried out successfully"
     }
   ],
+  "AHNK8a": [
+    {
+      "type": 0,
+      "value": "DNI or CUIT"
+    }
+  ],
   "ARhEHP": [
     {
       "type": 0,
@@ -2497,6 +2503,12 @@
       "value": "participate in tracking or harvesting, or participate in the use of software, such as spyware, designed to collect data from the Site or the Services;"
     }
   ],
+  "iTKHhw": [
+    {
+      "type": 0,
+      "value": "DNI"
+    }
+  ],
   "iTP7rd": [
     {
       "type": 0,
@@ -3329,6 +3341,12 @@
     {
       "type": 0,
       "value": "The approval process can take around 23 hrs."
+    }
+  ],
+  "z09bol": [
+    {
+      "type": 0,
+      "value": "CURP"
     }
   ],
   "z276Tc": [

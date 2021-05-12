@@ -254,9 +254,6 @@
   "8+5qCg": {
     "message": "correo@dominio.com"
   },
-  "8/GNPR": {
-    "message": "Cédula de Ciudadanía"
-  },
   "8F0yts": {
     "message": "Si por alguna razón tu video no pudo ser grabado, nos pondremos en contacto contigo para notificarte."
   },
@@ -311,6 +308,9 @@
   "AGCHbI": {
     "message": "Se ha realizado con éxito la pre-autorización del cobro a tu cuenta"
   },
+  "AHNK8a": {
+    "message": "DNI o CUIT"
+  },
   "ARhEHP": {
     "message": "Cargando..."
   },
@@ -338,9 +338,6 @@
   },
   "BEkIWA": {
     "message": "Escribe tu Subdominio Ej: /andresito"
-  },
-  "BbTBEe": {
-    "message": "Código Único de Identificación Tributaria"
   },
   "BiLnNi": {
     "message": "¿Qué pasa si no me gusta mi video?"
@@ -839,9 +836,6 @@
   "XlP2E5": {
     "message": "Es una compañía dedicada a crear tecnologías <br></br> que conecten personalidades con su fan base."
   },
-  "XvIJA8": {
-    "message": "¿En qué moneda te gustaría pagar?"
-  },
   "Y6+mfe": {
     "message": "Una descripción de donde se encuentra el presunto material infractor."
   },
@@ -1089,6 +1083,9 @@
   },
   "iSqE0U": {
     "message": "participar en rastreo o cosecha, o participar en el uso de software, como software espía, diseñado para recoger datos del Sitio o los Servicios;"
+  },
+  "iTKHhw": {
+    "message": "CC"
   },
   "iTP7rd": {
     "message": "United States of America (the)"
@@ -1424,9 +1421,6 @@
   "wms1Jl": {
     "message": "Este campo excede el limite de {deliveryFromMaxLength} caracteres"
   },
-  "wvCzn7": {
-    "message": "RFC"
-  },
   "wwFRnk": {
     "message": "El Sitio y los Servicios pueden contener enlaces a otros sitios web y recursos en línea. Un enlace a la página web de un tercero no significa que estamos de acuerdo con ella o que la que están afiliados con ella. No somos responsables por cualquier daño o pérdida relacionada con el uso de cualquier sitio web de terceros. Siempre debe leer los términos y condiciones y la política de privacidad de un sitio web de terceros antes de usarlo."
   },
@@ -1478,6 +1472,9 @@
   },
   "yyUOQR": {
     "message": "El proceso de aprobación puede tardar alrededor de 23 hrs."
+  },
+  "z09bol": {
+    "message": "CURP"
   },
   "z276Tc": {
     "message": "Después de haber recibido su contranotificación, la remitiremos a la parte que presentó la reclamación original de infracción de derechos de autor. Tenga en cuenta que cuando remitamos la contranotificación, que incluye su información personal. Al presentar una contra-notificación, consentimiento para que se revele su información de esta manera. No vamos a pasar la contra-notificación a cualquier parte que no sea el demandante original."

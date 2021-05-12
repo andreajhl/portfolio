@@ -605,12 +605,6 @@
       "value": "correo@dominio.com"
     }
   ],
-  "8/GNPR": [
-    {
-      "type": 0,
-      "value": "Cédula de Ciudadanía"
-    }
-  ],
   "8F0yts": [
     {
       "type": 0,
@@ -731,6 +725,12 @@
       "value": "Se ha realizado con éxito la pre-autorización del cobro a tu cuenta"
     }
   ],
+  "AHNK8a": [
+    {
+      "type": 0,
+      "value": "DNI o CUIT"
+    }
+  ],
   "ARhEHP": [
     {
       "type": 0,
@@ -811,12 +811,6 @@
     {
       "type": 0,
       "value": "Escribe tu Subdominio Ej: /andresito"
-    }
-  ],
-  "BbTBEe": [
-    {
-      "type": 0,
-      "value": "Código Único de Identificación Tributaria"
     }
   ],
   "BiLnNi": [
@@ -1933,12 +1927,6 @@
       "value": " que conecten personalidades con su fan base."
     }
   ],
-  "XvIJA8": [
-    {
-      "type": 0,
-      "value": "¿En qué moneda te gustaría pagar?"
-    }
-  ],
   "Y6+mfe": [
     {
       "type": 0,
@@ -2477,6 +2465,12 @@
     {
       "type": 0,
       "value": "participar en rastreo o cosecha, o participar en el uso de software, como software espía, diseñado para recoger datos del Sitio o los Servicios;"
+    }
+  ],
+  "iTKHhw": [
+    {
+      "type": 0,
+      "value": "CC"
     }
   ],
   "iTP7rd": [
@@ -3671,12 +3665,6 @@
       "value": " caracteres"
     }
   ],
-  "wvCzn7": [
-    {
-      "type": 0,
-      "value": "RFC"
-    }
-  ],
   "wwFRnk": [
     {
       "type": 0,
@@ -3789,6 +3777,12 @@
     {
       "type": 0,
       "value": "El proceso de aprobación puede tardar alrededor de 23 hrs."
+    }
+  ],
+  "z09bol": [
+    {
+      "type": 0,
+      "value": "CURP"
     }
   ],
   "z276Tc": [
