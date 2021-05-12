@@ -25,7 +25,7 @@ function CurrencyDropdownLayout({
   const handleCurrentCurrency = (value) => {
     const newCurrencyExchange = findAvailableCurrencyByName(value);
     currencyExchange({
-      from: currencyExchangeData.to?.name || "USD",
+      from: currencyExchangeData?.from || "USD",
       to: newCurrencyExchange.name
     });
     // GTM.tagManagerDataLayer("CLICK_ON_DROPDOWN_CURRENCY", newCurrencyExchange);
