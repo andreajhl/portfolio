@@ -35,8 +35,8 @@ function CurrencyDropdownLayout({
 
   return (
     <Popup
-      on="hover"
       arrow={false}
+      position="left top"
       trigger={(props) => (
         <button className={classes("btn btn-outline", styles.ButtonDropdown)}>
           <CurrencyIcon />{" "}

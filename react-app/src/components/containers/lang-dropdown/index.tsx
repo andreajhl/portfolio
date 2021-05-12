@@ -22,7 +22,6 @@ export default function LangDropdown() {
 
   return (
     <Popup
-      on="hover"
       arrow={false}
       trigger={(props) => (
         <button className={classes("btn btn-outline", styles.ButtonDropdown)}>
