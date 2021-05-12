@@ -43,7 +43,10 @@ export function serializeCurrencyCurrentData(currencyCurrentData: {
   userLocationCookiesSerialize.push(
     serialize(
       CURRENT_CURRENCY_TRM_CODE,
-      currencyCurrentData.currentCurrencyTRMCode
+      currencyCurrentData.currentCurrencyTRMCode,
+      {
+        maxAge: ONE_YEAR_IN_MILLISECONDS
+      }
     )
   );
   return userLocationCookiesSerialize;
