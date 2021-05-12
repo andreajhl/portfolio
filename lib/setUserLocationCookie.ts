@@ -1,5 +1,9 @@
 import { parse } from "cookie";
-import { USER_LOCATION_KEY, USER_IP_ADDRESS } from "constants/keys";
+import {
+  USER_LOCATION_KEY,
+  USER_IP_ADDRESS,
+  USER_CURRENCY_CODE
+} from "constants/keys";
 import axios from "axios";
 import isBot from "isbot";
 import { IncomingMessage, ServerResponse } from "http";
@@ -127,13 +131,12 @@ const setUserLocationCookie = async ({
     );
   } else {
     const currencyCurrentData = await getCurrencyCurrentTRMCookieHeader(
-      cookies["currency_code"]
+      cookies[USER_CURRENCY_CODE]
     );
     newCookiesSerializes.push(
       ...serializeCurrencyCurrentData(currencyCurrentData)
     );
   }
-
   res.setHeader("Set-Cookie", newCookiesSerializes);
 };
 
