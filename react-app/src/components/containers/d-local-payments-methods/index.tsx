@@ -71,6 +71,8 @@ const RadioInput = styled.span`
   }
 `;
 
+const PAYMENT_METHODS_WITH_CARD_REQUIRED = ["DEBIT_CARD", "CREDIT_CARD"];
+
 type DLocalPaymentsMethodsProps = {
   paymentMethodType: string;
   contractReference: string | number;
@@ -89,7 +91,6 @@ type DLocalPaymentsMethodsProps = {
   };
   discountCouponId: null | string | number;
   isSelected: boolean;
-  cardIsRequired?: boolean;
   handleBuyerDataIncomplete: Function;
   disabledButton?: boolean;
 };
@@ -101,7 +102,6 @@ const DLocalPaymentsMethods = ({
   buyerData,
   discountCouponId,
   isSelected,
-  cardIsRequired,
   handleBuyerDataIncomplete,
   disabledButton
 }: DLocalPaymentsMethodsProps) => {
@@ -317,7 +317,7 @@ const DLocalPaymentsMethods = ({
           </div>
         )}
         <div className="mt-2">
-          {cardIsRequired ? (
+          {PAYMENT_METHODS_WITH_CARD_REQUIRED.includes(paymentMethodType) ? (
             <DLocalFormCard
               paymentMethodType={paymentMethodType}
               paymentErrorMessage={paymentError}
