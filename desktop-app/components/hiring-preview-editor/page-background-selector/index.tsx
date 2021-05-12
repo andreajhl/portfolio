@@ -26,7 +26,7 @@ function PageBackgroundSelector({
           >
             <img
               className={styles.backgroundOption}
-              src={backgroundUrl}
+              src={backgroundUrl.replace(".png", "-small.png")}
               alt={`Fondo de pagina numero ${index + 1}`}
               style={{ marginLeft: index === 0 ? 0 : 9 }}
             />
