@@ -2,7 +2,8 @@ import { parse } from "cookie";
 import {
   USER_LOCATION_KEY,
   USER_IP_ADDRESS,
-  USER_CURRENCY_CODE
+  USER_CURRENCY_CODE,
+  CURRENT_CURRENCY_TRM_CODE
 } from "constants/keys";
 import axios from "axios";
 import isBot from "isbot";
@@ -80,7 +81,10 @@ async function getLocationCookieHeader(
     userIpAddressLocation: userIpAddress
   };
 }
-async function getCurrencyCurrentTRMCookieHeader(currency: string) {
+async function getCurrencyCurrentTRMCookieHeader(
+  currency: string,
+  cookies: string
+) {
   let currencyCode = null;
   if (findAvailableCurrencyByName(currency)) {
     currencyCode = currency;
@@ -120,10 +124,15 @@ const setUserLocationCookie = async ({
   const cookies = parse(req?.headers?.cookie || "");
   let newCookiesSerializes = [];
 
-  if (!(USER_LOCATION_KEY in cookies) || !(USER_IP_ADDRESS in cookies)) {
+  if (
+    !(USER_LOCATION_KEY in cookies) ||
+    !(USER_IP_ADDRESS in cookies) ||
+    !(USER_CURRENCY_CODE in cookies)
+  ) {
     const locationCookies = await getLocationCookieHeader(req, res);
     const currencyCurrentData = await getCurrencyCurrentTRMCookieHeader(
-      locationCookies.currency_code
+      locationCookies.currency_code,
+      cookies
     );
     newCookiesSerializes.push(...serializeUserLocationCookies(locationCookies));
     newCookiesSerializes.push(
@@ -131,7 +140,8 @@ const setUserLocationCookie = async ({
     );
   } else {
     const currencyCurrentData = await getCurrencyCurrentTRMCookieHeader(
-      cookies[USER_CURRENCY_CODE]
+      cookies[CURRENT_CURRENCY_TRM_CODE] || cookies[USER_CURRENCY_CODE],
+      cookies
     );
     newCookiesSerializes.push(
       ...serializeCurrencyCurrentData(currencyCurrentData)
