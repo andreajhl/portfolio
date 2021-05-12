@@ -8,6 +8,7 @@ import { CurrencyDropdownSelect } from "../../../components/currency-select-for-
 import { withRouter } from "next/router";
 import { LoaderLayout } from "../../layouts/loader";
 import { secure_payment_img } from "constants/external_assets_by_lang";
+import { listPaymentGateways } from "../../../state/ducks/payments/operations";
 
 class PaymentMethodsSection extends Component {
   constructor(props) {
@@ -22,6 +23,12 @@ class PaymentMethodsSection extends Component {
       ...this.state,
       currentCurrencySelected: newCurrency
     });
+  };
+  componentDidMount() {
+    this.getPaymentsGatewaysMethods(this.props.currencyExchangeData.to);
+  }
+  getPaymentsGatewaysMethods = (currency) => {
+    this.props.listPaymentGateways(currency);
   };
 
   render() {
@@ -80,30 +87,6 @@ class PaymentMethodsSection extends Component {
               </div>
             ) : (
               <React.Fragment>
-                <div
-                  className="mx-auto mt-4 mb-4"
-                  style={{
-                    maxWidth: "500px",
-                    paddingLeft: "20px",
-                    paddingRight: "20px",
-                    paddingTop: "20px"
-                  }}
-                >
-                  <div className="d-flex col-12 col-md-10 p-0 ">
-                    <span className="payment-methods__steps-to-pay">1</span>{" "}
-                    <span className="ml-2 font-weight-bold">
-                      <FormattedMessage defaultMessage="¿En qué moneda te gustaría pagar?" />
-                    </span>
-                  </div>
-                  <div className="pt-4">
-                    <CurrencyDropdownSelect
-                      onChangeCurrency={(newCurrency) =>
-                        this.handlerCurrencySelectedChange(newCurrency)
-                      }
-                      className="mx-auto"
-                    ></CurrencyDropdownSelect>
-                  </div>
-                </div>
                 {/* // PAYMENT METHODS */}
                 <AvailablePaymentMethods
                   currentCurrencySelected={this.state.currentCurrencySelected}
@@ -187,10 +170,9 @@ const mapStateToProps = ({
   currencyExchangeData: currencyExchangeReducer.data
 });
 
-const _PaymentMethodsSection = connect(
-  mapStateToProps,
-  null
-)(withRouter(PaymentMethodsSection));
+const _PaymentMethodsSection = connect(mapStateToProps, {
+  listPaymentGateways
+})(withRouter(PaymentMethodsSection));
 
 // Export Class
 export { _PaymentMethodsSection as PaymentMethodsSection };

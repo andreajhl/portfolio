@@ -33,25 +33,16 @@ class AvailablePaymentMethods extends Component {
       ...this.state,
       currencySelected: this.props.currentCurrencySelected
     });
-    this.getPaymentsGatewaysMethods(this.props.currentCurrencySelected);
   }
-
-  getPaymentsGatewaysMethods = (currency) => {
-    this.props.listPaymentGateways(currency);
-  };
 
   componentDidUpdate(prevProps, prevState) {
     if (
       this.props.currentCurrencySelected !== prevProps.currentCurrencySelected
     ) {
-      this.setState(
-        {
-          ...this.state,
-          currencySelected: this.props.currentCurrencySelected
-        },
-        () =>
-          this.getPaymentsGatewaysMethods(this.props.currentCurrencySelected)
-      );
+      this.setState({
+        ...this.state,
+        currencySelected: this.props.currentCurrencySelected
+      });
     }
   }
   changeToStripe = (e) => {
@@ -77,14 +68,46 @@ class AvailablePaymentMethods extends Component {
     return this.props.contractPrice - discountTotal;
   }
 
-  changeToPaypal = (e) => {
-    e.preventDefault();
+  renderWhatsappContactForm = () => {
+    return getWindow().userLocation?.countryCode === "CO" ||
+      getWindow().userLocation?.countryCode === "MX" ? (
+      <div className="payment-type mb-3" onClick={this.changeToWhatsapp}>
+        <div className="titles">
+          <div className="icon">
+            {this.state.selectedPaymentMethod === "WHATSAPP" ? (
+              <i className={`far  fa-dot-circle`}></i>
+            ) : (
+              <i class="far fa-circle"></i>
+            )}
+          </div>
+          <div className="payment-type-title">
+            <h6 className={"font-weight-normal"}>
+              <span>
+                <FormattedMessage defaultMessage="Transferencia bancaria" />
+              </span>
+            </h6>
+            <i class="fas fa-exchange-alt"></i>{" "}
+          </div>
+        </div>
 
-    this.setState({
-      ...this.state,
-      selectedPaymentMethod: "PAYPAL"
-    });
+        <div
+          className={
+            "pl-3 pr-3 pt-4 pb-4 bg-light" +
+            (this.state.selectedPaymentMethod === "WHATSAPP" ? "" : " d-none ")
+          }
+        >
+          <WhatsappContact
+            text={
+              <FormattedMessage defaultMessage="Haz clic en el botón de WhatsApp para que a través de este canal te podamos dar las instrucciones para concretar el pago de tu videomensaje." />
+            }
+            numberPhone={18559107580}
+            placeHolderMessage="Quiero pagar con transferencia bancaria"
+          />
+        </div>
+      </div>
+    ) : null;
   };
+
   changeToWhatsapp = (e) => {
     // e.preventDefault();
 
@@ -136,7 +159,7 @@ class AvailablePaymentMethods extends Component {
           {shouldDisplayBuyerForm ? (
             <React.Fragment>
               <div className="d-flex mb-2 pl-1">
-                <span className="payment-methods__steps-to-pay">2</span>{" "}
+                <span className="payment-methods__steps-to-pay">1</span>{" "}
                 <span className="ml-2 font-weight-bold">
                   <FormattedMessage defaultMessage="Datos de la persona que realiza el pago" />
                 </span>
@@ -151,9 +174,10 @@ class AvailablePaymentMethods extends Component {
               />
             </React.Fragment>
           ) : null}
+
           <div className="d-flex pl-1 mb-4 mt-4">
             <span className="payment-methods__steps-to-pay">
-              {shouldDisplayBuyerForm ? "3" : "2"}
+              {shouldDisplayBuyerForm ? "2" : "1"}
             </span>{" "}
             <span className="ml-2 font-weight-bold">
               <FormattedMessage defaultMessage="Elige el método de pago" />
@@ -161,7 +185,7 @@ class AvailablePaymentMethods extends Component {
           </div>
 
           {this.props.paymentMethodsAvailable.map((paymentMethod, index) => {
-            if (paymentMethod.paymentMethodType === "PAYPAL") {
+            if (paymentMethod.paymentMethodType === "PAYPAL")
               return (
                 <div
                   key={`${index}-${paymentMethod.paymentMethodType}`}
@@ -203,7 +227,8 @@ class AvailablePaymentMethods extends Component {
                   </div>
                 </div>
               );
-            } else if (paymentMethod.paymentMethodType === "STRIPE") {
+
+            if (paymentMethod.paymentMethodType === "STRIPE")
               return (
                 <div
                   className="payment-type mb-3"
@@ -249,7 +274,7 @@ class AvailablePaymentMethods extends Component {
                   </div>
                 </div>
               );
-            } else if (paymentMethod.paymentMethodType === "BANK_TRANSFER") {
+            if (paymentMethod.paymentMethodType === "BANK_TRANSFER")
               return (
                 <div
                   key={`${index}-${paymentMethod.paymentMethodType}`}
@@ -273,7 +298,7 @@ class AvailablePaymentMethods extends Component {
                   />
                 </div>
               );
-            } else if (paymentMethod.paymentMethodType === "TICKET") {
+            if (paymentMethod.paymentMethodType === "TICKET")
               return (
                 <div
                   key={`${index}-${paymentMethod.paymentMethodType}`}
@@ -295,7 +320,7 @@ class AvailablePaymentMethods extends Component {
                   />
                 </div>
               );
-            } else if (paymentMethod.paymentMethodType === "CREDIT_CARD") {
+            if (paymentMethod.paymentMethodType === "CREDIT_CARD")
               return (
                 <div
                   key={`${index}-${paymentMethod.paymentMethodType}`}
@@ -319,7 +344,7 @@ class AvailablePaymentMethods extends Component {
                   />
                 </div>
               );
-            } else if (paymentMethod.paymentMethodType === "DEBIT_CARD") {
+            if (paymentMethod.paymentMethodType === "DEBIT_CARD") {
               return (
                 <div
                   key={`${index}-${paymentMethod.paymentMethodType}`}
@@ -348,45 +373,7 @@ class AvailablePaymentMethods extends Component {
             }
           })}
 
-          {getWindow().userLocation?.countryCode === "CO" ||
-          getWindow().userLocation?.countryCode === "MX" ? (
-            <div className="payment-type mb-3" onClick={this.changeToWhatsapp}>
-              <div className="titles">
-                <div className="icon">
-                  {this.state.selectedPaymentMethod === "WHATSAPP" ? (
-                    <i className={`far  fa-dot-circle`}></i>
-                  ) : (
-                    <i class="far fa-circle"></i>
-                  )}
-                </div>
-                <div className="payment-type-title">
-                  <h6 className={"font-weight-normal"}>
-                    <span>
-                      <FormattedMessage defaultMessage="Transferencia bancaria" />
-                    </span>
-                  </h6>
-                  <i class="fas fa-exchange-alt"></i>{" "}
-                </div>
-              </div>
-
-              <div
-                className={
-                  "pl-3 pr-3 pt-4 pb-4 bg-light" +
-                  (this.state.selectedPaymentMethod === "WHATSAPP"
-                    ? ""
-                    : " d-none ")
-                }
-              >
-                <WhatsappContact
-                  text={
-                    <FormattedMessage defaultMessage="Haz clic en el botón de WhatsApp para que a través de este canal te podamos dar las instrucciones para concretar el pago de tu videomensaje." />
-                  }
-                  numberPhone={18559107580}
-                  placeHolderMessage="Quiero pagar con transferencia bancaria"
-                />
-              </div>
-            </div>
-          ) : null}
+          {this.renderWhatsappContactForm()}
           <DiscountCouponForm />
         </div>
       </div>
