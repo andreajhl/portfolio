@@ -82,3 +82,6 @@ export const getSearchHashtagPath = (hashtag) => getSearchPath({ hashtag });
 
 export const getHiringPreviewPath = (contractReference) =>
   HIRING_PREVIEW.replace(":contract_reference", contractReference);
+
+export const getClientHiringPreviewPath = (contractReference) =>
+  ACCOUNT_HIRING_PREVIEW.replace(":contract_reference", contractReference);

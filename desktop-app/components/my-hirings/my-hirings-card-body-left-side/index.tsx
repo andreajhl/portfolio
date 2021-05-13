@@ -7,7 +7,7 @@ import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import { ContractIsPublicChanger } from "../contract-is-public-changer";
 import styles from "./styles.module.scss";
 import { Link } from "desktop-app/components/common/routing/link";
-import { getHiringPreviewPath } from "constants/paths";
+import { getClientHiringPreviewPath } from "constants/paths";
 import { MyHiringsCardContractInfo } from "desktop-app/components/my-hirings/my-hirings-card-contract-info";
 
 type MyHiringsCardBodyLeftSideProps = {
@@ -43,7 +43,7 @@ function MyHiringsCardBodyLeftSide({
       </Maybe>
       <Maybe it={isCompleted}>
         <Link
-          href={getHiringPreviewPath(contractData.reference)}
+          href={getClientHiringPreviewPath(contractData.reference)}
           className={styles.WatchVideoLink}
         >
           <button
