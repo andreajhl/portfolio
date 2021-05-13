@@ -1,5 +1,5 @@
 export const availableCardColors = [
-  "#F8F8FE",
+  "#E8E8FF",
   "#FFE3F0",
   "#FFF5CA",
   "#E3F8FF",

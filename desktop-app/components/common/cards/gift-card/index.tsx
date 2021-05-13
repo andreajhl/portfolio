@@ -2,8 +2,10 @@ import { ReactNode } from "react";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { getOccasion } from "constants/occasions";
+import { CSSProperties } from "react";
 
 type GiftCardProps = {
+  cardColor?: CSSProperties["backgroundColor"];
   className?: string;
   occasion?: string;
   children?: ReactNode;
@@ -18,13 +20,17 @@ function SpecialText({ children }) {
 }
 
 function GiftCard({
+  cardColor = "white",
   occasion = "OTHER",
   className = "",
   children,
 }: GiftCardProps) {
   const [occasionKey, occasionData] = getOccasion(occasion);
   return (
-    <section className={classes(styles.GiftCard, className)}>
+    <section
+      className={classes(styles.GiftCard, className)}
+      style={{ backgroundColor: cardColor }}
+    >
       <div className={styles.Occasion}>
         <img
           src={`/assets/img/occasions/${occasionKey}.svg`}
