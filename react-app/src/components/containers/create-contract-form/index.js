@@ -370,7 +370,7 @@ class CreateContractForm extends Component {
     return this.state.instructionsIsTouched
       ? this.state.contractData.instructions
       : this.replacePlaceHolder(
-          occasionsData[this.locale][occasionIdentifier].messages[
+          occasionsData[this.props.router.locale][occasionIdentifier].messages[
             this.state.contractData.contractType - 1
           ]
         );
