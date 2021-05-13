@@ -26,7 +26,11 @@ function EditorForm({ ...props }: EditorFormProps) {
 
   return (
     <div className={styles.EditorForm}>
-      <GiftCard className={styles.GiftCardPreview} occasion="BIRTHDAY">
+      <GiftCard
+        className={styles.GiftCardPreview}
+        occasion="BIRTHDAY"
+        cardColor={color}
+      >
         <GiftCard.Title>¡Feliz cumpleaños mi amor!</GiftCard.Title>
         <button className={classes("btn", styles.TitleEditToggler)}>
           Editar título
