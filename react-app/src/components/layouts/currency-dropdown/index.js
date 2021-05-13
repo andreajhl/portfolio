@@ -20,6 +20,10 @@ const mapDispatchToProps = { currencyExchange };
 const defaultCurrencyExchangeData = { to: "USD" };
 const defaultCurrencyExchange = (params) => {};
 
+const AVAILABLE_CURRENCIES_SORT = AVAILABLE_CURRENCIES.sort(function (a, b) {
+  return a.label.localeCompare(b.label);
+});
+
 function CurrencyDropdownLayout({
   currencyExchange = defaultCurrencyExchange,
   currencyExchangeData = defaultCurrencyExchangeData,
@@ -57,7 +61,7 @@ function CurrencyDropdownLayout({
         </Modal.Header>
         <Modal.Body>
           <ul className={`options-list pl-2 mb-0`}>
-            {AVAILABLE_CURRENCIES.map((option) => {
+            {AVAILABLE_CURRENCIES_SORT.map((option) => {
               const optionKey = `${option.name}-${option.label}`;
               return (
                 <li className="options-list__item" key={optionKey}>
