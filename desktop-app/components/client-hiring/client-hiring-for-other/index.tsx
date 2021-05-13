@@ -13,7 +13,10 @@ function ClientHiringForOther({ contractData }: ClientHiringForOtherProps) {
   return (
     <div className={classes("container", styles.Container)}>
       <div className={styles.LeftSide}>
-        <CustomizeGiftCard deliveryTo={contractData.deliveryTo} />
+        <CustomizeGiftCard
+          contractReference={contractData.reference}
+          deliveryTo={contractData.deliveryTo}
+        />
         <DeliverVideoCard
           className={styles.DeliverVideoCard}
           deliveryTo={contractData.deliveryTo}
