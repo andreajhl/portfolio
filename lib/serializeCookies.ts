@@ -38,16 +38,25 @@ export function serializeCurrencyCurrentData(currencyCurrentData: {
 }) {
   let userLocationCookiesSerialize = [];
   userLocationCookiesSerialize.push(
-    serialize(CURRENT_CURRENCY_TRM_RATE, currencyCurrentData.currencyCurrentTRM)
+    serialize(
+      CURRENT_CURRENCY_TRM_RATE,
+      currencyCurrentData.currencyCurrentTRM,
+      {
+        path: "/"
+      }
+    )
   );
   userLocationCookiesSerialize.push(
     serialize(
       CURRENT_CURRENCY_TRM_CODE,
       currencyCurrentData.currentCurrencyTRMCode,
       {
-        maxAge: ONE_YEAR_IN_MILLISECONDS
+        maxAge: ONE_YEAR_IN_MILLISECONDS,
+
+        path: "/"
       }
     )
   );
+  console.log(userLocationCookiesSerialize);
   return userLocationCookiesSerialize;
 }
