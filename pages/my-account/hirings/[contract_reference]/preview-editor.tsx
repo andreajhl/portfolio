@@ -3,6 +3,8 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { LoaderLayout } from "react-app/src/components/layouts/loader";
 import { HiringPreviewEditorPage } from "desktop-app/components/pages/hiring-preview-editor";
+import isMobile from "lib/utils/isMobile";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 
 export const getServerSideProps: GetServerSideProps = async ({
   params: { contract_reference },
@@ -13,6 +15,8 @@ export const getServerSideProps: GetServerSideProps = async ({
 };
 
 const HiringPreviewEditor = ({ contract_reference, pathname }) => {
+  useDesktopClass(true);
+
   return (
     <>
       <CustomHead />
