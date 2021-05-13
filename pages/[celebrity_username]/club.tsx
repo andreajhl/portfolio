@@ -6,7 +6,17 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import { SubscribePage } from "react-app/src/components/pages/subscribir";
+import { defineMessages, useIntl } from "react-intl";
 
+const headData = defineMessages({
+  titleClub: {
+    defaultMessage: "Famosos.com - Club de fans de {celebrity_username}"
+  },
+  descriptionClub: {
+    defaultMessage:
+      "Club de fans de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
+  }
+});
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
     await get(celebrity_username, true)(store.dispatch);
@@ -33,11 +43,16 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 );
 
 const Club = ({ celebrity }) => {
+  const { formatMessage } = useIntl();
   return (
     <>
       <CustomHead
-        title={`Famosos.com - Club de fans de ${celebrity.fullName}`}
-        description={`Club de fans de ${celebrity.fullName} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.`}
+        title={formatMessage(headData.titleClub, {
+          celebrity_username: celebrity.fullName
+        })}
+        description={formatMessage(headData.descriptionClub, {
+          celebrity_username: celebrity.fullName
+        })}
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
       />

@@ -19,7 +19,17 @@ import {
 import { useEffect } from "react";
 import waitFor from "react-app/src/utils/waitFor";
 import debug from "react-app/src/utils/debug";
+import { defineMessages, useIntl } from "react-intl";
 
+const headData = defineMessages({
+  titleCelebrityProfile: {
+    defaultMessage: "Famosos.com - {celebrity_username}"
+  },
+  descriptionCelebrityProfile: {
+    defaultMessage:
+      "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
+  }
+});
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
     try {
@@ -63,6 +73,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 const CelebrityProfile = ({ celebrity }) => {
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
   const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
+  const { formatMessage } = useIntl();
 
   useEffect(() => {
     async function captureProfileViewEvent() {
@@ -79,8 +90,12 @@ const CelebrityProfile = ({ celebrity }) => {
   return (
     <>
       <CustomHead
-        title={`Famosos.com - ${celebrity.fullName}`}
-        description={`Perfil oficial de ${celebrity.fullName} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.`}
+        title={formatMessage(headData.titleCelebrityProfile, {
+          celebrity_username: celebrity.fullName
+        })}
+        description={formatMessage(headData.descriptionCelebrityProfile, {
+          celebrity_username: celebrity.fullName
+        })}
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
       />
