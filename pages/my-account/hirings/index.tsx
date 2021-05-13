@@ -16,7 +16,7 @@ const MyHirings = dynamic(() =>
   import("desktop-app/components/pages/my-hirings").then((mod) => mod.MyHirings)
 );
 
-export const getServerSideProp = async ({ req }) => {
+export const getServerSideProps = async ({ req }) => {
   return {
     props: { isMobile: isMobile(req.headers["user-agent"]) },
   };
