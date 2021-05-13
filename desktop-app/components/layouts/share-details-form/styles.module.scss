@@ -1,0 +1,113 @@
+.ShareDetailsForm {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  padding: 18px 34px 40px;
+}
+
+.Title {
+  font-size: 24px !important;
+  margin-bottom: 34px;
+}
+
+.Label {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.Input {
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.CellphoneInput {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.CellphoneNumberField {
+  width: calc(50% - 19px);
+  margin-bottom: 19px;
+}
+
+.DeliveryInfo {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.DeliveryInfo > * {
+  width: 100%;
+}
+
+.DeliveryInfo > * + * {
+  margin-left: 38px;
+}
+
+.DeliveryType {
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Checkbox + .Checkbox {
+  margin-top: 26px !important;
+}
+
+.Checkbox > span {
+  flex: 1;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.ScheduleInfo {
+  display: flex;
+  margin-top: 30px;
+}
+
+.ScheduleInfo > * {
+  width: 100%;
+}
+
+.ScheduleInfo > * + * {
+  margin-left: 38px;
+}
+
+.TimeInputContainer {
+  display: flex;
+  border: 1px solid #dedede;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.TimeInputContainer > * {
+  flex: 50%;
+}
+
+.TimeInput {
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.TimezoneSelect {
+  text-align: center;
+  background: #f9f9ff;
+  border: 1px solid #dedede;
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.SubmitButton {
+  width: 230px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 45px;
+}

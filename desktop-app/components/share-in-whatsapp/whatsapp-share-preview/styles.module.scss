@@ -1,0 +1,26 @@
+.WhatsappSharePreview {
+  height: 501px;
+  width: 247px;
+  background-image: url("/assets/img/whatsapp-share-preview.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin-right: 120px;
+  padding: 100px 25px;
+  margin-top: 2px;
+}
+
+.MessageToast {
+  word-break: break-word;
+  width: 200px;
+  padding: 1.142857142857143em 1em;
+  font-size: 12.5px;
+  font-weight: bold;
+  background-color: #e1ffc7;
+  border-radius: 7px 0 7px 7px;
+}
+
+.Hyperlink {
+  text-decoration: underline;
+  color: #4fa9d6;
+  font-weight: bold;
+}

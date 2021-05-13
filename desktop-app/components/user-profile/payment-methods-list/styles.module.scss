@@ -6,6 +6,7 @@
 .PaymentMethodsList {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .PaymentMethodItem {
@@ -13,6 +14,10 @@
   align-items: center;
   justify-content: space-between;
   font-size: 14px;
+}
+
+.PaymentMethodItem + .PaymentMethodItem + .PaymentMethodItem {
+  margin-top: 1rem;
 }
 
 .PaymentMethodBrand {
