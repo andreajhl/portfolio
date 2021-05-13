@@ -4,6 +4,7 @@ import LoadingPage from "react-app/src/components/layouts/loading-page";
 import isMobile from "lib/utils/isMobile";
 import dynamic from "next/dynamic";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 
 const ClientHiringPage = dynamic(() =>
   import("react-app/src/components/pages/client-hiring").then(
@@ -11,28 +12,42 @@ const ClientHiringPage = dynamic(() =>
   )
 );
 
-const DesktopClientHiringPage = dynamic(() =>
+const DesktopClientHiringPage = dynamic<{ contractReference: string }>(() =>
   import("desktop-app/components/pages/client-hiring").then(
     (mod) => mod.ClientHiringPage
   )
 );
 
-export const getServerSideProp = async ({ req }) => {
+export async function getServerSideProps({
+  req,
+  params: { contract_reference },
+}) {
   return {
-    props: { isMobile: isMobile(req.headers["user-agent"]) },
+    props: {
+      isMobile: isMobile(req.headers["user-agent"]),
+      contractReference: contract_reference,
+    },
   };
-};
+}
 
-const HiringPreview = ({ isMobile }) => {
+const HiringPreview = ({ isMobile, contractReference }) => {
+  useDesktopClass(isMobile);
+
   return (
     <>
       <CustomHead />
-      <Maybe it={isMobile} orElse={<DesktopClientHiringPage />}>
+      <Maybe
+        it={isMobile}
+        orElse={
+          <DesktopClientHiringPage contractReference={contractReference} />
+        }
+      >
         <ClientHiringPage />
       </Maybe>
     </>
   );
 };
+
 export default withAuthenticationRequired(HiringPreview, {
   onRedirecting: LoadingPage,
 });

@@ -1,33 +1,65 @@
 import PageContainer from "desktop-app/components/layouts/page-container";
-import classes from "classnames";
-import styles from "./styles.module.scss";
-import ViewerClientVideo from "desktop-app/components/common/cards/viewer-client-video";
-import { CustomizeGiftCard } from "desktop-app/components/client-hiring/customize-gift-card";
-import { DeliverVideoCard } from "desktop-app/components/deliver-video-card";
+import { useEffect } from "react";
+import { getContract } from "react-app/src/state/ducks/contracts/actions";
+import { useRouter } from "next/router";
+import { CLIENT_HIRINGS } from "constants/paths";
+import { connect } from "react-redux";
+import { ClientHiringForOther } from "desktop-app/components/client-hiring/client-hiring-for-other";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 
-function ClientHiringPage() {
+const mapStateToProps = (state) => ({
+  isLoading: state.contracts.getContractReducer.loading,
+  contract: state.contracts.getContractReducer.data,
+  isCompleted: state.contracts.getContractReducer.completed,
+  isFailed: state.contracts.getContractReducer.failed,
+});
+
+const mapDispatchToProps = {
+  getContract,
+};
+
+type StateProps = ReturnType<typeof mapStateToProps>;
+
+type DispatchProps = typeof mapDispatchToProps;
+
+type ClientHiringPageProps = {
+  contractReference: string;
+} & StateProps &
+  DispatchProps;
+
+function ClientHiringPage({
+  contractReference,
+  getContract,
+  contract,
+  isFailed,
+}: ClientHiringPageProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log({ contractReference });
+    if (!contractReference) return;
+    getContract(contractReference);
+  }, []);
+
+  useEffect(() => {
+    if (!isFailed) return;
+    router.push(CLIENT_HIRINGS);
+  }, [isFailed, router]);
+
+  console.log(contract);
+
   return (
     <PageContainer showFooter={false}>
-      <div className={classes("container", styles.Container)}>
-        <div className={styles.LeftSide}>
-          <CustomizeGiftCard deliveryTo="Ana" />
-          <DeliverVideoCard
-            className={styles.DeliverVideoCard}
-            deliveryTo="Ana"
-          />
-        </div>
-        <div className={styles.RightSide}>
-          <ViewerClientVideo
-            avatar="https://dqb0851cl2gjs.cloudfront.net/celebrities/2530/avatar/famosos-videos-personalizados-nacho-compressed.jpeg"
-            fullName="Enrique Arce"
-            username="enriquearce"
-            videoUrl="https://dqb0851cl2gjs.cloudfront.net/main-videos/2530/famosos-videos-personalizados-nacho-crf-video480.mp4"
-            videoPosterUrl="https://d3dxo4xx2lwk55.cloudfront.net/videos/609/14805/famosos-videos-personalizados-enriquearce-202102181551-7872249-14805-crf-video-poster480.jpg"
-          />
-        </div>
-      </div>
+      <Maybe it={contract.celebrityData && contract.contractType !== 2}>
+        <ClientHiringForOther contractData={contract} />
+      </Maybe>
     </PageContainer>
   );
 }
 
-export { ClientHiringPage };
+const _ClientHiringPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ClientHiringPage);
+
+export { _ClientHiringPage as ClientHiringPage };
