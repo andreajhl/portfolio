@@ -1,0 +1,35 @@
+import { CustomizeGiftCard } from "../customize-gift-card";
+import ViewerClientVideo from "../../common/cards/viewer-client-video";
+import { DeliverVideoCard } from "../deliver-video-card";
+import classes from "classnames";
+import styles from "./styles.module.scss";
+import ClientContractType from "desktop-app/types/clientContract";
+
+type ClientHiringForOtherProps = {
+  contractData: ClientContractType;
+};
+
+function ClientHiringForOther({ contractData }: ClientHiringForOtherProps) {
+  return (
+    <div className={classes("container", styles.Container)}>
+      <div className={styles.LeftSide}>
+        <CustomizeGiftCard deliveryTo={contractData.deliveryTo} />
+        <DeliverVideoCard
+          className={styles.DeliverVideoCard}
+          deliveryTo={contractData.deliveryTo}
+        />
+      </div>
+      <div className={styles.RightSide}>
+        <ViewerClientVideo
+          avatar={contractData.celebrityData.avatar}
+          fullName={contractData.celebrityData.fullName}
+          username={contractData.celebrityData.username}
+          videoUrl={contractData.media}
+          videoPosterUrl="https://d3dxo4xx2lwk55.cloudfront.net/videos/609/14805/famosos-videos-personalizados-enriquearce-202102181551-7872249-14805-crf-video-poster480.jpg"
+        />
+      </div>
+    </div>
+  );
+}
+
+export { ClientHiringForOther };
