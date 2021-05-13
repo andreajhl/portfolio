@@ -20,4 +20,4 @@ const HiringShareInWhatsappPage = () => {
   );
 };
 
-export { HiringShareInWhatsappPage as HiringSharePage };
+export { HiringShareInWhatsappPage };

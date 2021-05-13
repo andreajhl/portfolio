@@ -2,7 +2,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { LoaderLayout } from "react-app/src/components/layouts/loader";
-import { HiringSharePage } from "desktop-app/components/pages/hiring-share-in-whatsapp";
+import { HiringShareInWhatsappPage } from "desktop-app/components/pages/hiring-share-in-whatsapp";
 
 export const getServerSideProps: GetServerSideProps = async ({
   params: { contract_reference },
@@ -16,7 +16,7 @@ const HiringShareInWhatsapp = ({ contract_reference }) => {
   return (
     <>
       <CustomHead />
-      <HiringSharePage contractReference={contract_reference} />
+      <HiringShareInWhatsappPage contractReference={contract_reference} />
     </>
   );
 };
