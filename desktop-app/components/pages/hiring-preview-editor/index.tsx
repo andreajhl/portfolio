@@ -4,6 +4,7 @@ import classes from "classnames";
 import styles from "./styles.module.scss";
 import { EditorForm } from "desktop-app/components/hiring-preview-editor/editor-form";
 import ViewerClientVideo from "desktop-app/components/common/cards/viewer-client-video";
+import VideoActionButtons from "desktop-app/components/common/cards/video/action-buttons";
 
 const mockData = {
   id: 2530,
@@ -59,6 +60,9 @@ const HiringPreviewEditorPage = ({
               videoPosterUrl={mockData.videoPosterUrl}
               previewMode
             ></ViewerClientVideo>
+            <div style={{ padding: 10 }}>
+              <VideoActionButtons></VideoActionButtons>
+            </div>
           </div>
         </div>
       </main>
