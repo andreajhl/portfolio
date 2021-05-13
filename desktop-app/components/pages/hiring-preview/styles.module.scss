@@ -1,0 +1,13 @@
+.Container {
+  display: flex;
+  padding: 40px 0 !important;
+}
+
+.LeftSide {
+  width: 355px;
+}
+
+.RightSide {
+  flex: 1;
+  margin-left: 33px;
+}
