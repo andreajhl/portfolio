@@ -1,4 +1,4 @@
-import { HelpCard } from "desktop-app/components/hiring-preview-editor/help-card";
+import { CustomizeGiftCard } from "desktop-app/components/client-hiring/customize-gift-card";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import classes from "classnames";
 import styles from "./styles.module.scss";
@@ -47,7 +47,7 @@ const HiringPreviewEditorPage = ({
       <main className={styles.HiringPreviewEditorPage}>
         <div className={classes("container", styles.Container)}>
           <div className={styles.LeftSide}>
-            <HelpCard deliveryTo="Ana" />
+            <CustomizeGiftCard deliveryTo="Ana" />
             <EditorForm />
           </div>
           <div className={styles.RightSide}>
