@@ -4,6 +4,8 @@ import { description, version } from "../../../../../package.json";
 import { withRouter } from "next/router";
 import { Link } from "../../common/routing/link";
 import { FormattedMessage } from "react-intl";
+import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
+import getWindow from "react-app/src/utils/getWindow";
 
 class FooterLayout extends Component {
   constructor(props) {
@@ -25,6 +27,19 @@ class FooterLayout extends Component {
   goToFamososInstagran() {
     window.open("https://www.instagram.com/famosos/", "_blank").focus();
   }
+  trackJobListingLinkClick = () => {
+    tagManagerDataLayer("FOOTER_JOB_LISTING_LINK_CLICK", {
+      widget: "FooterLayout",
+      path: getWindow().location.pathname
+    });
+  };
+
+  trackJobListingLinkHover = () => {
+    tagManagerDataLayer("FOOTER_JOB_LISTING_LINK_HOVER", {
+      widget: "FooterLayout",
+      path: getWindow().location.pathname
+    });
+  };
 
   render() {
     return (
@@ -128,6 +143,8 @@ class FooterLayout extends Component {
                       href="https://jobs.lever.co/famosos"
                       target="_blank"
                       rel="noreferrer"
+                      onClick={this.trackJobListingLinkClick}
+                      onMouseOver={this.trackJobListingLinkHover}
                     >
                       Trabaja con nosotros
                     </a>
