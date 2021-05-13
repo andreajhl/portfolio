@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://www.famosos.com/404</loc>
-    </url>
-    <url>
         <loc>https://www.famosos.com/buscar</loc>
     </url>
     <url>
@@ -14,9 +11,6 @@
     </url>
     <url>
         <loc>https://www.famosos.com/tendencias</loc>
-    </url>
-    <url>
-        <loc>https://www.famosos.com/authentication/success</loc>
     </url>
     <url>
         <loc>https://www.famosos.com/blog/index</loc>
@@ -33,27 +27,4 @@
     <url>
         <loc>https://www.famosos.com/forms/aplicar</loc>
     </url>
-    <url>
-        <loc>https://www.famosos.com/my-account/favorites</loc>
-    </url>
-    <url>
-        <loc>https://www.famosos.com/my-account/profile</loc>
-    </url>
-    <url>
-        <loc>https://www.famosos.com/my-account/subscriptions</loc>
-    </url>
-
-    <url>
-        <loc>https://www.famosos.com/subscription/feed</loc>
-    </url>
-    <url>
-        <loc>https://www.famosos.com/auth/sign-in/index</loc>
-    </url>
-    <url>
-        <loc>https://www.famosos.com/my-account/hirings/index</loc>
-    </url>
-    <url>
-        <loc>https://www.famosos.com/session/redirect/index</loc>
-    </url>
-
 </urlset>
