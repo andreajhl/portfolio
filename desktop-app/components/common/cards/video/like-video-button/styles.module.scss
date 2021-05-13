@@ -10,6 +10,9 @@
   height: 19px !important;
   color: black;
   fill: none;
+  path {
+    stroke-width: 0.08375em;
+  }
   &:hover {
     width: 20px !important;
     height: 17px !important;
