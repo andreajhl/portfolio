@@ -14,7 +14,10 @@ function DeliverVideoCard({
     <div className={classes(styles.DeliverVideoCard, className)}>
       <button
         type="button"
-        className={classes("btn btn-secondary", styles.CTAButton)}
+        className={classes(
+          "btn btn-secondary text-with-ellipsis",
+          styles.CTAButton
+        )}
       >
         Enviar video a {deliveryTo}
       </button>
