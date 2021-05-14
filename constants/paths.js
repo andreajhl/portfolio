@@ -42,6 +42,7 @@ export const CLIENT_HIRING_PREVIEW_EDITOR = `${ACCOUNT_HIRING_PREVIEW}/preview-e
 export const HIRING_PREVIEW = "/hirings/:contract_reference";
 export const HIRING_EDITOR = "/hirings/:contract_reference/editor";
 export const HIRING_PREVIEW_WITHOUT_SESSION = "/hirings/:contract_reference";
+export const GIFT_PREVIEW = "/gift/:contract_reference";
 // TRENDING
 export const TRENDING = "/tendencias";
 export const BLOG = "/blog";
@@ -92,3 +93,6 @@ export const getClientHiringPreviewEditorPath = (contractReference) =>
     ":contract_reference",
     contractReference
   );
+
+export const getGiftPreviewPath = (contractReference) =>
+  GIFT_PREVIEW.replace(":contract_reference", contractReference);

@@ -25,6 +25,7 @@ const HiringPreviewEditorPage = ({
         <div className={classes("container", styles.Container)}>
           <div className={styles.LeftSide}>
             <EditorForm
+              contractReference={contractReference}
               occasion={contract?.occasion}
               onChange={setConfiguration}
             />

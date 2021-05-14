@@ -13,6 +13,11 @@ import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfi
 import { OccasionType } from "desktop-app/types/contractDataType";
 import useForm from "lib/hooks/useForm";
 import { Dispatch } from "react";
+import { useRouter } from "next/router";
+import {
+  getClientHiringPreviewPath,
+  getGiftPreviewPath,
+} from "constants/paths";
 
 const mapStateToProps = (state) => ({});
 
@@ -22,6 +27,7 @@ type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
 type EditorFormProps = {
+  contractReference: string;
   occasion: OccasionType;
   onChange: Dispatch<any>;
 } & StateProps &
@@ -34,13 +40,26 @@ const initialValues: HiringPreviewConfigurationType = {
   pageBackgroundUrl: availablePageBackgroundsUrls[0],
 };
 
-function EditorForm({ occasion, onChange }: EditorFormProps) {
+function EditorForm({
+  contractReference,
+  occasion,
+  onChange,
+}: EditorFormProps) {
+  const router = useRouter();
   const { values, setFieldValue } = useForm({ initialValues });
   // Conectar con endpoint que guarda la configuración.
 
   useEffect(() => {
     onChange(values);
   }, [values]);
+
+  function previewConfiguration() {
+    router.push(getGiftPreviewPath(contractReference));
+  }
+
+  function saveConfiguration() {
+    router.push(getClientHiringPreviewPath(contractReference));
+  }
 
   return (
     <div className={styles.EditorForm}>
@@ -69,10 +88,18 @@ function EditorForm({ occasion, onChange }: EditorFormProps) {
           value={values.pageBackgroundUrl}
         />
         <div className={styles.FormButtons}>
-          <button type="button" className="btn btn-tertiary">
+          <button
+            type="button"
+            className="btn btn-tertiary"
+            onClick={previewConfiguration}
+          >
             Previsualizar
           </button>
-          <button type="button" className="btn btn-secondary">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={saveConfiguration}
+          >
             Guardar ajustes
           </button>
         </div>
