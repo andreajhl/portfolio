@@ -51,6 +51,12 @@ function HiringPreviewEditorPage({
                   />
                 </div>
               </div>
+              <button
+                type="button"
+                className={classes("btn btn-primary", styles.ShareButton)}
+              >
+                Enviar video a {contract.deliveryTo}
+              </button>
             </div>
           </div>
         </main>
