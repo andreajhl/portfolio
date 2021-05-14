@@ -2,6 +2,7 @@ import ClientContractType from "desktop-app/types/clientContract";
 import { ContractReviewVideoForOtherCard } from "../../client-hiring/contract-review-video-for-other-card";
 import VideoActionButtons from "../../common/cards/video/action-buttons";
 import ViewerClientVideo from "../../common/cards/viewer-client-video";
+import classes from "classnames";
 import styles from "./styles.module.scss";
 
 type ContractVideoPreviewProps = {
@@ -13,8 +14,10 @@ function ContractVideoPreview({
   className,
   contractData,
 }: ContractVideoPreviewProps) {
+  if (!contractData.reference) return null; // mostrar skeleton
+
   return (
-    <div className={className}>
+    <div className={classes(styles.ContractVideoPreview, className)}>
       <div className={styles.VideoPlayer}>
         <ViewerClientVideo
           avatar={contractData.celebrityData.avatar}
