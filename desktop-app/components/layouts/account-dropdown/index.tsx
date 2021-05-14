@@ -50,7 +50,7 @@ const menuItems: MenuItemType[] = [
 ];
 
 const toMenuItem = ({ id, to, icon, label }) => (
-  <NavLink to={to} className={styles.AccountDropdownItem} key={id}>
+  <NavLink to={to} className={styles.AccountDropdownItem} key={id} exact>
     {icon}
     <span>{label}</span>
   </NavLink>
