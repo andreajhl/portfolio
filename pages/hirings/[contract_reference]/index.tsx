@@ -12,7 +12,9 @@ const HiringPreviewPage = dynamic(() =>
   )
 );
 
-const DesktopHiringPreviewPage = dynamic(() =>
+const DesktopHiringPreviewPage = dynamic<{
+  contractReference: string;
+}>(() =>
   import("desktop-app/components/pages/hiring-preview").then(
     (mod) => mod.HiringPreviewPage
   )
@@ -36,7 +38,12 @@ const HiringPreview = ({ contract_reference, isMobile }) => {
   return (
     <>
       <CustomHead />
-      <Maybe it={isMobile} orElse={<DesktopHiringPreviewPage />}>
+      <Maybe
+        it={isMobile}
+        orElse={
+          <DesktopHiringPreviewPage contractReference={contract_reference} />
+        }
+      >
         <HiringPreviewPage />
       </Maybe>
     </>
