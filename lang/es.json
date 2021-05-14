@@ -42,6 +42,9 @@
   "095Wot": {
     "message": "Hora:"
   },
+  "0GetzR": {
+    "message": "Famoso no encontrado"
+  },
   "0I2iWG": {
     "message": "Aplica como Famoso"
   },
@@ -112,6 +115,9 @@
   "2O8ofL": {
     "message": "De:"
   },
+  "2U8U6B": {
+    "message": "Famosos.com - Tendencias"
+  },
   "2Wnegw": {
     "message": "¿El famoso puede no grabar mi solicitud?"
   },
@@ -151,6 +157,9 @@
   },
   "3v44F6": {
     "message": "utilizar cualquier medio para raspar o rastrear ninguna página web contenidas en el sitio;"
+  },
+  "42Gn99": {
+    "message": "Famosos.com - Términos de servicio de usuario"
   },
   "45ZLqg": {
     "message": "USAR EL SITIO Y SERVICIOS bajo su propio riesgo. EL SITIO y servicios son proporcionados \"COMO ES\" Y \"COMO DISPONIBLE\". A la extensión permitida por LEY, FAMOSOS Y sus oficiales, empleados, directores, accionistas, matrices, subsidiarias, afiliados, agentes, y agentes (“afiliados\") declinan TODAS garantías, condiciones, y representaciones de CUALQUIER TIPO, EXPRESS, IMPLÍCITAS, LEY, O DE OTRO MODO, incluidos los relacionados RELACIÓN A la APTITUD PARA UN FIN PARTICULAR, Y NO INFRACCIÓN Y las derivadas de CURSO DE GESTIÓN O USO DE COMERCIO."
@@ -293,6 +302,9 @@
   "9KADbj": {
     "message": "France"
   },
+  "9Ooije": {
+    "message": "Club de fans de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
+  },
   "9Svalq": {
     "message": "EN LA MEDIDA MÁXIMA PERMITIDA POR LA LEY, NUESTRA responsabilidad total acumulada ante usted o cualquier tercero bajo estos términos, DE TODAS LAS CAUSAS DE ACCIÓN Y TODAS LAS TEORÍAS DE RESPONSABILIDAD, SERÁ LIMITADO A, y no excederá los honorarios que en realidad han pagado US DURANTE los doce (12) meses anteriores a la que da lugar a dicha responsabilidad."
   },
@@ -423,6 +435,9 @@
   "EPhX04": {
     "message": "Respondemos a los avisos de supuestas infracciones de copyright y la cancelación de las cuentas de los infractores reincidentes según el procedimiento establecido en la Ley de Derechos de Autor del Milenio Digital. Si usted cree que su trabajo ha sido copiado de una manera que constituye una infracción de copyright, por favor envíe la siguiente información al Agente de Derechos de Autor se menciona a continuación:"
   },
+  "ETd2VN": {
+    "message": "Las ultimas publicaciones de tus famosos favoritos."
+  },
   "EbbVcC": {
     "message": "Uruguay"
   },
@@ -551,6 +566,9 @@
   },
   "Lbiy9R": {
     "message": "Precio original:"
+  },
+  "LeHkTO": {
+    "message": "¿Qué es Famosos.com? Famosos es una plataforma en dónde puedes comprar video-mensajes de tus famosos favoritos. ¿Cómo puedo comprar un video?"
   },
   "LsqQep": {
     "description": "",
@@ -706,6 +724,9 @@
     "description": "ModalTitle for search CategoryFilter",
     "message": "Filtrar por país"
   },
+  "SFQJTa": {
+    "message": "Famosos.com - Comprar video personalizado de {celebrity_username}"
+  },
   "SJlNke": {
     "message": "Tu pago ha sido aprobado."
   },
@@ -770,6 +791,9 @@
   },
   "Vrpqh3": {
     "message": "Garantía Famosos"
+  },
+  "VtB4b8": {
+    "message": "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
   },
   "W1OXQI": {
     "description": "",
@@ -973,6 +997,9 @@
   "ddKAxr": {
     "message": "Siguiendo"
   },
+  "dgKHBE": {
+    "message": "Famosos.com - Política de privacidad"
+  },
   "dkJkXx": {
     "message": "Músicos"
   },
@@ -1000,6 +1027,9 @@
   },
   "eYHsf6": {
     "message": "Tarjeta de Crédito o Débito"
+  },
+  "ekgTKf": {
+    "message": "Famosos.com - Club de fans de {celebrity_username}"
   },
   "erYRhy": {
     "message": "Contenido de terceros e Interacciones"
@@ -1070,6 +1100,9 @@
   },
   "hSj5kq": {
     "message": "Una declaración de que usted cree de buena fe que el contenido ha sido eliminado o inhabilitado como consecuencia de un error o una identificación errónea del contenido; y su nombre, dirección física, número de teléfono y dirección de correo electrónico, una declaración en la que consienta a la jurisdicción de la corte federal de Miami, Florida, y una declaración de que acepta el servicio del proceso de la persona que presentó la notificación de la supuesta infracción."
+  },
+  "hZK5pi": {
+    "message": "Famosos.com - Videos personalizados de tus famosos favoritos."
   },
   "hmpcGI": {
     "description": "",
@@ -1176,6 +1209,9 @@
   "nMFRRt": {
     "message": "Pago pendiente"
   },
+  "naJn1L": {
+    "message": "Famosos.com - {celebrity_username}"
+  },
   "nazVl1": {
     "message": "Usted y Famosos acepta que vamos a resolver cualquier disputa entre nosotros a través de un arbitraje vinculante y definitivo en lugar de a través de los procesos judiciales. Usted y Famosos presente renuncia a cualquier derecho a un juicio con jurado de cualquier reclamación (se define a continuación). Todas las controversias, reclamos, reconvenciones, u otros conflictos que surjan entre usted y Famosos relacionada con estos Términos, el Sitio y los Servicios (cada una \"Demanda\") serán sometidas a arbitraje de acuerdo con las Reglas de la Asociación Americana de Arbitraje ( \"Reglas AAA\"). El arbitraje se resolverá de por un solo árbitro. La decisión del árbitro en dicho arbitraje será definitiva y vinculante para las partes y puede ser ejecutada en cualquier tribunal de jurisdicción competente."
   },
@@ -1190,6 +1226,9 @@
   },
   "oACmv6": {
     "message": "¡Tu solicitud ha sido enviada!"
+  },
+  "oAD1Z+": {
+    "message": "Famosos.com - Preguntas frecuentes"
   },
   "oEbrJV": {
     "message": "Seguir Comprando"
@@ -1345,6 +1384,9 @@
   "tOy7wQ": {
     "message": "EN PARTICULAR, FAMOSOS Y SUS AFILIADOS, NO representa ni garantiza la exactitud o integridad de contenido disponible a través del sitio o servicios, o el contenido de los sitios web o servicios en línea vinculados o integrado con el SITIO o servicios. FAMOSOS y sus afiliados RESPONSABLE DE CUALQUIER: ERRORES (A), errores, o inexactitudes de los contenidos; (B) LESIONES O daños materiales ocasionados por SU ACCESO O USO DEL SITIO o servicios; (C) cualquier acceso no autorizado o uso de nuestros servidores o de cualquier información personal o datos de usuario; (D) cualquier interrupción de la transmisión A, O DESDE EL SITIO o servicios; (E) cualquier error, virus, troyanos, O SIMILARES que pueden transmitirse EN O MEDIANTE EL SITIO o servicios por cualquier tercero;"
   },
+  "tZUCvC": {
+    "message": "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
+  },
   "tdx+EV": {
     "description": "",
     "message": "Mi perfil"
@@ -1358,6 +1400,9 @@
   "twKVEA": {
     "message": "transmitir cualquier tipo de virus u otras instrucciones de ordenador o medios tecnológicos cuyo propósito es alterar, dañar o interferir con el uso de ordenadores o sistemas relacionados;"
   },
+  "u+CFdm": {
+    "message": "Famosos.com - Blog"
+  },
   "uJeJq6": {
     "message": "Una firma electrónica o física de la persona autorizada para actuar en nombre del propietario de los derechos de autor."
   },
@@ -1366,6 +1411,9 @@
   },
   "uQg6Uc": {
     "message": "Coach"
+  },
+  "uVgimH": {
+    "message": "No se encontró un famoso con este usuario"
   },
   "ueZmN4": {
     "message": "Transferencia bancaria"
@@ -1469,6 +1517,9 @@
   },
   "yQqITL": {
     "message": "Es el propietario de todos los derechos y de su contenido de usuario y que tiene el derecho de darnos los derechos antes mencionados; que ha pagado y pagará la totalidad de los honorarios u otros pagos que pueden estar relacionados con el uso de su contenido de usuario; y su contenido de usuario no infringe los derechos de propiedad intelectual, derechos de privacidad, derechos de publicidad, u otros derechos legales de terceros."
+  },
+  "yv7dLs": {
+    "message": "Famosos.com - Entrada de blog"
   },
   "yyUOQR": {
     "message": "El proceso de aprobación puede tardar alrededor de 23 hrs."
