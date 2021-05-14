@@ -1,3 +1,5 @@
+import { OccasionType } from "./contractDataType";
+
 type UserData = {
   id: number;
 };
@@ -15,7 +17,7 @@ type ClientContractType = {
   deliveryContact: string;
   deliveryType: number;
   isPublic: boolean;
-  occasion: string;
+  occasion: OccasionType;
   userId: number;
   celebrityId: number;
   reference: string;
