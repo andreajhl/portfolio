@@ -43,10 +43,7 @@ const CustomHead = ({
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
       />
       <title key="title">{getTextInValidFormat(title)}</title>
-      <meta
-        property="description"
-        content={getTextInValidFormat(description)}
-      />
+      <meta name="description" content={getTextInValidFormat(description)} />
 
       <meta property="og:title" content={getTextInValidFormat(title)} />
       <meta
