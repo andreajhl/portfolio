@@ -5,14 +5,16 @@ import { EditorForm } from "desktop-app/components/hiring-preview-editor/editor-
 import useGetContract from "lib/hooks/useGetContract";
 import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfigurationType";
 import { useState } from "react";
+import { GiftPreviewMain } from "desktop-app/components/layouts/gift-preview-main";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 
 type HiringPreviewEditorPageProps = {
   contractReference: string;
 };
 
-const HiringPreviewEditorPage = ({
+function HiringPreviewEditorPage({
   contractReference,
-}: HiringPreviewEditorPageProps) => {
+}: HiringPreviewEditorPageProps) {
   const { contract } = useGetContract(contractReference, true); // utilizar endpoint privado.
   const [
     configuration,
@@ -21,26 +23,40 @@ const HiringPreviewEditorPage = ({
 
   return (
     <PageContainer showFooter={false}>
-      <main className={styles.HiringPreviewEditorPage}>
-        <div className={classes("container", styles.Container)}>
-          <div className={styles.LeftSide}>
-            <EditorForm
-              contractReference={contractReference}
-              occasion={contract?.occasion}
-              onChange={setConfiguration}
-            />
+      <Maybe it={Boolean(contract.reference)}>
+        <main className={styles.HiringPreviewEditorPage}>
+          <div className={classes("container", styles.Container)}>
+            <div className={styles.LeftSide}>
+              <EditorForm
+                contractReference={contractReference}
+                occasion={contract?.occasion}
+                onChange={setConfiguration}
+              />
+            </div>
+            <div className={styles.RightSide}>
+              <div className={styles.LivePreviewCard}>
+                <header className={styles.LivePreviewHeader}>
+                  <h2>Así lo verá {contract?.deliveryTo}</h2>
+                </header>
+                <div
+                  className={styles.LivePreviewBody}
+                  style={{
+                    backgroundImage: `url(${configuration.pageBackgroundUrl})`,
+                  }}
+                >
+                  <GiftPreviewMain
+                    className={styles.GiftPreview}
+                    contract={contract}
+                    hiringConfiguration={configuration}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className={styles.RightSide}>
-            <header className={styles.LivePreviewHeader}>
-              <h2>Así lo verá {contract?.deliveryTo}</h2>
-            </header>
-            {configuration.cardMessage}
-            {configuration.cardColor}
-          </div>
-        </div>
-      </main>
+        </main>
+      </Maybe>
     </PageContainer>
   );
-};
+}
 
 export { HiringPreviewEditorPage };
