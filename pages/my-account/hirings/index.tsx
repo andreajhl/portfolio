@@ -23,7 +23,7 @@ export const getServerSideProps = async ({ req }) => {
 };
 
 function Hiring({ isMobile }) {
-  useDesktopClass(isMobile);
+  useDesktopClass(!isMobile);
   return (
     <>
       <CustomHead />

@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 };
 
 const Profile = ({ isMobile }) => {
-  useDesktopClass(isMobile);
+  useDesktopClass(!isMobile);
   return (
     <>
       <CustomHead />

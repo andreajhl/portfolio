@@ -1,22 +1,3 @@
-.HiringPreviewPage {
+.HiringPreviewPageMain {
   min-height: calc(100vh - 58px /* Topbar height */);
-  background-size: 100%;
-}
-
-.Container {
-  padding: 42px 0 !important;
-  display: flex;
-}
-
-.LeftSide {
-  width: 357px;
-}
-
-.GiftCard {
-  height: 100%;
-}
-
-.RightSide {
-  flex: 1;
-  margin-left: 35px;
 }

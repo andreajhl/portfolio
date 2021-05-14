@@ -69,7 +69,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 );
 
 function CelebrityProfile({ celebrity, isMobile }) {
-  useDesktopClass(isMobile);
+  useDesktopClass(!isMobile);
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
   const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
 

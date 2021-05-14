@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 );
 
 const Home = ({ isMobile, userLocation }) => {
-  useDesktopClass(isMobile);
+  useDesktopClass(!isMobile);
 
   return (
     <>
