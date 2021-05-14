@@ -26,7 +26,7 @@ function ContractVideoPreview({
           fullName={contractData.celebrityData.fullName}
           username={contractData.celebrityData.username}
           videoUrl={contractData.media}
-          videoPosterUrl="https://d3dxo4xx2lwk55.cloudfront.net/videos/609/14805/famosos-videos-personalizados-enriquearce-202102181551-7872249-14805-crf-video-poster480.jpg"
+          videoPosterUrl={contractData.celebrityData.avatar}
         />
       </div>
       {/* TODO: agregar condicional */}
