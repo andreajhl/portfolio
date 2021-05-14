@@ -25,7 +25,8 @@ const mockData = {
   availableForSubscriptions: false,
   videoPosterUrl:
     "https://d3dxo4xx2lwk55.cloudfront.net/videos/609/14805/famosos-videos-personalizados-enriquearce-202102181551-7872249-14805-crf-video-poster480.jpg",
-  videoUrl: "",
+  videoUrl:
+    "https://dqb0851cl2gjs.cloudfront.net/main-videos/367/famosos-videos-personalizados-vanessaguzman-crf-video-watermark480.mp4",
   occasion: "",
   alpha2Code: "CO",
   categoryTitle: "Actores",
@@ -59,7 +60,9 @@ const HiringPreviewEditorPage = ({
               previewMode
             ></ViewerClientVideo>
             <div style={{ padding: 10 }}>
-              <VideoActionButtons></VideoActionButtons>
+              <VideoActionButtons
+                videoURL={mockData.videoUrl}
+              ></VideoActionButtons>
             </div>
           </div>
         </div>
