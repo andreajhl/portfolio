@@ -57,6 +57,5 @@ export function serializeCurrencyCurrentData(currencyCurrentData: {
       }
     )
   );
-  console.log(userLocationCookiesSerialize);
   return userLocationCookiesSerialize;
 }
