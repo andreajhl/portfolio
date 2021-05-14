@@ -1,4 +1,5 @@
 import { GiftPreviewPage } from "desktop-app/components/pages/gift-preview";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 
@@ -11,6 +12,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 };
 
 const GiftPreview = ({ contract_reference, pathname }) => {
+  useDesktopClass(true);
   return (
     <>
       <CustomHead />

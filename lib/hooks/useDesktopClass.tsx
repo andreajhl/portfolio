@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-export function useDesktopClass(isMobile: boolean) {
+export function useDesktopClass(isDesktop: boolean) {
   useEffect(() => {
-    if (isMobile) return;
+    if (!isDesktop) return;
     document.documentElement.classList.add("desktop");
     return () => {
       document.documentElement.classList.remove("desktop");

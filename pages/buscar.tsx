@@ -17,7 +17,7 @@ const allowedParams = [
   "offset",
   "country_id",
   "category_id",
-  "orderBy"
+  "orderBy",
 ];
 
 const listParamsInitialKeys = ["offset", "limit"];
@@ -51,8 +51,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     return {
       props: {
         isMobile: isMobile(req.headers["user-agent"]),
-        searchParams: query
-      }
+        searchParams: query,
+      },
     };
   }
 );
@@ -70,9 +70,9 @@ const DesktopSearchPage = dynamic(() =>
 const CelebritiesSearchResults = ({
   isMobile,
   searchParams,
-  updateSearchFilters
+  updateSearchFilters,
 }) => {
-  useDesktopClass(isMobile);
+  useDesktopClass(!isMobile);
 
   useEffect(() => {
     if (!searchParams) return;

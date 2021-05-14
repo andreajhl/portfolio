@@ -21,15 +21,18 @@ const DesktopPaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
 
 export const getServerSideProps: GetServerSideProps = async ({
   params: { contract_reference },
-  req
+  req,
 }) => {
   return {
-    props: { contract_reference, isMobile: isMobile(req.headers["user-agent"]) }
+    props: {
+      contract_reference,
+      isMobile: isMobile(req.headers["user-agent"]),
+    },
   };
 };
 
 const PaymentMethods = ({ contract_reference, isMobile }) => {
-  useDesktopClass(isMobile);
+  useDesktopClass(!isMobile);
   return (
     <>
       <CustomHead />
@@ -46,5 +49,5 @@ const PaymentMethods = ({ contract_reference, isMobile }) => {
 };
 
 export default withAuthenticationRequired(PaymentMethods, {
-  onRedirecting: () => <LoadingPage></LoadingPage>
+  onRedirecting: () => <LoadingPage></LoadingPage>,
 });

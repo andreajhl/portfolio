@@ -31,7 +31,7 @@ export async function getServerSideProps({
 }
 
 const HiringPreview = ({ isMobile, contractReference }) => {
-  useDesktopClass(isMobile);
+  useDesktopClass(!isMobile);
 
   return (
     <>

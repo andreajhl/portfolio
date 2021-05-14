@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 };
 
 const HiringPreviewEditor = ({ contract_reference, pathname }) => {
-  useDesktopClass(false);
+  useDesktopClass(true);
 
   return (
     <>
