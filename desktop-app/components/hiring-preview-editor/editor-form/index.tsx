@@ -3,10 +3,12 @@ import classes from "classnames";
 import styles from "./styles.module.scss";
 import { GiftCard } from "desktop-app/components/common/cards/gift-card";
 import {
+  availableActionButtonsBackgroundColors,
   availableCardColors,
   availablePageBackgroundsUrls,
+  getActionButtonsBackgroundColorsForPageBackground,
 } from "constants/hiring-preview-configuration";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { CardColorSelector } from "desktop-app/components/hiring-preview-editor/card-color-selector";
 import { PageBackgroundSelector } from "../page-background-selector";
 import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfigurationType";
@@ -38,6 +40,7 @@ const initialValues: HiringPreviewConfigurationType = {
   cardTitle: "¡Feliz cumpleaños mi amor!",
   cardMessage: "Agrega un texto especial....",
   pageBackgroundUrl: availablePageBackgroundsUrls[0],
+  actionButtonsBackgroundColor: availableActionButtonsBackgroundColors[0],
 };
 
 function EditorForm({
@@ -82,9 +85,13 @@ function EditorForm({
         />
         <h3 className={styles.FieldTitle}>Agregar fondo</h3>
         <PageBackgroundSelector
-          onChange={(background) =>
-            setFieldValue("pageBackgroundUrl", background)
-          }
+          onChange={(background) => {
+            setFieldValue("pageBackgroundUrl", background);
+            setFieldValue(
+              "actionButtonsBackgroundColor",
+              getActionButtonsBackgroundColorsForPageBackground(background)
+            );
+          }}
           value={values.pageBackgroundUrl}
         />
         <div className={styles.FormButtons}>
