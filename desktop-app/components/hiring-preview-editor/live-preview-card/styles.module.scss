@@ -18,6 +18,7 @@
 .LivePreviewBody {
   position: relative;
   padding: 0 1.85rem;
+  transition: background-image 0.15s ease;
   background-size: 100%;
 }
 
