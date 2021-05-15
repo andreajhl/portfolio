@@ -18,8 +18,10 @@ import {
 } from "lib/utils/getSocialMediaLink";
 import copyTextToClipboard from "lib/utils/copyTextToClipboard";
 import { Dropdown } from "desktop-app/components/common/button/dropdown";
+import { CSSProperties } from "react";
 
 type ShareVideoButtonProps = {
+  backgroundColor?: CSSProperties["backgroundColor"];
   buttonClassName?: string;
   link: string;
 };
@@ -45,6 +47,7 @@ const toMenuItem = ({ id, to, icon, label }) => (
 );
 
 function ShareVideoButton({
+  backgroundColor = "white",
   buttonClassName = "",
   link,
 }: ShareVideoButtonProps) {
@@ -104,8 +107,11 @@ function ShareVideoButton({
     <Dropdown
       menuPosition="top center"
       menuClassName={styles.ShareDropdownMenu}
-      buttonChildren={<ShareIcon />}
+      buttonChildren={
+        <ShareIcon stroke={backgroundColor !== "white" ? "white" : "black"} />
+      }
       buttonClassName={classes("btn", styles.ActionButton)}
+      buttonStyle={{ backgroundColor }}
     >
       <div
         tabIndex={0}
