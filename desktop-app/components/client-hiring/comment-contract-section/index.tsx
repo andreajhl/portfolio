@@ -50,10 +50,10 @@ function CommentContractSection({
         <CommentsContractVideo contractComments={contractComments} />
       </Maybe>
       <CommentCreator
-        firstComment={isCompleted && contractComments?.length < 0}
+        firstComment={isCompleted && contractComments?.length < 1}
         onCommentCreated={() => listContractComments(contract_reference)}
         contract_reference={contract_reference}
-      ></CommentCreator>
+      />
     </div>
   );
 }
