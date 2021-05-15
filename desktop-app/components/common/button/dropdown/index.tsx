@@ -1,4 +1,5 @@
 import classes from "classnames";
+import { CSSProperties } from "react";
 import {
   DetailedReactHTMLElement,
   cloneElement,
@@ -28,6 +29,7 @@ type DropdownProps = {
   buttonClassName?: string;
   menuClassName?: string;
   showClassName?: string;
+  buttonStyle?: CSSProperties;
 };
 
 function Dropdown({
@@ -38,6 +40,7 @@ function Dropdown({
   menuPosition,
   buttonClassName = "",
   menuClassName = "",
+  buttonStyle,
 }: DropdownProps) {
   const trigger = (isOpen: boolean): JSX.Element => (
     <button
@@ -46,6 +49,7 @@ function Dropdown({
       aria-expanded={isOpen}
       id={id}
       type="button"
+      style={buttonStyle}
     >
       {buttonChildren}
     </button>
