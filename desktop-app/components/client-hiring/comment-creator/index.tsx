@@ -33,6 +33,7 @@ type DispatchProps = typeof mapDispatchToProps;
 type CommentCreatorProps = {
   contract_reference: string;
   onCommentCreated: () => void;
+  firstComment: boolean;
 } & StateProps &
   DispatchProps;
 function CommentCreator({
@@ -42,8 +43,8 @@ function CommentCreator({
   isCompleted,
   onCommentCreated,
   addContractComment,
+  firstComment,
 }: CommentCreatorProps) {
-  console.log(contract_reference);
   useEffect(() => {
     if (isCompleted) onCommentCreated();
   }, [isCompleted]);
@@ -84,7 +85,11 @@ function CommentCreator({
           name="comment"
           value={values.comment}
           className={styles.CommentTextArea}
-          placeholder="Sé el primero en agregar un comentario."
+          placeholder={
+            firstComment
+              ? "Sé el primero en agregar un comentario."
+              : "Agrega un comentario"
+          }
           onChange={onChangeField}
         ></textarea>
 
