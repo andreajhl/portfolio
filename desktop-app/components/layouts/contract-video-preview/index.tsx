@@ -4,8 +4,7 @@ import VideoActionButtons from "../../common/cards/video/action-buttons";
 import ViewerClientVideo from "../../common/cards/viewer-client-video";
 import classes from "classnames";
 import styles from "./styles.module.scss";
-import { CommentContract } from "desktop-app/components/client-hiring/comment-contract";
-import contract from "constants/contract";
+import { CommentContractSection } from "desktop-app/components/client-hiring/comment-contract-section";
 
 type ContractVideoPreviewProps = {
   className?: string;
@@ -17,7 +16,6 @@ function ContractVideoPreview({
   contractData,
 }: ContractVideoPreviewProps) {
   if (!contractData.reference) return null; // mostrar skeleton
-  console.log(contractData);
   return (
     <div className={classes(styles.ContractVideoPreview, className)}>
       <div className={styles.VideoPlayer}>
@@ -32,7 +30,7 @@ function ContractVideoPreview({
       {/* TODO: agregar condicional */}
       <div className={styles.VideoActionsWrapper}>
         <div>
-          <CommentContract contract_reference={contract.reference} />
+          <CommentContractSection contract_reference={contractData.reference} />
         </div>
         {/* <div>
           <ContractReviewVideoForOtherCard contractData={contractData} />

@@ -1,9 +1,11 @@
+import React, { useEffect, useState } from "react";
 import useForm from "lib/hooks/useForm";
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import styles from "./styles.module.scss";
 import { contractOperations } from "react-app/src/state/ducks/contracts";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
-import styles from "./styles.module.scss";
+import { connect } from "react-redux";
+import WarningMessage from "desktop-app/components/common/warning-message";
+import classes from "classnames";
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.addContractCommentReducer.loading,
@@ -15,7 +17,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   addContractComment: contractOperations.addContractComment,
 };
-
 const initialValues = {
   comment: "",
 };
@@ -29,18 +30,23 @@ const validations = {
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
-type CelebritySimilarVideosReelProps = {
+type CommentCreatorProps = {
   contract_reference: string;
+  onCommentCreated: () => void;
 } & StateProps &
   DispatchProps;
-
-function CommentContract({
+function CommentCreator({
   isLoading,
   contractComment,
   contract_reference,
   isCompleted,
+  onCommentCreated,
   addContractComment,
-}: CelebritySimilarVideosReelProps) {
+}: CommentCreatorProps) {
+  console.log(contract_reference);
+  useEffect(() => {
+    if (isCompleted) onCommentCreated();
+  }, [isCompleted]);
   const { values, onChangeField, setFieldValue, submitForm, errors } = useForm<
     typeof initialValues
   >({
@@ -54,11 +60,17 @@ function CommentContract({
       });
     },
   });
-  return (
-    <div className={styles.CommentContractWrapper}>
-      <div className={styles.CommentContractHeader}>
-        <p>Comentarios</p>
+  if (isCompleted)
+    return (
+      <div className={styles.CommentBox}>
+        <h4 className={styles.CommentSucceeded}>
+          Tu comentario ha sido enviado.
+        </h4>
       </div>
+    );
+
+  return (
+    <div className={styles.CommentBoxWrapper}>
       <div className={styles.CommentBox}>
         <img
           alt="Imagen de perfil"
@@ -75,6 +87,7 @@ function CommentContract({
           placeholder="Sé el primero en agregar un comentario."
           onChange={onChangeField}
         ></textarea>
+
         <button
           disabled={isLoading === "loading"}
           type="button"
@@ -83,17 +96,24 @@ function CommentContract({
         >
           <SubmitText
             baseText="Publicar"
-            status={isLoading === "loading" ? "loading" : "idle"}
+            status={isLoading ? "loading" : "idle"}
           />
         </button>
       </div>
+      <WarningMessage
+        message={errors?.comment || null}
+        className={classes(
+          styles.FormError,
+          errors?.comment && styles.ErrorIsVisible
+        )}
+      />
     </div>
   );
 }
 
-const _CommentContract = connect(
+const _CommentCreator = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CommentContract);
+)(CommentCreator);
 
-export { _CommentContract as CommentContract };
+export { _CommentCreator as CommentCreator };

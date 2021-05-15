@@ -1,0 +1,25 @@
+.CommentContractWrapper {
+  width: 358px;
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.CommentContractHeader {
+  display: flex;
+  align-items: center;
+  height: 56px;
+
+  border-bottom: 1px solid #f5f5f5;
+
+  p {
+    margin: 0 0 0 26px;
+    padding: 0;
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000;
+  }
+}
