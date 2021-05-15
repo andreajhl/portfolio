@@ -20,6 +20,7 @@ import {
   getClientHiringPreviewPath,
   getGiftPreviewPath,
 } from "constants/paths";
+import AutoHeightTextarea from "react-textarea-autosize";
 
 const mapStateToProps = (state) => ({});
 
@@ -49,7 +50,7 @@ function EditorForm({
   onChange,
 }: EditorFormProps) {
   const router = useRouter();
-  const { values, setFieldValue } = useForm({ initialValues });
+  const { values, setFieldValue, onChangeField } = useForm({ initialValues });
   // Conectar con endpoint que guarda la configuración.
 
   useEffect(() => {
@@ -71,11 +72,25 @@ function EditorForm({
         occasion={occasion}
         cardColor={values.cardColor}
       >
-        <GiftCard.Title>{values.cardTitle}</GiftCard.Title>
+        <GiftCard.Title>
+          <AutoHeightTextarea
+            name="cardTitle"
+            value={values.cardTitle}
+            className={styles.Textarea}
+            onChange={onChangeField}
+          />
+        </GiftCard.Title>
         <button className={classes("btn", styles.TitleEditToggler)}>
           Editar título
         </button>
-        <GiftCard.SpecialText>{values.cardMessage}</GiftCard.SpecialText>
+        <GiftCard.SpecialText>
+          <AutoHeightTextarea
+            name="cardMessage"
+            value={values.cardMessage}
+            onChange={onChangeField}
+            className={styles.Textarea}
+          />
+        </GiftCard.SpecialText>
       </GiftCard>
       <div className={styles.FormFields}>
         <h3 className={styles.FieldTitle}>Color de la tarjeta</h3>

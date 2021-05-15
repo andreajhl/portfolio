@@ -7,6 +7,15 @@
   border-radius: 7px 7px 0 0;
 }
 
+.Textarea {
+  resize: none;
+  font: inherit;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
 .TitleEditToggler {
   font-size: 14px;
   margin-top: 16.3px;

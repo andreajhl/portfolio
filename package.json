@@ -70,6 +70,7 @@
     "react-star-rating-component": "^1.4.1",
     "react-stripe-elements": "^6.1.2",
     "react-tagsinput": "^3.19.0",
+    "react-textarea-autosize": "^8.3.2",
     "react-typist": "^2.0.5",
     "react-typist-loop": "0.0.5",
     "react-window": "^1.8.6",
