@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import { CommentContract } from ".";
+import { CommentContractSection } from ".";
 
 it("should renders without crashing", () => {
-  const wrapper = shallow(<CommentContract contract_reference={""} />);
+  const wrapper = shallow(<CommentContractSection contract_reference={""} />);
   expect(wrapper.exists()).toBeTruthy();
 });

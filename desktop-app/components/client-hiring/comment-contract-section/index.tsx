@@ -1,20 +1,24 @@
 import useForm from "lib/hooks/useForm";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { contractOperations } from "react-app/src/state/ducks/contracts";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import styles from "./styles.module.scss";
 import { CommentCreator } from "../comment-creator";
+import CommentsContractVideo from "../comments-contract-video";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 // mapStateToProps
 const mapStateToProps = (state) => ({
-  isLoading: state.contracts.addContractCommentReducer.loading,
-  contractComment: state.contracts.addContractCommentReducer.data,
-  isCompleted: state.contracts.addContractCommentReducer.completed,
+  isLoading: state.contracts.listContractCommentsReducer.loading,
+  isCompleted: state.contracts.listContractCommentsReducer.completed,
+  contractComments: state.contracts.listContractCommentsReducer.data.results,
+  paginationData:
+    state.contracts.listContractCommentsReducer.data.informationPage,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  addContractComment: contractOperations.addContractComment,
+  listContractComments: contractOperations.listContractComments,
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -27,15 +31,27 @@ type CelebritySimilarVideosReelProps = {
 
 function CommentContractSection({
   contract_reference,
+  listContractComments,
+  paginationData,
+  contractComments,
+  isLoading,
+  isCompleted,
 }: CelebritySimilarVideosReelProps) {
-  console.log(contract_reference);
+  useEffect(() => {
+    listContractComments(contract_reference);
+  }, [contract_reference]);
+
   return (
     <div className={styles.CommentContractWrapper}>
       <div className={styles.CommentContractHeader}>
         <p>Comentarios</p>
       </div>
+      <Maybe it={!isLoading && isCompleted}>
+        <CommentsContractVideo contractComments={contractComments} />
+      </Maybe>
       <CommentCreator
-        onCommentCreated={() => console.log("new comment")}
+        firstComment={isCompleted && contractComments?.length < 0}
+        onCommentCreated={() => listContractComments(contract_reference)}
         contract_reference={contract_reference}
       ></CommentCreator>
     </div>
