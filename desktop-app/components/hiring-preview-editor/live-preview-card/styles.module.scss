@@ -39,3 +39,7 @@
   transform-origin: top left;
   transform: scale(0.625) translateY(-16px);
 }
+
+.GiftPreview > div > div:first-child > section /* GiftCard */ {
+  width: 301.5px;
+}
