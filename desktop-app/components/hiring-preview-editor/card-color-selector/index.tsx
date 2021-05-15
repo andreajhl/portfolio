@@ -15,6 +15,7 @@ function CardColorSelector({
     <RadioInputs onChange={onChange} value={value}>
       {availableCardColors.map((color, index) => (
         <RadioInputs.Option
+          key={color}
           id={`color-${color}`}
           value={color}
           name="colors"

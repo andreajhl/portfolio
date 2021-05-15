@@ -20,6 +20,7 @@ function PageBackgroundSelector({
       >
         {availablePageBackgroundsUrls.map((backgroundUrl, index) => (
           <RadioInputs.Option
+            key={backgroundUrl}
             value={backgroundUrl}
             id={backgroundUrl}
             selectedClassName={styles.SelectedBackground}
