@@ -5,13 +5,16 @@ import ViewerClientVideo from "../../common/cards/viewer-client-video";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { CommentContractSection } from "desktop-app/components/client-hiring/comment-contract-section";
+import { CSSProperties } from "react";
 
 type ContractVideoPreviewProps = {
   className?: string;
   contractData: ClientContractType;
+  actionButtonsBackgroundColor?: CSSProperties["backgroundColor"];
 };
 
 function ContractVideoPreview({
+  actionButtonsBackgroundColor,
   className,
   contractData,
 }: ContractVideoPreviewProps) {
@@ -36,7 +39,10 @@ function ContractVideoPreview({
           <ContractReviewVideoForOtherCard contractData={contractData} />
         </div> */}
         <div>
-          <VideoActionButtons videoURL={contractData.media} />
+          <VideoActionButtons
+            actionButtonsBackgroundColor={actionButtonsBackgroundColor}
+            videoURL={contractData.media}
+          />
         </div>
       </div>
     </div>

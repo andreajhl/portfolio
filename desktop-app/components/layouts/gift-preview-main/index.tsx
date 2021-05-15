@@ -14,6 +14,7 @@ const defaultHiringConfiguration: HiringPreviewConfigurationType = {
   Con todo mi amor, Luis.`,
   cardColor: "#E8E8FF",
   pageBackgroundUrl: "/assets/img/hirings-preview-backgrounds/background-1.png",
+  actionButtonsBackgroundColor: "#000000",
 };
 
 type GiftPreviewMainProps = {
@@ -48,6 +49,9 @@ function GiftPreviewMain({
           </GiftCard>
         </div>
         <ContractVideoPreview
+          actionButtonsBackgroundColor={
+            hiringConfiguration.actionButtonsBackgroundColor
+          }
           className={styles.RightSide}
           contractData={contract}
         />
