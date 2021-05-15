@@ -16,15 +16,19 @@
   justify-content: center;
 }
 
-.Title {
+.Title,
+.SpecialText {
   overflow: hidden;
+  white-space: pre-wrap;
+}
+
+.Title {
   font-size: 2.25em !important;
   line-height: 1.366;
   margin-bottom: 0;
 }
 
 .SpecialText {
-  overflow: hidden;
   margin-top: 1.428571428571429em;
   font-size: 0.875rem;
   max-width: 40ch;
