@@ -1,5 +1,7 @@
 .CommentsContractVideoWrapper {
   width: 363px;
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 .CommentWrapper {
