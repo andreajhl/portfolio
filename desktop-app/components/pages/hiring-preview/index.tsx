@@ -3,7 +3,7 @@ import classes from "classnames";
 import styles from "./styles.module.scss";
 import { HiringPreviewLeftSide } from "desktop-app/components/hiring-preview/hiring-preview-left-side";
 import useGetContract from "lib/hooks/useGetContract";
-import { ContractVideoPreview } from "desktop-app/components/layouts/contract-video-preview";
+import { VideoContractFeed } from "desktop-app/components/layouts/video-contract-feed";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 
 type HiringPreviewPageProps = {
@@ -23,7 +23,7 @@ function HiringPreviewPage({ contractReference }: HiringPreviewPageProps) {
               deliveryTo={contract?.deliveryTo}
             />
           </div>
-          <ContractVideoPreview
+          <VideoContractFeed
             className={styles.RightSide}
             contractData={contract}
           />

@@ -2,7 +2,7 @@ import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfi
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { GiftCard } from "../../common/cards/gift-card";
-import { ContractVideoPreview } from "../contract-video-preview";
+import { VideoContractFeed } from "../video-contract-feed";
 import ClientContractType from "desktop-app/types/clientContract";
 
 const defaultHiringConfiguration: HiringPreviewConfigurationType = {
@@ -48,7 +48,7 @@ function GiftPreviewMain({
             </GiftCard.SpecialText>
           </GiftCard>
         </div>
-        <ContractVideoPreview
+        <VideoContractFeed
           actionButtonsBackgroundColor={
             hiringConfiguration.actionButtonsBackgroundColor
           }
