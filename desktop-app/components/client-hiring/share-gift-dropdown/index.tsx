@@ -1,15 +1,17 @@
 import classes from "classnames";
 import styles from "./styles.module.scss";
 
-type DeliverVideoCardProps = {
+type ShareGiftDropdownProps = {
   className?: string;
   deliveryTo: string;
+  deliveryFrom: string;
+  contractReference: string;
 };
 
-function DeliverVideoCard({
+function ShareGiftDropdown({
   className = "",
   deliveryTo,
-}: DeliverVideoCardProps) {
+}: ShareGiftDropdownProps) {
   return (
     <button
       type="button"
@@ -24,4 +26,4 @@ function DeliverVideoCard({
   );
 }
 
-export { DeliverVideoCard };
+export { ShareGiftDropdown };
