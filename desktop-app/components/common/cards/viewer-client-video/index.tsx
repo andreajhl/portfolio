@@ -51,7 +51,7 @@ function ViewerClientVideo({
   return (
     <div className={styles.ViewerClientVideoWrapper}>
       <section onClick={togglePlay} className={styles.ContractVideoPlayer}>
-        <Maybe it={!videoUrl && !videoIsLoaded}>
+        <Maybe it={!videoIsLoaded}>
           <img
             src={videoPosterUrl}
             alt={`Poster de vídeo de famoso`}
