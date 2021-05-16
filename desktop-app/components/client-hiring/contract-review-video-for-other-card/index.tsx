@@ -25,9 +25,7 @@ const validations = {
 
 const additionalValueFromComponent = 1;
 
-function ContractReviewVideoForOtherCard({
-  contractData,
-}: ContractReviewCardProps) {
+function ContractReviewVideo({ contractData }: ContractReviewCardProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "completed">(
     "idle"
   );
@@ -121,4 +119,4 @@ function ContractReviewVideoForOtherCard({
   );
 }
 
-export { ContractReviewVideoForOtherCard };
+export { ContractReviewVideo };
