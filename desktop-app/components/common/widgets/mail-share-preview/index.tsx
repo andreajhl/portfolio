@@ -11,7 +11,7 @@ type MailSharePreviewProps = {
 
 function MailSharePreview({
   className = "",
-  to,
+  to = "correo@dominio.com",
   subject,
   children,
 }: MailSharePreviewProps) {
