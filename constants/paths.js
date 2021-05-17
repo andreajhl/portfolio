@@ -38,6 +38,8 @@ export const CLIENT_PROFILE = "/my-account/profile";
 export const CLIENT_HIRINGS = "/my-account/hirings";
 export const CLIENT_SUBSCRIPTIONS = "/my-account/subscriptions";
 export const ACCOUNT_HIRING_PREVIEW = "/my-account/hirings/:contract_reference";
+export const CLIENT_HIRING_SHARE_IN_MAIL = `${ACCOUNT_HIRING_PREVIEW}/share-in-mail`;
+export const CLIENT_HIRING_SHARE_IN_WHATSAPP = `${ACCOUNT_HIRING_PREVIEW}/share-in-whatsapp`;
 export const CLIENT_HIRING_PREVIEW_EDITOR = `${ACCOUNT_HIRING_PREVIEW}/preview-editor`;
 export const HIRING_PREVIEW = "/hirings/:contract_reference";
 export const HIRING_EDITOR = "/hirings/:contract_reference/editor";
@@ -96,3 +98,12 @@ export const getClientHiringPreviewEditorPath = (contractReference) =>
 
 export const getGiftPreviewPath = (contractReference) =>
   GIFT_PREVIEW.replace(":contract_reference", contractReference);
+
+export const getClientHiringShareInMailPath = (contractReference) =>
+  CLIENT_HIRING_SHARE_IN_MAIL.replace(":contract_reference", contractReference);
+
+export const getClientHiringShareInWhatsappPath = (contractReference) =>
+  CLIENT_HIRING_SHARE_IN_WHATSAPP.replace(
+    ":contract_reference",
+    contractReference
+  );

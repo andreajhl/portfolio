@@ -1,6 +1,6 @@
 import classes from "classnames";
 import styles from "./styles.module.scss";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import {
   FacebookIcon,
@@ -18,63 +18,79 @@ import {
 import copyTextToClipboard from "lib/utils/copyTextToClipboard";
 import { Dropdown } from "desktop-app/components/common/button/dropdown";
 import { CSSProperties } from "react";
-import { PopupProps } from "reactjs-popup/dist/types";
+import { PopupActions, PopupProps } from "reactjs-popup/dist/types";
+import {
+  getClientHiringShareInMailPath,
+  getClientHiringShareInWhatsappPath,
+  getGiftPreviewPath,
+} from "constants/paths";
+import { ShareModeSelectorModal } from "../../modals/share-mode-selector-modal";
 
 type ShareGiftDropdownProps = {
   backgroundColor?: CSSProperties["backgroundColor"];
   buttonClassName?: string;
   buttonChildren: ReactNode;
   menuPosition?: PopupProps["position"];
-  link: string;
   deliveryTo: string;
   contractReference: string;
 };
 
-type MenuItemType = {
-  id: string;
-  icon?: ReactNode;
-  label: string;
-  to: string;
-};
+type MenuItemType =
+  | {
+      id: string;
+      icon?: ReactNode;
+      label: string;
+      to: string;
+    }
+  | JSX.Element;
 
-const toMenuItem = ({ id, to, icon, label }) => (
-  <a
-    href={to}
-    className={styles.ShareDropdownItem}
-    key={id}
-    target="_blank"
-    rel="noreferrer"
-  >
-    {icon}
-    <span>{label}</span>
-  </a>
-);
+const toMenuItem = (item) => {
+  if (!item?.label) return item;
+  const { id, to, icon, label } = item;
+  return (
+    <a
+      href={to}
+      className={styles.ShareDropdownItem}
+      key={id}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {icon}
+      <span>{label}</span>
+    </a>
+  );
+};
 
 function ShareGiftDropdown({
   menuPosition = "top center",
   buttonChildren,
   buttonClassName = "",
-  link,
+  deliveryTo,
+  contractReference,
 }: ShareGiftDropdownProps) {
-  // TODO DEFINIR TEXTOS
+  const shareInMailRef = useRef<PopupActions>();
+  const shareInWhatsappRef = useRef<PopupActions>();
+  const link = `https://www.famosos.com${getGiftPreviewPath(
+    contractReference
+  )}`;
+
+  const message = `¡Hola ${deliveryTo}! Mira el regalo que te he hecho a través de Famosos.com ${link}`;
+
   const socialMedias: MenuItemType[] = [
-    {
-      id: "mail",
-      icon: <MailIcon />,
-      label: "Compartir por e-mail",
-      to: getMailShareLink(
-        "Me gustaría contarte sobre la plataforma Famosos",
-        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`
-      ),
-    },
-    {
-      id: "whatsapp",
-      icon: <WhatsappIcon />,
-      label: "Compartir por Whatsapp",
-      to: getWhatsappSharingLink(
-        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`
-      ),
-    },
+    <div
+      className={styles.ShareDropdownItem}
+      onClick={shareInMailRef.current?.open}
+    >
+      <MailIcon />
+      <span>Compartir por e-mail</span>
+    </div>,
+    <div
+      className={styles.ShareDropdownItem}
+      onClick={shareInWhatsappRef.current?.open}
+    >
+      <WhatsappIcon />
+      <span>Compartir por Whatsapp</span>
+    </div>,
     {
       id: "facebook",
       icon: <FacebookIcon />,
@@ -85,11 +101,7 @@ function ShareGiftDropdown({
       id: "twitter",
       icon: <TwitterIcon />,
       label: "Compartir por Twitter",
-      to: getTwitterSharingLink(
-        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`,
-        link,
-        "contratafamosos"
-      ),
+      to: getTwitterSharingLink(message, link, "contratafamosos"),
     },
   ];
 
@@ -109,32 +121,51 @@ function ShareGiftDropdown({
   }, [hasCopiedLink]);
 
   return (
-    <Dropdown
-      menuPosition={menuPosition}
-      menuClassName={styles.ShareDropdownMenu}
-      buttonChildren={buttonChildren}
-      buttonClassName={buttonClassName}
-    >
-      <div
-        tabIndex={0}
-        className={styles.ShareDropdownItem}
-        onClick={copyLinkToClipboard}
+    <>
+      <Dropdown
+        menuPosition={menuPosition}
+        menuClassName={styles.ShareDropdownMenu}
+        buttonChildren={buttonChildren}
+        buttonClassName={buttonClassName}
       >
-        <Maybe
-          it={hasCopiedLink}
-          orElse={
-            <>
-              <HyperlinkIcon />
-              <span>Copiar enlace</span>
-            </>
-          }
+        <div
+          tabIndex={0}
+          className={styles.ShareDropdownItem}
+          onClick={copyLinkToClipboard}
         >
-          <i className={classes("fa fa-check-circle", styles.CheckIcon)} />
-          <span>Enlace copiado</span>
-        </Maybe>
-      </div>
-      {socialMedias.map(toMenuItem)}
-    </Dropdown>
+          <Maybe
+            it={hasCopiedLink}
+            orElse={
+              <>
+                <HyperlinkIcon />
+                <span>Copiar enlace</span>
+              </>
+            }
+          >
+            <i className={classes("fa fa-check-circle", styles.CheckIcon)} />
+            <span>Enlace copiado</span>
+          </Maybe>
+        </div>
+        {socialMedias.map(toMenuItem)}
+      </Dropdown>
+      <ShareModeSelectorModal
+        ref={shareInMailRef}
+        type="mail"
+        shareInstantlyLink={getMailShareLink(
+          "Te he hecho un regalo muy especial",
+          message
+        )}
+        scheduleShareLink={getClientHiringShareInMailPath(contractReference)}
+      />
+      <ShareModeSelectorModal
+        ref={shareInWhatsappRef}
+        type="whatsapp"
+        shareInstantlyLink={getWhatsappSharingLink(message)}
+        scheduleShareLink={getClientHiringShareInWhatsappPath(
+          contractReference
+        )}
+      />
+    </>
   );
 }
 
