@@ -1,23 +1,39 @@
+import Maybe from "desktop-app/components/common/helpers/maybe";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { ShareDetailsForm } from "desktop-app/components/layouts/share-details-form";
 import { WhatsappSharePreview } from "desktop-app/components/share-in-whatsapp/whatsapp-share-preview";
+import useGetContract from "lib/hooks/useGetContract";
+import { useState } from "react";
 import styles from "./styles.module.scss";
 
-const HiringShareInWhatsappPage = () => {
+function HiringShareInWhatsappPage({ contractReference }) {
+  const { contract } = useGetContract(contractReference, true);
+
+  const [previewData, setPreviewData] = useState({
+    deliveryTo: "",
+    deliveryFrom: "",
+  });
+
   return (
     <PageContainer>
       <div className={"container " + styles.Container}>
         <WhatsappSharePreview
-          deliveryTo="Duvan"
-          deliveryFrom="German"
-          contractReference="202102201838- 7015192-15162"
+          deliveryTo={previewData.deliveryTo}
+          deliveryFrom={previewData.deliveryFrom}
+          contractReference={contractReference}
+          videoPosterUrl={contract?.celebrityData.avatar}
         />
         <div className={styles.ShareDetailsFormContainer}>
-          <ShareDetailsForm />
+          <Maybe it={Boolean(contract.reference)}>
+            <ShareDetailsForm
+              contractData={contract}
+              onChange={setPreviewData}
+            />
+          </Maybe>
         </div>
       </div>
     </PageContainer>
   );
-};
+}
 
 export { HiringShareInWhatsappPage };
