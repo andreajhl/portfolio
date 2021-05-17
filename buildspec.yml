@@ -25,3 +25,6 @@ artifacts:
     - package.json
     - next.config.js
     - public/**/*
+    - sentry.client.config.js
+    - sentry.properties
+    - sentry.server.config.js
