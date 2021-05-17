@@ -21,7 +21,6 @@ function VideoContractFeed({
   contractData,
   asContractOwner = false,
 }: VideoContractFeedProps) {
-  console.log(contractData);
   if (!contractData.reference) return null; // mostrar skeleton
   return (
     <div className={classes(styles.VideoContractFeed, className)}>
@@ -37,8 +36,10 @@ function VideoContractFeed({
       </div>
       {/* TODO: agregar condicional y conectar con endpoint para saber si existe review del comprador*/}
       <Maybe
-        it={!asContractOwner}
-        orElse={<ContractReviewVideo contractData={contractData} />}
+        it={!asContractOwner && contractData.review !== ""}
+        orElse={
+          <ContractReviewVideo contract_reference={contractData.reference} />
+        }
       >
         <div className={styles.VideoActionsWrapper}>
           <div>
