@@ -1,0 +1,58 @@
+.ShareModeSelectorModal {
+  background: white;
+  border-radius: 10px;
+  padding: 46px 46px 56px;
+  text-align: center;
+}
+
+.Title {
+  font-size: 18px !important;
+  margin-bottom: 36px;
+}
+
+.ShareButton {
+  width: 226px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.WhatsappButton {
+  color: white;
+  background-color: #25d366;
+
+  &:hover {
+    color: white !important;
+    background-color: #38b164;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem #25d3654b !important;
+  }
+}
+
+.ScheduleButton {
+  margin-top: 36px;
+}
+
+.InfoText {
+  font-size: 12px;
+  margin: 0 auto;
+}
+
+.ShareInstantlyInfo {
+  width: 200px;
+}
+
+.ScheduleInfo {
+  width: 250px;
+}
+
+.ExtendedInfoText {
+  width: 300px;
+}
+
+.TextCapitalize {
+  text-transform: capitalize;
+}
