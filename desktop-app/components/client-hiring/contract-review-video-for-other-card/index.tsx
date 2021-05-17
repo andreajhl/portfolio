@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 
 type ContractReviewCardProps = {
-  contractData: MyHiringsContract;
+  contract_reference: string;
 };
 
 const initialValues = {
@@ -25,36 +25,29 @@ const validations = {
 
 const additionalValueFromComponent = 1;
 
-function ContractReviewVideo({ contractData }: ContractReviewCardProps) {
+function ContractReviewVideo({ contract_reference }: ContractReviewCardProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "completed">(
     "idle"
-  );
-  const [isUpdatingReview, setIsUpdatingReview] = useState(
-    contractData.review !== ""
   );
 
   const { values, onChangeField, setFieldValue, submitForm, errors } = useForm<
     typeof initialValues
   >({
     initialValues: {
-      review: contractData.review,
-      stars: contractData.stars || 3,
+      review: "",
+      stars: 3,
     },
     validations,
     async onSubmit(reviewData) {
       if (status !== "idle") return;
       setStatus("loading");
       try {
-        const response = await saveClientContractReview(
-          contractData.reference,
-          {
-            ...reviewData,
-            stars: reviewData.stars - additionalValueFromComponent,
-          }
-        );
+        const response = await saveClientContractReview(contract_reference, {
+          ...reviewData,
+          stars: reviewData.stars - additionalValueFromComponent,
+        });
         if (response.status === "OK") {
           setStatus("completed");
-          setIsUpdatingReview(true);
         }
       } catch (error) {}
     },
@@ -101,12 +94,7 @@ function ContractReviewVideo({ contractData }: ContractReviewCardProps) {
           className={`btn btn-tertiary ${styles.ContractReviewCardButton}`}
           onClick={submitForm}
         >
-          <SubmitText
-            baseText={`${
-              isUpdatingReview ? "Actualizar" : "Enviar"
-            } calificación`}
-            status={status}
-          />
+          <SubmitText baseText={`${"Enviar"} calificación`} status={status} />
         </button>
         <button
           onClick={() => console.log("Hacer algo increible")}
