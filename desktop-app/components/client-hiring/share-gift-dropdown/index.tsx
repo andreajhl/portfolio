@@ -1,29 +1,32 @@
 import classes from "classnames";
+import { ShareGiftDropdown } from "desktop-app/components/common/widgets/share-gift-dropdown";
 import styles from "./styles.module.scss";
 
-type ShareGiftDropdownProps = {
+type ShareGiftDropdownButtonProps = {
   className?: string;
   deliveryTo: string;
   deliveryFrom: string;
   contractReference: string;
 };
 
-function ShareGiftDropdown({
+function ShareGiftDropdownButton({
   className = "",
   deliveryTo,
-}: ShareGiftDropdownProps) {
+  contractReference,
+}: ShareGiftDropdownButtonProps) {
   return (
-    <button
-      type="button"
-      className={classes(
+    <ShareGiftDropdown
+      deliveryTo={deliveryTo}
+      contractReference={contractReference}
+      menuPosition="bottom center"
+      buttonClassName={classes(
         "btn btn-secondary text-with-ellipsis",
         styles.CTAButton,
         className
       )}
-    >
-      Enviar video a {deliveryTo}
-    </button>
+      buttonChildren={`Enviar video a ${deliveryTo}`}
+    />
   );
 }
 
-export { ShareGiftDropdown };
+export { ShareGiftDropdownButton };

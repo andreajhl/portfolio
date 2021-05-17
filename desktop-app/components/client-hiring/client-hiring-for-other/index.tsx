@@ -1,5 +1,5 @@
 import { CustomizeGiftCard } from "../customize-gift-card";
-import { ShareGiftDropdown } from "../share-gift-dropdown";
+import { ShareGiftDropdownButton } from "../share-gift-dropdown";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import ClientContractType from "desktop-app/types/clientContract";
@@ -17,7 +17,7 @@ function ClientHiringForOther({ contractData }: ClientHiringForOtherProps) {
           contractReference={contractData.reference}
           deliveryTo={contractData.deliveryTo}
         />
-        <ShareGiftDropdown
+        <ShareGiftDropdownButton
           className={styles.DeliverVideoCard}
           deliveryTo={contractData.deliveryTo}
           deliveryFrom={contractData.deliveryFrom}
