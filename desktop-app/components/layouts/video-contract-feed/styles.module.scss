@@ -11,3 +11,13 @@
   flex-flow: column;
   justify-content: space-between;
 }
+
+.ActionButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.GoToContractDetails {
+  align-self: flex-end;
+  padding: 0.25rem 0.625rem;
+}
