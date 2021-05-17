@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 import { CommentContractSection } from "desktop-app/components/client-hiring/comment-contract-section";
 import { CSSProperties } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import Link from "next/link";
 
 type VideoContractFeedProps = {
   className?: string;
@@ -49,11 +50,20 @@ function VideoContractFeed({
         >
           <ContractReviewVideo contract_reference={contractData.reference} />
         </Maybe>
-        <div>
+        <div className={styles.ActionButtons}>
           <VideoActionButtons
             actionButtonsBackgroundColor={actionButtonsBackgroundColor}
             videoURL={contractData.media}
           />
+          <Maybe it={asContractOwner}>
+            <Link href="/">
+              <button
+                className={`btn btn-tertiary ${styles.GoToContractDetails}`}
+              >
+                Ver detalles de video
+              </button>
+            </Link>
+          </Maybe>
         </div>
       </div>
     </div>

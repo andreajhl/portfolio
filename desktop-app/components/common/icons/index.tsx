@@ -490,6 +490,24 @@ export function WarningIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+export function FullScreenIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={19}
+      height={19}
+      viewBox="0 0 19 19"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M0 6.277v-5.26C0 .455.454 0 1.018 0h5.259a.51.51 0 01.509.509v1.696a.51.51 0 01-.51.51H2.715v3.562a.51.51 0 01-.509.509H.51A.51.51 0 010 6.276zM12.214.509v1.696c0 .28.23.51.51.51h3.562v3.562c0 .28.229.509.509.509h1.696a.51.51 0 00.509-.51V1.019C19 .454 18.546 0 17.982 0h-5.259a.51.51 0 00-.509.509zm6.277 11.705h-1.696a.51.51 0 00-.51.51v3.562h-3.562a.51.51 0 00-.509.509v1.696c0 .28.23.509.51.509h5.258c.564 0 1.018-.454 1.018-1.018v-5.259a.51.51 0 00-.509-.509zM6.786 18.491v-1.696a.51.51 0 00-.51-.51H2.715v-3.562a.51.51 0 00-.509-.509H.51a.51.51 0 00-.509.51v5.258C0 18.546.454 19 1.018 19h5.259a.51.51 0 00.509-.509z"
+        fill="#fff"
+      />
+    </svg>
+  );
+}
+
 export function SettingsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
