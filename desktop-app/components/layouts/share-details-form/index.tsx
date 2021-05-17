@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 import { CellphoneNumberInput } from "../../common/form/cellphone-number-input";
 import { InputField } from "../../common/form/input-field";
+import classes from "classnames";
 import styles from "./styles.module.scss";
 
 function FormField({ label, name = "", type = "text", ...props }) {
@@ -40,6 +41,7 @@ function getInitialState(contractData) {
     deliveryDate: "",
     deliveryTime: "",
     deliveryTimezone: null,
+    message: `¡Hola ${valuesFromContract.deliveryTo}!\nMira el regalo que te he hecho a través de Famosos.com.`,
   } as InitialValuesType;
 }
 
@@ -51,6 +53,7 @@ type InitialValuesType = {
   deliveryDate: string;
   deliveryTime: string;
   deliveryTimezone: number;
+  message: string;
 };
 
 type ShareDetailsFormProps = {
@@ -122,6 +125,18 @@ function ShareDetailsForm({
           onChange={onChangeField}
         />
       </div>
+      <Maybe it={!isWhatsappType}>
+        <label htmlFor="message" className={styles.Label}>
+          Mensaje
+        </label>
+        <textarea
+          className={classes(styles.Input, styles.MessageTextarea)}
+          name="message"
+          id="message"
+          onChange={onChangeField}
+          value={values.message}
+        />
+      </Maybe>
       <div className={styles.ScheduleInfo}>
         <FormField
           label="Fecha de envío"
