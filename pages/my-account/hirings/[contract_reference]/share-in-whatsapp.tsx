@@ -3,6 +3,7 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { LoaderLayout } from "react-app/src/components/layouts/loader";
 import { HiringShareInWhatsappPage } from "desktop-app/components/pages/hiring-share-in-whatsapp";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 
 export const getServerSideProps: GetServerSideProps = async ({
   params: { contract_reference },
@@ -13,6 +14,8 @@ export const getServerSideProps: GetServerSideProps = async ({
 };
 
 const HiringShareInWhatsapp = ({ contract_reference }) => {
+  useDesktopClass(true);
+
   return (
     <>
       <CustomHead />
