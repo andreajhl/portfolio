@@ -21,6 +21,7 @@ function VideoContractFeed({
   contractData,
   asContractOwner = false,
 }: VideoContractFeedProps) {
+  console.log(contractData);
   if (!contractData.reference) return null; // mostrar skeleton
   return (
     <div className={classes(styles.VideoContractFeed, className)}>
@@ -35,26 +36,26 @@ function VideoContractFeed({
         />
       </div>
       {/* TODO: agregar condicional y conectar con endpoint para saber si existe review del comprador*/}
-      <Maybe
-        it={!asContractOwner && contractData.review !== ""}
-        orElse={
+      <div className={styles.VideoActionsWrapper}>
+        <Maybe
+          it={asContractOwner && contractData.review === ""}
+          orElse={
+            <div>
+              <CommentContractSection
+                contract_reference={contractData.reference}
+              />
+            </div>
+          }
+        >
           <ContractReviewVideo contract_reference={contractData.reference} />
-        }
-      >
-        <div className={styles.VideoActionsWrapper}>
-          <div>
-            <CommentContractSection
-              contract_reference={contractData.reference}
-            />
-          </div>
-          <div>
-            <VideoActionButtons
-              actionButtonsBackgroundColor={actionButtonsBackgroundColor}
-              videoURL={contractData.media}
-            />
-          </div>
+        </Maybe>
+        <div>
+          <VideoActionButtons
+            actionButtonsBackgroundColor={actionButtonsBackgroundColor}
+            videoURL={contractData.media}
+          />
         </div>
-      </Maybe>
+      </div>
     </div>
   );
 }
