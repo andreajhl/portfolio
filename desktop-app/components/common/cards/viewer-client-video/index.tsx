@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import Maybe from "../../helpers/maybe";
-import { PlayIcon } from "../../icons";
+import {
+  MutedIcon,
+  PauseIcon,
+  PlayIcon,
+  VolumeIcon,
+  FullScreenIcon,
+} from "../../icons";
 import VideoFooter from "../video/footer";
 import useLoad from "react-app/src/utils/useLoad";
 import styles from "./styles.module.scss";
@@ -44,6 +50,9 @@ function ViewerClientVideo({
   });
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
+  const toggleVideoIsMuted = () => {
+    setVideoIsMuted((videoIsMuted) => !videoIsMuted);
+  };
   const handleTogglePlay = () => {
     if (previewMode) return;
     togglePlay();
@@ -69,6 +78,17 @@ function ViewerClientVideo({
         <Maybe it={!videoIsPlaying}>
           <PlayIcon className={styles.CTAPlayIcon} onClick={handleTogglePlay} />
         </Maybe>
+
+        <Maybe it={videoIsPlaying}>
+          <div className={styles.ContractVideoControls}>
+            <OverlayHeader
+              IsMuted={videoIsMuted}
+              isPlaying={videoIsPlaying}
+              onToggleAudio={toggleVideoIsMuted}
+              onTogglePlay={togglePlay}
+            />
+          </div>
+        </Maybe>
       </section>
       <div className={styles.CelebrityDetails}>
         <VideoFooter
@@ -82,3 +102,27 @@ function ViewerClientVideo({
 }
 
 export default ViewerClientVideo;
+
+type OverlayHeaderProps = {
+  isPlaying: boolean;
+  IsMuted: boolean;
+  onTogglePlay: () => void;
+  onToggleAudio: () => void;
+};
+
+const OverlayHeader = (props: OverlayHeaderProps) => {
+  const { isPlaying, IsMuted, onToggleAudio, onTogglePlay } = props;
+  return (
+    <div className={styles.OverlayControls}>
+      {isPlaying ? (
+        <PauseIcon className={styles.PauseIcon} onClick={onTogglePlay} />
+      ) : null}
+      {!IsMuted ? (
+        <VolumeIcon className={styles.VolumenIcon} onClick={onToggleAudio} />
+      ) : (
+        <MutedIcon className={styles.MutedIcon} onClick={onToggleAudio} />
+      )}
+      <FullScreenIcon className={styles.ToggleFullScreen}></FullScreenIcon>
+    </div>
+  );
+};

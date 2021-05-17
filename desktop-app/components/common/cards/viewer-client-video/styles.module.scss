@@ -37,3 +37,65 @@
   height: 100%;
   object-fit: cover !important;
 }
+
+.VideoControls {
+  position: absolute;
+  top: 0;
+}
+
+.PauseIcon {
+  right: 0;
+}
+
+.ContractVideoOverlay {
+  display: flex;
+  justify-content: flex-end;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(
+    0deg,
+    rgba(6, 6, 6, 0.85) 0%,
+    rgba(179, 179, 179, 0) 100%
+  );
+}
+.ContractVideoControls {
+  padding: 14px 18px 14px 16px;
+  pointer-events: none;
+
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.OverlayControls {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.MutedIcon,
+.VolumenIcon {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.PauseIcon {
+  position: absolute;
+  right: 0;
+  width: 15px;
+  height: 15px;
+}
+
+.ToggleFullScreen {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+}
