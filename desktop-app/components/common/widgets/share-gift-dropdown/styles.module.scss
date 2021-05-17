@@ -1,0 +1,56 @@
+.ActionButton {
+  height: 48px;
+  width: 48px;
+  background: #ffffff;
+  border-radius: 50% !important;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+.LikeButtonModifier {
+  width: 22px !important;
+  height: 19px !important;
+  color: black;
+  fill: none;
+  &:hover {
+    width: 20px !important;
+    height: 17px !important;
+    fill: var(--primary);
+  }
+}
+.ShareDropdownMenu {
+  padding: 3px 0;
+  width: 266px;
+  margin: 0.5rem 0 1rem;
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+}
+
+.ShareDropdownButton {
+  font-weight: bold;
+  color: var(--primary, #fb177d);
+  border: 2px solid currentColor;
+  border-radius: 5px;
+
+  &:hover {
+    color: var(--primary-darken, #b71157);
+  }
+}
+
+.ShareDropdownItem {
+  cursor: pointer;
+  padding: 0.4rem 1.125rem;
+}
+
+.ShareDropdownItem + .ShareDropdownItem {
+  border-top: 1px solid var(--gray-1, #f5f5f5);
+}
+
+.ShareDropdownItem span {
+  margin-left: 24px;
+  font-size: 14px;
+}
+
+.CheckIcon {
+  font-size: 18px;
+  color: var(--primary, #fb177d);
+}
