@@ -1,7 +1,17 @@
 .CustomizeGiftCard {
-  background: #fff8fb;
   border-radius: 7px;
-  padding: 20px 30px 32px;
+  border: 1px solid var(--dark, #000000);
+}
+
+.ContentContainer {
+  padding: 24px 30px 30px;
+  border-bottom: 1px solid var(--dark, #000000);
+  text-align: center;
+}
+
+.ButtonWrapper {
+  padding: 30px;
+  background-image: url(/assets/img/hirings-preview-backgrounds/background-2-medium.png);
 }
 
 .Hidden {
@@ -20,8 +30,7 @@
 }
 
 .CustomizeGiftText {
-  font-size: 12px;
-  margin-bottom: 26px;
+  margin-bottom: 0;
 }
 
 .CTAButton {
