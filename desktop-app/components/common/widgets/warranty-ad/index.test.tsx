@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import { WarrantyAd } from "./";
+import { WarrantyAd } from ".";
 
 it("renders without crashing", () => {
   const wrapper = shallow(<WarrantyAd />);
