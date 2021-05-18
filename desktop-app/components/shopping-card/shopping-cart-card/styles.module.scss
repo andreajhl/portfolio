@@ -13,6 +13,11 @@
   align-items: center;
 }
 
+.RightSide {
+  flex: 1;
+  margin-left: 70px;
+}
+
 .ProfilePictureLink {
   margin-top: 6px;
 }
@@ -22,6 +27,59 @@
   background: none;
 }
 
-.LeftSide + .RightSide {
-  margin-left: 70px;
+.RightSideHeader,
+.OccasionWrapper,
+.PriceWrapper,
+.RightSideFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.RightSideHeader {
+  margin-bottom: 25px;
+}
+
+.Title {
+  margin-bottom: 0;
+}
+
+.TrashIcon {
+  transition: color 0.15s;
+  color: var(--gray-2, #bebebe);
+}
+
+:hover > .TrashIcon {
+  color: var(--gray-4);
+}
+
+.CreationDate {
+  font-size: 14px;
+  color: var(--gray-4, #5c5c5c);
+}
+
+.PriceWrapper {
+  padding-bottom: 26px;
+  border-bottom: 1px solid #bebebe;
+}
+
+.PriceWrapper span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.RightSideFooter {
+  margin-top: 40px;
+}
+
+.SecurePayImg {
+  width: 242px;
+  height: 50px;
+}
+
+.FinishBuyButton {
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  width: 312px;
 }
