@@ -2,7 +2,7 @@ import { LikeButton } from "desktop-app/components/common/button/like";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import Maybe from "../../common/helpers/maybe";
 import { CollapsibleText } from "../../common/helpers/collapsible-text";
-import { WarrantyAd } from "../warranty-ad";
+import { WarrantyAd } from "../../common/widgets/warranty-ad";
 import { DonorAlert } from "desktop-app/components/celebrity-profile/donor-alert";
 import styles from "./styles.module.scss";
 import { CelebrityHashtags } from "desktop-app/components/celebrity-profile/celebrity-hashtags";
@@ -30,10 +30,10 @@ function CelebrityDetails({ celebrity }: CelebrityDetailsProps) {
           className={styles.CelebrityDetailsMainVideo}
           avatarProps={{
             width: 220,
-            height: 220
+            height: 220,
           }}
         />
-        <WarrantyAd />
+        <WarrantyAd celebrityFullName={celebrity.fullName} />
       </div>
       <CollapsibleText className={styles.CelebrityDetailsDescription}>
         {celebrity.description}
