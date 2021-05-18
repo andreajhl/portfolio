@@ -1,10 +1,14 @@
+import classes from "classnames";
 import styles from "./styles.module.scss";
 
-type WarrantyAdProps = {};
+type WarrantyAdProps = {
+  celebrityFullName: string;
+  className?: string;
+};
 
-function WarrantyAd(props: WarrantyAdProps) {
+function WarrantyAd({ celebrityFullName, className = "" }: WarrantyAdProps) {
   return (
-    <section className={styles.WarrantyAd}>
+    <section className={classes(styles.WarrantyAd, className)}>
       <img
         src="/assets/img/famosos-warranty-icon.png"
         alt="Logo de Garantía Famosos"
@@ -13,7 +17,7 @@ function WarrantyAd(props: WarrantyAdProps) {
       <p>
         Video grabado por
         <br />
-        Andrés Cepeda
+        {celebrityFullName}
         <br />
         100% personalizado.
         <br />
