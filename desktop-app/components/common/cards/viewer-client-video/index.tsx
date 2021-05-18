@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import Maybe from "../../helpers/maybe";
 import {
@@ -11,6 +11,8 @@ import {
 import VideoFooter from "../video/footer";
 import useLoad from "react-app/src/utils/useLoad";
 import styles from "./styles.module.scss";
+
+import { FullScreenVideoPlayer } from "../video/full-screen-video-player";
 
 type ViewerClientVideoProps = {
   avatar: string;
@@ -30,7 +32,13 @@ function ViewerClientVideo({
   previewMode = false,
 }: ViewerClientVideoProps) {
   const videoKey = `client-video-${videoUrl}`;
-  const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
+  const {
+    videoRef,
+    videoIsPlaying,
+    playVideo,
+    pauseVideo,
+    togglePlay,
+  } = useVideoPlayer(videoKey, {
     onPlayVideo() {
       // TODO: conectar GTM
       console.log("onPlayVideo()");
@@ -50,54 +58,67 @@ function ViewerClientVideo({
   });
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const toggleVideoIsMuted = () => {
+    console.log("toggle");
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
+  };
+  const toggleVideoFullScreen = () => {
+    setModalIsOpen((fullScreen) => !fullScreen);
   };
 
   return (
-    <div className={styles.ViewerClientVideoWrapper}>
-      <div className={styles.ContractVideoMedia}>
-        <section onClick={togglePlay} className={styles.ContractVideoPlayer}>
-          <Maybe it={!videoIsLoaded}>
-            <img
-              src={videoPosterUrl}
-              alt={`Poster de vídeo de famoso`}
-              className={styles.VideoPoster}
-            ></img>
-          </Maybe>
-          <video
-            muted={videoIsMuted}
-            ref={videoRef}
-            onLoadedData={onVideoLoadedData}
-            src={videoUrl}
-            preload="none"
-            className={styles.VideoElement}
-          ></video>
-        </section>
-        <section className={styles.ContractVideoOverlay}>
-          <Maybe it={!videoIsPlaying}>
-            <PlayIcon className={styles.CTAPlayIcon} onClick={togglePlay} />
-          </Maybe>
-          <Maybe it={videoIsPlaying}>
-            <div className={styles.ContractVideoControls}>
-              <VideoControls
-                IsMuted={videoIsMuted}
-                isPlaying={videoIsPlaying}
-                onToggleAudio={toggleVideoIsMuted}
-                onTogglePlay={togglePlay}
-              />
-            </div>
-          </Maybe>
-        </section>
+    <>
+      <div className={styles.ViewerClientVideoWrapper}>
+        <div className={styles.ContractVideoMedia}>
+          <section onClick={togglePlay} className={styles.ContractVideoPlayer}>
+            <Maybe it={!videoIsLoaded}>
+              <img
+                src={videoPosterUrl}
+                alt={`Poster de vídeo de famoso`}
+                className={styles.VideoPoster}
+              ></img>
+            </Maybe>
+            <video
+              muted={videoIsMuted}
+              ref={videoRef}
+              onLoadedData={onVideoLoadedData}
+              src={videoUrl}
+              preload="none"
+              className={styles.VideoElement}
+            ></video>
+          </section>
+          <section className={styles.ContractVideoOverlay}>
+            <Maybe it={!videoIsPlaying}>
+              <PlayIcon className={styles.CTAPlayIcon} onClick={togglePlay} />
+            </Maybe>
+            <Maybe it={videoIsPlaying}>
+              <div className={styles.ContractVideoControls}>
+                <VideoControls
+                  onToggleFullScreen={toggleVideoFullScreen}
+                  IsMuted={videoIsMuted}
+                  isPlaying={videoIsPlaying}
+                  onToggleAudio={toggleVideoIsMuted}
+                  onTogglePlay={togglePlay}
+                />
+              </div>
+            </Maybe>
+          </section>
+        </div>
+        <div className={styles.CelebrityDetails}>
+          <VideoFooter
+            avatarURL={avatar}
+            fullName={fullName}
+            userName={username}
+          />
+        </div>
       </div>
-      <div className={styles.CelebrityDetails}>
-        <VideoFooter
-          avatarURL={avatar}
-          fullName={fullName}
-          userName={username}
-        />
-      </div>
-    </div>
+      <FullScreenVideoPlayer
+        onCloseFullScreen={toggleVideoFullScreen}
+        videoUrl={videoUrl}
+        isFullScreen={modalIsOpen}
+      />
+    </>
   );
 }
 
@@ -108,10 +129,17 @@ type VideoControlsProps = {
   IsMuted: boolean;
   onTogglePlay: () => void;
   onToggleAudio: () => void;
+  onToggleFullScreen: () => void;
 };
 
 const VideoControls = (props: VideoControlsProps) => {
-  const { isPlaying, IsMuted, onToggleAudio, onTogglePlay } = props;
+  const {
+    isPlaying,
+    IsMuted,
+    onToggleAudio,
+    onTogglePlay,
+    onToggleFullScreen,
+  } = props;
   return (
     <div className={styles.OverlayControls}>
       {isPlaying ? (
@@ -122,7 +150,10 @@ const VideoControls = (props: VideoControlsProps) => {
       ) : (
         <MutedIcon className={styles.MutedIcon} onClick={onToggleAudio} />
       )}
-      <FullScreenIcon className={styles.ToggleFullScreen}></FullScreenIcon>
+      <FullScreenIcon
+        onClick={onToggleFullScreen}
+        className={styles.ToggleFullScreen}
+      ></FullScreenIcon>
     </div>
   );
 };
