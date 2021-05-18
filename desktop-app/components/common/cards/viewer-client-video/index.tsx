@@ -53,43 +53,43 @@ function ViewerClientVideo({
   const toggleVideoIsMuted = () => {
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
-  const handleTogglePlay = () => {
-    if (previewMode) return;
-    togglePlay();
-  };
+
   return (
     <div className={styles.ViewerClientVideoWrapper}>
-      <section onClick={togglePlay} className={styles.ContractVideoPlayer}>
-        <Maybe it={!videoIsLoaded}>
-          <img
-            src={videoPosterUrl}
-            alt={`Poster de vídeo de famoso`}
-            className={styles.VideoPoster}
-          ></img>
-        </Maybe>
-        <video
-          muted={videoIsMuted}
-          ref={videoRef}
-          onLoadedData={onVideoLoadedData}
-          src={videoUrl}
-          preload="none"
-          className={styles.VideoElement}
-        ></video>
-        <Maybe it={!videoIsPlaying}>
-          <PlayIcon className={styles.CTAPlayIcon} onClick={handleTogglePlay} />
-        </Maybe>
-
-        <Maybe it={videoIsPlaying}>
-          <div className={styles.ContractVideoControls}>
-            <OverlayHeader
-              IsMuted={videoIsMuted}
-              isPlaying={videoIsPlaying}
-              onToggleAudio={toggleVideoIsMuted}
-              onTogglePlay={togglePlay}
-            />
-          </div>
-        </Maybe>
-      </section>
+      <div className={styles.ContractVideoMedia}>
+        <section onClick={togglePlay} className={styles.ContractVideoPlayer}>
+          <Maybe it={!videoIsLoaded}>
+            <img
+              src={videoPosterUrl}
+              alt={`Poster de vídeo de famoso`}
+              className={styles.VideoPoster}
+            ></img>
+          </Maybe>
+          <video
+            muted={videoIsMuted}
+            ref={videoRef}
+            onLoadedData={onVideoLoadedData}
+            src={videoUrl}
+            preload="none"
+            className={styles.VideoElement}
+          ></video>
+        </section>
+        <section className={styles.ContractVideoOverlay}>
+          <Maybe it={!videoIsPlaying}>
+            <PlayIcon className={styles.CTAPlayIcon} onClick={togglePlay} />
+          </Maybe>
+          <Maybe it={videoIsPlaying}>
+            <div className={styles.ContractVideoControls}>
+              <VideoControls
+                IsMuted={videoIsMuted}
+                isPlaying={videoIsPlaying}
+                onToggleAudio={toggleVideoIsMuted}
+                onTogglePlay={togglePlay}
+              />
+            </div>
+          </Maybe>
+        </section>
+      </div>
       <div className={styles.CelebrityDetails}>
         <VideoFooter
           avatarURL={avatar}
@@ -103,14 +103,14 @@ function ViewerClientVideo({
 
 export default ViewerClientVideo;
 
-type OverlayHeaderProps = {
+type VideoControlsProps = {
   isPlaying: boolean;
   IsMuted: boolean;
   onTogglePlay: () => void;
   onToggleAudio: () => void;
 };
 
-const OverlayHeader = (props: OverlayHeaderProps) => {
+const VideoControls = (props: VideoControlsProps) => {
   const { isPlaying, IsMuted, onToggleAudio, onTogglePlay } = props;
   return (
     <div className={styles.OverlayControls}>
