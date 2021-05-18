@@ -10,14 +10,12 @@ type GiftPreviewPageProps = {
 };
 
 const mockHiringConfiguration: HiringPreviewConfigurationType = {
-  cardTitle: `¡Feliz
-  cumpleaños
-  mi amor!`,
-  cardMessage: `Mi amor hermosa, te dedico esta canción con todo mi corazón.
-  Te amo infinito. Que tengas un cumpleaños hermoso. 
-  Con todo mi amor, Luis.`,
+  cardTitle: "¡Feliz cumpleaños mi amor!",
+  cardMessage:
+    "Mi amor hermosa, te dedico esta canción con todo mi corazón.\nTe amo infinito. Que tengas un cumpleaños hermoso.\n\nCon todo mi amor, Luis.",
   cardColor: "#E8E8FF",
   pageBackgroundUrl: "/assets/img/hirings-preview-backgrounds/background-1.png",
+  actionButtonsBackgroundColor: "#000000",
 };
 
 function GiftPreviewPage({

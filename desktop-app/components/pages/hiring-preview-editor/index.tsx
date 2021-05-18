@@ -7,6 +7,7 @@ import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfi
 import { useState } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { LivePreviewCard } from "desktop-app/components/hiring-preview-editor/live-preview-card";
+import { ShareGiftDropdown } from "desktop-app/components/common/widgets/share-gift-dropdown";
 
 type HiringPreviewEditorPageProps = {
   contractReference: string;
@@ -38,12 +39,13 @@ function HiringPreviewEditorPage({
                 contract={contract}
                 configuration={configuration}
               />
-              <button
-                type="button"
-                className={classes("btn btn-primary", styles.ShareButton)}
-              >
-                Enviar video a {contract.deliveryTo}
-              </button>
+              <ShareGiftDropdown
+                deliveryTo={contract.deliveryTo}
+                contractReference={contractReference}
+                menuPosition="bottom center"
+                buttonClassName={classes("btn btn-primary", styles.ShareButton)}
+                buttonChildren={`Enviar video a ${contract.deliveryTo}`}
+              />
             </div>
           </div>
         </main>

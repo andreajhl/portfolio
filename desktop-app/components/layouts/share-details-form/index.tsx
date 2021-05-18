@@ -1,26 +1,81 @@
-import Checkbox from "desktop-app/components/common/form/checkbox";
+import timezones from "constants/popularLatamCitiesTimezones";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import ClientContractType from "desktop-app/types/clientContract";
+import useForm from "lib/hooks/useForm";
+import { useEffect } from "react";
+import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 import { CellphoneNumberInput } from "../../common/form/cellphone-number-input";
 import { InputField } from "../../common/form/input-field";
+import classes from "classnames";
 import styles from "./styles.module.scss";
 
-type ShareDetailsFormProps = {
-  type?: "whatsapp" | "mail";
-};
-
-function FormField({ label, name = "", type = "text" }) {
+function FormField({ label, name = "", type = "text", ...props }) {
   return (
     <div>
       <label htmlFor={name} className={styles.Label}>
         {label}
       </label>
-      <InputField type={type} id={name} name={name} className={styles.Input} />
+      <InputField
+        type={type}
+        id={name}
+        name={name}
+        className={styles.Input}
+        {...props}
+      />
     </div>
   );
 }
 
-function ShareDetailsForm({ type = "whatsapp" }: ShareDetailsFormProps) {
+function getInitialState(contractData) {
+  const valuesFromContract = pickPropertiesFromAObject(contractData, [
+    "deliveryContact",
+    "deliveryContactCellphone",
+    "deliveryFrom",
+    "deliveryTo",
+  ]) as InitialValuesType;
+
+  return {
+    ...valuesFromContract,
+    deliveryContactCellphone:
+      valuesFromContract.deliveryContactCellphone || "57",
+    deliveryDate: "",
+    deliveryTime: "",
+    deliveryTimezone: null,
+    message: `¡Hola ${valuesFromContract.deliveryTo}!\nMira el regalo que te he hecho a través de Famosos.com.`,
+  } as InitialValuesType;
+}
+
+type InitialValuesType = {
+  deliveryContact: string;
+  deliveryContactCellphone: string;
+  deliveryFrom: string;
+  deliveryTo: string;
+  deliveryDate: string;
+  deliveryTime: string;
+  deliveryTimezone: number;
+  message: string;
+};
+
+type ShareDetailsFormProps = {
+  contractData: ClientContractType;
+  type?: "whatsapp" | "mail";
+  onChange?: (values: InitialValuesType) => void;
+};
+
+function ShareDetailsForm({
+  type = "whatsapp",
+  contractData,
+  onChange = function () {},
+}: ShareDetailsFormProps) {
+  const { values, onChangeField, setFieldValue, submitForm } = useForm({
+    initialValues: getInitialState(contractData),
+    onSubmit: console.log,
+  });
   const isWhatsappType = type === "whatsapp";
+
+  useEffect(() => {
+    onChange(values);
+  }, [values]);
 
   return (
     <section className={styles.ShareDetailsForm}>
@@ -31,51 +86,65 @@ function ShareDetailsForm({ type = "whatsapp" }: ShareDetailsFormProps) {
         </Maybe>
       </h2>
       <div className={styles.CellphoneNumberField}>
-        <label htmlFor="cellPhoneNumber" className={styles.Label}>
-          <Maybe it={isWhatsappType} orElse="Correo">
-            Whatsapp
-          </Maybe>{" "}
-          del destinatario
-        </label>
         <Maybe
           it={isWhatsappType}
-          orElse={<InputField name="mail" className={styles.Input} />}
+          orElse={
+            <FormField
+              name="deliveryContact"
+              label="Correo electrónico del destinatario"
+              value={values.deliveryContact}
+              onChange={onChangeField}
+            />
+          }
         >
+          <label htmlFor="cellPhoneNumber" className={styles.Label}>
+            Whatsapp del destinatario
+          </label>
           <CellphoneNumberInput
-            value="+52 55 4375 09 49"
+            onChange={(value) =>
+              setFieldValue("deliveryContactCellphone", value)
+            }
+            placeholder="+52 55 4375 09 49"
+            value={values.deliveryContactCellphone}
             containerClass={styles.Input}
             inputClass={styles.CellphoneInput}
           />
         </Maybe>
       </div>
       <div className={styles.DeliveryInfo}>
-        <FormField label="Para" />
-        <FormField label="De" />
-      </div>
-      <div className={styles.DeliveryType}>
-        <Checkbox
-          alignLabel="left"
-          label="Enviar inmediatamente"
-          onChange={console.log}
-          value="male"
-          checked={true}
-          name="male"
-          checkboxLayout="circle"
-          className={styles.Checkbox}
+        <FormField
+          name="deliveryTo"
+          label="Para"
+          value={values.deliveryTo}
+          onChange={onChangeField}
         />
-        <Checkbox
-          alignLabel="left"
-          label="Programar envío"
-          onChange={console.log}
-          value="male"
-          checked={false}
-          name="male"
-          checkboxLayout="circle"
-          className={styles.Checkbox}
+        <FormField
+          name="deliveryFrom"
+          label="De"
+          value={values.deliveryFrom}
+          onChange={onChangeField}
         />
       </div>
+      <Maybe it={!isWhatsappType}>
+        <label htmlFor="message" className={styles.Label}>
+          Mensaje
+        </label>
+        <textarea
+          className={classes(styles.Input, styles.MessageTextarea)}
+          name="message"
+          id="message"
+          onChange={onChangeField}
+          value={values.message}
+        />
+      </Maybe>
       <div className={styles.ScheduleInfo}>
-        <FormField label="Fecha de envío" name="date" type="date" />
+        <FormField
+          label="Fecha de envío"
+          name="deliveryDate"
+          type="date"
+          value={values.deliveryDate}
+          onChange={onChangeField}
+        />
         <div>
           <label htmlFor="deliveryTime" className={styles.Label}>
             Hora de envío
@@ -85,14 +154,21 @@ function ShareDetailsForm({ type = "whatsapp" }: ShareDetailsFormProps) {
               type="time"
               id="deliveryTime"
               name="deliveryTime"
+              value={values.deliveryTime}
+              onChange={onChangeField}
               className={styles.TimeInput}
             />
             <select
               name="deliveryTimezone"
               id="deliveryTimezone"
               className={styles.TimezoneSelect}
+              onChange={onChangeField}
             >
-              <option value="CDMX">Hora CDMX</option>
+              {timezones.map(({ city, timezone }) => (
+                <option value={timezone} key={city}>
+                  {city}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -100,6 +176,7 @@ function ShareDetailsForm({ type = "whatsapp" }: ShareDetailsFormProps) {
       <button
         type="button"
         className={"btn btn-primary " + styles.SubmitButton}
+        onClick={submitForm}
       >
         Enviar
       </button>

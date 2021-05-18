@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import { MailSharePreview } from "./";
+import { ShareInMailPreview } from ".";
 
 it("should renders without crashing", () => {
-  const wrapper = shallow(<MailSharePreview />);
+  const wrapper = shallow(<ShareInMailPreview />);
   expect(wrapper.exists()).toBeTruthy();
 });

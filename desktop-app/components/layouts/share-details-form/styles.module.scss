@@ -63,6 +63,15 @@
   font-size: 14px;
 }
 
+.MessageTextarea {
+  border: 1px solid #dedede;
+  background: #f9f9ff;
+  border-radius: 7px;
+  padding: 0.5em 0.85em;
+  height: 128px;
+  resize: none;
+}
+
 .ScheduleInfo {
   display: flex;
   margin-top: 30px;
@@ -109,5 +118,5 @@
   height: 40px;
   font-size: 14px;
   font-weight: bold;
-  margin-top: 45px;
+  margin-top: 36px;
 }

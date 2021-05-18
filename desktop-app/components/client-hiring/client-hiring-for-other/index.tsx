@@ -1,5 +1,5 @@
 import { CustomizeGiftCard } from "../customize-gift-card";
-import { ShareGiftDropdownButton } from "../share-gift-dropdown";
+import { ShareGiftDropdownButton } from "../share-gift-dropdown-button";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import ClientContractType from "desktop-app/types/clientContract";

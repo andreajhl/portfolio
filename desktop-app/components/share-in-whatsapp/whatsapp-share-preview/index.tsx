@@ -1,23 +1,25 @@
-import { getHiringPreviewPath } from "constants/paths";
+import { getGiftPreviewPath, getHiringPreviewPath } from "constants/paths";
 import styles from "./styles.module.scss";
 
 type WhatsappSharePreviewProps = {
   deliveryTo: string;
   deliveryFrom: string;
   contractReference: string;
+  videoPosterUrl: string;
 };
 
 function WhatsappSharePreview({
   deliveryTo,
   deliveryFrom,
   contractReference,
+  videoPosterUrl,
 }: WhatsappSharePreviewProps) {
   return (
     <div className={styles.WhatsappSharePreview}>
       <div className={styles.MessageToast}>
         <img
           className={styles.MessageImg}
-          src="https://d3dxo4xx2lwk55.cloudfront.net/videos/609/7310/famosos-videos-personalizados-enriquearce-202011032150-1933443-7310-crf-video-poster480.jpg"
+          src={videoPosterUrl}
           alt="Poster de video"
         />
         <div className={styles.MessageText}>
@@ -25,7 +27,7 @@ function WhatsappSharePreview({
           Mira el regalo que {deliveryFrom} te ha hecho a través de Famosos.com{" "}
           <br /> <br />
           <span className={styles.Hyperlink}>
-            https://www.famosos.com{getHiringPreviewPath(contractReference)}
+            https://www.famosos.com{getGiftPreviewPath(contractReference)}
           </span>
         </div>
       </div>
