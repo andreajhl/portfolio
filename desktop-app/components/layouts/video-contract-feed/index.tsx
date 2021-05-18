@@ -23,7 +23,6 @@ function VideoContractFeed({
   contractData,
   asContractOwner = false,
 }: VideoContractFeedProps) {
-  console.log(contractData);
   if (!contractData.reference) return null; // mostrar skeleton
   return (
     <div className={classes(styles.VideoContractFeed, className)}>
