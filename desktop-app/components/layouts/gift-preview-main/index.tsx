@@ -10,8 +10,8 @@ const defaultHiringConfiguration: HiringPreviewConfigurationType = {
   cardMessage:
     "Mi amor hermosa, te dedico esta canción con todo mi corazón.\nTe amo infinito. Que tengas un cumpleaños hermoso.\n\n\nCon todo mi amor, Luis.",
   cardColor: "#E8E8FF",
-  pageBackgroundUrl: "/assets/img/hirings-preview-backgrounds/background-1.png",
-  actionButtonsBackgroundColor: "#000000",
+  pageBackgroundUrl: "/assets/img/hirings-preview-backgrounds/background-2.png",
+  actionButtonsBackgroundColor: "#FB177D",
 };
 
 type GiftPreviewMainProps = {
