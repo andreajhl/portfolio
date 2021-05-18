@@ -38,7 +38,7 @@ type EditorFormProps = {
 
 const initialValues: HiringPreviewConfigurationType = {
   cardColor: availableCardColors[0],
-  cardTitle: "¡Feliz cumpleaños mi amor!",
+  cardTitle: "Agrega un titulo",
   cardMessage: "Agrega un texto especial....",
   pageBackgroundUrl: availablePageBackgroundsUrls[0],
   actionButtonsBackgroundColor: availableActionButtonsBackgroundColors[0],
@@ -80,9 +80,6 @@ function EditorForm({
             onChange={onChangeField}
           />
         </GiftCard.Title>
-        <button className={classes("btn", styles.TitleEditToggler)}>
-          Editar título
-        </button>
         <GiftCard.SpecialText>
           <AutoHeightTextarea
             name="cardMessage"
