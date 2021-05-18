@@ -67,10 +67,6 @@ function EditorForm({
     setTitleMinRows(undefined);
   }, []);
 
-  function previewConfiguration() {
-    router.push(getGiftPreviewPath(contractReference));
-  }
-
   function saveConfiguration() {
     router.push(getClientHiringPreviewPath(contractReference));
   }
@@ -120,13 +116,16 @@ function EditorForm({
           value={values.pageBackgroundUrl}
         />
         <div className={styles.FormButtons}>
-          <button
-            type="button"
-            className="btn btn-tertiary"
-            onClick={previewConfiguration}
+          <a
+            className={styles.PreviewLink}
+            href={`${getGiftPreviewPath(contractReference)}?previewMode=true`}
+            target="_blank"
+            rel="noreferrer"
           >
-            Previsualizar
-          </button>
+            <button type="button" className="btn btn-tertiary">
+              Previsualizar
+            </button>
+          </a>
           <button
             type="button"
             className="btn btn-secondary"
