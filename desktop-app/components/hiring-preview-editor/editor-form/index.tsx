@@ -74,6 +74,7 @@ function EditorForm({
       >
         <GiftCard.Title>
           <AutoHeightTextarea
+            minRows={2}
             name="cardTitle"
             value={values.cardTitle}
             className={styles.Textarea}
