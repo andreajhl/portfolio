@@ -3,6 +3,8 @@
 }
 
 .BodyText {
+  max-height: 215px;
+  overflow: scroll;
   white-space: pre-wrap;
   padding: 28px;
   font-size: 12px;
