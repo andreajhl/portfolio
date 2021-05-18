@@ -2,6 +2,7 @@ import { CREATED } from "desktop-app/constants/contractStatuses";
 import { useEffect } from "react";
 import { listClientContracts } from "react-app/src/state/ducks/contracts/actions";
 import { connect } from "react-redux";
+import { ShoppingCartCard } from "../shopping-cart-card";
 import styles from "./styles.module.scss";
 
 const mapStateToProps = ({ contracts }) => ({
@@ -30,7 +31,16 @@ function ShoppingCartList({
     listClientContracts();
   }, []);
 
-  return <div className="container">Hello</div>;
+  return (
+    <div className="container">
+      {contracts.map((contract) => (
+        <ShoppingCartCard
+          className={styles.ShoppingCartCard}
+          contractData={contract}
+        />
+      ))}
+    </div>
+  );
 }
 
 const _ShoppingCartList = connect(

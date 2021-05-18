@@ -1,0 +1,27 @@
+.ShoppingCartCard {
+  background-color: white;
+  padding: 28px 45px 54px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: flex;
+}
+
+.LeftSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ProfilePictureLink {
+  margin-top: 6px;
+}
+
+.WarrantyAd.WarrantyAd {
+  border: 1px solid #6970c6;
+  background: none;
+}
+
+.LeftSide + .RightSide {
+  margin-left: 70px;
+}

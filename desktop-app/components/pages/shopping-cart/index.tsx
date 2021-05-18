@@ -1,6 +1,6 @@
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { PageHeading } from "desktop-app/components/layouts/page-heading";
-import { ShoppingCartList } from "desktop-app/components/shopping-cart-list";
+import { ShoppingCartList } from "desktop-app/components/shopping-card/shopping-cart-list";
 import styles from "./styles.module.scss";
 
 function ShoppingCartPage() {
