@@ -24,4 +24,12 @@ module.exports = withBundleAnalyzer({
     // a non-locale prefixed path e.g. `/hello`
     defaultLocale: "es",
   },
+  webpack: (config) => {
+    if (config.optimization.splitChunks) {
+      config.optimization.splitChunks.cacheGroups.shared.enforce = true;
+      config.optimization.splitChunks.cacheGroups.commons.enforce = true;
+    }
+
+    return config;
+  },
 });
