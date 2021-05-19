@@ -11,8 +11,10 @@ import {
 import VideoFooter from "../video/footer";
 import useLoad from "react-app/src/utils/useLoad";
 import styles from "./styles.module.scss";
-
+import classNames from "classnames/bind";
 import { FullScreenVideoPlayer } from "../video/full-screen-video-player";
+
+let cx = classNames.bind(styles);
 
 type ViewerClientVideoProps = {
   avatar: string;
@@ -22,6 +24,12 @@ type ViewerClientVideoProps = {
   videoPosterUrl: string;
   previewMode?: boolean;
 };
+
+const REF_WIDTH = 353;
+const REF_HEIGHT = 470;
+const TOLERANCE = 0.4;
+const MAX_REF_RATIO_FOR_PORTRAIT_MODE =
+  REF_WIDTH / REF_HEIGHT + (REF_WIDTH / REF_HEIGHT) * TOLERANCE;
 
 function ViewerClientVideo({
   avatar,
@@ -66,15 +74,29 @@ function ViewerClientVideo({
     setModalIsOpen((fullScreen) => !fullScreen);
   };
 
+  const [landscapeMode, setLandscapeMode] = useState(false);
   const handleTogglePlay = () => {
     if (previewMode) return;
     togglePlay();
   };
+  const getAspectRatio = () => {
+    const videoElement: HTMLVideoElement = videoRef.current;
+    const aspectRatio = videoElement.videoWidth / videoElement.videoHeight;
+    if (aspectRatio > MAX_REF_RATIO_FOR_PORTRAIT_MODE) {
+      setLandscapeMode(true);
+    }
+  };
+
   return (
     <>
       <div className={styles.ViewerClientVideoWrapper}>
         <div className={styles.ContractVideoMedia}>
-          <section onClick={togglePlay} className={styles.ContractVideoPlayer}>
+          <section
+            onClick={togglePlay}
+            className={cx({
+              ContractVideoPlayer: true,
+            })}
+          >
             <Maybe it={!videoIsLoaded}>
               <img
                 src={videoPosterUrl}
@@ -87,8 +109,12 @@ function ViewerClientVideo({
               ref={videoRef}
               onLoadedData={onVideoLoadedData}
               src={videoUrl}
-              preload="none"
-              className={styles.VideoElement}
+              onLoadedMetadata={getAspectRatio}
+              preload="metadata"
+              className={cx({
+                ContractVideoLandscape: landscapeMode,
+                VideoElement: true,
+              })}
             ></video>
           </section>
           <section className={styles.ContractVideoOverlay}>
