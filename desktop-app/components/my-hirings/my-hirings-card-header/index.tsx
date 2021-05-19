@@ -5,23 +5,14 @@ import {
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import Maybe from "../../common/helpers/maybe";
 import { MyHiringsCardStatusBadge } from "../my-hirings-card-status-badge";
-import getValidDate from "./getValidDate";
+import getValidDate from "../../../../lib/utils/getValidDate";
 import classes from "classnames";
 import styles from "./styles.module.scss";
+import getFormattedDate from "../../../../lib/utils/getFormattedDate";
 
 type MyHiringsCardHeaderProps = {
   contractData: MyHiringsContract;
 };
-
-function getFormattedDate(date) {
-  const dateObject = getValidDate(date);
-  const monthString = dateObject.toLocaleDateString("es", {
-    month: "short",
-  });
-  return [dateObject.getDate(), monthString, dateObject.getFullYear()].join(
-    "/"
-  );
-}
 
 function getExpectedDeliveryDate(paymentDate) {
   const dateObject = getValidDate(paymentDate);

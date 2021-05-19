@@ -8,7 +8,7 @@ import {
   availablePageBackgroundsUrls,
   getActionButtonsBackgroundColorsForPageBackground,
 } from "constants/hiring-preview-configuration";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CardColorSelector } from "desktop-app/components/hiring-preview-editor/card-color-selector";
 import { PageBackgroundSelector } from "../page-background-selector";
 import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfigurationType";
@@ -38,8 +38,8 @@ type EditorFormProps = {
 
 const initialValues: HiringPreviewConfigurationType = {
   cardColor: availableCardColors[0],
-  cardTitle: "Agrega un titulo",
-  cardMessage: "Agrega un texto especial....",
+  cardTitle: "",
+  cardMessage: "",
   pageBackgroundUrl: availablePageBackgroundsUrls[0],
   actionButtonsBackgroundColor: availableActionButtonsBackgroundColors[0],
 };
@@ -51,15 +51,21 @@ function EditorForm({
 }: EditorFormProps) {
   const router = useRouter();
   const { values, setFieldValue, onChangeField } = useForm({ initialValues });
+  const [titleMinRows, setTitleMinRows] = useState(2);
   // Conectar con endpoint que guarda la configuración.
 
   useEffect(() => {
-    onChange(values);
+    onChange({
+      ...values,
+      cardTitle: values.cardTitle || "Agrega un titulo",
+      cardMessage: values.cardMessage || "Agrega un texto especial",
+    });
   }, [values]);
 
-  function previewConfiguration() {
-    router.push(getGiftPreviewPath(contractReference));
-  }
+  useEffect(() => {
+    // Para actualizar el textarea y evitar alto indebido.
+    setTitleMinRows(undefined);
+  }, []);
 
   function saveConfiguration() {
     router.push(getClientHiringPreviewPath(contractReference));
@@ -74,6 +80,8 @@ function EditorForm({
       >
         <GiftCard.Title>
           <AutoHeightTextarea
+            placeholder="Agrega un titulo"
+            minRows={titleMinRows}
             name="cardTitle"
             value={values.cardTitle}
             className={styles.Textarea}
@@ -82,6 +90,7 @@ function EditorForm({
         </GiftCard.Title>
         <GiftCard.SpecialText>
           <AutoHeightTextarea
+            placeholder="Agrega un texto especial"
             name="cardMessage"
             value={values.cardMessage}
             onChange={onChangeField}
@@ -107,13 +116,16 @@ function EditorForm({
           value={values.pageBackgroundUrl}
         />
         <div className={styles.FormButtons}>
-          <button
-            type="button"
-            className="btn btn-tertiary"
-            onClick={previewConfiguration}
+          <a
+            className={styles.PreviewLink}
+            href={`${getGiftPreviewPath(contractReference)}?previewMode=true`}
+            target="_blank"
+            rel="noreferrer"
           >
-            Previsualizar
-          </button>
+            <button type="button" className="btn btn-tertiary">
+              Previsualizar
+            </button>
+          </a>
           <button
             type="button"
             className="btn btn-secondary"

@@ -43,7 +43,15 @@
   margin-top: 28px;
 }
 
-.FormButtons > * {
+.PreviewLink {
+  flex: 1;
+
+  button {
+    width: 100%;
+  }
+}
+
+.FormButtons button {
   flex: 1;
   font-size: 14px;
   font-weight: bold;

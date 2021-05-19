@@ -4,15 +4,22 @@ import styles from "./styles.module.scss";
 import { GiftCard } from "../../common/cards/gift-card";
 import { VideoContractFeed } from "../video-contract-feed";
 import ClientContractType from "desktop-app/types/clientContract";
+import { getDefaultGiftCardContent } from "constants/hiring-preview-configuration";
 
-const defaultHiringConfiguration: HiringPreviewConfigurationType = {
-  cardTitle: "¡Feliz cumpleaños\nmi amor!",
-  cardMessage:
-    "Mi amor hermosa, te dedico esta canción con todo mi corazón.\nTe amo infinito. Que tengas un cumpleaños hermoso.\n\n\nCon todo mi amor, Luis.",
-  cardColor: "#E8E8FF",
-  pageBackgroundUrl: "/assets/img/hirings-preview-backgrounds/background-1.png",
-  actionButtonsBackgroundColor: "#000000",
-};
+function getDefaultHiringConfiguration({
+  occasion,
+  deliveryTo,
+}: ClientContractType): HiringPreviewConfigurationType {
+  const cardContent = getDefaultGiftCardContent(occasion, deliveryTo);
+  return {
+    cardTitle: cardContent.title,
+    cardMessage: cardContent.message,
+    cardColor: "#E8E8FF",
+    pageBackgroundUrl:
+      "/assets/img/hirings-preview-backgrounds/background-2.png",
+    actionButtonsBackgroundColor: "#FB177D",
+  };
+}
 
 type GiftPreviewMainProps = {
   className?: string;
@@ -23,7 +30,7 @@ type GiftPreviewMainProps = {
 function GiftPreviewMain({
   className = "",
   contract,
-  hiringConfiguration = defaultHiringConfiguration,
+  hiringConfiguration = getDefaultHiringConfiguration(contract),
 }: GiftPreviewMainProps) {
   return (
     <main

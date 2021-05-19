@@ -3,10 +3,11 @@ import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfi
 import styles from "./styles.module.scss";
 import useGetContract from "lib/hooks/useGetContract";
 import { GiftPreviewMain } from "desktop-app/components/layouts/gift-preview-main";
+import { GiftAnimationWrapper } from "desktop-app/components/layouts/gift-animation-wrapper";
 
 type GiftPreviewPageProps = {
   contractReference: string;
-  hiringConfiguration: HiringPreviewConfigurationType;
+  hiringConfiguration?: HiringPreviewConfigurationType;
 };
 
 const mockHiringConfiguration: HiringPreviewConfigurationType = {
@@ -26,11 +27,16 @@ function GiftPreviewPage({
 
   return (
     <PageContainer showFooter={false}>
-      <GiftPreviewMain
-        className={styles.HiringPreviewPageMain}
-        contract={contract}
-        hiringConfiguration={hiringConfiguration}
-      />
+      <GiftAnimationWrapper
+        deliveryTo={contract.deliveryTo}
+        deliveryFrom={contract.deliveryFrom}
+      >
+        <GiftPreviewMain
+          className={styles.HiringPreviewPageMain}
+          contract={contract}
+          hiringConfiguration={hiringConfiguration}
+        />
+      </GiftAnimationWrapper>
     </PageContainer>
   );
 }

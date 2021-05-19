@@ -38,7 +38,7 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
   >({
     initialValues: {
       review: contractData.review,
-      stars: contractData.stars || 5,
+      stars: contractData.stars || 3,
     },
     validations,
     async onSubmit(reviewData) {
