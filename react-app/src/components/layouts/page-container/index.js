@@ -57,7 +57,7 @@ const PageContainer = ({
       ...queryParams,
       offset: updateQueryParamsInitialState.offset,
       limit: updateQueryParamsInitialState.limit,
-      search: keyword
+      search: keyword,
     };
     updateQueryParams(newQueryParams, router);
   };
@@ -97,7 +97,7 @@ const PageContainer = ({
     GTM.tagManagerDataLayer("CLICK_ON_DROPDOWN_MENU", {
       dropdownMenuIsOpen,
       widget: "NavbarSectionLayout",
-      path: window.location.pathname
+      path: window.location.pathname,
     });
     setDropdownMenuIsOpen(dropdownMenuIsOpen);
   };
@@ -127,7 +127,7 @@ const PageContainer = ({
 
   return (
     <div className="PageContainer">
-      <Headroom style={{ zIndex: 100000 }} upTolerance={2.5}>
+      <Headroom style={{ zIndex: 900 }} upTolerance={2.5}>
         <Maybe it={props.showNavbar}>
           <NavbarSectionLayout
             className={hasSearchedOrFiltered ? "hidden-hero" : ""}
@@ -208,7 +208,7 @@ PageContainer.defaultProps = {
   hideControls: false,
   showVideoCallsResearch: false,
   shouldFetchRestCountries: true,
-  showBotMakerFrame: false
+  showBotMakerFrame: false,
 };
 
 // mapStateToProps
@@ -221,7 +221,7 @@ const mapStateToProps = (state) => {
       state.celebrities.fetchCelebritiesReducer.data.informationPage,
     hasDiscountCoupon:
       state.discountCoupons.getDiscountCouponBannerReducer.data.couponCode &&
-      state.discountCoupons.timeDifferenceReducer
+      state.discountCoupons.timeDifferenceReducer,
   };
 };
 
@@ -231,7 +231,7 @@ const mapDispatchToProps = {
   fetchUserCelebrityLikes: celebrityLikesOperations.fetchUserCelebrityLikes,
   cleanUserCelebrityLikes:
     celebrityLikesOperations.fetchUserCelebrityLikesCleanUp,
-  listRestCountries: restCountriesOperations.list
+  listRestCountries: restCountriesOperations.list,
 };
 
 // Export Class

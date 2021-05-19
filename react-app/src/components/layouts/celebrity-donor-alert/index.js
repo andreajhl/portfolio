@@ -1,9 +1,10 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 export const CelebrityDonorAlert = ({
   className = "",
   fullName,
-  causeName
+  causeName,
 }) => {
   return (
     <div
@@ -18,10 +19,19 @@ export const CelebrityDonorAlert = ({
       </div>
       <div className="text-center">
         <p className="m-0 CelebrityDonorAlert__text">
-          {fullName} dona de sus ingresos a: <br />{" "}
-          <span className="CelebrityDonorAlert__cause-name text-with-ellipsis">
-            {causeName}
-          </span>
+          <FormattedMessage
+            defaultMessage="{fullName} dona de sus ingresos a: <span> {causeName} </span>"
+            description=""
+            values={{
+              span: (str) => (
+                <span className="CelebrityDonorAlert__cause-name text-with-ellipsis">
+                  {str}
+                </span>
+              ),
+              fullName: fullName,
+              causeName: causeName,
+            }}
+          />
         </p>
       </div>
     </div>

@@ -19,7 +19,9 @@
     "test-all": "yarn lint && yarn type-check && yarn test",
     "prepare": "husky install",
     "build-check": "rm -rf .next && npm run build",
-    "check-staged-files": "lint-staged"
+    "check-staged-files": "lint-staged",
+    "extract:i18n": "formatjs extract {pages,react-app}/**/*.{js,tsx} --format crowdin --id-interpolation-pattern [sha512:contenthash:base64:6] --out-file lang/es.json",
+    "compile": "formatjs compile-folder --ast --format crowdin lang compiled-lang"
   },
   "lint-staged": {
     "*.(js|ts|jsx|tsx)": [
@@ -29,11 +31,14 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
     "@auth0/nextjs-auth0": "^0.16.1",
+    "@formatjs/cli": "^4.2.12",
     "@next/bundle-analyzer": "^10.0.9",
     "@stripe/stripe-js": "^1.12.1",
+    "@types/react-select": "^4.0.15",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "classnames": "^2.2.6",
+    "cookie": "^0.4.1",
     "env-cmd": "^10.1.0",
     "firebase": "^8.2.6",
     "fscreen": "^1.1.0",
@@ -60,6 +65,7 @@
     "react-html-parser": "^2.0.2",
     "react-image-crop": "^8.6.9",
     "react-infinite-scroll-component": "^5.1.0",
+    "react-intl": "^5.17.7",
     "react-lazy-load-image-component": "^1.5.1",
     "react-loading-skeleton": "^2.2.0",
     "react-number-format": "^4.4.4",
@@ -79,9 +85,9 @@
     "redux-batched-actions": "^0.5.0",
     "redux-thunk": "^2.3.0",
     "rheostat": "^4.1.1",
-    "styled-components": "^5.2.1",
+    "styled-components": "^5.2.3",
     "ua-parser-js": "^0.7.23",
-    "validator": "^13.5.2"
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.8",
@@ -92,11 +98,13 @@
     "@types/react": "^16.14.5",
     "@types/react-image-crop": "^8.1.2",
     "@types/react-redux": "^7.1.16",
+    "@types/react-select": "^4.0.13",
     "@types/react-window": "^1.8.2",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.2.3",
+    "babel-plugin-formatjs": "^10.2.13",
     "babel-plugin-styled-components": "^1.12.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",

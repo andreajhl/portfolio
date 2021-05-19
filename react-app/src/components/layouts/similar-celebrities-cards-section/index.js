@@ -6,13 +6,14 @@ import * as CarouselWithButtons from "../carousel-with-buttons";
 
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
 import * as GTM from "../../../state/utils/gtm";
+import { FormattedMessage } from "react-intl";
 import getWindow from "react-app/src/utils/getWindow";
 
 const SimilarCelebritiesCardsSectionLayout = ({
   celebrityUsername,
   isLoading,
   similarCelebrities,
-  fetchSimilarCelebrities
+  fetchSimilarCelebrities,
 }) => {
   useEffect(() => {
     if (!celebrityUsername) return;
@@ -22,7 +23,7 @@ const SimilarCelebritiesCardsSectionLayout = ({
   const analyticsData = {
     widget: "SimilarCelebritiesCardsSectionLayout",
     path: getWindow().location.pathname,
-    celebrityUsername
+    celebrityUsername,
   };
 
   const registerListHover = () => {
@@ -35,7 +36,7 @@ const SimilarCelebritiesCardsSectionLayout = ({
   const registerListScroll = (hasReachedListEnd) => {
     GTM.tagManagerDataLayer("SCROLL_SIMILAR_CELEBRITIES_CARD_LIST", {
       ...analyticsData,
-      hasReachedListEnd
+      hasReachedListEnd,
     });
   };
 
@@ -55,7 +56,7 @@ const SimilarCelebritiesCardsSectionLayout = ({
       >
         <CarouselWithButtons.Header>
           <CarouselWithButtons.Title className="text-black text-center mb-4 w-100 font-weight-bold">
-            Famosos similares
+            <FormattedMessage defaultMessage="Famosos similares" />
           </CarouselWithButtons.Title>
         </CarouselWithButtons.Header>
         <CarouselWithButtons.List>
@@ -72,7 +73,7 @@ const SimilarCelebritiesCardsSectionLayout = ({
                     title: similarCelebrity.categoryTitle,
                     id: similarCelebrity.celebrityId,
                     discountPercentage: similarCelebrity.discountPercentage,
-                    fullName: similarCelebrity.celebrityFullName
+                    fullName: similarCelebrity.celebrityFullName,
                   };
 
                   return (
@@ -101,18 +102,18 @@ const SimilarCelebritiesCardsSectionLayout = ({
 // default props
 SimilarCelebritiesCardsSectionLayout.defaultProps = {
   isLoading: false,
-  similarCelebrities: []
+  similarCelebrities: [],
 };
 
 const mapStateToProps = ({ celebrities }) => {
   return {
     isLoading: celebrities.fetchSimilarCelebritiesReducer.loading,
-    similarCelebrities: celebrities.fetchSimilarCelebritiesReducer.data.results
+    similarCelebrities: celebrities.fetchSimilarCelebritiesReducer.data.results,
   };
 };
 
 const mapDispatchToProps = {
-  fetchSimilarCelebrities
+  fetchSimilarCelebrities,
 };
 
 const _SimilarCelebritiesCardsSectionLayout = connect(

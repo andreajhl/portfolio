@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Form } from "react-bootstrap";
-
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { Session } from "../../../state/utils/session";
 import * as PATHS from "../../../routing/Paths";
@@ -8,6 +7,36 @@ import { withRouter } from "react-app/src/components/common/routing";
 import { processStripePayment } from "../../../state/ducks/payments/actions";
 import { history } from "../../../routing/History";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
+import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
+
+const errorMessages = defineMessages({
+  errorMessageOwnerName: {
+    defaultMessage:
+      "El campo de nombre del titular de la tarjeta es obligatorio",
+    description: "Mensaje de error para formulario de stripe",
+  },
+  errorMessageOwnerEmail: {
+    defaultMessage:
+      "El campo de correo electrónico del titular de la tarjeta es obligatorio",
+    description: "Mensaje de error para formulario de stripe",
+  },
+  errorMessageCreateStripeSource: {
+    defaultMessage: "Ocurrió un error inesperado.",
+    description: "Mensaje de error para creación de tarjeta Stripe",
+  },
+  errorMessageApplyStripeAuth: {
+    defaultMessage: "Ocurrió un error procesando tu pago.",
+    description: "Mensaje de error para creación de tarjeta Stripe",
+  },
+});
+const placeholders = defineMessages({
+  ownerName: {
+    defaultMessage: "Escribe aquí el nombre",
+  },
+  ownerEmail: {
+    defaultMessage: "Escribe aquí el correo",
+  },
+});
 
 class StripeCardForm extends Component {
   constructor(props) {
@@ -17,14 +46,14 @@ class StripeCardForm extends Component {
       ownerName: this.session.getSession()?.fullName || "",
       ownerEmail: this.session.getSession()?.email || "",
       errorMessage: null,
-      disableButton: false
+      disableButton: false,
     };
   }
 
   handleInput = (e) => {
     this.setState({
       ...this.state,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -35,8 +64,9 @@ class StripeCardForm extends Component {
       return this.setState({
         ...this.state,
         disableButton: false,
-        errorMessage:
-          "El campo de nombre del titular de la tarjeta es obligatorio"
+        errorMessage: this.props.intl.formatMessage(
+          errorMessages.errorMessageOwnerName
+        ),
       });
     }
     if (!this.state.ownerEmail) {
@@ -44,15 +74,16 @@ class StripeCardForm extends Component {
       return this.setState({
         ...this.state,
         disableButton: false,
-        errorMessage:
-          "El campo de correo electrónico del titular de la tarjeta es obligatorio"
+        errorMessage: this.props.intl.formatMessage(
+          errorMessages.errorMessageOwnerEmail
+        ),
       });
     }
 
     // DISABLE BUTTON
     this.setState({
       ...this.state,
-      disableButton: true
+      disableButton: true,
     });
 
     // REQUIRED DATA
@@ -60,7 +91,7 @@ class StripeCardForm extends Component {
     const currency = "USD";
     const ownerData = {
       name: this.state.ownerName.trim(),
-      email: this.state.ownerEmail.trim()
+      email: this.state.ownerEmail.trim(),
     };
 
     // CREATE A SOURCE CARD
@@ -70,7 +101,7 @@ class StripeCardForm extends Component {
         currency: currency,
         amount: amount,
         owner: ownerData,
-        usage: "reusable"
+        usage: "reusable",
       })
       .then((response) => {
         console.log("response.source", response.source);
@@ -81,7 +112,7 @@ class StripeCardForm extends Component {
           return this.setState({
             ...this.state,
             disableButton: false,
-            errorMessage: response.error.message
+            errorMessage: response.error.message,
           });
         }
         // SEND TO THE BACKEND TO LINKED WITH THE CUSTOMER AND APPLY THE AUTHORIZATION
@@ -106,7 +137,9 @@ class StripeCardForm extends Component {
         } else {
           this.setState({
             ...this.state,
-            errorMessage: "Ocurrió un error inesperado."
+            errorMessage: this.props.intl.formatMessage(
+              errorMessages.errorMessageCreateStripeSource
+            ),
           });
         }
       });
@@ -122,7 +155,7 @@ class StripeCardForm extends Component {
         if (res.data.status === "ERROR") {
           this.setState({
             ...this.state,
-            errorMessage: res.data.error
+            errorMessage: res.data.error,
           });
         } else {
           if (typeof window !== "undefined") {
@@ -132,11 +165,11 @@ class StripeCardForm extends Component {
                 content_ids:
                   VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
                 value: this.props.contractPrice,
-                currency: "USD"
+                currency: "USD",
               });
             }
           }
-          const route = PATHS.CONTRACT_CREATED.replace(
+          const route = PATHS.PURCHASE_SUMMARY.replace(
             ":contract_reference",
             res.data.data.reference
           );
@@ -148,13 +181,15 @@ class StripeCardForm extends Component {
           if (error.response.data) {
             this.setState({
               ...this.state,
-              errorMessage: error.response.data.error
+              errorMessage: error.response.data.error,
             });
           }
         } else {
           this.setState({
             ...this.state,
-            errorMessage: "Ocurrió un error procesando tu pago,"
+            errorMessage: this.props.intl.formatMessage(
+              errorMessages.errorMessageApplyStripeAuth
+            ),
           });
         }
       });
@@ -180,7 +215,7 @@ class StripeCardForm extends Component {
         amount: amount,
         three_d_secure: { card: sourceId },
         redirect: { return_url: responseURL },
-        owner: ownerData
+        owner: ownerData,
       })
       .then((response) => {
         // ERROR
@@ -188,14 +223,14 @@ class StripeCardForm extends Component {
           return this.setState({
             ...this.state,
             disableButton: false,
-            errorMessage: response.error.message
+            errorMessage: response.error.message,
           });
         }
 
         // GO TO IFRAME
         this.props.history.push({
           pathname: iframeUrl,
-          query: { url: response.source.redirect.url }
+          query: { url: response.source.redirect.url },
         });
       });
   };
@@ -204,7 +239,7 @@ class StripeCardForm extends Component {
     return this.setState({
       ...this.state,
       disableButton: false,
-      errorMessage: null
+      errorMessage: null,
     });
   };
 
@@ -219,20 +254,26 @@ class StripeCardForm extends Component {
           </div>
           <div className={"mx-auto text-center mb-3"}>
             <button className={"btn btn-primary"} onClick={this.retry}>
-              Volver a intentar
+              <FormattedMessage defaultMessage="Volver a intentar" />
             </button>
           </div>
           <div className="mb-3 text-justify ">
             <small>
-              Si el problema persiste puedes comunicarte con nuestro equipo de
-              soporte a{" "}
-              <a
-                className={"font-weight-bold"}
-                href="mailto:experiencias@famosos.com"
-              >
-                experiencias@famosos.com
-              </a>{" "}
-              para más información.
+              <FormattedMessage
+                defaultMessage=" Si el problema persiste puedes comunicarte con nuestro equipo de
+              soporte a
+              <a>experiencias@famosos.com</a> para más información."
+                values={{
+                  a: (chunks) => (
+                    <a
+                      className={"font-weight-bold"}
+                      href="mailto:experiencias@famosos.com"
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                }}
+              />
             </small>
           </div>
         </div>
@@ -245,29 +286,29 @@ class StripeCardForm extends Component {
       <div className="StripeCardForm">
         <Form.Group>
           <h6 className={"font-weight-light label-stripe-form"}>
-            Correo del titular de la tarjeta
+            <FormattedMessage defaultMessage="Correo del titular de la tarjeta" />
           </h6>
           <input
             type="text"
             className="form-control mb-3 input-stripe-form"
-            placeholder="Escribe aquí el correo"
+            placeholder={this.props.intl.formatMessage(placeholders.ownerEmail)}
             name="ownerEmail"
             onChange={this.handleInput || ""}
             value={this.state.ownerEmail}
           />
           <h6 className={"font-weight-light label-stripe-form"}>
-            Nombre del titular de la tarjeta
+            <FormattedMessage defaultMessage="Nombre del titular de la tarjeta" />
           </h6>
           <input
             type="text"
             className="form-control mb-3 input-stripe-form"
-            placeholder="Escribe aquí el nombre"
+            placeholder={this.props.intl.formatMessage(placeholders.ownerName)}
             name="ownerName"
             onChange={this.handleInput || ""}
             value={this.state.ownerName}
           />
           <h6 className={"font-weight-light label-stripe-form"}>
-            Datos de la tarjeta
+            <FormattedMessage defaultMessage="Datos de la tarjeta" />
           </h6>
           <div
             className="StripeCardElementLayout"
@@ -279,8 +320,10 @@ class StripeCardForm extends Component {
           </div>
           <div className={"text-center mt-2 pb-2"}>
             <div className={"font-weight-light"} style={{ fontSize: "10px" }}>
-              Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP =
-              Código postal
+              <FormattedMessage
+                defaultMessage="Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP =
+              Código postal"
+              />
             </div>
           </div>
           {this.renderError()}
@@ -291,7 +334,9 @@ class StripeCardForm extends Component {
                 onClick={this.createStripeSource}
                 disabled={this.state.disableButton}
               >
-                <span>Pagar</span>
+                <span>
+                  <FormattedMessage defaultMessage="Pagar" />
+                </span>
               </button>
             </div>
           )}
@@ -304,6 +349,6 @@ class StripeCardForm extends Component {
 // defaultProps
 StripeCardForm.defaultProps = {
   contractReference: "",
-  contractPrice: 0
+  contractPrice: 0,
 };
-export default withRouter(injectStripe(StripeCardForm));
+export default withRouter(injectIntl(injectStripe(StripeCardForm)));

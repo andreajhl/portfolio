@@ -5,20 +5,27 @@ import * as GTM from "../../../state/utils/gtm";
 import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
+import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
+
+const errorMessages = defineMessages({
+  errorMessageOnPayPalButtonCancel: {
+    defaultMessage: "Acción cancelada por el usuario",
+  },
+});
 
 class PayPalCardForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      errorMessage: null
+      errorMessage: null,
     };
   }
 
   retry = () => {
     return this.setState({
       ...this.state,
-      errorMessage: null
+      errorMessage: null,
     });
   };
 
@@ -38,13 +45,13 @@ class PayPalCardForm extends Component {
                 content_ids:
                   VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
                 value: this.props.contractPrice,
-                currency: "USD"
+                currency: "USD",
               });
             }
           }
           GTM.tagManagerDataLayer("CONTRACT_PAYED", res.data);
           history._pushRoute(
-            ROUTING_PATHS.CONTRACT_CREATED.replace(
+            ROUTING_PATHS.PURCHASE_SUMMARY.replace(
               ":contract_reference",
               res.reference
             )
@@ -57,7 +64,7 @@ class PayPalCardForm extends Component {
       .catch((error) => {
         this.setState({
           ...this.state,
-          errorMessage: error
+          errorMessage: error,
         });
       });
   };
@@ -65,14 +72,16 @@ class PayPalCardForm extends Component {
   onPayPalButtonCancel = (orderId) => {
     return this.setState({
       ...this.state,
-      errorMessage: "Acción cancelada por el usuario"
+      errorMessage: this.props.intl.formatMessage(
+        errorMessages.errorMessageOnPayPalButtonCancel
+      ),
     });
   };
 
   onPayPalButtonError = (error) => {
     return this.setState({
       ...this.state,
-      errorMessage: String(error)
+      errorMessage: String(error),
     });
   };
 
@@ -101,20 +110,26 @@ class PayPalCardForm extends Component {
           </div>
           <div className={"mx-auto text-center mb-3"}>
             <button className={"btn btn-primary"} onClick={this.retry}>
-              Volver a intentar
+              <FormattedMessage defaultMessage="Volver a intentar" />
             </button>
           </div>
           <div className="mb-3 text-justify ">
             <small>
-              Si el problema persiste puedes comunicarte con nuestro equipo de
-              soporte a{" "}
-              <a
-                className={"font-weight-bold"}
-                href="mailto:experiencias@famosos.com"
-              >
-                experiencias@famosos.com
-              </a>{" "}
-              para más información.
+              <FormattedMessage
+                defaultMessage=" Si el problema persiste puedes comunicarte con nuestro equipo de
+              soporte a
+              <a>experiencias@famosos.com</a> para más información."
+                values={{
+                  a: (chunks) => (
+                    <a
+                      className={"font-weight-bold"}
+                      href="mailto:experiencias@famosos.com"
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                }}
+              />
             </small>
           </div>
         </div>
@@ -130,12 +145,16 @@ class PayPalCardForm extends Component {
           style={{ fontSize: "15px", listStyle: "none" }}
         >
           <li className="mb-2" style={{ color: "#505050" }}>
-            Haz click sobre el siguiente botón para hacer el pago usando tu
-            cuenta de PayPal.
+            <FormattedMessage
+              defaultMessage=" Haz click sobre el siguiente botón para hacer el pago usando tu
+            cuenta de PayPal."
+            />
           </li>
           <li style={{ color: "#505050" }}>
-            Serás redirigido a la pagina oficial de PayPal para continuar con el
-            pago.
+            <FormattedMessage
+              defaultMessage="Serás redirigido a la pagina oficial de PayPal para continuar con el
+            pago."
+            />
           </li>
         </ul>
         {this.renderError()}
@@ -148,7 +167,9 @@ class PayPalCardForm extends Component {
 // defaultProps
 PayPalCardForm.defaultProps = {
   contractPrice: null,
-  contractReference: ""
+  contractReference: "",
 };
 
-export { PayPalCardForm };
+const _PaypalCardForm = injectIntl(PayPalCardForm);
+
+export { _PaypalCardForm as PayPalCardForm };

@@ -2,41 +2,42 @@ import React, { Component } from "react";
 import SubscriptionPaypalReactButton from "../subscription-paypal-react-button";
 import { postProcessSubscription } from "../../../state/ducks/subscriptions/actions";
 import { withRouter } from "react-app/src/components/common/routing";
-import * as GTM from "../../../state/utils/gtm";
 import * as ROUTING_PATHS from "../../../routing/Paths";
-import { connect } from "react-redux";
 
 class SubscriptionPayPalCardForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      errorMessage: null
+      errorMessage: null,
     };
   }
 
   retry = () => {
     return this.setState({
       ...this.state,
-      errorMessage: null
+      errorMessage: null,
     });
   };
 
   onPayPalButtonApprove = (data) => {
-    data.planID = this.props.planId;
-    postProcessSubscription(data)
+    postProcessSubscription({
+      ...data,
+      planID: this.props.planId,
+      celebrityId: this.props.celebrityId,
+    })
       .then((res) => {
         this.props.history.push(
           ROUTING_PATHS.SUBSCRIPTION_SUCCESS.replace(
             ":celebrity_username",
-            this.props.match.params.celebrity_username
+            this.props.router.query?.celebrity_username
           )
         );
       })
       .catch((error) => {
         this.setState({
           ...this.state,
-          errorMessage: error
+          errorMessage: error,
         });
       });
   };
@@ -44,14 +45,14 @@ class SubscriptionPayPalCardForm extends Component {
   onPayPalButtonCancel = (orderId) => {
     return this.setState({
       ...this.state,
-      errorMessage: "Acción cancelada por el usuario"
+      errorMessage: "Acción cancelada por el usuario",
     });
   };
 
   onPayPalButtonError = (error) => {
     return this.setState({
       ...this.state,
-      errorMessage: String(error)
+      errorMessage: String(error),
     });
   };
 
@@ -116,16 +117,13 @@ class SubscriptionPayPalCardForm extends Component {
 
 // defaultProps
 SubscriptionPayPalCardForm.defaultProps = {
-  planId: ""
+  planId: "",
 };
 
 // mapStateToProps
 // const mapDispatchToProps = {
 // };
 
-const _SubscriptionPayPalCardForm = connect(
-  null,
-  null
-)(withRouter(SubscriptionPayPalCardForm));
+const _SubscriptionPayPalCardForm = withRouter(SubscriptionPayPalCardForm);
 
 export { _SubscriptionPayPalCardForm as SubscriptionPayPalCardForm };

@@ -1,0 +1,44 @@
+.ButtonDropdown {
+  padding: 0px;
+}
+.CurrencyDropdown {
+  &Menu {
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: white;
+    padding: 1.125rem 0;
+    overflow-y: scroll;
+    height: 240px;
+    height: fit-content;
+
+    min-width: initial;
+    padding: auto;
+
+    &.CurrencyDropdownMenuShow {
+      margin-top: 0.5rem;
+      right: -150% !important;
+    }
+  }
+
+  &Item {
+    cursor: pointer;
+    padding: 0.25rem 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+
+    span {
+      font-family: Manrope;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 14px;
+      color: #000000;
+      font-weight: bold;
+    }
+    &Active {
+      background: rgba(245, 245, 245, 1);
+    }
+  }
+}

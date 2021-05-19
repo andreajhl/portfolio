@@ -8,6 +8,7 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 // import { CelebritiesResultsPage } from "react-app/src/components/pages/celebrities-results";
 import { wrapper } from "react-app/src/state/store";
+import debug from "react-app/src/utils/debug";
 import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 import { connect } from "react-redux";
 
@@ -34,18 +35,17 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     // Para re-direccionar cuando no haya search. Comentado para versión nueva.
     // const listParams = pickPropertiesFromAObject(query, allowedParams);
 
+    // const listParams = pickPropertiesFromAObject(query, allowedParams);
     // if (Object.keys(listParams).length === 0 || !hasSearched(listParams)) {
     //   const previousPath = store.getState()?.celebrities?.previousPathReducer
     //     ?.pathname;
-
     //   return {
     //     redirect: {
     //       destination: previousPath,
-    //       permanent: false
-    //     }
+    //       permanent: false,
+    //     },
     //   };
     // }
-
     // await list(listParams)(store.dispatch, store.getState);
 
     return {

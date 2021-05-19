@@ -7,12 +7,13 @@ import { VideoSlideLayout } from "../video-slide";
 import { contractOperations } from "../../../state/ducks/contracts";
 import useCurrentVideoPlaying from "../../../utils/useCurrentVideoPlaying";
 import getWindow from "react-app/src/utils/getWindow";
+import { FormattedMessage } from "react-intl";
 
 const CelebrityHeroSlideshow = ({
   celebrityAvatar,
   celebrityMainVideo,
   celebrityPublicContracts,
-  setPlayingVideo
+  setPlayingVideo,
 }) => {
   const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(true);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -24,7 +25,7 @@ const CelebrityHeroSlideshow = ({
     setActiveSlideIndex(selectedIndex);
     GTM.tagManagerDataLayer("CHANGE_CELEBRITY_HERO_SLIDESHOW_SLIDE", {
       ...analyticsData,
-      selectedIndex
+      selectedIndex,
     });
   };
 
@@ -34,7 +35,7 @@ const CelebrityHeroSlideshow = ({
     activeSlideIndex,
     videoIsMuted,
     videoIsFullscreen,
-    isPlayingVideo: slideshowIsPlaying
+    isPlayingVideo: slideshowIsPlaying,
   };
 
   const sectionRef = useRef();
@@ -46,13 +47,13 @@ const CelebrityHeroSlideshow = ({
         setVideoIsFullscreen(true);
         GTM.tagManagerDataLayer("ENTER_FULLSCREEN_VIDEO_SLIDE", {
           ...analyticsData,
-          videoIsFullscreen: true
+          videoIsFullscreen: true,
         });
       } else {
         setVideoIsFullscreen(false);
         GTM.tagManagerDataLayer("EXIT_FULLSCREEN_VIDEO_SLIDE", {
           ...analyticsData,
-          videoIsFullscreen: false
+          videoIsFullscreen: false,
         });
       }
     };
@@ -123,9 +124,13 @@ const CelebrityHeroSlideshow = ({
         fade
         interval={null}
         prevIcon={<i className="fa fa-chevron-left controls-icon" />}
-        prevLabel="Anterior"
+        prevLabel={
+          <FormattedMessage defaultMessage="Anterior" description="" />
+        }
         nextIcon={<i className="fa fa-chevron-right controls-icon" />}
-        nextLabel="Siguiente"
+        nextLabel={
+          <FormattedMessage defaultMessage="Siguiente" description="" />
+        }
       >
         {celebrityMainVideo ? (
           <Carousel.Item>
@@ -181,11 +186,12 @@ const CelebrityHeroSlideshow = ({
 
 const mapStateToProps = ({ celebrities }) => ({
   celebrityMainVideo: celebrities.getCelebrityReducer.data.mainVideo,
-  celebrityPublicContracts: celebrities.fetchPublicContractsReducer.data.results
+  celebrityPublicContracts:
+    celebrities.fetchPublicContractsReducer.data.results,
 });
 
 const mapDispatchToProps = {
-  setPlayingVideo: contractOperations.playVideo
+  setPlayingVideo: contractOperations.playVideo,
 };
 
 const _CelebrityHeroSlideshow = connect(

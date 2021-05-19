@@ -2,6 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "react-bootstrap/Image";
 import PropTypes from "prop-types";
 import Maybe from "../../common/helpers/maybe";
+import { useIntl, defineMessage } from "react-intl";
+
+const messageAltImage = defineMessage({
+  defaultMessage: "Imagen de perfil",
+});
 
 function ProfilePicture({
   avatar,
@@ -12,6 +17,7 @@ function ProfilePicture({
 }) {
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
   const imageRef = useRef();
+  const intl = useIntl();
 
   const changeImageIsLoaded = (event) => setImageIsLoaded(true);
 
@@ -29,7 +35,7 @@ function ProfilePicture({
         height={height}
         src={avatar}
         onLoad={changeImageIsLoaded}
-        alt="Imagen de perfil"
+        alt={intl.formatMessage(messageAltImage)}
         style={imageStyles}
         ref={imageRef}
       />

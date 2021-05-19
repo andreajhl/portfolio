@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 const SearchInputLayout = ({
   autoFocus,
   searchLabel,
   onSearchChange,
-  initialValue
+  initialValue,
 }) => {
   const [keyword, setKeyword] = useState(initialValue);
 
@@ -39,7 +40,7 @@ SearchInputLayout.defaultProps = {
   searchLabel: "Buscar",
   onSearchChange: () => {},
   autoFocus: false,
-  initialValue: ""
+  initialValue: "",
 };
 
 // Export Class

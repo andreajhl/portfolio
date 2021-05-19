@@ -18,7 +18,7 @@ class SubscriptionPaypalReactButton extends React.Component {
     this.state = {
       showButtons: false,
       loading: true,
-      approved: false
+      approved: false,
     };
 
     window.React = React;
@@ -41,7 +41,7 @@ class SubscriptionPaypalReactButton extends React.Component {
       if (isScriptLoadSucceed) {
         PayPalButton = window.paypal.Buttons.driver("react", {
           React,
-          ReactDOM
+          ReactDOM,
         });
         this.setState({ loading: false, showButtons: true });
       }
@@ -50,7 +50,7 @@ class SubscriptionPaypalReactButton extends React.Component {
 
   createSubscription = (data, actions) => {
     return actions.subscription.create({
-      plan_id: "P-37H55955PE295851GL726VIQ"
+      plan_id: this.props.planId,
     });
   };
 
@@ -58,7 +58,7 @@ class SubscriptionPaypalReactButton extends React.Component {
     this.setState({
       ...this.state,
       approved: true,
-      showButtons: false
+      showButtons: false,
     });
     this.props.onPayPalButtonApprove(data);
   };
@@ -77,7 +77,7 @@ class SubscriptionPaypalReactButton extends React.Component {
       textAlign: "center",
       maxWidth: "100%",
       maxHeight: "50%",
-      display: !approved ? "block" : "none"
+      display: !approved ? "block" : "none",
     };
     const buttonStyles = {
       layout: "vertical",
@@ -86,7 +86,7 @@ class SubscriptionPaypalReactButton extends React.Component {
       size: "small",
       label: "pay",
       tagline: "false",
-      fundingicons: "false"
+      fundingicons: "false",
     };
     return (
       <div>
@@ -113,7 +113,7 @@ SubscriptionPaypalReactButton.defaultProps = {
   contractPrice: null,
   onPayPalButtonApprove: () => {},
   onPayPalButtonCancel: () => {},
-  onPayPalButtonError: () => {}
+  onPayPalButtonError: () => {},
 };
 
 export default scriptLoader(SDK_URL)(SubscriptionPaypalReactButton);

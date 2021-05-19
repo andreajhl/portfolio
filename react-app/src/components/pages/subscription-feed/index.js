@@ -8,11 +8,22 @@ import * as firestoreService from "../../../firebase/firestoreService";
 import { LoaderLayout } from "../../layouts/loader";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
 import Maybe from "../../common/helpers/maybe";
+import SubscriptionsFilter from "../../subscription-feed/subscription-filter";
 
-const getCelebritySelected = (celebritiesList, currentChoice) =>
-  celebritiesList.find((celebrity) => celebrity.celebrityId === currentChoice);
+import {
+  SubscriptionPostsHeader,
+  SubscriptionPostsSection,
+} from "../../layouts/subscription-posts";
 
-const NotPostsResults = ({ message }) => {
+import styled from "styled-components";
+
+const MySubscriptionsTitle = styled.h2`
+  font-size: 24px;
+  margin-bottom: 19px;
+  font-weight: bold;
+`;
+
+export const NotPostsResults = ({ message }) => {
   return (
     <div className="container-not-post-results">
       <h4>
@@ -32,7 +43,7 @@ const SubscriptionFeed = (props) => {
   const {
     getCelebritiesSubscribe,
     subscriptionList,
-    isSubscriptionListCompletedFetch
+    isSubscriptionListCompletedFetch,
   } = { ...props };
   const [postFetched, setPostFetched] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -43,7 +54,6 @@ const SubscriptionFeed = (props) => {
     setHasMorePost(value);
   };
   const fetchPosts = async (celebrityId, concat, indexFilter, isFirstQuery) => {
-    console.log(celebrityId);
     let documents = [];
     const results = await firestoreService.getPostFromCelebrity(
       "dev_posts",
@@ -56,7 +66,10 @@ const SubscriptionFeed = (props) => {
     if (results) {
       documents = results;
     }
-    setCurrentChoice(celebrityId);
+    if (!Array.isArray(celebrityId)) {
+      setCurrentChoice(celebrityId);
+    }
+
     setPostFetched(true);
     concat
       ? setPosts((prevState) => prevState.concat(documents))
@@ -67,77 +80,65 @@ const SubscriptionFeed = (props) => {
     getCelebritiesSubscribe();
   }, []);
 
+  const subscriptionsIds = subscriptionList
+    .map(({ celebrityId }) => celebrityId)
+    .slice(0, 9);
+
+  const fetchPostFromCelebrity = (celebrityID) => {
+    setIndexFilter(null);
+    handlerUpdateHasMorePost(true);
+    setCurrentChoice(celebrityID);
+    fetchPosts(celebrityID || subscriptionsIds, false, null, true);
+  };
+
+  const handlerFetchMorePost = () => {
+    fetchPosts(currentChoice || subscriptionsIds, true, indexFilter, false);
+  };
+
   useEffect(() => {
     if (
       isSubscriptionListCompletedFetch &&
       subscriptionList.length > 0 &&
       posts.length === 0
     ) {
-      fetchPosts(subscriptionList[0].celebrityId, false, indexFilter, true);
+      fetchPosts(subscriptionsIds, false, indexFilter, true);
     }
   }, [isSubscriptionListCompletedFetch]);
 
-  const fetchPostFromCelebrity = (celebrityID) => {
-    setIndexFilter(null);
-    handlerUpdateHasMorePost(true);
-    fetchPosts(celebrityID, false, null, true);
-  };
-
-  const handlerFetchMorePost = () => {
-    fetchPosts(currentChoice, true, indexFilter, false);
-  };
-
   return (
     <PageContainer>
-      <Container className="container-subscription-feed">
-        <Row>
-          <Col md="9" className="mx-auto" style={{ padding: "0px" }}>
-            <Maybe
-              it={isSubscriptionListCompletedFetch}
-              orElse={<LoaderLayout />}
-            >
-              <Maybe it={subscriptionList.length > 0}>
-                <CarouselAvailableSubscriptions
-                  currentChoice={currentChoice}
-                  handlerSelectCelebrity={fetchPostFromCelebrity}
-                  celebrities={subscriptionList}
-                />
-              </Maybe>
-            </Maybe>
-            {/* {isSubscriptionListCompletedFetch ? (
-              subscriptionList.length > 0 ? (
-                <CarouselAvailableSubscriptions
-                  currentChoice={currentChoice}
-                  handlerSelectCelebrity={fetchPostFromCelebrity}
-                  celebrities={subscriptionList}
-                />
-              ) : null
-            ) : (
-              <LoaderLayout />
-            )} */}
-            {isSubscriptionListCompletedFetch && subscriptionList.length > 0 ? (
-              posts.length > 0 ? (
-                <CelebrityFeedPosts
-                  hasMorePost={hasMorePost}
-                  onFetchMorePost={handlerFetchMorePost}
-                  posts={posts}
-                  celebrityData={getCelebritySelected(
-                    subscriptionList,
-                    currentChoice
-                  )}
-                />
-              ) : postFetched ? (
-                <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
-              ) : (
-                <LoaderLayout />
-              )
-            ) : isSubscriptionListCompletedFetch &&
-              subscriptionList.length === 0 ? (
-              <NotPostsResults message="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
-            ) : null}
-          </Col>
-        </Row>
-      </Container>
+      <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
+        <SubscriptionPostsHeader>
+          <MySubscriptionsTitle>Mis suscripciones</MySubscriptionsTitle>
+          <Maybe it={subscriptionList.length > 0}>
+            <SubscriptionsFilter
+              currentChoice={currentChoice}
+              onChangeCelebrity={fetchPostFromCelebrity}
+              celebritiesSubscriptions={subscriptionList}
+            />
+          </Maybe>
+        </SubscriptionPostsHeader>
+      </Maybe>
+      <SubscriptionPostsSection>
+        {isSubscriptionListCompletedFetch && subscriptionList.length > 0 ? (
+          posts.length > 0 ? (
+            <CelebrityFeedPosts
+              hasMorePost={hasMorePost}
+              onFetchMorePost={handlerFetchMorePost}
+              posts={posts}
+              currentChoice={currentChoice}
+              subscriptionList={subscriptionList}
+            />
+          ) : postFetched ? (
+            <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
+          ) : (
+            <LoaderLayout />
+          )
+        ) : isSubscriptionListCompletedFetch &&
+          subscriptionList.length === 0 ? (
+          <NotPostsResults message="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+        ) : null}
+      </SubscriptionPostsSection>
     </PageContainer>
   );
 };
@@ -146,12 +147,12 @@ const SubscriptionFeed = (props) => {
 const mapStateToProps = (state) => ({
   subscriptionList: state.subscriptions.fetchUserSubscriptionsListReducer.data,
   isSubscriptionListCompletedFetch:
-    state.subscriptions.fetchUserSubscriptionsListReducer.completed
+    state.subscriptions.fetchUserSubscriptionsListReducer.completed,
 });
 
 // mapDispatchToProps
 const mapDispatchToProps = {
-  getCelebritiesSubscribe: subscriptionsOperations.fetchUserSubscriptionsList
+  getCelebritiesSubscribe: subscriptionsOperations.fetchUserSubscriptionsList,
 };
 const _SubscriptionFeed = connect(
   mapStateToProps,

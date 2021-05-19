@@ -1,13 +1,20 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 const HeroSectionLayout = () => {
   return (
     <section className="hero">
       <div className="container hero__container">
         <h1 className="hero__title mb-3">
-          Videos Personalizados
-          <br />
-          de tus Famosos Favoritos
+          <FormattedMessage
+            defaultMessage="Videos Personalizados
+            <br></br>
+          de tus Famosos Favoritos"
+            values={{
+              br: (chunks) => <br></br>,
+            }}
+            description=""
+          />
         </h1>
         <ol className="hero__steps p-0">
           <li className="hero__steps-item">
@@ -17,7 +24,10 @@ const HeroSectionLayout = () => {
               alt="Enviando"
             />
             <p className="hero__steps-text">
-              Elige a tu Famoso y solicita el mensaje.
+              <FormattedMessage
+                defaultMessage="Elige a tu Famoso y solicita el mensaje."
+                description=""
+              />
             </p>
           </li>
           <li className="hero__steps-item">
@@ -27,7 +37,13 @@ const HeroSectionLayout = () => {
               alt="Pagando"
             />
             <p className="hero__steps-text">
-              Completa el <br /> proceso de pago.
+              <FormattedMessage
+                defaultMessage="Completa el <br></br> proceso de pago."
+                description=""
+                values={{
+                  br: (chunks) => <br></br>,
+                }}
+              />
             </p>
           </li>
           <li className="hero__steps-item">
@@ -36,7 +52,12 @@ const HeroSectionLayout = () => {
               src="/assets/img/play-pink.svg"
               alt="Recibiendo"
             />
-            <p className="hero__steps-text">¡Recibe tu video personalizado!</p>
+            <p className="hero__steps-text">
+              <FormattedMessage
+                defaultMessage="¡Recibe tu video personalizado!"
+                description=""
+              />
+            </p>
           </li>
         </ol>
       </div>

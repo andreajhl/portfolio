@@ -6,6 +6,7 @@ import { contractOperations } from "../../../state/ducks/contracts";
 import { ContractCommentCreatorLayout } from "../contract-comment-creator";
 import { SessionRequiredToCommentLayout } from "../session-required-to-comment";
 import { Session } from "../../../state/utils/session";
+import { FormattedMessage } from "react-intl";
 
 class ContractCommentSectionLayout extends Component {
   constructor(props) {
@@ -13,9 +14,9 @@ class ContractCommentSectionLayout extends Component {
 
     this.state = {
       params: {
-        page: 1
+        page: 1,
       },
-      firstCall: false
+      firstCall: false,
     };
 
     this.listContractComments = this.listContractComments.bind(this);
@@ -75,7 +76,7 @@ class ContractCommentSectionLayout extends Component {
     }
     this.setState(
       {
-        params: params
+        params: params,
       },
       () => this.listContractComments()
     );
@@ -94,7 +95,11 @@ class ContractCommentSectionLayout extends Component {
         );
       });
     } else {
-      return <h6>Sé el primero en agregar un comentario.</h6>;
+      return (
+        <h6>
+          <FormattedMessage defaultMessage="Sé el primero en agregar un comentario." />
+        </h6>
+      );
     }
   }
 
@@ -118,7 +123,7 @@ class ContractCommentSectionLayout extends Component {
           className="pt-0 scroll-section"
           style={{
             height: this.props.contractComments.length ? "300px" : "50px",
-            overflow: "scroll"
+            overflow: "scroll",
           }}
           ref={this.scrollDiv}
         >
@@ -138,7 +143,7 @@ ContractCommentSectionLayout.defaultProps = {
   isLoading: false,
   contract: {},
   contractComments: [],
-  paginationData: {}
+  paginationData: {},
 };
 
 // mapStateToProps
@@ -146,12 +151,12 @@ const mapStateToProps = (state) => ({
   isLoading: state.contracts.listContractCommentsReducer.loading,
   contractComments: state.contracts.listContractCommentsReducer.data.results,
   paginationData:
-    state.contracts.listContractCommentsReducer.data.informationPage
+    state.contracts.listContractCommentsReducer.data.informationPage,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  listContractComments: contractOperations.listContractComments
+  listContractComments: contractOperations.listContractComments,
 };
 
 // Export Class

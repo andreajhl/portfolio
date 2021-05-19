@@ -5,6 +5,7 @@ import * as PATHS from "../../../routing/Paths";
 import { sendDropdownLinkAnalyticsData } from "../navbar-section/index";
 import { LessImportantCallToActionButton } from "../less-important-call-to-action-button";
 import LoginButton from "../../containers/login-button/login-button";
+import { FormattedMessage } from "react-intl";
 
 const { type, vendor } = new UAParser().getDevice();
 const isAppleDevice = vendor === "Apple";
@@ -15,7 +16,7 @@ const shouldRenderDownloadAppLink =
 export const DropdownMenuLayout = ({
   dropdownMenuIsOpen,
   setDropdownMenuIsOpen,
-  isLogged
+  isLogged,
 }) => {
   return (
     <div
@@ -45,7 +46,7 @@ export const DropdownMenuLayout = ({
         style={
           dropdownMenuIsOpen
             ? {
-                display: "block"
+                display: "block",
               }
             : {}
         }
@@ -57,7 +58,7 @@ export const DropdownMenuLayout = ({
               activeClassName="active"
               to={PATHS.CLIENT_PROFILE}
             >
-              Mi perfil
+              <FormattedMessage defaultMessage="Mi perfil" description="" />
             </NavLink>
 
             <NavLink
@@ -65,7 +66,10 @@ export const DropdownMenuLayout = ({
               activeClassName="active"
               to={PATHS.CLIENT_HIRINGS}
             >
-              Mis contrataciones
+              <FormattedMessage
+                defaultMessage="Mis contrataciones"
+                description=""
+              />
             </NavLink>
           </>
         ) : null}
@@ -77,7 +81,7 @@ export const DropdownMenuLayout = ({
           activeClassName="active"
           to={PATHS.BLOG}
         >
-          Blog
+          <FormattedMessage defaultMessage="Blog" description="" />
         </NavLink>
         {!isLogged ? (
           <>
@@ -93,7 +97,10 @@ export const DropdownMenuLayout = ({
           activeClassName="active"
           to={PATHS.CELEBRITY_REQUEST}
         >
-          Aplicar como Famoso
+          <FormattedMessage
+            defaultMessage="Aplicar como Famoso"
+            description=""
+          />
         </NavLink>
         {shouldRenderDownloadAppLink ? (
           <a
@@ -106,7 +113,10 @@ export const DropdownMenuLayout = ({
               width="100%"
               fontSize="0.875rem"
             >
-              Descargar app de Android
+              <FormattedMessage
+                defaultMessage="Descargar app de Android"
+                description=""
+              />
             </LessImportantCallToActionButton>
           </a>
         ) : null}

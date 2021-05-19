@@ -5,6 +5,8 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { Redirect, withRouter } from "react-app/src/components/common/routing";
 import { BLOG, HOME_PATH } from "../../../routing/Paths";
 import BlogPost from "../../containers/blog-post-full";
+import { FormattedMessage } from "react-intl";
+import LangDropdown from "../../containers/lang-dropdown";
 
 const BlogEntry = ({ blogsData, router }) => {
   let redirect;
@@ -31,15 +33,17 @@ const BlogEntry = ({ blogsData, router }) => {
       <PageContainer>
         <Container>
           <Row className="justify-content-evenly">
+            <span>Hi</span>
+            <LangDropdown></LangDropdown>
             <Button
               sm
               className="mb-3 ml-5"
               onClick={() => router.push(HOME_PATH)}
             >
-              🏠 Inicio
+              🏠 <FormattedMessage defaultMessage="Inicio" />
             </Button>
             <Button sm className="mb-3 ml-5" onClick={() => router.push(BLOG)}>
-              📰 Ver más noticias
+              📰 <FormattedMessage defaultMessage="Ver más noticias" />
             </Button>
           </Row>
           <Row>
@@ -54,7 +58,7 @@ const BlogEntry = ({ blogsData, router }) => {
 };
 
 const mapStateToProps = ({ blog }) => ({
-  blogsData: blog.blogsPostMediumReducer.data
+  blogsData: blog.blogsPostMediumReducer.data,
 });
 
 const _BlogEntry = connect(mapStateToProps)(withRouter(BlogEntry));

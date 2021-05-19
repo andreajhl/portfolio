@@ -6,6 +6,17 @@ import { addOrRemoveLike } from "../../../state/ducks/celebrity-likes/actions";
 import { Session } from "../../../state/utils/session";
 import PropTypes from "prop-types";
 import * as GTM from "../../../state/utils/gtm";
+import { defineMessages, useIntl } from "react-intl";
+import { LikeButton } from "../../common/buttons/LikeButton";
+
+const intlMessages = defineMessages({
+  isLikedAlternativeText: {
+    defaultMessage: "No me gusta",
+  },
+  isNotLikedAlternativeText: {
+    defaultMessage: "Me gusta",
+  },
+});
 
 const preventRedirectFromParent = (event) => {
   if (event.stopPropagation) {
@@ -16,7 +27,7 @@ const preventRedirectFromParent = (event) => {
 
 const mapStateToProps = ({ celebrityLikes }) => {
   return {
-    userCelebrityLikes: celebrityLikes.fetchUserCelebrityLikesReducer.data.data
+    userCelebrityLikes: celebrityLikes.fetchUserCelebrityLikesReducer.data.data,
   };
 };
 
@@ -29,15 +40,15 @@ const CelebrityFavoriteButton = ({
   width,
   height = width,
   history,
-  location
+  location,
 }) => {
+  const { formatMessage } = useIntl();
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
   const analyticsData = useMemo(
     () => ({
       celebrityId,
       path: location.pathname,
-      widget: "CelebrityFavoriteButton"
+      widget: "CelebrityFavoriteButton",
     }),
     [celebrityId, location.pathname]
   );
@@ -77,27 +88,20 @@ const CelebrityFavoriteButton = ({
     }
   };
 
-  const addIsHovering = () => {
+  const onHovering = () => {
     GTM.tagManagerDataLayer(`HOVER_LIKE_CELEBRITY`, analyticsData);
-    setIsHovering(true);
   };
-
-  const removeIsHovering = () => {
-    setIsHovering(false);
-  };
-
-  const alternativeText = `${isFavorite ? "No me" : "Me"} gusta`;
 
   return (
-    <img
-      src={isFavorite !== isHovering ? filledImageSource : outlinedImageSource}
-      className={`like-icon cursor-pointer ${className}`}
-      style={{ width, height }}
-      onMouseOver={addIsHovering}
-      onMouseLeave={removeIsHovering}
+    <LikeButton
+      isFavorite={isFavorite}
+      onHovering={onHovering}
+      filledImageSource={filledImageSource}
+      outlinedImageSource={outlinedImageSource}
+      className={className}
+      width={width}
+      height={height}
       onClick={toggleFavorite}
-      alt={alternativeText}
-      title={alternativeText}
     />
   );
 };
@@ -107,7 +111,7 @@ CelebrityFavoriteButton.defaultProps = {
   userCelebrityLikes: [],
   filledImageSource: "/assets/img/filled-heart.svg",
   outlinedImageSource: "/assets/img/outlined-heart.svg",
-  width: "1rem"
+  width: "1rem",
 };
 
 CelebrityFavoriteButton.propTypes = {
@@ -117,7 +121,7 @@ CelebrityFavoriteButton.propTypes = {
   filledImageSource: PropTypes.string,
   outlinedImageSource: PropTypes.string,
   width: PropTypes.string,
-  height: PropTypes.string
+  height: PropTypes.string,
 };
 
 const _CelebrityFavoriteButton = connect(mapStateToProps)(

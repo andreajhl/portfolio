@@ -3,16 +3,18 @@ import apiService from "../../utils/apiService";
 import {
   handleApiErrors,
   handleApiResponseFailure,
-  handleApiResponseSuccess
+  handleApiResponseSuccess,
 } from "../../utils";
 import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { AVAILABLE_CURRENCIES } from "../../../components/layouts/currency-dropdown/constants";
 import * as GTM from "../../utils/gtm";
+import { setCookie } from "lib/setCookie";
+import { CURRENT_CURRENCY_TRM_CODE } from "constants/keys";
 // import { reduxStore } from "../../../";
 
 const reduxStore = {
-  dispatch() {}
+  dispatch() {},
 };
 
 export const listPaymentGateways = (currency) => {
@@ -29,7 +31,7 @@ export const listPaymentGateways = (currency) => {
       async: true,
       params: null,
       body: null,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -61,12 +63,13 @@ export const currencyExchange = (params) => {
       async: true,
       params: params,
       body: null,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then((res) => {
         if (res.data.status === "OK") {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
+          setCookie(CURRENT_CURRENCY_TRM_CODE, params.to, 365);
 
           if (
             !AVAILABLE_CURRENCIES.find(
@@ -103,7 +106,7 @@ export const getContractToPay = (contractReference) => {
         path: FINAL_PATH,
         async: true,
         params: null,
-        body: null
+        body: null,
       })
         .then((res) => {
           if ("status" in res.data && res.data.status === "ERROR") {
@@ -111,9 +114,9 @@ export const getContractToPay = (contractReference) => {
             // Other actions
             // history._pushRoute(ROUTING_PATHS.CLIENT_HIRINGS);
           } else {
-            if (res.data.data.status >= 6) {
+            if (res.data.data.status >= 7) {
               history._pushRoute(
-                ROUTING_PATHS.CONTRACT_CREATED.replace(
+                ROUTING_PATHS.PURCHASE_SUMMARY.replace(
                   ":contract_reference",
                   res.data.data.reference
                 )
@@ -142,7 +145,7 @@ export const processStripePayment = (
   const data = {
     contractReference: contractReference,
     sourceId: sourceId,
-    discountCouponId: discountCouponId
+    discountCouponId: discountCouponId,
   };
   return new Promise((resolve, reject) => {
     apiService({
@@ -152,7 +155,7 @@ export const processStripePayment = (
       async: true,
       params: null,
       body: data,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then(resolve)
       .catch((error) => {
@@ -162,6 +165,53 @@ export const processStripePayment = (
           error
         );
         reject(error);
+      });
+  });
+};
+export const processDlocalPayment = (
+  contractReference,
+  paymentMethodId,
+  buyerFullName,
+  buyerEmail,
+  buyerDocument,
+  discountCouponId,
+  cardToken,
+  deviceId,
+  userIp
+) => {
+  const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
+  const data = {
+    contractReference: contractReference,
+    paymentMethodId: paymentMethodId,
+    buyerFullName: buyerFullName,
+    buyerEmail: buyerEmail,
+    buyerDocument: buyerDocument,
+    discountCouponId: discountCouponId,
+    cardToken: cardToken,
+    deviceId: deviceId,
+    IP: userIp,
+  };
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false,
+    })
+      .then((res) => {
+        if (res.data.status === "OK") {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((err) => {
+        if (err.response && err.response.data) {
+          rejectionFunc(err.response.data.error);
+        } else {
+          rejectionFunc("Ha ocurrido un error inesperado");
+        }
       });
   });
 };
@@ -177,7 +227,7 @@ export const processPayPalPayment = (
     contractReference: contractReference,
     orderId: orderId,
     authorizationId: authorizationId,
-    discountCouponId: discountCouponId
+    discountCouponId: discountCouponId,
   };
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
@@ -187,7 +237,7 @@ export const processPayPalPayment = (
       async: true,
       params: null,
       body: data,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then((res) => {
         if (res.data.status === "ERROR") {
@@ -229,7 +279,7 @@ export const retrieveUserCards = () => {
       async: true,
       params: null,
       body: null,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then((res) => {
         if (res.data.status === "ERROR") {
@@ -261,7 +311,7 @@ export const removeSource = (sourceId) => {
       async: true,
       params: null,
       body: null,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then((res) => {
         if (res.data.status === "ERROR") {
@@ -291,7 +341,7 @@ export const clearCouponData = () => {
 export const discountCouponsGateways = (contractReference, discountCoupon) => {
   const data = {
     contractReference: contractReference,
-    discountCoupon: discountCoupon
+    discountCoupon: discountCoupon,
   };
   return (dispatch) => {
     const TYPE = types.APPLY_DISCOUNT_COUPON;
@@ -302,7 +352,7 @@ export const discountCouponsGateways = (contractReference, discountCoupon) => {
       path: FINAL_PATH,
       async: true,
       params: null,
-      body: data
+      body: data,
     })
       .then((res) => {
         if (res.data.status === "OK") {

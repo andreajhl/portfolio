@@ -1,29 +1,61 @@
 import React from "react";
 import { NavLink } from "react-app/src/components/common/routing";
-import { SUBSCRIPTION } from "../../../routing/Paths";
+import { AUTH_SUCCESS, CELEBRITY_SUBSCRIBE } from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
-import { CallToActionButton } from "../call-to-action-button";
+import { LessImportantCallToActionButton } from "../less-important-call-to-action-button";
+import { useWindow } from "react-app/src/utils/useWindow";
+import { useAuth0 } from "@auth0/auth0-react";
+import { history } from "react-app/src/routing/History";
+import { useRouter } from "next/router";
 
-const SubscribeToThisCelebrityButton = ({
+function SubscribeToThisCelebrityButton({
   className,
   text,
   celebrityFullName,
   celebrityUsername,
   fontSize,
-  width
-}) => {
-  // PARA REMOVER TEMPORALMENTE ESTE COMPONENTE.
-  return null;
+  width,
+}) {
+  const { locale } = useRouter();
+  const userAgent = useWindow()?.navigator?.userAgent;
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
+  const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
+
+  const { loginWithPopup, isAuthenticated, loginWithRedirect } = useAuth0();
+
   const registerSubscribeToThisCelebrityButtonEvent = (eventName) => {
     GTM.tagManagerDataLayer(eventName + "_SUBSCRIBE_TO_THIS_CELEBRITY_BUTTON", {
       path: window.location.pathname,
       widget: "SubscribeToThisCelebrityButton",
       text,
       celebrityFullName,
-      celebrityUsername
+      celebrityUsername,
     });
   };
+
+  function handlerClickToLogin() {
+    registerSubscribeToThisCelebrityButtonEvent("CLICK");
+    const postLoginPath = CELEBRITY_SUBSCRIBE.replace(
+      ":celebrity_username",
+      celebrityUsername
+    );
+    if (!isAuthenticated) {
+      localStorage.setItem("finalRedirect", postLoginPath);
+      if (isMobile | isSafari) {
+        loginWithRedirect({
+          redirectUri: window.location.origin + AUTH_SUCCESS,
+          ui_locales: locale,
+        });
+      } else {
+        loginWithPopup({
+          ui_locales: locale,
+        });
+      }
+    } else {
+      history.push(postLoginPath);
+    }
+  }
 
   const parsedFullName = parseFullName(
     celebrityFullName,
@@ -41,23 +73,17 @@ const SubscribeToThisCelebrityButton = ({
       : parsedFullName.first || parsedFullName.last;
 
   return (
-    <NavLink
-      to={SUBSCRIPTION.replace(":celebrity_username", celebrityUsername)}
-      onClick={() => registerSubscribeToThisCelebrityButtonEvent("CLICK")}
+    <LessImportantCallToActionButton
+      fontSize={fontSize}
+      width={width}
+      className={className}
+      onClick={handlerClickToLogin}
       onMouseOver={() => registerSubscribeToThisCelebrityButtonEvent("HOVER")}
     >
-      {
-        <CallToActionButton
-          fontSize={fontSize}
-          width={width}
-          className={className}
-        >
-          {text}
-          {celebrityFullName ? " " + displayName : ""}
-        </CallToActionButton>
-      }
-    </NavLink>
+      {text}
+      {celebrityFullName ? " " + displayName : ""}
+    </LessImportantCallToActionButton>
   );
-};
+}
 
 export { SubscribeToThisCelebrityButton };

@@ -5,13 +5,14 @@ import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { PaginationLayout } from "../../layouts/pagination";
 import { CelebrityShimmerReviewCardLayout } from "../celebrity-shimmer-review-card";
+import { FormattedMessage } from "react-intl";
 
 class CelebrityReviewsSectionLayout extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      params: { currentPage: 1 }
+      params: { currentPage: 1 },
     };
 
     this.onPaginationChange = this.onPaginationChange.bind(this);
@@ -30,7 +31,7 @@ class CelebrityReviewsSectionLayout extends Component {
     }
     this.setState(
       {
-        params: params
+        params: params,
       }
       // () => this.fetchReviews()
     );
@@ -58,7 +59,7 @@ class CelebrityReviewsSectionLayout extends Component {
         <div className="container mb-2 pb-2">
           <div className="row mx-auto pt-2">
             <h5 className="col-12 mb-4 CelebrityReviewsSectionLayout__title">
-              Calificaciones
+              <FormattedMessage defaultMessage="Calificaciones" />
             </h5>
             {this.props.isLoading
               ? this.renderShimmerReviewCards()
@@ -95,19 +96,19 @@ CelebrityReviewsSectionLayout.propTypes = {};
 CelebrityReviewsSectionLayout.defaultProps = {
   celebrity: {},
   reviews: [],
-  paginationData: {}
+  paginationData: {},
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.celebrities.fetchReviewsReducer.loading,
   reviews: state.celebrities.fetchReviewsReducer.data.results,
-  paginationData: state.celebrities.fetchReviewsReducer.data.informationPage
+  paginationData: state.celebrities.fetchReviewsReducer.data.informationPage,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  listReviews: celebrityOperations.listReviews
+  listReviews: celebrityOperations.listReviews,
 };
 
 // Export Class

@@ -8,12 +8,13 @@ import { NavLink, withRouter } from "react-app/src/components/common/routing";
 import Link from "next/link";
 import { PageContainer } from "react-app/src/components/layouts/page-container";
 import { HOME_PATH } from "react-app/src/routing/Paths";
+import { FormattedMessage } from "react-intl";
 
 const BlogResults = ({
   blogsData,
   blogsDataLoading,
   blogsDataCompleted,
-  getBlogData
+  getBlogData,
 }) => {
   useEffect(() => {
     if (!blogsDataCompleted) {
@@ -53,10 +54,12 @@ const BlogResults = ({
           <Col md="9" className="mx-auto">
             <NavLink to={HOME_PATH}>
               <Button className="mb-2" variant="primary">
-                🏠 Inicio
+                🏠 <FormattedMessage defaultMessage="Inicio" />
               </Button>
             </NavLink>
-            <h2 className="font-weight-bold">Blog</h2>
+            <h2 className="font-weight-bold">
+              <FormattedMessage defaultMessage="Blog" />
+            </h2>
             {renderPosts}
           </Col>
         </Row>
@@ -70,11 +73,11 @@ const mapStateToProps = ({ blog }) => ({
   blogsData: blog.blogsPostMediumReducer.data,
   blogsDataLoading: blog.blogsPostMediumReducer.loading,
   isBlogsDataFetch: blog.blogsPostMediumReducer.completed,
-  blogsDataCompleted: blog.blogsPostMediumReducer.completed
+  blogsDataCompleted: blog.blogsPostMediumReducer.completed,
 });
 
 const mapDispatchToProps = {
-  getBlogData: blogOperations.getBlogData
+  getBlogData: blogOperations.getBlogData,
 };
 
 const _BlogResults = connect(

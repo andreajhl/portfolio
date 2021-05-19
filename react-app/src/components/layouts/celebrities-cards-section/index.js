@@ -14,19 +14,22 @@ import useGetViewportWidthOnResize from "react-app/src/utils/useGetViewportWidth
 import getContainerWidthFromWindowWidth from "react-app/src/utils/getContainerWidthFromWindowWidth";
 import {
   largeBreakPoint,
-  smallBreakpoint
+  smallBreakpoint,
 } from "react-app/src/constants/bootstrapBreakpoint";
+import { FormattedMessage } from "react-intl";
+import { useRouter } from "next/router";
 
 const celebrityCardWidth = 150;
 const videoCardWidth = 258;
-const celebrityCardSectionHeight = 219;
-const videoCardSectionHeight = 360;
+const additionalVerticalSpace = 10;
+const celebrityCardSectionHeight = 219 + additionalVerticalSpace;
+const videoCardSectionHeight = 360 + additionalVerticalSpace;
 const cardGap = 12;
 
 const getColumn = (isVideoCardSection, celebritiesSectionId) => ({
   data,
   index,
-  style
+  style,
 }) => {
   const celebrity = data[index];
   const isLastItem = index >= data.length - 1;
@@ -57,7 +60,7 @@ const initialState = {
   showLeftScrollButton: false,
   showRightScrollButton: false,
   mobileSectionWidth: 524,
-  desktopSectionWidth: 1125
+  desktopSectionWidth: 1125,
 };
 
 const getSectionWidth = (windowWidth) => {
@@ -74,8 +77,9 @@ const CelebritiesCardsSectionLayout = ({
   celebritiesSection,
   moreResultsPath,
   isMobile,
-  isFavoriteSection
+  isFavoriteSection,
 }) => {
+  const { locale } = useRouter();
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
     initialState.showLeftScrollButton
   );
@@ -98,7 +102,7 @@ const CelebritiesCardsSectionLayout = ({
     title: celebritiesSection.title,
     id: celebritiesSection.id,
     celebritySectionType: celebritiesSection.celebritySectionType,
-    position: celebritiesSection.position
+    position: celebritiesSection.position,
   };
 
   const scrollTo = (direction) => () => {
@@ -106,11 +110,11 @@ const CelebritiesCardsSectionLayout = ({
     const { offsetWidth } = cardListElement;
     cardListElement.scrollBy({
       left: direction === "right" ? offsetWidth : offsetWidth * -1,
-      behavior: "smooth"
+      behavior: "smooth",
     });
     GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTION_SCROLL_BUTTON", {
       ...analyticsData,
-      direction
+      direction,
     });
   };
 
@@ -118,13 +122,13 @@ const CelebritiesCardsSectionLayout = ({
     const {
       scrollLeft,
       offsetWidth,
-      scrollWidth
+      scrollWidth,
     } = cardListRef.current._outerRef;
     setShowLeftScrollButton(scrollLeft !== 0);
     setShowRightScrollButton(scrollLeft + offsetWidth !== scrollWidth);
     GTM.tagManagerDataLayer("SCROLL_CELEBRITY_SECTION_LIST", {
       ...analyticsData,
-      hasReachedListEnd: scrollLeft + offsetWidth >= scrollWidth
+      hasReachedListEnd: scrollLeft + offsetWidth >= scrollWidth,
     });
   }, 100);
 
@@ -144,7 +148,7 @@ const CelebritiesCardsSectionLayout = ({
       jsonToQueryString({
         country_id: getMoreFrequentIds(celebrities, "countryId"),
         category_id: getMoreFrequentIds(celebrities, "categoryId"),
-        limit: 20
+        limit: 20,
       })
     );
   }, [celebrities]);
@@ -161,7 +165,7 @@ const CelebritiesCardsSectionLayout = ({
   const registerSeeMoreResultsClick = () =>
     GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTION_SEE_MORE_LINK", {
       ...analyticsData,
-      searchMoreResultsPath
+      searchMoreResultsPath,
     });
 
   const { celebritySectionType } = celebritiesSection;
@@ -171,7 +175,14 @@ const CelebritiesCardsSectionLayout = ({
     () => getColumn(isVideoCardSection, celebritiesSection.id),
     []
   );
+  const getTitle = () => {
+    if (typeof celebritiesSection.title === "string")
+      return celebritiesSection.title;
 
+    return (
+      celebritiesSection.title[locale] || celebritiesSection.title["es"] || ""
+    );
+  };
   return (
     <section
       className={`celebrities-section-layout container overflow-hidden pr-0 ${
@@ -182,16 +193,14 @@ const CelebritiesCardsSectionLayout = ({
       onMouseEnter={registerCelebritySectionHover}
     >
       <header className="celebrities-section__header d-flex justify-content-between">
-        <h2 className={`celebrities-section-layout__title`}>
-          {celebritiesSection.title}
-        </h2>
+        <h2 className={`celebrities-section-layout__title`}>{getTitle()}</h2>
         <Maybe it={hasMoreResults}>
           <NavLink
             to={moreResultsPath || searchMoreResultsPath}
             className="mb-1 font-weight-bold mr-3 mr-sm-0 flex-shrink-0"
             onClick={registerSeeMoreResultsClick}
           >
-            Ver más
+            <FormattedMessage defaultMessage="Ver más" description="" />
           </NavLink>
         </Maybe>
       </header>
@@ -235,7 +244,7 @@ const CelebritiesCardsSectionLayout = ({
 };
 
 CelebritiesCardsSectionLayout.defaultProps = {
-  hasMoreResults: false
+  hasMoreResults: false,
 };
 
 export { CelebritiesCardsSectionLayout };

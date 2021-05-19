@@ -1,13 +1,19 @@
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { BlogEntry } from "react-app/src/components/pages/blog-entry";
+import { defineMessages } from "react-intl";
 
-const Faqs = () => {
+const headData = defineMessages({
+  titleBlog: {
+    defaultMessage: "Famosos.com - Entrada de blog",
+  },
+});
+const Blog = () => {
   return (
     <>
-      <CustomHead title="Famosos.com - Entrada de blog" />
+      <CustomHead title={headData.titleBlog} />
       <BlogEntry />
     </>
   );
 };
 
-export default Faqs;
+export default Blog;

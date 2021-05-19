@@ -23,9 +23,28 @@
       font-size: 1.25rem;
     }
   }
-  .button-hire-this-celebrity-for-companies:focus,.button-hire-this-celebrity-for-companies:active {
+  .button-hire-this-celebrity-for-companies:focus,
+  .button-hire-this-celebrity-for-companies:active {
     box-shadow: 0 0 0 0.2rem rgb(245, 245, 245) !important;
     color: rgba(61, 135, 243, 1) !important;
     background-color: rgba(225, 237, 255, 1) !important;
   }
+}
+
+.CelebrityDetails__fans-club-badge {
+  width: 112.8px;
+  margin: 0 auto;
+
+  img {
+    position: static;
+    margin-right: 0.5em;
+  }
+}
+
+span + .CelebrityDetails__fans-club-badge {
+  margin-top: 0.5rem;
+}
+
+span + .CelebrityDetails__fans-club-badge-large {
+  margin-top: 1.5rem;
 }

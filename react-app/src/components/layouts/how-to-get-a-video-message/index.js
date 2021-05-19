@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 const onlyMobileLineBreak = <br className="d-sm-none" />;
 const onlyDesktopLineBreak = <br className="d-none d-sm-inline" />;
@@ -8,8 +9,14 @@ const HowToGetAVideoMessageLayout = () => {
     <section className="HowToGetAVideoMessageLayout py-4">
       <div className="container mb-0">
         <h2 className="HowToGetAVideoMessageLayout__title mb-5 mb-lg-3">
-          ¿Comó solicitar {onlyMobileLineBreak} un {onlyDesktopLineBreak}{" "}
-          videomensaje en Famosos?
+          <FormattedMessage
+            defaultMessage="¿Comó solicitar {onlyMobileLineBreak} un {onlyDesktopLineBreak}
+          videomensaje en Famosos?"
+            values={{
+              onlyMobileLineBreak: onlyMobileLineBreak,
+              onlyDesktopLineBreak: onlyDesktopLineBreak,
+            }}
+          />
         </h2>
         <ul className="HowToGetAVideoMessageLayout__steps-list container mb-0">
           <li className="HowToGetAVideoMessageLayout__step-item">
@@ -17,9 +24,13 @@ const HowToGetAVideoMessageLayout = () => {
               1
             </div>
             <p className="HowToGetAVideoMessageLayout__step-text">
-              Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak}{" "}
-              "Quiero
-              {onlyMobileLineBreak} un video".
+              <FormattedMessage
+                defaultMessage={`Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak} "Quiero {onlyMobileLineBreak} un video"`}
+                values={{
+                  onlyMobileLineBreak: onlyMobileLineBreak,
+                  onlyDesktopLineBreak: onlyDesktopLineBreak,
+                }}
+              />
             </p>
           </li>
           <li className="HowToGetAVideoMessageLayout__step-item">
@@ -27,9 +38,15 @@ const HowToGetAVideoMessageLayout = () => {
               2
             </div>
             <p className="HowToGetAVideoMessageLayout__step-text">
-              Detalla la solicitud y {onlyMobileLineBreak} realiza{" "}
+              <FormattedMessage
+                defaultMessage="Detalla la solicitud y {onlyMobileLineBreak} realiza
               {onlyDesktopLineBreak}
-              el proceso {onlyMobileLineBreak} de compra.
+              el proceso {onlyMobileLineBreak} de compra."
+                values={{
+                  onlyMobileLineBreak: onlyMobileLineBreak,
+                  onlyDesktopLineBreak: onlyDesktopLineBreak,
+                }}
+              />
             </p>
           </li>
           <li className="HowToGetAVideoMessageLayout__step-item">
@@ -37,9 +54,15 @@ const HowToGetAVideoMessageLayout = () => {
               3
             </div>
             <p className="HowToGetAVideoMessageLayout__step-text">
-              ¡Y listo! en poco {onlyMobileLineBreak} tiempo
-              {onlyDesktopLineBreak} recibirás tu {onlyMobileLineBreak}{" "}
-              videomensaje.
+              <FormattedMessage
+                defaultMessage="¡Y listo! en poco {onlyMobileLineBreak} tiempo
+              {onlyDesktopLineBreak} recibirás tu {onlyMobileLineBreak}
+              videomensaje."
+                values={{
+                  onlyMobileLineBreak: onlyMobileLineBreak,
+                  onlyDesktopLineBreak: onlyDesktopLineBreak,
+                }}
+              />
             </p>
           </li>
         </ul>

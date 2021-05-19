@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import * as GTM from "../../../state/utils/gtm";
 
 const CelebrityReviewCardLayout = ({ review }) => {
@@ -6,7 +7,7 @@ const CelebrityReviewCardLayout = ({ review }) => {
     GTM.tagManagerDataLayer("HOVER_CELEBRITY_REVIEW_CARD", {
       widget: "CelebrityReviewCardLayout",
       path: window.location.pathname,
-      ...review
+      ...review,
     });
   };
 
@@ -18,7 +19,11 @@ const CelebrityReviewCardLayout = ({ review }) => {
       <div className="card card-review px-4 py-3">
         <div className="card-body p-0 d-flex justify-content-between align-items-center">
           <h6 className="font-weight-bold CelebrityReviewCardLayout__full-name text-with-ellipsis">
-            {review.user_full_name ? review.user_full_name : "Anónimo"}
+            {review.user_full_name ? (
+              review.user_full_name
+            ) : (
+              <FormattedMessage defaultMessage="Anónimo" />
+            )}
           </h6>
           <h5 className="text-warning flex-shrink-0">
             {[...Array(review.contract_stars)].map((i, index) => {
@@ -49,8 +54,8 @@ const CelebrityReviewCardLayout = ({ review }) => {
 // default props
 CelebrityReviewCardLayout.defaultProps = {
   review: {
-    client: { user: {} }
-  }
+    client: { user: {} },
+  },
 };
 
 export { CelebrityReviewCardLayout };

@@ -4,21 +4,24 @@ import { Session } from "../../../state/utils/session";
 import { sessionOperations } from "../../../state/ducks/session";
 import { connect } from "react-redux";
 import {
-  CLIENT_FAVORITES,
   CLIENT_HIRINGS,
-  HOME_PATH
+  FEED_SUBSCRIPTION,
+  HOME_PATH,
 } from "../../../routing/Paths";
 import LogoutButton from "../../containers/logout-button/logout-button";
-import Router from "next/router";
+import Router, { withRouter } from "next/router";
 import Maybe from "../../common/helpers/maybe";
 import { NavLink } from "../../common/routing";
+import { FormattedMessage } from "react-intl";
+import NotificationLangOptions from "../../containers/notification-lang-option";
+import { fetchUserSubscriptionsList } from "react-app/src/state/ducks/subscriptions/actions";
 
 class UserProfileDetailsCardLayout extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      favCelebrities: ""
+      favCelebrities: "",
     };
 
     this.sesion = new Session();
@@ -31,6 +34,10 @@ class UserProfileDetailsCardLayout extends Component {
   // celebritiesMultiSelectChanged(value) {
   //   this.setState({ favCelebrities: value });
   // }
+
+  componentDidMount() {
+    this.props.fetchUserSubscriptionsList();
+  }
 
   logout() {
     this.sesion.removeSession();
@@ -47,10 +54,10 @@ class UserProfileDetailsCardLayout extends Component {
     return (
       <div className="UserProfileDetailsCardLayout">
         <div className="f-main-padding mt-4 f-shadow rounded f-rounded">
-          <div className="row justify-content-center">
+          <div className="row justify-content-center mx-0">
             <div className="col-12 text-center">
               <h6 className="mt-3 font-weight-bold border-bottom pb-3">
-                Mi Perfil
+                <FormattedMessage defaultMessage="Mi Perfil" />
               </h6>
             </div>
             <div className="col-12 text-center p-2">
@@ -78,7 +85,7 @@ class UserProfileDetailsCardLayout extends Component {
               </Maybe>
               <LogoutButton className="d-inline">
                 <small className="text-muted cursor-pointer">
-                  Cerrar sesión
+                  <FormattedMessage defaultMessage="Cerrar sesión" />
                 </small>
               </LogoutButton>
             </div>
@@ -86,20 +93,30 @@ class UserProfileDetailsCardLayout extends Component {
               <hr />
             </div>
             <div className="col-6 text-center border-right p-2">
-              <NavLink to={CLIENT_FAVORITES} className="text-decoration-none">
-                <h6 className="mt-2">Siguiendo</h6>
+              <NavLink to={FEED_SUBSCRIPTION} className="text-decoration-none">
+                <h6 className="mt-2">
+                  <FormattedMessage defaultMessage="Siguiendo" />
+                </h6>
                 <h2 className="font-weight-bold mt-4">
-                  {this.props.userCelebrityLikesCount}
+                  {this.props.userSubscriptionListLength}
+                  {/* {this.props.userCelebrityLikesCount} */}
                 </h2>
               </NavLink>
             </div>
             <div className="col-6 text-center p-2 border-left">
               <NavLink to={CLIENT_HIRINGS} className="text-decoration-none">
-                <h6 className="mt-2">Contratos</h6>
+                <h6 className="mt-2">
+                  <FormattedMessage defaultMessage="Contratos" />
+                </h6>
                 <h2 className="font-weight-bold mt-4">
                   {this.props.session.totalContracts}
                 </h2>
               </NavLink>
+            </div>
+            <div className="col-12 p-5">
+              <NotificationLangOptions
+                currentUserLang={this.props.session?.lang}
+              />
             </div>
             {/* <div className="col-12 text-center">
               <hr />
@@ -136,21 +153,27 @@ UserProfileDetailsCardLayout.defaultProps = {};
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
+  userSubscriptionListLength: state.subscriptions
+    .fetchUserSubscriptionsListReducer.completed
+    ? state.subscriptions.fetchUserSubscriptionsListReducer.data?.length || 0
+    : "",
   isLoading: state.session.updateSessionReducer.loading,
   sessionData: state.session.getSessionReducer.data,
   updateSessionData: state.session.updateSessionReducer.data,
   userCelebrityLikesCount:
-    state.celebrityLikes.fetchUserCelebrityLikesReducer?.data?.data?.length || 0
+    state.celebrityLikes.fetchUserCelebrityLikesReducer?.data?.data?.length ||
+    0,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  updateSession: sessionOperations.updateSession
+  fetchUserSubscriptionsList,
+  updateSession: sessionOperations.updateSession,
 };
 
 // Export Class
 const _UserProfileDetailsCardLayout = connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserProfileDetailsCardLayout);
+)(withRouter(UserProfileDetailsCardLayout));
 export { _UserProfileDetailsCardLayout as UserProfileDetailsCardLayout };

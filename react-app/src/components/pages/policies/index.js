@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { PageContainer } from "../../layouts/page-container";
 import * as GTM from "../../../state/utils/gtm";
+import { FormattedMessage } from "react-intl";
 
 class PoliciesPage extends Component {
   componentDidMount() {
@@ -12,7 +13,8 @@ class PoliciesPage extends Component {
       <div className="PoliciesPage">
         <PageContainer>
           <div className="container-text">
-            <h5 className="font-weight-bold">
+            <FormattedMessage
+              defaultMessage="<h5>
               POLÍTICA DE PRIVACIDAD “FAMOSOS INC”, PRIMERO (1º.) DE OCTUBRE DE
               2019.
             </h5>
@@ -294,7 +296,12 @@ class PoliciesPage extends Component {
               Si usted requiere mayor información acerca de esta “Política”,
               podrá contactarse con nosotros, en 10800 Biscayne Blvd, Suite 560,
               Miami, Florida, 33161.
-            </p>
+            </p>"
+              values={{
+                h5: (chunks) => <h5 className="font-weight-bold">{chunks}</h5>,
+                p: (chunks) => <p>{chunks}</p>,
+              }}
+            />
           </div>
         </PageContainer>
       </div>

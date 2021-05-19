@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import scriptLoader from "react-async-script-loader";
+import { FormattedMessage } from "react-intl";
 
 let PayPalButton = null;
 const INTENT = "authorize";
@@ -17,7 +18,7 @@ class PaypalReactButton extends React.Component {
     this.state = {
       showButtons: false,
       loading: true,
-      approved: false
+      approved: false,
     };
 
     window.React = React;
@@ -40,7 +41,7 @@ class PaypalReactButton extends React.Component {
       if (isScriptLoadSucceed) {
         PayPalButton = window.paypal.Buttons.driver("react", {
           React,
-          ReactDOM
+          ReactDOM,
         });
         this.setState({ loading: false, showButtons: true });
       }
@@ -56,17 +57,17 @@ class PaypalReactButton extends React.Component {
             "Compra en Famosos.com. Ref: " + this.props.contractReference,
           amount: {
             currency_code: "USD",
-            value: this.props.contractPrice
-          }
-        }
-      ]
+            value: this.props.contractPrice,
+          },
+        },
+      ],
     });
   };
 
   onApprove = (data, actions) => {
     this.setState({
       ...this.state,
-      approved: true
+      approved: true,
     });
     // Authorize the transaction
     let authorizationID = null;
@@ -77,7 +78,7 @@ class PaypalReactButton extends React.Component {
       this.setState(
         {
           ...this.state,
-          showButtons: false
+          showButtons: false,
         },
         () => {
           this.props.onPayPalButtonApprove(data["orderID"], authorizationID);
@@ -100,7 +101,7 @@ class PaypalReactButton extends React.Component {
       textAlign: "center",
       maxWidth: "100%",
       maxHeight: "50%",
-      display: !approved ? "block" : "none"
+      display: !approved ? "block" : "none",
     };
     const buttonStyles = {
       layout: "vertical",
@@ -109,7 +110,7 @@ class PaypalReactButton extends React.Component {
       size: "small",
       label: "pay",
       tagline: "false",
-      fundingicons: "false"
+      fundingicons: "false",
     };
     return (
       <div>
@@ -124,7 +125,11 @@ class PaypalReactButton extends React.Component {
             />
           </div>
         )}
-        {approved && <h6 className={"text-center"}>Guardando...</h6>}
+        {approved && (
+          <h6 className={"text-center"}>
+            <FormattedMessage defaultMessage="Guardando..." />
+          </h6>
+        )}
       </div>
     );
   }
@@ -136,7 +141,7 @@ PaypalReactButton.defaultProps = {
   contractPrice: null,
   onPayPalButtonApprove: () => {},
   onPayPalButtonCancel: () => {},
-  onPayPalButtonError: () => {}
+  onPayPalButtonError: () => {},
 };
 
 export default scriptLoader(SDK_URL)(PaypalReactButton);

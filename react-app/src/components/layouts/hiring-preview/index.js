@@ -8,6 +8,7 @@ import { ContractFavsLayout } from "../contract-favs";
 import { ReviewCreatorLayout } from "../review-creator";
 import { ContractCommentSectionLayout } from "../contract-comments-section";
 import Head from "next/head";
+import { FormattedMessage } from "react-intl";
 
 class HiringPreviewLayout extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class HiringPreviewLayout extends Component {
       readyState: false,
       videoResolution: "dieciseis-nueve", // 1  -  1-33  -  1-77
       videoGridCols: "col-md-4 col-lg-4",
-      videoDetailsGridCols: "col-md-8 col-lg-8"
+      videoDetailsGridCols: "col-md-8 col-lg-8",
     };
 
     this.session = new Session();
@@ -57,7 +58,7 @@ class HiringPreviewLayout extends Component {
           videoGridCols,
           videoDetailsGridCols,
           resolution,
-          readyState: true
+          readyState: true,
         });
       }
     });
@@ -65,7 +66,7 @@ class HiringPreviewLayout extends Component {
       if (this.state.readyState === false) {
         this.setState({
           ...this.state,
-          readyState: true
+          readyState: true,
         });
       }
     }, 15000);
@@ -275,7 +276,9 @@ class HiringPreviewLayout extends Component {
                     </div>
                     <br />
                     <div className="mb-4">
-                      <h6 className="font-weight-bold">Compartir video en:</h6>
+                      <h6 className="font-weight-bold">
+                        <FormattedMessage defaultMessage="Compartir video en:" />
+                      </h6>
                       <ShareContractLayout contract={this.props.contract} />
                     </div>
                   </div>

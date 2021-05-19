@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
 
 import {
   removeSource,
-  retrieveUserCards
+  retrieveUserCards,
 } from "../../../state/ducks/payments/actions";
 import StripeCardForm from "../stripe-card-form";
 import StripeCustomerSources from "../stripe-customer-sources";
@@ -14,7 +15,7 @@ class StripeFlowHandler extends Component {
       showLoading: true,
       showCardForm: false,
       showCards: false,
-      availableSources: []
+      availableSources: [],
     };
   }
 
@@ -25,13 +26,12 @@ class StripeFlowHandler extends Component {
   retrieveUserCards = () => {
     retrieveUserCards()
       .then((res) => {
-        console.log("res:", res);
         this.setState({
           ...this.state,
           showLoading: false,
           showCardForm: !res["availableSources"].length,
           showCards: !!res["availableSources"].length,
-          availableSources: res["availableSources"]
+          availableSources: res["availableSources"],
         });
       })
       .catch((err) => {
@@ -39,7 +39,7 @@ class StripeFlowHandler extends Component {
           ...this.state,
           showLoading: false,
           showCardForm: true,
-          showCards: false
+          showCards: false,
         });
       });
   };
@@ -48,7 +48,9 @@ class StripeFlowHandler extends Component {
     if (this.state.showLoading) {
       return (
         <div className={"text-center p-4"}>
-          <h6>Cargando...</h6>
+          <h6>
+            <FormattedMessage defaultMessage="Cargando..." />
+          </h6>
         </div>
       );
     }
@@ -92,7 +94,7 @@ class StripeFlowHandler extends Component {
       ...this.state,
       showCardForm: !availableSources.length,
       showCards: !!availableSources.length,
-      availableSources
+      availableSources,
     });
   };
 
@@ -100,13 +102,17 @@ class StripeFlowHandler extends Component {
     if (this.state.availableSources.length && this.state.showCardForm) {
       return (
         <div className={"p-4 text-center"} onClick={this.changeContainer}>
-          <h6>Seleccionar una tarjeta</h6>
+          <h6>
+            <FormattedMessage defaultMessage="Seleccionar una tarjeta" />
+          </h6>
         </div>
       );
     } else if (this.state.availableSources && !this.state.showCardForm) {
       return (
         <div className={"p-4 text-center"} onClick={this.changeContainer}>
-          <h6>Agregar nueva tarjeta</h6>
+          <h6>
+            <FormattedMessage defaultMessage="Agregar nueva tarjeta" />
+          </h6>
         </div>
       );
     }
@@ -116,7 +122,7 @@ class StripeFlowHandler extends Component {
     this.setState({
       ...this.state,
       showCardForm: !this.state.showCardForm,
-      showCards: !this.state.showCards
+      showCards: !this.state.showCards,
     });
   };
 
@@ -135,6 +141,6 @@ class StripeFlowHandler extends Component {
 // defaultProps
 StripeFlowHandler.defaultProps = {
   contractReference: "",
-  contractPrice: 0
+  contractPrice: 0,
 };
 export default StripeFlowHandler;
