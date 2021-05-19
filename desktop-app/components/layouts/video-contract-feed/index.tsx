@@ -15,6 +15,7 @@ type VideoContractFeedProps = {
   contractData: ClientContractType;
   actionButtonsBackgroundColor?: CSSProperties["backgroundColor"];
   asContractOwner?: boolean;
+  previewMode?: boolean;
 };
 
 function VideoContractFeed({
@@ -22,6 +23,7 @@ function VideoContractFeed({
   className,
   contractData,
   asContractOwner = false,
+  previewMode = false,
 }: VideoContractFeedProps) {
   console.log(contractData);
   if (!contractData.reference) return null; // mostrar skeleton
@@ -44,6 +46,7 @@ function VideoContractFeed({
           orElse={
             <div>
               <CommentContractSection
+                previewMode={previewMode}
                 contract_reference={contractData.reference}
               />
             </div>
@@ -56,7 +59,7 @@ function VideoContractFeed({
             actionButtonsBackgroundColor={actionButtonsBackgroundColor}
             videoURL={contractData.media}
           />
-          <Maybe it={asContractOwner}>
+          <Maybe it={asContractOwner && !previewMode}>
             <Link
               href={CLIENT_HIRINGS}
               className={styles.GoToContractDetailsLink}

@@ -32,6 +32,7 @@ type DispatchProps = typeof mapDispatchToProps;
 
 type CommentCreatorProps = {
   contract_reference: string;
+  previewMode?: boolean;
   onCommentCreated: () => void;
   firstComment: boolean;
 } & StateProps &
@@ -42,6 +43,7 @@ function CommentCreator({
   contract_reference,
   isCompleted,
   onCommentCreated,
+  previewMode = false,
   addContractComment,
   firstComment,
 }: CommentCreatorProps) {
@@ -56,6 +58,7 @@ function CommentCreator({
     },
     validations,
     onSubmit(data) {
+      if (previewMode) return;
       addContractComment(contract_reference, {
         comment: data.comment,
       });

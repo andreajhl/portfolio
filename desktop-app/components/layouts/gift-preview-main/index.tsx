@@ -51,6 +51,7 @@ function GiftPreviewMain({
           }
           className={styles.RightSide}
           contractData={contract}
+          previewMode
         />
       </div>
     </main>

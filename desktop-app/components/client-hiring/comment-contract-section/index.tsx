@@ -26,6 +26,7 @@ type DispatchProps = typeof mapDispatchToProps;
 
 type CelebritySimilarVideosReelProps = {
   contract_reference: string;
+  previewMode?: boolean;
 } & StateProps &
   DispatchProps;
 
@@ -35,6 +36,7 @@ function CommentContractSection({
   paginationData,
   contractComments,
   isLoading,
+  previewMode = false,
   isCompleted,
 }: CelebritySimilarVideosReelProps) {
   useEffect(() => {
@@ -50,6 +52,7 @@ function CommentContractSection({
         <CommentsContractVideo contractComments={contractComments} />
       </Maybe>
       <CommentCreator
+        previewMode={previewMode}
         firstComment={isCompleted && contractComments?.length < 1}
         onCommentCreated={() => listContractComments(contract_reference)}
         contract_reference={contract_reference}

@@ -60,13 +60,16 @@ function ViewerClientVideo({
   const [videoIsMuted, setVideoIsMuted] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const toggleVideoIsMuted = () => {
-    console.log("toggle");
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
   const toggleVideoFullScreen = () => {
     setModalIsOpen((fullScreen) => !fullScreen);
   };
 
+  const handleTogglePlay = () => {
+    if (previewMode) return;
+    togglePlay();
+  };
   return (
     <>
       <div className={styles.ViewerClientVideoWrapper}>
@@ -90,7 +93,10 @@ function ViewerClientVideo({
           </section>
           <section className={styles.ContractVideoOverlay}>
             <Maybe it={!videoIsPlaying}>
-              <PlayIcon className={styles.CTAPlayIcon} onClick={togglePlay} />
+              <PlayIcon
+                className={styles.CTAPlayIcon}
+                onClick={handleTogglePlay}
+              />
             </Maybe>
             <Maybe it={videoIsPlaying}>
               <div className={styles.ContractVideoControls}>
@@ -99,7 +105,7 @@ function ViewerClientVideo({
                   IsMuted={videoIsMuted}
                   isPlaying={videoIsPlaying}
                   onToggleAudio={toggleVideoIsMuted}
-                  onTogglePlay={togglePlay}
+                  onTogglePlay={handleTogglePlay}
                 />
               </div>
             </Maybe>
