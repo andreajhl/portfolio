@@ -16,13 +16,14 @@ import { Session } from "../../../state/utils/session";
 
 import * as GTM from "../../../state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
+import { FormattedMessage } from "react-intl";
 
 class CelebrityPublicContractsSectionLayout extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      params: {}
+      params: {},
     };
 
     this.onPaginationChange = this.onPaginationChange.bind(this);
@@ -47,7 +48,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
     }
     this.setState(
       {
-        params: params
+        params: params,
       },
       () => this.fetchPublicContracts()
     );
@@ -96,7 +97,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
             {this.returnContractPrice() > 0 ? (
               <div className="mt-3 mb-3" onClick={this.goToCreateContract}>
                 <button className="btn btn-sm f-contract-button">
-                  Comprar Video Personalizado por{" "}
+                  <FormattedMessage defaultMessage="Comprar Video Personalizado por" />{" "}
                   <ContractPriceLayout
                     classes={"text-white font-weight-bold"}
                     price={this.returnContractPrice()}
@@ -132,7 +133,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
     widget: this.constructor.name,
     path: getWindow().location.pathname,
     celebrityId: this.props.celebrityId,
-    username: this.props.username
+    username: this.props.username,
   };
 
   registerListHover = () => {
@@ -145,7 +146,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
   registerListScroll = (hasReachedListEnd) => {
     GTM.tagManagerDataLayer("SCROLL_CELEBRITY_PUBLIC_CONTRACTS_LIST", {
       ...this.analyticsData,
-      hasReachedListEnd
+      hasReachedListEnd,
     });
   };
 
@@ -228,7 +229,7 @@ CelebrityPublicContractsSectionLayout.propTypes = {};
 CelebrityPublicContractsSectionLayout.defaultProps = {
   celebrity: {},
   publicContracts: [],
-  paginationData: {}
+  paginationData: {},
 };
 
 // mapStateToProps
@@ -237,12 +238,12 @@ const mapStateToProps = (state) => ({
   isLoading: state.celebrities.fetchPublicContractsReducer.loading,
   publicContracts: state.celebrities.fetchPublicContractsReducer.data.results,
   paginationData:
-    state.celebrities.fetchPublicContractsReducer.data.informationPage
+    state.celebrities.fetchPublicContractsReducer.data.informationPage,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  listPublicContracts: celebrityOperations.listPublicContracts
+  listPublicContracts: celebrityOperations.listPublicContracts,
 };
 
 // Export Class

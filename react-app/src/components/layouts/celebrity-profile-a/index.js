@@ -2,18 +2,23 @@ import React from "react";
 import { connect } from "react-redux";
 import dynamic from "next/dynamic";
 
-const CelebrityHeroSlideshow = dynamic(() =>
-  import("../celebrity-hero-slideshow").then(
-    (mod) => mod.CelebrityHeroSlideshow
-  )
+const renderOnlyOnBrowser = { ssr: false };
+
+const CelebrityHeroSlideshow = dynamic(
+  () =>
+    import("../celebrity-hero-slideshow").then(
+      (mod) => mod.CelebrityHeroSlideshow
+    ),
+  renderOnlyOnBrowser
 );
 const HowToGetAVideoMessageLayout = dynamic(() =>
   import("../how-to-get-a-video-message").then(
     (mod) => mod.HowToGetAVideoMessageLayout
   )
 );
-const ResizableMainVideo = dynamic(() =>
-  import("../resizable-main-video").then((mod) => mod.ResizableMainVideo)
+const ResizableMainVideo = dynamic(
+  () => import("../resizable-main-video").then((mod) => mod.ResizableMainVideo),
+  renderOnlyOnBrowser
 );
 const CelebrityDetails = dynamic(() =>
   import("../celebrity-details").then((mod) => mod.CelebrityDetails)
@@ -102,14 +107,14 @@ const CelebrityProfileLayoutA = ({ celebrity, hasPublicContracts }) => {
 
 CelebrityProfileLayoutA.defaultProps = {
   celebrity: {},
-  hasPublicContracts: true
+  hasPublicContracts: true,
 };
 
 const mapStateToProps = ({ celebrities: { fetchPublicContractsReducer } }) => {
   return {
     hasPublicContracts:
       !fetchPublicContractsReducer.completed ||
-      fetchPublicContractsReducer.data.results.length > 0
+      fetchPublicContractsReducer.data.results.length > 0,
   };
 };
 

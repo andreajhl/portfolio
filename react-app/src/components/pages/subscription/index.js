@@ -9,25 +9,11 @@ import SubscriptionPlansOptions from "../../layouts/subscription-plans-options";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
 import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
 import { useRouter } from "next/router";
-
-const isAlreadySubscribe = (subscriptionList, celebrityUsername) => {
-  if (subscriptionList.length > 0) {
-    const result = subscriptionList.filter(
-      (subscription) => subscription.celebrityUsername === celebrityUsername
-    );
-    console.log(result);
-    if (result.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-  return false;
-};
+import isAlreadySubscribe from "../../../utils/isAlreadySubscribe";
 
 const Subscription = (props) => {
   const {
-    query: { celebrity_username }
+    query: { celebrity_username },
   } = useRouter();
   const {
     getCelebrity,
@@ -37,23 +23,25 @@ const Subscription = (props) => {
     isLoadingPlans,
     getCelebritiesSubscribe,
     subscriptionList,
-    history,
-    router
   } = props;
-  console.log(history);
   const [currentPlanSelected, setCurrentPlanSelected] = useState(null);
   const onSelectPlan = (planId) => {
     setCurrentPlanSelected(planId);
   };
+
+  const monthlySubscription = celebritySubscriptionPlans?.find?.(
+    ({ frequencyType }) => frequencyType === "MONTH"
+  );
+
   useEffect(() => {
-    if (celebritySubscriptionPlans.length > 0) {
-      setCurrentPlanSelected(celebritySubscriptionPlans[0].gatewayIdentifier);
-    }
-  }, [celebritySubscriptionPlans]);
+    if (!monthlySubscription) return;
+    setCurrentPlanSelected(monthlySubscription.plans[0].planId);
+  }, [monthlySubscription]);
+
   useEffect(() => {
     if (!celebrity_username) return;
     getCelebritiesSubscribe(celebrity_username);
-    getCelebrity(celebrity_username, true);
+    getCelebrity(celebrity_username);
     fetchCelebritySubscriptionPlans(celebrity_username);
   }, [celebrity_username]);
 
@@ -61,9 +49,11 @@ const Subscription = (props) => {
     <PageContainer>
       <Container>
         <Row>
-          <div className="container-subscription-payment col-12 my-4 mx-auto f-rounded f-shadow">
+          <div className="container-subscription-payment col-sm-12 my-4 mx-auto f-rounded f-shadow">
             <div className="container-subscription-payment__header">
-              <h6>Resumen de la contratación</h6>
+              <h6 className="mb-0 font-weight-bold container-subscription-payment__title">
+                Suscripción al Club de Fans de {celebrity.fullName}
+              </h6>
             </div>
             <div className="container-subscription-payment__summary">
               <SubscriptionCheckoutSummary
@@ -78,9 +68,14 @@ const Subscription = (props) => {
                     <SubscriptionPlansOptions
                       onOptionClicked={onSelectPlan}
                       currentPlanSelected={currentPlanSelected}
-                      optionsList={celebritySubscriptionPlans}
+                      optionsList={monthlySubscription.plans}
+                      price={monthlySubscription?.priceTier}
                     />
                   </div>
+                  <p className="container-subscription-payment__copy">
+                    Este precio es por una suscripción mensual y se renovará
+                    automáticamente cada mes.
+                  </p>
                   <div
                     className={`container-subscription-payment__paypalForm ${
                       currentPlanSelected ? "" : "d-none"
@@ -90,6 +85,7 @@ const Subscription = (props) => {
                       <>
                         <SubscriptionPayPalCardForm
                           planId={currentPlanSelected}
+                          celebrityId={celebrity.id}
                         />
                       </>
                     ) : null}
@@ -138,7 +134,7 @@ const mapStateToProps = (state) => ({
     state.celebrities.fetchCelebritySubscriptionPlansReducer.loading,
   celebrity: state.celebrities.getCelebrityReducer.data,
   celebritySubscriptionPlans:
-    state.celebrities.fetchCelebritySubscriptionPlansReducer.data
+    state.celebrities.fetchCelebritySubscriptionPlansReducer.data,
 });
 
 // mapStateToProps
@@ -146,7 +142,7 @@ const mapDispatchToProps = {
   getCelebritiesSubscribe: subscriptionsOperations.fetchUserSubscriptionsList,
   getCelebrity: celebrityOperations.get,
   fetchCelebritySubscriptionPlans:
-    celebrityOperations.fetchCelebritySubscriptionPlans
+    celebrityOperations.fetchCelebritySubscriptionPlans,
 };
 // Set propTypes
 Subscription.propTypes = {};

@@ -4,6 +4,8 @@ react-app/node_modules
 react-app/.env
 react-app/.env.production
 react-app/.env.testing
+react-app/.env.local
+react-app/.env.*
 node_modules
 react-app/build
 zip.zip

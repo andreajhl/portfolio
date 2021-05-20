@@ -21,6 +21,8 @@ import {
 } from "../../constants/dynamicAds";
 import { useEffect } from "react";
 import waitFor from "react-app/src/utils/waitFor";
+import debug from "react-app/src/utils/debug";
+import { defineMessages, useIntl } from "react-intl";
 
 const CelebrityProfilePage = dynamic<{ celebrity: any }>(() =>
   import("react-app/src/components/pages/celebrity-profile").then(
@@ -33,12 +35,20 @@ const CelebrityProfilePageDesktop = dynamic<{ celebrity: any }>(() =>
     (mod) => mod.CelebrityProfilePage
   )
 );
-
+const headData = defineMessages({
+  titleCelebrityProfile: {
+    defaultMessage: "Famosos.com - {celebrity_username}",
+  },
+  descriptionCelebrityProfile: {
+    defaultMessage:
+      "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.",
+  },
+});
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store, req }) => {
     await get(celebrity_username, true)(store.dispatch);
-
     const { celebrities } = store.getState();
+
     const celebrity = celebrities.getCelebrityReducer.data;
     if (!celebrity.id) {
       return {
@@ -51,6 +61,11 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         },
       };
     }
+    store.dispatch(
+      setCelebrityProfileVersion(getProfileVersionDependingOnTime())
+    );
+    await listPublicContracts(celebrity.id, { currentPage: 1 })(store.dispatch);
+    await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
 
     store.dispatch(
       setCelebrityProfileVersion(getProfileVersionDependingOnTime())
@@ -72,6 +87,7 @@ function CelebrityProfile({ celebrity, isMobile }) {
   useDesktopClass(!isMobile);
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
   const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
+  const { formatMessage } = useIntl();
 
   useEffect(() => {
     async function captureProfileViewEvent() {
@@ -88,8 +104,12 @@ function CelebrityProfile({ celebrity, isMobile }) {
   return (
     <>
       <CustomHead
-        title={`Famosos.com - ${celebrity.fullName}`}
-        description={`Perfil oficial de ${celebrity.fullName} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.`}
+        title={formatMessage(headData.titleCelebrityProfile, {
+          celebrity_username: celebrity.fullName,
+        })}
+        description={formatMessage(headData.descriptionCelebrityProfile, {
+          celebrity_username: celebrity.fullName,
+        })}
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
       />

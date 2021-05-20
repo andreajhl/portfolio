@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
 import { HOME_PATH } from "../../../routing/Paths";
 import { PageContainer } from "../../layouts/page-container";
+import { FormattedMessage } from "react-intl";
 
 const SignInPage = () => {
   const router = useRouter();
@@ -21,8 +22,10 @@ const SignInPage = () => {
           <div className="container-sign-in-page__login-details">
             <div className="container-sign-in-page__instructions">
               <h1>
-                Ingresa a tu cuenta ahora para conectar con los famosos y vivir
-                experiencias únicas
+                <FormattedMessage
+                  defaultMessage=" Ingresa a tu cuenta ahora para conectar con los famosos y vivir
+                experiencias únicas"
+                />
               </h1>
             </div>
             <LoginButton className="container-sign-in-page__login-button btn-primary"></LoginButton>

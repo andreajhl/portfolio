@@ -17,7 +17,7 @@ const ModalSelect = ({
   isChecked,
   multipleSelection,
   onModalClose,
-  onModalOpen
+  onModalOpen,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -119,7 +119,7 @@ ModalSelect.defaultProps = {
   isChecked: () => {},
   multipleSelection: false,
   onModalClose: () => {},
-  onModalOpen: () => {}
+  onModalOpen: () => {},
 };
 
 ModalSelect.propTypes = {
@@ -129,13 +129,13 @@ ModalSelect.propTypes = {
   searchPlaceholder: PropTypes.string,
   onSearchChange: PropTypes.func,
   options: PropTypes.array,
-  footerButtonLabel: PropTypes.string,
+  footerButtonLabel: PropTypes.string || PropTypes.node,
   footerButtonOnClick: PropTypes.func,
   onInputChange: PropTypes.func,
   isChecked: PropTypes.func,
   multipleSelection: PropTypes.bool,
   onModalClose: PropTypes.func,
-  onModalOpen: PropTypes.func
+  onModalOpen: PropTypes.func,
 };
 
 export { ModalSelect };

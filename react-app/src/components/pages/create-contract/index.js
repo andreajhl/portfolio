@@ -7,7 +7,9 @@ import { CreateContractForm } from "../../containers/create-contract-form";
 import { Session } from "../../../state/utils/session";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import { hiring_proccess_img } from "constants/external_assets_by_lang";
 // import { Redirect } from "react-router-dom";
+import { withRouter } from "next/router";
 
 const getContractPriceVideoMessage = (contractsTypes) =>
   contractsTypes?.find?.((contract) => contract.contractType === 1)?.price || 0;
@@ -37,6 +39,7 @@ class CreateContractPage extends Component {
     //   )
     // ) : null;
 
+    const { router } = this.props;
     return (
       <>
         {/* {RedirectTo} */}
@@ -74,7 +77,7 @@ class CreateContractPage extends Component {
                 <img
                   width="100%"
                   className={"create-contract-steps"}
-                  src={"/assets/img/create-contract-steps.svg"}
+                  src={hiring_proccess_img[router.locale]}
                   alt={"create-contract-steps"}
                 />
               </div>
@@ -92,18 +95,18 @@ CreateContractPage.defaultProps = {};
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.celebrities.getCelebrityReducer.loading,
-  celebrity: state.celebrities.getCelebrityReducer.data
+  celebrity: state.celebrities.getCelebrityReducer.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  getCelebrity: celebrityOperations.get
+  getCelebrity: celebrityOperations.get,
 };
 
 // Export Class
 const _CreateContractPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateContractPage);
+)(withRouter(CreateContractPage));
 
 export { _CreateContractPage as CreateContractPage };

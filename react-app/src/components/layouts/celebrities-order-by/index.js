@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ModalSelect } from "../modal-select";
+import { useIntl, defineMessage } from "react-intl";
 
 import * as GTM from "../../../state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
@@ -9,17 +10,33 @@ const PRICE = "price";
 const ASC = "asc";
 const DESC = "desc";
 
+const messageForPriceAsc = defineMessage({
+  defaultMessage: "Precio: De Menor a Mayor",
+});
+const messageForPriceDesc = defineMessage({
+  defaultMessage: "Precio: De Mayor a Menor",
+});
 const orderByOptions = [
-  { label: "Precio: De Menor a Mayor", value: `${PRICE} ${ASC}` },
-  { label: "Precio: De Mayor a Menor", value: `${PRICE} ${DESC}` }
+  { label: messageForPriceAsc, value: `${PRICE} ${ASC}` },
+  { label: messageForPriceDesc, value: `${PRICE} ${DESC}` },
 ];
 
+const messageForModalTitle = defineMessage({
+  defaultMessage: "Ordenar por",
+});
+const messageForFooterButtonLabel = defineMessage({
+  defaultMessage: "Ordenar",
+});
+const messageForButtonLabel = defineMessage({
+  defaultMessage: "Ordenar por: {checkItemLabel}",
+});
 const getCheckItemLabel = (activeValue) =>
   orderByOptions.find(({ value }) => value !== "" && value === activeValue)
     ?.label || "";
 
 const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
   const [checkedValue, setCheckedValue] = useState(null);
+  const intl = useIntl();
 
   const checkItemLabel = getCheckItemLabel(activeValue);
 
@@ -30,7 +47,7 @@ const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
   const analyticsData = {
     widget: "CelebritiesOrderBy",
     path: getWindow().location.pathname,
-    checkItemLabel
+    checkItemLabel,
   };
 
   const registerOrderByFilterOpen = () =>
@@ -42,20 +59,27 @@ const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
   const applyOrderBy = () => {
     GTM.tagManagerDataLayer("APPLY_ORDER_BY_FILTER", {
       ...analyticsData,
-      checkItemLabel: getCheckItemLabel(checkedValue)
+      checkItemLabel: getCheckItemLabel(checkedValue),
     });
     onApplyOrderBy(checkedValue);
   };
 
   return (
     <ModalSelect
-      buttonLabel={`Ordenar por: ${checkItemLabel}`}
-      modalTitle="Ordenar por"
-      footerButtonLabel="Ordenar"
+      buttonLabel={intl.formatMessage(messageForButtonLabel, {
+        checkItemLabel: checkedValue
+          ? intl.formatMessage(getCheckItemLabel(checkedValue))
+          : "",
+      })}
+      modalTitle={intl.formatMessage(messageForModalTitle)}
+      footerButtonLabel={intl.formatMessage(messageForFooterButtonLabel)}
       footerButtonOnClick={applyOrderBy}
       onModalOpen={registerOrderByFilterOpen}
       onModalClose={registerOrderByFilterClose}
-      options={orderByOptions}
+      options={orderByOptions.map((options) => ({
+        label: intl.formatMessage(options.label),
+        value: options.value,
+      }))}
       showSearch={false}
       onInputChange={({ target }) => setCheckedValue(target.value)}
       isChecked={(optionValue) => checkedValue === optionValue}
@@ -65,12 +89,12 @@ const CelebritiesOrderBy = ({ onApplyOrderBy, activeValue }) => {
 
 CelebritiesOrderBy.defaultProps = {
   activeValue: "",
-  onApplyOrderBy: () => {}
+  onApplyOrderBy: () => {},
 };
 
 CelebritiesOrderBy.propTypes = {
   activeValue: PropTypes.string,
-  onApplyOrderBy: PropTypes.func
+  onApplyOrderBy: PropTypes.func,
 };
 
 export { CelebritiesOrderBy };

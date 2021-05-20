@@ -10,6 +10,8 @@ import { CELEBRITY_PROFILE } from "../../../routing/Paths";
 import OptimizedImage from "react-app/src/components/common/helpers/optimized-image";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import getWindow from "react-app/src/utils/getWindow";
+import { useRouter } from "next/router";
+import { occasionsData } from "react-app/src/constants/options";
 
 const VideoCardLayout = ({
   celebrityId,
@@ -20,7 +22,7 @@ const VideoCardLayout = ({
   videoUrl,
   videoPosterUrl,
   videoKey,
-  footerSection
+  footerSection,
 }) => {
   const [videoIsLoaded, onVideoLoadedData] = useLoad();
   const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
@@ -29,8 +31,9 @@ const VideoCardLayout = ({
     },
     onPauseVideo() {
       GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
-    }
+    },
   });
+  const { locale } = useRouter();
 
   const analyticsData = {
     widget: "VideoCardLayout",
@@ -41,7 +44,7 @@ const VideoCardLayout = ({
     videoOccasion,
     videoUrl,
     videoPosterUrl,
-    videoKey
+    videoKey,
   };
 
   const registerVideoCardHover = () =>
@@ -84,9 +87,11 @@ const VideoCardLayout = ({
               } ml-2 mt-2`}
               onClick={togglePlay}
             />
-            <Maybe it={videoOccasion}>
+            <Maybe it={occasionsData[locale][videoOccasion]?.title}>
               <span className="video-card__category d-flex align-items-center">
-                {videoOccasion}
+                {occasionsData[locale][videoOccasion]?.title
+                  ? occasionsData[locale][videoOccasion]?.title
+                  : null}
               </span>
             </Maybe>
           </header>
@@ -127,7 +132,7 @@ VideoCardLayout.defaultProps = {
   celebrityAvatar: null,
   videoOccasion: null,
   videoPosterUrl: null,
-  linkPath: null
+  linkPath: null,
 };
 
 VideoCardLayout.propTypes = {
@@ -138,7 +143,7 @@ VideoCardLayout.propTypes = {
   videoOccasion: PropTypes.string,
   videoUrl: PropTypes.string.isRequired,
   videoPosterUrl: PropTypes.string,
-  videoKey: PropTypes.string.isRequired
+  videoKey: PropTypes.string.isRequired,
 };
 
 export { VideoCardLayout };

@@ -1,10 +1,7 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
-import ReactHtmlParser, {
-  processNodes,
-  convertNodeToElement,
-  htmlparser2
-} from "react-html-parser";
+import { Card } from "react-bootstrap";
+import ReactHtmlParser, { convertNodeToElement } from "react-html-parser";
+import { injectIntl } from "react-intl";
 
 function transform(node, index) {
   // do not render any <span> tags
@@ -17,12 +14,12 @@ function transform(node, index) {
     return convertNodeToElement(node, index, transform);
   }
 }
-const BlogPostFull = ({ title, thumbnail, content, pubDate }) => {
+const BlogPostFull = ({ title, thumbnail, content, pubDate, intl }) => {
   const optionsDate = {
     weekday: "long",
     year: "numeric",
     month: "long",
-    day: "numeric"
+    day: "numeric",
   };
   const pubDateParse = new Date(pubDate);
   const htmlToParse = content;
@@ -37,10 +34,13 @@ const BlogPostFull = ({ title, thumbnail, content, pubDate }) => {
         <Card.Text className="container-blog">{JSX}</Card.Text>
       </Card.Body>
       <Card.Footer className="text-muted">
-        {pubDateParse.toLocaleDateString(undefined, optionsDate)}
+        {pubDateParse.toLocaleDateString(
+          intl.locale || intl.defaultLocale,
+          optionsDate
+        )}
       </Card.Footer>
     </Card>
   );
 };
 
-export default BlogPostFull;
+export default injectIntl(BlogPostFull);

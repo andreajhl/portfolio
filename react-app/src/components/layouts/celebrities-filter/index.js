@@ -4,6 +4,7 @@ import { ModalSelect } from "../modal-select";
 
 import * as GTM from "../../../state/utils/gtm";
 import getWindow from "../../../utils/getWindow";
+import { FormattedMessage } from "react-intl";
 
 const CelebritiesFilter = ({
   buttonLabel,
@@ -12,7 +13,7 @@ const CelebritiesFilter = ({
   searchPlaceholder,
   options,
   onApplyFilters,
-  activeItems
+  activeItems,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [checkedItems, setCheckedItems] = useState([]);
@@ -30,7 +31,7 @@ const CelebritiesFilter = ({
     widget: "CelebritiesFilter",
     path: getWindow().location?.pathname,
     buttonLabel,
-    activeItems
+    activeItems,
   };
 
   const onModalOpen = () => {
@@ -64,7 +65,7 @@ const CelebritiesFilter = ({
         activeItems.length > 0 ? `(${activeItems.length})` : ""
       }`}
       modalTitle={modalTitle}
-      footerButtonLabel="Aplicar filtro"
+      footerButtonLabel={<FormattedMessage defaultMessage="Aplicar filtro" />}
       footerButtonOnClick={applyFilters}
       searchPlaceholder={searchPlaceholder}
       onModalOpen={onModalOpen}
@@ -86,12 +87,12 @@ CelebritiesFilter.defaultProps = {
   showSearch: true,
   searchPlaceholder: "Buscar",
   options: [],
-  onApplyFilters: () => {}
+  onApplyFilters: () => {},
 };
 
 const optionsPropType = PropTypes.shape({
   value: PropTypes.any,
-  label: PropTypes.string
+  label: PropTypes.string,
 });
 
 CelebritiesFilter.propTypes = {
@@ -101,7 +102,7 @@ CelebritiesFilter.propTypes = {
   showSearch: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   options: PropTypes.arrayOf(optionsPropType),
-  onApplyFilters: PropTypes.func
+  onApplyFilters: PropTypes.func,
 };
 
 export { CelebritiesFilter };

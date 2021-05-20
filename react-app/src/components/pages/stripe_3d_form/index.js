@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { PageContainer } from "../../layouts/page-container";
 import { Stripe3dSecureIframe } from "../../containers/stripe-3d-secure-iframe";
 import * as ROUTING_PATHS from "../../../routing/Paths";
+import { FormattedMessage } from "react-intl";
 
 // const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
@@ -62,7 +63,7 @@ class ProcessStripe3DFormPage extends Component {
                   <div className="row contract-summary col-lg-12 justify-content-center">
                     <div className="col-lg-12 custom-card-title f-rounded">
                       <h6 className="text-white">
-                        Verificación de autenticidad de la tarjeta
+                        <FormattedMessage defaultMessage="Verificación de autenticidad de la tarjeta" />
                       </h6>
                     </div>
                   </div>

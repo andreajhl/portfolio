@@ -6,7 +6,18 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { CreateContractPage } from "react-app/src/components/pages/create-contract";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
+import { defineMessages, useIntl } from "react-intl";
 
+const headData = defineMessages({
+  titleCreateContract: {
+    defaultMessage:
+      "Famosos.com - Comprar video personalizado de {celebrity_username}",
+  },
+  descriptionCreateContract: {
+    defaultMessage:
+      "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.",
+  },
+});
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
     await get(celebrity_username, true)(store.dispatch);
@@ -19,24 +30,29 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
             ":celebrity_username",
             String(celebrity_username)
           ),
-          permanent: false
-        }
+          permanent: false,
+        },
       };
     }
     return {
       props: {
-        celebrity
-      }
+        celebrity,
+      },
     };
   }
 );
 
 const CreateContract = ({ celebrity }) => {
+  const { formatMessage } = useIntl();
   return (
     <>
       <CustomHead
-        title={`Famosos.com - Comprar video personalizado de ${celebrity.fullName}`}
-        description={`Comprar video personalizado de ${celebrity.fullName} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.`}
+        title={formatMessage(headData.titleCreateContract, {
+          celebrity_username: celebrity.fullName,
+        })}
+        description={formatMessage(headData.descriptionCreateContract, {
+          celebrity_username: celebrity.fullName,
+        })}
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
       />
@@ -46,5 +62,5 @@ const CreateContract = ({ celebrity }) => {
 };
 
 export default withAuthenticationRequired(CreateContract, {
-  onRedirecting: () => <LoadingPage />
+  onRedirecting: () => <LoadingPage />,
 });

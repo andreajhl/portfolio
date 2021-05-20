@@ -2,30 +2,18 @@ import React, { Component } from "react";
 import * as PATHS from "../../../routing/Paths";
 import { description, version } from "../../../../../package.json";
 import { withRouter } from "next/router";
+import { Link } from "../../common/routing/link";
+import { FormattedMessage } from "react-intl";
+import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
+import getWindow from "react-app/src/utils/getWindow";
 
 class FooterLayout extends Component {
   constructor(props) {
     super(props);
 
-    this.goToFAQs = this.goToFAQs.bind(this);
-    this.goToPolicies = this.goToPolicies.bind(this);
-    this.goToTerms = this.goToTerms.bind(this);
     this.goToFamososTwitter = this.goToFamososTwitter.bind(this);
     this.goToFamososFacebook = this.goToFamososFacebook.bind(this);
     this.goToFamososInstagran = this.goToFamososInstagran.bind(this);
-    this.goToApply = this.goToApply.bind(this);
-  }
-
-  goToFAQs() {
-    this.props.router.push(PATHS.FAQS_PATH);
-  }
-
-  goToPolicies() {
-    this.props.router.push(PATHS.POLICIES_PATH);
-  }
-
-  goToTerms() {
-    this.props.router.push(PATHS.TERMS_PATH);
   }
 
   goToFamososTwitter() {
@@ -39,10 +27,19 @@ class FooterLayout extends Component {
   goToFamososInstagran() {
     window.open("https://www.instagram.com/famosos/", "_blank").focus();
   }
+  trackJobListingLinkClick = () => {
+    tagManagerDataLayer("FOOTER_JOB_LISTING_LINK_CLICK", {
+      widget: "FooterLayout",
+      path: getWindow().location.pathname,
+    });
+  };
 
-  goToApply() {
-    this.props.router.push(PATHS.CELEBRITY_REQUEST);
-  }
+  trackJobListingLinkHover = () => {
+    tagManagerDataLayer("FOOTER_JOB_LISTING_LINK_HOVER", {
+      widget: "FooterLayout",
+      path: getWindow().location.pathname,
+    });
+  };
 
   render() {
     return (
@@ -62,9 +59,12 @@ class FooterLayout extends Component {
                   />
                 </div>
                 <div className="col-description">
-                  Es una compañía dedicada a crear tecnologías
-                  <br />
-                  que conecten personalidades con su fan base.
+                  <FormattedMessage
+                    defaultMessage="Es una compañía dedicada a crear tecnologías <br></br> que conecten personalidades con su fan base."
+                    values={{
+                      br: (chunks) => <br></br>,
+                    }}
+                  />
                 </div>
                 <p className="mb-0">
                   {description} v{version}
@@ -73,19 +73,21 @@ class FooterLayout extends Component {
 
               <div className="col-12 col-md-4 col-lg-4 col-two">
                 <div className="col-title">
-                  ¿Eres una celebridad o influencer?
+                  <FormattedMessage defaultMessage=" ¿Eres una celebridad o influencer?" />
                 </div>
                 <div className="col-button">
-                  <button className="btn btn-apply" onClick={this.goToApply}>
-                    Aplica como Famoso
-                  </button>
+                  <Link href={PATHS.CELEBRITY_REQUEST}>
+                    <button className="btn btn-apply">
+                      <FormattedMessage defaultMessage="Aplica como Famoso" />
+                    </button>
+                  </Link>
                 </div>
               </div>
 
               <div className="col-12 col-md-4 col-lg-4 col-three">
                 <ul className="list-inline">
                   <li className="list-inline-item mr-3 font-weight-bold">
-                    Síguenos en Redes
+                    <FormattedMessage defaultMessage="Síguenos en Redes" />
                   </li>
                   <li
                     className="list-inline-item mr-3"
@@ -110,25 +112,47 @@ class FooterLayout extends Component {
                     />
                   </li>
                 </ul>
-                <ul className="list-inline">
+                <ul className="list-inline links-lists">
                   <li className="list-inline-item mr-2 cursor-pointer font-weight-bold">
-                    <span className="small" onClick={this.goToFAQs}>
-                      FAQ's
-                    </span>
-                  </li>
-                  <li className="list-inline-item ml-2 mr-2 cursor-pointer font-weight-bold">
-                    <span className="small" onClick={this.goToPolicies}>
-                      Privacidad
-                    </span>
+                    <Link
+                      href={PATHS.FAQS_PATH}
+                      className="small link text-decoration-none"
+                    >
+                      <FormattedMessage defaultMessage="FAQ's" />
+                    </Link>
                   </li>
                   <li className="list-inline-item ml-2 cursor-pointer font-weight-bold">
-                    <span className="small" onClick={this.goToTerms}>
-                      Términos y Condiciones
-                    </span>
+                    <Link
+                      href={PATHS.TERMS_PATH}
+                      className="small link text-decoration-none"
+                    >
+                      <FormattedMessage defaultMessage="Términos y Condiciones" />
+                    </Link>
+                  </li>
+                  <li className="list-inline-item mr-2 mt-1 cursor-pointer font-weight-bold">
+                    <Link
+                      href={PATHS.POLICIES_PATH}
+                      className="small link text-decoration-none"
+                    >
+                      <FormattedMessage defaultMessage="Privacidad" />
+                    </Link>
+                  </li>
+                  <li className="list-inline-item ml-2 cursor-pointer font-weight-bold">
+                    <a
+                      className="small text-decoration-none link"
+                      href="https://jobs.lever.co/famosos"
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={this.trackJobListingLinkClick}
+                      onMouseOver={this.trackJobListingLinkHover}
+                    >
+                      Trabaja con nosotros
+                    </a>
                   </li>
                 </ul>
                 <div className="col-copyright">
-                  &copy; 2020 Famosos, Inc. All Rights Reserved.
+                  &copy;{" "}
+                  <FormattedMessage defaultMessage="2020 Famosos, Inc. All Rights Reserved." />
                 </div>
               </div>
             </div>

@@ -4,19 +4,25 @@ import { GoToSimilarCelebritiesButton } from "../go-to-similar-celebrities-butto
 import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import dynamic from "next/dynamic";
 import { SubscriptionToAvailabilityNotification } from "../subscription-to-availability-notification";
+import { FormattedMessage } from "react-intl";
 
-const CelebrityHeroSlideshow = dynamic(() =>
-  import("../celebrity-hero-slideshow").then(
-    (mod) => mod.CelebrityHeroSlideshow
-  )
+const renderOnlyOnBrowser = { ssr: false };
+
+const CelebrityHeroSlideshow = dynamic(
+  () =>
+    import("../celebrity-hero-slideshow").then(
+      (mod) => mod.CelebrityHeroSlideshow
+    ),
+  renderOnlyOnBrowser
 );
 const HowToGetAVideoMessageLayout = dynamic(() =>
   import("../how-to-get-a-video-message").then(
     (mod) => mod.HowToGetAVideoMessageLayout
   )
 );
-const ResizableMainVideo = dynamic(() =>
-  import("../resizable-main-video").then((mod) => mod.ResizableMainVideo)
+const ResizableMainVideo = dynamic(
+  () => import("../resizable-main-video").then((mod) => mod.ResizableMainVideo),
+  renderOnlyOnBrowser
 );
 const CelebrityDetails = dynamic(() =>
   import("../celebrity-details").then((mod) => mod.CelebrityDetails)
@@ -67,7 +73,7 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
             <HireThisCelebrityButton
               showCelebrityName={true}
               className="get-a-video-button px-md-5 py-3 px-4"
-              text="Quiero un video de"
+              text={<FormattedMessage defaultMessage="Quiero un video de" />}
               fontSize="1.25em"
               celebrityFullName={celebrity.fullName}
               celebrityUsername={celebrity.username}
@@ -79,7 +85,7 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
           fontSize="1.25em"
           width="320px"
         >
-          Ver famosos similares
+          <FormattedMessage defaultMessage="Ver famosos similares" />
         </GoToSimilarCelebritiesButton>
       </section>
     </>
@@ -88,14 +94,14 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
 
 CelebrityProfileLayoutC.defaultProps = {
   celebrity: {},
-  hasPublicContracts: true
+  hasPublicContracts: true,
 };
 
 const mapStateToProps = ({ celebrities: { fetchPublicContractsReducer } }) => {
   return {
     hasPublicContracts:
       !fetchPublicContractsReducer.completed ||
-      fetchPublicContractsReducer.data.results.length > 0
+      fetchPublicContractsReducer.data.results.length > 0,
   };
 };
 

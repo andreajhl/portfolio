@@ -2,13 +2,14 @@ import React, { Component } from "react";
 
 import { contractOperations } from "../../../state/ducks/contracts";
 import { connect } from "react-redux";
+import { FormattedMessage } from "react-intl";
 
 class ContractCommentCreatorLayout extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      comment: ""
+      comment: "",
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -24,13 +25,13 @@ class ContractCommentCreatorLayout extends Component {
 
   handleInput(e) {
     this.setState({
-      comment: e.target.value
+      comment: e.target.value,
     });
   }
 
   send() {
     this.props.addContractComment(this.props.contractReference, {
-      comment: this.state.comment
+      comment: this.state.comment,
     });
   }
 
@@ -51,11 +52,15 @@ class ContractCommentCreatorLayout extends Component {
               aria-hidden="true"
             />
           ) : (
-            <span className="text-white">Agregar Comentario</span>
+            <span className="text-white">
+              <FormattedMessage defaultMessage="Agregar Comentario" />
+            </span>
           )}
         </button>
         {this.props.isCompleted ? (
-          <small className="ml-3">Tu comentario ha sido enviado.</small>
+          <small className="ml-3">
+            <FormattedMessage defaultMessage="Tu comentario ha sido enviado." />
+          </small>
         ) : null}
       </div>
     );
@@ -68,19 +73,19 @@ ContractCommentCreatorLayout.propTypes = {};
 // Set defaultProps
 ContractCommentCreatorLayout.defaultProps = {
   contractReference: "",
-  title: "Agrega un comentario:"
+  title: "Agrega un comentario:",
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.addContractCommentReducer.loading,
   contractComment: state.contracts.addContractCommentReducer.data,
-  isCompleted: state.contracts.addContractCommentReducer.completed
+  isCompleted: state.contracts.addContractCommentReducer.completed,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  addContractComment: contractOperations.addContractComment
+  addContractComment: contractOperations.addContractComment,
 };
 
 // Export Class

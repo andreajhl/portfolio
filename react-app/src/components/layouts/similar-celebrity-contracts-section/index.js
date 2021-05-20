@@ -14,13 +14,14 @@ import { Session } from "../../../state/utils/session";
 
 import * as GTM from "../../../state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
+import { FormattedMessage } from "react-intl";
 
 class SimilarCelebrityContractsSectionLayout extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      params: {}
+      params: {},
     };
 
     this.onPaginationChange = this.onPaginationChange.bind(this);
@@ -45,7 +46,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
     }
     this.setState(
       {
-        params: params
+        params: params,
       },
       () => this.fetchPublicContracts()
     );
@@ -84,7 +85,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
   analyticsData = {
     widget: this.constructor.name,
     path: getWindow().location.pathname,
-    celebrityUsername: this.props.celebrityUsername
+    celebrityUsername: this.props.celebrityUsername,
   };
 
   registerListHover = () => {
@@ -97,7 +98,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
   registerListScroll = (hasReachedListEnd) => {
     GTM.tagManagerDataLayer("SCROLL_SIMILAR_CELEBRITY_CONTRACTS_LIST", {
       ...this.analyticsData,
-      hasReachedListEnd
+      hasReachedListEnd,
     });
   };
 
@@ -119,7 +120,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
         >
           <CarouselWithButtons.Header>
             <CarouselWithButtons.Title className="text-black text-center mb-4 w-100">
-              Videos similares
+              <FormattedMessage defaultMessage="Videos similares" />
             </CarouselWithButtons.Title>
           </CarouselWithButtons.Header>
           <CarouselWithButtons.List>
@@ -192,18 +193,18 @@ SimilarCelebrityContractsSectionLayout.defaultProps = {
   celebrity: {},
   publicContracts: [],
   paginationData: {},
-  similarContracts: []
+  similarContracts: [],
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.fetchSimilarContractsReducer.loading,
-  similarContracts: state.contracts.fetchSimilarContractsReducer.data.results
+  similarContracts: state.contracts.fetchSimilarContractsReducer.data.results,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  getSimilarContracts: fetchSimilarContracts
+  getSimilarContracts: fetchSimilarContracts,
 };
 
 // Export Class

@@ -1,23 +1,29 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { paymentsOperations } from "../../../state/ducks/payments";
 import { ContractPriceLayout } from "../../layouts/contract-price";
+import { injectIntl, defineMessage } from "react-intl";
+
+const inputCouponPlaceholder = defineMessage({
+  defaultMessage: "Ingrese el código aquí",
+});
 
 const mapStateToProps = ({ payments }) => ({
   contract: payments.getContractToPayReducer.data,
   couponData: payments.fetchDiscountCouponReducer,
-  currencyExchangeData: payments.currencyExchangeReducer.data
+  currencyExchangeData: payments.currencyExchangeReducer.data,
 });
 // mapStateToProps
 const mapDispatchToProps = {
-  checkoutDiscountCoupon: paymentsOperations.discountCouponsGateways
+  checkoutDiscountCoupon: paymentsOperations.discountCouponsGateways,
 };
 
 class index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      discountCoupon: ""
+      discountCoupon: "",
     };
   }
 
@@ -60,14 +66,16 @@ class index extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="coupon-container">
-        <label htmlFor="coupon-input">¿Tienes un cupón de descuento?</label>
+        <label htmlFor="coupon-input">
+          <FormattedMessage defaultMessage="¿Tienes un cupón de descuento?" />
+        </label>
         <div className="input-group mb-3">
           <input
             type="text"
             className="form-control"
-            placeholder="Ingrese el código aquí"
+            placeholder={this.props.intl.formatMessage(inputCouponPlaceholder)}
             aria-label=""
-            aria-describedBy="basic-addon1"
+            aria-describedby="basic-addon1"
             id="coupon-input"
             value={this.state.discountCoupon}
             onChange={(event) => this.handleChange(event)}
@@ -75,7 +83,7 @@ class index extends Component {
           {this.props.couponData.completed ? (
             <div className="input-group-append">
               <span className="input-group-text text-success">
-                CUPÓN AGREGADO
+                <FormattedMessage defaultMessage="CUPÓN AGREGADO" />
               </span>
             </div>
           ) : (
@@ -84,7 +92,7 @@ class index extends Component {
                 className="btn btn-primary button-discount-coupon-form"
                 type="submit"
               >
-                Aplicar
+                <FormattedMessage defaultMessage="Aplicar" />
               </button>
             </div>
           )}
@@ -93,7 +101,7 @@ class index extends Component {
           {this.props.couponData.error_data ? (
             <React.Fragment>
               <span className="font-weight-bold text-danger">
-                CUPÓN NO VALIDO:{" "}
+                <FormattedMessage defaultMessage="CUPÓN NO VALIDO:" />{" "}
               </span>
               {this.handleErrorMessage(this.props.couponData.error_data)}
             </React.Fragment>
@@ -104,4 +112,4 @@ class index extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(index);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(index));

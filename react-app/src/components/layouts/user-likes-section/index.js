@@ -4,10 +4,15 @@ import { CLIENT_FAVORITES } from "../../../routing/Paths";
 import { fetchUserCelebrityLikesWithOffset } from "../../../state/ducks/celebrity-likes/actions";
 import Maybe from "../../common/helpers/maybe";
 import { CelebritiesCardsSectionLayout } from "../celebrities-cards-section";
+import { useIntl, defineMessage } from "react-intl";
 
 const mapStateToProps = ({ celebrityLikes, celebritySections }) => ({
   ...celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.data,
-  isLoading: celebritySections.fetchCelebritySectionsReducer.loading
+  isLoading: celebritySections.fetchCelebritySectionsReducer.loading,
+});
+
+const messageForCelebritiesSectionTitle = defineMessage({
+  defaultMessage: "Tus Favoritos",
 });
 
 const mapDispatchToProps = { fetchUserCelebrityLikesWithOffset };
@@ -16,8 +21,10 @@ const UserLikesSectionLayout = ({
   results,
   totalResults,
   isLoading,
-  fetchUserCelebrityLikesWithOffset
+  fetchUserCelebrityLikesWithOffset,
 }) => {
+  const intl = useIntl();
+
   useEffect(() => {
     fetchUserCelebrityLikesWithOffset({ offset: 0, limit: 10 });
   }, []);
@@ -29,7 +36,7 @@ const UserLikesSectionLayout = ({
           id: "favorites",
           celebritySectionType: "CELEBRITY_CARD",
           celebrities: results,
-          title: "Tus Favoritos"
+          title: intl.formatMessage(messageForCelebritiesSectionTitle),
         }}
         hasMoreResults={results.length < totalResults}
         moreResultsPath={CLIENT_FAVORITES}
@@ -39,7 +46,7 @@ const UserLikesSectionLayout = ({
 };
 
 UserLikesSectionLayout.defaultProps = {
-  results: []
+  results: [],
 };
 
 const _UserLikesSectionLayout = connect(

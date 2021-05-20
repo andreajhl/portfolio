@@ -3,6 +3,7 @@ import { HireThisCelebrityButton } from "../hire-this-celebrity-button";
 import { connect } from "react-redux";
 import dynamic from "next/dynamic";
 import { SubscriptionToAvailabilityNotification } from "../subscription-to-availability-notification";
+import { FormattedMessage } from "react-intl";
 const HowToGetAVideoMessageLayout = dynamic(() =>
   import("../how-to-get-a-video-message").then(
     (mod) => mod.HowToGetAVideoMessageLayout
@@ -23,8 +24,9 @@ const CelebrityPublicContractsSectionLayout = dynamic(() =>
     (mod) => mod.CelebrityPublicContractsSectionLayout
   )
 );
-const ResizableMainVideo = dynamic(() =>
-  import("../resizable-main-video").then((mod) => mod.ResizableMainVideo)
+const ResizableMainVideo = dynamic(
+  () => import("../resizable-main-video").then((mod) => mod.ResizableMainVideo),
+  { ssr: false }
 );
 const CelebrityDetails = dynamic(() =>
   import("../celebrity-details").then((mod) => mod.CelebrityDetails)
@@ -83,7 +85,7 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
           <HireThisCelebrityButton
             showCelebrityName={true}
             className="get-a-video-button px-md-5 py-3 px-4"
-            text="Quiero un video de"
+            text={<FormattedMessage defaultMessage="Quiero un video de" />}
             fontSize="1.25em"
             celebrityFullName={celebrity.fullName}
             celebrityUsername={celebrity.username}
@@ -96,14 +98,14 @@ const CelebrityProfileLayoutB = ({ celebrity, hasPublicContracts }) => {
 
 CelebrityProfileLayoutB.defaultProps = {
   celebrity: {},
-  hasPublicContracts: true
+  hasPublicContracts: true,
 };
 
 const mapStateToProps = ({ celebrities: { fetchPublicContractsReducer } }) => {
   return {
     hasPublicContracts:
       !fetchPublicContractsReducer.completed ||
-      fetchPublicContractsReducer.data.results.length > 0
+      fetchPublicContractsReducer.data.results.length > 0,
   };
 };
 

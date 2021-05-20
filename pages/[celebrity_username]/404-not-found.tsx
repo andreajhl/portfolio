@@ -4,7 +4,16 @@ import { FourZeroFourCelebrityProfile as FourZeroFourCelebrityProfileLayout } fr
 import { CELEBRITY_PROFILE } from "react-app/src/routing/Paths";
 import { get } from "react-app/src/state/ducks/celebrities/actions";
 import { wrapper } from "react-app/src/state/store";
+import { defineMessages, useIntl } from "react-intl";
 
+const headData = defineMessages({
+  titleClub: {
+    defaultMessage: "Famoso no encontrado",
+  },
+  descriptionClub: {
+    defaultMessage: "No se encontró un famoso con este usuario",
+  },
+});
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
     await get(celebrity_username, true)(store.dispatch);
@@ -17,25 +26,26 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
             ":celebrity_username",
             String(celebrity_username)
           ),
-          permanent: false
-        }
+          permanent: false,
+        },
       };
     }
 
     return {
       props: {
-        celebrity_username
-      }
+        celebrity_username,
+      },
     };
   }
 );
 
 const FourZeroFourCelebrityProfile = ({ celebrity_username }) => {
+  const { formatMessage } = useIntl();
   return (
     <>
       <CustomHead
-        title="Famoso no encontrado"
-        description="No se encontró un famoso con este usuario"
+        title={formatMessage(headData.titleClub)}
+        description={formatMessage(headData.descriptionClub)}
       />
       <FourZeroFourCelebrityProfileLayout
         celebrityUsername={celebrity_username}

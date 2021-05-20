@@ -20,10 +20,13 @@ const ContractCreatedPage = dynamic<{ contractReference: any }>(() =>
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
-  params: { contract_reference }
+  params: { contract_reference },
 }) => {
   return {
-    props: { contract_reference, isMobile: isMobile(req.headers["user-agent"]) }
+    props: {
+      contract_reference,
+      isMobile: isMobile(req.headers["user-agent"]),
+    },
   };
 };
 
@@ -43,5 +46,5 @@ const ContractCreated = ({ contract_reference, isMobile }) => {
   );
 };
 export default withAuthenticationRequired(ContractCreated, {
-  onRedirecting: () => <LoadingPage></LoadingPage>
+  onRedirecting: () => <LoadingPage></LoadingPage>,
 });

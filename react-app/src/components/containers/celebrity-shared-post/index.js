@@ -4,12 +4,12 @@ import { VideoSlideLayout } from "../../layouts/video-slide/index";
 
 import propTypes from "prop-types";
 
-const VideoLayout = ({
+export const VideoLayout = ({
   videoIsMuted,
   setVideoIsMuted,
   media,
   setSlideshowIsPlaying,
-  classNameSlideLayoutVideo
+  classNameSlideLayoutVideo,
 }) => {
   return (
     <VideoSlideLayout
@@ -42,19 +42,19 @@ const CarouselItemsLayout = ({
   urls,
   setSlideshowIsPlaying,
   videoIsMuted,
-  setVideoIsMuted
+  setVideoIsMuted,
 }) => {
   return (
     <Carousel
       interval={null}
       activeIndex={index}
       onSelect={handleSelect}
-      fade
       interval={null}
-      prevIcon={<i className="fa fa-chevron-left controls-icon" />}
+      prevIcon={<i className="fa fa-chevron-circle-left controls-icon" />}
       prevLabel="Anterior"
-      nextIcon={<i className="fa fa-chevron-right controls-icon" />}
+      nextIcon={<i className="fa fa-chevron-circle-right controls-icon" />}
       nextLabel="Siguiente"
+      className="post-carousel"
     >
       {urls.map((media, index) => {
         return (
@@ -88,7 +88,7 @@ const MediaItemLayout = ({
   urls,
   videoIsMuted,
   setVideoIsMuted,
-  setSlideshowIsPlaying
+  setSlideshowIsPlaying,
 }) => {
   return urls.map((media, index) => {
     return media.type === "video" ? (
@@ -111,12 +111,7 @@ const MediaItemLayout = ({
 
 const CelebritySharedPost = (props) => {
   const { celebrityId, description, id, urls, celebrityData } = { ...props };
-  const [videoIsMuted, setVideoIsMuted] = useState(true);
-  const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(false);
-  const [index, setIndex] = useState(0);
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
+
   return (
     <div className="celebrity-shared-post">
       <div className="celebrity-shared-post__user-avatar">
@@ -138,15 +133,8 @@ const CelebritySharedPost = (props) => {
         </div>
       </div>
       <div className="celebrity-shared-post__media-files">
-        {urls.length > 1 ? (
-          <CarouselItemsLayout
-            index={index}
-            handleSelect={handleSelect}
-            urls={urls}
-            setSlideshowIsPlaying={setSlideshowIsPlaying}
-            setVideoIsMuted={setVideoIsMuted}
-            videoIsMuted={videoIsMuted}
-          />
+        <PostSlideshow urls={urls} />
+        {/* {urls.length > 1 ? (
         ) : (
           <MediaItemLayout
             urls={urls}
@@ -154,7 +142,7 @@ const CelebritySharedPost = (props) => {
             setVideoIsMuted={setVideoIsMuted}
             videoIsMuted={videoIsMuted}
           />
-        )}
+        )} */}
       </div>
       <div className="celebrity-shared-post__description">
         <span>{description}</span>
@@ -164,7 +152,26 @@ const CelebritySharedPost = (props) => {
 };
 
 CelebritySharedPost.propTypes = {
-  urls: propTypes.array
+  urls: propTypes.array,
 };
 
 export default CelebritySharedPost;
+
+export function PostSlideshow({ urls }) {
+  const [videoIsMuted, setVideoIsMuted] = useState(true);
+  const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(false);
+  const [index, setIndex] = useState(0);
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+  return (
+    <CarouselItemsLayout
+      index={index}
+      handleSelect={handleSelect}
+      urls={urls}
+      setSlideshowIsPlaying={setSlideshowIsPlaying}
+      setVideoIsMuted={setVideoIsMuted}
+      videoIsMuted={videoIsMuted}
+    />
+  );
+}

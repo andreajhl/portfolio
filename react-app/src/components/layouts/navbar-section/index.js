@@ -10,7 +10,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../../containers/login-button/login-button";
 import Maybe from "../../common/helpers/maybe";
 import dynamic from "next/dynamic";
-
+import { useIntl, defineMessage } from "react-intl";
+import LangDropdown from "../../containers/lang-dropdown";
 const BannerPromoLayout = dynamic(
   () => import("../banner-promo").then((mod) => mod.BannerPromoLayout),
   { ssr: false }
@@ -22,15 +23,19 @@ export const sendDropdownLinkAnalyticsData = (eventName, target) => {
     widget: "NavbarSectionLayout",
     path: window.location.pathname,
     anchorInnerText: target.innerText,
-    anchorHref: target.pathname
+    anchorHref: target.pathname,
   });
 };
 
 const registerLogoLinkClick = () =>
   GTM.tagManagerDataLayer("CLICK_LOGO_LINK", {
     widget: "NavbarSectionLayout",
-    path: window.location.pathname
+    path: window.location.pathname,
   });
+
+const messageSearchLabel = defineMessage({
+  defaultMessage: "Buscar famosos",
+});
 
 const NavbarSectionLayout = ({
   className,
@@ -40,9 +45,10 @@ const NavbarSectionLayout = ({
   dropdownMenuIsOpen,
   setDropdownMenuIsOpen,
   showCouponBanner,
-  setShowCouponBanner
+  setShowCouponBanner,
 }) => {
   const { isLoading, isAuthenticated } = useAuth0();
+  const intl = useIntl();
 
   return (
     <>
@@ -83,7 +89,10 @@ const NavbarSectionLayout = ({
                 />
               </div>
             </Maybe>
-            <div className="top-bar__currency mr-2 ml-auto">
+            <div className="top-bar__lang  mr-1 ml-auto">
+              <LangDropdown />
+            </div>
+            <div className="top-bar__currency mr-3 ml-2">
               <CurrencyDropdownLayout />
             </div>
           </div>
@@ -91,7 +100,7 @@ const NavbarSectionLayout = ({
             <div className="col-12 pt-2 px-0">
               <div className="d-block top-bar__search-sm">
                 <NavbarSearchLayout
-                  searchLabel="Buscar famosos"
+                  searchLabel={intl.formatMessage(messageSearchLabel)}
                   onSearchChange={onSearchChange}
                   queryParams={queryParams}
                 />
@@ -108,14 +117,14 @@ NavbarSectionLayout.propTypes = {
   className: PropTypes.string,
   onSearchChange: PropTypes.func,
   showSearch: PropTypes.bool,
-  showLogin: PropTypes.bool
+  showLogin: PropTypes.bool,
 };
 
 NavbarSectionLayout.defaultProps = {
   className: "",
   onSearchChange: () => {},
   showSearch: true,
-  showLogin: true
+  showLogin: true,
 };
 
 export { NavbarSectionLayout };
