@@ -25,7 +25,10 @@ module.exports = withBundleAnalyzer({
     defaultLocale: "es",
   },
   webpack: (config) => {
-    if (config.optimization.splitChunks) {
+    if (
+      process.env.NODE_ENV === "production" &&
+      config.optimization.splitChunks
+    ) {
       config.optimization.splitChunks.cacheGroups.shared.enforce = true;
       config.optimization.splitChunks.cacheGroups.commons.enforce = true;
     }
