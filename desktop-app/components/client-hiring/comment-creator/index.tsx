@@ -93,7 +93,7 @@ function CommentCreator({
               ? "Sé el primero en agregar un comentario."
               : "Agrega un comentario"
           }
-          onChange={onChangeField}
+          onChange={!previewMode ? onChangeField : undefined}
         ></textarea>
 
         <button
