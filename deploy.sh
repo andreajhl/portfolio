@@ -51,7 +51,7 @@ else
     exit 1
 fi
 
-zip -r zip.zip .next package.json  next.config.js public/ package-lock.json
+zip -r zip.zip .next package.json  next.config.js public/ package-lock.json .npmrc sentry.properties sentry.server.config.js sentry.client.config.js
 
 eb use "FamososFrontend-${environments[selectedOption]}"
 eb deploy -l "${_commitId}"-${environments[selectedOption]}-$(date +%F_%H-%M-%S)

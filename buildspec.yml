@@ -22,9 +22,10 @@ phases:
 artifacts:
   files:
     - .next/**/*
-    - package.json
-    - package-lock.json
+    - .npmrc
     - next.config.js
+    - package-lock.json
+    - package.json
     - public/**/*
     - sentry.client.config.js
     - sentry.properties
