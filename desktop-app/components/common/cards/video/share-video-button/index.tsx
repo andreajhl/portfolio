@@ -24,6 +24,7 @@ type ShareVideoButtonProps = {
   backgroundColor?: CSSProperties["backgroundColor"];
   buttonClassName?: string;
   link: string;
+  previewMode?: boolean;
 };
 
 type MenuItemType = {
@@ -50,6 +51,7 @@ function ShareVideoButton({
   backgroundColor = "white",
   buttonClassName = "",
   link,
+  previewMode = false,
 }: ShareVideoButtonProps) {
   // TODO DEFINIR TEXTOS
   const socialMedias: MenuItemType[] = [
@@ -105,6 +107,7 @@ function ShareVideoButton({
 
   return (
     <Dropdown
+      disabled={previewMode}
       menuPosition="top center"
       menuClassName={styles.ShareDropdownMenu}
       buttonChildren={

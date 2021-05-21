@@ -58,6 +58,7 @@ function VideoContractFeed({
           <VideoActionButtons
             actionButtonsBackgroundColor={actionButtonsBackgroundColor}
             videoURL={contractData.media}
+            previewMode={previewMode}
           />
           <Maybe it={asContractOwner && !previewMode}>
             <Link
