@@ -24,9 +24,10 @@ const nextConfig = {
 
 const withAnalyzerConfig = withBundleAnalyzer(nextConfig);
 
-module.exports =
-  process.env.NEXT_PUBLIC_ENVIRONMENT !== "development"
-    ? withSentryConfig(withAnalyzerConfig, {
-        release: `FamososFrontend-v${version}`
-      })
-    : withAnalyzerConfig;
+module.exports = withSentryConfig(withAnalyzerConfig, {});
+// module.exports =
+//   process.env.NEXT_PUBLIC_ENVIRONMENT !== "development"
+//     ? withSentryConfig(withAnalyzerConfig, {
+//         release: `FamososFrontend-v${version}`
+//       })
+//     : withAnalyzerConfig;
