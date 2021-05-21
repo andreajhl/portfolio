@@ -11,6 +11,7 @@ export { default as payments } from "./payments";
 export { default as filters } from "./filters";
 export { default as celebrityCategories } from "./celebrity-categories";
 export { default as celebritySections } from "./celebrity-sections";
+export { default as landings } from "./landings";
 export { default as countries } from "./countries";
 export { default as cursor } from "./cursor-position";
 export { default as blog } from "./blog";
