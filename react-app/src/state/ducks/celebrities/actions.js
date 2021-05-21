@@ -3,7 +3,7 @@ import apiService, { jsonToQueryString } from "../../utils/apiService";
 import {
   handleApiErrors,
   handleApiResponseFailure,
-  handleApiResponseSuccess
+  handleApiResponseSuccess,
 } from "../../utils";
 import * as API_PATHS from "./paths";
 import * as PATHS from "../../../routing/Paths";
@@ -24,7 +24,7 @@ export const updateQueryParams = (params, router) => (dispatch) => {
   const newParams = getValidParams(params);
   dispatch({
     type: types.UPDATE_QUERY_PARAMS,
-    payload: { params: { ...updateQueryParamsInitialState, ...newParams } }
+    payload: { params: { ...updateQueryParamsInitialState, ...newParams } },
   });
   if (newParams.offset) {
     router.replace(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
@@ -33,17 +33,18 @@ export const updateQueryParams = (params, router) => (dispatch) => {
     if (previousPathname !== PATHS.SEARCH_PATH) {
       dispatch({
         type: types.SET_PREVIOUS_PATH,
-        payload: previousPathname
+        payload: previousPathname,
       });
     }
     router.push(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
   }
 };
 
-export const get = (object_id, preloaded = false) => {
+export const get = (object_id, preloaded = false, v2 = false) => {
   return (dispatch) => {
     const TYPE = types.GET_CELEBRITY_REQUEST;
-    const FINAL_PATH = API_PATHS.GET + object_id;
+    const FINAL_PATH =
+      API_PATHS.GET.replace(":version", v2 ? "/v2" : "") + object_id;
     dispatch({ type: TYPE, payload: {} });
     return apiService({
       method: "GET",
@@ -51,7 +52,7 @@ export const get = (object_id, preloaded = false) => {
       path: FINAL_PATH,
       async: true,
       params: null,
-      body: null
+      body: null,
     })
       .then((res) => {
         if (
@@ -86,14 +87,14 @@ export const list = (params, mergeResults = true) => {
       async: true,
       params: {
         ...params,
-        limit: params.limit || updateQueryParamsInitialState.limit
+        limit: params.limit || updateQueryParamsInitialState.limit,
       },
       body: null,
-      isCancellable: true
+      isCancellable: true,
     });
     dispatch({
       type: TYPE,
-      payload: { requestCancel: request.cancel, mergeResults }
+      payload: { requestCancel: request.cancel, mergeResults },
     });
     request
       .then((res) => {
@@ -123,7 +124,7 @@ export const saveLastQueryParams = (params) => {
     const TYPE = types.SAVE_LAST_QUERY_PARAMS;
     dispatch({
       type: TYPE,
-      payload: params
+      payload: params,
     });
   };
 };
@@ -140,10 +141,10 @@ export const fetchSimilarResults = (params) => {
       async: true,
       params: {
         ...params,
-        limit: params.limit || updateQueryParamsInitialState.limit
+        limit: params.limit || updateQueryParamsInitialState.limit,
       },
       body: null,
-      isCancellable: true
+      isCancellable: true,
     });
     dispatch({ type: TYPE, payload: { requestCancel: request.cancel } });
     request
@@ -171,7 +172,7 @@ export const listSimilar = (params) => {
       path: FINAL_PATH,
       async: true,
       params: params,
-      body: null
+      body: null,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -186,7 +187,7 @@ export const listSimilar = (params) => {
       })
       .catch((err) => {
         handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
+          data: { api_error: err, error: "Server 500" },
         });
       });
   };
@@ -208,7 +209,7 @@ export const listReviews = (
       path: FINAL_PATH,
       async: true,
       params: params,
-      body: null
+      body: null,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -224,7 +225,7 @@ export const listReviews = (
       })
       .catch((err) => {
         handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
+          data: { api_error: err, error: "Server 500" },
         });
       });
   };
@@ -242,7 +243,7 @@ export const listPublicContracts = (celebrity_id, params = {}) => {
       path: FINAL_PATH,
       async: true,
       params: params,
-      body: null
+      body: null,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -257,7 +258,7 @@ export const listPublicContracts = (celebrity_id, params = {}) => {
       })
       .catch((err) => {
         handleApiErrors(dispatch, TYPE, {
-          data: { api_error: err, error: "Server 500" }
+          data: { api_error: err, error: "Server 500" },
         });
       });
   };
@@ -272,7 +273,7 @@ export const fetchSimilarCelebrities = (celebrityUsername) => (dispatch) => {
     action: TYPE,
     path: FINAL_PATH,
     async: true,
-    body: null
+    body: null,
   })
     .then((res) => {
       if (res.data.status === "OK") {
@@ -284,13 +285,13 @@ export const fetchSimilarCelebrities = (celebrityUsername) => (dispatch) => {
     })
     .catch((err) => {
       handleApiErrors(dispatch, TYPE, {
-        data: { api_error: err, error: "Server 500" }
+        data: { api_error: err, error: "Server 500" },
       });
     });
 };
 
 export const cleanPublicContracts = () => ({
-  type: types.CLEAN_PUBLIC_CONTRACTS
+  type: types.CLEAN_PUBLIC_CONTRACTS,
 });
 
 export const fetchFlashDeliveryCelebrities = () => async (dispatch) => {
@@ -325,7 +326,7 @@ export const fetchCelebritySubscriptionPlans = (celebrityUsername) => (
     action: TYPE,
     path: FINAL_PATH,
     async: true,
-    body: null
+    body: null,
   })
     .then((res) => {
       if (res.data.status === "OK") {
@@ -337,12 +338,12 @@ export const fetchCelebritySubscriptionPlans = (celebrityUsername) => (
     })
     .catch((err) => {
       handleApiErrors(dispatch, TYPE, {
-        data: { api_error: err, error: "Server 500" }
+        data: { api_error: err, error: "Server 500" },
       });
     });
 };
 
 export const setCelebrityProfileVersion = (payload) => ({
   type: types.SET_CELEBRITY_PROFILE_VERSION,
-  payload
+  payload,
 });
