@@ -24,14 +24,22 @@
   font-weight: bold;
 }
 
+.MultipleRecipientsInfo {
+  font-size: 12px;
+  margin-left: 0.6em;
+}
+
 .CellphoneInput {
   font-size: 14px;
   font-weight: bold;
 }
 
-.CellphoneNumberField {
-  width: calc(50% - 19px);
+.RecipientField {
   margin-bottom: 19px;
+}
+
+.RecipientField .Input {
+  width: calc(50% - 19px);
 }
 
 .DeliveryInfo {
