@@ -23,6 +23,7 @@ artifacts:
   files:
     - .next/**/*
     - package.json
+    - package-lock.json
     - next.config.js
     - public/**/*
     - sentry.client.config.js
