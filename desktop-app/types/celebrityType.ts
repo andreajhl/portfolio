@@ -20,4 +20,5 @@ export type celebrityType = {
   showSimilarCelebrities: boolean;
   contractTypes?: any[];
   countryId?: number;
+  status?: number;
 };
