@@ -3,8 +3,8 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 const { withSentryConfig } = require("@sentry/nextjs");
-
 const { version } = require("./package.json");
+const TRACK_SENTRY_ERRORS = process.env.TRACK_SENTRY_ERRORS || process.env.NEXT_PUBLIC_TRACK_SENTRY_ERRORS;
 
 const nextConfig = {
   compress: true,
@@ -24,10 +24,9 @@ const nextConfig = {
 
 const withAnalyzerConfig = withBundleAnalyzer(nextConfig);
 
-module.exports = withSentryConfig(withAnalyzerConfig, {});
-// module.exports =
-//   process.env.NEXT_PUBLIC_ENVIRONMENT !== "development"
-//     ? withSentryConfig(withAnalyzerConfig, {
-//         release: `FamososFrontend-v${version}`
-//       })
-//     : withAnalyzerConfig;
+module.exports =
+  TRACK_SENTRY_ERRORS === "true"
+    ? withSentryConfig(withAnalyzerConfig, {
+      release: `FamososFrontend-v${version}`
+    })
+    : withAnalyzerConfig;
