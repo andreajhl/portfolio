@@ -4,6 +4,7 @@ import PaymentMethodsAvailableList from "../payment-methods-available-list";
 import styles from "./styles.module.scss";
 import { RootState } from "react-app/src/state/store";
 import { sessionOperations } from "react-app/src/state/ducks/session";
+import { listPaymentGateways } from "react-app/src/state/ducks/payments/operations";
 import { connect, ConnectedProps } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 
@@ -12,10 +13,15 @@ const mapStateToProps = (state: RootState) => ({
   userInformationLoading: state.session.getSessionReducer.loading,
   userInformationCompleted: state.session.getSessionReducer.completed,
   currencyExchangeData: state.payments.currencyExchangeReducer.data,
+  currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
+  paymentGatewayLoading: state.payments.fetchPaymentGatewaysReducer.loading,
+  paymentMethodsAvailable: state.payments.fetchPaymentGatewaysReducer.data,
+  couponData: state.payments.fetchDiscountCouponReducer,
 });
 
 const mapDispatchToProps = {
   getToken: sessionOperations.getToken,
+  listPaymentGateways,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -96,15 +102,25 @@ function PaymentsMethodsSelectorCard({
   userInformationLoading,
   currencyExchangeData,
   getToken,
+  listPaymentGateways,
+  currencyExchangeLoading,
+  paymentGatewayLoading,
+  paymentMethodsAvailable,
+  couponData,
 }: PaymentsMethodsSelectorCardProps) {
   useEffect(() => {
     if (!userInformationLoading) getToken();
   }, []);
+  useEffect(() => {
+    listPaymentGateways(currencyExchangeData.to);
+  }, [currencyExchangeData.to]);
+  console.dir(paymentMethodsAvailable);
   const [dLocalBuyerFormData, setDLocalBuyerFormData] = useState({
     buyer_name: "",
     email_address: "",
     identification_document: "",
   });
+
   return (
     <div className={styles.PaymentsMethodsSelectorCard}>
       <Maybe it={!userInformationLoading}>
@@ -130,7 +146,7 @@ function PaymentsMethodsSelectorCard({
         <PaymentMethodsAvailableList
           contractPrice={contractPrice}
           contractReference={contractReference}
-          payment_methods={mock_payments_methods}
+          payment_methods={paymentMethodsAvailable}
         />
       </div>
     </div>
