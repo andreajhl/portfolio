@@ -60,8 +60,13 @@ export const FEED_SUBSCRIPTION = "/subscription/feed";
 //SESSION REDIRECT
 export const SESSION_REDIRECT = "/session/redirect/";
 
+export const PURCHASE_SUMMARY = "/purchase-summary/:contract_reference";
+
 export const PAYMENT_AUTHORIZATION_INFO =
   "https://pagos.famosos.com/autorizaciondepago";
+
+export const getPurchaseSummaryPath = (contract_reference) =>
+  PURCHASE_SUMMARY.replace(":celebrity_username", contract_reference);
 
 export const getCelebrityProfilePath = (celebrityUsername) =>
   CELEBRITY_PROFILE.replace(":celebrity_username", celebrityUsername);
