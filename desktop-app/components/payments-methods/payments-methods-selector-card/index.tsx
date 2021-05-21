@@ -7,10 +7,13 @@ const mapStateToProps = (state) => ({ ...state });
 
 const mapDispatchToProps = {};
 
-type StateProps = ReturnType<typeof mapStateToProps>;
+// type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
-type PaymentsMethodsSelectorCardProps = {} & StateProps & DispatchProps;
+type PaymentsMethodsSelectorCardProps = {
+  contractPrice: number;
+  contractReference: string;
+} & DispatchProps;
 
 const AVAILABLE_PAYMENTS_METHODS_DLOCAL = [
   "CREDIT_CARD",
@@ -77,6 +80,7 @@ const mock_payments_methods: PaymentMethodsAvailableListProps = [
 function PaymentsMethodsSelectorCard({
   ...props
 }: PaymentsMethodsSelectorCardProps) {
+  console.log(props);
   return (
     <div className={styles.PaymentsMethodsSelectorCard}>
       <div className={styles.PaymentMethodFormSection}>
@@ -89,7 +93,11 @@ function PaymentsMethodsSelectorCard({
         <h2 className={styles.PaymentMethodFormTitle}>
           2. Selecciona un Método de Pago.
         </h2>
-        <PaymentMethodsAvailableList payment_methods={mock_payments_methods} />
+        <PaymentMethodsAvailableList
+          contractPrice={props.contractPrice}
+          contractReference={props.contractReference}
+          payment_methods={mock_payments_methods}
+        />
       </div>
     </div>
   );

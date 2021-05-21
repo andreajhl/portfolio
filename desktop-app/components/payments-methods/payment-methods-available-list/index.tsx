@@ -33,10 +33,14 @@ type PaymentMethodsAvailableListProps = {
       logo: string;
     }[];
   }[];
+  contractPrice: number;
+  contractReference: string;
 };
 
 function PaymentMethodsAvailableList({
   payment_methods,
+  contractPrice,
+  contractReference,
 }: PaymentMethodsAvailableListProps) {
   const [currentOption, setCurrentOption] = useState<all_payments_methods>(
     null
@@ -59,6 +63,8 @@ function PaymentMethodsAvailableList({
             <PaypalForm
               expanded={currentOption === el.paymentMethodType}
               index={index}
+              contractPrice={contractPrice}
+              contractReference={contractReference}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
             />
           </Maybe>
