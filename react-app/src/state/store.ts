@@ -28,5 +28,8 @@ const makeStore = (context) =>
 
 // export an assembled wrapper
 export const wrapper = createWrapper(makeStore, {
-  debug: process.env.NEXT_PUBLIC_ENVIRONMENT === "development"
+  debug: process.env.NEXT_PUBLIC_ENVIRONMENT === "development",
 });
+
+// Infer the `RootState` types from the combinedReducers itself
+export type RootState = ReturnType<typeof combinedReducers>;
