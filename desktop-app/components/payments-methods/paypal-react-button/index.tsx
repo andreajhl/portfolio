@@ -11,6 +11,12 @@ const LOCALE = "es_CO";
 const PAYPAL_URL = "https://www.paypal.com/sdk/js?disable-funding=credit,card";
 const SDK_URL = `${PAYPAL_URL}&client-id=${CLIENT_ID}&intent=${INTENT}&currency=${CURRENCY}&locale=${LOCALE}`;
 
+declare global {
+  interface Window {
+    paypal: any;
+  }
+}
+
 type PaypalReactButtonProps = {
   isScriptLoaded: boolean;
   isScriptLoadSucceed: boolean;
@@ -87,6 +93,7 @@ function PaypalReactButton({
     tagline: "false",
     fundingicons: "false",
   };
+
   return (
     <div>
       {(showButton && (
