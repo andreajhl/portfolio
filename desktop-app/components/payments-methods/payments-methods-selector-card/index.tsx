@@ -1,19 +1,30 @@
-import { connect } from "react-redux";
-import DLocalPersonalInfoForm from "../dLocal-personal-info-form";
+import { useEffect, useState } from "react";
+import { DLocalPersonalInfoForm } from "../dLocal-personal-info-form";
 import PaymentMethodsAvailableList from "../payment-methods-available-list";
 import styles from "./styles.module.scss";
+import { RootState } from "react-app/src/state/store";
+import { sessionOperations } from "react-app/src/state/ducks/session";
+import { connect, ConnectedProps } from "react-redux";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 
-const mapStateToProps = (state) => ({ ...state });
+const mapStateToProps = (state: RootState) => ({
+  userInformation: state.session.getSessionReducer.data,
+  userInformationLoading: state.session.getSessionReducer.loading,
+  userInformationCompleted: state.session.getSessionReducer.completed,
+  currencyExchangeData: state.payments.currencyExchangeReducer.data,
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  getToken: sessionOperations.getToken,
+};
 
-// type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type PaymentsMethodsSelectorCardProps = {
   contractPrice: number;
   contractReference: string;
-} & DispatchProps;
+} & PropsFromRedux;
 
 const AVAILABLE_PAYMENTS_METHODS_DLOCAL = [
   "CREDIT_CARD",
@@ -78,24 +89,47 @@ const mock_payments_methods: PaymentMethodsAvailableListProps = [
 ];
 
 function PaymentsMethodsSelectorCard({
-  ...props
+  contractPrice,
+  contractReference,
+  userInformation,
+  userInformationCompleted,
+  userInformationLoading,
+  currencyExchangeData,
+  getToken,
 }: PaymentsMethodsSelectorCardProps) {
-  console.log(props);
+  useEffect(() => {
+    if (!userInformationLoading) getToken();
+  }, []);
+  const [dLocalBuyerFormData, setDLocalBuyerFormData] = useState({
+    buyer_name: "",
+    email_address: "",
+    identification_document: "",
+  });
   return (
     <div className={styles.PaymentsMethodsSelectorCard}>
-      <div className={styles.PaymentMethodFormSection}>
-        <h2 className={styles.PaymentMethodFormTitle}>
-          1. Datos de la persona que realiza el pago.
-        </h2>
-        <DLocalPersonalInfoForm />
-      </div>
+      <Maybe it={!userInformationLoading}>
+        <div className={styles.PaymentMethodFormSection}>
+          <h2 className={styles.PaymentMethodFormTitle}>
+            1. Datos de la persona que realiza el pago.
+          </h2>
+          <DLocalPersonalInfoForm
+            initialValues={{
+              buyer_name: userInformation.fullName,
+              email_address: userInformation.email,
+              identification_document:
+                userInformation.identification_document || "",
+            }}
+            onChangeValues={setDLocalBuyerFormData}
+          />
+        </div>
+      </Maybe>
       <div className={styles.PaymentMethodFormSection}>
         <h2 className={styles.PaymentMethodFormTitle}>
           2. Selecciona un Método de Pago.
         </h2>
         <PaymentMethodsAvailableList
-          contractPrice={props.contractPrice}
-          contractReference={props.contractReference}
+          contractPrice={contractPrice}
+          contractReference={contractReference}
           payment_methods={mock_payments_methods}
         />
       </div>
@@ -103,9 +137,6 @@ function PaymentsMethodsSelectorCard({
   );
 }
 
-const _PaymentsMethodsSelectorCard = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PaymentsMethodsSelectorCard);
+const _PaymentsMethodsSelectorCard = connector(PaymentsMethodsSelectorCard);
 
 export { _PaymentsMethodsSelectorCard as PaymentsMethodsSelectorCard };
