@@ -97,12 +97,12 @@ function ViewerClientVideo({
               ContractVideoPlayer: true,
             })}
           >
-            <Maybe it={!videoIsLoaded}>
+            <Maybe it={previewMode || !videoIsLoaded}>
               <img
                 src={videoPosterUrl}
                 alt={`Poster de vídeo de famoso`}
                 className={styles.VideoPoster}
-              ></img>
+              />
             </Maybe>
             <video
               muted={videoIsMuted}
@@ -114,8 +114,9 @@ function ViewerClientVideo({
               className={cx({
                 ContractVideoLandscape: landscapeMode,
                 VideoElement: true,
+                HideVideo: previewMode,
               })}
-            ></video>
+            />
           </section>
           <section className={styles.ContractVideoOverlay}>
             <Maybe it={!videoIsPlaying}>

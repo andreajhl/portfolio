@@ -34,6 +34,7 @@ function VideoContractFeed({
           fullName={contractData.celebrityData.fullName}
           username={contractData.celebrityData.username}
           videoUrl={contractData.media}
+          previewMode={previewMode}
           // TODO: agregar poster de video
           videoPosterUrl={contractData.celebrityData.avatar}
         />
