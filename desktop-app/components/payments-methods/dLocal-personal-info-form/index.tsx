@@ -17,6 +17,7 @@ type DLocalPersonalInfoFormProps = {
     email_address: string;
     identification_document: string;
   }) => void;
+  errorMessage: string;
 };
 
 const validations: ValidationsType<typeof initialValuesForm> = {
@@ -35,6 +36,7 @@ const validations: ValidationsType<typeof initialValuesForm> = {
 function DLocalPersonalInfoForm({
   initialValues: initialValuesFromProps,
   onChangeValues,
+  errorMessage,
 }: DLocalPersonalInfoFormProps) {
   const { values, errors, onChangeField } = useForm<typeof initialValuesForm>({
     initialValues: Object.assign(initialValuesForm, initialValuesFromProps),
@@ -89,6 +91,13 @@ function DLocalPersonalInfoForm({
           )}
         />
       </form>
+      <WarningMessage
+        message={errorMessage}
+        className={classes(
+          styles.FormError,
+          errorMessage && styles.FormErrorIsVisible
+        )}
+      />
     </div>
   );
 }
