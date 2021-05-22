@@ -3,7 +3,9 @@ import { wrapper } from "react-app/src/state/store";
 import {
   get,
   listPublicContracts,
+  listPublicContractsV2,
   listReviews,
+  listReviewsV2,
   setCelebrityProfileVersion,
 } from "react-app/src/state/ducks/celebrities/actions";
 import { CELEBRITY_PROFILE_ERROR } from "react-app/src/routing/Paths";
@@ -65,7 +67,14 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       setCelebrityProfileVersion(getProfileVersionDependingOnTime())
     );
 
-    await listPublicContracts(celebrity.id, { currentPage: 1 })(store.dispatch);
+    if (isMobile) {
+      await listPublicContracts(celebrity.id, { currentPage: 1 })(
+        store.dispatch
+      );
+    } else {
+      // await listReviewsV2(celebrity.username)(store.dispatch);
+      await listPublicContractsV2(celebrity.username)(store.dispatch);
+    }
     await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
 
     return {

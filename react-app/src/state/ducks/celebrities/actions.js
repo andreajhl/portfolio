@@ -8,6 +8,7 @@ import {
 import * as API_PATHS from "./paths";
 import * as PATHS from "../../../routing/Paths";
 import { updateQueryParamsInitialState } from "./reducers";
+import thunkAction from "../../utils/thunkAction";
 // import * as firestoreService from "../../../firebase/firestoreService";
 
 const firestoreService = { getDocuments() {} };
@@ -231,6 +232,25 @@ export const listReviews = (
   };
 };
 
+const getListReviewsParams = (params) =>
+  Object.assign(params, { pageSize: params.pageSize || 6 });
+
+export const listReviewsV2 = (
+  celebrityUsername,
+  params = {},
+  mergeResults = false
+) =>
+  thunkAction(types.FETCH_REVIEWS_REQUEST, () =>
+    apiService({
+      method: "GET",
+      path: API_PATHS.REVIEWS_V2 + celebrityUsername,
+      params: getListReviewsParams(params),
+    }).then(({ data }) => ({
+      data,
+      mergeResults,
+    }))
+  );
+
 export const listPublicContracts = (celebrity_id, params = {}) => {
   if (params["pageSize"] === undefined) params["pageSize"] = 8;
   return (dispatch) => {
@@ -263,6 +283,14 @@ export const listPublicContracts = (celebrity_id, params = {}) => {
       });
   };
 };
+
+export const listPublicContractsV2 = (celebrityUsername) =>
+  thunkAction(types.FETCH_PUBLIC_CONTRACTS_REQUEST, () =>
+    apiService({
+      method: "GET",
+      path: API_PATHS.PUBLIC_CONTRACTS_V2 + celebrityUsername,
+    })
+  );
 
 export const fetchSimilarCelebrities = (celebrityUsername) => (dispatch) => {
   const TYPE = types.FETCH_SIMILAR_CELEBRITIES_REQUEST;
