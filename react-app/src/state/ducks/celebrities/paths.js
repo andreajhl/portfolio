@@ -9,6 +9,7 @@ export const REVIEWS_V2 = `custom-endpoints/${MODEL}/v2/public-contract-reviews/
 export const PUBLIC_CONTRACTS = `custom-endpoints/${MODEL}/public-contracts/`;
 export const PUBLIC_CONTRACTS_V2 = `custom-endpoints/${MODEL}/v2/public-contracts/`;
 export const SIMILAR_CELEBRITIES = `custom-endpoints/${MODEL}/similar-celebrities/`;
+export const SIMILAR_CELEBRITIES_V2 = `custom-endpoints/${MODEL}/v2/similar-celebrities/`;
 export const FLASH_DELIVERY_CELEBRITIES = "flash_delivery_celebrities";
 export const CELEBRITY_SUBSCRIPTION_PLANS =
   "/custom-endpoints/celebrity-subscription-plans/:celebrity_username/list";

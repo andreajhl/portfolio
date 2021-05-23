@@ -1,35 +1,33 @@
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { CardsReelSection } from "../../layouts/cards-section-reel";
-import { fetchSimilarCelebrities } from "react-app/src/state/ducks/celebrities/actions";
+import { fetchSimilarCelebritiesV2 } from "react-app/src/state/ducks/celebrities/actions";
 import { useEffect } from "react";
 import { CelebrityCard } from "../../common/cards/celebrity";
 import styles from "./styles.module.scss";
 import Maybe from "react-app/src/components/common/helpers/maybe";
-import { getCelebrityFromSimilarCelebrity } from "../../../../lib/utils/getCelebrityFromSimilarCelebrity";
 
 const mapStateToProps = ({ celebrities }) => {
   return {
     isLoading: celebrities.fetchSimilarCelebritiesReducer.loading,
-    similarCelebrities: celebrities.fetchSimilarCelebritiesReducer.data.results
+    similarCelebrities: celebrities.fetchSimilarCelebritiesReducer.data.results,
   };
 };
 
 const mapDispatchToProps = {
-  fetchSimilarCelebrities
+  fetchSimilarCelebrities: fetchSimilarCelebritiesV2,
 };
 
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type SimilarCelebritiesCardsReelProps = {
   celebrityUsername: string;
-} & StateProps &
-  DispatchProps;
+} & PropsFromRedux;
 
 function SimilarCelebritiesCardsReel({
   celebrityUsername,
   similarCelebrities,
-  fetchSimilarCelebrities
+  fetchSimilarCelebrities,
 }: SimilarCelebritiesCardsReelProps) {
   useEffect(() => {
     fetchSimilarCelebrities(celebrityUsername);
@@ -46,21 +44,18 @@ function SimilarCelebritiesCardsReel({
         itemData={similarCelebrities}
         buttonsStyle={{
           top: 105,
-          size: 40
+          size: 40,
         }}
         gap={31}
       >
-        {(similarCelebrity) => {
-          const celebrity = getCelebrityFromSimilarCelebrity(similarCelebrity);
-          return (
-            <CelebrityCard
-              thumbnailWidth={202}
-              thumbnailHeight={250}
-              showPrice={false}
-              celebrity={celebrity}
-            />
-          );
-        }}
+        {(similarCelebrity) => (
+          <CelebrityCard
+            thumbnailWidth={202}
+            thumbnailHeight={250}
+            showPrice={false}
+            celebrity={similarCelebrity}
+          />
+        )}
       </CardsReelSection>
     </Maybe>
   );
@@ -68,9 +63,6 @@ function SimilarCelebritiesCardsReel({
 
 export default SimilarCelebritiesCardsReel;
 
-const _SimilarCelebritiesCardsReel = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SimilarCelebritiesCardsReel);
+const _SimilarCelebritiesCardsReel = connector(SimilarCelebritiesCardsReel);
 
 export { _SimilarCelebritiesCardsReel as SimilarCelebritiesCardsReel };

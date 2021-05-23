@@ -318,6 +318,14 @@ export const fetchSimilarCelebrities = (celebrityUsername) => (dispatch) => {
     });
 };
 
+export const fetchSimilarCelebritiesV2 = (celebrityUsername) =>
+  thunkAction(types.FETCH_SIMILAR_CELEBRITIES_REQUEST, () =>
+    apiService({
+      method: "GET",
+      path: API_PATHS.SIMILAR_CELEBRITIES_V2 + celebrityUsername,
+    })
+  );
+
 export const cleanPublicContracts = () => ({
   type: types.CLEAN_PUBLIC_CONTRACTS,
 });
