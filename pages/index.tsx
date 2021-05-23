@@ -21,10 +21,19 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ req, store }) => {
     await fetchCelebritySections({ limit: 10, offset: 0 })(store.dispatch);
+
+    // Detect UA
+    let isMobile = false;
+    try {
+      isMobile = new UAParser(req.headers["user-agent"]).getDevice().type === "mobile";
+    } catch (e) {
+      throw "UA Parser error" + e;
+    }
+
+    // Return Props
     return {
       props: {
-        isMobile:
-          new UAParser(req.headers["user-agent"]).getDevice().type === "mobile"
+        isMobile: isMobile
       }
     };
   }
