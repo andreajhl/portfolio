@@ -2,7 +2,11 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true"
 });
 
-module.exports = withBundleAnalyzer({
+const { withSentryConfig } = require("@sentry/nextjs");
+const { version } = require("./package.json");
+const TRACK_SENTRY_ERRORS = process.env.TRACK_SENTRY_ERRORS || process.env.NEXT_PUBLIC_TRACK_SENTRY_ERRORS;
+
+const nextConfig = {
   compress: true,
   images: {
     domains: [
@@ -16,4 +20,13 @@ module.exports = withBundleAnalyzer({
       "via.placeholder.com"
     ]
   }
-});
+};
+
+const withAnalyzerConfig = withBundleAnalyzer(nextConfig);
+
+module.exports =
+  TRACK_SENTRY_ERRORS === "true"
+    ? withSentryConfig(withAnalyzerConfig, {
+      release: `FamososFrontend-v${version}`
+    })
+    : withAnalyzerConfig;
