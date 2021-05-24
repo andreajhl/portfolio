@@ -4,37 +4,41 @@ import React, {
   SetStateAction,
   useEffect,
   useMemo,
-  useState
+  useState,
 } from "react";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
-import { countriesOperations } from "react-app/src/state/ducks/countries";
-import { connect } from "react-redux";
-
-const mapStateToProps = ({ countries, searchFilters }) => {
-  return {
-    countries: countries.countriesReducer.data.results,
-    searchFilters
-  };
-};
-
-const mapDispatchToProps = {
-  listCountries: countriesOperations.list,
-  updateSearchFilters
-};
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+import { listV2 } from "react-app/src/state/ducks/countries/actions";
+import { connect, ConnectedProps } from "react-redux";
 
 const generateMapForKeysValue = (array, value = true) => {
   const newState = new Map();
   array.forEach((id) => newState.set(id, value));
   return newState;
 };
-type CountryFilterProps = StateProps & DispatchProps;
+
+const mapStateToProps = ({ countries, searchFilters }) => {
+  return {
+    countries: countries.countriesReducer.data.results,
+    searchFilters,
+  };
+};
+
+const mapDispatchToProps = {
+  listCountries: listV2,
+  updateSearchFilters,
+};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type CountryFilterProps = {} & PropsFromRedux;
+
 function CountryFilter({
   countries,
   listCountries,
   updateSearchFilters,
-  searchFilters
+  searchFilters,
 }: CountryFilterProps) {
   const [countriesChecked, setCountriesChecked] = useState(
     new Map(
@@ -76,7 +80,7 @@ function CountryFilter({
       searchFilters?.country_id?.length !== 0
     ) {
       updateSearchFilters({
-        country_id: countriesIDKeys
+        country_id: countriesIDKeys,
       });
       return;
     }
@@ -86,7 +90,7 @@ function CountryFilter({
       country_IDs.length > 0
     ) {
       updateSearchFilters({
-        country_id: countriesIDKeys
+        country_id: countriesIDKeys,
       });
     }
   }, [countriesChecked]);
@@ -109,7 +113,7 @@ function CountryFilter({
         label: country.name,
         value: country.id,
         name: country.name + index,
-        checked: countriesChecked.get(String(country.id))
+        checked: countriesChecked.get(String(country.id)),
       })),
     [countriesChecked, countries]
   );
@@ -122,9 +126,6 @@ function CountryFilter({
   );
 }
 
-const _CountryFilter = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CountryFilter);
+const _CountryFilter = connector(CountryFilter);
 
 export { _CountryFilter as CountryFilter };
