@@ -12,15 +12,6 @@
   margin-right: 16px;
 }
 
-.Label {
-  font-family: Manrope;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 22px;
-  color: #000000;
-}
-
 .CheckIcon {
   margin-left: auto;
   margin-right: 17px;
@@ -29,4 +20,10 @@
 .FormSection {
   background: #f8f9fb;
   border-radius: 10px;
+}
+
+.ChangeDisplayFormBtn {
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 1rem;
 }

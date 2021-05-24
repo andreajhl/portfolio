@@ -3,16 +3,56 @@ import {
   DotCircle,
   Ellipse,
 } from "desktop-app/components/common/icons";
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
+import {
+  removeSource,
+  retrieveUserCards,
+} from "react-app/src/state/ducks/payments/actions";
+import StripeCardForm from "../stripe-card-form";
+import StripeCustomerSources from "../stripe-customer-sources";
 import styles from "./styles.module.scss";
+
 type StripeFormProps = {
   expanded: boolean;
   index: number;
+  contractPrice: number;
+  contractReference: string;
+  discountCouponId: string;
   onToggle: () => void;
 };
 
-function StripeForm({ expanded, index, onToggle }: StripeFormProps) {
+function StripeForm({
+  expanded,
+  index,
+  onToggle,
+  contractReference,
+  contractPrice,
+  discountCouponId,
+}: StripeFormProps) {
+  const [userAvailableSources, setUserAvailableSources] = useState([]);
+  const fetchUserCards = useCallback(async () => {
+    const response = await retrieveUserCards();
+    if (response.availableSources) {
+      setUserAvailableSources(response.availableSources);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchUserCards();
+  }, []);
+  const [showCardForm, setShowCardForm] = useState(true);
+
+  useEffect(() => {
+    setShowCardForm(userAvailableSources.length === 0);
+  }, [userAvailableSources]);
+
+  const onDeleteSource = async (index) => {
+    await removeSource(userAvailableSources[index].sourceId)
+      .then((r) => fetchUserCards())
+      .catch((e) => console.log(e));
+  };
+
   const sectionId = `section-${index}`;
   const labelId = `label-${index}`;
 
@@ -34,7 +74,7 @@ function StripeForm({ expanded, index, onToggle }: StripeFormProps) {
       >
         <CardIcon className={styles.CardIcon} />
 
-        <span className={styles.Label}>Tarjeta de débito o crédito</span>
+        <span className={styles.LabelSection}>Tarjeta de débito o crédito</span>
         {expanded ? (
           <DotCircle className={styles.CheckIcon} />
         ) : (
@@ -48,7 +88,30 @@ function StripeForm({ expanded, index, onToggle }: StripeFormProps) {
         hidden={!expanded}
       >
         <Maybe it={expanded}>
-          <span>Hola!</span>
+          {showCardForm ? (
+            <StripeCardForm
+              contractPrice={contractPrice}
+              contractReference={contractReference}
+              discountCouponId={discountCouponId}
+            />
+          ) : (
+            <StripeCustomerSources
+              onDeleteSource={onDeleteSource}
+              contractPrice={contractPrice}
+              contractReference={contractReference}
+              discountCouponId={discountCouponId}
+              celebrityId={"2"}
+              availableSources={userAvailableSources}
+            />
+          )}
+          <button
+            className={`btn btn-outline ${styles.ChangeDisplayFormBtn}`}
+            onClick={() => setShowCardForm((value) => !value)}
+          >
+            {!showCardForm
+              ? "Agregar nueva tarjeta"
+              : "Seleccionar una tarjeta"}
+          </button>
         </Maybe>
       </div>
     </div>
