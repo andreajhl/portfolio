@@ -50,8 +50,11 @@ function PaymentMethodsAvailableList({
         <div className={styles.PaymentMethodsAvailable}>
           <Maybe it={el.paymentMethodType === "STRIPE"}>
             <StripeForm
+              contractPrice={contractPrice}
+              contractReference={contractReference}
               expanded={currentOption === el.paymentMethodType}
               index={index}
+              discountCouponId={null}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
             />
           </Maybe>
