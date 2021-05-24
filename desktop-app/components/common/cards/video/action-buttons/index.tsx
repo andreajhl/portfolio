@@ -7,11 +7,13 @@ import { CSSProperties } from "react";
 type VideoActionButtonsProps = {
   videoURL: string;
   actionButtonsBackgroundColor?: CSSProperties["backgroundColor"];
+  previewMode?: boolean;
 };
 
 function VideoActionButtons({
   videoURL,
   actionButtonsBackgroundColor,
+  previewMode = false,
 }: VideoActionButtonsProps) {
   return (
     <div className={styles.VideoActionButtonsWrapper}>
@@ -24,12 +26,14 @@ function VideoActionButtons({
       </div>
       <div>
         <ShareVideoButton
+          previewMode={previewMode}
           backgroundColor={actionButtonsBackgroundColor}
           link={videoURL}
         />
       </div>
       <div>
         <DownloadVideoButton
+          previewMode={previewMode}
           backgroundColor={actionButtonsBackgroundColor}
           videoURL={videoURL}
         />

@@ -3,14 +3,14 @@ import useCurrentVideoPlaying from "./useCurrentVideoPlaying";
 
 const noVideoPlaying = null;
 
-const useVideoPlayer = (
+function useVideoPlayer(
   videoKey,
   {
     onPlayVideo = () => {},
     onPauseVideo = () => {},
-    onInterruptPlay = () => {}
+    onInterruptPlay = () => {},
   } = {}
-) => {
+) {
   const [currentVideoKey, setPlayingVideo] = useCurrentVideoPlaying();
   const videoRef = useRef();
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
@@ -18,12 +18,9 @@ const useVideoPlayer = (
   const playVideo = () => {
     setPlayingVideo(videoKey);
     setVideoIsPlaying(true);
-    const playPromise = videoRef.current.play();
-    playPromise
-      .then((_) => {})
-      .catch((error) => {
-        console.log("Error", error);
-      });
+    videoRef.current.play().catch((error) => {
+      console.log("Error", error);
+    });
   };
 
   const pauseVideo = () => {
@@ -57,8 +54,8 @@ const useVideoPlayer = (
     videoIsPlaying,
     playVideo,
     pauseVideo,
-    togglePlay
+    togglePlay,
   };
-};
+}
 
 export default useVideoPlayer;

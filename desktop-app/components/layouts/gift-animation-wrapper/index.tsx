@@ -7,13 +7,17 @@ type GiftAnimationWrapperProps = {
   children: ReactNode;
   deliveryTo: string;
   deliveryFrom: string;
+  disableAnimation?: boolean;
 };
 
 function GiftAnimationWrapper({
   children,
   deliveryTo,
   deliveryFrom,
+  disableAnimation = false,
 }: GiftAnimationWrapperProps) {
+  if (disableAnimation) return <>{children}</>;
+
   return (
     <>
       <FadeOut>

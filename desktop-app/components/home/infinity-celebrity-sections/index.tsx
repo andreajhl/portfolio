@@ -2,15 +2,15 @@ import CelebritiesSection from "desktop-app/components/layouts/celebrity-section
 import { useEffect, useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { connect } from "react-redux";
-import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CelebritySectionType } from "desktop-app/types/celebritySectionType";
 import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
 import { categories } from "../../../../constants/categories";
 import { Fragment } from "react";
+import { fetchLandings } from "react-app/src/state/ducks/landings/actions";
 
-const mapStateToProps = ({ celebritySections }) => {
-  const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
+const mapStateToProps = ({ landings }) => {
+  const { loading, data } = landings.fetchLandingsReducer;
   return {
     loading,
     celebritiesSections: data.results,
@@ -18,7 +18,7 @@ const mapStateToProps = ({ celebritySections }) => {
   };
 };
 
-const mapDispatchToProps = { fetchCelebritySections };
+const mapDispatchToProps = { fetchLandings };
 
 const offsetInitialValue = 0;
 const resultsLimit = 4;
@@ -34,13 +34,14 @@ type InfinityCelebritySectionsProps = {
 function InfinityCelebritySections({
   celebritiesSections,
   totalResults,
-  fetchCelebritySections,
+  fetchLandings,
 }: InfinityCelebritySectionsProps) {
   const [offset, setOffset] = useState(offsetInitialValue);
 
   useEffect(() => {
     if (offset === offsetInitialValue) return;
-    fetchCelebritySections({
+
+    fetchLandings({
       offset,
       limit: resultsLimit,
       /* landingId,

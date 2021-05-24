@@ -85,13 +85,20 @@ function ShareDetailsForm({
           Whatsapp
         </Maybe>
       </h2>
-      <div className={styles.CellphoneNumberField}>
+      <div className={styles.RecipientField}>
         <Maybe
           it={isWhatsappType}
           orElse={
             <FormField
               name="deliveryContact"
-              label="Correo electrónico del destinatario"
+              label={
+                <>
+                  Correo electrónico del destinatario{" "}
+                  <span className={styles.MultipleRecipientsInfo}>
+                    (Puedes agregar varios correos separándolos con una coma)
+                  </span>
+                </>
+              }
               value={values.deliveryContact}
               onChange={onChangeField}
             />

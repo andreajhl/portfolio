@@ -13,7 +13,7 @@ function CountryFlag({
   alpha2Code,
   countryId,
   width = 20,
-  className = ""
+  className = "",
 }: CountryFlagProps) {
   return (
     <Link href={getSearchCountryPath(countryId)} className={styles.CountryFlag}>
@@ -24,6 +24,7 @@ function CountryFlag({
         alt={`Bandera de ${alpha2Code}`}
         className={className}
         width={width}
+        height="13"
       />
     </Link>
   );

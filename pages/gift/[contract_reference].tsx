@@ -4,19 +4,23 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 
 export const getServerSideProps: GetServerSideProps = async ({
-  params: { contract_reference },
+  params: { contract_reference, ...params },
+  query: { previewMode },
 }: GetServerSidePropsContext) => {
   return {
-    props: { contract_reference },
+    props: { contract_reference, previewMode: Boolean(previewMode) },
   };
 };
 
-const GiftPreview = ({ contract_reference, pathname }) => {
+const GiftPreview = ({ contract_reference, previewMode }) => {
   useDesktopClass(true);
   return (
     <>
       <CustomHead />
-      <GiftPreviewPage contractReference={contract_reference} />
+      <GiftPreviewPage
+        contractReference={contract_reference}
+        previewMode={previewMode}
+      />
     </>
   );
 };

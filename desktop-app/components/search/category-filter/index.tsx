@@ -1,31 +1,14 @@
 import CheckBoxList from "desktop-app/components/common/checkbox-list";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import React, {
   Dispatch,
   SetStateAction,
   useEffect,
   useMemo,
-  useState
+  useState,
 } from "react";
-import { celebrityCategoriesOperations } from "react-app/src/state/ducks/celebrity-categories";
+import { listV2 } from "react-app/src/state/ducks/celebrity-categories/actions";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
-
-const mapStateToProps = ({ searchFilters, celebrityCategories }) => {
-  return {
-    celebrityCategories:
-      celebrityCategories.fetchCelebrityCategoriesReducer.data.results,
-    searchFilters
-  };
-};
-
-const mapDispatchToProps = {
-  listCelebrityCategories: celebrityCategoriesOperations.list,
-  updateSearchFilters
-};
-
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
-type CategoryFilterProps = StateProps & DispatchProps;
 
 const generateNewMapForKeysValueOfArray = (array, value = true) => {
   const newState = new Map();
@@ -33,11 +16,29 @@ const generateNewMapForKeysValueOfArray = (array, value = true) => {
   return newState;
 };
 
+const mapStateToProps = ({ searchFilters, celebrityCategories }) => {
+  return {
+    celebrityCategories:
+      celebrityCategories.fetchCelebrityCategoriesReducer.data.results,
+    searchFilters,
+  };
+};
+
+const mapDispatchToProps = {
+  listCelebrityCategories: listV2,
+  updateSearchFilters,
+};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type CategoryFilterProps = {} & PropsFromRedux;
+
 function CategoryFilter({
   celebrityCategories,
   listCelebrityCategories,
   updateSearchFilters,
-  searchFilters
+  searchFilters,
 }: CategoryFilterProps) {
   useEffect(() => {
     const shouldFetchFilterOptions = !celebrityCategories.length;
@@ -61,7 +62,7 @@ function CategoryFilter({
         label: category.title,
         value: category.id,
         name: category.title + index,
-        checked: categoriesChecked.get(String(category.id))
+        checked: categoriesChecked.get(String(category.id)),
       })),
     [celebrityCategories, categoriesChecked]
   );
@@ -92,7 +93,7 @@ function CategoryFilter({
       searchFilters?.category_id?.length !== 0
     ) {
       updateSearchFilters({
-        category_id: categoriesIDKeys
+        category_id: categoriesIDKeys,
       });
       return;
     }
@@ -102,7 +103,7 @@ function CategoryFilter({
       categories_IDs.length > 0
     ) {
       updateSearchFilters({
-        category_id: categoriesIDKeys
+        category_id: categoriesIDKeys,
       });
     }
   }, [categoriesChecked]);
@@ -130,9 +131,6 @@ function CategoryFilter({
   );
 }
 
-const _CategoryFilter = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CategoryFilter);
+const _CategoryFilter = connector(CategoryFilter);
 
 export { _CategoryFilter as CategoryFilter };

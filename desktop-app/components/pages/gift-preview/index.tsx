@@ -8,6 +8,7 @@ import { GiftAnimationWrapper } from "desktop-app/components/layouts/gift-animat
 type GiftPreviewPageProps = {
   contractReference: string;
   hiringConfiguration?: HiringPreviewConfigurationType;
+  previewMode?: boolean;
 };
 
 const mockHiringConfiguration: HiringPreviewConfigurationType = {
@@ -21,6 +22,7 @@ const mockHiringConfiguration: HiringPreviewConfigurationType = {
 
 function GiftPreviewPage({
   contractReference,
+  previewMode = false,
   hiringConfiguration = mockHiringConfiguration,
 }: GiftPreviewPageProps) {
   const { contract } = useGetContract(contractReference, true);
@@ -28,6 +30,7 @@ function GiftPreviewPage({
   return (
     <PageContainer showFooter={false}>
       <GiftAnimationWrapper
+        disableAnimation={previewMode}
         deliveryTo={contract.deliveryTo}
         deliveryFrom={contract.deliveryFrom}
       >
@@ -35,6 +38,7 @@ function GiftPreviewPage({
           className={styles.HiringPreviewPageMain}
           contract={contract}
           hiringConfiguration={hiringConfiguration}
+          previewMode={previewMode}
         />
       </GiftAnimationWrapper>
     </PageContainer>

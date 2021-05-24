@@ -1,0 +1,26 @@
+.SaveStatusWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SavedIcon,
+.Spinner,
+.SaveStatusText {
+  color: var(--secondary, #6970c6);
+}
+
+.SaveStatusText {
+  margin-left: 15px;
+  font-size: 12px;
+}
+
+.Spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -4,7 +4,11 @@ export const getStateFromServer = (fromClient, fromServer) => {
     celebritySections: {
       ...fromClient.celebritySections,
       fetchCelebritySectionsReducer:
-        fromServer.celebritySections.fetchCelebritySectionsReducer
+        fromServer.celebritySections.fetchCelebritySectionsReducer,
+    },
+    landings: {
+      ...fromClient.landings,
+      fetchLandingsReducer: fromServer.landings.fetchLandingsReducer,
     },
     celebrities: {
       ...fromClient.celebrities,
@@ -14,7 +18,7 @@ export const getStateFromServer = (fromClient, fromServer) => {
       getCelebrityReducer: fromServer.celebrities.getCelebrityReducer,
       fetchPublicContractsReducer:
         fromServer.celebrities.fetchPublicContractsReducer,
-      fetchReviewsReducer: fromServer.celebrities.fetchReviewsReducer
-    }
+      fetchReviewsReducer: fromServer.celebrities.fetchReviewsReducer,
+    },
   };
 };

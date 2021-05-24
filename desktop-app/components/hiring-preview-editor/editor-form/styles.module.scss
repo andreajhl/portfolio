@@ -30,7 +30,6 @@
 
 .FormFields {
   padding: 22px 26px 32px;
-  height: 380px;
 }
 
 .FieldTitle {
@@ -60,4 +59,8 @@
 
 .FormButtons > * + * {
   margin-left: 18px;
+}
+
+.SaveStatusWrapper {
+  margin-top: 22px;
 }

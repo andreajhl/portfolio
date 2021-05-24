@@ -24,6 +24,7 @@ function LivePreviewCard({ contract, configuration }: LivePreviewCardProps) {
           className={styles.GiftPreview}
           contract={contract}
           hiringConfiguration={configuration}
+          previewMode
         />
       </div>
     </section>

@@ -25,12 +25,14 @@ type GiftPreviewMainProps = {
   className?: string;
   contract: ClientContractType;
   hiringConfiguration?: HiringPreviewConfigurationType;
+  previewMode?: boolean;
 };
 
 function GiftPreviewMain({
   className = "",
   contract,
   hiringConfiguration = getDefaultHiringConfiguration(contract),
+  previewMode = false,
 }: GiftPreviewMainProps) {
   return (
     <main
@@ -58,7 +60,7 @@ function GiftPreviewMain({
           }
           className={styles.RightSide}
           contractData={contract}
-          previewMode
+          previewMode={previewMode}
         />
       </div>
     </main>

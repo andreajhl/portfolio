@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import classes from "classnames";
 import styles from "./styles.module.scss";
 import { GiftCard } from "desktop-app/components/common/cards/gift-card";
 import {
@@ -8,21 +7,28 @@ import {
   availablePageBackgroundsUrls,
   getActionButtonsBackgroundColorsForPageBackground,
 } from "constants/hiring-preview-configuration";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CardColorSelector } from "desktop-app/components/hiring-preview-editor/card-color-selector";
 import { PageBackgroundSelector } from "../page-background-selector";
 import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfigurationType";
 import { OccasionType } from "desktop-app/types/contractDataType";
 import useForm from "lib/hooks/useForm";
 import { Dispatch } from "react";
-import { useRouter } from "next/router";
-import {
-  getClientHiringPreviewPath,
-  getGiftPreviewPath,
-} from "constants/paths";
+import { getGiftPreviewPath } from "constants/paths";
 import AutoHeightTextarea from "react-textarea-autosize";
+import { SaveStatus } from "desktop-app/components/hiring-preview-editor/save-status";
+import useStatus from "../../../../lib/hooks/useStatus";
+import debounce from "lodash.debounce";
 
-const mapStateToProps = (state) => ({});
+const initialValues: HiringPreviewConfigurationType = {
+  cardColor: availableCardColors[0],
+  cardTitle: "",
+  cardMessage: "",
+  pageBackgroundUrl: availablePageBackgroundsUrls[0],
+  actionButtonsBackgroundColor: availableActionButtonsBackgroundColors[0],
+};
+
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {};
 
@@ -36,22 +42,16 @@ type EditorFormProps = {
 } & StateProps &
   DispatchProps;
 
-const initialValues: HiringPreviewConfigurationType = {
-  cardColor: availableCardColors[0],
-  cardTitle: "",
-  cardMessage: "",
-  pageBackgroundUrl: availablePageBackgroundsUrls[0],
-  actionButtonsBackgroundColor: availableActionButtonsBackgroundColors[0],
-};
-
 function EditorForm({
   contractReference,
   occasion,
   onChange,
 }: EditorFormProps) {
-  const router = useRouter();
+  const [status, setStatus] = useStatus();
   const { values, setFieldValue, onChangeField } = useForm({ initialValues });
   const [titleMinRows, setTitleMinRows] = useState(2);
+  const isFirstRender = useRef(true);
+
   // Conectar con endpoint que guarda la configuración.
 
   useEffect(() => {
@@ -63,13 +63,23 @@ function EditorForm({
   }, [values]);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+    } else {
+      debounce(() => {
+        setStatus("loading");
+        setTimeout(() => {
+          setStatus("completed");
+          setTimeout(() => setStatus("idle"), 5000);
+        }, 2000);
+      }, 1000)();
+    }
+  }, [values]);
+
+  useEffect(() => {
     // Para actualizar el textarea y evitar alto indebido.
     setTitleMinRows(undefined);
   }, []);
-
-  function saveConfiguration() {
-    router.push(getClientHiringPreviewPath(contractReference));
-  }
 
   return (
     <div className={styles.EditorForm}>
@@ -126,14 +136,8 @@ function EditorForm({
               Previsualizar
             </button>
           </a>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={saveConfiguration}
-          >
-            Guardar ajustes
-          </button>
         </div>
+        <SaveStatus className={styles.SaveStatusWrapper} status={status} />
       </div>
     </div>
   );
