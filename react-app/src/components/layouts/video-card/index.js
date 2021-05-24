@@ -11,7 +11,7 @@ import OptimizedImage from "react-app/src/components/common/helpers/optimized-im
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import getWindow from "react-app/src/utils/getWindow";
 
-const VideoCardLayout = ({
+function VideoCardLayout({
   celebrityId,
   celebrityAvatar,
   celebrityUsername,
@@ -21,7 +21,7 @@ const VideoCardLayout = ({
   videoPosterUrl,
   videoKey,
   footerSection
-}) => {
+}) {
   const [videoIsLoaded, onVideoLoadedData] = useLoad();
   const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
     onPlayVideo() {
@@ -59,7 +59,11 @@ const VideoCardLayout = ({
         <section className="video-card__media" onClick={togglePlay}>
           <Maybe it={!videoIsLoaded}>
             <OptimizedImage
-              src={videoPosterUrl}
+              src={
+                videoPosterUrl ||
+                celebrityAvatar ||
+                "/assets/img/avatar-blank.png"
+              }
               placeholderSrc="/assets/img/avatar-blank.png"
               width={258}
               height={344}
@@ -120,7 +124,7 @@ const VideoCardLayout = ({
       </div>
     </div>
   );
-};
+}
 
 VideoCardLayout.defaultProps = {
   celebrity: {},
