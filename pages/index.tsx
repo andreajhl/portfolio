@@ -32,10 +32,19 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       offset: 0
     })(store.dispatch);
 
+    // Detect UA
+    let isMobile = false;
+    try {
+      isMobile =
+        new UAParser(req.headers["user-agent"]).getDevice().type === "mobile";
+    } catch (e) {
+      throw new Error("UA Parser error" + e);
+    }
+
+    // Return Props
     return {
       props: {
-        isMobile:
-          new UAParser(req.headers["user-agent"]).getDevice().type === "mobile"
+        isMobile: isMobile
       }
     };
   }
