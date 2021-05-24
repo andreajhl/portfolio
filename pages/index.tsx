@@ -23,7 +23,14 @@ const CelebritiesPage = dynamic<{ isMobile: boolean }>(() =>
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ req, store, query }) => {
     const cookies = parse(req?.headers?.cookie || "");
-    const isMobile = isMobileDevice(req.headers["user-agent"]);
+
+    // Detect UA
+    let isMobile = false;
+    try {
+      isMobile = isMobileDevice(req.headers["user-agent"]);
+    } catch (e) {
+      throw new Error("UA Parser error" + e);
+    }
 
     const fetchAction = isMobile ? fetchCelebritySections : fetchLandings;
 
@@ -34,6 +41,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       offset: 0,
     })(store.dispatch);
 
+    // Return Props
     return {
       props: {
         isMobile,
