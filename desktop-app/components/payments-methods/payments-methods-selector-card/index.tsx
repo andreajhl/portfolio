@@ -1,111 +1,109 @@
-import { connect } from "react-redux";
-import DLocalPersonalInfoForm from "../dLocal-personal-info-form";
+import { useEffect, useRef, useState } from "react";
+import { DLocalPersonalInfoForm } from "../dLocal-personal-info-form";
 import PaymentMethodsAvailableList from "../payment-methods-available-list";
 import styles from "./styles.module.scss";
+import { RootState } from "react-app/src/state/store";
+import { sessionOperations } from "react-app/src/state/ducks/session";
+import { listPaymentGateways } from "react-app/src/state/ducks/payments/operations";
+import { connect, ConnectedProps } from "react-redux";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 
-const mapStateToProps = (state) => ({ ...state });
+const mapStateToProps = (state: RootState) => ({
+  userInformation: state.session.getSessionReducer.data,
+  userInformationLoading: state.session.getSessionReducer.loading,
+  userInformationCompleted: state.session.getSessionReducer.completed,
+  currencyExchangeData: state.payments.currencyExchangeReducer.data,
+  currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
+  paymentGatewayLoading: state.payments.fetchPaymentGatewaysReducer.loading,
+  paymentMethodsAvailable: state.payments.fetchPaymentGatewaysReducer.data,
+  couponData: state.payments.fetchDiscountCouponReducer,
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  getToken: sessionOperations.getToken,
+  listPaymentGateways,
+};
 
-// type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type PaymentsMethodsSelectorCardProps = {
   contractPrice: number;
   contractReference: string;
-} & DispatchProps;
-
-const AVAILABLE_PAYMENTS_METHODS_DLOCAL = [
-  "CREDIT_CARD",
-  "DEBIT_CARD",
-  "BANK_TRANSFER",
-  "TICKET",
-] as const;
-const AVAILABLE_PAYMENTS_METHOD_PAYPAL = ["PAYPAL", "STRIPE"] as const;
-const AVAILABLE_PAYMENTS_METHOD_STRIPE = ["STRIPE"] as const;
-
-const ALL_AVAILABLE_PAYMENTS_METHODS = [
-  ...AVAILABLE_PAYMENTS_METHODS_DLOCAL,
-  ...AVAILABLE_PAYMENTS_METHOD_PAYPAL,
-  ...AVAILABLE_PAYMENTS_METHOD_STRIPE,
-] as const;
-
-type all_payments_methods = typeof ALL_AVAILABLE_PAYMENTS_METHODS[number];
-type PaymentMethodsAvailableListProps = {
-  paymentMethodType:
-    | "CREDIT_CARD"
-    | "DEBIT_CARD"
-    | "BANK_TRANSFER"
-    | "TICKET"
-    | "PAYPAL"
-    | "STRIPE";
-  // availablePaymentMethods?: {
-  //   id: number;
-  //   identifier: string;
-  //   name: string;
-  //   brand: string;
-  //   redirect: boolean;
-  //   logo: string;
-  // }[];
-}[];
-const mock_payments_methods: PaymentMethodsAvailableListProps = [
-  {
-    paymentMethodType: "STRIPE",
-    // availablePaymentMethods: [
-    //   {
-    //     id: 1,
-    //     identifier: "STRIPE",
-    //     name: "Stripe Cards",
-    //     brand: "",
-    //     redirect: false,
-    //     logo: "https://famosos-media.s3.amazonaws.com/Logo_stripe.jpg",
-    //   },
-    // ],
-  },
-  {
-    paymentMethodType: "PAYPAL",
-    // availablePaymentMethods: [
-    //   {
-    //     id: 54,
-    //     identifier: "PAYPAL",
-    //     name: "Paypal",
-    //     brand: "",
-    //     redirect: true,
-    //     logo: "paypal",
-    //   },
-    // ],
-  },
-];
+} & PropsFromRedux;
 
 function PaymentsMethodsSelectorCard({
-  ...props
+  contractPrice,
+  contractReference,
+  userInformation,
+  userInformationCompleted,
+  userInformationLoading,
+  currencyExchangeData,
+  getToken,
+  listPaymentGateways,
+  currencyExchangeLoading,
+  paymentGatewayLoading,
+  paymentMethodsAvailable,
+  couponData,
 }: PaymentsMethodsSelectorCardProps) {
-  console.log(props);
+  useEffect(() => {
+    if (!userInformationLoading) getToken();
+  }, []);
+  useEffect(() => {
+    listPaymentGateways(currencyExchangeData.to);
+  }, [currencyExchangeData.to]);
+  const DLocalPersonalInfoFormRef = useRef(null);
+  const [dLocalBuyerFormData, setDLocalBuyerFormData] = useState({
+    buyer_name: "",
+    email_address: "",
+    identification_document: "",
+  });
+  const [errorMessageForDLocalForm, setErrorMessageForDLocalForm] = useState(
+    ""
+  );
+
   return (
     <div className={styles.PaymentsMethodsSelectorCard}>
-      <div className={styles.PaymentMethodFormSection}>
-        <h2 className={styles.PaymentMethodFormTitle}>
-          1. Datos de la persona que realiza el pago.
-        </h2>
-        <DLocalPersonalInfoForm />
-      </div>
+      <h2 className={styles.PaymentMethodFormTitle}>
+        1. Datos de la persona que realiza el pago.
+      </h2>
+      <Maybe it={!userInformationLoading}>
+        <div
+          className={styles.PaymentMethodFormSection}
+          tabIndex={-1}
+          ref={DLocalPersonalInfoFormRef}
+        >
+          <DLocalPersonalInfoForm
+            initialValues={{
+              buyer_name: userInformation.fullName,
+              email_address: userInformation.email,
+              identification_document:
+                userInformation.identification_document || "",
+            }}
+            onChangeValues={setDLocalBuyerFormData}
+            errorMessage={errorMessageForDLocalForm}
+          />
+        </div>
+      </Maybe>
       <div className={styles.PaymentMethodFormSection}>
         <h2 className={styles.PaymentMethodFormTitle}>
           2. Selecciona un Método de Pago.
         </h2>
         <PaymentMethodsAvailableList
-          contractPrice={props.contractPrice}
-          contractReference={props.contractReference}
-          payment_methods={mock_payments_methods}
+          onBuyerDataIncomplete={() => {
+            DLocalPersonalInfoFormRef.current.focus();
+            setErrorMessageForDLocalForm("Por favor ingrese todos los datos");
+          }}
+          contractPrice={contractPrice}
+          contractReference={contractReference}
+          payment_methods={paymentMethodsAvailable}
+          buyerData={dLocalBuyerFormData}
         />
       </div>
     </div>
   );
 }
 
-const _PaymentsMethodsSelectorCard = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PaymentsMethodsSelectorCard);
+const _PaymentsMethodsSelectorCard = connector(PaymentsMethodsSelectorCard);
 
 export { _PaymentsMethodsSelectorCard as PaymentsMethodsSelectorCard };

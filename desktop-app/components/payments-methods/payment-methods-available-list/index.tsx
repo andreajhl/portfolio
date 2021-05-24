@@ -4,20 +4,8 @@ import StripeForm from "../stripe-form";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import PaypalForm from "../paypal-form";
 import DLocalPaymentMethodForm from "../dLocal-payment-method-form";
-const AVAILABLE_PAYMENTS_METHODS_DLOCAL = [
-  "CREDIT_CARD",
-  "DEBIT_CARD",
-  "BANK_TRANSFER",
-  "TICKET",
-] as const;
-const AVAILABLE_PAYMENTS_METHOD_PAYPAL = ["PAYPAL", "STRIPE"] as const;
-const AVAILABLE_PAYMENTS_METHOD_STRIPE = ["STRIPE"] as const;
-
-const ALL_AVAILABLE_PAYMENTS_METHODS = [
-  ...AVAILABLE_PAYMENTS_METHODS_DLOCAL,
-  ...AVAILABLE_PAYMENTS_METHOD_PAYPAL,
-  ...AVAILABLE_PAYMENTS_METHOD_STRIPE,
-] as const;
+import { ALL_AVAILABLE_PAYMENTS_METHODS } from "constants/availablePaymentsMethods";
+import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
 
 type all_payments_methods = typeof ALL_AVAILABLE_PAYMENTS_METHODS[number];
 
@@ -35,12 +23,20 @@ type PaymentMethodsAvailableListProps = {
   }[];
   contractPrice: number;
   contractReference: string;
+  buyerData: {
+    buyer_name: string;
+    email_address: string;
+    identification_document: string;
+  };
+  onBuyerDataIncomplete: () => void;
 };
 
 function PaymentMethodsAvailableList({
   payment_methods,
   contractPrice,
   contractReference,
+  buyerData,
+  onBuyerDataIncomplete,
 }: PaymentMethodsAvailableListProps) {
   const [currentOption, setCurrentOption] = useState<all_payments_methods>(
     null
@@ -68,15 +64,17 @@ function PaymentMethodsAvailableList({
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
             />
           </Maybe>
-          <Maybe
-            it={AVAILABLE_PAYMENTS_METHODS_DLOCAL.some(
-              (method) => method === el.paymentMethodType
-            )}
-          >
+          <Maybe it={isAValidDLocalPaymentMethod(el.paymentMethodType)}>
             <DLocalPaymentMethodForm
+              paymentMethodType={el.paymentMethodType}
+              paymentsMethodsAvailable={el.availablePaymentMethods}
               expanded={currentOption === el.paymentMethodType}
               index={index}
+              discountCouponId={null}
+              buyerData={buyerData}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
+              contractReference={contractReference}
+              handleBuyerDataIncomplete={onBuyerDataIncomplete}
             />
           </Maybe>
         </div>

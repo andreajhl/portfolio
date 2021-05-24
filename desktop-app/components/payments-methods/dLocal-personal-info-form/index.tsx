@@ -1,6 +1,6 @@
 import WarningMessage from "desktop-app/components/common/warning-message";
 import useForm, { ValidationsType } from "lib/hooks/useForm";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
 import classes from "classnames";
 
@@ -12,6 +12,12 @@ const initialValuesForm = {
 
 type DLocalPersonalInfoFormProps = {
   initialValues?: typeof initialValuesForm;
+  onChangeValues: (data: {
+    buyer_name: string;
+    email_address: string;
+    identification_document: string;
+  }) => void;
+  errorMessage: string;
 };
 
 const validations: ValidationsType<typeof initialValuesForm> = {
@@ -29,12 +35,16 @@ const validations: ValidationsType<typeof initialValuesForm> = {
 
 function DLocalPersonalInfoForm({
   initialValues: initialValuesFromProps,
+  onChangeValues,
+  errorMessage,
 }: DLocalPersonalInfoFormProps) {
   const { values, errors, onChangeField } = useForm<typeof initialValuesForm>({
     initialValues: Object.assign(initialValuesForm, initialValuesFromProps),
     validations,
   });
-
+  useEffect(() => {
+    onChangeValues({ ...values });
+  }, [values]);
   return (
     <div>
       <form>
@@ -81,8 +91,15 @@ function DLocalPersonalInfoForm({
           )}
         />
       </form>
+      <WarningMessage
+        message={errorMessage}
+        className={classes(
+          styles.FormError,
+          errorMessage && styles.FormErrorIsVisible
+        )}
+      />
     </div>
   );
 }
 
-export default DLocalPersonalInfoForm;
+export { DLocalPersonalInfoForm };

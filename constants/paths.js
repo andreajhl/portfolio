@@ -66,7 +66,7 @@ export const PAYMENT_AUTHORIZATION_INFO =
   "https://pagos.famosos.com/autorizaciondepago";
 
 export const getPurchaseSummaryPath = (contract_reference) =>
-  PURCHASE_SUMMARY.replace(":celebrity_username", contract_reference);
+  PURCHASE_SUMMARY.replace(":contract_reference", contract_reference);
 
 export const getCelebrityProfilePath = (celebrityUsername) =>
   CELEBRITY_PROFILE.replace(":celebrity_username", celebrityUsername);
