@@ -69,7 +69,7 @@ class NavbarSearchLayout extends Component {
       path: window.location.pathname
     });
     this.props.onSearchChange(keyword);
-    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+    document?.documentElement?.scrollTo?.({ top: 0, behavior: "smooth" });
   }
 
   goToHome() {
