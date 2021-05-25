@@ -24,4 +24,4 @@ function ContractInfoSkeleton() {
   );
 }
 
-export default ContractInfoSkeleton;
+export { ContractInfoSkeleton };
