@@ -6,9 +6,11 @@ import styles from "./styles.module.scss";
 function PaymentMethodsSelectorCardSkeleton() {
   return (
     <div className={styles.PaymentsMethodsSelectorCard}>
-      <h2 className={styles.PaymentMethodFormTitle}>
-        1. Datos de la persona que realiza el pago.
-      </h2>
+      <Skeleton
+        height={25}
+        width={395}
+        className={styles.PaymentMethodFormTitle}
+      />
       <div
         className={classes(
           styles.PaymentMethodFormSection,
@@ -21,9 +23,11 @@ function PaymentMethodsSelectorCardSkeleton() {
         <Skeleton height={40} className={styles.SkeletonInput} />
       </div>
       <div className={styles.PaymentMethodFormSection}>
-        <h2 className={styles.PaymentMethodFormTitle}>
-          2. Selecciona un Método de Pago.
-        </h2>
+        <Skeleton
+          height={25}
+          width={330}
+          className={styles.PaymentMethodFormTitle}
+        />
         <div className={styles.SkeletonPaymentMethods}>
           <Skeleton height={45} className={styles.SkeletonPaymentMethod} />
           <Skeleton height={45} className={styles.SkeletonPaymentMethod} />
