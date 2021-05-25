@@ -27,17 +27,16 @@ const Container = ({ children, buttonsStyles, onScrollTo, onListScroll }) => {
   };
 
   const changeScrollButtonsVisibility = debounce(() => {
-    const { scrollLeft, offsetWidth, scrollWidth } = childrenListRef.current;
+    const { scrollLeft, offsetWidth, scrollWidth } =
+      childrenListRef?.current || {};
     setShowLeftScrollButton(scrollLeft > 0);
     setShowRightScrollButton(scrollLeft + offsetWidth < scrollWidth);
     onListScroll(scrollLeft + offsetWidth >= scrollWidth);
   }, 100);
 
   useEffect(() => {
-    const cardListElement = childrenListRef.current;
-    setShowRightScrollButton(
-      cardListElement.scrollWidth > cardListElement.offsetWidth
-    );
+    const { scrollWidth, offsetWidth } = childrenListRef?.current || {};
+    setShowRightScrollButton(scrollWidth > offsetWidth);
   }, [children]);
 
   return (
