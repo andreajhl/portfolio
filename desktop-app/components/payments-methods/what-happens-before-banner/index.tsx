@@ -3,7 +3,10 @@ import { Link } from "desktop-app/components/common/routing/link";
 import { StepsGrayBanner } from "desktop-app/components/layouts/steps-gray-banner";
 import styles from "./styles.module.scss";
 
-type WhatHappensBeforeBannerProps = {};
+type WhatHappensBeforeBannerProps = {
+  direction?: "row" | "column";
+  className?: string;
+};
 
 const stepsItems = [
   {
@@ -41,6 +44,7 @@ function WhatHappensBeforeBanner({ ...props }: WhatHappensBeforeBannerProps) {
     <StepsGrayBanner
       title="¿Qué sucede después de tu compra?"
       steps={stepsItems}
+      {...props}
     />
   );
 }

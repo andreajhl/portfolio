@@ -61,6 +61,10 @@ function PaymentMethodsPage({
               priceBeforeCelebrityDiscount={contract.original_price}
             />
           </Maybe>
+          <WhatHappensBeforeBanner
+            className={styles.WhatHappensBeforeBannerModifier}
+            direction={"column"}
+          />
         </div>
         <div className={styles.PaymentMethodsPageContentRightSide}>
           <Maybe
@@ -74,7 +78,6 @@ function PaymentMethodsPage({
           </Maybe>
         </div>
       </div>
-      <WhatHappensBeforeBanner />
     </PageContainer>
   );
 }
