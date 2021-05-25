@@ -12,7 +12,7 @@ type ContractInfoHeaderProps = {
 function ContractInfoHeader({
   occasion,
   celebrityAvatar,
-  celebrityFullName
+  celebrityFullName,
 }: ContractInfoHeaderProps) {
   return (
     <>
@@ -21,10 +21,9 @@ function ContractInfoHeader({
           imageStyles={{
             height: 102,
             objectFit: "cover",
-            marginRight: "40px"
           }}
           width={102}
-          avatar={"/assets/img/hero-background.jpg" || celebrityAvatar}
+          avatar={celebrityAvatar || "/assets/img/avatar-blank.png"}
         />
         <h1 className={styles.ContractInfoTitle}>
           Video personalizado de {celebrityFullName}

@@ -36,3 +36,19 @@
 
   text-align: center;
 }
+.SkeletonForm {
+  margin-bottom: 45px;
+}
+
+.SkeletonForm > span + span > span {
+  margin-top: 16px;
+}
+
+.SkeletonPaymentMethods > span + span > span {
+  margin-top: 14px;
+}
+
+.SkeletonPaymentMethod {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+}
