@@ -7,6 +7,7 @@ import { sessionOperations } from "react-app/src/state/ducks/session";
 import { listPaymentGateways } from "react-app/src/state/ducks/payments/operations";
 import { connect, ConnectedProps } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { CouponForm } from "../coupon-form";
 
 const mapStateToProps = (state: RootState) => ({
   userInformation: state.session.getSessionReducer.data,
@@ -99,6 +100,9 @@ function PaymentsMethodsSelectorCard({
           payment_methods={paymentMethodsAvailable}
           buyerData={dLocalBuyerFormData}
         />
+      </div>
+      <div className={styles.PaymentMethodFormSection}>
+        <CouponForm contractReference={contractReference} />
       </div>
     </div>
   );

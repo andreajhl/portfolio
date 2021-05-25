@@ -1,0 +1,27 @@
+.LabelForm {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+}
+
+.CouponFormWrapper > .InputWithSubmitHandler {
+  height: 50px;
+  background: #f9f9ff;
+  border: 1px solid #dedede;
+  margin-bottom: 0.5rem;
+  > button {
+    color: #8d8d8d;
+    background: transparent !important;
+    border: 2px solid #8d8d8d !important;
+    &:active {
+      color: #000000 !important;
+      border: 2px solid #000 !important;
+    }
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+}
