@@ -14,7 +14,7 @@ function ContractDataFormSkeleton() {
       <div>
         <Skeleton
           className={styles.ContractDataFormInstructionsLabel}
-          width={70}
+          width={95}
           height={14}
         />
         <Skeleton height={14} />
