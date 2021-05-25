@@ -105,7 +105,7 @@ function CelebrityProfilePage({
         <Maybe it={celebrity.showSimilarCelebrities}>
           <div className="mb-5">
             <Maybe
-              it={publicContracts.length > 0}
+              it={publicContracts?.length > 0}
               orElse={
                 <CelebritySimilarVideosReel
                   celebrityUsername={celebrity.username}
