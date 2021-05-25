@@ -104,6 +104,17 @@ function PaymentsMethodsSelectorCard({
       <div className={styles.PaymentMethodFormSection}>
         <CouponForm contractReference={contractReference} />
       </div>
+      <div>
+        <img
+          className={styles.PaymentSecureBanner}
+          src="/assets/img/pago-seguro100.png"
+          alt="Pago seguro"
+        />
+        <p className={styles.DisclaimerTermsAndPolicies}>
+          Al continuar estás aceptando nuestros Términos y Condiciones y nuestra
+          Política de privacidad.
+        </p>
+      </div>
     </div>
   );
 }
