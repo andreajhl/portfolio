@@ -29,9 +29,6 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type PaymentMethodsProps = { contractReference: string } & PropsFromRedux;
 
-// type StateProps = ReturnType<typeof mapStateToProps>;
-// type DispatchProps = typeof mapDispatchToProps;
-
 function PaymentMethodsPage({
   contractReference,
   isLoading,
@@ -42,7 +39,7 @@ function PaymentMethodsPage({
   useEffect(() => {
     getContractToPayData(contractReference);
   }, [contractReference]);
-
+  console.log(contract);
   return (
     <PageContainer showFooter={false}>
       <PageHeading showHomeLink={false}>Confirmación de compra</PageHeading>
@@ -57,6 +54,7 @@ function PaymentMethodsPage({
               deliveryFrom={contract.delivery_from}
               instructions={contract.instructions}
               price={contract.price}
+              original_price={contract.original_price}
               celebrityDiscountPercentage={contract.discount_percentage}
               priceBeforeCelebrityDiscount={contract.original_price}
             />

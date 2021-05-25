@@ -12,6 +12,7 @@ type ContractInfoProps = {
   instructions: string;
   price: number;
   celebrityDiscountPercentage: number;
+  original_price: number;
   priceBeforeCelebrityDiscount: number;
 };
 
@@ -21,7 +22,9 @@ function ContractInfo({
   occasion,
   deliveryTo,
   deliveryFrom,
-  instructions
+  instructions,
+  price,
+  original_price,
 }: ContractInfoProps) {
   return (
     <div className={styles.ContractInfo}>
@@ -46,7 +49,10 @@ function ContractInfo({
       <div
         className={`${styles.ContractInfoSection} ${styles.ContractInfoPricing}`}
       >
-        <ContractPriceSummary />
+        <ContractPriceSummary
+          original_price={original_price}
+          contractPrice={price}
+        />
       </div>
     </div>
   );

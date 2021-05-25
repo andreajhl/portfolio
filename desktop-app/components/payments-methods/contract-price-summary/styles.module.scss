@@ -1,3 +1,26 @@
 .ContractPriceSummary {
-  
+}
+
+.SummaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.BoldText {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 25px;
+  color: #000000;
+}
+
+.OriginalPrice {
+  text-decoration: line-through;
+  margin-right: 0.4em;
+  color: #dc3545 !important;
 }
