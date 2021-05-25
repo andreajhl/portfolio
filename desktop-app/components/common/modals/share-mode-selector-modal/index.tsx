@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import { Link } from "../../routing/link";
 import Maybe from "../../helpers/maybe";
 import { PopupActions } from "reactjs-popup/dist/types";
+import { CloseModalButton } from "../../button/close-modal-button";
 
 type ModalTypeType = "whatsapp" | "mail";
 
@@ -40,6 +41,11 @@ function ShareModeSelectorModal(
     <AnimatedPopup trigger={trigger} modal ref={ref}>
       {(closeModal: () => void) => (
         <section className={styles.ShareModeSelectorModal}>
+          <CloseModalButton
+            variant="light"
+            className={styles.CloseButton}
+            onClick={closeModal}
+          />
           <h2 className={styles.Title}>¿Cómo quieres compartir este video?</h2>
           <a
             href={shareInstantlyLink}
