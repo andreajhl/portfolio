@@ -1,13 +1,16 @@
+import { ReactNode } from "react";
 import styles from "./styles.module.scss";
 type InputWithSubmitHandlerProps = {
   className?: string;
   btnType?: string;
   style?: object;
   placeHolderInput: string;
-  placeHolderButton: string;
+  placeHolderButton: string | ReactNode;
   setInputValue?: (value: string) => void;
   inputValue?: string;
   onSubmit?: () => void;
+  inputID?: string;
+  inputName?: string;
 };
 const InputWithSubmitHandler = ({
   className = "",
@@ -17,7 +20,9 @@ const InputWithSubmitHandler = ({
   placeHolderButton,
   setInputValue = () => {},
   inputValue = "",
-  onSubmit = () => {}
+  onSubmit = () => {},
+  inputName,
+  inputID,
 }: InputWithSubmitHandlerProps) => {
   return (
     <div
@@ -28,6 +33,8 @@ const InputWithSubmitHandler = ({
         className={styles.Input}
         placeholder={placeHolderInput}
         value={inputValue}
+        name={inputName}
+        id={inputID}
         onChange={({ target: { value } }) => setInputValue(value)}
       />
       <button
