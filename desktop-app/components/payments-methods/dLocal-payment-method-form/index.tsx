@@ -55,7 +55,7 @@ type DLocalPaymentMethodFormProps = {
     email_address: string;
     identification_document: string;
   };
-  discountCouponId: null | string | number;
+  discountCouponId: null | number;
   handleBuyerDataIncomplete: () => void;
 };
 
@@ -96,7 +96,7 @@ function DLocalPaymentMethodForm({
         buyerData.buyer_name,
         buyerData.email_address,
         buyerData.identification_document,
-        discountCouponId ? discountCouponId : null,
+        discountCouponId,
         cardToken,
         String(deviceId),
         IP

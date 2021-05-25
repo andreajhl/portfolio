@@ -47,6 +47,7 @@ function PaymentsMethodsSelectorCard({
   paymentMethodsAvailable,
   couponData,
 }: PaymentsMethodsSelectorCardProps) {
+  console.log(couponData);
   useEffect(() => {
     if (!userInformationLoading) getToken();
   }, []);
@@ -91,6 +92,7 @@ function PaymentsMethodsSelectorCard({
           2. Selecciona un Método de Pago.
         </h2>
         <PaymentMethodsAvailableList
+          discountCouponId={couponData.data?.id || null}
           onBuyerDataIncomplete={() => {
             DLocalPersonalInfoFormRef.current.focus();
             setErrorMessageForDLocalForm("Por favor ingrese todos los datos");

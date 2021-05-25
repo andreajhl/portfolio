@@ -29,7 +29,7 @@ type StripeCustomerSourcesProps = {
       tokenization_method: any;
     };
   }[];
-  discountCouponId: string;
+  discountCouponId: number | null;
   contractPrice: number;
   onDeleteSource: (index: number) => void;
 };
