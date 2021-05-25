@@ -3,6 +3,7 @@ import useForm, { ValidationsType } from "lib/hooks/useForm";
 import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
 import classes from "classnames";
+import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCurrency";
 
 const initialValuesForm = {
   buyer_name: "",
@@ -18,26 +19,30 @@ type DLocalPersonalInfoFormProps = {
     identification_document: string;
   }) => void;
   errorMessage: string;
-};
-
-const validations: ValidationsType<typeof initialValuesForm> = {
-  buyer_name(value) {
-    if (value.length === 0) return "Debes ingresar tu nombre";
-  },
-  email_address(value) {
-    if (value.length === 0) return "Debes introducir tu correo electrónico";
-  },
-  identification_document(value) {
-    if (value.length === 0)
-      return "Debes introducir tu documento de identificación";
-  },
+  currency: string;
 };
 
 function DLocalPersonalInfoForm({
   initialValues: initialValuesFromProps,
   onChangeValues,
   errorMessage,
+  currency,
 }: DLocalPersonalInfoFormProps) {
+  console.log(currency);
+  const validations: ValidationsType<typeof initialValuesForm> = {
+    buyer_name(value) {
+      if (value.length === 0) return "Debes ingresar tu nombre";
+    },
+    email_address(value) {
+      if (value.length === 0) return "Debes introducir tu correo electrónico";
+    },
+    identification_document(value) {
+      const checkDocument = allowedFormatDocuments[currency];
+      if (!checkDocument(value))
+        return "Debes introducir un documento de identificación validacion";
+    },
+  };
+
   const { values, errors, onChangeField } = useForm<typeof initialValuesForm>({
     initialValues: Object.assign(initialValuesForm, initialValuesFromProps),
     validations,

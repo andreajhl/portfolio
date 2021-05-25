@@ -84,6 +84,7 @@ function PaymentsMethodsSelectorCard({
             }}
             onChangeValues={setDLocalBuyerFormData}
             errorMessage={errorMessageForDLocalForm}
+            currency={currencyExchangeData.to}
           />
         </div>
       </Maybe>
