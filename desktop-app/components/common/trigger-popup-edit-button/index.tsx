@@ -23,9 +23,10 @@ function TriggerPopupEditButton({
 }: TriggerPopupEditButtonProps) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const handlerClosePopup = () => {
-    setIsPopupOpen((prevState) => !prevState);
+    setIsPopupOpen(false);
     onClosePopup();
   };
+
   return (
     <div className={styles.TriggerPopupEditButtonContainer}>
       <div>
@@ -43,7 +44,9 @@ function TriggerPopupEditButton({
         </IconButton>
       </div>
       <AnimatedPopup onClose={handlerClosePopup} modal open={isPopupOpen}>
-        {popupContent}
+        {typeof popupContent === "function"
+          ? popupContent(handlerClosePopup)
+          : popupContent}
       </AnimatedPopup>
     </div>
   );
