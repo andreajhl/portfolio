@@ -8,11 +8,11 @@ import Maybe from "react-app/src/components/common/helpers/maybe";
 
 const mapStateToProps = (state) => ({
   isLoading: state.celebrities.fetchPublicContractsReducer.loading,
-  publicContracts: state.celebrities.fetchPublicContractsReducer.data.results
+  publicContracts: state.celebrities.fetchPublicContractsReducer.data.results,
 });
 
 const mapDispatchToProps = {
-  listPublicContracts: celebrityOperations.listPublicContracts
+  listPublicContracts: celebrityOperations.listPublicContracts,
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -29,7 +29,7 @@ type CelebrityPublicContractsReelProps = {
 const buttonsStyle = {
   size: 49,
   top: 175,
-  transform: "translateY(-50%)"
+  transform: "translateY(-50%)",
 };
 
 const renderContractVideo = (contract) => (
@@ -43,20 +43,20 @@ const CelebrityPublicContractsReel = ({
   isLoading,
   publicContracts,
   listPublicContracts,
-  celebrityId
+  celebrityId,
 }: CelebrityPublicContractsReelProps) => {
   useEffect(() => {
     listPublicContracts(celebrityId);
   }, [celebrityId, listPublicContracts]);
   return (
-    <Maybe it={publicContracts.length > 0}>
+    <Maybe it={publicContracts?.length > 0}>
       <div>
         <CardsReelSection
           title="Últimos videos"
           className={
-            publicContracts.length < 3 ? styles.ReelContainerFitContent : ""
+            publicContracts?.length < 3 ? styles.ReelContainerFitContent : ""
           }
-          itemCount={publicContracts.length}
+          itemCount={publicContracts?.length}
           itemData={publicContracts}
           itemWidth={263}
           itemHeight={350}

@@ -13,6 +13,28 @@ import { PriceLayout } from "../../helpers/price-layout";
 import { Link } from "../../routing/link";
 import styles from "./styles.module.scss";
 
+function getCelebrityHashtags(celebrity: celebrityType) {
+  return (
+    celebrity?.hashtags
+      ?.filter?.((hashtag, index, { length }) => {
+        if (index !== 0 || length === 1) return true;
+        const hashtagRegExp = new RegExp(hashtag, "gi");
+        return !hashtagRegExp.test(celebrity.title);
+      })
+      ?.map((hashtag) => hashtag.replace("#", ""))
+      ?.reduce((newHashtags, hashtag) => {
+        if (newHashtags.length === 0) return [hashtag];
+        const newHashtagStringLength = `#${newHashtags.join(" #")} #${hashtag}`
+          .length;
+        const MAX_LENGTH_ALLOWED = 20;
+        if (newHashtagStringLength <= MAX_LENGTH_ALLOWED) {
+          return [...newHashtags, hashtag];
+        }
+        return newHashtags;
+      }, []) || []
+  );
+}
+
 type CelebrityCardProps = {
   celebrity: celebrityType;
   thumbnailWidth?: number | string;
@@ -68,18 +90,12 @@ function CelebrityCard({
           />
         </h4>
         <Maybe it={Array.isArray(celebrity.hashtags)}>
-          <p className={styles.CelebrityCardHashtags}>
-            {celebrity?.hashtags
-              ?.filter?.((hashtag, index, { length }) => {
-                if (index !== 0 || length === 1) return true;
-                const hashtagRegExp = new RegExp(hashtag, "gi");
-                return !hashtagRegExp.test(celebrity.title);
-              })
-              .map((hashtag) => (
-                <Link href={hashtag} key={hashtag}>
-                  #{hashtag.replace("#", "")}{" "}
-                </Link>
-              ))}
+          <p className={`text-with-ellipsis ${styles.CelebrityCardHashtags}`}>
+            {getCelebrityHashtags(celebrity).map((hashtag) => (
+              <Link href={hashtag} key={hashtag}>
+                #{hashtag}{" "}
+              </Link>
+            ))}
           </p>
         </Maybe>
         <Maybe it={showPrice}>

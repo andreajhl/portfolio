@@ -1,7 +1,7 @@
 .ShareModeSelectorModal {
   background: white;
   border-radius: 10px;
-  padding: 46px 46px 56px;
+  padding: 46px 56px 56px;
   text-align: center;
 }
 
@@ -55,4 +55,10 @@
 
 .TextCapitalize {
   text-transform: capitalize;
+}
+
+.CloseButton {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }

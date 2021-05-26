@@ -5,16 +5,22 @@ import InputWithUpperLabel from "desktop-app/components/common/form/input-with-u
 import { CheckedCircleIcon } from "desktop-app/components/common/icons";
 import classes from "classnames";
 import { CellphoneNumberInput } from "desktop-app/components/common/form/cellphone-number-input";
+import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
 
-function HeaderPopup() {
+function HeaderPopup({ closeModal }) {
   return (
     <div className={styles.HeaderPopupWrapper}>
+      <CloseModalButton
+        variant="light"
+        className={styles.CloseButton}
+        onClick={closeModal}
+      />
       <p>Cambiar número de celular</p>
     </div>
   );
 }
 
-function UpdateUserPhonePopupForm() {
+function UpdateUserPhonePopupForm({ closeModal }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [securityCode, setSecurityCode] = useState("");
@@ -22,7 +28,7 @@ function UpdateUserPhonePopupForm() {
   if (currentStep === 0) {
     return (
       <div className={styles.UpdateUserPhonePopup}>
-        <HeaderPopup />
+        <HeaderPopup closeModal={closeModal} />
         <div className={styles.InputFields}>
           <CellphoneNumberInput
             value={phoneNumber}
@@ -30,7 +36,6 @@ function UpdateUserPhonePopupForm() {
               console.log(value);
             }}
           />
-
           <button
             onClick={() => setCurrentStep(1)}
             className={classes("btn btn-primary", styles.CTAButton)}
@@ -44,7 +49,7 @@ function UpdateUserPhonePopupForm() {
   if (currentStep === 1) {
     return (
       <div className={styles.UpdateUserPhonePopup}>
-        <HeaderPopup />
+        <HeaderPopup closeModal={closeModal} />
         <div className={styles.InputFields}>
           <InputWithUpperLabel
             inputId="email_code"
@@ -52,7 +57,7 @@ function UpdateUserPhonePopupForm() {
             placeholder="Código de seguridad"
             value={securityCode}
             onChange={(e) => setSecurityCode(e.target.value)}
-          ></InputWithUpperLabel>
+          />
           <button
             onClick={() => setCurrentStep(2)}
             className={classes("btn btn-primary", styles.CTAButton)}
@@ -66,6 +71,11 @@ function UpdateUserPhonePopupForm() {
   if (currentStep === 2) {
     return (
       <div className={styles.UpdateUserPhonePopup}>
+        <CloseModalButton
+          variant="light"
+          className={styles.CloseButton}
+          onClick={closeModal}
+        />
         <div className={styles.SuccessMessage}>
           <CheckedCircleIcon />
           <span>
@@ -86,7 +96,9 @@ function UpdateUserPhone({ numberPhone }: UpdateUserPhoneProps) {
     <TriggerPopupEditButton
       label="Celular"
       value={numberPhone}
-      popupContent={<UpdateUserPhonePopupForm></UpdateUserPhonePopupForm>}
+      popupContent={(closeModal) => (
+        <UpdateUserPhonePopupForm closeModal={closeModal} />
+      )}
     ></TriggerPopupEditButton>
   );
 }

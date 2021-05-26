@@ -1,25 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import TriggerPopupEditButton from "desktop-app/components/common/trigger-popup-edit-button";
 import InputWithUpperLabel from "desktop-app/components/common/form/input-with-upper-label";
 import { CheckedCircleIcon } from "desktop-app/components/common/icons";
 import classes from "classnames";
+import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
 
-function HeaderPopup() {
+function HeaderPopup({ closeModal }) {
   return (
     <div className={styles.HeaderPopupWrapper}>
+      <CloseModalButton
+        variant="light"
+        className={styles.CloseButton}
+        onClick={closeModal}
+      />
       <p>Cambiar correo electrónico</p>
     </div>
   );
 }
 
-function UpdateUserEmailPopupForm() {
+function UpdateUserEmailPopupForm({ closeModal }) {
   const [currentStep, setCurrentStep] = useState(0);
 
   if (currentStep === 0) {
     return (
       <div className={styles.UpdateUserEmailPopup}>
-        <HeaderPopup />
+        <HeaderPopup closeModal={closeModal} />
         <div className={styles.InputFields}>
           <InputWithUpperLabel
             inputId="user_email"
@@ -41,7 +47,7 @@ function UpdateUserEmailPopupForm() {
   if (currentStep === 1) {
     return (
       <div className={styles.UpdateUserEmailPopup}>
-        <HeaderPopup />
+        <HeaderPopup closeModal={closeModal} />
         <div className={styles.InputFields}>
           <InputWithUpperLabel
             inputId="email_code"
@@ -63,6 +69,11 @@ function UpdateUserEmailPopupForm() {
   if (currentStep === 2) {
     return (
       <div className={styles.UpdateUserEmailPopup}>
+        <CloseModalButton
+          variant="light"
+          className={styles.CloseButton}
+          onClick={closeModal}
+        />
         <div className={styles.SuccessMessage}>
           <CheckedCircleIcon />
           <span>
@@ -82,7 +93,9 @@ function UpdateUserEmail({ email }: UpdateUserEmailProps) {
     <TriggerPopupEditButton
       label="Correo Electrónico"
       value={email}
-      popupContent={<UpdateUserEmailPopupForm></UpdateUserEmailPopupForm>}
+      popupContent={(closeModal) => (
+        <UpdateUserEmailPopupForm closeModal={closeModal} />
+      )}
     ></TriggerPopupEditButton>
   );
 }

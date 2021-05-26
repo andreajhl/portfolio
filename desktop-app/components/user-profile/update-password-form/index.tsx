@@ -5,22 +5,28 @@ import InputWithUpperLabel from "desktop-app/components/common/form/input-with-u
 import { CheckedCircleIcon } from "desktop-app/components/common/icons";
 import classes from "classnames";
 import { AnimatedPopup } from "desktop-app/components/common/animated-popup";
+import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
 
-function HeaderPopup() {
+function HeaderPopup({ closeModal }) {
   return (
     <div className={styles.HeaderPopupWrapper}>
+      <CloseModalButton
+        variant="light"
+        className={styles.CloseButton}
+        onClick={closeModal}
+      />
       <p>Cambiar contraseña</p>
     </div>
   );
 }
 
-function UpdatePasswordFormPopupForm() {
-  const [currentStep, setCurrentStep] = useState(0);
+function UpdatePasswordFormPopupForm({ closeModal }) {
+  const [currentStep, setCurrentStep] = useState(1);
 
   if (currentStep === 0) {
     return (
       <div className={styles.UpdatePasswordFormPopup}>
-        <HeaderPopup />
+        <HeaderPopup closeModal={closeModal} />
         <div className={styles.InputFields}>
           <InputWithUpperLabel
             inputId="user_new_password"
@@ -29,7 +35,7 @@ function UpdatePasswordFormPopupForm() {
             value=""
             className={styles.InputWithUpperLabelModifier}
             onChange={(value) => console.log(value)}
-          ></InputWithUpperLabel>
+          />
           <InputWithUpperLabel
             inputId="user_new_password_confirm"
             label="Confirma tu contraseña"
@@ -37,7 +43,7 @@ function UpdatePasswordFormPopupForm() {
             className={styles.InputWithUpperLabelModifier}
             value=""
             onChange={(value) => console.log(value)}
-          ></InputWithUpperLabel>
+          />
           <button
             onClick={() => setCurrentStep(1)}
             className={classes("btn btn-primary", styles.CTAButton)}
@@ -52,6 +58,11 @@ function UpdatePasswordFormPopupForm() {
   if (currentStep === 1) {
     return (
       <div className={styles.UpdatePasswordFormPopup}>
+        <CloseModalButton
+          variant="light"
+          className={styles.CloseButton}
+          onClick={closeModal}
+        />
         <div className={styles.SuccessMessage}>
           <CheckedCircleIcon />
           <span>
@@ -85,7 +96,9 @@ function UpdatePasswordForm() {
         </div>
       </div>
       <AnimatedPopup onClose={onClosePopup} modal open={isPopupOpen}>
-        {<UpdatePasswordFormPopupForm />}
+        {(closeModal) => (
+          <UpdatePasswordFormPopupForm closeModal={closeModal} />
+        )}
       </AnimatedPopup>
     </>
   );
