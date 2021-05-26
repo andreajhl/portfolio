@@ -10,6 +10,7 @@ export type LikeButtonProps = {
   filledImageSource?: string;
   outlinedImageSource?: string;
   className?: string;
+  isFavoriteClassName?: string;
   width?: string;
   height?: string;
   onHovering?: typeof noop;
@@ -19,6 +20,7 @@ export type LikeButtonProps = {
 
 const LikeButton = ({
   isFavorite = false,
+  isFavoriteClassName = "",
   // filledImageSource = "/assets/img/filled-heart.svg",
   // outlinedImageSource = "/assets/img/outlined-heart.svg",
   className = "",
@@ -26,7 +28,7 @@ const LikeButton = ({
   height = width,
   onHovering = noop,
   onClick = noop,
-  alternativeText = `${isFavorite ? "No me" : "Me"} gusta`
+  alternativeText = `${isFavorite ? "No me" : "Me"} gusta`,
 }: LikeButtonProps) => {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -41,11 +43,12 @@ const LikeButton = ({
 
   return (
     <HeartIcon
+      onClick={onClick}
       style={{ width, height }}
       className={classes(
         styles.LikeButton,
         className,
-        isFavorite && styles.LikeButtonIsFavorite
+        isFavorite && classes(styles.LikeButtonIsFavorite, isFavoriteClassName)
       )}
     />
   );
