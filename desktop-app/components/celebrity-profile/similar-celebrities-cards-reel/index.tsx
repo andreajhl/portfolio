@@ -5,11 +5,22 @@ import { useEffect } from "react";
 import { CelebrityCard } from "../../common/cards/celebrity";
 import styles from "./styles.module.scss";
 import Maybe from "react-app/src/components/common/helpers/maybe";
+import getArrayOfLength from "lib/utils/getArrayOfLength";
+import { CelebrityCardSkeleton } from "desktop-app/components/common/cards/celebrity/skeleton";
+
+const celebrityCardProps = {
+  thumbnailWidth: 202,
+  thumbnailHeight: 250,
+  showPrice: false,
+};
 
 const mapStateToProps = ({ celebrities }) => {
+  const isLoading = Boolean(celebrities.fetchSimilarCelebritiesReducer.loading);
   return {
-    isLoading: celebrities.fetchSimilarCelebritiesReducer.loading,
-    similarCelebrities: celebrities.fetchSimilarCelebritiesReducer.data.results,
+    isLoading,
+    similarCelebrities: !isLoading
+      ? celebrities.fetchSimilarCelebritiesReducer.data.results
+      : getArrayOfLength(10),
   };
 };
 
@@ -27,6 +38,7 @@ type SimilarCelebritiesCardsReelProps = {
 function SimilarCelebritiesCardsReel({
   celebrityUsername,
   similarCelebrities,
+  isLoading,
   fetchSimilarCelebrities,
 }: SimilarCelebritiesCardsReelProps) {
   useEffect(() => {
@@ -34,30 +46,28 @@ function SimilarCelebritiesCardsReel({
   }, [celebrityUsername, fetchSimilarCelebrities]);
 
   return (
-    <Maybe it={similarCelebrities.length > 0}>
-      <CardsReelSection
-        className={styles.SimilarCelebritiesCardsReel}
-        title="Famosos similares"
-        itemWidth={202}
-        itemHeight={310}
-        itemCount={similarCelebrities.length}
-        itemData={similarCelebrities}
-        buttonsStyle={{
-          top: 105,
-          size: 40,
-        }}
-        gap={31}
-      >
-        {(similarCelebrity) => (
-          <CelebrityCard
-            thumbnailWidth={202}
-            thumbnailHeight={250}
-            showPrice={false}
-            celebrity={similarCelebrity}
-          />
-        )}
-      </CardsReelSection>
-    </Maybe>
+    <CardsReelSection
+      className={styles.SimilarCelebritiesCardsReel}
+      title="Famosos similares"
+      itemWidth={202}
+      itemHeight={310}
+      itemCount={similarCelebrities.length}
+      itemData={similarCelebrities}
+      buttonsStyle={{
+        top: 105,
+        size: 40,
+      }}
+      gap={31}
+    >
+      {(similarCelebrity) => (
+        <Maybe
+          it={!isLoading}
+          orElse={<CelebrityCardSkeleton {...celebrityCardProps} />}
+        >
+          <CelebrityCard celebrity={similarCelebrity} {...celebrityCardProps} />
+        </Maybe>
+      )}
+    </CardsReelSection>
   );
 }
 
