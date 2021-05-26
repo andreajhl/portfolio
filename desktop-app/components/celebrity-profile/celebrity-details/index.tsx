@@ -8,6 +8,7 @@ import styles from "./styles.module.scss";
 import { CelebrityHashtags } from "desktop-app/components/celebrity-profile/celebrity-hashtags";
 import { CelebrityInfo } from "../celebrity-info";
 import { CelebrityMainVideoWidget } from "desktop-app/components/celebrity-profile/celebrity-main-video-widget";
+import { CelebrityFavoriteButton } from "desktop-app/components/celebrity-profile/celebrity-favorite-button";
 
 type CelebrityDetailsProps = {
   celebrity: celebrityType;
@@ -20,7 +21,10 @@ function CelebrityDetails({ celebrity }: CelebrityDetailsProps) {
         <div className={styles.CelebrityDetailsTitle}>
           <h1>{celebrity.fullName}</h1>
           <i className="fa fa-share-alt cursor-pointer" />
-          <LikeButton className={styles.CelebrityDetailsLike} />
+          <CelebrityFavoriteButton
+            celebrityId={celebrity.id}
+            className={styles.CelebrityDetailsLike}
+          />
         </div>
         <CelebrityInfo celebrity={celebrity} />
       </header>
