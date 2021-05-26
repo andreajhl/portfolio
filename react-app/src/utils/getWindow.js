@@ -8,6 +8,7 @@ const getWindow = () =>
     : {
         document: { cookie: "" },
         location: {
+          origin: "",
           pathname: "",
           userLocation: { countryCode: "" },
           sessionStorage: {
