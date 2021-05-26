@@ -239,116 +239,118 @@ const DLocalPaymentsMethods = ({
       <div
         className={`pl-3 pr-3 pt-4 pb-4 bg-light ${isSelected ? "" : "d-none"}`}
       >
-        {paymentMethodType === "CREDIT_CARD" ||
-        paymentMethodType === "DEBIT_CARD" ? (
-          <div className="form-check d-flex p-0 flex-column ">
-            <label
-              style={{
-                fontWeight: "lighter",
-                color: "#838383"
-              }}
-            >
-              <FormattedMessage defaultMessage="Selecciona una tarjeta" />
-            </label>
-            <SelectCardBankPaymentMethod
-              onChangeOptionSelected={(selected) =>
-                handleChangePaymentMethod(selected.name, selected.value)
-              }
-              options={paymentsMethodsAvailable.map((paymentMethod) => ({
-                value: paymentMethod.id,
-                label: paymentMethod.name
-              }))}
-            />
-            {cardIsIncomplete ? (
-              <span className="text-danger text-center">
-                <FormattedMessage defaultMessage="Por favor seleccione una tarjeta" />
-              </span>
-            ) : null}
-          </div>
-        ) : (
-          <div className="form-check d-flex p-0 flex-column ">
-            <div ref={inputLabel} className="form-check d-flex flex-column">
-              {paymentsMethodsAvailable.map((paymentMethod, index) => (
-                <div
-                  key={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
-                >
-                  <Label
-                    htmlFor={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
-                  >
-                    <RadioInput>
-                      <input
-                        type="radio"
-                        name={`paymentMethod-${paymentMethodType}`}
-                        value={paymentMethod.name}
-                        checked={currentOption.name === paymentMethod.name}
-                        onChange={() =>
-                          handleChangePaymentMethod(
-                            paymentMethod.name,
-                            paymentMethod.id
-                          )
-                        }
-                        id={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
-                      />
-                      <RadioControl />
-                    </RadioInput>
-                    {index < 3 ? (
-                      <img
-                        alt="Card Logo"
-                        style={{
-                          position: "absolute",
-                          left: "90%"
-                        }}
-                        className="rounded-circle"
-                        height="30px"
-                        src={paymentMethod.logo}
-                      />
-                    ) : null}
-
-                    <RadioLabel>{paymentMethod.name}</RadioLabel>
-                  </Label>
-                </div>
-              ))}
-            </div>
-            {labelIncomplete ? (
-              <span className="text-center text-danger">
-                <FormattedMessage defaultMessage="Por favor seleccione una opción" />
-              </span>
-            ) : null}
-          </div>
-        )}
         <div className="mt-2">
           {PAYMENT_METHODS_WITH_CARD_REQUIRED.includes(paymentMethodType) ? (
-            <DLocalFormCard
-              paymentMethodType={paymentMethodType}
-              paymentErrorMessage={paymentError}
-              disabled={paymentInProcess || disabledButton}
-              paymentInProcess={paymentInProcess}
-              handleStartPayment={(token) => onStartPayment(token)}
-            ></DLocalFormCard>
-          ) : (
-            <div className="d-flex align-items-center flex-column">
-              <span
-                className="text-danger"
-                style={{
-                  fontSize: "10px"
-                }}
-              >
-                {paymentError}
-              </span>
-              <button
-                onClick={(e) => onStartPayment(null)}
+            <>
+              <div className="form-check d-flex p-0 flex-column ">
+                <label
+                  style={{
+                    fontWeight: "lighter",
+                    color: "#838383"
+                  }}
+                >
+                  <FormattedMessage defaultMessage="Selecciona una tarjeta" />
+                </label>
+                <SelectCardBankPaymentMethod
+                  onChangeOptionSelected={(selected) =>
+                    handleChangePaymentMethod(selected.name, selected.value)
+                  }
+                  options={paymentsMethodsAvailable.map((paymentMethod) => ({
+                    value: paymentMethod.id,
+                    label: paymentMethod.name
+                  }))}
+                />
+                {cardIsIncomplete ? (
+                  <span className="text-danger text-center">
+                    <FormattedMessage defaultMessage="Por favor seleccione una tarjeta" />
+                  </span>
+                ) : null}
+              </div>
+              <DLocalFormCard
+                paymentMethodType={paymentMethodType}
+                paymentErrorMessage={paymentError}
                 disabled={paymentInProcess || disabledButton}
-                className="btn btn-primary mx-auto mt-2"
-                style={{
-                  backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
-                  height: "50px",
-                  borderRadius: "10px",
-                  width: "100%"
-                }}
-              >
-                {paymentInProcess ? <LoaderLayout /> : "Pagar"}
-              </button>
-            </div>
+                paymentInProcess={paymentInProcess}
+                handleStartPayment={(token) => onStartPayment(token)}
+              ></DLocalFormCard>
+            </>
+          ) : (
+            <>
+              <div className="form-check d-flex p-0 flex-column ">
+                <div ref={inputLabel} className="form-check d-flex flex-column">
+                  {paymentsMethodsAvailable.map((paymentMethod, index) => (
+                    <div
+                      key={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
+                    >
+                      <Label
+                        htmlFor={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
+                      >
+                        <RadioInput>
+                          <input
+                            type="radio"
+                            name={`paymentMethod-${paymentMethodType}`}
+                            value={paymentMethod.name}
+                            checked={currentOption.name === paymentMethod.name}
+                            onChange={() =>
+                              handleChangePaymentMethod(
+                                paymentMethod.name,
+                                paymentMethod.id
+                              )
+                            }
+                            id={`paymentMethod-${paymentMethodType}-${paymentMethod.name}-${index}`}
+                          />
+                          <RadioControl />
+                        </RadioInput>
+                        {index < 3 ? (
+                          <img
+                            alt="Card Logo"
+                            style={{
+                              position: "absolute",
+                              left: "90%"
+                            }}
+                            className="rounded-circle"
+                            height="30px"
+                            src={paymentMethod.logo}
+                          />
+                        ) : null}
+
+                        <RadioLabel>{paymentMethod.name}</RadioLabel>
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+                {labelIncomplete ? (
+                  <span className="text-center text-danger">
+                    <FormattedMessage defaultMessage="Por favor seleccione una opción" />
+                  </span>
+                ) : null}
+              </div>
+              <div className="d-flex align-items-center flex-column">
+                <span
+                  className="text-danger"
+                  style={{
+                    fontSize: "10px"
+                  }}
+                >
+                  {paymentError}
+                </span>
+                <button
+                  onClick={(e) => onStartPayment(null)}
+                  disabled={paymentInProcess || disabledButton}
+                  className="btn btn-primary mx-auto mt-2"
+                  style={{
+                    backgroundColor: `${
+                      paymentInProcess ? "white" : "#FB177D"
+                    }`,
+                    height: "50px",
+                    borderRadius: "10px",
+                    width: "100%"
+                  }}
+                >
+                  {paymentInProcess ? <LoaderLayout /> : "Pagar"}
+                </button>
+              </div>
+            </>
           )}
         </div>
       </div>
