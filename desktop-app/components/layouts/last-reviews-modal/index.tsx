@@ -1,44 +1,44 @@
 import { AnimatedPopup } from "desktop-app/components/common/animated-popup";
 import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
 import React from "react";
-import { listReviews } from "react-app/src/state/ducks/celebrities/actions";
+import { listReviewsV2 } from "react-app/src/state/ducks/celebrities/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import CardReview from "../../../components/common/cards/review";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 
 const mapStateToProps = ({ celebrities }) => ({
-  celebrityId: celebrities.getCelebrityReducer.data.id,
+  celebrityUsername: celebrities.getCelebrityReducer.data.username,
   isLoading: celebrities.fetchReviewsReducer.loading,
   reviews: celebrities.fetchReviewsReducer.data.results,
   informationPage: celebrities.fetchReviewsReducer.data.informationPage,
 });
 
 const mapDispatchToProps = {
-  listReviews,
+  listReviews: listReviewsV2,
 };
 
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type LastReviewsModalProps = {
   children: {
     triggerElement: JSX.Element;
   };
-} & StateProps &
-  DispatchProps;
+} & PropsFromRedux;
 
 function LastReviewsModal({
   children,
   listReviews,
   reviews,
-  celebrityId,
+  celebrityUsername,
   informationPage,
 }: LastReviewsModalProps) {
   function fetchMoreData() {
     listReviews(
-      celebrityId,
+      celebrityUsername,
       {
         ...informationPage,
         currentPage: informationPage.currentPage + 1,
@@ -59,10 +59,7 @@ function LastReviewsModal({
             height={"75vh"}
             dataLength={reviews.length}
             next={fetchMoreData}
-            hasMore={
-              informationPage.currentPage * informationPage.pageSize <=
-              reviews.length
-            }
+            hasMore={informationPage.totalItems > reviews.length}
             loader={
               <footer className={styles.LastReviewsModalFooter}>
                 Cargando{" "}
@@ -88,9 +85,6 @@ function LastReviewsModal({
   );
 }
 
-const _LastReviewsModal = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LastReviewsModal);
+const _LastReviewsModal = connector(LastReviewsModal);
 
 export { _LastReviewsModal as LastReviewsModal };

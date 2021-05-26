@@ -71,11 +71,11 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       await listPublicContracts(celebrity.id, { currentPage: 1 })(
         store.dispatch
       );
+      await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
     } else {
-      // await listReviewsV2(celebrity.username)(store.dispatch);
+      await listReviewsV2(celebrity.username)(store.dispatch);
       await listPublicContractsV2(celebrity.username)(store.dispatch);
     }
-    await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
 
     return {
       props: {
