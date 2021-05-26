@@ -18,7 +18,7 @@ type StripeFormProps = {
   index: number;
   contractPrice: number;
   contractReference: string;
-  discountCouponId: string;
+  discountCouponId: number | null;
   onToggle: () => void;
 };
 

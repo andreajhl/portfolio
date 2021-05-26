@@ -17,7 +17,7 @@ const stripePromise = loadStripe(STRIPE_KEY);
 type StripeCardFormProps = {
   contractPrice: number;
   contractReference: string;
-  discountCouponId: string;
+  discountCouponId: number | null;
 };
 function StripeCardForm({
   discountCouponId,

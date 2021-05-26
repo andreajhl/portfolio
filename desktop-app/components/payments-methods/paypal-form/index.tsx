@@ -18,7 +18,7 @@ type PaypalFormProps = {
   contractPrice: number;
   contractReference: string;
   onToggle: () => void;
-  discountCouponId?: number;
+  discountCouponId?: number | null;
 };
 
 function PaypalForm({

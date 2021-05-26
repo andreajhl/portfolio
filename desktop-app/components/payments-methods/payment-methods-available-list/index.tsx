@@ -29,6 +29,7 @@ type PaymentMethodsAvailableListProps = {
     identification_document: string;
   };
   onBuyerDataIncomplete: () => void;
+  discountCouponId: number | null;
 };
 
 function PaymentMethodsAvailableList({
@@ -37,6 +38,7 @@ function PaymentMethodsAvailableList({
   contractReference,
   buyerData,
   onBuyerDataIncomplete,
+  discountCouponId,
 }: PaymentMethodsAvailableListProps) {
   const [currentOption, setCurrentOption] = useState<all_payments_methods>(
     null
@@ -54,7 +56,7 @@ function PaymentMethodsAvailableList({
               contractReference={contractReference}
               expanded={currentOption === el.paymentMethodType}
               index={index}
-              discountCouponId={null}
+              discountCouponId={discountCouponId}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
             />
           </Maybe>
@@ -63,6 +65,7 @@ function PaymentMethodsAvailableList({
               expanded={currentOption === el.paymentMethodType}
               index={index}
               contractPrice={contractPrice}
+              discountCouponId={discountCouponId}
               contractReference={contractReference}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
             />
@@ -73,7 +76,7 @@ function PaymentMethodsAvailableList({
               paymentsMethodsAvailable={el.availablePaymentMethods}
               expanded={currentOption === el.paymentMethodType}
               index={index}
-              discountCouponId={null}
+              discountCouponId={discountCouponId}
               buyerData={buyerData}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
               contractReference={contractReference}
