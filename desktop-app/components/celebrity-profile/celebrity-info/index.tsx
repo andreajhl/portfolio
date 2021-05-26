@@ -4,7 +4,7 @@ import { LastReviewsModal } from "desktop-app/components/layouts/last-reviews-mo
 import { celebrityType } from "desktop-app/types/celebrityType";
 import styles from "./styles.module.scss";
 import { Link } from "desktop-app/components/common/routing/link";
-import { getSearchCountryPath } from "constants/paths";
+import { getSearchCategoryPath } from "constants/paths";
 
 type CelebrityInfoProps = {
   celebrity: celebrityType;
@@ -22,7 +22,7 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
           className={styles.CelebrityInfoFlag}
         />
         <Link
-          href={getSearchCountryPath(celebrity.categoryId)}
+          href={getSearchCategoryPath(celebrity.categoryId)}
           className={styles.CelebrityInfoCategory}
         >
           {celebrity.categoryTitle}
@@ -36,7 +36,7 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
                 <i className="fa fa-star text-warning mr-2" />
                 4.5
               </span>
-            )
+            ),
           }}
         </LastReviewsModal>
       </span>
