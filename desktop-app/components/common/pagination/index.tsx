@@ -5,12 +5,18 @@ type PaginationProps = {
   onChangePage: (arg: number) => void;
   totalPage: number;
   currentPage: number;
+  className?: string;
 };
 
-function Pagination({ onChangePage, totalPage, currentPage }: PaginationProps) {
+function Pagination({
+  onChangePage,
+  totalPage,
+  currentPage,
+  className = "",
+}: PaginationProps) {
   if (totalPage < 2) return null;
   return (
-    <div className={styles.Pagination}>
+    <div className={`${styles.Pagination} ${className}`}>
       <DirectionButton
         disabled={currentPage === 1}
         onClick={() => onChangePage(1)}
