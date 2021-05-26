@@ -46,28 +46,33 @@ function SimilarCelebritiesCardsReel({
   }, [celebrityUsername, fetchSimilarCelebrities]);
 
   return (
-    <CardsReelSection
-      className={styles.SimilarCelebritiesCardsReel}
-      title="Famosos similares"
-      itemWidth={202}
-      itemHeight={310}
-      itemCount={similarCelebrities.length}
-      itemData={similarCelebrities}
-      buttonsStyle={{
-        top: 105,
-        size: 40,
-      }}
-      gap={31}
-    >
-      {(similarCelebrity) => (
-        <Maybe
-          it={!isLoading}
-          orElse={<CelebrityCardSkeleton {...celebrityCardProps} />}
-        >
-          <CelebrityCard celebrity={similarCelebrity} {...celebrityCardProps} />
-        </Maybe>
-      )}
-    </CardsReelSection>
+    <Maybe it={similarCelebrities?.length > 0}>
+      <CardsReelSection
+        className={styles.SimilarCelebritiesCardsReel}
+        title="Famosos similares"
+        itemWidth={202}
+        itemHeight={310}
+        itemCount={similarCelebrities?.length}
+        itemData={similarCelebrities}
+        buttonsStyle={{
+          top: 105,
+          size: 40,
+        }}
+        gap={31}
+      >
+        {(similarCelebrity) => (
+          <Maybe
+            it={!isLoading}
+            orElse={<CelebrityCardSkeleton {...celebrityCardProps} />}
+          >
+            <CelebrityCard
+              celebrity={similarCelebrity}
+              {...celebrityCardProps}
+            />
+          </Maybe>
+        )}
+      </CardsReelSection>
+    </Maybe>
   );
 }
 
