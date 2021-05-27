@@ -61,10 +61,10 @@ function SearchFilters({
             max={maxPrice}
             values={values}
             setValues={setValues}
-            onChange={({ values: [price_gt, price_lt] }) => {
+            onChange={({ values: [min_price, max_price] }) => {
               updateSearchFilters({
-                price_gt,
-                price_lt,
+                min_price,
+                max_price,
               });
             }}
           />

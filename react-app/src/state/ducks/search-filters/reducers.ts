@@ -2,9 +2,7 @@ import * as TYPES from "./types";
 
 export const searchFiltersInitialState: TYPES.SearchFiltersType = {
   limit: 40,
-  offset: 0 /* 
-  price_gt: 5,
-  price_lt: 500 */
+  offset: 0,
 };
 
 export function searchFiltersReducer(
@@ -16,12 +14,12 @@ export function searchFiltersReducer(
       return {
         ...state,
         offset: searchFiltersInitialState.offset,
-        ...action.payload
+        ...action.payload,
       };
 
     case TYPES.RESET_FILTERS:
       return {
-        ...searchFiltersInitialState
+        ...searchFiltersInitialState,
       };
 
     default:

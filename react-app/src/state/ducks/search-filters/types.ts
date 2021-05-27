@@ -6,8 +6,8 @@ export type SearchFiltersType = {
   orderBy?: string;
   country_id?: string;
   category_id?: string;
-  price_gt?: number;
-  price_lt?: number;
+  min_price?: number;
+  max_price?: number;
   max_delivery_time?: number;
   hashtags?: string;
 };

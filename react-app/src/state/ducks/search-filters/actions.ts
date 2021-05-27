@@ -11,6 +11,8 @@ const allowedParams = [
   "offset",
   "country_id",
   "category_id",
+  "min_price",
+  "max_price",
   "hashtags",
   "orderBy",
 ];
