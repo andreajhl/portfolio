@@ -1,35 +1,32 @@
 import ContractVideo from "desktop-app/components/common/cards/contract-video";
 import VideoFooter from "desktop-app/components/common/cards/video/footer";
-import { ContractVideoProps } from "desktop-app/types/contractVideoProps";
-import React from "react";
+import { ContractVideoType } from "desktop-app/types/contractVideoTypes";
+import { CSSProperties } from "react";
 import styles from "./styles.module.scss";
 
 type CelebritySectionVideoCardProps = {
-  avatar: string;
-  fullName: string;
-  username: string;
   className?: string;
-  style?: object;
-} & ContractVideoProps;
+  style?: CSSProperties;
+} & ContractVideoType;
 
-const CelebritySectionVideoCard = ({
+function CelebritySectionVideoCard({
   videoPosterUrl,
   videoUrl,
   occasion,
   avatar,
   fullName,
-  username
-}: CelebritySectionVideoCardProps) => {
+  username,
+}: CelebritySectionVideoCardProps) {
   return (
     <div className={styles.CelebritySectionVideoCard}>
       <ContractVideo
         videoPosterUrl={videoPosterUrl}
         videoUrl={videoUrl}
         occasion={occasion}
-      ></ContractVideo>
+      />
       <VideoFooter avatarURL={avatar} fullName={fullName} userName={username} />
     </div>
   );
-};
+}
 
 export default CelebritySectionVideoCard;
