@@ -4,22 +4,23 @@ import { PriceRangeSlider } from "../price-range-slider";
 import { useState } from "react";
 import {
   updateSearchFilters,
-  resetSearchFilters
+  resetSearchFilters,
 } from "react-app/src/state/ducks/search-filters/actions";
 import { CountryFilter } from "../country-filter";
 import { CategoryFilter } from "../category-filter";
 import { DeliveryTimeFilter } from "../delivery-time-filter";
 import { HashtagsFilter } from "desktop-app/components/search/hashtags-filter";
+import { RootState } from "react-app/src/state/store";
 
-const mapStateToProps = ({ searchFilters }) => {
+const mapStateToProps = ({ searchFilters }: RootState) => {
   return {
-    searchFilters
+    searchFilters,
   };
 };
 
 const mapDispatchToProps = {
   updateSearchFilters,
-  resetSearchFilters
+  resetSearchFilters,
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -35,7 +36,7 @@ const priceRangeSliderInitialValues = [minPrice, maxPrice];
 function SearchFilters({
   updateSearchFilters,
   resetSearchFilters,
-  searchFilters
+  searchFilters,
 }: SearchFiltersProps) {
   const [values, setValues] = useState(priceRangeSliderInitialValues);
   console.log(searchFilters);
@@ -63,7 +64,7 @@ function SearchFilters({
             onChange={({ values: [price_gt, price_lt] }) => {
               updateSearchFilters({
                 price_gt,
-                price_lt
+                price_lt,
               });
             }}
           />
@@ -76,7 +77,15 @@ function SearchFilters({
       </div>
       <div className={styles.SearchFilterRow}>
         <div className={styles.SearchFilterItem}>
-          <HashtagsFilter className={styles.SearchFiltersHashtagsFilter} />
+          <HashtagsFilter
+            onChangeHashtags={(hashtags) =>
+              updateSearchFilters({
+                hashtags: hashtags.join(","),
+              })
+            }
+            className={styles.SearchFiltersHashtagsFilter}
+            searchFilters={searchFilters}
+          />
           <button
             type="button"
             className={`btn btn-tertiary ${styles.SearchFiltersButton}`}

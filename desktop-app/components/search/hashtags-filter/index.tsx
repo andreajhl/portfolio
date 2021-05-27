@@ -1,85 +1,76 @@
-import { celebrityType } from "desktop-app/types/celebrityType";
-import objectHasProperties from "lib/utils/objectHasProperties";
-import { connect } from "react-redux";
+import { HashtagType } from "desktop-app/types/hashtagType";
+import { useEffect, useState } from "react";
+import { RootState } from "react-app/src/state/store";
+import { list } from "react-app/src/state/ducks/celebrity-hashtags/actions";
+import { connect, ConnectedProps } from "react-redux";
 import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
 
-type HashtagsObjectType = {
-  [key: string]: number;
-};
-
-const mapStateToProps = ({ celebrities }) => {
-  const hashtags: HashtagsObjectType = celebrities.fetchCelebritiesReducer.data.results.reduce(
-    (hashtags: HashtagsObjectType, celebrity: celebrityType) => {
-      celebrity.hashtags
-        .map((hashtag) => hashtag.trim().replace("#", "").toLowerCase())
-        .forEach((hashtag) => {
-          if (hashtags[hashtag]) {
-            hashtags[hashtag]++;
-          } else {
-            hashtags[hashtag] = 1;
-          }
-        });
-
-      return hashtags;
-    },
-    {}
-  );
-
-  const orderedHashtags = Object.fromEntries(
-    Object.entries(hashtags)
-      .slice(0, 15)
-      .sort(
-        ([_firstHashtag, firstCount], [_lastHashtag, lastCount]) =>
-          lastCount - firstCount
-      )
-  );
-
+const mapStateToProps = ({
+  celebrityHashtags,
+}: RootState): { hashtags: HashtagType[] } => {
   return {
-    hashtags: orderedHashtags
+    hashtags: celebrityHashtags.listHashtagsReducer.data?.results,
   };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  listHashtags: list,
+};
 
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type HashtagsFilterProps = {
   className?: string;
-  onHashtagClick?: (hashtag: string) => void;
-} & StateProps &
-  DispatchProps;
+  searchFilters: { [key: string]: any };
+  onChangeHashtags?: (hashtags: string[]) => void;
+} & PropsFromRedux;
 
 function HashtagsFilter({
   className = "",
   hashtags,
-  onHashtagClick = function () {}
+  listHashtags,
+  searchFilters,
+  onChangeHashtags = function () {},
 }: HashtagsFilterProps) {
+  const [selectedHashtags, setSelectedHashtags] = useState([]);
+
+  useEffect(() => {
+    listHashtags(searchFilters);
+  }, [searchFilters]);
+
+  useEffect(() => {
+    onChangeHashtags(selectedHashtags);
+  }, [selectedHashtags]);
+
   return (
-    <Maybe it={objectHasProperties(hashtags)}>
+    <Maybe it={hashtags?.length > 0}>
       <div className={`${styles.HashtagsFilter} ${className}`}>
-        {Object.entries(hashtags).map(([hashtag, count]: [string, number]) => (
-          <div
-            className={styles.HashtagsFilterHashtag}
-            onClick={() => onHashtagClick(hashtag)}
-          >
-            <span
-              className={`text-with-ellipsis ${styles.HashtagsFilterHashtagName}`}
+        {hashtags
+          .filter(({ name }) => !selectedHashtags.includes(name))
+          .map(({ name, amount }) => (
+            <div
+              className={styles.HashtagsFilterHashtag}
+              onClick={() =>
+                setSelectedHashtags((hashtags) => [...hashtags, name])
+              }
             >
-              {hashtag}
-            </span>{" "}
-            <span className={styles.HashtagsFilterHashtagCount}>{count}</span>
-          </div>
-        ))}
+              <span
+                className={`text-with-ellipsis ${styles.HashtagsFilterHashtagName}`}
+              >
+                {name}
+              </span>{" "}
+              <span className={styles.HashtagsFilterHashtagCount}>
+                {amount}
+              </span>
+            </div>
+          ))}
       </div>
     </Maybe>
   );
 }
 
-const _HashtagsFilter = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HashtagsFilter);
+const _HashtagsFilter = connector(HashtagsFilter);
 
 export { _HashtagsFilter as HashtagsFilter };

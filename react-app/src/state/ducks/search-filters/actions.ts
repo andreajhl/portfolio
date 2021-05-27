@@ -11,7 +11,8 @@ const allowedParams = [
   "offset",
   "country_id",
   "category_id",
-  "orderBy"
+  "hashtags",
+  "orderBy",
 ];
 
 const getValidParams = (params) => {
@@ -36,7 +37,7 @@ export const updateSearchFilters = (
 ) => (dispatch, getState) => {
   dispatch({
     type: TYPES.UPDATE_FILTERS,
-    payload: pickPropertiesFromAObject(payload, allowedParams)
+    payload: pickPropertiesFromAObject(payload, allowedParams),
   });
 
   if (updateQueryParams) changeQueryParams(getState);
@@ -44,7 +45,7 @@ export const updateSearchFilters = (
 
 export const resetSearchFilters = () => (dispatch, getState) => {
   dispatch({
-    type: TYPES.RESET_FILTERS
+    type: TYPES.RESET_FILTERS,
   });
   changeQueryParams(getState);
 };
