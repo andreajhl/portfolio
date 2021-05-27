@@ -1,4 +1,5 @@
 import { PURCHASE_SUMMARY } from "constants/paths";
+import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -45,11 +46,13 @@ function StripeCustomerSources({
   const { push } = useRouter();
   const [selectedSourceId, setSelectedSourceId] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [paymentInProcess, setPaymentInProcess] = useState(false);
   const applyStripeAuth = () => {
     if (selectedSourceId === null)
       setErrorMessage("Por favor seleccione una tarjeta");
     else {
       setErrorMessage("");
+      setPaymentInProcess(true);
       processStripePayment(
         contractReference,
         selectedSourceId,
@@ -57,10 +60,8 @@ function StripeCustomerSources({
       )
         .then((res) => {
           if (res.data.status === "ERROR") {
-            this.setState({
-              ...this.state,
-              errorMessage: res.data.error,
-            });
+            setPaymentInProcess(false);
+            setErrorMessage(res.data.error);
           } else {
             //   TODO: conectar facebook pixel
             // if (typeof window !== "undefined") {
@@ -83,13 +84,9 @@ function StripeCustomerSources({
           }
         })
         .catch((error) => {
+          setPaymentInProcess(false);
           if (error.response) {
-            if (error.response.data) {
-              this.setState({
-                ...this.state,
-                errorMessage: error.response.data.error,
-              });
-            }
+            setErrorMessage(error.response.data.error);
           }
         });
     }
@@ -151,7 +148,10 @@ function StripeCustomerSources({
         onClick={applyStripeAuth}
         className={`btn btn-primary ${styles.PaymentButton}`}
       >
-        Pagar
+        <SubmitText
+          baseText={paymentInProcess ? "Procesando" : `${"Pagar"}`}
+          status={paymentInProcess ? "loading" : "idle"}
+        />
       </button>
     </div>
   );

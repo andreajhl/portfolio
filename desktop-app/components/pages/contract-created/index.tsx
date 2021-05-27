@@ -1,63 +1,97 @@
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import ContractSummaryApproved from "desktop-app/components/contract/summary/approved";
+import ContractSummaryAuthorized from "desktop-app/components/contract/summary/authorized";
 import ContractSummaryPending from "desktop-app/components/contract/summary/pending";
+import ContractSummaryRejected from "desktop-app/components/contract/summary/rejected";
 import PageContainer from "desktop-app/components/layouts/page-container";
-import React from "react";
+import React, { useEffect } from "react";
+import { contractOperations } from "react-app/src/state/ducks/contracts";
+import { RootState } from "react-app/src/state/store";
+import { connect, ConnectedProps } from "react-redux";
+const CONTRACT_APPROVED_STATUS = [10, 50, 70, 100];
+const CONTRACT_REJECTED_STATUS = [20, 30, 55, 60, 80];
+const CONTRACT_AUTHORIZED_STATUS = [90];
+const CONTRACt_PENDING_STATUS = [40];
 
-const mockData = {
-  contract: {
-    isPublic: true,
-    instructions:
-      "¡Hola Enrique Arce Testing! Estos días he estado con los ánimos muy bajos. ¿Podrías por favor mandarme un mensaje de ánimo? Muchas gracias.",
-    deliveryContact: "isaac@famosos.com",
-    deliveryContactCellphone: "",
-    deliveryTo: "Juanito",
-    reference: "202103021446-8009920-10031",
-    status: 25,
-    authorizationDate: "2021-03-02T09:46:49.311534-05:00",
-  },
-  celebrity: {
-    username: "enriquearce",
-    avatar:
-      "https://dqb0851cl2gjs.cloudfront.net/celebrities/609/avatar/famosos-videos-personalizados-enriquearce-compressed.jpg",
-    fullName: "Enrique Arce Testing",
-  },
-  user: {
-    id: 461,
-    fullName: "Enrique Arce Testing",
-  },
-  lastPayment: {
-    id: 1063,
-    createdAt: "2021-03-02T09:46:49.311534-05:00",
-    status: 70,
-    price: 0,
-    transactionChargeId: "ch_1IQZUrBr69O3Zf7hDT0JHpBP",
-    paymentMethodLogo: "https://famosos-media.s3.amazonaws.com/Logo_stripe.jpg",
-  },
+// mapStateToProps
+const mapStateToProps = (state: RootState) => ({
+  isLoading: state.contracts.getContractWithPaymentsReducer.loading,
+  isCompleted: state.contracts.getContractWithPaymentsReducer.completed,
+  contractWithPayments: state.contracts.getContractWithPaymentsReducer.data,
+});
+// mapStateToProps
+const mapDispatchToProps = {
+  getContract: contractOperations.getContractWithPayments,
 };
-function ContractCreated({ contractReference }) {
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ContractCreatedProps = {
+  contractReference: string;
+} & PropsFromRedux;
+function ContractCreated({
+  contractReference,
+  getContract,
+  isLoading,
+  isCompleted,
+  contractWithPayments,
+}: ContractCreatedProps) {
+  useEffect(() => {
+    getContract(contractReference);
+  }, []);
+
   return (
     <PageContainer showFooter={false}>
-      {/* <ContractSummaryApproved
-        lastPayment={mockData.lastPayment}
-        contract={mockData.contract}
-        celebrity={mockData.celebrity}
-      /> */}
-      {/* <ContractSummaryAuthorized
-        lastPayment={mockData.lastPayment}
-        contract={mockData.contract}
-        celebrity={mockData.celebrity}
-      /> */}
-      {/* <ContractSummaryRejected
-        lastPayment={mockData.lastPayment}
-        contract={mockData.contract}
-        celebrity={mockData.celebrity}
-      /> */}
-      <ContractSummaryPending
-        lastPayment={mockData.lastPayment}
-        contract={mockData.contract}
-        celebrity={mockData.celebrity}
-      />
+      <Maybe it={!isLoading && isCompleted}>
+        <Maybe
+          it={CONTRACT_APPROVED_STATUS.includes(
+            contractWithPayments.lastPayment.status
+          )}
+        >
+          <ContractSummaryApproved
+            lastPayment={contractWithPayments.lastPayment}
+            contract={contractWithPayments.contract}
+            celebrity={contractWithPayments.celebrity}
+          />
+        </Maybe>
+        <Maybe
+          it={CONTRACT_AUTHORIZED_STATUS.includes(
+            contractWithPayments.lastPayment.status
+          )}
+        >
+          <ContractSummaryAuthorized
+            lastPayment={contractWithPayments.lastPayment}
+            contract={contractWithPayments.contract}
+            celebrity={contractWithPayments.celebrity}
+          />
+        </Maybe>
+        <Maybe
+          it={CONTRACT_REJECTED_STATUS.includes(
+            contractWithPayments.lastPayment.status
+          )}
+        >
+          <ContractSummaryRejected
+            lastPayment={contractWithPayments.lastPayment}
+            contract={contractWithPayments.contract}
+            celebrity={contractWithPayments.celebrity}
+          />
+        </Maybe>
+        <Maybe
+          it={CONTRACt_PENDING_STATUS.includes(
+            contractWithPayments.lastPayment.status
+          )}
+        >
+          <ContractSummaryPending
+            lastPayment={contractWithPayments.lastPayment}
+            contract={contractWithPayments.contract}
+            celebrity={contractWithPayments.celebrity}
+          />
+        </Maybe>
+      </Maybe>
     </PageContainer>
   );
 }
 
-export { ContractCreated };
+const _ContractCreated = connector(ContractCreated);
+
+export { _ContractCreated as ContractCreated };

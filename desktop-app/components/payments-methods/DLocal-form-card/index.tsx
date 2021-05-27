@@ -6,6 +6,7 @@ import { LoaderLayout } from "react-app/src/components/layouts/loader";
 import styles from "./styles.module.scss";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
 declare global {
@@ -192,7 +193,10 @@ function DLocalFormCard({
           width: "100%",
         }}
       >
-        {paymentInProcess ? <LoaderLayout /> : "Pagar"}
+        <SubmitText
+          baseText={paymentInProcess ? "Procesando" : `${"Pagar"}`}
+          status={paymentInProcess ? "loading" : "idle"}
+        />
       </button>
     </div>
   );
