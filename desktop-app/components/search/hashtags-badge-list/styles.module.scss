@@ -1,0 +1,8 @@
+.HashtagsBadgeList {
+  margin-right: 14px;
+  display: flex;
+}
+
+.HashtagsBadgeList > * + * {
+  margin-left: 9px;
+}
