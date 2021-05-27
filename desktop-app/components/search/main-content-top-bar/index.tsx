@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { HashtagsBadgeList } from "desktop-app/components/search/hashtags-badge-list";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import { connect } from "react-redux";
-import Badge from "../../common/badge";
 import { HomeButton } from "../../common/button/home-button";
 import { IconButton } from "../../common/button/icon-button";
 import { SettingsIcon } from "../../common/icons";
@@ -12,7 +11,7 @@ import styles from "./styles.module.scss";
 const orderByOptions = [
   { label: "Destacados", value: "" },
   { label: "Menor a mayor precio", value: "price asc" },
-  { label: "Mayor a menor precio", value: "price desc" }
+  { label: "Mayor a menor precio", value: "price desc" },
 ];
 
 const getOptionByValue = (value) =>
@@ -27,10 +26,16 @@ const hasSearched = (listParams) => {
   );
 };
 
+const getHashtagsArray = (hashtags: string) =>
+  typeof hashtags === "string" && hashtags.length > 0
+    ? hashtags.split(",")
+    : [];
+
 const mapStateToProps = ({ searchFilters, celebrities }) => ({
   filtersOrderBy: getOptionByValue(searchFilters.orderBy) || orderByOptions[0],
   hasSearched: hasSearched(searchFilters),
-  totalResults: celebrities.fetchCelebritiesReducer.data.totalResults
+  totalResults: celebrities.fetchCelebritiesReducer.data.totalResults,
+  hashtags: getHashtagsArray(searchFilters.hashtags),
 });
 
 const mapDispatchToProps = { updateSearchFilters };
@@ -50,7 +55,8 @@ function MainContentTopBar({
   filtersOrderBy,
   hasSearched,
   totalResults,
-  updateSearchFilters
+  hashtags,
+  updateSearchFilters,
 }: MainContentTopBarProps) {
   return (
     <div
@@ -74,12 +80,17 @@ function MainContentTopBar({
         }
       >
         <Maybe it={totalResults !== undefined}>
+          <HashtagsBadgeList
+            hashtags={hashtags}
+            onChangeHashtags={(hashtags) =>
+              updateSearchFilters({ hashtags: hashtags.join(",") })
+            }
+          />
           <span className={styles.MainContentTopBarTotalResults}>
             {totalResults} resultados
           </span>
         </Maybe>
       </Maybe>
-      {/* <Badge text="Actores" onClick={() => console.log("Clicked")} /> */}
       <OrderByDropdown
         className={styles.MainContentTopBarOrderByDropdown}
         onChange={(option) => {
