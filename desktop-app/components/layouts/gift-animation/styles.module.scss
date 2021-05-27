@@ -7,11 +7,28 @@
   background-color: white;
 }
 
+.GiftAnimation::before {
+  @media only screen and (max-width: 768px) {
+    content: "";
+    height: 40%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: #fff2f8;
+  }
+}
+
 .GiftVideo {
   width: 100%;
   height: 100%;
   object-fit: cover !important;
   outline: none;
+
+  @media only screen and (max-width: 768px) {
+    position: relative;
+    top: -7.5%;
+    height: 60%;
+  }
 }
 
 .GiftLabel {
@@ -28,6 +45,11 @@
   flex-direction: column;
   padding: 9.75px 11.07px;
   animation: appear 0.5s ease;
+  @media only screen and (max-width: 768px) {
+    top: 50vh;
+    width: 190px;
+    height: 90px;
+  }
 }
 
 @keyframes appear {
@@ -57,8 +79,11 @@
   width: 100%;
   font-size: 24px;
   font-weight: bold;
-  color: var(--secondary, #6970c6);
+  color: #6970c6;
   margin-bottom: 0;
+  @media only screen and (max-width: 768px) {
+    font-size: 20px;
+  }
 }
 
 .IsForOther {
