@@ -42,9 +42,6 @@ const CheckoutForm = ({
   contractPrice,
   discountCouponId = null,
 }) => {
-  console.log(contractPrice, "contractPrice");
-  console.log(contractReference, "contractReference");
-  console.log(discountCouponId, "discountCouponId");
   const { push } = useRouter();
   const stripe = useStripe();
   const elements = useElements();

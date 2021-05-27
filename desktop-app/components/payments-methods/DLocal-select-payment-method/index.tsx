@@ -1,4 +1,5 @@
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import React, { useRef, useState } from "react";
 import { LoaderLayout } from "react-app/src/components/layouts/loader";
@@ -107,7 +108,10 @@ function DLocalSelectPaymentMethod({
           width: "100%",
         }}
       >
-        {paymentInProcess ? <LoaderLayout /> : "Pagar"}
+        <SubmitText
+          baseText={paymentInProcess ? "Procesando" : `${"Pagar"}`}
+          status={paymentInProcess ? "loading" : "idle"}
+        />
       </button>
     </div>
   );

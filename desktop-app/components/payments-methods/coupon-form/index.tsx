@@ -67,7 +67,7 @@ function CouponForm({
         inputID="coupon-input"
         placeHolderButton={
           <SubmitText
-            baseText={couponData.data ? "Agregado" : `${"Aplicar"}`}
+            baseText={!couponData.completed ? "Agregado" : `${"Aplicar"}`}
             status={couponData.loading ? "loading" : "idle"}
           />
         }

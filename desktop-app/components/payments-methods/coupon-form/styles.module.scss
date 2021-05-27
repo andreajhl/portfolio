@@ -23,5 +23,9 @@
     &:focus {
       box-shadow: none !important;
     }
+    &:hover {
+      color: #5c5c5c;
+      border: 2px solid #5c5c5c !important;
+    }
   }
 }
