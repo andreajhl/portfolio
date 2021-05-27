@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import styles from "./styles.module.scss";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { ContractVideoType } from "desktop-app/types/contractVideoTypes";
+import { ContractVideoType } from "desktop-app/types/contractVideoType";
 import { useState } from "react";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import useLoad from "react-app/src/utils/useLoad";
