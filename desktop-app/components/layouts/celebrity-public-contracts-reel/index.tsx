@@ -34,6 +34,7 @@ const buttonsStyle = {
 
 const renderContractVideo = (contract) => (
   <ContractVideo
+    occasion={contract?.occasion}
     videoUrl={contract.contract_media}
     videoPosterUrl={contract.video_poster_url}
   />

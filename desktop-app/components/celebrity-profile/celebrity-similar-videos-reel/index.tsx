@@ -18,6 +18,7 @@ function renderVideoCard(similarVideo) {
       videoUrl={similarVideo?.contractMediaUrl}
       fullName={celebrity.fullName}
       videoPosterUrl={similarVideo?.contractPosterUrl}
+      occasion={similarVideo?.occasion}
       avatar={celebrity.avatar}
     />
   );
