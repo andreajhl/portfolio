@@ -47,7 +47,7 @@ function useCelebrityFavorite(celebrityId: number) {
         analyticsData
       );
       localStorage.setItem("finalRedirect", window.location.pathname);
-      history.push(
+      (history as any).push(
         SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form")
       );
     }
