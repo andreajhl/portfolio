@@ -1,20 +1,25 @@
-import React from "react";
+import { CSSProperties } from "react";
 import styles from "./styles.module.scss";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { ContractVideoProps } from "desktop-app/types/contractVideoProps";
+import { ContractVideoType } from "desktop-app/types/contractVideoTypes";
 import { useState } from "react";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import useLoad from "react-app/src/utils/useLoad";
 import OverlayHeader from "../video/overlay-header";
 import OverlayDetails from "../video/overlay-details";
 
-const ContractVideo = ({
+type ContractVideoProps = {
+  className?: string;
+  style?: CSSProperties;
+} & ContractVideoType;
+
+function ContractVideo({
   videoUrl,
   videoPosterUrl,
   occasion,
-  style = {},
-  className = ""
-}: ContractVideoProps) => {
+  style,
+  className = "",
+}: ContractVideoProps) {
   const videoKey = `contract-video-${videoUrl}`;
   const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
     onPlayVideo() {
@@ -32,7 +37,7 @@ const ContractVideo = ({
       //   ...analyticsData,
       //   videoIsPlaying: false
       // });
-    }
+    },
   });
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
@@ -83,6 +88,6 @@ const ContractVideo = ({
       </div>
     </div>
   );
-};
+}
 
 export default ContractVideo;
