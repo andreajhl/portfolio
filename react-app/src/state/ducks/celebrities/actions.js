@@ -120,6 +120,46 @@ export const list = (params, mergeResults = true) => {
   };
 };
 
+const getSearchListParams = (params) => ({
+  ...params,
+  limit: params.limit || 40,
+});
+
+export const searchList = (params, mergeResults = true) => (
+  dispatch,
+  getStore
+) => {
+  getStore().celebrities.fetchCelebritiesReducer?.requestCancel?.();
+  const TYPE = types.FETCH_CELEBRITIES_REQUEST;
+  const FINAL_PATH = API_PATHS.SEARCH_LIST;
+  const request = apiService({
+    method: "GET",
+    path: FINAL_PATH,
+    params: getSearchListParams(params),
+    isCancellable: true,
+  });
+  dispatch({
+    type: TYPE,
+    payload: { requestCancel: request.cancel, mergeResults },
+  });
+  request
+    .then((res) => {
+      if (res.data.status === "OK") {
+        handleApiResponseSuccess(dispatch, TYPE, { ...res, mergeResults });
+        dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+      }
+      // else {
+      //     handleApiResponseFailure(dispatch, TYPE, res);
+      // }
+    })
+    .catch((err) => {
+      if (err.constructor.name === "Cancel") return;
+      console.log(err);
+      // handleApiErrors(dispatch, TYPE, {data: {api_error: err, error: "Server 500"}})
+    });
+  return request;
+};
+
 export const saveLastQueryParams = (params) => {
   return (dispatch) => {
     const TYPE = types.SAVE_LAST_QUERY_PARAMS;

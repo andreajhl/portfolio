@@ -4,7 +4,7 @@ import * as types from "./types";
 
 export const updateQueryParamsInitialState = {
   offset: 0,
-  limit: 20
+  limit: 20,
 };
 
 export const queryParamsInitialState = {};
@@ -15,7 +15,7 @@ const fetchCelebritiesInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { results: [], informationPage: {} }
+  data: { results: [], informationPage: {} },
 };
 
 const fetchCelebritiesSimilarResultsInitialState = {
@@ -24,7 +24,7 @@ const fetchCelebritiesSimilarResultsInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { results: [], informationPage: {} }
+  data: { results: [], informationPage: {} },
 };
 
 const fetchSimilarCelebritiesInitialState = {
@@ -32,7 +32,7 @@ const fetchSimilarCelebritiesInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { results: [], informationPage: {} }
+  data: { results: [], informationPage: {} },
 };
 
 const getCelebrityInitialState = {
@@ -40,7 +40,7 @@ const getCelebrityInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { category: {}, user: {}, hashtags: [] }
+  data: { category: {}, user: {}, hashtags: [] },
 };
 
 const fetchReviewsInitialState = {
@@ -48,7 +48,7 @@ const fetchReviewsInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { results: [], informationPage: {} }
+  data: { results: [], informationPage: {} },
 };
 
 const fetchPublicContractsInitialState = {
@@ -56,7 +56,7 @@ const fetchPublicContractsInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { results: [], informationPage: {} }
+  data: { results: [], informationPage: {} },
 };
 
 const fetchFlashDeliveryCelebritiesInitialState = {
@@ -64,14 +64,14 @@ const fetchFlashDeliveryCelebritiesInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { usernames: [] }
+  data: { usernames: [] },
 };
 const fetchCelebritySubscriptionPlansInitialState = {
   loading: false,
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { results: [] }
+  data: { results: [] },
 };
 
 const previousPathInitialState = { pathname: ROOT_PATH };
@@ -95,20 +95,20 @@ export function fetchCelebritiesReducer(
 ) {
   switch (action.type) {
     case types.FETCH_CELEBRITIES_REQUEST:
-      const previousState = action.payload.mergeResults
+      const previousState = action.payload?.mergeResults
         ? state
         : fetchCelebritiesInitialState;
       return {
         ...previousState,
-        requestCancel: action.payload.requestCancel,
-        loading: true
+        requestCancel: action.payload?.requestCancel,
+        loading: true,
       };
     case types.FETCH_CELEBRITIES_REQUEST_FAILURE:
       return {
         ...state,
         error_data: action.payload.data,
         failed: true,
-        requestCancel: fetchCelebritiesInitialState.requestCancel
+        requestCancel: fetchCelebritiesInitialState.requestCancel,
       };
     case types.FETCH_CELEBRITIES_REQUEST_SUCCESS:
       const results = [];
@@ -117,13 +117,13 @@ export function fetchCelebritiesReducer(
       results.push(...action.payload.data.results);
       return {
         ...fetchCelebritiesInitialState,
-        data: { ...action.payload.data, results }
+        data: { ...action.payload.data, results },
       };
     case types.FETCH_CELEBRITIES_REQUEST_COMPLETED:
       return {
         ...fetchCelebritiesInitialState,
         data: { ...state.data },
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -151,14 +151,14 @@ export function fetchCelebritiesSimilarResultsReducer(
       return {
         ...state,
         requestCancel: action.payload.requestCancel,
-        loading: true
+        loading: true,
       };
     case types.FETCH_CELEBRITIES_SIMILAR_RESULTS_REQUEST_FAILURE:
       return {
         ...state,
         error_data: action.payload.data,
         failed: true,
-        requestCancel: fetchCelebritiesSimilarResultsInitialState.requestCancel
+        requestCancel: fetchCelebritiesSimilarResultsInitialState.requestCancel,
       };
     case types.FETCH_CELEBRITIES_SIMILAR_RESULTS_REQUEST_SUCCESS:
       const results = [];
@@ -167,13 +167,13 @@ export function fetchCelebritiesSimilarResultsReducer(
       results.push(...action.payload.data.results);
       return {
         ...fetchCelebritiesSimilarResultsInitialState,
-        data: { ...action.payload.data, results }
+        data: { ...action.payload.data, results },
       };
     case types.FETCH_CELEBRITIES_SIMILAR_RESULTS_REQUEST_COMPLETED:
       return {
         ...fetchCelebritiesSimilarResultsInitialState,
         data: { ...state.data },
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -188,24 +188,24 @@ export function fetchSimilarCelebritiesReducer(
     case types.FETCH_SIMILAR_CELEBRITIES_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case types.FETCH_SIMILAR_CELEBRITIES_REQUEST_FAILURE:
       return {
         ...fetchSimilarCelebritiesInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case types.FETCH_SIMILAR_CELEBRITIES_REQUEST_SUCCESS:
       return {
         ...fetchSimilarCelebritiesInitialState,
-        data: action.payload.data
+        data: action.payload.data,
       };
     case types.FETCH_SIMILAR_CELEBRITIES_REQUEST_COMPLETED:
       return {
         ...state,
         // data: action.payload.data,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -217,24 +217,24 @@ export function getCelebrityReducer(state = getCelebrityInitialState, action) {
     case types.GET_CELEBRITY_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case types.GET_CELEBRITY_REQUEST_FAILURE:
       return {
         ...getCelebrityInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case types.GET_CELEBRITY_REQUEST_SUCCESS:
       return {
         ...getCelebrityInitialState,
-        data: action.payload.data.data
+        data: action.payload.data.data,
       };
     case types.GET_CELEBRITY_REQUEST_COMPLETED:
       return {
         ...state,
         data: action.payload.data.data,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -246,13 +246,13 @@ export function fetchReviewsReducer(state = fetchReviewsInitialState, action) {
     case types.FETCH_REVIEWS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case types.FETCH_REVIEWS_REQUEST_FAILURE:
       return {
         ...fetchReviewsInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case types.FETCH_REVIEWS_REQUEST_SUCCESS:
       const results = [];
@@ -262,12 +262,12 @@ export function fetchReviewsReducer(state = fetchReviewsInitialState, action) {
       results.push(...action.payload.data.results);
       return {
         ...fetchReviewsInitialState,
-        data: { ...action.payload.data, results }
+        data: { ...action.payload.data, results },
       };
     case types.FETCH_REVIEWS_REQUEST_COMPLETED:
       return {
         ...state,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -282,24 +282,24 @@ export function fetchPublicContractsReducer(
     case types.FETCH_PUBLIC_CONTRACTS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case types.FETCH_PUBLIC_CONTRACTS_REQUEST_FAILURE:
       return {
         ...fetchPublicContractsInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case types.FETCH_PUBLIC_CONTRACTS_REQUEST_SUCCESS:
       return {
         ...fetchPublicContractsInitialState,
-        data: action.payload.data
+        data: action.payload.data,
       };
     case types.FETCH_PUBLIC_CONTRACTS_REQUEST_COMPLETED:
       return {
         ...state,
         data: action.payload.data,
-        completed: true
+        completed: true,
       };
     case types.CLEAN_PUBLIC_CONTRACTS:
       return fetchPublicContractsInitialState;
@@ -325,24 +325,24 @@ export function fetchFlashDeliveryCelebritiesReducer(
     case types.FETCH_FLASH_DELIVERY_CELEBRITIES_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case types.FETCH_FLASH_DELIVERY_CELEBRITIES_REQUEST_FAILURE:
       return {
         ...fetchFlashDeliveryCelebritiesInitialState,
         error_data: action.payload,
-        failed: true
+        failed: true,
       };
     case types.FETCH_FLASH_DELIVERY_CELEBRITIES_REQUEST_SUCCESS:
       return {
         ...fetchFlashDeliveryCelebritiesInitialState,
         data:
-          action.payload?.[0] || fetchFlashDeliveryCelebritiesInitialState.data
+          action.payload?.[0] || fetchFlashDeliveryCelebritiesInitialState.data,
       };
     case types.FETCH_FLASH_DELIVERY_CELEBRITIES_REQUEST_COMPLETED:
       return {
         ...state,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -357,24 +357,24 @@ export function fetchCelebritySubscriptionPlansReducer(
     case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST_FAILURE:
       return {
         ...fetchCelebritySubscriptionPlansInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST_SUCCESS:
       return {
         ...fetchCelebritySubscriptionPlansInitialState,
-        data: action.payload.data.results
+        data: action.payload.data.results,
       };
     case types.FETCH_CELEBRITY_SUBSCRIPTION_PLANS_REQUEST_COMPLETED:
       return {
         ...state,
         data: action.payload.data.results,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -398,5 +398,5 @@ export default combineReducers({
   fetchCelebritySubscriptionPlansReducer,
   fetchCelebritiesSimilarResultsReducer,
   celebrityProfileVersionReducer,
-  saveLastQueryParamsReducer
+  saveLastQueryParamsReducer,
 });

@@ -1,7 +1,7 @@
 import { AdditionalResultsSection } from "desktop-app/components/search/additional-results-section";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useEffect } from "react";
-import { list } from "react-app/src/state/ducks/celebrities/actions";
+import { searchList } from "react-app/src/state/ducks/celebrities/actions";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 
 import { connect } from "react-redux";
@@ -25,7 +25,7 @@ const mapStateToProps = ({
   searchFiltersMemory,
   searchFilters,
   celebrities,
-  cursor
+  cursor,
 }) => {
   return {
     showNoResultsBanner:
@@ -43,17 +43,17 @@ const mapStateToProps = ({
           celebrities.fetchCelebritiesReducer.data.totalResults /
             searchFilters.limit
         ) || 1,
-      currentPage: searchFilters.offset / searchFilters.limit + 1
+      currentPage: searchFilters.offset / searchFilters.limit + 1,
     },
-    lastScrollPosition: cursor.cursorReducer?.Position
+    lastScrollPosition: cursor.cursorReducer?.Position,
   };
 };
 
 const mapDispatchToProps = {
   updateSearchFilters,
-  fetchCelebrities: list,
+  fetchCelebrities: searchList,
   saveCursorPosition: cursorOperations.saveCursorPosition,
-  updateSearchFiltersMemory
+  updateSearchFiltersMemory,
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -76,7 +76,7 @@ function SearchResults({
   updateSearchFilters,
   saveCursorPosition,
   updateSearchFiltersMemory,
-  lastScrollPosition
+  lastScrollPosition,
 }: SearchResultsProps) {
   useEffect(() => {
     return () => {
@@ -112,7 +112,7 @@ function SearchResults({
         <Pagination
           onChangePage={(nextPage) => {
             updateSearchFilters({
-              offset: (nextPage - 1) * informationPage.pageSize
+              offset: (nextPage - 1) * informationPage.pageSize,
             });
           }}
           totalPage={informationPage.totalPage}
