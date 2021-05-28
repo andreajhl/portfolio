@@ -3,7 +3,7 @@
 .NavbarSectionLayout {
   width: 100%;
   background-color: white;
-  z-index: 10000;
+  z-index: 100;
   margin: 0 auto;
 }
 
@@ -30,10 +30,14 @@
   }
 
   &__currency {
-    width: 53px;
-    right: 7px;
+    // width: 53px;
+    // right: 7px;
     position: relative;
-    top: 0.3rem;
+    top: 0.9375rem;
+  }
+  &__lang {
+    position: relative;
+    top: 0.9375rem;
   }
 
   &__search-sm {

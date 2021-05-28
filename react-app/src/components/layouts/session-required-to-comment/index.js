@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
 
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
@@ -18,25 +19,25 @@ class SessionRequiredToCommentLayout extends Component {
     return (
       <div className="SessionRequiredToCommentLayout">
         <h5 className="font-weight-bold">
-          Inicia sesión para agregar un comentario
+          <FormattedMessage defaultMessage="Inicia sesión para agregar un comentario" />
         </h5>
         <button
           className="btn btn-sm btn-primary mt-2"
           onClick={this.goToSignIn}
         >
-          Iniciar sesión
+          <FormattedMessage defaultMessage="Iniciar sesión" />
         </button>
         <span
           className="ml-2 mr-2"
           style={{ position: "relative", top: "6px" }}
         >
-          ¿Aún no tienes cuenta?
+          <FormattedMessage defaultMessage="¿Aún no tienes cuenta?" />
           <b
             className="ml-2 mr-2"
             style={{ textDecoration: "underline", cursor: "pointer" }}
             onClick={this.goToSignUp}
           >
-            Crea una cuenta
+            <FormattedMessage defaultMessage="Crea una cuenta" />
           </b>
         </span>
       </div>

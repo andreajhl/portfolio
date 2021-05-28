@@ -1,3 +1,8 @@
+import {
+  CURRENT_CURRENCY_TRM_CODE,
+  CURRENT_CURRENCY_TRM_RATE
+} from "constants/keys";
+import { getCookie } from "lib/getCookie";
 import { combineReducers } from "redux";
 import * as types from "./types";
 
@@ -6,9 +11,14 @@ const fetchPaymentGatewaysInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: {
-    gateways: []
-  }
+  data: []
+};
+const fetchPaymentGatewaysDLocalInitialState = {
+  loading: false,
+  failed: false,
+  completed: false,
+  error_data: { error: "" },
+  data: []
 };
 
 const currencyExchangeInitialState = {
@@ -17,7 +27,12 @@ const currencyExchangeInitialState = {
   completed: false,
   error_data: { error: "" },
   data: {
-    to: "USD"
+    to:
+      typeof window !== "undefined"
+        ? getCookie(CURRENT_CURRENCY_TRM_CODE)
+        : "USD",
+    rate:
+      typeof window !== "undefined" ? getCookie(CURRENT_CURRENCY_TRM_RATE) : ""
   }
 };
 
@@ -141,14 +156,14 @@ export function fetchPaymentGatewaysReducer(
     case types.FETCH_PAYMENT_GATEWAYS_REQUEST_SUCCESS:
       return {
         ...fetchPaymentGatewaysInitialState,
-        data: action.payload.data
+        data: action.payload.data.data
       };
     case types.FETCH_PAYMENT_GATEWAYS_REQUEST_COMPLETED:
-      const data = action.payload.data;
-      data.data = action.payload.data.data.reverse();
+      // const data = action.payload.data;
+      // data.data = action.payload.data.data.reverse();
       return {
         ...state,
-        data: data,
+        data: action.payload.data.data,
         completed: true
       };
     default:

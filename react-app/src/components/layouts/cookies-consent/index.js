@@ -4,6 +4,7 @@ import { HAS_ACCEPTED_COOKIES_CONSENT } from "react-app/src/constants/localStora
 import getWindow from "react-app/src/utils/getWindow";
 import Maybe from "../../common/helpers/maybe";
 import * as PATHS from "../../../routing/Paths";
+import { FormattedMessage } from "react-intl";
 
 const CookiesConsent = () => {
   const [showBanner, setShowBanner] = useState(false);
@@ -33,10 +34,13 @@ const CookiesConsent = () => {
         onTransitionEnd={removeCookieConsent}
       >
         <div className="cookies-consent__text">
-          En nuestro sitio web utilizamos cookies propias y de terceros para
+          <FormattedMessage
+            defaultMessage="En nuestro sitio web utilizamos cookies propias y de terceros para
           mejorar la experiencia de usuario, rendimiento, análisis y otro fines.
           Al hacer clic en aceptar o utilizar nuestro sitio, estarás aceptando
-          el uso de estas cookies.
+          el uso de estas cookies."
+            description=""
+          />
         </div>
         <div className="cookies-consent__options">
           <button
@@ -49,7 +53,10 @@ const CookiesConsent = () => {
             to={PATHS.POLICIES_PATH}
             className="cookies-consent__terms-link"
           >
-            Ver las políticas de privacidad
+            <FormattedMessage
+              defaultMessage="Ver las políticas de privacidad"
+              description=""
+            />
           </NavLink>
         </div>
       </div>

@@ -5,6 +5,14 @@ import { useRouter } from "next/router";
 import { initialize as gtmInitialize } from "react-app/src/state/utils/gtm";
 import "react-app/src/styles.scss";
 import Auth0UserHandler from "lib/auth0UserHandler";
+import { IntlProvider } from "react-intl";
+import esMessages from "../compiled-lang/es.json";
+import enMessages from "../compiled-lang/en.json";
+
+const languages = {
+  en: enMessages,
+  es: esMessages
+};
 
 const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
   const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
@@ -32,11 +40,19 @@ const App = ({ Component, pageProps }) => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);
     };
   }, []);
+  const { locale, defaultLocale } = router;
+  const messages = languages[locale];
 
   return (
     <Auth0ProviderWithHistory>
       <Auth0UserHandler>
-        <Component {...pageProps} />
+        <IntlProvider
+          messages={messages}
+          locale={locale}
+          defaultLocale={defaultLocale}
+        >
+          <Component {...pageProps} />
+        </IntlProvider>
       </Auth0UserHandler>
     </Auth0ProviderWithHistory>
   );

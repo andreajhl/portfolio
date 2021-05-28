@@ -1,0 +1,7 @@
+import styled from "styled-components";
+
+export const Card = styled.div`
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 14px;
+`;

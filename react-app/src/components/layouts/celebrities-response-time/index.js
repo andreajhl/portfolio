@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 const getTurnAroundText = (turnAroundTime) => {
   if (turnAroundTime < 1) {
@@ -17,16 +18,21 @@ const CelebritiesResponseTime = ({
 }) => {
   return (
     <span className="CelebritiesResponseTime">
-      Respuesta promedio:{" "}
+      <FormattedMessage defaultMessage="Respuesta promedio:" description="" />{" "}
       <br
         className={`CelebritiesResponseTime__line-break ${
           availableForFlashDeliveries ? "isAvailableForFlashDeliveries" : ""
         }`}
       />{" "}
       <span>
-        {availableForFlashDeliveries
-          ? "Entrega flash (< de 24 hrs)"
-          : getTurnAroundText(parseInt(turnAroundTime))}
+        {availableForFlashDeliveries ? (
+          <FormattedMessage
+            defaultMessage="Entrega flash (< de 24 hrs)"
+            description=""
+          />
+        ) : (
+          getTurnAroundText(parseInt(turnAroundTime))
+        )}
       </span>
     </span>
   );

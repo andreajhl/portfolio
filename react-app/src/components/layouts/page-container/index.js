@@ -127,7 +127,7 @@ const PageContainer = ({
 
   return (
     <div className="PageContainer">
-      <Headroom style={{ zIndex: 100000 }} upTolerance={2.5}>
+      <Headroom style={{ zIndex: 900 }} upTolerance={2.5}>
         <Maybe it={props.showNavbar}>
           <NavbarSectionLayout
             className={hasSearchedOrFiltered ? "hidden-hero" : ""}

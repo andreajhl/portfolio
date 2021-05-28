@@ -16,6 +16,7 @@ import { Session } from "../../../state/utils/session";
 
 import * as GTM from "../../../state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
+import { FormattedMessage } from "react-intl";
 
 class CelebrityPublicContractsSectionLayout extends Component {
   constructor(props) {
@@ -96,7 +97,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
             {this.returnContractPrice() > 0 ? (
               <div className="mt-3 mb-3" onClick={this.goToCreateContract}>
                 <button className="btn btn-sm f-contract-button">
-                  Comprar Video Personalizado por{" "}
+                  <FormattedMessage defaultMessage="Comprar Video Personalizado por" />{" "}
                   <ContractPriceLayout
                     classes={"text-white font-weight-bold"}
                     price={this.returnContractPrice()}
