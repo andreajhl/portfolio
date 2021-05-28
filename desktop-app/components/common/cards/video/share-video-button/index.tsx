@@ -19,11 +19,13 @@ import {
 import copyTextToClipboard from "lib/utils/copyTextToClipboard";
 import { Dropdown } from "desktop-app/components/common/button/dropdown";
 import { CSSProperties } from "react";
+import getWindow from "react-app/src/utils/getWindow";
+import { getHiringPreviewPath } from "constants/paths";
 
 type ShareVideoButtonProps = {
   backgroundColor?: CSSProperties["backgroundColor"];
   buttonClassName?: string;
-  link: string;
+  contractReference: string;
   previewMode?: boolean;
 };
 
@@ -50,27 +52,30 @@ const toMenuItem = ({ id, to, icon, label }) => (
 function ShareVideoButton({
   backgroundColor = "white",
   buttonClassName = "",
-  link,
+  contractReference,
   previewMode = false,
 }: ShareVideoButtonProps) {
-  // TODO DEFINIR TEXTOS
+  const link = `${getWindow().location.origin}${getHiringPreviewPath(
+    contractReference
+  )}`;
+
+  const message = `¡Hola! Mira el regalo que he hecho a través de Famosos.com ${link}`;
+
   const socialMedias: MenuItemType[] = [
     {
       id: "mail",
       icon: <MailIcon />,
       label: "Compartir por e-mail",
       to: getMailShareLink(
-        "Me gustaría contarte sobre la plataforma Famosos",
-        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`
+        "Me gustaría compartirte este video de Famosos.com",
+        message
       ),
     },
     {
       id: "whatsapp",
       icon: <WhatsappIcon />,
       label: "Compartir por Whatsapp",
-      to: getWhatsappSharingLink(
-        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`
-      ),
+      to: getWhatsappSharingLink(message),
     },
     {
       id: "facebook",
@@ -82,11 +87,7 @@ function ShareVideoButton({
       id: "twitter",
       icon: <TwitterIcon />,
       label: "Compartir por Twitter",
-      to: getTwitterSharingLink(
-        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`,
-        link,
-        "contratafamosos"
-      ),
+      to: getTwitterSharingLink(message, link, "contratafamosos"),
     },
   ];
 

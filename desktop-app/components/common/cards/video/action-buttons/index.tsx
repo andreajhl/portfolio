@@ -8,12 +8,14 @@ type VideoActionButtonsProps = {
   videoURL: string;
   actionButtonsBackgroundColor?: CSSProperties["backgroundColor"];
   previewMode?: boolean;
+  contractReference: string;
 };
 
 function VideoActionButtons({
   videoURL,
   actionButtonsBackgroundColor,
   previewMode = false,
+  contractReference,
 }: VideoActionButtonsProps) {
   return (
     <div className={styles.VideoActionButtonsWrapper}>
@@ -28,7 +30,7 @@ function VideoActionButtons({
         <ShareVideoButton
           previewMode={previewMode}
           backgroundColor={actionButtonsBackgroundColor}
-          link={videoURL}
+          contractReference={contractReference}
         />
       </div>
       <div>
