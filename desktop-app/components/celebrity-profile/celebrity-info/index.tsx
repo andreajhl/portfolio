@@ -34,7 +34,7 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
             triggerElement: (
               <span className={styles.CelebrityInfoReviews}>
                 <i className="fa fa-star text-warning mr-2" />
-                4.5
+                {Number(celebrity.starsAverage || 1).toFixed(1)}
               </span>
             ),
           }}

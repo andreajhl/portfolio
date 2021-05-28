@@ -21,4 +21,5 @@ export type celebrityType = {
   contractTypes?: any[];
   countryId?: number;
   status?: number;
+  starsAverage?: number;
 };
