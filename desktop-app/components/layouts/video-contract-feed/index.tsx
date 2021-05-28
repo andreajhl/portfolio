@@ -5,9 +5,8 @@ import classes from "classnames";
 import styles from "./styles.module.scss";
 import { CSSProperties } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { CLIENT_HIRINGS } from "constants/paths";
-import { Link } from "desktop-app/components/common/routing/link";
 import { HiringReviewSection } from "../../common/widgets/hiring-review-section";
+import { GoToContractDetailsButton } from "desktop-app/components/common/button/go-to-contract-details-button";
 
 type VideoContractFeedProps = {
   className?: string;
@@ -52,16 +51,9 @@ function VideoContractFeed({
             previewMode={previewMode}
           />
           <Maybe it={asContractOwner && !previewMode}>
-            <Link
-              href={CLIENT_HIRINGS}
+            <GoToContractDetailsButton
               className={styles.GoToContractDetailsLink}
-            >
-              <button
-                className={`btn btn-tertiary ${styles.GoToContractDetailsButton}`}
-              >
-                Ver detalles de video
-              </button>
-            </Link>
+            />
           </Maybe>
         </div>
       </div>
