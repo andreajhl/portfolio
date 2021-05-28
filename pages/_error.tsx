@@ -3,9 +3,20 @@ import { PageContainer } from "react-app/src/components/layouts/page-container";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
 import NextErrorComponent from "next/error";
 import * as Sentry from "@sentry/nextjs";
-import { NextPageContext } from "next";
+import { NextPage, NextPageContext } from "next";
+import debug from "react-app/src/utils/debug";
 
-const CustomError = ({ statusCode, hasGetInitialPropsRun, err }) => {
+type ErrorPageProps = {
+  err?: unknown;
+  hasGetInitialPropsRun?: boolean;
+  statusCode: number;
+};
+
+const CustomError: NextPage<ErrorPageProps> = ({
+  err,
+  hasGetInitialPropsRun,
+  statusCode
+}) => {
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of
     // https://github.com/vercel/next.js/issues/8592. As a workaround, we pass
@@ -41,17 +52,15 @@ const CustomError = ({ statusCode, hasGetInitialPropsRun, err }) => {
   );
 };
 
-CustomError.getInitialProps = async ({
-  res,
-  err,
-  asPath,
-  ...props
-}: NextPageContext) => {
+CustomError.getInitialProps = async ({ res, err, asPath }: NextPageContext) => {
   const errorInitialProps = await NextErrorComponent.getInitialProps({
     res,
-    err,
-    ...props
-  });
+    err
+  } as NextPageContext);
+
+  // Workaround for https://github.com/vercel/next.js/issues/8592, mark when
+  // getInitialProps has run
+  (errorInitialProps as ErrorPageProps).hasGetInitialPropsRun = true;
 
   // Running on the server, the response object (`res`) is available.
   //
@@ -66,11 +75,13 @@ CustomError.getInitialProps = async ({
   //    Boundary. Read more about what types of exceptions are caught by Error
   //    Boundaries: https://reactjs.org/docs/error-boundaries.html
 
+  if (res?.statusCode === 404) {
+    // Opinionated: do not record an exception in Sentry for 404
+    return { statusCode: 404 };
+  }
+
   if (err) {
     Sentry.captureException(err);
-
-    // Flushing before returning is necessary if deploying to Vercel, see
-    // https://vercel.com/docs/platform/limits#streaming-responses
     await Sentry.flush(2000);
 
     return errorInitialProps;
@@ -82,7 +93,11 @@ CustomError.getInitialProps = async ({
   Sentry.captureException(
     new Error(`_error.js getInitialProps missing data at path: ${asPath}`)
   );
-  await Sentry.flush(2000);
+  try {
+    await Sentry.flush(2000);
+  } catch (error) {
+    debug("Sentry.flush failed to be called:", error);
+  }
 
   return errorInitialProps;
 };
