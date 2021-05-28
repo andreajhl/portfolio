@@ -1,69 +1,31 @@
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
-import useForm from "lib/hooks/useForm";
 import StarRatingDisplay from "desktop-app/components/common/star-rating/display";
 import classes from "classnames";
 import WarningMessage from "../../common/warning-message";
 import styles from "./styles.module.scss";
-import { saveClientContractReview } from "react-app/src/state/ducks/contracts/actions";
-import { useEffect, useState } from "react";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
+import useReviewManager from "lib/hooks/useReviewManager";
 
 type ContractReviewCardProps = {
   contractData: MyHiringsContract;
 };
 
-const initialValues = {
-  review: "",
-  stars: 3,
-};
-
-const validations = {
-  review(value: string) {
-    if (value === "") return "Debes escribir un comentario";
-  },
-};
-
-const additionalValueFromComponent = 1;
-
 function ContractReviewCard({ contractData }: ContractReviewCardProps) {
-  const [status, setStatus] = useState<"idle" | "loading" | "completed">(
-    "idle"
-  );
-  const [isUpdatingReview, setIsUpdatingReview] = useState(
-    contractData.review !== ""
-  );
-
-  const { values, onChangeField, setFieldValue, submitForm, errors } = useForm<
-    typeof initialValues
-  >({
-    initialValues: {
+  const {
+    status,
+    values,
+    onChangeField,
+    setFieldValue,
+    submitForm,
+    errors,
+    isUpdatingReview,
+  } = useReviewManager({
+    contractReference: contractData.reference,
+    initialReviewValues: {
       review: contractData.review,
       stars: contractData.stars || 3,
     },
-    validations,
-    async onSubmit(reviewData) {
-      if (status !== "idle") return;
-      setStatus("loading");
-      try {
-        const response = await saveClientContractReview(
-          contractData.reference,
-          {
-            ...reviewData,
-            stars: reviewData.stars - additionalValueFromComponent,
-          }
-        );
-        if (response.status === "OK") {
-          setStatus("completed");
-          setIsUpdatingReview(true);
-        }
-      } catch (error) {}
-    },
   });
-
-  useEffect(() => {
-    if (status !== "completed") return;
-    setTimeout(() => setStatus("idle"), 2000);
-  }, [status]);
 
   return (
     <div className={styles.ContractReviewCard}>

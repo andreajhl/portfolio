@@ -1,62 +1,23 @@
-import MyHiringsContract from "desktop-app/types/myHiringsContract";
-import useForm from "lib/hooks/useForm";
 import StarRatingDisplay from "desktop-app/components/common/star-rating/display";
 import classes from "classnames";
 import WarningMessage from "../../common/warning-message";
 import styles from "./styles.module.scss";
-import { saveClientContractReview } from "react-app/src/state/ducks/contracts/actions";
-import { useEffect, useState } from "react";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
+import useReviewManager from "../../../../lib/hooks/useReviewManager";
 
 type ContractReviewCardProps = {
   contract_reference: string;
 };
 
-const initialValues = {
-  review: "",
-  stars: 3,
-};
-
-const validations = {
-  review(value: string) {
-    if (value === "") return "Debes escribir un comentario";
-  },
-};
-
-const additionalValueFromComponent = 1;
-
 function ContractReviewVideo({ contract_reference }: ContractReviewCardProps) {
-  const [status, setStatus] = useState<"idle" | "loading" | "completed">(
-    "idle"
-  );
-
-  const { values, onChangeField, setFieldValue, submitForm, errors } = useForm<
-    typeof initialValues
-  >({
-    initialValues: {
-      review: "",
-      stars: 3,
-    },
-    validations,
-    async onSubmit(reviewData) {
-      if (status !== "idle") return;
-      setStatus("loading");
-      try {
-        const response = await saveClientContractReview(contract_reference, {
-          ...reviewData,
-          stars: reviewData.stars - additionalValueFromComponent,
-        });
-        if (response.status === "OK") {
-          setStatus("completed");
-        }
-      } catch (error) {}
-    },
-  });
-
-  useEffect(() => {
-    if (status !== "completed") return;
-    setTimeout(() => setStatus("idle"), 2000);
-  }, [status]);
+  const {
+    status,
+    values,
+    onChangeField,
+    setFieldValue,
+    submitForm,
+    errors,
+  } = useReviewManager({ contractReference: contract_reference });
 
   return (
     <div className={styles.ContractReviewCard}>
