@@ -1,14 +1,13 @@
 import ClientContractType from "desktop-app/types/clientContract";
-import { ContractReviewVideo } from "../../client-hiring/contract-review-video-for-other-card";
 import VideoActionButtons from "../../common/cards/video/action-buttons";
 import ViewerClientVideo from "../../common/cards/viewer-client-video";
 import classes from "classnames";
 import styles from "./styles.module.scss";
-import { CommentContractSection } from "desktop-app/components/client-hiring/comment-contract-section";
 import { CSSProperties } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CLIENT_HIRINGS } from "constants/paths";
 import { Link } from "desktop-app/components/common/routing/link";
+import { HiringReviewSection } from "../../common/widgets/hiring-review-section";
 
 type VideoContractFeedProps = {
   className?: string;
@@ -41,19 +40,11 @@ function VideoContractFeed({
       </div>
       {/* TODO: agregar condicional y conectar con endpoint para saber si existe review del comprador*/}
       <div className={styles.VideoActionsWrapper}>
-        <Maybe
-          it={asContractOwner && contractData.review === ""}
-          orElse={
-            <div>
-              <CommentContractSection
-                previewMode={previewMode}
-                contract_reference={contractData.reference}
-              />
-            </div>
-          }
-        >
-          <ContractReviewVideo contract_reference={contractData.reference} />
-        </Maybe>
+        <HiringReviewSection
+          asContractOwner={asContractOwner}
+          contractData={contractData}
+          previewMode={previewMode}
+        />
         <div className={styles.ActionButtons}>
           <VideoActionButtons
             actionButtonsBackgroundColor={actionButtonsBackgroundColor}

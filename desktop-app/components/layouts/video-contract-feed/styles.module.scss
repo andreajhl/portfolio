@@ -1,20 +1,36 @@
 .VideoContractFeed {
   display: flex;
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .VideoPlayer {
   margin-right: 1.875rem;
+  @media only screen and (max-width: 767px) {
+    margin-right: 0;
+  }
 }
 
 .VideoActionsWrapper {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+
+  @media only screen and (max-width: 768px) {
+    > * {
+      display: none;
+    }
+  }
 }
 
 .ActionButtons {
   display: flex;
-  justify-content: space-between;
+  @media only screen and (max-width: 768px) {
+    justify-content: center;
+    margin-top: 28px;
+  }
 }
 
 .GoToContractDetailsLink {
