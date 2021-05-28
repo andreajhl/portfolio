@@ -16,7 +16,10 @@ function CommentsContractVideo({
   return (
     <div className={styles.CommentsContractVideoWrapper}>
       {contractComments.map((comment, index) => (
-        <div className={styles.CommentWrapper}>
+        <div
+          className={styles.CommentWrapper}
+          key={`${comment.comment}-${comment.userFullName}`}
+        >
           <img
             alt="Imagen de perfil"
             height="40px"

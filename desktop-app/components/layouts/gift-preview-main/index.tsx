@@ -5,6 +5,7 @@ import { GiftCard } from "../../common/cards/gift-card";
 import { VideoContractFeed } from "../video-contract-feed";
 import ClientContractType from "desktop-app/types/clientContract";
 import { getDefaultGiftCardContent } from "constants/hiring-preview-configuration";
+import { HiringReviewSection } from "../../common/widgets/hiring-review-section";
 
 function getDefaultHiringConfiguration({
   occasion,
@@ -53,6 +54,9 @@ function GiftPreviewMain({
               {hiringConfiguration.cardMessage}
             </GiftCard.SpecialText>
           </GiftCard>
+          <div className={styles.ReviewSectionWrapper}>
+            <HiringReviewSection contractData={contract} asContractOwner />
+          </div>
         </div>
         <VideoContractFeed
           actionButtonsBackgroundColor={
