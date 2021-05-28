@@ -40,15 +40,15 @@ const renderContractVideo = (contract) => (
   />
 );
 
-const CelebrityPublicContractsReel = ({
+function CelebrityPublicContractsReel({
   isLoading,
-  publicContracts,
+  publicContracts, // Cargados desde SSR
   listPublicContracts,
   celebrityId,
-}: CelebrityPublicContractsReelProps) => {
-  useEffect(() => {
-    listPublicContracts(celebrityId);
-  }, [celebrityId, listPublicContracts]);
+}: CelebrityPublicContractsReelProps) {
+  // useEffect(() => {
+  //   listPublicContracts(celebrityId);
+  // }, [celebrityId, listPublicContracts]);
   return (
     <Maybe it={publicContracts?.length > 0}>
       <div>
@@ -69,7 +69,7 @@ const CelebrityPublicContractsReel = ({
       </div>
     </Maybe>
   );
-};
+}
 
 // Export Class
 const _CelebrityPublicContractsReel = connect(
