@@ -6,6 +6,7 @@ import * as CarouselWithButtons from "../carousel-with-buttons";
 
 import { CelebrityShimmerCardLayout } from "../celebrity-shimmer-card";
 import * as GTM from "../../../state/utils/gtm";
+import { FormattedMessage } from "react-intl";
 import getWindow from "react-app/src/utils/getWindow";
 
 const SimilarCelebritiesCardsSectionLayout = ({
@@ -55,7 +56,7 @@ const SimilarCelebritiesCardsSectionLayout = ({
       >
         <CarouselWithButtons.Header>
           <CarouselWithButtons.Title className="text-black text-center mb-4 w-100 font-weight-bold">
-            Famosos similares
+            <FormattedMessage defaultMessage="Famosos similares" />
           </CarouselWithButtons.Title>
         </CarouselWithButtons.Header>
         <CarouselWithButtons.List>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
+import { FormattedMessage } from "react-intl";
 
 const SubscriptionCard = ({ celebrity_data }) => {
   const { celebrityAvatar, celebrityFullName, celebrityId } = celebrity_data;
@@ -32,7 +33,7 @@ const index = ({ subscriptionList }) => {
             >
               <div className="col-12 text-center">
                 <h6 className="mt-3 font-weight-bold border-bottom pb-3">
-                  Mis Suscripciones
+                  <FormattedMessage defaultMessage="Mis Suscripciones" />
                 </h6>
               </div>
               <div>

@@ -11,7 +11,41 @@ import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/
 import * as GTM from "../../../state/utils/gtm";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { withRouter } from "react-app/src/components/common/routing";
+import { useIntl, defineMessage, FormattedMessage } from "react-intl";
+import {
+  CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE,
+  COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE,
+  labelMessagesForCategoriesFilter,
+  labelMessagesForCountryCodeFilter
+} from "react-app/src/constants/messages";
 
+// LISTA DE ID CON TRADUCCIONES DISPONIBLE. CUALQUIER NUEVO ID QUE SE REGISTRE
+// EN EL BACKEND DEBE DE SER AGREGADO EN ESTA LISTA Y ADEMAS SU RESPECTIVA TRADUCCIÓN
+
+const messageForLabelButtonCategoryFilter = defineMessage({
+  description: "Label button for search CategoryFilter",
+  defaultMessage: "Categoria"
+});
+const messageForModalTitleCategoryFilter = defineMessage({
+  description: "ModalTitle for search CategoryFilter",
+  defaultMessage: "Filtrar por categoría"
+});
+const messageForSearchPlaceholderCategoryFilter = defineMessage({
+  description: "Modal Title for search CategoryFilter",
+  defaultMessage: "Buscar categoría"
+});
+const messageForLabelButtonCategoryCountry = defineMessage({
+  description: "buttonLabel search by country",
+  defaultMessage: "País"
+});
+const messageForModalTitleCategoryCountry = defineMessage({
+  description: "ModalTitle for search CategoryFilter",
+  defaultMessage: "Filtrar por país"
+});
+const messageForSearchPlaceholderCategoryCountry = defineMessage({
+  description: "Modal Title for search CategoryFilter",
+  defaultMessage: "Buscar país"
+});
 const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
   return {
     countries: countries.countriesReducer.data.results,
@@ -46,6 +80,8 @@ const FiltersSectionLayout = ({
   location,
   router
 }) => {
+  const intl = useIntl();
+
   const [params, setParams] = useState(initialState.params);
   const queryParams = queryStringToJSON(location.search);
 
@@ -111,7 +147,9 @@ const FiltersSectionLayout = ({
   return (
     <section className={`FiltersSectionLayout ${className}`}>
       <div className="filters-section__container container pt-1">
-        <h2 className="filters-section__title ml-2">Filtrar por:</h2>
+        <h2 className="filters-section__title ml-2">
+          <FormattedMessage defaultMessage="Filtrar por:" />
+        </h2>
         <ul className="filters-section__filters-list p-0">
           {showCleanFiltersButton ? (
             <li className="filters-section__filters-item d-flex align-items-center">
@@ -126,26 +164,52 @@ const FiltersSectionLayout = ({
           ) : null}
           <li className="filters-section__filters-item">
             <CelebritiesFilter
-              buttonLabel="País"
-              modalTitle="Filtrar por país"
-              searchPlaceholder="Buscar país"
+              buttonLabel={intl.formatMessage(
+                messageForLabelButtonCategoryCountry
+              )}
+              modalTitle={intl.formatMessage(
+                messageForModalTitleCategoryCountry
+              )}
+              searchPlaceholder={intl.formatMessage(
+                messageForSearchPlaceholderCategoryCountry
+              )}
               activeItems={activeCountryItems}
               onApplyFilters={setFilterParam("country_id")}
               options={countries.map((country) => ({
-                label: removeParenthesis(country.name),
+                label: COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE.includes(
+                  country.countryCode
+                )
+                  ? removeParenthesis(
+                      intl.formatMessage(
+                        labelMessagesForCountryCodeFilter[country.countryCode]
+                      )
+                    )
+                  : removeParenthesis(country.name),
                 value: country.id
               }))}
             />
           </li>
           <li className="filters-section__filters-item">
             <CelebritiesFilter
-              buttonLabel="Categoría"
-              modalTitle="Filtrar por categoría"
-              searchPlaceholder="Buscar categoría"
+              buttonLabel={intl.formatMessage(
+                messageForLabelButtonCategoryFilter
+              )}
+              modalTitle={intl.formatMessage(
+                messageForModalTitleCategoryFilter
+              )}
+              searchPlaceholder={intl.formatMessage(
+                messageForSearchPlaceholderCategoryFilter
+              )}
               activeItems={activeCategoryItems}
               onApplyFilters={setFilterParam("category_id")}
               options={celebrityCategories.map((category) => ({
-                label: category.title,
+                label: CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
+                  category.title
+                )
+                  ? intl.formatMessage(
+                      labelMessagesForCategoriesFilter[category.title]
+                    )
+                  : category.title,
                 value: category.id
               }))}
             />

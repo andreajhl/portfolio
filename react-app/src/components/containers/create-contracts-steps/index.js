@@ -1,10 +1,11 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 const CreateContractStepsLayout = () => {
   return (
     <section className="CreateContractsStepsLayout py-4">
       <h2 className="title mb-4 mb-md-3">
-        ¿Que sucede después de que enviás la solicitud a un Famoso?
+        <FormattedMessage defaultMessage="¿Que sucede después de que enviás la solicitud a un Famoso?" />
       </h2>
       <div className="container-CreateContractsStepsLayout mb-0">
         <ul className="CreateContractsStepsLayout__steps-list mb-0">
@@ -14,7 +15,10 @@ const CreateContractStepsLayout = () => {
             </div>
             <div className="CreateContractsStepsLayout__step-text">
               <p>
-                <span>Tu solicitud será completada en menos 7 días</span>.
+                <span>
+                  <FormattedMessage defaultMessage="Tu solicitud será completada en menos 7 días" />
+                </span>
+                .
               </p>
             </div>
           </li>
@@ -29,7 +33,9 @@ const CreateContractStepsLayout = () => {
             </div>
             <div className="CreateContractsStepsLayout__step-text">
               <p>
-                <span>La confirmación de tu compra será enviada a tu mail</span>
+                <span>
+                  <FormattedMessage defaultMessage="La confirmación de tu compra será enviada a tu mail" />
+                </span>
               </p>
             </div>
           </li>
@@ -45,8 +51,10 @@ const CreateContractStepsLayout = () => {
             <div className="CreateContractsStepsLayout__step-text">
               <p>
                 <span>
-                  Te notificaremos cuando tu video ya esté grabado y disponible
-                  para verlo y compartilo
+                  <FormattedMessage
+                    defaultMessage="Te notificaremos cuando tu video ya esté grabado y disponible
+                  para verlo y compartilo"
+                  />
                 </span>
               </p>
             </div>
@@ -60,8 +68,10 @@ const CreateContractStepsLayout = () => {
         <div className="CreateContractsStepsLayout__safe-money-text">
           <p>
             <span>
-              Si por alguna razón tu video no pudo ser grabado, te
-              reembolsaremos tu dinero en un plazo de 5-7 días aproximadamente
+              <FormattedMessage
+                defaultMessage="Si por alguna razón tu video no pudo ser grabado, te
+              reembolsaremos tu dinero en un plazo de 5-7 días aproximadamente"
+              />
             </span>
           </p>
         </div>

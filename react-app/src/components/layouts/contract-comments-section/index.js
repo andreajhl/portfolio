@@ -6,6 +6,7 @@ import { contractOperations } from "../../../state/ducks/contracts";
 import { ContractCommentCreatorLayout } from "../contract-comment-creator";
 import { SessionRequiredToCommentLayout } from "../session-required-to-comment";
 import { Session } from "../../../state/utils/session";
+import { FormattedMessage } from "react-intl";
 
 class ContractCommentSectionLayout extends Component {
   constructor(props) {
@@ -94,7 +95,11 @@ class ContractCommentSectionLayout extends Component {
         );
       });
     } else {
-      return <h6>Sé el primero en agregar un comentario.</h6>;
+      return (
+        <h6>
+          <FormattedMessage defaultMessage="Sé el primero en agregar un comentario." />
+        </h6>
+      );
     }
   }
 

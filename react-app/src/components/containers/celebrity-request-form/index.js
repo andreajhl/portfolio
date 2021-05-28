@@ -6,6 +6,19 @@ import { connect } from "react-redux";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { withRouter } from "react-app/src/components/common/routing";
+import { FormattedMessage, injectIntl, defineMessages } from "react-intl";
+
+const messages = defineMessages({
+  placeholderFullNameInput: { defaultMessage: "Escribe tu nombre" },
+  placeholderSubdomainInput: {
+    defaultMessage: "Escribe tu Subdominio Ej: /andresito"
+  },
+  placeholderEmailInput: { defaultMessage: "Escribe tu correo electrónico" },
+  placeholderReferralInput: { defaultMessage: "Codigo de referido" },
+  placeholderSocialNetworksInput: {
+    defaultMessage: "¿Como te encontramos? Ej: andresito"
+  }
+});
 
 class CelebrityRequestForm extends Component {
   constructor(props) {
@@ -125,10 +138,10 @@ class CelebrityRequestForm extends Component {
     return (
       <>
         <h4 className="font-weight-bold text-center mb-4">
-          ¡Aplica y Reserva tu Subdominio Ahora!
+          <FormattedMessage defaultMessage="¡Aplica y Reserva tu Subdominio Ahora!" />
         </h4>
         <label className="">
-          Nombre
+          <FormattedMessage defaultMessage="Nombre" />
           <small className="text-danger ml-1">*</small>
         </label>
         <input
@@ -137,13 +150,15 @@ class CelebrityRequestForm extends Component {
             "form-control mb-3" +
             (this.state.errors.fullNameError ? " border-danger " : "")
           }
-          placeholder="Escribe tu nombre"
+          placeholder={this.props.intl.formatMessage(
+            messages.placeholderFullNameInput
+          )}
           name="fullName"
           onChange={this.handleInput}
           value={this.state.data.fullName}
         />
         <label className="">
-          Subdominio
+          <FormattedMessage defaultMessage="Subdominio" />
           <small className="text-danger ml-1">*</small>
         </label>
         <div className="form-horizontal">
@@ -159,7 +174,9 @@ class CelebrityRequestForm extends Component {
               "form-control mb-3" +
               (this.state.errors.subDomainError ? " border-danger " : "")
             }
-            placeholder="Escribe tu Subdominio Ej: /andresito"
+            placeholder={this.props.intl.formatMessage(
+              messages.placeholderSubdomainInput
+            )}
             name="subDomain"
             onChange={this.handleInput}
             value={this.state.data.subDomain}
@@ -167,7 +184,7 @@ class CelebrityRequestForm extends Component {
           />
         </div>
         <label className="">
-          Correo electrónico
+          <FormattedMessage defaultMessage="Correo electrónico" />
           <small className="text-danger ml-1">*</small>
         </label>
         <input
@@ -176,12 +193,16 @@ class CelebrityRequestForm extends Component {
             "form-control mb-3" +
             (this.state.errors.emailError ? " border-danger " : "")
           }
-          placeholder="Escribe tu correo electrónico"
+          placeholder={this.props.intl.formatMessage(
+            messages.placeholderEmailInput
+          )}
           name="email"
           onChange={this.handleInput}
           value={this.state.data.email}
         />
-        <label className="">Télefono de contacto</label>
+        <label className="">
+          <FormattedMessage defaultMessage="Télefono de contacto" />
+        </label>
         <PhoneInput
           enableSearch={true}
           country={this.state.data.countryCode}
@@ -199,7 +220,7 @@ class CelebrityRequestForm extends Component {
           onChange={this.onCellphoneChange}
         />
         <label className="">
-          Red Social
+          <FormattedMessage defaultMessage="Red Social" />
           <small className="text-danger ml-1">*</small>
         </label>
         <div className="form-horizontal">
@@ -221,7 +242,12 @@ class CelebrityRequestForm extends Component {
             <option>Twitter</option>
             <option>Youtube</option>
             <option>TikTok</option>
-            <option>Otra</option>
+            <option>
+              <FormattedMessage
+                defaultMessage="Otra"
+                description="Otra red social"
+              />
+            </option>
           </select>
           <input
             type="text"
@@ -231,7 +257,9 @@ class CelebrityRequestForm extends Component {
                 ? " border-danger "
                 : "")
             }
-            placeholder="¿Como te encontramos? Ej: andresito"
+            placeholder={this.props.intl.formatMessage(
+              messages.placeholderSocialNetworksInput
+            )}
             name="socialNetworkUsername"
             onChange={this.handleInput}
             value={this.state.data.socialNetworkUsername}
@@ -240,7 +268,9 @@ class CelebrityRequestForm extends Component {
         </div>
         {this.state.data.referral && (
           <>
-            <label className="mt-3">Referido por:</label>
+            <label className="mt-3">
+              <FormattedMessage defaultMessage="Referido por:" />
+            </label>
             <input
               disabled={true}
               type="text"
@@ -248,7 +278,9 @@ class CelebrityRequestForm extends Component {
                 "form-control" +
                 (this.state.errors.referralError ? " border-danger " : "")
               }
-              placeholder="Código de referido"
+              placeholder={this.props.intl.formatMessage(
+                messages.placeholderReferralInput
+              )}
               name="referral"
               onChange={this.handleInput}
               value={this.state.data.referral}
@@ -272,7 +304,9 @@ class CelebrityRequestForm extends Component {
               aria-hidden="true"
             />
           ) : (
-            <span className={"text-white"}>Continuar</span>
+            <span className={"text-white"}>
+              <FormattedMessage defaultMessage="Continuar" />
+            </span>
           )}
         </button>
       </>
@@ -283,18 +317,20 @@ class CelebrityRequestForm extends Component {
     return (
       <>
         <h4 className="font-weight-bold text-center mb-4">
-          ¡Tu solicitud ha sido enviada!
+          <FormattedMessage defaultMessage=" ¡Tu solicitud ha sido enviada!" />
         </h4>
         <p className="mt-4">
-          Nuestro equipo analizará tu solicitud y se pondra en contacto contigo
-          muy pronto.
+          <FormattedMessage
+            defaultMessage="Nuestro equipo analizará tu solicitud y se pondra en contacto contigo
+          muy pronto."
+          />
         </p>
         <div className={"text-center"}>
           <img src={"/assets/img/review.svg"} alt={"img"} width="300px" />
         </div>
         <div className={"text-center mt-4"}>
           <button className="btn btn-primary mt-4 mb-4" onClick={this.close}>
-            Cerrar
+            <FormattedMessage defaultMessage="Cerrar" />
           </button>
         </div>
       </>
@@ -305,25 +341,32 @@ class CelebrityRequestForm extends Component {
     return (
       <>
         <h4 className="font-weight-bold text-center mb-4">
-          ¡Tu solicitud ha sido enviada!
+          <FormattedMessage defaultMessage="¡Tu solicitud ha sido enviada!" />
         </h4>
         <p className="mt-4">
-          Nuestro equipo analizará tu solicitud y se pondrá en contacto contigo
-          muy pronto.
+          <FormattedMessage
+            defaultMessage="Nuestro equipo analizará tu solicitud y se pondrá en contacto contigo
+          muy pronto."
+          />
         </p>
         <p className="text-justify">
-          <span className="font-weight-bold mr-2">Nota:</span> Si utilizas el
+          <span className="font-weight-bold mr-2">
+            <FormattedMessage defaultMessage="Nota:" />
+          </span>{" "}
+          <FormattedMessage
+            defaultMessage="Si utilizas el
           link de referido de uno de los Famosos registrados en la plataforma
           tendrás más oportunidades de ser aprobado, este link es único por
           cuenta y está disponible en la sección de Mi Perfil de la aplicación
-          de los Famosos.
+          de los Famosos."
+          />
         </p>
         <div className={"text-center"}>
           <img src={"/assets/img/review.svg"} alt={"img"} width="300px" />
         </div>
         <div className={"text-center mt-4"}>
           <button className="btn btn-primary mt-4 mb-4" onClick={this.close}>
-            Cerrar
+            <FormattedMessage defaultMessage="Cerrar" />
           </button>
         </div>
       </>
@@ -384,6 +427,6 @@ const mapDispatchToProps = {
 const _CelebrityRequestForm = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(CelebrityRequestForm));
+)(withRouter(injectIntl(CelebrityRequestForm)));
 
 export { _CelebrityRequestForm as CelebrityRequestForm };

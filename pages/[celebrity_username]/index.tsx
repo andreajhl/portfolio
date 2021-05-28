@@ -18,43 +18,62 @@ import {
 } from "../../constants/dynamicAds";
 import { useEffect } from "react";
 import waitFor from "react-app/src/utils/waitFor";
+import debug from "react-app/src/utils/debug";
+import { defineMessages, useIntl } from "react-intl";
 
+const headData = defineMessages({
+  titleCelebrityProfile: {
+    defaultMessage: "Famosos.com - {celebrity_username}"
+  },
+  descriptionCelebrityProfile: {
+    defaultMessage:
+      "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
+  }
+});
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
-    await get(celebrity_username, true)(store.dispatch);
+    try {
+      await get(celebrity_username, true)(store.dispatch);
+      const { celebrities } = store.getState();
 
-    const { celebrities } = store.getState();
-    const celebrity = celebrities.getCelebrityReducer.data;
-    if (!celebrity.id) {
+      const celebrity = celebrities.getCelebrityReducer.data;
+      if (!celebrity.id) {
+        return {
+          redirect: {
+            destination: CELEBRITY_PROFILE_ERROR.replace(
+              ":celebrity_username",
+              String(celebrity_username)
+            ),
+            permanent: false
+          }
+        };
+      }
+      store.dispatch(
+        setCelebrityProfileVersion(getProfileVersionDependingOnTime())
+      );
+      await listPublicContracts(celebrity.id, { currentPage: 1 })(
+        store.dispatch
+      );
+      await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
+
       return {
-        redirect: {
-          destination: CELEBRITY_PROFILE_ERROR.replace(
-            ":celebrity_username",
-            String(celebrity_username)
-          ),
-          permanent: false
+        props: {
+          celebrity
         }
       };
+    } catch (e) {
+      debug("ERROR getServerSideProps", e);
+      return {
+        props: {}
+      };
     }
-
-    store.dispatch(
-      setCelebrityProfileVersion(getProfileVersionDependingOnTime())
-    );
-
-    await listPublicContracts(celebrity.id, { currentPage: 1 })(store.dispatch);
-    await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
-
-    return {
-      props: {
-        celebrity
-      }
-    };
   }
 );
 
 const CelebrityProfile = ({ celebrity }) => {
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
   const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
+  const { formatMessage } = useIntl();
 
   useEffect(() => {
     async function captureProfileViewEvent() {
@@ -71,8 +90,12 @@ const CelebrityProfile = ({ celebrity }) => {
   return (
     <>
       <CustomHead
-        title={`Famosos.com - ${celebrity.fullName}`}
-        description={`Perfil oficial de ${celebrity.fullName} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.`}
+        title={formatMessage(headData.titleCelebrityProfile, {
+          celebrity_username: celebrity.fullName
+        })}
+        description={formatMessage(headData.descriptionCelebrityProfile, {
+          celebrity_username: celebrity.fullName
+        })}
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
       />

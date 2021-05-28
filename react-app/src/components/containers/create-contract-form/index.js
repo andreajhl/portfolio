@@ -10,7 +10,32 @@ import { occasionsData } from "../../../constants/options";
 import { getToken } from "react-app/src/state/ducks/session/actions";
 import "react-phone-input-2/lib/style.css";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
+import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 import isMobilePhone from "react-app/src/state/utils/isMobilePhone";
+import { withRouter } from "next/router";
+import { secure_payment_img } from "constants/external_assets_by_lang";
+
+const intlMessages = defineMessages({
+  instructionsPlaceholderForOther: {
+    defaultMessage:
+      "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
+  },
+  instructionsPlaceholderForMe: {
+    defaultMessage: "Mis instrucciones son"
+  },
+  deliveryContactPlaceholder: {
+    defaultMessage: "correo@dominio.com"
+  },
+  deliveryContactCellphone: {
+    defaultMessage: "Buscar país"
+  },
+  celebrityNameFallback: {
+    defaultMessage: "Famoso!"
+  },
+  deliveryToFallback: {
+    defaultMessage: "[PARA]"
+  }
+});
 
 class CreateContractForm extends Component {
   constructor(props) {
@@ -27,7 +52,8 @@ class CreateContractForm extends Component {
         instructions: "",
         isPublic: true,
         occasion: "OTHER",
-        deliveryContactCellphone: ""
+        deliveryContactCellphone: "",
+        lang: this.props.router.locale
       },
       deliveryContactCellphoneCountryCode: "co"
     };
@@ -37,6 +63,7 @@ class CreateContractForm extends Component {
     this.deliveryFromInput = React.createRef();
     this.deliveryFromMaxLength = 40;
     this.deliveryToMaxLength = 40;
+    this.locale = this.props.router.locale;
   }
 
   componentDidMount() {
@@ -170,19 +197,20 @@ class CreateContractForm extends Component {
     };
 
     let textClear = text;
+    const { formatMessage } = this.props.intl;
 
     textClear = replacePlaceHolders(
       textClear,
       "PLACEHOLDER_FAMOSO_NAME",
-      this.props.celebrityFullName
-        ? `${this.props.celebrityFullName}`
-        : "Famoso!"
+      this.props.celebrityFullName ||
+        formatMessage(intlMessages.celebrityNameFallback)
     );
 
     textClear = replacePlaceHolders(
       textClear,
       "PLACEHOLDER_PARA",
-      this.state.contractData.deliveryTo || "[PARA]"
+      this.state.contractData.deliveryTo ||
+        formatMessage(intlMessages.deliveryToFallback)
     );
 
     return textClear;
@@ -209,7 +237,7 @@ class CreateContractForm extends Component {
   handleContractTypeChange = (value) => {
     const updatedContractData = { ...this.state.contractData };
     const oldMessage = this.replacePlaceHolder(
-      occasionsData[this.state.contractData.occasion]?.messages[
+      occasionsData[this.locale][this.state.contractData.occasion]?.messages[
         this.state.contractData.contractType - 1
       ]
     );
@@ -218,7 +246,9 @@ class CreateContractForm extends Component {
       oldMessage === this.state.contractData.instructions
     ) {
       const newMessage = this.replacePlaceHolder(
-        occasionsData[this.state.contractData.occasion].messages[value - 1]
+        occasionsData[this.locale][this.state.contractData.occasion].messages[
+          value - 1
+        ]
       );
       updatedContractData.instructions = newMessage;
     }
@@ -244,7 +274,7 @@ class CreateContractForm extends Component {
       if (this.deliveryFromInput.current && shouldFocus) {
         this.deliveryFromInput.current.focus();
       }
-      return "Campo requerido";
+      return <FormattedMessage defaultMessage="Campo requerido" />;
     }
     if (
       this.state.contractData.deliveryFrom.length > this.deliveryFromMaxLength
@@ -252,7 +282,14 @@ class CreateContractForm extends Component {
       if (this.deliveryFromInput.current && shouldFocus) {
         this.deliveryFromInput.current.focus();
       }
-      return `Este campo excede el limite de ${this.deliveryFromMaxLength} caracteres`;
+      return (
+        <FormattedMessage
+          defaultMessage="Este campo excede el limite de {deliveryFromMaxLength} caracteres"
+          values={{
+            deliveryFromMaxLength: this.deliveryFromMaxLength
+          }}
+        />
+      );
     }
     return null;
   };
@@ -262,20 +299,27 @@ class CreateContractForm extends Component {
       if (this.deliveryToInput.current && shouldFocus) {
         this.deliveryToInput.current.focus();
       }
-      return "Campo requerido";
+      return <FormattedMessage defaultMessage="Campo requerido" />;
     }
     if (this.state.contractData.deliveryTo.length > this.deliveryToMaxLength) {
       if (this.deliveryToInput.current && shouldFocus) {
         this.deliveryToInput.current.focus();
       }
-      return `Este campo excede el limite de ${this.deliveryToMaxLength} caracteres`;
+      return (
+        <FormattedMessage
+          defaultMessage="Este campo excede el limite de {deliveryToMaxLength} caracteres"
+          values={{
+            deliveryToMaxLength: this.deliveryToMaxLength
+          }}
+        />
+      );
     }
     return null;
   };
 
   instructionsValidator = () => {
     if (!this.state.contractData.instructions.length) {
-      return "Campo requerido";
+      return <FormattedMessage defaultMessage="Campo requerido" />;
     }
     return null;
   };
@@ -293,13 +337,13 @@ class CreateContractForm extends Component {
 
   deliveryContactValidator = () => {
     if (!this.state.contractData.deliveryContact.length) {
-      return "Campo requerido";
+      return <FormattedMessage defaultMessage="Campo requerido" />;
     } else if (
       !this.state.contractData.deliveryContact.match(
         /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
       )
     ) {
-      return "Este correo no es válido";
+      return <FormattedMessage defaultMessage="Este correo no es válido" />;
     }
     return null;
   };
@@ -326,7 +370,7 @@ class CreateContractForm extends Component {
     return this.state.instructionsIsTouched
       ? this.state.contractData.instructions
       : this.replacePlaceHolder(
-          occasionsData[occasionIdentifier].messages[
+          occasionsData[this.props.router.locale][occasionIdentifier].messages[
             this.state.contractData.contractType - 1
           ]
         );
@@ -351,6 +395,7 @@ class CreateContractForm extends Component {
   };
 
   render() {
+    const { formatMessage } = this.props.intl;
     const contractData = { ...this.state.contractData };
     return (
       <div className="CreateContractForm">
@@ -358,16 +403,28 @@ class CreateContractForm extends Component {
           {/* CELEBRITY DETAILS */}
           <div className="celebrity-details">
             <div className={"celebrity-avatar"}>
-              <img src={this.props.celebrityAvatar} alt={"avatar"} />
+              <img
+                src={
+                  this.props.celebrityAvatar || `/assets/img/avatar-blank.png`
+                }
+                alt={"avatar"}
+              />
             </div>
             <h5 className="celebrity-name">
-              Video Personalizado de {this.props.celebrityFullName}
+              <FormattedMessage
+                defaultMessage=" Video Personalizado de {celebrityFullName}"
+                values={{
+                  celebrityFullName: this.props.celebrityFullName
+                }}
+              />
             </h5>
           </div>
 
           {/* DELIVERY TO OPTIONS */}
           <div className="mt-3">
-            <h6 className="subtitle">¿Para quién es este video?</h6>
+            <h6 className="subtitle">
+              <FormattedMessage defaultMessage="¿Para quién es este video?" />
+            </h6>
             <div
               className={"delivery-option"}
               onClick={(e) => {
@@ -379,7 +436,9 @@ class CreateContractForm extends Component {
                 <i className="far fa-grin-stars" />
               </div>
               <div className={"delivery-option-text"}>
-                <span>Para mi</span>
+                <span>
+                  <FormattedMessage defaultMessage="Para mi" />
+                </span>
               </div>
               <div className="delivery-option-control">
                 <div
@@ -403,7 +462,9 @@ class CreateContractForm extends Component {
                 <i className="fas fa-gift" />
               </div>
               <div className={"delivery-option-text"}>
-                <span>Para un amigo o familiar</span>
+                <span>
+                  <FormattedMessage defaultMessage="Para un amigo o familiar" />
+                </span>
               </div>
               <div className="delivery-option-control">
                 <div
@@ -417,20 +478,28 @@ class CreateContractForm extends Component {
               </div>
             </div>
             <div className="business-option">
-              Si quieres un video comercial para tu marca haz click{" "}
-              <span
-                className={"text-primary"}
-                onClick={this.sendBusinessRequestGTMEvent}
-              >
-                aquí.
-              </span>
+              <FormattedMessage
+                defaultMessage="Si quieres un video comercial para tu marca haz click <span> aquí.</span>"
+                values={{
+                  span: (chunk) => (
+                    <span
+                      className={"text-primary"}
+                      onClick={this.sendBusinessRequestGTMEvent}
+                    >
+                      {chunk}
+                    </span>
+                  )
+                }}
+              />
             </div>
           </div>
           <br />
           {/* FORM INPUTS */}
           <div className={"form-custom-horizontal-group"}>
             <div className={"form-custom-label"}>
-              <label>Para:</label>
+              <label>
+                <FormattedMessage defaultMessage="Para:" />
+              </label>
             </div>
             <div className={"form-custom-input"}>
               <input
@@ -459,7 +528,9 @@ class CreateContractForm extends Component {
             }
           >
             <div className={"form-custom-label"}>
-              <label>De:</label>
+              <label>
+                <FormattedMessage defaultMessage="De:" />
+              </label>
             </div>
             <div className={"form-custom-input"}>
               <input
@@ -486,15 +557,22 @@ class CreateContractForm extends Component {
             contractType={this.state.contractData.contractType - 1}
             currentChoise={this.state.contractData.occasion}
             clicked={this.changeOccasionOption}
-          ></OcassionsOptions>
+          />
           <div className={"form-custom-vertical-group"}>
-            <label>¿Qué quieres que diga {this.props.celebrityFullName}?</label>
+            <label>
+              <FormattedMessage
+                defaultMessage="¿Qué quieres que diga {celebrityFullName}?"
+                values={{
+                  celebrityFullName: this.props.celebrityFullName
+                }}
+              />
+            </label>
             <textarea
               rows={5}
               placeholder={
                 contractData.contractType === 2
-                  ? "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
-                  : "Mis instrucciones son"
+                  ? formatMessage(intlMessages.instructionsPlaceholderForOther)
+                  : formatMessage(intlMessages.instructionsPlaceholderForMe)
               }
               value={contractData.instructions}
               name={"instructions"}
@@ -508,7 +586,12 @@ class CreateContractForm extends Component {
                   : " text-muted ")
               }
             >
-              {contractData.instructions.length}/400 caracteres permitidos
+              <FormattedMessage
+                defaultMessage="{instructionsLength}/400 caracteres permitidos"
+                values={{
+                  instructionsLength: contractData.instructions.length
+                }}
+              />
             </div>
             <span
               className={
@@ -520,10 +603,14 @@ class CreateContractForm extends Component {
             </span>
           </div>
           <div className={"form-custom-vertical-group"}>
-            <label>Correo eléctronico de notificación</label>
+            <label>
+              <FormattedMessage defaultMessage="Correo eléctronico de notificación" />
+            </label>
             <input
               type={"email"}
-              placeholder={"correo@dominio.com"}
+              placeholder={formatMessage(
+                intlMessages.deliveryContactPlaceholder
+              )}
               value={contractData.deliveryContact}
               name={"deliveryContact"}
               onChange={this.handleInputChange}
@@ -538,12 +625,16 @@ class CreateContractForm extends Component {
             </span>
           </div>
           <div className={"form-custom-vertical-group"}>
-            <label>¿Quieres recibir el video a tu WhatsApp? (Opcional)</label>
+            <label>
+              <FormattedMessage defaultMessage="¿Quieres recibir el video a tu WhatsApp? (Opcional)" />
+            </label>
             <PhoneInput
               enableLongNumbers={true}
               enableSearch
               searchClass="d-flex align-items-center p-2"
-              searchPlaceholder="Buscar país"
+              searchPlaceholder={formatMessage(
+                intlMessages.deliveryContactCellphone
+              )}
               placeholder="+57 55555555"
               value={this.state.contractData.deliveryContactCellphone}
               className="form-control mb-3"
@@ -566,7 +657,9 @@ class CreateContractForm extends Component {
           <Form.Check
             type="switch"
             id="custom-switch"
-            label="Publicar este video en Famosos.com"
+            label={
+              <FormattedMessage defaultMessage="Publicar este video en Famosos.com" />
+            }
             checked={contractData.isPublic}
             onChange={this.handleIsPublic}
           />
@@ -585,13 +678,13 @@ class CreateContractForm extends Component {
             className={"btn f-contract-button text-align-center"}
             onClick={this.createContract}
           >
-            Continuar
+            <FormattedMessage defaultMessage="Continuar" />
           </button>
           <div className={"mt-3 mb-4 mx-auto text-center"}>
             <br />
             <img
               width="300px"
-              src={"/assets/img/pago-seguro.png"}
+              src={secure_payment_img[this.props.router?.locale]}
               alt={"pago-seguro"}
             />
             <br />
@@ -643,5 +736,5 @@ const mapDispatchToProps = {
 const _CreateContractForm = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateContractForm);
+)(withRouter(injectIntl(CreateContractForm)));
 export { _CreateContractForm as CreateContractForm };

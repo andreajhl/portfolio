@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { contractOperations } from "../../../state/ducks/contracts";
 import { connect } from "react-redux";
+import { FormattedMessage } from "react-intl";
 
 class ContractCommentCreatorLayout extends Component {
   constructor(props) {
@@ -51,11 +52,15 @@ class ContractCommentCreatorLayout extends Component {
               aria-hidden="true"
             />
           ) : (
-            <span className="text-white">Agregar Comentario</span>
+            <span className="text-white">
+              <FormattedMessage defaultMessage="Agregar Comentario" />
+            </span>
           )}
         </button>
         {this.props.isCompleted ? (
-          <small className="ml-3">Tu comentario ha sido enviado.</small>
+          <small className="ml-3">
+            <FormattedMessage defaultMessage="Tu comentario ha sido enviado." />
+          </small>
         ) : null}
       </div>
     );
