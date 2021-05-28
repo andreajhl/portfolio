@@ -5,6 +5,7 @@ import { AVAILABLE_LANGS } from "constants/langs";
 import { useRouter } from "next/router";
 import classes from "classnames";
 import Popup from "reactjs-popup";
+import { updateNotificationsLang } from "react-app/src/state/ducks/session/actions";
 // import { parse, serialize } from "cookie";
 type localeAvailables = "es" | "en" | "pt";
 const ONE_YEAR_IN_MILLISECONDS = 365 * 24 * 3600 * 1000;
@@ -12,9 +13,11 @@ const ONE_YEAR_IN_MILLISECONDS = 365 * 24 * 3600 * 1000;
 export default function LangDropdown() {
   const router = useRouter();
   const { locale, pathname, query, asPath } = router;
-  const handleChangeLang = (lang: string) => {
+
+  const handleChangeLang = async (lang: string) => {
     const date = new Date();
     date.setTime(date.getTime() + ONE_YEAR_IN_MILLISECONDS);
+    updateNotificationsLang({ lang: lang });
     const expiresTime = "expires=" + date.toUTCString();
     document.cookie = `NEXT_LOCALE=${lang};${expiresTime}`;
     router.push({ pathname, query }, asPath, { locale: lang });
