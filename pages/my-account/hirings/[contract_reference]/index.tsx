@@ -6,14 +6,14 @@ import dynamic from "next/dynamic";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
 
-const ClientHiringPage = dynamic(() =>
-  import("react-app/src/components/pages/client-hiring").then(
+const DesktopClientHiringPage = dynamic<{ contractReference: string }>(() =>
+  import("desktop-app/components/pages/client-hiring").then(
     (mod) => mod.ClientHiringPage
   )
 );
 
-const DesktopClientHiringPage = dynamic<{ contractReference: string }>(() =>
-  import("desktop-app/components/pages/client-hiring").then(
+const MobileClientHiringPage = dynamic<{ contractReference: string }>(() =>
+  import("react-app/src/components/pages/client-hiring").then(
     (mod) => mod.ClientHiringPage
   )
 );
@@ -31,7 +31,7 @@ export async function getServerSideProps({
 }
 
 const HiringPreview = ({ isMobile, contractReference }) => {
-  useDesktopClass(!isMobile);
+  useDesktopClass(true);
 
   return (
     <>
@@ -42,7 +42,7 @@ const HiringPreview = ({ isMobile, contractReference }) => {
           <DesktopClientHiringPage contractReference={contractReference} />
         }
       >
-        <ClientHiringPage />
+        <MobileClientHiringPage contractReference={contractReference} />
       </Maybe>
     </>
   );
