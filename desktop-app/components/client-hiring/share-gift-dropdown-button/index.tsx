@@ -24,7 +24,7 @@ function ShareGiftDropdownButton({
         styles.CTAButton,
         className
       )}
-      buttonChildren={`Enviar video a ${deliveryTo}`}
+      buttonChildren={`Enviar video a ${deliveryTo} ahora`}
     />
   );
 }
