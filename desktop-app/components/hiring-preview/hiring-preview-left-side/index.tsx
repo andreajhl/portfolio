@@ -1,6 +1,4 @@
-import classes from "classnames";
-import { ROOT_PATH } from "constants/paths";
-import { Link } from "desktop-app/components/common/routing/link";
+import { HiringPreviewCTACard } from "desktop-app/components/hiring-preview/hiring-preview-cta-card";
 import styles from "./styles.module.scss";
 
 type HiringPreviewLeftSideProps = {
@@ -22,20 +20,7 @@ function HiringPreviewLeftSide({
       <h1 className={styles.Title}>
         Mira este video de {celebrityFullName} para {deliveryTo}.
       </h1>
-      <div className={styles.CTACard}>
-        <p className={styles.CTACardCopy}>
-          ¡Ahora ya puedes conectar con tus famosos favoritos a través de
-          Famosos.com!
-        </p>
-        <Link href={ROOT_PATH}>
-          <button
-            type="button"
-            className={classes("btn btn-primary", styles.CTACardButton)}
-          >
-            Explorar Famosos
-          </button>
-        </Link>
-      </div>
+      <HiringPreviewCTACard />
     </section>
   );
 }
