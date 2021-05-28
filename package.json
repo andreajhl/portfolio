@@ -37,7 +37,7 @@
     "lodash.debounce": "^4.0.8",
     "mixpanel-browser": "^2.41.0",
     "moment": "^2.29.1",
-    "next": "^10.0.6",
+    "next": "^10.0.8",
     "next-redux-wrapper": "^6.0.2",
     "parse-full-name": "^1.2.5",
     "path-to-regexp": "^6.2.0",
