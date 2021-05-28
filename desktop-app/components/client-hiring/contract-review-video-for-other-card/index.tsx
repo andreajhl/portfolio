@@ -69,6 +69,12 @@ function ContractReviewVideo({ contract_reference }: ContractReviewCardProps) {
         editing
         onChangeRating={(stars: number) => setFieldValue("stars", stars)}
       />
+      <label
+        htmlFor="review-textarea"
+        className={styles.ContractReviewCardLabel}
+      >
+        Cuéntanos algo sobre tu experiencia
+      </label>
       <textarea
         id="review-textarea"
         name="review"
@@ -77,7 +83,7 @@ function ContractReviewVideo({ contract_reference }: ContractReviewCardProps) {
           errors?.review && styles.ContractReviewCardTextareaHasError
         )}
         value={values.review}
-        placeholder="Cuéntanos algo sobre tu experiencia..."
+        placeholder="Escribe algo aquí..."
         onChange={onChangeField}
       />
       <WarningMessage

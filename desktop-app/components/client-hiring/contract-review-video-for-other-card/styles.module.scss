@@ -5,6 +5,10 @@
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   width: 369px;
   height: fit-content;
+
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+  }
 }
 
 .ContractReviewCardLabel {
@@ -12,10 +16,11 @@
   font-weight: bold;
   display: block;
   margin-bottom: 16px;
-  font-family: Manrope;
-  font-style: normal;
   line-height: 22px;
-  color: #000000;
+
+  @media only screen and (max-width: 767px) {
+    text-align: center;
+  }
 }
 
 .ContractReviewCardStars {
@@ -28,6 +33,17 @@
   > div > svg {
     width: 22px;
     height: 22px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    margin: 0 auto 21px;
+    width: 250px;
+    height: 62px;
+
+    > div > svg {
+      width: 33px;
+      height: 33px;
+    }
   }
 }
 
@@ -44,6 +60,10 @@
   &::placeholder {
     color: var(--gray-2);
   }
+
+  @media only screen and (max-width: 767px) {
+    height: 211px;
+  }
 }
 
 .ContractReviewCardTextareaHasError {
@@ -57,13 +77,18 @@
   font-weight: bold;
   padding: 0.25rem 0rem;
   width: 177px;
-
-  // background: #c9deff;
-  color: var(--primary) !important;
-  border-color: var(--primary) !important;
+  color: white !important;
+  background: var(--tertiary, #3d87f3);
+  border-color: var(--tertiary, #3d87f3) !important;
 
   &:disabled {
     opacity: 1 !important;
+  }
+
+  @media only screen and (max-width: 767px) {
+    height: 50px;
+    width: 100%;
+    font-size: 18px;
   }
 }
 
@@ -92,12 +117,14 @@
   display: flex;
   align-items: center;
   span {
-    font-family: Manrope;
-    font-style: normal;
     font-weight: bold;
     font-size: 14px;
     line-height: 19px;
     text-align: center;
     color: #5c5c5c;
+  }
+
+  @media only screen and (max-width: 767px) {
+    display: none;
   }
 }
