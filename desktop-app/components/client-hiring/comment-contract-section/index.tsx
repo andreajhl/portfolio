@@ -44,9 +44,9 @@ function CommentContractSection({
   }, [contract_reference]);
 
   return (
-    <div className={styles.CommentContractWrapper}>
+    <section className={styles.CommentContractWrapper}>
       <div className={styles.CommentContractHeader}>
-        <p>Comentarios</p>
+        <h2>Comentarios</h2>
       </div>
       <Maybe it={!isLoading && isCompleted}>
         <CommentsContractVideo contractComments={contractComments} />
@@ -57,7 +57,7 @@ function CommentContractSection({
         onCommentCreated={() => listContractComments(contract_reference)}
         contract_reference={contract_reference}
       />
-    </div>
+    </section>
   );
 }
 
