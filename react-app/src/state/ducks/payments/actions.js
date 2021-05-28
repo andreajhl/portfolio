@@ -9,6 +9,8 @@ import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { AVAILABLE_CURRENCIES } from "../../../components/layouts/currency-dropdown/constants";
 import * as GTM from "../../utils/gtm";
+import { setCookie } from "lib/setCookie";
+import { CURRENT_CURRENCY_TRM_CODE } from "constants/keys";
 // import { reduxStore } from "../../../";
 
 const reduxStore = {
@@ -67,6 +69,7 @@ export const currencyExchange = (params) => {
         if (res.data.status === "OK") {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
+          setCookie(CURRENT_CURRENCY_TRM_CODE, params.to, 365);
 
           if (
             !AVAILABLE_CURRENCIES.find(

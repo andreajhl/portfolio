@@ -168,8 +168,8 @@ export const AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES = [
 ];
 
 export const DOCUMENT_NAME_FOR_COUNTRIES = defineMessages({
-  MXN: { defaultMessage: "RFC" },
-  COP: { defaultMessage: "Cédula de Ciudadanía" },
-  ARS: { defaultMessage: "Código Único de Identificación Tributaria" },
+  MXN: { defaultMessage: "CURP" },
+  COP: { defaultMessage: "CC" },
+  ARS: { defaultMessage: "DNI o CUIT" },
   USD: { defaultMessage: "Social Security Number / SSN" }
 });

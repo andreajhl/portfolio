@@ -231,6 +231,7 @@ const ResumenContractApproved = ({ resumen }) => {
             }}
           >
             <NextStepsAfterPaymentBanner
+              deliveryContact={resumen.contract?.deliveryContact}
               celebrityName={resumen.celebrity.fullName}
             ></NextStepsAfterPaymentBanner>
           </div>

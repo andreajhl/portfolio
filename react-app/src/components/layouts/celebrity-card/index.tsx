@@ -17,6 +17,7 @@ import {
 } from "react-app/src/constants/messages";
 import { useIntl } from "react-intl";
 import LazyLoadingImage from "../../common/lazy-loading-image";
+import { jsonToQueryString } from "react-app/src/state/utils/apiService";
 
 export interface CelebrityCardLayoutI {
   celebrity: celebrityType;
@@ -60,6 +61,17 @@ const CelebrityCardLayout = ({
     GTM.tagManagerDataLayer("HOVER_ON_CELEBRITY_CARD", celebrity);
 
   const { discountPercentage } = celebrity;
+  const getCategory = () => {
+    return CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
+      celebrity.title
+    )
+      ? intl.formatMessage(labelMessagesForCategoriesFilter[celebrity.title])
+      : celebrity.title;
+  };
+
+  const getEncodeURLWithParams = (URLImage) => {
+    return `${URLImage}?${celebrity.title}-${celebrity.countryCode}`;
+  };
 
   return (
     <NavLink
@@ -71,9 +83,9 @@ const CelebrityCardLayout = ({
       <div className="celebrity-card">
         <div className="thumbnail">
           <LazyLoadingImage
-            alt="avatar"
+            alt={`${getCategory()} - ${celebrity.fullName}`}
             className="celebrity__profile-photo"
-            src={celebrity.avatar}
+            src={getEncodeURLWithParams(celebrity.avatar)}
             height={celebrityCardLayout?.height || 156}
             objectFit="cover"
             width={celebrityCardLayout?.width || 156}
@@ -122,15 +134,7 @@ const CelebrityCardLayout = ({
               countryCode={celebrity.countryCode}
               width="20px"
             />
-            <span className="celebrity__category">
-              {CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
-                celebrity.title
-              )
-                ? intl.formatMessage(
-                    labelMessagesForCategoriesFilter[celebrity.title]
-                  )
-                : celebrity.title}{" "}
-            </span>
+            <span className="celebrity__category">{getCategory()}</span>
             <CelebrityFavoriteButton celebrityId={celebrity.id} />
           </div>
           <h3 className="celebrity__full-name">{celebrity.fullName}</h3>

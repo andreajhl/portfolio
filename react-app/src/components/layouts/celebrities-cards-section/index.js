@@ -79,6 +79,7 @@ function CelebritiesCardsSectionLayout({
   isMobile,
   isFavoriteSection
 }) {
+  const { locale } = useRouter();
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
     initialState.showLeftScrollButton
   );

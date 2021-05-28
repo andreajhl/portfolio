@@ -30,3 +30,4 @@ artifacts:
     - sentry.client.config.js
     - sentry.properties
     - sentry.server.config.js
+    - package-lock.json

@@ -1,3 +1,8 @@
+import {
+  CURRENT_CURRENCY_TRM_CODE,
+  CURRENT_CURRENCY_TRM_RATE
+} from "constants/keys";
+import { getCookie } from "lib/getCookie";
 import { combineReducers } from "redux";
 import * as types from "./types";
 
@@ -22,7 +27,12 @@ const currencyExchangeInitialState = {
   completed: false,
   error_data: { error: "" },
   data: {
-    to: "USD"
+    to:
+      typeof window !== "undefined"
+        ? getCookie(CURRENT_CURRENCY_TRM_CODE)
+        : "USD",
+    rate:
+      typeof window !== "undefined" ? getCookie(CURRENT_CURRENCY_TRM_RATE) : ""
   }
 };
 

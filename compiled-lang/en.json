@@ -39,6 +39,20 @@
       "value": " internet and try again."
     }
   ],
+  "/OzI+S": [
+    {
+      "type": 0,
+      "value": "You will receive a notification to "
+    },
+    {
+      "type": 1,
+      "value": "deliveryContact"
+    },
+    {
+      "type": 0,
+      "value": " when your video is ready."
+    }
+  ],
   "/eYgis": [
     {
       "type": 0,
@@ -93,6 +107,12 @@
     {
       "type": 0,
       "value": "Time: "
+    }
+  ],
+  "0GetzR": [
+    {
+      "type": 0,
+      "value": "Celebrity hasn't been found"
     }
   ],
   "0I2iWG": [
@@ -233,6 +253,12 @@
       "value": "From:"
     }
   ],
+  "2U8U6B": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Trends"
+    }
+  ],
   "2Wnegw": [
     {
       "type": 0,
@@ -335,6 +361,12 @@
     {
       "type": 0,
       "value": "Use any means to scrape or trace any website contained on the site;"
+    }
+  ],
+  "42Gn99": [
+    {
+      "type": 0,
+      "value": "Famosos.com - User Terms of Service"
     }
   ],
   "45ZLqg": [
@@ -669,6 +701,16 @@
       "value": "France"
     }
   ],
+  "9Ooije": [
+    {
+      "type": 1,
+      "value": "celebrity_username"
+    },
+    {
+      "type": 0,
+      "value": " fan club at Famosos.com. Book your personalized video and enjoy unique experiences."
+    }
+  ],
   "9Svalq": [
     {
       "type": 0,
@@ -715,6 +757,12 @@
     {
       "type": 0,
       "value": "The pre-authorisation of the collection to your account has been carried out successfully"
+    }
+  ],
+  "AHNK8a": [
+    {
+      "type": 0,
+      "value": "DNI or CUIT"
     }
   ],
   "ARhEHP": [
@@ -967,6 +1015,12 @@
       "value": "We respond to notices of alleged copyright infringements and the cancellation of accounts of repeat infringers in accordance with the procedure set out in the Digital Millennium Copyright Act. If you believe that your work has been copied in a manner that constitutes a copyright infringement, please send the following information to the Copyright Agent mentioned below:"
     }
   ],
+  "ETd2VN": [
+    {
+      "type": 0,
+      "value": "The latest posts from your favorite celebrities."
+    }
+  ],
   "EbbVcC": [
     {
       "type": 0,
@@ -1060,7 +1114,7 @@
   "GdV31V": [
     {
       "type": 0,
-      "value": "Custom Videos "
+      "value": "Personalized Videos "
     },
     {
       "children": [
@@ -1267,6 +1321,12 @@
     {
       "type": 0,
       "value": "Original price:"
+    }
+  ],
+  "LeHkTO": [
+    {
+      "type": 0,
+      "value": "What is Famosos.com? Famosos is a platform where you can buy video messages of your favorite celebrities. How can I buy a video?"
     }
   ],
   "LsqQep": [
@@ -1635,6 +1695,16 @@
       "value": "Filter by country"
     }
   ],
+  "SFQJTa": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Buy personalized video from "
+    },
+    {
+      "type": 1,
+      "value": "celebrity_username"
+    }
+  ],
   "SJlNke": [
     {
       "type": 0,
@@ -1799,6 +1869,16 @@
     {
       "type": 0,
       "value": "Famosos Guarantee"
+    }
+  ],
+  "VtB4b8": [
+    {
+      "type": 1,
+      "value": "celebrity_username"
+    },
+    {
+      "type": 0,
+      "value": " official profile on Famosos.com. Book your personalized video and enjoy unique experiences."
     }
   ],
   "W1OXQI": [
@@ -2255,6 +2335,12 @@
       "value": "Following"
     }
   ],
+  "dgKHBE": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Privacy Policy"
+    }
+  ],
   "dkJkXx": [
     {
       "type": 0,
@@ -2307,6 +2393,20 @@
     {
       "type": 0,
       "value": "Credit or debit card"
+    }
+  ],
+  "ekgTKf": [
+    {
+      "type": 0,
+      "value": "Famosos.com - "
+    },
+    {
+      "type": 1,
+      "value": "celebrity_username"
+    },
+    {
+      "type": 0,
+      "value": " fan club"
     }
   ],
   "erYRhy": [
@@ -2459,6 +2559,12 @@
       "value": "A statement that you believe in good faith that the content has been deleted or disabled as a result of an error or misidentification of the content; and your name, physical address, telephone number and email address, a statement consenting to the jurisdiction of the federal court in Miami, Florida, and a statement that it accepts the service of the process from the person who filed the notice of alleged infringement."
     }
   ],
+  "hZK5pi": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Personalized videos of your favorite celebrities."
+    }
+  ],
   "hmpcGI": [
     {
       "type": 0,
@@ -2481,6 +2587,12 @@
     {
       "type": 0,
       "value": "participate in tracking or harvesting, or participate in the use of software, such as spyware, designed to collect data from the Site or the Services;"
+    }
+  ],
+  "iTKHhw": [
+    {
+      "type": 0,
+      "value": "DNI"
     }
   ],
   "iTP7rd": [
@@ -2665,6 +2777,16 @@
       "value": "Pending payment"
     }
   ],
+  "naJn1L": [
+    {
+      "type": 0,
+      "value": "Famosos.com - "
+    },
+    {
+      "type": 1,
+      "value": "celebrity_username"
+    }
+  ],
   "nazVl1": [
     {
       "type": 0,
@@ -2693,6 +2815,12 @@
     {
       "type": 0,
       "value": "Your request has been sent!"
+    }
+  ],
+  "oAD1Z+": [
+    {
+      "type": 0,
+      "value": "Famosos.com - FAQs"
     }
   ],
   "oEbrJV": [
@@ -3041,6 +3169,12 @@
       "value": "IN PARTICULAR, FAMOSOS AND THEIR AFFILIATES, DOES NOT represent or warrant the accuracy or completeness of content available through the site or services, or the content of the websites or online services linked to or integrated with the SITE or services. FAMOSOS AND THEIR AFFILIATES ARE NOT RESPONSIBLE FOR ANY: ERRORS (A), ERRORS, OR INACCURACIES IN THE CONTENTS; (B) INJURIES OR MATERIAL DAMAGE CAUSED BY YOUR ACCESS OR USE OF THE SITE OR SERVICES; (C) any unauthorized access or use of our servers or any personal information or user data; (D) any interruption of transmission TO, OR FROM THE SITE or services; (E) any error, virus, Trojans, OR SIMILAR that may be transmitted ON OR THROUGH THE SITE or services by any third party;"
     }
   ],
+  "tZUCvC": [
+    {
+      "type": 0,
+      "value": "Personalized videos of your favorite Celebrities. Book your video and enjoy unique experiences."
+    }
+  ],
   "tdx+EV": [
     {
       "type": 0,
@@ -3065,6 +3199,12 @@
       "value": "Transmit any type of virus or other computer instructions or technological means intended to alter, damage or interfere with the use of computers or related systems;"
     }
   ],
+  "u+CFdm": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Blog"
+    }
+  ],
   "uJeJq6": [
     {
       "type": 0,
@@ -3081,6 +3221,12 @@
     {
       "type": 0,
       "value": "Coach"
+    }
+  ],
+  "uVgimH": [
+    {
+      "type": 0,
+      "value": "No celebrity found with this user"
     }
   ],
   "ueZmN4": [
@@ -3104,7 +3250,7 @@
   "v82s2O": [
     {
       "type": 0,
-      "value": "Custom Video from "
+      "value": "Personalized Video from "
     },
     {
       "type": 1,
@@ -3126,7 +3272,7 @@
   "vMft8+": [
     {
       "type": 0,
-      "value": "Congratulations! The authorization of your payment has been made successfully."
+      "value": "The authorization of your payment has been made successfully."
     }
   ],
   "vf4Bo1": [
@@ -3268,7 +3414,7 @@
   "xkoDM2": [
     {
       "type": 0,
-      "value": "Custom video from "
+      "value": "Personalized video from "
     },
     {
       "type": 1,
@@ -3311,10 +3457,22 @@
       "value": "You are the owner of all rights and your user content and you have the right to give us the above rights; you have paid and will pay all fees or other payments that may be related to the use of your user content; and your user content does not infringe the intellectual property rights, privacy rights, advertising rights, or other legal rights of third parties."
     }
   ],
+  "yv7dLs": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Entrada de blog"
+    }
+  ],
   "yyUOQR": [
     {
       "type": 0,
       "value": "The approval process can take around 23 hrs."
+    }
+  ],
+  "z09bol": [
+    {
+      "type": 0,
+      "value": "CURP"
     }
   ],
   "z276Tc": [

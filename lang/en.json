@@ -303,7 +303,7 @@
     "message": "To:"
   },
   "GdV31V": {
-    "message": "Custom Videos <br></br> from your Favorite Celebrities"
+    "message": "Personalized Videos <br></br> from your Favorite Celebrities"
   },
   "GfM0Pj": {
     "message": "For me"
@@ -891,7 +891,7 @@
     "message": "Qualifications"
   },
   "v82s2O": {
-    "message": "Custom Video from {celebrityFullName}"
+    "message": "Personalized Video from {celebrityFullName}"
   },
   "v8Rt1O": {
     "message": "How long does the refund take?"
@@ -933,7 +933,7 @@
     "message": "We’ll notify you when it is activated."
   },
   "xkoDM2": {
-    "message": "Custom video from {celebrityFullName}"
+    "message": "Personalized video from {celebrityFullName}"
   },
   "xvBm4E": {
     "message": "Send unsolicited or unauthorised advertising or commercial communications, such as spam;"
@@ -1368,6 +1368,9 @@
   "R8MBZf": {
     "message": "You will receive a notification to correocliente@dominio.com when your video is ready."
   },
+  "/OzI+S": {
+    "message": "You will receive a notification to {deliveryContact} when your video is ready."
+  },
   "RG+TGy": {
     "message": "Your payment has been declined."
   },
@@ -1420,7 +1423,7 @@
     "message": "Details of the person making the payment"
   },
   "vMft8+": {
-    "message": "Congratulations! The authorization of your payment has been made successfully."
+    "message": "The authorization of your payment has been made successfully."
   },
   "wlTYUV": {
     "message": "Try a new attempt to make the payment"
@@ -1482,5 +1485,66 @@
   },
   "wvCzn7": {
     "message": "RFC"
+  },
+  "AHNK8a": {
+    "message": "DNI or CUIT"
+  },
+  "iTKHhw": {
+    "message": "DNI"
+  },
+  "z09bol": {
+    "message": "CURP"
+  },
+
+  "0GetzR": {
+    "message": "Celebrity hasn't been found"
+  },
+  "2U8U6B": {
+    "message": "Famosos.com - Trends"
+  },
+  "42Gn99": {
+    "message": "Famosos.com - User Terms of Service"
+  },
+  "9Ooije": {
+    "message": "{celebrity_username} fan club at Famosos.com. Book your personalized video and enjoy unique experiences."
+  },
+  "ETd2VN": {
+    "message": "The latest posts from your favorite celebrities."
+  },
+  "LeHkTO": {
+    "message": "What is Famosos.com? Famosos is a platform where you can buy video messages of your favorite celebrities. How can I buy a video?"
+  },
+  "SFQJTa": {
+    "message": "Famosos.com - Buy personalized video from {celebrity_username}"
+  },
+  "VtB4b8": {
+    "message": "{celebrity_username} official profile on Famosos.com. Book your personalized video and enjoy unique experiences."
+  },
+  "dgKHBE": {
+    "message": "Famosos.com - Privacy Policy"
+  },
+  "ekgTKf": {
+    "message": "Famosos.com - {celebrity_username} fan club"
+  },
+  "hZK5pi": {
+    "message": "Famosos.com - Personalized videos of your favorite celebrities."
+  },
+  "naJn1L": {
+    "message": "Famosos.com - {celebrity_username}"
+  },
+  "oAD1Z+": {
+    "message": "Famosos.com - FAQs"
+  },
+  "tZUCvC": {
+    "message": "Personalized videos of your favorite Celebrities. Book your video and enjoy unique experiences."
+  },
+  "u+CFdm": {
+    "message": "Famosos.com - Blog"
+  },
+  "uVgimH": {
+    "message": "No celebrity found with this user"
+  },
+  "yv7dLs": {
+    "message": "Famosos.com - Entrada de blog"
   }
 }
