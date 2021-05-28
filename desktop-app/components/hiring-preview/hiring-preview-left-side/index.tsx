@@ -1,3 +1,4 @@
+import { HiringPreviewBanner } from "desktop-app/components/hiring-preview/hiring-preview-banner";
 import { HiringPreviewCTACard } from "desktop-app/components/hiring-preview/hiring-preview-cta-card";
 import styles from "./styles.module.scss";
 
@@ -11,17 +12,14 @@ function HiringPreviewLeftSide({
   deliveryTo,
 }: HiringPreviewLeftSideProps) {
   return (
-    <section className={styles.HiringPreviewLeftSide}>
-      <img
-        className={styles.FamososLogo}
-        src="/assets/img/famosos-icon.png"
-        alt="Icono de Famosos Inc."
+    <>
+      <HiringPreviewBanner
+        className={styles.HiringPreviewBanner}
+        celebrityFullName={celebrityFullName}
+        deliveryTo={deliveryTo}
       />
-      <h1 className={styles.Title}>
-        Mira este video de {celebrityFullName} para {deliveryTo}.
-      </h1>
       <HiringPreviewCTACard />
-    </section>
+    </>
   );
 }
 
