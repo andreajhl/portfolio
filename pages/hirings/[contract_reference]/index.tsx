@@ -6,7 +6,9 @@ import dynamic from "next/dynamic";
 import React from "react";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 
-const HiringPreviewPage = dynamic(() =>
+const HiringPreviewPage = dynamic<{
+  contractReference: string;
+}>(() =>
   import("react-app/src/components/pages/hiring-preview").then(
     (mod) => mod.HiringPreviewPage
   )
@@ -32,8 +34,8 @@ export const getServerSideProps: GetServerSideProps = async ({
   };
 };
 
-const HiringPreview = ({ contract_reference, isMobile }) => {
-  useDesktopClass(!isMobile);
+function HiringPreview({ contract_reference, isMobile }) {
+  useDesktopClass(true);
 
   return (
     <>
@@ -44,10 +46,10 @@ const HiringPreview = ({ contract_reference, isMobile }) => {
           <DesktopHiringPreviewPage contractReference={contract_reference} />
         }
       >
-        <HiringPreviewPage />
+        <HiringPreviewPage contractReference={contract_reference} />
       </Maybe>
     </>
   );
-};
+}
 
 export default HiringPreview;

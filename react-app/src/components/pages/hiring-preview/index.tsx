@@ -4,9 +4,9 @@ import { HiringPreviewLeftSide } from "desktop-app/components/hiring-preview/hir
 import useGetContract from "lib/hooks/useGetContract";
 import { VideoContractFeed } from "desktop-app/components/layouts/video-contract-feed";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { PageContainer } from "../../layouts/page-container";
 import { HiringPreviewCTACard } from "desktop-app/components/hiring-preview/hiring-preview-cta-card";
 import { HiringReviewSection } from "desktop-app/components/common/widgets/hiring-review-section";
-import PageContainer from "desktop-app/components/layouts/page-container";
 
 type HiringPreviewPageProps = {
   contractReference: string;
@@ -16,7 +16,7 @@ function HiringPreviewPage({ contractReference }: HiringPreviewPageProps) {
   const { contract, status } = useGetContract(contractReference, true);
 
   return (
-    <PageContainer showFooter={false}>
+    <PageContainer showFooter={false} showSearch={false}>
       <div className={classes("container", styles.Container)}>
         <Maybe it={status === "completed"}>
           <div className={styles.LeftSide}>
