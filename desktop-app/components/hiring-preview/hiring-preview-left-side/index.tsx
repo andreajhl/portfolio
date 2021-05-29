@@ -18,7 +18,7 @@ function HiringPreviewLeftSide({
         celebrityFullName={celebrityFullName}
         deliveryTo={deliveryTo}
       />
-      <HiringPreviewCTACard />
+      <HiringPreviewCTACard className={styles.HiringPreviewCTACard} />
     </>
   );
 }
