@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
 import { SearchInputLayout } from "../search-input";
 
-const ModalSelect = ({
+function ModalSelect({
   buttonLabel,
   modalTitle,
   showSearch,
@@ -18,7 +18,7 @@ const ModalSelect = ({
   multipleSelection,
   onModalClose,
   onModalOpen
-}) => {
+}) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const closeModal = () => {
@@ -104,7 +104,7 @@ const ModalSelect = ({
       </Modal>
     </>
   );
-};
+}
 
 ModalSelect.defaultProps = {
   buttonLabel: "",
@@ -129,7 +129,7 @@ ModalSelect.propTypes = {
   searchPlaceholder: PropTypes.string,
   onSearchChange: PropTypes.func,
   options: PropTypes.array,
-  footerButtonLabel: PropTypes.string || PropTypes.node,
+  footerButtonLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   footerButtonOnClick: PropTypes.func,
   onInputChange: PropTypes.func,
   isChecked: PropTypes.func,
