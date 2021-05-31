@@ -289,6 +289,7 @@ class StripeCardForm extends Component {
             <FormattedMessage defaultMessage="Correo del titular de la tarjeta" />
           </h6>
           <input
+            autoComplete="off"
             type="text"
             className="form-control mb-3 input-stripe-form"
             placeholder={this.props.intl.formatMessage(placeholders.ownerEmail)}
@@ -301,6 +302,7 @@ class StripeCardForm extends Component {
           </h6>
           <input
             type="text"
+            autoComplete="off"
             className="form-control mb-3 input-stripe-form"
             placeholder={this.props.intl.formatMessage(placeholders.ownerName)}
             name="ownerName"

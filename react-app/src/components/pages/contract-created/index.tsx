@@ -10,6 +10,7 @@ import ResumenContractApproved from "../../layouts/resumen-contract-approved";
 import { CLIENT_HIRINGS } from "react-app/src/routing/Paths";
 
 type ContractWithPaymentsProps = {
+  contractReference: string;
   resumen: {
     contract: {
       isPublic: boolean;
@@ -44,24 +45,23 @@ type ContractWithPaymentsProps = {
   contractToPayClear: Function;
 };
 
-const ContractCreatedPage = ({
+function ContractCreatedPage({
+  contractReference,
   getContract,
   isLoading,
   resumen,
   contractToPayClear
-}: ContractWithPaymentsProps) => {
+}: ContractWithPaymentsProps) {
   const router = useRouter();
-  const { contract_reference } = router.query;
 
   useEffect(() => {
     contractToPayClear();
   }, [contractToPayClear]);
 
   useEffect(() => {
-    if (contract_reference) {
-      getContract(contract_reference);
-    }
-  }, [contract_reference]);
+    if (!contractReference) return;
+    getContract(contractReference);
+  }, [contractReference]);
 
   useEffect(() => {
     if (
@@ -104,7 +104,7 @@ const ContractCreatedPage = ({
       )}
     </PageContainer>
   );
-};
+}
 
 // ResumenContractApproved [10,50,70,100]
 // ResumenContractAuthorized [90]
@@ -127,4 +127,5 @@ const _ContractCreatedPage = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ContractCreatedPage);
+
 export { _ContractCreatedPage as ContractCreatedPage };

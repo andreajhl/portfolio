@@ -5,25 +5,23 @@ import { connect } from "react-redux";
 import { contractOperations } from "../../../state/ducks/contracts";
 import * as GTM from "../../../state/utils/gtm";
 import Maybe from "../../common/helpers/maybe";
-import { useRouter, withRouter } from "next/router";
+import { useRouter } from "next/router";
 import { CLIENT_HIRINGS } from "react-app/src/routing/Paths";
 
-const HiringPreviewPage = ({
+function HiringPreviewPage({
+  contractReference,
   getContract,
   contract,
   isCompleted,
   isFailed
-}) => {
+}) {
   const router = useRouter();
-  const {
-    query: { contract_reference }
-  } = router;
 
   useEffect(() => {
-    if (!contract_reference) return;
-    getContract(contract_reference);
-    GTM.tagManagerDataLayer("HIRING_PREVIEW_PAGE_VIEW", { contract_reference });
-  }, [contract_reference]);
+    if (!contractReference) return;
+    getContract(contractReference);
+    GTM.tagManagerDataLayer("HIRING_PREVIEW_PAGE_VIEW", { contractReference });
+  }, [contractReference]);
 
   useEffect(() => {
     document.getElementsByClassName("f-main-body")[0].style.background =
@@ -49,7 +47,7 @@ const HiringPreviewPage = ({
       </PageContainer>
     </div>
   );
-};
+}
 
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.getContractReducer.loading,
@@ -58,15 +56,13 @@ const mapStateToProps = (state) => ({
   isFailed: state.contracts.getContractReducer.failed
 });
 
-// mapStateToProps
 const mapDispatchToProps = {
   getContract: contractOperations.getContract
 };
 
-// Export Class
 const _HiringPreviewPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(HiringPreviewPage));
+)(HiringPreviewPage);
 
 export { _HiringPreviewPage as HiringPreviewPage };
