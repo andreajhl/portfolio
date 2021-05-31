@@ -8,10 +8,12 @@ import Auth0UserHandler from "lib/auth0UserHandler";
 import { IntlProvider } from "react-intl";
 import esMessages from "../compiled-lang/es.json";
 import enMessages from "../compiled-lang/en.json";
+import ptMessages from "../compiled-lang/pt.json";
 
 const languages = {
   en: enMessages,
-  es: esMessages
+  es: esMessages,
+  pt: ptMessages
 };
 
 const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
