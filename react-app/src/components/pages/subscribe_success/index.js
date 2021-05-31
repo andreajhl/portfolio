@@ -5,15 +5,18 @@ import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
 import { useRouter } from "next/router";
 import { CheckIconList } from "../../layouts/check-icon-list";
 
-const SubscriptionSuccess = ({ getCelebrity, celebrity, isLoading }) => {
+function SubscriptionSuccess({
+  celebrityUsername,
+  getCelebrity,
+  celebrity,
+  isLoading
+}) {
   const router = useRouter();
-  const celebrity_username = router.query.celebrity_username;
 
   useEffect(() => {
-    if (!celebrity_username) return;
-
-    getCelebrity(celebrity_username);
-  }, [celebrity_username]);
+    if (!celebrityUsername) return;
+    getCelebrity(celebrityUsername);
+  }, [celebrityUsername]);
 
   return (
     <div className="container-subscribe-success container-fluid">
@@ -46,7 +49,7 @@ const SubscriptionSuccess = ({ getCelebrity, celebrity, isLoading }) => {
           <div className="mt-4 pl-3 pr-3 font-weight-light text-left">
             <h6>
               A partir de ahora disfrutarás de beneficios únicos que te harán
-              quererl@ todavía más.
+              quererl @todavía más.
             </h6>
             <CheckIconList
               className="SubscriptionSuccessBenefitsList"
@@ -65,7 +68,7 @@ const SubscriptionSuccess = ({ getCelebrity, celebrity, isLoading }) => {
           </div>
           <p>
             <span className="font-weight-bold">¡Recuerda!</span> Cada 30 días se
-            hará el cobro de la suscripción de manera automática. Te enviaremos
+            hará el cobro de la suscripción de manera automática.Te enviaremos
             una notificación cuando se realice el cobro a tu TDC o PayPal
             asociado.
           </p>
@@ -79,7 +82,7 @@ const SubscriptionSuccess = ({ getCelebrity, celebrity, isLoading }) => {
       </div>
     </div>
   );
-};
+}
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
