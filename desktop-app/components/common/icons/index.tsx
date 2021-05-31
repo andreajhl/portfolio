@@ -959,6 +959,24 @@ export function CashIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function HorizontalMenuIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={6}
+      height={23}
+      viewBox="0 0 6 23"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <circle cx={2.917} cy={2.917} r={2.917} fill="#000" />
+      <circle cx={2.917} cy={11.249} r={2.917} fill="#000" />
+      <circle cx={2.917} cy={19.585} r={2.917} fill="#000" />
+    </svg>
+  );
+}
+
 export function PaypalIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

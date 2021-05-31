@@ -139,8 +139,6 @@ const PageContainer = ({
             showLogin={props.showLogin}
             showFiltersSection={props.showFiltersSection}
             hideControls={props.hideControls}
-            dropdownMenuIsOpen={dropdownMenuIsOpen}
-            setDropdownMenuIsOpen={setDropdownMenuIsOpen}
             queryParams={queryParams}
             showCouponBanner={showCouponBanner}
             setShowCouponBanner={setShowCouponBanner}
@@ -157,11 +155,7 @@ const PageContainer = ({
         }`}
       >
         {props.children}
-        <div
-          className={`page-container-children-helper ${
-            dropdownMenuIsOpen ? "active" : ""
-          }`}
-        />
+        <div className={`page-container-children-helper`} />
       </div>
 
       <Maybe it={props.showFooter}>

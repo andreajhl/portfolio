@@ -8,16 +8,20 @@
 }
 
 .top-bar {
+  margin-top: 1.25rem;
+  margin-bottom: 1.3125rem;
+
   &__center-side {
     display: flex;
     align-items: center;
     justify-content: center;
+    // height: 64px;
   }
 
-  &__right-side {
+  &__left-side {
     display: flex;
-    margin-top: 1.25rem;
     align-items: center;
+    // height: 64px;
   }
 
   &__logo-link {
@@ -26,7 +30,7 @@
   }
 
   &__logo {
-    width: 100%;
+    height: 25px;
   }
 
   &__login-btn {
@@ -45,8 +49,8 @@
     position: relative;
     // top: 0.9375rem;
   }
+}
 
-  &__search-sm {
-    margin: 0 0.81rem;
-  }
+.top-bar__search-sm {
+  padding: 0 0.81rem 1rem 0.81rem;
 }
