@@ -1,0 +1,24 @@
+.ButtonDropdown {
+  padding: 0px;
+  svg {
+    color: black;
+    &:hover {
+      color: black !important;
+    }
+  }
+}
+
+.BellIcon {
+}
+
+.NotificationItem {
+  border-bottom: 1px solid #e3e3e3;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.NotificationList {
+  max-height: 80vh;
+  overflow: scroll;
+}
