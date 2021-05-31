@@ -117,6 +117,7 @@ const DLocalPaymentsForm = ({
           <FormattedMessage defaultMessage="Nombre" />
         </label>
         <input
+          autoComplete="off"
           ref={buyerFullNameInput}
           value={buyerFullName}
           type="text"
@@ -138,6 +139,7 @@ const DLocalPaymentsForm = ({
           <FormattedMessage defaultMessage="Email" />
         </label>
         <input
+          autoComplete="off"
           style={{
             borderRadius: "10px"
           }}
@@ -165,6 +167,7 @@ const DLocalPaymentsForm = ({
             : document_name_available?.document_name}
         </label>
         <input
+          autoComplete="off"
           ref={buyerDocumentInput}
           style={{
             borderRadius: "10px"
