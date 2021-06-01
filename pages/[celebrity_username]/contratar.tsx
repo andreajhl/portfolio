@@ -18,8 +18,22 @@ const headData = defineMessages({
       "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
   }
 });
+
+const redirectToSanitizedPath = {
+  destination: "/celebrity_username/contratar",
+  permanent: false
+};
+
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  async ({ params: { celebrity_username }, store }) => {
+  async ({ params, store }) => {
+    if (typeof params === "undefined") {
+      return {
+        redirect: redirectToSanitizedPath
+      };
+    }
+
+    const celebrity_username = params?.celebrity_username;
+
     await get(celebrity_username, true)(store.dispatch);
 
     const celebrity = store.getState().celebrities.getCelebrityReducer.data;
