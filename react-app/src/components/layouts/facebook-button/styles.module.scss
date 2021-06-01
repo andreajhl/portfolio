@@ -1,0 +1,24 @@
+.FacebookButton {
+  padding: 1em 1.5em;
+  background-color: #328fff;
+  color: white !important;
+  font-weight: bold;
+  letter-spacing: 0em;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #1a77e6;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem #c0cedf;
+  }
+}
+
+.FacebookButton img {
+  margin-right: 21px;
+}
