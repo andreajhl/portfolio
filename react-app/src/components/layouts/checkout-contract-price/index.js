@@ -8,6 +8,27 @@ import { FormattedMessage } from "react-intl";
 import Maybe from "../../common/helpers/maybe";
 
 class ContractPriceLayout extends Component {
+  returnDiscountAmount() {
+    if (!this.props.couponData.data.isPercentageDiscount)
+      return this.props.availableDiscount.discountAmount;
+
+    const discount =
+      Math.floor(
+        this.props.availableDiscount.discountAmount *
+          this.props.availableDiscount.initialPrice *
+          100
+      ) / 100;
+
+    if (
+      this.props.couponData.data.isPercentageDiscount &&
+      discount > this.props.couponData.data.maxDiscountAmount
+    ) {
+      return this.props.couponData.data.maxDiscountAmount;
+    } else {
+      return discount;
+    }
+  }
+
   rounding() {
     const res = AVAILABLE_CURRENCIES.find(
       (item) => item.name === this.props.currency
@@ -23,30 +44,19 @@ class ContractPriceLayout extends Component {
   getConvertedPrice(price) {
     if (this.props.currencyExchangeData.to === "USD") return price;
 
-    const convertedPrice = Math.ceil(
-      price * (this.props.currencyExchangeData.rate || 1)
-    );
+    const convertedPrice = price * (this.props.currencyExchangeData.rate || 1);
 
-    const round = parseFloat(
-      AVAILABLE_CURRENCIES.find(
-        (item) => item.name === this.props.currencyExchangeData.to
-      )?.round
-    );
-
-    return convertedPrice < round
-      ? round
-      : round + convertedPrice - (convertedPrice % round);
+    return convertedPrice;
   }
 
   getPriceFormat() {
     const price = this.getConvertedPrice(this.props.price);
-
     return (
       <NumberFormat
-        value={price ? (this.props.rounding ? this.rounding() : price) : 0}
+        value={price || 0}
         displayType={"text"}
         thousandSeparator={true}
-        decimalScale={2}
+        decimalScale={0}
         prefix={
           AVAILABLE_CURRENCIES.find(
             (item) => item.name === this.props.currencyExchangeData.to
@@ -67,7 +77,7 @@ class ContractPriceLayout extends Component {
         value={price || 0}
         displayType={"text"}
         thousandSeparator={true}
-        decimalScale={2}
+        decimalScale={0}
         prefix={
           AVAILABLE_CURRENCIES.find((item) => item.name === currencyName)?.[
             "symbol"
@@ -168,43 +178,18 @@ class ContractPriceLayout extends Component {
         <span className="text-danger font-weight-bold">
           {this.props.availableDiscount.isPercentageDiscount ? (
             <>
-              -{(this.props.availableDiscount.discountAmount * 100).toFixed()}%
+              -{(this.props.availableDiscount.discountAmount * 100).toFixed(2)}%
               |{" "}
-              {this.props.currencyExchangeData.to !== this.props.currency ? (
-                this.getFormattedPrice(
-                  this.getConvertedPrice(
-                    parseFloat(
-                      (
-                        this.props.availableDiscount.discountAmount *
-                        this.props.availableDiscount.initialPrice
-                      ).toFixed(2)
-                    )
-                  ),
-                  this.props.currencyExchangeData.to
-                )
-              ) : (
-                <>
-                  $
-                  {(
-                    this.props.availableDiscount.discountAmount *
-                    this.props.availableDiscount.initialPrice
-                  ).toFixed(2)}{" "}
-                  {this.props.currency}
-                </>
+              {this.getFormattedPrice(
+                this.getConvertedPrice(this.returnDiscountAmount()),
+                this.props.currencyExchangeData.to
               )}
             </>
-          ) : this.props.currencyExchangeData.to !== this.props.currency ? (
+          ) : (
             this.getFormattedPrice(
-              this.getConvertedPrice(
-                this.props.availableDiscount.discountAmount
-              ),
+              this.getConvertedPrice(this.returnDiscountAmount()),
               this.props.currencyExchangeData.to
             )
-          ) : (
-            <>
-              ${this.props.availableDiscount.discountAmount}{" "}
-              {this.props.currency}
-            </>
           )}
         </span>
       </div>
@@ -234,8 +219,7 @@ ContractPriceLayout.defaultProps = {
 const mapStateToProps = (state) => ({
   currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
   currencyExchangeData: state.payments.currencyExchangeReducer.data,
-  couponData: state.payments.fetchDiscountCouponReducer,
-  currencyExchangeData: state.payments.currencyExchangeReducer.data
+  couponData: state.payments.fetchDiscountCouponReducer
 });
 
 // mapStateToProps
