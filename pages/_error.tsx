@@ -10,13 +10,15 @@ import debug from "react-app/src/utils/debug";
 type ErrorPageProps = {
   err?: unknown;
   hasGetInitialPropsRun?: boolean;
+  asPath?: string;
   statusCode: number;
 };
 
 const CustomError: NextPage<ErrorPageProps> = ({
   err,
   hasGetInitialPropsRun,
-  statusCode
+  statusCode,
+  asPath
 }) => {
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of
@@ -33,6 +35,16 @@ const CustomError: NextPage<ErrorPageProps> = ({
             <h3 className="font-weight-light text-center">
               <FormattedMessage defaultMessage="Ha ocurrido un error." />
             </h3>
+            {statusCode ? (
+              <h3 className="font-weight-light text-center">
+                CODE {String(statusCode)}
+              </h3>
+            ) : null}
+            {asPath ? (
+              <h3>
+                <span>{String(asPath)}</span>
+              </h3>
+            ) : null}
             <p className="h6">
               <FormattedMessage defaultMessage="Estamos haciendo lo posible por resolverlo." />
             </p>
@@ -84,6 +96,8 @@ CustomError.getInitialProps = async ({ res, err, asPath }: NextPageContext) => {
     // Opinionated: do not record an exception in Sentry for 404
     return { statusCode: 404 };
   }
+
+  (errorInitialProps as ErrorPageProps).asPath = asPath;
 
   if (err) {
     Sentry.captureException(err);
