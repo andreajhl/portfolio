@@ -26,7 +26,11 @@ const CustomError: NextPage<ErrorPageProps> = ({
     // Flushing is not required in this case as it only happens on the client
   }
   return (
-    <PageContainer applyFetchCelebrities={false} showFooter={false}>
+    <PageContainer
+      applyFetchCelebrities={false}
+      showFooter={false}
+      showBotMakerFrame
+    >
       <div className="SignInPage">
         <div className="section">
           <div className="auth-container mx-auto text-center p-4">

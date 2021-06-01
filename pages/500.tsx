@@ -5,10 +5,14 @@ import { PageContainer } from "react-app/src/components/layouts/page-container";
 import { HOME_PATH } from "react-app/src/routing/Paths";
 import { FormattedMessage } from "react-intl";
 
-const ServerErrorPage = () => {
+function ServerErrorPage() {
   const { asPath } = useRouter();
   return (
-    <PageContainer applyFetchCelebrities={false} showFooter={false}>
+    <PageContainer
+      applyFetchCelebrities={false}
+      showFooter={false}
+      showBotMakerFrame
+    >
       <div className="container mx-auto d-flex flex-column align-items-center text-center p-4">
         <h3 className="font-weight-light text-center mb-5">
           <FormattedMessage defaultMessage="Ha ocurrido un error." />

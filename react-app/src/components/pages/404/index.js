@@ -4,9 +4,15 @@ import { HOME_PATH } from "react-app/src/routing/Paths";
 import { FormattedMessage } from "react-intl";
 import { PageContainer } from "../../layouts/page-container";
 
-const FourZeroFour = () => {
+function FourZeroFour() {
+  const { asPath } = useRouter();
+
   return (
-    <PageContainer applyFetchCelebrities={false} showFooter={false}>
+    <PageContainer
+      applyFetchCelebrities={false}
+      showFooter={false}
+      showBotMakerFrame
+    >
       <div className="SignInPage">
         <div className="section">
           <div className="auth-container mx-auto text-center p-4">
