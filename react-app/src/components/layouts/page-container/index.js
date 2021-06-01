@@ -17,6 +17,8 @@ import dynamic from "next/dynamic";
 import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { Session } from "react-app/src/state/utils/session.js";
 
+function ignoreError() {}
+
 const CookiesConsent = dynamic(
   () => import("../cookies-consent").then((mod) => mod.CookiesConsent),
   { ssr: false }
@@ -79,7 +81,7 @@ function PageContainer({
     const isAsync = typeof botMakerChild.then === "function";
 
     if (isAsync) {
-      botMakerChild.then(setBotmakerDisplay);
+      botMakerChild.then(setBotmakerDisplay).catch(ignoreError);
       botMakerChildRef.current = botMakerChild;
     } else {
       setBotmakerDisplay(botMakerChild);
