@@ -1,0 +1,28 @@
+.AuthFormField {
+  margin-bottom: 1rem;
+}
+
+.Label {
+  display: block;
+  margin-bottom: 0.5em;
+  line-height: 19px;
+  letter-spacing: 0em;
+}
+
+.Input {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #747474;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 1.42em 1.14em;
+  height: 50px;
+
+  @media (min-width: 768px) {
+    height: 40px;
+  }
+
+  &::placeholder {
+    color: #b9b8b8;
+  }
+}
