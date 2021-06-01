@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { NavLink } from "react-app/src/components/common/routing";
 import { HOME_PATH } from "react-app/src/routing/Paths";
@@ -19,6 +20,9 @@ function FourZeroFour() {
             <h3 className="font-weight-light text-center">
               <FormattedMessage defaultMessage="Lo sentimos, esta página no fue encontrada" />
             </h3>
+            <p>
+              <FormattedMessage defaultMessage="Ruta:" /> {asPath}
+            </p>
             <br />
             <img
               width="200px"
@@ -38,6 +42,6 @@ function FourZeroFour() {
       </div>
     </PageContainer>
   );
-};
+}
 
 export { FourZeroFour };

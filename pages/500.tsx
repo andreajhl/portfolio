@@ -24,8 +24,12 @@ function ServerErrorPage() {
           alt="sad-face"
         />
         <div className="mt-5">
-          <h3>Nos disculpamos, estamos arreglando el problema.</h3>
-          <h5 className="mt-3">{asPath}</h5>
+          <h3>
+            <FormattedMessage defaultMessage="Nos disculpamos, estamos arreglando el problema." />
+          </h3>
+          <h5 className="mt-3">
+            <FormattedMessage defaultMessage="Ruta:" /> {asPath}
+          </h5>
         </div>
         <br />
         <NavLink to={HOME_PATH}>
@@ -36,6 +40,6 @@ function ServerErrorPage() {
       </div>
     </PageContainer>
   );
-};
+}
 
 export default ServerErrorPage;
