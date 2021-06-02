@@ -1,0 +1,31 @@
+.OpenMenuButton {
+  padding: 0px;
+}
+
+.DropdownMenuLayoutWrapper {
+  display: flex;
+  flex-flow: column;
+  background-color: white;
+
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  overflow-y: scroll;
+  min-width: initial;
+}
+
+.NavLinkItem,
+.CallToActionButtonDownloadApp {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 1.25rem 2rem 1.25rem 3rem;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+
+.NavLinkItemActive {
+  background-color: rgb(245, 245, 245);
+}
+
+.CallToActionButtonDownloadApp {
+  color: var(--primary);
+  background-color: rgb(255, 225, 240) !important;
+}

@@ -12,6 +12,7 @@ import Maybe from "../../common/helpers/maybe";
 import dynamic from "next/dynamic";
 import { useIntl, defineMessage } from "react-intl";
 import LangDropdown from "../../containers/lang-dropdown";
+import { UserNotificationsPopup } from "../user-notifications-popup";
 const BannerPromoLayout = dynamic(
   () => import("../banner-promo").then((mod) => mod.BannerPromoLayout),
   { ssr: false }
@@ -58,14 +59,7 @@ const NavbarSectionLayout = ({
           setShowCouponBanner={setShowCouponBanner}
         />
         <div className="top-bar container mx-auto p-0 row">
-          <div className="top-bar__left-side col-4 p-0">
-            <DropdownMenuLayout
-              dropdownMenuIsOpen={dropdownMenuIsOpen}
-              setDropdownMenuIsOpen={setDropdownMenuIsOpen}
-              isLogged={!isLoading && isAuthenticated}
-            />
-          </div>
-          <div className="top-bar__center-side col-4">
+          <div className="top-bar__left-side col-4">
             <NavLink
               to={ROOT_PATH}
               className="top-bar__logo-link"
@@ -78,8 +72,7 @@ const NavbarSectionLayout = ({
               />
             </NavLink>
           </div>
-
-          <div className="top-bar__right-side col-4 p-0 row m-0">
+          <div className="top-bar__center-side col-8 p-0 row m-0">
             <Maybe it={!isAuthenticated}>
               <div className="col d-none d-md-flex  align-items-center">
                 <LoginButton
@@ -89,25 +82,31 @@ const NavbarSectionLayout = ({
                 />
               </div>
             </Maybe>
-            <div className="top-bar__lang  mr-1 ml-auto">
+            <div className="top-bar__lang  mr-4 ml-auto">
+              <UserNotificationsPopup />
+            </div>
+            <div className="top-bar__lang  mr-4">
               <LangDropdown />
             </div>
-            <div className="top-bar__currency mr-3 ml-2">
+            <div className="top-bar__currency mr-4">
               <CurrencyDropdownLayout />
             </div>
-          </div>
-          <Maybe it={showSearch}>
-            <div className="col-12 pt-2 px-0">
-              <div className="d-block top-bar__search-sm">
-                <NavbarSearchLayout
-                  searchLabel={intl.formatMessage(messageSearchLabel)}
-                  onSearchChange={onSearchChange}
-                  queryParams={queryParams}
-                />
-              </div>
+            <div className="top-bar__lang  mr-4">
+              <DropdownMenuLayout isLogged={!isLoading && isAuthenticated} />
             </div>
-          </Maybe>
+          </div>
         </div>
+        <Maybe it={showSearch}>
+          <div className="col-12 pt-2 px-0">
+            <div className="d-block top-bar__search-sm">
+              <NavbarSearchLayout
+                searchLabel={intl.formatMessage(messageSearchLabel)}
+                onSearchChange={onSearchChange}
+                queryParams={queryParams}
+              />
+            </div>
+          </div>
+        </Maybe>
       </div>
     </>
   );
