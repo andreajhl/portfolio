@@ -54,20 +54,6 @@ class AvailablePaymentMethods extends Component {
     });
   };
 
-  applyDiscount() {
-    let discountTotal = 0;
-    if (this.props.couponData.data.isPercentageDiscount) {
-      discountTotal =
-        this.props.couponData.data.discount_amount * this.props.contractPrice;
-      if (discountTotal > this.props.couponData.data.maxDiscountAmount) {
-        discountTotal = this.props.couponData.data.maxDiscountAmount;
-      }
-    } else {
-      discountTotal = this.props.couponData.data.discount_amount;
-    }
-    return this.props.contractPrice - discountTotal;
-  }
-
   renderWhatsappContactForm = () => {
     return getWindow().userLocation?.countryCode === "CO" ||
       getWindow().userLocation?.countryCode === "MX" ? (
@@ -140,7 +126,7 @@ class AvailablePaymentMethods extends Component {
             contractReference={this.props.contractReference}
             contractPrice={
               this.props.couponData.completed
-                ? this.applyDiscount()
+                ? this.props.couponData?.data?.finalAmount
                 : this.props.contractPrice
             }
             discountCouponId={this.props.couponData.data.id}
@@ -185,7 +171,7 @@ class AvailablePaymentMethods extends Component {
               contractReference={this.props.contractReference}
               contractPrice={
                 this.props.couponData.completed
-                  ? this.applyDiscount()
+                  ? this.props.couponData?.data?.finalAmount
                   : this.props.contractPrice
               }
               discountCouponId={this.props.couponData.data.id}
