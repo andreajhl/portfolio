@@ -30,16 +30,24 @@ const CustomError: NextPage<ErrorPageProps> = ({
   }
   return (
     <ErrorReport
-      errorTitle={
-        <FormattedMessage defaultMessage="Lo sentimos, esta página no fue encontrada" />
-      }
+      errorTitle={<FormattedMessage defaultMessage="Ha ocurrido un error." />}
       errorDescription={
         <>
-          <p className="h6">
+          <p
+            className="h6"
+            style={{
+              color: "white"
+            }}
+          >
             <FormattedMessage defaultMessage="Estamos haciendo lo posible por resolverlo." />
           </p>
           {statusCode ? (
-            <p className="font-weight-light text-center">
+            <p
+              className="font-weight-light text-center"
+              style={{
+                color: "white"
+              }}
+            >
               CODE {String(statusCode)}
             </p>
           ) : null}
