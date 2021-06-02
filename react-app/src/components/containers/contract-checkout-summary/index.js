@@ -106,22 +106,12 @@ const ContractCheckoutSummary = ({
           <hr className="w-100"></hr>
           <ContractPriceLayout
             classes={"text-black font-weight-bold"}
-            availableDiscount={
-              couponData.completed
-                ? {
-                    initialPrice: price,
-                    isPercentageDiscount: couponData.data.isPercentageDiscount,
-                    discountAmount: couponData.data.discount_amount
-                  }
-                : false
-            }
-            price={couponData.completed ? applyDiscount() : price}
             currency={"USD"}
-            currencyExchangeData={currencyExchangeData}
             rounding={false}
             contractPrice={price}
-            originalPrice={originalPrice}
             celebrityDiscountPercentage={celebrityDiscountPercentage}
+            price={price}
+            originalPrice={originalPrice}
           />
         </div>
         <hr className="w-100"></hr>
