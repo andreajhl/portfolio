@@ -87,7 +87,7 @@ class StripeCardForm extends Component {
     });
 
     // REQUIRED DATA
-    const amount = this.props.contractPrice * 100;
+    //const amount = this.props.contractPrice * 100;
     const currency = "USD";
     const ownerData = {
       name: this.state.ownerName.trim(),
@@ -99,7 +99,6 @@ class StripeCardForm extends Component {
       .createSource({
         type: "card",
         currency: currency,
-        amount: amount,
         owner: ownerData,
         usage: "reusable"
       })
@@ -130,7 +129,6 @@ class StripeCardForm extends Component {
         ) {
           this.createStripe3DFlow(
             currency,
-            amount,
             response.source.id,
             ownerData
           );
@@ -212,7 +210,6 @@ class StripeCardForm extends Component {
       .createSource({
         type: "three_d_secure",
         currency: currency,
-        amount: amount,
         three_d_secure: { card: sourceId },
         redirect: { return_url: responseURL },
         owner: ownerData
