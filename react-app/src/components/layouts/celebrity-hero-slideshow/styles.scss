@@ -6,6 +6,11 @@
       left: 50%;
       transform: translateX(-50%);
     }
+
+    .VideoSlideLayout__poster,
+    .VideoSlideLayout__video {
+      object-fit: contain !important;
+    }
   }
 
   @media only screen and (min-width: 992px) {

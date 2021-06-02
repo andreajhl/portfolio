@@ -45,6 +45,7 @@ const ContractCreated = ({ contract_reference, isMobile }) => {
     </>
   );
 };
+
 export default withAuthenticationRequired(ContractCreated, {
-  onRedirecting: () => <LoadingPage></LoadingPage>,
+  onRedirecting: () => <LoadingPage />,
 });

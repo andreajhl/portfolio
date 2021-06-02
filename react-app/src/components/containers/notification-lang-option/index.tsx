@@ -41,7 +41,10 @@ function NotificationLangOptions({
           {AVAILABLE_LANGS[locale]?.map((option) => (
             <option
               value={option.lang}
-              selected={currentUserLang === option.lang}
+              selected={
+                String(currentUserLang).toLocaleLowerCase() ===
+                String(option.lang).toLocaleLowerCase()
+              }
             >
               {option.name}
             </option>

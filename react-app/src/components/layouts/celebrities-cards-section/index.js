@@ -73,12 +73,12 @@ const getSectionWidth = (windowWidth) => {
   return containerWidth - 15;
 };
 
-const CelebritiesCardsSectionLayout = ({
+function CelebritiesCardsSectionLayout({
   celebritiesSection,
   moreResultsPath,
   isMobile,
   isFavoriteSection,
-}) => {
+}) {
   const { locale } = useRouter();
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
     initialState.showLeftScrollButton
@@ -119,11 +119,8 @@ const CelebritiesCardsSectionLayout = ({
   };
 
   const setScrollButtonsVisibility = debounce(() => {
-    const {
-      scrollLeft,
-      offsetWidth,
-      scrollWidth,
-    } = cardListRef.current._outerRef;
+    const { scrollLeft, offsetWidth, scrollWidth } =
+      cardListRef.current?._outerRef || {};
     setShowLeftScrollButton(scrollLeft !== 0);
     setShowRightScrollButton(scrollLeft + offsetWidth !== scrollWidth);
     GTM.tagManagerDataLayer("SCROLL_CELEBRITY_SECTION_LIST", {
@@ -241,7 +238,7 @@ const CelebritiesCardsSectionLayout = ({
       </Maybe>
     </section>
   );
-};
+}
 
 CelebritiesCardsSectionLayout.defaultProps = {
   hasMoreResults: false,

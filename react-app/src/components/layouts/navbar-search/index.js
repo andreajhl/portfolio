@@ -15,7 +15,7 @@ class NavbarSearchLayout extends Component {
 
     this.state = {
       keyword: this.props.queryParams.search || "",
-      shouldFocus: false
+      shouldFocus: false,
     };
 
     this.searchRef = createRef();
@@ -37,7 +37,7 @@ class NavbarSearchLayout extends Component {
   componentWillReceiveProps(nextProps, nextContext) {
     if (nextProps.removeKeywords) {
       this.setState({
-        keyword: ""
+        keyword: "",
       });
     }
   }
@@ -45,7 +45,7 @@ class NavbarSearchLayout extends Component {
   inputHandler({ target }) {
     const value = target.value.replace(/('|%)/g, "");
     this.setState({
-      keyword: value
+      keyword: value,
     });
     this.debouncedOnSearchChange(value);
   }
@@ -66,10 +66,10 @@ class NavbarSearchLayout extends Component {
     GTM.tagManagerDataLayer("CELEBRITIES_SEARCH_CHANGED", {
       search: this.state.keyword,
       widget: this.constructor.name,
-      path: window.location.pathname
+      path: window.location.pathname,
     });
     this.props.onSearchChange(keyword);
-    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+    document?.documentElement?.scrollTo?.({ top: 0, behavior: "smooth" });
   }
 
   goToHome() {
@@ -80,7 +80,7 @@ class NavbarSearchLayout extends Component {
     GTM.tagManagerDataLayer("FOCUS_CELEBRITIES_SEARCH", {
       search: this.state.keyword,
       widget: this.constructor.name,
-      path: window.location.pathname
+      path: window.location.pathname,
     });
 
   render() {
@@ -116,18 +116,18 @@ class NavbarSearchLayout extends Component {
 NavbarSearchLayout.defaultProps = {
   searchLabel: "Ej: Pibe Valderrama, Comediantes, Músicos",
   onSearchChange: function () {},
-  autoFocus: false
+  autoFocus: false,
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isCompleted: state.celebrities.fetchCelebritiesReducer.completed,
-  isLoading: state.celebrities.fetchCelebritiesReducer.loading
+  isLoading: state.celebrities.fetchCelebritiesReducer.loading,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  updateQueryParams: celebrityOperations.updateQueryParams
+  updateQueryParams: celebrityOperations.updateQueryParams,
 };
 
 // Export Class

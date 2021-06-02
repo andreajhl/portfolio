@@ -71,6 +71,7 @@ class index extends Component {
         </label>
         <div className="input-group mb-3">
           <input
+            autoComplete="off"
             type="text"
             className="form-control"
             placeholder={this.props.intl.formatMessage(inputCouponPlaceholder)}

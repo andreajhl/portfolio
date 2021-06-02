@@ -19,6 +19,17 @@ const errorMessages = defineMessages({
     defaultMessage: "Ocurrió un error procesando tu pago.",
   },
 });
+const popupMessages = defineMessages({
+  confirmActionQuestion: {
+    defaultMessage: "¿Eliminar tarjeta?",
+  },
+  ApprovedActionMessage: {
+    defaultMessage: "Si, eliminar",
+  },
+  CancelActionMessage: {
+    defaultMessage: "No",
+  },
+});
 class StripeCustomerSources extends Component {
   constructor(props) {
     super(props);
@@ -152,7 +163,9 @@ class StripeCustomerSources extends Component {
         return (
           <div className="custom-ui">
             <h4>
-              <FormattedMessage defaultMessage="¿Eliminar tarjeta?" />
+              {this.props.intl.formatMessage(
+                popupMessages.confirmActionQuestion
+              )}
             </h4>
             <br />
             <button
@@ -162,7 +175,9 @@ class StripeCustomerSources extends Component {
                 onClose();
               }}
             >
-              <FormattedMessage defaultMessage="Si, eliminar" />
+              {this.props.intl.formatMessage(
+                popupMessages.ApprovedActionMessage
+              )}
             </button>
             <button
               className={"btn mr-2"}
@@ -170,7 +185,7 @@ class StripeCustomerSources extends Component {
                 onClose();
               }}
             >
-              <FormattedMessage defaultMessage="No" />
+              {this.props.intl.formatMessage(popupMessages.CancelActionMessage)}
             </button>
           </div>
         );

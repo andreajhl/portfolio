@@ -8,22 +8,20 @@ import SubscriptionCheckoutSummary from "../../containers/subscription-checkout-
 import SubscriptionPlansOptions from "../../layouts/subscription-plans-options";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
 import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
-import { useRouter } from "next/router";
 import isAlreadySubscribe from "../../../utils/isAlreadySubscribe";
+import { useRouter } from "next/router";
 
-const Subscription = (props) => {
-  const {
-    query: { celebrity_username },
-  } = useRouter();
-  const {
-    getCelebrity,
-    fetchCelebritySubscriptionPlans,
-    celebrity,
-    celebritySubscriptionPlans,
-    isLoadingPlans,
-    getCelebritiesSubscribe,
-    subscriptionList,
-  } = props;
+function Subscription({
+  celebrityUsername,
+  getCelebrity,
+  fetchCelebritySubscriptionPlans,
+  celebrity,
+  celebritySubscriptionPlans,
+  isLoadingPlans,
+  getCelebritiesSubscribe,
+  subscriptionList,
+}) {
+  const router = useRouter();
   const [currentPlanSelected, setCurrentPlanSelected] = useState(null);
   const onSelectPlan = (planId) => {
     setCurrentPlanSelected(planId);
@@ -39,11 +37,11 @@ const Subscription = (props) => {
   }, [monthlySubscription]);
 
   useEffect(() => {
-    if (!celebrity_username) return;
-    getCelebritiesSubscribe(celebrity_username);
-    getCelebrity(celebrity_username);
-    fetchCelebritySubscriptionPlans(celebrity_username);
-  }, [celebrity_username]);
+    if (!celebrityUsername) return;
+    getCelebritiesSubscribe(celebrityUsername);
+    getCelebrity(celebrityUsername);
+    fetchCelebritySubscriptionPlans(celebrityUsername);
+  }, [celebrityUsername]);
 
   return (
     <PageContainer>
@@ -62,7 +60,7 @@ const Subscription = (props) => {
               />
             </div>
             {isLoadingPlans ? null : celebritySubscriptionPlans.length > 0 ? (
-              !isAlreadySubscribe(subscriptionList, celebrity_username) ? (
+              !isAlreadySubscribe(subscriptionList, celebrityUsername) ? (
                 <>
                   <div className="container-subscription-payment__options">
                     <SubscriptionPlansOptions
@@ -101,7 +99,7 @@ const Subscription = (props) => {
                   </h5>
                   <button
                     className="btn btn-primary"
-                    onClick={() => props.history.push(FEED_SUBSCRIPTION)}
+                    onClick={() => router.push(FEED_SUBSCRIPTION)}
                   >
                     Ver mis suscripciones
                   </button>
@@ -122,7 +120,7 @@ const Subscription = (props) => {
       </Container>
     </PageContainer>
   );
-};
+}
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
@@ -154,4 +152,5 @@ const _Subscription = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Subscription);
+
 export { _Subscription as Subscription };

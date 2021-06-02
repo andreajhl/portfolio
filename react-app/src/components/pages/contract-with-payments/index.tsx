@@ -3,7 +3,6 @@ import * as GTM from "../../../state/utils/gtm";
 import { connect } from "react-redux";
 import { contractOperations } from "../../../state/ducks/contracts";
 import { PageContainer } from "../../layouts/page-container";
-import { useRouter } from "next/router";
 import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
 import ResumenContractApproved from "../../layouts/resumen-contract-approved";
@@ -17,6 +16,7 @@ const PAYMENTS_ID_WITH_RESUMEN_PENDING = [40];
 const PAYMENTS_ID_WITH_RESUMEN_AUTHORIZED = [90];
 
 type ContractWithPaymentsProps = {
+  contractReference: string;
   resumen: {
     contract: {
       isPublic: boolean;
@@ -51,28 +51,30 @@ type ContractWithPaymentsProps = {
   contractToPayClear: Function;
 };
 
-const ContractWithPayments = ({
+function ContractWithPayments({
+  contractReference,
   getContract,
   isLoading,
   resumen,
   contractToPayClear,
-}: ContractWithPaymentsProps) => {
-  const router = useRouter();
-  const { contract_reference } = router.query;
+}: ContractWithPaymentsProps) {
   useEffect(() => {
     contractToPayClear();
   }, [contractToPayClear]);
+
   useEffect(() => {
-    if (contract_reference) {
-      getContract(contract_reference);
+    if (contractReference) {
+      getContract(contractReference);
     }
-  }, [contract_reference]);
+  }, [contractReference]);
+
   const LoadingScreen = styled.div`
     height: 90vh;
     display: flex;
     align-content: center;
     justify-content: center;
   `;
+
   return (
     <PageContainer showFooter={false} showSearch={false}>
       {isLoading ? (
@@ -104,7 +106,7 @@ const ContractWithPayments = ({
       ) : null}
     </PageContainer>
   );
-};
+}
 
 // ResumenContractApproved [10,50,70,100]
 // ResumenContractRejected [20,30,55,60,80]
@@ -139,4 +141,5 @@ const _ContractWithPayments = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ContractWithPayments);
+
 export { _ContractWithPayments as ContractWithPayments };

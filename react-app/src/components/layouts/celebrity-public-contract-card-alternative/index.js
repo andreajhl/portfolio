@@ -1,60 +1,23 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-
 import { NavLink } from "react-app/src/components/common/routing";
-import { setPlayingVideo } from "../../../state/ducks/celebrity-sections/actions";
-import { connect } from "react-redux";
 import * as GTM from "../../../state/utils/gtm";
 import { HIRING_PREVIEW } from "../../../routing/Paths";
 import getWindow from "react-app/src/utils/getWindow";
+import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 
-const CelebrityPublicContractCardAlternativeLayout = ({
+function CelebrityPublicContractCardAlternativeLayout({
   publicContract,
   celebrityFullName,
   celebrityAvatar,
   videoKey,
-  currentVideoKey,
-  setPlayingVideo
-}) => {
-  const videoRef = useRef();
-  const [videoIsLoaded, setVideoIsLoaded] = useState(false);
-  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
-
+}) {
   const analyticsData = {
     widget: "CelebrityPublicContractCardAlternativeLayout",
     path: getWindow().location.pathname,
     ...publicContract,
-    videoKey
+    videoKey,
   };
-
-  const playVideo = () => {
-    videoRef.current.play();
-    setVideoIsPlaying(true);
-    setPlayingVideo(videoKey);
-  };
-
-  const pauseVideo = () => {
-    videoRef.current.pause();
-    setVideoIsPlaying(false);
-    setPlayingVideo(null);
-  };
-
-  const togglePlay = () => {
-    if (!videoIsPlaying) {
-      GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
-      playVideo();
-    } else {
-      GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
-      pauseVideo();
-    }
-  };
-
-  useEffect(() => {
-    if (currentVideoKey && currentVideoKey !== videoKey) pauseVideo();
-    return () => {
-      if (currentVideoKey === videoKey) setPlayingVideo(null);
-    };
-  }, [currentVideoKey]);
 
   const registerVideoCardHover = () =>
     GTM.tagManagerDataLayer(
@@ -73,6 +36,16 @@ const CelebrityPublicContractCardAlternativeLayout = ({
       "HOVER_CELEBRITY_PUBLIC_CONTRACT_CARD_ALTERNATIVE_CELEBRITY_NAME",
       analyticsData
     );
+
+  const { videoRef, togglePlay, videoIsPlaying } = useVideoPlayer(videoKey, {
+    onPlayVideo() {
+      GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
+    },
+    onPauseVideo() {
+      GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
+    },
+  });
+  const [videoIsLoaded, setVideoIsLoaded] = useState(false);
 
   return (
     <div
@@ -132,29 +105,16 @@ const CelebrityPublicContractCardAlternativeLayout = ({
       </div>
     </div>
   );
-};
+}
 
 CelebrityPublicContractCardAlternativeLayout.defaultProps = {
-  publicContract: {}
+  publicContract: {},
 };
 
 CelebrityPublicContractCardAlternativeLayout.propTypes = {
   celebrityFullName: PropTypes.string,
   celebrityAvatar: PropTypes.string,
-  videoKey: PropTypes.string.isRequired
+  videoKey: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ celebritySections }) => ({
-  currentVideoKey: celebritySections.playVideoReducer
-});
-
-const mapDispatchToProps = {
-  setPlayingVideo
-};
-
-const _CelebrityPublicContractCardAlternativeLayout = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CelebrityPublicContractCardAlternativeLayout);
-
-export { _CelebrityPublicContractCardAlternativeLayout as CelebrityPublicContractCardAlternativeLayout };
+export { CelebrityPublicContractCardAlternativeLayout };

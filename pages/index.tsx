@@ -5,10 +5,9 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { wrapper } from "react-app/src/state/store";
 import getCookie from "react-app/src/utils/getCookie";
-import { useDesktopClass } from "../lib/hooks/useDesktopClass";
-import { parse } from "cookie";
 import { fetchLandings } from "react-app/src/state/ducks/landings/actions";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
+import { parse } from "cookie";
 
 const HomePage = dynamic<{ userLocation: string }>(() =>
   import("desktop-app/components/pages/home").then((mod) => mod.HomePage)
@@ -41,7 +40,6 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       offset: 0,
     })(store.dispatch);
 
-    // Return Props
     return {
       props: {
         isMobile,
@@ -51,9 +49,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   }
 );
 
-const Home = ({ isMobile, userLocation }) => {
-  useDesktopClass(!isMobile);
-
+function Home({ isMobile, userLocation }) {
   return (
     <>
       <CustomHead />
@@ -62,6 +58,6 @@ const Home = ({ isMobile, userLocation }) => {
       </Maybe>
     </>
   );
-};
+}
 
 export default Home;

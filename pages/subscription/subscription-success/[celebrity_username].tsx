@@ -3,6 +3,7 @@ import { SubscriptionSuccess as SubscriptionSuccessPage } from "react-app/src/co
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import { defineMessages } from "react-intl";
+import { GetServerSideProps } from "next";
 
 const headData = defineMessages({
   titleFeed: {
@@ -10,15 +11,25 @@ const headData = defineMessages({
   },
 });
 
-const SubscriptionSuccess = () => {
+export const getServerSideProps: GetServerSideProps = async ({
+  params: { celebrity_username },
+}) => {
+  return {
+    props: {
+      celebrityUsername: celebrity_username,
+    },
+  };
+};
+
+function SubscriptionSuccess({ celebrityUsername }) {
   return (
     <>
       <CustomHead description={headData.titleFeed} />
-      <SubscriptionSuccessPage />
+      <SubscriptionSuccessPage celebrityUsername={celebrityUsername} />
     </>
   );
-};
+}
 
 export default withAuthenticationRequired(SubscriptionSuccess, {
-  onRedirecting: () => <LoadingPage></LoadingPage>,
+  onRedirecting: () => <LoadingPage />,
 });

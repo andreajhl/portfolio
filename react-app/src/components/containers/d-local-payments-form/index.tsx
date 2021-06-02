@@ -93,14 +93,18 @@ const DLocalPaymentsForm = ({
   }, [buyerDocument, buyerEmail, buyerFullName]);
 
   const checkDocumentFormat = () => {
-    const checkDocument = allowedFormatDocuments[currency];
-    const isValid = checkDocument(buyerDocument);
-    if (!isValid) {
-      setInvalidFormatDocument(true);
-      handleValidateData(true);
-    } else {
-      setInvalidFormatDocument(false);
-      handleValidateData(false);
+    if (
+      typeof allowedFormatDocuments[currencyExchangeData?.to] === "function"
+    ) {
+      const checkDocument = allowedFormatDocuments[currencyExchangeData?.to];
+      const isValid = checkDocument(buyerDocument);
+      if (!isValid) {
+        setInvalidFormatDocument(true);
+        handleValidateData(true);
+      } else {
+        setInvalidFormatDocument(false);
+        handleValidateData(false);
+      }
     }
   };
   const document_name_available = AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
@@ -113,6 +117,7 @@ const DLocalPaymentsForm = ({
           <FormattedMessage defaultMessage="Nombre" />
         </label>
         <input
+          autoComplete="off"
           ref={buyerFullNameInput}
           value={buyerFullName}
           type="text"
@@ -134,6 +139,7 @@ const DLocalPaymentsForm = ({
           <FormattedMessage defaultMessage="Email" />
         </label>
         <input
+          autoComplete="off"
           style={{
             borderRadius: "10px",
           }}
@@ -161,6 +167,7 @@ const DLocalPaymentsForm = ({
             : document_name_available?.document_name}
         </label>
         <input
+          autoComplete="off"
           ref={buyerDocumentInput}
           style={{
             borderRadius: "10px",

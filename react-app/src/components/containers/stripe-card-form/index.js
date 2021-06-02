@@ -87,7 +87,7 @@ class StripeCardForm extends Component {
     });
 
     // REQUIRED DATA
-    const amount = this.props.contractPrice * 100;
+    //const amount = this.props.contractPrice * 100;
     const currency = "USD";
     const ownerData = {
       name: this.state.ownerName.trim(),
@@ -99,7 +99,6 @@ class StripeCardForm extends Component {
       .createSource({
         type: "card",
         currency: currency,
-        amount: amount,
         owner: ownerData,
         usage: "reusable",
       })
@@ -128,12 +127,7 @@ class StripeCardForm extends Component {
           response.source.card.three_d_secure === "required" ||
           response.source.card.three_d_secure === "recommended"
         ) {
-          this.createStripe3DFlow(
-            currency,
-            amount,
-            response.source.id,
-            ownerData
-          );
+          this.createStripe3DFlow(currency, response.source.id, ownerData);
         } else {
           this.setState({
             ...this.state,
@@ -212,7 +206,6 @@ class StripeCardForm extends Component {
       .createSource({
         type: "three_d_secure",
         currency: currency,
-        amount: amount,
         three_d_secure: { card: sourceId },
         redirect: { return_url: responseURL },
         owner: ownerData,
@@ -289,6 +282,7 @@ class StripeCardForm extends Component {
             <FormattedMessage defaultMessage="Correo del titular de la tarjeta" />
           </h6>
           <input
+            autoComplete="off"
             type="text"
             className="form-control mb-3 input-stripe-form"
             placeholder={this.props.intl.formatMessage(placeholders.ownerEmail)}
@@ -301,6 +295,7 @@ class StripeCardForm extends Component {
           </h6>
           <input
             type="text"
+            autoComplete="off"
             className="form-control mb-3 input-stripe-form"
             placeholder={this.props.intl.formatMessage(placeholders.ownerName)}
             name="ownerName"

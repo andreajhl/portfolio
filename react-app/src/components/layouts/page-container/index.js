@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { NavbarSectionLayout } from "../navbar-section";
@@ -17,12 +17,14 @@ import dynamic from "next/dynamic";
 import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { Session } from "react-app/src/state/utils/session.js";
 
+function ignoreError() {}
+
 const CookiesConsent = dynamic(
   () => import("../cookies-consent").then((mod) => mod.CookiesConsent),
   { ssr: false }
 );
 
-const PageContainer = ({
+function PageContainer({
   hasDiscountCoupon,
   cleanUserCelebrityLikes,
   restCountries,
@@ -35,17 +37,20 @@ const PageContainer = ({
   showBotMakerFrame,
   router,
   ...props
-}) => {
-  const [botMakerChild, setBotMakerChild] = useState(undefined);
+}) {
+  const botMakerChildRef = useRef();
   const [dropdownMenuIsOpen, setDropdownMenuIsOpen] = useState(false);
   const [showCouponBanner, setShowCouponBanner] = useState(hasDiscountCoupon);
   const loginHandler = useLoginHandler();
 
-  const cancelPreviousWaitFor = () => {
-    if (botMakerChild && botMakerChild.cancel) {
-      botMakerChild.cancel();
+  function cancelPreviousWaitFor() {
+    if (
+      botMakerChildRef.current &&
+      typeof botMakerChildRef.current.cancel === "function"
+    ) {
+      botMakerChildRef.current.cancel();
     }
-  };
+  }
 
   const setBotmakerDisplay = (botMakerChild) => {
     if (!botMakerChild) return;
@@ -76,8 +81,8 @@ const PageContainer = ({
     const isAsync = typeof botMakerChild.then === "function";
 
     if (isAsync) {
-      botMakerChild.then(setBotmakerDisplay);
-      setBotMakerChild(botMakerChild);
+      botMakerChild.then(setBotmakerDisplay).catch(ignoreError);
+      botMakerChildRef.current = botMakerChild;
     } else {
       setBotmakerDisplay(botMakerChild);
     }
@@ -173,14 +178,11 @@ const PageContainer = ({
         src="/assets/img/wifi-connection-error.svg"
         alt="Imagen de Error de conexión de internet pre-cargada"
       />
-      {/*{this.showVideoCallsResearch ? <VideoCallsResearch /> : null}*/}
-      {/* <DownloadAppBanner /> */}
-      <CookiesConsent />
 
-      {/*<BottomNavbarSectionLayout/>*/}
+      <CookiesConsent />
     </div>
   );
-};
+}
 
 // Set propTypes
 PageContainer.propTypes = {};

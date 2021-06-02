@@ -3,7 +3,6 @@ import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import isMobile from "lib/utils/isMobile";
 import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
-import React from "react";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 
 const HiringPreviewPage = dynamic<{

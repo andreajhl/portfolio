@@ -101,6 +101,7 @@ const DLocalFormCard = ({
           <FormattedMessage defaultMessage="Nombre del titular de la tarjeta" />
         </LabelElement>
         <InputElement
+          autoComplete="off"
           placeholder={intl.formatMessage(inputcardHoldername)}
           type="text"
           ref={buyerNameCard}

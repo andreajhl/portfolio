@@ -253,12 +253,12 @@ class AvailablePaymentMethods extends Component {
     }));
   };
   render() {
-    const shouldDisplayBuyerForm = this.props.paymentMethodsAvailable?.some(
-      (payment) =>
-        ["BANK_TRANSFER", "TICKET", "CREDIT_CARD"].includes(
-          payment.paymentMethodType
-        )
-    );
+    const shouldDisplayBuyerForm = [
+      "BANK_TRANSFER",
+      "TICKET",
+      "CREDIT_CARD",
+    ].includes(this.state.selectedPaymentMethod);
+
     return this.props.paymentMethodsAvailableIsLoading ? (
       <div
         style={{ minHeight: "10vh" }}
