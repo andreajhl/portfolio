@@ -61,7 +61,9 @@ function ErrorReport({
             />
           </h3>
         </div>
-        <FourZeroFourCelebritiesSectionsLayout />
+        <div className={styles.CelebritiesSectionContainer}>
+          <FourZeroFourCelebritiesSectionsLayout />
+        </div>
         <div className="container pb-4 pt-2 text-center">
           <NavLink to={HOME_PATH}>
             <CallToActionButton
