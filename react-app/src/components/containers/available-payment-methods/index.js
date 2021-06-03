@@ -242,7 +242,8 @@ class AvailablePaymentMethods extends Component {
     const shouldDisplayBuyerForm = [
       "BANK_TRANSFER",
       "TICKET",
-      "CREDIT_CARD"
+      "CREDIT_CARD",
+      "DEBIT_CARD"
     ].includes(this.state.selectedPaymentMethod);
 
     return this.props.paymentMethodsAvailableIsLoading ? (
