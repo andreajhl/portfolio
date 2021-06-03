@@ -1,0 +1,101 @@
+.Container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  @media only screen and (max-width: 575px) {
+    padding: 40px 0;
+  }
+
+  @media only screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.LeftSide {
+  @media only screen and (min-width: 992px) {
+    margin-right: 76px;
+  }
+}
+
+.RightSide {
+  flex: 413px 0 1;
+}
+
+.AuthBenefitsBanner {
+  margin-top: 80px;
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.AuthBenefitsBannerMobile {
+  margin-top: 1rem;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.AuthSteps {
+  margin-top: 105px !important;
+  max-width: 290px;
+
+  @media only screen and (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+.AuthStepsMobile {
+  margin: 0 auto !important;
+  max-width: 350px;
+
+  @media only screen and (max-width: 374px) {
+    width: 90% !important;
+  }
+
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.SignUpBox {
+  @media only screen and (max-width: 767px) {
+    margin: 25px auto 0;
+  }
+
+  @media only screen and (max-width: 575px) {
+    > div:first-of-type {
+      border-radius: 0;
+    }
+  }
+}
+
+.Title,
+.TitleMobile {
+  font-weight: bold;
+  letter-spacing: 0em;
+}
+
+.Title {
+  max-width: 357px;
+  font-size: 34px;
+  font-weight: bold;
+  line-height: 41px;
+  letter-spacing: 0em;
+  margin-top: 80px;
+
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.TitleMobile {
+  font-size: 24px;
+  max-width: 322px;
+  line-height: 31px;
+  text-align: center;
+  margin: 30px auto 0;
+
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+}
