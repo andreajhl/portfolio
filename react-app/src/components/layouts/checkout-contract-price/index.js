@@ -23,30 +23,19 @@ class ContractPriceLayout extends Component {
   getConvertedPrice(price) {
     if (this.props.currencyExchangeData.to === "USD") return price;
 
-    const convertedPrice = Math.ceil(
-      price * (this.props.currencyExchangeData.rate || 1)
-    );
+    const convertedPrice = price * (this.props.currencyExchangeData.rate || 1);
 
-    const round = parseFloat(
-      AVAILABLE_CURRENCIES.find(
-        (item) => item.name === this.props.currencyExchangeData.to
-      )?.round
-    );
-
-    return convertedPrice < round
-      ? round
-      : round + convertedPrice - (convertedPrice % round);
+    return convertedPrice;
   }
 
-  getPriceFormat() {
-    const price = this.getConvertedPrice(this.props.price);
-
+  getPriceFormat(finalPrice) {
+    const price = this.getConvertedPrice(finalPrice);
     return (
       <NumberFormat
-        value={price ? (this.props.rounding ? this.rounding() : price) : 0}
+        value={price || 0}
         displayType={"text"}
         thousandSeparator={true}
-        decimalScale={2}
+        decimalScale={0}
         prefix={
           AVAILABLE_CURRENCIES.find(
             (item) => item.name === this.props.currencyExchangeData.to
@@ -67,7 +56,7 @@ class ContractPriceLayout extends Component {
         value={price || 0}
         displayType={"text"}
         thousandSeparator={true}
-        decimalScale={2}
+        decimalScale={0}
         prefix={
           AVAILABLE_CURRENCIES.find((item) => item.name === currencyName)?.[
             "symbol"
@@ -80,6 +69,7 @@ class ContractPriceLayout extends Component {
 
   render() {
     const hasCelebrityDiscount = this.props.celebrityDiscountPercentage > 0;
+    const couponData = this.props.couponData.data;
 
     const finalPrice = (
       <div
@@ -100,115 +90,77 @@ class ContractPriceLayout extends Component {
               <br />
               <FormattedMessage defaultMessage="El cobro que se hará en dólares es:" />{" "}
               <span>
-                {this.getFormattedPrice(this.props.price, this.props.currency)}
+                {this.getFormattedPrice(
+                  this.props.couponData.completed
+                    ? couponData.finalAmount
+                    : this.props.price,
+                  this.props.currency
+                )}
               </span>
             </span>
           ) : null}
         </span>
-        {this.getPriceFormat()}
+        {this.getPriceFormat(
+          this.props.couponData.completed
+            ? couponData.finalAmount
+            : this.props.price
+        )}
       </div>
     );
 
-    const originalPrice =
-      this.props.availableDiscount || hasCelebrityDiscount ? (
-        <div className="d-flex  justify-content-between ">
-          <span>
-            <FormattedMessage defaultMessage="Precio original:" />
-          </span>
-          <span
-            className={`text-${hasCelebrityDiscount ? "danger" : "dark"}`}
-            style={
-              hasCelebrityDiscount
-                ? {
-                    textDecoration: "line-through",
-                    marginLeft: "auto",
-                    marginRight: "0.4em"
-                  }
-                : null
-            }
-          >
-            {this.props.currencyExchangeData.to !== this.props.currency ? (
-              this.getFormattedPrice(
-                this.getConvertedPrice(
-                  hasCelebrityDiscount
-                    ? this.props.originalPrice
-                    : this.props.availableDiscount.initialPrice
-                ),
-                this.props.currencyExchangeData.to
-              )
-            ) : (
-              <>
-                {this.getFormattedPrice(
-                  hasCelebrityDiscount
-                    ? this.props.originalPrice
-                    : this.props.availableDiscount.initialPrice,
-                  this.props.currency
-                )}
-              </>
-            )}
-          </span>{" "}
-          <Maybe it={hasCelebrityDiscount}>
-            {this.props.currencyExchangeData.to !== this.props.currency
-              ? this.getFormattedPrice(
-                  this.getConvertedPrice(this.props.contractPrice),
-                  this.props.currencyExchangeData.to
-                )
-              : this.getFormattedPrice(
-                  this.props.contractPrice,
-                  this.props.currency
-                )}
-          </Maybe>
-        </div>
-      ) : null;
-    const discountValue = this.props.availableDiscount ? (
+    const originalPrice = (
+      <div className="d-flex  justify-content-between ">
+        <span>
+          <FormattedMessage defaultMessage="Precio original:" />
+        </span>
+        <span
+          className={`text-${hasCelebrityDiscount ? "danger" : "dark"}`}
+          style={
+            hasCelebrityDiscount
+              ? {
+                  textDecoration: "line-through",
+                  marginLeft: "auto",
+                  marginRight: "0.4em"
+                }
+              : null
+          }
+        >
+          {this.getFormattedPrice(
+            this.getConvertedPrice(
+              hasCelebrityDiscount ? this.props.originalPrice : this.props.price
+            ),
+            this.props.currencyExchangeData.to
+          )}
+        </span>{" "}
+        <Maybe it={hasCelebrityDiscount}>
+          {this.getFormattedPrice(
+            this.getConvertedPrice(this.props.contractPrice),
+            this.props.currencyExchangeData.to
+          )}
+        </Maybe>
+      </div>
+    );
+
+    const discountValue = this.props.couponData.completed ? (
       <div className="d-flex justify-content-between ">
         <span className="float-left">
           <FormattedMessage defaultMessage="Descuento:" />
         </span>
         <span className="text-danger font-weight-bold">
-          {this.props.availableDiscount.isPercentageDiscount ? (
-            <>
-              -{(this.props.availableDiscount.discountAmount * 100).toFixed()}%
-              |{" "}
-              {this.props.currencyExchangeData.to !== this.props.currency ? (
-                this.getFormattedPrice(
-                  this.getConvertedPrice(
-                    parseFloat(
-                      (
-                        this.props.availableDiscount.discountAmount *
-                        this.props.availableDiscount.initialPrice
-                      ).toFixed(2)
-                    )
-                  ),
-                  this.props.currencyExchangeData.to
-                )
-              ) : (
-                <>
-                  $
-                  {(
-                    this.props.availableDiscount.discountAmount *
-                    this.props.availableDiscount.initialPrice
-                  ).toFixed(2)}{" "}
-                  {this.props.currency}
-                </>
-              )}
-            </>
-          ) : this.props.currencyExchangeData.to !== this.props.currency ? (
-            this.getFormattedPrice(
-              this.getConvertedPrice(
-                this.props.availableDiscount.discountAmount
-              ),
+          {couponData.isPercentageDiscount || couponData.discountPercentage ? (
+            <> -{(couponData.discountPercentage * 100).toFixed(2)}% | </>
+          ) : null}
+
+          <>
+            {this.getFormattedPrice(
+              this.getConvertedPrice(couponData.discountAmount),
               this.props.currencyExchangeData.to
-            )
-          ) : (
-            <>
-              ${this.props.availableDiscount.discountAmount}{" "}
-              {this.props.currency}
-            </>
-          )}
+            )}
+          </>
         </span>
       </div>
     ) : null;
+
     return (
       <div style={{ width: "100%" }}>
         {originalPrice}
@@ -234,8 +186,7 @@ ContractPriceLayout.defaultProps = {
 const mapStateToProps = (state) => ({
   currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
   currencyExchangeData: state.payments.currencyExchangeReducer.data,
-  couponData: state.payments.fetchDiscountCouponReducer,
-  currencyExchangeData: state.payments.currencyExchangeReducer.data
+  couponData: state.payments.fetchDiscountCouponReducer
 });
 
 // mapStateToProps
