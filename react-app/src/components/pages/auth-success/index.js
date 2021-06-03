@@ -15,7 +15,7 @@ const AuthSuccess = () => {
   }, [isAuthenticated, isLoading]);
 
   useEffect(() => {
-    setTimeout(() => {
+    const IDClear = setTimeout(() => {
       const redirectInLocalStorage = localStorage.getItem("finalRedirect");
       if (redirectInLocalStorage) {
         push(redirectInLocalStorage);
@@ -23,7 +23,11 @@ const AuthSuccess = () => {
         push("/");
       }
     }, TWENTY_SECONDS_IN_MILLISECONDS);
+    return () => {
+      clearTimeout(IDClear);
+    };
   }, []);
+
   return (
     <React.Fragment>
       <div
