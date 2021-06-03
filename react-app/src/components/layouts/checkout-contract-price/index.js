@@ -8,27 +8,6 @@ import { FormattedMessage } from "react-intl";
 import Maybe from "../../common/helpers/maybe";
 
 class ContractPriceLayout extends Component {
-  returnDiscountAmount() {
-    if (!this.props.couponData.data.isPercentageDiscount)
-      return this.props.availableDiscount.discountAmount;
-
-    const discount =
-      Math.floor(
-        this.props.availableDiscount.discountAmount *
-          this.props.availableDiscount.initialPrice *
-          100
-      ) / 100;
-
-    if (
-      this.props.couponData.data.isPercentageDiscount &&
-      discount > this.props.couponData.data.maxDiscountAmount
-    ) {
-      return this.props.couponData.data.maxDiscountAmount;
-    } else {
-      return discount;
-    }
-  }
-
   rounding() {
     const res = AVAILABLE_CURRENCIES.find(
       (item) => item.name === this.props.currency
@@ -169,12 +148,12 @@ class ContractPriceLayout extends Component {
         </span>
         <span className="text-danger font-weight-bold">
           {couponData.isPercentageDiscount || couponData.discountPercentage ? (
-            <> -{couponData.discountPercentage.toFixed(2)}% | </>
+            <> -{(couponData.discountPercentage * 100).toFixed(2)}% | </>
           ) : null}
 
           <>
             {this.getFormattedPrice(
-              this.getConvertedPrice(this.returnDiscountAmount()),
+              this.getConvertedPrice(couponData.discountAmount),
               this.props.currencyExchangeData.to
             )}
           </>
