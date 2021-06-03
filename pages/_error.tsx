@@ -6,6 +6,7 @@ import NextErrorComponent from "next/error";
 import * as Sentry from "@sentry/nextjs";
 import { NextPage, NextPageContext } from "next";
 import debug from "react-app/src/utils/debug";
+import ErrorReport from "react-app/src/components/layouts/error-report";
 
 type ErrorPageProps = {
   err?: unknown;
@@ -28,44 +29,38 @@ const CustomError: NextPage<ErrorPageProps> = ({
     // Flushing is not required in this case as it only happens on the client
   }
   return (
-    <PageContainer applyFetchCelebrities={false} showFooter={false}>
-      <div className="SignInPage">
-        <div className="section">
-          <div className="auth-container mx-auto text-center p-4">
-            <h3 className="font-weight-light text-center">
-              <FormattedMessage defaultMessage="Ha ocurrido un error." />
-            </h3>
-            {statusCode ? (
-              <h3 className="font-weight-light text-center">
-                CODE {String(statusCode)}
-              </h3>
-            ) : null}
-            {asPath ? (
-              <h3>
-                <span>{String(asPath)}</span>
-              </h3>
-            ) : null}
-            <p className="h6">
-              <FormattedMessage defaultMessage="Estamos haciendo lo posible por resolverlo." />
+    <ErrorReport
+      errorTitle={<FormattedMessage defaultMessage="Ha ocurrido un error." />}
+      errorDescription={
+        <>
+          <p
+            className="h6"
+            style={{
+              color: "white"
+            }}
+          >
+            <FormattedMessage defaultMessage="Estamos haciendo lo posible por resolverlo." />
+          </p>
+          {statusCode ? (
+            <p
+              className="font-weight-light text-center"
+              style={{
+                color: "white"
+              }}
+            >
+              CODE {String(statusCode)}
             </p>
-            <br />
-            <img
-              width="200px"
-              style={{ opacity: "0.2" }}
-              src="/assets/img/sad-face-in-rounded-square.svg"
-              alt="sad-face"
-            />
-            <br />
-            <br />
-            <NavLink to={ROOT_PATH}>
-              <button className="btn btn-primary">
-                <FormattedMessage defaultMessage="Volver a inicio" />
-              </button>
-            </NavLink>
-          </div>
-        </div>
-      </div>
-    </PageContainer>
+          ) : null}
+        </>
+      }
+      errorPath={
+        asPath ? (
+          <h3>
+            <span>{String(asPath)}</span>
+          </h3>
+        ) : null
+      }
+    />
   );
 };
 

@@ -30,13 +30,26 @@ const headData = defineMessages({
       "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
   }
 });
+
+const redirectToSanitizedPath = {
+  destination: "/celebrity_username",
+  permanent: false
+};
+
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  async ({ params: { celebrity_username }, store }) => {
+  async ({ params, store }) => {
+    if (typeof params === "undefined") {
+      return {
+        redirect: redirectToSanitizedPath
+      };
+    }
     try {
+      const celebrity_username = params?.celebrity_username;
       await get(celebrity_username, true)(store.dispatch);
       const { celebrities } = store.getState();
 
       const celebrity = celebrities.getCelebrityReducer.data;
+
       if (!celebrity.id) {
         return {
           redirect: {
@@ -61,8 +74,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
           celebrity
         }
       };
-    } catch (e) {
-      debug("ERROR getServerSideProps", e);
+    } catch (error) {
+      debug("ERROR getServerSideProps", error);
       return {
         props: {}
       };
@@ -70,7 +83,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   }
 );
 
-const CelebrityProfile = ({ celebrity }) => {
+function CelebrityProfile({ celebrity }) {
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
   const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
   const { formatMessage } = useIntl();
@@ -110,6 +123,6 @@ const CelebrityProfile = ({ celebrity }) => {
       <CelebrityProfilePage celebrity={celebrity} />
     </>
   );
-};
+}
 
 export default CelebrityProfile;
