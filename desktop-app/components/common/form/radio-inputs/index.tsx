@@ -45,6 +45,7 @@ function Option({
 }
 
 type RadioInputsProps = {
+  className?: string;
   children: ReactNode;
   name?: string;
   onChange?: (value: any) => void;
@@ -52,13 +53,14 @@ type RadioInputsProps = {
 };
 
 function RadioInputs({
+  className,
   name = "Radio-Inputs- " + Date.now(),
   children,
   onChange = function () {},
   value = null,
 }: RadioInputsProps) {
   return (
-    <div className={styles.RadioInputs}>
+    <div className={className}>
       {React.Children.map(children, (child) => {
         const childProps = (child as any)?.props;
         return (
