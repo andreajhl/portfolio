@@ -977,6 +977,27 @@ export function HorizontalMenuIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+export function FillDripIcon({
+  fill = "black",
+  ...props
+}: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={40}
+      height={35}
+      viewBox="0 0 40 35"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M35.556 21.875s-4.445 6.334-4.445 8.75c0 2.416 1.99 4.375 4.445 4.375C38.01 35 40 33.041 40 30.625s-4.444-8.75-4.444-8.75zm-.651-7.037L20.482.641A2.233 2.233 0 0018.91 0a2.23 2.23 0 00-1.57.64l-5.666 5.577L5.69.325a1.123 1.123 0 00-1.57 0L2.548 1.872a1.082 1.082 0 000 1.546l5.985 5.891-6.58 6.478a6.49 6.49 0 000 9.28l8.138 8.01A6.7 6.7 0 0014.804 35c1.706 0 3.412-.64 4.713-1.922L34.904 17.93a2.163 2.163 0 000-3.093zm-8.071 4.852H4.578c.095-.263.248-.546.516-.81l.913-.898 5.668-5.579 4.07 4.006a2.247 2.247 0 003.141 0 2.163 2.163 0 000-3.093l-4.07-4.005 4.094-4.03 11.28 11.104-3.356 3.305z"
+        fill={fill}
+      />
+    </svg>
+  );
+}
+
 export function PaypalIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
