@@ -51,6 +51,19 @@
   margin: 30px auto 0;
 }
 
+.ForgotPasswordLink {
+  padding: 8px 0;
+  transition: color 0.15s;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #3d87f3;
+  display: block;
+  margin-top: 17px;
+}
+
 .NotRegisteredText {
   margin-top: 24px;
   margin-bottom: 0;
@@ -59,6 +72,7 @@
   color: #6970c6;
 
   a {
+    transition: color 0.15s;
     font-weight: bold;
   }
 

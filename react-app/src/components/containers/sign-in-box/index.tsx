@@ -52,6 +52,9 @@ function SignInBox({ className }: SignInBoxProps) {
           <FormattedMessage defaultMessage="Continuar" />
         </button>
         <AuthTermsAdvertise className={styles.SignInBoxAuthTermsAdvertise} />
+        <Link href="#" className={styles.ForgotPasswordLink}>
+          <FormattedMessage defaultMessage="Olvidé mi contraseña" />
+        </Link>
       </div>
       <p className={styles.NotRegisteredText}>
         <FormattedMessage
