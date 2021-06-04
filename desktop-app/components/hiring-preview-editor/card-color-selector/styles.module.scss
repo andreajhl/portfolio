@@ -1,13 +1,44 @@
+.CardColorSelector {
+  @media only screen and (max-width: 767px) {
+    display: flex;
+    justify-content: space-between;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+}
+
 .ColorOption {
   border: 2px solid transparent;
   background: #f8f8fe;
   border-radius: 50%;
   width: 39px;
   height: 39px;
-  margin-bottom: 24px;
   cursor: pointer;
+
+  @media only screen and (max-width: 767px) {
+    width: 60px;
+    height: 60px;
+    border: 5px solid white;
+    box-shadow: 0px 0px 20px 0px #0000001a;
+  }
+
+  @media only screen and (max-width: 374px) {
+    width: 15vw;
+    height: 15vw;
+  }
+}
+
+label ~ label .ColorOption {
+  margin-left: auto;
+  @media only screen and (min-width: 767px) {
+    margin-left: 28px;
+  }
 }
 
 .SelectedColor .ColorOption {
   border-color: #6970c6;
+
+  @media only screen and (max-width: 767px) {
+    border-width: 3px;
+  }
 }

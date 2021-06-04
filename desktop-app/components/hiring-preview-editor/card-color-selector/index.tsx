@@ -12,7 +12,11 @@ function CardColorSelector({
   value,
 }: CardColorSelectorProps) {
   return (
-    <RadioInputs onChange={onChange} value={value}>
+    <RadioInputs
+      className={styles.CardColorSelector}
+      onChange={onChange}
+      value={value}
+    >
       {availableCardColors.map((color, index) => (
         <RadioInputs.Option
           key={color}
@@ -25,7 +29,6 @@ function CardColorSelector({
             className={styles.ColorOption}
             style={{
               backgroundColor: color,
-              marginLeft: index === 0 ? 0 : 28,
             }}
           />
         </RadioInputs.Option>
