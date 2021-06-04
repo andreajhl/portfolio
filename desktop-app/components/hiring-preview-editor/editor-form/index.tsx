@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
-import { GiftCard } from "desktop-app/components/common/cards/gift-card";
 import {
   availableActionButtonsBackgroundColors,
   availableCardColors,
@@ -9,16 +8,17 @@ import {
 } from "constants/hiring-preview-configuration";
 import { useEffect, useRef, useState } from "react";
 import { CardColorSelector } from "desktop-app/components/hiring-preview-editor/card-color-selector";
-import { PageBackgroundSelector } from "../page-background-selector";
 import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfigurationType";
 import { OccasionType } from "desktop-app/types/contractDataType";
 import useForm from "lib/hooks/useForm";
 import { Dispatch } from "react";
 import { getGiftPreviewPath } from "constants/paths";
-import AutoHeightTextarea from "react-textarea-autosize";
 import { SaveStatus } from "desktop-app/components/hiring-preview-editor/save-status";
-import useStatus from "../../../../lib/hooks/useStatus";
 import debounce from "lodash.debounce";
+import useStatus from "lib/hooks/useStatus";
+import { PageBackgroundSelector } from "desktop-app/components/hiring-preview-editor/page-background-selector";
+import { EditorFormGiftCard } from "../editor-form-gift-card";
+import { Collapse } from "react-bootstrap";
 
 const initialValues: HiringPreviewConfigurationType = {
   cardColor: availableCardColors[0],
@@ -49,7 +49,9 @@ function EditorForm({
 }: EditorFormProps) {
   const [status, setStatus] = useStatus();
   const { values, setFieldValue, onChangeField } = useForm({ initialValues });
-  const [titleMinRows, setTitleMinRows] = useState(2);
+  const [cardColorSelectorIsVisible, setCardColorSelectorIsVisible] = useState(
+    false
+  );
   const isFirstRender = useRef(true);
 
   // Conectar con endpoint que guarda la configuración.
@@ -76,55 +78,43 @@ function EditorForm({
     }
   }, [values]);
 
-  useEffect(() => {
-    // Para actualizar el textarea y evitar alto indebido.
-    setTitleMinRows(undefined);
-  }, []);
+  function toggleCardColorSelectorIsHidden() {
+    setCardColorSelectorIsVisible((isVisible) => !isVisible);
+  }
 
   return (
     <div className={styles.EditorForm}>
-      <GiftCard
-        className={styles.GiftCardPreview}
+      <EditorFormGiftCard
         occasion={occasion}
-        cardColor={values.cardColor}
-      >
-        <GiftCard.Title>
-          <AutoHeightTextarea
-            placeholder="Agrega un titulo"
-            minRows={titleMinRows}
-            name="cardTitle"
-            value={values.cardTitle}
-            className={styles.Textarea}
-            onChange={onChangeField}
-          />
-        </GiftCard.Title>
-        <GiftCard.SpecialText>
-          <AutoHeightTextarea
-            placeholder="Agrega un texto especial"
-            name="cardMessage"
-            value={values.cardMessage}
-            onChange={onChangeField}
-            className={styles.Textarea}
-          />
-        </GiftCard.SpecialText>
-      </GiftCard>
+        values={values}
+        onChange={onChangeField}
+        onClickColorSelectorToggler={toggleCardColorSelectorIsHidden}
+      />
       <div className={styles.FormFields}>
-        <h3 className={styles.FieldTitle}>Color de la tarjeta</h3>
-        <CardColorSelector
-          onChange={(color) => setFieldValue("cardColor", color)}
-          value={values.cardColor}
-        />
-        <h3 className={styles.FieldTitle}>Agregar fondo</h3>
-        <PageBackgroundSelector
-          onChange={(background) => {
-            setFieldValue("pageBackgroundUrl", background);
-            setFieldValue(
-              "actionButtonsBackgroundColor",
-              getActionButtonsBackgroundColorsForPageBackground(background)
-            );
-          }}
-          value={values.pageBackgroundUrl}
-        />
+        <Collapse in={cardColorSelectorIsVisible}>
+          <div className={styles.CollapsibleCardColorSelector}>
+            <section className={styles.CardColorSelectorWrapper}>
+              <h3 className={styles.FieldTitle}>Color de la tarjeta</h3>
+              <CardColorSelector
+                onChange={(color) => setFieldValue("cardColor", color)}
+                value={values.cardColor}
+              />
+            </section>
+          </div>
+        </Collapse>
+        <section className={styles.PageBackgroundSelectorSection}>
+          <h3 className={styles.FieldTitle}>Agregar fondo</h3>
+          <PageBackgroundSelector
+            onChange={(background) => {
+              setFieldValue("pageBackgroundUrl", background);
+              setFieldValue(
+                "actionButtonsBackgroundColor",
+                getActionButtonsBackgroundColorsForPageBackground(background)
+              );
+            }}
+            value={values.pageBackgroundUrl}
+          />
+        </section>
         <div className={styles.FormButtons}>
           <a
             className={styles.PreviewLink}

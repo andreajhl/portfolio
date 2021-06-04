@@ -1,45 +1,61 @@
 .EditorForm {
-  border: 1px solid #e6e6e6;
-  border-radius: 7px;
-}
-
-.EditorForm .GiftCardPreview {
-  border-radius: 7px 7px 0 0;
-}
-
-.Textarea {
-  resize: none;
-  font: inherit;
-  width: 100%;
-  padding: 0;
-  background: none;
-  border: none;
-}
-
-.TitleEditToggler {
-  font-size: 14px;
-  margin-top: 16.3px;
-  margin-left: -0.75rem;
-  color: var(--tertiary, #3d87f3);
-  font-weight: bold;
-
-  &:hover {
-    color: var(--secondary, #6970c6);
+  @media only screen and (min-width: 768px) {
+    border: 1px solid #e6e6e6;
+    border-radius: 7px;
   }
 }
 
 .FormFields {
-  padding: 22px 26px 32px;
+  @media only screen and (min-width: 768px) {
+    padding: 22px 26px 32px;
+  }
+}
+
+.CollapsibleCardColorSelector:not(.show) {
+  @media only screen and (min-width: 768px) {
+    display: block !important;
+  }
+}
+
+.CardColorSelectorWrapper {
+  @media only screen and (max-width: 767px) {
+    margin-top: 40px;
+  }
+}
+
+.CardColorSelectorWrapper .FieldTitle {
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
 }
 
 .FieldTitle {
   font-size: 16px !important;
   margin-bottom: 1em;
+
+  @media only screen and (max-width: 767px) {
+    font-size: 18px !important;
+  }
+}
+
+.PageBackgroundSelectorSection {
+  margin-top: 16px;
+  @media only screen and (max-width: 767px) {
+    margin-top: 30px;
+    padding: 24px 0 24px 32px;
+    background-color: white;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
 }
 
 .FormButtons {
   display: flex;
   margin-top: 28px;
+
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
 }
 
 .PreviewLink {
@@ -63,4 +79,19 @@
 
 .SaveStatusWrapper {
   margin-top: 22px;
+
+  @media only screen and (max-width: 767px) {
+    padding: 8px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+
+    span {
+      margin-left: 5px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    i {
+      font-size: 17px;
+    }
+  }
 }
