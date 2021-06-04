@@ -13,27 +13,29 @@ function PageBackgroundSelector({
 }: PageBackgroundSelectorProps) {
   return (
     <>
-      <RadioInputs
-        name="PageBackgroundSelector"
-        onChange={onChange}
-        value={value}
-      >
-        {availablePageBackgroundsUrls.map((backgroundUrl, index) => (
-          <RadioInputs.Option
-            key={backgroundUrl}
-            value={backgroundUrl}
-            id={backgroundUrl}
-            selectedClassName={styles.SelectedBackground}
-          >
-            <img
-              className={styles.backgroundOption}
-              src={backgroundUrl.replace(".png", "-small.png")}
-              alt={`Fondo de pagina numero ${index + 1}`}
-              style={{ marginLeft: index === 0 ? 0 : 9 }}
-            />
-          </RadioInputs.Option>
-        ))}
-      </RadioInputs>
+      <div className={styles.RadioInputsWrapper}>
+        <RadioInputs
+          className={styles.PageBackgroundSelector}
+          name="PageBackgroundSelector"
+          onChange={onChange}
+          value={value}
+        >
+          {availablePageBackgroundsUrls.map((backgroundUrl, index) => (
+            <RadioInputs.Option
+              key={backgroundUrl}
+              value={backgroundUrl}
+              id={backgroundUrl}
+              selectedClassName={styles.SelectedBackground}
+            >
+              <img
+                className={styles.backgroundOption}
+                src={backgroundUrl.replace(".png", "-small.png")}
+                alt={`Fondo de pagina numero ${index + 1}`}
+              />
+            </RadioInputs.Option>
+          ))}
+        </RadioInputs>
+      </div>
       <button
         type="button"
         className={"btn " + styles.ResetButton}
