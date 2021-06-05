@@ -60,16 +60,20 @@ type ShareDetailsFormProps = {
   contractData: ClientContractType;
   type?: "whatsapp" | "mail";
   onChange?: (values: InitialValuesType) => void;
+  onPreviewButtonClick?: () => void;
+  onSubmit?: (values: InitialValuesType) => void;
 };
 
 function ShareDetailsForm({
   type = "whatsapp",
   contractData,
   onChange = function () {},
+  onPreviewButtonClick = function () {},
+  onSubmit = function () {},
 }: ShareDetailsFormProps) {
   const { values, onChangeField, setFieldValue, submitForm } = useForm({
     initialValues: getInitialState(contractData),
-    onSubmit: console.log,
+    onSubmit,
   });
   const isWhatsappType = type === "whatsapp";
 
@@ -118,7 +122,7 @@ function ShareDetailsForm({
           />
         </Maybe>
       </div>
-      <div className={styles.DeliveryInfo}>
+      <div className={classes(styles.Split, styles.DeliveryInfo)}>
         <FormField
           name="deliveryTo"
           label="Para"
@@ -144,7 +148,7 @@ function ShareDetailsForm({
           value={values.message}
         />
       </Maybe>
-      <div className={styles.ScheduleInfo}>
+      <div className={classes(styles.Split, styles.ScheduleInfo)}>
         <FormField
           label="Fecha de envío"
           name="deliveryDate"
@@ -180,13 +184,22 @@ function ShareDetailsForm({
           </div>
         </div>
       </div>
-      <button
-        type="button"
-        className={"btn btn-primary " + styles.SubmitButton}
-        onClick={submitForm}
-      >
-        Enviar
-      </button>
+      <div className={styles.ButtonsWrapper}>
+        <button
+          type="button"
+          className={"btn btn-secondary " + styles.PreviewButton}
+          onClick={onPreviewButtonClick}
+        >
+          Previsualizar
+        </button>
+        <button
+          type="button"
+          className={"btn btn-primary " + styles.SubmitButton}
+          onClick={submitForm}
+        >
+          Enviar
+        </button>
+      </div>
     </section>
   );
 }

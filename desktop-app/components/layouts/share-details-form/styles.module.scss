@@ -1,8 +1,12 @@
 .ShareDetailsForm {
   background-color: #ffffff;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   border-radius: 7px;
-  padding: 18px 34px 40px;
+  padding: 18px 26px 2rem;
+
+  @media only screen and (min-width: 576px) {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    padding: 18px 34px 40px;
+  }
 }
 
 .Title {
@@ -11,10 +15,13 @@
 }
 
 .Label {
-  font-size: 14px;
   font-weight: bold;
   display: block;
   margin-bottom: 15px;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 14px;
+  }
 }
 
 .Input {
@@ -22,16 +29,23 @@
   width: 100%;
   font-size: 14px;
   font-weight: bold;
+  height: 50px !important;
 }
 
 .MultipleRecipientsInfo {
   font-size: 12px;
   margin-left: 0.6em;
+
+  @media only screen and (max-width: 575px) {
+    display: block;
+    margin-left: 0;
+  }
 }
 
 .CellphoneInput {
   font-size: 14px;
   font-weight: bold;
+  height: 50px !important;
 }
 
 .RecipientField {
@@ -40,19 +54,32 @@
 
 .RecipientField .Input {
   width: calc(50% - 19px);
+
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+  }
 }
 
 .DeliveryInfo {
-  display: flex;
   margin-bottom: 30px;
 }
 
-.DeliveryInfo > * {
-  width: 100%;
+.Split {
+  @media only screen and (min-width: 992px) {
+    display: flex;
+  }
+
+  > * {
+    width: 100%;
+  }
 }
 
-.DeliveryInfo > * + * {
-  margin-left: 38px;
+.Split > * + * {
+  margin-top: 14px;
+  @media only screen and (min-width: 992px) {
+    margin-left: 38px;
+    margin-top: 0;
+  }
 }
 
 .DeliveryType {
@@ -81,16 +108,7 @@
 }
 
 .ScheduleInfo {
-  display: flex;
   margin-top: 30px;
-}
-
-.ScheduleInfo > * {
-  width: 100%;
-}
-
-.ScheduleInfo > * + * {
-  margin-left: 38px;
 }
 
 .TimeInputContainer {
@@ -121,10 +139,42 @@
   padding-left: 10px;
 }
 
+.ButtonsWrapper {
+  margin-top: 36px;
+
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    display: flex;
+    > button + button {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.ButtonsWrapper button {
+  font-weight: bold;
+  height: 55px;
+  font-size: 18px;
+
+  @media only screen and (min-width: 576px) {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  @media only screen and (max-width: 991px) {
+    display: block;
+    width: 100%;
+  }
+}
+
+.PreviewButton {
+  @media only screen and (max-width: 575px) {
+    margin-bottom: 20px;
+  }
+  @media only screen and (min-width: 768px) {
+    display: none !important;
+  }
+}
+
 .SubmitButton {
   width: 230px;
-  height: 40px;
-  font-size: 14px;
-  font-weight: bold;
-  margin-top: 36px;
 }
