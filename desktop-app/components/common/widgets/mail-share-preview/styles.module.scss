@@ -8,6 +8,7 @@
   border-radius: 7px;
   width: 358px;
   height: 537px;
+  overflow: auto; // Create a new block formatting context.
 }
 
 .ToField,
