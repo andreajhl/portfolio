@@ -3,6 +3,12 @@
   padding: 38px 0 !important;
 }
 
+.SharePreviewContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
 .ShareDetailsFormContainer {
   width: 765px;
 }

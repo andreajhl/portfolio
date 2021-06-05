@@ -17,12 +17,14 @@ function HiringShareInWhatsappPage({ contractReference }) {
   return (
     <PageContainer>
       <div className={"container " + styles.Container}>
-        <WhatsappSharePreview
-          deliveryTo={previewData.deliveryTo}
-          deliveryFrom={previewData.deliveryFrom}
-          contractReference={contractReference}
-          videoPosterUrl={contract?.celebrityData.avatar}
-        />
+        <div className={styles.SharePreviewContainer}>
+          <WhatsappSharePreview
+            deliveryTo={previewData.deliveryTo}
+            deliveryFrom={previewData.deliveryFrom}
+            contractReference={contractReference}
+            videoPosterUrl={contract?.celebrityData?.avatar}
+          />
+        </div>
         <div className={styles.ShareDetailsFormContainer}>
           <Maybe it={Boolean(contract.reference)}>
             <ShareDetailsForm
