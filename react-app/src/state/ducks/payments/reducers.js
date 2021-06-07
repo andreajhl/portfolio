@@ -29,10 +29,12 @@ const currencyExchangeInitialState = {
   data: {
     to:
       typeof window !== "undefined"
-        ? getCookie(CURRENT_CURRENCY_TRM_CODE)
+        ? getCookie(CURRENT_CURRENCY_TRM_CODE) || "USD"
         : "USD",
     rate:
-      typeof window !== "undefined" ? getCookie(CURRENT_CURRENCY_TRM_RATE) : ""
+      typeof window !== "undefined"
+        ? getCookie(CURRENT_CURRENCY_TRM_RATE) || ""
+        : ""
   }
 };
 
