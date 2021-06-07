@@ -24,14 +24,15 @@ import {
 import { useEffect } from "react";
 import waitFor from "react-app/src/utils/waitFor";
 import { defineMessages, useIntl } from "react-intl";
+import { celebrityType } from "desktop-app/types/celebrityType";
 
-const CelebrityProfilePage = dynamic<{ celebrity: any }>(() =>
+const CelebrityProfilePage = dynamic<{ celebrity: celebrityType }>(() =>
   import("react-app/src/components/pages/celebrity-profile").then(
     (mod) => mod.CelebrityProfilePage
   )
 );
 
-const CelebrityProfilePageDesktop = dynamic<{ celebrity: any }>(() =>
+const CelebrityProfilePageDesktop = dynamic<{ celebrity: celebrityType }>(() =>
   import("desktop-app/components/pages/celebrity-profile").then(
     (mod) => mod.CelebrityProfilePage
   )
