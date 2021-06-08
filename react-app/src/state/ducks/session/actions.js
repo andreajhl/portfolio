@@ -83,3 +83,31 @@ export const updateNotificationsLang = (body) => {
       });
   });
 };
+
+export const getUserAccountDetails = () => {
+  return (dispatch) => {
+    const path = PATHS.MY_ACCOUNT_PROFILE;
+    const type = types.GET_USER_ACCOUNT_DETAILS;
+    dispatch({ type: type, payload: {} });
+    apiService({
+      action: type,
+      async: true,
+      path: path,
+      method: "GET",
+      params: null,
+      body: null,
+    })
+      .then((res) => {
+        if ("status" in res.data && res.data.status === "ERROR") {
+          handleApiResponseFailure(dispatch, type, res);
+        } else {
+          handleApiResponseSuccess(dispatch, type, res);
+          // Other actions
+          dispatch({ type: `${type}_COMPLETED`, payload: res });
+        }
+      })
+      .catch((err) => {
+        handleApiErrors(dispatch, type, err);
+      });
+  };
+};

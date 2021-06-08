@@ -1,9 +1,3 @@
-import {
-    getToken,
-    updateSession
-} from "./actions";
+import { getToken, updateSession, getUserAccountDetails } from "./actions";
 
-export {
-    getToken,
-    updateSession
-};
+export { getToken, getUserAccountDetails, updateSession };
