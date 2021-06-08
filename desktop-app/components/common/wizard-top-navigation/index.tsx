@@ -13,7 +13,7 @@ type WizardTopNavigationProps = {
 function WizardTopNavigation({
   className = "",
   enableNavigation = false,
-  onStepClick = () => {}
+  onStepClick = () => {},
 }: WizardTopNavigationProps) {
   function getClassName(currentStepIndex, stepIndex, stepItem) {
     if (currentStepIndex + 1 < stepIndex) {
@@ -59,6 +59,7 @@ function WizardTopNavigation({
             <ul className={styles.WizardTopNavigationStepsList}>
               {steps.map((stepItem, index) => (
                 <li
+                  key={index}
                   className={classes(
                     styles.WizardTopNavigationStep,
                     enableNavigation &&

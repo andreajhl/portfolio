@@ -67,8 +67,8 @@ function LastReviewsModal({
               </footer>
             }
           >
-            {reviews.map((review) => (
-              <div className={styles.ReviewItem}>
+            {reviews.map((review, index) => (
+              <div className={styles.ReviewItem} key={index}>
                 <CardReview
                   showBox={false}
                   contract_stars={review.contract_stars}

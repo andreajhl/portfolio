@@ -13,12 +13,12 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 const mapStateToProps = ({ celebrities }) => ({
   isLoading: celebrities.fetchReviewsReducer.loading,
   reviews: celebrities.fetchReviewsReducer.data.results,
-  paginationData: celebrities.fetchReviewsReducer.data.informationPage
+  paginationData: celebrities.fetchReviewsReducer.data.informationPage,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  listReviews: celebrityOperations.listReviews
+  listReviews: celebrityOperations.listReviews,
 };
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
@@ -33,20 +33,21 @@ const LastReviewsSection = ({
   showMore = true,
   listReviews,
   paginationData,
-  isLoading
+  isLoading,
 }: LastReviewsSectionProps) => {
   return (
     <Maybe it={reviews.length > 0}>
       <div className={styles.LastReviewsSection}>
         <h2>Calificaciones</h2>
         <div className={styles.ReviewsCards}>
-          {[...reviews].slice(0, 2).map((review) => (
+          {[...reviews].slice(0, 2).map((review, index) => (
             <CardReview
+              key={index}
               contract_review={review.contract_review}
               user_full_name={review.user_full_name}
               date="20/dic/2020"
               contract_stars={review.contract_stars}
-            ></CardReview>
+            />
           ))}
         </div>
         {showMore ? (
@@ -56,7 +57,7 @@ const LastReviewsSection = ({
                 <p className={styles.SeeMoreCTA}>
                   Ver todas las calificaciones
                 </p>
-              )
+              ),
             }}
           </LastReviewsModal>
         ) : null}

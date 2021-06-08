@@ -59,7 +59,7 @@ const toMenuItem = ({ id, to, icon, label }) => (
 function AccountDropdown() {
   const { isAuthenticated, user } = useAuth0();
 
-  const userAvatar = user?.picture;
+  const userAvatar = user?.picture || "";
 
   return (
     <Maybe
