@@ -14,6 +14,11 @@ type CelebrityDetailsProps = {
   celebrity: celebrityType;
 };
 
+const mainVideoAvatarProps = {
+  width: 220,
+  height: 220,
+};
+
 function CelebrityDetails({ celebrity }: CelebrityDetailsProps) {
   return (
     <section className={styles.CelebrityDetails}>
@@ -32,10 +37,7 @@ function CelebrityDetails({ celebrity }: CelebrityDetailsProps) {
         <CelebrityMainVideoWidget
           celebrity={celebrity}
           className={styles.CelebrityDetailsMainVideo}
-          avatarProps={{
-            width: 220,
-            height: 220,
-          }}
+          avatarProps={mainVideoAvatarProps}
         />
         <WarrantyAd celebrityFullName={celebrity.fullName} />
       </div>
