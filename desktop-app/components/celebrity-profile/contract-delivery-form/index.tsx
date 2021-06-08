@@ -5,16 +5,15 @@ import useForm, { ValidationsType } from "lib/hooks/useForm";
 import Maybe from "../../common/helpers/maybe";
 import WhatsappAdForContracts from "../../common/whatsapp-ad-for-contracts";
 import VideoDeliveryFormFieldsElements from "../../common/video-delivery-form-fields-elements";
-import { PriceLayout } from "../../common/helpers/price-layout";
 import { ContractDeliveryType } from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
 import { useAuth0 } from "@auth0/auth0-react";
+import { celebrityType } from "desktop-app/types/celebrityType";
+import { CelebrityVideoContractPrice } from "desktop-app/components/common/helpers/celebrity-video-contract-price";
+import { CelebrityBusinessPrice } from "../celebrity-business-price";
 
 type ContractDeliveryFormProps = {
-  celebrityFullName: string;
-  videoMessagePrice: number;
-  businessPrice: number;
-  showBusinessPrice: boolean;
+  celebrity: celebrityType;
   initialValues?: ContractDeliveryType;
   onSubmit: (values: ContractDeliveryType) => void;
   onStepChange: (values: ContractDeliveryType) => void;
@@ -24,7 +23,7 @@ const initialValues: ContractDeliveryType = {
   contractType: 1,
   deliveryTo: "",
   deliveryFrom: "",
-  deliveryType: 1
+  deliveryType: 1,
 };
 
 const validations: ValidationsType<ContractDeliveryType> = {
@@ -43,28 +42,25 @@ const validations: ValidationsType<ContractDeliveryType> = {
     if (value.length > 40) {
       return "Debes introducir un máximo de 40 caracteres.";
     }
-  }
+  },
 };
 
-const ContractDeliveryForm = ({
-  celebrityFullName,
-  videoMessagePrice = 200,
-  businessPrice,
-  showBusinessPrice = false,
+function ContractDeliveryForm({
+  celebrity,
   initialValues: initialValuesFromProps,
   onSubmit,
-  onStepChange
-}: ContractDeliveryFormProps) => {
+  onStepChange,
+}: ContractDeliveryFormProps) {
   const {
     values,
     errors,
     setFieldValue,
     validateFields,
-    validateBeforeSubmit
+    validateBeforeSubmit,
   } = useForm<ContractDeliveryType>({
     initialValues: initialValuesFromProps || initialValues,
     validations,
-    onSubmit
+    onSubmit,
   });
 
   const { user } = useAuth0();
@@ -74,37 +70,43 @@ const ContractDeliveryForm = ({
     setFieldValue("deliveryTo", user.given_name);
   }, [user]);
 
+  const celebrityFullName = celebrity?.fullName;
+
+  const contractIsForBusiness = values.contractType === 3;
+
+  function validateFormBeforeChangeStep(goToClickedStep: () => void): void {
+    if (!validateFields()) return;
+    onStepChange(values);
+    goToClickedStep();
+  }
+
+  function changeContractType(type: number): void {
+    setFieldValue("contractType", type);
+  }
+
   return (
     <section className={styles.VideoDeliveryForm}>
       <WizardTopNavigation
         enableNavigation
-        onStepClick={(goToClickedStep) => {
-          if (!validateFields()) return;
-          onStepChange(values);
-          goToClickedStep();
-        }}
+        onStepClick={validateFormBeforeChangeStep}
       />
       <header className={styles.VideoDeliveryFormHeader}>
         <h3>
           Video personalizado
           <br /> de {celebrityFullName}
         </h3>
-        <Maybe it={values.contractType !== 3}>
-          <span>
-            <PriceLayout decimalScale={0} price={videoMessagePrice} />
-          </span>
-        </Maybe>
-        <Maybe it={values.contractType === 3}>
-          <span>
-            <Maybe it={showBusinessPrice} orElse="$ A convenir">
-              <PriceLayout decimalScale={0} price={businessPrice} />
-            </Maybe>
-          </span>
-        </Maybe>
+        <span>
+          <Maybe
+            it={contractIsForBusiness}
+            orElse={<CelebrityVideoContractPrice celebrity={celebrity} />}
+          >
+            <CelebrityBusinessPrice celebrity={celebrity} />
+          </Maybe>
+        </span>
       </header>
       <ContractTypeCards
         currentType={values.contractType}
-        onChangeType={(type) => setFieldValue("contractType", type)}
+        onChangeType={changeContractType}
       />
       <div className={styles.InputFieldElements}>
         <VideoDeliveryFormFieldsElements
@@ -115,12 +117,12 @@ const ContractDeliveryForm = ({
           onChange={setFieldValue}
           errors={errors}
         />
-        <Maybe it={values.contractType === 3}>
+        <Maybe it={contractIsForBusiness}>
           <WhatsappAdForContracts celebrityFullName={celebrityFullName} />
         </Maybe>
       </div>
     </section>
   );
-};
+}
 
 export default ContractDeliveryForm;

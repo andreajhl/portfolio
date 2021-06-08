@@ -28,9 +28,6 @@ type CreateContractWizardProps = {
 } & DispatchProps &
   StateProps;
 
-const getContractPriceVideoMessage = (contractsTypes) =>
-  contractsTypes?.find?.((contract) => contract.contractType === 1)?.price || 0;
-
 function CreateContractWizard({
   celebrity,
   isLoading,
@@ -51,10 +48,6 @@ function CreateContractWizard({
     setNotificationsData,
   ] = useState<ContractNotificationsType | null>(null);
 
-  const videoMessagePrice = getContractPriceVideoMessage(
-    celebrity.contractTypes
-  );
-
   useEffect(() => {
     if (!isAuthenticated) return;
     onLoggingCallback?.();
@@ -67,11 +60,7 @@ function CreateContractWizard({
           <Step id="delivery">
             {({ next }) => (
               <ContractDeliveryForm
-                videoMessagePrice={videoMessagePrice}
-                celebrityFullName={celebrity.fullName}
-                // TODO: agregar estos datos en modelo celebrity
-                businessPrice={500}
-                showBusinessPrice
+                celebrity={celebrity}
                 initialValues={deliveryData}
                 onStepChange={setDeliveryData}
                 onSubmit={async (data) => {
