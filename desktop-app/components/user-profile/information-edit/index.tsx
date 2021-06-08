@@ -9,19 +9,23 @@ import LogoutButton from "react-app/src/components/containers/logout-button/logo
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { ActiveInputField } from "desktop-app/components/common/form/active-input-field";
-
+import { userDetails } from "desktop-app/types/userDetails";
 type FormValuesType = {
   fullName: string;
   birthdayDate: string;
   gender: string;
 };
 
-function UserInformationEdit({ userData }) {
+type UserInformationEditProps = {
+  userData: userDetails;
+};
+
+function UserInformationEdit({ userData }: UserInformationEditProps) {
   const { values, onChangeField } = useForm<FormValuesType>({
     initialValues: {
       fullName: userData.fullName,
-      gender: "Masculino",
-      birthdayDate: "02 - 01 - 1992",
+      gender: userData.gender,
+      birthdayDate: userData.birthdayDate,
     },
     onSubmit() {
       console.log("Enviado");
