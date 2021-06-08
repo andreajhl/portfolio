@@ -1,25 +1,30 @@
 import { CardsReelSection } from "desktop-app/components/layouts/cards-section-reel";
 import CelebritySectionVideoCard from "desktop-app/components/layouts/celebrity-section-video-card";
 import CelebritySectionVideoCardSkeleton from "desktop-app/components/layouts/celebrity-section-video-card/skeleton";
+import SimilarContractType from "desktop-app/types/similarContractType";
 import getArrayOfLength from "lib/utils/getArrayOfLength";
-import { getCelebrityFromSimilarCelebrity } from "lib/utils/getCelebrityFromSimilarCelebrity";
 import { useEffect } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
-import { fetchSimilarContracts } from "react-app/src/state/ducks/contracts/actions";
+import { fetchSimilarContractsV2 } from "react-app/src/state/ducks/contracts/actions";
 import { RootState } from "react-app/src/state/store";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 
-function renderVideoCard(similarVideo) {
+const buttonStyle = {
+  size: 49,
+  top: 176,
+  transform: "translateY(-50%)",
+};
+
+function renderVideoCard(similarVideo: SimilarContractType | null) {
   if (!similarVideo) return <CelebritySectionVideoCardSkeleton />;
-  const celebrity = getCelebrityFromSimilarCelebrity(similarVideo);
   return (
     <CelebritySectionVideoCard
-      username={celebrity.username}
+      username={similarVideo?.celebrityUsername}
       videoUrl={similarVideo?.contractMediaUrl}
-      fullName={celebrity.fullName}
+      fullName={similarVideo?.celebrityFullName}
       videoPosterUrl={similarVideo?.contractPosterUrl}
-      occasion={similarVideo?.occasion}
-      avatar={celebrity.avatar}
+      occasion={similarVideo?.contractOccasion}
+      avatar={similarVideo?.celebrityAvatar}
     />
   );
 }
@@ -35,16 +40,16 @@ const mapStateToProps = (state: RootState) => {
 };
 
 const mapDispatchToProps = {
-  getSimilarVideos: fetchSimilarContracts,
+  getSimilarVideos: fetchSimilarContractsV2,
 };
 
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type CelebritySimilarVideosReelProps = {
   celebrityUsername: string;
-} & StateProps &
-  DispatchProps;
+} & PropsFromRedux;
 
 function CelebritySimilarVideosReel({
   celebrityUsername,
@@ -64,11 +69,7 @@ function CelebritySimilarVideosReel({
         itemCount={similarVideos?.length}
         itemWidth={263}
         itemHeight={402}
-        buttonsStyle={{
-          size: 49,
-          top: 176,
-          transform: "translateY(-50%)",
-        }}
+        buttonsStyle={buttonStyle}
         gap={26.75}
       >
         {renderVideoCard}
@@ -77,9 +78,6 @@ function CelebritySimilarVideosReel({
   );
 }
 
-const _CelebritySimilarVideosReel = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CelebritySimilarVideosReel);
+const _CelebritySimilarVideosReel = connector(CelebritySimilarVideosReel);
 
 export { _CelebritySimilarVideosReel as CelebritySimilarVideosReel };

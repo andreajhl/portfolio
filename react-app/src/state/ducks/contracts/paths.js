@@ -15,3 +15,4 @@ export const UPDATE_CONTRACT = `custom-endpoints/${CONTRACT_MODEL}/update-contra
 export const UPDATE_CONTRACT_IS_PUBLIC = `custom-endpoints/${CONTRACT_MODEL}/update-contract-is-public`;
 
 export const SIMILAR_CONTRACTS = `custom-endpoints/${CONTRACT_MODEL}/similar-contracts/`;
+export const SIMILAR_CONTRACTS_V2 = `custom-endpoints/${CONTRACT_MODEL}/v2/similar-contracts/`;

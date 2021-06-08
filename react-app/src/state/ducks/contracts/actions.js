@@ -3,13 +3,14 @@ import apiService from "../../utils/apiService";
 import {
   handleApiErrors,
   handleApiResponseFailure,
-  handleApiResponseSuccess
+  handleApiResponseSuccess,
 } from "../../utils";
 import * as API_PATHS from "./paths";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
 import * as types from "../celebrities/types";
 import { Session } from "../../utils/session";
+import thunkAction from "../../utils/thunkAction";
 
 export const updateQueryParams = (params, applyFetch = true) => {
   return (dispatch) => {
@@ -37,7 +38,7 @@ export const getContract = (contractReference) => {
       path: FINAL_PATH,
       async: true,
       params: null,
-      body: null
+      body: null,
     })
       .then((res) => {
         if ("status" in res.data && res.data.status === "ERROR") {
@@ -66,7 +67,7 @@ export const getContractWithPayments = (contractReference) => {
       path: FINAL_PATH,
       async: true,
       params: null,
-      body: null
+      body: null,
     })
       .then((res) => {
         if ("status" in res.data && res.data.status === "ERROR") {
@@ -94,7 +95,7 @@ export const AssociateContract = (hash) => {
       path: FINAL_PATH,
       async: true,
       params: null,
-      body: null
+      body: null,
     })
       .then((res) => {
         if ("status" in res.data && res.data.status === "ERROR") {
@@ -122,7 +123,7 @@ export const listTrending = (params) => {
       method: "GET",
       action: TYPE,
       path: API_PATHS.TRENDING_CONTRACTS,
-      params: params
+      params: params,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -156,7 +157,7 @@ export const saveClientContract = (contractData) => {
       path: FINAL_PATH,
       async: true,
       params: null,
-      body: contractData
+      body: contractData,
     })
       .then((res) => {
         if ("status" in res.data && res.data.status === "ERROR") {
@@ -167,7 +168,7 @@ export const saveClientContract = (contractData) => {
           // dispatch(getContract(res.data.contractReference));
           dispatch({
             type: TYPES.SAVE_CONTRACT_TO_PAY,
-            payload: res.data.data
+            payload: res.data.data,
           });
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
 
@@ -213,7 +214,7 @@ export const updateClientContract = (contractData) => {
       path: FINAL_PATH,
       async: true,
       params: null,
-      body: contractData
+      body: contractData,
     })
       .then((res) => {
         if ("status" in res.data && res.data.status === "ERROR") {
@@ -224,7 +225,7 @@ export const updateClientContract = (contractData) => {
           // dispatch(getContract(res.data.contractReference));
           dispatch({
             type: TYPES.SAVE_CONTRACT_TO_PAY,
-            payload: res.data.data
+            payload: res.data.data,
           });
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
 
@@ -271,7 +272,7 @@ export const listClientContracts = () => {
       path: FINAL_PATH,
       async: true,
       params: null,
-      body: null
+      body: null,
     })
       .then((res) => {
         if ("status" in res.data && res.data.status === "ERROR") {
@@ -297,7 +298,7 @@ export const listContractComments = (contractReference, params) => {
       method: "GET",
       action: TYPE,
       path: API_PATHS.GET_CONTRACT_COMMENTS + contractReference,
-      params: params
+      params: params,
     })
       .then((res) => {
         if ("status" in res.data && res.data.status === "ERROR") {
@@ -323,7 +324,7 @@ export const addContractComment = (contractReference, body) => {
       method: "POST",
       action: TYPE,
       path: API_PATHS.ADD_CONTRACT_COMMENTS + contractReference,
-      body: body
+      body: body,
     })
       .then((res) => {
         if ("status" in res.data && res.data.status === "ERROR") {
@@ -344,12 +345,12 @@ export const addContractComment = (contractReference, body) => {
 export const getContractLikesData = async (contractReference) => {
   const response = {
     markedByMe: false,
-    count: 0
+    count: 0,
   };
   await apiService({
     method: "GET",
     path: API_PATHS.GET_CONTRACT_LIKES_DATA + contractReference,
-    async: true
+    async: true,
   })
     .then((res) => {
       if (res.data.status === "OK") {
@@ -363,12 +364,12 @@ export const getContractLikesData = async (contractReference) => {
 
 export const getContractCommentsData = async (contractReference) => {
   const response = {
-    count: 0
+    count: 0,
   };
   await apiService({
     method: "GET",
     path: API_PATHS.GET_CONTRACT_COMMENTS_DATA + contractReference,
-    async: true
+    async: true,
   })
     .then((res) => {
       if (res.data.status === "OK") {
@@ -382,12 +383,12 @@ export const getContractCommentsData = async (contractReference) => {
 export const addOrRemoveContractLike = async (contractReference) => {
   const response = {
     markedByMe: false,
-    count: 0
+    count: 0,
   };
   await apiService({
     method: "GET",
     path: API_PATHS.ADD_OR_REMOVE_CONTRACT_LIKE + contractReference,
-    async: true
+    async: true,
   })
     .then((res) => {
       if (res.data.status === "OK") {
@@ -407,7 +408,7 @@ export const saveClientContractReview = async (
   await apiService({
     method: "POST",
     path: API_PATHS.SAVE_CONTRACT_REVIEW + contractReference,
-    body: reviewData
+    body: reviewData,
   })
     .then((res) => {
       response = res.data;
@@ -420,7 +421,7 @@ export const saveContractToPay = (contractToPay) => {
   return (dispatch) => {
     dispatch({
       type: TYPES.SAVE_CONTRACT_TO_PAY,
-      payload: contractToPay
+      payload: contractToPay,
     });
   };
 };
@@ -436,7 +437,7 @@ export const updateContract = (body) => {
       path: FINAL_PATH,
       async: true,
       params: null,
-      body
+      body,
     })
       .then((res) => {
         if ("status" in res.data && res.data.status === "ERROR") {
@@ -455,7 +456,7 @@ export const updateContract = (body) => {
 };
 
 export const saveContractToPayClear = () => ({
-  type: TYPES.SAVE_CONTRACT_TO_PAY_CLEAR
+  type: TYPES.SAVE_CONTRACT_TO_PAY_CLEAR,
 });
 
 export const updateContractIsPublic = async (body) => {
@@ -465,7 +466,7 @@ export const updateContractIsPublic = async (body) => {
       method: "PUT",
       path: FINAL_PATH,
       async: true,
-      body
+      body,
     });
     if (response.data.status !== "OK") {
       throw response.data;
@@ -487,7 +488,7 @@ export const fetchSimilarContracts = (celebrityUsername) => {
       path: FINAL_PATH,
       async: true,
       params: null,
-      body: null
+      body: null,
     })
       .then((res) => {
         if ("status" in res.data && res.data.status === "ERROR") {
@@ -502,3 +503,11 @@ export const fetchSimilarContracts = (celebrityUsername) => {
       });
   };
 };
+
+export const fetchSimilarContractsV2 = (celebrityUsername) =>
+  thunkAction(TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST, () =>
+    apiService({
+      method: "GET",
+      path: API_PATHS.SIMILAR_CONTRACTS_V2 + celebrityUsername,
+    })
+  );
