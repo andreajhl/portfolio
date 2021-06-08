@@ -1,8 +1,8 @@
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { CelebrityInfo } from "../celebrity-info";
-import { PriceLayout } from "../../common/helpers/price-layout";
 import { StickyTopBar } from "../../common/sticky-top-bar";
 import styles from "./styles.module.scss";
+import { CelebrityVideoContractPrice } from "desktop-app/components/common/helpers/celebrity-video-contract-price";
 
 type StickyCallToActionTopBarProps = {
   celebrity: celebrityType;
@@ -13,7 +13,7 @@ type StickyCallToActionTopBarProps = {
 function StickyCallToActionTopBar({
   celebrity,
   appearancePosition,
-  onCTAButtonClick = function () {}
+  onCTAButtonClick = function () {},
 }: StickyCallToActionTopBarProps) {
   return (
     <StickyTopBar appearancePosition={appearancePosition}>
@@ -28,7 +28,7 @@ function StickyCallToActionTopBar({
         </h2>
         <CelebrityInfo celebrity={celebrity} className={styles.StickyCTAInfo} />
         <span className={styles.StickyCTAPrice}>
-          <PriceLayout price={125} decimalScale={0} />
+          <CelebrityVideoContractPrice celebrity={celebrity} />
         </span>
         <button
           type="button"
