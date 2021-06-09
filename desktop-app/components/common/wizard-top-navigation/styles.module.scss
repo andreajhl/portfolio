@@ -34,3 +34,10 @@
     cursor: pointer;
   }
 }
+
+.WizardStepsListSkeleton {
+  margin-left: auto;
+}
+.WizardStepsListSkeleton > * + * {
+  margin-left: 10px;
+}
