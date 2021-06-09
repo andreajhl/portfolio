@@ -27,7 +27,7 @@ function getElementScrollProperties(
   return {
     scrollPosition,
     elementSize,
-    scrollSize
+    scrollSize,
   };
 }
 
@@ -43,7 +43,7 @@ function useScrollAvailability(
     const {
       scrollPosition,
       elementSize,
-      scrollSize
+      scrollSize,
     } = getElementScrollProperties(elementRef.current, direction);
     setCanScrollBackwards(scrollPosition !== 0);
     setCanScrollForward(scrollPosition + elementSize !== scrollSize);
