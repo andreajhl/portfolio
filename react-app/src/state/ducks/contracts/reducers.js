@@ -6,11 +6,11 @@ import * as types from "../celebrities/types";
 const updateQueryParamsInitialState = {
   currentPage: 1,
   search: "",
-  pageSize: getTotalColumns() * 7
+  pageSize: getTotalColumns() * 7,
 };
 
 const playVideoInitialState = {
-  contract_reference: null
+  contract_reference: null,
 };
 
 const fetchTrendingContractsInitialState = {
@@ -18,7 +18,7 @@ const fetchTrendingContractsInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { results: [], informationPage: {} }
+  data: { results: [], informationPage: {} },
 };
 
 const saveClientContractInitialState = {
@@ -26,49 +26,58 @@ const saveClientContractInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: {}
+  data: {},
 };
 const listClientContractsInitialState = {
   loading: false,
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: {}
+  data: {},
 };
 const getContractInitialState = {
   loading: false,
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: {}
+  data: {},
 };
+
+const getUserContractInProgressInitialState = {
+  loading: false,
+  failed: false,
+  completed: false,
+  error_data: { error: "" },
+  data: null,
+};
+
 const getContractWithPaymentsInitialState = {
   loading: false,
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { contract: {}, payments: [], celebrity: {} }
+  data: { contract: {}, payments: [], celebrity: {} },
 };
 const saveClientContractReviewInitialState = {
   loading: false,
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: {}
+  data: {},
 };
 const listContractCommmentsInitialState = {
   loading: false,
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: {}
+  data: {},
 };
 const addContractCommmentInitialState = {
   loading: false,
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: {}
+  data: {},
 };
 
 const updateContractInitialState = {
@@ -76,12 +85,12 @@ const updateContractInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: {}
+  data: {},
 };
 
 const saveContractToPayInitialState = {
   data: {},
-  completed: false
+  completed: false,
 };
 
 const fetchSimilarContractsInitialState = {
@@ -89,7 +98,7 @@ const fetchSimilarContractsInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: {}
+  data: {},
 };
 
 export function queryParamsReducer(
@@ -119,24 +128,24 @@ export function fetchTrendingContractsReducer(
     case types.FETCH_TRENDING_CONTRACTS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case types.FETCH_TRENDING_CONTRACTS_REQUEST_FAILURE:
       return {
         ...fetchTrendingContractsInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case types.FETCH_TRENDING_CONTRACTS_REQUEST_SUCCESS:
       return {
         ...fetchTrendingContractsInitialState,
-        data: action.payload.data
+        data: action.payload.data,
       };
     case types.FETCH_TRENDING_CONTRACTS_REQUEST_COMPLETED:
       return {
         ...state,
         data: action.payload.data,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -151,24 +160,24 @@ export function saveClientContractReducer(
     case TYPES.SAVE_CLIENT_CONTRACT_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case TYPES.SAVE_CLIENT_CONTRACT_REQUEST_FAILURE:
       return {
         ...saveClientContractInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case TYPES.SAVE_CLIENT_CONTRACT_REQUEST_SUCCESS:
       return {
         ...saveClientContractInitialState,
-        data: action.payload.data
+        data: action.payload.data,
       };
     case TYPES.SAVE_CLIENT_CONTRACT_REQUEST_COMPLETED:
       return {
         ...state,
         data: action.payload.data,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -183,24 +192,24 @@ export function listClientContractsReducer(
     case TYPES.LIST_CLIENT_CONTRACTS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case TYPES.LIST_CLIENT_CONTRACTS_REQUEST_FAILURE:
       return {
         ...listClientContractsInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case TYPES.LIST_CLIENT_CONTRACTS_REQUEST_SUCCESS:
       return {
         ...listClientContractsInitialState,
-        data: action.payload.data.data
+        data: action.payload.data.data,
       };
     case TYPES.LIST_CLIENT_CONTRACTS_REQUEST_COMPLETED:
       return {
         ...state,
         data: action.payload.data.results,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -212,24 +221,24 @@ export function getContractReducer(state = getContractInitialState, action) {
     case TYPES.GET_CONTRACT_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case TYPES.GET_CONTRACT_REQUEST_FAILURE:
       return {
         ...getContractInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case TYPES.GET_CONTRACT_REQUEST_SUCCESS:
       return {
         ...getContractInitialState,
-        data: action.payload.data.data
+        data: action.payload.data.data,
       };
     case TYPES.GET_CONTRACT_REQUEST_COMPLETED:
       return {
         ...state,
         data: action.payload.data.data,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -244,24 +253,24 @@ export function getContractWithPaymentsReducer(
     case TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST_FAILURE:
       return {
         ...getContractWithPaymentsInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST_SUCCESS:
       return {
         ...getContractWithPaymentsInitialState,
-        data: action.payload.data.data
+        data: action.payload.data.data,
       };
     case TYPES.GET_CONTRACT_WITH_PAYMENTS_REQUEST_COMPLETED:
       return {
         ...state,
         data: action.payload.data.data,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -276,13 +285,13 @@ export function listContractCommentsReducer(
     case TYPES.LIST_CONTRACT_COMMENTS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case TYPES.LIST_CONTRACT_COMMENTS_REQUEST_FAILURE:
       return {
         ...listContractCommmentsInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case TYPES.LIST_CONTRACT_COMMENTS_REQUEST_SUCCESS:
       if (action.payload.data.informationPage.currentPage > 1) {
@@ -291,19 +300,19 @@ export function listContractCommentsReducer(
         );
         return {
           ...listContractCommmentsInitialState,
-          data: action.payload.data
+          data: action.payload.data,
         };
       } else {
         return {
           ...listContractCommmentsInitialState,
-          data: action.payload.data
+          data: action.payload.data,
         };
       }
     case TYPES.LIST_CONTRACT_COMMENTS_REQUEST_COMPLETED:
       return {
         ...state,
         data: action.payload.data,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -318,24 +327,24 @@ export function addContractCommentReducer(
     case TYPES.ADD_CONTRACT_COMMENTS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case TYPES.ADD_CONTRACT_COMMENTS_REQUEST_FAILURE:
       return {
         ...addContractCommmentInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case TYPES.ADD_CONTRACT_COMMENTS_REQUEST_SUCCESS:
       return {
         ...addContractCommmentInitialState,
-        data: action.payload.data.data
+        data: action.payload.data.data,
       };
     case TYPES.ADD_CONTRACT_COMMENTS_REQUEST_COMPLETED:
       return {
         ...state,
         data: action.payload.data.data,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -351,11 +360,11 @@ export function saveContractToPayReducer(
       return {
         ...state,
         data: action.payload,
-        completed: true
+        completed: true,
       };
     case TYPES.SAVE_CONTRACT_TO_PAY_CLEAR:
       return {
-        ...saveContractToPayInitialState
+        ...saveContractToPayInitialState,
       };
 
     default:
@@ -371,24 +380,24 @@ export function updateContractReducer(
     case TYPES.UPDATE_CONTRACT_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case TYPES.UPDATE_CONTRACT_REQUEST_FAILURE:
       return {
         ...addContractCommmentInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case TYPES.UPDATE_CONTRACT_REQUEST_SUCCESS:
       return {
         ...addContractCommmentInitialState,
-        data: action.payload.data.data
+        data: action.payload.data.data,
       };
     case TYPES.UPDATE_CONTRACT_REQUEST_COMPLETED:
       return {
         ...state,
         data: action.payload.data.data,
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -403,23 +412,55 @@ export function fetchSimilarContractsReducer(
     case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST_FAILURE:
       return {
         ...fetchSimilarContractsInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST_SUCCESS:
       return {
         ...fetchSimilarContractsInitialState,
-        data: action.payload.data
+        data: action.payload.data,
       };
     case TYPES.FETCH_SIMILAR_CONTRACTS_REQUEST_COMPLETED:
       return {
         ...state,
-        completed: true
+        completed: true,
+      };
+    default:
+      return state;
+  }
+}
+
+export function getUserContractInProgressReducer(
+  state = getUserContractInProgressInitialState,
+  action
+) {
+  switch (action.type) {
+    case TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST_FAILURE:
+      return {
+        ...getUserContractInProgressInitialState,
+        error_data: action.payload.data,
+        failed: true,
+      };
+    case TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST_SUCCESS:
+      return {
+        ...getUserContractInProgressInitialState,
+        data: action.payload.data.data,
+      };
+    case TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST_COMPLETED:
+      return {
+        ...state,
+        data: action.payload.data.data,
+        completed: true,
       };
     default:
       return state;
@@ -438,5 +479,6 @@ export default combineReducers({
   getContractWithPaymentsReducer,
   saveContractToPayReducer,
   updateContractReducer,
-  fetchSimilarContractsReducer
+  fetchSimilarContractsReducer,
+  getUserContractInProgressReducer,
 });

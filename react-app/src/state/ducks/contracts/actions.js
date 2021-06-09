@@ -261,6 +261,23 @@ export const updateClientContract = (contractData) => {
   };
 };
 
+export const updateClientContractV2 = (contractData) =>
+  thunkAction(TYPES.SAVE_CLIENT_CONTRACT_REQUEST, () =>
+    apiService({
+      method: "PUT",
+      path: API_PATHS.CREATE_CONTRACT_V2,
+      body: contractData,
+    })
+  );
+
+export const getUserContractInProgress = (celebrityUsername) =>
+  thunkAction(TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST, () =>
+    apiService({
+      method: "GET",
+      path: API_PATHS.GET_USER_CONTRACT_IN_PROGRESS + celebrityUsername,
+    })
+  );
+
 export const listClientContracts = () => {
   return (dispatch) => {
     const TYPE = TYPES.LIST_CLIENT_CONTRACTS_REQUEST;
