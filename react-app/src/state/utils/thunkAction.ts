@@ -12,6 +12,10 @@ function thunkAction(
   actionType: string,
   payloadCreatorCallback: PayloadCreatorCallbackType
 ) {
+  if (typeof payloadCreatorCallback !== "function") {
+    throw new TypeError('Argument "payloadCreatorCallback" is not a function');
+  }
+
   return async (dispatch?: Dispatch, store?: Store) => {
     dispatch({ type: actionType });
     try {
