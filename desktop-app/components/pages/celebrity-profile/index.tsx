@@ -11,10 +11,24 @@ import { connect, ConnectedProps } from "react-redux";
 import { SimilarCelebritiesCardsReel } from "desktop-app/components/celebrity-profile/similar-celebrities-cards-reel";
 import { CelebritySimilarVideosReel } from "desktop-app/components/celebrity-profile/celebrity-similar-videos-reel";
 import { FanClubAdvertise } from "desktop-app/components/celebrity-profile/fan-club-advertise";
-import { CreateContractWizard } from "desktop-app/components/celebrity-profile/create-contract-wizard";
 import scrollToTop from "lib/utils/scrollToTop";
 import classes from "classnames";
 import styles from "./styles.module.scss";
+import { getUserContractInProgress } from "react-app/src/state/ducks/contracts/actions";
+import { useAuth0 } from "@auth0/auth0-react";
+import { RootState } from "react-app/src/state/store";
+import { useEffect } from "react";
+import { CreateContractWizardSkeleton } from "desktop-app/components/celebrity-profile/create-contract-wizard/skeleton";
+import { ComponentProps as CreateContractWizardProps } from "desktop-app/components/celebrity-profile/create-contract-wizard/types";
+import dynamic from "next/dynamic";
+
+const CreateContractWizard = dynamic<CreateContractWizardProps>(
+  () =>
+    import(
+      "desktop-app/components/celebrity-profile/create-contract-wizard"
+    ).then((mod) => mod.CreateContractWizard),
+  { loading: CreateContractWizardSkeleton }
+);
 
 function onStickyCTAClick() {
   scrollToTop({ top: 110 });
@@ -22,12 +36,15 @@ function onStickyCTAClick() {
 
 const pageTopEdge = 600; // por ser definido correctamente.
 
-const mapStateToProps = ({ celebrities }) => ({
+const mapStateToProps = ({ celebrities, contracts }: RootState) => ({
   publicContracts: celebrities.fetchPublicContractsReducer.data.results,
+  contractInProgressRequest: contracts.getUserContractInProgressReducer,
   isLoadingPublicContracts: celebrities.fetchPublicContractsReducer.loading,
 });
 
-const connector = connect(mapStateToProps);
+const mapDispatchToProps = { getUserContractInProgress };
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropFromRedux = ConnectedProps<typeof connector>;
 
@@ -39,7 +56,11 @@ function CelebrityProfilePage({
   celebrity,
   isLoadingPublicContracts,
   publicContracts,
+  getUserContractInProgress,
+  contractInProgressRequest,
 }: CelebrityProfilePageProps) {
+  const { isAuthenticated, isLoading } = useAuth0();
+
   const showContractStepsBeforeReviews =
     !isLoadingPublicContracts && publicContracts?.length < 3;
 
@@ -47,6 +68,14 @@ function CelebrityProfilePage({
     !isLoadingPublicContracts && publicContracts?.length >= 3;
 
   const showCelebritiesCards = publicContracts?.length > 0;
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    getUserContractInProgress(celebrity.username);
+  }, [isAuthenticated, celebrity.username]);
+
+  const isReadyToCreateContract =
+    contractInProgressRequest.completed || (!isLoading && !isAuthenticated);
 
   return (
     <PageContainer>
@@ -62,7 +91,15 @@ function CelebrityProfilePage({
             <CelebrityDetails celebrity={celebrity} />
           </div>
           <div>
-            <CreateContractWizard celebrity={celebrity} />
+            <Maybe
+              it={isReadyToCreateContract}
+              orElse={<CreateContractWizardSkeleton />}
+            >
+              <CreateContractWizard
+                celebrity={celebrity}
+                contractInProgress={contractInProgressRequest?.data}
+              />
+            </Maybe>
             <Maybe it={celebrity.availableForSubscriptions}>
               <FanClubAdvertise celebrity={celebrity} />
             </Maybe>
