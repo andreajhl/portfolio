@@ -9,42 +9,48 @@ import UserInformationEdit from "desktop-app/components/user-profile/information
 import { SharingSection } from "desktop-app/components/user-profile/sharing-section";
 import { PaymentMethodsSection } from "desktop-app/components/user-profile/payment-methods-section";
 import UpdatePasswordForm from "desktop-app/components/user-profile/update-password-form";
-import { getToken } from "react-app/src/state/ducks/session/actions";
-import { connect } from "react-redux";
+import { getUserAccountDetails } from "react-app/src/state/ducks/session/actions";
+import { connect, ConnectedProps } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { SkeletonItems as SkeletonInformationEdit } from "desktop-app/components/user-profile/information-edit/Skeleton";
 import VideoContractsFavorites from "desktop-app/components/user-profile/video-contracts-favorites";
+import { RootState } from "react-app/src/state/store";
+import { userDetails } from "desktop-app/types/userDetails";
 
-const mapStateToProps = ({ session }) => ({
-  isLoadingUserData: !session.getSessionReducer.completed,
-  userData: session.getSessionReducer.data,
+const mapStateToProps = (state: RootState) => ({
+  isCompletedUserData: state.session.userAccountDetails.completed,
+  isLoadingUserData: state.session.userAccountDetails.loading,
+  userData: state.session.userAccountDetails.data as userDetails,
 });
 
 const mapDispatchToProps = {
-  getUserData: getToken,
+  getUserAccountDetails,
 };
 
-type StateProps = ReturnType<typeof mapStateToProps>;
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
-type DispatchProps = typeof mapDispatchToProps;
-
-type ClientProfilePageProps = {} & StateProps & DispatchProps;
+type ClientProfilePageProps = {} & PropsFromRedux;
 
 function ClientProfilePage({
-  getUserData,
   userData,
   isLoadingUserData,
+  isCompletedUserData,
+  getUserAccountDetails,
 }: ClientProfilePageProps) {
   useEffect(() => {
-    getUserData();
-  }, []);
+    getUserAccountDetails();
+  }, [getUserAccountDetails]);
 
   return (
     <PageContainer>
       <PageHeading showBackButton={false}>Mi Perfil</PageHeading>
       <main className={classes("container", styles.ClientProfilePageContainer)}>
         <div className={styles.Section}>
-          <Maybe it={!isLoadingUserData} orElse={<SkeletonInformationEdit />}>
+          <Maybe
+            it={isCompletedUserData && !isLoadingUserData}
+            orElse={<SkeletonInformationEdit />}
+          >
             <UserInformationEdit userData={userData} />
           </Maybe>
         </div>
@@ -67,9 +73,6 @@ function ClientProfilePage({
   );
 }
 
-const _ClientProfilePage = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ClientProfilePage);
+const _ClientProfilePage = connector(ClientProfilePage);
 
 export { _ClientProfilePage as ClientProfilePage };
