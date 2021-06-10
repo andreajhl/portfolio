@@ -201,6 +201,23 @@ export const saveClientContract = (contractData) => {
   };
 };
 
+const getSanitizedContractData = (contractData) => {
+  if (!contractData.deliveryContact) return contractData;
+  return {
+    ...contractData,
+    deliveryContact: contractData.deliveryContact.trim(),
+  };
+};
+
+export const createClientContract = (contractData) =>
+  thunkAction(TYPES.SAVE_CLIENT_CONTRACT_REQUEST, () =>
+    apiService({
+      method: "POST",
+      path: API_PATHS.CREATE_CONTRACT_V2,
+      body: getSanitizedContractData(contractData),
+    })
+  );
+
 // Update Client Contract Data
 
 export const updateClientContract = (contractData) => {
@@ -262,7 +279,7 @@ export const updateClientContract = (contractData) => {
 };
 
 export const updateClientContractV2 = (contractData) =>
-  thunkAction(TYPES.SAVE_CLIENT_CONTRACT_REQUEST, () =>
+  thunkAction(TYPES.UPDATE_CONTRACT_REQUEST, () =>
     apiService({
       method: "PUT",
       path: API_PATHS.CREATE_CONTRACT_V2,

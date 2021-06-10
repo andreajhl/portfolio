@@ -1,6 +1,7 @@
 export const CONTRACT_MODEL = `contracts`;
 
 export const CREATE_CONTRACT = `custom-endpoints/${CONTRACT_MODEL}/create-contract`;
+export const CREATE_CONTRACT_V2 = `custom-endpoints/${CONTRACT_MODEL}/v2/create-contract`;
 export const ACCOUNT_CONTRACTS = `custom-endpoints/${CONTRACT_MODEL}/user-contracts`;
 export const GET_CONTRACT_BY_REFERENCE = `custom-endpoints/${CONTRACT_MODEL}/get-contract-by-reference/`;
 export const GET_CONTRACT_WITH_PAYMENTS = `custom-endpoints/${CONTRACT_MODEL}/contract-with-payments/`;
@@ -12,6 +13,7 @@ export const SAVE_CONTRACT_REVIEW = `custom-endpoints/${CONTRACT_MODEL}/add-or-u
 export const ADD_CONTRACT_COMMENTS = `custom-endpoints/${CONTRACT_MODEL}/add-contract-comment/`;
 export const TRENDING_CONTRACTS = `custom-endpoints/${CONTRACT_MODEL}/trending-contracts`;
 export const UPDATE_CONTRACT = `custom-endpoints/${CONTRACT_MODEL}/update-contract`;
+export const UPDATE_CONTRACT_V2 = `custom-endpoints/${CONTRACT_MODEL}/v2/update-contract`;
 export const UPDATE_CONTRACT_IS_PUBLIC = `custom-endpoints/${CONTRACT_MODEL}/update-contract-is-public`;
 
 export const SIMILAR_CONTRACTS = `custom-endpoints/${CONTRACT_MODEL}/similar-contracts/`;
