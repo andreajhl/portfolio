@@ -1,5 +1,4 @@
-import { celebrityType } from "desktop-app/types/celebrityType";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { Wizard, Steps as StepsList, Step } from "react-albus";
 import styles from "./styles.module.scss";
 import { ContractDetailsForm } from "../contract-details-form";
@@ -13,23 +12,41 @@ import ContractDataType, {
   ContractNotificationsType,
 } from "desktop-app/types/contractDataType";
 import { useAuth0 } from "@auth0/auth0-react";
+import { RootState } from "react-app/src/state/store";
+import useWizardHistory from "../../../../lib/hooks/useWizardHistory";
+import { ComponentProps } from "./types";
 
-const mapStateToProps = ({ contracts }) => ({
+type WizardStepType = {
+  id: string;
+};
+
+export const WIZARD_STEPS: WizardStepType[] = [
+  { id: "delivery" },
+  { id: "video-details" },
+  { id: "notifications" },
+];
+
+export function getInitialWizardStep(contractInProgress: {
+  [key: string]: any;
+}): WizardStepType {
+  return WIZARD_STEPS[contractInProgress?.status] || WIZARD_STEPS[0];
+}
+
+const mapStateToProps = ({ contracts }: RootState) => ({
   isLoading: contracts.saveClientContractReducer.loading,
 });
 
 const mapDispatchToProps = { saveClientContract };
 
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type CreateContractWizardProps = {
-  celebrity: celebrityType;
-} & DispatchProps &
-  StateProps;
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type CreateContractWizardProps = ComponentProps & PropsFromRedux;
 
 function CreateContractWizard({
   celebrity,
+  contractInProgress,
   isLoading,
   saveClientContract,
 }: CreateContractWizardProps) {
@@ -53,62 +70,75 @@ function CreateContractWizard({
     onLoggingCallback?.();
   }, [isAuthenticated, onLoggingCallback]);
 
+  const { wizardHistory, nextStep } = useWizardHistory(
+    WIZARD_STEPS,
+    getInitialWizardStep(contractInProgress)
+  );
+
+  function saveContractFirstStep(data: ContractDeliveryType) {
+    function continueToNextStep() {
+      setDeliveryData(data);
+      nextStep();
+    }
+    if (!isAuthenticated) {
+      setOnLoggingCallback(() => continueToNextStep);
+      loginWithPopup();
+    } else {
+      continueToNextStep();
+    }
+  }
+
+  function saveContractSecondStep(values: ContractDetailsType) {
+    setDetailsData(values);
+    nextStep();
+  }
+
+  function getContractData(
+    values: ContractNotificationsType
+  ): ContractDataType {
+    return Object.assign(
+      {
+        celebrityId: celebrity.id,
+      },
+      deliveryData,
+      detailsData,
+      values
+    );
+  }
+
+  function finishContractCreation(values: ContractNotificationsType) {
+    const contractData: ContractDataType = getContractData(values);
+    saveClientContract(contractData);
+  }
+
   return (
     <div className={styles.CreateContractWizard}>
-      <Wizard>
+      <Wizard history={wizardHistory}>
         <StepsList>
-          <Step id="delivery">
-            {({ next }) => (
-              <ContractDeliveryForm
-                celebrity={celebrity}
-                initialValues={deliveryData}
-                onStepChange={setDeliveryData}
-                onSubmit={async (data) => {
-                  function continueToNextStep() {
-                    setDeliveryData(data);
-                    next();
-                  }
-                  if (!isAuthenticated) {
-                    setOnLoggingCallback(() => continueToNextStep);
-                    loginWithPopup();
-                  } else {
-                    continueToNextStep();
-                  }
-                }}
-              />
-            )}
+          <Step id={WIZARD_STEPS[0].id}>
+            <ContractDeliveryForm
+              celebrity={celebrity}
+              initialValues={deliveryData}
+              onStepChange={saveContractFirstStep}
+              onSubmit={saveContractFirstStep}
+            />
           </Step>
-          <Step id="video-details">
-            {({ next }) => (
-              <ContractDetailsForm
-                deliveryTo={deliveryData?.deliveryTo}
-                celebrityFullName={celebrity.fullName}
-                contractType={deliveryData?.contractType}
-                initialValues={detailsData}
-                onStepChange={setDetailsData}
-                onSubmit={(values) => {
-                  setDetailsData(values);
-                  next();
-                }}
-              />
-            )}
+          <Step id={WIZARD_STEPS[1].id}>
+            <ContractDetailsForm
+              deliveryTo={deliveryData?.deliveryTo}
+              celebrityFullName={celebrity.fullName}
+              contractType={deliveryData?.contractType}
+              initialValues={detailsData}
+              onStepChange={saveContractSecondStep}
+              onSubmit={saveContractSecondStep}
+            />
           </Step>
-          <Step id="notifications">
+          <Step id={WIZARD_STEPS[2].id}>
             <ContractNotificationsForm
               isLoading={isLoading}
               initialValues={notificationsData}
               onStepChange={setNotificationsData}
-              onSubmit={(values) => {
-                const contractData: ContractDataType = Object.assign(
-                  {
-                    celebrityId: celebrity.id,
-                  },
-                  deliveryData,
-                  detailsData,
-                  values
-                );
-                saveClientContract(contractData);
-              }}
+              onSubmit={finishContractCreation}
             />
           </Step>
         </StepsList>
@@ -117,9 +147,6 @@ function CreateContractWizard({
   );
 }
 
-const _CreateContractWizard = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CreateContractWizard);
+const _CreateContractWizard = connector(CreateContractWizard);
 
 export { _CreateContractWizard as CreateContractWizard };

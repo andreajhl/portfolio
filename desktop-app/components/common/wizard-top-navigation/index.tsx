@@ -18,22 +18,26 @@ function WizardTopNavigation({
   function getClassName(currentStepIndex, stepIndex, stepItem) {
     if (currentStepIndex + 1 < stepIndex) {
       return styles.WizardTopNavigationStepUnreachable;
-    } else if (currentStepIndex === stepIndex) {
+    }
+    if (currentStepIndex === stepIndex) {
       return styles.WizardTopNavigationStepDoing;
-    } else if (currentStepIndex > stepIndex /* || stepItem.isDone */) {
-      // stepItem.isDone = true;
+    }
+    if (currentStepIndex > stepIndex) {
       return styles.WizardTopNavigationStepDone;
     }
   }
 
   function stepClick(steps, currentStepIndex, clickedStepItem, push) {
     if (!enableNavigation) return;
-    const clickedStepIndex = steps.indexOf(clickedStepItem);
+    const clickedStepIndex = steps.findIndex(
+      (stepItem) => stepItem?.id === clickedStepItem?.id
+    );
     if (
       currentStepIndex === clickedStepIndex ||
       currentStepIndex + 1 < clickedStepIndex
-    )
+    ) {
       return;
+    }
     function goToClickedStep() {
       push(clickedStepItem.id);
     }
@@ -43,7 +47,9 @@ function WizardTopNavigation({
   return (
     <WithWizard>
       {({ steps, step, previous, push, ...rest }) => {
-        const currentStepIndex = steps.indexOf(step);
+        const currentStepIndex = steps.findIndex(
+          (currentStep) => currentStep?.id === step?.id
+        );
 
         return (
           <div className={classes(styles.WizardTopNavigation, className)}>
