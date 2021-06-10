@@ -29,10 +29,10 @@ export const fetchCelebritySections = (
       } else {
         let results = rotationForCelebritiesSections
           ? res.data.results.map((celebritySection) =>
-              swapCelebritiesPositions(
-                celebritySection,
-                Number(rotationForCelebritiesSections) / 100
-              )
+              swapCelebritiesPositions({
+                celebritySectionObject: celebritySection,
+                rotateAmount: Number(rotationForCelebritiesSections) / 100
+              })
             )
           : res.data.results;
         handleApiResponseSuccess(dispatch, TYPE, {
