@@ -16,7 +16,7 @@ const headData = defineMessages({
 });
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params: { celebrity_username }, store }) => {
-    await get(celebrity_username, true)(store.dispatch);
+    await get(celebrity_username)(store.dispatch);
 
     const celebrity = store.getState().celebrities.getCelebrityReducer.data;
     if (celebrity.id) {
