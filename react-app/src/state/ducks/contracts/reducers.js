@@ -42,6 +42,13 @@ const getContractInitialState = {
   error_data: { error: "" },
   data: {},
 };
+const getPurchasSummaryInitialState = {
+  loading: false,
+  failed: false,
+  completed: false,
+  error_data: { error: "" },
+  data: {},
+};
 
 const getUserContractInProgressInitialState = {
   loading: false,
@@ -467,6 +474,39 @@ export function getUserContractInProgressReducer(
   }
 }
 
+export function getPurchaseSummaryReducer(
+  state = getPurchasSummaryInitialState,
+  action
+) {
+  switch (action.type) {
+    case TYPES.GET_PURCHASE_SUMMARY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case TYPES.GET_PURCHASE_SUMMARY_REQUEST_FAILURE:
+      return {
+        ...getPurchasSummaryInitialState,
+        error_data: action.payload.data,
+        failed: true,
+      };
+    case TYPES.GET_PURCHASE_SUMMARY_REQUEST_SUCCESS:
+      return {
+        ...getPurchasSummaryInitialState,
+        data: action.payload.data.data,
+      };
+    case TYPES.GET_PURCHASE_SUMMARY_REQUEST_COMPLETED:
+      console.log(action.payload.data, "data");
+      return {
+        ...state,
+        data: action.payload.data.data,
+        completed: true,
+      };
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   saveClientContractReducer,
   listClientContractsReducer,
@@ -481,4 +521,5 @@ export default combineReducers({
   updateContractReducer,
   fetchSimilarContractsReducer,
   getUserContractInProgressReducer,
+  getPurchaseSummaryReducer,
 });
