@@ -9,6 +9,7 @@ const mapStateToProps = ({ searchFilters, celebrities }: RootState) => ({
   searchFilters,
   additionalCelebrities:
     celebrities.fetchCelebritiesSimilarResultsReducer.data.results,
+  isLoading: !celebrities.fetchCelebritiesSimilarResultsReducer.completed,
 });
 
 const mapDispatchToProps = { fetchSimilarResults: fetchSimilarResultsV2 };
@@ -24,6 +25,7 @@ function AdditionalResultsSection({
   sidebarIsClosed,
   searchFilters,
   additionalCelebrities,
+  isLoading,
   fetchSimilarResults,
 }: AdditionalResultsSectionProps) {
   useEffect(() => {
@@ -36,6 +38,7 @@ function AdditionalResultsSection({
         Quizá también pueda interesarte
       </h2>
       <ResultsCardGrid
+        isLoading={isLoading}
         expanded={sidebarIsClosed}
         celebrities={additionalCelebrities}
       />
