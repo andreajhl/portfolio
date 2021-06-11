@@ -2,7 +2,7 @@ import {
   CURRENT_CURRENCY_TRM_CODE,
   CURRENT_CURRENCY_TRM_RATE
 } from "constants/keys";
-import { getCookie } from "lib/getCookie";
+import getCookie from "react-app/src/utils/getCookie";
 import { combineReducers } from "redux";
 import * as types from "./types";
 
