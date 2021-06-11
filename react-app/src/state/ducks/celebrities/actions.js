@@ -120,11 +120,6 @@ export const list = (params, mergeResults = true) => {
   };
 };
 
-const getSearchListParams = (params) => ({
-  ...params,
-  limit: params.limit || 40,
-});
-
 export const searchList = (params, mergeResults = true) => (
   dispatch,
   getStore
@@ -135,7 +130,7 @@ export const searchList = (params, mergeResults = true) => (
   const request = apiService({
     method: "GET",
     path: FINAL_PATH,
-    params: getSearchListParams(params),
+    params,
     isCancellable: true,
   });
   dispatch({

@@ -1,8 +1,8 @@
 import * as TYPES from "./types";
 
 export const searchFiltersInitialState: TYPES.SearchFiltersType = {
-  limit: 40,
-  offset: 0,
+  pageSize: 40,
+  currentPage: 1,
 };
 
 export function searchFiltersReducer(
@@ -13,7 +13,7 @@ export function searchFiltersReducer(
     case TYPES.UPDATE_FILTERS:
       return {
         ...state,
-        offset: searchFiltersInitialState.offset,
+        currentPage: searchFiltersInitialState.currentPage,
         ...action.payload,
       };
 

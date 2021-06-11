@@ -7,8 +7,8 @@ import * as TYPES from "./types";
 
 const allowedParams = [
   "search",
-  "limit",
-  "offset",
+  "pageSize",
+  "currentPage",
   "country_id",
   "category_id",
   "min_price",
