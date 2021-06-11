@@ -10,13 +10,14 @@ type ImageCropperProps = {
   imageSrc: string;
   src?: string;
   onCropImage?: (imageBlob: Blob) => void;
+  onImageLoaded?: (imageElement: HTMLImageElement) => void;
 } & Omit<ReactCropProps, "src">;
 
 function ImageCropper({
   onCropImage = function () {},
   src,
   imageSrc = src,
-  onImageLoaded,
+  onImageLoaded = function () {},
   onComplete,
   ...props
 }: ImageCropperProps) {
