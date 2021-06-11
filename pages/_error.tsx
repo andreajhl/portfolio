@@ -33,7 +33,7 @@ const CustomError: NextPage<ErrorPageProps> = ({
     setCookie(
       NUMBER_OF_RELOAD_REALIZED,
       String(
-        numberOfRetryRealizedInSession ? numberOfRetryRealizedInSession + 1 : 0
+        numberOfRetryRealizedInSession ? numberOfRetryRealizedInSession + 1 : 1
       ),
       1
     );
