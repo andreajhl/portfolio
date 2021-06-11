@@ -37,7 +37,7 @@ const CustomError: NextPage<ErrorPageProps> = ({
       ),
       1
     );
-    if (numberOfRetryRealizedInSession > 5) {
+    if (numberOfRetryRealizedInSession < 5) {
       IDClear = setTimeout(() => {
         push(asPath);
       }, TEEN_SECONDS_IN_MILLISECONDS);
