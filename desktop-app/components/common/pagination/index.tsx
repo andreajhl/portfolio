@@ -1,20 +1,21 @@
 import React from "react";
 import DirectionButton from "../button/direction";
 import styles from "./styles.module.scss";
+
 type PaginationProps = {
   onChangePage: (arg: number) => void;
-  totalPage: number;
+  totalPages: number;
   currentPage: number;
   className?: string;
 };
 
 function Pagination({
-  onChangePage,
-  totalPage,
-  currentPage,
+  onChangePage = function () {},
+  totalPages = 1,
+  currentPage = 1,
   className = "",
 }: PaginationProps) {
-  if (totalPage < 2) return null;
+  if (totalPages < 2) return null;
   return (
     <div className={`${styles.Pagination} ${className}`}>
       <DirectionButton
@@ -30,18 +31,18 @@ function Pagination({
         direction="left"
       />
       <span className={styles.PaginationIndicator}>
-        Pagina {currentPage} de {totalPage}
+        Pagina {currentPage} de {totalPages}
       </span>
       <DirectionButton
-        disabled={currentPage === totalPage}
+        disabled={currentPage === totalPages}
         onClick={() => onChangePage(currentPage + 1)}
         className={styles.PaginationArrowButtons}
         direction="right"
       />
 
       <DirectionButton
-        disabled={currentPage === totalPage}
-        onClick={() => onChangePage(totalPage)}
+        disabled={currentPage === totalPages}
+        onClick={() => onChangePage(totalPages)}
         className={styles.PaginationArrowButtons}
         iconButtonVariant={<i className="fa fa-step-forward" />}
       />

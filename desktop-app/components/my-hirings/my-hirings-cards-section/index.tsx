@@ -71,7 +71,7 @@ function MyHiringsCardsSection({
         <Pagination
           className={styles.PaginationButtons}
           currentPage={1}
-          totalPage={contractData?.data?.length}
+          totalPages={contractData?.data?.length}
           onChangePage={() => console.log("Go to new Page")}
         />
       </Maybe>
