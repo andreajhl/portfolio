@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { setCookie } from "lib/setCookie";
 import { NUMBER_OF_RELOAD_REALIZED } from "constants/keys";
 import getCookie from "react-app/src/utils/getCookie";
+import ReloadingPath from "react-app/src/components/containers/reloading-path";
 
 type ErrorPageProps = {
   err?: unknown;
@@ -67,6 +68,19 @@ const CustomError: NextPage<ErrorPageProps> = ({
           >
             <FormattedMessage defaultMessage="Estamos haciendo lo posible por resolverlo." />
           </p>
+          <ReloadingPath
+            path={asPath}
+            renderText={(secondsCounter) => (
+              <span
+                style={{
+                  color: "white",
+                  fontSize: "0.8rem"
+                }}
+              >
+                Intentando nuevamente en {secondsCounter} segundos
+              </span>
+            )}
+          />
           {statusCode ? (
             <p
               className="font-weight-light text-center"

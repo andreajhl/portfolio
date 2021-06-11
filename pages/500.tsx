@@ -1,41 +1,32 @@
-import { NUMBER_OF_RELOAD_REALIZED } from "constants/keys";
-import { setCookie } from "lib/setCookie";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React from "react";
+import ReloadingPath from "react-app/src/components/containers/reloading-path";
 import ErrorReport from "react-app/src/components/layouts/error-report";
-import getCookie from "react-app/src/utils/getCookie";
 import { FormattedMessage } from "react-intl";
-const TEEN_SECONDS_IN_MILLISECONDS = 10000;
 
 function ServerErrorPage() {
-  const { asPath, push } = useRouter();
-  useEffect(() => {
-    let IDClear;
-    const numberOfRetryRealizedInSession = Number(
-      getCookie(NUMBER_OF_RELOAD_REALIZED)
-    );
-    setCookie(
-      NUMBER_OF_RELOAD_REALIZED,
-      String(
-        numberOfRetryRealizedInSession ? numberOfRetryRealizedInSession + 1 : 1
-      ),
-      1
-    );
-    if (numberOfRetryRealizedInSession < 5) {
-      IDClear = setTimeout(() => {
-        push(asPath);
-      }, TEEN_SECONDS_IN_MILLISECONDS);
-    }
-    return () => {
-      clearTimeout(IDClear);
-    };
-  }, []);
+  const { asPath } = useRouter();
+
   return (
     <ErrorReport
       errorTitle="Ha ocurrido un error."
       errorDescription={
         <>
           <FormattedMessage defaultMessage="Nos disculpamos, estamos arreglando el problema." />
+          <br />
+          <ReloadingPath
+            path={asPath}
+            renderText={(secondsCounter) => (
+              <span
+                style={{
+                  color: "white",
+                  fontSize: "0.8rem"
+                }}
+              >
+                Intentando nuevamente en {secondsCounter} segundos
+              </span>
+            )}
+          />
         </>
       }
       errorPath={asPath}
