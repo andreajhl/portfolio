@@ -7,6 +7,8 @@ import * as Sentry from "@sentry/nextjs";
 import { NextPage, NextPageContext } from "next";
 import debug from "react-app/src/utils/debug";
 import ErrorReport from "react-app/src/components/layouts/error-report";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 type ErrorPageProps = {
   err?: unknown;
@@ -14,6 +16,7 @@ type ErrorPageProps = {
   asPath?: string;
   statusCode: number;
 };
+const TEEN_SECONDS_IN_MILLISECONDS = 10000;
 
 const CustomError: NextPage<ErrorPageProps> = ({
   err,
@@ -21,6 +24,16 @@ const CustomError: NextPage<ErrorPageProps> = ({
   statusCode,
   asPath
 }) => {
+  const { push } = useRouter();
+  useEffect(() => {
+    const IDClear = setTimeout(() => {
+      push(asPath);
+    }, TEEN_SECONDS_IN_MILLISECONDS);
+    return () => {
+      clearTimeout(IDClear);
+    };
+  }, []);
+
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of
     // https://github.com/vercel/next.js/issues/8592. As a workaround, we pass
