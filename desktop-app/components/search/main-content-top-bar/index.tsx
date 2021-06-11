@@ -1,12 +1,13 @@
 import { HashtagsBadgeList } from "desktop-app/components/search/hashtags-badge-list";
-import Maybe from "react-app/src/components/common/helpers/maybe";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { HomeButton } from "../../common/button/home-button";
 import { IconButton } from "../../common/button/icon-button";
 import { SettingsIcon } from "../../common/icons";
 import { OrderByDropdown } from "../order-by-dropdown";
+import classes from "classnames";
 import styles from "./styles.module.scss";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 
 const orderByOptions = [
   { label: "Destacados", value: "" },
@@ -14,55 +15,73 @@ const orderByOptions = [
   { label: "Mayor a menor precio", value: "price desc" },
 ];
 
-const getOptionByValue = (value) =>
-  orderByOptions.find((option) => option.value === value);
+const getOptionByValue = (value: string) =>
+  orderByOptions.find((option) => option.value === value) || orderByOptions[0];
 
-const listParamsInitialKeys = ["offset", "limit"];
+const listParamsInitialKeys = ["pageSize", "currentPage"];
 
-const hasSearched = (listParams) => {
+function hasFiltered(listParams) {
   const listParamsEntries = Object.entries(listParams);
   return listParamsEntries.some(
     ([key, value]) => !listParamsInitialKeys.includes(key) && Boolean(value)
   );
-};
+}
 
 const getHashtagsArray = (hashtags: string) =>
   typeof hashtags === "string" && hashtags.length > 0
     ? hashtags.split(",")
     : [];
 
-const mapStateToProps = ({ searchFilters, celebrities }) => ({
-  filtersOrderBy: getOptionByValue(searchFilters.orderBy) || orderByOptions[0],
-  hasSearched: hasSearched(searchFilters),
-  totalResults: celebrities.fetchCelebritiesReducer.data.totalResults,
-  hashtags: getHashtagsArray(searchFilters.hashtags),
-});
+function mapStateToProps({
+  searchFilters,
+  celebrities: { fetchCelebritiesReducer },
+}) {
+  const totalResults =
+    fetchCelebritiesReducer.data?.informationPage?.totalItems;
+  return {
+    totalResults,
+    hasSearched: totalResults !== undefined,
+    filtersOrderBy: getOptionByValue(searchFilters.orderBy),
+    hasFiltered: hasFiltered(searchFilters),
+    hashtags: getHashtagsArray(searchFilters.hashtags),
+  };
+}
 
 const mapDispatchToProps = { updateSearchFilters };
 
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type MainContentTopBarProps = {
   sidebarIsOpen: boolean;
   toggleSidebar: () => void;
-} & StateProps &
-  DispatchProps;
+} & PropsFromRedux;
 
 function MainContentTopBar({
   sidebarIsOpen,
   toggleSidebar,
   filtersOrderBy,
+  hasFiltered,
   hasSearched,
   totalResults,
   hashtags,
   updateSearchFilters,
 }: MainContentTopBarProps) {
+  function updateHashtagFilter(hashtags: string[]) {
+    updateSearchFilters({ hashtags: hashtags.join(",") });
+  }
+
+  function updateOrderByFilter(option: { value: any }) {
+    updateSearchFilters({ orderBy: option.value });
+  }
+
   return (
     <div
-      className={`container ${styles.MainContentTopBarContainer} ${
-        sidebarIsOpen ? styles.MainContentTopBarSidebarIsOpen : ""
-      }`}
+      className={classes(
+        "container",
+        styles.MainContentTopBarContainer,
+        sidebarIsOpen && styles.MainContentTopBarSidebarIsOpen
+      )}
     >
       <Maybe it={!sidebarIsOpen}>
         <IconButton
@@ -74,17 +93,15 @@ function MainContentTopBar({
         <HomeButton />
       </Maybe>
       <Maybe
-        it={hasSearched}
+        it={hasFiltered}
         orElse={
           <h2 className={styles.MainContentTopBarTitle}>Famosos destacados</h2>
         }
       >
-        <Maybe it={totalResults !== undefined}>
+        <Maybe it={hasSearched}>
           <HashtagsBadgeList
             hashtags={hashtags}
-            onChangeHashtags={(hashtags) =>
-              updateSearchFilters({ hashtags: hashtags.join(",") })
-            }
+            onChangeHashtags={updateHashtagFilter}
           />
           <span className={styles.MainContentTopBarTotalResults}>
             {totalResults} resultados
@@ -93,9 +110,7 @@ function MainContentTopBar({
       </Maybe>
       <OrderByDropdown
         className={styles.MainContentTopBarOrderByDropdown}
-        onChange={(option) => {
-          updateSearchFilters({ orderBy: option.value });
-        }}
+        onChange={updateOrderByFilter}
         selectedOption={filtersOrderBy}
         options={orderByOptions}
       />
@@ -103,9 +118,6 @@ function MainContentTopBar({
   );
 }
 
-const _MainContentTopBar = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MainContentTopBar);
+const _MainContentTopBar = connector(MainContentTopBar);
 
 export { _MainContentTopBar as MainContentTopBar };
