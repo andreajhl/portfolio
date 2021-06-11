@@ -8,7 +8,7 @@ export type SearchFiltersType = {
   category_id?: string;
   min_price?: number;
   max_price?: number;
-  max_delivery_time?: number;
+  max_delivery_time?: number | "flash";
   hashtags?: string;
 };
 

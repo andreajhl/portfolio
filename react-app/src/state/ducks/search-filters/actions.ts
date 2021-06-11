@@ -1,3 +1,4 @@
+import objectFromEntries from "lib/utils/objectFromEntries";
 import Router from "next/router";
 import { SEARCH_PATH } from "react-app/src/routing/Paths";
 import isBrowser from "react-app/src/utils/isBrowser";
@@ -15,15 +16,16 @@ const allowedParams = [
   "max_price",
   "hashtags",
   "orderBy",
+  "max_delivery_time",
 ];
 
-const getValidParams = (params) => {
+function getValidParams(params) {
   const paramsEntries = Object.entries(params);
   const onlyValidParamsEntries = paramsEntries.filter(([key, value]) =>
     Boolean(value)
   );
-  return Object.fromEntries(onlyValidParamsEntries);
-};
+  return objectFromEntries(onlyValidParamsEntries);
+}
 
 function changeQueryParams(getState: any) {
   const currentParams = getState().searchFilters;
