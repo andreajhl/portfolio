@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { setCookie } from "lib/setCookie";
 import { NUMBER_OF_RELOAD_REALIZED } from "constants/keys";
-import { getCookie } from "lib/getCookie";
+import getCookie from "react-app/src/utils/getCookie";
 
 type ErrorPageProps = {
   err?: unknown;
