@@ -1,5 +1,5 @@
 import { FileUploaderModal } from "../file-uploader-modal";
-import { forwardRef, useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Crop,
   ImageCropper,
@@ -12,6 +12,11 @@ const initialCropValue: Crop = {
   width: 100,
   unit: "%",
 };
+
+function setImageAttributes(image: HTMLImageElement): void {
+  image.draggable = false;
+  image.className = styles.PreviewImage;
+}
 
 type AvatarUploaderModalProps = {
   isOpen: boolean;
@@ -28,15 +33,17 @@ function AvatarUploaderModal({
 }: AvatarUploaderModalProps) {
   const [crop, setCrop] = useState<Crop>(initialCropValue);
 
+  function finishImageCrop(url: string, file: Blob): void {
+    setCrop(initialCropValue);
+    onImageUploaded(url, file);
+  }
+
   return (
     <FileUploaderModal
       title="Recorta tu foto del perfil"
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      onFileUploaded={(...params) => {
-        setCrop(initialCropValue);
-        onImageUploaded(...params);
-      }}
+      onFileUploaded={finishImageCrop}
     >
       {(setImageToUpload) => (
         <ImageCropper
@@ -47,10 +54,7 @@ function AvatarUploaderModal({
           circularCrop
           ruleOfThirds
           imageAlt="Previsualización de cortado"
-          onImageLoaded={(image) => {
-            image.draggable = false;
-            image.className = styles.PreviewImage;
-          }}
+          onImageLoaded={setImageAttributes}
           imageSrc={initialImageSrc}
           onCropImage={setImageToUpload}
         />
