@@ -4,19 +4,24 @@ import React, {
   SetStateAction,
   useEffect,
   useMemo,
-  useState
+  useState,
 } from "react";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import { connect } from "react-redux";
 
-const mapStateToProps = ({ searchFilters }) => {
-  return {
-    searchFilters
-  };
-};
+const deliveryTimeFilter = [
+  { label: "Flash (24hrs)", value: "flash" },
+  { label: "Menos de 3 días", value: 3 },
+  { label: "Menos de 5 días", value: 5 },
+  { label: "Hasta 7 días", value: 7 },
+];
+
+const mapStateToProps = ({ searchFilters }) => ({
+  searchFilters,
+});
 
 const mapDispatchToProps = {
-  updateSearchFilters
+  updateSearchFilters,
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -25,14 +30,8 @@ type CategoryFilterProps = StateProps & DispatchProps;
 
 function DeliveryTimeFilter({
   updateSearchFilters,
-  searchFilters
+  searchFilters,
 }: CategoryFilterProps) {
-  const [deliveryTimeFilter, setDeliveryTimeFilter] = useState([
-    { label: "Flash (24hrs)", value: 24 },
-    { label: "1-2 dias", value: 48 },
-    { label: "3-4 dias", value: 96 },
-    { label: "5-7 dias", value: 168 }
-  ]);
   const [deliveriesTimeChecked, setDeliveriesTimeChecked] = useState(
     new Map(
       searchFilters.max_delivery_time
@@ -72,7 +71,7 @@ function DeliveryTimeFilter({
       searchFilters?.max_delivery_time !== 0
     ) {
       updateSearchFilters({
-        max_delivery_time: Number(deliveryTimeValue)
+        max_delivery_time: Number(deliveryTimeValue),
       });
       return;
     }
@@ -82,7 +81,7 @@ function DeliveryTimeFilter({
       deliveryTime.length > 0
     ) {
       updateSearchFilters({
-        max_delivery_time: Number(deliveryTimeValue)
+        max_delivery_time: Number(deliveryTimeValue),
       });
     }
   }, [deliveriesTimeChecked]);
@@ -93,9 +92,9 @@ function DeliveryTimeFilter({
         label: time.label,
         value: time.value,
         name: time.label + index,
-        checked: deliveriesTimeChecked.get(String(time.value))
+        checked: deliveriesTimeChecked.get(String(time.value)),
       })),
-    [deliveryTimeFilter, deliveriesTimeChecked]
+    [deliveriesTimeChecked]
   );
 
   const handleChangeCheckbox = (

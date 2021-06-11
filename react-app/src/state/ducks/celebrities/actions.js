@@ -120,11 +120,6 @@ export const list = (params, mergeResults = true) => {
   };
 };
 
-const getSearchListParams = (params) => ({
-  ...params,
-  limit: params.limit || 40,
-});
-
 export const searchList = (params, mergeResults = true) => (
   dispatch,
   getStore
@@ -135,7 +130,7 @@ export const searchList = (params, mergeResults = true) => (
   const request = apiService({
     method: "GET",
     path: FINAL_PATH,
-    params: getSearchListParams(params),
+    params,
     isCancellable: true,
   });
   dispatch({
@@ -184,6 +179,35 @@ export const fetchSimilarResults = (params) => {
         ...params,
         limit: params.limit || updateQueryParamsInitialState.limit,
       },
+      body: null,
+      isCancellable: true,
+    });
+    dispatch({ type: TYPE, payload: { requestCancel: request.cancel } });
+    request
+      .then((res) => {
+        if (res.data.status === "OK") {
+          handleApiResponseSuccess(dispatch, TYPE, res);
+          dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+        }
+      })
+      .catch((err) => {
+        if (err.constructor.name === "Cancel") return;
+        console.log(err);
+      });
+  };
+};
+
+export const fetchSimilarResultsV2 = (params) => {
+  return (dispatch, getStore) => {
+    getStore().celebrities.fetchCelebritiesReducer?.requestCancel?.();
+    const TYPE = types.FETCH_CELEBRITIES_SIMILAR_RESULTS_REQUEST;
+    const FINAL_PATH = API_PATHS.SUGGESTED_PUBLIC_LIST_V2;
+    const request = apiService({
+      method: "GET",
+      action: TYPE,
+      path: FINAL_PATH,
+      async: true,
+      params,
       body: null,
       isCancellable: true,
     });

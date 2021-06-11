@@ -4,6 +4,8 @@ import debounce from "lodash.debounce";
 import { useEffect, useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { CelebrityCard } from "../../common/cards/celebrity";
+import { ResultsCardGridSkeleton } from "./skeleton";
+import classes from "classnames";
 import styles from "./styles.module.scss";
 
 type ResultsCardGridProps = {
@@ -15,7 +17,7 @@ type ResultsCardGridProps = {
 function ResultsCardGrid({
   expanded = false,
   isLoading = false,
-  celebrities
+  celebrities,
 }: ResultsCardGridProps) {
   const [celebrityCardHeight, setCelebrityCardHeight] = useState(
     getPixelsFromViewportWidth(expanded ? 16.83 : 18.3, expanded ? 248 : 318)
@@ -43,16 +45,25 @@ function ResultsCardGrid({
 
   return (
     <div
-      className={`${styles.ResultsCardGrid} ${
-        expanded ? styles.ResultsCardGridExpanded : ""
-      }`}
+      className={classes(
+        styles.ResultsCardGrid,
+        expanded && styles.ResultsCardGridExpanded
+      )}
     >
-      <Maybe it={!isLoading && celebrities?.map !== undefined}>
+      <Maybe
+        it={!isLoading && celebrities?.map !== undefined}
+        orElse={
+          <ResultsCardGridSkeleton
+            thumbnailHeight={celebrityCardHeight}
+            thumbnailWidth="100%"
+          />
+        }
+      >
         {celebrities?.map?.((celebrity) => (
           <CelebrityCard
             key={celebrity.id}
             thumbnailHeight={celebrityCardHeight}
-            thumbnailWidth={"100%"}
+            thumbnailWidth="100%"
             celebrity={celebrity}
           />
         ))}

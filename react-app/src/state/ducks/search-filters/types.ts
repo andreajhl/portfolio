@@ -1,14 +1,14 @@
 const MODEL = "search-filters/";
 
 export type SearchFiltersType = {
-  limit?: number;
-  offset?: number;
+  pageSize?: number;
+  currentPage?: number;
   orderBy?: string;
   country_id?: string;
   category_id?: string;
   min_price?: number;
   max_price?: number;
-  max_delivery_time?: number;
+  max_delivery_time?: number | "flash";
   hashtags?: string;
 };
 
