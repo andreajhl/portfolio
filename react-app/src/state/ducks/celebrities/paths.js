@@ -16,3 +16,4 @@ export const CELEBRITY_SUBSCRIPTION_PLANS =
   "/custom-endpoints/celebrity-subscription-plans/:celebrity_username/list";
 
 export const SUGGESTED_PUBLIC_LIST = `custom-endpoints/${MODEL}/suggested-public-list`;
+export const SUGGESTED_PUBLIC_LIST_V2 = `custom-endpoints/${MODEL}/v2/suggested-public-list`;

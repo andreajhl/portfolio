@@ -1,49 +1,34 @@
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { ResultsCardGrid } from "../results-card-grid";
+import { fetchSimilarResultsV2 } from "react-app/src/state/ducks/celebrities/actions";
+import { useEffect } from "react";
+import { RootState } from "react-app/src/state/store";
 import styles from "./styles.module.scss";
-import getMoreFrequentIds from "react-app/src/utils/getMoreFrequentIds";
-import { fetchSimilarResults } from "react-app/src/state/ducks/celebrities/actions";
-import { useEffect, useMemo } from "react";
 
-const mapStateToProps = ({ searchFilters, celebrities }) => {
-  return {
-    celebritiesResults: celebrities.fetchCelebritiesReducer.data.results,
-    searchFilters,
-    additionalCelebrities:
-      celebrities.fetchCelebritiesSimilarResultsReducer.data.results
-  };
-};
+const mapStateToProps = ({ searchFilters, celebrities }: RootState) => ({
+  searchFilters,
+  additionalCelebrities:
+    celebrities.fetchCelebritiesSimilarResultsReducer.data.results,
+});
 
-const mapDispatchToProps = { fetchSimilarResults };
+const mapDispatchToProps = { fetchSimilarResults: fetchSimilarResultsV2 };
 
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
-type AdditionalResultsSectionProps = { sidebarIsClosed: boolean } & StateProps &
-  DispatchProps;
+type AdditionalResultsSectionProps = {
+  sidebarIsClosed: boolean;
+} & PropsFromRedux;
 
 function AdditionalResultsSection({
   sidebarIsClosed,
-  celebritiesResults,
   searchFilters,
   additionalCelebrities,
-  fetchSimilarResults
+  fetchSimilarResults,
 }: AdditionalResultsSectionProps) {
-  const additionalResultsParams = useMemo(() => {
-    const canGetParamsFromResults = celebritiesResults.length > 0;
-    return canGetParamsFromResults
-      ? {
-          ...searchFilters,
-          country_id: getMoreFrequentIds(celebritiesResults, "countryId"),
-          category_id: getMoreFrequentIds(celebritiesResults, "categoryId")
-        }
-      : searchFilters;
-  }, [celebritiesResults, searchFilters]);
-
   useEffect(() => {
-    if (!additionalResultsParams?.limit) return;
-    fetchSimilarResults(additionalResultsParams);
-  }, [additionalResultsParams]);
+    fetchSimilarResults(searchFilters);
+  }, [searchFilters]);
 
   return (
     <section className={styles.AdditionalResultsSection}>
@@ -58,9 +43,6 @@ function AdditionalResultsSection({
   );
 }
 
-const _AdditionalResultsSection = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AdditionalResultsSection);
+const _AdditionalResultsSection = connector(AdditionalResultsSection);
 
 export { _AdditionalResultsSection as AdditionalResultsSection };

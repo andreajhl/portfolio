@@ -34,7 +34,7 @@ function mapStateToProps({
 
   const showAdditionalResults =
     celebrities.fetchCelebritiesReducer.completed &&
-    celebrities.fetchCelebritiesReducer.data?.informationPage?.totalItems < 5;
+    celebrities.fetchCelebritiesReducer.data?.informationPage?.totalItems < 10;
 
   const showPagination =
     celebrities.fetchCelebritiesReducer.completed &&
