@@ -1,6 +1,3 @@
-import { NavLink } from "react-app/src/components/common/routing";
-import { PageContainer } from "react-app/src/components/layouts/page-container";
-import { ROOT_PATH } from "react-app/src/routing/Paths";
 import { FormattedMessage } from "react-intl";
 import NextErrorComponent from "next/error";
 import * as Sentry from "@sentry/nextjs";
@@ -9,6 +6,9 @@ import debug from "react-app/src/utils/debug";
 import ErrorReport from "react-app/src/components/layouts/error-report";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { setCookie } from "lib/setCookie";
+import { NUMBER_OF_RELOAD_REALIZED } from "constants/keys";
+import { getCookie } from "lib/getCookie";
 
 type ErrorPageProps = {
   err?: unknown;
@@ -26,9 +26,22 @@ const CustomError: NextPage<ErrorPageProps> = ({
 }) => {
   const { push } = useRouter();
   useEffect(() => {
-    const IDClear = setTimeout(() => {
-      push(asPath);
-    }, TEEN_SECONDS_IN_MILLISECONDS);
+    let IDClear;
+    const numberOfRetryRealizedInSession = Number(
+      getCookie(NUMBER_OF_RELOAD_REALIZED)
+    );
+    setCookie(
+      NUMBER_OF_RELOAD_REALIZED,
+      String(
+        numberOfRetryRealizedInSession ? numberOfRetryRealizedInSession + 1 : 0
+      ),
+      1
+    );
+    if (numberOfRetryRealizedInSession > 5) {
+      IDClear = setTimeout(() => {
+        push(asPath);
+      }, TEEN_SECONDS_IN_MILLISECONDS);
+    }
     return () => {
       clearTimeout(IDClear);
     };
