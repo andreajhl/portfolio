@@ -46,18 +46,20 @@ function AvatarUploaderModal({
       onFileUploaded={finishImageCrop}
     >
       {(setImageToUpload) => (
-        <ImageCropper
-          className={styles.ImageCropper}
-          crop={crop}
-          onChange={setCrop}
-          keepSelection
-          circularCrop
-          ruleOfThirds
-          imageAlt="Previsualización de cortado"
-          onImageLoaded={setImageAttributes}
-          imageSrc={initialImageSrc}
-          onCropImage={setImageToUpload}
-        />
+        <div className={styles.ImageCropperWrapper}>
+          <ImageCropper
+            className={styles.ImageCropper}
+            crop={crop}
+            onChange={setCrop}
+            keepSelection
+            circularCrop
+            ruleOfThirds
+            imageAlt="Previsualización de cortado"
+            onImageLoaded={setImageAttributes}
+            imageSrc={initialImageSrc}
+            onCropImage={setImageToUpload}
+          />
+        </div>
       )}
     </FileUploaderModal>
   );
