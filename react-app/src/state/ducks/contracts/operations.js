@@ -11,7 +11,8 @@ import {
   updateQueryParams,
   saveContractToPay,
   updateClientContract,
-  saveContractToPayClear
+  saveContractToPayClear,
+  getPurchaseSummaryV2,
 } from "./actions";
 
 export {
@@ -27,5 +28,6 @@ export {
   AssociateContract,
   saveContractToPay,
   updateClientContract,
-  saveContractToPayClear
+  saveContractToPayClear,
+  getPurchaseSummaryV2,
 };

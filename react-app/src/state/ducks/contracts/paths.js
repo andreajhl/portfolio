@@ -20,3 +20,5 @@ export const SIMILAR_CONTRACTS = `custom-endpoints/${CONTRACT_MODEL}/similar-con
 export const SIMILAR_CONTRACTS_V2 = `custom-endpoints/${CONTRACT_MODEL}/v2/similar-contracts/`;
 
 export const GET_USER_CONTRACT_IN_PROGRESS = `/custom-endpoints/${CONTRACT_MODEL}/user-contract-in-progress/`;
+
+export const GET_PURCHASE_SUMMARY_V2 = `/custom-endpoints/${CONTRACT_MODEL}/v2/contract-with-payments/`;

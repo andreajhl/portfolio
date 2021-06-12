@@ -545,3 +545,31 @@ export const fetchSimilarContractsV2 = (celebrityUsername) =>
       path: API_PATHS.SIMILAR_CONTRACTS_V2 + celebrityUsername,
     })
   );
+
+export const getPurchaseSummaryV2 = (contractReference) => {
+  return (dispatch) => {
+    const TYPE = TYPES.GET_PURCHASE_SUMMARY_REQUEST;
+    const FINAL_PATH = API_PATHS.GET_PURCHASE_SUMMARY_V2 + contractReference;
+    dispatch({ type: TYPE, payload: {} });
+    apiService({
+      method: "GET",
+      action: TYPE,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: null,
+    })
+      .then((res) => {
+        if ("status" in res.data && res.data.status === "ERROR") {
+          handleApiResponseFailure(dispatch, TYPE, res);
+          // history._pushRoute(ROUTING_PATHS.HOME_PATH);
+        } else {
+          handleApiResponseSuccess(dispatch, TYPE, res);
+          dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+        }
+      })
+      .catch((err) => {
+        handleApiErrors(dispatch, TYPE, err);
+      });
+  };
+};

@@ -1,0 +1,1 @@
+export { fetchUserFavoritesCelebrities } from "./actions";

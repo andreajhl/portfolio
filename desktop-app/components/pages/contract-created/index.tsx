@@ -15,13 +15,13 @@ const CONTRACt_PENDING_STATUS = [40];
 
 // mapStateToProps
 const mapStateToProps = (state: RootState) => ({
-  isLoading: state.contracts.getContractWithPaymentsReducer.loading,
-  isCompleted: state.contracts.getContractWithPaymentsReducer.completed,
-  contractWithPayments: state.contracts.getContractWithPaymentsReducer.data,
+  isLoading: state.contracts.getPurchaseSummaryReducer.loading,
+  isCompleted: state.contracts.getPurchaseSummaryReducer.completed,
+  contractWithPayments: state.contracts.getPurchaseSummaryReducer.data,
 });
 // mapStateToProps
 const mapDispatchToProps = {
-  getContract: contractOperations.getContractWithPayments,
+  getPurchaseSummary: contractOperations.getPurchaseSummaryV2,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -31,13 +31,13 @@ type ContractCreatedProps = {
 } & PropsFromRedux;
 function ContractCreated({
   contractReference,
-  getContract,
+  getPurchaseSummary,
   isLoading,
   isCompleted,
   contractWithPayments,
 }: ContractCreatedProps) {
   useEffect(() => {
-    getContract(contractReference);
+    getPurchaseSummary(contractReference);
   }, []);
 
   return (

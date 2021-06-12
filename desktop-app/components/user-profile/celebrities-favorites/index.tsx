@@ -4,21 +4,23 @@ import styles from "./styles.module.scss";
 import { CelebritiesFavoritesEditReelSkeleton } from "./skeleton";
 import { CardsReelSection } from "desktop-app/components/layouts/cards-section-reel";
 import classes from "classnames";
-import {
-  addOrRemoveLike,
-  fetchUserCelebrityLikesWithOffset,
-} from "react-app/src/state/ducks/celebrity-likes/actions";
+import { addOrRemoveLike } from "react-app/src/state/ducks/celebrity-likes/actions";
+import { fetchUserFavoritesCelebrities } from "react-app/src/state/ducks/account/actions";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { connect } from "react-redux";
 import { CLIENT_FAVORITES } from "constants/paths";
+import { RootState } from "react-app/src/state/store";
 
-const mapStateToProps = ({ celebrityLikes }) => ({
-  ...celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.data,
-  isLoading: celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.loading,
+const mapStateToProps = ({ account }: RootState) => ({
+  informationPage:
+    account.fetchUserFavoritesCelebritiesReducer.data.informationPage,
+  results: account.fetchUserFavoritesCelebritiesReducer.data.results,
+  isLoading: account.fetchUserFavoritesCelebritiesReducer.loading,
+  isCompleted: account.fetchUserFavoritesCelebritiesReducer.completed,
 });
 
 const mapDispatchToProps = {
-  fetchUserCelebrityLikesWithOffset,
+  fetchUserFavoritesCelebrities,
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -27,23 +29,28 @@ type DispatchProps = typeof mapDispatchToProps;
 type CelebritiesFavoritesEditProps = StateProps & DispatchProps;
 function CelebritiesFavoritesEdit({
   results,
-  totalResults,
+  isCompleted,
   isLoading,
-  fetchUserCelebrityLikesWithOffset,
+  informationPage,
+  fetchUserFavoritesCelebrities,
 }: CelebritiesFavoritesEditProps) {
   useEffect(() => {
-    fetchUserCelebrityLikesWithOffset({ offset: 0, limit: 10 });
+    fetchUserFavoritesCelebrities();
   }, []);
 
+  console.log({ results });
   const deleteFavorite = async (celebrityId: number) => {
     const response = await addOrRemoveLike(celebrityId);
     if (response.status !== "OK") return;
-    fetchUserCelebrityLikesWithOffset({ offset: 0, limit: 10 });
+    fetchUserFavoritesCelebrities();
   };
 
   return (
     <div className={styles.CelebritiesFavoritesEditContainer}>
-      <Maybe it={!isLoading} orElse={<CelebritiesFavoritesEditReelSkeleton />}>
+      <Maybe
+        it={!isLoading && isCompleted}
+        orElse={<CelebritiesFavoritesEditReelSkeleton />}
+      >
         <CardsReelSection
           itemWidth={88}
           itemHeight={151}
@@ -52,7 +59,7 @@ function CelebritiesFavoritesEdit({
           itemCount={results.length}
           itemData={results}
           buttonsStyle={{ size: 35, top: 36 }}
-          showMorePath={results.length < totalResults ? CLIENT_FAVORITES : ""}
+          showMorePath={informationPage.totalPages < 1 ? CLIENT_FAVORITES : ""}
         >
           {(data) => (
             <div className={styles.CelebrityFavoriteAvatar}>
