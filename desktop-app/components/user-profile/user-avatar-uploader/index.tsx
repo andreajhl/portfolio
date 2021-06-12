@@ -67,6 +67,7 @@ function UserAvatarUploader({
         showDeleteButton={hasChangedPreview}
         onClickDelete={resetPreviewSrc}
         onPickImage={startUploadModal}
+        onInvalidFile={setError}
       />
       <Maybe it={modalIsOpen}>
         <AvatarUploaderModal

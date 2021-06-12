@@ -1,12 +1,32 @@
 import classes from "classnames";
-import { ReactNode } from "react";
-import { CSSProperties } from "react";
+import { ReactNode, CSSProperties } from "react";
 import Maybe from "../../helpers/maybe";
 import styles from "./styles.module.scss";
 
 const ONLY_IMAGE_FORMATS = "image/*,image/heif,image/heic";
+const ALLOWED_FILE_TYPE = "image/";
+const ALLOWED_FILE_SIZE_IN_MEGABYTES = 1;
+const ONE_MEGABYTES_IN_BYTES = 1024 * 1024;
 
-const restartInput = (input: HTMLInputElement) => (input.value = null);
+function restartInput(input: HTMLInputElement) {
+  input.value = null;
+}
+
+function getValidationErrorMessage(file: File) {
+  if (!isValidImageFormat(file)) {
+    return "Selecciona un archivo de tipo imagen. Ejemplo: SVG, JPG, PNG, etc.";
+  }
+  if (!hasValidSize(file)) {
+    return `Selecciona una imagen de menos de ${ALLOWED_FILE_SIZE_IN_MEGABYTES} MB.`;
+  }
+  return null;
+}
+
+const isValidImageFormat = (file: File) =>
+  file?.type?.startsWith(ALLOWED_FILE_TYPE);
+
+const hasValidSize = (file: File) =>
+  file.size <= ALLOWED_FILE_SIZE_IN_MEGABYTES * ONE_MEGABYTES_IN_BYTES;
 
 type ImagePickerProps = {
   id?: string;
@@ -16,6 +36,7 @@ type ImagePickerProps = {
   showDeleteButton?: boolean;
   onClickDelete?: () => void;
   onPickImage?: (imageFile: File) => void;
+  onInvalidFile?: (errorMessage: string) => void;
 };
 
 function ImagePicker({
@@ -26,7 +47,22 @@ function ImagePicker({
   showDeleteButton = false,
   onPickImage = function () {},
   onClickDelete = function () {},
+  onInvalidFile = function () {},
 }: ImagePickerProps) {
+  function pickImage({ target }) {
+    const pickedImage = target?.files?.[0];
+    restartInput(target);
+    changePickedImage(pickedImage);
+  }
+
+  function changePickedImage(pickedImage: File) {
+    const validationErrorMessage = getValidationErrorMessage(pickedImage);
+    if (validationErrorMessage) {
+      return onInvalidFile(validationErrorMessage);
+    }
+    onPickImage(pickedImage);
+  }
+
   return (
     <div className={styles.Container}>
       <img
@@ -40,11 +76,7 @@ function ImagePicker({
         id={id}
         accept={ONLY_IMAGE_FORMATS}
         hidden
-        onChange={({ target }) => {
-          const pickedImage = target?.files?.[0];
-          onPickImage(pickedImage);
-          restartInput(target);
-        }}
+        onChange={pickImage}
       />
       <label htmlFor={id} className={classes("btn", styles.CTAUploadPhoto)}>
         {label}
