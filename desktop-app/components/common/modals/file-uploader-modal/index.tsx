@@ -1,13 +1,17 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, Dispatch, SetStateAction } from "react";
 import { AnimatedPopup } from "../../animated-popup";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { CloseModalButton } from "../../button/close-modal-button";
 import Maybe from "../../helpers/maybe";
-import { Dispatch } from "react";
-import { SetStateAction } from "react";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
-import { StatusType } from "desktop-app/components/common/helpers/submit-button-text";
+import { getUploadProfileImageLink } from "react-app/src/state/ducks/session/actions";
+import WarningMessage from "desktop-app/components/common/warning-message";
+import useUploadFile from "./useUploadFile";
+import Fade from "react-bootstrap/Fade";
+
+const getErrorMessage = (error: Error) => String(error?.message || error);
+
 type FileUploaderModalProps = {
   isOpen: boolean;
   setIsOpen?: Dispatch<SetStateAction<boolean>>;
@@ -16,25 +20,6 @@ type FileUploaderModalProps = {
   onFileUploaded?: (url: string, file: Blob) => void;
 };
 
-// "idle" | "loading" | "completed"
-function useUploadFile() {
-  const [status, setStatus] = useState<
-    "idle" | "uploading" | "rejected" | "completed"
-  >("idle");
-
-  async function upload() {
-    setStatus("uploading");
-    try {
-      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
-      setStatus("completed");
-    } catch (error) {
-      setStatus("rejected");
-    }
-  }
-
-  return { upload, status };
-}
-
 function FileUploaderModal({
   isOpen,
   setIsOpen,
@@ -42,23 +27,38 @@ function FileUploaderModal({
   onFileUploaded = function () {},
   children,
 }: FileUploaderModalProps) {
-  const { upload, status } = useUploadFile();
+  const { upload, status, setStatus } = useUploadFile();
+  const [error, setError] = useState(null);
   const [fileToUpload, setFileToUpload] = useState(null);
 
-  const closeModal = () => setIsOpen(false);
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   function cancelUpload() {
     closeModal();
   }
 
-  async function uploadFile() {
-    // sleep 2000ms
-    await upload();
-    onFileUploaded(URL.createObjectURL(fileToUpload), fileToUpload);
+  async function uploadFileToUrl() {
+    setStatus("uploading");
+    const { uploadUrl, downloadUrl } = await getUploadProfileImageLink("jpg");
+    await upload(uploadUrl, fileToUpload);
+    onFileUploaded(downloadUrl, fileToUpload);
     closeModal();
   }
 
+  async function uploadFile() {
+    try {
+      await uploadFileToUrl();
+    } catch (error) {
+      setError(getErrorMessage(error));
+    }
+  }
+
   const buttonStatus: any = status === "uploading" ? "loading" : status;
+  const childrenIsRenderFunction = typeof children === "function";
+  const uploadWasRejected = status === "rejected";
+  const submitButtonBaseText = uploadWasRejected ? "Reintentar" : "Guardar";
 
   return (
     <AnimatedPopup open={isOpen} modal>
@@ -72,25 +72,33 @@ function FileUploaderModal({
           />
         </div>
         <div className={styles.CardBody}>
-          <Maybe it={typeof children === "function"} orElse={children}>
+          <Maybe it={childrenIsRenderFunction} orElse={children}>
             {children?.(setFileToUpload)}
           </Maybe>
         </div>
         <div className={styles.CardFooter}>
-          <button
-            type="button"
-            className={classes("btn", styles.CancelButton)}
-            onClick={cancelUpload}
-          >
-            Cancelar
-          </button>
-          <button
-            type="button"
-            className={classes("btn btn-secondary", styles.SaveButton)}
-            onClick={uploadFile}
-          >
-            <SubmitText status={buttonStatus} />
-          </button>
+          <Fade in={uploadWasRejected}>
+            <WarningMessage message={error} className={styles.ErrorMessage} />
+          </Fade>
+          <div className={styles.FooterButtons}>
+            <button
+              type="button"
+              className={classes("btn", styles.CancelButton)}
+              onClick={cancelUpload}
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              className={classes("btn btn-secondary", styles.SaveButton)}
+              onClick={uploadFile}
+            >
+              <SubmitText
+                status={buttonStatus}
+                baseText={submitButtonBaseText}
+              />
+            </button>
+          </div>
         </div>
       </div>
     </AnimatedPopup>

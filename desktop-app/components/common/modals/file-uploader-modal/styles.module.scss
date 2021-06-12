@@ -33,7 +33,11 @@
 
 .CardFooter {
   border-top: 1px solid var(--soft-gray-border, #dedede);
-  text-align: right;
+  display: flex;
+}
+
+.FooterButtons {
+  margin-left: auto;
 }
 
 .CancelButton,
@@ -51,4 +55,21 @@
 
 .SaveButton {
   margin-left: 0.5em;
+  width: 156px;
+}
+
+.ErrorMessage.ErrorMessage {
+  font-size: 14px;
+  display: inline-flex;
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+  span {
+    margin-left: 0.4em;
+    font-size: 1em;
+    line-height: 1;
+    color: #ff3844;
+    font-weight: bold;
+  }
 }

@@ -5,3 +5,5 @@ export const UPDATE_SESSION = "custom-endpoints/users/update-session-details";
 
 // ENDPOINTS V2
 export const MY_ACCOUNT_PROFILE = "custom-endpoints/my-account/profile";
+export const GET_UPLOAD_PROFILE_IMAGE_LINK =
+  "custom-endpoints/users/generate-upload-profile-image-link";

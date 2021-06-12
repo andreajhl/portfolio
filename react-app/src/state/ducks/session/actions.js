@@ -111,3 +111,18 @@ export const getUserAccountDetails = () => {
       });
   };
 };
+
+export const getUploadProfileImageLink = (fileExtension) =>
+  apiService({
+    method: "POST",
+    body: { fileExtension },
+    path: PATHS.GET_UPLOAD_PROFILE_IMAGE_LINK,
+  }).then((response) => {
+    if (response.data.status !== "OK") {
+      throw new Error(
+        response.data.error ||
+          "There was an error uploading the profile picture"
+      );
+    }
+    return response.data.data;
+  });
