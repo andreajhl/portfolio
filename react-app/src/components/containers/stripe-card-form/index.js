@@ -114,8 +114,8 @@ class StripeCardForm extends Component {
             ...this.state,
             disableButton: false,
             errorMessage: response.error.message,
-            errorType: response.error.type,
-            errorCode: response.error.code,
+            errorType: response.error?.type,
+            errorCode: response.error?.code,
           });
         }
         // SEND TO THE BACKEND TO LINKED WITH THE CUSTOMER AND APPLY THE AUTHORIZATION
