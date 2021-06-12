@@ -126,3 +126,24 @@ export const getUploadProfileImageLink = (fileExtension) =>
     }
     return response.data.data;
   });
+
+export const updateUserAvatar = (avatarUrl) =>
+  apiService({
+    method: "POST",
+    path: PATHS.UPDATE_USER_AVATAR,
+    body: { avatar: avatarUrl },
+  })
+    .then((response) => {
+      if (response.data.status !== "OK") {
+        throw new Error(
+          response.data.error || "There was an error updating the user avatar"
+        );
+      }
+      return response.data.data;
+    })
+    .catch((error) => {
+      if (error?.response?.data?.error) {
+        throw new Error(error?.response?.data?.error);
+      }
+      throw error;
+    });

@@ -39,7 +39,7 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
       </h2>
       <div className={styles.ConfigOptionsSections}>
         <div>
-          <UserAvatarUploader />
+          <UserAvatarUploader currentUserAvatar={userData.avatar} />
         </div>
         <div className={styles.ConfigOptionsPersonalData}>
           <div className={styles.GridOfInputs}>

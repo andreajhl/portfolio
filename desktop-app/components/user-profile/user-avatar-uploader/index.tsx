@@ -3,53 +3,77 @@ import { useState } from "react";
 import { AvatarUploaderModal } from "desktop-app/components/common/modals/avatar-uploader-modal";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import classes from "classnames";
-import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./styles.module.scss";
+import { updateUserAvatar } from "react-app/src/state/ducks/session/actions";
+import WarningMessage from "desktop-app/components/common/warning-message";
+import { Collapse } from "react-bootstrap";
 
-type UserAvatarUploaderProps = {};
+const initialErrorValue = null;
 
-function UserAvatarUploader(props: UserAvatarUploaderProps) {
-  // Conectar con endpoint que recibe el url de la imagen y la seteea como el avatar del usuario.
+type UserAvatarUploaderProps = {
+  currentUserAvatar?: string;
+};
 
-  // 1.- ✔ El usuario clickea cambiar o agregar foto.
-  // 2.- ✔ Se abre la ventana (de window) para seleccionar imagen. * Se necesita un input:file.
-  // 3.- Se abre el modal con la imagen seleccionada para recortarla y subirla a Firebase.
-  // 4.- Se muestra un loading state mientras la imagen subida se guarda en el backend.
-  const { user } = useAuth0();
+function UserAvatarUploader({
+  currentUserAvatar = "/assets/img/user-logo.svg",
+}: UserAvatarUploaderProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [pickedImage, setPickedImage] = useState(null);
-  const initialPreviewSrc = user.picture || "/assets/img/user-logo.svg";
-  const [previewSrc, setPreviewSrc] = useState(initialPreviewSrc);
+  const [previewSrc, setPreviewSrc] = useState(currentUserAvatar);
+  const [error, setError] = useState(initialErrorValue);
 
-  const hasChangedPreview = previewSrc !== initialPreviewSrc;
+  const hasChangedPreview = previewSrc !== currentUserAvatar;
+
+  function resetPreviewSrc() {
+    setPreviewSrc(currentUserAvatar);
+  }
+
+  function startUploadModal(image: File): void {
+    setError(initialErrorValue);
+    setPickedImage(URL.createObjectURL(image));
+    setModalIsOpen(true);
+  }
+
+  async function saveUserAvatar(avatarUrl: string) {
+    await updateUserAvatar(avatarUrl);
+    setPreviewSrc(avatarUrl);
+  }
+
+  async function updateAvatar(avatarUrl: string) {
+    try {
+      await saveUserAvatar(avatarUrl);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  const hasError = Boolean(error);
 
   return (
     <>
+      <Collapse in={hasError}>
+        <div>
+          <WarningMessage message={error} className={styles.ErrorMessage} />
+        </div>
+      </Collapse>
       <ImagePicker
         previewImageSrc={previewSrc}
-        previewImageBorderRadius={"50%"}
+        previewImageBorderRadius="50%"
         label={
-          hasChangedPreview ? (
+          <Maybe it={hasChangedPreview} orElse="Agregar foto">
             <i className={classes("fa fa-edit", styles.EditButton)} />
-          ) : (
-            "Agregar foto"
-          )
+          </Maybe>
         }
         showDeleteButton={hasChangedPreview}
-        onClickDelete={() => {
-          setPreviewSrc(initialPreviewSrc);
-        }}
-        onPickImage={(image) => {
-          setPickedImage(URL.createObjectURL(image));
-          setModalIsOpen(true);
-        }}
+        onClickDelete={resetPreviewSrc}
+        onPickImage={startUploadModal}
       />
       <Maybe it={modalIsOpen}>
         <AvatarUploaderModal
-          initialImageSrc={pickedImage}
           isOpen={modalIsOpen}
           setIsOpen={setModalIsOpen}
-          onImageUploaded={setPreviewSrc}
+          initialImageSrc={pickedImage}
+          onImageUploaded={updateAvatar}
         />
       </Maybe>
     </>

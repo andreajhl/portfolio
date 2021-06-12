@@ -59,6 +59,7 @@ function FileUploaderModal({
   const childrenIsRenderFunction = typeof children === "function";
   const uploadWasRejected = status === "rejected";
   const submitButtonBaseText = uploadWasRejected ? "Reintentar" : "Guardar";
+  const canCancelUpload = status !== "uploading";
 
   return (
     <AnimatedPopup open={isOpen} modal>
@@ -81,13 +82,15 @@ function FileUploaderModal({
             <WarningMessage message={error} className={styles.ErrorMessage} />
           </Fade>
           <div className={styles.FooterButtons}>
-            <button
-              type="button"
-              className={classes("btn", styles.CancelButton)}
-              onClick={cancelUpload}
-            >
-              Cancelar
-            </button>
+            <Maybe it={canCancelUpload}>
+              <button
+                type="button"
+                className={classes("btn", styles.CancelButton)}
+                onClick={cancelUpload}
+              >
+                Cancelar
+              </button>
+            </Maybe>
             <button
               type="button"
               className={classes("btn btn-secondary", styles.SaveButton)}
