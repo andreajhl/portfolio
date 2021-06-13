@@ -593,3 +593,20 @@ export const getHiringPreviewConfiguration = (contractReference) =>
       getDataWithContractReference(response, contractReference)
     )
   );
+
+const getSaveHiringPreviewConfigurationBody = (hiringPreviewConfiguration) => ({
+  contractReference: hiringPreviewConfiguration.contractReference,
+  previewTitle: hiringPreviewConfiguration.cardTitle,
+  previewMessage: hiringPreviewConfiguration.cardMessage,
+  previewCardColor: hiringPreviewConfiguration.cardColor,
+  previewBackgroundUrl: hiringPreviewConfiguration.pageBackgroundUrl,
+  previewButtonsBackgroundColor:
+    hiringPreviewConfiguration.actionsButtonBackgroundColor,
+});
+
+export const saveHiringPreviewConfiguration = (hiringPreviewConfiguration) =>
+  apiService({
+    method: "POST",
+    path: API_PATHS.SAVE_HIRING_PREVIEW_CONFIGURATION,
+    body: getSaveHiringPreviewConfigurationBody(hiringPreviewConfiguration),
+  });

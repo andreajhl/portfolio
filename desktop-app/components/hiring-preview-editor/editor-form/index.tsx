@@ -1,4 +1,3 @@
-import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 import {
   availableActionButtonsBackgroundColors,
@@ -6,7 +5,7 @@ import {
   availablePageBackgroundsUrls,
   getActionButtonsBackgroundColorsForPageBackground,
 } from "constants/hiring-preview-configuration";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CardColorSelector } from "desktop-app/components/hiring-preview-editor/card-color-selector";
 import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfigurationType";
 import { OccasionType } from "desktop-app/types/contractDataType";
@@ -19,6 +18,7 @@ import useStatus from "lib/hooks/useStatus";
 import { PageBackgroundSelector } from "desktop-app/components/hiring-preview-editor/page-background-selector";
 import { EditorFormGiftCard } from "../editor-form-gift-card";
 import { Collapse } from "react-bootstrap";
+import { saveHiringPreviewConfiguration } from "react-app/src/state/ducks/contracts/actions";
 
 const initialValues: HiringPreviewConfigurationType = {
   cardColor: availableCardColors[0],
@@ -32,6 +32,7 @@ function getInitialValues(
   hiringPreviewConfiguration: HiringPreviewConfigurationType
 ): HiringPreviewConfigurationType {
   return {
+    contractReference: hiringPreviewConfiguration.contractReference,
     cardColor: hiringPreviewConfiguration.cardColor || initialValues.cardColor,
     cardMessage:
       hiringPreviewConfiguration.cardMessage || initialValues.cardMessage,
@@ -45,20 +46,12 @@ function getInitialValues(
   };
 }
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = {};
-
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
-
 type EditorFormProps = {
   contractReference: string;
   occasion: OccasionType;
   hiringPreviewConfiguration: HiringPreviewConfigurationType;
   onChange: Dispatch<any>;
-} & StateProps &
-  DispatchProps;
+};
 
 function EditorForm({
   contractReference,
@@ -75,7 +68,29 @@ function EditorForm({
   );
   const isFirstRender = useRef(true);
 
-  // Conectar con endpoint que guarda la configuración.
+  const debouncedSaveHiringPreview = useMemo(
+    () =>
+      debounce(async (hiringPreviewConfiguration) => {
+        setStatus("loading");
+        try {
+          await saveHiringPreviewConfiguration(hiringPreviewConfiguration);
+          setStatus("completed");
+        } catch (error) {
+          setStatus("rejected");
+        } finally {
+          setTimeout(() => setStatus("idle"), 5000);
+        }
+      }, 1000),
+    []
+  );
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+    } else {
+      debouncedSaveHiringPreview(values);
+    }
+  }, [values]);
 
   useEffect(() => {
     onChange({
@@ -83,20 +98,6 @@ function EditorForm({
       cardTitle: values.cardTitle || "Agrega un titulo",
       cardMessage: values.cardMessage || "Agrega un texto especial",
     });
-  }, [values]);
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-    } else {
-      debounce(() => {
-        setStatus("loading");
-        setTimeout(() => {
-          setStatus("completed");
-          setTimeout(() => setStatus("idle"), 5000);
-        }, 2000);
-      }, 1000)();
-    }
   }, [values]);
 
   function toggleCardColorSelectorIsHidden() {
@@ -160,6 +161,4 @@ function EditorForm({
   );
 }
 
-const _EditorForm = connect(mapStateToProps, mapDispatchToProps)(EditorForm);
-
-export { _EditorForm as EditorForm };
+export { EditorForm };
