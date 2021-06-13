@@ -573,3 +573,23 @@ export const getPurchaseSummaryV2 = (contractReference) => {
       });
   };
 };
+
+const getDataWithContractReference = (response, contractReference) => ({
+  data: {
+    ...response.data,
+    data: {
+      ...response.data.data,
+      contractReference,
+    },
+  },
+});
+
+export const getHiringPreviewConfiguration = (contractReference) =>
+  thunkAction(TYPES.GET_HIRING_PREVIEW_CONFIGURATION_REQUEST, () =>
+    apiService({
+      method: "GET",
+      path: API_PATHS.GET_HIRING_PREVIEW_CONFIGURATION + contractReference,
+    }).then((response) =>
+      getDataWithContractReference(response, contractReference)
+    )
+  );

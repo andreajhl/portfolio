@@ -22,3 +22,5 @@ export const SIMILAR_CONTRACTS_V2 = `custom-endpoints/${CONTRACT_MODEL}/v2/simil
 export const GET_USER_CONTRACT_IN_PROGRESS = `/custom-endpoints/${CONTRACT_MODEL}/user-contract-in-progress/`;
 
 export const GET_PURCHASE_SUMMARY_V2 = `/custom-endpoints/${CONTRACT_MODEL}/v2/contract-with-payments/`;
+
+export const GET_HIRING_PREVIEW_CONFIGURATION = `custom-endpoints/${CONTRACT_MODEL}/get-hiring-preview-configuration/`;

@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import * as TYPES from "./types";
 import { getTotalColumns } from "../../utils/gridSystem";
 import * as types from "../celebrities/types";
+import thunkReducer from "../../utils/thunkReducer";
 
 const updateQueryParamsInitialState = {
   currentPage: 1,
@@ -496,7 +497,6 @@ export function getPurchaseSummaryReducer(
         data: action.payload.data.data,
       };
     case TYPES.GET_PURCHASE_SUMMARY_REQUEST_COMPLETED:
-      console.log(action.payload.data, "data");
       return {
         ...state,
         data: action.payload.data.data,
@@ -506,6 +506,11 @@ export function getPurchaseSummaryReducer(
       return state;
   }
 }
+
+export const getHiringPreviewConfigurationReducer = thunkReducer(
+  TYPES.GET_HIRING_PREVIEW_CONFIGURATION_REQUEST,
+  {}
+);
 
 export default combineReducers({
   saveClientContractReducer,
@@ -522,4 +527,5 @@ export default combineReducers({
   fetchSimilarContractsReducer,
   getUserContractInProgressReducer,
   getPurchaseSummaryReducer,
+  getHiringPreviewConfigurationReducer,
 });
