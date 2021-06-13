@@ -28,7 +28,7 @@
 
 .PageBackgroundSelector label ~ label .backgroundOption {
   margin-left: 16px;
-  @media only screen and (min: width 768px) {
+  @media only screen and (min-width: 768px) {
     margin-left: 9px;
   }
 }
