@@ -28,6 +28,23 @@ const initialValues: HiringPreviewConfigurationType = {
   actionButtonsBackgroundColor: availableActionButtonsBackgroundColors[0],
 };
 
+function getInitialValues(
+  hiringPreviewConfiguration: HiringPreviewConfigurationType
+): HiringPreviewConfigurationType {
+  return {
+    cardColor: hiringPreviewConfiguration.cardColor || initialValues.cardColor,
+    cardMessage:
+      hiringPreviewConfiguration.cardMessage || initialValues.cardMessage,
+    cardTitle: hiringPreviewConfiguration.cardTitle || initialValues.cardTitle,
+    pageBackgroundUrl:
+      hiringPreviewConfiguration.pageBackgroundUrl ||
+      initialValues.pageBackgroundUrl,
+    actionButtonsBackgroundColor:
+      hiringPreviewConfiguration.actionButtonsBackgroundColor ||
+      initialValues.actionButtonsBackgroundColor,
+  };
+}
+
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {};
@@ -38,6 +55,7 @@ type DispatchProps = typeof mapDispatchToProps;
 type EditorFormProps = {
   contractReference: string;
   occasion: OccasionType;
+  hiringPreviewConfiguration: HiringPreviewConfigurationType;
   onChange: Dispatch<any>;
 } & StateProps &
   DispatchProps;
@@ -45,10 +63,13 @@ type EditorFormProps = {
 function EditorForm({
   contractReference,
   occasion,
+  hiringPreviewConfiguration,
   onChange,
 }: EditorFormProps) {
   const [status, setStatus] = useStatus();
-  const { values, setFieldValue, onChangeField } = useForm({ initialValues });
+  const { values, setFieldValue, onChangeField } = useForm({
+    initialValues: getInitialValues(hiringPreviewConfiguration),
+  });
   const [cardColorSelectorIsVisible, setCardColorSelectorIsVisible] = useState(
     false
   );
@@ -82,6 +103,18 @@ function EditorForm({
     setCardColorSelectorIsVisible((isVisible) => !isVisible);
   }
 
+  function changeCardColor(color: any) {
+    setFieldValue("cardColor", color);
+  }
+
+  function changePageBackground(background: any) {
+    setFieldValue("pageBackgroundUrl", background);
+    setFieldValue(
+      "actionButtonsBackgroundColor",
+      getActionButtonsBackgroundColorsForPageBackground(background)
+    );
+  }
+
   return (
     <div className={styles.EditorForm}>
       <EditorFormGiftCard
@@ -96,7 +129,7 @@ function EditorForm({
             <section className={styles.CardColorSelectorWrapper}>
               <h3 className={styles.FieldTitle}>Color de la tarjeta</h3>
               <CardColorSelector
-                onChange={(color) => setFieldValue("cardColor", color)}
+                onChange={changeCardColor}
                 value={values.cardColor}
               />
             </section>
@@ -105,13 +138,7 @@ function EditorForm({
         <section className={styles.PageBackgroundSelectorSection}>
           <h3 className={styles.FieldTitle}>Agregar fondo</h3>
           <PageBackgroundSelector
-            onChange={(background) => {
-              setFieldValue("pageBackgroundUrl", background);
-              setFieldValue(
-                "actionButtonsBackgroundColor",
-                getActionButtonsBackgroundColorsForPageBackground(background)
-              );
-            }}
+            onChange={changePageBackground}
             value={values.pageBackgroundUrl}
           />
         </section>
