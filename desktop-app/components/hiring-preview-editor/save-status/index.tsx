@@ -1,8 +1,26 @@
 import classes from "classnames";
+import { StatusType } from "lib/hooks/useStatus";
 import Collapse from "react-bootstrap/Collapse";
-import Maybe from "../../common/helpers/maybe";
-import { StatusType } from "../../common/helpers/submit-button-text";
 import styles from "./styles.module.scss";
+
+const statusData = {
+  idle: {
+    icon: null,
+    text: null,
+  },
+  loading: {
+    icon: <i className={classes("fa fa-circle-notch", styles.Spinner)} />,
+    text: "Guardando cambios...",
+  },
+  completed: {
+    icon: <i className={`far fa-check-circle ${styles.SavedIcon}`} />,
+    text: "Tus cambios se guardaron hace unos segundos.",
+  },
+  rejected: {
+    icon: <i className={`fa fa-exclamation-circle ${styles.ErrorIcon}`} />,
+    text: "Ha ocurrido un error guardando tus cambios",
+  },
+};
 
 type SaveStatusProps = {
   className?: string;
@@ -10,6 +28,7 @@ type SaveStatusProps = {
 };
 
 function SaveStatus({ className = "", status }: SaveStatusProps) {
+  const { icon, text } = statusData[status];
   return (
     <Collapse in={status !== "idle"}>
       <div>
@@ -17,22 +36,12 @@ function SaveStatus({ className = "", status }: SaveStatusProps) {
           className={classes(
             styles.SaveStatusWrapper,
             status === "idle" && styles.Idle,
+            status === "rejected" && styles.Rejected,
             className
           )}
         >
-          <Maybe
-            it={status === "completed"}
-            orElse={
-              <i className={classes("fa fa-circle-notch", styles.Spinner)} />
-            }
-          >
-            <i className={`far fa-check-circle ${styles.SavedIcon}`} />
-          </Maybe>
-          <span className={styles.SaveStatusText}>
-            <Maybe it={status === "completed"} orElse="Guardando cambios...">
-              Tus cambios se guardaron hace unos segundos.
-            </Maybe>
-          </span>
+          {icon}
+          <span className={styles.SaveStatusText}>{text}</span>
         </div>
       </div>
     </Collapse>
