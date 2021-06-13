@@ -6,6 +6,7 @@ import {
   handleApiResponseFailure,
   handleApiResponseSuccess,
 } from "../../utils";
+import thunkAction from "../../utils/thunkAction";
 
 export const getToken = () => {
   return (dispatch) => {
@@ -147,3 +148,18 @@ export const updateUserAvatar = (avatarUrl) =>
       }
       throw error;
     });
+
+const getUserContractData = (response) => ({
+  data: {
+    ...response.data,
+    data: { ...response.data.data, ...response.data.data.contractData },
+  },
+});
+
+export const getUserContract = (contractReference) =>
+  thunkAction(types.GET_USER_CONTRACT_REQUEST, () =>
+    apiService({
+      method: "GET",
+      path: PATHS.GET_USER_CONTRACT + contractReference,
+    }).then(getUserContractData)
+  );

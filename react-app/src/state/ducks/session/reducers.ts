@@ -1,6 +1,7 @@
 import { userDetails } from "./../../../../../desktop-app/types/userDetails";
 import { combineReducers } from "redux";
 import * as types from "./types";
+import thunkReducer from "../../utils/thunkReducer";
 
 const getSessionInitialState = {
   loading: false,
@@ -125,8 +126,14 @@ export function userAccountDetails(
   }
 }
 
+export const getUserContractReducer = thunkReducer(
+  types.GET_USER_CONTRACT_REQUEST,
+  {}
+);
+
 export default combineReducers({
   getSessionReducer,
   updateSessionReducer,
   userAccountDetails,
+  getUserContractReducer,
 });
