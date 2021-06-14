@@ -54,3 +54,24 @@ export const fetchUserFavoritesContracts = (params) => (dispatch) => {
       handleApiErrors(dispatch, TYPE, err);
     });
 };
+
+export const saveContractLike = (contract_reference) => {
+  const FINAL_PATH = API_PATHS.SAVE_USER_LIKE_CONTRACT_PATH;
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      path: FINAL_PATH + contract_reference,
+      async: true,
+    })
+      .then((res) => {
+        if (res.data.status === "OK") {
+          resolutionFunc(res.data.data);
+        } else {
+          rejectionFunc(res.data.error);
+        }
+      })
+      .catch((err) => {
+        rejectionFunc(err);
+      });
+  });
+};
