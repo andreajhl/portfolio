@@ -224,6 +224,17 @@ export function listClientContractsReducer(
   }
 }
 
+export const listUserContractsReducer = thunkReducer(
+  TYPES.LIST_USER_CONTRACTS_REQUEST,
+  {
+    results: [],
+    informationPage: {
+      pageSize: 4,
+      currentPage: 1,
+    },
+  }
+);
+
 export function getContractReducer(state = getContractInitialState, action) {
   switch (action.type) {
     case TYPES.GET_CONTRACT_REQUEST:
@@ -528,4 +539,5 @@ export default combineReducers({
   getUserContractInProgressReducer,
   getPurchaseSummaryReducer,
   getHiringPreviewConfigurationReducer,
+  listUserContractsReducer,
 });

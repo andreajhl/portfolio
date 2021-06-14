@@ -324,6 +324,15 @@ export const listClientContracts = () => {
   };
 };
 
+export const listUserContracts = (params) =>
+  thunkAction(TYPES.LIST_USER_CONTRACTS_REQUEST, () =>
+    apiService({
+      method: "GET",
+      path: API_PATHS.USER_CONTRACTS,
+      params,
+    })
+  );
+
 export const listContractComments = (contractReference, params) => {
   return (dispatch) => {
     const TYPE = TYPES.LIST_CONTRACT_COMMENTS_REQUEST;
