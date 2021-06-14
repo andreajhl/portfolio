@@ -224,7 +224,8 @@ class StripeCardForm extends Component {
           return this.setState({
             ...this.state,
             disableButton: false,
-            errorMessage: response.error.message
+            errorMessage: response.error?.message,
+            errorType: response.error?.type
           });
         }
 
