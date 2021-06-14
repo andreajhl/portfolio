@@ -7,10 +7,12 @@ import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import useLoad from "react-app/src/utils/useLoad";
 import OverlayHeader from "../video/overlay-header";
 import OverlayDetails from "../video/overlay-details";
+import { saveContractLike } from "react-app/src/state/ducks/account/actions";
 
 type ContractVideoProps = {
   className?: string;
   style?: CSSProperties;
+  contract_reference;
 } & ContractVideoType;
 
 function ContractVideo({
@@ -19,7 +21,10 @@ function ContractVideo({
   occasion,
   style,
   className = "",
+  contract_reference,
 }: ContractVideoProps) {
+  // TODO: agregar initial state response de backend
+  const [isLiked, setIsLiked] = useState(false);
   const videoKey = `contract-video-${videoUrl}`;
   const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
     onPlayVideo() {
@@ -43,6 +48,12 @@ function ContractVideo({
   const [videoIsMuted, setVideoIsMuted] = useState(true);
   const toggleVideoIsMuted = () => {
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
+  };
+  const toggleLikeContract = () => {
+    console.log("testing toggleLikeContract");
+    saveContractLike(contract_reference).then((response) => {
+      setIsLiked(response.liked);
+    });
   };
 
   return (
@@ -79,10 +90,9 @@ function ContractVideo({
             />
           </div>
           <OverlayDetails
+            isLiked={isLiked}
             ocassion={occasion}
-            onLikevideo={() => {
-              console.log("video like it");
-            }}
+            onLikevideo={toggleLikeContract}
           />
         </section>
       </div>

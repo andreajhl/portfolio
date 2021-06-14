@@ -37,6 +37,7 @@ const renderContractVideo = (contract) => (
     occasion={contract?.occasion}
     videoUrl={contract.contract_media}
     videoPosterUrl={contract.video_poster_url}
+    contract_reference={contract.contract_reference}
   />
 );
 

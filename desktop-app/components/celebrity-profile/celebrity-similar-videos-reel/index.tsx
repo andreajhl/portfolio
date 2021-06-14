@@ -25,6 +25,7 @@ function renderVideoCard(similarVideo: SimilarContractType | null) {
       videoPosterUrl={similarVideo?.contractPosterUrl}
       occasion={similarVideo?.contractOccasion}
       avatar={similarVideo?.celebrityAvatar}
+      contract_reference={similarVideo?.contractReference}
     />
   );
 }

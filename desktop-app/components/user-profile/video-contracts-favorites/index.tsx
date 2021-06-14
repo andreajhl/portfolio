@@ -37,7 +37,6 @@ function VideoContractsFavorites({
   }, []);
 
   if (isCompleted && results?.length === 0) return null;
-
   return (
     <div className={styles.VideoContractsFavoritesWrapper}>
       <CardsReelSection
@@ -62,6 +61,7 @@ function VideoContractsFavorites({
               fullName={data.fullname}
               videoPosterUrl={data.videoPosterUrl}
               avatar={data.avatar}
+              contract_reference={data.contractReference}
             />
           </Maybe>
         )}

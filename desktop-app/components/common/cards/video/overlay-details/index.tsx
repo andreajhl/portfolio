@@ -7,8 +7,13 @@ type OverlayDetailsProps = {
   ocassion?: string;
   viewsCount?: string | number;
   onLikevideo: () => void;
+  isLiked: boolean;
 };
-const OverlayDetails = ({ ocassion, onLikevideo }: OverlayDetailsProps) => {
+const OverlayDetails = ({
+  ocassion,
+  onLikevideo,
+  isLiked,
+}: OverlayDetailsProps) => {
   return (
     <div className={styles.OverlayVideoDetails}>
       <Maybe it={ocassion?.length > 0}>
@@ -52,7 +57,7 @@ const OverlayDetails = ({ ocassion, onLikevideo }: OverlayDetailsProps) => {
         <span>8,200</span>
       </div> */}
       <div className={styles.LikeButton}>
-        <LikeButton onClick={onLikevideo} />
+        <LikeButton isFavorite={isLiked} onClick={onLikevideo} />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import styles from "./styles.module.scss";
 
 type CelebritySectionVideoCardProps = {
   className?: string;
+  contract_reference: string;
   style?: CSSProperties;
 } & ContractVideoType;
 
@@ -16,6 +17,7 @@ function CelebritySectionVideoCard({
   avatar,
   fullName,
   username,
+  contract_reference,
 }: CelebritySectionVideoCardProps) {
   return (
     <div className={styles.CelebritySectionVideoCard}>
@@ -23,6 +25,7 @@ function CelebritySectionVideoCard({
         videoPosterUrl={videoPosterUrl}
         videoUrl={videoUrl}
         occasion={occasion}
+        contract_reference={contract_reference}
       />
       <VideoFooter avatarURL={avatar} fullName={fullName} userName={username} />
     </div>
