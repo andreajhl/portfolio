@@ -4,6 +4,28 @@ import styles from "./styles.module.scss";
 import useGetContract from "lib/hooks/useGetContract";
 import { GiftPreviewMain } from "desktop-app/components/layouts/gift-preview-main";
 import { GiftAnimationWrapper } from "desktop-app/components/layouts/gift-animation-wrapper";
+import useGetHiringPreviewConfiguration from "lib/hooks/useGetHiringPreviewConfiguration";
+import getDefaultHiringConfiguration from "constants/getDefaultHiringConfiguration";
+import getObjectWithFallbackValues from "lib/utils/getObjectWithFallbackValues";
+import ClientContractType from "desktop-app/types/clientContract";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+
+const opcionalPreviewConfigurationProperties = [
+  "pageBackgroundUrl",
+  "actionButtonsBackgroundColor",
+];
+
+function getPreviewConfigurationWithFallbacks(
+  contract: ClientContractType,
+  hiringPreviewConfiguration: HiringPreviewConfigurationType
+) {
+  const defaultPreviewConfiguration = getDefaultHiringConfiguration(contract);
+  return getObjectWithFallbackValues(
+    hiringPreviewConfiguration,
+    defaultPreviewConfiguration,
+    opcionalPreviewConfigurationProperties
+  );
+}
 
 type GiftPreviewPageProps = {
   contractReference: string;
@@ -11,21 +33,21 @@ type GiftPreviewPageProps = {
   previewMode?: boolean;
 };
 
-const mockHiringConfiguration: HiringPreviewConfigurationType = {
-  cardTitle: "¡Feliz cumpleaños mi amor!",
-  cardMessage:
-    "Mi amor hermosa, te dedico esta canción con todo mi corazón.\nTe amo infinito. Que tengas un cumpleaños hermoso.\n\nCon todo mi amor, Luis.",
-  cardColor: "#E8E8FF",
-  pageBackgroundUrl: "/assets/img/hirings-preview-backgrounds/background-1.png",
-  actionButtonsBackgroundColor: "#000000",
-};
-
 function GiftPreviewPage({
   contractReference,
   previewMode = false,
-  hiringConfiguration = mockHiringConfiguration,
 }: GiftPreviewPageProps) {
-  const { contract } = useGetContract(contractReference, true);
+  const { contract, status } = useGetContract(contractReference, true);
+  const { hiringPreviewConfiguration } = useGetHiringPreviewConfiguration(
+    contractReference
+  );
+
+  const previewConfiguration = getPreviewConfigurationWithFallbacks(
+    contract,
+    hiringPreviewConfiguration
+  );
+
+  const contractIsCompleted = status === "completed";
 
   return (
     <PageContainer showFooter={false}>
@@ -34,12 +56,14 @@ function GiftPreviewPage({
         deliveryTo={contract.deliveryTo}
         deliveryFrom={contract.deliveryFrom}
       >
-        <GiftPreviewMain
-          className={styles.HiringPreviewPageMain}
-          contract={contract}
-          hiringConfiguration={hiringConfiguration}
-          previewMode={previewMode}
-        />
+        <Maybe it={contractIsCompleted}>
+          <GiftPreviewMain
+            className={styles.HiringPreviewPageMain}
+            contract={contract}
+            hiringConfiguration={previewConfiguration}
+            previewMode={previewMode}
+          />
+        </Maybe>
       </GiftAnimationWrapper>
     </PageContainer>
   );
