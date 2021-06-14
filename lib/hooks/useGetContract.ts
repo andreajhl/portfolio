@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getContract } from "react-app/src/state/ducks/contracts/actions";
 import { useRouter } from "next/router";
 import { CLIENT_HIRINGS } from "constants/paths";
@@ -29,6 +29,7 @@ function useGetContract(contractReference: string, redirectOnFailure = false) {
   const { push } = useRouter();
   const state = useSelector(contractSelector);
   const dispatch = useDispatch();
+  const [didFetch, setDidFetch] = useState(false);
 
   const isSameContract = state?.contract?.reference === contractReference;
 
@@ -37,13 +38,15 @@ function useGetContract(contractReference: string, redirectOnFailure = false) {
       return;
     }
     dispatch(getContract(contractReference));
+    setDidFetch(true);
   }, [isSameContract, contractReference, dispatch]);
 
   useEffect(() => {
     if (!redirectOnFailure) return;
+    if (!didFetch) return;
     if (state.status !== "failed") return;
     push(CLIENT_HIRINGS);
-  }, [redirectOnFailure, state.status, push]);
+  }, [redirectOnFailure, state.status, push, didFetch]);
 
   return state;
 }
