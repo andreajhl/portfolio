@@ -13,11 +13,12 @@ type MyHiringsContract = {
   userId: number;
   celebrityId: number;
   paymentDate: string;
+  creationDate: string;
+  recordingDate: string;
+  deliveryContactCellphone: string;
   stars: number;
   review: string;
   celebrityData: CelebrityData;
-  // fecha de grabación
-  // deliveryCellphone
 };
 
 type CelebrityData = {

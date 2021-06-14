@@ -23,6 +23,11 @@ function getExpectedDeliveryDate(paymentDate) {
 }
 
 function MyHiringsCardHeader({ contractData }: MyHiringsCardHeaderProps) {
+  const contractIsCompleted = contractData.status === COMPLETED;
+  const contractRecordingDate = contractIsCompleted
+    ? contractData.recordingDate
+    : getExpectedDeliveryDate(contractData.paymentDate);
+
   return (
     <header className={styles.MyHiringsCardHeader}>
       <div className={styles.MyHiringsCardHeaderContainer}>
@@ -42,14 +47,12 @@ function MyHiringsCardHeader({ contractData }: MyHiringsCardHeaderProps) {
           </span>
           <span>
             <Maybe
-              it={contractData.status === COMPLETED}
-              orElse={"Fecha estimada de grabación:"}
+              it={contractIsCompleted}
+              orElse="Fecha estimada de grabación:"
             >
               Fecha de grabación:
             </Maybe>{" "}
-            {getFormattedDate(
-              getExpectedDeliveryDate(contractData.paymentDate)
-            )}
+            {getFormattedDate(contractRecordingDate)}
           </span>
           <span>ID de seguimiento: {contractData.reference}</span>
         </div>
