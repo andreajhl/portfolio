@@ -12,8 +12,9 @@ type LikeVideoButtonProps = {
 function LikeVideoButton({
   onClick,
   isLiked,
-  backgroundColor = "white",
+  backgroundColor: backgroundColorFromProps,
 }: LikeVideoButtonProps) {
+  const backgroundColor = backgroundColorFromProps || "white"; // Para evitar utilizar string vaciás.
   return (
     <button
       onClick={onClick}

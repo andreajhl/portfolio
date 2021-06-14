@@ -2,12 +2,12 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { ShareDetailsForm } from "desktop-app/components/layouts/share-details-form";
 import { WhatsappSharePreview } from "desktop-app/components/share-in-whatsapp/whatsapp-share-preview";
-import useGetContract from "lib/hooks/useGetContract";
+import useGetUserContract from "lib/hooks/useGetUserContract";
 import { useState } from "react";
 import styles from "./styles.module.scss";
 
 function HiringShareInWhatsappPage({ contractReference }) {
-  const { contract } = useGetContract(contractReference, true);
+  const { contract } = useGetUserContract(contractReference, true);
 
   const [previewData, setPreviewData] = useState({
     deliveryTo: "",

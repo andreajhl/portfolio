@@ -10,6 +10,11 @@
   color: var(--secondary, #6970c6);
 }
 
+.Rejected .SaveStatusText,
+.ErrorIcon {
+  color: var(--danger);
+}
+
 .SaveStatusText {
   margin-left: 15px;
   font-size: 12px;

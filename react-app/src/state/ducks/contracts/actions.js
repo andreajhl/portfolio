@@ -573,3 +573,40 @@ export const getPurchaseSummaryV2 = (contractReference) => {
       });
   };
 };
+
+const getDataWithContractReference = (response, contractReference) => ({
+  data: {
+    ...response.data,
+    data: {
+      ...response.data.data,
+      contractReference,
+    },
+  },
+});
+
+export const getHiringPreviewConfiguration = (contractReference) =>
+  thunkAction(TYPES.GET_HIRING_PREVIEW_CONFIGURATION_REQUEST, () =>
+    apiService({
+      method: "GET",
+      path: API_PATHS.GET_HIRING_PREVIEW_CONFIGURATION + contractReference,
+    }).then((response) =>
+      getDataWithContractReference(response, contractReference)
+    )
+  );
+
+const getSaveHiringPreviewConfigurationBody = (hiringPreviewConfiguration) => ({
+  contractReference: hiringPreviewConfiguration.contractReference,
+  previewTitle: hiringPreviewConfiguration.cardTitle,
+  previewMessage: hiringPreviewConfiguration.cardMessage,
+  previewCardColor: hiringPreviewConfiguration.cardColor,
+  previewBackgroundUrl: hiringPreviewConfiguration.pageBackgroundUrl,
+  previewButtonsBackgroundColor:
+    hiringPreviewConfiguration.actionsButtonBackgroundColor,
+});
+
+export const saveHiringPreviewConfiguration = (hiringPreviewConfiguration) =>
+  apiService({
+    method: "POST",
+    path: API_PATHS.SAVE_HIRING_PREVIEW_CONFIGURATION,
+    body: getSaveHiringPreviewConfigurationBody(hiringPreviewConfiguration),
+  });

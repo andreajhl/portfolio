@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { getContract } from "react-app/src/state/ducks/contracts/actions";
 import { useRouter } from "next/router";
 import { CLIENT_HIRINGS } from "constants/paths";
 import { useDispatch, useSelector } from "react-redux";
 import ClientContractType from "desktop-app/types/clientContract";
+import { RootState } from "react-app/src/state/store";
+import { getUserContract } from "react-app/src/state/ducks/session/actions";
 
 type StatusType = "loading" | "failed" | "completed";
 
@@ -12,20 +13,25 @@ type StateType = {
   status: StatusType;
 };
 
-const contractSelector = ({ contracts: { getContractReducer } }) => {
+const contractSelector = ({
+  session: { getUserContractReducer },
+}: RootState) => {
   let status: StatusType = "loading";
-  if (getContractReducer.failed) status = "failed";
-  if (getContractReducer.completed) status = "completed";
+  if (getUserContractReducer.failed) status = "failed";
+  if (getUserContractReducer.completed) status = "completed";
 
   const state: StateType = {
-    contract: getContractReducer.data,
+    contract: getUserContractReducer.data,
     status,
   };
 
   return state;
 };
 
-function useGetContract(contractReference: string, redirectOnFailure = false) {
+function useGetUserContract(
+  contractReference: string,
+  redirectOnFailure = true
+) {
   const { push } = useRouter();
   const state = useSelector(contractSelector);
   const dispatch = useDispatch();
@@ -37,7 +43,7 @@ function useGetContract(contractReference: string, redirectOnFailure = false) {
     if (!contractReference || isSameContract) {
       return;
     }
-    dispatch(getContract(contractReference));
+    dispatch(getUserContract(contractReference));
     setDidFetch(true);
   }, [isSameContract, contractReference, dispatch]);
 
@@ -51,4 +57,4 @@ function useGetContract(contractReference: string, redirectOnFailure = false) {
   return state;
 }
 
-export default useGetContract;
+export default useGetUserContract;

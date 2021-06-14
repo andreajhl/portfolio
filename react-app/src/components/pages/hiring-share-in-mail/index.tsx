@@ -1,7 +1,7 @@
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ShareDetailsForm } from "desktop-app/components/layouts/share-details-form";
 import { ShareInMailPreview } from "desktop-app/components/share-in-mail/share-in-mail-preview";
-import useGetContract from "lib/hooks/useGetContract";
+import useGetUserContract from "lib/hooks/useGetUserContract";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import { PageContainer } from "../../layouts/page-container";
 import scrollToTop from "../../../../../lib/utils/scrollToTop";
 
 function HiringShareInMailPage({ contractReference }) {
-  const { contract } = useGetContract(contractReference);
+  const { contract } = useGetUserContract(contractReference);
   const [shareData, setShareData] = useState({});
   const [isEditing, setIsEditing] = useState(true);
 

@@ -4,23 +4,8 @@ import styles from "./styles.module.scss";
 import { GiftCard } from "../../common/cards/gift-card";
 import { VideoContractFeed } from "../video-contract-feed";
 import ClientContractType from "desktop-app/types/clientContract";
-import { getDefaultGiftCardContent } from "constants/hiring-preview-configuration";
 import { HiringReviewSection } from "../../common/widgets/hiring-review-section";
-
-function getDefaultHiringConfiguration({
-  occasion,
-  deliveryTo,
-}: ClientContractType): HiringPreviewConfigurationType {
-  const cardContent = getDefaultGiftCardContent(occasion, deliveryTo);
-  return {
-    cardTitle: cardContent.title,
-    cardMessage: cardContent.message,
-    cardColor: "#E8E8FF",
-    pageBackgroundUrl:
-      "/assets/img/hirings-preview-backgrounds/background-2.png",
-    actionButtonsBackgroundColor: "#FB177D",
-  };
-}
+import getDefaultHiringConfiguration from "constants/getDefaultHiringConfiguration";
 
 type GiftPreviewMainProps = {
   className?: string;

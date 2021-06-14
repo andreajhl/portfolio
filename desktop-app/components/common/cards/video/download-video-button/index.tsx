@@ -11,10 +11,12 @@ type DownloadVideoButtonProps = {
 };
 
 function DownloadVideoButton({
-  backgroundColor = "white",
+  backgroundColor: backgroundColorFromProps,
   videoURL,
   previewMode = false,
 }: DownloadVideoButtonProps) {
+  const backgroundColor = backgroundColorFromProps || "white"; // Para evitar utilizar string vaciás.
+
   const buttonElement = (
     <button
       className={classes("btn btn-outline", styles.ActionButton)}

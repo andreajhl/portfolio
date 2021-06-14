@@ -50,7 +50,7 @@ const toMenuItem = ({ id, to, icon, label }) => (
 );
 
 function ShareVideoButton({
-  backgroundColor = "white",
+  backgroundColor: backgroundColorFromProps,
   buttonClassName = "",
   contractReference,
   previewMode = false,
@@ -105,6 +105,8 @@ function ShareVideoButton({
 
     return () => clearTimeout(timeout);
   }, [hasCopiedLink]);
+
+  const backgroundColor = backgroundColorFromProps || "white"; // Para evitar utilizar string vaciás.
 
   return (
     <Dropdown

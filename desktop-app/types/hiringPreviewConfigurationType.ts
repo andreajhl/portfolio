@@ -5,6 +5,7 @@ import {
 } from "constants/hiring-preview-configuration";
 
 type HiringPreviewConfigurationType = {
+  contractReference?: string;
   cardTitle?: string; // Cada ocasión tiene un predeterminado
   cardMessage?: string; // Cada ocasión tiene un predeterminado
   cardColor?: typeof availableCardColors[number];

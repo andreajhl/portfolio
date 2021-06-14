@@ -4,7 +4,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 
 export const getServerSideProps: GetServerSideProps = async ({
-  params: { contract_reference, ...params },
+  params: { contract_reference },
   query: { previewMode },
 }: GetServerSidePropsContext) => {
   return {

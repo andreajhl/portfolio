@@ -1,6 +1,6 @@
 import PageContainer from "desktop-app/components/layouts/page-container";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import useGetContract from "../../../../lib/hooks/useGetContract";
+import useGetUserContract from "../../../../lib/hooks/useGetUserContract";
 import { GiftAnimationWrapper } from "desktop-app/components/layouts/gift-animation-wrapper";
 import dynamic from "next/dynamic";
 import ClientContractType from "desktop-app/types/clientContract";
@@ -22,7 +22,7 @@ type ClientHiringPageProps = {
 };
 
 function ClientHiringPage({ contractReference }: ClientHiringPageProps) {
-  const { contract } = useGetContract(contractReference, true);
+  const { contract } = useGetUserContract(contractReference, true);
 
   return (
     <PageContainer showFooter={false}>

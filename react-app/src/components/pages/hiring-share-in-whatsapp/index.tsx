@@ -1,6 +1,6 @@
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ShareDetailsForm } from "desktop-app/components/layouts/share-details-form";
-import useGetContract from "lib/hooks/useGetContract";
+import useGetUserContract from "lib/hooks/useGetUserContract";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import scrollToTop from "../../../../../lib/utils/scrollToTop";
 import { WhatsappSharePreview } from "desktop-app/components/share-in-whatsapp/whatsapp-share-preview";
 
 function HiringShareInWhatsappPage({ contractReference }) {
-  const { contract } = useGetContract(contractReference);
+  const { contract } = useGetUserContract(contractReference);
   const [shareData, setShareData] = useState({
     deliveryTo: "Ana", // Random name
     deliveryFrom: "Luis", // Random name
