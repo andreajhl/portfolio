@@ -9,24 +9,17 @@ import WarningMessage from "desktop-app/components/common/warning-message";
 import { Collapse } from "react-bootstrap";
 
 const initialErrorValue = null;
+const noAvatarUrl = "";
 
 type UserAvatarUploaderProps = {
   currentUserAvatar?: string;
 };
 
-function UserAvatarUploader({
-  currentUserAvatar = "/assets/img/user-logo.svg",
-}: UserAvatarUploaderProps) {
+function UserAvatarUploader({ currentUserAvatar }: UserAvatarUploaderProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [pickedImage, setPickedImage] = useState(null);
   const [previewSrc, setPreviewSrc] = useState(currentUserAvatar);
   const [error, setError] = useState(initialErrorValue);
-
-  const hasChangedPreview = previewSrc !== currentUserAvatar;
-
-  function resetPreviewSrc() {
-    setPreviewSrc(currentUserAvatar);
-  }
 
   function startUploadModal(image: File): void {
     setError(initialErrorValue);
@@ -47,7 +40,13 @@ function UserAvatarUploader({
     }
   }
 
+  function deleteAvatar() {
+    updateAvatar(noAvatarUrl);
+  }
+
+  const hasAvatar = previewSrc !== noAvatarUrl;
   const hasError = Boolean(error);
+  const imagePickerPreviewImageSrc = previewSrc || "/assets/img/user-logo.svg";
 
   return (
     <>
@@ -57,15 +56,15 @@ function UserAvatarUploader({
         </div>
       </Collapse>
       <ImagePicker
-        previewImageSrc={previewSrc}
+        previewImageSrc={imagePickerPreviewImageSrc}
         previewImageBorderRadius="50%"
         label={
-          <Maybe it={hasChangedPreview} orElse="Agregar foto">
+          <Maybe it={hasAvatar} orElse="Agregar foto">
             <i className={classes("fa fa-edit", styles.EditButton)} />
           </Maybe>
         }
-        showDeleteButton={hasChangedPreview}
-        onClickDelete={resetPreviewSrc}
+        showDeleteButton={hasAvatar}
+        onClickDelete={deleteAvatar}
         onPickImage={startUploadModal}
         onInvalidFile={setError}
       />
