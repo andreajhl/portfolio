@@ -30,7 +30,7 @@ function thunkReducer<T>(type: string, initialState: T) {
       case `${type}_SUCCESS`:
         return {
           ...initialReducerState,
-          data: action.payload.data.data,
+          data: action.payload.data.data || action.payload.data,
         };
       case `${type}_COMPLETED`:
         return {
