@@ -1,6 +1,5 @@
 import React from "react";
 import Skeleton, { SkeletonProps } from "react-loading-skeleton";
-import styles from "./styles.module.scss";
 function CardContractVideoSkeleton() {
   return (
     <div
@@ -19,7 +18,6 @@ function CardContractVideoSkeleton() {
         style={{
           display: "flex",
           alignItems: "center",
-
           marginTop: 10,
         }}
       >

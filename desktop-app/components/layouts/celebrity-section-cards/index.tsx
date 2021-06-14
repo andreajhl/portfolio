@@ -25,10 +25,10 @@ const celebrityTypeReelProps: {
     buttonsStyle: {
       size: 35,
       top: 105,
-      transform: "translateY(-50%)"
+      transform: "translateY(-50%)",
     },
     gap: 22.5,
-    children: (celebrity) => <CelebrityCard celebrity={celebrity} />
+    children: (celebrity) => <CelebrityCard celebrity={celebrity} />,
   },
   MAIN_VIDEO_1: {
     itemWidth: 263,
@@ -36,7 +36,7 @@ const celebrityTypeReelProps: {
     buttonsStyle: {
       size: 49,
       top: 171,
-      transform: "translateY(-50%)"
+      transform: "translateY(-50%)",
     },
     gap: 26.75,
     children: (celebrityVideo) => (
@@ -47,8 +47,9 @@ const celebrityTypeReelProps: {
         fullName={celebrityVideo.fullName}
         videoPosterUrl={celebrityVideo.videoPosterUrl}
         avatar={celebrityVideo.avatar}
+        contract_reference={celebrityVideo.contract_reference}
       />
-    )
+    ),
   },
   CATEGORY_CARD: {
     itemWidth: 212,
@@ -56,11 +57,11 @@ const celebrityTypeReelProps: {
     buttonsStyle: {
       size: 35,
       top: 60.5,
-      transform: "translateY(-50%)"
+      transform: "translateY(-50%)",
     },
     gap: 18,
-    children: (category) => <CategoryCard category={category} />
-  }
+    children: (category) => <CategoryCard category={category} />,
+  },
 };
 
 function CelebritiesSection({ celebritySection }: CelebritiesSectionProps) {
@@ -77,7 +78,7 @@ function CelebritiesSection({ celebritySection }: CelebritiesSectionProps) {
       jsonToQueryString({
         country_id: getMoreFrequentIds(celebrities, "countryId"),
         category_id: getMoreFrequentIds(celebrities, "categoryId"),
-        limit: 20
+        limit: 20,
       })
     );
   }, [celebrities, celebritySectionType]);

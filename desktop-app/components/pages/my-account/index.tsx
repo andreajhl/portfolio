@@ -13,7 +13,7 @@ import { getUserAccountDetails } from "react-app/src/state/ducks/session/actions
 import { connect, ConnectedProps } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { SkeletonItems as SkeletonInformationEdit } from "desktop-app/components/user-profile/information-edit/Skeleton";
-import VideoContractsFavorites from "desktop-app/components/user-profile/video-contracts-favorites";
+import { VideoContractsFavorites } from "desktop-app/components/user-profile/video-contracts-favorites";
 import { RootState } from "react-app/src/state/store";
 import { userDetails } from "desktop-app/types/userDetails";
 

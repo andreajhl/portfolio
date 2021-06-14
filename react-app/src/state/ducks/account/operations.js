@@ -1,1 +1,4 @@
-export { fetchUserFavoritesCelebrities } from "./actions";
+export {
+  fetchUserFavoritesCelebrities,
+  fetchUserFavoritesContracts,
+} from "./actions";
