@@ -19,6 +19,7 @@ import { PageBackgroundSelector } from "desktop-app/components/hiring-preview-ed
 import { EditorFormGiftCard } from "../editor-form-gift-card";
 import { Collapse } from "react-bootstrap";
 import { saveHiringPreviewConfiguration } from "react-app/src/state/ducks/contracts/actions";
+import getObjectWithFallbackValues from "../../../../lib/utils/getObjectWithFallbackValues";
 
 const initialValues: HiringPreviewConfigurationType = {
   cardColor: availableCardColors[0],
@@ -28,23 +29,9 @@ const initialValues: HiringPreviewConfigurationType = {
   actionButtonsBackgroundColor: availableActionButtonsBackgroundColors[0],
 };
 
-function getInitialValues(
+const getInitialValues = (
   hiringPreviewConfiguration: HiringPreviewConfigurationType
-): HiringPreviewConfigurationType {
-  return {
-    contractReference: hiringPreviewConfiguration.contractReference,
-    cardColor: hiringPreviewConfiguration.cardColor || initialValues.cardColor,
-    cardMessage:
-      hiringPreviewConfiguration.cardMessage || initialValues.cardMessage,
-    cardTitle: hiringPreviewConfiguration.cardTitle || initialValues.cardTitle,
-    pageBackgroundUrl:
-      hiringPreviewConfiguration.pageBackgroundUrl ||
-      initialValues.pageBackgroundUrl,
-    actionButtonsBackgroundColor:
-      hiringPreviewConfiguration.actionButtonsBackgroundColor ||
-      initialValues.actionButtonsBackgroundColor,
-  };
-}
+) => getObjectWithFallbackValues(hiringPreviewConfiguration, initialValues);
 
 type EditorFormProps = {
   contractReference: string;
