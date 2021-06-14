@@ -1,16 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-const uploadFormData = (uploadUrl: any, formData: FormData) =>
-  axios.post(uploadUrl, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-
-function getFileUploadFormData(fileToUpload: any) {
-  const formData = new FormData();
-  formData.append("file", fileToUpload);
-  return formData;
-}
+const uploadFormData = (uploadUrl: any, fileToUpload: Blob) =>
+  axios.put(uploadUrl, fileToUpload);
 
 function useUploadFile() {
   const [status, setStatus] = useState<
@@ -18,8 +10,8 @@ function useUploadFile() {
   >("idle");
 
   async function uploadFileToBucket(uploadUrl: string, fileToUpload: Blob) {
-    const formData = getFileUploadFormData(fileToUpload);
-    await uploadFormData(uploadUrl, formData);
+    setStatus("uploading");
+    await uploadFormData(uploadUrl, fileToUpload);
     setStatus("completed");
   }
 
@@ -29,7 +21,6 @@ function useUploadFile() {
   }
 
   async function upload(uploadUrl: string, fileToUpload: Blob) {
-    setStatus("uploading");
     try {
       await uploadFileToBucket(uploadUrl, fileToUpload);
     } catch (error) {
