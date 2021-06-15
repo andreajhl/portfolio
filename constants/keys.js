@@ -1,3 +1,4 @@
+export const NUMBER_OF_RELOAD_REALIZED = "NUMBER_OF_RELOAD_REALIZED";
 export const STRIPE_SCRIPT_ID = "stripe-js";
 export const USER_LOCATION_KEY = "userLocation";
 export const USER_IP_ADDRESS = "userIpAddressLocation";
