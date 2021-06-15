@@ -29,3 +29,24 @@ export const fetchCommentHiring = (contract_reference) => (dispatch) => {
       handleApiErrors(dispatch, TYPE, err);
     });
 };
+
+export const fetchStatusContractLike = (contract_reference) => {
+  const FINAL_PATH = API_PATHS.FETCH_STATUS_CONTRACT_LIKE;
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "GET",
+      path: FINAL_PATH + contract_reference,
+      async: true,
+    })
+      .then((res) => {
+        if (res.data.status === "OK") {
+          resolutionFunc(res.data.data);
+        } else {
+          rejectionFunc(res.data.error);
+        }
+      })
+      .catch((err) => {
+        rejectionFunc(err);
+      });
+  });
+};
