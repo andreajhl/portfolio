@@ -619,3 +619,10 @@ export const saveHiringPreviewConfiguration = (hiringPreviewConfiguration) =>
     path: API_PATHS.SAVE_HIRING_PREVIEW_CONFIGURATION,
     body: getSaveHiringPreviewConfigurationBody(hiringPreviewConfiguration),
   });
+
+export const saveSendConfiguration = (sendConfiguration) =>
+  apiService({
+    method: "POST",
+    path: API_PATHS.SAVE_SEND_CONFIGURATION,
+    body: sendConfiguration,
+  });

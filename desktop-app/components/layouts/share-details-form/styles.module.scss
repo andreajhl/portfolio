@@ -103,7 +103,7 @@
   background: #f9f9ff;
   border-radius: 7px;
   padding: 0.5em 0.85em;
-  height: 128px;
+  height: 128px !important;
   resize: none;
 }
 
@@ -177,4 +177,13 @@
 
 .SubmitButton {
   width: 230px;
+}
+
+.ShareErrorMessage.ShareErrorMessage {
+  margin-top: 1.5em;
+  font-size: 14px;
+
+  @media only screen and (max-width: 767px) {
+    justify-content: center;
+  }
 }

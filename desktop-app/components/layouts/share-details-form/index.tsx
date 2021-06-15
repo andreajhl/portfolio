@@ -2,12 +2,20 @@ import timezones from "constants/popularLatamCitiesTimezones";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import ClientContractType from "desktop-app/types/clientContract";
 import useForm from "lib/hooks/useForm";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 import { CellphoneNumberInput } from "../../common/form/cellphone-number-input";
 import { InputField } from "../../common/form/input-field";
 import classes from "classnames";
 import styles from "./styles.module.scss";
+import { saveSendConfiguration } from "react-app/src/state/ducks/contracts/actions";
+import useStatus from "lib/hooks/useStatus";
+import {
+  SubmitText,
+  StatusType,
+} from "desktop-app/components/common/helpers/submit-button-text";
+import { HiringShareSuccessModal } from "desktop-app/components/common/modals/hiring-share-success-modal";
+import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
 
 function FormField({ label, name = "", type = "text", ...props }) {
   return (
@@ -40,10 +48,12 @@ function getInitialState(contractData) {
       valuesFromContract.deliveryContactCellphone || "57",
     deliveryDate: "",
     deliveryTime: "",
-    deliveryTimezone: null,
-    message: `¡Hola ${valuesFromContract.deliveryTo}!\nMira el regalo que te he hecho a través de Famosos.com.`,
+    deliveryTimezone: String(timezones?.[0]?.timezone),
+    sendMessage: `¡Hola ${valuesFromContract.deliveryTo}!\nMira el regalo que te he hecho a través de Famosos.com.`,
   } as InitialValuesType;
 }
+
+const initialErroValue = null;
 
 type InitialValuesType = {
   deliveryContact: string;
@@ -52,34 +62,62 @@ type InitialValuesType = {
   deliveryTo: string;
   deliveryDate: string;
   deliveryTime: string;
-  deliveryTimezone: number;
-  message: string;
+  deliveryTimezone: string;
+  sendMessage: string;
 };
 
 type ShareDetailsFormProps = {
   contractData: ClientContractType;
-  type?: "whatsapp" | "mail";
+  sendType?: "whatsapp" | "mail";
   onChange?: (values: InitialValuesType) => void;
   onPreviewButtonClick?: () => void;
   onSubmit?: (values: InitialValuesType) => void;
 };
 
 function ShareDetailsForm({
-  type = "whatsapp",
+  sendType = "whatsapp",
   contractData,
   onChange = function () {},
   onPreviewButtonClick = function () {},
   onSubmit = function () {},
 }: ShareDetailsFormProps) {
+  const [status, setStatus] = useStatus();
+  const [error, setError] = useState(initialErroValue);
   const { values, onChangeField, setFieldValue, submitForm } = useForm({
     initialValues: getInitialState(contractData),
-    onSubmit,
+    async onSubmit(sendConfiguration) {
+      try {
+        setError(initialErroValue);
+        setStatus("loading");
+        await saveSendConfiguration(getSendConfiguration(sendConfiguration));
+        setStatus("completed");
+      } catch (error) {
+        setError(error.message);
+      }
+    },
   });
-  const isWhatsappType = type === "whatsapp";
+  const isWhatsappType = sendType === "whatsapp";
 
   useEffect(() => {
     onChange(values);
   }, [values]);
+
+  const contractReference = contractData.reference;
+
+  function getSendConfiguration(sendConfiguration: InitialValuesType) {
+    return {
+      ...sendConfiguration,
+      deliveryTimezone: parseFloat(sendConfiguration.deliveryTimezone),
+      sendType,
+      contractReference,
+    };
+  }
+
+  function setDeliveryContactCellphone(value: string) {
+    setFieldValue("deliveryContactCellphone", value);
+  }
+
+  const shareIsCompleted = status === "completed";
 
   return (
     <section className={styles.ShareDetailsForm}>
@@ -112,9 +150,7 @@ function ShareDetailsForm({
             Whatsapp del destinatario
           </label>
           <CellphoneNumberInput
-            onChange={(value) =>
-              setFieldValue("deliveryContactCellphone", value)
-            }
+            onChange={setDeliveryContactCellphone}
             placeholder="+52 55 4375 09 49"
             value={values.deliveryContactCellphone}
             containerClass={styles.Input}
@@ -145,7 +181,7 @@ function ShareDetailsForm({
           name="message"
           id="message"
           onChange={onChangeField}
-          value={values.message}
+          value={values.sendMessage}
         />
       </Maybe>
       <div className={classes(styles.Split, styles.ScheduleInfo)}>
@@ -197,9 +233,17 @@ function ShareDetailsForm({
           className={"btn btn-primary " + styles.SubmitButton}
           onClick={submitForm}
         >
-          Enviar
+          <SubmitText baseText="Enviar" status={status as StatusType} />
         </button>
       </div>
+      <CollapsibleErrorMessage
+        errorMessage={error}
+        className={styles.ShareErrorMessage}
+      />
+      <HiringShareSuccessModal
+        isOpen={shareIsCompleted}
+        contractReference={contractReference}
+      />
     </section>
   );
 }
