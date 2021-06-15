@@ -11,7 +11,7 @@ import { InputField } from "desktop-app/components/common/form/input-field";
 import { DeliveryCellphoneInput } from "desktop-app/components/my-hirings/delivery-cellphone-input";
 import { useState } from "react";
 
-function InfoField({ title, value }: { title: string; value: string }) {
+function FieldInfo({ title, value }: { title: string; value: string }) {
   return (
     <div className={styles.InfoWrapper}>
       <h4 className={styles.InfoTitle}>{title}</h4>
@@ -23,16 +23,18 @@ function InfoField({ title, value }: { title: string; value: string }) {
 type MyHiringsCardNotificationInfoProps = {
   contractData: MyHiringsContract;
   isEditing: boolean;
+  values: { deliveryContact: string; deliveryContactCellphone: string };
 };
 
 function MyHiringsCardNotificationInfo({
   contractData,
   isEditing,
+  values,
 }: MyHiringsCardNotificationInfoProps) {
   const [hasAddedCellphoneNumber, setHasAddedCellphoneNumber] = useState(false);
   const canEdit = canEditContract(contractData.status);
 
-  const deliveryCellphone = "+52 55 4375 0949";
+  const { deliveryContactCellphone, deliveryContact } = values;
 
   return (
     <div
@@ -46,14 +48,14 @@ function MyHiringsCardNotificationInfo({
         it={canEdit}
         orElse={
           <>
-            <InfoField
+            <FieldInfo
               title="Correo electrónico de notificación"
-              value={contractData.deliveryContact}
+              value={deliveryContact}
             />
-            <Maybe it={Boolean(deliveryCellphone)}>
-              <InfoField
+            <Maybe it={Boolean(deliveryContactCellphone)}>
+              <FieldInfo
                 title="Whatsapp de notificación"
-                value={deliveryCellphone}
+                value={deliveryContactCellphone}
               />
             </Maybe>
           </>
@@ -65,7 +67,7 @@ function MyHiringsCardNotificationInfo({
           </label>
           <InputField
             className={styles.InputField}
-            value={contractData.deliveryContact}
+            value={deliveryContact}
             disabled={!isEditing}
           />
         </div>
@@ -83,7 +85,7 @@ function MyHiringsCardNotificationInfo({
               Whatsapp de notificación (opcional)
             </label>
             <DeliveryCellphoneInput
-              value={deliveryCellphone}
+              value={deliveryContactCellphone}
               disabled={!isEditing}
             />
           </div>

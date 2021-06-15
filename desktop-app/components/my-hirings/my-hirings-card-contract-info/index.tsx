@@ -5,14 +5,21 @@ import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAOb
 import { MyHiringsCardDetails } from "../my-hirings-card-details";
 import { MyHiringsCardNotificationInfo } from "../my-hirings-card-notification-info";
 
-type MyHiringsCardContractInfoProps = {
-  contractData: MyHiringsContract;
-};
-
 const initialValues = {
   deliveryTo: "",
   deliveryFrom: "",
   instructions: "",
+  deliveryContact: "",
+  deliveryContactCellphone: "",
+};
+
+const getInitialValuesFromContract = (contractData: MyHiringsContract) => ({
+  ...initialValues,
+  ...pickPropertiesFromAObject(contractData, Object.keys(initialValues)),
+});
+
+type MyHiringsCardContractInfoProps = {
+  contractData: MyHiringsContract;
 };
 
 type InitialValuesType = typeof initialValues;
@@ -22,19 +29,8 @@ function MyHiringsCardContractInfo({
 }: MyHiringsCardContractInfoProps) {
   const [isEditing, setIsEditing] = useState(false);
   const { values, onChangeField } = useForm<InitialValuesType>({
-    initialValues: {
-      ...initialValues,
-      ...pickPropertiesFromAObject(contractData, Object.keys(initialValues)),
-    },
+    initialValues: getInitialValuesFromContract(contractData),
   });
-
-  const detailsValues = {
-    ...pickPropertiesFromAObject(values, [
-      "deliveryTo",
-      "deliveryFrom",
-      "instructions",
-    ]),
-  } as InitialValuesType;
 
   return (
     <>
@@ -42,12 +38,13 @@ function MyHiringsCardContractInfo({
         contractData={contractData}
         isEditing={isEditing}
         setIsEditing={setIsEditing}
-        values={detailsValues}
+        values={values}
         onChangeField={onChangeField}
       />
       <MyHiringsCardNotificationInfo
         contractData={contractData}
         isEditing={isEditing}
+        values={values}
       />
     </>
   );
