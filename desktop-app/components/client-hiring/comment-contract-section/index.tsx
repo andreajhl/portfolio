@@ -1,24 +1,24 @@
 import useForm from "lib/hooks/useForm";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { contractOperations } from "react-app/src/state/ducks/contracts";
+import { fetchCommentHiring } from "react-app/src/state/ducks/hiring/operations";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import styles from "./styles.module.scss";
 import { CommentCreator } from "../comment-creator";
 import CommentsContractVideo from "../comments-contract-video";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { RootState } from "react-app/src/state/store";
 // mapStateToProps
-const mapStateToProps = (state) => ({
-  isLoading: state.contracts.listContractCommentsReducer.loading,
-  isCompleted: state.contracts.listContractCommentsReducer.completed,
-  contractComments: state.contracts.listContractCommentsReducer.data.results,
-  paginationData:
-    state.contracts.listContractCommentsReducer.data.informationPage,
+const mapStateToProps = ({ hiring }: RootState) => ({
+  isLoading: hiring.fetchCommentHiringReducer.loading,
+  isCompleted: hiring.fetchCommentHiringReducer.completed,
+  contractComments: hiring.fetchCommentHiringReducer.data.results,
+  paginationData: hiring.fetchCommentHiringReducer.data.informationPage,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  listContractComments: contractOperations.listContractComments,
+  fetchCommentHiring,
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -32,7 +32,7 @@ type CelebritySimilarVideosReelProps = {
 
 function CommentContractSection({
   contract_reference,
-  listContractComments,
+  fetchCommentHiring,
   paginationData,
   contractComments,
   isLoading,
@@ -40,7 +40,7 @@ function CommentContractSection({
   isCompleted,
 }: CelebritySimilarVideosReelProps) {
   useEffect(() => {
-    listContractComments(contract_reference);
+    fetchCommentHiring(contract_reference);
   }, [contract_reference]);
 
   return (
@@ -54,7 +54,7 @@ function CommentContractSection({
       <CommentCreator
         previewMode={previewMode}
         firstComment={isCompleted && contractComments?.length < 1}
-        onCommentCreated={() => listContractComments(contract_reference)}
+        onCommentCreated={() => fetchCommentHiring(contract_reference)}
         contract_reference={contract_reference}
       />
     </section>
