@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect } from "react";
 import styles from "./styles.module.scss";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ContractVideoType } from "desktop-app/types/contractVideoType";
@@ -8,6 +8,8 @@ import useLoad from "react-app/src/utils/useLoad";
 import OverlayHeader from "../video/overlay-header";
 import OverlayDetails from "../video/overlay-details";
 import { saveContractLike } from "react-app/src/state/ducks/account/actions";
+import { fetchStatusContractLike } from "react-app/src/state/ducks/hiring/actions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 type ContractVideoProps = {
   className?: string;
@@ -25,7 +27,15 @@ function ContractVideo({
 }: ContractVideoProps) {
   // TODO: agregar initial state response de backend
   const [isLiked, setIsLiked] = useState(false);
+  const { isAuthenticated } = useAuth0();
   const videoKey = `contract-video-${videoUrl}`;
+  useEffect(() => {
+    if (!isAuthenticated || !contract_reference) return;
+    fetchStatusContractLike(contract_reference).then((res) => {
+      if (res.markedByMe) setIsLiked(true);
+    });
+  }, [isAuthenticated, contract_reference]);
+
   const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
     onPlayVideo() {
       // TODO: conectar GTM
@@ -50,7 +60,6 @@ function ContractVideo({
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
   const toggleLikeContract = () => {
-    console.log("testing toggleLikeContract");
     saveContractLike(contract_reference).then((response) => {
       setIsLiked(response.liked);
     });
@@ -90,6 +99,7 @@ function ContractVideo({
             />
           </div>
           <OverlayDetails
+            displayLikeButton={contract_reference}
             isLiked={isLiked}
             ocassion={occasion}
             onLikevideo={toggleLikeContract}
