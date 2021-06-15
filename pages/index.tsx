@@ -7,6 +7,9 @@ import { wrapper } from "react-app/src/state/store";
 import debug from "react-app/src/utils/debug";
 import UAParser from "ua-parser-js";
 import { parse, serialize } from "cookie";
+import { OFFSET_ROTATE_CELEBRITIES_SECTIONS } from "constants/keys";
+import { setCookie } from "lib/setCookie";
+import { useEffect } from "react";
 
 // import isBrowser from "react-app/src/utils/isBrowser";
 // import auth0 from "../lib/auth0";
@@ -21,16 +24,28 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
 );
 */
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  async ({ req, store, query }) => {
-    const cookies = parse(req?.headers?.cookie || "");
+const generateRandomNumber = (limit) => Math.floor(Math.random() * limit + 1);
 
-    await fetchCelebritySections({
-      landingId: query.landingId,
-      alpha2Code: cookies["userLocation"],
-      limit: 10,
-      offset: 0
-    })(store.dispatch);
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+  async ({ req, store, query, res }) => {
+    const cookies = parse(req?.headers?.cookie || "");
+    let rotationForCelebritiesSections =
+      cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS];
+
+    if (!cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS]) {
+      rotationForCelebritiesSections = generateRandomNumber(100);
+    }
+
+    await fetchCelebritySections(
+      {
+        landingId: query.landingId,
+        alpha2Code: cookies["userLocation"],
+        limit: 10,
+        offset: 0
+      },
+      rotationForCelebritiesSections |
+        cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS]
+    )(store.dispatch);
 
     let isMobile = false;
     try {
@@ -43,13 +58,20 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
     return {
       props: {
-        isMobile
+        isMobile,
+        rotationForCelebritiesSections
       }
     };
   }
 );
 
-function Home({ isMobile }) {
+function Home({ isMobile, rotationForCelebritiesSections }) {
+  useEffect(() => {
+    setCookie(
+      OFFSET_ROTATE_CELEBRITIES_SECTIONS,
+      rotationForCelebritiesSections
+    );
+  }, []);
   return (
     <>
       <CustomHead />
