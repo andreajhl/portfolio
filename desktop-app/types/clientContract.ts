@@ -24,12 +24,12 @@ type ClientContractType = {
   status: number;
   deliveryTo: string;
   media: string;
+  mediaPosterUrl: string;
   deliveryFrom: string;
   instructions: string;
   stars: number;
   review: string;
   deliveryContactCellphone: string;
-  // poster del video
   celebrityData: CelebrityData;
   userData: UserData;
 };

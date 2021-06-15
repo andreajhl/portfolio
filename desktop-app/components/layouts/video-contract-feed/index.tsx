@@ -24,6 +24,9 @@ function VideoContractFeed({
   previewMode = false,
 }: VideoContractFeedProps) {
   if (!contractData.reference) return null; // mostrar skeleton
+  const videoPosterUrl =
+    contractData.mediaPosterUrl || contractData.celebrityData.avatar;
+
   return (
     <div className={classes(styles.VideoContractFeed, className)}>
       <div className={styles.VideoPlayer}>
@@ -33,8 +36,7 @@ function VideoContractFeed({
           username={contractData.celebrityData.username}
           videoUrl={contractData.media}
           previewMode={previewMode}
-          // TODO: agregar poster de video
-          videoPosterUrl={contractData.celebrityData.avatar}
+          videoPosterUrl={videoPosterUrl}
         />
       </div>
       {/* TODO: agregar condicional y conectar con endpoint para saber si existe review del comprador*/}

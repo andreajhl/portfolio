@@ -22,6 +22,9 @@ function HiringPreviewEditorPage({
     setConfiguration,
   ] = useState<HiringPreviewConfigurationType>({});
 
+  const videoPosterUrl =
+    contract.mediaPosterUrl || contract?.celebrityData?.avatar;
+
   return (
     <PageContainer showFooter={false} showSearch={false}>
       <Maybe it={Boolean(contract.reference)}>
@@ -43,7 +46,7 @@ function HiringPreviewEditorPage({
                 fullName={contract?.celebrityData?.fullName}
                 username={contract?.celebrityData?.username}
                 videoUrl={contract?.media}
-                videoPosterUrl={contract?.celebrityData?.avatar}
+                videoPosterUrl={videoPosterUrl}
               />
               <ShareGiftDropdown
                 deliveryTo={contract.deliveryTo}
