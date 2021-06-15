@@ -8,3 +8,4 @@ export const CURRENT_CURRENCY_TRM_RATE = "currentCurrencyTRMRate";
 export const CURRENT_CURRENCY_TRM_CODE = "currentCurrencyTRMCode";
 export const OFFSET_ROTATE_CELEBRITIES_SECTIONS =
   "OFFSET_ROTATE_CELEBRITIES_SECTIONS";
+export const STRIPE_FAILURE_AUTHENTICATION = "stripe_failure_authentication";
