@@ -52,9 +52,12 @@ function getEndpointUrl(meta) {
   const baseUrl = NEXT_PUBLIC_ENDPOINT.endsWith("/")
     ? NEXT_PUBLIC_ENDPOINT
     : NEXT_PUBLIC_ENDPOINT + "/";
+
   const { path } = meta;
 
-  return `${baseUrl}${path}`.replace(/\/\//g, "/");
+  const validPath = path.startsWith("/") ? path.substr(1) : path;
+
+  return `${baseUrl}${validPath}`;
 }
 
 const apiService = (meta) => {
