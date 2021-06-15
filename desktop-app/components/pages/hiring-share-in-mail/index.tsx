@@ -20,7 +20,7 @@ function HiringShareInMailPage({ contractReference }) {
         <div className={styles.ShareDetailsFormContainer}>
           <Maybe it={Boolean(contract.reference)}>
             <ShareDetailsForm
-              type="mail"
+              sendType="mail"
               contractData={contract}
               onChange={setPreviewData}
             />

@@ -57,7 +57,7 @@ function HiringShareInWhatsappPage({ contractReference }) {
         >
           <Maybe it={Boolean(contract.reference)}>
             <ShareDetailsForm
-              type="whatsapp"
+              sendType="whatsapp"
               contractData={contract}
               onPreviewButtonClick={toggleIsEditing}
               onChange={setShareData}

@@ -49,7 +49,7 @@ function HiringShareInMailPage({ contractReference }) {
         >
           <Maybe it={Boolean(contract.reference)}>
             <ShareDetailsForm
-              type="mail"
+              sendType="mail"
               contractData={contract}
               onPreviewButtonClick={toggleIsEditing}
               onChange={setShareData}
