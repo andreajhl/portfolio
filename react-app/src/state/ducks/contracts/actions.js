@@ -626,3 +626,25 @@ export const saveSendConfiguration = (sendConfiguration) =>
     path: API_PATHS.SAVE_SEND_CONFIGURATION,
     body: sendConfiguration,
   });
+
+export const updateHiredContract = (contract_reference, params) => {
+  const FINAL_PATH = API_PATHS.UPDATE_CONTRACT_HIRED_PATH;
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      path: FINAL_PATH + contract_reference,
+      async: true,
+      body: params,
+    })
+      .then((res) => {
+        if (res.data.status === "OK") {
+          resolutionFunc(res.data.data);
+        } else {
+          rejectionFunc(res.data.error);
+        }
+      })
+      .catch((err) => {
+        rejectionFunc(err);
+      });
+  });
+};
