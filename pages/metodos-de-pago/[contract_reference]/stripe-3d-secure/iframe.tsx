@@ -25,7 +25,7 @@ const Iframe = ({ contract_reference }) => {
     <>
       <CustomHead />
       <ProcessStripe3DFormPage
-        contractReference={contract_reference}
+        contract_reference={contract_reference}
         history={history}
       />
     </>

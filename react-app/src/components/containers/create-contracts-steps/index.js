@@ -70,7 +70,7 @@ const CreateContractStepsLayout = () => {
             <span>
               <FormattedMessage
                 defaultMessage="Si por alguna razón tu video no pudo ser grabado, te
-              reembolsaremos tu dinero en un plazo de 5-7 días aproximadamente"
+              reembolsaremos tu dinero en un plazo máximo de 21 días hábiles"
               />
             </span>
           </p>
