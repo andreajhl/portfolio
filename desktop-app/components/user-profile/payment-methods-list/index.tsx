@@ -25,14 +25,6 @@ function PaymentMethodsList({
   availableSources,
   removeSourceFromList,
 }: PaymentMethodsListProps) {
-  async function removeCard(cardSourceId: string) {
-    try {
-      if (!window.confirm("¿Estas seguro?")) return;
-      // await removeSource(cardSourceId);
-      removeSourceFromList(cardSourceId);
-    } catch (error) {}
-  }
-
   if (isLoading) {
     return (
       <div className={styles.PaymentMethodsList}>
@@ -44,6 +36,14 @@ function PaymentMethodsList({
 
   if (!Array.isArray(availableSources) || availableSources.length === 0) {
     return noResultMessage;
+  }
+
+  async function removeCard(cardSourceId: string) {
+    try {
+      if (!window?.confirm?.("¿Estas seguro?")) return;
+      await removeSource(cardSourceId);
+      removeSourceFromList(cardSourceId);
+    } catch (error) {}
   }
 
   return (
