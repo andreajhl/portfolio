@@ -24,7 +24,7 @@ function ShareInMailPreview({
         alt="Poster"
       />
       <p className={styles.BodyText}>
-        {previewData.message}
+        {previewData.sendMessage}
         <br />
         <br />
         <br />

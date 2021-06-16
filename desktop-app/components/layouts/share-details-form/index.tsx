@@ -173,13 +173,13 @@ function ShareDetailsForm({
         />
       </div>
       <Maybe it={!isWhatsappType}>
-        <label htmlFor="message" className={styles.Label}>
+        <label htmlFor="sendMessage" className={styles.Label}>
           Mensaje
         </label>
         <textarea
           className={classes(styles.Input, styles.MessageTextarea)}
-          name="message"
-          id="message"
+          name="sendMessage"
+          id="sendMessage"
           onChange={onChangeField}
           value={values.sendMessage}
         />
