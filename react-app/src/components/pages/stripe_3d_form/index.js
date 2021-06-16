@@ -26,32 +26,20 @@ class ProcessStripe3DFormPage extends Component {
   handleIframeTask = (message) => {
     if (typeof message.data === "string") {
       if (message.data === "GO_TO_PAYMENT_METHODS") {
-        this.props.history._pushRoute(
-          ROUTING_PATHS.PAYMENT_METHODS.replace(
+        this.props.history?.push({
+          pathname: ROUTING_PATHS.PAYMENT_METHODS.replace(
             ":contract_reference",
             this.props.contract_reference
-          )
-        );
+          ),
+          query: {
+            [STRIPE_FAILURE_AUTHENTICATION]: "true"
+          }
+        });
       } else if (message.data.includes("CONTRACT_CREATED")) {
         this.props.history._pushRoute(
           message.data.replace("CONTRACT_CREATED", "")
         );
       }
-    }
-
-    if (
-      typeof message.data?.type === "string" &&
-      message.data?.type === "stripe-3ds-fallback"
-    ) {
-      this.props.history?.push({
-        pathname: ROUTING_PATHS.PAYMENT_METHODS.replace(
-          ":contract_reference",
-          this.props.contract_reference
-        ),
-        query: {
-          [STRIPE_FAILURE_AUTHENTICATION]: "true"
-        }
-      });
     }
   };
 
