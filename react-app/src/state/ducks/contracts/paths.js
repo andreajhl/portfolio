@@ -27,3 +27,4 @@ export const GET_PURCHASE_SUMMARY_V2 = `/custom-endpoints/${CONTRACT_MODEL}/v2/c
 export const GET_HIRING_PREVIEW_CONFIGURATION = `custom-endpoints/${CONTRACT_MODEL}/get-hiring-preview-configuration/`;
 export const SAVE_HIRING_PREVIEW_CONFIGURATION = `custom-endpoints/${CONTRACT_MODEL}/save-hiring-preview-configuration`;
 export const SAVE_SEND_CONFIGURATION = `custom-endpoints/${CONTRACT_MODEL}/save-send-configuration`;
+export const UPDATE_CONTRACT_HIRED_PATH = `custom-endpoints/${CONTRACT_MODEL}/v2/update-contract-hired/`;
