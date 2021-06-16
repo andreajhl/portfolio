@@ -13,29 +13,29 @@ const errorMessages = defineMessages({
   errorMessageOwnerName: {
     defaultMessage:
       "El campo de nombre del titular de la tarjeta es obligatorio",
-    description: "Mensaje de error para formulario de stripe",
+    description: "Mensaje de error para formulario de stripe"
   },
   errorMessageOwnerEmail: {
     defaultMessage:
       "El campo de correo electrónico del titular de la tarjeta es obligatorio",
-    description: "Mensaje de error para formulario de stripe",
+    description: "Mensaje de error para formulario de stripe"
   },
   errorMessageCreateStripeSource: {
     defaultMessage: "Ocurrió un error inesperado.",
-    description: "Mensaje de error para creación de tarjeta Stripe",
+    description: "Mensaje de error para creación de tarjeta Stripe"
   },
   errorMessageApplyStripeAuth: {
     defaultMessage: "Ocurrió un error procesando tu pago.",
-    description: "Mensaje de error para creación de tarjeta Stripe",
-  },
+    description: "Mensaje de error para creación de tarjeta Stripe"
+  }
 });
 const placeholders = defineMessages({
   ownerName: {
-    defaultMessage: "Escribe aquí el nombre",
+    defaultMessage: "Escribe aquí el nombre"
   },
   ownerEmail: {
-    defaultMessage: "Escribe aquí el correo",
-  },
+    defaultMessage: "Escribe aquí el correo"
+  }
 });
 
 class StripeCardForm extends Component {
@@ -48,14 +48,14 @@ class StripeCardForm extends Component {
       errorMessage: null,
       errorType: null,
       errorCode: null,
-      disableButton: false,
+      disableButton: false
     };
   }
 
   handleInput = (e) => {
     this.setState({
       ...this.state,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -68,7 +68,7 @@ class StripeCardForm extends Component {
         disableButton: false,
         errorMessage: this.props.intl.formatMessage(
           errorMessages.errorMessageOwnerName
-        ),
+        )
       });
     }
     if (!this.state.ownerEmail) {
@@ -78,22 +78,22 @@ class StripeCardForm extends Component {
         disableButton: false,
         errorMessage: this.props.intl.formatMessage(
           errorMessages.errorMessageOwnerEmail
-        ),
+        )
       });
     }
 
     // DISABLE BUTTON
     this.setState({
       ...this.state,
-      disableButton: true,
+      disableButton: true
     });
 
     // REQUIRED DATA
-    //const amount = this.props.contractPrice * 100;
+    const amount = this.props.contractPrice * 100;
     const currency = "USD";
     const ownerData = {
       name: this.state.ownerName.trim(),
-      email: this.state.ownerEmail.trim(),
+      email: this.state.ownerEmail.trim()
     };
 
     // CREATE A SOURCE CARD
@@ -102,11 +102,9 @@ class StripeCardForm extends Component {
         type: "card",
         currency: currency,
         owner: ownerData,
-        usage: "reusable",
+        usage: "reusable"
       })
       .then((response) => {
-        console.log("response.source", response.source);
-
         // ERROR
         if (response.error) {
           // ERROR
@@ -115,7 +113,7 @@ class StripeCardForm extends Component {
             disableButton: false,
             errorMessage: response.error.message,
             errorType: response.error?.type,
-            errorCode: response.error?.code,
+            errorCode: response.error?.code
           });
         }
         // SEND TO THE BACKEND TO LINKED WITH THE CUSTOMER AND APPLY THE AUTHORIZATION
@@ -131,13 +129,18 @@ class StripeCardForm extends Component {
           response.source.card.three_d_secure === "required" ||
           response.source.card.three_d_secure === "recommended"
         ) {
-          this.createStripe3DFlow(currency, response.source.id, ownerData);
+          this.createStripe3DFlow(
+            currency,
+            response.source.id,
+            ownerData,
+            amount
+          );
         } else {
           this.setState({
             ...this.state,
             errorMessage: this.props.intl.formatMessage(
               errorMessages.errorMessageCreateStripeSource
-            ),
+            )
           });
         }
       });
@@ -153,7 +156,7 @@ class StripeCardForm extends Component {
         if (res.data.status === "ERROR") {
           this.setState({
             ...this.state,
-            errorMessage: res.data.error,
+            errorMessage: res.data.error
           });
         } else {
           if (typeof window !== "undefined") {
@@ -163,7 +166,7 @@ class StripeCardForm extends Component {
                 content_ids:
                   VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
                 value: this.props.contractPrice,
-                currency: "USD",
+                currency: "USD"
               });
             }
           }
@@ -179,7 +182,7 @@ class StripeCardForm extends Component {
           if (error.response.data) {
             this.setState({
               ...this.state,
-              errorMessage: error.response.data.error,
+              errorMessage: error.response.data.error
             });
           }
         } else {
@@ -187,13 +190,13 @@ class StripeCardForm extends Component {
             ...this.state,
             errorMessage: this.props.intl.formatMessage(
               errorMessages.errorMessageApplyStripeAuth
-            ),
+            )
           });
         }
       });
   };
 
-  createStripe3DFlow = (currency, amount, sourceId, ownerData) => {
+  createStripe3DFlow = (currency, sourceId, ownerData, amount) => {
     const iframeUrl = PATHS.STRIPE_3D_SECURE_IFRAME.replace(
       ":contract_reference",
       this.props.contractReference
@@ -210,9 +213,10 @@ class StripeCardForm extends Component {
       .createSource({
         type: "three_d_secure",
         currency: currency,
+        amount: amount,
         three_d_secure: { card: sourceId },
         redirect: { return_url: responseURL },
-        owner: ownerData,
+        owner: ownerData
       })
       .then((response) => {
         // ERROR
@@ -220,14 +224,15 @@ class StripeCardForm extends Component {
           return this.setState({
             ...this.state,
             disableButton: false,
-            errorMessage: response.error.message,
+            errorMessage: response.error?.message,
+            errorType: response.error?.type
           });
         }
 
         // GO TO IFRAME
         this.props.history.push({
           pathname: iframeUrl,
-          query: { url: response.source.redirect.url },
+          query: { url: response.source.redirect.url }
         });
       });
   };
@@ -238,7 +243,7 @@ class StripeCardForm extends Component {
       disableButton: false,
       errorMessage: null,
       errorCode: null,
-      errorType: null,
+      errorType: null
     });
   };
 
@@ -272,7 +277,7 @@ class StripeCardForm extends Component {
                     >
                       {chunks}
                     </a>
-                  ),
+                  )
                 }}
               />
             </small>
@@ -352,6 +357,6 @@ class StripeCardForm extends Component {
 // defaultProps
 StripeCardForm.defaultProps = {
   contractReference: "",
-  contractPrice: 0,
+  contractPrice: 0
 };
 export default withRouter(injectIntl(injectStripe(StripeCardForm)));

@@ -300,7 +300,7 @@ const ResumenContractPending = ({ resumen }) => {
                     color: "#535353"
                   }}
                 >
-                  <FormattedMessage defaultMessage="El proceso de aprobación puede tardar alrededor de 23 hrs." />
+                  <FormattedMessage defaultMessage="El proceso de aprobación puede tardar alrededor de 24 hrs." />
                 </span>
                 <span
                   className="mt-3"
@@ -309,8 +309,11 @@ const ResumenContractPending = ({ resumen }) => {
                   }}
                 >
                   <FormattedMessage
-                    defaultMessage="Te notificaremos a correocliente@dominio.com cuando tu pago
+                    defaultMessage="Te notificaremos a {deliveryContact} cuando tu pago
                   haya sido aprobado."
+                    values={{
+                      deliveryContact: resumen.contract.deliveryContact
+                    }}
                   />
                 </span>
                 <span

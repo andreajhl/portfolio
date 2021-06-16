@@ -233,6 +233,9 @@
   "9KADbj": {
     "message": "France"
   },
+  "9NLj0T": {
+    "message": "Recibe Videomensajes Personalizados de Famosos a tu WhatsApp"
+  },
   "9Ooije": {
     "message": "Club de fans de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
   },
@@ -241,6 +244,9 @@
   },
   "9mcAHp": {
     "message": "CUPÓN AGREGADO"
+  },
+  "A88cVx": {
+    "message": "Ruta:"
   },
   "AGCHbI": {
     "message": "Se ha realizado con éxito la pre-autorización del cobro a tu cuenta"
@@ -326,9 +332,6 @@
   "Dn7sTk": {
     "message": "Correo eléctronico de notificación"
   },
-  "DnplYU": {
-    "message": "Si por alguna razón tu video no pudo ser grabado, te reembolsaremos tu dinero en un plazo de 5-7 días aproximadamente"
-  },
   "Dzm3HT": {
     "description": "Label button for search CategoryFilter",
     "message": "Categoria"
@@ -363,12 +366,11 @@
   "GL9Msi": {
     "message": "Spain"
   },
+  "GRUlng": {
+    "message": "Nos disculpamos, estamos arreglando el problema."
+  },
   "GbabRf": {
     "message": "Para:"
-  },
-  "GdV31V": {
-    "description": "",
-    "message": "Videos Personalizados <br></br> de tus Famosos Favoritos"
   },
   "GfM0Pj": {
     "message": "Para mi"
@@ -468,9 +470,6 @@
   },
   "MU1M4J": {
     "message": "{celebrityName} tiene un plazo de 7 días para grabar tu video a partir de ahora."
-  },
-  "MURhbO": {
-    "message": "La solicitud de reembolso se realiza de forma automatica, el tiempo en el que se vera reflejado en tu tarjeta depende de tu banco y puede ser entre 5 y 10 dias."
   },
   "MdA9+B": {
     "message": "Volver a métodos de pago"
@@ -656,6 +655,9 @@
     "description": "ModalTitle for search CategoryFilter",
     "message": "Filtrar por categoría"
   },
+  "WeLmQS": {
+    "message": "Si por alguna razón tu video no pudo ser grabado, te reembolsaremos tu dinero en un plazo máximo de 21 días hábiles"
+  },
   "WkJEIw": {
     "message": "Escribe aquí tu correo electrónico"
   },
@@ -760,6 +762,9 @@
   "cGtJag": {
     "message": "Actualmente no puedes realizar videos promocionales. Los videos que cumplen nuestras políticas son netamente video-mensajes."
   },
+  "cRtlFe": {
+    "message": "El cargo que percibirás en tu cuenta es una autorización de pago que tu banco hace para asegurarse que existen fondos suficientes, sin embargo Famosos no hará el cobro hasta que {celebrityName} grabe tu video."
+  },
   "crQQc4": {
     "message": "Mis Suscripciones"
   },
@@ -821,6 +826,9 @@
   "fcUqul": {
     "message": "Quiero un video de"
   },
+  "fzb0Cz": {
+    "message": "La solicitud de reembolso se realiza de forma automática, el tiempo en el que se vera reflejado en tu tarjeta depende de tu banco y puede llegar a ser un plazo máximo de 21 dias hábiles."
+  },
   "fzp0m/": {
     "message": "Venezuela (Bolivarian Republic of)"
   },
@@ -842,9 +850,6 @@
   "gxungj": {
     "description": "",
     "message": "Ingresar"
-  },
-  "h7uQIl": {
-    "message": "Te notificaremos a correocliente@dominio.com cuando tu pago haya sido aprobado."
   },
   "h9zXst": {
     "message": "Anónimo"
@@ -911,9 +916,6 @@
   },
   "n0TzKv": {
     "message": "Escribe aquí el nombre"
-  },
-  "n7+zt7": {
-    "message": "El cobro a tu cuenta se realizará una vez que {celebrityName} grabe tu video. (por ahora solo se realizó una autorización por parte de tu banco)."
   },
   "n9i+Em": {
     "message": "Escribe aquí tu nombre"
@@ -1105,6 +1107,9 @@
     "description": "Mensaje de error para creación de tarjeta Stripe",
     "message": "Ocurrió un error inesperado."
   },
+  "vCwzMi": {
+    "message": "El proceso de aprobación puede tardar alrededor de 24 hrs."
+  },
   "vMft8+": {
     "message": "La autorización de tu pago se ha realizado con éxito."
   },
@@ -1167,11 +1172,11 @@
   "yv7dLs": {
     "message": "Famosos.com - Entrada de blog"
   },
-  "yyUOQR": {
-    "message": "El proceso de aprobación puede tardar alrededor de 23 hrs."
-  },
   "z09bol": {
     "message": "CURP"
+  },
+  "z0KVwy": {
+    "message": "Te notificaremos a {deliveryContact} cuando tu pago haya sido aprobado."
   },
   "zADCtw": {
     "message": "Elige el método de pago"

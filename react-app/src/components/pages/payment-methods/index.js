@@ -7,6 +7,7 @@ import { StripeProvider } from "react-stripe-elements";
 import { PaymentMethodsSection } from "../../containers/payment-methods-section";
 import Maybe from "../../common/helpers/maybe";
 import { STRIPE_SCRIPT_ID } from "constants/keys";
+import { withRouter } from "next/router";
 
 class PaymentMethodsPage extends Component {
   constructor(props) {
@@ -18,11 +19,9 @@ class PaymentMethodsPage extends Component {
   }
 
   componentDidMount() {
-    this.props.getContractToPay(this.props.contractReference);
-    GTM.tagManagerDataLayer(
-      "PAYMENT_METHODS_PAGE_VIEW",
-      this.props.contractReference
-    );
+    const { contract_reference } = this.props.router.query;
+    this.props.getContractToPay(contract_reference);
+    GTM.tagManagerDataLayer("PAYMENT_METHODS_PAGE_VIEW", contract_reference);
     this.setState({ isMounted: true });
     this.loadStripe();
   }
@@ -88,6 +87,6 @@ const mapDispatchToProps = {
 const _PaymentMethodsPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PaymentMethodsPage);
+)(withRouter(PaymentMethodsPage));
 
 export { _PaymentMethodsPage as PaymentMethodsPage };

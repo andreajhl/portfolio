@@ -1,20 +1,12 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-const HeroSectionLayout = () => {
+function HeroSectionLayout() {
   return (
     <section className="hero">
       <div className="container hero__container">
         <h1 className="hero__title mb-3">
-          <FormattedMessage
-            defaultMessage="Videos Personalizados
-            <br></br>
-          de tus Famosos Favoritos"
-            values={{
-              br: (chunks) => <br></br>
-            }}
-            description=""
-          />
+          <FormattedMessage defaultMessage="Recibe Videomensajes Personalizados de Famosos a tu WhatsApp" />
         </h1>
         <ol className="hero__steps p-0">
           <li className="hero__steps-item">
@@ -63,6 +55,6 @@ const HeroSectionLayout = () => {
       </div>
     </section>
   );
-};
+}
 
 export { HeroSectionLayout };
