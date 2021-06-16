@@ -55,7 +55,7 @@ function getInitialState(contractData) {
       valuesFromContract.deliveryContactCellphone || "57",
     deliveryDate: "",
     deliveryTime: "",
-    deliveryTimezone: String(timezones?.[0]?.timezone),
+    deliveryTimezone: timezones?.[0]?.tzDatabaseName,
     sendMessage: `¡Hola ${valuesFromContract.deliveryTo}!\nMira el regalo que te he hecho a través de Famosos.com.`,
   } as InitialValuesType;
 }
@@ -116,7 +116,6 @@ function ShareDetailsForm({
   function getSendConfiguration(sendConfiguration: InitialValuesType) {
     return {
       ...sendConfiguration,
-      deliveryTimezone: parseFloat(sendConfiguration.deliveryTimezone),
       sendType,
       contractReference,
     };
@@ -221,13 +220,14 @@ function ShareDetailsForm({
               className={styles.TimeInput}
             />
             <select
+              value={values.deliveryTimezone}
               name="deliveryTimezone"
               id="deliveryTimezone"
               className={styles.TimezoneSelect}
               onChange={onChangeField}
             >
-              {timezones.map(({ city, timezone }) => (
-                <option value={timezone} key={city}>
+              {timezones.map(({ city, tzDatabaseName }) => (
+                <option value={tzDatabaseName} key={city}>
                   {city}
                 </option>
               ))}
