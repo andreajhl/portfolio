@@ -17,6 +17,13 @@ import {
 import { HiringShareSuccessModal } from "desktop-app/components/common/modals/hiring-share-success-modal";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
 
+function getConstrainedTime(value: any) {
+  const onlyTimeValue = value.replace(/[^0-9:]/g, "");
+  const hours = onlyTimeValue.split(":")[0] || "00";
+  const constrainedHour = parseFloat(hours) > 23 ? 23 : hours;
+  return `${constrainedHour}:00`;
+}
+
 function FormField({ label, name = "", type = "text", ...props }) {
   return (
     <div>
@@ -54,6 +61,7 @@ function getInitialState(contractData) {
 }
 
 const initialErroValue = null;
+const ONE_HOUR_IN_SECONDS = 3600;
 
 type InitialValuesType = {
   deliveryContact: string;
@@ -92,6 +100,7 @@ function ShareDetailsForm({
         await saveSendConfiguration(getSendConfiguration(sendConfiguration));
         setStatus("completed");
       } catch (error) {
+        setStatus("idle");
         setError(error.message);
       }
     },
@@ -118,6 +127,10 @@ function ShareDetailsForm({
   }
 
   const shareIsCompleted = status === "completed";
+
+  function setDeliveryTime({ target: { value } }) {
+    setFieldValue("deliveryTime", getConstrainedTime(value));
+  }
 
   return (
     <section className={styles.ShareDetailsForm}>
@@ -198,11 +211,13 @@ function ShareDetailsForm({
           </label>
           <div className={styles.TimeInputContainer}>
             <InputField
+              placeholder="14:00"
               type="time"
               id="deliveryTime"
               name="deliveryTime"
               value={values.deliveryTime}
-              onChange={onChangeField}
+              step={ONE_HOUR_IN_SECONDS}
+              onChange={setDeliveryTime}
               className={styles.TimeInput}
             />
             <select
