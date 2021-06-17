@@ -36,7 +36,7 @@ const getInitialValues = (
 type EditorFormProps = {
   contractReference: string;
   occasion: OccasionType;
-  hiringPreviewConfiguration: HiringPreviewConfigurationType;
+  hiringPreviewConfiguration?: HiringPreviewConfigurationType;
   onChange: Dispatch<any>;
 };
 
