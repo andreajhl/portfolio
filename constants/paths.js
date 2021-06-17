@@ -77,8 +77,12 @@ export const getHireCelebrityPath = (celebrityUsername) =>
 export const getCelebrityFanClubPath = (celebrityUsername) =>
   CELEBRITY_SUBSCRIBE.replace(":celebrity_username", celebrityUsername);
 
-export const getSearchPath = ({ limit = 20, ...params }) => {
-  return SEARCH_PATH + jsonToQueryString({ ...params, limit });
+export const getSearchPath = ({
+  pageSize = 40,
+  currentPage = 1,
+  ...params
+}) => {
+  return SEARCH_PATH + jsonToQueryString({ pageSize, currentPage, ...params });
 };
 
 export const getSearchCategoryPath = (categoryId) =>
@@ -87,7 +91,7 @@ export const getSearchCategoryPath = (categoryId) =>
 export const getSearchCountryPath = (countryId) =>
   getSearchPath({ country_id: countryId });
 
-export const getSearchHashtagPath = (hashtag) => getSearchPath({ hashtag });
+export const getSearchHashtagPath = (hashtags) => getSearchPath({ hashtags });
 
 export const getHiringPreviewPath = (contractReference) =>
   HIRING_PREVIEW.replace(":contract_reference", contractReference);

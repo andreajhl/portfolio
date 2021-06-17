@@ -1,6 +1,7 @@
 import {
   getCelebrityProfilePath,
   getSearchCategoryPath,
+  getSearchHashtagPath,
 } from "constants/paths";
 import { CountryFlag } from "desktop-app/components/common/country-flag";
 import { TextWithOverflow, parentElementClass } from "../../text-with-overflow";
@@ -92,7 +93,7 @@ function CelebrityCard({
         <Maybe it={Array.isArray(celebrity.hashtags)}>
           <p className={`text-with-ellipsis ${styles.CelebrityCardHashtags}`}>
             {getCelebrityHashtags(celebrity).map((hashtag) => (
-              <Link href={hashtag} key={hashtag}>
+              <Link href={getSearchHashtagPath(hashtag)} key={hashtag}>
                 #{hashtag}{" "}
               </Link>
             ))}
