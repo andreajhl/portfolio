@@ -35,14 +35,16 @@ function changeQueryParams(getState: any) {
   );
 }
 
+const updateFilters = (searchFilters: TYPES.SearchFiltersType) => ({
+  type: TYPES.UPDATE_FILTERS,
+  payload: pickPropertiesFromAObject(searchFilters, allowedParams),
+});
+
 export const updateSearchFilters = (
   payload: TYPES.SearchFiltersType,
   updateQueryParams = true
 ) => (dispatch, getState) => {
-  dispatch({
-    type: TYPES.UPDATE_FILTERS,
-    payload: pickPropertiesFromAObject(payload, allowedParams),
-  });
+  dispatch(updateFilters(payload));
 
   if (updateQueryParams) changeQueryParams(getState);
 };
