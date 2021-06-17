@@ -48,7 +48,7 @@ function VideoContractsFavorites({
           top: 171,
           transform: "translateY(-50%)",
         }}
-        gap={26.75}
+        gap={27.333}
         itemCount={results?.length}
         itemData={results}
       >

@@ -3,7 +3,7 @@ import { FixedSizeList, FixedSizeListProps } from "react-window";
 import styles from "./styles.module.scss";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import DirectionButton, {
-  ButtonStyle
+  ButtonStyle,
 } from "desktop-app/components/common/button/direction";
 import useElementWidth from "../../../../lib/hooks/useElementWidth";
 import useScrollAvailability from "../../../../lib/hooks/useScrollAvailability";
@@ -14,7 +14,7 @@ export type ReelProps = {
   scrollByOffset?: number;
 } & Omit<FixedSizeListProps, "width">;
 
-const defaultContainerWidthOnDesktop = 1140;
+const defaultContainerWidthOnDesktop = 1134;
 
 function Reel({
   height,
@@ -24,7 +24,7 @@ function Reel({
   children: renderItem,
   scrollByOffset = 0,
   listClassName,
-  buttonsStyle = { size: 35, top: "50%" }
+  buttonsStyle = { size: 35, top: "50%" },
 }: ReelProps) {
   const containerRef = useRef<HTMLDivElement>();
   const containerWidth = useElementWidth(
@@ -35,17 +35,21 @@ function Reel({
   const [
     setScrollAvailability,
     canScrollLeft,
-    canScrollRight
+    canScrollRight,
   ] = useScrollAvailability(listRef, "horizontal");
 
   const scrollTo = (direction: "right" | "left") => () => {
     const listElement = listRef.current;
-    const offsetWidth =
-      (itemSize + scrollByOffset) *
-      Math.floor(itemCount / 3); /* listElement.offsetWidth + scrollByOffset */
+    const scrollAmount =
+      (itemSize + scrollByOffset) * Math.floor(itemCount / 3);
+    const maxScrollAmount = listElement.offsetWidth + scrollByOffset;
+    const finalScrollByAmount =
+      scrollAmount < maxScrollAmount ? scrollAmount : maxScrollAmount;
+
     listElement.scrollBy({
-      left: direction === "right" ? offsetWidth : offsetWidth * -1,
-      behavior: "smooth"
+      left:
+        direction === "right" ? finalScrollByAmount : finalScrollByAmount * -1,
+      behavior: "smooth",
     });
   };
 
@@ -61,7 +65,7 @@ function Reel({
           style={{
             ...buttonsStyle,
             fontSize: halfButtonSize * 0.85,
-            left: -halfButtonSize
+            left: -halfButtonSize,
           }}
         />
       </Maybe>
@@ -86,7 +90,7 @@ function Reel({
           style={{
             ...buttonsStyle,
             fontSize: halfButtonSize * 0.85,
-            right: -halfButtonSize
+            right: -halfButtonSize,
           }}
         />
       </Maybe>
