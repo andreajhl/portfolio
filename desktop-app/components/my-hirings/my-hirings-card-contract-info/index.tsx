@@ -1,6 +1,7 @@
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 import useForm from "lib/hooks/useForm";
-import { useState } from "react";
+import { useUpdateHiredContract } from "lib/hooks/useUpdateHiredContract";
+import { useRef, useState } from "react";
 import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 import { MyHiringsCardDetails } from "../my-hirings-card-details";
 import { MyHiringsCardNotificationInfo } from "../my-hirings-card-notification-info";
@@ -11,6 +12,7 @@ const initialValues = {
   instructions: "",
   deliveryContact: "",
   deliveryContactCellphone: "",
+  contractType: 0,
 };
 
 const getInitialValuesFromContract = (contractData: MyHiringsContract) => ({
@@ -27,9 +29,19 @@ type InitialValuesType = typeof initialValues;
 function MyHiringsCardContractInfo({
   contractData,
 }: MyHiringsCardContractInfoProps) {
+  const { update } = useUpdateHiredContract();
   const [isEditing, setIsEditing] = useState(false);
-  const { values, onChangeField } = useForm<InitialValuesType>({
+  const {
+    values,
+    onChangeField,
+    setFieldValue,
+    submitForm,
+  } = useForm<InitialValuesType>({
     initialValues: getInitialValuesFromContract(contractData),
+    onSubmit(newContractData) {
+      setIsEditing(false);
+      update(contractData.reference, newContractData);
+    },
   });
 
   return (
@@ -40,11 +52,14 @@ function MyHiringsCardContractInfo({
         setIsEditing={setIsEditing}
         values={values}
         onChangeField={onChangeField}
+        onSave={submitForm}
       />
       <MyHiringsCardNotificationInfo
         contractData={contractData}
         isEditing={isEditing}
         values={values}
+        onChangeField={onChangeField}
+        setFieldValue={setFieldValue}
       />
     </>
   );

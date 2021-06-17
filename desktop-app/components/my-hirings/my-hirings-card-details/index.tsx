@@ -18,6 +18,7 @@ type MyHiringsCardDetailsProps = {
   setIsEditing: Dispatch<SetStateAction<boolean>>;
   values: { deliveryTo: string; deliveryFrom: string; instructions: string };
   onChangeField: (event) => void;
+  onSave?: () => void;
 };
 
 function MyHiringsCardDetails({
@@ -26,6 +27,7 @@ function MyHiringsCardDetails({
   setIsEditing,
   values,
   onChangeField,
+  onSave = function () {},
 }: MyHiringsCardDetailsProps) {
   const contractIsForOther = contractData.contractType === 2;
 
@@ -75,7 +77,7 @@ function MyHiringsCardDetails({
               editButtonColor={"var(--secondary)"}
               saveButtonColor={"var(--secondary)"}
               onClickEdit={() => setIsEditing((isEditing) => !isEditing)}
-              onClickSave={() => setIsEditing((isEditing) => !isEditing)}
+              onClickSave={onSave}
             />
           </div>
         </Maybe>
