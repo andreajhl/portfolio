@@ -71,7 +71,7 @@ function CelebritySimilarVideosReel({
         itemWidth={263}
         itemHeight={402}
         buttonsStyle={buttonStyle}
-        gap={26.75}
+        gap={27.333}
       >
         {renderVideoCard}
       </CardsReelSection>

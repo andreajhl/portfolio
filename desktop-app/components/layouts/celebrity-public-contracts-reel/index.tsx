@@ -63,7 +63,7 @@ function CelebrityPublicContractsReel({
           itemWidth={263}
           itemHeight={350}
           buttonsStyle={buttonsStyle}
-          gap={27}
+          gap={27.333}
         >
           {renderContractVideo}
         </CardsReelSection>
