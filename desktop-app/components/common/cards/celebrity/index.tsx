@@ -13,6 +13,14 @@ import OptimizedImage from "../../helpers/optimized-image";
 import { PriceLayout } from "../../helpers/price-layout";
 import { Link } from "../../routing/link";
 import styles from "./styles.module.scss";
+import useCelebrityFavorite from "lib/hooks/useCelebrityFavorite";
+
+const preventRedirectFromParent = (event) => {
+  if (event.stopPropagation) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+};
 
 function getCelebrityHashtags(celebrity: celebrityType) {
   return (
@@ -49,6 +57,7 @@ function CelebrityCard({
   thumbnailHeight = 210,
   showPrice = true,
 }: CelebrityCardProps) {
+  const { isFavorite, toggleFavorite } = useCelebrityFavorite(celebrity.id);
   return (
     <Link
       href={getCelebrityProfilePath(celebrity.username)}
@@ -69,7 +78,13 @@ function CelebrityCard({
               {celebrity.title}
             </span>
           </Link>
-          <LikeButton />
+          <LikeButton
+            isFavorite={isFavorite}
+            onClick={(event) => {
+              preventRedirectFromParent(event);
+              toggleFavorite();
+            }}
+          />
         </div>
         <div className={styles.CelebrityCardThumbnailHeader}>
           {/* <span className={styles.CelebrityCardDiscountPercentage}>-40%</span> */}

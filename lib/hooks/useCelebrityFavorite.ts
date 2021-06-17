@@ -6,13 +6,6 @@ import { addOrRemoveLike } from "react-app/src/state/ducks/celebrity-likes/actio
 import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
 import useUserCelebrityLikes from "./useUserCelebrityLikes";
 
-const preventRedirectFromParent = (event) => {
-  if (event.stopPropagation) {
-    event.stopPropagation();
-    event.preventDefault();
-  }
-};
-
 function useCelebrityFavorite(celebrityId: number) {
   const userCelebrityLikes = useUserCelebrityLikes();
   const { isAuthenticated } = useAuth0();
@@ -30,8 +23,7 @@ function useCelebrityFavorite(celebrityId: number) {
     );
   }, [celebrityId, userCelebrityLikes]);
 
-  async function toggleFavorite(event) {
-    preventRedirectFromParent(event);
+  async function toggleFavorite() {
     if (isAuthenticated) {
       const response = await addOrRemoveLike(celebrityId);
       if (response.status === "OK") {
