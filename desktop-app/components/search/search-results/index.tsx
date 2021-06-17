@@ -12,15 +12,7 @@ import { updateSearchFiltersMemory } from "react-app/src/state/ducks/search-filt
 import { RootState } from "react-app/src/state/store";
 import classes from "classnames";
 import styles from "./styles.module.scss";
-
-function checkIfObjectContains(one, two) {
-  for (var i in one) {
-    if (!two.hasOwnProperty(i)) {
-      return false;
-    }
-  }
-  return true;
-}
+import { checkIfObjectContainsSamePairKeyValue } from "react-app/src/utils/checkIfObjectContainsSamePairKeyValue";
 
 function mapStateToProps({
   searchFiltersMemory,
@@ -88,7 +80,9 @@ function SearchResults({
   }, []);
 
   useEffect(() => {
-    if (checkIfObjectContains(searchFilters, searchFiltersMemory)) {
+    if (
+      checkIfObjectContainsSamePairKeyValue(searchFilters, searchFiltersMemory)
+    ) {
       window.scrollTo(0, lastScrollPosition);
     } else {
       fetchCelebrities(searchFilters, false);

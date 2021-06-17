@@ -71,17 +71,17 @@ function DeliveryTimeFilter({
       searchFilters?.max_delivery_time !== 0
     ) {
       updateSearchFilters({
-        max_delivery_time: Number(deliveryTimeValue),
+        max_delivery_time: "",
       });
       return;
     }
 
     if (
-      Number(deliveryTimeValue) !== Number(searchFilters.max_delivery_time) &&
+      deliveryTimeValue !== searchFilters.max_delivery_time &&
       deliveryTime.length > 0
     ) {
       updateSearchFilters({
-        max_delivery_time: Number(deliveryTimeValue),
+        max_delivery_time: deliveryTimeValue as "" | "flash" | number,
       });
     }
   }, [deliveriesTimeChecked]);
