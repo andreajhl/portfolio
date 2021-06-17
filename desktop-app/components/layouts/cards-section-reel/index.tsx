@@ -9,7 +9,7 @@ type Render = (data: any) => JSX.Element;
 
 export type CardsReelSectionProps = Omit<
   ReelProps,
-  "itemData" | "itemSize" | "height"
+  "itemData" | "itemSize" | "height" | "children"
 > & {
   showHeader?: boolean;
   title?: ReactNode;
@@ -25,7 +25,7 @@ export type CardsReelSectionProps = Omit<
 const getRenderColumn = (renderFn: Render, gap: number) => ({
   data,
   index,
-  style
+  style,
 }) => {
   const currentData = data[index];
   return (
