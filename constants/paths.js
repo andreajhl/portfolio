@@ -91,7 +91,8 @@ export const getSearchCategoryPath = (categoryId) =>
 export const getSearchCountryPath = (countryId) =>
   getSearchPath({ country_id: countryId });
 
-export const getSearchHashtagPath = (hashtags) => getSearchPath({ hashtags });
+export const getSearchHashtagPath = (hashtag) =>
+  getSearchPath({ hashtags: String(hashtag).toLowerCase() });
 
 export const getHiringPreviewPath = (contractReference) =>
   HIRING_PREVIEW.replace(":contract_reference", contractReference);
