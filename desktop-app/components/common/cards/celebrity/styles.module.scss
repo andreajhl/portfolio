@@ -1,95 +1,113 @@
 .CelebrityCard {
   width: 170px;
   display: inline-block;
-  &:hover {
-    text-decoration: none;
+}
+
+.CelebrityCard:hover {
+  text-decoration: none;
+}
+
+.CelebrityCardThumbnail {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.CelebrityCardThumbnailFooter,
+.CelebrityCardThumbnailHeader {
+  position: absolute;
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CelebrityCardThumbnailHeader {
+  top: 0;
+}
+
+.CelebrityCardThumbnailFooter {
+  bottom: 0;
+}
+
+.CelebrityCardCategory {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0.33333em 0.5em;
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border-radius: 5px;
+}
+
+.CelebrityCardDiscountPercentage {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0.33333em 0.5em;
+  background: #ff3844;
+  border-radius: 5px;
+  color: white;
+  margin-left: auto;
+}
+
+.CelebrityCardAvatar {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.CelebrityCardInfo {
+  padding: 6px 0 0;
+}
+
+.CelebrityCardHeading {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.CelebrityCardFullName {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 22px;
+}
+
+.CelebrityCardHashtags {
+  font-size: 14px;
+  line-height: 19px;
+  margin: 0;
+}
+
+.CelebrityCardHashtags * {
+  margin-right: 0.25em;
+  transition: 0.15s ease all;
+  color: var(--gray-4) !important;
+
+  :hover {
+    color: var(--dark) !important;
   }
-  &Thumbnail {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
+}
 
-    &Footer,
-    &Header {
-      position: absolute;
-      padding: 0.5rem;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.CelebrityCardPrice {
+  font-size: 14px;
+  margin: 0;
+}
 
-    &Header {
-      top: 0;
-    }
+.VideoMessagePrice,
+.DiscountPrice {
+  font-weight: bold;
+}
 
-    &Footer {
-      bottom: 0;
-    }
-  }
+.VideoMessagePrice {
+  color: var(--gray-4);
+}
 
-  &Category {
-    font-size: 12px;
-    font-weight: 700;
-    padding: 0.33333em 0.5em;
-    display: inline-block;
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    border-radius: 5px;
-  }
+.RemovedPrice {
+  text-decoration: 1px line-through;
+}
 
-  &Discount {
-    &Percentage {
-      font-size: 14px;
-      padding: 0.33333em 0.5em;
-      background: #ff3844;
-      border-radius: 5px;
-      color: white;
-      margin-left: auto;
-    }
-  }
-
-  &Avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  &Info {
-    padding: 6px 0 0;
-  }
-
-  &Heading {
-    display: flex;
-    align-items: center;
-    margin-bottom: 4px;
-  }
-
-  &FullName {
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 22px;
-  }
-
-  &Hashtags {
-    font-size: 14px;
-    line-height: 19px;
-    margin: 0;
-
-    * {
-      margin-right: 0.25em;
-      transition: 0.15s ease all;
-      color: var(--gray-4) !important;
-
-      &:hover {
-        color: var(--dark) !important;
-      }
-    }
-  }
-  &Price {
-    color: var(--gray-4);
-    font-weight: bold;
-    font-size: 14px;
-    margin: 0;
-  }
+.DiscountPrice {
+  color: var(--danger);
 }

@@ -22,4 +22,5 @@ export type celebrityType = {
   countryId?: number;
   status?: number;
   starsAverage?: number;
+  discountPercentage?: number;
 };

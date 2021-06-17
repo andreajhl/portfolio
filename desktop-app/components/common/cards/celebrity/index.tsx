@@ -14,6 +14,7 @@ import { PriceLayout } from "../../helpers/price-layout";
 import { Link } from "../../routing/link";
 import styles from "./styles.module.scss";
 import useCelebrityFavorite from "lib/hooks/useCelebrityFavorite";
+import classes from "classnames";
 
 const preventRedirectFromParent = (event) => {
   if (event.stopPropagation) {
@@ -58,6 +59,11 @@ function CelebrityCard({
   showPrice = true,
 }: CelebrityCardProps) {
   const { isFavorite, toggleFavorite } = useCelebrityFavorite(celebrity.id);
+  const { videoMessagePrice, discountPercentage } = celebrity;
+  const hasDiscount = discountPercentage > 0;
+  const discountPrice =
+    videoMessagePrice - videoMessagePrice * discountPercentage;
+
   return (
     <Link
       href={getCelebrityProfilePath(celebrity.username)}
@@ -87,7 +93,11 @@ function CelebrityCard({
           />
         </div>
         <div className={styles.CelebrityCardThumbnailHeader}>
-          {/* <span className={styles.CelebrityCardDiscountPercentage}>-40%</span> */}
+          <Maybe it={hasDiscount}>
+            <span className={styles.CelebrityCardDiscountPercentage}>
+              -{discountPercentage * 100}%
+            </span>
+          </Maybe>
           <Maybe it={celebrity.availableForFlashDeliveries}>
             <FlashDeliveryBadgeLayout />
           </Maybe>
@@ -116,7 +126,19 @@ function CelebrityCard({
         </Maybe>
         <Maybe it={showPrice}>
           <p className={"text-with-ellipsis " + styles.CelebrityCardPrice}>
-            <PriceLayout decimalScale={0} price={celebrity.videoMessagePrice} />
+            <span
+              className={classes(
+                styles.VideoMessagePrice,
+                hasDiscount && styles.RemovedPrice
+              )}
+            >
+              <PriceLayout decimalScale={0} price={videoMessagePrice} />
+            </span>{" "}
+            <Maybe it={hasDiscount}>
+              <span className={styles.DiscountPrice}>
+                <PriceLayout decimalScale={0} price={discountPrice} />
+              </span>
+            </Maybe>
           </p>
         </Maybe>
       </div>
