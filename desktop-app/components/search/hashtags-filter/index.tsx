@@ -6,11 +6,16 @@ import { connect, ConnectedProps } from "react-redux";
 import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
 
+const getInitialHashtags = (searchFilters) =>
+  typeof searchFilters.hashtags === "string"
+    ? searchFilters.hashtags.split(",")
+    : [];
+
 const mapStateToProps = ({
   celebrityHashtags,
-}: RootState): { hashtags: HashtagType[] } => {
+}: RootState): { searchHashtags: HashtagType[] } => {
   return {
-    hashtags: celebrityHashtags.listHashtagsReducer.data?.results,
+    searchHashtags: celebrityHashtags.listHashtagsReducer.data?.results,
   };
 };
 
@@ -29,12 +34,14 @@ type HashtagsFilterProps = {
 
 function HashtagsFilter({
   className = "",
-  hashtags,
+  searchHashtags,
   listHashtags,
   searchFilters,
   onChangeHashtags = function () {},
 }: HashtagsFilterProps) {
-  const [selectedHashtags, setSelectedHashtags] = useState([]);
+  const [selectedHashtags, setSelectedHashtags] = useState(
+    getInitialHashtags(searchFilters)
+  );
 
   useEffect(() => {
     listHashtags(searchFilters);
@@ -45,9 +52,9 @@ function HashtagsFilter({
   }, [selectedHashtags]);
 
   return (
-    <Maybe it={hashtags?.length > 0}>
+    <Maybe it={searchHashtags?.length > 0}>
       <div className={`${styles.HashtagsFilter} ${className}`}>
-        {hashtags
+        {searchHashtags
           .filter(({ name }) => !selectedHashtags.includes(name))
           .map(({ name, amount }) => (
             <div

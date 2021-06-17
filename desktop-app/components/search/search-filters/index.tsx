@@ -38,8 +38,33 @@ function SearchFilters({
   resetSearchFilters,
   searchFilters,
 }: SearchFiltersProps) {
-  const [values, setValues] = useState(priceRangeSliderInitialValues);
+  const [priceRangeValues, setPriceRangeValues] = useState(
+    priceRangeSliderInitialValues
+  );
+
   console.log(searchFilters);
+
+  function updateSearchFilterPriceRange({
+    values: [min_price, max_price],
+  }: {
+    values: [any, any];
+  }): void {
+    updateSearchFilters({
+      min_price,
+      max_price,
+    });
+  }
+
+  function updateSearchFilterHashtags(hashtags: string[]): void {
+    updateSearchFilters({
+      hashtags: hashtags.join(","),
+    });
+  }
+
+  function cleanSearchFilters() {
+    resetSearchFilters();
+    setPriceRangeValues(priceRangeSliderInitialValues);
+  }
 
   return (
     <div className={styles.SearchFilters}>
@@ -59,14 +84,9 @@ function SearchFilters({
           <PriceRangeSlider
             min={minPrice}
             max={maxPrice}
-            values={values}
-            setValues={setValues}
-            onChange={({ values: [min_price, max_price] }) => {
-              updateSearchFilters({
-                min_price,
-                max_price,
-              });
-            }}
+            values={priceRangeValues}
+            setValues={setPriceRangeValues}
+            onChange={updateSearchFilterPriceRange}
           />
         </div>
       </div>
@@ -78,21 +98,14 @@ function SearchFilters({
       <div className={styles.SearchFilterRow}>
         <div className={styles.SearchFilterItem}>
           <HashtagsFilter
-            onChangeHashtags={(hashtags) =>
-              updateSearchFilters({
-                hashtags: hashtags.join(","),
-              })
-            }
+            onChangeHashtags={updateSearchFilterHashtags}
             className={styles.SearchFiltersHashtagsFilter}
             searchFilters={searchFilters}
           />
           <button
             type="button"
             className={`btn btn-tertiary ${styles.SearchFiltersButton}`}
-            onClick={() => {
-              resetSearchFilters();
-              setValues(priceRangeSliderInitialValues);
-            }}
+            onClick={cleanSearchFilters}
           >
             Limpiar filtros
           </button>
