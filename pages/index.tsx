@@ -8,6 +8,7 @@ import getCookie from "react-app/src/utils/getCookie";
 import { fetchLandings } from "react-app/src/state/ducks/landings/actions";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
 import { parse } from "cookie";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 
 const HomePage = dynamic<{ userLocation: string }>(() =>
   import("desktop-app/components/pages/home").then((mod) => mod.HomePage)
@@ -50,6 +51,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 );
 
 function Home({ isMobile, userLocation }) {
+  useDesktopClass(!isMobile);
+
   return (
     <>
       <CustomHead />
