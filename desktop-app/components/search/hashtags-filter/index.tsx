@@ -7,7 +7,7 @@ import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
 
 const getInitialHashtags = (searchFilters) =>
-  typeof searchFilters.hashtags === "string"
+  typeof searchFilters.hashtags === "string" && searchFilters.hashtags !== ""
     ? searchFilters.hashtags.split(",")
     : [];
 
@@ -47,9 +47,12 @@ function HashtagsFilter({
     listHashtags(searchFilters);
   }, [searchFilters]);
 
-  useEffect(() => {
-    onChangeHashtags(selectedHashtags);
-  }, [selectedHashtags]);
+  const addHashtag = (name: string) => () =>
+    setSelectedHashtags((hashtags) => {
+      const newHashtags = [...hashtags, name];
+      onChangeHashtags(newHashtags);
+      return newHashtags;
+    });
 
   return (
     <Maybe it={searchHashtags?.length > 0}>
@@ -59,9 +62,7 @@ function HashtagsFilter({
           .map(({ name, amount }) => (
             <div
               className={styles.HashtagsFilterHashtag}
-              onClick={() =>
-                setSelectedHashtags((hashtags) => [...hashtags, name])
-              }
+              onClick={addHashtag(name)}
             >
               <span
                 className={`text-with-ellipsis ${styles.HashtagsFilterHashtagName}`}
