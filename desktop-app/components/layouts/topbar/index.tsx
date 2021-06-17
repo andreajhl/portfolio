@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import {
   BellIcon,
   CartIcon,
-  SearchIcon
+  SearchIcon,
 } from "desktop-app/components/common/icons";
 import { FamososLogo } from "../../common/logo";
 import { AccountDropdown } from "../account-dropdown";
@@ -28,8 +28,8 @@ function TopBar() {
               className={`d-flex align-items-center ${styles.TopBarOptions}`}
             >
               <CurrencyDropdown />
-              <CartIcon />
-              <BellIcon />
+              {/* <CartIcon /> */}
+              {/* <BellIcon /> */}
             </div>
             <AccountDropdown />
           </div>
