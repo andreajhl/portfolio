@@ -35,6 +35,9 @@ const InputWithSubmitHandler = ({
         value={inputValue}
         name={inputName}
         id={inputID}
+        onKeyUp={(event) => {
+          if (event.key === "Enter") onSubmit();
+        }}
         onChange={({ target: { value } }) => setInputValue(value)}
       />
       <button
