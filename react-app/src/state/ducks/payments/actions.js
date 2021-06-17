@@ -346,7 +346,7 @@ export const discountCouponsGateways = (contractReference, discountCoupon) => {
   return (dispatch) => {
     const TYPE = types.APPLY_DISCOUNT_COUPON;
     const FINAL_PATH = "custom-endpoints/user-payments/apply-discount-coupon";
-
+    dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "POST",
       path: FINAL_PATH,
