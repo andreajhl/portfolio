@@ -40,11 +40,15 @@ function Reel({
 
   const scrollTo = (direction: "right" | "left") => () => {
     const listElement = listRef.current;
-    const offsetWidth =
-      (itemSize + scrollByOffset) *
-      Math.floor(itemCount / 3); /* listElement.offsetWidth + scrollByOffset */
+    const scrollAmount =
+      (itemSize + scrollByOffset) * Math.floor(itemCount / 3);
+    const maxScrollAmount = listElement.offsetWidth + scrollByOffset;
+    const finalScrollByAmount =
+      scrollAmount < maxScrollAmount ? scrollAmount : maxScrollAmount;
+
     listElement.scrollBy({
-      left: direction === "right" ? offsetWidth : offsetWidth * -1,
+      left:
+        direction === "right" ? finalScrollByAmount : finalScrollByAmount * -1,
       behavior: "smooth",
     });
   };
