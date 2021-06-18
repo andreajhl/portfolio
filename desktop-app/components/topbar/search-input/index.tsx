@@ -10,10 +10,16 @@ import Link from "next/link";
 import useStatus from "lib/hooks/useStatus";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { SkeletonTopbarSearchInput } from "./skeleton";
+import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
+import { connect, ConnectedProps } from "react-redux";
 
 const FINAL_PATH = process.env.NEXT_PUBLIC_ENDPOINT + SEARCH_LIST;
 
-function TopbarSearchInput() {
+const connector = connect(null, { updateSearchFilters });
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
   const router = useRouter();
   const [status, setStatus] = useStatus("idle");
   const [showResults, setShowResults] = useState(false);
@@ -45,6 +51,9 @@ function TopbarSearchInput() {
   }, [currentQuery]);
   const goToSearch = () => {
     if (!currentQuery) return;
+    updateSearchFilters({
+      search: currentQuery,
+    });
     router.push({
       pathname: SEARCH_PATH,
       query: {
@@ -121,4 +130,6 @@ function TopbarSearchInput() {
   );
 }
 
-export { TopbarSearchInput };
+const _TopbarSearchInput = connector(TopbarSearchInput);
+
+export { _TopbarSearchInput as TopbarSearchInput };
