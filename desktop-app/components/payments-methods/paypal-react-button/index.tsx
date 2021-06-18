@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import scriptLoader from "react-async-script-loader";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import Skeleton from "react-loading-skeleton";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 let PayPalButton = null;
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -18,8 +19,6 @@ declare global {
 }
 
 type PaypalReactButtonProps = {
-  isScriptLoaded: boolean;
-  isScriptLoadSucceed: boolean;
   contractReference: string;
   contractPrice: number;
   onPayPalButtonError: (string) => void;
@@ -28,24 +27,22 @@ type PaypalReactButtonProps = {
 };
 
 function PaypalReactButton({
-  isScriptLoaded,
-  isScriptLoadSucceed,
   contractPrice,
   contractReference,
   onPayPalButtonError,
   onPayPalButtonCancel,
   onPayPalButtonApprove,
 }: PaypalReactButtonProps) {
-  useEffect(() => {
-    if (isScriptLoaded && isScriptLoadSucceed) {
-      PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
-      setShowButton(true);
-    }
-  }, [isScriptLoaded, isScriptLoadSucceed]);
+  // useEffect(() => {
+  //   if (isScriptLoaded && isScriptLoadSucceed) {
+  //     PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+  //     setShowButton(true);
+  //   }
+  // }, [isScriptLoaded, isScriptLoadSucceed]);
   const [approved, setApproved] = useState(false);
-  const [showButton, setShowButton] = useState(false);
+  // const [showButton, setShowButton] = useState(false);
 
-  const createOrder = (data, actions) => {
+  const onCreateOrder = (data, actions) => {
     return actions.order.create({
       purchase_units: [
         {
@@ -63,11 +60,9 @@ function PaypalReactButton({
   const onApprove = (data, actions) => {
     setApproved(true);
     let authorizationID = null;
-    actions.order.authorize().then((authorization) => {
-      console.dir(authorization);
+    return actions.order.authorize().then((authorization) => {
       authorizationID =
         authorization.purchase_units[0].payments.authorizations[0].id;
-      setShowButton(false);
       onPayPalButtonApprove(data["orderID"], authorizationID);
     });
   };
@@ -82,34 +77,37 @@ function PaypalReactButton({
     TextAlign: "center",
     maxWidth: "100%",
     maxHeight: "50%",
-    display: !approved ? "block" : "none",
-  };
-  const buttonStyles = {
-    layout: "vertical",
-    shape: "rect",
-    color: "gold",
-    size: "small",
-    label: "pay",
-    tagline: "false",
-    fundingicons: "false",
   };
 
   return (
     <div>
-      {(showButton && (
-        <div style={divStyles}>
-          <PayPalButton
+      <div style={divStyles}>
+        <PayPalButtons
+          style={{
+            layout: "vertical",
+            shape: "rect",
+            color: "gold",
+            label: "pay",
+            tagline: false,
+          }}
+          createOrder={onCreateOrder}
+          onApprove={onApprove}
+          onError={onError}
+          onCancel={onCancel}
+          disabled={approved}
+        />
+        {/* <PayPalButton
             styles={buttonStyles}
             createOrder={(data, actions) => createOrder(data, actions)}
             onApprove={(data, actions) => onApprove(data, actions)}
             onError={onError}
             onCancel={onCancel}
-          />
-        </div>
-      )) || <Skeleton height="40px" width="100%" />}
+          /> */}
+      </div>
+
       {approved && <h6>Guardando...</h6>}
     </div>
   );
 }
 
-export default scriptLoader(SDK_URL)(PaypalReactButton);
+export default PaypalReactButton;
