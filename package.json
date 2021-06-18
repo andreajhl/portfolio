@@ -33,6 +33,7 @@
     "@auth0/nextjs-auth0": "^0.16.1",
     "@formatjs/cli": "^4.2.11",
     "@next/bundle-analyzer": "^10.0.7",
+    "@paypal/react-paypal-js": "^7.0.0",
     "@sentry/nextjs": "^6.4.1",
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.12.1",
