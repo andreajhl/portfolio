@@ -5,11 +5,13 @@ import styles from "./styles.module.scss";
 type DeliveryCellphoneInputProps = {
   value?: string;
   disabled?: boolean;
+  onChange: (value: any) => void;
 };
 
 function DeliveryCellphoneInput({
   value = "",
   disabled = false,
+  onChange = function () {},
 }: DeliveryCellphoneInputProps) {
   return (
     <Maybe
@@ -19,6 +21,7 @@ function DeliveryCellphoneInput({
       }
     >
       <CellphoneNumberInput
+        onChange={onChange}
         inputClass={styles.CellphoneNumberInput}
         buttonClass={styles.CellphoneNumberInputButton}
         value={String(value)}

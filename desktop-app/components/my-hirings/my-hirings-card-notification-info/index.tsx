@@ -24,17 +24,32 @@ type MyHiringsCardNotificationInfoProps = {
   contractData: MyHiringsContract;
   isEditing: boolean;
   values: { deliveryContact: string; deliveryContactCellphone: string };
+  onChangeField?: ({
+    target: { name, value },
+  }: {
+    target: {
+      name: any;
+      value: any;
+    };
+  }) => void;
+  setFieldValue?: (name: string, value: any, shouldValidate?: boolean) => void;
 };
 
 function MyHiringsCardNotificationInfo({
   contractData,
   isEditing,
   values,
+  onChangeField = function () {},
+  setFieldValue = function () {},
 }: MyHiringsCardNotificationInfoProps) {
   const [hasAddedCellphoneNumber, setHasAddedCellphoneNumber] = useState(false);
   const canEdit = canEditContract(contractData.status);
 
   const { deliveryContactCellphone, deliveryContact } = values;
+
+  function setDeliveryContactCellphoneValue(value) {
+    setFieldValue("deliveryContactCellphone", value);
+  }
 
   return (
     <div
@@ -66,7 +81,9 @@ function MyHiringsCardNotificationInfo({
             Correo electrónico de notificación
           </label>
           <InputField
+            name="deliveryContact"
             className={styles.InputField}
+            onChange={onChangeField}
             value={deliveryContact}
             disabled={!isEditing}
           />
@@ -85,6 +102,7 @@ function MyHiringsCardNotificationInfo({
               Whatsapp de notificación (opcional)
             </label>
             <DeliveryCellphoneInput
+              onChange={setDeliveryContactCellphoneValue}
               value={deliveryContactCellphone}
               disabled={!isEditing}
             />
