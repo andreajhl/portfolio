@@ -10,6 +10,7 @@ export type SearchFiltersType = {
   max_price?: number;
   max_delivery_time?: number | "flash" | "";
   hashtags?: string;
+  search?: string;
 };
 
 export const UPDATE_FILTERS = MODEL + "UPDATE_FILTERS";
