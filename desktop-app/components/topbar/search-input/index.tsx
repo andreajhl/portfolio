@@ -22,17 +22,21 @@ function TopbarSearchInput() {
   const getResults = useCallback(
     debounce((query) => {
       setStatus("loading");
-      axios
-        .get(FINAL_PATH, {
-          params: {
-            search: query,
-          },
-        })
-        .then((response) => {
-          setResultsQuery(response.data.results);
-          setStatus("completed");
-        })
-        .catch((e) => console.log(e));
+      if (query !== "") {
+        axios
+          .get(FINAL_PATH, {
+            params: {
+              search: query,
+            },
+          })
+          .then((response) => {
+            setResultsQuery(response.data.results);
+            setStatus("completed");
+          })
+          .catch((e) => console.log(e));
+      } else {
+        setResultsQuery([]);
+      }
     }, 500),
     []
   );
