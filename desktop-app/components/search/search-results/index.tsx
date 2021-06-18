@@ -2,7 +2,10 @@ import { AdditionalResultsSection } from "desktop-app/components/search/addition
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useEffect } from "react";
 import { searchList } from "react-app/src/state/ducks/celebrities/actions";
-import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
+import {
+  updateSearchFilters,
+  resetSearchFilters,
+} from "react-app/src/state/ducks/search-filters/actions";
 import { connect, ConnectedProps } from "react-redux";
 import Pagination from "../../common/pagination";
 import { NoResultsBanner } from "../no-results-banner";
@@ -13,6 +16,7 @@ import { RootState } from "react-app/src/state/store";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { checkIfObjectContainsSamePairKeyValue } from "react-app/src/utils/checkIfObjectContainsSamePairKeyValue";
+import { useRouter } from "next/router";
 
 function mapStateToProps({
   searchFiltersMemory,
@@ -48,6 +52,7 @@ const mapDispatchToProps = {
   fetchCelebrities: searchList,
   saveCursorPosition: cursorOperations.saveCursorPosition,
   updateSearchFiltersMemory,
+  resetSearchFilters,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -71,10 +76,12 @@ function SearchResults({
   saveCursorPosition,
   updateSearchFiltersMemory,
   lastScrollPosition,
+  resetSearchFilters,
 }: SearchResultsProps) {
   useEffect(() => {
     return () => {
       updateSearchFiltersMemory(searchFilters);
+      resetSearchFilters(false);
       saveCursorPosition(window.scrollY);
     };
   }, []);
