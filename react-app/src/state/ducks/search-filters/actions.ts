@@ -49,9 +49,12 @@ export const updateSearchFilters = (
   if (updateQueryParams) changeQueryParams(getState);
 };
 
-export const resetSearchFilters = () => (dispatch, getState) => {
+export const resetSearchFilters = (redirectToSearchPath: boolean = true) => (
+  dispatch,
+  getState
+) => {
   dispatch({
     type: TYPES.RESET_FILTERS,
   });
-  changeQueryParams(getState);
+  if (redirectToSearchPath) changeQueryParams(getState);
 };
