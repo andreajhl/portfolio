@@ -1,32 +1,22 @@
 import React from "react";
-import Skeleton, { SkeletonProps } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
+import styles from "./styles.module.scss";
+
 function CardContractVideoSkeleton() {
   return (
-    <div
-      style={{
-        width: 263,
-      }}
-    >
+    <div className={styles.CardContractVideoSkeleton}>
       <Skeleton
         width="263px"
         height="350px"
-        style={{
-          borderRadius: 10,
-        }}
-      ></Skeleton>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          marginTop: 10,
-        }}
-      >
+        className={styles.VideoElementSkeleton}
+      />
+      <div className={styles.VideoFooterSkeleton}>
         <Skeleton
           circle
           height="42px"
           width="42px"
-          style={{ marginRight: 10 }}
-        />{" "}
+          className={styles.VideoFooterAvatarSkeleton}
+        />
         <Skeleton height="30px" width="211px" />
       </div>
     </div>
