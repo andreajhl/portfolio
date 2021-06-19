@@ -15,13 +15,13 @@ const getTurnAroundText = (turnAroundTime: number) => {
 
 function CelebrityResponseTime({
   turnAroundTime,
-  availableForFlashDeliveries
+  availableForFlashDeliveries,
 }: CelebrityResponseTimeProps) {
   return (
     <span>
       {availableForFlashDeliveries
-        ? "Entrega flash (< de 24 hrs)"
-        : getTurnAroundText(Math.round(turnAroundTime))}
+        ? "Entrega flash"
+        : getTurnAroundText(Math.round(turnAroundTime ?? 2))}
     </span>
   );
 }
