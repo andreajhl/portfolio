@@ -42,6 +42,7 @@ function mapStateToProps({
     showPagination,
     searchFilters,
     searchFiltersMemory,
+    isCompleted: celebrities.fetchCelebritiesReducer.completed,
     informationPage: celebrities.fetchCelebritiesReducer.data.informationPage,
     lastScrollPosition: cursor.positionReducer.data,
   };
@@ -77,23 +78,31 @@ function SearchResults({
   updateSearchFiltersMemory,
   lastScrollPosition,
   resetSearchFilters,
+  isCompleted,
 }: SearchResultsProps) {
-  useEffect(() => {
-    return () => {
-      updateSearchFiltersMemory(searchFilters);
-      resetSearchFilters(false);
-      saveCursorPosition(window.scrollY);
-    };
-  }, []);
+  const { events } = useRouter();
 
+  console.log({ searchFilters });
+  console.log({ searchFiltersMemory });
   useEffect(() => {
+    if (!isCompleted) return;
     if (
-      checkIfObjectContainsSamePairKeyValue(searchFilters, searchFiltersMemory)
+      checkIfObjectContainsSamePairKeyValue(
+        searchFilters,
+        searchFiltersMemory,
+        false
+      )
     ) {
       window.scrollTo(0, lastScrollPosition);
-    } else {
-      fetchCelebrities(searchFilters, false);
     }
+    return () => {
+      updateSearchFiltersMemory(searchFilters);
+      saveCursorPosition(window.scrollY);
+    };
+  }, [isCompleted]);
+
+  useEffect(() => {
+    fetchCelebrities(searchFilters, false);
   }, [searchFilters]);
 
   function updateSearchPage(nextPage: number): void {

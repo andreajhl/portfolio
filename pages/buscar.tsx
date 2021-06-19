@@ -5,7 +5,10 @@ import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
+import {
+  resetSearchFilters,
+  updateSearchFilters,
+} from "react-app/src/state/ducks/search-filters/actions";
 // import { CelebritiesResultsPage } from "react-app/src/components/pages/celebrities-results";
 import { wrapper } from "react-app/src/state/store";
 import debug from "react-app/src/utils/debug";
@@ -71,12 +74,15 @@ const CelebritiesSearchResults = ({
   isMobile,
   searchParams,
   updateSearchFilters,
+  resetSearchFilters,
 }) => {
   useDesktopClass(!isMobile);
 
   useEffect(() => {
-    if (!searchParams) return;
-    updateSearchFilters(searchParams, false);
+    if (searchParams) updateSearchFilters(searchParams, false);
+    return () => {
+      resetSearchFilters(false);
+    };
   }, []);
 
   return (
@@ -89,4 +95,6 @@ const CelebritiesSearchResults = ({
   );
 };
 
-export default connect(null, { updateSearchFilters })(CelebritiesSearchResults);
+export default connect(null, { updateSearchFilters, resetSearchFilters })(
+  CelebritiesSearchResults
+);
