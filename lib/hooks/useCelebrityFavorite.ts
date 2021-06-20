@@ -7,7 +7,7 @@ import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
 import useUserCelebrityLikes from "./useUserCelebrityLikes";
 
 function useCelebrityFavorite(celebrityId: number) {
-  const userCelebrityLikes = useUserCelebrityLikes();
+  const [userCelebrityLikes, toggleLikeFromList] = useUserCelebrityLikes();
   const { isAuthenticated } = useAuth0();
   const [isFavorite, setIsFavorite] = useState(false);
   const analyticsData = { celebrityId, widget: "useCelebrityFavorite" };
@@ -23,26 +23,30 @@ function useCelebrityFavorite(celebrityId: number) {
     );
   }, [celebrityId, userCelebrityLikes]);
 
-  async function toggleFavorite() {
+  async function changeFavorite() {
+    const response = await addOrRemoveLike(celebrityId).catch(console.warn);
+    if (response.status !== "OK") return;
+    tagManagerDataLayer(
+      `CLICK_${!isFavorite ? "" : "UN"}LIKE_CELEBRITY`,
+      analyticsData
+    );
+    toggleLikeFromList(celebrityId);
+    setIsFavorite((isFavorite) => !isFavorite);
+  }
+
+  function redirectToLogin() {
+    tagManagerDataLayer(`CLICK_LIKE_CELEBRITY_UNAUTHENTICATED`, analyticsData);
+    localStorage.setItem("finalRedirect", window.location.pathname);
+    (history as any).push(
+      SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form")
+    );
+  }
+
+  function toggleFavorite() {
     if (isAuthenticated) {
-      const response = await addOrRemoveLike(celebrityId);
-      if (response.status === "OK") {
-        tagManagerDataLayer(
-          `CLICK_${!isFavorite ? "" : "UN"}LIKE_CELEBRITY`,
-          analyticsData
-        );
-        setIsFavorite((isFavorite) => !isFavorite);
-      }
-    } else {
-      tagManagerDataLayer(
-        `CLICK_LIKE_CELEBRITY_UNAUTHENTICATED`,
-        analyticsData
-      );
-      localStorage.setItem("finalRedirect", window.location.pathname);
-      (history as any).push(
-        SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form")
-      );
+      return changeFavorite();
     }
+    redirectToLogin();
   }
 
   return { isFavorite, toggleFavorite };
