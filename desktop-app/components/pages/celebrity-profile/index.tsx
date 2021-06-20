@@ -17,7 +17,7 @@ import styles from "./styles.module.scss";
 import { getUserContractInProgress } from "react-app/src/state/ducks/contracts/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { RootState } from "react-app/src/state/store";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CreateContractWizardSkeleton } from "desktop-app/components/celebrity-profile/create-contract-wizard/skeleton";
 import { ComponentProps as CreateContractWizardProps } from "desktop-app/components/celebrity-profile/create-contract-wizard/types";
 import dynamic from "next/dynamic";
@@ -31,11 +31,7 @@ const CreateContractWizard = dynamic<CreateContractWizardProps>(
   { loading: CreateContractWizardSkeleton }
 );
 
-function onStickyCTAClick() {
-  scrollToTop({ top: 110 });
-}
-
-const pageTopEdge = 600; // por ser definido correctamente.
+const createContractWizardBottom = 600; // por ser definido correctamente.
 
 const mapStateToProps = ({ celebrities, contracts }: RootState) => ({
   publicContracts: celebrities.fetchPublicContractsReducer.data.results,
@@ -61,7 +57,37 @@ function CelebrityProfilePage({
   contractInProgressRequest,
 }: CelebrityProfilePageProps) {
   useGlobalFetches();
+  const [
+    createContractWizardIsFocused,
+    setCreateContractWizardIsFocused,
+  ] = useState(false);
   const { isAuthenticated, isLoading } = useAuth0();
+  const timeoutRef = useRef<number | NodeJS.Timeout>();
+
+  function onStickyCTAClick() {
+    scrollToTop({ top: 110 });
+    setCreateContractWizardIsFocused(true);
+    timeoutRef.current = setTimeout(() => {
+      setCreateContractWizardIsFocused(false);
+    }, 2000);
+    const wizardFirstInputElement: HTMLElement = document.querySelector(
+      `.${styles.CreateContractWizard} input`
+    );
+    wizardFirstInputElement?.focus?.({ preventScroll: true });
+  }
+
+  useEffect(
+    () => () => {
+      if (typeof timeoutRef.current !== "number") return;
+      clearTimeout(timeoutRef.current);
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    getUserContractInProgress(celebrity.username);
+  }, [isAuthenticated, celebrity.username]);
 
   const showContractStepsBeforeReviews =
     !isLoadingPublicContracts && publicContracts?.length < 3;
@@ -71,11 +97,6 @@ function CelebrityProfilePage({
 
   const showCelebritiesCards = publicContracts?.length > 0;
 
-  useEffect(() => {
-    if (!isAuthenticated) return;
-    getUserContractInProgress(celebrity.username);
-  }, [isAuthenticated, celebrity.username]);
-
   const isReadyToCreateContract =
     contractInProgressRequest.completed || (!isLoading && !isAuthenticated);
 
@@ -83,7 +104,7 @@ function CelebrityProfilePage({
     <PageContainer>
       <PageHeading showHomeLink />
       <StickyCallToActionTopBar
-        appearancePosition={pageTopEdge}
+        appearancePosition={createContractWizardBottom}
         celebrity={celebrity}
         onCTAButtonClick={onStickyCTAClick}
       />
@@ -98,6 +119,10 @@ function CelebrityProfilePage({
               orElse={<CreateContractWizardSkeleton />}
             >
               <CreateContractWizard
+                className={classes(
+                  styles.CreateContractWizard,
+                  createContractWizardIsFocused && styles.ContractWizardFocused
+                )}
                 celebrity={celebrity}
                 contractInProgress={contractInProgressRequest?.data}
               />
