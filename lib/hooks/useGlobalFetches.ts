@@ -1,14 +1,14 @@
 import useFetchUserCelebrityLikes from "./useFetchUserCelebrityLikes";
 
 const globalFetchesReducerInitialState = {
-  shouldFetchUserCelebrityLikes: false,
+  shouldFetchUserCelebrityLikes: true,
 };
 type InitialValuesType = typeof globalFetchesReducerInitialState;
 type GlobalFetchesType = {
   [Property in keyof InitialValuesType]?: InitialValuesType[Property];
 };
 
-type UseGlobalFetchesType = (globalFetches: GlobalFetchesType) => void;
+type UseGlobalFetchesType = (globalFetches?: GlobalFetchesType) => void;
 
 const useGlobalFetches: UseGlobalFetchesType = function ({
   shouldFetchUserCelebrityLikes,

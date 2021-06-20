@@ -5,7 +5,7 @@ import { InfinityCelebritySections } from "desktop-app/components/home/infinity-
 import useGlobalFetches from "lib/hooks/useGlobalFetches";
 
 function HomePage({ userLocation }: { userLocation?: string }) {
-  useGlobalFetches({ shouldFetchUserCelebrityLikes: true });
+  useGlobalFetches();
   return (
     <PageContainer showFooter={true} showTopBar={true}>
       <HeroSection userLocation={userLocation} />
