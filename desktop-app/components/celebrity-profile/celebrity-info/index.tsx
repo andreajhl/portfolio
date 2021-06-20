@@ -1,10 +1,10 @@
 import { CountryFlag } from "desktop-app/components/common/country-flag";
 import { CelebrityResponseTime } from "desktop-app/components/common/celebrity-response-time";
-import { LastReviewsModal } from "desktop-app/components/layouts/last-reviews-modal";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import styles from "./styles.module.scss";
 import { Link } from "desktop-app/components/common/routing/link";
 import { getSearchCategoryPath } from "constants/paths";
+import { CelebrityInfoReviews } from "desktop-app/components/celebrity-profile/celebrity-info-reviews";
 
 type CelebrityInfoProps = {
   celebrity: celebrityType;
@@ -29,16 +29,7 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
         </Link>
       </span>
       <span className={styles.CelebrityInfoItemWithSeparator}>
-        <LastReviewsModal>
-          {{
-            triggerElement: (
-              <span className={styles.CelebrityInfoReviews}>
-                <i className="fa fa-star text-warning mr-2" />
-                {Number(celebrity.starsAverage || 1).toFixed(1)}
-              </span>
-            ),
-          }}
-        </LastReviewsModal>
+        <CelebrityInfoReviews celebrityStarsAverage={celebrity.starsAverage} />
       </span>
       <span className={styles.CelebrityInfoItem}>
         Respuesta promedio:{" "}

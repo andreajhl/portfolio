@@ -26,12 +26,4 @@
   &Category:hover {
     color: var(--dark) !important;
   }
-
-  &Reviews {
-    cursor: pointer;
-
-    &:hover {
-      text-decoration: underline var(--dark);
-    }
-  }
 }

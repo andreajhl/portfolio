@@ -1,0 +1,7 @@
+.showReviewsModal {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline var(--dark);
+  }
+}
