@@ -4,6 +4,11 @@
   &Item,
   &ItemWithSeparator {
     font-size: 14px;
+    color: var(--gray-4);
+
+    * {
+      color: var(--gray-4);
+    }
   }
 
   &ItemWithSeparator {
@@ -18,7 +23,7 @@
     margin-right: 14px;
   }
 
-  &Category {
+  &Category:hover {
     color: var(--dark) !important;
   }
 
