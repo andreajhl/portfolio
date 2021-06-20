@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { CreateContractWizardSkeleton } from "desktop-app/components/celebrity-profile/create-contract-wizard/skeleton";
 import { ComponentProps as CreateContractWizardProps } from "desktop-app/components/celebrity-profile/create-contract-wizard/types";
 import dynamic from "next/dynamic";
+import useGlobalFetches from "lib/hooks/useGlobalFetches";
 
 const CreateContractWizard = dynamic<CreateContractWizardProps>(
   () =>
@@ -59,6 +60,7 @@ function CelebrityProfilePage({
   getUserContractInProgress,
   contractInProgressRequest,
 }: CelebrityProfilePageProps) {
+  useGlobalFetches();
   const { isAuthenticated, isLoading } = useAuth0();
 
   const showContractStepsBeforeReviews =
