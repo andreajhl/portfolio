@@ -1,12 +1,19 @@
+import { toggleLikeFromList } from "react-app/src/state/ducks/celebrity-likes/actions";
 import { RootState } from "react-app/src/state/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const userCelebrityLikesSelector = ({ celebrityLikes }: RootState) =>
   celebrityLikes.fetchUserCelebrityLikesReducer.data.data;
 
 function useUserCelebrityLikes() {
   const userCelebrityLikes = useSelector(userCelebrityLikesSelector);
-  return userCelebrityLikes as number[];
+  const dispatch = useDispatch();
+
+  function dispatchToggleLikeFromList(celebrityId: number) {
+    dispatch(toggleLikeFromList(celebrityId));
+  }
+
+  return [userCelebrityLikes as number[], dispatchToggleLikeFromList] as const;
 }
 
 export default useUserCelebrityLikes;
