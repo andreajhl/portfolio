@@ -1,32 +1,48 @@
 import { useState } from "react";
 import limitString from "react-app/src/utils/limitString";
+import Collapse from "react-bootstrap/Collapse";
+import classes from "classnames";
+import styles from "./styles.module.scss";
+import Maybe from "../maybe";
 
 export function CollapsibleText({
   children,
   className = "",
-  lengthLimit = 200
+  lengthLimit = 200,
 }: {
   children: string;
   className?: string;
   lengthLimit?: number;
 }) {
   const [isCollapse, setIsCollapse] = useState(true);
+  const [hasFinishCollapsing, setHasFinishCollapsing] = useState(true);
 
   function toggleCollapse() {
+    if (isCollapse) setHasFinishCollapsing(false);
     setIsCollapse((isCollapse) => !isCollapse);
   }
 
+  function finishCollapsing() {
+    setHasFinishCollapsing(true);
+  }
+
   return (
-    <p className={className}>
-      {isCollapse ? limitString(children, lengthLimit) : children}{" "}
-      {children.length > lengthLimit ? (
-        <span
-          className="font-weight-bold cursor-pointer"
-          onClick={toggleCollapse}
-        >
-          {isCollapse ? "Mostrar más" : "Mostrar menos"}
-        </span>
-      ) : null}
-    </p>
+    <Collapse in={!isCollapse} onExited={finishCollapsing} timeout={350}>
+      <p className={classes(styles.CollapsibleText, className)}>
+        <Maybe it={hasFinishCollapsing} orElse={children}>
+          {limitString(children, lengthLimit)}
+        </Maybe>{" "}
+        <Maybe it={children.length > lengthLimit}>
+          <span
+            className="font-weight-bold cursor-pointer"
+            onClick={toggleCollapse}
+          >
+            <Maybe it={isCollapse} orElse="Mostrar menos">
+              Mostrar más
+            </Maybe>
+          </span>
+        </Maybe>
+      </p>
+    </Collapse>
   );
 }
