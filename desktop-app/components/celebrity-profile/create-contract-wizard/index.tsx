@@ -15,6 +15,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { RootState } from "react-app/src/state/store";
 import useWizardHistory from "../../../../lib/hooks/useWizardHistory";
 import { ComponentProps } from "./types";
+import classes from "classnames";
 
 type WizardStepType = {
   id: string;
@@ -45,6 +46,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type CreateContractWizardProps = ComponentProps & PropsFromRedux;
 
 function CreateContractWizard({
+  className,
   celebrity,
   contractInProgress,
   isLoading,
@@ -112,7 +114,7 @@ function CreateContractWizard({
   }
 
   return (
-    <div className={styles.CreateContractWizard}>
+    <div className={classes(styles.CreateContractWizard, className)}>
       <Wizard history={wizardHistory}>
         <StepsList>
           <Step id={WIZARD_STEPS[0].id}>
