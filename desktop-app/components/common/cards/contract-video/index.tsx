@@ -10,12 +10,26 @@ import OverlayDetails from "../video/overlay-details";
 import { saveContractLike } from "react-app/src/state/ducks/account/actions";
 import { fetchStatusContractLike } from "react-app/src/state/ducks/hiring/actions";
 import { useAuth0 } from "@auth0/auth0-react";
+import { toggleAudio } from "react-app/src/state/ducks/celebrity-sections/actions";
+import { RootState } from "react-app/src/state/store";
+import { connect, ConnectedProps } from "react-redux";
+
+const mapStateToProps = ({ celebritySections }: RootState) => ({
+  isAudioActive: celebritySections.audioReducer.active,
+});
+
+const mapDispatchToProps = { toggleAudio };
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type ContractVideoProps = {
   className?: string;
   style?: CSSProperties;
   contract_reference;
-} & ContractVideoType;
+} & ContractVideoType &
+  PropsFromRedux;
 
 function ContractVideo({
   videoUrl,
@@ -24,6 +38,8 @@ function ContractVideo({
   style,
   className = "",
   contract_reference,
+  isAudioActive,
+  toggleAudio,
 }: ContractVideoProps) {
   // TODO: agregar initial state response de backend
   const [isLiked, setIsLiked] = useState(false);
@@ -55,10 +71,7 @@ function ContractVideo({
     },
   });
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
-  const [videoIsMuted, setVideoIsMuted] = useState(true);
-  const toggleVideoIsMuted = () => {
-    setVideoIsMuted((videoIsMuted) => !videoIsMuted);
-  };
+
   const toggleLikeContract = () => {
     saveContractLike(contract_reference).then((response) => {
       setIsLiked(response.liked);
@@ -81,7 +94,7 @@ function ContractVideo({
             ></img>
           </Maybe>
           <video
-            muted={videoIsMuted}
+            muted={!isAudioActive}
             ref={videoRef}
             onLoadedData={onVideoLoadedData}
             src={videoUrl}
@@ -92,9 +105,9 @@ function ContractVideo({
         <section className={styles.ContractVideoOverlay}>
           <div className={styles.ContractVideoControls}>
             <OverlayHeader
-              IsMuted={videoIsMuted}
+              IsMuted={!isAudioActive}
               isPlaying={videoIsPlaying}
-              onToggleAudio={toggleVideoIsMuted}
+              onToggleAudio={toggleAudio}
               onTogglePlay={togglePlay}
             />
           </div>
@@ -110,4 +123,6 @@ function ContractVideo({
   );
 }
 
-export default ContractVideo;
+const _ContractVideo = connector(ContractVideo);
+
+export { _ContractVideo as ContractVideo };
