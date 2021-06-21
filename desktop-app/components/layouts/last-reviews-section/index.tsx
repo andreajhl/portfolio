@@ -1,11 +1,8 @@
 import CardReview from "desktop-app/components/common/cards/review";
 import React from "react";
 import styles from "./styles.module.scss";
-import { CardReviewProps } from "../../../types/cardReviewProps";
-import Popup from "reactjs-popup";
 import { celebrityOperations } from "react-app/src/state/ducks/celebrities";
 import { connect } from "react-redux";
-import { listReviews } from "react-app/src/state/ducks/celebrities/actions";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import dynamic from "next/dynamic";
 
