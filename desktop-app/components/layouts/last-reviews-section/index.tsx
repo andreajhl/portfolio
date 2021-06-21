@@ -1,18 +1,19 @@
 import CardReview from "desktop-app/components/common/cards/review";
 import React from "react";
 import styles from "./styles.module.scss";
-import { CardReviewProps } from "../../../types/cardReviewProps";
-import Popup from "reactjs-popup";
-import { LastReviewsModal } from "../last-reviews-modal";
 import { celebrityOperations } from "react-app/src/state/ducks/celebrities";
 import { connect } from "react-redux";
-import { listReviews } from "react-app/src/state/ducks/celebrities/actions";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import dynamic from "next/dynamic";
+
+const LastReviewsModal = dynamic(() =>
+  import("../last-reviews-modal").then((mod) => mod.LastReviewsModal)
+);
 
 // mapStateToProps
 const mapStateToProps = ({ celebrities }) => ({
   isLoading: celebrities.fetchReviewsReducer.loading,
-  reviews: celebrities.fetchReviewsReducer.data.results,
+  reviews: celebrities.fetchReviewsReducer.data.results as [any],
   paginationData: celebrities.fetchReviewsReducer.data.informationPage,
 });
 
@@ -29,7 +30,7 @@ type LastReviewsSectionProps = {
   DispatchProps;
 
 const LastReviewsSection = ({
-  reviews = [],
+  reviews = [{}],
   showMore = true,
   listReviews,
   paginationData,
@@ -45,12 +46,11 @@ const LastReviewsSection = ({
               key={index}
               contract_review={review.contract_review}
               user_full_name={review.user_full_name}
-              date="20/dic/2020"
               contract_stars={review.contract_stars}
             />
           ))}
         </div>
-        {showMore ? (
+        {showMore && reviews.length > 2 ? (
           <LastReviewsModal>
             {{
               triggerElement: (

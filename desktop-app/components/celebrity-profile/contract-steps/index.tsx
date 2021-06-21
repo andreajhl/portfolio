@@ -3,7 +3,7 @@ import { CommentAlt, ShoppingBag, SurpriseBox } from "../../common/icons/index";
 import { connect } from "react-redux";
 
 const mapStateToProps = ({ celebrities }) => ({
-  publicContracts: celebrities.fetchPublicContractsReducer.data.results
+  publicContracts: celebrities.fetchPublicContractsReducer.data.results,
 });
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -12,7 +12,11 @@ type ContractStepsProps = StateProps;
 const ContractSteps = ({ publicContracts }: ContractStepsProps) => {
   const getVariant = (totalContracts) => {
     let variant = "NormalLayout";
-    if (totalContracts >= 3 || totalContracts === 0) {
+    if (
+      totalContracts >= 3 ||
+      totalContracts === 0 ||
+      typeof totalContracts === "undefined"
+    ) {
       variant = "FullLayout";
     }
     if (totalContracts === 1) {

@@ -38,3 +38,6 @@ export const setPlayingVideo = (videoKey) => ({
   type: TYPES.PLAY_VIDEO,
   payload: videoKey,
 });
+export const toggleAudio = () => ({
+  type: TYPES.TOGGLE_AUDIO,
+});

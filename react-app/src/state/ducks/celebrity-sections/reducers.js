@@ -6,11 +6,14 @@ const fetchCelebritySectionsInitialState = {
   failed: false,
   completed: false,
   error_data: { error: "" },
-  data: { results: [], informationPage: {} }
+  data: { results: [], informationPage: {} },
 };
 
 const playVideoInitialState = {
-  video_key: null
+  video_key: null,
+};
+const audioInitialState = {
+  active: false,
 };
 
 export function fetchCelebritySectionsReducer(
@@ -22,13 +25,13 @@ export function fetchCelebritySectionsReducer(
       return {
         ...fetchCelebritySectionsInitialState,
         data: { ...state.data },
-        loading: true
+        loading: true,
       };
     case TYPES.FETCH_CELEBRITIES_SECTIONS_FAILURE:
       return {
         ...fetchCelebritySectionsInitialState,
         error_data: action.payload.data,
-        failed: true
+        failed: true,
       };
     case TYPES.FETCH_CELEBRITIES_SECTIONS_SUCCESS:
       const results = [];
@@ -37,13 +40,13 @@ export function fetchCelebritySectionsReducer(
       results.push(...action.payload.data.results);
       return {
         ...fetchCelebritySectionsInitialState,
-        data: { ...action.payload.data, results }
+        data: { ...action.payload.data, results },
       };
     case TYPES.FETCH_CELEBRITIES_SECTIONS_COMPLETED:
       return {
         ...fetchCelebritySectionsInitialState,
         data: { ...state.data },
-        completed: true
+        completed: true,
       };
     default:
       return state;
@@ -57,8 +60,16 @@ export function playVideoReducer(state = playVideoInitialState, action) {
     return state;
   }
 }
+export function audioReducer(state = audioInitialState, action) {
+  if (action.type === TYPES.TOGGLE_AUDIO) {
+    return { active: !state.active };
+  } else {
+    return state;
+  }
+}
 
 export default combineReducers({
   fetchCelebritySectionsReducer,
-  playVideoReducer
+  playVideoReducer,
+  audioReducer,
 });

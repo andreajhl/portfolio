@@ -1,4 +1,4 @@
-import ContractVideo from "desktop-app/components/common/cards/contract-video";
+import { ContractVideo } from "desktop-app/components/common/cards/contract-video";
 import React, { useEffect } from "react";
 import { celebrityOperations } from "react-app/src/state/ducks/celebrities";
 import { CardsReelSection } from "../cards-section-reel";
@@ -50,6 +50,7 @@ function CelebrityPublicContractsReel({
   // useEffect(() => {
   //   listPublicContracts(celebrityId);
   // }, [celebrityId, listPublicContracts]);
+  console.log({ publicContracts });
   return (
     <Maybe it={publicContracts?.length > 0}>
       <div>
