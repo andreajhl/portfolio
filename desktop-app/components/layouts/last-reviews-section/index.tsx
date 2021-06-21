@@ -12,7 +12,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 // mapStateToProps
 const mapStateToProps = ({ celebrities }) => ({
   isLoading: celebrities.fetchReviewsReducer.loading,
-  reviews: celebrities.fetchReviewsReducer.data.results,
+  reviews: celebrities.fetchReviewsReducer.data.results as [any],
   paginationData: celebrities.fetchReviewsReducer.data.informationPage,
 });
 
@@ -29,7 +29,7 @@ type LastReviewsSectionProps = {
   DispatchProps;
 
 const LastReviewsSection = ({
-  reviews = [],
+  reviews = [{}],
   showMore = true,
   listReviews,
   paginationData,
@@ -50,7 +50,7 @@ const LastReviewsSection = ({
             />
           ))}
         </div>
-        {showMore ? (
+        {showMore && reviews.length > 2 ? (
           <LastReviewsModal>
             {{
               triggerElement: (
