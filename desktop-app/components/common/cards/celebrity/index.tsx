@@ -15,6 +15,7 @@ import { Link } from "../../routing/link";
 import styles from "./styles.module.scss";
 import useCelebrityFavorite from "lib/hooks/useCelebrityFavorite";
 import classes from "classnames";
+import getCelebrityDiscountPercentage from "lib/utils/getCelebrityDiscountPercentage";
 
 const preventRedirectFromParent = (event) => {
   if (event.stopPropagation) {
@@ -59,7 +60,8 @@ function CelebrityCard({
   showPrice = true,
 }: CelebrityCardProps) {
   const { isFavorite, toggleFavorite } = useCelebrityFavorite(celebrity.id);
-  const { videoMessagePrice, discountPercentage } = celebrity;
+  const { videoMessagePrice } = celebrity;
+  const discountPercentage = getCelebrityDiscountPercentage(celebrity);
   const hasDiscount = discountPercentage > 0;
   const discountPrice =
     videoMessagePrice - videoMessagePrice * discountPercentage;
