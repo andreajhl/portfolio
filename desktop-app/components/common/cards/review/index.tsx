@@ -24,7 +24,7 @@ function CardReview({
         <span className={styles.ReviewStarValue}>
           {Number(contract_stars).toFixed(1)}
         </span>
-        <span className={styles.ReviewDate}>{date}</span>
+        {date ? <span className={styles.ReviewDate}>{date}</span> : null}
         <StarRatingDisplay editing={false} value={contract_stars} />
       </div>
       <p className={styles.UserName}>{user_full_name}</p>
