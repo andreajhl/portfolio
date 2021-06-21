@@ -90,7 +90,8 @@ function CelebrityProfilePage({
   }, [isAuthenticated, celebrity.username]);
 
   const showContractStepsBeforeReviews =
-    !isLoadingPublicContracts && publicContracts?.length < 3;
+    !isLoadingPublicContracts &&
+    (publicContracts?.length < 3 || publicContracts === null);
 
   const showContractStepsAfterReviews =
     !isLoadingPublicContracts && publicContracts?.length >= 3;
