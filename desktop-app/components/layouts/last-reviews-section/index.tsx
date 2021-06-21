@@ -46,7 +46,6 @@ const LastReviewsSection = ({
               key={index}
               contract_review={review.contract_review}
               user_full_name={review.user_full_name}
-              date="20/dic/2020"
               contract_stars={review.contract_stars}
             />
           ))}
