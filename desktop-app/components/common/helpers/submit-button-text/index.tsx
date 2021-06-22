@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import { ReactNode } from "react";
 import classes from "classnames";
 
-export type StatusType = "idle" | "loading" | "completed";
+export type StatusType = "idle" | "loading" | "completed" | "rejected";
 
 type SubmitTextProps = {
   baseText?: ReactNode;

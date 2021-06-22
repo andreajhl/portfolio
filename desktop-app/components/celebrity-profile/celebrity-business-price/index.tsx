@@ -1,13 +1,7 @@
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { PriceLayout } from "desktop-app/components/common/helpers/price-layout";
 import { celebrityType } from "desktop-app/types/celebrityType";
-
-const businessContractType = 2; /* Por ser definido correctamente */
-
-const getBusinessPrice = (contractsTypes) =>
-  contractsTypes?.find?.(
-    (contract) => contract.contractType === businessContractType
-  )?.price || 0;
+import getCelebrityBusinessPrice from "lib/utils/getCelebrityBusinessPrice";
 
 type CelebrityBusinessPriceProps = {
   celebrity: celebrityType;
@@ -18,7 +12,7 @@ function CelebrityBusinessPrice({
   celebrity,
   decimalScale = 0,
 }: CelebrityBusinessPriceProps) {
-  const businessPrice = getBusinessPrice(celebrity.contractTypes);
+  const businessPrice = getCelebrityBusinessPrice(celebrity.contractTypes);
   const showBusinessPrice = businessPrice > 0;
 
   return (

@@ -4,7 +4,7 @@ import apiService from "../../utils/apiService";
 import {
   handleApiErrors,
   handleApiResponseFailure,
-  handleApiResponseSuccess
+  handleApiResponseSuccess,
 } from "../../utils";
 import { Session } from "../../utils/session";
 import { history } from "../../../routing/History";
@@ -56,7 +56,7 @@ export const signInWithEmail = (body) => {
       path: path,
       method: "POST",
       params: null,
-      body: body
+      body: body,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -84,7 +84,7 @@ export const changePassword = (body) => {
       path: path,
       method: "POST",
       params: null,
-      body: body
+      body: body,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -112,7 +112,7 @@ export const createPassword = (body) => {
       path: path,
       method: "PUT",
       params: null,
-      body: body
+      body: body,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -140,7 +140,7 @@ export const sendSMSSecurityCode = (body) => {
       path: path,
       method: "POST",
       params: null,
-      body: body
+      body: body,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -175,7 +175,7 @@ export const validateSMSSecurityCode = (body) => {
       path: path,
       method: "POST",
       params: null,
-      body: body
+      body: body,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -203,7 +203,7 @@ export const sendEmailSecurityCode = (body) => {
       path: path,
       method: "POST",
       params: null,
-      body: body
+      body: body,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -230,7 +230,7 @@ export const validateEmailSecurityCode = (body) => {
       path: path,
       method: "POST",
       params: null,
-      body: body
+      body: body,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -258,7 +258,7 @@ export const validateIfEmailIsRegistered = (body) => {
       path: path,
       method: "POST",
       params: null,
-      body: body
+      body: body,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -304,7 +304,7 @@ export const completeProfile = (body) => {
       path: path,
       method: "PUT",
       params: null,
-      body: body
+      body: body,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -332,7 +332,7 @@ export const resetPassword = (body) => {
       path: path,
       method: "POST",
       params: null,
-      body: body
+      body: body,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -357,7 +357,7 @@ export const getUserInformation = () => {
       async: true,
       path: path,
       method: "GET",
-      params: null
+      params: null,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -378,7 +378,7 @@ export const newsletterSubscrition = (email) => {
     action: "type",
     async: true,
     path: PATHS.NEWSLETTER_SUBSCRIPTION + "/" + email,
-    method: "GET"
+    method: "GET",
   })
     .then((res) => {})
     .catch((err) => {});
@@ -386,5 +386,16 @@ export const newsletterSubscrition = (email) => {
 
 export const setRedirectUnauthorized = (payload) => ({
   type: types.SET_REDIRECT_UNAUTHORIZED,
-  payload
+  payload,
 });
+
+export const newsletterSubscribe = (email) =>
+  apiService({
+    method: "POST",
+    path: PATHS.NEWSLETTER_SUBSCRIBE,
+    body: { email },
+  }).then((response) => {
+    console.log(response);
+    if (response.data.status !== "OK") throw response.data.error;
+    return response.data;
+  });

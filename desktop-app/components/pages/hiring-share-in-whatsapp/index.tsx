@@ -22,7 +22,9 @@ function HiringShareInWhatsappPage({ contractReference }) {
             deliveryTo={previewData.deliveryTo}
             deliveryFrom={previewData.deliveryFrom}
             contractReference={contractReference}
-            videoPosterUrl={contract?.celebrityData?.avatar}
+            videoPosterUrl={
+              contract?.mediaPosterUrl || contract?.celebrityData?.avatar
+            }
           />
         </div>
         <div className={styles.ShareDetailsFormContainer}>

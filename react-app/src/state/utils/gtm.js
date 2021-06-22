@@ -8,11 +8,11 @@ const INITIALIZE_GTM_PROD_MODE =
 export const initialize = () => {
   if (ENV === "production" || INITIALIZE_GTM_PROD_MODE) {
     TagManager.initialize({
-      gtmId: "GTM-TCDSJ3Q"
+      gtmId: "GTM-TCDSJ3Q",
     });
   } else {
     TagManager.initialize({
-      gtmId: "GTM-NH95V75"
+      gtmId: "GTM-NH95V75",
     });
   }
 };
@@ -25,17 +25,19 @@ export const tagManagerDataLayer = (event, dataLayer) => {
     // GTM NOTIFICATION
     window?.dataLayer?.push?.({
       ...dataLayer,
-      event
+      event,
     });
 
     // Segment
     if (ENV !== "development") {
       window.analytics.track(event, {
         ...dataLayer,
-        ENVIRONMENT: ENV.toUpperCase()
+        ENVIRONMENT: ENV.toUpperCase(),
       });
     }
   } catch (e) {
     console.warn("tagManagerDataLayer Error:", e);
   }
 };
+
+export const analytics = { track: tagManagerDataLayer };

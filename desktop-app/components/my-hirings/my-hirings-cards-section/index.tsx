@@ -22,7 +22,7 @@ const allowedStatuses = [PAYED_BY_CLIENT, REJECTED, EXPIRED, COMPLETED];
 const getListParams = (currentPage: number) => ({
   pageSize: 4,
   status: allowedStatuses.join(","),
-  orderBy: "status desc",
+  orderBy: "created_at desc",
   currentPage,
 });
 
