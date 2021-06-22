@@ -17,14 +17,14 @@ function ContractInstructionsEdit({
   instructions,
   onSaveChanges,
 }) {
-  const { values, onChangeField } = useForm<FormValuesType>({
+  const { values, onChangeField, submitForm } = useForm<FormValuesType>({
     initialValues: {
       deliveryTo,
       deliveryFrom,
       instructions,
     },
-    onSubmit() {
-      console.log("Enviado");
+    onSubmit(data) {
+      onSaveChanges(data);
     },
   });
 
@@ -32,7 +32,7 @@ function ContractInstructionsEdit({
     <div className={styles.ContractInstructions}>
       <button
         className={classes("btn", styles.ToggleEditSpan)}
-        onClick={onSaveChanges}
+        onClick={submitForm}
       >
         Guardar
       </button>
@@ -45,29 +45,28 @@ function ContractInstructionsEdit({
             name="deliveryTo"
             maxLength={40}
             onChange={(event) => {
-              console.log(event.target);
               onChangeField(event);
             }}
           />
         </div>
         <div>
-          <ContractDataFormInput
-            placeholder="Marco"
-            label="De"
-            value={values.deliveryFrom}
-            maxLength={40}
-            onChange={(event) => {
-              console.log(event.target);
-              onChangeField(event);
-            }}
-          />
+          {values.deliveryFrom ? (
+            <ContractDataFormInput
+              placeholder="Marco"
+              label="De"
+              value={values.deliveryFrom}
+              maxLength={40}
+              onChange={(event) => {
+                onChangeField(event);
+              }}
+            />
+          ) : null}
         </div>
       </div>
       <ContractInstructionsTextarea
         labelClass={styles.InstructionsDetailsInputLabel}
         id="instructions"
         onChange={(event) => {
-          console.log(event.target);
           onChangeField(event);
         }}
         value={values.instructions}

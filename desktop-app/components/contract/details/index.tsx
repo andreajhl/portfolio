@@ -3,6 +3,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import styles from "./styles.module.scss";
 import ContractInstructionsEdit from "../instructions/edit";
 import ContractInstructionsView from "../instructions/view";
+import { useUpdateHiredContract } from "lib/hooks/useUpdateHiredContract";
 
 type ContractDetailsProps = {
   contract: {
@@ -29,9 +30,17 @@ function ContractDetails({
   celebrity,
   status_payment = null,
 }: ContractDetailsProps) {
+  const { update } = useUpdateHiredContract();
+  const [formData, setFormData] = useState({
+    deliveryTo: contract.deliveryTo,
+    deliveryFrom: contract.deliveryFrom,
+    instructions: contract.instructions,
+  });
   const [isEditing, setIsEditing] = useState(false);
   const saveNewInstructions = (newInstructions) => {
-    console.log("TODO CONECTAR CON BACKEND");
+    update(contract.reference, newInstructions).then(() => {
+      setFormData(newInstructions);
+    });
     setIsEditing(false);
   };
   return (
@@ -50,17 +59,17 @@ function ContractDetails({
       </div>
       <Maybe it={!isEditing}>
         <ContractInstructionsView
-          deliveryTo={contract.deliveryTo}
-          deliveryFrom={contract.deliveryFrom}
-          instructions={contract.instructions}
+          deliveryTo={formData.deliveryTo}
+          deliveryFrom={formData.deliveryFrom}
+          instructions={formData.instructions}
           onToggleEdit={() => setIsEditing((prevState) => !prevState)}
         />
       </Maybe>
       <Maybe it={isEditing}>
         <ContractInstructionsEdit
-          deliveryTo={contract.deliveryTo}
-          deliveryFrom={contract.deliveryFrom}
-          instructions={contract.instructions}
+          deliveryTo={formData.deliveryTo}
+          deliveryFrom={formData.deliveryFrom}
+          instructions={formData.instructions}
           onSaveChanges={(newValues) => saveNewInstructions(newValues)}
         />
       </Maybe>

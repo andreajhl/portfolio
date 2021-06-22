@@ -20,7 +20,9 @@ function ContractInstructionsView({
       </button>
       <div>
         <span className={styles.WhoReceive}>Para: {deliveryTo}</span>
-        <Maybe it={typeof deliveryFrom === "string"}>
+        <Maybe
+          it={typeof deliveryFrom === "string" && deliveryFrom === "string"}
+        >
           <span className={styles.WhoSend}>De: {deliveryFrom}</span>
         </Maybe>
       </div>
