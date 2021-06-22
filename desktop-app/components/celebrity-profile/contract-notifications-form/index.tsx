@@ -4,7 +4,7 @@ import classes from "classnames";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
 import useForm, { ValidationsType } from "lib/hooks/useForm";
-import isEmail from "validator/es/lib/isEmail";
+import isEmail from "validator/lib/isEmail";
 import { ContractNotificationsType } from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
 import { useAuth0 } from "@auth0/auth0-react";
