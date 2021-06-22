@@ -7,6 +7,7 @@ import { ROOT_PATH } from "react-app/src/routing/Paths";
 import isMobile from "lib/utils/isMobile";
 import dynamic from "next/dynamic";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 
 const DesktopContractCreatedPage = dynamic<{ contractReference: any }>(() =>
   import("desktop-app/components/pages/contract-created").then(
@@ -40,6 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 };
 
 function ContractWithPaymentsPage({ contractReference, isMobile }) {
+  useDesktopClass(!isMobile);
   return (
     <>
       <CustomHead />
