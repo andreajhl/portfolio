@@ -4,6 +4,7 @@ import isMobile from "lib/utils/isMobile";
 import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
+import { ROOT_PATH } from "react-app/src/routing/Paths";
 
 const HiringPreviewPage = dynamic<{
   contractReference: string;
@@ -22,12 +23,19 @@ const DesktopHiringPreviewPage = dynamic<{
 );
 
 export const getServerSideProps: GetServerSideProps = async ({
-  params: { contract_reference },
+  params,
   req,
 }) => {
+  const contractReference = params?.contract_reference;
+
+  if (typeof contractReference === "undefined") {
+    return {
+      redirect: { destination: ROOT_PATH, permanent: false },
+    };
+  }
   return {
     props: {
-      contract_reference,
+      contractReference,
       isMobile: isMobile(req.headers["user-agent"]),
     },
   };

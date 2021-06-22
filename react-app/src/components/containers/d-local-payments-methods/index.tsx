@@ -6,12 +6,12 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
 import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
-import { getCookie } from "lib/getCookie";
 import { USER_IP_ADDRESS } from "constants/keys";
 import { getIpAddress } from "react-app/src/state/utils/localizationApiService";
 import { PURCHASE_SUMMARY } from "react-app/src/routing/Paths";
 import { FormattedMessage } from "react-intl";
 import { AVAILABLE_PAYMENTS_METHODS } from "react-app/src/constants/messages";
+import getCookie from "react-app/src/utils/getCookie";
 
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",

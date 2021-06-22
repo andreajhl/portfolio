@@ -49,20 +49,24 @@ const DLocalFormCard = ({
   const intl = useIntl();
   const [card, setCard] = useState(null);
   const [buyerName, setBuyerName] = useState("");
+  const [processingCard, setProcessingCard] = useState(false);
   const [tokenError, settokenError] = useState("");
   const [dLocalInstance, setDLocalInstance] = useState(null);
   const buyerNameCard = useRef<HTMLInputElement>(null);
   const handlerSubmitCreditCardDetails = (e) => {
     e.preventDefault();
     if (buyerName) {
+      setProcessingCard(true);
       dLocalInstance
         .createToken(card, {
           name: buyerName,
         })
         .then((result) => {
           handleStartPayment(result.token);
+          setProcessingCard(false);
         })
         .catch((err) => {
+          setProcessingCard(false);
           err.result
             ? settokenError(err.result)
             : settokenError("Los datos de su tarjeta no son validos.");
@@ -139,7 +143,7 @@ const DLocalFormCard = ({
       <div className="mx-auto text-danger">{paymentErrorMessage}</div>
       <button
         onClick={(e) => handlerSubmitCreditCardDetails(e)}
-        disabled={disabled}
+        disabled={processingCard || disabled}
         className="btn btn-primary mx-auto mt-2"
         style={{
           backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,

@@ -4,12 +4,19 @@ import { withAuthenticationRequired } from "@auth0/auth0-react";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import { ProcessStripe3DFormPage } from "react-app/src/components/pages/stripe_3d_form";
 import { history } from "react-app/src/routing/History";
+import { ROOT_PATH } from "react-app/src/routing/Paths";
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params: { contract_reference }
-}) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const contract_reference = params?.contract_reference;
+
+  if (typeof contract_reference === "undefined") {
+    return {
+      redirect: { destination: ROOT_PATH, permanent: false },
+    };
+  }
+
   return {
-    props: { contract_reference }
+    props: { contract_reference },
   };
 };
 
@@ -26,5 +33,5 @@ const Iframe = ({ contract_reference }) => {
 };
 
 export default withAuthenticationRequired(Iframe, {
-  onRedirecting: () => <LoadingPage />
+  onRedirecting: () => <LoadingPage />,
 });

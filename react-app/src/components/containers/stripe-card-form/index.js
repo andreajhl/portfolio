@@ -46,6 +46,8 @@ class StripeCardForm extends Component {
       ownerName: this.session.getSession()?.fullName || "",
       ownerEmail: this.session.getSession()?.email || "",
       errorMessage: null,
+      errorType: null,
+      errorCode: null,
       disableButton: false,
     };
   }
@@ -112,6 +114,8 @@ class StripeCardForm extends Component {
             ...this.state,
             disableButton: false,
             errorMessage: response.error.message,
+            errorType: response.error?.type,
+            errorCode: response.error?.code,
           });
         }
         // SEND TO THE BACKEND TO LINKED WITH THE CUSTOMER AND APPLY THE AUTHORIZATION
@@ -233,6 +237,8 @@ class StripeCardForm extends Component {
       ...this.state,
       disableButton: false,
       errorMessage: null,
+      errorCode: null,
+      errorType: null,
     });
   };
 
@@ -242,7 +248,9 @@ class StripeCardForm extends Component {
         <div className={"mx-auto p-4 error-container"}>
           <div className="text-danger text-center mb-3">
             <small className={"text-danger font-weight-bold"}>
-              {this.state.errorMessage}
+              {this.state.errorMessage} <br />
+              {this.state.errorCode ? this.state.errorCode : null} <br />
+              {this.state.errorType ? this.state.errorType : null} <br />
             </small>
           </div>
           <div className={"mx-auto text-center mb-3"}>

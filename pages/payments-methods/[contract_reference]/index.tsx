@@ -6,6 +6,7 @@ import isMobile from "lib/utils/isMobile";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import dynamic from "next/dynamic";
+import { ROOT_PATH } from "react-app/src/routing/Paths";
 
 const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
   import("react-app/src/components/pages/payment-methods").then(
@@ -20,9 +21,17 @@ const DesktopPaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
 );
 
 export const getServerSideProps: GetServerSideProps = async ({
-  params: { contract_reference },
+  params,
   req,
 }) => {
+  const contract_reference = params?.contract_reference;
+
+  if (typeof contract_reference === "undefined") {
+    return {
+      redirect: { destination: ROOT_PATH, permanent: false },
+    };
+  }
+
   return {
     props: {
       contract_reference,

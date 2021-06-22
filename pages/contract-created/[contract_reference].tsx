@@ -5,6 +5,7 @@ import LoadingPage from "react-app/src/components/layouts/loading-page";
 import isMobile from "lib/utils/isMobile";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import dynamic from "next/dynamic";
+import { ROOT_PATH } from "react-app/src/routing/Paths";
 
 const DesktopContractCreatedPage = dynamic<{ contractReference: any }>(() =>
   import("desktop-app/components/pages/contract-created").then(
@@ -20,11 +21,18 @@ const ContractCreatedPage = dynamic<{ contractReference: any }>(() =>
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
-  params: { contract_reference },
+  params,
 }) => {
+  const contractReference = params?.contract_reference;
+
+  if (typeof contractReference === "undefined") {
+    return {
+      redirect: { destination: ROOT_PATH, permanent: false },
+    };
+  }
   return {
     props: {
-      contract_reference,
+      contractReference,
       isMobile: isMobile(req.headers["user-agent"]),
     },
   };

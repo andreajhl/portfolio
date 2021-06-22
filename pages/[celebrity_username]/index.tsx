@@ -25,6 +25,7 @@ import { useEffect } from "react";
 import waitFor from "react-app/src/utils/waitFor";
 import { defineMessages, useIntl } from "react-intl";
 import { celebrityType } from "desktop-app/types/celebrityType";
+import debug from "react-app/src/utils/debug";
 
 const CelebrityProfilePage = dynamic<{ celebrity: celebrityType }>(() =>
   import("react-app/src/components/pages/celebrity-profile").then(
@@ -46,44 +47,62 @@ const headData = defineMessages({
       "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.",
   },
 });
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  async ({ params: { celebrity_username }, store, req }) => {
-    const isMobile = isMobileDevice(req.headers["user-agent"]);
-    await get(celebrity_username, false, !isMobile)(store.dispatch);
-    const { celebrities } = store.getState();
 
-    const celebrity = celebrities.getCelebrityReducer.data;
-    if (!celebrity.id) {
+const redirectToSanitizedPath = {
+  destination: "/celebrity_username",
+  permanent: false,
+};
+
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+  async ({ params, store, req }) => {
+    if (typeof params === "undefined") {
       return {
-        redirect: {
-          destination: CELEBRITY_PROFILE_ERROR.replace(
-            ":celebrity_username",
-            String(celebrity_username)
-          ),
-          permanent: false,
-        },
+        redirect: redirectToSanitizedPath,
       };
     }
-    store.dispatch(
-      setCelebrityProfileVersion(getProfileVersionDependingOnTime())
-    );
+    try {
+      const { celebrity_username } = params;
+      const isMobile = isMobileDevice(req.headers["user-agent"]);
+      await get(celebrity_username, false, !isMobile)(store.dispatch);
+      const { celebrities } = store.getState();
 
-    if (isMobile) {
-      await listPublicContracts(celebrity.id, { currentPage: 1 })(
-        store.dispatch
+      const celebrity = celebrities.getCelebrityReducer.data;
+      if (!celebrity.id) {
+        return {
+          redirect: {
+            destination: CELEBRITY_PROFILE_ERROR.replace(
+              ":celebrity_username",
+              String(celebrity_username)
+            ),
+            permanent: false,
+          },
+        };
+      }
+      store.dispatch(
+        setCelebrityProfileVersion(getProfileVersionDependingOnTime())
       );
-      await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
-    } else {
-      await listReviewsV2(celebrity.username)(store.dispatch);
-      await listPublicContractsV2(celebrity.username)(store.dispatch);
-    }
 
-    return {
-      props: {
-        celebrity,
-        isMobile,
-      },
-    };
+      if (isMobile) {
+        await listPublicContracts(celebrity.id, { currentPage: 1 })(
+          store.dispatch
+        );
+        await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
+      } else {
+        await listReviewsV2(celebrity.username)(store.dispatch);
+        await listPublicContractsV2(celebrity.username)(store.dispatch);
+      }
+      return {
+        props: {
+          celebrity,
+          isMobile,
+        },
+      };
+    } catch (error) {
+      debug("ERROR getServerSideProps", error);
+      return {
+        props: {},
+      };
+    }
   }
 );
 

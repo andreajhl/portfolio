@@ -94,22 +94,30 @@ async function getCurrencyCurrentTRMCookieHeader(
   const FINAL_PATH =
     process.env.NEXT_PUBLIC_ENDPOINT +
     "custom-endpoints/gateway-payment-methods/currency-exchange";
-  const response = await axios.get<{
-    data: {
-      from: string;
-      rate: number;
-      to: string;
+  try {
+    const response = await axios.get<{
+      data: {
+        from: string;
+        rate: number;
+        to: string;
+      };
+    }>(FINAL_PATH, {
+      params: {
+        from: "USD",
+        to: currencyCode,
+      },
+    });
+    return {
+      currencyCurrentTRM: response.data?.data?.rate || "",
+      currentCurrencyTRMCode: response.data?.data?.to,
     };
-  }>(FINAL_PATH, {
-    params: {
-      from: "USD",
-      to: currencyCode,
-    },
-  });
-  return {
-    currencyCurrentTRM: response.data?.data?.rate || "",
-    currentCurrencyTRMCode: response.data?.data?.to,
-  };
+  } catch (error) {
+    debug("Error relizando llamada a " + FINAL_PATH, error);
+    return {
+      currencyCurrentTRM: 1,
+      currentCurrencyTRMCode: "USD",
+    };
+  }
 }
 
 const setUserLocationCookie = async ({

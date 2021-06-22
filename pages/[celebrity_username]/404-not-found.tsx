@@ -14,9 +14,21 @@ const headData = defineMessages({
     defaultMessage: "No se encontró un famoso con este usuario",
   },
 });
+
+const redirectToSanitizedPath = {
+  destination: "/celebrity_username/404-not-found",
+  permanent: false,
+};
+
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  async ({ params: { celebrity_username }, store }) => {
-    await get(celebrity_username)(store.dispatch);
+  async ({ params, store }) => {
+    if (typeof params === "undefined") {
+      return {
+        redirect: redirectToSanitizedPath,
+      };
+    }
+    const celebrity_username = params?.celebrity_username;
+    await get(celebrity_username, true)(store.dispatch);
 
     const celebrity = store.getState().celebrities.getCelebrityReducer.data;
     if (celebrity.id) {

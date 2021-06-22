@@ -11,12 +11,23 @@ const headData = defineMessages({
   },
 });
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params: { celebrity_username },
-}) => {
+const redirectToSanitizedPath = {
+  destination: "/subscription/subscribe/celebrity_username",
+  permanent: false,
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  if (typeof params === "undefined") {
+    return {
+      redirect: redirectToSanitizedPath,
+    };
+  }
+
+  const celebrityUsername = params?.celebrity_username;
+
   return {
     props: {
-      celebrityUsername: celebrity_username,
+      celebrityUsername,
     },
   };
 };

@@ -5,7 +5,6 @@ import StripeFlowHandler from "../stripe-flow-handler";
 import { connect } from "react-redux";
 import { WhatsappContact } from "../whatsapp-contact";
 import DiscountCouponForm from "../discount-coupon-form";
-import getCookie from "../../../utils/getCookie";
 import { FormattedMessage } from "react-intl";
 import getWindow from "react-app/src/utils/getWindow";
 import { DLocalPaymentsMethods } from "../d-local-payments-methods/index";
@@ -53,20 +52,6 @@ class AvailablePaymentMethods extends Component {
       selectedPaymentMethod: "STRIPE",
     });
   };
-
-  applyDiscount() {
-    let discountTotal = 0;
-    if (this.props.couponData.data.isPercentageDiscount) {
-      discountTotal =
-        this.props.couponData.data.discount_amount * this.props.contractPrice;
-      if (discountTotal > this.props.couponData.data.maxDiscountAmount) {
-        discountTotal = this.props.couponData.data.maxDiscountAmount;
-      }
-    } else {
-      discountTotal = this.props.couponData.data.discount_amount;
-    }
-    return this.props.contractPrice - discountTotal;
-  }
 
   renderWhatsappContactForm = () => {
     return getWindow().userLocation?.countryCode === "CO" ||
@@ -140,7 +125,7 @@ class AvailablePaymentMethods extends Component {
             contractReference={this.props.contractReference}
             contractPrice={
               this.props.couponData.completed
-                ? this.applyDiscount()
+                ? this.props.couponData?.data?.finalAmount
                 : this.props.contractPrice
             }
             discountCouponId={this.props.couponData.data.id}
@@ -185,7 +170,7 @@ class AvailablePaymentMethods extends Component {
               contractReference={this.props.contractReference}
               contractPrice={
                 this.props.couponData.completed
-                  ? this.applyDiscount()
+                  ? this.props.couponData?.data?.finalAmount
                   : this.props.contractPrice
               }
               discountCouponId={this.props.couponData.data.id}
@@ -257,6 +242,7 @@ class AvailablePaymentMethods extends Component {
       "BANK_TRANSFER",
       "TICKET",
       "CREDIT_CARD",
+      "DEBIT_CARD",
     ].includes(this.state.selectedPaymentMethod);
 
     return this.props.paymentMethodsAvailableIsLoading ? (
