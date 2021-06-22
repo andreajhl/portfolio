@@ -9,7 +9,7 @@ import {
   ExchangeArrowIcon,
 } from "desktop-app/components/common/icons";
 import WarningMessage from "desktop-app/components/common/warning-message";
-import { getCookie } from "lib/getCookie";
+import getCookie from "lib/utils/getCookie";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
