@@ -93,6 +93,13 @@ class MyDocument extends Document {
           }}();`
             }}
           />
+          <script
+            type="text/javascript"
+            id="hs-script-loader"
+            async
+            defer
+            src="//js.hs-scripts.com/8793737.js"
+          />
         </Head>
         <body className="f-main-body">
           <Main />
