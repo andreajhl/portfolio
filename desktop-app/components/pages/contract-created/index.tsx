@@ -45,46 +45,46 @@ function ContractCreated({
       <Maybe it={!isLoading && isCompleted}>
         <Maybe
           it={CONTRACT_APPROVED_STATUS.includes(
-            contractWithPayments.lastPayment.status
+            contractWithPayments?.lastPayment?.status
           )}
         >
           <ContractSummaryApproved
-            lastPayment={contractWithPayments.lastPayment}
-            contract={contractWithPayments.contract}
-            celebrity={contractWithPayments.celebrity}
+            lastPayment={contractWithPayments?.lastPayment}
+            contract={contractWithPayments?.contract}
+            celebrity={contractWithPayments?.celebrity}
           />
         </Maybe>
         <Maybe
           it={CONTRACT_AUTHORIZED_STATUS.includes(
-            contractWithPayments.lastPayment.status
+            contractWithPayments?.lastPayment?.status
           )}
         >
           <ContractSummaryAuthorized
-            lastPayment={contractWithPayments.lastPayment}
-            contract={contractWithPayments.contract}
-            celebrity={contractWithPayments.celebrity}
+            lastPayment={contractWithPayments?.lastPayment}
+            contract={contractWithPayments?.contract}
+            celebrity={contractWithPayments?.celebrity}
           />
         </Maybe>
         <Maybe
           it={CONTRACT_REJECTED_STATUS.includes(
-            contractWithPayments.lastPayment.status
+            contractWithPayments?.lastPayment?.status
           )}
         >
           <ContractSummaryRejected
-            lastPayment={contractWithPayments.lastPayment}
-            contract={contractWithPayments.contract}
-            celebrity={contractWithPayments.celebrity}
+            lastPayment={contractWithPayments?.lastPayment}
+            contract={contractWithPayments?.contract}
+            celebrity={contractWithPayments?.celebrity}
           />
         </Maybe>
         <Maybe
           it={CONTRACt_PENDING_STATUS.includes(
-            contractWithPayments.lastPayment.status
+            contractWithPayments?.lastPayment?.status
           )}
         >
           <ContractSummaryPending
-            lastPayment={contractWithPayments.lastPayment}
-            contract={contractWithPayments.contract}
-            celebrity={contractWithPayments.celebrity}
+            lastPayment={contractWithPayments?.lastPayment}
+            contract={contractWithPayments?.contract}
+            celebrity={contractWithPayments?.celebrity}
           />
         </Maybe>
       </Maybe>
