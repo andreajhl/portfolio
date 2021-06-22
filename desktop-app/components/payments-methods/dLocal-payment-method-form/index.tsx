@@ -3,13 +3,11 @@ import { getPurchaseSummaryPath } from "constants/paths";
 import {
   DotCircle,
   Ellipse,
-  PaypalIcon,
   CardIcon,
   CashIcon,
   ExchangeArrowIcon,
 } from "desktop-app/components/common/icons";
 import WarningMessage from "desktop-app/components/common/warning-message";
-import { getCookie } from "lib/getCookie";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -17,6 +15,7 @@ import Maybe from "react-app/src/components/common/helpers/maybe";
 import { processDlocalPayment } from "react-app/src/state/ducks/payments/actions";
 import { getIpAddress } from "react-app/src/state/utils/localizationApiService";
 import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
+import getCookie from "react-app/src/utils/getCookie";
 import DLocalFormCard from "../DLocal-form-card";
 import DLocalSelectPaymentMethod from "../DLocal-select-payment-method";
 import styles from "./styles.module.scss";
