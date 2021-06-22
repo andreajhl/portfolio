@@ -34,7 +34,9 @@ function HiringShareInWhatsappPage({ contractReference }) {
             deliveryTo={shareData.deliveryTo}
             deliveryFrom={shareData.deliveryFrom}
             contractReference={contractReference}
-            videoPosterUrl={contract?.celebrityData?.avatar}
+            videoPosterUrl={
+              contract?.mediaPosterUrl || contract?.celebrityData?.avatar
+            }
           />
           <div className={styles.SharePreviewButtons}>
             <button
