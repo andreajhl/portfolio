@@ -38,17 +38,17 @@ export const getServerSideProps: GetServerSideProps = async ({
   };
 };
 
-const ContractCreated = ({ contract_reference, isMobile }) => {
+const ContractCreated = ({ contractReference, isMobile }) => {
   return (
     <>
       <CustomHead />
       <Maybe
         it={isMobile}
         orElse={
-          <DesktopContractCreatedPage contractReference={contract_reference} />
+          <DesktopContractCreatedPage contractReference={contractReference} />
         }
       >
-        <ContractCreatedPage contractReference={contract_reference} />
+        <ContractCreatedPage contractReference={contractReference} />
       </Maybe>
     </>
   );
