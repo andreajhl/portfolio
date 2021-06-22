@@ -7,12 +7,10 @@ import { useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
-
-const mapStateToProps = (state) => ({});
+import { useUpdateHiredContract } from "lib/hooks/useUpdateHiredContract";
 
 const mapDispatchToProps = {};
 
-type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
 type FormValuesType = {
@@ -21,23 +19,29 @@ type FormValuesType = {
   instructions: string;
 };
 
-type ContractDataFormProps = {} & FormValuesType & StateProps & DispatchProps;
+type ContractDataFormProps = {
+  contract_reference;
+} & FormValuesType &
+  DispatchProps;
 
 function ContractDataForm({
   deliveryTo,
   deliveryFrom,
-  instructions
+  instructions,
+  contract_reference,
 }: ContractDataFormProps) {
+  const { update } = useUpdateHiredContract();
+
   const [isEditing, setIsEditing] = useState(false);
-  const { values, onChangeField } = useForm<FormValuesType>({
+  const { values, onChangeField, submitForm } = useForm<FormValuesType>({
     initialValues: {
       deliveryTo,
       deliveryFrom,
-      instructions
+      instructions,
     },
-    onSubmit() {
-      console.log("Enviado");
-    }
+    onSubmit(data) {
+      update(contract_reference, data);
+    },
   });
 
   return (
@@ -47,7 +51,10 @@ function ContractDataForm({
           isEditing={isEditing}
           editButtonColor={"var(--dark)"}
           onClickEdit={() => setIsEditing((isEditing) => !isEditing)}
-          onClickSave={() => setIsEditing((isEditing) => !isEditing)}
+          onClickSave={() => {
+            setIsEditing((isEditing) => !isEditing);
+            submitForm();
+          }}
         />
       </div>
 
@@ -58,7 +65,6 @@ function ContractDataForm({
           label="Para"
           value={values.deliveryTo}
           onChange={(event) => {
-            console.log(event.target);
             onChangeField(event);
           }}
           name="deliveryTo"
@@ -71,6 +77,9 @@ function ContractDataForm({
             value={values.deliveryFrom}
             name="deliveryFrom"
             disabled={!isEditing}
+            onChange={(event) => {
+              onChangeField(event);
+            }}
             maxLength={40}
           />
         </Maybe>
@@ -78,17 +87,17 @@ function ContractDataForm({
       <ContractInstructionsTextarea
         labelClass={styles.ContractDataFormInstructionsLabel}
         id="instructions"
-        name="instruction"
+        name="instructions"
         value={values.instructions}
+        onChange={(event) => {
+          onChangeField(event);
+        }}
         disabled={!isEditing}
       />
     </form>
   );
 }
 
-const _ContractDataForm = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ContractDataForm);
+const _ContractDataForm = connect(null, mapDispatchToProps)(ContractDataForm);
 
 export { _ContractDataForm as ContractDataForm };
