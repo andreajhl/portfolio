@@ -14,6 +14,7 @@ type ContractInfoProps = {
   celebrityDiscountPercentage: number;
   original_price: number;
   priceBeforeCelebrityDiscount: number;
+  contract_reference;
 };
 
 function ContractInfo({
@@ -25,6 +26,7 @@ function ContractInfo({
   instructions,
   price,
   original_price,
+  contract_reference,
 }: ContractInfoProps) {
   return (
     <div className={styles.ContractInfo}>
@@ -42,7 +44,8 @@ function ContractInfo({
       >
         <ContractDataForm
           deliveryTo={deliveryTo}
-          deliveryFrom={deliveryFrom || "Prueba Prueba"}
+          contract_reference={contract_reference}
+          deliveryFrom={deliveryFrom}
           instructions={instructions}
         />
       </div>

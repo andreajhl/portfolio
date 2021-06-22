@@ -37,7 +37,6 @@ function PaymentMethodsPage({
   useEffect(() => {
     getContractToPayData(contractReference);
   }, [contractReference]);
-  console.log(contract);
   return (
     <PageContainer showFooter={false}>
       <PageHeading showHomeLink={false}>Confirmación de compra</PageHeading>
@@ -49,6 +48,7 @@ function PaymentMethodsPage({
             orElse={<ContractInfoSkeleton />}
           >
             <ContractInfo
+              contract_reference={contract.reference}
               celebrityAvatar={contract.celebrity_avatar}
               celebrityFullName={contract.celebrity_full_name}
               occasion={"BIRTHDAY"}
