@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   };
 };
 
-function HiringPreview({ contract_reference, isMobile }) {
+function HiringPreview({ contractReference, isMobile }) {
   useDesktopClass(true);
 
   return (
@@ -50,10 +50,10 @@ function HiringPreview({ contract_reference, isMobile }) {
       <Maybe
         it={isMobile}
         orElse={
-          <DesktopHiringPreviewPage contractReference={contract_reference} />
+          <DesktopHiringPreviewPage contractReference={contractReference} />
         }
       >
-        <HiringPreviewPage contractReference={contract_reference} />
+        <HiringPreviewPage contractReference={contractReference} />
       </Maybe>
     </>
   );
