@@ -4,12 +4,28 @@ import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
 import classes from "classnames";
 import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCurrency";
+import {
+  AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES,
+  DOCUMENT_NAME_FOR_COUNTRIES,
+} from "react-app/src/constants/messages";
+import { AVAILABLE_CURRENCIES_FOR_PAYMENTS } from "constants/availableCurrencyForPayments";
+import { RootState } from "react-app/src/state/store";
+import { connect, ConnectedProps } from "react-redux";
+import { useIntl } from "react-intl";
 
 const initialValuesForm = {
   buyer_name: "",
   email_address: "",
   identification_document: "",
 };
+
+const mapStateToProps = ({ payments }: RootState) => ({
+  currencyExchangeData: payments.currencyExchangeReducer.data,
+});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type DLocalPersonalInfoFormProps = {
   initialValues?: typeof initialValuesForm;
@@ -20,15 +36,18 @@ type DLocalPersonalInfoFormProps = {
   }) => void;
   errorMessage: string;
   currency: string;
-};
+} & PropsFromRedux;
 
 function DLocalPersonalInfoForm({
   initialValues: initialValuesFromProps,
   onChangeValues,
   errorMessage,
   currency,
+  currencyExchangeData,
 }: DLocalPersonalInfoFormProps) {
   console.log(currency);
+  const intl = useIntl();
+
   const validations: ValidationsType<typeof initialValuesForm> = {
     buyer_name(value) {
       if (value.length === 0) return "Debes ingresar tu nombre";
@@ -50,6 +69,9 @@ function DLocalPersonalInfoForm({
   useEffect(() => {
     onChangeValues({ ...values });
   }, [values]);
+  const document_name_available = AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
+    (data) => data.name === currencyExchangeData.to
+  );
   return (
     <div>
       <form>
@@ -85,7 +107,15 @@ function DLocalPersonalInfoForm({
           value={values.identification_document}
           className={styles.InputModifier}
           onChange={onChangeField}
-          placeholder="CURP"
+          placeholder={
+            AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES.includes(
+              document_name_available?.name
+            )
+              ? intl.formatMessage(
+                  DOCUMENT_NAME_FOR_COUNTRIES[document_name_available?.name]
+                )
+              : document_name_available?.document_name
+          }
           name="identification_document"
         ></input>
         <WarningMessage
@@ -107,4 +137,6 @@ function DLocalPersonalInfoForm({
   );
 }
 
-export { DLocalPersonalInfoForm };
+const _DLocalPersonalInfoForm = connector(DLocalPersonalInfoForm);
+
+export { _DLocalPersonalInfoForm as DLocalPersonalInfoForm };
