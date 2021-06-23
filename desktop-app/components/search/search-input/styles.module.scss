@@ -1,0 +1,65 @@
+.SearchInput {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  border-radius: 10px;
+  width: 250px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  // background-color: #f9f9ff;
+  margin-left: 75px;
+  margin-right: 25px;
+  border: 1px solid #dedede;
+  &:focus {
+    background-color: var(--gray-1);
+  }
+}
+
+.InputElement {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  height: auto !important;
+  width: 100%;
+  outline: none;
+  background-color: transparent;
+  &:active {
+    border: none;
+  }
+}
+
+.DeleteIconButton,
+.SearchIconButton {
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+
+  &:hover {
+    background-color: var(--gray-1);
+  }
+}
+
+.SearchIconButton {
+  width: 1.6875rem;
+  height: 1.6875rem;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.DeleteIconButton {
+  width: 1.6875rem;
+  height: 1.6875rem;
+  margin-right: 0.2rem;
+}
+
+.SearchIcon {
+  color: var(--gray-3);
+  &:hover {
+    color: var(--gray-3) !important;
+  }
+  transition: 0.15s ease all;
+}

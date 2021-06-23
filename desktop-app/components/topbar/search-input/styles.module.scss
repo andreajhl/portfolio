@@ -28,7 +28,12 @@
   transition: 0.15s ease all;
 }
 
+.TopBarSearchInput:focus ~ .SearchPreviewResults {
+  display: block;
+}
+
 .SearchPreviewResults {
+  display: none;
   position: absolute;
   top: 100%;
   width: 100%;
@@ -42,6 +47,9 @@
   padding-top: 1.1875rem;
   a {
     text-decoration: none;
+  }
+  &:hover {
+    display: block;
   }
 }
 
