@@ -8,6 +8,7 @@ import { OrderByDropdown } from "../order-by-dropdown";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { useRouter } from "next/router";
 
 const orderByOptions = [
   { label: "Destacados", value: "" },
@@ -67,6 +68,7 @@ function MainContentTopBar({
   hashtags,
   updateSearchFilters,
 }: MainContentTopBarProps) {
+  const { query } = useRouter();
   function updateHashtagFilter(hashtags: string[]) {
     updateSearchFilters({ hashtags: hashtags.join(",") });
   }
@@ -105,6 +107,7 @@ function MainContentTopBar({
           />
           <span className={styles.MainContentTopBarTotalResults}>
             {totalResults} resultados
+            {query.search ? ` para "${String(query.search)}"` : null}
           </span>
         </Maybe>
       </Maybe>
