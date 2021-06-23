@@ -1,4 +1,8 @@
-import { getCelebrityProfilePath, SEARCH_PATH } from "constants/paths";
+import {
+  getCelebrityProfilePath,
+  getSearchPath,
+  SEARCH_PATH,
+} from "constants/paths";
 import { SearchIcon } from "desktop-app/components/common/icons";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
@@ -6,12 +10,12 @@ import styles from "./styles.module.scss";
 import debounce from "lodash.debounce";
 import { SEARCH_LIST } from "react-app/src/state/ducks/celebrities/paths";
 import axios from "axios";
-import Link from "next/link";
 import useStatus from "lib/hooks/useStatus";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { SkeletonTopbarSearchInput } from "./skeleton";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import { connect, ConnectedProps } from "react-redux";
+import { Link } from "desktop-app/components/common/routing/link";
 
 const FINAL_PATH = process.env.NEXT_PUBLIC_ENDPOINT + SEARCH_LIST;
 
@@ -33,6 +37,7 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
           .get(FINAL_PATH, {
             params: {
               search: query,
+              limit: 7,
             },
           })
           .then((response) => {
@@ -54,13 +59,11 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
     updateSearchFilters({
       search: currentQuery,
     });
-    router.push({
-      pathname: SEARCH_PATH,
-      query: {
-        limit: 10,
+    router.push(
+      getSearchPath({
         search: String(currentQuery),
-      },
-    });
+      })
+    );
   };
 
   return (
@@ -98,31 +101,41 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
           >
             {resultsQuery.length > 0
               ? resultsQuery.map((result) => (
-                  <Link href={getCelebrityProfilePath(result.username)}>
-                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                    <a className={styles.AnchorTagResult}>
-                      <div
-                        key={result.fullName}
-                        className={styles.PreviewResultItem}
-                      >
-                        <img
-                          src={result.avatar}
-                          alt={result.fullName}
-                          className={styles.AvatarCelebrity}
-                        ></img>
-                        <div className={styles.CelebrityInfo}>
-                          <span className={styles.CelebrityName}>
-                            {result.fullName}
-                          </span>
-                          <span className={styles.CelebrityCategory}>
-                            {result.title}
-                          </span>
-                        </div>
+                  <Link
+                    className={styles.AnchorTagResult}
+                    href={getCelebrityProfilePath(result.username)}
+                  >
+                    <div
+                      key={result.fullName}
+                      className={styles.PreviewResultItem}
+                    >
+                      <img
+                        src={result.avatar}
+                        alt={result.fullName}
+                        className={styles.AvatarCelebrity}
+                      ></img>
+                      <div className={styles.CelebrityInfo}>
+                        <span className={styles.CelebrityName}>
+                          {result.fullName}
+                        </span>
+                        <span className={styles.CelebrityCategory}>
+                          {result.title}
+                        </span>
                       </div>
-                    </a>
+                    </div>
                   </Link>
                 ))
               : null}
+            <Link
+              href={getSearchPath({
+                search: String(currentQuery),
+              })}
+            >
+              <div className={styles.SectionCTASeeMore}>
+                <SearchIcon className={styles.SeeMoreIcon} />
+                Ver mas resultados para "{currentQuery}"
+              </div>
+            </Link>
           </Maybe>
         </div>
       ) : null}
