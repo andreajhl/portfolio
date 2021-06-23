@@ -26,7 +26,6 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
   const { push, query } = useRouter();
   const [status, setStatus] = useStatus("idle");
-  const [showResults, setShowResults] = useState(false);
   const [resultsQuery, setResultsQuery] = useState([]);
   const [currentQuery, setCurrentQuery] = useState<string>(
     String(query.search || "")
@@ -60,6 +59,7 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
   }, [currentQuery]);
 
   const goToSearch = () => {
+    console.log("click goToSearch");
     if (!currentQuery) return;
     updateSearchFilters({
       search: currentQuery,
@@ -75,8 +75,6 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
     <div className={styles.TopBarSearch}>
       <input
         autoComplete="off"
-        onBlur={() => setShowResults(false)}
-        onFocus={() => setShowResults(true)}
         className={styles.TopBarSearchInput}
         type="text"
         value={currentQuery}
@@ -88,7 +86,7 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
         id="TopBarSearchInput"
       />
       <SearchIcon className={styles.TopBarSearchIcon} />
-      {showResults && currentQuery !== "" ? (
+      {currentQuery !== "" ? (
         <div className={styles.SearchPreviewResults}>
           <Maybe it={status === "completed"}>
             <div className={styles.ResultsHeader}>
