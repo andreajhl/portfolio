@@ -1,4 +1,8 @@
-import { getCelebrityProfilePath, SEARCH_PATH } from "constants/paths";
+import {
+  getCelebrityProfilePath,
+  getSearchPath,
+  SEARCH_PATH,
+} from "constants/paths";
 import { SearchIcon } from "desktop-app/components/common/icons";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
@@ -33,6 +37,7 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
           .get(FINAL_PATH, {
             params: {
               search: query,
+              limit: 7,
             },
           })
           .then((response) => {
@@ -54,13 +59,11 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
     updateSearchFilters({
       search: currentQuery,
     });
-    router.push({
-      pathname: SEARCH_PATH,
-      query: {
-        limit: 10,
+    router.push(
+      getSearchPath({
         search: String(currentQuery),
-      },
-    });
+      })
+    );
   };
 
   return (
