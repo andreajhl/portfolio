@@ -1,49 +1,58 @@
-import React from "react";
-import SubmitButton from "../button/submit-button";
 import styles from "./styles.module.scss";
-const numberPhone = 18559107580;
-type WhatsapAdForContractsProps = {
+import classes from "classnames";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+import { getWhatsappMessageToNumberLink } from "lib/utils/getSocialMediaLink";
+
+const { whatsappMessage } = defineMessages({
+  whatsappMessage: {
+    defaultMessage:
+      "Me gustaría que {celebrityFullName} me grabe un video para mi negocio.",
+  },
+});
+
+const FAMOSOS_PHONE_NUMBER = 18559107580;
+
+type WhatsappAdForContractsProps = {
   celebrityFullName: string;
 };
 
-const WhatsapAdForContracts = ({
-  celebrityFullName
-}: WhatsapAdForContractsProps) => {
+function WhatsappAdForContracts({
+  celebrityFullName,
+}: WhatsappAdForContractsProps) {
+  const { formatMessage } = useIntl();
+  const message = formatMessage(whatsappMessage, { celebrityFullName });
+
+  const sendWhatsappMessageLink = getWhatsappMessageToNumberLink(
+    FAMOSOS_PHONE_NUMBER,
+    message
+  );
+
   return (
-    <div className={styles.WhatsapAdForContracts}>
-      <a
-        href={`https://wa.me/${numberPhone}?text=${encodeURIComponent(
-          celebrityFullName
-        )}`}
-        target="_blank"
-        rel="noreferrer"
-      >
+    <div className={styles.WhatsappAdForContracts}>
+      <a href={sendWhatsappMessageLink} target="_blank" rel="noreferrer">
         <img
           alt="Whatsapp Icono"
           width="47px"
           height="51px"
           src="/assets/img/whatsapp-icon.png"
-        ></img>
+        />
       </a>
       <span>
-        Te redirigiremos a Whatsapp donde uno de nuestros agentes te atenderá
-        para continuar con el proceso.
+        <FormattedMessage
+          defaultMessage="Te redirigiremos a Whatsapp donde uno de nuestros agentes te atenderá
+        para continuar con el proceso."
+        />
       </span>
-
-      <SubmitButton
-        onClick={() =>
-          window.open(
-            `https://wa.me/${numberPhone}?text=${encodeURIComponent(
-              celebrityFullName
-            )}`,
-            "_blank"
-          )
-        }
+      <a
+        href={sendWhatsappMessageLink}
+        target="_blank"
+        rel="noreferrer"
+        className={classes("btn btn-primary", styles.SubmitButton)}
       >
-        Continuar
-      </SubmitButton>
+        <FormattedMessage defaultMessage="Continuar" />
+      </a>
     </div>
   );
-};
+}
 
-export default WhatsapAdForContracts;
+export default WhatsappAdForContracts;
