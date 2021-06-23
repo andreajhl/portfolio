@@ -16,6 +16,7 @@ import { RootState } from "react-app/src/state/store";
 import Pagination from "desktop-app/components/common/pagination";
 import Skeleton from "react-loading-skeleton";
 import scrollToTop from "lib/utils/scrollToTop";
+import { useRouter } from "next/router";
 
 const allowedStatuses = [PAYED_BY_CLIENT, REJECTED, EXPIRED, COMPLETED];
 
@@ -45,7 +46,8 @@ const mapStateToProps = ({
   contracts: { listUserContractsReducer },
 }: RootState) => ({
   isCompleted: listUserContractsReducer.completed,
-  contracts: listUserContractsReducer?.data?.results as MyHiringsContract[],
+  contracts: (listUserContractsReducer?.data?.results ||
+    []) as MyHiringsContract[],
   informationPage: listUserContractsReducer?.data?.informationPage,
 });
 
@@ -56,21 +58,29 @@ const mapDispatchToProps = {
 const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-type MyHiringsCardsSectionProps = {} & PropsFromRedux;
+type MyHiringsCardsSectionProps = {
+  query: { [key: string]: any };
+} & PropsFromRedux;
 
 function MyHiringsCardsSection({
   isCompleted,
   listUserContracts,
   contracts,
   informationPage,
+  query,
 }: MyHiringsCardsSectionProps) {
-  const [currentPage, setCurrentPage] = useState(1);
+  const router = useRouter();
+  const currentPage = parseFloat(query?.currentPage) || 1;
 
   useEffect(() => {
-    // GTM.tagManagerDataLayer("CLIENT_HIRINGS_PAGE_VIEW");
     const listParams = getListParams(currentPage);
     listUserContracts(listParams);
   }, [currentPage]);
+
+  function setCurrentPage(newPage: number) {
+    const { pathname, replace } = router;
+    replace({ pathname, query: { currentPage: newPage } });
+  }
 
   function updateCurrentPage(newPage: number) {
     scrollToTop({ behavior: "auto" }); // Con "smooth" realiza un salto debido al cambio de altura.

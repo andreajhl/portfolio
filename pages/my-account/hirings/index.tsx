@@ -12,22 +12,22 @@ const ClientHiringsPage = dynamic(() =>
   )
 );
 
-const MyHirings = dynamic(() =>
+const MyHirings = dynamic<{ query: { [key: string]: any } }>(() =>
   import("desktop-app/components/pages/my-hirings").then((mod) => mod.MyHirings)
 );
 
-export const getServerSideProps = async ({ req }) => {
+export const getServerSideProps = async ({ req, query }) => {
   return {
-    props: { isMobile: isMobile(req.headers["user-agent"]) },
+    props: { isMobile: isMobile(req.headers["user-agent"]), query },
   };
 };
 
-function Hiring({ isMobile }) {
+function Hiring({ isMobile, query }) {
   useDesktopClass(!isMobile);
   return (
     <>
       <CustomHead />
-      <Maybe it={isMobile} orElse={<MyHirings />}>
+      <Maybe it={isMobile} orElse={<MyHirings query={query} />}>
         <ClientHiringsPage />
       </Maybe>
     </>
