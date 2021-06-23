@@ -24,11 +24,14 @@ const connector = connect(null, { updateSearchFilters });
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
-  const router = useRouter();
+  const { push, query } = useRouter();
   const [status, setStatus] = useStatus("idle");
   const [showResults, setShowResults] = useState(false);
   const [resultsQuery, setResultsQuery] = useState([]);
-  const [currentQuery, setCurrentQuery] = useState<string>("");
+  const [currentQuery, setCurrentQuery] = useState<string>(
+    String(query.search || "")
+  );
+
   const getResults = useCallback(
     debounce((query) => {
       setStatus("loading");
@@ -51,15 +54,17 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
     }, 500),
     []
   );
+
   useEffect(() => {
     getResults(currentQuery);
   }, [currentQuery]);
+
   const goToSearch = () => {
     if (!currentQuery) return;
     updateSearchFilters({
       search: currentQuery,
     });
-    router.push(
+    push(
       getSearchPath({
         search: String(currentQuery),
       })
