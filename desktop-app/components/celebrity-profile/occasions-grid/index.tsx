@@ -1,21 +1,9 @@
 import classes from "classnames";
-import occasions from "constants/occasions";
-import { OccasionType } from "desktop-app/types/contractDataType";
+import occasions, { OccasionType } from "constants/occasions";
 import { Fragment } from "react";
+import { useIntl } from "react-intl";
 import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
-
-const FOR_ME = 1;
-
-const occasionsOnlyToGiftContract = [
-  "LOVE",
-  "MAKE_SMILE",
-  "HOPE",
-  "ASK_FOR_FORGIVENESS",
-];
-
-const occasionIsAvailableForGift = (occasionKey: string) =>
-  !occasionsOnlyToGiftContract.includes(occasionKey);
 
 type OccasionTitleProps = {
   title: string;
@@ -53,15 +41,18 @@ function OccasionsGrid({
   className = "",
   onClickOccasion,
 }: OccasionsGridProps) {
+  const { locale } = useIntl();
+  const currentLocaleOccasions = occasions[locale];
+
   return (
     <div className={classes(styles.OccasionsGrid, className)}>
-      {Object.entries(occasions).map(
-        ([occasionKey, { title }]: [OccasionType, OccasionDataType]) => {
-          const canDisplayOccasion =
-            contractType !== FOR_ME || occasionIsAvailableForGift(occasionKey);
-
+      {Object.entries(currentLocaleOccasions).map(
+        ([occasionKey, { title, messages }]: [
+          OccasionType,
+          OccasionDataType
+        ]) => {
+          const canDisplayOccasion = Boolean(messages[contractType - 1]);
           const onClickHandler = () => onClickOccasion(occasionKey);
-
           const occasionIsSelected = occasionKey === selectedOccasion;
 
           return (
