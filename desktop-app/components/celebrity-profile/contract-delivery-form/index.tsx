@@ -13,13 +13,6 @@ import { CelebrityVideoContractPrice } from "desktop-app/components/common/helpe
 import { CelebrityBusinessPrice } from "../celebrity-business-price";
 import getCelebrityBusinessPrice from "lib/utils/getCelebrityBusinessPrice";
 
-type ContractDeliveryFormProps = {
-  celebrity: celebrityType;
-  initialValues?: ContractDeliveryType;
-  onSubmit: (values: ContractDeliveryType) => void;
-  onStepChange: (values: ContractDeliveryType) => void;
-};
-
 const initialValues: ContractDeliveryType = {
   contractType: 1,
   deliveryTo: "",
@@ -43,10 +36,32 @@ const validations: ValidationsType<ContractDeliveryType> = {
   },
 };
 
+function getSanitizedValues(values: ContractDeliveryType) {
+  return values.contractType === 2
+    ? values
+    : { ...values, deliveryFrom: initialValues.deliveryFrom };
+}
+
+function shouldSwapDeliveryInfoValues(
+  currentContractType: number,
+  newContractType: number
+) {
+  if (currentContractType === 1 && newContractType === 3) return false;
+  if (currentContractType === 3 && newContractType === 1) return false;
+  return true;
+}
+
+type ContractDeliveryFormProps = {
+  celebrity: celebrityType;
+  initialValues?: ContractDeliveryType;
+  onSubmit: (values: ContractDeliveryType) => void;
+  onStepChange: (values: ContractDeliveryType) => void;
+};
+
 function ContractDeliveryForm({
   celebrity,
   initialValues: initialValuesFromProps,
-  onSubmit,
+  onSubmit: onSubmitFromProps,
   onStepChange,
 }: ContractDeliveryFormProps) {
   const {
@@ -58,7 +73,9 @@ function ContractDeliveryForm({
   } = useForm<ContractDeliveryType>({
     initialValues: initialValuesFromProps || initialValues,
     validations,
-    onSubmit,
+    onSubmit(values) {
+      onSubmitFromProps(getSanitizedValues(values));
+    },
   });
 
   const { user } = useAuth0();
@@ -81,8 +98,16 @@ function ContractDeliveryForm({
     goToClickedStep();
   }
 
-  function changeContractType(type: number): void {
-    setFieldValue("contractType", type);
+  function swapDeliveryInfoValues(newContractType: number) {
+    const { deliveryTo, deliveryFrom, contractType } = values;
+    if (!shouldSwapDeliveryInfoValues(contractType, newContractType)) return;
+    setFieldValue("deliveryFrom", deliveryTo, false);
+    setFieldValue("deliveryTo", deliveryFrom, false);
+  }
+
+  function changeContractType(newContractType: number): void {
+    swapDeliveryInfoValues(newContractType);
+    setFieldValue("contractType", newContractType);
   }
 
   return (
