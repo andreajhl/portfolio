@@ -24,14 +24,14 @@ p.DynamicText {
 }
 
 .CTAButton {
-  height: 40px;
+  min-height: 40px;
   font-size: 14px;
   font-weight: bold;
   width: 100%;
   display: block;
 }
 
-.CTAButton + a > .CTAButton {
+.CTAButton + .CTAButton {
   margin-top: 18px;
 }
 

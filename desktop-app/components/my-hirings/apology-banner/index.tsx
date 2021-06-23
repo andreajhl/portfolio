@@ -9,6 +9,7 @@ import Maybe from "../../common/helpers/maybe";
 import { Link } from "../../common/routing/link";
 import { GrayBanner } from "../../layouts/gray-banner";
 import styles from "./styles.module.scss";
+import classes from "classnames";
 
 type ApologyBannerProps = {
   contractData: MyHiringsContract;
@@ -56,12 +57,10 @@ function ApologyBanner({ contractData }: ApologyBannerProps) {
         Descargar comprobante de devolución
       </button>
       <Link
-        className={styles.CTALink}
+        className={classes("btn btn-primary", styles.CTALink, styles.CTAButton)}
         href={getCelebrityProfilePath(contractData.celebrityData.username)}
       >
-        <button type="button" className={`btn btn-primary ${styles.CTAButton}`}>
-          Volver a solicitar un video a {contractData.celebrityData.fullName}
-        </button>
+        Volver a solicitar un video a {contractData.celebrityData.fullName}
       </Link>
     </GrayBanner>
   );
