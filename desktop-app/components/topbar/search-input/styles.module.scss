@@ -51,13 +51,11 @@
   align-items: center;
   cursor: pointer;
   padding-left: 1.1875rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
   &:hover {
     background-color: #f6f6f6;
   }
-}
-
-.PreviewResultItem {
-  margin-bottom: 0.625rem;
 }
 
 .ResultsHeader,
