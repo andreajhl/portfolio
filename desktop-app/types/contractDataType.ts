@@ -1,4 +1,6 @@
-import occasions from "constants/occasions";
+import { OccasionType } from "constants/occasions";
+
+export type { OccasionType };
 
 export type ContractTypeType = 1 | 2 | 3;
 
@@ -8,8 +10,6 @@ export type ContractDeliveryType = {
   deliveryFrom?: string;
   deliveryType: 1;
 };
-
-export type OccasionType = keyof typeof occasions;
 
 export type ContractDetailsType = {
   occasion: OccasionType;

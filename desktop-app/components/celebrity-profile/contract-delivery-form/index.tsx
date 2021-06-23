@@ -11,13 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { CelebrityVideoContractPrice } from "desktop-app/components/common/helpers/celebrity-video-contract-price";
 import { CelebrityBusinessPrice } from "../celebrity-business-price";
-
-type ContractDeliveryFormProps = {
-  celebrity: celebrityType;
-  initialValues?: ContractDeliveryType;
-  onSubmit: (values: ContractDeliveryType) => void;
-  onStepChange: (values: ContractDeliveryType) => void;
-};
+import getCelebrityBusinessPrice from "lib/utils/getCelebrityBusinessPrice";
 
 const initialValues: ContractDeliveryType = {
   contractType: 1,
@@ -27,9 +21,6 @@ const initialValues: ContractDeliveryType = {
 };
 
 const validations: ValidationsType<ContractDeliveryType> = {
-  contractType(value) {
-    if (value === 3) return "No puedes continuar si seleccionas esta opción";
-  },
   deliveryTo(value) {
     if (value.length === 0) return "Debes introducir un nombre";
     if (value.length > 40) {
@@ -37,7 +28,7 @@ const validations: ValidationsType<ContractDeliveryType> = {
     }
   },
   deliveryFrom(value, { values: { contractType } }) {
-    if (contractType === 1) return;
+    if (contractType !== 2) return;
     if (value.length === 0) return "Debes introducir un nombre";
     if (value.length > 40) {
       return "Debes introducir un máximo de 40 caracteres.";
@@ -45,10 +36,32 @@ const validations: ValidationsType<ContractDeliveryType> = {
   },
 };
 
+function getSanitizedValues(values: ContractDeliveryType) {
+  return values.contractType === 2
+    ? values
+    : { ...values, deliveryFrom: initialValues.deliveryFrom };
+}
+
+function shouldSwapDeliveryInfoValues(
+  currentContractType: number,
+  newContractType: number
+) {
+  if (currentContractType === 1 && newContractType === 3) return false;
+  if (currentContractType === 3 && newContractType === 1) return false;
+  return true;
+}
+
+type ContractDeliveryFormProps = {
+  celebrity: celebrityType;
+  initialValues?: ContractDeliveryType;
+  onSubmit: (values: ContractDeliveryType) => void;
+  onStepChange: (values: ContractDeliveryType) => void;
+};
+
 function ContractDeliveryForm({
   celebrity,
   initialValues: initialValuesFromProps,
-  onSubmit,
+  onSubmit: onSubmitFromProps,
   onStepChange,
 }: ContractDeliveryFormProps) {
   const {
@@ -60,7 +73,9 @@ function ContractDeliveryForm({
   } = useForm<ContractDeliveryType>({
     initialValues: initialValuesFromProps || initialValues,
     validations,
-    onSubmit,
+    onSubmit(values) {
+      onSubmitFromProps(getSanitizedValues(values));
+    },
   });
 
   const { user } = useAuth0();
@@ -72,16 +87,27 @@ function ContractDeliveryForm({
 
   const celebrityFullName = celebrity?.fullName;
 
+  const businessPrice = getCelebrityBusinessPrice(celebrity.contractTypes);
+  const hasBusinessPrice = businessPrice > 0;
   const contractIsForBusiness = values.contractType === 3;
 
   function validateFormBeforeChangeStep(goToClickedStep: () => void): void {
+    if (contractIsForBusiness && !hasBusinessPrice) return;
     if (!validateFields()) return;
     onStepChange(values);
     goToClickedStep();
   }
 
-  function changeContractType(type: number): void {
-    setFieldValue("contractType", type);
+  function swapDeliveryInfoValues(newContractType: number) {
+    const { deliveryTo, deliveryFrom, contractType } = values;
+    if (!shouldSwapDeliveryInfoValues(contractType, newContractType)) return;
+    setFieldValue("deliveryFrom", deliveryTo, false);
+    setFieldValue("deliveryTo", deliveryFrom, false);
+  }
+
+  function changeContractType(newContractType: number): void {
+    swapDeliveryInfoValues(newContractType);
+    setFieldValue("contractType", newContractType);
   }
 
   return (
@@ -110,6 +136,7 @@ function ContractDeliveryForm({
       />
       <div className={styles.InputFieldElements}>
         <VideoDeliveryFormFieldsElements
+          hasBusinessPrice={hasBusinessPrice}
           deliveryFrom={values.deliveryFrom}
           deliveryTo={values.deliveryTo}
           contractType={values.contractType}
@@ -117,7 +144,7 @@ function ContractDeliveryForm({
           onChange={setFieldValue}
           errors={errors}
         />
-        <Maybe it={contractIsForBusiness}>
+        <Maybe it={contractIsForBusiness && !hasBusinessPrice}>
           <WhatsappAdForContracts celebrityFullName={celebrityFullName} />
         </Maybe>
       </div>

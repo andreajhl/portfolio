@@ -5,6 +5,7 @@ import Maybe from "../helpers/maybe";
 import styles from "./styles.module.scss";
 
 type VideoDeliveryFormFieldsElementsProps = {
+  hasBusinessPrice?: boolean;
   deliveryTo: string;
   deliveryFrom: string;
   onChange: (arg1: string, arg2: string) => void;
@@ -13,18 +14,23 @@ type VideoDeliveryFormFieldsElementsProps = {
   errors: { [key: string]: any };
 };
 
-const VideoDeliveryFormFieldsElements = ({
+function VideoDeliveryFormFieldsElements({
+  hasBusinessPrice = false,
   deliveryTo,
   deliveryFrom,
   onChange,
   contractType,
   onSubmit,
-  errors
-}: VideoDeliveryFormFieldsElementsProps) => {
+  errors,
+}: VideoDeliveryFormFieldsElementsProps) {
+  const contractIsForBusiness = contractType === 3;
+  const showDeliveryToInput = !contractIsForBusiness || hasBusinessPrice;
+  const contractIsForOther = contractType === 2;
+
   return (
     <>
       <div className={styles.InputFields}>
-        <Maybe it={contractType === 1 || contractType === 2}>
+        <Maybe it={showDeliveryToInput}>
           <div className={styles.InputField}>
             <span className={styles.ExtraLabel}>Para:</span>
             <InputWithFloatLabel
@@ -37,7 +43,7 @@ const VideoDeliveryFormFieldsElements = ({
             />
           </div>
         </Maybe>
-        <Maybe it={contractType === 2}>
+        <Maybe it={contractIsForOther}>
           <div className={styles.InputField}>
             <span className={styles.ExtraLabel}>De:</span>
             <InputWithFloatLabel
@@ -51,11 +57,11 @@ const VideoDeliveryFormFieldsElements = ({
           </div>
         </Maybe>
       </div>
-      <Maybe it={contractType !== 3}>
+      <Maybe it={showDeliveryToInput}>
         <SubmitButton onClick={onSubmit}>Siguiente</SubmitButton>
       </Maybe>
     </>
   );
-};
+}
 
 export default VideoDeliveryFormFieldsElements;

@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import WhatsapAdForContracts from ".";
+import WhatsappAdForContracts from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<WhatsapAdForContracts celebrityFullName="Lorem" />);
+  const wrapper = shallow(<WhatsappAdForContracts celebrityFullName="Lorem" />);
   expect(wrapper.exists()).toBeTruthy();
 });
