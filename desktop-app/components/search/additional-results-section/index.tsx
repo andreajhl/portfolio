@@ -32,6 +32,8 @@ function AdditionalResultsSection({
     fetchSimilarResults(searchFilters);
   }, [searchFilters]);
 
+  if (!isLoading && additionalCelebrities.length === 0) return null;
+
   return (
     <section className={styles.AdditionalResultsSection}>
       <h2 className={styles.AdditionalResultsSectionTitle}>
