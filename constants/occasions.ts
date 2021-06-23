@@ -211,12 +211,12 @@ const occasions = {
   },
 };
 
-export function getOccasion(occasion: string, lang = "es") {
-  const occasionKey = occasions?.[lang]?.hasOwnProperty?.(occasion)
+export function getOccasion(occasion: string, locale = "es") {
+  const occasionKey = occasions?.[locale]?.hasOwnProperty?.(occasion)
     ? occasion
     : "OTHER";
 
-  const contractOccasion = occasions?.[lang]?.[occasionKey] || {};
+  const contractOccasion = occasions?.[locale]?.[occasionKey] || {};
 
   return [occasionKey, contractOccasion] as const;
 }
