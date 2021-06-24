@@ -8,6 +8,6 @@ export type userDetails = {
   avatar: string;
   status: number;
   totalContracts: number;
-  gender: "WOMAN" | "MALE";
+  gender: "female" | "male";
   birthdayDate: string;
 };
