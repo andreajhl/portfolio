@@ -18,6 +18,14 @@ class PaymentMethodsSection extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.currencyExchangeData.to !== this.props.currencyExchangeData.to
+    ) {
+      this.getPaymentsGatewaysMethods(this.props.currencyExchangeData.to);
+    }
+  }
+
   handlerCurrencySelectedChange = (newCurrency) => {
     this.setState({
       ...this.state,
