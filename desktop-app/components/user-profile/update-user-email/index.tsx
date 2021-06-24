@@ -96,6 +96,7 @@ function UpdateUserEmail({ email }: UpdateUserEmailProps) {
       popupContent={(closeModal) => (
         <UpdateUserEmailPopupForm closeModal={closeModal} />
       )}
+      disabledEdit={true}
     ></TriggerPopupEditButton>
   );
 }

@@ -12,6 +12,7 @@ type TriggerPopupEditButtonProps = {
   popupContent: React.ReactNode;
   editButtonColor?;
   onClosePopup?: typeof noOp;
+  disabledEdit?: boolean;
 };
 
 function TriggerPopupEditButton({
@@ -20,6 +21,7 @@ function TriggerPopupEditButton({
   value,
   editButtonColor = "var(--secondary)",
   onClosePopup = noOp,
+  disabledEdit,
 }: TriggerPopupEditButtonProps) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const handlerClosePopup = () => {
@@ -35,14 +37,16 @@ function TriggerPopupEditButton({
           <span>{value}</span>
         </div>
       </div>
-      <div className={styles.EditButtonWrapper}>
-        <IconButton
-          onClick={() => setIsPopupOpen((prevStateve) => !prevStateve)}
-          className={styles.EditingToggleButtonEditButton}
-        >
-          <i className="far fa-edit" style={{ color: editButtonColor }} />
-        </IconButton>
-      </div>
+      {!disabledEdit ? (
+        <div className={styles.EditButtonWrapper}>
+          <IconButton
+            onClick={() => setIsPopupOpen((prevStateve) => !prevStateve)}
+            className={styles.EditingToggleButtonEditButton}
+          >
+            <i className="far fa-edit" style={{ color: editButtonColor }} />
+          </IconButton>
+        </div>
+      ) : null}
       <AnimatedPopup onClose={handlerClosePopup} modal open={isPopupOpen}>
         {typeof popupContent === "function"
           ? popupContent(handlerClosePopup)

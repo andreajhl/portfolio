@@ -8,6 +8,8 @@ import { updateUserAvatar } from "react-app/src/state/ducks/session/actions";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import { Collapse } from "react-bootstrap";
 
+const UPDATE_PROFILE_PHOTO_DISABLED = true;
+
 const initialErrorValue = null;
 const noAvatarUrl = "";
 
@@ -47,6 +49,23 @@ function UserAvatarUploader({ currentUserAvatar }: UserAvatarUploaderProps) {
   const hasAvatar = previewSrc !== noAvatarUrl;
   const hasError = Boolean(error);
   const imagePickerPreviewImageSrc = previewSrc || "/assets/img/user-logo.svg";
+
+  if (UPDATE_PROFILE_PHOTO_DISABLED)
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          className={styles.Preview}
+          alt="Previsualización"
+          style={{ borderRadius: "50%", margin: "0 auto" }}
+          src={currentUserAvatar}
+        />
+      </div>
+    );
 
   return (
     <>

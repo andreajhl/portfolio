@@ -56,9 +56,9 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
             />
 
             <UpdateUserEmail email={userData.email} />
-            <UpdateUserPhone
+            {/* <UpdateUserPhone
               numberPhone={`+${userData.cellphoneCode} ${userData.cellphoneNumber}`}
-            />
+            /> */}
             <ActiveInputField
               containerClass={styles.InputContainer}
               inputClass={styles.inputClass}

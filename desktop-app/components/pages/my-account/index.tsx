@@ -56,7 +56,7 @@ function ClientProfilePage({
         </div>
         <div className={styles.Section}>
           <div className={styles.GridOfSettings}>
-            <UpdatePasswordForm />
+            {/* <UpdatePasswordForm /> */}
             <PaymentMethodsSection />
             <SettingsUser />
             <SharingSection />
