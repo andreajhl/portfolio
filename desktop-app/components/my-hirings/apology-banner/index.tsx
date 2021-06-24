@@ -43,9 +43,8 @@ function ApologyBanner({ contractData }: ApologyBannerProps) {
       </p>
       <p>
         Hemos hecho la orden de reembolso de tu dinero, ten en cuenta que por
-        los procesos bancarios, este puede tardar un plazo de 5 a 10 días
-        hábiles aproximados en estar disponible nuevamente, dependiendo de tu
-        banco.
+        los procesos bancarios, este puede tardar un plazo máximo de 21 días
+        hábiles en estar disponible nuevamente, dependiendo de tu banco.
         <br />
         <a
           href={PAYMENT_AUTHORIZATION_INFO}

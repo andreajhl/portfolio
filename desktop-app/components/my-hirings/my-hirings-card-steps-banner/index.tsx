@@ -12,6 +12,7 @@ type MyHiringsCardStepsBannerProps = {
 const getStepsItems = ({
   celebrityData,
   deliveryContact,
+  deliveryContactCellphone,
 }: MyHiringsContract) => [
   {
     iconAlternativeText: "El famoso recibe",
@@ -31,8 +32,11 @@ const getStepsItems = ({
       <>
         Te notificaremos a{" "}
         <span className={styles.TextBold}>{deliveryContact}</span>{" "}
-        <Maybe it={false}>
-          y a <span className={styles.TextBold}>+52 55 4375 0949</span>{" "}
+        <Maybe it={Boolean(deliveryContactCellphone)}>
+          y a{" "}
+          <span className={styles.TextBold}>
+            +{deliveryContactCellphone?.replace?.("+", "")}
+          </span>{" "}
         </Maybe>
         cuando tu video esté listo.
       </>
@@ -44,9 +48,8 @@ const getStepsItems = ({
     description: (
       <>
         Si por alguna razón tu video no pudo ser grabado, tu dinero estará
-        nuevamente disponible en un plazo de{" "}
-        <span className={styles.TextBold}>5 a 10 días hábiles</span>{" "}
-        aproximadamente, dependiendo de tu banco.
+        nuevamente disponible en un plazo máximo de 21 días hábiles, dependiendo
+        de tu banco.
         <br />
         <a
           href={PAYMENT_AUTHORIZATION_INFO}
