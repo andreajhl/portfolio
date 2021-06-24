@@ -10,6 +10,7 @@ import { Link } from "../../common/routing/link";
 import { GrayBanner } from "../../layouts/gray-banner";
 import styles from "./styles.module.scss";
 import classes from "classnames";
+import { DownloadReceiptLink } from "desktop-app/components/my-hirings/download-receipt-link";
 
 type ApologyBannerProps = {
   contractData: MyHiringsContract;
@@ -53,9 +54,12 @@ function ApologyBanner({ contractData }: ApologyBannerProps) {
           Conoce más acerca de esto.
         </Link>
       </p>
-      <button type="button" className={`btn btn-tertiary ${styles.CTAButton}`}>
-        Descargar comprobante de devolución
-      </button>
+      <DownloadReceiptLink
+        className={classes("btn btn-tertiary", styles.CTAButton)}
+        contractId={contractData.id}
+        contractReference={contractData.reference}
+        contractStatus={contractData.status}
+      />
       <Link
         className={classes("btn btn-primary", styles.CTALink, styles.CTAButton)}
         href={getCelebrityProfilePath(contractData.celebrityData.username)}
