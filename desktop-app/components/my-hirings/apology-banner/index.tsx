@@ -47,12 +47,14 @@ function ApologyBanner({ contractData }: ApologyBannerProps) {
         hábiles aproximados en estar disponible nuevamente, dependiendo de tu
         banco.
         <br />
-        <Link
+        <a
           href={PAYMENT_AUTHORIZATION_INFO}
+          target="_blank"
+          rel="noopener noreferrer"
           className={styles.LearnMoreLink}
         >
           Conoce más acerca de esto.
-        </Link>
+        </a>
       </p>
       <DownloadReceiptLink
         className={classes("btn btn-tertiary", styles.CTAButton)}

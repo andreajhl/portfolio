@@ -48,12 +48,14 @@ const getStepsItems = ({
         <span className={styles.TextBold}>5 a 10 días hábiles</span>{" "}
         aproximadamente, dependiendo de tu banco.
         <br />
-        <Link
+        <a
           href={PAYMENT_AUTHORIZATION_INFO}
+          target="_blank"
+          rel="noopener noreferrer"
           className={styles.LearnMoreLink}
         >
           Conoce más acerca de esto.
-        </Link>
+        </a>
       </>
     ),
   },
