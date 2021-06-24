@@ -17,6 +17,7 @@ import Pagination from "desktop-app/components/common/pagination";
 import Skeleton from "react-loading-skeleton";
 import scrollToTop from "lib/utils/scrollToTop";
 import { useRouter } from "next/router";
+import { getReceiptsUrls } from "react-app/src/state/ducks/session/actions";
 
 const allowedStatuses = [PAYED_BY_CLIENT, REJECTED, EXPIRED, COMPLETED];
 
@@ -44,8 +45,10 @@ const loadingSkeletons = (
 
 const mapStateToProps = ({
   contracts: { listUserContractsReducer },
+  session: { getReceiptsUrlsReducer },
 }: RootState) => ({
-  isCompleted: listUserContractsReducer.completed,
+  isCompleted:
+    listUserContractsReducer.completed && getReceiptsUrlsReducer?.completed,
   contracts: (listUserContractsReducer?.data?.results ||
     []) as MyHiringsContract[],
   informationPage: listUserContractsReducer?.data?.informationPage,
@@ -53,6 +56,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = {
   listUserContracts,
+  getReceiptsUrls,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -65,6 +69,7 @@ type MyHiringsCardsSectionProps = {
 function MyHiringsCardsSection({
   isCompleted,
   listUserContracts,
+  getReceiptsUrls,
   contracts,
   informationPage,
   query,
@@ -76,6 +81,10 @@ function MyHiringsCardsSection({
     const listParams = getListParams(currentPage);
     listUserContracts(listParams);
   }, [currentPage]);
+
+  useEffect(() => {
+    getReceiptsUrls();
+  }, []);
 
   function setCurrentPage(newPage: number) {
     const { pathname, replace } = router;

@@ -41,11 +41,12 @@ function LinkText({
   return <FormattedMessage defaultMessage="Solicitar comprobante de pago" />;
 }
 
-const mapStateToProps = (state: RootState, { contractId }) => {
-  return {
-    receiptUrl: undefined,
-  };
-};
+const mapStateToProps = (
+  { session: { getReceiptsUrlsReducer } }: RootState,
+  { contractId }
+) => ({
+  receiptUrl: getReceiptsUrlsReducer?.data?.results?.[contractId]?.url,
+});
 
 const connector = connect(mapStateToProps);
 
