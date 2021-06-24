@@ -13,7 +13,6 @@ import { userDetails } from "desktop-app/types/userDetails";
 type FormValuesType = {
   fullName: string;
   birthdayDate: string;
-  gender: string;
 };
 
 type UserInformationEditProps = {
@@ -24,7 +23,6 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
   const { values, onChangeField } = useForm<FormValuesType>({
     initialValues: {
       fullName: userData.fullName,
-      gender: userData.gender,
       birthdayDate: userData.birthdayDate,
     },
     onSubmit() {
@@ -72,7 +70,7 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
             />
           </div>
           <div className={styles.OptionsItems}>
-            <UpdateUserGender gender={"male"} />
+            <UpdateUserGender gender={userData.gender} />
           </div>
         </div>
         <div className={styles.LogoutButtonWrapper}>
