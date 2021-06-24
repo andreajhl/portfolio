@@ -131,9 +131,12 @@ export const getUserContractReducer = thunkReducer(
   {}
 );
 
+export const getReceiptsUrlsReducer = thunkReducer(types.GET_RECEIPTS_URLS, {});
+
 export default combineReducers({
   getSessionReducer,
   updateSessionReducer,
   userAccountDetails,
   getUserContractReducer,
+  getReceiptsUrlsReducer,
 });

@@ -7,6 +7,7 @@ import {
   handleApiResponseSuccess,
 } from "../../utils";
 import thunkAction from "../../utils/thunkAction";
+import objectFromEntries from "lib/utils/objectFromEntries";
 
 export const getToken = () => {
   return (dispatch) => {
@@ -162,4 +163,25 @@ export const getUserContract = (contractReference) =>
       method: "GET",
       path: PATHS.GET_USER_CONTRACT + contractReference,
     }).then(getUserContractData)
+  );
+
+const getReceiptUrlsData = (response) => {
+  const entriesFromResults = response?.data?.results?.map?.(
+    ({ contractId, url }) => [contractId, { url }]
+  );
+
+  return {
+    data: {
+      ...response.data,
+      results: objectFromEntries(entriesFromResults),
+    },
+  };
+};
+
+export const getReceiptsUrls = () =>
+  thunkAction(types.GET_RECEIPTS_URLS, () =>
+    apiService({
+      method: "GET",
+      path: PATHS.GET_RECEIPTS_URLS,
+    }).then(getReceiptUrlsData)
   );
