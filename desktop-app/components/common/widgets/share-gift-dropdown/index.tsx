@@ -25,6 +25,7 @@ import {
   getGiftPreviewPath,
 } from "constants/paths";
 import { ShareModeSelectorModal } from "../../modals/share-mode-selector-modal";
+import getWindow from "react-app/src/utils/getWindow";
 
 type ShareGiftDropdownProps = {
   backgroundColor?: CSSProperties["backgroundColor"];
@@ -70,7 +71,7 @@ function ShareGiftDropdown({
 }: ShareGiftDropdownProps) {
   const shareInMailRef = useRef<PopupActions>();
   const shareInWhatsappRef = useRef<PopupActions>();
-  const link = `https://www.famosos.com${getGiftPreviewPath(
+  const link = `${getWindow()?.location?.origin}${getGiftPreviewPath(
     contractReference
   )}`;
 
