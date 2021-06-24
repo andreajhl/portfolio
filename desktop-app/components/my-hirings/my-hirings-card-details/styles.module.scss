@@ -37,3 +37,25 @@
 .MyHiringsCardDetailsEditButtonWrapperIsEditing {
   margin-top: -4px;
 }
+
+.MyHiringsCardDetailsInput {
+  width: 100%;
+  max-width: 275px;
+  display: flex;
+
+  > span {
+    width: 100%;
+    &::before {
+      content: initial;
+    }
+  }
+
+  input {
+    position: static;
+  }
+}
+
+.ErrorMessage {
+  font-size: 12px;
+  margin-top: 6px;
+}

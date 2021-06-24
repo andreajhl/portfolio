@@ -11,12 +11,14 @@ import { canEditContract } from "desktop-app/constants/contractStatuses";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import styles from "./styles.module.scss";
 import { Dispatch, SetStateAction } from "react";
+import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
 
 type MyHiringsCardDetailsProps = {
   contractData: MyHiringsContract;
   isEditing: boolean;
   setIsEditing: Dispatch<SetStateAction<boolean>>;
   values: { deliveryTo: string; deliveryFrom: string; instructions: string };
+  errors: { deliveryTo?: string; deliveryFrom?: string; instructions?: string };
   onChangeField: (event) => void;
   onSave?: () => void;
 };
@@ -26,6 +28,7 @@ function MyHiringsCardDetails({
   isEditing,
   setIsEditing,
   values,
+  errors,
   onChangeField,
   onSave = function () {},
 }: MyHiringsCardDetailsProps) {
@@ -52,17 +55,29 @@ function MyHiringsCardDetails({
             onChange={onChangeField}
             disabled={!isEditing}
             maxLength={40}
+            className={styles.MyHiringsCardDetailsInput}
+          />
+          <CollapsibleErrorMessage
+            errorMessage={errors?.deliveryTo}
+            className={styles.ErrorMessage}
           />
           <Maybe it={contractIsForOther}>
-            <br />
             <ContractDataFormInput
               label="De"
               name="deliveryFrom"
               value={values.deliveryFrom}
               disabled={!isEditing}
               onChange={onChangeField}
-              className={styles.MyHiringsCardDetailsDeliveryFrom}
+              className={classes(
+                styles.MyHiringsCardDetailsInput,
+                styles.MyHiringsCardDetailsDeliveryFrom
+              )}
               maxLength={40}
+            />
+            <CollapsibleErrorMessage
+              unmountOnExit
+              errorMessage={errors?.deliveryFrom}
+              className={styles.ErrorMessage}
             />
           </Maybe>
         </div>
@@ -90,6 +105,11 @@ function MyHiringsCardDetails({
           onChange={onChangeField}
           name="instructions"
           maxLength={300}
+        />
+        <CollapsibleErrorMessage
+          unmountOnExit
+          errorMessage={errors?.instructions}
+          className={styles.ErrorMessage}
         />
       </div>
     </div>

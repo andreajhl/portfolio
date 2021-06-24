@@ -1,8 +1,9 @@
 import {
   InputWithLeftLabel,
-  InputWithLeftLabelProps
+  InputWithLeftLabelProps,
 } from "../input-with-left-label";
 import styles from "./styles.module.scss";
+import classes from "classnames";
 
 type ContractDataFormInputProps = Omit<
   InputWithLeftLabelProps,
@@ -10,14 +11,16 @@ type ContractDataFormInputProps = Omit<
 >;
 
 function ContractDataFormInput({
-  className = "",
+  className,
   ...props
 }: ContractDataFormInputProps) {
   return (
     <InputWithLeftLabel
-      containerClassName={`${styles.ContractDataFormControl} ${
-        !props.disabled ? styles.ContractDataFormControlEditing : ""
-      } ${className}`}
+      containerClassName={classes(
+        styles.ContractDataFormControl,
+        !props.disabled && styles.ContractDataFormControlEditing,
+        className
+      )}
       labelClassName={styles.ContractDataFormControlLabel}
       inputClassName={styles.ContractDataFormControlInput}
       {...props}

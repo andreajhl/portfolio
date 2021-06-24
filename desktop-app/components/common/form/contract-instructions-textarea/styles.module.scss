@@ -5,6 +5,7 @@
   border: 1px solid #dedede;
   border-radius: 10px;
   font-size: 14px;
+  display: block; // To prevent unexpected space at the bottom.
 
   &:disabled {
     padding: 0;
