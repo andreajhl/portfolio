@@ -2,6 +2,7 @@ import styles from "./styles.module.scss";
 import classes from "classnames";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import { getWhatsappMessageToNumberLink } from "lib/utils/getSocialMediaLink";
+import { FAMOSOS_PHONE_NUMBER } from "constants/phoneNumbers";
 
 const { whatsappMessage } = defineMessages({
   whatsappMessage: {
@@ -9,8 +10,6 @@ const { whatsappMessage } = defineMessages({
       "Me gustaría que {celebrityFullName} me grabe un video para mi negocio.",
   },
 });
-
-const FAMOSOS_PHONE_NUMBER = 18559107580;
 
 type WhatsappAdForContractsProps = {
   celebrityFullName: string;

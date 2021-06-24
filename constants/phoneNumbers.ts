@@ -1,0 +1,1 @@
+export const FAMOSOS_PHONE_NUMBER = 18559107580;
