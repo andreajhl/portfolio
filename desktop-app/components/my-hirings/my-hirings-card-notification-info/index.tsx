@@ -11,6 +11,7 @@ import { InputField } from "desktop-app/components/common/form/input-field";
 import { DeliveryCellphoneInput } from "desktop-app/components/my-hirings/delivery-cellphone-input";
 import { useEffect, useState } from "react";
 import { useUpdateHiredContract } from "lib/hooks/useUpdateHiredContract";
+import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
 
 function FieldInfo({ title, value }: { title: string; value: string }) {
   return (
@@ -25,6 +26,7 @@ type MyHiringsCardNotificationInfoProps = {
   contractData: MyHiringsContract;
   isEditing: boolean;
   values: { deliveryContact: string; deliveryContactCellphone: string };
+  errors: { deliveryContact?: string; deliveryContactCellphone?: string };
   onChangeField?: ({
     target: { name, value },
   }: {
@@ -40,6 +42,7 @@ function MyHiringsCardNotificationInfo({
   contractData,
   isEditing,
   values,
+  errors,
   onChangeField = function () {},
   setFieldValue = function () {},
 }: MyHiringsCardNotificationInfoProps) {
@@ -98,6 +101,11 @@ function MyHiringsCardNotificationInfo({
             onChange={onChangeField}
             value={deliveryContact}
             disabled={!isEditing}
+          />
+          <CollapsibleErrorMessage
+            unmountOnExit
+            errorMessage={errors?.deliveryContact}
+            className={styles.ErrorMessage}
           />
         </div>
         <Maybe
