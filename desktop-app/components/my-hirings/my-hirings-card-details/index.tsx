@@ -60,6 +60,7 @@ function MyHiringsCardDetails({
               name="deliveryFrom"
               value={values.deliveryFrom}
               disabled={!isEditing}
+              onChange={onChangeField}
               className={styles.MyHiringsCardDetailsDeliveryFrom}
               maxLength={40}
             />

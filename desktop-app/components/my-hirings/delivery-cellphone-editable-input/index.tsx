@@ -8,7 +8,7 @@ import { DeliveryCellphoneInput } from "desktop-app/components/my-hirings/delive
 
 type DeliveryCellphoneEditableInputProps = {
   className?: string;
-  onSave?: () => void;
+  onSave?: (value: string) => void;
 };
 
 const label = "Whatsapp de notificación (opcional)";
@@ -17,7 +17,12 @@ function DeliveryCellphoneEditableInput({
   className = "",
   onSave = function () {},
 }: DeliveryCellphoneEditableInputProps) {
+  const [value, setValue] = useState("57");
   const [hasDeliveryCellphone, setHasDeliveryCellphone] = useState(false);
+
+  function setInputValue(newValue) {
+    setValue(newValue);
+  }
 
   return (
     <Maybe
@@ -31,13 +36,14 @@ function DeliveryCellphoneEditableInput({
       }
     >
       <EditableInputField
-        value={"+584125220585"}
+        value={value}
+        onChange={setInputValue}
         className={className}
         label={label}
         initialIsEditing={true}
         onClickSave={(setIsEditing) => {
           setIsEditing(false);
-          onSave?.();
+          onSave?.(value);
         }}
         InputComponent={DeliveryCellphoneInput}
       />

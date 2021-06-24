@@ -17,7 +17,7 @@ function DeliveryCellphoneInput({
     <Maybe
       it={!disabled}
       orElse={
-        <span className={styles.CellphoneNumberInputDisabled}>{value}</span>
+        <span className={styles.CellphoneNumberInputDisabled}>+{value}</span>
       }
     >
       <CellphoneNumberInput

@@ -9,7 +9,8 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import styles from "./styles.module.scss";
 import { InputField } from "desktop-app/components/common/form/input-field";
 import { DeliveryCellphoneInput } from "desktop-app/components/my-hirings/delivery-cellphone-input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useUpdateHiredContract } from "lib/hooks/useUpdateHiredContract";
 
 function FieldInfo({ title, value }: { title: string; value: string }) {
   return (
@@ -42,14 +43,25 @@ function MyHiringsCardNotificationInfo({
   onChangeField = function () {},
   setFieldValue = function () {},
 }: MyHiringsCardNotificationInfoProps) {
+  const { update } = useUpdateHiredContract();
+  const { deliveryContactCellphone, deliveryContact } = values;
   const [hasAddedCellphoneNumber, setHasAddedCellphoneNumber] = useState(false);
   const canEdit = canEditContract(contractData.status);
 
-  const { deliveryContactCellphone, deliveryContact } = values;
-
-  function setDeliveryContactCellphoneValue(value) {
+  function setDeliveryContactCellphoneValue(value: string) {
     setFieldValue("deliveryContactCellphone", value);
   }
+
+  const addDeliveryContactCellphone = (
+    deliveryContactCellphone: string
+  ): void => {
+    setDeliveryContactCellphoneValue(deliveryContactCellphone);
+    update(contractData.reference, { deliveryContactCellphone });
+  };
+
+  useEffect(() => {
+    setHasAddedCellphoneNumber(deliveryContactCellphone !== "");
+  }, [deliveryContactCellphone]);
 
   return (
     <div
@@ -70,7 +82,7 @@ function MyHiringsCardNotificationInfo({
             <Maybe it={Boolean(deliveryContactCellphone)}>
               <FieldInfo
                 title="Whatsapp de notificación"
-                value={deliveryContactCellphone}
+                value={`+${deliveryContactCellphone}`}
               />
             </Maybe>
           </>
@@ -93,7 +105,7 @@ function MyHiringsCardNotificationInfo({
           orElse={
             <DeliveryCellphoneEditableInput
               className={styles.EditableInputField}
-              onSave={() => setHasAddedCellphoneNumber(true)}
+              onSave={addDeliveryContactCellphone}
             />
           }
         >
