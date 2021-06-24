@@ -9,6 +9,7 @@ import styles from "./styles.module.scss";
 import { Link } from "desktop-app/components/common/routing/link";
 import { getClientHiringPreviewPath } from "constants/paths";
 import { MyHiringsCardContractInfo } from "desktop-app/components/my-hirings/my-hirings-card-contract-info";
+import { DownloadReceiptLink } from "desktop-app/components/my-hirings/download-receipt-link";
 
 type MyHiringsCardBodyLeftSideProps = {
   contractData: MyHiringsContract;
@@ -53,12 +54,12 @@ function MyHiringsCardBodyLeftSide({
             Ver video <i className="fa fa-play" />
           </button>
         </Link>
-        <button
-          type="button"
+        <DownloadReceiptLink
+          contractId={contractData.id}
+          contractReference={contractData.reference}
+          contractStatus={contractData.status}
           className={`btn btn-tertiary ${styles.CTAButton}`}
-        >
-          Descargar comprobante de pago
-        </button>
+        />
       </Maybe>
     </>
   );
