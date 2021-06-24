@@ -75,3 +75,27 @@ export const saveContractLike = (contract_reference) => {
       });
   });
 };
+
+export const updateUserGender = (newGender) => {
+  const FINAL_PATH = API_PATHS.UPDATE_USER_GENDER_PATH;
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      path: FINAL_PATH,
+      async: true,
+      body: {
+        gender: newGender,
+      },
+    })
+      .then((res) => {
+        if (res.data.status === "OK") {
+          resolutionFunc(res.data.data);
+        } else {
+          rejectionFunc(res.data.error);
+        }
+      })
+      .catch((err) => {
+        rejectionFunc(err);
+      });
+  });
+};
