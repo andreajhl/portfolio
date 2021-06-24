@@ -1,0 +1,12 @@
+.CheckIcon {
+  animation: disappear 1.5s linear 1s 1 forwards;
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
