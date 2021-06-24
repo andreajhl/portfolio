@@ -18,6 +18,7 @@ const reduxStore = {
 };
 
 export const listPaymentGateways = (currency) => {
+  console.log({ currency });
   return (dispatch) => {
     const TYPE = types.FETCH_PAYMENT_GATEWAYS_REQUEST;
     const FINAL_PATH =
@@ -70,16 +71,6 @@ export const currencyExchange = (params) => {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
           setCookie(CURRENT_CURRENCY_TRM_CODE, params.to, 365);
-
-          if (
-            !AVAILABLE_CURRENCIES.find(
-              (x) => x.implemented_by_dlocal === false && x.name === params.to
-            )
-          ) {
-            dispatch(listPaymentGateways(params.to));
-          } else {
-            dispatch(listPaymentGateways("USD"));
-          }
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
         } else {
           handleApiResponseFailure(dispatch, TYPE, res);
