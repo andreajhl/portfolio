@@ -7,9 +7,13 @@ import useReviewManager from "../../../../lib/hooks/useReviewManager";
 
 type ContractReviewCardProps = {
   contract_reference: string;
+  onDismissReview: () => void;
 };
 
-function ContractReviewVideo({ contract_reference }: ContractReviewCardProps) {
+function ContractReviewVideo({
+  contract_reference,
+  onDismissReview,
+}: ContractReviewCardProps) {
   const {
     status,
     values,
@@ -64,7 +68,7 @@ function ContractReviewVideo({ contract_reference }: ContractReviewCardProps) {
           <SubmitText baseText={`${"Enviar"} calificación`} status={status} />
         </button>
         <button
-          onClick={() => console.log("Hacer algo increible")}
+          onClick={onDismissReview}
           className={`btn btn-outline ${styles.ContractDeferReview}`}
         >
           <span>Lo haré más tarde</span>
