@@ -17,7 +17,6 @@ function HiringShareSuccessModal({
     <AnimatedPopup
       open={isOpen}
       modal
-      lockScroll
       closeOnDocumentClick={false}
       closeOnEscape={false}
     >
