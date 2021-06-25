@@ -47,6 +47,7 @@ function EditorFormGiftCard({
           value={values.cardTitle}
           className={styles.Textarea}
           onChange={onChange}
+          maxLength={50}
         />
       </GiftCard.Title>
       <GiftCard.SpecialText>
@@ -55,6 +56,7 @@ function EditorFormGiftCard({
           name="cardMessage"
           value={values.cardMessage}
           onChange={onChange}
+          maxLength={1700}
           className={styles.Textarea}
         />
       </GiftCard.SpecialText>
