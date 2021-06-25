@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { CLIENT_HIRINGS } from "constants/paths";
+import { getHiringPreviewPath } from "constants/paths";
 import { useDispatch, useSelector } from "react-redux";
 import ClientContractType from "desktop-app/types/clientContract";
 import { RootState } from "react-app/src/state/store";
@@ -51,8 +51,11 @@ function useGetUserContract(
     if (!redirectOnFailure) return;
     if (!didFetch) return;
     if (state.status !== "failed") return;
-    push(CLIENT_HIRINGS);
-  }, [redirectOnFailure, state.status, push, didFetch]);
+    push({
+      pathname: getHiringPreviewPath(contractReference),
+      query: { unauthorized: true }, // unauthenticated || invalid -> to Home.
+    });
+  }, [redirectOnFailure, state.status, push, didFetch, contractReference]);
 
   return state;
 }
