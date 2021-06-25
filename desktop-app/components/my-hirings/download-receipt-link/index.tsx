@@ -64,6 +64,7 @@ function DownloadReceiptLink({
   contractReference,
   contractStatus,
   receiptUrl,
+  dispatch,
   ...anchorProps
 }: DownloadReceiptLinkProps) {
   const { formatMessage } = useIntl();
