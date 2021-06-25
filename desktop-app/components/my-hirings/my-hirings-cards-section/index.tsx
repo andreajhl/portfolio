@@ -15,18 +15,17 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { RootState } from "react-app/src/state/store";
 import Pagination from "desktop-app/components/common/pagination";
 import Skeleton from "react-loading-skeleton";
-import scrollToTop from "lib/utils/scrollToTop";
-import { useRouter } from "next/router";
 import { getReceiptsUrls } from "react-app/src/state/ducks/session/actions";
+import getObjectWithFallbackValues from "lib/utils/getObjectWithFallbackValues";
 
 const allowedStatuses = [PAYED_BY_CLIENT, REJECTED, EXPIRED, COMPLETED];
 
-const getListParams = (currentPage: number) => ({
+const defaultParams = {
   pageSize: 4,
   status: allowedStatuses.join(","),
   orderBy: "created_at desc",
-  currentPage,
-});
+  currentPage: 1,
+};
 
 const loadingSkeletons = (
   <>
@@ -63,7 +62,10 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type MyHiringsCardsSectionProps = {
-  query: { [key: string]: any };
+  currentPage: number;
+  orderBy: string;
+  status: string;
+  onChangePage: (newPage: number) => void;
 } & PropsFromRedux;
 
 function MyHiringsCardsSection({
@@ -72,29 +74,27 @@ function MyHiringsCardsSection({
   getReceiptsUrls,
   contracts,
   informationPage,
-  query,
+  currentPage,
+  orderBy,
+  status,
+  onChangePage,
 }: MyHiringsCardsSectionProps) {
-  const router = useRouter();
-  const currentPage = parseFloat(query?.currentPage) || 1;
-
   useEffect(() => {
-    const listParams = getListParams(currentPage);
+    const listParams = getObjectWithFallbackValues(
+      {
+        pageSize: 4,
+        currentPage,
+        orderBy,
+        status,
+      },
+      defaultParams
+    );
     listUserContracts(listParams);
-  }, [currentPage]);
+  }, [currentPage, listUserContracts, orderBy, status]);
 
   useEffect(() => {
     getReceiptsUrls();
   }, []);
-
-  function setCurrentPage(newPage: number) {
-    const { pathname, replace } = router;
-    replace({ pathname, query: { currentPage: newPage } });
-  }
-
-  function updateCurrentPage(newPage: number) {
-    scrollToTop({ behavior: "auto" }); // Con "smooth" realiza un salto debido al cambio de altura.
-    setCurrentPage(newPage);
-  }
 
   return (
     <div className="container">
@@ -114,7 +114,7 @@ function MyHiringsCardsSection({
           className={styles.PaginationButtons}
           currentPage={currentPage}
           totalPages={informationPage.totalPages}
-          onChangePage={updateCurrentPage}
+          onChangePage={onChangePage}
         />
       </Maybe>
     </div>
