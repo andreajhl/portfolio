@@ -16,6 +16,20 @@ import {
 } from "desktop-app/components/common/helpers/submit-button-text";
 import { HiringShareSuccessModal } from "desktop-app/components/common/modals/hiring-share-success-modal";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
+import isEmail from "validator/lib/isEmail";
+import isDate from "validator/lib/isDate";
+import {
+  validateDeliveryContactCellphone,
+  validateDeliveryFrom,
+  validateDeliveryTo,
+} from "lib/validations/contractData";
+
+const EMAILS_SEPARATOR = ",";
+
+function isValidEmailList(emails: string) {
+  const emailsArray = emails.split(EMAILS_SEPARATOR);
+  return !emailsArray.some((email) => !isEmail(email.trim()));
+}
 
 function getConstrainedTime(value: any) {
   const onlyTimeValue = value.replace(/[^0-9:]/g, "");
@@ -24,7 +38,7 @@ function getConstrainedTime(value: any) {
   return `${constrainedHour}:00`;
 }
 
-function FormField({ label, name = "", type = "text", ...props }) {
+function FormField({ label, name = "", type = "text", error, ...props }) {
   return (
     <div>
       <label htmlFor={name} className={styles.Label}>
@@ -37,11 +51,16 @@ function FormField({ label, name = "", type = "text", ...props }) {
         className={styles.Input}
         {...props}
       />
+      <CollapsibleErrorMessage
+        unmountOnExit
+        errorMessage={error}
+        className={styles.ErrorMessage}
+      />
     </div>
   );
 }
 
-function getInitialState(contractData) {
+function getInitialState(contractData: ClientContractType) {
   const valuesFromContract = pickPropertiesFromAObject(contractData, [
     "deliveryContact",
     "deliveryContactCellphone",
@@ -59,6 +78,31 @@ function getInitialState(contractData) {
     sendMessage: `¡Hola ${valuesFromContract.deliveryTo}!\nMira el regalo que te he hecho a través de Famosos.com.`,
   } as InitialValuesType;
 }
+
+const validations = {
+  deliveryTo: validateDeliveryTo,
+  deliveryFrom(value: string) {
+    return validateDeliveryFrom(value, { values: { contractType: 2 } });
+  },
+  deliveryContact(value: string) {
+    if (!value.includes(EMAILS_SEPARATOR) && !isEmail(value)) {
+      return "Ingresa un correo electrónico válido.";
+    }
+    if (!isValidEmailList(value)) {
+      return "Ingresa una lista de correos electrónicos válidos.";
+    }
+  },
+  deliveryContactCellphone: validateDeliveryContactCellphone,
+  sendMessage(value: string) {
+    if (value === "") return "Ingresa tu mensaje";
+  },
+  deliveryDate(value: string) {
+    if (value === "") return "Ingresa una fecha.";
+    if (!isDate(value)) {
+      return "Ingresa una fecha valida. Ejemplo: 2020-06-25";
+    }
+  },
+};
 
 const initialErroValue = null;
 const ONE_HOUR_IN_SECONDS = 3600;
@@ -91,8 +135,9 @@ function ShareDetailsForm({
 }: ShareDetailsFormProps) {
   const [status, setStatus] = useStatus();
   const [error, setError] = useState(initialErroValue);
-  const { values, onChangeField, setFieldValue, submitForm } = useForm({
+  const { values, errors, onChangeField, setFieldValue, submitForm } = useForm({
     initialValues: getInitialState(contractData),
+    validations,
     async onSubmit(sendConfiguration) {
       try {
         setError(initialErroValue);
@@ -116,6 +161,7 @@ function ShareDetailsForm({
   function getSendConfiguration(sendConfiguration: InitialValuesType) {
     return {
       ...sendConfiguration,
+      deliveryDate: sendConfiguration.deliveryDate?.replace?.("/", "-"),
       sendType,
       contractReference,
     };
@@ -153,6 +199,7 @@ function ShareDetailsForm({
                   </span>
                 </>
               }
+              error={errors.deliveryContact}
               value={values.deliveryContact}
               onChange={onChangeField}
             />
@@ -168,6 +215,11 @@ function ShareDetailsForm({
             containerClass={styles.Input}
             inputClass={styles.CellphoneInput}
           />
+          <CollapsibleErrorMessage
+            unmountOnExit
+            className={styles.ErrorMessage}
+            errorMessage={errors.deliveryContactCellphone}
+          />
         </Maybe>
       </div>
       <div className={classes(styles.Split, styles.DeliveryInfo)}>
@@ -176,12 +228,16 @@ function ShareDetailsForm({
           label="Para"
           value={values.deliveryTo}
           onChange={onChangeField}
+          error={errors.deliveryTo}
+          maxLength={40}
         />
         <FormField
           name="deliveryFrom"
           label="De"
           value={values.deliveryFrom}
           onChange={onChangeField}
+          error={errors.deliveryFrom}
+          maxLength={40}
         />
       </div>
       <Maybe it={!isWhatsappType}>
@@ -195,14 +251,21 @@ function ShareDetailsForm({
           onChange={onChangeField}
           value={values.sendMessage}
         />
+        <CollapsibleErrorMessage
+          unmountOnExit
+          className={styles.ErrorMessage}
+          errorMessage={errors.sendMessage}
+        />
       </Maybe>
       <div className={classes(styles.Split, styles.ScheduleInfo)}>
         <FormField
           label="Fecha de envío"
           name="deliveryDate"
           type="date"
+          placeholder="aaaa-mm-dd"
           value={values.deliveryDate}
           onChange={onChangeField}
+          error={errors.deliveryDate}
         />
         <div>
           <label htmlFor="deliveryTime" className={styles.Label}>
