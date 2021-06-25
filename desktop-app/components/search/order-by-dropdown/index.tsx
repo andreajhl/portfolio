@@ -20,7 +20,7 @@ function OrderByDropdown({
   title = "Ordenar por",
   className = "",
   options,
-  selectedOption,
+  selectedOption = options[0],
   onChange = function () {},
 }: OrderByDropdownProps) {
   return (
