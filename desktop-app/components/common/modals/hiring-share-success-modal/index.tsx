@@ -1,4 +1,5 @@
 import { CLIENT_HIRINGS, getClientHiringPreviewPath } from "constants/paths";
+import { FormattedMessage } from "react-intl";
 import { AnimatedPopup } from "../../animated-popup";
 import { CheckedCircleIcon } from "../../icons";
 import { Link } from "../../routing/link";
@@ -24,18 +25,19 @@ function HiringShareSuccessModal({
         <div className={styles.SuccessMessage}>
           <CheckedCircleIcon />
           <span>
-            La entrega de tu video <br /> se programó correctamente
+            <FormattedMessage defaultMessage="La entrega de tu video se programó correctamente" />
           </span>
-          <Link href={CLIENT_HIRINGS}>
-            <button type="button" className="btn btn-primary">
-              Ir a Mis Solicitudes
-            </button>
+          <Link
+            href={CLIENT_HIRINGS}
+            className={`btn btn-primary ${styles.GoToHiringsLink}`}
+          >
+            <FormattedMessage defaultMessage="Ir a Mis Solicitudes" />
           </Link>
           <Link
             href={getClientHiringPreviewPath(contractReference)}
             className={styles.GoToContractDetailsLink}
           >
-            Ver contrato
+            <FormattedMessage defaultMessage="Ver video" />
           </Link>
         </div>
       </div>

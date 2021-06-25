@@ -46,18 +46,15 @@
   width: 90vw;
 }
 
-.SuccessMessage span br {
-  @media only screen and (max-width: 286px) {
-    display: none;
-  }
-}
-
-.SuccessMessage button {
+.GoToHiringsLink {
   font-size: 18px;
-  height: 55px;
+  min-height: 55px;
   max-width: 330px;
   font-weight: bold;
   width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .GoToContractDetailsLink {
