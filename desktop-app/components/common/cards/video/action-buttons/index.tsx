@@ -3,7 +3,7 @@ import { ShareVideoButton } from "../share-video-button";
 import DownloadVideoButton from "../download-video-button";
 import styles from "./styles.module.scss";
 import { CSSProperties } from "react";
-
+import { useContractLike } from "lib/hooks/useContractLike";
 type VideoActionButtonsProps = {
   videoURL: string;
   actionButtonsBackgroundColor?: CSSProperties["backgroundColor"];
@@ -17,13 +17,14 @@ function VideoActionButtons({
   previewMode = false,
   contractReference,
 }: VideoActionButtonsProps) {
+  const { isFavorite, toggleFavorite } = useContractLike(contractReference);
   return (
     <div className={styles.VideoActionButtonsWrapper}>
       <div>
         <LikeVideoButton
           backgroundColor={actionButtonsBackgroundColor}
-          isLiked={false}
-          onClick={() => {}}
+          isLiked={isFavorite}
+          onClick={toggleFavorite}
         />
       </div>
       <div>

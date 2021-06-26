@@ -22,6 +22,7 @@ function LikeVideoButton({
       style={{ backgroundColor }}
     >
       <LikeButton
+        isFavorite={isLiked}
         className={classes(
           styles.LikeButtonModifier,
           backgroundColor !== "white" && styles.LikeButtonLight

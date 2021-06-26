@@ -7,12 +7,13 @@ import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import useLoad from "react-app/src/utils/useLoad";
 import OverlayHeader from "../video/overlay-header";
 import OverlayDetails from "../video/overlay-details";
-import { saveContractLike } from "react-app/src/state/ducks/account/actions";
+import { toggleContractLike } from "react-app/src/state/ducks/account/actions";
 import { fetchStatusContractLike } from "react-app/src/state/ducks/hiring/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { toggleAudio } from "react-app/src/state/ducks/celebrity-sections/actions";
 import { RootState } from "react-app/src/state/store";
 import { connect, ConnectedProps } from "react-redux";
+import { useContractLike } from "lib/hooks/useContractLike";
 
 const mapStateToProps = ({ celebritySections }: RootState) => ({
   isAudioActive: celebritySections.audioReducer.active,
@@ -41,17 +42,8 @@ function ContractVideo({
   isAudioActive,
   toggleAudio,
 }: ContractVideoProps) {
-  // TODO: agregar initial state response de backend
-  const [isLiked, setIsLiked] = useState(false);
-  const { isAuthenticated } = useAuth0();
+  const { isFavorite, toggleFavorite } = useContractLike(contract_reference);
   const videoKey = `contract-video-${videoUrl}`;
-  useEffect(() => {
-    if (!isAuthenticated || !contract_reference) return;
-    fetchStatusContractLike(contract_reference).then((res) => {
-      if (res.markedByMe) setIsLiked(true);
-    });
-  }, [isAuthenticated, contract_reference]);
-
   const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
     onPlayVideo() {
       // TODO: conectar GTM
@@ -71,12 +63,6 @@ function ContractVideo({
     },
   });
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
-
-  const toggleLikeContract = () => {
-    saveContractLike(contract_reference).then((response) => {
-      setIsLiked(response.liked);
-    });
-  };
 
   return (
     <div
@@ -113,9 +99,9 @@ function ContractVideo({
           </div>
           <OverlayDetails
             displayLikeButton={contract_reference}
-            isLiked={isLiked}
+            isLiked={isFavorite}
             ocassion={occasion}
-            onLikevideo={toggleLikeContract}
+            onLikevideo={toggleFavorite}
           />
         </section>
       </div>
