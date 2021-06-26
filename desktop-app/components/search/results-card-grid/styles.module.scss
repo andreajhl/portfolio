@@ -5,6 +5,10 @@
   @media only screen and (max-width: 1919px) {
     grid-template-columns: repeat(auto-fill, 13.8vw);
   }
+
+  > * {
+    min-width: 0; // Para asegurar que los cards tengan el ancho correcto de la grid.
+  }
 }
 
 .ResultsCardGridExpanded {
