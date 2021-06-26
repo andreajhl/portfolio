@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 import { PriceRangeSlider } from "../price-range-slider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   updateSearchFilters,
   resetSearchFilters,
@@ -28,10 +28,10 @@ type DispatchProps = typeof mapDispatchToProps;
 
 type SearchFiltersProps = {} & StateProps & DispatchProps;
 
-const minPrice = 5;
-const maxPrice = 500;
+const defaultMinPrice = 5;
+const defaultMaxPrice = 500;
 
-const priceRangeSliderInitialValues = [minPrice, maxPrice];
+const priceRangeSliderInitialValues = [defaultMinPrice, defaultMaxPrice];
 
 function SearchFilters({
   updateSearchFilters,
@@ -41,8 +41,21 @@ function SearchFilters({
   const [priceRangeValues, setPriceRangeValues] = useState(
     priceRangeSliderInitialValues
   );
+  const [priceRangeIsTouched, setPriceRangeIsTouched] = useState(false);
 
-  console.log(searchFilters);
+  function changeIsTouched() {
+    if (!priceRangeIsTouched) setPriceRangeIsTouched(true);
+  }
+
+  const { min_price, max_price } = searchFilters;
+
+  useEffect(() => {
+    if (!min_price || !max_price) return;
+    changeIsTouched();
+    const minPrice = Number(min_price) ?? defaultMinPrice;
+    const maxPrice = Number(max_price) ?? defaultMaxPrice;
+    setPriceRangeValues([minPrice, maxPrice]);
+  }, [min_price, max_price]);
 
   function updateSearchFilterPriceRange({
     values: [min_price, max_price],
@@ -82,9 +95,11 @@ function SearchFilters({
         <div className={styles.SearchFilterItem}>
           <label className={styles.SearchFilterItemTitle}>Precio</label>
           <PriceRangeSlider
-            min={minPrice}
-            max={maxPrice}
+            min={defaultMinPrice}
+            max={defaultMaxPrice}
             values={priceRangeValues}
+            isTouched={priceRangeIsTouched}
+            changeIsTouched={changeIsTouched}
             setValues={setPriceRangeValues}
             onChange={updateSearchFilterPriceRange}
           />
