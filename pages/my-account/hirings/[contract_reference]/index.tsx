@@ -5,6 +5,7 @@ import isMobile from "lib/utils/isMobile";
 import dynamic from "next/dynamic";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
+import useGlobalFetches from "lib/hooks/useGlobalFetches";
 
 const DesktopClientHiringPage = dynamic<{ contractReference: string }>(() =>
   import("desktop-app/components/pages/client-hiring").then(
@@ -32,6 +33,10 @@ export async function getServerSideProps({
 
 const HiringPreview = ({ isMobile, contractReference }) => {
   useDesktopClass(true);
+  useGlobalFetches({
+    shouldFetchUserCelebrityLikes: false,
+    shouldFetchUserContractsLikes: true,
+  });
 
   return (
     <>
