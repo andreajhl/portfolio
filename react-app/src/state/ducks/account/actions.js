@@ -55,7 +55,7 @@ export const fetchUserFavoritesContracts = (params) => (dispatch) => {
     });
 };
 
-export const saveContractLike = (contract_reference) => {
+export const toggleContractLike = (contract_reference) => {
   const FINAL_PATH = API_PATHS.SAVE_USER_LIKE_CONTRACT_PATH;
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
@@ -99,3 +99,31 @@ export const updateUserGender = (newGender) => {
       });
   });
 };
+
+export const fetchUserLikesContractsWithReference = (params) => (dispatch) => {
+  const TYPE = TYPES.FETCH_USER_LIKES_CONTRACTS_WITH_REFERENCE;
+  const FINAL_PATH = API_PATHS.FETCH_USER_LIKES_CONTRACTS_REFERENCES_PATH;
+  dispatch({ type: TYPE });
+  apiService({
+    method: "GET",
+    action: TYPE,
+    path: FINAL_PATH,
+    params,
+  })
+    .then((res) => {
+      if ("status" in res.data && res.data.status === "ERROR") {
+        handleApiResponseFailure(dispatch, TYPE, res);
+      } else {
+        handleApiResponseSuccess(dispatch, TYPE, res);
+        dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+      }
+    })
+    .catch((err) => {
+      handleApiErrors(dispatch, TYPE, err);
+    });
+};
+
+export const toggleContractLikeFromList = (contract_reference) => ({
+  type: TYPES.TOGGLE_CONTRACT_LIKE_FROM_LIST,
+  payload: contract_reference,
+});

@@ -15,6 +15,13 @@ const fetchUserFavoritesContractsReducerInitialState = {
   error_data: { error: "" },
   data: { results: [], informationPage: {} },
 };
+const fetchUserFavoritesContractsWithReferenceReducerInitialState = {
+  data: [],
+  loading: false,
+  failed: false,
+  completed: false,
+  error_data: { error: "" },
+};
 
 export function fetchUserFavoritesCelebritiesReducer(
   state = fetchUserFavoritesCelebritiesReducerInitialState,
@@ -79,8 +86,40 @@ export function fetchUserFavoritesContractsReducer(
       return state;
   }
 }
+export function fetchUserFavoritesContractsWithReferenceReducer(
+  state = fetchUserFavoritesContractsWithReferenceReducerInitialState,
+  action
+) {
+  switch (action.type) {
+    case TYPES.FETCH_USER_LIKES_CONTRACTS_WITH_REFERENCE:
+      return {
+        ...state,
+        loading: true,
+      };
+    case TYPES.FETCH_USER_LIKES_CONTRACTS_WITH_REFERENCE_FAILURE:
+      return {
+        ...state,
+        error_data: action.payload.data,
+        failed: true,
+      };
+    case TYPES.FETCH_USER_LIKES_CONTRACTS_WITH_REFERENCE_SUCCESS:
+      return {
+        ...fetchUserFavoritesCelebritiesReducerInitialState,
+        loading: false,
+      };
+    case TYPES.FETCH_USER_LIKES_CONTRACTS_WITH_REFERENCE_COMPLETED:
+      return {
+        ...fetchUserFavoritesCelebritiesReducerInitialState,
+        data: action.payload.data?.data,
+        completed: true,
+      };
+    default:
+      return state;
+  }
+}
 
 export default combineReducers({
   fetchUserFavoritesCelebritiesReducer,
   fetchUserFavoritesContractsReducer,
+  fetchUserFavoritesContractsWithReferenceReducer,
 });
