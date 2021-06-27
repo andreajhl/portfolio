@@ -44,31 +44,35 @@ function ClientProfilePage({
 
   return (
     <PageContainer>
-      <PageHeading showBackButton={false}>Mi Perfil</PageHeading>
-      <main className={classes("container", styles.ClientProfilePageContainer)}>
-        <div className={styles.Section}>
-          <Maybe
-            it={isCompletedUserData && !isLoadingUserData}
-            orElse={<SkeletonInformationEdit />}
-          >
-            <UserInformationEdit userData={userData} />
-          </Maybe>
-        </div>
-        <div className={styles.Section}>
-          <div className={styles.GridOfSettings}>
-            {/* <UpdatePasswordForm /> */}
-            <PaymentMethodsSection />
-            <SettingsUser />
-            <SharingSection />
+      <PageHeading showBackButton={false}>Mi perfil</PageHeading>
+      <div className={styles.ClientProfilePage}>
+        <main
+          className={classes("container", styles.ClientProfilePageContainer)}
+        >
+          <div className={styles.Section}>
+            <Maybe
+              it={isCompletedUserData && !isLoadingUserData}
+              orElse={<SkeletonInformationEdit />}
+            >
+              <UserInformationEdit userData={userData} />
+            </Maybe>
           </div>
-        </div>
-        <div className={styles.Section}>
-          <CelebritiesFavoritesEdit />
-        </div>
-        <div className={styles.Section}>
-          <VideoContractsFavorites />
-        </div>
-      </main>
+          <div className={styles.Section}>
+            <div className={styles.GridOfSettings}>
+              {/* <UpdatePasswordForm /> */}
+              <PaymentMethodsSection />
+              <SettingsUser />
+              <SharingSection />
+            </div>
+          </div>
+          <div className={styles.Section}>
+            <CelebritiesFavoritesEdit />
+          </div>
+          <div className={styles.Section}>
+            <VideoContractsFavorites />
+          </div>
+        </main>
+      </div>
     </PageContainer>
   );
 }
