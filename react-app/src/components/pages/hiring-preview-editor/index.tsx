@@ -8,6 +8,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ShareGiftDropdown } from "desktop-app/components/common/widgets/share-gift-dropdown";
 import { PageContainer } from "../../layouts/page-container";
 import ViewerClientVideo from "desktop-app/components/common/cards/viewer-client-video";
+import getGiftPageBackgroundStyle from "lib/utils/getGiftPageBackgroundStyle";
 
 type HiringPreviewEditorPageProps = {
   contractReference: string;
@@ -30,7 +31,7 @@ function HiringPreviewEditorPage({
       <Maybe it={Boolean(contract.reference)}>
         <main
           className={styles.HiringPreviewEditorPage}
-          style={{ backgroundImage: `url(${configuration.pageBackgroundUrl})` }}
+          style={getGiftPageBackgroundStyle(configuration)}
         >
           <div className={classes("container", styles.Container)}>
             <div className={styles.LeftSide}>

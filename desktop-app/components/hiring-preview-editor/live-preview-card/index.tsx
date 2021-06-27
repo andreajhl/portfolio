@@ -1,5 +1,6 @@
 import ClientContractType from "desktop-app/types/clientContract";
 import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfigurationType";
+import getGiftPageBackgroundStyle from "lib/utils/getGiftPageBackgroundStyle";
 import { GiftPreviewMain } from "../../layouts/gift-preview-main";
 import styles from "./styles.module.scss";
 
@@ -16,9 +17,7 @@ function LivePreviewCard({ contract, configuration }: LivePreviewCardProps) {
       </header>
       <div
         className={styles.LivePreviewBody}
-        style={{
-          backgroundImage: `url(${configuration.pageBackgroundUrl})`,
-        }}
+        style={getGiftPageBackgroundStyle(configuration)}
       >
         <GiftPreviewMain
           className={styles.GiftPreview}

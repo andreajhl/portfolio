@@ -6,6 +6,7 @@ import { VideoContractFeed } from "../video-contract-feed";
 import ClientContractType from "desktop-app/types/clientContract";
 import { HiringReviewSection } from "../../common/widgets/hiring-review-section";
 import getDefaultHiringConfiguration from "constants/getDefaultHiringConfiguration";
+import getGiftPageBackgroundStyle from "../../../../lib/utils/getGiftPageBackgroundStyle";
 
 type GiftPreviewMainProps = {
   className?: string;
@@ -23,9 +24,7 @@ function GiftPreviewMain({
   return (
     <main
       className={classes(styles.GiftPreviewMain, className)}
-      style={{
-        backgroundImage: `url(${hiringConfiguration.pageBackgroundUrl})`,
-      }}
+      style={getGiftPageBackgroundStyle(hiringConfiguration)}
     >
       <div className={classes("container", styles.Container)}>
         <div className={styles.LeftSide}>
