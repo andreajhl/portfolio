@@ -1,12 +1,25 @@
 import { HTMLProps } from "react";
 import styles from "./styles.module.scss";
 
-function removeSelectedPlaceholderSpan({ key }) {
-  if (key.startsWith("Arrow")) return;
+const isPlaceholderSpan = (focusedElement: HTMLElement) =>
+  focusedElement.matches("span[data-is-placeholder]");
+
+function getFocusedElement() {
+  const { focusNode } = document.getSelection();
+  return focusNode?.parentElement;
+}
+
+const isDeletingKey = (key: string) => ["Backspace", "Delete"].includes(key);
+
+function removeSelectedPlaceholderSpan(event) {
   try {
-    const { focusNode } = document.getSelection();
-    const parent = focusNode?.parentElement;
-    if (parent.matches("span[data-is-placeholder]")) parent.remove();
+    const { key } = event;
+    console.log({ key });
+    if (key.startsWith("Arrow")) return;
+    const focusedElement = getFocusedElement();
+    if (!isPlaceholderSpan(focusedElement)) return;
+    if (isDeletingKey(key)) event?.preventDefault?.(); // To prevent erasing spaces
+    focusedElement.remove();
   } catch (error) {
     console.log(error);
   }

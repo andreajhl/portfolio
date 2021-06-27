@@ -3,6 +3,7 @@
   background: var(--gray-1);
   border: 1px solid #dedede;
   padding: 18px 22px;
+  white-space: pre-wrap;
 
   &:empty::after {
     cursor: text;
