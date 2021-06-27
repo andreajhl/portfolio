@@ -8,6 +8,7 @@ import classes from "classnames";
 import { ContractDetailsType } from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
 import {
+  getPlaceholders,
   getTextContent,
   TextInputWithPlaceholders,
 } from "desktop-app/components/common/form/text-input-with-placeholders";
@@ -27,6 +28,10 @@ const validations: ValidationsType<ContractDetailsType> = {
   instructions(value) {
     if (Array.isArray(value)) return "Olvidaste editar el texto.";
     if (value.length === 0) return "Debes escribir tus instrucciones.";
+    const valuePlaceholders = getPlaceholders(value);
+    if (valuePlaceholders) {
+      return `Debes editar el valor ${valuePlaceholders?.[0]}`;
+    }
     if (value.length > 300) {
       return "Debes introducir un máximo de 300 caracteres.";
     }
