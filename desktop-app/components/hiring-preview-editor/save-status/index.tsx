@@ -30,7 +30,7 @@ type SaveStatusProps = {
 function SaveStatus({ className = "", status }: SaveStatusProps) {
   const { icon, text } = statusData[status];
   return (
-    <Collapse in={status !== "idle"}>
+    <Collapse in={status !== "idle"} unmountOnExit>
       <div>
         <div
           className={classes(
