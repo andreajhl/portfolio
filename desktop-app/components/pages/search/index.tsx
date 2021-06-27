@@ -3,13 +3,14 @@ import PageContainer from "desktop-app/components/layouts/page-container";
 import {
   Sidebar,
   SidebarWrapper,
-  MainContent
+  MainContent,
 } from "desktop-app/components/layouts/sidebar-wrapper";
 import { SearchFilters } from "desktop-app/components/search/search-filters";
 import { SearchResults } from "desktop-app/components/search/search-results";
 import { SidebarTopBar } from "desktop-app/components/search/sidebar-top-bar";
 import { MainContentTopBar } from "desktop-app/components/search/main-content-top-bar";
 import styles from "./styles.module.scss";
+import classes from "classnames";
 
 // type SearchPageProps = {};
 
@@ -22,9 +23,17 @@ function SearchPage() {
 
   return (
     <PageContainer>
-      <SidebarWrapper isOpen={sidebarIsOpen} className={styles.SideBarWrapper}>
+      <SidebarWrapper
+        isOpen={sidebarIsOpen}
+        className={styles.SearchPageSideBarWrapper}
+      >
         <Sidebar width={358} className={styles.SideBarSticky}>
-          <div className={styles.SearchPageSidebar}>
+          <div
+            className={classes(
+              styles.SearchPageSidebar,
+              sidebarIsOpen && styles.SearchPageSidebarIsOpen
+            )}
+          >
             <div
               className={`${styles.SearchPageTopBar} ${styles.SearchPageSidebarTopBar}`}
             >
