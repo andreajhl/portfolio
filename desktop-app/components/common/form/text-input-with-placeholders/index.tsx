@@ -1,12 +1,6 @@
 import { HTMLProps } from "react";
 import styles from "./styles.module.scss";
 
-type TextInputWithPlaceholdersProps = HTMLProps<HTMLDivElement> & {
-  placeholder?: string;
-  value: string;
-  className?: string;
-};
-
 function removeSelectedPlaceholderSpan({ key }) {
   if (key.startsWith("Arrow")) return;
   try {
@@ -27,7 +21,7 @@ function limitLength(event, maxLength: number) {
 }
 
 export const getTextContent = ({
-  childNodes
+  childNodes,
 }: {
   childNodes: NodeListOf<ChildNode>;
 }) =>
@@ -44,24 +38,36 @@ function moveCursorToWordStart() {
   }
 }
 
-function replacePlaceholdersForSpans(textWithPlaceholders: string) {
-  const bracketsRegExp = /(\[|\])/g;
-  return textWithPlaceholders
-    .split(bracketsRegExp)
-    .filter((part) => !bracketsRegExp.test(part))
-    .map((part, index) => {
-      if (index % 2 === 0) return part;
-      return (
-        <span
-          data-is-placeholder
-          onClick={moveCursorToWordStart}
-          className={styles.Placeholder}
-        >
-          {`[${part}]`}
-        </span>
-      );
-    });
+function placeholdersToSpans(
+  part: string,
+  index: number
+): string | JSX.Element {
+  const isPlaceholder = index % 2 !== 0;
+  if (!isPlaceholder) return part;
+  return (
+    <span
+      data-is-placeholder
+      onClick={moveCursorToWordStart}
+      className={styles.Placeholder}
+    >
+      {`[${part}]`} {/* Using a JSX expression to have only one child node*/}
+    </span>
+  );
 }
+
+export const placeholderRegExp = /\[([^[\]]*)\]/g;
+
+function replacePlaceholdersForSpans(textWithPlaceholders: string) {
+  return textWithPlaceholders.split(placeholderRegExp).map(placeholdersToSpans);
+}
+
+export const getPlaceholders = (text: string) => text?.match(placeholderRegExp);
+
+type TextInputWithPlaceholdersProps = HTMLProps<HTMLDivElement> & {
+  placeholder?: string;
+  value: string;
+  className?: string;
+};
 
 function TextInputWithPlaceholders({
   placeholder = "",
