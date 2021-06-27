@@ -19,11 +19,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "react-app/src/components/containers/login-button/login-button";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { FormattedMessage } from "react-intl";
 
 type MenuItemType = {
   id: string;
   icon?: ReactNode;
-  label: string;
+  label: ReactNode;
   to: string;
 };
 
@@ -31,22 +32,27 @@ const menuItems: MenuItemType[] = [
   {
     id: "my-profile",
     icon: <UserIcon />,
-    label: "Mi Perfil",
+    label: <FormattedMessage defaultMessage="Mi perfil" />,
     to: CLIENT_PROFILE,
   },
   {
     id: "my-hiring",
     icon: <PlayIcon fill="none" />,
-    label: "Mis solicitudes",
+    label: <FormattedMessage defaultMessage="Mis solicitudes" />,
     to: CLIENT_HIRINGS,
   },
   {
     id: "my-subscriptions",
     icon: <StarIcon />,
-    label: "Mis suscripciones",
+    label: <FormattedMessage defaultMessage="Mis suscripciones" />,
     to: FEED_SUBSCRIPTION,
   },
-  { id: "help", icon: <HelpIcon />, label: "Ayuda", to: FAQS_PATH },
+  {
+    id: "help",
+    icon: <HelpIcon />,
+    label: <FormattedMessage defaultMessage="Ayuda" />,
+    to: FAQS_PATH,
+  },
 ];
 
 const toMenuItem = ({ id, to, icon, label }) => (
