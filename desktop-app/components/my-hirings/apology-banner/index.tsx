@@ -63,7 +63,9 @@ function ApologyBanner({ contractData }: ApologyBannerProps) {
       />
       <Link
         className={classes("btn btn-primary", styles.CTALink, styles.CTAButton)}
-        href={getCelebrityProfilePath(contractData.celebrityData.username)}
+        href={getCelebrityProfilePath(contractData.celebrityData.username, {
+          focusCreateContractWizard: true,
+        })}
       >
         Volver a solicitar un video a {contractData.celebrityData.fullName}
       </Link>
