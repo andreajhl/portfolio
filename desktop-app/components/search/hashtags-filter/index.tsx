@@ -6,7 +6,7 @@ import { connect, ConnectedProps } from "react-redux";
 import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
 
-const getInitialHashtags = (searchFilters) =>
+const getHashtagsFromSearchFilters = (searchFilters) =>
   typeof searchFilters.hashtags === "string" && searchFilters.hashtags !== ""
     ? searchFilters.hashtags.split(",")
     : [];
@@ -39,12 +39,11 @@ function HashtagsFilter({
   searchFilters,
   onChangeHashtags = function () {},
 }: HashtagsFilterProps) {
-  const [selectedHashtags, setSelectedHashtags] = useState(
-    getInitialHashtags(searchFilters)
-  );
+  const [selectedHashtags, setSelectedHashtags] = useState([]);
 
   useEffect(() => {
     listHashtags(searchFilters);
+    setSelectedHashtags(getHashtagsFromSearchFilters(searchFilters));
   }, [searchFilters]);
 
   const addHashtag = (name: string) => () =>
@@ -54,26 +53,26 @@ function HashtagsFilter({
       return newHashtags;
     });
 
+  const hashtagIsNotSelected = ({ name }: HashtagType): boolean =>
+    !selectedHashtags.includes(name);
+
   return (
     <Maybe it={searchHashtags?.length > 0}>
       <div className={`${styles.HashtagsFilter} ${className}`}>
-        {searchHashtags
-          .filter(({ name }) => !selectedHashtags.includes(name))
-          .map(({ name, amount }) => (
-            <div
-              className={styles.HashtagsFilterHashtag}
-              onClick={addHashtag(name)}
+        {searchHashtags.filter(hashtagIsNotSelected).map(({ name, amount }) => (
+          <div
+            key={`${name}-${amount}`}
+            className={styles.HashtagsFilterHashtag}
+            onClick={addHashtag(name)}
+          >
+            <span
+              className={`text-with-ellipsis ${styles.HashtagsFilterHashtagName}`}
             >
-              <span
-                className={`text-with-ellipsis ${styles.HashtagsFilterHashtagName}`}
-              >
-                {name}
-              </span>{" "}
-              <span className={styles.HashtagsFilterHashtagCount}>
-                {amount}
-              </span>
-            </div>
-          ))}
+              {name}
+            </span>{" "}
+            <span className={styles.HashtagsFilterHashtagCount}>{amount}</span>
+          </div>
+        ))}
       </div>
     </Maybe>
   );
