@@ -66,20 +66,26 @@ function CelebrityCard({
   const discountPrice =
     videoMessagePrice - videoMessagePrice * discountPercentage;
 
+  const celebrityProfileLink = getCelebrityProfilePath(celebrity.username);
+
   return (
-    <Link
-      href={getCelebrityProfilePath(celebrity.username)}
+    <div
       className={`${styles.CelebrityCard} ${parentElementClass}`}
       style={{ width: thumbnailWidth }}
     >
       <div className={styles.CelebrityCardThumbnail}>
-        <OptimizedImage
-          placeholderSrc="/assets/img/avatar-blank.png"
-          height={thumbnailHeight}
-          width={thumbnailWidth}
-          src={celebrity.avatar}
-          className={styles.CelebrityCardAvatar}
-        />
+        <Link
+          href={celebrityProfileLink}
+          className={styles.CelebrityCardProfileLink}
+        >
+          <OptimizedImage
+            placeholderSrc="/assets/img/avatar-blank.png"
+            height={thumbnailHeight}
+            width={thumbnailWidth}
+            src={celebrity.avatar}
+            className={styles.CelebrityCardAvatar}
+          />
+        </Link>
         <div className={styles.CelebrityCardThumbnailFooter}>
           <Link href={getSearchCategoryPath(celebrity.categoryId)}>
             <span className={styles.CelebrityCardCategory}>
@@ -112,10 +118,15 @@ function CelebrityCard({
             alpha2Code={celebrity.alpha2Code}
             className="mr-2"
           />
-          <TextWithOverflow
-            textClassName={styles.CelebrityCardFullName}
-            text={celebrity.fullName}
-          />
+          <Link
+            href={celebrityProfileLink}
+            className={styles.CelebrityCardFullNameLink}
+          >
+            <TextWithOverflow
+              textClassName={styles.CelebrityCardFullName}
+              text={celebrity.fullName}
+            />
+          </Link>
         </h4>
         <Maybe it={Array.isArray(celebrity.hashtags)}>
           <p className={`text-with-ellipsis ${styles.CelebrityCardHashtags}`}>
@@ -127,24 +138,29 @@ function CelebrityCard({
           </p>
         </Maybe>
         <Maybe it={showPrice}>
-          <p className={"text-with-ellipsis " + styles.CelebrityCardPrice}>
-            <span
-              className={classes(
-                styles.VideoMessagePrice,
-                hasDiscount && styles.RemovedPrice
-              )}
-            >
-              <PriceLayout decimalScale={0} price={videoMessagePrice} />
-            </span>{" "}
-            <Maybe it={hasDiscount}>
-              <span className={styles.DiscountPrice}>
-                <PriceLayout decimalScale={0} price={discountPrice} />
-              </span>
-            </Maybe>
-          </p>
+          <Link
+            href={celebrityProfileLink}
+            className={styles.CelebrityCardProfileLink}
+          >
+            <p className={"text-with-ellipsis " + styles.CelebrityCardPrice}>
+              <span
+                className={classes(
+                  styles.VideoMessagePrice,
+                  hasDiscount && styles.RemovedPrice
+                )}
+              >
+                <PriceLayout decimalScale={0} price={videoMessagePrice} />
+              </span>{" "}
+              <Maybe it={hasDiscount}>
+                <span className={styles.DiscountPrice}>
+                  <PriceLayout decimalScale={0} price={discountPrice} />
+                </span>
+              </Maybe>
+            </p>
+          </Link>
         </Maybe>
       </div>
-    </Link>
+    </div>
   );
 }
 
