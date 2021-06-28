@@ -16,6 +16,7 @@ import styles from "./styles.module.scss";
 import useCelebrityFavorite from "lib/hooks/useCelebrityFavorite";
 import classes from "classnames";
 import getCelebrityDiscountPercentage from "lib/utils/getCelebrityDiscountPercentage";
+import { DiscountPercentageBadge } from "desktop-app/components/common/widgets/discount-percentage-badge";
 
 const preventRedirectFromParent = (event) => {
   if (event.stopPropagation) {
@@ -86,6 +87,17 @@ function CelebrityCard({
             className={styles.CelebrityCardAvatar}
           />
         </Link>
+        <div className={styles.CelebrityCardThumbnailHeader}>
+          <Maybe it={hasDiscount}>
+            <DiscountPercentageBadge
+              discountPercentage={discountPercentage}
+              className={styles.CelebrityCardDiscountPercentage}
+            />
+          </Maybe>
+          <Maybe it={celebrity.availableForFlashDeliveries}>
+            <FlashDeliveryBadgeLayout />
+          </Maybe>
+        </div>
         <div className={styles.CelebrityCardThumbnailFooter}>
           <Link href={getSearchCategoryPath(celebrity.categoryId)}>
             <span className={styles.CelebrityCardCategory}>
@@ -99,16 +111,6 @@ function CelebrityCard({
               toggleFavorite();
             }}
           />
-        </div>
-        <div className={styles.CelebrityCardThumbnailHeader}>
-          <Maybe it={hasDiscount}>
-            <span className={styles.CelebrityCardDiscountPercentage}>
-              -{discountPercentage * 100}%
-            </span>
-          </Maybe>
-          <Maybe it={celebrity.availableForFlashDeliveries}>
-            <FlashDeliveryBadgeLayout />
-          </Maybe>
         </div>
       </div>
       <div className={styles.CelebrityCardInfo}>
