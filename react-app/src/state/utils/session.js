@@ -3,10 +3,11 @@ import * as PATHS from "../../routing/Paths";
 import jwt_decode from "jwt-decode";
 import { Mixpanel } from "./mixPanel";
 import isBrowser from "../../../src/utils/isBrowser";
+import Cookies from "js-cookie";
 
 export class Session {
   constructor() {
-    this.sessionName = "_a0_";
+    this.sessionName = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME;
     this.visitKey = "_visit_";
     this.session = this.getSession();
   }
@@ -29,7 +30,7 @@ export class Session {
   }
 
   getToken = () => {
-    return isBrowser() ? localStorage.getItem(this.sessionName) : null;
+    return isBrowser() ? Cookies.get(this.sessionName) : null;
   };
 
   getSession = () => {

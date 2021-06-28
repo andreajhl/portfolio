@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { LoaderLayout } from "../../layouts/loader";
 
-const AuthSuccess = () => {
+const AuthSuccess = ({ redirectTo }) => {
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.location.replace(redirectTo);
+    }, 1000);
+  });
+
   return (
     <React.Fragment>
       <div
