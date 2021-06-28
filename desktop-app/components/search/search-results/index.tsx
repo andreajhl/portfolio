@@ -30,7 +30,7 @@ function mapStateToProps({
 
   const showAdditionalResults =
     celebrities.fetchCelebritiesReducer.completed &&
-    celebrities.fetchCelebritiesReducer.data?.informationPage?.totalItems < 10;
+    celebrities.fetchCelebritiesReducer.data?.informationPage?.totalItems <= 10;
 
   const showPagination =
     celebrities.fetchCelebritiesReducer.completed &&
