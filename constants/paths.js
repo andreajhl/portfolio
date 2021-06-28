@@ -68,8 +68,20 @@ export const PAYMENT_AUTHORIZATION_INFO =
 export const getPurchaseSummaryPath = (contract_reference) =>
   PURCHASE_SUMMARY.replace(":contract_reference", contract_reference);
 
-export const getCelebrityProfilePath = (celebrityUsername) =>
-  CELEBRITY_PROFILE.replace(":celebrity_username", celebrityUsername);
+export const CREATE_CONTRACT_QUERY_PARAM = "createContract";
+
+export const getCelebrityProfilePath = (
+  celebrityUsername,
+  { focusCreateContractWizard = false } = {}
+) => {
+  const queryParams = focusCreateContractWizard
+    ? `?${CREATE_CONTRACT_QUERY_PARAM}=true`
+    : "";
+  return (
+    CELEBRITY_PROFILE.replace(":celebrity_username", celebrityUsername) +
+    queryParams
+  );
+};
 
 export const getHireCelebrityPath = (celebrityUsername) =>
   CELEBRITY_PROFILE_CONTRACT.replace(":celebrity_username", celebrityUsername);

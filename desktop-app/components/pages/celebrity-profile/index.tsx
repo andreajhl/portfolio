@@ -31,7 +31,15 @@ const CreateContractWizard = dynamic<CreateContractWizardProps>(
   { loading: CreateContractWizardSkeleton }
 );
 
+const createContractWizardPosition = { top: 110 };
 const createContractWizardBottom = 600; // por ser definido correctamente.
+
+function focusWizardInput() {
+  const wizardFirstInputElement: HTMLElement = document.querySelector(
+    `.${styles.CreateContractWizard} input`
+  );
+  wizardFirstInputElement?.focus?.({ preventScroll: true });
+}
 
 const mapStateToProps = ({ celebrities, contracts }: RootState) => ({
   publicContracts: celebrities.fetchPublicContractsReducer.data.results,
@@ -47,10 +55,12 @@ type PropFromRedux = ConnectedProps<typeof connector>;
 
 type CelebrityProfilePageProps = {
   celebrity: celebrityType;
+  shouldFocusCreateContractWizard?: boolean;
 } & PropFromRedux;
 
 function CelebrityProfilePage({
   celebrity,
+  shouldFocusCreateContractWizard = false,
   isLoadingPublicContracts,
   publicContracts,
   getUserContractInProgress,
@@ -62,25 +72,23 @@ function CelebrityProfilePage({
     setCreateContractWizardIsFocused,
   ] = useState(false);
   const { isAuthenticated, isLoading } = useAuth0();
-  const timeoutRef = useRef<number | NodeJS.Timeout>();
+  const wizardChangeFocusTimeoutRef = useRef<number | NodeJS.Timeout>();
 
-  function onStickyCTAClick() {
-    scrollToTop({ top: 110 });
+  function goToCreateContractWizard() {
+    scrollToTop(createContractWizardPosition);
     setCreateContractWizardIsFocused(true);
-    timeoutRef.current = setTimeout(() => {
+    wizardChangeFocusTimeoutRef.current = setTimeout(() => {
       setCreateContractWizardIsFocused(false);
     }, 2000);
-    const wizardFirstInputElement: HTMLElement = document.querySelector(
-      `.${styles.CreateContractWizard} input`
-    );
-    wizardFirstInputElement?.focus?.({ preventScroll: true });
+    focusWizardInput();
   }
 
   useEffect(
-    () => () => {
-      if (typeof timeoutRef.current !== "number") return;
-      clearTimeout(timeoutRef.current);
-    },
+    () =>
+      function clearWizardChangeFocusTimeout() {
+        if (typeof wizardChangeFocusTimeoutRef.current !== "number") return;
+        clearTimeout(wizardChangeFocusTimeoutRef.current);
+      },
     []
   );
 
@@ -101,13 +109,19 @@ function CelebrityProfilePage({
   const isReadyToCreateContract =
     contractInProgressRequest.completed || (!isLoading && !isAuthenticated);
 
+  useEffect(() => {
+    if (!shouldFocusCreateContractWizard) return;
+    if (!isReadyToCreateContract) return;
+    goToCreateContractWizard();
+  }, [shouldFocusCreateContractWizard, isReadyToCreateContract]);
+
   return (
     <PageContainer>
       <PageHeading showHomeLink />
       <StickyCallToActionTopBar
         appearancePosition={createContractWizardBottom}
         celebrity={celebrity}
-        onCTAButtonClick={onStickyCTAClick}
+        onCTAButtonClick={goToCreateContractWizard}
       />
       <div className={styles.TopSectionWrapper}>
         <div className={classes("container", styles.CelebrityDetailsContainer)}>

@@ -26,6 +26,7 @@ import waitFor from "react-app/src/utils/waitFor";
 import { defineMessages, useIntl } from "react-intl";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import debug from "react-app/src/utils/debug";
+import { CREATE_CONTRACT_QUERY_PARAM } from "constants/paths";
 
 const CelebrityProfilePage = dynamic<{ celebrity: celebrityType }>(() =>
   import("react-app/src/components/pages/celebrity-profile").then(
@@ -33,7 +34,10 @@ const CelebrityProfilePage = dynamic<{ celebrity: celebrityType }>(() =>
   )
 );
 
-const CelebrityProfilePageDesktop = dynamic<{ celebrity: celebrityType }>(() =>
+const CelebrityProfilePageDesktop = dynamic<{
+  celebrity: celebrityType;
+  shouldFocusCreateContractWizard?: boolean;
+}>(() =>
   import("desktop-app/components/pages/celebrity-profile").then(
     (mod) => mod.CelebrityProfilePage
   )
@@ -54,7 +58,7 @@ const redirectToSanitizedPath = {
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  async ({ params, store, req }) => {
+  async ({ params, store, req, query }) => {
     if (typeof params === "undefined") {
       return {
         redirect: redirectToSanitizedPath,
@@ -95,6 +99,9 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         props: {
           celebrity,
           isMobile,
+          shouldFocusCreateContractWizard: Boolean(
+            query?.[CREATE_CONTRACT_QUERY_PARAM]
+          ),
         },
       };
     } catch (error) {
@@ -106,7 +113,11 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   }
 );
 
-function CelebrityProfile({ celebrity, isMobile }) {
+function CelebrityProfile({
+  celebrity,
+  isMobile,
+  shouldFocusCreateContractWizard,
+}) {
   useDesktopClass(!isMobile);
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
   const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
@@ -146,7 +157,12 @@ function CelebrityProfile({ celebrity, isMobile }) {
       />
       <Maybe
         it={isMobile}
-        orElse={<CelebrityProfilePageDesktop celebrity={celebrity} />}
+        orElse={
+          <CelebrityProfilePageDesktop
+            celebrity={celebrity}
+            shouldFocusCreateContractWizard={shouldFocusCreateContractWizard}
+          />
+        }
       >
         <CelebrityProfilePage celebrity={celebrity} />
       </Maybe>
