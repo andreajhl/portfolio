@@ -10,20 +10,33 @@
   justify-content: space-between;
   margin-bottom: 37px;
   margin-top: 1rem;
-  h3 {
-    font-size: 22px;
-    line-height: 30px;
-    letter-spacing: 0em;
-    margin-bottom: 0;
-  }
-  span {
-    flex-shrink: 0;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0em;
-    text-align: center;
-    margin-top: auto;
-  }
+  flex-wrap: wrap;
+}
+
+.VideoDeliveryFormHeader h3 {
+  font-size: 22px;
+  line-height: 30px;
+  letter-spacing: 0em;
+  margin-bottom: 0;
+}
+
+.VideoDeliveryFormHeader > span {
+  flex-shrink: 0;
+  flex-grow: 1;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0em;
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.VideoDeliveryFormHeader > span > * + * {
+  margin-left: auto;
+  top: 0.05em;
 }
 
 .SkeletonSubmitButton {
