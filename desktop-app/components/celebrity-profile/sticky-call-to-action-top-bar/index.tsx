@@ -46,7 +46,7 @@ function StickyCallToActionTopBar({
         </span>
         <button
           type="button"
-          className={"btn btn-primary " + styles.StickyCTAButton}
+          className={classes("btn btn-primary", styles.StickyCTAButton)}
           onClick={onCTAButtonClick}
         >
           Comprar video personalizado
