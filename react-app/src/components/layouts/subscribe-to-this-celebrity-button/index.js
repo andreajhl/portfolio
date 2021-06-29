@@ -5,7 +5,7 @@ import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
 import { LessImportantCallToActionButton } from "../less-important-call-to-action-button";
 import { useWindow } from "react-app/src/utils/useWindow";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import { history } from "react-app/src/routing/History";
 import { useRouter } from "next/router";
 
@@ -22,7 +22,7 @@ function SubscribeToThisCelebrityButton({
   const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
   const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
 
-  const { loginWithPopup, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { loginWithPopup, isAuthenticated, loginWithRedirect } = useAuth();
 
   const registerSubscribeToThisCelebrityButtonEvent = (eventName) => {
     GTM.tagManagerDataLayer(eventName + "_SUBSCRIBE_TO_THIS_CELEBRITY_BUTTON", {

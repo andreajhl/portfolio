@@ -6,7 +6,7 @@ import { ROOT_PATH } from "../../../routing/Paths";
 import PropTypes from "prop-types";
 import * as GTM from "../../../state/utils/gtm";
 import { DropdownMenuLayout } from "../dropdown-menu";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import LoginButton from "../../containers/login-button/login-button";
 import Maybe from "../../common/helpers/maybe";
 import dynamic from "next/dynamic";
@@ -47,7 +47,7 @@ const NavbarSectionLayout = ({
   showCouponBanner,
   setShowCouponBanner
 }) => {
-  const { isLoading, isAuthenticated } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth();
   const intl = useIntl();
 
   return (

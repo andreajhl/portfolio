@@ -1,13 +1,12 @@
-import Auth0ProviderWithHistory from "lib/auth0-provider-with-history";
 import React, { useEffect } from "react";
 import { wrapper } from "react-app/src/state/store";
 import { useRouter } from "next/router";
 import { initialize as gtmInitialize } from "react-app/src/state/utils/gtm";
 import "react-app/src/styles.scss";
-import Auth0UserHandler from "lib/auth0UserHandler";
 import { IntlProvider } from "react-intl";
 import esMessages from "../compiled-lang/es.json";
 import enMessages from "../compiled-lang/en.json";
+import { FamososAuthProvider } from "lib/famosos-auth";
 
 const languages = {
   en: enMessages,
@@ -44,25 +43,16 @@ const App = ({ Component, pageProps }) => {
   const messages = languages[locale];
 
   return (
-    <Auth0ProviderWithHistory>
-      <Auth0UserHandler>
-        <IntlProvider
-          messages={messages}
-          locale={locale}
-          defaultLocale={defaultLocale}
-        >
-          <Component {...pageProps} />
-        </IntlProvider>
-      </Auth0UserHandler>
-    </Auth0ProviderWithHistory>
+    <FamososAuthProvider authenticated={false}>
+      <IntlProvider
+        messages={messages}
+        locale={locale}
+        defaultLocale={defaultLocale}
+      >
+        <Component {...pageProps} />
+      </IntlProvider>
+    </FamososAuthProvider>
   );
 };
 
 export default wrapper.withRedux(App);
-
-// App.getInitialProps = async ({ Component, ctx }) => {
-//   const pageProps = Component.getInitialProps
-//     ? await Component.getInitialProps(ctx)
-//     : {};
-//   return { pageProps };
-// }

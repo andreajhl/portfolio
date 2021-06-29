@@ -7,7 +7,7 @@ import {
 import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
 import { CallToActionButton } from "../call-to-action-button";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import { useWindow } from "../../../utils/useWindow";
 
 const HireThisCelebrityButton = ({
@@ -29,7 +29,7 @@ const HireThisCelebrityButton = ({
     isLoading,
     isAuthenticated,
     loginWithRedirect
-  } = useAuth0();
+  } = useAuth();
 
   const handlerClickToLogin = () => {
     registerHireThisCelebrityButtonEvent("CLICK");

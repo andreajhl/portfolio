@@ -1,11 +1,11 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
 const LogoutButton = (props) => {
   const session = new Session();
   const { children, className, redirectTo } = props;
-  const { logout } = useAuth0();
+  const { logout } = useAuth();
   const handlerLogoutSession = () => {
     GTM.tagManagerDataLayer("CLICK_LOGOUT");
     session.removeSession();
