@@ -12,26 +12,26 @@ function useContractLike(contract_reference: string) {
   ] = useUserLikesContractsWithReference();
   const { isAuthenticated } = useAuth0();
   const [isFavorite, setIsFavorite] = useState(false);
-
   useEffect(() => {
     if (!userContractsLikes) return;
-    console.log(userContractsLikes);
+    console.log({ userContractsLikes });
     setIsFavorite(
       Boolean(
         userContractsLikes.find(
-          (likeCelebrityId) => likeCelebrityId === contract_reference
+          (contractData) => contractData.reference === contract_reference
         )
       )
     );
   }, [contract_reference, userContractsLikes]);
 
   async function changeFavorite() {
-    const response = await toggleContractLike(contract_reference).catch(
-      console.warn
-    );
-    if (response.status !== "OK") return;
-    toggleLikeFromList(contract_reference);
-    setIsFavorite((isFavorite) => !isFavorite);
+    try {
+      await toggleContractLike(contract_reference);
+      toggleLikeFromList(contract_reference);
+      setIsFavorite((isFavorite) => !isFavorite);
+    } catch (e) {
+      console.warn(e);
+    }
   }
 
   function redirectToLogin() {
