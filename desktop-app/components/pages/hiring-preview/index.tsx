@@ -7,6 +7,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { HiringPreviewCTACard } from "desktop-app/components/hiring-preview/hiring-preview-cta-card";
 import { HiringReviewSection } from "desktop-app/components/common/widgets/hiring-review-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
+import { GiftAnimationWrapper } from "desktop-app/components/layouts/gift-animation-wrapper";
 
 type HiringPreviewPageProps = {
   contractReference: string;
@@ -17,24 +18,31 @@ function HiringPreviewPage({ contractReference }: HiringPreviewPageProps) {
 
   return (
     <PageContainer showFooter={false}>
-      <div className={classes("container", styles.Container)}>
-        <Maybe it={status === "completed"}>
-          <div className={styles.LeftSide}>
-            <HiringPreviewLeftSide
-              celebrityFullName={contract?.celebrityData?.fullName}
-              deliveryTo={contract?.deliveryTo}
+      <GiftAnimationWrapper
+        deliveryTo={contract.deliveryTo}
+        deliveryFrom={contract.deliveryFrom}
+      >
+        <div className={classes("container", styles.Container)}>
+          <Maybe it={status === "completed"}>
+            <div className={styles.LeftSide}>
+              <HiringPreviewLeftSide
+                celebrityFullName={contract?.celebrityData?.fullName}
+                deliveryTo={contract?.deliveryTo}
+              />
+            </div>
+            <VideoContractFeed
+              className={styles.RightSide}
+              contractData={contract}
             />
-          </div>
-          <VideoContractFeed
-            className={styles.RightSide}
-            contractData={contract}
-          />
-          <div className={styles.HiringReviewSectionWrapper}>
-            <HiringReviewSection contractData={contract} />
-          </div>
-          <HiringPreviewCTACard className={styles.HiringPreviewCTACardMobile} />
-        </Maybe>
-      </div>
+            <div className={styles.HiringReviewSectionWrapper}>
+              <HiringReviewSection contractData={contract} />
+            </div>
+            <HiringPreviewCTACard
+              className={styles.HiringPreviewCTACardMobile}
+            />
+          </Maybe>
+        </div>
+      </GiftAnimationWrapper>
     </PageContainer>
   );
 }
