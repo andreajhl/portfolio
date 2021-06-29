@@ -6,7 +6,7 @@ const AuthSuccess = ({ redirectTo }) => {
   useEffect(() => {
     setTimeout(() => {
       window.location.replace(redirectTo);
-    }, 1000);
+    }, 500);
   });
 
   return (

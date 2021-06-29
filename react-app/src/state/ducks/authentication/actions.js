@@ -1,15 +1,11 @@
 import * as types from "./types";
 import * as PATHS from "./paths";
 import apiService from "../../utils/apiService";
-import {
-  handleApiErrors,
-  handleApiResponseFailure,
-  handleApiResponseSuccess
-} from "../../utils";
+import { handleApiErrors, handleApiResponseFailure, handleApiResponseSuccess } from "../../utils";
 import { Session } from "../../utils/session";
 import { history } from "../../../routing/History";
 import * as ROUTE_PATHS from "../../../routing/Paths";
-import axios from "axios";
+
 const afterLogin = (res) => {
   const session = new Session();
   if (res.data.token) {
@@ -47,7 +43,7 @@ const afterLogin = (res) => {
 
 export const signInWithEmail = (body) => {
   return (dispatch) => {
-    const path = PATHS.SIGN_IN_REQUEST;
+    const path = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT + PATHS.SIGN_IN_REQUEST;
     const type = types.SIGN_IN_WITH_EMAIL_REQUEST;
     dispatch({ type: type, payload: {} });
     apiService({
@@ -55,6 +51,7 @@ export const signInWithEmail = (body) => {
       async: true,
       path: path,
       method: "POST",
+      custom_endpoint: true,
       params: null,
       body: body
     })

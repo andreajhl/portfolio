@@ -19,7 +19,7 @@ export class Session {
     Mixpanel.people.set({
       USER_ID: decoded.id,
       $email: decoded.email,
-      status: decoded.status,
+      // status: decoded.status,
       exp: decoded.exp
     });
   };

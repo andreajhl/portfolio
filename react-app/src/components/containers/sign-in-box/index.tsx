@@ -1,4 +1,3 @@
-import { AuthFormField } from "react-app/src/components/layouts/auth-form-field";
 import { FacebookButton } from "react-app/src/components/layouts/facebook-button";
 import { GoogleButton } from "react-app/src/components/layouts/google-button";
 import { connect, ConnectedProps } from "react-redux";
@@ -8,6 +7,7 @@ import { AuthTermsAdvertise } from "react-app/src/components/layouts/auth-terms-
 import { FormattedMessage } from "react-intl";
 import { Link } from "../../common/routing/link";
 import { SIGN_UP_PATH } from "react-app/src/routing/Paths";
+import { SignInEmailPasswordForm } from "../sign-in-with-email-form";
 
 const signUpLink = (chunk: string) => <Link href={SIGN_UP_PATH}>{chunk}</Link>;
 
@@ -33,24 +33,7 @@ function SignInBox({ className }: SignInBoxProps) {
         <GoogleButton className={styles.AuthProviderButton}>
           <FormattedMessage defaultMessage="Ingresar con Google" />
         </GoogleButton>
-        <h3 className={styles.SignInBoxTitle}>
-          <FormattedMessage defaultMessage="o ingresa con tu correo electrónico" />
-        </h3>
-        <AuthFormField
-          label="Correo electrónico"
-          placeholder="usuario@dominio.com"
-        />
-        <AuthFormField
-          type="password"
-          label="Contraseña"
-          placeholder="**********"
-        />
-        <button
-          type="button"
-          className={classes("btn btn-primary", styles.SignInBoxSubmitButton)}
-        >
-          <FormattedMessage defaultMessage="Continuar" />
-        </button>
+        <SignInEmailPasswordForm email={""} />
         <AuthTermsAdvertise className={styles.SignInBoxAuthTermsAdvertise} />
         <Link href="#" className={styles.ForgotPasswordLink}>
           <FormattedMessage defaultMessage="Olvidé mi contraseña" />
