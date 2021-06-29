@@ -54,7 +54,7 @@ function NotificationLangForm(props: NotificationLangFormProps) {
           </option>
         ))}
       </select>
-      <SubmitStatus status={"loading"} />
+      <SubmitStatus status={status} />
     </div>
   );
 }
