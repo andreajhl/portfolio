@@ -7,12 +7,13 @@ import DirectionButton, {
 } from "desktop-app/components/common/button/direction";
 import useElementWidth from "../../../../lib/hooks/useElementWidth";
 import useScrollAvailability from "../../../../lib/hooks/useScrollAvailability";
+import { CopyWithPartial } from "react-app/src/state/utils/CopyWithPartial";
 
 export type ReelProps = {
   listClassName?: string;
   buttonsStyle?: ButtonStyle;
   scrollByOffset?: number;
-} & Omit<FixedSizeListProps, "width">;
+} & CopyWithPartial<FixedSizeListProps, "width">;
 
 const defaultContainerWidthOnDesktop = 1134;
 
@@ -25,12 +26,10 @@ function Reel({
   scrollByOffset = 0,
   listClassName,
   buttonsStyle = { size: 35, top: "50%" },
+  width = defaultContainerWidthOnDesktop,
 }: ReelProps) {
   const containerRef = useRef<HTMLDivElement>();
-  const containerWidth = useElementWidth(
-    containerRef,
-    defaultContainerWidthOnDesktop
-  );
+  const containerWidth = useElementWidth(containerRef, Number(width));
   const listRef = useRef<HTMLDivElement>();
   const [
     setScrollAvailability,
