@@ -17,7 +17,10 @@ function useUserLikesContractsWithReference() {
   }
 
   return [
-    userContractsLikes as string[],
+    userContractsLikes as {
+      contractId: number;
+      reference: string;
+    }[],
     dispatchToggleContractLikeFromList,
   ] as const;
 }
