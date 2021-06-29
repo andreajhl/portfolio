@@ -1,7 +1,11 @@
+.CelebrityInfoReviews {
+  text-align: center;
+  word-spacing: 0.75rem;
+}
 .showReviewsModal {
   cursor: pointer;
 
-  &:hover {
+  &:hover span {
     text-decoration: underline var(--dark);
   }
 }

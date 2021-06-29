@@ -26,9 +26,14 @@ function CelebrityInfoReviews({
   showReviewsModal,
 }: CelebrityInfoReviewsProps) {
   const triggerElement = (
-    <span className={classes(showReviewsModal && styles.showReviewsModal)}>
-      <i className="fa fa-star text-warning mr-2" />
-      {Number(celebrityStarsAverage || 1).toFixed(1)}
+    <span
+      className={classes(
+        styles.CelebrityInfoReviews,
+        showReviewsModal && styles.showReviewsModal
+      )}
+    >
+      <i className="fa fa-star text-warning" />{" "}
+      <span>{Number(celebrityStarsAverage || 1).toFixed(1)}</span>
     </span>
   );
 
