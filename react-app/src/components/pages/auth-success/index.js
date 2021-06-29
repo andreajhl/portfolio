@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { LoaderLayout } from "../../layouts/loader";
+import { Session } from "../../../state/utils/session";
 
-const AuthSuccess = ({ redirectTo }) => {
+const AuthSuccess = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      window.location.replace(redirectTo);
+      const session = new Session();
+      session.initSession()
     }, 500);
   });
 

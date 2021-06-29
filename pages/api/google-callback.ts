@@ -26,11 +26,8 @@ export default async (req: NextApiRequest, res: NextApiResponse<{}>) => {
       }
     )
     .then(response => {
-        console.log("response.data:", response.data);
         const status = response.data.status;
-        console.log("status:", status);
         const data = response.data.data;
-        console.log("data:", data);
         if (status === "OK") {
           // SSR
           res.setHeader(

@@ -12,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<{}>) => {
   // Send code to famosos auth and save the JWT Token in Cookies
   await axios
     .post(
-      `${endpoint}/${version}/famosos-com/email-password/sign-in`,
+      `${endpoint}/${version}/famosos-com/email-password/sign-up`,
       {
         "email": req.body["email"],
         "password": req.body["password"]

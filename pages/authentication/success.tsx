@@ -7,24 +7,19 @@ import { parse } from "cookie";
 const ServerSidePropsCallBack = async ({ req, store, query }) => {
   const cookies = parse(req?.headers?.cookie || "");
   let sessionToken = "";
-  let redirectTo = "/";
-
   sessionToken = cookies[process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME];
-  // TODO: validate redirect
-
   return {
     props: {
       sessionToken: sessionToken,
-      redirectTo: redirectTo
     }
   };
 };
 
-const Success = ({ sessionToken, redirectTo }) => {
+const Success = ({ sessionToken }) => {
   return (
     <>
       <CustomHead />
-      <AuthSuccess redirectTo={redirectTo} />
+      <AuthSuccess />
     </>
   );
 };

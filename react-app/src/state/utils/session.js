@@ -1,5 +1,6 @@
 import { history } from "../../routing/History";
 import * as PATHS from "../../routing/Paths";
+import * as ROUTE_PATHS from "../../routing/Paths";
 import jwt_decode from "jwt-decode";
 import { Mixpanel } from "./mixPanel";
 import isBrowser from "../../../src/utils/isBrowser";
@@ -12,9 +13,8 @@ export class Session {
     this.session = this.getSession();
   }
 
-  setSession = (token) => {
-    localStorage.setItem(this.sessionName, token);
-    const decoded = this.jwtDecode(token);
+  initSession = () => {
+    const decoded = this.jwtDecode(this.getToken());
     Mixpanel.identify(decoded.id);
     Mixpanel.people.set({
       USER_ID: decoded.id,
@@ -22,6 +22,17 @@ export class Session {
       // status: decoded.status,
       exp: decoded.exp
     });
+    const authRedirect = localStorage.getItem("authRedirect");
+    const finalRedirect = localStorage.getItem("finalRedirect");
+    if (authRedirect !== null) {
+      localStorage.removeItem("authRedirect");
+      return history._pushRoute(authRedirect);
+    } else if (finalRedirect !== null) {
+      localStorage.removeItem("finalRedirect");
+      return history._pushRoute(finalRedirect);
+    } else {
+      return history._pushRoute(ROUTE_PATHS.HOME_PATH);
+    }
   };
 
   applyRedirects() {

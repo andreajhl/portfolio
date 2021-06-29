@@ -174,7 +174,7 @@ export const saveClientContract = (contractData) => {
           // Other actions
           if (res.data.data.sessionToken) {
             const session = new Session();
-            session.setSession(res.data.data.sessionToken);
+            session.initSession(res.data.data.sessionToken);
             localStorage.setItem("finalRedirect", ROUTING_PATHS.CLIENT_HIRINGS);
             localStorage.setItem("hash", res.data.data.contractHash);
 
@@ -234,7 +234,7 @@ export const updateClientContract = (contractData) => {
           }
           if (res.data.data.sessionToken) {
             const session = new Session();
-            session.setSession(res.data.data.sessionToken);
+            session.initSession(res.data.data.sessionToken);
             localStorage.setItem("finalRedirect", ROUTING_PATHS.CLIENT_HIRINGS);
             localStorage.setItem("hash", res.data.data.contractHash);
 

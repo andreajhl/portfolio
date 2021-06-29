@@ -8,37 +8,37 @@ import * as ROUTE_PATHS from "../../../routing/Paths";
 
 const afterLogin = (res) => {
   const session = new Session();
-  if (res.data.token) {
-    session.setSession(res.data.token);
-    switch (session.getSession().status) {
-      // CHANGE PASSWORD REQUIRED
-      case 10:
-        localStorage.setItem("authRedirect", ROUTE_PATHS.CREATE_PASSWORD_PATH);
-        break;
-      // COMPLETE PROFILE REQUIRED
-      case 15:
-        localStorage.setItem("authRedirect", ROUTE_PATHS.COMPLETE_PROFILE_PATH);
-        break;
-      // UPDATE PASSWORD
-      case 29:
-        localStorage.setItem("authRedirect", ROUTE_PATHS.CHANGE_PASSWORD_PATH);
-        break;
-      // FINAL REDIRECT
-      default:
-        break;
-    }
-  }
-  const authRedirect = localStorage.getItem("authRedirect");
-  const finalRedirect = localStorage.getItem("finalRedirect");
-  if (authRedirect !== null) {
-    localStorage.removeItem("authRedirect");
-    return history._pushRoute(authRedirect);
-  } else if (finalRedirect !== null) {
-    localStorage.removeItem("finalRedirect");
-    return history._pushRoute(finalRedirect);
-  } else {
-    return history._pushRoute(ROUTE_PATHS.HOME_PATH);
-  }
+  // if (res.data.token) {
+  //   session.initSession(res.data.token);
+  //   switch (session.getSession().status) {
+  //     // CHANGE PASSWORD REQUIRED
+  //     case 10:
+  //       localStorage.setItem("authRedirect", ROUTE_PATHS.CREATE_PASSWORD_PATH);
+  //       break;
+  //     // COMPLETE PROFILE REQUIRED
+  //     case 15:
+  //       localStorage.setItem("authRedirect", ROUTE_PATHS.COMPLETE_PROFILE_PATH);
+  //       break;
+  //     // UPDATE PASSWORD
+  //     case 29:
+  //       localStorage.setItem("authRedirect", ROUTE_PATHS.CHANGE_PASSWORD_PATH);
+  //       break;
+  //     // FINAL REDIRECT
+  //     default:
+  //       break;
+  //   }
+  // }
+  // const authRedirect = localStorage.getItem("authRedirect");
+  // const finalRedirect = localStorage.getItem("finalRedirect");
+  // if (authRedirect !== null) {
+  //   localStorage.removeItem("authRedirect");
+  //   return history._pushRoute(authRedirect);
+  // } else if (finalRedirect !== null) {
+  //   localStorage.removeItem("finalRedirect");
+  //   return history._pushRoute(finalRedirect);
+  // } else {
+  //   return history._pushRoute(ROUTE_PATHS.HOME_PATH);
+  // }
 };
 
 export const signInWithEmail = (body) => {

@@ -9,12 +9,12 @@ import axios from "axios";
 import { Session } from "../../../state/utils/session";
 
 // Props
-type SignInEmailPasswordFormProps = {
+type SignUpEmailPasswordFormProps = {
   email: string;
 };
 
 // State
-type SignInEmailPasswordFormState = {
+type SignUpEmailPasswordFormState = {
   email: string;
   password: string;
   isLoading: boolean;
@@ -23,7 +23,7 @@ type SignInEmailPasswordFormState = {
 };
 
 // Class component
-class SignInEmailPasswordForm extends React.Component<SignInEmailPasswordFormProps, SignInEmailPasswordFormState> {
+class SignUpEmailPasswordForm extends React.Component<SignUpEmailPasswordFormProps, SignUpEmailPasswordFormState> {
   constructor(props) {
     super(props);
 
@@ -158,4 +158,4 @@ class SignInEmailPasswordForm extends React.Component<SignInEmailPasswordFormPro
   }
 }
 
-export { SignInEmailPasswordForm } ;
+export { SignUpEmailPasswordForm } ;
