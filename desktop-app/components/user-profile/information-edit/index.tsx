@@ -1,18 +1,17 @@
-import { EditableInputField } from "desktop-app/components/common/form/editable-input-field";
 import useForm from "lib/hooks/useForm";
 import React from "react";
 import UpdateUserEmail from "../update-user-email";
 import { UserAvatarUploader } from "../user-avatar-uploader";
-import UpdateUserPhone from "../update-user-phonenumber";
 import UpdateUserGender from "../update-user-gender";
 import LogoutButton from "react-app/src/components/containers/logout-button/logout-button";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { ActiveInputField } from "desktop-app/components/common/form/active-input-field";
 import { userDetails } from "desktop-app/types/userDetails";
+import UpdateUserBirthdayDate from "../update-user-birthday-date";
+
 type FormValuesType = {
   fullName: string;
-  birthdayDate: string;
 };
 
 type UserInformationEditProps = {
@@ -23,13 +22,12 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
   const { values, onChangeField } = useForm<FormValuesType>({
     initialValues: {
       fullName: userData.fullName,
-      birthdayDate: userData.birthdayDate,
     },
     onSubmit() {
       console.log("Enviado");
     },
   });
-
+  console.log({ values });
   return (
     <div className={styles.UserInformationConfigContainer}>
       <h2 className={styles.UserInformationConfigTitle}>
@@ -57,16 +55,8 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
             {/* <UpdateUserPhone
               numberPhone={`+${userData.cellphoneCode} ${userData.cellphoneNumber}`}
             /> */}
-            <ActiveInputField
-              containerClass={styles.InputContainer}
-              inputClass={styles.inputClass}
-              labelClass={styles.labelInputFields}
-              value={values.birthdayDate}
-              label="Fecha de nacimiento"
-              type="date"
-              name="birthdayDate"
-              onClickSave={() => console.log("birthdayDate save")}
-              showSaveButton={values.birthdayDate !== userData.birthdayDate}
+            <UpdateUserBirthdayDate
+              userBirthdayDate={userData.birthdayDate.Time}
             />
           </div>
           <div className={styles.OptionsItems}>
