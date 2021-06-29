@@ -22,7 +22,7 @@ function HashtagsBadgeList({
         height={28}
         scrollByOffset={10}
         itemCount={hashtags.length}
-        width={200}
+        width={250}
         buttonsStyle={{ size: 28, top: 14, transform: "translateY(-50%)" }}
         itemData={hashtags}
       >
