@@ -22,13 +22,19 @@ function StickyCallToActionTopBar({
 }: StickyCallToActionTopBarProps) {
   return (
     <StickyTopBar appearancePosition={appearancePosition}>
-      <div className={"container " + styles.StickyCTAContainer}>
+      <div
+        className={classes(
+          "container",
+          styles.StickyCTAContainer,
+          parentElementClass
+        )}
+      >
         <img
           src={celebrity.avatar}
           alt={`Foto de ${celebrity.fullName}`}
           className={styles.StickyCTAAvatar}
         />
-        <h2 className={classes(styles.StickyCTAFullName, parentElementClass)}>
+        <h2 className={styles.StickyCTAFullName}>
           <TextWithOverflow
             textClassName={styles.CelebrityFullName}
             text={celebrity.fullName}
