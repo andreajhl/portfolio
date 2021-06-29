@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import { Link } from "desktop-app/components/common/routing/link";
 import { getSearchCategoryPath } from "constants/paths";
 import { CelebrityInfoReviews } from "desktop-app/components/celebrity-profile/celebrity-info-reviews";
+import classes from "classnames";
 
 type CelebrityInfoProps = {
   celebrity: celebrityType;
@@ -13,7 +14,7 @@ type CelebrityInfoProps = {
 
 function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
   return (
-    <div className={`${styles.CelebrityInfo} ${className}`}>
+    <div className={classes(styles.CelebrityInfo, className)}>
       <span className={styles.CelebrityInfoItemWithSeparator}>
         <CountryFlag
           countryId={celebrity.countryId}
@@ -31,8 +32,13 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
       <span className={styles.CelebrityInfoItemWithSeparator}>
         <CelebrityInfoReviews celebrityStarsAverage={celebrity.starsAverage} />
       </span>
-      <span className={styles.CelebrityInfoItem}>
-        Respuesta promedio:{" "}
+      <span
+        className={classes(
+          styles.CelebrityInfoItem,
+          styles.DeliveryTimeWrapper
+        )}
+      >
+        <span className={styles.DeliveryTimeLabel}>Respuesta promedio:</span>
         <CelebrityResponseTime
           availableForFlashDeliveries={celebrity.availableForFlashDeliveries}
           turnAroundTime={celebrity.turnaround}

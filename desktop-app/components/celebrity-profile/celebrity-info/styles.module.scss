@@ -1,29 +1,39 @@
 .CelebrityInfo {
   display: flex;
+}
 
-  &Item,
-  &ItemWithSeparator {
-    font-size: 14px;
-    color: var(--gray-4);
+.CelebrityInfoItem,
+.CelebrityInfoItemWithSeparator {
+  font-size: 14px;
+  color: var(--gray-4);
+}
 
-    * {
-      color: var(--gray-4);
-    }
-  }
+.CelebrityInfoItem *,
+.CelebrityInfoItemWithSeparator * {
+  color: var(--gray-4);
+}
 
-  &ItemWithSeparator {
-    padding-right: 1rem;
-    border-right: 1px solid #9d9d9d;
-    margin-right: 1rem;
-    display: flex;
-    align-items: center;
-  }
+.CelebrityInfoItemWithSeparator {
+  padding-right: 1rem;
+  border-right: 1px solid #9d9d9d;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
 
-  &Flag {
-    margin-right: 14px;
-  }
+.CelebrityInfoFlag {
+  margin-right: 14px;
+}
 
-  &Category:hover {
-    color: var(--dark) !important;
-  }
+.CelebrityInfoCategory:hover {
+  color: var(--dark) !important;
+}
+
+.DeliveryTimeWrapper {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.DeliveryTimeLabel {
+  margin-right: 0.2em;
 }
