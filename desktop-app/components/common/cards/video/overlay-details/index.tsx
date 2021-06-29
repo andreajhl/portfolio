@@ -1,6 +1,8 @@
 import { LikeButton } from "desktop-app/components/common/button/like";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import React from "react";
+import { occasionsData } from "react-app/src/constants/options";
+import { useIntl } from "react-intl";
 import styles from "./styles.module.scss";
 
 type OverlayDetailsProps = {
@@ -16,6 +18,7 @@ const OverlayDetails = ({
   isLiked,
   displayLikeButton,
 }: OverlayDetailsProps) => {
+  const { locale } = useIntl();
   return (
     <div className={styles.OverlayVideoDetails}>
       <Maybe it={ocassion?.length > 0}>
@@ -35,7 +38,10 @@ const OverlayDetails = ({
             </svg>
           </div> */}
           <span className={styles.OverlayVideoDetailsOcassionName}>
-            {ocassion}
+            {occasionsData[locale][ocassion]
+              ? occasionsData[locale][ocassion].title
+              : ocassion}
+            {/* {ocassion} */}
           </span>
         </div>
       </Maybe>
