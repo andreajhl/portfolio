@@ -6,6 +6,9 @@
   background-color: rgba(243, 244, 255, 1);
   justify-content: space-around;
   padding: 3px 12px 6px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .IconContainer {
   display: flex;
