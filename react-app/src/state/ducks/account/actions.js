@@ -99,6 +99,29 @@ export const updateUserGender = (newGender) => {
       });
   });
 };
+export const updateUserBirthdayDate = (newBirthdayDate) => {
+  const FINAL_PATH = API_PATHS.UPDATE_USER_BIRTHDAY_DATE_PATH;
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      path: FINAL_PATH,
+      async: true,
+      body: {
+        BirthdayDate: newBirthdayDate,
+      },
+    })
+      .then((res) => {
+        if (res.data.status === "OK") {
+          resolutionFunc(res.data.data);
+        } else {
+          rejectionFunc(res.data.error);
+        }
+      })
+      .catch((err) => {
+        rejectionFunc(err);
+      });
+  });
+};
 
 export const fetchUserLikesContractsWithReference = (params) => (dispatch) => {
   const TYPE = TYPES.FETCH_USER_LIKES_CONTRACTS_WITH_REFERENCE;
