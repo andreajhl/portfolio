@@ -34,7 +34,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<{}>) => {
             "Set-Cookie",
             serialize("SessionToken", data.token, {
               path: '/',
-              httpOnly: true,
+              // httpOnly: true,
               sameSite: "lax"
             })
           );

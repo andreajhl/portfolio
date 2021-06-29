@@ -34,7 +34,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<{}>) => {
             "Set-Cookie",
             serialize(process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME, data.token, {
               path: "/",
-              httpOnly: true,
+              // httpOnly: true,
               sameSite: "lax"
             })
           );

@@ -7,10 +7,12 @@ import { AuthFormField } from "../../layouts/auth-form-field";
 import classes from "classnames";
 import axios from "axios";
 import { Session } from "../../../state/utils/session";
+import FormCheck from "react-bootstrap/FormCheck";
+import Maybe from "../../common/helpers/maybe";
 
 // Props
 type SignUpEmailPasswordFormProps = {
-  email: string;
+  willRedirect: boolean;
 };
 
 // State
@@ -28,7 +30,7 @@ class SignUpEmailPasswordForm extends React.Component<SignUpEmailPasswordFormPro
     super(props);
 
     this.state = {
-      email: this.props.email || "",
+      email: "",
       password: "",
       isLoading: false,
       isCompleted: false,
@@ -123,35 +125,45 @@ class SignUpEmailPasswordForm extends React.Component<SignUpEmailPasswordFormPro
   render() {
     return (
       <div>
-        <h3 className={styles.SignInBoxTitle}>
-          <FormattedMessage defaultMessage="o ingresa con tu correo electrónico" />
+        <h3 className={styles.SignUpBoxTitle}>
+          <FormattedMessage defaultMessage="o regístrate con tu correo electrónico" />
         </h3>
+        <AuthFormField label="Nombre" placeholder="Marcos" />
+        <AuthFormField
+          type="date"
+          label="Cumpleaños"
+          placeholder="DD / MM / AA"
+        />
         <AuthFormField
           label="Correo electrónico"
           placeholder="usuario@dominio.com"
-          value={this.state.email}
-          onChange={this.handleEmailInput}
-          onKeyPress={this.handleKeyPress}
         />
-        {/*TODO: Input group with show password button*/}
         <AuthFormField
           type="password"
           label="Contraseña"
           placeholder="**********"
-          value={this.state.password}
-          onChange={this.handlePasswordInput}
-          onKeyPress={this.handleKeyPress}
         />
-        <div className={"text-center"}>
-          {this.renderError()}
-        </div>
+        <AuthFormField
+          type="password"
+          label="Confirmar contraseña"
+          placeholder="**********"
+        />
+        <FormCheck
+          id="accept-offers-and-benefits"
+          className={styles.SignUpBoxSwitcher}
+          type="switch"
+          label="Quiero recibir ofertas y beneficios exclusivos."
+        />
         <button
           type="button"
-          className={classes("btn btn-primary", styles.SignInBoxSubmitButton)}
-          disabled={this.state.isLoading}
-          onClick={this.sendData}
+          className={classes("btn btn-primary", styles.SignUpBoxSubmitButton)}
         >
-          <FormattedMessage defaultMessage={"Continuar"} />
+          <Maybe
+            it={this.props.willRedirect}
+            orElse={<FormattedMessage defaultMessage="Registrarme" />}
+          >
+            <FormattedMessage defaultMessage="Registrarme y continuar" />
+          </Maybe>
         </button>
       </div>
     );

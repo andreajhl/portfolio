@@ -36,46 +36,6 @@ function SignUpBox({ className, willRedirect = false }: SignUpBoxProps) {
         <GoogleButton className={styles.AuthProviderButton}>
           <FormattedMessage defaultMessage="Registrarme con Google" />
         </GoogleButton>
-        <h3 className={styles.SignUpBoxTitle}>
-          <FormattedMessage defaultMessage="o regístrate con tu correo electrónico" />
-        </h3>
-        <AuthFormField label="Nombre" placeholder="Marcos" />
-        <AuthFormField
-          type="date"
-          label="Cumpleaños"
-          placeholder="DD / MM / AA"
-        />
-        <AuthFormField
-          label="Correo electrónico"
-          placeholder="usuario@dominio.com"
-        />
-        <AuthFormField
-          type="password"
-          label="Contraseña"
-          placeholder="**********"
-        />
-        <AuthFormField
-          type="password"
-          label="Confirmar contraseña"
-          placeholder="**********"
-        />
-        <FormCheck
-          id="accept-offers-and-benefits"
-          className={styles.SignUpBoxSwitcher}
-          type="switch"
-          label="Quiero recibir ofertas y beneficios exclusivos."
-        />
-        <button
-          type="button"
-          className={classes("btn btn-primary", styles.SignUpBoxSubmitButton)}
-        >
-          <Maybe
-            it={willRedirect}
-            orElse={<FormattedMessage defaultMessage="Registrarme" />}
-          >
-            <FormattedMessage defaultMessage="Registrarme y continuar" />
-          </Maybe>
-        </button>
         <AuthTermsAdvertise className={styles.SignUpBoxAuthTermsAdvertise} />
       </div>
       <p className={styles.AlreadyRegisteredText}>
