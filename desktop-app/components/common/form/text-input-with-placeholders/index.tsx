@@ -1,4 +1,4 @@
-import { HTMLProps } from "react";
+import { HTMLProps, KeyboardEvent } from "react";
 import styles from "./styles.module.scss";
 
 const isPlaceholderSpan = (focusedElement: HTMLElement) =>
@@ -9,23 +9,25 @@ function getFocusedElement() {
   return focusNode?.parentElement;
 }
 
-const isDeletingKey = (key: string) => ["Backspace", "Delete"].includes(key);
+function preventErasingWhitespace(event: KeyboardEvent<HTMLDivElement>) {
+  const isDeletingKey = ["Backspace", "Delete"].includes(event.key);
+  if (isDeletingKey) event?.preventDefault?.();
+}
 
-function removeSelectedPlaceholderSpan(event) {
+function removeSelectedPlaceholderSpan(event: KeyboardEvent<HTMLDivElement>) {
   try {
     const { key } = event;
-    console.log({ key });
     if (key.startsWith("Arrow")) return;
     const focusedElement = getFocusedElement();
     if (!isPlaceholderSpan(focusedElement)) return;
-    if (isDeletingKey(key)) event?.preventDefault?.(); // To prevent erasing spaces
+    preventErasingWhitespace(event);
     focusedElement.remove();
   } catch (error) {
     console.log(error);
   }
 }
 
-function limitLength(event, maxLength: number) {
+function limitLength(event: KeyboardEvent<HTMLDivElement>, maxLength: number) {
   const hasTypedACharacter = event?.key?.length === 1;
   const { target } = event as { target: any };
   if (hasTypedACharacter && getTextContent(target).length >= maxLength) {
@@ -63,7 +65,9 @@ function placeholdersToSpans(
       onClick={moveCursorToWordStart}
       className={styles.Placeholder}
     >
-      {`[${part}]`} {/* Using a JSX expression to have only one child node*/}
+      {/* Using a JSX expression to have only one child node,
+          this allow moveCursorToWordStart to works properly */}
+      {`[${part}]`}
     </span>
   );
 }
