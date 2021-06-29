@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { PaymentMethodsPage } from "react-app/src/components/pages/payment-methods";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 
 export const getServerSideProps: GetServerSideProps = async ({

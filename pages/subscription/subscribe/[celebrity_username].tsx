@@ -1,6 +1,6 @@
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { Subscription as SubscriptionPage } from "react-app/src/components/pages/subscription";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import { defineMessages } from "react-intl";
 import { GetServerSideProps } from "next";
