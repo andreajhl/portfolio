@@ -9,7 +9,7 @@ type CheckboxProps = {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   checked: boolean;
   style?: React.CSSProperties;
-  name: string;
+  name?: string;
   value: any;
   alignLabel?: "left" | "right";
   checkboxLayout?: "box" | "circle";
