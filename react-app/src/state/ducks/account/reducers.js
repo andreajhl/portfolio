@@ -104,12 +104,30 @@ export function fetchUserFavoritesContractsWithReferenceReducer(
       };
     case TYPES.FETCH_USER_LIKES_CONTRACTS_WITH_REFERENCE_SUCCESS:
       return {
-        ...fetchUserFavoritesCelebritiesReducerInitialState,
+        ...fetchUserFavoritesContractsWithReferenceReducerInitialState,
         loading: false,
+      };
+    case TYPES.TOGGLE_CONTRACT_LIKE_FROM_LIST:
+      const currentContractLikesList = Array.isArray(state?.data)
+        ? state?.data
+        : [];
+      // contract_reference
+      const reference = action.payload;
+      const likesHasContractReference = currentContractLikesList?.find(
+        (contractData) => contractData.reference === reference
+      );
+      const newLikesList = likesHasContractReference
+        ? currentContractLikesList?.filter(
+            (contractData) => contractData.reference !== reference
+          )
+        : [...currentContractLikesList, { reference }];
+      return {
+        ...state,
+        data: newLikesList,
       };
     case TYPES.FETCH_USER_LIKES_CONTRACTS_WITH_REFERENCE_COMPLETED:
       return {
-        ...fetchUserFavoritesCelebritiesReducerInitialState,
+        ...fetchUserFavoritesContractsWithReferenceReducerInitialState,
         data: action.payload.data?.data,
         completed: true,
       };
