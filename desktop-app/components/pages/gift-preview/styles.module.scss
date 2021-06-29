@@ -3,7 +3,10 @@
 }
 
 .HiringPreviewPageMain {
+  position: relative;
   min-height: calc(100vh - 58px /* Topbar height */);
+  transition: top 0.35s ease;
+  top: 0;
 }
 
 .PreviewModeOverlay {
@@ -14,10 +17,13 @@
 }
 
 .PreviewModeOverlayBanner {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--warning);
 
   p {
+    text-align: center;
     margin-bottom: 0;
     padding: 0.375em 0;
     font-size: 20px;
@@ -35,8 +41,13 @@
   }
 }
 
-.PreviewModeOverlay + .HiringPreviewPageMain {
-  position: relative;
+.PreviewModeOverlayBannerCloseButton {
+  position: absolute;
+  right: 1.5rem;
+}
+
+.HasPreviewModeBanner .HiringPreviewPageMain {
+  transition: none;
   top: 2.8125rem; /* PreviewModeOverlayBanner height */
   @media only screen and (max-width: 47.9375em) {
     top: 4.6875rem;

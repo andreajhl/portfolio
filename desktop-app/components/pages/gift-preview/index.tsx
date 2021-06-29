@@ -10,6 +10,10 @@ import getObjectWithFallbackValues from "lib/utils/getObjectWithFallbackValues";
 import ClientContractType from "desktop-app/types/clientContract";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { FormattedMessage } from "react-intl";
+import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
+import { useState } from "react";
+import Collapse from "react-bootstrap/Collapse";
+import classes from "classnames";
 
 const opcionalPreviewConfigurationProperties = [
   "pageBackgroundUrl",
@@ -42,6 +46,9 @@ function GiftPreviewPage({
   const { hiringPreviewConfiguration } = useGetHiringPreviewConfiguration(
     contractReference
   );
+  const [previewModeBannerIsVisible, setPreviewModeBannerIsVisible] = useState(
+    previewMode
+  );
 
   const previewConfiguration = getPreviewConfigurationWithFallbacks(
     contract,
@@ -50,21 +57,37 @@ function GiftPreviewPage({
 
   const contractIsCompleted = status === "completed";
 
+  function hidePreviewModeBanner() {
+    setPreviewModeBannerIsVisible(false);
+  }
+
   return (
     <PageContainer showFooter={false}>
-      <div className={styles.PageWrapper}>
+      <div
+        className={classes(
+          styles.PageWrapper,
+          previewModeBannerIsVisible && styles.HasPreviewModeBanner
+        )}
+      >
         <GiftAnimationWrapper
           disableAnimation={previewMode}
           deliveryTo={contract.deliveryTo}
           deliveryFrom={contract.deliveryFrom}
         >
           <Maybe it={previewMode}>
-            <div className={` ${styles.PreviewModeOverlay}`}>
-              <div className={styles.PreviewModeOverlayBanner}>
-                <p>
-                  <FormattedMessage defaultMessage="Esta es una previsualización donde las funcionalidades están deshabilitadas" />
-                </p>
-              </div>
+            <div className={styles.PreviewModeOverlay}>
+              <Collapse in={previewModeBannerIsVisible} unmountOnExit>
+                <div className={styles.PreviewModeOverlayBanner}>
+                  <p>
+                    <FormattedMessage defaultMessage="Esta es una previsualización donde las funcionalidades están deshabilitadas" />
+                  </p>
+                  <CloseModalButton
+                    className={styles.PreviewModeOverlayBannerCloseButton}
+                    variant="light"
+                    onClick={hidePreviewModeBanner}
+                  />
+                </div>
+              </Collapse>
             </div>
           </Maybe>
           <Maybe it={contractIsCompleted}>
