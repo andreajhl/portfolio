@@ -129,3 +129,6 @@ export const getClientHiringShareInWhatsappPath = (contractReference) =>
     ":contract_reference",
     contractReference
   );
+
+export const getPaymentMethodsPath = (contractReference) =>
+  PAYMENT_METHODS.replace(":contract_reference", contractReference);
