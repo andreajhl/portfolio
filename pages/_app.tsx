@@ -7,6 +7,7 @@ import { IntlProvider } from "react-intl";
 import esMessages from "../compiled-lang/es.json";
 import enMessages from "../compiled-lang/en.json";
 import { FamososAuthProvider } from "lib/famosos-auth";
+import { Session } from "../react-app/src/state/utils/session";
 
 const languages = {
   en: enMessages,
@@ -41,9 +42,9 @@ const App = ({ Component, pageProps }) => {
   }, []);
   const { locale, defaultLocale } = router;
   const messages = languages[locale];
-
+  const tokenExpired = new Session().tokenExpired()
   return (
-    <FamososAuthProvider authenticated={false}>
+    <FamososAuthProvider authenticated={!tokenExpired}>
       <IntlProvider
         messages={messages}
         locale={locale}

@@ -26,12 +26,12 @@ export class Session {
     const finalRedirect = localStorage.getItem("finalRedirect");
     if (authRedirect !== null) {
       localStorage.removeItem("authRedirect");
-      return history._pushRoute(authRedirect);
+      return window.location.replace(authRedirect);
     } else if (finalRedirect !== null) {
       localStorage.removeItem("finalRedirect");
-      return history._pushRoute(finalRedirect);
+      return window.location.replace(finalRedirect);
     } else {
-      return history._pushRoute(ROUTE_PATHS.HOME_PATH);
+      return window.location.replace(ROUTE_PATHS.HOME_PATH);
     }
   };
 
@@ -60,8 +60,8 @@ export class Session {
   }
 
   removeSession = () => {
-    localStorage.removeItem(this.sessionName);
-    // history._pushRoute(PATHS.ROOT_PATH);
+    Cookies.remove(this.sessionName);
+    window.location.replace(PATHS.ROOT_PATH);
   };
 
   tokenExpired() {
@@ -69,9 +69,11 @@ export class Session {
       if (this.utcSecondsToDatetime(this.session.exp) <= new Date()) {
         this.removeSession();
         return true;
+      } else {
+        return false;
       }
     }
-    return false;
+    return true;
   }
 
   allowedActionFor = (groups = []) => {

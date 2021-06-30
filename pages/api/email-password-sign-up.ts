@@ -15,7 +15,11 @@ export default async (req: NextApiRequest, res: NextApiResponse<{}>) => {
       `${endpoint}/${version}/famosos-com/email-password/sign-up`,
       {
         "email": req.body["email"],
-        "password": req.body["password"]
+        "password": req.body["password"],
+        "fullName": req.body["fullName"],
+        "birthDate": req.body["birthDate"],
+        "allowNotifications": req.body["allowNotifications"],
+        "locale": req.body["locale"],
       }
     )
     .then(response => {

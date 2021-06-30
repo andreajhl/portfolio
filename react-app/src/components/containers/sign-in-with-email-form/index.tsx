@@ -61,7 +61,24 @@ class SignInEmailPasswordForm extends React.Component<SignInEmailPasswordFormPro
     }
   };
 
+  validateInputs = () => {
+    // Validate emails
+    if (!isEmail(this.state.email) || this.state.email === "") {
+      return "Invalid email";
+    }
+    // Validate passwords
+    if (this.state.password === "") {
+      return "Password field is required";
+    }
+    return null
+  }
+
   sendData = async () => {
+    // Remove error message
+    this.setState({
+      ...this.state,
+      error: null
+    });
     // Prevent send several requests
     if (this.state.isLoading) {
       return;
@@ -70,24 +87,15 @@ class SignInEmailPasswordForm extends React.Component<SignInEmailPasswordFormPro
     GTM.tagManagerDataLayer("CLICK_ON_SIGN_IN_WITH_EMAIL_PASSWORD", {
       email: this.state.email
     });
-    // Remove error message
-    this.setState({
-      ...this.state,
-      error: null
-    });
-    // Validate emails
-    if (!isEmail(this.state.email) || this.state.email === "") {
+    // Validate inputs
+    const err = this.validateInputs();
+    if (err !== null){
       this.setState({
         ...this.state,
-        error: "Invalid email"
+        error: err
       });
-      return;
+      return
     }
-    // Remove error message
-    this.setState({
-      ...this.state,
-      error: null
-    });
     // Send request
     await axios.post(
       "/api/email-password-sign-in",
@@ -113,7 +121,7 @@ class SignInEmailPasswordForm extends React.Component<SignInEmailPasswordFormPro
   renderError() {
     if (this.state.error !== null && this.state.error !== "") {
       return (
-        <small className={"text-danger"}>{this.state.error}</small>
+        <small className={"text-danger"}>Error {this.state.error}</small>
       );
     } else {
       return <div />;

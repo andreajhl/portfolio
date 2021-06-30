@@ -1,5 +1,5 @@
 
-.SignInBoxTitle {
+.SignUpBoxTitle {
   font-size: 16px;
   font-weight: bold;
   line-height: 19px;
@@ -8,7 +8,34 @@
   margin-bottom: 1rem;
 }
 
-.SignInBoxSubmitButton {
+.SignUpBoxSwitcher {
+  margin-top: 25px;
+
+  @media only screen and (min-width: 576px) {
+    text-align: center;
+  }
+}
+
+.SignUpBoxSwitcher label::after {
+  background-color: #fb177d !important;
+}
+
+.SignUpBoxSwitcher label::before {
+  background-color: #f9cfe2 !important;
+  border-color: rgb(254, 185, 216);
+}
+
+.SignUpBoxSwitcher label::after,
+.SignUpBoxSwitcher label::before {
+  opacity: 0.65;
+}
+
+.SignUpBoxSwitcher :checked ~ label::before,
+.SignUpBoxSwitcher :checked ~ label::after {
+  opacity: 1;
+}
+
+.SignUpBoxSubmitButton {
   width: 100%;
   font-weight: bold;
   margin-top: 20px;
@@ -16,5 +43,38 @@
 
   @media only screen and (min-width: 768px) {
     height: 45px;
+  }
+}
+
+.SignUpBoxAuthTermsAdvertise {
+  max-width: 303px;
+  margin: 30px auto 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .SignUpBoxSwitcher {
+    padding-bottom: 1rem;
+    padding-left: 2.25rem;
+
+    & label {
+      padding-left: 0.75rem;
+      padding-top: 0.35rem;
+
+      &::before {
+        border-radius: 1rem !important;
+        height: 1.5rem !important;
+        width: 2.5rem !important;
+      }
+
+      &::after {
+        border-radius: 0.65rem !important;
+        height: calc(1.5rem - 4px) !important;
+        width: calc(1.5rem - 4px) !important;
+      }
+    }
+
+    :checked ~ label::after {
+      transform: translateX(1rem);
+    }
   }
 }
