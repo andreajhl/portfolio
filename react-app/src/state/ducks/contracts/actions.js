@@ -209,14 +209,17 @@ const getSanitizedContractData = (contractData) => {
   };
 };
 
-export const createClientContract = (contractData) =>
-  thunkAction(TYPES.SAVE_CLIENT_CONTRACT_REQUEST, () =>
-    apiService({
-      method: "POST",
-      path: API_PATHS.CREATE_CONTRACT_V2,
-      body: getSanitizedContractData(contractData),
-    })
-  );
+export const createContract = (contractData) =>
+  apiService({
+    method: "POST",
+    path: API_PATHS.CREATE_CONTRACT_V2,
+    body: getSanitizedContractData(contractData),
+  }).then((response) => {
+    if (response?.data?.status === "OK") {
+      return response.data.data;
+    }
+    throw response?.data?.error;
+  });
 
 // Update Client Contract Data
 
@@ -278,14 +281,17 @@ export const updateClientContract = (contractData) => {
   };
 };
 
-export const updateClientContractV2 = (contractData) =>
-  thunkAction(TYPES.UPDATE_CONTRACT_REQUEST, () =>
-    apiService({
-      method: "PUT",
-      path: API_PATHS.CREATE_CONTRACT_V2,
-      body: contractData,
-    })
-  );
+export const updateContractStep = (contractData, step = 1) =>
+  apiService({
+    method: "PUT",
+    path: API_PATHS.UPDATE_CONTRACT_V2,
+    body: { ...contractData, status: step },
+  }).then((response) => {
+    if (response?.data?.status === "OK") {
+      return response.data.data;
+    }
+    throw response?.data?.error;
+  });
 
 export const getUserContractInProgress = (celebrityUsername) =>
   thunkAction(TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST, () =>
