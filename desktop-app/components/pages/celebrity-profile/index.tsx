@@ -72,6 +72,7 @@ function CelebrityProfilePage({
     setCreateContractWizardIsFocused,
   ] = useState(false);
   const { isAuthenticated, isLoading } = useAuth0();
+  const [isReadyToCreateContract, setIsReadyToCreateContract] = useState(false);
   const wizardChangeFocusTimeoutRef = useRef<number | NodeJS.Timeout>();
 
   function goToCreateContractWizard() {
@@ -95,7 +96,7 @@ function CelebrityProfilePage({
   useEffect(() => {
     if (!isAuthenticated) return;
     getUserContractInProgress(celebrity.username);
-  }, [isAuthenticated, celebrity.username]);
+  }, [celebrity.username, getUserContractInProgress, isAuthenticated]);
 
   const showContractStepsBeforeReviews =
     !isLoadingPublicContracts &&
@@ -106,8 +107,14 @@ function CelebrityProfilePage({
 
   const showCelebritiesCards = publicContracts?.length > 0;
 
-  const isReadyToCreateContract =
-    contractInProgressRequest.completed || (!isLoading && !isAuthenticated);
+  useEffect(() => {
+    if (
+      contractInProgressRequest.completed ||
+      (!isLoading && !isAuthenticated)
+    ) {
+      setIsReadyToCreateContract(true);
+    }
+  }, [contractInProgressRequest.completed, isAuthenticated, isLoading]);
 
   useEffect(() => {
     if (!shouldFocusCreateContractWizard) return;
