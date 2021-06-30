@@ -41,22 +41,17 @@ const CelebritiesSelect = ({
     }))
   ];
 
-  // return (
-  //   <Select
-  //     isClearable={false}
-  //     isSearchable={false}
-  //     isMulti={false}
-  //     options={options}
-  //     defaultValue={defaultOption}
-  //     onChange={onChange}
-  //     styles={styles}
-  //   />
-  // );
   return (
-    <div>
-      {/*//TODO: CelebrityOptionLabelProps*/}
-    </div>
-  )
+    <Select
+      isClearable={false}
+      isSearchable={false}
+      isMulti={false}
+      options={options}
+      defaultValue={defaultOption}
+      onChange={onChange}
+      styles={styles}
+    />
+  );
 };
 
 export default CelebritiesSelect;
