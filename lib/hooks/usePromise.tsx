@@ -6,8 +6,9 @@ function usePromise() {
   async function handle(promise: Promise<any>): Promise<any> {
     setStatus("loading");
     try {
-      await promise;
+      const result = await promise;
       setStatus("completed");
+      return result;
     } catch (error) {
       setStatus("rejected");
       throw error;
