@@ -46,6 +46,8 @@ class StripeCardForm extends Component {
       ownerName: this.session.getSession()?.fullName || "",
       ownerEmail: this.session.getSession()?.email || "",
       errorMessage: null,
+      errorType: null,
+      errorCode: null,
       disableButton: false
     };
   }
@@ -99,20 +101,19 @@ class StripeCardForm extends Component {
       .createSource({
         type: "card",
         currency: currency,
-        amount: amount,
         owner: ownerData,
         usage: "reusable"
       })
       .then((response) => {
-        console.log("response.source", response.source);
-
         // ERROR
         if (response.error) {
           // ERROR
           return this.setState({
             ...this.state,
             disableButton: false,
-            errorMessage: response.error.message
+            errorMessage: response.error.message,
+            errorType: response.error?.type,
+            errorCode: response.error?.code
           });
         }
         // SEND TO THE BACKEND TO LINKED WITH THE CUSTOMER AND APPLY THE AUTHORIZATION
@@ -130,9 +131,9 @@ class StripeCardForm extends Component {
         ) {
           this.createStripe3DFlow(
             currency,
-            amount,
             response.source.id,
-            ownerData
+            ownerData,
+            amount
           );
         } else {
           this.setState({
@@ -195,7 +196,7 @@ class StripeCardForm extends Component {
       });
   };
 
-  createStripe3DFlow = (currency, amount, sourceId, ownerData) => {
+  createStripe3DFlow = (currency, sourceId, ownerData, amount) => {
     const iframeUrl = PATHS.STRIPE_3D_SECURE_IFRAME.replace(
       ":contract_reference",
       this.props.contractReference
@@ -223,7 +224,8 @@ class StripeCardForm extends Component {
           return this.setState({
             ...this.state,
             disableButton: false,
-            errorMessage: response.error.message
+            errorMessage: response.error?.message,
+            errorType: response.error?.type
           });
         }
 
@@ -239,7 +241,9 @@ class StripeCardForm extends Component {
     return this.setState({
       ...this.state,
       disableButton: false,
-      errorMessage: null
+      errorMessage: null,
+      errorCode: null,
+      errorType: null
     });
   };
 
@@ -249,7 +253,9 @@ class StripeCardForm extends Component {
         <div className={"mx-auto p-4 error-container"}>
           <div className="text-danger text-center mb-3">
             <small className={"text-danger font-weight-bold"}>
-              {this.state.errorMessage}
+              {this.state.errorMessage} <br />
+              {this.state.errorCode ? this.state.errorCode : null} <br />
+              {this.state.errorType ? this.state.errorType : null} <br />
             </small>
           </div>
           <div className={"mx-auto text-center mb-3"}>

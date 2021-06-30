@@ -3,20 +3,13 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { PaymentMethodsPage } from "react-app/src/components/pages/payment-methods";
 import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
+import { ROOT_PATH } from "react-app/src/routing/Paths";
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params: { contract_reference }
-}) => {
-  return {
-    props: { contract_reference }
-  };
-};
-
-const PaymentMethods = ({ contract_reference }) => {
+const PaymentMethods = () => {
   return (
     <>
       <CustomHead />
-      <PaymentMethodsPage contractReference={contract_reference} />
+      <PaymentMethodsPage />
     </>
   );
 };

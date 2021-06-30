@@ -46,9 +46,9 @@ class TermsPage extends Component {
                         contratación y cree su solicitud. En el caso tal de que
                         el talento o Famosos rechaze su solicitud, se le hará el
                         reembolso a su metodo de pago elegido (el reembolso
-                        podría tardar desde 5-10 días hábiles en aparecer). En
-                        el caso tal de que su solicitud sea aceptada, no habrán
-                        devoluciones ni reembolsos.
+                        podría tardar hasta un máximo de 21 días hábiles en
+                        aparecer). En el caso tal de que su solicitud sea
+                        aceptada, no habrán devoluciones ni reembolsos.
                       </p>
                       <p>
                         Al recibir el pago total de su Famosos vídeo, se le
@@ -707,7 +707,7 @@ class TermsPage extends Component {
                         (¡por ejemplo, mensaje de cumpleaños, o un mensaje de
                         “buena suerte!”). Tendrá sola discreción sobre el guion
                         y el contenido de cualquier videomensaje. Usted puede
-                        negarse a crear o subir un vodeomensaje si la petición
+                        negarse a crear o subir un videomensaje si la petición
                         de un usuario final es objetable u ofensivo para usted
                         en su propia discreción. Debe rechazar la solicitud en
                         un plazo de siete (7) días. Todos videomensajes deben
@@ -1475,8 +1475,8 @@ class TermsPage extends Component {
                       effective as soon as you complete your contract and create
                       your application.&nbsp;In the event that the talent or
                       Celebrities reject your application, a refund will be made
-                      to your chosen payment method (the refund could take from
-                      5-10 business days to appear).&nbsp;In the event that your
+                      to your chosen payment method (the refund could take up to
+                      21 business days to appear).&nbsp;In the event that your
                       application is accepted, there will be no returns or
                       refunds.
                     </p>

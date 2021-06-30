@@ -224,9 +224,9 @@ const FaqsPage = () => {
               </span>
               <p>
                 <FormattedMessage
-                  defaultMessage="La solicitud de reembolso se realiza de forma automatica, el
+                  defaultMessage="La solicitud de reembolso se realiza de forma automática, el
                 tiempo en el que se vera reflejado en tu tarjeta depende de tu
-                banco y puede ser entre 5 y 10 dias."
+                banco y puede llegar a ser un plazo máximo de 21 dias hábiles."
                 />
               </p>
             </li>

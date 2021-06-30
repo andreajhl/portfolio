@@ -5,13 +5,14 @@ import StripeFlowHandler from "../stripe-flow-handler";
 import { connect } from "react-redux";
 import { WhatsappContact } from "../whatsapp-contact";
 import DiscountCouponForm from "../discount-coupon-form";
-import getCookie from "../../../utils/getCookie";
 import { FormattedMessage } from "react-intl";
 import getWindow from "react-app/src/utils/getWindow";
 import { DLocalPaymentsMethods } from "../d-local-payments-methods/index";
 import { DLocalPaymentsForm } from "../d-local-payments-form";
 import { listPaymentGateways } from "../../../state/ducks/payments/operations";
 import { LoaderLayout } from "../../layouts/loader";
+import { withRouter } from "next/router";
+import { STRIPE_FAILURE_AUTHENTICATION } from "constants/keys";
 class AvailablePaymentMethods extends Component {
   constructor(props) {
     super(props);
@@ -53,20 +54,6 @@ class AvailablePaymentMethods extends Component {
       selectedPaymentMethod: "STRIPE"
     });
   };
-
-  applyDiscount() {
-    let discountTotal = 0;
-    if (this.props.couponData.data.isPercentageDiscount) {
-      discountTotal =
-        this.props.couponData.data.discount_amount * this.props.contractPrice;
-      if (discountTotal > this.props.couponData.data.maxDiscountAmount) {
-        discountTotal = this.props.couponData.data.maxDiscountAmount;
-      }
-    } else {
-      discountTotal = this.props.couponData.data.discount_amount;
-    }
-    return this.props.contractPrice - discountTotal;
-  }
 
   renderWhatsappContactForm = () => {
     return getWindow().userLocation?.countryCode === "CO" ||
@@ -140,7 +127,7 @@ class AvailablePaymentMethods extends Component {
             contractReference={this.props.contractReference}
             contractPrice={
               this.props.couponData.completed
-                ? this.applyDiscount()
+                ? this.props.couponData?.data?.finalAmount
                 : this.props.contractPrice
             }
             discountCouponId={this.props.couponData.data.id}
@@ -185,7 +172,7 @@ class AvailablePaymentMethods extends Component {
               contractReference={this.props.contractReference}
               contractPrice={
                 this.props.couponData.completed
-                  ? this.applyDiscount()
+                  ? this.props.couponData?.data?.finalAmount
                   : this.props.contractPrice
               }
               discountCouponId={this.props.couponData.data.id}
@@ -253,10 +240,15 @@ class AvailablePaymentMethods extends Component {
     }));
   };
   render() {
+    const hasFailedStripeAuthentication = this.props.router?.query?.hasOwnProperty(
+      STRIPE_FAILURE_AUTHENTICATION
+    );
+
     const shouldDisplayBuyerForm = [
       "BANK_TRANSFER",
       "TICKET",
-      "CREDIT_CARD"
+      "CREDIT_CARD",
+      "DEBIT_CARD"
     ].includes(this.state.selectedPaymentMethod);
 
     return this.props.paymentMethodsAvailableIsLoading ? (
@@ -269,6 +261,12 @@ class AvailablePaymentMethods extends Component {
     ) : (
       <div className="AvailablePaymentMethods mx-auto">
         <div className={"payment-types f-rounded"}>
+          {hasFailedStripeAuthentication ? (
+            <span className="font-weight-bold text-center">
+              La autenticación via Stripe ha fallado. Por favor intenta con otro
+              método.{" "}
+            </span>
+          ) : null}
           {shouldDisplayBuyerForm ? (
             <React.Fragment>
               <div className="d-flex mb-2 pl-1">
@@ -348,5 +346,5 @@ const mapStateToProps = (state) => ({
 // Export Class
 const _AvailablePaymentMethods = connect(mapStateToProps, {
   listPaymentGateways
-})(AvailablePaymentMethods);
+})(withRouter(AvailablePaymentMethods));
 export { _AvailablePaymentMethods as AvailablePaymentMethods };
