@@ -27,7 +27,6 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
       console.log("Enviado");
     },
   });
-  console.log({ values });
   return (
     <div className={styles.UserInformationConfigContainer}>
       <h2 className={styles.UserInformationConfigTitle}>
@@ -55,9 +54,7 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
             {/* <UpdateUserPhone
               numberPhone={`+${userData.cellphoneCode} ${userData.cellphoneNumber}`}
             /> */}
-            <UpdateUserBirthdayDate
-              userBirthdayDate={userData.birthdayDate.Time}
-            />
+            <UpdateUserBirthdayDate userBirthdayDate={userData.birthdayDate} />
           </div>
           <div className={styles.OptionsItems}>
             <UpdateUserGender gender={userData.gender} />
