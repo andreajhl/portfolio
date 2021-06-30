@@ -1,7 +1,9 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import SubmitButton from "../button/submit-button";
 import InputWithFloatLabel from "../form/input-with-float-label";
 import Maybe from "../helpers/maybe";
+import { SubmitText } from "../helpers/submit-button-text";
 import styles from "./styles.module.scss";
 
 type VideoDeliveryFormFieldsElementsProps = {
@@ -12,6 +14,7 @@ type VideoDeliveryFormFieldsElementsProps = {
   contractType: number;
   onSubmit: (event: any) => void;
   errors: { [key: string]: any };
+  isLoading: boolean;
 };
 
 function VideoDeliveryFormFieldsElements({
@@ -22,6 +25,7 @@ function VideoDeliveryFormFieldsElements({
   contractType,
   onSubmit,
   errors,
+  isLoading,
 }: VideoDeliveryFormFieldsElementsProps) {
   const contractIsForBusiness = contractType === 3;
   const showDeliveryToInput = !contractIsForBusiness || hasBusinessPrice;
@@ -58,7 +62,12 @@ function VideoDeliveryFormFieldsElements({
         </Maybe>
       </div>
       <Maybe it={showDeliveryToInput}>
-        <SubmitButton onClick={onSubmit}>Siguiente</SubmitButton>
+        <SubmitButton onClick={onSubmit}>
+          <SubmitText
+            baseText={<FormattedMessage defaultMessage="Siguiente" />}
+            status={isLoading ? "loading" : "idle"}
+          />
+        </SubmitButton>
       </Maybe>
     </>
   );

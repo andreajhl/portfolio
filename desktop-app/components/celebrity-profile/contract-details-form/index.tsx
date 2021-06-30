@@ -14,7 +14,8 @@ import {
 } from "desktop-app/components/common/form/text-input-with-placeholders";
 import { OccasionsGrid } from "desktop-app/components/celebrity-profile/occasions-grid";
 import objectHasProperties from "lib/utils/objectHasProperties";
-import { useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
+import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 
 const initialValues: ContractDetailsType = {
   occasion: "OTHER",
@@ -45,6 +46,7 @@ type ContractDetailsFormProps = {
   initialValues?: ContractDetailsType;
   onSubmit: (values: ContractDetailsType) => void;
   onStepChange: (values: ContractDetailsType) => void;
+  isLoading: boolean;
 };
 
 function ContractDetailsForm({
@@ -54,6 +56,7 @@ function ContractDetailsForm({
   initialValues: initialValuesFromProps,
   onStepChange,
   onSubmit,
+  isLoading,
 }: ContractDetailsFormProps) {
   const {
     values,
@@ -167,7 +170,12 @@ function ContractDetailsForm({
           message={errors?.instructions || null}
         />
       </div>
-      <SubmitButton onClick={submitForm}>Siguiente</SubmitButton>
+      <SubmitButton onClick={submitForm}>
+        <SubmitText
+          baseText={<FormattedMessage defaultMessage="Siguiente" />}
+          status={isLoading ? "loading" : "idle"}
+        />
+      </SubmitButton>
     </section>
   );
 }

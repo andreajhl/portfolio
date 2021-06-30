@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import objectHasProperties from "lib/utils/objectHasProperties";
 import { BooleanRadiosInputs } from "desktop-app/components/common/form/boolean-checkboxes";
 import { CellphoneNumberInput } from "desktop-app/components/common/form/cellphone-number-input";
+import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 
 const initialValues: ContractNotificationsType = {
   deliveryContact: "",
@@ -59,15 +60,7 @@ function ContractNotificationsForm({
   } = useForm<ContractNotificationsType>({
     initialValues: Object.assign(initialValues, initialValuesFromProps),
     validations,
-    onSubmit(data) {
-      const values = { ...data };
-      if (
-        !deliveryContactCellphoneHasChanged(values.deliveryContactCellphone)
-      ) {
-        delete values.deliveryContactCellphone;
-      }
-      onSubmit(values);
-    },
+    onSubmit,
   });
   const { user } = useAuth0();
 
@@ -163,7 +156,12 @@ function ContractNotificationsForm({
           }}
         />
       </div>
-      <SubmitButton onClick={validateBeforeSubmit}>Continuar</SubmitButton>
+      <SubmitButton onClick={validateBeforeSubmit}>
+        <SubmitText
+          baseText="Continuar"
+          status={isLoading ? "loading" : "idle"}
+        />
+      </SubmitButton>
     </section>
   );
 }

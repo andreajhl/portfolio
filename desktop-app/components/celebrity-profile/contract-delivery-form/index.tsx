@@ -53,6 +53,7 @@ function shouldSwapDeliveryInfoValues(
 
 type ContractDeliveryFormProps = {
   celebrity: celebrityType;
+  isLoading: boolean;
   initialValues?: ContractDeliveryType;
   onSubmit: (values: ContractDeliveryType) => void;
   onStepChange: (values: ContractDeliveryType) => void;
@@ -60,6 +61,7 @@ type ContractDeliveryFormProps = {
 
 function ContractDeliveryForm({
   celebrity,
+  isLoading,
   initialValues: initialValuesFromProps,
   onSubmit: onSubmitFromProps,
   onStepChange,
@@ -136,6 +138,7 @@ function ContractDeliveryForm({
       />
       <div className={styles.InputFieldElements}>
         <VideoDeliveryFormFieldsElements
+          isLoading={isLoading}
           hasBusinessPrice={hasBusinessPrice}
           deliveryFrom={values.deliveryFrom}
           deliveryTo={values.deliveryTo}
