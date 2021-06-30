@@ -30,7 +30,7 @@ const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
 
 const ROUTE_CHANGE_START = "routeChangeStart";
 
-const App = ({ Component, pageProps }) => {
+function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -40,9 +40,11 @@ const App = ({ Component, pageProps }) => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);
     };
   }, []);
+
   const { locale, defaultLocale } = router;
   const messages = languages[locale];
-  const tokenExpired = new Session().tokenExpired()
+  const tokenExpired = true; /* While SS token validation is not available, using Session.tokenExpired gives a different value when the app is hydrating, this cause bugs.  */
+
   return (
     <FamososAuthProvider authenticated={!tokenExpired}>
       <IntlProvider
@@ -54,6 +56,6 @@ const App = ({ Component, pageProps }) => {
       </IntlProvider>
     </FamososAuthProvider>
   );
-};
+}
 
 export default wrapper.withRedux(App);
