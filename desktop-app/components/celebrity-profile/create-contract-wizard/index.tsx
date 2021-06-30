@@ -1,71 +1,104 @@
-import { connect, ConnectedProps } from "react-redux";
 import { Wizard, Steps as StepsList, Step } from "react-albus";
 import styles from "./styles.module.scss";
 import { ContractDetailsForm } from "../contract-details-form";
 import ContractDeliveryForm from "desktop-app/components/celebrity-profile/contract-delivery-form";
 import { useEffect, useState } from "react";
 import ContractNotificationsForm from "desktop-app/components/celebrity-profile/contract-notifications-form";
-import { saveClientContract } from "react-app/src/state/ducks/contracts/actions";
-import ContractDataType, {
+import {
+  createContract,
+  updateContractStep,
+} from "react-app/src/state/ducks/contracts/actions";
+import {
   ContractDeliveryType,
   ContractDetailsType,
   ContractNotificationsType,
 } from "desktop-app/types/contractDataType";
 import { useAuth0 } from "@auth0/auth0-react";
-import { RootState } from "react-app/src/state/store";
 import useWizardHistory from "../../../../lib/hooks/useWizardHistory";
 import { ComponentProps } from "./types";
 import classes from "classnames";
+import { useRouter } from "next/router";
+import { getPaymentMethodsPath } from "constants/paths";
+import usePromise from "lib/hooks/usePromise";
+import ContractInProgressType from "desktop-app/types/contractInProgressType";
+import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
+import { FormattedMessage } from "react-intl";
+import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
 
-type WizardStepType = {
-  id: string;
-};
+function getDeliveryDataFromContractInProgress(
+  contractInProgress: ContractInProgressType
+) {
+  if (!contractInProgress) return null;
+  return pickPropertiesFromAObject(contractInProgress, [
+    "contractType",
+    "deliveryTo",
+    "deliveryFrom",
+    "deliveryType",
+  ]) as ContractDeliveryType;
+}
 
-export const WIZARD_STEPS: WizardStepType[] = [
+function getDetailsDataFromContractInProgress(
+  contractInProgress: ContractInProgressType
+) {
+  if (!contractInProgress || !contractInProgress?.occasion) return null;
+  return pickPropertiesFromAObject(contractInProgress, [
+    "occasion",
+    "instructions",
+  ]) as ContractDetailsType;
+}
+
+function getNotificationsDataFromContractInProgress(
+  contractInProgress: ContractInProgressType
+) {
+  if (!contractInProgress || !contractInProgress?.deliveryContact) return null;
+  return pickPropertiesFromAObject(contractInProgress, [
+    "deliveryContact",
+    "deliveryContactCellphone",
+    "isPublic",
+  ]) as ContractNotificationsType;
+}
+
+const WIZARD_STEPS = [
   { id: "delivery" },
   { id: "video-details" },
   { id: "notifications" },
 ];
 
-export function getInitialWizardStep(contractInProgress: {
-  [key: string]: any;
-}): WizardStepType {
+export function getInitialWizardStep(
+  contractInProgress: ContractInProgressType
+) {
   return WIZARD_STEPS[contractInProgress?.status] || WIZARD_STEPS[0];
 }
 
-const mapStateToProps = ({ contracts }: RootState) => ({
-  isLoading: contracts.saveClientContractReducer.loading,
-});
-
-const mapDispatchToProps = { saveClientContract };
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-type CreateContractWizardProps = ComponentProps & PropsFromRedux;
+type CreateContractWizardProps = ComponentProps;
 
 function CreateContractWizard({
   className,
   celebrity,
   contractInProgress,
-  isLoading,
-  saveClientContract,
 }: CreateContractWizardProps) {
+  const router = useRouter();
   const { loginWithPopup, isAuthenticated } = useAuth0();
   const [onLoggingCallback, setOnLoggingCallback] = useState(() => () => {});
+  const [currentContractId, setCurrentContractId] = useState(
+    contractInProgress?.contractId
+  );
+  const { handle, status } = usePromise();
+  const [errorMessage, setErrorMessage] = useState(null);
   const [deliveryData, setDeliveryData] = useState<ContractDeliveryType | null>(
-    null
+    getDeliveryDataFromContractInProgress(contractInProgress)
   );
 
   const [detailsData, setDetailsData] = useState<ContractDetailsType | null>(
-    null
+    getDetailsDataFromContractInProgress(contractInProgress)
   );
 
   const [
     notificationsData,
     setNotificationsData,
-  ] = useState<ContractNotificationsType | null>(null);
+  ] = useState<ContractNotificationsType | null>(
+    getNotificationsDataFromContractInProgress(contractInProgress)
+  );
 
   useEffect(() => {
     if (!isAuthenticated) return;
@@ -77,11 +110,52 @@ function CreateContractWizard({
     getInitialWizardStep(contractInProgress)
   );
 
+  const isLoading = status === "loading";
+
+  function catchAsyncError(fn: any) {
+    return (...params: any) => {
+      setErrorMessage(null);
+      if (isLoading) return;
+      handle(fn(...params))?.catch?.((error: any) => {
+        let errorMessage = error?.response?.data?.error || error?.message;
+        const noTokenError = "invalid token: no token string was provided";
+        if (errorMessage === noTokenError) {
+          errorMessage = null;
+        }
+        setErrorMessage(
+          errorMessage || (
+            <FormattedMessage defaultMessage="Ha ocurrido un error, intentalo nuevamente" />
+          )
+        );
+      });
+    };
+  }
+
+  function updateCurrentContractStep(data: any, step: number) {
+    return updateContractStep({ ...data, id: currentContractId }, step);
+  }
+
+  async function saveNewContract(data: ContractDeliveryType) {
+    const { id } = await createContract({
+      ...data,
+      celebrityId: celebrity.id,
+    });
+    setCurrentContractId(id);
+  }
+
+  function createOrUpdateContractFirstStep(data: ContractDeliveryType) {
+    if (currentContractId) {
+      return updateCurrentContractStep({ ...data, deliveryType: 1 }, 1);
+    }
+    return saveNewContract(data);
+  }
+
   function saveContractFirstStep(data: ContractDeliveryType) {
-    function continueToNextStep() {
+    const continueToNextStep = catchAsyncError(async function () {
+      await createOrUpdateContractFirstStep(data);
       setDeliveryData(data);
       nextStep();
-    }
+    });
     if (!isAuthenticated) {
       setOnLoggingCallback(() => continueToNextStep);
       loginWithPopup();
@@ -90,28 +164,20 @@ function CreateContractWizard({
     }
   }
 
-  function saveContractSecondStep(values: ContractDetailsType) {
+  const saveContractSecondStep = catchAsyncError(async function (
+    values: ContractDetailsType
+  ) {
+    await updateCurrentContractStep(values, 2);
     setDetailsData(values);
     nextStep();
-  }
+  });
 
-  function getContractData(
+  const finishContractCreation = catchAsyncError(async function (
     values: ContractNotificationsType
-  ): ContractDataType {
-    return Object.assign(
-      {
-        celebrityId: celebrity.id,
-      },
-      deliveryData,
-      detailsData,
-      values
-    );
-  }
-
-  function finishContractCreation(values: ContractNotificationsType) {
-    const contractData: ContractDataType = getContractData(values);
-    saveClientContract(contractData);
-  }
+  ) {
+    const { reference } = await updateCurrentContractStep(values, 3);
+    await router.push(getPaymentMethodsPath(reference));
+  });
 
   return (
     <div className={classes(styles.CreateContractWizard, className)}>
@@ -119,19 +185,21 @@ function CreateContractWizard({
         <StepsList>
           <Step id={WIZARD_STEPS[0].id}>
             <ContractDeliveryForm
+              isLoading={isLoading}
               celebrity={celebrity}
               initialValues={deliveryData}
-              onStepChange={saveContractFirstStep}
+              onStepChange={setDeliveryData}
               onSubmit={saveContractFirstStep}
             />
           </Step>
           <Step id={WIZARD_STEPS[1].id}>
             <ContractDetailsForm
+              isLoading={isLoading}
               deliveryTo={deliveryData?.deliveryTo}
               celebrityFullName={celebrity.fullName}
               contractType={deliveryData?.contractType}
               initialValues={detailsData}
-              onStepChange={saveContractSecondStep}
+              onStepChange={setDetailsData}
               onSubmit={saveContractSecondStep}
             />
           </Step>
@@ -145,10 +213,12 @@ function CreateContractWizard({
           </Step>
         </StepsList>
       </Wizard>
+      <CollapsibleErrorMessage
+        errorMessage={errorMessage}
+        className={styles.ErrorMessage}
+      />
     </div>
   );
 }
 
-const _CreateContractWizard = connector(CreateContractWizard);
-
-export { _CreateContractWizard as CreateContractWizard };
+export { CreateContractWizard };
