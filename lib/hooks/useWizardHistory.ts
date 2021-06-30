@@ -17,22 +17,25 @@ const useWizardHistory: UseWizardHistoryType = function (
   stepsList,
   initialStep = stepsList[0]
 ) {
-  const [currentStep, setCurrentStep] = useState(initialStep);
   const wizardHistory = useMemo(() => createMemoryHistory(), []);
 
   useEffect(() => {
-    if (!currentStep?.id) return;
-    wizardHistory.push(currentStep?.id);
-  }, [currentStep, wizardHistory]);
+    if (!initialStep?.id) return;
+    wizardHistory.push(initialStep?.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  function getNextStep(currentStep) {
-    const currentStepIndex = stepsList.indexOf(currentStep);
-    const nextStepIndex = currentStepIndex + 1;
-    return stepsList[nextStepIndex] || currentStep;
+  function getCurrentStep() {
+    const currentStepId = wizardHistory?.location?.pathname?.replace?.("/", "");
+    return stepsList.find(({ id }) => id === currentStepId);
   }
 
   function nextStep() {
-    setCurrentStep(getNextStep);
+    const currentStep = getCurrentStep();
+    const currentStepIndex = stepsList.indexOf(currentStep);
+    const nextStepIndex = currentStepIndex + 1;
+    const nextStep = stepsList[nextStepIndex] || currentStep;
+    wizardHistory?.push(nextStep?.id);
   }
 
   return { wizardHistory, nextStep };
