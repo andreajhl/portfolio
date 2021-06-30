@@ -24,6 +24,7 @@ const filterByOptions = [
     label: "Todos",
     value: `${COMPLETED},${EXPIRED},${PAYED_BY_CLIENT},${REJECTED}`,
   },
+  { label: "Entregados", value: `${COMPLETED}` },
   { label: "Pendientes", value: `${PENDING_TO_PAY}` },
   { label: "Expirados", value: `${EXPIRED}` },
   { label: "Rechazados", value: `${REJECTED}` },
