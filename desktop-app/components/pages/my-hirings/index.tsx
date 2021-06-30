@@ -62,12 +62,13 @@ function MyHirings({ query }: MyHiringsProps) {
       <PageHeading>
         <span className="font-weight-bold mr-auto">Mis solicitudes</span>
         <CategoryFilterDropdown
+          className={styles.Dropdown}
           options={filterByOptions}
           title={"Filtrar contratos"}
           onChange={updateFilerByStatus}
         />
         <OrderByDropdown
-          className={styles.OrderByDropdown}
+          className={styles.Dropdown}
           options={orderByOptions}
           selectedOption={getSelectedOrderByOption(orderBy)}
           onChange={updateOrderBy}
