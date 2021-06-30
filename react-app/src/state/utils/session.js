@@ -31,7 +31,7 @@ export class Session {
       localStorage.removeItem("finalRedirect");
       return window.location.replace(finalRedirect);
     } else {
-      return window.location.replace(ROUTE_PATHS.HOME_PATH);
+      return window.location.replace(ROUTE_PATHS.ROOT_PATH);
     }
   };
 
@@ -61,7 +61,6 @@ export class Session {
 
   removeSession = () => {
     Cookies.remove(this.sessionName);
-    window.location.replace(PATHS.ROOT_PATH);
   };
 
   tokenExpired() {
