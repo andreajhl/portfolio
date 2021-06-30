@@ -9,5 +9,5 @@ export type userDetails = {
   status: number;
   totalContracts: number;
   gender: "female" | "male";
-  birthdayDate: { Time: string; Valid: boolean };
+  birthdayDate: string;
 };
