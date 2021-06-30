@@ -32,7 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<{}>) => {
           // SSR
           res.setHeader(
             "Set-Cookie",
-            serialize("SessionToken", data.token, {
+            serialize(process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME, data.token, {
               path: '/',
               // httpOnly: true,
               sameSite: "lax"
