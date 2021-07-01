@@ -106,8 +106,20 @@ export const getSearchCountryPath = (countryId) =>
 export const getSearchHashtagPath = (hashtag) =>
   getSearchPath({ hashtags: String(hashtag).toLowerCase() });
 
-export const getHiringPreviewPath = (contractReference) =>
-  HIRING_PREVIEW.replace(":contract_reference", contractReference);
+export const IS_UNAUTHORIZED_QUERY_PARAM = "isUnauthorized";
+
+export function getHiringPreviewPath(
+  contractReference,
+  { isUnauthorized = false } = {}
+) {
+  const queryParams = isUnauthorized
+    ? `?${IS_UNAUTHORIZED_QUERY_PARAM}=true`
+    : "";
+  return (
+    HIRING_PREVIEW.replace(":contract_reference", contractReference) +
+    queryParams
+  );
+}
 
 export const getClientHiringPreviewPath = (contractReference) =>
   ACCOUNT_HIRING_PREVIEW.replace(":contract_reference", contractReference);

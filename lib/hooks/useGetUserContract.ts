@@ -6,7 +6,9 @@ import ClientContractType from "desktop-app/types/clientContract";
 import { RootState } from "react-app/src/state/store";
 import { getUserContract } from "react-app/src/state/ducks/session/actions";
 
-type StatusType = "loading" | "failed" | "completed";
+const UNAUTHORIZED_ERROR = "invalid reference by user";
+
+type StatusType = "loading" | "failed" | "completed" | "unauthorized";
 
 type StateType = {
   contract: ClientContractType;
@@ -19,6 +21,9 @@ const contractSelector = ({
   let status: StatusType = "loading";
   if (getUserContractReducer.failed) status = "failed";
   if (getUserContractReducer.completed) status = "completed";
+  if (getUserContractReducer?.error_data?.message === UNAUTHORIZED_ERROR) {
+    status = "unauthorized";
+  }
 
   const state: StateType = {
     contract: getUserContractReducer.data,
@@ -50,11 +55,10 @@ function useGetUserContract(
   useEffect(() => {
     if (!redirectOnFailure) return;
     if (!didFetch) return;
-    if (state.status !== "failed") return;
-    push({
-      pathname: getHiringPreviewPath(contractReference),
-      query: { unauthorized: true }, // unauthenticated || invalid -> to Home.
-    });
+    const isUnauthorized = state.status === "unauthorized";
+    if (state.status === "failed" || isUnauthorized) {
+      push(getHiringPreviewPath(contractReference, { isUnauthorized }));
+    }
   }, [redirectOnFailure, state.status, push, didFetch, contractReference]);
 
   return state;

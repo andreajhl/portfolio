@@ -1,3 +1,4 @@
+import { IS_UNAUTHORIZED_QUERY_PARAM } from "constants/paths";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import isMobile from "lib/utils/isMobile";
@@ -8,6 +9,7 @@ import { ROOT_PATH } from "react-app/src/routing/Paths";
 
 const HiringPreviewPage = dynamic<{
   contractReference: string;
+  isUnauthorized: boolean;
 }>(() =>
   import("react-app/src/components/pages/hiring-preview").then(
     (mod) => mod.HiringPreviewPage
@@ -16,6 +18,7 @@ const HiringPreviewPage = dynamic<{
 
 const DesktopHiringPreviewPage = dynamic<{
   contractReference: string;
+  isUnauthorized: boolean;
 }>(() =>
   import("desktop-app/components/pages/hiring-preview").then(
     (mod) => mod.HiringPreviewPage
@@ -25,6 +28,7 @@ const DesktopHiringPreviewPage = dynamic<{
 export const getServerSideProps: GetServerSideProps = async ({
   params,
   req,
+  query,
 }) => {
   const contractReference = params?.contract_reference;
 
@@ -37,11 +41,12 @@ export const getServerSideProps: GetServerSideProps = async ({
     props: {
       contractReference,
       isMobile: isMobile(req.headers["user-agent"]),
+      isUnauthorized: Boolean(query?.[IS_UNAUTHORIZED_QUERY_PARAM]),
     },
   };
 };
 
-function HiringPreview({ contractReference, isMobile }) {
+function HiringPreview({ contractReference, isMobile, isUnauthorized }) {
   useDesktopClass(true);
 
   return (
@@ -50,10 +55,16 @@ function HiringPreview({ contractReference, isMobile }) {
       <Maybe
         it={isMobile}
         orElse={
-          <DesktopHiringPreviewPage contractReference={contractReference} />
+          <DesktopHiringPreviewPage
+            contractReference={contractReference}
+            isUnauthorized={isUnauthorized}
+          />
         }
       >
-        <HiringPreviewPage contractReference={contractReference} />
+        <HiringPreviewPage
+          contractReference={contractReference}
+          isUnauthorized={isUnauthorized}
+        />
       </Maybe>
     </>
   );

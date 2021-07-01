@@ -26,6 +26,7 @@ function HiringPreviewPage({ contractReference }: HiringPreviewPageProps) {
           <div className={classes("container", styles.Container)}>
             <div className={styles.LeftSide}>
               <HiringPreviewLeftSide
+                contractReference={contractReference}
                 celebrityFullName={contract?.celebrityData?.fullName}
                 deliveryTo={contract?.deliveryTo}
               />
