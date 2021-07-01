@@ -1,17 +1,31 @@
-.HiringPreviewBanner {
-  margin-bottom: 29px;
-
-  @media only screen and (max-width: 767px) {
-    text-align: center;
-
-    h1 {
-      margin: 0 auto;
-    }
-  }
+.HiringPreviewCTACard {
+  margin-top: 29px;
 }
 
-.HiringPreviewCTACard {
-  @media only screen and (max-width: 767px) {
+.HiringPreviewCTACardUnauthorized {
+  padding: 20px 30px 28px;
+}
+
+.HiringPreviewCTACardUnauthorized p {
+  text-align: center;
+  font-size: 14px;
+}
+
+.OwnerBanner {
+  margin-top: 26px;
+}
+
+@media only screen and (max-width: 767px) {
+  .HiringPreviewBanner {
+    text-align: center;
+  }
+
+  .HiringPreviewBanner h1 {
+    margin: 0 auto;
+  }
+
+  .HiringPreviewCTACard,
+  .OwnerBanner {
     display: none;
   }
 }

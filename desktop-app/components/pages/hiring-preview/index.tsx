@@ -8,12 +8,17 @@ import { HiringPreviewCTACard } from "desktop-app/components/hiring-preview/hiri
 import { HiringReviewSection } from "desktop-app/components/common/widgets/hiring-review-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { GiftAnimationWrapper } from "desktop-app/components/layouts/gift-animation-wrapper";
+import { HiringPreviewOwnerBanner } from "desktop-app/components/hiring-preview/hiring-preview-owner-banner";
 
 type HiringPreviewPageProps = {
   contractReference: string;
+  isUnauthorized: boolean;
 };
 
-function HiringPreviewPage({ contractReference }: HiringPreviewPageProps) {
+function HiringPreviewPage({
+  contractReference,
+  isUnauthorized,
+}: HiringPreviewPageProps) {
   const { contract, status } = useGetContract(contractReference, true);
 
   return (
@@ -26,8 +31,10 @@ function HiringPreviewPage({ contractReference }: HiringPreviewPageProps) {
           <Maybe it={status === "completed"}>
             <div className={styles.LeftSide}>
               <HiringPreviewLeftSide
+                isUnauthorized={isUnauthorized}
                 celebrityFullName={contract?.celebrityData?.fullName}
                 deliveryTo={contract?.deliveryTo}
+                contractReference={contractReference}
               />
             </div>
             <VideoContractFeed
@@ -40,6 +47,12 @@ function HiringPreviewPage({ contractReference }: HiringPreviewPageProps) {
             <HiringPreviewCTACard
               className={styles.HiringPreviewCTACardMobile}
             />
+            <Maybe it={isUnauthorized}>
+              <HiringPreviewOwnerBanner
+                className={styles.HiringPreviewPageOwnerBanner}
+                contractReference={contractReference}
+              />
+            </Maybe>
           </Maybe>
         </div>
       </GiftAnimationWrapper>

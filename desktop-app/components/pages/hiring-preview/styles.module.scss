@@ -37,3 +37,10 @@
     text-align: center;
   }
 }
+
+.HiringPreviewPageOwnerBanner {
+  margin-top: 26px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+}
