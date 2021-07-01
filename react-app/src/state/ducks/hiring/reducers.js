@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import thunkReducer from "../../utils/thunkReducer";
 import * as TYPES from "./types";
 
 const fetchCommentHiringReducerInitialState = {
@@ -41,6 +42,9 @@ export function fetchCommentHiringReducer(
   }
 }
 
+const getPublicContractReducer = thunkReducer(TYPES.GET_PUBLIC_CONTRACT, {});
+
 export default combineReducers({
   fetchCommentHiringReducer,
+  getPublicContractReducer,
 });

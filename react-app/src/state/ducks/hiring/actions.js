@@ -6,6 +6,7 @@ import {
   handleApiResponseSuccess,
 } from "../../utils";
 import * as API_PATHS from "./paths";
+import thunkAction from "../../utils/thunkAction";
 
 export const fetchCommentHiring = (contract_reference) => (dispatch) => {
   const TYPE = TYPES.FETCH_COMMENT_HIRING;
@@ -50,3 +51,11 @@ export const fetchStatusContractLike = (contract_reference) => {
       });
   });
 };
+
+export const getPublicContract = (contractReference) =>
+  thunkAction(TYPES.GET_PUBLIC_CONTRACT, () =>
+    apiService({
+      method: "GET",
+      path: API_PATHS.GET_PUBLIC_CONTRACT + contractReference,
+    })
+  );
