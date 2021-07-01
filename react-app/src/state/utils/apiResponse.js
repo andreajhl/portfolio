@@ -23,9 +23,15 @@ function getParseableError(error) {
 
   /* Default value to prevent errors. */
   return {
-    message: String(error?.message || "Invalid error message"),
-    response: {
-      status: 500,
+    data: {
+      message: String(
+        error?.data?.api_error?.response?.data?.error ||
+          error?.message ||
+          "Invalid error message"
+      ),
+      response: {
+        status: error?.data?.api_error?.response?.status || 500,
+      },
     },
   };
 }
