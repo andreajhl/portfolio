@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { getContract } from "react-app/src/state/ducks/contracts/actions";
 import { useRouter } from "next/router";
-import { CLIENT_HIRINGS } from "constants/paths";
+import { ROOT_PATH } from "constants/paths";
 import { useDispatch, useSelector } from "react-redux";
 import ClientContractType from "desktop-app/types/clientContract";
+import { RootState } from "react-app/src/state/store";
+import { getPublicContract } from "react-app/src/state/ducks/hiring/actions";
 
 type StatusType = "loading" | "failed" | "completed";
 
@@ -12,13 +13,15 @@ type StateType = {
   status: StatusType;
 };
 
-const contractSelector = ({ contracts: { getContractReducer } }) => {
+const contractSelector = ({
+  hiring: { getPublicContractReducer },
+}: RootState) => {
   let status: StatusType = "loading";
-  if (getContractReducer.failed) status = "failed";
-  if (getContractReducer.completed) status = "completed";
+  if (getPublicContractReducer.failed) status = "failed";
+  if (getPublicContractReducer.completed) status = "completed";
 
   const state: StateType = {
-    contract: getContractReducer.data,
+    contract: getPublicContractReducer.data,
     status,
   };
 
@@ -37,7 +40,7 @@ function useGetContract(contractReference: string, redirectOnFailure = false) {
     if (!contractReference || isSameContract) {
       return;
     }
-    dispatch(getContract(contractReference));
+    dispatch(getPublicContract(contractReference));
     setDidFetch(true);
   }, [isSameContract, contractReference, dispatch]);
 
@@ -45,7 +48,7 @@ function useGetContract(contractReference: string, redirectOnFailure = false) {
     if (!redirectOnFailure) return;
     if (!didFetch) return;
     if (state.status !== "failed") return;
-    push(CLIENT_HIRINGS);
+    push(ROOT_PATH);
   }, [redirectOnFailure, state.status, push, didFetch]);
 
   return state;
