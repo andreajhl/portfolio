@@ -38,9 +38,7 @@ function UpdatePasswordFom() {
   };
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (validateEqualPassword()) {
-        sendData();
-      }
+      sendData();
     }
   };
 
@@ -61,7 +59,7 @@ function UpdatePasswordFom() {
   const sendData = async () => {
     setIsLoading(true);
     setError(null);
-    if (!isLoading) {
+    if (!isLoading && validateEqualPassword()) {
       validateSecurityCode();
     }
   };
