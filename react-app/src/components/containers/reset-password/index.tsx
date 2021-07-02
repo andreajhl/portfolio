@@ -4,8 +4,11 @@ import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 import classes from "classnames";
 import { AuthFormField } from "../../layouts/auth-form-field";
+import { useRouter } from "next/router";
+import { CHANGE_PASSWORD_PATH } from "../../../routing/Paths";
 
 function ResetPassword() {
+  const { push } = useRouter();
   const [email, setEmail] = useState("");
   const [securityCode, setSecurityCode] = useState("");
   const [isEmailSend, setIsEmailSend] = useState(false);
@@ -44,7 +47,7 @@ function ResetPassword() {
         securityCode: securityCode.trim().toLocaleLowerCase()
       })
       .then((response) => {
-        console.log({ response });
+        push(CHANGE_PASSWORD_PATH);
         setIsLoading(false);
       })
       .catch((err) => {
