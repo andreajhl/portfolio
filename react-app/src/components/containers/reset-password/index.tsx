@@ -58,9 +58,9 @@ function ResetPassword() {
   const sendData = async () => {
     setIsLoading(true);
     setError(null);
-    if (!isEmailSend) {
+    if (!isEmailSend && !isLoading) {
       generateSecurityCode();
-    } else {
+    } else if (!isLoading) {
       validateSecurityCode();
     }
   };
