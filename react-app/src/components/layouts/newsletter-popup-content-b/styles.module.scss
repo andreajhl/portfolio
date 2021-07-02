@@ -1,0 +1,108 @@
+.NewsletterPopupContentB,
+.NewsletterPopupContentBSkeleton {
+  max-height: 36.6875em;
+  height: 90vh;
+
+  @media only screen and (min-height: 48.75em) {
+    max-height: 50rem;
+  }
+}
+
+.NewsletterPopupContentB {
+  overflow-y: auto;
+  border-radius: 10px;
+  background-image: url(/assets/img/newsletter-b-background.jpg);
+  background-size: cover;
+  background-position: top center;
+  display: flex;
+}
+
+.NewsletterPopupContentBSkeleton {
+  height: 36.6875em;
+}
+
+.NewsletterPopupContentBSection {
+  margin-top: auto;
+  padding: 20px 22px 30px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.6);
+
+  @media only screen and (max-height: 48.6875em) {
+    padding: 40px 22px;
+  }
+}
+
+.Title {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.9375rem;
+  max-width: 34ch;
+  font-weight: bold;
+  color: black;
+  margin: 0 auto;
+}
+
+.NewsletterPopupContentBCopy {
+  text-align: center;
+  color: black;
+  margin-top: 1.125rem;
+}
+
+.NewsletterPopupContentBCoupon {
+  border: 0.625rem solid #6970c6;
+  background: #ffeef6;
+  display: flex;
+  width: 100%;
+  max-width: 330px;
+  min-height: 94px;
+  margin: 0.625rem auto;
+}
+
+.NewsletterPopupContentBCoupon * {
+  color: black;
+}
+
+.NewsletterPopupContentBCouponLabel {
+  display: flex;
+  align-items: center;
+  flex-basis: 18%;
+  border-right: 2px dotted #cacaca;
+}
+
+.NewsletterPopupContentBCouponLabel span {
+  transform: rotate(-90deg);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.NewsletterPopupContentBCouponBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.NewsletterPopupContentBCouponText {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  font-size: 14px;
+
+  @media only screen and (max-width: 21.1875em) {
+    font-size: 3.5vw;
+  }
+}
+
+.NewsletterPopupContentBBigText {
+  font-size: 3em;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.NewsletterPopupContentBForm {
+  margin-top: 21px;
+}
+
+.NewsletterPopupContentBForm label {
+  font-weight: bold;
+}
