@@ -35,8 +35,7 @@ async function validateSecurityCode(
               }
             )
           );
-
-          return res.redirect(200, "/auth/update-password");
+          return res.status(200).end();
         } else {
           res.json({
             status: "error",
