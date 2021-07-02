@@ -7,7 +7,10 @@ import { AuthFormField } from "../../layouts/auth-form-field";
 import { useRouter } from "next/router";
 
 function UpdatePasswordFom() {
-  const [newPassword, setNewPassword] = useState("");
+  const [newPassword, setNewPassword] = useState({
+    password: "",
+    confirm_password: ""
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { push } = useRouter();
@@ -16,18 +19,35 @@ function UpdatePasswordFom() {
   const handleNewPasswordInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setNewPassword(event.target.value);
+    const name = event.target.name;
+    const value = event.target.value;
+    setNewPassword((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const validateEqualPassword = () => {
+    const areEqual = newPassword.confirm_password === newPassword.password;
+    if (!areEqual) {
+      setError("Las contraseñas no son iguales");
+      return false;
+    } else {
+      return true;
+    }
   };
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      sendData();
+      if (validateEqualPassword()) {
+        sendData();
+      }
     }
   };
 
   const validateSecurityCode = async () => {
     await axios
       .post("/api/update-password", {
-        newPassword: newPassword.trim().toLocaleLowerCase()
+        newPassword: newPassword.password.trim().toLocaleLowerCase()
       })
       .then((response) => {
         setIsUpdated(true);
@@ -50,15 +70,23 @@ function UpdatePasswordFom() {
       <div className={styles.ResetPasswordWrapper}>
         <p className={styles.SubTitle}>
           <FormattedMessage
-            defaultMessage="Por favor ingresa tus nuevos credenciales
+            defaultMessage="Para continuar actualiza la contraseña de tu cuenta. Asegurate de que sea una contraseña fácil de recordar.
   "
           />
         </p>
         <AuthFormField
           label="Nueva Contraseña"
           type="password"
-          // placeholder=""
-          value={newPassword}
+          value={newPassword.password}
+          name="password"
+          onChange={handleNewPasswordInputChange}
+          onKeyPress={handleKeyPress}
+        />
+        <AuthFormField
+          label="Confirmar nueva Contraseña"
+          name="confirm_password"
+          type="password"
+          value={newPassword.confirm_password}
           onChange={handleNewPasswordInputChange}
           onKeyPress={handleKeyPress}
         />
@@ -76,7 +104,12 @@ function UpdatePasswordFom() {
   }
   return (
     <div className={styles.ResetPasswordWrapper}>
-      <p className={styles.SubTitle}>
+      <p
+        style={{
+          textAlign: "center"
+        }}
+        className={styles.SubTitle}
+      >
         <FormattedMessage
           defaultMessage="Contraseña actualizada
 "
