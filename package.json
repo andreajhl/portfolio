@@ -27,6 +27,7 @@
     "@next/bundle-analyzer": "^10.0.7",
     "@sentry/nextjs": "^6.4.0",
     "@stripe/stripe-js": "^1.12.1",
+    "@types/cookie": "^0.4.0",
     "@types/next": "^9.0.0",
     "@types/react-select": "^4.0.15",
     "axios": "^0.21.1",
