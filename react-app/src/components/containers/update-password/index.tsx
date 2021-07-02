@@ -70,9 +70,12 @@ function UpdatePasswordFom() {
       <div className={styles.ResetPasswordWrapper}>
         <p className={styles.SubTitle}>
           <FormattedMessage
-            defaultMessage="Para continuar actualiza la contraseña de tu cuenta. Asegurate de que sea una contraseña fácil de recordar.
+            defaultMessage="Para continuar actualiza la contraseña de tu cuenta. 
   "
           />
+        </p>
+        <p>
+          <FormattedMessage defaultMessage="Asegurate de que sea una contraseña fácil de recordar." />
         </p>
         <AuthFormField
           label="Nueva Contraseña"
