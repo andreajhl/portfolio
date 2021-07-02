@@ -2,11 +2,11 @@ const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT;
 
 const generateHttpOnlyCookie = ():
   | { httpOnly: boolean }
-  | { httpOnlys: boolean } => {
+  | { httpsOnly: boolean } => {
   if (ENVIRONMENT === "development") {
     return { httpOnly: true };
   } else {
-    return { httpOnlys: true };
+    return { httpsOnly: true };
   }
 };
 export { generateHttpOnlyCookie };
