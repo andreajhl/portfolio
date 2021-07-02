@@ -15,7 +15,7 @@ function ResetPassword() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const handleEmailInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
+    setEmail(event.target.value.trim().toLocaleLowerCase());
   };
   const handleSecurityCodeInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
