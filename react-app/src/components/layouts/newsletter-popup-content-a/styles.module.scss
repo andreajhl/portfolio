@@ -1,0 +1,76 @@
+.NewsletterPopupContentA,
+.NewsletterPopupContentASkeleton {
+  @media only screen and (max-height: 41.625rem) and (min-width: 43.75em) {
+    height: 90vh;
+  }
+
+  @media only screen and (max-height: 53.6875em) and (max-width: 43.6875em) {
+    height: 90vh;
+  }
+}
+
+.NewsletterPopupContentA {
+  border-radius: 10px;
+  padding: 22px 22px 30px;
+  overflow-y: auto;
+}
+
+.NewsletterPopupContentASkeleton {
+  height: 35.9375em;
+}
+
+.NewsletterPopupContentAInfo {
+  @media only screen and (max-height: 53.6875em) and (min-width: 43.75em) {
+    display: flex;
+    align-items: center;
+
+    & > * + * {
+      margin: 0 2em;
+    }
+  }
+}
+
+.NewsletterIllustration {
+  display: block;
+  margin: 0 auto;
+}
+
+.NewsletterPopupTitle {
+  text-transform: uppercase;
+  color: black;
+  margin: 21px auto 0;
+  font-size: 1rem;
+  line-height: 1.375;
+  text-align: center;
+  max-width: 34ch;
+}
+
+.NewsletterPopupCopy {
+  display: flex;
+  flex-direction: column;
+  color: #6970c6;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+
+  @media only screen and (max-width: 24.9375em) {
+    font-size: 5.5vw;
+  }
+
+  @media only screen and (max-height: 41.8125em) and (min-width: 43.75em) and (max-width: 48.25em) {
+    font-size: 3vw;
+  }
+}
+
+.NewsletterPopupBigText {
+  color: inherit;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.NewsletterPopupForm {
+  margin-top: 24px;
+}
