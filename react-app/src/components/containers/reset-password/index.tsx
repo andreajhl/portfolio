@@ -34,11 +34,13 @@ function ResetPassword() {
         email: email.trim().toLocaleLowerCase()
       })
       .then((response) => {
-        console.log({ response });
         setIsEmailSend(true);
         setIsLoading(false);
       })
-      .catch((error) => setError(error.response.data));
+      .catch((error) => {
+        setIsLoading(false);
+        setError(error.response.data.error);
+      });
   };
   const validateSecurityCode = async () => {
     await axios
