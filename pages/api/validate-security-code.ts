@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
 import axios from "axios";
+import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
 
 async function validateSecurityCode(
   req: NextApiRequest,
@@ -30,8 +31,8 @@ async function validateSecurityCode(
               data.token,
               {
                 path: "/",
-                // httpOnly: true,
-                sameSite: "lax"
+                sameSite: "lax",
+                ...generateHttpOnlyCookie()
               }
             )
           );

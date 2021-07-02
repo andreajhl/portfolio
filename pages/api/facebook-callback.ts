@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
 import axios from "axios";
 import { AUTH_SUCCESS } from "react-app/src/routing/Paths";
+import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
 
 async function facebookCallbackHandler(
   req: NextApiRequest,
@@ -38,8 +39,8 @@ async function facebookCallbackHandler(
             data.token,
             {
               path: "/",
-              // httpOnly: true,
-              sameSite: "lax"
+              sameSite: "lax",
+              ...generateHttpOnlyCookie()
             }
           )
         );

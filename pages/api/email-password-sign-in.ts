@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
+import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
 
 import axios from "axios";
 
@@ -29,8 +30,8 @@ async function emailPasswordSignInHandler(
             data.token,
             {
               path: "/",
-              // httpOnly: true,
-              sameSite: "lax"
+              sameSite: "lax",
+              ...generateHttpOnlyCookie()
             }
           )
         );
