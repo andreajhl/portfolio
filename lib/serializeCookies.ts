@@ -40,7 +40,7 @@ export function serializeCurrencyCurrentData(currencyCurrentData: {
   userLocationCookiesSerialize.push(
     serialize(
       CURRENT_CURRENCY_TRM_RATE,
-      currencyCurrentData.currencyCurrentTRM,
+      String(currencyCurrentData.currencyCurrentTRM),
       {
         path: "/"
       }
