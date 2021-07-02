@@ -61,8 +61,9 @@ function UpdatePasswordFom() {
   const sendData = async () => {
     setIsLoading(true);
     setError(null);
-
-    validateSecurityCode();
+    if (!isLoading) {
+      validateSecurityCode();
+    }
   };
 
   if (!isUpdated) {
