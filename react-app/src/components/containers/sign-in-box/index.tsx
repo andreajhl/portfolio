@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 import { AuthTermsAdvertise } from "react-app/src/components/layouts/auth-terms-advertise";
 import { FormattedMessage } from "react-intl";
 import { Link } from "../../common/routing/link";
-import { SIGN_UP_PATH } from "react-app/src/routing/Paths";
+import { RESET_PASSWORD_PATH, SIGN_UP_PATH } from "react-app/src/routing/Paths";
 import { SignInEmailPasswordForm } from "../sign-in-with-email-form";
 
 const signUpLink = (chunk: string) => <Link href={SIGN_UP_PATH}>{chunk}</Link>;
@@ -35,7 +35,7 @@ function SignInBox({ className }: SignInBoxProps) {
         </GoogleButton>
         <SignInEmailPasswordForm email={""} />
         <AuthTermsAdvertise className={styles.SignInBoxAuthTermsAdvertise} />
-        <Link href="#" className={styles.ForgotPasswordLink}>
+        <Link href={RESET_PASSWORD_PATH} className={styles.ForgotPasswordLink}>
           <FormattedMessage defaultMessage="Olvidé mi contraseña" />
         </Link>
       </div>
