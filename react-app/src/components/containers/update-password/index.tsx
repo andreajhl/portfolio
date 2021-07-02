@@ -57,9 +57,9 @@ function UpdatePasswordFom() {
       });
   };
   const sendData = async () => {
-    setIsLoading(true);
     setError(null);
     if (!isLoading && validateEqualPassword()) {
+      setIsLoading(true);
       validateSecurityCode();
     }
   };
