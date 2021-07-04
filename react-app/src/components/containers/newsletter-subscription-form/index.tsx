@@ -23,6 +23,7 @@ import { SubmitText } from "react-app/src/components/common/widgets/submit-butto
 import { saveUserNewsletter } from "react-app/src/state/ducks/session/actions";
 import { analytics } from "react-app/src/state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
+import useErrorFocus from "lib/hooks/useErrorFocus";
 
 type FieldProps = {
   label: ReactNode;
@@ -108,6 +109,13 @@ function NewsletterSubscriptionForm({
   const { handle, status } = usePromise();
   const [requestError, setRequestError] = useState(null);
 
+  const { values, errors, onChangeField, submitForm, setFieldError } = useForm({
+    initialValues,
+    validations: getValidations(formatMessage),
+    validateOnChange: false,
+    onSubmit
+  });
+
   async function onSubmit(formData: typeof initialValues) {
     if (status === "loading") return;
     setRequestError(null);
@@ -115,19 +123,17 @@ function NewsletterSubscriptionForm({
       await handle(saveUserNewsletter({ ...formData, versionPopup }));
       onCompleted?.();
     } catch (error) {
-      const errorMessage =
-        error?.message === ALREADY_SUBSCRIBE_ERROR
-          ? formatMessage(messages.alreadySubscribedError)
-          : error?.message;
-      setRequestError(errorMessage || formatMessage(messages.requestError));
+      if (error?.message === ALREADY_SUBSCRIBE_ERROR) {
+        return setFieldError(
+          "email",
+          formatMessage(messages.alreadySubscribedError)
+        );
+      }
+      setRequestError(error?.message || formatMessage(messages.requestError));
     }
   }
 
-  const { values, errors, onChangeField, submitForm } = useForm({
-    initialValues,
-    validations: getValidations(formatMessage),
-    onSubmit
-  });
+  useErrorFocus(errors);
 
   const emailInputRef = useRef<HTMLInputElement>();
 
