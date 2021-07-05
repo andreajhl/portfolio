@@ -127,6 +127,46 @@ export const getContractToPay = (contractReference) => {
   };
 };
 
+export const getContractToPayV2 = (contractReference) => {
+  return (dispatch) => {
+    const TYPE = types.GET_CONTRACT_TO_PAY_REQUEST;
+    const FINAL_PATH =
+      "custom-endpoints/contracts/v2/contract-with-payments/" +
+      contractReference;
+    dispatch({ type: TYPE, payload: {} });
+    apiService({
+      method: "GET",
+      action: TYPE,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: null,
+    })
+      .then((res) => {
+        if ("status" in res.data && res.data.status === "ERROR") {
+          handleApiResponseFailure(dispatch, TYPE, res);
+          // history._pushRoute(ROUTING_PATHS.HOME_PATH);
+        } else {
+          if (res.data.data.status >= 7) {
+            history._pushRoute(
+              ROUTING_PATHS.PURCHASE_SUMMARY.replace(
+                ":contract_reference",
+                res.data.data.reference
+              )
+            );
+          } else {
+            handleApiResponseSuccess(dispatch, TYPE, res);
+            // Other actions
+            dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+          }
+        }
+      })
+      .catch((err) => {
+        handleApiErrors(dispatch, TYPE, err);
+      });
+  };
+};
+
 export const processStripePayment = (
   contractReference,
   sourceId,

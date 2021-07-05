@@ -19,7 +19,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-  getContractToPayData: paymentsOperations.getContractToPay,
+  getContractToPayData: paymentsOperations.getContractToPayV2,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -37,6 +37,7 @@ function PaymentMethodsPage({
   useEffect(() => {
     getContractToPayData(contractReference);
   }, [contractReference]);
+
   return (
     <PageContainer showFooter={false}>
       <PageHeading showHomeLink={false}>Confirmación de compra</PageHeading>
