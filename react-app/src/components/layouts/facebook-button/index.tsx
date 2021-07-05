@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import classes from "classnames";
 import styles from "./styles.module.scss";
+import { useIntl } from "react-intl";
 
 type FacebookButtonProps = {
   children?: ReactNode;
@@ -8,6 +9,8 @@ type FacebookButtonProps = {
 };
 
 function FacebookButton({ children, className }: FacebookButtonProps) {
+  const { locale } = useIntl();
+
   const redirectToFacebookOAuth = () => {
     const tokenRequestURL = "https://www.facebook.com/v10.0/dialog/oauth";
     const responseType = "code";
@@ -15,7 +18,9 @@ function FacebookButton({ children, className }: FacebookButtonProps) {
     const redirectURL = process.env.NEXT_PUBLIC_FACEBOOK_LOGIN_REDIRECT;
     const scope = "public_profile,email";
     const state = "famosos";
-    window.location.replace(`${tokenRequestURL}?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectURL}&scope=${scope}&state=${state}`);
+    window.location.replace(
+      `${tokenRequestURL}?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectURL}&scope=${scope}&state=${state}&locale=${locale}`
+    );
   };
   return (
     <button
