@@ -25,12 +25,10 @@ function LinkText({
   isRefundReceipt: boolean;
 }) {
   if (receiptUrl && isRefundReceipt) {
-    return (
-      <FormattedMessage defaultMessage="Descargar comprobante de devolución" />
-    );
+    return <FormattedMessage defaultMessage="Ver comprobante de devolución" />;
   }
   if (receiptUrl && !isRefundReceipt) {
-    return <FormattedMessage defaultMessage="Descargar comprobante de pago" />;
+    return <FormattedMessage defaultMessage="Ver comprobante de pago" />;
   }
   if (!receiptUrl && isRefundReceipt) {
     return (
