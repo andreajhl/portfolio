@@ -145,7 +145,7 @@ function CreateContractWizard({
 
   function createOrUpdateContractFirstStep(data: ContractDeliveryType) {
     if (currentContractId) {
-      return updateCurrentContractStep({ ...data, deliveryType: 1 }, 1);
+      return updateCurrentContractStep(data, 1);
     }
     return saveNewContract(data);
   }
