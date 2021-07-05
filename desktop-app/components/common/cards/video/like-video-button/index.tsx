@@ -15,6 +15,7 @@ function LikeVideoButton({
   backgroundColor: backgroundColorFromProps,
 }: LikeVideoButtonProps) {
   const backgroundColor = backgroundColorFromProps || "white"; // Para evitar utilizar string vaciás.
+
   return (
     <button
       onClick={onClick}
@@ -25,6 +26,7 @@ function LikeVideoButton({
         isFavorite={isLiked}
         className={classes(
           styles.LikeButtonModifier,
+          !isLiked && styles.ButtonUnlike,
           backgroundColor !== "white" && styles.LikeButtonLight
         )}
       />

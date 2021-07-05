@@ -8,8 +8,6 @@
 .LikeButtonModifier {
   width: 22px !important;
   height: 19px !important;
-  color: black;
-  fill: none;
   path {
     stroke-width: 0.08375em;
   }
@@ -20,6 +18,14 @@
   }
 }
 
+.ButtonUnlike {
+  color: black;
+  fill: none;
+}
 .LikeButtonLight {
   color: white;
+  &:hover {
+    color: white;
+    fill: none;
+  }
 }
