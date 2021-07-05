@@ -1,4 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import onCanUseSessionToken from "lib/utils/onCanUseSessionToken";
 import { useEffect } from "react";
 import { fetchUserLikesContractsWithReference } from "react-app/src/state/ducks/account/actions";
 import { RootState } from "react-app/src/state/store";
@@ -18,7 +19,9 @@ function useFetchUserContractsLikes(
     if (!shouldFetchUserCelebrityContracts) return;
     if (!isAuthenticated) return;
     if (hasFetchedLikes) return;
-    dispatch(fetchUserLikesContractsWithReference());
+    onCanUseSessionToken(() =>
+      dispatch(fetchUserLikesContractsWithReference())
+    );
   }, [
     dispatch,
     hasFetchedLikes,

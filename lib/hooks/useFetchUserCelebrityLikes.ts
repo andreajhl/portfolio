@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { fetchUserCelebrityLikes } from "react-app/src/state/ducks/celebrity-likes/actions";
 import { RootState } from "react-app/src/state/store";
 import { useDispatch, useSelector } from "react-redux";
+import onCanUseSessionToken from "../utils/onCanUseSessionToken";
 
 const hasFetchedLikesSelector = ({ celebrityLikes }: RootState) =>
   celebrityLikes.fetchUserCelebrityLikesReducer.completed;
@@ -16,7 +17,7 @@ function useFetchUserCelebrityLikes(shouldFetchUserCelebrityLikes: boolean) {
     if (!shouldFetchUserCelebrityLikes) return;
     if (!isAuthenticated) return;
     if (hasFetchedLikes) return;
-    dispatch(fetchUserCelebrityLikes());
+    onCanUseSessionToken(() => dispatch(fetchUserCelebrityLikes()));
   }, [
     dispatch,
     hasFetchedLikes,
