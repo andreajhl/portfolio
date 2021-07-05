@@ -62,7 +62,7 @@ function MyHirings({ query }: MyHiringsProps) {
           className={styles.Dropdown}
           options={filterByOptions}
           title={"Filtrar contratos"}
-          checkedOptions={status.split(",")}
+          checkedOptions={status?.split(",") || ""}
           onChange={updateFilerByStatus}
         />
         <OrderByDropdown
