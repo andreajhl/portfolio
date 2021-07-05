@@ -301,6 +301,10 @@ export const getUserContractInProgress = (celebrityUsername) =>
     })
   );
 
+export const cleanUserContractInProgress = () => ({
+  type: TYPES.CLEAN_USER_CONTRACT_IN_PROGRESS,
+});
+
 export const listClientContracts = () => {
   return (dispatch) => {
     const TYPE = TYPES.LIST_CLIENT_CONTRACTS_REQUEST;

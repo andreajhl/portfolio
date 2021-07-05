@@ -454,36 +454,21 @@ export function fetchSimilarContractsReducer(
   }
 }
 
-export function getUserContractInProgressReducer(
+const getUserContractInProgressRequestReducer = thunkReducer(
+  TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST,
+  {}
+);
+
+function getUserContractInProgressReducer(
   state = getUserContractInProgressInitialState,
   action
 ) {
-  switch (action.type) {
-    case TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
-    case TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST_FAILURE:
-      return {
-        ...getUserContractInProgressInitialState,
-        error_data: action.payload.data,
-        failed: true,
-      };
-    case TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST_SUCCESS:
-      return {
-        ...getUserContractInProgressInitialState,
-        data: action.payload.data.data,
-      };
-    case TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST_COMPLETED:
-      return {
-        ...state,
-        data: action.payload.data.data,
-        completed: true,
-      };
-    default:
-      return state;
+  if (action.type === TYPES.CLEAN_USER_CONTRACT_IN_PROGRESS) {
+    return {
+      ...getUserContractInProgressInitialState,
+    };
   }
+  return getUserContractInProgressRequestReducer(state, action);
 }
 
 export function getPurchaseSummaryReducer(

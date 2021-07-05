@@ -14,7 +14,10 @@ import { FanClubAdvertise } from "desktop-app/components/celebrity-profile/fan-c
 import scrollToTop from "lib/utils/scrollToTop";
 import classes from "classnames";
 import styles from "./styles.module.scss";
-import { getUserContractInProgress } from "react-app/src/state/ducks/contracts/actions";
+import {
+  getUserContractInProgress,
+  cleanUserContractInProgress,
+} from "react-app/src/state/ducks/contracts/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { RootState } from "react-app/src/state/store";
 import { useEffect, useRef, useState } from "react";
@@ -47,7 +50,10 @@ const mapStateToProps = ({ celebrities, contracts }: RootState) => ({
   isLoadingPublicContracts: celebrities.fetchPublicContractsReducer.loading,
 });
 
-const mapDispatchToProps = { getUserContractInProgress };
+const mapDispatchToProps = {
+  getUserContractInProgress,
+  cleanUserContractInProgress,
+};
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
@@ -64,6 +70,7 @@ function CelebrityProfilePage({
   isLoadingPublicContracts,
   publicContracts,
   getUserContractInProgress,
+  cleanUserContractInProgress,
   contractInProgressRequest,
 }: CelebrityProfilePageProps) {
   useGlobalFetches();
@@ -121,6 +128,13 @@ function CelebrityProfilePage({
     if (!isReadyToCreateContract) return;
     goToCreateContractWizard();
   }, [shouldFocusCreateContractWizard, isReadyToCreateContract]);
+
+  useEffect(
+    () => () => {
+      cleanUserContractInProgress();
+    },
+    [cleanUserContractInProgress]
+  );
 
   return (
     <PageContainer>
