@@ -1,18 +1,20 @@
 import styles from "./styles.module.scss";
 import { InputWithDynamicWidth } from "desktop-app/components/common/form/input-with-dynamic-width";
 import classes from "classnames";
-import { ReactNode, useEffect, useState } from "react";
-import usePriceConverter from "lib/hooks/usePriceConverter";
+import { ReactNode } from "react";
 import useIsInBrowser from "react-app/src/utils/useIsInBrowser";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 
 type PriceRangeSliderInputProps = {
   initialPrice: number;
-  value: number;
+  value: string;
   name: string;
   isTouched?: boolean;
   onChange?: (value: string) => void;
   label: ReactNode;
+  maxLength?: number;
+  currency?: string;
+  onBlur?: (event: any) => void;
 };
 
 function PriceRangeSliderInput({
@@ -20,34 +22,21 @@ function PriceRangeSliderInput({
   value,
   name,
   onChange = function () {},
+  onBlur,
+  maxLength,
   isTouched = true,
   label,
+  currency = "USD",
 }: PriceRangeSliderInputProps) {
-  const { getExchangePrice, getOriginalPrice, currency } = usePriceConverter();
-  const [inputValue, setInputValue] = useState(
-    String(getExchangePrice(initialPrice))
-  );
   const isInBrowser = useIsInBrowser();
-
-  useEffect(() => {
-    if (typeof value === "undefined") return;
-    setInputValue(String(getExchangePrice(value)));
-  }, [getExchangePrice, value]);
 
   function changeInputValue({ target: { value } }) {
     const newValue = value.replace(/[^0-9.]/g, "");
-    setInputValue(newValue);
-    if (newValue === "") return;
-    onChange(String(getOriginalPrice(newValue)));
-  }
-
-  function fixInputToValidValue() {
-    if (String(value) === inputValue) return;
-    setInputValue(String(getExchangePrice(value)));
+    onChange(newValue);
   }
 
   const inputId = "PriceRangeSliderInput-" + name;
-  const inputIsEmpty = inputValue === "" || !isTouched;
+  const inputIsEmpty = value === "" || !isTouched;
 
   return (
     <div className={styles.PriceRangeSliderInputWrapper}>
@@ -72,11 +61,12 @@ function PriceRangeSliderInput({
               styles.PriceRangeSliderInput,
               isTouched && styles.PriceRangeSliderInputIsTouched
             )}
-            placeholder={String(getExchangePrice(initialPrice))}
+            placeholder={String(initialPrice)}
             onChange={changeInputValue}
-            onBlur={fixInputToValidValue}
+            onBlur={onBlur}
             autoComplete="off"
-            value={inputValue}
+            value={value}
+            maxLength={maxLength}
           />
         </Maybe>
         <span>{currency}</span>
