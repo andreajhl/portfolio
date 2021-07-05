@@ -296,6 +296,7 @@ const ContractButton = ({ contract }) => {
       </button>
     );
   }
+  return null;
 };
 
 const GoToContract = (contract_reference) => {

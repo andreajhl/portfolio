@@ -1,36 +1,27 @@
-import React from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
-import { TopBar } from "../topbar";
-import FooterPage from "../footer-page";
-import styles from "./styles.module.scss";
-import { CouponBanner } from "desktop-app/components/layouts/coupon-banner";
+import PageLayoutProps from "../page-layout/types";
+import useGetViewportWidthOnResize from "react-app/src/utils/useGetViewportWidthOnResize";
+import dynamic from "next/dynamic";
 
-type PageContainerProps = {
-  showTopBar?: boolean;
-  showFooter?: boolean;
-  children: React.ReactNode;
-};
+const MobilePageContainer = dynamic(
+  import("react-app/src/components/layouts/page-layout").then(
+    (mod) => mod.PageContainer
+  )
+);
 
-const PageContainer = ({
-  showTopBar = true,
-  showFooter = true,
-  children
-}: PageContainerProps) => {
+const DesktopPageContainer = dynamic(import("../page-layout"));
+
+type PageContainerProps = PageLayoutProps & { [key: string]: any };
+
+function PageContainer(props: PageContainerProps) {
+  const windowWidth = useGetViewportWidthOnResize();
+  const isOnDesktop = windowWidth >= 1024;
+
   return (
-    <div className={styles.PageContainer}>
-      <div className={styles.CouponBannerSection}>
-        <CouponBanner />
-      </div>
-      <Maybe it={showTopBar}>
-        <TopBar />
-      </Maybe>
-      <div className={styles.PageContainerChildren}>{children}</div>
-      <Maybe it={showFooter}>
-        {" "}
-        <FooterPage></FooterPage>
-      </Maybe>
-    </div>
+    <Maybe it={isOnDesktop} orElse={<MobilePageContainer {...props} />}>
+      <DesktopPageContainer {...props} />
+    </Maybe>
   );
-};
+}
 
 export default PageContainer;
