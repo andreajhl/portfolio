@@ -1,9 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { serialize } from "cookie";
+import { serialize, parse } from "cookie";
 import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
 
 import axios from "axios";
 import { AUTH_SUCCESS } from "react-app/src/routing/Paths";
+import { NEXT_LOCALE } from "constants/keys";
 
 async function googleCallbackHandler(
   req: NextApiRequest,
@@ -13,6 +14,7 @@ async function googleCallbackHandler(
   const endpoint = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT;
   const version = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT_VERSION;
   const code = req.query["code"];
+  const cookies = parse(req.headers.cookie);
 
   // Validate facebook code callback
   if (code === null || code === undefined) {
@@ -26,7 +28,8 @@ async function googleCallbackHandler(
   await axios
     .post(`${endpoint}/${version}/famosos-com/google/sign-in`, {
       googleCode: req.query["code"],
-      redirectURL: process.env.NEXT_PUBLIC_GOOGLE_LOGIN_REDIRECT
+      redirectURL: process.env.NEXT_PUBLIC_GOOGLE_LOGIN_REDIRECT,
+      locale: cookies[NEXT_LOCALE] || "es"
     })
     .then((response) => {
       const status = response.data.status;
