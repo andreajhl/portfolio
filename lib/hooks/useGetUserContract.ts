@@ -7,6 +7,10 @@ import { RootState } from "react-app/src/state/store";
 import { getUserContract } from "react-app/src/state/ducks/session/actions";
 
 const UNAUTHORIZED_ERROR = "invalid reference by user";
+const UNAUTHENTICATED_ERROR = "invalid token: no token string was provided";
+
+const isUnauthorizedError = (errorMessage: string) =>
+  [UNAUTHORIZED_ERROR, UNAUTHENTICATED_ERROR].includes(errorMessage);
 
 type StatusType = "loading" | "failed" | "completed" | "unauthorized";
 
@@ -15,13 +19,11 @@ type StateType = {
   status: StatusType;
 };
 
-const contractSelector = ({
-  session: { getUserContractReducer },
-}: RootState) => {
+function contractSelector({ session: { getUserContractReducer } }: RootState) {
   let status: StatusType = "loading";
   if (getUserContractReducer.failed) status = "failed";
   if (getUserContractReducer.completed) status = "completed";
-  if (getUserContractReducer?.error_data?.message === UNAUTHORIZED_ERROR) {
+  if (isUnauthorizedError(getUserContractReducer?.error_data?.message)) {
     status = "unauthorized";
   }
 
@@ -31,7 +33,7 @@ const contractSelector = ({
   };
 
   return state;
-};
+}
 
 function useGetUserContract(
   contractReference: string,

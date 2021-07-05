@@ -1,6 +1,4 @@
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
-import LoadingPage from "react-app/src/components/layouts/loading-page";
 import isMobile from "lib/utils/isMobile";
 import dynamic from "next/dynamic";
 import Maybe from "desktop-app/components/common/helpers/maybe";
@@ -31,7 +29,7 @@ export async function getServerSideProps({
   };
 }
 
-const HiringPreview = ({ isMobile, contractReference }) => {
+function HiringPreview({ isMobile, contractReference }) {
   useDesktopClass(true);
   useGlobalFetches({
     shouldFetchUserCelebrityLikes: false,
@@ -51,8 +49,6 @@ const HiringPreview = ({ isMobile, contractReference }) => {
       </Maybe>
     </>
   );
-};
+}
 
-export default withAuthenticationRequired(HiringPreview, {
-  onRedirecting: LoadingPage,
-});
+export default HiringPreview;
