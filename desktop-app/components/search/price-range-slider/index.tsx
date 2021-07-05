@@ -2,11 +2,12 @@ import {
   RangeSlider,
   RangeSliderProps,
 } from "desktop-app/components/common/form/range-slider";
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 import debounce from "lodash.debounce";
 import { PriceRangeSliderInput } from "../price-range-slider-input";
+import usePriceConverter from "lib/hooks/usePriceConverter";
 
 type PriceRangeSliderProps = {
   min?: number;
@@ -23,13 +24,32 @@ function PriceRangeSlider({
   onChange,
   onClick = function () {},
 }: PriceRangeSliderProps) {
+  const { getExchangePrice, getOriginalPrice, currency } = usePriceConverter();
   const [low, high] = values;
   const debouncedOnChange = useMemo(() => debounce(onChange, 500), []);
+  const [minInputValue, setMinInputValue] = useState("");
+  const [maxInputValue, setMaxInputValue] = useState("");
+  const currentCurrencyRef = useRef<string>();
 
   function changeValues(state: { values: [number, number] }): void {
     changeIsTouched();
     setValues(state.values);
+    updateInputValues(state.values);
   }
+
+  const updateInputValues = useCallback(
+    (values: [number, number]) => {
+      setMinInputValue(String(getExchangePrice(values[0])));
+      setMaxInputValue(String(getExchangePrice(values[1])));
+    },
+    [getExchangePrice]
+  );
+
+  useEffect(() => {
+    if (currentCurrencyRef.current === currency) return;
+    currentCurrencyRef.current = currency;
+    updateInputValues(values);
+  }, [currency, updateInputValues, values]);
 
   function onClickAfterChangeIsTouched() {
     changeIsTouched();
@@ -38,20 +58,34 @@ function PriceRangeSlider({
 
   function changeLowValue(value: string): void {
     changeIsTouched();
-    const newLow = Number(value);
-    if (newLow < min) return;
-    if (newLow >= high) return;
+    setMinInputValue(value);
+    let newLow = getOriginalPrice(Number(value));
+    if (newLow < min) newLow = min;
+    if (newLow >= high) newLow = high;
     setValues([newLow, high]);
     debouncedOnChange({ values: [newLow, high] });
   }
 
   function changeHighValue(value: string): void {
     changeIsTouched();
-    const newHigh = Number(value);
-    if (newHigh <= low) return;
-    if (newHigh > max) return;
+    setMaxInputValue(value);
+    let newHigh = getOriginalPrice(Number(value));
+    if (newHigh <= low) newHigh = low;
+    if (newHigh > max) newHigh = max;
     setValues([low, newHigh]);
     debouncedOnChange({ values: [low, newHigh] });
+  }
+
+  const inputsMaxLength = String(getExchangePrice(max)).length;
+
+  function fixMinInputToValidValue() {
+    if (String(low) === minInputValue) return;
+    setMinInputValue(String(getExchangePrice(low)));
+  }
+
+  function fixMaxInputToValidValue() {
+    if (String(high) === maxInputValue) return;
+    setMaxInputValue(String(getExchangePrice(high)));
   }
 
   return (
@@ -69,20 +103,26 @@ function PriceRangeSlider({
       <div className={styles.PriceRangeSliderInputs}>
         <PriceRangeSliderInput
           label={<FormattedMessage defaultMessage="Mínimo" />}
-          initialPrice={min}
-          value={low}
+          initialPrice={getExchangePrice(min)}
+          value={minInputValue}
           name="minimum"
           isTouched={isTouched}
           onChange={changeLowValue}
+          onBlur={fixMinInputToValidValue}
+          currency={currency}
+          maxLength={inputsMaxLength}
         />
         <span className={styles.PriceRangeSliderInputsSeparator}>-</span>
         <PriceRangeSliderInput
           label={<FormattedMessage defaultMessage="Máximo" />}
-          initialPrice={max}
-          value={high}
+          initialPrice={getExchangePrice(max)}
+          value={maxInputValue}
           name="maximum"
           isTouched={isTouched}
           onChange={changeHighValue}
+          onBlur={fixMaxInputToValidValue}
+          currency={currency}
+          maxLength={inputsMaxLength}
         />
       </div>
     </div>
