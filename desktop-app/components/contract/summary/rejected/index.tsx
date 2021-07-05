@@ -36,8 +36,7 @@ type ContractWithPaymentsProps = {
 
 type InstructionsContractRejectedProps = {
   payment_date: string;
-  payment_id: number;
-  transaction_charge_id: string;
+  contractReference: string;
 };
 function HeaderContractRejected() {
   return (
@@ -49,19 +48,17 @@ function HeaderContractRejected() {
 }
 
 function InstructionsContractRejected({
-  payment_id,
-  transaction_charge_id,
-  payment_date
+  payment_date,
+  contractReference,
 }: InstructionsContractRejectedProps) {
   const router = useRouter();
   return (
     <div className={styles.InstructionsContractRejected}>
       <div className={styles.StatusPaymentsDetails}>
         <StatusPaymentDetails
-          payment_id={payment_id}
-          transaction_charge_id={transaction_charge_id}
           payment_date={payment_date}
-        ></StatusPaymentDetails>
+          contractReference={contractReference}
+        />
       </div>
       <div className={styles.FooterInstructions}>
         <div className={styles.ConsultationNoticies}>
@@ -89,7 +86,7 @@ function InstructionsContractRejected({
 function ContractSummaryRejected({
   contract,
   celebrity,
-  lastPayment
+  lastPayment,
 }: ContractWithPaymentsProps) {
   return (
     <ContractSummaryLayout
@@ -102,8 +99,7 @@ function ContractSummaryRejected({
       instructions={
         <InstructionsContractRejected
           payment_date={lastPayment.createdAt}
-          transaction_charge_id={lastPayment.transactionChargeId}
-          payment_id={lastPayment.id}
+          contractReference={contract.reference}
         />
       }
     />

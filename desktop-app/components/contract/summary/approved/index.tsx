@@ -2,7 +2,7 @@ import {
   CashBackIcon,
   CheckIcon,
   LetterIcon,
-  PhoneInHandIcon
+  PhoneInHandIcon,
 } from "desktop-app/components/common/icons";
 import ContractSummaryLayout from "desktop-app/components/layouts/contract-summary";
 import React from "react";
@@ -47,7 +47,7 @@ type InstructionsContractApprovedProps = {
 
 function InstructionsContractApproved({
   celebrity_fullName,
-  email_client
+  email_client,
 }: InstructionsContractApprovedProps) {
   const router = useRouter();
   return (
@@ -122,7 +122,7 @@ function HeaderContractApproved() {
 function ContractSummaryApproved({
   contract,
   celebrity,
-  lastPayment
+  lastPayment,
 }: ContractWithPaymentsProps) {
   return (
     <ContractSummaryLayout
@@ -141,8 +141,7 @@ function ContractSummaryApproved({
             status_payment={
               <StatusPaymentDetails
                 payment_date={lastPayment.createdAt}
-                transaction_charge_id={lastPayment.transactionChargeId}
-                payment_id={lastPayment.id}
+                contractReference={contract.reference}
               />
             }
           />

@@ -3,7 +3,7 @@ import {
   CashBackIcon,
   CheckIcon,
   LetterIcon,
-  PhoneInHandIcon
+  PhoneInHandIcon,
 } from "desktop-app/components/common/icons";
 import ContractSummaryLayout from "desktop-app/components/layouts/contract-summary";
 import styles from "./styles.module.scss";
@@ -55,7 +55,7 @@ function HeaderContractAuthorized() {
 
 function InstructionsContractAuthorized({
   celebrity_fullName,
-  email_client
+  email_client,
 }: InstructionsContractAuthorizedProps) {
   const router = useRouter();
   return (
@@ -109,8 +109,8 @@ function InstructionsContractAuthorized({
               </a>
               <br />
               Si por alguna razón tu video no pudo ser grabado, tu dinero estará
-              nuevamente disponible en un plazo de 5 a 10 hábiles
-              aproximadamente dependiento de tu banco.
+              nuevamente disponible en un plazo en un plazo máximo de 21 días
+              hábiles aproximadamente dependiendo de tu banco.
             </span>
           </div>
         </div>
@@ -126,7 +126,7 @@ function InstructionsContractAuthorized({
             <span
               style={{
                 cursor: "pointer",
-                textDecoration: "underline"
+                textDecoration: "underline",
               }}
               onClick={() => router.push(CLIENT_HIRINGS)}
             >
@@ -156,7 +156,7 @@ function InstructionsContractAuthorized({
 function ContractSummaryAuthorized({
   contract,
   celebrity,
-  lastPayment
+  lastPayment,
 }: ContractWithPaymentsProps) {
   return (
     <ContractSummaryLayout
@@ -169,7 +169,7 @@ function ContractSummaryAuthorized({
             status_payment={
               <StatusPaymentDetails
                 payment_date={lastPayment.createdAt}
-                payment_id={lastPayment.id}
+                contractReference={contract.reference}
               />
             }
           />

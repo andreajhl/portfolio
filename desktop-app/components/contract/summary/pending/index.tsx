@@ -37,9 +37,8 @@ type ContractWithPaymentsProps = {
 
 type InstructionsContractPendingProps = {
   payment_date: string;
-  payment_id: number;
   email_client: string;
-  transaction_charge_id: string;
+  contractReference: string;
 };
 function HeaderContractPending() {
   return (
@@ -51,20 +50,18 @@ function HeaderContractPending() {
 }
 
 function InstructionsContractPending({
-  payment_id,
   email_client,
-  transaction_charge_id,
-  payment_date
+  contractReference,
+  payment_date,
 }: InstructionsContractPendingProps) {
   const router = useRouter();
   return (
     <div className={styles.InstructionsContractPending}>
       <div className={styles.StatusPaymentsDetails}>
         <StatusPaymentDetails
-          payment_id={payment_id}
-          transaction_charge_id={transaction_charge_id}
           payment_date={payment_date}
-        ></StatusPaymentDetails>
+          contractReference={contractReference}
+        />
       </div>
       <div className={styles.InstructionList}>
         <div className={styles.InstructionListItem}>
@@ -119,7 +116,7 @@ function InstructionsContractPending({
 function ContractSummaryPending({
   contract,
   celebrity,
-  lastPayment
+  lastPayment,
 }: ContractWithPaymentsProps) {
   return (
     <ContractSummaryLayout
@@ -133,8 +130,7 @@ function ContractSummaryPending({
         <InstructionsContractPending
           email_client={contract.deliveryContact}
           payment_date={lastPayment.createdAt}
-          transaction_charge_id={lastPayment.transactionChargeId}
-          payment_id={lastPayment.id}
+          contractReference={contract.reference}
         />
       }
     />
