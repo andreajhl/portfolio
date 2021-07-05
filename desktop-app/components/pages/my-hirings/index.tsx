@@ -20,12 +20,8 @@ const orderByOptions = [
   { label: "Más antiguos", value: "created_at asc" },
 ];
 const filterByOptions = [
-  {
-    label: "Todos",
-    value: `${COMPLETED},${EXPIRED},${PAYED_BY_CLIENT},${REJECTED}`,
-  },
-  { label: "Entregados", value: `${COMPLETED}` },
   { label: "Pendientes", value: `${PENDING_TO_PAY}` },
+  { label: "Entregados", value: `${COMPLETED}` },
   { label: "Expirados", value: `${EXPIRED}` },
   { label: "Rechazados", value: `${REJECTED}` },
 ];
@@ -66,6 +62,7 @@ function MyHirings({ query }: MyHiringsProps) {
           className={styles.Dropdown}
           options={filterByOptions}
           title={"Filtrar contratos"}
+          checkedOptions={status.split(",")}
           onChange={updateFilerByStatus}
         />
         <OrderByDropdown

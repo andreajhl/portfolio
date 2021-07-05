@@ -1,13 +1,13 @@
 import { Dropdown } from "desktop-app/components/common/button/dropdown";
 import styles from "./styles.module.scss";
 import classes from "classnames";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Checkbox from "desktop-app/components/common/form/checkbox";
 
 type OptionType = {
   label: string;
   value: string;
-  checked?: boolean;
+  unique?: boolean;
 };
 
 type CategoryFilterDropdownProps = {
@@ -15,36 +15,30 @@ type CategoryFilterDropdownProps = {
   className?: string;
   options: OptionType[];
   onChange: (param: string) => void;
+  checkedOptions: string[];
 };
 function CategoryFilterDropdown({
   title,
   className,
   options,
   onChange,
+  checkedOptions,
 }: CategoryFilterDropdownProps) {
-  const [optionsState, setOptionsState] = useState(
-    options.map((option) => ({ ...option, checked: option.checked }))
-  );
-  const handleChange = (event) => {
-    const value = event.target.value;
-    setOptionsState((prevState) => {
-      let newState = prevState.map((option) => {
-        if (option.value === value) {
-          option.checked = !option.checked;
-          return option;
-        } else {
-          return option;
-        }
-      });
-      return newState;
-    });
-    onChange(value);
+  const handleChange = (indexElement: number) => {
+    const newOption = options[indexElement];
+    if (newOption.unique) {
+      onChange(newOption.value);
+    } else {
+      if (checkedOptions.includes(newOption.value)) {
+        const newOptions = checkedOptions
+          .filter((element) => element != newOption.value)
+          .join(",");
+        onChange(newOptions);
+      } else {
+        onChange([...checkedOptions, newOption.value].join(","));
+      }
+    }
   };
-  useEffect(() => {
-    let filters = optionsState.filter((option) => option.checked);
-    let values = filters.map((filter) => filter.value).join(",");
-    onChange(values);
-  }, [optionsState]);
 
   return (
     <Dropdown
@@ -59,15 +53,15 @@ function CategoryFilterDropdown({
       buttonClassName={classes(styles.OrderByDropdownButton, className)}
       className={styles.DropdownWrapper}
     >
-      {optionsState.map((option) => (
+      {options.map((option, index) => (
         <Checkbox
           style={{
             margin: "0 0 11px 0",
           }}
           label={option.label}
           value={option.value}
-          checked={option.checked}
-          onChange={(event) => handleChange(event)}
+          checked={checkedOptions.includes(option.value)}
+          onChange={(_) => handleChange(index)}
         ></Checkbox>
       ))}
     </Dropdown>
