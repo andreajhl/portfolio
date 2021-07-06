@@ -3,7 +3,11 @@ import PageLayoutProps from "../page-layout/types";
 import useGetViewportWidthOnResize from "react-app/src/utils/useGetViewportWidthOnResize";
 import dynamic from "next/dynamic";
 
-const MobilePageContainer = dynamic(
+type PageLayoutMobileProps = {
+  [key: string]: any;
+};
+
+const MobilePageContainer = dynamic<PageLayoutMobileProps>(
   import("react-app/src/components/layouts/page-layout").then(
     (mod) => mod.PageContainer
   )
@@ -11,7 +15,7 @@ const MobilePageContainer = dynamic(
 
 const DesktopPageContainer = dynamic(import("../page-layout"));
 
-type PageContainerProps = PageLayoutProps & { [key: string]: any };
+type PageContainerProps = PageLayoutProps & PageLayoutMobileProps;
 
 function PageContainer(props: PageContainerProps) {
   const windowWidth = useGetViewportWidthOnResize();
