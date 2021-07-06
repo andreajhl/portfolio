@@ -9,6 +9,7 @@ import { connect, ConnectedProps } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CouponForm } from "../coupon-form";
 import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
+import { PaymentMethodsSelectorCardSkeleton } from "./skeleton";
 
 const mapStateToProps = (state: RootState) => ({
   userInformation: state.session.getSessionReducer.data,
@@ -74,64 +75,69 @@ function PaymentsMethodsSelectorCard({
   );
 
   return (
-    <div className={styles.PaymentsMethodsSelectorCard}>
-      {shouldDisplayDLocalForm ? (
-        <>
+    <Maybe
+      it={!userInformationLoading && !paymentGatewayLoading}
+      orElse={<PaymentMethodsSelectorCardSkeleton />}
+    >
+      <div className={styles.PaymentsMethodsSelectorCard}>
+        {shouldDisplayDLocalForm ? (
+          <>
+            <h2 className={styles.PaymentMethodFormTitle}>
+              1. Datos de la persona que realiza el pago.
+            </h2>
+            <Maybe it={!userInformationLoading}>
+              <div
+                className={styles.PaymentMethodFormSection}
+                tabIndex={-1}
+                ref={DLocalPersonalInfoFormRef}
+              >
+                <DLocalPersonalInfoForm
+                  initialValues={{
+                    buyer_name: userInformation.fullName,
+                    email_address: userInformation.email,
+                    identification_document:
+                      userInformation.identification_document || "",
+                  }}
+                  onChangeValues={setDLocalBuyerFormData}
+                  errorMessage={errorMessageForDLocalForm}
+                  currency={currencyExchangeData.to}
+                />
+              </div>
+            </Maybe>{" "}
+          </>
+        ) : null}
+        <div className={styles.PaymentMethodFormSection}>
           <h2 className={styles.PaymentMethodFormTitle}>
-            1. Datos de la persona que realiza el pago.
+            {shouldDisplayDLocalForm ? 2 : 1}. Selecciona un Método de Pago.
           </h2>
-          <Maybe it={!userInformationLoading}>
-            <div
-              className={styles.PaymentMethodFormSection}
-              tabIndex={-1}
-              ref={DLocalPersonalInfoFormRef}
-            >
-              <DLocalPersonalInfoForm
-                initialValues={{
-                  buyer_name: userInformation.fullName,
-                  email_address: userInformation.email,
-                  identification_document:
-                    userInformation.identification_document || "",
-                }}
-                onChangeValues={setDLocalBuyerFormData}
-                errorMessage={errorMessageForDLocalForm}
-                currency={currencyExchangeData.to}
-              />
-            </div>
-          </Maybe>{" "}
-        </>
-      ) : null}
-      <div className={styles.PaymentMethodFormSection}>
-        <h2 className={styles.PaymentMethodFormTitle}>
-          {shouldDisplayDLocalForm ? 2 : 1}. Selecciona un Método de Pago.
-        </h2>
-        <PaymentMethodsAvailableList
-          discountCouponId={couponData.data?.id || null}
-          onBuyerDataIncomplete={() => {
-            DLocalPersonalInfoFormRef.current.focus();
-            setErrorMessageForDLocalForm("Por favor ingrese todos los datos");
-          }}
-          contractPrice={contractPrice}
-          contractReference={contractReference}
-          payment_methods={paymentMethodsAvailable}
-          buyerData={dLocalBuyerFormData}
-        />
+          <PaymentMethodsAvailableList
+            discountCouponId={couponData.data?.id || null}
+            onBuyerDataIncomplete={() => {
+              DLocalPersonalInfoFormRef.current.focus();
+              setErrorMessageForDLocalForm("Por favor ingrese todos los datos");
+            }}
+            contractPrice={contractPrice}
+            contractReference={contractReference}
+            payment_methods={paymentMethodsAvailable}
+            buyerData={dLocalBuyerFormData}
+          />
+        </div>
+        <div className={styles.PaymentMethodFormSection}>
+          <CouponForm contractReference={contractReference} />
+        </div>
+        <div>
+          <img
+            className={styles.PaymentSecureBanner}
+            src="/assets/img/pago-seguro100.png"
+            alt="Pago seguro"
+          />
+          <p className={styles.DisclaimerTermsAndPolicies}>
+            Al continuar estás aceptando nuestros Términos y Condiciones y
+            nuestra Política de privacidad.
+          </p>
+        </div>
       </div>
-      <div className={styles.PaymentMethodFormSection}>
-        <CouponForm contractReference={contractReference} />
-      </div>
-      <div>
-        <img
-          className={styles.PaymentSecureBanner}
-          src="/assets/img/pago-seguro100.png"
-          alt="Pago seguro"
-        />
-        <p className={styles.DisclaimerTermsAndPolicies}>
-          Al continuar estás aceptando nuestros Términos y Condiciones y nuestra
-          Política de privacidad.
-        </p>
-      </div>
-    </div>
+    </Maybe>
   );
 }
 
