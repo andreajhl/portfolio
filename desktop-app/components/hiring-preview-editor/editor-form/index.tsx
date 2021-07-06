@@ -31,7 +31,10 @@ const initialValues: HiringPreviewConfigurationType = {
 
 const getInitialValues = (
   hiringPreviewConfiguration: HiringPreviewConfigurationType
-) => getObjectWithFallbackValues(hiringPreviewConfiguration, initialValues);
+) =>
+  getObjectWithFallbackValues(hiringPreviewConfiguration, initialValues, [
+    "pageBackgroundUrl",
+  ]);
 
 type EditorFormProps = {
   contractReference: string;
