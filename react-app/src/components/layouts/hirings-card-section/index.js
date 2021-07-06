@@ -12,6 +12,7 @@ import { Form } from "react-bootstrap";
 import { ReviewCreatorLayout } from "../review-creator";
 import { withRouter } from "next/router";
 import { FormattedMessage } from "react-intl";
+import { getClientHiringPreviewPath } from "constants/paths";
 
 const moment = require("moment");
 
@@ -300,9 +301,7 @@ const ContractButton = ({ contract }) => {
 };
 
 const GoToContract = (contract_reference) => {
-  history._pushRoute(
-    PATHS.HIRING_PREVIEW.replace(":contract_reference", "") + contract_reference
-  );
+  history._pushRoute(getClientHiringPreviewPath(contract_reference));
 };
 
 const goToPay = (contract_reference) => {
