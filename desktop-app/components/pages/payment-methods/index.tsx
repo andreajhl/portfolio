@@ -52,7 +52,7 @@ function PaymentMethodsPage({
               contract_reference={contract.reference}
               celebrityAvatar={contract.celebrity_avatar}
               celebrityFullName={contract.celebrity_full_name}
-              occasion={"BIRTHDAY"}
+              occasion={contract.occasion}
               deliveryTo={contract.delivery_to}
               deliveryFrom={contract.delivery_from}
               instructions={contract.instructions}
