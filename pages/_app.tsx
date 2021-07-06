@@ -52,7 +52,7 @@ function App({ Component, pageProps }) {
       })
       .then((res) => {
         const session = new Session();
-        session.initSession(false);
+        session.initSession();
         // localStorage.removeItem(OLD_SESSION_KEY);
       })
       .catch((err) => {

@@ -13,7 +13,7 @@ export class Session {
     this.session = this.getSession();
   }
 
-  initSession = (shouldRedirect = true) => {
+  initSession = () => {
     const decoded = this.jwtDecode(this.getToken());
     Mixpanel.identify(decoded.id);
     Mixpanel.people.set({
@@ -24,7 +24,6 @@ export class Session {
     });
     const authRedirect = localStorage.getItem("authRedirect");
     const finalRedirect = localStorage.getItem("finalRedirect");
-    if (!shouldRedirect) return;
     if (authRedirect !== null) {
       localStorage.removeItem("authRedirect");
       return window.location.replace(authRedirect);
