@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { wrapper } from "react-app/src/state/store";
 import { useRouter } from "next/router";
 import { initialize as gtmInitialize } from "react-app/src/state/utils/gtm";
@@ -8,11 +8,15 @@ import esMessages from "../compiled-lang/es.json";
 import enMessages from "../compiled-lang/en.json";
 import { FamososAuthProvider } from "lib/famosos-auth";
 import { Session } from "../react-app/src/state/utils/session";
-
+import getWindow from "react-app/src/utils/getWindow";
+import axios from "axios";
+import getCookie from "react-app/src/utils/getCookie";
+const OLD_SESSION_KEY = "_a0_";
 const languages = {
   en: enMessages,
   es: esMessages
 };
+const SESSION_NAME = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME;
 
 const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
   const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
@@ -39,6 +43,25 @@ function App({ Component, pageProps }) {
     return () => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);
     };
+  }, []);
+
+  const convertSession = useCallback(async () => {
+    await axios
+      .post("api/convert-session", {
+        token: localStorage.getItem(OLD_SESSION_KEY)
+      })
+      .then((res) => {
+        // localStorage.removeItem(OLD_SESSION_KEY);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem(OLD_SESSION_KEY) && !getCookie(SESSION_NAME)) {
+      convertSession();
+    }
   }, []);
 
   const { locale, defaultLocale } = router;
