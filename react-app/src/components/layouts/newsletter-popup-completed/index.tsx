@@ -29,7 +29,7 @@ function NewsletterPopupCompleted({
           styles.NewsletterPopupCompletedButton
         )}
       >
-        <FormattedMessage defaultMessage="Comprendido" />
+        <FormattedMessage defaultMessage="Cerrar" />
       </button>
     </section>
   );
