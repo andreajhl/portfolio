@@ -17,7 +17,7 @@
   }
 }
 
-.AuthProviderButton + .AuthProviderButton {
+.AuthProviderButton:nth-child(2) {
   margin-top: 16px;
   margin-bottom: 25px;
 
