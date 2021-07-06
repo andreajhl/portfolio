@@ -9,6 +9,7 @@ import { ShareGiftDropdown } from "desktop-app/components/common/widgets/share-g
 import { PageContainer } from "../../layouts/page-container";
 import ViewerClientVideo from "desktop-app/components/common/cards/viewer-client-video";
 import getGiftPageBackgroundStyle from "lib/utils/getGiftPageBackgroundStyle";
+import useGetHiringPreviewConfiguration from "lib/hooks/useGetHiringPreviewConfiguration";
 
 type HiringPreviewEditorPageProps = {
   contractReference: string;
@@ -18,10 +19,17 @@ function HiringPreviewEditorPage({
   contractReference,
 }: HiringPreviewEditorPageProps) {
   const { contract } = useGetUserContract(contractReference, true);
+  const {
+    hiringPreviewConfiguration,
+    status: hiringPreviewConfigurationStatus,
+  } = useGetHiringPreviewConfiguration(contractReference);
   const [
     configuration,
     setConfiguration,
   ] = useState<HiringPreviewConfigurationType>({});
+
+  const hiringPreviewConfigurationIsCompleted =
+    hiringPreviewConfigurationStatus === "completed";
 
   const videoPosterUrl =
     contract.mediaPosterUrl || contract?.celebrityData?.avatar;
@@ -35,11 +43,14 @@ function HiringPreviewEditorPage({
         >
           <div className={classes("container", styles.Container)}>
             <div className={styles.LeftSide}>
-              <EditorForm
-                contractReference={contractReference}
-                occasion={contract?.occasion}
-                onChange={setConfiguration}
-              />
+              <Maybe it={hiringPreviewConfigurationIsCompleted}>
+                <EditorForm
+                  contractReference={contractReference}
+                  occasion={contract?.occasion}
+                  hiringPreviewConfiguration={hiringPreviewConfiguration}
+                  onChange={setConfiguration}
+                />
+              </Maybe>
             </div>
             <div className={styles.RightSide}>
               <ViewerClientVideo
