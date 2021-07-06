@@ -1,37 +1,68 @@
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import PageContainer from "desktop-app/components/layouts/page-container";
 import { ShareDetailsForm } from "desktop-app/components/layouts/share-details-form";
-import { WhatsappSharePreview } from "desktop-app/components/share-in-whatsapp/whatsapp-share-preview";
 import useGetUserContract from "lib/hooks/useGetUserContract";
-import { useState } from "react";
+import classes from "classnames";
 import styles from "./styles.module.scss";
+import { useState } from "react";
+import { WhatsappSharePreview } from "desktop-app/components/share-in-whatsapp/whatsapp-share-preview";
+import PageContainer from "desktop-app/components/layouts/page-container";
+import scrollToTop from "lib/utils/scrollToTop";
 
 function HiringShareInWhatsappPage({ contractReference }) {
-  const { contract } = useGetUserContract(contractReference, true);
-
-  const [previewData, setPreviewData] = useState({
-    deliveryTo: "",
-    deliveryFrom: "",
+  const { contract } = useGetUserContract(contractReference);
+  const [shareData, setShareData] = useState({
+    deliveryTo: "Ana", // Random name to display while loading
+    deliveryFrom: "Luis", // Random name to display while loading
   });
+  const [isEditing, setIsEditing] = useState(true);
+
+  function toggleIsEditing() {
+    scrollToTop();
+    setIsEditing((isEditing) => !isEditing);
+  }
 
   return (
-    <PageContainer>
+    <PageContainer showSearch={false}>
       <div className={"container " + styles.Container}>
-        <div className={styles.SharePreviewContainer}>
+        <div
+          className={classes(
+            styles.SharePreviewContainer,
+            isEditing && styles.PreviewIsEditing
+          )}
+        >
           <WhatsappSharePreview
-            deliveryTo={previewData.deliveryTo}
-            deliveryFrom={previewData.deliveryFrom}
+            deliveryTo={shareData.deliveryTo}
+            deliveryFrom={shareData.deliveryFrom}
             contractReference={contractReference}
             videoPosterUrl={
               contract?.mediaPosterUrl || contract?.celebrityData?.avatar
             }
           />
+          <div className={styles.SharePreviewButtons}>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={toggleIsEditing}
+            >
+              Seguir editando
+            </button>
+            <button type="button" className="btn btn-primary">
+              Programar envío
+            </button>
+          </div>
         </div>
-        <div className={styles.ShareDetailsFormContainer}>
+        <div
+          className={classes(
+            styles.ShareDetailsFormContainer,
+            !isEditing && styles.FormIsPreviewing
+          )}
+        >
           <Maybe it={Boolean(contract.reference)}>
             <ShareDetailsForm
+              sendType="whatsapp"
               contractData={contract}
-              onChange={setPreviewData}
+              onPreviewButtonClick={toggleIsEditing}
+              onChange={setShareData}
             />
           </Maybe>
         </div>
