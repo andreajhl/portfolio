@@ -2,14 +2,12 @@ import timezones from "constants/popularLatamCitiesTimezones";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import ClientContractType from "desktop-app/types/clientContract";
 import useForm from "lib/hooks/useForm";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 import { CellphoneNumberInput } from "../../common/form/cellphone-number-input";
 import { InputField } from "../../common/form/input-field";
 import classes from "classnames";
 import styles from "./styles.module.scss";
-import { saveSendConfiguration } from "react-app/src/state/ducks/contracts/actions";
-import useStatus from "lib/hooks/useStatus";
 import {
   SubmitText,
   StatusType,
@@ -104,7 +102,6 @@ const validations = {
   },
 };
 
-const initialErroValue = null;
 const ONE_HOUR_IN_SECONDS = 3600;
 
 type InitialValuesType = {
@@ -124,6 +121,9 @@ type ShareDetailsFormProps = {
   onChange?: (values: InitialValuesType) => void;
   onPreviewButtonClick?: () => void;
   onSubmit?: (values: InitialValuesType) => void;
+  onError?: (errors: { [key: string]: any }) => void;
+  status: StatusType;
+  requestError?: string;
 };
 
 function ShareDetailsForm({
@@ -132,30 +132,24 @@ function ShareDetailsForm({
   onChange = function () {},
   onPreviewButtonClick = function () {},
   onSubmit = function () {},
+  onError,
+  status,
+  requestError,
 }: ShareDetailsFormProps) {
-  const [status, setStatus] = useStatus();
-  const [error, setError] = useState(initialErroValue);
-  const { values, errors, onChangeField, setFieldValue, submitForm } = useForm({
+  const {
+    values,
+    errors,
+    onChangeField,
+    setFieldValue,
+    submitForm,
+    validateFields,
+  } = useForm({
     initialValues: getInitialState(contractData),
     validations,
-    async onSubmit(sendConfiguration) {
-      try {
-        setError(initialErroValue);
-        setStatus("loading");
-        await saveSendConfiguration(getSendConfiguration(sendConfiguration));
-        setStatus("completed");
-      } catch (error) {
-        setStatus("idle");
-        setError(error.message);
-      }
-    },
+    onSubmit,
   });
+
   const isWhatsappType = sendType === "whatsapp";
-
-  useEffect(() => {
-    onChange(values);
-  }, [values]);
-
   const contractReference = contractData.reference;
 
   function getSendConfiguration(sendConfiguration: InitialValuesType) {
@@ -167,6 +161,14 @@ function ShareDetailsForm({
     };
   }
 
+  useEffect(() => {
+    onChange(getSendConfiguration(values));
+  }, [values]);
+
+  useEffect(() => {
+    onError?.(errors);
+  }, [errors]);
+
   function setDeliveryContactCellphone(value: string) {
     setFieldValue("deliveryContactCellphone", value);
   }
@@ -175,6 +177,11 @@ function ShareDetailsForm({
 
   function setDeliveryTime({ target: { value } }) {
     setFieldValue("deliveryTime", getConstrainedTime(value));
+  }
+
+  function validateFormBeforePreviewButtonClick() {
+    validateFields();
+    onPreviewButtonClick?.();
   }
 
   return (
@@ -302,7 +309,7 @@ function ShareDetailsForm({
         <button
           type="button"
           className={"btn btn-secondary " + styles.PreviewButton}
-          onClick={onPreviewButtonClick}
+          onClick={validateFormBeforePreviewButtonClick}
         >
           Previsualizar
         </button>
@@ -311,11 +318,11 @@ function ShareDetailsForm({
           className={"btn btn-primary " + styles.SubmitButton}
           onClick={submitForm}
         >
-          <SubmitText baseText="Enviar" status={status as StatusType} />
+          <SubmitText baseText="Enviar" status={status} />
         </button>
       </div>
       <CollapsibleErrorMessage
-        errorMessage={error}
+        errorMessage={requestError}
         className={styles.ShareErrorMessage}
       />
       <HiringShareSuccessModal
