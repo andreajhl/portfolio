@@ -25,7 +25,7 @@ function ClientHiringPage({ contractReference }: ClientHiringPageProps) {
   const { contract } = useGetUserContract(contractReference, true);
 
   return (
-    <PageContainer showFooter={false}>
+    <PageContainer showFooter={false} showSearchInMobile={false}>
       <GiftAnimationWrapper
         deliveryTo={contract.deliveryTo}
         deliveryFrom={contract.deliveryFrom}
