@@ -51,6 +51,8 @@ function App({ Component, pageProps }) {
         token: localStorage.getItem(OLD_SESSION_KEY)
       })
       .then((res) => {
+        const session = new Session();
+        session.initSession(false);
         // localStorage.removeItem(OLD_SESSION_KEY);
       })
       .catch((err) => {
