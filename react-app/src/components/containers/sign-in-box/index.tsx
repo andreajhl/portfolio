@@ -8,6 +8,7 @@ import { FormattedMessage } from "react-intl";
 import { Link } from "../../common/routing/link";
 import { RESET_PASSWORD_PATH, SIGN_UP_PATH } from "react-app/src/routing/Paths";
 import { SignInEmailPasswordForm } from "../sign-in-with-email-form";
+import { AuthenticationFailurePopup } from "../authentication-failure-popup";
 
 const signUpLink = (chunk: string) => <Link href={SIGN_UP_PATH}>{chunk}</Link>;
 
@@ -39,6 +40,7 @@ function SignInBox({ className }: SignInBoxProps) {
           <FormattedMessage defaultMessage="Olvidé mi contraseña" />
         </Link>
       </div>
+      <AuthenticationFailurePopup />
       <p className={styles.NotRegisteredText}>
         <FormattedMessage
           defaultMessage="¿No tienes una cuenta? <signUpLink>Registrarme</signUpLink>"
