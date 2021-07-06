@@ -35,15 +35,13 @@
 }
 
 .GoToContractDetailsButton {
+  font-size: 18px;
+  margin-top: 30px;
+  height: 40px;
+  width: 100%;
+
   @media only screen and (min-width: 768px) {
     display: none;
-  }
-
-  button {
-    font-size: 18px;
-    margin-top: 30px;
-    height: 40px;
-    width: 100%;
   }
 }
 

@@ -39,6 +39,6 @@
   align-self: flex-end;
 
   @media only screen and (max-width: 767px) {
-    display: none;
+    display: none !important;
   }
 }
