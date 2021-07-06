@@ -43,8 +43,8 @@ async function googleCallbackHandler(
             data.token,
             {
               path: "/",
-              sameSite: "lax",
-              ...generateHttpOnlyCookie()
+              sameSite: "lax"
+              // ...generateHttpOnlyCookie()
             }
           )
         );

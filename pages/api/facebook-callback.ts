@@ -42,8 +42,8 @@ async function facebookCallbackHandler(
             data.token,
             {
               path: "/",
-              sameSite: "lax",
-              ...generateHttpOnlyCookie()
+              sameSite: "lax"
+              // ...generateHttpOnlyCookie()
             }
           )
         );

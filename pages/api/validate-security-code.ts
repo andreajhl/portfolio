@@ -31,8 +31,8 @@ async function validateSecurityCode(
               data.token,
               {
                 path: "/",
-                sameSite: "lax",
-                ...generateHttpOnlyCookie()
+                sameSite: "lax"
+                // ...generateHttpOnlyCookie()
               }
             )
           );
