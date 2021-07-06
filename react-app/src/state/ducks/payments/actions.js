@@ -131,8 +131,7 @@ export const getContractToPayV2 = (contractReference) => {
   return (dispatch) => {
     const TYPE = types.GET_CONTRACT_TO_PAY_REQUEST;
     const FINAL_PATH =
-      "custom-endpoints/contracts/v2/contract-with-payments/" +
-      contractReference;
+      "/custom-endpoints/contracts/payments-methods/" + contractReference;
     dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "GET",
