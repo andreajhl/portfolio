@@ -6,6 +6,8 @@ import axios from "axios";
 import { AUTH_SUCCESS } from "react-app/src/routing/Paths";
 import { NEXT_LOCALE } from "constants/keys";
 
+const ERROR_MESSAGE_CODE_NOT_FOUND = "No code was provided";
+
 async function googleCallbackHandler(
   req: NextApiRequest,
   res: NextApiResponse<{}>
@@ -19,7 +21,9 @@ async function googleCallbackHandler(
   // Validate facebook code callback
   if (code === null || code === undefined) {
     res.writeHead(302, {
-      Location: "/authentication/failure?error=No code was provided"
+      Location: `/authentication/failure?error=${encodeURIComponent(
+        ERROR_MESSAGE_CODE_NOT_FOUND
+      )}`
     });
     res.end();
   }

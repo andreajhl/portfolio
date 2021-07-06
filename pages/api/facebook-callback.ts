@@ -4,6 +4,7 @@ import axios from "axios";
 import { AUTH_SUCCESS } from "react-app/src/routing/Paths";
 import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
 import { NEXT_LOCALE } from "constants/keys";
+const ERROR_MESSAGE_CODE_NOT_FOUND = "No code was provided";
 
 async function facebookCallbackHandler(
   req: NextApiRequest,
@@ -18,7 +19,9 @@ async function facebookCallbackHandler(
   // Validate facebook code callback
   if (code === null || code === undefined) {
     res.writeHead(302, {
-      Location: "/authentication/failure?error=No code was provided"
+      Location: `/authentication/failure?error=${encodeURIComponent(
+        ERROR_MESSAGE_CODE_NOT_FOUND
+      )}`
     });
     res.end();
   }
