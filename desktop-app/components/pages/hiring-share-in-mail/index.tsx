@@ -7,15 +7,48 @@ import styles from "./styles.module.scss";
 import { useState } from "react";
 import scrollToTop from "lib/utils/scrollToTop";
 import PageContainer from "desktop-app/components/layouts/page-container";
+import usePromise from "lib/hooks/usePromise";
+import { saveSendConfiguration } from "react-app/src/state/ducks/contracts/actions";
+import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
+import { FormattedMessage } from "react-intl";
+import objectHasValidValues from "../../../../lib/utils/objectHasValidValues";
+
+const requestErrorInitialState = null;
 
 function HiringShareInMailPage({ contractReference }) {
   const { contract } = useGetUserContract(contractReference);
   const [shareData, setShareData] = useState({});
   const [isEditing, setIsEditing] = useState(true);
+  const [requestError, setRequestError] = useState(requestErrorInitialState);
+  const { handle, status, setStatus } = usePromise();
+  const [formHasErrors, setFormHasErrors] = useState(false);
 
   function toggleIsEditing() {
     scrollToTop();
     setIsEditing((isEditing) => !isEditing);
+  }
+
+  function activeIsEditing() {
+    if (isEditing) return;
+    toggleIsEditing();
+  }
+
+  const isLoading = status === "loading";
+
+  async function submitSendConfiguration() {
+    if (isLoading) return;
+    if (formHasErrors) return activeIsEditing();
+    setRequestError(requestErrorInitialState);
+    try {
+      handle(saveSendConfiguration(shareData) as any);
+    } catch (error) {
+      setStatus("idle");
+      setRequestError(error?.message);
+    }
+  }
+
+  function changeFormHasErrors(errors) {
+    setFormHasErrors(objectHasValidValues(errors));
   }
 
   return (
@@ -34,10 +67,17 @@ function HiringShareInMailPage({ contractReference }) {
               className="btn btn-secondary"
               onClick={toggleIsEditing}
             >
-              Seguir editando
+              <FormattedMessage defaultMessage="Seguir editando" />
             </button>
-            <button type="button" className="btn btn-primary">
-              Programar envío
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={submitSendConfiguration}
+            >
+              <SubmitText
+                baseText={<FormattedMessage defaultMessage="Programar envío" />}
+                status={status}
+              />
             </button>
           </div>
         </div>
@@ -49,10 +89,14 @@ function HiringShareInMailPage({ contractReference }) {
         >
           <Maybe it={Boolean(contract.reference)}>
             <ShareDetailsForm
+              onSubmit={submitSendConfiguration}
               sendType="mail"
               contractData={contract}
               onPreviewButtonClick={toggleIsEditing}
               onChange={setShareData}
+              status={status}
+              requestError={requestError}
+              onError={changeFormHasErrors}
             />
           </Maybe>
         </div>
