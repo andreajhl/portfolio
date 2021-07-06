@@ -6,6 +6,7 @@ import classes from "classnames";
 import { AuthFormField } from "../../layouts/auth-form-field";
 import { useRouter } from "next/router";
 import { CHANGE_PASSWORD_PATH } from "../../../routing/Paths";
+import { Session } from "react-app/src/state/utils/session";
 
 function ResetPassword() {
   const { push } = useRouter();
@@ -49,7 +50,9 @@ function ResetPassword() {
         securityCode: securityCode.trim().toLocaleLowerCase()
       })
       .then((response) => {
-        push(CHANGE_PASSWORD_PATH);
+        localStorage.setItem("finalRedirect", CHANGE_PASSWORD_PATH);
+        const session = new Session();
+        session.initSession();
         setIsLoading(false);
       })
       .catch((err) => {
