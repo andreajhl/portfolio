@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DLocalPersonalInfoForm } from "../dLocal-personal-info-form";
 import PaymentMethodsAvailableList from "../payment-methods-available-list";
 import styles from "./styles.module.scss";
@@ -8,6 +8,7 @@ import { listPaymentGateways } from "react-app/src/state/ducks/payments/operatio
 import { connect, ConnectedProps } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CouponForm } from "../coupon-form";
+import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
 
 const mapStateToProps = (state: RootState) => ({
   userInformation: state.session.getSessionReducer.data,
@@ -64,33 +65,45 @@ function PaymentsMethodsSelectorCard({
     ""
   );
 
+  const shouldDisplayDLocalForm = useMemo(
+    () =>
+      paymentMethodsAvailable.some((paymentMethodType) =>
+        isAValidDLocalPaymentMethod(paymentMethodType.paymentMethodType)
+      ),
+    [paymentMethodsAvailable]
+  );
+
   return (
     <div className={styles.PaymentsMethodsSelectorCard}>
-      <h2 className={styles.PaymentMethodFormTitle}>
-        1. Datos de la persona que realiza el pago.
-      </h2>
-      <Maybe it={!userInformationLoading}>
-        <div
-          className={styles.PaymentMethodFormSection}
-          tabIndex={-1}
-          ref={DLocalPersonalInfoFormRef}
-        >
-          <DLocalPersonalInfoForm
-            initialValues={{
-              buyer_name: userInformation.fullName,
-              email_address: userInformation.email,
-              identification_document:
-                userInformation.identification_document || "",
-            }}
-            onChangeValues={setDLocalBuyerFormData}
-            errorMessage={errorMessageForDLocalForm}
-            currency={currencyExchangeData.to}
-          />
-        </div>
-      </Maybe>
+      {shouldDisplayDLocalForm ? (
+        <>
+          <h2 className={styles.PaymentMethodFormTitle}>
+            1. Datos de la persona que realiza el pago.
+          </h2>
+          <Maybe it={!userInformationLoading}>
+            <div
+              className={styles.PaymentMethodFormSection}
+              tabIndex={-1}
+              ref={DLocalPersonalInfoFormRef}
+            >
+              <DLocalPersonalInfoForm
+                initialValues={{
+                  buyer_name: userInformation.fullName,
+                  email_address: userInformation.email,
+                  identification_document:
+                    userInformation.identification_document || "",
+                }}
+                onChangeValues={setDLocalBuyerFormData}
+                errorMessage={errorMessageForDLocalForm}
+                currency={currencyExchangeData.to}
+              />
+            </div>
+          </Maybe>{" "}
+        </>
+      ) : null}
       <div className={styles.PaymentMethodFormSection}>
         <h2 className={styles.PaymentMethodFormTitle}>
-          2. Selecciona un Método de Pago.
+          {shouldDisplayDLocalForm ? 2 : 1}. Selecciona un Método de Pago.
         </h2>
         <PaymentMethodsAvailableList
           discountCouponId={couponData.data?.id || null}
