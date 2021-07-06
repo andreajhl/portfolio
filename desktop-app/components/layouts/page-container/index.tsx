@@ -1,8 +1,8 @@
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import PageLayoutProps from "../page-layout/types";
-import useGetViewportWidthOnResize from "react-app/src/utils/useGetViewportWidthOnResize";
 import dynamic from "next/dynamic";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
+import useIsOnDesktop from "../../../../lib/hooks/useIsOnDesktop";
 
 type PageLayoutMobileProps = {
   [key: string]: any;
@@ -19,8 +19,7 @@ const DesktopPageContainer = dynamic(import("../page-layout"));
 type PageContainerProps = PageLayoutProps & PageLayoutMobileProps;
 
 function PageContainer(props: PageContainerProps) {
-  const windowWidth = useGetViewportWidthOnResize();
-  const isOnDesktop = windowWidth >= 1024;
+  const isOnDesktop = useIsOnDesktop();
   const showSearch = props.showSearchInMobile ?? props.showSearch;
 
   useDesktopClass(isOnDesktop);
