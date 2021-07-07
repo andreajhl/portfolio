@@ -19,7 +19,7 @@ async function emailPasswordSignUpHandler(
       password: req.body["password"],
       fullName: req.body["fullName"],
       birthDate: req.body["birthDate"],
-      allowNotifications: req.body["allowNotifications"],
+      addToNewsLetter: req.body["allowNotifications"],
       locale: req.body["locale"]
     })
     .then((response) => {
