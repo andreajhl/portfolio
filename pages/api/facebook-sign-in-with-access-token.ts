@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { serialize } from "cookie";
+import { serialize, parse } from "cookie";
 import axios from "axios";
+import { NEXT_LOCALE } from "constants/keys";
 
 async function facebookSignInWithAccessToken(
   req: NextApiRequest,
@@ -11,13 +12,15 @@ async function facebookSignInWithAccessToken(
     // Send Access Token Famosos Auth Backend
     const endpoint = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT;
     const version = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT_VERSION;
+    const cookies = parse(req.headers.cookie);
 
     // Send code to famosos auth and save the JWT Token in Cookies
     await axios
       .post(
         `${endpoint}/${version}/famosos-com/facebook/sign-in-with-access-token`,
         {
-          accessToken: req.body["accessToken"]
+          accessToken: req.body["accessToken"],
+          locale: cookies[NEXT_LOCALE] || "es"
         }
       )
       .then((response) => {
@@ -45,7 +48,6 @@ async function facebookSignInWithAccessToken(
         }
       })
       .catch((errorResponse) => {
-        console.log({ errorResponse });
         if (errorResponse.response) {
           return res.status(errorResponse.response.status || 400).json({
             status: "error",
