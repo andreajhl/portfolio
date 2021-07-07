@@ -3,6 +3,8 @@ import classes from "classnames";
 import styles from "./styles.module.scss";
 import { useIntl } from "react-intl";
 import FacebookLogin from "react-facebook-login";
+import axios from "axios";
+import { Session } from "react-app/src/state/utils/session";
 
 const clientId = process.env.NEXT_PUBLIC_FACEBOOK_LOGIN_IDENTIFIER;
 const redirectURL = process.env.NEXT_PUBLIC_FACEBOOK_LOGIN_REDIRECT;
@@ -13,8 +15,21 @@ type FacebookButtonProps = {
 
 function FacebookButton({ children, className }: FacebookButtonProps) {
   const { locale } = useIntl();
-  const responseFacebook = (response) => {
-    console.log(response);
+  const responseFacebook = async (response) => {
+    if (response.accessToken) {
+      try {
+        await axios
+          .post("/api/facebook-sign-in-with-access-token", {
+            accessToken: response.accessToken
+          })
+          .then(() => {
+            const session = new Session();
+            session.initSession();
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
   const redirectToFacebookOAuth = () => {
     const tokenRequestURL = "https://www.facebook.com/v10.0/dialog/oauth";
