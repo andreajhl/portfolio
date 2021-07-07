@@ -19,11 +19,11 @@ async function facebookCallbackHandler(
   // Validate facebook code callback
   if (code === null || code === undefined) {
     res.writeHead(302, {
-      Location: `/authentication/failure?error=${encodeURIComponent(
+      Location: `/auth/sign-in?error=${encodeURIComponent(
         ERROR_MESSAGE_CODE_NOT_FOUND
       )}`
     });
-    res.end();
+    return res.end();
   }
 
   // Send code to famosos auth and save the JWT Token in Cookies
