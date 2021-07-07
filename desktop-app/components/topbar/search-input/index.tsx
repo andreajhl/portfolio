@@ -1,8 +1,4 @@
-import {
-  getCelebrityProfilePath,
-  getSearchPath,
-  SEARCH_PATH,
-} from "constants/paths";
+import { getCelebrityProfilePath, getSearchPath } from "constants/paths";
 import { SearchIcon } from "desktop-app/components/common/icons";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
@@ -16,6 +12,7 @@ import { SkeletonTopbarSearchInput } from "./skeleton";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import { connect, ConnectedProps } from "react-redux";
 import { Link } from "desktop-app/components/common/routing/link";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const FINAL_PATH = process.env.NEXT_PUBLIC_ENDPOINT + SEARCH_LIST;
 
@@ -59,7 +56,6 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
   }, [currentQuery]);
 
   const goToSearch = () => {
-    console.log("click goToSearch");
     if (!currentQuery) return;
     updateSearchFilters({
       search: currentQuery,
@@ -69,7 +65,15 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
         search: String(currentQuery),
       })
     );
+    trackSearch();
   };
+
+  function trackSearch() {
+    analytics.track("TOP_BAR_SEARCH_SUBMIT", {
+      searchKeyword: currentQuery,
+      widget: "TopbarSearchInput",
+    });
+  }
 
   return (
     <div className={styles.TopBarSearch}>
@@ -133,6 +137,7 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
               href={getSearchPath({
                 search: String(currentQuery),
               })}
+              onClick={trackSearch}
             >
               <div className={styles.SectionCTASeeMore}>
                 <SearchIcon className={styles.SeeMoreIcon} />

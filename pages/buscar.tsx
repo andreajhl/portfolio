@@ -9,10 +9,8 @@ import {
   resetSearchFilters,
   updateSearchFilters,
 } from "react-app/src/state/ducks/search-filters/actions";
-// import { CelebritiesResultsPage } from "react-app/src/components/pages/celebrities-results";
 import { wrapper } from "react-app/src/state/store";
-import debug from "react-app/src/utils/debug";
-import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
+import { analytics } from "react-app/src/state/utils/gtm";
 import { connect } from "react-redux";
 
 const allowedParams = [
@@ -79,7 +77,13 @@ const CelebritiesSearchResults = ({
   useDesktopClass(!isMobile);
 
   useEffect(() => {
-    if (searchParams) updateSearchFilters(searchParams, false);
+    if (searchParams) {
+      analytics.track("SEARCH_PARAMS_ON_LOAD", {
+        searchParams,
+        widget: "CelebritiesSearchResults",
+      });
+      updateSearchFilters(searchParams, false);
+    }
     return () => {
       resetSearchFilters(false);
     };

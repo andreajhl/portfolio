@@ -97,6 +97,9 @@ export const getSearchPath = ({
   return SEARCH_PATH + jsonToQueryString({ pageSize, currentPage, ...params });
 };
 
+export const getSearchKeywordPath = (keyword) =>
+  getSearchPath({ search: keyword });
+
 export const getSearchCategoryPath = (categoryId) =>
   getSearchPath({ category_id: categoryId });
 

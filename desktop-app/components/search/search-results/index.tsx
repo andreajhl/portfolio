@@ -16,7 +16,7 @@ import { RootState } from "react-app/src/state/store";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { checkIfObjectContainsSamePairKeyValue } from "react-app/src/utils/checkIfObjectContainsSamePairKeyValue";
-import { useRouter } from "next/router";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 function mapStateToProps({
   searchFiltersMemory,
@@ -80,10 +80,6 @@ function SearchResults({
   resetSearchFilters,
   isCompleted,
 }: SearchResultsProps) {
-  const { events } = useRouter();
-
-  console.log({ searchFilters });
-  console.log({ searchFiltersMemory });
   useEffect(() => {
     if (!isCompleted) return;
     if (
@@ -102,6 +98,10 @@ function SearchResults({
   }, [isCompleted]);
 
   useEffect(() => {
+    analytics.track("FETCH_CELEBRITIES_FROM_SEARCH", {
+      searchFilters,
+      widget: "SearchResults",
+    });
     fetchCelebrities(searchFilters, false);
   }, [searchFilters]);
 

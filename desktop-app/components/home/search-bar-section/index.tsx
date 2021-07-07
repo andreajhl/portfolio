@@ -1,16 +1,22 @@
+import { getSearchKeywordPath } from "constants/paths";
 import InputWithSubmitHandler from "desktop-app/components/common/form/InputWithSubmitHandler";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { SEARCH_PATH } from "react-app/src/routing/Paths";
+import { analytics } from "react-app/src/state/utils/gtm";
 import styles from "./styles.module.scss";
 
-const SearchBarSection = () => {
+function SearchBarSection() {
   const [inputValue, setInputValue] = useState("");
 
   const router = useRouter();
+
   function goToSearch() {
     if (!inputValue) return;
-    router.push(SEARCH_PATH + "?limit=20&search=" + String(inputValue));
+    analytics.track("HOME_SEARCH_BAR_SUBMIT", {
+      searchKeyword: inputValue,
+      widget: "SearchBarSection",
+    });
+    router.push(getSearchKeywordPath(inputValue));
   }
 
   return (
@@ -26,6 +32,6 @@ const SearchBarSection = () => {
       />
     </div>
   );
-};
+}
 
 export default SearchBarSection;
