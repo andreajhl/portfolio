@@ -21,6 +21,7 @@ import {
   validateDeliveryFrom,
   validateDeliveryTo,
 } from "lib/validations/contractData";
+import getFormattedInputDateValue from "lib/utils/getFormattedInputDateValue";
 
 const EMAILS_SEPARATOR = ",";
 
@@ -155,7 +156,7 @@ function ShareDetailsForm({
   function getSendConfiguration(sendConfiguration: InitialValuesType) {
     return {
       ...sendConfiguration,
-      deliveryDate: sendConfiguration.deliveryDate?.replace?.("/", "-"),
+      deliveryDate: getFormattedInputDateValue(sendConfiguration.deliveryDate),
       sendType,
       contractReference,
     };
