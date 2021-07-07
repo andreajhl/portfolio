@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { GoogleLogin } from "react-google-login";
 import { useWindow } from "react-app/src/utils/useWindow";
 import { IsMobile } from "react-app/src/utils/isMobile";
+import axios from "axios";
+import { Session } from "react-app/src/state/utils/session";
 
 type GoogleButtonProps = {
   children?: ReactNode;
@@ -15,8 +17,22 @@ const responseType = "code";
 const clientId = process.env.NEXT_PUBLIC_GOOGLE_LOGIN_IDENTIFIER;
 const redirectURL = process.env.NEXT_PUBLIC_GOOGLE_LOGIN_REDIRECT;
 function GoogleButton({ children, className }: GoogleButtonProps) {
-  const responseGoogle = (response) => {
-    console.log({ response });
+  const responseGoogle = async (res) => {
+    console.log({ res });
+    if (res?.response?.accessToken) {
+      await axios
+        .post("/api/google-sign-in-with-access-token", {
+          accessToken: res?.response?.accessToken
+        })
+        .then(() => {
+          const session = new Session();
+          session.initSession();
+        });
+    }
+  };
+
+  const onAuthenticationFailure = (err) => {
+    console.log({ err });
   };
 
   const redirectToGoogleOAuth = () => {
@@ -33,9 +49,9 @@ function GoogleButton({ children, className }: GoogleButtonProps) {
       clientId={clientId}
       buttonText="Ingresar con Google"
       onSuccess={responseGoogle}
-      onFailure={responseGoogle}
+      onFailure={onAuthenticationFailure}
       accessType="offline"
-      responseType="permission"
+      responseType="token"
       cookiePolicy={"single_host_origin"}
       redirectUri={redirectURL}
       uxMode={IsMobile() ? "redirect" : "popup"}
