@@ -174,7 +174,7 @@ function NewsletterSubscriptionForm({
         onChange={onChangeField}
         name="birthDate"
         label={<FormattedMessage defaultMessage="Cumpleaños" />}
-        // type="date"
+        type="date"
       />
       <button
         type="submit"
