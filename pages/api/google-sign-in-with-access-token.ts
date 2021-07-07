@@ -1,12 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { serialize } from "cookie";
+import { serialize, parse } from "cookie";
 import axios from "axios";
+import { NEXT_LOCALE } from "constants/keys";
 
 async function facebookSignInWithAccessToken(
   req: NextApiRequest,
   res: NextApiResponse<{}>
 ) {
   const { method } = req;
+  const cookies = parse(req.headers.cookie);
+
   if (method === "POST") {
     // Send Access Token Famosos Auth Backend
     const endpoint = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT;
@@ -17,7 +20,8 @@ async function facebookSignInWithAccessToken(
       .post(
         `${endpoint}/${version}/famosos-com/google/sign-in-with-access-token`,
         {
-          accessToken: req.body["accessToken"]
+          accessToken: req.body["accessToken"],
+          locale: cookies[NEXT_LOCALE] || "ES"
         }
       )
       .then((response) => {
