@@ -24,6 +24,11 @@ import ContractInProgressType from "desktop-app/types/contractInProgressType";
 import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 import { FormattedMessage } from "react-intl";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
+import { getCelebrityContractPrice } from "lib/utils/celebrityUtils";
+
+const NO_TOKEN_ERROR = "invalid token: no token string was provided";
 
 function getDeliveryDataFromContractInProgress(
   contractInProgress: ContractInProgressType
@@ -76,6 +81,8 @@ export function getInitialWizardStep(
 
 type CreateContractWizardProps = ComponentProps;
 
+const WIDGET_NAME = "CreateContractWizard";
+
 function CreateContractWizard({
   className,
   celebrity,
@@ -122,8 +129,7 @@ function CreateContractWizard({
       if (isLoading) return;
       handle(fn(...params))?.catch?.((error: any) => {
         let errorMessage = error?.response?.data?.error || error?.message;
-        const noTokenError = "invalid token: no token string was provided";
-        if (errorMessage === noTokenError) {
+        if (errorMessage === NO_TOKEN_ERROR) {
           errorMessage = null;
         }
         setErrorMessage(
@@ -135,14 +141,28 @@ function CreateContractWizard({
     };
   }
 
-  function updateCurrentContractStep(data: any, step: number) {
-    return updateContractStep({ ...data, id: currentContractId }, step);
+  async function updateCurrentContractStep(data: any, step: number) {
+    const updateData = { ...data, id: currentContractId };
+    const result = await updateContractStep(updateData, step);
+    analytics.track("UPDATED_CONTRACT_STEP", {
+      ...updateData,
+      widget: WIDGET_NAME,
+      contractId: currentContractId,
+      step,
+    });
+    return result;
   }
 
   async function saveNewContract(data: ContractDeliveryType) {
-    const { id } = await createContract({
+    const createData = {
       ...data,
       celebrityId: celebrity.id,
+    };
+    const { id } = await createContract(createData);
+    analytics.track("CREATE_CONTRACT_PARTIALLY", {
+      ...createData,
+      widget: WIDGET_NAME,
+      contractId: id,
     });
     setCurrentContractId(id);
   }
@@ -180,6 +200,16 @@ function CreateContractWizard({
     values: ContractNotificationsType
   ) {
     const { reference } = await updateCurrentContractStep(values, 3);
+    analytics.track(
+      "CONTRACT_CREATED",
+      Object.assign({ celebrity }, deliveryData, detailsData, values)
+    );
+    analytics.fbPixel("track", "InitiateCheckout", {
+      content_type: "product",
+      content_ids: VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id,
+      value: getCelebrityContractPrice(celebrity),
+      currency: "USD",
+    });
     await router.push(getPaymentMethodsPath(reference));
   });
 
