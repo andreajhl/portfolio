@@ -1,9 +1,7 @@
 import { ReactNode } from "react";
 import classes from "classnames";
 import styles from "./styles.module.scss";
-import { useRouter } from "next/router";
 import { GoogleLogin } from "react-google-login";
-import { useWindow } from "react-app/src/utils/useWindow";
 import { IsMobile } from "react-app/src/utils/isMobile";
 import axios from "axios";
 import { Session } from "react-app/src/state/utils/session";
@@ -18,15 +16,17 @@ const clientId = process.env.NEXT_PUBLIC_GOOGLE_LOGIN_IDENTIFIER;
 const redirectURL = process.env.NEXT_PUBLIC_GOOGLE_LOGIN_REDIRECT;
 function GoogleButton({ children, className }: GoogleButtonProps) {
   const responseGoogle = async (res) => {
-    console.log({ res });
-    if (res?.accessToken) {
+    if (res?.tokenId) {
       await axios
         .post("/api/google-sign-in-with-access-token", {
-          accessToken: res?.accessToken
+          accessToken: res?.tokenId
         })
         .then(() => {
           const session = new Session();
           session.initSession();
+        })
+        .catch((error) => {
+          console.log(error);
         });
     }
   };
@@ -44,20 +44,23 @@ function GoogleButton({ children, className }: GoogleButtonProps) {
       `${tokenRequestURL}?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectURL}&scope=${scope}&prompt=${state}`
     );
   };
-  return (
-    <GoogleLogin
-      clientId={clientId}
-      buttonText="Ingresar con Google"
-      onSuccess={responseGoogle}
-      onFailure={onAuthenticationFailure}
-      accessType="offline"
-      responseType="token"
-      cookiePolicy={"single_host_origin"}
-      redirectUri={redirectURL}
-      uxMode={IsMobile() ? "redirect" : "popup"}
-      className={classes("btn", styles.GoogleButton, className)}
-    />
-  );
+
+  if (!IsMobile()) {
+    return (
+      <GoogleLogin
+        clientId={clientId}
+        buttonText="Ingresar con Google"
+        onSuccess={responseGoogle}
+        onFailure={onAuthenticationFailure}
+        accessType="offline"
+        responseType="id_token permission"
+        cookiePolicy={"single_host_origin"}
+        redirectUri={redirectURL}
+        uxMode={"popup"}
+        className={classes("btn", styles.GoogleButton, className)}
+      />
+    );
+  }
   return (
     <button
       type="button"
