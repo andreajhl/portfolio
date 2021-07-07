@@ -14,7 +14,6 @@ function useContractLike(contract_reference: string) {
   const [isFavorite, setIsFavorite] = useState(false);
   useEffect(() => {
     if (!userContractsLikes) return;
-    console.log({ userContractsLikes });
     setIsFavorite(
       Boolean(
         userContractsLikes.find(

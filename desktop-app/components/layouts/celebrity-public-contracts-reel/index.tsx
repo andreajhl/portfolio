@@ -50,7 +50,6 @@ function CelebrityPublicContractsReel({
   // useEffect(() => {
   //   listPublicContracts(celebrityId);
   // }, [celebrityId, listPublicContracts]);
-  console.log({ publicContracts });
   return (
     <Maybe it={publicContracts?.length > 0}>
       <div>
