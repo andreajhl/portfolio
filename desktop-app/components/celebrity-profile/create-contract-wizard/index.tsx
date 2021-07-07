@@ -28,7 +28,7 @@ import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/c
 function getDeliveryDataFromContractInProgress(
   contractInProgress: ContractInProgressType
 ) {
-  if (!contractInProgress) return null;
+  if (!contractInProgress?.contractId) return null;
   return pickPropertiesFromAObject(contractInProgress, [
     "contractType",
     "deliveryTo",
@@ -40,7 +40,9 @@ function getDeliveryDataFromContractInProgress(
 function getDetailsDataFromContractInProgress(
   contractInProgress: ContractInProgressType
 ) {
-  if (!contractInProgress || !contractInProgress?.occasion) return null;
+  if (!contractInProgress?.contractId || !contractInProgress?.occasion) {
+    return null;
+  }
   return pickPropertiesFromAObject(contractInProgress, [
     "occasion",
     "instructions",
@@ -50,7 +52,9 @@ function getDetailsDataFromContractInProgress(
 function getNotificationsDataFromContractInProgress(
   contractInProgress: ContractInProgressType
 ) {
-  if (!contractInProgress || !contractInProgress?.deliveryContact) return null;
+  if (!contractInProgress?.contractId || !contractInProgress?.deliveryContact) {
+    return null;
+  }
   return pickPropertiesFromAObject(contractInProgress, [
     "deliveryContact",
     "deliveryContactCellphone",
