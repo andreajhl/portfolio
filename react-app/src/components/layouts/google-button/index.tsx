@@ -35,7 +35,7 @@ function GoogleButton({ children, className }: GoogleButtonProps) {
       onSuccess={responseGoogle}
       onFailure={responseGoogle}
       accessType="offline"
-      responseType="code"
+      responseType="permission"
       cookiePolicy={"single_host_origin"}
       redirectUri={redirectURL}
       uxMode={IsMobile() ? "redirect" : "popup"}
