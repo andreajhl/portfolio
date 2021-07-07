@@ -24,6 +24,7 @@ import { saveUserNewsletter } from "react-app/src/state/ducks/session/actions";
 import { analytics } from "react-app/src/state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
 import useErrorFocus from "lib/hooks/useErrorFocus";
+import getFormattedInputDateValue from "lib/utils/getFormattedInputDateValue";
 
 type FieldProps = {
   label: ReactNode;
@@ -120,7 +121,13 @@ function NewsletterSubscriptionForm({
     if (status === "loading") return;
     setRequestError(null);
     try {
-      await handle(saveUserNewsletter({ ...formData, versionPopup }));
+      await handle(
+        saveUserNewsletter({
+          ...formData,
+          birthDate: getFormattedInputDateValue(formData.birthDate),
+          versionPopup
+        })
+      );
       onCompleted?.();
     } catch (error) {
       if (error?.message === ALREADY_SUBSCRIBE_ERROR) {
@@ -167,7 +174,7 @@ function NewsletterSubscriptionForm({
         onChange={onChangeField}
         name="birthDate"
         label={<FormattedMessage defaultMessage="Cumpleaños" />}
-        type="date"
+        // type="date"
       />
       <button
         type="submit"
