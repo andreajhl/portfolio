@@ -19,10 +19,10 @@ const redirectURL = process.env.NEXT_PUBLIC_GOOGLE_LOGIN_REDIRECT;
 function GoogleButton({ children, className }: GoogleButtonProps) {
   const responseGoogle = async (res) => {
     console.log({ res });
-    if (res?.response?.accessToken) {
+    if (res?.accessToken) {
       await axios
         .post("/api/google-sign-in-with-access-token", {
-          accessToken: res?.response?.accessToken
+          accessToken: res?.accessToken
         })
         .then(() => {
           const session = new Session();
