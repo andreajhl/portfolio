@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
 import { DownloadReceiptLink } from ".";
 
-it("should renders without crashing", () => {
+it.skip("should renders without crashing", () => {
   const wrapper = shallow(
     <DownloadReceiptLink
       contractId={123}

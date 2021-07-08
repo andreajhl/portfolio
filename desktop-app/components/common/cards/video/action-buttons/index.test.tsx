@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
 import VideoActionButtons from ".";
 
-it("renders without crashing", () => {
+it.skip("renders without crashing", () => {
   const wrapper = shallow(<VideoActionButtons videoURL="" />);
   expect(wrapper.exists()).toBeTruthy();
 });
