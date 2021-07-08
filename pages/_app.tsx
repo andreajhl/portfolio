@@ -47,7 +47,7 @@ function App({ Component, pageProps }) {
 
   const convertSession = useCallback(async () => {
     await axios
-      .post("api/convert-session", {
+      .post("/api/convert-session", {
         token: localStorage.getItem(OLD_SESSION_KEY)
       })
       .then((res) => {
