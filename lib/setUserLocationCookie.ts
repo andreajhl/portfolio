@@ -81,10 +81,7 @@ async function getLocationCookieHeader(
     userIpAddressLocation: userIpAddress
   };
 }
-async function getCurrencyCurrentTRMCookieHeader(
-  currency: string,
-  cookies: string
-) {
+async function getCurrencyCurrentTRMCookieHeader(currency: string) {
   let currencyCode = null;
   if (findAvailableCurrencyByName(currency)) {
     currencyCode = currency;
@@ -139,8 +136,7 @@ const setUserLocationCookie = async ({
   ) {
     const locationCookies = await getLocationCookieHeader(req, res);
     const currencyCurrentData = await getCurrencyCurrentTRMCookieHeader(
-      locationCookies.currency_code,
-      cookies
+      locationCookies.currency_code
     );
     newCookiesSerializes.push(...serializeUserLocationCookies(locationCookies));
     newCookiesSerializes.push(
@@ -148,8 +144,7 @@ const setUserLocationCookie = async ({
     );
   } else {
     const currencyCurrentData = await getCurrencyCurrentTRMCookieHeader(
-      cookies[CURRENT_CURRENCY_TRM_CODE] || cookies[USER_CURRENCY_CODE],
-      cookies
+      cookies[CURRENT_CURRENCY_TRM_CODE] || cookies[USER_CURRENCY_CODE]
     );
     newCookiesSerializes.push(
       ...serializeCurrencyCurrentData(currencyCurrentData)

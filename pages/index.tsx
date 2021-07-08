@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS];
 
     if (!cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS]) {
-      rotationForCelebritiesSections = generateRandomNumber(100);
+      rotationForCelebritiesSections = String(generateRandomNumber(100));
     }
 
     await fetchCelebritySections(
@@ -43,8 +43,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         limit: 10,
         offset: 0
       },
-      rotationForCelebritiesSections |
-        cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS]
+      rotationForCelebritiesSections
     )(store.dispatch);
 
     let isMobile = false;

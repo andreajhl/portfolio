@@ -1,0 +1,70 @@
+import type { NextApiRequest, NextApiResponse } from "next";
+import { serialize, parse } from "cookie";
+import axios from "axios";
+import { NEXT_LOCALE } from "constants/keys";
+
+async function facebookSignInWithAccessToken(
+  req: NextApiRequest,
+  res: NextApiResponse<{}>
+) {
+  const { method } = req;
+  if (method === "POST") {
+    // Send Access Token Famosos Auth Backend
+    const endpoint = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT;
+    const version = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT_VERSION;
+    const cookies = parse(req.headers.cookie);
+
+    // Send code to famosos auth and save the JWT Token in Cookies
+    await axios
+      .post(
+        `${endpoint}/${version}/famosos-com/facebook/sign-in-with-access-token`,
+        {
+          accessToken: req.body["accessToken"],
+          locale: cookies[NEXT_LOCALE] || "es"
+        }
+      )
+      .then((response) => {
+        const status = response.data.status;
+        const data = response.data.data;
+        if (status === "OK") {
+          // SSR
+          res.setHeader(
+            "Set-Cookie",
+            serialize(
+              process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME,
+              data.token,
+              {
+                path: "/",
+                sameSite: "lax"
+              }
+            )
+          );
+          return res.status(200).end();
+        } else {
+          res.json({
+            status: "error",
+            error: response.data.error
+          });
+        }
+      })
+      .catch((errorResponse) => {
+        if (errorResponse.response) {
+          return res.status(errorResponse.response.status || 400).json({
+            status: "error",
+            error: errorResponse.response.data.error
+          });
+        } else {
+          return res.status(400).json({
+            status: "error",
+            error: "Unexpected Error"
+          });
+        }
+      });
+  } else {
+    // Handle any other HTTP method
+    res.setHeader("Allow", ["POST"]);
+    res.status(405).end(`Method ${method} Not Allowed`);
+  }
+}
+
+export default facebookSignInWithAccessToken;

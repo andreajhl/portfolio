@@ -1,9 +1,9 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 
 const auth0HOC = (Component) => {
   return function WrappedComponent(props) {
-    const auth0 = useAuth0();
+    const auth0 = useAuth();
     return <Component {...props} auth0={auth0} />;
   };
 };
