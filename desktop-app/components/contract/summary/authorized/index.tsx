@@ -96,9 +96,9 @@ function InstructionsContractAuthorized({
           </div>
           <div>
             <span>
-              El cobro a tu cuenta se realizará una vez que Andrés Cepeda grabe
-              tu video. (por ahora solo se realizó una autorización por parte de
-              tu banco).
+              El cobro a tu cuenta se realizará una vez que {celebrity_fullName}{" "}
+              grabe tu video. (por ahora solo se realizó una autorización por
+              parte de tu banco).
               <a
                 target="_blank"
                 rel="noreferrer"

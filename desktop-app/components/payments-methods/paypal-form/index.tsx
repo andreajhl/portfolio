@@ -12,6 +12,7 @@ import styles from "./styles.module.scss";
 import { CLIENT_HIRINGS, getPurchaseSummaryPath } from "constants/paths";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -26,6 +27,7 @@ type PaypalFormProps = {
   contractReference: string;
   onToggle: () => void;
   discountCouponId?: number | null;
+  celebrityId: number;
 };
 
 function PaypalForm({
@@ -35,6 +37,7 @@ function PaypalForm({
   contractReference,
   contractPrice,
   discountCouponId,
+  celebrityId,
 }: PaypalFormProps) {
   const { push } = useRouter();
   const sectionId = `section-${index}`;
@@ -48,26 +51,21 @@ function PaypalForm({
       discountCouponId
     )
       .then((res) => {
-        // TODO: conectar con pixel de facebook
+        const analyticsData = {
+          ...res?.data,
+          widget: "PaypalForm",
+          paymentMethod: "PAYPAL",
+          contractReference,
+          discountCouponId,
+          contractPrice,
+          celebrityId,
+        };
         if (res.status === 10) {
-          //   if (typeof window !== "undefined") {
-          //     if (window.fbq != null) {
-          //       window.fbq("track", "Purchase", {
-          //         content_type: "product",
-          //         content_ids:
-          //           VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
-          //         value: this.props.contractPrice,
-          //         currency: "USD",
-          //       });
-          //     }
-          //   }
-          // TODO: conectar con GTM
-          // GTM.tagManagerDataLayer("CONTRACT_PAYED", res.data);
+          analytics.trackContractPurchase({ celebrityId, contractPrice });
+          analytics.track("CONTRACT_PAYED", analyticsData);
           push(getPurchaseSummaryPath(res.reference));
         } else {
-          // TODO: conectar con GTM
-
-          // GTM.tagManagerDataLayer("PENDING_TO_VALIDATE_PAYMENT", res.data);
+          analytics.track("PENDING_TO_VALIDATE_PAYMENT", analyticsData);
           push(CLIENT_HIRINGS);
         }
       })

@@ -1,3 +1,4 @@
+import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import isBrowser from "react-app/src/utils/isBrowser";
 import waitFor from "react-app/src/utils/waitFor";
 import TagManager from "react-gtm-module";
@@ -42,12 +43,24 @@ export const tagManagerDataLayer = (event, dataLayer) => {
   }
 };
 
+export async function fbPixel(...params) {
+  if (!isBrowser()) return;
+  const fbq = await waitFor(() => window.fbq);
+  if (typeof fbq !== "function") return;
+  fbq(...params);
+}
+
+export function trackContractPurchase({ celebrityId, contractPrice }) {
+  return fbPixel("track", "Purchase", {
+    content_type: "product",
+    content_ids: VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrityId,
+    value: contractPrice,
+    currency: "USD",
+  });
+}
+
 export const analytics = {
   track: tagManagerDataLayer,
-  fbPixel: async (...params) => {
-    if (!isBrowser()) return;
-    const fbq = await waitFor(() => window.fbq);
-    if (typeof fbq !== "function") return;
-    fbq(...params);
-  },
+  fbPixel,
+  trackContractPurchase,
 };

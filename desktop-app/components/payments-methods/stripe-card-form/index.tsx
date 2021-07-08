@@ -10,6 +10,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { processStripePayment } from "react-app/src/state/ducks/payments/actions";
 import styles from "./styles.module.scss";
 import { PURCHASE_SUMMARY } from "constants/paths";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const STRIPE_KEY = process.env.NEXT_PUBLIC_STRIPE_KEY;
 const stripePromise = loadStripe(STRIPE_KEY);
@@ -18,11 +19,13 @@ type StripeCardFormProps = {
   contractPrice: number;
   contractReference: string;
   discountCouponId: number | null;
+  celebrityId: number;
 };
 function StripeCardForm({
   discountCouponId,
   contractPrice,
   contractReference,
+  celebrityId,
 }: StripeCardFormProps) {
   return (
     <Elements stripe={stripePromise}>
@@ -30,6 +33,7 @@ function StripeCardForm({
         discountCouponId={discountCouponId}
         contractPrice={contractPrice}
         contractReference={contractReference}
+        celebrityId={celebrityId}
       />
     </Elements>
   );
@@ -41,6 +45,7 @@ const CheckoutForm = ({
   contractReference,
   contractPrice,
   discountCouponId = null,
+  celebrityId,
 }) => {
   const { push } = useRouter();
   const stripe = useStripe();
@@ -60,18 +65,18 @@ const CheckoutForm = ({
         if (res.data.status === "ERROR") {
           setError(res.data.error);
         } else {
-          // TODO: conectar con FB pixel
-          // if (typeof window !== "undefined" && window.fbq) {
-          //   if (window.fbq != null) {
-          //     window.fbq("track", "Purchase", {
-          //       content_type: "product",
-          //       content_ids:
-          //         VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
-          //       value: this.props.contractPrice,
-          //       currency: "USD",
-          //     });
-          //   }
-          // }
+          analytics.trackContractPurchase({
+            contractPrice,
+            celebrityId,
+          });
+          analytics.track("CONTRACT_PAYED", {
+            widget: "StripeCardForm",
+            paymentMethod: "STRIPE",
+            contractReference,
+            discountCouponId,
+            contractPrice,
+            celebrityId,
+          });
           push(
             PURCHASE_SUMMARY.replace(
               ":contract_reference",

@@ -33,6 +33,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type PaymentsMethodsSelectorCardProps = {
   contractPrice: number;
   contractReference: string;
+  celebrityId: number;
 } & PropsFromRedux;
 
 function PaymentsMethodsSelectorCard({
@@ -48,6 +49,7 @@ function PaymentsMethodsSelectorCard({
   paymentGatewayLoading,
   paymentMethodsAvailable,
   couponData,
+  celebrityId,
 }: PaymentsMethodsSelectorCardProps) {
   console.log(couponData);
   useEffect(() => {
@@ -120,6 +122,7 @@ function PaymentsMethodsSelectorCard({
             contractReference={contractReference}
             payment_methods={paymentMethodsAvailable}
             buyerData={dLocalBuyerFormData}
+            celebrityId={celebrityId}
           />
         </div>
         <div className={styles.PaymentMethodFormSection}>

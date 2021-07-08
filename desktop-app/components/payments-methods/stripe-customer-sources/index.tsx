@@ -4,12 +4,13 @@ import WarningMessage from "desktop-app/components/common/warning-message";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { processStripePayment } from "react-app/src/state/ducks/payments/actions";
+import { analytics } from "react-app/src/state/utils/gtm";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css";
 import styles from "./styles.module.scss";
 
 type StripeCustomerSourcesProps = {
-  celebrityId: string;
+  celebrityId: number;
   contractReference: string;
   availableSources: {
     sourceId: string;
@@ -63,18 +64,18 @@ function StripeCustomerSources({
             setPaymentInProcess(false);
             setErrorMessage(res.data.error);
           } else {
-            //   TODO: conectar facebook pixel
-            // if (typeof window !== "undefined") {
-            //   if (window.fbq != null) {
-            //     window.fbq("track", "Purchase", {
-            //       content_type: "product",
-            //       content_ids:
-            //         VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrityId,
-            //       value: contractPrice,
-            //       currency: "USD",
-            //     });
-            //   }
-            // }
+            analytics.trackContractPurchase({
+              contractPrice,
+              celebrityId,
+            });
+            analytics.track("CONTRACT_PAYED", {
+              widget: "StripeCustomerSources",
+              paymentMethod: "STRIPE",
+              contractReference,
+              discountCouponId,
+              contractPrice,
+              celebrityId,
+            });
             push(
               PURCHASE_SUMMARY.replace(
                 ":contract_reference",

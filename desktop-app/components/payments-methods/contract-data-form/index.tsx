@@ -8,6 +8,7 @@ import Maybe from "react-app/src/components/common/helpers/maybe";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 import { useUpdateHiredContract } from "lib/hooks/useUpdateHiredContract";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const mapDispatchToProps = {};
 
@@ -39,8 +40,15 @@ function ContractDataForm({
       deliveryFrom,
       instructions,
     },
-    onSubmit(data) {
-      update(contract_reference, data);
+    async onSubmit(data) {
+      await update(contract_reference, data);
+      analytics.track("CONTRACT_UPDATED", {
+        widget: "payments-methods/ContractDataForm",
+        contractData: {
+          ...data,
+          contractReference: contract_reference,
+        },
+      });
     },
   });
 

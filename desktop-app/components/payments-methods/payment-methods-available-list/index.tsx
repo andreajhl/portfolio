@@ -30,6 +30,7 @@ type PaymentMethodsAvailableListProps = {
   };
   onBuyerDataIncomplete: () => void;
   discountCouponId: number | null;
+  celebrityId: number;
 };
 
 function PaymentMethodsAvailableList({
@@ -39,6 +40,7 @@ function PaymentMethodsAvailableList({
   buyerData,
   onBuyerDataIncomplete,
   discountCouponId,
+  celebrityId,
 }: PaymentMethodsAvailableListProps) {
   const [currentOption, setCurrentOption] = useState<all_payments_methods>(
     null
@@ -58,6 +60,7 @@ function PaymentMethodsAvailableList({
               index={index}
               discountCouponId={discountCouponId}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
+              celebrityId={celebrityId}
             />
           </Maybe>
           <Maybe it={el.paymentMethodType === "PAYPAL"}>
@@ -68,6 +71,7 @@ function PaymentMethodsAvailableList({
               discountCouponId={discountCouponId}
               contractReference={contractReference}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
+              celebrityId={celebrityId}
             />
           </Maybe>
           <Maybe it={isAValidDLocalPaymentMethod(el.paymentMethodType)}>
@@ -81,6 +85,8 @@ function PaymentMethodsAvailableList({
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
               contractReference={contractReference}
               handleBuyerDataIncomplete={onBuyerDataIncomplete}
+              celebrityId={celebrityId}
+              contractPrice={contractPrice}
             />
           </Maybe>
         </div>

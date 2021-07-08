@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { processDlocalPayment } from "react-app/src/state/ducks/payments/actions";
+import { analytics } from "react-app/src/state/utils/gtm";
 import { getIpAddress } from "react-app/src/state/utils/localizationApiService";
 import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
 import getCookie from "react-app/src/utils/getCookie";
@@ -56,6 +57,8 @@ type DLocalPaymentMethodFormProps = {
   };
   discountCouponId: null | number;
   handleBuyerDataIncomplete: () => void;
+  celebrityId: number;
+  contractPrice: number;
 };
 
 function DLocalPaymentMethodForm({
@@ -68,6 +71,8 @@ function DLocalPaymentMethodForm({
   handleBuyerDataIncomplete,
   contractReference,
   discountCouponId,
+  celebrityId,
+  contractPrice,
 }: DLocalPaymentMethodFormProps) {
   const { push } = useRouter();
   console.log(paymentMethodType);
@@ -104,6 +109,18 @@ function DLocalPaymentMethodForm({
           if (
             ["PAID", "AUTHORIZED", "PENDING"].includes(response.chargeStatus)
           ) {
+            analytics.trackContractPurchase({
+              contractPrice,
+              celebrityId,
+            });
+            analytics.track("CONTRACT_PAYED", {
+              widget: "DLocalPaymentMethodForm",
+              paymentMethod: "DLocal",
+              contractReference,
+              discountCouponId,
+              contractPrice,
+              celebrityId,
+            });
             if (response.requiredRedirect) {
               window.location.replace(response.redirectUri);
             } else {

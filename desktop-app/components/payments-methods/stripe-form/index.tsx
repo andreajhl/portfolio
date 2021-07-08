@@ -20,6 +20,7 @@ type StripeFormProps = {
   contractReference: string;
   discountCouponId: number | null;
   onToggle: () => void;
+  celebrityId: number;
 };
 
 function StripeForm({
@@ -29,6 +30,7 @@ function StripeForm({
   contractReference,
   contractPrice,
   discountCouponId,
+  celebrityId,
 }: StripeFormProps) {
   const [userAvailableSources, setUserAvailableSources] = useState([]);
   const fetchUserCards = useCallback(async () => {
@@ -93,6 +95,7 @@ function StripeForm({
               contractPrice={contractPrice}
               contractReference={contractReference}
               discountCouponId={discountCouponId}
+              celebrityId={celebrityId}
             />
           ) : (
             <StripeCustomerSources
@@ -100,7 +103,7 @@ function StripeForm({
               contractPrice={contractPrice}
               contractReference={contractReference}
               discountCouponId={discountCouponId}
-              celebrityId={"2"}
+              celebrityId={celebrityId}
               availableSources={userAvailableSources}
             />
           )}

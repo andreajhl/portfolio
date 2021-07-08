@@ -75,6 +75,7 @@ function PaymentMethodsPage({
             <PaymentsMethodsSelectorCard
               contractPrice={contract.price}
               contractReference={contract.reference}
+              celebrityId={contract.celebrity_id}
             />
           </Maybe>
         </div>
