@@ -52,6 +52,7 @@ function App({ Component, pageProps }) {
       })
       .then((res) => {
         console.log("response from /api/convert-session", res);
+        localStorage.setItem("finalRedirect", window?.location?.pathname);
         const session = new Session();
         session.initSession();
         // localStorage.removeItem(OLD_SESSION_KEY);
