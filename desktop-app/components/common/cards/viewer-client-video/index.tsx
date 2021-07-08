@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useState } from "react";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import Maybe from "../../helpers/maybe";
 import {
@@ -23,6 +23,7 @@ type ViewerClientVideoProps = {
   videoUrl?: string;
   videoPosterUrl: string;
   previewMode?: boolean;
+  onTimeUpdate?: (event: React.SyntheticEvent<HTMLVideoElement, Event>) => void;
 };
 
 const REF_WIDTH = 353;
@@ -38,47 +39,29 @@ function ViewerClientVideo({
   videoUrl,
   videoPosterUrl,
   previewMode = false,
+  onTimeUpdate,
 }: ViewerClientVideoProps) {
   const videoKey = `client-video-${videoUrl}`;
-  const {
-    videoRef,
-    videoIsPlaying,
-    playVideo,
-    pauseVideo,
-    togglePlay,
-  } = useVideoPlayer(videoKey, {
-    onPlayVideo() {
-      // TODO: conectar GTM
-      console.log("onPlayVideo()");
-      //   GTM.tagManagerDataLayer("PLAY_MAIN_VIDEO_SECTION", {
-      //     ...analyticsData,
-      //     videoIsPlaying: true
-      //   });
-    },
-    onPauseVideo() {
-      // TODO: conectar GTM
-      console.log("onPauseVideo()");
-      // GTM.tagManagerDataLayer("PAUSE_MAIN_VIDEO_SECTION", {
-      //   ...analyticsData,
-      //   videoIsPlaying: false
-      // });
-    },
-  });
+  const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey);
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const toggleVideoIsMuted = () => {
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
+
   const toggleVideoFullScreen = () => {
     setModalIsOpen((fullScreen) => !fullScreen);
   };
 
   const [landscapeMode, setLandscapeMode] = useState(false);
+
   const handleTogglePlay = () => {
     if (previewMode) return;
     togglePlay();
   };
+
   const getAspectRatio = () => {
     const videoElement: HTMLVideoElement = videoRef.current;
     const aspectRatio = videoElement.videoWidth / videoElement.videoHeight;
@@ -109,6 +92,7 @@ function ViewerClientVideo({
               ref={videoRef}
               onLoadedData={onVideoLoadedData}
               src={videoUrl}
+              onTimeUpdate={onTimeUpdate}
               onLoadedMetadata={getAspectRatio}
               preload="metadata"
               className={cx({

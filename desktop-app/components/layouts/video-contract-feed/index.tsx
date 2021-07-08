@@ -7,6 +7,7 @@ import { CSSProperties } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { HiringReviewSection } from "../../common/widgets/hiring-review-section";
 import { GoToContractDetailsButton } from "desktop-app/components/common/button/go-to-contract-details-button";
+import useTrackContractVideoView from "lib/hooks/useTrackContractVideoView";
 
 type VideoContractFeedProps = {
   className?: string;
@@ -23,6 +24,12 @@ function VideoContractFeed({
   asContractOwner = false,
   previewMode = false,
 }: VideoContractFeedProps) {
+  const trackView = useTrackContractVideoView({
+    widget: "ViewerClientVideo",
+    occasion: contractData?.occasion,
+    contractReference: contractData?.reference,
+    videoUrl: contractData?.media,
+  });
   if (!contractData.reference) return null; // mostrar skeleton
   const videoPosterUrl =
     contractData.mediaPosterUrl || contractData.celebrityData.avatar;
@@ -37,6 +44,7 @@ function VideoContractFeed({
           videoUrl={contractData.media}
           previewMode={previewMode}
           videoPosterUrl={videoPosterUrl}
+          onTimeUpdate={trackView}
         />
       </div>
       {/* TODO: agregar condicional y conectar con endpoint para saber si existe review del comprador*/}

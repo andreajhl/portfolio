@@ -1,19 +1,16 @@
-import { CSSProperties, useEffect } from "react";
+import { CSSProperties } from "react";
 import styles from "./styles.module.scss";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ContractVideoType } from "desktop-app/types/contractVideoType";
-import { useState } from "react";
 import useVideoPlayer from "react-app/src/utils/useVideoPlayer";
 import useLoad from "react-app/src/utils/useLoad";
 import OverlayHeader from "../video/overlay-header";
 import OverlayDetails from "../video/overlay-details";
-import { toggleContractLike } from "react-app/src/state/ducks/account/actions";
-import { fetchStatusContractLike } from "react-app/src/state/ducks/hiring/actions";
-import { useAuth0 } from "@auth0/auth0-react";
 import { toggleAudio } from "react-app/src/state/ducks/celebrity-sections/actions";
 import { RootState } from "react-app/src/state/store";
 import { connect, ConnectedProps } from "react-redux";
 import { useContractLike } from "lib/hooks/useContractLike";
+import useTrackContractVideoView from "lib/hooks/useTrackContractVideoView";
 
 const mapStateToProps = ({ celebritySections }: RootState) => ({
   isAudioActive: celebritySections.audioReducer.active,
@@ -36,33 +33,21 @@ function ContractVideo({
   videoUrl,
   videoPosterUrl,
   occasion,
-  style,
-  className = "",
   contract_reference,
   isAudioActive,
   toggleAudio,
 }: ContractVideoProps) {
   const { isFavorite, toggleFavorite } = useContractLike(contract_reference);
   const videoKey = `contract-video-${videoUrl}`;
-  const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
-    onPlayVideo() {
-      // TODO: conectar GTM
-      console.log("onPlayVideo()");
-      // GTM.tagManagerDataLayer("PLAY_MAIN_VIDEO_SECTION", {
-      //   ...analyticsData,
-      //   videoIsPlaying: true
-      // });
-    },
-    onPauseVideo() {
-      // TODO: conectar GTM
-      console.log("onPauseVideo()");
-      // GTM.tagManagerDataLayer("PAUSE_MAIN_VIDEO_SECTION", {
-      //   ...analyticsData,
-      //   videoIsPlaying: false
-      // });
-    },
-  });
+  const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey);
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
+
+  const trackView = useTrackContractVideoView({
+    widget: "ContractVideo",
+    occasion,
+    contractReference: contract_reference,
+    videoUrl,
+  });
 
   return (
     <div
@@ -77,7 +62,7 @@ function ContractVideo({
               src={videoPosterUrl}
               alt={`Poster de vídeo de famoso`}
               className={styles.VideoPoster}
-            ></img>
+            />
           </Maybe>
           <video
             muted={!isAudioActive}
@@ -86,7 +71,8 @@ function ContractVideo({
             src={videoUrl}
             preload="none"
             className={styles.VideoElement}
-          ></video>
+            onTimeUpdate={trackView}
+          />
         </section>
         <section className={styles.ContractVideoOverlay}>
           <div className={styles.ContractVideoControls}>

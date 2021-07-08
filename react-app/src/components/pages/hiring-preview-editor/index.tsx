@@ -10,6 +10,7 @@ import { PageContainer } from "../../layouts/page-container";
 import ViewerClientVideo from "desktop-app/components/common/cards/viewer-client-video";
 import getGiftPageBackgroundStyle from "lib/utils/getGiftPageBackgroundStyle";
 import useGetHiringPreviewConfiguration from "lib/hooks/useGetHiringPreviewConfiguration";
+import useTrackContractVideoView from "lib/hooks/useTrackContractVideoView";
 
 type HiringPreviewEditorPageProps = {
   contractReference: string;
@@ -33,6 +34,13 @@ function HiringPreviewEditorPage({
 
   const videoPosterUrl =
     contract.mediaPosterUrl || contract?.celebrityData?.avatar;
+
+  const trackView = useTrackContractVideoView({
+    widget: "ViewerClientVideo",
+    occasion: contract?.occasion,
+    videoUrl: contract?.media,
+    contractReference,
+  });
 
   return (
     <PageContainer showFooter={false} showSearch={false}>
@@ -59,6 +67,7 @@ function HiringPreviewEditorPage({
                 username={contract?.celebrityData?.username}
                 videoUrl={contract?.media}
                 videoPosterUrl={videoPosterUrl}
+                onTimeUpdate={trackView}
               />
               <ShareGiftDropdown
                 deliveryTo={contract.deliveryTo}

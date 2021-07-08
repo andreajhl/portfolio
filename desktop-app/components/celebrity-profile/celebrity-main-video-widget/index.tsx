@@ -9,6 +9,7 @@ import { ReactNode, useState } from "react";
 import OverlayHeader from "desktop-app/components/common/cards/video/overlay-header";
 import { usePreloadVideo } from "../../../../lib/hooks/usePreloadVideo";
 import { ProgressCircle } from "desktop-app/components/common/progress-circle";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const AnimatedPopup = dynamic<{
   trigger?: JSX.Element | ((isOpen: boolean) => JSX.Element);
@@ -56,6 +57,15 @@ function CelebrityMainVideoWidget({
   const mainVideoIsReady = usePreloadVideo(celebrity.mainVideo);
   const hasMainVideo = Boolean(celebrity.mainVideo);
 
+  function autoPlayVideo() {
+    analytics.track("MAIN_VIDEO_POPUP_OPEN", {
+      widget: "CelebrityMainVideoWidget",
+      celebrityUsername: celebrity.username,
+      celebrityMainVideo: celebrity.mainVideo,
+    });
+    playVideo();
+  }
+
   const celebrityAvatar = (
     <div
       className={classes(
@@ -102,7 +112,7 @@ function CelebrityMainVideoWidget({
       <AnimatedPopup
         disabled={!mainVideoIsReady}
         trigger={celebrityAvatar}
-        onOpen={playVideo}
+        onOpen={autoPlayVideo}
         onClose={pauseVideo}
         modal
       >
