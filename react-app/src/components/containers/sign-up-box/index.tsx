@@ -4,12 +4,10 @@ import { GoogleButton } from "react-app/src/components/layouts/google-button";
 import { connect, ConnectedProps } from "react-redux";
 import classes from "classnames";
 import styles from "./styles.module.scss";
-import FormCheck from "react-bootstrap/FormCheck";
 import { AuthTermsAdvertise } from "react-app/src/components/layouts/auth-terms-advertise";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl, defineMessages } from "react-intl";
 import { Link } from "../../common/routing/link";
 import { SIGN_IN_PATH } from "react-app/src/routing/Paths";
-import Maybe from "../../common/helpers/maybe";
 import { SignUpEmailPasswordForm } from "../sign-up-with-email-form";
 
 const signInLink = (chunk: string) => <Link href={SIGN_IN_PATH}>{chunk}</Link>;
@@ -27,17 +25,26 @@ type SignUpBoxProps = {
   willRedirect?: boolean;
 } & PropsFromRedux;
 
+const RegisterMessages = defineMessages({
+  facebookMessage: { defaultMessage: "Registrarme con Facebook" },
+  googleMessage: { defaultMessage: "Registrarme con Google" }
+});
+
 function SignUpBox({ className, willRedirect = false }: SignUpBoxProps) {
+  const { formatMessage } = useIntl();
+
   return (
     <section className={classes(styles.SignUpBox, className)}>
       <div className={styles.SignUpBoxCard}>
-        <FacebookButton className={styles.AuthProviderButton}>
-          <FormattedMessage defaultMessage="Registrarme con Facebook" />
-        </FacebookButton>
-        <GoogleButton className={styles.AuthProviderButton}>
-          <FormattedMessage defaultMessage="Registrarme con Google" />
-        </GoogleButton>
-        <SignUpEmailPasswordForm willRedirect={willRedirect}/>
+        <FacebookButton
+          className={styles.AuthProviderButton}
+          textButton={formatMessage(RegisterMessages.facebookMessage)}
+        />
+        <GoogleButton
+          className={styles.AuthProviderButton}
+          textButton={formatMessage(RegisterMessages.googleMessage)}
+        />
+        <SignUpEmailPasswordForm willRedirect={willRedirect} />
         <AuthTermsAdvertise className={styles.SignUpBoxAuthTermsAdvertise} />
       </div>
       <p className={styles.AlreadyRegisteredText}>

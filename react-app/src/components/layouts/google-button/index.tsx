@@ -7,14 +7,14 @@ import axios from "axios";
 import { Session } from "react-app/src/state/utils/session";
 
 type GoogleButtonProps = {
-  children?: ReactNode;
+  textButton: string;
   className?: string;
 };
 
 const responseType = "code";
 const clientId = process.env.NEXT_PUBLIC_GOOGLE_LOGIN_IDENTIFIER;
 const redirectURL = process.env.NEXT_PUBLIC_GOOGLE_LOGIN_REDIRECT;
-function GoogleButton({ children, className }: GoogleButtonProps) {
+function GoogleButton({ textButton, className }: GoogleButtonProps) {
   const responseGoogle = async (res) => {
     if (res?.tokenId) {
       await axios
@@ -49,7 +49,7 @@ function GoogleButton({ children, className }: GoogleButtonProps) {
     return (
       <GoogleLogin
         clientId={clientId}
-        buttonText="Ingresar con Google"
+        buttonText={textButton}
         onSuccess={responseGoogle}
         onFailure={onAuthenticationFailure}
         accessType="offline"
@@ -68,7 +68,7 @@ function GoogleButton({ children, className }: GoogleButtonProps) {
       onClick={redirectToGoogleOAuth}
     >
       <img src="/assets/img/google-logo.svg" alt="Logo de Google" />
-      {children}
+      {textButton}
     </button>
   );
 }
