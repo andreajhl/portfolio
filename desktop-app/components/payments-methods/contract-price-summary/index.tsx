@@ -26,18 +26,6 @@ function ContractPriceSummary({
   original_price,
   couponData,
 }: ContractPriceSummaryProps) {
-  console.log(couponData);
-  const [finalPrice, setFinalPrice] = useState(contractPrice);
-  const [discountAmount, setDiscountAmount] = useState(null);
-  const getNewPriceWithDiscountApply = () => {
-    let priceWithDiscount = couponData.data?.isPercentageDiscount
-      ? (couponData.data.discount_amount * 100).toFixed()
-      : couponData.data?.discount_amount * contractPrice;
-    setDiscountAmount(priceWithDiscount);
-  };
-  useEffect(() => {
-    if (couponData.completed) getNewPriceWithDiscountApply();
-  }, [couponData.completed]);
   return (
     <div className={styles.ContractPriceSummary}>
       <Maybe it={original_price !== contractPrice}>
@@ -48,7 +36,14 @@ function ContractPriceSummary({
               <PriceLayout decimalScale={0} price={original_price} />
             </span>
             <span className={styles.BoldText}>
-              <PriceLayout decimalScale={0} price={finalPrice} />
+              <PriceLayout
+                decimalScale={0}
+                price={
+                  couponData.completed
+                    ? couponData.data.finalAmount
+                    : contractPrice
+                }
+              />
             </span>
           </div>
         </div>
@@ -58,21 +53,24 @@ function ContractPriceSummary({
           <span className={styles.BoldText}>Descuento</span>
           <div>
             {couponData.data?.isPercentageDiscount
-              ? `${discountAmount}%  | `
+              ? `${(couponData.data?.discountPercentage * 100).toFixed(2)}%  | `
               : null}
-            {
-              <PriceLayout
-                decimalScale={0}
-                price={discountAmount}
-              ></PriceLayout>
-            }
+            <PriceLayout
+              decimalScale={0}
+              price={couponData.data.discountAmount}
+            ></PriceLayout>
           </div>
         </div>
       </Maybe>
       <div className={styles.SummaryRow}>
         <span className={styles.BoldText}>Total</span>
         <span className={styles.BoldText}>
-          <PriceLayout decimalScale={0} price={finalPrice} />
+          <PriceLayout
+            decimalScale={0}
+            price={
+              couponData.completed ? couponData.data.finalAmount : contractPrice
+            }
+          />
         </span>
       </div>
     </div>
