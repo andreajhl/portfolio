@@ -1,20 +1,21 @@
 import Popup from "reactjs-popup";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { FormattedMessage } from "react-intl";
 const contentStyle = {
   background: "rgb(248,248,248)",
   borderRadius: "10px"
 };
 const overlayStyle = { background: "rgba(0,0,0,0.5)" };
 
-function AuthenticationFailurePopup() {
-  const [open, setOpen] = useState(false);
-  const { query } = useRouter();
-  useEffect(() => {
-    if (query.error) {
-      setOpen(true);
-    }
-  }, [query]);
+export type AuthenticationFailurePopupProps = {
+  errorMessage: string;
+};
+
+function AuthenticationFailurePopup({
+  errorMessage
+}: AuthenticationFailurePopupProps) {
+  const [open, setOpen] = useState(true);
+
   const closeModal = () => setOpen(false);
   return (
     <Popup
@@ -53,8 +54,10 @@ function AuthenticationFailurePopup() {
         >
           &times;
         </button>
-        <p>Autenticación Fallida</p>
-        <p className="text-danger">{query.error}</p>
+        <p>
+          <FormattedMessage defaultMessage="Autenticación Fallida" />
+        </p>
+        <p className="text-danger">{errorMessage}</p>
       </div>
     </Popup>
   );

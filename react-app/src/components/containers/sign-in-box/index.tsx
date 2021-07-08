@@ -8,8 +8,17 @@ import { FormattedMessage, useIntl, defineMessages } from "react-intl";
 import { Link } from "../../common/routing/link";
 import { RESET_PASSWORD_PATH, SIGN_UP_PATH } from "react-app/src/routing/Paths";
 import { SignInEmailPasswordForm } from "../sign-in-with-email-form";
-import { AuthenticationFailurePopup } from "../authentication-failure-popup";
+import dynamic from "next/dynamic";
+import { AuthenticationFailurePopupProps } from "../authentication-failure-popup";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
+const AuthenticationFailurePopup = dynamic<AuthenticationFailurePopupProps>(
+  () =>
+    import("../authentication-failure-popup").then(
+      (mod) => mod.AuthenticationFailurePopup
+    )
+);
 const LoginMessages = defineMessages({
   facebookMessage: { defaultMessage: "Ingresar con Facebook" },
   googleMessage: { defaultMessage: "Ingresar con Google" }
@@ -31,6 +40,13 @@ type SignInBoxProps = {
 
 <FormattedMessage defaultMessage="Ingresar con Facebook" />;
 function SignInBox({ className }: SignInBoxProps) {
+  const { query } = useRouter();
+  const [errorMessage, setErrorMessage] = useState("");
+  useEffect(() => {
+    if (query.error) {
+      setErrorMessage(String(query.error));
+    }
+  }, [query]);
   const { formatMessage } = useIntl();
 
   return (
@@ -51,7 +67,9 @@ function SignInBox({ className }: SignInBoxProps) {
           <FormattedMessage defaultMessage="Olvidé mi contraseña" />
         </Link>
       </div>
-      <AuthenticationFailurePopup />
+      {errorMessage.length > 0 ? (
+        <AuthenticationFailurePopup errorMessage={errorMessage} />
+      ) : null}
       <p className={styles.NotRegisteredText}>
         <FormattedMessage
           defaultMessage="¿No tienes una cuenta? <signUpLink>Registrarme</signUpLink>"
