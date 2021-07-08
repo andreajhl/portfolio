@@ -1,8 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
-import NavLink from ".";
-import { createRouter } from "next/router";
-import { RouterContext } from "next/dist/next-server/lib/router-context";
+import { NavLink } from ".";
+
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 let wrapper;
 let anchorElement;
@@ -10,23 +10,14 @@ const linkText = "Link text";
 const linkTo = "/#test=true";
 const linkActiveClassName = "active";
 
-const router = createRouter(linkTo, {}, "", {
-  subscription: jest.fn(),
-  initialProps: {},
-  pageLoader: jest.fn(),
-  App: jest.fn(),
-  wrapApp: jest.fn(),
-  Component: jest.fn(),
-  isFallback: false
-});
-
 beforeEach(() => {
+  useRouter.mockImplementationOnce(() => ({
+    asPath: linkTo,
+  }));
   wrapper = mount(
-    <RouterContext.Provider value={router}>
-      <NavLink to={linkTo} activeClassName={linkActiveClassName}>
-        {linkText}
-      </NavLink>
-    </RouterContext.Provider>
+    <NavLink to={linkTo} activeClassName={linkActiveClassName}>
+      {linkText}
+    </NavLink>
   );
   anchorElement = wrapper.find("a");
 });
@@ -42,22 +33,16 @@ it("adds activeClassName class to the 'a' tag when is in the path", () => {
 
 it("not adds activeClassName class to the 'a' tag when is not in the path", () => {
   const newLinkTo = "/testing";
-  const newRouter = createRouter(newLinkTo, {}, "", {
-    subscription: jest.fn(),
-    initialProps: {},
-    pageLoader: jest.fn(),
-    App: jest.fn(),
-    wrapApp: jest.fn(),
-    Component: jest.fn(),
-    isFallback: false
-  });
+  useRouter.mockImplementation(() => ({
+    asPath: newLinkTo,
+  }));
+
+  const anotherLink = "/papaya";
 
   const newWrapper = mount(
-    <RouterContext.Provider value={newRouter}>
-      <NavLink to={linkTo} activeClassName={linkActiveClassName}>
-        {linkText}
-      </NavLink>
-    </RouterContext.Provider>
+    <NavLink to={anotherLink} activeClassName={linkActiveClassName}>
+      {linkText}
+    </NavLink>
   );
   const newAnchorElement = newWrapper.find("a");
   expect(newAnchorElement.hasClass(linkActiveClassName)).not.toBeTruthy();

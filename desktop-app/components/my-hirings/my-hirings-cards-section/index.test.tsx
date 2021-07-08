@@ -1,7 +1,12 @@
 import { shallow } from "enzyme";
+import ReduxProvider from "__test__/ReduxProvider";
 import { MyHiringsCardsSection } from ".";
 
-it.skip("renders without crashing", () => {
-  const wrapper = shallow(<MyHiringsCardsSection />);
+it("renders without crashing", () => {
+  const wrapper = shallow(
+    <ReduxProvider>
+      <MyHiringsCardsSection />
+    </ReduxProvider>
+  );
   expect(wrapper.exists()).toBeTruthy();
 });

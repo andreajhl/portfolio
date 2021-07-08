@@ -1,13 +1,16 @@
 import { shallow } from "enzyme";
+import ReduxProvider from "__test__/ReduxProvider";
 import { CommentCreator } from ".";
 
-it.skip("should renders without crashing", () => {
+it("should renders without crashing", () => {
   const wrapper = shallow(
-    <CommentCreator
-      firstComment
-      onCommentCreated={() => {}}
-      contract_reference=""
-    />
+    <ReduxProvider>
+      <CommentCreator
+        firstComment
+        onCommentCreated={() => {}}
+        contract_reference=""
+      />
+    </ReduxProvider>
   );
   expect(wrapper.exists()).toBeTruthy();
 });

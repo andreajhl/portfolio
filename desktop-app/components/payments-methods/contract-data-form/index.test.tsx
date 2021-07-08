@@ -1,7 +1,12 @@
 import { shallow } from "enzyme";
+import ReduxProvider from "__test__/ReduxProvider";
 import { ContractDataForm } from ".";
 
-it.skip("renders without crashing", () => {
-  const wrapper = shallow(<ContractDataForm />);
+it("renders without crashing", () => {
+  const wrapper = shallow(
+    <ReduxProvider>
+      <ContractDataForm />
+    </ReduxProvider>
+  );
   expect(wrapper.exists()).toBeTruthy();
 });

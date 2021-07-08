@@ -1,7 +1,12 @@
 import { shallow } from "enzyme";
+import ReduxProvider from "__test__/ReduxProvider";
 import { CountryFilter } from ".";
 
-it.skip("renders without crashing", () => {
-  const wrapper = shallow(<CountryFilter />);
+it("renders without crashing", () => {
+  const wrapper = shallow(
+    <ReduxProvider>
+      <CountryFilter />
+    </ReduxProvider>
+  );
   expect(wrapper.exists()).toBeTruthy();
 });

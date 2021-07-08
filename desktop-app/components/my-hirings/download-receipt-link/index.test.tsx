@@ -1,13 +1,16 @@
 import { shallow } from "enzyme";
+import ReduxProvider from "__test__/ReduxProvider";
 import { DownloadReceiptLink } from ".";
 
-it.skip("should renders without crashing", () => {
+it("should renders without crashing", () => {
   const wrapper = shallow(
-    <DownloadReceiptLink
-      contractId={123}
-      contractReference={"asd"}
-      contractStatus={10}
-    />
+    <ReduxProvider>
+      <DownloadReceiptLink
+        contractId={123}
+        contractReference={"asd"}
+        contractStatus={10}
+      />
+    </ReduxProvider>
   );
   expect(wrapper.exists()).toBeTruthy();
 });
