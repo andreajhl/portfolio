@@ -11,6 +11,26 @@ import { RootState } from "react-app/src/state/store";
 import { useEffect } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ContractInfoSkeleton } from "desktop-app/components/payments-methods/contract-info/skeleton";
+import { analytics } from "react-app/src/state/utils/gtm";
+import getWindow from "react-app/src/utils/getWindow";
+import { useRouter } from "next/router";
+
+function trackRouteChange(newRoute: string) {
+  analytics.track("PAYMENT_METHODS_LEAVE", {
+    newRoute,
+    isBackButton: false,
+    widget: "PaymentMethodsPage",
+    path: getWindow().location.pathname,
+  });
+}
+
+function trackBackButtonClick() {
+  analytics.track("PAYMENT_METHODS_LEAVE", {
+    isBackButton: true,
+    widget: "PaymentMethodsPage",
+    path: getWindow().location.pathname,
+  });
+}
 
 const mapStateToProps = (state: RootState) => ({
   isLoading: state.payments.getContractToPayReducer.loading,
@@ -34,13 +54,24 @@ function PaymentMethodsPage({
   contract,
   getContractToPayData,
 }: PaymentMethodsProps) {
+  const router = useRouter();
   useEffect(() => {
     getContractToPayData(contractReference);
   }, [contractReference]);
 
+  useEffect(() => {
+    router.events.on("routeChangeStart", trackRouteChange);
+    return () => router.events.off("routeChangeStart", trackRouteChange);
+  }, [router.events]);
+
   return (
     <PageContainer showFooter={false}>
-      <PageHeading showHomeLink={false}>Confirmación de compra</PageHeading>
+      <PageHeading
+        showHomeLink={false}
+        onBackButtonClick={trackBackButtonClick}
+      >
+        Confirmación de compra
+      </PageHeading>
 
       <div className={`container ${styles.PaymentMethodsPageContent}`}>
         <div className={styles.PaymentMethodsPageContentLeftSide}>

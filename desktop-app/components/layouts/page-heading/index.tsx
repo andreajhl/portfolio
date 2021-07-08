@@ -9,14 +9,22 @@ type PageHeadingProps = {
   children?: ReactNode;
   showBackButton?: boolean;
   showHomeLink?: boolean;
+  onBackButtonClick?: () => void;
 };
 
 function PageHeading({
   children,
   showBackButton = true,
-  showHomeLink = false
+  showHomeLink = false,
+  onBackButtonClick,
 }: PageHeadingProps) {
   const router = useRouter();
+
+  function goBack() {
+    onBackButtonClick?.();
+    window.history.length > 2 ? router.back() : router.push("/");
+  }
+
   return (
     <div className={styles.PageHeading}>
       <div className={"container " + styles.PageHeadingContainer}>
@@ -24,9 +32,7 @@ function PageHeading({
           <button
             type="button"
             className={"btn " + styles.PageHeadingBackButton}
-            onClick={() => {
-              window.history.length > 2 ? router.back() : router.push("/");
-            }}
+            onClick={goBack}
           >
             <LeftArrowIcon className={styles.PageHeadingHomeButton} />
           </button>
