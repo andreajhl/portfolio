@@ -5,15 +5,15 @@ module.exports = {
   testPathIgnorePatterns: ["<rootDir>[/\\\\](node_modules|.next)[/\\\\]"],
   transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$"],
   transform: {
-    "^.+\\.(ts|js|tsx)$": "babel-jest"
+    "^.+\\.(ts|js|tsx)$": "babel-jest",
   },
-  setupTestFrameworkScriptFile: "<rootDir>/setupTests.js",
+  setupFilesAfterEnv: ["<rootDir>/__test__/setupTests.js"],
   watchPlugins: [
     "jest-watch-typeahead/filename",
-    "jest-watch-typeahead/testname"
+    "jest-watch-typeahead/testname",
   ],
   moduleNameMapper: {
     "\\.(css|less|sass|scss)$": "identity-obj-proxy",
-    "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/test/__mocks__/fileMock.js"
-  }
+    "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/test/__mocks__/fileMock.js",
+  },
 };
