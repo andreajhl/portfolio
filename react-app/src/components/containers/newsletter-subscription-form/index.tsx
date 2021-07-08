@@ -142,12 +142,6 @@ function NewsletterSubscriptionForm({
 
   useErrorFocus(errors);
 
-  const emailInputRef = useRef<HTMLInputElement>();
-
-  useEffect(() => {
-    emailInputRef?.current?.focus?.();
-  }, []);
-
   useEffect(() => {
     if (!requestError) return;
     analytics.track("NEWSLETTER_SUBSCRIPTION_REQUEST_ERROR", {
@@ -158,9 +152,8 @@ function NewsletterSubscriptionForm({
   }, [requestError]);
 
   return (
-    <form className={className} onSubmit={submitForm}>
+    <form className={className} onSubmit={submitForm} noValidate>
       <Field
-        ref={emailInputRef}
         value={values.email}
         error={errors.email}
         onChange={onChangeField}
