@@ -51,17 +51,19 @@ function App({ Component, pageProps }) {
         token: localStorage.getItem(OLD_SESSION_KEY)
       })
       .then((res) => {
+        console.log("response from /api/convert-session", res);
         const session = new Session();
         session.initSession();
         // localStorage.removeItem(OLD_SESSION_KEY);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error from  /api/convert-session", err);
       });
   }, []);
 
   useEffect(() => {
     if (localStorage.getItem(OLD_SESSION_KEY) && !getCookie(SESSION_NAME)) {
+      console.log("convertSession() call");
       convertSession();
     }
   }, []);

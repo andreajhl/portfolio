@@ -22,7 +22,7 @@ async function emailPasswordSignInHandler(
     .then((response) => {
       const status = response.data.status;
       const data = response.data.data;
-      console.log(response.data.data);
+      console.log("Reponse from /famosos-com/convert-auth0-session", response);
       if (status === "OK") {
         // SSR
         res.setHeader(
@@ -48,6 +48,11 @@ async function emailPasswordSignInHandler(
       }
     })
     .catch((errorResponse) => {
+      console.log(
+        "errorResponse from /famosos-com/convert-auth0-session",
+        errorResponse
+      );
+
       if (errorResponse.response) {
         res.json({
           status: "error",
