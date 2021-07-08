@@ -39,3 +39,5 @@ export const tagManagerDataLayer = (event, dataLayer) => {
     console.warn("tagManagerDataLayer Error:", e);
   }
 };
+
+export const analytics = { track: tagManagerDataLayer };

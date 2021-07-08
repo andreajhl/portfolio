@@ -1,0 +1,45 @@
+.Wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  font-weight: inherit;
+  position: relative;
+}
+
+.Text {
+  color: inherit;
+  margin: 0 1.5em;
+  font-weight: inherit;
+}
+
+.Spinner,
+.Check {
+  right: 0;
+  position: absolute;
+  opacity: 1 !important;
+}
+
+.Spinner {
+  color: inherit;
+  animation: rotate 1.5s infinite, appear 0.15s ease;
+}
+
+.Check {
+  color: inherit;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}

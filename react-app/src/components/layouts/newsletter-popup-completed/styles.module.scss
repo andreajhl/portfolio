@@ -1,0 +1,43 @@
+.NewsletterPopupCompleted {
+  padding: 2rem 22px;
+}
+
+.NewsletterSparkles {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.NewsletterPopupCompletedText {
+  text-align: center;
+  color: #6970c6;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: bold;
+  margin: 2.75rem auto 0;
+  max-width: 18ch;
+}
+
+.NewsletterPopupCompletedButton {
+  font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+  min-height: 55px;
+  border-radius: 5px;
+  background: #fb177d;
+  margin-top: 90px;
+}
+
+@media only screen and (max-width: 25em) {
+  .NewsletterPopupCompletedText {
+    font-size: 6vw;
+    margin-top: 12vw;
+  }
+  .NewsletterSparkles {
+    width: calc(100% - 44px);
+  }
+}
+
+.NewsletterPopupCompletedSkeleton {
+  height: 21.0625em;
+}
