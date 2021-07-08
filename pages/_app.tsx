@@ -33,6 +33,7 @@ const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
 };
 
 const ROUTE_CHANGE_START = "routeChangeStart";
+const HAS_CONVERTED_SESSION = "HAS_CONVERTED_SESSION";
 
 function App({ Component, pageProps }) {
   const router = useRouter();
@@ -52,6 +53,7 @@ function App({ Component, pageProps }) {
       })
       .then((res) => {
         console.log("response from /api/convert-session", res);
+        localStorage.setItem(HAS_CONVERTED_SESSION, HAS_CONVERTED_SESSION);
         localStorage.setItem("finalRedirect", window?.location?.pathname);
         const session = new Session();
         session.initSession();
@@ -63,7 +65,11 @@ function App({ Component, pageProps }) {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem(OLD_SESSION_KEY) && !getCookie(SESSION_NAME)) {
+    if (
+      localStorage.getItem(OLD_SESSION_KEY) &&
+      !getCookie(SESSION_NAME) &&
+      !localStorage.getItem(HAS_CONVERTED_SESSION)
+    ) {
       console.log("convertSession() call");
       convertSession();
     }
