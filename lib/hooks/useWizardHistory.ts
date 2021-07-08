@@ -11,6 +11,7 @@ type UseWizardHistoryType = (
 ) => {
   wizardHistory: any;
   nextStep: () => void;
+  getCurrentStep: () => WizardStepType;
 };
 
 const useWizardHistory: UseWizardHistoryType = function (
@@ -38,7 +39,7 @@ const useWizardHistory: UseWizardHistoryType = function (
     wizardHistory?.push(nextStep?.id);
   }
 
-  return { wizardHistory, nextStep };
+  return { wizardHistory, nextStep, getCurrentStep };
 };
 
 export default useWizardHistory;

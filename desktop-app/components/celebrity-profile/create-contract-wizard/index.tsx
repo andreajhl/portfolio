@@ -116,12 +116,39 @@ function CreateContractWizard({
     onLoggingCallback?.();
   }, [isAuthenticated, onLoggingCallback]);
 
-  const { wizardHistory, nextStep } = useWizardHistory(
+  const { wizardHistory, nextStep, getCurrentStep } = useWizardHistory(
     WIZARD_STEPS,
     getInitialWizardStep(contractInProgress)
   );
 
   const isLoading = status === "loading";
+
+  useEffect(() => {
+    if (typeof currentContractId === "undefined") return;
+    function tractLeave(newRoute: string) {
+      analytics.track("CREATE_CONTRACT_WIZARD_LEAVE", {
+        newRoute,
+        widget: WIDGET_NAME,
+        celebrityUsername: celebrity.username,
+        currentContractId,
+        currentStep: WIZARD_STEPS.indexOf(getCurrentStep()) + 1,
+        deliveryData,
+        detailsData,
+        notificationsData,
+      });
+    }
+    router.events.on("routeChangeStart", tractLeave);
+
+    return () => router.events.off("routeChangeStart", tractLeave);
+  }, [
+    celebrity.username,
+    currentContractId,
+    deliveryData,
+    detailsData,
+    getCurrentStep,
+    notificationsData,
+    router.events,
+  ]);
 
   function catchAsyncError(fn: any) {
     return (...params: any) => {
