@@ -26,3 +26,18 @@
     color: #b9b8b8;
   }
 }
+
+.InputContainer {
+  position: relative;
+}
+
+.IconContainer {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  right: 0px;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
