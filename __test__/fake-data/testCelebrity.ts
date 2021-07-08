@@ -20,6 +20,9 @@ const testCelebrity = {
   showSimilarCelebrities: true,
   availableForFlashDeliveries: true,
   availableForSubscriptions: true,
+  videoMessagePrice: 100,
+  alpha2Code: "MX",
+  title: "Actores",
   contractTypes: [
     {
       contractType: 3,
@@ -27,7 +30,7 @@ const testCelebrity = {
       description: "",
       price: 0,
       allowInFFB: false,
-      options: {}
+      options: {},
     },
     {
       contractType: 1,
@@ -35,7 +38,7 @@ const testCelebrity = {
       description: "",
       price: 125,
       allowInFFB: false,
-      options: {}
+      options: {},
     },
     {
       contractType: 2,
@@ -43,7 +46,7 @@ const testCelebrity = {
       description: "",
       price: 0,
       allowInFFB: false,
-      options: { url: "", buttonLabel: "Contratar Evento Privado" }
+      options: { url: "", buttonLabel: "Contratar Evento Privado" },
     },
     {
       contractType: 4,
@@ -51,7 +54,7 @@ const testCelebrity = {
       description: "",
       price: 0,
       allowInFFB: false,
-      options: {}
+      options: {},
     },
     {
       contractType: 5,
@@ -59,7 +62,7 @@ const testCelebrity = {
       description: "",
       price: 0,
       allowInFFB: true,
-      options: {}
+      options: {},
     },
     {
       contractType: 6,
@@ -67,7 +70,7 @@ const testCelebrity = {
       description: "",
       price: 0,
       allowInFFB: true,
-      options: {}
+      options: {},
     },
     {
       contractType: 7,
@@ -75,7 +78,7 @@ const testCelebrity = {
       description: "",
       price: 0,
       allowInFFB: true,
-      options: {}
+      options: {},
     },
     {
       contractType: 8,
@@ -83,9 +86,9 @@ const testCelebrity = {
       description: "",
       price: 0,
       allowInFFB: true,
-      options: {}
-    }
-  ]
+      options: {},
+    },
+  ],
 };
 
 export default testCelebrity;

@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import testCelebrity from "__test__/testCelebrity";
+import testCelebrity from "__test__/fake-data/testCelebrity";
 import SimilarCelebritiesCardsReel from ".";
 
 it("renders without crashing", () => {
