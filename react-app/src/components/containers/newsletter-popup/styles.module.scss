@@ -1,0 +1,61 @@
+.NewsletterPopup {
+  position: relative;
+  width: 90vw;
+  max-width: 25em;
+  background: white;
+  box-shadow: 0px 0px 20px 0px #0000001a;
+  border-radius: 10px;
+}
+
+.PopupA {
+  @media only screen and (max-height: 53.6875em) and (min-width: 43.75em) {
+    max-width: 39.5322em;
+  }
+}
+
+.CloseButton {
+  color: black;
+  width: 2.375rem;
+  height: 2.375rem;
+  background: #ffffff;
+  box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(35%, -35%);
+}
+
+.NewsletterPopupContent {
+  scrollbar-width: thin !important;
+
+  &::-webkit-scrollbar {
+    display: unset;
+    width: 15px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #d3d3d333;
+    -webkit-box-shadow: inset 0 0 5px #a8a8a833;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #d2d2d2;
+    box-shadow: inset 0 0 6px #0303034d;
+    -webkit-box-shadow: inset 0 0 6px #0303034d;
+  }
+}
+
+.NewsletterPopupContentSkeletonA {
+
+  @media only screen and (max-height: 41.625rem) and (min-width: 43.75em) {
+    height: 90vh;
+  }
+
+  @media only screen and (max-height: 53.6875em) and (max-width: 43.6875em) {
+    height: 90vh;
+  }
+}
