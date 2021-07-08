@@ -27,10 +27,14 @@ type SignUpEmailPasswordFormState = {
   isLoading: boolean;
   isCompleted: boolean;
   error: string;
+  showPassword: boolean;
 };
 
 // Class component
-class SignUpEmailPasswordForm extends React.Component<SignUpEmailPasswordFormProps, SignUpEmailPasswordFormState> {
+class SignUpEmailPasswordForm extends React.Component<
+  SignUpEmailPasswordFormProps,
+  SignUpEmailPasswordFormState
+> {
   constructor(props) {
     super(props);
 
@@ -43,17 +47,23 @@ class SignUpEmailPasswordForm extends React.Component<SignUpEmailPasswordFormPro
       allowNotifications: true,
       isLoading: false,
       isCompleted: false,
-      error: null
+      error: null,
+      showPassword: false
     };
 
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handleFullNameInput = this.handleFullNameInput.bind(this);
     this.handleBirthDateInput = this.handleBirthDateInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
-    this.handleConfirmationPasswordInput = this.handleConfirmationPasswordInput.bind(this);
-    this.handleAllowNotificationsInput = this.handleAllowNotificationsInput.bind(this);
+    this.handleConfirmationPasswordInput = this.handleConfirmationPasswordInput.bind(
+      this
+    );
+    this.handleAllowNotificationsInput = this.handleAllowNotificationsInput.bind(
+      this
+    );
     this.sendData = this.sendData.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.toggleShowPasswordState = this.toggleShowPasswordState.bind(this);
   }
 
   handleFullNameInput(event) {
@@ -100,7 +110,9 @@ class SignUpEmailPasswordForm extends React.Component<SignUpEmailPasswordFormPro
 
   handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      this.sendData().then(r => {console.log(r)});
+      this.sendData().then((r) => {
+        console.log(r);
+      });
     }
   };
 
@@ -124,8 +136,8 @@ class SignUpEmailPasswordForm extends React.Component<SignUpEmailPasswordFormPro
     if (this.state.password !== this.state.confirmationPassword) {
       return "Passwords do not match";
     }
-    return null
-  }
+    return null;
+  };
 
   sendData = async () => {
     // Remove error message
@@ -143,44 +155,46 @@ class SignUpEmailPasswordForm extends React.Component<SignUpEmailPasswordFormPro
     });
     // Validate inputs
     const err = this.validateInputs();
-    if (err !== null){
+    if (err !== null) {
       this.setState({
         ...this.state,
         error: err
       });
-      return
+      return;
     }
     // Send request
-    await axios.post(
-      "/api/email-password-sign-up",
-      {
+    await axios
+      .post("/api/email-password-sign-up", {
         fullName: this.state.fullName,
         email: this.state.email.trim().toLocaleLowerCase(),
         password: this.state.password,
         birthDate: this.state.birthDate,
         allowNotifications: this.state.allowNotifications,
         locale: this.props.intl ? this.props.intl.locale.toUpperCase() : "ES"
-      }
-    )
+      })
       .then((response) => {
-          if (response.data.status === "OK") {
-            const session = new Session();
-            session.initSession();
-          } else {
-            this.setState({
-              ...this.state,
-              error: response.data.error
-            });
-          }
+        if (response.data.status === "OK") {
+          const session = new Session();
+          session.initSession();
+        } else {
+          this.setState({
+            ...this.state,
+            error: response.data.error
+          });
         }
-      );
+      });
   };
+
+  toggleShowPasswordState() {
+    this.setState((oldState) => ({
+      ...oldState,
+      showPassword: !oldState.showPassword
+    }));
+  }
 
   renderError() {
     if (this.state.error !== null && this.state.error !== "") {
-      return (
-        <small className={"text-danger"}>Error {this.state.error}</small>
-      );
+      return <small className={"text-danger"}>Error {this.state.error}</small>;
     } else {
       return <div />;
     }
@@ -213,15 +227,23 @@ class SignUpEmailPasswordForm extends React.Component<SignUpEmailPasswordFormPro
         />
         {/*TODO: Input group with show password button*/}
         <AuthFormField
-          type="password"
+          type={this.state.showPassword ? "text" : "password"}
           label="Contraseña"
           placeholder="**********"
           value={this.state.password}
           onChange={this.handlePasswordInput}
+          onIconClick={this.toggleShowPasswordState}
+          iconElement={
+            !this.state.showPassword ? (
+              <i className="fas fa-eye cursor-pointer"></i>
+            ) : (
+              <i className="fas fa-eye-slash cursor-pointer"></i>
+            )
+          }
         />
         {/*TODO: Input group with show password button*/}
         <AuthFormField
-          type="password"
+          type={this.state.showPassword ? "text" : "password"}
           label="Confirmar contraseña"
           placeholder="**********"
           value={this.state.confirmationPassword}
@@ -235,9 +257,7 @@ class SignUpEmailPasswordForm extends React.Component<SignUpEmailPasswordFormPro
           checked={this.state.allowNotifications}
           onChange={this.handleAllowNotificationsInput}
         />
-        <div className={"text-center mt-2"}>
-          {this.renderError()}
-        </div>
+        <div className={"text-center mt-2"}>{this.renderError()}</div>
         <button
           type="button"
           className={classes("btn btn-primary", styles.SignUpBoxSubmitButton)}
@@ -251,7 +271,7 @@ class SignUpEmailPasswordForm extends React.Component<SignUpEmailPasswordFormPro
             <FormattedMessage defaultMessage="Registrarme y continuar" />
           </Maybe>
         </button>
-        <hr/>
+        <hr />
       </div>
     );
   }
