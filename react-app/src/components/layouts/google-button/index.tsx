@@ -57,7 +57,17 @@ function GoogleButton({ textButton, className }: GoogleButtonProps) {
         cookiePolicy={"single_host_origin"}
         redirectUri={redirectURL}
         uxMode={"popup"}
-        className={classes("btn", styles.GoogleButton, className)}
+        render={(renderProps) => (
+          <button
+            type="button"
+            className={classes("btn", styles.GoogleButton, className)}
+            onClick={renderProps.onClick}
+            disabled={renderProps.disabled}
+          >
+            <img src="/assets/img/google-logo.svg" alt="Logo de Google" />
+            {textButton}
+          </button>
+        )}
       />
     );
   }
