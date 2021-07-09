@@ -11,12 +11,11 @@ import { Session } from "../react-app/src/state/utils/session";
 import getWindow from "react-app/src/utils/getWindow";
 import axios from "axios";
 import getCookie from "react-app/src/utils/getCookie";
-const OLD_SESSION_KEY = "_a0_";
+
 const languages = {
   en: enMessages,
   es: esMessages
 };
-const SESSION_NAME = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME;
 
 const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
   const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
@@ -33,7 +32,6 @@ const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
 };
 
 const ROUTE_CHANGE_START = "routeChangeStart";
-const HAS_CONVERTED_SESSION = "HAS_CONVERTED_SESSION";
 
 function App({ Component, pageProps }) {
   const router = useRouter();
@@ -44,35 +42,6 @@ function App({ Component, pageProps }) {
     return () => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);
     };
-  }, []);
-
-  const convertSession = useCallback(async () => {
-    await axios
-      .post("/api/convert-session", {
-        token: localStorage.getItem(OLD_SESSION_KEY)
-      })
-      .then((res) => {
-        console.log("response from /api/convert-session", res);
-        localStorage.setItem(HAS_CONVERTED_SESSION, HAS_CONVERTED_SESSION);
-        localStorage.setItem("finalRedirect", window?.location?.pathname);
-        const session = new Session();
-        session.initSession();
-        // localStorage.removeItem(OLD_SESSION_KEY);
-      })
-      .catch((err) => {
-        console.log("Error from  /api/convert-session", err);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (
-      localStorage.getItem(OLD_SESSION_KEY) &&
-      !getCookie(SESSION_NAME) &&
-      !localStorage.getItem(HAS_CONVERTED_SESSION)
-    ) {
-      console.log("convertSession() call");
-      convertSession();
-    }
   }, []);
 
   const { locale, defaultLocale } = router;
