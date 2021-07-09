@@ -191,6 +191,9 @@
   "5h/jE9": {
     "message": "Formato no valido"
   },
+  "5jWuaC": {
+    "message": "Olvidaste tu contraseña"
+  },
   "5sQzpi": {
     "message": "No se pudo autenticar esta tarjeta correctamente"
   },
@@ -381,6 +384,9 @@
   "Eq0gTc": {
     "message": "Enviar comentario"
   },
+  "EqG/WU": {
+    "message": "Asegurate de que sea una contraseña fácil de recordar."
+  },
   "ErSRb8": {
     "message": "Selecciona una tarjeta"
   },
@@ -431,9 +437,6 @@
   },
   "HmvnFO": {
     "message": "Reintentar"
-  },
-  "HsosK3": {
-    "message": "Para continuar crea una nueva contraseña para tu cuenta."
   },
   "IEazN6": {
     "message": "Influencers"
@@ -555,6 +558,9 @@
   "N9nBRn": {
     "message": "¡Y listo! en poco {onlyMobileLineBreak} tiempo {onlyDesktopLineBreak} recibirás tu {onlyMobileLineBreak} videomensaje."
   },
+  "NLbEhA": {
+    "message": "Indicanos tu correo electrónico y podrás restablecer tu contraseña."
+  },
   "NROWdz": {
     "message": "Tus Favoritos"
   },
@@ -592,9 +598,6 @@
   },
   "OkYBCB": {
     "message": "Sé el primero en agregar un comentario."
-  },
-  "Or996K": {
-    "message": "Nueva contraseña"
   },
   "P6ZBac": {
     "message": "Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP = Código postal"
@@ -818,6 +821,9 @@
   },
   "Z5ZMSV": {
     "message": "El campo de nombre es obligatorio"
+  },
+  "ZDkLmZ": {
+    "message": "Revisa tu correo electrónico e ingresa el código de 6 dígitos que has recibido"
   },
   "ZPvdL/": {
     "message": "o ingresa con tu correo electrónico"
@@ -1057,12 +1063,6 @@
   "n0TzKv": {
     "message": "Escribe aquí el nombre"
   },
-  "n1VWvq": {
-    "message": "Ingresa tu correo electrónico para poder restablecer tu contraseña."
-  },
-  "n6yBXT": {
-    "message": "Ingresa el código de 6 dígitos que enviamos a tu correo electrónico."
-  },
   "n9i+Em": {
     "message": "Escribe aquí tu nombre"
   },
@@ -1248,18 +1248,21 @@
   "uQg6Uc": {
     "message": "Coach"
   },
+  "uSPUjx": {
+    "message": "Cambiar tu contraseña"
+  },
   "uVgimH": {
     "message": "No se encontró un famoso con este usuario"
   },
   "ueZmN4": {
     "message": "Transferencia bancaria"
   },
-  "ufYXOt": {
-    "message": "Recuperar contraseña"
-  },
   "ujraGu": {
     "description": "Quien recibirá el video",
     "message": "Para:"
+  },
+  "uleYZ4": {
+    "message": "Para continuar actualiza la contraseña de tu cuenta."
   },
   "ut6hvz": {
     "message": "Calificaciones"
@@ -1365,9 +1368,6 @@
   },
   "zX425H": {
     "message": "Comediantes"
-  },
-  "zuf/CK": {
-    "message": "Asegúrate de que sea una contraseña fácil de recordar."
   },
   "zxOTCH": {
     "message": "Pago creado"
