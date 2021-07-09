@@ -11,6 +11,7 @@ function UpdatePasswordFom() {
     password: "",
     confirm_password: ""
   });
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { push } = useRouter();
@@ -63,7 +64,9 @@ function UpdatePasswordFom() {
       validateSecurityCode();
     }
   };
-
+  const toggleShowPasswordState = () => {
+    setShowPassword((prevState) => !prevState);
+  };
   if (!isUpdated) {
     return (
       <div className={styles.ResetPasswordWrapper}>
@@ -78,16 +81,24 @@ function UpdatePasswordFom() {
         </p>
         <AuthFormField
           label="Nueva Contraseña"
-          type="password"
+          type={showPassword ? "text" : "password"}
           value={newPassword.password}
           name="password"
           onChange={handleNewPasswordInputChange}
           onKeyPress={handleKeyPress}
+          onIconClick={toggleShowPasswordState}
+          iconElement={
+            !showPassword ? (
+              <i className="fas fa-eye cursor-pointer"></i>
+            ) : (
+              <i className="fas fa-eye-slash cursor-pointer"></i>
+            )
+          }
         />
         <AuthFormField
           label="Confirmar nueva Contraseña"
           name="confirm_password"
-          type="password"
+          type={showPassword ? "text" : "password"}
           value={newPassword.confirm_password}
           onChange={handleNewPasswordInputChange}
           onKeyPress={handleKeyPress}
