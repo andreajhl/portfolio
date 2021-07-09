@@ -295,6 +295,12 @@
       "value": "span"
     }
   ],
+  "3Szr5X": [
+    {
+      "type": 0,
+      "value": "Registrarme con Google"
+    }
+  ],
   "3T2iOg": [
     {
       "type": 0,
@@ -441,6 +447,12 @@
       "value": "Formato no valido"
     }
   ],
+  "5jWuaC": [
+    {
+      "type": 0,
+      "value": "Olvidaste tu contraseña"
+    }
+  ],
   "5sQzpi": [
     {
       "type": 0,
@@ -563,6 +575,12 @@
     {
       "type": 0,
       "value": "Ha ocurrido un error."
+    }
+  ],
+  "8wR3lj": [
+    {
+      "type": 0,
+      "value": "Contraseña actualizada"
     }
   ],
   "9KADbj": [
@@ -833,10 +851,22 @@
       "value": "Enviar comentario"
     }
   ],
+  "EqG/WU": [
+    {
+      "type": 0,
+      "value": "Asegurate de que sea una contraseña fácil de recordar."
+    }
+  ],
   "ErSRb8": [
     {
       "type": 0,
       "value": "Selecciona una tarjeta"
+    }
+  ],
+  "EwT5kN": [
+    {
+      "type": 0,
+      "value": "o regístrate con tu correo electrónico"
     }
   ],
   "FnHHT0": [
@@ -923,6 +953,12 @@
       "value": "Efectivo"
     }
   ],
+  "Hauttd": [
+    {
+      "type": 0,
+      "value": "Registrarme con Facebook"
+    }
+  ],
   "HmnV8f": [
     {
       "type": 0,
@@ -947,10 +983,22 @@
       "value": "¿Puedo bajar mi video?"
     }
   ],
+  "IdELJG": [
+    {
+      "type": 0,
+      "value": "Ingresar con Google"
+    }
+  ],
   "IeYjFw": [
     {
       "type": 0,
       "value": "Nicaragua"
+    }
+  ],
+  "Isy4qq": [
+    {
+      "type": 0,
+      "value": "Famoso"
     }
   ],
   "Iuyaxf": [
@@ -993,6 +1041,12 @@
     {
       "type": 0,
       "value": "Actualmente no se puede modificar la solicitud pero muy pronto podrás hacerlo!"
+    }
+  ],
+  "Jv23M2": [
+    {
+      "type": 0,
+      "value": "Ingresar con Facebook"
     }
   ],
   "K8SMPu": [
@@ -1045,6 +1099,28 @@
     {
       "type": 0,
       "value": "Ver video"
+    }
+  ],
+  "L08n/M": [
+    {
+      "type": 0,
+      "value": "¿No tienes una cuenta? "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Registrarme"
+        }
+      ],
+      "type": 8,
+      "value": "signUpLink"
+    }
+  ],
+  "L6k2XE": [
+    {
+      "type": 0,
+      "value": "Vive experiencias únicas con cientos de famosos latinos."
     }
   ],
   "Lbiy9R": [
@@ -1163,6 +1239,12 @@
     {
       "type": 0,
       "value": " videomensaje."
+    }
+  ],
+  "NLbEhA": [
+    {
+      "type": 0,
+      "value": "Indicanos tu correo electrónico y podrás restablecer tu contraseña."
     }
   ],
   "NROWdz": [
@@ -1423,6 +1505,22 @@
       "value": "Bolivia (Plurinational State of)"
     }
   ],
+  "SijdbJ": [
+    {
+      "type": 0,
+      "value": "Comprar video personalizado de "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    }
+  ],
+  "Spo/Vy": [
+    {
+      "type": 0,
+      "value": "Ir al Inicio"
+    }
+  ],
   "SvDN5n": [
     {
       "type": 0,
@@ -1631,6 +1729,20 @@
       "value": " que conecten personalidades con su fan base."
     }
   ],
+  "Xp7qs8": [
+    {
+      "type": 0,
+      "value": "¡Bienvenido a Famosos! "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " Crea una cuenta para empezar a conectar con tus famosos favoritos."
+    }
+  ],
   "Y6sFMj": [
     {
       "type": 0,
@@ -1679,6 +1791,18 @@
     {
       "type": 0,
       "value": "Ir a mis contrataciones"
+    }
+  ],
+  "ZDkLmZ": [
+    {
+      "type": 0,
+      "value": "Revisa tu correo electrónico e ingresa el código de 6 dígitos que has recibido"
+    }
+  ],
+  "ZPvdL/": [
+    {
+      "type": 0,
+      "value": "o ingresa con tu correo electrónico"
     }
   ],
   "ZcJeQh": [
@@ -1739,6 +1863,12 @@
     {
       "type": 0,
       "value": "Haz click sobre el siguiente botón para hacer el pago usando tu cuenta de PayPal."
+    }
+  ],
+  "b861FF": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Recuperar contraseña"
     }
   ],
   "b9prTq": [
@@ -1857,6 +1987,12 @@
       "value": "Correo electrónico de notificación:"
     }
   ],
+  "dPuxZs": [
+    {
+      "type": 0,
+      "value": "Registrarme y continuar"
+    }
+  ],
   "dUl69m": [
     {
       "type": 0,
@@ -1947,6 +2083,40 @@
     {
       "type": 0,
       "value": "ESTADO DEL PAGO:"
+    }
+  ],
+  "f6JH6I": [
+    {
+      "type": 0,
+      "value": "Al continuar acepto de manera expresa e informada los "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Términos y Condiciones"
+        }
+      ],
+      "type": 8,
+      "value": "termsLink"
+    },
+    {
+      "type": 0,
+      "value": " y la "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Política de Privacidad"
+        }
+      ],
+      "type": 8,
+      "value": "policiesLink"
+    },
+    {
+      "type": 0,
+      "value": " de Famosos Inc."
     }
   ],
   "fH+OCT": [
@@ -2045,6 +2215,12 @@
       "value": "Nombre"
     }
   ],
+  "hKJZJR": [
+    {
+      "type": 0,
+      "value": "Enviar"
+    }
+  ],
   "hZK5pi": [
     {
       "type": 0,
@@ -2079,6 +2255,24 @@
     {
       "type": 0,
       "value": "Motivacional"
+    }
+  ],
+  "jkPKiZ": [
+    {
+      "type": 0,
+      "value": "Olvidé mi contraseña"
+    }
+  ],
+  "jrPcz6": [
+    {
+      "type": 0,
+      "value": "Registrarme"
+    }
+  ],
+  "lGFIAN": [
+    {
+      "type": 0,
+      "value": "Crea una cuenta para poder conectar con los famosos."
     }
   ],
   "lSxRsO": [
@@ -2171,6 +2365,12 @@
       "value": "Pago expirado"
     }
   ],
+  "nJRa/h": [
+    {
+      "type": 0,
+      "value": "Recibe promociones y noticias sobre famosos que se sumen a nuestra comunidad."
+    }
+  ],
   "nMFRRt": [
     {
       "type": 0,
@@ -2251,12 +2451,6 @@
     {
       "type": 0,
       "value": "Buscar categoría"
-    }
-  ],
-  "ozB97A": [
-    {
-      "type": 0,
-      "value": "Ingresa a tu cuenta ahora para conectar con los famosos y vivir experiencias únicas"
     }
   ],
   "oztDf2": [
@@ -2873,6 +3067,22 @@
       "value": "Estamos haciendo lo posible por resolverlo."
     }
   ],
+  "rtwrcq": [
+    {
+      "type": 0,
+      "value": "¿Ya tienes una cuenta? "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Iniciar sesión"
+        }
+      ],
+      "type": 8,
+      "value": "signInLink"
+    }
+  ],
   "ruSOFj": [
     {
       "type": 0,
@@ -2993,6 +3203,12 @@
       "value": "Famosos.com - Blog"
     }
   ],
+  "uKwcXA": [
+    {
+      "type": 0,
+      "value": "Crea una cuenta para poder conectar con los famosos"
+    }
+  ],
   "uMrHKU": [
     {
       "type": 0,
@@ -3003,6 +3219,12 @@
     {
       "type": 0,
       "value": "Coach"
+    }
+  ],
+  "uSPUjx": [
+    {
+      "type": 0,
+      "value": "Cambiar tu contraseña"
     }
   ],
   "uVgimH": [
@@ -3021,6 +3243,12 @@
     {
       "type": 0,
       "value": "Para:"
+    }
+  ],
+  "uleYZ4": [
+    {
+      "type": 0,
+      "value": "Para continuar actualiza la contraseña de tu cuenta."
     }
   ],
   "ut6hvz": [
@@ -3063,6 +3291,12 @@
       "value": "La autorización de tu pago se ha realizado con éxito."
     }
   ],
+  "vcGTkv": [
+    {
+      "type": 0,
+      "value": "Registro"
+    }
+  ],
   "vf4Bo1": [
     {
       "type": 0,
@@ -3103,6 +3337,12 @@
     {
       "type": 0,
       "value": "Si utilizas el link de referido de uno de los Famosos registrados en la plataforma tendrás más oportunidades de ser aprobado, este link es único por cuenta y está disponible en la sección de Mi Perfil de la aplicación de los Famosos."
+    }
+  ],
+  "wkaVGz": [
+    {
+      "type": 0,
+      "value": "Ingresa a tu cuenta para poder conectar con los famosos"
     }
   ],
   "wlTYUV": [
