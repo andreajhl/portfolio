@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
 import axios from "axios";
 import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
+import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 
 async function validateSecurityCode(
   req: NextApiRequest,
@@ -31,7 +32,8 @@ async function validateSecurityCode(
               data.token,
               {
                 path: "/",
-                sameSite: "lax"
+                sameSite: "lax",
+                maxAge: ONE_YEAR_IN_MILLISECONDS
                 // ...generateHttpOnlyCookie()
               }
             )

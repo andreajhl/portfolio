@@ -3,6 +3,7 @@ import { serialize } from "cookie";
 import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
 
 import axios from "axios";
+import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 
 async function emailPasswordSignUpHandler(
   req: NextApiRequest,
@@ -35,7 +36,8 @@ async function emailPasswordSignUpHandler(
             {
               path: "/",
               sameSite: "lax",
-              ...generateHttpOnlyCookie
+              maxAge: ONE_YEAR_IN_MILLISECONDS
+              // ...generateHttpOnlyCookie
             }
           )
         );

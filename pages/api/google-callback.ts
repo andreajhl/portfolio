@@ -5,6 +5,7 @@ import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCook
 import axios from "axios";
 import { AUTH_SUCCESS } from "react-app/src/routing/Paths";
 import { NEXT_LOCALE } from "constants/keys";
+import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 
 const ERROR_MESSAGE_CODE_NOT_FOUND = "No code was provided";
 
@@ -47,7 +48,8 @@ async function googleCallbackHandler(
             data.token,
             {
               path: "/",
-              sameSite: "lax"
+              sameSite: "lax",
+              maxAge: ONE_YEAR_IN_MILLISECONDS
               // ...generateHttpOnlyCookie()
             }
           )

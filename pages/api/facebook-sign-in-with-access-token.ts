@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize, parse } from "cookie";
 import axios from "axios";
 import { NEXT_LOCALE } from "constants/keys";
+import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 
 async function facebookSignInWithAccessToken(
   req: NextApiRequest,
@@ -35,7 +36,8 @@ async function facebookSignInWithAccessToken(
               data.token,
               {
                 path: "/",
-                sameSite: "lax"
+                sameSite: "lax",
+                maxAge: ONE_YEAR_IN_MILLISECONDS
               }
             )
           );
