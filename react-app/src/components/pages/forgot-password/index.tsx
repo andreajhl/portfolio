@@ -11,7 +11,10 @@ function ForgotPassword() {
       <main className={classes("container", styles.Container)}>
         <div>
           <h1 className={styles.Title}>
-            <FormattedMessage defaultMessage="Recuperar contraseña" />
+            <FormattedMessage
+              defaultMessage="Olvidaste tu contraseña
+"
+            />
           </h1>
           <ResetPassword />
         </div>

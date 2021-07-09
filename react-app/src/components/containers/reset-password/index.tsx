@@ -80,7 +80,7 @@ function ResetPassword() {
     return (
       <div className={styles.ResetPasswordWrapper}>
         <p className={styles.SubTitle}>
-          <FormattedMessage defaultMessage="Ingresa tu correo electrónico para poder restablecer tu contraseña." />
+          <FormattedMessage defaultMessage="Indicanos tu correo electrónico y podrás restablecer tu contraseña." />
         </p>
         <AuthFormField
           label={<FormattedMessage defaultMessage="Correo electrónico" />}
@@ -114,8 +114,8 @@ function ResetPassword() {
     <div className={styles.ResetPasswordWrapper}>
       <p className={styles.SubTitle}>
         <FormattedMessage
-          defaultMessage="Ingresa el código de 6 dígitos que enviamos a tu correo electrónico.
-          "
+          defaultMessage="Revisa tu correo electrónico e ingresa el código de 6 dígitos que has recibido
+"
         />
       </p>
       <AuthFormField
