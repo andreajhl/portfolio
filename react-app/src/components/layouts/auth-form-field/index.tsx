@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 
 type AuthFormFieldProps = {
   className?: string;
-  label?: string;
+  label?: string | ReactNode;
   iconElement?: ReactNode;
   onIconClick?: () => void;
 } & InputHTMLAttributes<HTMLInputElement>;

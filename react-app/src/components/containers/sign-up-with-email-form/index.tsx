@@ -207,14 +207,14 @@ class SignUpEmailPasswordForm extends React.Component<
           <FormattedMessage defaultMessage="o regístrate con tu correo electrónico" />
         </h3>
         <AuthFormField
-          label="Nombre"
+          label={<FormattedMessage defaultMessage="Nombre" />}
           placeholder="Marcos"
           value={this.state.fullName}
           onChange={this.handleFullNameInput}
         />
         <AuthFormField
           type="date"
-          label="Cumpleaños"
+          label={<FormattedMessage defaultMessage="Cumpleaños" />}
           placeholder="DD / MM / AA"
           value={this.state.birthDate}
           onChange={this.handleBirthDateInput}
@@ -244,7 +244,7 @@ class SignUpEmailPasswordForm extends React.Component<
         {/*TODO: Input group with show password button*/}
         <AuthFormField
           type={this.state.showPassword ? "text" : "password"}
-          label="Confirmar contraseña"
+          label={<FormattedMessage defaultMessage="Confirmar" />}
           placeholder="**********"
           value={this.state.confirmationPassword}
           onChange={this.handleConfirmationPasswordInput}
@@ -253,7 +253,9 @@ class SignUpEmailPasswordForm extends React.Component<
           id="accept-offers-and-benefits"
           className={styles.SignUpBoxSwitcher}
           type="switch"
-          label="Quiero recibir ofertas y beneficios exclusivos."
+          label={
+            <FormattedMessage defaultMessage="Quiero recibir ofertas y beneficios exclusivos." />
+          }
           checked={this.state.allowNotifications}
           onChange={this.handleAllowNotificationsInput}
         />

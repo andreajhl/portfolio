@@ -77,7 +77,7 @@ function ResetPassword() {
           <FormattedMessage defaultMessage="Ingresa tu correo electrónico para poder restablecer tu contraseña." />
         </p>
         <AuthFormField
-          label="Correo electrónico"
+          label={<FormattedMessage defaultMessage="Correo electrónico" />}
           placeholder="usuario@dominio.com"
           value={email}
           onChange={handleEmailInput}
@@ -104,7 +104,7 @@ function ResetPassword() {
         />
       </p>
       <AuthFormField
-        label="Código de seguridad"
+        label={<FormattedMessage defaultMessage="Código de seguridad" />}
         placeholder="123456"
         value={securityCode}
         type="number"

@@ -77,7 +77,7 @@ function UpdatePasswordFom() {
           <FormattedMessage defaultMessage="Asegúrate de que sea una contraseña fácil de recordar." />
         </p>
         <AuthFormField
-          label="Nueva Contraseña"
+          label={<FormattedMessage defaultMessage="Nueva Contraseña" />}
           type={showPassword ? "text" : "password"}
           value={newPassword.password}
           name="password"
@@ -93,7 +93,9 @@ function UpdatePasswordFom() {
           }
         />
         <AuthFormField
-          label="Confirmar nueva Contraseña"
+          label={
+            <FormattedMessage defaultMessage="Confirmar nueva Contraseña" />
+          }
           name="confirm_password"
           type={showPassword ? "text" : "password"}
           value={newPassword.confirm_password}
