@@ -701,6 +701,12 @@
       "value": "Any user content will be non-confidential and non-proprietary and will not be responsible for any use or disclosure of user content. You acknowledge and agree that your relationship with us is not a confidential, fiduciary, or other type of special relationship, and that your decision to submit any user content does not place us in a position that is different from the position held by members of the general public, in particular with respect to your user content. None of your User Content will be subject to any confidentiality obligation on our part and will not be responsible for any use or disclosure of any User Content you provide."
     }
   ],
+  "8nG5TB": [
+    {
+      "type": 0,
+      "value": "Invalid email."
+    }
+  ],
   "8sMHw3": [
     {
       "type": 0,
@@ -1055,6 +1061,12 @@
     {
       "type": 0,
       "value": "Uruguay"
+    }
+  ],
+  "EoWjUN": [
+    {
+      "type": 0,
+      "value": "Password field is required."
     }
   ],
   "Eq0gTc": [
@@ -1951,6 +1963,12 @@
     {
       "type": 0,
       "value": "Failed collection"
+    }
+  ],
+  "Uu4RMA": [
+    {
+      "type": 0,
+      "value": "Invalid credentials."
     }
   ],
   "V1RqDv": [

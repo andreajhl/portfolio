@@ -173,3 +173,19 @@ export const DOCUMENT_NAME_FOR_COUNTRIES = defineMessages({
   ARS: { defaultMessage: "DNI o CUIT" },
   USD: { defaultMessage: "Social Security Number / SSN" }
 });
+
+export const LOGIN_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
+  "Invalid email",
+  "Password field is required",
+  "invalid credentials"
+];
+
+export const TRANSLATION_LOGIN_ERROR_MESSAGES = defineMessages({
+  "Invalid email": { defaultMessage: "Email invalido." },
+  "Password field is required": {
+    defaultMessage: "El campo de contraseña es obligatorio"
+  },
+  "invalid credentials": {
+    defaultMessage: "credenciales invalidas"
+  }
+});

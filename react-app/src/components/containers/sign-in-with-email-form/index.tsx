@@ -2,16 +2,24 @@ import React from "react";
 import * as GTM from "../../../state/utils/gtm";
 import isEmail from "validator/lib/isEmail";
 import styles from "./styles.module.scss";
-import { FormattedMessage } from "react-intl";
+import {
+  FormattedMessage,
+  injectIntl,
+  WrappedComponentProps
+} from "react-intl";
 import { AuthFormField } from "../../layouts/auth-form-field";
 import classes from "classnames";
 import axios from "axios";
 import { Session } from "../../../state/utils/session";
+import {
+  LOGIN_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
+  TRANSLATION_LOGIN_ERROR_MESSAGES
+} from "react-app/src/constants/messages";
 
 // Props
 type SignInEmailPasswordFormProps = {
   email: string;
-};
+} & WrappedComponentProps;
 
 // State
 type SignInEmailPasswordFormState = {
@@ -123,9 +131,20 @@ class SignInEmailPasswordForm extends React.Component<
 
   renderError() {
     if (this.state.error !== null && this.state.error !== "") {
-      return <small className={"text-danger"}>Error {this.state.error}</small>;
+      return (
+        <small className={"text-danger"}>
+          Error{" "}
+          {LOGIN_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE.includes(
+            this.state.error
+          )
+            ? this.props.intl.formatMessage(
+                TRANSLATION_LOGIN_ERROR_MESSAGES[this.state.error]
+              )
+            : this.state.error}{" "}
+        </small>
+      );
     } else {
-      return <div />;
+      return null;
     }
   }
 
@@ -180,4 +199,5 @@ class SignInEmailPasswordForm extends React.Component<
   }
 }
 
-export { SignInEmailPasswordForm };
+const _SignInEmailPasswordForm = injectIntl(SignInEmailPasswordForm);
+export { _SignInEmailPasswordForm as SignInEmailPasswordForm };

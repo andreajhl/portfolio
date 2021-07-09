@@ -242,6 +242,9 @@
   "8fYxkw": {
     "message": "¿Qué quieres que diga {celebrityFullName}?"
   },
+  "8nG5TB": {
+    "message": "Email invalido."
+  },
   "8u0DFM": {
     "message": "Ha ocurrido un error."
   },
@@ -368,6 +371,9 @@
   },
   "EbbVcC": {
     "message": "Uruguay"
+  },
+  "EoWjUN": {
+    "message": "El campo de contraseña es obligatorio"
   },
   "Eq0gTc": {
     "message": "Enviar comentario"
@@ -700,6 +706,9 @@
   },
   "UcOT6A": {
     "message": "Cobro fallido"
+  },
+  "Uu4RMA": {
+    "message": "credenciales invalidas"
   },
   "VBvZa2": {
     "message": "Recibirás una notificación a <b></b> cuando tu video esté listo."

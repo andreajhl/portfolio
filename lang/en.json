@@ -1669,5 +1669,14 @@
   },
   "qL5Hl7": {
     "message": "Birthday"
+  },
+  "8nG5TB": {
+    "message": "Invalid email."
+  },
+  "EoWjUN": {
+    "message": "Password field is required."
+  },
+  "Uu4RMA": {
+    "message": "Invalid credentials."
   }
 }
