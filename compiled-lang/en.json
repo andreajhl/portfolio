@@ -701,6 +701,12 @@
       "value": "Any user content will be non-confidential and non-proprietary and will not be responsible for any use or disclosure of user content. You acknowledge and agree that your relationship with us is not a confidential, fiduciary, or other type of special relationship, and that your decision to submit any user content does not place us in a position that is different from the position held by members of the general public, in particular with respect to your user content. None of your User Content will be subject to any confidentiality obligation on our part and will not be responsible for any use or disclosure of any User Content you provide."
     }
   ],
+  "8mH/y7": [
+    {
+      "type": 0,
+      "value": "Birthdate field is required"
+    }
+  ],
   "8nG5TB": [
     {
       "type": 0,
@@ -1759,6 +1765,12 @@
       "value": "How many stars do you give to this video?"
     }
   ],
+  "Qgkwzh": [
+    {
+      "type": 0,
+      "value": "Invalid email"
+    }
+  ],
   "QqT6DL": [
     {
       "type": 0,
@@ -1947,6 +1959,12 @@
       "value": "Go back to home"
     }
   ],
+  "UIware": [
+    {
+      "type": 0,
+      "value": "This email isn't registered in famosos.com"
+    }
+  ],
   "UOKryr": [
     {
       "type": 0,
@@ -2111,6 +2129,12 @@
       "value": "You represent and warrant that:"
     }
   ],
+  "WsW1Wz": [
+    {
+      "type": 0,
+      "value": "Invalid credentails."
+    }
+  ],
   "Wu3wG5": [
     {
       "type": 0,
@@ -2195,6 +2219,12 @@
       "value": "In what currency would you like to pay?"
     }
   ],
+  "Xx+xSb": [
+    {
+      "type": 0,
+      "value": "Password length must contains least 6 characters"
+    }
+  ],
   "Y6+mfe": [
     {
       "type": 0,
@@ -2273,6 +2303,12 @@
     {
       "type": 0,
       "value": "Go to My Hires"
+    }
+  ],
+  "Z5ZMSV": [
+    {
+      "type": 0,
+      "value": "Name field is required"
     }
   ],
   "ZDkLmZ": [
@@ -2865,6 +2901,12 @@
     {
       "type": 0,
       "value": "Sign in  "
+    }
+  ],
+  "juVd4V": [
+    {
+      "type": 0,
+      "value": "Passwords do not match"
     }
   ],
   "kKaD9Y": [

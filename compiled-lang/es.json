@@ -597,6 +597,12 @@
       "value": "?"
     }
   ],
+  "8mH/y7": [
+    {
+      "type": 0,
+      "value": "El campo de fecha de nacimiento es obligatorio"
+    }
+  ],
   "8nG5TB": [
     {
       "type": 0,
@@ -1493,6 +1499,12 @@
       "value": "¿Cuántas estrellas le das a este video?"
     }
   ],
+  "Qgkwzh": [
+    {
+      "type": 0,
+      "value": "Correo invalido"
+    }
+  ],
   "QqT6DL": [
     {
       "type": 0,
@@ -1691,6 +1703,12 @@
       "value": "Volver a inicio"
     }
   ],
+  "UIware": [
+    {
+      "type": 0,
+      "value": "Este correo electrónico no esta registrado en famosos.com"
+    }
+  ],
   "UOKryr": [
     {
       "type": 0,
@@ -1817,6 +1835,12 @@
       "value": "Contrato Expirado"
     }
   ],
+  "WsW1Wz": [
+    {
+      "type": 0,
+      "value": "Credenciales invalidas."
+    }
+  ],
   "Wu3wG5": [
     {
       "type": 0,
@@ -1877,6 +1901,12 @@
       "value": " Crea una cuenta para empezar a conectar con tus famosos favoritos."
     }
   ],
+  "Xx+xSb": [
+    {
+      "type": 0,
+      "value": "La longitud de la contraseña debe contener al menos 6 caracteres"
+    }
+  ],
   "Y6sFMj": [
     {
       "type": 0,
@@ -1925,6 +1955,12 @@
     {
       "type": 0,
       "value": "Ir a mis contrataciones"
+    }
+  ],
+  "Z5ZMSV": [
+    {
+      "type": 0,
+      "value": "El campo de nombre es obligatorio"
     }
   ],
   "ZPvdL/": [
@@ -2395,6 +2431,12 @@
     {
       "type": 0,
       "value": "Registrarme"
+    }
+  ],
+  "juVd4V": [
+    {
+      "type": 0,
+      "value": "Las contraseñas no coinciden"
     }
   ],
   "lGFIAN": [

@@ -242,6 +242,9 @@
   "8fYxkw": {
     "message": "¿Qué quieres que diga {celebrityFullName}?"
   },
+  "8mH/y7": {
+    "message": "El campo de fecha de nacimiento es obligatorio"
+  },
   "8nG5TB": {
     "message": "Email invalido."
   },
@@ -620,6 +623,9 @@
   "Qdbxny": {
     "message": "¿Cuántas estrellas le das a este video?"
   },
+  "Qgkwzh": {
+    "message": "Correo invalido"
+  },
   "QqT6DL": {
     "message": "Contraseña"
   },
@@ -701,6 +707,9 @@
   "U48f7q": {
     "message": "Volver a inicio"
   },
+  "UIware": {
+    "message": "Este correo electrónico no esta registrado en famosos.com"
+  },
   "UOKryr": {
     "message": "¿Cuanto tiempo tarda un video en ser grabado?"
   },
@@ -757,6 +766,9 @@
   "WmWz59": {
     "message": "Contrato Expirado"
   },
+  "WsW1Wz": {
+    "message": "Credenciales invalidas."
+  },
   "Wu3wG5": {
     "message": "Descuento:"
   },
@@ -777,6 +789,9 @@
   },
   "Xp7qs8": {
     "message": "¡Bienvenido a Famosos! {br} Crea una cuenta para empezar a conectar con tus famosos favoritos."
+  },
+  "Xx+xSb": {
+    "message": "La longitud de la contraseña debe contener al menos 6 caracteres"
   },
   "Y6sFMj": {
     "description": "",
@@ -800,6 +815,9 @@
   },
   "Yxo8MA": {
     "message": "Ir a mis contrataciones"
+  },
+  "Z5ZMSV": {
+    "message": "El campo de nombre es obligatorio"
   },
   "ZPvdL/": {
     "message": "o ingresa con tu correo electrónico"
@@ -994,6 +1012,9 @@
   },
   "jrPcz6": {
     "message": "Registrarme"
+  },
+  "juVd4V": {
+    "message": "Las contraseñas no coinciden"
   },
   "lGFIAN": {
     "message": "Crea una cuenta para poder conectar con los famosos."

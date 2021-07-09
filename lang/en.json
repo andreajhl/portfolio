@@ -1678,5 +1678,26 @@
   },
   "Uu4RMA": {
     "message": "Invalid credentials."
+  },
+  "8mH/y7": {
+    "message": "Birthdate field is required"
+  },
+  "Qgkwzh": {
+    "message": "Invalid email"
+  },
+  "Xx+xSb": {
+    "message": "Password length must contains least 6 characters"
+  },
+  "juVd4V": {
+    "message": "Passwords do not match"
+  },
+  "Z5ZMSV": {
+    "message": "Name field is required"
+  },
+  "WsW1Wz": {
+    "message": "Invalid credentails."
+  },
+  "UIware": {
+    "message": "This email isn't registered in famosos.com"
   }
 }
