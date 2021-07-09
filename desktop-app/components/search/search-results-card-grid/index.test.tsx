@@ -1,7 +1,12 @@
 import { shallow } from "enzyme";
-import { ResultsCardGrid } from ".";
+import ReduxProvider from "__test__/ReduxProvider";
+import { SearchResultsCardGrid } from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<ResultsCardGrid />);
+  const wrapper = shallow(
+    <ReduxProvider>
+      <SearchResultsCardGrid />
+    </ReduxProvider>
+  );
   expect(wrapper.exists()).toBeTruthy();
 });

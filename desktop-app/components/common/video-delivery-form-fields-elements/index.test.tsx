@@ -9,6 +9,8 @@ it("renders without crashing", () => {
       onChange={() => {}}
       contractType={2}
       onSubmit={() => {}}
+      errors={{}}
+      isLoading={false}
     />
   );
   expect(wrapper.exists()).toBeTruthy();

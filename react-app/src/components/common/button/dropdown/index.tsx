@@ -1,5 +1,5 @@
 import classes from "classnames";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import styles from "./styles.module.scss";
 
 const addDropdownItemClass = (
@@ -9,6 +9,16 @@ const addDropdownItemClass = (
     className: classes("dropdown-item", child?.props?.className),
   });
 
+type DropdownProps = {
+  id?: string;
+  buttonChildren: ReactNode;
+  children: ReactNode;
+  className?: string;
+  buttonClassName?: string;
+  menuClassName?: string;
+  showClassName?: string;
+};
+
 function Dropdown({
   id = "dropdown-icon-button",
   buttonChildren,
@@ -17,7 +27,7 @@ function Dropdown({
   buttonClassName = "",
   menuClassName = "",
   showClassName = "",
-}) {
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleIsOpen() {

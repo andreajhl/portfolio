@@ -23,12 +23,12 @@ const statusData = {
 };
 
 type SaveStatusProps = {
-  className?: string;
   status?: StatusType;
+  className?: string;
 };
 
 function SaveStatus({ className = "", status }: SaveStatusProps) {
-  const { icon, text } = statusData[status];
+  const { icon, text } = statusData[status] || statusData.idle;
   return (
     <Collapse in={status !== "idle"} unmountOnExit>
       <div>

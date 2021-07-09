@@ -1,6 +1,9 @@
 import { shallow } from "enzyme";
 import testCelebrity from "__test__/fake-data/testCelebrity";
-import { contractToPay } from "__test__/testContract";
+import {
+  contractToPay,
+  testLastPayment,
+} from "__test__/fake-data/testContract";
 import InstructionsContractApproved from ".";
 
 it("renders without crashing", () => {
@@ -8,7 +11,7 @@ it("renders without crashing", () => {
     <InstructionsContractApproved
       contract={contractToPay}
       celebrity={testCelebrity}
-      lastPayment={undefined}
+      lastPayment={testLastPayment}
     />
   );
   expect(wrapper.exists()).toBeTruthy();

@@ -5,7 +5,6 @@ import styles from "./styles.module.scss";
 type ShareGiftDropdownButtonProps = {
   className?: string;
   deliveryTo: string;
-  deliveryFrom: string;
   contractReference: string;
 };
 

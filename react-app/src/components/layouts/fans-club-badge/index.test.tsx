@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
-import { FanClubBadge } from ".";
+import { FansClubBadge } from ".";
 
 it("should renders without crashing", () => {
-  const wrapper = shallow(<FanClubBadge />);
+  const wrapper = shallow(<FansClubBadge />);
   expect(wrapper.exists()).toBeTruthy();
 });

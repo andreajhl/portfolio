@@ -1,7 +1,8 @@
 import { shallow } from "enzyme";
-import { ShareDropdown } from ".";
+import testCelebrity from "__test__/fake-data/testCelebrity";
+import { ShareCelebrityDropdown } from ".";
 
 it("should renders without crashing", () => {
-  const wrapper = shallow(<ShareDropdown />);
+  const wrapper = shallow(<ShareCelebrityDropdown celebrity={testCelebrity} />);
   expect(wrapper.exists()).toBeTruthy();
 });

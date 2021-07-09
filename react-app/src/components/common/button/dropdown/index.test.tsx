@@ -1,7 +1,11 @@
 import { shallow } from "enzyme";
-import { DropDown } from ".";
+import { Dropdown } from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<DropDown />);
+  const wrapper = shallow(
+    <Dropdown buttonChildren={null}>
+      <></>
+    </Dropdown>
+  );
   expect(wrapper.exists()).toBeTruthy();
 });

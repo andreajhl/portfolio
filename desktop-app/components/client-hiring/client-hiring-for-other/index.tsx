@@ -22,7 +22,6 @@ function ClientHiringForOther({ contractData }: ClientHiringForOtherProps) {
         <ShareGiftDropdownButton
           className={styles.DeliverVideoCard}
           deliveryTo={contractData.deliveryTo}
-          deliveryFrom={contractData.deliveryFrom}
           contractReference={contractData.reference}
         />
         <GoToContractDetailsButton

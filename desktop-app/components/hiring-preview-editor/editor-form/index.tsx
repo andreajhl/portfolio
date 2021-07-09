@@ -46,7 +46,7 @@ type EditorFormProps = {
 function EditorForm({
   contractReference,
   occasion,
-  hiringPreviewConfiguration,
+  hiringPreviewConfiguration = {},
   onChange,
 }: EditorFormProps) {
   const [status, setStatus] = useStatus();

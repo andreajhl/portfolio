@@ -6,7 +6,7 @@ import CelebritiesSection from ".";
 it("renders without crashing", () => {
   const wrapper = shallow(
     <CelebritiesSection
-      celebritySection={sections[1] as CelebritySectionType}
+      celebritySection={sections[0] as CelebritySectionType}
     />
   );
   expect(wrapper.exists()).toBeTruthy();

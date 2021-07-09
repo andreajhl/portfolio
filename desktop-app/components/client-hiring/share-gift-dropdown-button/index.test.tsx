@@ -1,7 +1,9 @@
 import { shallow } from "enzyme";
-import { DeliverVideoCard } from ".";
+import { ShareGiftDropdownButton } from ".";
 
 it("should renders without crashing", () => {
-  const wrapper = shallow(<DeliverVideoCard deliveryTo="Ana" />);
+  const wrapper = shallow(
+    <ShareGiftDropdownButton deliveryTo="Ana" contractReference="123-123-123" />
+  );
   expect(wrapper.exists()).toBeTruthy();
 });

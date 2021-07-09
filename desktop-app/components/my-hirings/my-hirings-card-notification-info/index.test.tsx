@@ -1,7 +1,18 @@
 import { shallow } from "enzyme";
-import { MyHiringsCardDeliveryInfo } from ".";
+import { testMyHiringsContract } from "__test__/fake-data/testContract";
+import { MyHiringsCardNotificationInfo } from ".";
 
 it("renders without crashing", () => {
-  const wrapper = shallow(<MyHiringsCardDeliveryInfo />);
+  const wrapper = shallow(
+    <MyHiringsCardNotificationInfo
+      contractData={testMyHiringsContract}
+      isEditing={false}
+      values={{
+        deliveryContact: "",
+        deliveryContactCellphone: "",
+      }}
+      errors={{}}
+    />
+  );
   expect(wrapper.exists()).toBeTruthy();
 });

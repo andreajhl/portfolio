@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import testCelebrity from "__test__/fake-data/testCelebrity";
-import { contractToPay } from "__test__/testContract";
+import { contractToPay } from "__test__/fake-data/testContract";
 import ContractDetails from ".";
 
 it("renders without crashing", () => {
