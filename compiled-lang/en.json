@@ -1,4 +1,10 @@
 {
+  "+/MNWw": [
+    {
+      "type": 0,
+      "value": "Confirm"
+    }
+  ],
   "+c9FIk": [
     {
       "type": 0,
@@ -1583,6 +1589,12 @@
       "value": "Back to top"
     }
   ],
+  "Nzh0Uv": [
+    {
+      "type": 0,
+      "value": "Authentication Failed"
+    }
+  ],
   "O1JDs+": [
     {
       "type": 0,
@@ -1609,6 +1621,12 @@
     {
       "type": 0,
       "value": "A description of the copyrighted work you claim has been violated."
+    }
+  ],
+  "O9DChx": [
+    {
+      "type": 0,
+      "value": "Security code"
     }
   ],
   "OOBCGL": [
@@ -1649,6 +1667,12 @@
     {
       "type": 0,
       "value": "Be the first to add a comment."
+    }
+  ],
+  "Or996K": [
+    {
+      "type": 0,
+      "value": "New Password"
     }
   ],
   "P6ZBac": [
@@ -1721,6 +1745,12 @@
     {
       "type": 0,
       "value": "How many stars do you give to this video?"
+    }
+  ],
+  "QqT6DL": [
+    {
+      "type": 0,
+      "value": "Password"
     }
   ],
   "QtvgOo": [
@@ -1873,6 +1903,12 @@
     {
       "type": 0,
       "value": "Privacy"
+    }
+  ],
+  "TXYzmT": [
+    {
+      "type": 0,
+      "value": "Confirm New Password"
     }
   ],
   "TjibFs": [
@@ -3137,6 +3173,12 @@
       "value": "Bank transfer"
     }
   ],
+  "qL5Hl7": [
+    {
+      "type": 0,
+      "value": "Birthday"
+    }
+  ],
   "qMbb2M": [
     {
       "type": 0,
@@ -4119,6 +4161,12 @@
     {
       "type": 0,
       "value": "We improve and update the site and services often. We may change or discontinue the Site or Services at any time, with or without notice."
+    }
+  ],
+  "xBhNFv": [
+    {
+      "type": 0,
+      "value": "New Password"
     }
   ],
   "xKYHEI": [

@@ -1,4 +1,10 @@
 {
+  "+/MNWw": [
+    {
+      "type": 0,
+      "value": "Confirmar"
+    }
+  ],
   "+c9FIk": [
     {
       "type": 0,
@@ -365,6 +371,20 @@
       "value": "Aplicar"
     }
   ],
+  "4fXI87": [
+    {
+      "type": 0,
+      "value": "Además recibe un: "
+    },
+    {
+      "type": 1,
+      "value": "coupon"
+    },
+    {
+      "type": 0,
+      "value": " en tu primera compra."
+    }
+  ],
   "4r0tXK": [
     {
       "type": 0,
@@ -405,6 +425,12 @@
       "value": "span"
     }
   ],
+  "4xmXcX": [
+    {
+      "type": 0,
+      "value": "Hemos enviado tu código de descuento a tu correo electrónico."
+    }
+  ],
   "5+dpGU": [
     {
       "type": 0,
@@ -415,6 +441,12 @@
     {
       "type": 0,
       "value": "Puerto Rico"
+    }
+  ],
+  "5EACDj": [
+    {
+      "type": 0,
+      "value": "Debes introducir un correo electrónico valido"
     }
   ],
   "5HHVOz": [
@@ -445,12 +477,6 @@
     {
       "type": 0,
       "value": "Formato no valido"
-    }
-  ],
-  "5jWuaC": [
-    {
-      "type": 0,
-      "value": "Olvidaste tu contraseña"
     }
   ],
   "5sQzpi": [
@@ -581,6 +607,12 @@
     {
       "type": 0,
       "value": "Contraseña actualizada"
+    }
+  ],
+  "8xaGaO": [
+    {
+      "type": 0,
+      "value": "Suscríbete a nuestro newsletter y entérate de todas nuestras novedades y promociones exclusivas"
     }
   ],
   "9KADbj": [
@@ -725,6 +757,26 @@
       "value": "Escribe tu Subdominio Ej: /andresito"
     }
   ],
+  "BI4zr5": [
+    {
+      "type": 0,
+      "value": "Además recibe un "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "10% DE DCTO."
+        }
+      ],
+      "type": 8,
+      "value": "bigTextSpan"
+    },
+    {
+      "type": 0,
+      "value": " en tu primera compra"
+    }
+  ],
   "BiLnNi": [
     {
       "type": 0,
@@ -851,12 +903,6 @@
       "value": "Enviar comentario"
     }
   ],
-  "EqG/WU": [
-    {
-      "type": 0,
-      "value": "Asegurate de que sea una contraseña fácil de recordar."
-    }
-  ],
   "ErSRb8": [
     {
       "type": 0,
@@ -941,6 +987,12 @@
       "value": "Paypal"
     }
   ],
+  "HEGBTi": [
+    {
+      "type": 0,
+      "value": "Debes introducir una fecha valida. Ejemplo: 2020-06-25"
+    }
+  ],
   "HG1X7k": [
     {
       "type": 0,
@@ -971,6 +1023,12 @@
       "value": "Reintentar"
     }
   ],
+  "HsosK3": [
+    {
+      "type": 0,
+      "value": "Para continuar crea una nueva contraseña para tu cuenta."
+    }
+  ],
   "IEazN6": [
     {
       "type": 0,
@@ -987,6 +1045,12 @@
     {
       "type": 0,
       "value": "Ingresar con Google"
+    }
+  ],
+  "IdffHT": [
+    {
+      "type": 0,
+      "value": "Quiero recibir ofertas y beneficios exclusivos."
     }
   ],
   "IeYjFw": [
@@ -1035,6 +1099,12 @@
     {
       "type": 0,
       "value": "En nuestro sitio web utilizamos cookies propias y de terceros para mejorar la experiencia de usuario, rendimiento, análisis y otro fines. Al hacer clic en aceptar o utilizar nuestro sitio, estarás aceptando el uso de estas cookies."
+    }
+  ],
+  "JS+isq": [
+    {
+      "type": 0,
+      "value": "Cupón"
     }
   ],
   "JiRPeP": [
@@ -1165,6 +1235,12 @@
       "value": "Videos similares"
     }
   ],
+  "MMb74M": [
+    {
+      "type": 0,
+      "value": "Debes introducir una fecha"
+    }
+  ],
   "MQJt4R": [
     {
       "type": 0,
@@ -1241,12 +1317,6 @@
       "value": " videomensaje."
     }
   ],
-  "NLbEhA": [
-    {
-      "type": 0,
-      "value": "Indicanos tu correo electrónico y podrás restablecer tu contraseña."
-    }
-  ],
   "NROWdz": [
     {
       "type": 0,
@@ -1283,6 +1353,12 @@
       "value": "Volver arriba"
     }
   ],
+  "Nzh0Uv": [
+    {
+      "type": 0,
+      "value": "Autenticación Fallida"
+    }
+  ],
   "O1JDs+": [
     {
       "type": 0,
@@ -1297,6 +1373,12 @@
       ],
       "type": 8,
       "value": "span"
+    }
+  ],
+  "O9DChx": [
+    {
+      "type": 0,
+      "value": "Código de seguridad"
     }
   ],
   "OOBCGL": [
@@ -1337,6 +1419,12 @@
     {
       "type": 0,
       "value": "Sé el primero en agregar un comentario."
+    }
+  ],
+  "Or996K": [
+    {
+      "type": 0,
+      "value": "Nueva contraseña"
     }
   ],
   "P6ZBac": [
@@ -1393,6 +1481,12 @@
       "value": "¿Cuántas estrellas le das a este video?"
     }
   ],
+  "QqT6DL": [
+    {
+      "type": 0,
+      "value": "Contraseña"
+    }
+  ],
   "QtvgOo": [
     {
       "type": 0,
@@ -1409,6 +1503,22 @@
     {
       "type": 0,
       "value": "Pago rechazado"
+    }
+  ],
+  "RR1tnZ": [
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "10%"
+        }
+      ],
+      "type": 8,
+      "value": "bigTextSpan"
+    },
+    {
+      "type": 0,
+      "value": " de descuento."
     }
   ],
   "RWLUps": [
@@ -1537,6 +1647,12 @@
     {
       "type": 0,
       "value": "Privacidad"
+    }
+  ],
+  "TXYzmT": [
+    {
+      "type": 0,
+      "value": "Confirmar nueva Contraseña"
     }
   ],
   "TjibFs": [
@@ -1791,12 +1907,6 @@
     {
       "type": 0,
       "value": "Ir a mis contrataciones"
-    }
-  ],
-  "ZDkLmZ": [
-    {
-      "type": 0,
-      "value": "Revisa tu correo electrónico e ingresa el código de 6 dígitos que has recibido"
     }
   ],
   "ZPvdL/": [
@@ -2347,6 +2457,18 @@
       "value": "Escribe aquí el nombre"
     }
   ],
+  "n1VWvq": [
+    {
+      "type": 0,
+      "value": "Ingresa tu correo electrónico para poder restablecer tu contraseña."
+    }
+  ],
+  "n6yBXT": [
+    {
+      "type": 0,
+      "value": "Ingresa el código de 6 dígitos que enviamos a tu correo electrónico."
+    }
+  ],
   "n9i+Em": [
     {
       "type": 0,
@@ -2387,6 +2509,12 @@
       "value": "celebrity_username"
     }
   ],
+  "nbZMXN": [
+    {
+      "type": 0,
+      "value": "Suscríbete a nuestro newsletter y entérate de nuestras novedades y promociones exclusivas."
+    }
+  ],
   "nnRGWT": [
     {
       "type": 0,
@@ -2397,6 +2525,12 @@
     {
       "type": 0,
       "value": "Puedes consultar el estado de tu video en “Mis Contrataciones”"
+    }
+  ],
+  "o8JdL0": [
+    {
+      "type": 0,
+      "value": "Ha ocurrido un error realizando el registro"
     }
   ],
   "oACmv6": [
@@ -2487,6 +2621,12 @@
     {
       "type": 0,
       "value": "Transferencia Bancaria"
+    }
+  ],
+  "qL5Hl7": [
+    {
+      "type": 0,
+      "value": "Cumpleaños"
     }
   ],
   "qMbb2M": [
@@ -3089,6 +3229,12 @@
       "value": "Presentadores"
     }
   ],
+  "sSxzJC": [
+    {
+      "type": 0,
+      "value": "Este correo ya está suscrito al newsletter"
+    }
+  ],
   "sXLa3f": [
     {
       "type": 0,
@@ -3221,12 +3367,6 @@
       "value": "Coach"
     }
   ],
-  "uSPUjx": [
-    {
-      "type": 0,
-      "value": "Cambiar tu contraseña"
-    }
-  ],
   "uVgimH": [
     {
       "type": 0,
@@ -3239,16 +3379,16 @@
       "value": "Transferencia bancaria"
     }
   ],
+  "ufYXOt": [
+    {
+      "type": 0,
+      "value": "Recuperar contraseña"
+    }
+  ],
   "ujraGu": [
     {
       "type": 0,
       "value": "Para:"
-    }
-  ],
-  "uleYZ4": [
-    {
-      "type": 0,
-      "value": "Para continuar actualiza la contraseña de tu cuenta."
     }
   ],
   "ut6hvz": [
@@ -3385,6 +3525,12 @@
       "value": " es aproximado"
     }
   ],
+  "xBhNFv": [
+    {
+      "type": 0,
+      "value": "Nueva Contraseña"
+    }
+  ],
   "xKYHEI": [
     {
       "type": 0,
@@ -3479,6 +3625,12 @@
     {
       "type": 0,
       "value": "Comediantes"
+    }
+  ],
+  "zuf/CK": [
+    {
+      "type": 0,
+      "value": "Asegúrate de que sea una contraseña fácil de recordar."
     }
   ],
   "zxOTCH": [

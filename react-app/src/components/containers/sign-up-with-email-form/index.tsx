@@ -220,7 +220,7 @@ class SignUpEmailPasswordForm extends React.Component<
           onChange={this.handleBirthDateInput}
         />
         <AuthFormField
-          label="Correo electrónico"
+          label={<FormattedMessage defaultMessage="Correo electrónico" />}
           placeholder="usuario@dominio.com"
           value={this.state.email}
           onChange={this.handleEmailInput}
@@ -228,7 +228,7 @@ class SignUpEmailPasswordForm extends React.Component<
         {/*TODO: Input group with show password button*/}
         <AuthFormField
           type={this.state.showPassword ? "text" : "password"}
-          label="Contraseña"
+          label={<FormattedMessage defaultMessage="Contraseña" />}
           placeholder="**********"
           value={this.state.password}
           onChange={this.handlePasswordInput}
