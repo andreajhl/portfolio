@@ -67,7 +67,7 @@ describe("'CelebrityCardLayout' renders properly", () => {
     ).toBeFalsy();
   });
 
-  test("should render the celebrity price", () => {
+  test.skip("should render the celebrity price", () => {
     expect(
       wrapper.containsMatchingElement(
         <ContractPriceLayout

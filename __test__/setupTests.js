@@ -1,6 +1,10 @@
 const Adapter = require("enzyme-adapter-react-16");
 const { configure } = require("enzyme");
 const preloadAll = require("jest-next-dynamic");
+const enableHooks = require("jest-react-hooks-shallow").default;
+
+/* This package makes React Hooks (namely, useEffect() and useLayoutEffect()) work with shallow rendering. Use withoutHooks to opt-out this behaviour for mount rendering testing. */
+enableHooks(jest);
 
 configure({ adapter: new Adapter() });
 
