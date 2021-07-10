@@ -25,7 +25,7 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
   const [status, setStatus] = useStatus("idle");
   const [resultsQuery, setResultsQuery] = useState([]);
   const [currentQuery, setCurrentQuery] = useState<string>(
-    String(query.search || "")
+    String(query?.search || "")
   );
 
   const getResults = useCallback(

@@ -25,6 +25,7 @@ import { CreateContractWizardSkeleton } from "desktop-app/components/celebrity-p
 import { ComponentProps as CreateContractWizardProps } from "desktop-app/components/celebrity-profile/create-contract-wizard/types";
 import dynamic from "next/dynamic";
 import useGlobalFetches from "lib/hooks/useGlobalFetches";
+import { CREATE_CONTRACT_WIZARD_TEST_ID } from "__test__/testids";
 
 const CreateContractWizard = dynamic<CreateContractWizardProps>(
   () =>
@@ -155,6 +156,7 @@ function CelebrityProfilePage({
               orElse={<CreateContractWizardSkeleton />}
             >
               <CreateContractWizard
+                data-testid={CREATE_CONTRACT_WIZARD_TEST_ID}
                 className={classes(
                   styles.CreateContractWizard,
                   createContractWizardIsFocused && styles.ContractWizardFocused
@@ -215,5 +217,7 @@ function CelebrityProfilePage({
 }
 
 const _CelebrityProfilePage = connector(CelebrityProfilePage);
+
+export default CelebrityProfilePage;
 
 export { _CelebrityProfilePage as CelebrityProfilePage };
