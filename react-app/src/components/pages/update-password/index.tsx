@@ -12,7 +12,7 @@ function UpdatePassword() {
         <div>
           <h1 className={styles.Title}>
             <FormattedMessage
-              defaultMessage="Nueva contraseña
+              defaultMessage="Cambiar tu contraseña
 "
             />
           </h1>

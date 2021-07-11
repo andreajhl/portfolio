@@ -2,7 +2,8 @@ import React from "react";
 import { withRouter } from "../../common/routing";
 import {
   CELEBRITY_PROFILE_CONTRACT,
-  AUTH_SUCCESS
+  AUTH_SUCCESS,
+  SIGN_IN_PATH_FROM
 } from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
@@ -39,11 +40,9 @@ const HireThisCelebrityButton = ({
         "/" + celebrityUsername + "/contratar"
       );
       if (isMobile | isSafari) {
-        loginWithRedirect({
-          redirectUri: window.location.origin + AUTH_SUCCESS
-        });
+        loginWithRedirect({ returnTo: SIGN_IN_PATH_FROM });
       } else {
-        loginWithPopup();
+        loginWithPopup({ returnTo: SIGN_IN_PATH_FROM });
       }
     } else {
       history.push(

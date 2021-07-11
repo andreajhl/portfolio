@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import styles from "./styles.module.scss";
 import classes from "classnames";
 import { AuthFormField } from "../../layouts/auth-form-field";
 import { useRouter } from "next/router";
 import { CHANGE_PASSWORD_PATH } from "../../../routing/Paths";
 import { Session } from "react-app/src/state/utils/session";
+import {
+  RESET_PASSSWORD_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
+  TRANSLATION_RESET_PASSSWORD_MESSAGES
+} from "react-app/src/constants/messages";
 
 function ResetPassword() {
   const { push } = useRouter();
+  const { formatMessage } = useIntl();
   const [email, setEmail] = useState("");
   const [securityCode, setSecurityCode] = useState("");
   const [isEmailSend, setIsEmailSend] = useState(false);
@@ -70,11 +75,12 @@ function ResetPassword() {
     }
   };
 
+  console.log({ error });
   if (!isEmailSend) {
     return (
       <div className={styles.ResetPasswordWrapper}>
         <p className={styles.SubTitle}>
-          <FormattedMessage defaultMessage="Ingresa tu correo electrónico para poder restablecer tu contraseña." />
+          <FormattedMessage defaultMessage="Indicanos tu correo electrónico y podrás restablecer tu contraseña." />
         </p>
         <AuthFormField
           label={<FormattedMessage defaultMessage="Correo electrónico" />}
@@ -83,7 +89,16 @@ function ResetPassword() {
           onChange={handleEmailInput}
           onKeyPress={handleKeyPress}
         />
-        {error && <span className={styles.ErrorMessage}>{error}</span>}
+        {error && (
+          <span className={styles.ErrorMessage}>
+            {" "}
+            {RESET_PASSSWORD_MESSAGES_WITH_TRANSLATIONS_AVAILABLE.includes(
+              error
+            )
+              ? formatMessage(TRANSLATION_RESET_PASSSWORD_MESSAGES[error])
+              : error}{" "}
+          </span>
+        )}
         <button
           type="button"
           className={classes("btn btn-primary", styles.SignInBoxSubmitButton)}
@@ -99,8 +114,8 @@ function ResetPassword() {
     <div className={styles.ResetPasswordWrapper}>
       <p className={styles.SubTitle}>
         <FormattedMessage
-          defaultMessage="Ingresa el código de 6 dígitos que enviamos a tu correo electrónico.
-          "
+          defaultMessage="Revisa tu correo electrónico e ingresa el código de 6 dígitos que has recibido
+"
         />
       </p>
       <AuthFormField
@@ -111,7 +126,14 @@ function ResetPassword() {
         onChange={handleSecurityCodeInputChange}
         onKeyPress={handleKeyPress}
       />
-      {error && <span className={styles.ErrorMessage}>{error}</span>}
+      {error && (
+        <span className={styles.ErrorMessage}>
+          {" "}
+          {RESET_PASSSWORD_MESSAGES_WITH_TRANSLATIONS_AVAILABLE.includes(error)
+            ? formatMessage(TRANSLATION_RESET_PASSSWORD_MESSAGES[error])
+            : error}{" "}
+        </span>
+      )}{" "}
       <button
         type="button"
         className={classes("btn btn-primary", styles.SignInBoxSubmitButton)}

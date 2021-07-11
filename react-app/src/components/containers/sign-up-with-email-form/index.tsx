@@ -2,19 +2,26 @@ import React from "react";
 import * as GTM from "../../../state/utils/gtm";
 import isEmail from "validator/lib/isEmail";
 import styles from "./styles.module.scss";
-import { FormattedMessage, injectIntl } from "react-intl";
+import {
+  FormattedMessage,
+  injectIntl,
+  WrappedComponentProps
+} from "react-intl";
 import { AuthFormField } from "../../layouts/auth-form-field";
 import classes from "classnames";
 import axios from "axios";
 import { Session } from "../../../state/utils/session";
 import FormCheck from "react-bootstrap/FormCheck";
 import Maybe from "../../common/helpers/maybe";
+import {
+  SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
+  TRANSLATION_SIGN_UP_ERROR_MESSAGES
+} from "react-app/src/constants/messages";
 
 // Props
 type SignUpEmailPasswordFormProps = {
   willRedirect: boolean;
-  intl: any;
-};
+} & WrappedComponentProps;
 
 // State
 type SignUpEmailPasswordFormState = {
@@ -194,7 +201,18 @@ class SignUpEmailPasswordForm extends React.Component<
 
   renderError() {
     if (this.state.error !== null && this.state.error !== "") {
-      return <small className={"text-danger"}>Error {this.state.error}</small>;
+      return (
+        <small className={"text-danger"}>
+          Error:{" "}
+          {SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE.includes(
+            this.state.error
+          )
+            ? this.props.intl.formatMessage(
+                TRANSLATION_SIGN_UP_ERROR_MESSAGES[this.state.error]
+              )
+            : this.state.error}{" "}
+        </small>
+      );
     } else {
       return <div />;
     }
