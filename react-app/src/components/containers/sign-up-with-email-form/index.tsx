@@ -131,7 +131,7 @@ class SignUpEmailPasswordForm extends React.Component<
     }
     // Validate passwords
     if (this.state.password.length < 6) {
-      return "Password length must contains least 6 characters";
+      return "Password length must contain at least 6 characters";
     }
     if (this.state.password !== this.state.confirmationPassword) {
       return "Passwords do not match";
