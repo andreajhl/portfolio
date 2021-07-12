@@ -12,6 +12,10 @@ import {
 import StripeCardForm from "../stripe-card-form";
 import StripeCustomerSources from "../stripe-customer-sources";
 import styles from "./styles.module.scss";
+import scriptLoader from "react-async-script-loader";
+import { StripeProvider, Elements } from "react-stripe-elements";
+
+const scriptSrc = "https://js.stripe.com/v3/";
 
 type StripeFormProps = {
   expanded: boolean;
@@ -21,6 +25,8 @@ type StripeFormProps = {
   discountCouponId: number | null;
   onToggle: () => void;
   celebrityId: number;
+  isScriptLoaded: boolean;
+  isScriptLoadSucceed: boolean;
 };
 
 function StripeForm({
@@ -31,7 +37,17 @@ function StripeForm({
   contractPrice,
   discountCouponId,
   celebrityId,
+  isScriptLoaded,
+  isScriptLoadSucceed,
 }: StripeFormProps) {
+  const [stripeInstance, setStripeInstance] = useState(null);
+  useEffect(() => {
+    if (isScriptLoaded && isScriptLoadSucceed) {
+      console.log("StripeForm Script loaded");
+
+      setStripeInstance(window.Stripe(process.env.NEXT_PUBLIC_STRIPE_KEY));
+    }
+  }, [isScriptLoaded, isScriptLoadSucceed]);
   const [userAvailableSources, setUserAvailableSources] = useState([]);
   const fetchUserCards = useCallback(async () => {
     const response = await retrieveUserCards();
@@ -59,66 +75,72 @@ function StripeForm({
   const labelId = `label-${index}`;
 
   return (
-    <div className={styles.FormSection}>
-      <div
-        role="button"
-        onClick={onToggle}
-        onKeyDown={(e) => {
-          switch (e.key) {
-            case " ":
-            case "Enter":
-              onToggle();
-              break;
-            default:
-          }
-        }}
-        className={styles.FormLabel}
-      >
-        <CardIcon className={styles.CardIcon} />
+    <StripeProvider stripe={stripeInstance}>
+      <div className={styles.FormSection}>
+        <div
+          role="button"
+          onClick={onToggle}
+          onKeyDown={(e) => {
+            switch (e.key) {
+              case " ":
+              case "Enter":
+                onToggle();
+                break;
+              default:
+            }
+          }}
+          className={styles.FormLabel}
+        >
+          <CardIcon className={styles.CardIcon} />
 
-        <span className={styles.LabelSection}>Tarjeta de débito o crédito</span>
-        {expanded ? (
-          <DotCircle className={styles.CheckIcon} />
-        ) : (
-          <Ellipse className={styles.CheckIcon} />
-        )}
-      </div>
-      <div
-        role="region"
-        aria-labelledby={labelId}
-        id={sectionId}
-        hidden={!expanded}
-      >
-        <Maybe it={expanded}>
-          {showCardForm ? (
-            <StripeCardForm
-              contractPrice={contractPrice}
-              contractReference={contractReference}
-              discountCouponId={discountCouponId}
-              celebrityId={celebrityId}
-            />
+          <span className={styles.LabelSection}>
+            Tarjeta de débito o crédito
+          </span>
+          {expanded ? (
+            <DotCircle className={styles.CheckIcon} />
           ) : (
-            <StripeCustomerSources
-              onDeleteSource={onDeleteSource}
-              contractPrice={contractPrice}
-              contractReference={contractReference}
-              discountCouponId={discountCouponId}
-              celebrityId={celebrityId}
-              availableSources={userAvailableSources}
-            />
+            <Ellipse className={styles.CheckIcon} />
           )}
-          <button
-            className={`btn btn-outline ${styles.ChangeDisplayFormBtn}`}
-            onClick={() => setShowCardForm((value) => !value)}
-          >
-            {!showCardForm
-              ? "Agregar nueva tarjeta"
-              : "Seleccionar una tarjeta"}
-          </button>
-        </Maybe>
+        </div>
+        <div
+          role="region"
+          aria-labelledby={labelId}
+          id={sectionId}
+          hidden={!expanded}
+        >
+          <Maybe it={expanded}>
+            {showCardForm ? (
+              <Elements>
+                <StripeCardForm
+                  contractPrice={contractPrice}
+                  contractReference={contractReference}
+                  discountCouponId={discountCouponId}
+                  celebrityId={celebrityId}
+                />
+              </Elements>
+            ) : (
+              <StripeCustomerSources
+                onDeleteSource={onDeleteSource}
+                contractPrice={contractPrice}
+                contractReference={contractReference}
+                discountCouponId={discountCouponId}
+                celebrityId={celebrityId}
+                availableSources={userAvailableSources}
+              />
+            )}
+            <button
+              className={`btn btn-outline ${styles.ChangeDisplayFormBtn}`}
+              onClick={() => setShowCardForm((value) => !value)}
+            >
+              {!showCardForm
+                ? "Agregar nueva tarjeta"
+                : "Seleccionar una tarjeta"}
+            </button>
+          </Maybe>
+        </div>
       </div>
-    </div>
+    </StripeProvider>
   );
 }
 
-export default StripeForm;
+export default scriptLoader(scriptSrc)(StripeForm);

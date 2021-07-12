@@ -1,63 +1,74 @@
-import React, { useState } from "react";
-import {
-  CardElement,
-  Elements,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
+import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
-import { loadStripe } from "@stripe/stripe-js";
 import { processStripePayment } from "react-app/src/state/ducks/payments/actions";
 import styles from "./styles.module.scss";
-import { PURCHASE_SUMMARY } from "constants/paths";
+import {
+  PURCHASE_SUMMARY,
+  STRIPE_3D_SECURE_IFRAME,
+  STRIPE_3D_SECURE_RESPONSE,
+} from "constants/paths";
 import { analytics } from "react-app/src/state/utils/gtm";
+import {
+  CardElement,
+  injectStripe,
+  ReactStripeElements,
+} from "react-stripe-elements";
 
-const STRIPE_KEY = process.env.NEXT_PUBLIC_STRIPE_KEY;
-const stripePromise = loadStripe(STRIPE_KEY);
-
-type StripeCardFormProps = {
+type StripeComponentProps = {
   contractPrice: number;
   contractReference: string;
   discountCouponId: number | null;
   celebrityId: number;
+  stripe?: ReactStripeElements.StripeProps;
 };
 function StripeCardForm({
   discountCouponId,
   contractPrice,
   contractReference,
   celebrityId,
-}: StripeCardFormProps) {
-  return (
-    <Elements stripe={stripePromise}>
-      <CheckoutForm
-        discountCouponId={discountCouponId}
-        contractPrice={contractPrice}
-        contractReference={contractReference}
-        celebrityId={celebrityId}
-      />
-    </Elements>
-  );
-}
-
-export default StripeCardForm;
-
-const CheckoutForm = ({
-  contractReference,
-  contractPrice,
-  discountCouponId = null,
-  celebrityId,
-}) => {
+  stripe,
+}: StripeComponentProps) {
   const { push } = useRouter();
-  const stripe = useStripe();
-  const elements = useElements();
-  const [error, setError] = useState(null);
   const [cardComplete, setCardComplete] = useState(false);
+  const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [billingDetails, setBillingDetails] = useState({
     email: "",
     name: "",
   });
+
+  const createStripe3DFlow = async (sourceId) => {
+    const iframeUrl = STRIPE_3D_SECURE_IFRAME.replace(
+      ":contract_reference",
+      contractReference
+    );
+    const responseURL =
+      window.location.origin +
+      STRIPE_3D_SECURE_RESPONSE.replace(
+        ":contract_reference",
+        contractReference
+      );
+    console.log({ responseURL });
+    await stripe
+      .createSource({
+        type: "three_d_secure",
+        currency: "USD",
+        amount: contractPrice * 100,
+        three_d_secure: { card: sourceId },
+        redirect: {
+          return_url: responseURL,
+        },
+        owner: billingDetails,
+      })
+      .then((response) => {
+        push({
+          pathname: iframeUrl,
+          query: { url: response.source.redirect.url },
+        });
+      })
+      .catch((error) => setError(error));
+  };
 
   const applyStripeAuth = (sourceId) => {
     processStripePayment(contractReference, sourceId, discountCouponId)
@@ -96,14 +107,13 @@ const CheckoutForm = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
-      return;
-    }
+    // if (!stripe || !elements) {
+    //   // Stripe.js has not loaded yet. Make sure to disable
+    //   // form submission until Stripe.js has loaded.
+    //   return;
+    // }
 
     if (error) {
-      elements.getElement("card").focus();
       return;
     }
 
@@ -111,28 +121,28 @@ const CheckoutForm = ({
       setProcessing(true);
     }
 
-    const payload = await stripe.createSource(
-      elements.getElement(CardElement),
-      {
+    const payload = await stripe
+      .createSource({
         type: "card",
         currency: "USD",
-        amount: contractPrice * 100,
         owner: billingDetails,
         usage: "reusable",
-      }
-    );
-
-    setProcessing(false);
-
-    if (payload.error) {
-      setError(payload.error);
-    } else {
-      if (
-        payload.source.status === "chargeable" &&
-        payload.source.card.three_d_secure === "optional"
-      )
-        applyStripeAuth(payload.source.id);
-    }
+      })
+      .then((response) => {
+        console.log("response.source", response.source);
+        if (
+          response.source.status === "chargeable" &&
+          response.source.card.three_d_secure === "optional"
+        ) {
+          applyStripeAuth(response.source.id);
+        } else if (
+          response.source.card.three_d_secure === "optional" ||
+          response.source.card.three_d_secure === "required" ||
+          response.source.card.three_d_secure === "recommended"
+        ) {
+          createStripe3DFlow(response.source.id);
+        }
+      });
   };
 
   const reset = () => {
@@ -185,20 +195,28 @@ const CheckoutForm = ({
       </fieldset>
       <fieldset>
         <label className={styles.LabelForm}>Datos de la tarjeta</label>
-        <CardField
-          onChange={(e) => {
-            setError(e.error);
-            setCardComplete(e.complete);
-          }}
-        />
+        <div>
+          <CardElement
+            onChange={(event) => {
+              if (event.complete) {
+                setCardComplete(event.complete);
+                setError(null);
+              } else if (event.error) {
+                setError(event.error);
+              }
+            }}
+          />
+        </div>
       </fieldset>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
-      <SubmitButton processing={processing} error={error} disabled={!stripe}>
+      <SubmitButton processing={processing} error={error} disabled={false}>
         Pagar
       </SubmitButton>
     </form>
   );
-};
+}
+
+export default injectStripe(StripeCardForm);
 
 const Field = ({
   label,
@@ -224,12 +242,6 @@ const Field = ({
       value={value}
       onChange={onChange}
     />
-  </div>
-);
-
-const CardField = ({ onChange }) => (
-  <div className="FormRow">
-    <CardElement onChange={onChange} />
   </div>
 );
 
