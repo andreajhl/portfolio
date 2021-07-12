@@ -1,4 +1,5 @@
 import ClientContractType from "desktop-app/types/clientContract";
+import ContractInProgressType from "desktop-app/types/contractInProgressType";
 import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfigurationType";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
 
@@ -112,6 +113,22 @@ export const testHiringConfiguration: HiringPreviewConfigurationType = {
   cardColor: "#E8E8FF",
   pageBackgroundUrl: "/assets/img/hirings-preview-backgrounds/background-1.png",
   actionButtonsBackgroundColor: "#000000",
+};
+
+export const testContractInProgress: ContractInProgressType = {
+  celebrityId: 864,
+  contractType: 1,
+  deliveryContact: "german@famosos.com",
+  deliveryType: "1",
+  isPublic: true,
+  occasion: "BIRTHDAY",
+  contractId: 10631,
+  status: 0,
+  deliveryTo: "German",
+  deliveryFrom: "",
+  instructions:
+    "¡Hola Mark Tacher Testing! El 23 cumplo 12 años y quisiera que por favor me felicites. Soy tu fan y me encanta lo que haces.",
+  deliveryContactCellphone: "",
 };
 
 export { testContractToPay as contractToPay };
