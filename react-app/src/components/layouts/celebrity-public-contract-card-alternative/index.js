@@ -25,7 +25,14 @@ function CelebrityPublicContractCardAlternativeLayout({
       analyticsData
     );
 
-  const { videoRef, togglePlay, videoIsPlaying } = useVideoPlayer(videoKey);
+  const { videoRef, togglePlay, videoIsPlaying } = useVideoPlayer(videoKey, {
+    onPlayVideo() {
+      GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
+    },
+    onPauseVideo() {
+      GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
+    }
+  });
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
 
   return (

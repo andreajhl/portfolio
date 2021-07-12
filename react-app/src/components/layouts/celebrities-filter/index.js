@@ -35,9 +35,11 @@ const CelebritiesFilter = ({
   };
 
   const onModalOpen = () => {
+    GTM.tagManagerDataLayer("OPEN_CELEBRITIES_FILTER_MODAL", analyticsData);
     setCheckedItems(activeItems);
   };
   const onModalClose = () => {
+    GTM.tagManagerDataLayer("CLOSE_CELEBRITIES_FILTER_MODAL", analyticsData);
     setSearchQuery("");
   };
 
