@@ -6,12 +6,12 @@ import { CelebritiesResultsLayout } from "../../layouts/celebrities-results";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
-import * as GTM from "../../../state/utils/gtm";
 import { CelebritiesAdditionalResultsLayout } from "../../layouts/celebrities-additional-results";
 import pickPropertiesFromAObject from "../../../utils/pickPropertiesFromAObject";
 import { withRouter } from "react-app/src/components/common/routing";
 import { cursorOperations } from "../../../state/ducks/cursor-position";
 import { checkIfObjectContainsSamePairKeyValue } from "react-app/src/utils/checkIfObjectContainsSamePairKeyValue";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 function noop() {}
 const PATH_KEY = "CelebritiesResultPage";
@@ -103,6 +103,10 @@ const CelebritiesResultsPage = ({
       if (
         !checkIfObjectContainsSamePairKeyValue(listParams, queryParamsStore)
       ) {
+        analytics.track("FETCH_CELEBRITIES_FROM_SEARCH", {
+          searchFilters: listParams,
+          widget: "CelebritiesResultsPage"
+        });
         fetchCelebrities(listParams);
         setOffset(updateQueryParamsInitialState.offset);
       } else {
