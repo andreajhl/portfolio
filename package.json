@@ -37,6 +37,7 @@
     "@sentry/nextjs": "^6.4.1",
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.12.1",
+    "@types/react-stripe-elements": "^6.0.5",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "classnames": "^2.2.6",
