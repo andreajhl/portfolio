@@ -19,39 +19,17 @@ function CelebrityPublicContractCardAlternativeLayout({
     videoKey
   };
 
-  const registerVideoCardHover = () =>
-    GTM.tagManagerDataLayer(
-      "HOVER_CELEBRITY_PUBLIC_CONTRACT_CARD_ALTERNATIVE",
-      analyticsData
-    );
-
   const registerCelebrityUsernameClick = () =>
     GTM.tagManagerDataLayer(
       "CLICK_CELEBRITY_PUBLIC_CONTRACT_CARD_ALTERNATIVE_CELEBRITY_NAME",
       analyticsData
     );
 
-  const registerCelebrityUsernameHover = () =>
-    GTM.tagManagerDataLayer(
-      "HOVER_CELEBRITY_PUBLIC_CONTRACT_CARD_ALTERNATIVE_CELEBRITY_NAME",
-      analyticsData
-    );
-
-  const { videoRef, togglePlay, videoIsPlaying } = useVideoPlayer(videoKey, {
-    onPlayVideo() {
-      GTM.tagManagerDataLayer("PLAY_VIDEO_CARD", analyticsData);
-    },
-    onPauseVideo() {
-      GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
-    }
-  });
+  const { videoRef, togglePlay, videoIsPlaying } = useVideoPlayer(videoKey);
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
 
   return (
-    <div
-      className="CelebrityPublicContractCardAlternativeLayout"
-      onMouseOver={registerVideoCardHover}
-    >
+    <div className="CelebrityPublicContractCardAlternativeLayout">
       <div className="video-card">
         <section className="video-card__media">
           {!videoIsLoaded ? (
@@ -94,7 +72,6 @@ function CelebrityPublicContractCardAlternativeLayout({
                 publicContract.contract_reference
               )}
               onClick={registerCelebrityUsernameClick}
-              onMouseOver={registerCelebrityUsernameHover}
             >
               <h6 className="video-card__delivery-to text-with-ellipsis">
                 Para: {publicContract.contract_delivery_to.toLowerCase()}

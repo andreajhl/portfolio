@@ -125,13 +125,6 @@ const CelebritiesResultsPage = ({
       ...listParams,
       offset: newOffset
     });
-    GTM.tagManagerDataLayer("FETCH_MORE_CELEBRITIES_RESULTS", {
-      widget: "CelebritiesResultsPage",
-      path: window.location.pathname,
-      listParams,
-      totalResults,
-      offset: newOffset
-    });
   };
 
   const isSearchingByKeyword = Boolean(listParams.search);

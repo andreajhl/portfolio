@@ -36,17 +36,9 @@ const VideoSlideLayout = ({
     videoReference,
     {
       onPlayVideo() {
-        GTM.tagManagerDataLayer("PLAY_VIDEO_SLIDE", {
-          ...analyticsData,
-          videoIsPlaying: true
-        });
         setSlideshowIsPlaying(true);
       },
       onPauseVideo() {
-        GTM.tagManagerDataLayer("PAUSE_VIDEO_SLIDE", {
-          ...analyticsData,
-          videoIsPlaying: false
-        });
         setSlideshowIsPlaying(false);
       }
     }
@@ -55,10 +47,6 @@ const VideoSlideLayout = ({
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
 
   const toggleVideoIsMuted = () => {
-    GTM.tagManagerDataLayer(`${videoIsMuted ? "UN" : ""}MUTE_VIDEO_SLIDE`, {
-      ...analyticsData,
-      videoIsMuted: !videoIsMuted
-    });
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
 

@@ -58,18 +58,8 @@ const SimilarCelebrityContractCardLayout = ({
     }
   }, [currentVideoPlaying, similarContract.contractReference]);
 
-  const registerSimilarCelebrityContractCardHover = () => {
-    GTM.tagManagerDataLayer(
-      "HOVER_SIMILAR_CELEBRITY_CONTRACT_CARD",
-      analyticsData
-    );
-  };
-
   return (
-    <div
-      className="SimilarCelebrityContractCardLayout mr-2 card f-card f-rounded hover cursor-pointer"
-      onMouseOver={registerSimilarCelebrityContractCardHover}
-    >
+    <div className="SimilarCelebrityContractCardLayout mr-2 card f-card f-rounded hover cursor-pointer">
       <div className="video">
         <video
           ref={videoRef}

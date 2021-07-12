@@ -3,19 +3,8 @@ import { FormattedMessage } from "react-intl";
 import * as GTM from "../../../state/utils/gtm";
 
 const CelebrityReviewCardLayout = ({ review }) => {
-  const registerCelebrityReviewCardHover = () => {
-    GTM.tagManagerDataLayer("HOVER_CELEBRITY_REVIEW_CARD", {
-      widget: "CelebrityReviewCardLayout",
-      path: window.location.pathname,
-      ...review
-    });
-  };
-
   return (
-    <div
-      className="CelebrityReviewCardLayout"
-      onMouseOver={registerCelebrityReviewCardHover}
-    >
+    <div className="CelebrityReviewCardLayout">
       <div className="card card-review px-4 py-3">
         <div className="card-body p-0 d-flex justify-content-between align-items-center">
           <h6 className="font-weight-bold CelebrityReviewCardLayout__full-name text-with-ellipsis">

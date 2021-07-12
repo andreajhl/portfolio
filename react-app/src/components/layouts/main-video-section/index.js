@@ -13,21 +13,7 @@ const CelebrityMainVideoSection = ({ mainVideoUrl, videoPosterUrl }) => {
     mainVideoUrl
   };
   const { videoRef, playVideo, togglePlay } = useVideoPlayer(
-    mainVideoReference,
-    {
-      onPlayVideo() {
-        GTM.tagManagerDataLayer("PLAY_MAIN_VIDEO_SECTION", {
-          ...analyticsData,
-          videoIsPlaying: true
-        });
-      },
-      onPauseVideo() {
-        GTM.tagManagerDataLayer("PAUSE_MAIN_VIDEO_SECTION", {
-          ...analyticsData,
-          videoIsPlaying: false
-        });
-      }
-    }
+    mainVideoReference
   );
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
