@@ -102,6 +102,9 @@ const CelebrityDetails = styled.div`
       width: 200px;
       font-size: 1.3rem;
     }
+    @media (min-width: 1200px) {
+      width: 273px;
+    }
     @media (min-width: 1440px) {
       width: 300px;
     }

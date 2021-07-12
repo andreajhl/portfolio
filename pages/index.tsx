@@ -9,6 +9,11 @@ import { fetchLandings } from "react-app/src/state/ducks/landings/actions";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
 import { parse } from "cookie";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
+import { OFFSET_ROTATE_CELEBRITIES_SECTIONS } from "constants/keys";
+import { setCookie } from "lib/setCookie";
+import { useEffect } from "react";
+
+const generateRandomNumber = (limit) => Math.floor(Math.random() * limit + 1);
 
 const HomePage = dynamic<{ userLocation: string }>(() =>
   import("desktop-app/components/pages/home").then((mod) => mod.HomePage)
@@ -21,8 +26,15 @@ const CelebritiesPage = dynamic<{ isMobile: boolean }>(() =>
 );
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  async ({ req, store, query }) => {
+  async ({ req, store, query, res }) => {
     const cookies = parse(req?.headers?.cookie || "");
+
+    let rotationForCelebritiesSections =
+      cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS];
+
+    if (!cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS]) {
+      rotationForCelebritiesSections = generateRandomNumber(100);
+    }
 
     // Detect UA
     let isMobile = false;
@@ -45,14 +57,20 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       props: {
         isMobile,
         userLocation: getCookie("userLocation", req?.headers?.cookie) || "",
+        rotationForCelebritiesSections,
       },
     };
   }
 );
 
-function Home({ isMobile, userLocation }) {
+function Home({ isMobile, userLocation, rotationForCelebritiesSections }) {
   useDesktopClass(!isMobile);
-
+  useEffect(() => {
+    setCookie(
+      OFFSET_ROTATE_CELEBRITIES_SECTIONS,
+      rotationForCelebritiesSections
+    );
+  }, []);
   return (
     <>
       <CustomHead />

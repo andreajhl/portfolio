@@ -11,6 +11,8 @@ import { DLocalPaymentsMethods } from "../d-local-payments-methods/index";
 import { DLocalPaymentsForm } from "../d-local-payments-form";
 import { listPaymentGateways } from "../../../state/ducks/payments/operations";
 import { LoaderLayout } from "../../layouts/loader";
+import { withRouter } from "next/router";
+import { STRIPE_FAILURE_AUTHENTICATION } from "constants/keys";
 class AvailablePaymentMethods extends Component {
   constructor(props) {
     super(props);
@@ -238,6 +240,10 @@ class AvailablePaymentMethods extends Component {
     }));
   };
   render() {
+    const hasFailedStripeAuthentication = this.props.router?.query?.hasOwnProperty(
+      STRIPE_FAILURE_AUTHENTICATION
+    );
+
     const shouldDisplayBuyerForm = [
       "BANK_TRANSFER",
       "TICKET",
@@ -255,6 +261,12 @@ class AvailablePaymentMethods extends Component {
     ) : (
       <div className="AvailablePaymentMethods mx-auto">
         <div className={"payment-types f-rounded"}>
+          {hasFailedStripeAuthentication ? (
+            <span className="font-weight-bold text-center">
+              La autenticación via Stripe ha fallado. Por favor intenta con otro
+              método.{" "}
+            </span>
+          ) : null}
           {shouldDisplayBuyerForm ? (
             <React.Fragment>
               <div className="d-flex mb-2 pl-1">
@@ -334,5 +346,5 @@ const mapStateToProps = (state) => ({
 // Export Class
 const _AvailablePaymentMethods = connect(mapStateToProps, {
   listPaymentGateways,
-})(AvailablePaymentMethods);
+})(withRouter(AvailablePaymentMethods));
 export { _AvailablePaymentMethods as AvailablePaymentMethods };

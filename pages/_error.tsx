@@ -1,12 +1,15 @@
-import { NavLink } from "react-app/src/components/common/routing";
-import { PageContainer } from "react-app/src/components/layouts/page-container";
-import { ROOT_PATH } from "react-app/src/routing/Paths";
 import { FormattedMessage } from "react-intl";
 import NextErrorComponent from "next/error";
 import * as Sentry from "@sentry/nextjs";
 import { NextPage, NextPageContext } from "next";
 import debug from "react-app/src/utils/debug";
 import ErrorReport from "react-app/src/components/layouts/error-report";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { setCookie } from "lib/setCookie";
+import { NUMBER_OF_RELOAD_REALIZED } from "constants/keys";
+import getCookie from "react-app/src/utils/getCookie";
+import ReloadingPath from "react-app/src/components/containers/reloading-path";
 
 type ErrorPageProps = {
   err?: unknown;
@@ -14,6 +17,7 @@ type ErrorPageProps = {
   asPath?: string;
   statusCode: number;
 };
+const TEEN_SECONDS_IN_MILLISECONDS = 10000;
 
 const CustomError: NextPage<ErrorPageProps> = ({
   err,
@@ -21,6 +25,29 @@ const CustomError: NextPage<ErrorPageProps> = ({
   statusCode,
   asPath,
 }) => {
+  const { push } = useRouter();
+  useEffect(() => {
+    let IDClear;
+    const numberOfRetryRealizedInSession = Number(
+      getCookie(NUMBER_OF_RELOAD_REALIZED)
+    );
+    setCookie(
+      NUMBER_OF_RELOAD_REALIZED,
+      String(
+        numberOfRetryRealizedInSession ? numberOfRetryRealizedInSession + 1 : 1
+      ),
+      1
+    );
+    if (numberOfRetryRealizedInSession < 5) {
+      IDClear = setTimeout(() => {
+        push(asPath);
+      }, TEEN_SECONDS_IN_MILLISECONDS);
+    }
+    return () => {
+      clearTimeout(IDClear);
+    };
+  }, []);
+
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of
     // https://github.com/vercel/next.js/issues/8592. As a workaround, we pass
@@ -41,6 +68,19 @@ const CustomError: NextPage<ErrorPageProps> = ({
           >
             <FormattedMessage defaultMessage="Estamos haciendo lo posible por resolverlo." />
           </p>
+          <ReloadingPath
+            path={asPath}
+            renderText={(secondsCounter) => (
+              <span
+                style={{
+                  color: "white",
+                  fontSize: "0.8rem",
+                }}
+              >
+                Intentando nuevamente en {secondsCounter} segundos
+              </span>
+            )}
+          />
           {statusCode ? (
             <p
               className="font-weight-light text-center"

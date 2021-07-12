@@ -113,7 +113,7 @@ class Stripe3dSecureResponse extends Component {
     return (
       <div className="Stripe3dSecureResponse">
         <div className="section">
-          {!this.state.errorMessage ? (
+          {!this.state.errorMessage && !this.state.error ? (
             <div className={"text-center p-4 mx-auto my-auto"}>
               <h4 className="font-weight-bold text-center">
                 <FormattedMessage defaultMessage="Procesando..." />

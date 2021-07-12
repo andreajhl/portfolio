@@ -9,13 +9,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { EndMessageLayout } from "../end-message";
 import * as GTM from "../../../state/utils/gtm";
 import getCookie from "../../../utils/getCookie";
+import { OFFSET_ROTATE_CELEBRITIES_SECTIONS } from "constants/keys";
 
 const mapStateToProps = ({ celebritySections }) => {
   const { loading, data } = celebritySections.fetchCelebritySectionsReducer;
   return {
     loading,
     celebritiesSections: data.results,
-    totalResults: data.totalResults
+    totalResults: data.totalResults,
   };
 };
 
@@ -31,18 +32,21 @@ const CelebritiesSectionsLayout = ({
   totalResults,
   fetchCelebritySections,
   landingId,
-  isMobile
+  isMobile,
 }) => {
   const [offset, setOffset] = useState(offsetInitialValue);
 
   useEffect(() => {
     if (offset === offsetInitialValue) return;
-    fetchCelebritySections({
-      offset,
-      limit: resultsLimit,
-      landingId,
-      alpha2Code: getCookie("userLocation")
-    });
+    fetchCelebritySections(
+      {
+        offset,
+        limit: resultsLimit,
+        landingId,
+        alpha2Code: getCookie("userLocation"),
+      },
+      getCookie(OFFSET_ROTATE_CELEBRITIES_SECTIONS)
+    );
   }, [offset]);
 
   const fetchMoreData = () => {
@@ -54,7 +58,7 @@ const CelebritiesSectionsLayout = ({
         path: window.location.pathname,
         newOffset,
         totalResults,
-        hasReachedEnd: newOffset + resultsLimit >= totalResults
+        hasReachedEnd: newOffset + resultsLimit >= totalResults,
       });
       return newOffset;
     });
@@ -64,7 +68,7 @@ const CelebritiesSectionsLayout = ({
     GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTIONS_GO_UP_BUTTON", {
       widget: "CelebritiesSectionsLayout",
       path: window.location.pathname,
-      celebritiesSectionsLength: celebritiesSections.length
+      celebritiesSectionsLength: celebritiesSections.length,
     });
 
   return (

@@ -7,22 +7,21 @@ import { StripeProvider } from "react-stripe-elements";
 import { PaymentMethodsSection } from "../../containers/payment-methods-section";
 import Maybe from "../../common/helpers/maybe";
 import { STRIPE_SCRIPT_ID } from "constants/keys";
+import { withRouter } from "next/router";
 
 class PaymentMethodsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isMounted: false,
-      stripe: null
+      stripe: null,
     };
   }
 
   componentDidMount() {
-    this.props.getContractToPay(this.props.contractReference);
-    GTM.tagManagerDataLayer(
-      "PAYMENT_METHODS_PAGE_VIEW",
-      this.props.contractReference
-    );
+    const { contract_reference } = this.props.router.query;
+    this.props.getContractToPay(contract_reference);
+    GTM.tagManagerDataLayer("PAYMENT_METHODS_PAGE_VIEW", contract_reference);
     this.setState({ isMounted: true });
     this.loadStripe();
   }
@@ -37,7 +36,7 @@ class PaymentMethodsPage extends Component {
 
   setStripe = () => {
     this.setState({
-      stripe: window.Stripe(process.env.NEXT_PUBLIC_STRIPE_KEY)
+      stripe: window.Stripe(process.env.NEXT_PUBLIC_STRIPE_KEY),
     });
   };
 
@@ -69,25 +68,25 @@ PaymentMethodsPage.propTypes = {};
 
 // Set defaultProps
 PaymentMethodsPage.defaultProps = {
-  contract: {}
+  contract: {},
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.payments.getContractToPayReducer.loading,
   isCompleted: state.payments.getContractToPayReducer.completed,
-  contract: state.payments.getContractToPayReducer.data
+  contract: state.payments.getContractToPayReducer.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  getContractToPay: paymentsOperations.getContractToPay
+  getContractToPay: paymentsOperations.getContractToPay,
 };
 
 // Export Class
 const _PaymentMethodsPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PaymentMethodsPage);
+)(withRouter(PaymentMethodsPage));
 
 export { _PaymentMethodsPage as PaymentMethodsPage };

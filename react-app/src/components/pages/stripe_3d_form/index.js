@@ -4,6 +4,7 @@ import { PageContainer } from "../../layouts/page-container";
 import { Stripe3dSecureIframe } from "../../containers/stripe-3d-secure-iframe";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { FormattedMessage } from "react-intl";
+import { STRIPE_FAILURE_AUTHENTICATION } from "constants/keys";
 
 // const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
@@ -25,12 +26,15 @@ class ProcessStripe3DFormPage extends Component {
   handleIframeTask = (message) => {
     if (typeof message.data === "string") {
       if (message.data === "GO_TO_PAYMENT_METHODS") {
-        this.props.history._pushRoute(
-          ROUTING_PATHS.PAYMENT_METHODS.replace(
+        this.props.history?.push({
+          pathname: ROUTING_PATHS.PAYMENT_METHODS.replace(
             ":contract_reference",
             this.props.contract_reference
-          )
-        );
+          ),
+          query: {
+            [STRIPE_FAILURE_AUTHENTICATION]: "true",
+          },
+        });
       } else if (message.data.includes("CONTRACT_CREATED")) {
         this.props.history._pushRoute(
           message.data.replace("CONTRACT_CREATED", "")

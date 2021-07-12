@@ -5,139 +5,140 @@ import { useRouter } from "next/router";
 import { HIRING_EDITOR, PAYMENT_METHODS } from "../../../routing/Paths";
 import { FormattedMessage } from "react-intl";
 
-const ResumenContractRejected = ({ resumen }) => {
-  const HeroDiv = styled.div`
-    background-color: black;
-    height: 180px;
-    display: flex;
-    justify-content: center;
-    flex-flow: column;
-    align-items: center;
-  `;
-  const HeroTextApproved = styled.div`
-    h2 {
-      text-align: center;
-      color: white;
-      font-weight: bold;
-      margin-top: 20px;
-      font-size: 22px;
-    }
-    /* font-weight: bold; */
-  `;
-
-  const ResumendContractDiv = styled.div`
-    display: flex;
-    height: min-height;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    margin: 0 auto;
-    height: 75vh;
-  `;
-
-  const ContainerDetailsContractDiv = styled.div`
-    display: flex;
-    flex: 1 1 40%;
-    padding-top: 40px;
-    align-content: center;
-    background-color: #fcfcfc;
-    flex-flow: column;
-    justify-content: center;
-  `;
-
-  const DetailsContracDiv = styled.div`
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 500px;
-    display: flex;
-    height: 70%;
-    justify-content: space-around;
-    flex-flow: column;
-  `;
-
-  const InstructionsDetails = styled.div`
-    display: flex;
-    flex-flow: column;
-  `;
-
-  const SpanBoldGray = styled.span`
+const HeroDiv = styled.div`
+  background-color: black;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+`;
+const HeroTextApproved = styled.div`
+  h2 {
+    text-align: center;
+    color: white;
     font-weight: bold;
-    color: #535353;
-  `;
-
-  const SpanGray = styled.span`
-    color: #535353;
-  `;
-
-  const CelebrityDetails = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    img {
-      height: 70px;
-    }
-    div {
-      flex: 0 1 200px;
-      span {
-        font-weight: bold;
-        text-align: center;
-        font-size: 0.85rem;
-      }
-    }
-  `;
-
-  const ResumenContainer = styled.div`
-    @media (min-width: 600px) {
-      width: 80%;
-      margin: 0 auto;
-    }
-  `;
-
-  const ResumenPaymentRejected = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
-    flex: 0 0 80%;
-    @media (min-width: 600px) {
-      flex: 0 0 50%;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-    }
-    @media (min-width: 1024px) {
-      flex: 0 0 50%;
-      width: 80%;
-      align-items: flex-start;
-      justify-content: center;
-    }
-  `;
-  const PaymentRejectedActions = styled.div`
-    display: flex;
-    flex-flow: column;
     margin-top: 20px;
-  `;
+    font-size: 22px;
+  }
+  /* font-weight: bold; */
+`;
 
-  const ButtonPink = styled.button`
-    width: "80%";
-    background-color: #fb177d;
-    border-radius: "5px";
-    margin-top: 20px;
-    height: 55px;
+const ResumendContractDiv = styled.div`
+  display: flex;
+  height: min-height;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  height: 75vh;
+`;
+
+const ContainerDetailsContractDiv = styled.div`
+  display: flex;
+  flex: 1 1 40%;
+  padding-top: 40px;
+  align-content: center;
+  background-color: #fcfcfc;
+  flex-flow: column;
+  justify-content: center;
+`;
+
+const DetailsContracDiv = styled.div`
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  display: flex;
+  height: 70%;
+  justify-content: space-around;
+  flex-flow: column;
+`;
+
+const InstructionsDetails = styled.div`
+  display: flex;
+  flex-flow: column;
+`;
+
+const SpanBoldGray = styled.span`
+  font-weight: bold;
+  color: #535353;
+`;
+
+const SpanGray = styled.span`
+  color: #535353;
+`;
+
+const CelebrityDetails = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  img {
+    height: 70px;
+  }
+  div {
+    flex: 0 1 200px;
     span {
-      color: white;
+      font-weight: bold;
+      text-align: center;
+      font-size: 0.85rem;
     }
-    @media (min-width: 768px) {
-      width: 70%;
-      height: 60px;
-    }
-    @media (min-width: 1024px) {
-      width: 50%;
-      height: 60px;
-    }
-  `;
+  }
+`;
+
+const ResumenContainer = styled.div`
+  @media (min-width: 600px) {
+    width: 80%;
+    margin: 0 auto;
+  }
+`;
+
+const ResumenPaymentRejected = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  flex: 0 0 80%;
+  @media (min-width: 600px) {
+    flex: 0 0 50%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 1024px) {
+    flex: 0 0 50%;
+    width: 80%;
+    align-items: flex-start;
+    justify-content: center;
+  }
+`;
+const PaymentRejectedActions = styled.div`
+  display: flex;
+  flex-flow: column;
+  margin-top: 20px;
+`;
+
+const ButtonPink = styled.button`
+  width: 80%;
+  background-color: #fb177d;
+  border-radius: 5px;
+  margin-top: 20px;
+  height: 55px;
+  span {
+    color: white;
+  }
+  @media (min-width: 768px) {
+    width: 70%;
+    height: 60px;
+  }
+  @media (min-width: 1024px) {
+    width: 50%;
+    height: 60px;
+  }
+`;
+
+const ResumenContractRejected = ({ resumen }) => {
   const router = useRouter();
   const redirectToEditContract = () => {
     router.push(
@@ -156,7 +157,14 @@ const ResumenContractRejected = ({ resumen }) => {
       <HeroDiv>
         <i
           style={{
-            fontSize: "48px",
+            borderRadius: "50%",
+            border: "5px solid white",
+            width: "48px",
+            height: "48px",
+            fontSize: "20px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
             color: "white",
           }}
           className="fas fa-exclamation"

@@ -30,6 +30,11 @@ function ErrorReport({
           <div className={styles.ErrorLayoutBannerContent}>
             <h3 className={styles.ErrorLayoutBannerTitle}>{errorTitle}</h3>
 
+            {errorPath ? (
+              <div className={styles.ErrorPathContainer}>
+                <span> Ruta : {errorPath}</span>
+              </div>
+            ) : null}
             {errorDescription ? (
               <h2 className={styles.ErrorLayoutBannerError}>
                 {" "}
@@ -37,14 +42,9 @@ function ErrorReport({
               </h2>
             ) : null}
 
-            {errorPath ? (
-              <div className={styles.ErrorPathContainer}>
-                <span> Ruta : {errorPath}</span>
-              </div>
-            ) : null}
             <NavLink
               to={HOME_PATH}
-              className="FourZeroFourCelebrityProfile__banner-home-link"
+              className="FourZeroFourCelebrityProfile__banner-home-link mt-3"
             >
               <i className="fa fa-arrow-left FourZeroFourCelebrityProfile__banner-arrow-left" />{" "}
               <FormattedMessage defaultMessage="Volver al inicio" />

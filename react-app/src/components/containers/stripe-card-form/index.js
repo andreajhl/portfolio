@@ -89,7 +89,7 @@ class StripeCardForm extends Component {
     });
 
     // REQUIRED DATA
-    //const amount = this.props.contractPrice * 100;
+    const amount = this.props.contractPrice * 100;
     const currency = "USD";
     const ownerData = {
       name: this.state.ownerName.trim(),
@@ -105,8 +105,6 @@ class StripeCardForm extends Component {
         usage: "reusable",
       })
       .then((response) => {
-        console.log("response.source", response.source);
-
         // ERROR
         if (response.error) {
           // ERROR
@@ -131,7 +129,12 @@ class StripeCardForm extends Component {
           response.source.card.three_d_secure === "required" ||
           response.source.card.three_d_secure === "recommended"
         ) {
-          this.createStripe3DFlow(currency, response.source.id, ownerData);
+          this.createStripe3DFlow(
+            currency,
+            response.source.id,
+            ownerData,
+            amount
+          );
         } else {
           this.setState({
             ...this.state,
@@ -193,7 +196,7 @@ class StripeCardForm extends Component {
       });
   };
 
-  createStripe3DFlow = (currency, amount, sourceId, ownerData) => {
+  createStripe3DFlow = (currency, sourceId, ownerData, amount) => {
     const iframeUrl = PATHS.STRIPE_3D_SECURE_IFRAME.replace(
       ":contract_reference",
       this.props.contractReference
@@ -210,6 +213,7 @@ class StripeCardForm extends Component {
       .createSource({
         type: "three_d_secure",
         currency: currency,
+        amount: amount,
         three_d_secure: { card: sourceId },
         redirect: { return_url: responseURL },
         owner: ownerData,
@@ -220,7 +224,8 @@ class StripeCardForm extends Component {
           return this.setState({
             ...this.state,
             disableButton: false,
-            errorMessage: response.error.message,
+            errorMessage: response.error?.message,
+            errorType: response.error?.type,
           });
         }
 

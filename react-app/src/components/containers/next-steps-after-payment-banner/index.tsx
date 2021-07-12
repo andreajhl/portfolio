@@ -117,9 +117,9 @@ const NextStepsAfterPaymentBanner = ({
       <div className="mt-3">
         <TextSteps>
           <FormattedMessage
-            defaultMessage=" El cobro a tu cuenta se realizará una vez que {celebrityName} grabe tu
-          video. (por ahora solo se realizó una autorización por parte de tu
-          banco)."
+            defaultMessage="El cargo que percibirás en tu cuenta es una autorización de pago
+             que tu banco hace para asegurarse que existen fondos suficientes, sin embargo 
+             Famosos no hará el cobro hasta que {celebrityName} grabe tu video."
             values={{
               celebrityName: celebrityName,
             }}
