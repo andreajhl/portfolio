@@ -281,7 +281,7 @@ it("not calls onSubmit prop when change to next wizard step with an invalid form
   expect(onSubmit).not.toHaveBeenCalled();
 });
 
-it("calls onSubmit prop when change to next wizard step", () => {
+it("calls onSubmit prop when change to next wizard step with valid values", () => {
   const onSubmit = jest.fn();
   const { changeWizardStep } = shallowRenderContractDeliveryForm({
     onSubmit,
