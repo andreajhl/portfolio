@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { AVAILABLE_CURRENCIES } from "./constants";
 import { currencyExchange } from "../../../state/ducks/payments/actions";
 import findAvailableCurrencyByName from "../../../utils/findAvailableCurrencyByName";
 import { CurrencyIcon } from "../../common/icons";
@@ -9,6 +8,7 @@ import classes from "classnames";
 import { Button, Modal } from "react-bootstrap";
 import { LoaderLayout } from "../loader";
 import * as GTM from "../../../state/utils/gtm";
+import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 
 const mapStateToProps = ({ payments: { currencyExchangeReducer } }) => ({
   currencyExchangeLoading: currencyExchangeReducer.loading,
