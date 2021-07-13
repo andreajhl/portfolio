@@ -65,7 +65,6 @@ function ContractDetailsForm({
     setFieldValue,
     setFieldTouched,
     getTouchedFieldValues,
-    validateFields,
     setFieldError,
     submitForm,
   } = useForm({
@@ -108,8 +107,8 @@ function ContractDetailsForm({
     goToClickedStep: () => void,
     isPreviousStep: boolean
   ): void {
-    if (!isPreviousStep && !validateFields()) return;
-    const valuesToSave = isPreviousStep ? getTouchedFieldValues() : values;
+    if (!isPreviousStep) return submitForm();
+    const valuesToSave = getTouchedFieldValues();
     if (!valuesToSave) return;
 
     onStepChange(

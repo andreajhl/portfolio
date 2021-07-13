@@ -79,7 +79,6 @@ function ContractNotificationsForm({
             ? getTouchedFieldValues()
             : values;
           if (!valuesToSave) return;
-          console.log(valuesToSave);
 
           onStepChange(
             (objectHasProperties(valuesToSave)
