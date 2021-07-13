@@ -123,6 +123,7 @@ function ContractNotificationsForm({
           Notificarme también por Whatsapp (opcional)
         </label>
         <CellphoneNumberInput
+          value={values.deliveryContactCellphone}
           containerClass={styles.ContainerPhoneInput}
           hasError={Boolean(errors?.deliveryContactCellphone)}
           placeholder="+57 310 1234567"
