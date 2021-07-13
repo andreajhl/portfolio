@@ -56,7 +56,6 @@ type ContractDeliveryFormProps = {
   isLoading: boolean;
   initialValues?: ContractDeliveryType;
   onSubmit: (values: ContractDeliveryType) => void;
-  onStepChange: (values: ContractDeliveryType) => void;
 };
 
 function ContractDeliveryForm({
@@ -64,13 +63,11 @@ function ContractDeliveryForm({
   isLoading,
   initialValues: initialValuesFromProps,
   onSubmit: onSubmitFromProps,
-  onStepChange,
 }: ContractDeliveryFormProps) {
   const {
     values,
     errors,
     setFieldValue,
-    validateFields,
     validateBeforeSubmit,
   } = useForm<ContractDeliveryType>({
     initialValues: initialValuesFromProps || initialValues,
@@ -93,11 +90,10 @@ function ContractDeliveryForm({
   const hasBusinessPrice = businessPrice > 0;
   const contractIsForBusiness = values.contractType === 3;
 
-  function validateFormBeforeChangeStep(goToClickedStep: () => void): void {
+  function validateFormBeforeChangeStep() {
+    if (isLoading) return;
     if (contractIsForBusiness && !hasBusinessPrice) return;
-    if (!validateFields()) return;
-    onStepChange(values);
-    goToClickedStep();
+    validateBeforeSubmit();
   }
 
   function swapDeliveryInfoValues(newContractType: number) {

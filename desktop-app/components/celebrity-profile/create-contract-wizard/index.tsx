@@ -249,7 +249,6 @@ function CreateContractWizard({
               isLoading={isLoading}
               celebrity={celebrity}
               initialValues={deliveryData}
-              onStepChange={setDeliveryData}
               onSubmit={saveContractFirstStep}
             />
           </Step>
