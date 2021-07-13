@@ -1549,5 +1549,44 @@
   },
   "yv7dLs": {
     "message": "Famosos.com - Entrada de blog"
+  },
+  "4fXI87": {
+    "message": "Also receive a: {coupon} on your first purchase."
+  },
+  "4xmXcX": {
+    "message": "We have sent your discount code to your email."
+  },
+  "5EACDj": {
+    "message": "You must write a valid email"
+  },
+  "8xaGaO": {
+    "message": "Subscribe to our newsletter and find out about all our news and exclusive promotions"
+  },
+  "BI4zr5": {
+    "message": "Also receive a <bigTextSpan> 10% OFF. </bigTextSpan> on your first purchase"
+  },
+  "HEGBTi": {
+    "message": "You must write a valid date. Example: 2020-06-25"
+  },
+  "MMb74M": {
+    "message": "You must write a date"
+  },
+  "RR1tnZ": {
+    "message": "<bigTextSpan> 10% </bigTextSpan> OFF."
+  },
+  "nbZMXN": {
+    "message": "Subscribe to our newsletter and find out about our news and exclusive promotions."
+  },
+  "o8JdL0": {
+    "message": "An error occurred while registering"
+  },
+  "sSxzJC": {
+    "message": "This email is already subscribed to the newsletter"
+  },
+  "jrPcz6": {
+    "message": "Sign up"
+  },
+  "qL5Hl7": {
+    "message": "Birthday"
   }
 }
