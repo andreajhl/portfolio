@@ -94,8 +94,6 @@ function Home({ isMobile, rotationForCelebritiesSections }) {
   return (
     <>
       <CustomHead />
-      <span>Hola</span>
-      <Link href="/blog">Ir a blog</Link>
       <CelebritiesPage isMobile={isMobile} />
     </>
   );
