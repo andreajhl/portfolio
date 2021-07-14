@@ -117,4 +117,6 @@ function PaymentMethodsPage({
 
 const _PaymentMethodsPage = connector(PaymentMethodsPage);
 
+export default PaymentMethodsPage;
+
 export { _PaymentMethodsPage as PaymentMethodsPage };
