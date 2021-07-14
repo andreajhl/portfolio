@@ -953,5 +953,254 @@
   },
   "zADCtw": {
     "message": "Escolha a forma de pagamento"
+  },
+  "4YpaCX": {
+    "message": "Faça o login para adicionar um comentário"
+  },
+  "Mwm1HV": {
+    "message": "Fazer login"
+  },
+  "OkYBCB": {
+    "message": "Seja o primeiro a adicionar um comentário."
+  },
+  "XNGk+R": {
+    "message": "O seu comentário foi enviado."
+  },
+  "m4ziQM": {
+    "message": "Outro"
+  },
+  "ohq0mF": {
+    "message": "Crie a sua conta aqui"
+  },
+  "rMXI9i": {
+    "message": "Adicionar comentário"
+  },
+  "vf4Bo1": {
+    "message": "Ainda não tem uma conta?"
+  },
+  "/lbU6C": {
+    "message": "Envie um comentário para"
+  },
+  "/lhqVJ": {
+    "message": "Poucos vídeos de {celebridadeFullName} permanecem disponíveis"
+  },
+  "01UxAr": {
+    "message": "Esta solicitação expira em {data}"
+  },
+  "0I2iWG": {
+    "message": "Candidate-se como Famoso"
+  },
+  "1GkUZK": {
+    "message": "Não gostei"
+  },
+  "1U8RoX": {
+    "message": "Mantenha esta janela aberta enquanto suas informações estão sendo validadas"
+  },
+  "2iUQj7": {
+    "message": "Você ainda não realizou um pedido"
+  },
+  "3mq/Uo": {
+    "message": "O comentário foi enviado."
+  },
+  "3pxwni": {
+    "message": "Verificação de autenticidade do cartão"
+  },
+  "4FqAB/": {
+    "message": "Meus Pedidos"
+  },
+  "5sQzpi": {
+    "message": "Não foi possível autenticar este cartão corretamente"
+  },
+  "6y8Fx1": {
+    "message": "Pagamento autorizado"
+  },
+  "747qfi": {
+    "message": "Se o problema persistir, você pode entrar em contato com nossa equipe de suporte em {link} para obter mais informações."
+  },
+  "8+5qCg": {
+    "message": "mail@domain.com"
+  },
+  "8IF6tp": {
+    "message": "Finalizar compra"
+  },
+  "9etNPX": {
+    "message": "{starsCount} Estrelas"
+  },
+  "Diph5x": {
+    "message": "Contratar "
+  },
+  "Eq0gTc": {
+    "message": "Enviar comentário"
+  },
+  "FrT1vp": {
+    "message": "Reembolso efetuado"
+  },
+  "HG1X7k": {
+    "message": "Pagamento completo"
+  },
+  "Iuyaxf": {
+    "message": "Ler mais..."
+  },
+  "IxXZto": {
+    "message": "De:"
+  },
+  "J518q6": {
+    "message": "Celebridades semelhantes"
+  },
+  "K8SMPu": {
+    "message": "Ocasião:"
+  },
+  "KkJHVF": {
+    "message": "Ver vídeo"
+  },
+  "ML6BTv": {
+    "message": "Vídeos similares"
+  },
+  "MQJt4R": {
+    "message": "Processando..."
+  },
+  "MdA9+B": {
+    "message": "Voltar para métodos de pagamento"
+  },
+  "Mp68c+": {
+    "message": "FAQ's"
+  },
+  "NvD/jI": {
+    "message": "Escreva um comentário"
+  },
+  "Ps1z8P": {
+    "message": "Atualize seu comentário para"
+  },
+  "Qdbxny": {
+    "message": "Quantas estrelas você dá a este vídeo?"
+  },
+  "RMN4N0": {
+    "message": "Pagamento Recusado"
+  },
+  "Rfh4ih": {
+    "message": "Meu perfil"
+  },
+  "STAtvd": {
+    "message": "O comentário foi atualizado."
+  },
+  "T3dwiQ": {
+    "message": "Leve em consideração:"
+  },
+  "TT/YZP": {
+    "message": "Privacidade"
+  },
+  "UcOT6A": {
+    "message": "Pagamento recusado"
+  },
+  "VBvZa2": {
+    "message": "Você receberá uma notificação para <b> </b> quando seu vídeo estiver pronto."
+  },
+  "VkHZxm": {
+    "message": "Termos e Condições"
+  },
+  "WBt4dS": {
+    "message": "É público"
+  },
+  "WW0RFT": {
+    "message": "Gosto"
+  },
+  "WmWz59": {
+    "message": "Contrato expirado"
+  },
+  "XlP2E5": {
+    "message": "É uma empresa dedicada à criação de tecnologias <br> </br> que conectam personalidades com seus fãs."
+  },
+  "ZedcEG": {
+    "message": "Atualizar comentário"
+  },
+  "ZvLd+7": {
+    "message": "Validando o pagamento"
+  },
+  "aLZTdq": {
+    "message": "Minhas instruções são"
+  },
+  "baAemn": {
+    "message": "Gravação em espera"
+  },
+  "d6Ac8W": {
+    "message": "Email de notificação:"
+  },
+  "dmBWFQ": {
+    "message": "Contrato recusado"
+  },
+  "ggPZbL": {
+    "message": "Exemplo: Minha amiga Ana faz aniversário no dia 12 de agosto, gostaria que você a parabenizasse."
+  },
+  "iWkyFQ": {
+    "message": "Você é uma celebridade ou um influenciador?"
+  },
+  "lX+x05": {
+    "message": "1 estrela"
+  },
+  "mJ6Hl3": {
+    "message": "A autorização de pagamento foi recusada"
+  },
+  "mcWafv": {
+    "message": "Reembolso recusado"
+  },
+  "nJJJOt": {
+    "message": "Pagamento expirado"
+  },
+  "nMFRRt": {
+    "message": "Pagamento pendente"
+  },
+  "nnRGWT": {
+    "message": "Pagamento cancelado"
+  },
+  "p6AMrr": {
+    "message": "Famoso!"
+  },
+  "rG1grK": {
+    "message": "Siga-nos nas redes"
+  },
+  "ujraGu": {
+    "message": "Para:"
+  },
+  "wCc+84": {
+    "message": "[PARA]"
+  },
+  "wwfK17": {
+    "message": "Buscar país "
+  },
+  "x15tum": {
+    "message": "Valor aproximado em {moeda} "
+  },
+  "xKYHEI": {
+    "message": "2020 Famosos, Inc. Todos os direitos reservados."
+  },
+  "zxOTCH": {
+    "message": "Pagamento efetuado"
+  },
+  "titleFlow": {
+    "message": "O que acontece depois que você envia sua solicitação a um famoso?"
+  },
+  "step1": {
+    "message": "Sua solicitação será concluída em menos de 7 dias"
+  },
+  "step2": {
+    "message": "Iremos notificá-lo quando o seu vídeo já estiver gravado e disponível para visualização e compartilhamento"
+  },
+  "step3": {
+    "message": "Se por algum motivo o seu vídeo não puder ser gravado, devolveremos o dinheiro em aproximadamente 5 a 7 dias"
+  },
+  "pago_seguro": {
+    "message": "Pagamento 100% seguro"
+  },
+  "8LqOa5": {
+    "message": "Desculpe, esta página não foi encontrada"
+  },
+  "8u0DFM": {
+    "message": "Ocorreu um erro."
+  },
+  "U48f7q": {
+    "message": "Voltar ao início "
+  },
+  "rr64CW": {
+    "message": "Estamos fazendo o possível para resolver. "
   }
 }
