@@ -15,7 +15,6 @@ import {
   serializeCurrencyCurrentData,
   serializeUserLocationCookies
 } from "./serializeCookies";
-import setCookieParser from "set-cookie-parser";
 
 const ONE_YEAR_IN_MILLISECONDS = 365 * 24 * 3600 * 1000;
 const invalidIpAddresses = ["127.0.0.1", "::1"];

@@ -15,7 +15,6 @@ import {
 } from "constants/keys";
 import { setCookie } from "lib/setCookie";
 import { useEffect } from "react";
-import setCookieParser from "set-cookie-parser";
 import { getLocationCookieHeader } from "lib/getLocationCookieHeader";
 import { getUserLocationData } from "lib/getUserLocationData";
 import Link from "next/link";
