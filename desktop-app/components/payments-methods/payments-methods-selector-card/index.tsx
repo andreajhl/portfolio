@@ -51,7 +51,6 @@ function PaymentsMethodsSelectorCard({
   couponData,
   celebrityId,
 }: PaymentsMethodsSelectorCardProps) {
-  console.log(couponData);
   useEffect(() => {
     if (!userInformationLoading) getToken();
   }, []);
@@ -145,5 +144,7 @@ function PaymentsMethodsSelectorCard({
 }
 
 const _PaymentsMethodsSelectorCard = connector(PaymentsMethodsSelectorCard);
+
+export default PaymentsMethodsSelectorCard;
 
 export { _PaymentsMethodsSelectorCard as PaymentsMethodsSelectorCard };
