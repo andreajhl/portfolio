@@ -117,12 +117,12 @@ function PaypalForm({
         >
           <Maybe it={expanded}>
             <p>
-              Haz clic en el seguiente botón para hacer el pago utilizando tu
-              cuenta de paypal.
+              Haz clic en el siguiente botón para hacer el pago utilizando tu
+              cuenta de Paypal.
             </p>
 
             <p>
-              Serás redirigido a la página oficial de paypal para continuar con
+              Serás redirigido a la página oficial de Paypal para continuar con
               el pago
             </p>
 
