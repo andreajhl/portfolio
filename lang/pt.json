@@ -1620,5 +1620,38 @@
   },
   "zzBOdK": {
     "message": "Aplicar filtro"
+  },
+  "4fXI87": {
+    "message": "Receba um: {cupon} na sua primeira compra."
+  },
+  "4xmXcX": {
+    "message": "Enviamos seu código de desconto para o seu email."
+  },
+  "5EACDj": {
+    "message": "Você deve digitar um email válido."
+  },
+  "8xaGaO": {
+    "message": "Se inscreva na nossa newsletter e fique por dentro das nossas novidades e promoções exclusivas"
+  },
+  "BI4zr5": {
+    "message": "Receba um cupom de <bigTextSpan>10% DE DESCONTO</bigTextSpan> na sua primeira compra"
+  },
+  "HEGBTi": {
+    "message": "Você deve digitar uma data válida. Exemplo: 2020-06-25"
+  },
+  "MMb74M": {
+    "message": "Você deve digitar uma data."
+  },
+  "nbZMXN": {
+    "message": "Se inscreva na nossa newsletter e fique por dentro das nossas novidades e promoções exclusivas."
+  },
+  "o8JdL0": {
+    "message": "Ocorreu um erro no cadastro."
+  },
+  "sSxzJC": {
+    "message": "Este email já está cadastrado na newsletter"
+  },
+  "RR1tnZ": {
+    "message": "<bigTextSpan>10%</bigTextSpan> de desconto."
   }
 }

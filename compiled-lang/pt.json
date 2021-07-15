@@ -427,6 +427,20 @@
       "value": "Aplicar"
     }
   ],
+  "4fXI87": [
+    {
+      "type": 0,
+      "value": "Receba um: "
+    },
+    {
+      "type": 1,
+      "value": "cupon"
+    },
+    {
+      "type": 0,
+      "value": " na sua primeira compra."
+    }
+  ],
   "4r0tXK": [
     {
       "type": 0,
@@ -467,6 +481,12 @@
       "value": "span"
     }
   ],
+  "4xmXcX": [
+    {
+      "type": 0,
+      "value": "Enviamos seu código de desconto para o seu email."
+    }
+  ],
   "5+dpGU": [
     {
       "type": 0,
@@ -483,6 +503,12 @@
     {
       "type": 0,
       "value": "Se você demonstrar que os custos da arbitragem serão proibitivos em comparação com os custos do litígio, Famosos pagará a soma dos custos administrativos e os honorários do árbitro necessários para a arbitragem que julgar necessário, o árbitro para evitar o custo da arbitragem seja proibitiva. No prêmio final, o árbitro pode ratear os custos da arbitragem e a compensação do árbitro entre as partes nas quantias que julgar apropriadas."
+    }
+  ],
+  "5EACDj": [
+    {
+      "type": 0,
+      "value": "Você deve digitar um email válido."
     }
   ],
   "5HHVOz": [
@@ -711,6 +737,12 @@
       "value": "Ocorreu um erro."
     }
   ],
+  "8xaGaO": [
+    {
+      "type": 0,
+      "value": "Se inscreva na nossa newsletter e fique por dentro das nossas novidades e promoções exclusivas"
+    }
+  ],
   "9KADbj": [
     {
       "type": 0,
@@ -883,6 +915,26 @@
     {
       "type": 0,
       "value": " Escreva seu subdomínio Ex: / Andrezinho"
+    }
+  ],
+  "BI4zr5": [
+    {
+      "type": 0,
+      "value": "Receba um cupom de "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "10% DE DESCONTO"
+        }
+      ],
+      "type": 8,
+      "value": "bigTextSpan"
+    },
+    {
+      "type": 0,
+      "value": " na sua primeira compra"
     }
   ],
   "BbTBEe": [
@@ -1219,6 +1271,12 @@
       "value": "PayPal"
     }
   ],
+  "HEGBTi": [
+    {
+      "type": 0,
+      "value": "Você deve digitar uma data válida. Exemplo: 2020-06-25"
+    }
+  ],
   "HG1X7k": [
     {
       "type": 0,
@@ -1443,6 +1501,12 @@
     {
       "type": 0,
       "value": "Vídeos similares"
+    }
+  ],
+  "MMb74M": [
+    {
+      "type": 0,
+      "value": "Você deve digitar uma data."
     }
   ],
   "MQJt4R": [
@@ -1747,6 +1811,22 @@
     {
       "type": 0,
       "value": "Pagamento Recusado"
+    }
+  ],
+  "RR1tnZ": [
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "10%"
+        }
+      ],
+      "type": 8,
+      "value": "bigTextSpan"
+    },
+    {
+      "type": 0,
+      "value": " de desconto."
     }
   ],
   "RWLUps": [
@@ -2953,6 +3033,12 @@
       "value": "Você e Famosos aceitam que resolveremos qualquer disputa entre nós por meio de arbitragem final e vinculativa, e não por meio de um processo judicial. Você e Famosos renunciam a qualquer direito a um julgamento por júri de qualquer reclamação (definido abaixo). Todas as controvérsias, reivindicações, reconvenções ou outros conflitos que surjam entre você e Famosos em relação a estes Termos, o Site e os Serviços (cada um \"Ação judicial\") serão submetidos à arbitragem de acordo com as Regras da American Arbitration Association (\"Regras AAA \"). A arbitragem será resolvida por um único árbitro. A decisão do árbitro em tal arbitragem será final e vinculativa para as partes e pode ser executada em qualquer tribunal de jurisdição competente. "
     }
   ],
+  "nbZMXN": [
+    {
+      "type": 0,
+      "value": "Se inscreva na nossa newsletter e fique por dentro das nossas novidades e promoções exclusivas."
+    }
+  ],
   "nnRGWT": [
     {
       "type": 0,
@@ -2969,6 +3055,12 @@
     {
       "type": 0,
       "value": "Revisado: 28 de março de 2020"
+    }
+  ],
+  "o8JdL0": [
+    {
+      "type": 0,
+      "value": "Ocorreu um erro no cadastro."
     }
   ],
   "oACmv6": [
@@ -3235,6 +3327,12 @@
     {
       "type": 0,
       "value": "UTILIZE O SITE E OS SERVIÇOS por sua própria conta e risco. O SITE e os serviços, incluindo qualquer vídeo FAMOSOS, SE PROPORCIONAM \"COMO É \"E\" COMO DISPONÍVEL \". A extensão permitida por LEI, FAMOSOS E seus oficiais, empregados diretores, acionistas, matrizes, subsidiárias, afiliados, agentes e agentes (\"afiliados\") declinam TODAS as garantias, condições e representações de QUALQUER TIPO, EXPRESSA, IMPLÍCITA, LEI OU DE OUTRO MODO incluindo aquelas relacionadas a ADEQUAÇÃO PARA UM DETERMIDO FIM PARTICULAR, E NÃO VIOLAÇÃO E as derivadas do CURSO DE CURSO DE GESTÃO OU USO DO COMÉRCIO."
+    }
+  ],
+  "sSxzJC": [
+    {
+      "type": 0,
+      "value": "Este email já está cadastrado na newsletter"
     }
   ],
   "sXLa3f": [
