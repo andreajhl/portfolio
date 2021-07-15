@@ -12,7 +12,6 @@ async function emailPasswordSignInHandler(
   // Send Facebook Code to Famosos.com Backend
   const endpoint = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT;
   const version = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT_VERSION;
-  console.log(req.body["token"]);
   //   Send code to famosos auth and save the JWT Token in Cookies
   await axios
     .get(`${endpoint}/${version}/famosos-com/convert-auth0-session`, {
@@ -23,7 +22,6 @@ async function emailPasswordSignInHandler(
     .then((response) => {
       const status = response.data.status;
       const data = response.data.data;
-      console.log("Reponse from /famosos-com/convert-auth0-session", response);
       if (status === "OK") {
         // SSR
         res.setHeader(

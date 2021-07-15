@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
 import axios from "axios";
-import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 
 async function validateSecurityCode(
@@ -47,7 +46,6 @@ async function validateSecurityCode(
         }
       })
       .catch((errorResponse) => {
-        console.log({ errorResponse });
         if (errorResponse.response) {
           return res.status(errorResponse.response.status || 400).json({
             status: "error",

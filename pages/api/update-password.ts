@@ -8,7 +8,6 @@ async function updatePassword(req: NextApiRequest, res: NextApiResponse<{}>) {
     // Send New Password to Famosos Auth Backend
     const endpoint = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT;
     const version = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT_VERSION;
-    console.log(req.body);
     // Send code to famosos auth and save the JWT Token in Cookies
     await axios
       .post(
