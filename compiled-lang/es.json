@@ -53,6 +53,12 @@
       "value": " cuando tu video esté listo."
     }
   ],
+  "/XN7yF": [
+    {
+      "type": 0,
+      "value": "CI"
+    }
+  ],
   "/eYgis": [
     {
       "type": 0,
@@ -479,6 +485,12 @@
       "value": "Formato no valido"
     }
   ],
+  "5jWuaC": [
+    {
+      "type": 0,
+      "value": "Olvidaste tu contraseña"
+    }
+  ],
   "5sQzpi": [
     {
       "type": 0,
@@ -519,6 +531,12 @@
     {
       "type": 0,
       "value": "Cuba"
+    }
+  ],
+  "6vLMdU": [
+    {
+      "type": 0,
+      "value": "CUI"
     }
   ],
   "6y8Fx1": [
@@ -921,6 +939,12 @@
       "value": "Enviar comentario"
     }
   ],
+  "EqG/WU": [
+    {
+      "type": 0,
+      "value": "Asegurate de que sea una contraseña fácil de recordar."
+    }
+  ],
   "ErSRb8": [
     {
       "type": 0,
@@ -1039,12 +1063,6 @@
     {
       "type": 0,
       "value": "Reintentar"
-    }
-  ],
-  "HsosK3": [
-    {
-      "type": 0,
-      "value": "Para continuar crea una nueva contraseña para tu cuenta."
     }
   ],
   "IEazN6": [
@@ -1335,6 +1353,12 @@
       "value": " videomensaje."
     }
   ],
+  "NLbEhA": [
+    {
+      "type": 0,
+      "value": "Indicanos tu correo electrónico y podrás restablecer tu contraseña."
+    }
+  ],
   "NROWdz": [
     {
       "type": 0,
@@ -1437,12 +1461,6 @@
     {
       "type": 0,
       "value": "Sé el primero en agregar un comentario."
-    }
-  ],
-  "Or996K": [
-    {
-      "type": 0,
-      "value": "Nueva contraseña"
     }
   ],
   "P6ZBac": [
@@ -1961,6 +1979,12 @@
     {
       "type": 0,
       "value": "El campo de nombre es obligatorio"
+    }
+  ],
+  "ZDkLmZ": [
+    {
+      "type": 0,
+      "value": "Revisa tu correo electrónico e ingresa el código de 6 dígitos que has recibido"
     }
   ],
   "ZPvdL/": [
@@ -2515,18 +2539,6 @@
     {
       "type": 0,
       "value": "Escribe aquí el nombre"
-    }
-  ],
-  "n1VWvq": [
-    {
-      "type": 0,
-      "value": "Ingresa tu correo electrónico para poder restablecer tu contraseña."
-    }
-  ],
-  "n6yBXT": [
-    {
-      "type": 0,
-      "value": "Ingresa el código de 6 dígitos que enviamos a tu correo electrónico."
     }
   ],
   "n9i+Em": [
@@ -3427,6 +3439,12 @@
       "value": "Coach"
     }
   ],
+  "uSPUjx": [
+    {
+      "type": 0,
+      "value": "Cambiar tu contraseña"
+    }
+  ],
   "uVgimH": [
     {
       "type": 0,
@@ -3439,16 +3457,16 @@
       "value": "Transferencia bancaria"
     }
   ],
-  "ufYXOt": [
-    {
-      "type": 0,
-      "value": "Recuperar contraseña"
-    }
-  ],
   "ujraGu": [
     {
       "type": 0,
       "value": "Para:"
+    }
+  ],
+  "uleYZ4": [
+    {
+      "type": 0,
+      "value": "Para continuar actualiza la contraseña de tu cuenta."
     }
   ],
   "ut6hvz": [
@@ -3685,12 +3703,6 @@
     {
       "type": 0,
       "value": "Comediantes"
-    }
-  ],
-  "zuf/CK": [
-    {
-      "type": 0,
-      "value": "Asegúrate de que sea una contraseña fácil de recordar."
     }
   ],
   "zxOTCH": [

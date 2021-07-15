@@ -7,11 +7,11 @@ export const AVAILABLE_LANGS = {
     {
       lang: "en",
       name: "Inglés"
+    },
+    {
+      lang: "pt",
+      name: "Portugués"
     }
-    // {
-    //   lang: "pt",
-    //   name: "Portugués"
-    // }
   ],
   en: [
     {
@@ -21,24 +21,52 @@ export const AVAILABLE_LANGS = {
     {
       lang: "en",
       name: "English"
+    },
+    {
+      lang: "pt",
+      name: "Portuguese"
     }
-    // {
-    //   lang: "pt",
-    //   name: "Portuguese"
-    // }
+  ],
+  pt: [
+    {
+      lang: "es",
+      name: "Espanhol"
+    },
+    {
+      lang: "en",
+      name: "Inglês"
+    },
+    {
+      lang: "pt",
+      name: "Português"
+    }
+  ],
+  por: [
+    {
+      lang: "es",
+      name: "Espanhol"
+    },
+    {
+      lang: "en",
+      name: "Inglês"
+    },
+    {
+      lang: "pt",
+      name: "Português"
+    }
+  ],
+  "pt-BR": [
+    {
+      lang: "es",
+      name: "Espanhol"
+    },
+    {
+      lang: "en",
+      name: "Inglês"
+    },
+    {
+      lang: "pt",
+      name: "Português"
+    }
   ]
-  // pt: [
-  //   {
-  //     lang: "es",
-  //     name: "Espanha"
-  //   },
-  //   {
-  //     lang: "en",
-  //     name: "Inglês"
-  //   },
-  //   {
-  //     lang: "pt",
-  //     name: "Português"
-  //   }
-  // ]
 };

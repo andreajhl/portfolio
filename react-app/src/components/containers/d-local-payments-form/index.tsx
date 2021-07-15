@@ -8,6 +8,7 @@ import {
   AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES,
   DOCUMENT_NAME_FOR_COUNTRIES
 } from "react-app/src/constants/messages";
+import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 
 const intlMessages = defineMessages({
   placeholderBuyerNameInput: {
@@ -107,7 +108,7 @@ const DLocalPaymentsForm = ({
       }
     }
   };
-  const document_name_available = AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
+  const document_name_available = AVAILABLE_CURRENCIES.find(
     (data) => data.name === currencyExchangeData.to
   );
   return (

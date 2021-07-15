@@ -164,14 +164,20 @@ export const AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES = [
   "MXN",
   "COP",
   "ARS",
-  "USD"
+  "USD",
+  "BOB",
+  "CRC",
+  "GTQ"
 ];
 
 export const DOCUMENT_NAME_FOR_COUNTRIES = defineMessages({
   MXN: { defaultMessage: "CURP" },
   COP: { defaultMessage: "CC" },
   ARS: { defaultMessage: "DNI o CUIT" },
-  USD: { defaultMessage: "Social Security Number / SSN" }
+  USD: { defaultMessage: "Social Security Number / SSN" },
+  BOB: { defaultMessage: "CI" },
+  CRC: { defaultMessage: "CI" },
+  GTQ: { defaultMessage: "CUI" }
 });
 
 export const LOGIN_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [

@@ -82,7 +82,6 @@ const HireThisCelebrityButton = ({
   return (
     <CallToActionButton
       onClick={() => handlerClickToLogin()}
-      onMouseOver={() => registerHireThisCelebrityButtonEvent("HOVER")}
       fontSize={fontSize}
       width={width}
       className={className}

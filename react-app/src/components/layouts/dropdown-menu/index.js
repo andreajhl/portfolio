@@ -37,9 +37,6 @@ export const DropdownMenuLayout = ({
         <i className={`fa fa-${dropdownMenuIsOpen ? "times" : "bars"}`} />
       </button>
       <div
-        onMouseOver={({ target }) =>
-          sendDropdownLinkAnalyticsData("HOVER", target)
-        }
         onClick={({ target }) => sendDropdownLinkAnalyticsData("CLICK", target)}
         className="dropdown-menu"
         aria-labelledby="dropdownMenuButton"

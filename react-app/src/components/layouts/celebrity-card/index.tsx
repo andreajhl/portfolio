@@ -57,9 +57,6 @@ const CelebrityCardLayout = ({
   const registerClickOnCelebrity = () =>
     GTM.tagManagerDataLayer("CLICK_ON_CELEBRITY_CARD", celebrity);
 
-  const registerHoverOnCelebrity = () =>
-    GTM.tagManagerDataLayer("HOVER_ON_CELEBRITY_CARD", celebrity);
-
   const { discountPercentage } = celebrity;
   const getCategory = () => {
     return CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
@@ -77,7 +74,6 @@ const CelebrityCardLayout = ({
     <NavLink
       to={profileUrl}
       onClick={registerClickOnCelebrity}
-      onMouseOver={registerHoverOnCelebrity}
       className="CelebrityCardLayout"
     >
       <div className="celebrity-card">

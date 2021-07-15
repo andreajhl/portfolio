@@ -423,6 +423,20 @@
       "value": "Apply"
     }
   ],
+  "4fXI87": [
+    {
+      "type": 0,
+      "value": "Also receive a: "
+    },
+    {
+      "type": 1,
+      "value": "coupon"
+    },
+    {
+      "type": 0,
+      "value": " on your first purchase."
+    }
+  ],
   "4r0tXK": [
     {
       "type": 0,
@@ -463,6 +477,12 @@
       "value": "span"
     }
   ],
+  "4xmXcX": [
+    {
+      "type": 0,
+      "value": "We have sent your discount code to your email."
+    }
+  ],
   "5+dpGU": [
     {
       "type": 0,
@@ -479,6 +499,12 @@
     {
       "type": 0,
       "value": "If you prove that the costs of arbitration will be prohibitive in comparison with the costs of litigation, Famosos will pay the sum of the administrative costs and fees of the arbitrator necessary for arbitration as it deems necessary, the arbitrator to avoid the cost of arbitration being prohibitive. In the final award, the arbitrator may apportion the arbitration costs and the arbitrator’s compensation between the parties in such amounts as the arbitrator deems appropriate."
+    }
+  ],
+  "5EACDj": [
+    {
+      "type": 0,
+      "value": "You must write a valid email"
     }
   ],
   "5HHVOz": [
@@ -731,6 +757,12 @@
       "value": "Updated password"
     }
   ],
+  "8xaGaO": [
+    {
+      "type": 0,
+      "value": "Subscribe to our newsletter and find out about all our news and exclusive promotions"
+    }
+  ],
   "9KADbj": [
     {
       "type": 0,
@@ -887,6 +919,26 @@
     {
       "type": 0,
       "value": "Write your Subdomain Ej: /andresito"
+    }
+  ],
+  "BI4zr5": [
+    {
+      "type": 0,
+      "value": "Also receive a "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " 10% OFF. "
+        }
+      ],
+      "type": 8,
+      "value": "bigTextSpan"
+    },
+    {
+      "type": 0,
+      "value": " on your first purchase"
     }
   ],
   "BbTBEe": [
@@ -1199,6 +1251,12 @@
       "value": "Paypal"
     }
   ],
+  "HEGBTi": [
+    {
+      "type": 0,
+      "value": "You must write a valid date. Example: 2020-06-25"
+    }
+  ],
   "HG1X7k": [
     {
       "type": 0,
@@ -1469,6 +1527,12 @@
     {
       "type": 0,
       "value": "Similar Videos"
+    }
+  ],
+  "MMb74M": [
+    {
+      "type": 0,
+      "value": "You must write a date"
     }
   ],
   "MQJt4R": [
@@ -1799,6 +1863,22 @@
     {
       "type": 0,
       "value": "Declined payment"
+    }
+  ],
+  "RR1tnZ": [
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " 10% "
+        }
+      ],
+      "type": 8,
+      "value": "bigTextSpan"
+    },
+    {
+      "type": 0,
+      "value": " OFF."
     }
   ],
   "RWLUps": [
@@ -2900,7 +2980,7 @@
   "jrPcz6": [
     {
       "type": 0,
-      "value": "Sign in  "
+      "value": "Sign up"
     }
   ],
   "juVd4V": [
@@ -3095,6 +3175,12 @@
       "value": "You and Famosos agree that we will resolve any dispute between us through binding and final arbitration rather than through judicial processes. You and Famosos hereby waive any right to a jury trial of any claim (defined below). All disputes, claims, counterclaims, or other disputes arising between you and Famosos relating to these Terms, the Site and the Services (each \"Claim\") shall be submitted to arbitration in accordance with the Rules of the American Arbitration Association ( \"AAA Rules\"). Arbitration shall be decided by a single arbitrator. The decision of the arbitrator in such arbitration shall be final and binding on the parties and may be enforced in any court of competent jurisdiction"
     }
   ],
+  "nbZMXN": [
+    {
+      "type": 0,
+      "value": "Subscribe to our newsletter and find out about our news and exclusive promotions."
+    }
+  ],
   "nnRGWT": [
     {
       "type": 0,
@@ -3111,6 +3197,12 @@
     {
       "type": 0,
       "value": "Reviewed: March 28, 2020"
+    }
+  ],
+  "o8JdL0": [
+    {
+      "type": 0,
+      "value": "An error occurred while registering"
     }
   ],
   "oACmv6": [
@@ -3883,6 +3975,12 @@
     {
       "type": 0,
       "value": "USE THE SITE AND SERVICES at your own risk. THE SITE and services are provided \"AS IT IS\" AND \"AS AVAILABLE\". To the extent permitted by LAW, FAMOSOS and their officers, employees, directors, shareholders, parents, subsidiaries, affiliates and agents (\"affiliates\") decline ALL warranties, conditions, and representations of ANY KIND, EXPRESS, IMPLIED, LAW, OR OTHERWISE, including those RELATED TO A PARTICULAR PURPOSE, NON-INFRINGEMENT, and those derived from COURSE MANAGEMENT OR USE TRADING."
+    }
+  ],
+  "sSxzJC": [
+    {
+      "type": 0,
+      "value": "This email is already subscribed to the newsletter"
     }
   ],
   "sXLa3f": [

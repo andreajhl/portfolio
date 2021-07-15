@@ -9,6 +9,7 @@ import { withRouter } from "next/router";
 import { LoaderLayout } from "../../layouts/loader";
 import { secure_payment_img } from "constants/external_assets_by_lang";
 import { listPaymentGateways } from "../../../state/ducks/payments/operations";
+import { returnLangPathFromExternalAssets } from "react-app/src/utils/returnLangPathFromExternalAssets";
 
 class PaymentMethodsSection extends Component {
   constructor(props) {
@@ -134,7 +135,13 @@ class PaymentMethodsSection extends Component {
                   <div className="mt-2 mx-auto text-center">
                     <img
                       width="230px"
-                      src={secure_payment_img[this.props.router?.locale]}
+                      src={
+                        secure_payment_img[
+                          returnLangPathFromExternalAssets(
+                            this.props.router?.locale
+                          )
+                        ]
+                      }
                       alt={"pago-seguro"}
                     />
                   </div>
