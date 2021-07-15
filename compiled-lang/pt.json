@@ -147,6 +147,12 @@
       "value": "Idioma de notificações"
     }
   ],
+  "0r77bg": [
+    {
+      "type": 0,
+      "value": "Cartão de débito"
+    }
+  ],
   "129NDS": [
     {
       "type": 0,
@@ -305,6 +311,12 @@
       "value": "Escreva aqui o seu endereço "
     }
   ],
+  "3IrNpH": [
+    {
+      "type": 0,
+      "value": "ID DA TRANSAÇÃO"
+    }
+  ],
   "3O5yL3": [
     {
       "type": 1,
@@ -409,6 +421,12 @@
       "value": "Faça o login para adicionar um comentário"
     }
   ],
+  "4aS11Q": [
+    {
+      "type": 0,
+      "value": "Aplicar"
+    }
+  ],
   "4r0tXK": [
     {
       "type": 0,
@@ -479,6 +497,12 @@
       "value": "Sua privacidade é muito importante para nós. Nossa política de privacidade explica como coletamos, usamos, protegemos e quando compartilhamos informações pessoais e outros dados com terceiros. Você é responsável por manter a confidencialidade das informações da sua conta, incluindo seu nome de usuário e senha. Você é responsável por todas as atividades que ocorram desde sua conta e concorda em nos notificar imediatamente sobre qualquer acesso ou uso não autorizado de sua conta. Não somos responsáveis por qualquer dano ou perda relacionado a qualquer acesso não autorizado ou uso de sua conta."
     }
   ],
+  "5KDn6A": [
+    {
+      "type": 0,
+      "value": "ID DE RASTREAMENTO:"
+    }
+  ],
   "5fTLVa": [
     {
       "type": 0,
@@ -525,6 +549,12 @@
     {
       "type": 0,
       "value": " Sua assinatura física ou eletrônica;"
+    }
+  ],
+  "6aQTMU": [
+    {
+      "type": 0,
+      "value": "Por favor selecione uma opção"
     }
   ],
   "6i3tAy": [
@@ -687,6 +717,12 @@
       "value": "França "
     }
   ],
+  "9NLj0T": [
+    {
+      "type": 0,
+      "value": "Receba mensagens de vídeo personalizadas de celebridades no WhatsApp"
+    }
+  ],
   "9Ooije": [
     {
       "type": 0,
@@ -717,6 +753,12 @@
       "value": " Estrelas"
     }
   ],
+  "9mcAHp": [
+    {
+      "type": 0,
+      "value": "CUPOM ADICIONADO"
+    }
+  ],
   "9p5jZI": [
     {
       "type": 0,
@@ -743,10 +785,22 @@
       "value": "Este acordo de arbitragem não impede você ou a Famosos de procurar que ação federal, estatal ou por agências governamentais locais. Você e Famosos também têm o direito de entrar com ações de classificação em tribunais de reclamações. Além disso, você e Famosos retêm o direito de recorrer a qualquer tribunal de jurisdição competente para medidas provisórias, incluindo pré-arbitragem ou acessórios de medidas cautelares, e tal solicitação não deve ser considerada inconsistente com estes termos, nem uma renúncia ao direito de ter disputas submetido a arbitragem de acordo com as disposições destas presentes Condições.\""
     }
   ],
+  "A88cVx": [
+    {
+      "type": 0,
+      "value": "Rota:"
+    }
+  ],
   "AGCHbI": [
     {
       "type": 0,
       "value": "A pré-autorização do pagamento na sua conta foi efetuada com sucesso"
+    }
+  ],
+  "AHNK8a": [
+    {
+      "type": 0,
+      "value": "DNI ou CUIT"
     }
   ],
   "ARhEHP": [
@@ -783,6 +837,12 @@
     {
       "type": 0,
       "value": "Dançarinos"
+    }
+  ],
+  "AZgVtc": [
+    {
+      "type": 0,
+      "value": "Se tudo correr bem com o seu pedido de acordo com as nossas políticas, muito em breve poderá desfrutar da sua mensagem de vídeo."
     }
   ],
   "Aa51Eo": [
@@ -835,6 +895,12 @@
     {
       "type": 0,
       "value": "E se eu não gostar do meu vídeo?"
+    }
+  ],
+  "Bo4qJd": [
+    {
+      "type": 0,
+      "value": "CUPÃO NÃO VÁLIDO:"
     }
   ],
   "BqJL4O": [
@@ -1069,6 +1135,34 @@
       "value": "."
     }
   ],
+  "G/1O13": [
+    {
+      "type": 0,
+      "value": "Nenhum resultado encontrado "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " para "
+    },
+    {
+      "type": 1,
+      "value": "search"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
   "GFgV31": [
     {
       "type": 0,
@@ -1079,6 +1173,12 @@
     {
       "type": 0,
       "value": "Espanha"
+    }
+  ],
+  "GRUlng": [
+    {
+      "type": 0,
+      "value": "Pedimos desculpas, estamos corrigindo o problema."
     }
   ],
   "GbabRf": [
@@ -1113,10 +1213,22 @@
       "value": "Para mim"
     }
   ],
+  "H4PL1G": [
+    {
+      "type": 0,
+      "value": "PayPal"
+    }
+  ],
   "HG1X7k": [
     {
       "type": 0,
       "value": "Pagamento completo"
+    }
+  ],
+  "HINYAw": [
+    {
+      "type": 0,
+      "value": "Dinheiro"
     }
   ],
   "HdR30r": [
@@ -1237,6 +1349,12 @@
     {
       "type": 0,
       "value": "Moldávia "
+    }
+  ],
+  "KcvTuJ": [
+    {
+      "type": 0,
+      "value": "Por favor insira todos os dados"
     }
   ],
   "KjMaxy": [
@@ -1433,6 +1551,12 @@
       "value": "Como posso trabalhar em Famosos?"
     }
   ],
+  "NgDJE/": [
+    {
+      "type": 0,
+      "value": "Como posso trabalhar com Famosos?"
+    }
+  ],
   "Nizqzm": [
     {
       "type": 0,
@@ -1458,6 +1582,22 @@
     }
   ],
   "O1JDs +": [
+    {
+      "type": 0,
+      "value": "Se você deseja um vídeo comercial para sua marca, clique "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " aqui. "
+        }
+      ],
+      "type": 8,
+      "value": "span"
+    }
+  ],
+  "O1JDs+": [
     {
       "type": 0,
       "value": "Se você deseja um vídeo comercial para sua marca, clique "
@@ -1535,6 +1675,12 @@
     {
       "type": 0,
       "value": "O seu pedido será concluído em menos de 7 dias"
+    }
+  ],
+  "P9xOfc": [
+    {
+      "type": 0,
+      "value": "Insira o código aqui"
     }
   ],
   "PZh7w+": [
@@ -1655,6 +1801,36 @@
       "value": "Seu pagamento foi aprovado"
     }
   ],
+  "SNXFr/": [
+    {
+      "type": 0,
+      "value": "Ao continuar, você aceita nossos "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Termos e Condições "
+        }
+      ],
+      "type": 8,
+      "value": "linkTerms"
+    },
+    {
+      "type": 0,
+      "value": " e nossa "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Política de Privacidade "
+        }
+      ],
+      "type": 8,
+      "value": "linkPolicies"
+    }
+  ],
   "STAtvd": [
     {
       "type": 0,
@@ -1771,6 +1947,12 @@
       "value": "Estes Termos serão regidos e interpretados de acordo com as leis do Estado da Flórida, sem dar efeito a qualquer conflito de leis ou disposições."
     }
   ],
+  "VbJXnl": [
+    {
+      "type": 0,
+      "value": "Filtrar por:"
+    }
+  ],
   "VkHZxm": [
     {
       "type": 0,
@@ -1809,6 +1991,12 @@
       "value": "É público"
     }
   ],
+  "WDhqRO": [
+    {
+      "type": 0,
+      "value": "Selecione uma ocasião"
+    }
+  ],
   "WH + aqY": [
     {
       "type": 0,
@@ -1843,6 +2031,18 @@
     {
       "type": 0,
       "value": "Filtrar por categoria"
+    }
+  ],
+  "WeLmQS": [
+    {
+      "type": 0,
+      "value": "Se por algum motivo o seu vídeo não puder ser gravado, devolveremos o seu dinheiro em um período máximo de 21 dias úteis"
+    }
+  ],
+  "WkJEIw": [
+    {
+      "type": 0,
+      "value": "Escreva seu email aqui"
     }
   ],
   "WmWz59": [
@@ -1999,6 +2199,12 @@
       "value": " caracteres"
     }
   ],
+  "Yxo8MA": [
+    {
+      "type": 0,
+      "value": "Vá para minhas contratações"
+    }
+  ],
   "ZcJeQh": [
     {
       "type": 0,
@@ -2063,6 +2269,12 @@
     {
       "type": 0,
       "value": "Contratar para empresa"
+    }
+  ],
+  "aPX+PI": [
+    {
+      "type": 0,
+      "value": "Contrato para Empresa"
     }
   ],
   "aRZuTn": [
@@ -2167,10 +2379,30 @@
       "value": "Uma descrição do trabalho protegido por direitos autorais que você alega ter sido violado."
     }
   ],
+  "cEDqkt": [
+    {
+      "type": 0,
+      "value": "Cartão de crédito"
+    }
+  ],
   "cGtJag": [
     {
       "type": 0,
       "value": "Atualmente você não pode fazer vídeos promocionais. Os vídeos que estão em conformidade com nossas políticas são puramente mensagens de vídeo."
+    }
+  ],
+  "cRtlFe": [
+    {
+      "type": 0,
+      "value": "A cobrança que você receberá em sua conta é uma autorização de pagamento que seu banco faz para garantir que haja fundos suficientes. No entanto, Famosos não fará o pagamento até que "
+    },
+    {
+      "type": 1,
+      "value": "CelebrName"
+    },
+    {
+      "type": 0,
+      "value": " grave seu vídeo."
     }
   ],
   "cRwmcT": [
@@ -2311,7 +2543,19 @@
       "value": "Conteúdo e interações de terceiros"
     }
   ],
+  "exOORp": [
+    {
+      "type": 0,
+      "value": "STATUS DO PAGAMENTO:"
+    }
+  ],
   "fH + OCT": [
+    {
+      "type": 0,
+      "value": "Selecione um cartão"
+    }
+  ],
+  "fH+OCT": [
     {
       "type": 0,
       "value": "Selecione um cartão"
@@ -2345,6 +2589,12 @@
     {
       "type": 0,
       "value": "Se você cancelar sua conta no Famosos, poderá solicitar que seus vídeos não sejam mais exibidos no site e solicitações de novos vídeos não sejam recebidas. Não podemos, entretanto, restringir o uso de mensagens de vídeo por usuários finais que você criou para eles e não podemos remover quaisquer outros usos existentes das suas mensagens de vídeo. "
+    }
+  ],
+  "fzb0Cz": [
+    {
+      "type": 0,
+      "value": "O pedido de reembolso é feito de forma automática, o tempo em que será reflectido no seu cartão depende do seu banco e pode ser no máximo 21 dias úteis."
     }
   ],
   "fzp0m/": [
@@ -2419,6 +2669,16 @@
     {
       "type": 0,
       "value": "Anônimo"
+    }
+  ],
+  "hCGL6t": [
+    {
+      "type": 0,
+      "value": "Classificar por: "
+    },
+    {
+      "type": 1,
+      "value": "checkItemLabel"
     }
   ],
   "hCOqfl": [
@@ -2497,6 +2757,12 @@
       "value": "participar do rastreamento ou coleta, ou participar do uso de software, como software espias, desenhados para coletar dados do Site ou dos Serviços;"
     }
   ],
+  "iTKHhw": [
+    {
+      "type": 0,
+      "value": "CC"
+    }
+  ],
   "iTP7rd": [
     {
       "type": 0,
@@ -2549,6 +2815,12 @@
     {
       "type": 0,
       "value": "1 estrela"
+    }
+  ],
+  "lb33Yc": [
+    {
+      "type": 0,
+      "value": "DATA DE PAGAMENTO:"
     }
   ],
   "lkQYB7": [
@@ -2635,7 +2907,19 @@
       "value": "Escreva aqui o nome"
     }
   ],
+  "n9i+Em": [
+    {
+      "type": 0,
+      "value": "Escreva seu nome aqui"
+    }
+  ],
   "nJ / lbc": [
+    {
+      "type": 0,
+      "value": "Como posso comprar um vídeo?"
+    }
+  ],
+  "nJ/lbc": [
     {
       "type": 0,
       "value": "Como posso comprar um vídeo?"
@@ -2717,6 +3001,12 @@
       "value": "O famoso é livre para aceitar ou rejeitar os vídeos. Somos uma plataforma tecnológica de meios e não de resultados. Se o pedido for rejeitado, o dinheiro será devolvido."
     }
   ],
+  "oLV+7c": [
+    {
+      "type": 0,
+      "value": "A celebridade é livre para aceitar ou rejeitar os vídeos. Somos uma plataforma tecnológica para meios e não para resultados. Se o pedido for rejeitado, o dinheiro será devolvido."
+    }
+  ],
   "oRfNHI": [
     {
       "type": 0,
@@ -2777,6 +3067,12 @@
       "value": "Famoso!"
     }
   ],
+  "pPCiwO": [
+    {
+      "type": 0,
+      "value": "Correio eletrônico"
+    }
+  ],
   "pago_seguro": [
     {
       "type": 0,
@@ -2799,6 +3095,12 @@
     {
       "type": 0,
       "value": "Sob nenhuma circunstância será responsável por qualquer atraso ou falha no desempenho devido no todo ou em parte, a qualquer ato da natureza ou outras causas além do nosso controle."
+    }
+  ],
+  "pfhsIr": [
+    {
+      "type": 0,
+      "value": "Transferência bancária"
     }
   ],
   "qMbb2M": [
@@ -2861,6 +3163,12 @@
     {
       "type": 0,
       "value": "Através do Site e dos Serviços, você tem a oportunidade de comprar vídeos personalizados (“ Famosos ”) Vídeos de atletas e influenciadores (“ Usuários Talentos ”). Você está enviando uma solicitação de Vídeo Famoso para um usuário Talento . O Usuário Talento tem até 10 dias úteis para aceitar ou rejeitar o seu pedido. O seu pagamento entrará em vigor assim que concluírem a sua contratação e elaborarem o seu pedido. Caso o talento ou Famosos rejeitem o seu pedido, reembolsaremos o seu método de pagamento escolhido (o reembolso pode levar de 5 a 10 dias úteis para aparecer). Caso sua solicitação seja aceita, não haverá devoluções ou reembolsos. "
+    }
+  ],
+  "r3u9Hf": [
+    {
+      "type": 0,
+      "value": "Poste este vídeo em Famosos.com"
     }
   ],
   "rA53fB": [
@@ -2935,6 +3243,12 @@
       "value": "Se você não receber seu vídeo em 7 dias, devolveremos 100% do seu dinheiro."
     }
   ],
+  "se5FEq": [
+    {
+      "type": 0,
+      "value": "Você tem um cupom de desconto?"
+    }
+  ],
   "sn8X2t": [
     {
       "type": 0,
@@ -2957,6 +3271,12 @@
     {
       "type": 0,
       "value": "Se por algum motivo o seu vídeo não puder ser gravado, devolveremos o dinheiro em aproximadamente 5 a 7 dias"
+    }
+  ],
+  "sy+pv5": [
+    {
+      "type": 0,
+      "value": "E-mail"
     }
   ],
   "t+gzvS": [
@@ -3001,6 +3321,36 @@
       "value": " de compra."
     }
   ],
+  "t2/Gvc": [
+    {
+      "type": 0,
+      "value": "Detalha a solicitação e "
+    },
+    {
+      "type": 1,
+      "value": "onlyMobileLineBreak"
+    },
+    {
+      "type": 0,
+      "value": " executa "
+    },
+    {
+      "type": 1,
+      "value": "onlyDesktopLineBreak"
+    },
+    {
+      "type": 0,
+      "value": " o processo de compra "
+    },
+    {
+      "type": 1,
+      "value": "onlyMobileLineBreak"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
   "t7y7Vl": [
     {
       "type": 0,
@@ -3032,6 +3382,12 @@
     }
   ],
   "tdx + EV": [
+    {
+      "type": 0,
+      "value": "Meu perfil"
+    }
+  ],
+  "tdx+EV": [
     {
       "type": 0,
       "value": "Meu perfil"
@@ -3261,6 +3617,12 @@
       "value": "Iremos notificá-lo quando for ativado."
     }
   ],
+  "xfEeAv": [
+    {
+      "type": 0,
+      "value": "Sua autorização de pagamento foi realizada com sucesso."
+    }
+  ],
   "xkoDM2": [
     {
       "type": 0,
@@ -3311,6 +3673,12 @@
     {
       "type": 0,
       "value": "Famosos.com - Postagem no blog "
+    }
+  ],
+  "z09bol": [
+    {
+      "type": 0,
+      "value": "CURP"
     }
   ],
   "z0KVwy": [
@@ -3367,6 +3735,12 @@
     {
       "type": 0,
       "value": "Pagamento efetuado"
+    }
+  ],
+  "zzBOdK": [
+    {
+      "type": 0,
+      "value": "Aplicar filtro"
     }
   ]
 }

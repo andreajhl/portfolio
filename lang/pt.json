@@ -1479,5 +1479,146 @@
   },
   "wlTYUV": {
     "message": "Realizar uma nova tentativa de pagamento"
+  },
+  "0r77bg": {
+    "message": "Cartão de débito"
+  },
+  "3IrNpH": {
+    "message": "ID DA TRANSAÇÃO"
+  },
+  "4aS11Q": {
+    "message": "Aplicar"
+  },
+  "5KDn6A": {
+    "message": "ID DE RASTREAMENTO:"
+  },
+  "6aQTMU": {
+    "message": "Por favor selecione uma opção"
+  },
+  "9NLj0T": {
+    "message": "Receba mensagens de vídeo personalizadas de celebridades no WhatsApp"
+  },
+  "9mcAHp": {
+    "message": "CUPOM ADICIONADO"
+  },
+  "A88cVx": {
+    "message": "Rota:"
+  },
+  "AHNK8a": {
+    "message": "DNI ou CUIT"
+  },
+  "AZgVtc": {
+    "message": "Se tudo correr bem com o seu pedido de acordo com as nossas políticas, muito em breve poderá desfrutar da sua mensagem de vídeo."
+  },
+  "Bo4qJd": {
+    "message": "CUPÃO NÃO VÁLIDO:"
+  },
+  "G/1O13": {
+    "message": "Nenhum resultado encontrado <br> </br> para {search}."
+  },
+  "GRUlng": {
+    "message": "Pedimos desculpas, estamos corrigindo o problema."
+  },
+  "H4PL1G": {
+    "message": "PayPal"
+  },
+  "HINYAw": {
+    "message": "Dinheiro"
+  },
+  "KcvTuJ": {
+    "message": "Por favor insira todos os dados"
+  },
+  "NgDJE/": {
+    "message": "Como posso trabalhar com Famosos?"
+  },
+  "O1JDs+": {
+    "message": "Se você deseja um vídeo comercial para sua marca, clique <span> aqui. </span>"
+  },
+  "P9xOfc": {
+    "message": "Insira o código aqui"
+  },
+  "SNXFr/": {
+    "message": "Ao continuar, você aceita nossos <linkTerms> Termos e Condições </linkTerms> e nossa <linkPolicies> Política de Privacidade </linkPolicies>"
+  },
+  "VbJXnl": {
+    "message": "Filtrar por:"
+  },
+  "WDhqRO": {
+    "message": "Selecione uma ocasião"
+  },
+  "WeLmQS": {
+    "message": "Se por algum motivo o seu vídeo não puder ser gravado, devolveremos o seu dinheiro em um período máximo de 21 dias úteis"
+  },
+  "WkJEIw": {
+    "message": "Escreva seu email aqui"
+  },
+  "Yxo8MA": {
+    "message": "Vá para minhas contratações"
+  },
+  "aPX+PI": {
+    "message": "Contrato para Empresa"
+  },
+  "cEDqkt": {
+    "message": "Cartão de crédito"
+  },
+  "cRtlFe": {
+    "message": "A cobrança que você receberá em sua conta é uma autorização de pagamento que seu banco faz para garantir que haja fundos suficientes. No entanto, Famosos não fará o pagamento até que {CelebrName} grave seu vídeo."
+  },
+  "exOORp": {
+    "message": "STATUS DO PAGAMENTO:"
+  },
+  "fH+OCT": {
+    "message": "Selecione um cartão"
+  },
+  "fzb0Cz": {
+    "message": "O pedido de reembolso é feito de forma automática, o tempo em que será reflectido no seu cartão depende do seu banco e pode ser no máximo 21 dias úteis."
+  },
+  "hCGL6t": {
+    "message": "Classificar por: {checkItemLabel}"
+  },
+  "iTKHhw": {
+    "message": "CC"
+  },
+  "lb33Yc": {
+    "message": "DATA DE PAGAMENTO:"
+  },
+  "n9i+Em": {
+    "message": "Escreva seu nome aqui"
+  },
+  "nJ/lbc": {
+    "message": "Como posso comprar um vídeo?"
+  },
+  "oLV+7c": {
+    "message": "A celebridade é livre para aceitar ou rejeitar os vídeos. Somos uma plataforma tecnológica para meios e não para resultados. Se o pedido for rejeitado, o dinheiro será devolvido."
+  },
+  "pPCiwO": {
+    "message": "Correio eletrônico"
+  },
+  "pfhsIr": {
+    "message": "Transferência bancária"
+  },
+  "r3u9Hf": {
+    "message": "Poste este vídeo em Famosos.com"
+  },
+  "se5FEq": {
+    "message": "Você tem um cupom de desconto?"
+  },
+  "sy+pv5": {
+    "message": "E-mail"
+  },
+  "t2/Gvc": {
+    "message": "Detalha a solicitação e {onlyMobileLineBreak} executa {onlyDesktopLineBreak} o processo de compra {onlyMobileLineBreak}."
+  },
+  "tdx+EV": {
+    "message": "Meu perfil"
+  },
+  "xfEeAv": {
+    "message": "Sua autorização de pagamento foi realizada com sucesso."
+  },
+  "z09bol": {
+    "message": "CURP"
+  },
+  "zzBOdK": {
+    "message": "Aplicar filtro"
   }
 }
