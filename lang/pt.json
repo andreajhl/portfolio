@@ -1369,7 +1369,7 @@
     "message": "Famosos.com - Perguntas frequentes"
   },
   "tZUCvC": {
-    "message": "Vídeos personalizados de suas celebridades favoritas. Reserve o seu vídeo e desfrute de experiências únicas."
+    "message": "Vídeos personalizados de suas famosos favoritas. Reserve o seu vídeo e desfrute de experiências únicas."
   },
   "u+CFdm": {
     "message": "Famosos.com - Blog"
@@ -1622,7 +1622,7 @@
     "message": "Aplicar filtro"
   },
   "4fXI87": {
-    "message": "Receba um: {cupon} na sua primeira compra."
+    "message": "Receba um: {coupon} na sua primeira compra."
   },
   "4xmXcX": {
     "message": "Enviamos seu código de desconto para o seu email."
@@ -1631,7 +1631,7 @@
     "message": "Você deve digitar um email válido."
   },
   "8xaGaO": {
-    "message": "Se inscreva na nossa newsletter e fique por dentro das nossas novidades e promoções exclusivas"
+    "message": "Se inscreva-se na nossa newsletter e fique por dentro das nossas novidades e promoções exclusivas"
   },
   "BI4zr5": {
     "message": "Receba um cupom de <bigTextSpan>10% DE DESCONTO</bigTextSpan> na sua primeira compra"
@@ -1653,5 +1653,11 @@
   },
   "RR1tnZ": {
     "message": "<bigTextSpan>10%</bigTextSpan> de desconto."
+  },
+  "jrPcz6": {
+    "message": "Registrar-me"
+  },
+  "qL5Hl7": {
+    "message": "Data de aniversário"
   }
 }

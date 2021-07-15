@@ -30,7 +30,7 @@ export const AVAILABLE_LANGS = {
   pt: [
     {
       lang: "es",
-      name: "Espanha"
+      name: "Espanhol"
     },
     {
       lang: "en",
@@ -44,7 +44,7 @@ export const AVAILABLE_LANGS = {
   por: [
     {
       lang: "es",
-      name: "Espanha"
+      name: "Espanhol"
     },
     {
       lang: "en",
@@ -58,7 +58,7 @@ export const AVAILABLE_LANGS = {
   "pt-BR": [
     {
       lang: "es",
-      name: "Espanha"
+      name: "Espanhol"
     },
     {
       lang: "en",
