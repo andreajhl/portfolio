@@ -14,6 +14,9 @@
   "/OzI+S": {
     "message": "Recibirás una notificación a {deliveryContact} cuando tu video esté listo."
   },
+  "/XN7yF": {
+    "message": "CI"
+  },
   "/eYgis": {
     "description": "",
     "message": "Respuesta promedio:"
@@ -149,17 +152,26 @@
   "4aS11Q": {
     "message": "Aplicar"
   },
+  "4fXI87": {
+    "message": "Además recibe un: {coupon} en tu primera compra."
+  },
   "4r0tXK": {
     "message": "Precio: De Mayor a Menor"
   },
   "4rhIbe": {
     "message": "No se encontró un {breakLine} famoso con el usuario <br></br> <span>{celebrityUsername}</span>"
   },
+  "4xmXcX": {
+    "message": "Hemos enviado tu código de descuento a tu correo electrónico."
+  },
   "5+dpGU": {
     "message": "Peru"
   },
   "52kdGd": {
     "message": "Puerto Rico"
+  },
+  "5EACDj": {
+    "message": "Debes introducir un correo electrónico valido"
   },
   "5HHVOz": {
     "message": "Cerrar sesión"
@@ -197,6 +209,9 @@
   "6qOZYA": {
     "message": "Cuba"
   },
+  "6vLMdU": {
+    "message": "CUI"
+  },
   "6y8Fx1": {
     "message": "Pago autorizado"
   },
@@ -229,6 +244,9 @@
   },
   "8u0DFM": {
     "message": "Ha ocurrido un error."
+  },
+  "8xaGaO": {
+    "message": "Suscríbete a nuestro newsletter y entérate de todas nuestras novedades y promociones exclusivas"
   },
   "9KADbj": {
     "message": "France"
@@ -281,6 +299,9 @@
   },
   "BEkIWA": {
     "message": "Escribe tu Subdominio Ej: /andresito"
+  },
+  "BI4zr5": {
+    "message": "Además recibe un <bigTextSpan>10% DE DCTO.</bigTextSpan> en tu primera compra"
   },
   "BiLnNi": {
     "message": "¿Qué pasa si no me gusta mi video?"
@@ -378,6 +399,9 @@
   "H4PL1G": {
     "message": "Paypal"
   },
+  "HEGBTi": {
+    "message": "Debes introducir una fecha valida. Ejemplo: 2020-06-25"
+  },
   "HG1X7k": {
     "message": "Pago completado"
   },
@@ -418,6 +442,9 @@
   "JNf21W": {
     "description": "",
     "message": "En nuestro sitio web utilizamos cookies propias y de terceros para mejorar la experiencia de usuario, rendimiento, análisis y otro fines. Al hacer clic en aceptar o utilizar nuestro sitio, estarás aceptando el uso de estas cookies."
+  },
+  "JS+isq": {
+    "message": "Cupón"
   },
   "JiRPeP": {
     "message": "Actualmente no se puede modificar la solicitud pero muy pronto podrás hacerlo!"
@@ -461,6 +488,9 @@
   },
   "ML6BTv": {
     "message": "Videos similares"
+  },
+  "MMb74M": {
+    "message": "Debes introducir una fecha"
   },
   "MQJt4R": {
     "message": "Procesando..."
@@ -553,6 +583,9 @@
   },
   "RMN4N0": {
     "message": "Pago rechazado"
+  },
+  "RR1tnZ": {
+    "message": "<bigTextSpan>10%</bigTextSpan> de descuento."
   },
   "RWLUps": {
     "message": "Contratos"
@@ -879,6 +912,9 @@
   "j5jEEO": {
     "message": "Motivacional"
   },
+  "jrPcz6": {
+    "message": "Registrarme"
+  },
   "lSxRsO": {
     "description": "Mensaje de error para formulario de stripe",
     "message": "El campo de nombre del titular de la tarjeta es obligatorio"
@@ -932,11 +968,17 @@
   "naJn1L": {
     "message": "Famosos.com - {celebrity_username}"
   },
+  "nbZMXN": {
+    "message": "Suscríbete a nuestro newsletter y entérate de nuestras novedades y promociones exclusivas."
+  },
   "nnRGWT": {
     "message": "Pago cancelado"
   },
   "nwKHl2": {
     "message": "Puedes consultar el estado de tu video en “Mis Contrataciones”"
+  },
+  "o8JdL0": {
+    "message": "Ha ocurrido un error realizando el registro"
   },
   "oACmv6": {
     "message": "¡Tu solicitud ha sido enviada!"
@@ -988,6 +1030,9 @@
   "pfhsIr": {
     "message": "Transferencia Bancaria"
   },
+  "qL5Hl7": {
+    "message": "Cumpleaños"
+  },
   "qMbb2M": {
     "message": "Agregar nueva tarjeta"
   },
@@ -1029,6 +1074,9 @@
   },
   "ruSOFj": {
     "message": "Presentadores"
+  },
+  "sSxzJC": {
+    "message": "Este correo ya está suscrito al newsletter"
   },
   "sXLa3f": {
     "message": "Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero."
