@@ -123,10 +123,6 @@ function CelebritiesCardsSectionLayout({
       cardListRef.current?._outerRef || {};
     setShowLeftScrollButton(scrollLeft !== 0);
     setShowRightScrollButton(scrollLeft + offsetWidth !== scrollWidth);
-    GTM.tagManagerDataLayer("SCROLL_CELEBRITY_SECTION_LIST", {
-      ...analyticsData,
-      hasReachedListEnd: scrollLeft + offsetWidth >= scrollWidth
-    });
   }, 100);
 
   useEffect(() => {
@@ -156,9 +152,6 @@ function CelebritiesCardsSectionLayout({
 
   const shouldRenderMoreResultsButton = hasMoreResults && moreResultsPath;
 
-  const registerCelebritySectionHover = () =>
-    GTM.tagManagerDataLayer("HOVER_CELEBRITY_SECTION", analyticsData);
-
   const registerSeeMoreResultsClick = () =>
     GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTION_SEE_MORE_LINK", {
       ...analyticsData,
@@ -187,7 +180,6 @@ function CelebritiesCardsSectionLayout({
           ? "celebrities-sections-videos"
           : ""
       }`}
-      onMouseEnter={registerCelebritySectionHover}
     >
       <header className="celebrities-section__header d-flex justify-content-between">
         <h2 className={`celebrities-section-layout__title`}>{getTitle()}</h2>

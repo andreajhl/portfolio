@@ -23,10 +23,6 @@ const CelebrityHeroSlideshow = ({
 
   const handleSelect = (selectedIndex, event) => {
     setActiveSlideIndex(selectedIndex);
-    GTM.tagManagerDataLayer("CHANGE_CELEBRITY_HERO_SLIDESHOW_SLIDE", {
-      ...analyticsData,
-      selectedIndex
-    });
   };
 
   const analyticsData = {
@@ -69,13 +65,6 @@ const CelebrityHeroSlideshow = ({
     }
   };
 
-  const registerCelebrityHeroSlideshowHover = () => {
-    GTM.tagManagerDataLayer(
-      "HOVER_CELEBRITY_HERO_SLIDESHOW_SLIDE",
-      analyticsData
-    );
-  };
-
   const slidesVideosReferences = useMemo(
     () =>
       celebrityPublicContracts
@@ -115,7 +104,6 @@ const CelebrityHeroSlideshow = ({
       className={`CelebrityHeroSlideshow container p-0 bg-dark ${
         videoIsFullscreen ? "CelebrityHeroSlideshow--is-fullscreen" : ""
       }`}
-      onMouseOver={registerCelebrityHeroSlideshowHover}
       ref={sectionRef}
     >
       <Carousel
