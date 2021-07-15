@@ -1379,5 +1379,105 @@
   },
   "yv7dLs": {
     "message": "Famosos.com - Postagem no blog "
+  },
+  "C2NeSp": {
+    "message": "O idioma da notificação foi alterado com sucesso."
+  },
+  "1UwvvG": {
+    "message": "Não foi possível salvar sua alteração. Tente novamente."
+  },
+  "0UHyeJ": {
+    "message": "Idioma de notificações"
+  },
+  "3GqTly": {
+    "message": "Escreva aqui o seu endereço "
+  },
+  "8/GNPR": {
+    "message": "RG"
+  },
+  "BbTBEe": {
+    "message": "CPF"
+  },
+  "Q7jxHe": {
+    "message": "CPF"
+  },
+  "V1RqDv": {
+    "message": "Chave única de registo de população"
+  },
+  "n0TzKv": {
+    "message": "Escreva aqui o nome"
+  },
+  "qV0c9N": {
+    "message": "Carteira Nacional de Habilitação"
+  },
+  "t7y7Vl": {
+    "message": "Dados da pessoa que vai realizar o pagamento"
+  },
+  "5h/jE9": {
+    "message": "Formato não válido"
+  },
+  "1YGzpj": {
+    "message": "Parabéns!"
+  },
+  "SJlNke": {
+    "message": "Seu pagamento foi aprovado"
+  },
+  "1iUuaq": {
+    "message": "Parabéns, seu pagamento foi aprovado!"
+  },
+  "duDNCn": {
+    "message": "Para :"
+  },
+  "67YQ5Y": {
+    "message": "De :"
+  },
+  "+jX0dw": {
+    "message": "* Você pode editar as instruções do seu vídeo enquanto a gravação está pendente."
+  },
+  "X9uKOS": {
+    "message": "Próximos passos:"
+  },
+  "MU1M4J": {
+    "message": "{celebrityName} você tem 7 dias para gravar seu vídeo a partir de agora."
+  },
+  "/OzI+S": {
+    "message": "Você receberá uma notificação de correocliente@dominio.com quando seu vídeo estiver pronto."
+  },
+  "zM4Sw/": {
+    "message": "O que significa uma autorização de pagamento?"
+  },
+
+  "ZgVtc": {
+    "message": "Se sua solicitação estiver de acordo nossas políticas, logo você poderá desfrutar da sua mensagem de vídeo."
+  },
+  "8F0yts": {
+    "message": "Se por alguma razão o seu vídeo não puder ser gravador, entraremos em contato com você para notificar."
+  },
+  "oEbrJV": {
+    "message": "Continuar comprando"
+  },
+  "AcGanx": {
+    "message": "Ver os meus pedidos"
+  },
+  "7qAY7x": {
+    "message": "Aguardando a aprovação do seu pagamento."
+  },
+  "vCwzMi": {
+    "message": "O processo de aprovação pode demorar cerca de 23 horas."
+  },
+  "z0KVwy": {
+    "message": "Iremos notificá-lo em {deliveryContact} quando o seu pagamento for aprovado."
+  },
+  "nwKHl2": {
+    "message": "Pode consultar o status do seu vídeo em “Meus Pedidos”"
+  },
+  "RG+TGy": {
+    "message": "Seu pagamento foi recusado"
+  },
+  "d/7Z6V": {
+    "message": "Se você quiser saber mais sobre o status de sua transação, entre em contato com nossa equipe de suporte."
+  },
+  "wlTYUV": {
+    "message": "Realizar uma nova tentativa de pagamento"
   }
 }

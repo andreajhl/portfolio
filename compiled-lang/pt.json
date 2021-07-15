@@ -11,6 +11,12 @@
       "value": "Panamá"
     }
   ],
+  "+jX0dw": [
+    {
+      "type": 0,
+      "value": "* Você pode editar as instruções do seu vídeo enquanto a gravação está pendente."
+    }
+  ],
   "/+/C1u": [
     {
       "type": 0,
@@ -37,6 +43,12 @@
     {
       "type": 0,
       "value": " internet e tente novamente."
+    }
+  ],
+  "/OzI+S": [
+    {
+      "type": 0,
+      "value": "Você receberá uma notificação de correocliente@dominio.com quando seu vídeo estiver pronto."
     }
   ],
   "/eYgis": [
@@ -129,6 +141,12 @@
       "value": "Você é responsável pelo seu uso do Site e dos Serviços, e por qualquer uso do Site ou serviços colocados por meio da sua conta. Nosso objetivo é criar uma experiência de usuário positiva, útil e segura. Para promover esse objetivo, proibimos certos tipos de conduta que podem ser prejudiciais a outros usuários ou a nós. Ao usar o Site ou os Serviços, você não pode:"
     }
   ],
+  "0UHyeJ": [
+    {
+      "type": 0,
+      "value": "Idioma de notificações"
+    }
+  ],
   "129NDS": [
     {
       "type": 0,
@@ -171,6 +189,18 @@
       "value": "Mantenha esta janela aberta enquanto suas informações estão sendo validadas"
     }
   ],
+  "1UwvvG": [
+    {
+      "type": 0,
+      "value": "Não foi possível salvar sua alteração. Tente novamente."
+    }
+  ],
+  "1YGzpj": [
+    {
+      "type": 0,
+      "value": "Parabéns!"
+    }
+  ],
   "1aq5W2": [
     {
       "type": 0,
@@ -181,6 +211,12 @@
     {
       "type": 0,
       "value": " Nem você nem Famosos podem atuar como um representante de classe ou advogado geral particular, ou participar como membro de uma classe de reclamante, no que diz respeito a qualquer reclamação. As reivindicações não podem ser arbitradas em uma classe ou base representativa. O árbitro só pode decidir suas reivindicações individuais e / ou famosas '. O árbitro não pode consolidar ou unir as reivindicações de outras pessoas ou partes que possam estar em situação semelhante."
+    }
+  ],
+  "1iUuaq": [
+    {
+      "type": 0,
+      "value": "Parabéns, seu pagamento foi aprovado!"
     }
   ],
   "1qfzR5": [
@@ -261,6 +297,12 @@
     {
       "type": 0,
       "value": "Pesquisar famosos"
+    }
+  ],
+  "3GqTly": [
+    {
+      "type": 0,
+      "value": "Escreva aqui o seu endereço "
     }
   ],
   "3O5yL3": [
@@ -449,6 +491,12 @@
       "value": "Nota:"
     }
   ],
+  "5h/jE9": [
+    {
+      "type": 0,
+      "value": "Formato não válido"
+    }
+  ],
   "5sQzpi": [
     {
       "type": 0,
@@ -459,6 +507,12 @@
     {
       "type": 0,
       "value": "Posso editar o meu pedido de vídeo depois de haver realizado?"
+    }
+  ],
+  "67YQ5Y": [
+    {
+      "type": 0,
+      "value": "De :"
     }
   ],
   "6O+PLI": [
@@ -523,6 +577,12 @@
       "value": "Campo obrigatório"
     }
   ],
+  "7qAY7x": [
+    {
+      "type": 0,
+      "value": "Aguardando a aprovação do seu pagamento."
+    }
+  ],
   "7v9dpV": [
     {
       "type": 0,
@@ -533,6 +593,18 @@
     {
       "type": 0,
       "value": "mail@domain.com"
+    }
+  ],
+  "8/GNPR": [
+    {
+      "type": 0,
+      "value": "RG"
+    }
+  ],
+  "8F0yts": [
+    {
+      "type": 0,
+      "value": "Se por alguma razão o seu vídeo não puder ser gravador, entraremos em contato com você para notificar."
     }
   ],
   "8HOoZU": [
@@ -729,6 +801,12 @@
       "value": " processo de pagamento."
     }
   ],
+  "AcGanx": [
+    {
+      "type": 0,
+      "value": "Ver os meus pedidos"
+    }
+  ],
   "AnfpP+": [
     {
       "type": 0,
@@ -747,6 +825,12 @@
       "value": " Escreva seu subdomínio Ex: / Andrezinho"
     }
   ],
+  "BbTBEe": [
+    {
+      "type": 0,
+      "value": "CPF"
+    }
+  ],
   "BiLnNi": [
     {
       "type": 0,
@@ -757,6 +841,12 @@
     {
       "type": 0,
       "value": "Entrega flash (< de 24 hrs)"
+    }
+  ],
+  "C2NeSp": [
+    {
+      "type": 0,
+      "value": "O idioma da notificação foi alterado com sucesso."
     }
   ],
   "C2oD0J": [
@@ -1249,6 +1339,16 @@
       "value": "Referido por:"
     }
   ],
+  "MU1M4J": [
+    {
+      "type": 1,
+      "value": "celebrityName"
+    },
+    {
+      "type": 0,
+      "value": " você tem 7 dias para gravar seu vídeo a partir de agora."
+    }
+  ],
   "MURhbO": [
     {
       "type": 0,
@@ -1455,6 +1555,12 @@
       "value": "FAQS"
     }
   ],
+  "Q7jxHe": [
+    {
+      "type": 0,
+      "value": "CPF"
+    }
+  ],
   "QKaY1n": [
     {
       "type": 0,
@@ -1483,6 +1589,12 @@
     {
       "type": 0,
       "value": "Chile"
+    }
+  ],
+  "RG+TGy": [
+    {
+      "type": 0,
+      "value": "Seu pagamento foi recusado"
     }
   ],
   "RMN4N0": [
@@ -1535,6 +1647,12 @@
     {
       "type": 1,
       "value": "celebridade_username"
+    }
+  ],
+  "SJlNke": [
+    {
+      "type": 0,
+      "value": "Seu pagamento foi aprovado"
     }
   ],
   "STAtvd": [
@@ -1607,6 +1725,12 @@
     {
       "type": 0,
       "value": "Pagamento recusado"
+    }
+  ],
+  "V1RqDv": [
+    {
+      "type": 0,
+      "value": "Chave única de registo de população"
     }
   ],
   "VBvZa2": [
@@ -1751,6 +1875,12 @@
       "value": "Imitadores "
     }
   ],
+  "X9uKOS": [
+    {
+      "type": 0,
+      "value": "Próximos passos:"
+    }
+  ],
   "XNGk+R": [
     {
       "type": 0,
@@ -1885,6 +2015,12 @@
     {
       "type": 0,
       "value": "Próxima página"
+    }
+  ],
+  "ZgVtc": [
+    {
+      "type": 0,
+      "value": "Se sua solicitação estiver de acordo nossas políticas, logo você poderá desfrutar da sua mensagem de vídeo."
     }
   ],
   "ZvLd+7": [
@@ -2049,6 +2185,12 @@
       "value": "Minhas inscrições"
     }
   ],
+  "d/7Z6V": [
+    {
+      "type": 0,
+      "value": "Se você quiser saber mais sobre o status de sua transação, entre em contato com nossa equipe de suporte."
+    }
+  ],
   "d4p33Q": [
     {
       "type": 0,
@@ -2109,6 +2251,12 @@
     {
       "type": 0,
       "value": "Contrato recusado"
+    }
+  ],
+  "duDNCn": [
+    {
+      "type": 0,
+      "value": "Para :"
     }
   ],
   "dy8DmF": [
@@ -2481,6 +2629,12 @@
       "value": "AO USAR O SITE OU OS SERVIÇOS, VOCÊ CONCORDA COM ESTES TERMOS. LEIA COM ATENÇÃO."
     }
   ],
+  "n0TzKv": [
+    {
+      "type": 0,
+      "value": "Escreva aqui o nome"
+    }
+  ],
   "nJ / lbc": [
     {
       "type": 0,
@@ -2521,6 +2675,12 @@
       "value": "Pagamento cancelado"
     }
   ],
+  "nwKHl2": [
+    {
+      "type": 0,
+      "value": "Pode consultar o status do seu vídeo em “Meus Pedidos”"
+    }
+  ],
   "o/y0YW": [
     {
       "type": 0,
@@ -2537,6 +2697,12 @@
     {
       "type": 0,
       "value": "Famosos.com - Perguntas frequentes"
+    }
+  ],
+  "oEbrJV": [
+    {
+      "type": 0,
+      "value": "Continuar comprando"
     }
   ],
   "oKcEry": [
@@ -2639,6 +2805,12 @@
     {
       "type": 0,
       "value": "Adicionar novo cartão"
+    }
+  ],
+  "qV0c9N": [
+    {
+      "type": 0,
+      "value": "Carteira Nacional de Habilitação"
     }
   ],
   "qXeQds": [
@@ -2829,6 +3001,12 @@
       "value": " de compra."
     }
   ],
+  "t7y7Vl": [
+    {
+      "type": 0,
+      "value": "Dados da pessoa que vai realizar o pagamento"
+    }
+  ],
   "tDU6jz": [
     {
       "type": 0,
@@ -2953,6 +3131,12 @@
       "value": "Ocorreu um erro inesperado."
     }
   ],
+  "vCwzMi": [
+    {
+      "type": 0,
+      "value": "O processo de aprovação pode demorar cerca de 23 horas."
+    }
+  ],
   "vf4Bo1": [
     {
       "type": 0,
@@ -2999,6 +3183,12 @@
     {
       "type": 0,
       "value": "Se utilizar o link de referência de um famoso cadastrado na plataforma, você terá mais chances de ser aprovado, este link é único por conta e está disponível na seção Meu Perfil do aplicativo dos Famosos."
+    }
+  ],
+  "wlTYUV": [
+    {
+      "type": 0,
+      "value": "Realizar uma nova tentativa de pagamento"
     }
   ],
   "wms1Jl": [
@@ -3123,6 +3313,20 @@
       "value": "Famosos.com - Postagem no blog "
     }
   ],
+  "z0KVwy": [
+    {
+      "type": 0,
+      "value": "Iremos notificá-lo em "
+    },
+    {
+      "type": 1,
+      "value": "deliveryContact"
+    },
+    {
+      "type": 0,
+      "value": " quando o seu pagamento for aprovado."
+    }
+  ],
   "z276Tc": [
     {
       "type": 0,
@@ -3145,6 +3349,12 @@
     {
       "type": 0,
       "value": "Brasil"
+    }
+  ],
+  "zM4Sw/": [
+    {
+      "type": 0,
+      "value": "O que significa uma autorização de pagamento?"
     }
   ],
   "zX425H": [
