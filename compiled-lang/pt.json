@@ -99,6 +99,12 @@
       "value": "Hora:"
     }
   ],
+  "0GetzR": [
+    {
+      "type": 0,
+      "value": "Famoso não encontrado"
+    }
+  ],
   "0I2iWG": [
     {
       "type": 0,
@@ -221,6 +227,12 @@
       "value": "De:"
     }
   ],
+  "2U8U6B": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Tendências"
+    }
+  ],
   "2Wnegw": [
     {
       "type": 0,
@@ -311,6 +323,12 @@
     {
       "type": 0,
       "value": " usar qualquer meio para raspar ou rastrear qualquer página da web contida no site;"
+    }
+  ],
+  "42Gn99": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Termos de serviço do usuário"
     }
   ],
   "45ZLqg": [
@@ -597,6 +615,20 @@
       "value": "França "
     }
   ],
+  "9Ooije": [
+    {
+      "type": 0,
+      "value": "Fã-clube de "
+    },
+    {
+      "type": 1,
+      "value": "Celebrity_username"
+    },
+    {
+      "type": 0,
+      "value": " em Famosos.com. Reserve o seu vídeo personalizado e desfrute de experiências únicas."
+    }
+  ],
   "9Svalq": [
     {
       "type": 0,
@@ -863,6 +895,12 @@
     {
       "type": 0,
       "value": "Respondemos a notificações de supostas violações de direitos autorais e ao cancelamento das contas de infratores reincidentes de acordo com o procedimento estabelecido na Lei de Direitos Autorais do Milênio Digital. Se você acredita que seu trabalho foi copiado de uma forma que constitua violação de direitos autorais, envie as seguintes informações ao Agente de Direitos Autorais mencionado abaixo: "
+    }
+  ],
+  "ETd2VN": [
+    {
+      "type": 0,
+      "value": "As últimas postagens de seu famoso favorito. "
     }
   ],
   "EbbVcC": [
@@ -1155,6 +1193,12 @@
     {
       "type": 0,
       "value": "Preço original:"
+    }
+  ],
+  "LeHkTO": [
+    {
+      "type": 0,
+      "value": "O que é Famosos.com? Famosos.com é uma plataforma onde você pode comprar mensagens de vídeo de suas celebridades favoritas. Como posso comprar um vídeo?"
     }
   ],
   "LsqQep": [
@@ -1483,6 +1527,16 @@
       "value": "Filtrar por país"
     }
   ],
+  "SFQJTa": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Compre um vídeo personalizado de "
+    },
+    {
+      "type": 1,
+      "value": "celebridade_username"
+    }
+  ],
   "STAtvd": [
     {
       "type": 0,
@@ -1603,6 +1657,20 @@
     {
       "type": 0,
       "value": "Garantia Famosos"
+    }
+  ],
+  "VtB4b8": [
+    {
+      "type": 0,
+      "value": "Perfil oficial de "
+    },
+    {
+      "type": 1,
+      "value": "Celebrity_username"
+    },
+    {
+      "type": 0,
+      "value": " no Famosos.com. Reserve o seu vídeo personalizado e desfrute de experiências únicas."
     }
   ],
   "W1OXQI": [
@@ -2025,6 +2093,12 @@
       "value": "Seguindo"
     }
   ],
+  "dgKHBE": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Política de Privacidade"
+    }
+  ],
   "dkJkXx": [
     {
       "type": 0,
@@ -2071,6 +2145,16 @@
     {
       "type": 0,
       "value": "Cartão de Crédito ou Débito"
+    }
+  ],
+  "ekgTKf": [
+    {
+      "type": 0,
+      "value": "Famosos.com - fã-clube de "
+    },
+    {
+      "type": 1,
+      "value": "celebridade_usuario"
     }
   ],
   "erYRhy": [
@@ -2233,6 +2317,12 @@
     {
       "type": 0,
       "value": "Uma declaração de que você acredita de boa-fé que o conteúdo foi removido ou desativado como resultado de um erro ou identificação incorreta do conteúdo; e seu nome, endereço físico, número de telefone e endereço de e-mail, uma declaração consentindo com a jurisdição do tribunal federal em Miami, Flórida, e uma declaração de que aceita a citação da pessoa que notificou a alegada violação. "
+    }
+  ],
+  "hZK5pi": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Vídeos personalizados de seus famosos favoritos. "
     }
   ],
   "hmpcGI": [
@@ -2409,6 +2499,16 @@
       "value": "Pagamento pendente"
     }
   ],
+  "naJn1L": [
+    {
+      "type": 0,
+      "value": "Famosos.com - "
+    },
+    {
+      "type": 1,
+      "value": "celebridade_usuario"
+    }
+  ],
   "nazVl1": [
     {
       "type": 0,
@@ -2431,6 +2531,12 @@
     {
       "type": 0,
       "value": "Seu pedido foi enviado!"
+    }
+  ],
+  "oAD1Z+": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Perguntas frequentes"
     }
   ],
   "oKcEry": [
@@ -2741,6 +2847,12 @@
       "value": "EM PARTICULAR, FAMOSOS E SEUS AFILIADOS, NÃO representa nem garante a veracidade ou integridade dos conteúdos disponibilizados através do site ou serviços, ou dos conteúdos dos sites ou serviços online vinculados ou integrados com o SITE ou serviços. FAMOSOS e seus afiliados RESPONSÁVEIS POR QUAISQUER: ERROS (A), erros, ou imprecisões do conteúdo; (B) LESÕES OU danos materiais causados pelo SEU ACESSO OU USO DO SITE ou serviços; (C) qualquer acesso não autorizado ou uso de nossos servidores ou quaisquer informações pessoais ou dados do usuário; (D) qualquer interrupção da transmissão, OU DESDE DO SITE ou serviços; (E) quaisquer erros, vírus, Troianos OU SIMILARES que possam ser transmitidos NO OU ATRAVÉS DO SITE ou serviços por qualquer terceiro;"
     }
   ],
+  "tZUCvC": [
+    {
+      "type": 0,
+      "value": "Vídeos personalizados de suas celebridades favoritas. Reserve o seu vídeo e desfrute de experiências únicas."
+    }
+  ],
   "tdx + EV": [
     {
       "type": 0,
@@ -2771,6 +2883,12 @@
       "value": "transmitir qualquer tipo de vírus ou outras instruções de computador ou meios tecnológicos cuja finalidade seja alterar, danificar ou interferir no uso de computadores ou sistemas relacionados;"
     }
   ],
+  "u+CFdm": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Blog"
+    }
+  ],
   "uJeJq6": [
     {
       "type": 0,
@@ -2787,6 +2905,12 @@
     {
       "type": 0,
       "value": "Coach"
+    }
+  ],
+  "uVgimH": [
+    {
+      "type": 0,
+      "value": "Nenhuma celebridade encontrada com este nome"
     }
   ],
   "ueZmN4": [
@@ -2991,6 +3115,12 @@
     {
       "type": 0,
       "value": "Você é o proprietário de todos os direitos e do seu conteúdo de usuário e tem o direito de nos conceder os direitos acima mencionados; que você pagou e pagará todas as taxas ou outros pagamentos que possam estar relacionados ao uso de seus conteúdo de usuário; e seu conteúdo de usuário não infringe os direitos de propriedade intelectual, direitos de privacidade, direitos de publicidade ou outros direitos legais de terceiros. "
+    }
+  ],
+  "yv7dLs": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Postagem no blog "
     }
   ],
   "z276Tc": [
