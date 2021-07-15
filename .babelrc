@@ -26,7 +26,10 @@
   ],
   "env": {
     "test": {
-      "plugins": ["./__test__/babel-plugin-maybe-statement"]
+      "plugins": [
+        "./__test__/babel-plugin-maybe-statement",
+        "dynamic-import-node"
+      ]
     }
   }
 }

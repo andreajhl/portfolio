@@ -45,7 +45,6 @@ function DLocalPersonalInfoForm({
   currency,
   currencyExchangeData,
 }: DLocalPersonalInfoFormProps) {
-  console.log(currency);
   const intl = useIntl();
 
   const validations: ValidationsType<typeof initialValuesForm> = {
@@ -58,7 +57,7 @@ function DLocalPersonalInfoForm({
     identification_document(value) {
       const checkDocument = allowedFormatDocuments[currency];
       if (!checkDocument(value))
-        return "Debes introducir un documento de identificación validacion";
+        return "Debes introducir un documento de identificación valido";
     },
   };
 
@@ -81,7 +80,7 @@ function DLocalPersonalInfoForm({
           onChange={onChangeField}
           name="buyer_name"
           placeholder="Nombre"
-        ></input>
+        />
         <WarningMessage
           message={errors?.buyer_name || null}
           className={classes(
@@ -95,7 +94,7 @@ function DLocalPersonalInfoForm({
           onChange={onChangeField}
           placeholder="E-mail"
           name="email_address"
-        ></input>
+        />
         <WarningMessage
           message={errors?.email_address || null}
           className={classes(
@@ -117,7 +116,7 @@ function DLocalPersonalInfoForm({
               : document_name_available?.document_name
           }
           name="identification_document"
-        ></input>
+        />
         <WarningMessage
           message={errors?.identification_document || null}
           className={classes(
@@ -138,5 +137,7 @@ function DLocalPersonalInfoForm({
 }
 
 const _DLocalPersonalInfoForm = connector(DLocalPersonalInfoForm);
+
+export default DLocalPersonalInfoForm;
 
 export { _DLocalPersonalInfoForm as DLocalPersonalInfoForm };
