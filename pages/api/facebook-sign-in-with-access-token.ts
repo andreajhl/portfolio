@@ -3,6 +3,10 @@ import { serialize, parse } from "cookie";
 import axios from "axios";
 import { NEXT_LOCALE } from "constants/keys";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
+import {
+  localeAvailables,
+  returnLangPathFromExternalAssets
+} from "react-app/src/utils/returnLangPathFromExternalAssets";
 
 async function facebookSignInWithAccessToken(
   req: NextApiRequest,
@@ -21,7 +25,10 @@ async function facebookSignInWithAccessToken(
         `${endpoint}/${version}/famosos-com/facebook/sign-in-with-access-token`,
         {
           accessToken: req.body["accessToken"],
-          locale: cookies[NEXT_LOCALE] || "es"
+          locale:
+            returnLangPathFromExternalAssets(
+              cookies[NEXT_LOCALE] as localeAvailables
+            ) || "es"
         }
       )
       .then((response) => {

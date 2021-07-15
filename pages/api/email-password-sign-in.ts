@@ -5,6 +5,10 @@ import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCook
 
 import axios from "axios";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
+import {
+  localeAvailables,
+  returnLangPathFromExternalAssets
+} from "react-app/src/utils/returnLangPathFromExternalAssets";
 
 async function emailPasswordSignInHandler(
   req: NextApiRequest,
@@ -20,7 +24,10 @@ async function emailPasswordSignInHandler(
     .post(`${endpoint}/${version}/famosos-com/email-password/sign-in`, {
       email: req.body["email"],
       password: req.body["password"],
-      locale: cookies[NEXT_LOCALE] || "es"
+      locale:
+        returnLangPathFromExternalAssets(
+          cookies[NEXT_LOCALE] as localeAvailables
+        ) || "es"
     })
     .then((response) => {
       const status = response.data.status;

@@ -5,6 +5,10 @@ import { AUTH_SUCCESS } from "react-app/src/routing/Paths";
 import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
 import { NEXT_LOCALE } from "constants/keys";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
+import {
+  localeAvailables,
+  returnLangPathFromExternalAssets
+} from "react-app/src/utils/returnLangPathFromExternalAssets";
 const ERROR_MESSAGE_CODE_NOT_FOUND = "No code was provided";
 
 async function facebookCallbackHandler(
@@ -32,7 +36,10 @@ async function facebookCallbackHandler(
     .post(`${endpoint}/${version}/famosos-com/facebook/sign-in`, {
       facebookCode: req.query["code"],
       redirectURL: process.env.NEXT_PUBLIC_FACEBOOK_LOGIN_REDIRECT,
-      locale: cookies[NEXT_LOCALE] || "es"
+      locale:
+        returnLangPathFromExternalAssets(
+          cookies[NEXT_LOCALE] as localeAvailables
+        ) || "es"
     })
     .then((response) => {
       const status = response.data.status;

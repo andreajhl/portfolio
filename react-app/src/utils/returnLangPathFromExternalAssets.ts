@@ -1,4 +1,4 @@
-type localeAvailables = "es" | "en" | "pt" | "por" | "pt-BR";
+export type localeAvailables = "es" | "en" | "pt" | "por" | "pt-BR";
 export function returnLangPathFromExternalAssets(locale: localeAvailables) {
   if (locale === "es") {
     return "es";
