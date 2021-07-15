@@ -78,7 +78,6 @@ function SubscribeToThisCelebrityButton({
       width={width}
       className={className}
       onClick={handlerClickToLogin}
-      onMouseOver={() => registerSubscribeToThisCelebrityButtonEvent("HOVER")}
     >
       {text}
       {celebrityFullName ? " " + displayName : ""}

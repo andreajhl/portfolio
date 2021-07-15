@@ -1,7 +1,10 @@
 import React, { useCallback, useEffect } from "react";
 import { wrapper } from "react-app/src/state/store";
 import { useRouter } from "next/router";
-import { initialize as gtmInitialize } from "react-app/src/state/utils/gtm";
+import {
+  analytics,
+  initialize as gtmInitialize
+} from "react-app/src/state/utils/gtm";
 import "react-app/src/styles.scss";
 import { IntlProvider } from "react-intl";
 import esMessages from "../compiled-lang/es.json";
@@ -11,16 +14,21 @@ import { Session } from "../react-app/src/state/utils/session";
 import getWindow from "react-app/src/utils/getWindow";
 import axios from "axios";
 import getCookie from "react-app/src/utils/getCookie";
+import ptMessages from "../compiled-lang/pt.json";
 const OLD_SESSION_KEY = "_a0_";
+
 const languages = {
   en: enMessages,
-  es: esMessages
+  es: esMessages,
+  pt: ptMessages,
+  por: ptMessages,
+  "pt-BR": ptMessages
 };
 const SESSION_NAME = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME;
 
 const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
   const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
-  (window as any)?.analytics.page({
+  analytics.page({
     path: url,
     url,
     shallow,
@@ -40,6 +48,7 @@ function App({ Component, pageProps }) {
 
   useEffect(() => {
     gtmInitialize();
+    analytics.trackFirstPageLoad();
     router.events.on(ROUTE_CHANGE_START, handleRouteChange);
     return () => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);

@@ -4,7 +4,9 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const { withSentryConfig } = require("@sentry/nextjs");
 const { version } = require("./package.json");
-const TRACK_SENTRY_ERRORS = process.env.TRACK_SENTRY_ERRORS || process.env.NEXT_PUBLIC_TRACK_SENTRY_ERRORS;
+const TRACK_SENTRY_ERRORS =
+  process.env.TRACK_SENTRY_ERRORS ||
+  process.env.NEXT_PUBLIC_TRACK_SENTRY_ERRORS;
 
 const nextConfig = {
   compress: true,
@@ -23,7 +25,7 @@ const nextConfig = {
   i18n: {
     // These are all the locales you want to support in
     // your application
-    locales: ["es", "en"],
+    locales: ["es", "en", "pt", "por", "pt-BR"],
     // This is the default locale you want to be used when visiting
     // a non-locale prefixed path e.g. `/hello`
     defaultLocale: "es"
@@ -35,6 +37,6 @@ const withAnalyzerConfig = withBundleAnalyzer(nextConfig);
 module.exports =
   TRACK_SENTRY_ERRORS === "true"
     ? withSentryConfig(withAnalyzerConfig, {
-      release: `FamososFrontend-v${version}`
-    })
+        release: `FamososFrontend-v${version}`
+      })
     : withAnalyzerConfig;

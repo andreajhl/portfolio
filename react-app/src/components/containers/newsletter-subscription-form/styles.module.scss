@@ -1,0 +1,40 @@
+.Label,
+.Input {
+  color: black;
+  display: block;
+  font-size: 1rem;
+}
+
+.Label {
+  line-height: 19px;
+}
+
+.Input {
+  width: 100%;
+  border: 1px solid #747474;
+  border-radius: 5px;
+  padding: 0 1.125em;
+}
+
+.Field + .Field {
+  margin-top: 1.25em;
+}
+
+.ErrorMessage {
+  font-size: 12px;
+  margin-top: 0.5rem;
+}
+
+.RequestErrorMessage {
+  justify-content: center;
+}
+
+.SubmitButton {
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  min-height: 55px;
+  margin-top: 2.0625rem;
+  background: #fb177d;
+  border-radius: 5px;
+}

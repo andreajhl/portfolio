@@ -10,3 +10,4 @@ export const OFFSET_ROTATE_CELEBRITIES_SECTIONS =
   "OFFSET_ROTATE_CELEBRITIES_SECTIONS";
 export const STRIPE_FAILURE_AUTHENTICATION = "stripe_failure_authentication";
 export const NEXT_LOCALE = "NEXT_LOCALE";
+export const cfUserCountryCode = "__cf__userCountryCode";

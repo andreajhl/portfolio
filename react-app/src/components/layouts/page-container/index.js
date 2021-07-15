@@ -19,13 +19,19 @@ import { Session } from "react-app/src/state/utils/session.js";
 
 function ignoreError() {}
 
+const NewsletterPopup = dynamic(
+  import("../../containers/newsletter-popup").then(
+    (mod) => mod.NewsletterPopup
+  ),
+  { ssr: false }
+);
+
 const CookiesConsent = dynamic(
-  () => import("../cookies-consent").then((mod) => mod.CookiesConsent),
+  import("../cookies-consent").then((mod) => mod.CookiesConsent),
   { ssr: false }
 );
 
 function PageContainer({
-  hasDiscountCoupon,
   cleanUserCelebrityLikes,
   restCountries,
   applyFetchUserCelebrityLikes,
@@ -40,7 +46,6 @@ function PageContainer({
 }) {
   const botMakerChildRef = useRef();
   const [dropdownMenuIsOpen, setDropdownMenuIsOpen] = useState(false);
-  const [showCouponBanner, setShowCouponBanner] = useState(hasDiscountCoupon);
   const loginHandler = useLoginHandler();
 
   function cancelPreviousWaitFor() {
@@ -147,8 +152,6 @@ function PageContainer({
             dropdownMenuIsOpen={dropdownMenuIsOpen}
             setDropdownMenuIsOpen={setDropdownMenuIsOpen}
             queryParams={queryParams}
-            showCouponBanner={showCouponBanner}
-            setShowCouponBanner={setShowCouponBanner}
           />
         </Maybe>
         <Maybe it={props.showFiltersSection}>
@@ -185,6 +188,8 @@ function PageContainer({
         alt="Imagen de Error de conexión de internet pre-cargada"
       />
 
+      <NewsletterPopup />
+
       <CookiesConsent />
     </div>
   );
@@ -220,10 +225,7 @@ const mapStateToProps = (state) => {
     isLoading: state.celebrities.fetchCelebritiesReducer.loading,
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
     paginationData:
-      state.celebrities.fetchCelebritiesReducer.data.informationPage,
-    hasDiscountCoupon:
-      state.discountCoupons.getDiscountCouponBannerReducer.data.couponCode &&
-      state.discountCoupons.timeDifferenceReducer
+      state.celebrities.fetchCelebritiesReducer.data.informationPage
   };
 };
 

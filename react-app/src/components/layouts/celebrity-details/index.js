@@ -27,13 +27,17 @@ const CelebrityDetails = ({ celebrity, variant }) => {
     contractTypes,
     description,
     turnaround,
-    availableForSubscriptions,
     availableForFlashDeliveries,
     isDonor,
     causeName,
     causeUrl,
     status
   } = celebrity;
+
+  const isJuanseQuintero = celebrityId === 6317;
+
+  const availableForSubscriptions =
+    celebrity.availableForSubscriptions && !isJuanseQuintero;
 
   return (
     <Container

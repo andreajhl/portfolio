@@ -83,3 +83,17 @@ export const updateNotificationsLang = (body) => {
       });
   });
 };
+
+export const saveUserNewsletter = (subscriptionData) =>
+  apiService({
+    method: "POST",
+    path: PATHS.SAVE_USER_NEWSLETTER,
+    body: subscriptionData
+  })
+    .then((response) => {
+      if (response.data.status !== "OK") throw response.data.error;
+      return response.data;
+    })
+    .catch((error) => {
+      throw new Error(error?.response?.data?.error || error.message);
+    });
