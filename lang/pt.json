@@ -1659,5 +1659,96 @@
   },
   "qL5Hl7": {
     "message": "Data de aniversário"
+  },
+
+  "3Szr5X": {
+    "message": "Cadastre-se no Google"
+  },
+  "5jWuaC": {
+    "message": "Você esqueceu sua senha"
+  },
+  "8wR3lj": {
+    "message": "Senha atualizada"
+  },
+  "EqG/WU": {
+    "message": "Certifique-se de que é uma senha fácil de lembrar."
+  },
+  "EwT5kN": {
+    "message": "Certifique-se de que é uma senha fácil de lembrar."
+  },
+  "Hauttd": {
+    "message": "Cadastre-se no Facebook"
+  },
+  "IdELJG": {
+    "message": "Entrar com o Google"
+  },
+  "Isy4qq": {
+    "message": "Famoso"
+  },
+  "Jv23M2": {
+    "message": "Entrar com o Facebook"
+  },
+  "L08n/M": {
+    "message": "Você não tem uma conta? <signUpLink> Inscreva-se </signUpLink>"
+  },
+  "L6k2XE": {
+    "message": "Viva experiências únicas com centenas de latinos famosos."
+  },
+  "NLbEhA": {
+    "message": "Viva experiências únicas com centenas de latinos famosos."
+  },
+  "SijdbJ": {
+    "message": "Compre um vídeo personalizado de {celebridadeFullName}"
+  },
+  "Spo/Vy": {
+    "message": "Vá para começar"
+  },
+  "Xp7qs8": {
+    "message": "Bem-vindo ao Famous! {br} Crie uma conta para começar a se conectar com suas celebridades favoritas."
+  },
+  "ZDkLmZ": {
+    "message": "Verifique seu e-mail e digite o código de 6 dígitos que você recebeu"
+  },
+  "ZPvdL/": {
+    "message": "ou entre com seu email"
+  },
+  "b861FF": {
+    "message": "Famosos.com - Recuperar senha"
+  },
+  "dPuxZs": {
+    "message": "Cadastre-se e continue"
+  },
+  "f6JH6I": {
+    "message": "Ao continuar, aceito de forma expressa e informada os <termsLink> Termos e Condições </termsLink> e a <policiesLink> Política de Privacidade </policiesLink> da Famosos Inc."
+  },
+  "hKJZJR": {
+    "message": "Mandar"
+  },
+  "jkPKiZ": {
+    "message": "Esqueci minha senha"
+  },
+  "lGFIAN": {
+    "message": "Crie uma conta para se conectar com pessoas famosas."
+  },
+  "nJRa/h": {
+    "message": "Receba promoções e novidades sobre celebridades que ingressam em nossa comunidade."
+  },
+  "rtwrcq": {
+    "message": "Você já tem uma conta? <signInLink> Faça login </signInLink>"
+  },
+  "uKwcXA": {
+    "message": "Crie uma conta para se conectar com pessoas famosas"
+  },
+  "uSPUjx": {
+    "message": "Mude sua senha"
+  },
+  "uleYZ4": {
+    "message": "Para continuar, atualize a senha da sua conta."
+  },
+  "vcGTkv": {
+    "message": "Registro"
+  },
+  "wkaVGz": {
+    "message": "Acesse sua conta para se conectar com pessoas famosas"
   }
 }

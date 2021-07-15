@@ -345,6 +345,12 @@
       "value": "span"
     }
   ],
+  "3Szr5X": [
+    {
+      "type": 0,
+      "value": "Cadastre-se no Google"
+    }
+  ],
   "3T2iOg": [
     {
       "type": 0,
@@ -547,6 +553,12 @@
       "value": "Formato não válido"
     }
   ],
+  "5jWuaC": [
+    {
+      "type": 0,
+      "value": "Você esqueceu sua senha"
+    }
+  ],
   "5sQzpi": [
     {
       "type": 0,
@@ -735,6 +747,12 @@
     {
       "type": 0,
       "value": "Ocorreu um erro."
+    }
+  ],
+  "8wR3lj": [
+    {
+      "type": 0,
+      "value": "Senha atualizada"
     }
   ],
   "8xaGaO": [
@@ -1123,10 +1141,22 @@
       "value": "Enviar comentário"
     }
   ],
+  "EqG/WU": [
+    {
+      "type": 0,
+      "value": "Certifique-se de que é uma senha fácil de lembrar."
+    }
+  ],
   "ErSRb8": [
     {
       "type": 0,
       "value": "Selecione um cartão"
+    }
+  ],
+  "EwT5kN": [
+    {
+      "type": 0,
+      "value": "Certifique-se de que é uma senha fácil de lembrar."
     }
   ],
   "F03q + a": [
@@ -1289,6 +1319,12 @@
       "value": "Dinheiro"
     }
   ],
+  "Hauttd": [
+    {
+      "type": 0,
+      "value": "Cadastre-se no Facebook"
+    }
+  ],
   "HdR30r": [
     {
       "type": 0,
@@ -1325,10 +1361,22 @@
       "value": "Posso baixar meu vídeo?"
     }
   ],
+  "IdELJG": [
+    {
+      "type": 0,
+      "value": "Entrar com o Google"
+    }
+  ],
   "IeYjFw": [
     {
       "type": 0,
       "value": "Nicarágua "
+    }
+  ],
+  "Isy4qq": [
+    {
+      "type": 0,
+      "value": "Famoso"
     }
   ],
   "Iuyaxf": [
@@ -1383,6 +1431,12 @@
     {
       "type": 0,
       "value": "Você nos concede uma licença não exclusiva, livre de royalties, totalmente paga, ilimitada, em todo o mundo, sublicenças (por meio de vários níveis de sublicenças), licença perpétua e irrevogável, em todos e quaisquer meios e meios de comunicação, seja conhecido ou inventado (incluindo, mas não limitado a canais de mídia social e outros sites e plataformas), para reproduzir, licenciar, distribuir, modificar, adaptar, executar publicamente, exibir publicamente, criar derivados de obras e de outra forma usar o seguinte para fins de operação e disponibilidade do site e serviços para você e outros usuários, para desenvolver e melhorar nossos produtos e serviços, e para anunciar, comercializar e promover o site, serviços e quaisquer outros produtos e serviços Famosos: (i) qualquer solicitação que você fizer para qualquer Usuário Talento; e (ii) qualquer solicitação que você fizer para Famosos através do Site, incluindo os Serviços, através de qualquer mídia social ou outra conta usada por Famosos, ou de outra forma, incluindo qualquer vídeo de reação, opinião, foto, e-mail, texto, correspondência ou outra comunicação, seja relacionada a você, o destinatário de qualquer vídeo FAMOSOS, ou qualquer outro terceiro ((i) e (ii) coletivamente uma \"Apresentação\"). Você concorda em indenizar e isentar de responsabilidade Famosos Famosos dba, Inc. com relação à apresentação e qualquer uso da comunicação de acordo com os termos do artigo 13 dos Termos de Serviço do Usuário."
+    }
+  ],
+  "Jv23M2": [
+    {
+      "type": 0,
+      "value": "Entrar com o Facebook"
     }
   ],
   "K8SMPu": [
@@ -1441,6 +1495,28 @@
     {
       "type": 0,
       "value": "Ver vídeo"
+    }
+  ],
+  "L08n/M": [
+    {
+      "type": 0,
+      "value": "Você não tem uma conta? "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Inscreva-se "
+        }
+      ],
+      "type": 8,
+      "value": "signUpLink"
+    }
+  ],
+  "L6k2XE": [
+    {
+      "type": 0,
+      "value": "Viva experiências únicas com centenas de latinos famosos."
     }
   ],
   "LMVeQk": [
@@ -1601,6 +1677,12 @@
     {
       "type": 0,
       "value": ". mensagem de vídeo"
+    }
+  ],
+  "NLbEhA": [
+    {
+      "type": 0,
+      "value": "Viva experiências únicas com centenas de latinos famosos."
     }
   ],
   "NROWdz": [
@@ -1923,6 +2005,22 @@
       "value": "Bolívia"
     }
   ],
+  "SijdbJ": [
+    {
+      "type": 0,
+      "value": "Compre um vídeo personalizado de "
+    },
+    {
+      "type": 1,
+      "value": "celebridadeFullName"
+    }
+  ],
+  "Spo/Vy": [
+    {
+      "type": 0,
+      "value": "Vá para começar"
+    }
+  ],
   "SvDN5n": [
     {
       "type": 0,
@@ -2205,6 +2303,20 @@
       "value": " que conectam personalidades com seus fãs."
     }
   ],
+  "Xp7qs8": [
+    {
+      "type": 0,
+      "value": "Bem-vindo ao Famous! "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " Crie uma conta para começar a se conectar com suas celebridades favoritas."
+    }
+  ],
   "Y6 + mfe": [
     {
       "type": 0,
@@ -2283,6 +2395,18 @@
     {
       "type": 0,
       "value": "Vá para minhas contratações"
+    }
+  ],
+  "ZDkLmZ": [
+    {
+      "type": 0,
+      "value": "Verifique seu e-mail e digite o código de 6 dígitos que você recebeu"
+    }
+  ],
+  "ZPvdL/": [
+    {
+      "type": 0,
+      "value": "ou entre com seu email"
     }
   ],
   "ZcJeQh": [
@@ -2385,6 +2509,12 @@
     {
       "type": 0,
       "value": "VOCÊ entende e aceitaque qualquer material ou informação baixado ou obtido através do uso do SITE ou serviços, incluindo sem limitação, vídeos famosos, é feito por sua própria conta e risco e que VOCÊ será o único responsável por quaisquer danos causados por NENHUM CONSELHO OU INFORMAÇÃO, ORAL OU ESCRITA, obtido por você dos EUA OU ATRAVÉS DO SITE OU DA GARANTIA DE SERVIÇOS NÃO EXPRESSAMENTE "
+    }
+  ],
+  "b861FF": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Recuperar senha"
     }
   ],
   "b9prTq": [
@@ -2515,6 +2645,12 @@
       "value": "Email de notificação:"
     }
   ],
+  "dPuxZs": [
+    {
+      "type": 0,
+      "value": "Cadastre-se e continue"
+    }
+  ],
   "dUl69m": [
     {
       "type": 0,
@@ -2627,6 +2763,40 @@
     {
       "type": 0,
       "value": "STATUS DO PAGAMENTO:"
+    }
+  ],
+  "f6JH6I": [
+    {
+      "type": 0,
+      "value": "Ao continuar, aceito de forma expressa e informada os "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Termos e Condições "
+        }
+      ],
+      "type": 8,
+      "value": "termsLink"
+    },
+    {
+      "type": 0,
+      "value": " e a "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Política de Privacidade "
+        }
+      ],
+      "type": 8,
+      "value": "policiesLink"
+    },
+    {
+      "type": 0,
+      "value": " da Famosos Inc."
     }
   ],
   "fH + OCT": [
@@ -2801,6 +2971,12 @@
       "value": " &nbsp;"
     }
   ],
+  "hKJZJR": [
+    {
+      "type": 0,
+      "value": "Mandar"
+    }
+  ],
   "hSj5kq": [
     {
       "type": 0,
@@ -2867,6 +3043,12 @@
       "value": "Acordo de Arbitragem e isenção de certos direitos"
     }
   ],
+  "jkPKiZ": [
+    {
+      "type": 0,
+      "value": "Esqueci minha senha"
+    }
+  ],
   "jrPcz6": [
     {
       "type": 0,
@@ -2889,6 +3071,12 @@
     {
       "type": 0,
       "value": "Uma declaração sua, feita sob pena de perjúrio, de que as informações acima são precisas e que você é o proprietário dos direitos autorais ou está autorizado a agir em nome do proprietário dos direitos autorais."
+    }
+  ],
+  "lGFIAN": [
+    {
+      "type": 0,
+      "value": "Crie uma conta para se conectar com pessoas famosas."
     }
   ],
   "lSxRsO": [
@@ -3015,6 +3203,12 @@
     {
       "type": 0,
       "value": "Pagamento expirado"
+    }
+  ],
+  "nJRa/h": [
+    {
+      "type": 0,
+      "value": "Receba promoções e novidades sobre celebridades que ingressam em nossa comunidade."
     }
   ],
   "nMFRRt": [
@@ -3329,6 +3523,22 @@
       "value": "Estamos fazendo o possível para resolver. "
     }
   ],
+  "rtwrcq": [
+    {
+      "type": 0,
+      "value": "Você já tem uma conta? "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Faça login "
+        }
+      ],
+      "type": 8,
+      "value": "signInLink"
+    }
+  ],
   "ruSOFj": [
     {
       "type": 0,
@@ -3539,6 +3749,12 @@
       "value": "Uma assinatura eletrônica ou física da pessoa autorizada a agir em nome do proprietário dos direitos autorais."
     }
   ],
+  "uKwcXA": [
+    {
+      "type": 0,
+      "value": "Crie uma conta para se conectar com pessoas famosas"
+    }
+  ],
   "uMrHKU": [
     {
       "type": 0,
@@ -3549,6 +3765,12 @@
     {
       "type": 0,
       "value": "Coach"
+    }
+  ],
+  "uSPUjx": [
+    {
+      "type": 0,
+      "value": "Mude sua senha"
     }
   ],
   "uVgimH": [
@@ -3567,6 +3789,12 @@
     {
       "type": 0,
       "value": "Para:"
+    }
+  ],
+  "uleYZ4": [
+    {
+      "type": 0,
+      "value": "Para continuar, atualize a senha da sua conta."
     }
   ],
   "ut6hvz": [
@@ -3601,6 +3829,12 @@
     {
       "type": 0,
       "value": "O processo de aprovação pode demorar cerca de 23 horas."
+    }
+  ],
+  "vcGTkv": [
+    {
+      "type": 0,
+      "value": "Registro"
     }
   ],
   "vf4Bo1": [
@@ -3649,6 +3883,12 @@
     {
       "type": 0,
       "value": "Se utilizar o link de referência de um famoso cadastrado na plataforma, você terá mais chances de ser aprovado, este link é único por conta e está disponível na seção Meu Perfil do aplicativo dos Famosos."
+    }
+  ],
+  "wkaVGz": [
+    {
+      "type": 0,
+      "value": "Acesse sua conta para se conectar com pessoas famosas"
     }
   ],
   "wlTYUV": [
