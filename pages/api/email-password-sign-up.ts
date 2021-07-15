@@ -4,7 +4,7 @@ import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCook
 
 import axios from "axios";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
-import { returnLangPathFromExternalAssets } from "react-app/src/utils/returnLangPathFromExternalAssets";
+import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 async function emailPasswordSignUpHandler(
   req: NextApiRequest,
@@ -22,7 +22,7 @@ async function emailPasswordSignUpHandler(
       fullName: req.body["fullName"],
       birthDate: req.body["birthDate"],
       addToNewsLetter: req.body["allowNotifications"],
-      locale: returnLangPathFromExternalAssets(req.body["locale"])
+      locale: transformUserNavigatorLanguageToISO2Code(req.body["locale"])
     })
     .then((response) => {
       const status = response.data.status;

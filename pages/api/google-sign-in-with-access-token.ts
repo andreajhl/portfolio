@@ -1,10 +1,10 @@
-import { localeAvailables } from "./../../react-app/src/utils/returnLangPathFromExternalAssets";
+import { localeAvailables } from "./../../react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize, parse } from "cookie";
 import axios from "axios";
 import { NEXT_LOCALE } from "constants/keys";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
-import { returnLangPathFromExternalAssets } from "react-app/src/utils/returnLangPathFromExternalAssets";
+import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 async function facebookSignInWithAccessToken(
   req: NextApiRequest,
@@ -25,7 +25,7 @@ async function facebookSignInWithAccessToken(
         {
           accessToken: req.body["accessToken"],
           locale:
-            returnLangPathFromExternalAssets(
+            transformUserNavigatorLanguageToISO2Code(
               cookies[NEXT_LOCALE] as localeAvailables
             ) || "ES"
         }

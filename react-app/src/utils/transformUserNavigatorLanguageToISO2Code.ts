@@ -1,5 +1,7 @@
 export type localeAvailables = "es" | "en" | "pt" | "por" | "pt-BR";
-export function returnLangPathFromExternalAssets(locale: localeAvailables) {
+export function transformUserNavigatorLanguageToISO2Code(
+  locale: localeAvailables
+) {
   if (locale === "es") {
     return "es";
   }

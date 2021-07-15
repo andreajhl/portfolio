@@ -7,8 +7,8 @@ import { NEXT_LOCALE } from "constants/keys";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 import {
   localeAvailables,
-  returnLangPathFromExternalAssets
-} from "react-app/src/utils/returnLangPathFromExternalAssets";
+  transformUserNavigatorLanguageToISO2Code
+} from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 const ERROR_MESSAGE_CODE_NOT_FOUND = "No code was provided";
 
 async function facebookCallbackHandler(
@@ -37,7 +37,7 @@ async function facebookCallbackHandler(
       facebookCode: req.query["code"],
       redirectURL: process.env.NEXT_PUBLIC_FACEBOOK_LOGIN_REDIRECT,
       locale:
-        returnLangPathFromExternalAssets(
+        transformUserNavigatorLanguageToISO2Code(
           cookies[NEXT_LOCALE] as localeAvailables
         ) || "es"
     })

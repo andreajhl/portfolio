@@ -1,4 +1,4 @@
-import { localeAvailables } from "./../../react-app/src/utils/returnLangPathFromExternalAssets";
+import { localeAvailables } from "./../../react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize, parse } from "cookie";
 import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
@@ -7,7 +7,7 @@ import axios from "axios";
 import { AUTH_SUCCESS } from "react-app/src/routing/Paths";
 import { NEXT_LOCALE } from "constants/keys";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
-import { returnLangPathFromExternalAssets } from "react-app/src/utils/returnLangPathFromExternalAssets";
+import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 const ERROR_MESSAGE_CODE_NOT_FOUND = "No code was provided";
 
@@ -37,7 +37,7 @@ async function googleCallbackHandler(
       googleCode: req.query["code"],
       redirectURL: process.env.NEXT_PUBLIC_GOOGLE_LOGIN_REDIRECT,
       locale:
-        returnLangPathFromExternalAssets(
+        transformUserNavigatorLanguageToISO2Code(
           cookies[NEXT_LOCALE] as localeAvailables
         ) || "es"
     })
