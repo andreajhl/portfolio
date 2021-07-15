@@ -41,7 +41,7 @@ export const AVAILABLE_LANGS = {
       name: "Português"
     }
   ],
-  port: [
+  por: [
     {
       lang: "es",
       name: "Espanha"
