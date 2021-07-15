@@ -50,7 +50,6 @@ const GoToSimilarCelebritiesButton = ({
     <NavLink
       to={similarCelebritiesPath}
       onClick={() => registerGoToSimilarCelebritiesButtonEvent("CLICK")}
-      onMouseDown={() => registerGoToSimilarCelebritiesButtonEvent("HOVER")}
     >
       <LessImportantCallToActionButton
         fontSize={fontSize}

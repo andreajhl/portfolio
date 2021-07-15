@@ -2,21 +2,28 @@ import Auth0ProviderWithHistory from "lib/auth0-provider-with-history";
 import React, { useEffect } from "react";
 import { wrapper } from "react-app/src/state/store";
 import { useRouter } from "next/router";
-import { initialize as gtmInitialize } from "react-app/src/state/utils/gtm";
+import {
+  analytics,
+  initialize as gtmInitialize
+} from "react-app/src/state/utils/gtm";
 import "react-app/src/styles.scss";
 import Auth0UserHandler from "lib/auth0UserHandler";
 import { IntlProvider } from "react-intl";
 import esMessages from "../compiled-lang/es.json";
 import enMessages from "../compiled-lang/en.json";
+import ptMessages from "../compiled-lang/pt.json";
 
 const languages = {
   en: enMessages,
-  es: esMessages
+  es: esMessages,
+  pt: ptMessages,
+  por: ptMessages,
+  "pt-BR": ptMessages
 };
 
 const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
   const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
-  (window as any)?.analytics.page({
+  analytics.page({
     path: url,
     url,
     shallow,
@@ -35,6 +42,7 @@ const App = ({ Component, pageProps }) => {
 
   useEffect(() => {
     gtmInitialize();
+    analytics.trackFirstPageLoad();
     router.events.on(ROUTE_CHANGE_START, handleRouteChange);
     return () => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { paymentsOperations } from "../../../state/ducks/payments";
 import { connect } from "react-redux";
-import { AVAILABLE_CURRENCIES } from "../../layouts/currency-dropdown/constants";
+import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 
 class ContractCurrencyPayment extends Component {
   constructor(props) {

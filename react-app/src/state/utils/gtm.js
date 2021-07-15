@@ -1,3 +1,4 @@
+import getWindow from "react-app/src/utils/getWindow";
 import TagManager from "react-gtm-module";
 // import { Mixpanel } from "./mixPanel";
 
@@ -28,16 +29,35 @@ export const tagManagerDataLayer = (event, dataLayer) => {
       event
     });
 
-    // Segment
-    if (ENV !== "development") {
-      window.analytics.track(event, {
-        ...dataLayer,
-        ENVIRONMENT: ENV.toUpperCase()
-      });
-    }
+    // // Segment
+    // if (ENV !== "development") {
+    //   window.analytics.track(event, {
+    //     ...dataLayer,
+    //     ENVIRONMENT: ENV.toUpperCase()
+    //   });
+    // }
   } catch (e) {
     console.warn("tagManagerDataLayer Error:", e);
   }
 };
 
-export const analytics = { track: tagManagerDataLayer };
+export function page(data) {
+  tagManagerDataLayer("PAGE", data);
+}
+
+export function trackFirstPageLoad() {
+  page({
+    ENV: String(process.env.NEXT_PUBLIC_ENVIRONMENT).toUpperCase(),
+    isReactRouting: false,
+    path: getWindow().location.pathname,
+    userAgent: navigator.userAgent,
+    vendor: navigator.vendor,
+    receivedAt: new Date()
+  });
+}
+
+export const analytics = {
+  track: tagManagerDataLayer,
+  page,
+  trackFirstPageLoad
+};

@@ -136,41 +136,15 @@ class CelebrityPublicContractsSectionLayout extends Component {
     username: this.props.username
   };
 
-  registerListHover = () => {
-    GTM.tagManagerDataLayer(
-      "HOVER_CELEBRITY_PUBLIC_CONTRACTS_LIST",
-      this.analyticsData
-    );
-  };
-
-  registerListScroll = (hasReachedListEnd) => {
-    GTM.tagManagerDataLayer("SCROLL_CELEBRITY_PUBLIC_CONTRACTS_LIST", {
-      ...this.analyticsData,
-      hasReachedListEnd
-    });
-  };
-
-  registerCelebrityPublicContractsScrollButtonClick = (direction) => {
-    GTM.tagManagerDataLayer(
-      "CLICK_CELEBRITY_PUBLIC_CONTRACTS_SECTION_SCROLL_BUTTON",
-      { ...this.analyticsData, direction }
-    );
-  };
-
   render() {
     const hasContracts = this.props.publicContracts.length > 0;
     return this.props.isLoading || hasContracts ? (
       <div className="CelebrityPublicContractsSectionLayout">
         <CarouselWithButtons.Container
           buttonsStyles={{ top: "1.25rem", height: "344px" }}
-          onScrollTo={this.registerCelebrityPublicContractsScrollButtonClick}
-          onListScroll={this.registerListScroll}
         >
           <CarouselWithButtons.List>
-            <ul
-              className="CelebrityPublicContractsSectionLayout__list"
-              onMouseOver={this.registerListHover}
-            >
+            <ul className="CelebrityPublicContractsSectionLayout__list">
               {!this.props.isLoading
                 ? this.props.publicContracts.map((publicContract) => (
                     <li className="mr-3" key={publicContract.contract_id}>
@@ -192,31 +166,6 @@ class CelebrityPublicContractsSectionLayout extends Component {
             </ul>
           </CarouselWithButtons.List>
         </CarouselWithButtons.Container>
-      </div>
-    ) : null;
-    return this.props.isLoading || hasContracts ? (
-      <div className="CelebrityPublicContractsSectionLayout">
-        <div className="f-container mb-2 pb-2">
-          <div className={"f-main-padding"}>
-            <div className="clearfix ml-4">
-              <h6 className="float-left font-weight-bold">Videos</h6>
-            </div>
-            <div className={"scrolling-wrapper"}>
-              {this.props.isLoading
-                ? this.renderShimmerPublicVideoCards()
-                : this.renderCelebrityPublicVideoCards()}
-            </div>
-            <div className="col-12">
-              {/* PaginationLayout */}
-              <PaginationLayout
-                showFmainPadding={false}
-                pagination={this.props.paginationData}
-                onPaginationChange={this.onPaginationChange}
-              />
-              {/* End PaginationLayout */}
-            </div>
-          </div>
-        </div>
       </div>
     ) : null;
   }

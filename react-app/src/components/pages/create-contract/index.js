@@ -10,6 +10,7 @@ import * as PATHS from "../../../routing/Paths";
 import { hiring_proccess_img } from "constants/external_assets_by_lang";
 // import { Redirect } from "react-router-dom";
 import { withRouter } from "next/router";
+import { returnLangPathFromExternalAssets } from "react-app/src/utils/returnLangPathFromExternalAssets";
 
 const getContractPriceVideoMessage = (contractsTypes) =>
   contractsTypes?.find?.((contract) => contract.contractType === 1)?.price || 0;
@@ -77,7 +78,11 @@ class CreateContractPage extends Component {
                 <img
                   width="100%"
                   className={"create-contract-steps"}
-                  src={hiring_proccess_img[router.locale]}
+                  src={
+                    hiring_proccess_img[
+                      returnLangPathFromExternalAssets(router.locale)
+                    ]
+                  }
                   alt={"create-contract-steps"}
                 />
               </div>

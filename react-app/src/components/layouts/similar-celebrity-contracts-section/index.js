@@ -88,35 +88,12 @@ class SimilarCelebrityContractsSectionLayout extends Component {
     celebrityUsername: this.props.celebrityUsername
   };
 
-  registerListHover = () => {
-    GTM.tagManagerDataLayer(
-      "HOVER_SIMILAR_CELEBRITY_CONTRACTS_LIST",
-      this.analyticsData
-    );
-  };
-
-  registerListScroll = (hasReachedListEnd) => {
-    GTM.tagManagerDataLayer("SCROLL_SIMILAR_CELEBRITY_CONTRACTS_LIST", {
-      ...this.analyticsData,
-      hasReachedListEnd
-    });
-  };
-
-  registerSimilarCelebritiesContractsScrollButtonClick = (direction) => {
-    GTM.tagManagerDataLayer(
-      "CLICK_SIMILAR_CELEBRITY_CONTRACTS_SECTION_SCROLL_BUTTON",
-      { ...this.analyticsData, direction }
-    );
-  };
-
   render() {
     const hasContracts = this.props.similarContracts.length > 0;
     return this.props.isLoading || hasContracts ? (
       <section className="SimilarCelebrityContractsSectionLayout">
         <CarouselWithButtons.Container
           buttonsStyles={{ top: "2.75rem", height: "343px" }}
-          onScrollTo={this.registerSimilarCelebritiesContractsScrollButtonClick}
-          onListScroll={this.registerListScroll}
         >
           <CarouselWithButtons.Header>
             <CarouselWithButtons.Title className="text-black text-center mb-4 w-100">
@@ -124,10 +101,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
             </CarouselWithButtons.Title>
           </CarouselWithButtons.Header>
           <CarouselWithButtons.List>
-            <ul
-              className="SimilarCelebrityContractsSectionLayout__list"
-              onMouseOver={this.registerListHover}
-            >
+            <ul className="SimilarCelebrityContractsSectionLayout__list">
               {!this.props.isLoading
                 ? this.props.similarContracts.map((similarContract) => (
                     <li
@@ -156,31 +130,6 @@ class SimilarCelebrityContractsSectionLayout extends Component {
           </CarouselWithButtons.List>
         </CarouselWithButtons.Container>
       </section>
-    ) : null;
-    return this.props.isLoading || true /* hasContracts */ ? (
-      <div className="CelebrityPublicContractsSectionLayout">
-        <div className="f-container mb-2 pb-2">
-          <div className={"f-main-padding"}>
-            <div className="clearfix ml-4">
-              <h6 className="float-left font-weight-bold">Videos</h6>
-            </div>
-            <div className={"scrolling-wrapper"}>
-              {this.props.isLoading
-                ? this.renderShimmerPublicVideoCards()
-                : this.renderCelebrityPublicVideoCards()}
-            </div>
-            <div className="col-12">
-              {/* PaginationLayout */}
-              <PaginationLayout
-                showFmainPadding={false}
-                pagination={this.props.paginationData}
-                onPaginationChange={this.onPaginationChange}
-              />
-              {/* End PaginationLayout */}
-            </div>
-          </div>
-        </div>
-      </div>
     ) : null;
   }
 }

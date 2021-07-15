@@ -23,10 +23,11 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
     "@auth0/nextjs-auth0": "^0.16.1",
-    "@formatjs/cli": "^4.2.12",
+    "@formatjs/cli": "^4.2.27",
     "@next/bundle-analyzer": "^10.0.7",
     "@sentry/nextjs": "^6.4.0",
     "@stripe/stripe-js": "^1.12.1",
+    "@types/cookie": "^0.4.1",
     "@types/react-select": "^4.0.15",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
