@@ -18,7 +18,6 @@ const reduxStore = {
 };
 
 export const listPaymentGateways = (currency) => {
-  console.log({ currency });
   return (dispatch) => {
     const TYPE = types.FETCH_PAYMENT_GATEWAYS_REQUEST;
     const FINAL_PATH =

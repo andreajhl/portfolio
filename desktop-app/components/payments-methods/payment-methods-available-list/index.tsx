@@ -51,7 +51,10 @@ function PaymentMethodsAvailableList({
   return (
     <>
       {payment_methods.map((el, index) => (
-        <div className={styles.PaymentMethodsAvailable}>
+        <div
+          className={styles.PaymentMethodsAvailable}
+          key={el.paymentMethodType}
+        >
           <Maybe it={el.paymentMethodType === "STRIPE"}>
             <StripeForm
               contractPrice={contractPrice}

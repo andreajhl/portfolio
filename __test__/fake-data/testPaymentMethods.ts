@@ -76,3 +76,31 @@ export const testPaymentMethodsAvailable = [
     ],
   },
 ];
+
+export const testStripePaymentMethod = {
+  paymentMethodType: "STRIPE",
+  availablePaymentMethods: [
+    {
+      id: 1,
+      identifier: "STRIPE",
+      name: "Stripe Cards",
+      brand: "",
+      redirect: false,
+      logo: "https://famosos-media.s3.amazonaws.com/Logo_stripe.jpg",
+    },
+  ],
+};
+
+export const testPaypalPaymentMethod = {
+  paymentMethodType: "PAYPAL",
+  availablePaymentMethods: [
+    {
+      id: 56,
+      identifier: "PAYPAL",
+      name: "Paypal",
+      brand: "",
+      redirect: false,
+      logo: "https://famosos-media.s3.amazonaws.com/Logo_paypal.jpg",
+    },
+  ],
+};
