@@ -40,5 +40,33 @@ export const AVAILABLE_LANGS = {
       lang: "pt",
       name: "Português"
     }
+  ],
+  port: [
+    {
+      lang: "es",
+      name: "Espanha"
+    },
+    {
+      lang: "en",
+      name: "Inglês"
+    },
+    {
+      lang: "pt",
+      name: "Português"
+    }
+  ],
+  "pt-BR": [
+    {
+      lang: "es",
+      name: "Espanha"
+    },
+    {
+      lang: "en",
+      name: "Inglês"
+    },
+    {
+      lang: "pt",
+      name: "Português"
+    }
   ]
 };
