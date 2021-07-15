@@ -75,7 +75,7 @@ function DLocalPaymentMethodForm({
   contractPrice,
 }: DLocalPaymentMethodFormProps) {
   const { push } = useRouter();
-  console.log(paymentMethodType);
+
   const sectionId = `section-${index}`;
   const [paymentInProcess, setPaymentInProcess] = useState(false);
   const [paymentError, setPaymentError] = useState("");
