@@ -54,7 +54,7 @@ class CreateContractForm extends Component {
         isPublic: true,
         occasion: "OTHER",
         deliveryContactCellphone: "",
-        lang: this.props.router.locale
+        lang: returnLangPathFromExternalAssets(this.props.router.locale)
       },
       deliveryContactCellphoneCountryCode: "co"
     };

@@ -182,82 +182,82 @@ export const occasionsData = {
   pt: {
     BIRTHDAY: {
       icon: "fa-birthday-cake",
-      title: "Birthday",
+      title: "Aniversário",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! On [DATE] is my [NUMBER] birthday and I would like you to please congratulate me. I am your fan and I love what you do.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! Thank you very much for this opportunity. PLACEHOLDER_PARA turns [QUANTITY] years soon. I would like you to please send him/her an special congratulation."
+        "Olá! PLACEHOLDER_FAMOSO_NAME! No dia [DATA] eu completo [IDADE] anos e queria que, por favor, e madasse uma mensagem de parabéns. Sou seu fã e adoraria que fizesse isso.",
+        "Oi PLACEHOLDER_FAMOSO_NOME! Estou muito feliz por essa oportunidade. PLACEHOLDER_PARA encontrar [QUANTIDADE] em breve. Eu gostaria que você por favor enviasse um super parabéns especial."
       ]
     },
     LOVE: {
       icon: "fa-heart",
-      title: "Love",
+      title: "Amor",
       messages: [
         "",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would like you to dedicate a very special message to PLACEHOLDER_PARA to show all my love."
+        "Oi PLACEHOLDER_FAMOSO_NAME! Gostaria que dedicasse uma mensagem muito especial aos PLACEHOLDER_PARA para mostrar a ele todo o meu amor."
       ]
     },
     SPECIAL_OCCASION: {
       icon: "fa-glass-cheers",
-      title: "Special Occasion",
+      title: "Ocasiões Especiais",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! Soon I will celebrate [SPECIAL OCCASION] and I would love to have a message from you congratulating me.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would love to surprise PLACEHOLDER_PARA on this [SPECIAL OCCASION]."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Em breve vou comemorar [OCASIÃO ESPECIAL] e adoraria ter uma mensagem sua me parabenizando.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Eu adoraria fazer uma surpresa PLACEHOLDER_PARA nesta [OCASIÃO ESPECIAL]."
       ]
     },
     SONG: {
       icon: "fa-music",
-      title: "Song",
+      title: "Música",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! Could you please sing for me a piece of the song [SONG]? It is one of my favorites! Thank you very much.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! Could you please sing to PLACEHOLDER_PARA a piece of the song [SONG] from me? Thank you very much."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Você poderia cantar para mim um pedaço da música [nome da música]? É um dos meus favoritos! Muito obrigado.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Você poderia cantar para PLACEHOLDER_PARA um pedaço da música [música], ? Muito obrigado."
       ]
     },
     CHEER_UP: {
       icon: "fa-spa",
-      title: "Cheer up",
+      title: "Alegrar",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! These days I have been down. Could you please send me a message to cheer up? Thank you very much.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! PLACEHOLDER_PARA has been down. Could you please send him/her a message to cheer up? Thank you very much."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Esses dias eu tenho estado muito baixo astral. Poderia me mandar uma mensagem de encorajamento? Muito obrigado.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! PLACEHOLDER_PARA tem estado em baixo astral. Poderia enviar uma mensagem para alegrar-lo? Muito obrigado."
       ]
     },
     MAKE_SMILE: {
       icon: "fa-laugh",
-      title: "Make Smile",
+      title: "Sorrir",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! I really admire you, and I would like you to send me a message that makes me smile.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would like you to please make PLACEHOLDER_PARA smile and wish him/her a great day."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Eu te admiro muito e gostaria que me mandasse uma mensagem que me faça sorrir.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Eu gostaria que você sorrise por favor PLACEHOLDER_PARA e te desejar um grande dia."
       ]
     },
     MOTIVATION: {
       icon: "fa-bolt",
-      title: "Motivation",
+      title: "Motivação",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! These days I have been very unmotivated. Could you please send me a message that will motivate me? Thank you very much.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! Please help me motivate PLACEHOLDER_PARA."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Esses dias eu tenho estado muito desmotivado. Pode me mandar uma mensagem que me motive? Muito obrigado.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Por favor, me ajude a PLACEHOLDER_PARA."
       ]
     },
     JOKE: {
       icon: "fa-grin-squint",
-      title: "Joke",
+      title: "Piada",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! I am your fan and you make me laugh a lot. I would love to hear something funny. Thank you!",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would love to make a joke to PLACEHOLDER_PARA. Do it your own way! Thank you."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Sou seu fã e você me faz rir muito. Adoraria que me dissesse algo engraçado. Obrigado!.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Adoraria fazer uma piada sobre PLACEHOLDER_PARA. Faça isso do seu jeito! Obrigado."
       ]
     },
     HOPE: {
       icon: "fa-dove",
-      title: "Hope",
+      title: "Esperança",
       messages: [
         "",
-        "Hello PLACEHOLDER_FAMOSO_NAME! These months have been difficult for PLACEHOLDER_PARA. Could you send him/her a message of hope?"
+        "Oi PLACEHOLDER_FAMOSO_NAME! Esses meses têm sido difíceis para PLACEHOLDER_PARA. Poderia mandar uma mensagem de esperança?"
       ]
     },
     ASK_FOR_FORGIVENESS: {
       icon: "fa-hand-holding-heart",
-      title: "Forgiveness",
+      title: "Desculpas",
       messages: [
         "",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would like PLACEHOLDER_PARA to forgive me for [SITUATION]. Please help me by telling him/her this message. Thank you."
+        "Oi PLACEHOLDER_FAMOSO_NAME! Eu gostaria que PLACEHOLDER_PARA me perdoasse por [SITUAÇÃO]. Por favor, me ajude contando esta mensagem. Obrigado."
       ]
     },
     OTHER: {
@@ -272,82 +272,82 @@ export const occasionsData = {
   por: {
     BIRTHDAY: {
       icon: "fa-birthday-cake",
-      title: "Birthday",
+      title: "Aniversário",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! On [DATE] is my [NUMBER] birthday and I would like you to please congratulate me. I am your fan and I love what you do.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! Thank you very much for this opportunity. PLACEHOLDER_PARA turns [QUANTITY] years soon. I would like you to please send him/her an special congratulation."
+        "Olá! PLACEHOLDER_FAMOSO_NAME! No dia [DATA] eu completo [IDADE] anos e queria que, por favor, e madasse uma mensagem de parabéns. Sou seu fã e adoraria que fizesse isso.",
+        "Oi PLACEHOLDER_FAMOSO_NOME! Estou muito feliz por essa oportunidade. PLACEHOLDER_PARA encontrar [QUANTIDADE] em breve. Eu gostaria que você por favor enviasse um super parabéns especial."
       ]
     },
     LOVE: {
       icon: "fa-heart",
-      title: "Love",
+      title: "Amor",
       messages: [
         "",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would like you to dedicate a very special message to PLACEHOLDER_PARA to show all my love."
+        "Oi PLACEHOLDER_FAMOSO_NAME! Gostaria que dedicasse uma mensagem muito especial aos PLACEHOLDER_PARA para mostrar a ele todo o meu amor."
       ]
     },
     SPECIAL_OCCASION: {
       icon: "fa-glass-cheers",
-      title: "Special Occasion",
+      title: "Ocasiões Especiais",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! Soon I will celebrate [SPECIAL OCCASION] and I would love to have a message from you congratulating me.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would love to surprise PLACEHOLDER_PARA on this [SPECIAL OCCASION]."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Em breve vou comemorar [OCASIÃO ESPECIAL] e adoraria ter uma mensagem sua me parabenizando.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Eu adoraria fazer uma surpresa PLACEHOLDER_PARA nesta [OCASIÃO ESPECIAL]."
       ]
     },
     SONG: {
       icon: "fa-music",
-      title: "Song",
+      title: "Música",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! Could you please sing for me a piece of the song [SONG]? It is one of my favorites! Thank you very much.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! Could you please sing to PLACEHOLDER_PARA a piece of the song [SONG] from me? Thank you very much."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Você poderia cantar para mim um pedaço da música [nome da música]? É um dos meus favoritos! Muito obrigado.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Você poderia cantar para PLACEHOLDER_PARA um pedaço da música [música], ? Muito obrigado."
       ]
     },
     CHEER_UP: {
       icon: "fa-spa",
-      title: "Cheer up",
+      title: "Alegrar",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! These days I have been down. Could you please send me a message to cheer up? Thank you very much.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! PLACEHOLDER_PARA has been down. Could you please send him/her a message to cheer up? Thank you very much."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Esses dias eu tenho estado muito baixo astral. Poderia me mandar uma mensagem de encorajamento? Muito obrigado.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! PLACEHOLDER_PARA tem estado em baixo astral. Poderia enviar uma mensagem para alegrar-lo? Muito obrigado."
       ]
     },
     MAKE_SMILE: {
       icon: "fa-laugh",
-      title: "Make Smile",
+      title: "Sorrir",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! I really admire you, and I would like you to send me a message that makes me smile.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would like you to please make PLACEHOLDER_PARA smile and wish him/her a great day."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Eu te admiro muito e gostaria que me mandasse uma mensagem que me faça sorrir.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Eu gostaria que você sorrise por favor PLACEHOLDER_PARA e te desejar um grande dia."
       ]
     },
     MOTIVATION: {
       icon: "fa-bolt",
-      title: "Motivation",
+      title: "Motivação",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! These days I have been very unmotivated. Could you please send me a message that will motivate me? Thank you very much.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! Please help me motivate PLACEHOLDER_PARA."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Esses dias eu tenho estado muito desmotivado. Pode me mandar uma mensagem que me motive? Muito obrigado.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Por favor, me ajude a PLACEHOLDER_PARA."
       ]
     },
     JOKE: {
       icon: "fa-grin-squint",
-      title: "Joke",
+      title: "Piada",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! I am your fan and you make me laugh a lot. I would love to hear something funny. Thank you!",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would love to make a joke to PLACEHOLDER_PARA. Do it your own way! Thank you."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Sou seu fã e você me faz rir muito. Adoraria que me dissesse algo engraçado. Obrigado!.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Adoraria fazer uma piada sobre PLACEHOLDER_PARA. Faça isso do seu jeito! Obrigado."
       ]
     },
     HOPE: {
       icon: "fa-dove",
-      title: "Hope",
+      title: "Esperança",
       messages: [
         "",
-        "Hello PLACEHOLDER_FAMOSO_NAME! These months have been difficult for PLACEHOLDER_PARA. Could you send him/her a message of hope?"
+        "Oi PLACEHOLDER_FAMOSO_NAME! Esses meses têm sido difíceis para PLACEHOLDER_PARA. Poderia mandar uma mensagem de esperança?"
       ]
     },
     ASK_FOR_FORGIVENESS: {
       icon: "fa-hand-holding-heart",
-      title: "Forgiveness",
+      title: "Desculpas",
       messages: [
         "",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would like PLACEHOLDER_PARA to forgive me for [SITUATION]. Please help me by telling him/her this message. Thank you."
+        "Oi PLACEHOLDER_FAMOSO_NAME! Eu gostaria que PLACEHOLDER_PARA me perdoasse por [SITUAÇÃO]. Por favor, me ajude contando esta mensagem. Obrigado."
       ]
     },
     OTHER: {
@@ -362,82 +362,82 @@ export const occasionsData = {
   "pt-BR": {
     BIRTHDAY: {
       icon: "fa-birthday-cake",
-      title: "Birthday",
+      title: "Aniversário",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! On [DATE] is my [NUMBER] birthday and I would like you to please congratulate me. I am your fan and I love what you do.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! Thank you very much for this opportunity. PLACEHOLDER_PARA turns [QUANTITY] years soon. I would like you to please send him/her an special congratulation."
+        "Olá! PLACEHOLDER_FAMOSO_NAME! No dia [DATA] eu completo [IDADE] anos e queria que, por favor, e madasse uma mensagem de parabéns. Sou seu fã e adoraria que fizesse isso.",
+        "Oi PLACEHOLDER_FAMOSO_NOME! Estou muito feliz por essa oportunidade. PLACEHOLDER_PARA encontrar [QUANTIDADE] em breve. Eu gostaria que você por favor enviasse um super parabéns especial."
       ]
     },
     LOVE: {
       icon: "fa-heart",
-      title: "Love",
+      title: "Amor",
       messages: [
         "",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would like you to dedicate a very special message to PLACEHOLDER_PARA to show all my love."
+        "Oi PLACEHOLDER_FAMOSO_NAME! Gostaria que dedicasse uma mensagem muito especial aos PLACEHOLDER_PARA para mostrar a ele todo o meu amor."
       ]
     },
     SPECIAL_OCCASION: {
       icon: "fa-glass-cheers",
-      title: "Special Occasion",
+      title: "Ocasiões Especiais",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! Soon I will celebrate [SPECIAL OCCASION] and I would love to have a message from you congratulating me.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would love to surprise PLACEHOLDER_PARA on this [SPECIAL OCCASION]."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Em breve vou comemorar [OCASIÃO ESPECIAL] e adoraria ter uma mensagem sua me parabenizando.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Eu adoraria fazer uma surpresa PLACEHOLDER_PARA nesta [OCASIÃO ESPECIAL]."
       ]
     },
     SONG: {
       icon: "fa-music",
-      title: "Song",
+      title: "Música",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! Could you please sing for me a piece of the song [SONG]? It is one of my favorites! Thank you very much.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! Could you please sing to PLACEHOLDER_PARA a piece of the song [SONG] from me? Thank you very much."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Você poderia cantar para mim um pedaço da música [nome da música]? É um dos meus favoritos! Muito obrigado.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Você poderia cantar para PLACEHOLDER_PARA um pedaço da música [música], ? Muito obrigado."
       ]
     },
     CHEER_UP: {
       icon: "fa-spa",
-      title: "Cheer up",
+      title: "Alegrar",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! These days I have been down. Could you please send me a message to cheer up? Thank you very much.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! PLACEHOLDER_PARA has been down. Could you please send him/her a message to cheer up? Thank you very much."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Esses dias eu tenho estado muito baixo astral. Poderia me mandar uma mensagem de encorajamento? Muito obrigado.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! PLACEHOLDER_PARA tem estado em baixo astral. Poderia enviar uma mensagem para alegrar-lo? Muito obrigado."
       ]
     },
     MAKE_SMILE: {
       icon: "fa-laugh",
-      title: "Make Smile",
+      title: "Sorrir",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! I really admire you, and I would like you to send me a message that makes me smile.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would like you to please make PLACEHOLDER_PARA smile and wish him/her a great day."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Eu te admiro muito e gostaria que me mandasse uma mensagem que me faça sorrir.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Eu gostaria que você sorrise por favor PLACEHOLDER_PARA e te desejar um grande dia."
       ]
     },
     MOTIVATION: {
       icon: "fa-bolt",
-      title: "Motivation",
+      title: "Motivação",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! These days I have been very unmotivated. Could you please send me a message that will motivate me? Thank you very much.",
-        "Hello PLACEHOLDER_FAMOSO_NAME! Please help me motivate PLACEHOLDER_PARA."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Esses dias eu tenho estado muito desmotivado. Pode me mandar uma mensagem que me motive? Muito obrigado.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Por favor, me ajude a PLACEHOLDER_PARA."
       ]
     },
     JOKE: {
       icon: "fa-grin-squint",
-      title: "Joke",
+      title: "Piada",
       messages: [
-        "Hello PLACEHOLDER_FAMOSO_NAME! I am your fan and you make me laugh a lot. I would love to hear something funny. Thank you!",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would love to make a joke to PLACEHOLDER_PARA. Do it your own way! Thank you."
+        "Oi PLACEHOLDER_FAMOSO_NOME! Sou seu fã e você me faz rir muito. Adoraria que me dissesse algo engraçado. Obrigado!.",
+        "Oi PLACEHOLDER_FAMOSO_NAME! Adoraria fazer uma piada sobre PLACEHOLDER_PARA. Faça isso do seu jeito! Obrigado."
       ]
     },
     HOPE: {
       icon: "fa-dove",
-      title: "Hope",
+      title: "Esperança",
       messages: [
         "",
-        "Hello PLACEHOLDER_FAMOSO_NAME! These months have been difficult for PLACEHOLDER_PARA. Could you send him/her a message of hope?"
+        "Oi PLACEHOLDER_FAMOSO_NAME! Esses meses têm sido difíceis para PLACEHOLDER_PARA. Poderia mandar uma mensagem de esperança?"
       ]
     },
     ASK_FOR_FORGIVENESS: {
       icon: "fa-hand-holding-heart",
-      title: "Forgiveness",
+      title: "Desculpas",
       messages: [
         "",
-        "Hello PLACEHOLDER_FAMOSO_NAME! I would like PLACEHOLDER_PARA to forgive me for [SITUATION]. Please help me by telling him/her this message. Thank you."
+        "Oi PLACEHOLDER_FAMOSO_NAME! Eu gostaria que PLACEHOLDER_PARA me perdoasse por [SITUAÇÃO]. Por favor, me ajude contando esta mensagem. Obrigado."
       ]
     },
     OTHER: {

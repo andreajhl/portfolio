@@ -2852,6 +2852,703 @@ class TermsPage extends Component {
                 </>
               </Maybe>
             }
+            {
+              <Maybe
+                it={
+                  this.props.router.locale === "pt" ||
+                  this.props.router.locale === "pt-BR" ||
+                  this.props.router.locale === "por"
+                }
+              >
+                <>
+                  <h3 className="text-center">Termos de serviço do talento</h3>
+                  <p>
+                    Estes Termos de Serviço ("Termos") regem o uso do site da
+                    Famosos ("Site") e de quaisquer aplicativos móveis da
+                    Famosos e outros serviços oferecidos pela Famosos, Inc.
+                    ("Serviços"). Famosos, Inc. ("nós". "Nós" ou "celebridades")
+                    fornece o site e serviços. "Você" se refere a você como um
+                    atleta usuário ou influenciador do Site ou dos Serviços.
+                  </p>
+                  <p>
+                    Ao clicar em "CONCORDO" OU USAR O SITE OU OS SERVIÇOS, você
+                    concorda com estes termos. POR FAVOR, LEIA ATENTAMENTE.
+                  </p>
+                  <p>
+                    <span className="font-italic">Obrigações</span> <br />
+                    Você concorda em gravar e fazer upload para o site usando os
+                    serviços de uma (1) gravação de vídeo para cada usuário
+                    ("Usuário Final") que solicitar à você referida gravação
+                    ("Vídeo Famoso"); Sempre e quando, no caso de uma
+                    programação ou outro conflito, você pode rejeitar a
+                    solicitação em um período de sete (7) dias. Cada mensagem de
+                    vídeo terá aproximadamente quinze segundos (15) de duração e
+                    será feita de acordo com as instruções gerais e solicitações
+                    do usuário final ( por! exemplo, mensagem de aniversário ou
+                    mensagem de “boa sorte!”). Você terá o arbítrio exclusivo
+                    sobre o roteiro e o conteúdo de qualquer mensagem de vídeo.
+                    Você pode se recusar a criar ou enviar uma mensagem de vídeo
+                    se a solicitação do usuário final for questionável ou
+                    ofensiva para você, a seu próprio critério. Você deve
+                    rejeitar a solicitação em até sete (7) dias. Todas as
+                    mensagens de vídeo devem ser enviadas em até sete (7) dias a
+                    partir da solicitação.
+                  </p>
+                  <p>
+                    <span className="font-italic">
+                      Materiais promocionais adicionais
+                    </span>{" "}
+                    <br />
+                    Você nos fornece os seguintes materiais promocionais
+                    ("Materiais de promoção") após a conclusão do registro da
+                    conta e criação de: (1) a dez (10) imagens de alta resolução
+                    suas e (2) biografia parao o perfil no site.
+                    Esporadicamente, solicitaremos materiais promocionais
+                    adicionais.
+                  </p>
+                  <p>
+                    <span className="font-italic">Taxas e pagamento</span>{" "}
+                    <br />
+                    Remuneração: Sujeito a estes Termos, pagaremos setenta e
+                    cinco por cento (75%) da receita recebida por Famosos de
+                    cada usuário final de cada vídeo vendido por você no site.
+                    Você define seu próprio preço para cada vídeo famoso, desde
+                    que o preço seja de pelo menos cinco dólares americanos ($
+                    5) por mensagem de vídeo. Vídeos famosos são atividades não
+                    sindicais e não haverá nenhum valor residual ou qualquer
+                    outro tipo de pagamento devido em relação a eles.
+                  </p>
+                  <p>
+                    <span className="font-italic">Pagamento</span> <br />
+                    Você deve se registrar no Zelle ou PayPal e fornecer os
+                    dados bancários necessários para receber o pagamento da
+                    Famosos. O pagamento será feito dentro de cinco (5) dias
+                    úteis após o recebimento do pagamento feito pelo usuário
+                    final. Zelle ou PayPal não são operados por ou associados a
+                    Famosos e o uso de Zelle ou PayPal está sujeito aos seus
+                    termos próprios. Nós nos reservamos o direito de mudar de
+                    provedor de pagamento a qualquer momento e de exigir que
+                    você se registre nesse novo provedor de pagamento. Não somos
+                    responsáveis por atrasos ou falhas no recebimento de
+                    pagamentos causados por um provedor de pagamento
+                    terceirizado ou devido à sua falta de informações oportunas
+                    e ao configurar uma conta corretamente com o provedor de
+                    pagamento ou de outra forma fornecer o pagamento solicitado.
+                  </p>
+                  <p>
+                    <span className="font-italic">Conteúdo do usuário</span>{" "}
+                    <br />O site e alguns de nossos serviços permitem que você
+                    carregue, envie, armazene, envie ou receba conteúdo e dados,
+                    incluindo suas mensagens de vídeo e materiais promocionais
+                    ("Conteúdo do usuário"). Você mantém a propriedade dos
+                    direitos de propriedade intelectual que possui em seu
+                    conteúdo do usuário. Ao fazer upload, enviar, armazenar,
+                    enviar ou receber conteúdo do usuário por meio do site ou
+                    dos serviços, você nos dá permissão para reproduzir e usar o
+                    seu conteúdo de usuário da seguinte forma: é concedido a nós
+                    e àqueles com quem trabalhamos sob uma licença de uso,
+                    hospedar, armazenar, reproduzir, modificar, criar trabalhos
+                    derivados (como traduções, adaptações ou outras alterações
+                    que fazemos para que o conteúdo do usuário funcione melhor
+                    com o site e serviços), executar publicamente, exibir
+                    publicamente e distribuir seu conteúdo de usuário no site e
+                    também nas redes sociais e em outros sites e mídias. Esta
+                    licença tem o propósito limitado de operar, promover e
+                    melhorar o site e serviços e desenvolver novos serviços.
+                    Nossa licença para o seu conteúdo de usuário não é
+                    exclusiva, o que significa que você pode usar o conteúdo do
+                    usuário para seus próprios fins ou permitir que outros usem
+                    seu conteúdo de usuário para seus fins. Esta licença é
+                    totalmente paga e isenta de royalties, o que significa que
+                    Famosos.com nada deve a você em relação ao uso de seu
+                    conteúdo de usuário. Podemos exercer nossos direitos sob
+                    esta licença em qualquer lugar do mundo. Podemos
+                    sublicenciar nossos direitos para usuários finais e de
+                    qualquer outra forma conforme necessário para garantir o
+                    site e os serviços. Finalmente, esta licença é perpétua, o
+                    que significa que nossos direitos sob esta licença continuam
+                    mesmo depois de pararmos de usar o Site e os Serviços.
+                  </p>
+                  <p>
+                    <span
+                      className="font-weight-bold
+"
+                    >
+                      Conteúdo do usuário
+                    </span>{" "}
+                    <br />
+                    Você é o proprietário de todos os direitos e do seu conteúdo
+                    de usuário e tem o direito de nos conceder os direitos acima
+                    mencionados; que você pagou e pagará todas as taxas ou
+                    outros pagamentos que possam estar relacionados ao uso de
+                    seu conteúdo de usuário; e seu conteúdo de usuário não
+                    infringe os direitos de propriedade intelectual, direitos de
+                    privacidade, direitos de publicidade ou outros direitos
+                    legais de terceiros. Qualquer conteúdo de usuário será não
+                    confidencial e não proprietário e você não será responsável
+                    por qualquer uso ou divulgação do conteúdo do usuário. Você
+                    reconhece e concorda que seu relacionamento conosco não é
+                    confidencial, fiduciário ou outro tipo de vínculo especial,
+                    e que sua decisão de apresentar qualquer Conteúdo do Usuário
+                    não nos coloca em uma posição diferente da posição ocupada
+                    por pessoas do público em geral, em particular no que diz
+                    respeito ao seu conteúdo de usuário. Nenhum de seu Conteúdo
+                    de Usuário estará sujeito a qualquer obrigação de
+                    confidencialidade de nossa parte e você não será responsável
+                    por qualquer uso ou divulgação de qualquer Conteúdo de
+                    Usuário que você fornecer. Podemos nos recusar a aceitar ou
+                    transmitir o Conteúdo do Usuário por qualquer motivo.
+                    Podemos remover o Conteúdo do Usuário do Site ou dos
+                    Serviços por qualquer motivo. Se você cancelar sua conta em
+                    Famosos.com, você pode solicitar que seus vídeos não sejam
+                    mais exibidos no site e pedidos de novos vídeos não sejam
+                    recebidos. Não podemos, entretanto, restringir o uso de
+                    mensagens de vídeo pelos usuários finais para os quais você
+                    as criou e não podemos remover quaisquer outros usos
+                    existentes de suas mensagens de vídeo.
+                  </p>
+                  <p>
+                    <span
+                      className="font-weight-bold
+"
+                    >
+                      Propriedade
+                    </span>{" "}
+                    <br />
+                    Além do conteúdo de usuário, possuímos ou licenciamos todos
+                    os direitos, títulos e interesses no e para (a) o site e
+                    serviços, incluindo todo o software, texto, multimídia e
+                    outro conteúdo disponível no site e serviços ("Nosso
+                    conteúdo"); e (b) marcas registradas, logotipos e
+                    características da marca ("Marcas"). O site e os serviços,
+                    nosso conteúdo e as Marcas são protegidos pelas leis dos
+                    Estados Unidos e internacionais. O Layout do site e dos
+                    Serviços são direitos de propriedade intelectual de ©
+                    Famosos, Inc. Todos os direitos reservados. O usuário não
+                    pode duplicar, copiar, reutilizar ou qualquer parte do HTML
+                    / CSS, JavaScript ou elementos e conceitos de design visual
+                    sem a nossa permissão expressa por escrito
+                  </p>
+                  <p>
+                    <span
+                      className="font-weight-bold
+"
+                    >
+                      Termos adicionais
+                    </span>{" "}
+                    <br />
+                    Alguns dos nossos serviços têm termos e condições adicionais
+                    ("Termos Adicionais"). Quando as Condições Adicionais se
+                    aplicarem a um serviço, iremos disponibilizá-los para
+                    leitura através do uso desse serviço. Ao usar esse Serviço,
+                    você declara aceitar os termos adicionais.
+                  </p>
+                  <p>
+                    <span
+                      className="font-weight-bold
+"
+                    >
+                      Elegibilidade
+                    </span>{" "}
+                    <br />
+                    Você deve ter pelo menos 13 anos para usar o site ou os
+                    serviços. Se você for menor de idade em seu país de
+                    residência, seu pai ou responsável legal deve concordar com
+                    esses termos em seu nome e que você só pode acessar e usar o
+                    site e os serviços com a permissão de seus pais ou
+                    responsável legal.
+                  </p>
+                  <p>
+                    <span
+                      className="font-weight-bold
+"
+                    >
+                      Uso aceitável do site e serviços
+                    </span>{" "}
+                    <br />
+                    Você é responsável pelo uso do site e dos serviços e por
+                    qualquer uso do site ou serviços colocados através de sua
+                    conta. Nosso objetivo é criar uma experiência de usuário
+                    positiva, útil e segura. Para atingir esse objetivo,
+                    proibimos certos tipos de conduta que podem ser prejudiciais
+                    a outros usuários ou a nós. Ao usar o site ou serviços, você
+                    não pode: Violar qualquer lei ou regulamento; violar,
+                    infringir ou se apropriar indevidamente de propriedade
+                    intelectual, privacidade, publicidade ou outros direitos
+                    legais de outras pessoas; publicar ou compartilhar qualquer
+                    coisa que seja ilegal, abusiva, ofensiva, prejudicial à
+                    reputação, pornográfica, indecente, profana, obscena,
+                    odiosa, racista ou de qualquer outra forma; enviar
+                    publicidade ou comunicações comerciais não solicitadas ou
+                    não autorizadas, como spam; participar do rastreamento ou
+                    coleta, ou participar do uso de software, como spyware,
+                    projetado para coletar dados do site ou dos serviços;
+                    transmitir qualquer tipo de vírus ou outras instruções de
+                    computador ou meios tecnológicos cuja finalidade seja
+                    alterar, danificar ou interferir no uso de computadores ou
+                    sistemas relacionados; perseguir, assediar ou prejudicar
+                    outra pessoa; assumir a identidade de outra pessoa ou
+                    entidade ou realizar qualquer outra atividade fraudulenta
+                    semelhante, como phishing;
+                  </p>
+                  <p>
+                    Usar qualquer meio para raspar ou rastrear qualquer página
+                    da web contida no site;
+                  </p>
+                  <p>
+                    Tentativa de contornar qualquer medida tecnológica
+                    implementada por nós ou por um de nossos fornecedores ou
+                    qualquer outro terceiro (incluindo outro usuário) para
+                    proteger o Site ou os Serviços;
+                  </p>
+                  <p>
+                    Tentar decifrar, compilar ou fazer engenharia reversa de
+                    qualquer software ou outro código subjacente usado para
+                    fornecer o Site ou os Serviços; ou promover, encorajar ou
+                    ajudar um terceiro a fazer qualquer uma das opções acima.
+                  </p>
+                  <p>
+                    Você reconhece que não somos obrigados a controlar o seu (ou
+                    de qualquer outra pessoa) acesso ou uso do Site ou Serviços,
+                    mas temos o direito de fazê-lo para operar o site ou
+                    serviços, para garantir sua conformidade com estes Termos ou
+                    para cumprir a lei aplicável ou a ordem ou exigência de um
+                    tribunal, agência administrativa ou outra entidade
+                    governamental.
+                  </p>
+                  <p>
+                    <span
+                      className="font-weight-bold
+"
+                    >
+                      Política de direitos autorais e propriedade intelectual
+                    </span>{" "}
+                    <br />
+                    Respondemos a notificações de alegadas violações de direitos
+                    autorais e ao cancelamento de contas de infratores
+                    reincidentes de acordo com o procedimento estabelecido na
+                    Lei de Direitos Autorais do Milênio Digital Americana. Se
+                    você acredita que seu trabalho foi copiado de uma forma que
+                    constitui violação de direitos autorais, envie as seguintes
+                    informações ao Agente de Direitos Autorais mencionado
+                    abaixo:
+                  </p>
+                  <p>
+                    <span
+                      className="font-weight-bold
+"
+                    >
+                      Seu endereço, número de telefone, e endereço de e-mail.
+                    </span>{" "}
+                    <br />
+                    Uma descrição do trabalho protegido por direitos autorais
+                    que você alega ter sido violado.
+                    <br />
+                    Uma descrição de onde o material supostamente infrator está
+                    localizado.
+                    <br />
+                    Uma declaração sua de que acredita de boa fé que o uso
+                    contestado não foi autorizado
+                    <br />
+                    por você, pelo proprietário dos direitos autorais, por seu
+                    agente ou pela lei.
+                    <br />
+                    Uma assinatura eletrônica ou física da pessoa autorizada a
+                    agir em nome do proprietário dos direitos autorais.
+                    <br />
+                    Uma declaração sua, feita sob pena de perjúrio, de que as
+                    informações acima são precisas e que você é o proprietário
+                    dos direitos autorais ou está autorizado a agir em nome do
+                    proprietário dos direitos autorais.
+                  </p>
+                  <p>
+                    <span
+                      className="font-weight-bold
+"
+                    >
+                      Agente de direitos autorais:
+                    </span>{" "}
+                    <br />
+                    Famoso
+                    <br />
+                    10800 Biscayne Blvd Suite 560
+                    <br />
+                    Miami, Flórida, 33161
+                    <br />
+                    experiencias@famosos.com
+                    <br />
+                  </p>
+                  <p>
+                    Para maior clareza, as notificações de violação de direitos
+                    autorais devem ser enviadas apenas para nosso Agente de
+                    Direitos Autorais. Você reconhece que, se não atender a
+                    todos os requisitos desta seção, sua notificação pode não
+                    ser válida.
+                  </p>
+                  <p>
+                    Se você acredita que o conteúdo que foi removido (ou cujo
+                    acesso foi desativado) não está infringindo, ou que você tem
+                    permissão do proprietário dos direitos autorais, do agente
+                    do proprietário dos direitos autorais, ou de acordo com a
+                    lei, para postar e usar tal conteúdo, você poderá enviar uma
+                    resposta a uma notificação para o endereço indicado acima,
+                    que contém as seguintes informações:
+                  </p>
+                  <p>
+                    <span
+                      className="font-weight-bold
+"
+                    >
+                      Sua assinatura física ou eletrônica
+                    </span>{" "}
+                    <br />
+                    Identificação do conteúdo que foi removido ou cujo acesso
+                    foi desativado e o local onde apareceu antes de o conteúdo
+                    ser removido ou desativado; <br />
+                    Uma declaração de que você acredita de boa fé que o conteúdo
+                    foi removido ou desativado como resultado de um erro ou
+                    identificação incorreta do conteúdo; e seu nome, endereço
+                    físico, número de telefone e endereço de e-mail, uma
+                    declaração consentindo com a jurisdição do tribunal federal
+                    em Miami, Flórida, e uma declaração de que aceita a citação
+                    da pessoa que registrou a notificação da suposta violação.
+                  </p>
+                  <p>
+                    Após recebermos sua contranotificação, iremos encaminhá-la
+                    para a parte que registrou a reclamação original de violação
+                    de direitos autorais. Leve em consideração que, quando
+                    reencaminhamos a contranotificação, esta incluirá as suas
+                    informações pessoais. Ao enviar uma contranotificação, você
+                    consente que suas informações sejam divulgadas dessa
+                    maneira. Não passaremos a contranotificação a qualquer outra
+                    parte que não seja o autor original.
+                  </p>
+                  <p>
+                    Depois de enviar a notificação em contrário, o reclamante
+                    deve notificar dentro de 10 dias que ele ou ela entrou com
+                    uma ação para obter uma ordem judicial proibindo sua
+                    atividade infratora em relação ao conteúdo que foi removido
+                    ou desativado. Se recebermos tal notificação, não poderemos
+                    restaurar o material. Se não recebermos tal notificação,
+                    podemos reintegrar o material.
+                  </p>
+                  <p>
+                    <span className="font-weight-bold">Privacidade</span> <br />
+                    Sua privacidade é muito importante para nós. Nossa política
+                    de privacidade explica como coletamos, usamos, protegemos e
+                    quando compartilhamos informações pessoais e outros dados
+                    com terceiros. Você é responsável por manter a
+                    confidencialidade das informações de sua conta, incluindo
+                    seu nome de usuário e senha. Você é responsável por todas as
+                    atividades que ocorram em sua conta e concorda em nos
+                    notificar imediatamente sobre qualquer acesso ou uso não
+                    autorizado de sua conta. Não somos responsáveis por qualquer
+                    dano ou perda relacionado a qualquer acesso não autorizado
+                    ou uso de sua conta.
+                  </p>
+                  <p>
+                    <span className="font-weight-bold">
+                      Conteúdo de terceiros e interações
+                    </span>
+                    O Site e os Serviços podem conter recursos e funcionalidades
+                    que podem vincular a você ou fornecer acesso a conteúdo de
+                    terceiros de forma completamente independente de nós,
+                    incluindo sites, diretórios, servidores, redes, sistemas,
+                    informações e bancos de dados, aplicativos, softwares,
+                    programas, produtos ou serviços e a Internet em geral. Suas
+                    interações com organizações ou indivíduos, incluindo
+                    usuários finais, encontrados no ou através do site e
+                    serviços são exclusivamente entre você e essas organizações
+                    ou indivíduos. Você deve fazer qualquer pesquisa que julgar
+                    necessária ou apropriada antes de prosseguir com qualquer
+                    interação com qualquer um desses terceiros. Você concorda
+                    que não somos responsáveis por qualquer perda ou dano de
+                    qualquer tipo ou natureza resultante de tais negociações. Se
+                    houver um conflito entre usuários do site ou serviços, ou
+                    entre usuários e terceiros, você entende e concorda que não
+                    temos nenhuma obrigação de participar. No caso de você ter
+                    uma disputa com qualquer outro usuário do Site ou Serviços,
+                    nós, por meio deste e nossas afiliadas, e todos os nossos
+                    diretores, funcionários, agentes e sucessores das
+                    reivindicações, demandas e danos de liberação (reais ou
+                    consequentes)) de qualquer tipo ou natureza, conhecida e
+                    desconhecida, suspeita e insuspeitada, divulgada e não
+                    divulgada, decorrente de ou de alguma forma relacionada a
+                    tais conflitos ou ao site e aos Serviços. SE VOCÊ FOR UM
+                    RESIDENTE NA CALIFÓRNIA, VOCÊ RENUNCIA ao Código Civil da
+                    Califórnia, seção 1542, que prevê: UM LANÇAMENTO GERAL NÃO
+                    SE ESTENDE A REIVINDICAÇÕES DE QUE O CREDITOR NÃO SABE OU
+                    PENSA ESTÃO EM SEU FAVOR NO MOMENTO DE EXECUTAR O
+                    LANÇAMENTO, que,
+                  </p>
+                  <p>
+                    <span className="font-weight-bold">
+                      Contratante independente
+                    </span>{" "}
+                    <br />
+                    Você e Famososaceitam e declaram que essas condições criam
+                    uma relação de contratante independente e é a intenção
+                    expressa das partes que a relação seja interpretada e
+                    mantida como a de um contratante independente para todos os
+                    fins. Você não está em negociações de franquia, nem é um
+                    parceiro, agente ou funcionário da Famosos. Você é única e
+                    exclusivamente responsável por determinar a forma, método,
+                    detalhes e meios de seus rendimentos nessas condições. Não
+                    temos o direito de, e não seremos, controlar a maneira ou
+                    determinar o método de obtenção de seus rendimentos. Você
+                    assume a responsabilidade exclusiva e pagará todos os
+                    impostos trabalhistas (incluindo previdência social),
+                    impostos de renda e outros relatórios exigidos para suas
+                    atividades de acordo com estes Termos e cumprirá todas as
+                    leis federais, estaduais e locais que regem as leis de
+                    operação de acordo com estas condições. Que você usará seu
+                    próprio equipamento para cumprir suas obrigações sob estes
+                    termos. Você é o único responsável por qualquer informação
+                    exigida por lei ou qualquer acordo que você possa ter com
+                    terceiros para qualquer pessoa ou entidade em conexão com a
+                    execução deste Acordo. A relação entre as partes não é
+                    exclusiva, o que significa que você pode fornecer serviços
+                    semelhantes a outras organizações em termos e horários
+                    determinados por você e que podemos ou não envolver
+                    terceiros para fornecer serviços semelhantes aos
+                    contemplados nestas Condições.
+                  </p>
+                  <p>
+                    <span className="font-weight-bold">Outros campos</span>
+                    <br /> O Site e os Serviços podem conter links para outros
+                    sites e recursos online. Um link para o site de um terceiro
+                    não significa que concordamos com ele ou que eles são
+                    afiliados a ele. Não somos responsáveis por qualquer dano ou
+                    perda relacionada ao uso de qualquer site de terceiros. Você
+                    deve sempre ler os termos e condições e a política de
+                    privacidade de um site de terceiros antes de usá-lo.
+                  </p>
+                  <p>
+                    <span className="font-weight-bold">Outros campos</span>
+                    <br />
+                    Melhoramos e atualizamos o site e os serviços com
+                    frequência. Podemos alterar ou descontinuar o Site ou os
+                    Serviços a qualquer momento, com ou sem aviso prévio.
+                  </p>
+                  <p>
+                    <span className="font-weight-bold">Terminação</span>
+                    <br />
+                    Você pode cancelar sua conta a qualquer momento através de
+                    um link que aparece em sua conta no site. Nós nos reservamos
+                    o direito de não vender o Site ou os Serviços a ninguém.
+                    Também nos reservamos o direito de suspender o direito de
+                    qualquer usuário de acessar o site ou serviços a qualquer
+                    momento, a exclusivo nosso critério. Se você violar qualquer
+                    um desses Termos, sua permissão para usar o site e os
+                    serviços será automaticamente rescindida.
+                  </p>
+                  <p>
+                    <span className="font-weight-bold">
+                      Isenção de responsabilidade e limitações de nossa
+                      responsabilidade
+                    </span>
+                    <br />
+                    USE O SITE E OS SERVIÇOS por sua própria conta e risco. O
+                    SITE e os serviços são fornecidos "TAL COMO ESTÃO" E
+                    "CONFORME DISPONÍVEIS". Na medida permitida por LEI, FAMOSOS
+                    E seus executivos, funcionários, diretores, acionistas,
+                    controladoras, subsidiárias, afiliadas, agentes e agentes
+                    ("afiliadas") recusam TODAS as garantias, condições e
+                    representações de QUALQUER TIPO, EXPRESSA, IMPLÍCITA, LEI ,
+                    OU DE OUTRA FORMA, incluindo aqueles relacionados à
+                    ADEQUAÇÃO PARA UM DETERMINADO FIM E NÃO VIOLAÇÃO E aqueles
+                    derivados do CURSO DE GESTÃO OU USO DO COMÉRCIO.
+                  </p>
+                  <p>
+                    EM PARTICULAR, FAMOSOS E SUAS AFILIADAS, NÃO representa nem
+                    garante a veracidade ou integridade dos conteúdos
+                    disponibilizados através do site ou dos serviços, ou o
+                    conteúdo dos websites ou serviços online ligados ou
+                    integrados no SITE ou serviços. FAMOSOS e suas afiliadas NÃO
+                    SÃO RESPONSÁVEIS POR QUAISQUER: ERROS (A), erros ou
+                    imprecisões de conteúdo; (B) LESÕES OU danos materiais
+                    causados pelo SEU ACESSO OU USO DO SITE ou serviços; (C)
+                    qualquer acesso ou uso não autorizado de nossos servidores
+                    ou de quaisquer informações pessoais ou dados de usuário;
+                    (D) qualquer interrupção da transmissão PARA, OU A PARTIR DO
+                    SITE ou serviços; (E) quaisquer erros, vírus, Trojans OU
+                    SEMELHANTES que possam ser transmitidos NO SITE OU ATRAVÉS
+                    DO SITE ou serviços por terceiros; VOCÊ entende e concorda
+                    que qualquer material ou informação BAIXADO OU OBTIDO
+                    ATRAVÉS DO USO DO SITE ou dos serviços é feito por sua
+                    própria conta e risco e que VOCÊ será o único responsável
+                    por quaisquer danos causados por isso. NENHUM CONSELHO OU
+                    INFORMAÇÃO, ORAL OU ESCRITO, OBTIDO POR VOCÊ DOS EUA OU
+                    ATRAVÉS DO SITE OU DA GARANTIA DOS SERVIÇOS NÃO
+                    expressamente
+                  </p>
+                  <p>
+                    NA EXTENSÃO MÁXIMA PERMITIDA POR LEI, NÃO SOMOS EM NENHUMA
+                    HIPÓTESE RESPONSÁVEIS PERANTE VOCÊ OU TERCEIROS por DANOS
+                    ACidentais, PUNITIVOS OU INDIRETOS, ESPECIAIS,
+                    CONSEQUENCIAIS (incluindo lucros cessantes, renda ou de
+                    dados) OU PELO custo de obtenção de produtos de reposição .
+                    DECORRENTES DE OU EM CONEXÃO COM ESTES TERMOS, CAUSADOS, SE
+                    TAIS RESPONSABILIDADES FOREM A CONSEQUÊNCIA DE QUALQUER
+                    RECLAMAÇÃO BASEADA EM CONTRATO, GARANTIA, DELITO (INCLUINDO
+                    NEGLIGÊNCIA), RESPONSABILIDADE ESTRITA ou não, E OU NÃO
+                    FORAM INFORMADOS DA SUA DANOS.
+                  </p>
+                  <p>
+                    NA EXTENSÃO MÁXIMA PERMITIDA POR LEI, NOSSA responsabilidade
+                    total acumulada para você ou qualquer terceiro sob estes
+                    termos, PARA TODAS AS CAUSAS DE AÇÃO E TODAS AS TEORIAS DE
+                    RESPONSABILIDADE, SERÁ LIMITADA A, e não excederá as taxas
+                    realmente pagas pelos EUA DURANTE o doze (12) meses antes
+                    daquele que dá origem à responsabilidade.
+                  </p>
+                  <p>
+                    Você entende e aceita que definimos nossos preços e
+                    celebramos essas condições com você em função das limitações
+                    de responsabilidade estabelecidas nestes Termos, que
+                    distribuem o risco entre nós e formam a base de uma
+                    negociação entre as partes.
+                  </p>
+                  <p>
+                    <span className="font-weigth-bold">Compensação</span>
+                    Você concorda em indenizar e isentar de responsabilidade
+                    Famosos e suas afiliadas de e contra todas e quaisquer
+                    reivindicações, custos, processos, demandas, perdas, danos e
+                    despesas (incluindo, sem limitação, honorários advocatícios
+                    e despesas razoáveis) de qualquer tipo uu natureza ,
+                    derivado de ou relacionado a, (a) qualquer violação real ou
+                    alegada destes Termos por você ou qualquer pessoa que use
+                    sua conta, (b) sua, ou qualquer pessoa que use sua conta,
+                    violação de leis ou regulamentos, ou (c) sua negligência ou
+                    intenção dolosa. Se assumirmos a defesa de tal questão, você
+                    deve cooperar razoavelmente conosco nessa defesa.
+                  </p>
+                  <p>
+                    <span className="font-weigth-bold">
+                      Acordo de Arbitragem e isenção de certos direitos
+                    </span>
+                    Você e o Famosos.com concordam que resolveremos qualquer
+                    disputa entre nós por meio de arbitragem final e
+                    vinculativa, e não por meio de processos judiciais. Você e
+                    as celebridades presentes renunciam a qualquer direito a um
+                    julgamento com júri de qualquer reclamação (definido
+                    abaixo). Todas as controvérsias, reivindicações,
+                    reconvenções ou outros conflitos que surjam entre você e
+                    Famosos.com relacionados a estes Termos, o Site e os
+                    Serviços (cada um deles uma "Reivindicação") serão
+                    submetidos à arbitragem de acordo com as Regras da American
+                    Arbitration Association (" Regras AAA "). A arbitragem será
+                    resolvida por um único árbitro. A decisão do árbitro na
+                    referida arbitragem será final e vinculativa para as partes
+                    e pode ser executada em qualquer tribunal de jurisdição
+                    competente.
+                  </p>
+                  <p>
+                    Se você demonstrar que os custos da arbitragem serão
+                    proibitivos em comparação com os custos do litígio, Famosos
+                    pagará a soma dos custos administrativos e dos honorários do
+                    árbitro necessários para a arbitragem conforme julgar
+                    necessário, o árbitro para evitar o custo da arbitragem ser
+                    proibitivo. Na sentença final, o árbitro poderá repartir os
+                    custos da arbitragem e a compensação do árbitro entre as
+                    partes em montantes que julgar apropriados.
+                  </p>
+                  <p>
+                    Este acordo de arbitragem não impede você ou a Famosos.com
+                    de buscar ação por agências governamentais federais,
+                    estaduais ou locais. Você e as celebridades também têm o
+                    direito de entrar com ações de classificação em tribunais de
+                    reclamações. Além disso, você e Famosos retêm o direito de
+                    recorrer a qualquer tribunal de jurisdição competente para
+                    uma medida provisória, incluindo pré-arbitragem ou medida
+                    cautelar, e tal pedido não deve ser considerado
+                    inconsistente com estes termos, nem uma renúncia ao direito
+                    de ter disputas apresentadas à arbitragem de acordo com as
+                    disposições destas Condições.
+                  </p>
+                  <p>
+                    Nem você nem Famosos podem atuar como representantes de
+                    classe ou procuradorgeral particular, nem participar como
+                    membros de um grupo de demandantes, com relação a qualquer
+                    reclamação. As reivindicações não podem ser arbitradas em
+                    uma classe ou base representativa. O árbitro só pode decidir
+                    suas reivindicações individuais e / ou Famosos. O árbitro
+                    não poderá consolidar ou unir as reivindicações de outras
+                    pessoas ou partes que possam estar em situação semelhante.
+                  </p>
+                  <p>
+                    Se qualquer disposição destes termos for considerada
+                    inválida ou inexequível, essa disposição específica não terá
+                    força e efeito e será cortada, mas o restante desta seção
+                    continuará em pleno vigor e efeito. Nenhuma renúncia de
+                    qualquer disposição desta seção dos Termos será efetiva ou
+                    aplicável, a menos que seja registrada por escrito e
+                    assinada pela parte que renuncia a um direito ou obrigação.
+                    Tal renúncia não surtirá efeito ou afetará qualquer outra
+                    parte destes Termos. Esta seção dos Termos subsistirá ao
+                    término de seu relacionamento com celebridades
+                  </p>
+                  <p>
+                    ESTA SEÇÃO LIMITA CERTOS DIREITOS, INCLUINDO o direito de
+                    entrar com uma ação legal, o direito a julgamento por júri,
+                    o direito de PARTICIPAR DE QUALQUER FORMA DE REIVINDICAÇÃO
+                    DE CLASSE OU REIVINDICAÇÃO, o direito de participar do
+                    DISCOVERY SALVO conforme previsto nas regras AAA, O DIREITO
+                    AOS RECURSOS E DETERMINADAS FORMAS DE AJUDA. OUTROS DIREITOS
+                    QUE VOCÊ OU FAMOSO TEREM PARA TRIBUNALIZAR TAMBÉM NÃO ESTÃO
+                    DISPONÍVEIS NA ARBITRAGEM.
+                  </p>
+                  <p>
+                    <span className="font-weigth-bold">Outras provisões</span>{" "}
+                    <br />
+                    Sob nenhuma circunstância somos responsáveis por qualquer
+                    atraso ou falha nos rendimentos devido, no todo ou em parte,
+                    a qualquer ato da natureza ou outras causas além do nosso
+                    controle.
+                  </p>
+                  <p>
+                    Estes Termos serão regidos e interpretados de acordo com as
+                    leis do Estado da Flórida, sem dar efeito a qualquer
+                    conflito de leis ou disposições.
+                  </p>
+                  <p>
+                    Você concorda que qualquer ação de qualquer natureza
+                    decorrente ou relacionada a estes Termos, ao Site ou aos
+                    Serviços será julgada apenas nos tribunais estaduais ou
+                    federais localizados em Miami, Flórida. Você concorda e se
+                    submete à jurisdição pessoal de tais tribunais para os fins
+                    de tal ação.
+                  </p>
+                  <p>
+                    Se qualquer disposição destes Termos for considerada ilegal
+                    ou inexequível, tal disposição será considerada separável
+                    destes Termos e não afetará a aplicabilidade das outras
+                    disposições.
+                  </p>
+                  <p>
+                    O fato de fazermos cumprir qualquer direito ou disposição
+                    destas Condições não nos impedirá de aplicar tal direito ou
+                    disposição no futuro.
+                  </p>
+                  <p>
+                    Podemos ceder nossos direitos e obrigações sob esses termos,
+                    inclusive em relação a uma fusão, aquisição, venda de ativos
+                    ou patrimônio, ou de pleno direito.
+                  </p>
+                  <p>
+                    <span className="font-weight-bold">
+                      Mudanças nestes termos
+                    </span>{" "}
+                    De vez em quando, podemos alterar estes Termos. Se
+                    alterarmos essas condições, avisaremos você publicando os
+                    termos revisados no site. Essas alterações entrarão em vigor
+                    na data de revisão mostrada nos termos revisados. Ao
+                    continuar a usar o Site ou os Serviços, você concorda com os
+                    termos revisados
+                  </p>
+                </>
+              </Maybe>
+            }
           </div>
         </PageContainer>
       </div>
