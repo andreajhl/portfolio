@@ -13,7 +13,9 @@ import ptMessages from "../compiled-lang/pt.json";
 const languages = {
   en: enMessages,
   es: esMessages,
-  pt: ptMessages
+  pt: ptMessages,
+  por: ptMessages,
+  "pt-BR": ptMessages
 };
 
 const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
