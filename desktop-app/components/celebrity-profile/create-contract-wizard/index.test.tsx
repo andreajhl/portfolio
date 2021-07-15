@@ -1,3 +1,4 @@
+import { getPaymentMethodsPath } from "constants/paths";
 import { ContractDeliveryType } from "desktop-app/types/contractDataType";
 import { shallow } from "enzyme";
 import { withoutHooks } from "jest-react-hooks-shallow";
@@ -5,6 +6,7 @@ import testCelebrity from "__test__/fake-data/testCelebrity";
 import { testContractInProgress } from "__test__/fake-data/testContract";
 import { mountWithIntl } from "__test__/intl";
 import ReduxProvider from "__test__/ReduxProvider";
+import { getMockedRouterPush } from "__test__/utils";
 import { CreateContractWizard } from ".";
 import ContractDeliveryForm from "../contract-delivery-form";
 import { ContractDetailsForm } from "../contract-details-form";
@@ -179,47 +181,43 @@ xit("updates contract when change steps. (with filled contractInProgress)", () =
     /* .invoke("onClick")(null) */ expect(updateContract).toHaveBeenCalled();
   }));
 
-it("save the contract /* and redirect to payment methods */ when submit last step.", () =>
-  withoutHooks(() => {
-    useAuth0.mockImplementationOnce(() => ({
-      isAuthenticated: true,
-    }));
-    const testReference = "123-12345";
-    const updateContractStep = jest
-      .spyOn(
-        require("react-app/src/state/ducks/contracts/actions"),
-        "updateContractStep"
-      )
-      .mockImplementation(() => ({ reference: testReference }));
-    const getPaymentMethodsPath = jest.spyOn(
-      require("constants/paths"),
-      "getPaymentMethodsPath"
-    );
+it("save the contract and redirect to payment methods when submit last step.", () =>
+  new Promise((resolve) => {
+    withoutHooks(async () => {
+      useAuth0.mockImplementationOnce(() => ({
+        isAuthenticated: true,
+        user: { email: "test2@testing.com", given_name: "Test Doe" },
+      }));
+      const testReference = "123-12345";
+      const updateContractStep = jest
+        .spyOn(
+          require("react-app/src/state/ducks/contracts/actions"),
+          "updateContractStep"
+        )
+        .mockImplementation(() =>
+          Promise.resolve({ reference: testReference })
+        );
+      const push = getMockedRouterPush();
 
-    // const push = jest.fn();
-    // const mockRouter: any = {
-    //   push,
-    //   events: { on() {}, off() {} },
-    // };
-    // const useRouter = jest.spyOn(require("next/router"), "useRouter");
-    // useRouter.mockImplementation(() => mockRouter);
+      const wrapper = mountSetup({
+        contractInProgress: {
+          ...testContractInProgress,
+          status: 2,
+        },
+      });
+      wrapper.find(ContractNotificationsForm).invoke("onSubmit")(
+        testNotificationsData
+      );
 
-    const wrapper = mountSetup({
-      contractInProgress: {
-        ...testContractInProgress,
-        status: 2,
-      },
+      expect(updateContractStep).toHaveBeenCalledWith(
+        {
+          ...testNotificationsData,
+          id: testContractInProgress.contractId,
+        },
+        3
+      );
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      expect(push).toHaveBeenCalledWith(getPaymentMethodsPath(testReference));
+      resolve(null);
     });
-    wrapper.find(ContractNotificationsForm).invoke("onSubmit")(
-      testNotificationsData
-    );
-
-    expect(updateContractStep).toHaveBeenCalledWith(
-      {
-        ...testNotificationsData,
-        id: testContractInProgress.contractId,
-      },
-      3
-    );
-    // expect(getPaymentMethodsPath).toHaveBeenCalledWith(testReference);
   }));
