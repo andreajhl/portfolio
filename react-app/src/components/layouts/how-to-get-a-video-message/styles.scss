@@ -34,8 +34,9 @@
   }
 
   &__step-item {
-    @media only screen and (min-width: 768px) {
-      text-align: center;
+    text-align: center;
+    @media only screen and (max-width: 768px) {
+      flex-basis: 33%;
     }
   }
 
