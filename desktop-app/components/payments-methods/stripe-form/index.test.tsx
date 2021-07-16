@@ -6,7 +6,7 @@ import StripeForm from ".";
 import StripeCustomerSources from "../stripe-customer-sources";
 import waitFor from "react-app/src/utils/waitFor";
 import StripeCardForm from "../stripe-card-form";
-import { byId } from "__test__/utils";
+import { byId, getMockedWindowMethod } from "__test__/utils";
 import {
   CardIcon,
   DotCircle,
@@ -225,4 +225,21 @@ it("calls onToggle when click or press either Enter or Space keys on form label"
   const spaceKeyEvent = { key: " " } as any;
   formLabelWrapper.invoke("onKeyDown")(spaceKeyEvent);
   expect(onToggle).toHaveBeenCalledTimes(3);
+});
+
+fit("loads the Stripe instance from window object when Stripe SDK has loaded", () => {
+  const stripeKey = process.env.NEXT_PUBLIC_STRIPE_KEY;
+  const mockedStripeInstance = {};
+  const mockedStripe = getMockedWindowMethod(
+    "Stripe",
+    () => mockedStripeInstance
+  );
+
+  const { wrapper } = shallowRenderStripeForm({
+    isScriptLoaded: true,
+    isScriptLoadSucceed: true,
+  });
+
+  expect(mockedStripe).toHaveBeenCalledWith(stripeKey);
+  expect(wrapper.prop("stripe")).toBe(mockedStripeInstance);
 });
