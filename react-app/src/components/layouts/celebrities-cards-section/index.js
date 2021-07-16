@@ -18,7 +18,7 @@ import {
 } from "react-app/src/constants/bootstrapBreakpoint";
 import { FormattedMessage } from "react-intl";
 import { useRouter } from "next/router";
-import { returnLangPathFromExternalAssets } from "react-app/src/utils/returnLangPathFromExternalAssets";
+import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 const celebrityCardWidth = 150;
 const videoCardWidth = 258;
@@ -171,7 +171,9 @@ function CelebritiesCardsSectionLayout({
       return celebritiesSection.title;
 
     return (
-      celebritiesSection.title[returnLangPathFromExternalAssets(locale)] ||
+      celebritiesSection.title[
+        transformUserNavigatorLanguageToISO2Code(locale)
+      ] ||
       celebritiesSection.title["es"] ||
       ""
     );

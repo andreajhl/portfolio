@@ -1,0 +1,25 @@
+.GoogleButton {
+  padding: 1em 1.5em;
+  background: #ffffff;
+  border: 1px solid currentColor;
+  color: black !important;
+  font-weight: bold;
+  letter-spacing: 0em;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+
+  &:hover {
+    background: #f1f1f1;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem #c3c3c3;
+  }
+}
+
+.GoogleButton img {
+  margin-right: 21px;
+}

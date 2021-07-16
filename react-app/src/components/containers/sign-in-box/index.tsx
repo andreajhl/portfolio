@@ -1,0 +1,85 @@
+import { FacebookButton } from "react-app/src/components/layouts/facebook-button";
+import { GoogleButton } from "react-app/src/components/layouts/google-button";
+import { connect, ConnectedProps } from "react-redux";
+import classes from "classnames";
+import styles from "./styles.module.scss";
+import { AuthTermsAdvertise } from "react-app/src/components/layouts/auth-terms-advertise";
+import { FormattedMessage, useIntl, defineMessages } from "react-intl";
+import { Link } from "../../common/routing/link";
+import { RESET_PASSWORD_PATH, SIGN_UP_PATH } from "react-app/src/routing/Paths";
+import { SignInEmailPasswordForm } from "../sign-in-with-email-form";
+import dynamic from "next/dynamic";
+import { AuthenticationFailurePopupProps } from "../authentication-failure-popup";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
+const AuthenticationFailurePopup = dynamic<AuthenticationFailurePopupProps>(
+  () =>
+    import("../authentication-failure-popup").then(
+      (mod) => mod.AuthenticationFailurePopup
+    )
+);
+const LoginMessages = defineMessages({
+  facebookMessage: { defaultMessage: "Ingresar con Facebook" },
+  googleMessage: { defaultMessage: "Ingresar con Google" }
+});
+
+const signUpLink = (chunk: string) => <Link href={SIGN_UP_PATH}>{chunk}</Link>;
+
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = {};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type SignInBoxProps = {
+  className?: string;
+} & PropsFromRedux;
+
+<FormattedMessage defaultMessage="Ingresar con Facebook" />;
+function SignInBox({ className }: SignInBoxProps) {
+  const { query } = useRouter();
+  const [errorMessage, setErrorMessage] = useState("");
+  useEffect(() => {
+    if (query.error) {
+      setErrorMessage(String(query.error));
+    }
+  }, [query]);
+  const { formatMessage } = useIntl();
+
+  return (
+    <section className={classes(styles.SignInBox, className)}>
+      <div className={styles.SignInBoxCard}>
+        <FacebookButton
+          className={styles.AuthProviderButton}
+          textButton={formatMessage(LoginMessages.facebookMessage)}
+        />
+
+        <GoogleButton
+          className={styles.AuthProviderButton}
+          textButton={formatMessage(LoginMessages.googleMessage)}
+        />
+        <SignInEmailPasswordForm email={""} />
+        <AuthTermsAdvertise className={styles.SignInBoxAuthTermsAdvertise} />
+        <Link href={RESET_PASSWORD_PATH} className={styles.ForgotPasswordLink}>
+          <FormattedMessage defaultMessage="Olvidé mi contraseña" />
+        </Link>
+      </div>
+      {errorMessage.length > 0 ? (
+        <AuthenticationFailurePopup errorMessage={errorMessage} />
+      ) : null}
+      <p className={styles.NotRegisteredText}>
+        <FormattedMessage
+          defaultMessage="¿No tienes una cuenta? <signUpLink>Registrarme</signUpLink>"
+          values={{ signUpLink }}
+        />
+      </p>
+    </section>
+  );
+}
+
+const _SignInBox = connector(SignInBox);
+
+export { _SignInBox as SignInBox };

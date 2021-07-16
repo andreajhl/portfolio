@@ -1,0 +1,62 @@
+.SignInBox {
+  max-width: 413px;
+}
+
+.SignInBoxCard {
+  background-color: #f8f8f8;
+  padding: 32px;
+  border-radius: 10px;
+}
+
+.AuthProviderButton {
+  height: 55px;
+  width: 100%;
+
+  @media only screen and (min-width: 768px) {
+    height: 45px;
+  }
+}
+
+.AuthProviderButton:nth-child(2) {
+  margin-top: 16px;
+  margin-bottom: 25px;
+
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
+}
+
+.SignInBoxAuthTermsAdvertise {
+  max-width: 303px;
+  margin: 30px auto 0;
+}
+
+.ForgotPasswordLink {
+  padding: 8px 0;
+  transition: color 0.15s;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #3d87f3;
+  display: block;
+  margin-top: 17px;
+}
+
+.NotRegisteredText {
+  margin-top: 24px;
+  margin-bottom: 0;
+  text-align: center;
+  font-weight: bold;
+  color: #6970c6;
+
+  a {
+    transition: color 0.15s;
+    font-weight: bold;
+  }
+
+  @media only screen and (max-width: 374px) {
+    padding: 0 5%;
+  }
+}

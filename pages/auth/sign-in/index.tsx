@@ -1,7 +1,8 @@
+import withoutAuth from "lib/withOutAuth";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { SignInPage } from "react-app/src/components/pages/sign-in";
 
-const Home = () => {
+const SignIn = () => {
   return (
     <>
       <CustomHead />
@@ -9,4 +10,4 @@ const Home = () => {
     </>
   );
 };
-export default Home;
+export default withoutAuth(SignIn);

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { CallToActionButton } from "../call-to-action-button";
 import { parseFullName } from "parse-full-name";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import { useRouter } from "next/router";
 import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { subscribeToEmailNotifications } from "react-app/src/state/ducks/subscription-celebrity-alarm/actions";
@@ -64,7 +64,7 @@ const SubscriptionToAvailabilityNotification = ({
 }: SubscriptionToAvailabilityNotificationProps) => {
   const router = useRouter();
   const session = new Session();
-  const { isLoading, isAuthenticated } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth();
   const fullNameWords = celebrityFullName.split(" ");
   const triggerLogin = useLoginHandler();
   let setTimeoutStatus = false;

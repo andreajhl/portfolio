@@ -9,7 +9,7 @@ import { withRouter } from "next/router";
 import { LoaderLayout } from "../../layouts/loader";
 import { secure_payment_img } from "constants/external_assets_by_lang";
 import { listPaymentGateways } from "../../../state/ducks/payments/operations";
-import { returnLangPathFromExternalAssets } from "react-app/src/utils/returnLangPathFromExternalAssets";
+import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 class PaymentMethodsSection extends Component {
   constructor(props) {
@@ -137,7 +137,7 @@ class PaymentMethodsSection extends Component {
                       width="230px"
                       src={
                         secure_payment_img[
-                          returnLangPathFromExternalAssets(
+                          transformUserNavigatorLanguageToISO2Code(
                             this.props.router?.locale
                           )
                         ]
