@@ -348,7 +348,7 @@
   "3Szr5X": [
     {
       "type": 0,
-      "value": "Cadastre-se no Google"
+      "value": "Cadastre-se com o Google"
     }
   ],
   "3T2iOg": [
@@ -556,7 +556,7 @@
   "5jWuaC": [
     {
       "type": 0,
-      "value": "Você esqueceu sua senha"
+      "value": "Você esqueceu sua senha?"
     }
   ],
   "5sQzpi": [
@@ -1156,7 +1156,7 @@
   "EwT5kN": [
     {
       "type": 0,
-      "value": "Certifique-se de que é uma senha fácil de lembrar."
+      "value": "ou inscreva-se com seu e-mail"
     }
   ],
   "F03q + a": [
@@ -1322,7 +1322,7 @@
   "Hauttd": [
     {
       "type": 0,
-      "value": "Cadastre-se no Facebook"
+      "value": "Cadastre-se com o Facebook"
     }
   ],
   "HdR30r": [
@@ -1516,7 +1516,7 @@
   "L6k2XE": [
     {
       "type": 0,
-      "value": "Viva experiências únicas com centenas de latinos famosos."
+      "value": "Viva experiências únicas com centenas de celebridades latino-americanas"
     }
   ],
   "LMVeQk": [
@@ -1682,7 +1682,7 @@
   "NLbEhA": [
     {
       "type": 0,
-      "value": "Viva experiências únicas com centenas de latinos famosos."
+      "value": "Dê-nos seu e-mail e você pode redefinir sua senha."
     }
   ],
   "NROWdz": [
@@ -2012,13 +2012,13 @@
     },
     {
       "type": 1,
-      "value": "celebridadeFullName"
+      "value": "celebrityFullName"
     }
   ],
   "Spo/Vy": [
     {
       "type": 0,
-      "value": "Vá para começar"
+      "value": "Inicial"
     }
   ],
   "SvDN5n": [
@@ -2306,7 +2306,7 @@
   "Xp7qs8": [
     {
       "type": 0,
-      "value": "Bem-vindo ao Famous! "
+      "value": "Bem-vindo a Famosos! "
     },
     {
       "type": 1,
@@ -2406,7 +2406,7 @@
   "ZPvdL/": [
     {
       "type": 0,
-      "value": "ou entre com seu email"
+      "value": "ou inscreva-se com seu e-mail"
     }
   ],
   "ZcJeQh": [
@@ -2648,7 +2648,7 @@
   "dPuxZs": [
     {
       "type": 0,
-      "value": "Cadastre-se e continue"
+      "value": "Entrar e continuar"
     }
   ],
   "dUl69m": [
@@ -3052,7 +3052,7 @@
   "jrPcz6": [
     {
       "type": 0,
-      "value": "Registrar-me"
+      "value": "Entrar"
     }
   ],
   "kKaD9Y": [
@@ -3076,7 +3076,7 @@
   "lGFIAN": [
     {
       "type": 0,
-      "value": "Crie uma conta para se conectar com pessoas famosas."
+      "value": "Crie uma conta para se conectar com celebridades"
     }
   ],
   "lSxRsO": [
@@ -3532,7 +3532,7 @@
       "children": [
         {
           "type": 0,
-          "value": " Faça login "
+          "value": " Login "
         }
       ],
       "type": 8,
@@ -3752,7 +3752,7 @@
   "uKwcXA": [
     {
       "type": 0,
-      "value": "Crie uma conta para se conectar com pessoas famosas"
+      "value": "Crie uma conta para se conectar com celebridades"
     }
   ],
   "uMrHKU": [
@@ -3888,7 +3888,7 @@
   "wkaVGz": [
     {
       "type": 0,
-      "value": "Acesse sua conta para se conectar com pessoas famosas"
+      "value": "Faça login em sua conta para se conectar com celebridades"
     }
   ],
   "wlTYUV": [

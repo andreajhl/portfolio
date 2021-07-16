@@ -1655,17 +1655,17 @@
     "message": "<bigTextSpan>10%</bigTextSpan> de desconto."
   },
   "jrPcz6": {
-    "message": "Registrar-me"
+    "message": "Entrar"
   },
   "qL5Hl7": {
     "message": "Data de aniversário"
   },
 
   "3Szr5X": {
-    "message": "Cadastre-se no Google"
+    "message": "Cadastre-se com o Google"
   },
   "5jWuaC": {
-    "message": "Você esqueceu sua senha"
+    "message": "Você esqueceu sua senha?"
   },
   "8wR3lj": {
     "message": "Senha atualizada"
@@ -1674,10 +1674,10 @@
     "message": "Certifique-se de que é uma senha fácil de lembrar."
   },
   "EwT5kN": {
-    "message": "Certifique-se de que é uma senha fácil de lembrar."
+    "message": "ou inscreva-se com seu e-mail"
   },
   "Hauttd": {
-    "message": "Cadastre-se no Facebook"
+    "message": "Cadastre-se com o Facebook"
   },
   "IdELJG": {
     "message": "Entrar com o Google"
@@ -1692,31 +1692,31 @@
     "message": "Você não tem uma conta? <signUpLink> Inscreva-se </signUpLink>"
   },
   "L6k2XE": {
-    "message": "Viva experiências únicas com centenas de latinos famosos."
+    "message": "Viva experiências únicas com centenas de celebridades latino-americanas"
   },
   "NLbEhA": {
-    "message": "Viva experiências únicas com centenas de latinos famosos."
+    "message": "Dê-nos seu e-mail e você pode redefinir sua senha."
   },
   "SijdbJ": {
-    "message": "Compre um vídeo personalizado de {celebridadeFullName}"
+    "message": "Compre um vídeo personalizado de {celebrityFullName}"
   },
   "Spo/Vy": {
-    "message": "Vá para começar"
+    "message": "Inicial"
   },
   "Xp7qs8": {
-    "message": "Bem-vindo ao Famous! {br} Crie uma conta para começar a se conectar com suas celebridades favoritas."
+    "message": "Bem-vindo a Famosos! {br} Crie uma conta para começar a se conectar com suas celebridades favoritas."
   },
   "ZDkLmZ": {
     "message": "Verifique seu e-mail e digite o código de 6 dígitos que você recebeu"
   },
   "ZPvdL/": {
-    "message": "ou entre com seu email"
+    "message": "ou inscreva-se com seu e-mail"
   },
   "b861FF": {
     "message": "Famosos.com - Recuperar senha"
   },
   "dPuxZs": {
-    "message": "Cadastre-se e continue"
+    "message": "Entrar e continuar"
   },
   "f6JH6I": {
     "message": "Ao continuar, aceito de forma expressa e informada os <termsLink> Termos e Condições </termsLink> e a <policiesLink> Política de Privacidade </policiesLink> da Famosos Inc."
@@ -1728,16 +1728,16 @@
     "message": "Esqueci minha senha"
   },
   "lGFIAN": {
-    "message": "Crie uma conta para se conectar com pessoas famosas."
+    "message": "Crie uma conta para se conectar com celebridades"
   },
   "nJRa/h": {
     "message": "Receba promoções e novidades sobre celebridades que ingressam em nossa comunidade."
   },
   "rtwrcq": {
-    "message": "Você já tem uma conta? <signInLink> Faça login </signInLink>"
+    "message": "Você já tem uma conta? <signInLink> Login </signInLink>"
   },
   "uKwcXA": {
-    "message": "Crie uma conta para se conectar com pessoas famosas"
+    "message": "Crie uma conta para se conectar com celebridades"
   },
   "uSPUjx": {
     "message": "Mude sua senha"
@@ -1749,6 +1749,6 @@
     "message": "Registro"
   },
   "wkaVGz": {
-    "message": "Acesse sua conta para se conectar com pessoas famosas"
+    "message": "Faça login em sua conta para se conectar com celebridades"
   }
 }
