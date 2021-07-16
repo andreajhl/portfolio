@@ -1,4 +1,7 @@
 {
+  "+/MNWw": {
+    "message": "Confirmar"
+  },
   "+c9FIk": {
     "message": "Panama"
   },
@@ -122,6 +125,9 @@
     "description": "",
     "message": "{fullName} dona de sus ingresos a: <span> {causeName} </span>"
   },
+  "3Szr5X": {
+    "message": "Registrarme con Google"
+  },
   "3T2iOg": {
     "message": "Ukraine"
   },
@@ -188,6 +194,9 @@
   "5h/jE9": {
     "message": "Formato no valido"
   },
+  "5jWuaC": {
+    "message": "Olvidaste tu contraseña"
+  },
   "5sQzpi": {
     "message": "No se pudo autenticar esta tarjeta correctamente"
   },
@@ -242,8 +251,17 @@
   "8fYxkw": {
     "message": "¿Qué quieres que diga {celebrityFullName}?"
   },
+  "8mH/y7": {
+    "message": "El campo de fecha de nacimiento es obligatorio"
+  },
+  "8nG5TB": {
+    "message": "Email invalido."
+  },
   "8u0DFM": {
     "message": "Ha ocurrido un error."
+  },
+  "8wR3lj": {
+    "message": "Contraseña actualizada"
   },
   "8xaGaO": {
     "message": "Suscríbete a nuestro newsletter y entérate de todas nuestras novedades y promociones exclusivas"
@@ -366,11 +384,20 @@
   "EbbVcC": {
     "message": "Uruguay"
   },
+  "EoWjUN": {
+    "message": "El campo de contraseña es obligatorio"
+  },
   "Eq0gTc": {
     "message": "Enviar comentario"
   },
+  "EqG/WU": {
+    "message": "Asegurate de que sea una contraseña fácil de recordar."
+  },
   "ErSRb8": {
     "message": "Selecciona una tarjeta"
+  },
+  "EwT5kN": {
+    "message": "o regístrate con tu correo electrónico"
   },
   "FnHHT0": {
     "message": "Guardando..."
@@ -408,6 +435,9 @@
   "HINYAw": {
     "message": "Efectivo"
   },
+  "Hauttd": {
+    "message": "Registrarme con Facebook"
+  },
   "HmnV8f": {
     "message": "Costa Rica"
   },
@@ -420,8 +450,17 @@
   "IHp09g": {
     "message": "¿Puedo bajar mi video?"
   },
+  "IdELJG": {
+    "message": "Ingresar con Google"
+  },
+  "IdffHT": {
+    "message": "Quiero recibir ofertas y beneficios exclusivos."
+  },
   "IeYjFw": {
     "message": "Nicaragua"
+  },
+  "Isy4qq": {
+    "message": "Famoso"
   },
   "Iuyaxf": {
     "message": "Leer más..."
@@ -449,6 +488,9 @@
   "JiRPeP": {
     "message": "Actualmente no se puede modificar la solicitud pero muy pronto podrás hacerlo!"
   },
+  "Jv23M2": {
+    "message": "Ingresar con Facebook"
+  },
   "K8SMPu": {
     "message": "Ocasión:"
   },
@@ -466,6 +508,12 @@
   },
   "KkJHVF": {
     "message": "Ver video"
+  },
+  "L08n/M": {
+    "message": "¿No tienes una cuenta? <signUpLink>Registrarme</signUpLink>"
+  },
+  "L6k2XE": {
+    "message": "Vive experiencias únicas con cientos de famosos latinos."
   },
   "Lbiy9R": {
     "message": "Precio original:"
@@ -516,6 +564,9 @@
   "N9nBRn": {
     "message": "¡Y listo! en poco {onlyMobileLineBreak} tiempo {onlyDesktopLineBreak} recibirás tu {onlyMobileLineBreak} videomensaje."
   },
+  "NLbEhA": {
+    "message": "Indicanos tu correo electrónico y podrás restablecer tu contraseña."
+  },
   "NROWdz": {
     "message": "Tus Favoritos"
   },
@@ -536,8 +587,14 @@
     "description": "",
     "message": "Volver arriba"
   },
+  "Nzh0Uv": {
+    "message": "Autenticación Fallida"
+  },
   "O1JDs+": {
     "message": "Si quieres un video comercial para tu marca haz click <span> aquí.</span>"
+  },
+  "O9DChx": {
+    "message": "Código de seguridad"
   },
   "OOBCGL": {
     "message": "Consulta nuestros términos y condiciones para ver si tu caso aplica para un reembolso."
@@ -574,6 +631,12 @@
   },
   "Qdbxny": {
     "message": "¿Cuántas estrellas le das a este video?"
+  },
+  "Qgkwzh": {
+    "message": "Correo invalido"
+  },
+  "QqT6DL": {
+    "message": "Contraseña"
   },
   "QtvgOo": {
     "message": "Chile"
@@ -621,6 +684,12 @@
   "ScPFOw": {
     "message": "Bolivia (Plurinational State of)"
   },
+  "SijdbJ": {
+    "message": "Comprar video personalizado de {celebrityFullName}"
+  },
+  "Spo/Vy": {
+    "message": "Ir al Inicio"
+  },
   "SvDN5n": {
     "description": "",
     "message": "¡Recibe tu video personalizado!"
@@ -630,6 +699,9 @@
   },
   "TT/YZP": {
     "message": "Privacidad"
+  },
+  "TXYzmT": {
+    "message": "Confirmar nueva Contraseña"
   },
   "TjibFs": {
     "message": "¿Cuándo me cobran por mi video?"
@@ -644,11 +716,17 @@
   "U48f7q": {
     "message": "Volver a inicio"
   },
+  "UIware": {
+    "message": "Este correo electrónico no esta registrado en famosos.com"
+  },
   "UOKryr": {
     "message": "¿Cuanto tiempo tarda un video en ser grabado?"
   },
   "UcOT6A": {
     "message": "Cobro fallido"
+  },
+  "Uu4RMA": {
+    "message": "credenciales invalidas"
   },
   "VBvZa2": {
     "message": "Recibirás una notificación a <b></b> cuando tu video esté listo."
@@ -697,6 +775,9 @@
   "WmWz59": {
     "message": "Contrato Expirado"
   },
+  "WsW1Wz": {
+    "message": "Credenciales invalidas."
+  },
   "Wu3wG5": {
     "message": "Descuento:"
   },
@@ -714,6 +795,12 @@
   },
   "XlP2E5": {
     "message": "Es una compañía dedicada a crear tecnologías <br></br> que conecten personalidades con su fan base."
+  },
+  "Xp7qs8": {
+    "message": "¡Bienvenido a Famosos! {br} Crea una cuenta para empezar a conectar con tus famosos favoritos."
+  },
+  "Xx+xSb": {
+    "message": "La longitud de la contraseña debe contener al menos 6 caracteres"
   },
   "Y6sFMj": {
     "description": "",
@@ -737,6 +824,15 @@
   },
   "Yxo8MA": {
     "message": "Ir a mis contrataciones"
+  },
+  "Z5ZMSV": {
+    "message": "El campo de nombre es obligatorio"
+  },
+  "ZDkLmZ": {
+    "message": "Revisa tu correo electrónico e ingresa el código de 6 dígitos que has recibido"
+  },
+  "ZPvdL/": {
+    "message": "o ingresa con tu correo electrónico"
   },
   "ZcJeQh": {
     "message": "La confirmación de tu compra será enviada a tu mail"
@@ -767,6 +863,9 @@
   },
   "b2Ea7D": {
     "message": "Haz click sobre el siguiente botón para hacer el pago usando tu cuenta de PayPal."
+  },
+  "b861FF": {
+    "message": "Famosos.com - Recuperar contraseña"
   },
   "b9prTq": {
     "message": "Mensaje"
@@ -810,6 +909,9 @@
   "d6Ac8W": {
     "message": "Correo electrónico de notificación:"
   },
+  "dPuxZs": {
+    "message": "Registrarme y continuar"
+  },
   "dUl69m": {
     "message": "Acción cancelada por el usuario"
   },
@@ -850,6 +952,9 @@
   "exOORp": {
     "message": "ESTADO DEL PAGO:"
   },
+  "f6JH6I": {
+    "message": "Al continuar acepto de manera expresa e informada los <termsLink>Términos y Condiciones</termsLink> y la <policiesLink>Política de Privacidad</policiesLink> de Famosos Inc."
+  },
   "fH+OCT": {
     "message": "Seleccionar una tarjeta"
   },
@@ -881,7 +986,6 @@
     "message": "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
   },
   "gxungj": {
-    "description": "",
     "message": "Ingresar"
   },
   "h9zXst": {
@@ -892,6 +996,9 @@
   },
   "hCOqfl": {
     "message": "Nombre"
+  },
+  "hKJZJR": {
+    "message": "Enviar"
   },
   "hZK5pi": {
     "message": "Famosos.com - Videos personalizados de tus famosos favoritos."
@@ -912,8 +1019,17 @@
   "j5jEEO": {
     "message": "Motivacional"
   },
+  "jkPKiZ": {
+    "message": "Olvidé mi contraseña"
+  },
   "jrPcz6": {
     "message": "Registrarme"
+  },
+  "juVd4V": {
+    "message": "Las contraseñas no coinciden"
+  },
+  "lGFIAN": {
+    "message": "Crea una cuenta para poder conectar con los famosos."
   },
   "lSxRsO": {
     "description": "Mensaje de error para formulario de stripe",
@@ -962,6 +1078,9 @@
   "nJJJOt": {
     "message": "Pago expirado"
   },
+  "nJRa/h": {
+    "message": "Recibe promociones y noticias sobre famosos que se sumen a nuestra comunidad."
+  },
   "nMFRRt": {
     "message": "Pago pendiente"
   },
@@ -1008,9 +1127,6 @@
   "oxKkpJ": {
     "description": "Modal Title for search CategoryFilter",
     "message": "Buscar categoría"
-  },
-  "ozB97A": {
-    "message": "Ingresa a tu cuenta ahora para conectar con los famosos y vivir experiencias únicas"
   },
   "oztDf2": {
     "message": "Ver mis contrataciones"
@@ -1072,6 +1188,9 @@
   "rr64CW": {
     "message": "Estamos haciendo lo posible por resolverlo."
   },
+  "rtwrcq": {
+    "message": "¿Ya tienes una cuenta? <signInLink>Iniciar sesión</signInLink>"
+  },
   "ruSOFj": {
     "message": "Presentadores"
   },
@@ -1126,11 +1245,17 @@
   "u+CFdm": {
     "message": "Famosos.com - Blog"
   },
+  "uKwcXA": {
+    "message": "Crea una cuenta para poder conectar con los famosos"
+  },
   "uMrHKU": {
     "message": "¿Qué es Famosos?"
   },
   "uQg6Uc": {
     "message": "Coach"
+  },
+  "uSPUjx": {
+    "message": "Cambiar tu contraseña"
   },
   "uVgimH": {
     "message": "No se encontró un famoso con este usuario"
@@ -1141,6 +1266,9 @@
   "ujraGu": {
     "description": "Quien recibirá el video",
     "message": "Para:"
+  },
+  "uleYZ4": {
+    "message": "Para continuar actualiza la contraseña de tu cuenta."
   },
   "ut6hvz": {
     "message": "Calificaciones"
@@ -1160,6 +1288,9 @@
   },
   "vMft8+": {
     "message": "La autorización de tu pago se ha realizado con éxito."
+  },
+  "vcGTkv": {
+    "message": "Registro"
   },
   "vf4Bo1": {
     "message": "¿Aún no tienes cuenta?"
@@ -1183,6 +1314,9 @@
   "wJ61N6": {
     "message": "Si utilizas el link de referido de uno de los Famosos registrados en la plataforma tendrás más oportunidades de ser aprobado, este link es único por cuenta y está disponible en la sección de Mi Perfil de la aplicación de los Famosos."
   },
+  "wkaVGz": {
+    "message": "Ingresa a tu cuenta para poder conectar con los famosos"
+  },
   "wlTYUV": {
     "message": "Hacer nuevo intento de pago"
   },
@@ -1194,6 +1328,9 @@
   },
   "x15tum": {
     "message": "El valor en {currency} es aproximado"
+  },
+  "xBhNFv": {
+    "message": "Nueva Contraseña"
   },
   "xKYHEI": {
     "message": "2020 Famosos, Inc. All Rights Reserved."

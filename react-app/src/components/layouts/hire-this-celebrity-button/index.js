@@ -2,12 +2,13 @@ import React from "react";
 import { withRouter } from "../../common/routing";
 import {
   CELEBRITY_PROFILE_CONTRACT,
-  AUTH_SUCCESS
+  AUTH_SUCCESS,
+  SIGN_IN_PATH_FROM
 } from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
 import { CallToActionButton } from "../call-to-action-button";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import { useWindow } from "../../../utils/useWindow";
 
 const HireThisCelebrityButton = ({
@@ -29,7 +30,7 @@ const HireThisCelebrityButton = ({
     isLoading,
     isAuthenticated,
     loginWithRedirect
-  } = useAuth0();
+  } = useAuth();
 
   const handlerClickToLogin = () => {
     registerHireThisCelebrityButtonEvent("CLICK");
@@ -39,11 +40,9 @@ const HireThisCelebrityButton = ({
         "/" + celebrityUsername + "/contratar"
       );
       if (isMobile | isSafari) {
-        loginWithRedirect({
-          redirectUri: window.location.origin + AUTH_SUCCESS
-        });
+        loginWithRedirect({ returnTo: SIGN_IN_PATH_FROM });
       } else {
-        loginWithPopup();
+        loginWithPopup({ returnTo: SIGN_IN_PATH_FROM });
       }
     } else {
       history.push(

@@ -1,0 +1,20 @@
+.Container {
+  padding-top: 80px;
+  padding-bottom: 40px;
+  display: flex;
+  min-height: 80vh;
+  justify-content: center;
+  align-items: center;
+  @media only screen and (max-width: 575px) {
+    padding: 40px 0;
+  }
+}
+
+.Title {
+  font-size: 26px;
+  max-width: 436px;
+  font-weight: bold;
+  line-height: 31px;
+  letter-spacing: 0em;
+  text-align: center;
+}

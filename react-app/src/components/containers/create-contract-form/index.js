@@ -14,7 +14,7 @@ import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 import isMobilePhone from "react-app/src/state/utils/isMobilePhone";
 import { withRouter } from "next/router";
 import { secure_payment_img } from "constants/external_assets_by_lang";
-import { returnLangPathFromExternalAssets } from "react-app/src/utils/returnLangPathFromExternalAssets";
+import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 const intlMessages = defineMessages({
   instructionsPlaceholderForOther: {
@@ -54,7 +54,7 @@ class CreateContractForm extends Component {
         isPublic: true,
         occasion: "OTHER",
         deliveryContactCellphone: "",
-        lang: returnLangPathFromExternalAssets(this.props.router.locale)
+        lang: transformUserNavigatorLanguageToISO2Code(this.props.router.locale)
       },
       deliveryContactCellphoneCountryCode: "co"
     };
@@ -687,7 +687,9 @@ class CreateContractForm extends Component {
               width="300px"
               src={
                 secure_payment_img[
-                  returnLangPathFromExternalAssets(this.props.router?.locale)
+                  transformUserNavigatorLanguageToISO2Code(
+                    this.props.router?.locale
+                  )
                 ]
               }
               alt={"pago-seguro"}

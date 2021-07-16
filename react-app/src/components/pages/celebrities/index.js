@@ -10,7 +10,7 @@ import { Session } from "../../../state/utils/session";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { withRouter } from "react-app/src/components/common/routing";
 import Maybe from "../../common/helpers/maybe";
-import { withAuth0 } from "@auth0/auth0-react";
+import { withAuth } from "lib/famosos-auth";
 import dynamic from "next/dynamic";
 
 const UserLikesSectionLayout = dynamic(
@@ -66,7 +66,7 @@ class CelebritiesPage extends Component {
   };
 
   render() {
-    const { isAuthenticated } = this.props.auth0;
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <>
@@ -130,6 +130,6 @@ const mapDispatchToProps = {
 const _CelebritiesPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(withAuth0(CelebritiesPage)));
+)(withRouter(withAuth(CelebritiesPage)));
 
 export { _CelebritiesPage as CelebritiesPage };

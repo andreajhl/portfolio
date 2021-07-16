@@ -1,4 +1,10 @@
 {
+  "+/MNWw": [
+    {
+      "type": 0,
+      "value": "Confirm"
+    }
+  ],
   "+c9FIk": [
     {
       "type": 0,
@@ -329,6 +335,12 @@
       "value": "span"
     }
   ],
+  "3Szr5X": [
+    {
+      "type": 0,
+      "value": "Sign up with Google"
+    }
+  ],
   "3T2iOg": [
     {
       "type": 0,
@@ -531,6 +543,12 @@
       "value": "Invalid format"
     }
   ],
+  "5jWuaC": [
+    {
+      "type": 0,
+      "value": "Did you forget your password?"
+    }
+  ],
   "5sQzpi": [
     {
       "type": 0,
@@ -709,6 +727,18 @@
       "value": "Any user content will be non-confidential and non-proprietary and will not be responsible for any use or disclosure of user content. You acknowledge and agree that your relationship with us is not a confidential, fiduciary, or other type of special relationship, and that your decision to submit any user content does not place us in a position that is different from the position held by members of the general public, in particular with respect to your user content. None of your User Content will be subject to any confidentiality obligation on our part and will not be responsible for any use or disclosure of any User Content you provide."
     }
   ],
+  "8mH/y7": [
+    {
+      "type": 0,
+      "value": "Birthdate field is required"
+    }
+  ],
+  "8nG5TB": [
+    {
+      "type": 0,
+      "value": "Invalid email."
+    }
+  ],
   "8sMHw3": [
     {
       "type": 0,
@@ -719,6 +749,12 @@
     {
       "type": 0,
       "value": "An error has occurred."
+    }
+  ],
+  "8wR3lj": [
+    {
+      "type": 0,
+      "value": "Updated password"
     }
   ],
   "8xaGaO": [
@@ -1085,16 +1121,34 @@
       "value": "Uruguay"
     }
   ],
+  "EoWjUN": [
+    {
+      "type": 0,
+      "value": "Password field is required."
+    }
+  ],
   "Eq0gTc": [
     {
       "type": 0,
       "value": "Send comment"
     }
   ],
+  "EqG/WU": [
+    {
+      "type": 0,
+      "value": "Make sure it is an easy password to remember."
+    }
+  ],
   "ErSRb8": [
     {
       "type": 0,
       "value": "Select a payment card"
+    }
+  ],
+  "EwT5kN": [
+    {
+      "type": 0,
+      "value": "or sign up with your email"
     }
   ],
   "F03q+a": [
@@ -1215,6 +1269,12 @@
       "value": "Cash"
     }
   ],
+  "Hauttd": [
+    {
+      "type": 0,
+      "value": "Sign up with Facebook"
+    }
+  ],
   "HdR30r": [
     {
       "type": 0,
@@ -1251,10 +1311,22 @@
       "value": "Can I download my video?"
     }
   ],
+  "IdELJG": [
+    {
+      "type": 0,
+      "value": "Login with Google"
+    }
+  ],
   "IeYjFw": [
     {
       "type": 0,
       "value": "Nicaragua"
+    }
+  ],
+  "Isy4qq": [
+    {
+      "type": 0,
+      "value": "Famoso"
     }
   ],
   "Iuyaxf": [
@@ -1309,6 +1381,12 @@
     {
       "type": 0,
       "value": "You grant us a non-exclusive license, royalty-free, fully paid, unlimited, worldwide, sublicenseable (through multiple levels of sublicensees), perpetual, irrevocable license, in each and every way and media, whether known or invented (including but not limited to social media channels and other websites and platforms), to reproduce, license, distribute, modify, adapt, publicly execute, publicly display, create derivative works, and otherwise use the following for the purposes of operation and availability of the site and services for you and other users, to develop and improve our products and services, and to advertise, market and promote the site, services, and any other Celebrity products and services: (i) any request you make to any User Talent; and (ii) any submission you make to Celebrities through the Site, including the Services, through any social media or other account used by Celebrities, or otherwise, including any reaction video, opinion, photo, email, text, email, or other communication, whether related to you, the recipient of any famous video, or any other third party ((i) and (ii) collectively a \"Presentation\"). You agree to indemnify and maintain unharmed famous dba, Inc. with respect to the Presentation and any use of the communication in accordance with the terms of Article 13 of the User Terms of Service. "
+    }
+  ],
+  "Jv23M2": [
+    {
+      "type": 0,
+      "value": "Login with Facebook"
     }
   ],
   "K8SMPu": [
@@ -1367,6 +1445,28 @@
     {
       "type": 0,
       "value": "Watch video"
+    }
+  ],
+  "L08n/M": [
+    {
+      "type": 0,
+      "value": "You do not have an account? "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Sign up "
+        }
+      ],
+      "type": 8,
+      "value": "signUpLink"
+    }
+  ],
+  "L6k2XE": [
+    {
+      "type": 0,
+      "value": "Live unique experiences with hundreds of Latinamerican celebrities"
     }
   ],
   "LMVeQk": [
@@ -1529,6 +1629,12 @@
       "value": " video message."
     }
   ],
+  "NLbEhA": [
+    {
+      "type": 0,
+      "value": "Give us your email and you can reset your password."
+    }
+  ],
   "NROWdz": [
     {
       "type": 0,
@@ -1565,6 +1671,12 @@
       "value": "Back to top"
     }
   ],
+  "Nzh0Uv": [
+    {
+      "type": 0,
+      "value": "Authentication Failed"
+    }
+  ],
   "O1JDs+": [
     {
       "type": 0,
@@ -1591,6 +1703,12 @@
     {
       "type": 0,
       "value": "A description of the copyrighted work you claim has been violated."
+    }
+  ],
+  "O9DChx": [
+    {
+      "type": 0,
+      "value": "Security code"
     }
   ],
   "OOBCGL": [
@@ -1631,6 +1749,12 @@
     {
       "type": 0,
       "value": "Be the first to add a comment."
+    }
+  ],
+  "Or996K": [
+    {
+      "type": 0,
+      "value": "New Password"
     }
   ],
   "P6ZBac": [
@@ -1703,6 +1827,18 @@
     {
       "type": 0,
       "value": "How many stars do you give to this video?"
+    }
+  ],
+  "Qgkwzh": [
+    {
+      "type": 0,
+      "value": "Invalid email"
+    }
+  ],
+  "QqT6DL": [
+    {
+      "type": 0,
+      "value": "Password"
     }
   ],
   "QtvgOo": [
@@ -1839,6 +1975,22 @@
       "value": "Bolivia (Plurinational State of)"
     }
   ],
+  "SijdbJ": [
+    {
+      "type": 0,
+      "value": "Buy custom video from "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    }
+  ],
+  "Spo/Vy": [
+    {
+      "type": 0,
+      "value": "Home"
+    }
+  ],
   "SvDN5n": [
     {
       "type": 0,
@@ -1855,6 +2007,12 @@
     {
       "type": 0,
       "value": "Privacy"
+    }
+  ],
+  "TXYzmT": [
+    {
+      "type": 0,
+      "value": "Confirm New Password"
     }
   ],
   "TjibFs": [
@@ -1881,6 +2039,12 @@
       "value": "Go back to home"
     }
   ],
+  "UIware": [
+    {
+      "type": 0,
+      "value": "This email isn't registered in famosos.com"
+    }
+  ],
   "UOKryr": [
     {
       "type": 0,
@@ -1897,6 +2061,12 @@
     {
       "type": 0,
       "value": "Failed collection"
+    }
+  ],
+  "Uu4RMA": [
+    {
+      "type": 0,
+      "value": "Invalid credentials."
     }
   ],
   "V1RqDv": [
@@ -2039,6 +2209,12 @@
       "value": "You represent and warrant that:"
     }
   ],
+  "WsW1Wz": [
+    {
+      "type": 0,
+      "value": "Invalid credentails."
+    }
+  ],
   "Wu3wG5": [
     {
       "type": 0,
@@ -2103,10 +2279,30 @@
       "value": " technologies that connect personalities with their core fan."
     }
   ],
+  "Xp7qs8": [
+    {
+      "type": 0,
+      "value": "Welcome to Famosos! "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " Create an account to start connecting with your favorite celebrities."
+    }
+  ],
   "XvIJA8": [
     {
       "type": 0,
       "value": "In what currency would you like to pay?"
+    }
+  ],
+  "Xx+xSb": [
+    {
+      "type": 0,
+      "value": "Password length must contains least 6 characters"
     }
   ],
   "Y6+mfe": [
@@ -2187,6 +2383,24 @@
     {
       "type": 0,
       "value": "Go to My Hires"
+    }
+  ],
+  "Z5ZMSV": [
+    {
+      "type": 0,
+      "value": "Name field is required"
+    }
+  ],
+  "ZDkLmZ": [
+    {
+      "type": 0,
+      "value": "Check your email and enter the 6-digit code you received"
+    }
+  ],
+  "ZPvdL/": [
+    {
+      "type": 0,
+      "value": "or sign up with your email"
     }
   ],
   "ZcJeQh": [
@@ -2277,6 +2491,12 @@
     {
       "type": 0,
       "value": "YOU understand and agree that any material or information DOWNLOADED OR OBTAINED THROUGH THE USE OF THE SITE OR SERVICES is performed at your own risk and that YOU will be the only responsible for the damages caused by doing so. NO ADVICE OR INFORMATION, ORAL OR WRITTEN, OBTAINED BY YOU FROM THE UNITED STATES OR THROUGH THE SITE OR SERVICES WARRANTY NOT EXPRESSLY"
+    }
+  ],
+  "b861FF": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Recover password"
     }
   ],
   "b9prTq": [
@@ -2393,6 +2613,12 @@
       "value": "Notification email:"
     }
   ],
+  "dPuxZs": [
+    {
+      "type": 0,
+      "value": "Sign in and continue"
+    }
+  ],
   "dUl69m": [
     {
       "type": 0,
@@ -2505,6 +2731,40 @@
     {
       "type": 0,
       "value": "PAYMENT STATUS:"
+    }
+  ],
+  "f6JH6I": [
+    {
+      "type": 0,
+      "value": "By continuing, I expressly and informedly accept the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Terms and Conditions "
+        }
+      ],
+      "type": 8,
+      "value": "termsLink"
+    },
+    {
+      "type": 0,
+      "value": " and the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Privacy Policy "
+        }
+      ],
+      "type": 8,
+      "value": "policiesLink"
+    },
+    {
+      "type": 0,
+      "value": " of Famosos Inc."
     }
   ],
   "fH+OCT": [
@@ -2639,6 +2899,12 @@
       "value": "Name"
     }
   ],
+  "hKJZJR": [
+    {
+      "type": 0,
+      "value": "Send"
+    }
+  ],
   "hSj5kq": [
     {
       "type": 0,
@@ -2705,10 +2971,22 @@
       "value": "Arbitration Agreement and Waiver of Certain Rights"
     }
   ],
+  "jkPKiZ": [
+    {
+      "type": 0,
+      "value": "I forgot my password"
+    }
+  ],
   "jrPcz6": [
     {
       "type": 0,
       "value": "Sign up"
+    }
+  ],
+  "juVd4V": [
+    {
+      "type": 0,
+      "value": "Passwords do not match"
     }
   ],
   "kKaD9Y": [
@@ -2727,6 +3005,12 @@
     {
       "type": 0,
       "value": "A statement by you, under penalty of perjury, that the above information is accurate and that you are the copyright owner or authorized to act on behalf of the copyright owner."
+    }
+  ],
+  "lGFIAN": [
+    {
+      "type": 0,
+      "value": "Create an account to connect with celebrities"
     }
   ],
   "lSxRsO": [
@@ -2861,6 +3145,12 @@
     {
       "type": 0,
       "value": "Expired payment"
+    }
+  ],
+  "nJRa/h": [
+    {
+      "type": 0,
+      "value": "Receive promotions and news about celebrities who join our community."
     }
   ],
   "nMFRRt": [
@@ -3659,6 +3949,22 @@
       "value": "We are trying our best to solve it."
     }
   ],
+  "rtwrcq": [
+    {
+      "type": 0,
+      "value": "Do you already have an account? "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Login "
+        }
+      ],
+      "type": 8,
+      "value": "signInLink"
+    }
+  ],
   "ruSOFj": [
     {
       "type": 0,
@@ -3809,6 +4115,12 @@
       "value": "An electronic or physical signature of the person authorized to act on behalf of the copyright owner."
     }
   ],
+  "uKwcXA": [
+    {
+      "type": 0,
+      "value": "Create an account to connect with celebrities"
+    }
+  ],
   "uMrHKU": [
     {
       "type": 0,
@@ -3819,6 +4131,12 @@
     {
       "type": 0,
       "value": "Coach"
+    }
+  ],
+  "uSPUjx": [
+    {
+      "type": 0,
+      "value": "Change your password"
     }
   ],
   "uVgimH": [
@@ -3837,6 +4155,12 @@
     {
       "type": 0,
       "value": "Who will receive the video"
+    }
+  ],
+  "uleYZ4": [
+    {
+      "type": 0,
+      "value": "To continue, update your account password."
     }
   ],
   "ut6hvz": [
@@ -3871,6 +4195,12 @@
     {
       "type": 0,
       "value": "The authorization of your payment has been made successfully."
+    }
+  ],
+  "vcGTkv": [
+    {
+      "type": 0,
+      "value": "Registry"
     }
   ],
   "vf4Bo1": [
@@ -3919,6 +4249,12 @@
     {
       "type": 0,
       "value": "If you use the referral link of one of the Celebrities registered on the platform you will have more opportunities to be approved, this link is unique on its own and is available in the My Profile section of the Celebrities app."
+    }
+  ],
+  "wkaVGz": [
+    {
+      "type": 0,
+      "value": "Login to your account to connect with celebrities"
     }
   ],
   "wlTYUV": [
@@ -3983,6 +4319,12 @@
     {
       "type": 0,
       "value": "We improve and update the site and services often. We may change or discontinue the Site or Services at any time, with or without notice."
+    }
+  ],
+  "xBhNFv": [
+    {
+      "type": 0,
+      "value": "New Password"
     }
   ],
   "xKYHEI": [

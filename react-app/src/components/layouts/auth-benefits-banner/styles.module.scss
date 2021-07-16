@@ -1,0 +1,43 @@
+.AuthBenefitsBanner {
+  list-style: none;
+  padding: 0;
+}
+
+.AuthBenefitsBannerItem {
+  text-align: center;
+
+  @media only screen and (min-width: 768px) {
+    text-align: left;
+  }
+
+  img {
+    margin-bottom: 18px;
+  }
+
+  p {
+    max-width: 290px;
+    color: #414141;
+    line-height: 1.3;
+    letter-spacing: 0em;
+    margin: 0 auto;
+
+    @media only screen and (min-width: 768px) {
+      margin: 0;
+      font-size: 14px;
+    }
+  }
+}
+
+p.AuthBenefitsBannerPromoText {
+  @media only screen and (max-width: 767px) {
+    max-width: 332px;
+  }
+}
+
+.AuthBenefitsBannerItem + .AuthBenefitsBannerItem {
+  margin-top: 16px;
+}
+
+.AuthBenefitsBannerSparkles {
+  height: 38.96px;
+}

@@ -1,5 +1,4 @@
-import Auth0ProviderWithHistory from "lib/auth0-provider-with-history";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { wrapper } from "react-app/src/state/store";
 import { useRouter } from "next/router";
 import {
@@ -7,11 +6,16 @@ import {
   initialize as gtmInitialize
 } from "react-app/src/state/utils/gtm";
 import "react-app/src/styles.scss";
-import Auth0UserHandler from "lib/auth0UserHandler";
 import { IntlProvider } from "react-intl";
 import esMessages from "../compiled-lang/es.json";
 import enMessages from "../compiled-lang/en.json";
+import { FamososAuthProvider } from "lib/famosos-auth";
+import { Session } from "../react-app/src/state/utils/session";
+import getWindow from "react-app/src/utils/getWindow";
+import axios from "axios";
+import getCookie from "react-app/src/utils/getCookie";
 import ptMessages from "../compiled-lang/pt.json";
+const OLD_SESSION_KEY = "_a0_";
 
 const languages = {
   en: enMessages,
@@ -37,7 +41,7 @@ const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
 
 const ROUTE_CHANGE_START = "routeChangeStart";
 
-const App = ({ Component, pageProps }) => {
+function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -48,29 +52,22 @@ const App = ({ Component, pageProps }) => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);
     };
   }, []);
+
   const { locale, defaultLocale } = router;
   const messages = languages[locale];
+  const tokenExpired = true; /* While SS token validation is not available, using Session.tokenExpired gives a different value when the app is hydrating, this cause bugs.  */
 
   return (
-    <Auth0ProviderWithHistory>
-      <Auth0UserHandler>
-        <IntlProvider
-          messages={messages}
-          locale={locale}
-          defaultLocale={defaultLocale}
-        >
-          <Component {...pageProps} />
-        </IntlProvider>
-      </Auth0UserHandler>
-    </Auth0ProviderWithHistory>
+    <FamososAuthProvider authenticated={!tokenExpired}>
+      <IntlProvider
+        messages={messages}
+        locale={locale}
+        defaultLocale={defaultLocale}
+      >
+        <Component {...pageProps} />
+      </IntlProvider>
+    </FamososAuthProvider>
   );
-};
+}
 
 export default wrapper.withRedux(App);
-
-// App.getInitialProps = async ({ Component, ctx }) => {
-//   const pageProps = Component.getInitialProps
-//     ? await Component.getInitialProps(ctx)
-//     : {};
-//   return { pageProps };
-// }

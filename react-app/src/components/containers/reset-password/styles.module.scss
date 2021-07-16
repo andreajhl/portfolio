@@ -1,0 +1,26 @@
+.ResetPasswordWrapper {
+  max-width: 413px;
+  background-color: #f8f8f8;
+  padding: 32px;
+  border-radius: 10px;
+}
+
+.SignInBoxSubmitButton {
+  width: 100%;
+  font-weight: bold;
+  margin-top: 20px;
+  height: 60px;
+
+  @media only screen and (min-width: 768px) {
+    height: 45px;
+  }
+}
+
+.SubTitle {
+  font-weight: bold;
+}
+
+.ErrorMessage {
+  color: rgb(183, 17, 87);
+  font-size: 0.8rem;
+}

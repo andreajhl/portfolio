@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Route } from "react-router-dom";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "lib/famosos-auth";
 import { LoaderLayout } from "../components/layouts/loader";
 
 const PrivateRoute = ({ component, ...rest }) => {
