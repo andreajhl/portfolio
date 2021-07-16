@@ -35,6 +35,9 @@
 
   &__step-item {
     text-align: center;
+    @media only screen and (max-width: 768px) {
+      flex-basis: 33%;
+    }
   }
 
   &__step-number {
