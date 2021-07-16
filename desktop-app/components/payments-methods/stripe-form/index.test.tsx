@@ -227,7 +227,7 @@ it("calls onToggle when click or press either Enter or Space keys on form label"
   expect(onToggle).toHaveBeenCalledTimes(3);
 });
 
-fit("loads the Stripe instance from window object when Stripe SDK has loaded", () => {
+it("loads the Stripe instance from window object when Stripe SDK has loaded", () => {
   const stripeKey = process.env.NEXT_PUBLIC_STRIPE_KEY;
   const mockedStripeInstance = {};
   const mockedStripe = getMockedWindowMethod(
