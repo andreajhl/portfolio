@@ -1,0 +1,1 @@
+export const ONE_YEAR_IN_MILLISECONDS = 365 * 24 * 3600 * 1000;

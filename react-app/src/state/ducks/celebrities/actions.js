@@ -9,6 +9,8 @@ import * as API_PATHS from "./paths";
 import * as PATHS from "../../../routing/Paths";
 import { updateQueryParamsInitialState } from "./reducers";
 import thunkAction from "../../utils/thunkAction";
+import { cfUserCountryCode } from "constants/keys";
+import getCookie from "react-app/src/utils/getCookie";
 // import * as firestoreService from "../../../firebase/firestoreService";
 
 const firestoreService = { getDocuments() {} };
@@ -89,6 +91,7 @@ export const list = (params, mergeResults = true) => {
       params: {
         ...params,
         limit: params.limit || updateQueryParamsInitialState.limit,
+        [cfUserCountryCode]: getCookie("userLocation"),
       },
       body: null,
       isCancellable: true,
@@ -365,6 +368,7 @@ export const fetchSimilarCelebrities = (celebrityUsername) => (dispatch) => {
     action: TYPE,
     path: FINAL_PATH,
     async: true,
+    params: { [cfUserCountryCode]: getCookie("userLocation") },
     body: null,
   })
     .then((res) => {

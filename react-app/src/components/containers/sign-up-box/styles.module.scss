@@ -1,0 +1,43 @@
+.SignUpBox {
+  max-width: 413px;
+}
+
+.SignUpBoxCard {
+  background-color: #f8f8f8;
+  padding: 32px;
+  border-radius: 10px;
+}
+
+.AuthProviderButton {
+  height: 55px;
+  width: 100%;
+
+  @media only screen and (min-width: 768px) {
+    height: 45px;
+  }
+}
+
+.AuthProviderButton:nth-child(2) {
+  margin-top: 16px;
+  margin-bottom: 25px;
+
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
+}
+
+.AlreadyRegisteredText {
+  margin-top: 24px;
+  margin-bottom: 0;
+  text-align: center;
+  font-weight: bold;
+  color: #6970c6;
+
+  a {
+    font-weight: bold;
+  }
+
+  @media only screen and (max-width: 374px) {
+    padding: 0 5%;
+  }
+}

@@ -165,6 +165,9 @@ export const AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES = [
   "COP",
   "ARS",
   "USD",
+  "BOB",
+  "CRC",
+  "GTQ",
 ];
 
 export const DOCUMENT_NAME_FOR_COUNTRIES = defineMessages({
@@ -172,4 +175,63 @@ export const DOCUMENT_NAME_FOR_COUNTRIES = defineMessages({
   COP: { defaultMessage: "CC" },
   ARS: { defaultMessage: "DNI o CUIT" },
   USD: { defaultMessage: "Social Security Number / SSN" },
+  BOB: { defaultMessage: "CI" },
+  CRC: { defaultMessage: "CI" },
+  GTQ: { defaultMessage: "CUI" },
+});
+
+export const LOGIN_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
+  "Invalid email",
+  "Password field is required",
+  "invalid credentials",
+];
+
+export const TRANSLATION_LOGIN_ERROR_MESSAGES = defineMessages({
+  "Invalid email": { defaultMessage: "Email invalido." },
+  "Password field is required": {
+    defaultMessage: "El campo de contraseña es obligatorio",
+  },
+  "invalid credentials": {
+    defaultMessage: "credenciales invalidas",
+  },
+});
+
+export const SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
+  "Name field is required",
+  "Birthdate field is required",
+  "Invalid email",
+  "Password length must contains least 6 characters",
+  "Passwords do not match",
+];
+
+export const TRANSLATION_SIGN_UP_ERROR_MESSAGES = defineMessages({
+  "Name field is required": {
+    defaultMessage: "El campo de nombre es obligatorio",
+  },
+  "Birthdate field is required": {
+    defaultMessage: "El campo de fecha de nacimiento es obligatorio",
+  },
+  "Invalid email": {
+    defaultMessage: "Correo invalido",
+  },
+  "Password length must contains least 6 characters": {
+    defaultMessage:
+      "La longitud de la contraseña debe contener al menos 6 caracteres",
+  },
+  "Passwords do not match": {
+    defaultMessage: "Las contraseñas no coinciden",
+  },
+});
+export const RESET_PASSSWORD_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
+  "this email isn't registered in famosos.com",
+  "invalid credentials",
+];
+
+export const TRANSLATION_RESET_PASSSWORD_MESSAGES = defineMessages({
+  "this email isn't registered in famosos.com": {
+    defaultMessage: "Este correo electrónico no esta registrado en famosos.com",
+  },
+  "invalid credentials": {
+    defaultMessage: "Credenciales invalidas.",
+  },
 });

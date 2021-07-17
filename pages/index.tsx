@@ -7,11 +7,21 @@ import { wrapper } from "react-app/src/state/store";
 import getCookie from "react-app/src/utils/getCookie";
 import { fetchLandings } from "react-app/src/state/ducks/landings/actions";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
-import { parse } from "cookie";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
-import { OFFSET_ROTATE_CELEBRITIES_SECTIONS } from "constants/keys";
+import debug from "react-app/src/utils/debug";
+import UAParser from "ua-parser-js";
+import { parse, serialize } from "cookie";
+import {
+  OFFSET_ROTATE_CELEBRITIES_SECTIONS,
+  USER_CURRENCY_CODE,
+  USER_IP_ADDRESS,
+  USER_LOCATION_KEY,
+} from "constants/keys";
 import { setCookie } from "lib/setCookie";
 import { useEffect } from "react";
+import { getLocationCookieHeader } from "lib/getLocationCookieHeader";
+import { getUserLocationData } from "lib/getUserLocationData";
+import Link from "next/link";
 
 const generateRandomNumber = (limit) => Math.floor(Math.random() * limit + 1);
 
@@ -29,11 +39,20 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   async ({ req, store, query, res }) => {
     const cookies = parse(req?.headers?.cookie || "");
 
+    let userLocation = cookies[USER_LOCATION_KEY];
+    if (!userLocation) {
+      const locationCookies = await getLocationCookieHeader(req);
+      debug("getLocationCookieHeader() GSSP response");
+      res.setHeader(USER_IP_ADDRESS, locationCookies.userIpAddressLocation);
+      res.setHeader(USER_LOCATION_KEY, locationCookies.country_code);
+      res.setHeader(USER_CURRENCY_CODE, locationCookies.currency_code);
+      userLocation = locationCookies.country_code;
+    }
     let rotationForCelebritiesSections =
       cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS];
 
     if (!cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS]) {
-      rotationForCelebritiesSections = generateRandomNumber(100);
+      rotationForCelebritiesSections = String(generateRandomNumber(100));
     }
 
     // Detect UA
@@ -44,14 +63,25 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       throw new Error("UA Parser error" + e);
     }
 
-    const fetchAction = isMobile ? fetchCelebritySections : fetchLandings;
-
-    await fetchAction({
-      landingId: query.landingId,
-      alpha2Code: cookies["userLocation"],
-      limit: 10,
-      offset: 0,
-    })(store.dispatch);
+    if (isMobile) {
+      await fetchCelebritySections(
+        {
+          landingId: query.landingId,
+          alpha2Code: userLocation,
+          limit: 10,
+          offset: 0,
+        },
+        rotationForCelebritiesSections ||
+          cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS]
+      )(store.dispatch);
+    } else {
+      await fetchLandings({
+        landingId: query.landingId,
+        alpha2Code: cookies["userLocation"],
+        limit: 10,
+        offset: 0,
+      })(store.dispatch);
+    }
 
     return {
       props: {

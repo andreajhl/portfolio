@@ -1,7 +1,7 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { EditContractPage } from "react-app/src/components/pages/contract-editor";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "lib/famosos-auth";
 import { LoaderLayout } from "react-app/src/components/layouts/loader";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
 

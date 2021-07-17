@@ -1,26 +1,38 @@
 import { history } from "../../routing/History";
 import * as PATHS from "../../routing/Paths";
+import * as ROUTE_PATHS from "../../routing/Paths";
 import jwt_decode from "jwt-decode";
 import { Mixpanel } from "./mixPanel";
 import isBrowser from "../../../src/utils/isBrowser";
+import Cookies from "js-cookie";
 
 export class Session {
   constructor() {
-    this.sessionName = "_a0_";
+    this.sessionName = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME;
     this.visitKey = "_visit_";
     this.session = this.getSession();
   }
 
-  setSession = (token) => {
-    localStorage.setItem(this.sessionName, token);
-    const decoded = this.jwtDecode(token);
+  initSession = () => {
+    const decoded = this.jwtDecode(this.getToken());
     Mixpanel.identify(decoded.id);
     Mixpanel.people.set({
       USER_ID: decoded.id,
       $email: decoded.email,
-      status: decoded.status,
+      // status: decoded.status,
       exp: decoded.exp,
     });
+    const authRedirect = localStorage.getItem("authRedirect");
+    const finalRedirect = localStorage.getItem("finalRedirect");
+    if (authRedirect !== null) {
+      localStorage.removeItem("authRedirect");
+      return window.location.replace(authRedirect);
+    } else if (finalRedirect !== null) {
+      localStorage.removeItem("finalRedirect");
+      return window.location.replace(finalRedirect);
+    } else {
+      return window.location.replace(ROUTE_PATHS.ROOT_PATH);
+    }
   };
 
   applyRedirects() {
@@ -29,7 +41,7 @@ export class Session {
   }
 
   getToken = () => {
-    return isBrowser() ? localStorage.getItem(this.sessionName) : null;
+    return isBrowser() ? Cookies.get(this.sessionName) : null;
   };
 
   getSession = () => {
@@ -48,8 +60,7 @@ export class Session {
   }
 
   removeSession = () => {
-    localStorage.removeItem(this.sessionName);
-    // history._pushRoute(PATHS.ROOT_PATH);
+    Cookies.remove(this.sessionName);
   };
 
   tokenExpired() {
@@ -57,9 +68,11 @@ export class Session {
       if (this.utcSecondsToDatetime(this.session.exp) <= new Date()) {
         this.removeSession();
         return true;
+      } else {
+        return false;
       }
     }
-    return false;
+    return true;
   }
 
   allowedActionFor = (groups = []) => {

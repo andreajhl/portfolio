@@ -76,13 +76,6 @@ class NavbarSearchLayout extends Component {
     history._pushRoute(PATHS.HOME_PATH + "?inputSearchFocus=true");
   }
 
-  sendOnFocusAnalyticsData = () =>
-    GTM.tagManagerDataLayer("FOCUS_CELEBRITIES_SEARCH", {
-      search: this.state.keyword,
-      widget: this.constructor.name,
-      path: window.location.pathname,
-    });
-
   render() {
     return (
       <div className="NavbarSearchLayout">
@@ -93,7 +86,6 @@ class NavbarSearchLayout extends Component {
               onClick={this.handleBlur.bind(this)}
             />
             <input
-              onFocus={this.sendOnFocusAnalyticsData}
               autoFocus={this.props.autoFocus}
               id={"input-search"}
               className="form-control"

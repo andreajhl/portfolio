@@ -7,10 +7,10 @@ import {
 } from "../../utils";
 import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
-import { AVAILABLE_CURRENCIES } from "../../../components/layouts/currency-dropdown/constants";
 import * as GTM from "../../utils/gtm";
 import { setCookie } from "lib/setCookie";
 import { CURRENT_CURRENCY_TRM_CODE } from "constants/keys";
+import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 // import { reduxStore } from "../../../";
 
 const reduxStore = {

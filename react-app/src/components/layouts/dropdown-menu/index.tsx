@@ -10,6 +10,7 @@ import { AnimatedPopup } from "desktop-app/components/common/animated-popup";
 import Popup from "reactjs-popup";
 import { HorizontalMenuIcon } from "desktop-app/components/common/icons";
 import styles from "./styles.module.scss";
+
 const { type, vendor } = new UAParser().getDevice();
 const isAppleDevice = vendor === "Apple";
 const isHuaweiDevice = vendor === "Huawei";
@@ -37,9 +38,6 @@ export const DropdownMenuLayout = ({ isLogged }) => {
         }
       >
         <div
-          onMouseOver={({ target }) =>
-            sendDropdownLinkAnalyticsData("HOVER", target)
-          }
           onClick={({ target }) =>
             sendDropdownLinkAnalyticsData("CLICK", target)
           }

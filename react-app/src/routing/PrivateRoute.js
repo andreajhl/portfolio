@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Route } from "react-router-dom";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "lib/famosos-auth";
 import { LoaderLayout } from "../components/layouts/loader";
 
 const PrivateRoute = ({ component, ...rest }) => {
@@ -8,7 +8,7 @@ const PrivateRoute = ({ component, ...rest }) => {
     onRedirecting: () => <LoaderLayout />,
     returnTo: localStorage.getItem("finalRedirect")
       ? localStorage.getItem("finalRedirect")
-      : window.location.href
+      : window.location.href,
   });
   return useMemo(
     () => <Route {...rest} render={(props) => <Comp {...props}></Comp>} />,

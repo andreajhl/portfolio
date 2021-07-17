@@ -10,7 +10,7 @@ import { Session } from "../../../state/utils/session";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { withRouter } from "react-app/src/components/common/routing";
 import Maybe from "../../common/helpers/maybe";
-import { withAuth0 } from "@auth0/auth0-react";
+import { withAuth } from "lib/famosos-auth";
 import dynamic from "next/dynamic";
 
 const UserLikesSectionLayout = dynamic(
@@ -29,7 +29,7 @@ class CelebritiesPage extends Component {
       session: new Session().getSession(),
       showInputSearchSm: false,
       showHeaderFiltersSection: false,
-      previousScrollTopPosition: 0
+      previousScrollTopPosition: 0,
     };
   }
 
@@ -61,12 +61,12 @@ class CelebritiesPage extends Component {
 
     this.setState({
       showHeaderFiltersSection,
-      previousScrollTopPosition: scrollTopPosition
+      previousScrollTopPosition: scrollTopPosition,
     });
   };
 
   render() {
-    const { isAuthenticated } = this.props.auth0;
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <>
@@ -102,14 +102,14 @@ CelebritiesPage.propTypes = {};
 
 CelebritiesPage.defaultProps = {
   celebrities: [],
-  paginationData: {}
+  paginationData: {},
 };
 
 const mapStateToProps = ({
   celebrities,
   restCountries,
   countries,
-  filters
+  filters,
 }) => ({
   isLoading: celebrities.fetchCelebritiesReducer.loading,
   isCompleted: celebrities.fetchCelebritiesReducer.completed,
@@ -119,17 +119,17 @@ const mapStateToProps = ({
   countries: countries.countriesReducer.results,
   restCountries: restCountries.fetchCountriesReducer.data,
   selectedCategory: filters.filtersReducer.selectedCategory,
-  selectedCountry: filters.filtersReducer.selectedCountry
+  selectedCountry: filters.filtersReducer.selectedCountry,
 });
 
 const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list,
-  updateQueryParams: celebrityOperations.updateQueryParams
+  updateQueryParams: celebrityOperations.updateQueryParams,
 };
 
 const _CelebritiesPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(withAuth0(CelebritiesPage)));
+)(withRouter(withAuth(CelebritiesPage)));
 
 export { _CelebritiesPage as CelebritiesPage };

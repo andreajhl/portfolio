@@ -47,17 +47,11 @@ function VideoCardLayout({
     videoKey,
   };
 
-  const registerVideoCardHover = () =>
-    GTM.tagManagerDataLayer("HOVER_VIDEO_CARD", analyticsData);
-
   const registerCelebrityUsernameClick = () =>
     GTM.tagManagerDataLayer("CLICK_VIDEO_CARD_CELEBRITY_NAME", analyticsData);
 
-  const registerCelebrityUsernameHover = () =>
-    GTM.tagManagerDataLayer("HOVER_VIDEO_CARD_CELEBRITY_NAME", analyticsData);
-
   return (
-    <div className="VideoCardLayout" onMouseOver={registerVideoCardHover}>
+    <div className="VideoCardLayout">
       <div className="video-card">
         <section className="video-card__media" onClick={togglePlay}>
           <Maybe it={!videoIsLoaded}>
@@ -107,7 +101,6 @@ function VideoCardLayout({
                 celebrityUsername
               )}
               onClick={registerCelebrityUsernameClick}
-              onMouseOver={registerCelebrityUsernameHover}
             >
               <Maybe it={!footerSection} orElse={footerSection}>
                 <OptimizedImage

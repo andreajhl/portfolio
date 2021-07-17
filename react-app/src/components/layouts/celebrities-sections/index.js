@@ -53,13 +53,6 @@ const CelebritiesSectionsLayout = ({
     setOffset((offset) => {
       const nextOffset = offset + resultsLimit;
       const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
-      GTM.tagManagerDataLayer("FETCH_MORE_CELEBRITY_SECTIONS", {
-        widget: "CelebritiesSectionsLayout",
-        path: window.location.pathname,
-        newOffset,
-        totalResults,
-        hasReachedEnd: newOffset + resultsLimit >= totalResults,
-      });
       return newOffset;
     });
   };

@@ -11,7 +11,7 @@ const HireThisCelebrityForCompaniesButton = ({
   celebrityUsername,
   showCelebrityName,
   fontSize,
-  width
+  width,
 }) => {
   //   const registerHireThisCelebrityButtonEvent = (eventName) => {
   //     GTM.tagManagerDataLayer(
@@ -29,8 +29,6 @@ const HireThisCelebrityForCompaniesButton = ({
   return (
     <a href="mailto:experiencias@famosos.com">
       <CallToActionButton
-        //   TODO: agregar GTM
-        // onHover={() => registerHireThisbrityButtonEvent("HOVER")}
         fontSize={fontSize}
         width={width}
         className={className}

@@ -1,7 +1,8 @@
-const apiVersion = "v1";
+const apiVersion = "/v1";
 const MODEL_PATH = "custom-endpoints/users";
 
-export const SIGN_IN_REQUEST = MODEL_PATH + "/login/email-password";
+export const SIGN_IN_REQUEST =
+  apiVersion + "/famosos-com/email-password/sign-in";
 export const CREATE_ACCOUNT_TO_VALIDATE_BY_EMAIL =
   MODEL_PATH + "/create-account-to-validate-by-email";
 export const VALIDATE_IF_EMAIL_IS_REGISTERED =

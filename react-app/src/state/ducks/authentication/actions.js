@@ -9,45 +9,46 @@ import {
 import { Session } from "../../utils/session";
 import { history } from "../../../routing/History";
 import * as ROUTE_PATHS from "../../../routing/Paths";
-import axios from "axios";
+
 const afterLogin = (res) => {
   const session = new Session();
-  if (res.data.token) {
-    session.setSession(res.data.token);
-    switch (session.getSession().status) {
-      // CHANGE PASSWORD REQUIRED
-      case 10:
-        localStorage.setItem("authRedirect", ROUTE_PATHS.CREATE_PASSWORD_PATH);
-        break;
-      // COMPLETE PROFILE REQUIRED
-      case 15:
-        localStorage.setItem("authRedirect", ROUTE_PATHS.COMPLETE_PROFILE_PATH);
-        break;
-      // UPDATE PASSWORD
-      case 29:
-        localStorage.setItem("authRedirect", ROUTE_PATHS.CHANGE_PASSWORD_PATH);
-        break;
-      // FINAL REDIRECT
-      default:
-        break;
-    }
-  }
-  const authRedirect = localStorage.getItem("authRedirect");
-  const finalRedirect = localStorage.getItem("finalRedirect");
-  if (authRedirect !== null) {
-    localStorage.removeItem("authRedirect");
-    return history._pushRoute(authRedirect);
-  } else if (finalRedirect !== null) {
-    localStorage.removeItem("finalRedirect");
-    return history._pushRoute(finalRedirect);
-  } else {
-    return history._pushRoute(ROUTE_PATHS.HOME_PATH);
-  }
+  // if (res.data.token) {
+  //   session.initSession(res.data.token);
+  //   switch (session.getSession().status) {
+  //     // CHANGE PASSWORD REQUIRED
+  //     case 10:
+  //       localStorage.setItem("authRedirect", ROUTE_PATHS.CREATE_PASSWORD_PATH);
+  //       break;
+  //     // COMPLETE PROFILE REQUIRED
+  //     case 15:
+  //       localStorage.setItem("authRedirect", ROUTE_PATHS.COMPLETE_PROFILE_PATH);
+  //       break;
+  //     // UPDATE PASSWORD
+  //     case 29:
+  //       localStorage.setItem("authRedirect", ROUTE_PATHS.CHANGE_PASSWORD_PATH);
+  //       break;
+  //     // FINAL REDIRECT
+  //     default:
+  //       break;
+  //   }
+  // }
+  // const authRedirect = localStorage.getItem("authRedirect");
+  // const finalRedirect = localStorage.getItem("finalRedirect");
+  // if (authRedirect !== null) {
+  //   localStorage.removeItem("authRedirect");
+  //   return history._pushRoute(authRedirect);
+  // } else if (finalRedirect !== null) {
+  //   localStorage.removeItem("finalRedirect");
+  //   return history._pushRoute(finalRedirect);
+  // } else {
+  //   return history._pushRoute(ROUTE_PATHS.HOME_PATH);
+  // }
 };
 
 export const signInWithEmail = (body) => {
   return (dispatch) => {
-    const path = PATHS.SIGN_IN_REQUEST;
+    const path =
+      process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT + PATHS.SIGN_IN_REQUEST;
     const type = types.SIGN_IN_WITH_EMAIL_REQUEST;
     dispatch({ type: type, payload: {} });
     apiService({
@@ -55,6 +56,7 @@ export const signInWithEmail = (body) => {
       async: true,
       path: path,
       method: "POST",
+      custom_endpoint: true,
       params: null,
       body: body,
     })

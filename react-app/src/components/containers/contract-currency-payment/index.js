@@ -2,14 +2,14 @@ import React, { Component } from "react";
 
 import { paymentsOperations } from "../../../state/ducks/payments";
 import { connect } from "react-redux";
-import { AVAILABLE_CURRENCIES } from "../../layouts/currency-dropdown/constants";
+import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 
 class ContractCurrencyPayment extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currency: this.props.currencyExchangeData.to
+      currency: this.props.currencyExchangeData.to,
     };
 
     this.handleCurrency = this.handleCurrency.bind(this);
@@ -28,7 +28,7 @@ class ContractCurrencyPayment extends Component {
     ) {
       this.setState(
         {
-          currency: nextProps.currencyExchangeData.to
+          currency: nextProps.currencyExchangeData.to,
         },
         () => {
           this.props.onSelectCurrency(this.state.currency);
@@ -40,12 +40,12 @@ class ContractCurrencyPayment extends Component {
   changeCurrency(value) {
     this.setState(
       {
-        currency: value
+        currency: value,
       },
       () => {
         this.props.currencyExchange({
           from: "USD",
-          to: this.state.currency
+          to: this.state.currency,
         });
         this.props.onSelectCurrency(this.state.currency);
       }
@@ -93,7 +93,7 @@ ContractCurrencyPayment.propTypes = {};
 
 // Set defaultProps
 ContractCurrencyPayment.defaultProps = {
-  onSelectCurrency: () => {}
+  onSelectCurrency: () => {},
 };
 
 // mapStateToProps
@@ -101,13 +101,13 @@ const mapStateToProps = (state) => ({
   isLoading: state.payments.fetchPaymentGatewaysReducer.loading,
   paymentGateways: state.payments.fetchPaymentGatewaysReducer.data.data,
   currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
-  currencyExchangeData: state.payments.currencyExchangeReducer.data
+  currencyExchangeData: state.payments.currencyExchangeReducer.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
   listPaymentGateways: paymentsOperations.listPaymentGateways,
-  currencyExchange: paymentsOperations.currencyExchange
+  currencyExchange: paymentsOperations.currencyExchange,
 };
 
 // Export Class

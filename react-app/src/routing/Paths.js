@@ -18,8 +18,9 @@ export const POLICIES_PATH = "/docs/politicas";
 export const FAQS_PATH = "/docs/faqs";
 // AUTH
 export const AUTH_FLOW = "/auth/select-flow/";
-export const AUTH_SUCCESS = "/authentication/success";
+export const AUTH_SUCCESS = "/auth/success";
 export const SIGN_IN_PATH = "/auth/sign-in/";
+export const SIGN_IN_PATH_FROM = "/auth/sign-in/from";
 export const SIGN_IN_WITH_SPECIFIC_FORM_PATH = "/auth/sign-in/:form/";
 export const SIGN_UP_PATH = "/auth/sign-up";
 export const SIGN_UP_WITH_SPECIFIC_FORM_PATH = "/auth/sign-up/:form/";

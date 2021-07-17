@@ -88,14 +88,9 @@ const CelebrityFavoriteButton = ({
     }
   };
 
-  const onHovering = () => {
-    GTM.tagManagerDataLayer(`HOVER_LIKE_CELEBRITY`, analyticsData);
-  };
-
   return (
     <LikeButton
       isFavorite={isFavorite}
-      onHovering={onHovering}
       filledImageSource={filledImageSource}
       outlinedImageSource={outlinedImageSource}
       className={className}

@@ -11,3 +11,4 @@ export const UPDATE_USER_AVATAR = "custom-endpoints/my-account/avatar-update";
 export const GET_USER_CONTRACT = `custom-endpoints/my-account/hirings/`;
 export const GET_RECEIPTS_URLS =
   "custom-endpoints/my-account/hirings-download-receipt";
+export const SAVE_USER_NEWSLETTER = "custom-endpoints/forms/newsletter-popup";

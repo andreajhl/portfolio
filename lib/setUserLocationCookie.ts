@@ -81,10 +81,7 @@ async function getLocationCookieHeader(
     userIpAddressLocation: userIpAddress,
   };
 }
-async function getCurrencyCurrentTRMCookieHeader(
-  currency: string,
-  cookies: string
-) {
+async function getCurrencyCurrentTRMCookieHeader(currency: string) {
   let currencyCode = null;
   if (findAvailableCurrencyByName(currency)) {
     currencyCode = currency;
@@ -125,6 +122,7 @@ const setUserLocationCookie = async ({
   res,
 }: DocumentContext): Promise<void> => {
   if (!req) return;
+
   if (isBot(req.headers["user-agent"])) {
     return debug("Este es un bot solicitando", req.url);
   }
@@ -133,23 +131,42 @@ const setUserLocationCookie = async ({
   let newCookiesSerializes = [];
 
   if (
-    !(USER_LOCATION_KEY in cookies) ||
-    !(USER_IP_ADDRESS in cookies) ||
-    !(USER_CURRENCY_CODE in cookies)
+    (!(USER_LOCATION_KEY in cookies) ||
+      !(USER_IP_ADDRESS in cookies) ||
+      !(USER_CURRENCY_CODE in cookies)) &&
+    !res.getHeader(USER_LOCATION_KEY) &&
+    !res.getHeader(USER_CURRENCY_CODE) &&
+    !res.getHeader(USER_IP_ADDRESS)
   ) {
     const locationCookies = await getLocationCookieHeader(req, res);
     const currencyCurrentData = await getCurrencyCurrentTRMCookieHeader(
-      locationCookies.currency_code,
-      cookies
+      locationCookies.currency_code
     );
     newCookiesSerializes.push(...serializeUserLocationCookies(locationCookies));
     newCookiesSerializes.push(
       ...serializeCurrencyCurrentData(currencyCurrentData)
     );
+  } else if (
+    res.getHeader(USER_IP_ADDRESS) &&
+    res.getHeader(USER_CURRENCY_CODE) &&
+    res.getHeader(USER_LOCATION_KEY)
+  ) {
+    const currencyCurrentData = await getCurrencyCurrentTRMCookieHeader(
+      String(res.getHeader(USER_CURRENCY_CODE))
+    );
+    newCookiesSerializes.push(
+      ...serializeUserLocationCookies({
+        currency_code: String(res.getHeader(USER_CURRENCY_CODE)),
+        userIpAddressLocation: String(res.getHeader(USER_IP_ADDRESS)),
+        country_code: String(res.getHeader(USER_LOCATION_KEY)),
+      })
+    );
+    newCookiesSerializes.push(
+      ...serializeCurrencyCurrentData(currencyCurrentData)
+    );
   } else {
     const currencyCurrentData = await getCurrencyCurrentTRMCookieHeader(
-      cookies[CURRENT_CURRENCY_TRM_CODE] || cookies[USER_CURRENCY_CODE],
-      cookies
+      cookies[CURRENT_CURRENCY_TRM_CODE] || cookies[USER_CURRENCY_CODE]
     );
     newCookiesSerializes.push(
       ...serializeCurrencyCurrentData(currencyCurrentData)

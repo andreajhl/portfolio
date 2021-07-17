@@ -1,6 +1,7 @@
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import isBrowser from "react-app/src/utils/isBrowser";
 import waitFor from "react-app/src/utils/waitFor";
+import getWindow from "react-app/src/utils/getWindow";
 import TagManager from "react-gtm-module";
 // import { Mixpanel } from "./mixPanel";
 
@@ -31,13 +32,13 @@ export const tagManagerDataLayer = (event, dataLayer) => {
       event,
     });
 
-    // Segment
-    if (ENV !== "development") {
-      window.analytics.track(event, {
-        ...dataLayer,
-        ENVIRONMENT: ENV.toUpperCase(),
-      });
-    }
+    // // Segment
+    // if (ENV !== "development") {
+    //   window.analytics.track(event, {
+    //     ...dataLayer,
+    //     ENVIRONMENT: ENV.toUpperCase()
+    //   });
+    // }
   } catch (e) {
     console.warn("tagManagerDataLayer Error:", e);
   }
@@ -59,8 +60,25 @@ export function trackContractPurchase({ celebrityId, contractPrice }) {
   });
 }
 
+export function page(data) {
+  tagManagerDataLayer("PAGE", data);
+}
+
+export function trackFirstPageLoad() {
+  page({
+    ENV: String(process.env.NEXT_PUBLIC_ENVIRONMENT).toUpperCase(),
+    isReactRouting: false,
+    path: getWindow().location.pathname,
+    userAgent: navigator.userAgent,
+    vendor: navigator.vendor,
+    receivedAt: new Date(),
+  });
+}
+
 export const analytics = {
   track: tagManagerDataLayer,
   fbPixel,
   trackContractPurchase,
+  page,
+  trackFirstPageLoad,
 };

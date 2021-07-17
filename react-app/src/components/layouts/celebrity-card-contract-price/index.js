@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { paymentsOperations } from "../../../state/ducks/payments";
 import { connect } from "react-redux";
 import NumberFormat from "react-number-format";
-import { AVAILABLE_CURRENCIES } from "../currency-dropdown/constants";
+import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 
 class ContractPriceLayout extends Component {
   rounding() {
@@ -88,18 +88,18 @@ ContractPriceLayout.defaultProps = {
   classes: "",
   price: 0,
   currency: "USD",
-  rounding: false
+  rounding: false,
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
-  currencyExchangeData: state.payments.currencyExchangeReducer.data
+  currencyExchangeData: state.payments.currencyExchangeReducer.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  currencyExchange: paymentsOperations.currencyExchange
+  currencyExchange: paymentsOperations.currencyExchange,
 };
 
 // Export Class

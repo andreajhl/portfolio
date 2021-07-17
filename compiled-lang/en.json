@@ -1,4 +1,10 @@
 {
+  "+/MNWw": [
+    {
+      "type": 0,
+      "value": "Confirm"
+    }
+  ],
   "+c9FIk": [
     {
       "type": 0,
@@ -329,6 +335,12 @@
       "value": "span"
     }
   ],
+  "3Szr5X": [
+    {
+      "type": 0,
+      "value": "Sign up with Google"
+    }
+  ],
   "3T2iOg": [
     {
       "type": 0,
@@ -411,6 +423,20 @@
       "value": "Apply"
     }
   ],
+  "4fXI87": [
+    {
+      "type": 0,
+      "value": "Also receive a: "
+    },
+    {
+      "type": 1,
+      "value": "coupon"
+    },
+    {
+      "type": 0,
+      "value": " on your first purchase."
+    }
+  ],
   "4r0tXK": [
     {
       "type": 0,
@@ -451,6 +477,12 @@
       "value": "span"
     }
   ],
+  "4xmXcX": [
+    {
+      "type": 0,
+      "value": "We have sent your discount code to your email."
+    }
+  ],
   "5+dpGU": [
     {
       "type": 0,
@@ -467,6 +499,12 @@
     {
       "type": 0,
       "value": "If you prove that the costs of arbitration will be prohibitive in comparison with the costs of litigation, Famosos will pay the sum of the administrative costs and fees of the arbitrator necessary for arbitration as it deems necessary, the arbitrator to avoid the cost of arbitration being prohibitive. In the final award, the arbitrator may apportion the arbitration costs and the arbitrator’s compensation between the parties in such amounts as the arbitrator deems appropriate."
+    }
+  ],
+  "5EACDj": [
+    {
+      "type": 0,
+      "value": "You must write a valid email"
     }
   ],
   "5HHVOz": [
@@ -503,6 +541,12 @@
     {
       "type": 0,
       "value": "Invalid format"
+    }
+  ],
+  "5jWuaC": [
+    {
+      "type": 0,
+      "value": "Did you forget your password?"
     }
   ],
   "5sQzpi": [
@@ -683,6 +727,18 @@
       "value": "Any user content will be non-confidential and non-proprietary and will not be responsible for any use or disclosure of user content. You acknowledge and agree that your relationship with us is not a confidential, fiduciary, or other type of special relationship, and that your decision to submit any user content does not place us in a position that is different from the position held by members of the general public, in particular with respect to your user content. None of your User Content will be subject to any confidentiality obligation on our part and will not be responsible for any use or disclosure of any User Content you provide."
     }
   ],
+  "8mH/y7": [
+    {
+      "type": 0,
+      "value": "Birthdate field is required"
+    }
+  ],
+  "8nG5TB": [
+    {
+      "type": 0,
+      "value": "Invalid email."
+    }
+  ],
   "8sMHw3": [
     {
       "type": 0,
@@ -693,6 +749,18 @@
     {
       "type": 0,
       "value": "An error has occurred."
+    }
+  ],
+  "8wR3lj": [
+    {
+      "type": 0,
+      "value": "Updated password"
+    }
+  ],
+  "8xaGaO": [
+    {
+      "type": 0,
+      "value": "Subscribe to our newsletter and find out about all our news and exclusive promotions"
     }
   ],
   "9KADbj": [
@@ -851,6 +919,26 @@
     {
       "type": 0,
       "value": "Write your Subdomain Ej: /andresito"
+    }
+  ],
+  "BI4zr5": [
+    {
+      "type": 0,
+      "value": "Also receive a "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " 10% OFF. "
+        }
+      ],
+      "type": 8,
+      "value": "bigTextSpan"
+    },
+    {
+      "type": 0,
+      "value": " on your first purchase"
     }
   ],
   "BbTBEe": [
@@ -1033,16 +1121,34 @@
       "value": "Uruguay"
     }
   ],
+  "EoWjUN": [
+    {
+      "type": 0,
+      "value": "Password field is required."
+    }
+  ],
   "Eq0gTc": [
     {
       "type": 0,
       "value": "Send comment"
     }
   ],
+  "EqG/WU": [
+    {
+      "type": 0,
+      "value": "Make sure it is an easy password to remember."
+    }
+  ],
   "ErSRb8": [
     {
       "type": 0,
       "value": "Select a payment card"
+    }
+  ],
+  "EwT5kN": [
+    {
+      "type": 0,
+      "value": "or sign up with your email"
     }
   ],
   "F03q+a": [
@@ -1145,6 +1251,12 @@
       "value": "Paypal"
     }
   ],
+  "HEGBTi": [
+    {
+      "type": 0,
+      "value": "You must write a valid date. Example: 2020-06-25"
+    }
+  ],
   "HG1X7k": [
     {
       "type": 0,
@@ -1155,6 +1267,12 @@
     {
       "type": 0,
       "value": "Cash"
+    }
+  ],
+  "Hauttd": [
+    {
+      "type": 0,
+      "value": "Sign up with Facebook"
     }
   ],
   "HdR30r": [
@@ -1193,10 +1311,22 @@
       "value": "Can I download my video?"
     }
   ],
+  "IdELJG": [
+    {
+      "type": 0,
+      "value": "Login with Google"
+    }
+  ],
   "IeYjFw": [
     {
       "type": 0,
       "value": "Nicaragua"
+    }
+  ],
+  "Isy4qq": [
+    {
+      "type": 0,
+      "value": "Famoso"
     }
   ],
   "Iuyaxf": [
@@ -1251,6 +1381,12 @@
     {
       "type": 0,
       "value": "You grant us a non-exclusive license, royalty-free, fully paid, unlimited, worldwide, sublicenseable (through multiple levels of sublicensees), perpetual, irrevocable license, in each and every way and media, whether known or invented (including but not limited to social media channels and other websites and platforms), to reproduce, license, distribute, modify, adapt, publicly execute, publicly display, create derivative works, and otherwise use the following for the purposes of operation and availability of the site and services for you and other users, to develop and improve our products and services, and to advertise, market and promote the site, services, and any other Celebrity products and services: (i) any request you make to any User Talent; and (ii) any submission you make to Celebrities through the Site, including the Services, through any social media or other account used by Celebrities, or otherwise, including any reaction video, opinion, photo, email, text, email, or other communication, whether related to you, the recipient of any famous video, or any other third party ((i) and (ii) collectively a \"Presentation\"). You agree to indemnify and maintain unharmed famous dba, Inc. with respect to the Presentation and any use of the communication in accordance with the terms of Article 13 of the User Terms of Service. "
+    }
+  ],
+  "Jv23M2": [
+    {
+      "type": 0,
+      "value": "Login with Facebook"
     }
   ],
   "K8SMPu": [
@@ -1311,6 +1447,28 @@
       "value": "Watch video"
     }
   ],
+  "L08n/M": [
+    {
+      "type": 0,
+      "value": "You do not have an account? "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Sign up "
+        }
+      ],
+      "type": 8,
+      "value": "signUpLink"
+    }
+  ],
+  "L6k2XE": [
+    {
+      "type": 0,
+      "value": "Live unique experiences with hundreds of Latinamerican celebrities"
+    }
+  ],
   "LMVeQk": [
     {
       "type": 0,
@@ -1369,6 +1527,12 @@
     {
       "type": 0,
       "value": "Similar Videos"
+    }
+  ],
+  "MMb74M": [
+    {
+      "type": 0,
+      "value": "You must write a date"
     }
   ],
   "MQJt4R": [
@@ -1465,6 +1629,12 @@
       "value": " video message."
     }
   ],
+  "NLbEhA": [
+    {
+      "type": 0,
+      "value": "Give us your email and you can reset your password."
+    }
+  ],
   "NROWdz": [
     {
       "type": 0,
@@ -1501,6 +1671,12 @@
       "value": "Back to top"
     }
   ],
+  "Nzh0Uv": [
+    {
+      "type": 0,
+      "value": "Authentication Failed"
+    }
+  ],
   "O1JDs+": [
     {
       "type": 0,
@@ -1527,6 +1703,12 @@
     {
       "type": 0,
       "value": "A description of the copyrighted work you claim has been violated."
+    }
+  ],
+  "O9DChx": [
+    {
+      "type": 0,
+      "value": "Security code"
     }
   ],
   "OOBCGL": [
@@ -1567,6 +1749,12 @@
     {
       "type": 0,
       "value": "Be the first to add a comment."
+    }
+  ],
+  "Or996K": [
+    {
+      "type": 0,
+      "value": "New Password"
     }
   ],
   "P6ZBac": [
@@ -1641,6 +1829,18 @@
       "value": "How many stars do you give to this video?"
     }
   ],
+  "Qgkwzh": [
+    {
+      "type": 0,
+      "value": "Invalid email"
+    }
+  ],
+  "QqT6DL": [
+    {
+      "type": 0,
+      "value": "Password"
+    }
+  ],
   "QtvgOo": [
     {
       "type": 0,
@@ -1663,6 +1863,22 @@
     {
       "type": 0,
       "value": "Declined payment"
+    }
+  ],
+  "RR1tnZ": [
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " 10% "
+        }
+      ],
+      "type": 8,
+      "value": "bigTextSpan"
+    },
+    {
+      "type": 0,
+      "value": " OFF."
     }
   ],
   "RWLUps": [
@@ -1759,6 +1975,22 @@
       "value": "Bolivia (Plurinational State of)"
     }
   ],
+  "SijdbJ": [
+    {
+      "type": 0,
+      "value": "Buy custom video from "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    }
+  ],
+  "Spo/Vy": [
+    {
+      "type": 0,
+      "value": "Home"
+    }
+  ],
   "SvDN5n": [
     {
       "type": 0,
@@ -1775,6 +2007,12 @@
     {
       "type": 0,
       "value": "Privacy"
+    }
+  ],
+  "TXYzmT": [
+    {
+      "type": 0,
+      "value": "Confirm New Password"
     }
   ],
   "TjibFs": [
@@ -1801,6 +2039,12 @@
       "value": "Go back to home"
     }
   ],
+  "UIware": [
+    {
+      "type": 0,
+      "value": "This email isn't registered in famosos.com"
+    }
+  ],
   "UOKryr": [
     {
       "type": 0,
@@ -1817,6 +2061,12 @@
     {
       "type": 0,
       "value": "Failed collection"
+    }
+  ],
+  "Uu4RMA": [
+    {
+      "type": 0,
+      "value": "Invalid credentials."
     }
   ],
   "V1RqDv": [
@@ -1959,6 +2209,12 @@
       "value": "You represent and warrant that:"
     }
   ],
+  "WsW1Wz": [
+    {
+      "type": 0,
+      "value": "Invalid credentails."
+    }
+  ],
   "Wu3wG5": [
     {
       "type": 0,
@@ -2023,10 +2279,30 @@
       "value": " technologies that connect personalities with their core fan."
     }
   ],
+  "Xp7qs8": [
+    {
+      "type": 0,
+      "value": "Welcome to Famosos! "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " Create an account to start connecting with your favorite celebrities."
+    }
+  ],
   "XvIJA8": [
     {
       "type": 0,
       "value": "In what currency would you like to pay?"
+    }
+  ],
+  "Xx+xSb": [
+    {
+      "type": 0,
+      "value": "Password length must contains least 6 characters"
     }
   ],
   "Y6+mfe": [
@@ -2107,6 +2383,24 @@
     {
       "type": 0,
       "value": "Go to My Hires"
+    }
+  ],
+  "Z5ZMSV": [
+    {
+      "type": 0,
+      "value": "Name field is required"
+    }
+  ],
+  "ZDkLmZ": [
+    {
+      "type": 0,
+      "value": "Check your email and enter the 6-digit code you received"
+    }
+  ],
+  "ZPvdL/": [
+    {
+      "type": 0,
+      "value": "or sign up with your email"
     }
   ],
   "ZcJeQh": [
@@ -2197,6 +2491,12 @@
     {
       "type": 0,
       "value": "YOU understand and agree that any material or information DOWNLOADED OR OBTAINED THROUGH THE USE OF THE SITE OR SERVICES is performed at your own risk and that YOU will be the only responsible for the damages caused by doing so. NO ADVICE OR INFORMATION, ORAL OR WRITTEN, OBTAINED BY YOU FROM THE UNITED STATES OR THROUGH THE SITE OR SERVICES WARRANTY NOT EXPRESSLY"
+    }
+  ],
+  "b861FF": [
+    {
+      "type": 0,
+      "value": "Famosos.com - Recover password"
     }
   ],
   "b9prTq": [
@@ -2313,6 +2613,12 @@
       "value": "Notification email:"
     }
   ],
+  "dPuxZs": [
+    {
+      "type": 0,
+      "value": "Sign in and continue"
+    }
+  ],
   "dUl69m": [
     {
       "type": 0,
@@ -2425,6 +2731,40 @@
     {
       "type": 0,
       "value": "PAYMENT STATUS:"
+    }
+  ],
+  "f6JH6I": [
+    {
+      "type": 0,
+      "value": "By continuing, I expressly and informedly accept the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Terms and Conditions "
+        }
+      ],
+      "type": 8,
+      "value": "termsLink"
+    },
+    {
+      "type": 0,
+      "value": " and the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Privacy Policy "
+        }
+      ],
+      "type": 8,
+      "value": "policiesLink"
+    },
+    {
+      "type": 0,
+      "value": " of Famosos Inc."
     }
   ],
   "fH+OCT": [
@@ -2559,6 +2899,12 @@
       "value": "Name"
     }
   ],
+  "hKJZJR": [
+    {
+      "type": 0,
+      "value": "Send"
+    }
+  ],
   "hSj5kq": [
     {
       "type": 0,
@@ -2625,6 +2971,24 @@
       "value": "Arbitration Agreement and Waiver of Certain Rights"
     }
   ],
+  "jkPKiZ": [
+    {
+      "type": 0,
+      "value": "I forgot my password"
+    }
+  ],
+  "jrPcz6": [
+    {
+      "type": 0,
+      "value": "Sign up"
+    }
+  ],
+  "juVd4V": [
+    {
+      "type": 0,
+      "value": "Passwords do not match"
+    }
+  ],
   "kKaD9Y": [
     {
       "type": 0,
@@ -2641,6 +3005,12 @@
     {
       "type": 0,
       "value": "A statement by you, under penalty of perjury, that the above information is accurate and that you are the copyright owner or authorized to act on behalf of the copyright owner."
+    }
+  ],
+  "lGFIAN": [
+    {
+      "type": 0,
+      "value": "Create an account to connect with celebrities"
     }
   ],
   "lSxRsO": [
@@ -2777,6 +3147,12 @@
       "value": "Expired payment"
     }
   ],
+  "nJRa/h": [
+    {
+      "type": 0,
+      "value": "Receive promotions and news about celebrities who join our community."
+    }
+  ],
   "nMFRRt": [
     {
       "type": 0,
@@ -2799,6 +3175,12 @@
       "value": "You and Famosos agree that we will resolve any dispute between us through binding and final arbitration rather than through judicial processes. You and Famosos hereby waive any right to a jury trial of any claim (defined below). All disputes, claims, counterclaims, or other disputes arising between you and Famosos relating to these Terms, the Site and the Services (each \"Claim\") shall be submitted to arbitration in accordance with the Rules of the American Arbitration Association ( \"AAA Rules\"). Arbitration shall be decided by a single arbitrator. The decision of the arbitrator in such arbitration shall be final and binding on the parties and may be enforced in any court of competent jurisdiction"
     }
   ],
+  "nbZMXN": [
+    {
+      "type": 0,
+      "value": "Subscribe to our newsletter and find out about our news and exclusive promotions."
+    }
+  ],
   "nnRGWT": [
     {
       "type": 0,
@@ -2815,6 +3197,12 @@
     {
       "type": 0,
       "value": "Reviewed: March 28, 2020"
+    }
+  ],
+  "o8JdL0": [
+    {
+      "type": 0,
+      "value": "An error occurred while registering"
     }
   ],
   "oACmv6": [
@@ -2937,6 +3325,12 @@
       "value": "Bank transfer"
     }
   ],
+  "qL5Hl7": [
+    {
+      "type": 0,
+      "value": "Birthday"
+    }
+  ],
   "qMbb2M": [
     {
       "type": 0,
@@ -2945,8 +3339,490 @@
   ],
   "qP3okx": [
     {
+      "children": [
+        {
+          "type": 0,
+          "value": " PRIVACY POLICY \"FAMOSOS INC\", FIRST (1st.) OCTOBER 2019. "
+        }
+      ],
+      "type": 8,
+      "value": "h5"
+    },
+    {
       "type": 0,
-      "value": "h5> PRIVACY POLICY \"FAMOSOS INC\", FIRST (1st.) OCTOBER 2019. /h5> p> We are \"Famous, Inc.\" , located at 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. /p> p> For your timely and complete information, we allow ourselves to accompany the \"Privacy Policy of \"Famous Inc\", hereinafter the \"Policy\". /p> p> The importance of this \"Policy\" lies in the fact that to provide you with our services through our Site, it is necessary that you provide us with your personal information, then it is necessary that you know, accept and/or reject what we do with it. It is also important for us to know who you are and whether your interests are compatible with our /p> p> This \"Policy\" is subject to permanent changes, so we reserve the right to update, modify and publish it chronologically, to make it known to you, for the purposes outlined above /p> p> The \"Policy\" relates specifically to the way we request, store, analyze, guard, protect, use and share your personal information on our servers, on the occasion of linking to our page /p> p> It is important to note that if you make the decision to link to our site, we understand that you have unconditionally and irrevocably read and accepted this \"Policy\" as well as the so-called \"Terms of Use\" which are also available on our page for your knowledge, acceptance or rejection /p> p> The personal information to which we have access, is that related to your city of origin, country, \"IP address\", the type of equipment you use, your email, address, phone number, registration date, user name, personal key, bank account, electronic payments, bank cards, user number on Instagram when you access our page via this, type of material requested, kind of videos uploaded, downloaded, consulted, photos, emails, letters, texts, audios, social media traffic, platform searches, purchases of goods and/or services made, purchase history, trade preferences, cookies, hardware, software, among other things, information is required beforehand, for you to link to our page and/or create an account on it, for the purpose of providing you with a better service /p> p> The purpose of the above is to provide a better service, so we will be able to offer you better services, technical support and assistance, according to the interests that you have expressed to us, in relation to advertising topics, raffles, sweepstakes, contests and promotions, provision of certain specific content, according to your market preferences, to customize your experience on our platform, as well as to comply with legal requirements, business practices, back-up operations and for other reasons that may be of interest to you, as well as ours /p> p This information will only be disclosed to third parties, including other countries, when required by us and/or by our vendors, for the fulfillment of the interests that you have expressed to us, Therefore, you must also consult with them the type of Privacy Policy that they themselves apply and for which we do not respond, nor can we do so. In relation to the disclosure of information to other countries, we have taken relevant technological measures to ensure that your personal information enjoys the same protection as contained in this \"Policy\" /p> p> This information will also be disclosed to third parties, when you expressly request it, for which you must send the respective request, in the terms indicated in this \"Policy\" /p> p> You may also object to us processing your personal information, based on your legitimate interest and for particular reasons. Likewise, you can rank the parameters and/or scope of our marketing to you, and even request that promotional material not be sent to you, at any time, through the methods contained in this \"Policy\" /p> p> For the exercise of the rights recognized in this \"Policy\", you must formulate the respective requirement, through the tools provided here, and the mechanisms established for that purpose in it. It is important to note that your right to submit complaints and claims to any competent authority for the protection and supervision of personal information in the country where you are located, remains current /p> p> Our page allows you to interact with other pages, platforms, social networks, such as Facebook, Instagram and Twitter, so some of your personal information will be shared with third parties, for the purpose of allowing the respective communication /p> p> Each visit to our site allows you to track your activities on the network, through technologies known as \"web beacons\", \"embedded scripts\", \"location data services\", which may provide us with more information about your browsing preferences stored on your computer and record \"cookies\" on your computer, or even copy codes from your computer, or your computer and employ various mechanisms related to your navigation preferences /p> p> This technology allows to know, for example, date and time of your visit to our platform, areas visits in your navigation, Links to which you have accessed, Websites, propaganda visited, modality under which you have accessed, IP address, mobile number, information from your computer, such as your location, Computer Connection Type, Search Engine, Version, Operating System, Platform, Message Query Information /p> p> If you are a customer providing content to our platform, we will process such information, in order to massively offer videos and other material that is uploaded and/or uploaded on our site. Likewise, we will process all the information that is necessary for you to receive direct payments from third parties, as indicated in the \"Terms of Use\" contained in our platform /p> p> From elsewhere, the information related to the payments made to them, will also be kept in accordance with our \"Policy\", in order to ensure the correct processing of the same, effectiveness, efficiency, safety, transparency and traceability, and in the event of any related observations. Likewise, the information related to the means and payment mechanisms chosen by us is subject to the same \"Policy\" as that of the respective paying entities, that may be completely different and therefore need to be reviewed by you /p> p> We may sometimes share your personal information with third parties, in order to serve your browsing interests. However, we will never share your personal information to be used for purposes other than those mentioned here, without your consent, which will be requested if necessary. It is necessary to remember that the handling of your personal information is based on your acceptance and authorization, in the terms expressed in our \"Policy\", and that you always have the right to withdraw your consent, at any time, through the tools and procedures set out on our page /p> p> In relation to children under thirteen (13) years of age, our \"Policy\" determines that we do not keep any personal information. If you, as a parent or attendant, notice that for some reason we do so, please contact us immediately to make the necessary adjustments: at 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. The above is because our site is designed for widespread use, and it is possible that eventually and involuntarily, we have been able to collect such information /p> p We will disclose personal information about you, even against your will, when required to do so by law, justice or any competent authority in any jurisdiction, in the course of a fraud investigation, violation of the intellectual, copyright or literary property rights related to you and that may harm our interests, always in the exercise of our legal rights and in the event of possible accusations of \"hacking\", breach of the \"Policy\", of the \"Terms of Use or Services\" for legal or governmental reasons /p> p> We will also disclose, transfer, assign your personal information in the event of a merger, acquisition, reorganization, agreement, bankruptcy and/or any other transaction involving \"Celebrity Inc\" /p> p If you expressly request it, we may transform your personal information into another technological modality that prevents identifying you, such as converting your email into an alphanumeric code, which would no longer be your personal information /p> p> If you want to access, review, correct, edit or update your own personal information, simply access your account on the page, or through the app on your mobile and make the changes you want to make /p> p> When you request us to delete your personal information, we will take concrete actions to remove it from our active databases, but we will retain the original information, in accordance with our \"Policy\", for eventual cases of dispute, compliance with legal regulations, recording preservation, back up. In any case, we will never retain your information longer than is necessary to comply with our \"Policy\" /p> If you are a visitor to our site and are located outside the United States of America, the personal information you provide will be collected, processed, retained, transferred to our servers in that country, or others where we or our vendors conduct their business operation /p> p> No matter where the information is located, we take reasonable steps to protect the privacy of your rights, in the terms of this policy /p> p> We take reasonable security measures to protect the information submitted to us, according to the technological facilities existing to date /p> p> Although no system of transmission and/or administration of data through the global internet network is completely secure, we have taken reasonable technological security measures to protect the information held by us, which must be known and taken into account by you whenever you use our site, so that such knowledge is under your responsibility /p> p> Accordingly, if you have any security related questions on our page, please contact us, through the respective communication channels provided in our \"Policy\" /p> p> If you wish to deactivate your account, Contact us for this purpose at 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161, USA /p> p> If you want to work with us, or for us as an \"official\" and/or work under the modality of \"partners\", you can apply by contacting us through the channels and people informed in this \"Policy\", so that you are informed about our \"Policy\" in this regard. We may share personal information about you, for the exclusive purposes mentioned in this paragraph, or to improve our selection processes, or to protect us from work claims /p> p> Again we reiterate that if you make the decision to link to our site, we understand that you have unconditionally and irrevocably read and accepted this \"Policy\" as well as the so-called \"Terms of Use\" which are also available on our page for your knowledge, acceptance or rejection /p> p> However, if you do not wish to receive any information from us again, but without withdrawing from our site, through the channels and people informed in this \"Policy\" and you will only receive information from us related to the payment status of your account /p> p> If you require more information about this \"Policy\", you can contact us at 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. /p> "
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " We are \"Famous, Inc.\" , located at 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "  "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " For your timely and complete information, we allow ourselves to accompany the \"Privacy Policy of \"Famous Inc\", hereinafter the \"Policy\". "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " The importance of this \"Policy\" lies in the fact that to provide you with our services through our Site, it is necessary that you provide us with your personal information, then it is necessary that you know, accept and/or reject what we do with it.      It is also important for us to know who you are and whether your interests are compatible with our "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " This \"Policy\" is subject to permanent changes, so we reserve the right to update, modify and publish it chronologically, to make it known to you, for the purposes outlined above "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " The \"Policy\" relates specifically to the way we request, store, analyze, guard, protect, use and share your personal information on our servers, on the occasion of linking to our page "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " It is important to note that if you make the decision to link to our site, we understand that you have unconditionally and irrevocably read and accepted this \"Policy\" as well as the so-called \"Terms of Use\" which are also available on our page for your knowledge, acceptance or rejection "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " The personal information to which we have access, is that related to your city of origin, country, \"IP address\", the type of equipment you use, your email, address, phone number, registration date, user name, personal key, bank account, electronic payments, bank cards, user number      on Instagram when you access our page via this, type of material requested, kind of videos uploaded, downloaded, consulted, photos, emails, letters, texts, audios, social media traffic, platform searches, purchases of goods and/or services made, purchase history, trade preferences, cookies, hardware, software, among other things, information is required beforehand, for you to link to our page and/or create an account on it, for the purpose of providing you with a better service "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " The purpose of the above is to provide a better service, so we will be able to offer you better services, technical support and assistance, according to the interests that you have expressed to us, in relation to advertising topics, raffles, sweepstakes, contests and promotions, provision of certain specific content, according to your market preferences, to customize your experience on our platform, as well as to comply with legal requirements, business practices, back-up operations and for other reasons that may be of interest to you, as well as ours "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " This information will only be disclosed to third parties, including other countries, when required by us and/or by our vendors, for the fulfillment of the interests that you have expressed to us, Therefore, you must also consult with them the type of Privacy Policy that they themselves apply and for which we do not respond, nor can we do so. In relation to the disclosure of information to other countries, we have taken relevant technological measures to ensure that your personal information enjoys the same protection as contained in this \"Policy\" "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "     "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " This information will also be disclosed to third parties, when you expressly request it, for which you must send the respective request, in the terms indicated in this \"Policy\" "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " You may also object to us processing your personal information, based on your legitimate interest and for particular reasons. Likewise, you can rank the parameters and/or scope of our marketing to you, and even request that promotional material not be sent to you, at any time, through the methods contained in this \"Policy\" "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "     "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " For the exercise of the rights recognized in this \"Policy\", you must formulate the respective requirement, through the tools provided here, and the mechanisms established for that purpose in it. It is important to note that your right to submit complaints and claims to any competent authority for the protection and supervision of personal information in the country where you are located, remains current "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Our page allows you to interact with other pages, platforms, social networks, such as Facebook, Instagram and Twitter, so some of your personal information will be shared with third parties, for the purpose of allowing the respective communication "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Each visit to our site allows you to track your activities on the network, through technologies known as \"web beacons\", \"embedded scripts\", \"location data services\", which may provide us with more information about your browsing preferences stored on your computer and record \"cookies\" on your computer, or even copy codes from your computer, or your computer and employ various mechanisms related to your navigation preferences "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " This technology allows to know,      for example, date and time of your visit to our platform, areas visits in your navigation, Links to which you have accessed, Websites, propaganda visited, modality under which you have accessed, IP address, mobile number, information from your computer, such as your location, Computer Connection Type, Search Engine, Version, Operating System, Platform, Message Query Information "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " If you are a customer providing content to our platform, we will process such information, in order to massively offer videos and other material that is uploaded and/or uploaded on our site. Likewise, we will process all the information that is necessary for you to receive direct payments from third parties, as indicated in the \"Terms of Use\" contained in our platform "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " From elsewhere, the information related to the payments made to them, will also be kept in accordance with our \"Policy\", in order to ensure the correct processing of the same, effectiveness, efficiency, safety, transparency and traceability, and in the event of any related observations. Likewise, the information related to the means and payment mechanisms chosen by us is subject to the same \"Policy\" as that of the respective paying entities, that may be completely different and therefore need to be reviewed by you "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " We may sometimes share your personal information with third parties, in order to serve your browsing interests. However, we will never share your personal information to be used for purposes other than those mentioned here, without your consent, which will be requested if necessary. It is necessary to remember that the handling of your personal information is based on your acceptance and authorization, in the terms expressed in our \"Policy\", and that you always have the right to withdraw your consent, at any time, through the tools and procedures set out on our page "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " In relation to children under thirteen (13) years of age, our \"Policy\" determines that we do not keep any personal information. If you, as a parent or attendant, notice that for some reason we do so, please contact us immediately to make the necessary adjustments: at 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. The above is because our site is designed for widespread use, and it is possible that eventually and involuntarily, we have been able to collect such information "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "We will disclose personal information about you, even against your will, when required to do so by law, justice or any competent authority in any jurisdiction, in the course of a fraud investigation, violation of the intellectual, copyright or literary property rights related to you and that may harm our interests, always in the exercise of our legal rights and in the event of possible accusations of \"hacking\", breach of the \"Policy\", of the \"Terms of Use or Services\" for legal or governmental reasons "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " We will also disclose, transfer, assign your personal information in the event of a merger, acquisition, reorganization, agreement, bankruptcy and/or any other transaction involving \"Celebrity Inc\" "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "     "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " If you expressly request it, we may transform your personal information into another technological modality that prevents identifying you, such as converting your email into an alphanumeric code, which would no longer be your personal information "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " If you want to access, review, correct, edit or update your own personal information, simply access your account on the page, or through the app on your mobile and make the changes you want to make "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "     "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " When you request us to delete your personal information, we will take concrete actions to remove it from our active databases, but we will retain the original information, in accordance with our \"Policy\", for eventual cases of dispute, compliance with legal regulations, recording preservation, back up. In any case, we will never retain your information longer than is necessary to comply with our \"Policy\" "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "     "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "If you are a visitor to our site and are located outside the United States of America, the personal information you provide will be collected, processed, retained, transferred to our servers in that country, or others where we or our vendors conduct their business operation "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "     "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " No matter where the information is located, we take reasonable steps to protect the privacy of your rights, in the terms of this policy "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " We take reasonable security measures to protect the information submitted to us, according to the technological facilities existing to date "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Although no system of transmission and/or administration of data through the global internet network is completely secure, we have taken reasonable technological security measures to protect the information held by us, which must be known and taken into account by you whenever you use our site, so that such knowledge is under your responsibility "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Accordingly, if you have any security related questions on our page, please contact us, through the respective communication channels provided in our \"Policy\" "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "    "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " If you wish to deactivate your account, Contact us for this purpose at 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161, USA "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " If you want to work with us, or for us as an \"official\" and/or work under the modality of \"partners\", you can apply by contacting us through the channels and people informed in this \"Policy\", so that you are informed about our \"Policy\" in this regard. We may share personal information about you, for the exclusive purposes mentioned in this paragraph, or to improve our selection processes, or to protect us from work claims "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "  "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Again we reiterate that if you make the decision to link to our site, we understand that you have unconditionally and irrevocably read and accepted this \"Policy\" as well as the so-called \"Terms of Use\" which are also available on our page for your knowledge, acceptance or rejection "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": "  "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " However, if you do not wish to receive any information from us again, but without withdrawing from our site, through the channels and people informed in this \"Policy\" and you will only receive information from us related to the payment status of your account "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " If you require more information about this \"Policy\", you can contact us at 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. "
+        }
+      ],
+      "type": 8,
+      "value": "p"
+    },
+    {
+      "type": 0,
+      "value": " "
     }
   ],
   "qV0c9N": [
@@ -3073,6 +3949,22 @@
       "value": "We are trying our best to solve it."
     }
   ],
+  "rtwrcq": [
+    {
+      "type": 0,
+      "value": "Do you already have an account? "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " Login "
+        }
+      ],
+      "type": 8,
+      "value": "signInLink"
+    }
+  ],
   "ruSOFj": [
     {
       "type": 0,
@@ -3083,6 +3975,12 @@
     {
       "type": 0,
       "value": "USE THE SITE AND SERVICES at your own risk. THE SITE and services are provided \"AS IT IS\" AND \"AS AVAILABLE\". To the extent permitted by LAW, FAMOSOS and their officers, employees, directors, shareholders, parents, subsidiaries, affiliates and agents (\"affiliates\") decline ALL warranties, conditions, and representations of ANY KIND, EXPRESS, IMPLIED, LAW, OR OTHERWISE, including those RELATED TO A PARTICULAR PURPOSE, NON-INFRINGEMENT, and those derived from COURSE MANAGEMENT OR USE TRADING."
+    }
+  ],
+  "sSxzJC": [
+    {
+      "type": 0,
+      "value": "This email is already subscribed to the newsletter"
     }
   ],
   "sXLa3f": [
@@ -3217,6 +4115,12 @@
       "value": "An electronic or physical signature of the person authorized to act on behalf of the copyright owner."
     }
   ],
+  "uKwcXA": [
+    {
+      "type": 0,
+      "value": "Create an account to connect with celebrities"
+    }
+  ],
   "uMrHKU": [
     {
       "type": 0,
@@ -3227,6 +4131,12 @@
     {
       "type": 0,
       "value": "Coach"
+    }
+  ],
+  "uSPUjx": [
+    {
+      "type": 0,
+      "value": "Change your password"
     }
   ],
   "uVgimH": [
@@ -3245,6 +4155,12 @@
     {
       "type": 0,
       "value": "Who will receive the video"
+    }
+  ],
+  "uleYZ4": [
+    {
+      "type": 0,
+      "value": "To continue, update your account password."
     }
   ],
   "ut6hvz": [
@@ -3279,6 +4195,12 @@
     {
       "type": 0,
       "value": "The authorization of your payment has been made successfully."
+    }
+  ],
+  "vcGTkv": [
+    {
+      "type": 0,
+      "value": "Registry"
     }
   ],
   "vf4Bo1": [
@@ -3327,6 +4249,12 @@
     {
       "type": 0,
       "value": "If you use the referral link of one of the Celebrities registered on the platform you will have more opportunities to be approved, this link is unique on its own and is available in the My Profile section of the Celebrities app."
+    }
+  ],
+  "wkaVGz": [
+    {
+      "type": 0,
+      "value": "Login to your account to connect with celebrities"
     }
   ],
   "wlTYUV": [
@@ -3391,6 +4319,12 @@
     {
       "type": 0,
       "value": "We improve and update the site and services often. We may change or discontinue the Site or Services at any time, with or without notice."
+    }
+  ],
+  "xBhNFv": [
+    {
+      "type": 0,
+      "value": "New Password"
     }
   ],
   "xKYHEI": [

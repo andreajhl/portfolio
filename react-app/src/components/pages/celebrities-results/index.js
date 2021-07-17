@@ -6,12 +6,12 @@ import { CelebritiesResultsLayout } from "../../layouts/celebrities-results";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
-import * as GTM from "../../../state/utils/gtm";
 import { CelebritiesAdditionalResultsLayout } from "../../layouts/celebrities-additional-results";
 import pickPropertiesFromAObject from "../../../utils/pickPropertiesFromAObject";
 import { withRouter } from "react-app/src/components/common/routing";
 import { cursorOperations } from "../../../state/ducks/cursor-position";
 import { checkIfObjectContainsSamePairKeyValue } from "react-app/src/utils/checkIfObjectContainsSamePairKeyValue";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 function noop() {}
 const PATH_KEY = "CelebritiesResultPage";
@@ -24,14 +24,14 @@ const mapStateToProps = ({ celebrities, cursor }) => {
     totalResults: celebrities.fetchCelebritiesReducer.data.totalResults,
     queryParamsStore: celebrities.saveLastQueryParamsReducer,
     previousPath: celebrities.previousPathReducer.pathname,
-    cursor: cursor.positionReducer.data
+    cursor: cursor.positionReducer.data,
   };
 };
 
 const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list,
   saveQueryParams: celebrityOperations.saveLastQueryParams,
-  saveCursor: cursorOperations.saveCursorPosition
+  saveCursor: cursorOperations.saveCursorPosition,
 };
 
 const listParamsInitialKeys = ["offset", "limit"];
@@ -49,7 +49,7 @@ const allowedParams = [
   "offset",
   "country_id",
   "category_id",
-  "orderBy"
+  "orderBy",
 ];
 
 const CelebritiesResultsPage = ({
@@ -65,7 +65,7 @@ const CelebritiesResultsPage = ({
   history,
   saveCursor,
   saveQueryParams,
-  queryParamsStore
+  queryParamsStore,
 }) => {
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
   const listParams = useMemo(
@@ -89,7 +89,7 @@ const CelebritiesResultsPage = ({
     return () => {
       saveCursor({
         view: PATH_KEY,
-        position: window.scrollY
+        position: window.scrollY,
       });
     };
   }, []);
@@ -103,6 +103,10 @@ const CelebritiesResultsPage = ({
       if (
         !checkIfObjectContainsSamePairKeyValue(listParams, queryParamsStore)
       ) {
+        analytics.track("FETCH_CELEBRITIES_FROM_SEARCH", {
+          searchFilters: listParams,
+          widget: "CelebritiesResultsPage",
+        });
         fetchCelebrities(listParams);
         setOffset(updateQueryParamsInitialState.offset);
       } else {
@@ -123,14 +127,7 @@ const CelebritiesResultsPage = ({
     saveQueryParams({ ...listParams, offset: newOffset });
     fetchCelebrities({
       ...listParams,
-      offset: newOffset
-    });
-    GTM.tagManagerDataLayer("FETCH_MORE_CELEBRITIES_RESULTS", {
-      widget: "CelebritiesResultsPage",
-      path: window.location.pathname,
-      listParams,
-      totalResults,
-      offset: newOffset
+      offset: newOffset,
     });
   };
 
