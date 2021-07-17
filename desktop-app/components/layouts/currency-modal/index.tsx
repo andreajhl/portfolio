@@ -107,6 +107,12 @@ function CurrencyModal({
                           styles.OptionsListsLabelSpan
                         )}
                       >
+                        <img
+                          className={styles.OptionsListsLabelFlag}
+                          width="20"
+                          src={option.flag}
+                          alt={`Bandera de ${option.label}`}
+                        />
                         {option.label}
                       </span>
                     </label>

@@ -57,6 +57,11 @@
   cursor: pointer;
 }
 
+.OptionsListsLabelFlag {
+  vertical-align: unset;
+  margin-right: 0.75rem;
+}
+
 input:disabled:checked ~ .OptionsListsLabel::before,
 input:active ~ .OptionsListsLabel::before {
   background-color: var(--primary-lighten) !important;
