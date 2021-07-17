@@ -1,5 +1,4 @@
-
-.SignUpBoxTitle {
+.SignUpBoxTitle.SignUpBoxTitle {
   font-size: 16px;
   font-weight: bold;
   line-height: 19px;
@@ -44,11 +43,6 @@
   @media only screen and (min-width: 768px) {
     height: 45px;
   }
-}
-
-.SignUpBoxAuthTermsAdvertise {
-  max-width: 303px;
-  margin: 30px auto 0;
 }
 
 @media only screen and (max-width: 767px) {

@@ -51,7 +51,6 @@ class SignInEmailPasswordForm extends React.Component<
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.sendData = this.sendData.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.toggleShowPasswordState = this.toggleShowPasswordState.bind(this);
   }
 
@@ -69,12 +68,6 @@ class SignInEmailPasswordForm extends React.Component<
     });
   }
 
-  handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      this.sendData();
-    }
-  };
-
   validateInputs = () => {
     // Validate emails
     if (!isEmail(this.state.email) || this.state.email === "") {
@@ -87,7 +80,8 @@ class SignInEmailPasswordForm extends React.Component<
     return null;
   };
 
-  sendData = async () => {
+  sendData = async (event) => {
+    event?.preventDefault?.();
     // Remove error message
     this.setState({
       ...this.state,
@@ -157,25 +151,26 @@ class SignInEmailPasswordForm extends React.Component<
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.sendData} noValidate>
         <h3 className={styles.SignInBoxTitle}>
           <FormattedMessage defaultMessage="o ingresa con tu correo electrónico" />
         </h3>
         <AuthFormField
+          type="email"
+          name="email"
           label={<FormattedMessage defaultMessage="Correo electrónico" />}
           placeholder="usuario@dominio.com"
           value={this.state.email}
           onChange={this.handleEmailInput}
-          onKeyPress={this.handleKeyPress}
         />
-        {/*TODO: Input group with show password button*/}
         <AuthFormField
+          autoComplete="current-password"
+          name="current-password"
           type={this.state.showPassword ? "text" : "password"}
           label={<FormattedMessage defaultMessage="Contraseña" />}
           placeholder="**********"
           value={this.state.password}
           onChange={this.handlePasswordInput}
-          onKeyPress={this.handleKeyPress}
           onIconClick={this.toggleShowPasswordState}
           iconElement={
             !this.state.showPassword ? (
@@ -187,14 +182,13 @@ class SignInEmailPasswordForm extends React.Component<
         />
         <div className={"text-center"}>{this.renderError()}</div>
         <button
-          type="button"
+          type="submit"
           className={classes("btn btn-primary", styles.SignInBoxSubmitButton)}
           disabled={this.state.isLoading}
-          onClick={this.sendData}
         >
-          <FormattedMessage defaultMessage={"Continuar"} />
+          <FormattedMessage defaultMessage="Ingresar" />
         </button>
-      </div>
+      </form>
     );
   }
 }
