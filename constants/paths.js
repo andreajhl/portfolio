@@ -147,3 +147,9 @@ export const getClientHiringShareInWhatsappPath = (contractReference) =>
 
 export const getPaymentMethodsPath = (contractReference) =>
   PAYMENT_METHODS.replace(":contract_reference", contractReference);
+
+export const getStripe3dSecureIframePath = (contractReference) =>
+  STRIPE_3D_SECURE_IFRAME.replace(":contract_reference", contractReference);
+
+export const getStripe3dSecureResponsePath = (contractReference) =>
+  STRIPE_3D_SECURE_RESPONSE.replace(":contract_reference", contractReference);

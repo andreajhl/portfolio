@@ -21,6 +21,7 @@ type StripeComponentProps = {
   celebrityId: number;
   stripe?: ReactStripeElements.StripeProps;
 };
+
 function StripeCardForm({
   discountCouponId,
   contractPrice,
@@ -49,7 +50,7 @@ function StripeCardForm({
         ":contract_reference",
         contractReference
       );
-    console.log({ responseURL });
+
     await stripe
       .createSource({
         type: "three_d_secure",
@@ -129,7 +130,6 @@ function StripeCardForm({
         usage: "reusable",
       })
       .then((response) => {
-        console.log("response.source", response.source);
         if (
           response.source.status === "chargeable" &&
           response.source.card.three_d_secure === "optional"
