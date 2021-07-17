@@ -7,7 +7,7 @@ import WhatsappAdForContracts from "../../common/whatsapp-ad-for-contracts";
 import VideoDeliveryFormFieldsElements from "../../common/video-delivery-form-fields-elements";
 import { ContractDeliveryType } from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { CelebrityVideoContractPrice } from "desktop-app/components/common/helpers/celebrity-video-contract-price";
 import { CelebrityBusinessPrice } from "../celebrity-business-price";
@@ -77,7 +77,7 @@ function ContractDeliveryForm({
     },
   });
 
-  const { user } = useAuth0();
+  const { user } = useAuth();
 
   useEffect(() => {
     if (values.deliveryTo || !user) return;

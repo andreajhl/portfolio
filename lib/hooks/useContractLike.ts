@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import { SIGN_IN_WITH_SPECIFIC_FORM_PATH } from "constants/paths";
 import { useEffect, useState } from "react";
 import { history } from "react-app/src/routing/History";
@@ -10,7 +10,7 @@ function useContractLike(contract_reference: string) {
     userContractsLikes,
     toggleLikeFromList,
   ] = useUserLikesContractsWithReference();
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth();
   const [isFavorite, setIsFavorite] = useState(false);
   useEffect(() => {
     if (!userContractsLikes) return;

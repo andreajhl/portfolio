@@ -13,7 +13,7 @@ import {
   ContractDetailsType,
   ContractNotificationsType,
 } from "desktop-app/types/contractDataType";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import useWizardHistory from "../../../../lib/hooks/useWizardHistory";
 import { ComponentProps } from "./types";
 import classes from "classnames";
@@ -89,7 +89,7 @@ function CreateContractWizard({
   contractInProgress,
 }: CreateContractWizardProps) {
   const router = useRouter();
-  const { loginWithPopup, isAuthenticated } = useAuth0();
+  const { loginWithPopup, isAuthenticated } = useAuth();
   const [onLoggingCallback, setOnLoggingCallback] = useState(() => () => {});
   const [currentContractId, setCurrentContractId] = useState(
     contractInProgress?.contractId

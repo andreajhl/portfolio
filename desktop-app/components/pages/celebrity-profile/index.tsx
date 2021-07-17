@@ -18,7 +18,7 @@ import {
   getUserContractInProgress,
   cleanUserContractInProgress,
 } from "react-app/src/state/ducks/contracts/actions";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import { RootState } from "react-app/src/state/store";
 import { useEffect, useRef, useState } from "react";
 import { CreateContractWizardSkeleton } from "desktop-app/components/celebrity-profile/create-contract-wizard/skeleton";
@@ -79,7 +79,7 @@ function CelebrityProfilePage({
     createContractWizardIsFocused,
     setCreateContractWizardIsFocused,
   ] = useState(false);
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth();
   const [isReadyToCreateContract, setIsReadyToCreateContract] = useState(false);
   const wizardChangeFocusTimeoutRef = useRef<number | NodeJS.Timeout>();
 

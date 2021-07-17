@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import { SIGN_IN_WITH_SPECIFIC_FORM_PATH } from "constants/paths";
 import { useEffect, useState } from "react";
 import { history } from "react-app/src/routing/History";
@@ -8,7 +8,7 @@ import useUserCelebrityLikes from "./useUserCelebrityLikes";
 
 function useCelebrityFavorite(celebrityId: number) {
   const [userCelebrityLikes, toggleLikeFromList] = useUserCelebrityLikes();
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth();
   const [isFavorite, setIsFavorite] = useState(false);
   const analyticsData = { celebrityId, widget: "useCelebrityFavorite" };
 

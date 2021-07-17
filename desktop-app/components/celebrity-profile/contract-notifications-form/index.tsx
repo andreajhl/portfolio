@@ -7,7 +7,7 @@ import useForm, { ValidationsType } from "lib/hooks/useForm";
 import isEmail from "validator/lib/isEmail";
 import { ContractNotificationsType } from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import { useEffect } from "react";
 import objectHasProperties from "lib/utils/objectHasProperties";
 import { BooleanRadiosInputs } from "desktop-app/components/common/form/boolean-checkboxes";
@@ -62,7 +62,7 @@ function ContractNotificationsForm({
     validations,
     onSubmit,
   });
-  const { user } = useAuth0();
+  const { user } = useAuth();
 
   useEffect(() => {
     if (values.deliveryContact || !user) return;

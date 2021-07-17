@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import { useEffect } from "react";
 import { fetchUserCelebrityLikes } from "react-app/src/state/ducks/celebrity-likes/actions";
 import { RootState } from "react-app/src/state/store";
@@ -10,7 +10,7 @@ const hasFetchedLikesSelector = ({ celebrityLikes }: RootState) =>
 
 function useFetchUserCelebrityLikes(shouldFetchUserCelebrityLikes: boolean) {
   const hasFetchedLikes = useSelector(hasFetchedLikesSelector);
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {

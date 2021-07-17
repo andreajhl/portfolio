@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import onCanUseSessionToken from "lib/utils/onCanUseSessionToken";
 import { useEffect } from "react";
 import { fetchUserLikesContractsWithReference } from "react-app/src/state/ducks/account/actions";
@@ -12,7 +12,7 @@ function useFetchUserContractsLikes(
   shouldFetchUserCelebrityContracts: boolean
 ) {
   const hasFetchedLikes = useSelector(hasFetchedLikesContracts);
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {

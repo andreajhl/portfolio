@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import {
   getCelebrityProfilePath,
   PAYMENT_AUTHORIZATION_INFO,
@@ -17,7 +17,7 @@ type ApologyBannerProps = {
 };
 
 function ApologyBanner({ contractData }: ApologyBannerProps) {
-  const { user } = useAuth0();
+  const { user } = useAuth();
   return (
     <GrayBanner
       as="section"

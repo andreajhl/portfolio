@@ -15,7 +15,7 @@ import {
   FEED_SUBSCRIPTION,
   FAQS_PATH,
 } from "constants/paths";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import LoginButton from "react-app/src/components/containers/login-button/login-button";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
 import Maybe from "desktop-app/components/common/helpers/maybe";
@@ -63,7 +63,7 @@ const toMenuItem = ({ id, to, icon, label }) => (
 );
 
 function AccountDropdown() {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user } = useAuth();
 
   const userAvatar = user?.picture || "";
 

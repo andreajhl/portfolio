@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "lib/famosos-auth";
 import React from "react";
 import { Session } from "react-app/src/state/utils/session";
 
@@ -8,14 +8,12 @@ type LogoutButtonHOCProps = {
 };
 
 function LogoutButtonHOC({ children, className }: LogoutButtonHOCProps) {
-  const { logout } = useAuth0();
+  const { logout } = useAuth();
   const session = new Session();
 
   const handlerLogoutSession = () => {
     session.removeSession();
-    logout({
-      returnTo: window.location.origin,
-    });
+    logout();
   };
   return (
     <div
