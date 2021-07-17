@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 import { FamososLogo } from "../../common/logo";
 import { AccountDropdown } from "../account-dropdown";
-import { CurrencyDropdown } from "../currency-dropdown";
+import { CurrencyModal } from "../currency-modal";
 import { TopbarSearchInput } from "desktop-app/components/topbar/search-input";
 
 function TopBar() {
@@ -15,7 +15,7 @@ function TopBar() {
             <div
               className={`d-flex align-items-center ${styles.TopBarOptions}`}
             >
-              <CurrencyDropdown />
+              <CurrencyModal />
               {/* <CartIcon /> */}
               {/* <BellIcon /> */}
             </div>
