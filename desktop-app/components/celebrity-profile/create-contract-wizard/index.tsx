@@ -301,6 +301,11 @@ function CreateContractWizard({
           </Step>
         </StepsList>
       </Wizard>
+      <Maybe it={!isAuthenticated}>
+        <p className={styles.RedirectToLoginAdvertiser}>
+          Deberás iniciar sesión para continuar
+        </p>
+      </Maybe>
       <CollapsibleErrorMessage
         errorMessage={errorMessage}
         className={styles.ErrorMessage}
