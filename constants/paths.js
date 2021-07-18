@@ -1,3 +1,4 @@
+import objectHasProperties from "lib/utils/objectHasProperties";
 import { jsonToQueryString } from "react-app/src/state/utils/apiService";
 
 export const ROOT_PATH = "/";
@@ -22,6 +23,7 @@ export const FAQS_PATH = "/docs/faqs";
 export const AUTH_FLOW = "/auth/select-flow/";
 export const AUTH_SUCCESS = "/authentication/success";
 export const SIGN_IN_PATH = "/auth/sign-in/";
+export const SIGN_IN_FROM_PATH = "/auth/sign-in/from";
 export const SIGN_IN_WITH_SPECIFIC_FORM_PATH = "/auth/sign-in/:form/";
 export const SIGN_UP_PATH = "/auth/sign-up";
 export const SIGN_UP_WITH_SPECIFIC_FORM_PATH = "/auth/sign-up/:form/";
@@ -153,3 +155,9 @@ export const getStripe3dSecureIframePath = (contractReference) =>
 
 export const getStripe3dSecureResponsePath = (contractReference) =>
   STRIPE_3D_SECURE_RESPONSE.replace(":contract_reference", contractReference);
+
+const getQueryParams = (data) =>
+  data && objectHasProperties(data) ? jsonToQueryString(data) : "";
+
+export const getSignInFromPath = (data) =>
+  SIGN_IN_FROM_PATH + getQueryParams(data);

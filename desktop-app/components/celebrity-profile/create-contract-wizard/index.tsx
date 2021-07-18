@@ -18,7 +18,11 @@ import useWizardHistory from "../../../../lib/hooks/useWizardHistory";
 import { ComponentProps } from "./types";
 import classes from "classnames";
 import { useRouter } from "next/router";
-import { getPaymentMethodsPath } from "constants/paths";
+import {
+  getCelebrityProfilePath,
+  getPaymentMethodsPath,
+  SIGN_IN_FROM_PATH,
+} from "constants/paths";
 import usePromise from "lib/hooks/usePromise";
 import ContractInProgressType from "desktop-app/types/contractInProgressType";
 import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
@@ -27,13 +31,22 @@ import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/c
 import { analytics } from "react-app/src/state/utils/gtm";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import { getCelebrityContractPrice } from "lib/utils/celebrityUtils";
+import {
+  setLocalContractInProgress,
+  deleteLocalContractInProgress,
+} from "lib/utils/localContractInProgress";
+import { Session } from "react-app/src/state/utils/session";
+import objectHasProperties from "lib/utils/objectHasProperties";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 
 const NO_TOKEN_ERROR = "invalid token: no token string was provided";
 
 function getDeliveryDataFromContractInProgress(
   contractInProgress: ContractInProgressType
 ) {
-  if (!contractInProgress?.contractId) return null;
+  if (!contractInProgress || !objectHasProperties(contractInProgress)) {
+    return null;
+  }
   return pickPropertiesFromAObject(contractInProgress, [
     "contractType",
     "deliveryTo",
@@ -89,8 +102,7 @@ function CreateContractWizard({
   contractInProgress,
 }: CreateContractWizardProps) {
   const router = useRouter();
-  const { loginWithPopup, isAuthenticated } = useAuth();
-  const [onLoggingCallback, setOnLoggingCallback] = useState(() => () => {});
+  const { isAuthenticated } = useAuth();
   const [currentContractId, setCurrentContractId] = useState(
     contractInProgress?.contractId
   );
@@ -110,11 +122,6 @@ function CreateContractWizard({
   ] = useState<ContractNotificationsType | null>(
     getNotificationsDataFromContractInProgress(contractInProgress)
   );
-
-  useEffect(() => {
-    if (!isAuthenticated) return;
-    onLoggingCallback?.();
-  }, [isAuthenticated, onLoggingCallback]);
 
   const { wizardHistory, nextStep, getCurrentStep } = useWizardHistory(
     WIZARD_STEPS,
@@ -201,19 +208,40 @@ function CreateContractWizard({
     return saveNewContract(data);
   }
 
-  function saveContractFirstStep(data: ContractDeliveryType) {
-    const continueToNextStep = catchAsyncError(async function () {
-      await createOrUpdateContractFirstStep(data);
-      setDeliveryData(data);
-      nextStep();
+  async function saveContractLocally(data: ContractDeliveryType) {
+    setLocalContractInProgress(celebrity.id, data);
+    Session.setRedirectPathOnLogin(
+      getCelebrityProfilePath(celebrity.username, {
+        focusCreateContractWizard: true,
+      })
+    );
+    analytics.track("CREATE_CONTRACT_UNAUTHENTICATED", {
+      ...data,
+      widget: WIDGET_NAME,
+      celebrityUsername: celebrity.username,
     });
-    if (!isAuthenticated) {
-      setOnLoggingCallback(() => continueToNextStep);
-      loginWithPopup();
-    } else {
-      continueToNextStep();
-    }
+    await router.push({
+      pathname: SIGN_IN_FROM_PATH,
+      query: { celebrity: celebrity.fullName },
+    });
   }
+
+  async function continueFirstStep(data: ContractDeliveryType) {
+    await createOrUpdateContractFirstStep(data);
+    deleteLocalContractInProgress(celebrity.id);
+    setDeliveryData(data);
+    nextStep();
+  }
+
+  const saveContractFirstStep = catchAsyncError(async function (
+    data: ContractDeliveryType
+  ) {
+    if (isAuthenticated) {
+      await continueFirstStep(data);
+    } else {
+      await saveContractLocally(data);
+    }
+  });
 
   const saveContractSecondStep = catchAsyncError(async function (
     values: ContractDetailsType
