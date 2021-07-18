@@ -11,11 +11,16 @@ const getWindow = () =>
           origin: "",
           pathname: "",
           userLocation: { countryCode: "" },
-          sessionStorage: {
-            setItem: noop,
-            getItem: noop,
-            removeItem: noop,
-          },
+        },
+        localStorage: {
+          setItem: noop,
+          getItem: noop,
+          removeItem: noop,
+        },
+        sessionStorage: {
+          setItem: noop,
+          getItem: noop,
+          removeItem: noop,
         },
         navigator: { userAgent: "", clipboard: { writeText: noop } },
       };
