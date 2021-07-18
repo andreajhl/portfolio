@@ -20,12 +20,13 @@ import {
 } from "react-app/src/state/ducks/contracts/actions";
 import { useAuth } from "lib/famosos-auth";
 import { RootState } from "react-app/src/state/store";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CreateContractWizardSkeleton } from "desktop-app/components/celebrity-profile/create-contract-wizard/skeleton";
 import { ComponentProps as CreateContractWizardProps } from "desktop-app/components/celebrity-profile/create-contract-wizard/types";
 import dynamic from "next/dynamic";
 import useGlobalFetches from "lib/hooks/useGlobalFetches";
 import { CREATE_CONTRACT_WIZARD_TEST_ID } from "__test__/testids";
+import { getLocalContractInProgress } from "lib/utils/localContractInProgress";
 
 const CreateContractWizard = dynamic<CreateContractWizardProps>(
   () =>
@@ -101,10 +102,20 @@ function CelebrityProfilePage({
     []
   );
 
+  const localContractInProgress = useMemo(
+    () => getLocalContractInProgress(celebrity.id),
+    [celebrity.id]
+  );
+
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (!isAuthenticated || localContractInProgress) return;
     getUserContractInProgress(celebrity.username);
-  }, [celebrity.username, getUserContractInProgress, isAuthenticated]);
+  }, [
+    celebrity.username,
+    getUserContractInProgress,
+    isAuthenticated,
+    localContractInProgress,
+  ]);
 
   const showContractStepsBeforeReviews =
     !isLoadingPublicContracts &&
@@ -117,12 +128,18 @@ function CelebrityProfilePage({
 
   useEffect(() => {
     if (
+      localContractInProgress ||
       contractInProgressRequest.completed ||
       (!isLoading && !isAuthenticated)
     ) {
       setIsReadyToCreateContract(true);
     }
-  }, [contractInProgressRequest.completed, isAuthenticated, isLoading]);
+  }, [
+    contractInProgressRequest.completed,
+    isAuthenticated,
+    isLoading,
+    localContractInProgress,
+  ]);
 
   useEffect(() => {
     if (!shouldFocusCreateContractWizard) return;
@@ -136,6 +153,9 @@ function CelebrityProfilePage({
     },
     [cleanUserContractInProgress]
   );
+
+  const contractInProgress =
+    localContractInProgress || contractInProgressRequest?.data;
 
   return (
     <PageContainer>
@@ -162,7 +182,7 @@ function CelebrityProfilePage({
                   createContractWizardIsFocused && styles.ContractWizardFocused
                 )}
                 celebrity={celebrity}
-                contractInProgress={contractInProgressRequest?.data}
+                contractInProgress={contractInProgress}
               />
             </Maybe>
             <Maybe it={celebrity.availableForSubscriptions}>
