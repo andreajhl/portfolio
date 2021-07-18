@@ -67,11 +67,11 @@ it("renders deliveryContact input, <CellphoneNumberInput /> and <BooleanRadiosIn
   ).toBeTruthy();
 });
 
-const useAuth0 = jest.spyOn(require("@auth0/auth0-react"), "useAuth0");
+const useAuth = jest.spyOn(require("lib/famosos-auth"), "useAuth");
 
 it("loads the user's email as deliveryContact field default value", () => {
   const testUser = { email: "user@testing.com" };
-  useAuth0.mockImplementationOnce(() => ({
+  useAuth.mockImplementationOnce(() => ({
     user: testUser,
   }));
   const { wrapper } = shallowRenderContractNotificationsForm();

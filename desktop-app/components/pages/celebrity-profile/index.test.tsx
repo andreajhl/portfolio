@@ -56,7 +56,7 @@ const setup = (overrideProps = {}) =>
     />
   );
 
-const useAuth0 = jest.spyOn(require("@auth0/auth0-react"), "useAuth0");
+const useAuth = jest.spyOn(require("lib/famosos-auth"), "useAuth");
 
 it("should renders <CreateContractWizard /> instead of <CreateContractWizardSkeleton /> when is not authenticated", () => {
   const wrapper = setup();
@@ -67,7 +67,7 @@ it("should renders <CreateContractWizard /> instead of <CreateContractWizardSkel
 });
 
 it("should renders <CreateContractWizardSkeleton /> instead of <CreateContractWizard /> when is authenticated and contractInProgressRequest is not completed", () => {
-  useAuth0.mockImplementationOnce(() => ({
+  useAuth.mockImplementationOnce(() => ({
     isAuthenticated: true,
   }));
   const wrapper = setup();
@@ -78,7 +78,7 @@ it("should renders <CreateContractWizardSkeleton /> instead of <CreateContractWi
 });
 
 it("should fetch contractInProgress properly, showing skeleton while loading", () => {
-  useAuth0.mockImplementationOnce(() => ({
+  useAuth.mockImplementationOnce(() => ({
     isAuthenticated: true,
   }));
   const getUserContractInProgress = jest.fn();

@@ -93,11 +93,11 @@ it("renders <ContractTypeCards /> and <VideoDeliveryFormFieldsElements /> with v
   );
 });
 
-const useAuth0 = jest.spyOn(require("@auth0/auth0-react"), "useAuth0");
+const useAuth = jest.spyOn(require("lib/famosos-auth"), "useAuth");
 
 it("loads the user's name as deliveryTo field value", () => {
   const testUser = { given_name: "Tester Doe" };
-  useAuth0.mockImplementationOnce(() => ({
+  useAuth.mockImplementationOnce(() => ({
     user: testUser,
   }));
 

@@ -133,11 +133,11 @@ it("renders its third step properly when user's contractInProgress has status 2"
   updateContractStep,
 } from "react-app/src/state/ducks/contracts/actions"; */
 
-const useAuth0 = jest.spyOn(require("@auth0/auth0-react"), "useAuth0");
+const useAuth = jest.spyOn(require("lib/famosos-auth"), "useAuth");
 
 it("create a new contract when there is a user authenticated and does not have contractInProgress", () =>
   withoutHooks(() => {
-    useAuth0.mockImplementationOnce(() => ({
+    useAuth.mockImplementationOnce(() => ({
       isAuthenticated: true,
     }));
     const createContract = jest
@@ -159,7 +159,7 @@ it("create a new contract when there is a user authenticated and does not have c
 // it change to the next step, and the next. (with filled data) <SubmitButton />
 xit("updates contract when change steps. (with filled contractInProgress)", () =>
   withoutHooks(() => {
-    useAuth0.mockImplementationOnce(() => ({
+    useAuth.mockImplementationOnce(() => ({
       isAuthenticated: true,
     }));
     const updateContract = jest
@@ -184,7 +184,7 @@ xit("updates contract when change steps. (with filled contractInProgress)", () =
 it("save the contract and redirect to payment methods when submit last step.", () =>
   new Promise((resolve) => {
     withoutHooks(async () => {
-      useAuth0.mockImplementationOnce(() => ({
+      useAuth.mockImplementationOnce(() => ({
         isAuthenticated: true,
         user: { email: "test2@testing.com", given_name: "Test Doe" },
       }));
