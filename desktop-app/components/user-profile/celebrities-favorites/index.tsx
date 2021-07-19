@@ -38,12 +38,13 @@ function CelebritiesFavoritesEdit({
     fetchUserFavoritesCelebrities();
   }, []);
 
-  console.log({ results });
   const deleteFavorite = async (celebrityId: number) => {
     const response = await addOrRemoveLike(celebrityId);
     if (response.status !== "OK") return;
     fetchUserFavoritesCelebrities();
   };
+
+  if (!isLoading && isCompleted && results.length === 0) return null;
 
   return (
     <div className={styles.CelebritiesFavoritesEditContainer}>
