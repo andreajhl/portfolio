@@ -12,6 +12,18 @@ import classes from "classnames";
 import { useRouter } from "next/router";
 import { CLIENT_HIRINGS } from "constants/paths";
 import StatusPaymentDetails from "../../status-payment";
+import { Link } from "desktop-app/components/common/routing/link";
+import { FormattedMessage } from "react-intl";
+
+const emailSpan = (chunk: string) => (
+  <span className={styles.EmailClient}>{chunk}</span>
+);
+
+const myHiringsLink = (chunk: string) => (
+  <Link className={styles.MyHiringsLink} href={CLIENT_HIRINGS}>
+    {chunk}
+  </Link>
+);
 
 type ContractWithPaymentsProps = {
   contract: {
@@ -61,34 +73,38 @@ function InstructionsContractApproved({
             )}
           />
           <span>
-            {celebrity_fullName} tiene un plazo de 7 días para grabar tu video a
-            partir de ahora.
+            <FormattedMessage
+              defaultMessage="{celebrity_fullName} tiene un plazo de 7 días para grabar tu video a partir de ahora."
+              values={{ celebrity_fullName }}
+            />
           </span>
         </div>
         <div className={styles.InstructionListItem}>
           <LetterIcon className={styles.InstructionListItemIcon} />
           <span>
-            Recibirás una notificación a{" "}
-            <span className={styles.EmailClient}>{email_client}</span> cuando tu
-            video esté listo.
+            <FormattedMessage
+              defaultMessage="Recibirás una notificación a <emailSpan>{email_client}</emailSpan> cuando tu video esté listo."
+              values={{ emailSpan, email_client }}
+            />
           </span>
         </div>
         <div className={styles.InstructionListItem}>
           <CashBackIcon className={styles.InstructionListItemIcon} />
           <span>
-            Si por alguna razón tu video no pudo ser grabado, te contactaremos.
+            <FormattedMessage defaultMessage="Si por alguna razón tu video no pudo ser grabado, te contactaremos." />
           </span>
         </div>
       </div>
       <div className={styles.FooterInstructions}>
         <div className={styles.ConsultationNoticies}>
           <p>
-            Si todo está bien con tu solicitud de acuerdo a nuestra políticas,
-            muy pronto podrás disfrutar de tu videomensaje.
+            <FormattedMessage defaultMessage="Si todo está bien con tu solicitud de acuerdo a nuestra políticas, muy pronto podrás disfrutar de tu videomensaje." />
           </p>
           <p>
-            En cualquier momento puedes consultar el estado de tus solicitudes
-            aquí.
+            <FormattedMessage
+              defaultMessage="En cualquier momento puedes consultar el estado de tus solicitudes <myHiringsLink>aquí.</myHiringsLink>"
+              values={{ myHiringsLink }}
+            />
           </p>
         </div>
         <div className={styles.FooterInstructionsCTA}>
@@ -99,10 +115,10 @@ function InstructionsContractApproved({
               styles.FooterInstructionsCTAButton
             )}
           >
-            Seguir Comprando
+            <FormattedMessage defaultMessage="Seguir Comprando" />
           </button>
           <span onClick={() => router.push(CLIENT_HIRINGS)}>
-            Ir a mis solicitudes
+            <FormattedMessage defaultMessage="Ir a mis solicitudes" />
           </span>
         </div>
       </div>
@@ -114,7 +130,9 @@ function HeaderContractApproved() {
   return (
     <div className={styles.HeaderContractApproved}>
       <CheckIcon />
-      <p>¡Felicidades! Tu pago ha sido aprobado.</p>
+      <p>
+        <FormattedMessage defaultMessage="¡Felicidades! Tu pago ha sido aprobado." />
+      </p>
     </div>
   );
 }

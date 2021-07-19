@@ -12,6 +12,18 @@ import classes from "classnames";
 import { CLIENT_HIRINGS } from "constants/paths";
 import ContractDetails from "../../details";
 import StatusPaymentDetails from "../../status-payment";
+import { Link } from "desktop-app/components/common/routing/link";
+import { FormattedMessage } from "react-intl";
+
+const emailSpan = (chunk: string) => (
+  <span className={styles.EmailClient}>{chunk}</span>
+);
+
+const myHiringsLink = (chunk: string) => (
+  <Link className={styles.MyHiringsLink} href={CLIENT_HIRINGS}>
+    {chunk}
+  </Link>
+);
 
 type ContractWithPaymentsProps = {
   contract: {
@@ -48,7 +60,9 @@ function HeaderContractAuthorized() {
   return (
     <div className={styles.HeaderContractAuthorized}>
       <CheckIcon />
-      <p>¡Felicidades! Tu pago ha sido aprobado.</p>
+      <p>
+        <FormattedMessage defaultMessage="¡Felicidades! Tu pago ha sido aprobado." />
+      </p>
     </div>
   );
 }
@@ -60,7 +74,9 @@ function InstructionsContractAuthorized({
   const router = useRouter();
   return (
     <div className={styles.InstructionsContractAuthorized}>
-      <h2 className={styles.InstructionsTitle}>Siguientes pasos:</h2>
+      <h2 className={styles.InstructionsTitle}>
+        <FormattedMessage defaultMessage="Siguientes pasos:" />
+      </h2>
       <div className={styles.InstructionList}>
         <div className={styles.InstructionListItem}>
           <div>
@@ -73,8 +89,11 @@ function InstructionsContractAuthorized({
           </div>
           <div>
             <span>
-              {celebrity_fullName} tiene un plazo de 7 días para grabar tu video
-              a partir de ahora.
+              <FormattedMessage
+                defaultMessage="{celebrity_fullName} tiene un plazo de 7 días para grabar tu video
+              a partir de ahora."
+                values={{ celebrity_fullName }}
+              />
             </span>
           </div>
         </div>
@@ -84,9 +103,10 @@ function InstructionsContractAuthorized({
           </div>
           <div>
             <span>
-              Recibirás una notificación a{" "}
-              <span className={styles.EmailClient}>{email_client}</span> cuando
-              tu video esté listo.
+              <FormattedMessage
+                defaultMessage="Recibirás una notificación a <emailSpan>{email_client}</emailSpan> cuando tu video esté listo."
+                values={{ emailSpan, email_client }}
+              />
             </span>
           </div>
         </div>
@@ -96,21 +116,20 @@ function InstructionsContractAuthorized({
           </div>
           <div>
             <span>
-              El cobro a tu cuenta se realizará una vez que {celebrity_fullName}{" "}
-              grabe tu video. (por ahora solo se realizó una autorización por
-              parte de tu banco).
+              <FormattedMessage
+                defaultMessage="El cobro a tu cuenta se realizará una vez que {celebrity_fullName} grabe tu video. (por ahora solo se realizó una autorización por parte de tu banco)."
+                values={{ celebrity_fullName }}
+              />
               <a
                 target="_blank"
                 rel="noreferrer"
                 href="https://pagos.famosos.com/autorizaciondepago"
                 className={styles.InstructionSpanCTA}
               >
-                ¿Qué significa esto?{" "}
+                <FormattedMessage defaultMessage="¿Qué significa esto?" />
               </a>
               <br />
-              Si por alguna razón tu video no pudo ser grabado, tu dinero estará
-              nuevamente disponible en un plazo en un plazo máximo de 21 días
-              hábiles aproximadamente dependiendo de tu banco.
+              <FormattedMessage defaultMessage="Si por alguna razón tu video no pudo ser grabado, tu dinero estará nuevamente disponible en un plazo en un plazo máximo de 21 días hábiles aproximadamente dependiendo de tu banco." />
             </span>
           </div>
         </div>
@@ -118,20 +137,13 @@ function InstructionsContractAuthorized({
       <div className={styles.FooterInstructions}>
         <div className={styles.ConsultationNoticies}>
           <p>
-            Si todo está bien con tu solicitud de acuerdo a nuestra políticas,
-            muy pronto podrás disfrutar de tu videomensaje.
+            <FormattedMessage defaultMessage="Si todo está bien con tu solicitud de acuerdo a nuestra políticas, muy pronto podrás disfrutar de tu videomensaje." />
           </p>
           <p>
-            En cuaquier momento puedes consultar el estado de tus solicitudes{" "}
-            <span
-              style={{
-                cursor: "pointer",
-                textDecoration: "underline",
-              }}
-              onClick={() => router.push(CLIENT_HIRINGS)}
-            >
-              aquí.
-            </span>
+            <FormattedMessage
+              defaultMessage="En cuaquier momento puedes consultar el estado de tus solicitudes <myHiringsLink>aquí.</myHiringsLink>"
+              values={{ myHiringsLink }}
+            />
           </p>
         </div>
         <div className={styles.FooterInstructionsCTA}>
@@ -142,10 +154,10 @@ function InstructionsContractAuthorized({
               styles.FooterInstructionsCTAButton
             )}
           >
-            Seguir Comprando
+            <FormattedMessage defaultMessage="Seguir Comprando" />
           </button>
           <span onClick={() => router.push(CLIENT_HIRINGS)}>
-            Ir a mis solicitudes
+            <FormattedMessage defaultMessage="Ir a mis solicitudes" />
           </span>
         </div>
       </div>

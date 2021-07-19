@@ -4,6 +4,13 @@ import styles from "./styles.module.scss";
 import ContractInstructionsEdit from "../instructions/edit";
 import ContractInstructionsView from "../instructions/view";
 import { useUpdateHiredContract } from "lib/hooks/useUpdateHiredContract";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  avatarAlt: {
+    defaultMessage: "Avatar de Famoso",
+  },
+});
 
 type ContractDetailsProps = {
   contract: {
@@ -30,6 +37,7 @@ function ContractDetails({
   celebrity,
   status_payment = null,
 }: ContractDetailsProps) {
+  const { formatMessage } = useIntl();
   const { update } = useUpdateHiredContract();
   const [formData, setFormData] = useState({
     deliveryTo: contract.deliveryTo,
@@ -43,6 +51,9 @@ function ContractDetails({
     });
     setIsEditing(false);
   };
+
+  const avatarAlt = formatMessage(messages.avatarAlt);
+
   return (
     <div className={styles.ContractDetails}>
       <div>
@@ -50,11 +61,14 @@ function ContractDetails({
           height="75px"
           width="75px"
           className={styles.Avatar}
-          alt={`Avatar de Famoso`}
+          alt={avatarAlt}
           src={celebrity.avatar}
-        ></img>
+        />
         <span className={styles.Title}>
-          Video Personalizado de {celebrity.fullName}
+          <FormattedMessage
+            defaultMessage="Video Personalizado de {celebrityFullName}"
+            values={{ celebrityFullName: celebrity.fullName }}
+          />
         </span>
       </div>
       <Maybe it={!isEditing}>
@@ -74,12 +88,13 @@ function ContractDetails({
         />
       </Maybe>
       <span className={styles.EditionNoticie}>
-        *Puedes editar las instrucciones de tu video mientras está pendiente de
-        grabación.
+        <FormattedMessage defaultMessage="*Puedes editar las instrucciones de tu video mientras está pendiente de grabación." />
       </span>
       <br />
       <div className={styles.EmailDetails}>
-        <p>Correo electrónico de notificación</p>
+        <p>
+          <FormattedMessage defaultMessage="Correo electrónico de notificación" />
+        </p>
         <span>{contract.deliveryContact}</span>
       </div>
       <Maybe it={React.isValidElement(status_payment)}>

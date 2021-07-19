@@ -4,6 +4,7 @@ import { ContractDataFormInput } from "desktop-app/components/common/form/contra
 import styles from "./styles.module.scss";
 import { ContractInstructionsTextarea } from "desktop-app/components/common/form/contract-instructions-textarea";
 import classes from "classnames";
+import { FormattedMessage } from "react-intl";
 
 type FormValuesType = {
   deliveryTo: string;
@@ -34,13 +35,13 @@ function ContractInstructionsEdit({
         className={classes("btn", styles.ToggleEditSpan)}
         onClick={submitForm}
       >
-        Guardar
+        <FormattedMessage defaultMessage="Guardar" />
       </button>
       <div className={styles.DeliveryInputsRow}>
         <div className={styles.WhoReceiveInputContainer}>
           <ContractDataFormInput
             placeholder="Camila"
-            label="Para"
+            label={<FormattedMessage defaultMessage="Para" />}
             value={values.deliveryTo}
             name="deliveryTo"
             maxLength={40}
@@ -53,7 +54,7 @@ function ContractInstructionsEdit({
           {values.deliveryFrom ? (
             <ContractDataFormInput
               placeholder="Marco"
-              label="De"
+              label={<FormattedMessage defaultMessage="De" />}
               value={values.deliveryFrom}
               maxLength={40}
               onChange={(event) => {

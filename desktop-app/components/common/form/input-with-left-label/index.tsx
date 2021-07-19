@@ -1,9 +1,10 @@
 import styles from "./styles.module.scss";
 import { InputWithDynamicWidth } from "../input-with-dynamic-width";
+import { ReactNode } from "react";
 
 export type InputWithLeftLabelProps = {
   name?: string;
-  label?: string;
+  label?: ReactNode;
   containerClassName?: string;
   labelClassName?: string;
   inputClassName?: string;

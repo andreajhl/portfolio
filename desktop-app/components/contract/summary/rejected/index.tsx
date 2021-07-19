@@ -6,6 +6,7 @@ import StatusPaymentDetails from "../../status-payment";
 import styles from "./styles.module.scss";
 import classes from "classnames";
 import { useRouter } from "next/router";
+import { FormattedMessage } from "react-intl";
 
 type ContractWithPaymentsProps = {
   contract: {
@@ -42,7 +43,9 @@ function HeaderContractRejected() {
   return (
     <div className={styles.HeaderContractRejected}>
       <XIcon />
-      <p>Tu pago ha sido rechazado.</p>
+      <p>
+        <FormattedMessage defaultMessage="Tu pago ha sido rechazado." />
+      </p>
     </div>
   );
 }
@@ -63,8 +66,7 @@ function InstructionsContractRejected({
       <div className={styles.FooterInstructions}>
         <div className={styles.ConsultationNoticies}>
           <p>
-            Si quieres saber más sobre el estado de tu transacción puedes
-            contactar a nuestro equipo de soporte.
+            <FormattedMessage defaultMessage="Si quieres saber más sobre el estado de tu transacción puedes contactar a nuestro equipo de soporte." />
           </p>
         </div>
         <div className={styles.FooterInstructionsCTA}>
@@ -75,7 +77,7 @@ function InstructionsContractRejected({
               styles.FooterInstructionsCTAButton
             )}
           >
-            Hacer nuevo intento de pago
+            <FormattedMessage defaultMessage="Hacer nuevo intento de pago" />
           </button>
         </div>
       </div>

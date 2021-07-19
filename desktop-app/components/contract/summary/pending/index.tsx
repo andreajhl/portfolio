@@ -7,6 +7,11 @@ import styles from "./styles.module.scss";
 import classes from "classnames";
 import { useRouter } from "next/router";
 import { CLIENT_HIRINGS } from "constants/paths";
+import { FormattedMessage } from "react-intl";
+
+const emailSpan = (chunk: string) => (
+  <span className={styles.EmailClient}>{chunk}</span>
+);
 
 type ContractWithPaymentsProps = {
   contract: {
@@ -44,7 +49,9 @@ function HeaderContractPending() {
   return (
     <div className={styles.HeaderContractPending}>
       <ClockIcon />
-      <p>Tu pago está pendiente de aprobación.</p>
+      <p>
+        <FormattedMessage defaultMessage="Tu pago está pendiente de aprobación." />
+      </p>
     </div>
   );
 }
@@ -70,7 +77,7 @@ function InstructionsContractPending({
           </div>
           <div>
             <span>
-              El proceso de aprobación de pago puede tardar alrededor de 24 hrs.
+              <FormattedMessage defaultMessage="El proceso de aprobación de pago puede tardar alrededor de 24 hrs." />
             </span>
           </div>
         </div>
@@ -80,9 +87,11 @@ function InstructionsContractPending({
           </div>
           <div>
             <span>
-              Te notificaremos a{" "}
-              <span className={styles.EmailClient}>{email_client}</span> cuando
-              tu pago haya sido aprobado.
+              <FormattedMessage
+                defaultMessage="Te notificaremos a <emailSpan>{email_client}</emailSpan> cuando tu
+              pago haya sido aprobado."
+                values={{ email_client, emailSpan }}
+              />
             </span>
           </div>
         </div>
@@ -90,8 +99,7 @@ function InstructionsContractPending({
       <div className={styles.FooterInstructions}>
         <div className={styles.ConsultationNoticies}>
           <p>
-            Si quieres saber más sobre el estado de tu transacción puedes
-            contactar a nuestro equipo de soporte.
+            <FormattedMessage defaultMessage="Si quieres saber más sobre el estado de tu transacción puedes contactar a nuestro equipo de soporte." />
           </p>
         </div>
         <div className={styles.FooterInstructionsCTA}>
@@ -102,10 +110,10 @@ function InstructionsContractPending({
               styles.FooterInstructionsCTAButton
             )}
           >
-            Seguir Comprando
+            <FormattedMessage defaultMessage="Seguir Comprando" />
           </button>
           <span onClick={() => router.push(CLIENT_HIRINGS)}>
-            Ir a mis solicitudes
+            <FormattedMessage defaultMessage="Ir a mis solicitudes" />
           </span>
         </div>
       </div>

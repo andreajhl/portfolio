@@ -3,6 +3,7 @@ import { PencilIcon } from "desktop-app/components/common/icons";
 import React from "react";
 import styles from "./styles.module.scss";
 import classes from "classnames";
+import { FormattedMessage } from "react-intl";
 
 function ContractInstructionsView({
   deliveryTo,
@@ -19,11 +20,19 @@ function ContractInstructionsView({
         <PencilIcon />
       </button>
       <div>
-        <span className={styles.WhoReceive}>Para: {deliveryTo}</span>
-        <Maybe
-          it={typeof deliveryFrom === "string" && deliveryFrom === "string"}
-        >
-          <span className={styles.WhoSend}>De: {deliveryFrom}</span>
+        <span className={styles.WhoReceive}>
+          <FormattedMessage
+            defaultMessage="Para: {deliveryTo}"
+            values={{ deliveryTo }}
+          />
+        </span>
+        <Maybe it={typeof deliveryFrom === "string" && deliveryFrom !== ""}>
+          <span className={styles.WhoSend}>
+            <FormattedMessage
+              defaultMessage="De: {deliveryFrom}"
+              values={{ deliveryFrom }}
+            />
+          </span>
         </Maybe>
       </div>
       <span className={styles.InstructionsDetails}>{instructions}</span>
