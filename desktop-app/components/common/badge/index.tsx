@@ -20,13 +20,14 @@ function Badge({
   iconVariant = <XIcon className={styles.XIcon} />,
   className,
   showIconBorder = true,
-  onClick
+  onClick,
 }: BadgeProps) {
   return (
     <div
+      title={text}
       className={classes(styles.Badge, className)}
       style={{
-        ...style
+        ...style,
       }}
     >
       <span className={styles.BadgeText}>{text}</span>
