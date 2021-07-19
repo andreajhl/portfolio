@@ -22,6 +22,7 @@ async function emailPasswordSignUpHandler(
       fullName: req.body["fullName"],
       birthDate: req.body["birthDate"],
       addToNewsLetter: req.body["allowNotifications"],
+      countryAlpha2Code: req.body["countryAlpha2Code"],
       locale: transformUserNavigatorLanguageToISO2Code(req.body["locale"])
     })
     .then((response) => {
