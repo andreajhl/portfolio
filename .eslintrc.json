@@ -1,4 +1,7 @@
 {
   "extends": "react-app",
-  "plugins": ["@next/eslint-plugin-next"]
+  "plugins": ["@next/eslint-plugin-next"],
+  "rules": {
+    "react/jsx-no-literals": "warn"
+  }
 }

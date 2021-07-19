@@ -21,7 +21,8 @@
     "build-check": "rm -rf .next && npm run build",
     "check-staged-files": "lint-staged",
     "extract:i18n": "formatjs extract {pages,react-app}/**/*.{js,tsx} --format crowdin --id-interpolation-pattern [sha512:contenthash:base64:6] --out-file lang/es.json",
-    "compile": "formatjs compile-folder --ast --format crowdin lang compiled-lang"
+    "compile": "formatjs compile-folder --ast --format crowdin lang compiled-lang",
+    "lint:messages": "eslint . --ext ts --ext tsx --ext js --quiet --rule \"react/jsx-no-literals: 2\""
   },
   "lint-staged": {
     "*.(js|ts|jsx|tsx)": [
