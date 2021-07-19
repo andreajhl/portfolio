@@ -18,6 +18,14 @@
   }
 }
 
+.DoNotShrink {
+  flex-shrink: 0;
+}
+
+.Shrink {
+  flex-shrink: 1;
+}
+
 .MainContentTopBarSidebarToggler {
   margin-right: calc(28px - 0.75em);
 }

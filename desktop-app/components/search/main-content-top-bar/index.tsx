@@ -102,17 +102,26 @@ function MainContentTopBar({
       >
         <Maybe it={hasSearched}>
           <HashtagsBadgeList
+            className={styles.Shrink}
             hashtags={hashtags}
             onChangeHashtags={updateHashtagFilter}
           />
-          <span className={styles.MainContentTopBarTotalResults}>
+          <span
+            className={classes(
+              styles.MainContentTopBarTotalResults,
+              styles.DoNotShrink
+            )}
+          >
             {totalResults} resultados
             {query.search ? ` para "${String(query.search)}"` : null}
           </span>
         </Maybe>
       </Maybe>
       <OrderByDropdown
-        className={styles.MainContentTopBarOrderByDropdown}
+        className={classes(
+          styles.MainContentTopBarOrderByDropdown,
+          styles.DoNotShrink
+        )}
         onChange={updateOrderByFilter}
         selectedOption={filtersOrderBy}
         options={orderByOptions}
