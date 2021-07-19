@@ -17,6 +17,8 @@ import {
   SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
   TRANSLATION_SIGN_UP_ERROR_MESSAGES
 } from "react-app/src/constants/messages";
+import getCookie from "react-app/src/utils/getCookie";
+import { USER_LOCATION_KEY } from "constants/keys";
 
 // Props
 type SignUpEmailPasswordFormProps = {
@@ -177,6 +179,7 @@ class SignUpEmailPasswordForm extends React.Component<
         password: this.state.password,
         birthDate: this.state.birthDate,
         allowNotifications: this.state.allowNotifications,
+        countryAlpha2Code: getCookie(USER_LOCATION_KEY),
         locale: this.props.intl ? this.props.intl.locale.toUpperCase() : "ES"
       })
       .then((response) => {

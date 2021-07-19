@@ -3,7 +3,7 @@ import { serialize, parse } from "cookie";
 import axios from "axios";
 import { AUTH_SUCCESS } from "react-app/src/routing/Paths";
 import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
-import { NEXT_LOCALE } from "constants/keys";
+import { NEXT_LOCALE, USER_LOCATION_KEY } from "constants/keys";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 import {
   localeAvailables,
@@ -39,7 +39,8 @@ async function facebookCallbackHandler(
       locale:
         transformUserNavigatorLanguageToISO2Code(
           cookies[NEXT_LOCALE] as localeAvailables
-        ) || "es"
+        ) || "es",
+      countryAlpha2Code: cookies[USER_LOCATION_KEY] || ""
     })
     .then((response) => {
       const status = response.data.status;

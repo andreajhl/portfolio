@@ -5,7 +5,7 @@ import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCook
 
 import axios from "axios";
 import { AUTH_SUCCESS } from "react-app/src/routing/Paths";
-import { NEXT_LOCALE } from "constants/keys";
+import { NEXT_LOCALE, USER_LOCATION_KEY } from "constants/keys";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
@@ -39,7 +39,8 @@ async function googleCallbackHandler(
       locale:
         transformUserNavigatorLanguageToISO2Code(
           cookies[NEXT_LOCALE] as localeAvailables
-        ) || "es"
+        ) || "es",
+      countryAlpha2Code: cookies[USER_LOCATION_KEY] || ""
     })
     .then((response) => {
       const status = response.data.status;
