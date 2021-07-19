@@ -1,6 +1,7 @@
 import classes from "classnames";
 import { getClientHiringPreviewEditorPath } from "constants/paths";
 import { Link } from "desktop-app/components/common/routing/link";
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 type CustomizeGiftCardProps = {
@@ -18,11 +19,13 @@ function CustomizeGiftCard({
     <section className={classes(styles.CustomizeGiftCard, className)}>
       <div className={styles.ContentContainer}>
         <h2 className={styles.Title}>
-          ¡Personaliza la entrega del video para {deliveryTo}!
+          <FormattedMessage
+            defaultMessage="¡Personaliza la entrega del video para {deliveryTo}!"
+            values={{ deliveryTo }}
+          />
         </h2>
         <p className={styles.CustomizeGiftText}>
-          Personaliza el fondo y agrega un mensaje para hacer más especial la
-          entrega de tu video.
+          <FormattedMessage defaultMessage="Personaliza el fondo y agrega un mensaje para hacer más especial la entrega de tu video." />
         </p>
       </div>
       <div className={styles.ButtonWrapper}>
@@ -31,7 +34,7 @@ function CustomizeGiftCard({
             type="button"
             className={classes("btn btn-primary", styles.CTAButton)}
           >
-            Personalizar entrega
+            <FormattedMessage defaultMessage="Personalizar entrega" />
           </button>
         </Link>
       </div>

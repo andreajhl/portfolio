@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { setCelebrityProfileVersion } from "react-app/src/state/ducks/celebrities/actions";
 import styles from "./styles.module.scss";
+
 type CommentsContractVideoProps = {
   contractComments: {
     avatar_url: string;
@@ -21,12 +20,12 @@ function CommentsContractVideo({
           key={`${comment.comment}-${comment.userFullName}`}
         >
           <img
-            alt="Imagen de perfil"
+            alt="Avatar"
             height="40px"
             width="40px"
             className={styles.UserImgProfile}
             src="/assets/img/avatar-blank.png"
-          ></img>
+          />
           <div className={styles.CommentDetails}>
             <span className={styles.UserFullName}>{comment.userFullName}</span>
             <span className={styles.UserComment}>{comment.comment}</span>

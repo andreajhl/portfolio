@@ -1,14 +1,13 @@
-import useForm from "lib/hooks/useForm";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchCommentHiring } from "react-app/src/state/ducks/hiring/operations";
-import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import styles from "./styles.module.scss";
 import { CommentCreator } from "../comment-creator";
 import CommentsContractVideo from "../comments-contract-video";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { RootState } from "react-app/src/state/store";
-// mapStateToProps
+import { FormattedMessage } from "react-intl";
+
 const mapStateToProps = ({ hiring }: RootState) => ({
   isLoading: hiring.fetchCommentHiringReducer.loading,
   isCompleted: hiring.fetchCommentHiringReducer.completed,
@@ -16,7 +15,6 @@ const mapStateToProps = ({ hiring }: RootState) => ({
   paginationData: hiring.fetchCommentHiringReducer.data.informationPage,
 });
 
-// mapStateToProps
 const mapDispatchToProps = {
   fetchCommentHiring,
 };
@@ -33,7 +31,6 @@ type CelebritySimilarVideosReelProps = {
 function CommentContractSection({
   contract_reference,
   fetchCommentHiring,
-  paginationData,
   contractComments,
   isLoading,
   previewMode = false,
@@ -46,7 +43,9 @@ function CommentContractSection({
   return (
     <section className={styles.CommentContractWrapper}>
       <div className={styles.CommentContractHeader}>
-        <h2>Comentarios</h2>
+        <h2>
+          <FormattedMessage defaultMessage="Comentarios" />
+        </h2>
       </div>
       <Maybe it={!isLoading && isCompleted}>
         <CommentsContractVideo contractComments={contractComments} />

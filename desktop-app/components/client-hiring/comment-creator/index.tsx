@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useForm from "lib/hooks/useForm";
 import styles from "./styles.module.scss";
 import { contractOperations } from "react-app/src/state/ducks/contracts";
@@ -6,14 +6,23 @@ import { SubmitText } from "desktop-app/components/common/helpers/submit-button-
 import { connect } from "react-redux";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import classes from "classnames";
-// mapStateToProps
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  firstCommentPlaceholder: {
+    defaultMessage: "Sé el primero en agregar un comentario.",
+  },
+  lastCommentPlaceholder: {
+    defaultMessage: "Agrega un comentario",
+  },
+});
+
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.addContractCommentReducer.loading,
   contractComment: state.contracts.addContractCommentReducer.data,
   isCompleted: state.contracts.addContractCommentReducer.completed,
 });
 
-// mapStateToProps
 const mapDispatchToProps = {
   addContractComment: contractOperations.addContractComment,
 };
@@ -50,7 +59,8 @@ function CommentCreator({
   useEffect(() => {
     if (isCompleted) onCommentCreated();
   }, [isCompleted]);
-  const { values, onChangeField, setFieldValue, submitForm, errors } = useForm<
+  const { formatMessage } = useIntl();
+  const { values, onChangeField, submitForm, errors } = useForm<
     typeof initialValues
   >({
     initialValues: {
@@ -64,38 +74,44 @@ function CommentCreator({
       });
     },
   });
-  if (isCompleted)
+  if (isCompleted) {
     return (
       <div className={styles.CommentBox}>
         <h4 className={styles.CommentSucceeded}>
-          Tu comentario ha sido enviado.
+          <FormattedMessage defaultMessage="Tu comentario ha sido enviado." />
         </h4>
       </div>
     );
+  }
+
+  const firstCommentPlaceholder = formatMessage(
+    messages.firstCommentPlaceholder
+  );
+
+  const lastCommentPlaceholder = formatMessage(messages.lastCommentPlaceholder);
+
+  const commentTextareaPlaceholder = firstComment
+    ? firstCommentPlaceholder
+    : lastCommentPlaceholder;
 
   return (
     <div className={styles.CommentBoxWrapper}>
       <div className={styles.CommentBox}>
         <img
-          alt="Imagen de perfil"
+          alt="Avatar"
           height="40px"
           width="40px"
           className={styles.UserImgProfile}
           src="/assets/img/avatar-blank.png"
-        ></img>
+        />
         <textarea
           id="comment-textarea"
           name="comment"
           value={values.comment}
           className={styles.CommentTextArea}
-          placeholder={
-            firstComment
-              ? "Sé el primero en agregar un comentario."
-              : "Agrega un comentario"
-          }
+          placeholder={commentTextareaPlaceholder}
           onChange={!previewMode ? onChangeField : undefined}
-        ></textarea>
-
+        />
         <button
           disabled={isLoading === "loading"}
           type="button"
@@ -103,7 +119,7 @@ function CommentCreator({
           onClick={submitForm}
         >
           <SubmitText
-            baseText="Publicar"
+            baseText={<FormattedMessage defaultMessage="Publicar" />}
             status={isLoading ? "loading" : "idle"}
           />
         </button>

@@ -1,6 +1,13 @@
 import classes from "classnames";
 import { ShareGiftDropdown } from "desktop-app/components/common/widgets/share-gift-dropdown";
 import styles from "./styles.module.scss";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  buttonChildrenText: {
+    defaultMessage: "Enviar video a {deliveryTo} ahora",
+  },
+});
 
 type ShareGiftDropdownButtonProps = {
   className?: string;
@@ -13,6 +20,11 @@ function ShareGiftDropdownButton({
   deliveryTo,
   contractReference,
 }: ShareGiftDropdownButtonProps) {
+  const { formatMessage } = useIntl();
+  const buttonChildrenText = formatMessage(messages.buttonChildrenText, {
+    deliveryTo,
+  });
+
   return (
     <ShareGiftDropdown
       deliveryTo={deliveryTo}
@@ -23,7 +35,7 @@ function ShareGiftDropdownButton({
         styles.CTAButton,
         className
       )}
-      buttonChildren={`Enviar video a ${deliveryTo} ahora`}
+      buttonChildren={buttonChildrenText}
     />
   );
 }

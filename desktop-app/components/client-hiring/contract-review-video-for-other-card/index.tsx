@@ -4,6 +4,13 @@ import WarningMessage from "../../common/warning-message";
 import styles from "./styles.module.scss";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import useReviewManager from "../../../../lib/hooks/useReviewManager";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  reviewTextareaPlaceholder: {
+    defaultMessage: "Escribe algo aquí...",
+  },
+});
 
 type ContractReviewCardProps = {
   contract_reference: string;
@@ -22,11 +29,15 @@ function ContractReviewVideo({
     submitForm,
     errors,
   } = useReviewManager({ contractReference: contract_reference });
+  const { formatMessage } = useIntl();
+  const reviewTextareaPlaceholder = formatMessage(
+    messages.reviewTextareaPlaceholder
+  );
 
   return (
     <div className={styles.ContractReviewCard}>
       <label htmlFor="" className={styles.ContractReviewCardLabel}>
-        Califica tu video
+        <FormattedMessage defaultMessage="Califica tu video" />
       </label>
       <StarRatingDisplay
         className={styles.ContractReviewCardStars}
@@ -38,7 +49,7 @@ function ContractReviewVideo({
         htmlFor="review-textarea"
         className={styles.ContractReviewCardLabel}
       >
-        Cuéntanos algo sobre tu experiencia
+        <FormattedMessage defaultMessage="Cuéntanos algo sobre tu experiencia" />
       </label>
       <textarea
         id="review-textarea"
@@ -48,7 +59,7 @@ function ContractReviewVideo({
           errors?.review && styles.ContractReviewCardTextareaHasError
         )}
         value={values.review}
-        placeholder="Escribe algo aquí..."
+        placeholder={reviewTextareaPlaceholder}
         onChange={onChangeField}
       />
       <WarningMessage
@@ -65,13 +76,18 @@ function ContractReviewVideo({
           className={`btn btn-tertiary ${styles.ContractReviewCardButton}`}
           onClick={submitForm}
         >
-          <SubmitText baseText={`${"Enviar"} calificación`} status={status} />
+          <SubmitText
+            baseText={<FormattedMessage defaultMessage="Enviar calificación" />}
+            status={status}
+          />
         </button>
         <button
           onClick={onDismissReview}
           className={`btn btn-outline ${styles.ContractDeferReview}`}
         >
-          <span>Lo haré más tarde</span>
+          <span>
+            <FormattedMessage defaultMessage="Lo haré más tarde" />
+          </span>
         </button>
       </div>
     </div>
