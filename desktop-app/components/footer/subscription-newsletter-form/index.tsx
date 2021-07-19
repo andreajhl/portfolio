@@ -60,7 +60,9 @@ function SubscriptionNewsletterForm() {
 
   return (
     <div className={styles.SubscriptionNewsletterForm}>
-      <p>Entérate de nuestras últimas noticias y promociones</p>
+      <p>
+        <FormattedMessage defaultMessage="Entérate de nuestras últimas noticias y promociones" />
+      </p>
       <div className={styles.SubscriptionNewsLetterFormInputElement}>
         <InputWithSubmitHandler
           onSubmit={submitForm}
