@@ -7,6 +7,7 @@ import { processStripePayment } from "react-app/src/state/ducks/payments/actions
 import { analytics } from "react-app/src/state/utils/gtm";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import styles from "./styles.module.scss";
 
 type StripeCustomerSourcesProps = {
@@ -36,6 +37,12 @@ type StripeCustomerSourcesProps = {
   onDeleteSource: (index: number) => void;
 };
 
+const messages = defineMessages({
+  errorNoCardSelected: {
+    defaultMessage: "Por favor seleccione una tarjeta",
+  },
+});
+
 function StripeCustomerSources({
   availableSources,
   contractReference,
@@ -45,12 +52,13 @@ function StripeCustomerSources({
   onDeleteSource,
 }: StripeCustomerSourcesProps) {
   const { push } = useRouter();
+  const { formatMessage } = useIntl();
   const [selectedSourceId, setSelectedSourceId] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [paymentInProcess, setPaymentInProcess] = useState(false);
   const applyStripeAuth = () => {
     if (selectedSourceId === null)
-      setErrorMessage("Por favor seleccione una tarjeta");
+      setErrorMessage(formatMessage(messages.errorNoCardSelected));
     else {
       setErrorMessage("");
       setPaymentInProcess(true);
@@ -124,7 +132,9 @@ function StripeCustomerSources({
   };
   return (
     <div className={styles.StripeCustomerSourcesWrapper}>
-      <p>Selecciona una tarjeta</p>
+      <p>
+        <FormattedMessage defaultMessage="Selecciona una tarjeta" />
+      </p>
       {availableSources.map((source, index) => (
         <div
           className={styles.SourceOption}
@@ -150,7 +160,13 @@ function StripeCustomerSources({
         className={`btn btn-primary ${styles.PaymentButton}`}
       >
         <SubmitText
-          baseText={paymentInProcess ? "Procesando" : `${"Pagar"}`}
+          baseText={
+            paymentInProcess ? (
+              <FormattedMessage defaultMessage="Procesando" />
+            ) : (
+              <FormattedMessage defaultMessage="Pagar" />
+            )
+          }
           status={paymentInProcess ? "loading" : "idle"}
         />
       </button>

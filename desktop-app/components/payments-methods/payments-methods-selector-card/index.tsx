@@ -10,6 +10,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CouponForm } from "../coupon-form";
 import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
 import { PaymentMethodsSelectorCardSkeleton } from "./skeleton";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
 const mapStateToProps = (state: RootState) => ({
   userInformation: state.session.getSessionReducer.data,
@@ -36,6 +37,12 @@ type PaymentsMethodsSelectorCardProps = {
   celebrityId: number;
 } & PropsFromRedux;
 
+const messages = defineMessages({
+  errorDataIncomplete: {
+    defaultMessage: "Por favor ingrese todos los datos",
+  },
+});
+
 function PaymentsMethodsSelectorCard({
   contractPrice,
   contractReference,
@@ -51,6 +58,8 @@ function PaymentsMethodsSelectorCard({
   couponData,
   celebrityId,
 }: PaymentsMethodsSelectorCardProps) {
+  console.log(couponData);
+  const { formatMessage } = useIntl();
   useEffect(() => {
     if (!userInformationLoading) getToken();
   }, []);
@@ -84,7 +93,7 @@ function PaymentsMethodsSelectorCard({
         {shouldDisplayDLocalForm ? (
           <>
             <h2 className={styles.PaymentMethodFormTitle}>
-              1. Datos de la persona que realiza el pago.
+              <FormattedMessage defaultMessage="1. Datos de la persona que realiza el pago." />
             </h2>
             <Maybe it={!userInformationLoading}>
               <div
@@ -109,13 +118,16 @@ function PaymentsMethodsSelectorCard({
         ) : null}
         <div className={styles.PaymentMethodFormSection}>
           <h2 className={styles.PaymentMethodFormTitle}>
-            {shouldDisplayDLocalForm ? 2 : 1}. Selecciona un Método de Pago.
+            {shouldDisplayDLocalForm ? 2 : 1}.
+            <FormattedMessage defaultMessage="Selecciona un Método de Pago." />
           </h2>
           <PaymentMethodsAvailableList
             discountCouponId={couponData.data?.id || null}
             onBuyerDataIncomplete={() => {
               DLocalPersonalInfoFormRef.current.focus();
-              setErrorMessageForDLocalForm("Por favor ingrese todos los datos");
+              setErrorMessageForDLocalForm(
+                formatMessage(messages.errorDataIncomplete)
+              );
             }}
             contractPrice={contractPrice}
             contractReference={contractReference}
@@ -134,8 +146,10 @@ function PaymentsMethodsSelectorCard({
             alt="Pago seguro"
           />
           <p className={styles.DisclaimerTermsAndPolicies}>
-            Al continuar estás aceptando nuestros Términos y Condiciones y
-            nuestra Política de privacidad.
+            <FormattedMessage
+              defaultMessage="Al continuar estás aceptando nuestros Términos y Condiciones y
+            nuestra Política de privacidad."
+            />
           </p>
         </div>
       </div>

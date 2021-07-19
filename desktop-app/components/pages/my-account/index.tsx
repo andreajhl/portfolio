@@ -16,6 +16,7 @@ import { SkeletonItems as SkeletonInformationEdit } from "desktop-app/components
 import { VideoContractsFavorites } from "desktop-app/components/user-profile/video-contracts-favorites";
 import { RootState } from "react-app/src/state/store";
 import { userDetails } from "desktop-app/types/userDetails";
+import { FormattedMessage } from "react-intl";
 
 const mapStateToProps = (state: RootState) => ({
   isCompletedUserData: state.session.userAccountDetails.completed,
@@ -44,7 +45,9 @@ function ClientProfilePage({
 
   return (
     <PageContainer>
-      <PageHeading showBackButton={false}>Mi perfil</PageHeading>
+      <PageHeading showBackButton={false}>
+        <FormattedMessage defaultMessage="Mi perfil" />
+      </PageHeading>
       <div className={styles.ClientProfilePage}>
         <main
           className={classes("container", styles.ClientProfilePageContainer)}

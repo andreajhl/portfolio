@@ -10,6 +10,7 @@ import { Link } from "desktop-app/components/common/routing/link";
 import { getClientHiringPreviewPath } from "constants/paths";
 import { MyHiringsCardContractInfo } from "desktop-app/components/my-hirings/my-hirings-card-contract-info";
 import { DownloadReceiptLink } from "desktop-app/components/my-hirings/download-receipt-link";
+import { FormattedMessage } from "react-intl";
 
 type MyHiringsCardBodyLeftSideProps = {
   contractData: MyHiringsContract;
@@ -38,8 +39,10 @@ function MyHiringsCardBodyLeftSide({
       />
       <Maybe it={canEdit}>
         <p className={styles.EditingCopy}>
-          *Puedes editar las instrucciones de tu video y la información de
-          entrega mientras tu video esté pendiente de grabación.
+          <FormattedMessage
+            defaultMessage=" *Puedes editar las instrucciones de tu video y la información de
+          entrega mientras tu video esté pendiente de grabación."
+          />
         </p>
       </Maybe>
       <Maybe it={isCompleted}>
@@ -51,7 +54,8 @@ function MyHiringsCardBodyLeftSide({
             type="button"
             className={"btn btn-primary " + styles.WatchVideoButton}
           >
-            Ver video <i className="fa fa-play" />
+            <FormattedMessage defaultMessage="Ver video" />{" "}
+            <i className="fa fa-play" />
           </button>
         </Link>
         <DownloadReceiptLink

@@ -2,6 +2,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { PriceLayout } from "desktop-app/components/common/helpers/price-layout";
 import { useEffect, useState } from "react";
 import { RootState } from "react-app/src/state/store";
+import { FormattedMessage } from "react-intl";
 import { connect, ConnectedProps } from "react-redux";
 import styles from "./styles.module.scss";
 
@@ -30,7 +31,9 @@ function ContractPriceSummary({
     <div className={styles.ContractPriceSummary}>
       <Maybe it={original_price !== contractPrice}>
         <div className={styles.SummaryRow}>
-          <span className={styles.BoldText}>Precio Original</span>
+          <span className={styles.BoldText}>
+            <FormattedMessage defaultMessage="Precio Original" />
+          </span>
           <div>
             <span className={styles.OriginalPrice}>
               <PriceLayout decimalScale={0} price={original_price} />
@@ -50,7 +53,9 @@ function ContractPriceSummary({
       </Maybe>
       <Maybe it={couponData.completed}>
         <div className={styles.SummaryRow}>
-          <span className={styles.BoldText}>Descuento</span>
+          <span className={styles.BoldText}>
+            <FormattedMessage defaultMessage="Descuento" />
+          </span>
           <div>
             {couponData.data?.isPercentageDiscount
               ? `${(couponData.data?.discountPercentage * 100).toFixed(2)}%  | `
@@ -63,7 +68,9 @@ function ContractPriceSummary({
         </div>
       </Maybe>
       <div className={styles.SummaryRow}>
-        <span className={styles.BoldText}>Total</span>
+        <span className={styles.BoldText}>
+          <FormattedMessage defaultMessage="Total" />
+        </span>
         <span className={styles.BoldText}>
           <PriceLayout
             decimalScale={0}

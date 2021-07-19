@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
 declare global {
@@ -80,6 +81,18 @@ type DLocalFormCardProps = {
   disabled: boolean;
 };
 
+const messages = defineMessages({
+  tokenErrorInvalidCard: {
+    defaultMessage: "Los datos de su tarjeta no son validos.",
+  },
+  errorCardNotSelected: {
+    defaultMessage: "Por favor, seleccione una tarjeta.",
+  },
+  inputBuyerNamePlaceholder: {
+    defaultMessage: "Escribe aquí el nombre",
+  },
+});
+
 function DLocalFormCard({
   paymentsMethodsAvailable,
   paymentMethodType,
@@ -100,7 +113,7 @@ function DLocalFormCard({
   const buyerNameCard = useRef<HTMLInputElement>(null);
   const [cardIsNotSelectedError, setCardIsNotSelectedError] = useState("");
   const [tokenError, settokenError] = useState("");
-
+  const { formatMessage } = useIntl();
   const handleChangePaymentMethod = (name, paymentMethodId) => {
     setCurrentOption({ name: name, paymentMethodId: paymentMethodId });
   };
@@ -118,14 +131,14 @@ function DLocalFormCard({
           .catch((err) => {
             err.result
               ? settokenError(err.result)
-              : settokenError("Los datos de su tarjeta no son validos.");
+              : settokenError(formatMessage(messages.tokenErrorInvalidCard));
           });
       } else {
         const nodeDocument = buyerNameCard.current;
         nodeDocument?.focus();
       }
     } else {
-      setCardIsNotSelectedError("Por favor seleccione una tarjeta");
+      setCardIsNotSelectedError(formatMessage(messages.errorCardNotSelected));
     }
   };
   useEffect(() => {
@@ -144,7 +157,9 @@ function DLocalFormCard({
   }, [isScriptLoaded, isScriptLoadSucceed]);
   return (
     <div className={styles.DLocalFormCardWrapper}>
-      <label className={styles.Label}>Selecciona una tarjeta</label>
+      <label className={styles.Label}>
+        <FormattedMessage defaultMessage="Selecciona una tarjeta" />
+      </label>
       <SelectCardBankPaymentMethod
         onChangeOptionSelected={(selected) => {
           setCardIsNotSelectedError("");
@@ -158,9 +173,11 @@ function DLocalFormCard({
       <Maybe it={cardIsNotSelectedError !== ""}>
         <WarningMessage message={cardIsNotSelectedError} />
       </Maybe>
-      <label className={styles.Label}>Nombre del titular de la tarjeta</label>
+      <label className={styles.Label}>
+        <FormattedMessage defaultMessage="Nombre del titular de la tarjeta" />
+      </label>
       <input
-        placeholder="Escribe aquí el nombre"
+        placeholder={formatMessage(messages.inputBuyerNamePlaceholder)}
         type="text"
         ref={buyerNameCard}
         className={styles.InputElement}
@@ -168,7 +185,9 @@ function DLocalFormCard({
         onChange={(e) => setBuyerName(e.target.value)}
         id="card-holdername"
       ></input>
-      <label className={styles.Label}>Datos de la tarjeta</label>
+      <label className={styles.Label}>
+        <FormattedMessage defaultMessage="Datos de la tarjeta" />
+      </label>
       <div className={styles.CardFieldWrapper}>
         <div
           id={`card-field-${paymentMethodType}`}
@@ -194,7 +213,13 @@ function DLocalFormCard({
         }}
       >
         <SubmitText
-          baseText={paymentInProcess ? "Procesando" : `${"Pagar"}`}
+          baseText={
+            paymentInProcess ? (
+              <FormattedMessage defaultMessage="Procesando" />
+            ) : (
+              <FormattedMessage defaultMessage="Pagar" />
+            )
+          }
           status={paymentInProcess ? "loading" : "idle"}
         />
       </button>

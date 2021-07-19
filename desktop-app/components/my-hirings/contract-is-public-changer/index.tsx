@@ -4,6 +4,7 @@ import { updateContractIsPublic } from "react-app/src/state/ducks/contracts/acti
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { canEditIsPublic } from "desktop-app/constants/contractStatuses";
+import { FormattedMessage } from "react-intl";
 
 type ContractIsPublicChangerProps = {
   className?: string;
@@ -44,7 +45,7 @@ function ContractIsPublicChanger({
   return (
     <div className={classes(styles.ContractIsPublicChanger, className)}>
       <span className={styles.ContractIsPublicChangerText}>
-        Permitir que este video sea público
+        <FormattedMessage defaultMessage="Permitir que este video sea público" />
       </span>
       <BooleanRadiosInputs
         value={isPublic}

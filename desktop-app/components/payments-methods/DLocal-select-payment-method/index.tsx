@@ -3,6 +3,7 @@ import { SubmitText } from "desktop-app/components/common/helpers/submit-button-
 import WarningMessage from "desktop-app/components/common/warning-message";
 import React, { useRef, useState } from "react";
 import { LoaderLayout } from "react-app/src/components/layouts/loader";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import styles from "./styles.module.scss";
 
 type DLocalSelectPaymentMethodProps = {
@@ -19,6 +20,13 @@ type DLocalSelectPaymentMethodProps = {
   disabled: boolean;
   paymentInProcess: boolean;
 };
+
+const messages = defineMessages({
+  errorNotPaymentMethodSelected: {
+    defaultMessage: "",
+  },
+});
+
 function DLocalSelectPaymentMethod({
   paymentsMethodsAvailable,
   paymentMethodType,
@@ -26,6 +34,7 @@ function DLocalSelectPaymentMethod({
   paymentInProcess,
   onStartPayment,
 }: DLocalSelectPaymentMethodProps) {
+  const { formatMessage } = useIntl();
   const inputLabel = useRef<HTMLInputElement>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [currentOption, setCurrentOption] = useState({
@@ -44,7 +53,7 @@ function DLocalSelectPaymentMethod({
     if (!isMissingOptionSelected()) {
       onStartPayment(currentOption);
     } else {
-      setErrorMessage("Por favor seleccione un método de pago");
+      setErrorMessage(formatMessage(messages.errorNotPaymentMethodSelected));
     }
   };
   return (
@@ -109,7 +118,13 @@ function DLocalSelectPaymentMethod({
         }}
       >
         <SubmitText
-          baseText={paymentInProcess ? "Procesando" : `${"Pagar"}`}
+          baseText={
+            paymentInProcess ? (
+              <FormattedMessage defaultMessage="Procesando" />
+            ) : (
+              <FormattedMessage defaultMessage="Pagar" />
+            )
+          }
           status={paymentInProcess ? "loading" : "idle"}
         />
       </button>

@@ -13,6 +13,7 @@ import {
   injectStripe,
   ReactStripeElements,
 } from "react-stripe-elements";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
 type StripeComponentProps = {
   contractPrice: number;
@@ -22,6 +23,11 @@ type StripeComponentProps = {
   stripe?: ReactStripeElements.StripeProps;
 };
 
+const messages = defineMessages({
+  unexpectedError: {
+    defaultMessage: "Ha ocurrido un error.",
+  },
+});
 function StripeCardForm({
   discountCouponId,
   contractPrice,
@@ -29,6 +35,7 @@ function StripeCardForm({
   celebrityId,
   stripe,
 }: StripeComponentProps) {
+  const { formatMessage } = useIntl();
   const { push } = useRouter();
   const [cardComplete, setCardComplete] = useState(false);
   const [error, setError] = useState(null);
@@ -100,7 +107,10 @@ function StripeCardForm({
       .catch((error) => {
         if (error.response) {
           if (error.response.data) {
-            setError(error.response?.data?.error || "Ha ocurrido un error.");
+            setError(
+              error.response?.data?.error ||
+                formatMessage(messages.unexpectedError)
+            );
           }
         }
       });
@@ -181,7 +191,9 @@ function StripeCardForm({
           }}
         />
         <Field
-          label="Correo del titular de la tarjeta"
+          label={
+            <FormattedMessage defaultMessage="Correo del titular de la tarjeta" />
+          }
           id="email"
           type="email"
           placeholder="janedoe@gmail.com"
@@ -194,7 +206,9 @@ function StripeCardForm({
         />
       </fieldset>
       <fieldset>
-        <label className={styles.LabelForm}>Datos de la tarjeta</label>
+        <label className={styles.LabelForm}>
+          <FormattedMessage defaultMessage="Datos de la tarjeta" />
+        </label>
         <div>
           <CardElement
             onChange={(event) => {
@@ -210,7 +224,7 @@ function StripeCardForm({
       </fieldset>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
       <SubmitButton processing={processing} error={error} disabled={false}>
-        Pagar
+        <FormattedMessage defaultMessage="Pagar" />
       </SubmitButton>
     </form>
   );
@@ -251,7 +265,11 @@ const SubmitButton = ({ processing, error, children, disabled }) => (
     type="submit"
     disabled={processing || disabled}
   >
-    {processing ? "Procesando..." : children}
+    {processing ? (
+      <FormattedMessage defaultMessage="Procesando..." />
+    ) : (
+      children
+    )}
   </button>
 );
 

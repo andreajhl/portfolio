@@ -8,6 +8,7 @@ import WarningMessage from "desktop-app/components/common/warning-message";
 import { discountCouponsGateways } from "react-app/src/state/ducks/payments/actions";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
+import { FormattedMessage } from "react-intl";
 const mapStateToProps = ({ payments }: RootState) => ({
   couponData: payments.fetchDiscountCouponReducer,
   currencyExchangeData: payments.currencyExchangeReducer.data,
@@ -53,7 +54,7 @@ function CouponForm({
   return (
     <div className={styles.CouponFormWrapper}>
       <label className={styles.LabelForm} htmlFor="coupon-input">
-        ¿Tienes un cupón de descuento?
+        <FormattedMessage defaultMessage="¿Tienes un cupón de descuento?" />
       </label>
       <InputWithSubmitHandler
         inputValue={values.coupon}
@@ -67,7 +68,13 @@ function CouponForm({
         inputID="coupon-input"
         placeHolderButton={
           <SubmitText
-            baseText={couponData.completed ? "Agregado" : `${"Aplicar"}`}
+            baseText={
+              couponData.completed ? (
+                <FormattedMessage defaultMessage="Agregado" />
+              ) : (
+                <FormattedMessage defaultMessage="Aplicar" />
+              )
+            }
             status={couponData.loading ? "loading" : "idle"}
           />
         }

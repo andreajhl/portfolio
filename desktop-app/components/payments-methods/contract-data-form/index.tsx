@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 import { useUpdateHiredContract } from "lib/hooks/useUpdateHiredContract";
 import { analytics } from "react-app/src/state/utils/gtm";
+import { defineMessages, useIntl } from "react-intl";
 
 const mapDispatchToProps = {};
 
@@ -25,6 +26,14 @@ type ContractDataFormProps = {
 } & FormValuesType &
   DispatchProps;
 
+const messages = defineMessages({
+  labelDeliveryTo: {
+    defaultMessage: "Para",
+  },
+  labelDeliveryFrom: {
+    defaultMessage: "De",
+  },
+});
 function ContractDataForm({
   deliveryTo,
   deliveryFrom,
@@ -32,7 +41,7 @@ function ContractDataForm({
   contract_reference,
 }: ContractDataFormProps) {
   const { update } = useUpdateHiredContract();
-
+  const { formatMessage } = useIntl();
   const [isEditing, setIsEditing] = useState(false);
   const { values, onChangeField, submitForm } = useForm<FormValuesType>({
     initialValues: {
@@ -70,7 +79,7 @@ function ContractDataForm({
         <ContractDataFormInput
           placeholder="Camila"
           disabled={!isEditing}
-          label="Para"
+          label={formatMessage(messages.labelDeliveryTo)}
           value={values.deliveryTo}
           onChange={(event) => {
             onChangeField(event);
@@ -81,7 +90,7 @@ function ContractDataForm({
         <Maybe it={deliveryFrom !== ""}>
           <ContractDataFormInput
             placeholder="Marco"
-            label="De"
+            label={formatMessage(messages.labelDeliveryFrom)}
             value={values.deliveryFrom}
             name="deliveryFrom"
             disabled={!isEditing}

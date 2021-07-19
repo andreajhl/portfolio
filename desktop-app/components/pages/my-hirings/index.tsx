@@ -13,6 +13,7 @@ import {
   REJECTED,
   PENDING_TO_PAY,
 } from "desktop-app/constants/contractStatuses";
+import { FormattedMessage } from "react-intl";
 type MyHiringsProps = { query: { [key: string]: any } };
 
 const orderByOptions = [
@@ -57,7 +58,9 @@ function MyHirings({ query }: MyHiringsProps) {
   return (
     <PageContainer>
       <PageHeading>
-        <span className="font-weight-bold mr-auto">Mis solicitudes</span>
+        <span className="font-weight-bold mr-auto">
+          <FormattedMessage defaultMessage="Mis solicitudes" />
+        </span>
         <CategoryFilterDropdown
           className={styles.Dropdown}
           options={filterByOptions}

@@ -14,6 +14,7 @@ import StripeCustomerSources from "../stripe-customer-sources";
 import styles from "./styles.module.scss";
 import scriptLoader from "react-async-script-loader";
 import { StripeProvider, Elements } from "react-stripe-elements";
+import { FormattedMessage } from "react-intl";
 
 const scriptSrc = "https://js.stripe.com/v3/";
 
@@ -94,7 +95,7 @@ function StripeForm({
           <CardIcon className={styles.CardIcon} />
 
           <span className={styles.LabelSection}>
-            Tarjeta de débito o crédito
+            <FormattedMessage defaultMessage="Tarjeta de débito o crédito" />
           </span>
           {expanded ? (
             <DotCircle className={styles.CheckIcon} />
@@ -132,9 +133,11 @@ function StripeForm({
               className={`btn btn-outline ${styles.ChangeDisplayFormBtn}`}
               onClick={() => setShowCardForm((value) => !value)}
             >
-              {!showCardForm
-                ? "Agregar nueva tarjeta"
-                : "Seleccionar una tarjeta"}
+              {!showCardForm ? (
+                <FormattedMessage defaultMessage="Agregar nueva tarjeta" />
+              ) : (
+                <FormattedMessage defaultMessage="Seleccionar una tarjeta" />
+              )}
             </button>
           </Maybe>
         </div>

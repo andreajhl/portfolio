@@ -14,6 +14,7 @@ import { ContractInfoSkeleton } from "desktop-app/components/payments-methods/co
 import { analytics } from "react-app/src/state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
 import { useRouter } from "next/router";
+import { FormattedMessage } from "react-intl";
 
 function trackRouteChange(newRoute: string) {
   analytics.track("PAYMENT_METHODS_LEAVE", {
@@ -70,7 +71,7 @@ function PaymentMethodsPage({
         showHomeLink={false}
         onBackButtonClick={trackBackButtonClick}
       >
-        Confirmación de compra
+        <FormattedMessage defaultMessage="Confirmación de compra" />
       </PageHeading>
 
       <div className={`container ${styles.PaymentMethodsPageContent}`}>

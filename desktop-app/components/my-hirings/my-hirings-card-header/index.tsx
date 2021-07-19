@@ -9,6 +9,7 @@ import getValidDate from "../../../../lib/utils/getValidDate";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import getFormattedDate from "../../../../lib/utils/getFormattedDate";
+import { FormattedMessage } from "react-intl";
 
 type MyHiringsCardHeaderProps = {
   contractData: MyHiringsContract;
@@ -32,7 +33,14 @@ function MyHiringsCardHeader({ contractData }: MyHiringsCardHeaderProps) {
     <header className={styles.MyHiringsCardHeader}>
       <div className={styles.MyHiringsCardHeaderContainer}>
         <div className={styles.MyHiringsCardHeaderHeading}>
-          <h2>Video personalizado de {contractData.celebrityData.fullName}</h2>
+          <h2>
+            <FormattedMessage
+              defaultMessage="Video personalizado de {contractData}"
+              values={{
+                contractData: contractData.celebrityData.fullName,
+              }}
+            />
+          </h2>
           <MyHiringsCardStatusBadge status={contractData.status} />
         </div>
         <div
@@ -43,18 +51,22 @@ function MyHiringsCardHeader({ contractData }: MyHiringsCardHeaderProps) {
           )}
         >
           <span>
-            Fecha de solicitud: {getFormattedDate(contractData.paymentDate)}
+            <FormattedMessage defaultMessage="Fecha de solicitud:" />{" "}
+            {getFormattedDate(contractData.paymentDate)}
           </span>
           <span>
             <Maybe
               it={contractIsCompleted}
               orElse="Fecha estimada de grabación:"
             >
-              Fecha de grabación:
+              <FormattedMessage defaultMessage="Fecha de grabación:" />
             </Maybe>{" "}
             {getFormattedDate(contractRecordingDate)}
           </span>
-          <span>ID de seguimiento: {contractData.reference}</span>
+          <span>
+            <FormattedMessage defaultMessage="ID de seguimiento:" />{" "}
+            {contractData.reference}
+          </span>
         </div>
       </div>
     </header>

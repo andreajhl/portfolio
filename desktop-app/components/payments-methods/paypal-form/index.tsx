@@ -13,6 +13,7 @@ import { CLIENT_HIRINGS, getPurchaseSummaryPath } from "constants/paths";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { analytics } from "react-app/src/state/utils/gtm";
+import { FormattedMessage } from "react-intl";
 
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -117,13 +118,17 @@ function PaypalForm({
         >
           <Maybe it={expanded}>
             <p>
-              Haz clic en el siguiente botón para hacer el pago utilizando tu
-              cuenta de Paypal.
+              <FormattedMessage
+                defaultMessage="Haz clic en el siguiente botón para hacer el pago utilizando tu
+              cuenta de paypal."
+              />
             </p>
 
             <p>
-              Serás redirigido a la página oficial de Paypal para continuar con
-              el pago
+              <FormattedMessage
+                defaultMessage="Serás redirigido a la página oficial de paypal para continuar con
+              el pago"
+              />
             </p>
 
             <PaypalReactButton

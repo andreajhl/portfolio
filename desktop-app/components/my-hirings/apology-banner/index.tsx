@@ -11,6 +11,7 @@ import { GrayBanner } from "../../layouts/gray-banner";
 import styles from "./styles.module.scss";
 import classes from "classnames";
 import { DownloadReceiptLink } from "desktop-app/components/my-hirings/download-receipt-link";
+import { FormattedMessage } from "react-intl";
 
 type ApologyBannerProps = {
   contractData: MyHiringsContract;
@@ -24,27 +25,46 @@ function ApologyBanner({ contractData }: ApologyBannerProps) {
       renderContainer={false}
       className={styles.ApologyBanner}
     >
-      <h2 className={styles.Title}>Lo sentimos {user?.given_name || null}</h2>
+      <h2 className={styles.Title}>
+        <FormattedMessage
+          defaultMessage="Lo sentimos {userName}"
+          values={{
+            userName: user?.given_name || null,
+          }}
+        />
+      </h2>
       <p className={styles.DynamicText}>
         <Maybe
           it={contractData.status === REJECTED}
           orElse={
             <>
-              En ocasiones se presentan causas de fuerza mayor que impiden que
-              el Famoso grabe. <br /> ¡Lamentamos el tiempo de espera!
+              <FormattedMessage
+                defaultMessage=" En ocasiones se presentan causas de fuerza mayor que impiden que
+              el Famoso grabe. {br} ¡Lamentamos el tiempo de espera!"
+                values={{
+                  br: <br />,
+                }}
+              />
             </>
           }
         >
-          La solicitud de tu video ha sido rechazada.
-          <br /> Algunas de las razones podrías ser las siguientes: <br /> Tu
+          <FormattedMessage
+            defaultMessage="  La solicitud de tu video ha sido rechazada.
+          {br} Algunas de las razones podrías ser las siguientes: {br} Tu
           solicitud es de tipo comercial, política o contenía alguna petición
-          ofensiva/sensible para el Famoso.
+          ofensiva/sensible para el Famoso."
+            values={{
+              br: <br />,
+            }}
+          />
         </Maybe>
       </p>
       <p>
-        Hemos hecho la orden de reembolso de tu dinero, ten en cuenta que por
+        <FormattedMessage
+          defaultMessage=" Hemos hecho la orden de reembolso de tu dinero, ten en cuenta que por
         los procesos bancarios, este puede tardar un plazo máximo de 21 días
-        hábiles en estar disponible nuevamente, dependiendo de tu banco.
+        hábiles en estar disponible nuevamente, dependiendo de tu banco."
+        />
         <br />
         <a
           href={PAYMENT_AUTHORIZATION_INFO}
@@ -52,7 +72,7 @@ function ApologyBanner({ contractData }: ApologyBannerProps) {
           rel="noopener noreferrer"
           className={styles.LearnMoreLink}
         >
-          Conoce más acerca de esto.
+          <FormattedMessage defaultMessage="Conoce más acerca de esto." />
         </a>
       </p>
       <DownloadReceiptLink
@@ -67,7 +87,12 @@ function ApologyBanner({ contractData }: ApologyBannerProps) {
           focusCreateContractWizard: true,
         })}
       >
-        Volver a solicitar un video a {contractData.celebrityData.fullName}
+        <FormattedMessage
+          defaultMessage="Volver a solicitar un video a {contractData}"
+          values={{
+            contractData: contractData.celebrityData.fullName,
+          }}
+        />
       </Link>
     </GrayBanner>
   );

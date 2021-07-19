@@ -5,10 +5,17 @@ import WarningMessage from "../../common/warning-message";
 import styles from "./styles.module.scss";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import useReviewManager from "lib/hooks/useReviewManager";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
 type ContractReviewCardProps = {
   contractData: MyHiringsContract;
 };
+
+const messages = defineMessages({
+  reviewPlaceholder: {
+    defaultMessage: "Escribe algo aquí...",
+  },
+});
 
 function ContractReviewCard({ contractData }: ContractReviewCardProps) {
   const {
@@ -26,11 +33,12 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
       stars: contractData.stars || 3,
     },
   });
+  const { formatMessage } = useIntl();
 
   return (
     <div className={styles.ContractReviewCard}>
       <label htmlFor="" className={styles.ContractReviewCardLabel}>
-        Califica tu video
+        <FormattedMessage defaultMessage="Califica tu video" />
       </label>
       <StarRatingDisplay
         className={styles.ContractReviewCardStars}
@@ -42,7 +50,7 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
         htmlFor="review-textarea"
         className={styles.ContractReviewCardLabel}
       >
-        Cuéntanos algo sobre tu experiencia
+        <FormattedMessage defaultMessage="Cuéntanos algo sobre tu experiencia" />
       </label>
       <textarea
         id="review-textarea"
@@ -52,7 +60,7 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
           errors?.review && styles.ContractReviewCardTextareaHasError
         )}
         value={values.review}
-        placeholder="Escribe algo aquí..."
+        placeholder={formatMessage(messages.reviewPlaceholder)}
         onChange={onChangeField}
       />
       <WarningMessage
@@ -69,9 +77,14 @@ function ContractReviewCard({ contractData }: ContractReviewCardProps) {
         onClick={submitForm}
       >
         <SubmitText
-          baseText={`${
-            isUpdatingReview ? "Actualizar" : "Enviar"
-          } calificación`}
+          baseText={
+            <FormattedMessage
+              defaultMessage="{action} calificación"
+              values={{
+                action: isUpdatingReview ? "Actualizar" : "Enviar",
+              }}
+            />
+          }
           status={status}
         />
       </button>

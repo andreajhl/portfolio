@@ -11,7 +11,7 @@ import {
 import { AVAILABLE_CURRENCIES_FOR_PAYMENTS } from "constants/availableCurrencyForPayments";
 import { RootState } from "react-app/src/state/store";
 import { connect, ConnectedProps } from "react-redux";
-import { useIntl } from "react-intl";
+import { defineMessages, useIntl } from "react-intl";
 
 const initialValuesForm = {
   buyer_name: "",
@@ -38,6 +38,15 @@ type DLocalPersonalInfoFormProps = {
   currency: string;
 } & PropsFromRedux;
 
+const messages = defineMessages({
+  placeholderBuyerName: {
+    defaultMessage: "Nombre",
+  },
+  placeholderEmailAddress: {
+    defaultMessage: "E-mail",
+  },
+});
+
 function DLocalPersonalInfoForm({
   initialValues: initialValuesFromProps,
   onChangeValues,
@@ -47,6 +56,7 @@ function DLocalPersonalInfoForm({
 }: DLocalPersonalInfoFormProps) {
   const intl = useIntl();
 
+  // TODO: add validations messages
   const validations: ValidationsType<typeof initialValuesForm> = {
     buyer_name(value) {
       if (value.length === 0) return "Debes ingresar tu nombre";
@@ -79,8 +89,8 @@ function DLocalPersonalInfoForm({
           className={styles.InputModifier}
           onChange={onChangeField}
           name="buyer_name"
-          placeholder="Nombre"
-        />
+          placeholder={intl.formatMessage(messages.placeholderBuyerName)}
+        ></input>
         <WarningMessage
           message={errors?.buyer_name || null}
           className={classes(
@@ -92,7 +102,7 @@ function DLocalPersonalInfoForm({
           value={values.email_address}
           className={styles.InputModifier}
           onChange={onChangeField}
-          placeholder="E-mail"
+          placeholder={intl.formatMessage(messages.placeholderEmailAddress)}
           name="email_address"
         />
         <WarningMessage

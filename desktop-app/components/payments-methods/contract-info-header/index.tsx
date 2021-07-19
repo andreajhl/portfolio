@@ -1,6 +1,7 @@
 import { ContractOccasion } from "desktop-app/components/common/widgets/contract-occasion";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
 import { occasionsData } from "react-app/src/constants/options";
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 type ContractInfoHeaderProps = {
@@ -26,7 +27,12 @@ function ContractInfoHeader({
           avatar={celebrityAvatar || "/assets/img/avatar-blank.png"}
         />
         <h1 className={styles.ContractInfoTitle}>
-          Video personalizado de {celebrityFullName}
+          <FormattedMessage
+            defaultMessage="Video personalizado de {celebrityFullName}"
+            values={{
+              celebrityFullName,
+            }}
+          />
         </h1>
       </div>
       <ContractOccasion occasion={occasion} />

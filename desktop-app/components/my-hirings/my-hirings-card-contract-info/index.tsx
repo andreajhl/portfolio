@@ -16,6 +16,8 @@ const initialValues = {
   contractType: 1,
 };
 
+// TODO: validations
+
 const validations = {
   deliveryTo(value: string) {
     if (value.length === 0) return "Debes introducir un nombre";

@@ -12,6 +12,7 @@ import { DeliveryCellphoneInput } from "desktop-app/components/my-hirings/delive
 import { useEffect, useState } from "react";
 import { useUpdateHiredContract } from "lib/hooks/useUpdateHiredContract";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
 function FieldInfo({ title, value }: { title: string; value: string }) {
   return (
@@ -38,6 +39,15 @@ type MyHiringsCardNotificationInfoProps = {
   setFieldValue?: (name: string, value: any, shouldValidate?: boolean) => void;
 };
 
+const messages = defineMessages({
+  fieldInfoTitleMail: {
+    defaultMessage: "Correo electrónico de notificación",
+  },
+  fieldInfoTitleWhatsapp: {
+    defaultMessage: "Whatsapp de notificación",
+  },
+});
+
 function MyHiringsCardNotificationInfo({
   contractData,
   isEditing,
@@ -47,6 +57,7 @@ function MyHiringsCardNotificationInfo({
   setFieldValue = function () {},
 }: MyHiringsCardNotificationInfoProps) {
   const { update } = useUpdateHiredContract();
+  const { formatMessage } = useIntl();
   const { deliveryContactCellphone, deliveryContact } = values;
   const [hasAddedCellphoneNumber, setHasAddedCellphoneNumber] = useState(false);
   const canEdit = canEditContract(contractData.status);
@@ -79,12 +90,12 @@ function MyHiringsCardNotificationInfo({
         orElse={
           <>
             <FieldInfo
-              title="Correo electrónico de notificación"
+              title={formatMessage(messages.fieldInfoTitleMail)}
               value={deliveryContact}
             />
             <Maybe it={Boolean(deliveryContactCellphone)}>
               <FieldInfo
-                title="Whatsapp de notificación"
+                title={formatMessage(messages.fieldInfoTitleWhatsapp)}
                 value={`+${deliveryContactCellphone}`}
               />
             </Maybe>
@@ -93,7 +104,7 @@ function MyHiringsCardNotificationInfo({
       >
         <div className={styles.InputWrapper}>
           <label className={styles.InputLabel}>
-            Correo electrónico de notificación
+            <FormattedMessage defaultMessage="Correo electrónico de notificación" />
           </label>
           <InputField
             name="deliveryContact"
@@ -119,7 +130,7 @@ function MyHiringsCardNotificationInfo({
         >
           <div className={styles.InputWrapper}>
             <label className={styles.InputLabel}>
-              Whatsapp de notificación (opcional)
+              <FormattedMessage defaultMessage="Whatsapp de notificación (opcional)" />
             </label>
             <DeliveryCellphoneInput
               onChange={setDeliveryContactCellphoneValue}

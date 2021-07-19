@@ -1,3 +1,4 @@
+import { defineMessages, useIntl } from "react-intl";
 import { CellphoneNumberInput } from "../../common/form/cellphone-number-input";
 import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
@@ -8,11 +9,18 @@ type DeliveryCellphoneInputProps = {
   onChange: (value: any) => void;
 };
 
+const messages = defineMessages({
+  searchPlaceholder: {
+    defaultMessage: "Buscar país",
+  },
+});
+
 function DeliveryCellphoneInput({
   value = "",
   disabled = false,
   onChange = function () {},
 }: DeliveryCellphoneInputProps) {
+  const { formatMessage } = useIntl();
   return (
     <Maybe
       it={!disabled}
@@ -28,7 +36,7 @@ function DeliveryCellphoneInput({
         placeholder="+57 310 1234567"
         country="co"
         enableSearch
-        searchPlaceholder="Buscar país"
+        searchPlaceholder={formatMessage(messages.searchPlaceholder)}
       />
     </Maybe>
   );

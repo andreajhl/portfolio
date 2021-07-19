@@ -3,6 +3,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { Link } from "desktop-app/components/common/routing/link";
 import { StepsGrayBanner } from "desktop-app/components/layouts/steps-gray-banner";
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 type MyHiringsCardStepsBannerProps = {
@@ -19,26 +20,45 @@ const getStepsItems = ({
     iconName: "celebrity-receive",
     description: (
       <>
-        Hemos enviado tu solicitud a {celebrityData.fullName}, tu video será
-        grabado en un plazo de{" "}
-        <span className={styles.TextBold}>1 a 7 días</span>.
+        <FormattedMessage
+          defaultMessage="Hemos enviado tu solicitud a {celebrityFullName}, tu video será
+        grabado en un plazo de
+        <textBold>1 a 7 días</textBold>."
+          values={{
+            celebrityFullName: celebrityData.fullName,
+            textBold: (chunk) => (
+              <span className={styles.TextBold}>{chunk}</span>
+            ),
+          }}
+        />
       </>
     ),
   },
+
   {
     iconAlternativeText: "Te notificaremos",
     iconName: "notification",
     description: (
       <>
-        Te notificaremos a{" "}
-        <span className={styles.TextBold}>{deliveryContact}</span>{" "}
-        <Maybe it={Boolean(deliveryContactCellphone)}>
-          y a{" "}
-          <span className={styles.TextBold}>
-            +{deliveryContactCellphone?.replace?.("+", "")}
-          </span>{" "}
-        </Maybe>
-        cuando tu video esté listo.
+        <FormattedMessage
+          defaultMessage="Te notificaremos a 
+        <textBold>{deliveryContact}</textBold> {cellPhoneNumber}
+        cuando tu video esté listo."
+          values={{
+            textBold: (chunk) => (
+              <span className={styles.TextBold}>{chunk}</span>
+            ),
+            deliveryContact: deliveryContact,
+            cellPhoneNumber: Boolean(deliveryContactCellphone)
+              ? "y a " +
+                (
+                  <span className={styles.TextBold}>
+                    +{deliveryContactCellphone?.replace?.("+", "")}
+                  </span>
+                )
+              : "",
+          }}
+        />
       </>
     ),
   },
@@ -47,9 +67,11 @@ const getStepsItems = ({
     iconName: "refund",
     description: (
       <>
-        Si por alguna razón tu video no pudo ser grabado, tu dinero estará
+        <FormattedMessage
+          defaultMessage=" Si por alguna razón tu video no pudo ser grabado, tu dinero estará
         nuevamente disponible en un plazo máximo de 21 días hábiles, dependiendo
-        de tu banco.
+        de tu banco."
+        />
         <br />
         <a
           href={PAYMENT_AUTHORIZATION_INFO}
@@ -57,7 +79,7 @@ const getStepsItems = ({
           rel="noopener noreferrer"
           className={styles.LearnMoreLink}
         >
-          Conoce más acerca de esto.
+          <FormattedMessage defaultMessage="Conoce más acerca de esto." />
         </a>
       </>
     ),

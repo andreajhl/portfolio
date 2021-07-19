@@ -17,6 +17,7 @@ import Pagination from "desktop-app/components/common/pagination";
 import Skeleton from "react-loading-skeleton";
 import { getReceiptsUrls } from "react-app/src/state/ducks/session/actions";
 import getObjectWithFallbackValues from "lib/utils/getObjectWithFallbackValues";
+import { FormattedMessage } from "react-intl";
 
 const allowedStatuses = [PAYED_BY_CLIENT, REJECTED, EXPIRED, COMPLETED];
 
@@ -100,7 +101,9 @@ function MyHiringsCardsSection({
     <div className="container">
       <Maybe it={isCompleted} orElse={loadingSkeletons}>
         <div className={styles.TotalResultsCounter}>
-          <p>Total de Solicitudes</p>
+          <p>
+            <FormattedMessage defaultMessage="Total de Solicitudes" />
+          </p>
           <span>{informationPage.totalItems}</span>
         </div>
         {contracts.map((contractData) => (
