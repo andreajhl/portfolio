@@ -17,6 +17,7 @@ import {
   SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
   TRANSLATION_SIGN_UP_ERROR_MESSAGES
 } from "react-app/src/constants/messages";
+import { SubmitText } from "../../common/widgets/submit-button-text";
 
 // Props
 type SignUpEmailPasswordFormProps = {
@@ -69,7 +70,6 @@ class SignUpEmailPasswordForm extends React.Component<
       this
     );
     this.sendData = this.sendData.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.toggleShowPasswordState = this.toggleShowPasswordState.bind(this);
   }
 
@@ -115,14 +115,6 @@ class SignUpEmailPasswordForm extends React.Component<
     });
   }
 
-  handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      this.sendData().then((r) => {
-        console.log(r);
-      });
-    }
-  };
-
   validateInputs = () => {
     // Validate full name
     if (this.state.fullName === "") {
@@ -146,7 +138,8 @@ class SignUpEmailPasswordForm extends React.Component<
     return null;
   };
 
-  sendData = async () => {
+  sendData = async (event) => {
+    event?.preventDefault?.();
     // Remove error message
     this.setState({
       ...this.state,
@@ -156,6 +149,9 @@ class SignUpEmailPasswordForm extends React.Component<
     if (this.state.isLoading) {
       return;
     }
+
+    this.setState({ isLoading: true });
+
     // Notify event
     GTM.tagManagerDataLayer("CLICK_ON_SIGN_UP_WITH_EMAIL_PASSWORD", {
       email: this.state.email
@@ -186,9 +182,13 @@ class SignUpEmailPasswordForm extends React.Component<
         } else {
           this.setState({
             ...this.state,
+            isLoading: false,
             error: response.data.error
           });
         }
+      })
+      .catch((error) => {
+        this.setState({ isLoading: false });
       });
   };
 
@@ -220,17 +220,19 @@ class SignUpEmailPasswordForm extends React.Component<
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.sendData} noValidate>
         <h3 className={styles.SignUpBoxTitle}>
           <FormattedMessage defaultMessage="o regístrate con tu correo electrónico" />
         </h3>
         <AuthFormField
+          name="name"
           label={<FormattedMessage defaultMessage="Nombre" />}
           placeholder="Marcos"
           value={this.state.fullName}
           onChange={this.handleFullNameInput}
         />
         <AuthFormField
+          name="birth-date"
           type="date"
           label={<FormattedMessage defaultMessage="Cumpleaños" />}
           placeholder="DD / MM / AA"
@@ -238,13 +240,16 @@ class SignUpEmailPasswordForm extends React.Component<
           onChange={this.handleBirthDateInput}
         />
         <AuthFormField
+          type="email"
+          name="email"
           label={<FormattedMessage defaultMessage="Correo electrónico" />}
           placeholder="usuario@dominio.com"
           value={this.state.email}
           onChange={this.handleEmailInput}
         />
-        {/*TODO: Input group with show password button*/}
         <AuthFormField
+          autoComplete="new-password"
+          name="new-password"
           type={this.state.showPassword ? "text" : "password"}
           label={<FormattedMessage defaultMessage="Contraseña" />}
           placeholder="**********"
@@ -259,7 +264,6 @@ class SignUpEmailPasswordForm extends React.Component<
             )
           }
         />
-        {/*TODO: Input group with show password button*/}
         <AuthFormField
           type={this.state.showPassword ? "text" : "password"}
           label={<FormattedMessage defaultMessage="Confirmar" />}
@@ -279,20 +283,23 @@ class SignUpEmailPasswordForm extends React.Component<
         />
         <div className={"text-center mt-2"}>{this.renderError()}</div>
         <button
-          type="button"
+          type="submit"
           className={classes("btn btn-primary", styles.SignUpBoxSubmitButton)}
           disabled={this.state.isLoading}
-          onClick={this.sendData}
         >
-          <Maybe
-            it={this.props.willRedirect}
-            orElse={<FormattedMessage defaultMessage="Registrarme" />}
-          >
-            <FormattedMessage defaultMessage="Registrarme y continuar" />
-          </Maybe>
+          <SubmitText
+            baseText={
+              <Maybe
+                it={this.props.willRedirect}
+                orElse={<FormattedMessage defaultMessage="Registrarme" />}
+              >
+                <FormattedMessage defaultMessage="Registrarme y continuar" />
+              </Maybe>
+            }
+            status={this.state.isLoading ? "loading" : "idle"}
+          />
         </button>
-        <hr />
-      </div>
+      </form>
     );
   }
 }

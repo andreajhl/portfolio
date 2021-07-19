@@ -15,6 +15,7 @@ import {
   LOGIN_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
   TRANSLATION_LOGIN_ERROR_MESSAGES
 } from "react-app/src/constants/messages";
+import { SubmitText } from "../../common/widgets/submit-button-text";
 
 // Props
 type SignInEmailPasswordFormProps = {
@@ -51,7 +52,6 @@ class SignInEmailPasswordForm extends React.Component<
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.sendData = this.sendData.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.toggleShowPasswordState = this.toggleShowPasswordState.bind(this);
   }
 
@@ -69,12 +69,6 @@ class SignInEmailPasswordForm extends React.Component<
     });
   }
 
-  handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      this.sendData();
-    }
-  };
-
   validateInputs = () => {
     // Validate emails
     if (!isEmail(this.state.email) || this.state.email === "") {
@@ -87,7 +81,8 @@ class SignInEmailPasswordForm extends React.Component<
     return null;
   };
 
-  sendData = async () => {
+  sendData = async (event) => {
+    event?.preventDefault?.();
     // Remove error message
     this.setState({
       ...this.state,
@@ -97,6 +92,9 @@ class SignInEmailPasswordForm extends React.Component<
     if (this.state.isLoading) {
       return;
     }
+
+    this.setState({ isLoading: true });
+
     // Notifiy event
     GTM.tagManagerDataLayer("CLICK_ON_SIGN_IN_WITH_EMAIL_PASSWORD", {
       email: this.state.email
@@ -123,9 +121,13 @@ class SignInEmailPasswordForm extends React.Component<
         } else {
           this.setState({
             ...this.state,
+            isLoading: false,
             error: response.data.error
           });
         }
+      })
+      .catch((error) => {
+        this.setState({ isLoading: false });
       });
   };
 
@@ -157,25 +159,26 @@ class SignInEmailPasswordForm extends React.Component<
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.sendData} noValidate>
         <h3 className={styles.SignInBoxTitle}>
           <FormattedMessage defaultMessage="o ingresa con tu correo electrónico" />
         </h3>
         <AuthFormField
+          type="email"
+          name="email"
           label={<FormattedMessage defaultMessage="Correo electrónico" />}
           placeholder="usuario@dominio.com"
           value={this.state.email}
           onChange={this.handleEmailInput}
-          onKeyPress={this.handleKeyPress}
         />
-        {/*TODO: Input group with show password button*/}
         <AuthFormField
+          autoComplete="current-password"
+          name="current-password"
           type={this.state.showPassword ? "text" : "password"}
           label={<FormattedMessage defaultMessage="Contraseña" />}
           placeholder="**********"
           value={this.state.password}
           onChange={this.handlePasswordInput}
-          onKeyPress={this.handleKeyPress}
           onIconClick={this.toggleShowPasswordState}
           iconElement={
             !this.state.showPassword ? (
@@ -187,14 +190,16 @@ class SignInEmailPasswordForm extends React.Component<
         />
         <div className={"text-center"}>{this.renderError()}</div>
         <button
-          type="button"
+          type="submit"
           className={classes("btn btn-primary", styles.SignInBoxSubmitButton)}
           disabled={this.state.isLoading}
-          onClick={this.sendData}
         >
-          <FormattedMessage defaultMessage={"Continuar"} />
+          <SubmitText
+            baseText={<FormattedMessage defaultMessage="Ingresar" />}
+            status={this.state.isLoading ? "loading" : "idle"}
+          />
         </button>
-      </div>
+      </form>
     );
   }
 }
