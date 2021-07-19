@@ -4,6 +4,7 @@ import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { getClientHiringPreviewPath } from "constants/paths";
 import { useAuth } from "lib/famosos-auth";
 import { Session } from "react-app/src/state/utils/session";
+import { FormattedMessage } from "react-intl";
 
 type HiringPreviewOwnerBannerProps = {
   className?: string;
@@ -27,16 +28,18 @@ function HiringPreviewOwnerBanner({
 
   return (
     <div className={classes(styles.HiringPreviewOwnerBanner, className)}>
-      <h3 className={styles.Title}>¿Eres el dueño de este video?</h3>
+      <h3 className={styles.Title}>
+        <FormattedMessage defaultMessage="¿Eres el dueño de este video?" />
+      </h3>
       <p className={styles.Text}>
-        Inicia sesión para ver los detalles o personalizar la entrega.
+        <FormattedMessage defaultMessage="Inicia sesión para ver los detalles o personalizar la entrega." />
       </p>
       <button
         type="button"
         className={classes("btn btn-secondary", styles.Button)}
         onClick={loginWithRedirectToClientHiring}
       >
-        Ingresar
+        <FormattedMessage defaultMessage="Ingresar" />
       </button>
     </div>
   );

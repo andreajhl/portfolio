@@ -1,3 +1,4 @@
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 type HiringPreviewBannerProps = {
@@ -16,12 +17,15 @@ function HiringPreviewBanner({
       <img
         className={styles.FamososLogo}
         src="/assets/img/famosos-icon.png"
-        alt="Icono de Famosos Inc."
+        alt="Famosos Inc."
         width="51"
         height="49"
       />
       <h1 className={styles.Title}>
-        Mira este video de {celebrityFullName} para {deliveryTo}.
+        <FormattedMessage
+          defaultMessage="Mira este video de {celebrityFullName} para {deliveryTo}."
+          values={{ celebrityFullName, deliveryTo }}
+        />
       </h1>
     </div>
   );
