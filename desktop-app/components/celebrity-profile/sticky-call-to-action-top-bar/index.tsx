@@ -8,6 +8,13 @@ import {
   parentElementClass,
 } from "desktop-app/components/common/text-with-overflow";
 import classes from "classnames";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  avatarAlt: {
+    defaultMessage: "Foto de {celebrityFullName}",
+  },
+});
 
 type StickyCallToActionTopBarProps = {
   celebrity: celebrityType;
@@ -20,6 +27,11 @@ function StickyCallToActionTopBar({
   appearancePosition,
   onCTAButtonClick = function () {},
 }: StickyCallToActionTopBarProps) {
+  const { formatMessage } = useIntl();
+  const avatarImgAlt = formatMessage(messages.avatarAlt, {
+    celebrityFullName: celebrity.fullName,
+  });
+
   return (
     <StickyTopBar appearancePosition={appearancePosition}>
       <div
@@ -31,7 +43,7 @@ function StickyCallToActionTopBar({
       >
         <img
           src={celebrity.avatar}
-          alt={`Foto de ${celebrity.fullName}`}
+          alt={avatarImgAlt}
           className={styles.StickyCTAAvatar}
         />
         <h2 className={styles.StickyCTAFullName}>
@@ -49,7 +61,7 @@ function StickyCallToActionTopBar({
           className={classes("btn btn-primary", styles.StickyCTAButton)}
           onClick={onCTAButtonClick}
         >
-          Comprar video personalizado
+          <FormattedMessage defaultMessage="Comprar video personalizado" />
         </button>
       </div>
     </StickyTopBar>

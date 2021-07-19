@@ -6,6 +6,7 @@ import { Link } from "desktop-app/components/common/routing/link";
 import { getSearchCategoryPath } from "constants/paths";
 import { CelebrityInfoReviews } from "desktop-app/components/celebrity-profile/celebrity-info-reviews";
 import classes from "classnames";
+import { FormattedMessage } from "react-intl";
 
 type CelebrityInfoProps = {
   celebrity: celebrityType;
@@ -38,7 +39,9 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
           styles.DeliveryTimeWrapper
         )}
       >
-        <span className={styles.DeliveryTimeLabel}>Respuesta promedio:</span>
+        <span className={styles.DeliveryTimeLabel}>
+          <FormattedMessage defaultMessage="Respuesta promedio:" />
+        </span>
         <CelebrityResponseTime
           availableForFlashDeliveries={celebrity.availableForFlashDeliveries}
           turnAroundTime={celebrity.turnaround}

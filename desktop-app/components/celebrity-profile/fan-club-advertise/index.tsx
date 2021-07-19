@@ -1,5 +1,6 @@
 import { getCelebrityFanClubPath } from "constants/paths";
 import { celebrityType } from "desktop-app/types/celebrityType";
+import { FormattedMessage } from "react-intl";
 import { Link } from "../../common/routing/link";
 import styles from "./styles.module.scss";
 
@@ -11,7 +12,10 @@ function FanClubAdvertise({ celebrity }: FanClubAdvertiseProps) {
   return (
     <div className={styles.FanClubAdvertise}>
       <span>
-        Accede a contenido exclusivo <br /> de {celebrity.fullName}.
+        <FormattedMessage
+          defaultMessage="Accede a contenido exclusivo {br} de {celebrityFullName}."
+          values={{ celebrityFullName: celebrity.fullName, br: <br /> }}
+        />
       </span>
       <Link
         href={getCelebrityFanClubPath(celebrity.username)}
@@ -21,7 +25,7 @@ function FanClubAdvertise({ celebrity }: FanClubAdvertiseProps) {
           type="button"
           className={"btn btn-tertiary " + styles.FanClubAdvertiseButton}
         >
-          Unirme al Club de Fans
+          <FormattedMessage defaultMessage="Unirme al Club de Fans" />
         </button>
       </Link>
     </div>

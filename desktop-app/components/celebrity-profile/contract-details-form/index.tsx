@@ -14,8 +14,17 @@ import {
 } from "desktop-app/components/common/form/text-input-with-placeholders";
 import { OccasionsGrid } from "desktop-app/components/celebrity-profile/occasions-grid";
 import objectHasProperties from "lib/utils/objectHasProperties";
-import { FormattedMessage, useIntl } from "react-intl";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
+
+const messages = defineMessages({
+  instructionsPlaceholder: {
+    defaultMessage: "¡Hola {celebrityFullName}! Me gustaría que...",
+  },
+});
+
+const br = <br />;
+const span = (chunk: string) => <span>{chunk}</span>;
 
 const initialValues: ContractDetailsType = {
   occasion: "OTHER",
@@ -72,7 +81,7 @@ function ContractDetailsForm({
     validations,
     onSubmit,
   });
-  const { locale } = useIntl();
+  const { locale, formatMessage } = useIntl();
   const [textareaText, setTextareaText] = useState(
     initialValuesFromProps?.instructions ||
       replacePlaceHolder(
@@ -133,13 +142,20 @@ function ContractDetailsForm({
     setFieldValue("instructions", getTextContent(target));
   }
 
+  const instructionsPlaceholder = formatMessage(
+    messages.instructionsPlaceholder,
+    { celebrityFullName }
+  );
+
   return (
     <section className={styles.VideoDetailsForm}>
       <WizardTopNavigation
         enableNavigation
         onStepClick={validateFormBeforeChangeStep}
       />
-      <h2 className={styles.VideoDetailsFormTitle}>Selecciona una ocasión</h2>
+      <h2 className={styles.VideoDetailsFormTitle}>
+        <FormattedMessage defaultMessage="Selecciona una ocasión" />
+      </h2>
       <OccasionsGrid
         contractType={contractType}
         selectedOccasion={values.occasion}
@@ -148,12 +164,14 @@ function ContractDetailsForm({
       />
       <div className={styles.VideoDetailsFormInstructions}>
         <label className={styles.VideoDetailsFormInstructionsLabel}>
-          Dale instrucciones a {celebrityFullName} para que tu video quede como
-          esperas.
-          <br /> <span>(Edita este texto base o escribe uno)</span>
+          <FormattedMessage
+            defaultMessage="Dale instrucciones a {celebrityFullName} para que tu video quede como esperas.
+            {br} <span>(Edita este texto base o escribe uno)</span>"
+            values={{ celebrityFullName, br, span }}
+          />
         </label>
         <TextInputWithPlaceholders
-          placeholder={`¡Hola ${celebrityFullName}! Me gustaría que...`}
+          placeholder={instructionsPlaceholder}
           className={styles.VideoDetailsFormInstructionsTextarea}
           maxLength={300}
           onKeyUp={changeInstructionsTouched}

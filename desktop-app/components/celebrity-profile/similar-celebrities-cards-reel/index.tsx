@@ -7,6 +7,13 @@ import styles from "./styles.module.scss";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import getArrayOfLength from "lib/utils/getArrayOfLength";
 import { CelebrityCardSkeleton } from "desktop-app/components/common/cards/celebrity/skeleton";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  similarCelebritiesReelTitle: {
+    defaultMessage: "Famosos similares",
+  },
+});
 
 const celebrityCardProps = {
   thumbnailWidth: 202,
@@ -41,15 +48,20 @@ function SimilarCelebritiesCardsReel({
   isLoading,
   fetchSimilarCelebrities,
 }: SimilarCelebritiesCardsReelProps) {
+  const { formatMessage } = useIntl();
   useEffect(() => {
     fetchSimilarCelebrities(celebrityUsername);
   }, [celebrityUsername, fetchSimilarCelebrities]);
+
+  const similarCelebritiesReelTitle = formatMessage(
+    messages.similarCelebritiesReelTitle
+  );
 
   return (
     <Maybe it={similarCelebrities?.length > 0}>
       <CardsReelSection
         className={styles.SimilarCelebritiesCardsReel}
-        title="Famosos similares"
+        title={similarCelebritiesReelTitle}
         itemWidth={202}
         itemHeight={310}
         itemCount={similarCelebrities?.length}

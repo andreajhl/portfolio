@@ -12,6 +12,9 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 import { CelebrityVideoContractPrice } from "desktop-app/components/common/helpers/celebrity-video-contract-price";
 import { CelebrityBusinessPrice } from "../celebrity-business-price";
 import getCelebrityBusinessPrice from "lib/utils/getCelebrityBusinessPrice";
+import { FormattedMessage } from "react-intl";
+
+const br = <br />;
 
 const initialValues: ContractDeliveryType = {
   contractType: 1,
@@ -116,8 +119,10 @@ function ContractDeliveryForm({
       />
       <header className={styles.VideoDeliveryFormHeader}>
         <h3>
-          Video personalizado
-          <br /> de {celebrityFullName}
+          <FormattedMessage
+            defaultMessage="Video personalizado {br} de {celebrityFullName}"
+            values={{ celebrityFullName, br }}
+          />
         </h3>
         <span>
           <Maybe

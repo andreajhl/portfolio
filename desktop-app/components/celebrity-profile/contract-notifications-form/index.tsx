@@ -13,6 +13,16 @@ import objectHasProperties from "lib/utils/objectHasProperties";
 import { BooleanRadiosInputs } from "desktop-app/components/common/form/boolean-checkboxes";
 import { CellphoneNumberInput } from "desktop-app/components/common/form/cellphone-number-input";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  emailPlaceholder: {
+    defaultMessage: "usuario@dominio.com",
+  },
+  cellphoneSearchPlaceholder: {
+    defaultMessage: "Buscar país",
+  },
+});
 
 const initialValues: ContractNotificationsType = {
   deliveryContact: "",
@@ -63,11 +73,18 @@ function ContractNotificationsForm({
     onSubmit,
   });
   const { user } = useAuth();
+  const { formatMessage } = useIntl();
 
   useEffect(() => {
     if (values.deliveryContact || !user) return;
     setFieldValue("deliveryContact", user?.email);
   }, []);
+
+  const emailPlaceholder = formatMessage(messages.emailPlaceholder);
+
+  const cellphoneSearchPlaceholder = formatMessage(
+    messages.cellphoneSearchPlaceholder
+  );
 
   return (
     <section className={styles.VideoNotificationForm}>
@@ -89,19 +106,21 @@ function ContractNotificationsForm({
         }}
       />
       <h2 className={styles.VideoNotificationFormTitle}>
-        ¡Este video quedará genial!
-        <br /> Te notificaremos cuando esté listo.
+        <FormattedMessage
+          defaultMessage="¡Este video quedará genial! {br} Te notificaremos cuando esté listo."
+          values={{ br: <br /> }}
+        />
       </h2>
       <div>
         <label className={styles.FormLabel} htmlFor="deliveryContact">
-          Correo electrónico de notificación
+          <FormattedMessage defaultMessage="Correo electrónico de notificación" />
         </label>
         <input
           type="email"
           formNoValidate
           name="deliveryContact"
           id="deliveryContact"
-          placeholder="usuario@dominio.com"
+          placeholder={emailPlaceholder}
           value={values.deliveryContact}
           onFocus={onFocusField}
           onChange={onChangeField}
@@ -120,7 +139,7 @@ function ContractNotificationsForm({
       </div>
       <div className={styles.VideoNotificationFormPhoneInputContainer}>
         <label className={styles.FormLabel}>
-          Notificarme también por Whatsapp (opcional)
+          <FormattedMessage defaultMessage="Notificarme también por Whatsapp (opcional)" />
         </label>
         <CellphoneNumberInput
           value={values.deliveryContactCellphone}
@@ -129,7 +148,7 @@ function ContractNotificationsForm({
           placeholder="+57 310 1234567"
           country="co"
           enableSearch
-          searchPlaceholder="Buscar país"
+          searchPlaceholder={cellphoneSearchPlaceholder}
           onChange={(value) => {
             setFieldTouched("deliveryContactCellphone", true);
             setFieldValue("deliveryContactCellphone", value);
@@ -145,7 +164,7 @@ function ContractNotificationsForm({
       </div>
       <div className={styles.VideoNotificationFormRadioWrapper}>
         <span className={styles.VideoNotificationFormRadioText}>
-          Permitir que mi video sea público
+          <FormattedMessage defaultMessage="Permitir que mi video sea público" />
         </span>
         <BooleanRadiosInputs
           value={values.isPublic}
@@ -158,7 +177,7 @@ function ContractNotificationsForm({
       </div>
       <SubmitButton onClick={validateBeforeSubmit}>
         <SubmitText
-          baseText="Continuar"
+          baseText={<FormattedMessage defaultMessage="Continuar" />}
           status={isLoading ? "loading" : "idle"}
         />
       </SubmitButton>

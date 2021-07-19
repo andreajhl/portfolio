@@ -8,6 +8,13 @@ import Maybe from "react-app/src/components/common/helpers/maybe";
 import { fetchSimilarContractsV2 } from "react-app/src/state/ducks/contracts/actions";
 import { RootState } from "react-app/src/state/store";
 import { connect, ConnectedProps } from "react-redux";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  similarVideosReelTitle: {
+    defaultMessage: "Las personas que vieron este perfil también vieron",
+  },
+});
 
 const buttonStyle = {
   size: 49,
@@ -57,15 +64,18 @@ function CelebritySimilarVideosReel({
   similarVideos,
   getSimilarVideos,
 }: CelebritySimilarVideosReelProps) {
+  const { formatMessage } = useIntl();
   useEffect(() => {
     if (!celebrityUsername) return;
     getSimilarVideos(celebrityUsername);
   }, []);
 
+  const similarVideosReelTitle = formatMessage(messages.similarVideosReelTitle);
+
   return (
     <Maybe it={similarVideos?.length > 0}>
       <CardsReelSection
-        title="Las personas que vieron este perfil también vieron"
+        title={similarVideosReelTitle}
         itemData={similarVideos}
         itemCount={similarVideos?.length}
         itemWidth={263}

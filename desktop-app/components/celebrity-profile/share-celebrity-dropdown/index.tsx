@@ -20,6 +20,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { getCelebrityProfilePath } from "constants/paths";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import getWindow from "react-app/src/utils/getWindow";
+import { FormattedMessage } from "react-intl";
 
 type ShareDropdownProps = {
   buttonClassName?: string;
@@ -119,12 +120,16 @@ function ShareCelebrityDropdown({
           orElse={
             <>
               <HyperlinkIcon />
-              <span>Copiar enlace</span>
+              <span>
+                <FormattedMessage defaultMessage="Copiar enlace" />
+              </span>
             </>
           }
         >
           <i className={classes("fa fa-check-circle", styles.CheckIcon)} />
-          <span>Enlace copiado</span>
+          <span>
+            <FormattedMessage defaultMessage="Enlace copiado" />
+          </span>
         </Maybe>
       </div>
       {socialMedias.map(toMenuItem)}
