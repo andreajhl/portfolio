@@ -62,7 +62,7 @@ function UserAvatarUploader({ currentUserAvatar }: UserAvatarUploaderProps) {
           className={styles.Preview}
           alt="Previsualización"
           style={{ borderRadius: "50%", margin: "0 auto" }}
-          src={currentUserAvatar}
+          src={imagePickerPreviewImageSrc}
         />
       </div>
     );
