@@ -17,6 +17,7 @@ import {
   SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
   TRANSLATION_SIGN_UP_ERROR_MESSAGES,
 } from "react-app/src/constants/messages";
+import { SubmitText } from "../../common/widgets/submit-button-text";
 
 // Props
 type SignUpEmailPasswordFormProps = {
@@ -148,6 +149,9 @@ class SignUpEmailPasswordForm extends React.Component<
     if (this.state.isLoading) {
       return;
     }
+
+    this.setState({ isLoading: true });
+
     // Notify event
     GTM.tagManagerDataLayer("CLICK_ON_SIGN_UP_WITH_EMAIL_PASSWORD", {
       email: this.state.email,
@@ -178,9 +182,13 @@ class SignUpEmailPasswordForm extends React.Component<
         } else {
           this.setState({
             ...this.state,
+            isLoading: false,
             error: response.data.error,
           });
         }
+      })
+      .catch((error) => {
+        this.setState({ isLoading: false });
       });
   };
 
@@ -279,12 +287,17 @@ class SignUpEmailPasswordForm extends React.Component<
           className={classes("btn btn-primary", styles.SignUpBoxSubmitButton)}
           disabled={this.state.isLoading}
         >
-          <Maybe
-            it={this.props.willRedirect}
-            orElse={<FormattedMessage defaultMessage="Registrarme" />}
-          >
-            <FormattedMessage defaultMessage="Registrarme y continuar" />
-          </Maybe>
+          <SubmitText
+            baseText={
+              <Maybe
+                it={this.props.willRedirect}
+                orElse={<FormattedMessage defaultMessage="Registrarme" />}
+              >
+                <FormattedMessage defaultMessage="Registrarme y continuar" />
+              </Maybe>
+            }
+            status={this.state.isLoading ? "loading" : "idle"}
+          />
         </button>
       </form>
     );

@@ -15,6 +15,7 @@ import {
   LOGIN_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
   TRANSLATION_LOGIN_ERROR_MESSAGES,
 } from "react-app/src/constants/messages";
+import { SubmitText } from "../../common/widgets/submit-button-text";
 
 // Props
 type SignInEmailPasswordFormProps = {
@@ -91,6 +92,9 @@ class SignInEmailPasswordForm extends React.Component<
     if (this.state.isLoading) {
       return;
     }
+
+    this.setState({ isLoading: true });
+
     // Notifiy event
     GTM.tagManagerDataLayer("CLICK_ON_SIGN_IN_WITH_EMAIL_PASSWORD", {
       email: this.state.email,
@@ -117,9 +121,13 @@ class SignInEmailPasswordForm extends React.Component<
         } else {
           this.setState({
             ...this.state,
+            isLoading: false,
             error: response.data.error,
           });
         }
+      })
+      .catch((error) => {
+        this.setState({ isLoading: false });
       });
   };
 
@@ -186,7 +194,10 @@ class SignInEmailPasswordForm extends React.Component<
           className={classes("btn btn-primary", styles.SignInBoxSubmitButton)}
           disabled={this.state.isLoading}
         >
-          <FormattedMessage defaultMessage="Ingresar" />
+          <SubmitText
+            baseText={<FormattedMessage defaultMessage="Ingresar" />}
+            status={this.state.isLoading ? "loading" : "idle"}
+          />
         </button>
       </form>
     );

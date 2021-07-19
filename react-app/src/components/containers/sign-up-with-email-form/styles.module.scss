@@ -45,6 +45,16 @@
   }
 }
 
+.SignUpBoxSubmitButton.SignUpBoxSubmitButton:disabled {
+  opacity: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(251, 23, 126, 0.7) 0%,
+    rgba(255, 32, 99, 0.7) 100%
+  );
+  border: 2px solid rgb(249, 112, 174) !important;
+}
+
 @media only screen and (max-width: 767px) {
   .SignUpBoxSwitcher {
     padding-bottom: 1rem;
