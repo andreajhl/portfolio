@@ -812,9 +812,6 @@
   "YTlQrN": {
     "message": "Para un amigo o familiar"
   },
-  "YnQ4db": {
-    "message": "Actores"
-  },
   "Yp6To0": {
     "description": "Modal Title for search CategoryFilter",
     "message": "Buscar país"
@@ -1328,6 +1325,9 @@
   },
   "x15tum": {
     "message": "El valor en {currency} es aproximado"
+  },
+  "x3Y+61": {
+    "message": "Actores/Actrices"
   },
   "xBhNFv": {
     "message": "Nueva Contraseña"
