@@ -324,7 +324,7 @@
     },
     {
       "type": 0,
-      "value": " doará parte do seu caché para: "
+      "value": " doará parte do seu cachê para: "
     },
     {
       "children": [
@@ -3644,7 +3644,7 @@
   "t2/Gvc": [
     {
       "type": 0,
-      "value": "Detalha a solicitação e "
+      "value": "Detalhe sua solicitação o "
     },
     {
       "type": 1,
@@ -3652,7 +3652,7 @@
     },
     {
       "type": 0,
-      "value": " executa "
+      "value": " execute "
     },
     {
       "type": 1,

@@ -81,7 +81,7 @@
   },
   "3O5yL3": {
     "description": "",
-    "message": "{fullName} doará parte do seu caché para: <span> {causeName} </span>"
+    "message": "{fullName} doará parte do seu cachê para: <span> {causeName} </span>"
   },
   "3tygVI": {
     "message": "{instructionsLength}/400 caracteres permitidos"
@@ -1607,7 +1607,7 @@
     "message": "E-mail"
   },
   "t2/Gvc": {
-    "message": "Detalha a solicitação e {onlyMobileLineBreak} executa {onlyDesktopLineBreak} o processo de compra {onlyMobileLineBreak}."
+    "message": "Detalhe sua solicitação o {onlyMobileLineBreak} execute {onlyDesktopLineBreak} o processo de compra {onlyMobileLineBreak}."
   },
   "tdx+EV": {
     "message": "Meu perfil"
