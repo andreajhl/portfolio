@@ -4,8 +4,19 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { analytics } from "react-app/src/state/utils/gtm";
 import styles from "./styles.module.scss";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  inputPlaceholderButton: {
+    defaultMessage: "Buscar",
+  },
+  inputPlaceholderInput: {
+    defaultMessage: "Ej: Pibe Valderrama, Netflix, Músicos, México...",
+  },
+});
 
 function SearchBarSection() {
+  const { formatMessage } = useIntl();
   const [inputValue, setInputValue] = useState("");
 
   const router = useRouter();
@@ -19,13 +30,18 @@ function SearchBarSection() {
     router.push(getSearchKeywordPath(inputValue));
   }
 
+  const inputPlaceholderButton = formatMessage(messages.inputPlaceholderButton);
+  const inputPlaceholderInput = formatMessage(messages.inputPlaceholderInput);
+
   return (
     <div className={styles.SearchBarSection}>
-      <p>Explora entre más de 1,000 famosos</p>
+      <p>
+        <FormattedMessage defaultMessage="Explora entre más de 1,000 famosos" />
+      </p>
       <InputWithSubmitHandler
         style={{ height: "50px", width: "600px" }}
-        placeHolderButton={"Buscar"}
-        placeHolderInput={"Ej: Pibe Valderrama, Netflix, Músicos, México..."}
+        placeHolderButton={inputPlaceholderButton}
+        placeHolderInput={inputPlaceholderInput}
         setInputValue={setInputValue}
         inputValue={inputValue}
         onSubmit={goToSearch}
