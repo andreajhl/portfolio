@@ -5,6 +5,13 @@ import { CardsReelSection } from "../cards-section-reel";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 import Maybe from "react-app/src/components/common/helpers/maybe";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  publicContractsReelTitle: {
+    defaultMessage: "Últimos videos",
+  },
+});
 
 const mapStateToProps = (state) => ({
   isLoading: state.celebrities.fetchPublicContractsReducer.loading,
@@ -47,14 +54,18 @@ function CelebrityPublicContractsReel({
   listPublicContracts,
   celebrityId,
 }: CelebrityPublicContractsReelProps) {
+  const { formatMessage } = useIntl();
   // useEffect(() => {
   //   listPublicContracts(celebrityId);
   // }, [celebrityId, listPublicContracts]);
+  const publicContractsReelTitle = formatMessage(
+    messages.publicContractsReelTitle
+  );
   return (
     <Maybe it={publicContracts?.length > 0}>
       <div>
         <CardsReelSection
-          title="Últimos videos"
+          title={publicContractsReelTitle}
           className={
             publicContracts?.length < 3 ? styles.ReelContainerFitContent : ""
           }

@@ -7,6 +7,7 @@ import { connect, ConnectedProps } from "react-redux";
 import CardReview from "../../../components/common/cards/review";
 import classes from "classnames";
 import styles from "./styles.module.scss";
+import { FormattedMessage } from "react-intl";
 
 const mapStateToProps = ({ celebrities }) => ({
   celebrityUsername: celebrities.getCelebrityReducer.data.username,
@@ -52,17 +53,19 @@ function LastReviewsModal({
       {(closeModal) => (
         <div className={styles.LastReviewsModal}>
           <header className={styles.LastReviewsModalHeader}>
-            <span>Últimas calificaciones</span>
+            <span>
+              <FormattedMessage defaultMessage="Últimas calificaciones" />
+            </span>
             <CloseModalButton variant="light" onClick={closeModal} />
           </header>
           <InfiniteScroll
-            height={"75vh"}
+            height="75vh"
             dataLength={reviews.length}
             next={fetchMoreData}
             hasMore={informationPage.totalItems > reviews.length}
             loader={
               <footer className={styles.LastReviewsModalFooter}>
-                Cargando{" "}
+                <FormattedMessage defaultMessage="Cargando" />{" "}
                 <i className={classes("fa fa-circle-notch", styles.Spinner)} />
               </footer>
             }

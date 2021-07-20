@@ -5,9 +5,11 @@ import SubscriptionNewsletterForm from "desktop-app/components/footer/subscripti
 import WebPageListLinks from "desktop-app/components/footer/webpage-list-links";
 import WebPageMeta from "desktop-app/components/footer/webpage-meta";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 const FooterPage = () => {
+  const currentYear = new Date()?.getFullYear?.() || "2021";
   return (
     <footer className={styles.Footer}>
       <div className={styles.FooterContainer}>
@@ -18,11 +20,11 @@ const FooterPage = () => {
           </div>
         </div>
         <div className={styles.FooterContainerSectionAppsLinks}>
-          <AppLinksBanner></AppLinksBanner>
+          <AppLinksBanner />
         </div>
         <div className={styles.FooterContainerSectionGeneralLinks}>
           <div>
-            <WebPageListLinks></WebPageListLinks>
+            <WebPageListLinks />
           </div>
           <div>
             <SocialNetWorksWebPage />
@@ -31,7 +33,10 @@ const FooterPage = () => {
         <div className={styles.FooterContainerSectionMetaPage}>
           <WebPageMeta />
           <div className={styles.FooterCopyright}>
-            <span>© 2021 Famosos, Inc. All Rights Reserved</span>
+            <span>
+              © {currentYear} Famosos, Inc.{" "}
+              <FormattedMessage defaultMessage="Todos los derechos reservados" />
+            </span>
           </div>
         </div>
       </div>

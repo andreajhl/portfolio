@@ -5,6 +5,7 @@ import { celebrityOperations } from "react-app/src/state/ducks/celebrities";
 import { connect } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import dynamic from "next/dynamic";
+import { FormattedMessage } from "react-intl";
 
 const LastReviewsModal = dynamic(() =>
   import("../last-reviews-modal").then((mod) => mod.LastReviewsModal)
@@ -39,7 +40,9 @@ const LastReviewsSection = ({
   return (
     <Maybe it={reviews.length > 0}>
       <div className={styles.LastReviewsSection}>
-        <h2>Calificaciones</h2>
+        <h2>
+          <FormattedMessage defaultMessage="Calificaciones" />
+        </h2>
         <div className={styles.ReviewsCards}>
           {[...reviews].slice(0, 2).map((review, index) => (
             <CardReview
@@ -55,7 +58,7 @@ const LastReviewsSection = ({
             {{
               triggerElement: (
                 <p className={styles.SeeMoreCTA}>
-                  Ver todas las calificaciones
+                  <FormattedMessage defaultMessage="Ver todas las calificaciones" />
                 </p>
               ),
             }}

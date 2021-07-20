@@ -4,6 +4,7 @@ import { Link } from "desktop-app/components/common/routing/link";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import Reel, { ReelProps } from "../reel";
 import styles from "./styles.module.scss";
+import { FormattedMessage } from "react-intl";
 
 type Render = (data: any) => JSX.Element;
 
@@ -60,7 +61,7 @@ function CardsReelSection({
               href={showMorePath}
               className={styles.CardsReelSectionShowMore}
             >
-              Ver más
+              <FormattedMessage defaultMessage="Ver más" />
             </Link>
           </Maybe>
         </header>

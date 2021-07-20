@@ -2,6 +2,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { HTMLAttributes } from "react";
+import { FormattedMessage } from "react-intl";
 
 type GiftAnimationProps = {
   className?: string;
@@ -34,10 +35,14 @@ function GiftAnimation({
         <div className={styles.GiftLabel}>
           <div className={styles.GiftLabelDot}></div>
           <p className={classes(isForOther && styles.IsForOther)}>
-            Para: {getOnlyFirstWord(deliveryTo)}
+            <FormattedMessage defaultMessage="Para:" />{" "}
+            {getOnlyFirstWord(deliveryTo)}
           </p>
           <Maybe it={isForOther}>
-            <p>De: {getOnlyFirstWord(deliveryFrom)}</p>
+            <p>
+              <FormattedMessage defaultMessage="De:" />{" "}
+              {getOnlyFirstWord(deliveryFrom)}
+            </p>
           </Maybe>
         </div>
       </Maybe>

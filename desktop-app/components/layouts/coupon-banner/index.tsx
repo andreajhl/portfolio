@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   getDiscountCouponBanner,
-  setTimeDifference
+  setTimeDifference,
 } from "../../../../react-app/src/state/ducks/discount-coupons/actions";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
@@ -12,6 +12,7 @@ import { XIcon } from "desktop-app/components/common/icons";
 import { HIDE_COUPON_BANNER } from "constants/keys";
 
 import isBrowser from "react-app/src/utils/isBrowser";
+import { FormattedMessage } from "react-intl";
 
 const CouponBanner = ({
   getDiscountCouponBanner,
@@ -20,7 +21,7 @@ const CouponBanner = ({
   coupon,
   shouldFetchCoupon,
   setTimeDifference,
-  timeDifference
+  timeDifference,
 }) => {
   const [dateFinish, setDateFinish] = useState(null);
   const userDidHideBanner = isBrowser()
@@ -81,19 +82,22 @@ const CouponBanner = ({
     <div className={`${styles.CouponBanner}`}>
       <div>
         <span className={styles.CouponBannerInfo}>
-          ¡{discount}% de descuento en tus videomensajes! Cupón: {coupon}
+          <FormattedMessage
+            defaultMessage="¡{discount}% de descuento en tus videomensajes! Cupón: {coupon}"
+            values={{ discount, coupon }}
+          />
         </span>
       </div>
       <div className={styles.CouponBannerTimer}>
         <span>
-          LA OFERTA FINALIZA EN{" "}
+          <FormattedMessage defaultMessage="LA OFERTA FINALIZA EN" />{" "}
           <span className={styles.CouponBannerTimerCount}>
             {dateDifferenceMoment.minutes() || 0} m{" "}
             {dateDifferenceMoment.seconds() || 0} s
           </span>
         </span>
         <div onClick={closeCouponBanner} className={styles.CloseButton}>
-          <XIcon></XIcon>
+          <XIcon />
         </div>
       </div>
     </div>
@@ -108,7 +112,7 @@ const mapStateToProps = ({ discountCoupons }) => {
     coupon,
     discount: parseFloat(discount_amount || 0) * 100,
     shouldFetchCoupon: !completed && !coupon,
-    timeDifference
+    timeDifference,
   };
 };
 const mapDispatchToProps = { getDiscountCouponBanner, setTimeDifference };

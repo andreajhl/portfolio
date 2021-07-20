@@ -10,6 +10,13 @@ import { Button, Modal } from "react-bootstrap";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  flagImgAlt: {
+    defaultMessage: "Bandera de {label}",
+  },
+});
 
 const mapStateToProps = ({ payments: { currencyExchangeReducer } }) => ({
   currencyExchangeLoading: currencyExchangeReducer.loading,
@@ -45,6 +52,7 @@ function CurrencyModal({
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
   const toggleModal = () => setOpen((open) => !open);
+  const { formatMessage } = useIntl();
 
   return (
     <>
@@ -62,7 +70,9 @@ function CurrencyModal({
         centered
       >
         <Modal.Header className={styles.ModalHeader}>
-          <h3 className={styles.ModalTitle}>Cambiar moneda</h3>
+          <h3 className={styles.ModalTitle}>
+            <FormattedMessage defaultMessage="Cambiar moneda" />
+          </h3>
           <CloseModalButton
             variant="light"
             className={styles.CurrencyDropdownCloseButton}
@@ -79,6 +89,9 @@ function CurrencyModal({
           >
             {AVAILABLE_CURRENCIES_SORT.map((option) => {
               const optionKey = `${option.name}-${option.label}`;
+              const flagImgAlt = formatMessage(messages.flagImgAlt, {
+                label: option.label,
+              });
               return (
                 <li className="options-list__item" key={optionKey}>
                   <div
@@ -111,7 +124,7 @@ function CurrencyModal({
                           className={styles.OptionsListsLabelFlag}
                           width="20"
                           src={option.flag}
-                          alt={`Bandera de ${option.label}`}
+                          alt={flagImgAlt}
                         />
                         {option.label}
                       </span>
@@ -129,7 +142,7 @@ function CurrencyModal({
             disabled={currencyExchangeLoading}
           >
             <SubmitText
-              baseText="Cerrar"
+              baseText={<FormattedMessage defaultMessage="Cerrar" />}
               status={currencyExchangeLoading ? "loading" : "idle"}
             />
           </Button>

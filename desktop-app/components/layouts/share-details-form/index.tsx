@@ -22,6 +22,11 @@ import {
   validateDeliveryTo,
 } from "lib/validations/contractData";
 import getFormattedInputDateValue from "lib/utils/getFormattedInputDateValue";
+import { FormattedMessage } from "react-intl";
+
+const multipleRecipientsSpan = (chunk: string) => (
+  <span className={styles.MultipleRecipientsInfo}>{chunk}</span>
+);
 
 const EMAILS_SEPARATOR = ",";
 
@@ -188,9 +193,13 @@ function ShareDetailsForm({
   return (
     <section className={styles.ShareDetailsForm}>
       <h2 className={styles.Title}>
-        Entrega tu videomensaje por{" "}
-        <Maybe it={isWhatsappType} orElse="correo">
-          Whatsapp
+        <Maybe
+          it={isWhatsappType}
+          orElse={
+            <FormattedMessage defaultMessage="Entrega tu videomensaje por correo" />
+          }
+        >
+          <FormattedMessage defaultMessage="Entrega tu videomensaje por Whatsapp" />
         </Maybe>
       </h2>
       <div className={styles.RecipientField}>
@@ -200,12 +209,10 @@ function ShareDetailsForm({
             <FormField
               name="deliveryContact"
               label={
-                <>
-                  Correo electrónico del destinatario{" "}
-                  <span className={styles.MultipleRecipientsInfo}>
-                    (Puedes agregar varios correos separándolos con una coma)
-                  </span>
-                </>
+                <FormattedMessage
+                  defaultMessage="Correo electrónico del destinatario <multipleRecipientsSpan>(Puedes agregar varios correos separándolos con una coma)</multipleRecipientsSpan>"
+                  values={{ multipleRecipientsSpan }}
+                />
               }
               error={errors.deliveryContact}
               value={values.deliveryContact}
@@ -214,7 +221,7 @@ function ShareDetailsForm({
           }
         >
           <label htmlFor="cellPhoneNumber" className={styles.Label}>
-            Whatsapp del destinatario
+            <FormattedMessage defaultMessage="Whatsapp del destinatario" />
           </label>
           <CellphoneNumberInput
             onChange={setDeliveryContactCellphone}
@@ -233,7 +240,7 @@ function ShareDetailsForm({
       <div className={classes(styles.Split, styles.DeliveryInfo)}>
         <FormField
           name="deliveryTo"
-          label="Para"
+          label={<FormattedMessage defaultMessage="Para" />}
           value={values.deliveryTo}
           onChange={onChangeField}
           error={errors.deliveryTo}
@@ -241,7 +248,7 @@ function ShareDetailsForm({
         />
         <FormField
           name="deliveryFrom"
-          label="De"
+          label={<FormattedMessage defaultMessage="De" />}
           value={values.deliveryFrom}
           onChange={onChangeField}
           error={errors.deliveryFrom}
@@ -250,7 +257,7 @@ function ShareDetailsForm({
       </div>
       <Maybe it={!isWhatsappType}>
         <label htmlFor="sendMessage" className={styles.Label}>
-          Mensaje
+          <FormattedMessage defaultMessage="Mensaje" />
         </label>
         <textarea
           className={classes(styles.Input, styles.MessageTextarea)}
@@ -267,7 +274,7 @@ function ShareDetailsForm({
       </Maybe>
       <div className={classes(styles.Split, styles.ScheduleInfo)}>
         <FormField
-          label="Fecha de envío"
+          label={<FormattedMessage defaultMessage="Fecha de envío" />}
           name="deliveryDate"
           type="date"
           placeholder="aaaa-mm-dd"
@@ -277,7 +284,7 @@ function ShareDetailsForm({
         />
         <div>
           <label htmlFor="deliveryTime" className={styles.Label}>
-            Hora de envío
+            <FormattedMessage defaultMessage="Hora de envío" />
           </label>
           <div className={styles.TimeInputContainer}>
             <InputField
@@ -312,14 +319,17 @@ function ShareDetailsForm({
           className={"btn btn-secondary " + styles.PreviewButton}
           onClick={validateFormBeforePreviewButtonClick}
         >
-          Previsualizar
+          <FormattedMessage defaultMessage="Previsualizar" />
         </button>
         <button
           type="button"
           className={"btn btn-primary " + styles.SubmitButton}
           onClick={submitForm}
         >
-          <SubmitText baseText="Enviar" status={status} />
+          <SubmitText
+            baseText={<FormattedMessage defaultMessage="Enviar" />}
+            status={status}
+          />
         </button>
       </div>
       <CollapsibleErrorMessage
