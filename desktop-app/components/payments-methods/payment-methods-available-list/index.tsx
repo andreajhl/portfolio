@@ -6,6 +6,7 @@ import PaypalForm from "../paypal-form";
 import DLocalPaymentMethodForm from "../dLocal-payment-method-form";
 import { ALL_AVAILABLE_PAYMENTS_METHODS } from "constants/availablePaymentsMethods";
 import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 type all_payments_methods = typeof ALL_AVAILABLE_PAYMENTS_METHODS[number];
 
@@ -47,6 +48,13 @@ function PaymentMethodsAvailableList({
   );
   const handleChangeCurrentOption = (newValue: all_payments_methods) => {
     setCurrentOption(newValue);
+    analytics.track("CHANGE_ACTIVE_PAYMENT_METHOD_OPTION", {
+      previousPaymentMethod: currentOption,
+      newPaymentMethod: newValue,
+      buyerData,
+      celebrityId,
+      contractReference,
+    });
   };
   return (
     <>
