@@ -14,10 +14,11 @@ const Link = ({
   className = null,
   title,
   style = {},
+  onClick,
   ...nextLinkProps
 }: LinkProps) => (
   <NextLink {...nextLinkProps}>
-    <a className={className} style={style} title={title}>
+    <a className={className} style={style} title={title} onClick={onClick}>
       {children}
     </a>
   </NextLink>

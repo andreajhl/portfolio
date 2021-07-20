@@ -52,6 +52,7 @@ type CelebrityCardProps = {
   thumbnailWidth?: number | string;
   thumbnailHeight?: number | string;
   showPrice?: boolean;
+  onClickLink?: (event: any) => void;
 };
 
 function CelebrityCard({
@@ -59,6 +60,7 @@ function CelebrityCard({
   thumbnailWidth = 170,
   thumbnailHeight = 210,
   showPrice = true,
+  onClickLink,
 }: CelebrityCardProps) {
   const { isFavorite, toggleFavorite } = useCelebrityFavorite(celebrity.id);
   const { videoMessagePrice } = celebrity;
@@ -78,6 +80,7 @@ function CelebrityCard({
         <Link
           href={celebrityProfileLink}
           className={styles.CelebrityCardProfileLink}
+          onClick={onClickLink}
         >
           <OptimizedImage
             placeholderSrc="/assets/img/avatar-blank.png"
@@ -99,7 +102,10 @@ function CelebrityCard({
           </Maybe>
         </div>
         <div className={styles.CelebrityCardThumbnailFooter}>
-          <Link href={getSearchCategoryPath(celebrity.categoryId)}>
+          <Link
+            href={getSearchCategoryPath(celebrity.categoryId)}
+            onClick={onClickLink}
+          >
             <span className={styles.CelebrityCardCategory}>
               {celebrity.title}
             </span>
@@ -123,6 +129,7 @@ function CelebrityCard({
           <Link
             href={celebrityProfileLink}
             className={styles.CelebrityCardFullNameLink}
+            onClick={onClickLink}
           >
             <TextWithOverflow
               textClassName={styles.CelebrityCardFullName}
@@ -143,6 +150,7 @@ function CelebrityCard({
           <Link
             href={celebrityProfileLink}
             className={styles.CelebrityCardProfileLink}
+            onClick={onClickLink}
           >
             <p className={"text-with-ellipsis " + styles.CelebrityCardPrice}>
               <span
