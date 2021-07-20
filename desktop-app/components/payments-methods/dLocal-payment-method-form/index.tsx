@@ -82,6 +82,14 @@ function DLocalPaymentMethodForm({
   const labelId = `label-${index}`;
 
   const handleStartPayment = async (cardToken, option) => {
+    analytics.track("START_DLOCAL_PAYMENT", {
+      widget: "DLocalPaymentMethodForm",
+      paymentMethodType,
+      contractReference,
+      discountCouponId,
+      contractPrice,
+      celebrityId,
+    });
     setPaymentInProcess(true);
     let IP = null;
     const deviceId = generateDeviceId();

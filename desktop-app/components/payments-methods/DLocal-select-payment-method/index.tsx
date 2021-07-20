@@ -3,6 +3,7 @@ import { SubmitText } from "desktop-app/components/common/helpers/submit-button-
 import WarningMessage from "desktop-app/components/common/warning-message";
 import React, { useRef, useState } from "react";
 import { LoaderLayout } from "react-app/src/components/layouts/loader";
+import { analytics } from "react-app/src/state/utils/gtm";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import styles from "./styles.module.scss";
 
@@ -44,6 +45,12 @@ function DLocalSelectPaymentMethod({
   const handleChangePaymentMethod = (name, paymentMethodId) => {
     setErrorMessage("");
     setCurrentOption({ name: name, paymentMethodId: paymentMethodId });
+    analytics.track("CHANGE_DLOCAL_PAYMENT_METHOD", {
+      name: name,
+      paymentMethodId: paymentMethodId,
+      paymentMethodType,
+      widget: "DLocalSelectPaymentMethod",
+    });
   };
 
   const isMissingOptionSelected = () =>

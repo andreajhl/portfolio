@@ -8,6 +8,7 @@ import WarningMessage from "desktop-app/components/common/warning-message";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+import { analytics } from "react-app/src/state/utils/gtm";
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
 declare global {
@@ -120,6 +121,12 @@ function DLocalFormCard({
   const handlerSubmitCreditCardDetails = (e) => {
     if (currentOption.paymentMethodId || currentOption.name) {
       e.preventDefault();
+      analytics.track("SUBMIT_DLOCAL_CREDIT_CARD_DETAILS", {
+        widget: "DLocalFormCard",
+        paymentMethodType,
+        buyerNameCard: buyerNameCard.current,
+        bank: currentOption,
+      });
       if (buyerName) {
         dLocalInstance
           .createToken(card, {
@@ -164,6 +171,11 @@ function DLocalFormCard({
         onChangeOptionSelected={(selected) => {
           setCardIsNotSelectedError("");
           handleChangePaymentMethod(selected.name, selected.value);
+          analytics.track("CHANGE_DLOCAL_BANK", {
+            widget: "DLocalFormCard",
+            selected,
+            paymentMethodType,
+          });
         }}
         options={paymentsMethodsAvailable.map((paymentMethod) => ({
           value: paymentMethod.id,

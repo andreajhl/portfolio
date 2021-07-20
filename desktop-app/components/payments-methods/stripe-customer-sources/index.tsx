@@ -60,6 +60,13 @@ function StripeCustomerSources({
     if (selectedSourceId === null)
       setErrorMessage(formatMessage(messages.errorNoCardSelected));
     else {
+      analytics.track("TRY_PAY_WITH_STRIPE_SOURCE", {
+        contractReference,
+        discountCouponId,
+        contractPrice,
+        celebrityId,
+        widget: "StripeCustomerSources",
+      });
       setErrorMessage("");
       setPaymentInProcess(true);
       processStripePayment(

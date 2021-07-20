@@ -4,6 +4,7 @@ import scriptLoader from "react-async-script-loader";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import Skeleton from "react-loading-skeleton";
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { analytics } from "react-app/src/state/utils/gtm";
 let PayPalButton = null;
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -43,6 +44,11 @@ function PaypalReactButton({
   // const [showButton, setShowButton] = useState(false);
 
   const onCreateOrder = (data, actions) => {
+    analytics.track("CLICK_PAY_WITH_PAYPAL_BUTTON", {
+      widget: "PaypalReactButton",
+      contractPrice,
+      contractReference,
+    });
     return actions.order.create({
       purchase_units: [
         {
@@ -67,6 +73,12 @@ function PaypalReactButton({
     });
   };
   const onCancel = (data) => {
+    analytics.track("CLOSE_PAYPAL_POPUP", {
+      widget: "PaypalReactButton",
+      contractPrice,
+      contractReference,
+      orderId: data["orderID"],
+    });
     onPayPalButtonCancel(data["orderID"]);
   };
 

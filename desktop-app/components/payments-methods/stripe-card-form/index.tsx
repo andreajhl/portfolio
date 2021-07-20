@@ -58,6 +58,14 @@ function StripeCardForm({
         contractReference
       );
 
+    analytics.track("START_3D_SECURE_FLOW", {
+      contractReference,
+      discountCouponId,
+      contractPrice,
+      celebrityId,
+      widget: "StripeCardForm",
+    });
+
     await stripe
       .createSource({
         type: "three_d_secure",
@@ -123,6 +131,14 @@ function StripeCardForm({
     //   // form submission until Stripe.js has loaded.
     //   return;
     // }
+
+    analytics.track("SUBMIT_STRIPE_FORM", {
+      contractReference,
+      discountCouponId,
+      contractPrice,
+      celebrityId,
+      widget: "StripeCardForm",
+    });
 
     if (error) {
       return;
