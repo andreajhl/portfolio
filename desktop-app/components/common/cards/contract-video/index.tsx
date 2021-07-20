@@ -11,6 +11,13 @@ import { RootState } from "react-app/src/state/store";
 import { connect, ConnectedProps } from "react-redux";
 import { useContractLike } from "lib/hooks/useContractLike";
 import useTrackContractVideoView from "lib/hooks/useTrackContractVideoView";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  videoPosterAlt: {
+    defaultMessage: "Poster de vídeo de famoso",
+  },
+});
 
 const mapStateToProps = ({ celebritySections }: RootState) => ({
   isAudioActive: celebritySections.audioReducer.active,
@@ -41,6 +48,7 @@ function ContractVideo({
   const videoKey = `contract-video-${videoUrl}`;
   const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey);
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
+  const { formatMessage } = useIntl();
 
   const trackView = useTrackContractVideoView({
     widget: "ContractVideo",
@@ -48,6 +56,8 @@ function ContractVideo({
     contractReference: contract_reference,
     videoUrl,
   });
+
+  const videoPosterAlt = formatMessage(messages.videoPosterAlt);
 
   return (
     <div
@@ -60,7 +70,7 @@ function ContractVideo({
           <Maybe it={!videoIsLoaded}>
             <img
               src={videoPosterUrl}
-              alt={`Poster de vídeo de famoso`}
+              alt={videoPosterAlt}
               className={styles.VideoPoster}
             />
           </Maybe>

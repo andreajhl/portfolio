@@ -1,6 +1,7 @@
 import styles from "./styles.module.scss";
 import classes from "classnames";
 import Maybe from "../helpers/maybe";
+import { FormattedMessage } from "react-intl";
 
 type FlashDeliveryBadgeProp = {
   className?: string;
@@ -13,7 +14,7 @@ function FlashDeliveryBadge({
   className = "",
   color = "white",
   showTime = false,
-  showTitle = false
+  showTitle = false,
 }: FlashDeliveryBadgeProp) {
   return (
     <span
@@ -25,10 +26,17 @@ function FlashDeliveryBadge({
       )}
     >
       <Maybe it={showTime}>
-        <span className={styles.FlashDeliveryLayoutTitle}>Entrega Flash</span>
+        <span className={styles.FlashDeliveryLayoutTitle}>
+          <FormattedMessage defaultMessage="Entrega Flash" />
+        </span>
       </Maybe>
       <Maybe it={showTime}>
-        <span className={styles.FlashDeliveryLayoutTime}>24 hrs.</span>
+        <span className={styles.FlashDeliveryLayoutTime}>
+          <FormattedMessage
+            defaultMessage="24 hrs."
+            description="1 day in hours"
+          />
+        </span>
       </Maybe>
       <i
         className={classes(

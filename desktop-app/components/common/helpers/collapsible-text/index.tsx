@@ -4,6 +4,7 @@ import Collapse from "react-bootstrap/Collapse";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import Maybe from "../maybe";
+import { FormattedMessage } from "react-intl";
 
 export function CollapsibleText({
   children,
@@ -37,8 +38,11 @@ export function CollapsibleText({
             className="font-weight-bold cursor-pointer"
             onClick={toggleCollapse}
           >
-            <Maybe it={isCollapse} orElse="Mostrar menos">
-              Mostrar más
+            <Maybe
+              it={isCollapse}
+              orElse={<FormattedMessage defaultMessage="Mostrar menos" />}
+            >
+              <FormattedMessage defaultMessage="Mostrar más" />
             </Maybe>
           </span>
         </Maybe>

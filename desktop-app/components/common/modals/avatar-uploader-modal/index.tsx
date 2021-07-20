@@ -6,6 +6,16 @@ import {
 } from "desktop-app/components/common/widgets/image-cropper";
 import styles from "./styles.module.scss";
 import { Dispatch, SetStateAction } from "react";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  fileUploaderModalTitle: {
+    defaultMessage: "Recorta tu foto del perfil",
+  },
+  imageCropperImgAlt: {
+    defaultMessage: "Previsualización de cortado",
+  },
+});
 
 const initialCropValue: Crop = {
   aspect: 1,
@@ -31,6 +41,7 @@ function AvatarUploaderModal({
   onImageUploaded = function () {},
   setIsOpen = function () {},
 }: AvatarUploaderModalProps) {
+  const { formatMessage } = useIntl();
   const [crop, setCrop] = useState<Crop>(initialCropValue);
 
   function finishImageCrop(url: string, file: Blob): void {
@@ -38,9 +49,12 @@ function AvatarUploaderModal({
     onImageUploaded(url, file);
   }
 
+  const fileUploaderModalTitle = formatMessage(messages.fileUploaderModalTitle);
+  const imageCropperImgAlt = formatMessage(messages.imageCropperImgAlt);
+
   return (
     <FileUploaderModal
-      title="Recorta tu foto del perfil"
+      title={fileUploaderModalTitle}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       onFileUploaded={finishImageCrop}
@@ -54,7 +68,7 @@ function AvatarUploaderModal({
             keepSelection
             circularCrop
             ruleOfThirds
-            imageAlt="Previsualización de cortado"
+            imageAlt={imageCropperImgAlt}
             onImageLoaded={setImageAttributes}
             imageSrc={initialImageSrc}
             onCropImage={setImageToUpload}

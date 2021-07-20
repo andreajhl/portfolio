@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import { useState } from "react";
 import { InputField } from "../input-field";
 import Maybe from "../../helpers/maybe";
+import { FormattedMessage } from "react-intl";
 
 type ActiveInputFieldProps = {
   id?: string;
@@ -54,7 +55,7 @@ function ActiveInputField({
             onClick={() => onClickSave()}
             style={{ color: saveButtonColor }}
           >
-            Guardar
+            <FormattedMessage defaultMessage="Guardar" />
           </button>
         </div>
       </Maybe>

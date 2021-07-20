@@ -13,6 +13,13 @@ import useLoad from "react-app/src/utils/useLoad";
 import styles from "./styles.module.scss";
 import classNames from "classnames/bind";
 import { FullScreenVideoPlayer } from "../video/full-screen-video-player";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  videoPosterAlt: {
+    defaultMessage: "Poster de vídeo de famoso",
+  },
+});
 
 let cx = classNames.bind(styles);
 
@@ -46,6 +53,7 @@ function ViewerClientVideo({
   const [videoIsLoaded, onVideoLoadedData] = useLoad(videoRef);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { formatMessage } = useIntl();
 
   const toggleVideoIsMuted = () => {
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
@@ -70,6 +78,8 @@ function ViewerClientVideo({
     }
   };
 
+  const videoPosterAlt = formatMessage(messages.videoPosterAlt);
+
   return (
     <>
       <div className={styles.ViewerClientVideoWrapper}>
@@ -83,7 +93,7 @@ function ViewerClientVideo({
             <Maybe it={previewMode || !videoIsLoaded}>
               <img
                 src={videoPosterUrl}
-                alt={`Poster de vídeo de famoso`}
+                alt={videoPosterAlt}
                 className={styles.VideoPoster}
               />
             </Maybe>

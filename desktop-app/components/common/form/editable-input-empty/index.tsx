@@ -1,3 +1,4 @@
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 type EditableInputEmptyProps = {
@@ -17,7 +18,7 @@ function EditableInputEmpty({
     <div className={containerClass}>
       <span className={styles.EditableInputEmptyLabel}>{label}</span>
       <span className={styles.EditableInputEmptyButton} onClick={onClickButton}>
-        Agregar
+        <FormattedMessage defaultMessage="Agregar" />
       </span>
     </div>
   );

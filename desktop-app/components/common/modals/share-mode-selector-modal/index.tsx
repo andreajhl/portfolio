@@ -6,6 +6,7 @@ import { Link } from "../../routing/link";
 import Maybe from "../../helpers/maybe";
 import { PopupActions } from "reactjs-popup/dist/types";
 import { CloseModalButton } from "../../button/close-modal-button";
+import { FormattedMessage } from "react-intl";
 
 type ModalTypeType = "whatsapp" | "mail";
 
@@ -37,6 +38,8 @@ function ShareModeSelectorModal(
   ref: Ref<PopupActions>
 ) {
   const itCanAddMessage = canAddMessage(type);
+  const isWhatsappType = type === "whatsapp";
+
   return (
     <AnimatedPopup trigger={trigger} modal ref={ref}>
       {(closeModal: () => void) => (
@@ -46,7 +49,9 @@ function ShareModeSelectorModal(
             className={styles.CloseButton}
             onClick={closeModal}
           />
-          <h2 className={styles.Title}>¿Cómo quieres compartir este video?</h2>
+          <h2 className={styles.Title}>
+            <FormattedMessage defaultMessage="¿Cómo quieres compartir este video?" />
+          </h2>
           <a
             href={shareInstantlyLink}
             target="_blank"
@@ -60,13 +65,18 @@ function ShareModeSelectorModal(
                 getShareButtonClass(type)
               )}
             >
-              Enviar inmediatamente
+              <FormattedMessage defaultMessage="Enviar inmediatamente" />
             </button>
           </a>
           <p className={classes(styles.InfoText, styles.ShareInstantlyInfo)}>
-            Se abrirá tu aplicación de{" "}
-            <span className={styles.TextCapitalize}>{type}</span> para que lo
-            envíes directamente.
+            <Maybe
+              it={isWhatsappType}
+              orElse={
+                <FormattedMessage defaultMessage="Se abrirá tu aplicación de correo para que lo envíes directamente." />
+              }
+            >
+              <FormattedMessage defaultMessage="Se abrirá tu aplicación de Whatsapp para que lo envíes directamente." />
+            </Maybe>
           </p>
           <Link href={scheduleShareLink} onClick={closeModal}>
             <button
@@ -76,7 +86,7 @@ function ShareModeSelectorModal(
                 styles.ScheduleButton
               )}
             >
-              Programar envío
+              <FormattedMessage defaultMessage="Programar envío" />
             </button>
           </Link>
           <p
@@ -86,9 +96,13 @@ function ShareModeSelectorModal(
               itCanAddMessage && styles.ExtendedInfoText
             )}
           >
-            Elige una fecha y hora para que Famosos envíe tu video
-            <Maybe it={itCanAddMessage} orElse=".">
-              , puedes agregar un texto adicional.
+            <Maybe
+              it={itCanAddMessage}
+              orElse={
+                <FormattedMessage defaultMessage="Elige una fecha y hora para que Famosos envíe tu video." />
+              }
+            >
+              <FormattedMessage defaultMessage="Elige una fecha y hora para que Famosos envíe tu video, puedes agregar un texto adicional." />
             </Maybe>
           </p>
         </section>

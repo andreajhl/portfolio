@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import DirectionButton from "../button/direction";
 import styles from "./styles.module.scss";
 
@@ -31,7 +32,10 @@ function Pagination({
         direction="left"
       />
       <span className={styles.PaginationIndicator}>
-        Pagina {currentPage} de {totalPages}
+        <FormattedMessage
+          defaultMessage="Pagina {currentPage} de {totalPages}"
+          values={{ currentPage, totalPages }}
+        />
       </span>
       <DirectionButton
         disabled={currentPage === totalPages}

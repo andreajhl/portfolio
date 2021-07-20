@@ -9,6 +9,7 @@ import { getUploadProfileImageLink } from "react-app/src/state/ducks/session/act
 import WarningMessage from "desktop-app/components/common/warning-message";
 import useUploadFile from "./useUploadFile";
 import Fade from "react-bootstrap/Fade";
+import { FormattedMessage } from "react-intl";
 
 const getErrorMessage = (error: Error) => String(error?.message || error);
 
@@ -88,7 +89,7 @@ function FileUploaderModal({
                 className={classes("btn", styles.CancelButton)}
                 onClick={cancelUpload}
               >
-                Cancelar
+                <FormattedMessage defaultMessage="Cancelar" />
               </button>
             </Maybe>
             <button

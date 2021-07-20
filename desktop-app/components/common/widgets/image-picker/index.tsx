@@ -2,6 +2,20 @@ import classes from "classnames";
 import { ReactNode, CSSProperties } from "react";
 import Maybe from "../../helpers/maybe";
 import styles from "./styles.module.scss";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  previewImgAlt: {
+    defaultMessage: "Previsualización",
+  },
+  invalidImageFormatError: {
+    defaultMessage:
+      "Selecciona un archivo de tipo imagen. Ejemplo: SVG, JPG, PNG, etc.",
+  },
+  invalidImageSizeError: {
+    defaultMessage: "Selecciona una imagen de menos de 1 MB.",
+  },
+});
 
 const ONLY_IMAGE_FORMATS = "image/*,image/heif,image/heic";
 const ALLOWED_FILE_TYPE = "image/";
@@ -14,10 +28,10 @@ function restartInput(input: HTMLInputElement) {
 
 function getValidationErrorMessage(file: File) {
   if (!isValidImageFormat(file)) {
-    return "Selecciona un archivo de tipo imagen. Ejemplo: SVG, JPG, PNG, etc.";
+    return messages.invalidImageFormatError;
   }
   if (!hasValidSize(file)) {
-    return `Selecciona una imagen de menos de ${ALLOWED_FILE_SIZE_IN_MEGABYTES} MB.`;
+    return messages.invalidImageSizeError;
   }
   return null;
 }
@@ -43,12 +57,14 @@ function ImagePicker({
   id = "image-picker-input",
   previewImageSrc,
   previewImageBorderRadius = "0",
-  label = "Seleccionar imagen",
+  label = <FormattedMessage defaultMessage="Seleccionar imagen" />,
   showDeleteButton = false,
   onPickImage = function () {},
   onClickDelete = function () {},
   onInvalidFile = function () {},
 }: ImagePickerProps) {
+  const { formatMessage } = useIntl();
+
   function pickImage({ target }) {
     const pickedImage = target?.files?.[0];
     restartInput(target);
@@ -58,16 +74,18 @@ function ImagePicker({
   function changePickedImage(pickedImage: File) {
     const validationErrorMessage = getValidationErrorMessage(pickedImage);
     if (validationErrorMessage) {
-      return onInvalidFile(validationErrorMessage);
+      return onInvalidFile(formatMessage(validationErrorMessage));
     }
     onPickImage(pickedImage);
   }
+
+  const previewImgAlt = formatMessage(messages.previewImgAlt);
 
   return (
     <div className={styles.Container}>
       <img
         className={styles.Preview}
-        alt="Previsualización"
+        alt={previewImgAlt}
         style={{ borderRadius: previewImageBorderRadius }}
         src={previewImageSrc}
       />
@@ -87,7 +105,7 @@ function ImagePicker({
           className={classes("btn", styles.DeleteButton)}
           onClick={onClickDelete}
         >
-          Eliminar foto
+          <FormattedMessage defaultMessage="Eliminar foto" />
         </button>
       </Maybe>
     </div>

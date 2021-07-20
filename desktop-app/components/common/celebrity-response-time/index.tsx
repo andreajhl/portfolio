@@ -1,3 +1,5 @@
+import { FormattedMessage } from "react-intl";
+
 type CelebrityResponseTimeProps = {
   turnAroundTime: number;
   availableForFlashDeliveries: boolean;
@@ -5,11 +7,21 @@ type CelebrityResponseTimeProps = {
 
 const getTurnAroundText = (turnAroundTime: number) => {
   if (turnAroundTime < 1) {
-    return "Pocas horas";
+    return <FormattedMessage defaultMessage="Pocas horas" />;
   } else if (turnAroundTime === 1) {
-    return `${turnAroundTime} día`;
+    return (
+      <FormattedMessage
+        defaultMessage="{turnAroundTime} día"
+        values={{ turnAroundTime }}
+      />
+    );
   } else {
-    return `${turnAroundTime} días`;
+    return (
+      <FormattedMessage
+        defaultMessage="{turnAroundTime} días"
+        values={{ turnAroundTime }}
+      />
+    );
   }
 };
 
@@ -19,9 +31,11 @@ function CelebrityResponseTime({
 }: CelebrityResponseTimeProps) {
   return (
     <span>
-      {availableForFlashDeliveries
-        ? "Entrega flash"
-        : getTurnAroundText(Math.round(turnAroundTime ?? 2))}
+      {availableForFlashDeliveries ? (
+        <FormattedMessage defaultMessage="Entrega flash" />
+      ) : (
+        getTurnAroundText(Math.round(turnAroundTime ?? 2))
+      )}
     </span>
   );
 }

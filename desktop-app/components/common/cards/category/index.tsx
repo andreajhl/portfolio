@@ -1,6 +1,13 @@
 import { getSearchPath } from "constants/paths";
 import { Link } from "../../routing/link";
 import styles from "./styles.module.scss";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  linkTitle: {
+    defaultMessage: `Ir a "{categoryTitle}"`,
+  },
+});
 
 type CategoryType = {
   id: number;
@@ -13,6 +20,10 @@ type CategoryCardProps = {
 };
 
 function CategoryCard({ category }: CategoryCardProps) {
+  const { formatMessage } = useIntl();
+  const linkTitle = formatMessage(messages.linkTitle, {
+    categoryTitle: category.title,
+  });
   return (
     <Link
       href={getSearchPath({ category_id: category.id })}
@@ -20,9 +31,9 @@ function CategoryCard({ category }: CategoryCardProps) {
       style={{
         backgroundImage: `linear-gradient(90deg, rgb(0, 0, 0, 0.85) 10.94%, rgba(255, 255, 255, 0) 100%),
           url("/assets/img/categories/${category.title}.jpg")`,
-        backgroundBlendMode: "multiply"
+        backgroundBlendMode: "multiply",
       }}
-      title={`Ir a categoría "${category.title}"`}
+      title={linkTitle}
     >
       <span className={styles.CategoryCardTitle}>{category.title}</span>
     </Link>

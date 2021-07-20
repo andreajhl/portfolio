@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import Checkbox from "../form/checkbox";
 import Maybe from "../helpers/maybe";
 import styles from "./styles.module.scss";
@@ -16,7 +17,7 @@ function CheckBoxList({
   options,
   handleChange,
   title,
-  initialListLength = 4
+  initialListLength = 4,
 }: CheckBoxListProps) {
   const [showMore, setShowMore] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
@@ -54,7 +55,7 @@ function CheckBoxList({
         <>
           <Checkbox
             style={{
-              margin: "0 0 11px 0"
+              margin: "0 0 11px 0",
             }}
             name={option.name}
             label={option.label}
@@ -70,13 +71,13 @@ function CheckBoxList({
           style={{
             height: "0px",
             opacity: "0",
-            overflow: "hidden"
+            overflow: "hidden",
           }}
         >
           {options.slice(initialListLength).map((option) => (
             <Checkbox
               style={{
-                margin: "0 0 11px 0"
+                margin: "0 0 11px 0",
               }}
               label={option.label}
               name={option.name}
@@ -93,7 +94,12 @@ function CheckBoxList({
             onClick={() => setShowMore((prevState) => !prevState)}
             className={styles.CTAShowMore}
           >
-            {showMore ? "Ver menos" : "Ver mas"}
+            <Maybe
+              it={showMore}
+              orElse={<FormattedMessage defaultMessage="Ver mas" />}
+            >
+              <FormattedMessage defaultMessage="Ver menos" />
+            </Maybe>
           </span>
         </div>
       </Maybe>

@@ -1,4 +1,5 @@
 import Maybe from "react-app/src/components/common/helpers/maybe";
+import { FormattedMessage } from "react-intl";
 import { IconButton } from "../icon-button";
 import styles from "./styles.module.scss";
 
@@ -42,7 +43,7 @@ function EditingToggleButton({
         onClick={onClickSave}
         style={{ color: saveButtonColor }}
       >
-        Guardar
+        <FormattedMessage defaultMessage="Guardar" />
       </button>
     </Maybe>
   );

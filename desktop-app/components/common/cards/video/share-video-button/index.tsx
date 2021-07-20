@@ -21,6 +21,7 @@ import { Dropdown } from "desktop-app/components/common/button/dropdown";
 import { CSSProperties } from "react";
 import getWindow from "react-app/src/utils/getWindow";
 import { getHiringPreviewPath } from "constants/paths";
+import { FormattedMessage } from "react-intl";
 
 type ShareVideoButtonProps = {
   backgroundColor?: CSSProperties["backgroundColor"];
@@ -129,12 +130,16 @@ function ShareVideoButton({
           orElse={
             <>
               <HyperlinkIcon />
-              <span>Copiar enlace</span>
+              <span>
+                <FormattedMessage defaultMessage="Copiar enlace" />
+              </span>
             </>
           }
         >
           <i className={classes("fa fa-check-circle", styles.CheckIcon)} />
-          <span>Enlace copiado</span>
+          <span>
+            <FormattedMessage defaultMessage="Enlace copiado" />
+          </span>
         </Maybe>
       </div>
       {socialMedias.map(toMenuItem)}

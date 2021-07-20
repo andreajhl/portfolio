@@ -1,3 +1,4 @@
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 type ContractInstructionTextareaProps = {
@@ -20,7 +21,7 @@ function ContractInstructionsTextarea({
         className={`${styles.ContractInstructionsLabel} ${labelClass}`}
         htmlFor={id}
       >
-        Instrucciones
+        <FormattedMessage defaultMessage="Instrucciones" />
       </label>
       <textarea
         id={id}

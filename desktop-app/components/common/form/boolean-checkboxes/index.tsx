@@ -1,4 +1,5 @@
 import classes from "classnames";
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 type BooleanRadiosInputsProps = {
@@ -42,7 +43,7 @@ function BooleanRadiosInputs({
             value && styles.BooleanRadiosInputsLabelChecked
           )}
         />
-        Sí
+        <FormattedMessage defaultMessage="Sí" />
       </label>
       <input
         type="radio"
@@ -61,7 +62,7 @@ function BooleanRadiosInputs({
             !value && styles.BooleanRadiosInputsLabelChecked
           )}
         />
-        No
+        <FormattedMessage defaultMessage="No" />
       </label>
       <input
         type="radio"

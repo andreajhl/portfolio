@@ -26,6 +26,17 @@ import {
 } from "constants/paths";
 import { ShareModeSelectorModal } from "../../modals/share-mode-selector-modal";
 import getWindow from "react-app/src/utils/getWindow";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  shareMessage: {
+    defaultMessage:
+      "¡Hola {deliveryTo}! Mira el regalo que te he hecho a través de Famosos.com {link}",
+  },
+  shareMailTitle: {
+    defaultMessage: "Te he hecho un regalo muy especial",
+  },
+});
 
 type ShareGiftDropdownProps = {
   backgroundColor?: CSSProperties["backgroundColor"];
@@ -40,7 +51,7 @@ type MenuItemType =
   | {
       id: string;
       icon?: ReactNode;
-      label: string;
+      label: ReactNode;
       to: string;
     }
   | JSX.Element;
@@ -69,13 +80,18 @@ function ShareGiftDropdown({
   deliveryTo,
   contractReference,
 }: ShareGiftDropdownProps) {
+  const { formatMessage } = useIntl();
   const shareInMailRef = useRef<PopupActions>();
   const shareInWhatsappRef = useRef<PopupActions>();
   const link = `${getWindow()?.location?.origin}${getGiftPreviewPath(
     contractReference
   )}`;
 
-  const message = `¡Hola ${deliveryTo}! Mira el regalo que te he hecho a través de Famosos.com ${link}`;
+  const shareMessage = formatMessage(messages.shareMessage, {
+    deliveryTo,
+    link,
+  });
+  const shareMailTitle = formatMessage(messages.shareMailTitle);
 
   const socialMedias: MenuItemType[] = [
     <div
@@ -83,26 +99,30 @@ function ShareGiftDropdown({
       onClick={shareInMailRef.current?.open}
     >
       <MailIcon />
-      <span>Compartir por e-mail</span>
+      <span>
+        <FormattedMessage defaultMessage="Compartir por e-mail" />
+      </span>
     </div>,
     <div
       className={styles.ShareDropdownItem}
       onClick={shareInWhatsappRef.current?.open}
     >
       <WhatsappIcon />
-      <span>Compartir por Whatsapp</span>
+      <span>
+        <FormattedMessage defaultMessage="Compartir por Whatsapp" />
+      </span>
     </div>,
     {
       id: "facebook",
       icon: <FacebookIcon />,
-      label: "Compartir por Facebook",
+      label: <FormattedMessage defaultMessage="Compartir por Facebook" />,
       to: getFacebookShareLink(link),
     },
     {
       id: "twitter",
       icon: <TwitterIcon />,
-      label: "Compartir por Twitter",
-      to: getTwitterSharingLink(message, link, "contratafamosos"),
+      label: <FormattedMessage defaultMessage="Compartir por Twitter" />,
+      to: getTwitterSharingLink(shareMessage, link, "contratafamosos"),
     },
   ];
 
@@ -139,12 +159,16 @@ function ShareGiftDropdown({
             orElse={
               <>
                 <HyperlinkIcon />
-                <span>Copiar enlace</span>
+                <span>
+                  <FormattedMessage defaultMessage="Copiar enlace" />
+                </span>
               </>
             }
           >
             <i className={classes("fa fa-check-circle", styles.CheckIcon)} />
-            <span>Enlace copiado</span>
+            <span>
+              <FormattedMessage defaultMessage="Enlace copiado" />
+            </span>
           </Maybe>
         </div>
         {socialMedias.map(toMenuItem)}
@@ -152,16 +176,13 @@ function ShareGiftDropdown({
       <ShareModeSelectorModal
         ref={shareInMailRef}
         type="mail"
-        shareInstantlyLink={getMailShareLink(
-          "Te he hecho un regalo muy especial",
-          message
-        )}
+        shareInstantlyLink={getMailShareLink(shareMailTitle, shareMessage)}
         scheduleShareLink={getClientHiringShareInMailPath(contractReference)}
       />
       <ShareModeSelectorModal
         ref={shareInWhatsappRef}
         type="whatsapp"
-        shareInstantlyLink={getWhatsappSharingLink(message)}
+        shareInstantlyLink={getWhatsappSharingLink(shareMessage)}
         scheduleShareLink={getClientHiringShareInWhatsappPath(
           contractReference
         )}
