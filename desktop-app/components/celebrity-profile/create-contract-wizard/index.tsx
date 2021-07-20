@@ -177,7 +177,7 @@ function CreateContractWizard({
   async function updateCurrentContractStep(data: any, step: number) {
     const updateData = { ...data, id: currentContractId };
     const result = await updateContractStep(updateData, step);
-    analytics.track("UPDATED_CONTRACT_STEP", {
+    analytics.track("UPDATE_CONTRACT_STEP_" + step, {
       ...updateData,
       widget: WIDGET_NAME,
       contractId: currentContractId,
