@@ -1,6 +1,7 @@
 import classes from "classnames";
 import { StatusType } from "lib/hooks/useStatus";
 import Collapse from "react-bootstrap/Collapse";
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 const statusData = {
@@ -10,15 +11,19 @@ const statusData = {
   },
   loading: {
     icon: <i className={classes("fa fa-circle-notch", styles.Spinner)} />,
-    text: "Guardando cambios...",
+    text: <FormattedMessage defaultMessage="Guardando cambios..." />,
   },
   completed: {
     icon: <i className={`far fa-check-circle ${styles.SavedIcon}`} />,
-    text: "Tus cambios se guardaron hace unos segundos.",
+    text: (
+      <FormattedMessage defaultMessage="Tus cambios se guardaron hace unos segundos." />
+    ),
   },
   rejected: {
     icon: <i className={`fa fa-exclamation-circle ${styles.ErrorIcon}`} />,
-    text: "Ha ocurrido un error guardando tus cambios",
+    text: (
+      <FormattedMessage defaultMessage="Ha ocurrido un error guardando tus cambios." />
+    ),
   },
 };
 

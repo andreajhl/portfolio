@@ -5,6 +5,16 @@ import HiringPreviewConfigurationType from "desktop-app/types/hiringPreviewConfi
 import { FillDripIcon } from "desktop-app/components/common/icons";
 import classes from "classnames";
 import styles from "./styles.module.scss";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  cardTitlePlaceholder: {
+    defaultMessage: "Agrega un titulo",
+  },
+  cardMessagePlaceholder: {
+    defaultMessage: "Agrega un texto especial",
+  },
+});
 
 type EditorFormGiftCardProps = {
   occasion: string;
@@ -26,12 +36,16 @@ function EditorFormGiftCard({
   onChange = function () {},
   onClickColorSelectorToggler = function () {},
 }: EditorFormGiftCardProps) {
+  const { formatMessage } = useIntl();
   const [titleMinRows, setTitleMinRows] = useState(2);
 
   useEffect(() => {
     // Para actualizar el textarea y evitar alto indebido.
     setTitleMinRows(undefined);
   }, []);
+
+  const cardTitlePlaceholder = formatMessage(messages.cardTitlePlaceholder);
+  const cardMessagePlaceholder = formatMessage(messages.cardMessagePlaceholder);
 
   return (
     <GiftCard
@@ -41,7 +55,7 @@ function EditorFormGiftCard({
     >
       <GiftCard.Title>
         <AutoHeightTextarea
-          placeholder="Agrega un titulo"
+          placeholder={cardTitlePlaceholder}
           minRows={titleMinRows}
           name="cardTitle"
           value={values.cardTitle}
@@ -52,7 +66,7 @@ function EditorFormGiftCard({
       </GiftCard.Title>
       <GiftCard.SpecialText>
         <AutoHeightTextarea
-          placeholder="Agrega un texto especial"
+          placeholder={cardMessagePlaceholder}
           name="cardMessage"
           value={values.cardMessage}
           onChange={onChange}

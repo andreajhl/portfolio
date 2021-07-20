@@ -20,6 +20,16 @@ import { EditorFormGiftCard } from "../editor-form-gift-card";
 import { Collapse } from "react-bootstrap";
 import { saveHiringPreviewConfiguration } from "react-app/src/state/ducks/contracts/actions";
 import getObjectWithFallbackValues from "../../../../lib/utils/getObjectWithFallbackValues";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  defaultCardTitle: {
+    defaultMessage: "Agrega un titulo",
+  },
+  defaultCardMessage: {
+    defaultMessage: "Agrega un texto especial",
+  },
+});
 
 const initialValues: HiringPreviewConfigurationType = {
   cardColor: availableCardColors[0],
@@ -49,6 +59,7 @@ function EditorForm({
   hiringPreviewConfiguration = {},
   onChange,
 }: EditorFormProps) {
+  const { formatMessage } = useIntl();
   const [status, setStatus] = useStatus();
   const { values, setFieldValue, onChangeField } = useForm({
     initialValues: getInitialValues(hiringPreviewConfiguration),
@@ -82,13 +93,16 @@ function EditorForm({
     }
   }, [values]);
 
+  const defaultCardTitle = formatMessage(messages.defaultCardTitle);
+  const defaultCardMessage = formatMessage(messages.defaultCardMessage);
+
   useEffect(() => {
     onChange({
       ...values,
-      cardTitle: values.cardTitle || "Agrega un titulo",
-      cardMessage: values.cardMessage || "Agrega un texto especial",
+      cardTitle: values.cardTitle || defaultCardTitle,
+      cardMessage: values.cardMessage || defaultCardMessage,
     });
-  }, [values]);
+  }, [defaultCardMessage, defaultCardTitle, values]);
 
   function toggleCardColorSelectorIsHidden() {
     setCardColorSelectorIsVisible((isVisible) => !isVisible);
@@ -118,7 +132,9 @@ function EditorForm({
         <Collapse in={cardColorSelectorIsVisible}>
           <div className={styles.CollapsibleCardColorSelector}>
             <section className={styles.CardColorSelectorWrapper}>
-              <h3 className={styles.FieldTitle}>Color de la tarjeta</h3>
+              <h3 className={styles.FieldTitle}>
+                <FormattedMessage defaultMessage="Color de la tarjeta" />
+              </h3>
               <CardColorSelector
                 onChange={changeCardColor}
                 value={values.cardColor}
@@ -127,7 +143,9 @@ function EditorForm({
           </div>
         </Collapse>
         <section className={styles.PageBackgroundSelectorSection}>
-          <h3 className={styles.FieldTitle}>Agregar fondo</h3>
+          <h3 className={styles.FieldTitle}>
+            <FormattedMessage defaultMessage="Agregar fondo" />
+          </h3>
           <PageBackgroundSelector
             onChange={changePageBackground}
             value={values.pageBackgroundUrl}
@@ -141,7 +159,7 @@ function EditorForm({
             rel="noreferrer"
           >
             <button type="button" className="btn btn-tertiary">
-              Previsualizar
+              <FormattedMessage defaultMessage="Previsualizar" />
             </button>
           </a>
         </div>
