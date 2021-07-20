@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "lib/famosos-auth";
 import { LoaderLayout } from "react-app/src/components/layouts/loader";
 import isMobile from "lib/utils/isMobile";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";

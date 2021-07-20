@@ -1,4 +1,4 @@
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "lib/famosos-auth";
 import { ShoppingCartPage } from "desktop-app/components/pages/shopping-cart";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
