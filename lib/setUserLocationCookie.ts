@@ -130,14 +130,16 @@ const setUserLocationCookie = async ({
   const cookies = parse(req?.headers?.cookie || "");
   let newCookiesSerializes = [];
 
-  if (
-    (!(USER_LOCATION_KEY in cookies) ||
-      !(USER_IP_ADDRESS in cookies) ||
-      !(USER_CURRENCY_CODE in cookies)) &&
-    !res.getHeader(USER_LOCATION_KEY) &&
-    !res.getHeader(USER_CURRENCY_CODE) &&
-    !res.getHeader(USER_IP_ADDRESS)
-  ) {
+  const userHasAllCookies =
+    USER_LOCATION_KEY in cookies &&
+    USER_IP_ADDRESS in cookies &&
+    USER_CURRENCY_CODE in cookies;
+  const locationValuesAreInHeader =
+    Boolean(res.getHeader(USER_LOCATION_KEY)) &&
+    Boolean(res.getHeader(USER_CURRENCY_CODE)) &&
+    Boolean(res.getHeader(USER_IP_ADDRESS));
+
+  if (!userHasAllCookies && !locationValuesAreInHeader) {
     const locationCookies = await getLocationCookieHeader(req, res);
     const currencyCurrentData = await getCurrencyCurrentTRMCookieHeader(
       locationCookies.currency_code
@@ -146,11 +148,7 @@ const setUserLocationCookie = async ({
     newCookiesSerializes.push(
       ...serializeCurrencyCurrentData(currencyCurrentData)
     );
-  } else if (
-    res.getHeader(USER_IP_ADDRESS) &&
-    res.getHeader(USER_CURRENCY_CODE) &&
-    res.getHeader(USER_LOCATION_KEY)
-  ) {
+  } else if (locationValuesAreInHeader) {
     const currencyCurrentData = await getCurrencyCurrentTRMCookieHeader(
       String(res.getHeader(USER_CURRENCY_CODE))
     );
