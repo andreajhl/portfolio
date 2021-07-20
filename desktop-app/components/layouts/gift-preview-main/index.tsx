@@ -7,6 +7,7 @@ import ClientContractType from "desktop-app/types/clientContract";
 import { HiringReviewSection } from "../../common/widgets/hiring-review-section";
 import getDefaultHiringConfiguration from "constants/getDefaultHiringConfiguration";
 import getGiftPageBackgroundStyle from "../../../../lib/utils/getGiftPageBackgroundStyle";
+import useValidatedFormattedMessage from "lib/hooks/useValidatedFormattedMessage";
 
 type GiftPreviewMainProps = {
   className?: string;
@@ -21,6 +22,16 @@ function GiftPreviewMain({
   hiringConfiguration = getDefaultHiringConfiguration(contract),
   previewMode = false,
 }: GiftPreviewMainProps) {
+  const getValidMessage = useValidatedFormattedMessage();
+
+  const deliveryTo = contract.deliveryTo;
+  const cardMessage = getValidMessage(hiringConfiguration.cardMessage, {
+    deliveryTo,
+  });
+  const cardTitle = getValidMessage(hiringConfiguration.cardTitle, {
+    deliveryTo,
+  });
+
   return (
     <main
       className={classes(styles.GiftPreviewMain, className)}
@@ -33,10 +44,8 @@ function GiftPreviewMain({
             cardColor={hiringConfiguration.cardColor}
             occasion={contract?.occasion}
           >
-            <GiftCard.Title>{hiringConfiguration.cardTitle}</GiftCard.Title>
-            <GiftCard.SpecialText>
-              {hiringConfiguration.cardMessage}
-            </GiftCard.SpecialText>
+            <GiftCard.Title>{cardTitle}</GiftCard.Title>
+            <GiftCard.SpecialText>{cardMessage}</GiftCard.SpecialText>
           </GiftCard>
           <div className={styles.ReviewSectionWrapper}>
             <HiringReviewSection contractData={contract} asContractOwner />
