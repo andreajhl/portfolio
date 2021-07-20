@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import { getCelebrityProfilePath } from "constants/paths";
 import { Link } from "desktop-app/components/common/routing/link";
 import styles from "./styles.module.scss";
@@ -18,9 +18,15 @@ type FooterProps = {
   avatarURL: string;
   fullName: string;
   userName: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 };
 
-const VideoFooter = ({ avatarURL, fullName, userName }: FooterProps) => {
+const VideoFooter = ({
+  avatarURL,
+  fullName,
+  userName,
+  onClick,
+}: FooterProps) => {
   const { formatMessage } = useIntl();
 
   const linkTitle = formatMessage(messages.linkTitle, { fullName });
@@ -30,6 +36,7 @@ const VideoFooter = ({ avatarURL, fullName, userName }: FooterProps) => {
       title={linkTitle}
       className={`${styles.CelebrityInfo} ${parentElementClass}`}
       href={getCelebrityProfilePath(userName)}
+      onClick={onClick}
     >
       <img className={styles.CelebrityAvatar} src={avatarURL} alt={fullName} />
       <TextWithOverflow text={fullName} textClassName={styles.CelebrityName} />
