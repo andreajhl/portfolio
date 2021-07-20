@@ -37,7 +37,6 @@ import {
 } from "lib/utils/localContractInProgress";
 import { Session } from "react-app/src/state/utils/session";
 import objectHasProperties from "lib/utils/objectHasProperties";
-import Maybe from "desktop-app/components/common/helpers/maybe";
 
 const NO_TOKEN_ERROR = "invalid token: no token string was provided";
 

@@ -73,7 +73,7 @@ function ContractDeliveryForm({
     setFieldValue,
     validateBeforeSubmit,
   } = useForm<ContractDeliveryType>({
-    initialValues: initialValuesFromProps || initialValues,
+    initialValues: Object.assign({}, initialValues, initialValuesFromProps),
     validations,
     onSubmit(values) {
       onSubmitFromProps(getSanitizedValues(values));

@@ -68,7 +68,7 @@ function ContractNotificationsForm({
     onFocusField,
     validateBeforeSubmit,
   } = useForm<ContractNotificationsType>({
-    initialValues: Object.assign(initialValues, initialValuesFromProps),
+    initialValues: Object.assign({}, initialValues, initialValuesFromProps),
     validations,
     onSubmit,
   });

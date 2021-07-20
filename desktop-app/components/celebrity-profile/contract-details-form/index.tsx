@@ -77,7 +77,7 @@ function ContractDetailsForm({
     setFieldError,
     submitForm,
   } = useForm({
-    initialValues: Object.assign(initialValues, initialValuesFromProps),
+    initialValues: Object.assign({}, initialValues, initialValuesFromProps),
     validations,
     onSubmit,
   });
