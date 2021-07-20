@@ -3,6 +3,8 @@ import { Link } from "../../routing/link";
 import styles from "./styles.module.scss";
 import { defineMessages } from "react-intl";
 import useValidatedFormattedMessage from "lib/hooks/useValidatedFormattedMessage";
+import { analytics } from "react-app/src/state/utils/gtm";
+import getWindow from "react-app/src/utils/getWindow";
 
 const messages = defineMessages({
   linkTitle: {
@@ -28,6 +30,15 @@ function CategoryCard({ category }: CategoryCardProps) {
   });
   const imgFileName = category.codename?.toLowerCase?.();
 
+  function trackClickEvent() {
+    analytics.track("CLICK_ON_CATEGORY_CARD", {
+      category,
+      categoryTitle,
+      path: getWindow().location.pathname,
+      widget: "CategoryCard",
+    });
+  }
+
   return (
     <Link
       href={getSearchPath({ category_id: category.id })}
@@ -38,6 +49,7 @@ function CategoryCard({ category }: CategoryCardProps) {
         backgroundBlendMode: "multiply",
       }}
       title={linkTitle}
+      onClick={trackClickEvent}
     >
       <span className={styles.CategoryCardTitle}>{categoryTitle}</span>
     </Link>
