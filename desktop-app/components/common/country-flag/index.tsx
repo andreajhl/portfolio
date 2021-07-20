@@ -14,6 +14,7 @@ type CountryFlagProps = {
   countryId: number;
   width?: number;
   className?: string;
+  onClick?: (event: any) => void;
 };
 
 function CountryFlag({
@@ -21,12 +22,17 @@ function CountryFlag({
   countryId,
   width = 20,
   className = "",
+  onClick,
 }: CountryFlagProps) {
   const { formatMessage } = useIntl();
   const flagImgAlt = formatMessage(messages.flagImgAlt, { alpha2Code });
 
   return (
-    <Link href={getSearchCountryPath(countryId)} className={styles.CountryFlag}>
+    <Link
+      href={getSearchCountryPath(countryId)}
+      className={styles.CountryFlag}
+      onClick={onClick}
+    >
       <img
         src={`https://flagcdn.com/w20/${
           alpha2Code?.toLowerCase?.() || "co"

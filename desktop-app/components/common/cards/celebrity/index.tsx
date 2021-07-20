@@ -17,6 +17,7 @@ import useCelebrityFavorite from "lib/hooks/useCelebrityFavorite";
 import classes from "classnames";
 import getCelebrityDiscountPercentage from "lib/utils/getCelebrityDiscountPercentage";
 import { DiscountPercentageBadge } from "desktop-app/components/common/widgets/discount-percentage-badge";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const preventRedirectFromParent = (event) => {
   if (event.stopPropagation) {
@@ -70,6 +71,16 @@ function CelebrityCard({
     videoMessagePrice - videoMessagePrice * discountPercentage;
 
   const celebrityProfileLink = getCelebrityProfilePath(celebrity.username);
+
+  const trackHashtagClick = function (hashtag: string) {
+    analytics.track("CLICK_CELEBRITY_CARD_HASHTAG", { hashtag, celebrity });
+  };
+
+  function trackCountryFlagClick() {
+    analytics.track("CLICK_CELEBRITY_CARD_COUNTRY_FLAG", {
+      celebrity,
+    });
+  }
 
   return (
     <div
@@ -125,6 +136,7 @@ function CelebrityCard({
             countryId={celebrity.countryId}
             alpha2Code={celebrity.alpha2Code}
             className="mr-2"
+            onClick={trackCountryFlagClick}
           />
           <Link
             href={celebrityProfileLink}
@@ -140,7 +152,11 @@ function CelebrityCard({
         <Maybe it={Array.isArray(celebrity.hashtags)}>
           <p className={`text-with-ellipsis ${styles.CelebrityCardHashtags}`}>
             {getCelebrityHashtags(celebrity).map((hashtag) => (
-              <Link href={getSearchHashtagPath(hashtag)} key={hashtag}>
+              <Link
+                href={getSearchHashtagPath(hashtag)}
+                key={hashtag}
+                onClick={() => trackHashtagClick(hashtag)}
+              >
                 #{hashtag}{" "}
               </Link>
             ))}
