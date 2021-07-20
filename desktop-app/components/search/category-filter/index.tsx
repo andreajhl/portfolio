@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import { listV2 } from "react-app/src/state/ducks/celebrity-categories/actions";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
+import { defineMessages, useIntl } from "react-intl";
 
 const generateNewMapForKeysValueOfArray = (array, value = true) => {
   const newState = new Map();
@@ -34,12 +35,19 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type CategoryFilterProps = {} & PropsFromRedux;
 
+const messages = defineMessages({
+  title: {
+    defaultMessage: "Categorías",
+  },
+});
+
 function CategoryFilter({
   celebrityCategories,
   listCelebrityCategories,
   updateSearchFilters,
   searchFilters,
 }: CategoryFilterProps) {
+  const { formatMessage } = useIntl();
   useEffect(() => {
     const shouldFetchFilterOptions = !celebrityCategories.length;
     if (!shouldFetchFilterOptions) return;
@@ -122,7 +130,7 @@ function CategoryFilter({
 
   return (
     <CheckBoxList
-      title="Categorías"
+      title={formatMessage(messages.title)}
       options={memoizedValueForCategoryFilters}
       handleChange={(event) =>
         handleChangeCheckbox(event, setCategoriesChecked)

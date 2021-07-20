@@ -11,6 +11,7 @@ import { CategoryFilter } from "../category-filter";
 import { DeliveryTimeFilter } from "../delivery-time-filter";
 import { HashtagsFilter } from "desktop-app/components/search/hashtags-filter";
 import { RootState } from "react-app/src/state/store";
+import { FormattedMessage } from "react-intl";
 
 const mapStateToProps = ({ searchFilters }: RootState) => {
   return {
@@ -93,7 +94,9 @@ function SearchFilters({
       </div>
       <div className={styles.SearchFilterRow}>
         <div className={styles.SearchFilterItem}>
-          <label className={styles.SearchFilterItemTitle}>Precio</label>
+          <label className={styles.SearchFilterItemTitle}>
+            <FormattedMessage defaultMessage="Precio" />
+          </label>
           <PriceRangeSlider
             min={defaultMinPrice}
             max={defaultMaxPrice}
@@ -122,7 +125,7 @@ function SearchFilters({
             className={`btn btn-tertiary ${styles.SearchFiltersButton}`}
             onClick={cleanSearchFilters}
           >
-            Limpiar filtros
+            <FormattedMessage defaultMessage="Limpiar filtros" />
           </button>
         </div>
       </div>

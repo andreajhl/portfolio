@@ -3,6 +3,7 @@ import { retrieveUserCards } from "react-app/src/state/ducks/payments/actions";
 import { PaymentMethodsList } from "desktop-app/components/user-profile/payment-methods-list";
 import classes from "classnames";
 import styles from "./styles.module.scss";
+import { FormattedMessage } from "react-intl";
 
 type PaymentMethodsSectionProps = {};
 
@@ -30,7 +31,7 @@ function PaymentMethodsSection(props: PaymentMethodsSectionProps) {
       <h2
         className={classes(styles.Title, !hasResults && styles.NoResultsTitle)}
       >
-        Métodos de pago
+        <FormattedMessage defaultMessage="Métodos de pago" />
       </h2>
       <PaymentMethodsList
         isLoading={isLoading}

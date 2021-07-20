@@ -4,6 +4,7 @@ import { fetchSimilarResultsV2 } from "react-app/src/state/ducks/celebrities/act
 import { useEffect } from "react";
 import { RootState } from "react-app/src/state/store";
 import styles from "./styles.module.scss";
+import { FormattedMessage } from "react-intl";
 
 const mapStateToProps = ({ searchFilters, celebrities }: RootState) => ({
   searchFilters,
@@ -37,7 +38,7 @@ function AdditionalResultsSection({
   return (
     <section className={styles.AdditionalResultsSection}>
       <h2 className={styles.AdditionalResultsSectionTitle}>
-        Quizá también pueda interesarte
+        <FormattedMessage defaultMessage="Quizá también pueda interesarte" />
       </h2>
       <ResultsCardGrid
         isLoading={isLoading}

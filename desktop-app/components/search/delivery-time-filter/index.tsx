@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
+import { defineMessages, useIntl } from "react-intl";
 import { connect } from "react-redux";
 
 const deliveryTimeFilter = [
@@ -15,6 +16,12 @@ const deliveryTimeFilter = [
   { label: "Menos de 5 días", value: 5 },
   { label: "Hasta 7 días", value: 7 },
 ];
+
+const messages = defineMessages({
+  title: {
+    defaultMessage: "Tiempo de entrega",
+  },
+});
 
 const mapStateToProps = ({ searchFilters }) => ({
   searchFilters,
@@ -32,6 +39,7 @@ function DeliveryTimeFilter({
   updateSearchFilters,
   searchFilters,
 }: CategoryFilterProps) {
+  const { formatMessage } = useIntl();
   const [deliveriesTimeChecked, setDeliveriesTimeChecked] = useState(
     new Map(
       searchFilters.max_delivery_time
@@ -107,7 +115,7 @@ function DeliveryTimeFilter({
   };
   return (
     <CheckBoxList
-      title="Tiempo de entrega"
+      title={formatMessage(messages.title)}
       options={memoizedValuesForDeliveryTimeFilter}
       handleChange={(event) =>
         handleChangeCheckbox(event, setDeliveriesTimeChecked)

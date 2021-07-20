@@ -1,4 +1,5 @@
 import { getGiftPreviewPath, getHiringPreviewPath } from "constants/paths";
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 type WhatsappSharePreviewProps = {
@@ -23,8 +24,10 @@ function WhatsappSharePreview({
           alt="Poster de video"
         />
         <div className={styles.MessageText}>
-          ¡Hola {deliveryTo}! <br />
-          Mira el regalo que {deliveryFrom} te ha hecho a través de Famosos.com{" "}
+          <FormattedMessage
+            defaultMessage="¡Hola {deliveryTo}! {break}
+          Mira el regalo que {deliveryFrom} te ha hecho a través de Famosos.com"
+          />
           <br /> <br />
           <span className={styles.Hyperlink}>
             https://www.famosos.com{getGiftPreviewPath(contractReference)}

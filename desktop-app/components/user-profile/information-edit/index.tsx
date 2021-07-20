@@ -9,6 +9,7 @@ import styles from "./styles.module.scss";
 import { ActiveInputField } from "desktop-app/components/common/form/active-input-field";
 import { userDetails } from "desktop-app/types/userDetails";
 import UpdateUserBirthdayDate from "../update-user-birthday-date";
+import { FormattedMessage } from "react-intl";
 
 type FormValuesType = {
   fullName: string;
@@ -30,7 +31,7 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
   return (
     <div className={styles.UserInformationConfigContainer}>
       <h2 className={styles.UserInformationConfigTitle}>
-        Información de tu cuenta
+        <FormattedMessage defaultMessage="Información de tu cuenta" />
       </h2>
       <div className={styles.ConfigOptionsSections}>
         <div>
@@ -62,7 +63,7 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
         </div>
         <div className={styles.LogoutButtonWrapper}>
           <LogoutButton className={classes("btn", styles.LogoutButton)}>
-            Cerrar sesión
+            <FormattedMessage defaultMessage="Cerrar sesión" />
           </LogoutButton>
         </div>
       </div>

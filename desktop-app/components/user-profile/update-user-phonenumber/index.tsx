@@ -6,6 +6,16 @@ import { CheckedCircleIcon } from "desktop-app/components/common/icons";
 import classes from "classnames";
 import { CellphoneNumberInput } from "desktop-app/components/common/form/cellphone-number-input";
 import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  emailCodeLabel: {
+    defaultMessage: "Ingresa el código de seguridad que enviamos a tu celular",
+  },
+  emailCodePlaceholder: {
+    defaultMessage: "Código de seguridad",
+  },
+});
 
 function HeaderPopup({ closeModal }) {
   return (
@@ -15,7 +25,9 @@ function HeaderPopup({ closeModal }) {
         className={styles.CloseButton}
         onClick={closeModal}
       />
-      <p>Cambiar número de celular</p>
+      <p>
+        <FormattedMessage defaultMessage="Cambiar número de celular" />
+      </p>
     </div>
   );
 }
@@ -24,7 +36,7 @@ function UpdateUserPhonePopupForm({ closeModal }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [securityCode, setSecurityCode] = useState("");
-
+  const { formatMessage } = useIntl();
   if (currentStep === 0) {
     return (
       <div className={styles.UpdateUserPhonePopup}>
@@ -40,7 +52,7 @@ function UpdateUserPhonePopupForm({ closeModal }) {
             onClick={() => setCurrentStep(1)}
             className={classes("btn btn-primary", styles.CTAButton)}
           >
-            Continuar
+            <FormattedMessage defaultMessage="Continuar" />
           </button>
         </div>
       </div>
@@ -53,8 +65,8 @@ function UpdateUserPhonePopupForm({ closeModal }) {
         <div className={styles.InputFields}>
           <InputWithUpperLabel
             inputId="email_code"
-            label="Ingresa el código de seguridad que enviamos a tu celular"
-            placeholder="Código de seguridad"
+            label={formatMessage(messages.emailCodeLabel)}
+            placeholder={formatMessage(messages.emailCodePlaceholder)}
             value={securityCode}
             onChange={(e) => setSecurityCode(e.target.value)}
           />
@@ -62,7 +74,7 @@ function UpdateUserPhonePopupForm({ closeModal }) {
             onClick={() => setCurrentStep(2)}
             className={classes("btn btn-primary", styles.CTAButton)}
           >
-            Enviar
+            <FormattedMessage defaultMessage="Enviar" />
           </button>
         </div>
       </div>
@@ -79,8 +91,13 @@ function UpdateUserPhonePopupForm({ closeModal }) {
         <div className={styles.SuccessMessage}>
           <CheckedCircleIcon />
           <span>
-            Tu número de celular se ha actualizado <br></br>
-            correctamente.
+            <FormattedMessage
+              defaultMessage="Tu número de celular se ha actualizado {breakLine}
+            correctamente."
+              values={{
+                breakLine: <br />,
+              }}
+            />
           </span>
         </div>
       </div>

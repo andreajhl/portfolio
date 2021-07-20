@@ -8,6 +8,7 @@ import { getCelebrityProfilePath } from "constants/paths";
 import { IconButton } from "desktop-app/components/common/button/icon-button";
 import { ContractOccasion } from "desktop-app/components/common/widgets/contract-occasion";
 import getFormattedDate from "lib/utils/getFormattedDate";
+import { FormattedMessage } from "react-intl";
 
 type ShoppingCartCardProps = {
   contractData: MyHiringsContract;
@@ -38,7 +39,12 @@ function ShoppingCartCard({
       <div className={styles.RightSide}>
         <header className={styles.RightSideHeader}>
           <h2 className={styles.Title}>
-            Video personalizado de {contractData.celebrityData.fullName}
+            <FormattedMessage
+              defaultMessage="Video personalizado de {celebrityFullName}"
+              values={{
+                celebrityFullName: contractData.celebrityData.fullName,
+              }}
+            />
           </h2>
           <IconButton>
             <i className={`far fa-trash-alt ${styles.TrashIcon}`} />
@@ -47,11 +53,14 @@ function ShoppingCartCard({
         <div className={styles.OccasionWrapper}>
           <ContractOccasion occasion={contractData.occasion} />
           <span className={styles.CreationDate}>
-            Fecha de inicio de la solicitud: {getFormattedDate(new Date())}
+            <FormattedMessage defaultMessage="Fecha de inicio de la solicitud:" />{" "}
+            {getFormattedDate(new Date())}
           </span>
         </div>
         <div className={styles.PriceWrapper}>
-          <span>Total</span>
+          <span>
+            <FormattedMessage defaultMessage="Total" />
+          </span>
           <span>$125 USD</span>
         </div>
         <footer className={styles.RightSideFooter}>
@@ -65,7 +74,7 @@ function ShoppingCartCard({
               type="button"
               className={`btn btn-primary ${styles.FinishBuyButton}`}
             >
-              Finalizar compra
+              <FormattedMessage defaultMessage="Finalizar compra" />
             </button>
           </Link>
         </footer>

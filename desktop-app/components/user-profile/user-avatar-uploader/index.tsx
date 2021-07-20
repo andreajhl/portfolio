@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 import { updateUserAvatar } from "react-app/src/state/ducks/session/actions";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import { Collapse } from "react-bootstrap";
+import { FormattedMessage } from "react-intl";
 
 const UPDATE_PROFILE_PHOTO_DISABLED = true;
 
@@ -78,7 +79,10 @@ function UserAvatarUploader({ currentUserAvatar }: UserAvatarUploaderProps) {
         previewImageSrc={imagePickerPreviewImageSrc}
         previewImageBorderRadius="50%"
         label={
-          <Maybe it={hasAvatar} orElse="Agregar foto">
+          <Maybe
+            it={hasAvatar}
+            orElse={<FormattedMessage defaultMessage="Agregar foto" />}
+          >
             <i className={classes("fa fa-edit", styles.EditButton)} />
           </Maybe>
         }

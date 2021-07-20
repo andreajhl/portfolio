@@ -5,6 +5,22 @@ import InputWithUpperLabel from "desktop-app/components/common/form/input-with-u
 import { CheckedCircleIcon } from "desktop-app/components/common/icons";
 import classes from "classnames";
 import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  inputEmailPlaceholder: {
+    defaultMessage: "Correo electrónico nuevo",
+  },
+  inputEmailLabel: {
+    defaultMessage: "Ingresa una nueva dirección de correo electrónico",
+  },
+  inputNewEmailPlaceholder: {
+    defaultMessage: "Correo electrónico nuevo",
+  },
+  inputNewEmailLabel: {
+    defaultMessage: "Ingresa el código de seguridad que enviamos a tu correo",
+  },
+});
 
 function HeaderPopup({ closeModal }) {
   return (
@@ -14,13 +30,16 @@ function HeaderPopup({ closeModal }) {
         className={styles.CloseButton}
         onClick={closeModal}
       />
-      <p>Cambiar correo electrónico</p>
+      <p>
+        <FormattedMessage defaultMessage="Cambiar correo electrónico" />
+      </p>
     </div>
   );
 }
 
 function UpdateUserEmailPopupForm({ closeModal }) {
   const [currentStep, setCurrentStep] = useState(0);
+  const { formatMessage } = useIntl();
 
   if (currentStep === 0) {
     return (
@@ -29,8 +48,8 @@ function UpdateUserEmailPopupForm({ closeModal }) {
         <div className={styles.InputFields}>
           <InputWithUpperLabel
             inputId="user_email"
-            label="Ingresa una nueva dirección de correo electrónico"
-            placeholder="Correo electrónico nuevo"
+            label={formatMessage(messages.inputEmailLabel)}
+            placeholder={formatMessage(messages.inputEmailPlaceholder)}
             value="isaac.pr99@gmail.com"
             onChange={(value) => console.log(value)}
           ></InputWithUpperLabel>
@@ -38,7 +57,7 @@ function UpdateUserEmailPopupForm({ closeModal }) {
             onClick={() => setCurrentStep(1)}
             className={classes("btn btn-primary", styles.CTAButton)}
           >
-            Continuar
+            <FormattedMessage defaultMessage="Continuar" />
           </button>
         </div>
       </div>
@@ -60,7 +79,7 @@ function UpdateUserEmailPopupForm({ closeModal }) {
             onClick={() => setCurrentStep(2)}
             className={classes("btn btn-primary", styles.CTAButton)}
           >
-            Enviar
+            <FormattedMessage defaultMessage="Enviar" />
           </button>
         </div>
       </div>
@@ -77,7 +96,7 @@ function UpdateUserEmailPopupForm({ closeModal }) {
         <div className={styles.SuccessMessage}>
           <CheckedCircleIcon />
           <span>
-            Tu correo electrónico se ha actualizado <br></br> correctamente.
+            <FormattedMessage defaultMessage="Tu correo electrónico se ha actualizado {breakLine} correctamente." />
           </span>
         </div>
       </div>

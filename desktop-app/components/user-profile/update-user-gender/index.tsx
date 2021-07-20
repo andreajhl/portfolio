@@ -6,12 +6,23 @@ import { userDetails } from "desktop-app/types/userDetails";
 import useStatus from "lib/hooks/useStatus";
 import React, { useState } from "react";
 import { updateUserGender } from "react-app/src/state/ducks/account/actions";
+import { defineMessages, useIntl } from "react-intl";
 import styles from "./styles.module.scss";
 
 type UpdateUserGenderProps = Pick<userDetails, "gender">;
 
+const messages = defineMessages({
+  checkboxMaleLabel: {
+    defaultMessage: "Hombre",
+  },
+  checkboxWomanLabel: {
+    defaultMessage: "Mujer",
+  },
+});
+
 function UpdateUserGender({ gender }: UpdateUserGenderProps) {
   const [status, setStatus] = useStatus("idle");
+  const { formatMessage } = useIntl();
   const [currentgenderSelect, setCurrentgenderSelect] = useState(gender);
   const handlegenderChange = async ({ gender }: UpdateUserGenderProps) => {
     setCurrentgenderSelect(gender);
@@ -24,7 +35,7 @@ function UpdateUserGender({ gender }: UpdateUserGenderProps) {
     <div className={styles.UpdateUserGenderWrapper}>
       <Checkbox
         alignLabel="left"
-        label="Hombre"
+        label={formatMessage(messages.checkboxMaleLabel)}
         onChange={(e) => handlegenderChange({ gender: "male" })}
         value="male"
         checked={currentgenderSelect === "male"}
@@ -34,7 +45,7 @@ function UpdateUserGender({ gender }: UpdateUserGenderProps) {
       ></Checkbox>
       <Checkbox
         alignLabel="left"
-        label="Mujer"
+        label={formatMessage(messages.checkboxWomanLabel)}
         onChange={(e) => handlegenderChange({ gender: "female" })}
         value="female"
         checked={currentgenderSelect === "female"}

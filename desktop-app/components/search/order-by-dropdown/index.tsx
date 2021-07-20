@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Dropdown } from "../../common/button/dropdown";
 import classes from "classnames";
 import styles from "./styles.module.scss";
+import { FormattedMessage } from "react-intl";
 
 type OptionType = {
   label: ReactNode;
@@ -17,7 +18,7 @@ type OrderByDropdownProps = {
 };
 
 function OrderByDropdown({
-  title = "Ordenar por",
+  title = <FormattedMessage defaultMessage="Ordenar por" />,
   className = "",
   options,
   selectedOption = options[0],

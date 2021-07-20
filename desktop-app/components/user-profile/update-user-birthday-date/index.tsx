@@ -6,6 +6,13 @@ import useForm from "lib/hooks/useForm";
 import moment from "moment";
 import useStatus from "lib/hooks/useStatus";
 import { updateUserBirthdayDate } from "react-app/src/state/ducks/account/actions";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  name: {
+    defaultMessage: "Fecha de nacimiento",
+  },
+});
 
 type FormValuesType = {
   birthdayDate: string;
@@ -17,6 +24,7 @@ type UpdateUserBirthdayDateProps = {
 function UpdateUserBirthdayDate({
   userBirthdayDate,
 }: UpdateUserBirthdayDateProps) {
+  const { formatMessage } = useIntl();
   const [status, setStatus] = useStatus("idle");
   const handleBirthdayDateChange = async (birthdayDate) => {
     setStatus("loading");
@@ -48,7 +56,7 @@ function UpdateUserBirthdayDate({
         inputClass={styles.inputClass}
         labelClass={styles.labelInputFields}
         value={values.birthdayDate}
-        label="Fecha de nacimiento"
+        label={formatMessage(messages.name)}
         type="date"
         name="birthdayDate"
         onChange={onChangeField}

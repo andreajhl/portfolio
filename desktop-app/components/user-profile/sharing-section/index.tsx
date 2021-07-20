@@ -1,4 +1,5 @@
 import classes from "classnames";
+import { FormattedMessage } from "react-intl";
 import { ShareDropdown } from "../share-dropdown";
 import styles from "./styles.module.scss";
 
@@ -9,7 +10,7 @@ function SharingSection(props: SharingSectionProps) {
   return (
     <section className={styles.SharingSection}>
       <h2 className={styles.Title}>
-        Invita a tus amigos a que conozcan Famosos
+        <FormattedMessage defaultMessage="Invita a tus amigos a que conozcan Famosos" />
       </h2>
       <div className={styles.Wrapper}>
         <span className={classes("text-with-ellipsis", styles.SharingLink)}>

@@ -17,6 +17,7 @@ import {
   getMailShareLink,
 } from "../../../../lib/utils/getSocialMediaLink";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
 type ShareDropdownProps = {
   buttonClassName?: string;
@@ -26,8 +27,8 @@ type ShareDropdownProps = {
 type MenuItemType = {
   id: string;
   icon?: ReactNode;
-  label: string;
-  to: string;
+  label: ReactNode;
+  to: ReactNode;
 };
 
 const toMenuItem = ({ id, to, icon, label }) => (
@@ -43,15 +44,34 @@ const toMenuItem = ({ id, to, icon, label }) => (
   </a>
 );
 
+const messages = defineMessages({
+  shareLinkEmailSubject: {
+    defaultMessage: "Me gustaría contarte sobre la plataforma Famosos",
+  },
+  shareLinkEmailBody: {
+    defaultMessage:
+      "¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a {link}",
+  },
+  shareLinkWhatsappMessage: {
+    defaultMessage:
+      "¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a {link}",
+  },
+  shareLinkTwitterText: {
+    defaultMessage:
+      "¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a {link}",
+  },
+});
+
 function ShareDropdown({ buttonClassName = "", link }: ShareDropdownProps) {
+  const { formatMessage } = useIntl();
   const socialMedias: MenuItemType[] = [
     {
       id: "mail",
       icon: <MailIcon />,
-      label: "Compartir por e-mail",
+      label: <FormattedMessage defaultMessage="Compartir por e-mail" />,
       to: getMailShareLink(
-        "Me gustaría contarte sobre la plataforma Famosos",
-        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`
+        formatMessage(messages.shareLinkEmailSubject),
+        formatMessage(messages.shareLinkEmailBody, { link })
       ),
     },
     {
@@ -59,21 +79,21 @@ function ShareDropdown({ buttonClassName = "", link }: ShareDropdownProps) {
       icon: <WhatsappIcon />,
       label: "Compartir por Whatsapp",
       to: getWhatsappSharingLink(
-        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`
+        formatMessage(messages.shareLinkWhatsappMessage, { link })
       ),
     },
     {
       id: "facebook",
       icon: <FacebookIcon />,
-      label: "Compartir por Facebook",
+      label: <FormattedMessage defaultMessage="Compartir por Facebook" />,
       to: getFacebookShareLink(link),
     },
     {
       id: "twitter",
       icon: <TwitterIcon />,
-      label: "Compartir por Twitter",
+      label: <FormattedMessage defaultMessage="Compartir por Twitter" />,
       to: getTwitterSharingLink(
-        `¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a ${link}`,
+        formatMessage(messages.shareLinkTwitterText, { link }),
         link,
         "contratafamosos"
       ),
@@ -116,12 +136,16 @@ function ShareDropdown({ buttonClassName = "", link }: ShareDropdownProps) {
           orElse={
             <>
               <HyperlinkIcon />
-              <span>Copiar enlace</span>
+              <span>
+                <FormattedMessage defaultMessage="Copiar enlace" />
+              </span>
             </>
           }
         >
           <i className={classes("fa fa-check-circle", styles.CheckIcon)} />
-          <span>Enlace copiado</span>
+          <span>
+            <FormattedMessage defaultMessage="Enlace copiado" />
+          </span>
         </Maybe>
       </div>
       {socialMedias.map(toMenuItem)}

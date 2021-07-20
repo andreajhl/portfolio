@@ -6,6 +6,7 @@ import { CheckedCircleIcon } from "desktop-app/components/common/icons";
 import classes from "classnames";
 import { AnimatedPopup } from "desktop-app/components/common/animated-popup";
 import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
 function HeaderPopup({ closeModal }) {
   return (
@@ -15,14 +16,31 @@ function HeaderPopup({ closeModal }) {
         className={styles.CloseButton}
         onClick={closeModal}
       />
-      <p>Cambiar contraseña</p>
+      <p>
+        <FormattedMessage defaultMessage="Cambiar contraseña" />
+      </p>
     </div>
   );
 }
 
+const messages = defineMessages({
+  inputNewPasswordPlaceholder: {
+    defaultMessage: "Contraseña nueva",
+  },
+  inputNewPasswordLabel: {
+    defaultMessage: "Ingresa una contraseña nueva",
+  },
+  inputNewPasswordConfirmPlaceholder: {
+    defaultMessage: "Contraseña nueva",
+  },
+  inputNewPasswordConfirmLabel: {
+    defaultMessage: "Confirma tu contraseña",
+  },
+});
+
 function UpdatePasswordFormPopupForm({ closeModal }) {
   const [currentStep, setCurrentStep] = useState(1);
-
+  const { formatMessage } = useIntl();
   if (currentStep === 0) {
     return (
       <div className={styles.UpdatePasswordFormPopup}>
@@ -30,16 +48,18 @@ function UpdatePasswordFormPopupForm({ closeModal }) {
         <div className={styles.InputFields}>
           <InputWithUpperLabel
             inputId="user_new_password"
-            label="Ingresa una contraseña nueva"
-            placeholder="Contraseña nueva"
+            label={formatMessage(messages.inputNewPasswordLabel)}
+            placeholder={formatMessage(messages.inputNewPasswordPlaceholder)}
             value=""
             className={styles.InputWithUpperLabelModifier}
             onChange={(value) => console.log(value)}
           />
           <InputWithUpperLabel
             inputId="user_new_password_confirm"
-            label="Confirma tu contraseña"
-            placeholder="Contraseña nueva"
+            label={formatMessage(messages.inputNewPasswordConfirmLabel)}
+            placeholder={formatMessage(
+              messages.inputNewPasswordConfirmPlaceholder
+            )}
             className={styles.InputWithUpperLabelModifier}
             value=""
             onChange={(value) => console.log(value)}
@@ -48,7 +68,7 @@ function UpdatePasswordFormPopupForm({ closeModal }) {
             onClick={() => setCurrentStep(1)}
             className={classes("btn btn-primary", styles.CTAButton)}
           >
-            Continuar
+            <FormattedMessage defaultMessage="Continuar" />
           </button>
         </div>
       </div>
@@ -66,8 +86,11 @@ function UpdatePasswordFormPopupForm({ closeModal }) {
         <div className={styles.SuccessMessage}>
           <CheckedCircleIcon />
           <span>
-            Tu contraseña se ha actualizado <br></br>
-            correctamente.
+            <FormattedMessage
+              defaultMessage="Tu contraseña se ha actualizado {breakLine}
+            correctamente."
+              values={{ breakLine: <br /> }}
+            />
           </span>
         </div>
       </div>
@@ -83,15 +106,19 @@ function UpdatePasswordForm() {
   return (
     <>
       <div className={styles.UpdatePasswordFormWrapper}>
-        <h5 className={styles.UpdatePasswordTitle}>Seguridad</h5>
+        <h5 className={styles.UpdatePasswordTitle}>
+          <FormattedMessage defaultMessage="Seguridad" />
+        </h5>
         <div className={styles.UpdatePasswordDetails}>
-          <span>Contraseña</span>
+          <span>
+            <FormattedMessage defaultMessage="Contraseña" />
+          </span>
           <span>***********</span>
           <button
             onClick={() => setIsPopupOpen(true)}
             className={classes("btn", styles.CTAButtonOpenPopup)}
           >
-            Cambiar Contraseña
+            <FormattedMessage defaultMessage="Cambiar Contraseña" />
           </button>
         </div>
       </div>

@@ -4,6 +4,7 @@ import useStatus from "lib/hooks/useStatus";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { updateNotificationsLang } from "react-app/src/state/ducks/session/actions";
+import { FormattedMessage } from "react-intl";
 import Skeleton from "react-loading-skeleton";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
@@ -34,7 +35,10 @@ function NotificationLangForm(props: NotificationLangFormProps) {
   return (
     <div className={styles.NotificationSlangFormContainer}>
       <label htmlFor="notifications_slang_select">
-        Idioma de la página <br></br> y notificaciones
+        <FormattedMessage
+          defaultMessage="Idioma de la página {breakLine} y notificaciones"
+          values={{ breakLine: <br /> }}
+        />
       </label>
       <select
         onChange={(event) => updateLang(event.target.value)}

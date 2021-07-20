@@ -10,6 +10,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { connect } from "react-redux";
 import { CLIENT_FAVORITES } from "constants/paths";
 import { RootState } from "react-app/src/state/store";
+import { FormattedMessage } from "react-intl";
 
 const mapStateToProps = ({ account }: RootState) => ({
   informationPage:
@@ -73,7 +74,7 @@ function CelebritiesFavoritesEdit({
                 onClick={() => deleteFavorite(data.id)}
                 className={classes("btn", styles.DeleteButton)}
               >
-                Eliminar
+                <FormattedMessage defaultMessage="Eliminar" />
               </button>
             </div>
           )}

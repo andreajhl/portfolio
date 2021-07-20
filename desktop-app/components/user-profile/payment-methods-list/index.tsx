@@ -3,6 +3,7 @@ import { VisaCardIcon } from "../../common/icons";
 import { removeSource } from "react-app/src/state/ducks/payments/actions";
 import { ItemSkeleton } from "./skeleton";
 import styles from "./styles.module.scss";
+import { FormattedMessage } from "react-intl";
 
 function CardBrandIcon({ cardBrand }) {
   return <VisaCardIcon />;
@@ -10,7 +11,7 @@ function CardBrandIcon({ cardBrand }) {
 
 const noResultMessage = (
   <span className={styles.NoResultsMessage}>
-    Aún no tienes ningún método de pago registrado.
+    <FormattedMessage defaultMessage="Aún no tienes ningún método de pago registrado." />
   </span>
 );
 

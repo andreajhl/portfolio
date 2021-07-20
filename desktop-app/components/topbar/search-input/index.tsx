@@ -13,6 +13,7 @@ import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/ac
 import { connect, ConnectedProps } from "react-redux";
 import { Link } from "desktop-app/components/common/routing/link";
 import { analytics } from "react-app/src/state/utils/gtm";
+import { FormattedMessage } from "react-intl";
 
 const FINAL_PATH = process.env.NEXT_PUBLIC_ENDPOINT + SEARCH_LIST;
 
@@ -95,9 +96,11 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
           <Maybe it={status === "completed"}>
             <div className={styles.ResultsHeader}>
               <span>
-                {resultsQuery.length <= 0
-                  ? "No se encontraron resultados para: "
-                  : "Resultados para: "}
+                {resultsQuery.length <= 0 ? (
+                  <FormattedMessage defaultMessage="No se encontraron resultados para: " />
+                ) : (
+                  <FormattedMessage defaultMessage="Resultados para: " />
+                )}
               </span>
               <span className={styles.QueryWords}>{currentQuery}</span>
             </div>
@@ -141,7 +144,8 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
             >
               <div className={styles.SectionCTASeeMore}>
                 <SearchIcon className={styles.SeeMoreIcon} />
-                Ver mas resultados para "{currentQuery}"
+                <FormattedMessage defaultMessage="Ver mas resultados para" /> "
+                {currentQuery}"
               </div>
             </Link>
           </Maybe>

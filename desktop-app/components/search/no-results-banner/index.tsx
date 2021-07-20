@@ -1,3 +1,4 @@
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 type NoResultsBannerProps = {
@@ -14,10 +15,10 @@ function NoResultsBanner({ className = "" }: NoResultsBannerProps) {
       />
       <div>
         <h3 className={styles.NoResultsBannerTitle}>
-          No se encontraron resultados
+          <FormattedMessage defaultMessage="No se encontraron resultados" />
         </h3>
         <p className={styles.NoResultsBannerCopy}>
-          Intenta quitando o cambiando algunos filtros.
+          <FormattedMessage defaultMessage="Intenta quitando o cambiando algunos filtros." />
         </p>
       </div>
     </div>

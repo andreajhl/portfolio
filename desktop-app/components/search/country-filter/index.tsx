@@ -9,12 +9,19 @@ import React, {
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import { listV2 } from "react-app/src/state/ducks/countries/actions";
 import { connect, ConnectedProps } from "react-redux";
+import { defineMessages, useIntl } from "react-intl";
 
 const generateMapForKeysValue = (array, value = true) => {
   const newState = new Map();
   array.forEach((id) => newState.set(id, value));
   return newState;
 };
+
+const messages = defineMessages({
+  title: {
+    defaultMessage: "Paises",
+  },
+});
 
 const mapStateToProps = ({ countries, searchFilters }) => {
   return {
@@ -40,6 +47,7 @@ function CountryFilter({
   updateSearchFilters,
   searchFilters,
 }: CountryFilterProps) {
+  const { formatMessage } = useIntl();
   const [countriesChecked, setCountriesChecked] = useState(
     new Map(
       searchFilters.country_id
@@ -119,7 +127,7 @@ function CountryFilter({
   );
   return (
     <CheckBoxList
-      title="Países"
+      title={formatMessage(messages.title)}
       options={memoizedValuesForCountries}
       handleChange={(event) => handleChangeCheckbox(event, setCountriesChecked)}
     />

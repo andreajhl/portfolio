@@ -9,6 +9,7 @@ import classes from "classnames";
 import styles from "./styles.module.scss";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useRouter } from "next/router";
+import { FormattedMessage } from "react-intl";
 
 const orderByOptions = [
   { label: "Destacados", value: "" },
@@ -97,7 +98,9 @@ function MainContentTopBar({
       <Maybe
         it={hasFiltered}
         orElse={
-          <h2 className={styles.MainContentTopBarTitle}>Famosos destacados</h2>
+          <h2 className={styles.MainContentTopBarTitle}>
+            <FormattedMessage defaultMessage="Famosos destacados" />
+          </h2>
         }
       >
         <Maybe it={hasSearched}>
@@ -112,8 +115,15 @@ function MainContentTopBar({
               styles.DoNotShrink
             )}
           >
+            <FormattedMessage
+              defaultMessage="
             {totalResults} resultados
-            {query.search ? ` para "${String(query.search)}"` : null}
+            {search}"
+              values={{
+                totalResults,
+                search: query.search ? ` para "${String(query.search)}"` : null,
+              }}
+            />
           </span>
         </Maybe>
       </Maybe>

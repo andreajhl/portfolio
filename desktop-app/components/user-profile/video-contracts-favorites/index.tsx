@@ -7,6 +7,7 @@ import { fetchUserFavoritesContracts } from "react-app/src/state/ducks/account/a
 import { connect, ConnectedProps } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import CelebritySectionVideoCardSkeleton from "desktop-app/components/layouts/celebrity-section-video-card/skeleton";
+import { FormattedMessage } from "react-intl";
 
 const mapStateToProps = ({ account }: RootState) => ({
   informationPage:
@@ -40,7 +41,11 @@ function VideoContractsFavorites({
   return (
     <div className={styles.VideoContractsFavoritesWrapper}>
       <CardsReelSection
-        title={<h2 className={styles.ContainerTitle}>Video Favoritos</h2>}
+        title={
+          <h2 className={styles.ContainerTitle}>
+            <FormattedMessage defaultMessage="Video Favoritos" />
+          </h2>
+        }
         itemWidth={263}
         itemHeight={!isLoading ? 402 : 410}
         buttonsStyle={{
