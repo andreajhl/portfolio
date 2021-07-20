@@ -23,7 +23,7 @@ type DLocalSelectPaymentMethodProps = {
 
 const messages = defineMessages({
   errorNotPaymentMethodSelected: {
-    defaultMessage: "",
+    defaultMessage: "Por favor seleccione un método de pago",
   },
 });
 
