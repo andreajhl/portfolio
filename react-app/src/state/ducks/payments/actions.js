@@ -367,6 +367,12 @@ export const clearCouponData = () => {
   };
 };
 
+export const togglePaymentInProcess = () => {
+  return (dispatch) => {
+    dispatch({ type: types.TOGGLE_PAYMENT_IN_PROCESS, payload: {} });
+  };
+};
+
 export const discountCouponsGateways = (contractReference, discountCoupon) => {
   const data = {
     contractReference: contractReference,

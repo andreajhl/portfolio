@@ -5,6 +5,7 @@ import {
   discountCouponsGateways,
   clearCouponData,
   getContractToPayV2,
+  togglePaymentInProcess,
 } from "./actions";
 
 export {
@@ -14,4 +15,5 @@ export {
   getContractToPayV2,
   discountCouponsGateways,
   clearCouponData,
+  togglePaymentInProcess,
 };

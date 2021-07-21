@@ -45,6 +45,9 @@ const getContractToPayInitialState = {
   error_data: { error: "" },
   data: {},
 };
+const paymentInProcess = {
+  processing: false,
+};
 
 const createDlocalPaymentInitialState = {
   loading: false,
@@ -237,9 +240,23 @@ export function getContractToPayReducer(
   }
 }
 
+export function setPaymentInProcess(state = paymentInProcess, action) {
+  switch (action.type) {
+    case types.TOGGLE_PAYMENT_IN_PROCESS:
+      return {
+        ...state,
+        processing: !state.processing,
+      };
+
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   fetchPaymentGatewaysReducer,
   currencyExchangeReducer,
   getContractToPayReducer,
   fetchDiscountCouponReducer,
+  setPaymentInProcess,
 });
