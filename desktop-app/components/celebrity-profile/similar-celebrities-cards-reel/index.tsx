@@ -8,6 +8,8 @@ import Maybe from "react-app/src/components/common/helpers/maybe";
 import getArrayOfLength from "lib/utils/getArrayOfLength";
 import { CelebrityCardSkeleton } from "desktop-app/components/common/cards/celebrity/skeleton";
 import { defineMessages, useIntl } from "react-intl";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { getWindowPathname } from "react-app/src/utils/getWindow";
 
 const messages = defineMessages({
   similarCelebritiesReelTitle: {
@@ -57,6 +59,18 @@ function SimilarCelebritiesCardsReel({
     messages.similarCelebritiesReelTitle
   );
 
+  function trackCelebrityCardClick(celebrity) {
+    analytics.track("CLICK_ON_CELEBRITY_CARD", {
+      ...celebrity,
+      path: getWindowPathname(),
+      celebritySectionData: {
+        celebritySectionType: "SIMILAR_CELEBRITIES",
+        title: similarCelebritiesReelTitle,
+        celebrityUsername,
+      },
+    });
+  }
+
   return (
     <Maybe it={similarCelebrities?.length > 0}>
       <CardsReelSection
@@ -78,6 +92,7 @@ function SimilarCelebritiesCardsReel({
             orElse={<CelebrityCardSkeleton {...celebrityCardProps} />}
           >
             <CelebrityCard
+              onClickLink={() => trackCelebrityCardClick(similarCelebrity)}
               celebrity={similarCelebrity}
               {...celebrityCardProps}
             />

@@ -7,6 +7,8 @@ import { CelebrityCard } from "../../common/cards/celebrity";
 import { ResultsCardGridSkeleton } from "./skeleton";
 import classes from "classnames";
 import styles from "./styles.module.scss";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { getWindowPathname } from "react-app/src/utils/getWindow";
 
 type ResultsCardGridProps = {
   expanded?: boolean;
@@ -40,6 +42,13 @@ function ResultsCardGrid({
     };
   }, [expanded]);
 
+  function trackCelebrityCardClick(celebrity) {
+    analytics.track("CLICK_ON_CELEBRITY_CARD", {
+      ...celebrity,
+      path: getWindowPathname(),
+    });
+  }
+
   return (
     <div
       className={classes(
@@ -58,6 +67,7 @@ function ResultsCardGrid({
       >
         {celebrities?.map?.((celebrity) => (
           <CelebrityCard
+            onClickLink={() => trackCelebrityCardClick(celebrity)}
             key={celebrity.id}
             thumbnailHeight={celebrityCardHeight}
             thumbnailWidth="100%"

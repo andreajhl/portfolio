@@ -25,4 +25,6 @@ const getWindow = () =>
         navigator: { userAgent: "", clipboard: { writeText: noop } },
       };
 
+export const getWindowPathname = () => getWindow().location.pathname;
+
 export default getWindow;
