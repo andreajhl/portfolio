@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import { getLocationCookieHeader } from "lib/getLocationCookieHeader";
 import { getUserLocationData } from "lib/getUserLocationData";
 import Link from "next/link";
+import isBot from "isbot";
 
 // import isBrowser from "react-app/src/utils/isBrowser";
 // import auth0 from "../lib/auth0";
@@ -40,6 +41,9 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
     let userLocation = cookies[USER_LOCATION_KEY];
     if (!userLocation) {
+      if (isBot(req.headers["user-agent"])) {
+        return debug("Este es un bot solicitando", req.url);
+      }
       const locationCookies = await getLocationCookieHeader(req);
       debug("getLocationCookieHeader() GSSP response");
       res.setHeader(USER_IP_ADDRESS, locationCookies.userIpAddressLocation);
