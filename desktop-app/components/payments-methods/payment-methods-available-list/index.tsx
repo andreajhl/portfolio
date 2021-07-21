@@ -7,8 +7,13 @@ import DLocalPaymentMethodForm from "../dLocal-payment-method-form";
 import { ALL_AVAILABLE_PAYMENTS_METHODS } from "constants/availablePaymentsMethods";
 import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
 import { analytics } from "react-app/src/state/utils/gtm";
+import { useSelector } from "react-redux";
+import { RootState } from "react-app/src/state/store";
 
 type all_payments_methods = typeof ALL_AVAILABLE_PAYMENTS_METHODS[number];
+
+const isProcessingPayment = ({ payments }: RootState) =>
+  payments.setPaymentInProcess.processing;
 
 type PaymentMethodsAvailableListProps = {
   payment_methods: {
@@ -46,7 +51,11 @@ function PaymentMethodsAvailableList({
   const [currentOption, setCurrentOption] = useState<all_payments_methods>(
     null
   );
+  const disabledAccordion = useSelector(isProcessingPayment);
   const handleChangeCurrentOption = (newValue: all_payments_methods) => {
+    if (disabledAccordion) {
+      return;
+    }
     setCurrentOption(newValue);
     analytics.track("CHANGE_ACTIVE_PAYMENT_METHOD_OPTION", {
       previousPaymentMethod: currentOption,
@@ -56,6 +65,7 @@ function PaymentMethodsAvailableList({
       contractReference,
     });
   };
+  console.log({ disabledAccordion });
   return (
     <>
       {payment_methods.map((el, index) => (

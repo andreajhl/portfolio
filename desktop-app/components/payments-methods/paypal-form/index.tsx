@@ -14,6 +14,7 @@ import WarningMessage from "desktop-app/components/common/warning-message";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { FormattedMessage } from "react-intl";
+import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -44,7 +45,9 @@ function PaypalForm({
   const sectionId = `section-${index}`;
   const labelId = `label-${index}`;
   const [errorMessage, setErrorMessage] = useState(null);
+  const togglePaymentInProcess = useTogglePaymentInProcess();
   const onPayPalButtonApprove = (orderId, authorizationId) => {
+    togglePaymentInProcess();
     processPayPalPayment(
       contractReference,
       orderId,
@@ -72,6 +75,9 @@ function PaypalForm({
       })
       .catch((error) => {
         setErrorMessage(error);
+      })
+      .finally(() => {
+        togglePaymentInProcess();
       });
   };
 
@@ -134,7 +140,7 @@ function PaypalForm({
             <PaypalReactButton
               contractReference={contractReference}
               contractPrice={contractPrice}
-              onPayPalButtonError={() => console.log("onPayPalButtonError")}
+              onPayPalButtonError={(err) => console.log(err)}
               onPayPalButtonCancel={(e) =>
                 console.log(e, "onPayPalButtonCancel")
               }

@@ -14,6 +14,7 @@ import {
   ReactStripeElements,
 } from "react-stripe-elements";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 
 type StripeComponentProps = {
   contractPrice: number;
@@ -35,6 +36,7 @@ function StripeCardForm({
   celebrityId,
   stripe,
 }: StripeComponentProps) {
+  const togglePaymentInProcess = useTogglePaymentInProcess();
   const { formatMessage } = useIntl();
   const { push } = useRouter();
   const [cardComplete, setCardComplete] = useState(false);
@@ -47,6 +49,7 @@ function StripeCardForm({
   });
 
   const createStripe3DFlow = async (sourceId) => {
+    togglePaymentInProcess();
     const iframeUrl = STRIPE_3D_SECURE_IFRAME.replace(
       ":contract_reference",
       contractReference
@@ -83,10 +86,12 @@ function StripeCardForm({
           query: { url: response.source.redirect.url },
         });
       })
-      .catch((error) => setError(error));
+      .catch((error) => setError(error))
+      .finally(() => togglePaymentInProcess());
   };
 
   const applyStripeAuth = (sourceId) => {
+    togglePaymentInProcess();
     processStripePayment(contractReference, sourceId, discountCouponId)
       .then((res) => {
         if (res.data.status === "ERROR") {
@@ -113,6 +118,7 @@ function StripeCardForm({
         }
       })
       .catch((error) => {
+        togglePaymentInProcess();
         if (error.response) {
           if (error.response.data) {
             setError(

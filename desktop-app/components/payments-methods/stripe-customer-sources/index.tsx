@@ -1,6 +1,7 @@
 import { PURCHASE_SUMMARY } from "constants/paths";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import WarningMessage from "desktop-app/components/common/warning-message";
+import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { processStripePayment } from "react-app/src/state/ducks/payments/actions";
@@ -56,10 +57,12 @@ function StripeCustomerSources({
   const [selectedSourceId, setSelectedSourceId] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [paymentInProcess, setPaymentInProcess] = useState(false);
+  const togglePaymentInProcess = useTogglePaymentInProcess();
   const applyStripeAuth = () => {
     if (selectedSourceId === null)
       setErrorMessage(formatMessage(messages.errorNoCardSelected));
     else {
+      togglePaymentInProcess();
       analytics.track("TRY_PAY_WITH_STRIPE_SOURCE", {
         contractReference,
         discountCouponId,
@@ -101,6 +104,7 @@ function StripeCustomerSources({
         })
         .catch((error) => {
           setPaymentInProcess(false);
+          togglePaymentInProcess();
           if (error.response) {
             setErrorMessage(error.response.data.error);
           }

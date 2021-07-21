@@ -8,6 +8,7 @@ import {
   ExchangeArrowIcon,
 } from "desktop-app/components/common/icons";
 import WarningMessage from "desktop-app/components/common/warning-message";
+import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -75,6 +76,7 @@ function DLocalPaymentMethodForm({
   contractPrice,
 }: DLocalPaymentMethodFormProps) {
   const { push } = useRouter();
+  const togglePaymentInProcess = useTogglePaymentInProcess();
 
   const sectionId = `section-${index}`;
   const [paymentInProcess, setPaymentInProcess] = useState(false);
@@ -91,6 +93,8 @@ function DLocalPaymentMethodForm({
       celebrityId,
     });
     setPaymentInProcess(true);
+    togglePaymentInProcess();
+
     let IP = null;
     const deviceId = generateDeviceId();
     const userIpFromCookies = getCookie(USER_IP_ADDRESS);
@@ -142,10 +146,12 @@ function DLocalPaymentMethodForm({
         .catch((e) => {
           setPaymentError(e);
           setPaymentInProcess(false);
+          togglePaymentInProcess();
         });
     } catch (e) {
       setPaymentInProcess(false);
       setPaymentError(e);
+      togglePaymentInProcess();
     }
   };
 

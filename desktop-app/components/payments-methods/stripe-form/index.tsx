@@ -8,6 +8,7 @@ import Maybe from "react-app/src/components/common/helpers/maybe";
 import {
   removeSource,
   retrieveUserCards,
+  togglePaymentInProcess,
 } from "react-app/src/state/ducks/payments/actions";
 import StripeCardForm from "../stripe-card-form";
 import StripeCustomerSources from "../stripe-customer-sources";
@@ -15,6 +16,8 @@ import styles from "./styles.module.scss";
 import scriptLoader from "react-async-script-loader";
 import { StripeProvider, Elements } from "react-stripe-elements";
 import { FormattedMessage } from "react-intl";
+import { useDispatch } from "react-redux";
+import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 
 const scriptSrc = "https://js.stripe.com/v3/";
 
@@ -41,6 +44,7 @@ function StripeForm({
   isScriptLoaded,
   isScriptLoadSucceed,
 }: StripeFormProps) {
+  const dispatch = useDispatch();
   const [stripeInstance, setStripeInstance] = useState(null);
   useEffect(() => {
     if (isScriptLoaded && isScriptLoadSucceed) {
@@ -61,7 +65,6 @@ function StripeForm({
     fetchUserCards();
   }, []);
   const [showCardForm, setShowCardForm] = useState(true);
-
   useEffect(() => {
     setShowCardForm(userAvailableSources.length === 0);
   }, [userAvailableSources]);
