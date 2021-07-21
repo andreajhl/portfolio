@@ -12,7 +12,11 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 import { CelebrityVideoContractPrice } from "desktop-app/components/common/helpers/celebrity-video-contract-price";
 import { CelebrityBusinessPrice } from "../celebrity-business-price";
 import getCelebrityBusinessPrice from "lib/utils/getCelebrityBusinessPrice";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlFormatters, useIntl } from "react-intl";
+import {
+  getDeliveryFromValidator,
+  getDeliveryToValidator,
+} from "lib/validations/contractData";
 
 const br = <br />;
 
@@ -23,21 +27,14 @@ const initialValues: ContractDeliveryType = {
   deliveryType: 1,
 };
 
-const validations: ValidationsType<ContractDeliveryType> = {
-  deliveryTo(value) {
-    if (value.length === 0) return "Debes introducir un nombre";
-    if (value.length > 40) {
-      return "Debes introducir un máximo de 40 caracteres.";
-    }
-  },
-  deliveryFrom(value, { values: { contractType } }) {
-    if (contractType !== 2) return;
-    if (value.length === 0) return "Debes introducir un nombre";
-    if (value.length > 40) {
-      return "Debes introducir un máximo de 40 caracteres.";
-    }
-  },
-};
+function getValidations(
+  formatMessage: IntlFormatters["formatMessage"]
+): ValidationsType<ContractDeliveryType> {
+  return {
+    deliveryTo: getDeliveryToValidator(formatMessage),
+    deliveryFrom: getDeliveryFromValidator(formatMessage),
+  };
+}
 
 function getSanitizedValues(values: ContractDeliveryType) {
   return values.contractType === 2
@@ -67,6 +64,7 @@ function ContractDeliveryForm({
   initialValues: initialValuesFromProps,
   onSubmit: onSubmitFromProps,
 }: ContractDeliveryFormProps) {
+  const { formatMessage } = useIntl();
   const {
     values,
     errors,
@@ -74,7 +72,7 @@ function ContractDeliveryForm({
     validateBeforeSubmit,
   } = useForm<ContractDeliveryType>({
     initialValues: Object.assign({}, initialValues, initialValuesFromProps),
-    validations,
+    validations: getValidations(formatMessage),
     onSubmit(values) {
       onSubmitFromProps(getSanitizedValues(values));
     },

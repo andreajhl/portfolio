@@ -1,10 +1,8 @@
-import { isMobilePhone } from "lib/utils/isMobilePhone";
 import styles from "./styles.module.scss";
 import classes from "classnames";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
 import useForm, { ValidationsType } from "lib/hooks/useForm";
-import isEmail from "validator/lib/isEmail";
 import { ContractNotificationsType } from "desktop-app/types/contractDataType";
 import { WizardTopNavigation } from "desktop-app/components/common/wizard-top-navigation";
 import { useAuth } from "lib/famosos-auth";
@@ -13,7 +11,16 @@ import objectHasProperties from "lib/utils/objectHasProperties";
 import { BooleanRadiosInputs } from "desktop-app/components/common/form/boolean-checkboxes";
 import { CellphoneNumberInput } from "desktop-app/components/common/form/cellphone-number-input";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
-import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+import {
+  defineMessages,
+  FormattedMessage,
+  IntlFormatters,
+  useIntl,
+} from "react-intl";
+import {
+  getDeliveryContactCellphoneValidator,
+  getDeliveryContactValidator,
+} from "lib/validations/contractData";
 
 const messages = defineMessages({
   emailPlaceholder: {
@@ -30,19 +37,21 @@ const initialValues: ContractNotificationsType = {
   isPublic: true,
 };
 
-const validations: ValidationsType<ContractNotificationsType> = {
-  deliveryContact(value) {
-    if (!isEmail(value)) return "Ingresa un correo electrónico válido.";
-  },
-  deliveryContactCellphone(value) {
-    if (!deliveryContactCellphoneHasChanged(value)) return null;
-    if (!isMobilePhone(value)) return "Ingresa un número de teléfono válido.";
-  },
-};
-
 const deliveryContactCellphoneHasChanged = (deliveryContactCellphone: string) =>
   deliveryContactCellphone !== initialValues.deliveryContactCellphone ||
   deliveryContactCellphone.length > 4;
+
+function getValidations(
+  formatMessage: IntlFormatters["formatMessage"]
+): ValidationsType<ContractNotificationsType> {
+  return {
+    deliveryContact: getDeliveryContactValidator(formatMessage),
+    deliveryContactCellphone(value) {
+      if (!deliveryContactCellphoneHasChanged(value)) return null;
+      return getDeliveryContactCellphoneValidator(formatMessage)(value);
+    },
+  };
+}
 
 type ContractNotificationsFormProps = {
   onSubmit: (values: ContractNotificationsType) => void;
@@ -57,6 +66,7 @@ function ContractNotificationsForm({
   initialValues: initialValuesFromProps,
   isLoading,
 }: ContractNotificationsFormProps) {
+  const { formatMessage } = useIntl();
   const {
     values,
     errors,
@@ -69,11 +79,10 @@ function ContractNotificationsForm({
     validateBeforeSubmit,
   } = useForm<ContractNotificationsType>({
     initialValues: Object.assign({}, initialValues, initialValuesFromProps),
-    validations,
+    validations: getValidations(formatMessage),
     onSubmit,
   });
   const { user } = useAuth();
-  const { formatMessage } = useIntl();
 
   useEffect(() => {
     if (values.deliveryContact || !user) return;

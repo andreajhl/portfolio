@@ -14,12 +14,27 @@ import {
 } from "desktop-app/components/common/form/text-input-with-placeholders";
 import { OccasionsGrid } from "desktop-app/components/celebrity-profile/occasions-grid";
 import objectHasProperties from "lib/utils/objectHasProperties";
-import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+import {
+  defineMessages,
+  FormattedMessage,
+  IntlFormatters,
+  useIntl,
+} from "react-intl";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
+import {
+  getInstructionsValidator,
+  getOccasionValidator,
+} from "lib/validations/contractData";
 
 const messages = defineMessages({
   instructionsPlaceholder: {
     defaultMessage: "¡Hola {celebrityFullName}! Me gustaría que...",
+  },
+  notEditedInstructionsError: {
+    defaultMessage: "Olvidaste editar el texto",
+  },
+  unfilledPlaceholder: {
+    defaultMessage: "Debes editar el valor {placeholderName}",
   },
 });
 
@@ -31,22 +46,24 @@ const initialValues: ContractDetailsType = {
   instructions: "",
 };
 
-const validations: ValidationsType<ContractDetailsType> = {
-  occasion(value) {
-    if (value.length === 0) return "Debes seleccionar una ocasión";
-  },
-  instructions(value) {
-    if (Array.isArray(value)) return "Olvidaste editar el texto.";
-    if (value.length === 0) return "Debes escribir tus instrucciones.";
-    const valuePlaceholders = getPlaceholders(value);
-    if (valuePlaceholders) {
-      return `Debes editar el valor ${valuePlaceholders?.[0]}`;
-    }
-    if (value.length > 300) {
-      return "Debes introducir un máximo de 300 caracteres.";
-    }
-  },
-};
+function getValidations(
+  formatMessage: IntlFormatters["formatMessage"]
+): ValidationsType<ContractDetailsType> {
+  return {
+    occasion: getOccasionValidator(formatMessage),
+    instructions(value) {
+      if (Array.isArray(value)) {
+        return formatMessage(messages.notEditedInstructionsError);
+      }
+      const unfilledPlaceholders = getPlaceholders(value);
+      if (unfilledPlaceholders) {
+        const placeholderName = unfilledPlaceholders?.[0];
+        return formatMessage(messages.unfilledPlaceholder, { placeholderName });
+      }
+      return getInstructionsValidator(formatMessage)(value);
+    },
+  };
+}
 
 type ContractDetailsFormProps = {
   contractType: number;
@@ -67,6 +84,7 @@ function ContractDetailsForm({
   onSubmit,
   isLoading,
 }: ContractDetailsFormProps) {
+  const { locale, formatMessage } = useIntl();
   const {
     values,
     touched,
@@ -78,10 +96,9 @@ function ContractDetailsForm({
     submitForm,
   } = useForm({
     initialValues: Object.assign({}, initialValues, initialValuesFromProps),
-    validations,
+    validations: getValidations(formatMessage),
     onSubmit,
   });
-  const { locale, formatMessage } = useIntl();
   const [textareaText, setTextareaText] = useState(
     initialValuesFromProps?.instructions ||
       replacePlaceHolder(
