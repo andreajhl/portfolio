@@ -31,6 +31,11 @@
   position: relative;
 }
 
+.HasError {
+  border-color: var(--danger) !important;
+  background-color: #ffedf5 !important;
+}
+
 .IconContainer {
   position: absolute;
   width: 45px;
@@ -40,4 +45,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.AuthFormFieldError {
+  font-size: 12px;
+  margin-top: 0.5em;
 }
