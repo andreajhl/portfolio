@@ -194,6 +194,9 @@ export const TRANSLATION_LOGIN_ERROR_MESSAGES = defineMessages({
   "invalid credentials": {
     defaultMessage: "credenciales invalidas",
   },
+  "this email isn't registered in famosos.com": {
+    defaultMessage: "Este correo electrónico no esta registrado en famosos.com",
+  },
   unexpectedError: { defaultMessage: "Ha ocurrido un error inesperado" },
 });
 
@@ -203,6 +206,7 @@ export const SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
   "Invalid email",
   "Password length must contains least 6 characters",
   "Passwords do not match",
+  "this email is already registered in famosos.com",
 ];
 
 export const TRANSLATION_SIGN_UP_ERROR_MESSAGES = defineMessages({
@@ -222,7 +226,11 @@ export const TRANSLATION_SIGN_UP_ERROR_MESSAGES = defineMessages({
   "Passwords do not match": {
     defaultMessage: "Las contraseñas no coinciden",
   },
+  "this email is already registered in famosos.com": {
+    defaultMessage: "Este correo electrónico ya se encuentra registrado",
+  },
 });
+
 export const RESET_PASSSWORD_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
   "this email isn't registered in famosos.com",
   "invalid credentials",
