@@ -1,20 +1,20 @@
 import styles from "./styles.module.scss";
-import { ReactNode, MouseEvent } from "react";
+import { ComponentPropsWithRef } from "react";
+import classes from "classnames";
 
-type SubmitButtonProps = {
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-  children?: ReactNode;
-};
+type SubmitButtonProps = {} & ComponentPropsWithRef<"button">;
 
 function SubmitButton({
-  onClick = function () {},
-  children = "Guardar"
+  children = "Guardar",
+  type = "submit",
+  className,
+  ...props
 }: SubmitButtonProps) {
   return (
     <button
-      type="button"
-      className={"btn btn-primary " + styles.SubmitButton}
-      onClick={onClick}
+      type={type}
+      className={classes("btn btn-primary", styles.SubmitButton, className)}
+      {...props}
     >
       {children}
     </button>

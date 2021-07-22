@@ -5,3 +5,13 @@
   width: 100%;
   padding: 0.5em 0.75em;
 }
+
+.SubmitButton.SubmitButton:disabled {
+  opacity: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(251, 23, 126, 0.7) 0%,
+    rgba(255, 32, 99, 0.7) 100%
+  );
+  border: 2px solid rgb(249, 112, 174) !important;
+}
