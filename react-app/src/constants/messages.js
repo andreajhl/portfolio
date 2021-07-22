@@ -194,6 +194,7 @@ export const TRANSLATION_LOGIN_ERROR_MESSAGES = defineMessages({
   "invalid credentials": {
     defaultMessage: "credenciales invalidas",
   },
+  unexpectedError: { defaultMessage: "Ha ocurrido un error inesperado" },
 });
 
 export const SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
