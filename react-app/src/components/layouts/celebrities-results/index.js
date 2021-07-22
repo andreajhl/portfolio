@@ -21,9 +21,18 @@ const CelebritiesResultsLayout = ({
 
   return (
     <CelebritiesInfinityScrollLayout
-      sectionTitleText={`Resultados ${
-        isSearchingByKeyword ? `para ${queryParams.search}` : "de búsqueda"
-      }`}
+      sectionTitleText={
+        isSearchingByKeyword ? (
+          <FormattedMessage
+            defaultMessage="Resultados para {search}"
+            values={{
+              search: <strong>{queryParams.search}</strong>
+            }}
+          />
+        ) : (
+          <FormattedMessage defaultMessage="Resultados de búsqueda" />
+        )
+      }
       onEndMessageButtonClick={registerCelebritiesResultsGoUpButtonClick}
       noResultsText={
         <>

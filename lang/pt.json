@@ -29,7 +29,7 @@
   },
   "0NnInu": {
     "description": "",
-    "message": "Candidate-se como Famoso"
+    "message": "Candidate-se como famoso"
   },
   "0QNoKq": {
     "message": "Você é responsável pelo seu uso do Site e dos Serviços, e por qualquer uso do Site ou serviços colocados por meio da sua conta. Nosso objetivo é criar uma experiência de usuário positiva, útil e segura. Para promover esse objetivo, proibimos certos tipos de conduta que podem ser prejudiciais a outros usuários ou a nós. Ao usar o Site ou os Serviços, você não pode:"
@@ -156,7 +156,7 @@
     "message": " Uso aceitável do site e os serviços "
   },
   "8fYxkw": {
-    "message": "O que você quer que diga {celebrityFullName}?"
+    "message": "O que você gostaria que {celebrityFullName} dissesse?"
   },
   "8kwnmR": {
     "message": "Qualquer conteúdo do usuário será não confidencial e não proprietário e não será responsável por qualquer uso ou divulgação do conteúdo do usuário. Você reconhece e concorda que seu relacionamento conosco não é confidencial, fiduciário ou outro tipo de relação especial, e que sua decisão de apresentar qualquer conteúdo de usuário não nos coloca em uma posição diferente da posição ocupada pelos membros do público em geral, em particular no que diz respeito ao seu conteúdo de usuário. Nenhum de seu Conteúdo de usuário estará sujeito a qualquer obrigação de confidencialidade desde nossa parte e você não será responsável por qualquer uso ou divulgação de qualquer Conteúdo do Usuário que você fornecer."
@@ -184,7 +184,7 @@
   },
   "Aa51Eo": {
     "description": "",
-    "message": "Complete o <br></br> processo de pagamento."
+    "message": "Detalhe a <br></br> mensagem e finalize a compra"
   },
   "AnfpP+": {
     "message": "Entrega Flash"
@@ -207,7 +207,7 @@
     "message": "Ver mais"
   },
   "C3VDYt": {
-    "message": "Quanto custa um vídeo em Famosos.com?"
+    "message": "Quanto custa um vídeo na Famosos.com?"
   },
   "CPOpnr": {
     "message": " Você pode ler nossa política de privacidade e nossos termos de serviço para obter mais informações."
@@ -336,7 +336,7 @@
     "message": "Uma declaração de que você acredita de boa-fé que o conteúdo foi removido ou desativado como resultado de um erro ou identificação incorreta do conteúdo;"
   },
   "KjMaxy": {
-    "message": "Como solicitar {onlyMobileLineBreak} {onlyDesktopLineBreak} uma mensagem de vídeo em Famosos?"
+    "message": "Como solicitar {onlyMobileLineBreak} {onlyDesktopLineBreak} na mensagem de vídeo em Famosos?"
   },
   "LMVeQk": {
     "message": "Suas obrigações"
@@ -376,7 +376,7 @@
     "message": "Entre em Famosos.com, selecione ou procure seu famoso favorito. Clique em contratar meu famoso. Estamos trabalhando em vários métodos de pagamento para que você possa adquirir seu vídeo."
   },
   "N9nBRn": {
-    "message": "E pronto! Em pouco {onlyDesktopLineBreak} tempo, {onlyDesktopLineBreak} você receberá sua {onlyMobileLineBreak}. mensagem de vídeo"
+    "message": "Pronto! Em pouco {onlyDesktopLineBreak} tempo, {onlyDesktopLineBreak} você receberá sua {onlyMobileLineBreak} mensagem de vídeo"
   },
   "NROWdz": {
     "message": "Seus Favoritos"
@@ -386,7 +386,7 @@
   },
   "Nizqzm": {
     "Description": "",
-    "message": "Escolha seu famoso e solicite a mensagem."
+    "message": "Escolha o famoso para enviar sua mensagem"
   },
   "NyA8g2": {
     "Description": "",
@@ -577,7 +577,7 @@
     "message": "Como posso contactar a equipe do Famosos?"
   },
   "bSHMVy": {
-    "message": "Compre o vídeo agora!"
+    "message": "Solicitar minha mensagem de vídeo!"
   },
   "bnyCF4": {
     "message": "Se estiver tudo bem com o seu pedido de acordo com as nossas políticas, poderá desfrutar da sua mensagem de vídeo muito em breve."
@@ -644,7 +644,7 @@
     "message": "Sim, remover a marca d'água é contra nossas políticas."
   },
   "fcUqul": {
-    "message": "Quero um vídeo de"
+    "message": "Solicitar minha mensagem"
   },
   "fiBYCQ": {
     "message": "Se você cancelar sua conta no Famosos, poderá solicitar que seus vídeos não sejam mais exibidos no site e solicitações de novos vídeos não sejam recebidas. Não podemos, entretanto, restringir o uso de mensagens de vídeo por usuários finais que você criou para eles e não podemos remover quaisquer outros usos existentes das suas mensagens de vídeo. "
@@ -880,7 +880,7 @@
     "message": "Avaliações"
   },
   "v82s2O": {
-    "message": "Vídeo personalizado de {celebrityFullName}"
+    "message": "Mensagem de vídeo de {celebrityFullName}"
   },
   "v8Rt1O": {
     "message": "Quanto demora para o reembolso?"
@@ -1108,7 +1108,7 @@
     "message": "Contrato expirado"
   },
   "XlP2E5": {
-    "message": "É uma empresa dedicada à criação de tecnologias <br> </br> que conectam personalidades com seus fãs."
+    "message": "É uma empresa dedicada à criação de tecnologias <br> </br> que conectam famosos com seus fãs."
   },
   "ZedcEG": {
     "message": "Atualizar comentário"
@@ -1306,7 +1306,7 @@
     "message": "Paraguai"
   },
   "r1aViX": {
-    "message": "Jornalista"
+    "message": "Jornalistas"
   },
   "ruSOFj": {
     "message": "Apresentadores"
@@ -1496,7 +1496,7 @@
     "message": "Por favor selecione uma opção"
   },
   "9NLj0T": {
-    "message": "Receba mensagens de vídeo personalizadas de celebridades no WhatsApp"
+    "message": "Receba mensagens de vídeo personalizadas de famosos no WhatsApp"
   },
   "9mcAHp": {
     "message": "CUPOM ADICIONADO"
@@ -1607,7 +1607,7 @@
     "message": "E-mail"
   },
   "t2/Gvc": {
-    "message": "Detalhe sua solicitação o {onlyMobileLineBreak} execute {onlyDesktopLineBreak} o processo de compra {onlyMobileLineBreak}."
+    "message": "Detalhe sua mensagem e {onlyMobileLineBreak} finalize {onlyDesktopLineBreak} a compra {onlyMobileLineBreak}."
   },
   "tdx+EV": {
     "message": "Meu perfil"
@@ -1753,5 +1753,20 @@
   },
   "x3Y+61": {
     "message": "Atores/Atrizes"
+  },
+  "5MxALj": {
+    "message": "Resultados para {search}"
+  },
+  "w5lFLc": {
+    "message": "Resultados da busqueda"
+  },
+  "+OHALP": {
+    "message": "poucas horas"
+  },
+  "cheXty": {
+    "message": "{turnAroundTime} días"
+  },
+  "havuzD": {
+    "message": "{turnAroundTime} día"
   }
 }

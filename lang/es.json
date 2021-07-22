@@ -2,6 +2,9 @@
   "+/MNWw": {
     "message": "Confirmar"
   },
+  "+OHALP": {
+    "message": "Pocas horas"
+  },
   "+c9FIk": {
     "message": "Panama"
   },
@@ -184,6 +187,9 @@
   },
   "5KDn6A": {
     "message": "ID DE SEGUIMIENTO:"
+  },
+  "5MxALj": {
+    "message": "Resultados para {search}"
   },
   "5fTLVa": {
     "message": "Si pagas con tarjeta de crédito internacional, nosotros hacemos una autorización del cobro y únicamente hacemos el cobro real cuando se completa la solicitud por parte del famoso. Si utilizas otro método de pago debes pagar antes de que te realicen tu video."
@@ -894,6 +900,9 @@
   "cRtlFe": {
     "message": "El cargo que percibirás en tu cuenta es una autorización de pago que tu banco hace para asegurarse que existen fondos suficientes, sin embargo Famosos no hará el cobro hasta que {celebrityName} grabe tu video."
   },
+  "cheXty": {
+    "message": "{turnAroundTime} días"
+  },
   "crQQc4": {
     "message": "Mis Suscripciones"
   },
@@ -999,6 +1008,9 @@
   },
   "hZK5pi": {
     "message": "Famosos.com - Videos personalizados de tus famosos favoritos."
+  },
+  "havuzD": {
+    "message": "{turnAroundTime} día"
   },
   "hmpcGI": {
     "description": "",
@@ -1301,6 +1313,9 @@
   "w2xatL": {
     "description": "",
     "message": "Siguiente"
+  },
+  "w5lFLc": {
+    "message": "Resultados de búsqueda"
   },
   "wCc+84": {
     "message": "[PARA]"

@@ -5,6 +5,12 @@
       "value": "Confirmar"
     }
   ],
+  "+OHALP": [
+    {
+      "type": 0,
+      "value": "Pocas horas"
+    }
+  ],
   "+c9FIk": [
     {
       "type": 0,
@@ -465,6 +471,16 @@
     {
       "type": 0,
       "value": "ID DE SEGUIMIENTO:"
+    }
+  ],
+  "5MxALj": [
+    {
+      "type": 0,
+      "value": "Resultados para "
+    },
+    {
+      "type": 1,
+      "value": "search"
     }
   ],
   "5fTLVa": [
@@ -2145,6 +2161,16 @@
       "value": " grabe tu video."
     }
   ],
+  "cheXty": [
+    {
+      "type": 1,
+      "value": "turnAroundTime"
+    },
+    {
+      "type": 0,
+      "value": " días"
+    }
+  ],
   "crQQc4": [
     {
       "type": 0,
@@ -2407,6 +2433,16 @@
     {
       "type": 0,
       "value": "Famosos.com - Videos personalizados de tus famosos favoritos."
+    }
+  ],
+  "havuzD": [
+    {
+      "type": 1,
+      "value": "turnAroundTime"
+    },
+    {
+      "type": 0,
+      "value": " día"
     }
   ],
   "hmpcGI": [
@@ -3531,6 +3567,12 @@
     {
       "type": 0,
       "value": "Siguiente"
+    }
+  ],
+  "w5lFLc": [
+    {
+      "type": 0,
+      "value": "Resultados de búsqueda"
     }
   ],
   "wCc+84": [
