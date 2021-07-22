@@ -1,14 +1,14 @@
 import InputWithSubmitHandler from "desktop-app/components/common/form/InputWithSubmitHandler";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
-import useForm from "lib/hooks/useForm";
-import isEmail from "validator/lib/isEmail";
+import useForm, { ValidationsType } from "lib/hooks/useForm";
 import styles from "./styles.module.scss";
 import classes from "classnames";
 import { newsletterSubscribe } from "react-app/src/state/ducks/authentication/actions";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlFormatters, useIntl } from "react-intl";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import usePromise from "../../../../lib/hooks/usePromise";
+import { getEmailValidator } from "lib/validations/common";
 
 const getErrorMessage = (error: any) =>
   error?.response?.data?.error === "email already subscribed" ? (
@@ -21,21 +21,22 @@ const initialValues = {
   email: "",
 };
 
-const validations = {
-  email(value: string) {
-    if (!isEmail(value)) {
-      return (
-        <FormattedMessage defaultMessage="Debes introducir un correo electrónico valido" />
-      ) as any;
-    }
-  },
-};
+function getValidations(
+  formatMessage: IntlFormatters["formatMessage"]
+): ValidationsType<{
+  email: any;
+}> {
+  return {
+    email: getEmailValidator(formatMessage),
+  };
+}
 
 function SubscriptionNewsletterForm() {
   const { handle, status } = usePromise();
+  const { formatMessage } = useIntl();
   const { values, setFieldValue, setFieldError, errors, submitForm } = useForm({
     initialValues,
-    validations,
+    validations: getValidations(formatMessage),
     validateOnChange: false,
     onSubmit: subscribeEmailToNewsletter,
   });

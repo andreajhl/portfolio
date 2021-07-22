@@ -3,12 +3,14 @@ import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "react-app/src/state/store";
 import InputWithSubmitHandler from "desktop-app/components/common/form/InputWithSubmitHandler";
 import styles from "./styles.module.scss";
-import useForm from "lib/hooks/useForm";
+import useForm, { ValidationsType } from "lib/hooks/useForm";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import { discountCouponsGateways } from "react-app/src/state/ducks/payments/actions";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlFormatters, useIntl } from "react-intl";
+import errorMessages from "lib/validations/errorMessages";
+
 const mapStateToProps = ({ payments }: RootState) => ({
   couponData: payments.fetchDiscountCouponReducer,
   currencyExchangeData: payments.currencyExchangeReducer.data,
@@ -29,11 +31,19 @@ const initialValues = {
   coupon: "",
 };
 
-const validations = {
-  coupon(value) {
-    if (value.length === 0) return "Debes de introducir un cupón valido";
-  },
-};
+function getValidations(
+  formatMessage: IntlFormatters["formatMessage"]
+): ValidationsType<{
+  coupon: string;
+}> {
+  return {
+    coupon(value) {
+      if (value.length === 0) {
+        return formatMessage(errorMessages.invalidCoupon);
+      }
+    },
+  };
+}
 
 function CouponForm({
   contractReference,
@@ -41,15 +51,14 @@ function CouponForm({
   couponData,
   currencyExchangeData,
 }: CouponFormProps) {
-  const { values, errors, validateFields, submitForm, setFieldValue } = useForm(
-    {
-      initialValues: initialValues,
-      validations,
-      onSubmit: (data) => {
-        checkoutDiscountCoupon(contractReference, data.coupon);
-      },
-    }
-  );
+  const { formatMessage } = useIntl();
+  const { values, errors, submitForm, setFieldValue } = useForm({
+    initialValues: initialValues,
+    validations: getValidations(formatMessage),
+    onSubmit: (data) => {
+      checkoutDiscountCoupon(contractReference, data.coupon);
+    },
+  });
 
   return (
     <div className={styles.CouponFormWrapper}>

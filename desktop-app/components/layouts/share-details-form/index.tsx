@@ -1,7 +1,7 @@
 import timezones from "constants/popularLatamCitiesTimezones";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import ClientContractType from "desktop-app/types/clientContract";
-import useForm from "lib/hooks/useForm";
+import useForm, { ValidationsType } from "lib/hooks/useForm";
 import { useEffect } from "react";
 import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 import { CellphoneNumberInput } from "../../common/form/cellphone-number-input";
@@ -15,14 +15,15 @@ import {
 import { HiringShareSuccessModal } from "desktop-app/components/common/modals/hiring-share-success-modal";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
 import isEmail from "validator/lib/isEmail";
-import isDate from "validator/lib/isDate";
 import {
-  validateDeliveryContactCellphone,
-  validateDeliveryFrom,
-  validateDeliveryTo,
+  getDeliveryContactCellphoneValidator,
+  getDeliveryFromValidator,
+  getDeliveryToValidator,
 } from "lib/validations/contractData";
 import getFormattedInputDateValue from "lib/utils/getFormattedInputDateValue";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlFormatters, useIntl } from "react-intl";
+import errorMessages from "lib/validations/errorMessages";
+import { getDateValidator } from "lib/validations/common";
 
 const multipleRecipientsSpan = (chunk: string) => (
   <span className={styles.MultipleRecipientsInfo}>{chunk}</span>
@@ -83,30 +84,33 @@ function getInitialState(contractData: ClientContractType) {
   } as InitialValuesType;
 }
 
-const validations = {
-  deliveryTo: validateDeliveryTo,
-  deliveryFrom(value: string) {
-    return validateDeliveryFrom(value, { values: { contractType: 2 } });
-  },
-  deliveryContact(value: string) {
-    if (!value.includes(EMAILS_SEPARATOR) && !isEmail(value)) {
-      return "Ingresa un correo electrónico válido.";
-    }
-    if (!isValidEmailList(value)) {
-      return "Ingresa una lista de correos electrónicos válidos.";
-    }
-  },
-  deliveryContactCellphone: validateDeliveryContactCellphone,
-  sendMessage(value: string) {
-    if (value === "") return "Ingresa tu mensaje";
-  },
-  deliveryDate(value: string) {
-    if (value === "") return "Ingresa una fecha.";
-    if (!isDate(value)) {
-      return "Ingresa una fecha valida. Ejemplo: 2020-06-25";
-    }
-  },
-};
+function getValidations(
+  formatMessage: IntlFormatters["formatMessage"]
+): ValidationsType<InitialValuesType> {
+  return {
+    deliveryTo: getDeliveryToValidator(formatMessage),
+    deliveryFrom(value: string) {
+      return getDeliveryFromValidator(formatMessage)(value, {
+        values: { contractType: 2 },
+      });
+    },
+    deliveryContact(value: string) {
+      if (!value.includes(EMAILS_SEPARATOR) && !isEmail(value)) {
+        return formatMessage(errorMessages.invalidEmail);
+      }
+      if (!isValidEmailList(value)) {
+        return formatMessage(errorMessages.invalidEmailList);
+      }
+    },
+    deliveryContactCellphone: getDeliveryContactCellphoneValidator(
+      formatMessage
+    ),
+    sendMessage(value: string) {
+      if (value === "") return formatMessage(errorMessages.emptyMessage);
+    },
+    deliveryDate: getDateValidator(formatMessage),
+  };
+}
 
 const ONE_HOUR_IN_SECONDS = 3600;
 
@@ -142,6 +146,7 @@ function ShareDetailsForm({
   status,
   requestError,
 }: ShareDetailsFormProps) {
+  const { formatMessage } = useIntl();
   const {
     values,
     errors,
@@ -151,7 +156,7 @@ function ShareDetailsForm({
     validateFields,
   } = useForm({
     initialValues: getInitialState(contractData),
-    validations,
+    validations: getValidations(formatMessage),
     onSubmit,
   });
 

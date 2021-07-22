@@ -11,13 +11,37 @@ import {
 import { AVAILABLE_CURRENCIES_FOR_PAYMENTS } from "constants/availableCurrencyForPayments";
 import { RootState } from "react-app/src/state/store";
 import { connect, ConnectedProps } from "react-redux";
-import { defineMessages, useIntl } from "react-intl";
+import { defineMessages, IntlFormatters, useIntl } from "react-intl";
+import errorMessages from "lib/validations/errorMessages";
+import { getEmailValidator } from "lib/validations/common";
 
 const initialValuesForm = {
   buyer_name: "",
   email_address: "",
   identification_document: "",
 };
+
+type InitialValuesType = typeof initialValuesForm;
+
+function getValidations(
+  formatMessage: IntlFormatters["formatMessage"],
+  currency: string
+): ValidationsType<InitialValuesType> {
+  return {
+    buyer_name(value) {
+      if (value.length === 0) {
+        return formatMessage(errorMessages.emptyNameError);
+      }
+    },
+    email_address: getEmailValidator(formatMessage),
+    identification_document(value) {
+      const checkDocument = allowedFormatDocuments[currency];
+      if (!checkDocument(value)) {
+        return formatMessage(errorMessages.invalidIdentificationDocument);
+      }
+    },
+  };
+}
 
 const mapStateToProps = ({ payments }: RootState) => ({
   currencyExchangeData: payments.currencyExchangeReducer.data,
@@ -54,33 +78,20 @@ function DLocalPersonalInfoForm({
   currency,
   currencyExchangeData,
 }: DLocalPersonalInfoFormProps) {
-  const intl = useIntl();
-
-  // TODO: add validations messages
-  const validations: ValidationsType<typeof initialValuesForm> = {
-    buyer_name(value) {
-      if (value.length === 0) return "Debes ingresar tu nombre";
-    },
-    email_address(value) {
-      if (value.length === 0) return "Debes introducir tu correo electrónico";
-    },
-    identification_document(value) {
-      const checkDocument = allowedFormatDocuments[currency];
-      if (!checkDocument(value))
-        return "Debes introducir un documento de identificación valido";
-    },
-  };
-
-  const { values, errors, onChangeField } = useForm<typeof initialValuesForm>({
+  const { formatMessage } = useIntl();
+  const { values, errors, onChangeField } = useForm<InitialValuesType>({
     initialValues: Object.assign(initialValuesForm, initialValuesFromProps),
-    validations,
+    validations: getValidations(formatMessage, currency),
   });
+
   useEffect(() => {
     onChangeValues({ ...values });
   }, [values]);
+
   const document_name_available = AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
     (data) => data.name === currencyExchangeData.to
   );
+
   return (
     <div>
       <form>
@@ -89,7 +100,7 @@ function DLocalPersonalInfoForm({
           className={styles.InputModifier}
           onChange={onChangeField}
           name="buyer_name"
-          placeholder={intl.formatMessage(messages.placeholderBuyerName)}
+          placeholder={formatMessage(messages.placeholderBuyerName)}
         ></input>
         <WarningMessage
           message={errors?.buyer_name || null}
@@ -102,7 +113,7 @@ function DLocalPersonalInfoForm({
           value={values.email_address}
           className={styles.InputModifier}
           onChange={onChangeField}
-          placeholder={intl.formatMessage(messages.placeholderEmailAddress)}
+          placeholder={formatMessage(messages.placeholderEmailAddress)}
           name="email_address"
         />
         <WarningMessage
@@ -120,7 +131,7 @@ function DLocalPersonalInfoForm({
             AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES.includes(
               document_name_available?.name
             )
-              ? intl.formatMessage(
+              ? formatMessage(
                   DOCUMENT_NAME_FOR_COUNTRIES[document_name_available?.name]
                 )
               : document_name_available?.document_name

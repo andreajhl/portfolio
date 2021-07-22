@@ -1,5 +1,6 @@
-import { defineMessages, IntlFormatters } from "react-intl";
+import { IntlFormatters } from "react-intl";
 import isEmail from "validator/lib/isEmail";
+import errorMessages from "./errorMessages";
 
 export function validateDeliveryTo(value: string) {
   if (value.length === 0) return "Debes introducir un nombre";
@@ -30,29 +31,16 @@ export function validateDeliveryContactCellphone(value: string) {
   if (value.length <= 4) return "Ingresa un número de teléfono válido.";
 }
 
-const messages = defineMessages({
-  emptyNameError: { defaultMessage: "Debes introducir un nombre" },
-  emptyInstructions: { defaultMessage: "Debes escribir tus instrucciones" },
-  unSelectedOccasion: { defaultMessage: "Debes seleccionar una ocasión" },
-  maxLengthError: {
-    defaultMessage: "Debes introducir un máximo de {maxLength} caracteres",
-  },
-  invalidEmail: { defaultMessage: "Ingresa un correo electrónico válido" },
-  invalidCellphoneNumber: {
-    defaultMessage: "Ingresa un número de teléfono válido",
-  },
-});
-
 export const getDeliveryToValidator = (
   formatMessage: IntlFormatters["formatMessage"]
 ) =>
   function deliveryToValidator(value: string) {
     if (value.length === 0) {
-      return formatMessage(messages.emptyNameError);
+      return formatMessage(errorMessages.emptyNameError);
     }
     const maxLength = 40;
     if (value.length > maxLength) {
-      return formatMessage(messages.maxLengthError, { maxLength });
+      return formatMessage(errorMessages.maxLengthError, { maxLength });
     }
   };
 
@@ -62,11 +50,11 @@ export const getDeliveryFromValidator = (
   function deliveryFromValidator(value: string, { values: { contractType } }) {
     if (contractType !== 2) return;
     if (value.length === 0) {
-      return formatMessage(messages.emptyNameError);
+      return formatMessage(errorMessages.emptyNameError);
     }
     const maxLength = 40;
     if (value.length > maxLength) {
-      return formatMessage(messages.maxLengthError, { maxLength });
+      return formatMessage(errorMessages.maxLengthError, { maxLength });
     }
   };
 
@@ -74,10 +62,11 @@ export const getInstructionsValidator = (
   formatMessage: IntlFormatters["formatMessage"]
 ) =>
   function instructionsValidator(value: string) {
-    if (value.length === 0) return formatMessage(messages.emptyInstructions);
+    if (value.length === 0)
+      return formatMessage(errorMessages.emptyInstructions);
     const maxLength = 300;
     if (value.length > maxLength) {
-      return formatMessage(messages.maxLengthError, { maxLength });
+      return formatMessage(errorMessages.maxLengthError, { maxLength });
     }
   };
 
@@ -85,14 +74,15 @@ export const getOccasionValidator = (
   formatMessage: IntlFormatters["formatMessage"]
 ) =>
   function occasionValidator(value: string) {
-    if (value.length === 0) return formatMessage(messages.unSelectedOccasion);
+    if (value.length === 0)
+      return formatMessage(errorMessages.unSelectedOccasion);
   };
 
 export const getDeliveryContactValidator = (
   formatMessage: IntlFormatters["formatMessage"]
 ) =>
   function deliveryContactValidator(value: string) {
-    if (!isEmail(value)) return formatMessage(messages.invalidEmail);
+    if (!isEmail(value)) return formatMessage(errorMessages.invalidEmail);
   };
 
 export const getDeliveryContactCellphoneValidator = (
@@ -100,6 +90,6 @@ export const getDeliveryContactCellphoneValidator = (
 ) =>
   function deliveryContactCellphoneValidator(value: string) {
     if (value.length <= 4) {
-      return formatMessage(messages.invalidCellphoneNumber);
+      return formatMessage(errorMessages.invalidCellphoneNumber);
     }
   };

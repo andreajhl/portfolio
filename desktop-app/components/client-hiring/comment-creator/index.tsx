@@ -1,12 +1,18 @@
 import { useEffect } from "react";
-import useForm from "lib/hooks/useForm";
+import useForm, { ValidationsType } from "lib/hooks/useForm";
 import styles from "./styles.module.scss";
 import { contractOperations } from "react-app/src/state/ducks/contracts";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import { connect } from "react-redux";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import classes from "classnames";
-import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+import {
+  defineMessages,
+  FormattedMessage,
+  IntlFormatters,
+  useIntl,
+} from "react-intl";
+import errorMessages from "lib/validations/errorMessages";
 
 const messages = defineMessages({
   firstCommentPlaceholder: {
@@ -30,11 +36,17 @@ const initialValues = {
   comment: "",
 };
 
-const validations = {
-  comment(value: string) {
-    if (value === "") return "Debes escribir un comentario";
-  },
-};
+type InitialValuesType = typeof initialValues;
+
+function getValidations(
+  formatMessage: IntlFormatters["formatMessage"]
+): ValidationsType<InitialValuesType> {
+  return {
+    comment(value: string) {
+      if (value === "") return formatMessage(errorMessages.emptyReview);
+    },
+  };
+}
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
@@ -46,6 +58,7 @@ type CommentCreatorProps = {
   firstComment: boolean;
 } & StateProps &
   DispatchProps;
+
 function CommentCreator({
   isLoading,
   contractComment,
@@ -60,13 +73,11 @@ function CommentCreator({
     if (isCompleted) onCommentCreated();
   }, [isCompleted]);
   const { formatMessage } = useIntl();
-  const { values, onChangeField, submitForm, errors } = useForm<
-    typeof initialValues
-  >({
+  const { values, onChangeField, submitForm, errors } = useForm({
     initialValues: {
       comment: "",
     },
-    validations,
+    validations: getValidations(formatMessage),
     onSubmit(data) {
       if (previewMode) return;
       addContractComment(contract_reference, {

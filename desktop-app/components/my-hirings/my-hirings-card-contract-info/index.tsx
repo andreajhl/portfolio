@@ -1,11 +1,17 @@
 import MyHiringsContract from "desktop-app/types/myHiringsContract";
-import useForm from "lib/hooks/useForm";
+import useForm, { ValidationsType } from "lib/hooks/useForm";
 import { useUpdateHiredContract } from "lib/hooks/useUpdateHiredContract";
 import { useState } from "react";
 import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
 import { MyHiringsCardDetails } from "../my-hirings-card-details";
 import { MyHiringsCardNotificationInfo } from "../my-hirings-card-notification-info";
-import isEmail from "validator/lib/isEmail";
+import {
+  getDeliveryContactValidator,
+  getDeliveryFromValidator,
+  getDeliveryToValidator,
+  getInstructionsValidator,
+} from "lib/validations/contractData";
+import { IntlFormatters, useIntl } from "react-intl";
 
 const initialValues = {
   deliveryTo: "",
@@ -16,32 +22,16 @@ const initialValues = {
   contractType: 1,
 };
 
-// TODO: validations
-
-const validations = {
-  deliveryTo(value: string) {
-    if (value.length === 0) return "Debes introducir un nombre";
-    if (value.length > 40) {
-      return "Debes introducir un máximo de 40 caracteres.";
-    }
-  },
-  deliveryFrom(value: string, { values: { contractType } }) {
-    if (contractType !== 2) return;
-    if (value.length === 0) return "Debes introducir un nombre";
-    if (value.length > 40) {
-      return "Debes introducir un máximo de 40 caracteres.";
-    }
-  },
-  instructions(value: string) {
-    if (value.length === 0) return "Debes escribir tus instrucciones.";
-    if (value.length > 300) {
-      return "Debes introducir un máximo de 300 caracteres.";
-    }
-  },
-  deliveryContact(value: string) {
-    if (!isEmail(value)) return "Ingresa un correo electrónico válido.";
-  },
-};
+function getValidations(
+  formatMessage: IntlFormatters["formatMessage"]
+): ValidationsType<InitialValuesType> {
+  return {
+    deliveryTo: getDeliveryToValidator(formatMessage),
+    deliveryFrom: getDeliveryFromValidator(formatMessage),
+    instructions: getInstructionsValidator(formatMessage),
+    deliveryContact: getDeliveryContactValidator(formatMessage),
+  };
+}
 
 const getInitialValuesFromContract = (contractData: MyHiringsContract) => ({
   ...initialValues,
@@ -57,6 +47,7 @@ type InitialValuesType = typeof initialValues;
 function MyHiringsCardContractInfo({
   contractData,
 }: MyHiringsCardContractInfoProps) {
+  const { formatMessage } = useIntl();
   const { update } = useUpdateHiredContract();
   const [isEditing, setIsEditing] = useState(false);
   const {
@@ -67,7 +58,7 @@ function MyHiringsCardContractInfo({
     submitForm,
   } = useForm<InitialValuesType>({
     initialValues: getInitialValuesFromContract(contractData),
-    validations,
+    validations: getValidations(formatMessage),
     onSubmit(newContractData) {
       setIsEditing(false);
       update(contractData.reference, newContractData);
