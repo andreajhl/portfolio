@@ -11,6 +11,7 @@ import useForm, { ValidationsType } from "lib/hooks/useForm";
 import usePromise from "lib/hooks/usePromise";
 import { CollapsibleErrorMessage } from "../../common/widgets/collapsible-error-message";
 import { signInWithEmailAndPassword } from "lib/famosos-auth";
+import { AuthPasswordField } from "../../layouts/auth-password-field";
 
 const initialRequestErrorValue = null;
 
@@ -97,15 +98,9 @@ function SignInEmailPasswordForm({ email }: SignInEmailPasswordFormProps) {
     }
   }
 
-  const [showPassword, setShowPassword] = useState(false);
-
-  function toggleShowPasswordState() {
-    setShowPassword((previousShowPassword) => !previousShowPassword);
-  }
-
   function changePasswordValue({
     target: { value },
-  }: React.ChangeEvent<HTMLInputElement>): void {
+  }: React.ChangeEvent<HTMLInputElement>) {
     setFieldValue("password", value);
   }
 
@@ -124,23 +119,14 @@ function SignInEmailPasswordForm({ email }: SignInEmailPasswordFormProps) {
         error={errors.email}
         formNoValidate
       />
-      <AuthFormField
+      <AuthPasswordField
         autoComplete="current-password"
         name="current-password"
-        type={showPassword ? "text" : "password"}
         label={<FormattedMessage defaultMessage="Contraseña" />}
         placeholder="**********"
         value={values.password}
         error={errors.password}
         onChange={changePasswordValue}
-        onIconClick={toggleShowPasswordState}
-        iconElement={
-          !showPassword ? (
-            <i className="fas fa-eye cursor-pointer"></i>
-          ) : (
-            <i className="fas fa-eye-slash cursor-pointer"></i>
-          )
-        }
       />
       <button
         type="submit"

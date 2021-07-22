@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 import { ReactNode } from "react";
 import { CollapsibleErrorMessage } from "../../common/widgets/collapsible-error-message";
 
-type AuthFormFieldProps = {
+export type AuthFormFieldProps = {
   className?: string;
   label?: string | ReactNode;
   iconElement?: ReactNode;
