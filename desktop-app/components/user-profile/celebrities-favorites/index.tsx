@@ -69,6 +69,7 @@ function CelebritiesFavoritesEdit({
                 src={data.avatar}
                 imgAlt={`Foto de ${data.fullName}`}
                 name={data.fullName}
+                username={data.username}
               />
               <button
                 onClick={() => deleteFavorite(data.id)}
