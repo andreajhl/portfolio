@@ -104,6 +104,8 @@ function SignInEmailPasswordForm({ email }: SignInEmailPasswordFormProps) {
     setFieldValue("password", value);
   }
 
+  const disableForm = isLoading || status === "completed";
+
   return (
     <form onSubmit={validateBeforeSubmit}>
       <h3 className={styles.SignInBoxTitle}>
@@ -118,6 +120,7 @@ function SignInEmailPasswordForm({ email }: SignInEmailPasswordFormProps) {
         onChange={onChangeField}
         error={errors.email}
         formNoValidate
+        disabled={disableForm}
       />
       <AuthPasswordField
         autoComplete="current-password"
@@ -126,12 +129,13 @@ function SignInEmailPasswordForm({ email }: SignInEmailPasswordFormProps) {
         placeholder="**********"
         value={values.password}
         error={errors.password}
+        disabled={disableForm}
         onChange={changePasswordValue}
       />
       <button
         type="submit"
         className={classes("btn btn-primary", styles.SignInBoxSubmitButton)}
-        disabled={isLoading}
+        disabled={disableForm}
       >
         <SubmitText
           baseText={<FormattedMessage defaultMessage="Ingresar" />}

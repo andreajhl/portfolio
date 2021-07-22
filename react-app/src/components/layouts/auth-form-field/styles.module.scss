@@ -25,6 +25,10 @@
   &::placeholder {
     color: #b9b8b8;
   }
+
+  &:disabled {
+    background-color: #f8f8f8;
+  }
 }
 
 .InputContainer {
