@@ -37,6 +37,13 @@ jest.mock("react-intl", () => {
   };
 });
 
+// To prevent errors when using on shallow rendered components.
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useSelector: jest.fn(),
+  useDispatch: () => jest.fn(),
+}));
+
 global.beforeAll(async () => {
   await loadTestingEnvironmentVariables();
   await preloadAll();
