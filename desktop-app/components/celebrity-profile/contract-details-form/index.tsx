@@ -93,7 +93,7 @@ function ContractDetailsForm({
     setFieldTouched,
     getTouchedFieldValues,
     setFieldError,
-    submitForm,
+    validateBeforeSubmit,
   } = useForm({
     initialValues: Object.assign({}, initialValues, initialValuesFromProps),
     validations: getValidations(formatMessage),
@@ -133,7 +133,7 @@ function ContractDetailsForm({
     goToClickedStep: () => void,
     isPreviousStep: boolean
   ): void {
-    if (!isPreviousStep) return submitForm();
+    if (!isPreviousStep) return validateBeforeSubmit();
     const valuesToSave = getTouchedFieldValues();
     if (!valuesToSave) return;
 
@@ -170,46 +170,48 @@ function ContractDetailsForm({
         enableNavigation
         onStepClick={validateFormBeforeChangeStep}
       />
-      <h2 className={styles.VideoDetailsFormTitle}>
-        <FormattedMessage defaultMessage="Selecciona una ocasión" />
-      </h2>
-      <OccasionsGrid
-        contractType={contractType}
-        selectedOccasion={values.occasion}
-        className={styles.VideoDetailsFormOccasionsGrid}
-        onClickOccasion={changeOccasion}
-      />
-      <div className={styles.VideoDetailsFormInstructions}>
-        <label className={styles.VideoDetailsFormInstructionsLabel}>
-          <FormattedMessage
-            defaultMessage="Dale instrucciones a {celebrityFullName} para que tu video quede como esperas.
-            {br} <span>(Edita este texto base o escribe uno)</span>"
-            values={{ celebrityFullName, br, span }}
-          />
+      <form onSubmit={validateBeforeSubmit}>
+        <label className={styles.VideoDetailsOccasionLabel}>
+          <FormattedMessage defaultMessage="Selecciona una ocasión" />
         </label>
-        <TextInputWithPlaceholders
-          placeholder={instructionsPlaceholder}
-          className={styles.VideoDetailsFormInstructionsTextarea}
-          maxLength={300}
-          onKeyUp={changeInstructionsTouched}
-          onBlur={changeInstructionsValue}
-          value={textareaText}
+        <OccasionsGrid
+          contractType={contractType}
+          selectedOccasion={values.occasion}
+          className={styles.VideoDetailsFormOccasionsGrid}
+          onClickOccasion={changeOccasion}
         />
-        <WarningMessage
-          className={classes(
-            styles.VideoDetailsFormInstructionsMessage,
-            Boolean(errors?.instructions) &&
-              styles.VideoDetailsFormInstructionsMessageVisible
-          )}
-          message={errors?.instructions || null}
-        />
-      </div>
-      <SubmitButton onClick={submitForm} disabled={isLoading}>
-        <SubmitText
-          baseText={<FormattedMessage defaultMessage="Siguiente" />}
-          status={isLoading ? "loading" : "idle"}
-        />
-      </SubmitButton>
+        <div className={styles.VideoDetailsFormInstructions}>
+          <label className={styles.VideoDetailsFormInstructionsLabel}>
+            <FormattedMessage
+              defaultMessage="Dale instrucciones a {celebrityFullName} para que tu video quede como esperas.
+            {br} <span>(Edita este texto base o escribe uno)</span>"
+              values={{ celebrityFullName, br, span }}
+            />
+          </label>
+          <TextInputWithPlaceholders
+            placeholder={instructionsPlaceholder}
+            className={styles.VideoDetailsFormInstructionsTextarea}
+            maxLength={300}
+            onKeyUp={changeInstructionsTouched}
+            onBlur={changeInstructionsValue}
+            value={textareaText}
+          />
+          <WarningMessage
+            className={classes(
+              styles.VideoDetailsFormInstructionsMessage,
+              Boolean(errors?.instructions) &&
+                styles.VideoDetailsFormInstructionsMessageVisible
+            )}
+            message={errors?.instructions || null}
+          />
+        </div>
+        <SubmitButton disabled={isLoading}>
+          <SubmitText
+            baseText={<FormattedMessage defaultMessage="Siguiente" />}
+            status={isLoading ? "loading" : "idle"}
+          />
+        </SubmitButton>
+      </form>
     </section>
   );
 }

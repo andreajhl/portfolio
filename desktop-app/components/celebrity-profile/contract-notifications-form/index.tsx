@@ -95,24 +95,27 @@ function ContractNotificationsForm({
     messages.cellphoneSearchPlaceholder
   );
 
+  function validateBeforeStepChange(
+    goToClickedStep: () => void,
+    isPreviousStep: boolean
+  ) {
+    if (!isPreviousStep && !validateFields()) return;
+    const valuesToSave = isPreviousStep ? getTouchedFieldValues() : values;
+    if (!valuesToSave) return;
+
+    onStepChange(
+      (objectHasProperties(valuesToSave)
+        ? valuesToSave
+        : null) as ContractNotificationsType
+    );
+    goToClickedStep();
+  }
+
   return (
     <section className={styles.VideoNotificationForm}>
       <WizardTopNavigation
         enableNavigation
-        onStepClick={(goToClickedStep, isPreviousStep) => {
-          if (!isPreviousStep && !validateFields()) return;
-          const valuesToSave = isPreviousStep
-            ? getTouchedFieldValues()
-            : values;
-          if (!valuesToSave) return;
-
-          onStepChange(
-            (objectHasProperties(valuesToSave)
-              ? valuesToSave
-              : null) as ContractNotificationsType
-          );
-          goToClickedStep();
-        }}
+        onStepClick={validateBeforeStepChange}
       />
       <h2 className={styles.VideoNotificationFormTitle}>
         <FormattedMessage
@@ -120,76 +123,78 @@ function ContractNotificationsForm({
           values={{ br: <br /> }}
         />
       </h2>
-      <div>
-        <label className={styles.FormLabel} htmlFor="deliveryContact">
-          <FormattedMessage defaultMessage="Correo electrónico de notificación" />
-        </label>
-        <input
-          type="email"
-          formNoValidate
-          name="deliveryContact"
-          id="deliveryContact"
-          placeholder={emailPlaceholder}
-          value={values.deliveryContact}
-          onFocus={onFocusField}
-          onChange={onChangeField}
-          className={classes(
-            styles.FormField,
-            errors?.deliveryContact && styles.FormFieldHasError
-          )}
-        />
-        <WarningMessage
-          message={errors?.deliveryContact || null}
-          className={classes(
-            styles.FormError,
-            errors?.deliveryContact && styles.FormErrorIsVisible
-          )}
-        />
-      </div>
-      <div className={styles.VideoNotificationFormPhoneInputContainer}>
-        <label className={styles.FormLabel}>
-          <FormattedMessage defaultMessage="Notificarme también por Whatsapp (opcional)" />
-        </label>
-        <CellphoneNumberInput
-          value={values.deliveryContactCellphone}
-          containerClass={styles.ContainerPhoneInput}
-          hasError={Boolean(errors?.deliveryContactCellphone)}
-          placeholder="+57 310 1234567"
-          country="co"
-          enableSearch
-          searchPlaceholder={cellphoneSearchPlaceholder}
-          onChange={(value) => {
-            setFieldTouched("deliveryContactCellphone", true);
-            setFieldValue("deliveryContactCellphone", value);
-          }}
-        />
-        <WarningMessage
-          message={errors?.deliveryContactCellphone || null}
-          className={classes(
-            styles.FormError,
-            errors?.deliveryContactCellphone && styles.FormErrorIsVisible
-          )}
-        />
-      </div>
-      <div className={styles.VideoNotificationFormRadioWrapper}>
-        <span className={styles.VideoNotificationFormRadioText}>
-          <FormattedMessage defaultMessage="Permitir que mi video sea público" />
-        </span>
-        <BooleanRadiosInputs
-          value={values.isPublic}
-          className={styles.VideoNotificationFormRadio}
-          onChange={(value) => {
-            setFieldValue("isPublic", value);
-            setFieldTouched("isPublic", true);
-          }}
-        />
-      </div>
-      <SubmitButton onClick={validateBeforeSubmit} disabled={isLoading}>
-        <SubmitText
-          baseText={<FormattedMessage defaultMessage="Continuar" />}
-          status={isLoading ? "loading" : "idle"}
-        />
-      </SubmitButton>
+      <form onSubmit={validateBeforeSubmit}>
+        <div>
+          <label className={styles.FormLabel} htmlFor="deliveryContact">
+            <FormattedMessage defaultMessage="Correo electrónico de notificación" />
+          </label>
+          <input
+            type="email"
+            formNoValidate
+            name="deliveryContact"
+            id="deliveryContact"
+            placeholder={emailPlaceholder}
+            value={values.deliveryContact}
+            onFocus={onFocusField}
+            onChange={onChangeField}
+            className={classes(
+              styles.FormField,
+              errors?.deliveryContact && styles.FormFieldHasError
+            )}
+          />
+          <WarningMessage
+            message={errors?.deliveryContact || null}
+            className={classes(
+              styles.FormError,
+              errors?.deliveryContact && styles.FormErrorIsVisible
+            )}
+          />
+        </div>
+        <div className={styles.VideoNotificationFormPhoneInputContainer}>
+          <label className={styles.FormLabel}>
+            <FormattedMessage defaultMessage="Notificarme también por Whatsapp (opcional)" />
+          </label>
+          <CellphoneNumberInput
+            value={values.deliveryContactCellphone}
+            containerClass={styles.ContainerPhoneInput}
+            hasError={Boolean(errors?.deliveryContactCellphone)}
+            placeholder="+57 310 1234567"
+            country="co"
+            enableSearch
+            searchPlaceholder={cellphoneSearchPlaceholder}
+            onChange={(value) => {
+              setFieldTouched("deliveryContactCellphone", true);
+              setFieldValue("deliveryContactCellphone", value);
+            }}
+          />
+          <WarningMessage
+            message={errors?.deliveryContactCellphone || null}
+            className={classes(
+              styles.FormError,
+              errors?.deliveryContactCellphone && styles.FormErrorIsVisible
+            )}
+          />
+        </div>
+        <div className={styles.VideoNotificationFormRadioWrapper}>
+          <span className={styles.VideoNotificationFormRadioText}>
+            <FormattedMessage defaultMessage="Permitir que mi video sea público" />
+          </span>
+          <BooleanRadiosInputs
+            value={values.isPublic}
+            className={styles.VideoNotificationFormRadio}
+            onChange={(value) => {
+              setFieldValue("isPublic", value);
+              setFieldTouched("isPublic", true);
+            }}
+          />
+        </div>
+        <SubmitButton disabled={isLoading}>
+          <SubmitText
+            baseText={<FormattedMessage defaultMessage="Continuar" />}
+            status={isLoading ? "loading" : "idle"}
+          />
+        </SubmitButton>
+      </form>
     </section>
   );
 }

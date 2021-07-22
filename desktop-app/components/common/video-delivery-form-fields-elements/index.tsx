@@ -22,7 +22,6 @@ type VideoDeliveryFormFieldsElementsProps = {
   deliveryFrom: string;
   onChange: (arg1: string, arg2: string) => void;
   contractType: number;
-  onSubmit: (event: any) => void;
   errors: { [key: string]: any };
   isLoading: boolean;
 };
@@ -33,7 +32,6 @@ function VideoDeliveryFormFieldsElements({
   deliveryFrom,
   onChange,
   contractType,
-  onSubmit,
   errors,
   isLoading,
 }: VideoDeliveryFormFieldsElementsProps) {
@@ -82,7 +80,7 @@ function VideoDeliveryFormFieldsElements({
         </Maybe>
       </div>
       <Maybe it={showDeliveryToInput}>
-        <SubmitButton onClick={onSubmit} disabled={isLoading}>
+        <SubmitButton disabled={isLoading}>
           <SubmitText
             baseText={<FormattedMessage defaultMessage="Siguiente" />}
             status={isLoading ? "loading" : "idle"}

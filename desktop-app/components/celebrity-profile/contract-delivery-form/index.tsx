@@ -135,21 +135,23 @@ function ContractDeliveryForm({
         currentType={values.contractType}
         onChangeType={changeContractType}
       />
-      <div className={styles.InputFieldElements}>
+      <form
+        className={styles.InputFieldElements}
+        onSubmit={validateBeforeSubmit}
+      >
         <VideoDeliveryFormFieldsElements
           isLoading={isLoading}
           hasBusinessPrice={hasBusinessPrice}
           deliveryFrom={values.deliveryFrom}
           deliveryTo={values.deliveryTo}
           contractType={values.contractType}
-          onSubmit={validateBeforeSubmit}
           onChange={setFieldValue}
           errors={errors}
         />
         <Maybe it={contractIsForBusiness && !hasBusinessPrice}>
           <WhatsappAdForContracts celebrityFullName={celebrityFullName} />
         </Maybe>
-      </div>
+      </form>
     </section>
   );
 }
