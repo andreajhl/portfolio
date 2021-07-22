@@ -82,7 +82,7 @@ function VideoDeliveryFormFieldsElements({
         </Maybe>
       </div>
       <Maybe it={showDeliveryToInput}>
-        <SubmitButton onClick={onSubmit}>
+        <SubmitButton onClick={onSubmit} disabled={isLoading}>
           <SubmitText
             baseText={<FormattedMessage defaultMessage="Siguiente" />}
             status={isLoading ? "loading" : "idle"}

@@ -204,7 +204,7 @@ function ContractDetailsForm({
           message={errors?.instructions || null}
         />
       </div>
-      <SubmitButton onClick={submitForm}>
+      <SubmitButton onClick={submitForm} disabled={isLoading}>
         <SubmitText
           baseText={<FormattedMessage defaultMessage="Siguiente" />}
           status={isLoading ? "loading" : "idle"}

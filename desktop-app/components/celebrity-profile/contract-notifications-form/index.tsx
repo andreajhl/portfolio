@@ -184,7 +184,7 @@ function ContractNotificationsForm({
           }}
         />
       </div>
-      <SubmitButton onClick={validateBeforeSubmit}>
+      <SubmitButton onClick={validateBeforeSubmit} disabled={isLoading}>
         <SubmitText
           baseText={<FormattedMessage defaultMessage="Continuar" />}
           status={isLoading ? "loading" : "idle"}
