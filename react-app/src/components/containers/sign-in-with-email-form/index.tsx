@@ -15,7 +15,7 @@ import { AuthPasswordField } from "../../layouts/auth-password-field";
 
 const initialRequestErrorValue = null;
 
-function notifyClickOnSignIn(email: string) {
+function trackClickOnSignIn(email: string) {
   analytics.track("CLICK_ON_SIGN_IN_WITH_EMAIL_PASSWORD", {
     email,
   });
@@ -71,7 +71,7 @@ function SignInEmailPasswordForm({ email }: SignInEmailPasswordFormProps) {
   function onSubmit(formValues: FormValuesType) {
     if (isLoading) return;
     resetRequestError();
-    notifyClickOnSignIn(formValues.email);
+    trackClickOnSignIn(formValues.email);
     requestSignIn(formValues);
   }
 

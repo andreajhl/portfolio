@@ -1,309 +1,267 @@
-import React from "react";
-import * as GTM from "../../../state/utils/gtm";
-import isEmail from "validator/lib/isEmail";
+import { useState } from "react";
 import styles from "./styles.module.scss";
-import {
-  FormattedMessage,
-  injectIntl,
-  WrappedComponentProps,
-} from "react-intl";
+import { FormattedMessage, IntlFormatters, useIntl } from "react-intl";
 import { AuthFormField } from "../../layouts/auth-form-field";
 import classes from "classnames";
-import axios from "axios";
-import { Session } from "../../../state/utils/session";
 import FormCheck from "react-bootstrap/FormCheck";
 import Maybe from "../../common/helpers/maybe";
-import {
-  SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
-  TRANSLATION_SIGN_UP_ERROR_MESSAGES,
-} from "react-app/src/constants/messages";
+import { TRANSLATION_SIGN_UP_ERROR_MESSAGES } from "react-app/src/constants/messages";
 import { SubmitText } from "../../common/widgets/submit-button-text";
+import useForm from "lib/hooks/useForm";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { signUpWithEmailAndPassword } from "lib/famosos-auth";
+import usePromise from "lib/hooks/usePromise";
+import { CollapsibleErrorMessage } from "../../common/widgets/collapsible-error-message";
+import { getDateValidator, getEmailValidator } from "lib/validations/common";
+import getAge from "lib/utils/getAge";
+import getFormattedInputDateValue from "lib/utils/getFormattedInputDateValue";
 
-// Props
-type SignUpEmailPasswordFormProps = {
-  willRedirect: boolean;
-} & WrappedComponentProps;
+const FALLBACK_LOCALE = "ES";
 
-// State
-type SignUpEmailPasswordFormState = {
-  fullName: string;
-  email: string;
-  password: string;
-  confirmationPassword: string;
-  birthDate: string;
-  allowNotifications: boolean;
-  isLoading: boolean;
-  isCompleted: boolean;
-  error: string;
-  showPassword: boolean;
-};
+const initialRequestErrorValue = null;
 
-// Class component
-class SignUpEmailPasswordForm extends React.Component<
-  SignUpEmailPasswordFormProps,
-  SignUpEmailPasswordFormState
-> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      fullName: "",
-      email: "",
-      password: "",
-      confirmationPassword: "",
-      birthDate: "",
-      allowNotifications: true,
-      isLoading: false,
-      isCompleted: false,
-      error: null,
-      showPassword: false,
-    };
-
-    this.handleEmailInput = this.handleEmailInput.bind(this);
-    this.handleFullNameInput = this.handleFullNameInput.bind(this);
-    this.handleBirthDateInput = this.handleBirthDateInput.bind(this);
-    this.handlePasswordInput = this.handlePasswordInput.bind(this);
-    this.handleConfirmationPasswordInput = this.handleConfirmationPasswordInput.bind(
-      this
-    );
-    this.handleAllowNotificationsInput = this.handleAllowNotificationsInput.bind(
-      this
-    );
-    this.sendData = this.sendData.bind(this);
-    this.toggleShowPasswordState = this.toggleShowPasswordState.bind(this);
-  }
-
-  handleFullNameInput(event) {
-    this.setState({
-      ...this.state,
-      fullName: event.target.value,
-    });
-  }
-
-  handleBirthDateInput(event) {
-    this.setState({
-      ...this.state,
-      birthDate: event.target.value,
-    });
-  }
-
-  handleEmailInput(event) {
-    this.setState({
-      ...this.state,
-      email: event.target.value.trim().toLocaleLowerCase(),
-    });
-  }
-
-  handlePasswordInput(event) {
-    this.setState({
-      ...this.state,
-      password: event.target.value,
-    });
-  }
-
-  handleConfirmationPasswordInput(event) {
-    this.setState({
-      ...this.state,
-      confirmationPassword: event.target.value,
-    });
-  }
-
-  handleAllowNotificationsInput(event) {
-    this.setState({
-      ...this.state,
-      allowNotifications: !this.state.allowNotifications,
-    });
-  }
-
-  validateInputs = () => {
-    // Validate full name
-    if (this.state.fullName === "") {
-      return "Name field is required";
-    }
-    // Validate birthDate
-    if (this.state.birthDate === "") {
-      return "Birthdate field is required";
-    }
-    // Validate email
-    if (!isEmail(this.state.email) || this.state.email === "") {
-      return "Invalid email";
-    }
-    // Validate passwords
-    if (this.state.password.length < 6) {
-      return "Password length must contain at least 6 characters";
-    }
-    if (this.state.password !== this.state.confirmationPassword) {
-      return "Passwords do not match";
-    }
-    return null;
-  };
-
-  sendData = async (event) => {
-    event?.preventDefault?.();
-    // Remove error message
-    this.setState({
-      ...this.state,
-      error: null,
-    });
-    // Prevent send several requests
-    if (this.state.isLoading) {
-      return;
-    }
-
-    this.setState({ isLoading: true });
-
-    // Notify event
-    GTM.tagManagerDataLayer("CLICK_ON_SIGN_UP_WITH_EMAIL_PASSWORD", {
-      email: this.state.email,
-    });
-    // Validate inputs
-    const err = this.validateInputs();
-    if (err !== null) {
-      this.setState({
-        ...this.state,
-        error: err,
-      });
-      return;
-    }
-    // Send request
-    await axios
-      .post("/api/email-password-sign-up", {
-        fullName: this.state.fullName,
-        email: this.state.email.trim().toLocaleLowerCase(),
-        password: this.state.password,
-        birthDate: this.state.birthDate,
-        allowNotifications: this.state.allowNotifications,
-        locale: this.props.intl ? this.props.intl.locale.toUpperCase() : "ES",
-      })
-      .then((response) => {
-        if (response.data.status === "OK") {
-          const session = new Session();
-          session.initSession();
-        } else {
-          this.setState({
-            ...this.state,
-            isLoading: false,
-            error: response.data.error,
-          });
-        }
-      })
-      .catch((error) => {
-        this.setState({ isLoading: false });
-      });
-  };
-
-  toggleShowPasswordState() {
-    this.setState((oldState) => ({
-      ...oldState,
-      showPassword: !oldState.showPassword,
-    }));
-  }
-
-  renderError() {
-    if (this.state.error !== null && this.state.error !== "") {
-      return (
-        <small className={"text-danger"}>
-          Error:{" "}
-          {SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE.includes(
-            this.state.error
-          )
-            ? this.props.intl.formatMessage(
-                TRANSLATION_SIGN_UP_ERROR_MESSAGES[this.state.error]
-              )
-            : this.state.error}{" "}
-        </small>
-      );
-    } else {
-      return <div />;
-    }
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.sendData} noValidate>
-        <h3 className={styles.SignUpBoxTitle}>
-          <FormattedMessage defaultMessage="o regístrate con tu correo electrónico" />
-        </h3>
-        <AuthFormField
-          name="name"
-          label={<FormattedMessage defaultMessage="Nombre" />}
-          placeholder="Marcos"
-          value={this.state.fullName}
-          onChange={this.handleFullNameInput}
-        />
-        <AuthFormField
-          name="birth-date"
-          type="date"
-          label={<FormattedMessage defaultMessage="Cumpleaños" />}
-          placeholder="DD / MM / AA"
-          value={this.state.birthDate}
-          onChange={this.handleBirthDateInput}
-        />
-        <AuthFormField
-          type="email"
-          name="email"
-          label={<FormattedMessage defaultMessage="Correo electrónico" />}
-          placeholder="usuario@dominio.com"
-          value={this.state.email}
-          onChange={this.handleEmailInput}
-        />
-        <AuthFormField
-          autoComplete="new-password"
-          name="new-password"
-          type={this.state.showPassword ? "text" : "password"}
-          label={<FormattedMessage defaultMessage="Contraseña" />}
-          placeholder="**********"
-          value={this.state.password}
-          onChange={this.handlePasswordInput}
-          onIconClick={this.toggleShowPasswordState}
-          iconElement={
-            !this.state.showPassword ? (
-              <i className="fas fa-eye cursor-pointer"></i>
-            ) : (
-              <i className="fas fa-eye-slash cursor-pointer"></i>
-            )
-          }
-        />
-        <AuthFormField
-          type={this.state.showPassword ? "text" : "password"}
-          label={<FormattedMessage defaultMessage="Confirmar" />}
-          placeholder="**********"
-          value={this.state.confirmationPassword}
-          onChange={this.handleConfirmationPasswordInput}
-        />
-        <FormCheck
-          id="accept-offers-and-benefits"
-          className={styles.SignUpBoxSwitcher}
-          type="switch"
-          label={
-            <FormattedMessage defaultMessage="Quiero recibir ofertas y beneficios exclusivos." />
-          }
-          checked={this.state.allowNotifications}
-          onChange={this.handleAllowNotificationsInput}
-        />
-        <div className={"text-center mt-2"}>{this.renderError()}</div>
-        <button
-          type="submit"
-          className={classes("btn btn-primary", styles.SignUpBoxSubmitButton)}
-          disabled={this.state.isLoading}
-        >
-          <SubmitText
-            baseText={
-              <Maybe
-                it={this.props.willRedirect}
-                orElse={<FormattedMessage defaultMessage="Registrarme" />}
-              >
-                <FormattedMessage defaultMessage="Registrarme y continuar" />
-              </Maybe>
-            }
-            status={this.state.isLoading ? "loading" : "idle"}
-          />
-        </button>
-      </form>
-    );
-  }
+function trackClickOnSignUp(email: string) {
+  analytics.track("CLICK_ON_SIGN_UP_WITH_EMAIL_PASSWORD", {
+    email,
+  });
 }
 
-// Export Class
-const _SignUpEmailPasswordForm = injectIntl(SignUpEmailPasswordForm);
-export { _SignUpEmailPasswordForm as SignUpEmailPasswordForm };
+const initialValues = {
+  fullName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  birthDate: "",
+  allowNotifications: true,
+};
+
+type FormValuesType = typeof initialValues;
+
+function getValidations(formatMessage: IntlFormatters["formatMessage"]) {
+  return {
+    fullName(value: string) {
+      if (value === "") {
+        return formatMessage(
+          TRANSLATION_SIGN_UP_ERROR_MESSAGES["Name field is required"]
+        );
+      }
+    },
+    email: getEmailValidator(formatMessage),
+    password(value: string) {
+      if (value.length < 6) {
+        return formatMessage(
+          TRANSLATION_SIGN_UP_ERROR_MESSAGES[
+            "Password length must contains least 6 characters"
+          ]
+        );
+      }
+    },
+    confirmPassword(value: string, { values: { password } }) {
+      if (value !== password) {
+        return formatMessage(
+          TRANSLATION_SIGN_UP_ERROR_MESSAGES["Passwords do not match"]
+        );
+      }
+    },
+    birthDate(value: string) {
+      const dateValidationError = getDateValidator(formatMessage)(value);
+      if (dateValidationError) return dateValidationError;
+      if (getAge(value) < 13) {
+        return formatMessage(
+          TRANSLATION_SIGN_UP_ERROR_MESSAGES.under13YearsOld
+        );
+      }
+    },
+  };
+}
+
+type SignUpEmailPasswordFormProps = {
+  willRedirect: boolean;
+};
+
+function SignUpEmailPasswordForm({
+  willRedirect,
+}: SignUpEmailPasswordFormProps) {
+  const { formatMessage, locale } = useIntl();
+  const {
+    values,
+    errors,
+    setFieldValue,
+    onChangeField,
+    validateBeforeSubmit,
+  } = useForm({
+    initialValues,
+    validations: getValidations(formatMessage),
+    onSubmit,
+  });
+
+  const [requestError, setRequestError] = useState(initialRequestErrorValue);
+  const { handle, status } = usePromise();
+  const isLoading = status === "loading";
+  const [showPassword, setShowPassword] = useState(false);
+
+  function toggleShowPasswordState() {
+    setShowPassword((previousShowPassword) => !previousShowPassword);
+  }
+
+  function onSubmit(formValues: FormValuesType) {
+    if (isLoading) return;
+    resetRequestError();
+    trackClickOnSignUp(formValues.email);
+    requestSignUp(formValues);
+  }
+
+  function resetRequestError() {
+    setRequestError(initialRequestErrorValue);
+  }
+
+  function setTranslatedRequestError(error: any) {
+    const errorTranslation = TRANSLATION_SIGN_UP_ERROR_MESSAGES[error];
+    const unexpectedError = formatMessage(
+      TRANSLATION_SIGN_UP_ERROR_MESSAGES.unexpectedError
+    );
+    const translatedError = errorTranslation
+      ? formatMessage(errorTranslation)
+      : error || unexpectedError;
+    setRequestError(translatedError);
+  }
+
+  async function requestSignUp({
+    confirmPassword,
+    birthDate,
+    ...signUpData
+  }: FormValuesType) {
+    try {
+      await handle(
+        signUpWithEmailAndPassword({
+          ...signUpData,
+          birthDate: getFormattedInputDateValue(birthDate),
+          locale: locale?.toUpperCase?.() || FALLBACK_LOCALE,
+        })
+      );
+    } catch (error) {
+      setTranslatedRequestError(error);
+    }
+  }
+
+  function changePasswordValue({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement>) {
+    setFieldValue("password", value);
+  }
+
+  function changeFullNameValue({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement>) {
+    setFieldValue("fullName", value);
+  }
+
+  function toggleAllowNotifications() {
+    setFieldValue("allowNotifications", !values.allowNotifications);
+  }
+
+  const disableForm = isLoading || status === "completed";
+
+  return (
+    <form onSubmit={validateBeforeSubmit} onChange={resetRequestError}>
+      <h3 className={styles.SignUpBoxTitle}>
+        <FormattedMessage defaultMessage="o regístrate con tu correo electrónico" />
+      </h3>
+      <AuthFormField
+        name="name"
+        label={<FormattedMessage defaultMessage="Nombre" />}
+        placeholder="Marcos"
+        value={values.fullName}
+        onChange={changeFullNameValue}
+        disabled={disableForm}
+        error={errors.fullName}
+      />
+      <AuthFormField
+        name="birthDate"
+        type="date"
+        label={<FormattedMessage defaultMessage="Fecha de nacimiento" />}
+        placeholder="DD / MM / AA"
+        value={values.birthDate}
+        onChange={onChangeField}
+        disabled={disableForm}
+        error={errors.birthDate}
+      />
+      <AuthFormField
+        type="email"
+        name="email"
+        label={<FormattedMessage defaultMessage="Correo electrónico" />}
+        placeholder="usuario@dominio.com"
+        value={values.email}
+        onChange={onChangeField}
+        disabled={disableForm}
+        formNoValidate
+        error={errors.email}
+      />
+      <AuthFormField
+        autoComplete="new-password"
+        name="new-password"
+        type={showPassword ? "text" : "password"}
+        label={<FormattedMessage defaultMessage="Contraseña" />}
+        placeholder="**********"
+        value={values.password}
+        onChange={changePasswordValue}
+        onIconClick={toggleShowPasswordState}
+        disabled={disableForm}
+        error={errors.password}
+        iconElement={
+          showPassword ? (
+            <i className="fas fa-eye-slash cursor-pointer" />
+          ) : (
+            <i className="fas fa-eye cursor-pointer" />
+          )
+        }
+      />
+      <AuthFormField
+        name="confirmPassword"
+        type={showPassword ? "text" : "password"}
+        label={<FormattedMessage defaultMessage="Confirmar" />}
+        placeholder="**********"
+        value={values.confirmPassword}
+        onChange={onChangeField}
+        disabled={disableForm}
+        error={errors.confirmPassword}
+      />
+      <FormCheck
+        id="accept-offers-and-benefits"
+        name="allowNotifications"
+        className={styles.SignUpBoxSwitcher}
+        type="switch"
+        label={
+          <FormattedMessage defaultMessage="Quiero recibir ofertas y beneficios exclusivos." />
+        }
+        checked={values.allowNotifications}
+        onChange={toggleAllowNotifications}
+        disabled={disableForm}
+      />
+      <button
+        type="submit"
+        className={classes("btn btn-primary", styles.SignUpBoxSubmitButton)}
+        disabled={disableForm}
+      >
+        <SubmitText
+          baseText={
+            <Maybe
+              it={willRedirect}
+              orElse={<FormattedMessage defaultMessage="Registrarme" />}
+            >
+              <FormattedMessage defaultMessage="Registrarme y continuar" />
+            </Maybe>
+          }
+          status={status}
+        />
+      </button>
+      <CollapsibleErrorMessage
+        className={styles.SignUpErrorMessage}
+        errorMessage={requestError}
+        unmountOnExit
+      />
+    </form>
+  );
+}
+
+export { SignUpEmailPasswordForm };

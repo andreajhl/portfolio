@@ -221,13 +221,17 @@ export const TRANSLATION_SIGN_UP_ERROR_MESSAGES = defineMessages({
   },
   "Password length must contains least 6 characters": {
     defaultMessage:
-      "La longitud de la contraseña debe contener al menos 6 caracteres",
+      "La longitud de la contraseña debe ser al menos 6 caracteres",
   },
   "Passwords do not match": {
     defaultMessage: "Las contraseñas no coinciden",
   },
   "this email is already registered in famosos.com": {
     defaultMessage: "Este correo electrónico ya se encuentra registrado",
+  },
+  unexpectedError: { defaultMessage: "Ha ocurrido un error inesperado" },
+  under13YearsOld: {
+    defaultMessage: "Debes poseer al menos 13 años de edad para registrarte",
   },
 });
 
