@@ -4,11 +4,25 @@ import { FormattedMessage } from "react-intl";
 
 const getTurnAroundText = (turnAroundTime) => {
   if (turnAroundTime < 1) {
-    return "Pocas horas";
+    return <FormattedMessage defaultMessage="Pocas horas" />;
   } else if (turnAroundTime === 1) {
-    return `${turnAroundTime} día`;
+    return (
+      <FormattedMessage
+        defaultMessage="{turnAroundTime} día"
+        values={{
+          turnAroundTime
+        }}
+      />
+    );
   } else {
-    return `${turnAroundTime} días`;
+    return (
+      <FormattedMessage
+        defaultMessage="{turnAroundTime} días"
+        values={{
+          turnAroundTime
+        }}
+      />
+    );
   }
 };
 

@@ -5,6 +5,12 @@
       "value": "perseguir, assediar ou prejudicar outra pessoa;"
     }
   ],
+  "+OHALP": [
+    {
+      "type": 0,
+      "value": "poucas horas"
+    }
+  ],
   "+c9FIk": [
     {
       "type": 0,
@@ -132,7 +138,7 @@
   "0NnInu": [
     {
       "type": 0,
-      "value": "Candidate-se como Famoso"
+      "value": "Candidate-se como famoso"
     }
   ],
   "0QNoKq": [
@@ -535,6 +541,16 @@
       "value": "ID DE RASTREAMENTO:"
     }
   ],
+  "5MxALj": [
+    {
+      "type": 0,
+      "value": "Resultados para "
+    },
+    {
+      "type": 1,
+      "value": "search"
+    }
+  ],
   "5fTLVa": [
     {
       "type": 0,
@@ -720,7 +736,7 @@
   "8fYxkw": [
     {
       "type": 0,
-      "value": "O que você quer que diga "
+      "value": "O que você gostaria que "
     },
     {
       "type": 1,
@@ -728,7 +744,7 @@
     },
     {
       "type": 0,
-      "value": "?"
+      "value": " dissesse?"
     }
   ],
   "8kwnmR": [
@@ -770,7 +786,7 @@
   "9NLj0T": [
     {
       "type": 0,
-      "value": "Receba mensagens de vídeo personalizadas de celebridades no WhatsApp"
+      "value": "Receba mensagens de vídeo personalizadas de famosos no WhatsApp"
     }
   ],
   "9Ooije": [
@@ -898,7 +914,7 @@
   "Aa51Eo": [
     {
       "type": 0,
-      "value": "Complete o "
+      "value": "Detalhe a "
     },
     {
       "children": [
@@ -908,7 +924,7 @@
     },
     {
       "type": 0,
-      "value": " processo de pagamento."
+      "value": " mensagem e finalize a compra"
     }
   ],
   "AcGanx": [
@@ -994,7 +1010,7 @@
   "C3VDYt": [
     {
       "type": 0,
-      "value": "Quanto custa um vídeo em Famosos.com?"
+      "value": "Quanto custa um vídeo na Famosos.com?"
     }
   ],
   "CPOpnr": [
@@ -1488,7 +1504,7 @@
     },
     {
       "type": 0,
-      "value": " uma mensagem de vídeo em Famosos?"
+      "value": " na mensagem de vídeo em Famosos?"
     }
   ],
   "KkJHVF": [
@@ -1652,7 +1668,7 @@
   "N9nBRn": [
     {
       "type": 0,
-      "value": "E pronto! Em pouco "
+      "value": "Pronto! Em pouco "
     },
     {
       "type": 1,
@@ -1676,7 +1692,7 @@
     },
     {
       "type": 0,
-      "value": ". mensagem de vídeo"
+      "value": " mensagem de vídeo"
     }
   ],
   "NLbEhA": [
@@ -1706,7 +1722,7 @@
   "Nizqzm": [
     {
       "type": 0,
-      "value": "Escolha seu famoso e solicite a mensagem."
+      "value": "Escolha o famoso para enviar sua mensagem"
     }
   ],
   "Nrtdo8": [
@@ -2300,7 +2316,7 @@
     },
     {
       "type": 0,
-      "value": " que conectam personalidades com seus fãs."
+      "value": " que conectam famosos com seus fãs."
     }
   ],
   "Xp7qs8": [
@@ -2532,7 +2548,7 @@
   "bSHMVy": [
     {
       "type": 0,
-      "value": "Compre o vídeo agora!"
+      "value": "Solicitar minha mensagem de vídeo!"
     }
   ],
   "baAemn": [
@@ -2619,6 +2635,16 @@
     {
       "type": 0,
       "value": "Se nenhuma disposição desta seção for considerada inválida ou não aplicável, essa disposição específica não terá força e efeito e será cortada, mas o restante desta seção continuará em pleno vigor e efeito. Sem renúncia de qualquer disposição desta seção dos Termos será eficaz ou executável, a menos que seja registrada por escrito e assinada pela parte que renuncia a um direito ou requisito. Essa renúncia não deve ser tornada ineficaz ou afetar qualquer outra parte destes Termos. Esta seção dos Termos deve sobreviver ao término de seu relacionamento com Famosos "
+    }
+  ],
+  "cheXty": [
+    {
+      "type": 1,
+      "value": "turnAroundTime"
+    },
+    {
+      "type": 0,
+      "value": " días"
     }
   ],
   "crQQc4": [
@@ -2832,7 +2858,7 @@
   "fcUqul": [
     {
       "type": 0,
-      "value": "Quero um vídeo de"
+      "value": "Solicitar minha mensagem"
     }
   ],
   "fiBYCQ": [
@@ -2987,6 +3013,16 @@
     {
       "type": 0,
       "value": "Famosos.com - Vídeos personalizados de seus famosos favoritos. "
+    }
+  ],
+  "havuzD": [
+    {
+      "type": 1,
+      "value": "turnAroundTime"
+    },
+    {
+      "type": 0,
+      "value": " día"
     }
   ],
   "hmpcGI": [
@@ -3454,7 +3490,7 @@
   "r1aViX": [
     {
       "type": 0,
-      "value": "Jornalista"
+      "value": "Jornalistas"
     }
   ],
   "r28 + 70": [
@@ -3644,7 +3680,7 @@
   "t2/Gvc": [
     {
       "type": 0,
-      "value": "Detalhe sua solicitação o "
+      "value": "Detalhe sua mensagem e "
     },
     {
       "type": 1,
@@ -3652,7 +3688,7 @@
     },
     {
       "type": 0,
-      "value": " execute "
+      "value": " finalize "
     },
     {
       "type": 1,
@@ -3660,7 +3696,7 @@
     },
     {
       "type": 0,
-      "value": " o processo de compra "
+      "value": " a compra "
     },
     {
       "type": 1,
@@ -3806,7 +3842,7 @@
   "v82s2O": [
     {
       "type": 0,
-      "value": "Vídeo personalizado de "
+      "value": "Mensagem de vídeo de "
     },
     {
       "type": 1,
@@ -3865,6 +3901,12 @@
     {
       "type": 0,
       "value": "Seguinte"
+    }
+  ],
+  "w5lFLc": [
+    {
+      "type": 0,
+      "value": "Resultados da busqueda"
     }
   ],
   "wCc+84": [
