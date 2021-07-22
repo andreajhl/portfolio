@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 import classes from "classnames";
 import { Link } from "../routing/link";
 import { getCelebrityProfilePath } from "constants/paths";
+import { TextWithOverflow, parentElementClass } from "../text-with-overflow";
 
 type AvatarWithNameProps = {
   src: string;
@@ -25,12 +26,15 @@ function AvatarWithName({
     <Link
       href={getCelebrityProfilePath(username)}
       onClick={onClick}
-      className={classes(styles.AvatarWithNameContainer, className)}
+      title={name}
+      className={classes(
+        styles.AvatarWithNameContainer,
+        parentElementClass,
+        className
+      )}
     >
       <img className={styles.AvatarImg} src={src} alt={imgAlt} />
-      <span className={classes("text-with-ellipsis", styles.AvatarName)}>
-        {name}
-      </span>
+      <TextWithOverflow text={name} textClassName={styles.AvatarName} />
     </Link>
   );
 }
