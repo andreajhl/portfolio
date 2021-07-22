@@ -28,7 +28,7 @@ function shallowRenderContractDetailsForm(overrideProps = {}) {
     />
   );
 
-  const submitForm = wrapper.find(SubmitButton).invoke("onClick");
+  const submitForm = wrapper.find("form").invoke("onSubmit");
 
   const initialChangeOccasion = wrapper
     .find(OccasionsGrid)

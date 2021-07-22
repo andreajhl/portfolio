@@ -8,7 +8,8 @@ import { shallow } from "enzyme";
 import ContractNotificationsForm from ".";
 
 // PENDING
-// it change its elements values when onChange is called
+// it change its elements values when onChange is called.
+// it validates phone number properly.
 
 function shallowRenderContractNotificationsForm(overrideProps = {}) {
   const wrapper = shallow(
@@ -20,7 +21,7 @@ function shallowRenderContractNotificationsForm(overrideProps = {}) {
     />
   );
 
-  const submitForm = wrapper.find(SubmitButton).invoke("onClick");
+  const submitForm = wrapper.find("form").invoke("onSubmit");
 
   const initialChangeWizardStep = wrapper
     .find(WizardTopNavigation)
@@ -172,7 +173,7 @@ it("not calls onSubmit prop when  deliveryContactCellphone is invalid", () => {
   const onSubmit = jest.fn();
   const testValues = {
     ...initialValuesFromProps,
-    deliveryContactCellphone: "Testing testing",
+    deliveryContactCellphone: "Tst",
   };
   const { submitForm } = shallowRenderContractNotificationsForm({
     onSubmit,

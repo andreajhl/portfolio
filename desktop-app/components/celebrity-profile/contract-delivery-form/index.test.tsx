@@ -31,7 +31,7 @@ function shallowRenderContractDeliveryForm(overridePros = {}) {
   );
 
   const setFieldValue = videoDeliveryFormFieldsElements.invoke("onChange");
-  const submitForm = videoDeliveryFormFieldsElements.invoke("onSubmit");
+  const submitForm = wrapper.find("form").invoke("onSubmit");
 
   const changeWizardStep = wrapper
     .find(WizardTopNavigation)
