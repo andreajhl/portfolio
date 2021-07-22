@@ -12,6 +12,7 @@ import { PURCHASE_SUMMARY } from "react-app/src/routing/Paths";
 import { FormattedMessage } from "react-intl";
 import { AVAILABLE_PAYMENTS_METHODS } from "react-app/src/constants/messages";
 import getCookie from "react-app/src/utils/getCookie";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
@@ -93,6 +94,8 @@ type DLocalPaymentsMethodsProps = {
   isSelected: boolean;
   handleBuyerDataIncomplete: Function;
   disabledButton?: boolean;
+  contractPrice?: number;
+  celebrityId?: number;
 };
 
 const DLocalPaymentsMethods = ({
@@ -103,7 +106,9 @@ const DLocalPaymentsMethods = ({
   discountCouponId,
   isSelected,
   handleBuyerDataIncomplete,
-  disabledButton
+  disabledButton,
+  contractPrice,
+  celebrityId
 }: DLocalPaymentsMethodsProps) => {
   const router = useRouter();
   const handleChangePaymentMethod = (name, paymentMethodId) => {
@@ -122,6 +127,14 @@ const DLocalPaymentsMethods = ({
 
   const handleStartPayment = async (cardToken) => {
     setPaymentInProcess(true);
+    analytics.track("START_DLOCAL_PAYMENT", {
+      widget: "DLocalPaymentMethodForm",
+      paymentMethodType,
+      contractReference,
+      discountCouponId,
+      contractPrice,
+      celebrityId
+    });
     let IP = null;
     const deviceId = generateDeviceId();
     const userIpFromCookies = getCookie(USER_IP_ADDRESS);
@@ -150,6 +163,18 @@ const DLocalPaymentsMethods = ({
             if (response.requiredRedirect) {
               window.location.replace(response.redirectUri);
             } else {
+              analytics.trackContractPurchase({
+                contractPrice,
+                celebrityId
+              });
+              analytics.track("CONTRACT_PAYED", {
+                widget: "DLocalPaymentMethodForm",
+                paymentMethod: "DLocal",
+                contractReference,
+                discountCouponId,
+                contractPrice,
+                celebrityId
+              });
               router.push(
                 PURCHASE_SUMMARY.replace(
                   ":contract_reference",
@@ -272,6 +297,7 @@ const DLocalPaymentsMethods = ({
                 disabled={paymentInProcess || disabledButton}
                 paymentInProcess={paymentInProcess}
                 handleStartPayment={(token) => onStartPayment(token)}
+                currentOption={currentOption}
               ></DLocalFormCard>
             </>
           ) : (

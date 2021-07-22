@@ -93,6 +93,7 @@ class PaymentMethodsSection extends Component {
                   currentCurrencySelected={this.state.currentCurrencySelected}
                   contractReference={this.props.contractData.reference}
                   contractPrice={this.props.contractData.price}
+                  celebrityId={this.props.contractData.celebrity_id}
                 />
                 {/* // TERMS */}
                 <div className={"p-4 text-center"}>

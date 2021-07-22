@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import scriptLoader from "react-async-script-loader";
 import { FormattedMessage } from "react-intl";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 let PayPalButton = null;
 const INTENT = "authorize";
@@ -49,6 +50,11 @@ class PaypalReactButton extends React.Component {
   }
 
   createOrder = (data, actions) => {
+    analytics.track("CLICK_PAY_WITH_PAYPAL_BUTTON", {
+      widget: "PaypalReactButton",
+      contractPrice: this.props.contractPrice,
+      contractReference: this.props.contractReference
+    });
     return actions.order.create({
       purchase_units: [
         {
@@ -88,7 +94,14 @@ class PaypalReactButton extends React.Component {
   };
 
   onCancel = (data) => {
-    this.props.onPayPalButtonCancel(data["orderID"]);
+    const orderId = data["orderID"];
+    analytics.track("CLOSE_PAYPAL_POPUP", {
+      widget: "PaypalReactButton",
+      contractPrice: this.props.contractPrice,
+      contractReference: this.props.contractReference,
+      orderId
+    });
+    this.props.onPayPalButtonCancel(orderId);
   };
 
   onError = (error) => {
