@@ -124,7 +124,7 @@ function DLocalFormCard({
       analytics.track("SUBMIT_DLOCAL_CREDIT_CARD_DETAILS", {
         widget: "DLocalFormCard",
         paymentMethodType,
-        buyerNameCard: buyerNameCard.current,
+        buyerNameCard: card,
         bank: currentOption,
       });
       if (buyerName) {
@@ -171,11 +171,6 @@ function DLocalFormCard({
         onChangeOptionSelected={(selected) => {
           setCardIsNotSelectedError("");
           handleChangePaymentMethod(selected.name, selected.value);
-          analytics.track("CHANGE_DLOCAL_BANK", {
-            widget: "DLocalFormCard",
-            selected,
-            paymentMethodType,
-          });
         }}
         options={paymentsMethodsAvailable.map((paymentMethod) => ({
           value: paymentMethod.id,
