@@ -123,6 +123,8 @@ export function userAccountDetails(
       };
     case types.CLEAN_USER_DATA:
       return { ...userAccountDetailsInitialState };
+    case types.UPDATE_USER_DATA:
+      return { ...state, data: { ...state.data, ...action.payload } };
     default:
       return state;
   }

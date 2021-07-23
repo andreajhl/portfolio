@@ -131,6 +131,11 @@ export const getUploadProfileImageLink = (fileExtension) =>
     return response.data.data;
   });
 
+export const updateUserData = (newData) => ({
+  type: types.UPDATE_USER_DATA,
+  payload: newData,
+});
+
 export const updateUserAvatar = (avatarUrl) =>
   apiService({
     method: "POST",

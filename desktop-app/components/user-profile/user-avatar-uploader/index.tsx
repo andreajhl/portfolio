@@ -4,12 +4,14 @@ import { AvatarUploaderModal } from "desktop-app/components/common/modals/avatar
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import classes from "classnames";
 import styles from "./styles.module.scss";
-import { updateUserAvatar } from "react-app/src/state/ducks/session/actions";
+import {
+  updateUserAvatar,
+  updateUserData,
+} from "react-app/src/state/ducks/session/actions";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import { Collapse } from "react-bootstrap";
 import { FormattedMessage } from "react-intl";
-
-const UPDATE_PROFILE_PHOTO_DISABLED = true;
+import { useDispatch } from "react-redux";
 
 const initialErrorValue = null;
 const noAvatarUrl = "";
@@ -23,6 +25,7 @@ function UserAvatarUploader({ currentUserAvatar }: UserAvatarUploaderProps) {
   const [pickedImage, setPickedImage] = useState(null);
   const [previewSrc, setPreviewSrc] = useState(currentUserAvatar);
   const [error, setError] = useState(initialErrorValue);
+  const dispatch = useDispatch();
 
   function startUploadModal(image: File): void {
     setError(initialErrorValue);
@@ -33,6 +36,7 @@ function UserAvatarUploader({ currentUserAvatar }: UserAvatarUploaderProps) {
   async function saveUserAvatar(avatarUrl: string) {
     await updateUserAvatar(avatarUrl);
     setPreviewSrc(avatarUrl);
+    dispatch(updateUserData({ avatar: avatarUrl }));
   }
 
   async function updateAvatar(avatarUrl: string) {
@@ -50,23 +54,6 @@ function UserAvatarUploader({ currentUserAvatar }: UserAvatarUploaderProps) {
   const hasAvatar = previewSrc !== noAvatarUrl;
   const hasError = Boolean(error);
   const imagePickerPreviewImageSrc = previewSrc || "/assets/img/user-logo.svg";
-
-  if (UPDATE_PROFILE_PHOTO_DISABLED)
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <img
-          className={styles.Preview}
-          alt="Previsualización"
-          style={{ borderRadius: "50%", margin: "0 auto" }}
-          src={imagePickerPreviewImageSrc}
-        />
-      </div>
-    );
 
   return (
     <>

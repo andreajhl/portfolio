@@ -24,7 +24,7 @@ type FileUploaderModalProps = {
 function FileUploaderModal({
   isOpen,
   setIsOpen,
-  title = "Subir archivo",
+  title = <FormattedMessage defaultMessage="Subir archivo" />,
   onFileUploaded = function () {},
   children,
 }: FileUploaderModalProps) {
@@ -59,7 +59,11 @@ function FileUploaderModal({
   const buttonStatus: any = status === "uploading" ? "loading" : status;
   const childrenIsRenderFunction = typeof children === "function";
   const uploadWasRejected = status === "rejected";
-  const submitButtonBaseText = uploadWasRejected ? "Reintentar" : "Guardar";
+  const submitButtonBaseText = uploadWasRejected ? (
+    <FormattedMessage defaultMessage="Reintentar" />
+  ) : (
+    <FormattedMessage defaultMessage="Guardar" />
+  );
   const canCancelUpload = status !== "uploading";
 
   return (
