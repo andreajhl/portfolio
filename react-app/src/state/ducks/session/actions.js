@@ -114,6 +114,8 @@ export const getUserAccountDetails = () => {
   };
 };
 
+export const cleanUserData = () => ({ type: types.CLEAN_USER_DATA });
+
 export const getUploadProfileImageLink = (fileExtension) =>
   apiService({
     method: "POST",

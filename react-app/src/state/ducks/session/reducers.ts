@@ -121,6 +121,8 @@ export function userAccountDetails(
         data: action.payload.data?.data,
         completed: true,
       };
+    case types.CLEAN_USER_DATA:
+      return { ...userAccountDetailsInitialState };
     default:
       return state;
   }
