@@ -26,6 +26,12 @@ import getWindow from "react-app/src/utils/getWindow";
 import useErrorFocus from "lib/hooks/useErrorFocus";
 import getFormattedInputDateValue from "lib/utils/getFormattedInputDateValue";
 import getAge from "lib/utils/getAge";
+import getCookie from "react-app/src/utils/getCookie";
+import { USER_LOCATION_KEY } from "constants/keys";
+import {
+  localeAvailables,
+  transformUserNavigatorLanguageToISO2Code
+} from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 type FieldProps = {
   label: ReactNode;
@@ -113,7 +119,7 @@ function NewsletterSubscriptionForm({
   versionPopup,
   onCompleted
 }: NewsletterSubscriptionFormProps) {
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const { handle, status } = usePromise();
   const [requestError, setRequestError] = useState(null);
 
@@ -132,6 +138,10 @@ function NewsletterSubscriptionForm({
         saveUserNewsletter({
           ...formData,
           birthDate: getFormattedInputDateValue(formData.birthDate),
+          countryAlpha2Code: getCookie(USER_LOCATION_KEY),
+          locale: transformUserNavigatorLanguageToISO2Code(
+            locale as localeAvailables
+          ),
           versionPopup
         })
       );
