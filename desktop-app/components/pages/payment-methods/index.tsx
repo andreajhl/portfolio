@@ -14,7 +14,13 @@ import { ContractInfoSkeleton } from "desktop-app/components/payments-methods/co
 import { analytics } from "react-app/src/state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
 import { useRouter } from "next/router";
-import { FormattedMessage } from "react-intl";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  pageHeadingTitle: {
+    defaultMessage: "Confirmación de compra",
+  },
+});
 
 function trackRouteChange(newRoute: string) {
   analytics.track("PAYMENT_METHODS_LEAVE", {
@@ -56,6 +62,8 @@ function PaymentMethodsPage({
   getContractToPayData,
 }: PaymentMethodsProps) {
   const router = useRouter();
+  const { formatMessage } = useIntl();
+
   useEffect(() => {
     getContractToPayData(contractReference);
   }, [contractReference]);
@@ -65,15 +73,15 @@ function PaymentMethodsPage({
     return () => router.events.off("routeChangeStart", trackRouteChange);
   }, [router.events]);
 
+  const pageHeadingTitle = formatMessage(messages.pageHeadingTitle);
+
   return (
     <PageContainer showFooter={false}>
       <PageHeading
         showHomeLink={false}
         onBackButtonClick={trackBackButtonClick}
-      >
-        <FormattedMessage defaultMessage="Confirmación de compra" />
-      </PageHeading>
-
+        children={pageHeadingTitle}
+      />
       <div className={`container ${styles.PaymentMethodsPageContent}`}>
         <div className={styles.PaymentMethodsPageContentLeftSide}>
           <Maybe

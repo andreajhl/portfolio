@@ -12,15 +12,22 @@ import { SkeletonItems as SkeletonInformationEdit } from "desktop-app/components
 import { VideoContractsFavorites } from "desktop-app/components/user-profile/video-contracts-favorites";
 import { FormattedMessage } from "react-intl";
 import { useAuth } from "lib/famosos-auth";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  pageHeadingTitle: {
+    defaultMessage: "Mi perfil",
+  },
+});
 
 function ClientProfilePage() {
+  const { formatMessage } = useIntl();
   const { user } = useAuth();
+  const pageHeadingTitle = formatMessage(messages.pageHeadingTitle);
 
   return (
     <PageContainer>
-      <PageHeading showBackButton={false}>
-        <FormattedMessage defaultMessage="Mi perfil" />
-      </PageHeading>
+      <PageHeading showBackButton={false} children={pageHeadingTitle} />
       <div className={styles.ClientProfilePage}>
         <main
           className={classes("container", styles.ClientProfilePageContainer)}
