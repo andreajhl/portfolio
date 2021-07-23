@@ -157,7 +157,7 @@ export const categories = [
     updatedAt: "0001-01-01T00:00:00Z",
     deletedAt: null,
     codename: "MUSICOS",
-    title: defineMessage({ defaultMessage: "Musicos" }),
+    title: defineMessage({ defaultMessage: "Músicos" }),
     keywords: ["cantante", "musico", "compositor"],
     image:
       "https://firebasestorage.googleapis.com/v0/b/famosos-users-app.appspot.com/o/celebrity-categories%2FMu%CC%81sicos.png?alt=media&token=ab36b3bc-d53f-4f74-8071-f0f6f6bd1d55",
