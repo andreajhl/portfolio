@@ -53,6 +53,7 @@ function FileUploaderModal({
       await uploadFileToUrl();
     } catch (error) {
       setError(getErrorMessage(error));
+      setStatus("rejected");
     }
   }
 
