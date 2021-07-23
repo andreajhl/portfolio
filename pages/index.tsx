@@ -38,18 +38,18 @@ const generateRandomNumber = (limit) => Math.floor(Math.random() * limit + 1);
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ req, store, query, res }) => {
     const cookies = parse(req?.headers?.cookie || "");
-
     let userLocation = cookies[USER_LOCATION_KEY];
     if (!userLocation) {
       if (isBot(req.headers["user-agent"])) {
-        return debug("Este es un bot solicitando", req.url);
+        return debug("Este es un bot solicitando en Homepage GSSP", req.url);
+      } else {
+        const locationCookies = await getLocationCookieHeader(req);
+        debug("getLocationCookieHeader() GSSP response");
+        res.setHeader(USER_IP_ADDRESS, locationCookies.userIpAddressLocation);
+        res.setHeader(USER_LOCATION_KEY, locationCookies.country_code);
+        res.setHeader(USER_CURRENCY_CODE, locationCookies.currency_code);
+        userLocation = locationCookies.country_code;
       }
-      const locationCookies = await getLocationCookieHeader(req);
-      debug("getLocationCookieHeader() GSSP response");
-      res.setHeader(USER_IP_ADDRESS, locationCookies.userIpAddressLocation);
-      res.setHeader(USER_LOCATION_KEY, locationCookies.country_code);
-      res.setHeader(USER_CURRENCY_CODE, locationCookies.currency_code);
-      userLocation = locationCookies.country_code;
     }
     let rotationForCelebritiesSections =
       cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS];
