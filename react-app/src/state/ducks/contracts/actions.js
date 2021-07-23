@@ -11,6 +11,8 @@ import { history } from "../../../routing/History";
 import * as types from "../celebrities/types";
 import { Session } from "../../utils/session";
 import thunkAction from "../../utils/thunkAction";
+import { cfUserCountryCode, USER_LOCATION_KEY } from "constants/keys";
+import getCookie from "react-app/src/utils/getCookie";
 
 export const updateQueryParams = (params, applyFetch = true) => {
   return (dispatch) => {
@@ -562,6 +564,9 @@ export const fetchSimilarContractsV2 = (celebrityUsername) =>
     apiService({
       method: "GET",
       path: API_PATHS.SIMILAR_CONTRACTS_V2 + celebrityUsername,
+      params: {
+        [cfUserCountryCode]: getCookie(USER_LOCATION_KEY),
+      },
     })
   );
 

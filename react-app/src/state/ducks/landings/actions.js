@@ -7,6 +7,8 @@ import {
 } from "../../utils";
 import * as API_PATHS from "./paths";
 import debug from "react-app/src/utils/debug";
+import { cfUserCountryCode, USER_LOCATION_KEY } from "constants/keys";
+import getCookie from "react-app/src/utils/getCookie";
 
 export const fetchLandings = (params) => (dispatch) => {
   const TYPE = TYPES.FETCH_LANDINGS;
@@ -16,7 +18,11 @@ export const fetchLandings = (params) => (dispatch) => {
     method: "GET",
     action: TYPE,
     path: FINAL_PATH,
-    params,
+    params: {
+      ...params,
+      [cfUserCountryCode]:
+        params[cfUserCountryCode] || getCookie(USER_LOCATION_KEY),
+    },
   })
     .then((res) => {
       if ("status" in res.data && res.data.status === "ERROR") {

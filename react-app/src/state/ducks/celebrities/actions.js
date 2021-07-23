@@ -9,7 +9,7 @@ import * as API_PATHS from "./paths";
 import * as PATHS from "../../../routing/Paths";
 import { updateQueryParamsInitialState } from "./reducers";
 import thunkAction from "../../utils/thunkAction";
-import { cfUserCountryCode } from "constants/keys";
+import { cfUserCountryCode, USER_LOCATION_KEY } from "constants/keys";
 import getCookie from "react-app/src/utils/getCookie";
 // import * as firestoreService from "../../../firebase/firestoreService";
 
@@ -368,7 +368,7 @@ export const fetchSimilarCelebrities = (celebrityUsername) => (dispatch) => {
     action: TYPE,
     path: FINAL_PATH,
     async: true,
-    params: { [cfUserCountryCode]: getCookie("userLocation") },
+    params: { [cfUserCountryCode]: getCookie(USER_LOCATION_KEY) },
     body: null,
   })
     .then((res) => {
@@ -391,6 +391,9 @@ export const fetchSimilarCelebritiesV2 = (celebrityUsername) =>
     apiService({
       method: "GET",
       path: API_PATHS.SIMILAR_CELEBRITIES_V2 + celebrityUsername,
+      params: {
+        [cfUserCountryCode]: getCookie(USER_LOCATION_KEY),
+      },
     })
   );
 

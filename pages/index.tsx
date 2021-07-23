@@ -12,6 +12,7 @@ import debug from "react-app/src/utils/debug";
 import UAParser from "ua-parser-js";
 import { parse, serialize } from "cookie";
 import {
+  cfUserCountryCode,
   OFFSET_ROTATE_CELEBRITIES_SECTIONS,
   USER_CURRENCY_CODE,
   USER_IP_ADDRESS,
@@ -77,7 +78,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     } else {
       await fetchLandings({
         landingId: query.landingId,
-        alpha2Code: cookies["userLocation"],
+        [cfUserCountryCode]: userLocation,
         limit: 10,
         offset: 0,
       })(store.dispatch);
