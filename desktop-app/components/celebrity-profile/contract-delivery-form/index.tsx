@@ -82,7 +82,7 @@ function ContractDeliveryForm({
 
   useEffect(() => {
     if (values.deliveryTo || !user) return;
-    setFieldValue("deliveryTo", user.given_name);
+    setFieldValue("deliveryTo", user?.fullName);
   }, [user]);
 
   const celebrityFullName = celebrity?.fullName;

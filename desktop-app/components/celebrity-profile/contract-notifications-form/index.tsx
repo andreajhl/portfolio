@@ -87,7 +87,7 @@ function ContractNotificationsForm({
   useEffect(() => {
     if (values.deliveryContact || !user) return;
     setFieldValue("deliveryContact", user?.email);
-  }, []);
+  }, [user]);
 
   const emailPlaceholder = formatMessage(messages.emailPlaceholder);
 

@@ -19,6 +19,8 @@ type ApologyBannerProps = {
 
 function ApologyBanner({ contractData }: ApologyBannerProps) {
   const { user } = useAuth();
+  const userName = user?.fullName || null;
+
   return (
     <GrayBanner
       as="section"
@@ -29,7 +31,7 @@ function ApologyBanner({ contractData }: ApologyBannerProps) {
         <FormattedMessage
           defaultMessage="Lo sentimos {userName}"
           values={{
-            userName: user?.given_name || null,
+            userName,
           }}
         />
       </h2>
