@@ -129,7 +129,7 @@ function InstructionsContractAuthorized({
                 <FormattedMessage defaultMessage="¿Qué significa esto?" />
               </a>
               <br />
-              <FormattedMessage defaultMessage="Si por alguna razón tu video no pudo ser grabado, tu dinero estará nuevamente disponible en un plazo en un plazo máximo de 21 días hábiles aproximadamente dependiendo de tu banco." />
+              <FormattedMessage defaultMessage="Si por alguna razón tu video no pudo ser grabado, tu dinero estará disponible nuevamente en un plazo máximo de 21 días hábiles aproximadamente dependiendo de tu banco." />
             </span>
           </div>
         </div>
