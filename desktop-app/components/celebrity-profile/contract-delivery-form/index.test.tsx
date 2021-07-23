@@ -96,7 +96,7 @@ it("renders <ContractTypeCards /> and <VideoDeliveryFormFieldsElements /> with v
 const useAuth = jest.spyOn(require("lib/famosos-auth"), "useAuth");
 
 it("loads the user's name as deliveryTo field value", () => {
-  const testUser = { given_name: "Tester Doe" };
+  const testUser = { fullName: "Tester Doe" };
   useAuth.mockImplementationOnce(() => ({
     user: testUser,
   }));
@@ -104,7 +104,7 @@ it("loads the user's name as deliveryTo field value", () => {
   const { wrapper } = shallowRenderContractDeliveryForm();
   expect(
     wrapper.find(VideoDeliveryFormFieldsElements).prop("deliveryTo")
-  ).toEqual(testUser.given_name);
+  ).toEqual(testUser.fullName);
 });
 
 it("swap deliveryTo and deliveryFrom values when change contractType from 2 to 1", () => {
