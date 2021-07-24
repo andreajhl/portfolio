@@ -1,27 +1,27 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import CelebrityCardLayout from "./";
+import CelebrityCardLayout from ".";
 import { NavLink } from "react-app/src/components/common/routing";
 import { shallow } from "enzyme";
 import { CountryFlag } from "../../containers/celebrity-country-flag";
 import { FlashDeliveryBadgeLayout } from "../flash-delivery-badge";
 import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
 import { ContractPriceLayout } from "../celebrity-card-contract-price";
+import { celebrityType } from "../../../types/celebrityType";
+import LazyLoadingImage from "../../common/lazy-loading-image";
 
-const testingCelebrity = {
+const testingCelebrity: celebrityType = {
   id: 1107,
   fullName: "Andrés Cepeda Testing",
   username: "andrescepeda",
   avatar:
     "https://firebasestorage.googleapis.com/v0/b/famosos-27f08.appspot.com/o/images%2Ffamosos-avatar-celebrity-730846e3-f114-4dde-a144-1f4467fdb87c.jpg?alt=media&token=bf0271e0-13ba-4148-aa90-dc763a7e341b",
-  hashtags: ["cepeda", "topartist", "mevoy", "embrujo", "voyaextrañarte"],
   title: "Músicos",
   videoMessagePrice: 125,
   countryCode: "COL",
-  countryName: "Colombia",
-  showSimilarCelebrities: false,
   availableForFlashDeliveries: true,
   availableForSubscriptions: true,
+  status: 50,
 };
 
 const testingInitialCurrencyExchangeData = { to: "USD", rate: 1 };
@@ -32,42 +32,30 @@ describe("'CelebrityCardLayout' renders properly", () => {
   beforeEach(() => {
     wrapper = shallow(
       <CelebrityCardLayout
+        celebrityCardLayout={{}}
         celebrity={testingCelebrity}
         currencyExchangeData={testingInitialCurrencyExchangeData}
       />
     );
   });
 
-  test("should render a NavLink as parent", () => {
+  it("should render a NavLink as parent", () => {
     expect(wrapper.type()).toBe(NavLink);
   });
 
-  test.skip("should render the loading avatar image", () => {
+  it("should render <LazyLoadingImage /> as avatar", () => {
     expect(
       wrapper.containsMatchingElement(
-        <img
-          src="/assets/img/avatar-blank.png"
-          alt="avatar"
-          className="celebrity__profile-photo "
+        <LazyLoadingImage
+          objectFit="cover"
+          src={`${testingCelebrity.avatar}?${testingCelebrity.title}-${testingCelebrity.countryCode}`}
+          placeholderSrc="/assets/img/avatar-blank.png"
         />
       )
     ).toBeTruthy();
   });
 
-  test.skip("should not display the celebrity avatar when is not loaded", () => {
-    expect(
-      wrapper.find(`img[src='${testingCelebrity.avatar}']`).hasClass("d-none")
-    ).toBeTruthy();
-  });
-
-  test.skip("should display the celebrity avatar when is loaded", () => {
-    wrapper.find(`img[src='${testingCelebrity.avatar}']`).props().onLoad();
-    expect(
-      wrapper.find(`img[src='${testingCelebrity.avatar}']`).hasClass("d-none")
-    ).toBeFalsy();
-  });
-
-  test.skip("should render the celebrity price", () => {
+  it("should render the celebrity price", () => {
     expect(
       wrapper.containsMatchingElement(
         <ContractPriceLayout
@@ -79,19 +67,19 @@ describe("'CelebrityCardLayout' renders properly", () => {
     ).toBeTruthy();
   });
 
-  test("should render the celebrity category", () => {
+  it("should render the celebrity category", () => {
     expect(
       wrapper.containsMatchingElement(<span>{testingCelebrity.title}</span>)
     ).toBeTruthy();
   });
 
-  test("should render the celebrity full name", () => {
+  it("should render the celebrity full name", () => {
     expect(
       wrapper.containsMatchingElement(<h3>{testingCelebrity.fullName}</h3>)
     ).toBeTruthy();
   });
 
-  test("should render the celebrity country flag", () => {
+  it("should render the celebrity country flag", () => {
     expect(
       wrapper.containsMatchingElement(
         <CountryFlag countryCode={testingCelebrity.countryCode} />
@@ -99,7 +87,7 @@ describe("'CelebrityCardLayout' renders properly", () => {
     ).toBeTruthy();
   });
 
-  test("should render the celebrity like icon", () => {
+  it("should render the celebrity like icon", () => {
     expect(
       wrapper.containsMatchingElement(
         <CelebrityFavoriteButton celebrityId={testingCelebrity.id} />
@@ -107,7 +95,7 @@ describe("'CelebrityCardLayout' renders properly", () => {
     ).toBeTruthy();
   });
 
-  test("should render the flash delivery badge in the compacted version", () => {
+  it("should render the flash delivery badge in the compacted version", () => {
     const foundFlashDeliveryBadge = wrapper.find(FlashDeliveryBadgeLayout);
     expect(foundFlashDeliveryBadge.props()).toMatchObject({
       color: "white",
