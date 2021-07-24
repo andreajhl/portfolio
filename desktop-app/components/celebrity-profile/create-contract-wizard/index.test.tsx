@@ -156,29 +156,30 @@ it("create a new contract when there is a user authenticated and does not have c
     });
   }));
 
-// it change to the next step, and the next. (with filled data) <SubmitButton />
-xit("updates contract when change steps. (with filled contractInProgress)", () =>
-  withoutHooks(() => {
-    useAuth.mockImplementationOnce(() => ({
-      isAuthenticated: true,
-    }));
-    const updateContract = jest
-      .spyOn(
-        require("react-app/src/state/ducks/contracts/actions"),
-        "updateContract"
-      )
-      .mockImplementation(() => ({ reference: "123" }));
-    const wrapper = mountSetup({
-      contractInProgress: {
-        ...testContractInProgress,
-        status: 0,
-      },
+it("updates contract when change steps. (with filled contractInProgress)", () =>
+  new Promise((resolve) => {
+    withoutHooks(async () => {
+      useAuth.mockImplementation(() => ({
+        isAuthenticated: true,
+      }));
+      const updateContractStep = jest
+        .spyOn(
+          jest.requireActual("react-app/src/state/ducks/contracts/actions"),
+          "updateContractStep"
+        )
+        .mockImplementationOnce(() => Promise.resolve({ reference: "123" }));
+      const wrapper = mountSetup({
+        contractInProgress: {
+          ...testContractInProgress,
+          status: 0,
+        },
+      });
+
+      wrapper.find("form").invoke("onSubmit")(null);
+      await Promise.resolve();
+      expect(updateContractStep).toHaveBeenCalled();
+      resolve(null);
     });
-
-    // wrapper.find(SubmitButton).invoke("onClick")();
-
-    console.log(wrapper.find(ContractDeliveryForm).debug());
-    /* .invoke("onClick")(null) */ expect(updateContract).toHaveBeenCalled();
   }));
 
 it("save the contract and redirect to payment methods when submit last step.", () =>
