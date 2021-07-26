@@ -5,7 +5,7 @@ type CelebrityResponseTimeProps = {
   availableForFlashDeliveries: boolean;
 };
 
-const getTurnAroundText = (turnAroundTime: number) => {
+function getTurnAroundText(turnAroundTime: number) {
   if (turnAroundTime < 1) {
     return <FormattedMessage defaultMessage="Pocas horas" />;
   } else if (turnAroundTime === 1) {
@@ -23,7 +23,7 @@ const getTurnAroundText = (turnAroundTime: number) => {
       />
     );
   }
-};
+}
 
 function CelebrityResponseTime({
   turnAroundTime,

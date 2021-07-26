@@ -2,20 +2,30 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 
-const getTurnAroundText = (turnAroundTime) => {
+function getTurnAroundText(turnAroundTime) {
   if (turnAroundTime < 1) {
-    return "Pocas horas";
+    return <FormattedMessage defaultMessage="Pocas horas" />;
   } else if (turnAroundTime === 1) {
-    return `${turnAroundTime} día`;
+    return (
+      <FormattedMessage
+        defaultMessage="{turnAroundTime} día"
+        values={{ turnAroundTime }}
+      />
+    );
   } else {
-    return `${turnAroundTime} días`;
+    return (
+      <FormattedMessage
+        defaultMessage="{turnAroundTime} días"
+        values={{ turnAroundTime }}
+      />
+    );
   }
-};
+}
 
-const CelebritiesResponseTime = ({
+function CelebritiesResponseTime({
   turnAroundTime,
   availableForFlashDeliveries,
-}) => {
+}) {
   return (
     <span className="CelebritiesResponseTime">
       <FormattedMessage defaultMessage="Respuesta promedio:" description="" />{" "}
@@ -36,7 +46,7 @@ const CelebritiesResponseTime = ({
       </span>
     </span>
   );
-};
+}
 
 CelebritiesResponseTime.propTypes = {
   turnAroundTime: PropTypes.number,
