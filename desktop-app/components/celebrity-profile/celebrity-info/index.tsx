@@ -6,7 +6,8 @@ import { Link } from "desktop-app/components/common/routing/link";
 import { getSearchCategoryPath } from "constants/paths";
 import { CelebrityInfoReviews } from "desktop-app/components/celebrity-profile/celebrity-info-reviews";
 import classes from "classnames";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
+import getTranslatedCategoryTitle from "lib/utils/getTranslatedCategoryTitle";
 
 type CelebrityInfoProps = {
   celebrity: celebrityType;
@@ -14,6 +15,12 @@ type CelebrityInfoProps = {
 };
 
 function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
+  const { formatMessage } = useIntl();
+  const categoryTitle = getTranslatedCategoryTitle(
+    celebrity?.categoryTitle,
+    formatMessage
+  );
+
   return (
     <div className={classes(styles.CelebrityInfo, className)}>
       <span className={styles.CelebrityInfoItemWithSeparator}>
@@ -27,7 +34,7 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
           href={getSearchCategoryPath(celebrity.categoryId)}
           className={styles.CelebrityInfoCategory}
         >
-          {celebrity.categoryTitle}
+          {categoryTitle}
         </Link>
       </span>
       <span className={styles.CelebrityInfoItemWithSeparator}>
