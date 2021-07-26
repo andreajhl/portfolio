@@ -10,6 +10,7 @@ import React, {
 import { listV2 } from "react-app/src/state/ducks/celebrity-categories/actions";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import { defineMessages, useIntl } from "react-intl";
+import getTranslatedCategoryTitle from "lib/utils/getTranslatedCategoryTitle";
 
 const generateNewMapForKeysValueOfArray = (array, value = true) => {
   const newState = new Map();
@@ -66,13 +67,20 @@ function CategoryFilter({
 
   const memoizedValueForCategoryFilters = useMemo(
     () =>
-      celebrityCategories.map((category, index) => ({
-        label: category.title,
-        value: category.id,
-        name: category.title + index,
-        checked: categoriesChecked.get(String(category.id)),
-      })),
-    [celebrityCategories, categoriesChecked]
+      celebrityCategories.map((category, index) => {
+        const label = getTranslatedCategoryTitle(
+          category?.title,
+          formatMessage
+        );
+
+        return {
+          label,
+          value: category.id,
+          name: category.title + index,
+          checked: categoriesChecked.get(String(category.id)),
+        };
+      }),
+    [celebrityCategories, formatMessage, categoriesChecked]
   );
 
   useEffect(() => {
