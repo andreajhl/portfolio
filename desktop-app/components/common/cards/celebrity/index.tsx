@@ -18,6 +18,8 @@ import classes from "classnames";
 import getCelebrityDiscountPercentage from "lib/utils/getCelebrityDiscountPercentage";
 import { DiscountPercentageBadge } from "desktop-app/components/common/widgets/discount-percentage-badge";
 import { analytics } from "react-app/src/state/utils/gtm";
+import { useIntl } from "react-intl";
+import getTranslatedCategoryTitle from "lib/utils/getTranslatedCategoryTitle";
 
 const preventRedirectFromParent = (event) => {
   if (event.stopPropagation) {
@@ -63,6 +65,7 @@ function CelebrityCard({
   showPrice = true,
   onClickLink,
 }: CelebrityCardProps) {
+  const { formatMessage } = useIntl();
   const { isFavorite, toggleFavorite } = useCelebrityFavorite(celebrity.id);
   const { videoMessagePrice } = celebrity;
   const discountPercentage = getCelebrityDiscountPercentage(celebrity);
@@ -81,6 +84,11 @@ function CelebrityCard({
       celebrity,
     });
   }
+
+  const categoryTitle = getTranslatedCategoryTitle(
+    celebrity?.title,
+    formatMessage
+  );
 
   return (
     <div
@@ -113,15 +121,18 @@ function CelebrityCard({
           </Maybe>
         </div>
         <div className={styles.CelebrityCardThumbnailFooter}>
-          <Link
-            href={getSearchCategoryPath(celebrity.categoryId)}
-            onClick={onClickLink}
-          >
-            <span className={styles.CelebrityCardCategory}>
-              {celebrity.title}
-            </span>
-          </Link>
+          <Maybe it={Boolean(categoryTitle)}>
+            <Link
+              href={getSearchCategoryPath(celebrity.categoryId)}
+              onClick={onClickLink}
+            >
+              <span className={styles.CelebrityCardCategory}>
+                {categoryTitle}
+              </span>
+            </Link>
+          </Maybe>
           <LikeButton
+            className={styles.CelebrityCardLikeButton}
             isFavorite={isFavorite}
             onClick={(event) => {
               preventRedirectFromParent(event);
