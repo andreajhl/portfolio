@@ -78,7 +78,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     } else {
       await fetchLandings({
         landingId: query.landingId,
-        [cfUserCountryCode]: userLocation,
+        alpha2Code: userLocation,
         limit: 10,
         offset: 0,
       })(store.dispatch);

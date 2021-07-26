@@ -8,6 +8,8 @@ import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
 import { categories } from "../../../../constants/categories";
 import { Fragment } from "react";
 import { fetchLandings } from "react-app/src/state/ducks/landings/actions";
+import getCookie from "lib/utils/getCookie";
+import { USER_LOCATION_KEY } from "constants/keys";
 
 const mapStateToProps = ({ landings }) => {
   const { loading, data } = landings.fetchLandingsReducer;
@@ -44,8 +46,8 @@ function InfinityCelebritySections({
     fetchLandings({
       offset,
       limit: resultsLimit,
-      /* landingId,
-      alpha2Code: getCookie("userLocation") */
+      // landingId,
+      alpha2Code: getCookie(USER_LOCATION_KEY),
     });
   }, [offset]);
 
