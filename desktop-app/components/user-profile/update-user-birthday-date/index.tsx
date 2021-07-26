@@ -28,7 +28,7 @@ function UpdateUserBirthdayDate({
   const [status, setStatus] = useStatus("idle");
   const handleBirthdayDateChange = async (birthdayDate) => {
     setStatus("loading");
-    updateUserBirthdayDate(moment(birthdayDate).format("YYYY-MM-DD")).then(
+    updateUserBirthdayDate(moment.utc(birthdayDate).format("YYYY-MM-DD")).then(
       (_) => {
         setStatus("completed");
       }
@@ -36,7 +36,7 @@ function UpdateUserBirthdayDate({
   };
   const { values, onChangeField } = useForm<FormValuesType>({
     initialValues: {
-      birthdayDate: moment(userBirthdayDate).format("YYYY-MM-DD"),
+      birthdayDate: moment.utc(userBirthdayDate).format("YYYY-MM-DD"),
     },
     onSubmit() {
       console.log("Enviado");
@@ -62,7 +62,8 @@ function UpdateUserBirthdayDate({
         onChange={onChangeField}
         onClickSave={() => handleBirthdayDateChange(values.birthdayDate)}
         showSaveButton={
-          values.birthdayDate !== moment(userBirthdayDate).format("YYYY-MM-DD")
+          values.birthdayDate !==
+          moment.utc(userBirthdayDate).format("YYYY-MM-DD")
         }
       />
     </div>
