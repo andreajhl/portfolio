@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import { FormattedMessage } from "react-intl";
 import { SignInBox } from "../../containers/sign-in-box";
 import { AuthPreHiringSteps } from "../../layouts/auth-pre-hiring-steps";
+import { CELEBRITY_NAME_QUERY_PARAM } from "constants/keys";
 
 type SignInFromPageProps = {
   query: { [key: string]: string };
@@ -16,7 +17,7 @@ function SignInFromPage({ query }: SignInFromPageProps) {
         <div>
           <AuthPreHiringSteps
             className={styles.AuthStepsMobile}
-            celebrityFullName={query.celebrity}
+            celebrityFullName={query[CELEBRITY_NAME_QUERY_PARAM]}
           />
           <h1 className={styles.Title}>
             <FormattedMessage defaultMessage="Ingresa a tu cuenta para poder conectar con los famosos" />

@@ -36,6 +36,13 @@ const initialValues = {
 };
 
 type FormValuesType = typeof initialValues;
+type InitialValuesType = {
+  [Property in keyof FormValuesType]?: FormValuesType[Property];
+};
+
+function getInitialValues(initialValuesFromProps: InitialValuesType) {
+  return Object.assign({}, initialValues, initialValuesFromProps);
+}
 
 function getValidations(formatMessage: IntlFormatters["formatMessage"]) {
   return {
@@ -77,10 +84,12 @@ function getValidations(formatMessage: IntlFormatters["formatMessage"]) {
 
 type SignUpEmailPasswordFormProps = {
   willRedirect: boolean;
+  initialValues?: InitialValuesType;
 };
 
 function SignUpEmailPasswordForm({
   willRedirect,
+  initialValues: initialValuesFromProps,
 }: SignUpEmailPasswordFormProps) {
   const { formatMessage, locale } = useIntl();
   const {
@@ -90,7 +99,7 @@ function SignUpEmailPasswordForm({
     onChangeField,
     validateBeforeSubmit,
   } = useForm({
-    initialValues,
+    initialValues: getInitialValues(initialValuesFromProps),
     validations: getValidations(formatMessage),
     onSubmit,
   });

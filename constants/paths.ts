@@ -1,5 +1,9 @@
 import objectHasProperties from "lib/utils/objectHasProperties";
 import { jsonToQueryString } from "react-app/src/state/utils/apiService";
+import {
+  CELEBRITY_NAME_QUERY_PARAM,
+  SUGGESTED_FULL_NAME_QUERY_PARAM,
+} from "./keys";
 
 export const ROOT_PATH = "/";
 export const HOME_PATH = "/inicio/";
@@ -157,8 +161,13 @@ export const getStripe3dSecureIframePath = (contractReference) =>
 export const getStripe3dSecureResponsePath = (contractReference) =>
   STRIPE_3D_SECURE_RESPONSE.replace(":contract_reference", contractReference);
 
-const getQueryParams = (data) =>
+type SignInFromPathDataType = {
+  [CELEBRITY_NAME_QUERY_PARAM]?: string;
+  [SUGGESTED_FULL_NAME_QUERY_PARAM]?: string;
+};
+
+const getQueryParams = (data?: SignInFromPathDataType) =>
   data && objectHasProperties(data) ? jsonToQueryString(data) : "";
 
-export const getSignInFromPath = (data) =>
+export const getSignInFromPath = (data?: SignInFromPathDataType) =>
   SIGN_IN_FROM_PATH + getQueryParams(data);

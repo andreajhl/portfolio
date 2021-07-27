@@ -21,7 +21,7 @@ import { useRouter } from "next/router";
 import {
   getCelebrityProfilePath,
   getPaymentMethodsPath,
-  SIGN_IN_FROM_PATH,
+  getSignInFromPath,
 } from "constants/paths";
 import usePromise from "lib/hooks/usePromise";
 import ContractInProgressType from "desktop-app/types/contractInProgressType";
@@ -219,10 +219,13 @@ function CreateContractWizard({
       widget: WIDGET_NAME,
       celebrityUsername: celebrity.username,
     });
-    await router.push({
-      pathname: SIGN_IN_FROM_PATH,
-      query: { celebrity: celebrity.fullName },
-    });
+    await router.push(
+      getSignInFromPath({
+        celebrity: celebrity.fullName,
+        suggestedFullName:
+          data.contractType === 2 ? data.deliveryFrom : data.deliveryTo,
+      })
+    );
   }
 
   async function continueFirstStep(data: ContractDeliveryType) {

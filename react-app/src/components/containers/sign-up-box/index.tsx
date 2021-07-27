@@ -8,6 +8,7 @@ import { Link } from "../../common/routing/link";
 import { SignUpEmailPasswordForm } from "../sign-up-with-email-form";
 import { useRouter } from "next/router";
 import { SIGN_IN_FROM_PATH, SIGN_IN_PATH } from "constants/paths";
+import { SUGGESTED_FULL_NAME_QUERY_PARAM } from "constants/keys";
 
 type SignUpBoxProps = {
   className?: string;
@@ -30,6 +31,9 @@ function SignUpBox({ className, willRedirect = false }: SignUpBoxProps) {
   };
   const signInLink = (chunk: string) => <Link href={signInHref}>{chunk}</Link>;
 
+  const suggestedFullName = (query?.[SUGGESTED_FULL_NAME_QUERY_PARAM] ||
+    "") as string;
+
   return (
     <section className={classes(styles.SignUpBox, className)}>
       <div className={styles.SignUpBoxCard}>
@@ -41,7 +45,10 @@ function SignUpBox({ className, willRedirect = false }: SignUpBoxProps) {
           className={styles.AuthProviderButton}
           textButton={formatMessage(RegisterMessages.googleMessage)}
         />
-        <SignUpEmailPasswordForm willRedirect={willRedirect} />
+        <SignUpEmailPasswordForm
+          willRedirect={willRedirect}
+          initialValues={{ fullName: suggestedFullName }}
+        />
         <AuthTermsAdvertise className={styles.SignUpBoxAuthTermsAdvertise} />
       </div>
       <p className={styles.AlreadyRegisteredText}>
