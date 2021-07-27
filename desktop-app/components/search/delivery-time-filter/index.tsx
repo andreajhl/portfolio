@@ -7,21 +7,33 @@ import React, {
   useState,
 } from "react";
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
-import { defineMessages, useIntl } from "react-intl";
+import { defineMessages, useIntl } from "lib/custom-intl";
 import { connect } from "react-redux";
-
-const deliveryTimeFilter = [
-  { label: "Flash (24hrs)", value: "flash" },
-  { label: "Menos de 3 días", value: 3 },
-  { label: "Menos de 5 días", value: 5 },
-  { label: "Hasta 7 días", value: 7 },
-];
 
 const messages = defineMessages({
   title: {
     defaultMessage: "Tiempo de entrega",
   },
+  flashDeliveryTime: {
+    defaultMessage: "Flash (24hrs)",
+  },
+  lessThan3Days: {
+    defaultMessage: "Menos de 3 días",
+  },
+  lessThan5Days: {
+    defaultMessage: "Menos de 5 días",
+  },
+  lessThan7Days: {
+    defaultMessage: "Hasta 7 días",
+  },
 });
+
+const deliveryTimeFilter = [
+  { label: messages.flashDeliveryTime, value: "flash" },
+  { label: messages.lessThan3Days, value: 3 },
+  { label: messages.lessThan5Days, value: 5 },
+  { label: messages.lessThan7Days, value: 7 },
+];
 
 const mapStateToProps = ({ searchFilters }) => ({
   searchFilters,
@@ -96,13 +108,13 @@ function DeliveryTimeFilter({
 
   const memoizedValuesForDeliveryTimeFilter = useMemo(
     () =>
-      deliveryTimeFilter.map((time, index) => ({
-        label: time.label,
+      deliveryTimeFilter.map((time) => ({
+        label: formatMessage(time.label),
         value: time.value,
-        name: time.label + index,
+        name: `delivery-time-filter-${time.value}`,
         checked: deliveriesTimeChecked.get(String(time.value)),
       })),
-    [deliveriesTimeChecked]
+    [deliveriesTimeChecked, formatMessage]
   );
 
   const handleChangeCheckbox = (
