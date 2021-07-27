@@ -30,7 +30,7 @@ const mapStateToProps = ({ landings }) => {
 const mapDispatchToProps = { fetchLandings };
 
 const offsetInitialValue = 0;
-const resultsLimit = 4;
+const resultsLimit = 10;
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
