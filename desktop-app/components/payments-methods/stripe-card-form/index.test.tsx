@@ -2,12 +2,13 @@ import { shallow } from "enzyme";
 import testContract from "__test__/fake-data/testContract";
 import StripeCardForm from ".";
 import waitFor from "react-app/src/utils/waitFor";
-import { byText, getMockedRouterPush } from "__test__/utils";
+import { getMockedRouterPush } from "__test__/utils";
 import {
   getPurchaseSummaryPath,
   getStripe3dSecureIframePath,
   getStripe3dSecureResponsePath,
 } from "constants/paths";
+import WarningMessage from "desktop-app/components/common/warning-message";
 
 // TODO
 // check onChange <CardElement />
@@ -240,25 +241,23 @@ it("redirects to 3D Secure flow when needed", async () => {
 });
 
 it("it renders <ErrorMessage /> with error from payment request", async () => {
-  processStripePayment.mockImplementationOnce(() =>
-    Promise.reject(testResponseError)
-  );
-  mockedCreateSource.mockImplementationOnce(() =>
-    Promise.resolve(stripeNormalSucceededResponse)
-  );
-  const { wrapper, submitForm } = shallowRenderStripeCardForm();
   const testErrorMessage = "It fails!";
   const testResponseError = {
     response: {
-      data: { status: "ERROR", error: { message: testErrorMessage } },
+      data: { status: "ERROR", error: testErrorMessage },
     },
   };
+  processStripePayment.mockRejectedValueOnce(testResponseError);
+  mockedCreateSource.mockResolvedValueOnce(stripeNormalSucceededResponse);
+  const { wrapper, submitForm } = shallowRenderStripeCardForm();
 
   submitForm();
 
-  await waitFor(() => wrapper.exists("ErrorMessage"), 50);
+  await waitFor(() => wrapper.exists(WarningMessage), 50);
 
   expect(
-    wrapper.exists(`ErrorMessage${byText(testErrorMessage)}`)
+    wrapper.containsMatchingElement(
+      <WarningMessage message={testErrorMessage} />
+    )
   ).toBeTruthy();
 });

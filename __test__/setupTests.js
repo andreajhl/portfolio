@@ -44,6 +44,10 @@ jest.mock("react-redux", () => ({
   useDispatch: () => jest.fn(),
 }));
 
+jest.mock("lib/is-on-mobile-screen", () => ({
+  useIsOnMobileScreen: () => false,
+}));
+
 global.beforeAll(async () => {
   await loadTestingEnvironmentVariables();
   await preloadAll();
