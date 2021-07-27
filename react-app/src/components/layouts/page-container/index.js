@@ -16,6 +16,12 @@ import initializeBotMaker from "react-app/src/utils/initializeBotMaker";
 import dynamic from "next/dynamic";
 import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { Session } from "react-app/src/state/utils/session.js";
+import useUserLocation from "lib/hooks/useUserLocationCookie";
+
+const COUNTRIES_WHERE_SHOULD_ALWAYS_DISPLAY_BOTMAKER = ["BR"];
+
+const isCountryWhereShouldAlwaysDisplayBotMaker = (userLocation) =>
+  COUNTRIES_WHERE_SHOULD_ALWAYS_DISPLAY_BOTMAKER.includes(userLocation);
 
 function ignoreError() {}
 
@@ -40,13 +46,18 @@ function PageContainer({
   listRestCountries,
   queryParams,
   updateQueryParams,
-  showBotMakerFrame,
+  showBotMakerFrame: showBotMakerFrameProp,
   router,
   ...props
 }) {
   const botMakerChildRef = useRef();
   const [dropdownMenuIsOpen, setDropdownMenuIsOpen] = useState(false);
   const loginHandler = useLoginHandler();
+  const userLocation = useUserLocation();
+  const forceShowBotMakerFrame = isCountryWhereShouldAlwaysDisplayBotMaker(
+    userLocation
+  );
+  const showBotMakerFrame = showBotMakerFrameProp || forceShowBotMakerFrame;
 
   function cancelPreviousWaitFor() {
     if (
