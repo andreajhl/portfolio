@@ -336,7 +336,7 @@
     "message": "Uma declaração de que você acredita de boa-fé que o conteúdo foi removido ou desativado como resultado de um erro ou identificação incorreta do conteúdo;"
   },
   "KjMaxy": {
-    "message": "Como solicitar {onlyMobileLineBreak} {onlyDesktopLineBreak} na mensagem de vídeo em Famosos?"
+    "message": "Como solicitar {onlyMobileLineBreak} {onlyDesktopLineBreak} uma mensagem de vídeo na Famosos?"
   },
   "LMVeQk": {
     "message": "Suas obrigações"
@@ -583,7 +583,7 @@
     "message": "Se estiver tudo bem com o seu pedido de acordo com as nossas políticas, poderá desfrutar da sua mensagem de vídeo muito em breve."
   },
   "bwRze1": {
-    "message": "Clique no {onlyMobileLineBreak} botão {onlyDesktopLineBreak} \" Quero {onlyMobileLineBreak} um vídeo \""
+    "message": "Clique no {onlyMobileLineBreak} botão {onlyDesktopLineBreak} \" Solicitar minha {onlyMobileLineBreak} mensagem de vídeo \""
   },
   "c7lM10": {
     "message": "Uma descrição do trabalho protegido por direitos autorais que você alega ter sido violado."
@@ -1592,13 +1592,13 @@
     "message": "A celebridade é livre para aceitar ou rejeitar os vídeos. Somos uma plataforma tecnológica para meios e não para resultados. Se o pedido for rejeitado, o dinheiro será devolvido."
   },
   "pPCiwO": {
-    "message": "Correio eletrônico"
+    "message": "E-mail"
   },
   "pfhsIr": {
     "message": "Transferência bancária"
   },
   "r3u9Hf": {
-    "message": "Poste este vídeo em Famosos.com"
+    "message": "Poste esse vídeo na Famosos.com"
   },
   "se5FEq": {
     "message": "Você tem um cupom de desconto?"
@@ -1607,7 +1607,7 @@
     "message": "E-mail"
   },
   "t2/Gvc": {
-    "message": "Detalhe sua mensagem e {onlyMobileLineBreak} finalize {onlyDesktopLineBreak} a compra {onlyMobileLineBreak}."
+    "message": "Detalhe sua mensagem e {onlyMobileLineBreak} finalize {onlyDesktopLineBreak} a compra {onlyMobileLineBreak}"
   },
   "tdx+EV": {
     "message": "Meu perfil"
@@ -1631,10 +1631,10 @@
     "message": "Você deve digitar um email válido."
   },
   "8xaGaO": {
-    "message": "Se inscreva-se na nossa newsletter e fique por dentro das nossas novidades e promoções exclusivas"
+    "message": "Inscreva-se para ficar por dentro das novidades e promoções exclusivas"
   },
   "BI4zr5": {
-    "message": "Receba um cupom de <bigTextSpan>10% DE DESCONTO</bigTextSpan> na sua primeira compra"
+    "message": "Receba um cupom de <bigTextSpan>10% DE DESCONTO</bigTextSpan> "
   },
   "HEGBTi": {
     "message": "Você deve digitar uma data válida. Exemplo: 2020-06-25"
@@ -1643,7 +1643,7 @@
     "message": "Você deve digitar uma data."
   },
   "nbZMXN": {
-    "message": "Se inscreva na nossa newsletter e fique por dentro das nossas novidades e promoções exclusivas."
+    "message": "Inscreva-se para ficar por dentro das novidades e promoções exclusivas"
   },
   "o8JdL0": {
     "message": "Ocorreu um erro no cadastro."
@@ -1758,7 +1758,7 @@
     "message": "Resultados para {search}"
   },
   "w5lFLc": {
-    "message": "Resultados da busqueda"
+    "message": "Resultados da busca"
   },
   "+OHALP": {
     "message": "poucas horas"
@@ -1768,5 +1768,11 @@
   },
   "havuzD": {
     "message": "{turnAroundTime} día"
+  },
+  "CjowzQ": {
+    "message": "Data de nascimento"
+  },
+  "t2/i9S": {
+    "message": "Trabalhe conosco"
   }
 }

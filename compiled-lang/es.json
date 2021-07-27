@@ -231,6 +231,12 @@
       "value": "¿Me garantizan que mi video va a ser grabado?"
     }
   ],
+  "2MFPbx": [
+    {
+      "type": 0,
+      "value": "Debes poseer al menos 13 años de edad para suscribirte"
+    }
+  ],
   "2O8ofL": [
     {
       "type": 0,
@@ -875,6 +881,12 @@
     {
       "type": 0,
       "value": "Serás redirigido a la pagina oficial de PayPal para continuar con el pago."
+    }
+  ],
+  "CjowzQ": [
+    {
+      "type": 0,
+      "value": "Fecha de nacimiento"
     }
   ],
   "DNBYPO": [
@@ -3401,6 +3413,12 @@
     {
       "type": 0,
       "value": " de compra."
+    }
+  ],
+  "t2/i9S": [
+    {
+      "type": 0,
+      "value": "Trabaja con nosotros"
     }
   ],
   "t7y7Vl": [

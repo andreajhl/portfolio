@@ -97,6 +97,9 @@
   "2Ctir8": {
     "message": "¿Me garantizan que mi video va a ser grabado?"
   },
+  "2MFPbx": {
+    "message": "Debes poseer al menos 13 años de edad para suscribirte"
+  },
   "2O8ofL": {
     "message": "De:"
   },
@@ -355,6 +358,9 @@
   },
   "CfGC5M": {
     "message": "Serás redirigido a la pagina oficial de PayPal para continuar con el pago."
+  },
+  "CjowzQ": {
+    "message": "Fecha de nacimiento"
   },
   "DNBYPO": {
     "message": "Datos de la tarjeta"
@@ -1226,6 +1232,9 @@
   },
   "t2/Gvc": {
     "message": "Detalla la solicitud y {onlyMobileLineBreak} realiza {onlyDesktopLineBreak} el proceso {onlyMobileLineBreak} de compra."
+  },
+  "t2/i9S": {
+    "message": "Trabaja con nosotros"
   },
   "t7y7Vl": {
     "message": "Datos de la persona que realiza el pago"
