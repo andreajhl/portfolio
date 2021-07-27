@@ -9,16 +9,27 @@ import classes from "classnames";
 import styles from "./styles.module.scss";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useRouter } from "next/router";
-import { FormattedMessage } from "react-intl";
+import { defineMessages, FormattedMessage } from "react-intl";
+import { useIntl } from "lib/custom-intl";
+import { getOptionByValue, translateOptions } from "lib/utils/options-utils";
+
+const messages = defineMessages({
+  featuredOptionLabel: {
+    defaultMessage: "Destacados",
+  },
+  priceAscOptionLabel: {
+    defaultMessage: "Menor a mayor precio",
+  },
+  priceDescOptionLabel: {
+    defaultMessage: "Mayor a menor precio",
+  },
+});
 
 const orderByOptions = [
-  { label: "Destacados", value: "" },
-  { label: "Menor a mayor precio", value: "price asc" },
-  { label: "Mayor a menor precio", value: "price desc" },
+  { label: messages.featuredOptionLabel, value: "" },
+  { label: messages.priceAscOptionLabel, value: "price asc" },
+  { label: messages.priceDescOptionLabel, value: "price desc" },
 ];
-
-const getOptionByValue = (value: string) =>
-  orderByOptions.find((option) => option.value === value) || orderByOptions[0];
 
 const listParamsInitialKeys = ["pageSize", "currentPage"];
 
@@ -43,7 +54,7 @@ function mapStateToProps({
   return {
     totalResults,
     hasSearched: totalResults !== undefined,
-    filtersOrderBy: getOptionByValue(searchFilters.orderBy),
+    searchOrderBy: searchFilters.orderBy,
     hasFiltered: hasFiltered(searchFilters),
     hashtags: getHashtagsArray(searchFilters.hashtags),
   };
@@ -62,13 +73,14 @@ type MainContentTopBarProps = {
 function MainContentTopBar({
   sidebarIsOpen,
   toggleSidebar,
-  filtersOrderBy,
+  searchOrderBy,
   hasFiltered,
   hasSearched,
   totalResults,
   hashtags,
   updateSearchFilters,
 }: MainContentTopBarProps) {
+  const { formatMessage } = useIntl();
   const { query } = useRouter();
   function updateHashtagFilter(hashtags: string[]) {
     updateSearchFilters({ hashtags: hashtags.join(",") });
@@ -77,6 +89,15 @@ function MainContentTopBar({
   function updateOrderByFilter(option: { value: any }) {
     updateSearchFilters({ orderBy: option.value });
   }
+
+  const orderByOptionsTranslated = translateOptions(
+    orderByOptions,
+    formatMessage
+  );
+
+  const filtersOrderBy =
+    getOptionByValue(orderByOptionsTranslated, searchOrderBy) ||
+    orderByOptionsTranslated[0];
 
   return (
     <div
@@ -115,15 +136,23 @@ function MainContentTopBar({
               styles.DoNotShrink
             )}
           >
-            <FormattedMessage
-              defaultMessage="
-            {totalResults} resultados
-            {search}"
-              values={{
-                totalResults,
-                search: query.search ? ` para "${String(query.search)}"` : null,
-              }}
-            />
+            <Maybe
+              it={Boolean(query?.search)}
+              orElse={
+                <FormattedMessage
+                  defaultMessage="{totalResults} resultados"
+                  values={{ totalResults }}
+                />
+              }
+            >
+              <FormattedMessage
+                defaultMessage={`{totalResults} resultados para "{search}"`}
+                values={{
+                  totalResults,
+                  search: query.search,
+                }}
+              />
+            </Maybe>
           </span>
         </Maybe>
       </Maybe>
@@ -134,7 +163,7 @@ function MainContentTopBar({
         )}
         onChange={updateOrderByFilter}
         selectedOption={filtersOrderBy}
-        options={orderByOptions}
+        options={orderByOptionsTranslated}
       />
     </div>
   );
