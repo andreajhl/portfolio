@@ -87,7 +87,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     return {
       props: {
         isMobile,
-        userLocation: getCookie("userLocation", req?.headers?.cookie) || "",
+        userLocation,
         rotationForCelebritiesSections,
       },
     };
