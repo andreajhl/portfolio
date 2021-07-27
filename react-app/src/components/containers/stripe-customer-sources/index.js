@@ -10,6 +10,7 @@ import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const errorMessages = defineMessages({
   errorMessageApplyStripeAuthWithoutSourceID: {
@@ -106,6 +107,13 @@ class StripeCustomerSources extends Component {
         disableButton: true,
         errorMessage: null
       });
+      analytics.track("TRY_PAY_WITH_STRIPE_SOURCE", {
+        contractReference: this.props.contractReference,
+        discountCouponId: this.props.discountCouponId,
+        contractPrice: this.props.contractPrice,
+        celebrityId: this.props.celebrityId,
+        widget: "StripeCustomerSources"
+      });
       processStripePayment(
         this.props.contractReference,
         this.state.selectedSourceId,
@@ -129,6 +137,14 @@ class StripeCustomerSources extends Component {
                 });
               }
             }
+            analytics.track("CONTRACT_PAYED", {
+              widget: "StripeCustomerSources",
+              paymentMethod: "STRIPE",
+              contractReference: this.props.contractReference,
+              discountCouponId: this.props.discountCouponId,
+              contractPrice: this.props.contractPrice,
+              celebrityId: this.props.celebrityId
+            });
             const route = PATHS.PURCHASE_SUMMARY.replace(
               ":contract_reference",
               res.data.data.reference

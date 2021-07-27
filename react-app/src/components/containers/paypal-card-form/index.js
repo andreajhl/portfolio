@@ -49,7 +49,16 @@ class PayPalCardForm extends Component {
               });
             }
           }
-          GTM.tagManagerDataLayer("CONTRACT_PAYED", res.data);
+          const analyticsData = {
+            ...res?.data,
+            widget: "PaypalCardForm",
+            paymentMethod: "PAYPAL",
+            contractReference: this.props.contractReference,
+            discountCouponId: this.props.discountCouponId,
+            contractPrice: this.props.contractPrice,
+            celebrityId: this.props.celebrityId
+          };
+          GTM.tagManagerDataLayer("CONTRACT_PAYED", analyticsData);
           history._pushRoute(
             ROUTING_PATHS.PURCHASE_SUMMARY.replace(
               ":contract_reference",

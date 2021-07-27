@@ -8,6 +8,7 @@ import { processStripePayment } from "../../../state/ducks/payments/actions";
 import { history } from "../../../routing/History";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const errorMessages = defineMessages({
   errorMessageOwnerName: {
@@ -96,6 +97,14 @@ class StripeCardForm extends Component {
       email: this.state.ownerEmail.trim()
     };
 
+    analytics.track("SUBMIT_STRIPE_FORM", {
+      contractReference: this.props.contractReference,
+      discountCouponId: this.props.discountCouponId,
+      contractPrice: this.props.contractPrice,
+      celebrityId: this.props.celebrityId,
+      widget: "StripeCardForm"
+    });
+
     // CREATE A SOURCE CARD
     this.props.stripe
       .createSource({
@@ -170,6 +179,14 @@ class StripeCardForm extends Component {
               });
             }
           }
+          analytics.track("CONTRACT_PAYED", {
+            widget: "StripeCardForm",
+            paymentMethod: "STRIPE",
+            contractReference: this.props.contractReference,
+            discountCouponId: this.props.discountCouponId,
+            contractPrice: this.props.contractPrice,
+            celebrityId: this.props.celebrityId
+          });
           const route = PATHS.PURCHASE_SUMMARY.replace(
             ":contract_reference",
             res.data.data.reference
@@ -207,6 +224,14 @@ class StripeCardForm extends Component {
         ":contract_reference",
         this.props.contractReference
       );
+
+    analytics.track("START_3D_SECURE_FLOW", {
+      contractReference: this.props.contractReference,
+      discountCouponId: this.props.discountCouponId,
+      contractPrice: this.props.contractPrice,
+      celebrityId: this.props.celebrityId,
+      widget: "StripeCardForm"
+    });
 
     // CREATE A 3D SOURCE
     this.props.stripe
