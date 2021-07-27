@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { localeAvailables } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 import {
   IntlFormatters,
@@ -25,14 +26,17 @@ function useIntl() {
   } = useOriginalIntl();
   const locale = originalLocale as localeAvailables;
 
-  function formatMessage<T extends MessageDescriptor | unknown>(
-    text: T,
-    values?: ValuesType,
-    options?: OptionsType
-  ): TextType<T> {
-    if (!isMessageDescriptor(text)) return text as TextType<T>;
-    return originalFormatMessage(text, values, options) as TextType<T>;
-  }
+  const formatMessage = useCallback(
+    function <T extends MessageDescriptor | unknown>(
+      text: T,
+      values?: ValuesType,
+      options?: OptionsType
+    ): TextType<T> {
+      if (!isMessageDescriptor(text)) return text as TextType<T>;
+      return originalFormatMessage(text, values, options) as TextType<T>;
+    },
+    [originalFormatMessage]
+  );
 
   return { ...intl, locale, formatMessage };
 }
