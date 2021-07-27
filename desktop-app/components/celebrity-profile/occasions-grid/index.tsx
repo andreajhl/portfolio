@@ -42,7 +42,7 @@ function OccasionsGrid({
   onClickOccasion,
 }: OccasionsGridProps) {
   const { locale } = useIntl();
-  const currentLocaleOccasions = occasions[locale];
+  const currentLocaleOccasions = occasions[locale] || occasions.es;
 
   return (
     <div className={classes(styles.OccasionsGrid, className)}>
@@ -51,7 +51,7 @@ function OccasionsGrid({
           OccasionType,
           OccasionDataType
         ]) => {
-          const canDisplayOccasion = Boolean(messages[contractType - 1]);
+          const canDisplayOccasion = Boolean(messages?.[contractType - 1]);
           const onClickHandler = () => onClickOccasion(occasionKey);
           const occasionIsSelected = occasionKey === selectedOccasion;
 
