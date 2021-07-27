@@ -24,6 +24,7 @@ export const AUTH_FLOW = "/auth/select-flow/";
 export const AUTH_SUCCESS = "/authentication/success";
 export const SIGN_IN_PATH = "/auth/sign-in/";
 export const SIGN_IN_FROM_PATH = "/auth/sign-in/from";
+export const SIGN_UP_FROM_PATH = "/auth/sign-up/from";
 export const SIGN_IN_WITH_SPECIFIC_FORM_PATH = "/auth/sign-in/:form/";
 export const SIGN_UP_PATH = "/auth/sign-up";
 export const SIGN_UP_WITH_SPECIFIC_FORM_PATH = "/auth/sign-up/:form/";

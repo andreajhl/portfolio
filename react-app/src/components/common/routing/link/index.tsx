@@ -7,7 +7,7 @@ type LinkProps = {
   className?: string | null;
   style?: CSSProperties;
 } & NextLinkProps &
-  AnchorHTMLAttributes<HTMLAnchorElement>;
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href">;
 
 const Link = ({
   children = null,

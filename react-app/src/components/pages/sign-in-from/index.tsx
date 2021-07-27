@@ -21,7 +21,7 @@ function SignInFromPage({ query }: SignInFromPageProps) {
           <h1 className={styles.Title}>
             <FormattedMessage defaultMessage="Ingresa a tu cuenta para poder conectar con los famosos" />
           </h1>
-          <SignInBox className={styles.SignInBox} />
+          <SignInBox className={styles.SignInBox} willRedirect />
         </div>
         <div className={styles.AuthStepsWrapper}>
           <AuthPreHiringSteps
