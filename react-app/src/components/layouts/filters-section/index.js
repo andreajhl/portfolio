@@ -18,6 +18,7 @@ import {
   labelMessagesForCategoriesFilter,
   labelMessagesForCountryCodeFilter,
 } from "react-app/src/constants/messages";
+import removeParenthesis from "lib/utils/removeParenthesis";
 
 // LISTA DE ID CON TRADUCCIONES DISPONIBLE. CUALQUIER NUEVO ID QUE SE REGISTRE
 // EN EL BACKEND DEBE DE SER AGREGADO EN ESTA LISTA Y ADEMAS SU RESPECTIVA TRADUCCIÓN
@@ -60,8 +61,6 @@ const mapDispatchToProps = {
   listCelebrityCategories: celebrityCategoriesOperations.list,
   listRestCountries: restCountriesOperations.list,
 };
-
-const removeParenthesis = (string) => string.replace(/\([^)]*\)/, "");
 
 const initialState = {
   params: {

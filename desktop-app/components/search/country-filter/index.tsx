@@ -11,6 +11,7 @@ import { listV2 } from "react-app/src/state/ducks/countries/actions";
 import { connect, ConnectedProps } from "react-redux";
 import { defineMessages, useIntl } from "react-intl";
 import getTranslatedCountryName from "lib/utils/getTranslatedCountryName";
+import removeParenthesis from "lib/utils/removeParenthesis";
 
 const generateMapForKeysValue = (array, value = true) => {
   const newState = new Map();
@@ -121,7 +122,7 @@ function CountryFilter({
       countries.map((country, index) => {
         const countryName = getTranslatedCountryName(country, formatMessage);
         return {
-          label: countryName,
+          label: removeParenthesis(countryName),
           value: country.id,
           name: country.name + index,
           checked: countriesChecked.get(String(country.id)),
