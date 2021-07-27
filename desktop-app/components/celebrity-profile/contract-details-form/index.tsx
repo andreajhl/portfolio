@@ -181,7 +181,10 @@ function ContractDetailsForm({
           onClickOccasion={changeOccasion}
         />
         <div className={styles.VideoDetailsFormInstructions}>
-          <label className={styles.VideoDetailsFormInstructionsLabel}>
+          <label
+            className={styles.VideoDetailsFormInstructionsLabel}
+            id="instructionsDescription"
+          >
             <FormattedMessage
               defaultMessage="Dale instrucciones a {celebrityFullName} para que tu video quede como esperas.
             {br} <span>(Edita este texto base o escribe uno)</span>"
@@ -189,6 +192,7 @@ function ContractDetailsForm({
             />
           </label>
           <TextInputWithPlaceholders
+            aria-describedby="instructionsDescription"
             placeholder={instructionsPlaceholder}
             className={styles.VideoDetailsFormInstructionsTextarea}
             maxLength={300}

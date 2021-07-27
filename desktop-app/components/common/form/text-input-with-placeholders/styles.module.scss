@@ -7,7 +7,7 @@
 
   &:empty::after {
     cursor: text;
-    content: attr(data-placeholder);
+    content: attr(aria-placeholder);
     color: var(--gray-3);
   }
 

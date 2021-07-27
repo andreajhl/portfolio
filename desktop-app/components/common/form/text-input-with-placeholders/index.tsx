@@ -28,6 +28,7 @@ function removeSelectedPlaceholderSpan(event: KeyboardEvent<HTMLDivElement>) {
 }
 
 function limitLength(event: KeyboardEvent<HTMLDivElement>, maxLength: number) {
+  if (typeof maxLength !== "number") return;
   const hasTypedACharacter = event?.key?.length === 1;
   const { target } = event as { target: any };
   if (hasTypedACharacter && getTextContent(target).length >= maxLength) {
@@ -93,13 +94,15 @@ function TextInputWithPlaceholders({
   contentEditable,
   suppressContentEditableWarning,
   onKeyDown = function () {},
-  maxLength = Infinity,
+  maxLength,
   ...props
 }: TextInputWithPlaceholdersProps) {
   return (
     <div
-      data-placeholder={placeholder}
-      className={`${className} ${styles.TextInputWithPlaceholders}`}
+      role="textbox"
+      aria-placeholder={placeholder}
+      aria-multiline
+      className={`${styles.TextInputWithPlaceholders} ${className}`}
       contentEditable
       suppressContentEditableWarning
       onKeyDown={(event) => {
