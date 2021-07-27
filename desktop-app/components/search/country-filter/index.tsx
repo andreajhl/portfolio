@@ -10,6 +10,7 @@ import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/ac
 import { listV2 } from "react-app/src/state/ducks/countries/actions";
 import { connect, ConnectedProps } from "react-redux";
 import { defineMessages, useIntl } from "react-intl";
+import getTranslatedCountryName from "lib/utils/getTranslatedCountryName";
 
 const generateMapForKeysValue = (array, value = true) => {
   const newState = new Map();
@@ -117,13 +118,16 @@ function CountryFilter({
 
   const memoizedValuesForCountries = useMemo(
     () =>
-      countries.map((country, index) => ({
-        label: country.name,
-        value: country.id,
-        name: country.name + index,
-        checked: countriesChecked.get(String(country.id)),
-      })),
-    [countriesChecked, countries]
+      countries.map((country, index) => {
+        const countryName = getTranslatedCountryName(country, formatMessage);
+        return {
+          label: countryName,
+          value: country.id,
+          name: country.name + index,
+          checked: countriesChecked.get(String(country.id)),
+        };
+      }),
+    [countries, formatMessage, countriesChecked]
   );
   return (
     <CheckBoxList
