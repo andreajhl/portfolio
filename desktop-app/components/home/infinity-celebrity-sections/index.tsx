@@ -10,6 +10,13 @@ import { Fragment } from "react";
 import { fetchLandings } from "react-app/src/state/ducks/landings/actions";
 import getCookie from "lib/utils/getCookie";
 import { USER_LOCATION_KEY } from "constants/keys";
+import { defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  categorySectionTitle: {
+    defaultMessage: "Categorías destacadas",
+  },
+});
 
 const mapStateToProps = ({ landings }) => {
   const { loading, data } = landings.fetchLandingsReducer;
@@ -38,6 +45,7 @@ function InfinityCelebritySections({
   totalResults,
   fetchLandings,
 }: InfinityCelebritySectionsProps) {
+  const { formatMessage } = useIntl();
   const [offset, setOffset] = useState(offsetInitialValue);
 
   useEffect(() => {
@@ -66,6 +74,8 @@ function InfinityCelebritySections({
     });
   };
 
+  const categorySectionTitle = formatMessage(messages.categorySectionTitle);
+
   return (
     <InfiniteScroll
       dataLength={celebritiesSections.length}
@@ -83,7 +93,7 @@ function InfinityCelebritySections({
                 celebritySectionType: "CATEGORY_CARD",
                 position: 999,
                 id: 0,
-                title: "Categorías destacadas",
+                title: categorySectionTitle,
                 celebrities: categories,
               }}
             />

@@ -9,7 +9,9 @@ import getMoreFrequentIds from "react-app/src/utils/getMoreFrequentIds";
 import getWindow from "react-app/src/utils/getWindow";
 import { CardsReelSection, CardsReelSectionProps } from "../cards-section-reel";
 import CelebritySectionVideoCard from "../celebrity-section-video-card";
+import getCelebritySectionTitle from "../../../../lib/utils/getCelebritySectionTitle";
 import styles from "./styles.module.scss";
+import { useIntl } from "lib/custom-intl";
 
 type CelebritiesSectionProps = {
   celebritySection: CelebritySectionType;
@@ -109,6 +111,7 @@ const celebrityTypeReelProps: {
 };
 
 function CelebritiesSection({ celebritySection }: CelebritiesSectionProps) {
+  const { locale } = useIntl();
   const { celebrities, ...celebritySectionData } = celebritySection;
   const { celebritySectionType } = celebritySectionData;
 
@@ -135,11 +138,16 @@ function CelebritiesSection({ celebritySection }: CelebritiesSectionProps) {
     []
   );
 
+  const celebritySectionTitle = getCelebritySectionTitle(
+    celebritySection,
+    locale
+  );
+
   return (
     <CardsReelSection
       title={
         <h2 className={styles.CelebritiesSectionTitle}>
-          {celebritySection.title}
+          {celebritySectionTitle}
         </h2>
       }
       showMorePath={searchMoreResultsPath}
