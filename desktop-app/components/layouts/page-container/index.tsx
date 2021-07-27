@@ -2,7 +2,7 @@ import Maybe from "react-app/src/components/common/helpers/maybe";
 import PageLayoutProps from "../page-layout/types";
 import dynamic from "next/dynamic";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
-import useIsOnDesktop from "../../../../lib/hooks/useIsOnDesktop";
+import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
 
 type PageLayoutMobileProps = {
   [key: string]: any;
@@ -19,17 +19,14 @@ const DesktopPageContainer = dynamic(import("../page-layout"));
 type PageContainerProps = PageLayoutProps & PageLayoutMobileProps;
 
 function PageContainer(props: PageContainerProps) {
-  const isOnDesktop = useIsOnDesktop();
+  const isOnMobile = useIsOnMobileScreen();
   const showSearch = props.showSearchInMobile ?? props.showSearch;
 
-  useDesktopClass(isOnDesktop);
+  useDesktopClass(!isOnMobile);
 
   return (
-    <Maybe
-      it={isOnDesktop}
-      orElse={<MobilePageContainer {...props} showSearch={showSearch} />}
-    >
-      <DesktopPageContainer {...props} />
+    <Maybe it={isOnMobile} orElse={<DesktopPageContainer {...props} />}>
+      <MobilePageContainer {...props} showSearch={showSearch} />
     </Maybe>
   );
 }
