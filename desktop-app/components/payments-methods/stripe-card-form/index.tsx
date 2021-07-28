@@ -99,7 +99,6 @@ function StripeCardForm({
     processStripePayment(contractReference, sourceId, discountCouponId)
       .then((res) => {
         if (res.data.status === "ERROR") {
-          console.log("llego aqui");
           setError(res.data.error);
           setProcessing(false);
         } else {
@@ -125,9 +124,7 @@ function StripeCardForm({
       })
       .catch((error) => {
         setProcessing(false);
-        togglePaymentInProcess();
         if (error.response) {
-          console.log(error.response?.data?.error);
           if (error.response.data) {
             setError(
               error.response?.data?.error ||
@@ -135,7 +132,8 @@ function StripeCardForm({
             );
           }
         }
-      });
+      })
+      .finally(() => togglePaymentInProcess());
   };
   const handleSubmit = async (event) => {
     event.preventDefault();

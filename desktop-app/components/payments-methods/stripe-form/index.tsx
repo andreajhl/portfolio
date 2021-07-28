@@ -17,7 +17,6 @@ import scriptLoader from "react-async-script-loader";
 import { StripeProvider, Elements } from "react-stripe-elements";
 import { FormattedMessage } from "react-intl";
 import { useDispatch } from "react-redux";
-import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 
 const scriptSrc = "https://js.stripe.com/v3/";
 

@@ -146,8 +146,8 @@ function DLocalPaymentMethodForm({
         .catch((e) => {
           setPaymentError(e);
           setPaymentInProcess(false);
-          togglePaymentInProcess();
-        });
+        })
+        .finally(() => togglePaymentInProcess());
     } catch (e) {
       setPaymentInProcess(false);
       setPaymentError(e);

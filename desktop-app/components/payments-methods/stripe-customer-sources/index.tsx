@@ -104,10 +104,12 @@ function StripeCustomerSources({
         })
         .catch((error) => {
           setPaymentInProcess(false);
-          togglePaymentInProcess();
           if (error.response) {
             setErrorMessage(error.response.data.error);
           }
+        })
+        .finally(() => {
+          togglePaymentInProcess();
         });
     }
   };
