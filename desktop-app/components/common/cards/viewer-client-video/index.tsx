@@ -61,6 +61,7 @@ function ViewerClientVideo({
 
   const toggleVideoFullScreen = () => {
     setModalIsOpen((fullScreen) => !fullScreen);
+    togglePlay();
   };
 
   const [landscapeMode, setLandscapeMode] = useState(false);
@@ -100,6 +101,7 @@ function ViewerClientVideo({
             <video
               muted={videoIsMuted}
               ref={videoRef}
+              loop
               onLoadedData={onVideoLoadedData}
               src={videoUrl}
               onTimeUpdate={onTimeUpdate}
