@@ -774,7 +774,7 @@
   "8xaGaO": [
     {
       "type": 0,
-      "value": "Se inscreva-se na nossa newsletter e fique por dentro das nossas novidades e promoções exclusivas"
+      "value": "Inscreva-se para ficar por dentro das novidades e promoções exclusivas"
     }
   ],
   "9KADbj": [
@@ -968,7 +968,7 @@
     },
     {
       "type": 0,
-      "value": " na sua primeira compra"
+      "value": " "
     }
   ],
   "BbTBEe": [
@@ -1035,6 +1035,12 @@
     {
       "type": 0,
       "value": " Você será redirecionado para a página oficial do PayPal para continuar com o pagamento."
+    }
+  ],
+  "CjowzQ": [
+    {
+      "type": 0,
+      "value": "Data de nascimento"
     }
   ],
   "CrBrmm": [
@@ -1504,7 +1510,7 @@
     },
     {
       "type": 0,
-      "value": " na mensagem de vídeo em Famosos?"
+      "value": " uma mensagem de vídeo na Famosos?"
     }
   ],
   "KkJHVF": [
@@ -2582,7 +2588,7 @@
     },
     {
       "type": 0,
-      "value": " \" Quero "
+      "value": " \" Solicitar minha "
     },
     {
       "type": 1,
@@ -2590,7 +2596,7 @@
     },
     {
       "type": 0,
-      "value": " um vídeo \""
+      "value": " mensagem de vídeo \""
     }
   ],
   "c5ndOG": [
@@ -3272,7 +3278,7 @@
   "nbZMXN": [
     {
       "type": 0,
-      "value": "Se inscreva na nossa newsletter e fique por dentro das nossas novidades e promoções exclusivas."
+      "value": "Inscreva-se para ficar por dentro das novidades e promoções exclusivas"
     }
   ],
   "nnRGWT": [
@@ -3398,7 +3404,7 @@
   "pPCiwO": [
     {
       "type": 0,
-      "value": "Correio eletrônico"
+      "value": "E-mail"
     }
   ],
   "pago_seguro": [
@@ -3502,7 +3508,7 @@
   "r3u9Hf": [
     {
       "type": 0,
-      "value": "Poste este vídeo em Famosos.com"
+      "value": "Poste esse vídeo na Famosos.com"
     }
   ],
   "rA53fB": [
@@ -3701,10 +3707,12 @@
     {
       "type": 1,
       "value": "onlyMobileLineBreak"
-    },
+    }
+  ],
+  "t2/i9S": [
     {
       "type": 0,
-      "value": "."
+      "value": "Trabalhe conosco"
     }
   ],
   "t7y7Vl": [
@@ -3906,7 +3914,7 @@
   "w5lFLc": [
     {
       "type": 0,
-      "value": "Resultados da busqueda"
+      "value": "Resultados da busca"
     }
   ],
   "wCc+84": [
