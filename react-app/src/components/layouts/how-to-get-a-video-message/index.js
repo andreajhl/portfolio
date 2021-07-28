@@ -25,7 +25,7 @@ const HowToGetAVideoMessageLayout = () => {
             </div>
             <p className="HowToGetAVideoMessageLayout__step-text">
               <FormattedMessage
-                defaultMessage={`Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak} "Quiero {onlyMobileLineBreak} un video"`}
+                defaultMessage={`Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak} "Comprar video {onlyMobileLineBreak} ahora"`}
                 values={{
                   onlyMobileLineBreak: onlyMobileLineBreak,
                   onlyDesktopLineBreak: onlyDesktopLineBreak

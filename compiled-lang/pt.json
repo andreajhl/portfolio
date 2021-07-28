@@ -1985,6 +1985,36 @@
       "value": "Seu pagamento foi aprovado"
     }
   ],
+  "SKukfQ": [
+    {
+      "type": 0,
+      "value": "Clique no "
+    },
+    {
+      "type": 1,
+      "value": "onlyMobileLineBreak"
+    },
+    {
+      "type": 0,
+      "value": " botão "
+    },
+    {
+      "type": 1,
+      "value": "onlyDesktopLineBreak"
+    },
+    {
+      "type": 0,
+      "value": " \" Solicitar minha "
+    },
+    {
+      "type": 1,
+      "value": "onlyMobileLineBreak"
+    },
+    {
+      "type": 0,
+      "value": " mensagem de vídeo \""
+    }
+  ],
   "SNXFr/": [
     {
       "type": 0,
@@ -2567,36 +2597,6 @@
     {
       "type": 0,
       "value": "Se estiver tudo bem com o seu pedido de acordo com as nossas políticas, poderá desfrutar da sua mensagem de vídeo muito em breve."
-    }
-  ],
-  "bwRze1": [
-    {
-      "type": 0,
-      "value": "Clique no "
-    },
-    {
-      "type": 1,
-      "value": "onlyMobileLineBreak"
-    },
-    {
-      "type": 0,
-      "value": " botão "
-    },
-    {
-      "type": 1,
-      "value": "onlyDesktopLineBreak"
-    },
-    {
-      "type": 0,
-      "value": " \" Solicitar minha "
-    },
-    {
-      "type": 1,
-      "value": "onlyMobileLineBreak"
-    },
-    {
-      "type": 0,
-      "value": " mensagem de vídeo \""
     }
   ],
   "c5ndOG": [

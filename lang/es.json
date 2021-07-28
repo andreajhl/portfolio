@@ -687,6 +687,9 @@
   "SJlNke": {
     "message": "Tu pago ha sido aprobado."
   },
+  "SKukfQ": {
+    "message": "Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak} \"Comprar video {onlyMobileLineBreak} ahora\""
+  },
   "SNXFr/": {
     "message": "Al continuar estás aceptando nuestros <linkTerms> Términos y Condiciones </linkTerms> y nuestra <linkPolicies> Política de Privacidad </linkPolicies>"
   },
@@ -890,9 +893,6 @@
   },
   "bnyCF4": {
     "message": "Si todo está bien con tu solicitud de acuerdo a nuestras políticas, muy pronto podrás disfrutar de tu videomensaje."
-  },
-  "bwRze1": {
-    "message": "Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak} \"Quiero {onlyMobileLineBreak} un video\""
   },
   "c5ndOG": {
     "message": "Doblaje"
