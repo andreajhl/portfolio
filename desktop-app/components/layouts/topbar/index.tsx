@@ -3,7 +3,7 @@ import { FamososLogo } from "../../common/logo";
 import { AccountDropdown } from "../account-dropdown";
 import { CurrencyModal } from "../currency-modal";
 import { TopbarSearchInput } from "desktop-app/components/topbar/search-input";
-
+import LangDropdown from "../lang-dropdown";
 function TopBar() {
   return (
     <header className={styles.TopBar}>
@@ -16,6 +16,7 @@ function TopBar() {
               className={`d-flex align-items-center ${styles.TopBarOptions}`}
             >
               <CurrencyModal />
+              <LangDropdown />
               {/* <CartIcon /> */}
               {/* <BellIcon /> */}
             </div>
