@@ -57,7 +57,9 @@ function MyHiringsCardHeader({ contractData }: MyHiringsCardHeaderProps) {
           <span>
             <Maybe
               it={contractIsCompleted}
-              orElse="Fecha estimada de grabación:"
+              orElse={
+                <FormattedMessage defaultMessage="Fecha estimada de grabación:" />
+              }
             >
               <FormattedMessage defaultMessage="Fecha de grabación:" />
             </Maybe>{" "}

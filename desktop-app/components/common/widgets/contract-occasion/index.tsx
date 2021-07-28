@@ -1,4 +1,5 @@
 import { getOccasion } from "constants/occasions";
+import { useIntl } from "lib/custom-intl";
 import styles from "./styles.module.scss";
 
 type ContractOccasionProps = {
@@ -10,7 +11,8 @@ function ContractOccasion({
   className = "",
   occasion = "OTHER",
 }: ContractOccasionProps) {
-  const [occasionKey, contractOccasion] = getOccasion(occasion);
+  const { locale } = useIntl();
+  const [occasionKey, contractOccasion] = getOccasion(occasion, locale);
 
   return (
     <div className={`${styles.ContractOccasion} ${className}`}>

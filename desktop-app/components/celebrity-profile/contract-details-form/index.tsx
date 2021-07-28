@@ -154,7 +154,7 @@ function ContractDetailsForm({
   function changeInstructionsValue({ target }) {
     // TODO: Luego de darle submit, se coloca touched,
     // por ende en el segundo intento no valida
-    // que se haya removido el placeholder.
+    // que se haya editado.
     if (!touched?.instructions) return;
     setFieldValue("instructions", getTextContent(target));
   }

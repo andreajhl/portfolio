@@ -12,6 +12,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import styles from "./styles.module.scss";
 import { Dispatch, SetStateAction } from "react";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
+import { FormattedMessage } from "react-intl";
 
 type MyHiringsCardDetailsProps = {
   contractData: MyHiringsContract;
@@ -49,7 +50,7 @@ function MyHiringsCardDetails({
             className={styles.MyHiringsCardDetailsOccasion}
           />
           <ContractDataFormInput
-            label="Para"
+            label={<FormattedMessage defaultMessage="Para" />}
             name="deliveryTo"
             value={values.deliveryTo}
             onChange={onChangeField}
@@ -63,7 +64,7 @@ function MyHiringsCardDetails({
           />
           <Maybe it={contractIsForOther}>
             <ContractDataFormInput
-              label="De"
+              label={<FormattedMessage defaultMessage="De" />}
               name="deliveryFrom"
               value={values.deliveryFrom}
               disabled={!isEditing}

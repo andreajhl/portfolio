@@ -9,28 +9,49 @@ import styles from "./styles.module.scss";
 import {
   COMPLETED,
   EXPIRED,
-  PAYED_BY_CLIENT,
   REJECTED,
-  PENDING_TO_PAY,
+  PAYED_BY_CLIENT,
 } from "desktop-app/constants/contractStatuses";
-import { FormattedMessage } from "react-intl";
-type MyHiringsProps = { query: { [key: string]: any } };
+import { defineMessages, FormattedMessage } from "react-intl";
+import { useIntl } from "lib/custom-intl";
+import { translateOptions, getOptionByValue } from "lib/utils/options-utils";
+
+const messages = defineMessages({
+  categoryFilterTitle: {
+    defaultMessage: "Filtrar contratos",
+  },
+  createAtDescLabel: { defaultMessage: "Más recientes" },
+  createAtAscLabel: { defaultMessage: "Más antiguos" },
+  pendingFilterLabel: {
+    defaultMessage: "Pendientes",
+  },
+  completedFilterLabel: {
+    defaultMessage: "Entregados",
+  },
+  expiredFilterLabel: {
+    defaultMessage: "Expirados",
+  },
+  rejectedFilterLabel: {
+    defaultMessage: "Rechazados",
+  },
+});
 
 const orderByOptions = [
-  { label: "Más recientes", value: "created_at desc" },
-  { label: "Más antiguos", value: "created_at asc" },
-];
-const filterByOptions = [
-  { label: "Pendientes", value: `${PENDING_TO_PAY}` },
-  { label: "Entregados", value: `${COMPLETED}` },
-  { label: "Expirados", value: `${EXPIRED}` },
-  { label: "Rechazados", value: `${REJECTED}` },
+  { label: messages.createAtDescLabel, value: "created_at desc" },
+  { label: messages.createAtAscLabel, value: "created_at asc" },
 ];
 
-const getSelectedOrderByOption = (orderByValue) =>
-  orderByOptions.find(({ value }) => orderByValue === value);
+const filterByOptions = [
+  { label: messages.pendingFilterLabel, value: `${PAYED_BY_CLIENT}` },
+  { label: messages.completedFilterLabel, value: `${COMPLETED}` },
+  { label: messages.expiredFilterLabel, value: `${EXPIRED}` },
+  { label: messages.rejectedFilterLabel, value: `${REJECTED}` },
+];
+
+type MyHiringsProps = { query: { [key: string]: any } };
 
 function MyHirings({ query }: MyHiringsProps) {
+  const { formatMessage } = useIntl();
   const router = useRouter();
   const currentPage = parseFloat(query?.currentPage) || 1;
   const { orderBy, status } = query || {};
@@ -55,6 +76,21 @@ function MyHirings({ query }: MyHiringsProps) {
     changeQueryParams({ status: value });
   }
 
+  const categoryFilterTitle = formatMessage(messages.categoryFilterTitle);
+  const translatedFilterByOptions = translateOptions(
+    filterByOptions,
+    formatMessage
+  );
+  const translatedOrderByOptions = translateOptions(
+    orderByOptions,
+    formatMessage
+  );
+  const orderBySelectedOption = getOptionByValue(
+    translatedOrderByOptions,
+    orderBy
+  );
+  const checkedFiltersValue = status?.split(",") || "";
+
   return (
     <PageContainer>
       <PageHeading>
@@ -63,15 +99,15 @@ function MyHirings({ query }: MyHiringsProps) {
         </span>
         <CategoryFilterDropdown
           className={styles.Dropdown}
-          options={filterByOptions}
-          title={"Filtrar contratos"}
-          checkedOptions={status?.split(",") || ""}
+          options={translatedFilterByOptions}
+          title={categoryFilterTitle}
+          checkedOptions={checkedFiltersValue}
           onChange={updateFilerByStatus}
         />
         <OrderByDropdown
           className={styles.Dropdown}
-          options={orderByOptions}
-          selectedOption={getSelectedOrderByOption(orderBy)}
+          options={translatedOrderByOptions}
+          selectedOption={orderBySelectedOption}
           onChange={updateOrderBy}
         />
       </PageHeading>
