@@ -38,9 +38,9 @@ const portugueseOccasions = {
     icon: "fa-music",
     title: "Música",
     messages: [
-      "Oi PLACEHOLDER_FAMOSO_NAME! Você poderia cantar para mim um pedaço da música [nome da música]? É um dos meus favoritos! Muito obrigado.",
-      "Oi PLACEHOLDER_FAMOSO_NAME! Você poderia cantar para PLACEHOLDER_PARA um pedaço da música [música], ? Muito obrigado.",
-      "Oi PLACEHOLDER_FAMOSO_NAME! Você poderia cantar para mim um pedaço da música [nome da música]? É um dos meus favoritos! Muito obrigado.",
+      "Oi PLACEHOLDER_FAMOSO_NAME! Você poderia cantar para mim um pedaço da música [NOME DA MÚSICA]? É um dos meus favoritos! Muito obrigado.",
+      "Oi PLACEHOLDER_FAMOSO_NAME! Você poderia cantar para PLACEHOLDER_PARA um pedaço da música [MÚSICA], ? Muito obrigado.",
+      "Oi PLACEHOLDER_FAMOSO_NAME! Você poderia cantar para mim um pedaço da música [NOME DA MÚSICA]? É um dos meus favoritos! Muito obrigado.",
     ],
   },
   CHEER_UP: {

@@ -99,17 +99,26 @@ function ContractDetailsForm({
     validations: getValidations(formatMessage),
     onSubmit,
   });
+  const preFilledInstructionsText = getOccasionInstructionsText(
+    values.occasion
+  );
   const [textareaText, setTextareaText] = useState(
-    initialValuesFromProps?.instructions ||
-      replacePlaceHolder(
-        getOccasionMessage(locale, values.occasion, contractType)
-      )
+    initialValuesFromProps?.instructions || preFilledInstructionsText
+  );
+  const [hasEditedInstructions, setHasEditedInstructions] = useState(
+    preFilledInstructionsText !== textareaText
   );
 
   useEffect(() => {
     if (!initialValuesFromProps?.instructions) return;
     setFieldTouched("instructions", true);
   }, []);
+
+  function getOccasionInstructionsText(occasion: OccasionType): string {
+    return replacePlaceHolder(
+      getOccasionMessage(locale, occasion, contractType)
+    );
+  }
 
   function replacePlaceHolder(text: string) {
     if (!text) return text;
@@ -121,10 +130,8 @@ function ContractDetailsForm({
   function changeOccasion(occasionKey: OccasionType) {
     if (!touched?.occasion) setFieldTouched("occasion", true);
     setFieldValue("occasion", occasionKey);
-    if (touched.instructions) return;
-    const text = replacePlaceHolder(
-      getOccasionMessage(locale, occasionKey, contractType)
-    );
+    if (hasEditedInstructions) return;
+    const text = getOccasionInstructionsText(occasionKey);
     setTextareaText(text);
     setFieldValue("instructions", text, false);
   }
@@ -149,6 +156,7 @@ function ContractDetailsForm({
     if (key.startsWith("Arrow")) return;
     setFieldError("instructions", null);
     setFieldTouched("instructions", true);
+    setHasEditedInstructions(true);
   }
 
   function changeInstructionsValue({ target }) {
