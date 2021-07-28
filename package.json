@@ -20,7 +20,7 @@
     "prepare": "husky install",
     "build-check": "rm -rf .next && npm run build",
     "check-staged-files": "lint-staged",
-    "extract:i18n": "formatjs extract \"{desktop-app,lib,constants,pages,react-app}/**/*.{js,ts,tsx}\" --out-file lang/es.json --id-interpolation-pattern [sha512:contenthash:base64:6] --format lokalise",
+    "extract:i18n": "formatjs extract --ignore=react-app/src/react-app-env.d.ts \"{desktop-app,lib,constants,pages,react-app}/**/*.{js,ts,tsx}\" --out-file lang/es.json --id-interpolation-pattern [sha512:contenthash:base64:6] --format lokalise",
     "compile": "formatjs compile-folder --ast --format lokalise lang compiled-lang",
     "lint:messages": "eslint . --ext ts --ext tsx --ext js --quiet --rule \"react/jsx-no-literals: 2\""
   },
