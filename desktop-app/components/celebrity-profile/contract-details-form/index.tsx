@@ -110,8 +110,12 @@ function ContractDetailsForm({
   );
 
   useEffect(() => {
-    if (!initialValuesFromProps?.instructions) return;
-    setFieldTouched("instructions", true);
+    if (initialValuesFromProps?.instructions) {
+      setFieldTouched("instructions", true);
+    }
+    if (initialValuesFromProps?.occasion) {
+      setFieldTouched("occasion", true);
+    }
   }, []);
 
   function getOccasionInstructionsText(occasion: OccasionType): string {
