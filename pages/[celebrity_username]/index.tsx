@@ -27,6 +27,7 @@ import { defineMessages, useIntl } from "react-intl";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import debug from "react-app/src/utils/debug";
 import { CREATE_CONTRACT_QUERY_PARAM } from "constants/paths";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const CelebrityProfilePage = dynamic<{ celebrity: celebrityType }>(() =>
   import("react-app/src/components/pages/celebrity-profile").then(
@@ -98,6 +99,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       return {
         props: {
           celebrity,
+          celebrityProfileVersion: store.getState().celebrities
+            .celebrityProfileVersionReducer,
           isMobile,
           shouldFocusCreateContractWizard: Boolean(
             query?.[CREATE_CONTRACT_QUERY_PARAM]
@@ -115,6 +118,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
 function CelebrityProfile({
   celebrity,
+  celebrityProfileVersion,
   isMobile,
   shouldFocusCreateContractWizard,
 }) {
@@ -133,6 +137,15 @@ function CelebrityProfile({
       });
     }
     captureProfileViewEvent();
+  }, []);
+
+  useEffect(() => {
+    analytics.track("CELEBRITY_PROFILE_PAGE_VIEW", {
+      celebrity,
+      celebrityProfileVersion,
+      isMobile,
+      shouldFocusCreateContractWizard,
+    });
   }, []);
 
   return (
