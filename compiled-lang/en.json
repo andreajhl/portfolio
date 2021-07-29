@@ -5,16 +5,50 @@
       "value": "Confirm"
     }
   ],
+  "+D3fCH": [
+    {
+      "type": 0,
+      "value": "Maximum"
+    }
+  ],
+  "+OHALP": [
+    {
+      "type": 0,
+      "value": "Few hours"
+    }
+  ],
   "+c9FIk": [
     {
       "type": 0,
       "value": "Panama"
     }
   ],
+  "+itg8H": [
+    {
+      "type": 0,
+      "value": "TRACKING ID: "
+    },
+    {
+      "type": 1,
+      "value": "contractReference"
+    }
+  ],
   "+jX0dw": [
     {
       "type": 0,
-      "value": "*You can edit the instructions of your video while it is pending of being record."
+      "value": "* You can edit the instructions of your video while it is pending recording."
+    }
+  ],
+  "+jZVNI": [
+    {
+      "type": 0,
+      "value": "Original price"
+    }
+  ],
+  "+w3WoX": [
+    {
+      "type": 0,
+      "value": "Select a Payment Method."
     }
   ],
   "/+/C1u": [
@@ -23,20 +57,38 @@
       "value": "Sort by"
     }
   ],
+  "//1Dhl": [
+    {
+      "type": 0,
+      "value": "Customize the video "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": " !"
+    }
+  ],
   "/IN8Tc": [
     {
       "type": 0,
-      "value": "Please check your connection to "
+      "value": "Please check your "
     },
     {
       "children": [
+        {
+          "type": 0,
+          "value": " "
+        }
       ],
       "type": 8,
       "value": "br"
     },
     {
       "type": 0,
-      "value": " internet and try again."
+      "value": " and try again."
     }
   ],
   "/OzI+S": [
@@ -53,22 +105,52 @@
       "value": " when your video is ready."
     }
   ],
+  "/XN7yF": [
+    {
+      "type": 0,
+      "value": "CI"
+    }
+  ],
+  "/aRhJ+": [
+    {
+      "type": 0,
+      "value": "I have given you a very special gift"
+    }
+  ],
+  "/bm6pt": [
+    {
+      "type": 0,
+      "value": "Your payment has been declined."
+    }
+  ],
+  "/cMtcP": [
+    {
+      "type": 0,
+      "value": "Subscribe me"
+    }
+  ],
+  "/dEeuP": [
+    {
+      "type": 0,
+      "value": "Please enter a valid date. Example: 2020-06-25"
+    }
+  ],
   "/eYgis": [
     {
       "type": 0,
-      "value": "Average answer: "
+      "value": "Average response:"
     }
   ],
   "/g9IGi": [
     {
       "type": 0,
-      "value": "Yes! The video is yours! You can share it anywhere you want!"
+      "value": "Yes! The video is yours! You can share it wherever you want!"
     }
   ],
   "/gs8NU": [
     {
       "type": 0,
-      "value": "Enter your name "
+      "value": "Write your name"
     }
   ],
   "/lbU6C": [
@@ -80,11 +162,17 @@
   "/lhqVJ": [
     {
       "type": 0,
-      "value": "Few videos are available from "
+      "value": "Few videos of "
     },
     {
       "type": 1,
       "value": "celebrityFullName"
+    }
+  ],
+  "/npk0a": [
+    {
+      "type": 0,
+      "value": "I will do it later"
     }
   ],
   "01UxAr": [
@@ -100,31 +188,43 @@
   "095Wot": [
     {
       "type": 0,
-      "value": "Time: "
+      "value": "Time:"
     }
   ],
   "0GetzR": [
     {
       "type": 0,
-      "value": "Celebrity hasn't been found"
+      "value": "Famous not found"
+    }
+  ],
+  "0HwljF": [
+    {
+      "type": 0,
+      "value": "Yes"
     }
   ],
   "0I2iWG": [
     {
       "type": 0,
-      "value": "Applies as Celebrity"
+      "value": "Apply as Famous"
     }
   ],
   "0Il3lQ": [
     {
       "type": 0,
-      "value": "Sort"
+      "value": "Order"
     }
   ],
   "0NnInu": [
     {
       "type": 0,
-      "value": "Apply as celebrity"
+      "value": "Apply as Famous"
+    }
+  ],
+  "0PI6mY": [
+    {
+      "type": 0,
+      "value": "Choose a date and time for Famosos to send your video, you can add an additional text."
     }
   ],
   "0UHyeJ": [
@@ -136,7 +236,7 @@
   "0r77bg": [
     {
       "type": 0,
-      "value": "Debit Card"
+      "value": "Debit"
     }
   ],
   "1Faz6l": [
@@ -148,7 +248,13 @@
   "1GkUZK": [
     {
       "type": 0,
-      "value": "I don't like it / Dislike"
+      "value": "I do not like"
+    }
+  ],
+  "1IMb7T": [
+    {
+      "type": 0,
+      "value": "Remove background"
     }
   ],
   "1JuMPJ": [
@@ -160,19 +266,25 @@
   "1L1kzy": [
     {
       "type": 0,
-      "value": "If you want to be part of our team send us a motivation letter explaining the reason why you want to join our Rock Stars team to jobs@famosos.com"
+      "value": "If you want to be part of our team, send us a motivation letter why you want to join our Rock stars team at jobs@famosos.com"
+    }
+  ],
+  "1P7TX2": [
+    {
+      "type": 0,
+      "value": "Add background"
     }
   ],
   "1U8RoX": [
     {
       "type": 0,
-      "value": "Keep this tab open while your information is valid"
+      "value": "Keep this window open for as long as your information is valid"
     }
   ],
   "1UwvvG": [
     {
       "type": 0,
-      "value": "We couldn't  save your change. Try again."
+      "value": "Your change could not be saved. Try again."
     }
   ],
   "1YGzpj": [
@@ -181,34 +293,72 @@
       "value": "Congratulations!"
     }
   ],
+  "1fQZLR": [
+    {
+      "type": 0,
+      "value": "Rate your video"
+    }
+  ],
+  "1h2fIf": [
+    {
+      "type": 0,
+      "value": "This is a preview where the functionalities are disabled"
+    }
+  ],
   "1iUuaq": [
     {
       "type": 0,
       "value": "Congratulations! Your payment has been approved"
     }
   ],
+  "1mCucj": [
+    {
+      "type": 0,
+      "value": "Copied link"
+    }
+  ],
   "21fIxh": [
     {
       "type": 0,
-      "value": "You must select a payment card"
+      "value": "You must select a card"
     }
   ],
   "23rhxu": [
     {
       "type": 0,
-      "value": "If the problem persists you can contact our support team at>experiences@famosos.com/a> for more information."
+      "value": "If the problem persists you can contact our support team at "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " experiences@famosos.com "
+        }
+      ],
+      "type": 8,
+      "value": "a"
+    },
+    {
+      "type": 0,
+      "value": " for more information."
     }
   ],
   "2Ctir8": [
     {
       "type": 0,
-      "value": "Can you guarantee my video will be recorded?"
+      "value": "Do you guarantee that my video will be recorded?"
     }
   ],
   "2O8ofL": [
     {
       "type": 0,
-      "value": "From:"
+      "value": "Of:"
+    }
+  ],
+  "2Oaz9p": [
+    {
+      "type": 0,
+      "value": "See video details"
     }
   ],
   "2U8U6B": [
@@ -217,22 +367,68 @@
       "value": "Famosos.com - Trends"
     }
   ],
+  "2UVQgP": [
+    {
+      "type": 0,
+      "value": "We will notify "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "email_client"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "emailSpan"
+    },
+    {
+      "type": 0,
+      "value": " when your payment has been approved."
+    }
+  ],
+  "2W3bDC": [
+    {
+      "type": 0,
+      "value": "Write something here ..."
+    }
+  ],
   "2Wnegw": [
     {
       "type": 0,
-      "value": "Can the celebrity not record my request?"
+      "value": "Can the celebrity not record my application?"
     }
   ],
   "2XI8xH": [
     {
       "type": 0,
-      "value": "Payment card holder’s mail"
+      "value": "Cardholder email"
+    }
+  ],
+  "2fEWqk": [
+    {
+      "type": 0,
+      "value": "If for some reason your video could not be recorded, your money will be available again within approximately 1 to 10 business days."
     }
   ],
   "2iUQj7": [
     {
       "type": 0,
-      "value": "You have not yet made a hiring"
+      "value": "You have not yet made a contract"
+    }
+  ],
+  "2jPDZm": [
+    {
+      "type": 0,
+      "value": "If for some reason your video could not be recorded, your money will be available again within a maximum period of approximately 21 business days depending on your bank."
     }
   ],
   "2rdLv9": [
@@ -241,22 +437,70 @@
       "value": "Tiktok"
     }
   ],
+  "2vW0rZ": [
+    {
+      "type": 0,
+      "value": "Preview"
+    }
+  ],
   "3Dy+Ix": [
     {
       "type": 0,
-      "value": "Look for celebrities"
+      "value": "Search famous"
+    }
+  ],
+  "3Eep57": [
+    {
+      "type": 0,
+      "value": "Recipient's email "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " (You can add multiple emails separating them with a comma) "
+        }
+      ],
+      "type": 8,
+      "value": "multipleRecipientsSpan"
+    }
+  ],
+  "3FJ3+/": [
+    {
+      "type": 0,
+      "value": "Shipping date"
     }
   ],
   "3GqTly": [
     {
       "type": 0,
-      "value": "Write your email here"
+      "value": "Write here the email"
+    }
+  ],
+  "3H3r3i": [
+    {
+      "type": 0,
+      "value": "You must enter a maximum of "
+    },
+    {
+      "type": 1,
+      "value": "maxLength"
+    },
+    {
+      "type": 0,
+      "value": " characters"
+    }
+  ],
+  "3Iqk85": [
+    {
+      "type": 0,
+      "value": "Notification WhatsApp (optional)"
     }
   ],
   "3IrNpH": [
     {
       "type": 0,
-      "value": "TRANSACTION ID:"
+      "value": "TRANSACTION'S ID:"
     }
   ],
   "3O5yL3": [
@@ -266,7 +510,7 @@
     },
     {
       "type": 0,
-      "value": " donates its revenue to: "
+      "value": " donates your income to: "
     },
     {
       "children": [
@@ -290,13 +534,33 @@
   "3Szr5X": [
     {
       "type": 0,
-      "value": "Sign up with Google"
+      "value": "Register with Google"
     }
   ],
   "3T2iOg": [
     {
       "type": 0,
       "value": "Ukraine"
+    }
+  ],
+  "3g8nsJ": [
+    {
+      "type": 0,
+      "value": "Enjoy your video "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": " !"
+    }
+  ],
+  "3m5UDg": [
+    {
+      "type": 0,
+      "value": "Cut preview"
     }
   ],
   "3mq/Uo": [
@@ -308,7 +572,13 @@
   "3pxwni": [
     {
       "type": 0,
-      "value": "Verification of payment card authenticity"
+      "value": "Card authenticity verification"
+    }
+  ],
+  "3tI8TJ": [
+    {
+      "type": 0,
+      "value": "* You can edit your video instructions and delivery information while your video is pending recording."
     }
   ],
   "3tygVI": [
@@ -318,7 +588,13 @@
     },
     {
       "type": 0,
-      "value": "/400 characters allowed"
+      "value": " / 400 characters allowed"
+    }
+  ],
+  "4/miEe": [
+    {
+      "type": 0,
+      "value": "See more"
     }
   ],
   "42Gn99": [
@@ -330,31 +606,47 @@
   "4BNPS0": [
     {
       "type": 0,
-      "value": "Social Media"
+      "value": "Social network"
     }
   ],
   "4FqAB/": [
     {
       "type": 0,
-      "value": "My Hires"
+      "value": "My Contracts"
     }
   ],
   "4MRzR1": [
     {
       "type": 0,
-      "value": "We will notify you when your video is already recorded and available for viewing and sharing"
+      "value": "We will notify you when your video is already recorded and available to view and share"
+    }
+  ],
+  "4OFKuk": [
+    {
+      "type": 0,
+      "value": "musicians"
     }
   ],
   "4YpaCX": [
     {
       "type": 0,
-      "value": "Log in to add a comment"
+      "value": "Sign in to add a comment"
     }
   ],
   "4aS11Q": [
     {
       "type": 0,
       "value": "Apply"
+    }
+  ],
+  "4dMZxB": [
+    {
+      "type": 0,
+      "value": "To: "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
     }
   ],
   "4fXI87": [
@@ -374,13 +666,13 @@
   "4r0tXK": [
     {
       "type": 0,
-      "value": "Price: From high to low"
+      "value": "Price: From Highest to Lowest"
     }
   ],
   "4rhIbe": [
     {
       "type": 0,
-      "value": "No celebrity "
+      "value": "Could not find a "
     },
     {
       "type": 1,
@@ -388,10 +680,14 @@
     },
     {
       "type": 0,
-      "value": " was found with the user "
+      "value": " with user "
     },
     {
       "children": [
+        {
+          "type": 0,
+          "value": " "
+        }
       ],
       "type": 8,
       "value": "br"
@@ -403,12 +699,26 @@
     {
       "children": [
         {
+          "type": 0,
+          "value": " "
+        },
+        {
           "type": 1,
           "value": "celebrityUsername"
+        },
+        {
+          "type": 0,
+          "value": " "
         }
       ],
       "type": 8,
       "value": "span"
+    }
+  ],
+  "4ujRn4": [
+    {
+      "type": 0,
+      "value": "Processing"
     }
   ],
   "4xmXcX": [
@@ -423,34 +733,64 @@
       "value": "Peru"
     }
   ],
+  "51BXv1": [
+    {
+      "type": 0,
+      "value": "Choose the payment method you prefer and complete the process. Payments are 100% secure. In 7 days or less you will receive your video!"
+    }
+  ],
   "52kdGd": [
     {
       "type": 0,
       "value": "Puerto Rico"
     }
   ],
+  "5CwX6l": [
+    {
+      "type": 0,
+      "value": "Tell us something about your experience"
+    }
+  ],
   "5EACDj": [
     {
       "type": 0,
-      "value": "You must write a valid email"
+      "value": "You must enter a valid email"
     }
   ],
   "5HHVOz": [
     {
       "type": 0,
-      "value": "Log out"
+      "value": "Sign off"
     }
   ],
   "5KDn6A": [
     {
       "type": 0,
-      "value": "ID DE SEGUIMIENTO:"
+      "value": "TRACKING ID:"
+    }
+  ],
+  "5Y1WX+": [
+    {
+      "type": 0,
+      "value": "influencers"
+    }
+  ],
+  "5Z+zv8": [
+    {
+      "type": 0,
+      "value": "Application start date:"
+    }
+  ],
+  "5anEzm": [
+    {
+      "type": 0,
+      "value": "Slopes"
     }
   ],
   "5fTLVa": [
     {
       "type": 0,
-      "value": "If you pay by international credit card, we make an authorization of the charge and we only make the actual charge when the request is completed by the celebrity. If you use another payment method you must pay before your video is made."
+      "value": "If you pay with an international credit card, we authorize the payment and only make the actual payment when the request is completed by the celebrity. If you use another payment method, you must pay before your video is made."
     }
   ],
   "5gmrTZ": [
@@ -468,31 +808,37 @@
   "5jWuaC": [
     {
       "type": 0,
-      "value": "Did you forget your password?"
+      "value": "Did you forget your password"
     }
   ],
   "5sQzpi": [
     {
       "type": 0,
-      "value": "Failed to authenticate this payment card correctly"
+      "value": "Could not authenticate this card correctly"
     }
   ],
   "66AwbQ": [
     {
       "type": 0,
-      "value": "Can I edit my video request after I make it?"
+      "value": "Can I edit my video request after making it?"
     }
   ],
   "67YQ5Y": [
     {
       "type": 0,
-      "value": "From : "
+      "value": "Of :"
+    }
+  ],
+  "6DrtJp": [
+    {
+      "type": 0,
+      "value": "Click on the following button to make the payment using your paypal account."
     }
   ],
   "6O+PLI": [
     {
       "type": 0,
-      "value": "Home"
+      "value": "Start"
     }
   ],
   "6aQTMU": [
@@ -501,16 +847,34 @@
       "value": "Please select an option"
     }
   ],
+  "6fC5va": [
+    {
+      "type": 0,
+      "value": "Enjoy your video!"
+    }
+  ],
   "6i3tAy": [
     {
       "type": 0,
       "value": "The charge that will be made in dollars is:"
     }
   ],
+  "6q/+DN": [
+    {
+      "type": 0,
+      "value": "Add a comment"
+    }
+  ],
   "6qOZYA": [
     {
       "type": 0,
       "value": "Cuba"
+    }
+  ],
+  "6vLMdU": [
+    {
+      "type": 0,
+      "value": "CUI"
     }
   ],
   "6y8Fx1": [
@@ -533,10 +897,28 @@
       "value": " for more information."
     }
   ],
+  "7OWxfz": [
+    {
+      "type": 0,
+      "value": "I want to join"
+    }
+  ],
   "7Vvfe3": [
     {
       "type": 0,
       "value": "Required field"
+    }
+  ],
+  "7aMcUZ": [
+    {
+      "type": 0,
+      "value": "Higher at lower price"
+    }
+  ],
+  "7d2BcH": [
+    {
+      "type": 0,
+      "value": "Add a photo"
     }
   ],
   "7qAY7x": [
@@ -545,28 +927,62 @@
       "value": "Your payment is pending approval."
     }
   ],
+  "7w7MSk": [
+    {
+      "type": 0,
+      "value": "We have sent your request to "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": " , your video will be recorded within "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " 1 to 7 days "
+        }
+      ],
+      "type": 8,
+      "value": "textBold"
+    },
+    {
+      "type": 0,
+      "value": " ."
+    }
+  ],
   "8+5qCg": [
     {
       "type": 0,
-      "value": "correo@dominio.com"
+      "value": "mail@domain.com"
+    }
+  ],
+  "85GhLR": [
+    {
+      "type": 0,
+      "value": "Copy link"
     }
   ],
   "8F0yts": [
     {
       "type": 0,
-      "value": "If for any reason your video could not be recorded, we will contact and notify you."
+      "value": "If for any reason your video could not be recorded, we will contact you to notify you."
     }
   ],
   "8IF6tp": [
     {
       "type": 0,
-      "value": "Proceed to checkout"
+      "value": "Finalize purchase"
     }
   ],
   "8LqOa5": [
     {
       "type": 0,
-      "value": "Sorry, this page wasn't found"
+      "value": "Sorry, this page was not found"
     }
   ],
   "8aSVvh": [
@@ -586,13 +1002,19 @@
     },
     {
       "type": 0,
-      "value": " to say ?"
+      "value": " say?"
+    }
+  ],
+  "8gNONp": [
+    {
+      "type": 0,
+      "value": "Enter a list of valid emails"
     }
   ],
   "8mH/y7": [
     {
       "type": 0,
-      "value": "Birthdate field is required"
+      "value": "The date of birth field is required"
     }
   ],
   "8nG5TB": [
@@ -628,7 +1050,7 @@
   "9NLj0T": [
     {
       "type": 0,
-      "value": "Receive Personalized Videos from Famous People to your WhatsApp"
+      "value": "Receive Personalized Video Messages from Celebrities to your WhatsApp"
     }
   ],
   "9Ooije": [
@@ -641,6 +1063,18 @@
       "value": " fan club at Famosos.com. Book your personalized video and enjoy unique experiences."
     }
   ],
+  "9UCdEt": [
+    {
+      "type": 0,
+      "value": "Results for:"
+    }
+  ],
+  "9aKju1": [
+    {
+      "type": 0,
+      "value": "Categories:"
+    }
+  ],
   "9etNPX": [
     {
       "type": 1,
@@ -651,16 +1085,72 @@
       "value": " Stars"
     }
   ],
+  "9hu98P": [
+    {
+      "type": 0,
+      "value": "This special video for you"
+    }
+  ],
   "9mcAHp": [
     {
       "type": 0,
       "value": "ADDED COUPON"
     }
   ],
+  "9nVpp5": [
+    {
+      "type": 0,
+      "value": "Buy custom video"
+    }
+  ],
+  "9tGcKs": [
+    {
+      "type": 0,
+      "value": "PAYMENT DATE: "
+    },
+    {
+      "type": 1,
+      "value": "formattedPaymentDate"
+    }
+  ],
+  "9vRrHM": [
+    {
+      "type": 0,
+      "value": "Tracking ID:"
+    }
+  ],
+  "A4bSA+": [
+    {
+      "type": 0,
+      "value": "Older"
+    }
+  ],
+  "A88cVx": [
+    {
+      "type": 0,
+      "value": "Route:"
+    }
+  ],
+  "AC8fsr": [
+    {
+      "type": 0,
+      "value": "Download APP from app Gallery"
+    }
+  ],
+  "AFSmrE": [
+    {
+      "type": 1,
+      "value": "deliveryFrom"
+    },
+    {
+      "type": 0,
+      "value": " has sent you a very special gift"
+    }
+  ],
   "AGCHbI": [
     {
       "type": 0,
-      "value": "The pre-authorisation of the collection to your account has been carried out successfully"
+      "value": "The pre-authorization of the payment to your account has been carried out successfully"
     }
   ],
   "AHNK8a": [
@@ -669,10 +1159,28 @@
       "value": "DNI or CUIT"
     }
   ],
+  "AHqqkc": [
+    {
+      "type": 0,
+      "value": "Share on Facebook"
+    }
+  ],
+  "AIP+EA": [
+    {
+      "type": 0,
+      "value": "Video Favorites"
+    }
+  ],
+  "AObt3/": [
+    {
+      "type": 0,
+      "value": "Aggregate"
+    }
+  ],
   "ARhEHP": [
     {
       "type": 0,
-      "value": "Loading…"
+      "value": "Loading..."
     }
   ],
   "AT8g/J": [
@@ -688,7 +1196,7 @@
       "children": [
         {
           "type": 0,
-          "value": "7 days"
+          "value": " 7 days "
         }
       ],
       "type": 8,
@@ -696,7 +1204,17 @@
     },
     {
       "type": 0,
-      "value": " to record your video from today."
+      "value": " to record your video starting today."
+    }
+  ],
+  "AW2wD8": [
+    {
+      "type": 1,
+      "value": "contractData"
+    },
+    {
+      "type": 0,
+      "value": " custom video"
     }
   ],
   "AWmP/v": [
@@ -708,7 +1226,7 @@
   "AZgVtc": [
     {
       "type": 0,
-      "value": "If everything is fine with your request according to our policies, you will soon be able to enjoy your video message."
+      "value": "If all is well with your request according to our policies, very soon you will be able to enjoy your video message."
     }
   ],
   "Aa51Eo": [
@@ -718,6 +1236,10 @@
     },
     {
       "children": [
+        {
+          "type": 0,
+          "value": " "
+        }
       ],
       "type": 8,
       "value": "br"
@@ -730,7 +1252,7 @@
   "AcGanx": [
     {
       "type": 0,
-      "value": "Go to My Hires"
+      "value": "Go to My Contracts"
     }
   ],
   "AnfpP+": [
@@ -739,28 +1261,52 @@
       "value": "Flash delivery"
     }
   ],
+  "Ar6F4V": [
+    {
+      "type": 0,
+      "value": "Minimum"
+    }
+  ],
   "AxR3rx": [
     {
       "type": 0,
       "value": "Where can I find more information about your policies?"
     }
   ],
+  "B0eU/X": [
+    {
+      "type": 0,
+      "value": "Instructions"
+    }
+  ],
+  "B476MI": [
+    {
+      "type": 0,
+      "value": "Add"
+    }
+  ],
   "BEkIWA": [
     {
       "type": 0,
-      "value": "Write your Subdomain Ej: /andresito"
+      "value": "Write your Subdomain Ex: / andresito"
+    }
+  ],
+  "BHSyD0": [
+    {
+      "type": 0,
+      "value": "Change Password"
     }
   ],
   "BI4zr5": [
     {
       "type": 0,
-      "value": "Also receive a "
+      "value": "It also receives a "
     },
     {
       "children": [
         {
           "type": 0,
-          "value": " 10% OFF. "
+          "value": " 10% OF DCTO. "
         }
       ],
       "type": 8,
@@ -771,10 +1317,22 @@
       "value": " on your first purchase"
     }
   ],
+  "BUlyqM": [
+    {
+      "type": 0,
+      "value": "All rights reserved"
+    }
+  ],
+  "BXFGgd": [
+    {
+      "type": 0,
+      "value": "Everything will work out, life is wise."
+    }
+  ],
   "BiLnNi": [
     {
       "type": 0,
-      "value": "What if I don’t like my video?"
+      "value": "What if I don't like my video?"
     }
   ],
   "Bo4qJd": [
@@ -783,28 +1341,34 @@
       "value": "NOT VALID COUPON:"
     }
   ],
+  "BpkuDb": [
+    {
+      "type": 0,
+      "value": "See proof of payment"
+    }
+  ],
   "BqJL4O": [
     {
       "type": 0,
-      "value": "Flash delivery (< 24 hrs)"
+      "value": "Flash delivery ( < 24 hrs)"
     }
   ],
   "C2NeSp": [
     {
       "type": 0,
-      "value": "Notification language changed successfully."
+      "value": "Notification language changed successfully"
     }
   ],
   "C2oD0J": [
     {
       "type": 0,
-      "value": "View more"
+      "value": "see more"
     }
   ],
   "C3VDYt": [
     {
       "type": 0,
-      "value": "How much does a video on Famosos.com cost?"
+      "value": "How much does a video cost on Famosos.com?"
     }
   ],
   "CPOpnr": [
@@ -819,28 +1383,80 @@
       "value": "Try again"
     }
   ],
+  "Ce/K16": [
+    {
+      "type": 0,
+      "value": "Please enter all data"
+    }
+  ],
   "CfGC5M": [
     {
       "type": 0,
-      "value": "You will be redirected to the official PayPal website to continue payment."
+      "value": "You will be redirected to the official PayPal page to continue with the payment."
+    }
+  ],
+  "CjowzQ": [
+    {
+      "type": 0,
+      "value": "Date of birth"
+    }
+  ],
+  "Cnbfa0": [
+    {
+      "type": 0,
+      "value": "Everything is possible if you believe it. Dream and live big."
+    }
+  ],
+  "D3lmBE": [
+    {
+      "type": 0,
+      "value": "Ex: Pibe Valderrama, Netflix, Musicians, Mexico ..."
     }
   ],
   "DNBYPO": [
     {
       "type": 0,
-      "value": "Payment card data"
+      "value": "Card data"
+    }
+  ],
+  "DQaxdT": [
+    {
+      "type": 0,
+      "value": "Sorry "
+    },
+    {
+      "type": 1,
+      "value": "userName"
     }
   ],
   "DSSs0B": [
     {
       "type": 0,
-      "value": "Our team will analyze your request and contact you very soon."
+      "value": "Our team will analyze your request and will contact you very soon."
     }
   ],
   "DSqpBf": [
     {
       "type": 0,
       "value": "Transaction Reference:"
+    }
+  ],
+  "DTfzQX": [
+    {
+      "type": 0,
+      "value": "Page "
+    },
+    {
+      "type": 1,
+      "value": "currentPage"
+    },
+    {
+      "type": 0,
+      "value": " of "
+    },
+    {
+      "type": 1,
+      "value": "totalPages"
     }
   ],
   "DVO6hk": [
@@ -858,13 +1474,37 @@
   "DmXn7V": [
     {
       "type": 0,
-      "value": "Our team will analyze your application and contact you very soon."
+      "value": "Our team will analyze your request and will contact you very soon."
     }
   ],
   "Dn7sTk": [
     {
       "type": 0,
-      "value": "Electronic mail of notification"
+      "value": "Notification email"
+    }
+  ],
+  "Dq6Mnq": [
+    {
+      "type": 0,
+      "value": "Men"
+    }
+  ],
+  "Ds81mh": [
+    {
+      "type": 0,
+      "value": "You will be redirected to the official paypal page to continue with the payment"
+    }
+  ],
+  "Dyg4La": [
+    {
+      "type": 0,
+      "value": "Card color"
+    }
+  ],
+  "Dyo3QV": [
+    {
+      "type": 0,
+      "value": "Latest Ratings"
     }
   ],
   "Dzm3HT": [
@@ -873,10 +1513,32 @@
       "value": "Category"
     }
   ],
+  "E101Yn": [
+    {
+      "type": 0,
+      "value": "The "
+    },
+    {
+      "type": 1,
+      "value": "adjectives"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "type": 1,
+      "value": "lineBreak"
+    },
+    {
+      "type": 0,
+      "value": " just a click away."
+    }
+  ],
   "E5uLnQ": [
     {
       "type": 0,
-      "value": "You can write anything to hola@famosos.com. One of us will contact you as soon as possible."
+      "value": "You can write anything to us at hello@famosos.com. One of us will contact you as soon as possible."
     }
   ],
   "ETd2VN": [
@@ -885,16 +1547,28 @@
       "value": "The latest posts from your favorite celebrities."
     }
   ],
+  "EUdVSH": [
+    {
+      "type": 0,
+      "value": "Expired"
+    }
+  ],
   "EbbVcC": [
     {
       "type": 0,
       "value": "Uruguay"
     }
   ],
+  "EdaGK7": [
+    {
+      "type": 0,
+      "value": "Filter contracts"
+    }
+  ],
   "EoWjUN": [
     {
       "type": 0,
-      "value": "Password field is required."
+      "value": "The password field is required"
     }
   ],
   "Eq0gTc": [
@@ -912,7 +1586,7 @@
   "ErSRb8": [
     {
       "type": 0,
-      "value": "Select a payment card"
+      "value": "Select a card"
     }
   ],
   "EwT5kN": [
@@ -921,25 +1595,103 @@
       "value": "or sign up with your email"
     }
   ],
+  "F6aLD7": [
+    {
+      "type": 0,
+      "value": "Youtuber"
+    }
+  ],
+  "FSBR9V": [
+    {
+      "type": 0,
+      "value": "See more results for"
+    }
+  ],
+  "FXFBTJ": [
+    {
+      "type": 0,
+      "value": "Access exclusive content "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " from "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": " ."
+    }
+  ],
+  "FeMY25": [
+    {
+      "type": 0,
+      "value": "Keep editing"
+    }
+  ],
+  "Fi7MJz": [
+    {
+      "type": 0,
+      "value": "Celebrity video poster"
+    }
+  ],
   "FnHHT0": [
     {
       "type": 0,
-      "value": "Saving…"
+      "value": "Saving ..."
     }
   ],
   "FrT1vp": [
     {
       "type": 0,
-      "value": "Successful repayment"
+      "value": "Successful refund"
+    }
+  ],
+  "Fz8NGA": [
+    {
+      "type": 0,
+      "value": "Payment methods"
+    }
+  ],
+  "G+xfjz": [
+    {
+      "type": 0,
+      "value": "Check out this video from "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": " for "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": " ."
     }
   ],
   "G/1O13": [
     {
       "type": 0,
-      "value": "No results were found "
+      "value": "No results found "
     },
     {
       "children": [
+        {
+          "type": 0,
+          "value": " "
+        }
       ],
       "type": 8,
       "value": "br"
@@ -954,19 +1706,63 @@
     },
     {
       "type": 0,
-      "value": "."
+      "value": " ."
+    }
+  ],
+  "G2AbKk": [
+    {
+      "type": 0,
+      "value": "At any time you can check the status of your "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " requests here. "
+        }
+      ],
+      "type": 8,
+      "value": "myHiringsLink"
+    }
+  ],
+  "G7ND1f": [
+    {
+      "type": 0,
+      "value": "I would like to request the return receipt of my contract with the reference "
+    },
+    {
+      "type": 1,
+      "value": "contractReference"
     }
   ],
   "GFgV31": [
     {
       "type": 0,
-      "value": "Yes! We invite you to create an account and write your favorite celebrities. Every time one of your favorite celebrities joins Famosos.com you will receive an email informing you. We also invite you to suggest celebrities through your social media."
+      "value": "Yes! We invite you to create an account and write your favorite celebrities. Every time one of your favorite celebrities joins Famosos.com you will receive an email informing you. We also invite you to suggest celebrities through your social networks."
     }
   ],
   "GL9Msi": [
     {
       "type": 0,
       "value": "Spain"
+    }
+  ],
+  "GRUlng": [
+    {
+      "type": 0,
+      "value": "We apologize, we are fixing the problem."
+    }
+  ],
+  "GTxSvb": [
+    {
+      "type": 0,
+      "value": "Congratulations! Your payment has been approved."
+    }
+  ],
+  "GZ6Khv": [
+    {
+      "type": 0,
+      "value": "Chefs"
     }
   ],
   "GbabRf": [
@@ -981,22 +1777,54 @@
       "value": "For me"
     }
   ],
+  "Gh5aSY": [
+    {
+      "type": 0,
+      "value": "Let's go "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": " !"
+    }
+  ],
   "H4PL1G": [
     {
       "type": 0,
       "value": "Paypal"
     }
   ],
+  "H7jlFR": [
+    {
+      "type": 0,
+      "value": "Delivery time"
+    }
+  ],
+  "H8XmFS": [
+    {
+      "type": 0,
+      "value": "My shopping cart"
+    }
+  ],
+  "H8rz3A": [
+    {
+      "type": 0,
+      "value": "See all ratings"
+    }
+  ],
   "HEGBTi": [
     {
       "type": 0,
-      "value": "You must write a valid date. Example: 2020-06-25"
+      "value": "You must enter a valid date. Example: 2020-06-25"
     }
   ],
   "HG1X7k": [
     {
       "type": 0,
-      "value": "Payout completed"
+      "value": "Payment completed"
     }
   ],
   "HINYAw": [
@@ -1023,10 +1851,32 @@
       "value": "Retry"
     }
   ],
+  "Hq/PMS": [
+    {
+      "type": 0,
+      "value": "Less than 5 days"
+    }
+  ],
+  "I+sQLv": [
+    {
+      "type": 0,
+      "value": "Life is more beautiful with smiles and laughter!"
+    }
+  ],
   "IEazN6": [
     {
       "type": 0,
       "value": "Influencers"
+    }
+  ],
+  "IHdBTF": [
+    {
+      "type": 0,
+      "value": "Photo of "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
     }
   ],
   "IHp09g": [
@@ -1035,10 +1885,22 @@
       "value": "Can I download my video?"
     }
   ],
+  "IRHU1q": [
+    {
+      "type": 0,
+      "value": "Your WhatsApp application will open so you can send it directly."
+    }
+  ],
   "IdELJG": [
     {
       "type": 0,
       "value": "Login with Google"
+    }
+  ],
+  "IdffHT": [
+    {
+      "type": 0,
+      "value": "I want to receive exclusive offers and benefits."
     }
   ],
   "IeYjFw": [
@@ -1047,22 +1909,34 @@
       "value": "Nicaragua"
     }
   ],
+  "Ijqmqc": [
+    {
+      "type": 0,
+      "value": "Send immediately"
+    }
+  ],
   "Isy4qq": [
     {
       "type": 0,
-      "value": "Famoso"
+      "value": "Famous"
     }
   ],
   "Iuyaxf": [
     {
       "type": 0,
-      "value": "Read more…"
+      "value": "Read more..."
     }
   ],
   "IxXZto": [
     {
       "type": 0,
-      "value": "Who is sending the video."
+      "value": "Of:"
+    }
+  ],
+  "IxZXG8": [
+    {
+      "type": 0,
+      "value": "Learn more about this."
     }
   ],
   "J518q6": [
@@ -1077,22 +1951,60 @@
       "value": "Fitness"
     }
   ],
+  "J9EWR8": [
+    {
+      "type": 0,
+      "value": "Your video delivery was scheduled correctly"
+    }
+  ],
   "JILqD1": [
     {
       "type": 0,
-      "value": "Delete payment card?"
+      "value": "Delete card?"
     }
   ],
   "JNf21W": [
     {
       "type": 0,
-      "value": "We use our own and third-party cookies on our website to improve user experience, performance, analytics and other purposes. By clicking accept or use our site, you agree to the use of these cookies."
+      "value": "On our website we use our own and third-party cookies to improve the user experience, performance, analysis and other purposes. By clicking accept or use our site, you agree to the use of these cookies."
+    }
+  ],
+  "JS+isq": [
+    {
+      "type": 0,
+      "value": "Coupon"
+    }
+  ],
+  "JVnimT": [
+    {
+      "type": 0,
+      "value": "What does this mean?"
+    }
+  ],
+  "Ja4kqX": [
+    {
+      "type": 0,
+      "value": "Allow my video to be public"
     }
   ],
   "JiRPeP": [
     {
       "type": 0,
-      "value": "Currently you can not modify the request but very soon you will be able to do it!"
+      "value": "Currently you cannot modify the request but you will be able to do it very soon!"
+    }
+  ],
+  "JkASuT": [
+    {
+      "type": 0,
+      "value": "Your email has been updated "
+    },
+    {
+      "type": 1,
+      "value": "breakLine"
+    },
+    {
+      "type": 0,
+      "value": " successfully."
     }
   ],
   "Jv23M2": [
@@ -1101,16 +2013,62 @@
       "value": "Login with Facebook"
     }
   ],
+  "JwRL0x": [
+    {
+      "type": 0,
+      "value": "You must enter a name"
+    }
+  ],
+  "K/Cn6p": [
+    {
+      "type": 0,
+      "value": "Page background number "
+    },
+    {
+      "type": 1,
+      "value": "pageNumber"
+    }
+  ],
+  "K5mSnP": [
+    {
+      "type": 0,
+      "value": "Schedule shipping"
+    }
+  ],
   "K8SMPu": [
     {
       "type": 0,
-      "value": "Occasion:"
+      "value": "Chance:"
+    }
+  ],
+  "KD1y9G": [
+    {
+      "type": 0,
+      "value": "We have made the order to refund your money, keep in mind that due to the banking processes, it may take a maximum period of 21 business days to be available again, depending on your bank."
     }
   ],
   "KFphJU": [
     {
       "type": 0,
-      "value": "Pay"
+      "value": "To pay"
+    }
+  ],
+  "KKR2zp": [
+    {
+      "type": 0,
+      "value": "Price"
+    }
+  ],
+  "KLR+zI": [
+    {
+      "type": 0,
+      "value": "Maybe you might also be interested"
+    }
+  ],
+  "KW1y+x": [
+    {
+      "type": 0,
+      "value": "Enter the security code that we send to your cell phone"
     }
   ],
   "Kb3TOE": [
@@ -1128,7 +2086,7 @@
   "KjMaxy": [
     {
       "type": 0,
-      "value": "How can I request "
+      "value": "How do I request "
     },
     {
       "type": 1,
@@ -1144,13 +2102,19 @@
     },
     {
       "type": 0,
-      "value": " video message in Famosos?"
+      "value": " video message on Famosos?"
     }
   ],
   "KkJHVF": [
     {
       "type": 0,
       "value": "Watch video"
+    }
+  ],
+  "KkuV5e": [
+    {
+      "type": 0,
+      "value": "Recording date:"
     }
   ],
   "L08n/M": [
@@ -1169,10 +2133,34 @@
       "value": "signUpLink"
     }
   ],
+  "L3JUzt": [
+    {
+      "type": 0,
+      "value": "Who submits the video?"
+    }
+  ],
   "L6k2XE": [
     {
       "type": 0,
-      "value": "Live unique experiences with hundreds of Latinamerican celebrities"
+      "value": "Live unique experiences with hundreds of famous Latinos."
+    }
+  ],
+  "LKGytJ": [
+    {
+      "type": 0,
+      "value": "Your account information"
+    }
+  ],
+  "LN0I40": [
+    {
+      "type": 0,
+      "value": "Debit or credit card"
+    }
+  ],
+  "LPelkN": [
+    {
+      "type": 0,
+      "value": "Notification email"
     }
   ],
   "Lbiy9R": [
@@ -1184,31 +2172,49 @@
   "LeHkTO": [
     {
       "type": 0,
-      "value": "What is Famosos.com? Famosos is a platform where you can buy video messages of your favorite celebrities. How can I buy a video?"
+      "value": "What is Famosos.com? Famous is a platform where you can buy video messages of your favorite celebrities. How can I buy a video?"
     }
   ],
   "LsqQep": [
     {
       "type": 0,
-      "value": "View the privacy policies"
+      "value": "See privacy policies"
     }
   ],
   "M0lpBr": [
     {
       "type": 0,
-      "value": "Famosos is a platform where you can buy video messages from your favorite celebrities. A video message can be a birthday message, a message of congratulations, a recovery soon message, a question to the celebrity, among others. Our mission is to deliver experiences through video messages."
+      "value": "Famous is a platform where you can buy video messages of your favorite celebrities. A video message can be a birthday message, a congratulations message, a get well soon message, a question to the famous person among others. Our mission is to deliver experiences through video messages."
+    }
+  ],
+  "M4SIuQ": [
+    {
+      "type": 0,
+      "value": "Who will receive the video?"
     }
   ],
   "M6qLyM": [
     {
       "type": 0,
-      "value": "Profile image"
+      "value": "Profile picture"
     }
   ],
   "M97czA": [
     {
       "type": 0,
       "value": "Dominican Republic (the)"
+    }
+  ],
+  "MJ2jZQ": [
+    {
+      "type": 0,
+      "value": "Total"
+    }
+  ],
+  "MJ2jpX": [
+    {
+      "type": 0,
+      "value": "Go to my requests"
     }
   ],
   "ML6BTv": [
@@ -1220,13 +2226,13 @@
   "MMb74M": [
     {
       "type": 0,
-      "value": "You must write a date"
+      "value": "You must enter a date"
     }
   ],
   "MQJt4R": [
     {
       "type": 0,
-      "value": "On process… "
+      "value": "Processing ..."
     }
   ],
   "MSP5Du": [
@@ -1243,6 +2249,36 @@
     {
       "type": 0,
       "value": " has 7 days to record your video from now on."
+    }
+  ],
+  "MU26/N": [
+    {
+      "type": 0,
+      "value": "I would like to request proof of payment of my contract with the reference "
+    },
+    {
+      "type": 1,
+      "value": "contractReference"
+    }
+  ],
+  "MY9PYO": [
+    {
+      "type": 0,
+      "value": "Change Password"
+    }
+  ],
+  "MYOAnX": [
+    {
+      "type": 1,
+      "value": "fullName"
+    },
+    {
+      "type": 0,
+      "value": " donates your income to: "
+    },
+    {
+      "type": 1,
+      "value": "causeName"
     }
   ],
   "MdA9+B": [
@@ -1263,16 +2299,40 @@
       "value": "Log in"
     }
   ],
+  "MyGFHf": [
+    {
+      "type": 0,
+      "value": "Complete the purchase process."
+    }
+  ],
   "MyQOKB": [
     {
       "type": 0,
-      "value": "Visit Famosos.com, select or search for your favorite celebrity. Click on hire my celebrity. We are working on various payment methods so you can purchase your video."
+      "value": "Enter Famosos.com, select or search for your favorite famous. Click on hire my celebrity. We are working on various payment methods so that you can purchase your video."
+    }
+  ],
+  "N6puFB": [
+    {
+      "type": 0,
+      "value": "Hello "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": " ! Look at the gift I have given you through Famosos.com "
+    },
+    {
+      "type": 1,
+      "value": "link"
     }
   ],
   "N9nBRn": [
     {
       "type": 0,
-      "value": "And that is it! In a short "
+      "value": "And ready! shortly "
     },
     {
       "type": 1,
@@ -1288,7 +2348,7 @@
     },
     {
       "type": 0,
-      "value": " you will receive your "
+      "value": " will receive your "
     },
     {
       "type": 1,
@@ -1299,10 +2359,22 @@
       "value": " video message."
     }
   ],
+  "NIMiei": [
+    {
+      "type": 0,
+      "value": "Show less"
+    }
+  ],
   "NLbEhA": [
     {
       "type": 0,
       "value": "Give us your email and you can reset your password."
+    }
+  ],
+  "NPogCC": [
+    {
+      "type": 0,
+      "value": "Please select a card."
     }
   ],
   "NROWdz": [
@@ -1311,16 +2383,28 @@
       "value": "Your favorites"
     }
   ],
+  "NTptw6": [
+    {
+      "type": 0,
+      "value": "delivered"
+    }
+  ],
   "NgDJE/": [
     {
       "type": 0,
-      "value": "How can I work in Famosos?"
+      "value": "How can I work with Famosos?"
+    }
+  ],
+  "NizjcU": [
+    {
+      "type": 0,
+      "value": "Confirm your password"
     }
   ],
   "Nizqzm": [
     {
       "type": 0,
-      "value": "Choose your celebrity and request the message."
+      "value": "Choose your Celebrity and request the message."
     }
   ],
   "Nrtdo8": [
@@ -1338,7 +2422,17 @@
   "NyA8g2": [
     {
       "type": 0,
-      "value": "Back to top"
+      "value": "go back up"
+    }
+  ],
+  "NzXESZ": [
+    {
+      "type": 0,
+      "value": "Go to the profile of "
+    },
+    {
+      "type": 1,
+      "value": "fullName"
     }
   ],
   "Nzh0Uv": [
@@ -1350,7 +2444,7 @@
   "O1JDs+": [
     {
       "type": 0,
-      "value": "If you want a commercial video for your brand click "
+      "value": "If you want a commercial video for your brand, click "
     },
     {
       "children": [
@@ -1369,10 +2463,16 @@
       "value": "Security code"
     }
   ],
+  "OCDYlj": [
+    {
+      "type": 0,
+      "value": "Expired"
+    }
+  ],
   "OOBCGL": [
     {
       "type": 0,
-      "value": "See our terms and conditions to see if your case applies for a refund."
+      "value": "Check our terms and conditions to see if your case applies for a refund."
     }
   ],
   "Odx1FO": [
@@ -1409,16 +2509,26 @@
       "value": "Be the first to add a comment."
     }
   ],
+  "OmeSvs": [
+    {
+      "type": 1,
+      "value": "currency"
+    },
+    {
+      "type": 0,
+      "value": " To be agreed"
+    }
+  ],
   "P6ZBac": [
     {
       "type": 0,
-      "value": "Please note: CVC = Code on the back of the card, CP/ZIP = Zip Code"
+      "value": "Please note: CVC = Code on the back of the card, CP / ZIP = Postal code"
     }
   ],
   "P8Dkhf": [
     {
       "type": 0,
-      "value": "Your request will be completed within 7 days"
+      "value": "Your request will be completed in less than 7 days"
     }
   ],
   "P9xOfc": [
@@ -1427,10 +2537,28 @@
       "value": "Enter the code here"
     }
   ],
+  "PDlatv": [
+    {
+      "type": 0,
+      "value": "Shipping time"
+    }
+  ],
+  "PFOGDG": [
+    {
+      "type": 0,
+      "value": "Share by e-mail"
+    }
+  ],
   "PZh7w+": [
     {
       "type": 0,
       "value": "Colombia"
+    }
+  ],
+  "Po4Dhk": [
+    {
+      "type": 0,
+      "value": "Of"
     }
   ],
   "Ps1z8P": [
@@ -1451,6 +2579,12 @@
       "value": "Social Security Number / SSN"
     }
   ],
+  "QMFjdU": [
+    {
+      "type": 0,
+      "value": "No results found"
+    }
+  ],
   "QXG+La": [
     {
       "type": 0,
@@ -1460,7 +2594,47 @@
   "Qdbxny": [
     {
       "type": 0,
-      "value": "How many stars do you give to this video?"
+      "value": "How many stars do you give this video?"
+    }
+  ],
+  "Qdk7qX": [
+    {
+      "type": 0,
+      "value": "Your mail application will open for you to send directly."
+    }
+  ],
+  "Qe3NFd": [
+    {
+      "type": 0,
+      "value": "You will receive a notification to "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "email_client"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "emailSpan"
+    },
+    {
+      "type": 0,
+      "value": " when your video is ready."
+    }
+  ],
+  "Qg3Nku": [
+    {
+      "type": 0,
+      "value": "You must select an occasion"
     }
   ],
   "Qgkwzh": [
@@ -1475,10 +2649,26 @@
       "value": "Password"
     }
   ],
+  "Qt8UnY": [
+    {
+      "type": 0,
+      "value": "Enjoy this video "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    }
+  ],
   "QtvgOo": [
     {
       "type": 0,
-      "value": "Chile"
+      "value": "chili"
+    }
+  ],
+  "R1OG9a": [
+    {
+      "type": 0,
+      "value": "Customize the message"
     }
   ],
   "RG+TGy": [
@@ -1490,7 +2680,7 @@
   "RMN4N0": [
     {
       "type": 0,
-      "value": "Declined payment"
+      "value": "Payment declined"
     }
   ],
   "RR1tnZ": [
@@ -1506,7 +2696,7 @@
     },
     {
       "type": 0,
-      "value": " OFF."
+      "value": " discount."
     }
   ],
   "RWLUps": [
@@ -1518,13 +2708,19 @@
   "Rcsl93": [
     {
       "type": 0,
-      "value": "Close"
+      "value": "To close"
     }
   ],
   "Rfh4ih": [
     {
       "type": 0,
-      "value": "My Profile"
+      "value": "My profile"
+    }
+  ],
+  "RhkFs0": [
+    {
+      "type": 0,
+      "value": "Your card details are not valid."
     }
   ],
   "RqwRuU": [
@@ -1533,10 +2729,22 @@
       "value": "Yes, delete"
     }
   ],
+  "RrHExI": [
+    {
+      "type": 0,
+      "value": "Let more celebrations like this come!"
+    }
+  ],
   "Ru6wDg": [
     {
       "type": 0,
-      "value": "Can I be notified if my favorite celebrity joins Famosos.com?"
+      "value": "Can you notify me if my favorite celebrity joins Famosos.com?"
+    }
+  ],
+  "S2QQo3": [
+    {
+      "type": 0,
+      "value": "No results found for:"
     }
   ],
   "SDtXEV": [
@@ -1548,7 +2756,7 @@
   "SFQJTa": [
     {
       "type": 0,
-      "value": "Famosos.com - Buy personalized video from "
+      "value": "Famosos.com - Buy custom video from "
     },
     {
       "type": 1,
@@ -1564,7 +2772,7 @@
   "SNXFr/": [
     {
       "type": 0,
-      "value": "By continuing you are accepting our terms "
+      "value": "By continuing you are accepting our "
     },
     {
       "children": [
@@ -1578,7 +2786,7 @@
     },
     {
       "type": 0,
-      "value": "  and our "
+      "value": " and our "
     },
     {
       "children": [
@@ -1591,16 +2799,42 @@
       "value": "linkPolicies"
     }
   ],
+  "SPZmUt": [
+    {
+      "type": 0,
+      "value": "Flash delivery"
+    }
+  ],
   "STAtvd": [
     {
       "type": 0,
       "value": "The comment has been updated."
     }
   ],
+  "Sazy62": [
+    {
+      "type": 0,
+      "value": "You must write a comment"
+    }
+  ],
   "ScPFOw": [
     {
       "type": 0,
       "value": "Bolivia (Plurinational State of)"
+    }
+  ],
+  "SeGQYf": [
+    {
+      "type": 0,
+      "value": "Page language "
+    },
+    {
+      "type": 1,
+      "value": "breakLine"
+    },
+    {
+      "type": 0,
+      "value": " and notifications"
     }
   ],
   "SijdbJ": [
@@ -1616,13 +2850,19 @@
   "Spo/Vy": [
     {
       "type": 0,
-      "value": "Home"
+      "value": "Go to start"
     }
   ],
   "SvDN5n": [
     {
       "type": 0,
-      "value": "Get your personalized video!"
+      "value": "Receive your personalized video!"
+    }
+  ],
+  "SzQc3w": [
+    {
+      "type": 0,
+      "value": "Countries"
     }
   ],
   "T3dwiQ": [
@@ -1631,10 +2871,38 @@
       "value": "Keep in mind:"
     }
   ],
+  "TKzSpv": [
+    {
+      "type": 0,
+      "value": "Pibe Valderrama, Netflix, Musicians, Mexico ..."
+    }
+  ],
   "TT/YZP": [
     {
       "type": 0,
       "value": "Privacy"
+    }
+  ],
+  "TUY+3/": [
+    {
+      "type": 0,
+      "value": "Your video request has been rejected. "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " Some of the reasons could be the following: "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " Your request is commercial, political or contained some offensive / sensitive request for the Famous."
     }
   ],
   "TXYzmT": [
@@ -1643,10 +2911,30 @@
       "value": "Confirm New Password"
     }
   ],
+  "Te3bnu": [
+    {
+      "type": 0,
+      "value": "Hi "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": " ! I would like that..."
+    }
+  ],
+  "TipTOm": [
+    {
+      "type": 0,
+      "value": "Delivered"
+    }
+  ],
   "TjibFs": [
     {
       "type": 0,
-      "value": "How much is the charge for my video?"
+      "value": "When do you charge me for my video?"
     }
   ],
   "TkvM0N": [
@@ -1658,25 +2946,49 @@
   "To88dw": [
     {
       "type": 0,
-      "value": "Download the Android app"
+      "value": "Download Android app"
+    }
+  ],
+  "TpY0zp": [
+    {
+      "type": 0,
+      "value": "athletes"
+    }
+  ],
+  "U+doZl": [
+    {
+      "type": 0,
+      "value": "Famous celebrities"
     }
   ],
   "U48f7q": [
     {
       "type": 0,
-      "value": "Go back to home"
+      "value": "Go back to start"
     }
   ],
   "UIware": [
     {
       "type": 0,
-      "value": "This email isn't registered in famosos.com"
+      "value": "This email is not registered in famous.com"
+    }
+  ],
+  "UJ1Xkp": [
+    {
+      "type": 0,
+      "value": "Please select an image smaller than 1MB."
+    }
+  ],
+  "ULAfXt": [
+    {
+      "type": 0,
+      "value": "user@domain.com"
     }
   ],
   "UOKryr": [
     {
       "type": 0,
-      "value": "How long does it take the video to be recorded?"
+      "value": "How long does it take for a video to be recorded?"
     }
   ],
   "UcOT6A": [
@@ -1685,10 +2997,44 @@
       "value": "Failed collection"
     }
   ],
+  "Uf/d9E": [
+    {
+      "type": 0,
+      "value": "This is how "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    }
+  ],
+  "UmRFez": [
+    {
+      "type": 1,
+      "value": "label"
+    },
+    {
+      "type": 0,
+      "value": " flag"
+    }
+  ],
   "Uu4RMA": [
     {
       "type": 0,
-      "value": "Invalid credentials."
+      "value": "invalid credentials"
+    }
+  ],
+  "V1t+ZA": [
+    {
+      "type": 0,
+      "value": "Happy birthday "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": " !"
     }
   ],
   "VBvZa2": [
@@ -1698,6 +3044,10 @@
     },
     {
       "children": [
+        {
+          "type": 0,
+          "value": " "
+        }
       ],
       "type": 8,
       "value": "b"
@@ -1719,16 +3069,22 @@
       "value": "Filter by:"
     }
   ],
+  "Vgjdly": [
+    {
+      "type": 0,
+      "value": "Frequent questions"
+    }
+  ],
   "VkHZxm": [
     {
       "type": 0,
-      "value": "Terms & Conditions"
+      "value": "Terms and Conditions"
     }
   ],
   "Vrpqh3": [
     {
       "type": 0,
-      "value": "Famosos Guarantee"
+      "value": "Famous Guarantee"
     }
   ],
   "VtB4b8": [
@@ -1741,16 +3097,28 @@
       "value": " official profile on Famosos.com. Book your personalized video and enjoy unique experiences."
     }
   ],
+  "VuArYI": [
+    {
+      "type": 0,
+      "value": "Notify me also by WhatsApp (optional)"
+    }
+  ],
   "W1OXQI": [
     {
       "type": 0,
       "value": "Disable Notification"
     }
   ],
+  "W2ixk1": [
+    {
+      "type": 0,
+      "value": "new password"
+    }
+  ],
   "WBt4dS": [
     {
       "type": 0,
-      "value": "It is public"
+      "value": "Is public"
     }
   ],
   "WDhqRO": [
@@ -1759,10 +3127,28 @@
       "value": "Select an occasion"
     }
   ],
+  "WJVzN4": [
+    {
+      "type": 0,
+      "value": "Lower to higher price"
+    }
+  ],
+  "WL/WEl": [
+    {
+      "type": 0,
+      "value": "Latest videos"
+    }
+  ],
+  "WTl7o1": [
+    {
+      "type": 1,
+      "value": "alpha2Code"
+    }
+  ],
   "WW0RFT": [
     {
       "type": 0,
-      "value": "I like it / Like"
+      "value": "I like"
     }
   ],
   "Wdu5tQ": [
@@ -1777,6 +3163,54 @@
       "value": "Filter by category"
     }
   ],
+  "WeJb1j": [
+    {
+      "type": 0,
+      "value": "You must be at least 13 years old to register"
+    }
+  ],
+  "WeLmQS": [
+    {
+      "type": 0,
+      "value": "If for any reason your video could not be recorded, we will refund your money within a maximum period of 21 business days"
+    }
+  ],
+  "WebWil": [
+    {
+      "type": 0,
+      "value": "We will notify "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "deliveryContact"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "textBold"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "type": 1,
+      "value": "cellPhoneNumber"
+    },
+    {
+      "type": 0,
+      "value": " when your video is ready."
+    }
+  ],
   "WkJEIw": [
     {
       "type": 0,
@@ -1786,13 +3220,19 @@
   "WmWz59": [
     {
       "type": 0,
-      "value": "Expired contract"
+      "value": "Contract expired"
+    }
+  ],
+  "WnqHLV": [
+    {
+      "type": 0,
+      "value": "Please select a payment method"
     }
   ],
   "WsW1Wz": [
     {
       "type": 0,
-      "value": "Invalid credentails."
+      "value": "Invalid credentials."
     }
   ],
   "Wu3wG5": [
@@ -1810,13 +3250,19 @@
   "WuHK3B": [
     {
       "type": 0,
-      "value": "Imitators"
+      "value": "Impersonators"
     }
   ],
   "X9uKOS": [
     {
       "type": 0,
-      "value": "Following steps: "
+      "value": "Next steps:"
+    }
+  ],
+  "XKlq+/": [
+    {
+      "type": 0,
+      "value": "New email"
     }
   ],
   "XNGk+R": [
@@ -1825,26 +3271,36 @@
       "value": "Your comment has been sent."
     }
   ],
+  "XYnAm8": [
+    {
+      "type": 0,
+      "value": "Enter your message"
+    }
+  ],
   "XlP2E5": [
     {
       "type": 0,
-      "value": "It is a company dedicated to creating "
+      "value": "It is a company dedicated to creating technologies "
     },
     {
       "children": [
+        {
+          "type": 0,
+          "value": " "
+        }
       ],
       "type": 8,
       "value": "br"
     },
     {
       "type": 0,
-      "value": " technologies that connect personalities with their core fan."
+      "value": " that connect personalities with their fan base."
     }
   ],
   "Xp7qs8": [
     {
       "type": 0,
-      "value": "Welcome to Famosos! "
+      "value": "Welcome to Famous! "
     },
     {
       "type": 1,
@@ -1858,7 +3314,7 @@
   "Xx+xSb": [
     {
       "type": 0,
-      "value": "Password length must contains least 6 characters"
+      "value": "Password length must contain at least 6 characters"
     }
   ],
   "Y6sFMj": [
@@ -1873,10 +3329,54 @@
       "value": "Previous page"
     }
   ],
+  "YKyLFB": [
+    {
+      "type": 0,
+      "value": "Request proof of payment"
+    }
+  ],
+  "YRu2+6": [
+    {
+      "type": 0,
+      "value": "THE OFFER ENDS IN"
+    }
+  ],
   "YTlQrN": [
     {
       "type": 0,
-      "value": "For a friend or relative"
+      "value": "For a friend or family member"
+    }
+  ],
+  "YVBe7w": [
+    {
+      "type": 0,
+      "value": "Go to \" "
+    },
+    {
+      "type": 1,
+      "value": "categoryTitle"
+    },
+    {
+      "type": 0,
+      "value": " \""
+    }
+  ],
+  "YYg0xX": [
+    {
+      "type": 0,
+      "value": "Deliver your video message by WhatsApp"
+    }
+  ],
+  "Ym543L": [
+    {
+      "type": 0,
+      "value": "Up to 7 days"
+    }
+  ],
+  "YmbthD": [
+    {
+      "type": 0,
+      "value": "Add a special text"
     }
   ],
   "YnQ4db": [
@@ -1888,7 +3388,13 @@
   "Yp6To0": [
     {
       "type": 0,
-      "value": "Search by country"
+      "value": "Search country"
+    }
+  ],
+  "YqJl8f": [
+    {
+      "type": 0,
+      "value": "Clean filters"
     }
   ],
   "Yskoha": [
@@ -1908,13 +3414,19 @@
   "Yxo8MA": [
     {
       "type": 0,
-      "value": "Go to My Hires"
+      "value": "Go to my hires"
+    }
+  ],
+  "Z2eZrt": [
+    {
+      "type": 0,
+      "value": "Have a great day on this trip to the sun."
     }
   ],
   "Z5ZMSV": [
     {
       "type": 0,
-      "value": "Name field is required"
+      "value": "The name field is required"
     }
   ],
   "ZDkLmZ": [
@@ -1923,10 +3435,22 @@
       "value": "Check your email and enter the 6-digit code you received"
     }
   ],
+  "ZFhqVz": [
+    {
+      "type": 0,
+      "value": "Are you the owner of this video?"
+    }
+  ],
+  "ZHQGns": [
+    {
+      "type": 0,
+      "value": "Sign in to view the details or customize the delivery."
+    }
+  ],
   "ZPvdL/": [
     {
       "type": 0,
-      "value": "or sign up with your email"
+      "value": "or enter with your email"
     }
   ],
   "ZcJeQh": [
@@ -1944,7 +3468,13 @@
   "ZgMpuD": [
     {
       "type": 0,
-      "value": "Next page "
+      "value": "Next page"
+    }
+  ],
+  "ZtrNok": [
+    {
+      "type": 0,
+      "value": "People who viewed this profile also viewed"
     }
   ],
   "ZvLd+7": [
@@ -1962,7 +3492,19 @@
   "aJWEZ8": [
     {
       "type": 0,
-      "value": "The cost of video depends on your celebrity. We are the technology that makes timely delivery of your video possible."
+      "value": "The cost of the video depends on your celebrity. We are the technology that makes the timely delivery of your video possible."
+    }
+  ],
+  "aJkcNZ": [
+    {
+      "type": 0,
+      "value": "Download APP from APP Store"
+    }
+  ],
+  "aKy46m": [
+    {
+      "type": 0,
+      "value": "Explore over 1,000 celebrities"
     }
   ],
   "aLZTdq": [
@@ -1971,10 +3513,16 @@
       "value": "My instructions are"
     }
   ],
+  "aMwMIJ": [
+    {
+      "type": 0,
+      "value": "Application date:"
+    }
+  ],
   "aPX+PI": [
     {
       "type": 0,
-      "value": "Hire for Business"
+      "value": "Contract for Company"
     }
   ],
   "aVtfpF": [
@@ -1983,10 +3531,22 @@
       "value": "Congratulations!"
     }
   ],
+  "aaTPnj": [
+    {
+      "type": 0,
+      "value": "Highlights"
+    }
+  ],
+  "b+Bq5e": [
+    {
+      "type": 0,
+      "value": "Most recent"
+    }
+  ],
   "b2Ea7D": [
     {
       "type": 0,
-      "value": "Click on the button below to make the payment using your PayPal account."
+      "value": "Click on the following button to make the payment using your PayPal account."
     }
   ],
   "b861FF": [
@@ -1998,13 +3558,13 @@
   "b9prTq": [
     {
       "type": 0,
-      "value": "translation"
+      "value": "Message"
     }
   ],
   "bQVNIB": [
     {
       "type": 0,
-      "value": "How can I contact the Famosos Team?"
+      "value": "How can I contact the Famosos team?"
     }
   ],
   "bSHMVy": [
@@ -2013,22 +3573,40 @@
       "value": "Buy video now!"
     }
   ],
+  "bSrtbH": [
+    {
+      "type": 0,
+      "value": "Recipient's WhatsApp"
+    }
+  ],
+  "bVcz4u": [
+    {
+      "type": 0,
+      "value": "Customize delivery"
+    }
+  ],
   "baAemn": [
     {
       "type": 0,
-      "value": "Awaiting recording"
+      "value": "Recording standby"
+    }
+  ],
+  "bc6Eh7": [
+    {
+      "type": 0,
+      "value": "To post"
     }
   ],
   "bnyCF4": [
     {
       "type": 0,
-      "value": "If everything is fine with your request according to our policies, you will soon be able to enjoy your video message."
+      "value": "If all is well with your request according to our policies, very soon you will be able to enjoy your video message."
     }
   ],
   "bwRze1": [
     {
       "type": 0,
-      "value": "Click the "
+      "value": "Click on the "
     },
     {
       "type": 1,
@@ -2055,6 +3633,12 @@
       "value": " a video\""
     }
   ],
+  "c/EW7K": [
+    {
+      "type": 0,
+      "value": "Customize the message of your video."
+    }
+  ],
   "c5ndOG": [
     {
       "type": 0,
@@ -2064,19 +3648,49 @@
   "cEDqkt": [
     {
       "type": 0,
-      "value": "Credit Card"
+      "value": "Credit card"
     }
   ],
   "cGtJag": [
     {
       "type": 0,
-      "value": "You are currently unable to perform promotional videos. Videos that comply with our policies are purely video messages."
+      "value": "You cannot currently make promotional videos. Videos that comply with our policies are purely video-messages."
+    }
+  ],
+  "cRtlFe": [
+    {
+      "type": 0,
+      "value": "The charge that you will receive in your account is a payment authorization that your bank makes to ensure that there are sufficient funds, however Famosos will not make the payment until "
+    },
+    {
+      "type": 1,
+      "value": "celebrityName"
+    },
+    {
+      "type": 0,
+      "value": " records your video."
+    }
+  ],
+  "cb606G": [
+    {
+      "type": 0,
+      "value": "Deliver your video message by mail"
+    }
+  ],
+  "cheXty": [
+    {
+      "type": 1,
+      "value": "turnAroundTime"
+    },
+    {
+      "type": 0,
+      "value": " days"
     }
   ],
   "crQQc4": [
     {
       "type": 0,
-      "value": "My subscriptions"
+      "value": "My Subscriptions"
     }
   ],
   "d/7Z6V": [
@@ -2097,25 +3711,35 @@
       "value": "Notification email:"
     }
   ],
+  "dAHRLh": [
+    {
+      "type": 0,
+      "value": "Select an image file. Example: SVG, JPG, PNG, etc."
+    }
+  ],
   "dPuxZs": [
     {
       "type": 0,
-      "value": "Sign in and continue"
+      "value": "Register and continue"
     }
   ],
   "dUl69m": [
     {
       "type": 0,
-      "value": "Action cancelled by the user"
+      "value": "Action canceled by user"
     }
   ],
   "dYz8lM": [
     {
       "type": 0,
-      "value": "Maybe it can "
+      "value": "Maybe I can "
     },
     {
       "children": [
+        {
+          "type": 0,
+          "value": " "
+        }
       ],
       "type": 8,
       "value": "br"
@@ -2129,6 +3753,30 @@
     {
       "type": 0,
       "value": "Following"
+    }
+  ],
+  "de1wp1": [
+    {
+      "type": 1,
+      "value": "totalResults"
+    },
+    {
+      "type": 0,
+      "value": " results for \" "
+    },
+    {
+      "type": 1,
+      "value": "search"
+    },
+    {
+      "type": 0,
+      "value": " \""
+    }
+  ],
+  "df4zaj": [
+    {
+      "type": 0,
+      "value": "Go to My Requests"
     }
   ],
   "dgKHBE": [
@@ -2146,31 +3794,93 @@
   "dmBWFQ": [
     {
       "type": 0,
-      "value": "Rejected contract"
+      "value": "Contract rejected"
+    }
+  ],
+  "dn7i07": [
+    {
+      "type": 0,
+      "value": "Personalized experiences "
+    },
+    {
+      "type": 1,
+      "value": "lineBreak"
+    },
+    {
+      "type": 0,
+      "value": " with your favorite celebrities."
     }
   ],
   "duDNCn": [
     {
       "type": 0,
-      "value": "To : "
+      "value": "To :"
     }
   ],
   "dy8DmF": [
     {
       "type": 0,
-      "value": "There was an error processing your payment."
+      "value": "An error occurred processing your payment."
     }
   ],
   "e2ybO2": [
     {
       "type": 0,
-      "value": "Share video at:"
+      "value": "Share video on:"
+    }
+  ],
+  "e9TpG1": [
+    {
+      "type": 0,
+      "value": "Change the coins"
     }
   ],
   "eBSdyF": [
     {
       "type": 0,
-      "value": "Famosos watermark has to stay?"
+      "value": "Does the famous watermark have to stay?"
+    }
+  ],
+  "eH4QAw": [
+    {
+      "type": 0,
+      "value": "If you do not receive your video in 7 days we will refund 100% of your money. "
+    },
+    {
+      "type": 1,
+      "value": "infoIcon"
+    }
+  ],
+  "eMSCGd": [
+    {
+      "type": 0,
+      "value": "My requests"
+    }
+  ],
+  "eOuNie": [
+    {
+      "type": 0,
+      "value": "Look for"
+    }
+  ],
+  "eOvQrU": [
+    {
+      "type": 0,
+      "value": "Download the app for Fans"
+    }
+  ],
+  "eSEyNY": [
+    {
+      "type": 0,
+      "value": "Take heart "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": " !"
     }
   ],
   "eYHsf6": [
@@ -2187,10 +3897,24 @@
     {
       "type": 1,
       "value": "celebrity_username"
-    },
+    }
+  ],
+  "elNXJ8": [
     {
       "type": 0,
-      "value": " fan club"
+      "value": "To"
+    }
+  ],
+  "eqPkg5": [
+    {
+      "type": 0,
+      "value": "The payment approval process can take around 24 hours."
+    }
+  ],
+  "ex5QbS": [
+    {
+      "type": 0,
+      "value": "Password length must be at least 6 characters"
     }
   ],
   "exOORp": [
@@ -2236,19 +3960,31 @@
   "fH+OCT": [
     {
       "type": 0,
-      "value": "Select a payment card"
+      "value": "Select a card"
     }
   ],
   "fNiZBj": [
     {
       "type": 0,
-      "value": "Yeah, removing the watermark is against our policies."
+      "value": "Yes, removing the watermark is against our policies."
     }
   ],
   "fcUqul": [
     {
       "type": 0,
-      "value": "I want a video from"
+      "value": "I want a video of"
+    }
+  ],
+  "fiLVq8": [
+    {
+      "type": 0,
+      "value": "Total Requests"
+    }
+  ],
+  "fzb0Cz": [
+    {
+      "type": 0,
+      "value": "The refund request is made automatically, the time in which it will be reflected on your card depends on your bank and can be a maximum period of 21 business days."
     }
   ],
   "fzp0m/": [
@@ -2257,16 +3993,38 @@
       "value": "Venezuela (Bolivarian Republic of)"
     }
   ],
+  "g6XXxY": [
+    {
+      "type": 0,
+      "value": "At any time you can check the status of your requests "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " here. "
+        }
+      ],
+      "type": 8,
+      "value": "myHiringsLink"
+    }
+  ],
+  "g7yX5A": [
+    {
+      "type": 0,
+      "value": "Select image"
+    }
+  ],
   "gBLEge": [
     {
       "type": 0,
-      "value": "Name of card holder"
+      "value": "Cardholder Name"
     }
   ],
   "gBauKO": [
     {
       "type": 0,
-      "value": "Buy Video Customized by"
+      "value": "Buy Custom Video by"
     }
   ],
   "gI1AIL": [
@@ -2286,19 +4044,45 @@
     },
     {
       "type": 0,
-      "value": " 100% customized."
+      "value": " 100% personalized."
     }
   ],
   "ggPZbL": [
     {
       "type": 0,
-      "value": "Example: My friend Ana turns 12 on August, I would like you to congratulate her."
+      "value": "Example: My friend Ana has her birthday on August 12, I would like you to congratulate her."
+    }
+  ],
+  "gqGS5U": [
+    {
+      "type": 0,
+      "value": "Comments"
     }
   ],
   "gxungj": [
     {
       "type": 0,
-      "value": "Sign in"
+      "value": "Pay in"
+    }
+  ],
+  "h5yCAT": [
+    {
+      "type": 0,
+      "value": "Your cell phone number has been updated "
+    },
+    {
+      "type": 1,
+      "value": "breakLine"
+    },
+    {
+      "type": 0,
+      "value": " correctly."
+    }
+  ],
+  "h9IcvI": [
+    {
+      "type": 0,
+      "value": "Filter by"
     }
   ],
   "h9zXst": [
@@ -2310,7 +4094,7 @@
   "hCGL6t": [
     {
       "type": 0,
-      "value": "Order by: "
+      "value": "Sort by: "
     },
     {
       "type": 1,
@@ -2321,6 +4105,12 @@
     {
       "type": 0,
       "value": "Name"
+    }
+  ],
+  "hJUps7": [
+    {
+      "type": 0,
+      "value": "Download APP from Google Play Store"
     }
   ],
   "hKJZJR": [
@@ -2335,16 +4125,68 @@
       "value": "Famosos.com - Personalized videos of your favorite celebrities."
     }
   ],
+  "havuzD": [
+    {
+      "type": 1,
+      "value": "turnAroundTime"
+    },
+    {
+      "type": 0,
+      "value": " day"
+    }
+  ],
+  "hbRJr6": [
+    {
+      "type": 0,
+      "value": "Delete picture"
+    }
+  ],
   "hmpcGI": [
     {
       "type": 0,
-      "value": "Notify me when it is available"
+      "value": "Notify me when available"
+    }
+  ],
+  "hrM4Ug": [
+    {
+      "type": 0,
+      "value": "Share on Twitter"
+    }
+  ],
+  "hwfeEG": [
+    {
+      "type": 0,
+      "value": "Preview"
+    }
+  ],
+  "hxq7dC": [
+    {
+      "type": 0,
+      "value": "Famous Warranty Logo"
+    }
+  ],
+  "iHlpl2": [
+    {
+      "type": 0,
+      "value": "This email is already registered"
+    }
+  ],
+  "iRpjjG": [
+    {
+      "type": 0,
+      "value": "Customize the background and add a message to make the delivery of your video more special."
+    }
+  ],
+  "iSjJJ0": [
+    {
+      "type": 0,
+      "value": "Share by Whatsapp"
     }
   ],
   "iTKHhw": [
     {
       "type": 0,
-      "value": "DNI"
+      "value": "DC"
     }
   ],
   "iTP7rd": [
@@ -2359,10 +4201,58 @@
       "value": "Are you a celebrity or influencer?"
     }
   ],
+  "iyrhJi": [
+    {
+      "type": 0,
+      "value": "Please enter a date"
+    }
+  ],
+  "j/G1q2": [
+    {
+      "type": 0,
+      "value": "You must enter a valid coupon"
+    }
+  ],
   "j5jEEO": [
     {
       "type": 0,
       "value": "Motivational"
+    }
+  ],
+  "jFJcag": [
+    {
+      "type": 0,
+      "value": "Hello "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": " ! "
+    },
+    {
+      "type": 1,
+      "value": "break"
+    },
+    {
+      "type": 0,
+      "value": " Look at the gift that "
+    },
+    {
+      "type": 1,
+      "value": "deliveryFrom"
+    },
+    {
+      "type": 0,
+      "value": " has given you through Famosos.com"
+    }
+  ],
+  "jRg7t5": [
+    {
+      "type": 0,
+      "value": "You do not have a registered payment method yet."
     }
   ],
   "jkPKiZ": [
@@ -2383,22 +4273,52 @@
       "value": "Passwords do not match"
     }
   ],
+  "kVrqZJ": [
+    {
+      "type": 0,
+      "value": "What happens after your purchase?"
+    }
+  ],
+  "kkiAyx": [
+    {
+      "type": 0,
+      "value": "You must write your instructions"
+    }
+  ],
+  "l/9Qz+": [
+    {
+      "type": 0,
+      "value": "I would like to tell you about the Famosos platform"
+    }
+  ],
+  "lEOY9y": [
+    {
+      "type": 0,
+      "value": "An error has occurred, please try again"
+    }
+  ],
   "lGFIAN": [
     {
       "type": 0,
-      "value": "Create an account to connect with celebrities"
+      "value": "Create an account to connect with famous people."
     }
   ],
   "lSxRsO": [
     {
       "type": 0,
-      "value": "The name field of the card holder is mandatory"
+      "value": "The cardholder name field is required"
     }
   ],
   "lX+x05": [
     {
       "type": 0,
-      "value": "1 Star"
+      "value": "1 star"
+    }
+  ],
+  "lab8Md": [
+    {
+      "type": 0,
+      "value": "Try removing or changing some filters."
     }
   ],
   "lb33Yc": [
@@ -2410,7 +4330,7 @@
   "lkQYB7": [
     {
       "type": 0,
-      "value": "What happens after you send the request to a famous?"
+      "value": "What happens after you apply to a Celebrity?"
     }
   ],
   "lp4qtJ": [
@@ -2422,13 +4342,31 @@
   "m4ziQM": [
     {
       "type": 0,
-      "value": "Other social network"
+      "value": "Other"
+    }
+  ],
+  "m9eXO9": [
+    {
+      "type": 0,
+      "value": "Loading"
     }
   ],
   "mC/anA": [
     {
       "type": 0,
-      "value": "Price: From low to high"
+      "value": "Price: Low to High"
+    }
+  ],
+  "mChIhX": [
+    {
+      "type": 0,
+      "value": "Please enter a valid phone number"
+    }
+  ],
+  "mFS+iR": [
+    {
+      "type": 0,
+      "value": "Your payment is pending approval."
     }
   ],
   "mJ6Hl3": [
@@ -2443,10 +4381,48 @@
       "value": "Paraguay"
     }
   ],
+  "mTCwos": [
+    {
+      "type": 1,
+      "value": "totalResults"
+    },
+    {
+      "type": 0,
+      "value": " results"
+    }
+  ],
+  "mTT+0+": [
+    {
+      "type": 0,
+      "value": "By continuing you are accepting our Terms and Conditions and our Privacy Policy."
+    }
+  ],
+  "mUCJhR": [
+    {
+      "type": 0,
+      "value": "You must edit the value "
+    },
+    {
+      "type": 1,
+      "value": "placeholderName"
+    }
+  ],
+  "mWwFNC": [
+    {
+      "type": 0,
+      "value": "Purchase confirmation"
+    }
+  ],
+  "mahy2f": [
+    {
+      "type": 0,
+      "value": "actors"
+    }
+  ],
   "mcWafv": [
     {
       "type": 0,
-      "value": "Failed repayment"
+      "value": "Failed refund"
     }
   ],
   "mlRLdw": [
@@ -2455,16 +4431,64 @@
       "value": "Write your email"
     }
   ],
+  "moevDj": [
+    {
+      "type": 0,
+      "value": "You forgot to edit the text"
+    }
+  ],
+  "mvPdev": [
+    {
+      "type": 0,
+      "value": "Famous Avatar"
+    }
+  ],
   "n0TzKv": [
     {
       "type": 0,
-      "value": "Write your name here"
+      "value": "Write here the name"
+    }
+  ],
+  "n2YFp+": [
+    {
+      "type": 0,
+      "value": "Your password has been updated "
+    },
+    {
+      "type": 1,
+      "value": "breakLine"
+    },
+    {
+      "type": 0,
+      "value": " successfully."
+    }
+  ],
+  "n7ygGB": [
+    {
+      "type": 0,
+      "value": "From: "
+    },
+    {
+      "type": 1,
+      "value": "deliveryFrom"
     }
   ],
   "n9i+Em": [
     {
       "type": 0,
       "value": "Write your name here"
+    }
+  ],
+  "nDjwXl": [
+    {
+      "type": 0,
+      "value": "My subscriptions"
+    }
+  ],
+  "nFNeoL": [
+    {
+      "type": 0,
+      "value": "An error has occurred saving your changes."
     }
   ],
   "nJ/lbc": [
@@ -2476,7 +4500,7 @@
   "nJJJOt": [
     {
       "type": 0,
-      "value": "Expired payment"
+      "value": "Payment expired"
     }
   ],
   "nJRa/h": [
@@ -2489,6 +4513,24 @@
     {
       "type": 0,
       "value": "Pending payment"
+    }
+  ],
+  "nXUi45": [
+    {
+      "type": 0,
+      "value": "Choose your Famous"
+    }
+  ],
+  "nZ9TE3": [
+    {
+      "type": 0,
+      "value": "Policy and Privacy"
+    }
+  ],
+  "nZLeaQ": [
+    {
+      "type": 0,
+      "value": "Cancel"
     }
   ],
   "naJn1L": [
@@ -2507,16 +4549,30 @@
       "value": "Subscribe to our newsletter and find out about our news and exclusive promotions."
     }
   ],
+  "nc6eFM": [
+    {
+      "type": 0,
+      "value": "Congratulations to you "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": " !"
+    }
+  ],
   "nnRGWT": [
     {
       "type": 0,
-      "value": "Canceled payment"
+      "value": "Payment canceled"
     }
   ],
   "nwKHl2": [
     {
       "type": 0,
-      "value": "You can check the status of your video in “My Hires“"
+      "value": "You can check the status of your video in \"My Contracts\""
     }
   ],
   "o8JdL0": [
@@ -2534,13 +4590,19 @@
   "oAD1Z+": [
     {
       "type": 0,
-      "value": "Famosos.com - FAQs"
+      "value": "Famosos.com - Frequently Asked Questions"
     }
   ],
   "oEbrJV": [
     {
       "type": 0,
-      "value": "Keep Buying."
+      "value": "Keep buying"
+    }
+  ],
+  "oKXC+L": [
+    {
+      "type": 0,
+      "value": "Crop your profile photo"
     }
   ],
   "oKcEry": [
@@ -2552,7 +4614,13 @@
   "oLV+7c": [
     {
       "type": 0,
-      "value": "The celebrity has the freedom to accept or reject the videos. We are a technological platform of medium and not of result. If the application is rejected, the money will be refunded."
+      "value": "The celebrity is free to accept or reject the videos. We are a technological platform for means and not for results. If the application is rejected, the money will be refunded."
+    }
+  ],
+  "oN4aGu": [
+    {
+      "type": 0,
+      "value": "Keep"
     }
   ],
   "oRfNHI": [
@@ -2564,7 +4632,13 @@
   "oUWADl": [
     {
       "type": 0,
-      "value": "No "
+      "value": "Do not"
+    }
+  ],
+  "oWksd7": [
+    {
+      "type": 0,
+      "value": "Help"
     }
   ],
   "ohq0mF": [
@@ -2573,10 +4647,60 @@
       "value": "Create an account"
     }
   ],
+  "om28Bx": [
+    {
+      "type": 0,
+      "value": "Instruct "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": " to make your video look what you expect. "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " (Edit this base text or write one) "
+        }
+      ],
+      "type": 8,
+      "value": "span"
+    }
+  ],
+  "oqJulP": [
+    {
+      "type": 0,
+      "value": "See Less"
+    }
+  ],
+  "orwCgV": [
+    {
+      "type": 0,
+      "value": "Invite your friends to meet Famous"
+    }
+  ],
+  "orzX/T": [
+    {
+      "type": 0,
+      "value": "Allow this video to be public"
+    }
+  ],
   "oxKkpJ": [
     {
       "type": 0,
-      "value": "Search by category"
+      "value": "Search Category"
     }
   ],
   "oztDf2": [
@@ -2588,7 +4712,27 @@
   "p6AMrr": [
     {
       "type": 0,
-      "value": "Celebrity!"
+      "value": "Famous!"
+    }
+  ],
+  "pExFGK": [
+    {
+      "type": 0,
+      "value": "Send video to "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": " now"
+    }
+  ],
+  "pKdjHT": [
+    {
+      "type": 0,
+      "value": "Request proof of return"
     }
   ],
   "pPCiwO": [
@@ -2597,22 +4741,52 @@
       "value": "Email"
     }
   ],
+  "pekBfS": [
+    {
+      "type": 0,
+      "value": "Are you a celebrity or influencer? Be part of our family!"
+    }
+  ],
   "per8Dq": [
     {
       "type": 0,
-      "value": "View more celebrities"
+      "value": "See more famous"
     }
   ],
   "pfCRkk": [
     {
       "type": 0,
-      "value": "Click on the WhatsApp button so through this channel we can give you the instructions to pay for your video message."
+      "value": "Click on the WhatsApp button so that through this channel we can give you the instructions to make the payment of your video message."
     }
   ],
   "pfhsIr": [
     {
       "type": 0,
-      "value": "Bank transfer"
+      "value": "Wire transfer"
+    }
+  ],
+  "povNn5": [
+    {
+      "type": 0,
+      "value": "Upload file"
+    }
+  ],
+  "pvVUxx": [
+    {
+      "type": 0,
+      "value": "You must enter a valid identification document"
+    }
+  ],
+  "q3DBjQ": [
+    {
+      "type": 0,
+      "value": "Explore Famous"
+    }
+  ],
+  "qC6UKd": [
+    {
+      "type": 0,
+      "value": "Rejected"
     }
   ],
   "qL5Hl7": [
@@ -2624,7 +4798,7 @@
   "qMbb2M": [
     {
       "type": 0,
-      "value": "Add new payment card"
+      "value": "Add new card"
     }
   ],
   "qV0c9N": [
@@ -2635,16 +4809,48 @@
     {
       "type": 1,
       "value": "document_name"
-    },
-    {
-      "type": 0,
-      "value": " here"
     }
   ],
   "qXeQds": [
     {
       "type": 0,
       "value": "Back to top"
+    }
+  ],
+  "qmZ04t": [
+    {
+      "type": 0,
+      "value": "Your changes were saved a few seconds ago."
+    }
+  ],
+  "qsmv/Z": [
+    {
+      "type": 0,
+      "value": "Custom video "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " by "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    }
+  ],
+  "qvzdOL": [
+    {
+      "type": 0,
+      "value": "Enter a new email address"
+    }
+  ],
+  "qxvYP3": [
+    {
+      "type": 0,
+      "value": "24 hrs."
     }
   ],
   "qyxCOs": [
@@ -2667,6 +4873,12 @@
       "value": " for more information."
     }
   ],
+  "r///wN": [
+    {
+      "type": 0,
+      "value": "1. Details of the person making the payment."
+    }
+  ],
   "r1aViX": [
     {
       "type": 0,
@@ -2679,28 +4891,78 @@
       "value": "Post this video on Famosos.com"
     }
   ],
+  "r5akgJ": [
+    {
+      "type": 0,
+      "value": "To see your gift click "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " here "
+        }
+      ],
+      "type": 8,
+      "value": "textBold"
+    },
+    {
+      "type": 0,
+      "value": " ."
+    }
+  ],
+  "rAMm4a": [
+    {
+      "type": 0,
+      "value": "Settings"
+    }
+  ],
   "rD8e46": [
     {
       "type": 0,
-      "value": "Date: "
+      "value": "Date:"
     }
   ],
   "rG1grK": [
     {
       "type": 0,
-      "value": "Follow us on our social media"
+      "value": "Follow us on Networks"
     }
   ],
   "rMXI9i": [
     {
       "type": 0,
-      "value": "Add Comment"
+      "value": "Add comment"
+    }
+  ],
+  "rMzdwV": [
+    {
+      "type": 0,
+      "value": "Woman"
     }
   ],
   "rNIqUr": [
     {
       "type": 0,
-      "value": "A promotional video is a video promoted by a company/organization/product on social media or on the company’s website."
+      "value": "A promotional video is a video that promotes a company / organization / product on social media or on the page of said company."
+    }
+  ],
+  "rYWTQk": [
+    {
+      "type": 0,
+      "value": "Featured Categories"
+    }
+  ],
+  "ra6TZV": [
+    {
+      "type": 0,
+      "value": "You have successfully subscribed"
+    }
+  ],
+  "rcckKR": [
+    {
+      "type": 0,
+      "value": "Please enter a valid email"
     }
   ],
   "rjFhkr": [
@@ -2713,6 +4975,12 @@
     {
       "type": 0,
       "value": "We are trying our best to solve it."
+    }
+  ],
+  "rtQ00j": [
+    {
+      "type": 0,
+      "value": "Saving changes ..."
     }
   ],
   "rtwrcq": [
@@ -2734,7 +5002,25 @@
   "ruSOFj": [
     {
       "type": 0,
-      "value": "Host"
+      "value": "Presenters"
+    }
+  ],
+  "sAJ+Kw": [
+    {
+      "type": 0,
+      "value": "How do you want to share this video?"
+    }
+  ],
+  "sHZJT8": [
+    {
+      "type": 0,
+      "value": "Specify the celebration, dedication or reason for the video. You can tell some details so that your video is as special as possible."
+    }
+  ],
+  "sK9QPr": [
+    {
+      "type": 0,
+      "value": "An unexpected error has occurred"
     }
   ],
   "sSxzJC": [
@@ -2743,10 +5029,22 @@
       "value": "This email is already subscribed to the newsletter"
     }
   ],
+  "sVv/AJ": [
+    {
+      "type": 0,
+      "value": "This email is already subscribed"
+    }
+  ],
   "sXLa3f": [
     {
       "type": 0,
-      "value": "If you do not receive your video in 7 days we refund the 100% of your money."
+      "value": "If you do not receive your video in 7 days we will refund 100% of your money."
+    }
+  ],
+  "sZXU9F": [
+    {
+      "type": 0,
+      "value": "Now you can connect with your favorite celebrities through Famosos.com!"
     }
   ],
   "se5FEq": [
@@ -2758,13 +5056,33 @@
   "sn8X2t": [
     {
       "type": 0,
-      "value": "We guarantee that your celebrity will see your request if it comply with our policies. We reserve the right not to show the celebrity requests that we consider inappropriate, so in that case, we will return your money. We also guarantee that we will return your money if the video is not recorded before 10 days."
+      "value": "We guarantee that your celebrity will see your application if it complies with our policies. We reserve the right not to show the famous requests that we consider inappropriate, in that case we will refund your money. We also guarantee that we will refund your money if the video is not recorded within 10 days."
+    }
+  ],
+  "swHrQR": [
+    {
+      "type": 0,
+      "value": "Enjoy the experience!"
     }
   ],
   "sy+pv5": [
     {
       "type": 0,
-      "value": "Email"
+      "value": "E-mail"
+    }
+  ],
+  "syjn1W": [
+    {
+      "type": 0,
+      "value": "This video will look great! "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " We'll notify you when it's ready."
     }
   ],
   "t+gzvS": [
@@ -2782,7 +5100,7 @@
   "t2/Gvc": [
     {
       "type": 0,
-      "value": "Detail the request and "
+      "value": "Details the request and "
     },
     {
       "type": 1,
@@ -2806,7 +5124,19 @@
     },
     {
       "type": 0,
-      "value": " process of purchase."
+      "value": " purchase process."
+    }
+  ],
+  "t2/i9S": [
+    {
+      "type": 0,
+      "value": "Work with us"
+    }
+  ],
+  "t756d4": [
+    {
+      "type": 0,
+      "value": "Add photo"
     }
   ],
   "t7y7Vl": [
@@ -2824,13 +5154,27 @@
   "tEedOi": [
     {
       "type": 0,
-      "value": "The card holder’s email field is mandatory"
+      "value": "The cardholder's email field is required"
+    }
+  ],
+  "tYEFsF": [
+    {
+      "type": 1,
+      "value": "discount"
+    },
+    {
+      "type": 0,
+      "value": " % discount on your video messages! Coupon: "
+    },
+    {
+      "type": 1,
+      "value": "coupon"
     }
   ],
   "tZUCvC": [
     {
       "type": 0,
-      "value": "Personalized videos of your favorite Celebrities. Book your video and enjoy unique experiences."
+      "value": "Custom videos of your favorite Celebrities. Book your video and enjoy unique experiences."
     }
   ],
   "tdx+EV": [
@@ -2839,10 +5183,48 @@
       "value": "My profile"
     }
   ],
+  "tekx9W": [
+    {
+      "type": 1,
+      "value": "action"
+    },
+    {
+      "type": 0,
+      "value": " rating"
+    }
+  ],
+  "testAutomation": [
+    {
+      "type": 0,
+      "value": "Apply filter"
+    }
+  ],
+  "tkwCac": [
+    {
+      "type": 0,
+      "value": "E-mail"
+    }
+  ],
+  "tlBp37": [
+    {
+      "type": 1,
+      "value": "celebrity_fullName"
+    },
+    {
+      "type": 0,
+      "value": " has 7 days to record your video from now on."
+    }
+  ],
   "tpcdsK": [
     {
       "type": 0,
       "value": "Subdomain"
+    }
+  ],
+  "tr1oP1": [
+    {
+      "type": 0,
+      "value": "Rejected"
     }
   ],
   "tv5FG3": [
@@ -2851,22 +5233,42 @@
       "value": "Blog"
     }
   ],
+  "tzrLFx": [
+    {
+      "type": 0,
+      "value": "I would like "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": " record a video for me for my business."
+    }
+  ],
   "u+CFdm": [
     {
       "type": 0,
       "value": "Famosos.com - Blog"
     }
   ],
+  "u4TQhV": [
+    {
+      "type": 0,
+      "value": "Show more"
+    }
+  ],
   "uKwcXA": [
     {
       "type": 0,
-      "value": "Create an account to connect with celebrities"
+      "value": "Create an account to connect with famous people"
     }
   ],
   "uMrHKU": [
     {
       "type": 0,
-      "value": "What is Famosos?"
+      "value": "What is Famous?"
     }
   ],
   "uQg6Uc": [
@@ -2881,22 +5283,54 @@
       "value": "Change your password"
     }
   ],
+  "uU47gp": [
+    {
+      "type": 0,
+      "value": "Change cell phone number"
+    }
+  ],
+  "uVRzk3": [
+    {
+      "type": 0,
+      "value": "Find out about our latest news and promotions"
+    }
+  ],
   "uVgimH": [
     {
       "type": 0,
       "value": "No celebrity found with this user"
     }
   ],
+  "uZ+xW0": [
+    {
+      "type": 0,
+      "value": "Pending"
+    }
+  ],
   "ueZmN4": [
     {
       "type": 0,
-      "value": "Bank transfer"
+      "value": "Wire transfer"
     }
   ],
   "ujraGu": [
     {
       "type": 0,
-      "value": "Who will receive the video"
+      "value": "To:"
+    }
+  ],
+  "ul9NXn": [
+    {
+      "type": 0,
+      "value": "Sometimes there are causes of force majeure that prevent the Famous from recording. "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " Sorry for the waiting time!"
     }
   ],
   "uleYZ4": [
@@ -2905,20 +5339,26 @@
       "value": "To continue, update your account password."
     }
   ],
+  "usJosI": [
+    {
+      "type": 0,
+      "value": "Estimated recording date:"
+    }
+  ],
   "ut6hvz": [
     {
       "type": 0,
-      "value": "Qualifications"
+      "value": "Ratings"
     }
   ],
   "v82s2O": [
     {
-      "type": 0,
-      "value": "Personalized Video from "
-    },
-    {
       "type": 1,
       "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": " Custom Video"
     }
   ],
   "v8Rt1O": [
@@ -2930,31 +5370,59 @@
   "v9XTPm": [
     {
       "type": 0,
-      "value": "An unexpected error has occurred."
+      "value": "An unexpected error occurred."
+    }
+  ],
+  "vCwzMi": [
+    {
+      "type": 0,
+      "value": "The approval process can take around 24 hours."
     }
   ],
   "vMft8+": [
     {
       "type": 0,
-      "value": "The authorization of your payment has been made successfully."
+      "value": "Your payment authorization has been successful."
+    }
+  ],
+  "vO/DkB": [
+    {
+      "type": 0,
+      "value": "Now you can buy custom videos of your favorite Celebrities! Go to "
+    },
+    {
+      "type": 1,
+      "value": "link"
+    }
+  ],
+  "vPG9RE": [
+    {
+      "type": 0,
+      "value": "To enjoy this melody and to get good!"
+    }
+  ],
+  "vYme3q": [
+    {
+      "type": 0,
+      "value": "We will redirect you to WhatsApp where one of our agents will assist you to continue with the process."
     }
   ],
   "vcGTkv": [
     {
       "type": 0,
-      "value": "Registry"
+      "value": "Record"
     }
   ],
   "vf4Bo1": [
     {
       "type": 0,
-      "value": "Don't have an account?"
+      "value": "Don't have an account yet?"
     }
   ],
   "vnsLpk": [
     {
       "type": 0,
-      "value": "Contact number"
+      "value": "Telephone contact"
     }
   ],
   "vzOwNB": [
@@ -2967,6 +5435,12 @@
     {
       "type": 0,
       "value": "Next"
+    }
+  ],
+  "w5XPJR": [
+    {
+      "type": 0,
+      "value": "If for any reason your video could not be recorded, we will contact you."
     }
   ],
   "wCc+84": [
@@ -2984,19 +5458,57 @@
   "wJ61N6": [
     {
       "type": 0,
-      "value": "If you use the referral link of one of the Celebrities registered on the platform you will have more opportunities to be approved, this link is unique on its own and is available in the My Profile section of the Celebrities app."
+      "value": "If you use the referral link of one of the Famous registered on the platform, you will have more chances of being approved, this link is unique per account and is available in the My Profile section of the Famous application."
+    }
+  ],
+  "wUMBIs": [
+    {
+      "type": 0,
+      "value": "Please enter a new password"
+    }
+  ],
+  "waDVSR": [
+    {
+      "type": 0,
+      "value": "How to have a personalized video of your favorite Celebrity."
+    }
+  ],
+  "wbxEGL": [
+    {
+      "type": 0,
+      "value": "Security"
+    }
+  ],
+  "wbzzMw": [
+    {
+      "type": 0,
+      "value": "Whatsapp notification"
+    }
+  ],
+  "wcw2WL": [
+    {
+      "type": 0,
+      "value": "Your account will be charged once "
+    },
+    {
+      "type": 1,
+      "value": "celebrity_fullName"
+    },
+    {
+      "type": 0,
+      "value": " records your video. (For now, only an authorization was made by your bank)."
     }
   ],
   "wkaVGz": [
     {
       "type": 0,
-      "value": "Login to your account to connect with celebrities"
+      "value": "Login to your account to connect with famous people"
     }
   ],
   "wlTYUV": [
     {
       "type": 0,
-      "value": "Try a new attempt to make the payment"
+      "value": "Make a new payment attempt"
     }
   ],
   "wms1Jl": [
@@ -3013,16 +5525,28 @@
       "value": " characters"
     }
   ],
+  "ws1N91": [
+    {
+      "type": 0,
+      "value": "Once your video is ready, we will notify you so you can run to see it, download it and share it."
+    }
+  ],
   "wwfK17": [
     {
       "type": 0,
-      "value": "Country search"
+      "value": "Search country"
+    }
+  ],
+  "x+GitR": [
+    {
+      "type": 0,
+      "value": "Choose a date and time for Famosos to send your video."
     }
   ],
   "x15tum": [
     {
       "type": 0,
-      "value": "The amount in "
+      "value": "The value in "
     },
     {
       "type": 1,
@@ -3031,6 +5555,18 @@
     {
       "type": 0,
       "value": " is approximate"
+    }
+  ],
+  "x2Pl3E": [
+    {
+      "type": 0,
+      "value": "Change email"
+    }
+  ],
+  "x3Y+61": [
+    {
+      "type": 0,
+      "value": "Actors actresses"
     }
   ],
   "xBhNFv": [
@@ -3054,23 +5590,57 @@
   "xTsa8e": [
     {
       "type": 0,
-      "value": "We’ll notify you when it is activated."
+      "value": "We will notify you when it is activated."
     }
   ],
   "xfEeAv": [
     {
       "type": 0,
-      "value": "Write your name here"
+      "value": "Please select a card"
     }
   ],
   "xkoDM2": [
     {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
       "type": 0,
-      "value": "Personalized video from "
+      "value": " custom video"
+    }
+  ],
+  "xlP1hR": [
+    {
+      "type": 0,
+      "value": "Flash (24hrs)"
+    }
+  ],
+  "xmPK9R": [
+    {
+      "type": 0,
+      "value": "Re-request a video from "
     },
     {
       "type": 1,
-      "value": "celebrityFullName"
+      "value": "contractData"
+    }
+  ],
+  "xqbqgV": [
+    {
+      "type": 0,
+      "value": "Discount"
+    }
+  ],
+  "y5S+jr": [
+    {
+      "type": 0,
+      "value": "Add a title"
+    }
+  ],
+  "yF/Sxo": [
+    {
+      "type": 0,
+      "value": "If for some reason your video could not be recorded, your money will be available again within a maximum period of 21 business days, depending on your bank."
     }
   ],
   "yHlpQC": [
@@ -3088,13 +5658,27 @@
   "yv7dLs": [
     {
       "type": 0,
-      "value": "Famosos.com - Entrada de blog"
+      "value": "Famosos.com - Blog post"
     }
   ],
   "z09bol": [
     {
       "type": 0,
-      "value": "CURP"
+      "value": "curp"
+    }
+  ],
+  "z0KVwy": [
+    {
+      "type": 0,
+      "value": "We will notify "
+    },
+    {
+      "type": 1,
+      "value": "deliveryContact"
+    },
+    {
+      "type": 0,
+      "value": " when your payment has been approved."
     }
   ],
   "zADCtw": [
@@ -3103,10 +5687,22 @@
       "value": "Choose the payment method"
     }
   ],
+  "zDDWOe": [
+    {
+      "type": 0,
+      "value": "Submit rating"
+    }
+  ],
   "zJ+Qdi": [
     {
       "type": 0,
       "value": "Brazil"
+    }
+  ],
+  "zKGHNB": [
+    {
+      "type": 0,
+      "value": "Remove"
     }
   ],
   "zM4Sw/": [
@@ -3121,6 +5717,36 @@
       "value": "Comedians"
     }
   ],
+  "zZp/K2": [
+    {
+      "type": 0,
+      "value": "Join the Fan Club"
+    }
+  ],
+  "zjdjIn": [
+    {
+      "type": 0,
+      "value": "Enter the security code that we send to your email"
+    }
+  ],
+  "zmFekE": [
+    {
+      "type": 0,
+      "value": "PAYMENT STATUS: APPROVED"
+    }
+  ],
+  "zmIeqV": [
+    {
+      "type": 0,
+      "value": "Less than 3 days"
+    }
+  ],
+  "ztGIyo": [
+    {
+      "type": 0,
+      "value": "See return receipt"
+    }
+  ],
   "zxOTCH": [
     {
       "type": 0,
@@ -3130,7 +5756,7 @@
   "zzBOdK": [
     {
       "type": 0,
-      "value": "Apply filters"
+      "value": "Apply filter"
     }
   ]
 }
