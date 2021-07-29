@@ -11,7 +11,7 @@ import LoginButton from "../../containers/login-button/login-button";
 import Maybe from "../../common/helpers/maybe";
 import { useIntl, defineMessage } from "react-intl";
 import LangDropdown from "../../containers/lang-dropdown";
-import { UserNotificationsPopup } from "../user-notifications-popup";
+// import { UserNotificationsPopup } from "../user-notifications-popup";
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
   if (!target.matches("a")) return;
@@ -61,7 +61,7 @@ const NavbarSectionLayout = ({
               />
             </NavLink>
           </div>
-          <div className="top-bar__center-side col-8 p-0 row m-0">
+          <div className="top-bar__right-side">
             <Maybe it={!isAuthenticated}>
               <div className="col d-none d-md-flex  align-items-center">
                 <LoginButton
@@ -71,9 +71,9 @@ const NavbarSectionLayout = ({
                 />
               </div>
             </Maybe>
-            <div className="top-bar__lang  mr-4 ml-auto">
+            {/* <div className="top-bar__lang  mr-4 ml-auto">
               <UserNotificationsPopup />
-            </div>
+            </div> */}
             <div className="top-bar__lang  mr-4">
               <LangDropdown />
             </div>
@@ -110,7 +110,7 @@ NavbarSectionLayout.propTypes = {
 
 NavbarSectionLayout.defaultProps = {
   className: "",
-  onSearchChange: () => {},
+  onSearchChange: () => { },
   showSearch: true,
   showLogin: true,
 };
