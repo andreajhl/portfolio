@@ -168,7 +168,7 @@ const DLocalPaymentsMethods = ({
             ["PAID", "AUTHORIZED", "PENDING"].includes(response.chargeStatus)
           ) {
             if (response.requiredRedirect) {
-              window.location.replace(response.redirectUri);
+              window?.open?.(response.redirectUri);
             } else {
               analytics.trackContractPurchase({
                 contractPrice,
@@ -182,13 +182,13 @@ const DLocalPaymentsMethods = ({
                 contractPrice,
                 celebrityId
               });
-              router.push(
-                PURCHASE_SUMMARY.replace(
-                  ":contract_reference",
-                  String(contractReference)
-                )
-              );
             }
+            router.push(
+              PURCHASE_SUMMARY.replace(
+                ":contract_reference",
+                String(contractReference)
+              )
+            );
           } else {
             setPaymentError(response.statusDetails);
             setPaymentInProcess(false);
