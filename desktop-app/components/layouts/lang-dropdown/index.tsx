@@ -35,7 +35,7 @@ export default function LangDropdown() {
       closeOnDocumentClick
     >
       <div className={styles.CurrencyDropdownMenu}>
-        {AVAILABLE_LANGS[locale as localeAvailables].map((lang) => (
+        {AVAILABLE_LANGS[locale as localeAvailables]?.map((lang) => (
           <div
             key={lang.lang}
             onClick={() => handleChangeLang(lang.lang)}
