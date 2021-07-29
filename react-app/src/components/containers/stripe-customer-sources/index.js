@@ -11,6 +11,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
 import { analytics } from "react-app/src/state/utils/gtm";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 const errorMessages = defineMessages({
   errorMessageApplyStripeAuthWithoutSourceID: {
@@ -92,7 +93,7 @@ class StripeCustomerSources extends Component {
     });
   };
 
-  applyStripeAuth = () => {
+  applyStripeAuth = async () => {
     if (this.state.selectedSourceId === null) {
       this.setState({
         ...this.state,
@@ -114,10 +115,21 @@ class StripeCustomerSources extends Component {
         celebrityId: this.props.celebrityId,
         widget: "StripeCustomerSources"
       });
+      const {
+        deviceId,
+        IP,
+        userAgent,
+        geoLocalization
+      } = await getBuyerIdentityData();
       processStripePayment(
         this.props.contractReference,
         this.state.selectedSourceId,
-        this.props.discountCouponId
+        this.props.discountCouponId,
+        deviceId,
+        IP,
+        userAgent,
+        geoLocalization,
+        this.props.intl.locale
       )
         .then((res) => {
           if (res.data.status === "ERROR") {

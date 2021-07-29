@@ -6,6 +6,7 @@ import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 const errorMessages = defineMessages({
   errorMessageOnPayPalButtonCancel: {
@@ -29,12 +30,24 @@ class PayPalCardForm extends Component {
     });
   };
 
-  onPayPalButtonApprove = (orderId, authorizationId) => {
+  onPayPalButtonApprove = async (orderId, authorizationId) => {
+    const {
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization
+    } = await getBuyerIdentityData();
+
     processPayPalPayment(
       this.props.contractReference,
       orderId,
       authorizationId,
-      this.props.discountCouponId
+      this.props.discountCouponId,
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+      this.props.intl.locale
     )
       .then((res) => {
         if (res.status === 10) {
