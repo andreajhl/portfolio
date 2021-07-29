@@ -17,6 +17,8 @@ import dynamic from "next/dynamic";
 import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { Session } from "react-app/src/state/utils/session.js";
 import useUserLocation from "lib/hooks/useUserLocationCookie";
+import { useIntl } from "react-intl";
+import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 const COUNTRIES_WHERE_SHOULD_ALWAYS_DISPLAY_BOTMAKER = ["BR"];
 
@@ -52,6 +54,7 @@ function PageContainer({
 }) {
   const botMakerChildRef = useRef();
   const [dropdownMenuIsOpen, setDropdownMenuIsOpen] = useState(false);
+  const { locale } = useIntl();
   const loginHandler = useLoginHandler();
   const userLocation = useUserLocation();
   const forceShowBotMakerFrame = isCountryWhereShouldAlwaysDisplayBotMaker(
@@ -106,7 +109,10 @@ function PageContainer({
 
   useEffect(() => {
     if (showBotMakerFrame) {
-      initializeBotMaker(document);
+      initializeBotMaker(
+        document,
+        transformUserNavigatorLanguageToISO2Code(locale)
+      );
     }
     changeBotmakerDisplay();
     return () => {
