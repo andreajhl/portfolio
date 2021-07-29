@@ -177,7 +177,10 @@ export const processDlocalPayment = (
   discountCouponId,
   cardToken,
   deviceId,
-  userIp
+  userIp,
+  userAgent = "",
+  geolocation = "",
+  locale = ""
 ) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
   const data = {
@@ -189,7 +192,10 @@ export const processDlocalPayment = (
     discountCouponId: discountCouponId,
     cardToken: cardToken,
     deviceId: deviceId,
-    IP: userIp
+    IP: userIp,
+    userAgent,
+    geolocation,
+    locale
   };
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
