@@ -5,15 +5,11 @@ import SelectCardBankPaymentMethod from "../select-cardbank-payment-method";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
-import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
-import { USER_GEOLOCATION_KEY, USER_IP_ADDRESS } from "constants/keys";
-import { getIpAddress } from "react-app/src/state/utils/localizationApiService";
 import { PURCHASE_SUMMARY } from "react-app/src/routing/Paths";
 import { FormattedMessage, useIntl } from "react-intl";
 import { AVAILABLE_PAYMENTS_METHODS } from "react-app/src/constants/messages";
-import getCookie from "react-app/src/utils/getCookie";
 import { analytics } from "react-app/src/state/utils/gtm";
-import getWindow from "react-app/src/utils/getWindow";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
@@ -137,17 +133,12 @@ const DLocalPaymentsMethods = ({
       contractPrice,
       celebrityId
     });
-    let IP = null;
-    let geoLocalization = getCookie(USER_GEOLOCATION_KEY);
-    const userAgent = getWindow().navigator.userAgent;
-    const deviceId = generateDeviceId();
-    const userIpFromCookies = getCookie(USER_IP_ADDRESS);
-    if (userIpFromCookies) {
-      IP = userIpFromCookies;
-    } else {
-      const userIpGetFromExternalService = await getIpAddress();
-      IP = userIpGetFromExternalService;
-    }
+    const {
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization
+    } = await getBuyerIdentityData();
     try {
       processDlocalPayment(
         contractReference,
@@ -157,7 +148,7 @@ const DLocalPaymentsMethods = ({
         buyerData.buyerDocument,
         discountCouponId ? discountCouponId : null,
         cardToken,
-        String(deviceId),
+        deviceId,
         IP,
         userAgent,
         geoLocalization,
