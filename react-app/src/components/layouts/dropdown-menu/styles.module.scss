@@ -29,3 +29,14 @@
   color: var(--primary);
   background-color: rgb(255, 225, 240) !important;
 }
+
+.DropDownItem {
+  padding: 1.25rem 2rem 1.25rem 3rem;
+  font-size: 0.875rem;
+  text-align: left;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: solid 1px #ccc;
+  font-weight: bold;
+}

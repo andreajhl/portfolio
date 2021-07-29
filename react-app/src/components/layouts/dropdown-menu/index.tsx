@@ -78,9 +78,9 @@ export const DropdownMenuLayout = ({ isLogged }) => {
           </NavLink>
           {!isLogged ? (
             <>
-              <LoginButton className="dropdown-item d-md-none" />
+              <LoginButton className={`${styles.DropDownItem}`} />
               <LoginButton
-                className="dropdown-item d-md-none"
+                className={`${styles.DropDownItem}`}
                 text="Registrarme"
               />
             </>
