@@ -57,7 +57,7 @@ export function trackContractPurchase({ celebrityId, contractPrice }) {
     content_type: "product",
     content_ids: VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrityId,
     value: contractPrice,
-    currency: "USD",
+    currency: "USD"
   });
 }
 
