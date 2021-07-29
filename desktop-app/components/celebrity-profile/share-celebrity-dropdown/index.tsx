@@ -19,12 +19,16 @@ import {
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { getCelebrityProfilePath } from "constants/paths";
 import { celebrityType } from "desktop-app/types/celebrityType";
-import getWindow from "react-app/src/utils/getWindow";
+import getWindow, { getWindowPathname } from "react-app/src/utils/getWindow";
 import { FormattedMessage } from "react-intl";
+import { analytics } from "react-app/src/state/utils/gtm";
 
-type ShareDropdownProps = {
-  buttonClassName?: string;
+type AnalyticsDataType = {
+  widget: string;
+  path: string;
   celebrity: celebrityType;
+  link: string;
+  message: string;
 };
 
 type MenuItemType = {
@@ -34,18 +38,39 @@ type MenuItemType = {
   to: string;
 };
 
-const toMenuItem = ({ id, to, icon, label }) => (
-  <a
-    href={to}
-    className={styles.ShareDropdownItem}
-    key={id}
-    target="_blank"
-    rel="noreferrer"
-  >
-    {icon}
-    <span>{label}</span>
-  </a>
-);
+const toMenuItem = (analyticsData: AnalyticsDataType) => ({
+  id,
+  to,
+  icon,
+  label,
+}) => {
+  function trackShareLinkClick() {
+    analytics.track("SHARE_CELEBRITY_CLICK", {
+      ...analyticsData,
+      id,
+      shareLink: to,
+      label,
+    });
+  }
+  return (
+    <a
+      href={to}
+      className={styles.ShareDropdownItem}
+      key={id}
+      target="_blank"
+      rel="noreferrer"
+      onClick={trackShareLinkClick}
+    >
+      {icon}
+      <span>{label}</span>
+    </a>
+  );
+};
+
+type ShareDropdownProps = {
+  buttonClassName?: string;
+  celebrity: celebrityType;
+};
 
 function ShareCelebrityDropdown({
   buttonClassName = "",
@@ -84,11 +109,24 @@ function ShareCelebrityDropdown({
     },
   ];
 
+  const analyticsData: AnalyticsDataType = {
+    widget: "ShareCelebrityDropdown",
+    path: getWindowPathname(),
+    celebrity,
+    link,
+    message,
+  };
+
   const [hasCopiedLink, setHasCopiedLink] = useState(false);
+
+  function trackLinkCopy() {
+    analytics.track("SHARE_CELEBRITY_LINK_COPIED", analyticsData);
+  }
 
   function copyLinkToClipboard() {
     copyTextToClipboard(link);
     setHasCopiedLink(true);
+    trackLinkCopy();
   }
 
   useEffect(() => {
@@ -98,6 +136,10 @@ function ShareCelebrityDropdown({
 
     return () => clearTimeout(timeout);
   }, [hasCopiedLink]);
+
+  function trackDropdownOpen() {
+    analytics.track("SHARE_CELEBRITY_DROPDOWN_OPEN", analyticsData);
+  }
 
   return (
     <Dropdown
@@ -109,6 +151,7 @@ function ShareCelebrityDropdown({
         styles.ShareDropdownButton,
         buttonClassName
       )}
+      onOpen={trackDropdownOpen}
     >
       <div
         tabIndex={0}
@@ -132,7 +175,7 @@ function ShareCelebrityDropdown({
           </span>
         </Maybe>
       </div>
-      {socialMedias.map(toMenuItem)}
+      {socialMedias.map(toMenuItem(analyticsData))}
     </Dropdown>
   );
 }

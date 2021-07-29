@@ -31,6 +31,7 @@ type DropdownProps = {
   showClassName?: string;
   buttonStyle?: CSSProperties;
   disabled?: boolean;
+  onOpen?: PopupProps["onOpen"];
 };
 
 function Dropdown({
@@ -43,6 +44,7 @@ function Dropdown({
   menuClassName = "",
   buttonStyle,
   disabled = false,
+  onOpen,
 }: DropdownProps) {
   const trigger = (isOpen: boolean): JSX.Element => (
     <button
@@ -77,6 +79,7 @@ function Dropdown({
       trigger={trigger}
       arrow={showArrow}
       disabled={disabled}
+      onOpen={onOpen}
     >
       {dropdownMenu}
     </AnimatedPopup>
