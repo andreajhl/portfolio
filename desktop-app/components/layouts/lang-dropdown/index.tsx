@@ -7,13 +7,15 @@ import Popup from "reactjs-popup";
 import { updateNotificationsLang } from "react-app/src/state/ducks/session/actions";
 import { useAuth } from "lib/famosos-auth";
 import { GlobeEarth } from "desktop-app/components/common/icons";
-type localeAvailables = "es" | "en" | "pt" | "por" | "pt-BR";
+import { useIntl } from "lib/custom-intl";
+
 const ONE_YEAR_IN_MILLISECONDS = 365 * 24 * 3600 * 1000;
 
 export default function LangDropdown() {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
-  const { locale, pathname, query, asPath } = router;
+  const { pathname, query, asPath } = router;
+  const { locale } = useIntl();
 
   const handleChangeLang = async (lang: string) => {
     const date = new Date();
@@ -23,6 +25,8 @@ export default function LangDropdown() {
     document.cookie = `NEXT_LOCALE=${lang};${expiresTime}`;
     router.push({ pathname, query }, asPath, { locale: lang });
   };
+
+  const availableLangs = AVAILABLE_LANGS[locale] || AVAILABLE_LANGS.es;
 
   return (
     <Popup
@@ -35,7 +39,7 @@ export default function LangDropdown() {
       closeOnDocumentClick
     >
       <div className={styles.CurrencyDropdownMenu}>
-        {AVAILABLE_LANGS[locale as localeAvailables]?.map((lang) => (
+        {availableLangs.map((lang) => (
           <div
             key={lang.lang}
             onClick={() => handleChangeLang(lang.lang)}
