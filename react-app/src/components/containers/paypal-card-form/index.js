@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import PaypalReactButton from "../paypal-react-button";
 import { processPayPalPayment } from "../../../state/ducks/payments/actions";
 import * as GTM from "../../../state/utils/gtm";
 import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import PaypalReactButton from "desktop-app/components/payments-methods/paypal-react-button";
+const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
 
 const errorMessages = defineMessages({
   errorMessageOnPayPalButtonCancel: {
@@ -139,27 +141,36 @@ class PayPalCardForm extends Component {
 
   render() {
     return (
-      <div className={""}>
-        <ul
-          className="mb-4 px-4"
-          style={{ fontSize: "15px", listStyle: "none" }}
-        >
-          <li className="mb-2" style={{ color: "#505050" }}>
-            <FormattedMessage
-              defaultMessage=" Haz click sobre el siguiente botón para hacer el pago usando tu
+      <PayPalScriptProvider
+        options={{
+          intent: "authorize",
+          "client-id": CLIENT_ID,
+          currency: "USD",
+          "disable-funding": "credit,card",
+        }}
+      >
+        <div className={""}>
+          <ul
+            className="mb-4 px-4"
+            style={{ fontSize: "15px", listStyle: "none" }}
+          >
+            <li className="mb-2" style={{ color: "#505050" }}>
+              <FormattedMessage
+                defaultMessage=" Haz click sobre el siguiente botón para hacer el pago usando tu
             cuenta de PayPal."
-            />
-          </li>
-          <li style={{ color: "#505050" }}>
-            <FormattedMessage
-              defaultMessage="Serás redirigido a la pagina oficial de PayPal para continuar con el
+              />
+            </li>
+            <li style={{ color: "#505050" }}>
+              <FormattedMessage
+                defaultMessage="Serás redirigido a la pagina oficial de PayPal para continuar con el
             pago."
-            />
-          </li>
-        </ul>
-        {this.renderError()}
-        {this.renderButton()}
-      </div>
+              />
+            </li>
+          </ul>
+          {this.renderError()}
+          {this.renderButton()}
+        </div>
+      </PayPalScriptProvider>
     );
   }
 }
