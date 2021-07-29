@@ -17,6 +17,8 @@ import {
   getDeliveryFromValidator,
   getDeliveryToValidator,
 } from "lib/validations/contractData";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { getWindowPathname } from "react-app/src/utils/getWindow";
 
 const br = <br />;
 
@@ -104,7 +106,26 @@ function ContractDeliveryForm({
     setFieldValue("deliveryTo", deliveryFrom, false);
   }
 
+  const analyticsData = {
+    widget: "ContractDeliveryForm",
+    path: getWindowPathname(),
+    user,
+    formValues: values,
+    celebrity,
+    contractIsForBusiness,
+    businessPrice,
+  };
+
+  function trackContractTypeChange(newContractType: number) {
+    analytics.track("CHANGE_CONTRACT_TYPE", {
+      ...analyticsData,
+      previousContractType: values.contractType,
+      newContractType,
+    });
+  }
+
   function changeContractType(newContractType: number): void {
+    trackContractTypeChange(newContractType);
     swapDeliveryInfoValues(newContractType);
     setFieldValue("contractType", newContractType);
   }

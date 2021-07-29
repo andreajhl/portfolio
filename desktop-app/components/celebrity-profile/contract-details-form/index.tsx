@@ -25,6 +25,8 @@ import {
   getInstructionsValidator,
   getOccasionValidator,
 } from "lib/validations/contractData";
+import { getWindowPathname } from "react-app/src/utils/getWindow";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const messages = defineMessages({
   instructionsPlaceholder: {
@@ -131,8 +133,26 @@ function ContractDetailsForm({
       .replace(/PLACEHOLDER_PARA/g, deliveryTo || "[PARA]");
   }
 
+  const analyticsData = {
+    widget: "ContractDetailsForm",
+    path: getWindowPathname(),
+    formValues: values,
+    contractType,
+    deliveryTo,
+    celebrityFullName,
+  };
+
+  function trackOccasionChange(newOccasion: OccasionType) {
+    analytics.track("CHANGE_CONTRACT_OCCASION", {
+      ...analyticsData,
+      previousOccasion: values.occasion,
+      newOccasion,
+    });
+  }
+
   function changeOccasion(occasionKey: OccasionType) {
     if (!touched?.occasion) setFieldTouched("occasion", true);
+    trackOccasionChange(occasionKey);
     setFieldValue("occasion", occasionKey);
     if (hasEditedInstructions) return;
     const text = getOccasionInstructionsText(occasionKey);
