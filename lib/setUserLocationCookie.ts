@@ -3,7 +3,8 @@ import {
   USER_LOCATION_KEY,
   USER_IP_ADDRESS,
   USER_CURRENCY_CODE,
-  CURRENT_CURRENCY_TRM_CODE
+  CURRENT_CURRENCY_TRM_CODE,
+  USER_GEOLOCATION_KEY
 } from "constants/keys";
 import axios from "axios";
 import isBot from "isbot";
@@ -33,40 +34,45 @@ function getUserIp(request: IncomingMessage) {
 async function getIpData(userIp: string) {
   const response = await axios.get<{
     country_code: string;
+    latitude: string;
+    longitude: string;
     currency: {
       code: string;
     };
   }>(
-    `http://api.ipstack.com/${userIp}?access_key=ac1c0a88db0de9da13fcdba5d6742384&fields=country_code,currency.code`
+    `http://api.ipstack.com/${userIp}?access_key=ac1c0a88db0de9da13fcdba5d6742384&fields=country_code,currency.code,latitude,longitude`
   );
+  const latitude = response?.data?.latitude || "0";
+  const longitude = response?.data?.longitude || "0";
   return {
     country_code: response.data["country_code"] || "",
-    currency_code: response.data?.currency?.code || ""
+    currency_code: response.data?.currency?.code || "",
+    geolocation: `${latitude},${longitude}`
   };
 }
+
+const fallbackIpData = {
+  geolocation: "0,0",
+  country_code: "",
+  currency_code: ""
+};
 
 const getUserLocationData = async (
   request: IncomingMessage
 ): Promise<{
+  geolocation: string;
   country_code: string;
   currency_code: string;
 }> => {
   try {
     let userIp = getUserIp(request);
-    if (!userIp || invalidIpAddresses.includes(userIp))
-      return {
-        country_code: "",
-        currency_code: ""
-      };
+    if (!userIp || invalidIpAddresses.includes(userIp)) return fallbackIpData;
     debug("Se va a llamar a IPStack con la IP", userIp);
     const response = await getIpData(userIp);
     debug("IPStack posee response", JSON.stringify(response));
     return response;
   } catch (error) {
-    return {
-      country_code: "",
-      currency_code: ""
-    };
+    return fallbackIpData;
   }
 };
 
@@ -133,11 +139,13 @@ const setUserLocationCookie = async ({
   const userHasAllCookies =
     USER_LOCATION_KEY in cookies &&
     USER_IP_ADDRESS in cookies &&
-    USER_CURRENCY_CODE in cookies;
+    USER_CURRENCY_CODE in cookies &&
+    USER_GEOLOCATION_KEY in cookies;
   const locationValuesAreInHeader =
     Boolean(res.getHeader(USER_LOCATION_KEY)) &&
     Boolean(res.getHeader(USER_CURRENCY_CODE)) &&
-    Boolean(res.getHeader(USER_IP_ADDRESS));
+    Boolean(res.getHeader(USER_IP_ADDRESS)) &&
+    Boolean(res.getHeader(USER_GEOLOCATION_KEY));
 
   if (!userHasAllCookies && !locationValuesAreInHeader) {
     const locationCookies = await getLocationCookieHeader(req, res);
@@ -154,6 +162,7 @@ const setUserLocationCookie = async ({
     );
     newCookiesSerializes.push(
       ...serializeUserLocationCookies({
+        geolocation: String(res.getHeader(USER_GEOLOCATION_KEY)),
         currency_code: String(res.getHeader(USER_CURRENCY_CODE)),
         userIpAddressLocation: String(res.getHeader(USER_IP_ADDRESS)),
         country_code: String(res.getHeader(USER_LOCATION_KEY))

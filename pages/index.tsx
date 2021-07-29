@@ -10,6 +10,7 @@ import { parse, serialize } from "cookie";
 import {
   OFFSET_ROTATE_CELEBRITIES_SECTIONS,
   USER_CURRENCY_CODE,
+  USER_GEOLOCATION_KEY,
   USER_IP_ADDRESS,
   USER_LOCATION_KEY
 } from "constants/keys";
@@ -48,6 +49,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         res.setHeader(USER_IP_ADDRESS, locationCookies.userIpAddressLocation);
         res.setHeader(USER_LOCATION_KEY, locationCookies.country_code);
         res.setHeader(USER_CURRENCY_CODE, locationCookies.currency_code);
+        res.setHeader(USER_GEOLOCATION_KEY, locationCookies.geolocation);
         userLocation = locationCookies.country_code;
       }
     }

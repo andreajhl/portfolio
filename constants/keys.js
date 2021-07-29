@@ -11,3 +11,5 @@ export const OFFSET_ROTATE_CELEBRITIES_SECTIONS =
 export const STRIPE_FAILURE_AUTHENTICATION = "stripe_failure_authentication";
 export const NEXT_LOCALE = "NEXT_LOCALE";
 export const cfUserCountryCode = "__cf__userCountryCode";
+
+export const USER_GEOLOCATION_KEY = "fs__uglk";

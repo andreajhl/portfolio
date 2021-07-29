@@ -5,14 +5,11 @@ import SelectCardBankPaymentMethod from "../select-cardbank-payment-method";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
-import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
-import { USER_IP_ADDRESS } from "constants/keys";
-import { getIpAddress } from "react-app/src/state/utils/localizationApiService";
 import { PURCHASE_SUMMARY } from "react-app/src/routing/Paths";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { AVAILABLE_PAYMENTS_METHODS } from "react-app/src/constants/messages";
-import getCookie from "react-app/src/utils/getCookie";
 import { analytics } from "react-app/src/state/utils/gtm";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
@@ -111,6 +108,7 @@ const DLocalPaymentsMethods = ({
   celebrityId
 }: DLocalPaymentsMethodsProps) => {
   const router = useRouter();
+  const { locale } = useIntl();
   const handleChangePaymentMethod = (name, paymentMethodId) => {
     setCurrentOption({ name: name, paymentMethodId: paymentMethodId });
   };
@@ -135,15 +133,12 @@ const DLocalPaymentsMethods = ({
       contractPrice,
       celebrityId
     });
-    let IP = null;
-    const deviceId = generateDeviceId();
-    const userIpFromCookies = getCookie(USER_IP_ADDRESS);
-    if (userIpFromCookies) {
-      IP = userIpFromCookies;
-    } else {
-      const userIpGetFromExternalService = await getIpAddress();
-      IP = userIpGetFromExternalService;
-    }
+    const {
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization
+    } = await getBuyerIdentityData();
     try {
       processDlocalPayment(
         contractReference,
@@ -153,15 +148,18 @@ const DLocalPaymentsMethods = ({
         buyerData.buyerDocument,
         discountCouponId ? discountCouponId : null,
         cardToken,
-        String(deviceId),
-        IP
+        deviceId,
+        IP,
+        userAgent,
+        geoLocalization,
+        locale
       )
         .then((response) => {
           if (
             ["PAID", "AUTHORIZED", "PENDING"].includes(response.chargeStatus)
           ) {
             if (response.requiredRedirect) {
-              window.location.replace(response.redirectUri);
+              window?.open?.(response.redirectUri);
             } else {
               analytics.trackContractPurchase({
                 contractPrice,
@@ -175,13 +173,13 @@ const DLocalPaymentsMethods = ({
                 contractPrice,
                 celebrityId
               });
-              router.push(
-                PURCHASE_SUMMARY.replace(
-                  ":contract_reference",
-                  String(contractReference)
-                )
-              );
             }
+            router.push(
+              PURCHASE_SUMMARY.replace(
+                ":contract_reference",
+                String(contractReference)
+              )
+            );
           } else {
             setPaymentError(response.statusDetails);
             setPaymentInProcess(false);
