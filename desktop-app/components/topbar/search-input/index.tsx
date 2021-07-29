@@ -14,6 +14,8 @@ import { connect, ConnectedProps } from "react-redux";
 import { Link } from "desktop-app/components/common/routing/link";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { FormattedMessage } from "react-intl";
+import { getWindowPathname } from "react-app/src/utils/getWindow";
+import { celebrityType } from "desktop-app/types/celebrityType";
 
 const FINAL_PATH = process.env.NEXT_PUBLIC_ENDPOINT + SEARCH_LIST;
 
@@ -29,10 +31,17 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
     String(query?.search || "")
   );
 
+  const analyticsData = {
+    widget: "TopbarSearchInput",
+    path: getWindowPathname(),
+    currentQuery,
+  };
+
   const getResults = useCallback(
     debounce((query) => {
       setStatus("loading");
       if (query !== "") {
+        analytics.track("TOP_BAR_SEARCH_CHANGE", { ...analyticsData, query });
         axios
           .get(FINAL_PATH, {
             params: {
@@ -70,11 +79,16 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
   };
 
   function trackSearch() {
-    analytics.track("TOP_BAR_SEARCH_SUBMIT", {
-      searchKeyword: currentQuery,
-      widget: "TopbarSearchInput",
-    });
+    analytics.track("TOP_BAR_SEARCH_SUBMIT", analyticsData);
   }
+
+  const getTrackResultClick = (celebrity: celebrityType) =>
+    function trackResultClick() {
+      analytics.track("CLICK_ON_CELEBRITY_FROM_SEARCH_RESULTS", {
+        ...analyticsData,
+        celebrity,
+      });
+    };
 
   return (
     <div className={styles.TopBarSearch}>
@@ -114,6 +128,7 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
                   <Link
                     className={styles.AnchorTagResult}
                     href={getCelebrityProfilePath(result.username)}
+                    onClick={getTrackResultClick(result)}
                   >
                     <div
                       key={result.fullName}
@@ -144,8 +159,10 @@ function TopbarSearchInput({ updateSearchFilters }: PropsFromRedux) {
             >
               <div className={styles.SectionCTASeeMore}>
                 <SearchIcon className={styles.SeeMoreIcon} />
-                <FormattedMessage defaultMessage="Ver mas resultados para" /> "
-                {currentQuery}"
+                <FormattedMessage
+                  defaultMessage={`Ver mas resultados para "{currentQuery}"`}
+                  values={{ currentQuery }}
+                />
               </div>
             </Link>
           </Maybe>
