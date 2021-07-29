@@ -10,6 +10,9 @@
 .SubscriptionNewsLetterFormInputElementModifier {
   background-color: #323232;
   margin-bottom: 0.5rem !important;
+  button span span {
+    margin: 0;
+  }
 }
 
 .SubscriptionNewsLetterFormInputElementModifier input {
