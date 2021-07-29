@@ -3,12 +3,14 @@ import {
   CURRENT_CURRENCY_TRM_CODE,
   CURRENT_CURRENCY_TRM_RATE,
   USER_CURRENCY_CODE,
+  USER_GEOLOCATION_KEY,
   USER_LOCATION_KEY
 } from "constants/keys";
 import { USER_IP_ADDRESS } from "constants/keys";
 const ONE_YEAR_IN_MILLISECONDS = 365 * 24 * 3600 * 1000;
 
 export function serializeUserLocationCookies(locationCookies: {
+  geolocation: string;
   userIpAddressLocation: string;
   country_code: string;
   currency_code: string;
@@ -26,6 +28,11 @@ export function serializeUserLocationCookies(locationCookies: {
   );
   userLocationCookiesSerialize.push(
     serialize(USER_IP_ADDRESS, locationCookies.userIpAddressLocation, {
+      maxAge: ONE_YEAR_IN_MILLISECONDS
+    })
+  );
+  userLocationCookiesSerialize.push(
+    serialize(USER_GEOLOCATION_KEY, locationCookies.geolocation, {
       maxAge: ONE_YEAR_IN_MILLISECONDS
     })
   );
