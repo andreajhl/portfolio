@@ -2,6 +2,7 @@ import { PURCHASE_SUMMARY } from "constants/paths";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { processStripePayment } from "react-app/src/state/ducks/payments/actions";
@@ -53,12 +54,12 @@ function StripeCustomerSources({
   onDeleteSource,
 }: StripeCustomerSourcesProps) {
   const { push } = useRouter();
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const [selectedSourceId, setSelectedSourceId] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [paymentInProcess, setPaymentInProcess] = useState(false);
   const togglePaymentInProcess = useTogglePaymentInProcess();
-  const applyStripeAuth = () => {
+  const applyStripeAuth = async () => {
     if (selectedSourceId === null)
       setErrorMessage(formatMessage(messages.errorNoCardSelected));
     else {
@@ -72,10 +73,21 @@ function StripeCustomerSources({
       });
       setErrorMessage("");
       setPaymentInProcess(true);
+      const {
+        deviceId,
+        IP,
+        userAgent,
+        geoLocalization,
+      } = await getBuyerIdentityData();
       processStripePayment(
         contractReference,
         selectedSourceId,
-        discountCouponId
+        discountCouponId,
+        deviceId,
+        IP,
+        userAgent,
+        geoLocalization,
+        locale
       )
         .then((res) => {
           if (res.data.status === "ERROR") {

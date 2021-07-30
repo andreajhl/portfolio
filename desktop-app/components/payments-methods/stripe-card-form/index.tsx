@@ -16,6 +16,7 @@ import {
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import WarningMessage from "desktop-app/components/common/warning-message";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 type StripeComponentProps = {
   contractPrice: number;
@@ -38,7 +39,7 @@ function StripeCardForm({
   stripe,
 }: StripeComponentProps) {
   const togglePaymentInProcess = useTogglePaymentInProcess();
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const { push } = useRouter();
   const [cardComplete, setCardComplete] = useState(false);
   const [error, setError] = useState(null);
@@ -94,9 +95,24 @@ function StripeCardForm({
       .finally(() => togglePaymentInProcess());
   };
 
-  const applyStripeAuth = (sourceId) => {
+  const applyStripeAuth = async (sourceId) => {
     togglePaymentInProcess();
-    processStripePayment(contractReference, sourceId, discountCouponId)
+    const {
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+    } = await getBuyerIdentityData();
+    processStripePayment(
+      contractReference,
+      sourceId,
+      discountCouponId,
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+      locale
+    )
       .then((res) => {
         if (res.data.status === "ERROR") {
           setError(res.data.error);

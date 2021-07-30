@@ -8,8 +8,10 @@ import {
   ExchangeArrowIcon,
 } from "desktop-app/components/common/icons";
 import WarningMessage from "desktop-app/components/common/warning-message";
+import { useIntl } from "lib/custom-intl";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
@@ -76,6 +78,7 @@ function DLocalPaymentMethodForm({
   contractPrice,
 }: DLocalPaymentMethodFormProps) {
   const { push } = useRouter();
+  const { locale } = useIntl();
   const togglePaymentInProcess = useTogglePaymentInProcess();
 
   const sectionId = `section-${index}`;
@@ -95,15 +98,12 @@ function DLocalPaymentMethodForm({
     setPaymentInProcess(true);
     togglePaymentInProcess();
 
-    let IP = null;
-    const deviceId = generateDeviceId();
-    const userIpFromCookies = getCookie(USER_IP_ADDRESS);
-    if (userIpFromCookies) {
-      IP = userIpFromCookies;
-    } else {
-      const userIpGetFromExternalService = await getIpAddress();
-      IP = userIpGetFromExternalService;
-    }
+    const {
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+    } = await getBuyerIdentityData();
 
     try {
       processDlocalPayment(
@@ -114,8 +114,11 @@ function DLocalPaymentMethodForm({
         buyerData.identification_document,
         discountCouponId,
         cardToken,
-        String(deviceId),
-        IP
+        deviceId,
+        IP,
+        userAgent,
+        geoLocalization,
+        locale
       )
         .then((response) => {
           if (

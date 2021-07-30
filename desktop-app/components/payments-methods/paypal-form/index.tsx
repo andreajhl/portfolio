@@ -15,6 +15,8 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { FormattedMessage } from "react-intl";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
+import { useIntl } from "lib/custom-intl";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -42,17 +44,29 @@ function PaypalForm({
   celebrityId,
 }: PaypalFormProps) {
   const { push } = useRouter();
+  const { locale } = useIntl();
   const sectionId = `section-${index}`;
   const labelId = `label-${index}`;
   const [errorMessage, setErrorMessage] = useState(null);
   const togglePaymentInProcess = useTogglePaymentInProcess();
-  const onPayPalButtonApprove = (orderId, authorizationId) => {
+  const onPayPalButtonApprove = async (orderId, authorizationId) => {
     togglePaymentInProcess();
+    const {
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+    } = await getBuyerIdentityData();
     processPayPalPayment(
       contractReference,
       orderId,
       authorizationId,
-      discountCouponId
+      discountCouponId,
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+      locale
     )
       .then((res) => {
         const analyticsData = {
