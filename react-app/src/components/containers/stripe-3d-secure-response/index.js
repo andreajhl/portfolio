@@ -4,7 +4,8 @@ import { withRouter } from "react-app/src/components/common/routing";
 import { loadStripe } from "@stripe/stripe-js";
 import { processStripePayment } from "../../../state/ducks/payments/actions";
 import * as PATHS from "../../../routing/Paths";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 class Stripe3dSecureResponse extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class Stripe3dSecureResponse extends Component {
 
       if (source.status === "chargeable") {
         // LINK SOURCE WITH THE CUSTOMER AND SEND TO THE BACKEND TO APPLY AUTHORIZATION
-        this.sendStripePayemtData(source.id);
+        this.sendStripePaymentData(source.id);
       } else if (
         source.status === "pending" &&
         this.state.intentsCount < MAX_POLL_COUNT
@@ -72,8 +73,23 @@ class Stripe3dSecureResponse extends Component {
     }
   };
 
-  sendStripePayemtData = (sourceId) => {
-    processStripePayment(this.props.contractReference, sourceId)
+  sendStripePaymentData = async (sourceId) => {
+    const {
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization
+    } = await getBuyerIdentityData();
+    processStripePayment(
+      this.props.contractReference,
+      sourceId,
+      null,
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+      this.props.intl.locale
+    )
       .then((res) => {
         if (res.data.status === "ERROR") {
           this.setState({
@@ -186,4 +202,4 @@ Stripe3dSecureResponse.defaultProps = {
 };
 
 // Export class
-export default withRouter(Stripe3dSecureResponse);
+export default withRouter(injectIntl(Stripe3dSecureResponse));
