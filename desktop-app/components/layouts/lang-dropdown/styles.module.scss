@@ -11,7 +11,7 @@
     border-radius: 0.25rem;
     border: 1px solid rgba(0, 0, 0, 0.15);
     background-color: white;
-    padding: 1.125rem 0;
+    padding: 0.5rem 0;
     overflow-y: scroll;
     height: 240px;
     height: fit-content;
@@ -27,7 +27,7 @@
 
   &Item {
     cursor: pointer;
-    padding: 0.25rem 0.4rem;
+    padding: 0.75rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -43,7 +43,7 @@
       font-weight: bold;
     }
     &Active {
-      background: rgba(245, 245, 245, 1);
+      background: rgb(226, 226, 226);
     }
   }
 }
