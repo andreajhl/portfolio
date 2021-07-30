@@ -158,7 +158,7 @@ class AvailablePaymentMethods extends Component {
           <div className="payment-type-title">
             <h6 className={"font-weight-normal"}>
               <span>
-                <FormattedMessage defaultMessage="Tarjeta de Crédito o Débito" />
+                <FormattedMessage defaultMessage="Tarjeta de Crédito" />
               </span>
             </h6>
             <i className="far fa-credit-card"></i>
