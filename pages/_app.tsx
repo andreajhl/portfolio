@@ -25,16 +25,11 @@ const languages = {
 };
 
 const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
-  const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
   analytics.page({
     path: url,
     url,
     shallow,
     isReactRouting: true,
-    ENVIRONMENT,
-    userAgent: navigator?.userAgent,
-    vendor: navigator?.vendor,
-    receivedAt: new Date(),
   });
 };
 
