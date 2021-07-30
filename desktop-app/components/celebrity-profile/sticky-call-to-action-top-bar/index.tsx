@@ -9,6 +9,8 @@ import {
 } from "desktop-app/components/common/text-with-overflow";
 import classes from "classnames";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+import { getWindowPathname } from "react-app/src/utils/getWindow";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const messages = defineMessages({
   avatarAlt: {
@@ -31,6 +33,25 @@ function StickyCallToActionTopBar({
   const avatarImgAlt = formatMessage(messages.avatarAlt, {
     celebrityFullName: celebrity.fullName,
   });
+
+  const analyticsData = {
+    widget: "StickyCallToActionTopBar",
+    path: getWindowPathname(),
+    celebrity,
+    appearancePosition,
+  };
+
+  function trackCTAButtonClick() {
+    analytics.track(
+      "CLICK_CELEBRITY_PROFILE_STICKY_TOPBAR_BUTTON",
+      analyticsData
+    );
+  }
+
+  function onClickCTAButton() {
+    trackCTAButtonClick();
+    onCTAButtonClick?.();
+  }
 
   return (
     <StickyTopBar appearancePosition={appearancePosition}>
@@ -59,7 +80,7 @@ function StickyCallToActionTopBar({
         <button
           type="button"
           className={classes("btn btn-primary", styles.StickyCTAButton)}
-          onClick={onCTAButtonClick}
+          onClick={onClickCTAButton}
         >
           <FormattedMessage defaultMessage="Comprar video personalizado" />
         </button>
