@@ -120,6 +120,15 @@ function ContractDetailsForm({
     }
   }, []);
 
+  useEffect(() => {
+    if (values.occasion === initialValues.occasion) return;
+    const occasionIsAvailable = Boolean(
+      getOccasionMessage(locale, values.occasion, contractType)
+    );
+    if (occasionIsAvailable) return;
+    setFieldValue("occasion", initialValues.occasion);
+  }, [contractType, locale, values.occasion]);
+
   function getOccasionInstructionsText(occasion: OccasionType): string {
     return replacePlaceHolder(
       getOccasionMessage(locale, occasion, contractType)
