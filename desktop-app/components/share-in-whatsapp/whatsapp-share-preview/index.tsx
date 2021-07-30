@@ -1,6 +1,8 @@
-import { getGiftPreviewPath, getHiringPreviewPath } from "constants/paths";
+import { getGiftPreviewPath } from "constants/paths";
 import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
+
+const lineBreak = <br />;
 
 type WhatsappSharePreviewProps = {
   deliveryTo: string;
@@ -15,6 +17,9 @@ function WhatsappSharePreview({
   contractReference,
   videoPosterUrl,
 }: WhatsappSharePreviewProps) {
+  const giftPreviewLink = `https://www.famosos.com${getGiftPreviewPath(
+    contractReference
+  )}`;
   return (
     <div className={styles.WhatsappSharePreview}>
       <div className={styles.MessageToast}>
@@ -25,13 +30,11 @@ function WhatsappSharePreview({
         />
         <div className={styles.MessageText}>
           <FormattedMessage
-            defaultMessage="¡Hola {deliveryTo}! {break}
-          Mira el regalo que {deliveryFrom} te ha hecho a través de Famosos.com"
+            defaultMessage="¡Hola {deliveryTo}! {lineBreak} Mira el regalo que {deliveryFrom} te ha hecho a través de Famosos.com"
+            values={{ deliveryTo, deliveryFrom, lineBreak }}
           />
           <br /> <br />
-          <span className={styles.Hyperlink}>
-            https://www.famosos.com{getGiftPreviewPath(contractReference)}
-          </span>
+          <span className={styles.Hyperlink}>{giftPreviewLink}</span>
         </div>
       </div>
     </div>
