@@ -15,16 +15,32 @@ import initializeBotMaker from "react-app/src/utils/initializeBotMaker";
 import dynamic from "next/dynamic";
 import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { Session } from "react-app/src/state/utils/session.js";
+import useUserLocation from "lib/hooks/useUserLocationCookie";
+import { useIntl } from "react-intl";
+import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { getWindowPathname } from "react-app/src/utils/getWindow";
+
+const COUNTRIES_WHERE_SHOULD_ALWAYS_DISPLAY_BOTMAKER = ["BR"];
+
+const isCountryWhereShouldAlwaysDisplayBotMaker = (userLocation) =>
+  COUNTRIES_WHERE_SHOULD_ALWAYS_DISPLAY_BOTMAKER.includes(userLocation);
 
 function ignoreError() {}
 
+const NewsletterPopup = dynamic(
+  import("../../containers/newsletter-popup").then(
+    (mod) => mod.NewsletterPopup
+  ),
+  { ssr: false }
+);
+
 const CookiesConsent = dynamic(
-  () => import("../cookies-consent").then((mod) => mod.CookiesConsent),
+  import("../cookies-consent").then((mod) => mod.CookiesConsent),
   { ssr: false }
 );
 
 function PageContainer({
-  hasDiscountCoupon,
   cleanUserCelebrityLikes,
   restCountries,
   applyFetchUserCelebrityLikes,
@@ -33,13 +49,19 @@ function PageContainer({
   listRestCountries,
   queryParams,
   updateQueryParams,
-  showBotMakerFrame,
+  showBotMakerFrame: showBotMakerFrameProp,
   router,
   ...props
 }) {
   const botMakerChildRef = useRef();
-  const [showCouponBanner, setShowCouponBanner] = useState(hasDiscountCoupon);
+  const [dropdownMenuIsOpen, setDropdownMenuIsOpen] = useState(false);
+  const { locale } = useIntl();
   const loginHandler = useLoginHandler();
+  const userLocation = useUserLocation();
+  const forceShowBotMakerFrame = isCountryWhereShouldAlwaysDisplayBotMaker(
+    userLocation
+  );
+  const showBotMakerFrame = showBotMakerFrameProp || forceShowBotMakerFrame;
 
   function cancelPreviousWaitFor() {
     if (
@@ -88,13 +110,25 @@ function PageContainer({
 
   useEffect(() => {
     if (showBotMakerFrame) {
-      initializeBotMaker(document);
+      initializeBotMaker(
+        document,
+        transformUserNavigatorLanguageToISO2Code(locale)
+      );
     }
     changeBotmakerDisplay();
     return () => {
       cancelPreviousWaitFor();
     };
   }, [showBotMakerFrame]);
+
+  const handleChangeDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
+    analytics.track("CLICK_ON_DROPDOWN_MENU", {
+      dropdownMenuIsOpen,
+      widget: "NavbarSectionLayout",
+      path: getWindowPathname(),
+    });
+    setDropdownMenuIsOpen(dropdownMenuIsOpen);
+  };
 
   useEffect(() => {
     const isLogged = new Session().getSession();
@@ -133,9 +167,9 @@ function PageContainer({
             showLogin={props.showLogin}
             showFiltersSection={props.showFiltersSection}
             hideControls={props.hideControls}
+            dropdownMenuIsOpen={dropdownMenuIsOpen}
+            setDropdownMenuIsOpen={handleChangeDropdownMenuIsOpen}
             queryParams={queryParams}
-            showCouponBanner={showCouponBanner}
-            setShowCouponBanner={setShowCouponBanner}
           />
         </Maybe>
         <Maybe it={props.showFiltersSection}>
@@ -149,7 +183,11 @@ function PageContainer({
         }`}
       >
         {props.children}
-        <div className={`page-container-children-helper`} />
+        <div
+          className={`page-container-children-helper ${
+            dropdownMenuIsOpen ? "active" : ""
+          }`}
+        />
       </div>
 
       <Maybe it={props.showFooter}>
@@ -168,6 +206,7 @@ function PageContainer({
         alt="Imagen de Error de conexión de internet pre-cargada"
       />
 
+      <NewsletterPopup />
       <CookiesConsent />
     </div>
   );
@@ -204,9 +243,6 @@ const mapStateToProps = (state) => {
     celebrities: state.celebrities.fetchCelebritiesReducer.data.results,
     paginationData:
       state.celebrities.fetchCelebritiesReducer.data.informationPage,
-    hasDiscountCoupon:
-      state.discountCoupons.getDiscountCouponBannerReducer.data.couponCode &&
-      state.discountCoupons.timeDifferenceReducer,
   };
 };
 
