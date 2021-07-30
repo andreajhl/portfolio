@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AdditionalResultsSection } from "desktop-app/components/search/additional-results-section";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { searchList } from "react-app/src/state/ducks/celebrities/actions";
 import {
   updateSearchFilters,
@@ -28,22 +29,18 @@ function mapStateToProps({
     celebrities.fetchCelebritiesReducer.completed &&
     celebrities.fetchCelebritiesReducer.data?.informationPage?.totalItems < 1;
 
-  const showAdditionalResults =
-    celebrities.fetchCelebritiesReducer.completed &&
-    celebrities.fetchCelebritiesReducer.data?.informationPage?.totalItems <= 10;
-
   const showPagination =
     celebrities.fetchCelebritiesReducer.completed &&
     celebrities.fetchCelebritiesReducer.data?.informationPage?.totalPages > 1;
 
   return {
     showNoResultsBanner,
-    showAdditionalResults,
     showPagination,
     searchFilters,
     searchFiltersMemory,
     isCompleted: celebrities.fetchCelebritiesReducer.completed,
     informationPage: celebrities.fetchCelebritiesReducer.data.informationPage,
+    isLoading: celebrities.fetchCelebritiesReducer.loading,
     lastScrollPosition: cursor.positionReducer.data,
   };
 }
@@ -70,7 +67,6 @@ function SearchResults({
   searchFilters,
   showNoResultsBanner,
   searchFiltersMemory,
-  showAdditionalResults,
   showPagination,
   fetchCelebrities,
   updateSearchFilters,
@@ -79,7 +75,9 @@ function SearchResults({
   lastScrollPosition,
   resetSearchFilters,
   isCompleted,
+  isLoading,
 }: SearchResultsProps) {
+  const [showAdditionalResults, setShowAdditionalResults] = useState(false);
   useEffect(() => {
     if (!isCompleted) return;
     if (
@@ -104,6 +102,16 @@ function SearchResults({
     });
     fetchCelebrities(searchFilters, false);
   }, [searchFilters]);
+
+  useEffect(() => {
+    const isCompletedAndInformationPageHasItems =
+      isCompleted && informationPage?.totalItems > 0;
+    if (isCompletedAndInformationPageHasItems && !isLoading) {
+      setShowAdditionalResults(true);
+    } else {
+      setShowAdditionalResults(false);
+    }
+  }, [isCompleted, isLoading, informationPage?.totalItems]);
 
   function updateSearchPage(nextPage: number): void {
     updateSearchFilters({
