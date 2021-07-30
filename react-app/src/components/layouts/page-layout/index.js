@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { NavbarSectionLayout } from "../navbar-section";
@@ -8,25 +8,13 @@ import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import Headroom from "react-headroom";
 import { FiltersSectionLayout } from "../filters-section";
-import waitFor from "../../../utils/waitFor";
 import { withRouter } from "react-app/src/components/common/routing";
 import Maybe from "../../common/helpers/maybe";
-import initializeBotMaker from "react-app/src/utils/initializeBotMaker";
 import dynamic from "next/dynamic";
 import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { Session } from "react-app/src/state/utils/session.js";
-import useUserLocation from "lib/hooks/useUserLocationCookie";
-import { useIntl } from "react-intl";
-import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { getWindowPathname } from "react-app/src/utils/getWindow";
-
-const COUNTRIES_WHERE_SHOULD_ALWAYS_DISPLAY_BOTMAKER = ["BR"];
-
-const isCountryWhereShouldAlwaysDisplayBotMaker = (userLocation) =>
-  COUNTRIES_WHERE_SHOULD_ALWAYS_DISPLAY_BOTMAKER.includes(userLocation);
-
-function ignoreError() {}
 
 const NewsletterPopup = dynamic(
   import("../../containers/newsletter-popup").then(
@@ -49,33 +37,11 @@ function PageContainer({
   listRestCountries,
   queryParams,
   updateQueryParams,
-  showBotMakerFrame: showBotMakerFrameProp,
   router,
   ...props
 }) {
-  const botMakerChildRef = useRef();
   const [dropdownMenuIsOpen, setDropdownMenuIsOpen] = useState(false);
-  const { locale } = useIntl();
   const loginHandler = useLoginHandler();
-  const userLocation = useUserLocation();
-  const forceShowBotMakerFrame = isCountryWhereShouldAlwaysDisplayBotMaker(
-    userLocation
-  );
-  const showBotMakerFrame = showBotMakerFrameProp || forceShowBotMakerFrame;
-
-  function cancelPreviousWaitFor() {
-    if (
-      botMakerChildRef.current &&
-      typeof botMakerChildRef.current.cancel === "function"
-    ) {
-      botMakerChildRef.current.cancel();
-    }
-  }
-
-  const setBotmakerDisplay = (botMakerChild) => {
-    if (!botMakerChild) return;
-    botMakerChild.parentElement.classList.toggle("d-none", !showBotMakerFrame);
-  };
 
   const onSearchChange = (keyword) => {
     const newQueryParams = {
@@ -86,40 +52,6 @@ function PageContainer({
     };
     updateQueryParams(newQueryParams, router);
   };
-
-  const changeBotmakerDisplay = () => {
-    cancelPreviousWaitFor();
-    const botMakerChild = waitFor(
-      () =>
-        document.querySelector("iframe[title='Botmaker']") ||
-        document.querySelector(
-          "img[src='https://storage.googleapis.com/m-infra.appspot.com/public/whatsapp/Whatsapp_logo.svg']"
-        )?.parentElement,
-      500,
-      1000
-    );
-    const isAsync = typeof botMakerChild.then === "function";
-
-    if (isAsync) {
-      botMakerChild.then(setBotmakerDisplay).catch(ignoreError);
-      botMakerChildRef.current = botMakerChild;
-    } else {
-      setBotmakerDisplay(botMakerChild);
-    }
-  };
-
-  useEffect(() => {
-    if (showBotMakerFrame) {
-      initializeBotMaker(
-        document,
-        transformUserNavigatorLanguageToISO2Code(locale)
-      );
-    }
-    changeBotmakerDisplay();
-    return () => {
-      cancelPreviousWaitFor();
-    };
-  }, [showBotMakerFrame]);
 
   const handleChangeDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
     analytics.track("CLICK_ON_DROPDOWN_MENU", {
@@ -232,7 +164,6 @@ PageContainer.defaultProps = {
   hideControls: false,
   showVideoCallsResearch: false,
   shouldFetchRestCountries: true,
-  showBotMakerFrame: false,
 };
 
 // mapStateToProps
