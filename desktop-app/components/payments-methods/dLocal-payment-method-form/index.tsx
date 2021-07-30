@@ -121,23 +121,23 @@ function DLocalPaymentMethodForm({
           if (
             ["PAID", "AUTHORIZED", "PENDING"].includes(response.chargeStatus)
           ) {
-            analytics.trackContractPurchase({
-              contractPrice,
-              celebrityId,
-            });
-            analytics.track("CONTRACT_PAYED", {
-              widget: "DLocalPaymentMethodForm",
-              paymentMethod: "DLocal",
-              contractReference,
-              discountCouponId,
-              contractPrice,
-              celebrityId,
-            });
             if (response.requiredRedirect) {
-              window.location.replace(response.redirectUri);
+              window?.open?.(response.redirectUri);
             } else {
-              push(getPurchaseSummaryPath(String(contractReference)));
+              analytics.trackContractPurchase({
+                contractPrice,
+                celebrityId,
+              });
+              analytics.track("CONTRACT_PAYED", {
+                widget: "DLocalPaymentMethodForm",
+                paymentMethod: "DLocal",
+                contractReference,
+                discountCouponId,
+                contractPrice,
+                celebrityId,
+              });
             }
+            push(getPurchaseSummaryPath(String(contractReference)));
           } else {
             setPaymentError(response.statusDetails);
             setPaymentInProcess(false);
