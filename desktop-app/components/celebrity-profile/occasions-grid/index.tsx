@@ -51,13 +51,9 @@ function OccasionsGrid({
           OccasionType,
           OccasionDataType
         ]) => {
-          const occasionIsSelected = occasionKey === selectedOccasion;
-          const occasionHasPreFilledText = Boolean(
-            messages?.[contractType - 1]
-          );
-          const canDisplayOccasion =
-            occasionHasPreFilledText || occasionIsSelected;
+          const canDisplayOccasion = Boolean(messages?.[contractType - 1]);
           const onClickHandler = () => onClickOccasion(occasionKey);
+          const occasionIsSelected = occasionKey === selectedOccasion;
 
           return (
             <Maybe it={canDisplayOccasion} key={occasionKey}>
