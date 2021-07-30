@@ -77,7 +77,10 @@ const CustomError: NextPage<ErrorPageProps> = ({
                   fontSize: "0.8rem",
                 }}
               >
-                Intentando nuevamente en {secondsCounter} segundos
+                <FormattedMessage
+                  defaultMessage="Intentando nuevamente en {secondsCounter} segundos"
+                  values={{ secondsCounter }}
+                />
               </span>
             )}
           />
@@ -88,7 +91,10 @@ const CustomError: NextPage<ErrorPageProps> = ({
                 color: "white",
               }}
             >
-              CODE {String(statusCode)}
+              <FormattedMessage
+                defaultMessage="CODE {statusCode}"
+                values={{ statusCode }}
+              />
             </p>
           ) : null}
         </>

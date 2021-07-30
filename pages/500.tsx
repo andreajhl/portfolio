@@ -23,7 +23,10 @@ function ServerErrorPage() {
                   fontSize: "0.8rem",
                 }}
               >
-                Intentando nuevamente en {secondsCounter} segundos
+                <FormattedMessage
+                  defaultMessage="Intentando nuevamente en {secondsCounter} segundos"
+                  values={{ secondsCounter }}
+                />
               </span>
             )}
           />

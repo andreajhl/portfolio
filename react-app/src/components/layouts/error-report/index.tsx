@@ -32,7 +32,12 @@ function ErrorReport({
 
             {errorPath ? (
               <div className={styles.ErrorPathContainer}>
-                <span> Ruta : {errorPath}</span>
+                <span>
+                  <FormattedMessage
+                    defaultMessage="Ruta: {errorPath}"
+                    values={{ errorPath }}
+                  />
+                </span>
               </div>
             ) : null}
             {errorDescription ? (
