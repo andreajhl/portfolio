@@ -7,7 +7,7 @@ import ClientContractType from "desktop-app/types/clientContract";
 import { HiringReviewSection } from "../../common/widgets/hiring-review-section";
 import getDefaultHiringConfiguration from "constants/getDefaultHiringConfiguration";
 import getGiftPageBackgroundStyle from "../../../../lib/utils/getGiftPageBackgroundStyle";
-import useValidatedFormattedMessage from "lib/hooks/useValidatedFormattedMessage";
+import { useIntl } from "lib/custom-intl";
 
 type GiftPreviewMainProps = {
   className?: string;
@@ -22,13 +22,13 @@ function GiftPreviewMain({
   hiringConfiguration = getDefaultHiringConfiguration(contract),
   previewMode = false,
 }: GiftPreviewMainProps) {
-  const getValidMessage = useValidatedFormattedMessage();
+  const { formatMessage } = useIntl();
 
   const deliveryTo = contract.deliveryTo;
-  const cardMessage = getValidMessage(hiringConfiguration.cardMessage, {
+  const cardMessage = formatMessage(hiringConfiguration.cardMessage, {
     deliveryTo,
   });
-  const cardTitle = getValidMessage(hiringConfiguration.cardTitle, {
+  const cardTitle = formatMessage(hiringConfiguration.cardTitle, {
     deliveryTo,
   });
 

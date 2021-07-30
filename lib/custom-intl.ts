@@ -7,7 +7,7 @@ import {
 } from "react-intl";
 
 const isMessageDescriptor = (object: any) =>
-  Object.keys(object).includes("defaultMessage");
+  object && Object.keys(object).includes("defaultMessage");
 
 type TextType<
   T extends MessageDescriptor | unknown
@@ -32,7 +32,7 @@ function useIntl() {
       values?: ValuesType,
       options?: OptionsType
     ): TextType<T> {
-      if (!isMessageDescriptor(text)) return text as TextType<T>;
+      if (!isMessageDescriptor(text)) return (text || "") as TextType<T>;
       return originalFormatMessage(text, values, options) as TextType<T>;
     },
     [originalFormatMessage]
