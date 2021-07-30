@@ -41,7 +41,7 @@ function ContractCreated({
   }, []);
 
   return (
-    <PageContainer showFooter={false}>
+    <PageContainer showFooter={false} showBotMakerFrame>
       <Maybe it={!isLoading && isCompleted}>
         <Maybe
           it={CONTRACT_APPROVED_STATUS.includes(

@@ -76,7 +76,7 @@ function PaymentMethodsPage({
   const pageHeadingTitle = formatMessage(messages.pageHeadingTitle);
 
   return (
-    <PageContainer showFooter={false}>
+    <PageContainer showFooter={false} showBotMakerFrame>
       <PageHeading
         showHomeLink={false}
         onBackButtonClick={trackBackButtonClick}

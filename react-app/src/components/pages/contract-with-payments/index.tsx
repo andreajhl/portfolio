@@ -76,7 +76,7 @@ function ContractWithPayments({
   `;
 
   return (
-    <PageContainer showFooter={false} showSearch={false}>
+    <PageContainer showFooter={false} showSearch={false} showBotMakerFrame>
       {isLoading ? (
         <LoadingScreen>
           <div
