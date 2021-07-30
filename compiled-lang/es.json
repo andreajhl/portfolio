@@ -345,6 +345,12 @@
       "value": "¿Me garantizan que mi video va a ser grabado?"
     }
   ],
+  "2MFPbx": [
+    {
+      "type": 0,
+      "value": "Debes poseer al menos 13 años de edad para suscribirte"
+    }
+  ],
   "2O8ofL": [
     {
       "type": 0,
@@ -745,6 +751,16 @@
       "value": "ID DE SEGUIMIENTO:"
     }
   ],
+  "5MxALj": [
+    {
+      "type": 0,
+      "value": "Resultados para "
+    },
+    {
+      "type": 1,
+      "value": "search"
+    }
+  ],
   "5Y1WX+": [
     {
       "type": 0,
@@ -815,6 +831,20 @@
     {
       "type": 0,
       "value": "Inicio"
+    }
+  ],
+  "6XxgC5": [
+    {
+      "type": 0,
+      "value": "Ver mas resultados para \""
+    },
+    {
+      "type": 1,
+      "value": "currentQuery"
+    },
+    {
+      "type": 0,
+      "value": "\""
     }
   ],
   "6aQTMU": [
@@ -1575,12 +1605,6 @@
     {
       "type": 0,
       "value": "Youtuber"
-    }
-  ],
-  "FSBR9V": [
-    {
-      "type": 0,
-      "value": "Ver mas resultados para"
     }
   ],
   "FXFBTJ": [
@@ -2733,6 +2757,36 @@
       "value": "Tu pago ha sido aprobado."
     }
   ],
+  "SKukfQ": [
+    {
+      "type": 0,
+      "value": "Da clic en el "
+    },
+    {
+      "type": 1,
+      "value": "onlyMobileLineBreak"
+    },
+    {
+      "type": 0,
+      "value": " botón "
+    },
+    {
+      "type": 1,
+      "value": "onlyDesktopLineBreak"
+    },
+    {
+      "type": 0,
+      "value": " \"Comprar video "
+    },
+    {
+      "type": 1,
+      "value": "onlyMobileLineBreak"
+    },
+    {
+      "type": 0,
+      "value": " ahora\""
+    }
+  ],
   "SNXFr/": [
     {
       "type": 0,
@@ -3267,12 +3321,6 @@
       "value": " Crea una cuenta para empezar a conectar con tus famosos favoritos."
     }
   ],
-  "Xx+xSb": [
-    {
-      "type": 0,
-      "value": "La longitud de la contraseña debe contener al menos 6 caracteres"
-    }
-  ],
   "Y6sFMj": [
     {
       "type": 0,
@@ -3333,12 +3381,6 @@
     {
       "type": 0,
       "value": "Agrega un texto especial"
-    }
-  ],
-  "YnQ4db": [
-    {
-      "type": 0,
-      "value": "Actores"
     }
   ],
   "Yp6To0": [
@@ -3557,36 +3599,6 @@
     {
       "type": 0,
       "value": "Si todo está bien con tu solicitud de acuerdo a nuestras políticas, muy pronto podrás disfrutar de tu videomensaje."
-    }
-  ],
-  "bwRze1": [
-    {
-      "type": 0,
-      "value": "Da clic en el "
-    },
-    {
-      "type": 1,
-      "value": "onlyMobileLineBreak"
-    },
-    {
-      "type": 0,
-      "value": " botón "
-    },
-    {
-      "type": 1,
-      "value": "onlyDesktopLineBreak"
-    },
-    {
-      "type": 0,
-      "value": " \"Quiero "
-    },
-    {
-      "type": 1,
-      "value": "onlyMobileLineBreak"
-    },
-    {
-      "type": 0,
-      "value": " un video\""
     }
   ],
   "c/EW7K": [
@@ -4741,12 +4753,6 @@
       "value": "Rechazado"
     }
   ],
-  "qL5Hl7": [
-    {
-      "type": 0,
-      "value": "Cumpleaños"
-    }
-  ],
   "qMbb2M": [
     {
       "type": 0,
@@ -5149,12 +5155,6 @@
       "value": " calificación"
     }
   ],
-  "testAutomation": [
-    {
-      "type": 0,
-      "value": "Aplicar filtro"
-    }
-  ],
   "tkwCac": [
     {
       "type": 0,
@@ -5397,6 +5397,12 @@
     {
       "type": 0,
       "value": "Si por alguna razón tu video no pudo ser grabado, te contactaremos."
+    }
+  ],
+  "w5lFLc": [
+    {
+      "type": 0,
+      "value": "Resultados de búsqueda"
     }
   ],
   "wCc+84": [

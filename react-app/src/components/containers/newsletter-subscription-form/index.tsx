@@ -25,6 +25,13 @@ import { analytics } from "react-app/src/state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
 import useErrorFocus from "lib/hooks/useErrorFocus";
 import getFormattedInputDateValue from "lib/utils/getFormattedInputDateValue";
+import getAge from "lib/utils/getAge";
+import getCookie from "react-app/src/utils/getCookie";
+import { USER_LOCATION_KEY } from "constants/keys";
+import {
+  localeAvailables,
+  transformUserNavigatorLanguageToISO2Code,
+} from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 type FieldProps = {
   label: ReactNode;
@@ -61,6 +68,9 @@ const messages = defineMessages({
   emptyBirthday: {
     defaultMessage: "Debes introducir una fecha",
   },
+  under13YearsOld: {
+    defaultMessage: "Debes poseer al menos 13 años de edad para suscribirte",
+  },
   invalidBirthday: {
     defaultMessage: "Debes introducir una fecha valida. Ejemplo: 2020-06-25",
   },
@@ -91,6 +101,9 @@ function getValidations(formatMessage: IntlFormatters["formatMessage"]) {
       if (!isDate(value)) {
         return formatMessage(messages.invalidBirthday);
       }
+      if (getAge(value) < 13) {
+        return formatMessage(messages.under13YearsOld);
+      }
     },
   };
 }
@@ -106,7 +119,7 @@ function NewsletterSubscriptionForm({
   versionPopup,
   onCompleted,
 }: NewsletterSubscriptionFormProps) {
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const { handle, status } = usePromise();
   const [requestError, setRequestError] = useState(null);
 
@@ -125,6 +138,10 @@ function NewsletterSubscriptionForm({
         saveUserNewsletter({
           ...formData,
           birthDate: getFormattedInputDateValue(formData.birthDate),
+          countryAlpha2Code: getCookie(USER_LOCATION_KEY),
+          locale: transformUserNavigatorLanguageToISO2Code(
+            locale as localeAvailables
+          ),
           versionPopup,
         })
       );
@@ -166,7 +183,7 @@ function NewsletterSubscriptionForm({
         error={errors.birthDate}
         onChange={onChangeField}
         name="birthDate"
-        label={<FormattedMessage defaultMessage="Cumpleaños" />}
+        label={<FormattedMessage defaultMessage="Fecha de nacimiento" />}
         type="date"
       />
       <button

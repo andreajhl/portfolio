@@ -5,6 +5,7 @@ import scriptLoader from "react-async-script-loader";
 import styled from "styled-components";
 import { LoaderLayout } from "../../layouts/loader";
 import { FormattedMessage, useIntl, defineMessage } from "react-intl";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const inputcardHoldername = defineMessage({
   defaultMessage: "Escribe aquí el nombre",
@@ -45,6 +46,7 @@ const DLocalFormCard = ({
   paymentErrorMessage,
   paymentMethodType,
   disabled,
+  currentOption,
 }) => {
   const intl = useIntl();
   const [card, setCard] = useState(null);
@@ -54,6 +56,12 @@ const DLocalFormCard = ({
   const [dLocalInstance, setDLocalInstance] = useState(null);
   const buyerNameCard = useRef<HTMLInputElement>(null);
   const handlerSubmitCreditCardDetails = (e) => {
+    analytics.track("SUBMIT_DLOCAL_CREDIT_CARD_DETAILS", {
+      widget: "DLocalFormCard",
+      paymentMethodType,
+      buyerNameCard: buyerNameCard.current,
+      bank: currentOption,
+    });
     e.preventDefault();
     if (buyerName) {
       setProcessingCard(true);

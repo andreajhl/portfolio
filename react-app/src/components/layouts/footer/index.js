@@ -146,7 +146,7 @@ class FooterLayout extends Component {
                       onClick={this.trackJobListingLinkClick}
                       onMouseOver={this.trackJobListingLinkHover}
                     >
-                      Trabaja con nosotros
+                      <FormattedMessage defaultMessage="Trabaja con nosotros" />
                     </a>
                   </li>
                 </ul>

@@ -21,7 +21,7 @@ export const CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE = [
 ];
 
 export const labelMessagesForCategoriesFilter = defineMessages({
-  Actores: { defaultMessage: "Actores" },
+  Actores: { defaultMessage: "Actores/Actrices" },
   Adultos: { defaultMessage: "Adultos" },
   Bailarines: { defaultMessage: "Bailarines" },
   Coach: { defaultMessage: "Coach" },

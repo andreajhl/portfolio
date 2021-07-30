@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize, parse } from "cookie";
 import axios from "axios";
-import { NEXT_LOCALE } from "constants/keys";
+import { NEXT_LOCALE, USER_LOCATION_KEY } from "constants/keys";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 import {
   localeAvailables,
@@ -18,7 +18,6 @@ async function facebookSignInWithAccessToken(
     const endpoint = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT;
     const version = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT_VERSION;
     const cookies = parse(req.headers.cookie);
-
     // Send code to famosos auth and save the JWT Token in Cookies
     await axios
       .post(
@@ -29,6 +28,7 @@ async function facebookSignInWithAccessToken(
             transformUserNavigatorLanguageToISO2Code(
               cookies[NEXT_LOCALE] as localeAvailables
             ) || "es",
+          countryAlpha2Code: cookies[USER_LOCATION_KEY] || "",
         }
       )
       .then((response) => {

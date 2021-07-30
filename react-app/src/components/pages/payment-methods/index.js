@@ -21,7 +21,9 @@ class PaymentMethodsPage extends Component {
   componentDidMount() {
     const { contract_reference } = this.props.router.query;
     this.props.getContractToPay(contract_reference);
-    GTM.tagManagerDataLayer("PAYMENT_METHODS_PAGE_VIEW", contract_reference);
+    GTM.tagManagerDataLayer("PAYMENT_METHODS_PAGE_VIEW", {
+      contract_reference,
+    });
     this.setState({ isMounted: true });
     this.loadStripe();
   }

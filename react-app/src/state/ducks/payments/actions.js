@@ -168,13 +168,23 @@ export const getContractToPayV2 = (contractReference) => {
 export const processStripePayment = (
   contractReference,
   sourceId,
-  discountCouponId
+  discountCouponId,
+  deviceId,
+  IP,
+  userAgent,
+  geoLocalization,
+  locale
 ) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-stripe-payment";
   const data = {
-    contractReference: contractReference,
-    sourceId: sourceId,
-    discountCouponId: discountCouponId,
+    contractReference,
+    sourceId,
+    discountCouponId,
+    deviceId,
+    IP,
+    userAgent,
+    geoLocalization,
+    locale,
   };
   return new Promise((resolve, reject) => {
     apiService({
@@ -206,7 +216,10 @@ export const processDlocalPayment = (
   discountCouponId,
   cardToken,
   deviceId,
-  userIp
+  userIp,
+  userAgent,
+  geolocation,
+  locale
 ) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
   const data = {
@@ -219,6 +232,9 @@ export const processDlocalPayment = (
     cardToken: cardToken,
     deviceId: deviceId,
     IP: userIp,
+    userAgent,
+    geolocation,
+    locale,
   };
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
@@ -249,14 +265,24 @@ export const processPayPalPayment = (
   contractReference,
   orderId,
   authorizationId,
-  discountCouponId
+  discountCouponId,
+  deviceId,
+  IP,
+  userAgent,
+  geoLocalization,
+  locale
 ) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-paypal-payment";
   const data = {
-    contractReference: contractReference,
-    orderId: orderId,
-    authorizationId: authorizationId,
-    discountCouponId: discountCouponId,
+    contractReference,
+    orderId,
+    authorizationId,
+    discountCouponId,
+    deviceId,
+    IP,
+    userAgent,
+    geoLocalization,
+    locale,
   };
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({

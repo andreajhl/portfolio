@@ -176,7 +176,7 @@ const DLocalPaymentsForm = ({
           }}
           type="text"
           value={buyerDocument}
-          onChange={(e) => setBuyerDocument(e.target.value)}
+          onChange={(e) => setBuyerDocument(e.target.value.trim())}
           className="form-control"
           onBlur={() => checkDocumentFormat()}
           placeholder={intl.formatMessage(

@@ -15,3 +15,5 @@ export const cfUserCountryCode = "__cf__userCountryCode";
 
 export const CELEBRITY_NAME_QUERY_PARAM = "celebrity";
 export const SUGGESTED_FULL_NAME_QUERY_PARAM = "suggestedFullName";
+
+export const USER_GEOLOCATION_KEY = "fs__uglk";

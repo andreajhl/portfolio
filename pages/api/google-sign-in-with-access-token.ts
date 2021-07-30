@@ -2,7 +2,7 @@ import { localeAvailables } from "./../../react-app/src/utils/transformUserNavig
 import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize, parse } from "cookie";
 import axios from "axios";
-import { NEXT_LOCALE } from "constants/keys";
+import { NEXT_LOCALE, USER_LOCATION_KEY } from "constants/keys";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
@@ -28,6 +28,7 @@ async function facebookSignInWithAccessToken(
             transformUserNavigatorLanguageToISO2Code(
               cookies[NEXT_LOCALE] as localeAvailables
             ) || "ES",
+          countryAlpha2Code: cookies[USER_LOCATION_KEY] || "",
         }
       )
       .then((response) => {

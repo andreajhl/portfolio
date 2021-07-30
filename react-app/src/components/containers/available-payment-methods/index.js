@@ -13,6 +13,8 @@ import { listPaymentGateways } from "../../../state/ducks/payments/operations";
 import { LoaderLayout } from "../../layouts/loader";
 import { withRouter } from "next/router";
 import { STRIPE_FAILURE_AUTHENTICATION } from "constants/keys";
+import { analytics } from "react-app/src/state/utils/gtm";
+
 class AvailablePaymentMethods extends Component {
   constructor(props) {
     super(props);
@@ -124,6 +126,7 @@ class AvailablePaymentMethods extends Component {
           }
         >
           <PayPalCardForm
+            celebrityId={this.props.celebrityId}
             contractReference={this.props.contractReference}
             contractPrice={
               this.props.couponData.completed
@@ -203,6 +206,8 @@ class AvailablePaymentMethods extends Component {
           paymentsMethodsAvailable={paymentMethod.availablePaymentMethods}
           contractReference={this.props.contractReference}
           discountCouponId={this.props.couponData.data.id}
+          contractPrice={this.props.contractPrice}
+          celebrityId={this.props.celebrityId}
         />
       </div>
     );
@@ -218,6 +223,14 @@ class AvailablePaymentMethods extends Component {
   };
 
   changeMethodPayment = (e) => {
+    analytics.track("CHANGE_ACTIVE_PAYMENT_METHOD_OPTION", {
+      widget: "AvailablePaymentMethods",
+      previousPaymentMethod: this.state.selectedPaymentMethod,
+      newPaymentMethod: e,
+      buyerData: this.state.buyerData,
+      contractReference: this.props.contractReference,
+      currency: this.props.currencyExchangeData?.data?.to,
+    });
     this.setState((prevState) => ({ ...prevState, selectedPaymentMethod: e }));
   };
 

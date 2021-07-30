@@ -7,6 +7,8 @@ import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import PaypalReactButton from "desktop-app/components/payments-methods/paypal-react-button";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
 
 const errorMessages = defineMessages({
@@ -31,12 +33,24 @@ class PayPalCardForm extends Component {
     });
   };
 
-  onPayPalButtonApprove = (orderId, authorizationId) => {
+  onPayPalButtonApprove = async (orderId, authorizationId) => {
+    const {
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+    } = await getBuyerIdentityData();
+
     processPayPalPayment(
       this.props.contractReference,
       orderId,
       authorizationId,
-      this.props.discountCouponId
+      this.props.discountCouponId,
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+      this.props.intl.locale
     )
       .then((res) => {
         if (res.status === 10) {
@@ -51,7 +65,16 @@ class PayPalCardForm extends Component {
               });
             }
           }
-          GTM.tagManagerDataLayer("CONTRACT_PAYED", res.data);
+          const analyticsData = {
+            ...res?.data,
+            widget: "PaypalCardForm",
+            paymentMethod: "PAYPAL",
+            contractReference: this.props.contractReference,
+            discountCouponId: this.props.discountCouponId,
+            contractPrice: this.props.contractPrice,
+            celebrityId: this.props.celebrityId,
+          };
+          GTM.tagManagerDataLayer("CONTRACT_PAYED", analyticsData);
           history._pushRoute(
             ROUTING_PATHS.PURCHASE_SUMMARY.replace(
               ":contract_reference",
