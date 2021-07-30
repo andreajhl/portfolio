@@ -181,12 +181,7 @@ function useForm<InitialValuesType = { [key: string]: any }>({
     return onSubmit?.(state.values as InitialValuesType);
   }
 
-  function touchedFieldsAreInvalid() {
-    return Object.keys(state.touched).some((field) => !validateField(field));
-  }
-
   function getTouchedFieldValues() {
-    if (touchedFieldsAreInvalid()) return null;
     return Object.entries(state.values).reduce(
       (valuesToSave, [field, value]) => {
         if (state.touched[field]) {
