@@ -64,20 +64,32 @@ const HireThisCelebrityButton = ({
     });
   };
 
-  const parsedFullName = parseFullName(
-    celebrityFullName,
-    "all",
-    true,
-    false,
-    true
-  );
+  let parsedFullName;
+  try {
+    parsedFullName = parseFullName(
+      celebrityFullName,
+      "all",
+      true,
+      false,
+      true
+    );
+  }
+  catch (e) {
+    parsedFullName = celebrityFullName;
+  }
+
 
   const fullNameWords = celebrityFullName.split(" ");
-
-  const displayName =
-    parsedFullName.first.length <= 4
-      ? fullNameWords.slice(0, 2).join(" ")
-      : parsedFullName.first || parsedFullName.last;
+  let displayName;
+  try {
+    displayName =
+      parsedFullName.first.length <= 4
+        ? fullNameWords.slice(0, 2).join(" ")
+        : parsedFullName.first || parsedFullName.last
+  }
+  catch {
+    displayName = fullNameWords.slice(0, 2).join(" ")
+  }
 
   return (
     <CallToActionButton
