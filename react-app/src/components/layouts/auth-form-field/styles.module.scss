@@ -25,10 +25,19 @@
   &::placeholder {
     color: #b9b8b8;
   }
+
+  &:disabled {
+    background-color: #f8f8f8;
+  }
 }
 
 .InputContainer {
   position: relative;
+}
+
+.HasError {
+  border-color: var(--danger) !important;
+  background-color: #ffedf5 !important;
 }
 
 .IconContainer {
@@ -40,4 +49,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.AuthFormFieldError {
+  font-size: 12px;
+  margin-top: 0.5em;
 }
