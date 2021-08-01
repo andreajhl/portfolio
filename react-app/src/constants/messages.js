@@ -201,7 +201,8 @@ export const SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
   "Birthdate field is required",
   "Invalid email",
   "Password length must contains least 6 characters",
-  "Passwords do not match"
+  "Passwords do not match",
+  "this email is already registered in famosos.com"
 ];
 
 export const TRANSLATION_SIGN_UP_ERROR_MESSAGES = defineMessages({
@@ -220,6 +221,13 @@ export const TRANSLATION_SIGN_UP_ERROR_MESSAGES = defineMessages({
   },
   "Passwords do not match": {
     defaultMessage: "Las contraseñas no coinciden"
+  },
+  "this email is already registered in famosos.com": {
+    defaultMessage: "Este correo ya se encuentra registrado"
+  },
+  unexpectedError: { defaultMessage: "Ha ocurrido un error inesperado" },
+  under13YearsOld: {
+    defaultMessage: "Debes poseer al menos 13 años de edad para registrarte"
   }
 });
 export const RESET_PASSSWORD_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
@@ -233,5 +241,6 @@ export const TRANSLATION_RESET_PASSSWORD_MESSAGES = defineMessages({
   },
   "invalid credentials": {
     defaultMessage: "Credenciales invalidas."
-  }
+  },
+  unexpectedError: { defaultMessage: "Ha ocurrido un error inesperado" }
 });
