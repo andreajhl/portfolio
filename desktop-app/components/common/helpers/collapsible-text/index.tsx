@@ -27,6 +27,10 @@ export function CollapsibleText({
     setHasFinishCollapsing(true);
   }
 
+  if (typeof children !== "string") {
+    return null;
+  }
+
   return (
     <Collapse in={!isCollapse} onExited={finishCollapsing} timeout={350}>
       <p className={classes(styles.CollapsibleText, className)}>
