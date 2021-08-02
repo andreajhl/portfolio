@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
+import waitFor from "react-app/src/utils/waitFor";
+
+const LOADED = 4;
 
 export function usePreloadVideo(src: string) {
   const [isReady, setIsReady] = useState(false);
+
+  function changeIsReady() {
+    setIsReady(true);
+  }
 
   useEffect(() => {
     if (!src) {
@@ -10,12 +17,17 @@ export function usePreloadVideo(src: string) {
     }
     const video = document.createElement("video");
     video.preload = "metadata";
-    video.addEventListener("loadeddata", () => {
-      setIsReady(true);
-    });
-
+    video.addEventListener("loadeddata", changeIsReady);
     video.src = src;
+    const videoIsLoaded: any = waitFor(
+      () => video?.readyState === LOADED,
+      1000,
+      100
+    );
+    videoIsLoaded?.then?.(changeIsReady);
+
     return () => {
+      videoIsLoaded?.cancel?.();
       video.remove();
     };
   }, []);
