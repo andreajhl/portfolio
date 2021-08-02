@@ -1,0 +1,41 @@
+.MaintenancePage {
+  min-height: 100vh;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  img {
+    width: 90vw;
+    height: 90vw;
+    max-width: 279px;
+    max-height: 278px;
+    margin-bottom: 2rem;
+  }
+
+  p {
+    line-height: 21.6px;
+    font-size: 18px;
+    width: 90vw;
+    margin: 0 auto;
+  }
+
+  p + p {
+    margin-top: 2rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  @media only screen and (min-width: 992px) {
+    img {
+      max-width: 376px;
+      max-height: 374px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}
