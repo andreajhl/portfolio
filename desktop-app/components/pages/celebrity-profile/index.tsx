@@ -27,6 +27,7 @@ import dynamic from "next/dynamic";
 import useGlobalFetches from "lib/hooks/useGlobalFetches";
 import { CREATE_CONTRACT_WIZARD_TEST_ID } from "__test__/testids";
 import { getLocalContractInProgress } from "lib/utils/localContractInProgress";
+import waitFor from "react-app/src/utils/waitFor";
 
 const CreateContractWizard = dynamic<CreateContractWizardProps>(
   () =>
@@ -39,9 +40,10 @@ const CreateContractWizard = dynamic<CreateContractWizardProps>(
 const createContractWizardPosition = { top: 110 };
 const createContractWizardBottom = 600; // por ser definido correctamente.
 
-function focusWizardInput() {
-  const wizardFirstInputElement: HTMLElement = document.querySelector(
-    `.${styles.CreateContractWizard} input`
+async function focusWizardInput() {
+  const firstInputSelector = `.${styles.CreateContractWizard} input`;
+  const wizardFirstInputElement: HTMLElement = await waitFor(
+    () => document.querySelector(firstInputSelector) as any
   );
   wizardFirstInputElement?.focus?.({ preventScroll: true });
 }
