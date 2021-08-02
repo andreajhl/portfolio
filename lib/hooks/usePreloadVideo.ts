@@ -17,6 +17,8 @@ export function usePreloadVideo(src: string) {
     }
     const video = document.createElement("video");
     video.preload = "metadata";
+    video.muted = true;
+    video.autoplay = true;
     video.addEventListener("loadeddata", changeIsReady);
     video.src = src;
     const videoIsLoaded: any = waitFor(
