@@ -149,9 +149,10 @@ function CelebrityProfilePage({
 
   useEffect(
     () => () => {
+      setIsReadyToCreateContract(false);
       cleanUserContractInProgress();
     },
-    [cleanUserContractInProgress]
+    [cleanUserContractInProgress, celebrity.username]
   );
 
   const contractInProgress =
