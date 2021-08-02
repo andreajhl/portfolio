@@ -18,6 +18,7 @@ import classes from "classnames";
 import styles from "./styles.module.scss";
 import { checkIfObjectContainsSamePairKeyValue } from "react-app/src/utils/checkIfObjectContainsSamePairKeyValue";
 import { analytics } from "react-app/src/state/utils/gtm";
+function noop() {}
 
 function mapStateToProps({
   searchFiltersMemory,
@@ -100,7 +101,7 @@ function SearchResults({
       searchFilters,
       widget: "SearchResults",
     });
-    fetchCelebrities(searchFilters, false);
+    fetchCelebrities(searchFilters, false, true);
   }, [searchFilters]);
 
   useEffect(() => {

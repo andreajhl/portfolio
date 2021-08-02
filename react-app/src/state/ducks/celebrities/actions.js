@@ -123,18 +123,21 @@ export const list = (params, mergeResults = true) => {
   };
 };
 
-export const searchList = (params, mergeResults = true) => (
-  dispatch,
-  getStore
-) => {
-  getStore().celebrities.fetchCelebritiesReducer?.requestCancel?.();
+export const searchList = (
+  params,
+  mergeResults = true,
+  disabledRequestCancel = false
+) => (dispatch, getStore) => {
+  if (!disabledRequestCancel) {
+    getStore().celebrities.fetchCelebritiesReducer?.requestCancel?.();
+  }
   const TYPE = types.FETCH_CELEBRITIES_REQUEST;
   const FINAL_PATH = API_PATHS.SEARCH_LIST;
   const request = apiService({
     method: "GET",
     path: FINAL_PATH,
     params,
-    isCancellable: true,
+    isCancellable: !disabledRequestCancel,
   });
   dispatch({
     type: TYPE,
