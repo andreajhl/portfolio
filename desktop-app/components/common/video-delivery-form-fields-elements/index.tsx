@@ -11,6 +11,9 @@ const messages = defineMessages({
   deliveryToPlaceholder: {
     defaultMessage: "¿Quién recibirá el video?",
   },
+  deliveryToBusinessPlaceholder: {
+    defaultMessage: "¿Cual es el nombre del negocio?",
+  },
   deliveryFromPlaceholder: {
     defaultMessage: "¿Quién envía el video?",
   },
@@ -40,7 +43,11 @@ function VideoDeliveryFormFieldsElements({
   const showDeliveryToInput = !contractIsForBusiness || hasBusinessPrice;
   const contractIsForOther = contractType === 2;
 
-  const deliveryToPlaceholder = formatMessage(messages.deliveryToPlaceholder);
+  const deliveryToPlaceholder = formatMessage(
+    contractIsForBusiness
+      ? messages.deliveryToBusinessPlaceholder
+      : messages.deliveryToPlaceholder
+  );
   const deliveryFromPlaceholder = formatMessage(
     messages.deliveryFromPlaceholder
   );
@@ -51,7 +58,12 @@ function VideoDeliveryFormFieldsElements({
         <Maybe it={showDeliveryToInput}>
           <div className={styles.InputField}>
             <span className={styles.ExtraLabel}>
-              <FormattedMessage defaultMessage="Para:" />
+              <Maybe
+                it={contractIsForBusiness}
+                orElse={<FormattedMessage defaultMessage="Para:" />}
+              >
+                <FormattedMessage defaultMessage="Nombre:" />
+              </Maybe>
             </span>
             <InputWithFloatLabel
               className={styles.InputFieldModifier}
