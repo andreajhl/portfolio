@@ -125,13 +125,14 @@ function SignUpEmailPasswordForm({
   }
 
   function setTranslatedRequestError(error: any) {
-    const errorTranslation = TRANSLATION_SIGN_UP_ERROR_MESSAGES[error];
+    const errorMessage = error?.message || error;
+    const errorTranslation = TRANSLATION_SIGN_UP_ERROR_MESSAGES[errorMessage];
     const unexpectedError = formatMessage(
       TRANSLATION_SIGN_UP_ERROR_MESSAGES.unexpectedError
     );
     const translatedError = errorTranslation
       ? formatMessage(errorTranslation)
-      : error || unexpectedError;
+      : errorMessage || unexpectedError;
     setRequestError(translatedError);
   }
 
