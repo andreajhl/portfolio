@@ -5,6 +5,7 @@ import { GoogleLogin } from "react-google-login";
 import { IsMobile } from "react-app/src/utils/isMobile";
 import axios from "axios";
 import { Session } from "react-app/src/state/utils/session";
+import { checkCookie } from "lib/utils/checkCookiesEnabled";
 
 type GoogleButtonProps = {
   textButton: string;
@@ -44,8 +45,8 @@ function GoogleButton({ textButton, className }: GoogleButtonProps) {
       `${tokenRequestURL}?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectURL}&scope=${scope}&prompt=${state}`
     );
   };
-
-  if (!IsMobile()) {
+  const hasCookiesEnabled = checkCookie();
+  if (!IsMobile() && hasCookiesEnabled) {
     return (
       <GoogleLogin
         clientId={clientId}
