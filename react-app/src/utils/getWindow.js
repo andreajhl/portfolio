@@ -16,6 +16,11 @@ const getWindow = () =>
             removeItem: noop
           }
         },
+        localStorage: {
+          setItem: noop,
+          getItem: noop,
+          removeItem: noop
+        },
         navigator: { userAgent: "" }
       };
 

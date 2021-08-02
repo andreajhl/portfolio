@@ -13,3 +13,4 @@ export const NEXT_LOCALE = "NEXT_LOCALE";
 export const cfUserCountryCode = "__cf__userCountryCode";
 
 export const USER_GEOLOCATION_KEY = "fs__uglk";
+export const REDIRECT_BEFORE_MAINTENANCE_KEY = "fs__rbmm";
