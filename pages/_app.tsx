@@ -39,9 +39,15 @@ const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
   });
 };
 
+const MAINTENANCE_IS_ACTIVE =
+  process.env.NEXT_PUBLIC_ACTIVE_MAINTENANCE === "true";
 const ROUTE_CHANGE_START = "routeChangeStart";
 
 function App({ Component, pageProps }) {
+  if (MAINTENANCE_IS_ACTIVE) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    require("lib/hooks/useMaintenanceMode").default();
+  }
   const router = useRouter();
 
   useEffect(() => {
