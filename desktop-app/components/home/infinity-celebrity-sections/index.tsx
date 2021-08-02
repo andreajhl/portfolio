@@ -11,6 +11,7 @@ import { fetchLandings } from "react-app/src/state/ducks/landings/actions";
 import getCookie from "lib/utils/getCookie";
 import { USER_LOCATION_KEY } from "constants/keys";
 import { defineMessages, useIntl } from "react-intl";
+import { InfinityCelebritySkeleton } from "./skeleton";
 
 const messages = defineMessages({
   categorySectionTitle: {
@@ -44,6 +45,7 @@ function InfinityCelebritySections({
   celebritiesSections,
   totalResults,
   fetchLandings,
+  loading,
 }: InfinityCelebritySectionsProps) {
   const { formatMessage } = useIntl();
   const [offset, setOffset] = useState(offsetInitialValue);
@@ -81,7 +83,7 @@ function InfinityCelebritySections({
       dataLength={celebritiesSections.length}
       next={fetchMoreData}
       hasMore={celebritiesSections.length < totalResults}
-      loader={null}
+      loader={<InfinityCelebritySkeleton />}
       style={{ overflow: "visible" }}
     >
       {celebritiesSections.map((celebritySection, index) => (
