@@ -23,6 +23,20 @@ const MobilePageContainer = dynamic<PageLayoutMobileProps>(
 
 const DesktopPageContainer = dynamic(import("../page-layout"));
 
+const NewsletterPopup = dynamic(
+  import("react-app/src/components/containers/newsletter-popup").then(
+    (mod) => mod.NewsletterPopup
+  ),
+  { ssr: false }
+);
+
+const CookiesConsent = dynamic(
+  import("react-app/src/components/layouts/cookies-consent").then(
+    (mod) => mod.CookiesConsent
+  ),
+  { ssr: false }
+);
+
 type PageContainerProps = PageLayoutProps & PageLayoutMobileProps;
 
 function PageContainer(props: PageContainerProps) {
@@ -36,9 +50,13 @@ function PageContainer(props: PageContainerProps) {
   useDesktopClass(!isOnMobile);
 
   return (
-    <Maybe it={isOnMobile} orElse={<DesktopPageContainer {...props} />}>
-      <MobilePageContainer {...props} showSearch={showSearch} />
-    </Maybe>
+    <>
+      <Maybe it={isOnMobile} orElse={<DesktopPageContainer {...props} />}>
+        <MobilePageContainer {...props} showSearch={showSearch} />
+      </Maybe>
+      <NewsletterPopup />
+      <CookiesConsent />
+    </>
   );
 }
 

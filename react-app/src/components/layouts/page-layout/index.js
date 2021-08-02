@@ -10,23 +10,10 @@ import Headroom from "react-headroom";
 import { FiltersSectionLayout } from "../filters-section";
 import { withRouter } from "react-app/src/components/common/routing";
 import Maybe from "../../common/helpers/maybe";
-import dynamic from "next/dynamic";
 import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { Session } from "react-app/src/state/utils/session.js";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { getWindowPathname } from "react-app/src/utils/getWindow";
-
-const NewsletterPopup = dynamic(
-  import("../../containers/newsletter-popup").then(
-    (mod) => mod.NewsletterPopup
-  ),
-  { ssr: false }
-);
-
-const CookiesConsent = dynamic(
-  import("../cookies-consent").then((mod) => mod.CookiesConsent),
-  { ssr: false }
-);
 
 function PageContainer({
   cleanUserCelebrityLikes,
@@ -137,9 +124,6 @@ function PageContainer({
         src="/assets/img/wifi-connection-error.svg"
         alt="Imagen de Error de conexión de internet pre-cargada"
       />
-
-      <NewsletterPopup />
-      <CookiesConsent />
     </div>
   );
 }
