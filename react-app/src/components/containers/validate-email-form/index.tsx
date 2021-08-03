@@ -15,6 +15,8 @@ import { analytics } from "react-app/src/state/utils/gtm";
 import { validateEmailSecurityCode } from "lib/famosos-auth";
 import usePromise from "lib/hooks/usePromise";
 import { CollapsibleErrorMessage } from "../../common/widgets/collapsible-error-message";
+import Maybe from "../../common/helpers/maybe";
+import { ResendSecurityCode } from "../resend-security-code";
 
 const messages = defineMessages({
   emptySecurityCodeErro: {
@@ -54,15 +56,19 @@ function getValidations(formatMessage: IntlFormatters["formatMessage"]) {
 }
 
 type ValidateEmailFormProps = {
+  className?: string;
   initialValues?: InitialValuesType;
   email: string;
   onGoBackButtonClick?: () => void;
+  onValidationSuccess?: () => void;
 };
 
 function ValidateEmailForm({
+  className,
   initialValues: initialValuesFromProps,
   email,
-  onGoBackButtonClick
+  onGoBackButtonClick,
+  onValidationSuccess
 }: ValidateEmailFormProps) {
   const { formatMessage } = useIntl();
   const { values, errors, onChangeField, validateBeforeSubmit } = useForm({
@@ -87,7 +93,8 @@ function ValidateEmailForm({
   }
 
   function setTranslatedRequestError(error: any) {
-    const errorMessage = error?.message || error;
+    const errorMessage =
+      error?.response?.data?.error || error?.message || error;
     const errorTranslation = TRANSLATION_RESET_PASSSWORD_MESSAGES[errorMessage];
     const unexpectedError = formatMessage(
       TRANSLATION_RESET_PASSSWORD_MESSAGES.unexpectedError
@@ -108,6 +115,7 @@ function ValidateEmailForm({
           securityCode
         })
       );
+      onValidationSuccess?.();
     } catch (error) {
       setTranslatedRequestError(error);
     }
@@ -116,15 +124,21 @@ function ValidateEmailForm({
   const disableForm = isLoading || status === "completed";
 
   return (
-    <form onSubmit={validateBeforeSubmit} onChange={resetRequestError}>
-      <button
-        type="button"
-        className={classes("btn", styles.GoBackButton)}
-        onClick={onGoBackButtonClick}
-      >
-        <i className="fa fa-arrow-left" />
-        <span>Regresar</span>
-      </button>
+    <form
+      onSubmit={validateBeforeSubmit}
+      onChange={resetRequestError}
+      className={className}
+    >
+      <Maybe it={typeof onGoBackButtonClick === "function"}>
+        <button
+          type="button"
+          className={classes("btn", styles.GoBackButton)}
+          onClick={onGoBackButtonClick}
+        >
+          <i className="fa fa-arrow-left" />
+          <span>Regresar</span>
+        </button>
+      </Maybe>
       <h3 className={styles.ValidateEmailFormTitle}>
         <FormattedMessage
           defaultMessage="Ingresa el código que enviamos a {email}"
@@ -157,6 +171,10 @@ function ValidateEmailForm({
         className={styles.ValidateEmailFormErrorMessage}
         errorMessage={requestError}
         unmountOnExit
+      />
+      <ResendSecurityCode
+        className={styles.ValidateEmailFormResendCodeButton}
+        email={email}
       />
     </form>
   );
