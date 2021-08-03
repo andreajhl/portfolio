@@ -1,15 +1,15 @@
-import { GetServerSideProps } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { PaymentMethodsPage } from "react-app/src/components/pages/payment-methods";
 import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
-import { ROOT_PATH } from "react-app/src/routing/Paths";
+import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 
 const PaymentMethods = () => {
   return (
     <>
       <CustomHead />
       <PaymentMethodsPage />
+      <ValidateEmailModal />
     </>
   );
 };
