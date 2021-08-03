@@ -33,7 +33,7 @@ function WebPageListLinks() {
         </Link>
       </li>
       <li>
-        <Link href="/docs/policies">
+        <Link href="/docs/politicas">
           <FormattedMessage defaultMessage="Política y Privacidad" />
         </Link>
       </li>
