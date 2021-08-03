@@ -15,6 +15,17 @@ import { CollapsibleErrorMessage } from "../../common/widgets/collapsible-error-
 import { getDateValidator, getEmailValidator } from "lib/validations/common";
 import getAge from "lib/utils/getAge";
 
+const emailErrors = [
+  "this email is already registered in famosos.com",
+  "Invalid email"
+];
+
+const isNoUsefulEmailError = (errorMessage: string) =>
+  errorMessage?.includes("we could not send a mail to");
+
+const isEmailError = (errorMessage: string) =>
+  isNoUsefulEmailError(errorMessage) || emailErrors.includes(errorMessage);
+
 const initialRequestErrorValue = null;
 
 function trackClickOnSignUp(email: string) {
@@ -95,6 +106,7 @@ function SignUpEmailPasswordForm({
     values,
     errors,
     setFieldValue,
+    setFieldError,
     onChangeField,
     validateBeforeSubmit
   } = useForm({
@@ -123,15 +135,31 @@ function SignUpEmailPasswordForm({
     setRequestError(initialRequestErrorValue);
   }
 
+  function changeEmailError(errorMessage: string) {
+    setFieldError("email", errorMessage);
+  }
+
   function setTranslatedRequestError(error: any) {
     const errorMessage = error?.message || error;
     const errorTranslation = TRANSLATION_SIGN_UP_ERROR_MESSAGES[errorMessage];
     const unexpectedError = formatMessage(
       TRANSLATION_SIGN_UP_ERROR_MESSAGES.unexpectedError
     );
-    const translatedError = errorTranslation
-      ? formatMessage(errorTranslation)
-      : errorMessage || unexpectedError;
+    let translatedError = errorMessage || unexpectedError;
+    if (isNoUsefulEmailError(errorMessage)) {
+      translatedError = formatMessage(
+        TRANSLATION_SIGN_UP_ERROR_MESSAGES.noUsefulEmail,
+        {
+          email: values.email
+        }
+      );
+    }
+    if (errorTranslation) {
+      translatedError = formatMessage(errorTranslation);
+    }
+    if (isEmailError(errorMessage)) {
+      return changeEmailError(translatedError);
+    }
     setRequestError(translatedError);
   }
 

@@ -225,6 +225,10 @@ export const TRANSLATION_SIGN_UP_ERROR_MESSAGES = defineMessages({
   "this email is already registered in famosos.com": {
     defaultMessage: "Este correo ya se encuentra registrado"
   },
+  noUsefulEmail: {
+    defaultMessage:
+      'No podemos enviar un correo a "{email}", por favor, utiliza otro correo electrónico'
+  },
   unexpectedError: { defaultMessage: "Ha ocurrido un error inesperado" },
   under13YearsOld: {
     defaultMessage: "Debes poseer al menos 13 años de edad para registrarte"
