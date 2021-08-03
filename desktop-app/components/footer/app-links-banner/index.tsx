@@ -38,7 +38,7 @@ const AppLinksBanner = () => {
             alt={googlePlayImgAlt}
           />
         </a>
-        <a href="/">
+        {/* <a href="/">
           <img
             height={"36px"}
             width={"112px"}
@@ -53,7 +53,7 @@ const AppLinksBanner = () => {
             src="/assets/img/app-gallery-badge.png"
             alt={appGalleryImgAlt}
           />
-        </a>
+        </a> */}
       </div>
     </div>
   );
