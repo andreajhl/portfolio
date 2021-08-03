@@ -1,0 +1,23 @@
+$color1: #FAF3E0;
+$color2: #EABF9F;
+$color3: #B68973;
+$color4: #232735;
+
+
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 0px;
+    font-size: 30px;
+    color: $color1;
+    background-color: $color4;
+    min-height: 100px;  
+    border-bottom: 0.1px solid #de5454;
+    color:#ffecec;
+    font-weight: bold;    
+    label:hover{
+        color: #de5454;
+    }
+}

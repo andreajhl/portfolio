@@ -1,11 +1,15 @@
 import React from 'react';
 
-export default function Nav (){
+import '../../styles/nav.scss'
+
+export const Nav =()=>{
     return(
-        <div>
-            <label>Contacto</label>
+        <div className="nav"> 
             <label>Proyectos</label>
-            <label>Aprendizaje</label>
+            <label>Presentacion</label>
+            <label>Contacto</label>
         </div>
     )
 }
+
+export default Nav

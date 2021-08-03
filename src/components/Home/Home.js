@@ -1,31 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import Backend from '../Poyectos/Backend/backen'
+import Inicio  from '../Inicio/Inicio';
+import Contacto from '../Contacto/Contacto';
+import Nav from '../Nav/Nav';
 import FrontEnd from '../Poyectos/Front/FrontEnd'
+import Presentacion from '../Presentacion/Presentacion';
 
-export default function Home (){
-   const [count,setCount]= useState(0)
-    
-    var tecnologia= ['ReactJs','Express.js','Javascript','Postgres','SQL','Node.js','Redux','CSS', 'HTML5']
-    
-    setTimeout(() => {
-        const next =count + 1
-        if( next > 8) return setCount(0)
-        else return setCount(next)
-    },1500) ;
+import '../../styles/home.scss'
+
+export const Home =()=>{
+   
 
     return (
-        <div>
-            <h1>Hola, soy Andrea Hernandez
-            <span>Junior Full Stack developer</span> 
-              he trabajado con <span>{tecnologia[count]}</span>
-            </h1>
-            <div>
-                <Backend />
+        <div className="home">
+            <header className="home_header"><Nav /></header>
+            <div className='home_ini'>
+                <Inicio />
             </div>
-            <div>
-                <FrontEnd />
+            <div className='home_work'>
+                    <FrontEnd />
+            </div>
+            <di className='home_pre'>
+                 <Presentacion />
+            </di>
+            <div className='home_contacto'>
+                <Contacto />
             </div>
         </div>
     )
 }
+export default Home

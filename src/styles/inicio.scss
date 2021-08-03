@@ -1,0 +1,45 @@
+$color1: #FAF3E0;
+$color2: #EABF9F;
+$color3: #B68973;
+$color4: #232735;
+
+
+.Inicio{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    background-color: $color4;
+    min-height: 700px;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 86%, 100% 0%);
+  
+
+    &_div{
+       line-height: 500%;
+    }
+
+    &_img{
+        min-width: 490px;
+        max-width: 490px;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+        &_imag{
+            width: 490px;
+            height: 520px;
+            border-radius: 100%;
+        }
+    }
+    h1{
+        background: linear-gradient(90deg, rgba(222,84,84,1) 0%, rgba(255,236,236,1) 85%, rgba(255,255,255,1) 99%);
+        -webkit-background-clip: text;
+        color: transparent ;
+        margin:0px;
+        font-size: 60px;
+    }
+
+  
+   
+}
+
+

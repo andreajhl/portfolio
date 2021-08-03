@@ -1,0 +1,32 @@
+$color1: #FAF3E0;
+$color2: #EABF9F;
+$color3: #B68973;
+$color4: #232735;
+
+
+.contac{
+    color: $color4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    &_Port{
+        line-height: 170%;
+        font-size: 35px;
+        margin-left: 2%;
+        width: 70%;
+    }
+
+    &_Red{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-around;
+        align-items: center;
+        font-size: 30px;
+        background-color: $color4;
+        color: $color1;
+        
+        
+    }
+}
