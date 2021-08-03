@@ -1,3 +1,4 @@
+import { redirectToAfterAuthPath, useAuth } from "lib/famosos-auth";
 import { useState } from "react";
 import {
   SignUpEmailPasswordForm,
@@ -16,6 +17,7 @@ function SignUpWithEmailWizard({
 }: SignUpWithEmailWizardProps) {
   const [currentStep, setCurrentStep] = useState<CurrentStepType>(STEPS[0]);
   const [signUpData, setSignUpData] = useState(initialValues);
+  const { logout } = useAuth();
 
   function changeToValidationStep(newSignUpData) {
     setSignUpData(newSignUpData);
@@ -24,6 +26,7 @@ function SignUpWithEmailWizard({
 
   function changeToSignUpStep() {
     setCurrentStep(STEPS[0]);
+    logout();
   }
 
   if (currentStep === STEPS[0]) {
@@ -40,6 +43,7 @@ function SignUpWithEmailWizard({
       <ValidateEmailForm
         email={signUpData.email}
         onGoBackButtonClick={changeToSignUpStep}
+        onValidationSuccess={redirectToAfterAuthPath}
       />
     );
   }
