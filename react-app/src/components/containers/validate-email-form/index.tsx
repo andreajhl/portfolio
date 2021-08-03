@@ -136,7 +136,9 @@ function ValidateEmailForm({
           onClick={onGoBackButtonClick}
         >
           <i className="fa fa-arrow-left" />
-          <span>Regresar</span>
+          <span>
+            <FormattedMessage defaultMessage="Volver" />
+          </span>
         </button>
       </Maybe>
       <h3 className={styles.ValidateEmailFormTitle}>
