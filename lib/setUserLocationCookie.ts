@@ -36,9 +36,10 @@ async function getIpData(userIp: string) {
     country_code: string;
     latitude: string;
     longitude: string;
-    currency: {
+    currency?: {
       code: string;
     };
+    code?: string;
   }>(
     `http://api.ipstack.com/${userIp}?access_key=ac1c0a88db0de9da13fcdba5d6742384&fields=country_code,currency.code,latitude,longitude`
   );
@@ -46,7 +47,7 @@ async function getIpData(userIp: string) {
   const longitude = response?.data?.longitude || "0";
   return {
     country_code: response.data["country_code"] || "",
-    currency_code: response.data?.currency?.code || "",
+    currency_code: response.data?.code || response.data?.currency?.code || "",
     geolocation: `${latitude},${longitude}`,
   };
 }
