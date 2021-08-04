@@ -26,3 +26,9 @@ export function getCelebrityDiscountPercentage(
   }
   return videoMessageContractType.discountPercentage;
 }
+
+const UNAVAILABLE_STATUS_CODE = [60, 70];
+
+export const celebrityIsUnavailable = (
+  celebrityStatus: celebrityType["status"]
+) => UNAVAILABLE_STATUS_CODE.includes(celebrityStatus);

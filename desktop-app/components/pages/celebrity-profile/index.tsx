@@ -29,8 +29,7 @@ import { CREATE_CONTRACT_WIZARD_TEST_ID } from "__test__/testids";
 import { getLocalContractInProgress } from "lib/utils/localContractInProgress";
 import waitFor from "react-app/src/utils/waitFor";
 import { NotAvailableBanner } from "desktop-app/components/celebrity-profile/not-available-banner";
-
-const UNAVAILABLE_STATUS_CODE = [60, 70];
+import { celebrityIsUnavailable } from "lib/utils/celebrityUtils";
 
 const CreateContractWizard = dynamic<CreateContractWizardProps>(
   () =>
@@ -86,7 +85,6 @@ function CelebrityProfilePage({
     setCreateContractWizardIsFocused,
   ] = useState(false);
   const { isAuthenticated, isLoading } = useAuth();
-  console.log(celebrity);
   const [isReadyToCreateContract, setIsReadyToCreateContract] = useState(false);
   const wizardChangeFocusTimeoutRef = useRef<number | NodeJS.Timeout>();
 
@@ -163,7 +161,7 @@ function CelebrityProfilePage({
 
   const contractInProgress =
     localContractInProgress || contractInProgressRequest?.data;
-  console.log(celebrity.status);
+
   return (
     <PageContainer>
       <PageHeading showHomeLink />
@@ -179,10 +177,19 @@ function CelebrityProfilePage({
           </div>
           <div>
             <Maybe
-              it={isReadyToCreateContract}
-              orElse={<CreateContractWizardSkeleton />}
+              it={!celebrityIsUnavailable(celebrity.status)}
+              orElse={
+                <NotAvailableBanner
+                  celebrityName={celebrity.fullName}
+                  celebrityId={celebrity.id}
+                  celebrityUsername={celebrity.username}
+                />
+              }
             >
-              {!UNAVAILABLE_STATUS_CODE.includes(celebrity.status) ? (
+              <Maybe
+                it={isReadyToCreateContract}
+                orElse={<CreateContractWizardSkeleton />}
+              >
                 <CreateContractWizard
                   data-testid={CREATE_CONTRACT_WIZARD_TEST_ID}
                   className={classes(
@@ -193,13 +200,7 @@ function CelebrityProfilePage({
                   celebrity={celebrity}
                   contractInProgress={contractInProgress}
                 />
-              ) : (
-                <NotAvailableBanner
-                  celebrityName={celebrity.fullName}
-                  celebrityId={celebrity.id}
-                  celebrityUsername={celebrity.username}
-                />
-              )}
+              </Maybe>
             </Maybe>
             <Maybe it={celebrity.availableForSubscriptions}>
               <FanClubAdvertise celebrity={celebrity} />
