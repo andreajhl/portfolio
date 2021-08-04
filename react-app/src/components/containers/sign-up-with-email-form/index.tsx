@@ -14,9 +14,17 @@ import usePromise from "lib/hooks/usePromise";
 import { CollapsibleErrorMessage } from "../../common/widgets/collapsible-error-message";
 import { getDateValidator, getEmailValidator } from "lib/validations/common";
 import getAge from "lib/utils/getAge";
-import getFormattedInputDateValue from "lib/utils/getFormattedInputDateValue";
 
-const FALLBACK_LOCALE = "ES";
+const emailErrors = [
+  "this email is already registered in famosos.com",
+  "Invalid email",
+];
+
+const isNoUsefulEmailError = (errorMessage: string) =>
+  errorMessage?.includes("we could not send a mail to");
+
+const isEmailError = (errorMessage: string) =>
+  isNoUsefulEmailError(errorMessage) || emailErrors.includes(errorMessage);
 
 const initialRequestErrorValue = null;
 
@@ -82,20 +90,23 @@ function getValidations(formatMessage: IntlFormatters["formatMessage"]) {
   };
 }
 
-type SignUpEmailPasswordFormProps = {
+export type SignUpEmailPasswordFormProps = {
   willRedirect: boolean;
   initialValues?: InitialValuesType;
+  onSignUpSuccess?: (signUpDate: FormValuesType) => void;
 };
 
 function SignUpEmailPasswordForm({
   willRedirect,
   initialValues: initialValuesFromProps,
+  onSignUpSuccess,
 }: SignUpEmailPasswordFormProps) {
   const { formatMessage, locale } = useIntl();
   const {
     values,
     errors,
     setFieldValue,
+    setFieldError,
     onChangeField,
     validateBeforeSubmit,
   } = useForm({
@@ -124,31 +135,44 @@ function SignUpEmailPasswordForm({
     setRequestError(initialRequestErrorValue);
   }
 
+  function changeEmailError(errorMessage: string) {
+    setFieldError("email", errorMessage);
+  }
+
   function setTranslatedRequestError(error: any) {
     const errorMessage = error?.message || error;
     const errorTranslation = TRANSLATION_SIGN_UP_ERROR_MESSAGES[errorMessage];
     const unexpectedError = formatMessage(
       TRANSLATION_SIGN_UP_ERROR_MESSAGES.unexpectedError
     );
-    const translatedError = errorTranslation
-      ? formatMessage(errorTranslation)
-      : errorMessage || unexpectedError;
+    let translatedError = errorMessage || unexpectedError;
+    if (isNoUsefulEmailError(errorMessage)) {
+      translatedError = formatMessage(
+        TRANSLATION_SIGN_UP_ERROR_MESSAGES.noUsefulEmail,
+        {
+          email: values.email,
+        }
+      );
+    }
+    if (errorTranslation) {
+      translatedError = formatMessage(errorTranslation);
+    }
+    if (isEmailError(errorMessage)) {
+      return changeEmailError(translatedError);
+    }
     setRequestError(translatedError);
   }
 
-  async function requestSignUp({
-    confirmPassword,
-    birthDate,
-    ...signUpData
-  }: FormValuesType) {
+  async function requestSignUp(formValues: FormValuesType) {
     try {
+      const { confirmPassword, ...signUpData } = formValues;
       await handle(
         signUpWithEmailAndPassword({
           ...signUpData,
-          birthDate: getFormattedInputDateValue(birthDate),
-          locale: locale?.toUpperCase?.() || FALLBACK_LOCALE,
+          locale,
         })
       );
+      onSignUpSuccess(formValues);
     } catch (error) {
       setTranslatedRequestError(error);
     }

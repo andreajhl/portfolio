@@ -7,6 +7,7 @@ import { CreateContractPage } from "react-app/src/components/pages/create-contra
 import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import { defineMessages, useIntl } from "react-intl";
+import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 
 const headData = defineMessages({
   titleCreateContract: {
@@ -71,6 +72,7 @@ const CreateContract = ({ celebrity }) => {
         ogVideo={celebrity.mainVideo}
       />
       <CreateContractPage />
+      <ValidateEmailModal />
     </>
   );
 };
