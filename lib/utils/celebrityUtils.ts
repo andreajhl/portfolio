@@ -2,8 +2,8 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 
 export const VIDEO_MESSAGE_CONTRACT_TYPE = 1;
 
-export const getVideoMessageContractType = ({ contractTypes }: celebrityType) =>
-  contractTypes?.find(
+export const getVideoMessageContractType = (celebrity: celebrityType) =>
+  celebrity?.contractTypes?.find(
     ({ contractType }) => contractType === VIDEO_MESSAGE_CONTRACT_TYPE
   );
 
@@ -15,7 +15,7 @@ const fallbackDiscountPercentage = 0;
 export function getCelebrityDiscountPercentage(
   celebrity: celebrityType
 ): number {
-  const { discountPercentage } = celebrity;
+  const discountPercentage = celebrity?.discountPercentage;
   if (discountPercentage) return discountPercentage;
   const videoMessageContractType = getVideoMessageContractType(celebrity);
   if (
