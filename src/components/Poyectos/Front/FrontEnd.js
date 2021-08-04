@@ -1,6 +1,8 @@
 import React from 'react';
 
 import '../../../styles/front.scss'
+import gifPeli from '../../../gifPeli.gif'
+import gifClima from '../../../gifClima.gif'
 
 export const FrontEnd =()=>{
     return(
@@ -12,7 +14,7 @@ export const FrontEnd =()=>{
                 <div className="front_DivC">
                     <div className='front_DivC_hover'>
                         <div className="front_DivC_hover_img" >
-                            <img  className="front_DivC_hover_img_i" src='https://lh3.googleusercontent.com/proxy/l800ZpCaoLRubnrlRaabL7p54eeqWVJDWyNS1soz3_hHygeEL2SODDX8Wp8Bt24E0Fiv5o789L3zQQsGAHG4fSPvrsLzuMv27o6qFFhk2j2B' alt='proyect'/>
+                            <img  className="front_DivC_hover_img_i" src={gifClima} alt='proyect'/>
                         </div>
                         <div className="mostrar">
                             <p > Es una aplicacion del clima, los datos son extraidos de 'API WEDER' con lo cual puedes buscar el clima de cada cuidad o pais del mundo, podes eliminar las tarjetas o ver en mas detalles si quieres</p>
@@ -28,7 +30,7 @@ export const FrontEnd =()=>{
                 <div className="front_DivC">
                     <div className='front_DivC_hover'>
                     <div className="front_DivC_hover_img" >
-                            <img  className="front_DivC_hover_img_i" src='https://lh3.googleusercontent.com/proxy/l800ZpCaoLRubnrlRaabL7p54eeqWVJDWyNS1soz3_hHygeEL2SODDX8Wp8Bt24E0Fiv5o789L3zQQsGAHG4fSPvrsLzuMv27o6qFFhk2j2B' alt='proyect'/>
+                            <img  className="front_DivC_hover_img_i" src={gifPeli}  alt='proyect'/>
                         </div>
                         <div className="mostrar">
                             <p>Esta apliacion esta hecha con datos de la api 'Movie', en ella podes buscar peliculas por nombre, guardarlas en favoritos, y ver mas detaller de ella</p>
