@@ -1,21 +1,25 @@
-$color1: #FAF3E0;
-$color2: #EABF9F;
-$color3: #B68973;
-$color4: #232735;
+$color1: #f7d0bf;
+$color2:#ff6e6e;
+$color3:  #fa5353;
+$color4: #1d1c1c;
 
 
 .Inicio{
     display: flex;
     flex-direction: row;
-    justify-content:space-around;
     align-items: center;
-    background-color: $color4;
-    min-height: 700px;
+    background-color:#1d1c1c;
+    background-image: url('file:///home/andrea/Documentos/portfolio/src/me.png');
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 80%;
+    background-size: 40%;
+    min-height: 850px;
     clip-path: polygon(0% 0%, 0% 100%, 100% 86%, 100% 0%);
-  
 
     &_div{
        line-height: 500%;
+       padding-left: 3%; 
     }
 
     &_img{
@@ -30,15 +34,24 @@ $color4: #232735;
             border-radius: 100%;
         }
     }
-    h1{
-        background: linear-gradient(90deg, rgba(222,84,84,1) 0%, rgba(255,236,236,1) 85%, rgba(255,255,255,1) 99%);
-        -webkit-background-clip: text;
-        color: transparent ;
+    .h1{
+        color: $color3;
+        margin:0px;
+        font-size: 75px;
+        text-shadow:5px 5px 0px #050000;
+    }
+    .h2{
+        color: $color2;
+        margin:0px;
+        font-size: 70px;
+        text-shadow:5px 5px 0px #050000;
+    }
+
+    .h3{
+        color: $color1;
         margin:0px;
         font-size: 60px;
     }
-
-  
    
 }
 

@@ -1,7 +1,7 @@
-$color1: #FAF3E0;
-$color2: #EABF9F;
-$color3: #B68973;
-$color4: #232735;
+$color1: #FFE5D9;
+$color2:#FFC1A3;
+$color3:  #FFAA81;
+$color4: #1B222F;
 
 .pre_cuerpo{
    margin-top: 120px;
@@ -19,45 +19,18 @@ $color4: #232735;
         font-size: 30px;
         line-height: 200%;
         color: $color4;
+        width: 100%;
         &_P{
             font-weight: bold;
         }
         
     }
-
-    &_Sk{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-    
-        &_l{
-            display:box;
-            justify-content: center;
-        }
-        p{
-            margin-top: 10px;
-        }
-    }
 }      
 
-.icon{
+.skill{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    max-height: 250px;
-    padding: 0.5%;
-}
-.ii{
-    width: 180px;
-    height: 180px;
-}
-.icon:hover{
-    background-color: white;
-    transform: scale(1.2);
-    box-shadow:5px 5px 5px #9b7460;
-    border: 1px solid $color2
+    justify-content: center;
+    width: 100%;
 }

@@ -1,8 +1,7 @@
-$color1: #FAF3E0;
-$color2: #EABF9F;
-$color3: #B68973;
-$color4: #232735;
-
+$color1: #f7d0bf;
+$color2:#ff6e6e;
+$color3:  #fa5353;
+$color4: #1d1c1c;
 
 .contac{
     color: $color4;
@@ -10,6 +9,7 @@ $color4: #232735;
     flex-direction: column;
     justify-content: center;
     width: 100%;
+
 
     &_Port{
         line-height: 170%;
@@ -23,10 +23,15 @@ $color4: #232735;
         flex-direction: row;
         justify-content:space-around;
         align-items: center;
-        font-size: 30px;
         background-color: $color4;
         color: $color1;
-        
-        
+        border-top: 1px solid $color3;
+        p{
+            font-size: 40px;
+            margin: 15px;
+            color: white;
+            cursor: pointer;
+        }
     }
+
 }
