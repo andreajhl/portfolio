@@ -43,8 +43,8 @@ function StripeCardForm({
   const { push } = useRouter();
   const [cardComplete, setCardComplete] = useState(false);
   const [error, setError] = useState(null);
+  const [paymentProcessError, setPaymentProcessError] = useState(null);
   const [processing, setProcessing] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState(null);
   const [billingDetails, setBillingDetails] = useState({
     email: "",
     name: "",
@@ -89,7 +89,7 @@ function StripeCardForm({
         });
       })
       .catch((error) => {
-        setError(error);
+        setPaymentProcessError(error);
         setProcessing(false);
       })
       .finally(() => togglePaymentInProcess());
@@ -115,7 +115,7 @@ function StripeCardForm({
     )
       .then((res) => {
         if (res.data.status === "ERROR") {
-          setError(res.data.error);
+          setPaymentProcessError(res.data.error);
           setProcessing(false);
         } else {
           analytics.trackContractPurchase({
@@ -142,7 +142,7 @@ function StripeCardForm({
         setProcessing(false);
         if (error.response) {
           if (error.response.data) {
-            setError(
+            setPaymentProcessError(
               error.response?.data?.error ||
                 formatMessage(messages.unexpectedError)
             );
@@ -153,12 +153,6 @@ function StripeCardForm({
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // if (!stripe || !elements) {
-    //   // Stripe.js has not loaded yet. Make sure to disable
-    //   // form submission until Stripe.js has loaded.
-    //   return;
-    // }
 
     analytics.track("SUBMIT_STRIPE_FORM", {
       contractReference,
@@ -202,27 +196,7 @@ function StripeCardForm({
       });
   };
 
-  const reset = () => {
-    setError(null);
-    setProcessing(false);
-    setPaymentMethod(null);
-    setBillingDetails({
-      email: "",
-      name: "",
-    });
-  };
-
-  return paymentMethod ? (
-    <div className="Result">
-      <div className="ResultTitle" role="alert">
-        Payment successful
-      </div>
-      <div className="ResultMessage">
-        Thanks for trying Stripe Elements. No money was charged, but we
-        generated a PaymentMethod: {paymentMethod.id}
-      </div>
-    </div>
-  ) : (
+  return (
     <form className={styles.CheckoutFormWrapper} onSubmit={handleSubmit}>
       <fieldset>
         <Field
@@ -269,7 +243,9 @@ function StripeCardForm({
           />
         </div>
       </fieldset>
-      {error && <WarningMessage message={error} />}
+      {(error || paymentProcessError) && (
+        <WarningMessage message={error || paymentProcessError} />
+      )}
       <SubmitButton processing={processing} error={error} disabled={false}>
         <FormattedMessage defaultMessage="Pagar" />
       </SubmitButton>
