@@ -8,7 +8,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "DNI o CUIT",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "100"
+    round: "100",
   },
   {
     name: "BRL",
@@ -19,7 +19,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "CPF o CNPJ",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "5"
+    round: "5",
   },
   {
     name: "CAD",
@@ -30,7 +30,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "SIN",
     decimal_separator: ".",
     thousand_separator: ",",
-    round: "1"
+    round: "1",
   },
   {
     name: "CLP",
@@ -41,7 +41,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "CI/RUT",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "1000"
+    round: "1000",
   },
   {
     name: "COP",
@@ -52,7 +52,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "CC",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "1000"
+    round: "1000",
   },
   {
     name: "EUR",
@@ -64,7 +64,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "DNI",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "1"
+    round: "1",
   },
   {
     name: "DOP",
@@ -75,7 +75,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "Cédula",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "50"
+    round: "50",
   },
   {
     name: "MXN",
@@ -86,7 +86,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "CURP",
     decimal_separator: ".",
     thousand_separator: ",",
-    round: "5"
+    round: "5",
   },
   {
     name: "PEN",
@@ -97,7 +97,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "DNI",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "5"
+    round: "5",
   },
   {
     name: "PYG",
@@ -108,7 +108,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "CI",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "10000"
+    round: "10000",
   },
   {
     name: "USD",
@@ -119,7 +119,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "SSN",
     decimal_separator: ".",
     thousand_separator: ",",
-    round: "1"
+    round: "1",
   },
   {
     name: "UYU",
@@ -130,7 +130,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "CI",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "50"
+    round: "50",
   },
   {
     name: "BOB",
@@ -141,7 +141,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "CI",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "7"
+    round: "7",
   },
   {
     name: "CRC",
@@ -152,7 +152,7 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "CI",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "626"
+    round: "626",
   },
   {
     name: "GTQ",
@@ -163,6 +163,6 @@ export const AVAILABLE_CURRENCIES = [
     document_name: "CUI",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "7"
-  }
+    round: "7",
+  },
 ];

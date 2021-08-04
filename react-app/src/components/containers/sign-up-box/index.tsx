@@ -1,37 +1,38 @@
-import { AuthFormField } from "react-app/src/components/layouts/auth-form-field";
 import { FacebookButton } from "react-app/src/components/layouts/facebook-button";
 import { GoogleButton } from "react-app/src/components/layouts/google-button";
-import { connect, ConnectedProps } from "react-redux";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { AuthTermsAdvertise } from "react-app/src/components/layouts/auth-terms-advertise";
 import { FormattedMessage, useIntl, defineMessages } from "react-intl";
 import { Link } from "../../common/routing/link";
-import { SIGN_IN_PATH } from "react-app/src/routing/Paths";
 import { SignUpEmailPasswordForm } from "../sign-up-with-email-form";
-
-const signInLink = (chunk: string) => <Link href={SIGN_IN_PATH}>{chunk}</Link>;
-
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = {};
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
+import { useRouter } from "next/router";
+import { SIGN_IN_FROM_PATH, SIGN_IN_PATH } from "constants/paths";
+import { SUGGESTED_FULL_NAME_QUERY_PARAM } from "constants/keys";
 
 type SignUpBoxProps = {
   className?: string;
   willRedirect?: boolean;
-} & PropsFromRedux;
+};
 
 const RegisterMessages = defineMessages({
   facebookMessage: { defaultMessage: "Registrarme con Facebook" },
-  googleMessage: { defaultMessage: "Registrarme con Google" }
+  googleMessage: { defaultMessage: "Registrarme con Google" },
 });
 
 function SignUpBox({ className, willRedirect = false }: SignUpBoxProps) {
   const { formatMessage } = useIntl();
+  const { query } = useRouter();
+
+  const signInPath = willRedirect ? SIGN_IN_FROM_PATH : SIGN_IN_PATH;
+  const signInHref = {
+    pathname: signInPath,
+    query,
+  };
+  const signInLink = (chunk: string) => <Link href={signInHref}>{chunk}</Link>;
+
+  const suggestedFullName = (query?.[SUGGESTED_FULL_NAME_QUERY_PARAM] ||
+    "") as string;
 
   return (
     <section className={classes(styles.SignUpBox, className)}>
@@ -44,7 +45,10 @@ function SignUpBox({ className, willRedirect = false }: SignUpBoxProps) {
           className={styles.AuthProviderButton}
           textButton={formatMessage(RegisterMessages.googleMessage)}
         />
-        <SignUpEmailPasswordForm willRedirect={willRedirect} />
+        <SignUpEmailPasswordForm
+          willRedirect={willRedirect}
+          initialValues={{ fullName: suggestedFullName }}
+        />
         <AuthTermsAdvertise className={styles.SignUpBoxAuthTermsAdvertise} />
       </div>
       <p className={styles.AlreadyRegisteredText}>
@@ -57,6 +61,4 @@ function SignUpBox({ className, willRedirect = false }: SignUpBoxProps) {
   );
 }
 
-const _SignUpBox = connector(SignUpBox);
-
-export { _SignUpBox as SignUpBox };
+export { SignUpBox };

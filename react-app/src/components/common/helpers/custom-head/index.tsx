@@ -5,12 +5,12 @@ import { defineMessages, MessageDescriptor, useIntl } from "react-intl";
 const CustomHeadDefaultStrings = defineMessages({
   defaultTitle: {
     defaultMessage:
-      "Famosos.com - Videos personalizados de tus famosos favoritos."
+      "Famosos.com - Videos personalizados de tus famosos favoritos.",
   },
   defaultDescription: {
     defaultMessage:
-      "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
-  }
+      "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
+  },
 });
 type CustomHeadProps = {
   children?: ReactNode;
@@ -27,7 +27,7 @@ const CustomHead = ({
   ogUrl = "https://www.famosos.com",
   ogImage = "https://www.famosos.com/assets/img/famosos-share-img.jpg", // la url relativa no funciona para Twitter TODO: implementar una mejor solucion
   ogVideo = "https://famosos-output-videos.s3.amazonaws.com/videos/8/143/201912030248-353316-143.mp4#t=0.5",
-  children
+  children,
 }: CustomHeadProps) => {
   const { formatMessage } = useIntl();
 

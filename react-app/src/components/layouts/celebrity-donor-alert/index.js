@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 export const CelebrityDonorAlert = ({
   className = "",
   fullName,
-  causeName
+  causeName,
 }) => {
   return (
     <div
@@ -29,7 +29,7 @@ export const CelebrityDonorAlert = ({
                 </span>
               ),
               fullName: fullName,
-              causeName: causeName
+              causeName: causeName,
             }}
           />
         </p>

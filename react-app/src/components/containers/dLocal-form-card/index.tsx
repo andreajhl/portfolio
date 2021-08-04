@@ -8,7 +8,7 @@ import { FormattedMessage, useIntl, defineMessage } from "react-intl";
 import { analytics } from "react-app/src/state/utils/gtm";
 
 const inputcardHoldername = defineMessage({
-  defaultMessage: "Escribe aquí el nombre"
+  defaultMessage: "Escribe aquí el nombre",
 });
 
 const DLOCALKEY = process.env.NEXT_PUBLIC_DLOCAL_API_KEY;
@@ -46,7 +46,7 @@ const DLocalFormCard = ({
   paymentErrorMessage,
   paymentMethodType,
   disabled,
-  currentOption
+  currentOption,
 }) => {
   const intl = useIntl();
   const [card, setCard] = useState(null);
@@ -60,14 +60,14 @@ const DLocalFormCard = ({
       widget: "DLocalFormCard",
       paymentMethodType,
       buyerNameCard: buyerNameCard.current,
-      bank: currentOption
+      bank: currentOption,
     });
     e.preventDefault();
     if (buyerName) {
       setProcessingCard(true);
       dLocalInstance
         .createToken(card, {
-          name: buyerName
+          name: buyerName,
         })
         .then((result) => {
           handleStartPayment(result.token);
@@ -89,8 +89,8 @@ const DLocalFormCard = ({
     base: {
       fontSize: "1rem",
       lineHeight: "50px",
-      color: "#838383"
-    }
+      color: "#838383",
+    },
   };
   useEffect(() => {
     if (isScriptLoaded && isScriptLoadSucceed) {
@@ -98,7 +98,7 @@ const DLocalFormCard = ({
       const dlocalInstance = window.dlocal(DLOCALKEY);
       const fields = dlocalInstance.fields({
         locale: "es",
-        country: "CO"
+        country: "CO",
       });
       const card = fields.create("card", { style: style });
       card.mount(findDOMNode(inputEl.current));
@@ -130,7 +130,7 @@ const DLocalFormCard = ({
             id={`card-field-${paymentMethodType}`}
             className="mx-auto"
             style={{
-              width: "96%"
+              width: "96%",
             }}
             ref={inputEl}
           ></div>
@@ -139,7 +139,7 @@ const DLocalFormCard = ({
         <div>{tokenError}</div>
         <span
           style={{
-            fontSize: "10px"
+            fontSize: "10px",
           }}
         >
           <FormattedMessage
@@ -157,7 +157,7 @@ const DLocalFormCard = ({
           backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
           height: "50px",
           borderRadius: "10px",
-          width: "100%"
+          width: "100%",
         }}
       >
         {paymentInProcess ? <LoaderLayout /> : "Pagar"}

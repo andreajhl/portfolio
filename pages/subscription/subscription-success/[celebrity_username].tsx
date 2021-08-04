@@ -7,19 +7,19 @@ import { GetServerSideProps } from "next";
 
 const headData = defineMessages({
   titleFeed: {
-    defaultMessage: "Las ultimas publicaciones de tus famosos favoritos."
-  }
+    defaultMessage: "Las ultimas publicaciones de tus famosos favoritos.",
+  },
 });
 
 const redirectToSanitizedPath = {
   destination: "/subscription/subscription-success/celebrity_username",
-  permanent: false
+  permanent: false,
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   if (typeof params === "undefined") {
     return {
-      redirect: redirectToSanitizedPath
+      redirect: redirectToSanitizedPath,
     };
   }
 
@@ -27,8 +27,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   return {
     props: {
-      celebrityUsername
-    }
+      celebrityUsername,
+    },
   };
 };
 
@@ -42,5 +42,5 @@ function SubscriptionSuccess({ celebrityUsername }) {
 }
 
 export default withAuthenticationRequired(SubscriptionSuccess, {
-  onRedirecting: () => <LoadingPage />
+  onRedirecting: () => <LoadingPage />,
 });

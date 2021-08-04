@@ -1,8 +1,34 @@
-//styles.scss
-@import "theme";
-@import "~bootstrap/scss/bootstrap";
-@import "/public/assets/css/fonts";
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css);
+@import "./bootstrap.css";
+@import "/public/assets/css/avenir-fonts.scss";
+
+:root {
+  --active: #ffcc58;
+  --primary: #eb2a7b;
+  --primary-darken: #b71157;
+  --primary-lighten: rgb(235 42 123 / 25%);
+  --primary-hover: #da1467;
+  --primary-hover-border-color: #cf1362;
+  --primary-focus-box-shadow: 0 0 0 0.2rem rgb(238 74 143 / 50%);
+  --primary-focus-box-shadow-alt: 0 0 0 0.2rem rgb(235 42 123 / 25%);
+  --dark: #303542;
+  --secondary: #02bceb;
+  --secondary-lighten: #46cef0;
+  --tertiary: #02bceb;
+  --tertiary-lighten: #46cef0;
+  --gray-4: gray;
+  --gray-3: rgb(160, 159, 159);
+  --gray-2: rgb(182, 180, 180);
+  --gray-1: rgb(231, 226, 226);
+  --muted: red;
+  --purple: rgba(0, 220, 198, 0.05);
+  --soft-grey: #8d9cc1;
+  --text-success: #28a745;
+  --bg-google: #f8f9fa;
+  --base-tone: #535f74;
+  --sky-blue: #b7cdfc;
+  --secundary-color-blue: #589dd8;
+  --font-family: "Avenir Next LT Pro";
+}
 
 * {
   scrollbar-width: none;
@@ -27,13 +53,13 @@ div,
 a,
 section,
 header {
-  font-family: "Avenir Next LT Pro", sans-serif !important;
+  font-family: var(--font-family, Arial), sans-serif !important;
   font-weight: 400;
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
 * {
-  color: $dark;
+  color: var(--dark);
 }
 
 .cursor-pointer {
@@ -87,7 +113,7 @@ b {
   transform: translate(-50%, 0);
 
   .modal-header {
-    background-color: $dark !important;
+    background-color: var(--dark) !important;
     color: white;
     width: 80%;
     border-radius: 0px 0px 20px 0;
@@ -100,7 +126,7 @@ b {
       right: 10px;
       border-radius: 10px;
       font-size: 15px;
-      color: $dark;
+      color: var(--dark);
     }
   }
 
@@ -116,11 +142,11 @@ b {
 
   input,
   textarea {
-    border: 2px solid $dark !important;
+    border: 2px solid var(--dark) !important;
   }
 
   input[type="radio"] {
-    border: 2px solid $dark !important;
+    border: 2px solid var(--dark) !important;
   }
 
   .switch-label {
@@ -137,23 +163,23 @@ b {
 }
 
 .text-main-color-gray {
-  color: $main-color-gray;
+  color: var(--main-color-gray);
 }
 
 .text-main-color-golden {
-  color: $main-color-golden;
+  color: var(--main-color-golden);
 }
 
 .text-main-color-yellow {
-  color: $main-color-yellow;
+  color: var(--main-color-yellow);
 }
 
 .text-main-color-pink {
-  color: $main-color-pink;
+  color: var(--main-color-pink);
 }
 
 .text-main-color-blue {
-  color: $main-color-blue;
+  color: var(--main-color-blue);
 }
 
 .dropdown-menu {
@@ -240,7 +266,7 @@ b {
 
 .btn-group.open.show {
   .btn.dropdown-toggle {
-    background-color: $light;
+    background-color: #f8f9fa;
   }
 }
 
@@ -286,7 +312,7 @@ button.contract-button {
   -moz-border-radius: 30px;
   color: white;
   border-radius: 20px;
-  background-color: $primary;
+  background-color: var(--primary);
   border: solid 3px;
   padding: 5px 40px;
   width: 320px;
@@ -397,16 +423,16 @@ video {
 }
 
 .text-soft-grey {
-  color: $soft-grey !important;
+  color: var(--soft-grey !important);
 }
 
 .btn-outline-success {
   span {
-    color: $text-success !important;
+    color: var(--text-success !important);
   }
 
   i {
-    color: $text-success !important;
+    color: var(--text-success !important);
   }
 
   &:hover {
@@ -434,8 +460,8 @@ video {
   color: #fff;
   border-radius: 8px;
   margin-bottom: 10px;
-  background-color: $primary;
-  border-color: $primary;
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 
 input,

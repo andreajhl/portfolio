@@ -15,7 +15,7 @@ const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
   DEBIT_CARD: "far fa-credit-card",
   BANK_TRANSFER: "fas fa-exchange-alt",
-  TICKET: "fas fa-money-bill-wave-alt"
+  TICKET: "fas fa-money-bill-wave-alt",
 };
 
 const IconPaymentMethod = styled.i`
@@ -105,7 +105,7 @@ const DLocalPaymentsMethods = ({
   handleBuyerDataIncomplete,
   disabledButton,
   contractPrice,
-  celebrityId
+  celebrityId,
 }: DLocalPaymentsMethodsProps) => {
   const router = useRouter();
   const { locale } = useIntl();
@@ -114,7 +114,7 @@ const DLocalPaymentsMethods = ({
   };
   const [currentOption, setCurrentOption] = useState({
     name: "",
-    paymentMethodId: ""
+    paymentMethodId: "",
   });
   const [paymentError, setPaymentError] = useState("");
   const [paymentInProcess, setPaymentInProcess] = useState(false);
@@ -131,13 +131,13 @@ const DLocalPaymentsMethods = ({
       contractReference,
       discountCouponId,
       contractPrice,
-      celebrityId
+      celebrityId,
     });
     const {
       deviceId,
       IP,
       userAgent,
-      geoLocalization
+      geoLocalization,
     } = await getBuyerIdentityData();
     try {
       processDlocalPayment(
@@ -163,7 +163,7 @@ const DLocalPaymentsMethods = ({
             } else {
               analytics.trackContractPurchase({
                 contractPrice,
-                celebrityId
+                celebrityId,
               });
               analytics.track("CONTRACT_PAYED", {
                 widget: "DLocalPaymentMethodForm",
@@ -171,7 +171,7 @@ const DLocalPaymentsMethods = ({
                 contractReference,
                 discountCouponId,
                 contractPrice,
-                celebrityId
+                celebrityId,
               });
             }
             router.push(
@@ -269,7 +269,7 @@ const DLocalPaymentsMethods = ({
                 <label
                   style={{
                     fontWeight: "lighter",
-                    color: "#838383"
+                    color: "#838383",
                   }}
                 >
                   <FormattedMessage defaultMessage="Selecciona una tarjeta" />
@@ -280,7 +280,7 @@ const DLocalPaymentsMethods = ({
                   }
                   options={paymentsMethodsAvailable.map((paymentMethod) => ({
                     value: paymentMethod.id,
-                    label: paymentMethod.name
+                    label: paymentMethod.name,
                   }))}
                 />
                 {cardIsIncomplete ? (
@@ -330,7 +330,7 @@ const DLocalPaymentsMethods = ({
                             alt="Card Logo"
                             style={{
                               position: "absolute",
-                              left: "90%"
+                              left: "90%",
                             }}
                             className="rounded-circle"
                             height="30px"
@@ -353,7 +353,7 @@ const DLocalPaymentsMethods = ({
                 <span
                   className="text-danger"
                   style={{
-                    fontSize: "10px"
+                    fontSize: "10px",
                   }}
                 >
                   {paymentError}
@@ -368,7 +368,7 @@ const DLocalPaymentsMethods = ({
                     }`,
                     height: "50px",
                     borderRadius: "10px",
-                    width: "100%"
+                    width: "100%",
                   }}
                 >
                   {paymentInProcess ? <LoaderLayout /> : "Pagar"}

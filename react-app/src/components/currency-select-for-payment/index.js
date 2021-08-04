@@ -8,7 +8,7 @@ import findAvailableCurrencyByName from "../../utils/findAvailableCurrencyByName
 
 const mapStateToProps = ({ payments: { currencyExchangeReducer } }) => ({
   currencyExchangeLoading: currencyExchangeReducer.loading,
-  currencyExchangeData: currencyExchangeReducer.data
+  currencyExchangeData: currencyExchangeReducer.data,
 });
 
 const mapDispatchToProps = { currencyExchange };
@@ -21,7 +21,7 @@ const CurrencyDropdownSelect = ({
   currencyExchangeData = defaultCurrencyExchangeData,
   available_currencies = AVAILABLE_CURRENCIES_FOR_PAYMENTS,
   className,
-  onChangeCurrency
+  onChangeCurrency,
 }) => {
   const intl = useIntl();
   const handleCurrentCurrency = ({ target: { value } }) => {
@@ -29,7 +29,7 @@ const CurrencyDropdownSelect = ({
     onChangeCurrency(newCurrencyExchange.name);
     currencyExchange({
       from: currencyExchangeData.to.name,
-      to: newCurrencyExchange.name
+      to: newCurrencyExchange.name,
     });
     GTM.tagManagerDataLayer("CLICK_ON_DROPDOWN_CURRENCY", newCurrencyExchange);
   };
@@ -43,7 +43,7 @@ const CurrencyDropdownSelect = ({
         border: "0px",
         boxShadow: "0px 0px 10px rgb(0 0 0 / 10%)",
         textIndent: "10px",
-        background: "white"
+        background: "white",
       }}
       className={`form-select font-weight-bold w-100 ${
         className ? className : ""

@@ -12,7 +12,7 @@ const SENTRY_SAMPLE_RATE =
 Sentry.init({
   dsn: SENTRY_DSN,
   environment: SENTRY_ENV,
-  sampleRate: parseFloat(SENTRY_SAMPLE_RATE)
+  sampleRate: parseFloat(SENTRY_SAMPLE_RATE),
   // Note: if you want to override the automatic release value, do not set a
   // `release` value here - use the environment variable `SENTRY_RELEASE`, so
   // that it will also get attached to your source maps

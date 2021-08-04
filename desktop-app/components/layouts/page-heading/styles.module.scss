@@ -1,0 +1,24 @@
+.PageHeading {
+  background-color: #fff;
+  height: 54px;
+  padding: 17px 0 14px;
+  border-bottom: 1px solid #f2f2f2;
+
+  &Container {
+    display: flex;
+    align-items: center;
+  }
+
+  &BackButton {
+    padding: 0;
+    line-height: 0;
+    margin-right: 22px;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  &HomeButton {
+    margin-right: 22px;
+  }
+}

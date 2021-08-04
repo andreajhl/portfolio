@@ -14,7 +14,7 @@ const HowToGetAVideoMessageLayout = () => {
           videomensaje en Famosos?"
             values={{
               onlyMobileLineBreak: onlyMobileLineBreak,
-              onlyDesktopLineBreak: onlyDesktopLineBreak
+              onlyDesktopLineBreak: onlyDesktopLineBreak,
             }}
           />
         </h2>
@@ -28,7 +28,7 @@ const HowToGetAVideoMessageLayout = () => {
                 defaultMessage={`Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak} "Comprar video {onlyMobileLineBreak} ahora"`}
                 values={{
                   onlyMobileLineBreak: onlyMobileLineBreak,
-                  onlyDesktopLineBreak: onlyDesktopLineBreak
+                  onlyDesktopLineBreak: onlyDesktopLineBreak,
                 }}
               />
             </p>
@@ -44,7 +44,7 @@ const HowToGetAVideoMessageLayout = () => {
               el proceso {onlyMobileLineBreak} de compra."
                 values={{
                   onlyMobileLineBreak: onlyMobileLineBreak,
-                  onlyDesktopLineBreak: onlyDesktopLineBreak
+                  onlyDesktopLineBreak: onlyDesktopLineBreak,
                 }}
               />
             </p>
@@ -60,7 +60,7 @@ const HowToGetAVideoMessageLayout = () => {
               videomensaje."
                 values={{
                   onlyMobileLineBreak: onlyMobileLineBreak,
-                  onlyDesktopLineBreak: onlyDesktopLineBreak
+                  onlyDesktopLineBreak: onlyDesktopLineBreak,
                 }}
               />
             </p>

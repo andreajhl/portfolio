@@ -11,11 +11,11 @@ import { LikeButton } from "../../common/buttons/LikeButton";
 
 const intlMessages = defineMessages({
   isLikedAlternativeText: {
-    defaultMessage: "No me gusta"
+    defaultMessage: "No me gusta",
   },
   isNotLikedAlternativeText: {
-    defaultMessage: "Me gusta"
-  }
+    defaultMessage: "Me gusta",
+  },
 });
 
 const preventRedirectFromParent = (event) => {
@@ -27,7 +27,7 @@ const preventRedirectFromParent = (event) => {
 
 const mapStateToProps = ({ celebrityLikes }) => {
   return {
-    userCelebrityLikes: celebrityLikes.fetchUserCelebrityLikesReducer.data.data
+    userCelebrityLikes: celebrityLikes.fetchUserCelebrityLikesReducer.data.data,
   };
 };
 
@@ -40,7 +40,7 @@ const CelebrityFavoriteButton = ({
   width,
   height = width,
   history,
-  location
+  location,
 }) => {
   const { formatMessage } = useIntl();
   const [isFavorite, setIsFavorite] = useState(false);
@@ -48,7 +48,7 @@ const CelebrityFavoriteButton = ({
     () => ({
       celebrityId,
       path: location.pathname,
-      widget: "CelebrityFavoriteButton"
+      widget: "CelebrityFavoriteButton",
     }),
     [celebrityId, location.pathname]
   );
@@ -106,7 +106,7 @@ CelebrityFavoriteButton.defaultProps = {
   userCelebrityLikes: [],
   filledImageSource: "/assets/img/filled-heart.svg",
   outlinedImageSource: "/assets/img/outlined-heart.svg",
-  width: "1rem"
+  width: "1rem",
 };
 
 CelebrityFavoriteButton.propTypes = {
@@ -116,7 +116,7 @@ CelebrityFavoriteButton.propTypes = {
   filledImageSource: PropTypes.string,
   outlinedImageSource: PropTypes.string,
   width: PropTypes.string,
-  height: PropTypes.string
+  height: PropTypes.string,
 };
 
 const _CelebrityFavoriteButton = connect(mapStateToProps)(

@@ -16,7 +16,7 @@ const SessionRedirectPage = ({ query: { r: redirectUrl } }) => {
     } else {
       localStorage.setItem(FINAL_REDIRECT, redirectUrl);
       loginWithRedirect({
-        redirectUri: window.location.origin + AUTH_SUCCESS
+        redirectUri: window.location.origin + AUTH_SUCCESS,
       });
     }
   }, [isAuthenticated, isLoading, redirectUrl]);

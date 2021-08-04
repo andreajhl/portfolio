@@ -1,0 +1,66 @@
+.HiringShareSuccessModal {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100vw;
+  background: #ffffff;
+  padding: 2rem;
+
+  @media only screen and (max-width: 575px) {
+    height: 100vh;
+    justify-content: center;
+  }
+
+  @media only screen and (min-width: 576px) {
+    max-width: 512px;
+    border-radius: 10px;
+  }
+}
+
+.CloseButton {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.SuccessMessage {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (min-width: 576px) {
+    margin-top: 2rem;
+  }
+}
+
+.SuccessMessage svg {
+  margin-bottom: 3rem;
+}
+
+.SuccessMessage span {
+  font-size: 20px;
+  max-width: 300px;
+  text-align: center;
+  margin-bottom: 2rem;
+  width: 90vw;
+}
+
+.GoToHiringsLink {
+  font-size: 18px;
+  min-height: 55px;
+  max-width: 330px;
+  font-weight: bold;
+  width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.GoToContractDetailsLink {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0.5em 0 1rem;
+  padding: 0.375em 0.75em;
+  transition: color 0.15s;
+}

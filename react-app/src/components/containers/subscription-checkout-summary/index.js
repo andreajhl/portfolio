@@ -33,7 +33,7 @@ const SubscriptionCheckoutSummary = (props) => {
             "Entrada con descuento a eventos.",
             `Acceso a contenido exclusivo de ${celebrityFullName}.`,
             "Participación en sorteos y posibilidad de recibir artículos autografiados.",
-            "¡Sorpresas que te harán reír y suspirar!  "
+            "¡Sorpresas que te harán reír y suspirar!  ",
           ]}
         />
       </section>
@@ -44,13 +44,13 @@ const SubscriptionCheckoutSummary = (props) => {
 // Set propTypes
 SubscriptionCheckoutSummary.propTypes = {
   celebrityAvatar: propTypes.string,
-  celebrityFullName: propTypes.string
+  celebrityFullName: propTypes.string,
 };
 
 // Set defaultProps
 SubscriptionCheckoutSummary.defaultProps = {
   celebrityAvatar: "/assets/img/avatar-blank.png",
-  celebrityFullName: ""
+  celebrityFullName: "",
 };
 
 export default SubscriptionCheckoutSummary;

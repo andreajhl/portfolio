@@ -15,7 +15,7 @@ function SubscribeToThisCelebrityButton({
   celebrityFullName,
   celebrityUsername,
   fontSize,
-  width
+  width,
 }) {
   const { locale } = useRouter();
   const userAgent = useWindow()?.navigator?.userAgent;
@@ -30,7 +30,7 @@ function SubscribeToThisCelebrityButton({
       widget: "SubscribeToThisCelebrityButton",
       text,
       celebrityFullName,
-      celebrityUsername
+      celebrityUsername,
     });
   };
 
@@ -45,11 +45,11 @@ function SubscribeToThisCelebrityButton({
       if (isMobile | isSafari) {
         loginWithRedirect({
           redirectUri: window.location.origin + AUTH_SUCCESS,
-          ui_locales: locale
+          ui_locales: locale,
         });
       } else {
         loginWithPopup({
-          ui_locales: locale
+          ui_locales: locale,
         });
       }
     } else {

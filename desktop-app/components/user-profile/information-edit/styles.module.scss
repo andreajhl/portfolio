@@ -1,0 +1,94 @@
+.UserInformationConfigContainer {
+  padding: 1.6875rem 2.4375rem;
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.UserInformationConfigTitle {
+  font-size: 16px !important;
+  line-height: 22px;
+}
+
+.ConfigOptionsSections {
+  display: flex;
+  padding-top: 0.875rem;
+  > div:first-child {
+    flex: 25%;
+  }
+  > :first-child {
+    padding-top: 0.6875rem;
+    padding-bottom: 0.6875rem;
+  }
+  > div:not(:first-child) {
+    flex: 70%;
+  }
+}
+
+.labelInputFields {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--gray-4);
+}
+
+.inputClass {
+  font-size: 14px;
+}
+
+.inputClass:disabled {
+  color: black;
+  font-weight: bold;
+}
+.ConfigOptionsPersonalData {
+  margin-left: 78px;
+}
+.ConfigOptionsPersonalData > :not(:first-child) {
+  margin-top: 1.5rem;
+}
+.OptionsItems {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  & > :first-child {
+    margin-right: 109px;
+  }
+}
+.LogoutButton {
+  margin-left: auto;
+  span {
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 19px;
+    color: #838383;
+  }
+}
+
+.LogoutButtonWrapper {
+  display: flex;
+  margin-left: 54px;
+  flex: 133px !important;
+}
+
+.LogoutButton {
+  padding: 0;
+  margin-top: auto;
+  font-weight: bold;
+  color: var(--gray-3, #838383);
+}
+
+.GridOfInputs {
+  display: grid;
+  column-gap: 15%;
+  row-gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.InputContainer > div:first-child {
+  flex: 1;
+}

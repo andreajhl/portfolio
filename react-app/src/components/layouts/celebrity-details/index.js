@@ -31,7 +31,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
     isDonor,
     causeName,
     causeUrl,
-    status
+    status,
   } = celebrity;
 
   const isJuanseQuintero = celebrityId === 6317;
@@ -41,9 +41,8 @@ const CelebrityDetails = ({ celebrity, variant }) => {
 
   return (
     <Container
-      className={`mx-auto CelebrityDetails ${variant === "1" ? "mb-0" : ""} ${
-        variant === "2" ? "mb-4 mt-0" : ""
-      }`}
+      className={`mx-auto CelebrityDetails ${variant === "1" ? "mb-0" : ""} ${variant === "2" ? "mb-4 mt-0" : ""
+        }`}
     >
       <Row className="justify-content-md-center align-items-center align-items-md-start mt-3 mb-3 mt-lg-0">
         <Col xs="auto d-md-none" className="text-center">
@@ -107,11 +106,11 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                 celebrityUsername={username}
                 text={
                   <>
-                    <Emoji label="star-struck" symbol="🤩" />
+                    <Emoji label="star-struck" symbol="&#129321" />
                     <span
                       style={{
                         fontWeight: "bold",
-                        color: "white"
+                        color: "white",
                       }}
                     >
                       <FormattedMessage
@@ -119,7 +118,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                         description=""
                       />
                     </span>
-                    <Emoji label="star-struck" symbol="🤩" />
+                    <Emoji label="star-struck" symbol="&#129321" />
                   </>
                 }
                 width="100%"
@@ -203,7 +202,7 @@ const CelebrityDetails = ({ celebrity, variant }) => {
                   <span
                     style={{
                       fontWeight: "bold",
-                      color: "white"
+                      color: "white",
                     }}
                   >
                     <FormattedMessage defaultMessage="¡Comprar video ahora!" />

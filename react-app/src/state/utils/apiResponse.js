@@ -5,7 +5,7 @@ function getCleanObject(object) {
   const cleanObject = JSON.parse(JSON.stringify(object));
   const cleanObjectEntries = Object.entries(cleanObject).map(([key, value]) => [
     key,
-    value || ""
+    value || "",
   ]);
 
   return cleanObjectEntries.reduce((newObject, [key, value]) => {
@@ -23,10 +23,16 @@ function getParseableError(error) {
 
   /* Default value to prevent errors. */
   return {
-    message: String(error?.message || "Invalid error message"),
-    response: {
-      status: 500
-    }
+    data: {
+      message: String(
+        error?.data?.api_error?.response?.data?.error ||
+          error?.message ||
+          "Invalid error message"
+      ),
+      response: {
+        status: error?.data?.api_error?.response?.status || 500,
+      },
+    },
   };
 }
 
@@ -45,14 +51,14 @@ export function handleApiErrors(dispatch, type, error) {
      */
     if (error.response.data) {
       payload = {
-        data: { api_error: error, error: error.response.data.error }
+        data: { api_error: error, error: error.response.data.error },
       };
     } else {
       payload = {
         data: {
           api_error: error,
-          error: "The request was made but no response was received"
-        }
+          error: "The request was made but no response was received",
+        },
       };
     }
   } else if (error.request) {
@@ -64,8 +70,8 @@ export function handleApiErrors(dispatch, type, error) {
     payload = {
       data: {
         api_error: error,
-        error: "The request was made but no response was received"
-      }
+        error: "The request was made but no response was received",
+      },
     };
   } else {
     // Something happened in setting up the request and triggered an Error
@@ -73,8 +79,8 @@ export function handleApiErrors(dispatch, type, error) {
       data: {
         api_error: error,
         error:
-          "Something happened in setting up the request and triggered an Error"
-      }
+          "Something happened in setting up the request and triggered an Error",
+      },
     };
   }
 
@@ -82,8 +88,8 @@ export function handleApiErrors(dispatch, type, error) {
     type: `${type}_FAILURE`,
     payload: {
       ...payload,
-      data: { ...payload.data, api_error: getParseableError(error) }
-    }
+      data: { ...payload.data, api_error: getParseableError(error) },
+    },
   });
 }
 
@@ -100,6 +106,6 @@ export function handleApiResponseFailure(dispatch, type, data) {
   session.tokenExpired();
   return dispatch({
     type: `${type}_FAILURE`,
-    payload: getParseableError(data)
+    payload: getParseableError(data),
   });
 }

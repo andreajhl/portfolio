@@ -13,7 +13,7 @@ const CelebrityHeroSlideshow = ({
   celebrityAvatar,
   celebrityMainVideo,
   celebrityPublicContracts,
-  setPlayingVideo
+  setPlayingVideo,
 }) => {
   const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(true);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -31,7 +31,7 @@ const CelebrityHeroSlideshow = ({
     activeSlideIndex,
     videoIsMuted,
     videoIsFullscreen,
-    isPlayingVideo: slideshowIsPlaying
+    isPlayingVideo: slideshowIsPlaying,
   };
 
   const sectionRef = useRef();
@@ -43,13 +43,13 @@ const CelebrityHeroSlideshow = ({
         setVideoIsFullscreen(true);
         GTM.tagManagerDataLayer("ENTER_FULLSCREEN_VIDEO_SLIDE", {
           ...analyticsData,
-          videoIsFullscreen: true
+          videoIsFullscreen: true,
         });
       } else {
         setVideoIsFullscreen(false);
         GTM.tagManagerDataLayer("EXIT_FULLSCREEN_VIDEO_SLIDE", {
           ...analyticsData,
-          videoIsFullscreen: false
+          videoIsFullscreen: false,
         });
       }
     };
@@ -174,11 +174,12 @@ const CelebrityHeroSlideshow = ({
 
 const mapStateToProps = ({ celebrities }) => ({
   celebrityMainVideo: celebrities.getCelebrityReducer.data.mainVideo,
-  celebrityPublicContracts: celebrities.fetchPublicContractsReducer.data.results
+  celebrityPublicContracts:
+    celebrities.fetchPublicContractsReducer.data.results,
 });
 
 const mapDispatchToProps = {
-  setPlayingVideo: contractOperations.playVideo
+  setPlayingVideo: contractOperations.playVideo,
 };
 
 const _CelebrityHeroSlideshow = connect(

@@ -12,11 +12,11 @@ class ReviewCreatorLayout extends Component {
     this.state = {
       reviewData: {
         stars: 5,
-        review: ""
+        review: "",
       },
       showReviewError: false,
       dataSent: false,
-      isLoading: false
+      isLoading: false,
     };
 
     this.session = new Session();
@@ -34,7 +34,7 @@ class ReviewCreatorLayout extends Component {
     }
     this.setState({
       ...this.state,
-      reviewData
+      reviewData,
     });
   }
 
@@ -43,7 +43,7 @@ class ReviewCreatorLayout extends Component {
     reviewData.review = e.target.value;
     this.setState({
       ...this.state,
-      reviewData
+      reviewData,
     });
   }
 
@@ -52,14 +52,14 @@ class ReviewCreatorLayout extends Component {
       ...this.state,
       reviewData: {
         review: this.props.contract.review,
-        stars: this.props.contract.stars || 5
-      }
+        stars: this.props.contract.stars || 5,
+      },
     });
   }
 
   saveReview() {
     this.setState({
-      isLoading: true
+      isLoading: true,
     });
     if (
       this.state.reviewData.review &&
@@ -74,19 +74,19 @@ class ReviewCreatorLayout extends Component {
           this.setState({
             showReviewError: false,
             isCompleted: true,
-            isLoading: false
+            isLoading: false,
           });
         } else {
           this.setState({
             showReviewError: true,
-            isLoading: false
+            isLoading: false,
           });
         }
       });
     } else {
       this.setState({
         showReviewError: true,
-        isLoading: false
+        isLoading: false,
       });
     }
   }
@@ -250,9 +250,9 @@ ReviewCreatorLayout.defaultProps = {
   contract: {
     reference: null,
     review: null,
-    stars: 0
+    stars: 0,
   },
-  autoFocus: true
+  autoFocus: true,
 };
 
 // Export Class

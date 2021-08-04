@@ -22,7 +22,7 @@ function VideoCardLayout({
   videoUrl,
   videoPosterUrl,
   videoKey,
-  footerSection
+  footerSection,
 }) {
   const [videoIsLoaded, onVideoLoadedData] = useLoad();
   const { videoRef, videoIsPlaying, togglePlay } = useVideoPlayer(videoKey, {
@@ -31,7 +31,7 @@ function VideoCardLayout({
     },
     onPauseVideo() {
       GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
-    }
+    },
   });
   const { locale } = useRouter();
 
@@ -44,7 +44,7 @@ function VideoCardLayout({
     videoOccasion,
     videoUrl,
     videoPosterUrl,
-    videoKey
+    videoKey,
   };
 
   const registerCelebrityUsernameClick = () =>
@@ -129,7 +129,7 @@ VideoCardLayout.defaultProps = {
   celebrityAvatar: null,
   videoOccasion: null,
   videoPosterUrl: null,
-  linkPath: null
+  linkPath: null,
 };
 
 VideoCardLayout.propTypes = {
@@ -140,7 +140,7 @@ VideoCardLayout.propTypes = {
   videoOccasion: PropTypes.string,
   videoUrl: PropTypes.string.isRequired,
   videoPosterUrl: PropTypes.string,
-  videoKey: PropTypes.string.isRequired
+  videoKey: PropTypes.string.isRequired,
 };
 
 export { VideoCardLayout };

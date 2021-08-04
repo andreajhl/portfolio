@@ -84,7 +84,7 @@ class ContractPriceLayout extends Component {
               <FormattedMessage
                 defaultMessage="El valor en {currency} es aproximado"
                 values={{
-                  currency: this.props.currencyExchangeData.to
+                  currency: this.props.currencyExchangeData.to,
                 }}
               />
               <br />
@@ -120,7 +120,7 @@ class ContractPriceLayout extends Component {
               ? {
                   textDecoration: "line-through",
                   marginLeft: "auto",
-                  marginRight: "0.4em"
+                  marginRight: "0.4em",
                 }
               : null
           }
@@ -179,20 +179,20 @@ ContractPriceLayout.defaultProps = {
   classes: "",
   price: 0,
   currency: "USD",
-  rounding: false
+  rounding: false,
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
   currencyExchangeData: state.payments.currencyExchangeReducer.data,
-  couponData: state.payments.fetchDiscountCouponReducer
+  couponData: state.payments.fetchDiscountCouponReducer,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
   currencyExchange: paymentsOperations.currencyExchange,
-  clearCouponData: paymentsOperations.clearCouponData
+  clearCouponData: paymentsOperations.clearCouponData,
 };
 
 // Export Class

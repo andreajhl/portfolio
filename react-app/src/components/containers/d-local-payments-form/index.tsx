@@ -6,21 +6,21 @@ import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCur
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import {
   AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES,
-  DOCUMENT_NAME_FOR_COUNTRIES
+  DOCUMENT_NAME_FOR_COUNTRIES,
 } from "react-app/src/constants/messages";
 import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 import { getTextOfFormatAllowedForUserDocument } from "react-app/src/state/utils/getTextOfFormatAllowedForUserDocument";
 
 const intlMessages = defineMessages({
   placeholderBuyerNameInput: {
-    defaultMessage: "Escribe aquí tu nombre"
+    defaultMessage: "Escribe aquí tu nombre",
   },
   placeholderBuyerEmailInput: {
-    defaultMessage: "Escribe aquí tu correo electrónico"
+    defaultMessage: "Escribe aquí tu correo electrónico",
   },
   placeholderBuyerDocumentInput: {
-    defaultMessage: "Escribe aquí tu {document_name}"
-  }
+    defaultMessage: "Escribe aquí tu {document_name}",
+  },
 });
 
 type DLocalPaymentsFormProps = {
@@ -47,7 +47,7 @@ const DLocalPaymentsForm = ({
   currencyExchangeData,
   buyerDataIncomplete,
   currency,
-  handleValidateData
+  handleValidateData,
 }: DLocalPaymentsFormProps) => {
   const intl = useIntl();
 
@@ -126,7 +126,7 @@ const DLocalPaymentsForm = ({
           onChange={(e) => setBuyerFullName(e.target.value)}
           className="form-control"
           style={{
-            borderRadius: "10px"
+            borderRadius: "10px",
           }}
           placeholder={intl.formatMessage(
             intlMessages.placeholderBuyerNameInput
@@ -135,7 +135,7 @@ const DLocalPaymentsForm = ({
         <label
           className="font-weight-bold"
           style={{
-            marginTop: "0.5rem"
+            marginTop: "0.5rem",
           }}
         >
           <FormattedMessage defaultMessage="Email" />
@@ -143,7 +143,7 @@ const DLocalPaymentsForm = ({
         <input
           autoComplete="off"
           style={{
-            borderRadius: "10px"
+            borderRadius: "10px",
           }}
           type="email"
           ref={buyerEmailInput}
@@ -157,7 +157,7 @@ const DLocalPaymentsForm = ({
         <label
           className="font-weight-bold"
           style={{
-            marginTop: "0.5rem"
+            marginTop: "0.5rem",
           }}
         >
           {AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES.includes(
@@ -172,7 +172,7 @@ const DLocalPaymentsForm = ({
           autoComplete="off"
           ref={buyerDocumentInput}
           style={{
-            borderRadius: "10px"
+            borderRadius: "10px",
           }}
           type="text"
           value={buyerDocument}
@@ -188,7 +188,7 @@ const DLocalPaymentsForm = ({
                 ? intl.formatMessage(
                     DOCUMENT_NAME_FOR_COUNTRIES[document_name_available?.name]
                   )
-                : document_name_available?.document_name
+                : document_name_available?.document_name,
             }
           )}
         ></input>
@@ -219,11 +219,11 @@ const mapStateToProps = (state) => ({
   userInformation: state.session.getSessionReducer.data,
   userInformationLoading: state.session.getSessionReducer.loading,
   userInformationCompleted: state.session.getSessionReducer.completed,
-  currencyExchangeData: state.payments.currencyExchangeReducer.data
+  currencyExchangeData: state.payments.currencyExchangeReducer.data,
 });
 
 const mapDispatchToProps = {
-  getToken: sessionOperations.getToken
+  getToken: sessionOperations.getToken,
 };
 
 const _DLocalPaymentsForm = connect(

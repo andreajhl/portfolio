@@ -8,23 +8,23 @@ import { defineMessages, useIntl } from "react-intl";
 
 const headData = defineMessages({
   titleClub: {
-    defaultMessage: "Famoso no encontrado"
+    defaultMessage: "Famoso no encontrado",
   },
   descriptionClub: {
-    defaultMessage: "No se encontró un famoso con este usuario"
-  }
+    defaultMessage: "No se encontró un famoso con este usuario",
+  },
 });
 
 const redirectToSanitizedPath = {
   destination: "/celebrity_username/404-not-found",
-  permanent: false
+  permanent: false,
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params, store }) => {
     if (typeof params === "undefined") {
       return {
-        redirect: redirectToSanitizedPath
+        redirect: redirectToSanitizedPath,
       };
     }
     const celebrity_username = params?.celebrity_username;
@@ -38,15 +38,15 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
             ":celebrity_username",
             String(celebrity_username)
           ),
-          permanent: false
-        }
+          permanent: false,
+        },
       };
     }
 
     return {
       props: {
-        celebrity_username
-      }
+        celebrity_username,
+      },
     };
   }
 );

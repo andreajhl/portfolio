@@ -123,7 +123,7 @@ const ResumenContractApproved = ({ resumen }) => {
         <i
           style={{
             fontSize: "48px",
-            color: "white"
+            color: "white",
           }}
           className="far fa-check-circle"
         />
@@ -153,13 +153,13 @@ const ResumenContractApproved = ({ resumen }) => {
               <span
                 className=" text-left font-weight-bold"
                 style={{
-                  color: "black"
+                  color: "black",
                 }}
               >
                 <FormattedMessage
                   defaultMessage="Video personalizado de {celebrityFullName}"
                   values={{
-                    celebrityFullName: resumen.celebrity.fullName
+                    celebrityFullName: resumen.celebrity.fullName,
                   }}
                 />
               </span>
@@ -170,7 +170,7 @@ const ResumenContractApproved = ({ resumen }) => {
                 <div
                   className="d-flex"
                   style={{
-                    width: "70%"
+                    width: "70%",
                   }}
                 >
                   {resumen.contract.deliveryTo ? (
@@ -208,7 +208,7 @@ const ResumenContractApproved = ({ resumen }) => {
             <span
               style={{
                 fontSize: "12px",
-                color: "#535353"
+                color: "#535353",
               }}
             >
               <FormattedMessage
@@ -230,7 +230,7 @@ const ResumenContractApproved = ({ resumen }) => {
           <div
             className="mx-auto d-flex align-items-center mt-4"
             style={{
-              width: "80%"
+              width: "80%",
             }}
           >
             <NextStepsAfterPaymentBanner

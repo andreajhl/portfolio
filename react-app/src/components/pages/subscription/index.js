@@ -19,7 +19,7 @@ function Subscription({
   celebritySubscriptionPlans,
   isLoadingPlans,
   getCelebritiesSubscribe,
-  subscriptionList
+  subscriptionList,
 }) {
   const router = useRouter();
   const [currentPlanSelected, setCurrentPlanSelected] = useState(null);
@@ -132,7 +132,7 @@ const mapStateToProps = (state) => ({
     state.celebrities.fetchCelebritySubscriptionPlansReducer.loading,
   celebrity: state.celebrities.getCelebrityReducer.data,
   celebritySubscriptionPlans:
-    state.celebrities.fetchCelebritySubscriptionPlansReducer.data
+    state.celebrities.fetchCelebritySubscriptionPlansReducer.data,
 });
 
 // mapStateToProps
@@ -140,7 +140,7 @@ const mapDispatchToProps = {
   getCelebritiesSubscribe: subscriptionsOperations.fetchUserSubscriptionsList,
   getCelebrity: celebrityOperations.get,
   fetchCelebritySubscriptionPlans:
-    celebrityOperations.fetchCelebritySubscriptionPlans
+    celebrityOperations.fetchCelebritySubscriptionPlans,
 };
 // Set propTypes
 Subscription.propTypes = {};

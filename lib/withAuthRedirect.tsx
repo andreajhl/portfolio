@@ -27,7 +27,7 @@ export default function withAuthRedirect<CP = {}, IP = CP>({
   WrappedComponent,
   LoadingComponent = DefaultLoadingFallback,
   expectedAuth,
-  location
+  location,
 }: {
   WrappedComponent: NextPage<CP, IP>;
   LoadingComponent?: NextPage;

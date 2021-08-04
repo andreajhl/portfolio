@@ -88,18 +88,18 @@ ContractPriceLayout.defaultProps = {
   classes: "",
   price: 0,
   currency: "USD",
-  rounding: false
+  rounding: false,
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   currencyExchangeLoading: state.payments.currencyExchangeReducer.loading,
-  currencyExchangeData: state.payments.currencyExchangeReducer.data
+  currencyExchangeData: state.payments.currencyExchangeReducer.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  currencyExchange: paymentsOperations.currencyExchange
+  currencyExchange: paymentsOperations.currencyExchange,
 };
 
 // Export Class

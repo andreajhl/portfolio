@@ -1,0 +1,17 @@
+@import "../../../styles.scss";
+
+.WebPageMeta{
+    display: flex;
+    align-items: center;
+    flex-flow: row;
+}
+
+.FamososLogo{
+   flex: 1 0 100px;
+}
+.MetaDescription{
+    flex: 1 0 auto;
+    margin-left: 30px;
+    font-size: 10px;
+    color:var(--gray-3);
+}

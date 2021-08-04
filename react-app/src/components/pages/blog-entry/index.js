@@ -55,7 +55,7 @@ const BlogEntry = ({ blogsData, router }) => {
 };
 
 const mapStateToProps = ({ blog }) => ({
-  blogsData: blog.blogsPostMediumReducer.data
+  blogsData: blog.blogsPostMediumReducer.data,
 });
 
 const _BlogEntry = connect(mapStateToProps)(withRouter(BlogEntry));

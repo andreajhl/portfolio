@@ -37,7 +37,7 @@ export default function withConditionalRedirect<CP = {}, IP = CP>({
   WrappedComponent,
   clientCondition,
   serverCondition,
-  location
+  location,
 }: {
   WrappedComponent: NextPage<CP, IP>;
   clientCondition(): boolean;

@@ -4,23 +4,29 @@ import Document, {
   Head,
   Main,
   NextScript,
-  DocumentContext
+  DocumentContext,
 } from "next/document";
 import setUserLocationCookie from "../lib/setUserLocationCookie";
+import isMobile from "lib/utils/isMobile";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
     await setUserLocationCookie(ctx);
-    return initialProps;
+    return {
+      ...initialProps,
+      isMobile: isMobile(ctx?.req?.headers?.["user-agent"]),
+    };
   }
 
   render() {
     const isProdEnvironment =
       process.env.NEXT_PUBLIC_ENVIRONMENT === "production";
 
+    const { isMobile } = this.props as any;
+
     return (
-      <Html>
+      <Html className={isMobile ? "" : "desktop"}>
         <Head>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -62,7 +68,7 @@ class MyDocument extends Document {
                 t.src=v;s=b.getElementsByTagName(e)[0];
                 s.parentNode.insertBefore(t,s)}(window, document,'script',
                 'https://connect.facebook.net/en_US/fbevents.js');
-                fbq('init', "430558828300567");fbq("track", "PageView");`
+                fbq('init', "430558828300567");fbq("track", "PageView");`,
             }}
           />
           <noscript>
@@ -90,7 +96,7 @@ class MyDocument extends Document {
             vendor: navigator.vendor,
             receivedAt: new Date()
           });
-          }}();`
+          }}();`,
             }}
           /> */}
           <script
@@ -99,6 +105,10 @@ class MyDocument extends Document {
             async
             defer
             src="//js.hs-scripts.com/8793737.js"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
           />
         </Head>
         <body className="f-main-body">

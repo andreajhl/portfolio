@@ -1,0 +1,48 @@
+.CelebritiesFavoritesEditContainer {
+  padding: 1.6875rem 2.4375rem;
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.ContainerTitle {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+}
+
+.CelebrityFavoriteAvatar {
+  display: flex;
+  flex-flow: column;
+  //   justify-content: center;
+}
+
+.DeleteButton {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: #000;
+  &:hover {
+    color: #ff4b55;
+  }
+}
+
+.SkeletonList {
+  margin-top: 35px;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.SkeletonList > * + * {
+  margin-left: 46px;
+}
+
+.SkeletonAvatarImg {
+  margin-bottom: 1rem;
+}

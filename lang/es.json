@@ -1,1408 +1,2345 @@
 {
   "+/MNWw": {
-    "message": "Confirmar"
+    "translation": "Confirmar"
+  },
+  "+D3fCH": {
+    "translation": "Máximo"
   },
   "+OHALP": {
-    "message": "Pocas horas"
+    "translation": "Pocas horas"
   },
   "+c9FIk": {
-    "message": "Panama"
+    "translation": "Panama"
+  },
+  "+itg8H": {
+    "translation": "ID DE SEGUIMIENTO: {contractReference}"
   },
   "+jX0dw": {
-    "message": "*Puedes editar las instrucciones de tu video mientras está pendiente de grabación."
+    "translation": "*Puedes editar las instrucciones de tu video mientras está pendiente de grabación."
+  },
+  "+jZVNI": {
+    "translation": "Precio Original"
+  },
+  "+w3WoX": {
+    "translation": "Selecciona un Método de Pago."
   },
   "/+/C1u": {
-    "message": "Ordenar por"
+    "translation": "Ordenar por"
+  },
+  "//1Dhl": {
+    "translation": "¡Personaliza la entrega del video para {deliveryTo}!"
   },
   "/IN8Tc": {
-    "message": "Por favor, comprueba tu conexión a <br></br> internet e intenta nuevamente."
+    "translation": "Por favor, comprueba tu conexión a <br></br> internet e intenta nuevamente."
   },
   "/OzI+S": {
-    "message": "Recibirás una notificación a {deliveryContact} cuando tu video esté listo."
+    "translation": "Recibirás una notificación a {deliveryContact} cuando tu video esté listo."
   },
   "/XN7yF": {
-    "message": "CI"
+    "translation": "CI"
+  },
+  "/aRhJ+": {
+    "translation": "Te he hecho un regalo muy especial"
+  },
+  "/bm6pt": {
+    "translation": "Tu pago ha sido rechazado."
+  },
+  "/cMtcP": {
+    "translation": "Suscribirme"
+  },
+  "/dEeuP": {
+    "translation": "Ingresa una fecha valida. Ejemplo: 2020-06-25"
   },
   "/eYgis": {
-    "description": "",
-    "message": "Respuesta promedio:"
+    "notes": "",
+    "translation": "Respuesta promedio:"
   },
   "/g9IGi": {
-    "message": "Si! El video es tuyo! Puedes compartirlo en dónde quieras!"
+    "translation": "Si! El video es tuyo! Puedes compartirlo en dónde quieras!"
   },
   "/gs8NU": {
-    "message": "Escribe tu nombre"
+    "translation": "Escribe tu nombre"
   },
   "/lbU6C": {
-    "message": "Envíale un comentario a"
+    "translation": "Envíale un comentario a"
   },
   "/lhqVJ": {
-    "message": "Quedan pocos videos disponibles de {celebrityFullName}"
+    "translation": "Quedan pocos videos disponibles de {celebrityFullName}"
+  },
+  "/npk0a": {
+    "translation": "Lo haré más tarde"
   },
   "01UxAr": {
-    "message": "Esta solicitud expira el {date}"
+    "translation": "Esta solicitud expira el {date}"
   },
   "095Wot": {
-    "message": "Hora:"
+    "translation": "Hora:"
   },
   "0GetzR": {
-    "message": "Famoso no encontrado"
+    "translation": "Famoso no encontrado"
+  },
+  "0HwljF": {
+    "translation": "Sí"
   },
   "0I2iWG": {
-    "message": "Aplica como Famoso"
+    "translation": "Aplica como Famoso"
   },
   "0Il3lQ": {
-    "message": "Ordenar"
+    "translation": "Ordenar"
   },
   "0NnInu": {
-    "description": "",
-    "message": "Aplicar como Famoso"
+    "notes": "",
+    "translation": "Aplicar como Famoso"
+  },
+  "0PI6mY": {
+    "translation": "Elige una fecha y hora para que Famosos envíe tu video, puedes agregar un texto adicional."
   },
   "0UHyeJ": {
-    "message": "Idioma de notificaciones"
+    "translation": "Idioma de notificaciones"
   },
   "0r77bg": {
-    "message": "Tarjeta de Débito"
+    "translation": "Tarjeta de Débito"
   },
   "1Faz6l": {
-    "message": "¿Qué es un video promocional?"
+    "translation": "¿Qué es un video promocional?"
   },
   "1GkUZK": {
-    "message": "No me gusta"
+    "translation": "No me gusta"
+  },
+  "1IMb7T": {
+    "translation": "Quitar fondo"
   },
   "1JuMPJ": {
-    "message": "Continuar"
+    "translation": "Continuar"
   },
   "1L1kzy": {
-    "message": "Si deseas hacer parte de nuestro equipo envíanos una carta de motivación de por qué quieres unirte a nuestro equipo de Rock stars a jobs@famosos.com"
+    "translation": "Si deseas hacer parte de nuestro equipo envíanos una carta de motivación de por qué quieres unirte a nuestro equipo de Rock stars a jobs@famosos.com"
+  },
+  "1P7TX2": {
+    "translation": "Agregar fondo"
   },
   "1U8RoX": {
-    "message": "Mantenga esta ventana abierta mientras se válida su información"
+    "translation": "Mantenga esta ventana abierta mientras se válida su información"
   },
   "1UwvvG": {
-    "message": "No se pudo guardar tu cambio. Intenta de nuevo."
+    "translation": "No se pudo guardar tu cambio. Intenta de nuevo."
   },
   "1YGzpj": {
-    "message": "¡Felicidades!"
+    "translation": "¡Felicidades!"
+  },
+  "1fQZLR": {
+    "translation": "Califica tu video"
+  },
+  "1h2fIf": {
+    "translation": "Esta es una previsualización donde las funcionalidades están deshabilitadas"
   },
   "1iUuaq": {
-    "message": "¡Felicidades! Tu pago ha sido aprobado"
+    "translation": "¡Felicidades! Tu pago ha sido aprobado"
+  },
+  "1mCucj": {
+    "translation": "Enlace copiado"
   },
   "21fIxh": {
-    "message": "Debes seleccionar una tarjeta"
+    "translation": "Debes seleccionar una tarjeta"
   },
   "23rhxu": {
-    "message": "Si el problema persiste puedes comunicarte con nuestro equipo de soporte a <a>experiencias@famosos.com</a> para más información."
+    "translation": "Si el problema persiste puedes comunicarte con nuestro equipo de soporte a <a>experiencias@famosos.com</a> para más información."
   },
   "2Ctir8": {
-    "message": "¿Me garantizan que mi video va a ser grabado?"
+    "translation": "¿Me garantizan que mi video va a ser grabado?"
   },
   "2MFPbx": {
-    "message": "Debes poseer al menos 13 años de edad para suscribirte"
+    "translation": "Debes poseer al menos 13 años de edad para suscribirte"
   },
   "2O8ofL": {
-    "message": "De:"
+    "translation": "De:"
+  },
+  "2Oaz9p": {
+    "translation": "Ver detalles del video"
   },
   "2U8U6B": {
-    "message": "Famosos.com - Tendencias"
+    "translation": "Famosos.com - Tendencias"
+  },
+  "2UVQgP": {
+    "translation": "Te notificaremos a <emailSpan>{email_client}</emailSpan> cuando tu pago haya sido aprobado."
+  },
+  "2W3bDC": {
+    "translation": "Escribe algo aquí..."
   },
   "2Wnegw": {
-    "message": "¿El famoso puede no grabar mi solicitud?"
+    "translation": "¿El famoso puede no grabar mi solicitud?"
   },
   "2XI8xH": {
-    "message": "Correo del titular de la tarjeta"
+    "translation": "Correo del titular de la tarjeta"
+  },
+  "2fEWqk": {
+    "translation": "Si por alguna razón tu video no pudo ser grabado, tu dinero estará nuevamente disponible en un plazo de 1 a 10 hábiles aproximadamente."
   },
   "2iUQj7": {
-    "message": "Aún no has realizado una contratación"
+    "translation": "Aún no has realizado una contratación"
+  },
+  "2jPDZm": {
+    "translation": "Si por alguna razón tu video no pudo ser grabado, tu dinero estará disponible nuevamente en un plazo máximo de 21 días hábiles aproximadamente dependiendo de tu banco."
   },
   "2rdLv9": {
-    "message": "Tiktok"
+    "translation": "Tiktok"
+  },
+  "2vW0rZ": {
+    "translation": "Previsualización"
   },
   "3Dy+Ix": {
-    "message": "Buscar famosos"
+    "translation": "Buscar famosos"
+  },
+  "3Eep57": {
+    "translation": "Correo electrónico del destinatario <multipleRecipientsSpan>(Puedes agregar varios correos separándolos con una coma)</multipleRecipientsSpan>"
+  },
+  "3FJ3+/": {
+    "translation": "Fecha de envío"
   },
   "3GqTly": {
-    "message": "Escribe aquí el correo"
+    "translation": "Escribe aquí el correo"
+  },
+  "3H3r3i": {
+    "translation": "Debes introducir un máximo de {maxLength} caracteres"
+  },
+  "3Iqk85": {
+    "translation": "Whatsapp de notificación (opcional)"
   },
   "3IrNpH": {
-    "message": "ID DE TRANSACCIÓN:"
+    "translation": "ID DE TRANSACCIÓN:"
   },
   "3O5yL3": {
-    "description": "",
-    "message": "{fullName} dona de sus ingresos a: <span> {causeName} </span>"
+    "notes": "",
+    "translation": "{fullName} dona de sus ingresos a: <span> {causeName} </span>"
   },
   "3Szr5X": {
-    "message": "Registrarme con Google"
+    "translation": "Registrarme con Google"
   },
   "3T2iOg": {
-    "message": "Ukraine"
+    "translation": "Ukraine"
+  },
+  "3g8nsJ": {
+    "translation": "¡Disfruta tu video {deliveryTo}!"
+  },
+  "3m5UDg": {
+    "translation": "Previsualización de cortado"
   },
   "3mq/Uo": {
-    "message": "El comentario ha sido enviado."
+    "translation": "El comentario ha sido enviado."
   },
   "3pxwni": {
-    "message": "Verificación de autenticidad de la tarjeta"
+    "translation": "Verificación de autenticidad de la tarjeta"
+  },
+  "3tI8TJ": {
+    "translation": "*Puedes editar las instrucciones de tu video y la información de entrega mientras tu video esté pendiente de grabación."
   },
   "3tygVI": {
-    "message": "{instructionsLength}/400 caracteres permitidos"
+    "translation": "{instructionsLength}/400 caracteres permitidos"
+  },
+  "4/miEe": {
+    "translation": "Ver mas"
   },
   "42Gn99": {
-    "message": "Famosos.com - Términos de servicio de usuario"
+    "translation": "Famosos.com - Términos de servicio de usuario"
   },
   "4BNPS0": {
-    "message": "Red Social"
+    "translation": "Red Social"
   },
   "4FqAB/": {
-    "message": "Mis Contrataciones"
+    "translation": "Mis Contrataciones"
   },
   "4MRzR1": {
-    "message": "Te notificaremos cuando tu video ya esté grabado y disponible para verlo y compartilo"
+    "translation": "Te notificaremos cuando tu video ya esté grabado y disponible para verlo y compartilo"
+  },
+  "4OFKuk": {
+    "translation": "músicos"
   },
   "4YpaCX": {
-    "message": "Inicia sesión para agregar un comentario"
+    "translation": "Inicia sesión para agregar un comentario"
   },
   "4aS11Q": {
-    "message": "Aplicar"
+    "translation": "Aplicar"
+  },
+  "4dMZxB": {
+    "translation": "Para: {deliveryTo}"
   },
   "4fXI87": {
-    "message": "Además recibe un: {coupon} en tu primera compra."
+    "translation": "Además recibe un: {coupon} en tu primera compra."
   },
   "4r0tXK": {
-    "message": "Precio: De Mayor a Menor"
+    "translation": "Precio: De Mayor a Menor"
   },
   "4rhIbe": {
-    "message": "No se encontró un {breakLine} famoso con el usuario <br></br> <span>{celebrityUsername}</span>"
+    "translation": "No se encontró un {breakLine} famoso con el usuario <br></br> <span>{celebrityUsername}</span>"
+  },
+  "4ujRn4": {
+    "translation": "Procesando"
   },
   "4xmXcX": {
-    "message": "Hemos enviado tu código de descuento a tu correo electrónico."
+    "translation": "Hemos enviado tu código de descuento a tu correo electrónico."
   },
   "5+dpGU": {
-    "message": "Peru"
+    "translation": "Peru"
+  },
+  "51BXv1": {
+    "translation": "Elige el método de pago que prefieras y completa el proceso. Los pagos son 100% seguros. ¡En 7 días o menos recibirás tu video!"
   },
   "52kdGd": {
-    "message": "Puerto Rico"
+    "translation": "Puerto Rico"
+  },
+  "5CwX6l": {
+    "translation": "Cuéntanos algo sobre tu experiencia"
   },
   "5EACDj": {
-    "message": "Debes introducir un correo electrónico valido"
+    "translation": "Debes introducir un correo electrónico valido"
   },
   "5HHVOz": {
-    "message": "Cerrar sesión"
+    "translation": "Cerrar sesión"
   },
   "5KDn6A": {
-    "message": "ID DE SEGUIMIENTO:"
+    "translation": "ID DE SEGUIMIENTO:"
   },
   "5MxALj": {
-    "message": "Resultados para {search}"
+    "translation": "Resultados para {search}"
+  },
+  "5Y1WX+": {
+    "translation": "influencers"
+  },
+  "5Z+zv8": {
+    "translation": "Fecha de inicio de la solicitud:"
+  },
+  "5anEzm": {
+    "translation": "Pendientes"
   },
   "5fTLVa": {
-    "message": "Si pagas con tarjeta de crédito internacional, nosotros hacemos una autorización del cobro y únicamente hacemos el cobro real cuando se completa la solicitud por parte del famoso. Si utilizas otro método de pago debes pagar antes de que te realicen tu video."
+    "translation": "Si pagas con tarjeta de crédito internacional, nosotros hacemos una autorización del cobro y únicamente hacemos el cobro real cuando se completa la solicitud por parte del famoso. Si utilizas otro método de pago debes pagar antes de que te realicen tu video."
   },
   "5gmrTZ": {
-    "message": "Nota:"
+    "translation": "Nota:"
   },
   "5h/jE9": {
-    "message": "Formato no valido"
+    "translation": "Formato no valido"
   },
   "5jWuaC": {
-    "message": "Olvidaste tu contraseña"
+    "translation": "Olvidaste tu contraseña"
   },
   "5sQzpi": {
-    "message": "No se pudo autenticar esta tarjeta correctamente"
+    "translation": "No se pudo autenticar esta tarjeta correctamente"
   },
   "66AwbQ": {
-    "message": "¿Puedo editar mi solicitud de video después de realizarla?"
+    "translation": "¿Puedo editar mi solicitud de video después de realizarla?"
   },
   "67YQ5Y": {
-    "message": "De :"
+    "translation": "De :"
+  },
+  "6DrtJp": {
+    "translation": "Haz clic en el siguiente botón para hacer el pago utilizando tu cuenta de paypal."
   },
   "6O+PLI": {
-    "message": "Inicio"
+    "translation": "Inicio"
+  },
+  "6XxgC5": {
+    "translation": "Ver mas resultados para \"{currentQuery}\""
   },
   "6aQTMU": {
-    "message": "Por favor seleccione una opción"
+    "translation": "Por favor seleccione una opción"
+  },
+  "6fC5va": {
+    "translation": "¡Disfruta tu video!"
   },
   "6i3tAy": {
-    "message": "El cobro que se hará en dólares es:"
+    "translation": "El cobro que se hará en dólares es:"
+  },
+  "6q/+DN": {
+    "translation": "Agrega un comentario"
   },
   "6qOZYA": {
-    "message": "Cuba"
+    "translation": "Cuba"
   },
   "6vLMdU": {
-    "message": "CUI"
+    "translation": "CUI"
   },
   "6y8Fx1": {
-    "message": "Pago autorizado"
+    "translation": "Pago autorizado"
   },
   "747qfi": {
-    "message": "Si el problema persiste puedes comunicarte con nuestro equipo de soporte a {link} para más información."
+    "translation": "Si el problema persiste puedes comunicarte con nuestro equipo de soporte a {link} para más información."
+  },
+  "7OWxfz": {
+    "translation": "Quiero unirme"
   },
   "7Vvfe3": {
-    "message": "Campo requerido"
+    "translation": "Campo requerido"
+  },
+  "7aMcUZ": {
+    "translation": "Mayor a menor precio"
+  },
+  "7d2BcH": {
+    "translation": "Agrega una foto"
   },
   "7qAY7x": {
-    "message": "Tu pago esta pendiente de aprobación."
+    "translation": "Tu pago esta pendiente de aprobación."
+  },
+  "7w7MSk": {
+    "translation": "Hemos enviado tu solicitud a {celebrityFullName}, tu video será grabado en un plazo de <textBold>1 a 7 días</textBold>."
   },
   "8+5qCg": {
-    "message": "correo@dominio.com"
+    "translation": "correo@dominio.com"
+  },
+  "85GhLR": {
+    "translation": "Copiar enlace"
   },
   "8F0yts": {
-    "message": "Si por alguna razón tu video no pudo ser grabado, nos pondremos en contacto contigo para notificarte."
+    "translation": "Si por alguna razón tu video no pudo ser grabado, nos pondremos en contacto contigo para notificarte."
   },
   "8IF6tp": {
-    "message": "Finalizar compra"
+    "translation": "Finalizar compra"
   },
   "8LqOa5": {
-    "message": "Lo sentimos, esta página no fue encontrada"
+    "translation": "Lo sentimos, esta página no fue encontrada"
   },
   "8aSVvh": {
-    "message": "Adultos"
+    "translation": "Adultos"
   },
   "8fYxkw": {
-    "message": "¿Qué quieres que diga {celebrityFullName}?"
+    "translation": "¿Qué quieres que diga {celebrityFullName}?"
+  },
+  "8gNONp": {
+    "translation": "Ingresa una lista de correos electrónicos válidos"
   },
   "8mH/y7": {
-    "message": "El campo de fecha de nacimiento es obligatorio"
+    "translation": "El campo de fecha de nacimiento es obligatorio"
   },
   "8nG5TB": {
-    "message": "Email invalido."
+    "translation": "Email invalido."
   },
   "8u0DFM": {
-    "message": "Ha ocurrido un error."
+    "translation": "Ha ocurrido un error."
   },
   "8wR3lj": {
-    "message": "Contraseña actualizada"
+    "translation": "Contraseña actualizada"
   },
   "8xaGaO": {
-    "message": "Suscríbete a nuestro newsletter y entérate de todas nuestras novedades y promociones exclusivas"
+    "translation": "Suscríbete a nuestro newsletter y entérate de todas nuestras novedades y promociones exclusivas"
   },
   "9KADbj": {
-    "message": "France"
+    "translation": "France"
   },
   "9NLj0T": {
-    "message": "Recibe Videomensajes Personalizados de Famosos a tu WhatsApp"
+    "translation": "Recibe Videomensajes Personalizados de Famosos a tu WhatsApp"
   },
   "9Ooije": {
-    "message": "Club de fans de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
+    "translation": "Club de fans de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
+  },
+  "9UCdEt": {
+    "translation": "Resultados para:"
+  },
+  "9aKju1": {
+    "translation": "Categorías"
   },
   "9etNPX": {
-    "message": "{starsCount} Estrellas"
+    "translation": "{starsCount} Estrellas"
+  },
+  "9hu98P": {
+    "translation": "Este video especial para ti"
   },
   "9mcAHp": {
-    "message": "CUPÓN AGREGADO"
+    "translation": "CUPÓN AGREGADO"
+  },
+  "9nVpp5": {
+    "translation": "Comprar video personalizado"
+  },
+  "9tGcKs": {
+    "translation": "FECHA DE PAGO: {formattedPaymentDate}"
+  },
+  "9vRrHM": {
+    "translation": "ID de seguimiento:"
+  },
+  "A4bSA+": {
+    "translation": "Más antiguos"
   },
   "A88cVx": {
-    "message": "Ruta:"
+    "translation": "Ruta:"
+  },
+  "AC8fsr": {
+    "translation": "Descargar APP desde app Gallery"
+  },
+  "AFSmrE": {
+    "translation": "{deliveryFrom} te ha enviado un regalo muy especial"
   },
   "AGCHbI": {
-    "message": "Se ha realizado con éxito la pre-autorización del cobro a tu cuenta"
+    "translation": "Se ha realizado con éxito la pre-autorización del cobro a tu cuenta"
   },
   "AHNK8a": {
-    "message": "DNI o CUIT"
+    "translation": "DNI o CUIT"
+  },
+  "AHqqkc": {
+    "translation": "Compartir por Facebook"
+  },
+  "AIP+EA": {
+    "translation": "Video Favoritos"
+  },
+  "AObt3/": {
+    "translation": "Agregado"
   },
   "ARhEHP": {
-    "message": "Cargando..."
+    "translation": "Cargando..."
   },
   "AT8g/J": {
-    "message": "{celebrityFullName} tiene un plazo de <b>7 días</b> para grabar tu video a partir de hoy."
+    "translation": "{celebrityFullName} tiene un plazo de <b>7 días</b> para grabar tu video a partir de hoy."
+  },
+  "AW2wD8": {
+    "translation": "Video personalizado de {contractData}"
   },
   "AWmP/v": {
-    "message": "Bailarines"
+    "translation": "Bailarines"
   },
   "AZgVtc": {
-    "message": "Si todo está bien con tu solicitud de acuerdo a nuestra políticas, muy pronto podrás disfrutar de tu videomensaje."
+    "translation": "Si todo está bien con tu solicitud de acuerdo a nuestra políticas, muy pronto podrás disfrutar de tu videomensaje."
   },
   "Aa51Eo": {
-    "description": "",
-    "message": "Completa el <br></br> proceso de pago."
+    "notes": "",
+    "translation": "Completa el <br></br> proceso de pago."
   },
   "AcGanx": {
-    "message": "Ir a Mis Contrataciones"
+    "translation": "Ir a Mis Contrataciones"
   },
   "AnfpP+": {
-    "message": "Entrega Flash"
+    "translation": "Entrega Flash"
+  },
+  "Ar6F4V": {
+    "translation": "Mínimo"
   },
   "AxR3rx": {
-    "message": "¿Dónde encuentro mas información sobre sus políticas?"
+    "translation": "¿Dónde encuentro mas información sobre sus políticas?"
+  },
+  "B0eU/X": {
+    "translation": "Instrucciones"
+  },
+  "B476MI": {
+    "translation": "Agregar"
   },
   "BEkIWA": {
-    "message": "Escribe tu Subdominio Ej: /andresito"
+    "translation": "Escribe tu Subdominio Ej: /andresito"
+  },
+  "BHSyD0": {
+    "translation": "Cambiar contraseña"
   },
   "BI4zr5": {
-    "message": "Además recibe un <bigTextSpan>10% DE DCTO.</bigTextSpan> en tu primera compra"
+    "translation": "Además recibe un <bigTextSpan>10% DE DCTO.</bigTextSpan> en tu primera compra"
+  },
+  "BUlyqM": {
+    "translation": "Todos los derechos reservados"
+  },
+  "BXFGgd": {
+    "translation": "Todo saldrá bien, la vida es sabia."
   },
   "BiLnNi": {
-    "message": "¿Qué pasa si no me gusta mi video?"
+    "translation": "¿Qué pasa si no me gusta mi video?"
   },
   "Bo4qJd": {
-    "message": "CUPÓN NO VALIDO:"
+    "translation": "CUPÓN NO VALIDO:"
+  },
+  "BpkuDb": {
+    "translation": "Ver comprobante de pago"
   },
   "BqJL4O": {
-    "description": "",
-    "message": "Entrega flash (< de 24 hrs)"
+    "notes": "",
+    "translation": "Entrega flash (< de 24 hrs)"
   },
   "C2NeSp": {
-    "message": "Idioma de notificaciones cambiado con éxito"
+    "translation": "Idioma de notificaciones cambiado con éxito"
   },
   "C2oD0J": {
-    "description": "",
-    "message": "Ver más"
+    "notes": "",
+    "translation": "Ver más"
   },
   "C3VDYt": {
-    "message": "¿Cuanto cuesta un video en Famosos.com?"
+    "translation": "¿Cuanto cuesta un video en Famosos.com?"
   },
   "CPOpnr": {
-    "message": "Puedes leer nuestra política de privacidad y nuestros términos de servicio para conocer más información."
+    "translation": "Puedes leer nuestra política de privacidad y nuestros términos de servicio para conocer más información."
   },
   "Cb+oyf": {
-    "message": "Volver a intentar"
+    "translation": "Volver a intentar"
+  },
+  "Ce/K16": {
+    "translation": "Por favor ingrese todos los datos"
   },
   "CfGC5M": {
-    "message": "Serás redirigido a la pagina oficial de PayPal para continuar con el pago."
+    "translation": "Serás redirigido a la pagina oficial de PayPal para continuar con el pago."
   },
   "CjowzQ": {
-    "message": "Fecha de nacimiento"
+    "translation": "Fecha de nacimiento"
+  },
+  "Cnbfa0": {
+    "translation": "Todo es posible si así lo crees. Sueña y vive en grande."
+  },
+  "D3lmBE": {
+    "translation": "Ej: Pibe Valderrama, Netflix, Músicos, México..."
   },
   "DNBYPO": {
-    "message": "Datos de la tarjeta"
+    "translation": "Datos de la tarjeta"
+  },
+  "DQaxdT": {
+    "translation": "Lo sentimos {userName}"
   },
   "DSSs0B": {
-    "message": "Nuestro equipo analizará tu solicitud y se pondra en contacto contigo muy pronto."
+    "translation": "Nuestro equipo analizará tu solicitud y se pondra en contacto contigo muy pronto."
   },
   "DSqpBf": {
-    "message": "Transacción Reference:"
+    "translation": "Transacción Reference:"
+  },
+  "DTfzQX": {
+    "translation": "Pagina {currentPage} de {totalPages}"
   },
   "DVO6hk": {
-    "message": "Ha ocurrido un error"
+    "translation": "Ha ocurrido un error"
   },
   "Diph5x": {
-    "message": "Ir a contratar"
+    "translation": "Ir a contratar"
   },
   "DmXn7V": {
-    "message": "Nuestro equipo analizará tu solicitud y se pondrá en contacto contigo muy pronto."
+    "translation": "Nuestro equipo analizará tu solicitud y se pondrá en contacto contigo muy pronto."
   },
   "Dn7sTk": {
-    "message": "Correo eléctronico de notificación"
+    "translation": "Correo eléctronico de notificación"
+  },
+  "Dq6Mnq": {
+    "translation": "Hombre"
+  },
+  "Ds81mh": {
+    "translation": "Serás redirigido a la página oficial de paypal para continuar con el pago"
+  },
+  "Dyg4La": {
+    "translation": "Color de la tarjeta"
+  },
+  "Dyo3QV": {
+    "translation": "Últimas calificaciones"
   },
   "Dzm3HT": {
-    "description": "Label button for search CategoryFilter",
-    "message": "Categoria"
+    "notes": "Label button for search CategoryFilter",
+    "translation": "Categoria"
+  },
+  "E101Yn": {
+    "translation": "Los {adjectives} {lineBreak} a un clic de distancia."
   },
   "E5uLnQ": {
-    "message": "Puedes escribirnos cualquier cosa a hola@famosos.com. Uno de nosotros se pondrá en contacto contigo lo antes posible."
+    "translation": "Puedes escribirnos cualquier cosa a hola@famosos.com. Uno de nosotros se pondrá en contacto contigo lo antes posible."
   },
   "ETd2VN": {
-    "message": "Las ultimas publicaciones de tus famosos favoritos."
+    "translation": "Las ultimas publicaciones de tus famosos favoritos."
+  },
+  "EUdVSH": {
+    "translation": "Expirados"
   },
   "EbbVcC": {
-    "message": "Uruguay"
+    "translation": "Uruguay"
+  },
+  "EdaGK7": {
+    "translation": "Filtrar contratos"
   },
   "EoWjUN": {
-    "message": "El campo de contraseña es obligatorio"
+    "translation": "El campo de contraseña es obligatorio"
   },
   "Eq0gTc": {
-    "message": "Enviar comentario"
+    "translation": "Enviar comentario"
   },
   "EqG/WU": {
-    "message": "Asegurate de que sea una contraseña fácil de recordar."
+    "translation": "Asegurate de que sea una contraseña fácil de recordar."
   },
   "ErSRb8": {
-    "message": "Selecciona una tarjeta"
+    "translation": "Selecciona una tarjeta"
   },
   "EwT5kN": {
-    "message": "o regístrate con tu correo electrónico"
+    "translation": "o regístrate con tu correo electrónico"
+  },
+  "F6aLD7": {
+    "translation": "Youtuber"
+  },
+  "FXFBTJ": {
+    "translation": "Accede a contenido exclusivo {br} de {celebrityFullName}."
+  },
+  "FeMY25": {
+    "translation": "Seguir editando"
+  },
+  "Fi7MJz": {
+    "translation": "Poster de vídeo de famoso"
   },
   "FnHHT0": {
-    "message": "Guardando..."
+    "translation": "Guardando..."
   },
   "FrT1vp": {
-    "message": "Reembolso exitoso"
+    "translation": "Reembolso exitoso"
+  },
+  "Fz8NGA": {
+    "translation": "Métodos de pago"
+  },
+  "G+xfjz": {
+    "translation": "Mira este video de {celebrityFullName} para {deliveryTo}."
   },
   "G/1O13": {
-    "message": "No se encontraron resultados <br></br> para {search}."
+    "translation": "No se encontraron resultados <br></br> para {search}."
+  },
+  "G2AbKk": {
+    "translation": "En cualquier momento puedes consultar el estado de tus solicitudes <myHiringsLink>aquí.</myHiringsLink>"
+  },
+  "G7ND1f": {
+    "translation": "Me gustaría solicitar el comprobante de devolución de mi contrato con la referencia {contractReference}"
   },
   "GFgV31": {
-    "message": "Si! Te invitamos a crear una cuenta y escribir tus famosos favoritos. Cada vez que uno de tus famosos favoritos se una a Famosos.com vas a recibir un correo informándote. También te invitamos a que sugieras famosos a través de tus redes sociales."
+    "translation": "Si! Te invitamos a crear una cuenta y escribir tus famosos favoritos. Cada vez que uno de tus famosos favoritos se una a Famosos.com vas a recibir un correo informándote. También te invitamos a que sugieras famosos a través de tus redes sociales."
   },
   "GL9Msi": {
-    "message": "Spain"
+    "translation": "Spain"
   },
   "GRUlng": {
-    "message": "Nos disculpamos, estamos arreglando el problema."
+    "translation": "Nos disculpamos, estamos arreglando el problema."
+  },
+  "GTxSvb": {
+    "translation": "¡Felicidades! Tu pago ha sido aprobado."
+  },
+  "GZ6Khv": {
+    "translation": "Chefs"
   },
   "GbabRf": {
-    "message": "Para:"
+    "translation": "Para:"
   },
   "GfM0Pj": {
-    "message": "Para mi"
+    "translation": "Para mi"
+  },
+  "Gh5aSY": {
+    "translation": "¡Vamos {deliveryTo}!"
   },
   "H4PL1G": {
-    "message": "Paypal"
+    "translation": "Paypal"
+  },
+  "H7jlFR": {
+    "translation": "Tiempo de entrega"
+  },
+  "H8XmFS": {
+    "translation": "Mi carrito de compra"
+  },
+  "H8rz3A": {
+    "translation": "Ver todas las calificaciones"
   },
   "HEGBTi": {
-    "message": "Debes introducir una fecha valida. Ejemplo: 2020-06-25"
+    "translation": "Debes introducir una fecha valida. Ejemplo: 2020-06-25"
   },
   "HG1X7k": {
-    "message": "Pago completado"
+    "translation": "Pago completado"
   },
   "HINYAw": {
-    "message": "Efectivo"
+    "translation": "Efectivo"
   },
   "Hauttd": {
-    "message": "Registrarme con Facebook"
+    "translation": "Registrarme con Facebook"
   },
   "HmnV8f": {
-    "message": "Costa Rica"
+    "translation": "Costa Rica"
   },
   "HmvnFO": {
-    "message": "Reintentar"
+    "translation": "Reintentar"
+  },
+  "Hq/PMS": {
+    "translation": "Menos de 5 días"
+  },
+  "I+sQLv": {
+    "translation": "¡La vida es más bonita con sonrisas y carcajadas!"
   },
   "IEazN6": {
-    "message": "Influencers"
+    "translation": "Influencers"
+  },
+  "IHdBTF": {
+    "translation": "Foto de {celebrityFullName}"
   },
   "IHp09g": {
-    "message": "¿Puedo bajar mi video?"
+    "translation": "¿Puedo bajar mi video?"
+  },
+  "IRHU1q": {
+    "translation": "Se abrirá tu aplicación de Whatsapp para que lo envíes directamente."
   },
   "IdELJG": {
-    "message": "Ingresar con Google"
+    "translation": "Ingresar con Google"
   },
   "IdffHT": {
-    "message": "Quiero recibir ofertas y beneficios exclusivos."
+    "translation": "Quiero recibir ofertas y beneficios exclusivos."
   },
   "IeYjFw": {
-    "message": "Nicaragua"
+    "translation": "Nicaragua"
+  },
+  "Ijqmqc": {
+    "translation": "Enviar inmediatamente"
   },
   "Isy4qq": {
-    "message": "Famoso"
+    "translation": "Famoso"
   },
   "Iuyaxf": {
-    "message": "Leer más..."
+    "translation": "Leer más..."
   },
   "IxXZto": {
-    "description": "Quién esta enviando el video.",
-    "message": "De:"
+    "notes": "Quién esta enviando el video.",
+    "translation": "De:"
+  },
+  "IxZXG8": {
+    "translation": "Conoce más acerca de esto."
   },
   "J518q6": {
-    "message": "Famosos similares"
+    "translation": "Famosos similares"
   },
   "J5xdEq": {
-    "message": "Fitness"
+    "translation": "Fitness"
+  },
+  "J9EWR8": {
+    "translation": "La entrega de tu video se programó correctamente"
   },
   "JILqD1": {
-    "message": "¿Eliminar tarjeta?"
+    "translation": "¿Eliminar tarjeta?"
   },
   "JNf21W": {
-    "description": "",
-    "message": "En nuestro sitio web utilizamos cookies propias y de terceros para mejorar la experiencia de usuario, rendimiento, análisis y otro fines. Al hacer clic en aceptar o utilizar nuestro sitio, estarás aceptando el uso de estas cookies."
+    "notes": "",
+    "translation": "En nuestro sitio web utilizamos cookies propias y de terceros para mejorar la experiencia de usuario, rendimiento, análisis y otro fines. Al hacer clic en aceptar o utilizar nuestro sitio, estarás aceptando el uso de estas cookies."
   },
   "JS+isq": {
-    "message": "Cupón"
+    "translation": "Cupón"
+  },
+  "JVnimT": {
+    "translation": "¿Qué significa esto?"
+  },
+  "Ja4kqX": {
+    "translation": "Permitir que mi video sea público"
   },
   "JiRPeP": {
-    "message": "Actualmente no se puede modificar la solicitud pero muy pronto podrás hacerlo!"
+    "translation": "Actualmente no se puede modificar la solicitud pero muy pronto podrás hacerlo!"
+  },
+  "JkASuT": {
+    "translation": "Tu correo electrónico se ha actualizado {breakLine} correctamente."
   },
   "Jv23M2": {
-    "message": "Ingresar con Facebook"
+    "translation": "Ingresar con Facebook"
+  },
+  "JwRL0x": {
+    "translation": "Debes introducir un nombre"
+  },
+  "K/Cn6p": {
+    "translation": "Fondo de pagina numero {pageNumber}"
+  },
+  "K5mSnP": {
+    "translation": "Programar envío"
   },
   "K8SMPu": {
-    "message": "Ocasión:"
+    "translation": "Ocasión:"
+  },
+  "KD1y9G": {
+    "translation": "Hemos hecho la orden de reembolso de tu dinero, ten en cuenta que por los procesos bancarios, este puede tardar un plazo máximo de 21 días hábiles en estar disponible nuevamente, dependiendo de tu banco."
   },
   "KFphJU": {
-    "message": "Pagar"
+    "translation": "Pagar"
+  },
+  "KKR2zp": {
+    "translation": "Precio"
+  },
+  "KLR+zI": {
+    "translation": "Quizá también pueda interesarte"
+  },
+  "KW1y+x": {
+    "translation": "Ingresa el código de seguridad que enviamos a tu celular"
   },
   "Kb3TOE": {
-    "message": "Moldova (the Republic of)"
+    "translation": "Moldova (the Republic of)"
   },
   "KcvTuJ": {
-    "message": "Por favor introduzca todos los datos"
+    "translation": "Por favor introduzca todos los datos"
   },
   "KjMaxy": {
-    "message": "¿Comó solicitar {onlyMobileLineBreak} un {onlyDesktopLineBreak} videomensaje en Famosos?"
+    "translation": "¿Comó solicitar {onlyMobileLineBreak} un {onlyDesktopLineBreak} videomensaje en Famosos?"
   },
   "KkJHVF": {
-    "message": "Ver video"
+    "translation": "Ver video"
+  },
+  "KkuV5e": {
+    "translation": "Fecha de grabación:"
   },
   "L08n/M": {
-    "message": "¿No tienes una cuenta? <signUpLink>Registrarme</signUpLink>"
+    "translation": "¿No tienes una cuenta? <signUpLink>Registrarme</signUpLink>"
+  },
+  "L3JUzt": {
+    "translation": "¿Quién envía el video?"
   },
   "L6k2XE": {
-    "message": "Vive experiencias únicas con cientos de famosos latinos."
+    "translation": "Vive experiencias únicas con cientos de famosos latinos."
+  },
+  "LKGytJ": {
+    "translation": "Información de tu cuenta"
+  },
+  "LN0I40": {
+    "translation": "Tarjeta de débito o crédito"
+  },
+  "LPelkN": {
+    "translation": "Correo electrónico de notificación"
   },
   "Lbiy9R": {
-    "message": "Precio original:"
+    "translation": "Precio original:"
   },
   "LeHkTO": {
-    "message": "¿Qué es Famosos.com? Famosos es una plataforma en dónde puedes comprar video-mensajes de tus famosos favoritos. ¿Cómo puedo comprar un video?"
+    "translation": "¿Qué es Famosos.com? Famosos es una plataforma en dónde puedes comprar video-mensajes de tus famosos favoritos. ¿Cómo puedo comprar un video?"
   },
   "LsqQep": {
-    "description": "",
-    "message": "Ver las políticas de privacidad"
+    "notes": "",
+    "translation": "Ver las políticas de privacidad"
   },
   "M0lpBr": {
-    "message": "Famosos es una plataforma en dónde puedes comprar video-mensajes de tus famosos favoritos. Un video-mensaje puede ser un mensaje de cumpleaños, un mensaje de felicitaciones, una mensaje de recupérate pronto, una pregunta al famoso entre otras. Nuestra misión es entregar experiencias a través de video-mensajes."
+    "translation": "Famosos es una plataforma en dónde puedes comprar video-mensajes de tus famosos favoritos. Un video-mensaje puede ser un mensaje de cumpleaños, un mensaje de felicitaciones, una mensaje de recupérate pronto, una pregunta al famoso entre otras. Nuestra misión es entregar experiencias a través de video-mensajes."
+  },
+  "M4SIuQ": {
+    "translation": "¿Quién recibirá el video?"
   },
   "M6qLyM": {
-    "message": "Imagen de perfil"
+    "translation": "Imagen de perfil"
   },
   "M97czA": {
-    "message": "Dominican Republic (the)"
+    "translation": "Dominican Republic (the)"
+  },
+  "MJ2jZQ": {
+    "translation": "Total"
+  },
+  "MJ2jpX": {
+    "translation": "Ir a mis solicitudes"
   },
   "ML6BTv": {
-    "message": "Videos similares"
+    "translation": "Videos similares"
   },
   "MMb74M": {
-    "message": "Debes introducir una fecha"
+    "translation": "Debes introducir una fecha"
   },
   "MQJt4R": {
-    "message": "Procesando..."
+    "translation": "Procesando..."
   },
   "MSP5Du": {
-    "message": "Referido por:"
+    "translation": "Referido por:"
   },
   "MU1M4J": {
-    "message": "{celebrityName} tiene un plazo de 7 días para grabar tu video a partir de ahora."
+    "translation": "{celebrityName} tiene un plazo de 7 días para grabar tu video a partir de ahora."
+  },
+  "MU26/N": {
+    "translation": "Me gustaría solicitar el comprobante de pago de mi contrato con la referencia {contractReference}"
+  },
+  "MY9PYO": {
+    "translation": "Cambiar Contraseña"
+  },
+  "MYOAnX": {
+    "translation": "{fullName} dona de sus ingresos a: {causeName}"
   },
   "MdA9+B": {
-    "message": "Volver a métodos de pago"
+    "translation": "Volver a métodos de pago"
   },
   "Mp68c+": {
-    "message": "FAQ's"
+    "translation": "FAQ's"
   },
   "Mwm1HV": {
-    "message": "Iniciar sesión"
+    "translation": "Iniciar sesión"
+  },
+  "MyGFHf": {
+    "translation": "Completa el proceso de compra."
   },
   "MyQOKB": {
-    "message": "Ingresa a Famosos.com, selecciona o busca a tu famoso favorito. Haz click en contratar a mi famoso. Estamos trabajando en diversos métodos de pago para que puedas adquirir tu video."
+    "translation": "Ingresa a Famosos.com, selecciona o busca a tu famoso favorito. Haz click en contratar a mi famoso. Estamos trabajando en diversos métodos de pago para que puedas adquirir tu video."
+  },
+  "N6puFB": {
+    "translation": "¡Hola {deliveryTo}! Mira el regalo que te he hecho a través de Famosos.com {link}"
   },
   "N9nBRn": {
-    "message": "¡Y listo! en poco {onlyMobileLineBreak} tiempo {onlyDesktopLineBreak} recibirás tu {onlyMobileLineBreak} videomensaje."
+    "translation": "¡Y listo! en poco {onlyMobileLineBreak} tiempo {onlyDesktopLineBreak} recibirás tu {onlyMobileLineBreak} videomensaje."
+  },
+  "NIMiei": {
+    "translation": "Mostrar menos"
   },
   "NLbEhA": {
-    "message": "Indicanos tu correo electrónico y podrás restablecer tu contraseña."
+    "translation": "Indicanos tu correo electrónico y podrás restablecer tu contraseña."
+  },
+  "NPogCC": {
+    "translation": "Por favor, seleccione una tarjeta."
   },
   "NROWdz": {
-    "message": "Tus Favoritos"
+    "translation": "Tus Favoritos"
+  },
+  "NTptw6": {
+    "translation": "Entregado"
   },
   "NgDJE/": {
-    "message": "¿Cómo puedo trabajar con Famosos?"
+    "translation": "¿Cómo puedo trabajar con Famosos?"
+  },
+  "NizjcU": {
+    "translation": "Confirma tu contraseña"
   },
   "Nizqzm": {
-    "description": "",
-    "message": "Elige a tu Famoso y solicita el mensaje."
+    "notes": "",
+    "translation": "Elige a tu Famoso y solicita el mensaje."
   },
   "Nrtdo8": {
-    "message": "Deportistas"
+    "translation": "Deportistas"
   },
   "NvD/jI": {
-    "message": "Escribe un comentario"
+    "translation": "Escribe un comentario"
   },
   "NyA8g2": {
-    "description": "",
-    "message": "Volver arriba"
+    "notes": "",
+    "translation": "Volver arriba"
+  },
+  "NzXESZ": {
+    "translation": "Ir al perfil de {fullName}"
   },
   "Nzh0Uv": {
-    "message": "Autenticación Fallida"
+    "translation": "Autenticación Fallida"
   },
   "O1JDs+": {
-    "message": "Si quieres un video comercial para tu marca haz click <span> aquí.</span>"
+    "translation": "Si quieres un video comercial para tu marca haz click <span> aquí.</span>"
   },
   "O9DChx": {
-    "message": "Código de seguridad"
+    "translation": "Código de seguridad"
+  },
+  "OCDYlj": {
+    "translation": "Expirado"
   },
   "OOBCGL": {
-    "message": "Consulta nuestros términos y condiciones para ver si tu caso aplica para un reembolso."
+    "translation": "Consulta nuestros términos y condiciones para ver si tu caso aplica para un reembolso."
   },
   "Odx1FO": {
-    "message": "El <b>cobro se realizará</b> una vez que {celebrityFullName} grabe tu video."
+    "translation": "El <b>cobro se realizará</b> una vez que {celebrityFullName} grabe tu video."
   },
   "OkYBCB": {
-    "message": "Sé el primero en agregar un comentario."
+    "translation": "Sé el primero en agregar un comentario."
+  },
+  "OmeSvs": {
+    "translation": "{currency} A convenir"
   },
   "P6ZBac": {
-    "message": "Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP = Código postal"
+    "translation": "Ten en cuenta: CVC = Código en el reverso de la tarjeta, CP/ZIP = Código postal"
   },
   "P8Dkhf": {
-    "message": "Tu solicitud será completada en menos 7 días"
+    "translation": "Tu solicitud será completada en menos 7 días"
   },
   "P9xOfc": {
-    "message": "Ingrese el código aquí"
+    "translation": "Ingrese el código aquí"
+  },
+  "PDlatv": {
+    "translation": "Hora de envío"
+  },
+  "PFOGDG": {
+    "translation": "Compartir por e-mail"
   },
   "PZh7w+": {
-    "message": "Colombia"
+    "translation": "Colombia"
+  },
+  "Po4Dhk": {
+    "translation": "De"
   },
   "Ps1z8P": {
-    "message": "Actualiza tu comentario a"
+    "translation": "Actualiza tu comentario a"
   },
   "PsZKr3": {
-    "message": "FAQS"
+    "translation": "FAQS"
   },
   "Q7jxHe": {
-    "message": "Social Security Number / SSN"
+    "translation": "Social Security Number / SSN"
+  },
+  "QMFjdU": {
+    "translation": "No se encontraron resultados"
   },
   "QXG+La": {
-    "message": "Mexico"
+    "translation": "Mexico"
   },
   "Qdbxny": {
-    "message": "¿Cuántas estrellas le das a este video?"
+    "translation": "¿Cuántas estrellas le das a este video?"
+  },
+  "Qdk7qX": {
+    "translation": "Se abrirá tu aplicación de correo para que lo envíes directamente."
+  },
+  "Qe3NFd": {
+    "translation": "Recibirás una notificación a <emailSpan>{email_client}</emailSpan> cuando tu video esté listo."
+  },
+  "Qg3Nku": {
+    "translation": "Debes seleccionar una ocasión"
   },
   "Qgkwzh": {
-    "message": "Correo invalido"
+    "translation": "Correo invalido"
   },
   "QqT6DL": {
-    "message": "Contraseña"
+    "translation": "Contraseña"
+  },
+  "Qt8UnY": {
+    "translation": "Disfruta este video {deliveryTo}"
   },
   "QtvgOo": {
-    "message": "Chile"
+    "translation": "Chile"
+  },
+  "R1OG9a": {
+    "translation": "Personaliza el mensaje"
   },
   "RG+TGy": {
-    "message": "Tu pago ha sido Rechazado."
+    "translation": "Tu pago ha sido Rechazado."
   },
   "RMN4N0": {
-    "message": "Pago rechazado"
+    "translation": "Pago rechazado"
   },
   "RR1tnZ": {
-    "message": "<bigTextSpan>10%</bigTextSpan> de descuento."
+    "translation": "<bigTextSpan>10%</bigTextSpan> de descuento."
   },
   "RWLUps": {
-    "message": "Contratos"
+    "translation": "Contratos"
   },
   "Rcsl93": {
-    "message": "Cerrar"
+    "translation": "Cerrar"
   },
   "Rfh4ih": {
-    "message": "Mi Perfil"
+    "translation": "Mi Perfil"
+  },
+  "RhkFs0": {
+    "translation": "Los datos de su tarjeta no son validos."
   },
   "RqwRuU": {
-    "message": "Si, eliminar"
+    "translation": "Si, eliminar"
+  },
+  "RrHExI": {
+    "translation": "¡Que vengan más celebraciones así!"
   },
   "Ru6wDg": {
-    "message": "¿Me pueden notificar si mi famoso favorito se une a Famosos.com?"
+    "translation": "¿Me pueden notificar si mi famoso favorito se une a Famosos.com?"
+  },
+  "S2QQo3": {
+    "translation": "No se encontraron resultados para:"
   },
   "SDtXEV": {
-    "description": "ModalTitle for search CategoryFilter",
-    "message": "Filtrar por país"
+    "notes": "ModalTitle for search CategoryFilter",
+    "translation": "Filtrar por país"
   },
   "SFQJTa": {
-    "message": "Famosos.com - Comprar video personalizado de {celebrity_username}"
+    "translation": "Famosos.com - Comprar video personalizado de {celebrity_username}"
   },
   "SJlNke": {
-    "message": "Tu pago ha sido aprobado."
+    "translation": "Tu pago ha sido aprobado."
   },
   "SKukfQ": {
-    "message": "Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak} \"Comprar video {onlyMobileLineBreak} ahora\""
+    "translation": "Da clic en el {onlyMobileLineBreak} botón {onlyDesktopLineBreak} \"Comprar video {onlyMobileLineBreak} ahora\""
   },
   "SNXFr/": {
-    "message": "Al continuar estás aceptando nuestros <linkTerms> Términos y Condiciones </linkTerms> y nuestra <linkPolicies> Política de Privacidad </linkPolicies>"
+    "translation": "Al continuar estás aceptando nuestros <linkTerms> Términos y Condiciones </linkTerms> y nuestra <linkPolicies> Política de Privacidad </linkPolicies>"
+  },
+  "SPZmUt": {
+    "translation": "Entrega flash"
   },
   "STAtvd": {
-    "message": "El comentario ha sido actualizado."
+    "translation": "El comentario ha sido actualizado."
+  },
+  "Sazy62": {
+    "translation": "Debes escribir un comentario"
   },
   "ScPFOw": {
-    "message": "Bolivia (Plurinational State of)"
+    "translation": "Bolivia (Plurinational State of)"
+  },
+  "SeGQYf": {
+    "translation": "Idioma de la página {breakLine} y notificaciones"
   },
   "SijdbJ": {
-    "message": "Comprar video personalizado de {celebrityFullName}"
+    "translation": "Comprar video personalizado de {celebrityFullName}"
   },
   "Spo/Vy": {
-    "message": "Ir al Inicio"
+    "translation": "Ir al Inicio"
   },
   "SvDN5n": {
-    "description": "",
-    "message": "¡Recibe tu video personalizado!"
+    "notes": "",
+    "translation": "¡Recibe tu video personalizado!"
+  },
+  "SzQc3w": {
+    "translation": "Paises"
   },
   "T3dwiQ": {
-    "message": "Ten en cuenta:"
+    "translation": "Ten en cuenta:"
+  },
+  "TKzSpv": {
+    "translation": "Pibe Valderrama, Netflix, Músicos, México..."
   },
   "TT/YZP": {
-    "message": "Privacidad"
+    "translation": "Privacidad"
+  },
+  "TUY+3/": {
+    "translation": "La solicitud de tu video ha sido rechazada. {br} Algunas de las razones podrías ser las siguientes: {br} Tu solicitud es de tipo comercial, política o contenía alguna petición ofensiva/sensible para el Famoso."
   },
   "TXYzmT": {
-    "message": "Confirmar nueva Contraseña"
+    "translation": "Confirmar nueva Contraseña"
+  },
+  "Te3bnu": {
+    "translation": "¡Hola {celebrityFullName}! Me gustaría que..."
+  },
+  "TipTOm": {
+    "translation": "Entregados"
   },
   "TjibFs": {
-    "message": "¿Cuándo me cobran por mi video?"
+    "translation": "¿Cuándo me cobran por mi video?"
   },
   "TkvM0N": {
-    "message": "Ecuador"
+    "translation": "Ecuador"
   },
   "To88dw": {
-    "description": "",
-    "message": "Descargar app de Android"
+    "notes": "",
+    "translation": "Descargar app de Android"
+  },
+  "TpY0zp": {
+    "translation": "deportistas"
+  },
+  "U+doZl": {
+    "translation": "Famosos destacados"
   },
   "U48f7q": {
-    "message": "Volver a inicio"
+    "translation": "Volver a inicio"
   },
   "UIware": {
-    "message": "Este correo electrónico no esta registrado en famosos.com"
+    "translation": "Este correo electrónico no esta registrado en famosos.com"
+  },
+  "UJ1Xkp": {
+    "translation": "Selecciona una imagen de menos de 1 MB."
+  },
+  "ULAfXt": {
+    "translation": "usuario@dominio.com"
   },
   "UOKryr": {
-    "message": "¿Cuanto tiempo tarda un video en ser grabado?"
+    "translation": "¿Cuanto tiempo tarda un video en ser grabado?"
   },
   "UcOT6A": {
-    "message": "Cobro fallido"
+    "translation": "Cobro fallido"
+  },
+  "Uf/d9E": {
+    "translation": "Así lo verá {deliveryTo}"
+  },
+  "UmRFez": {
+    "translation": "Bandera de {label}"
   },
   "Uu4RMA": {
-    "message": "credenciales invalidas"
+    "translation": "credenciales invalidas"
+  },
+  "V1t+ZA": {
+    "translation": "¡Feliz cumpleaños {deliveryTo}!"
   },
   "VBvZa2": {
-    "message": "Recibirás una notificación a <b></b> cuando tu video esté listo."
+    "translation": "Recibirás una notificación a <b></b> cuando tu video esté listo."
   },
   "VGHwB5": {
-    "message": "Editar"
+    "translation": "Editar"
   },
   "VbJXnl": {
-    "message": "Filtrar por:"
+    "translation": "Filtrar por:"
+  },
+  "Vgjdly": {
+    "translation": "Preguntas Frecuentes"
   },
   "VkHZxm": {
-    "message": "Términos y Condiciones"
+    "translation": "Términos y Condiciones"
   },
   "Vrpqh3": {
-    "message": "Garantía Famosos"
+    "translation": "Garantía Famosos"
   },
   "VtB4b8": {
-    "message": "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
+    "translation": "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
+  },
+  "VuArYI": {
+    "translation": "Notificarme también por Whatsapp (opcional)"
   },
   "W1OXQI": {
-    "description": "",
-    "message": "Desactivar Notificación"
+    "notes": "",
+    "translation": "Desactivar Notificación"
+  },
+  "W2ixk1": {
+    "translation": "Contraseña nueva"
   },
   "WBt4dS": {
-    "message": "Es público"
+    "translation": "Es público"
   },
   "WDhqRO": {
-    "message": "Selecciona una ocasión"
+    "translation": "Selecciona una ocasión"
+  },
+  "WJVzN4": {
+    "translation": "Menor a mayor precio"
+  },
+  "WL/WEl": {
+    "translation": "Últimos videos"
+  },
+  "WTl7o1": {
+    "translation": "Bandera de {alpha2Code}"
   },
   "WW0RFT": {
-    "message": "Me gusta"
+    "translation": "Me gusta"
   },
   "Wdu5tQ": {
-    "message": "Otros"
+    "translation": "Otros"
   },
   "WduoUG": {
-    "description": "ModalTitle for search CategoryFilter",
-    "message": "Filtrar por categoría"
+    "notes": "ModalTitle for search CategoryFilter",
+    "translation": "Filtrar por categoría"
+  },
+  "WeJb1j": {
+    "translation": "Debes poseer al menos 13 años de edad para registrarte"
   },
   "WeLmQS": {
-    "message": "Si por alguna razón tu video no pudo ser grabado, te reembolsaremos tu dinero en un plazo máximo de 21 días hábiles"
+    "translation": "Si por alguna razón tu video no pudo ser grabado, te reembolsaremos tu dinero en un plazo máximo de 21 días hábiles"
+  },
+  "WebWil": {
+    "translation": "Te notificaremos a <textBold>{deliveryContact}</textBold> {cellPhoneNumber} cuando tu video esté listo."
   },
   "WkJEIw": {
-    "message": "Escribe aquí tu correo electrónico"
+    "translation": "Escribe aquí tu correo electrónico"
   },
   "WmWz59": {
-    "message": "Contrato Expirado"
+    "translation": "Contrato Expirado"
+  },
+  "WnqHLV": {
+    "translation": "Por favor seleccione un método de pago"
   },
   "WsW1Wz": {
-    "message": "Credenciales invalidas."
+    "translation": "Credenciales invalidas."
   },
   "Wu3wG5": {
-    "message": "Descuento:"
+    "translation": "Descuento:"
   },
   "WuAQdH": {
-    "message": "Modelos"
+    "translation": "Modelos"
   },
   "WuHK3B": {
-    "message": "Imitadores"
+    "translation": "Imitadores"
   },
   "X9uKOS": {
-    "message": "Siguientes pasos:"
+    "translation": "Siguientes pasos:"
+  },
+  "XKlq+/": {
+    "translation": "Correo electrónico nuevo"
   },
   "XNGk+R": {
-    "message": "Tu comentario ha sido enviado."
+    "translation": "Tu comentario ha sido enviado."
+  },
+  "XYnAm8": {
+    "translation": "Ingresa tu mensaje"
   },
   "XlP2E5": {
-    "message": "Es una compañía dedicada a crear tecnologías <br></br> que conecten personalidades con su fan base."
+    "translation": "Es una compañía dedicada a crear tecnologías <br></br> que conecten personalidades con su fan base."
   },
   "Xp7qs8": {
-    "message": "¡Bienvenido a Famosos! {br} Crea una cuenta para empezar a conectar con tus famosos favoritos."
-  },
-  "Xx+xSb": {
-    "message": "La longitud de la contraseña debe contener al menos 6 caracteres"
+    "translation": "¡Bienvenido a Famosos! {br} Crea una cuenta para empezar a conectar con tus famosos favoritos."
   },
   "Y6sFMj": {
-    "description": "",
-    "message": "Anterior"
+    "notes": "",
+    "translation": "Anterior"
   },
   "YKrx19": {
-    "message": "Anterior página"
+    "translation": "Anterior página"
+  },
+  "YKyLFB": {
+    "translation": "Solicitar comprobante de pago"
+  },
+  "YRu2+6": {
+    "translation": "LA OFERTA FINALIZA EN"
   },
   "YTlQrN": {
-    "message": "Para un amigo o familiar"
+    "translation": "Para un amigo o familiar"
+  },
+  "YVBe7w": {
+    "translation": "Ir a \"{categoryTitle}\""
+  },
+  "YYg0xX": {
+    "translation": "Entrega tu videomensaje por Whatsapp"
+  },
+  "Ym543L": {
+    "translation": "Hasta 7 días"
+  },
+  "YmbthD": {
+    "translation": "Agrega un texto especial"
   },
   "Yp6To0": {
-    "description": "Modal Title for search CategoryFilter",
-    "message": "Buscar país"
+    "notes": "Modal Title for search CategoryFilter",
+    "translation": "Buscar país"
+  },
+  "YqJl8f": {
+    "translation": "Limpiar filtros"
   },
   "Yskoha": {
-    "message": "Este campo excede el limite de {deliveryToMaxLength} caracteres"
+    "translation": "Este campo excede el limite de {deliveryToMaxLength} caracteres"
   },
   "Yxo8MA": {
-    "message": "Ir a mis contrataciones"
+    "translation": "Ir a mis contrataciones"
+  },
+  "Z2eZrt": {
+    "translation": "Pasa un día genial en esta vuelta al sol."
   },
   "Z5ZMSV": {
-    "message": "El campo de nombre es obligatorio"
+    "translation": "El campo de nombre es obligatorio"
   },
   "ZDkLmZ": {
-    "message": "Revisa tu correo electrónico e ingresa el código de 6 dígitos que has recibido"
+    "translation": "Revisa tu correo electrónico e ingresa el código de 6 dígitos que has recibido"
+  },
+  "ZFhqVz": {
+    "translation": "¿Eres el dueño de este video?"
+  },
+  "ZHQGns": {
+    "translation": "Inicia sesión para ver los detalles o personalizar la entrega."
   },
   "ZPvdL/": {
-    "message": "o ingresa con tu correo electrónico"
+    "translation": "o ingresa con tu correo electrónico"
   },
   "ZcJeQh": {
-    "message": "La confirmación de tu compra será enviada a tu mail"
+    "translation": "La confirmación de tu compra será enviada a tu mail"
   },
   "ZedcEG": {
-    "message": "Actualizar comentario"
+    "translation": "Actualizar comentario"
   },
   "ZgMpuD": {
-    "message": "Siguiente página"
+    "translation": "Siguiente página"
+  },
+  "ZtrNok": {
+    "translation": "Las personas que vieron este perfil también vieron"
   },
   "ZvLd+7": {
-    "message": "Validando el pago"
+    "translation": "Validando el pago"
   },
   "a16Fw1": {
-    "message": "Ver más noticias"
+    "translation": "Ver más noticias"
   },
   "aJWEZ8": {
-    "message": "El costo del video depende de tu famoso. Nosotros somos la tecnología que hace posible la entrega oportuna de tu video."
+    "translation": "El costo del video depende de tu famoso. Nosotros somos la tecnología que hace posible la entrega oportuna de tu video."
+  },
+  "aJkcNZ": {
+    "translation": "Descargar APP desde APP Store"
+  },
+  "aKy46m": {
+    "translation": "Explora entre más de 1,000 famosos"
   },
   "aLZTdq": {
-    "message": "Mis instrucciones son"
+    "translation": "Mis instrucciones son"
+  },
+  "aMwMIJ": {
+    "translation": "Fecha de solicitud:"
   },
   "aPX+PI": {
-    "message": "Contratar para Empresa"
+    "translation": "Contratar para Empresa"
   },
   "aVtfpF": {
-    "message": "¡Felicitaciones!"
+    "translation": "¡Felicitaciones!"
+  },
+  "aaTPnj": {
+    "translation": "Destacados"
+  },
+  "b+Bq5e": {
+    "translation": "Más recientes"
   },
   "b2Ea7D": {
-    "message": "Haz click sobre el siguiente botón para hacer el pago usando tu cuenta de PayPal."
+    "translation": "Haz click sobre el siguiente botón para hacer el pago usando tu cuenta de PayPal."
   },
   "b861FF": {
-    "message": "Famosos.com - Recuperar contraseña"
+    "translation": "Famosos.com - Recuperar contraseña"
   },
   "b9prTq": {
-    "message": "Mensaje"
+    "translation": "Mensaje"
   },
   "bQVNIB": {
-    "message": "¿Cómo puedo contactar al equipo de Famosos?"
+    "translation": "¿Cómo puedo contactar al equipo de Famosos?"
   },
   "bSHMVy": {
-    "message": "¡Comprar video ahora!"
+    "translation": "¡Comprar video ahora!"
+  },
+  "bSrtbH": {
+    "translation": "Whatsapp del destinatario"
+  },
+  "bVcz4u": {
+    "translation": "Personalizar entrega"
   },
   "baAemn": {
-    "message": "En espera de grabación"
+    "translation": "En espera de grabación"
+  },
+  "bc6Eh7": {
+    "translation": "Publicar"
   },
   "bnyCF4": {
-    "message": "Si todo está bien con tu solicitud de acuerdo a nuestras políticas, muy pronto podrás disfrutar de tu videomensaje."
+    "translation": "Si todo está bien con tu solicitud de acuerdo a nuestras políticas, muy pronto podrás disfrutar de tu videomensaje."
+  },
+  "c/EW7K": {
+    "translation": "Personaliza el mensaje de tu video."
   },
   "c5ndOG": {
-    "message": "Doblaje"
+    "translation": "Doblaje"
   },
   "cEDqkt": {
-    "message": "Tarjeta de Crédito"
+    "translation": "Tarjeta de Crédito"
   },
   "cGtJag": {
-    "message": "Actualmente no puedes realizar videos promocionales. Los videos que cumplen nuestras políticas son netamente video-mensajes."
+    "translation": "Actualmente no puedes realizar videos promocionales. Los videos que cumplen nuestras políticas son netamente video-mensajes."
   },
   "cRtlFe": {
-    "message": "El cargo que percibirás en tu cuenta es una autorización de pago que tu banco hace para asegurarse que existen fondos suficientes, sin embargo Famosos no hará el cobro hasta que {celebrityName} grabe tu video."
+    "translation": "El cargo que percibirás en tu cuenta es una autorización de pago que tu banco hace para asegurarse que existen fondos suficientes, sin embargo Famosos no hará el cobro hasta que {celebrityName} grabe tu video."
+  },
+  "cb606G": {
+    "translation": "Entrega tu videomensaje por correo"
   },
   "cheXty": {
-    "message": "{turnAroundTime} días"
+    "translation": "{turnAroundTime} días"
   },
   "crQQc4": {
-    "message": "Mis Suscripciones"
+    "translation": "Mis Suscripciones"
   },
   "d/7Z6V": {
-    "message": "Si quieres saber más sobre el estado de tu transacción puedes contactar a nuestro equipo de soporte."
+    "translation": "Si quieres saber más sobre el estado de tu transacción puedes contactar a nuestro equipo de soporte."
   },
   "d4p33Q": {
-    "message": "¿Como te encontramos? Ej: andresito"
+    "translation": "¿Como te encontramos? Ej: andresito"
   },
   "d6Ac8W": {
-    "message": "Correo electrónico de notificación:"
+    "translation": "Correo electrónico de notificación:"
+  },
+  "dAHRLh": {
+    "translation": "Selecciona un archivo de tipo imagen. Ejemplo: SVG, JPG, PNG, etc."
   },
   "dPuxZs": {
-    "message": "Registrarme y continuar"
+    "translation": "Registrarme y continuar"
   },
   "dUl69m": {
-    "message": "Acción cancelada por el usuario"
+    "translation": "Acción cancelada por el usuario"
   },
   "dYz8lM": {
-    "message": "Quizás pueda <br></br> interesarte"
+    "translation": "Quizás pueda <br></br> interesarte"
   },
   "ddKAxr": {
-    "message": "Siguiendo"
+    "translation": "Siguiendo"
+  },
+  "de1wp1": {
+    "translation": "{totalResults} resultados para \"{search}\""
+  },
+  "df4zaj": {
+    "translation": "Ir a Mis Solicitudes"
   },
   "dgKHBE": {
-    "message": "Famosos.com - Política de privacidad"
+    "translation": "Famosos.com - Política de privacidad"
   },
   "dkJkXx": {
-    "message": "Músicos"
+    "translation": "Músicos"
   },
   "dmBWFQ": {
-    "message": "Contrato rechazado"
+    "translation": "Contrato rechazado"
+  },
+  "dn7i07": {
+    "translation": "Experiencias personalizadas {lineBreak} con tus famosos favoritos."
   },
   "duDNCn": {
-    "message": "Para :"
+    "translation": "Para :"
   },
   "dy8DmF": {
-    "description": "Mensaje de error para creación de tarjeta Stripe",
-    "message": "Ocurrió un error procesando tu pago."
+    "notes": "Mensaje de error para creación de tarjeta Stripe",
+    "translation": "Ocurrió un error procesando tu pago."
   },
   "e2ybO2": {
-    "message": "Compartir video en:"
+    "translation": "Compartir video en:"
+  },
+  "e9TpG1": {
+    "translation": "Cambiar moneda"
   },
   "eBSdyF": {
-    "message": "¿La marca de agua de Famosos se tiene que quedar?"
+    "translation": "¿La marca de agua de Famosos se tiene que quedar?"
+  },
+  "eH4QAw": {
+    "translation": "Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero.{infoIcon}"
+  },
+  "eMSCGd": {
+    "translation": "Mis solicitudes"
+  },
+  "eOuNie": {
+    "translation": "Buscar"
+  },
+  "eOvQrU": {
+    "translation": "Descarga la app para Fans"
+  },
+  "eSEyNY": {
+    "translation": "¡Ánimo {deliveryTo}!"
   },
   "eYHsf6": {
-    "message": "Tarjeta de Crédito o Débito"
+    "translation": "Tarjeta de Crédito o Débito"
   },
   "ekgTKf": {
-    "message": "Famosos.com - Club de fans de {celebrity_username}"
+    "translation": "Famosos.com - Club de fans de {celebrity_username}"
+  },
+  "elNXJ8": {
+    "translation": "Para"
+  },
+  "eqPkg5": {
+    "translation": "El proceso de aprobación de pago puede tardar alrededor de 24 hrs."
+  },
+  "ex5QbS": {
+    "translation": "La longitud de la contraseña debe ser al menos 6 caracteres"
   },
   "exOORp": {
-    "message": "ESTADO DEL PAGO:"
+    "translation": "ESTADO DEL PAGO:"
   },
   "f6JH6I": {
-    "message": "Al continuar acepto de manera expresa e informada los <termsLink>Términos y Condiciones</termsLink> y la <policiesLink>Política de Privacidad</policiesLink> de Famosos Inc."
+    "translation": "Al continuar acepto de manera expresa e informada los <termsLink>Términos y Condiciones</termsLink> y la <policiesLink>Política de Privacidad</policiesLink> de Famosos Inc."
   },
   "fH+OCT": {
-    "message": "Seleccionar una tarjeta"
+    "translation": "Seleccionar una tarjeta"
   },
   "fNiZBj": {
-    "message": "Si, remover la marca de agua va en contra de nuestras políticas."
+    "translation": "Si, remover la marca de agua va en contra de nuestras políticas."
   },
   "fcUqul": {
-    "message": "Quiero un video de"
+    "translation": "Quiero un video de"
+  },
+  "fiLVq8": {
+    "translation": "Total de Solicitudes"
   },
   "fzb0Cz": {
-    "message": "La solicitud de reembolso se realiza de forma automática, el tiempo en el que se vera reflejado en tu tarjeta depende de tu banco y puede llegar a ser un plazo máximo de 21 dias hábiles."
+    "translation": "La solicitud de reembolso se realiza de forma automática, el tiempo en el que se vera reflejado en tu tarjeta depende de tu banco y puede llegar a ser un plazo máximo de 21 dias hábiles."
   },
   "fzp0m/": {
-    "message": "Venezuela (Bolivarian Republic of)"
+    "translation": "Venezuela (Bolivarian Republic of)"
+  },
+  "g6XXxY": {
+    "translation": "En cuaquier momento puedes consultar el estado de tus solicitudes <myHiringsLink>aquí.</myHiringsLink>"
+  },
+  "g7yX5A": {
+    "translation": "Seleccionar imagen"
   },
   "gBLEge": {
-    "message": "Nombre del titular de la tarjeta"
+    "translation": "Nombre del titular de la tarjeta"
   },
   "gBauKO": {
-    "message": "Comprar Video Personalizado por"
+    "translation": "Comprar Video Personalizado por"
   },
   "gI1AIL": {
-    "message": "Honduras"
+    "translation": "Honduras"
   },
   "gWk0k1": {
-    "message": "Video grabado por {celebrityFullName} 100% personalizado."
+    "translation": "Video grabado por {celebrityFullName} 100% personalizado."
   },
   "ggPZbL": {
-    "message": "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
+    "translation": "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
+  },
+  "gqGS5U": {
+    "translation": "Comentarios"
   },
   "gxungj": {
-    "message": "Ingresar"
+    "translation": "Ingresar"
+  },
+  "h5yCAT": {
+    "translation": "Tu número de celular se ha actualizado {breakLine} correctamente."
+  },
+  "h9IcvI": {
+    "translation": "Filtrar por"
   },
   "h9zXst": {
-    "message": "Anónimo"
+    "translation": "Anónimo"
   },
   "hCGL6t": {
-    "message": "Ordenar por: {checkItemLabel}"
+    "translation": "Ordenar por: {checkItemLabel}"
   },
   "hCOqfl": {
-    "message": "Nombre"
+    "translation": "Nombre"
+  },
+  "hJUps7": {
+    "translation": "Descargar APP desde Google Play Store"
   },
   "hKJZJR": {
-    "message": "Enviar"
+    "translation": "Enviar"
   },
   "hZK5pi": {
-    "message": "Famosos.com - Videos personalizados de tus famosos favoritos."
+    "translation": "Famosos.com - Videos personalizados de tus famosos favoritos."
   },
   "havuzD": {
-    "message": "{turnAroundTime} día"
+    "translation": "{turnAroundTime} día"
+  },
+  "hbRJr6": {
+    "translation": "Eliminar foto"
   },
   "hmpcGI": {
-    "description": "",
-    "message": "Notificarme cuando esté disponible"
+    "notes": "",
+    "translation": "Notificarme cuando esté disponible"
+  },
+  "hrM4Ug": {
+    "translation": "Compartir por Twitter"
+  },
+  "hwfeEG": {
+    "translation": "Previsualizar"
+  },
+  "hxq7dC": {
+    "translation": "Logo de Garantía Famosos"
+  },
+  "iHlpl2": {
+    "translation": "Este correo electrónico ya se encuentra registrado"
+  },
+  "iRpjjG": {
+    "translation": "Personaliza el fondo y agrega un mensaje para hacer más especial la entrega de tu video."
+  },
+  "iSjJJ0": {
+    "translation": "Compartir por Whatsapp"
   },
   "iTKHhw": {
-    "message": "CC"
+    "translation": "CC"
   },
   "iTP7rd": {
-    "message": "United States of America (the)"
+    "translation": "United States of America (the)"
   },
   "iWkyFQ": {
-    "message": "¿Eres una celebridad o influencer?"
+    "translation": "¿Eres una celebridad o influencer?"
+  },
+  "iyrhJi": {
+    "translation": "Ingresa una fecha"
+  },
+  "j/G1q2": {
+    "translation": "Debes de introducir un cupón valido"
   },
   "j5jEEO": {
-    "message": "Motivacional"
+    "translation": "Motivacional"
+  },
+  "jFJcag": {
+    "translation": "¡Hola {deliveryTo}! {break} Mira el regalo que {deliveryFrom} te ha hecho a través de Famosos.com"
+  },
+  "jRg7t5": {
+    "translation": "Aún no tienes ningún método de pago registrado."
   },
   "jkPKiZ": {
-    "message": "Olvidé mi contraseña"
+    "translation": "Olvidé mi contraseña"
   },
   "jrPcz6": {
-    "message": "Registrarme"
+    "translation": "Registrarme"
   },
   "juVd4V": {
-    "message": "Las contraseñas no coinciden"
+    "translation": "Las contraseñas no coinciden"
+  },
+  "kVrqZJ": {
+    "translation": "¿Qué sucede después de tu compra?"
+  },
+  "kkiAyx": {
+    "translation": "Debes escribir tus instrucciones"
+  },
+  "l/9Qz+": {
+    "translation": "Me gustaría contarte sobre la plataforma Famosos"
+  },
+  "lEOY9y": {
+    "translation": "Ha ocurrido un error, intentalo nuevamente"
   },
   "lGFIAN": {
-    "message": "Crea una cuenta para poder conectar con los famosos."
+    "translation": "Crea una cuenta para poder conectar con los famosos."
   },
   "lSxRsO": {
-    "description": "Mensaje de error para formulario de stripe",
-    "message": "El campo de nombre del titular de la tarjeta es obligatorio"
+    "notes": "Mensaje de error para formulario de stripe",
+    "translation": "El campo de nombre del titular de la tarjeta es obligatorio"
   },
   "lX+x05": {
-    "message": "1 Estrella"
+    "translation": "1 Estrella"
+  },
+  "lab8Md": {
+    "translation": "Intenta quitando o cambiando algunos filtros."
   },
   "lb33Yc": {
-    "message": "FECHA DE PAGO:"
+    "translation": "FECHA DE PAGO:"
   },
   "lkQYB7": {
-    "message": "¿Que sucede después de que enviás la solicitud a un Famoso?"
+    "translation": "¿Que sucede después de que enviás la solicitud a un Famoso?"
   },
   "lp4qtJ": {
-    "message": "Ocurrió un error procesando tu pago."
+    "translation": "Ocurrió un error procesando tu pago."
   },
   "m4ziQM": {
-    "description": "Otra red social",
-    "message": "Otra"
+    "notes": "Otra red social",
+    "translation": "Otra"
+  },
+  "m9eXO9": {
+    "translation": "Cargando"
   },
   "mC/anA": {
-    "message": "Precio: De Menor a Mayor"
+    "translation": "Precio: De Menor a Mayor"
+  },
+  "mChIhX": {
+    "translation": "Ingresa un número de teléfono válido"
+  },
+  "mFS+iR": {
+    "translation": "Tu pago está pendiente de aprobación."
   },
   "mJ6Hl3": {
-    "message": "Falló autorización de cobro"
+    "translation": "Falló autorización de cobro"
   },
   "mNZnPy": {
-    "message": "Paraguay"
+    "translation": "Paraguay"
+  },
+  "mTCwos": {
+    "translation": "{totalResults} resultados"
+  },
+  "mTT+0+": {
+    "translation": "Al continuar estás aceptando nuestros Términos y Condiciones y nuestra Política de privacidad."
+  },
+  "mUCJhR": {
+    "translation": "Debes editar el valor {placeholderName}"
+  },
+  "mWwFNC": {
+    "translation": "Confirmación de compra"
+  },
+  "mahy2f": {
+    "translation": "actores"
   },
   "mcWafv": {
-    "message": "Reembolso fallido"
+    "translation": "Reembolso fallido"
   },
   "mlRLdw": {
-    "message": "Escribe tu correo electrónico"
+    "translation": "Escribe tu correo electrónico"
+  },
+  "moevDj": {
+    "translation": "Olvidaste editar el texto"
+  },
+  "mvPdev": {
+    "translation": "Avatar de Famoso"
   },
   "n0TzKv": {
-    "message": "Escribe aquí el nombre"
+    "translation": "Escribe aquí el nombre"
+  },
+  "n2YFp+": {
+    "translation": "Tu contraseña se ha actualizado {breakLine} correctamente."
+  },
+  "n7ygGB": {
+    "translation": "De: {deliveryFrom}"
   },
   "n9i+Em": {
-    "message": "Escribe aquí tu nombre"
+    "translation": "Escribe aquí tu nombre"
+  },
+  "nDjwXl": {
+    "translation": "Mis suscripciones"
+  },
+  "nFNeoL": {
+    "translation": "Ha ocurrido un error guardando tus cambios."
   },
   "nJ/lbc": {
-    "message": "¿Cómo puedo comprar un video?"
+    "translation": "¿Cómo puedo comprar un video?"
   },
   "nJJJOt": {
-    "message": "Pago expirado"
+    "translation": "Pago expirado"
   },
   "nJRa/h": {
-    "message": "Recibe promociones y noticias sobre famosos que se sumen a nuestra comunidad."
+    "translation": "Recibe promociones y noticias sobre famosos que se sumen a nuestra comunidad."
   },
   "nMFRRt": {
-    "message": "Pago pendiente"
+    "translation": "Pago pendiente"
+  },
+  "nXUi45": {
+    "translation": "Elije a tu Famoso"
+  },
+  "nZ9TE3": {
+    "translation": "Política y Privacidad"
+  },
+  "nZLeaQ": {
+    "translation": "Cancelar"
   },
   "naJn1L": {
-    "message": "Famosos.com - {celebrity_username}"
+    "translation": "Famosos.com - {celebrity_username}"
   },
   "nbZMXN": {
-    "message": "Suscríbete a nuestro newsletter y entérate de nuestras novedades y promociones exclusivas."
+    "translation": "Suscríbete a nuestro newsletter y entérate de nuestras novedades y promociones exclusivas."
+  },
+  "nc6eFM": {
+    "translation": "¡Felicitaciones para ti {deliveryTo}!"
   },
   "nnRGWT": {
-    "message": "Pago cancelado"
+    "translation": "Pago cancelado"
   },
   "nwKHl2": {
-    "message": "Puedes consultar el estado de tu video en “Mis Contrataciones”"
+    "translation": "Puedes consultar el estado de tu video en “Mis Contrataciones”"
   },
   "o8JdL0": {
-    "message": "Ha ocurrido un error realizando el registro"
+    "translation": "Ha ocurrido un error realizando el registro"
   },
   "oACmv6": {
-    "message": "¡Tu solicitud ha sido enviada!"
+    "translation": "¡Tu solicitud ha sido enviada!"
   },
   "oAD1Z+": {
-    "message": "Famosos.com - Preguntas frecuentes"
+    "translation": "Famosos.com - Preguntas frecuentes"
   },
   "oEbrJV": {
-    "message": "Seguir Comprando"
+    "translation": "Seguir Comprando"
+  },
+  "oKXC+L": {
+    "translation": "Recorta tu foto del perfil"
   },
   "oKcEry": {
-    "description": "buttonLabel search by country",
-    "message": "País"
+    "notes": "buttonLabel search by country",
+    "translation": "País"
   },
   "oLV+7c": {
-    "message": "El famoso tiene libertad para aceptar o rechazar los videos. Nosotros somos una plataforma tecnológica de medio y no de resultado. Si la solicitud es rechazada, el dinero sera reembolsado."
+    "translation": "El famoso tiene libertad para aceptar o rechazar los videos. Nosotros somos una plataforma tecnológica de medio y no de resultado. Si la solicitud es rechazada, el dinero sera reembolsado."
+  },
+  "oN4aGu": {
+    "translation": "Guardar"
   },
   "oRfNHI": {
-    "message": "El tiempo depende de tu famoso, los videos son personalizados. Nosotros te mostramos el tiempo promedio que tarda tu famoso en grabar un video-mensaje."
+    "translation": "El tiempo depende de tu famoso, los videos son personalizados. Nosotros te mostramos el tiempo promedio que tarda tu famoso en grabar un video-mensaje."
   },
   "oUWADl": {
-    "message": "No"
+    "translation": "No"
+  },
+  "oWksd7": {
+    "translation": "Ayuda"
   },
   "ohq0mF": {
-    "message": "Crea una cuenta"
+    "translation": "Crea una cuenta"
+  },
+  "om28Bx": {
+    "translation": "Dale instrucciones a {celebrityFullName} para que tu video quede como esperas. {br} <span>(Edita este texto base o escribe uno)</span>"
+  },
+  "oqJulP": {
+    "translation": "Ver menos"
+  },
+  "orwCgV": {
+    "translation": "Invita a tus amigos a que conozcan Famosos"
+  },
+  "orzX/T": {
+    "translation": "Permitir que este video sea público"
   },
   "oxKkpJ": {
-    "description": "Modal Title for search CategoryFilter",
-    "message": "Buscar categoría"
+    "notes": "Modal Title for search CategoryFilter",
+    "translation": "Buscar categoría"
   },
   "oztDf2": {
-    "message": "Ver mis contrataciones"
+    "translation": "Ver mis contrataciones"
   },
   "p6AMrr": {
-    "message": "Famoso!"
+    "translation": "Famoso!"
+  },
+  "pExFGK": {
+    "translation": "Enviar video a {deliveryTo} ahora"
+  },
+  "pKdjHT": {
+    "translation": "Solicitar comprobante de devolución"
   },
   "pPCiwO": {
-    "message": "Correo electrónico"
+    "translation": "Correo electrónico"
+  },
+  "pekBfS": {
+    "translation": "¿Eres una celebridad o influencer? ¡Haz parte de nuestra familia!"
   },
   "per8Dq": {
-    "message": "Ver más famosos"
+    "translation": "Ver más famosos"
   },
   "pfCRkk": {
-    "message": "Haz clic en el botón de WhatsApp para que a través de este canal te podamos dar las instrucciones para concretar el pago de tu videomensaje."
+    "translation": "Haz clic en el botón de WhatsApp para que a través de este canal te podamos dar las instrucciones para concretar el pago de tu videomensaje."
   },
   "pfhsIr": {
-    "message": "Transferencia Bancaria"
+    "translation": "Transferencia Bancaria"
   },
-  "qL5Hl7": {
-    "message": "Cumpleaños"
+  "povNn5": {
+    "translation": "Subir archivo"
+  },
+  "pvVUxx": {
+    "translation": "Debes introducir un documento de identificación valido"
+  },
+  "q3DBjQ": {
+    "translation": "Explorar Famosos"
+  },
+  "qC6UKd": {
+    "translation": "Rechazado"
   },
   "qMbb2M": {
-    "message": "Agregar nueva tarjeta"
-  },
-  "qP3okx": {
-    "message": "<h5> POLÍTICA DE PRIVACIDAD “FAMOSOS INC”, PRIMERO (1º.) DE OCTUBRE DE 2019. </h5> <p> Somos “Famosos, Inc.”, ubicados en 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. </p> <p> Para su oportuna y completa información, nos permitimos acompañar la “Política de Privacidad de “Famosos Inc”, en adelante la “Política”. </p> <p> La importancia de esta “Política” radica en el hecho que para prestarle nuestros servicios a través de nuestra Página, es necesario que usted nos entregue información personal suya, luego es necesario que usted conozca, acepte y/o rechace lo que hacemos con la misma. Asimismo, para nosotros también es importante saber quién es usted y si sus intereses son compatibles con los nuestros </p> <p> Esta “Política” está sujeta a cambios permanentes, por lo cual nos reservamos el derecho de actualizarla, modificarla y publicarla cronológicamente, para que sea conocida por usted, para los propósitos anteriormente señalados </p> <p> La “Política” se relaciona específicamente, con la forma en que solicitamos, almacenamos, analizamos, custodiamos, protegemos, utilizamos y compartimos su información personal en nuestros servidores, con ocasión de su vinculación a nuestra página </p> <p> Es importante tener en cuenta que si usted toma la decisión de vincularse a nuestra página, nosotros entendemos que usted ha leído y aceptado en forma incondicional e irrevocable esta “Política”, así como los llamados “Términos de Uso” que también se encuentran disponibles en nuestra página para su conocimiento, aceptación o rechazo </p> <p> La información personal a la cual tenemos acceso, es la relacionada con su ciudad de origen, país, “Dirección IP”, el tipo de equipo que usted utiliza, su correo electrónico, domicilio, número telefónico, fecha de registro, nombre de usuario, clave personal, cuenta bancaria, pagos electrónicos, tarjetas bancarias, número de usuario en Instagram cuando accede a nuestra página por esta vía, tipo de material solicitado, clase de videos subidos, bajados, consultados, fotos, correos electrónicos, cartas, textos, audios, tráfico en redes sociales, búsquedas en plataformas, compras de bienes y/o servicios realizadas, historial de compras, preferencias comerciales, cookies, hardware, software, entre otros aspectos, información esta que es requerida previamente, para que usted se vincule a nuestra página y/o crea una cuenta en la misma, con el propósito de prestarle un mejor servicio </p> <p> El propósito de lo anterior consiste en brindarle un mejor servicio, pues al conocer la anterior información, estaremos en capacidad de ofrecerle mejores servicios, soporte técnico y asistencia, de acuerdo con los intereses que usted nos haya manifestado, en relación con temas publicitarios, rifas, sorteos, concursos y promociones, suministro de determinados contenidos específicos, de acuerdo con sus preferencias de mercado, para personalizar su experiencia en nuestra plataforma, así como para cumplir con requerimientos legales, prácticas comerciales, operaciones de back-up y por otras razones que puedan ser de su interés, así como del nuestro </p> <p> Esta información sólo será revelada a terceras personas, incluso a otros países, cuando sea requerido por nosotros y/o por nuestros vendedores, para el cumplimiento de los intereses que usted nos haya manifestado, por lo cual usted también deberá consultar con ellos el tipo de Política de Privacidad que ellos a su vez aplican y respecto de las cuales no respondemos, ni podemos hacerlo. En relación con la revelación de información a otros países, hemos tomados medidas tecnológicas pertinentes para que su información personal goce de la misma protección contenida en esta “Política” </p> <p> Esta información también será revelada a terceras personas, cuando usted lo solicite en forma expresa, para lo cual usted deberá enviar el respectivo requerimiento, en los términos indicados en esta “Política” </p> <p> Usted también puede oponerse a que nosotros procesemos de su información personal, basado en su legítimo interés y por razones particulares. Igualmente, usted puede graduar los parámetros y/o alcance de nuestro mercadeo hacia usted, e incluso solicitar que no le sea enviado material promocional, en cualquier momento, a través de los métodos contenidos en esta “Política” </p> <p> Para el ejercicio de los derechos reconocidos en esta “Política”, usted debe formular el respectivo requerimiento, a través de las herramientas aquí previstas, y de los mecanismos establecidos para tal efecto en la misma. Es importante que tenga en cuenta, que su derecho de enviar peticiones quejas y reclamos ante cualquier autoridad competente de protección y supervisión de información personal en el país donde usted se encuentre, permanece vigente </p> <p> Nuestra página le permite interactuar con otras páginas, plataformas, redes sociales, como Facebook, Instagram y Twitter, por lo cual, alguna de su información personal será compartida con terceras personas, para el efecto de permitir la respectiva comunicación </p> <p> Cada visita a nuestra página permite rastrear sus actividades en la red, a través de tecnologías conocidas como “web beacons”, “embedded scripts”, “location data services”, las cuales podrán brindarnos mayor información acerca de sus preferencias en la navegación archivadas en su equipo y grabar “cookies” en su equipo, o incluso copiar códigos de su equipo, o a su equipo y emplear diversos mecanismos relacionados con sus preferencias de navegación </p> <p> Esta tecnología permite conocer, por ejemplo, fecha y hora de su visita a nuestra plataforma, áreas visitas en su navegación, Links a los cuales haya accedido, Websites, propaganda visitada, modalidad bajo la cual haya tenido accedido, Dirección IP, número de móvil, información de su equipo, como su ubicación, Tipo de Conexión del Equipo, Buscador, Versión, Sistema operativo, plataforma, Información de consulta de mensajes </p> <p> Si usted es un cliente que proporciona contenido a nuestra plataforma, nosotros procesaremos dicha información, con el objeto de ofrecer masivamente videos y demás material que sea cargado y/o subido en nuestra página. Igualmente, procesaremos toda la información que sea necesaria para que usted pueda recibir pagos en forma directa por parte de terceras personas, tal como se indica en los “Términos de Uso” contenidos en nuestra plataforma </p> <p> De otra parte, la información relacionada con los pagos realizados a su favor, también será conservada de acuerdo con nuestra “Política”, para efecto de garantizar el correcto procesamiento de los mismos, eficacia, eficiencia, seguridad, transparencia y trazabilidad, así como en caso de presentarse cualquier observación relacionada con los mismos. De igual manera, la información relacionada con los medios y mecanismos de pago escogidos por nosotros, se encuentra sometida a la misma “Política”, así como a la de las respectivas entidades pagadoras, que pueden ser completamente diferentes y que en consecuencia deba ser revisada por su parte </p> <p> Es posible que en algunas ocasiones compartamos información personal suya con terceras personas, para atender sus intereses de navegación. Sin embargo, nunca compartiremos su información personal para sea utilizada para propósitos diferentes a los aquí mencionados, sin su consentimiento, el cual será solicitado en caso de ser necesario. Es necesario recordar que el manejo de su información personal se encuentra fundamentado en su aceptación y autorización, en los términos expresados en nuestra “Política”, y que usted siempre tiene el derecho de retirar su consentimiento, en cualquier momento, a través de las herramientas y procedimientos establecidos en nuestra página </p> <p> En relación con los menores de trece (13) años de edad, nuestra “Política” determina que no conservamos ningún tipo de información personal. Si usted, en calidad de padre o acudiente, observa que por alguna razón lo hacemos, por favor comuníquese con nosotros inmediatamente para realizar las adecuaciones del caso: en 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. Lo anterior por cuanto nuestra página está diseñada para uso generalizado, y es posible que eventualmente y de manera involuntaria, hayamos podido recopilar dicha información </p> <p> Revelaremos información personal suya, aún en contra de su voluntad, cuando así sea exigido por la parte de la ley, la justicia o de cualquier autoridad competente de cualquier jurisdicción, con ocasión de una investigación por fraude, violación de los derechos de propiedad intelectual, de autor o literaria, relacionada con usted y que pueda perjudicar nuestros intereses, siempre en ejercicio de nuestros derechos legales y ante eventuales acusaciones de “hackeo”, incumplimiento de la “Política”, de los “Términos de Uso o Servicios”, por razones legales o gubernamentales </p> <p> También revelaremos, transferiremos, cederemos información personal suya, en caso de presentarse una fusión, adquisición, reorganización, concordato, quiebra y/o cualquier otra transacción que involucre a “Famosos Inc” </p> <p> Si usted expresamente lo solicita, podríamos transformar su información personal, en otra modalidad tecnológica que impida identificarlo a usted, como por ejemplo convertir su correo electrónico en un código alfanumérico, la cual ya no sería información personal suya </p> <p> Si usted desea acceder, revisar, corregir, editar o actualizar su propia información personal, simplemente acceda a su cuenta en la página, o a través de la aplicación en su móvil y realice los cambios que desea introducir </p> <p> Cuando nos solicite que borremos su información personal, tomaremos acciones concretas para removerla de nuestras bases de datos activas, pero conservaremos la información original, de acuerdo con nuestra “Política”, para eventuales casos de disputa, cumplimiento de normas legales, conservación de grabaciones, back up. En todo caso, nunca conservaremos su información más tiempo del que sea necesario para el cumplimiento de nuestra “Política” </p> <p> Si usted es un visitante de nuestra página y está ubicado fuera de los Estados Unidos de Norteamérica, la información personal que usted suministre será recopilada, procesada, conservada, transferida a nuestros servidores en dicho país, u otros donde nosotros o nuestros vendedores realizan su operación comercial </p> <p> Sin importar dónde se encuentre localizada la información, tomamos medidas razonables de protección de la privacidad de sus derechos, en los términos de esta política </p> <p> Tomamos medidas razonables de seguridad para proteger la información remitida a nosotros, de acuerdo con las facilidades tecnológicas existentes a la fecha </p> <p> Aunque ningún sistema de transmisión y/o administración de datos a través de la red mundial de internet es completamente seguro, hemos tomado medidas tecnológicas razonables de seguridad para proteger la información conservada por nosotros, lo cual debe ser conocido y tenido en cuenta por usted siempre que utilice nuestra página, para que dicho conocimiento quede bajo su responsabilidad </p> <p> En consecuencia, si tiene alguna pregunta relacionada con la seguridad en nuestra página, póngase en contacto con nosotros, a través de los respectivos canales de comunicación proporcionados en nuestra “Política” </p> <p> Si usted desea desactivar su cuenta, comuníquese con nosotros para tal efecto, en 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161, USA </p> <p> Si usted desea trabajar con nosotros, o para nosotros como “funcionario” y/o trabajar bajo la modalidad de “socios”, puede aplicar comunicándose con nosotros a través de los canales y personas informadas en esta “Política”, para que sea informado acerca de nuestra “Política” al respecto. Es posible que compartamos información personal suya, para los propósitos exclusivos mencionados en este párrafo, o para mejorar nuestros procesos de selección, o para protegernos frente a reclamaciones laborales </p> <p> Nuevamente le reiteramos que si usted toma la decisión de vincularse a nuestra página, nosotros entendemos que usted ha leído y aceptado en forma incondicional e irrevocable esta “Política”, así como los llamados “Términos de Uso” que también se encuentran disponibles en nuestra página para su conocimiento, aceptación o rechazo </p> <p> Sin embargo, si usted no desea volver a recibir ningún tipo de información de parte nuestra, pero sin retirarse de nuestra página, a través de los canales y personas informadas en esta “Política” y solo recibirá información nuestra relacionado con el estado de pago de su cuenta </p> <p> Si usted requiere mayor información acerca de esta “Política”, podrá contactarse con nosotros, en 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. </p>"
+    "translation": "Agregar nueva tarjeta"
   },
   "qV0c9N": {
-    "message": "Escribe aquí tu {document_name}"
+    "translation": "Escribe aquí tu {document_name}"
   },
   "qXeQds": {
-    "message": "Volver al inicio"
+    "translation": "Volver al inicio"
+  },
+  "qmZ04t": {
+    "translation": "Tus cambios se guardaron hace unos segundos."
+  },
+  "qsmv/Z": {
+    "translation": "Video personalizado {br} de {celebrityFullName}"
+  },
+  "qvzdOL": {
+    "translation": "Ingresa una nueva dirección de correo electrónico"
+  },
+  "qxvYP3": {
+    "notes": "1 day in hours",
+    "translation": "24 hrs."
   },
   "qyxCOs": {
-    "message": "Si el problema persiste puedes comunicarte con nuestro equipo de soporte a <a> experiencias@famosos.com </a> para más información."
+    "translation": "Si el problema persiste puedes comunicarte con nuestro equipo de soporte a <a> experiencias@famosos.com </a> para más información."
+  },
+  "r///wN": {
+    "translation": "1. Datos de la persona que realiza el pago."
   },
   "r1aViX": {
-    "message": "Periodistas"
+    "translation": "Periodistas"
   },
   "r3u9Hf": {
-    "message": "Publicar este video en Famosos.com"
+    "translation": "Publicar este video en Famosos.com"
+  },
+  "r5akgJ": {
+    "translation": "Para ver tu regalo haz clic <textBold>aquí</textBold>."
+  },
+  "rAMm4a": {
+    "translation": "Ajustes"
   },
   "rD8e46": {
-    "message": "Fecha:"
+    "translation": "Fecha:"
   },
   "rG1grK": {
-    "message": "Síguenos en Redes"
+    "translation": "Síguenos en Redes"
   },
   "rMXI9i": {
-    "message": "Agregar Comentario"
+    "translation": "Agregar Comentario"
+  },
+  "rMzdwV": {
+    "translation": "Mujer"
   },
   "rNIqUr": {
-    "message": "Un video promocional es un video que promueve una compañia/organización/producto en las redes sociales o en la página de dicha compañia."
+    "translation": "Un video promocional es un video que promueve una compañia/organización/producto en las redes sociales o en la página de dicha compañia."
+  },
+  "rYWTQk": {
+    "translation": "Categorías destacadas"
+  },
+  "ra6TZV": {
+    "translation": "Te has suscrito exitosamente"
+  },
+  "rcckKR": {
+    "translation": "Ingresa un correo electrónico válido"
   },
   "rjFhkr": {
-    "message": "¿Quieres recibir el video a tu WhatsApp? (Opcional)"
+    "translation": "¿Quieres recibir el video a tu WhatsApp? (Opcional)"
   },
   "rr64CW": {
-    "message": "Estamos haciendo lo posible por resolverlo."
+    "translation": "Estamos haciendo lo posible por resolverlo."
+  },
+  "rtQ00j": {
+    "translation": "Guardando cambios..."
   },
   "rtwrcq": {
-    "message": "¿Ya tienes una cuenta? <signInLink>Iniciar sesión</signInLink>"
+    "translation": "¿Ya tienes una cuenta? <signInLink>Iniciar sesión</signInLink>"
   },
   "ruSOFj": {
-    "message": "Presentadores"
+    "translation": "Presentadores"
+  },
+  "sAJ+Kw": {
+    "translation": "¿Cómo quieres compartir este video?"
+  },
+  "sHZJT8": {
+    "translation": "Especifica la celebración, dedicatoria o motivo del video. Puedes contar algunos detalles para que tu video quede lo más especial posible."
+  },
+  "sK9QPr": {
+    "translation": "Ha ocurrido un error inesperado"
   },
   "sSxzJC": {
-    "message": "Este correo ya está suscrito al newsletter"
+    "translation": "Este correo ya está suscrito al newsletter"
+  },
+  "sVv/AJ": {
+    "translation": "Este correo electrónico ya se encuentra suscrito"
   },
   "sXLa3f": {
-    "message": "Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero."
+    "translation": "Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero."
+  },
+  "sZXU9F": {
+    "translation": "Ahora ya puedes conectar con tus famosos favoritos a través de Famosos.com!"
   },
   "se5FEq": {
-    "message": "¿Tienes un cupón de descuento?"
+    "translation": "¿Tienes un cupón de descuento?"
   },
   "sn8X2t": {
-    "message": "Nosotros te garantizamos que tu famoso va a ver tu solicitud si cumple con nuestras políticas. Nos reservamos el derecho de no mostrarle al famoso solicitudes que consideremos inapropiadas, en ese caso te devolvemos tu dinero. También te garantizamos que te devolvemos tu dinero si el video no es grabado antes de 10 días."
+    "translation": "Nosotros te garantizamos que tu famoso va a ver tu solicitud si cumple con nuestras políticas. Nos reservamos el derecho de no mostrarle al famoso solicitudes que consideremos inapropiadas, en ese caso te devolvemos tu dinero. También te garantizamos que te devolvemos tu dinero si el video no es grabado antes de 10 días."
+  },
+  "swHrQR": {
+    "translation": "¡Disfruta la experiencia!"
   },
   "sy+pv5": {
-    "message": "Email"
+    "translation": "Email"
+  },
+  "syjn1W": {
+    "translation": "¡Este video quedará genial! {br} Te notificaremos cuando esté listo."
   },
   "t+gzvS": {
-    "message": "Este correo no es válido"
+    "translation": "Este correo no es válido"
   },
   "t02ibc": {
-    "message": "Ver famosos similares"
+    "translation": "Ver famosos similares"
   },
   "t2/Gvc": {
-    "message": "Detalla la solicitud y {onlyMobileLineBreak} realiza {onlyDesktopLineBreak} el proceso {onlyMobileLineBreak} de compra."
+    "translation": "Detalla la solicitud y {onlyMobileLineBreak} realiza {onlyDesktopLineBreak} el proceso {onlyMobileLineBreak} de compra."
   },
   "t2/i9S": {
-    "message": "Trabaja con nosotros"
+    "translation": "Trabaja con nosotros"
+  },
+  "t756d4": {
+    "translation": "Agregar foto"
   },
   "t7y7Vl": {
-    "message": "Datos de la persona que realiza el pago"
+    "translation": "Datos de la persona que realiza el pago"
   },
   "tDU6jz": {
-    "description": "",
-    "message": "Mis contrataciones"
+    "notes": "",
+    "translation": "Mis contrataciones"
   },
   "tEedOi": {
-    "description": "Mensaje de error para formulario de stripe",
-    "message": "El campo de correo electrónico del titular de la tarjeta es obligatorio"
+    "notes": "Mensaje de error para formulario de stripe",
+    "translation": "El campo de correo electrónico del titular de la tarjeta es obligatorio"
+  },
+  "tYEFsF": {
+    "translation": "¡{discount}% de descuento en tus videomensajes! Cupón: {coupon}"
   },
   "tZUCvC": {
-    "message": "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
+    "translation": "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
   },
   "tdx+EV": {
-    "description": "",
-    "message": "Mi perfil"
+    "notes": "",
+    "translation": "Mi perfil"
+  },
+  "tekx9W": {
+    "translation": "{action} calificación"
+  },
+  "tkwCac": {
+    "translation": "E-mail"
+  },
+  "tlBp37": {
+    "translation": "{celebrity_fullName} tiene un plazo de 7 días para grabar tu video a partir de ahora."
   },
   "tpcdsK": {
-    "message": "Subdominio"
+    "translation": "Subdominio"
+  },
+  "tr1oP1": {
+    "translation": "Rechazados"
   },
   "tv5FG3": {
-    "message": "Blog"
+    "translation": "Blog"
+  },
+  "tzrLFx": {
+    "translation": "Me gustaría que {celebrityFullName} me grabe un video para mi negocio."
   },
   "u+CFdm": {
-    "message": "Famosos.com - Blog"
+    "translation": "Famosos.com - Blog"
+  },
+  "u4TQhV": {
+    "translation": "Mostrar más"
   },
   "uKwcXA": {
-    "message": "Crea una cuenta para poder conectar con los famosos"
+    "translation": "Crea una cuenta para poder conectar con los famosos"
   },
   "uMrHKU": {
-    "message": "¿Qué es Famosos?"
+    "translation": "¿Qué es Famosos?"
   },
   "uQg6Uc": {
-    "message": "Coach"
+    "translation": "Coach"
   },
   "uSPUjx": {
-    "message": "Cambiar tu contraseña"
+    "translation": "Cambiar tu contraseña"
+  },
+  "uU47gp": {
+    "translation": "Cambiar número de celular"
+  },
+  "uVRzk3": {
+    "translation": "Entérate de nuestras últimas noticias y promociones"
   },
   "uVgimH": {
-    "message": "No se encontró un famoso con este usuario"
+    "translation": "No se encontró un famoso con este usuario"
+  },
+  "uZ+xW0": {
+    "translation": "Pendiente"
   },
   "ueZmN4": {
-    "message": "Transferencia bancaria"
+    "translation": "Transferencia bancaria"
   },
   "ujraGu": {
-    "description": "Quien recibirá el video",
-    "message": "Para:"
+    "notes": "Quien recibirá el video",
+    "translation": "Para:"
+  },
+  "ul9NXn": {
+    "translation": "En ocasiones se presentan causas de fuerza mayor que impiden que el Famoso grabe. {br} ¡Lamentamos el tiempo de espera!"
   },
   "uleYZ4": {
-    "message": "Para continuar actualiza la contraseña de tu cuenta."
+    "translation": "Para continuar actualiza la contraseña de tu cuenta."
+  },
+  "usJosI": {
+    "translation": "Fecha estimada de grabación:"
   },
   "ut6hvz": {
-    "message": "Calificaciones"
+    "translation": "Calificaciones"
   },
   "v82s2O": {
-    "message": "Video Personalizado de {celebrityFullName}"
+    "translation": "Video Personalizado de {celebrityFullName}"
   },
   "v8Rt1O": {
-    "message": "¿Cuanto tiempo se demora el reembolso?"
+    "translation": "¿Cuanto tiempo se demora el reembolso?"
   },
   "v9XTPm": {
-    "description": "Mensaje de error para creación de tarjeta Stripe",
-    "message": "Ocurrió un error inesperado."
+    "notes": "Mensaje de error para creación de tarjeta Stripe",
+    "translation": "Ocurrió un error inesperado."
   },
   "vCwzMi": {
-    "message": "El proceso de aprobación puede tardar alrededor de 24 hrs."
+    "translation": "El proceso de aprobación puede tardar alrededor de 24 hrs."
   },
   "vMft8+": {
-    "message": "La autorización de tu pago se ha realizado con éxito."
+    "translation": "La autorización de tu pago se ha realizado con éxito."
+  },
+  "vO/DkB": {
+    "translation": "¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a {link}"
+  },
+  "vPG9RE": {
+    "translation": "¡a disfrutar esta melodía y a ponerse de buenas!"
+  },
+  "vYme3q": {
+    "translation": "Te redirigiremos a Whatsapp donde uno de nuestros agentes te atenderá para continuar con el proceso."
   },
   "vcGTkv": {
-    "message": "Registro"
+    "translation": "Registro"
   },
   "vf4Bo1": {
-    "message": "¿Aún no tienes cuenta?"
+    "translation": "¿Aún no tienes cuenta?"
   },
   "vnsLpk": {
-    "message": "Télefono de contacto"
+    "translation": "Télefono de contacto"
   },
   "vzOwNB": {
-    "message": "Codigo de referido"
+    "translation": "Codigo de referido"
   },
   "w2xatL": {
-    "description": "",
-    "message": "Siguiente"
+    "notes": "",
+    "translation": "Siguiente"
+  },
+  "w5XPJR": {
+    "translation": "Si por alguna razón tu video no pudo ser grabado, te contactaremos."
   },
   "w5lFLc": {
-    "message": "Resultados de búsqueda"
+    "translation": "Resultados de búsqueda"
   },
   "wCc+84": {
-    "message": "[PARA]"
+    "translation": "[PARA]"
   },
   "wHkOq4": {
-    "message": "Argentina"
+    "translation": "Argentina"
   },
   "wJ61N6": {
-    "message": "Si utilizas el link de referido de uno de los Famosos registrados en la plataforma tendrás más oportunidades de ser aprobado, este link es único por cuenta y está disponible en la sección de Mi Perfil de la aplicación de los Famosos."
+    "translation": "Si utilizas el link de referido de uno de los Famosos registrados en la plataforma tendrás más oportunidades de ser aprobado, este link es único por cuenta y está disponible en la sección de Mi Perfil de la aplicación de los Famosos."
+  },
+  "wUMBIs": {
+    "translation": "Ingresa una contraseña nueva"
+  },
+  "waDVSR": {
+    "translation": "Cómo tener un video personalizado de tu Famoso favorito."
+  },
+  "wbxEGL": {
+    "translation": "Seguridad"
+  },
+  "wbzzMw": {
+    "translation": "Whatsapp de notificación"
+  },
+  "wcw2WL": {
+    "translation": "El cobro a tu cuenta se realizará una vez que {celebrity_fullName} grabe tu video. (por ahora solo se realizó una autorización por parte de tu banco)."
   },
   "wkaVGz": {
-    "message": "Ingresa a tu cuenta para poder conectar con los famosos"
+    "translation": "Ingresa a tu cuenta para poder conectar con los famosos"
   },
   "wlTYUV": {
-    "message": "Hacer nuevo intento de pago"
+    "translation": "Hacer nuevo intento de pago"
   },
   "wms1Jl": {
-    "message": "Este campo excede el limite de {deliveryFromMaxLength} caracteres"
+    "translation": "Este campo excede el limite de {deliveryFromMaxLength} caracteres"
+  },
+  "ws1N91": {
+    "translation": "Una vez que tu video esté listo te notificaremos para que corras a verlo, descargarlo y compartirlo."
   },
   "wwfK17": {
-    "message": "Buscar país"
+    "translation": "Buscar país"
+  },
+  "x+GitR": {
+    "translation": "Elige una fecha y hora para que Famosos envíe tu video."
   },
   "x15tum": {
-    "message": "El valor en {currency} es aproximado"
+    "translation": "El valor en {currency} es aproximado"
+  },
+  "x2Pl3E": {
+    "translation": "Cambiar correo electrónico"
   },
   "x3Y+61": {
-    "message": "Actores/Actrices"
+    "translation": "Actores/Actrices"
   },
   "xBhNFv": {
-    "message": "Nueva Contraseña"
+    "translation": "Nueva Contraseña"
   },
   "xKYHEI": {
-    "message": "2020 Famosos, Inc. All Rights Reserved."
+    "translation": "2020 Famosos, Inc. All Rights Reserved."
   },
   "xKx6PF": {
-    "message": "¡Aplica y Reserva tu Subdominio Ahora!"
+    "translation": "¡Aplica y Reserva tu Subdominio Ahora!"
   },
   "xTsa8e": {
-    "description": "",
-    "message": "Te notificaremos cuando se active."
+    "notes": "",
+    "translation": "Te notificaremos cuando se active."
   },
   "xfEeAv": {
-    "message": "Por favor seleccione una tarjeta"
+    "translation": "Por favor seleccione una tarjeta"
   },
   "xkoDM2": {
-    "message": "Video personalizado de {celebrityFullName}"
+    "translation": "Video personalizado de {celebrityFullName}"
+  },
+  "xlP1hR": {
+    "translation": "Flash (24hrs)"
+  },
+  "xmPK9R": {
+    "translation": "Volver a solicitar un video a {contractData}"
+  },
+  "xqbqgV": {
+    "translation": "Descuento"
+  },
+  "y5S+jr": {
+    "translation": "Agrega un titulo"
+  },
+  "yF/Sxo": {
+    "translation": "Si por alguna razón tu video no pudo ser grabado, tu dinero estará nuevamente disponible en un plazo máximo de 21 días hábiles, dependiendo de tu banco."
   },
   "yHlpQC": {
-    "message": "¿Puedo realizar video promocionales?"
+    "translation": "¿Puedo realizar video promocionales?"
   },
   "yJWcBD": {
-    "message": "¿Para quién es este video?"
+    "translation": "¿Para quién es este video?"
   },
   "yv7dLs": {
-    "message": "Famosos.com - Entrada de blog"
+    "translation": "Famosos.com - Entrada de blog"
   },
   "z09bol": {
-    "message": "CURP"
+    "translation": "CURP"
   },
   "z0KVwy": {
-    "message": "Te notificaremos a {deliveryContact} cuando tu pago haya sido aprobado."
+    "translation": "Te notificaremos a {deliveryContact} cuando tu pago haya sido aprobado."
   },
   "zADCtw": {
-    "message": "Elige el método de pago"
+    "translation": "Elige el método de pago"
+  },
+  "zDDWOe": {
+    "translation": "Enviar calificación"
   },
   "zJ+Qdi": {
-    "message": "Brazil"
+    "translation": "Brazil"
+  },
+  "zKGHNB": {
+    "translation": "Eliminar"
   },
   "zM4Sw/": {
-    "message": "¿Qué significa una autorización de pago?"
+    "translation": "¿Qué significa una autorización de pago?"
   },
   "zX425H": {
-    "message": "Comediantes"
+    "translation": "Comediantes"
+  },
+  "zZp/K2": {
+    "translation": "Unirme al Club de Fans"
+  },
+  "zjdjIn": {
+    "translation": "Ingresa el código de seguridad que enviamos a tu correo"
+  },
+  "zmFekE": {
+    "translation": "ESTADO DEL PAGO: APROBADO"
+  },
+  "zmIeqV": {
+    "translation": "Menos de 3 días"
+  },
+  "ztGIyo": {
+    "translation": "Ver comprobante de devolución"
   },
   "zxOTCH": {
-    "message": "Pago creado"
+    "translation": "Pago creado"
   },
   "zzBOdK": {
-    "message": "Aplicar filtro"
+    "translation": "Aplicar filtro"
   }
 }

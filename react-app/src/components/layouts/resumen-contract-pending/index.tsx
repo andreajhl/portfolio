@@ -189,7 +189,7 @@ const ResumenContractPending = ({ resumen }) => {
         <i
           style={{
             fontSize: "48px",
-            color: "white"
+            color: "white",
           }}
           className="far fa-clock"
         />
@@ -214,13 +214,13 @@ const ResumenContractPending = ({ resumen }) => {
               <span
                 className="font-weight-bold"
                 style={{
-                  color: "black"
+                  color: "black",
                 }}
               >
                 <FormattedMessage
                   defaultMessage="Video personalizado de {celebrityFullName}"
                   values={{
-                    celebrityFullName: resumen.celebrity.fullName
+                    celebrityFullName: resumen.celebrity.fullName,
                   }}
                 />
               </span>
@@ -231,7 +231,7 @@ const ResumenContractPending = ({ resumen }) => {
                 <div
                   className="d-flex"
                   style={{
-                    width: "70%"
+                    width: "70%",
                   }}
                 >
                   {resumen.contract.deliveryTo ? (
@@ -269,7 +269,7 @@ const ResumenContractPending = ({ resumen }) => {
             <span
               style={{
                 fontSize: "14px",
-                color: "#535353"
+                color: "#535353",
               }}
             >
               <FormattedMessage
@@ -297,7 +297,7 @@ const ResumenContractPending = ({ resumen }) => {
                 <span
                   className="mt-3"
                   style={{
-                    color: "#535353"
+                    color: "#535353",
                   }}
                 >
                   <FormattedMessage defaultMessage="El proceso de aprobación puede tardar alrededor de 24 hrs." />
@@ -305,21 +305,21 @@ const ResumenContractPending = ({ resumen }) => {
                 <span
                   className="mt-3"
                   style={{
-                    color: "#535353"
+                    color: "#535353",
                   }}
                 >
                   <FormattedMessage
                     defaultMessage="Te notificaremos a {deliveryContact} cuando tu pago
                   haya sido aprobado."
                     values={{
-                      deliveryContact: resumen.contract.deliveryContact
+                      deliveryContact: resumen.contract.deliveryContact,
                     }}
                   />
                 </span>
                 <span
                   className="mt-3"
                   style={{
-                    color: "#535353"
+                    color: "#535353",
                   }}
                 >
                   <FormattedMessage defaultMessage="Puedes consultar el estado de tu video en “Mis Contrataciones”" />
@@ -333,7 +333,7 @@ const ResumenContractPending = ({ resumen }) => {
                   <i
                     style={{
                       fontSize: "20px",
-                      color: "white"
+                      color: "white",
                     }}
                     className="fas fa-long-arrow-alt-right"
                   ></i>

@@ -1,0 +1,63 @@
+import classes from "classnames";
+import styles from "./styles.module.scss";
+import { HiringPreviewLeftSide } from "desktop-app/components/hiring-preview/hiring-preview-left-side";
+import useGetContract from "lib/hooks/useGetContract";
+import { VideoContractFeed } from "desktop-app/components/layouts/video-contract-feed";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import { HiringPreviewCTACard } from "desktop-app/components/hiring-preview/hiring-preview-cta-card";
+import { HiringReviewSection } from "desktop-app/components/common/widgets/hiring-review-section";
+import PageContainer from "desktop-app/components/layouts/page-container";
+import { GiftAnimationWrapper } from "desktop-app/components/layouts/gift-animation-wrapper";
+import { HiringPreviewOwnerBanner } from "desktop-app/components/hiring-preview/hiring-preview-owner-banner";
+
+type HiringPreviewPageProps = {
+  contractReference: string;
+  isUnauthorized: boolean;
+};
+
+function HiringPreviewPage({
+  contractReference,
+  isUnauthorized,
+}: HiringPreviewPageProps) {
+  const { contract, status } = useGetContract(contractReference, true);
+
+  return (
+    <PageContainer showFooter={false} showSearch={false}>
+      <GiftAnimationWrapper
+        deliveryTo={contract.deliveryTo}
+        deliveryFrom={contract.deliveryFrom}
+      >
+        <div className={classes("container", styles.Container)}>
+          <Maybe it={status === "completed"}>
+            <div className={styles.LeftSide}>
+              <HiringPreviewLeftSide
+                isUnauthorized={isUnauthorized}
+                celebrityFullName={contract?.celebrityData?.fullName}
+                deliveryTo={contract?.deliveryTo}
+                contractReference={contractReference}
+              />
+            </div>
+            <VideoContractFeed
+              className={styles.RightSide}
+              contractData={contract}
+            />
+            <div className={styles.HiringReviewSectionWrapper}>
+              <HiringReviewSection contractData={contract} />
+            </div>
+            <HiringPreviewCTACard
+              className={styles.HiringPreviewCTACardMobile}
+            />
+            <Maybe it={isUnauthorized}>
+              <HiringPreviewOwnerBanner
+                className={styles.HiringPreviewPageOwnerBanner}
+                contractReference={contractReference}
+              />
+            </Maybe>
+          </Maybe>
+        </div>
+      </GiftAnimationWrapper>
+    </PageContainer>
+  );
+}
+
+export { HiringPreviewPage };

@@ -20,7 +20,7 @@ function FacebookButton({ className, textButton }: FacebookButtonProps) {
       try {
         await axios
           .post("/api/facebook-sign-in-with-access-token", {
-            accessToken: response.accessToken
+            accessToken: response.accessToken,
           })
           .then(() => {
             const session = new Session();

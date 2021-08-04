@@ -1,0 +1,28 @@
+.FanClubAdvertise {
+  height: 63px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  padding: 12px 34px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+
+  &Link {
+    margin-left: auto;
+  }
+
+  & button.FanClubAdvertiseButton {
+    height: 32px;
+    font-weight: bold;
+    line-height: 0;
+    color: var(--secondary);
+    border-color: var(--secondary);
+    border-width: 1px;
+    font-size: 14px;
+
+    &:hover {
+      background: var(--secondary);
+      color: white;
+    }
+  }
+}

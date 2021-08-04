@@ -1,7 +1,7 @@
-const getContractPrice = (
+function getContractPrice(
   contractTypes: { contractType: number; price: number }[]
-): number => {
-  const videoMessageContract = contractTypes.find(
+): number {
+  const videoMessageContract = contractTypes?.find?.(
     ({ contractType }) => contractType === 1
   );
 
@@ -10,6 +10,6 @@ const getContractPrice = (
     videoMessagePrice = videoMessageContract.price;
   }
   return videoMessagePrice;
-};
+}
 
 export default getContractPrice;

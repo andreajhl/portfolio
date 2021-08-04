@@ -14,7 +14,7 @@ const BlogResults = ({
   blogsData,
   blogsDataLoading,
   blogsDataCompleted,
-  getBlogData
+  getBlogData,
 }) => {
   useEffect(() => {
     if (!blogsDataCompleted) {
@@ -73,11 +73,11 @@ const mapStateToProps = ({ blog }) => ({
   blogsData: blog.blogsPostMediumReducer.data,
   blogsDataLoading: blog.blogsPostMediumReducer.loading,
   isBlogsDataFetch: blog.blogsPostMediumReducer.completed,
-  blogsDataCompleted: blog.blogsPostMediumReducer.completed
+  blogsDataCompleted: blog.blogsPostMediumReducer.completed,
 });
 
 const mapDispatchToProps = {
-  getBlogData: blogOperations.getBlogData
+  getBlogData: blogOperations.getBlogData,
 };
 
 const _BlogResults = connect(

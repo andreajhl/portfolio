@@ -1,0 +1,29 @@
+.InputWithDynamicWidth {
+  display: inline;
+  position: relative;
+
+  &::before {
+    content: attr(data-value);
+    white-space: pre-wrap;
+    opacity: 0;
+    padding: 0 calc(0.5em + 1px) 0 calc(0.5em + 1px);
+  }
+}
+
+.InputWithDynamicWidthWithoutBorder {
+  &::before {
+    padding: 0 0.5em 0 0.5em;
+  }
+
+  .InputWithDynamicWidthInput {
+    border: none;
+  }
+}
+
+.InputWithDynamicWidthInput {
+  padding: 0 0.5em 0 0.5em;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: auto !important;
+}

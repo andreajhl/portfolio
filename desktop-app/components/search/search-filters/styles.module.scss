@@ -1,0 +1,37 @@
+.SearchFilters {
+}
+
+.SearchFiltersButton {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0.45em 1.6em;
+  border-width: 1px !important;
+  color: var(--dark) !important;
+
+  &:hover {
+    color: var(--tertiary-darken) !important;
+  }
+}
+
+.SearchFilterRow {
+  margin-top: 17px;
+  &:not(:last-child) {
+    border-bottom: 1px solid #f2f2f2;
+  }
+}
+
+.SearchFilterItem {
+  margin-left: 75px;
+  margin-right: 25px;
+  margin-bottom: 27px;
+}
+
+.SearchFilterItemTitle {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.SearchFiltersHashtagsFilter {
+  padding-top: 14px;
+  padding-bottom: 41px;
+}

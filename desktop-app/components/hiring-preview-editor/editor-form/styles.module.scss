@@ -1,0 +1,97 @@
+.EditorForm {
+  @media only screen and (min-width: 768px) {
+    border: 1px solid #e6e6e6;
+    border-radius: 7px;
+  }
+}
+
+.FormFields {
+  @media only screen and (min-width: 768px) {
+    padding: 22px 26px 32px;
+  }
+}
+
+.CollapsibleCardColorSelector:not(.show) {
+  @media only screen and (min-width: 768px) {
+    display: block !important;
+  }
+}
+
+.CardColorSelectorWrapper {
+  @media only screen and (max-width: 767px) {
+    margin-top: 40px;
+  }
+}
+
+.CardColorSelectorWrapper .FieldTitle {
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.FieldTitle {
+  font-size: 16px !important;
+  margin-bottom: 1em;
+
+  @media only screen and (max-width: 767px) {
+    font-size: 18px !important;
+  }
+}
+
+.PageBackgroundSelectorSection {
+  margin-top: 16px;
+  @media only screen and (max-width: 767px) {
+    margin-top: 30px;
+    padding: 24px 0 24px 32px;
+    background-color: white;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+}
+
+.FormButtons {
+  display: flex;
+  margin-top: 28px;
+
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.PreviewLink {
+  flex: 1;
+
+  button {
+    width: 100%;
+  }
+}
+
+.FormButtons button {
+  flex: 1;
+  font-size: 14px;
+  font-weight: bold;
+  height: 40px;
+}
+
+.FormButtons > * + * {
+  margin-left: 18px;
+}
+
+.SaveStatusWrapper {
+  margin-top: 22px;
+
+  @media only screen and (max-width: 767px) {
+    padding: 8px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+
+    span {
+      margin-left: 5px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    i {
+      font-size: 17px;
+    }
+  }
+}

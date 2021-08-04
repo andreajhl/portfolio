@@ -1,0 +1,51 @@
+.InputWithFloatLabelContainer {
+  position: relative;
+  input {
+    width: 100%;
+  }
+  input,
+  input:active,
+  input:focus {
+    transition: opacity 0.25s ease-in-out;
+    border: 0px;
+    outline: none;
+    border-bottom: 1px solid black;
+    height: 44px !important;
+  }
+  input::-webkit-input-placeholder {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px;
+    letter-spacing: 0em;
+  }
+  label {
+    left: 0px;
+    position: absolute;
+    top: 0;
+    /* Hide it by default */
+    opacity: 0;
+    transition: transform 0.25s;
+    font-size: 0.8rem;
+    color: rgba(92, 92, 92, 1);
+  }
+  input:not(:placeholder-shown) + label,
+  input:focus + label {
+    background: #fff;
+    transform: translate(0, -50%);
+    border: 0px;
+    opacity: 1;
+  }
+  input:active,
+  input:focus {
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}
+
+.WarningMessage {
+  position: absolute;
+  top: 110%;
+  right: 0;
+}

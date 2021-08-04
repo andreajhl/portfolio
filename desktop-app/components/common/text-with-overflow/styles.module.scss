@@ -1,0 +1,32 @@
+.TextWithOverflow {
+  overflow-x: hidden;
+
+  span {
+    white-space: nowrap;
+    display: block;
+  }
+}
+
+.ParentElement {
+  &:not(:hover) {
+    .TextWithOverflow span {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      transform: translateX(0) !important;
+      transition: none !important;
+    }
+  }
+
+  &:hover {
+    .TextWithOverflow span {
+      transition: transform 2.5s ease;
+      animation: showRestOfText 2.5s 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes showRestOfText {
+      100% {
+        transform: translateX(0);
+      }
+    }
+  }
+}

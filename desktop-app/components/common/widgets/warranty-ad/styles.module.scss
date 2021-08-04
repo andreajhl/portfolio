@@ -1,0 +1,46 @@
+.WarrantyAd {
+  text-align: center;
+  padding: 1rem;
+  height: 237px;
+  width: 232px;
+  border-radius: 7px;
+  background: #fafafa;
+}
+
+.WarrantyAd h3 {
+  font-size: 16px;
+  margin-bottom: 19px;
+}
+
+.WarrantyAd p {
+  font-size: 12px;
+  line-height: 16.39px;
+  margin-bottom: 0;
+}
+
+.WarrantyAd p:first-of-type {
+  margin-bottom: 19px;
+}
+
+.WarrantyAd img {
+  width: 24px;
+  margin-bottom: 16px;
+}
+
+.WarrantyAdInfoIcon {
+  margin-right: -1em;
+}
+
+.FirstParagraph,
+.LastParagraph {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.FirstParagraph {
+  max-width: 125px;
+}
+
+.LastParagraph {
+  max-width: 140px;
+}

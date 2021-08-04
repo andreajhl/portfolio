@@ -15,14 +15,22 @@ class PaymentMethodsSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCurrencySelected: this.props.currencyExchangeData.to
+      currentCurrencySelected: this.props.currencyExchangeData.to,
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.currencyExchangeData.to !== this.props.currencyExchangeData.to
+    ) {
+      this.getPaymentsGatewaysMethods(this.props.currencyExchangeData.to);
+    }
   }
 
   handlerCurrencySelectedChange = (newCurrency) => {
     this.setState({
       ...this.state,
-      currentCurrencySelected: newCurrency
+      currentCurrencySelected: newCurrency,
     });
   };
   componentDidMount() {
@@ -41,7 +49,7 @@ class PaymentMethodsSection extends Component {
           isLoading
             ? {
                 opacity: "0.3",
-                pointerEvents: "none"
+                pointerEvents: "none",
               }
             : null
         }
@@ -49,20 +57,20 @@ class PaymentMethodsSection extends Component {
         <div
           className={"row justify-content-center payment-methods-section-row"}
           style={{
-            minHeight: "80vh"
+            minHeight: "80vh",
           }}
         >
           <div
             className="col-12 col-md-8 p-0 mx-0 mb-4 mt-2 f-rounded f-shadow"
             style={{
-              minHeight: "80vh"
+              minHeight: "80vh",
             }}
           >
             {/* CONTRACT SUMMARY */}
             <div
               className="col-12 col-md-12 col-lg-8 col-xl-6 mx-auto mt-5"
               style={{
-                maxWidth: "440px"
+                maxWidth: "440px",
               }}
             >
               <ContractCheckoutSummary
@@ -110,7 +118,7 @@ class PaymentMethodsSection extends Component {
                             href={ROUTING_PATHS.POLICIES_PATH}
                             style={{
                               color: "#838383",
-                              textDecorationLine: "underline"
+                              textDecorationLine: "underline",
                             }}
                             target={"_blank"}
                           >
@@ -123,13 +131,13 @@ class PaymentMethodsSection extends Component {
                             target={"_blank"}
                             style={{
                               color: "#838383",
-                              textDecorationLine: "underline"
+                              textDecorationLine: "underline",
                             }}
                             href={ROUTING_PATHS.TERMS_PATH}
                           >
                             {chunks}
                           </a>
-                        )
+                        ),
                       }}
                     />
                   </small>
@@ -167,19 +175,19 @@ PaymentMethodsSection.propTypes = {};
 
 // Set defaultProps
 PaymentMethodsSection.defaultProps = {
-  contractData: {}
+  contractData: {},
 };
 // mapStateToProps
 const mapStateToProps = ({
-  payments: { currencyExchangeReducer, fetchPaymentGatewaysReducer }
+  payments: { currencyExchangeReducer, fetchPaymentGatewaysReducer },
 }) => ({
   currencyExchangeLoading: currencyExchangeReducer.loading,
   paymentGatewayLoading: fetchPaymentGatewaysReducer.loading,
-  currencyExchangeData: currencyExchangeReducer.data
+  currencyExchangeData: currencyExchangeReducer.data,
 });
 
 const _PaymentMethodsSection = connect(mapStateToProps, {
-  listPaymentGateways
+  listPaymentGateways,
 })(withRouter(PaymentMethodsSection));
 
 // Export Class

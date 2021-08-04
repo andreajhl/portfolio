@@ -1,17 +1,20 @@
 import React, { Component } from "react";
-import PaypalReactButton from "../paypal-react-button";
 import { processPayPalPayment } from "../../../state/ducks/payments/actions";
 import * as GTM from "../../../state/utils/gtm";
 import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import PaypalReactButton from "desktop-app/components/payments-methods/paypal-react-button";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+
+const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
 
 const errorMessages = defineMessages({
   errorMessageOnPayPalButtonCancel: {
-    defaultMessage: "Acción cancelada por el usuario"
-  }
+    defaultMessage: "Acción cancelada por el usuario",
+  },
 });
 
 class PayPalCardForm extends Component {
@@ -19,14 +22,14 @@ class PayPalCardForm extends Component {
     super(props);
 
     this.state = {
-      errorMessage: null
+      errorMessage: null,
     };
   }
 
   retry = () => {
     return this.setState({
       ...this.state,
-      errorMessage: null
+      errorMessage: null,
     });
   };
 
@@ -35,7 +38,7 @@ class PayPalCardForm extends Component {
       deviceId,
       IP,
       userAgent,
-      geoLocalization
+      geoLocalization,
     } = await getBuyerIdentityData();
 
     processPayPalPayment(
@@ -58,7 +61,7 @@ class PayPalCardForm extends Component {
                 content_ids:
                   VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
                 value: this.props.contractPrice,
-                currency: "USD"
+                currency: "USD",
               });
             }
           }
@@ -69,7 +72,7 @@ class PayPalCardForm extends Component {
             contractReference: this.props.contractReference,
             discountCouponId: this.props.discountCouponId,
             contractPrice: this.props.contractPrice,
-            celebrityId: this.props.celebrityId
+            celebrityId: this.props.celebrityId,
           };
           GTM.tagManagerDataLayer("CONTRACT_PAYED", analyticsData);
           history._pushRoute(
@@ -86,7 +89,7 @@ class PayPalCardForm extends Component {
       .catch((error) => {
         this.setState({
           ...this.state,
-          errorMessage: error
+          errorMessage: error,
         });
       });
   };
@@ -96,14 +99,14 @@ class PayPalCardForm extends Component {
       ...this.state,
       errorMessage: this.props.intl.formatMessage(
         errorMessages.errorMessageOnPayPalButtonCancel
-      )
+      ),
     });
   };
 
   onPayPalButtonError = (error) => {
     return this.setState({
       ...this.state,
-      errorMessage: String(error)
+      errorMessage: String(error),
     });
   };
 
@@ -149,7 +152,7 @@ class PayPalCardForm extends Component {
                     >
                       {chunks}
                     </a>
-                  )
+                  ),
                 }}
               />
             </small>
@@ -161,27 +164,36 @@ class PayPalCardForm extends Component {
 
   render() {
     return (
-      <div className={""}>
-        <ul
-          className="mb-4 px-4"
-          style={{ fontSize: "15px", listStyle: "none" }}
-        >
-          <li className="mb-2" style={{ color: "#505050" }}>
-            <FormattedMessage
-              defaultMessage=" Haz click sobre el siguiente botón para hacer el pago usando tu
+      <PayPalScriptProvider
+        options={{
+          intent: "authorize",
+          "client-id": CLIENT_ID,
+          currency: "USD",
+          "disable-funding": "credit,card",
+        }}
+      >
+        <div className={""}>
+          <ul
+            className="mb-4 px-4"
+            style={{ fontSize: "15px", listStyle: "none" }}
+          >
+            <li className="mb-2" style={{ color: "#505050" }}>
+              <FormattedMessage
+                defaultMessage=" Haz click sobre el siguiente botón para hacer el pago usando tu
             cuenta de PayPal."
-            />
-          </li>
-          <li style={{ color: "#505050" }}>
-            <FormattedMessage
-              defaultMessage="Serás redirigido a la pagina oficial de PayPal para continuar con el
+              />
+            </li>
+            <li style={{ color: "#505050" }}>
+              <FormattedMessage
+                defaultMessage="Serás redirigido a la pagina oficial de PayPal para continuar con el
             pago."
-            />
-          </li>
-        </ul>
-        {this.renderError()}
-        {this.renderButton()}
-      </div>
+              />
+            </li>
+          </ul>
+          {this.renderError()}
+          {this.renderButton()}
+        </div>
+      </PayPalScriptProvider>
     );
   }
 }
@@ -189,7 +201,7 @@ class PayPalCardForm extends Component {
 // defaultProps
 PayPalCardForm.defaultProps = {
   contractPrice: null,
-  contractReference: ""
+  contractReference: "",
 };
 
 const _PaypalCardForm = injectIntl(PayPalCardForm);

@@ -1,0 +1,38 @@
+.UserNotificationWrapper {
+  padding: 1.25rem 1.0625rem 2.5rem 1.75rem;
+}
+
+.ButtonCTA {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  color: #fb177d;
+  min-width: 110px;
+}
+
+.NotificationDate {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #838383;
+  margin-bottom: 26px;
+}
+
+.NotificationData {
+  display: flex;
+}
+
+.NotificationDescription {
+  display: flex;
+  align-items: center;
+
+  @media screen and (min-width: 425px) {
+    span {
+      margin-right: 1rem;
+    }
+  }
+}

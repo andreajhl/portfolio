@@ -1,0 +1,1 @@
+export { fetchCommentHiring } from "./actions";

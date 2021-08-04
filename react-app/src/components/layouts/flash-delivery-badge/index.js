@@ -6,7 +6,7 @@ const FlashDeliveryBadgeLayout = ({
   className,
   color,
   showTitle,
-  showTime
+  showTime,
 }) => {
   return (
     <span
@@ -31,14 +31,14 @@ FlashDeliveryBadgeLayout.defaultProps = {
   className: "",
   color: "white",
   showTime: false,
-  showTitle: false
+  showTitle: false,
 };
 
 FlashDeliveryBadgeLayout.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string,
   showTime: PropTypes.bool,
-  showTitle: PropTypes.bool
+  showTitle: PropTypes.bool,
 };
 
 export { FlashDeliveryBadgeLayout };

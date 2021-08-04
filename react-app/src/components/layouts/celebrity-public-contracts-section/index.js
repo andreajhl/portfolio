@@ -23,7 +23,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
     super(props);
 
     this.state = {
-      params: {}
+      params: {},
     };
 
     this.onPaginationChange = this.onPaginationChange.bind(this);
@@ -48,7 +48,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
     }
     this.setState(
       {
-        params: params
+        params: params,
       },
       () => this.fetchPublicContracts()
     );
@@ -133,7 +133,7 @@ class CelebrityPublicContractsSectionLayout extends Component {
     widget: this.constructor.name,
     path: getWindow().location.pathname,
     celebrityId: this.props.celebrityId,
-    username: this.props.username
+    username: this.props.username,
   };
 
   render() {
@@ -178,7 +178,7 @@ CelebrityPublicContractsSectionLayout.propTypes = {};
 CelebrityPublicContractsSectionLayout.defaultProps = {
   celebrity: {},
   publicContracts: [],
-  paginationData: {}
+  paginationData: {},
 };
 
 // mapStateToProps
@@ -187,12 +187,12 @@ const mapStateToProps = (state) => ({
   isLoading: state.celebrities.fetchPublicContractsReducer.loading,
   publicContracts: state.celebrities.fetchPublicContractsReducer.data.results,
   paginationData:
-    state.celebrities.fetchPublicContractsReducer.data.informationPage
+    state.celebrities.fetchPublicContractsReducer.data.informationPage,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  listPublicContracts: celebrityOperations.listPublicContracts
+  listPublicContracts: celebrityOperations.listPublicContracts,
 };
 
 // Export Class

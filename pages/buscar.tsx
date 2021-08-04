@@ -1,9 +1,17 @@
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
+import isMobile from "lib/utils/isMobile";
 import { GetServerSideProps } from "next";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { CelebritiesResultsPage } from "react-app/src/components/pages/celebrities-results";
+import {
+  resetSearchFilters,
+  updateSearchFilters,
+} from "react-app/src/state/ducks/search-filters/actions";
 import { wrapper } from "react-app/src/state/store";
-import debug from "react-app/src/utils/debug";
-import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAObject";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { connect } from "react-redux";
 
 const allowedParams = [
   "search",
@@ -11,7 +19,7 @@ const allowedParams = [
   "offset",
   "country_id",
   "category_id",
-  "orderBy"
+  "orderBy",
 ];
 
 const listParamsInitialKeys = ["offset", "limit"];
@@ -24,37 +32,73 @@ const hasSearched = (listParams) => {
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  async ({ query, store }) => {
-    try {
-      const listParams = pickPropertiesFromAObject(query, allowedParams);
-      if (Object.keys(listParams).length === 0 || !hasSearched(listParams)) {
-        const previousPath = store.getState()?.celebrities?.previousPathReducer
-          ?.pathname;
-        return {
-          redirect: {
-            destination: previousPath,
-            permanent: false
-          }
-        };
-      }
-    } catch {
-      debug("ERROR getServerSideProps");
-      return {
-        props: {}
-      };
-    }
+  async ({ query, store, req }) => {
+    // Para re-direccionar cuando no haya search. Comentado para versión nueva.
+    // const listParams = pickPropertiesFromAObject(query, allowedParams);
 
+    // const listParams = pickPropertiesFromAObject(query, allowedParams);
+    // if (Object.keys(listParams).length === 0 || !hasSearched(listParams)) {
+    //   const previousPath = store.getState()?.celebrities?.previousPathReducer
+    //     ?.pathname;
+    //   return {
+    //     redirect: {
+    //       destination: previousPath,
+    //       permanent: false,
+    //     },
+    //   };
+    // }
     // await list(listParams)(store.dispatch, store.getState);
+
+    return {
+      props: {
+        isMobile: isMobile(req.headers["user-agent"]),
+        searchParams: query,
+      },
+    };
   }
 );
 
-const CelebritiesSearchResults = () => {
+const CelebritiesResultsPage = dynamic(() =>
+  import("react-app/src/components/pages/celebrities-results").then(
+    (mod) => mod.CelebritiesResultsPage
+  )
+);
+
+const DesktopSearchPage = dynamic(() =>
+  import("desktop-app/components/pages/search").then((mod) => mod.SearchPage)
+);
+
+const CelebritiesSearchResults = ({
+  isMobile,
+  searchParams,
+  updateSearchFilters,
+  resetSearchFilters,
+}) => {
+  useDesktopClass(!isMobile);
+
+  useEffect(() => {
+    if (searchParams) {
+      analytics.track("SEARCH_PARAMS_ON_LOAD", {
+        searchParams,
+        widget: "CelebritiesSearchResults",
+      });
+      updateSearchFilters(searchParams, false);
+    }
+    return () => {
+      resetSearchFilters(false);
+    };
+  }, []);
+
   return (
     <>
       <CustomHead />
-      <CelebritiesResultsPage />
+      <Maybe it={isMobile} orElse={<DesktopSearchPage />}>
+        <CelebritiesResultsPage />
+      </Maybe>
     </>
   );
 };
 
-export default CelebritiesSearchResults;
+export default connect(null, { updateSearchFilters, resetSearchFilters })(
+  CelebritiesSearchResults
+);

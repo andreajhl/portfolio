@@ -13,5 +13,5 @@ const Favorites = () => {
 };
 
 export default withAuthenticationRequired(Favorites, {
-  onRedirecting: () => <LoadingPage></LoadingPage>
+  onRedirecting: () => <LoadingPage></LoadingPage>,
 });

@@ -8,7 +8,7 @@ function useVideoPlayer(
   {
     onPlayVideo = () => {},
     onPauseVideo = () => {},
-    onInterruptPlay = () => {}
+    onInterruptPlay = () => {},
   } = {}
 ) {
   const [currentVideoKey, setPlayingVideo] = useCurrentVideoPlaying();
@@ -54,7 +54,7 @@ function useVideoPlayer(
     videoIsPlaying,
     playVideo,
     pauseVideo,
-    togglePlay
+    togglePlay,
   };
 }
 

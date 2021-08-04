@@ -1,0 +1,14 @@
+.CelebritiesFormCTA {
+  p {
+    font-size: 14px;
+    color: white;
+  }
+}
+.SubmitButton {
+  width: 170px;
+
+  &:not(:hover) {
+    border: 2px solid white !important;
+    color: white !important;
+  }
+}

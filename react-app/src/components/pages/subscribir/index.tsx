@@ -13,16 +13,16 @@ import {
   PlanInfoDescription,
   PlanInfoPrice,
   SectionWrapper,
-  LastsPostsTitle
+  LastsPostsTitle,
 } from "./styles";
 import {
   SubscriptionPostsHeader,
-  SubscriptionPostsSection
+  SubscriptionPostsSection,
 } from "../../layouts/subscription-posts";
 import {
   SubscriptionPostCard,
   SubscriptionPostContent,
-  SubscriptionPostHiddenContent
+  SubscriptionPostHiddenContent,
 } from "../../common/cards/subscription-post-card";
 import { SubscriptionPostType } from "react-app/src/types/subscriptionPostType";
 import { fetchUserSubscriptionsList } from "react-app/src/state/ducks/subscriptions/actions";
@@ -45,13 +45,13 @@ const getOnlyPreviewPosts = (results: any[]) =>
   results
     .map(({ urls, ...posts }) => ({
       ...posts,
-      urls: urls.filter(isTypeImage).slice(0, 1)
+      urls: urls.filter(isTypeImage).slice(0, 1),
     }))
     .filter(({ urls, description }) => urls.length > 0 || description);
 
 const mapStateToProps = ({
   celebrities: { getCelebrityReducer, fetchCelebritySubscriptionPlansReducer },
-  subscriptions: { fetchUserSubscriptionsListReducer }
+  subscriptions: { fetchUserSubscriptionsListReducer },
 }) => ({
   subscriptionList: fetchUserSubscriptionsListReducer.data,
   isSubscribed: isAlreadySubscribe(
@@ -63,12 +63,12 @@ const mapStateToProps = ({
     fetchUserSubscriptionsListReducer.loading ||
     !fetchUserSubscriptionsListReducer.completed,
   celebrity: getCelebrityReducer.data,
-  celebritySubscriptionPlans: fetchCelebritySubscriptionPlansReducer.data
+  celebritySubscriptionPlans: fetchCelebritySubscriptionPlansReducer.data,
 });
 
 const mapDispatchToProps = {
   fetchUserSubscriptionsList,
-  fetchCelebritySubscriptionPlans
+  fetchCelebritySubscriptionPlans,
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -83,7 +83,7 @@ const SubscribePage = ({
   subscriptionList,
   celebritySubscriptionPlans,
   fetchUserSubscriptionsList,
-  fetchCelebritySubscriptionPlans
+  fetchCelebritySubscriptionPlans,
 }: SubscribePageProps) => {
   const router = useRouter();
   const { avatar, fullName, username, availableForSubscriptions } = celebrity;

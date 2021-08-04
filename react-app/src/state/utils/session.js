@@ -5,12 +5,19 @@ import jwt_decode from "jwt-decode";
 import { Mixpanel } from "./mixPanel";
 import isBrowser from "../../../src/utils/isBrowser";
 import Cookies from "js-cookie";
+import getWindow from "react-app/src/utils/getWindow";
+import { ROOT_PATH } from "constants/paths";
+import { FINAL_REDIRECT } from "constants/keys";
 
 export class Session {
   constructor() {
     this.sessionName = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME;
     this.visitKey = "_visit_";
     this.session = this.getSession();
+  }
+
+  static setRedirectPathOnLogin(path = ROOT_PATH) {
+    getWindow().localStorage.setItem(FINAL_REDIRECT, path);
   }
 
   initSession = () => {
@@ -20,7 +27,7 @@ export class Session {
       USER_ID: decoded.id,
       $email: decoded.email,
       // status: decoded.status,
-      exp: decoded.exp
+      exp: decoded.exp,
     });
     const authRedirect = localStorage.getItem("authRedirect");
     const finalRedirect = localStorage.getItem("finalRedirect");

@@ -1,0 +1,18 @@
+const MODEL = "search-filters/";
+
+export type SearchFiltersType = {
+  pageSize?: number;
+  currentPage?: number;
+  orderBy?: string;
+  country_id?: string;
+  category_id?: string;
+  min_price?: number;
+  max_price?: number;
+  max_delivery_time?: number | "flash" | "";
+  hashtags?: string;
+  search?: string;
+};
+
+export const UPDATE_FILTERS = MODEL + "UPDATE_FILTERS";
+
+export const RESET_FILTERS = MODEL + "RESET_FILTERS";

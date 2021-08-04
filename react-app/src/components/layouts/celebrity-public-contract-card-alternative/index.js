@@ -10,13 +10,13 @@ function CelebrityPublicContractCardAlternativeLayout({
   publicContract,
   celebrityFullName,
   celebrityAvatar,
-  videoKey
+  videoKey,
 }) {
   const analyticsData = {
     widget: "CelebrityPublicContractCardAlternativeLayout",
     path: getWindow().location.pathname,
     ...publicContract,
-    videoKey
+    videoKey,
   };
 
   const registerCelebrityUsernameClick = () =>
@@ -31,7 +31,7 @@ function CelebrityPublicContractCardAlternativeLayout({
     },
     onPauseVideo() {
       GTM.tagManagerDataLayer("PAUSE_VIDEO_CARD", analyticsData);
-    }
+    },
   });
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
 
@@ -92,13 +92,13 @@ function CelebrityPublicContractCardAlternativeLayout({
 }
 
 CelebrityPublicContractCardAlternativeLayout.defaultProps = {
-  publicContract: {}
+  publicContract: {},
 };
 
 CelebrityPublicContractCardAlternativeLayout.propTypes = {
   celebrityFullName: PropTypes.string,
   celebrityAvatar: PropTypes.string,
-  videoKey: PropTypes.string.isRequired
+  videoKey: PropTypes.string.isRequired,
 };
 
 export { CelebrityPublicContractCardAlternativeLayout };

@@ -17,7 +17,7 @@ export const CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE = [
   "Otros",
   "Periodistas",
   "Presentadores",
-  "Tiktok"
+  "Tiktok",
 ];
 
 export const labelMessagesForCategoriesFilter = defineMessages({
@@ -37,7 +37,7 @@ export const labelMessagesForCategoriesFilter = defineMessages({
   Otros: { defaultMessage: "Otros" },
   Periodistas: { defaultMessage: "Periodistas" },
   Presentadores: { defaultMessage: "Presentadores" },
-  Tiktok: { defaultMessage: "Tiktok" }
+  Tiktok: { defaultMessage: "Tiktok" },
 });
 
 export const COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE = [
@@ -63,7 +63,7 @@ export const COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE = [
   "UKR",
   "USA",
   "URY",
-  "VEN"
+  "VEN",
 ];
 export const labelMessagesForCountryCodeFilter = defineMessages({
   ARG: { defaultMessage: "Argentina" },
@@ -88,7 +88,7 @@ export const labelMessagesForCountryCodeFilter = defineMessages({
   UKR: { defaultMessage: "Ukraine" },
   USA: { defaultMessage: "United States of America (the)" },
   URY: { defaultMessage: "Uruguay" },
-  VEN: { defaultMessage: "Venezuela (Bolivarian Republic of)" }
+  VEN: { defaultMessage: "Venezuela (Bolivarian Republic of)" },
 });
 
 export const returnPaymentStatusLabel = (status) => {
@@ -96,57 +96,57 @@ export const returnPaymentStatusLabel = (status) => {
     case 10:
       return [
         <FormattedMessage defaultMessage="Pago creado" />,
-        "far fa-check-circle"
+        "far fa-check-circle",
       ];
     case 20:
       return [
         <FormattedMessage defaultMessage="Pago cancelado" />,
-        "far fa-window-close"
+        "far fa-window-close",
       ];
     case 30:
       return [
         <FormattedMessage defaultMessage="Pago rechazado" />,
-        "fas fa-ban"
+        "fas fa-ban",
       ];
     case 40:
       return [
         <FormattedMessage defaultMessage="Pago pendiente" />,
-        "far fa-clock"
+        "far fa-clock",
       ];
     case 50:
       return [
         <FormattedMessage defaultMessage="Reembolso fallido" />,
-        "fas fa-ban"
+        "fas fa-ban",
       ];
     case 55:
       return [
         <FormattedMessage defaultMessage="Falló autorización de cobro" />,
-        "fas fa-ban"
+        "fas fa-ban",
       ];
     case 60:
       return [
         <FormattedMessage defaultMessage="Cobro fallido" />,
-        "fas fa-ban"
+        "fas fa-ban",
       ];
     case 70:
       return [
         <FormattedMessage defaultMessage="Reembolso exitoso" />,
-        "far fa-check-circle"
+        "far fa-check-circle",
       ];
     case 80:
       return [
         <FormattedMessage defaultMessage="Pago expirado" />,
-        "far fa-clock"
+        "far fa-clock",
       ];
     case 90:
       return [
         <FormattedMessage defaultMessage="Pago autorizado" />,
-        "far fa-check-circle text-success"
+        "far fa-check-circle text-success",
       ];
     case 100:
       return [
         <FormattedMessage defaultMessage="Pago completado" />,
-        "far fa-check-circle text-success"
+        "far fa-check-circle text-success",
       ];
     default:
       return ["", ""];
@@ -158,7 +158,7 @@ export const AVAILABLE_PAYMENTS_METHODS = {
   DEBIT_CARD: <FormattedMessage defaultMessage="Tarjeta de Débito" />,
   BANK_TRANSFER: <FormattedMessage defaultMessage="Transferencia Bancaria" />,
   TICKET: <FormattedMessage defaultMessage="Efectivo" />,
-  PAYPAL: <FormattedMessage defaultMessage="Paypal" />
+  PAYPAL: <FormattedMessage defaultMessage="Paypal" />,
 };
 export const AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES = [
   "MXN",
@@ -167,7 +167,7 @@ export const AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES = [
   "USD",
   "BOB",
   "CRC",
-  "GTQ"
+  "GTQ",
 ];
 
 export const DOCUMENT_NAME_FOR_COUNTRIES = defineMessages({
@@ -177,23 +177,27 @@ export const DOCUMENT_NAME_FOR_COUNTRIES = defineMessages({
   USD: { defaultMessage: "Social Security Number / SSN" },
   BOB: { defaultMessage: "CI" },
   CRC: { defaultMessage: "CI" },
-  GTQ: { defaultMessage: "CUI" }
+  GTQ: { defaultMessage: "CUI" },
 });
 
 export const LOGIN_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
   "Invalid email",
   "Password field is required",
-  "invalid credentials"
+  "invalid credentials",
 ];
 
 export const TRANSLATION_LOGIN_ERROR_MESSAGES = defineMessages({
   "Invalid email": { defaultMessage: "Email invalido." },
   "Password field is required": {
-    defaultMessage: "El campo de contraseña es obligatorio"
+    defaultMessage: "El campo de contraseña es obligatorio",
   },
   "invalid credentials": {
-    defaultMessage: "credenciales invalidas"
-  }
+    defaultMessage: "credenciales invalidas",
+  },
+  "this email isn't registered in famosos.com": {
+    defaultMessage: "Este correo electrónico no esta registrado en famosos.com",
+  },
+  unexpectedError: { defaultMessage: "Ha ocurrido un error inesperado" },
 });
 
 export const SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
@@ -201,37 +205,46 @@ export const SIGN_UP_ERROR_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
   "Birthdate field is required",
   "Invalid email",
   "Password length must contains least 6 characters",
-  "Passwords do not match"
+  "Passwords do not match",
+  "this email is already registered in famosos.com",
 ];
 
 export const TRANSLATION_SIGN_UP_ERROR_MESSAGES = defineMessages({
   "Name field is required": {
-    defaultMessage: "El campo de nombre es obligatorio"
+    defaultMessage: "El campo de nombre es obligatorio",
   },
   "Birthdate field is required": {
-    defaultMessage: "El campo de fecha de nacimiento es obligatorio"
+    defaultMessage: "El campo de fecha de nacimiento es obligatorio",
   },
   "Invalid email": {
-    defaultMessage: "Correo invalido"
+    defaultMessage: "Correo invalido",
   },
   "Password length must contains least 6 characters": {
     defaultMessage:
-      "La longitud de la contraseña debe contener al menos 6 caracteres"
+      "La longitud de la contraseña debe ser al menos 6 caracteres",
   },
   "Passwords do not match": {
-    defaultMessage: "Las contraseñas no coinciden"
-  }
+    defaultMessage: "Las contraseñas no coinciden",
+  },
+  "this email is already registered in famosos.com": {
+    defaultMessage: "Este correo electrónico ya se encuentra registrado",
+  },
+  unexpectedError: { defaultMessage: "Ha ocurrido un error inesperado" },
+  under13YearsOld: {
+    defaultMessage: "Debes poseer al menos 13 años de edad para registrarte",
+  },
 });
+
 export const RESET_PASSSWORD_MESSAGES_WITH_TRANSLATIONS_AVAILABLE = [
   "this email isn't registered in famosos.com",
-  "invalid credentials"
+  "invalid credentials",
 ];
 
 export const TRANSLATION_RESET_PASSSWORD_MESSAGES = defineMessages({
   "this email isn't registered in famosos.com": {
-    defaultMessage: "Este correo electrónico no esta registrado en famosos.com"
+    defaultMessage: "Este correo electrónico no esta registrado en famosos.com",
   },
   "invalid credentials": {
-    defaultMessage: "Credenciales invalidas."
-  }
+    defaultMessage: "Credenciales invalidas.",
+  },
 });

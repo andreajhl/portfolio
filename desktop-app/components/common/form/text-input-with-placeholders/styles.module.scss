@@ -1,0 +1,30 @@
+.TextInputWithPlaceholders {
+  border-radius: 4px;
+  background: var(--gray-1);
+  border: 1px solid #dedede;
+  padding: 18px 22px;
+  white-space: pre-wrap;
+
+  &:empty::after {
+    cursor: text;
+    content: attr(aria-placeholder);
+    color: var(--gray-3);
+  }
+
+  &:focus {
+    .Placeholder {
+      opacity: 0.75;
+      cursor: text;
+    }
+  }
+}
+
+.Placeholder {
+  cursor: pointer;
+  color: var(--gray-3);
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

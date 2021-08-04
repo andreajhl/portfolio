@@ -1,0 +1,52 @@
+.EditableInputField {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.Label {
+  font-weight: bold;
+  display: block;
+}
+
+.Input {
+  width: 100%;
+}
+
+.Input:disabled {
+  color: var(--gray-4);
+  line-height: 1;
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &::placeholder {
+    color: var(--gray-3);
+  }
+}
+
+.EditingButtonWrapperRight {
+  position: absolute;
+  right: 0;
+  margin-left: 16px;
+  margin-top: -0.5em;
+}
+
+.EditingButtonWrapperBottom {
+  flex-basis: 100%;
+  margin-top: 6px;
+}
+.EditingToggleButtonSaveButton {
+  font-size: 14px;
+  color: var(--secondary);
+  font-weight: bold;
+  transition: color 0.2s;
+  padding: 0;
+
+  &:hover {
+    color: var(--primary) !important;
+  }
+}

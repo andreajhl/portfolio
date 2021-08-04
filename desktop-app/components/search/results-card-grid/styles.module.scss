@@ -1,0 +1,13 @@
+.ResultsCardGrid {
+  display: grid;
+  gap: 26px 24px;
+  grid-template-columns: repeat(4, 1fr);
+
+  > * {
+    min-width: 0; // Para asegurar que los cards tengan el ancho correcto de la grid.
+  }
+}
+
+.ResultsCardGridExpanded {
+  grid-template-columns: repeat(5, 1fr);
+}

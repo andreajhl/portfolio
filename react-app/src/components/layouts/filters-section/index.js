@@ -16,41 +16,42 @@ import {
   CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE,
   COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE,
   labelMessagesForCategoriesFilter,
-  labelMessagesForCountryCodeFilter
+  labelMessagesForCountryCodeFilter,
 } from "react-app/src/constants/messages";
+import removeParenthesis from "lib/utils/removeParenthesis";
 
 // LISTA DE ID CON TRADUCCIONES DISPONIBLE. CUALQUIER NUEVO ID QUE SE REGISTRE
 // EN EL BACKEND DEBE DE SER AGREGADO EN ESTA LISTA Y ADEMAS SU RESPECTIVA TRADUCCIÓN
 
 const messageForLabelButtonCategoryFilter = defineMessage({
   description: "Label button for search CategoryFilter",
-  defaultMessage: "Categoria"
+  defaultMessage: "Categoria",
 });
 const messageForModalTitleCategoryFilter = defineMessage({
   description: "ModalTitle for search CategoryFilter",
-  defaultMessage: "Filtrar por categoría"
+  defaultMessage: "Filtrar por categoría",
 });
 const messageForSearchPlaceholderCategoryFilter = defineMessage({
   description: "Modal Title for search CategoryFilter",
-  defaultMessage: "Buscar categoría"
+  defaultMessage: "Buscar categoría",
 });
 const messageForLabelButtonCategoryCountry = defineMessage({
   description: "buttonLabel search by country",
-  defaultMessage: "País"
+  defaultMessage: "País",
 });
 const messageForModalTitleCategoryCountry = defineMessage({
   description: "ModalTitle for search CategoryFilter",
-  defaultMessage: "Filtrar por país"
+  defaultMessage: "Filtrar por país",
 });
 const messageForSearchPlaceholderCategoryCountry = defineMessage({
   description: "Modal Title for search CategoryFilter",
-  defaultMessage: "Buscar país"
+  defaultMessage: "Buscar país",
 });
 const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
   return {
     countries: countries.countriesReducer.data.results,
     celebrityCategories:
-      celebrityCategories.fetchCelebrityCategoriesReducer.data.results
+      celebrityCategories.fetchCelebrityCategoriesReducer.data.results,
   };
 };
 
@@ -58,16 +59,14 @@ const mapDispatchToProps = {
   updateQueryParams,
   listCountries: countriesOperations.list,
   listCelebrityCategories: celebrityCategoriesOperations.list,
-  listRestCountries: restCountriesOperations.list
+  listRestCountries: restCountriesOperations.list,
 };
-
-const removeParenthesis = (string) => string.replace(/\([^)]*\)/, "");
 
 const initialState = {
   params: {
     offset: updateQueryParamsInitialState.offset,
-    limit: updateQueryParamsInitialState.limit
-  }
+    limit: updateQueryParamsInitialState.limit,
+  },
 };
 
 const FiltersSectionLayout = ({
@@ -78,7 +77,7 @@ const FiltersSectionLayout = ({
   listCountries,
   listCelebrityCategories,
   location,
-  router
+  router,
 }) => {
   const intl = useIntl();
 
@@ -88,7 +87,7 @@ const FiltersSectionLayout = ({
   const setFilterParam = (paramName) => (paramValues) =>
     setParams((params) => ({
       ...params,
-      [paramName]: paramValues.join(",")
+      [paramName]: paramValues.join(","),
     }));
 
   const setOrderByParam = (orderBy) =>
@@ -100,7 +99,7 @@ const FiltersSectionLayout = ({
       {
         ...queryParams,
         ...initialState.params,
-        ...params
+        ...params,
       },
       router
     );
@@ -118,11 +117,11 @@ const FiltersSectionLayout = ({
     GTM.tagManagerDataLayer("CLICK_CLEAN_FILTERS_BUTTON", {
       widget: "FiltersSectionLayout",
       path: window.location.pathname,
-      queryParams
+      queryParams,
     });
     updateQueryParams(
       {
-        ...updateQueryParamsInitialState
+        ...updateQueryParamsInitialState,
       },
       router
     );
@@ -185,7 +184,7 @@ const FiltersSectionLayout = ({
                       )
                     )
                   : removeParenthesis(country.name),
-                value: country.id
+                value: country.id,
               }))}
             />
           </li>
@@ -210,7 +209,7 @@ const FiltersSectionLayout = ({
                       labelMessagesForCategoriesFilter[category.title]
                     )
                   : category.title,
-                value: category.id
+                value: category.id,
               }))}
             />
           </li>
@@ -227,7 +226,7 @@ const FiltersSectionLayout = ({
 };
 
 FiltersSectionLayout.defaultProps = {
-  queryParams: []
+  queryParams: [],
 };
 
 const _FiltersSectionLayout = connect(

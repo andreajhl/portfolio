@@ -1,0 +1,18 @@
+.CollapsibleErrorMessage {
+  overflow: auto;
+}
+
+.ErrorMessage.ErrorMessage {
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+
+  span {
+    color: var(--danger);
+    font-weight: bold;
+    margin-left: 0.4em;
+    font-size: 1em;
+    line-height: 1.2;
+  }
+}

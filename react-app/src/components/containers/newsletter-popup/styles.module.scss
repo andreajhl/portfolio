@@ -13,7 +13,7 @@
   }
 }
 
-.CloseButton {
+.NewsletterPopup .CloseButton {
   color: black;
   width: 2.375rem;
   height: 2.375rem;
@@ -50,7 +50,6 @@
 }
 
 .NewsletterPopupContentSkeletonA {
-
   @media only screen and (max-height: 41.625rem) and (min-width: 43.75em) {
     height: 90vh;
   }

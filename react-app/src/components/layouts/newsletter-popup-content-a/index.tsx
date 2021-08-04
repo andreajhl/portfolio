@@ -14,7 +14,7 @@ type NewsletterPopupContentAProps = {
 
 function NewsletterPopupContentA({
   className,
-  onCompleted
+  onCompleted,
 }: NewsletterPopupContentAProps) {
   return (
     <section className={classes(styles.NewsletterPopupContentA, className)}>

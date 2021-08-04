@@ -1,0 +1,43 @@
+.DLocalSelectPaymentMethodWraper {
+  padding: 1.5rem;
+  display: flex;
+  flex-flow: column;
+}
+.Label {
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: 0.5em;
+  color: #fb177d;
+}
+
+.RadioControl {
+  display: block;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  transform: translateY(-0.05em);
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.15);
+}
+.RadioInput {
+  display: flex;
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    // ...existing styles
+    &:checked + .RadioControl {
+      background: radial-gradient(#fb177d 25%, rgba(255, 0, 0, 0) 40%);
+    }
+  }
+}
+
+.RadioLabel {
+  line-height: 1;
+}
+
+.WarningMessage {
+  margin-bottom: 0.6rem;
+}

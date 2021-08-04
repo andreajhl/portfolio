@@ -59,57 +59,57 @@ class ContractCreatedPage extends Component {
       case 10:
         return [
           <FormattedMessage defaultMessage="Pago creado" />,
-          "far fa-check-circle"
+          "far fa-check-circle",
         ];
       case 20:
         return [
           <FormattedMessage defaultMessage="Pago cancelado" />,
-          "far fa-window-close"
+          "far fa-window-close",
         ];
       case 30:
         return [
           <FormattedMessage defaultMessage="Pago rechazado" />,
-          "fas fa-ban"
+          "fas fa-ban",
         ];
       case 40:
         return [
           <FormattedMessage defaultMessage="Pago pendiente" />,
-          "far fa-clock"
+          "far fa-clock",
         ];
       case 50:
         return [
           <FormattedMessage defaultMessage="Reembolso fallido" />,
-          "fas fa-ban"
+          "fas fa-ban",
         ];
       case 55:
         return [
           <FormattedMessage defaultMessage="Falló autorización de cobro" />,
-          "fas fa-ban"
+          "fas fa-ban",
         ];
       case 60:
         return [
           <FormattedMessage defaultMessage="Cobro fallido" />,
-          "fas fa-ban"
+          "fas fa-ban",
         ];
       case 70:
         return [
           <FormattedMessage defaultMessage="Reembolso exitoso" />,
-          "far fa-check-circle"
+          "far fa-check-circle",
         ];
       case 80:
         return [
           <FormattedMessage defaultMessage="Pago expirado" />,
-          "far fa-clock"
+          "far fa-clock",
         ];
       case 90:
         return [
           <FormattedMessage defaultMessage="Pago autorizado" />,
-          "far fa-check-circle text-success"
+          "far fa-check-circle text-success",
         ];
       case 100:
         return [
           <FormattedMessage defaultMessage="Pago completado" />,
-          "far fa-check-circle text-success"
+          "far fa-check-circle text-success",
         ];
       default:
         return ["", ""];
@@ -171,7 +171,7 @@ class ContractCreatedPage extends Component {
                   <b>7 días</b> para grabar tu video a partir de hoy."
                     values={{
                       celebrityFullName: this.props.resumen.celebrity.fullName,
-                      b: (chunks) => <b>{chunks}</b>
+                      b: (chunks) => <b>{chunks}</b>,
                     }}
                   />
                 </li>
@@ -181,7 +181,7 @@ class ContractCreatedPage extends Component {
                   {celebrityFullName} grabe tu video."
                     values={{
                       celebrityFullName: this.props.resumen.celebrity.fullName,
-                      b: (chunks) => <b>{chunks}</b>
+                      b: (chunks) => <b>{chunks}</b>,
                     }}
                   />
                 </li>
@@ -193,7 +193,7 @@ class ContractCreatedPage extends Component {
                     values={{
                       b: (chunks) => (
                         <b>{this.props.resumen.contract.deliveryContact}</b>
-                      )
+                      ),
                     }}
                   />
                 </li>
@@ -271,20 +271,20 @@ ContractCreatedPage.defaultProps = {
   resumen: {
     contract: {},
     celebrity: {},
-    payments: []
-  }
+    payments: [],
+  },
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.getContractWithPaymentsReducer.loading,
   resumen: state.contracts.getContractWithPaymentsReducer.data,
-  contractCreated: state.contracts.saveClientContractReducer.data
+  contractCreated: state.contracts.saveClientContractReducer.data,
 });
 // mapStateToProps
 const mapDispatchToProps = {
   getContract: contractOperations.getContractWithPayments,
-  contractToPayClear: contractOperations.saveContractToPayClear
+  contractToPayClear: contractOperations.saveContractToPayClear,
 };
 
 // Export Class

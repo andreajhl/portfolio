@@ -8,7 +8,7 @@ import { useIntl } from "react-intl";
 import { celebrityCategories } from "react-app/src/state/ducks";
 import {
   CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE,
-  labelMessagesForCategoriesFilter
+  labelMessagesForCategoriesFilter,
 } from "react-app/src/constants/messages";
 
 export const CelebrityInfo = ({
@@ -21,7 +21,7 @@ export const CelebrityInfo = ({
   availableForFlashDeliveries,
   variant,
   discountPercentage,
-  status
+  status,
 }) => {
   const intl = useIntl();
 

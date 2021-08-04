@@ -23,7 +23,7 @@ const NetworkConnectionErrorLayout = ({ onTryAgain }) => {
               defaultMessage="  Por favor, comprueba tu conexión a <br></br> internet e intenta
             nuevamente."
               values={{
-                br: (chunk) => <br></br>
+                br: (chunk) => <br></br>,
               }}
             />
           </p>
@@ -37,11 +37,11 @@ const NetworkConnectionErrorLayout = ({ onTryAgain }) => {
 };
 
 NetworkConnectionErrorLayout.defaultProps = {
-  onTryAgain: () => window.location.reload()
+  onTryAgain: () => window.location.reload(),
 };
 
 NetworkConnectionErrorLayout.propTypes = {
-  onTryAgain: PropTypes.func
+  onTryAgain: PropTypes.func,
 };
 
 export { NetworkConnectionErrorLayout };

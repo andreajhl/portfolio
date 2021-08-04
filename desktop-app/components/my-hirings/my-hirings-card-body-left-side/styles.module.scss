@@ -1,0 +1,41 @@
+.MyHiringsCardBodyLeftSide {
+}
+
+.IsPublicChanger {
+  margin-top: 26px;
+}
+
+.IsPublicChangerIsCompleted {
+  margin-top: 14px;
+}
+
+.EditingCopy {
+  font-size: 10px;
+  margin-top: 24px;
+  margin-bottom: 0;
+  color: var(--gray-4);
+}
+
+.WatchVideoLink {
+  margin-top: auto;
+}
+
+.WatchVideoButton {
+  width: 100%;
+  font-weight: bold;
+
+  i {
+    vertical-align: middle;
+    color: inherit;
+    margin-left: 0.5em;
+  }
+}
+
+.CTAButton {
+  margin-top: 16px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
+  display: block;
+}

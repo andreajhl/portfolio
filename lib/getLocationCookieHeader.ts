@@ -7,6 +7,6 @@ export async function getLocationCookieHeader(req: IncomingMessage) {
   const userIpAddress = getUserIp(req);
   return {
     ...userLocationValue,
-    userIpAddressLocation: userIpAddress
+    userIpAddressLocation: userIpAddress,
   };
 }

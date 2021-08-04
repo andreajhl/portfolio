@@ -16,7 +16,7 @@ const mapStateToProps = ({ celebritySections }) => {
   return {
     loading,
     celebritiesSections: data.results,
-    totalResults: data.totalResults
+    totalResults: data.totalResults,
   };
 };
 
@@ -32,7 +32,7 @@ const CelebritiesSectionsLayout = ({
   totalResults,
   fetchCelebritySections,
   landingId,
-  isMobile
+  isMobile,
 }) => {
   const [offset, setOffset] = useState(offsetInitialValue);
 
@@ -43,7 +43,7 @@ const CelebritiesSectionsLayout = ({
         offset,
         limit: resultsLimit,
         landingId,
-        alpha2Code: getCookie("userLocation")
+        alpha2Code: getCookie("userLocation"),
       },
       getCookie(OFFSET_ROTATE_CELEBRITIES_SECTIONS)
     );
@@ -61,7 +61,7 @@ const CelebritiesSectionsLayout = ({
     GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTIONS_GO_UP_BUTTON", {
       widget: "CelebritiesSectionsLayout",
       path: window.location.pathname,
-      celebritiesSectionsLength: celebritiesSections.length
+      celebritiesSectionsLength: celebritiesSections.length,
     });
 
   return (

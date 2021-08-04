@@ -1,0 +1,13 @@
+.SimilarCelebritiesCardsReel {
+  a {
+    img[width="202"] {
+      transition: filter 0.15s ease;
+      filter: grayscale(100%);
+    }
+  }
+  a:hover {
+    img[width="202"] {
+      filter: grayscale(0%);
+    }
+  }
+}

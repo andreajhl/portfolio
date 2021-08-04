@@ -1,0 +1,30 @@
+.ContractInstructions {
+  display: flex;
+  flex-flow: column;
+  margin-top: 1.6875rem;
+}
+.ToggleEditSpan {
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  color: rgba(61, 135, 243, 1);
+  font-weight: 700;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--primary) !important;
+  }
+}
+.DeliveryInputsRow {
+  min-height: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.WhoReceiveInputContainer {
+  margin-right: 50px;
+}
+
+.InstructionsDetailsInputLabel {
+  font-weight: bold;
+}

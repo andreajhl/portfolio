@@ -10,7 +10,7 @@ type NotificationLangOptionsProps = {
 };
 
 function NotificationLangOptions({
-  currentUserLang
+  currentUserLang,
 }: NotificationLangOptionsProps) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);

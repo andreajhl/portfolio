@@ -6,6 +6,7 @@ import { SignUpBox } from "../../containers/sign-up-box";
 import { AuthPreHiringSteps } from "../../layouts/auth-pre-hiring-steps";
 import React from "react";
 import { AuthBenefitsBanner } from "../../layouts/auth-benefits-banner";
+import { CELEBRITY_NAME_QUERY_PARAM } from "constants/keys";
 
 const AuthFirstStep = <FormattedMessage defaultMessage="Registro" />;
 
@@ -21,7 +22,7 @@ function SignUpFromPage({ query }: SignUpFromPageProps) {
           <AuthPreHiringSteps
             firstStep={AuthFirstStep}
             className={styles.AuthSteps}
-            celebrityFullName={query.celebrity}
+            celebrityFullName={query[CELEBRITY_NAME_QUERY_PARAM]}
           />
           <h1 className={styles.Title}>
             <FormattedMessage defaultMessage="Crea una cuenta para poder conectar con los famosos" />

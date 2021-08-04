@@ -1,0 +1,56 @@
+import classes from "classnames";
+import { StatusType } from "lib/hooks/useStatus";
+import Collapse from "react-bootstrap/Collapse";
+import { FormattedMessage } from "react-intl";
+import styles from "./styles.module.scss";
+
+const statusData = {
+  idle: {
+    icon: null,
+    text: null,
+  },
+  loading: {
+    icon: <i className={classes("fa fa-circle-notch", styles.Spinner)} />,
+    text: <FormattedMessage defaultMessage="Guardando cambios..." />,
+  },
+  completed: {
+    icon: <i className={`far fa-check-circle ${styles.SavedIcon}`} />,
+    text: (
+      <FormattedMessage defaultMessage="Tus cambios se guardaron hace unos segundos." />
+    ),
+  },
+  rejected: {
+    icon: <i className={`fa fa-exclamation-circle ${styles.ErrorIcon}`} />,
+    text: (
+      <FormattedMessage defaultMessage="Ha ocurrido un error guardando tus cambios." />
+    ),
+  },
+};
+
+type SaveStatusProps = {
+  status?: StatusType;
+  className?: string;
+};
+
+function SaveStatus({ className = "", status }: SaveStatusProps) {
+  const { icon, text } = statusData[status] || statusData.idle;
+  return (
+    <Collapse in={status !== "idle"} unmountOnExit>
+      <div>
+        <div
+          className={classes(
+            styles.SaveStatusWrapper,
+            status === "idle" && styles.Idle,
+            status === "rejected" && styles.Rejected,
+            className
+          )}
+        >
+          {icon}
+          <span className={styles.SaveStatusText}>{text}</span>
+        </div>
+      </div>
+    </Collapse>
+  );
+}
+
+export { SaveStatus };

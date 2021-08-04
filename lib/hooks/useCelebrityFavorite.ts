@@ -1,0 +1,55 @@
+import { useAuth } from "lib/famosos-auth";
+import { SIGN_IN_WITH_SPECIFIC_FORM_PATH } from "constants/paths";
+import { useEffect, useState } from "react";
+import { history } from "react-app/src/routing/History";
+import { addOrRemoveLike } from "react-app/src/state/ducks/celebrity-likes/actions";
+import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
+import useUserCelebrityLikes from "./useUserCelebrityLikes";
+
+function useCelebrityFavorite(celebrityId: number) {
+  const [userCelebrityLikes, toggleLikeFromList] = useUserCelebrityLikes();
+  const { isAuthenticated } = useAuth();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const analyticsData = { celebrityId, widget: "useCelebrityFavorite" };
+
+  useEffect(() => {
+    if (!userCelebrityLikes) return;
+    setIsFavorite(
+      Boolean(
+        userCelebrityLikes.find(
+          (likeCelebrityId) => likeCelebrityId === celebrityId
+        )
+      )
+    );
+  }, [celebrityId, userCelebrityLikes]);
+
+  async function changeFavorite() {
+    const response = await addOrRemoveLike(celebrityId).catch(console.warn);
+    if (response.status !== "OK") return;
+    tagManagerDataLayer(
+      `CLICK_${!isFavorite ? "" : "UN"}LIKE_CELEBRITY`,
+      analyticsData
+    );
+    toggleLikeFromList(celebrityId);
+    setIsFavorite((isFavorite) => !isFavorite);
+  }
+
+  function redirectToLogin() {
+    tagManagerDataLayer(`CLICK_LIKE_CELEBRITY_UNAUTHENTICATED`, analyticsData);
+    localStorage.setItem("finalRedirect", window.location.pathname);
+    (history as any).push(
+      SIGN_IN_WITH_SPECIFIC_FORM_PATH.replace(":form", "email-form")
+    );
+  }
+
+  function toggleFavorite() {
+    if (isAuthenticated) {
+      return changeFavorite();
+    }
+    redirectToLogin();
+  }
+
+  return { isFavorite, toggleFavorite };
+}
+
+export default useCelebrityFavorite;

@@ -1,0 +1,44 @@
+.ApologyBanner {
+  border-radius: 10px 0px 0px 10px;
+  padding: 25px 38px 36px;
+}
+
+.ApologyBanner p {
+  font-size: 14px;
+  color: var(--gray-4);
+  margin-bottom: 32px;
+}
+
+.Title {
+  margin-bottom: 14px;
+}
+
+p.DynamicText {
+  margin-bottom: 24px;
+}
+
+.CTALink {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.CTAButton {
+  min-height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
+  display: block;
+}
+
+.CTAButton + .CTAButton {
+  margin-top: 18px;
+}
+
+.LearnMoreLink {
+  font-weight: bold;
+  display: inline-block;
+  color: var(--dark);
+  transition: color 0.15s;
+  text-decoration: underline;
+}

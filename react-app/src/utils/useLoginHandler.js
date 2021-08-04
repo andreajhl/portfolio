@@ -15,7 +15,7 @@ const useLoginHandler = (redirectUrl = AUTH_SUCCESS) => {
     if (isMobile | isSafari) {
       loginWithRedirect({
         redirectUri: window.location.origin + redirectUrl,
-        ui_locales: locale
+        ui_locales: locale,
       });
     } else {
       loginWithPopup({ ui_locales: locale });

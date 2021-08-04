@@ -1,0 +1,27 @@
+.NoResultsBanner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0 6px;
+}
+
+.NoResultsBannerIllustration {
+  width: 92px;
+  margin-right: 52px;
+  mix-blend-mode: luminosity;
+}
+
+.NoResultsBannerTitle {
+  margin-bottom: 0;
+  font-size: 22px !important;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.NoResultsBannerCopy {
+  margin-bottom: 0;
+  letter-spacing: 0.5px;
+  line-height: 30px;
+  font-size: 16px;
+  color: var(--gray-4);
+}

@@ -33,7 +33,7 @@ function HeroSectionLayout() {
                 defaultMessage="Completa el <br></br> proceso de pago."
                 description=""
                 values={{
-                  br: (chunks) => <br></br>
+                  br: (chunks) => <br></br>,
                 }}
               />
             </p>

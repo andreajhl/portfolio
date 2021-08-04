@@ -16,8 +16,8 @@ async function emailPasswordSignInHandler(
   await axios
     .get(`${endpoint}/${version}/famosos-com/convert-auth0-session`, {
       headers: {
-        authorization: "Bearer " + req.body["token"]
-      }
+        authorization: "Bearer " + req.body["token"],
+      },
     })
     .then((response) => {
       const status = response.data.status;
@@ -32,18 +32,18 @@ async function emailPasswordSignInHandler(
             {
               path: "/",
               sameSite: "lax",
-              maxAge: ONE_YEAR_IN_MILLISECONDS
+              maxAge: ONE_YEAR_IN_MILLISECONDS,
             }
           )
         );
         return res.json({
           status: "OK",
-          error: null
+          error: null,
         });
       } else {
         return res.json({
           status: "error",
-          error: response.data.error
+          error: response.data.error,
         });
       }
     })
@@ -56,12 +56,12 @@ async function emailPasswordSignInHandler(
       if (errorResponse.response) {
         res.json({
           status: "error",
-          error: errorResponse.response.data.error
+          error: errorResponse.response.data.error,
         });
       } else {
         res.json({
           status: "error",
-          error: "Unexpected Error"
+          error: "Unexpected Error",
         });
       }
       return;

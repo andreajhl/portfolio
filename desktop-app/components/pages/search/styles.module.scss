@@ -1,0 +1,69 @@
+.SearchPage {
+  position: relative;
+  height: 100vh;
+}
+
+.SearchPageSidebar {
+  padding-bottom: 43px;
+  border-radius: 0px 0px 10px 0px;
+  max-height: 100vh;
+  overflow-y: scroll;
+  scrollbar-width: auto;
+  scrollbar-color: var(--gray-2) var(--gray-1);
+  transition: box-shadow 0.5s;
+
+  &::-webkit-scrollbar {
+    display: unset;
+    width: 10px;
+    background: var(--gray-1);
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--gray-2);
+    border-radius: 10px;
+  }
+}
+
+.SearchPageSidebarIsOpen {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.SearchPageTopBar {
+  height: 53px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.SearchPageSidebarTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 75px;
+  padding-right: 25px;
+}
+
+.SearchPageMainContentTopBar {
+  margin-bottom: 25px;
+}
+
+.SearchPageNoResultsBanner {
+  margin-bottom: 30px;
+}
+
+.SearchPageSideBarWrapper.SearchPageSideBarWrapper {
+  overflow: unset;
+
+  @media only screen and (min-width: 90em) {
+    max-width: 80em;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+}
+
+.SideBarSticky {
+  align-self: flex-start;
+  position: sticky;
+  top: 0;
+}

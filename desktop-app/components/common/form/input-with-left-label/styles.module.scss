@@ -1,0 +1,25 @@
+.InputWithLeftLabel {
+  display: inline-block;
+  border: 1px solid transparent;
+
+  &:focus-within {
+    border-color: var(--gray-2);
+  }
+}
+
+.InputWithLeftLabelLabel {
+  margin-bottom: 0;
+}
+
+.InputWithLeftLabelInput {
+  background: none;
+  outline: none;
+
+  &:focus {
+    border: none !important;
+  }
+
+  &:disabled {
+    background: none;
+  }
+}

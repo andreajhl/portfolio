@@ -1,29 +1,39 @@
+import { IS_UNAUTHORIZED_QUERY_PARAM } from "constants/paths";
+import { HiringPreviewPage } from "desktop-app/components/pages/hiring-preview";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import { GetServerSideProps } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { HiringPreviewPage } from "react-app/src/components/pages/hiring-preview";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  params,
+  query,
+}) => {
   const contractReference = params?.contract_reference;
 
   if (typeof contractReference === "undefined") {
     return {
-      redirect: { destination: ROOT_PATH, permanent: false }
+      redirect: { destination: ROOT_PATH, permanent: false },
     };
   }
-
   return {
     props: {
-      contractReference
-    }
+      contractReference,
+      isUnauthorized: Boolean(query?.[IS_UNAUTHORIZED_QUERY_PARAM]),
+    },
   };
 };
 
-function HiringPreview({ contractReference }) {
+function HiringPreview({ contractReference, isUnauthorized }) {
+  useDesktopClass(true);
+
   return (
     <>
       <CustomHead />
-      <HiringPreviewPage contractReference={contractReference} />
+      <HiringPreviewPage
+        contractReference={contractReference}
+        isUnauthorized={isUnauthorized}
+      />
     </>
   );
 }

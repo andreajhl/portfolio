@@ -28,7 +28,7 @@ const ResumenStatusPayment = ({
   paymentDate,
   idFollow,
   idTransaction,
-  textColor
+  textColor,
 }: ResumenStatusPaymentsProps) => {
   console.log(status);
   return (

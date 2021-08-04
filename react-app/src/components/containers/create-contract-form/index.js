@@ -19,23 +19,23 @@ import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/tr
 const intlMessages = defineMessages({
   instructionsPlaceholderForOther: {
     defaultMessage:
-      "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
+      "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras.",
   },
   instructionsPlaceholderForMe: {
-    defaultMessage: "Mis instrucciones son"
+    defaultMessage: "Mis instrucciones son",
   },
   deliveryContactPlaceholder: {
-    defaultMessage: "correo@dominio.com"
+    defaultMessage: "correo@dominio.com",
   },
   deliveryContactCellphone: {
-    defaultMessage: "Buscar país"
+    defaultMessage: "Buscar país",
   },
   celebrityNameFallback: {
-    defaultMessage: "Famoso!"
+    defaultMessage: "Famoso!",
   },
   deliveryToFallback: {
-    defaultMessage: "[PARA]"
-  }
+    defaultMessage: "[PARA]",
+  },
 });
 
 class CreateContractForm extends Component {
@@ -54,9 +54,11 @@ class CreateContractForm extends Component {
         isPublic: true,
         occasion: "OTHER",
         deliveryContactCellphone: "",
-        lang: transformUserNavigatorLanguageToISO2Code(this.props.router.locale)
+        lang: transformUserNavigatorLanguageToISO2Code(
+          this.props.router.locale
+        ),
       },
-      deliveryContactCellphoneCountryCode: "co"
+      deliveryContactCellphoneCountryCode: "co",
     };
     this.handleIsPublic = this.handleIsPublic.bind(this);
     this.createContract = this.createContract.bind(this);
@@ -74,7 +76,7 @@ class CreateContractForm extends Component {
     ) {
       this.setState({
         ...this.state,
-        contractData: this.props.contractToPayData
+        contractData: this.props.contractToPayData,
       });
     } else {
       this.props.getToken();
@@ -85,7 +87,7 @@ class CreateContractForm extends Component {
     if (prevProps.contractToPayExist !== this.props.contractToPayExist) {
       this.setState({
         ...this.state,
-        contractData: this.props.contractToPayData
+        contractData: this.props.contractToPayData,
       });
     } else if (
       prevProps.sessionData?.userId !== this.props.sessionData?.userId
@@ -97,8 +99,8 @@ class CreateContractForm extends Component {
           deliveryTo:
             state.deliveryTo || this.props.sessionData?.fullName || "",
           deliveryContact:
-            state.deliveryContact || this.props.sessionData?.email || ""
-        }
+            state.deliveryContact || this.props.sessionData?.email || "",
+        },
       }));
     }
     // if (
@@ -121,7 +123,7 @@ class CreateContractForm extends Component {
   createContract() {
     this.setState({
       ...this.state,
-      showErrors: false
+      showErrors: false,
     });
     if (
       this.deliveryFromValidator(true) ||
@@ -132,7 +134,7 @@ class CreateContractForm extends Component {
     ) {
       this.setState({
         ...this.state,
-        showErrors: true
+        showErrors: true,
       });
     } else {
       if (
@@ -144,8 +146,8 @@ class CreateContractForm extends Component {
           {
             contractData: {
               ...contractData,
-              deliveryType: contractData.deliveryType || 1
-            }
+              deliveryType: contractData.deliveryType || 1,
+            },
           },
           () => {
             this.props.updateClientContract(this.state.contractData);
@@ -162,7 +164,7 @@ class CreateContractForm extends Component {
               content_ids:
                 VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
               value: this.props.contractPrice,
-              currency: "USD"
+              currency: "USD",
             });
           }
         }
@@ -170,8 +172,8 @@ class CreateContractForm extends Component {
           {
             contractData: {
               ...contractData,
-              deliveryType: contractData.deliveryType || 1
-            }
+              deliveryType: contractData.deliveryType || 1,
+            },
           },
           () => {
             this.props.saveClientContract(this.state.contractData);
@@ -186,9 +188,9 @@ class CreateContractForm extends Component {
       ...state,
       contractData: {
         ...state.contractData,
-        deliveryContactCellphone: cellphoneNumber
+        deliveryContactCellphone: cellphoneNumber,
       },
-      deliveryContactCellphoneCountryCode: countryCode
+      deliveryContactCellphoneCountryCode: countryCode,
     }));
   };
 
@@ -223,7 +225,7 @@ class CreateContractForm extends Component {
       updatedContractData[event.target.name] = event.target.value;
       this.setState({
         ...this.state,
-        contractData: updatedContractData
+        contractData: updatedContractData,
       });
     }
   };
@@ -256,7 +258,7 @@ class CreateContractForm extends Component {
     updatedContractData.contractType = parseInt(value);
     this.setState({
       ...this.state,
-      contractData: updatedContractData
+      contractData: updatedContractData,
     });
   };
 
@@ -265,7 +267,7 @@ class CreateContractForm extends Component {
     contractData.isPublic = !contractData.isPublic;
     this.setState({
       ...this.state,
-      contractData: contractData
+      contractData: contractData,
     });
   }
 
@@ -287,7 +289,7 @@ class CreateContractForm extends Component {
         <FormattedMessage
           defaultMessage="Este campo excede el limite de {deliveryFromMaxLength} caracteres"
           values={{
-            deliveryFromMaxLength: this.deliveryFromMaxLength
+            deliveryFromMaxLength: this.deliveryFromMaxLength,
           }}
         />
       );
@@ -310,7 +312,7 @@ class CreateContractForm extends Component {
         <FormattedMessage
           defaultMessage="Este campo excede el limite de {deliveryToMaxLength} caracteres"
           values={{
-            deliveryToMaxLength: this.deliveryToMaxLength
+            deliveryToMaxLength: this.deliveryToMaxLength,
           }}
         />
       );
@@ -331,8 +333,8 @@ class CreateContractForm extends Component {
       contractData: {
         ...state.contractData,
         occasion: occasionIdentifier,
-        instructions: this.getInstructions(occasionIdentifier)
-      }
+        instructions: this.getInstructions(occasionIdentifier),
+      },
     }));
   };
 
@@ -387,8 +389,8 @@ class CreateContractForm extends Component {
           ...state,
           contractData: {
             ...state.contractData,
-            [name]: value
-          }
+            [name]: value,
+          },
         }),
         () => this.changeOccasionOption(this.state.contractData.occasion)
       );
@@ -415,7 +417,7 @@ class CreateContractForm extends Component {
               <FormattedMessage
                 defaultMessage=" Video Personalizado de {celebrityFullName}"
                 values={{
-                  celebrityFullName: this.props.celebrityFullName
+                  celebrityFullName: this.props.celebrityFullName,
                 }}
               />
             </h5>
@@ -489,7 +491,7 @@ class CreateContractForm extends Component {
                     >
                       {chunk}
                     </span>
-                  )
+                  ),
                 }}
               />
             </div>
@@ -564,7 +566,7 @@ class CreateContractForm extends Component {
               <FormattedMessage
                 defaultMessage="¿Qué quieres que diga {celebrityFullName}?"
                 values={{
-                  celebrityFullName: this.props.celebrityFullName
+                  celebrityFullName: this.props.celebrityFullName,
                 }}
               />
             </label>
@@ -590,7 +592,7 @@ class CreateContractForm extends Component {
               <FormattedMessage
                 defaultMessage="{instructionsLength}/400 caracteres permitidos"
                 values={{
-                  instructionsLength: contractData.instructions.length
+                  instructionsLength: contractData.instructions.length,
                 }}
               />
             </div>
@@ -708,7 +710,7 @@ CreateContractForm.propTypes = {
   contractPrice: PropTypes.number,
   celebrityFullName: PropTypes.string,
   celebrityUsername: PropTypes.string,
-  celebrityAvatar: PropTypes.string
+  celebrityAvatar: PropTypes.string,
 };
 
 // Set defaultProps
@@ -717,7 +719,7 @@ CreateContractForm.defaultProps = {
   celebrityFullName: null,
   contractPrice: 0,
   celebrityUsername: null,
-  celebrityAvatar: null
+  celebrityAvatar: null,
 };
 
 // mapStateToProps
@@ -728,7 +730,7 @@ const mapStateToProps = ({ contracts, session }) => {
     contractToPayData: contracts.saveContractToPayReducer.data,
     saveClientContractLoading: contracts.saveClientContractReducer.loading,
     saveClientContractError:
-      contracts.saveClientContractReducer.error_data.error
+      contracts.saveClientContractReducer.error_data.error,
   };
 };
 
@@ -736,7 +738,7 @@ const mapStateToProps = ({ contracts, session }) => {
 const mapDispatchToProps = {
   getToken,
   saveClientContract: contractOperations.saveClientContract,
-  updateClientContract: contractOperations.updateClientContract
+  updateClientContract: contractOperations.updateClientContract,
 };
 
 // Export Class

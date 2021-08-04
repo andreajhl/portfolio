@@ -1,0 +1,14 @@
+.SidebarWrapper {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+
+  .Sidebar {
+    transition: margin-left 0.5s ease;
+    flex-basis: auto;
+  }
+
+  .MainContent {
+    flex: auto;
+  }
+}

@@ -1,4 +1,5 @@
 const limitString = (string, limit = 17) => {
+  if (typeof string !== "string") return "";
   const newString = [];
   if (string.length < limit) return string;
 

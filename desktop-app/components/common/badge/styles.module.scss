@@ -1,0 +1,41 @@
+.Badge {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  border-radius: 40px;
+  background-color: rgba(243, 244, 255, 1);
+  justify-content: space-around;
+  padding: 3px 12px 6px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.IconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  background-color: rgba(105, 112, 198, 0.4);
+  padding: 5px;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.XIcon {
+  > path {
+    stroke-width: 3;
+  }
+}
+.BadgeText {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0em;
+  color: rgba(105, 112, 198, 1);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

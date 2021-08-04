@@ -21,7 +21,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
     super(props);
 
     this.state = {
-      params: {}
+      params: {},
     };
 
     this.onPaginationChange = this.onPaginationChange.bind(this);
@@ -46,7 +46,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
     }
     this.setState(
       {
-        params: params
+        params: params,
       },
       () => this.fetchPublicContracts()
     );
@@ -85,7 +85,7 @@ class SimilarCelebrityContractsSectionLayout extends Component {
   analyticsData = {
     widget: this.constructor.name,
     path: getWindow().location.pathname,
-    celebrityUsername: this.props.celebrityUsername
+    celebrityUsername: this.props.celebrityUsername,
   };
 
   render() {
@@ -142,18 +142,18 @@ SimilarCelebrityContractsSectionLayout.defaultProps = {
   celebrity: {},
   publicContracts: [],
   paginationData: {},
-  similarContracts: []
+  similarContracts: [],
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.fetchSimilarContractsReducer.loading,
-  similarContracts: state.contracts.fetchSimilarContractsReducer.data.results
+  similarContracts: state.contracts.fetchSimilarContractsReducer.data.results,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  getSimilarContracts: fetchSimilarContracts
+  getSimilarContracts: fetchSimilarContracts,
 };
 
 // Export Class

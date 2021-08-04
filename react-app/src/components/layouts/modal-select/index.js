@@ -17,7 +17,7 @@ function ModalSelect({
   isChecked,
   multipleSelection,
   onModalClose,
-  onModalOpen
+  onModalOpen,
 }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -119,7 +119,7 @@ ModalSelect.defaultProps = {
   isChecked: () => {},
   multipleSelection: false,
   onModalClose: () => {},
-  onModalOpen: () => {}
+  onModalOpen: () => {},
 };
 
 ModalSelect.propTypes = {
@@ -135,7 +135,7 @@ ModalSelect.propTypes = {
   isChecked: PropTypes.func,
   multipleSelection: PropTypes.bool,
   onModalClose: PropTypes.func,
-  onModalOpen: PropTypes.func
+  onModalOpen: PropTypes.func,
 };
 
 export { ModalSelect };

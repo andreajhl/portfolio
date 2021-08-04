@@ -10,7 +10,7 @@ const setHeaders = (
   let options = {};
   if (sessionToken && addFamososAuthorizationHeader) {
     options.headers = {
-      authorization: "Bearer " + sessionToken
+      authorization: "Bearer " + sessionToken,
     };
   }
   if (params !== "?") {
@@ -47,6 +47,19 @@ export const queryStringToJSON = (query_string) => {
   return JSON.parse(JSON.stringify(result));
 };
 
+function getEndpointUrl(meta) {
+  const NEXT_PUBLIC_ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT;
+  const baseUrl = NEXT_PUBLIC_ENDPOINT.endsWith("/")
+    ? NEXT_PUBLIC_ENDPOINT
+    : NEXT_PUBLIC_ENDPOINT + "/";
+
+  const { path } = meta;
+
+  const validPath = path.startsWith("/") ? path.substr(1) : path;
+
+  return `${baseUrl}${validPath}`;
+}
+
 const apiService = (meta) => {
   // Path is Required
   if (!meta.path) {
@@ -57,7 +70,7 @@ const apiService = (meta) => {
   // Final URL
   let url = meta.path;
   if (!meta.custom_endpoint) {
-    url = `${process.env.NEXT_PUBLIC_ENDPOINT}${meta.path}`;
+    url = getEndpointUrl(meta);
     addFamososAuthorizationHeader = true;
   }
 

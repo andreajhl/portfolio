@@ -1,0 +1,26 @@
+export type celebrityType = {
+  availableForSubscriptions: boolean;
+  videoMessagePrice: number;
+  hashtags: string[];
+  username: string;
+  avatar: string;
+  availableForFlashDeliveries: boolean;
+  countryCode: string;
+  alpha2Code: string;
+  categoryId: number;
+  title: string;
+  categoryTitle: string;
+  fullName: string;
+  id: number;
+  turnaround: number;
+  description: string;
+  causeName: string;
+  isDonor: boolean;
+  mainVideo: string;
+  showSimilarCelebrities: boolean;
+  contractTypes?: any[];
+  countryId?: number;
+  status?: number;
+  starsAverage?: number;
+  discountPercentage?: number;
+};
