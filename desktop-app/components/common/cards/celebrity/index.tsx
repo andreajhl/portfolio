@@ -20,6 +20,7 @@ import { DiscountPercentageBadge } from "desktop-app/components/common/widgets/d
 import { analytics } from "react-app/src/state/utils/gtm";
 import { useIntl } from "react-intl";
 import getTranslatedCategoryTitle from "lib/utils/getTranslatedCategoryTitle";
+import { celebrityIsUnavailable } from "lib/utils/celebrityUtils";
 
 const preventRedirectFromParent = (event) => {
   if (event.stopPropagation) {
@@ -173,7 +174,7 @@ function CelebrityCard({
             ))}
           </p>
         </Maybe>
-        <Maybe it={showPrice}>
+        <Maybe it={showPrice && !celebrityIsUnavailable(celebrity.status)}>
           <Link
             href={celebrityProfileLink}
             className={styles.CelebrityCardProfileLink}
