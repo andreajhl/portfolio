@@ -5,6 +5,7 @@ import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
 import useUserLocation from "lib/hooks/useUserLocationCookie";
 import useBotMaker from "lib/hooks/useBotmaker";
+import { useFetchCountries } from "lib/hooks/useFetchCountries";
 
 const COUNTRIES_WHERE_SHOULD_ALWAYS_DISPLAY_BOTMAKER = ["BR"];
 
@@ -41,6 +42,7 @@ type PageContainerProps = PageLayoutProps & PageLayoutMobileProps;
 
 function PageContainer(props: PageContainerProps) {
   const isOnMobile = useIsOnMobileScreen();
+  useFetchCountries();
   const showSearch = props.showSearchInMobile ?? props.showSearch;
   const userLocation = useUserLocation();
   const forceShowBotMakerFrame = isCountryWhereShouldAlwaysDisplayBotMaker(
