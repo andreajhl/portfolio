@@ -8,11 +8,11 @@ import { useIntl, defineMessage } from "react-intl";
 
 const mapStateToProps = ({ celebrityLikes, celebritySections }) => ({
   ...celebrityLikes.fetchUserCelebrityLikesWithOffsetReducer.data,
-  isLoading: celebritySections.fetchCelebritySectionsReducer.loading
+  isLoading: celebritySections.fetchCelebritySectionsReducer.loading,
 });
 
 const messageForCelebritiesSectionTitle = defineMessage({
-  defaultMessage: "Tus Favoritos"
+  defaultMessage: "Tus Favoritos",
 });
 
 const mapDispatchToProps = { fetchUserCelebrityLikesWithOffset };
@@ -21,7 +21,7 @@ const UserLikesSectionLayout = ({
   results,
   totalResults,
   isLoading,
-  fetchUserCelebrityLikesWithOffset
+  fetchUserCelebrityLikesWithOffset,
 }) => {
   const intl = useIntl();
 
@@ -36,7 +36,7 @@ const UserLikesSectionLayout = ({
           id: "favorites",
           celebritySectionType: "CELEBRITY_CARD",
           celebrities: results,
-          title: intl.formatMessage(messageForCelebritiesSectionTitle)
+          title: intl.formatMessage(messageForCelebritiesSectionTitle),
         }}
         hasMoreResults={results.length < totalResults}
         moreResultsPath={CLIENT_FAVORITES}
@@ -46,7 +46,7 @@ const UserLikesSectionLayout = ({
 };
 
 UserLikesSectionLayout.defaultProps = {
-  results: []
+  results: [],
 };
 
 const _UserLikesSectionLayout = connect(

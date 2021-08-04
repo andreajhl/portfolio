@@ -14,7 +14,7 @@ class PaymentMethodsPage extends Component {
     super(props);
     this.state = {
       isMounted: false,
-      stripe: null
+      stripe: null,
     };
   }
 
@@ -22,7 +22,7 @@ class PaymentMethodsPage extends Component {
     const { contract_reference } = this.props.router.query;
     this.props.getContractToPay(contract_reference);
     GTM.tagManagerDataLayer("PAYMENT_METHODS_PAGE_VIEW", {
-      contract_reference
+      contract_reference,
     });
     this.setState({ isMounted: true });
     this.loadStripe();
@@ -38,7 +38,7 @@ class PaymentMethodsPage extends Component {
 
   setStripe = () => {
     this.setState({
-      stripe: window.Stripe(process.env.NEXT_PUBLIC_STRIPE_KEY)
+      stripe: window.Stripe(process.env.NEXT_PUBLIC_STRIPE_KEY),
     });
   };
 
@@ -70,19 +70,19 @@ PaymentMethodsPage.propTypes = {};
 
 // Set defaultProps
 PaymentMethodsPage.defaultProps = {
-  contract: {}
+  contract: {},
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.payments.getContractToPayReducer.loading,
   isCompleted: state.payments.getContractToPayReducer.completed,
-  contract: state.payments.getContractToPayReducer.data
+  contract: state.payments.getContractToPayReducer.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  getContractToPay: paymentsOperations.getContractToPay
+  getContractToPay: paymentsOperations.getContractToPay,
 };
 
 // Export Class

@@ -1,0 +1,22 @@
+.DirectionButton {
+  width: 35px;
+  height: 35px;
+  border: none;
+  padding: 0;
+  font-size: 18.6px;
+  border-radius: 50%;
+  background: var(--light);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.DirectionButton:disabled {
+  background: none;
+  box-shadow: none;
+  border: 1px solid var(--gray-2);
+
+  > i  {
+    color: var(--gray-2);
+  }
+}

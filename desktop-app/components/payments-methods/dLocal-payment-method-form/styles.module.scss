@@ -1,0 +1,36 @@
+.FormLabel {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+}
+
+.CardIcon {
+  margin-left: 20px;
+  margin-right: 16px;
+}
+
+.Label {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+}
+
+.CheckIcon {
+  margin-left: auto;
+  margin-right: 17px;
+}
+
+.FormSection {
+  background: #f8f9fb;
+  border-radius: 10px;
+}
+.PaymentErrorMessage {
+  justify-content: center;
+  padding-bottom: 1rem;
+}

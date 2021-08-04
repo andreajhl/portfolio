@@ -12,7 +12,7 @@ import SubscriptionsFilter from "../../subscription-feed/subscription-filter";
 
 import {
   SubscriptionPostsHeader,
-  SubscriptionPostsSection
+  SubscriptionPostsSection,
 } from "../../layouts/subscription-posts";
 
 import styled from "styled-components";
@@ -43,7 +43,7 @@ const SubscriptionFeed = (props) => {
   const {
     getCelebritiesSubscribe,
     subscriptionList,
-    isSubscriptionListCompletedFetch
+    isSubscriptionListCompletedFetch,
   } = { ...props };
   const [postFetched, setPostFetched] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -147,12 +147,12 @@ const SubscriptionFeed = (props) => {
 const mapStateToProps = (state) => ({
   subscriptionList: state.subscriptions.fetchUserSubscriptionsListReducer.data,
   isSubscriptionListCompletedFetch:
-    state.subscriptions.fetchUserSubscriptionsListReducer.completed
+    state.subscriptions.fetchUserSubscriptionsListReducer.completed,
 });
 
 // mapDispatchToProps
 const mapDispatchToProps = {
-  getCelebritiesSubscribe: subscriptionsOperations.fetchUserSubscriptionsList
+  getCelebritiesSubscribe: subscriptionsOperations.fetchUserSubscriptionsList,
 };
 const _SubscriptionFeed = connect(
   mapStateToProps,

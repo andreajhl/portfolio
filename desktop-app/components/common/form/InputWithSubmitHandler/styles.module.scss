@@ -1,0 +1,30 @@
+@import "../../../../styles.scss";
+.InputWithSubmitHandler {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: rgba(243, 244, 255, 1);
+  border-radius: 7px;
+  height: 100%;
+  justify-content: center;
+}
+.Input {
+  border: none;
+  outline: none;
+  background: none;
+  text-indent: 30px;
+  flex: 1 1 70%;
+  height: 100% !important;
+  color: rgba(105, 112, 198, 1);
+}
+
+.Input::placeholder {
+  color: rgba(105, 112, 198, 1);
+}
+
+.SubmitButton {
+  height: 100% !important;
+  border-radius: 7px;
+  font-weight: 700;
+  flex: 1 1 30%;
+}

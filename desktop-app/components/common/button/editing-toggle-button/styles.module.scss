@@ -1,0 +1,30 @@
+.EditingToggleButtonEditButton {
+  i {
+    font-size: 17.85px;
+    transition: color 0.2s;
+  }
+
+  &:hover {
+    i {
+      color: var(--primary) !important;
+    }
+  }
+}
+
+.EditingToggleButtonSaveButton {
+  font-size: 14px;
+  color: var(--tertiary);
+  font-weight: bold;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--primary) !important;
+  }
+}
+
+.removeSaveButtonPadding {
+  padding: 0;
+  &:focus {
+    box-shadow: none;
+  }
+}

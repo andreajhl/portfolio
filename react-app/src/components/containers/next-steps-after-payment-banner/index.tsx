@@ -84,7 +84,7 @@ const SpanWithMousePointer = styled.span`
 `;
 const NextStepsAfterPaymentBanner = ({
   celebrityName,
-  deliveryContact
+  deliveryContact,
 }: NextStepsAfterPaymentBannerProps) => {
   return (
     <ContainerBanner>
@@ -98,7 +98,7 @@ const NextStepsAfterPaymentBanner = ({
             defaultMessage="{celebrityName} tiene un plazo de 7 días para grabar tu video a partir
           de ahora."
             values={{
-              celebrityName: celebrityName
+              celebrityName: celebrityName,
             }}
           />
         </TextSteps>
@@ -109,7 +109,7 @@ const NextStepsAfterPaymentBanner = ({
             defaultMessage="Recibirás una notificación a {deliveryContact} cuando tu video
           esté listo."
             values={{
-              deliveryContact: deliveryContact
+              deliveryContact: deliveryContact,
             }}
           />
         </TextSteps>
@@ -121,7 +121,7 @@ const NextStepsAfterPaymentBanner = ({
              que tu banco hace para asegurarse que existen fondos suficientes, sin embargo 
              Famosos no hará el cobro hasta que {celebrityName} grabe tu video."
             values={{
-              celebrityName: celebrityName
+              celebrityName: celebrityName,
             }}
           />
         </TextSteps>

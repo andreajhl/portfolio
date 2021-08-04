@@ -3,8 +3,8 @@ import {
   CURRENT_CURRENCY_TRM_CODE,
   CURRENT_CURRENCY_TRM_RATE,
   USER_CURRENCY_CODE,
+  USER_LOCATION_KEY,
   USER_GEOLOCATION_KEY,
-  USER_LOCATION_KEY
 } from "constants/keys";
 import { USER_IP_ADDRESS } from "constants/keys";
 const ONE_YEAR_IN_MILLISECONDS = 365 * 24 * 3600 * 1000;
@@ -18,22 +18,22 @@ export function serializeUserLocationCookies(locationCookies: {
   let userLocationCookiesSerialize = [];
   userLocationCookiesSerialize.push(
     serialize(USER_LOCATION_KEY, locationCookies.country_code, {
-      maxAge: ONE_YEAR_IN_MILLISECONDS
+      maxAge: ONE_YEAR_IN_MILLISECONDS,
     })
   );
   userLocationCookiesSerialize.push(
     serialize(USER_CURRENCY_CODE, locationCookies.currency_code, {
-      maxAge: ONE_YEAR_IN_MILLISECONDS
+      maxAge: ONE_YEAR_IN_MILLISECONDS,
     })
   );
   userLocationCookiesSerialize.push(
     serialize(USER_IP_ADDRESS, locationCookies.userIpAddressLocation, {
-      maxAge: ONE_YEAR_IN_MILLISECONDS
+      maxAge: ONE_YEAR_IN_MILLISECONDS,
     })
   );
   userLocationCookiesSerialize.push(
     serialize(USER_GEOLOCATION_KEY, locationCookies.geolocation, {
-      maxAge: ONE_YEAR_IN_MILLISECONDS
+      maxAge: ONE_YEAR_IN_MILLISECONDS,
     })
   );
   return userLocationCookiesSerialize;
@@ -49,7 +49,7 @@ export function serializeCurrencyCurrentData(currencyCurrentData: {
       CURRENT_CURRENCY_TRM_RATE,
       String(currencyCurrentData.currencyCurrentTRM),
       {
-        path: "/"
+        path: "/",
       }
     )
   );
@@ -60,7 +60,7 @@ export function serializeCurrencyCurrentData(currencyCurrentData: {
       {
         maxAge: ONE_YEAR_IN_MILLISECONDS,
 
-        path: "/"
+        path: "/",
       }
     )
   );

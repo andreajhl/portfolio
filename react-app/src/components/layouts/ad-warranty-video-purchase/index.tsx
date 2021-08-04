@@ -5,7 +5,7 @@ type AdWarrantyVideoPurchaseProps = {
   celebrityFullName: string;
 };
 const AdWarrantyVideoPurchase = ({
-  celebrityFullName
+  celebrityFullName,
 }: AdWarrantyVideoPurchaseProps) => {
   return (
     <SC.AdWarrantyVideoPurchaseWrapper>
@@ -24,7 +24,7 @@ const AdWarrantyVideoPurchase = ({
           <FormattedMessage
             defaultMessage="Video grabado por {celebrityFullName} 100% personalizado."
             values={{
-              celebrityFullName: celebrityFullName
+              celebrityFullName: celebrityFullName,
             }}
           />
         </SC.InfoDescription>

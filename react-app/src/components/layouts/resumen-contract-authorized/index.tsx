@@ -118,7 +118,7 @@ const ResumenContractAuthorized = ({ resumen }) => {
         <i
           style={{
             fontSize: "48px",
-            color: "white"
+            color: "white",
           }}
           className="far fa-check-circle"
         />
@@ -147,13 +147,13 @@ const ResumenContractAuthorized = ({ resumen }) => {
               <span
                 className="text-center font-weight-bold"
                 style={{
-                  color: "black"
+                  color: "black",
                 }}
               >
                 <FormattedMessage
                   defaultMessage="Video personalizado de {celebrityFullName}"
                   values={{
-                    celebrityFullName: resumen.celebrity.fullName
+                    celebrityFullName: resumen.celebrity.fullName,
                   }}
                 />
               </span>
@@ -164,7 +164,7 @@ const ResumenContractAuthorized = ({ resumen }) => {
                 <div
                   className="d-flex"
                   style={{
-                    width: "70%"
+                    width: "70%",
                   }}
                 >
                   {resumen.contract.deliveryTo ? (
@@ -200,7 +200,7 @@ const ResumenContractAuthorized = ({ resumen }) => {
             <span
               style={{
                 fontSize: "12px",
-                color: "#535353"
+                color: "#535353",
               }}
             >
               <FormattedMessage

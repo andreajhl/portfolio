@@ -11,7 +11,7 @@ const ServerSidePropsCallBack = async ({ req, store, query }) => {
   return {
     props: {
       sessionToken: sessionToken,
-    }
+    },
   };
 };
 
@@ -25,5 +25,6 @@ const Success = ({ sessionToken }) => {
 };
 
 export default Success;
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(ServerSidePropsCallBack);
-
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+  ServerSidePropsCallBack
+);

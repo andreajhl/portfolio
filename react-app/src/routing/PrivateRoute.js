@@ -8,7 +8,7 @@ const PrivateRoute = ({ component, ...rest }) => {
     onRedirecting: () => <LoaderLayout />,
     returnTo: localStorage.getItem("finalRedirect")
       ? localStorage.getItem("finalRedirect")
-      : window.location.href
+      : window.location.href,
   });
   return useMemo(
     () => <Route {...rest} render={(props) => <Comp {...props}></Comp>} />,

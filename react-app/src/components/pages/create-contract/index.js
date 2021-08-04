@@ -100,12 +100,12 @@ CreateContractPage.defaultProps = {};
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.celebrities.getCelebrityReducer.loading,
-  celebrity: state.celebrities.getCelebrityReducer.data
+  celebrity: state.celebrities.getCelebrityReducer.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  getCelebrity: celebrityOperations.get
+  getCelebrity: celebrityOperations.get,
 };
 
 // Export Class

@@ -79,7 +79,7 @@ class LastVideosAvailableBanner extends Component {
 }
 
 LastVideosAvailableBanner.propTypes = {
-  celebrityFullName: PropTypes.string
+  celebrityFullName: PropTypes.string,
 };
 
 export { LastVideosAvailableBanner };

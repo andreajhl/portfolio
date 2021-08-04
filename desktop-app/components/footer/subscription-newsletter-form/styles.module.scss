@@ -1,0 +1,49 @@
+.SubscriptionNewsletterForm p {
+  font-size: 14px;
+  color: white;
+}
+
+.SubscriptionNewsLetterFormInputElement {
+  height: 40px;
+}
+
+.SubscriptionNewsLetterFormInputElementModifier {
+  background-color: #323232;
+  margin-bottom: 0.5rem !important;
+  button span span {
+    margin: 0;
+  }
+}
+
+.SubscriptionNewsLetterFormInputElementModifier input {
+  color: white;
+  text-indent: 17px;
+
+  &::placeholder {
+    color: #494949;
+  }
+}
+
+.SubscriptionNewsLetterFormSubmitButton {
+  height: 250px;
+  border: 4px solid black !important;
+}
+
+.ErrorMessage,
+.SuccessMessage {
+  margin-bottom: 0 !important;
+  font-size: 12px;
+}
+
+.SuccessMessage {
+  color: var(--success);
+}
+
+.SuccessMessage i {
+  color: inherit;
+  margin-right: 0.4em;
+}
+
+.InputError {
+  border: 2px solid var(--danger);
+}

@@ -4,12 +4,12 @@ import { defineMessages } from "react-intl";
 
 const headData = defineMessages({
   titleTerms: {
-    defaultMessage: "Famosos.com - Términos de servicio de usuario"
+    defaultMessage: "Famosos.com - Términos de servicio de usuario",
   },
   descriptionTerms: {
     defaultMessage:
-      "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas."
-  }
+      "Videos personalizados de tus Famosos favoritos. Reserva tu video y disfruta de experiencias únicas.",
+  },
 });
 const Terms = () => {
   return (

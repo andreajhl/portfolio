@@ -1,6 +1,7 @@
 @import "../../../theme";
 
 .NavbarSectionLayout {
+  overflow: auto; // Create a new block formatting context.
   width: 100%;
   background-color: white;
   z-index: 100;
@@ -8,10 +9,19 @@
 }
 
 .top-bar {
+  margin-top: 1.25rem;
+  margin-bottom: 1.3125rem;
+
   &__center-side {
     display: flex;
     align-items: center;
     justify-content: center;
+    // height: 64px;
+  }
+
+  &__right-side {
+    display: flex;
+    margin-left: auto;
   }
 
   &__logo-link {
@@ -20,7 +30,7 @@
   }
 
   &__logo {
-    width: 100%;
+    height: 25px;
   }
 
   &__login-btn {
@@ -33,14 +43,14 @@
     // width: 53px;
     // right: 7px;
     position: relative;
-    top: 0.9375rem;
+    // top: 0.9375rem;
   }
   &__lang {
     position: relative;
-    top: 0.9375rem;
+    // top: 0.9375rem;
   }
+}
 
-  &__search-sm {
-    margin: 0 0.81rem;
-  }
+.top-bar__search-sm {
+  padding: 0 0.81rem 1rem 0.81rem;
 }

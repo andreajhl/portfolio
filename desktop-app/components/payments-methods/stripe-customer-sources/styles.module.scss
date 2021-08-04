@@ -1,0 +1,19 @@
+.StripeCustomerSourcesWrapper {
+  padding: 1.5rem 1rem;
+}
+
+.SourceOption {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.PaymentButton {
+  margin-top: 1rem;
+  width: 100%;
+  height: 45px;
+}

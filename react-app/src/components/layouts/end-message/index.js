@@ -23,10 +23,10 @@ export const EndMessageLayout = ({ offsetTop, onClick }) => (
 
 EndMessageLayout.propTypes = {
   offsetTop: PropTypes.number,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 EndMessageLayout.defaultProps = {
   offsetTop: 0,
-  onClick: () => {}
+  onClick: () => {},
 };

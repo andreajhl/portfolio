@@ -24,14 +24,14 @@ const mapStateToProps = ({ celebrities, cursor }) => {
     totalResults: celebrities.fetchCelebritiesReducer.data.totalResults,
     queryParamsStore: celebrities.saveLastQueryParamsReducer,
     previousPath: celebrities.previousPathReducer.pathname,
-    cursor: cursor.positionReducer.data
+    cursor: cursor.positionReducer.data,
   };
 };
 
 const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list,
   saveQueryParams: celebrityOperations.saveLastQueryParams,
-  saveCursor: cursorOperations.saveCursorPosition
+  saveCursor: cursorOperations.saveCursorPosition,
 };
 
 const listParamsInitialKeys = ["offset", "limit"];
@@ -49,7 +49,7 @@ const allowedParams = [
   "offset",
   "country_id",
   "category_id",
-  "orderBy"
+  "orderBy",
 ];
 
 const CelebritiesResultsPage = ({
@@ -65,7 +65,7 @@ const CelebritiesResultsPage = ({
   history,
   saveCursor,
   saveQueryParams,
-  queryParamsStore
+  queryParamsStore,
 }) => {
   const [offset, setOffset] = useState(updateQueryParamsInitialState.offset);
   const listParams = useMemo(
@@ -89,7 +89,7 @@ const CelebritiesResultsPage = ({
     return () => {
       saveCursor({
         view: PATH_KEY,
-        position: window.scrollY
+        position: window.scrollY,
       });
     };
   }, []);
@@ -105,7 +105,7 @@ const CelebritiesResultsPage = ({
       ) {
         analytics.track("FETCH_CELEBRITIES_FROM_SEARCH", {
           searchFilters: listParams,
-          widget: "CelebritiesResultsPage"
+          widget: "CelebritiesResultsPage",
         });
         fetchCelebrities(listParams);
         setOffset(updateQueryParamsInitialState.offset);
@@ -127,7 +127,7 @@ const CelebritiesResultsPage = ({
     saveQueryParams({ ...listParams, offset: newOffset });
     fetchCelebrities({
       ...listParams,
-      offset: newOffset
+      offset: newOffset,
     });
   };
 

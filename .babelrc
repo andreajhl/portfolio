@@ -4,9 +4,7 @@
       "next/babel",
       {
         "styled-jsx": {
-          "plugins": [
-            "styled-jsx-plugin-sass"
-          ]
+          "plugins": ["styled-jsx-plugin-sass"]
         }
       }
     ]
@@ -25,5 +23,13 @@
         "displayName": true
       }
     ]
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "./__test__/babel-plugin-maybe-statement",
+        "dynamic-import-node"
+      ]
+    }
+  }
 }

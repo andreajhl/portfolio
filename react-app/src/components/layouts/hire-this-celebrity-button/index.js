@@ -3,7 +3,7 @@ import { withRouter } from "../../common/routing";
 import {
   CELEBRITY_PROFILE_CONTRACT,
   AUTH_SUCCESS,
-  SIGN_IN_PATH_FROM
+  SIGN_IN_PATH_FROM,
 } from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
@@ -19,7 +19,7 @@ const HireThisCelebrityButton = ({
   showCelebrityName,
   fontSize,
   width,
-  history
+  history,
 }) => {
   const userAgent = useWindow()?.navigator?.userAgent;
   const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
@@ -29,7 +29,7 @@ const HireThisCelebrityButton = ({
     loginWithPopup,
     isLoading,
     isAuthenticated,
-    loginWithRedirect
+    loginWithRedirect,
   } = useAuth();
 
   const handlerClickToLogin = () => {
@@ -60,7 +60,7 @@ const HireThisCelebrityButton = ({
       widget: "HireThisCelebrityButton",
       text,
       celebrityFullName,
-      celebrityUsername
+      celebrityUsername,
     });
   };
 

@@ -3,12 +3,12 @@ import CelebritiesSelect from "../../common/forms/celebrity-select";
 
 const defaultOption = {
   value: null,
-  label: "Mostrar todas mis suscripciones"
+  label: "Mostrar todas mis suscripciones",
 };
 
 const SubscriptionsFilter = ({
   celebritiesSubscriptions,
-  onChangeCelebrity
+  onChangeCelebrity,
 }) => {
   return (
     <CelebritiesSelect
@@ -16,7 +16,7 @@ const SubscriptionsFilter = ({
         ({ celebrityId, celebrityAvatar, celebrityFullName }) => ({
           id: celebrityId,
           avatar: celebrityAvatar,
-          fullName: celebrityFullName
+          fullName: celebrityFullName,
         })
       )}
       defaultOption={defaultOption}

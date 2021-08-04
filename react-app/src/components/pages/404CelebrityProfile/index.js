@@ -28,7 +28,7 @@ const FourZeroFourCelebrityProfile = ({ celebrityUsername }) => {
                       {chunks}
                     </span>
                   ),
-                  celebrityUsername: celebrityUsername
+                  celebrityUsername: celebrityUsername,
                 }}
               />
             </h3>
@@ -46,7 +46,7 @@ const FourZeroFourCelebrityProfile = ({ celebrityUsername }) => {
             <FormattedMessage
               defaultMessage="Quizás pueda <br></br> interesarte"
               values={{
-                br: () => <br className="d-sm-none"></br>
+                br: () => <br className="d-sm-none"></br>,
               }}
             />
           </h3>

@@ -1,0 +1,31 @@
+.CelebrityFavoriteButton {
+  width: 22px !important;
+  height: 19px !important;
+  color: black;
+  fill: none;
+  path {
+    stroke-width: 0.08375em;
+  }
+  &:hover {
+    transform: scale(0.8);
+    fill: var(--primary);
+
+    path {
+      stroke: var(--primary);
+    }
+  }
+}
+
+.IsFavorite {
+  color: var(--primary);
+  fill: var(--primary);
+
+  &:hover {
+    opacity: 1 !important;
+    fill: none;
+
+    path {
+      stroke: black;
+    }
+  }
+}

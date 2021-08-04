@@ -1,0 +1,34 @@
+.Container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.Preview {
+  width: 128px;
+  height: 128px;
+}
+
+.CTAUploadPhoto {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+  color: #3d87f3;
+  padding-top: 0.4375rem;
+  margin-bottom: 0;
+  &:hover {
+    color: #3d87f3;
+  }
+}
+
+.DeleteButton {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--gray-3, #838383);
+
+  &:hover {
+    color: #ff4b55;
+  }
+}

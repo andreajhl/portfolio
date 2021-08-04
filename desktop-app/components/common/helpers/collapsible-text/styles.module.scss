@@ -1,0 +1,11 @@
+.CollapsibleText {
+  min-height: 71px;
+}
+
+.CollapsibleText:global(.collapse:not(.show)) {
+  display: block;
+}
+
+.CollapsibleText:global(.collapsing) {
+  height: 71px;
+}

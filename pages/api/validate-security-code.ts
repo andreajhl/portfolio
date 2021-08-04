@@ -17,7 +17,7 @@ async function validateSecurityCode(
     await axios
       .post(`${endpoint}/${version}/famosos-com/validate-security-code`, {
         email: req.body["email"],
-        securityCode: req.body["securityCode"]
+        securityCode: req.body["securityCode"],
       })
       .then((response) => {
         const status = response.data.status;
@@ -32,7 +32,7 @@ async function validateSecurityCode(
               {
                 path: "/",
                 sameSite: "lax",
-                maxAge: ONE_YEAR_IN_MILLISECONDS
+                maxAge: ONE_YEAR_IN_MILLISECONDS,
                 // ...generateHttpOnlyCookie()
               }
             )
@@ -41,7 +41,7 @@ async function validateSecurityCode(
         } else {
           res.json({
             status: "error",
-            error: response.data.error
+            error: response.data.error,
           });
         }
       })
@@ -49,12 +49,12 @@ async function validateSecurityCode(
         if (errorResponse.response) {
           return res.status(errorResponse.response.status || 400).json({
             status: "error",
-            error: errorResponse.response.data.error
+            error: errorResponse.response.data.error,
           });
         } else {
           return res.status(400).json({
             status: "error",
-            error: "Unexpected Error"
+            error: "Unexpected Error",
           });
         }
       });

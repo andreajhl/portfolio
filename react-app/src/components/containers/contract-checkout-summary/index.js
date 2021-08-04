@@ -19,7 +19,7 @@ const ContractCheckoutSummary = ({
   clearCouponData,
   originalPrice,
   celebrityDiscountPercentage,
-  contractReference
+  contractReference,
 }) => {
   useEffect(() => {
     clearCouponData();
@@ -53,7 +53,7 @@ const ContractCheckoutSummary = ({
               <FormattedMessage
                 defaultMessage="Video personalizado de {celebrityFullName}"
                 values={{
-                  celebrityFullName: celebrityFullName
+                  celebrityFullName: celebrityFullName,
                 }}
               />
             </span>
@@ -80,7 +80,7 @@ const ContractCheckoutSummary = ({
             ) : null}
             <div
               style={{
-                marginLeft: "auto"
+                marginLeft: "auto",
               }}
             >
               <NavLink
@@ -127,19 +127,19 @@ ContractCheckoutSummary.defaultProps = {
   deliveryFrom: "",
   deliveryTo: "",
   instructions: "",
-  price: 0
+  price: 0,
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => {
   return {
     couponData: state.payments.fetchDiscountCouponReducer,
-    currencyExchangeData: state.payments.currencyExchangeReducer.data
+    currencyExchangeData: state.payments.currencyExchangeReducer.data,
   };
 };
 // mapStateToProps
 const mapDispatchToProps = {
-  clearCouponData: paymentsOperations.clearCouponData
+  clearCouponData: paymentsOperations.clearCouponData,
 };
 // Export Class
 const _ContractCheckoutSummary = connect(

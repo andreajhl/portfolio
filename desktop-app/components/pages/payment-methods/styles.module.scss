@@ -1,0 +1,30 @@
+.PaymentMethodsPageContent {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4.1875rem;
+
+  > * {
+    width: 100%;
+  }
+}
+
+.PaymentMethodsPageContentLeftSide {
+  max-width: 524px;
+  margin-right: 1.5rem;
+}
+
+.PaymentMethodsPageContentRightSide {
+  max-width: 520px;
+  padding-top: 2rem;
+  align-self: flex-start;
+}
+
+.WhatHappensBeforeBannerModifier {
+  margin-top: 41px;
+  padding: 2.1875rem 2.8125rem !important;
+  border-radius: 10px;
+  div {
+    max-width: 90% !important;
+    margin-left: 0 !important;
+  }
+}

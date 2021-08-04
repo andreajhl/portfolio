@@ -13,7 +13,7 @@ const index = ({
   pubDate,
   idPost,
   history,
-  intl
+  intl,
 }) => {
   const goToBlog = () => {
     history.push(BLOG_ENTRY.replace(":id", idPost));
@@ -22,7 +22,7 @@ const index = ({
     weekday: "long",
     year: "numeric",
     month: "long",
-    day: "numeric"
+    day: "numeric",
   };
   const pubDateParse = new Date(pubDate);
   var plainString = description.replace(/<[^>]+>/g, "");

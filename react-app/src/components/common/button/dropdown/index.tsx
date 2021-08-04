@@ -1,13 +1,23 @@
 import classes from "classnames";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import styles from "./styles.module.scss";
 
 const addDropdownItemClass = (
   child: React.DetailedReactHTMLElement<{ className?: string }, HTMLElement>
 ) =>
   React.cloneElement(child, {
-    className: classes("dropdown-item", child?.props?.className)
+    className: classes("dropdown-item", child?.props?.className),
   });
+
+type DropdownProps = {
+  id?: string;
+  buttonChildren: ReactNode;
+  children: ReactNode;
+  className?: string;
+  buttonClassName?: string;
+  menuClassName?: string;
+  showClassName?: string;
+};
 
 function Dropdown({
   id = "dropdown-icon-button",
@@ -16,8 +26,8 @@ function Dropdown({
   className = "",
   buttonClassName = "",
   menuClassName = "",
-  showClassName = ""
-}) {
+  showClassName = "",
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleIsOpen() {

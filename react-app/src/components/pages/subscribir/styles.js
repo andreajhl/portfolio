@@ -58,7 +58,7 @@ export const PlanInfoSection = styled(Card)`
 `;
 
 export const PlanInfoStar = styled.img.attrs({
-  src: "/assets/img/subscription-star.svg"
+  src: "/assets/img/subscription-star.svg",
 })`
   margin-top: -52px;
   width: 50px;

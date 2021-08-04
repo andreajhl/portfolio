@@ -1,0 +1,115 @@
+.HeaderContractAuthorized {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  svg {
+    height: 26px;
+    width: 26px;
+    border: 2px solid white;
+    padding: 4px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  p {
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 25px;
+    color: #ffffff;
+  }
+}
+
+.InstructionsContractAuthorized {
+  margin-top: 5.1875rem;
+  margin-left: 3rem;
+  margin-right: 3.125rem;
+  display: flex;
+  flex-flow: column;
+}
+
+.InstructionList {
+  > div:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+  > :last-child {
+    margin-bottom: 1.375rem;
+  }
+}
+.InstructionListItem {
+  display: flex;
+}
+.InstructionListItemIcon {
+  margin-right: 1.25rem;
+  flex: 0 0 auto;
+}
+
+.PhoneInHandIconModifier {
+  position: relative;
+  left: -4px;
+  margin-right: 0.8125rem;
+}
+
+.FooterInstructions {
+  width: 91%;
+  margin: 0 auto;
+}
+
+.ConsultationNoticies {
+  margin-bottom: 1.875rem;
+  p:first-of-type {
+    margin-bottom: 3.125rem;
+  }
+}
+
+.FooterInstructionsCTA {
+  span {
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.625rem;
+    text-decoration-line: underline;
+    color: #000000;
+  }
+}
+.FooterInstructionsCTA .FooterInstructionsCTAButton {
+  margin-right: 2.3125rem;
+  border: 2px solid black !important;
+  background: #000000 !important;
+  &:hover,
+  &:active,
+  &:focus {
+    border: 2px solid black !important;
+    background: #000000 !important;
+  }
+}
+
+.InstructionsTitle {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  margin-bottom: 1.875rem;
+  margin-left: 2.1rem;
+}
+
+.InstructionSpanCTA {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 16px;
+  text-decoration-line: underline;
+  color: #000000;
+}
+
+.EmailClient {
+  font-weight: bold;
+}
+
+.MyHiringsLink {
+  font-weight: bold;
+  color: #000000;
+  text-decoration: underline;
+}

@@ -9,7 +9,7 @@ function LogoutButton({ children, className }) {
   function handlerLogoutSession() {
     GTM.tagManagerDataLayer("CLICK_LOGOUT");
     logout({
-      returnTo: ROOT_PATH
+      returnTo: ROOT_PATH,
     });
   }
 

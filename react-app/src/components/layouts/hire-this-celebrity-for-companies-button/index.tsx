@@ -11,7 +11,7 @@ const HireThisCelebrityForCompaniesButton = ({
   celebrityUsername,
   showCelebrityName,
   fontSize,
-  width
+  width,
 }) => {
   //   const registerHireThisCelebrityButtonEvent = (eventName) => {
   //     GTM.tagManagerDataLayer(

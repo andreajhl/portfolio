@@ -5,7 +5,7 @@ import { OptionDiv, OptionText, styles } from "./styles";
 
 const Select = dynamic(() => import("react-select"), {
   ssr: false,
-  loading: () => <div style={{ height: "63px" }} />
+  loading: () => <div style={{ height: "63px" }} />,
 });
 
 type CelebrityOptionLabelProps = {
@@ -13,7 +13,7 @@ type CelebrityOptionLabelProps = {
 };
 
 const CelebrityOptionLabel = ({
-  celebrity: { avatar, fullName }
+  celebrity: { avatar, fullName },
 }: CelebrityOptionLabelProps) => (
   <OptionDiv>
     <ProfilePicture avatar={avatar} width="44px" />
@@ -31,14 +31,14 @@ const CelebrityOptionLabel = ({
 const CelebritiesSelect = ({
   onChange = (option) => {},
   defaultOption,
-  celebrities = []
+  celebrities = [],
 }) => {
   const options = [
     defaultOption,
     ...celebrities.map((celebrity) => ({
       value: celebrity.id,
-      label: <CelebrityOptionLabel celebrity={celebrity} />
-    }))
+      label: <CelebrityOptionLabel celebrity={celebrity} />,
+    })),
   ];
 
   return (

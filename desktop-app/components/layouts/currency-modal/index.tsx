@@ -1,0 +1,160 @@
+import { CurrencyIcon } from "desktop-app/components/common/icons";
+import styles from "./styles.module.scss";
+import { AVAILABLE_CURRENCIES } from "desktop-app/constants/availableCurrencies";
+import { connect } from "react-redux";
+import findAvailableCurrencyByName from "react-app/src/utils/findAvailableCurrencyByName";
+import { currencyExchange } from "react-app/src/state/ducks/payments/actions";
+import classes from "classnames";
+import { useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  flagImgAlt: {
+    defaultMessage: "Bandera de {label}",
+  },
+});
+
+const mapStateToProps = ({ payments: { currencyExchangeReducer } }) => ({
+  currencyExchangeLoading: currencyExchangeReducer.loading,
+  currencyExchangeData: currencyExchangeReducer.data,
+});
+
+const mapDispatchToProps = { currencyExchange };
+
+const defaultCurrencyExchangeData = { to: "USD" };
+const defaultCurrencyExchange = (params: any) => {};
+
+const AVAILABLE_CURRENCIES_SORT = AVAILABLE_CURRENCIES.sort((a, b) =>
+  a.label.localeCompare(b.label)
+);
+
+function CurrencyModal({
+  currencyExchange = defaultCurrencyExchange,
+  currencyExchangeData = defaultCurrencyExchangeData,
+  currencyExchangeLoading,
+}) {
+  const handleCurrentCurrency = (value) => {
+    const newCurrencyExchange = findAvailableCurrencyByName(value);
+    currencyExchange({
+      from: (currencyExchangeData.to as any)?.name || "USD",
+      to: newCurrencyExchange.name,
+    });
+    analytics.track("CLICK_ON_DROPDOWN_CURRENCY", {
+      previousCurrencyExchange: (currencyExchangeData.to as any).name || "USD",
+      newCurrencyExchange,
+    });
+  };
+
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
+  const toggleModal = () => setOpen((open) => !open);
+  const { formatMessage } = useIntl();
+
+  return (
+    <>
+      <button
+        type="button"
+        className={styles.ToggleButton}
+        onClick={toggleModal}
+      >
+        <CurrencyIcon />
+      </button>
+      <Modal
+        show={open}
+        onHide={closeModal}
+        className={classes("ModalSelect__modal", styles.CurrencyModal)}
+        centered
+      >
+        <Modal.Header className={styles.ModalHeader}>
+          <h3 className={styles.ModalTitle}>
+            <FormattedMessage defaultMessage="Cambiar moneda" />
+          </h3>
+          <CloseModalButton
+            variant="light"
+            className={styles.CurrencyDropdownCloseButton}
+            onClick={closeModal}
+            disabled={currencyExchangeLoading}
+          />
+        </Modal.Header>
+        <Modal.Body>
+          <ul
+            className={classes(
+              `options-list pl-2 mb-0 mt-1`,
+              styles.OptionsLists
+            )}
+          >
+            {AVAILABLE_CURRENCIES_SORT.map((option) => {
+              const optionKey = `${option.name}-${option.label}`;
+              const flagImgAlt = formatMessage(messages.flagImgAlt, {
+                label: option.label,
+              });
+              return (
+                <li className="options-list__item" key={optionKey}>
+                  <div
+                    className={`custom-control form-control-lg custom-radio`}
+                  >
+                    <input
+                      type="radio"
+                      className="custom-control-input"
+                      id={optionKey}
+                      name={optionKey}
+                      value={option.value}
+                      disabled={currencyExchangeLoading}
+                      onChange={() => handleCurrentCurrency(option.name)}
+                      checked={currencyExchangeData?.to === option.name}
+                    />
+                    <label
+                      className={classes(
+                        "custom-control-label",
+                        styles.OptionsListsLabel
+                      )}
+                      htmlFor={optionKey}
+                    >
+                      <span
+                        className={classes(
+                          "options-list__label",
+                          styles.OptionsListsLabelSpan
+                        )}
+                      >
+                        <img
+                          className={styles.OptionsListsLabelFlag}
+                          width="20"
+                          src={option.flag}
+                          alt={flagImgAlt}
+                        />
+                        {option.label}
+                      </span>
+                    </label>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            className={styles.BottomCloseButton}
+            onClick={closeModal}
+            disabled={currencyExchangeLoading}
+          >
+            <SubmitText
+              baseText={<FormattedMessage defaultMessage="Cerrar" />}
+              status={currencyExchangeLoading ? "loading" : "idle"}
+            />
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
+
+const _CurrencyModal = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CurrencyModal);
+
+export { _CurrencyModal as CurrencyModal };

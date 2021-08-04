@@ -1,0 +1,20 @@
+.CategoryCard {
+  position: relative;
+  display: inline-block;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 121px;
+  width: 212px;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important;
+
+  &Title {
+    font-family: Manrope;
+    font-size: 22px;
+    font-weight: 800;
+    color: white;
+  }
+}

@@ -6,24 +6,24 @@ import { ContractPriceLayout } from "../../layouts/contract-price";
 import { injectIntl, defineMessage } from "react-intl";
 
 const inputCouponPlaceholder = defineMessage({
-  defaultMessage: "Ingrese el código aquí"
+  defaultMessage: "Ingrese el código aquí",
 });
 
 const mapStateToProps = ({ payments }) => ({
   contract: payments.getContractToPayReducer.data,
   couponData: payments.fetchDiscountCouponReducer,
-  currencyExchangeData: payments.currencyExchangeReducer.data
+  currencyExchangeData: payments.currencyExchangeReducer.data,
 });
 // mapStateToProps
 const mapDispatchToProps = {
-  checkoutDiscountCoupon: paymentsOperations.discountCouponsGateways
+  checkoutDiscountCoupon: paymentsOperations.discountCouponsGateways,
 };
 
 class index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      discountCoupon: ""
+      discountCoupon: "",
     };
   }
 

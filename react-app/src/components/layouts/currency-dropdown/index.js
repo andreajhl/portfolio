@@ -12,7 +12,7 @@ import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencie
 
 const mapStateToProps = ({ payments: { currencyExchangeReducer } }) => ({
   currencyExchangeLoading: currencyExchangeReducer.loading,
-  currencyExchangeData: currencyExchangeReducer.data
+  currencyExchangeData: currencyExchangeReducer.data,
 });
 
 const mapDispatchToProps = { currencyExchange };
@@ -27,13 +27,13 @@ const AVAILABLE_CURRENCIES_SORT = AVAILABLE_CURRENCIES.sort(function (a, b) {
 function CurrencyDropdownLayout({
   currencyExchange = defaultCurrencyExchange,
   currencyExchangeData = defaultCurrencyExchangeData,
-  currencyExchangeLoading
+  currencyExchangeLoading,
 }) {
   const handleCurrentCurrency = (value) => {
     const newCurrencyExchange = findAvailableCurrencyByName(value);
     currencyExchange({
       from: currencyExchangeData?.from || "USD",
-      to: newCurrencyExchange.name
+      to: newCurrencyExchange.name,
     });
     GTM.tagManagerDataLayer("CLICK_ON_DROPDOWN_CURRENCY", newCurrencyExchange);
   };

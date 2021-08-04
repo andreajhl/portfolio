@@ -8,11 +8,11 @@ import { ROOT_PATH } from "react-app/src/routing/Paths";
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   if (typeof params?.contract_reference === "undefined") {
     return {
-      redirect: { destination: ROOT_PATH, permanent: false }
+      redirect: { destination: ROOT_PATH, permanent: false },
     };
   }
   return {
-    props: { match: { params } }
+    props: { match: { params } },
   };
 };
 
@@ -26,5 +26,5 @@ const Response = ({ match }) => {
 };
 
 export default withAuthenticationRequired(Response, {
-  onRedirecting: () => <LoadingPage />
+  onRedirecting: () => <LoadingPage />,
 });

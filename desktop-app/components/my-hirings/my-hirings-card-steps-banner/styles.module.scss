@@ -1,0 +1,20 @@
+.MyHiringsCardStepsBanner {
+  padding: 18px 28px 24px 38px;
+  border-radius: 10px 0px 0px 10px;
+}
+.MyHiringsCardStepsBanner p {
+  color: black;
+}
+
+.TextBold {
+  font-weight: bold;
+}
+
+.LearnMoreLink {
+  font-weight: bold;
+  margin-top: 1.715em;
+  display: inline-block;
+  color: var(--dark);
+  transition: color 0.15s;
+  text-decoration: underline;
+}

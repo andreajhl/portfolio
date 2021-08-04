@@ -1,6 +1,5 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import * as GTM from "../../../state/utils/gtm";
 
 const CelebrityReviewCardLayout = ({ review }) => {
   return (
@@ -43,8 +42,8 @@ const CelebrityReviewCardLayout = ({ review }) => {
 // default props
 CelebrityReviewCardLayout.defaultProps = {
   review: {
-    client: { user: {} }
-  }
+    client: { user: {} },
+  },
 };
 
 export { CelebrityReviewCardLayout };

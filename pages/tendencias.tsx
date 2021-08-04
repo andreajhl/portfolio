@@ -4,7 +4,7 @@ import { defineMessages } from "react-intl";
 
 const headData = defineMessages({
   titleTrending: { defaultMessage: "Famosos.com - Tendencias" },
-  descriptionTrending: { defaultMessage: "Famosos.com - Tendencias" }
+  descriptionTrending: { defaultMessage: "Famosos.com - Tendencias" },
 });
 
 const Trending = () => {

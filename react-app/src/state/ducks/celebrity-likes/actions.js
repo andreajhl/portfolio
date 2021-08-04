@@ -3,7 +3,7 @@ import apiService from "../../utils/apiService";
 import {
   handleApiErrors,
   handleApiResponseFailure,
-  handleApiResponseSuccess
+  handleApiResponseSuccess,
 } from "../../utils";
 import * as API_PATHS from "./paths";
 
@@ -15,7 +15,7 @@ export const fetchUserCelebrityLikes = (params) => (dispatch) => {
     method: "GET",
     action: TYPE,
     path: FINAL_PATH,
-    params
+    params,
   })
     .then((res) => {
       if ("status" in res.data && res.data.status === "ERROR") {
@@ -31,7 +31,12 @@ export const fetchUserCelebrityLikes = (params) => (dispatch) => {
 };
 
 export const fetchUserCelebrityLikesCleanUp = () => ({
-  type: TYPES.FETCH_USER_CELEBRITY_LIKES_CLEAN_UP
+  type: TYPES.FETCH_USER_CELEBRITY_LIKES_CLEAN_UP,
+});
+
+export const toggleLikeFromList = (celebrityId) => ({
+  type: TYPES.TOGGLE_LIKE_FROM_LIST,
+  payload: celebrityId,
 });
 
 export const addOrRemoveLike = async (celebrityId) => {
@@ -42,7 +47,7 @@ export const addOrRemoveLike = async (celebrityId) => {
     const response = await apiService({
       method: "POST",
       action: TYPE,
-      path: FINAL_PATH.replace(":celebrity_id", celebrityId)
+      path: FINAL_PATH.replace(":celebrity_id", celebrityId),
     });
     if ("status" in response.data && response.data.status === "ERROR") {
       // handleApiResponseFailure(dispatch, TYPE, response);
@@ -65,7 +70,7 @@ export const fetchUserCelebrityLikesWithOffset = (params) => (dispatch) => {
     method: "GET",
     action: TYPE,
     path: FINAL_PATH,
-    params
+    params,
   })
     .then((res) => {
       if ("status" in res.data && res.data.status === "ERROR") {

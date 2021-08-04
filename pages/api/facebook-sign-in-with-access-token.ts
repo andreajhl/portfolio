@@ -5,7 +5,7 @@ import { NEXT_LOCALE, USER_LOCATION_KEY } from "constants/keys";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 import {
   localeAvailables,
-  transformUserNavigatorLanguageToISO2Code
+  transformUserNavigatorLanguageToISO2Code,
 } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 async function facebookSignInWithAccessToken(
@@ -28,7 +28,7 @@ async function facebookSignInWithAccessToken(
             transformUserNavigatorLanguageToISO2Code(
               cookies[NEXT_LOCALE] as localeAvailables
             ) || "es",
-          countryAlpha2Code: cookies[USER_LOCATION_KEY] || ""
+          countryAlpha2Code: cookies[USER_LOCATION_KEY] || "",
         }
       )
       .then((response) => {
@@ -44,7 +44,7 @@ async function facebookSignInWithAccessToken(
               {
                 path: "/",
                 sameSite: "lax",
-                maxAge: ONE_YEAR_IN_MILLISECONDS
+                maxAge: ONE_YEAR_IN_MILLISECONDS,
               }
             )
           );
@@ -52,7 +52,7 @@ async function facebookSignInWithAccessToken(
         } else {
           res.json({
             status: "error",
-            error: response.data.error
+            error: response.data.error,
           });
         }
       })
@@ -60,12 +60,12 @@ async function facebookSignInWithAccessToken(
         if (errorResponse.response) {
           return res.status(errorResponse.response.status || 400).json({
             status: "error",
-            error: errorResponse.response.data.error
+            error: errorResponse.response.data.error,
           });
         } else {
           return res.status(400).json({
             status: "error",
-            error: "Unexpected Error"
+            error: "Unexpected Error",
           });
         }
       });

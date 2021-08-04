@@ -6,7 +6,7 @@ class PaginationLayout extends Component {
     super(props);
 
     this.state = {
-      currentPage: 1
+      currentPage: 1,
     };
 
     this.changePagination = this.changePagination.bind(this);
@@ -111,7 +111,7 @@ PaginationLayout.defaultProps = {
   showFmainPadding: true,
   pagination: { totalItems: 0 },
   onPaginationChange: function () {},
-  totalPages: 0
+  totalPages: 0,
 };
 
 export { PaginationLayout };

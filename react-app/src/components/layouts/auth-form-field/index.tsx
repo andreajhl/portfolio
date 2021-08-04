@@ -3,11 +3,13 @@ import Maybe from "../../common/helpers/maybe";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { ReactNode } from "react";
+import { CollapsibleErrorMessage } from "../../common/widgets/collapsible-error-message";
 
-type AuthFormFieldProps = {
+export type AuthFormFieldProps = {
   className?: string;
   label?: string | ReactNode;
   iconElement?: ReactNode;
+  error?: string;
   onIconClick?: () => void;
 } & InputHTMLAttributes<HTMLInputElement>;
 
@@ -18,6 +20,7 @@ function AuthFormField({
   id = name,
   iconElement,
   onIconClick,
+  error,
   ...inputProps
 }: AuthFormFieldProps) {
   return (
@@ -28,13 +31,23 @@ function AuthFormField({
         </label>
       </Maybe>
       <div className={styles.InputContainer}>
-        <input id={id} name={name} className={styles.Input} {...inputProps} />
-        {iconElement ? (
+        <input
+          id={id}
+          name={name}
+          className={classes(styles.Input, error && styles.HasError)}
+          {...inputProps}
+        />
+        <Maybe it={Boolean(iconElement)}>
           <div onClick={onIconClick} className={styles.IconContainer}>
             {iconElement}
           </div>
-        ) : null}
+        </Maybe>
       </div>
+      <CollapsibleErrorMessage
+        className={styles.AuthFormFieldError}
+        errorMessage={error}
+        unmountOnExit
+      />
     </div>
   );
 }

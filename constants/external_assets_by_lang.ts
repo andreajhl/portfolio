@@ -4,7 +4,7 @@ export const hiring_proccess_img = {
   en:
     "https://famosos-media.s3.amazonaws.com/famosos-com-assets/contracts/en/hiring_process.png",
   pt:
-    "https://famosos-media.s3.amazonaws.com/famosos-com-assets/contracts/en/hiring_process.png"
+    "https://famosos-media.s3.amazonaws.com/famosos-com-assets/contracts/en/hiring_process.png",
 };
 
 export const secure_payment_img = {
@@ -13,5 +13,5 @@ export const secure_payment_img = {
   en:
     "https://famosos-media.s3.amazonaws.com/famosos-com-assets/contracts/en/secure_payment.png",
   pt:
-    "https://famosos-media.s3.amazonaws.com/famosos-com-assets/contracts/en/hiring_process.png"
+    "https://famosos-media.s3.amazonaws.com/famosos-com-assets/contracts/en/hiring_process.png",
 };

@@ -23,7 +23,7 @@ const LikeButton = ({
   height = width,
   onHovering = noop,
   onClick = noop,
-  alternativeText = `${isFavorite ? "No me" : "Me"} gusta`
+  alternativeText = `${isFavorite ? "No me" : "Me"} gusta`,
 }: LikeButtonProps) => {
   const [isHovering, setIsHovering] = useState(false);
 

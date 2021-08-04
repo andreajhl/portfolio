@@ -19,7 +19,7 @@ export const styles = {
     borderRadius: "5px",
     borderColor: "#C4C4C4 !important",
     boxShadow: "none",
-    zIndex: 7
+    zIndex: 7,
   }),
   valueContainer: (styles) => ({ ...styles }),
   option: (styles, { isFocused, isSelected }) => {
@@ -31,7 +31,7 @@ export const styles = {
       backgroundColor: isFocused ? "rgba(0, 0, 0, 0.1)" : null,
       color: null,
       display: "flex",
-      alignItems: "center"
+      alignItems: "center",
     };
   },
   menu: (styles) => ({
@@ -39,7 +39,7 @@ export const styles = {
     margin: 0,
     overflow: "hidden",
     borderRadius: "0px 0px 10px 10px",
-    boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.2)"
+    boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.2)",
   }),
-  menuList: (styles) => ({ ...styles, padding: 0 })
+  menuList: (styles) => ({ ...styles, padding: 0 }),
 };

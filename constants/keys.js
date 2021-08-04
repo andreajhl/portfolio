@@ -3,6 +3,7 @@ export const STRIPE_SCRIPT_ID = "stripe-js";
 export const USER_LOCATION_KEY = "userLocation";
 export const USER_IP_ADDRESS = "userIpAddressLocation";
 export const FINAL_REDIRECT = "finalRedirect";
+export const HIDE_COUPON_BANNER = "HIDE_COUPON_BANNER";
 export const USER_CURRENCY_CODE = "userCurrencyCode";
 export const CURRENT_CURRENCY_TRM_RATE = "currentCurrencyTRMRate";
 export const CURRENT_CURRENCY_TRM_CODE = "currentCurrencyTRMCode";
@@ -11,5 +12,8 @@ export const OFFSET_ROTATE_CELEBRITIES_SECTIONS =
 export const STRIPE_FAILURE_AUTHENTICATION = "stripe_failure_authentication";
 export const NEXT_LOCALE = "NEXT_LOCALE";
 export const cfUserCountryCode = "__cf__userCountryCode";
+
+export const CELEBRITY_NAME_QUERY_PARAM = "celebrity";
+export const SUGGESTED_FULL_NAME_QUERY_PARAM = "suggestedFullName";
 
 export const USER_GEOLOCATION_KEY = "fs__uglk";

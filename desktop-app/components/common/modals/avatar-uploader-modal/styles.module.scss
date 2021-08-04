@@ -1,0 +1,14 @@
+.ImageCropperWrapper {
+  text-align: center;
+  background-color: var(--gray-2, #242526);
+}
+
+.ImageCropper {
+  margin: 0 auto -5px; // -5px from unexpected whitespace at the bottom.
+}
+
+.PreviewImage {
+  object-fit: contain;
+  // 170px from card header and card footer height
+  max-height: calc(90vh - 170px);
+}

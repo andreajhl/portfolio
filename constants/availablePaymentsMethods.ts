@@ -3,5 +3,27 @@ export const AVAILABLE_PAYMENTS_METHODS = {
   DEBIT_CARD: "Tarjeta de Débito",
   BANK_TRANSFER: "Transferencia Bancaria",
   TICKET: "Efectivo",
-  PAYPAL: "Paypal"
+  PAYPAL: "Paypal",
 };
+
+export const AVAILABLE_PAYMENTS_METHOD_PAYPAL = ["PAYPAL", "STRIPE"] as const;
+
+export const AVAILABLE_PAYMENTS_METHOD_STRIPE = ["STRIPE"] as const;
+
+export const AVAILABLE_PAYMENTS_METHODS_DLOCAL = [
+  "CREDIT_CARD",
+  "DEBIT_CARD",
+  "BANK_TRANSFER",
+  "TICKET",
+] as const;
+
+export const ALL_AVAILABLE_PAYMENTS_METHODS = [
+  ...AVAILABLE_PAYMENTS_METHODS_DLOCAL,
+  ...AVAILABLE_PAYMENTS_METHOD_PAYPAL,
+  ...AVAILABLE_PAYMENTS_METHOD_STRIPE,
+] as const;
+
+export const DLOCAL_PAYMENT_METHODS_WITH_CARD_REQUIRED = [
+  "DEBIT_CARD",
+  "CREDIT_CARD",
+];

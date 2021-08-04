@@ -1,0 +1,21 @@
+.ContractDataFormControl {
+  font-size: 14px;
+}
+
+.ContractDataFormControlEditing {
+  border: 1px solid #dedede;
+  background: #f9f9ff;
+  border-radius: 10px;
+  padding: 0.75em 1em;
+}
+
+.ContractDataFormControlLabel {
+  font-weight: bold;
+}
+
+.ContractDataFormControlInput {
+  &:disabled {
+    color: var(--gray-4);
+    cursor: text;
+  }
+}

@@ -14,7 +14,7 @@ class CelebrityPublicContractCardLayout extends Component {
 
     this.state = {
       imageLoaded: false,
-      videoDesktopPlayIcon: "fa-play"
+      videoDesktopPlayIcon: "fa-play",
     };
 
     this.playDesktopContract = this.playDesktopContract.bind(this);
@@ -42,7 +42,7 @@ class CelebrityPublicContractCardLayout extends Component {
       this.setState({ videoDesktopPlayIcon: "fa-pause" }, () => {
         this.videoDesktopRef.current.play();
         this.props.playVideo({
-          contract_reference: this.props.publicContract.contract_reference
+          contract_reference: this.props.publicContract.contract_reference,
         });
       });
     } else {
@@ -146,17 +146,17 @@ class CelebrityPublicContractCardLayout extends Component {
 
 // Set defaultProps
 CelebrityPublicContractCardLayout.defaultProps = {
-  publicContract: {}
+  publicContract: {},
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
-  currentVideoPlaying: state.contracts.playVideoReducer.contract_reference
+  currentVideoPlaying: state.contracts.playVideoReducer.contract_reference,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  playVideo: contractOperations.playVideo
+  playVideo: contractOperations.playVideo,
 };
 
 // Export Class

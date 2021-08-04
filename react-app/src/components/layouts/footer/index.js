@@ -30,14 +30,14 @@ class FooterLayout extends Component {
   trackJobListingLinkClick = () => {
     tagManagerDataLayer("FOOTER_JOB_LISTING_LINK_CLICK", {
       widget: "FooterLayout",
-      path: getWindow().location.pathname
+      path: getWindow().location.pathname,
     });
   };
 
   trackJobListingLinkHover = () => {
     tagManagerDataLayer("FOOTER_JOB_LISTING_LINK_HOVER", {
       widget: "FooterLayout",
-      path: getWindow().location.pathname
+      path: getWindow().location.pathname,
     });
   };
 
@@ -62,7 +62,7 @@ class FooterLayout extends Component {
                   <FormattedMessage
                     defaultMessage="Es una compañía dedicada a crear tecnologías <br></br> que conecten personalidades con su fan base."
                     values={{
-                      br: (chunks) => <br></br>
+                      br: (chunks) => <br></br>,
                     }}
                   />
                 </div>

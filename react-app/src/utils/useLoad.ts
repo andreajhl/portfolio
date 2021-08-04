@@ -8,7 +8,7 @@ const useLoad = (itemRef = defaultItemRef, defaultIsLoaded = false) => {
   const onLoad = () => setIsLoaded(true);
 
   useEffect(() => {
-    if (itemRef.current.readyState === LOADED || itemRef.current.complete) {
+    if (itemRef?.current?.readyState === LOADED || itemRef?.current?.complete) {
       onLoad();
     }
   }, [itemRef]);

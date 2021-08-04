@@ -11,24 +11,24 @@ import { defineMessages, useIntl } from "react-intl";
 const headData = defineMessages({
   titleCreateContract: {
     defaultMessage:
-      "Famosos.com - Comprar video personalizado de {celebrity_username}"
+      "Famosos.com - Comprar video personalizado de {celebrity_username}",
   },
   descriptionCreateContract: {
     defaultMessage:
-      "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
-  }
+      "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.",
+  },
 });
 
 const redirectToSanitizedPath = {
   destination: "/celebrity_username/contratar",
-  permanent: false
+  permanent: false,
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params, store }) => {
     if (typeof params === "undefined") {
       return {
-        redirect: redirectToSanitizedPath
+        redirect: redirectToSanitizedPath,
       };
     }
 
@@ -44,14 +44,14 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
             ":celebrity_username",
             String(celebrity_username)
           ),
-          permanent: false
-        }
+          permanent: false,
+        },
       };
     }
     return {
       props: {
-        celebrity
-      }
+        celebrity,
+      },
     };
   }
 );
@@ -62,10 +62,10 @@ const CreateContract = ({ celebrity }) => {
     <>
       <CustomHead
         title={formatMessage(headData.titleCreateContract, {
-          celebrity_username: celebrity.fullName
+          celebrity_username: celebrity.fullName,
         })}
         description={formatMessage(headData.descriptionCreateContract, {
-          celebrity_username: celebrity.fullName
+          celebrity_username: celebrity.fullName,
         })}
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
@@ -76,5 +76,5 @@ const CreateContract = ({ celebrity }) => {
 };
 
 export default withAuthenticationRequired(CreateContract, {
-  onRedirecting: () => <LoadingPage />
+  onRedirecting: () => <LoadingPage />,
 });

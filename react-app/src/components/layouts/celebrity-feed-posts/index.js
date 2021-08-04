@@ -4,7 +4,7 @@ import CelebritySharedPost from "../../containers/celebrity-shared-post/index";
 import { LoaderLayout } from "../../layouts/loader";
 import {
   SubscriptionPostCard,
-  SubscriptionPostContent
+  SubscriptionPostContent,
 } from "../../common/cards/subscription-post-card";
 import { PoweredByFamososBanner } from "../powered-by-famosos-banner";
 
@@ -16,7 +16,7 @@ const CelebrityFeedPosts = ({
   subscriptionList,
   onFetchMorePost,
   hasMorePost,
-  currentChoice
+  currentChoice,
 }) => {
   const celebrityData = getCelebrity(subscriptionList, currentChoice);
 
@@ -35,7 +35,7 @@ const CelebrityFeedPosts = ({
                 const {
                   celebrityAvatar,
                   celebrityFullName,
-                  celebrityUsername
+                  celebrityUsername,
                 } =
                   celebrityData || getCelebrity(subscriptionList, celebrityId);
 
@@ -65,7 +65,7 @@ CelebritySharedPost.defaultProps = {
   posts: [],
   celebrityData: {},
   onFetchMorePost: () => {},
-  hasMorePost: true
+  hasMorePost: true,
 };
 
 export { CelebrityFeedPosts };

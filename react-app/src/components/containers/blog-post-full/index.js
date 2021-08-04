@@ -19,7 +19,7 @@ const BlogPostFull = ({ title, thumbnail, content, pubDate, intl }) => {
     weekday: "long",
     year: "numeric",
     month: "long",
-    day: "numeric"
+    day: "numeric",
   };
   const pubDateParse = new Date(pubDate);
   const htmlToParse = content;

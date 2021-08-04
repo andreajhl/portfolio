@@ -7,7 +7,7 @@ import { NEXT_LOCALE, USER_LOCATION_KEY } from "constants/keys";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 import {
   localeAvailables,
-  transformUserNavigatorLanguageToISO2Code
+  transformUserNavigatorLanguageToISO2Code,
 } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 const ERROR_MESSAGE_CODE_NOT_FOUND = "No code was provided";
 
@@ -26,7 +26,7 @@ async function facebookCallbackHandler(
     res.writeHead(302, {
       Location: `/auth/sign-in?error=${encodeURIComponent(
         ERROR_MESSAGE_CODE_NOT_FOUND
-      )}`
+      )}`,
     });
     return res.end();
   }
@@ -40,7 +40,7 @@ async function facebookCallbackHandler(
         transformUserNavigatorLanguageToISO2Code(
           cookies[NEXT_LOCALE] as localeAvailables
         ) || "es",
-      countryAlpha2Code: cookies[USER_LOCATION_KEY] || ""
+      countryAlpha2Code: cookies[USER_LOCATION_KEY] || "",
     })
     .then((response) => {
       const status = response.data.status;
@@ -55,7 +55,7 @@ async function facebookCallbackHandler(
             {
               path: "/",
               sameSite: "lax",
-              maxAge: ONE_YEAR_IN_MILLISECONDS
+              maxAge: ONE_YEAR_IN_MILLISECONDS,
               // ...generateHttpOnlyCookie()
             }
           )

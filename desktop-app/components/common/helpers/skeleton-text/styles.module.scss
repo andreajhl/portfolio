@@ -1,0 +1,20 @@
+.Wrapper {
+  font: inherit;
+  position: relative;
+  display: inline-block;
+}
+
+.Wrapper > span {
+  font: inherit;
+}
+
+.ShadowText {
+  visibility: hidden;
+}
+
+.Wrapper > span:last-child {
+  display: inline-block;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}

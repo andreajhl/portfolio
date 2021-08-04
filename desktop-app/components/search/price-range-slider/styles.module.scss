@@ -1,0 +1,18 @@
+.PriceRangeSliderSlider {
+  margin-bottom: 9px;
+}
+
+.PriceRangeSliderInputs {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.PriceRangeSliderInputs > div {
+  flex: 45% 0 0;
+  overflow: hidden;
+}
+
+.PriceRangeSliderInputsSeparator {
+  margin: 29px 3.5px 0;
+}

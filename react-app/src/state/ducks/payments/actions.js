@@ -3,7 +3,7 @@ import apiService from "../../utils/apiService";
 import {
   handleApiErrors,
   handleApiResponseFailure,
-  handleApiResponseSuccess
+  handleApiResponseSuccess,
 } from "../../utils";
 import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
@@ -14,7 +14,7 @@ import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencie
 // import { reduxStore } from "../../../";
 
 const reduxStore = {
-  dispatch() {}
+  dispatch() {},
 };
 
 export const listPaymentGateways = (currency) => {
@@ -31,7 +31,7 @@ export const listPaymentGateways = (currency) => {
       async: true,
       params: null,
       body: null,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -63,23 +63,13 @@ export const currencyExchange = (params) => {
       async: true,
       params: params,
       body: null,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then((res) => {
         if (res.data.status === "OK") {
           handleApiResponseSuccess(dispatch, TYPE, res);
           // Other actions
           setCookie(CURRENT_CURRENCY_TRM_CODE, params.to, 365);
-
-          if (
-            !AVAILABLE_CURRENCIES.find(
-              (x) => x.implemented_by_dlocal === false && x.name === params.to
-            )
-          ) {
-            dispatch(listPaymentGateways(params.to));
-          } else {
-            dispatch(listPaymentGateways("USD"));
-          }
           dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
         } else {
           handleApiResponseFailure(dispatch, TYPE, res);
@@ -106,7 +96,7 @@ export const getContractToPay = (contractReference) => {
         path: FINAL_PATH,
         async: true,
         params: null,
-        body: null
+        body: null,
       })
         .then((res) => {
           if ("status" in res.data && res.data.status === "ERROR") {
@@ -136,6 +126,45 @@ export const getContractToPay = (contractReference) => {
   };
 };
 
+export const getContractToPayV2 = (contractReference) => {
+  return (dispatch) => {
+    const TYPE = types.GET_CONTRACT_TO_PAY_REQUEST;
+    const FINAL_PATH =
+      "/custom-endpoints/contracts/payments-methods/" + contractReference;
+    dispatch({ type: TYPE, payload: {} });
+    apiService({
+      method: "GET",
+      action: TYPE,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: null,
+    })
+      .then((res) => {
+        if ("status" in res.data && res.data.status === "ERROR") {
+          handleApiResponseFailure(dispatch, TYPE, res);
+          // history._pushRoute(ROUTING_PATHS.HOME_PATH);
+        } else {
+          if (res.data.data.status >= 7) {
+            history._pushRoute(
+              ROUTING_PATHS.PURCHASE_SUMMARY.replace(
+                ":contract_reference",
+                res.data.data.reference
+              )
+            );
+          } else {
+            handleApiResponseSuccess(dispatch, TYPE, res);
+            // Other actions
+            dispatch({ type: `${TYPE}_COMPLETED`, payload: res });
+          }
+        }
+      })
+      .catch((err) => {
+        handleApiErrors(dispatch, TYPE, err);
+      });
+  };
+};
+
 export const processStripePayment = (
   contractReference,
   sourceId,
@@ -155,7 +184,7 @@ export const processStripePayment = (
     IP,
     userAgent,
     geoLocalization,
-    locale
+    locale,
   };
   return new Promise((resolve, reject) => {
     apiService({
@@ -165,7 +194,7 @@ export const processStripePayment = (
       async: true,
       params: null,
       body: data,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then(resolve)
       .catch((error) => {
@@ -205,7 +234,7 @@ export const processDlocalPayment = (
     IP: userIp,
     userAgent,
     geolocation,
-    locale
+    locale,
   };
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
@@ -215,7 +244,7 @@ export const processDlocalPayment = (
       async: true,
       params: null,
       body: data,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then((res) => {
         if (res.data.status === "OK") {
@@ -253,7 +282,7 @@ export const processPayPalPayment = (
     IP,
     userAgent,
     geoLocalization,
-    locale
+    locale,
   };
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
@@ -263,7 +292,7 @@ export const processPayPalPayment = (
       async: true,
       params: null,
       body: data,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then((res) => {
         if (res.data.status === "ERROR") {
@@ -305,7 +334,7 @@ export const retrieveUserCards = () => {
       async: true,
       params: null,
       body: null,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then((res) => {
         if (res.data.status === "ERROR") {
@@ -337,7 +366,7 @@ export const removeSource = (sourceId) => {
       async: true,
       params: null,
       body: null,
-      custom_endpoint: false
+      custom_endpoint: false,
     })
       .then((res) => {
         if (res.data.status === "ERROR") {
@@ -364,21 +393,27 @@ export const clearCouponData = () => {
   };
 };
 
+export const togglePaymentInProcess = () => {
+  return (dispatch) => {
+    dispatch({ type: types.TOGGLE_PAYMENT_IN_PROCESS, payload: {} });
+  };
+};
+
 export const discountCouponsGateways = (contractReference, discountCoupon) => {
   const data = {
     contractReference: contractReference,
-    discountCoupon: discountCoupon
+    discountCoupon: discountCoupon,
   };
   return (dispatch) => {
     const TYPE = types.APPLY_DISCOUNT_COUPON;
     const FINAL_PATH = "custom-endpoints/user-payments/apply-discount-coupon";
-
+    dispatch({ type: TYPE, payload: {} });
     apiService({
       method: "POST",
       path: FINAL_PATH,
       async: true,
       params: null,
-      body: data
+      body: data,
     })
       .then((res) => {
         if (res.data.status === "OK") {

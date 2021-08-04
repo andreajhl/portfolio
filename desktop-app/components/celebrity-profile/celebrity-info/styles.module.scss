@@ -1,0 +1,39 @@
+.CelebrityInfo {
+  display: flex;
+}
+
+.CelebrityInfoItem,
+.CelebrityInfoItemWithSeparator {
+  font-size: 14px;
+  color: var(--gray-4);
+}
+
+.CelebrityInfoItem *,
+.CelebrityInfoItemWithSeparator * {
+  color: var(--gray-4);
+}
+
+.CelebrityInfoItemWithSeparator {
+  padding-right: 1rem;
+  border-right: 1px solid #9d9d9d;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.CelebrityInfoFlag {
+  margin-right: 14px;
+}
+
+.CelebrityInfoCategory:hover {
+  color: var(--dark) !important;
+}
+
+.DeliveryTimeWrapper {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.DeliveryTimeLabel {
+  margin-right: 0.2em;
+}

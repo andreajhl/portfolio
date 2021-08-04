@@ -7,7 +7,7 @@ type NewsletterPopupCompletedProps = {
 };
 
 function NewsletterPopupCompleted({
-  closeModal
+  closeModal,
 }: NewsletterPopupCompletedProps) {
   return (
     <section className={styles.NewsletterPopupCompleted}>

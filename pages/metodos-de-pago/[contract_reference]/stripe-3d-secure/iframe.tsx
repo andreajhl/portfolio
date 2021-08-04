@@ -11,12 +11,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   if (typeof contract_reference === "undefined") {
     return {
-      redirect: { destination: ROOT_PATH, permanent: false }
+      redirect: { destination: ROOT_PATH, permanent: false },
     };
   }
 
   return {
-    props: { contract_reference }
+    props: { contract_reference },
   };
 };
 
@@ -33,5 +33,5 @@ const Iframe = ({ contract_reference }) => {
 };
 
 export default withAuthenticationRequired(Iframe, {
-  onRedirecting: () => <LoadingPage />
+  onRedirecting: () => <LoadingPage />,
 });

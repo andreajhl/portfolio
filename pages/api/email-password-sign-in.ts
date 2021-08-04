@@ -7,7 +7,7 @@ import axios from "axios";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 import {
   localeAvailables,
-  transformUserNavigatorLanguageToISO2Code
+  transformUserNavigatorLanguageToISO2Code,
 } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 async function emailPasswordSignInHandler(
@@ -27,7 +27,7 @@ async function emailPasswordSignInHandler(
       locale:
         transformUserNavigatorLanguageToISO2Code(
           cookies[NEXT_LOCALE] as localeAvailables
-        ) || "es"
+        ) || "es",
     })
     .then((response) => {
       const status = response.data.status;
@@ -42,19 +42,19 @@ async function emailPasswordSignInHandler(
             {
               path: "/",
               sameSite: "lax",
-              maxAge: ONE_YEAR_IN_MILLISECONDS
+              maxAge: ONE_YEAR_IN_MILLISECONDS,
               // ...generateHttpOnlyCookie()
             }
           )
         );
         res.json({
           status: "OK",
-          error: null
+          error: null,
         });
       } else {
         res.json({
           status: "error",
-          error: response.data.error
+          error: response.data.error,
         });
       }
       return;
@@ -63,12 +63,12 @@ async function emailPasswordSignInHandler(
       if (errorResponse.response) {
         res.json({
           status: "error",
-          error: errorResponse.response.data.error
+          error: errorResponse.response.data.error,
         });
       } else {
         res.json({
           status: "error",
-          error: "Unexpected Error"
+          error: "Unexpected Error",
         });
       }
       return;

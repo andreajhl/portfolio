@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 function UpdatePasswordFom() {
   const [newPassword, setNewPassword] = useState({
     password: "",
-    confirm_password: ""
+    confirm_password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +24,7 @@ function UpdatePasswordFom() {
     const value = event.target.value;
     setNewPassword((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -46,7 +46,7 @@ function UpdatePasswordFom() {
   const validateSecurityCode = async () => {
     await axios
       .post("/api/update-password", {
-        newPassword: newPassword.password.trim().toLocaleLowerCase()
+        newPassword: newPassword.password.trim().toLocaleLowerCase(),
       })
       .then((response) => {
         setIsUpdated(true);
@@ -121,7 +121,7 @@ function UpdatePasswordFom() {
     <div className={styles.ResetPasswordWrapper}>
       <p
         style={{
-          textAlign: "center"
+          textAlign: "center",
         }}
         className={styles.SubTitle}
       >

@@ -1,0 +1,61 @@
+.MyHiringsCardDetails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.MyHiringsCardDetailsOccasion {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.MyHiringsCardDetailsDeliveryData {
+  display: flex;
+  flex: 1;
+  margin-left: 72px;
+  align-items: center;
+
+  > :first-child {
+    flex-grow: 1;
+  }
+}
+
+.MyHiringsCardDetailsDeliveryFrom {
+  margin-top: 8px;
+}
+
+.MyHiringsCardDetailsInstructionWrapper {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.MyHiringsCardDetailsEditButtonWrapper {
+  align-self: center;
+  margin-top: 20px;
+}
+
+.MyHiringsCardDetailsEditButtonWrapperIsEditing {
+  margin-top: -4px;
+}
+
+.MyHiringsCardDetailsInput {
+  width: 100%;
+  max-width: 275px;
+  display: flex;
+
+  > span {
+    width: 100%;
+    &::before {
+      content: initial;
+    }
+  }
+
+  input {
+    position: static;
+  }
+}
+
+.ErrorMessage {
+  font-size: 12px;
+  margin-top: 6px;
+}

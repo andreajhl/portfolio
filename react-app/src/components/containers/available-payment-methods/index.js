@@ -25,16 +25,16 @@ class AvailablePaymentMethods extends Component {
       buyerData: {
         buyerFullName: "",
         buyerEmail: "",
-        buyerDocment: ""
+        buyerDocment: "",
       },
       buyerDataIncomplete: false,
-      disabledDLocalButton: false
+      disabledDLocalButton: false,
     };
   }
   componentDidMount() {
     this.setState({
       ...this.state,
-      currencySelected: this.props.currentCurrencySelected
+      currencySelected: this.props.currentCurrencySelected,
     });
   }
 
@@ -44,7 +44,7 @@ class AvailablePaymentMethods extends Component {
     ) {
       this.setState({
         ...this.state,
-        currencySelected: this.props.currentCurrencySelected
+        currencySelected: this.props.currentCurrencySelected,
       });
     }
   }
@@ -53,7 +53,7 @@ class AvailablePaymentMethods extends Component {
 
     this.setState({
       ...this.state,
-      selectedPaymentMethod: "STRIPE"
+      selectedPaymentMethod: "STRIPE",
     });
   };
 
@@ -218,7 +218,7 @@ class AvailablePaymentMethods extends Component {
 
     this.setState({
       ...this.state,
-      selectedPaymentMethod: "WHATSAPP"
+      selectedPaymentMethod: "WHATSAPP",
     });
   };
 
@@ -229,7 +229,7 @@ class AvailablePaymentMethods extends Component {
       newPaymentMethod: e,
       buyerData: this.state.buyerData,
       contractReference: this.props.contractReference,
-      currency: this.props.currencyExchangeData?.data?.to
+      currency: this.props.currencyExchangeData?.data?.to,
     });
     this.setState((prevState) => ({ ...prevState, selectedPaymentMethod: e }));
   };
@@ -238,8 +238,8 @@ class AvailablePaymentMethods extends Component {
     this.setState({
       ...this.state,
       buyerData: {
-        ...buyerData
-      }
+        ...buyerData,
+      },
     });
   };
   onBuyerDataIncomplete = () => {
@@ -249,7 +249,7 @@ class AvailablePaymentMethods extends Component {
   onValidBuyerDataForDLocal = (boolean) => {
     this.setState((prevState) => ({
       ...prevState,
-      disabledDLocalButton: boolean
+      disabledDLocalButton: boolean,
     }));
   };
   render() {
@@ -261,7 +261,7 @@ class AvailablePaymentMethods extends Component {
       "BANK_TRANSFER",
       "TICKET",
       "CREDIT_CARD",
-      "DEBIT_CARD"
+      "DEBIT_CARD",
     ].includes(this.state.selectedPaymentMethod);
 
     return this.props.paymentMethodsAvailableIsLoading ? (
@@ -345,7 +345,7 @@ AvailablePaymentMethods.propTypes = {};
 // Set defaultProps
 AvailablePaymentMethods.defaultProps = {
   contractReference: "",
-  contractPrice: 0
+  contractPrice: 0,
 };
 // mapStateToProps
 const mapStateToProps = (state) => ({
@@ -353,11 +353,11 @@ const mapStateToProps = (state) => ({
     state.payments.fetchPaymentGatewaysReducer.loading,
   paymentMethodsAvailable: state.payments.fetchPaymentGatewaysReducer.data,
   couponData: state.payments.fetchDiscountCouponReducer,
-  currencyExchangeData: state.payments.currencyExchangeReducer
+  currencyExchangeData: state.payments.currencyExchangeReducer,
 });
 
 // Export Class
 const _AvailablePaymentMethods = connect(mapStateToProps, {
-  listPaymentGateways
+  listPaymentGateways,
 })(withRouter(AvailablePaymentMethods));
 export { _AvailablePaymentMethods as AvailablePaymentMethods };

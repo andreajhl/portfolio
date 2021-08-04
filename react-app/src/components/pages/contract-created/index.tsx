@@ -50,7 +50,7 @@ function ContractCreatedPage({
   getContract,
   isLoading,
   resumen,
-  contractToPayClear
+  contractToPayClear,
 }: ContractWithPaymentsProps) {
   const router = useRouter();
 
@@ -83,7 +83,7 @@ function ContractCreatedPage({
         <LoadingScreen>
           <div
             style={{
-              margin: "auto"
+              margin: "auto",
             }}
           >
             <LoaderLayout></LoaderLayout>
@@ -95,7 +95,7 @@ function ContractCreatedPage({
         <LoadingScreen>
           <div
             style={{
-              margin: "auto"
+              margin: "auto",
             }}
           >
             <LoaderLayout></LoaderLayout>
@@ -114,12 +114,12 @@ function ContractCreatedPage({
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.getContractWithPaymentsReducer.loading,
   resumen: state.contracts.getContractWithPaymentsReducer.data,
-  contractCreated: state.contracts.saveClientContractReducer.data
+  contractCreated: state.contracts.saveClientContractReducer.data,
 });
 // mapStateToProps
 const mapDispatchToProps = {
   getContract: contractOperations.getContractWithPayments,
-  contractToPayClear: contractOperations.saveContractToPayClear
+  contractToPayClear: contractOperations.saveContractToPayClear,
 };
 
 // Export Class

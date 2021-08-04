@@ -10,7 +10,7 @@ const SubscriptionPlanOption = (props) => {
     planId,
     handlerClick,
     currentPlanSelected,
-    price
+    price,
   } = { ...props };
   return (
     <div
@@ -40,7 +40,7 @@ const SubscriptionPlanOption = (props) => {
 
 const SubscriptionPlansOptions = (props) => {
   const { optionsList, onOptionClicked, currentPlanSelected, price } = {
-    ...props
+    ...props,
   };
   const handlerClick = (planId) => {
     onOptionClicked(planId);

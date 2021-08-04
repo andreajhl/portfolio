@@ -14,9 +14,9 @@ class ContractCommentSectionLayout extends Component {
 
     this.state = {
       params: {
-        page: 1
+        page: 1,
       },
-      firstCall: false
+      firstCall: false,
     };
 
     this.listContractComments = this.listContractComments.bind(this);
@@ -76,7 +76,7 @@ class ContractCommentSectionLayout extends Component {
     }
     this.setState(
       {
-        params: params
+        params: params,
       },
       () => this.listContractComments()
     );
@@ -123,7 +123,7 @@ class ContractCommentSectionLayout extends Component {
           className="pt-0 scroll-section"
           style={{
             height: this.props.contractComments.length ? "300px" : "50px",
-            overflow: "scroll"
+            overflow: "scroll",
           }}
           ref={this.scrollDiv}
         >
@@ -143,7 +143,7 @@ ContractCommentSectionLayout.defaultProps = {
   isLoading: false,
   contract: {},
   contractComments: [],
-  paginationData: {}
+  paginationData: {},
 };
 
 // mapStateToProps
@@ -151,12 +151,12 @@ const mapStateToProps = (state) => ({
   isLoading: state.contracts.listContractCommentsReducer.loading,
   contractComments: state.contracts.listContractCommentsReducer.data.results,
   paginationData:
-    state.contracts.listContractCommentsReducer.data.informationPage
+    state.contracts.listContractCommentsReducer.data.informationPage,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  listContractComments: contractOperations.listContractComments
+  listContractComments: contractOperations.listContractComments,
 };
 
 // Export Class

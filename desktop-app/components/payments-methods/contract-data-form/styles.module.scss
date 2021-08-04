@@ -1,0 +1,16 @@
+.ContractDataFormDeliveryInputs {
+  margin-bottom: 26px;
+
+  > * + * {
+    margin-left: 1em;
+  }
+}
+
+.ContractDataFormEditButtonWrapper {
+  float: right;
+  margin-top: -3.5px;
+}
+
+.ContractDataFormInstructionsLabel {
+  margin-bottom: 22px;
+}

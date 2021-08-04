@@ -1,0 +1,17 @@
+.CloseModalButton {
+  border-radius: 50% !important;
+  box-shadow: none !important;
+  transition: opacity 0.15s ease;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.dark {
+  background: var(--gray-2);
+  i {
+    color: white !important;
+  }
+}

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import {
   CLIENT_HIRINGS,
   FEED_SUBSCRIPTION,
-  HOME_PATH
+  HOME_PATH,
 } from "../../../routing/Paths";
 import LogoutButton from "../../containers/logout-button/logout-button";
 import Router, { withRouter } from "next/router";
@@ -21,7 +21,7 @@ class UserProfileDetailsCardLayout extends Component {
     super(props);
 
     this.state = {
-      favCelebrities: ""
+      favCelebrities: "",
     };
 
     this.sesion = new Session();
@@ -161,13 +161,14 @@ const mapStateToProps = (state) => ({
   sessionData: state.session.getSessionReducer.data,
   updateSessionData: state.session.updateSessionReducer.data,
   userCelebrityLikesCount:
-    state.celebrityLikes.fetchUserCelebrityLikesReducer?.data?.data?.length || 0
+    state.celebrityLikes.fetchUserCelebrityLikesReducer?.data?.data?.length ||
+    0,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
   fetchUserSubscriptionsList,
-  updateSession: sessionOperations.updateSession
+  updateSession: sessionOperations.updateSession,
 };
 
 // Export Class

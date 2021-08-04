@@ -1,0 +1,18 @@
+.HashtagsBadgeList {
+  margin-right: 14px;
+  display: flex;
+  overflow: scroll;
+}
+
+.HashtagsBadgeListWithReel {
+  overflow: visible;
+  padding-right: 14px;
+}
+
+.HashtagsBadgeList > * {
+  flex-shrink: 0;
+}
+
+.HashtagsBadgeList > * + * {
+  margin-left: 10px;
+}

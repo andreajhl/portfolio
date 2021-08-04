@@ -3,7 +3,6 @@ import * as PropTypes from "prop-types";
 import { CelebrityShape } from "../../../prop-types";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
-import * as GTM from "../../../state/utils/gtm";
 import { Session } from "../../../state/utils/session";
 import { PageContainer } from "../../layouts/page-container";
 import dynamic from "next/dynamic";
@@ -62,11 +61,6 @@ const CelebrityProfileLayout = ({ celebrity, celebrityProfileVersion }) => {
 
 class CelebrityProfilePage extends Component {
   componentDidMount() {
-    GTM.tagManagerDataLayer("CELEBRITY_PROFILE_PAGE_VIEW", {
-      ...this.props.match,
-      celebrity: this.props.celebrity,
-      celebrityProfileVersion: this.props.celebrityProfileVersion
-    });
     const session = new Session();
     session.isDummy();
   }
@@ -117,17 +111,17 @@ class CelebrityProfilePage extends Component {
 // Set propTypes
 CelebrityProfilePage.propTypes = {
   celebrity: CelebrityShape.isRequired,
-  getCelebrity: PropTypes.func.isRequired
+  getCelebrity: PropTypes.func.isRequired,
 };
 
 // Set defaultProps
 CelebrityProfilePage.defaultProps = {
   celebrity: {
     category_data: {},
-    user_data: {}
+    user_data: {},
   },
   socialNetworks: [],
-  similarCelebrities: []
+  similarCelebrities: [],
 };
 
 // mapStateToProps
@@ -135,13 +129,12 @@ const mapStateToProps = (state) => ({
   isLoading: state.celebrities.getCelebrityReducer.loading,
   celebrity: state.celebrities.getCelebrityReducer.data,
   errorData: state.celebrities.getCelebrityReducer.error_data,
-  celebrityProfileVersion: state.celebrities.celebrityProfileVersionReducer
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
   getCelebrity: celebrityOperations.get,
-  cleanPublicContracts: celebrityOperations.cleanPublicContracts
+  cleanPublicContracts: celebrityOperations.cleanPublicContracts,
 };
 
 const _CelebrityProfilePage = connect(

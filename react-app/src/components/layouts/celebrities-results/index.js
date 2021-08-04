@@ -7,7 +7,7 @@ const CelebritiesResultsLayout = ({
   celebrities,
   totalResults,
   queryParams,
-  fetchMoreData
+  fetchMoreData,
 }) => {
   const isSearchingByKeyword = Boolean(queryParams.search);
 
@@ -16,7 +16,7 @@ const CelebritiesResultsLayout = ({
       widget: "CelebritiesResultsLayout",
       path: window.location.pathname,
       totalResults,
-      search: queryParams.search
+      search: queryParams.search,
     });
 
   return (
@@ -26,7 +26,7 @@ const CelebritiesResultsLayout = ({
           <FormattedMessage
             defaultMessage="Resultados para {search}"
             values={{
-              search: <strong>{queryParams.search}</strong>
+              search: <strong>{queryParams.search}</strong>,
             }}
           />
         ) : (
@@ -42,7 +42,7 @@ const CelebritiesResultsLayout = ({
               br: (chunks) => <br></br>,
               search: isSearchingByKeyword
                 ? `"${queryParams.search}"`
-                : "esta búsqueda"
+                : "esta búsqueda",
             }}
           />
         </>
@@ -57,7 +57,7 @@ const CelebritiesResultsLayout = ({
 
 CelebritiesResultsLayout.defaultProps = {
   celebrities: [],
-  queryParams: {}
+  queryParams: {},
 };
 
 export { CelebritiesResultsLayout };

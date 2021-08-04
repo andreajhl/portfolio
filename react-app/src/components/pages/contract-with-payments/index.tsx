@@ -56,7 +56,7 @@ function ContractWithPayments({
   getContract,
   isLoading,
   resumen,
-  contractToPayClear
+  contractToPayClear,
 }: ContractWithPaymentsProps) {
   useEffect(() => {
     contractToPayClear();
@@ -76,12 +76,12 @@ function ContractWithPayments({
   `;
 
   return (
-    <PageContainer showFooter={false} showSearch={false}>
+    <PageContainer showFooter={false} showSearch={false} showBotMakerFrame>
       {isLoading ? (
         <LoadingScreen>
           <div
             style={{
-              margin: "auto"
+              margin: "auto",
             }}
           >
             <LoaderLayout></LoaderLayout>
@@ -128,12 +128,12 @@ function ContractWithPayments({
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.getContractWithPaymentsReducer.loading,
   resumen: state.contracts.getContractWithPaymentsReducer.data,
-  contractCreated: state.contracts.saveClientContractReducer.data
+  contractCreated: state.contracts.saveClientContractReducer.data,
 });
 // mapStateToProps
 const mapDispatchToProps = {
   getContract: contractOperations.getContractWithPayments,
-  contractToPayClear: contractOperations.saveContractToPayClear
+  contractToPayClear: contractOperations.saveContractToPayClear,
 };
 
 // Export Class

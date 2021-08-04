@@ -1,0 +1,140 @@
+@charset "UTF-8";
+.HeroSection {
+  font-size: 16px;
+  background-color: var(--dark);
+  height: 17.375em;
+  position: relative;
+}
+
+@media only screen and (max-width: 1200px) {
+  .HeroSection {
+    font-size: 1.25vw;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .HeroSectionContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.HeroSection * {
+  color: var(--light);
+}
+
+.HeroSectionHeader {
+  height: 17.375em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
+
+.HeroSection .HeroSectionTitle {
+  font-size: 2.5em;
+  margin-bottom: 0.6em;
+}
+
+.HeroSectionAnimatedText {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: bold;
+  margin-left: 0.04em;
+}
+
+.HeroSectionTextAnimation::after {
+  -webkit-animation: change-word 5s linear infinite;
+  animation: change-word 5s linear infinite;
+  content: "músicos";
+}
+
+@-webkit-keyframes change-word {
+  0% {
+    content: "músicos";
+  }
+  33% {
+    content: "influencers";
+  }
+  66% {
+    content: "deportistas";
+  }
+  100% {
+    content: "actores";
+  }
+}
+
+@keyframes change-word {
+  0% {
+    content: "músicos";
+  }
+  33% {
+    content: "influencers";
+  }
+  66% {
+    content: "deportistas";
+  }
+  100% {
+    content: "actores";
+  }
+}
+
+.HeroSection .HeroSectionCopy {
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 1.25em;
+  line-height: 1.3125em;
+}
+
+.HeroSection .HeroSectionSteps {
+  margin: 0;
+  display: flex;
+  list-style: none;
+  text-indent: 0;
+  padding: 0;
+  justify-content: space-between;
+}
+
+.HeroSection .HeroSectionSteps li {
+  text-align: center;
+  font-size: 0.75em;
+}
+
+.HeroSection .HeroSectionSteps li i {
+  margin-bottom: 0.5em;
+  color: var(--secondary);
+}
+
+.HeroSectionVideoContainer {
+  position: relative;
+  display: flex;
+}
+
+@media only screen and (max-width: 1400px) {
+  .HeroSectionVideoContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.HeroSectionVideoContainer video {
+  -o-object-fit: cover !important;
+  object-fit: cover !important;
+}
+
+.HeroSectionVideoContainer video {
+  height: 17.375em;
+}
+
+.HeroSectionOverlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+}

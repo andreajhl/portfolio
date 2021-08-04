@@ -1,0 +1,108 @@
+.UpdatePasswordFormWrapper {
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  min-height: 143px;
+  padding: 26px 26px 28px 40px;
+  max-width: 550px;
+}
+.UpdatePasswordTitle {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  margin-bottom: 1.875rem;
+}
+
+.UpdatePasswordDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.CTAButtonOpenPopup {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  color: #6970c6;
+  &:hover {
+    color: #6970c6;
+  }
+}
+
+.UpdatePasswordFormPopup {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  min-width: 512px;
+  height: 390px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+.HeaderPopupWrapper {
+  display: flex;
+  flex-flow: column;
+  //   justify-content: center;
+  align-items: center;
+  margin-top: 1.8125rem;
+  margin-bottom: 2.0625rem;
+  img {
+    margin-bottom: 1.5625rem;
+  }
+  p {
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 27px;
+    color: black;
+    margin: 0;
+  }
+}
+
+.InputFields {
+  width: 100%;
+  padding-left: 3.3125rem;
+  padding-right: 3.3125rem;
+  > :last-child {
+    margin-top: 1.6875rem;
+  }
+}
+
+.CTAButton {
+  width: 100%;
+  margin-bottom: 2.9375rem;
+}
+
+.SuccessMessage {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin-top: 5.5625rem;
+  align-items: center;
+
+  svg {
+    margin-bottom: 3rem;
+  }
+  span {
+    text-align: center;
+  }
+}
+
+.InputWithUpperLabelModifier {
+  label {
+    align-self: flex-start;
+  }
+  &:first-child {
+    margin-bottom: 1rem;
+  }
+}
+
+.CloseButton {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}

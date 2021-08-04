@@ -1,0 +1,90 @@
+@import "../../../styles.scss";
+
+.Footer {
+  background: rgba(0, 0, 0, 1);
+  width: 100%;
+}
+.FooterContainer {
+  max-width: 1140px;
+  margin: 0 auto;
+  min-height: 321px;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  flex-flow: row wrap;
+  width: 90%;
+}
+
+.FooterContainer > div {
+  margin-top: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 0px;
+  }
+}
+
+.FooterContainerSectionForm {
+  flex: 1 1 30%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  @media screen and (min-width: 375px) {
+    width: auto;
+    align-items: initial;
+  }
+}
+
+.FooterContainerSectionFormElements {
+  display: flex;
+  flex-flow: column;
+}
+
+.FooterContainerSectionFormElements div:first-of-type {
+  margin-bottom: 20px;
+}
+.FooterContainerSectionAppsLinks {
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.FooterContainerSectionGeneralLinks {
+  display: flex;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: CENTER;
+  width: 100%;
+}
+.FooterContainerSectionGeneralLinks > div:first-child {
+  flex: 1 1 100%;
+  @media screen and (min-width: 1024px) {
+    flex: 0 1 70%;
+  }
+}
+
+.FooterContainerSectionGeneralLinks > div:nth-child(2) {
+  margin-top: 20px;
+  flex: 1 1 10%;
+  align-self: flex-end;
+  @media screen and (min-width: 1024px) {
+    flex: 0 1 10%;
+    margin-top: 0px;
+  }
+}
+.FooterContainerSectionMetaPage {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.FooterCopyright {
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 10px;
+    color: var(--gray-3);
+  }
+}

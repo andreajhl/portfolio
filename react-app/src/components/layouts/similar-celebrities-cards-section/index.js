@@ -13,7 +13,7 @@ const SimilarCelebritiesCardsSectionLayout = ({
   celebrityUsername,
   isLoading,
   similarCelebrities,
-  fetchSimilarCelebrities
+  fetchSimilarCelebrities,
 }) => {
   useEffect(() => {
     if (!celebrityUsername) return;
@@ -23,7 +23,7 @@ const SimilarCelebritiesCardsSectionLayout = ({
   const analyticsData = {
     widget: "SimilarCelebritiesCardsSectionLayout",
     path: getWindow().location.pathname,
-    celebrityUsername
+    celebrityUsername,
   };
 
   return (
@@ -45,7 +45,7 @@ const SimilarCelebritiesCardsSectionLayout = ({
                     title: similarCelebrity.categoryTitle,
                     id: similarCelebrity.celebrityId,
                     discountPercentage: similarCelebrity.discountPercentage,
-                    fullName: similarCelebrity.celebrityFullName
+                    fullName: similarCelebrity.celebrityFullName,
                   };
 
                   return (
@@ -74,18 +74,18 @@ const SimilarCelebritiesCardsSectionLayout = ({
 // default props
 SimilarCelebritiesCardsSectionLayout.defaultProps = {
   isLoading: false,
-  similarCelebrities: []
+  similarCelebrities: [],
 };
 
 const mapStateToProps = ({ celebrities }) => {
   return {
     isLoading: celebrities.fetchSimilarCelebritiesReducer.loading,
-    similarCelebrities: celebrities.fetchSimilarCelebritiesReducer.data.results
+    similarCelebrities: celebrities.fetchSimilarCelebritiesReducer.data.results,
   };
 };
 
 const mapDispatchToProps = {
-  fetchSimilarCelebrities
+  fetchSimilarCelebrities,
 };
 
 const _SimilarCelebritiesCardsSectionLayout = connect(
