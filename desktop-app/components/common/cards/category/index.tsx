@@ -5,6 +5,7 @@ import { defineMessages } from "react-intl";
 import useValidatedFormattedMessage from "lib/hooks/useValidatedFormattedMessage";
 import { analytics } from "react-app/src/state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
+import LazyLoadingImage from "react-app/src/components/common/lazy-loading-image";
 
 const messages = defineMessages({
   linkTitle: {
@@ -43,14 +44,16 @@ function CategoryCard({ category }: CategoryCardProps) {
     <Link
       href={getSearchPath({ category_id: category.id })}
       className={styles.CategoryCard}
-      style={{
-        backgroundImage: `linear-gradient(90deg, rgb(0, 0, 0, 0.85) 10.94%, rgba(255, 255, 255, 0) 100%),
-          url("/assets/img/categories/${imgFileName}.jpg")`,
-        backgroundBlendMode: "multiply",
-      }}
       title={linkTitle}
       onClick={trackClickEvent}
     >
+      <LazyLoadingImage
+        placeholderSrc=""
+        style={{ objectFit: "cover" }}
+        width="100%"
+        height="100%"
+        src={`/assets/img/categories/${imgFileName}.jpg`}
+      />
       <span className={styles.CategoryCardTitle}>{categoryTitle}</span>
     </Link>
   );
