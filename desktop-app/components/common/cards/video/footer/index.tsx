@@ -7,6 +7,7 @@ import {
   parentElementClass,
 } from "../../../text-with-overflow";
 import { defineMessages, useIntl } from "react-intl";
+import LazyLoadingImage from "react-app/src/components/common/lazy-loading-image";
 
 const messages = defineMessages({
   linkTitle: {
@@ -38,7 +39,15 @@ const VideoFooter = ({
       href={getCelebrityProfilePath(userName)}
       onClick={onClick}
     >
-      <img className={styles.CelebrityAvatar} src={avatarURL} alt={fullName} />
+      <LazyLoadingImage
+        placeholderSrc="/assets/img/avatar-blank.png"
+        src={avatarURL}
+        alt={fullName}
+        height="42px"
+        width="42px"
+        style={{ objectFit: "cover" }}
+        className={styles.CelebrityAvatar}
+      />
       <TextWithOverflow text={fullName} textClassName={styles.CelebrityName} />
     </Link>
   );

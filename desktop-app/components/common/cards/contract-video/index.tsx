@@ -12,6 +12,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { useContractLike } from "lib/hooks/useContractLike";
 import useTrackContractVideoView from "lib/hooks/useTrackContractVideoView";
 import { defineMessages, useIntl } from "react-intl";
+import LazyLoadingImage from "react-app/src/components/common/lazy-loading-image";
 
 const messages = defineMessages({
   videoPosterAlt: {
@@ -68,10 +69,13 @@ function ContractVideo({
       <div className={styles.ContractVideoMedia}>
         <section onClick={togglePlay} className={styles.ContractVideoPlayer}>
           <Maybe it={!videoIsLoaded}>
-            <img
+            <LazyLoadingImage
+              placeholderSrc="/assets/img/avatar-blank.png"
               src={videoPosterUrl}
               alt={videoPosterAlt}
-              className={styles.VideoPoster}
+              width="100%"
+              height="100%"
+              style={{ objectFit: "cover" }}
             />
           </Maybe>
           <video

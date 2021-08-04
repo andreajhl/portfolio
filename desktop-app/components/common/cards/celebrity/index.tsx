@@ -21,6 +21,7 @@ import { analytics } from "react-app/src/state/utils/gtm";
 import { useIntl } from "react-intl";
 import getTranslatedCategoryTitle from "lib/utils/getTranslatedCategoryTitle";
 import { celebrityIsUnavailable } from "lib/utils/celebrityUtils";
+import LazyLoadingImage from "react-app/src/components/common/lazy-loading-image";
 
 const preventRedirectFromParent = (event) => {
   if (event.stopPropagation) {
@@ -102,12 +103,14 @@ function CelebrityCard({
           className={styles.CelebrityCardProfileLink}
           onClick={onClickLink}
         >
-          <OptimizedImage
-            placeholderSrc="/assets/img/avatar-blank.png"
-            height={thumbnailHeight}
-            width={thumbnailWidth}
-            src={celebrity.avatar}
+          <LazyLoadingImage
+            alt={`${categoryTitle} - ${celebrity.fullName}`}
             className={styles.CelebrityCardAvatar}
+            src={celebrity.avatar}
+            height={thumbnailHeight}
+            style={{ objectFit: "cover" }}
+            width={thumbnailWidth}
+            placeholderSrc="/assets/img/avatar-blank.png"
           />
         </Link>
         <div className={styles.CelebrityCardThumbnailHeader}>
