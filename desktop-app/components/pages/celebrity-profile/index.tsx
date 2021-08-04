@@ -162,6 +162,11 @@ function CelebrityProfilePage({
   const contractInProgress =
     localContractInProgress || contractInProgressRequest?.data;
 
+  const isJuanseQuintero = celebrity?.id === 6317;
+
+  const availableForSubscriptions =
+    celebrity?.availableForSubscriptions && !isJuanseQuintero;
+
   return (
     <PageContainer>
       <PageHeading showHomeLink />
@@ -202,7 +207,7 @@ function CelebrityProfilePage({
                 />
               </Maybe>
             </Maybe>
-            <Maybe it={celebrity.availableForSubscriptions}>
+            <Maybe it={availableForSubscriptions}>
               <FanClubAdvertise celebrity={celebrity} />
             </Maybe>
           </div>
