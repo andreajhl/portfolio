@@ -7,7 +7,7 @@ export const Inicio = () => {
 
     const [count,setCount]= useState(0)
     
-    var tecnologia= ['ReactJs','ExpressJs','Javascript','Postgres','SQL','NodeJs','Redux','CSS', 'HTML5']
+    var tecnologia= ['ReactJs','ExpressJs','Javascript','PostgreSQL','SQL','NodeJs','Redux','CSS', 'HTML5']
     
     setTimeout(() => {
         const next =count + 1
