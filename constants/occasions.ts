@@ -99,7 +99,7 @@ const portugueseOccasions = {
   },
   OTHER: {
     icon: "fa-paper-plane",
-    title: "Other",
+    title: "Outros",
     messages: [
       "Oi PLACEHOLDER_FAMOSO_NAME! ",
       "Oi PLACEHOLDER_FAMOSO_NAME! ",

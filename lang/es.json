@@ -69,6 +69,9 @@
   "/npk0a": {
     "translation": "Lo haré más tarde"
   },
+  "/tXHHA": {
+    "translation": "CODE {statusCode}"
+  },
   "01UxAr": {
     "translation": "Esta solicitud expira el {date}"
   },
@@ -211,6 +214,9 @@
   "3O5yL3": {
     "notes": "",
     "translation": "{fullName} dona de sus ingresos a: <span> {causeName} </span>"
+  },
+  "3SGqg6": {
+    "translation": "Debes introducir un código de validación"
   },
   "3Szr5X": {
     "translation": "Registrarme con Google"
@@ -365,6 +371,9 @@
   "747qfi": {
     "translation": "Si el problema persiste puedes comunicarte con nuestro equipo de soporte a {link} para más información."
   },
+  "78A2DN": {
+    "translation": "Correo Electrónico"
+  },
   "7OWxfz": {
     "translation": "Quiero unirme"
   },
@@ -440,6 +449,9 @@
   "9etNPX": {
     "translation": "{starsCount} Estrellas"
   },
+  "9fNciT": {
+    "translation": "Para mi negocio"
+  },
   "9hu98P": {
     "translation": "Este video especial para ti"
   },
@@ -507,6 +519,9 @@
   "AnfpP+": {
     "translation": "Entrega Flash"
   },
+  "ApSmeB": {
+    "translation": "¿No recibiste un código?"
+  },
   "Ar6F4V": {
     "translation": "Mínimo"
   },
@@ -519,9 +534,6 @@
   "B476MI": {
     "translation": "Agregar"
   },
-  "BEkIWA": {
-    "translation": "Escribe tu Subdominio Ej: /andresito"
-  },
   "BHSyD0": {
     "translation": "Cambiar contraseña"
   },
@@ -533,6 +545,9 @@
   },
   "BXFGgd": {
     "translation": "Todo saldrá bien, la vida es sabia."
+  },
+  "BdY9qW": {
+    "translation": "Pagina exclusiva"
   },
   "BiLnNi": {
     "translation": "¿Qué pasa si no me gusta mi video?"
@@ -596,6 +611,9 @@
   "DVO6hk": {
     "translation": "Ha ocurrido un error"
   },
+  "Daf8Xy": {
+    "translation": "Escribe tu pagina exclusiva Ej: /andresito"
+  },
   "Diph5x": {
     "translation": "Ir a contratar"
   },
@@ -654,6 +672,9 @@
   "EwT5kN": {
     "translation": "o regístrate con tu correo electrónico"
   },
+  "F3gUzx": {
+    "translation": "Compartir"
+  },
   "F6aLD7": {
     "translation": "Youtuber"
   },
@@ -686,6 +707,9 @@
   },
   "G7ND1f": {
     "translation": "Me gustaría solicitar el comprobante de devolución de mi contrato con la referencia {contractReference}"
+  },
+  "GA+Csc": {
+    "translation": "Volver"
   },
   "GFgV31": {
     "translation": "Si! Te invitamos a crear una cuenta y escribir tus famosos favoritos. Cada vez que uno de tus famosos favoritos se una a Famosos.com vas a recibir un correo informándote. También te invitamos a que sugieras famosos a través de tus redes sociales."
@@ -851,6 +875,9 @@
   "KcvTuJ": {
     "translation": "Por favor introduzca todos los datos"
   },
+  "Kd4nT5": {
+    "translation": "Debemos confirmar tu correo antes de continuar"
+  },
   "KjMaxy": {
     "translation": "¿Comó solicitar {onlyMobileLineBreak} un {onlyDesktopLineBreak} videomensaje en Famosos?"
   },
@@ -869,6 +896,9 @@
   "L6k2XE": {
     "translation": "Vive experiencias únicas con cientos de famosos latinos."
   },
+  "LE7HXj": {
+    "translation": "Confirma tu correo electrónico"
+  },
   "LKGytJ": {
     "translation": "Información de tu cuenta"
   },
@@ -877,6 +907,9 @@
   },
   "LPelkN": {
     "translation": "Correo electrónico de notificación"
+  },
+  "LTrz4Z": {
+    "translation": "¿Cual es el nombre del negocio?"
   },
   "Lbiy9R": {
     "translation": "Precio original:"
@@ -893,6 +926,9 @@
   },
   "M4SIuQ": {
     "translation": "¿Quién recibirá el video?"
+  },
+  "M5Che0": {
+    "translation": "Ruta: {errorPath}"
   },
   "M6qLyM": {
     "translation": "Imagen de perfil"
@@ -1419,6 +1455,9 @@
   "aPX+PI": {
     "translation": "Contratar para Empresa"
   },
+  "aUJV5O": {
+    "translation": "Reenviar"
+  },
   "aVtfpF": {
     "translation": "¡Felicitaciones!"
   },
@@ -1455,6 +1494,9 @@
   "bc6Eh7": {
     "translation": "Publicar"
   },
+  "biswPx": {
+    "translation": "Nombre:"
+  },
   "bnyCF4": {
     "translation": "Si todo está bien con tu solicitud de acuerdo a nuestras políticas, muy pronto podrás disfrutar de tu videomensaje."
   },
@@ -1475,6 +1517,9 @@
   },
   "cb606G": {
     "translation": "Entrega tu videomensaje por correo"
+  },
+  "ccCTb2": {
+    "translation": "Intentando nuevamente en {secondsCounter} segundos"
   },
   "cheXty": {
     "translation": "{turnAroundTime} días"
@@ -1554,9 +1599,6 @@
   },
   "eSEyNY": {
     "translation": "¡Ánimo {deliveryTo}!"
-  },
-  "eYHsf6": {
-    "translation": "Tarjeta de Crédito o Débito"
   },
   "ekgTKf": {
     "translation": "Famosos.com - Club de fans de {celebrity_username}"
@@ -1651,6 +1693,12 @@
   "hbRJr6": {
     "translation": "Eliminar foto"
   },
+  "hhRDt5": {
+    "translation": "Fechar"
+  },
+  "hkTaZQ": {
+    "translation": "Ingresa el código que enviamos a {email}"
+  },
   "hmpcGI": {
     "notes": "",
     "translation": "Notificarme cuando esté disponible"
@@ -1663,9 +1711,6 @@
   },
   "hxq7dC": {
     "translation": "Logo de Garantía Famosos"
-  },
-  "iHlpl2": {
-    "translation": "Este correo electrónico ya se encuentra registrado"
   },
   "iRpjjG": {
     "translation": "Personaliza el fondo y agrega un mensaje para hacer más especial la entrega de tu video."
@@ -1691,9 +1736,6 @@
   "j5jEEO": {
     "translation": "Motivacional"
   },
-  "jFJcag": {
-    "translation": "¡Hola {deliveryTo}! {break} Mira el regalo que {deliveryFrom} te ha hecho a través de Famosos.com"
-  },
   "jRg7t5": {
     "translation": "Aún no tienes ningún método de pago registrado."
   },
@@ -1709,6 +1751,9 @@
   "kVrqZJ": {
     "translation": "¿Qué sucede después de tu compra?"
   },
+  "ke77WN": {
+    "translation": "¡Hola {deliveryTo}! {lineBreak} Mira el regalo que {deliveryFrom} te ha hecho a través de Famosos.com"
+  },
   "kkiAyx": {
     "translation": "Debes escribir tus instrucciones"
   },
@@ -1720,6 +1765,9 @@
   },
   "lGFIAN": {
     "translation": "Crea una cuenta para poder conectar con los famosos."
+  },
+  "lRh3qR": {
+    "translation": "Por tu seguridad y la nuestra, debemos verificar que tengas un correo electrónico valido."
   },
   "lSxRsO": {
     "notes": "Mensaje de error para formulario de stripe",
@@ -1883,6 +1931,9 @@
   "om28Bx": {
     "translation": "Dale instrucciones a {celebrityFullName} para que tu video quede como esperas. {br} <span>(Edita este texto base o escribe uno)</span>"
   },
+  "opVwjp": {
+    "translation": "Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime"
+  },
   "oqJulP": {
     "translation": "Ver menos"
   },
@@ -1990,6 +2041,9 @@
   "rNIqUr": {
     "translation": "Un video promocional es un video que promueve una compañia/organización/producto en las redes sociales o en la página de dicha compañia."
   },
+  "rRb122": {
+    "translation": "Este correo ya se encuentra registrado"
+  },
   "rYWTQk": {
     "translation": "Categorías destacadas"
   },
@@ -2095,9 +2149,6 @@
   "tlBp37": {
     "translation": "{celebrity_fullName} tiene un plazo de 7 días para grabar tu video a partir de ahora."
   },
-  "tpcdsK": {
-    "translation": "Subdominio"
-  },
   "tr1oP1": {
     "translation": "Rechazados"
   },
@@ -2112,6 +2163,9 @@
   },
   "u4TQhV": {
     "translation": "Mostrar más"
+  },
+  "uDCyX8": {
+    "translation": "No podemos enviar un correo a \"{email}\", por favor, utiliza otro correo electrónico"
   },
   "uKwcXA": {
     "translation": "Crea una cuenta para poder conectar con los famosos"
@@ -2215,6 +2269,9 @@
   "wUMBIs": {
     "translation": "Ingresa una contraseña nueva"
   },
+  "wXIkN9": {
+    "translation": "Regístrate y reserva tu pagina exclusiva en Famosos.com"
+  },
   "waDVSR": {
     "translation": "Cómo tener un video personalizado de tu Famoso favorito."
   },
@@ -2259,9 +2316,6 @@
   },
   "xKYHEI": {
     "translation": "2020 Famosos, Inc. All Rights Reserved."
-  },
-  "xKx6PF": {
-    "translation": "¡Aplica y Reserva tu Subdominio Ahora!"
   },
   "xTsa8e": {
     "notes": "",

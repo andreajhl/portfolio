@@ -78,7 +78,7 @@
     "translation": "Pesquisar famosos"
   },
   "3O5yL3": {
-    "translation": "{fullName} doa sua renda para: <span> {causeName} </span>"
+    "translation": "{fullName} doa parte da renda das mensagens para: <span> {causeName} </span>"
   },
   "3tygVI": {
     "translation": "{instructionsLength} / 400 caracteres permitidos"
@@ -165,7 +165,7 @@
     "translation": "NA MEDIDA MÁXIMA PERMITIDA POR LEI, NOSSA responsabilidade total acumulada para você ou qualquer terceiro sob estes termos, PARA TODAS AS CAUSAS DE AÇÃO E TODAS AS TEORIAS DE RESPONSABILIDADE, SERÁ LIMITADO (A), e não excederá as taxas realmente pagas pelos US DURANTE os doze (12) meses anteriores ao que deu origem à referida responsabilidade."
   },
   "9p5jZI": {
-    "translation": "Você receberá uma notificação para <b>contato de entrega do contrato</b> quando o seu vídeo estiver pronto."
+    "translation": "Você receberá uma notificação de <b>contato de entrega do contrato</b> quando seu vídeo estiver pronto."
   },
   "9z5k20": {
     "translation": "Este acordo de arbitragem não impede você ou a Famosos de procurar que ação federal, estatal ou por agências governamentais locais. Você e Famosos também têm o direito de entrar com ações de classificação em tribunais de reclamações. Além disso, você e Famosos retêm o direito de recorrer a qualquer tribunal de jurisdição competente para medidas provisórias, incluindo pré-arbitragem ou acessórios de medidas cautelares, e tal solicitação não deve ser considerada inconsistente com estes termos, nem uma renúncia ao direito de ter disputas submetido a arbitragem de acordo com as disposições destas presentes Condições.\""
@@ -501,7 +501,7 @@
     "translation": "Agente de direitos autorais:"
   },
   "YTlQrN": {
-    "translation": "Para um amigo ou membro da família"
+    "translation": "Para um amigo ou famíliar"
   },
   "YdEFop": {
     "translation": "Você reconhece que não somos obrigados a controlar o seu (ou de qualquer outra pessoa) acesso ou uso do Site ou dos Serviços, mas temos o direito de fazê-lo para operar o site ou serviços, para garantir sua conformidade com estes Termos, ou para cumprir com a lei aplicável ou a ordem ou exigência de um tribunal, agência administrativa ou outra entidade governamental. "
@@ -648,7 +648,7 @@
     "translation": "Propriedade"
   },
   "gxungj": {
-    "translation": "Pagar em"
+    "translation": "Login"
   },
   "h9zXst": {
     "translation": "Anônimo"
@@ -1233,7 +1233,7 @@
     "translation": "México"
   },
   "QtvgOo": {
-    "translation": "Pimenta"
+    "translation": "Chile"
   },
   "ScPFOw": {
     "translation": "Bolívia (Estado Plurinacional da)"
@@ -1335,7 +1335,7 @@
     "translation": "Famosos.com - {celebrity_username}"
   },
   "oAD1Z+": {
-    "translation": "Famosos.com - Perguntas frequentes"
+    "translation": "Famosos.com - Perguntas Frequentes"
   },
   "tZUCvC": {
     "translation": "Vídeos personalizados de suas celebridades favoritas. Reserve o seu vídeo e desfrute de experiências únicas."
@@ -1476,7 +1476,7 @@
     "translation": "DNI ou CUIT"
   },
   "AZgVtc": {
-    "translation": "Se tudo correr bem com o seu pedido de acordo com as nossas políticas, muito em breve poderá desfrutar da sua mensagem de vídeo."
+    "translation": "Se tudo correr bem com o seu pedido, de acordo com as nossas políticas, em breve você receberá sua mensagem de vídeo."
   },
   "Bo4qJd": {
     "translation": "CUPÃO NÃO VÁLIDO:"
@@ -1530,7 +1530,7 @@
     "translation": "Cartão de crédito"
   },
   "cRtlFe": {
-    "translation": "A cobrança que você receberá em sua conta é uma autorização de pagamento que seu banco faz para garantir que haja fundos suficientes. No entanto, Famosos não fará o pagamento até que {celebrityName} grave seu vídeo."
+    "translation": "A cobrança que você receberá em sua conta é uma autorização de pagamento que seu banco faz para garantir que haja fundos suficientes, porém a Famosos não fará a cobrança até que {celebrityName} grave seu vídeo."
   },
   "exOORp": {
     "translation": "STATUS DO PAGAMENTO:"
@@ -1560,7 +1560,7 @@
     "translation": "A celebridade é livre para aceitar ou rejeitar os vídeos. Somos uma plataforma tecnológica para meios e não para resultados. Se o pedido for rejeitado, o dinheiro será devolvido."
   },
   "pPCiwO": {
-    "translation": "Correio eletrônico"
+    "translation": "E-mail"
   },
   "pfhsIr": {
     "translation": "Transferência bancária"
@@ -1716,7 +1716,7 @@
     "translation": "Registro"
   },
   "wkaVGz": {
-    "translation": "Faça login na sua conta para se conectar com pessoas famosas"
+    "translation": " Faça login para se conectar aos famosos"
   },
   "x3Y+61": {
     "translation": "Atrizes de atores"
@@ -1740,7 +1740,7 @@
     "translation": "Data de nascimento"
   },
   "t2/i9S": {
-    "translation": "Trabalhar com a gente"
+    "translation": "Trabalhe com a gente"
   },
   "bwRze1": {
     "translation": "Clique no {onlyMobileLineBreak} botão {onlyDesktopLineBreak} \"Quero {onlyMobileLineBreak} um vídeo\""
@@ -1845,7 +1845,7 @@
     "translation": "Seu pagamento foi recusado."
   },
   "/cMtcP": {
-    "translation": "Me inscreva"
+    "translation": "Enviar"
   },
   "/dEeuP": {
     "translation": "Por favor insira uma data válida. Exemplo: 2020-06-25"
@@ -1854,7 +1854,7 @@
     "translation": "Eu farei isso mais tarde"
   },
   "0HwljF": {
-    "translation": "sim"
+    "translation": "Sim"
   },
   "0PI6mY": {
     "translation": "Escolha uma data e hora para Famosos enviar seu vídeo, você pode adicionar um texto adicional."
@@ -1926,7 +1926,7 @@
     "translation": "Em processamento"
   },
   "51BXv1": {
-    "translation": "Escolha a forma de pagamento de sua preferência e conclua o processo. Os pagamentos são 100% seguros. Em 7 dias ou menos você receberá seu vídeo!"
+    "translation": "Escolha sua forma de pagamento e finalize a compra. Em até 7 dias, você receberá seu vídeo."
   },
   "5CwX6l": {
     "translation": "Conte-nos algo sobre sua experiência"
@@ -1950,7 +1950,7 @@
     "translation": "Adicione um comentário"
   },
   "7OWxfz": {
-    "translation": "eu quero me juntar"
+    "translation": "eu quero fazer parte"
   },
   "7aMcUZ": {
     "translation": "Mais alto com preço mais baixo"
@@ -1959,7 +1959,7 @@
     "translation": "Adicionar uma foto"
   },
   "7w7MSk": {
-    "translation": "Enviamos sua solicitação para {celebrityFullName} , seu vídeo será gravado em <textBold> 1 a 7 dias </textBold> ."
+    "translation": "Enviamos sua solicitação para {celebrityFullName}, seu vídeo será gravado entre <textBold> 1 e 7 dias</textBold>."
   },
   "85GhLR": {
     "translation": "Link de cópia"
@@ -1971,7 +1971,7 @@
     "translation": "Resultados para:"
   },
   "9aKju1": {
-    "translation": "Categorias:"
+    "translation": "Categorias"
   },
   "9hu98P": {
     "translation": "Este vídeo especial para você"
@@ -2043,7 +2043,7 @@
     "translation": "Página {currentPage} de {totalPages}"
   },
   "Dq6Mnq": {
-    "translation": "Homens"
+    "translation": "Homen"
   },
   "Ds81mh": {
     "translation": "Você será redirecionado para a página oficial do paypal para continuar com o pagamento"
@@ -2055,7 +2055,7 @@
     "translation": "Avaliações mais recentes"
   },
   "E101Yn": {
-    "translation": "Os {adjectives} {lineBreak} apenas um clique de distância."
+    "translation": "Os {adjectives} {lineBreak} a apenas um clique de distância"
   },
   "EUdVSH": {
     "translation": "Expirado"
@@ -2064,7 +2064,7 @@
     "translation": "Contratos de filtro"
   },
   "F6aLD7": {
-    "translation": "Youtuber"
+    "translation": "Youtubers"
   },
   "FSBR9V": {
     "translation": "Veja mais resultados para"
@@ -2124,7 +2124,7 @@
     "translation": "Enviar imediatamente"
   },
   "IxZXG8": {
-    "translation": "Saiba mais sobre isso."
+    "translation": "Saiba mais."
   },
   "J9EWR8": {
     "translation": "A entrega do seu vídeo foi programada corretamente"
@@ -2133,7 +2133,7 @@
     "translation": "O que significa isto?"
   },
   "Ja4kqX": {
-    "translation": "Permitir que meu vídeo seja público"
+    "translation": "Permitir que meu vídeo seja publicado"
   },
   "JkASuT": {
     "translation": "Seu e-mail foi atualizado {breakLine} sucesso."
@@ -2163,7 +2163,7 @@
     "translation": "Data de gravação:"
   },
   "L3JUzt": {
-    "translation": "Quem envia o vídeo?"
+    "translation": "Quem está enviando o vídeo?"
   },
   "LKGytJ": {
     "translation": "Informações da sua conta"
@@ -2193,7 +2193,7 @@
     "translation": "{fullName} doa sua renda para: {causeName}"
   },
   "MyGFHf": {
-    "translation": "Conclua o processo de compra."
+    "translation": "Conclua a compra"
   },
   "N6puFB": {
     "translation": "Olá {deliveryTo} ! Veja o presente que dei a você no Famosos.com {link}"
@@ -2301,10 +2301,10 @@
     "translation": "Feliz aniversário, {deliveryTo} !"
   },
   "Vgjdly": {
-    "translation": "Perguntas frequentes"
+    "translation": "Perguntas Frequentes"
   },
   "VuArYI": {
-    "translation": "Notifique-me também pelo WhatsApp (opcional)"
+    "translation": "Avise-me também por WhatsApp (opcional)"
   },
   "W2ixk1": {
     "translation": "Nova Senha"
@@ -2361,16 +2361,16 @@
     "translation": "Faça login para ver os detalhes ou personalizar a entrega."
   },
   "ZtrNok": {
-    "translation": "Pessoas que viram este perfil também viram"
+    "translation": "Pessoas que acessaram este perfil também viram"
   },
   "aJkcNZ": {
     "translation": "Baixe o APP da APP Store"
   },
   "aKy46m": {
-    "translation": "Explore mais de 1.000 celebridades"
+    "translation": "Encontre mais de 2.000 famosos"
   },
   "aMwMIJ": {
-    "translation": "Data de aplicação:"
+    "translation": "Data da solicitação:"
   },
   "aaTPnj": {
     "translation": "Destaques"
@@ -2388,7 +2388,7 @@
     "translation": "Para postar"
   },
   "c/EW7K": {
-    "translation": "Personalize a mensagem do seu vídeo."
+    "translation": "Personalize a sua mensagem de vídeo"
   },
   "cb606G": {
     "translation": "Entregue sua mensagem de vídeo por e-mail"
@@ -2403,19 +2403,19 @@
     "translation": "Vá para Minhas Solicitações"
   },
   "dn7i07": {
-    "translation": "Experiências personalizadas {lineBreak} com suas celebridades favoritas."
+    "translation": "Mensagens de vídeo personalizadas {lineBreak} de famosos. Presenteie e se emocione"
   },
   "e9TpG1": {
-    "translation": "Mudar as moedas"
+    "translation": "Trocar Moeda"
   },
   "eH4QAw": {
-    "translation": "Se você não receber o seu vídeo em 7 dias, devolveremos 100% do seu dinheiro. {infoIcon}"
+    "translation": "Caso não receba seu vídeo em até 7 dias, reembolsamos 100% do valor. {infoIcon}"
   },
   "eMSCGd": {
     "translation": "Minhas solicitações"
   },
   "eOuNie": {
-    "translation": "Olhe para"
+    "translation": "Pesquisar"
   },
   "eOvQrU": {
     "translation": "Baixe o aplicativo para fãs"
@@ -2559,13 +2559,13 @@
     "translation": "Ajuda"
   },
   "om28Bx": {
-    "translation": "Instrua {celebrityFullName} para que seu vídeo tenha a aparência que você espera. {br} <span> (Edite este texto base ou escreva um) </span>"
+    "translation": "Detalhe para {celebrityFullName} o que você gostaria que ele dissesse em sua mensagem de vídeo. {br} <span> (Altere este texto ou escreva o que preferir) </span>"
   },
   "oqJulP": {
     "translation": "Veja menos"
   },
   "orwCgV": {
-    "translation": "Convide seus amigos para conhecer o Famous"
+    "translation": "Convide seus amigos para conhecer a Famosos"
   },
   "orzX/T": {
     "translation": "Permitir que este vídeo seja público"
@@ -2631,7 +2631,7 @@
     "translation": "Como você deseja compartilhar este vídeo?"
   },
   "sHZJT8": {
-    "translation": "Especifique a celebração, dedicação ou motivo do vídeo. Você pode contar alguns detalhes para que seu vídeo seja o mais especial possível."
+    "translation": "Especifique a celebração, o motivo e o que gostaria de ter na mensagem. Conte alguns detalhes para que o vídeo fique ainda mais exclusivo e emocionante"
   },
   "sVv/AJ": {
     "translation": "Este e-mail já está inscrito"
@@ -2640,10 +2640,10 @@
     "translation": "Agora você pode se conectar com suas celebridades favoritas através do Famosos.com!"
   },
   "swHrQR": {
-    "translation": "Aproveite a experiência!"
+    "translation": "Aproveite a experiência"
   },
   "syjn1W": {
-    "translation": "Este vídeo ficará ótimo! {br} Iremos notificá-lo quando estiver pronto."
+    "translation": "Seu vídeo ficará incrível! {br} Te avisaremos quando estiver pronto"
   },
   "t756d4": {
     "translation": "Adicionar foto"
@@ -2673,7 +2673,7 @@
     "translation": "Mudar o número do celular"
   },
   "uVRzk3": {
-    "translation": "Saiba mais sobre nossas últimas notícias e promoções"
+    "translation": "Descubra primeiro nossas promoções e novidades dos famosos"
   },
   "uZ+xW0": {
     "translation": "Pendente"
@@ -2694,7 +2694,7 @@
     "translation": "Iremos redirecioná-lo para o WhatsApp, onde um de nossos agentes o ajudará a continuar com o processo."
   },
   "w5XPJR": {
-    "translation": "Se por algum motivo o seu vídeo não puder ser gravado, entraremos em contato com você."
+    "translation": "Se por alguma razão o famoso não puder gravar seu vídeo, entraremos em contato com você."
   },
   "wUMBIs": {
     "translation": "Por favor insira uma nova senha"
@@ -2712,7 +2712,7 @@
     "translation": "Sua conta será cobrada assim que {celebrity_fullName} gravar seu vídeo. (Por enquanto, apenas uma autorização foi feita pelo seu banco)."
   },
   "ws1N91": {
-    "translation": "Assim que seu vídeo estiver pronto, iremos notificá-lo para que você possa correr para vê-lo, baixe-o e compartilhe-o."
+    "translation": "Assim que seu vídeo estiver pronto, vamos correndo te avisar para que você possa baixar e compartilhar com quem quiser."
   },
   "x+GitR": {
     "translation": "Escolha uma data e hora para o Famosos enviar o seu vídeo."
@@ -2733,7 +2733,7 @@
     "translation": "Adicione um título"
   },
   "yF/Sxo": {
-    "translation": "Se por algum motivo não for possível gravar seu vídeo, seu dinheiro estará disponível novamente em um período máximo de 21 dias úteis, dependendo do seu banco."
+    "translation": "Se por algum imprevisto, o famoso não puder gravar seu vídeo, você receberá o valor em um período máximo de 21 dias, de acordo com o seu banco"
   },
   "zDDWOe": {
     "translation": "Enviar avaliação"
@@ -2755,5 +2755,23 @@
   },
   "ztGIyo": {
     "translation": "Ver recibo de devolução"
+  },
+  "9fNciT": {
+    "translation": "Para meu negócio"
+  },
+  "F3gUzx": {
+    "translation": "Compartilhar"
+  },
+  "opVwjp": {
+    "translation": "Ops! Aparentemente, você não está inscrito em um Famoso Prime"
+  },
+  "wXIkN9": {
+    "translation": "Inscreva-se e reserve sua página exclusiva na Famosos.com"
+  },
+  "BdY9qW": {
+    "translation": "Página exclusiva"
+  },
+  "Daf8Xy": {
+    "translation": "Escreva o endereço da sua página exclusiva Ej: /andresito"
   }
 }

@@ -11,7 +11,7 @@ import { FormattedMessage, injectIntl, defineMessages } from "react-intl";
 const messages = defineMessages({
   placeholderFullNameInput: { defaultMessage: "Escribe tu nombre" },
   placeholderSubdomainInput: {
-    defaultMessage: "Escribe tu Subdominio Ej: /andresito",
+    defaultMessage: "Escribe tu pagina exclusiva Ej: /andresito",
   },
   placeholderEmailInput: { defaultMessage: "Escribe tu correo electrónico" },
   placeholderReferralInput: { defaultMessage: "Codigo de referido" },
@@ -139,7 +139,7 @@ class CelebrityRequestForm extends Component {
     return (
       <>
         <h4 className="font-weight-bold text-center mb-4">
-          <FormattedMessage defaultMessage="¡Aplica y Reserva tu Subdominio Ahora!" />
+          <FormattedMessage defaultMessage="Regístrate y reserva tu pagina exclusiva en Famosos.com" />
         </h4>
         <label className="">
           <FormattedMessage defaultMessage="Nombre" />
@@ -159,7 +159,7 @@ class CelebrityRequestForm extends Component {
           value={this.state.data.fullName}
         />
         <label className="">
-          <FormattedMessage defaultMessage="Subdominio" />
+          <FormattedMessage defaultMessage="Pagina exclusiva" />
           <small className="text-danger ml-1">*</small>
         </label>
         <div className="form-horizontal">

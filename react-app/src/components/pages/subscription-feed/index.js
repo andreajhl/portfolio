@@ -16,6 +16,7 @@ import {
 } from "../../layouts/subscription-posts";
 
 import styled from "styled-components";
+import { FormattedMessage } from "lib/custom-intl";
 
 const MySubscriptionsTitle = styled.h2`
   font-size: 24px;
@@ -109,7 +110,9 @@ const SubscriptionFeed = (props) => {
     <PageContainer>
       <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
         <SubscriptionPostsHeader>
-          <MySubscriptionsTitle>Mis suscripciones</MySubscriptionsTitle>
+          <MySubscriptionsTitle>
+            <FormattedMessage defaultMessage="Mis suscripciones" />
+          </MySubscriptionsTitle>
           <Maybe it={subscriptionList.length > 0}>
             <SubscriptionsFilter
               currentChoice={currentChoice}
@@ -136,7 +139,11 @@ const SubscriptionFeed = (props) => {
           )
         ) : isSubscriptionListCompletedFetch &&
           subscriptionList.length === 0 ? (
-          <NotPostsResults message="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+          <NotPostsResults
+            message={
+              <FormattedMessage defaultMessage="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+            }
+          />
         ) : null}
       </SubscriptionPostsSection>
     </PageContainer>

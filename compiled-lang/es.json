@@ -171,6 +171,16 @@
       "value": "Lo haré más tarde"
     }
   ],
+  "/tXHHA": [
+    {
+      "type": 0,
+      "value": "CODE "
+    },
+    {
+      "type": 1,
+      "value": "statusCode"
+    }
+  ],
   "01UxAr": [
     {
       "type": 0,
@@ -523,6 +533,12 @@
       ],
       "type": 8,
       "value": "span"
+    }
+  ],
+  "3SGqg6": [
+    {
+      "type": 0,
+      "value": "Debes introducir un código de validación"
     }
   ],
   "3Szr5X": [
@@ -903,6 +919,12 @@
       "value": " para más información."
     }
   ],
+  "78A2DN": [
+    {
+      "type": 0,
+      "value": "Correo Electrónico"
+    }
+  ],
   "7OWxfz": [
     {
       "type": 0,
@@ -1095,6 +1117,12 @@
       "value": " Estrellas"
     }
   ],
+  "9fNciT": [
+    {
+      "type": 0,
+      "value": "Para mi negocio"
+    }
+  ],
   "9hu98P": [
     {
       "type": 0,
@@ -1267,6 +1295,12 @@
       "value": "Entrega Flash"
     }
   ],
+  "ApSmeB": [
+    {
+      "type": 0,
+      "value": "¿No recibiste un código?"
+    }
+  ],
   "Ar6F4V": [
     {
       "type": 0,
@@ -1289,12 +1323,6 @@
     {
       "type": 0,
       "value": "Agregar"
-    }
-  ],
-  "BEkIWA": [
-    {
-      "type": 0,
-      "value": "Escribe tu Subdominio Ej: /andresito"
     }
   ],
   "BHSyD0": [
@@ -1333,6 +1361,12 @@
     {
       "type": 0,
       "value": "Todo saldrá bien, la vida es sabia."
+    }
+  ],
+  "BdY9qW": [
+    {
+      "type": 0,
+      "value": "Pagina exclusiva"
     }
   ],
   "BiLnNi": [
@@ -1471,6 +1505,12 @@
       "value": "Ha ocurrido un error"
     }
   ],
+  "Daf8Xy": [
+    {
+      "type": 0,
+      "value": "Escribe tu pagina exclusiva Ej: /andresito"
+    }
+  ],
   "Diph5x": [
     {
       "type": 0,
@@ -1601,6 +1641,12 @@
       "value": "o regístrate con tu correo electrónico"
     }
   ],
+  "F3gUzx": [
+    {
+      "type": 0,
+      "value": "Compartir"
+    }
+  ],
   "F6aLD7": [
     {
       "type": 0,
@@ -1729,6 +1775,12 @@
     {
       "type": 1,
       "value": "contractReference"
+    }
+  ],
+  "GA+Csc": [
+    {
+      "type": 0,
+      "value": "Volver"
     }
   ],
   "GFgV31": [
@@ -2079,6 +2131,12 @@
       "value": "Por favor introduzca todos los datos"
     }
   ],
+  "Kd4nT5": [
+    {
+      "type": 0,
+      "value": "Debemos confirmar tu correo antes de continuar"
+    }
+  ],
   "KjMaxy": [
     {
       "type": 0,
@@ -2141,6 +2199,12 @@
       "value": "Vive experiencias únicas con cientos de famosos latinos."
     }
   ],
+  "LE7HXj": [
+    {
+      "type": 0,
+      "value": "Confirma tu correo electrónico"
+    }
+  ],
   "LKGytJ": [
     {
       "type": 0,
@@ -2157,6 +2221,12 @@
     {
       "type": 0,
       "value": "Correo electrónico de notificación"
+    }
+  ],
+  "LTrz4Z": [
+    {
+      "type": 0,
+      "value": "¿Cual es el nombre del negocio?"
     }
   ],
   "Lbiy9R": [
@@ -2187,6 +2257,16 @@
     {
       "type": 0,
       "value": "¿Quién recibirá el video?"
+    }
+  ],
+  "M5Che0": [
+    {
+      "type": 0,
+      "value": "Ruta: "
+    },
+    {
+      "type": 1,
+      "value": "errorPath"
     }
   ],
   "M6qLyM": [
@@ -3523,6 +3603,12 @@
       "value": "Contratar para Empresa"
     }
   ],
+  "aUJV5O": [
+    {
+      "type": 0,
+      "value": "Reenviar"
+    }
+  ],
   "aVtfpF": [
     {
       "type": 0,
@@ -3595,6 +3681,12 @@
       "value": "Publicar"
     }
   ],
+  "biswPx": [
+    {
+      "type": 0,
+      "value": "Nombre:"
+    }
+  ],
   "bnyCF4": [
     {
       "type": 0,
@@ -3643,6 +3735,20 @@
     {
       "type": 0,
       "value": "Entrega tu videomensaje por correo"
+    }
+  ],
+  "ccCTb2": [
+    {
+      "type": 0,
+      "value": "Intentando nuevamente en "
+    },
+    {
+      "type": 1,
+      "value": "secondsCounter"
+    },
+    {
+      "type": 0,
+      "value": " segundos"
     }
   ],
   "cheXty": [
@@ -3845,12 +3951,6 @@
     {
       "type": 0,
       "value": "!"
-    }
-  ],
-  "eYHsf6": [
-    {
-      "type": 0,
-      "value": "Tarjeta de Crédito o Débito"
     }
   ],
   "ekgTKf": [
@@ -4105,6 +4205,22 @@
       "value": "Eliminar foto"
     }
   ],
+  "hhRDt5": [
+    {
+      "type": 0,
+      "value": "Fechar"
+    }
+  ],
+  "hkTaZQ": [
+    {
+      "type": 0,
+      "value": "Ingresa el código que enviamos a "
+    },
+    {
+      "type": 1,
+      "value": "email"
+    }
+  ],
   "hmpcGI": [
     {
       "type": 0,
@@ -4127,12 +4243,6 @@
     {
       "type": 0,
       "value": "Logo de Garantía Famosos"
-    }
-  ],
-  "iHlpl2": [
-    {
-      "type": 0,
-      "value": "Este correo electrónico ya se encuentra registrado"
     }
   ],
   "iRpjjG": [
@@ -4183,36 +4293,6 @@
       "value": "Motivacional"
     }
   ],
-  "jFJcag": [
-    {
-      "type": 0,
-      "value": "¡Hola "
-    },
-    {
-      "type": 1,
-      "value": "deliveryTo"
-    },
-    {
-      "type": 0,
-      "value": "! "
-    },
-    {
-      "type": 1,
-      "value": "break"
-    },
-    {
-      "type": 0,
-      "value": " Mira el regalo que "
-    },
-    {
-      "type": 1,
-      "value": "deliveryFrom"
-    },
-    {
-      "type": 0,
-      "value": " te ha hecho a través de Famosos.com"
-    }
-  ],
   "jRg7t5": [
     {
       "type": 0,
@@ -4243,6 +4323,36 @@
       "value": "¿Qué sucede después de tu compra?"
     }
   ],
+  "ke77WN": [
+    {
+      "type": 0,
+      "value": "¡Hola "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": "! "
+    },
+    {
+      "type": 1,
+      "value": "lineBreak"
+    },
+    {
+      "type": 0,
+      "value": " Mira el regalo que "
+    },
+    {
+      "type": 1,
+      "value": "deliveryFrom"
+    },
+    {
+      "type": 0,
+      "value": " te ha hecho a través de Famosos.com"
+    }
+  ],
   "kkiAyx": [
     {
       "type": 0,
@@ -4265,6 +4375,12 @@
     {
       "type": 0,
       "value": "Crea una cuenta para poder conectar con los famosos."
+    }
+  ],
+  "lRh3qR": [
+    {
+      "type": 0,
+      "value": "Por tu seguridad y la nuestra, debemos verificar que tengas un correo electrónico valido."
     }
   ],
   "lSxRsO": [
@@ -4643,6 +4759,12 @@
       "value": "span"
     }
   ],
+  "opVwjp": [
+    {
+      "type": 0,
+      "value": "Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime"
+    }
+  ],
   "oqJulP": [
     {
       "type": 0,
@@ -4903,6 +5025,12 @@
     {
       "type": 0,
       "value": "Un video promocional es un video que promueve una compañia/organización/producto en las redes sociales o en la página de dicha compañia."
+    }
+  ],
+  "rRb122": [
+    {
+      "type": 0,
+      "value": "Este correo ya se encuentra registrado"
     }
   ],
   "rYWTQk": [
@@ -5171,12 +5299,6 @@
       "value": " tiene un plazo de 7 días para grabar tu video a partir de ahora."
     }
   ],
-  "tpcdsK": [
-    {
-      "type": 0,
-      "value": "Subdominio"
-    }
-  ],
   "tr1oP1": [
     {
       "type": 0,
@@ -5213,6 +5335,20 @@
     {
       "type": 0,
       "value": "Mostrar más"
+    }
+  ],
+  "uDCyX8": [
+    {
+      "type": 0,
+      "value": "No podemos enviar un correo a \""
+    },
+    {
+      "type": 1,
+      "value": "email"
+    },
+    {
+      "type": 0,
+      "value": "\", por favor, utiliza otro correo electrónico"
     }
   ],
   "uKwcXA": [
@@ -5429,6 +5565,12 @@
       "value": "Ingresa una contraseña nueva"
     }
   ],
+  "wXIkN9": [
+    {
+      "type": 0,
+      "value": "Regístrate y reserva tu pagina exclusiva en Famosos.com"
+    }
+  ],
   "waDVSR": [
     {
       "type": 0,
@@ -5541,12 +5683,6 @@
     {
       "type": 0,
       "value": "2020 Famosos, Inc. All Rights Reserved."
-    }
-  ],
-  "xKx6PF": [
-    {
-      "type": 0,
-      "value": "¡Aplica y Reserva tu Subdominio Ahora!"
     }
   ],
   "xTsa8e": [

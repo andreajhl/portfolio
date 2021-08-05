@@ -2,24 +2,25 @@ import React from "react";
 import { SparklesIcon, GiftBox, BusinessBriefcase } from "../../icons";
 import styles from "./styles.module.scss";
 import classes from "classnames";
+import { FormattedMessage } from "lib/custom-intl";
 
 const AVAILABLE_OPTIONS = [
   {
     id: 1,
-    text: "Para mi",
+    text: <FormattedMessage defaultMessage="Para mi" />,
     Icon: <SparklesIcon />,
     styles: { backgroundColor: "rgba(255, 235, 244, 1)" },
   },
   {
     id: 2,
 
-    text: "Para un amigo o familiar",
+    text: <FormattedMessage defaultMessage="Para un amigo o familiar" />,
     Icon: <GiftBox />,
     styles: { backgroundColor: "rgba(229,231,255,1)" },
   },
   {
     id: 3,
-    text: "Para mi negocio",
+    text: <FormattedMessage defaultMessage="Para mi negocio" />,
     Icon: <BusinessBriefcase />,
     styles: { backgroundColor: "rgba(227,248,255,1)" },
   },
