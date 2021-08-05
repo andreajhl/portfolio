@@ -138,7 +138,7 @@
   "/cMtcP": [
     {
       "type": 0,
-      "value": "Me inscreva"
+      "value": "Enviar"
     }
   ],
   "/dEeuP": [
@@ -218,7 +218,7 @@
   "0HwljF": [
     {
       "type": 0,
-      "value": "sim"
+      "value": "Sim"
     }
   ],
   "0I2iWG": [
@@ -564,7 +564,7 @@
     },
     {
       "type": 0,
-      "value": " doa sua renda para: "
+      "value": " doa parte da renda das mensagens para: "
     },
     {
       "children": [
@@ -808,7 +808,7 @@
   "51BXv1": [
     {
       "type": 0,
-      "value": "Escolha a forma de pagamento de sua preferência e conclua o processo. Os pagamentos são 100% seguros. Em 7 dias ou menos você receberá seu vídeo!"
+      "value": "Escolha sua forma de pagamento e finalize a compra. Em até 7 dias, você receberá seu vídeo."
     }
   ],
   "52kdGd": [
@@ -1012,7 +1012,7 @@
   "7OWxfz": [
     {
       "type": 0,
-      "value": "eu quero me juntar"
+      "value": "eu quero fazer parte"
     }
   ],
   "7Vvfe3": [
@@ -1056,13 +1056,13 @@
     },
     {
       "type": 0,
-      "value": " , seu vídeo será gravado em "
+      "value": ", seu vídeo será gravado entre "
     },
     {
       "children": [
         {
           "type": 0,
-          "value": " 1 a 7 dias "
+          "value": " 1 e 7 dias"
         }
       ],
       "type": 8,
@@ -1070,7 +1070,7 @@
     },
     {
       "type": 0,
-      "value": " ."
+      "value": "."
     }
   ],
   "8+5qCg": [
@@ -1242,7 +1242,7 @@
   "9aKju1": [
     {
       "type": 0,
-      "value": "Categorias:"
+      "value": "Categorias"
     }
   ],
   "9etNPX": [
@@ -1253,6 +1253,12 @@
     {
       "type": 0,
       "value": " estrelas"
+    }
+  ],
+  "9fNciT": [
+    {
+      "type": 0,
+      "value": "Para meu negócio"
     }
   ],
   "9hu98P": [
@@ -1276,7 +1282,7 @@
   "9p5jZI": [
     {
       "type": 0,
-      "value": "Você receberá uma notificação para "
+      "value": "Você receberá uma notificação de "
     },
     {
       "children": [
@@ -1290,7 +1296,7 @@
     },
     {
       "type": 0,
-      "value": " quando o seu vídeo estiver pronto."
+      "value": " quando seu vídeo estiver pronto."
     }
   ],
   "9tGcKs": [
@@ -1422,7 +1428,7 @@
   "AZgVtc": [
     {
       "type": 0,
-      "value": "Se tudo correr bem com o seu pedido de acordo com as nossas políticas, muito em breve poderá desfrutar da sua mensagem de vídeo."
+      "value": "Se tudo correr bem com o seu pedido, de acordo com as nossas políticas, em breve você receberá sua mensagem de vídeo."
     }
   ],
   "Aa51Eo": [
@@ -1529,6 +1535,12 @@
     {
       "type": 0,
       "value": "CPF"
+    }
+  ],
+  "BdY9qW": [
+    {
+      "type": 0,
+      "value": "Página exclusiva"
     }
   ],
   "BiLnNi": [
@@ -1697,6 +1709,12 @@
       "value": "ocorreu um erro"
     }
   ],
+  "Daf8Xy": [
+    {
+      "type": 0,
+      "value": "Escreva o endereço da sua página exclusiva Ej: /andresito"
+    }
+  ],
   "Diph5x": [
     {
       "type": 0,
@@ -1724,7 +1742,7 @@
   "Dq6Mnq": [
     {
       "type": 0,
-      "value": "Homens"
+      "value": "Homen"
     }
   ],
   "Ds81mh": [
@@ -1770,7 +1788,7 @@
     },
     {
       "type": 0,
-      "value": " apenas um clique de distância."
+      "value": " a apenas um clique de distância"
     }
   ],
   "E1d9ps": [
@@ -1857,10 +1875,16 @@
       "value": "Você se compromete em indenizar e isentar de responsabilidade a Famosos e seus afiliados de e contra todas e quaisquer reivindicações, custos, processos, ações judiciais, perdas, danos e despesas (incluindo, sem limitação, taxas legais razoáveis e despesas de advogados) de qualquer tipo ou natureza, decorrente de ou relacionada a, (a) qualquer violação real ou suposta destes Termos por você ou qualquer pessoa que use sua conta, (b) sua, ou qualquer pessoa que use sua conta, a violação de leis ou regulamentos , ou (c) sua negligência grave ou conduta dolosa. Se assumirmos a defesa de tal questão, você deve cooperar sensatamente conosco nessa defesa. "
     }
   ],
+  "F3gUzx": [
+    {
+      "type": 0,
+      "value": "Compartilhar"
+    }
+  ],
   "F6aLD7": [
     {
       "type": 0,
-      "value": "Youtuber"
+      "value": "Youtubers"
     }
   ],
   "FNwlEO": [
@@ -2270,7 +2294,7 @@
   "IxZXG8": [
     {
       "type": 0,
-      "value": "Saiba mais sobre isso."
+      "value": "Saiba mais."
     }
   ],
   "J1nkYm": [
@@ -2324,7 +2348,7 @@
   "Ja4kqX": [
     {
       "type": 0,
-      "value": "Permitir que meu vídeo seja público"
+      "value": "Permitir que meu vídeo seja publicado"
     }
   ],
   "JiRPeP": [
@@ -2488,7 +2512,7 @@
   "L3JUzt": [
     {
       "type": 0,
-      "value": "Quem envia o vídeo?"
+      "value": "Quem está enviando o vídeo?"
     }
   ],
   "L6k2XE": [
@@ -2690,7 +2714,7 @@
   "MyGFHf": [
     {
       "type": 0,
-      "value": "Conclua o processo de compra."
+      "value": "Conclua a compra"
     }
   ],
   "MyQOKB": [
@@ -3092,7 +3116,7 @@
   "QtvgOo": [
     {
       "type": 0,
-      "value": "Pimenta"
+      "value": "Chile"
     }
   ],
   "R1OG9a": [
@@ -3556,7 +3580,7 @@
   "Vgjdly": [
     {
       "type": 0,
-      "value": "Perguntas frequentes"
+      "value": "Perguntas Frequentes"
     }
   ],
   "VkHZxm": [
@@ -3588,7 +3612,7 @@
   "VuArYI": [
     {
       "type": 0,
-      "value": "Notifique-me também pelo WhatsApp (opcional)"
+      "value": "Avise-me também por WhatsApp (opcional)"
     }
   ],
   "W1OXQI": [
@@ -3892,7 +3916,7 @@
   "YTlQrN": [
     {
       "type": 0,
-      "value": "Para um amigo ou membro da família"
+      "value": "Para um amigo ou famíliar"
     }
   ],
   "YVBe7w": [
@@ -4040,7 +4064,7 @@
   "ZtrNok": [
     {
       "type": 0,
-      "value": "Pessoas que viram este perfil também viram"
+      "value": "Pessoas que acessaram este perfil também viram"
     }
   ],
   "ZvLd+7": [
@@ -4082,7 +4106,7 @@
   "aKy46m": [
     {
       "type": 0,
-      "value": "Explore mais de 1.000 celebridades"
+      "value": "Encontre mais de 2.000 famosos"
     }
   ],
   "aLZTdq": [
@@ -4094,7 +4118,7 @@
   "aMwMIJ": [
     {
       "type": 0,
-      "value": "Data de aplicação:"
+      "value": "Data da solicitação:"
     }
   ],
   "aPX + PI": [
@@ -4238,7 +4262,7 @@
   "c/EW7K": [
     {
       "type": 0,
-      "value": "Personalize a mensagem do seu vídeo."
+      "value": "Personalize a sua mensagem de vídeo"
     }
   ],
   "c5ndOG": [
@@ -4268,7 +4292,7 @@
   "cRtlFe": [
     {
       "type": 0,
-      "value": "A cobrança que você receberá em sua conta é uma autorização de pagamento que seu banco faz para garantir que haja fundos suficientes. No entanto, Famosos não fará o pagamento até que "
+      "value": "A cobrança que você receberá em sua conta é uma autorização de pagamento que seu banco faz para garantir que haja fundos suficientes, porém a Famosos não fará a cobrança até que "
     },
     {
       "type": 1,
@@ -4414,7 +4438,7 @@
   "dn7i07": [
     {
       "type": 0,
-      "value": "Experiências personalizadas "
+      "value": "Mensagens de vídeo personalizadas "
     },
     {
       "type": 1,
@@ -4422,7 +4446,7 @@
     },
     {
       "type": 0,
-      "value": " com suas celebridades favoritas."
+      "value": " de famosos. Presenteie e se emocione"
     }
   ],
   "duDNCn": [
@@ -4452,7 +4476,7 @@
   "e9TpG1": [
     {
       "type": 0,
-      "value": "Mudar as moedas"
+      "value": "Trocar Moeda"
     }
   ],
   "eBSdyF": [
@@ -4464,7 +4488,7 @@
   "eH4QAw": [
     {
       "type": 0,
-      "value": "Se você não receber o seu vídeo em 7 dias, devolveremos 100% do seu dinheiro. "
+      "value": "Caso não receba seu vídeo em até 7 dias, reembolsamos 100% do valor. "
     },
     {
       "type": 1,
@@ -4486,7 +4510,7 @@
   "eOuNie": [
     {
       "type": 0,
-      "value": "Olhe para"
+      "value": "Pesquisar"
     }
   ],
   "eOvQrU": [
@@ -4736,7 +4760,7 @@
   "gxungj": [
     {
       "type": 0,
-      "value": "Pagar em"
+      "value": "Login"
     }
   ],
   "h5yCAT": [
@@ -5394,7 +5418,7 @@
   "oAD1Z+": [
     {
       "type": 0,
-      "value": "Famosos.com - Perguntas frequentes"
+      "value": "Famosos.com - Perguntas Frequentes"
     }
   ],
   "oEbrJV": [
@@ -5460,7 +5484,7 @@
   "om28Bx": [
     {
       "type": 0,
-      "value": "Instrua "
+      "value": "Detalhe para "
     },
     {
       "type": 1,
@@ -5468,7 +5492,7 @@
     },
     {
       "type": 0,
-      "value": " para que seu vídeo tenha a aparência que você espera. "
+      "value": " o que você gostaria que ele dissesse em sua mensagem de vídeo. "
     },
     {
       "type": 1,
@@ -5482,11 +5506,17 @@
       "children": [
         {
           "type": 0,
-          "value": " (Edite este texto base ou escreva um) "
+          "value": " (Altere este texto ou escreva o que preferir) "
         }
       ],
       "type": 8,
       "value": "span"
+    }
+  ],
+  "opVwjp": [
+    {
+      "type": 0,
+      "value": "Ops! Aparentemente, você não está inscrito em um Famoso Prime"
     }
   ],
   "oqJulP": [
@@ -5498,7 +5528,7 @@
   "orwCgV": [
     {
       "type": 0,
-      "value": "Convide seus amigos para conhecer o Famous"
+      "value": "Convide seus amigos para conhecer a Famosos"
     }
   ],
   "orzX/T": [
@@ -5572,7 +5602,7 @@
   "pPCiwO": [
     {
       "type": 0,
-      "value": "Correio eletrônico"
+      "value": "E-mail"
     }
   ],
   "pago_seguro": [
@@ -5902,7 +5932,7 @@
   "sHZJT8": [
     {
       "type": 0,
-      "value": "Especifique a celebração, dedicação ou motivo do vídeo. Você pode contar alguns detalhes para que seu vídeo seja o mais especial possível."
+      "value": "Especifique a celebração, o motivo e o que gostaria de ter na mensagem. Conte alguns detalhes para que o vídeo fique ainda mais exclusivo e emocionante"
     }
   ],
   "sK9QPr": [
@@ -5968,7 +5998,7 @@
   "swHrQR": [
     {
       "type": 0,
-      "value": "Aproveite a experiência!"
+      "value": "Aproveite a experiência"
     }
   ],
   "sy+pv5": [
@@ -5980,7 +6010,7 @@
   "syjn1W": [
     {
       "type": 0,
-      "value": "Este vídeo ficará ótimo! "
+      "value": "Seu vídeo ficará incrível! "
     },
     {
       "type": 1,
@@ -5988,7 +6018,7 @@
     },
     {
       "type": 0,
-      "value": " Iremos notificá-lo quando estiver pronto."
+      "value": " Te avisaremos quando estiver pronto"
     }
   ],
   "t+gzvS": [
@@ -6062,7 +6092,7 @@
   "t2/i9S": [
     {
       "type": 0,
-      "value": "Trabalhar com a gente"
+      "value": "Trabalhe com a gente"
     }
   ],
   "t756d4": [
@@ -6254,7 +6284,7 @@
   "uVRzk3": [
     {
       "type": 0,
-      "value": "Saiba mais sobre nossas últimas notícias e promoções"
+      "value": "Descubra primeiro nossas promoções e novidades dos famosos"
     }
   ],
   "uVgimH": [
@@ -6408,7 +6438,7 @@
   "w5XPJR": [
     {
       "type": 0,
-      "value": "Se por algum motivo o seu vídeo não puder ser gravado, entraremos em contato com você."
+      "value": "Se por alguma razão o famoso não puder gravar seu vídeo, entraremos em contato com você."
     }
   ],
   "w5lFLc": [
@@ -6439,6 +6469,12 @@
     {
       "type": 0,
       "value": "Por favor insira uma nova senha"
+    }
+  ],
+  "wXIkN9": [
+    {
+      "type": 0,
+      "value": "Inscreva-se e reserve sua página exclusiva na Famosos.com"
     }
   ],
   "waDVSR": [
@@ -6476,7 +6512,7 @@
   "wkaVGz": [
     {
       "type": 0,
-      "value": "Faça login na sua conta para se conectar com pessoas famosas"
+      "value": " Faça login para se conectar aos famosos"
     }
   ],
   "wlTYUV": [
@@ -6502,7 +6538,7 @@
   "ws1N91": [
     {
       "type": 0,
-      "value": "Assim que seu vídeo estiver pronto, iremos notificá-lo para que você possa correr para vê-lo, baixe-o e compartilhe-o."
+      "value": "Assim que seu vídeo estiver pronto, vamos correndo te avisar para que você possa baixar e compartilhar com quem quiser."
     }
   ],
   "wwFRnk": [
@@ -6638,7 +6674,7 @@
   "yF/Sxo": [
     {
       "type": 0,
-      "value": "Se por algum motivo não for possível gravar seu vídeo, seu dinheiro estará disponível novamente em um período máximo de 21 dias úteis, dependendo do seu banco."
+      "value": "Se por algum imprevisto, o famoso não puder gravar seu vídeo, você receberá o valor em um período máximo de 21 dias, de acordo com o seu banco"
     }
   ],
   "yHjJuo": [
