@@ -1,26 +1,25 @@
-$color1: #f7d0bf;
-$color2:#ff6e6e;
-$color3:  #fa5353;
-$color4: #1d1c1c;
-
+@import 'global';
 
 .nav{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    @include caja-flex(flex,row,space-around,center,nowrap);
     margin-top: 0px;
     font-size: 30px;
     background-color: $color4;
     min-height: 100px;  
     border-bottom: 0.1px solid $color3;
     font-weight: bold;
+    width: 100%;
+    @media #{$smarphone}{
+        font-size: 15px;
+        width: 100%;
+        min-height: 60px;
+    }
     label{
-         cursor: pointer;
+        cursor: pointer;
     } 
     a{
         text-decoration: none;
-        color:$color1
+        color:$color1;
     }
    
     label:hover{

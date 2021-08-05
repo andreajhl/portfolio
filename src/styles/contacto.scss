@@ -1,13 +1,8 @@
-$color1: #f7d0bf;
-$color2:#ff6e6e;
-$color3:  #fa5353;
-$color4: #1d1c1c;
+@import 'global';
 
 .contac{
+    @include caja-flex (flex,column,center,center,nowrap);
     color: $color4;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     width: 100%;
 
 
@@ -15,23 +10,36 @@ $color4: #1d1c1c;
         line-height: 170%;
         font-size: 35px;
         margin-left: 2%;
-        width: 70%;
-    }
-
-    &_Red{
-        display: flex;
-        flex-direction: row;
-        justify-content:space-around;
-        align-items: center;
-        background-color: $color4;
-        color: $color1;
-        border-top: 1px solid $color3;
-        p{
-            font-size: 40px;
-            margin: 15px;
-            color: white;
-            cursor: pointer;
+        &_text{
+            width: 70%;
+            @media #{$smarphone}{
+                width: 85%;
+            }
+        }
+        @media #{$smarphone}{
+            font-size: 18px;
+            line-height: 150%;
         }
     }
 
+    &_Red{
+        @include caja-flex (flex,row,space-around,center,nowrap);
+        background-color: $color4;
+        color: white;
+        border-top: 1px solid $color3;
+        width: 100%;
+        .p{
+            font-size: 40px;
+            margin: 15px;
+            cursor: pointer;
+            @media #{$smarphone}{
+                font-size: 23px;
+                margin: 10px;
+            }
+        }
+    }
+
+}
+.p:hover{
+    color:$color3;
 }

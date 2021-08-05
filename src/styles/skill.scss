@@ -1,48 +1,58 @@
 $color1: #FFE5D9;
-$color2:#FFC1A3;
-$color3:  #FFAA81;
-$color4: #1B222F;
+@import 'global';
 
 
 .cuerpo_Sk{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include caja-flex (flex,column,center,center,nowrap);
 
     &_l{
-        display:flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        align-items: center;
+        @include caja-flex(flex, row, space-around, center, wrap);
         width: 70%;
         height: 100%;
-        
-      
+       
     }
-    p{
+    .skh1{
+        font-size: 60px;
+        color: #1d1c1c;
+        @media #{$smarphone}{
+            font-size: 30px;
+        }
+    }
+    .skp{
         margin-top: 10px;
+        @media #{$smarphone}{
+            font-size: 20px;
+            margin: 0px;
+        }
     }
 }
 
 .icon{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include caja-flex(flex,column,center,center,nowrap);
     font-size: 25px;
     max-height: 250px;
     margin: 20px;
     cursor: pointer;
+    @media #{$smarphone}{
+        max-height: 140px;
+        margin: 0px;
+    }
 }
 .ii{
     width: 180px;
     height: 180px;
     padding: 3px;
+    @media #{$smarphone}{
+       width: 120px
+    }
 }
 .icon:hover{
     margin: 15px;
     transform: scale(1.2);
-    text-shadow:5px 5px 5px #72584b;
+    text-shadow:5px 5px 5px #fa5353;
+    @media #{$smarphone}{
+        margin: 10px;
+        transform: scale(1.1);
+    }
     
 }

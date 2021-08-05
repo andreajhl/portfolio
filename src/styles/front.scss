@@ -1,77 +1,66 @@
-$color1: #f7d0bf;
-$color2:#ff6e6e;
-$color3:  #fa5353;
-$color4: #1d1c1c;
+@import 'global';
+
 
 .front{
+    @include caja-flex(flex,column,center,center,nowrap);
     color: $color4;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin-top: 40px;
     width: 80%;
     cursor: pointer;
    
     &_titulo{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        @include caja-flex(flex, row, center, center, nowrap);
         font-size: 40px;
         color: $color4;
+        @media #{$smarphone}{
+            font-size: 28px;
+        }
     }
 
     &_cuerpo{
-        display: flex;
-        flex-wrap:wrap;
-        justify-content: space-around;
-        align-items: center;
-        align-content: space-around;
+        @include caja-flex(flex,row,space-around,center,wrap);
     }
 
     &_DivC{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        @include caja-flex(flex,column,center,center,nowrap);
         border: 1px solid $color4;
         border-radius: 8px;
         width: 500px; 
         height: 400px;
-        
         margin-bottom: 40px;
         color: $color4;
         overflow: hidden;
-       
+        @media #{$smarphone}{
+            width: 350px;
+            height: 300px;
+        }
         &_hover{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            justify-content:center;
+            @include caja-flex(flex,row,center,center,nowrap);
             width: 500px;
             height: 400px;
             overflow: hidden;
-            background-color: $color1;
             position: relative;
             z-index: 0;
-            
+            @media #{$smarphone}{
+                width: 350px;
+                height: 300px;
+            }
             &_img{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items:center;
+                @include caja-flex(flex,column,center,center,nowrap);
                 height: 300px;
                 width: 100%;
                 transition: all 800ms ease-in-out;
-                 z-index: 1;
-                 background-color: $color1;
+                z-index: 1;
+                background-color:#d88989;
+                @media #{$smarphone}{
+                    height: 250px;
+                }
                 &_i{
                     height: 270px;
                     margin-top: 30px;
                     width: 90%;
                     transition: all 100ms ease-in-out;
-                   
+                    border: 1px solid $color4;
                 }
 
             }
@@ -79,26 +68,24 @@ $color4: #1d1c1c;
         }
 
         &_v{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
+            @include caja-flex (flex,column,space-around,center,nowrap);
             line-height: 40%;
             width: 100%;
             height: 100px;
             background-color: $color4;
             font-size: 20px;
             color: white;
-            border-top: 1px solid $color1;
-
+            border-top: 1px solid $color3;
+            @media #{$smarphone}{
+                height: 70px;
+                font-size: 15px;
+            }
             &_etiq{
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: center;
+                @include caja-flex (flex,row,space-around,center,nowrap);
                 width: 100%;
             }
         }
+
     }
 
     
@@ -114,7 +101,11 @@ $color4: #1d1c1c;
     top: 0px;
     height: 300px;
     background-color: $color4;
-    color: $color1;
+    color: white;
+    @media #{$smarphone}{
+        height: 230px;
+        font-size: 14px;
+    }
     
     p{
         width: 90%;
