@@ -4,6 +4,7 @@ import waitFor from "react-app/src/utils/waitFor";
 import { getWindowPathname } from "react-app/src/utils/getWindow";
 import TagManager from "react-gtm-module";
 import { Session } from "./session";
+import { getCelebrityAnalyticsData } from "lib/utils/celebrityUtils";
 // import { Mixpanel } from "./mixPanel";
 
 const ENV = process.env.NEXT_PUBLIC_ENVIRONMENT;
@@ -29,6 +30,7 @@ export const tagManagerDataLayer = (event, dataLayer) => {
 
     // GTM NOTIFICATION
     window?.dataLayer?.push?.({
+      path: getWindowPathname(),
       ...dataLayer,
       event,
     });
@@ -57,7 +59,7 @@ export function trackContractPurchase({ celebrityId, contractPrice }) {
     content_type: "product",
     content_ids: VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrityId,
     value: contractPrice,
-    currency: "USD"
+    currency: "USD",
   });
 }
 
@@ -80,10 +82,18 @@ export function trackFirstPageLoad() {
   });
 }
 
+export function trackCelebrityProfileView({ celebrity, ...analyticsData }) {
+  tagManagerDataLayer("CELEBRITY_PROFILE_PAGE_VIEW", {
+    celebrity: getCelebrityAnalyticsData(celebrity),
+    ...analyticsData,
+  });
+}
+
 export const analytics = {
   track: tagManagerDataLayer,
   fbPixel,
   trackContractPurchase,
   page,
   trackFirstPageLoad,
+  trackCelebrityProfileView,
 };
