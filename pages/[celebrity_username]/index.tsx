@@ -27,25 +27,11 @@ import { defineMessages, useIntl } from "react-intl";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import debug from "react-app/src/utils/debug";
 import { CREATE_CONTRACT_QUERY_PARAM } from "constants/paths";
-import { analytics } from "react-app/src/state/utils/gtm";
-import {
-  getCelebrityContractPrice,
-  getCelebrityDiscountPercentage,
-} from "lib/utils/celebrityUtils";
-import getCelebrityBusinessPrice from "lib/utils/getCelebrityBusinessPrice";
 
-function getCelebrityData(celebrity: celebrityType) {
-  return {
-    ...celebrity,
-    discountPercentage:
-      celebrity.discountPercentage || getCelebrityDiscountPercentage(undefined),
-    videoMessagePrice:
-      celebrity.videoMessagePrice || getCelebrityContractPrice(undefined),
-    businessPrice: getCelebrityBusinessPrice(celebrity?.contractTypes),
-  };
-}
-
-const CelebrityProfilePage = dynamic<{ celebrity: celebrityType }>(() =>
+const CelebrityProfilePage = dynamic<{
+  celebrity: celebrityType;
+  celebrityProfileVersion: string;
+}>(() =>
   import("react-app/src/components/pages/celebrity-profile").then(
     (mod) => mod.CelebrityProfilePage
   )
@@ -155,15 +141,6 @@ function CelebrityProfile({
     captureProfileViewEvent();
   }, []);
 
-  useEffect(() => {
-    analytics.track("CELEBRITY_PROFILE_PAGE_VIEW", {
-      celebrity: getCelebrityData(celebrity),
-      celebrityProfileVersion,
-      isMobile,
-      shouldFocusCreateContractWizard,
-    });
-  }, []);
-
   return (
     <>
       <CustomHead
@@ -193,7 +170,10 @@ function CelebrityProfile({
           />
         }
       >
-        <CelebrityProfilePage celebrity={celebrity} />
+        <CelebrityProfilePage
+          celebrity={celebrity}
+          celebrityProfileVersion={celebrityProfileVersion}
+        />
       </Maybe>
     </>
   );

@@ -6,6 +6,7 @@ import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { Session } from "../../../state/utils/session";
 import { PageContainer } from "../../layouts/page-container";
 import dynamic from "next/dynamic";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const LastVideosAvailableBanner = dynamic(() =>
   import("../../layouts/last-videos-available-banner").then(
@@ -63,6 +64,13 @@ class CelebrityProfilePage extends Component {
   componentDidMount() {
     const session = new Session();
     session.isDummy();
+    const { celebrity, celebrityProfileVersion } = this.props;
+    analytics.trackCelebrityProfileView({
+      celebrity,
+      celebrityProfileVersion,
+      isMobile: true,
+      widget: "CelebrityProfilePage",
+    });
   }
 
   componentWillUnmount() {
