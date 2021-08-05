@@ -1,8 +1,8 @@
 import React from 'react';
 
-import '../../../styles/front.scss'
-import gifPeli from '../../../gifPeli.gif'
-import gifClima from '../../../gifClima.gif'
+import '../../styles/front.scss'
+import gifPeli from '../../img/gifPeli.gif'
+import gifClima from '../../img/gifClima.gif'
 
 export const FrontEnd =()=>{
     return(

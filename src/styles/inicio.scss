@@ -3,7 +3,7 @@
 .Inicio{
     @include caja-flex(flex,column,center,center,nowrap);
     background-color:$color4;
-    background-image: url('file:///home/andrea/Documentos/portfolio/src/me.png');
+    background-image: url('../img/me.png');
     background-repeat: no-repeat;
     background-position-x: 100%;
     background-position-y: 80%;

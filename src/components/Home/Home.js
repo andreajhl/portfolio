@@ -3,7 +3,7 @@ import React from 'react';
 import Inicio  from '../Inicio/Inicio';
 import Contacto from '../Contacto/Contacto';
 import Nav from '../Nav/Nav';
-import FrontEnd from '../Poyectos/Front/FrontEnd'
+import FrontEnd from '../Poyectos/FrontEnd'
 import Presentacion from '../Presentacion/Presentacion';
 
 import '../../styles/home.scss'

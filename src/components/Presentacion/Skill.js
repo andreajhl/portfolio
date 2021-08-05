@@ -1,6 +1,7 @@
 import {IoLogoJavascript, IoLogoCss3,IoLogoHtml5, IoLogoSass,IoLogoReact} from 'react-icons/io5'
 import { SiRedux, SiNodeDotJs,SiPostgresql} from "react-icons/si";
-import Img from '../../Ex.png'
+
+import Img from '../../img/ex.png'
 
 import '../../styles/skill.scss';
 
