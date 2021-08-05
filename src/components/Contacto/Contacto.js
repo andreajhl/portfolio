@@ -19,7 +19,7 @@ export const Contacto = () => {
             <div className="contac_Port">
                 <div className='contac_Port_text'>
                     <h2>¿Hablamos?</h2>
-                    <p>Espero te haya gustado mi porfolio, si quieres darme feedback sobre mis proyectos o alguna recomendacion, estoy siempre abierta a aprender y, además... Estoy buscando mi primera oportunidad como desarrolladora; Si crees que mi perfil profesional encaja con lo que buscas ¡no dudes en contactarme!</p>
+                    <p>Espero te haya gustado mi porfolio, si quieres darme feedback sobre mis proyectos o alguna recomendación, estoy siempre abierta a aprender y, además... Estoy buscando mi primera oportunidad como desarrolladora; Si crees que mi perfil profesional encaja con lo que buscas ¡no dudes en contactarme!</p>
                 </div>
                 </div>
             <div className="contac_Red">

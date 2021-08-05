@@ -12,7 +12,7 @@ export default function Skill (){
             <div className="cuerpo_Sk_l">
                 <div className='icon'>
                     <IoLogoHtml5 className='ii'/>
-                    <p className='skp'>HMLT</p>
+                    <p className='skp'>HTML</p>
                 </div>
                 <div className='icon'>
                     <IoLogoCss3 className='ii'/>

@@ -17,7 +17,7 @@ export const FrontEnd =()=>{
                             <img  className="front_DivC_hover_img_i" src={gifClima} alt='proyect'/>
                         </div>
                         <div className="mostrar">
-                            <p > Es una aplicacion del clima, los datos son extraidos de 'API WEDER' con lo cual puedes buscar el clima de cada cuidad o pais del mundo, podes eliminar las tarjetas o ver en mas detalles si quieres</p>
+                            <p >AppWheather es una aplicación del clima, los datos son extraídos de 'Spire Weather ' con lo cual puedes buscar el clima de cada cuidad o país del mundo, podes eliminar las tarjetas o ver en mas detalle si quieres</p>
                         </div>  
                     </div>
                     <div className="front_DivC_v">
@@ -33,7 +33,7 @@ export const FrontEnd =()=>{
                             <img  className="front_DivC_hover_img_i" src={gifPeli}  alt='proyect'/>
                         </div>
                         <div className="mostrar">
-                            <p>Esta apliacion esta hecha con datos de la api 'Movie', en ella podes buscar peliculas por nombre, guardarlas en favoritos, y ver mas detaller de ella</p>
+                            <p>PEliPOP extrae datos de 'API IMDB', en ella podes buscar películas por nombre o palabras claves, guardarlas en favoritos, y ver mas detalle de ellas</p>
                         </div>
                     </div>
                     <div className="front_DivC_v">
@@ -65,13 +65,13 @@ export const FrontEnd =()=>{
                             <img  className="front_DivC_hover_img_i"  src={gifPeli} alt='proyect' />
                         </div>
                         <div className="mostrar">
-                            <p style={{padding:'3%'}}>En la aplicacion contas con una base de 40 pokemons para empezar, podes crear los tutyos propios a traves de un formulario o buscar otros mas por nombres especifico, podes ordenar por fuerza, alfabeticamente o podes filtratlos por sus tipos o creaciones propias, podes guardarlos en favoritos y ver sus detalles tambien</p>
+                            <p style={{padding:'3%'}}>Es una aplicación con 40 pokemons para empezar, podes crear mas pokemons a través de un formulario o buscar otros mas por nombres especifico, podes ordenar por fuerza, alfabéticamente o podes filtrarlos por sus tipos o creaciones propias, podes guardarlos en favoritos y ver sus detalles también</p>
                         </div>
                     </div>
                     <div className="front_DivC_v">
-                      <h3>App Pokemon</h3>
+                      <h3>Pokemon App</h3>
                     <div className="front_DivC_v_etiq">
-                        <p>SQL</p><p>POSTGRE</p><p>EXPRESS</p><p>HTML</p><p></p><p>REACT / REDUX</p>
+                        <p>SQL</p><p>POSTGRESQL</p><p>EXPRESS</p><p>HTML</p><p></p><p>REACT / REDUX</p>
                     </div>  
                     </div>
                 </div>
