@@ -152,9 +152,11 @@ function ContractDetailsForm({
   };
 
   function trackOccasionChange(newOccasion: OccasionType) {
+    const previousOccasion = values.occasion;
+    if (newOccasion === previousOccasion) return;
     analytics.track("CHANGE_CONTRACT_OCCASION", {
       ...analyticsData,
-      previousOccasion: values.occasion,
+      previousOccasion,
       newOccasion,
     });
   }
