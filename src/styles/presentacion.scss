@@ -16,14 +16,26 @@
         @media #{$smarphone}{
             font-size: 15px;
         }
+        @media #{$tablet}{
+            font-size: 20px;
+        }
     }
     .hi{
         @media #{$smarphone}{
             font-size: 20px;
             margin: 0px;
         }
+        @media #{$tablet}{
+            font-size: 30px;
+            margin: 0px;
+        }
     }
-    
+    @media #{$smarphone}{
+        margin-top: 50px;
+    }
+    @media #{$tablet}{
+        margin-top: 60px;
+    }
 }      
 
 .skill{

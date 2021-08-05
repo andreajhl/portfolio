@@ -17,12 +17,19 @@ $color1: #FFE5D9;
         @media #{$smarphone}{
             font-size: 30px;
         }
+        @media #{$tablet}{
+            font-size: 40px;
+        }
     }
     .skp{
         margin-top: 10px;
         @media #{$smarphone}{
-            font-size: 20px;
+            font-size: 18px;
             margin: 0px;
+        }
+        @media #{$tablet}{
+            margin: 0px;
+            font-size: 20px;
         }
     }
 }
@@ -34,8 +41,12 @@ $color1: #FFE5D9;
     margin: 20px;
     cursor: pointer;
     @media #{$smarphone}{
-        max-height: 140px;
+        max-height: 150px;
         margin: 0px;
+    }
+    @media #{$tablet}{
+        margin:0px;
+        max-height: 140px;
     }
 }
 .ii{
@@ -43,7 +54,10 @@ $color1: #FFE5D9;
     height: 180px;
     padding: 3px;
     @media #{$smarphone}{
-       width: 120px
+       width: 80px
+    }
+    @media #{$tablet}{
+        width: 130px;
     }
 }
 .icon:hover{
@@ -51,7 +65,11 @@ $color1: #FFE5D9;
     transform: scale(1.2);
     text-shadow:5px 5px 5px #fa5353;
     @media #{$smarphone}{
-        margin: 10px;
+        margin: 8px;
+        transform: scale(1.1);
+    }
+    @media #{$tablet}{
+        margin: 12px;
         transform: scale(1.1);
     }
     

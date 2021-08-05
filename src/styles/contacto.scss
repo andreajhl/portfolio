@@ -5,7 +5,6 @@
     color: $color4;
     width: 100%;
 
-
     &_Port{
         line-height: 170%;
         font-size: 35px;
@@ -15,10 +14,16 @@
             @media #{$smarphone}{
                 width: 85%;
             }
+            @media #{$tablet}{
+                width: 80%;
+            }
         }
         @media #{$smarphone}{
             font-size: 18px;
             line-height: 150%;
+        }
+        @media #{$tablet}{
+            font-size: 22px;
         }
     }
 
@@ -33,7 +38,11 @@
             margin: 15px;
             cursor: pointer;
             @media #{$smarphone}{
-                font-size: 23px;
+                font-size: 20px;
+                margin: 10px;
+            }
+            @media #{$tablet}{
+                font-size: 25px;
                 margin: 10px;
             }
         }

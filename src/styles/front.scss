@@ -15,6 +15,9 @@
         @media #{$smarphone}{
             font-size: 28px;
         }
+        @media #{$tablet}{
+            font-size: 35px;
+        }
     }
 
     &_cuerpo{
@@ -34,6 +37,10 @@
             width: 350px;
             height: 300px;
         }
+        @media #{$tablet}{
+            width: 400px;
+            height: 350px;
+        }
         &_hover{
             @include caja-flex(flex,row,center,center,nowrap);
             width: 500px;
@@ -45,6 +52,10 @@
                 width: 350px;
                 height: 300px;
             }
+            @media #{$tablet}{
+                width: 400px;
+                height: 350px;
+            }
             &_img{
                 @include caja-flex(flex,column,center,center,nowrap);
                 height: 300px;
@@ -54,6 +65,9 @@
                 background-color:#d88989;
                 @media #{$smarphone}{
                     height: 250px;
+                }
+                @media #{$tablet}{
+                    height: 270px;
                 }
                 &_i{
                     height: 270px;
@@ -80,6 +94,10 @@
                 height: 70px;
                 font-size: 15px;
             }
+            @media #{$tablet}{
+                height: 80px;
+                font-size: 17px;
+            }
             &_etiq{
                 @include caja-flex (flex,row,space-around,center,nowrap);
                 width: 100%;
@@ -105,6 +123,10 @@
     @media #{$smarphone}{
         height: 230px;
         font-size: 14px;
+    }
+    @media #{$tablet}{
+        height: 270px;
+        font-size: 18px;
     }
     
     p{

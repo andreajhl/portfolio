@@ -14,11 +14,17 @@
         min-height: 350px;
         background-size: 40%;
     }
+    @media #{$tablet}{
+        min-height: 600px;
+    }
     &_div{
        line-height: 500%;
        padding-left: 3%; 
        @media #{$smarphone}{
             line-height: 250%;
+        }
+        @media #{$tablet}{
+            line-height: 300%;
         }
     }
 
@@ -42,6 +48,9 @@
         @media #{$smarphone}{
             font-size: 25px;
         }
+        @media #{$tablet}{
+           font-size: 40px;
+        }
     }
     .h2{
         color: $color2;
@@ -51,6 +60,9 @@
         @media #{$smarphone}{
             font-size: 25px;
         }
+        @media #{$tablet}{
+            font-size: 40px;
+        }
     }
 
     .h3{
@@ -59,6 +71,9 @@
         font-size: 60px;
         @media #{$smarphone}{
             font-size: 20px;
+        }
+        @media #{$tablet}{
+            font-size: 35px;
         }
     }
    
