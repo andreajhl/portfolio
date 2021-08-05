@@ -71,9 +71,9 @@ $color1: #FFE5D9;
     }
 }
 .ii{
-    width: 180px;
-    height: 180px;
-    padding: 3px;
+    width: 170px;
+    height: 170px;
+    padding: 6px;
     @media #{$smarmini}{
         width: 60px;
     }
@@ -84,7 +84,7 @@ $color1: #FFE5D9;
         width: 130px;
     }
     @media #{$desktop}{
-        width: 150px
+        width: 120px
     }
 }
 .icon:hover{
@@ -103,5 +103,7 @@ $color1: #FFE5D9;
         margin: 12px;
         transform: scale(1.1);
     }
-   
+    @media #{$desktop}{
+        margin: 13px;
+    }
 }
