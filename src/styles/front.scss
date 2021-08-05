@@ -5,6 +5,7 @@
     @include caja-flex(flex,column,center,center,nowrap);
     color: $color4;
     margin-top: 40px;
+    width: 90%;
     cursor: pointer;
    
     &_titulo{
@@ -30,13 +31,12 @@
         @include caja-flex(flex,column,center,center,nowrap);
         border: 1px solid $color4;
         border-radius: 8px;
-        width: 500px; 
+        width: 400px; 
         height: 400px;
         margin-bottom: 40px;
         color: $color4;
         overflow: hidden;
         margin: 2%;
-       
         @media #{$smarmini}{
             width: 250px;
             height: 280px;
@@ -46,12 +46,12 @@
             height: 300px;
         }
         @media #{$tablet}{
-            width: 400px;
+            width: 350px;
             height: 350px;
         }
         &_hover{
             @include caja-flex(flex,row,center,center,nowrap);
-            width: 500px;
+            width: 400px;
             height: 400px;
             overflow: hidden;
             position: relative;
@@ -65,12 +65,12 @@
                 height: 300px;
             }
             @media #{$tablet}{
-                width: 400px;
+                width: 350px;
                 height: 350px;
             }
             &_img{
                 @include caja-flex(flex,column,center,center,nowrap);
-                height: 300px;
+                height: 350px;
                 width: 100%;
                 transition: all 800ms ease-in-out;
                 z-index: 1;
@@ -102,7 +102,7 @@
             width: 100%;
             height: 100px;
             background-color: $color4;
-            font-size: 20px;
+            font-size: 18px;
             color: white;
             border-top: 1px solid $color3;
             @media #{$smarmini}{
@@ -132,8 +132,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    line-height: 200%;
-    font-size: 20px;
+    line-height: 150%;
+    font-size: 18px;
     position: absolute;
     top: 0px;
     height: 300px;
