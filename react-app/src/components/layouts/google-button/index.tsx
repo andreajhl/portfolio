@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { GoogleLogin } from "react-google-login";
 import { IsMobile } from "react-app/src/utils/isMobile";
 import axios from "axios";
-import { Session } from "react-app/src/state/utils/session";
 import { checkCookie } from "lib/utils/checkCookiesEnabled";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { redirectToAfterAuthPath } from "lib/famosos-auth";
 
 type GoogleButtonProps = {
   textButton: string;
@@ -15,6 +15,7 @@ type GoogleButtonProps = {
 const responseType = "code";
 const clientId = process.env.NEXT_PUBLIC_GOOGLE_LOGIN_IDENTIFIER;
 const redirectURL = process.env.NEXT_PUBLIC_GOOGLE_LOGIN_REDIRECT;
+
 function GoogleButton({ textButton, className }: GoogleButtonProps) {
   const responseGoogle = async (res) => {
     if (res?.tokenId) {
@@ -23,8 +24,8 @@ function GoogleButton({ textButton, className }: GoogleButtonProps) {
           accessToken: res?.tokenId,
         })
         .then(() => {
-          const session = new Session();
-          session.initSession();
+          analytics.trackUserSignIn({ widget: "GoogleButton" });
+          redirectToAfterAuthPath();
         })
         .catch((error) => {
           console.log(error);

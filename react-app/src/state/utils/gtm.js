@@ -90,6 +90,16 @@ export function trackCelebrityProfileView({ celebrity, ...analyticsData }) {
   });
 }
 
+export function trackUserSignIn(analyticsData = {}) {
+  const user = new Session().getSession();
+  analytics.track("USER_LOGIN", { user, ...analyticsData });
+}
+
+export function trackUserSignUp(analyticsData = {}) {
+  const user = new Session().getSession();
+  analytics.track("USER_SIGN_UP", { user, ...analyticsData });
+}
+
 export const analytics = {
   track: tagManagerDataLayer,
   fbPixel,
@@ -97,4 +107,6 @@ export const analytics = {
   page,
   trackFirstPageLoad,
   trackCelebrityProfileView,
+  trackUserSignIn,
+  trackUserSignUp,
 };

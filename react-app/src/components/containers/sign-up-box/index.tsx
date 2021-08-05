@@ -12,6 +12,7 @@ import { SUGGESTED_FULL_NAME_QUERY_PARAM } from "constants/keys";
 import { useState } from "react";
 import { ValidateEmailForm } from "../validate-email-form";
 import { redirectToAfterAuthPath, useAuth } from "lib/famosos-auth";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const STEPS = ["sign-up", "validate-security-code"] as const;
 type CurrentStepType = typeof STEPS[number];
@@ -37,6 +38,7 @@ function SignUpBox({ className, willRedirect = false }: SignUpBoxProps) {
     setAuthenticated(true);
     setSignUpData(newSignUpData);
     setCurrentStep(STEPS[1]);
+    analytics.trackUserSignUp({ widget: "SignUpBox" });
   }
 
   const signInPath = willRedirect ? SIGN_IN_FROM_PATH : SIGN_IN_PATH;
