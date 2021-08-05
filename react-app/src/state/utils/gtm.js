@@ -75,10 +75,11 @@ export function page(data) {
   });
 }
 
-export function trackFirstPageLoad() {
+export function trackFirstPageLoad(analyticsData = {}) {
   page({
     isReactRouting: false,
     path: getWindowPathname(),
+    ...analyticsData,
   });
 }
 

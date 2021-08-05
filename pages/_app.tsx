@@ -24,15 +24,6 @@ const languages = {
   "pt-BR": ptMessages,
 };
 
-const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
-  analytics.page({
-    path: url,
-    url,
-    shallow,
-    isReactRouting: true,
-  });
-};
-
 const ROUTE_CHANGE_START = "routeChangeStart";
 
 CustomApp.getInitialProps = async (appContext: AppContext) => {
@@ -52,7 +43,16 @@ function CustomApp({ Component, pageProps }) {
 
   useEffect(() => {
     gtmInitialize();
-    analytics.trackFirstPageLoad();
+    analytics.trackFirstPageLoad({ isMobile: pageProps.isMobileDevice });
+    const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
+      analytics.page({
+        path: url,
+        url,
+        isMobile: pageProps.isMobileDevice,
+        shallow,
+        isReactRouting: true,
+      });
+    };
     router.events.on(ROUTE_CHANGE_START, handleRouteChange);
     return () => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);
