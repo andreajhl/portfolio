@@ -135,6 +135,10 @@
         background-color: rgb(238, 189, 189);
         box-shadow:4px 4px 0px #c962628a;
    }
+   .href{
+        color: $color4;
+        text-decoration: none;
+   }
 }
 .swal-overlay{
     background-color:rgba(238, 189, 189, 0.144);
