@@ -25,15 +25,18 @@
         @media #{$tablet}{
             font-size: 22px;
         }
+        @media #{$desktop}{
+            font-size: 25px;
+        }
     }
 
     &_Red{
         @include caja-flex (flex,row,space-around,center,nowrap);
         background-color: $color4;
-        color: white;
-        border-top: 1px solid $color3;
+        border-top: 1px solid $color2;
         width: 100%;
         .p{
+            color: white;
             font-size: 40px;
             margin: 15px;
             cursor: pointer;
@@ -45,10 +48,39 @@
                 font-size: 25px;
                 margin: 10px;
             }
+            @media #{$desktop}{
+                font-size: 30px;
+                margin: 0px;
+            }
+        }
+        .p_gmail{
+            color: white;
+            font-size: 40px;
+            margin: 15px;
+            cursor: pointer;
+
+            @media #{$smarphone}{
+                font-size: 20px;
+                margin: 10px;
+            }
+            @media #{$tablet}{
+                font-size: 25px;
+                margin: 10px;
+            }
+            @media #{$desktop}{
+                font-size: 35px;
+                margin: 10px;
+            }
         }
     }
 
 }
 .p:hover{
-    color:$color3;
+    color:$color2;
+}
+.p_gmail:hover{
+    color:$color2;
+}
+.swal-overlay{
+    background-color:rgba(238, 189, 189, 0.144);
 }

@@ -1,6 +1,7 @@
 import React ,{useState} from 'react'
 
 import '../../styles/inicio.scss'
+import swal from 'sweetalert';
 
 export const Inicio = () => {
 
@@ -16,14 +17,16 @@ export const Inicio = () => {
 
     return (
         <div className="Inicio">
-            <div className='Inicio_div'>
-                <h1 className='h1'>!Hola! soy Andrea Hernandez</h1>
-                <h1 className='h2'>Junior Full Stack Developer</h1> 
-                <h1 className='h2'> he trabajado con <label className='h3'>{tecnologia[count]}</label></h1>
+            <div style={{width:'100%',lineHeight:'400%'}}>
+                <div className='Inicio_div'>
+                    <h1 className='h1'>!Hola! soy Andrea Hernandez</h1>
+                    <h1 className='h2'>Junior Full Stack Developer</h1> 
+                    <h1 className='h2'> he trabajado con <label className='h3'>{tecnologia[count]}</label></h1>
+                </div>
+                <div className="Inicio_btn">
+                    <button className='buut' onClick={()=>swal( "CV Descargado", "", "success")}>DESCARGAR CV</button>
+                </div>  
             </div>
-            {/* <div className="Inicio_img">
-                <img   className="Inicio_img_imag"src='https://estaticos.muyinteresante.es/media/cache/1140x_thumb/uploads/images/gallery/59c4f5655bafe82c692a7052/gato-marron_0.jpg' alt='mi foto'/>
-            </div> */}
         </div>
     )
 }

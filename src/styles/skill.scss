@@ -20,6 +20,9 @@ $color1: #FFE5D9;
         @media #{$tablet}{
             font-size: 40px;
         }
+        @media #{$desktop}{
+            font-size: 50px;
+        }
     }
     .skp{
         margin-top: 10px;
@@ -30,6 +33,10 @@ $color1: #FFE5D9;
         @media #{$tablet}{
             margin: 0px;
             font-size: 20px;
+        }
+        @media #{$desktop}{
+            margin: 0px;
+            font-size: 23px;
         }
     }
 }
@@ -48,6 +55,10 @@ $color1: #FFE5D9;
         margin:0px;
         max-height: 140px;
     }
+    @media #{$desktop}{
+        margin: 10px;
+        max-height: 160px;
+    }
 }
 .ii{
     width: 180px;
@@ -59,11 +70,14 @@ $color1: #FFE5D9;
     @media #{$tablet}{
         width: 130px;
     }
+    @media #{$desktop}{
+        width: 150px
+    }
 }
 .icon:hover{
     margin: 15px;
     transform: scale(1.2);
-    text-shadow:5px 5px 5px #fa5353;
+    text-shadow:5px 5px 5px #b65555;
     @media #{$smarphone}{
         margin: 8px;
         transform: scale(1.1);
@@ -72,5 +86,5 @@ $color1: #FFE5D9;
         margin: 12px;
         transform: scale(1.1);
     }
-    
+   
 }

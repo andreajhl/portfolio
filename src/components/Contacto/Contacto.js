@@ -1,9 +1,19 @@
 import React from 'react'
 
 import '../../styles/contacto.scss'
+import swal from 'sweetalert';
 import { SiLinkedin, SiGithub, SiGmail} from "react-icons/si";
 
+
 export const Contacto = () => {
+    var gmail= 'andreajhl29@gmail.com'
+
+   async function copy() {
+        await navigator.clipboard.writeText(gmail) 
+        swal( "Gmail copiado", "", "success")
+    }
+    
+    
     return (
         <div className="contac">
             <div className="contac_Port">
@@ -13,10 +23,10 @@ export const Contacto = () => {
                 </div>
                 </div>
             <div className="contac_Red">
-                    <p className='p'><SiGmail/></p>
-                    <p className='p'>CV</p>
-                    <p className='p'><SiGithub /></p>
-                    <p className='p'><SiLinkedin /></p>
+                    <button className='p_gmail' style={{background:'none',border:'none'}} onClick={()=> copy()}><SiGmail/></button>
+                    <button onClick={()=>swal( "CV Descargado", "", "success")} style={{background:'none', border:'none'}}><a href='https://www.dropbox.com/s/68muwna8s4gmujh/Andrea%20Hernandez.pdf?dl=1' className='p' style={{textDecoration:'none'}}>CV</a></button>
+                    <a href='https://github.com/andreajhl' target='_blank' rel = "noreferrer" className='p'><SiGithub /></a>
+                    <a href='https://www.linkedin.com/in/andreahernandez29/' target='_blank' rel = "noreferrer" className='p'><SiLinkedin /></a>
             
             </div>
         </div>

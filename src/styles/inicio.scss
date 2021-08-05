@@ -1,7 +1,7 @@
 @import 'global';
 
 .Inicio{
-    @include caja-flex(flex,row,flex-start,center,nowrap);
+    @include caja-flex(flex,column,center,center,nowrap);
     background-color:$color4;
     background-image: url('file:///home/andrea/Documentos/portfolio/src/me.png');
     background-repeat: no-repeat;
@@ -17,9 +17,12 @@
     @media #{$tablet}{
         min-height: 600px;
     }
+    @media #{$desktop}{
+        min-height: 700px;
+    }
     &_div{
        line-height: 500%;
-       padding-left: 3%; 
+       padding-left: 3%;
        @media #{$smarphone}{
             line-height: 250%;
         }
@@ -51,6 +54,9 @@
         @media #{$tablet}{
            font-size: 40px;
         }
+        @media #{$desktop}{
+            font-size: 50px
+        }
     }
     .h2{
         color: $color2;
@@ -62,6 +68,9 @@
         }
         @media #{$tablet}{
             font-size: 40px;
+        }
+        @media #{$desktop}{
+            font-size: 50px
         }
     }
 
@@ -75,8 +84,40 @@
         @media #{$tablet}{
             font-size: 35px;
         }
+        @media #{$desktop}{
+            font-size: 50px
+        }
+
     }
-   
+    &_btn{
+        margin-left: 15%;
+        width: 18%;
+        margin-top: 4%;
+        .buut{
+            padding-top: 4%;
+            font-size: 38px;
+            color: $color4;
+            background-color: $color2;
+            border-radius: 15px;
+            border: 2px solid $color4;
+            cursor: pointer;
+            font-weight: bold;
+            @media #{$smarphone}{
+                font-size: 13px;
+            }
+            @media #{$tablet}{
+                font-size: 18px;
+            }
+            @media #{$desktop}{
+                font-size: 20px
+            }
+        }
+    }
+   .buut:hover{
+        background-color: rgb(238, 189, 189);
+        box-shadow:4px 4px 0px #c962628a;
+   }
 }
-
-
+.swal-overlay{
+    background-color:rgba(238, 189, 189, 0.144);
+}

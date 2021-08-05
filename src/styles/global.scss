@@ -1,11 +1,11 @@
-$color1:#f7d0bf;
-$color2:#d67979;
-$color3:#fa5353;
-$color4:#1d1c1c;
+$color1:#fce5dc;
+$color2:#f88c8c;
+$color3:#f75f5f;
+$color4:#131212;
 
 $smarphone:"(max-width: 480px)";
 $tablet:"(min-width:480px) and (max-width:728px)";
-$desktop:"(min-width: 1024px)";
+$desktop:"(min-width:728px) and(max-width: 983px)";
 
 
 @mixin caja-flex ($flex,$direction,$principal, $cruzado, $wrap){

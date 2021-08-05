@@ -19,6 +19,9 @@
         @media #{$tablet}{
             font-size: 20px;
         }
+        @media #{$desktop}{
+            font-size: 25px;
+        }
     }
     .hi{
         @media #{$smarphone}{
@@ -29,12 +32,19 @@
             font-size: 30px;
             margin: 0px;
         }
+        @media #{$desktop}{
+            font-size: 40px;
+            margin: 0px;
+        }
     }
     @media #{$smarphone}{
         margin-top: 50px;
     }
     @media #{$tablet}{
         margin-top: 60px;
+    }
+    @media #{$desktop}{
+        margin: 70px;
     }
 }      
 

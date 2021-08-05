@@ -6,7 +6,7 @@
     font-size: 30px;
     background-color: $color4;
     min-height: 100px;  
-    border-bottom: 0.1px solid $color3;
+    border-bottom: 0.1px solid $color2;
     font-weight: bold;
     width: 100%;
     @media #{$smarphone}{
@@ -15,7 +15,12 @@
         min-height: 60px;
     }
     @media #{$tablet}{
-        font-size: 23px;
+        font-size: 21px;
+        width: 100%;
+        min-height: 60px;
+    }
+    @media #{$desktop}{
+        font-size: 26px;
         width: 100%;
         min-height: 70px;
     }
@@ -28,7 +33,7 @@
     }
    
     label:hover{
-        color: $color3;
+        color: $color2;
         text-shadow:1px 2px 2px black;
     }
 }
