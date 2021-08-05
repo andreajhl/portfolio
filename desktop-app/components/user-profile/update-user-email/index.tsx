@@ -5,7 +5,12 @@ import InputWithUpperLabel from "desktop-app/components/common/form/input-with-u
 import { CheckedCircleIcon } from "desktop-app/components/common/icons";
 import classes from "classnames";
 import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
-import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+import {
+  defineMessage,
+  defineMessages,
+  FormattedMessage,
+  useIntl,
+} from "react-intl";
 
 const messages = defineMessages({
   inputEmailPlaceholder: {
@@ -107,10 +112,15 @@ function UpdateUserEmailPopupForm({ closeModal }) {
 type UpdateUserEmailProps = {
   email: string;
 };
+
+const labelMessage = defineMessage({ defaultMessage: "Correo Electrónico" });
+
 function UpdateUserEmail({ email }: UpdateUserEmailProps) {
+  const { formatMessage } = useIntl();
+
   return (
     <TriggerPopupEditButton
-      label="Correo Electrónico"
+      label={formatMessage(labelMessage)}
       value={email}
       popupContent={(closeModal) => (
         <UpdateUserEmailPopupForm closeModal={closeModal} />

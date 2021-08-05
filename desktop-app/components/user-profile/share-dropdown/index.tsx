@@ -119,7 +119,7 @@ function ShareDropdown({ buttonClassName = "", link }: ShareDropdownProps) {
     <Dropdown
       menuPosition="bottom right"
       menuClassName={styles.ShareDropdownMenu}
-      buttonChildren="Compartir"
+      buttonChildren={<FormattedMessage defaultMessage="Compartir" />}
       buttonClassName={classes(
         "btn",
         styles.ShareDropdownButton,

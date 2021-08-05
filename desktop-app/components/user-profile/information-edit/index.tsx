@@ -9,7 +9,8 @@ import styles from "./styles.module.scss";
 import { ActiveInputField } from "desktop-app/components/common/form/active-input-field";
 import { userDetails } from "desktop-app/types/userDetails";
 import UpdateUserBirthdayDate from "../update-user-birthday-date";
-import { FormattedMessage } from "react-intl";
+import { defineMessage, FormattedMessage } from "react-intl";
+import { useIntl } from "lib/custom-intl";
 
 type FormValuesType = {
   fullName: string;
@@ -19,7 +20,10 @@ type UserInformationEditProps = {
   userData: userDetails;
 };
 
+const labelMessage = defineMessage({ defaultMessage: "Nombre" });
+
 function UserInformationEdit({ userData }: UserInformationEditProps) {
+  const { formatMessage } = useIntl();
   const { values, onChangeField } = useForm<FormValuesType>({
     initialValues: {
       fullName: userData.fullName,
@@ -46,7 +50,7 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
               value={values.fullName}
               onChange={onChangeField}
               onClickSave={() => console.log("fullName save")}
-              label="Nombre"
+              label={formatMessage(labelMessage)}
               name="fullName"
               showSaveButton={values.fullName !== userData.fullName}
             />
@@ -63,7 +67,7 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
         </div>
         <div className={styles.LogoutButtonWrapper}>
           <LogoutButton className={classes("btn", styles.LogoutButton)}>
-            <FormattedMessage defaultMessage="Cerrar sesión" />
+            <FormattedMessage defaultMessage="Fechar" />
           </LogoutButton>
         </div>
       </div>
