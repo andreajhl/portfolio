@@ -5,7 +5,6 @@
     @include caja-flex(flex,column,center,center,nowrap);
     color: $color4;
     margin-top: 40px;
-    width: 80%;
     cursor: pointer;
    
     &_titulo{
@@ -37,6 +36,7 @@
         color: $color4;
         overflow: hidden;
         margin: 2%;
+       
         @media #{$smarmini}{
             width: 250px;
             height: 280px;
