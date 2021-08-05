@@ -10,6 +10,9 @@
     background-size: 40%;
     min-height: 850px;
     clip-path: polygon(0% 0%, 0% 100%, 100% 86%, 100% 0%);
+    @media #{$smarmini}{
+        min-height: 300px;
+    }
     @media #{$smarphone}{
         min-height: 350px;
         background-size: 40%;
@@ -23,6 +26,9 @@
     &_div{
        line-height: 500%;
        padding-left: 3%;
+       @media #{$smarmini}{
+            line-height: 180%;
+        }
        @media #{$smarphone}{
             line-height: 250%;
         }
@@ -48,6 +54,9 @@
         margin:0px;
         font-size: 75px;
         text-shadow:5px 5px 0px #050000;
+        @media #{$smarmini}{
+            font-size:20px ;
+        }
         @media #{$smarphone}{
             font-size: 25px;
         }
@@ -63,6 +72,9 @@
         margin:0px;
         font-size: 70px;
         text-shadow:5px 5px 0px #050000;
+        @media #{$smarmini}{
+            font-size:20px ;
+        }
         @media #{$smarphone}{
             font-size: 25px;
         }
@@ -78,6 +90,9 @@
         color: $color1;
         margin:0px;
         font-size: 60px;
+        @media #{$smarmini}{
+            font-size:20px ;
+        }
         @media #{$smarphone}{
             font-size: 20px;
         }
@@ -102,6 +117,9 @@
             border: 2px solid $color4;
             cursor: pointer;
             font-weight: bold;
+            @media #{$smarmini}{
+                font-size:10px ;
+            }
             @media #{$smarphone}{
                 font-size: 13px;
             }

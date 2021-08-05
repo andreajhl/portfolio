@@ -9,6 +9,11 @@
     border-bottom: 0.1px solid $color2;
     font-weight: bold;
     width: 100%;
+    @media #{$smarmini}{
+        font-size:12px ;
+        min-height: 50px;
+        width: 100%;
+    }
     @media #{$smarphone}{
         font-size: 15px;
         width: 100%;
@@ -24,6 +29,7 @@
         width: 100%;
         min-height: 70px;
     }
+    
     label{
         cursor: pointer;
     } 

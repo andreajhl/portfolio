@@ -14,6 +14,9 @@ $color1: #FFE5D9;
     .skh1{
         font-size: 60px;
         color: #1d1c1c;
+        @media #{$smarmini}{
+            font-size:20px ;
+        }
         @media #{$smarphone}{
             font-size: 30px;
         }
@@ -26,6 +29,9 @@ $color1: #FFE5D9;
     }
     .skp{
         margin-top: 10px;
+        @media #{$smarmini}{
+            font-size: 10px ;
+        }
         @media #{$smarphone}{
             font-size: 18px;
             margin: 0px;
@@ -47,6 +53,10 @@ $color1: #FFE5D9;
     max-height: 250px;
     margin: 20px;
     cursor: pointer;
+    @media #{$smarmini}{
+        max-height:100px;
+        margin: 0px;
+    }
     @media #{$smarphone}{
         max-height: 150px;
         margin: 0px;
@@ -64,6 +74,9 @@ $color1: #FFE5D9;
     width: 180px;
     height: 180px;
     padding: 3px;
+    @media #{$smarmini}{
+        width: 60px;
+    }
     @media #{$smarphone}{
        width: 80px
     }
@@ -78,6 +91,10 @@ $color1: #FFE5D9;
     margin: 15px;
     transform: scale(1.2);
     text-shadow:5px 5px 5px #b65555;
+    @media #{$smarmini}{
+        margin: 6px;
+        transform: scale(1);
+    }
     @media #{$smarphone}{
         margin: 8px;
         transform: scale(1.1);

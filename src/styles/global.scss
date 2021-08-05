@@ -3,7 +3,8 @@ $color2:#f88c8c;
 $color3:#f75f5f;
 $color4:#131212;
 
-$smarphone:"(max-width: 480px)";
+$smarmini:"(max-width: 340px)";
+$smarphone:"(min-width: 340px) and(max-width: 480px)";
 $tablet:"(min-width:480px) and (max-width:728px)";
 $desktop:"(min-width:728px) and(max-width: 983px)";
 

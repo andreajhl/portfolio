@@ -11,12 +11,17 @@
         margin-left: 2%;
         &_text{
             width: 70%;
+
             @media #{$smarphone}{
                 width: 85%;
             }
             @media #{$tablet}{
                 width: 80%;
             }
+        }
+        @media #{$smarmini}{
+            font-size:15px;
+            line-height: 140%;
         }
         @media #{$smarphone}{
             font-size: 18px;
@@ -40,6 +45,10 @@
             font-size: 40px;
             margin: 15px;
             cursor: pointer;
+            @media #{$smarmini}{
+                font-size:18px ;
+                margin: 8px;
+            }
             @media #{$smarphone}{
                 font-size: 20px;
                 margin: 10px;
@@ -58,7 +67,10 @@
             font-size: 40px;
             margin: 15px;
             cursor: pointer;
-
+            @media #{$smarmini}{
+                font-size:18px ;
+                margin: 8px;
+            }
             @media #{$smarphone}{
                 font-size: 20px;
                 margin: 10px;

@@ -13,6 +13,9 @@
         &_P{
             font-weight: bold;
         }
+        @media #{$smarmini}{
+            font-size:12px ;
+        }
         @media #{$smarphone}{
             font-size: 15px;
         }
@@ -24,6 +27,10 @@
         }
     }
     .hi{
+        @media #{$smarmini}{
+            font-size:16px;
+            margin: 0px;
+        }
         @media #{$smarphone}{
             font-size: 20px;
             margin: 0px;
@@ -36,6 +43,9 @@
             font-size: 40px;
             margin: 0px;
         }
+    }
+    @media #{$smarmini}{
+        margin-top:30px;
     }
     @media #{$smarphone}{
         margin-top: 50px;

@@ -6,25 +6,231 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-left: 35px;
-  margin-top: 120px;
-  min-height: 415px;
-  line-height: 450%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  background-color: #131212;
+  background-image: url("file:///home/andrea/Documentos/portfolio/src/me.png");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 80%;
+  background-size: 40%;
+  min-height: 850px;
+  -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 86%, 100% 0%);
+          clip-path: polygon(0% 0%, 0% 100%, 100% 86%, 100% 0%);
 }
 
-.Inicio h1 {
-  color: #232735;
+@media (max-width: 340px) {
+  .Inicio {
+    min-height: 300px;
+  }
+}
+
+@media (min-width: 340px) and (max-width: 480px) {
+  .Inicio {
+    min-height: 350px;
+    background-size: 40%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 728px) {
+  .Inicio {
+    min-height: 600px;
+  }
+}
+
+@media (min-width: 728px) and (max-width: 983px) {
+  .Inicio {
+    min-height: 700px;
+  }
+}
+
+.Inicio_div {
+  line-height: 500%;
+  padding-left: 3%;
+}
+
+@media (max-width: 340px) {
+  .Inicio_div {
+    line-height: 180%;
+  }
+}
+
+@media (min-width: 340px) and (max-width: 480px) {
+  .Inicio_div {
+    line-height: 250%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 728px) {
+  .Inicio_div {
+    line-height: 300%;
+  }
+}
+
+.Inicio_img {
+  min-width: 490px;
+  max-width: 490px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0px;
+}
+
+.Inicio_img_imag {
+  width: 490px;
+  height: 520px;
+  border-radius: 100%;
+}
+
+.Inicio .h1 {
+  color: #f75f5f;
+  margin: 0px;
+  font-size: 75px;
+  text-shadow: 5px 5px 0px #050000;
+}
+
+@media (max-width: 340px) {
+  .Inicio .h1 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 340px) and (max-width: 480px) {
+  .Inicio .h1 {
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 728px) {
+  .Inicio .h1 {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 728px) and (max-width: 983px) {
+  .Inicio .h1 {
+    font-size: 50px;
+  }
+}
+
+.Inicio .h2 {
+  color: #f88c8c;
+  margin: 0px;
+  font-size: 70px;
+  text-shadow: 5px 5px 0px #050000;
+}
+
+@media (max-width: 340px) {
+  .Inicio .h2 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 340px) and (max-width: 480px) {
+  .Inicio .h2 {
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 728px) {
+  .Inicio .h2 {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 728px) and (max-width: 983px) {
+  .Inicio .h2 {
+    font-size: 50px;
+  }
+}
+
+.Inicio .h3 {
+  color: #fce5dc;
   margin: 0px;
   font-size: 60px;
 }
 
-.Inicio h2 {
-  color: #B68973;
-  margin: 0px;
-  font-size: 55px;
+@media (max-width: 340px) {
+  .Inicio .h3 {
+    font-size: 20px;
+  }
 }
 
-.Inicio label {
-  color: #EABF9F;
+@media (min-width: 340px) and (max-width: 480px) {
+  .Inicio .h3 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 728px) {
+  .Inicio .h3 {
+    font-size: 35px;
+  }
+}
+
+@media (min-width: 728px) and (max-width: 983px) {
+  .Inicio .h3 {
+    font-size: 50px;
+  }
+}
+
+.Inicio_btn {
+  margin-left: 15%;
+  width: 18%;
+  margin-top: 4%;
+}
+
+.Inicio_btn .buut {
+  padding-top: 4%;
+  font-size: 38px;
+  color: #131212;
+  background-color: #f88c8c;
+  border-radius: 15px;
+  border: 2px solid #131212;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@media (max-width: 340px) {
+  .Inicio_btn .buut {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 340px) and (max-width: 480px) {
+  .Inicio_btn .buut {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 728px) {
+  .Inicio_btn .buut {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 728px) and (max-width: 983px) {
+  .Inicio_btn .buut {
+    font-size: 20px;
+  }
+}
+
+.Inicio .buut:hover {
+  background-color: #eebdbd;
+  -webkit-box-shadow: 4px 4px 0px #c962628a;
+          box-shadow: 4px 4px 0px #c962628a;
+}
+
+.swal-overlay {
+  background-color: rgba(238, 189, 189, 0.144);
 }
 /*# sourceMappingURL=inicio.css.map */

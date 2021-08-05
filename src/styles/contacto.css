@@ -1,27 +1,170 @@
 .contac {
-  color: #232735;
-  margin: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  color: #131212;
+  width: 100%;
 }
 
 .contac_Port {
   line-height: 170%;
-  font-size: 20px;
-  max-width: 800px;
+  font-size: 35px;
+  margin-left: 2%;
+}
+
+.contac_Port_text {
+  width: 70%;
+}
+
+@media (min-width: 340px) and (max-width: 480px) {
+  .contac_Port_text {
+    width: 85%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 728px) {
+  .contac_Port_text {
+    width: 80%;
+  }
+}
+
+@media (max-width: 340px) {
+  .contac_Port {
+    font-size: 15px;
+    line-height: 140%;
+  }
+}
+
+@media (min-width: 340px) and (max-width: 480px) {
+  .contac_Port {
+    font-size: 18px;
+    line-height: 150%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 728px) {
+  .contac_Port {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 728px) and (max-width: 983px) {
+  .contac_Port {
+    font-size: 25px;
+  }
 }
 
 .contac_Red {
-  font-size: 25px;
-  font-weight: lighter;
-  letter-spacing: 2px;
-  max-width: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  background-color: #131212;
+  border-top: 1px solid #f88c8c;
+  width: 100%;
 }
 
-.contac_Red p:hover {
-  background-color: #EABF9F;
+.contac_Red .p {
+  color: white;
+  font-size: 40px;
+  margin: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 340px) {
+  .contac_Red .p {
+    font-size: 18px;
+    margin: 8px;
+  }
+}
+
+@media (min-width: 340px) and (max-width: 480px) {
+  .contac_Red .p {
+    font-size: 20px;
+    margin: 10px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 728px) {
+  .contac_Red .p {
+    font-size: 25px;
+    margin: 10px;
+  }
+}
+
+@media (min-width: 728px) and (max-width: 983px) {
+  .contac_Red .p {
+    font-size: 30px;
+    margin: 0px;
+  }
+}
+
+.contac_Red .p_gmail {
+  color: white;
+  font-size: 40px;
+  margin: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 340px) {
+  .contac_Red .p_gmail {
+    font-size: 18px;
+    margin: 8px;
+  }
+}
+
+@media (min-width: 340px) and (max-width: 480px) {
+  .contac_Red .p_gmail {
+    font-size: 20px;
+    margin: 10px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 728px) {
+  .contac_Red .p_gmail {
+    font-size: 25px;
+    margin: 10px;
+  }
+}
+
+@media (min-width: 728px) and (max-width: 983px) {
+  .contac_Red .p_gmail {
+    font-size: 35px;
+    margin: 10px;
+  }
+}
+
+.p:hover {
+  color: #f88c8c;
+}
+
+.p_gmail:hover {
+  color: #f88c8c;
+}
+
+.swal-overlay {
+  background-color: rgba(238, 189, 189, 0.144);
 }
 /*# sourceMappingURL=contacto.css.map */
