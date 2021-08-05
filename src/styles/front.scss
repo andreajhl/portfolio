@@ -25,6 +25,7 @@
 
     &_cuerpo{
         @include caja-flex(flex,row,space-around,center,wrap);
+        padding: 4%;
     }
 
     &_DivC{

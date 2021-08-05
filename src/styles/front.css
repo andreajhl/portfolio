@@ -73,6 +73,7 @@
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  padding: 4%;
 }
 
 .front_DivC {
