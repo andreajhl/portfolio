@@ -3,7 +3,7 @@ import debounce from "lodash.debounce";
 
 const initialState = {
   showLeftScrollButton: false,
-  showRightScrollButton: false
+  showRightScrollButton: false,
 };
 
 const Container = ({ children, buttonsStyles, onScrollTo, onListScroll }) => {
@@ -21,7 +21,7 @@ const Container = ({ children, buttonsStyles, onScrollTo, onListScroll }) => {
     const { offsetWidth } = cardListElement;
     cardListElement.scrollBy({
       left: direction === "right" ? offsetWidth : offsetWidth * -1,
-      behavior: "smooth"
+      behavior: "smooth",
     });
     onScrollTo(direction);
   };
@@ -56,7 +56,7 @@ const Container = ({ children, buttonsStyles, onScrollTo, onListScroll }) => {
         return React.cloneElement(child, {
           className: "carousel-with-buttons-layout__list",
           ref: childrenListRef,
-          onScroll: changeScrollButtonsVisibility
+          onScroll: changeScrollButtonsVisibility,
         });
       })}
       {showRightScrollButton ? (
@@ -76,7 +76,7 @@ Container.defaultProps = {
   hasMoreResults: false,
   moreResultsPath: "#",
   onScrollTo: () => {},
-  onListScroll: () => {}
+  onListScroll: () => {},
 };
 
 const Header = ({ children }) => (
@@ -101,7 +101,7 @@ const List = React.forwardRef(({ children, className, ...props }, ref) =>
     ref,
     className: `${className} ${
       children.props.className ? children.props.className : ""
-    }`
+    }`,
   })
 );
 

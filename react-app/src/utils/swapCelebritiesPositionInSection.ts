@@ -10,7 +10,7 @@ type swapCelebritiesPositionsProps = {
 };
 export const swapCelebritiesPositions = ({
   celebritySectionObject,
-  rotateAmount
+  rotateAmount,
 }: swapCelebritiesPositionsProps) => {
   return {
     ...celebritySectionObject,
@@ -21,7 +21,7 @@ export const swapCelebritiesPositions = ({
       ...celebritySectionObject.celebrities.slice(
         0,
         celebritySectionObject.celebrities.length * rotateAmount
-      )
-    ]
+      ),
+    ],
   };
 };

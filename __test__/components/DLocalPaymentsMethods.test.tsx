@@ -12,8 +12,8 @@ describe("DLocalPaymentsMethods", () => {
         identifier: "Famosos.com",
         logo: "Star",
         name: "Famosos.com",
-        redirect: true
-      }
+        redirect: true,
+      },
     ],
     paymentMethodType: "CARD",
     contractReference: "2028282",
@@ -21,10 +21,10 @@ describe("DLocalPaymentsMethods", () => {
     buyerData: {
       buyerFullname: "Testing Name",
       buyerEmail: "testing@test.com",
-      buyerDocument: "123456"
+      buyerDocument: "123456",
     },
     discountCounponId: "2222",
-    handlerStartPayment: () => {}
+    handlerStartPayment: () => {},
   };
   const wrapper = shallow(<DLocalPaymentsMethods {...propsTesting} />);
 

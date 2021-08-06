@@ -3,7 +3,7 @@ import { withRouter } from "../../common/routing";
 import {
   CELEBRITY_PROFILE_CONTRACT,
   AUTH_SUCCESS,
-  SIGN_IN_PATH_FROM
+  SIGN_IN_PATH_FROM,
 } from "../../../routing/Paths";
 import * as GTM from "../../../state/utils/gtm";
 import { parseFullName } from "parse-full-name";
@@ -19,7 +19,7 @@ const HireThisCelebrityButton = ({
   showCelebrityName,
   fontSize,
   width,
-  history
+  history,
 }) => {
   const userAgent = useWindow()?.navigator?.userAgent;
   const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
@@ -29,7 +29,7 @@ const HireThisCelebrityButton = ({
     loginWithPopup,
     isLoading,
     isAuthenticated,
-    loginWithRedirect
+    loginWithRedirect,
   } = useAuth();
 
   const handlerClickToLogin = () => {
@@ -60,24 +60,16 @@ const HireThisCelebrityButton = ({
       widget: "HireThisCelebrityButton",
       text,
       celebrityFullName,
-      celebrityUsername
+      celebrityUsername,
     });
   };
 
   let parsedFullName;
   try {
-    parsedFullName = parseFullName(
-      celebrityFullName,
-      "all",
-      true,
-      false,
-      true
-    );
-  }
-  catch (e) {
+    parsedFullName = parseFullName(celebrityFullName, "all", true, false, true);
+  } catch (e) {
     parsedFullName = celebrityFullName;
   }
-
 
   const fullNameWords = celebrityFullName.split(" ");
   let displayName;
@@ -85,10 +77,9 @@ const HireThisCelebrityButton = ({
     displayName =
       parsedFullName.first.length <= 4
         ? fullNameWords.slice(0, 2).join(" ")
-        : parsedFullName.first || parsedFullName.last
-  }
-  catch {
-    displayName = fullNameWords.slice(0, 2).join(" ")
+        : parsedFullName.first || parsedFullName.last;
+  } catch {
+    displayName = fullNameWords.slice(0, 2).join(" ");
   }
 
   return (

@@ -1,0 +1,194 @@
+.ShareDetailsForm {
+  background-color: #ffffff;
+  border-radius: 7px;
+  padding: 18px 26px 2rem;
+
+  @media only screen and (min-width: 576px) {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    padding: 18px 34px 40px;
+  }
+}
+
+.Title {
+  font-size: 24px !important;
+  margin-bottom: 34px;
+}
+
+.Label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 15px;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.Input {
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  height: 50px !important;
+}
+
+.ErrorMessage {
+  font-size: 12px;
+  margin-top: 0.5em;
+}
+
+.MultipleRecipientsInfo {
+  font-size: 12px;
+  margin-left: 0.6em;
+
+  @media only screen and (max-width: 575px) {
+    display: block;
+    margin-left: 0;
+  }
+}
+
+.CellphoneInput {
+  font-size: 14px;
+  font-weight: bold;
+  height: 50px !important;
+}
+
+.RecipientField {
+  margin-bottom: 19px;
+}
+
+.RecipientField .Input {
+  width: calc(50% - 19px);
+
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+  }
+}
+
+.DeliveryInfo {
+  margin-bottom: 30px;
+}
+
+.Split {
+  @media only screen and (min-width: 992px) {
+    display: flex;
+  }
+
+  > * {
+    width: 100%;
+  }
+}
+
+.Split > * + * {
+  margin-top: 14px;
+  @media only screen and (min-width: 992px) {
+    margin-left: 38px;
+    margin-top: 0;
+  }
+}
+
+.DeliveryType {
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Checkbox + .Checkbox {
+  margin-top: 26px !important;
+}
+
+.Checkbox > span {
+  flex: 1;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.MessageTextarea {
+  border: 1px solid #dedede;
+  background: #f9f9ff;
+  border-radius: 7px;
+  padding: 0.5em 0.85em;
+  height: 128px !important;
+  resize: none;
+}
+
+.ScheduleInfo {
+  margin-top: 30px;
+}
+
+.TimeInputContainer {
+  display: flex;
+  border: 1px solid #dedede;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.TimeInputContainer > * {
+  flex: 50%;
+}
+
+.TimeInput {
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.TimezoneSelect {
+  text-align: center;
+  background: #f9f9ff;
+  border: 1px solid #dedede;
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.ButtonsWrapper {
+  margin-top: 36px;
+
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    display: flex;
+    > button + button {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.ButtonsWrapper button {
+  font-weight: bold;
+  height: 55px;
+  font-size: 18px;
+
+  @media only screen and (min-width: 576px) {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  @media only screen and (max-width: 991px) {
+    display: block;
+    width: 100%;
+  }
+}
+
+.PreviewButton {
+  @media only screen and (max-width: 575px) {
+    margin-bottom: 20px;
+  }
+  @media only screen and (min-width: 768px) {
+    display: none !important;
+  }
+}
+
+.SubmitButton {
+  width: 230px;
+}
+
+.ShareErrorMessage.ShareErrorMessage {
+  margin-top: 1.5em;
+  font-size: 14px;
+
+  @media only screen and (max-width: 767px) {
+    justify-content: center;
+  }
+}

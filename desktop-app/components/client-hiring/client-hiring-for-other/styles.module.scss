@@ -1,0 +1,54 @@
+.Container {
+  display: flex;
+  padding: 40px 0 !important;
+
+  @media only screen and (max-width: 767px) {
+    flex-direction: column-reverse;
+    padding: 26px 0 !important;
+    width: 90%;
+  }
+}
+
+.LeftSide {
+  width: 355px;
+}
+
+.RightSide {
+  flex: 1;
+  margin-left: 33px;
+
+  @media only screen and (max-width: 767px) {
+    margin-bottom: 28px;
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .LeftSide,
+  .RightSide {
+    width: 100%;
+  }
+}
+
+.DeliverVideoCard {
+  margin-top: 26px;
+}
+
+.GoToContractDetailsButton {
+  font-size: 18px;
+  margin-top: 30px;
+  height: 40px;
+  width: 100%;
+
+  @media only screen and (min-width: 768px) {
+    display: none !important;
+  }
+}
+
+.ReviewSectionWrapper {
+  display: none;
+  margin-top: 56px;
+  @media only screen and (max-width: 767px) {
+    display: block;
+  }
+}

@@ -32,8 +32,8 @@ class ProcessStripe3DFormPage extends Component {
             this.props.contract_reference
           ),
           query: {
-            [STRIPE_FAILURE_AUTHENTICATION]: "true"
-          }
+            [STRIPE_FAILURE_AUTHENTICATION]: "true",
+          },
         });
       } else if (message.data.includes("CONTRACT_CREATED")) {
         this.props.history._pushRoute(

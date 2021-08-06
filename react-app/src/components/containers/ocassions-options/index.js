@@ -8,7 +8,7 @@ const optionsForContractType = [
   "LOVE",
   "MAKE_SMILE",
   "HOPE",
-  "ASK_FOR_FORGIVENESS"
+  "ASK_FOR_FORGIVENESS",
 ];
 
 class index extends Component {

@@ -9,7 +9,7 @@ class ContractCommentCreatorLayout extends Component {
     super(props);
 
     this.state = {
-      comment: ""
+      comment: "",
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -25,13 +25,13 @@ class ContractCommentCreatorLayout extends Component {
 
   handleInput(e) {
     this.setState({
-      comment: e.target.value
+      comment: e.target.value,
     });
   }
 
   send() {
     this.props.addContractComment(this.props.contractReference, {
-      comment: this.state.comment
+      comment: this.state.comment,
     });
   }
 
@@ -73,19 +73,19 @@ ContractCommentCreatorLayout.propTypes = {};
 // Set defaultProps
 ContractCommentCreatorLayout.defaultProps = {
   contractReference: "",
-  title: "Agrega un comentario:"
+  title: "Agrega un comentario:",
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.contracts.addContractCommentReducer.loading,
   contractComment: state.contracts.addContractCommentReducer.data,
-  isCompleted: state.contracts.addContractCommentReducer.completed
+  isCompleted: state.contracts.addContractCommentReducer.completed,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  addContractComment: contractOperations.addContractComment
+  addContractComment: contractOperations.addContractComment,
 };
 
 // Export Class

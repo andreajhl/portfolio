@@ -1,0 +1,15 @@
+.EditableInputEmptyLabel {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.EditableInputEmptyButton {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--secondary);
+
+  &:hover {
+    color: var(--primary);
+  }
+}

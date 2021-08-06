@@ -9,14 +9,14 @@ class SubscriptionPayPalCardForm extends Component {
     super(props);
 
     this.state = {
-      errorMessage: null
+      errorMessage: null,
     };
   }
 
   retry = () => {
     return this.setState({
       ...this.state,
-      errorMessage: null
+      errorMessage: null,
     });
   };
 
@@ -24,7 +24,7 @@ class SubscriptionPayPalCardForm extends Component {
     postProcessSubscription({
       ...data,
       planID: this.props.planId,
-      celebrityId: this.props.celebrityId
+      celebrityId: this.props.celebrityId,
     })
       .then((res) => {
         this.props.history.push(
@@ -37,7 +37,7 @@ class SubscriptionPayPalCardForm extends Component {
       .catch((error) => {
         this.setState({
           ...this.state,
-          errorMessage: error
+          errorMessage: error,
         });
       });
   };
@@ -45,14 +45,14 @@ class SubscriptionPayPalCardForm extends Component {
   onPayPalButtonCancel = (orderId) => {
     return this.setState({
       ...this.state,
-      errorMessage: "Acción cancelada por el usuario"
+      errorMessage: "Acción cancelada por el usuario",
     });
   };
 
   onPayPalButtonError = (error) => {
     return this.setState({
       ...this.state,
-      errorMessage: String(error)
+      errorMessage: String(error),
     });
   };
 
@@ -117,7 +117,7 @@ class SubscriptionPayPalCardForm extends Component {
 
 // defaultProps
 SubscriptionPayPalCardForm.defaultProps = {
-  planId: ""
+  planId: "",
 };
 
 // mapStateToProps

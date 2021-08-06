@@ -13,7 +13,7 @@ import { celebrityType } from "../../../types/celebrityType";
 import Maybe from "../../common/helpers/maybe";
 import {
   CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE,
-  labelMessagesForCategoriesFilter
+  labelMessagesForCategoriesFilter,
 } from "react-app/src/constants/messages";
 import { useIntl } from "react-intl";
 import LazyLoadingImage from "../../common/lazy-loading-image";
@@ -34,7 +34,7 @@ export interface CelebrityCardLayoutI {
 const CelebrityCardLayout = ({
   celebrity,
   currencyExchangeData,
-  celebrityCardLayout
+  celebrityCardLayout,
 }: CelebrityCardLayoutI) => {
   const [contractPrice, setContractPrice] = useState(
     celebrity.videoMessagePrice
@@ -140,11 +140,11 @@ const CelebrityCardLayout = ({
   );
 };
 const mapStateToProps = (state) => ({
-  currencyExchangeData: state.payments.currencyExchangeReducer.data
+  currencyExchangeData: state.payments.currencyExchangeReducer.data,
 });
 
 const mapDispatchToProps = {
-  updateCursorPosition: cursorOperations.saveCursorPosition
+  updateCursorPosition: cursorOperations.saveCursorPosition,
 };
 
 const _CelebrityCardLayout = connect(

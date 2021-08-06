@@ -13,7 +13,7 @@ class Stripe3dSecureResponse extends Component {
     this.state = {
       source: "",
       intentsCount: 0,
-      error: null
+      error: null,
     };
   }
 
@@ -23,7 +23,7 @@ class Stripe3dSecureResponse extends Component {
     setTimeout(() => {
       if (!this.state.error) {
         this.setState({
-          error: "Se excedió el tiempo de espera."
+          error: "Se excedió el tiempo de espera.",
         });
       }
     }, 25000);
@@ -34,7 +34,7 @@ class Stripe3dSecureResponse extends Component {
     stripe
       .retrieveSource({
         id: this.props.sourceId,
-        client_secret: this.props.clientSecret
+        client_secret: this.props.clientSecret,
       })
       .then(this.get3DSourceCallback);
   };
@@ -57,18 +57,18 @@ class Stripe3dSecureResponse extends Component {
         // TRY AGAIN
         this.setState({
           ...this.state,
-          intentsCount: 1
+          intentsCount: 1,
         });
       } else {
         // ERROR
         this.setState({
-          error: "Card source status: " + source.status
+          error: "Card source status: " + source.status,
         });
       }
     } else {
       // ERROR
       this.setState({
-        error: "This card source does not exist"
+        error: "This card source does not exist",
       });
     }
   };
@@ -78,7 +78,7 @@ class Stripe3dSecureResponse extends Component {
       deviceId,
       IP,
       userAgent,
-      geoLocalization
+      geoLocalization,
     } = await getBuyerIdentityData();
     processStripePayment(
       this.props.contractReference,
@@ -94,7 +94,7 @@ class Stripe3dSecureResponse extends Component {
         if (res.data.status === "ERROR") {
           this.setState({
             ...this.state,
-            errorMessage: res.data.error
+            errorMessage: res.data.error,
           });
         } else {
           const route = PATHS.PURCHASE_SUMMARY.replace(
@@ -109,13 +109,13 @@ class Stripe3dSecureResponse extends Component {
           if (error.response.data) {
             this.setState({
               ...this.state,
-              errorMessage: error.response.data.error
+              errorMessage: error.response.data.error,
             });
           }
         } else {
           this.setState({
             ...this.state,
-            errorMessage: "Ocurrió un error procesando tu pago,"
+            errorMessage: "Ocurrió un error procesando tu pago,",
           });
         }
       });
@@ -181,7 +181,7 @@ class Stripe3dSecureResponse extends Component {
                         >
                           experiencias@famosos.com
                         </a>
-                      )
+                      ),
                     }}
                   />
                 </small>
@@ -198,7 +198,7 @@ class Stripe3dSecureResponse extends Component {
 Stripe3dSecureResponse.defaultProps = {
   contractReference: "",
   clientSecret: "",
-  sourceId: ""
+  sourceId: "",
 };
 
 // Export class

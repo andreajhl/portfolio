@@ -8,20 +8,23 @@ const getWindow = () =>
     : {
         document: { cookie: "" },
         location: {
+          origin: "",
           pathname: "",
           userLocation: { countryCode: "" },
-          sessionStorage: {
-            setItem: noop,
-            getItem: noop,
-            removeItem: noop
-          }
         },
         localStorage: {
           setItem: noop,
           getItem: noop,
-          removeItem: noop
+          removeItem: noop,
         },
-        navigator: { userAgent: "" }
+        sessionStorage: {
+          setItem: noop,
+          getItem: noop,
+          removeItem: noop,
+        },
+        navigator: { userAgent: "", clipboard: { writeText: noop } },
       };
+
+export const getWindowPathname = () => getWindow().location.pathname;
 
 export default getWindow;

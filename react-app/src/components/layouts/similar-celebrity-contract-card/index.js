@@ -9,7 +9,7 @@ import * as GTM from "../../../state/utils/gtm";
 const SimilarCelebrityContractCardLayout = ({
   similarContract,
   currentVideoPlaying,
-  playVideo
+  playVideo,
 }) => {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
   const videoRef = useRef();
@@ -17,7 +17,7 @@ const SimilarCelebrityContractCardLayout = ({
   const analyticsData = {
     ...similarContract,
     widget: "SimilarCelebrityContractCardLayout",
-    path: window.location.pathname
+    path: window.location.pathname,
   };
 
   const playContractVideo = () => {
@@ -34,18 +34,18 @@ const SimilarCelebrityContractCardLayout = ({
     if (!videoIsPlaying) {
       GTM.tagManagerDataLayer("PLAY_SIMILAR_CELEBRITY_CONTRACT_CARD", {
         ...analyticsData,
-        videoIsPlaying: true
+        videoIsPlaying: true,
       });
       playVideo({
-        contract_reference: similarContract.contractReference
+        contract_reference: similarContract.contractReference,
       });
     } else {
       GTM.tagManagerDataLayer("PAUSE_SIMILAR_CELEBRITY_CONTRACT_CARD", {
         ...analyticsData,
-        videoIsPlaying: false
+        videoIsPlaying: false,
       });
       playVideo({
-        contract_reference: null
+        contract_reference: null,
       });
     }
   };
@@ -107,17 +107,17 @@ const SimilarCelebrityContractCardLayout = ({
 
 // Set defaultProps
 SimilarCelebrityContractCardLayout.defaultProps = {
-  similarCelebrityContract: {}
+  similarCelebrityContract: {},
 };
 
 // mapStateToProps
 const mapStateToProps = ({ contracts }) => ({
-  currentVideoPlaying: contracts.playVideoReducer.contract_reference
+  currentVideoPlaying: contracts.playVideoReducer.contract_reference,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  playVideo: contractOperations.playVideo
+  playVideo: contractOperations.playVideo,
 };
 
 // Export Class

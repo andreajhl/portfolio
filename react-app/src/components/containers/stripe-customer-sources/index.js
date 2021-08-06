@@ -15,29 +15,29 @@ import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 const errorMessages = defineMessages({
   errorMessageApplyStripeAuthWithoutSourceID: {
-    defaultMessage: "Debes seleccionar una tarjeta"
+    defaultMessage: "Debes seleccionar una tarjeta",
   },
   errorMessageApplyStripeAuth: {
-    defaultMessage: "Ocurrió un error procesando tu pago."
-  }
+    defaultMessage: "Ocurrió un error procesando tu pago.",
+  },
 });
 const popupMessages = defineMessages({
   confirmActionQuestion: {
-    defaultMessage: "¿Eliminar tarjeta?"
+    defaultMessage: "¿Eliminar tarjeta?",
   },
   ApprovedActionMessage: {
-    defaultMessage: "Si, eliminar"
+    defaultMessage: "Si, eliminar",
   },
   CancelActionMessage: {
-    defaultMessage: "No"
-  }
+    defaultMessage: "No",
+  },
 });
 class StripeCustomerSources extends Component {
   constructor(props) {
     super(props);
     this.session = new Session();
     this.state = {
-      selectedSourceId: null
+      selectedSourceId: null,
     };
   }
 
@@ -45,7 +45,7 @@ class StripeCustomerSources extends Component {
     return this.setState({
       ...this.state,
       disableButton: false,
-      errorMessage: null
+      errorMessage: null,
     });
   };
 
@@ -75,7 +75,7 @@ class StripeCustomerSources extends Component {
                     >
                       {chunks}
                     </a>
-                  )
+                  ),
                 }}
               />
             </small>
@@ -89,7 +89,7 @@ class StripeCustomerSources extends Component {
     e.preventDefault();
     this.setState({
       ...this.state,
-      selectedSourceId: source.sourceId
+      selectedSourceId: source.sourceId,
     });
   };
 
@@ -100,26 +100,26 @@ class StripeCustomerSources extends Component {
         disableButton: false,
         errorMessage: this.props.intl.formatMessage(
           errorMessages.errorMessageApplyStripeAuthWithoutSourceID
-        )
+        ),
       });
     } else {
       this.setState({
         ...this.state,
         disableButton: true,
-        errorMessage: null
+        errorMessage: null,
       });
       analytics.track("TRY_PAY_WITH_STRIPE_SOURCE", {
         contractReference: this.props.contractReference,
         discountCouponId: this.props.discountCouponId,
         contractPrice: this.props.contractPrice,
         celebrityId: this.props.celebrityId,
-        widget: "StripeCustomerSources"
+        widget: "StripeCustomerSources",
       });
       const {
         deviceId,
         IP,
         userAgent,
-        geoLocalization
+        geoLocalization,
       } = await getBuyerIdentityData();
       processStripePayment(
         this.props.contractReference,
@@ -135,7 +135,7 @@ class StripeCustomerSources extends Component {
           if (res.data.status === "ERROR") {
             this.setState({
               ...this.state,
-              errorMessage: res.data.error
+              errorMessage: res.data.error,
             });
           } else {
             if (typeof window !== "undefined") {
@@ -145,7 +145,7 @@ class StripeCustomerSources extends Component {
                   content_ids:
                     VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
                   value: this.props.contractPrice,
-                  currency: "USD"
+                  currency: "USD",
                 });
               }
             }
@@ -155,7 +155,7 @@ class StripeCustomerSources extends Component {
               contractReference: this.props.contractReference,
               discountCouponId: this.props.discountCouponId,
               contractPrice: this.props.contractPrice,
-              celebrityId: this.props.celebrityId
+              celebrityId: this.props.celebrityId,
             });
             const route = PATHS.PURCHASE_SUMMARY.replace(
               ":contract_reference",
@@ -169,7 +169,7 @@ class StripeCustomerSources extends Component {
             if (error.response.data) {
               this.setState({
                 ...this.state,
-                errorMessage: error.response.data.error
+                errorMessage: error.response.data.error,
               });
             }
           } else {
@@ -177,7 +177,7 @@ class StripeCustomerSources extends Component {
               ...this.state,
               errorMessage: this.props.intl.formatMessage(
                 errorMessages.errorMessageApplyStripeAuthWithoutSourceID
-              )
+              ),
             });
           }
         });
@@ -217,7 +217,7 @@ class StripeCustomerSources extends Component {
             </button>
           </div>
         );
-      }
+      },
     });
   };
 
@@ -291,6 +291,6 @@ class StripeCustomerSources extends Component {
 StripeCustomerSources.defaultProps = {
   contractReference: "",
   availableSources: [],
-  onDeleteSource: () => {}
+  onDeleteSource: () => {},
 };
 export default withRouter(injectIntl(injectStripe(StripeCustomerSources)));

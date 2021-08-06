@@ -13,5 +13,5 @@ export const allowedFormatDocuments = {
   PYG: (value) => new RegExp(/^([a-zA-Z0-9_-]){5,20}$/).test(value),
   UYU: (value) => new RegExp(/^([a-zA-Z0-9_-]){6,8}$/).test(value),
   GTQ: (value) => new RegExp(/^([a-zA-Z0-9_-]){13}$/).test(value),
-  CRC: (value) => new RegExp(/^([a-zA-Z0-9_-]){9}$/).test(value)
+  CRC: (value) => new RegExp(/^([a-zA-Z0-9_-]){9}$/).test(value),
 };

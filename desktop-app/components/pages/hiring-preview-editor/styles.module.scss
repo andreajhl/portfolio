@@ -1,0 +1,31 @@
+.HiringPreviewEditorPage {
+}
+
+.Container {
+  padding: 2.625rem 0 !important;
+  display: flex;
+}
+
+.LeftSide {
+  width: 362px;
+  display: flex;
+  flex-direction: column;
+}
+
+.LeftSide > * + * {
+  margin-top: 30px;
+}
+
+.RightSide {
+  flex: 1;
+  margin-left: 30px;
+  overflow: hidden;
+}
+
+.ShareButton {
+  height: 50px;
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 47px;
+}

@@ -1,0 +1,44 @@
+.AccountDropdown {
+  &Menu {
+    margin-top: 0.5rem;
+    padding: 18px 0;
+    width: 245px;
+    font-size: 14px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  }
+  &Item {
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+
+    &:focus {
+      background: none;
+    }
+
+    &:hover {
+      background: #f6f6f6;
+    }
+
+    span {
+      margin-left: 26px;
+      font-weight: bold;
+    }
+  }
+
+  &LoginButton {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 12px 4px;
+    border-color: currentColor;
+    box-shadow: none !important;
+
+    &:hover,
+    &:active {
+      color: var(--primary) !important;
+      background: none !important;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+.Container {
+  padding: 42px 0 !important;
+  display: flex;
+
+  @media only screen and (max-width: 767px) {
+    display: block;
+    padding: 26px 0 !important;
+    width: 90%;
+  }
+}
+
+.RightSide {
+  margin-top: 46px;
+
+  @media only screen and (min-width: 768px) {
+    align-self: flex-start;
+    flex: 1;
+    margin-left: 35px;
+    margin-top: 0;
+  }
+}
+
+.HiringReviewSectionWrapper {
+  margin-top: 32px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.HiringPreviewCTACardMobile {
+  margin-top: 37px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
+.HiringPreviewPageOwnerBanner {
+  margin-top: 26px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+}

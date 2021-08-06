@@ -1,0 +1,39 @@
+.OrderByDropdown {
+  width: 162px;
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-top: 8px;
+  overflow: hidden;
+  padding: 10px 0 0 0;
+}
+
+.OrderByDropdownButton {
+  font-size: 14px;
+  padding: 0.375em 0.75em !important;
+}
+
+.OrderByDropdownTitle {
+  margin-right: 1em;
+  font-weight: bold;
+  color: var(--dark) !important;
+}
+
+.OrderByDropdownSelectedLabel {
+  margin-right: 0.75em;
+}
+
+.OrderByDropdownItem {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 1em 0 1em 2em;
+}
+
+.OrderByDropdownItemActive {
+  color: var(--primary) !important;
+}
+
+.DropdownWrapper {
+  max-width: 162px;
+}

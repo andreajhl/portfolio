@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import {
   PostSlideshow,
-  VideoLayout
+  VideoLayout,
 } from "react-app/src/components/containers/celebrity-shared-post";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
 import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
@@ -22,7 +22,7 @@ import {
   PostDate,
   PostMedia,
   PostImage,
-  PostText
+  PostText,
 } from "./styles";
 
 type SubscriptionPostCardProps = {
@@ -34,7 +34,7 @@ export const SubscriptionPostCard = ({
   avatar,
   username,
   fullName,
-  date
+  date,
 }: SubscriptionPostCardProps) => {
   return (
     <PostCard>
@@ -63,7 +63,7 @@ export const SubscriptionPostHiddenContent = ({
   fullName,
   username,
   price = 0,
-  description
+  description,
 }: SubscriptionPostHiddenContentProps) => {
   const firstName = getFirstName(fullName);
 
@@ -161,7 +161,7 @@ type SubscriptionPostHeaderProps = {
 const dateFormat = {
   day: "2-digit",
   month: "short",
-  year: "numeric"
+  year: "numeric",
 };
 
 const formatDate = (date: dateType) => {
@@ -175,7 +175,7 @@ function SubscriptionPostHeader({
   avatar,
   fullName,
   username,
-  date
+  date,
 }: SubscriptionPostHeaderProps) {
   const formattedDate = date ? formatDate(date) : null;
 

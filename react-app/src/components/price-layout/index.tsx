@@ -4,7 +4,7 @@ import NumberFormat from "react-number-format";
 import { connect } from "react-redux";
 
 const mapStateToProps = ({ payments: { currencyExchangeReducer } }) => ({
-  currencyData: currencyExchangeReducer.data
+  currencyData: currencyExchangeReducer.data,
 });
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -29,7 +29,7 @@ const PriceLayout = ({
   currencyData,
   showPrefix = true,
   fixedDecimalScale = true,
-  renderText = (formattedValue, suffix) => `${formattedValue} ${suffix}`
+  renderText = (formattedValue, suffix) => `${formattedValue} ${suffix}`,
 }: PriceLayoutProps) => {
   const currencyInfo = AVAILABLE_CURRENCIES.find(
     (item) => item.name === currencyData.to

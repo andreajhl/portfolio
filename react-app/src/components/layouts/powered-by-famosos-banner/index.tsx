@@ -6,7 +6,7 @@ type PoweredByFamososBannerProps = {
 };
 
 function PoweredByFamososBanner({
-  className = ""
+  className = "",
 }: PoweredByFamososBannerProps) {
   return (
     <div className={classes(styles.PoweredByFamososBanner, className)}>

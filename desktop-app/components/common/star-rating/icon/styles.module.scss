@@ -1,0 +1,21 @@
+.StarRatingIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.StarRatingEditable {
+  cursor: pointer;
+}
+
+.StarIconEditable {
+  transition: transform 0.15s;
+  > path {
+    transition: fill 0.15s, stroke 0.15s;
+  }
+}
+
+.isHovering {
+  transform: scale(1.2);
+}

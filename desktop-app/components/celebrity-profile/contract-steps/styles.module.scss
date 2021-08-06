@@ -1,0 +1,177 @@
+.ContractStepsNormalLayout,
+.ContractStepsFullLayout,
+.ContractStepsPartialLayout {
+  display: flex;
+  //   margin: 1rem;
+  background-color: rgba(246, 247, 255, 1);
+  border-radius: 10px;
+}
+
+.ContractStepsNormalLayout {
+  flex-flow: column;
+  justify-content: center;
+  flex: 1 1 100%;
+  padding: 20px 41px 7px;
+  max-height: 350px;
+  max-width: 545px;
+
+  h2 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 22px;
+    letter-spacing: 0.01em;
+  }
+}
+
+.ContractStep {
+  line-height: 1.2;
+  span {
+    color: var(--gray-4);
+  }
+}
+
+.ContractStepsNormalLayout .ContractStepsDescription {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+
+.ContractStepsFullLayout {
+  padding: 21px 41px;
+  flex-flow: column;
+  h2 {
+    margin-top: 21px;
+    margin-bottom: 31px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 27px;
+    letter-spacing: 0.01em;
+  }
+}
+
+.ContractStepTitle {
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0 0 0 16px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 19px;
+    letter-spacing: 0.01em;
+    text-align: center;
+  }
+}
+
+.ContractStepsNormalLayout .ContractStep {
+  span {
+    margin-top: 9px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+  }
+}
+
+.ContractStepsNormalLayout .ContractStep {
+  display: flex;
+  flex-flow: column;
+  flex: 1 0 230px;
+  margin: 1rem;
+  margin-left: 0;
+}
+
+.ContractStepsFullLayout .ContractStepsDescription {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  // margin-left: 7px;
+}
+
+.ContractStepsFullLayout .ContractStep {
+  flex-flow: row;
+  flex: 0 1 300px;
+
+  .ContractStepTitle {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    svg {
+      height: 30px;
+      width: 30px;
+    }
+    p {
+      margin: 19px 0 17px 0;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 19px;
+      letter-spacing: 0.01em;
+    }
+  }
+  span {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+  }
+}
+
+.ContractStepsPartialLayout {
+  flex-flow: column;
+  max-height: 350px;
+
+  h2 {
+    margin-top: 36px;
+    margin-bottom: 59px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 27px;
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+  .ContractStepsDescription {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    margin-left: 35px;
+    margin-right: 15px;
+    margin-bottom: 34px;
+
+    .ContractStep {
+      flex: 0 1 243px;
+      .ContractStepTitle {
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        svg {
+          height: 36px;
+          width: 36px;
+        }
+        p {
+          margin: 42px 0 24px 0;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 800;
+          line-height: 19px;
+          letter-spacing: 0.01em;
+          text-align: center;
+        }
+      }
+      span {
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+        text-align: left;
+      }
+    }
+  }
+}

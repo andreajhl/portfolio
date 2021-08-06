@@ -7,7 +7,7 @@ const invalidIpAddresses = ["127.0.0.1", "::1"];
 const fallbackIpData = {
   geolocation: "0,0",
   country_code: "",
-  currency_code: ""
+  currency_code: "",
 };
 
 export const getUserLocationData = async (

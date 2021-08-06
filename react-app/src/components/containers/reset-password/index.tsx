@@ -9,7 +9,7 @@ import { CHANGE_PASSWORD_PATH } from "../../../routing/Paths";
 import { Session } from "react-app/src/state/utils/session";
 import {
   RESET_PASSSWORD_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
-  TRANSLATION_RESET_PASSSWORD_MESSAGES
+  TRANSLATION_RESET_PASSSWORD_MESSAGES,
 } from "react-app/src/constants/messages";
 
 function ResetPassword() {
@@ -37,7 +37,7 @@ function ResetPassword() {
   const generateSecurityCode = async () => {
     await axios
       .post("/api/generate-security-code", {
-        email: email.trim().toLocaleLowerCase()
+        email: email.trim().toLocaleLowerCase(),
       })
       .then((response) => {
         setIsEmailSend(true);
@@ -52,7 +52,7 @@ function ResetPassword() {
     await axios
       .post("/api/validate-security-code", {
         email: email.trim().toLocaleLowerCase(),
-        securityCode: securityCode.trim().toLocaleLowerCase()
+        securityCode: securityCode.trim().toLocaleLowerCase(),
       })
       .then((response) => {
         localStorage.setItem("finalRedirect", CHANGE_PASSWORD_PATH);

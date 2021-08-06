@@ -1,0 +1,40 @@
+.HiringPreviewEditorPage {
+  transition: background-image 0.15s;
+  background-size: 100%;
+  min-height: calc(100vh - 54px);
+
+  @media only screen and (max-width: 767px) {
+    background-size: 300%;
+  }
+}
+
+.Container {
+  padding: 2.625rem 0 !important;
+
+  @media only screen and (max-width: 767px) {
+    display: block;
+    padding: 26px 0 !important;
+    width: 90%;
+  }
+}
+
+.LeftSide {
+  display: flex;
+  flex-direction: column;
+}
+
+.LeftSide > * + * {
+  margin-top: 30px;
+}
+
+.RightSide {
+  margin-top: 33px;
+}
+
+.ShareButton {
+  height: 50px;
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 33px;
+}

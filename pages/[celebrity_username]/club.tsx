@@ -10,24 +10,24 @@ import { defineMessages, useIntl } from "react-intl";
 
 const headData = defineMessages({
   titleClub: {
-    defaultMessage: "Famosos.com - Club de fans de {celebrity_username}"
+    defaultMessage: "Famosos.com - Club de fans de {celebrity_username}",
   },
   descriptionClub: {
     defaultMessage:
-      "Club de fans de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
-  }
+      "Club de fans de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.",
+  },
 });
 
 const redirectToSanitizedPath = {
   destination: "/celebrity_username/club",
-  permanent: false
+  permanent: false,
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params, store }) => {
     if (typeof params === "undefined") {
       return {
-        redirect: redirectToSanitizedPath
+        redirect: redirectToSanitizedPath,
       };
     }
 
@@ -43,15 +43,15 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
             ":celebrity_username",
             String(celebrity_username)
           ),
-          permanent: false
-        }
+          permanent: false,
+        },
       };
     }
 
     return {
       props: {
-        celebrity
-      }
+        celebrity,
+      },
     };
   }
 );
@@ -62,10 +62,10 @@ const Club = ({ celebrity }) => {
     <>
       <CustomHead
         title={formatMessage(headData.titleClub, {
-          celebrity_username: celebrity.fullName
+          celebrity_username: celebrity.fullName,
         })}
         description={formatMessage(headData.descriptionClub, {
-          celebrity_username: celebrity.fullName
+          celebrity_username: celebrity.fullName,
         })}
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
@@ -76,5 +76,5 @@ const Club = ({ celebrity }) => {
 };
 
 export default withAuthenticationRequired(Club, {
-  onRedirecting: LoadingPage
+  onRedirecting: LoadingPage,
 });

@@ -29,7 +29,7 @@ class CelebritiesPage extends Component {
       session: new Session().getSession(),
       showInputSearchSm: false,
       showHeaderFiltersSection: false,
-      previousScrollTopPosition: 0
+      previousScrollTopPosition: 0,
     };
   }
 
@@ -61,7 +61,7 @@ class CelebritiesPage extends Component {
 
     this.setState({
       showHeaderFiltersSection,
-      previousScrollTopPosition: scrollTopPosition
+      previousScrollTopPosition: scrollTopPosition,
     });
   };
 
@@ -102,14 +102,14 @@ CelebritiesPage.propTypes = {};
 
 CelebritiesPage.defaultProps = {
   celebrities: [],
-  paginationData: {}
+  paginationData: {},
 };
 
 const mapStateToProps = ({
   celebrities,
   restCountries,
   countries,
-  filters
+  filters,
 }) => ({
   isLoading: celebrities.fetchCelebritiesReducer.loading,
   isCompleted: celebrities.fetchCelebritiesReducer.completed,
@@ -119,12 +119,12 @@ const mapStateToProps = ({
   countries: countries.countriesReducer.results,
   restCountries: restCountries.fetchCountriesReducer.data,
   selectedCategory: filters.filtersReducer.selectedCategory,
-  selectedCountry: filters.filtersReducer.selectedCountry
+  selectedCountry: filters.filtersReducer.selectedCountry,
 });
 
 const mapDispatchToProps = {
   fetchCelebrities: celebrityOperations.list,
-  updateQueryParams: celebrityOperations.updateQueryParams
+  updateQueryParams: celebrityOperations.updateQueryParams,
 };
 
 const _CelebritiesPage = connect(

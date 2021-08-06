@@ -165,7 +165,7 @@ const ResumenContractRejected = ({ resumen }) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            color: "white"
+            color: "white",
           }}
           className="fas fa-exclamation"
         />
@@ -190,13 +190,13 @@ const ResumenContractRejected = ({ resumen }) => {
               <span
                 className="text-center font-weight-bold"
                 style={{
-                  color: "black"
+                  color: "black",
                 }}
               >
                 <FormattedMessage
                   defaultMessage="Video personalizado de {celebrityFullName}"
                   values={{
-                    celebrityFullName: resumen.celebrity.fullName
+                    celebrityFullName: resumen.celebrity.fullName,
                   }}
                 />
               </span>
@@ -207,7 +207,7 @@ const ResumenContractRejected = ({ resumen }) => {
                 <div
                   className="d-flex"
                   style={{
-                    width: "70%"
+                    width: "70%",
                   }}
                 >
                   {resumen.contract.deliveryTo ? (
@@ -243,7 +243,7 @@ const ResumenContractRejected = ({ resumen }) => {
             <span
               style={{
                 fontSize: "12px",
-                color: "#535353"
+                color: "#535353",
               }}
             >
               <FormattedMessage
@@ -266,7 +266,7 @@ const ResumenContractRejected = ({ resumen }) => {
               <div>
                 <span
                   style={{
-                    color: "#535353"
+                    color: "#535353",
                   }}
                 >
                   <FormattedMessage

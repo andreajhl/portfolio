@@ -8,7 +8,7 @@ export const AVAILABLE_CURRENCIES_FOR_PAYMENTS = [
     document_name: "Social Security Number / SSN",
     decimal_separator: ".",
     thousand_separator: ",",
-    round: "1"
+    round: "1",
   },
   {
     name: "ARS",
@@ -19,7 +19,7 @@ export const AVAILABLE_CURRENCIES_FOR_PAYMENTS = [
     document_name: "Código Único de Identificación Tributaria",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "100"
+    round: "100",
   },
   // {
   //   name: "BRL",
@@ -41,7 +41,7 @@ export const AVAILABLE_CURRENCIES_FOR_PAYMENTS = [
     document_name: "Cédula de Ciudadanía",
     decimal_separator: ",",
     thousand_separator: ".",
-    round: "1000"
+    round: "1000",
   },
   {
     name: "MXN",
@@ -52,6 +52,6 @@ export const AVAILABLE_CURRENCIES_FOR_PAYMENTS = [
     document_name: "RFC",
     decimal_separator: ".",
     thousand_separator: ",",
-    round: "5"
-  }
+    round: "5",
+  },
 ];

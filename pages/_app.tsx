@@ -1,41 +1,35 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
+import App, { AppContext } from "next/app";
 import { wrapper } from "react-app/src/state/store";
 import { useRouter } from "next/router";
 import {
   analytics,
-  initialize as gtmInitialize
+  initialize as gtmInitialize,
 } from "react-app/src/state/utils/gtm";
 import "react-app/src/styles.scss";
+import "desktop-app/styles.scss";
 import { IntlProvider } from "react-intl";
 import esMessages from "../compiled-lang/es.json";
 import enMessages from "../compiled-lang/en.json";
 import { FamososAuthProvider } from "lib/famosos-auth";
-import { Session } from "../react-app/src/state/utils/session";
-import getWindow from "react-app/src/utils/getWindow";
-import axios from "axios";
-import getCookie from "react-app/src/utils/getCookie";
 import ptMessages from "../compiled-lang/pt.json";
-const OLD_SESSION_KEY = "_a0_";
+import { IsOnMobileScreenProvider } from "lib/is-on-mobile-screen";
+import isMobile from "lib/utils/isMobile";
 
 const languages = {
   en: enMessages,
   es: esMessages,
   pt: ptMessages,
   por: ptMessages,
-  "pt-BR": ptMessages
+  "pt-BR": ptMessages,
 };
 
 const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
-  const ENVIRONMENT = process.env.NEXT_PUBLIC_ENVIRONMENT.toUpperCase();
   analytics.page({
     path: url,
     url,
     shallow,
     isReactRouting: true,
-    ENVIRONMENT,
-    userAgent: navigator?.userAgent,
-    vendor: navigator?.vendor,
-    receivedAt: new Date()
   });
 };
 
@@ -43,12 +37,26 @@ const MAINTENANCE_IS_ACTIVE =
   process.env.NEXT_PUBLIC_ACTIVE_MAINTENANCE === "true";
 const ROUTE_CHANGE_START = "routeChangeStart";
 
-function App({ Component, pageProps }) {
-  if (MAINTENANCE_IS_ACTIVE) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    require("lib/hooks/useMaintenanceMode").default();
-  }
+CustomApp.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await App.getInitialProps(appContext);
+
+  return {
+    ...appProps,
+    pageProps: {
+      ...appProps.pageProps,
+      isMobileDevice: isMobile(appContext?.ctx?.req?.headers?.["user-agent"]),
+    },
+  };
+};
+
+function CustomApp({ Component, pageProps }) {
   const router = useRouter();
+
+  if (MAINTENANCE_IS_ACTIVE) {
+    const useMaintenanceMode = require("lib/hooks/useMaintenanceMode").default;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useMaintenanceMode();
+  }
 
   useEffect(() => {
     gtmInitialize();
@@ -61,7 +69,7 @@ function App({ Component, pageProps }) {
 
   const { locale, defaultLocale } = router;
   const messages = languages[locale];
-  const tokenExpired = true; /* While SS token validation is not available, using Session.tokenExpired gives a different value when the app is hydrating, this cause bugs.  */
+  const tokenExpired = true; /* While SS token validation is not available, using Session.tokenExpired gives a different value when the app is hydrating, this causes bugs.  */
 
   return (
     <FamososAuthProvider authenticated={!tokenExpired}>
@@ -70,10 +78,14 @@ function App({ Component, pageProps }) {
         locale={locale}
         defaultLocale={defaultLocale}
       >
-        <Component {...pageProps} />
+        <IsOnMobileScreenProvider
+          initialIsOnMobileScreen={pageProps.isMobileDevice}
+        >
+          <Component {...pageProps} />
+        </IsOnMobileScreenProvider>
       </IntlProvider>
     </FamososAuthProvider>
   );
 }
 
-export default wrapper.withRedux(App);
+export default wrapper.withRedux(CustomApp);

@@ -1,1 +1,5 @@
-export { fetchCelebritySections, setPlayingVideo } from "./actions";
+export {
+  fetchCelebritySections,
+  setPlayingVideo,
+  toggleAudio,
+} from "./actions";

@@ -1,0 +1,55 @@
+.RadioInputsWrapper {
+  @media only screen and (max-width: 767px) {
+    position: relative;
+    overflow: scroll;
+    margin-left: -32px;
+    padding-left: 32px;
+  }
+}
+
+.PageBackgroundSelector {
+  @media only screen and (max-width: 767px) {
+    width: 567px;
+  }
+}
+
+.backgroundOption {
+  border: 1px solid #ededed;
+  width: 121.75px;
+  height: 123.59px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  @media only screen and (min-width: 768px) {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+.PageBackgroundSelector label ~ label .backgroundOption {
+  margin-left: 16px;
+  @media only screen and (min-width: 768px) {
+    margin-left: 9px;
+  }
+}
+
+.SelectedBackground .backgroundOption {
+  border-color: #6970c6;
+  border-width: 2px;
+}
+
+.ResetButton {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--tertiary);
+  text-decoration: underline !important;
+  margin-left: -0.75rem;
+
+  &:hover {
+    color: var(--secondary);
+  }
+
+  @media only screen and (max-width: 767px) {
+    margin-top: 0.25rem;
+  }
+}

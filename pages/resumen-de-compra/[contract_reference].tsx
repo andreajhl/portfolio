@@ -1,4 +1,4 @@
 export {
   default,
-  getServerSideProps
+  getServerSideProps,
 } from "../purchase-summary/[contract_reference]";

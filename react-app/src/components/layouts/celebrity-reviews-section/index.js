@@ -12,7 +12,7 @@ class CelebrityReviewsSectionLayout extends Component {
     super(props);
 
     this.state = {
-      params: { currentPage: 1 }
+      params: { currentPage: 1 },
     };
 
     this.onPaginationChange = this.onPaginationChange.bind(this);
@@ -31,7 +31,7 @@ class CelebrityReviewsSectionLayout extends Component {
     }
     this.setState(
       {
-        params: params
+        params: params,
       }
       // () => this.fetchReviews()
     );
@@ -96,19 +96,19 @@ CelebrityReviewsSectionLayout.propTypes = {};
 CelebrityReviewsSectionLayout.defaultProps = {
   celebrity: {},
   reviews: [],
-  paginationData: {}
+  paginationData: {},
 };
 
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.celebrities.fetchReviewsReducer.loading,
   reviews: state.celebrities.fetchReviewsReducer.data.results,
-  paginationData: state.celebrities.fetchReviewsReducer.data.informationPage
+  paginationData: state.celebrities.fetchReviewsReducer.data.informationPage,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  listReviews: celebrityOperations.listReviews
+  listReviews: celebrityOperations.listReviews,
 };
 
 // Export Class

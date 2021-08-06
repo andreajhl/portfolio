@@ -1,0 +1,37 @@
+.ContractInstructions {
+  display: flex;
+  flex-flow: column;
+  margin-top: 1.6875rem;
+}
+.WhoSend,
+.WhoReceive,
+.InstructionsDetails {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: #5c5c5c;
+}
+.WhoSend {
+  margin-left: 1.875rem;
+}
+.InstructionsDetails {
+  margin-top: 1rem;
+}
+
+.PencilIcon {
+  position: absolute;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  cursor: pointer;
+  svg path {
+    transition: fill 0.2s;
+  }
+  &:hover svg path {
+    fill: var(--primary) !important;
+  }
+}

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FormattedMessage } from "react-intl";
 const contentStyle = {
   background: "rgb(248,248,248)",
-  borderRadius: "10px"
+  borderRadius: "10px",
 };
 const overlayStyle = { background: "rgba(0,0,0,0.5)" };
 
@@ -12,7 +12,7 @@ export type AuthenticationFailurePopupProps = {
 };
 
 function AuthenticationFailurePopup({
-  errorMessage
+  errorMessage,
 }: AuthenticationFailurePopupProps) {
   const [open, setOpen] = useState(true);
 
@@ -21,7 +21,7 @@ function AuthenticationFailurePopup({
     <Popup
       open={open}
       contentStyle={{
-        ...contentStyle
+        ...contentStyle,
       }}
       overlayStyle={{ ...overlayStyle }}
       closeOnDocumentClick
@@ -35,7 +35,7 @@ function AuthenticationFailurePopup({
           justifyContent: "center",
           flexFlow: "column",
           alignItems: "center",
-          padding: "32px"
+          padding: "32px",
         }}
       >
         <button
@@ -47,7 +47,7 @@ function AuthenticationFailurePopup({
             backgroundColor: "white",
             borderRadius: "50%",
             width: "30px",
-            height: "30px"
+            height: "30px",
           }}
           className="close"
           onClick={closeModal}

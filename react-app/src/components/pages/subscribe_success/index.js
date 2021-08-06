@@ -9,7 +9,7 @@ function SubscriptionSuccess({
   celebrityUsername,
   getCelebrity,
   celebrity,
-  isLoading
+  isLoading,
 }) {
   const router = useRouter();
 
@@ -62,7 +62,7 @@ function SubscriptionSuccess({
                   celebrity.fullName || "Famoso"
                 }.`,
                 "Participación en sorteos y posibilidad de recibir artículos autografiados.",
-                "¡Sorpresas que te harán reír y suspirar!  "
+                "¡Sorpresas que te harán reír y suspirar!  ",
               ]}
             />
           </div>
@@ -87,12 +87,12 @@ function SubscriptionSuccess({
 // mapStateToProps
 const mapStateToProps = (state) => ({
   isLoading: state.celebrities.getCelebrityReducer.loading,
-  celebrity: state.celebrities.getCelebrityReducer.data
+  celebrity: state.celebrities.getCelebrityReducer.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  getCelebrity: celebrityOperations.get
+  getCelebrity: celebrityOperations.get,
 };
 // Set propTypes
 SubscriptionSuccess.propTypes = {};

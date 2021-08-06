@@ -6,8 +6,8 @@ import { defineMessages } from "react-intl";
 
 const headData = defineMessages({
   titleFeed: {
-    defaultMessage: "Las ultimas publicaciones de tus famosos favoritos."
-  }
+    defaultMessage: "Las ultimas publicaciones de tus famosos favoritos.",
+  },
 });
 const Subscriptions = () => {
   return (

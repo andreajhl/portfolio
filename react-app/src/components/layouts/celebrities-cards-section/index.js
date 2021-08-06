@@ -14,7 +14,7 @@ import useGetViewportWidthOnResize from "react-app/src/utils/useGetViewportWidth
 import getContainerWidthFromWindowWidth from "react-app/src/utils/getContainerWidthFromWindowWidth";
 import {
   largeBreakPoint,
-  smallBreakpoint
+  smallBreakpoint,
 } from "react-app/src/constants/bootstrapBreakpoint";
 import { FormattedMessage } from "react-intl";
 import { useRouter } from "next/router";
@@ -30,7 +30,7 @@ const cardGap = 12;
 const getColumn = (isVideoCardSection, celebritiesSectionId) => ({
   data,
   index,
-  style
+  style,
 }) => {
   const celebrity = data[index];
   const isLastItem = index >= data.length - 1;
@@ -61,7 +61,7 @@ const initialState = {
   showLeftScrollButton: false,
   showRightScrollButton: false,
   mobileSectionWidth: 524,
-  desktopSectionWidth: 1125
+  desktopSectionWidth: 1125,
 };
 
 const getSectionWidth = (windowWidth) => {
@@ -78,7 +78,7 @@ function CelebritiesCardsSectionLayout({
   celebritiesSection,
   moreResultsPath,
   isMobile,
-  isFavoriteSection
+  isFavoriteSection,
 }) {
   const { locale } = useRouter();
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(
@@ -103,7 +103,7 @@ function CelebritiesCardsSectionLayout({
     title: celebritiesSection.title,
     id: celebritiesSection.id,
     celebritySectionType: celebritiesSection.celebritySectionType,
-    position: celebritiesSection.position
+    position: celebritiesSection.position,
   };
 
   const scrollTo = (direction) => () => {
@@ -111,11 +111,11 @@ function CelebritiesCardsSectionLayout({
     const { offsetWidth } = cardListElement;
     cardListElement.scrollBy({
       left: direction === "right" ? offsetWidth : offsetWidth * -1,
-      behavior: "smooth"
+      behavior: "smooth",
     });
     GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTION_SCROLL_BUTTON", {
       ...analyticsData,
-      direction
+      direction,
     });
   };
 
@@ -142,7 +142,7 @@ function CelebritiesCardsSectionLayout({
       jsonToQueryString({
         country_id: getMoreFrequentIds(celebrities, "countryId"),
         category_id: getMoreFrequentIds(celebrities, "categoryId"),
-        limit: 20
+        limit: 20,
       })
     );
   }, [celebrities]);
@@ -156,7 +156,7 @@ function CelebritiesCardsSectionLayout({
   const registerSeeMoreResultsClick = () =>
     GTM.tagManagerDataLayer("CLICK_CELEBRITY_SECTION_SEE_MORE_LINK", {
       ...analyticsData,
-      searchMoreResultsPath
+      searchMoreResultsPath,
     });
 
   const { celebritySectionType } = celebritiesSection;
@@ -238,7 +238,7 @@ function CelebritiesCardsSectionLayout({
 }
 
 CelebritiesCardsSectionLayout.defaultProps = {
-  hasMoreResults: false
+  hasMoreResults: false,
 };
 
 export { CelebritiesCardsSectionLayout };

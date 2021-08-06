@@ -60,7 +60,7 @@ const SubscriptionToAvailabilityNotification = ({
   userSubscriptionsCelebrityAlarmsData,
   userSubscriptionsCelebrityAlarmsErrorData,
   userSubscriptionsCelebrityAlarmsIsLoading,
-  listUsersSubscriptionsAlarms
+  listUsersSubscriptionsAlarms,
 }: SubscriptionToAvailabilityNotificationProps) => {
   const router = useRouter();
   const session = new Session();
@@ -168,12 +168,12 @@ const mapStateToProps = ({ subscriptionCelebrityAlarm }) => {
     userSubscriptionsCelebrityAlarmsErrorData:
       subscriptionCelebrityAlarm.userSubscriptionsCelebrityAlarms.error_data,
     userSubscriptionsCelebrityAlarmsIsLoading:
-      subscriptionCelebrityAlarm.userSubscriptionsCelebrityAlarms.loading
+      subscriptionCelebrityAlarm.userSubscriptionsCelebrityAlarms.loading,
   };
 };
 const mapDispatchToProps = {
   listUsersSubscriptionsAlarms:
-    subscriptionCelebrityAlarmOperations.listUsersSubscriptionsAlarms
+    subscriptionCelebrityAlarmOperations.listUsersSubscriptionsAlarms,
 };
 
 const _SubscriptionToAvailabilityNotification = connect(

@@ -2,71 +2,71 @@ export const AVAILABLE_LANGS = {
   es: [
     {
       lang: "es",
-      name: "Español"
+      name: "Español",
     },
     {
       lang: "en",
-      name: "Inglés"
+      name: "Inglés",
     },
     {
       lang: "pt",
-      name: "Portugués"
-    }
+      name: "Portugués",
+    },
   ],
   en: [
     {
       lang: "es",
-      name: "Spanish"
+      name: "Spanish",
     },
     {
       lang: "en",
-      name: "English"
+      name: "English",
     },
     {
       lang: "pt",
-      name: "Portuguese"
-    }
+      name: "Portuguese",
+    },
   ],
   pt: [
     {
       lang: "es",
-      name: "Espanhol"
+      name: "Espanhol",
     },
     {
       lang: "en",
-      name: "Inglês"
+      name: "Inglês",
     },
     {
       lang: "pt",
-      name: "Português"
-    }
+      name: "Português",
+    },
   ],
   por: [
     {
       lang: "es",
-      name: "Espanhol"
+      name: "Espanhol",
     },
     {
       lang: "en",
-      name: "Inglês"
+      name: "Inglês",
     },
     {
       lang: "pt",
-      name: "Português"
-    }
+      name: "Português",
+    },
   ],
   "pt-BR": [
     {
       lang: "es",
-      name: "Espanhol"
+      name: "Espanhol",
     },
     {
       lang: "en",
-      name: "Inglês"
+      name: "Inglês",
     },
     {
       lang: "pt",
-      name: "Português"
-    }
-  ]
+      name: "Português",
+    },
+  ],
 };

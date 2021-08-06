@@ -1,0 +1,91 @@
+.GiftAnimation {
+  height: calc(100vh - 58px) /* Top-bar Height */;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: white;
+}
+
+.GiftAnimation::before {
+  @media only screen and (max-width: 768px) {
+    content: "";
+    height: 40%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: #fff2f8;
+  }
+}
+
+.GiftVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  outline: none;
+
+  @media only screen and (max-width: 768px) {
+    position: relative;
+    top: -7.5%;
+    height: 60%;
+  }
+}
+
+.GiftLabel {
+  position: absolute;
+  top: 64vh;
+  width: 234.47px;
+  height: 125.05px;
+  background: #ffffff;
+  border: 1px solid #bfc4ff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 9.75px 11.07px;
+  animation: appear 0.5s ease;
+  @media only screen and (max-width: 768px) {
+    top: 50vh;
+    width: 190px;
+    height: 90px;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.GiftLabelDot {
+  width: 17.27px;
+  height: 17.27px;
+  border: 7px solid #6970c6;
+  border-radius: 50%;
+  position: absolute;
+  top: 9.75px;
+  left: 11.07px;
+}
+
+.GiftLabel p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  width: 100%;
+  font-size: 24px;
+  font-weight: bold;
+  color: #6970c6;
+  margin-bottom: 0;
+  @media only screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+.IsForOther {
+  margin-top: 12px;
+}

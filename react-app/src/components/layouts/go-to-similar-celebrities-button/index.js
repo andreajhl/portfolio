@@ -17,7 +17,7 @@ const GoToSimilarCelebritiesButton = ({
   children,
   fontSize,
   width,
-  className
+  className,
 }) => {
   useEffect(() => {
     if (similarCelebrities.length > 0 || isLoading) return;
@@ -31,7 +31,7 @@ const GoToSimilarCelebritiesButton = ({
       jsonToQueryString({
         country_id: getMoreFrequentIds(similarCelebrities, "countryId"),
         category_id: getMoreFrequentIds(similarCelebrities, "categoryId"),
-        limit: 20
+        limit: 20,
       })
     );
   }, [similarCelebrities]);
@@ -42,7 +42,7 @@ const GoToSimilarCelebritiesButton = ({
       widget: "GoToSimilarCelebritiesButton",
       text: typeof children === "string" ? children : "React.Node",
       celebrityUsername,
-      similarCelebritiesPath
+      similarCelebritiesPath,
     });
   };
 
@@ -63,18 +63,18 @@ const GoToSimilarCelebritiesButton = ({
 };
 
 GoToSimilarCelebritiesButton.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 const mapStateToProps = ({ celebrities }) => {
   return {
     isLoading: celebrities.fetchSimilarCelebritiesReducer.loading,
-    similarCelebrities: celebrities.fetchSimilarCelebritiesReducer.data.results
+    similarCelebrities: celebrities.fetchSimilarCelebritiesReducer.data.results,
   };
 };
 
 const mapDispatchToProps = {
-  fetchSimilarCelebrities
+  fetchSimilarCelebrities,
 };
 
 const _GoToSimilarCelebritiesButton = connect(

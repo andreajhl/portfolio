@@ -1,0 +1,48 @@
+.HeaderContractRejected {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  svg {
+    height: 26px;
+    width: 26px;
+    border: 2px solid white;
+    padding: 4px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  p {
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 25px;
+    color: #ffffff;
+  }
+}
+
+.InstructionsContractRejected {
+  margin-top: 6.375rem;
+  margin-left: 5.5rem;
+  margin-right: 3.125rem;
+  display: flex;
+  flex-flow: column;
+}
+
+.ConsultationNoticies {
+  margin-top: 3rem;
+  p:first-of-type {
+    margin-bottom: 4.5rem;
+  }
+}
+
+.FooterInstructionsCTA .FooterInstructionsCTAButton {
+  margin-right: 2.3125rem;
+  border: 2px solid black !important;
+  background: #000000 !important;
+  &:hover,
+  &:active,
+  &:focus {
+    border: 2px solid black !important;
+    background: #000000 !important;
+  }
+}

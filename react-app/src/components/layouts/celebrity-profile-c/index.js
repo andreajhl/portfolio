@@ -94,14 +94,14 @@ const CelebrityProfileLayoutC = ({ celebrity, hasPublicContracts }) => {
 
 CelebrityProfileLayoutC.defaultProps = {
   celebrity: {},
-  hasPublicContracts: true
+  hasPublicContracts: true,
 };
 
 const mapStateToProps = ({ celebrities: { fetchPublicContractsReducer } }) => {
   return {
     hasPublicContracts:
       !fetchPublicContractsReducer.completed ||
-      fetchPublicContractsReducer.data.results.length > 0
+      fetchPublicContractsReducer.data.results.length > 0,
   };
 };
 

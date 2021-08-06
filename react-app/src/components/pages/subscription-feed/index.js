@@ -12,10 +12,11 @@ import SubscriptionsFilter from "../../subscription-feed/subscription-filter";
 
 import {
   SubscriptionPostsHeader,
-  SubscriptionPostsSection
+  SubscriptionPostsSection,
 } from "../../layouts/subscription-posts";
 
 import styled from "styled-components";
+import { FormattedMessage } from "lib/custom-intl";
 
 const MySubscriptionsTitle = styled.h2`
   font-size: 24px;
@@ -43,7 +44,7 @@ const SubscriptionFeed = (props) => {
   const {
     getCelebritiesSubscribe,
     subscriptionList,
-    isSubscriptionListCompletedFetch
+    isSubscriptionListCompletedFetch,
   } = { ...props };
   const [postFetched, setPostFetched] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -109,7 +110,9 @@ const SubscriptionFeed = (props) => {
     <PageContainer>
       <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
         <SubscriptionPostsHeader>
-          <MySubscriptionsTitle>Mis suscripciones</MySubscriptionsTitle>
+          <MySubscriptionsTitle>
+            <FormattedMessage defaultMessage="Mis suscripciones" />
+          </MySubscriptionsTitle>
           <Maybe it={subscriptionList.length > 0}>
             <SubscriptionsFilter
               currentChoice={currentChoice}
@@ -136,7 +139,11 @@ const SubscriptionFeed = (props) => {
           )
         ) : isSubscriptionListCompletedFetch &&
           subscriptionList.length === 0 ? (
-          <NotPostsResults message="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+          <NotPostsResults
+            message={
+              <FormattedMessage defaultMessage="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+            }
+          />
         ) : null}
       </SubscriptionPostsSection>
     </PageContainer>
@@ -147,12 +154,12 @@ const SubscriptionFeed = (props) => {
 const mapStateToProps = (state) => ({
   subscriptionList: state.subscriptions.fetchUserSubscriptionsListReducer.data,
   isSubscriptionListCompletedFetch:
-    state.subscriptions.fetchUserSubscriptionsListReducer.completed
+    state.subscriptions.fetchUserSubscriptionsListReducer.completed,
 });
 
 // mapDispatchToProps
 const mapDispatchToProps = {
-  getCelebritiesSubscribe: subscriptionsOperations.fetchUserSubscriptionsList
+  getCelebritiesSubscribe: subscriptionsOperations.fetchUserSubscriptionsList,
 };
 const _SubscriptionFeed = connect(
   mapStateToProps,

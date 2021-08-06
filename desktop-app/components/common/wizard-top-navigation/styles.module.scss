@@ -1,0 +1,43 @@
+.WizardTopNavigation {
+  display: flex;
+
+  &BackButton {
+    cursor: pointer;
+  }
+
+  &StepsList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin-left: auto;
+    margin-bottom: 0;
+  }
+
+  &Step {
+    width: 11px;
+    height: 11px;
+    display: block;
+    border-radius: 50%;
+    background-color: var(--gray-1);
+    margin-left: 10px;
+
+    &Doing,
+    &Done {
+      background-color: var(--gray-2);
+    }
+
+    &Unreachable {
+      cursor: unset !important;
+    }
+  }
+  &StepEnabledNavigation {
+    cursor: pointer;
+  }
+}
+
+.WizardStepsListSkeleton {
+  margin-left: auto;
+}
+.WizardStepsListSkeleton > * + * {
+  margin-left: 10px;
+}

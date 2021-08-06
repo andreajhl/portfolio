@@ -1,18 +1,23 @@
-// import { useEffect } from "react";
+import isMobileDevice from "lib/utils/isMobile";
 import { GetServerSideProps } from "next";
+import dynamic from "next/dynamic";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { CelebritiesPage } from "react-app/src/components/pages/celebrities";
-import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
+import Maybe from "react-app/src/components/common/helpers/maybe";
 import { wrapper } from "react-app/src/state/store";
+import getCookie from "react-app/src/utils/getCookie";
+import { fetchLandings } from "react-app/src/state/ducks/landings/actions";
+import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import debug from "react-app/src/utils/debug";
 import UAParser from "ua-parser-js";
 import { parse, serialize } from "cookie";
 import {
+  cfUserCountryCode,
   OFFSET_ROTATE_CELEBRITIES_SECTIONS,
   USER_CURRENCY_CODE,
   USER_GEOLOCATION_KEY,
   USER_IP_ADDRESS,
-  USER_LOCATION_KEY
+  USER_LOCATION_KEY,
 } from "constants/keys";
 import { setCookie } from "lib/setCookie";
 import { useEffect } from "react";
@@ -21,20 +26,17 @@ import { getUserLocationData } from "lib/getUserLocationData";
 import Link from "next/link";
 import isBot from "isbot";
 
-// import isBrowser from "react-app/src/utils/isBrowser";
-// import auth0 from "../lib/auth0";
-
-/* 
-export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
-  async ({ store }) => {
-    await fetchCelebritySections({ limit: 4, offset: 0 })(store.dispatch);
-    const quarterHourInSeconds = 900;
-    return { revalidate: quarterHourInSeconds };
-  }
-);
-*/
-
 const generateRandomNumber = (limit) => Math.floor(Math.random() * limit + 1);
+
+const HomePage = dynamic<{ userLocation: string }>(() =>
+  import("desktop-app/components/pages/home").then((mod) => mod.HomePage)
+);
+
+const CelebritiesPage = dynamic<{ isMobile: boolean }>(() =>
+  import("react-app/src/components/pages/celebrities").then(
+    (mod) => mod.CelebritiesPage
+  )
+);
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ req, store, query, res }) => {
@@ -60,36 +62,46 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       rotationForCelebritiesSections = String(generateRandomNumber(100));
     }
 
-    await fetchCelebritySections(
-      {
+    // Detect UA
+    let isMobile = false;
+    try {
+      isMobile = isMobileDevice(req.headers["user-agent"]);
+    } catch (e) {
+      throw new Error("UA Parser error" + e);
+    }
+
+    if (isMobile) {
+      await fetchCelebritySections(
+        {
+          landingId: query.landingId,
+          alpha2Code: userLocation,
+          limit: 10,
+          offset: 0,
+        },
+        rotationForCelebritiesSections ||
+          cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS]
+      )(store.dispatch);
+    } else {
+      await fetchLandings({
         landingId: query.landingId,
         alpha2Code: userLocation,
         limit: 10,
-        offset: 0
-      },
-      rotationForCelebritiesSections ||
-        cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS]
-    )(store.dispatch);
-
-    let isMobile = false;
-    try {
-      isMobile =
-        new UAParser(req?.headers?.["user-agent"])?.getDevice?.()?.type ===
-        "mobile";
-    } catch (error) {
-      debug(`UA Parser error: ${error}`);
+        offset: 0,
+      })(store.dispatch);
     }
 
     return {
       props: {
         isMobile,
-        rotationForCelebritiesSections
-      }
+        userLocation,
+        rotationForCelebritiesSections,
+      },
     };
   }
 );
 
-function Home({ isMobile, rotationForCelebritiesSections }) {
+function Home({ isMobile, userLocation, rotationForCelebritiesSections }) {
+  useDesktopClass(!isMobile);
   useEffect(() => {
     setCookie(
       OFFSET_ROTATE_CELEBRITIES_SECTIONS,
@@ -99,7 +111,9 @@ function Home({ isMobile, rotationForCelebritiesSections }) {
   return (
     <>
       <CustomHead />
-      <CelebritiesPage isMobile={isMobile} />
+      <Maybe it={isMobile} orElse={<HomePage userLocation={userLocation} />}>
+        <CelebritiesPage isMobile={isMobile} />
+      </Maybe>
     </>
   );
 }

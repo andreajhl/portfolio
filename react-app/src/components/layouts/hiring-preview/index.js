@@ -20,7 +20,7 @@ class HiringPreviewLayout extends Component {
       readyState: false,
       videoResolution: "dieciseis-nueve", // 1  -  1-33  -  1-77
       videoGridCols: "col-md-4 col-lg-4",
-      videoDetailsGridCols: "col-md-8 col-lg-8"
+      videoDetailsGridCols: "col-md-8 col-lg-8",
     };
 
     this.session = new Session();
@@ -58,7 +58,7 @@ class HiringPreviewLayout extends Component {
           videoGridCols,
           videoDetailsGridCols,
           resolution,
-          readyState: true
+          readyState: true,
         });
       }
     });
@@ -66,7 +66,7 @@ class HiringPreviewLayout extends Component {
       if (this.state.readyState === false) {
         this.setState({
           ...this.state,
-          readyState: true
+          readyState: true,
         });
       }
     }, 15000);

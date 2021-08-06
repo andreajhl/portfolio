@@ -1,0 +1,52 @@
+.GiftPreviewMain {
+  background-size: 100%;
+  min-height: calc(100vh - 58px);
+
+  @media only screen and (max-width: 767px) {
+    background-size: 300%;
+  }
+}
+
+.Container {
+  padding: 42px 0 !important;
+  display: flex;
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+    padding: 26px 0 !important;
+    width: 90%;
+  }
+}
+
+.LeftSide {
+  width: 357px;
+}
+
+.GiftCard {
+  height: 100%;
+}
+
+.ReviewSectionWrapper {
+  display: none;
+  margin-top: 20px;
+  @media only screen and (max-width: 767px) {
+    display: block;
+  }
+}
+
+.RightSide {
+  align-self: flex-start;
+  flex: 1;
+  margin-left: 35px;
+  @media only screen and (max-width: 767px) {
+    margin-bottom: 28px;
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .LeftSide,
+  .RightSide {
+    width: 100%;
+  }
+}

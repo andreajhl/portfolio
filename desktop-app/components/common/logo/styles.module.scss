@@ -1,0 +1,19 @@
+.FamososLogo {
+  svg {
+    top: -2.5px; // to align the svg with the parent box. Currently the svg is placed lower in the Y axis.
+    position: relative;
+  }
+
+  &Text,
+  &Bubble {
+    transition: 0.15s ease all;
+    color: var(--light);
+    fill: currentColor;
+  }
+
+  &:hover {
+    .FamososLogoBubble {
+      color: var(--primary);
+    }
+  }
+}

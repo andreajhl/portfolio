@@ -5,16 +5,16 @@ import Maybe from "../../common/helpers/maybe";
 import { useIntl, defineMessage } from "react-intl";
 
 const messageAltImage = defineMessage({
-  defaultMessage: "Imagen de perfil"
+  defaultMessage: "Imagen de perfil",
 });
 
-const ProfilePicture = ({
+function ProfilePicture({
   avatar,
   roundedCircle,
   width,
   height = "auto",
-  imageStyles
-}) => {
+  imageStyles,
+}) {
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
   const imageRef = useRef();
   const intl = useIntl();
@@ -44,25 +44,25 @@ const ProfilePicture = ({
           roundedCircle={roundedCircle}
           width={width}
           height={height}
-          src="assets/img/avatar-blank.png"
+          src="/assets/img/avatar-blank.png"
           style={imageStyles}
         />
       </Maybe>
     </figure>
   );
-};
+}
 
 ProfilePicture.propTypes = {
   avatar: PropTypes.string.isRequired,
   roundedCircle: PropTypes.bool,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  imageStyles: PropTypes.object
+  imageStyles: PropTypes.object,
 };
 
 ProfilePicture.defaultProps = {
   roundedCircle: true,
   width: "100px",
-  imageStyles: null
+  imageStyles: null,
 };
 
 export { ProfilePicture };

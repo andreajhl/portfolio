@@ -17,6 +17,11 @@
   }
 }
 
+.SignUpBoxAuthTermsAdvertise {
+  max-width: 303px;
+  margin: 16px auto 0;
+}
+
 .AuthProviderButton:nth-child(2) {
   margin-top: 16px;
   margin-bottom: 25px;
@@ -40,4 +45,13 @@
   @media only screen and (max-width: 374px) {
     padding: 0 5%;
   }
+}
+
+.SignUpBoxCardTitle.SignUpBoxCardTitle {
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 2rem;
 }

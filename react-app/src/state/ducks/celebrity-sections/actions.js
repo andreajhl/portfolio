@@ -3,7 +3,7 @@ import apiService from "../../utils/apiService";
 import {
   handleApiErrors,
   handleApiResponseFailure,
-  handleApiResponseSuccess
+  handleApiResponseSuccess,
 } from "../../utils";
 import * as API_PATHS from "./paths";
 import debug from "react-app/src/utils/debug";
@@ -20,7 +20,7 @@ export const fetchCelebritySections = (
     method: "GET",
     action: TYPE,
     path: FINAL_PATH,
-    params
+    params,
   })
     .then((res) => {
       if ("status" in res.data && res.data.status === "ERROR") {
@@ -31,7 +31,7 @@ export const fetchCelebritySections = (
           ? res.data.results.map((celebritySection) =>
               swapCelebritiesPositions({
                 celebritySectionObject: celebritySection,
-                rotateAmount: Number(rotationForCelebritiesSections) / 100
+                rotateAmount: Number(rotationForCelebritiesSections) / 100,
               })
             )
           : res.data.results;
@@ -39,8 +39,8 @@ export const fetchCelebritySections = (
           ...res,
           data: {
             ...res.data,
-            results
-          }
+            results,
+          },
         });
         dispatch({
           type: `${TYPE}_COMPLETED`,
@@ -48,9 +48,9 @@ export const fetchCelebritySections = (
             ...res,
             data: {
               ...res.data,
-              results
-            }
-          }
+              results,
+            },
+          },
         });
       }
     })
@@ -63,5 +63,8 @@ export const fetchCelebritySections = (
 
 export const setPlayingVideo = (videoKey) => ({
   type: TYPES.PLAY_VIDEO,
-  payload: videoKey
+  payload: videoKey,
+});
+export const toggleAudio = () => ({
+  type: TYPES.TOGGLE_AUDIO,
 });

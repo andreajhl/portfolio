@@ -1,0 +1,64 @@
+.UpdateUserEmailPopup {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  min-width: 512px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.HeaderPopupWrapper {
+  display: flex;
+  flex-flow: column;
+  //   justify-content: center;
+  align-items: center;
+  margin-top: 3.5rem;
+  margin-bottom: 2.0625rem;
+  img {
+    margin-bottom: 1.5625rem;
+  }
+  p {
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 27px;
+    color: black;
+  }
+}
+
+.InputFields {
+  width: 100%;
+  padding-left: 3.3125rem;
+  padding-right: 3.3125rem;
+  > :last-child {
+    margin-top: 1.6875rem;
+  }
+}
+
+.CTAButton {
+  width: 100%;
+  margin-bottom: 3.375rem;
+}
+
+.SuccessMessage {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin-top: 5.5625rem;
+  margin-bottom: 6rem;
+  align-items: center;
+
+  svg {
+    margin-bottom: 3rem;
+  }
+  span {
+    text-align: center;
+  }
+}
+
+.CloseButton {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}

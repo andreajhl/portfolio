@@ -1,0 +1,65 @@
+.StepsGrayBanner {
+  padding: 26px 0;
+}
+
+.StepsGrayBannerTitle {
+  font-size: 1rem !important;
+  margin-bottom: 32px;
+}
+
+.StepsGrayBannerStepsList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+  display: flex;
+}
+
+.StepsGrayBannerStepsList.medium .StepsGrayBannerIconContainer {
+  transform: scale(0.825);
+  position: relative;
+  left: -36px;
+  margin-bottom: -2px;
+}
+
+.StepsGrayBannerStepsRow > .StepsGrayBannerStepItem + .StepsGrayBannerStepItem {
+  margin-left: 38px;
+}
+
+.StepsGrayBannerStepsRow > .StepsGrayBannerStepItem:first-child p {
+  max-width: 280px;
+}
+
+.StepsGrayBannerStepItem p {
+  color: var(--gray-4);
+  font-size: 14px;
+  margin-top: 1em;
+  line-height: 19.12px;
+  margin-bottom: 0;
+}
+
+.StepsGrayBannerStepsRow .StepsGrayBannerStepItem p {
+  max-width: 392px;
+}
+
+.StepsGrayBannerIconContainer {
+  margin: 0;
+}
+
+.StepsGrayBannerStepsRow .StepsGrayBannerIconContainer {
+  height: 38px;
+  display: flex;
+}
+
+.StepsGrayBannerStepsRow .StepsGrayBannerIconContainer > * {
+  margin-top: auto;
+}
+
+.StepsGrayBannerStepsColumn {
+  flex-direction: column;
+}
+
+.StepsGrayBannerStepsColumn
+  > .StepsGrayBannerStepItem
+  + .StepsGrayBannerStepItem {
+  margin-top: 1.5rem;
+}

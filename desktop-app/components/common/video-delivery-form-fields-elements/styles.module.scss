@@ -1,0 +1,31 @@
+.InputFields {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  justify-content: center;
+}
+
+.InputField {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+  margin-bottom: 37px;
+}
+.ExtraLabel {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-right: 8px;
+}
+
+.InputFieldModifier {
+  width: 100%;
+  input,
+  input:active,
+  input:focus {
+    border: 0px solid;
+  }
+}

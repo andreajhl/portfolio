@@ -32,7 +32,7 @@ type NewsletterPopupContentBProps = {
 
 function NewsletterPopupContentB({
   className,
-  onCompleted
+  onCompleted,
 }: NewsletterPopupContentBProps) {
   return (
     <div className={classes(styles.NewsletterPopupContentB, className)}>

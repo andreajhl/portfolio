@@ -1,0 +1,32 @@
+.Label {
+  align-items: center;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.Radio {
+  /* Hide it */
+  display: none;
+}
+
+.FakeCircle {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 9999px;
+
+  /* Spacing */
+  margin-right: 8px;
+  padding: 4px;
+}
+
+.InnerCicle {
+  /* Rounded border */
+  border-radius: 9999px;
+  height: 16px;
+  width: 16px;
+
+  /* For selected radio */
+  background-color: #00449e;
+
+  /* For not selected radio */
+  background-color: transparent;
+}

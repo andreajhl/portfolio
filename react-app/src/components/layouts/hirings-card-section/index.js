@@ -4,7 +4,7 @@ import * as PATHS from "../../../routing/Paths";
 import { history } from "../../../routing/History";
 import {
   saveContractToPay,
-  updateContractIsPublic
+  updateContractIsPublic,
 } from "../../../state/ducks/contracts/actions";
 import { connect } from "react-redux";
 import { occasionsData } from "../../../constants/options";
@@ -12,13 +12,14 @@ import { Form } from "react-bootstrap";
 import { ReviewCreatorLayout } from "../review-creator";
 import { withRouter } from "next/router";
 import { FormattedMessage } from "react-intl";
+import { getClientHiringPreviewPath } from "constants/paths";
 
 const moment = require("moment");
 
 const validStatusToEditIsPublic = [10, 30, 40];
 
 const mapStateToProps = ({ contracts }) => ({
-  ...contracts.updateContractReducer
+  ...contracts.updateContractReducer,
 });
 
 const mapDispatchToProps = { saveContractToPay };
@@ -69,7 +70,7 @@ class HiringsCardSectionLayout extends Component {
                         onClick={() =>
                           this.props.saveContractToPay({
                             ...contract,
-                            celebrity: contract.celebrityData
+                            celebrity: contract.celebrityData,
                           })
                         }
                       >
@@ -196,7 +197,7 @@ const IsPublicSwitcher = ({ contract }) => {
       id: contract.id,
       reference: contract.reference,
       isPublic: newIsPublicValue,
-      celebrityId: contract.celebrityData.id
+      celebrityId: contract.celebrityData.id,
     }).then(() => setIsLoading(false));
   };
 
@@ -300,9 +301,7 @@ const ContractButton = ({ contract }) => {
 };
 
 const GoToContract = (contract_reference) => {
-  history._pushRoute(
-    PATHS.HIRING_PREVIEW.replace(":contract_reference", "") + contract_reference
-  );
+  history._pushRoute(getClientHiringPreviewPath(contract_reference));
 };
 
 const goToPay = (contract_reference) => {
@@ -326,7 +325,7 @@ const RenderExpirationMessage = (date) => {
 //default props
 HiringsCardSectionLayout.defaultProps = {
   contracts: [],
-  isLoading: true
+  isLoading: true,
 };
 
 const _HiringsCardSectionLayout = connect(

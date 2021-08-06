@@ -1,0 +1,60 @@
+.ResendSecurityCodeButton {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ResendSecurityCode {
+  margin-top: 20px;
+  margin-bottom: 0;
+  text-align: center;
+
+  @media only screen and (max-width: 374px) {
+    padding: 0 5%;
+  }
+}
+
+.ResendSecurityCodeButton {
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+  font-weight: bold;
+  color: #3d87f3;
+
+  &:hover {
+    color: #6970c6;
+  }
+}
+
+.Spinner,
+.Check {
+  margin-left: 0.5em;
+  opacity: 1 !important;
+}
+
+.Spinner {
+  color: inherit;
+  animation: rotate 1.5s infinite, appear 0.15s ease;
+}
+
+.Check {
+  color: inherit;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.ResendSecurityCodeError {
+  font-size: 12px;
+  justify-content: center;
+}

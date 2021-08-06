@@ -9,5 +9,5 @@ export const paymentStatus = {
   70: "Reembolso exitoso",
   80: "Pago expirado",
   90: "Pago autorizado",
-  100: "Pago autorizado"
+  100: "Pago autorizado",
 };

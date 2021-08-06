@@ -8,7 +8,7 @@ const config = {
   appId,
   authDomain: `${projectId}.firebaseapp.com`,
   databaseURL: `https://${projectId}.firebaseio.com/`,
-  storageBucket: `gs://${projectId}.appspot.com`
+  storageBucket: `gs://${projectId}.appspot.com`,
 };
 
 export default config;

@@ -1,0 +1,44 @@
+.BooleanRadiosInputs {
+  display: flex;
+  flex-direction: column;
+
+  .BooleanRadiosInputsLabel {
+    margin-bottom: 0.5em;
+  }
+}
+
+.BooleanRadiosInputsInline {
+  align-items: center;
+  flex-direction: row;
+
+  .BooleanRadiosInputsLabel {
+    margin-right: 1em;
+    margin-bottom: 0;
+  }
+}
+
+.BooleanRadiosInputsLabel {
+  cursor: pointer;
+  font-size: 12px;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.BooleanRadiosInputsLabel i {
+  border: 1px solid var(--gray-2);
+  color: white;
+  border-radius: 50%;
+  font-size: 9px;
+  margin-right: 1em;
+  width: 17px;
+  height: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.BooleanRadiosInputsLabelChecked {
+  background: black;
+  border-color: black !important;
+}

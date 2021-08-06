@@ -11,13 +11,13 @@ import { FormattedMessage, injectIntl, defineMessages } from "react-intl";
 const messages = defineMessages({
   placeholderFullNameInput: { defaultMessage: "Escribe tu nombre" },
   placeholderSubdomainInput: {
-    defaultMessage: "Escribe tu Subdominio Ej: /andresito"
+    defaultMessage: "Escribe tu pagina exclusiva Ej: /andresito",
   },
   placeholderEmailInput: { defaultMessage: "Escribe tu correo electrónico" },
   placeholderReferralInput: { defaultMessage: "Codigo de referido" },
   placeholderSocialNetworksInput: {
-    defaultMessage: "¿Como te encontramos? Ej: andresito"
-  }
+    defaultMessage: "¿Como te encontramos? Ej: andresito",
+  },
 });
 
 class CelebrityRequestForm extends Component {
@@ -34,15 +34,16 @@ class CelebrityRequestForm extends Component {
         email: "",
         socialNetworkName: "",
         socialNetworkUsername: "",
-        referral: new URLSearchParams(this.props.location.search).get("r") || ""
+        referral:
+          new URLSearchParams(this.props.location.search).get("r") || "",
       },
       errors: {
         fullNameError: false,
         subDomainError: false,
         emailError: false,
         cellphoneNumberError: false,
-        socialNetworkNameError: false
-      }
+        socialNetworkNameError: false,
+      },
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -62,8 +63,8 @@ class CelebrityRequestForm extends Component {
       data: {
         ...this.state.data,
         countryCellphoneCode: "+" + country.callingCodes[0],
-        countryAlpha3Code: country.alpha3Code
-      }
+        countryAlpha3Code: country.alpha3Code,
+      },
     });
   }
 
@@ -75,9 +76,9 @@ class CelebrityRequestForm extends Component {
       data: {
         ...state.data,
         countryCellphoneCode: "+" + dialCode,
-        cellphoneNumber
+        cellphoneNumber,
         // countryAlpha3Code: country.alpha3Code
-      }
+      },
     }));
   };
 
@@ -126,8 +127,8 @@ class CelebrityRequestForm extends Component {
         subDomainError,
         emailError,
         cellphoneNumberError,
-        socialNetworkNameError
-      }
+        socialNetworkNameError,
+      },
     });
     if (this.isAValidForm()) {
       this.props.saveCelebrityRequest(this.state.data);
@@ -138,7 +139,7 @@ class CelebrityRequestForm extends Component {
     return (
       <>
         <h4 className="font-weight-bold text-center mb-4">
-          <FormattedMessage defaultMessage="¡Aplica y Reserva tu Subdominio Ahora!" />
+          <FormattedMessage defaultMessage="Regístrate y reserva tu pagina exclusiva en Famosos.com" />
         </h4>
         <label className="">
           <FormattedMessage defaultMessage="Nombre" />
@@ -158,7 +159,7 @@ class CelebrityRequestForm extends Component {
           value={this.state.data.fullName}
         />
         <label className="">
-          <FormattedMessage defaultMessage="Subdominio" />
+          <FormattedMessage defaultMessage="Pagina exclusiva" />
           <small className="text-danger ml-1">*</small>
         </label>
         <div className="form-horizontal">
@@ -403,7 +404,7 @@ CelebrityRequestForm.propTypes = {};
 
 // Set defaultProps
 CelebrityRequestForm.defaultProps = {
-  signUp: false
+  signUp: false,
 };
 
 // mapStateToProps
@@ -415,12 +416,12 @@ const mapStateToProps = (state) => ({
   saveCelebrityRequestError:
     state.celebrityRequests.saveCelebrityRequestReducer.error_data.error,
   saveCelebrityRequestData:
-    state.celebrityRequests.saveCelebrityRequestReducer.data.data
+    state.celebrityRequests.saveCelebrityRequestReducer.data.data,
 });
 
 // mapStateToProps
 const mapDispatchToProps = {
-  saveCelebrityRequest: celebrityRequestOperations.saveRequest
+  saveCelebrityRequest: celebrityRequestOperations.saveRequest,
 };
 
 // Export Class

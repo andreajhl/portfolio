@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 import {
   removeSource,
-  retrieveUserCards
+  retrieveUserCards,
 } from "../../../state/ducks/payments/actions";
 import StripeCardForm from "../stripe-card-form";
 import StripeCustomerSources from "../stripe-customer-sources";
@@ -15,7 +15,7 @@ class StripeFlowHandler extends Component {
       showLoading: true,
       showCardForm: false,
       showCards: false,
-      availableSources: []
+      availableSources: [],
     };
   }
 
@@ -31,7 +31,7 @@ class StripeFlowHandler extends Component {
           showLoading: false,
           showCardForm: !res["availableSources"].length,
           showCards: !!res["availableSources"].length,
-          availableSources: res["availableSources"]
+          availableSources: res["availableSources"],
         });
       })
       .catch((err) => {
@@ -39,7 +39,7 @@ class StripeFlowHandler extends Component {
           ...this.state,
           showLoading: false,
           showCardForm: true,
-          showCards: false
+          showCards: false,
         });
       });
   };
@@ -94,7 +94,7 @@ class StripeFlowHandler extends Component {
       ...this.state,
       showCardForm: !availableSources.length,
       showCards: !!availableSources.length,
-      availableSources
+      availableSources,
     });
   };
 
@@ -122,7 +122,7 @@ class StripeFlowHandler extends Component {
     this.setState({
       ...this.state,
       showCardForm: !this.state.showCardForm,
-      showCards: !this.state.showCards
+      showCards: !this.state.showCards,
     });
   };
 
@@ -141,6 +141,6 @@ class StripeFlowHandler extends Component {
 // defaultProps
 StripeFlowHandler.defaultProps = {
   contractReference: "",
-  contractPrice: 0
+  contractPrice: 0,
 };
 export default StripeFlowHandler;

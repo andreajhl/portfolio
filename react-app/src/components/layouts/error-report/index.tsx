@@ -16,7 +16,7 @@ type ErrorReportProps = {
 function ErrorReport({
   errorTitle,
   errorDescription,
-  errorPath
+  errorPath,
 }: ErrorReportProps) {
   return (
     <PageContainer applyFetchCelebrities={false} showFooter>
@@ -32,7 +32,12 @@ function ErrorReport({
 
             {errorPath ? (
               <div className={styles.ErrorPathContainer}>
-                <span> Ruta : {errorPath}</span>
+                <span>
+                  <FormattedMessage
+                    defaultMessage="Ruta: {errorPath}"
+                    values={{ errorPath }}
+                  />
+                </span>
               </div>
             ) : null}
             {errorDescription ? (
@@ -56,7 +61,7 @@ function ErrorReport({
             <FormattedMessage
               defaultMessage="Quizás pueda <br></br> interesarte"
               values={{
-                br: () => <br className="d-sm-none"></br>
+                br: () => <br className="d-sm-none"></br>,
               }}
             />
           </h3>

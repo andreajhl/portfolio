@@ -5,14 +5,14 @@ import PriceLayout from "../../price-layout";
 import { CopySpan } from "./styles";
 
 const mapStateToProps = ({ payments }) => ({
-  currencyExchangeData: payments.currencyExchangeReducer.data
+  currencyExchangeData: payments.currencyExchangeReducer.data,
 });
 
 const ConvertedPriceCopy = ({
   currencyExchangeData,
   currency = "USD",
   price,
-  showPrefix = false
+  showPrefix = false,
 }) => (
   <Maybe it={currencyExchangeData.to !== currency}>
     <CopySpan>

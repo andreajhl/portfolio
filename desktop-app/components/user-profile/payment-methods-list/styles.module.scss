@@ -1,0 +1,52 @@
+.NoResultsMessage {
+  font-size: 14px;
+  color: var(--gray-4, #5c5c5c);
+}
+
+.PaymentMethodsList {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.PaymentMethodItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.PaymentMethodItem + .PaymentMethodItem + .PaymentMethodItem {
+  margin-top: 1rem;
+}
+
+.PaymentMethodBrand {
+  padding: 5px;
+  border: 1px solid var(--gray-2, #bebebe);
+  border-radius: 5px;
+  margin-right: 22px;
+}
+
+.PaymentMethodNumber {
+  font-weight: bold;
+  margin-right: 22px;
+}
+
+.PaymentMethodItem i {
+  font-size: 14px;
+  color: var(--gray-4, #5c5c5c);
+}
+
+.ItemSkeleton {
+  > span {
+    line-height: 0.1;
+  }
+}
+
+.ItemSkeletonBrand {
+  margin-right: 22px;
+}
+
+.RemoveButtonSkeleton {
+  margin: 0 0.75em 0 20px;
+}

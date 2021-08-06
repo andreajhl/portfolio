@@ -1,0 +1,44 @@
+.StickyCTAContainer {
+  display: flex;
+  align-items: center;
+  min-height: 76px;
+  padding: 0.75rem 0 !important;
+}
+
+.StickyCTAAvatar {
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  margin-right: 1.3125rem;
+}
+
+.StickyCTAFullName {
+  margin-bottom: 0;
+  display: inline;
+  margin-right: auto;
+  max-width: 150px;
+}
+
+.StickyCTAInfo {
+  margin-right: auto;
+  > * {
+    font-size: 12px;
+  }
+}
+
+.StickyCTAPrice {
+  flex-shrink: 0;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.StickyCTAButton {
+  font-weight: bold;
+  min-height: 2.875em;
+  width: 18.125em;
+}
+
+.CelebrityFullName {
+  font-weight: bold;
+}

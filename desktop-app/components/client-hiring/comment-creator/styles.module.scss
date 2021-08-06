@@ -1,0 +1,48 @@
+.CommentBoxWrapper {
+  margin: 1rem 0.5625rem 0.625rem 0.5625rem;
+}
+.CommentBox {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgba(249, 249, 255, 1);
+  padding: 12px 0px 10px 8px;
+  border: 1px solid #dedede;
+}
+
+.SubmitComment {
+  padding: 0 !important;
+  margin: 0 0 0 auto !important;
+  color: rgba(61, 135, 243, 0.5);
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.CommentTextArea {
+  margin-left: 18px;
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  resize: none;
+  height: fit-content;
+}
+
+.UserImgProfile {
+  border-radius: 50%;
+}
+
+.CommentSucceeded {
+  margin: 0 auto;
+}
+.FormError {
+  height: 15px;
+  margin-top: 4px;
+  visibility: hidden;
+}
+
+.ErrorIsVisible {
+  visibility: visible;
+}

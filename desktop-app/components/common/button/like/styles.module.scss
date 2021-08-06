@@ -1,0 +1,24 @@
+.LikeButton {
+  transition: all 0.15s ease;
+  color: var(--gray-2);
+  fill: #0003;
+  cursor: pointer;
+
+  path {
+    color: inherit;
+    stroke: currentColor;
+  }
+
+  &:hover {
+    color: white;
+  }
+
+  &IsFavorite {
+    color: var(--primary);
+    fill: currentColor;
+    &:hover {
+      color: var(--primary);
+      opacity: 0.7;
+    }
+  }
+}

@@ -15,7 +15,7 @@ async function generateSecurityCode(
     // Send code to famosos auth and save the JWT Token in Cookies
     await axios
       .post(`${endpoint}/${version}/famosos-com/generate-security-code`, {
-        email: req.body["email"]
+        email: req.body["email"],
       })
       .then((response) => {
         const status = response.data.status;
@@ -25,12 +25,12 @@ async function generateSecurityCode(
           return res.status(200).json({
             status: "OK",
             error: null,
-            data: responseData
+            data: responseData,
           });
         } else {
           res.json({
             status: "error",
-            error: response.data.error
+            error: response.data.error,
           });
         }
       })
@@ -38,12 +38,12 @@ async function generateSecurityCode(
         if (errorResponse.response) {
           return res.status(errorResponse.response.status || 400).json({
             status: "error",
-            error: errorResponse.response.data.error
+            error: errorResponse.response.data.error,
           });
         } else {
           return res.status(400).json({
             status: "error",
-            error: "Unexpected Error"
+            error: "Unexpected Error",
           });
         }
       });

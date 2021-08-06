@@ -9,7 +9,7 @@ export const VideoLayout = ({
   setVideoIsMuted,
   media,
   setSlideshowIsPlaying,
-  classNameSlideLayoutVideo
+  classNameSlideLayoutVideo,
 }) => {
   return (
     <VideoSlideLayout
@@ -42,7 +42,7 @@ const CarouselItemsLayout = ({
   urls,
   setSlideshowIsPlaying,
   videoIsMuted,
-  setVideoIsMuted
+  setVideoIsMuted,
 }) => {
   return (
     <Carousel
@@ -88,7 +88,7 @@ const MediaItemLayout = ({
   urls,
   videoIsMuted,
   setVideoIsMuted,
-  setSlideshowIsPlaying
+  setSlideshowIsPlaying,
 }) => {
   return urls.map((media, index) => {
     return media.type === "video" ? (
@@ -152,7 +152,7 @@ const CelebritySharedPost = (props) => {
 };
 
 CelebritySharedPost.propTypes = {
-  urls: propTypes.array
+  urls: propTypes.array,
 };
 
 export default CelebritySharedPost;

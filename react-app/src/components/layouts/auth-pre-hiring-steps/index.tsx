@@ -12,17 +12,17 @@ type AuthPreHiringStepsProps = {
 
 const defaultValuesMessages = defineMessages({
   firstStep: {
-    defaultMessage: "Ingresar"
+    defaultMessage: "Ingresar",
   },
   celebrityFullName: {
-    defaultMessage: "Famoso"
-  }
+    defaultMessage: "Famoso",
+  },
 });
 
 function AuthPreHiringSteps({
   className = "",
   firstStep = defaultValuesMessages.firstStep,
-  celebrityFullName = defaultValuesMessages.celebrityFullName
+  celebrityFullName = defaultValuesMessages.celebrityFullName,
 }: AuthPreHiringStepsProps) {
   const getValidatedFormattedMessage = useValidatedFormattedMessage();
   return (
@@ -36,7 +36,9 @@ function AuthPreHiringSteps({
           <FormattedMessage
             defaultMessage="Comprar video personalizado de {celebrityFullName}"
             values={{
-              celebrityFullName: getValidatedFormattedMessage(celebrityFullName)
+              celebrityFullName: getValidatedFormattedMessage(
+                celebrityFullName
+              ),
             }}
           />
         </span>

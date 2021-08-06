@@ -4,11 +4,10 @@ import { Session } from "../../../state/utils/session";
 
 const TWENTY_SECONDS_IN_MILLISECONDS = 20000;
 const AuthSuccess = () => {
-
   useEffect(() => {
     setTimeout(() => {
       const session = new Session();
-      session.initSession()
+      session.initSession();
     }, 500);
   });
 

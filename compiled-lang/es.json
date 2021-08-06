@@ -5,6 +5,12 @@
       "value": "Confirmar"
     }
   ],
+  "+D3fCH": [
+    {
+      "type": 0,
+      "value": "Máximo"
+    }
+  ],
   "+OHALP": [
     {
       "type": 0,
@@ -17,16 +23,52 @@
       "value": "Panama"
     }
   ],
+  "+itg8H": [
+    {
+      "type": 0,
+      "value": "ID DE SEGUIMIENTO: "
+    },
+    {
+      "type": 1,
+      "value": "contractReference"
+    }
+  ],
   "+jX0dw": [
     {
       "type": 0,
       "value": "*Puedes editar las instrucciones de tu video mientras está pendiente de grabación."
     }
   ],
+  "+jZVNI": [
+    {
+      "type": 0,
+      "value": "Precio Original"
+    }
+  ],
+  "+w3WoX": [
+    {
+      "type": 0,
+      "value": "Selecciona un Método de Pago."
+    }
+  ],
   "/+/C1u": [
     {
       "type": 0,
       "value": "Ordenar por"
+    }
+  ],
+  "//1Dhl": [
+    {
+      "type": 0,
+      "value": "¡Personaliza la entrega del video para "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": "!"
     }
   ],
   "/IN8Tc": [
@@ -65,6 +107,30 @@
       "value": "CI"
     }
   ],
+  "/aRhJ+": [
+    {
+      "type": 0,
+      "value": "Te he hecho un regalo muy especial"
+    }
+  ],
+  "/bm6pt": [
+    {
+      "type": 0,
+      "value": "Tu pago ha sido rechazado."
+    }
+  ],
+  "/cMtcP": [
+    {
+      "type": 0,
+      "value": "Suscribirme"
+    }
+  ],
+  "/dEeuP": [
+    {
+      "type": 0,
+      "value": "Ingresa una fecha valida. Ejemplo: 2020-06-25"
+    }
+  ],
   "/eYgis": [
     {
       "type": 0,
@@ -99,6 +165,22 @@
       "value": "celebrityFullName"
     }
   ],
+  "/npk0a": [
+    {
+      "type": 0,
+      "value": "Lo haré más tarde"
+    }
+  ],
+  "/tXHHA": [
+    {
+      "type": 0,
+      "value": "CODE "
+    },
+    {
+      "type": 1,
+      "value": "statusCode"
+    }
+  ],
   "01UxAr": [
     {
       "type": 0,
@@ -121,6 +203,12 @@
       "value": "Famoso no encontrado"
     }
   ],
+  "0HwljF": [
+    {
+      "type": 0,
+      "value": "Sí"
+    }
+  ],
   "0I2iWG": [
     {
       "type": 0,
@@ -137,6 +225,12 @@
     {
       "type": 0,
       "value": "Aplicar como Famoso"
+    }
+  ],
+  "0PI6mY": [
+    {
+      "type": 0,
+      "value": "Elige una fecha y hora para que Famosos envíe tu video, puedes agregar un texto adicional."
     }
   ],
   "0UHyeJ": [
@@ -163,6 +257,12 @@
       "value": "No me gusta"
     }
   ],
+  "1IMb7T": [
+    {
+      "type": 0,
+      "value": "Quitar fondo"
+    }
+  ],
   "1JuMPJ": [
     {
       "type": 0,
@@ -173,6 +273,12 @@
     {
       "type": 0,
       "value": "Si deseas hacer parte de nuestro equipo envíanos una carta de motivación de por qué quieres unirte a nuestro equipo de Rock stars a jobs@famosos.com"
+    }
+  ],
+  "1P7TX2": [
+    {
+      "type": 0,
+      "value": "Agregar fondo"
     }
   ],
   "1U8RoX": [
@@ -193,10 +299,28 @@
       "value": "¡Felicidades!"
     }
   ],
+  "1fQZLR": [
+    {
+      "type": 0,
+      "value": "Califica tu video"
+    }
+  ],
+  "1h2fIf": [
+    {
+      "type": 0,
+      "value": "Esta es una previsualización donde las funcionalidades están deshabilitadas"
+    }
+  ],
   "1iUuaq": [
     {
       "type": 0,
       "value": "¡Felicidades! Tu pago ha sido aprobado"
+    }
+  ],
+  "1mCucj": [
+    {
+      "type": 0,
+      "value": "Enlace copiado"
     }
   ],
   "21fIxh": [
@@ -243,10 +367,42 @@
       "value": "De:"
     }
   ],
+  "2Oaz9p": [
+    {
+      "type": 0,
+      "value": "Ver detalles del video"
+    }
+  ],
   "2U8U6B": [
     {
       "type": 0,
       "value": "Famosos.com - Tendencias"
+    }
+  ],
+  "2UVQgP": [
+    {
+      "type": 0,
+      "value": "Te notificaremos a "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "email_client"
+        }
+      ],
+      "type": 8,
+      "value": "emailSpan"
+    },
+    {
+      "type": 0,
+      "value": " cuando tu pago haya sido aprobado."
+    }
+  ],
+  "2W3bDC": [
+    {
+      "type": 0,
+      "value": "Escribe algo aquí..."
     }
   ],
   "2Wnegw": [
@@ -261,10 +417,22 @@
       "value": "Correo del titular de la tarjeta"
     }
   ],
+  "2fEWqk": [
+    {
+      "type": 0,
+      "value": "Si por alguna razón tu video no pudo ser grabado, tu dinero estará nuevamente disponible en un plazo de 1 a 10 hábiles aproximadamente."
+    }
+  ],
   "2iUQj7": [
     {
       "type": 0,
       "value": "Aún no has realizado una contratación"
+    }
+  ],
+  "2jPDZm": [
+    {
+      "type": 0,
+      "value": "Si por alguna razón tu video no pudo ser grabado, tu dinero estará disponible nuevamente en un plazo máximo de 21 días hábiles aproximadamente dependiendo de tu banco."
     }
   ],
   "2rdLv9": [
@@ -273,16 +441,64 @@
       "value": "Tiktok"
     }
   ],
+  "2vW0rZ": [
+    {
+      "type": 0,
+      "value": "Previsualización"
+    }
+  ],
   "3Dy+Ix": [
     {
       "type": 0,
       "value": "Buscar famosos"
     }
   ],
+  "3Eep57": [
+    {
+      "type": 0,
+      "value": "Correo electrónico del destinatario "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "(Puedes agregar varios correos separándolos con una coma)"
+        }
+      ],
+      "type": 8,
+      "value": "multipleRecipientsSpan"
+    }
+  ],
+  "3FJ3+/": [
+    {
+      "type": 0,
+      "value": "Fecha de envío"
+    }
+  ],
   "3GqTly": [
     {
       "type": 0,
       "value": "Escribe aquí el correo"
+    }
+  ],
+  "3H3r3i": [
+    {
+      "type": 0,
+      "value": "Debes introducir un máximo de "
+    },
+    {
+      "type": 1,
+      "value": "maxLength"
+    },
+    {
+      "type": 0,
+      "value": " caracteres"
+    }
+  ],
+  "3Iqk85": [
+    {
+      "type": 0,
+      "value": "Whatsapp de notificación (opcional)"
     }
   ],
   "3IrNpH": [
@@ -319,6 +535,12 @@
       "value": "span"
     }
   ],
+  "3SGqg6": [
+    {
+      "type": 0,
+      "value": "Debes introducir un código de validación"
+    }
+  ],
   "3Szr5X": [
     {
       "type": 0,
@@ -329,6 +551,26 @@
     {
       "type": 0,
       "value": "Ukraine"
+    }
+  ],
+  "3g8nsJ": [
+    {
+      "type": 0,
+      "value": "¡Disfruta tu video "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": "!"
+    }
+  ],
+  "3m5UDg": [
+    {
+      "type": 0,
+      "value": "Previsualización de cortado"
     }
   ],
   "3mq/Uo": [
@@ -343,6 +585,12 @@
       "value": "Verificación de autenticidad de la tarjeta"
     }
   ],
+  "3tI8TJ": [
+    {
+      "type": 0,
+      "value": "*Puedes editar las instrucciones de tu video y la información de entrega mientras tu video esté pendiente de grabación."
+    }
+  ],
   "3tygVI": [
     {
       "type": 1,
@@ -351,6 +599,12 @@
     {
       "type": 0,
       "value": "/400 caracteres permitidos"
+    }
+  ],
+  "4/miEe": [
+    {
+      "type": 0,
+      "value": "Ver mas"
     }
   ],
   "42Gn99": [
@@ -377,6 +631,12 @@
       "value": "Te notificaremos cuando tu video ya esté grabado y disponible para verlo y compartilo"
     }
   ],
+  "4OFKuk": [
+    {
+      "type": 0,
+      "value": "músicos"
+    }
+  ],
   "4YpaCX": [
     {
       "type": 0,
@@ -387,6 +647,16 @@
     {
       "type": 0,
       "value": "Aplicar"
+    }
+  ],
+  "4dMZxB": [
+    {
+      "type": 0,
+      "value": "Para: "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
     }
   ],
   "4fXI87": [
@@ -443,6 +713,12 @@
       "value": "span"
     }
   ],
+  "4ujRn4": [
+    {
+      "type": 0,
+      "value": "Procesando"
+    }
+  ],
   "4xmXcX": [
     {
       "type": 0,
@@ -455,10 +731,22 @@
       "value": "Peru"
     }
   ],
+  "51BXv1": [
+    {
+      "type": 0,
+      "value": "Elige el método de pago que prefieras y completa el proceso. Los pagos son 100% seguros. ¡En 7 días o menos recibirás tu video!"
+    }
+  ],
   "52kdGd": [
     {
       "type": 0,
       "value": "Puerto Rico"
+    }
+  ],
+  "5CwX6l": [
+    {
+      "type": 0,
+      "value": "Cuéntanos algo sobre tu experiencia"
     }
   ],
   "5EACDj": [
@@ -487,6 +775,24 @@
     {
       "type": 1,
       "value": "search"
+    }
+  ],
+  "5Y1WX+": [
+    {
+      "type": 0,
+      "value": "influencers"
+    }
+  ],
+  "5Z+zv8": [
+    {
+      "type": 0,
+      "value": "Fecha de inicio de la solicitud:"
+    }
+  ],
+  "5anEzm": [
+    {
+      "type": 0,
+      "value": "Pendientes"
     }
   ],
   "5fTLVa": [
@@ -531,10 +837,30 @@
       "value": "De :"
     }
   ],
+  "6DrtJp": [
+    {
+      "type": 0,
+      "value": "Haz clic en el siguiente botón para hacer el pago utilizando tu cuenta de paypal."
+    }
+  ],
   "6O+PLI": [
     {
       "type": 0,
       "value": "Inicio"
+    }
+  ],
+  "6XxgC5": [
+    {
+      "type": 0,
+      "value": "Ver mas resultados para \""
+    },
+    {
+      "type": 1,
+      "value": "currentQuery"
+    },
+    {
+      "type": 0,
+      "value": "\""
     }
   ],
   "6aQTMU": [
@@ -543,10 +869,22 @@
       "value": "Por favor seleccione una opción"
     }
   ],
+  "6fC5va": [
+    {
+      "type": 0,
+      "value": "¡Disfruta tu video!"
+    }
+  ],
   "6i3tAy": [
     {
       "type": 0,
       "value": "El cobro que se hará en dólares es:"
+    }
+  ],
+  "6q/+DN": [
+    {
+      "type": 0,
+      "value": "Agrega un comentario"
     }
   ],
   "6qOZYA": [
@@ -581,10 +919,34 @@
       "value": " para más información."
     }
   ],
+  "78A2DN": [
+    {
+      "type": 0,
+      "value": "Correo Electrónico"
+    }
+  ],
+  "7OWxfz": [
+    {
+      "type": 0,
+      "value": "Quiero unirme"
+    }
+  ],
   "7Vvfe3": [
     {
       "type": 0,
       "value": "Campo requerido"
+    }
+  ],
+  "7aMcUZ": [
+    {
+      "type": 0,
+      "value": "Mayor a menor precio"
+    }
+  ],
+  "7d2BcH": [
+    {
+      "type": 0,
+      "value": "Agrega una foto"
     }
   ],
   "7qAY7x": [
@@ -593,10 +955,44 @@
       "value": "Tu pago esta pendiente de aprobación."
     }
   ],
+  "7w7MSk": [
+    {
+      "type": 0,
+      "value": "Hemos enviado tu solicitud a "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": ", tu video será grabado en un plazo de "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "1 a 7 días"
+        }
+      ],
+      "type": 8,
+      "value": "textBold"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
   "8+5qCg": [
     {
       "type": 0,
       "value": "correo@dominio.com"
+    }
+  ],
+  "85GhLR": [
+    {
+      "type": 0,
+      "value": "Copiar enlace"
     }
   ],
   "8F0yts": [
@@ -635,6 +1031,12 @@
     {
       "type": 0,
       "value": "?"
+    }
+  ],
+  "8gNONp": [
+    {
+      "type": 0,
+      "value": "Ingresa una lista de correos electrónicos válidos"
     }
   ],
   "8mH/y7": [
@@ -693,6 +1095,18 @@
       "value": " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
     }
   ],
+  "9UCdEt": [
+    {
+      "type": 0,
+      "value": "Resultados para:"
+    }
+  ],
+  "9aKju1": [
+    {
+      "type": 0,
+      "value": "Categorías"
+    }
+  ],
   "9etNPX": [
     {
       "type": 1,
@@ -703,16 +1117,72 @@
       "value": " Estrellas"
     }
   ],
+  "9fNciT": [
+    {
+      "type": 0,
+      "value": "Para mi negocio"
+    }
+  ],
+  "9hu98P": [
+    {
+      "type": 0,
+      "value": "Este video especial para ti"
+    }
+  ],
   "9mcAHp": [
     {
       "type": 0,
       "value": "CUPÓN AGREGADO"
     }
   ],
+  "9nVpp5": [
+    {
+      "type": 0,
+      "value": "Comprar video personalizado"
+    }
+  ],
+  "9tGcKs": [
+    {
+      "type": 0,
+      "value": "FECHA DE PAGO: "
+    },
+    {
+      "type": 1,
+      "value": "formattedPaymentDate"
+    }
+  ],
+  "9vRrHM": [
+    {
+      "type": 0,
+      "value": "ID de seguimiento:"
+    }
+  ],
+  "A4bSA+": [
+    {
+      "type": 0,
+      "value": "Más antiguos"
+    }
+  ],
   "A88cVx": [
     {
       "type": 0,
       "value": "Ruta:"
+    }
+  ],
+  "AC8fsr": [
+    {
+      "type": 0,
+      "value": "Descargar APP desde app Gallery"
+    }
+  ],
+  "AFSmrE": [
+    {
+      "type": 1,
+      "value": "deliveryFrom"
+    },
+    {
+      "type": 0,
+      "value": " te ha enviado un regalo muy especial"
     }
   ],
   "AGCHbI": [
@@ -725,6 +1195,24 @@
     {
       "type": 0,
       "value": "DNI o CUIT"
+    }
+  ],
+  "AHqqkc": [
+    {
+      "type": 0,
+      "value": "Compartir por Facebook"
+    }
+  ],
+  "AIP+EA": [
+    {
+      "type": 0,
+      "value": "Video Favoritos"
+    }
+  ],
+  "AObt3/": [
+    {
+      "type": 0,
+      "value": "Agregado"
     }
   ],
   "ARhEHP": [
@@ -755,6 +1243,16 @@
     {
       "type": 0,
       "value": " para grabar tu video a partir de hoy."
+    }
+  ],
+  "AW2wD8": [
+    {
+      "type": 0,
+      "value": "Video personalizado de "
+    },
+    {
+      "type": 1,
+      "value": "contractData"
     }
   ],
   "AWmP/v": [
@@ -797,16 +1295,40 @@
       "value": "Entrega Flash"
     }
   ],
+  "ApSmeB": [
+    {
+      "type": 0,
+      "value": "¿No recibiste un código?"
+    }
+  ],
+  "Ar6F4V": [
+    {
+      "type": 0,
+      "value": "Mínimo"
+    }
+  ],
   "AxR3rx": [
     {
       "type": 0,
       "value": "¿Dónde encuentro mas información sobre sus políticas?"
     }
   ],
-  "BEkIWA": [
+  "B0eU/X": [
     {
       "type": 0,
-      "value": "Escribe tu Subdominio Ej: /andresito"
+      "value": "Instrucciones"
+    }
+  ],
+  "B476MI": [
+    {
+      "type": 0,
+      "value": "Agregar"
+    }
+  ],
+  "BHSyD0": [
+    {
+      "type": 0,
+      "value": "Cambiar contraseña"
     }
   ],
   "BI4zr5": [
@@ -829,6 +1351,24 @@
       "value": " en tu primera compra"
     }
   ],
+  "BUlyqM": [
+    {
+      "type": 0,
+      "value": "Todos los derechos reservados"
+    }
+  ],
+  "BXFGgd": [
+    {
+      "type": 0,
+      "value": "Todo saldrá bien, la vida es sabia."
+    }
+  ],
+  "BdY9qW": [
+    {
+      "type": 0,
+      "value": "Pagina exclusiva"
+    }
+  ],
   "BiLnNi": [
     {
       "type": 0,
@@ -839,6 +1379,12 @@
     {
       "type": 0,
       "value": "CUPÓN NO VALIDO:"
+    }
+  ],
+  "BpkuDb": [
+    {
+      "type": 0,
+      "value": "Ver comprobante de pago"
     }
   ],
   "BqJL4O": [
@@ -877,6 +1423,12 @@
       "value": "Volver a intentar"
     }
   ],
+  "Ce/K16": [
+    {
+      "type": 0,
+      "value": "Por favor ingrese todos los datos"
+    }
+  ],
   "CfGC5M": [
     {
       "type": 0,
@@ -889,10 +1441,32 @@
       "value": "Fecha de nacimiento"
     }
   ],
+  "Cnbfa0": [
+    {
+      "type": 0,
+      "value": "Todo es posible si así lo crees. Sueña y vive en grande."
+    }
+  ],
+  "D3lmBE": [
+    {
+      "type": 0,
+      "value": "Ej: Pibe Valderrama, Netflix, Músicos, México..."
+    }
+  ],
   "DNBYPO": [
     {
       "type": 0,
       "value": "Datos de la tarjeta"
+    }
+  ],
+  "DQaxdT": [
+    {
+      "type": 0,
+      "value": "Lo sentimos "
+    },
+    {
+      "type": 1,
+      "value": "userName"
     }
   ],
   "DSSs0B": [
@@ -907,10 +1481,34 @@
       "value": "Transacción Reference:"
     }
   ],
+  "DTfzQX": [
+    {
+      "type": 0,
+      "value": "Pagina "
+    },
+    {
+      "type": 1,
+      "value": "currentPage"
+    },
+    {
+      "type": 0,
+      "value": " de "
+    },
+    {
+      "type": 1,
+      "value": "totalPages"
+    }
+  ],
   "DVO6hk": [
     {
       "type": 0,
       "value": "Ha ocurrido un error"
+    }
+  ],
+  "Daf8Xy": [
+    {
+      "type": 0,
+      "value": "Escribe tu pagina exclusiva Ej: /andresito"
     }
   ],
   "Diph5x": [
@@ -931,10 +1529,56 @@
       "value": "Correo eléctronico de notificación"
     }
   ],
+  "Dq6Mnq": [
+    {
+      "type": 0,
+      "value": "Hombre"
+    }
+  ],
+  "Ds81mh": [
+    {
+      "type": 0,
+      "value": "Serás redirigido a la página oficial de paypal para continuar con el pago"
+    }
+  ],
+  "Dyg4La": [
+    {
+      "type": 0,
+      "value": "Color de la tarjeta"
+    }
+  ],
+  "Dyo3QV": [
+    {
+      "type": 0,
+      "value": "Últimas calificaciones"
+    }
+  ],
   "Dzm3HT": [
     {
       "type": 0,
       "value": "Categoria"
+    }
+  ],
+  "E101Yn": [
+    {
+      "type": 0,
+      "value": "Los "
+    },
+    {
+      "type": 1,
+      "value": "adjectives"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "type": 1,
+      "value": "lineBreak"
+    },
+    {
+      "type": 0,
+      "value": " a un clic de distancia."
     }
   ],
   "E5uLnQ": [
@@ -949,10 +1593,22 @@
       "value": "Las ultimas publicaciones de tus famosos favoritos."
     }
   ],
+  "EUdVSH": [
+    {
+      "type": 0,
+      "value": "Expirados"
+    }
+  ],
   "EbbVcC": [
     {
       "type": 0,
       "value": "Uruguay"
+    }
+  ],
+  "EdaGK7": [
+    {
+      "type": 0,
+      "value": "Filtrar contratos"
     }
   ],
   "EoWjUN": [
@@ -985,6 +1641,52 @@
       "value": "o regístrate con tu correo electrónico"
     }
   ],
+  "F3gUzx": [
+    {
+      "type": 0,
+      "value": "Compartir"
+    }
+  ],
+  "F6aLD7": [
+    {
+      "type": 0,
+      "value": "Youtuber"
+    }
+  ],
+  "FXFBTJ": [
+    {
+      "type": 0,
+      "value": "Accede a contenido exclusivo "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " de "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "FeMY25": [
+    {
+      "type": 0,
+      "value": "Seguir editando"
+    }
+  ],
+  "Fi7MJz": [
+    {
+      "type": 0,
+      "value": "Poster de vídeo de famoso"
+    }
+  ],
   "FnHHT0": [
     {
       "type": 0,
@@ -995,6 +1697,34 @@
     {
       "type": 0,
       "value": "Reembolso exitoso"
+    }
+  ],
+  "Fz8NGA": [
+    {
+      "type": 0,
+      "value": "Métodos de pago"
+    }
+  ],
+  "G+xfjz": [
+    {
+      "type": 0,
+      "value": "Mira este video de "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": " para "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": "."
     }
   ],
   "G/1O13": [
@@ -1021,6 +1751,38 @@
       "value": "."
     }
   ],
+  "G2AbKk": [
+    {
+      "type": 0,
+      "value": "En cualquier momento puedes consultar el estado de tus solicitudes "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "aquí."
+        }
+      ],
+      "type": 8,
+      "value": "myHiringsLink"
+    }
+  ],
+  "G7ND1f": [
+    {
+      "type": 0,
+      "value": "Me gustaría solicitar el comprobante de devolución de mi contrato con la referencia "
+    },
+    {
+      "type": 1,
+      "value": "contractReference"
+    }
+  ],
+  "GA+Csc": [
+    {
+      "type": 0,
+      "value": "Volver"
+    }
+  ],
   "GFgV31": [
     {
       "type": 0,
@@ -1039,6 +1801,18 @@
       "value": "Nos disculpamos, estamos arreglando el problema."
     }
   ],
+  "GTxSvb": [
+    {
+      "type": 0,
+      "value": "¡Felicidades! Tu pago ha sido aprobado."
+    }
+  ],
+  "GZ6Khv": [
+    {
+      "type": 0,
+      "value": "Chefs"
+    }
+  ],
   "GbabRf": [
     {
       "type": 0,
@@ -1051,10 +1825,42 @@
       "value": "Para mi"
     }
   ],
+  "Gh5aSY": [
+    {
+      "type": 0,
+      "value": "¡Vamos "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": "!"
+    }
+  ],
   "H4PL1G": [
     {
       "type": 0,
       "value": "Paypal"
+    }
+  ],
+  "H7jlFR": [
+    {
+      "type": 0,
+      "value": "Tiempo de entrega"
+    }
+  ],
+  "H8XmFS": [
+    {
+      "type": 0,
+      "value": "Mi carrito de compra"
+    }
+  ],
+  "H8rz3A": [
+    {
+      "type": 0,
+      "value": "Ver todas las calificaciones"
     }
   ],
   "HEGBTi": [
@@ -1093,16 +1899,44 @@
       "value": "Reintentar"
     }
   ],
+  "Hq/PMS": [
+    {
+      "type": 0,
+      "value": "Menos de 5 días"
+    }
+  ],
+  "I+sQLv": [
+    {
+      "type": 0,
+      "value": "¡La vida es más bonita con sonrisas y carcajadas!"
+    }
+  ],
   "IEazN6": [
     {
       "type": 0,
       "value": "Influencers"
     }
   ],
+  "IHdBTF": [
+    {
+      "type": 0,
+      "value": "Foto de "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    }
+  ],
   "IHp09g": [
     {
       "type": 0,
       "value": "¿Puedo bajar mi video?"
+    }
+  ],
+  "IRHU1q": [
+    {
+      "type": 0,
+      "value": "Se abrirá tu aplicación de Whatsapp para que lo envíes directamente."
     }
   ],
   "IdELJG": [
@@ -1123,6 +1957,12 @@
       "value": "Nicaragua"
     }
   ],
+  "Ijqmqc": [
+    {
+      "type": 0,
+      "value": "Enviar inmediatamente"
+    }
+  ],
   "Isy4qq": [
     {
       "type": 0,
@@ -1141,6 +1981,12 @@
       "value": "De:"
     }
   ],
+  "IxZXG8": [
+    {
+      "type": 0,
+      "value": "Conoce más acerca de esto."
+    }
+  ],
   "J518q6": [
     {
       "type": 0,
@@ -1151,6 +1997,12 @@
     {
       "type": 0,
       "value": "Fitness"
+    }
+  ],
+  "J9EWR8": [
+    {
+      "type": 0,
+      "value": "La entrega de tu video se programó correctamente"
     }
   ],
   "JILqD1": [
@@ -1171,10 +2023,36 @@
       "value": "Cupón"
     }
   ],
+  "JVnimT": [
+    {
+      "type": 0,
+      "value": "¿Qué significa esto?"
+    }
+  ],
+  "Ja4kqX": [
+    {
+      "type": 0,
+      "value": "Permitir que mi video sea público"
+    }
+  ],
   "JiRPeP": [
     {
       "type": 0,
       "value": "Actualmente no se puede modificar la solicitud pero muy pronto podrás hacerlo!"
+    }
+  ],
+  "JkASuT": [
+    {
+      "type": 0,
+      "value": "Tu correo electrónico se ha actualizado "
+    },
+    {
+      "type": 1,
+      "value": "breakLine"
+    },
+    {
+      "type": 0,
+      "value": " correctamente."
     }
   ],
   "Jv23M2": [
@@ -1183,16 +2061,62 @@
       "value": "Ingresar con Facebook"
     }
   ],
+  "JwRL0x": [
+    {
+      "type": 0,
+      "value": "Debes introducir un nombre"
+    }
+  ],
+  "K/Cn6p": [
+    {
+      "type": 0,
+      "value": "Fondo de pagina numero "
+    },
+    {
+      "type": 1,
+      "value": "pageNumber"
+    }
+  ],
+  "K5mSnP": [
+    {
+      "type": 0,
+      "value": "Programar envío"
+    }
+  ],
   "K8SMPu": [
     {
       "type": 0,
       "value": "Ocasión:"
     }
   ],
+  "KD1y9G": [
+    {
+      "type": 0,
+      "value": "Hemos hecho la orden de reembolso de tu dinero, ten en cuenta que por los procesos bancarios, este puede tardar un plazo máximo de 21 días hábiles en estar disponible nuevamente, dependiendo de tu banco."
+    }
+  ],
   "KFphJU": [
     {
       "type": 0,
       "value": "Pagar"
+    }
+  ],
+  "KKR2zp": [
+    {
+      "type": 0,
+      "value": "Precio"
+    }
+  ],
+  "KLR+zI": [
+    {
+      "type": 0,
+      "value": "Quizá también pueda interesarte"
+    }
+  ],
+  "KW1y+x": [
+    {
+      "type": 0,
+      "value": "Ingresa el código de seguridad que enviamos a tu celular"
     }
   ],
   "Kb3TOE": [
@@ -1205,6 +2129,12 @@
     {
       "type": 0,
       "value": "Por favor introduzca todos los datos"
+    }
+  ],
+  "Kd4nT5": [
+    {
+      "type": 0,
+      "value": "Debemos confirmar tu correo antes de continuar"
     }
   ],
   "KjMaxy": [
@@ -1235,6 +2165,12 @@
       "value": "Ver video"
     }
   ],
+  "KkuV5e": [
+    {
+      "type": 0,
+      "value": "Fecha de grabación:"
+    }
+  ],
   "L08n/M": [
     {
       "type": 0,
@@ -1251,10 +2187,46 @@
       "value": "signUpLink"
     }
   ],
+  "L3JUzt": [
+    {
+      "type": 0,
+      "value": "¿Quién envía el video?"
+    }
+  ],
   "L6k2XE": [
     {
       "type": 0,
       "value": "Vive experiencias únicas con cientos de famosos latinos."
+    }
+  ],
+  "LE7HXj": [
+    {
+      "type": 0,
+      "value": "Confirma tu correo electrónico"
+    }
+  ],
+  "LKGytJ": [
+    {
+      "type": 0,
+      "value": "Información de tu cuenta"
+    }
+  ],
+  "LN0I40": [
+    {
+      "type": 0,
+      "value": "Tarjeta de débito o crédito"
+    }
+  ],
+  "LPelkN": [
+    {
+      "type": 0,
+      "value": "Correo electrónico de notificación"
+    }
+  ],
+  "LTrz4Z": [
+    {
+      "type": 0,
+      "value": "¿Cual es el nombre del negocio?"
     }
   ],
   "Lbiy9R": [
@@ -1281,6 +2253,22 @@
       "value": "Famosos es una plataforma en dónde puedes comprar video-mensajes de tus famosos favoritos. Un video-mensaje puede ser un mensaje de cumpleaños, un mensaje de felicitaciones, una mensaje de recupérate pronto, una pregunta al famoso entre otras. Nuestra misión es entregar experiencias a través de video-mensajes."
     }
   ],
+  "M4SIuQ": [
+    {
+      "type": 0,
+      "value": "¿Quién recibirá el video?"
+    }
+  ],
+  "M5Che0": [
+    {
+      "type": 0,
+      "value": "Ruta: "
+    },
+    {
+      "type": 1,
+      "value": "errorPath"
+    }
+  ],
   "M6qLyM": [
     {
       "type": 0,
@@ -1291,6 +2279,18 @@
     {
       "type": 0,
       "value": "Dominican Republic (the)"
+    }
+  ],
+  "MJ2jZQ": [
+    {
+      "type": 0,
+      "value": "Total"
+    }
+  ],
+  "MJ2jpX": [
+    {
+      "type": 0,
+      "value": "Ir a mis solicitudes"
     }
   ],
   "ML6BTv": [
@@ -1327,6 +2327,36 @@
       "value": " tiene un plazo de 7 días para grabar tu video a partir de ahora."
     }
   ],
+  "MU26/N": [
+    {
+      "type": 0,
+      "value": "Me gustaría solicitar el comprobante de pago de mi contrato con la referencia "
+    },
+    {
+      "type": 1,
+      "value": "contractReference"
+    }
+  ],
+  "MY9PYO": [
+    {
+      "type": 0,
+      "value": "Cambiar Contraseña"
+    }
+  ],
+  "MYOAnX": [
+    {
+      "type": 1,
+      "value": "fullName"
+    },
+    {
+      "type": 0,
+      "value": " dona de sus ingresos a: "
+    },
+    {
+      "type": 1,
+      "value": "causeName"
+    }
+  ],
   "MdA9+B": [
     {
       "type": 0,
@@ -1345,10 +2375,34 @@
       "value": "Iniciar sesión"
     }
   ],
+  "MyGFHf": [
+    {
+      "type": 0,
+      "value": "Completa el proceso de compra."
+    }
+  ],
   "MyQOKB": [
     {
       "type": 0,
       "value": "Ingresa a Famosos.com, selecciona o busca a tu famoso favorito. Haz click en contratar a mi famoso. Estamos trabajando en diversos métodos de pago para que puedas adquirir tu video."
+    }
+  ],
+  "N6puFB": [
+    {
+      "type": 0,
+      "value": "¡Hola "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": "! Mira el regalo que te he hecho a través de Famosos.com "
+    },
+    {
+      "type": 1,
+      "value": "link"
     }
   ],
   "N9nBRn": [
@@ -1381,10 +2435,22 @@
       "value": " videomensaje."
     }
   ],
+  "NIMiei": [
+    {
+      "type": 0,
+      "value": "Mostrar menos"
+    }
+  ],
   "NLbEhA": [
     {
       "type": 0,
       "value": "Indicanos tu correo electrónico y podrás restablecer tu contraseña."
+    }
+  ],
+  "NPogCC": [
+    {
+      "type": 0,
+      "value": "Por favor, seleccione una tarjeta."
     }
   ],
   "NROWdz": [
@@ -1393,10 +2459,22 @@
       "value": "Tus Favoritos"
     }
   ],
+  "NTptw6": [
+    {
+      "type": 0,
+      "value": "Entregado"
+    }
+  ],
   "NgDJE/": [
     {
       "type": 0,
       "value": "¿Cómo puedo trabajar con Famosos?"
+    }
+  ],
+  "NizjcU": [
+    {
+      "type": 0,
+      "value": "Confirma tu contraseña"
     }
   ],
   "Nizqzm": [
@@ -1421,6 +2499,16 @@
     {
       "type": 0,
       "value": "Volver arriba"
+    }
+  ],
+  "NzXESZ": [
+    {
+      "type": 0,
+      "value": "Ir al perfil de "
+    },
+    {
+      "type": 1,
+      "value": "fullName"
     }
   ],
   "Nzh0Uv": [
@@ -1449,6 +2537,12 @@
     {
       "type": 0,
       "value": "Código de seguridad"
+    }
+  ],
+  "OCDYlj": [
+    {
+      "type": 0,
+      "value": "Expirado"
     }
   ],
   "OOBCGL": [
@@ -1491,6 +2585,16 @@
       "value": "Sé el primero en agregar un comentario."
     }
   ],
+  "OmeSvs": [
+    {
+      "type": 1,
+      "value": "currency"
+    },
+    {
+      "type": 0,
+      "value": " A convenir"
+    }
+  ],
   "P6ZBac": [
     {
       "type": 0,
@@ -1509,10 +2613,28 @@
       "value": "Ingrese el código aquí"
     }
   ],
+  "PDlatv": [
+    {
+      "type": 0,
+      "value": "Hora de envío"
+    }
+  ],
+  "PFOGDG": [
+    {
+      "type": 0,
+      "value": "Compartir por e-mail"
+    }
+  ],
   "PZh7w+": [
     {
       "type": 0,
       "value": "Colombia"
+    }
+  ],
+  "Po4Dhk": [
+    {
+      "type": 0,
+      "value": "De"
     }
   ],
   "Ps1z8P": [
@@ -1533,6 +2655,12 @@
       "value": "Social Security Number / SSN"
     }
   ],
+  "QMFjdU": [
+    {
+      "type": 0,
+      "value": "No se encontraron resultados"
+    }
+  ],
   "QXG+La": [
     {
       "type": 0,
@@ -1543,6 +2671,38 @@
     {
       "type": 0,
       "value": "¿Cuántas estrellas le das a este video?"
+    }
+  ],
+  "Qdk7qX": [
+    {
+      "type": 0,
+      "value": "Se abrirá tu aplicación de correo para que lo envíes directamente."
+    }
+  ],
+  "Qe3NFd": [
+    {
+      "type": 0,
+      "value": "Recibirás una notificación a "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "email_client"
+        }
+      ],
+      "type": 8,
+      "value": "emailSpan"
+    },
+    {
+      "type": 0,
+      "value": " cuando tu video esté listo."
+    }
+  ],
+  "Qg3Nku": [
+    {
+      "type": 0,
+      "value": "Debes seleccionar una ocasión"
     }
   ],
   "Qgkwzh": [
@@ -1557,10 +2717,26 @@
       "value": "Contraseña"
     }
   ],
+  "Qt8UnY": [
+    {
+      "type": 0,
+      "value": "Disfruta este video "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    }
+  ],
   "QtvgOo": [
     {
       "type": 0,
       "value": "Chile"
+    }
+  ],
+  "R1OG9a": [
+    {
+      "type": 0,
+      "value": "Personaliza el mensaje"
     }
   ],
   "RG+TGy": [
@@ -1609,16 +2785,34 @@
       "value": "Mi Perfil"
     }
   ],
+  "RhkFs0": [
+    {
+      "type": 0,
+      "value": "Los datos de su tarjeta no son validos."
+    }
+  ],
   "RqwRuU": [
     {
       "type": 0,
       "value": "Si, eliminar"
     }
   ],
+  "RrHExI": [
+    {
+      "type": 0,
+      "value": "¡Que vengan más celebraciones así!"
+    }
+  ],
   "Ru6wDg": [
     {
       "type": 0,
       "value": "¿Me pueden notificar si mi famoso favorito se une a Famosos.com?"
+    }
+  ],
+  "S2QQo3": [
+    {
+      "type": 0,
+      "value": "No se encontraron resultados para:"
     }
   ],
   "SDtXEV": [
@@ -1703,16 +2897,42 @@
       "value": "linkPolicies"
     }
   ],
+  "SPZmUt": [
+    {
+      "type": 0,
+      "value": "Entrega flash"
+    }
+  ],
   "STAtvd": [
     {
       "type": 0,
       "value": "El comentario ha sido actualizado."
     }
   ],
+  "Sazy62": [
+    {
+      "type": 0,
+      "value": "Debes escribir un comentario"
+    }
+  ],
   "ScPFOw": [
     {
       "type": 0,
       "value": "Bolivia (Plurinational State of)"
+    }
+  ],
+  "SeGQYf": [
+    {
+      "type": 0,
+      "value": "Idioma de la página "
+    },
+    {
+      "type": 1,
+      "value": "breakLine"
+    },
+    {
+      "type": 0,
+      "value": " y notificaciones"
     }
   ],
   "SijdbJ": [
@@ -1737,10 +2957,22 @@
       "value": "¡Recibe tu video personalizado!"
     }
   ],
+  "SzQc3w": [
+    {
+      "type": 0,
+      "value": "Paises"
+    }
+  ],
   "T3dwiQ": [
     {
       "type": 0,
       "value": "Ten en cuenta:"
+    }
+  ],
+  "TKzSpv": [
+    {
+      "type": 0,
+      "value": "Pibe Valderrama, Netflix, Músicos, México..."
     }
   ],
   "TT/YZP": [
@@ -1749,10 +2981,52 @@
       "value": "Privacidad"
     }
   ],
+  "TUY+3/": [
+    {
+      "type": 0,
+      "value": "La solicitud de tu video ha sido rechazada. "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " Algunas de las razones podrías ser las siguientes: "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " Tu solicitud es de tipo comercial, política o contenía alguna petición ofensiva/sensible para el Famoso."
+    }
+  ],
   "TXYzmT": [
     {
       "type": 0,
       "value": "Confirmar nueva Contraseña"
+    }
+  ],
+  "Te3bnu": [
+    {
+      "type": 0,
+      "value": "¡Hola "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": "! Me gustaría que..."
+    }
+  ],
+  "TipTOm": [
+    {
+      "type": 0,
+      "value": "Entregados"
     }
   ],
   "TjibFs": [
@@ -1773,6 +3047,18 @@
       "value": "Descargar app de Android"
     }
   ],
+  "TpY0zp": [
+    {
+      "type": 0,
+      "value": "deportistas"
+    }
+  ],
+  "U+doZl": [
+    {
+      "type": 0,
+      "value": "Famosos destacados"
+    }
+  ],
   "U48f7q": [
     {
       "type": 0,
@@ -1783,6 +3069,18 @@
     {
       "type": 0,
       "value": "Este correo electrónico no esta registrado en famosos.com"
+    }
+  ],
+  "UJ1Xkp": [
+    {
+      "type": 0,
+      "value": "Selecciona una imagen de menos de 1 MB."
+    }
+  ],
+  "ULAfXt": [
+    {
+      "type": 0,
+      "value": "usuario@dominio.com"
     }
   ],
   "UOKryr": [
@@ -1797,10 +3095,44 @@
       "value": "Cobro fallido"
     }
   ],
+  "Uf/d9E": [
+    {
+      "type": 0,
+      "value": "Así lo verá "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    }
+  ],
+  "UmRFez": [
+    {
+      "type": 0,
+      "value": "Bandera de "
+    },
+    {
+      "type": 1,
+      "value": "label"
+    }
+  ],
   "Uu4RMA": [
     {
       "type": 0,
       "value": "credenciales invalidas"
+    }
+  ],
+  "V1t+ZA": [
+    {
+      "type": 0,
+      "value": "¡Feliz cumpleaños "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": "!"
     }
   ],
   "VBvZa2": [
@@ -1831,6 +3163,12 @@
       "value": "Filtrar por:"
     }
   ],
+  "Vgjdly": [
+    {
+      "type": 0,
+      "value": "Preguntas Frecuentes"
+    }
+  ],
   "VkHZxm": [
     {
       "type": 0,
@@ -1857,10 +3195,22 @@
       "value": " en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
     }
   ],
+  "VuArYI": [
+    {
+      "type": 0,
+      "value": "Notificarme también por Whatsapp (opcional)"
+    }
+  ],
   "W1OXQI": [
     {
       "type": 0,
       "value": "Desactivar Notificación"
+    }
+  ],
+  "W2ixk1": [
+    {
+      "type": 0,
+      "value": "Contraseña nueva"
     }
   ],
   "WBt4dS": [
@@ -1873,6 +3223,28 @@
     {
       "type": 0,
       "value": "Selecciona una ocasión"
+    }
+  ],
+  "WJVzN4": [
+    {
+      "type": 0,
+      "value": "Menor a mayor precio"
+    }
+  ],
+  "WL/WEl": [
+    {
+      "type": 0,
+      "value": "Últimos videos"
+    }
+  ],
+  "WTl7o1": [
+    {
+      "type": 0,
+      "value": "Bandera de "
+    },
+    {
+      "type": 1,
+      "value": "alpha2Code"
     }
   ],
   "WW0RFT": [
@@ -1893,10 +3265,44 @@
       "value": "Filtrar por categoría"
     }
   ],
+  "WeJb1j": [
+    {
+      "type": 0,
+      "value": "Debes poseer al menos 13 años de edad para registrarte"
+    }
+  ],
   "WeLmQS": [
     {
       "type": 0,
       "value": "Si por alguna razón tu video no pudo ser grabado, te reembolsaremos tu dinero en un plazo máximo de 21 días hábiles"
+    }
+  ],
+  "WebWil": [
+    {
+      "type": 0,
+      "value": "Te notificaremos a "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "deliveryContact"
+        }
+      ],
+      "type": 8,
+      "value": "textBold"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "type": 1,
+      "value": "cellPhoneNumber"
+    },
+    {
+      "type": 0,
+      "value": " cuando tu video esté listo."
     }
   ],
   "WkJEIw": [
@@ -1909,6 +3315,12 @@
     {
       "type": 0,
       "value": "Contrato Expirado"
+    }
+  ],
+  "WnqHLV": [
+    {
+      "type": 0,
+      "value": "Por favor seleccione un método de pago"
     }
   ],
   "WsW1Wz": [
@@ -1941,10 +3353,22 @@
       "value": "Siguientes pasos:"
     }
   ],
+  "XKlq+/": [
+    {
+      "type": 0,
+      "value": "Correo electrónico nuevo"
+    }
+  ],
   "XNGk+R": [
     {
       "type": 0,
       "value": "Tu comentario ha sido enviado."
+    }
+  ],
+  "XYnAm8": [
+    {
+      "type": 0,
+      "value": "Ingresa tu mensaje"
     }
   ],
   "XlP2E5": [
@@ -1977,12 +3401,6 @@
       "value": " Crea una cuenta para empezar a conectar con tus famosos favoritos."
     }
   ],
-  "Xx+xSb": [
-    {
-      "type": 0,
-      "value": "La longitud de la contraseña debe contener al menos 6 caracteres"
-    }
-  ],
   "Y6sFMj": [
     {
       "type": 0,
@@ -1995,16 +3413,66 @@
       "value": "Anterior página"
     }
   ],
+  "YKyLFB": [
+    {
+      "type": 0,
+      "value": "Solicitar comprobante de pago"
+    }
+  ],
+  "YRu2+6": [
+    {
+      "type": 0,
+      "value": "LA OFERTA FINALIZA EN"
+    }
+  ],
   "YTlQrN": [
     {
       "type": 0,
       "value": "Para un amigo o familiar"
     }
   ],
+  "YVBe7w": [
+    {
+      "type": 0,
+      "value": "Ir a \""
+    },
+    {
+      "type": 1,
+      "value": "categoryTitle"
+    },
+    {
+      "type": 0,
+      "value": "\""
+    }
+  ],
+  "YYg0xX": [
+    {
+      "type": 0,
+      "value": "Entrega tu videomensaje por Whatsapp"
+    }
+  ],
+  "Ym543L": [
+    {
+      "type": 0,
+      "value": "Hasta 7 días"
+    }
+  ],
+  "YmbthD": [
+    {
+      "type": 0,
+      "value": "Agrega un texto especial"
+    }
+  ],
   "Yp6To0": [
     {
       "type": 0,
       "value": "Buscar país"
+    }
+  ],
+  "YqJl8f": [
+    {
+      "type": 0,
+      "value": "Limpiar filtros"
     }
   ],
   "Yskoha": [
@@ -2027,6 +3495,12 @@
       "value": "Ir a mis contrataciones"
     }
   ],
+  "Z2eZrt": [
+    {
+      "type": 0,
+      "value": "Pasa un día genial en esta vuelta al sol."
+    }
+  ],
   "Z5ZMSV": [
     {
       "type": 0,
@@ -2037,6 +3511,18 @@
     {
       "type": 0,
       "value": "Revisa tu correo electrónico e ingresa el código de 6 dígitos que has recibido"
+    }
+  ],
+  "ZFhqVz": [
+    {
+      "type": 0,
+      "value": "¿Eres el dueño de este video?"
+    }
+  ],
+  "ZHQGns": [
+    {
+      "type": 0,
+      "value": "Inicia sesión para ver los detalles o personalizar la entrega."
     }
   ],
   "ZPvdL/": [
@@ -2063,6 +3549,12 @@
       "value": "Siguiente página"
     }
   ],
+  "ZtrNok": [
+    {
+      "type": 0,
+      "value": "Las personas que vieron este perfil también vieron"
+    }
+  ],
   "ZvLd+7": [
     {
       "type": 0,
@@ -2081,10 +3573,28 @@
       "value": "El costo del video depende de tu famoso. Nosotros somos la tecnología que hace posible la entrega oportuna de tu video."
     }
   ],
+  "aJkcNZ": [
+    {
+      "type": 0,
+      "value": "Descargar APP desde APP Store"
+    }
+  ],
+  "aKy46m": [
+    {
+      "type": 0,
+      "value": "Explora entre más de 1,000 famosos"
+    }
+  ],
   "aLZTdq": [
     {
       "type": 0,
       "value": "Mis instrucciones son"
+    }
+  ],
+  "aMwMIJ": [
+    {
+      "type": 0,
+      "value": "Fecha de solicitud:"
     }
   ],
   "aPX+PI": [
@@ -2093,10 +3603,28 @@
       "value": "Contratar para Empresa"
     }
   ],
+  "aUJV5O": [
+    {
+      "type": 0,
+      "value": "Reenviar"
+    }
+  ],
   "aVtfpF": [
     {
       "type": 0,
       "value": "¡Felicitaciones!"
+    }
+  ],
+  "aaTPnj": [
+    {
+      "type": 0,
+      "value": "Destacados"
+    }
+  ],
+  "b+Bq5e": [
+    {
+      "type": 0,
+      "value": "Más recientes"
     }
   ],
   "b2Ea7D": [
@@ -2129,16 +3657,46 @@
       "value": "¡Comprar video ahora!"
     }
   ],
+  "bSrtbH": [
+    {
+      "type": 0,
+      "value": "Whatsapp del destinatario"
+    }
+  ],
+  "bVcz4u": [
+    {
+      "type": 0,
+      "value": "Personalizar entrega"
+    }
+  ],
   "baAemn": [
     {
       "type": 0,
       "value": "En espera de grabación"
     }
   ],
+  "bc6Eh7": [
+    {
+      "type": 0,
+      "value": "Publicar"
+    }
+  ],
+  "biswPx": [
+    {
+      "type": 0,
+      "value": "Nombre:"
+    }
+  ],
   "bnyCF4": [
     {
       "type": 0,
       "value": "Si todo está bien con tu solicitud de acuerdo a nuestras políticas, muy pronto podrás disfrutar de tu videomensaje."
+    }
+  ],
+  "c/EW7K": [
+    {
+      "type": 0,
+      "value": "Personaliza el mensaje de tu video."
     }
   ],
   "c5ndOG": [
@@ -2171,6 +3729,26 @@
     {
       "type": 0,
       "value": " grabe tu video."
+    }
+  ],
+  "cb606G": [
+    {
+      "type": 0,
+      "value": "Entrega tu videomensaje por correo"
+    }
+  ],
+  "ccCTb2": [
+    {
+      "type": 0,
+      "value": "Intentando nuevamente en "
+    },
+    {
+      "type": 1,
+      "value": "secondsCounter"
+    },
+    {
+      "type": 0,
+      "value": " segundos"
     }
   ],
   "cheXty": [
@@ -2207,6 +3785,12 @@
       "value": "Correo electrónico de notificación:"
     }
   ],
+  "dAHRLh": [
+    {
+      "type": 0,
+      "value": "Selecciona un archivo de tipo imagen. Ejemplo: SVG, JPG, PNG, etc."
+    }
+  ],
   "dPuxZs": [
     {
       "type": 0,
@@ -2241,6 +3825,30 @@
       "value": "Siguiendo"
     }
   ],
+  "de1wp1": [
+    {
+      "type": 1,
+      "value": "totalResults"
+    },
+    {
+      "type": 0,
+      "value": " resultados para \""
+    },
+    {
+      "type": 1,
+      "value": "search"
+    },
+    {
+      "type": 0,
+      "value": "\""
+    }
+  ],
+  "df4zaj": [
+    {
+      "type": 0,
+      "value": "Ir a Mis Solicitudes"
+    }
+  ],
   "dgKHBE": [
     {
       "type": 0,
@@ -2257,6 +3865,20 @@
     {
       "type": 0,
       "value": "Contrato rechazado"
+    }
+  ],
+  "dn7i07": [
+    {
+      "type": 0,
+      "value": "Experiencias personalizadas "
+    },
+    {
+      "type": 1,
+      "value": "lineBreak"
+    },
+    {
+      "type": 0,
+      "value": " con tus famosos favoritos."
     }
   ],
   "duDNCn": [
@@ -2277,16 +3899,58 @@
       "value": "Compartir video en:"
     }
   ],
+  "e9TpG1": [
+    {
+      "type": 0,
+      "value": "Cambiar moneda"
+    }
+  ],
   "eBSdyF": [
     {
       "type": 0,
       "value": "¿La marca de agua de Famosos se tiene que quedar?"
     }
   ],
-  "eYHsf6": [
+  "eH4QAw": [
     {
       "type": 0,
-      "value": "Tarjeta de Crédito o Débito"
+      "value": "Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero."
+    },
+    {
+      "type": 1,
+      "value": "infoIcon"
+    }
+  ],
+  "eMSCGd": [
+    {
+      "type": 0,
+      "value": "Mis solicitudes"
+    }
+  ],
+  "eOuNie": [
+    {
+      "type": 0,
+      "value": "Buscar"
+    }
+  ],
+  "eOvQrU": [
+    {
+      "type": 0,
+      "value": "Descarga la app para Fans"
+    }
+  ],
+  "eSEyNY": [
+    {
+      "type": 0,
+      "value": "¡Ánimo "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": "!"
     }
   ],
   "ekgTKf": [
@@ -2297,6 +3961,24 @@
     {
       "type": 1,
       "value": "celebrity_username"
+    }
+  ],
+  "elNXJ8": [
+    {
+      "type": 0,
+      "value": "Para"
+    }
+  ],
+  "eqPkg5": [
+    {
+      "type": 0,
+      "value": "El proceso de aprobación de pago puede tardar alrededor de 24 hrs."
+    }
+  ],
+  "ex5QbS": [
+    {
+      "type": 0,
+      "value": "La longitud de la contraseña debe ser al menos 6 caracteres"
     }
   ],
   "exOORp": [
@@ -2357,6 +4039,12 @@
       "value": "Quiero un video de"
     }
   ],
+  "fiLVq8": [
+    {
+      "type": 0,
+      "value": "Total de Solicitudes"
+    }
+  ],
   "fzb0Cz": [
     {
       "type": 0,
@@ -2367,6 +4055,28 @@
     {
       "type": 0,
       "value": "Venezuela (Bolivarian Republic of)"
+    }
+  ],
+  "g6XXxY": [
+    {
+      "type": 0,
+      "value": "En cuaquier momento puedes consultar el estado de tus solicitudes "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "aquí."
+        }
+      ],
+      "type": 8,
+      "value": "myHiringsLink"
+    }
+  ],
+  "g7yX5A": [
+    {
+      "type": 0,
+      "value": "Seleccionar imagen"
     }
   ],
   "gBLEge": [
@@ -2407,10 +4117,36 @@
       "value": "Ejemplo: Mi amiga Ana cumple años el 12 de agosto, me gustaría que la felicitaras."
     }
   ],
+  "gqGS5U": [
+    {
+      "type": 0,
+      "value": "Comentarios"
+    }
+  ],
   "gxungj": [
     {
       "type": 0,
       "value": "Ingresar"
+    }
+  ],
+  "h5yCAT": [
+    {
+      "type": 0,
+      "value": "Tu número de celular se ha actualizado "
+    },
+    {
+      "type": 1,
+      "value": "breakLine"
+    },
+    {
+      "type": 0,
+      "value": " correctamente."
+    }
+  ],
+  "h9IcvI": [
+    {
+      "type": 0,
+      "value": "Filtrar por"
     }
   ],
   "h9zXst": [
@@ -2435,6 +4171,12 @@
       "value": "Nombre"
     }
   ],
+  "hJUps7": [
+    {
+      "type": 0,
+      "value": "Descargar APP desde Google Play Store"
+    }
+  ],
   "hKJZJR": [
     {
       "type": 0,
@@ -2457,10 +4199,62 @@
       "value": " día"
     }
   ],
+  "hbRJr6": [
+    {
+      "type": 0,
+      "value": "Eliminar foto"
+    }
+  ],
+  "hhRDt5": [
+    {
+      "type": 0,
+      "value": "Fechar"
+    }
+  ],
+  "hkTaZQ": [
+    {
+      "type": 0,
+      "value": "Ingresa el código que enviamos a "
+    },
+    {
+      "type": 1,
+      "value": "email"
+    }
+  ],
   "hmpcGI": [
     {
       "type": 0,
       "value": "Notificarme cuando esté disponible"
+    }
+  ],
+  "hrM4Ug": [
+    {
+      "type": 0,
+      "value": "Compartir por Twitter"
+    }
+  ],
+  "hwfeEG": [
+    {
+      "type": 0,
+      "value": "Previsualizar"
+    }
+  ],
+  "hxq7dC": [
+    {
+      "type": 0,
+      "value": "Logo de Garantía Famosos"
+    }
+  ],
+  "iRpjjG": [
+    {
+      "type": 0,
+      "value": "Personaliza el fondo y agrega un mensaje para hacer más especial la entrega de tu video."
+    }
+  ],
+  "iSjJJ0": [
+    {
+      "type": 0,
+      "value": "Compartir por Whatsapp"
     }
   ],
   "iTKHhw": [
@@ -2481,10 +4275,28 @@
       "value": "¿Eres una celebridad o influencer?"
     }
   ],
+  "iyrhJi": [
+    {
+      "type": 0,
+      "value": "Ingresa una fecha"
+    }
+  ],
+  "j/G1q2": [
+    {
+      "type": 0,
+      "value": "Debes de introducir un cupón valido"
+    }
+  ],
   "j5jEEO": [
     {
       "type": 0,
       "value": "Motivacional"
+    }
+  ],
+  "jRg7t5": [
+    {
+      "type": 0,
+      "value": "Aún no tienes ningún método de pago registrado."
     }
   ],
   "jkPKiZ": [
@@ -2505,10 +4317,70 @@
       "value": "Las contraseñas no coinciden"
     }
   ],
+  "kVrqZJ": [
+    {
+      "type": 0,
+      "value": "¿Qué sucede después de tu compra?"
+    }
+  ],
+  "ke77WN": [
+    {
+      "type": 0,
+      "value": "¡Hola "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": "! "
+    },
+    {
+      "type": 1,
+      "value": "lineBreak"
+    },
+    {
+      "type": 0,
+      "value": " Mira el regalo que "
+    },
+    {
+      "type": 1,
+      "value": "deliveryFrom"
+    },
+    {
+      "type": 0,
+      "value": " te ha hecho a través de Famosos.com"
+    }
+  ],
+  "kkiAyx": [
+    {
+      "type": 0,
+      "value": "Debes escribir tus instrucciones"
+    }
+  ],
+  "l/9Qz+": [
+    {
+      "type": 0,
+      "value": "Me gustaría contarte sobre la plataforma Famosos"
+    }
+  ],
+  "lEOY9y": [
+    {
+      "type": 0,
+      "value": "Ha ocurrido un error, intentalo nuevamente"
+    }
+  ],
   "lGFIAN": [
     {
       "type": 0,
       "value": "Crea una cuenta para poder conectar con los famosos."
+    }
+  ],
+  "lRh3qR": [
+    {
+      "type": 0,
+      "value": "Por tu seguridad y la nuestra, debemos verificar que tengas un correo electrónico valido."
     }
   ],
   "lSxRsO": [
@@ -2521,6 +4393,12 @@
     {
       "type": 0,
       "value": "1 Estrella"
+    }
+  ],
+  "lab8Md": [
+    {
+      "type": 0,
+      "value": "Intenta quitando o cambiando algunos filtros."
     }
   ],
   "lb33Yc": [
@@ -2547,10 +4425,28 @@
       "value": "Otra"
     }
   ],
+  "m9eXO9": [
+    {
+      "type": 0,
+      "value": "Cargando"
+    }
+  ],
   "mC/anA": [
     {
       "type": 0,
       "value": "Precio: De Menor a Mayor"
+    }
+  ],
+  "mChIhX": [
+    {
+      "type": 0,
+      "value": "Ingresa un número de teléfono válido"
+    }
+  ],
+  "mFS+iR": [
+    {
+      "type": 0,
+      "value": "Tu pago está pendiente de aprobación."
     }
   ],
   "mJ6Hl3": [
@@ -2565,6 +4461,44 @@
       "value": "Paraguay"
     }
   ],
+  "mTCwos": [
+    {
+      "type": 1,
+      "value": "totalResults"
+    },
+    {
+      "type": 0,
+      "value": " resultados"
+    }
+  ],
+  "mTT+0+": [
+    {
+      "type": 0,
+      "value": "Al continuar estás aceptando nuestros Términos y Condiciones y nuestra Política de privacidad."
+    }
+  ],
+  "mUCJhR": [
+    {
+      "type": 0,
+      "value": "Debes editar el valor "
+    },
+    {
+      "type": 1,
+      "value": "placeholderName"
+    }
+  ],
+  "mWwFNC": [
+    {
+      "type": 0,
+      "value": "Confirmación de compra"
+    }
+  ],
+  "mahy2f": [
+    {
+      "type": 0,
+      "value": "actores"
+    }
+  ],
   "mcWafv": [
     {
       "type": 0,
@@ -2577,16 +4511,64 @@
       "value": "Escribe tu correo electrónico"
     }
   ],
+  "moevDj": [
+    {
+      "type": 0,
+      "value": "Olvidaste editar el texto"
+    }
+  ],
+  "mvPdev": [
+    {
+      "type": 0,
+      "value": "Avatar de Famoso"
+    }
+  ],
   "n0TzKv": [
     {
       "type": 0,
       "value": "Escribe aquí el nombre"
     }
   ],
+  "n2YFp+": [
+    {
+      "type": 0,
+      "value": "Tu contraseña se ha actualizado "
+    },
+    {
+      "type": 1,
+      "value": "breakLine"
+    },
+    {
+      "type": 0,
+      "value": " correctamente."
+    }
+  ],
+  "n7ygGB": [
+    {
+      "type": 0,
+      "value": "De: "
+    },
+    {
+      "type": 1,
+      "value": "deliveryFrom"
+    }
+  ],
   "n9i+Em": [
     {
       "type": 0,
       "value": "Escribe aquí tu nombre"
+    }
+  ],
+  "nDjwXl": [
+    {
+      "type": 0,
+      "value": "Mis suscripciones"
+    }
+  ],
+  "nFNeoL": [
+    {
+      "type": 0,
+      "value": "Ha ocurrido un error guardando tus cambios."
     }
   ],
   "nJ/lbc": [
@@ -2613,6 +4595,24 @@
       "value": "Pago pendiente"
     }
   ],
+  "nXUi45": [
+    {
+      "type": 0,
+      "value": "Elije a tu Famoso"
+    }
+  ],
+  "nZ9TE3": [
+    {
+      "type": 0,
+      "value": "Política y Privacidad"
+    }
+  ],
+  "nZLeaQ": [
+    {
+      "type": 0,
+      "value": "Cancelar"
+    }
+  ],
   "naJn1L": [
     {
       "type": 0,
@@ -2627,6 +4627,20 @@
     {
       "type": 0,
       "value": "Suscríbete a nuestro newsletter y entérate de nuestras novedades y promociones exclusivas."
+    }
+  ],
+  "nc6eFM": [
+    {
+      "type": 0,
+      "value": "¡Felicitaciones para ti "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": "!"
     }
   ],
   "nnRGWT": [
@@ -2665,6 +4679,12 @@
       "value": "Seguir Comprando"
     }
   ],
+  "oKXC+L": [
+    {
+      "type": 0,
+      "value": "Recorta tu foto del perfil"
+    }
+  ],
   "oKcEry": [
     {
       "type": 0,
@@ -2675,6 +4695,12 @@
     {
       "type": 0,
       "value": "El famoso tiene libertad para aceptar o rechazar los videos. Nosotros somos una plataforma tecnológica de medio y no de resultado. Si la solicitud es rechazada, el dinero sera reembolsado."
+    }
+  ],
+  "oN4aGu": [
+    {
+      "type": 0,
+      "value": "Guardar"
     }
   ],
   "oRfNHI": [
@@ -2689,10 +4715,72 @@
       "value": "No"
     }
   ],
+  "oWksd7": [
+    {
+      "type": 0,
+      "value": "Ayuda"
+    }
+  ],
   "ohq0mF": [
     {
       "type": 0,
       "value": "Crea una cuenta"
+    }
+  ],
+  "om28Bx": [
+    {
+      "type": 0,
+      "value": "Dale instrucciones a "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": " para que tu video quede como esperas. "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "(Edita este texto base o escribe uno)"
+        }
+      ],
+      "type": 8,
+      "value": "span"
+    }
+  ],
+  "opVwjp": [
+    {
+      "type": 0,
+      "value": "Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime"
+    }
+  ],
+  "oqJulP": [
+    {
+      "type": 0,
+      "value": "Ver menos"
+    }
+  ],
+  "orwCgV": [
+    {
+      "type": 0,
+      "value": "Invita a tus amigos a que conozcan Famosos"
+    }
+  ],
+  "orzX/T": [
+    {
+      "type": 0,
+      "value": "Permitir que este video sea público"
     }
   ],
   "oxKkpJ": [
@@ -2713,10 +4801,36 @@
       "value": "Famoso!"
     }
   ],
+  "pExFGK": [
+    {
+      "type": 0,
+      "value": "Enviar video a "
+    },
+    {
+      "type": 1,
+      "value": "deliveryTo"
+    },
+    {
+      "type": 0,
+      "value": " ahora"
+    }
+  ],
+  "pKdjHT": [
+    {
+      "type": 0,
+      "value": "Solicitar comprobante de devolución"
+    }
+  ],
   "pPCiwO": [
     {
       "type": 0,
       "value": "Correo electrónico"
+    }
+  ],
+  "pekBfS": [
+    {
+      "type": 0,
+      "value": "¿Eres una celebridad o influencer? ¡Haz parte de nuestra familia!"
     }
   ],
   "per8Dq": [
@@ -2737,504 +4851,34 @@
       "value": "Transferencia Bancaria"
     }
   ],
-  "qL5Hl7": [
+  "povNn5": [
     {
       "type": 0,
-      "value": "Cumpleaños"
+      "value": "Subir archivo"
+    }
+  ],
+  "pvVUxx": [
+    {
+      "type": 0,
+      "value": "Debes introducir un documento de identificación valido"
+    }
+  ],
+  "q3DBjQ": [
+    {
+      "type": 0,
+      "value": "Explorar Famosos"
+    }
+  ],
+  "qC6UKd": [
+    {
+      "type": 0,
+      "value": "Rechazado"
     }
   ],
   "qMbb2M": [
     {
       "type": 0,
       "value": "Agregar nueva tarjeta"
-    }
-  ],
-  "qP3okx": [
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " POLÍTICA DE PRIVACIDAD “FAMOSOS INC”, PRIMERO (1º.) DE OCTUBRE DE 2019. "
-        }
-      ],
-      "type": 8,
-      "value": "h5"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Somos “Famosos, Inc.”, ubicados en 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Para su oportuna y completa información, nos permitimos acompañar la “Política de Privacidad de “Famosos Inc”, en adelante la “Política”. "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " La importancia de esta “Política” radica en el hecho que para prestarle nuestros servicios a través de nuestra Página, es necesario que usted nos entregue información personal suya, luego es necesario que usted conozca, acepte y/o rechace lo que hacemos con la misma. Asimismo, para nosotros también es importante saber quién es usted y si sus intereses son compatibles con los nuestros "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Esta “Política” está sujeta a cambios permanentes, por lo cual nos reservamos el derecho de actualizarla, modificarla y publicarla cronológicamente, para que sea conocida por usted, para los propósitos anteriormente señalados "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " La “Política” se relaciona específicamente, con la forma en que solicitamos, almacenamos, analizamos, custodiamos, protegemos, utilizamos y compartimos su información personal en nuestros servidores, con ocasión de su vinculación a nuestra página "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Es importante tener en cuenta que si usted toma la decisión de vincularse a nuestra página, nosotros entendemos que usted ha leído y aceptado en forma incondicional e irrevocable esta “Política”, así como los llamados “Términos de Uso” que también se encuentran disponibles en nuestra página para su conocimiento, aceptación o rechazo "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " La información personal a la cual tenemos acceso, es la relacionada con su ciudad de origen, país, “Dirección IP”, el tipo de equipo que usted utiliza, su correo electrónico, domicilio, número telefónico, fecha de registro, nombre de usuario, clave personal, cuenta bancaria, pagos electrónicos, tarjetas bancarias, número de usuario en Instagram cuando accede a nuestra página por esta vía, tipo de material solicitado, clase de videos subidos, bajados, consultados, fotos, correos electrónicos, cartas, textos, audios, tráfico en redes sociales, búsquedas en plataformas, compras de bienes y/o servicios realizadas, historial de compras, preferencias comerciales, cookies, hardware, software, entre otros aspectos, información esta que es requerida previamente, para que usted se vincule a nuestra página y/o crea una cuenta en la misma, con el propósito de prestarle un mejor servicio "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " El propósito de lo anterior consiste en brindarle un mejor servicio, pues al conocer la anterior información, estaremos en capacidad de ofrecerle mejores servicios, soporte técnico y asistencia, de acuerdo con los intereses que usted nos haya manifestado, en relación con temas publicitarios, rifas, sorteos, concursos y promociones, suministro de determinados contenidos específicos, de acuerdo con sus preferencias de mercado, para personalizar su experiencia en nuestra plataforma, así como para cumplir con requerimientos legales, prácticas comerciales, operaciones de back-up y por otras razones que puedan ser de su interés, así como del nuestro "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Esta información sólo será revelada a terceras personas, incluso a otros países, cuando sea requerido por nosotros y/o por nuestros vendedores, para el cumplimiento de los intereses que usted nos haya manifestado, por lo cual usted también deberá consultar con ellos el tipo de Política de Privacidad que ellos a su vez aplican y respecto de las cuales no respondemos, ni podemos hacerlo. En relación con la revelación de información a otros países, hemos tomados medidas tecnológicas pertinentes para que su información personal goce de la misma protección contenida en esta “Política” "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Esta información también será revelada a terceras personas, cuando usted lo solicite en forma expresa, para lo cual usted deberá enviar el respectivo requerimiento, en los términos indicados en esta “Política” "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Usted también puede oponerse a que nosotros procesemos de su información personal, basado en su legítimo interés y por razones particulares. Igualmente, usted puede graduar los parámetros y/o alcance de nuestro mercadeo hacia usted, e incluso solicitar que no le sea enviado material promocional, en cualquier momento, a través de los métodos contenidos en esta “Política” "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Para el ejercicio de los derechos reconocidos en esta “Política”, usted debe formular el respectivo requerimiento, a través de las herramientas aquí previstas, y de los mecanismos establecidos para tal efecto en la misma. Es importante que tenga en cuenta, que su derecho de enviar peticiones quejas y reclamos ante cualquier autoridad competente de protección y supervisión de información personal en el país donde usted se encuentre, permanece vigente "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Nuestra página le permite interactuar con otras páginas, plataformas, redes sociales, como Facebook, Instagram y Twitter, por lo cual, alguna de su información personal será compartida con terceras personas, para el efecto de permitir la respectiva comunicación "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Cada visita a nuestra página permite rastrear sus actividades en la red, a través de tecnologías conocidas como “web beacons”, “embedded scripts”, “location data services”, las cuales podrán brindarnos mayor información acerca de sus preferencias en la navegación archivadas en su equipo y grabar “cookies” en su equipo, o incluso copiar códigos de su equipo, o a su equipo y emplear diversos mecanismos relacionados con sus preferencias de navegación "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Esta tecnología permite conocer, por ejemplo, fecha y hora de su visita a nuestra plataforma, áreas visitas en su navegación, Links a los cuales haya accedido, Websites, propaganda visitada, modalidad bajo la cual haya tenido accedido, Dirección IP, número de móvil, información de su equipo, como su ubicación, Tipo de Conexión del Equipo, Buscador, Versión, Sistema operativo, plataforma, Información de consulta de mensajes "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Si usted es un cliente que proporciona contenido a nuestra plataforma, nosotros procesaremos dicha información, con el objeto de ofrecer masivamente videos y demás material que sea cargado y/o subido en nuestra página. Igualmente, procesaremos toda la información que sea necesaria para que usted pueda recibir pagos en forma directa por parte de terceras personas, tal como se indica en los “Términos de Uso” contenidos en nuestra plataforma "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " De otra parte, la información relacionada con los pagos realizados a su favor, también será conservada de acuerdo con nuestra “Política”, para efecto de garantizar el correcto procesamiento de los mismos, eficacia, eficiencia, seguridad, transparencia y trazabilidad, así como en caso de presentarse cualquier observación relacionada con los mismos. De igual manera, la información relacionada con los medios y mecanismos de pago escogidos por nosotros, se encuentra sometida a la misma “Política”, así como a la de las respectivas entidades pagadoras, que pueden ser completamente diferentes y que en consecuencia deba ser revisada por su parte "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Es posible que en algunas ocasiones compartamos información personal suya con terceras personas, para atender sus intereses de navegación. Sin embargo, nunca compartiremos su información personal para sea utilizada para propósitos diferentes a los aquí mencionados, sin su consentimiento, el cual será solicitado en caso de ser necesario. Es necesario recordar que el manejo de su información personal se encuentra fundamentado en su aceptación y autorización, en los términos expresados en nuestra “Política”, y que usted siempre tiene el derecho de retirar su consentimiento, en cualquier momento, a través de las herramientas y procedimientos establecidos en nuestra página "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " En relación con los menores de trece (13) años de edad, nuestra “Política” determina que no conservamos ningún tipo de información personal. Si usted, en calidad de padre o acudiente, observa que por alguna razón lo hacemos, por favor comuníquese con nosotros inmediatamente para realizar las adecuaciones del caso: en 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. Lo anterior por cuanto nuestra página está diseñada para uso generalizado, y es posible que eventualmente y de manera involuntaria, hayamos podido recopilar dicha información "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Revelaremos información personal suya, aún en contra de su voluntad, cuando así sea exigido por la parte de la ley, la justicia o de cualquier autoridad competente de cualquier jurisdicción, con ocasión de una investigación por fraude, violación de los derechos de propiedad intelectual, de autor o literaria, relacionada con usted y que pueda perjudicar nuestros intereses, siempre en ejercicio de nuestros derechos legales y ante eventuales acusaciones de “hackeo”, incumplimiento de la “Política”, de los “Términos de Uso o Servicios”, por razones legales o gubernamentales "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " También revelaremos, transferiremos, cederemos información personal suya, en caso de presentarse una fusión, adquisición, reorganización, concordato, quiebra y/o cualquier otra transacción que involucre a “Famosos Inc” "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Si usted expresamente lo solicita, podríamos transformar su información personal, en otra modalidad tecnológica que impida identificarlo a usted, como por ejemplo convertir su correo electrónico en un código alfanumérico, la cual ya no sería información personal suya "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Si usted desea acceder, revisar, corregir, editar o actualizar su propia información personal, simplemente acceda a su cuenta en la página, o a través de la aplicación en su móvil y realice los cambios que desea introducir "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Cuando nos solicite que borremos su información personal, tomaremos acciones concretas para removerla de nuestras bases de datos activas, pero conservaremos la información original, de acuerdo con nuestra “Política”, para eventuales casos de disputa, cumplimiento de normas legales, conservación de grabaciones, back up. En todo caso, nunca conservaremos su información más tiempo del que sea necesario para el cumplimiento de nuestra “Política” "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Si usted es un visitante de nuestra página y está ubicado fuera de los Estados Unidos de Norteamérica, la información personal que usted suministre será recopilada, procesada, conservada, transferida a nuestros servidores en dicho país, u otros donde nosotros o nuestros vendedores realizan su operación comercial "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Sin importar dónde se encuentre localizada la información, tomamos medidas razonables de protección de la privacidad de sus derechos, en los términos de esta política "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Tomamos medidas razonables de seguridad para proteger la información remitida a nosotros, de acuerdo con las facilidades tecnológicas existentes a la fecha "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Aunque ningún sistema de transmisión y/o administración de datos a través de la red mundial de internet es completamente seguro, hemos tomado medidas tecnológicas razonables de seguridad para proteger la información conservada por nosotros, lo cual debe ser conocido y tenido en cuenta por usted siempre que utilice nuestra página, para que dicho conocimiento quede bajo su responsabilidad "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " En consecuencia, si tiene alguna pregunta relacionada con la seguridad en nuestra página, póngase en contacto con nosotros, a través de los respectivos canales de comunicación proporcionados en nuestra “Política” "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Si usted desea desactivar su cuenta, comuníquese con nosotros para tal efecto, en 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161, USA "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Si usted desea trabajar con nosotros, o para nosotros como “funcionario” y/o trabajar bajo la modalidad de “socios”, puede aplicar comunicándose con nosotros a través de los canales y personas informadas en esta “Política”, para que sea informado acerca de nuestra “Política” al respecto. Es posible que compartamos información personal suya, para los propósitos exclusivos mencionados en este párrafo, o para mejorar nuestros procesos de selección, o para protegernos frente a reclamaciones laborales "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Nuevamente le reiteramos que si usted toma la decisión de vincularse a nuestra página, nosotros entendemos que usted ha leído y aceptado en forma incondicional e irrevocable esta “Política”, así como los llamados “Términos de Uso” que también se encuentran disponibles en nuestra página para su conocimiento, aceptación o rechazo "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Sin embargo, si usted no desea volver a recibir ningún tipo de información de parte nuestra, pero sin retirarse de nuestra página, a través de los canales y personas informadas en esta “Política” y solo recibirá información nuestra relacionado con el estado de pago de su cuenta "
-        }
-      ],
-      "type": 8,
-      "value": "p"
-    },
-    {
-      "type": 0,
-      "value": " "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": " Si usted requiere mayor información acerca de esta “Política”, podrá contactarse con nosotros, en 10800 Biscayne Blvd, Suite 560, Miami, Florida, 33161. "
-        }
-      ],
-      "type": 8,
-      "value": "p"
     }
   ],
   "qV0c9N": [
@@ -3251,6 +4895,42 @@
     {
       "type": 0,
       "value": "Volver al inicio"
+    }
+  ],
+  "qmZ04t": [
+    {
+      "type": 0,
+      "value": "Tus cambios se guardaron hace unos segundos."
+    }
+  ],
+  "qsmv/Z": [
+    {
+      "type": 0,
+      "value": "Video personalizado "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " de "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    }
+  ],
+  "qvzdOL": [
+    {
+      "type": 0,
+      "value": "Ingresa una nueva dirección de correo electrónico"
+    }
+  ],
+  "qxvYP3": [
+    {
+      "type": 0,
+      "value": "24 hrs."
     }
   ],
   "qyxCOs": [
@@ -3273,6 +4953,12 @@
       "value": " para más información."
     }
   ],
+  "r///wN": [
+    {
+      "type": 0,
+      "value": "1. Datos de la persona que realiza el pago."
+    }
+  ],
   "r1aViX": [
     {
       "type": 0,
@@ -3283,6 +4969,32 @@
     {
       "type": 0,
       "value": "Publicar este video en Famosos.com"
+    }
+  ],
+  "r5akgJ": [
+    {
+      "type": 0,
+      "value": "Para ver tu regalo haz clic "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "aquí"
+        }
+      ],
+      "type": 8,
+      "value": "textBold"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "rAMm4a": [
+    {
+      "type": 0,
+      "value": "Ajustes"
     }
   ],
   "rD8e46": [
@@ -3303,10 +5015,40 @@
       "value": "Agregar Comentario"
     }
   ],
+  "rMzdwV": [
+    {
+      "type": 0,
+      "value": "Mujer"
+    }
+  ],
   "rNIqUr": [
     {
       "type": 0,
       "value": "Un video promocional es un video que promueve una compañia/organización/producto en las redes sociales o en la página de dicha compañia."
+    }
+  ],
+  "rRb122": [
+    {
+      "type": 0,
+      "value": "Este correo ya se encuentra registrado"
+    }
+  ],
+  "rYWTQk": [
+    {
+      "type": 0,
+      "value": "Categorías destacadas"
+    }
+  ],
+  "ra6TZV": [
+    {
+      "type": 0,
+      "value": "Te has suscrito exitosamente"
+    }
+  ],
+  "rcckKR": [
+    {
+      "type": 0,
+      "value": "Ingresa un correo electrónico válido"
     }
   ],
   "rjFhkr": [
@@ -3319,6 +5061,12 @@
     {
       "type": 0,
       "value": "Estamos haciendo lo posible por resolverlo."
+    }
+  ],
+  "rtQ00j": [
+    {
+      "type": 0,
+      "value": "Guardando cambios..."
     }
   ],
   "rtwrcq": [
@@ -3343,16 +5091,46 @@
       "value": "Presentadores"
     }
   ],
+  "sAJ+Kw": [
+    {
+      "type": 0,
+      "value": "¿Cómo quieres compartir este video?"
+    }
+  ],
+  "sHZJT8": [
+    {
+      "type": 0,
+      "value": "Especifica la celebración, dedicatoria o motivo del video. Puedes contar algunos detalles para que tu video quede lo más especial posible."
+    }
+  ],
+  "sK9QPr": [
+    {
+      "type": 0,
+      "value": "Ha ocurrido un error inesperado"
+    }
+  ],
   "sSxzJC": [
     {
       "type": 0,
       "value": "Este correo ya está suscrito al newsletter"
     }
   ],
+  "sVv/AJ": [
+    {
+      "type": 0,
+      "value": "Este correo electrónico ya se encuentra suscrito"
+    }
+  ],
   "sXLa3f": [
     {
       "type": 0,
       "value": "Si no recibes tu video en 7 días te reembolsamos el 100% de tu dinero."
+    }
+  ],
+  "sZXU9F": [
+    {
+      "type": 0,
+      "value": "Ahora ya puedes conectar con tus famosos favoritos a través de Famosos.com!"
     }
   ],
   "se5FEq": [
@@ -3367,10 +5145,30 @@
       "value": "Nosotros te garantizamos que tu famoso va a ver tu solicitud si cumple con nuestras políticas. Nos reservamos el derecho de no mostrarle al famoso solicitudes que consideremos inapropiadas, en ese caso te devolvemos tu dinero. También te garantizamos que te devolvemos tu dinero si el video no es grabado antes de 10 días."
     }
   ],
+  "swHrQR": [
+    {
+      "type": 0,
+      "value": "¡Disfruta la experiencia!"
+    }
+  ],
   "sy+pv5": [
     {
       "type": 0,
       "value": "Email"
+    }
+  ],
+  "syjn1W": [
+    {
+      "type": 0,
+      "value": "¡Este video quedará genial! "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " Te notificaremos cuando esté listo."
     }
   ],
   "t+gzvS": [
@@ -3421,6 +5219,12 @@
       "value": "Trabaja con nosotros"
     }
   ],
+  "t756d4": [
+    {
+      "type": 0,
+      "value": "Agregar foto"
+    }
+  ],
   "t7y7Vl": [
     {
       "type": 0,
@@ -3439,6 +5243,24 @@
       "value": "El campo de correo electrónico del titular de la tarjeta es obligatorio"
     }
   ],
+  "tYEFsF": [
+    {
+      "type": 0,
+      "value": "¡"
+    },
+    {
+      "type": 1,
+      "value": "discount"
+    },
+    {
+      "type": 0,
+      "value": "% de descuento en tus videomensajes! Cupón: "
+    },
+    {
+      "type": 1,
+      "value": "coupon"
+    }
+  ],
   "tZUCvC": [
     {
       "type": 0,
@@ -3451,10 +5273,36 @@
       "value": "Mi perfil"
     }
   ],
-  "tpcdsK": [
+  "tekx9W": [
+    {
+      "type": 1,
+      "value": "action"
+    },
     {
       "type": 0,
-      "value": "Subdominio"
+      "value": " calificación"
+    }
+  ],
+  "tkwCac": [
+    {
+      "type": 0,
+      "value": "E-mail"
+    }
+  ],
+  "tlBp37": [
+    {
+      "type": 1,
+      "value": "celebrity_fullName"
+    },
+    {
+      "type": 0,
+      "value": " tiene un plazo de 7 días para grabar tu video a partir de ahora."
+    }
+  ],
+  "tr1oP1": [
+    {
+      "type": 0,
+      "value": "Rechazados"
     }
   ],
   "tv5FG3": [
@@ -3463,10 +5311,44 @@
       "value": "Blog"
     }
   ],
+  "tzrLFx": [
+    {
+      "type": 0,
+      "value": "Me gustaría que "
+    },
+    {
+      "type": 1,
+      "value": "celebrityFullName"
+    },
+    {
+      "type": 0,
+      "value": " me grabe un video para mi negocio."
+    }
+  ],
   "u+CFdm": [
     {
       "type": 0,
       "value": "Famosos.com - Blog"
+    }
+  ],
+  "u4TQhV": [
+    {
+      "type": 0,
+      "value": "Mostrar más"
+    }
+  ],
+  "uDCyX8": [
+    {
+      "type": 0,
+      "value": "No podemos enviar un correo a \""
+    },
+    {
+      "type": 1,
+      "value": "email"
+    },
+    {
+      "type": 0,
+      "value": "\", por favor, utiliza otro correo electrónico"
     }
   ],
   "uKwcXA": [
@@ -3493,10 +5375,28 @@
       "value": "Cambiar tu contraseña"
     }
   ],
+  "uU47gp": [
+    {
+      "type": 0,
+      "value": "Cambiar número de celular"
+    }
+  ],
+  "uVRzk3": [
+    {
+      "type": 0,
+      "value": "Entérate de nuestras últimas noticias y promociones"
+    }
+  ],
   "uVgimH": [
     {
       "type": 0,
       "value": "No se encontró un famoso con este usuario"
+    }
+  ],
+  "uZ+xW0": [
+    {
+      "type": 0,
+      "value": "Pendiente"
     }
   ],
   "ueZmN4": [
@@ -3511,10 +5411,30 @@
       "value": "Para:"
     }
   ],
+  "ul9NXn": [
+    {
+      "type": 0,
+      "value": "En ocasiones se presentan causas de fuerza mayor que impiden que el Famoso grabe. "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": " ¡Lamentamos el tiempo de espera!"
+    }
+  ],
   "uleYZ4": [
     {
       "type": 0,
       "value": "Para continuar actualiza la contraseña de tu cuenta."
+    }
+  ],
+  "usJosI": [
+    {
+      "type": 0,
+      "value": "Fecha estimada de grabación:"
     }
   ],
   "ut6hvz": [
@@ -3557,6 +5477,28 @@
       "value": "La autorización de tu pago se ha realizado con éxito."
     }
   ],
+  "vO/DkB": [
+    {
+      "type": 0,
+      "value": "¡Ahora puedes comprar videos personalizados de tus Famosos favoritos! Ingresa ya a "
+    },
+    {
+      "type": 1,
+      "value": "link"
+    }
+  ],
+  "vPG9RE": [
+    {
+      "type": 0,
+      "value": "¡a disfrutar esta melodía y a ponerse de buenas!"
+    }
+  ],
+  "vYme3q": [
+    {
+      "type": 0,
+      "value": "Te redirigiremos a Whatsapp donde uno de nuestros agentes te atenderá para continuar con el proceso."
+    }
+  ],
   "vcGTkv": [
     {
       "type": 0,
@@ -3587,6 +5529,12 @@
       "value": "Siguiente"
     }
   ],
+  "w5XPJR": [
+    {
+      "type": 0,
+      "value": "Si por alguna razón tu video no pudo ser grabado, te contactaremos."
+    }
+  ],
   "w5lFLc": [
     {
       "type": 0,
@@ -3609,6 +5557,50 @@
     {
       "type": 0,
       "value": "Si utilizas el link de referido de uno de los Famosos registrados en la plataforma tendrás más oportunidades de ser aprobado, este link es único por cuenta y está disponible en la sección de Mi Perfil de la aplicación de los Famosos."
+    }
+  ],
+  "wUMBIs": [
+    {
+      "type": 0,
+      "value": "Ingresa una contraseña nueva"
+    }
+  ],
+  "wXIkN9": [
+    {
+      "type": 0,
+      "value": "Regístrate y reserva tu pagina exclusiva en Famosos.com"
+    }
+  ],
+  "waDVSR": [
+    {
+      "type": 0,
+      "value": "Cómo tener un video personalizado de tu Famoso favorito."
+    }
+  ],
+  "wbxEGL": [
+    {
+      "type": 0,
+      "value": "Seguridad"
+    }
+  ],
+  "wbzzMw": [
+    {
+      "type": 0,
+      "value": "Whatsapp de notificación"
+    }
+  ],
+  "wcw2WL": [
+    {
+      "type": 0,
+      "value": "El cobro a tu cuenta se realizará una vez que "
+    },
+    {
+      "type": 1,
+      "value": "celebrity_fullName"
+    },
+    {
+      "type": 0,
+      "value": " grabe tu video. (por ahora solo se realizó una autorización por parte de tu banco)."
     }
   ],
   "wkaVGz": [
@@ -3637,10 +5629,22 @@
       "value": " caracteres"
     }
   ],
+  "ws1N91": [
+    {
+      "type": 0,
+      "value": "Una vez que tu video esté listo te notificaremos para que corras a verlo, descargarlo y compartirlo."
+    }
+  ],
   "wwfK17": [
     {
       "type": 0,
       "value": "Buscar país"
+    }
+  ],
+  "x+GitR": [
+    {
+      "type": 0,
+      "value": "Elige una fecha y hora para que Famosos envíe tu video."
     }
   ],
   "x15tum": [
@@ -3655,6 +5659,12 @@
     {
       "type": 0,
       "value": " es aproximado"
+    }
+  ],
+  "x2Pl3E": [
+    {
+      "type": 0,
+      "value": "Cambiar correo electrónico"
     }
   ],
   "x3Y+61": [
@@ -3673,12 +5683,6 @@
     {
       "type": 0,
       "value": "2020 Famosos, Inc. All Rights Reserved."
-    }
-  ],
-  "xKx6PF": [
-    {
-      "type": 0,
-      "value": "¡Aplica y Reserva tu Subdominio Ahora!"
     }
   ],
   "xTsa8e": [
@@ -3701,6 +5705,40 @@
     {
       "type": 1,
       "value": "celebrityFullName"
+    }
+  ],
+  "xlP1hR": [
+    {
+      "type": 0,
+      "value": "Flash (24hrs)"
+    }
+  ],
+  "xmPK9R": [
+    {
+      "type": 0,
+      "value": "Volver a solicitar un video a "
+    },
+    {
+      "type": 1,
+      "value": "contractData"
+    }
+  ],
+  "xqbqgV": [
+    {
+      "type": 0,
+      "value": "Descuento"
+    }
+  ],
+  "y5S+jr": [
+    {
+      "type": 0,
+      "value": "Agrega un titulo"
+    }
+  ],
+  "yF/Sxo": [
+    {
+      "type": 0,
+      "value": "Si por alguna razón tu video no pudo ser grabado, tu dinero estará nuevamente disponible en un plazo máximo de 21 días hábiles, dependiendo de tu banco."
     }
   ],
   "yHlpQC": [
@@ -3747,10 +5785,22 @@
       "value": "Elige el método de pago"
     }
   ],
+  "zDDWOe": [
+    {
+      "type": 0,
+      "value": "Enviar calificación"
+    }
+  ],
   "zJ+Qdi": [
     {
       "type": 0,
       "value": "Brazil"
+    }
+  ],
+  "zKGHNB": [
+    {
+      "type": 0,
+      "value": "Eliminar"
     }
   ],
   "zM4Sw/": [
@@ -3763,6 +5813,36 @@
     {
       "type": 0,
       "value": "Comediantes"
+    }
+  ],
+  "zZp/K2": [
+    {
+      "type": 0,
+      "value": "Unirme al Club de Fans"
+    }
+  ],
+  "zjdjIn": [
+    {
+      "type": 0,
+      "value": "Ingresa el código de seguridad que enviamos a tu correo"
+    }
+  ],
+  "zmFekE": [
+    {
+      "type": 0,
+      "value": "ESTADO DEL PAGO: APROBADO"
+    }
+  ],
+  "zmIeqV": [
+    {
+      "type": 0,
+      "value": "Menos de 3 días"
+    }
+  ],
+  "ztGIyo": [
+    {
+      "type": 0,
+      "value": "Ver comprobante de devolución"
     }
   ],
   "zxOTCH": [

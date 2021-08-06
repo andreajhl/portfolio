@@ -5,14 +5,14 @@ import {
   ReactNode,
   useEffect,
   useRef,
-  useState
+  useState,
 } from "react";
 import { CollapsibleErrorMessage } from "react-app/src/components/common/widgets/collapsible-error-message";
 import {
   defineMessages,
   FormattedMessage,
   IntlFormatters,
-  useIntl
+  useIntl,
 } from "react-intl";
 import styles from "./styles.module.scss";
 import isEmail from "validator/lib/isEmail";
@@ -30,7 +30,7 @@ import getCookie from "react-app/src/utils/getCookie";
 import { USER_LOCATION_KEY } from "constants/keys";
 import {
   localeAvailables,
-  transformUserNavigatorLanguageToISO2Code
+  transformUserNavigatorLanguageToISO2Code,
 } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 type FieldProps = {
@@ -63,28 +63,28 @@ const ALREADY_SUBSCRIBE_ERROR = "Este correo ya está suscrito al newsletter";
 
 const messages = defineMessages({
   invalidEmail: {
-    defaultMessage: "Debes introducir un correo electrónico valido"
+    defaultMessage: "Debes introducir un correo electrónico valido",
   },
   emptyBirthday: {
-    defaultMessage: "Debes introducir una fecha"
+    defaultMessage: "Debes introducir una fecha",
   },
   under13YearsOld: {
-    defaultMessage: "Debes poseer al menos 13 años de edad para suscribirte"
+    defaultMessage: "Debes poseer al menos 13 años de edad para suscribirte",
   },
   invalidBirthday: {
-    defaultMessage: "Debes introducir una fecha valida. Ejemplo: 2020-06-25"
+    defaultMessage: "Debes introducir una fecha valida. Ejemplo: 2020-06-25",
   },
   requestError: {
-    defaultMessage: "Ha ocurrido un error realizando el registro"
+    defaultMessage: "Ha ocurrido un error realizando el registro",
   },
   alreadySubscribedError: {
-    defaultMessage: "Este correo ya está suscrito al newsletter"
-  }
+    defaultMessage: "Este correo ya está suscrito al newsletter",
+  },
 });
 
 const initialValues = {
   email: "",
-  birthDate: ""
+  birthDate: "",
 };
 
 function getValidations(formatMessage: IntlFormatters["formatMessage"]) {
@@ -104,7 +104,7 @@ function getValidations(formatMessage: IntlFormatters["formatMessage"]) {
       if (getAge(value) < 13) {
         return formatMessage(messages.under13YearsOld);
       }
-    }
+    },
   };
 }
 
@@ -117,7 +117,7 @@ type NewsletterSubscriptionFormProps = {
 function NewsletterSubscriptionForm({
   className,
   versionPopup,
-  onCompleted
+  onCompleted,
 }: NewsletterSubscriptionFormProps) {
   const { formatMessage, locale } = useIntl();
   const { handle, status } = usePromise();
@@ -127,7 +127,7 @@ function NewsletterSubscriptionForm({
     initialValues,
     validations: getValidations(formatMessage),
     validateOnChange: false,
-    onSubmit
+    onSubmit,
   });
 
   async function onSubmit(formData: typeof initialValues) {
@@ -142,7 +142,7 @@ function NewsletterSubscriptionForm({
           locale: transformUserNavigatorLanguageToISO2Code(
             locale as localeAvailables
           ),
-          versionPopup
+          versionPopup,
         })
       );
       onCompleted?.();
@@ -164,7 +164,7 @@ function NewsletterSubscriptionForm({
     analytics.track("NEWSLETTER_SUBSCRIPTION_REQUEST_ERROR", {
       widget: "NewsletterSubscriptionForm",
       path: getWindow()?.location?.pathname,
-      requestError
+      requestError,
     });
   }, [requestError]);
 

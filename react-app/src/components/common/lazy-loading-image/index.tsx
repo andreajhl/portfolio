@@ -10,7 +10,7 @@ const LazyLoadingImage = ({
 }: {
   placeholderSrc: string;
   placeholderSize?: string;
-  objectFit: string;
+  objectFit?: string;
 } & React.DetailedHTMLProps<
   React.ImgHTMLAttributes<HTMLImageElement>,
   HTMLImageElement
@@ -22,7 +22,7 @@ const LazyLoadingImage = ({
         height: props.height,
         backgroundImage: placeholderSrc && `url(${placeholderSrc})`,
         backgroundPosition: "center",
-        backgroundSize
+        backgroundSize,
       }}
       className={className}
     >
@@ -36,7 +36,6 @@ const LazyLoadingImage = ({
           opacity: 1;
         }
       `}</style>
-      ;
     </div>
   );
 };

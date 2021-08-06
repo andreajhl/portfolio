@@ -1,0 +1,57 @@
+.ValidateEmailFormTitle.ValidateEmailFormTitle {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.ValidateEmailFormSubmitButton {
+  width: 100%;
+  font-weight: bold;
+  margin-top: 8px;
+  height: 60px;
+
+  @media only screen and (min-width: 768px) {
+    height: 45px;
+  }
+}
+
+.ValidateEmailFormSubmitButton.ValidateEmailFormSubmitButton:disabled {
+  opacity: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(251, 23, 126, 0.7) 0%,
+    rgba(255, 32, 99, 0.7) 100%
+  );
+  border: 2px solid rgb(249, 112, 174) !important;
+}
+
+.ValidateEmailFormErrorMessage {
+  font-size: 14px;
+  justify-content: center;
+  margin-top: 0.5em;
+}
+
+.GoBackButton {
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 14px;
+  color: gray;
+  margin-top: -12.5px;
+  margin-bottom: 1rem;
+
+  i,
+  span {
+    color: inherit;
+  }
+
+  span {
+    margin-left: 0.5em;
+  }
+
+  &:hover {
+    color: initial;
+  }
+}

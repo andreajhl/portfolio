@@ -1,0 +1,59 @@
+.VideoDetailsOccasionLabel {
+  margin-top: 22px;
+  margin-bottom: 14px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.VideoDetailsFormOccasionsGrid {
+  margin-bottom: 1rem;
+}
+
+.VideoDetailsFormInstructions {
+  margin-bottom: 6px;
+}
+
+.VideoDetailsFormInstructionsLabel {
+  font-size: 14px;
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+
+.VideoDetailsFormInstructionsLabel span {
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.VideoDetailsFormInstructionsTextarea {
+  outline: none;
+  overflow-y: scroll;
+  width: 100%;
+  height: 90px;
+  margin-bottom: 4px;
+  line-height: 1.4em;
+  font-size: 12px;
+  background: #f9f9ff !important;
+  border: 1px solid #dedede !important;
+  border-radius: 10px !important;
+  transition: border-color 0.15s;
+}
+
+.VideoDetailsFormInstructionsTextarea:hover,
+.VideoDetailsFormInstructionsTextarea:focus {
+  border-color: var(--gray-3) !important;
+}
+
+.VideoDetailsFormInstructionsTextarea span[data-is-placeholder] {
+  font-weight: bold;
+  color: #6970c6;
+}
+
+.VideoDetailsFormInstructionsMessage {
+  height: 15px;
+  justify-content: flex-end;
+  visibility: hidden;
+}
+
+.VideoDetailsFormInstructionsMessageVisible {
+  visibility: visible;
+}

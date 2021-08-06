@@ -13,7 +13,7 @@ type SelectCardBankPaymentMethodProps = {
 
 const SelectCardBankPaymentMethod = ({
   options,
-  onChangeOptionSelected
+  onChangeOptionSelected,
 }: SelectCardBankPaymentMethodProps) => {
   const [optionSelected, setOptionSelected] = useState(null);
   const handleChange = (selectedOption) => {

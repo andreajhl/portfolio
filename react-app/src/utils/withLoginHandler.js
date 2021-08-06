@@ -10,7 +10,7 @@ const withLoginHandler = (Component) =>
     const loginHandler = (redirectUrl = AUTH_SUCCESS) => {
       if (isMobile | isSafari) {
         loginWithRedirect({
-          redirectUri: window.location.origin + redirectUrl
+          redirectUri: window.location.origin + redirectUrl,
         });
       } else {
         loginWithPopup();

@@ -7,28 +7,29 @@ import { CreateContractPage } from "react-app/src/components/pages/create-contra
 import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import { defineMessages, useIntl } from "react-intl";
+import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 
 const headData = defineMessages({
   titleCreateContract: {
     defaultMessage:
-      "Famosos.com - Comprar video personalizado de {celebrity_username}"
+      "Famosos.com - Comprar video personalizado de {celebrity_username}",
   },
   descriptionCreateContract: {
     defaultMessage:
-      "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas."
-  }
+      "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.",
+  },
 });
 
 const redirectToSanitizedPath = {
   destination: "/celebrity_username/contratar",
-  permanent: false
+  permanent: false,
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async ({ params, store }) => {
     if (typeof params === "undefined") {
       return {
-        redirect: redirectToSanitizedPath
+        redirect: redirectToSanitizedPath,
       };
     }
 
@@ -44,14 +45,14 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
             ":celebrity_username",
             String(celebrity_username)
           ),
-          permanent: false
-        }
+          permanent: false,
+        },
       };
     }
     return {
       props: {
-        celebrity
-      }
+        celebrity,
+      },
     };
   }
 );
@@ -62,19 +63,20 @@ const CreateContract = ({ celebrity }) => {
     <>
       <CustomHead
         title={formatMessage(headData.titleCreateContract, {
-          celebrity_username: celebrity.fullName
+          celebrity_username: celebrity.fullName,
         })}
         description={formatMessage(headData.descriptionCreateContract, {
-          celebrity_username: celebrity.fullName
+          celebrity_username: celebrity.fullName,
         })}
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
       />
       <CreateContractPage />
+      <ValidateEmailModal />
     </>
   );
 };
 
 export default withAuthenticationRequired(CreateContract, {
-  onRedirecting: () => <LoadingPage />
+  onRedirecting: () => <LoadingPage />,
 });

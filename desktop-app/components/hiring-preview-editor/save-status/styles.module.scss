@@ -1,0 +1,36 @@
+.SaveStatusWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SavedIcon,
+.Spinner,
+.SaveStatusText {
+  color: var(--secondary, #6970c6);
+}
+
+.Rejected .SaveStatusText,
+.ErrorIcon {
+  color: var(--danger);
+}
+
+.SaveStatusText {
+  margin-left: 15px;
+  font-size: 12px;
+  height: 1.5em;
+}
+
+.Spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.Idle {
+  opacity: 0;
+}
