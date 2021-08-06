@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FormattedMessage, useIntl } from "react-intl";
 import styles from "./styles.module.scss";
@@ -11,6 +11,7 @@ import {
   TRANSLATION_RESET_PASSSWORD_MESSAGES,
 } from "react-app/src/constants/messages";
 import { useAuth } from "lib/famosos-auth";
+import useAuthenticationEmail from "lib/hooks/useAuthenticationEmail";
 
 function ResetPassword() {
   const { push } = useRouter();
@@ -21,9 +22,18 @@ function ResetPassword() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { setAuthenticated } = useAuth();
+  const [authEmail] = useAuthenticationEmail();
+
   const handleEmailInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value.trim().toLocaleLowerCase());
   };
+
+  useEffect(() => {
+    if (!authEmail) return;
+    setEmail(authEmail);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSecurityCodeInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
