@@ -183,6 +183,7 @@ function CelebrityProfile({
           celebrity.status === 50 ? "available for order" : "out of stock"
         }
         productCategory={GIFT_GIVING_CATEGORY_CODE}
+        itemGroupId={celebrity?.categoryTitle}
       />
       <Maybe
         it={isMobile}

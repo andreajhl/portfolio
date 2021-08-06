@@ -12,6 +12,7 @@ type MicroDataTagsProps = {
   productCondition?: "new" | "refurbished" | "used";
   productCategory: string;
   productId: string;
+  itemGroupId?: string;
 };
 
 function MicroDataTags({
@@ -21,7 +22,8 @@ function MicroDataTags({
   productAvailability = "in stock",
   productCondition = "new",
   productCategory,
-  productId
+  productId,
+  itemGroupId = "",
 }: MicroDataTagsProps) {
   return (
     <Head>
@@ -34,6 +36,7 @@ function MicroDataTags({
       <meta property="product:price:amount" content={priceAmount} />
       <meta property="product:price:currency" content={priceCurrency} />
       <meta property="product:retailer_item_id" content={productId} />
+      <meta property="product:item_group_id" content={itemGroupId} />
     </Head>
   );
 }
