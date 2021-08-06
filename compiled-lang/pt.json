@@ -106,7 +106,7 @@
   "/OzI+S": [
     {
       "type": 0,
-      "value": "Você receberá uma notificação para "
+      "value": "Você receberá uma notificação de "
     },
     {
       "type": 1,
@@ -1003,6 +1003,12 @@
       "value": " para obter mais informações."
     }
   ],
+  "78A2DN": [
+    {
+      "type": 0,
+      "value": "E-mail"
+    }
+  ],
   "7La/lT": [
     {
       "type": 0,
@@ -1742,7 +1748,7 @@
   "Dq6Mnq": [
     {
       "type": 0,
-      "value": "Homen"
+      "value": "Homem"
     }
   ],
   "Ds81mh": [
@@ -2674,7 +2680,7 @@
     },
     {
       "type": 0,
-      "value": " doa sua renda para: "
+      "value": " doa parte da renda das mensagens para: "
     },
     {
       "type": 1,
@@ -3592,7 +3598,7 @@
   "Vrpqh3": [
     {
       "type": 0,
-      "value": "Garantia Famosa"
+      "value": "Garantia Famosos"
     }
   ],
   "VtB4b8": [
@@ -5716,7 +5722,7 @@
     },
     {
       "type": 0,
-      "value": " por "
+      "value": " de "
     },
     {
       "type": 1,
@@ -6512,7 +6518,7 @@
   "wkaVGz": [
     {
       "type": 0,
-      "value": " Faça login para se conectar aos famosos"
+      "value": "Faça login para se conectar aos famosos"
     }
   ],
   "wlTYUV": [
@@ -6594,7 +6600,7 @@
   "x3Y+61": [
     {
       "type": 0,
-      "value": "Atrizes de atores"
+      "value": "Atrizes e Atores"
     }
   ],
   "xBhNFv": [
