@@ -30,7 +30,10 @@ import { FormattedMessage } from "react-intl";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
-import { getCelebrityContractPrice } from "lib/utils/celebrityUtils";
+import {
+  getCelebrityContractPrice,
+  getCelebrityFinalContractPrice,
+} from "lib/utils/celebrityUtils";
 import {
   setLocalContractInProgress,
   deleteLocalContractInProgress,
@@ -192,6 +195,12 @@ function CreateContractWizard({
       celebrityId: celebrity.id,
     };
     const { id } = await createContract(createData);
+    analytics.trackAddContractToCart({
+      celebrityId: celebrity.id,
+      contractPrice: getCelebrityFinalContractPrice(celebrity),
+      celebrityCategory: celebrity?.categoryTitle,
+      celebrityCountry: celebrity?.countryCode,
+    });
     analytics.track("CREATE_CONTRACT_PARTIALLY", {
       ...createData,
       widget: WIDGET_NAME,
