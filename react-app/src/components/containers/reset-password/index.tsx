@@ -75,7 +75,6 @@ function ResetPassword() {
     }
   };
 
-  console.log({ error });
   if (!isEmailSend) {
     return (
       <div className={styles.ResetPasswordWrapper}>
@@ -83,6 +82,9 @@ function ResetPassword() {
           <FormattedMessage defaultMessage="Indicanos tu correo electrónico y podrás restablecer tu contraseña." />
         </p>
         <AuthFormField
+          type="email"
+          name="email"
+          formNoValidate
           label={<FormattedMessage defaultMessage="Correo electrónico" />}
           placeholder="usuario@dominio.com"
           value={email}
@@ -120,11 +122,12 @@ function ResetPassword() {
       </p>
       <AuthFormField
         label={<FormattedMessage defaultMessage="Código de seguridad" />}
+        name="securityCode"
         placeholder="123456"
         value={securityCode}
-        type="number"
         onChange={handleSecurityCodeInputChange}
         onKeyPress={handleKeyPress}
+        autoComplete="off"
       />
       {error && (
         <span className={styles.ErrorMessage}>
