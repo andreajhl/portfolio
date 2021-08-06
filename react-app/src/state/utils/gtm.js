@@ -57,7 +57,23 @@ export function trackContractPurchase({ celebrityId, contractPrice }) {
     content_type: "product",
     content_ids: VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrityId,
     value: contractPrice,
-    currency: "USD"
+    currency: "USD",
+  });
+}
+
+export function trackAddContractToCart({
+  celebrityId,
+  contractPrice,
+  celebrityCountry,
+  celebrityCategory,
+}) {
+  return fbPixel("track", "AddToCart", {
+    content_type: "product",
+    content_ids: VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrityId,
+    value: contractPrice,
+    currency: "USD",
+    celebrityCountry,
+    celebrityCategory,
   });
 }
 
@@ -86,4 +102,5 @@ export const analytics = {
   trackContractPurchase,
   page,
   trackFirstPageLoad,
+  trackAddContractToCart,
 };
