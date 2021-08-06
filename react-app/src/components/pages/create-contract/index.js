@@ -2,44 +2,29 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { PageContainer } from "../../layouts/page-container";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
-import * as GTM from "../../../state/utils/gtm";
 import { CreateContractForm } from "../../containers/create-contract-form";
-import { Session } from "../../../state/utils/session";
-import { history } from "../../../routing/History";
-import * as PATHS from "../../../routing/Paths";
 import { hiring_proccess_img } from "constants/external_assets_by_lang";
-// import { Redirect } from "react-router-dom";
 import { withRouter } from "next/router";
 import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { getCelebrityFinalContractPrice } from "lib/utils/celebrityUtils";
 
 const getContractPriceVideoMessage = (contractsTypes) =>
   contractsTypes?.find?.((contract) => contract.contractType === 1)?.price || 0;
 
 class CreateContractPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
-    GTM.tagManagerDataLayer("CREATE_CONTRACT_PAGE_VIEW", this.props.match);
-    // const session = new Session();
+    const { celebrity } = this.props;
+    analytics.track("CREATE_CONTRACT_PAGE_VIEW", { celebrity });
+    analytics.trackAddContractToCart({
+      celebrityId: celebrity?.id,
+      contractPrice: getCelebrityFinalContractPrice(celebrity),
+      celebrityCountry: celebrity.countryCode,
+      celebrityCategory: celebrity.categoryTitle,
+    });
   }
 
   render() {
-    // if (!this.props.auth0.isLoading) {
-    //   if (!this.props.auth0.isAuthenticated) {
-    //     localStorage.setItem(
-    //       "finalRedirect",
-    //       "/" + this.props.match.params["celebrity_username"] + "/contratar"
-    //     );
-    //   }
-    // }
-    // let RedirectTo = !this.props.auth0.isLoading ? (
-    //   this.props.auth0.isAuthenticated ? null : (
-    //     <Redirect to={PATHS.SIGN_IN_PATH}></Redirect>
-    //   )
-    // ) : null;
-
     const { router } = this.props;
     return (
       <>

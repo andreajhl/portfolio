@@ -10,6 +10,12 @@ export const getVideoMessageContractType = (celebrity: celebrityType) =>
 export const getCelebrityContractPrice = (celebrity: celebrityType) =>
   getVideoMessageContractType(celebrity)?.price || 0;
 
+export function getCelebrityFinalContractPrice(celebrity: celebrityType) {
+  const initialPrice = getCelebrityContractPrice(celebrity);
+  const discountPercentage = getCelebrityDiscountPercentage(celebrity);
+  return initialPrice - initialPrice * discountPercentage;
+}
+
 const fallbackDiscountPercentage = 0;
 
 export function getCelebrityDiscountPercentage(
