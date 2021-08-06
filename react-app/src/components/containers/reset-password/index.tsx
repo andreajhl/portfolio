@@ -6,11 +6,11 @@ import classes from "classnames";
 import { AuthFormField } from "../../layouts/auth-form-field";
 import { useRouter } from "next/router";
 import { CHANGE_PASSWORD_PATH } from "../../../routing/Paths";
-import { Session } from "react-app/src/state/utils/session";
 import {
   RESET_PASSSWORD_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
   TRANSLATION_RESET_PASSSWORD_MESSAGES,
 } from "react-app/src/constants/messages";
+import { useAuth } from "lib/famosos-auth";
 
 function ResetPassword() {
   const { push } = useRouter();
@@ -20,6 +20,7 @@ function ResetPassword() {
   const [isEmailSend, setIsEmailSend] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { setAuthenticated } = useAuth();
   const handleEmailInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value.trim().toLocaleLowerCase());
   };
@@ -55,10 +56,9 @@ function ResetPassword() {
         securityCode: securityCode.trim().toLocaleLowerCase(),
       })
       .then((response) => {
-        localStorage.setItem("finalRedirect", CHANGE_PASSWORD_PATH);
-        const session = new Session();
-        session.initSession();
         setIsLoading(false);
+        setAuthenticated(true);
+        push(CHANGE_PASSWORD_PATH);
       })
       .catch((err) => {
         setIsLoading(false);
