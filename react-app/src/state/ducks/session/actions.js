@@ -206,3 +206,8 @@ export const saveUserNewsletter = (subscriptionData) =>
     .catch((error) => {
       throw new Error(error?.response?.data?.error || error.message);
     });
+
+export const setAuthenticationEmail = (email = "") => ({
+  type: types.SET_AUTHENTICATION_EMAIL,
+  payload: email,
+});
