@@ -453,7 +453,7 @@
     "translation": "Estes Termos serão regidos e interpretados de acordo com as leis do Estado da Flórida, sem dar efeito a qualquer conflito de leis ou disposições."
   },
   "Vrpqh3": {
-    "translation": "Garantia Famosa"
+    "translation": "Garantia Famosos"
   },
   "W1OXQI": {
     "translation": "Desativar notificação"
@@ -1410,7 +1410,7 @@
     "translation": "{celebrityName} tem 7 dias para gravar seu vídeo a partir de agora."
   },
   "/OzI+S": {
-    "translation": "Você receberá uma notificação para {deliveryContact} quando seu vídeo estiver pronto."
+    "translation": "Você receberá uma notificação de {deliveryContact} quando seu vídeo estiver pronto."
   },
   "zM4Sw/": {
     "translation": "O que significa uma autorização de pagamento?"
@@ -1716,10 +1716,10 @@
     "translation": "Registro"
   },
   "wkaVGz": {
-    "translation": " Faça login para se conectar aos famosos"
+    "translation": "Faça login para se conectar aos famosos"
   },
   "x3Y+61": {
-    "translation": "Atrizes de atores"
+    "translation": "Atrizes e Atores"
   },
   "5MxALj": {
     "translation": "Resultados para {search}"
@@ -2043,7 +2043,7 @@
     "translation": "Página {currentPage} de {totalPages}"
   },
   "Dq6Mnq": {
-    "translation": "Homen"
+    "translation": "Homem"
   },
   "Ds81mh": {
     "translation": "Você será redirecionado para a página oficial do paypal para continuar com o pagamento"
@@ -2190,7 +2190,7 @@
     "translation": "Mudar senha"
   },
   "MYOAnX": {
-    "translation": "{fullName} doa sua renda para: {causeName}"
+    "translation": "{fullName} doa parte da renda das mensagens para: {causeName}"
   },
   "MyGFHf": {
     "translation": "Conclua a compra"
@@ -2595,7 +2595,7 @@
     "translation": "Suas alterações foram salvas há alguns segundos."
   },
   "qsmv/Z": {
-    "translation": "Vídeo personalizado {br} por {celebrityFullName}"
+    "translation": "Vídeo personalizado {br} de {celebrityFullName}"
   },
   "qvzdOL": {
     "translation": "Digite um novo endereço de e-mail"
@@ -2773,5 +2773,8 @@
   },
   "Daf8Xy": {
     "translation": "Escreva o endereço da sua página exclusiva Ej: /andresito"
+  },
+  "78A2DN": {
+    "translation": "E-mail"
   }
 }

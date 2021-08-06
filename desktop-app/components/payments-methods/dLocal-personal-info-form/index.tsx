@@ -8,12 +8,13 @@ import {
   AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES,
   DOCUMENT_NAME_FOR_COUNTRIES,
 } from "react-app/src/constants/messages";
-import { AVAILABLE_CURRENCIES_FOR_PAYMENTS } from "constants/availableCurrencyForPayments";
 import { RootState } from "react-app/src/state/store";
 import { connect, ConnectedProps } from "react-redux";
 import { defineMessages, IntlFormatters, useIntl } from "react-intl";
 import errorMessages from "lib/validations/errorMessages";
 import { getEmailValidator } from "lib/validations/common";
+import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
+import { getTextOfFormatAllowedForUserDocument } from "react-app/src/state/utils/getTextOfFormatAllowedForUserDocument";
 
 const initialValuesForm = {
   buyer_name: "",
@@ -88,7 +89,7 @@ function DLocalPersonalInfoForm({
     onChangeValues({ ...values });
   }, [values]);
 
-  const document_name_available = AVAILABLE_CURRENCIES_FOR_PAYMENTS.find(
+  const document_name_available = AVAILABLE_CURRENCIES.find(
     (data) => data.name === currencyExchangeData.to
   );
 
@@ -145,6 +146,17 @@ function DLocalPersonalInfoForm({
             errors?.identification_document && styles.FormErrorIsVisible
           )}
         />
+        {errors.identification_document ? (
+          <WarningMessage
+            className={classes(
+              styles.FormError,
+              errors?.identification_document && styles.FormErrorIsVisible
+            )}
+            message={getTextOfFormatAllowedForUserDocument(
+              document_name_available.document_name
+            )}
+          />
+        ) : null}
       </form>
       <WarningMessage
         message={errorMessage}

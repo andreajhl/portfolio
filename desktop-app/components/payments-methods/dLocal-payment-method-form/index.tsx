@@ -8,7 +8,7 @@ import {
   ExchangeArrowIcon,
 } from "desktop-app/components/common/icons";
 import WarningMessage from "desktop-app/components/common/warning-message";
-import { useIntl } from "lib/custom-intl";
+import { FormattedMessage, useIntl } from "lib/custom-intl";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
@@ -25,11 +25,11 @@ import DLocalSelectPaymentMethod from "../DLocal-select-payment-method";
 import styles from "./styles.module.scss";
 
 export const AVAILABLE_PAYMENTS_METHODS_LABEL = {
-  CREDIT_CARD: "Tarjeta de Crédito",
-  DEBIT_CARD: "Tarjeta de Débito",
-  BANK_TRANSFER: "Transferencia Bancaria",
-  TICKET: "Efectivo",
-  PAYPAL: "Paypal",
+  CREDIT_CARD: <FormattedMessage defaultMessage="Tarjeta de Crédito" />,
+  DEBIT_CARD: <FormattedMessage defaultMessage="Tarjeta de Débito" />,
+  BANK_TRANSFER: <FormattedMessage defaultMessage="Transferencia Bancaria" />,
+  TICKET: <FormattedMessage defaultMessage="Efectivo" />,
+  PAYPAL: <FormattedMessage defaultMessage="Paypal" />,
 };
 
 const PAYMENTS_METHODS_ICONS = {
