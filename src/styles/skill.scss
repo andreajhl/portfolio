@@ -51,7 +51,7 @@ $color1: #FFE5D9;
     @include caja-flex(flex,column,center,center,nowrap);
     font-size: 25px;
     max-height: 250px;
-    margin: 20px;
+    padding: 2%;;
     cursor: pointer;
     @media #{$smarmini}{
         max-height:100px;
@@ -88,22 +88,7 @@ $color1: #FFE5D9;
     }
 }
 .icon:hover{
-    margin: 15px;
-    transform: scale(1.2);
+    transform: scale(1.1);
     text-shadow:5px 5px 5px #b65555;
-    @media #{$smarmini}{
-        margin: 6px;
-        transform: scale(1);
-    }
-    @media #{$smarphone}{
-        margin: 8px;
-        transform: scale(1);
-    }
-    @media #{$tablet}{
-        margin: 12px;
-        transform: scale(1.1);
-    }
-    @media #{$desktop}{
-        margin: 13px;
-    }
+ 
 }
