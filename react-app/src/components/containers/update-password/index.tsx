@@ -49,7 +49,7 @@ function UpdatePasswordFom() {
   const validateSecurityCode = async () => {
     await axios
       .post("/api/update-password", {
-        newPassword: newPassword.password.trim().toLocaleLowerCase(),
+        newPassword: newPassword.password.trim(),
       })
       .then((response) => {
         setIsUpdated(true);
