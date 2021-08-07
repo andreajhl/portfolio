@@ -96,6 +96,15 @@ export function trackFirstPageLoad() {
   });
 }
 
+export function trackInitiateCheckout({ celebrityId, contractPrice }) {
+  return fbPixel("track", "InitiateCheckout", {
+    content_type: "product",
+    content_ids: VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrityId,
+    value: contractPrice,
+    currency: "USD",
+  });
+}
+
 export const analytics = {
   track: tagManagerDataLayer,
   fbPixel,
@@ -103,4 +112,5 @@ export const analytics = {
   page,
   trackFirstPageLoad,
   trackAddContractToCart,
+  trackInitiateCheckout,
 };

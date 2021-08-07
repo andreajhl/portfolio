@@ -8,6 +8,10 @@ import { ROOT_PATH } from "react-app/src/routing/Paths";
 import dynamic from "next/dynamic";
 import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 import { GetServerSideProps } from "next";
+import { RootState } from "react-app/src/state/store";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
   import("react-app/src/components/pages/payment-methods").then(
@@ -41,8 +45,26 @@ export const getServerSideProps: GetServerSideProps = async ({
   };
 };
 
+const contractToPaySelector = ({
+  payments: { getContractToPayReducer },
+}: RootState) => ({
+  isCompleted: getContractToPayReducer.completed,
+  contract: getContractToPayReducer.data,
+});
+
 const PaymentMethods = ({ contract_reference, isMobile }) => {
   useDesktopClass(!isMobile);
+  const { contract, isCompleted } = useSelector(contractToPaySelector);
+
+  useEffect(() => {
+    if (!isCompleted) return;
+    if (contract_reference !== contract.reference) return;
+    analytics.trackInitiateCheckout({
+      contractPrice: contract.price,
+      celebrityId: contract.celebrity_id ?? contract.celebrityId,
+    });
+  }, [contract, isCompleted, contract_reference]);
+
   return (
     <>
       <CustomHead />

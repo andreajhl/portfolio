@@ -270,12 +270,6 @@ function CreateContractWizard({
       "CONTRACT_CREATED",
       Object.assign({ celebrity }, deliveryData, detailsData, values)
     );
-    analytics.fbPixel("track", "InitiateCheckout", {
-      content_type: "product",
-      content_ids: VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id,
-      value: getCelebrityContractPrice(celebrity),
-      currency: "USD",
-    });
     await router.push(getPaymentMethodsPath(reference));
   });
 
