@@ -1,12 +1,13 @@
-import { GetServerSideProps } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import isMobile from "lib/utils/isMobile";
-import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import dynamic from "next/dynamic";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
+import dynamic from "next/dynamic";
+import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
+import { GetServerSideProps } from "next";
 
 const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
   import("react-app/src/components/pages/payment-methods").then(
@@ -53,10 +54,11 @@ const PaymentMethods = ({ contract_reference, isMobile }) => {
       >
         <PaymentMethodsPage contractReference={contract_reference} />
       </Maybe>
+      <ValidateEmailModal />
     </>
   );
 };
 
 export default withAuthenticationRequired(PaymentMethods, {
-  onRedirecting: () => <LoadingPage></LoadingPage>,
+  onRedirecting: LoadingPage,
 });
