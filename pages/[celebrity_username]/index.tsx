@@ -141,18 +141,17 @@ function CelebrityProfile({
   useDesktopClass(!isMobile);
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
   const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
+  const celebrityCountry = celebrity?.countryCode;
+  const celebrityCategory = celebrity?.categoryTitle;
   const { formatMessage } = useIntl();
 
   useEffect(() => {
-    async function captureProfileViewEvent() {
-      const fbq = await waitFor(() => (window as any)?.fbq);
-      if (typeof fbq !== "function") return;
-      fbq("track", "ViewContent", {
-        content_type: "product",
-        content_ids: productId,
-      });
-    }
-    captureProfileViewEvent();
+    analytics.fbPixel("track", "ViewContent", {
+      content_type: "product",
+      content_ids: productId,
+      celebrityCountry,
+      celebrityCategory,
+    });
   }, []);
 
   useEffect(() => {
