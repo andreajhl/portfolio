@@ -1,4 +1,4 @@
-            #!/bin/bash
+#!/bin/bash
 
 # REMOVE FILES
 rm -rf zip.zip
