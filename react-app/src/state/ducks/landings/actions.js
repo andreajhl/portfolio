@@ -18,7 +18,7 @@ export const fetchLandings = (params) => (dispatch) => {
     method: "GET",
     action: TYPE,
     path: FINAL_PATH,
-    params
+    params,
   })
     .then((res) => {
       if ("status" in res.data && res.data.status === "ERROR") {

@@ -18,7 +18,7 @@ export const sections = [
           "venezuela",
           "nacho",
           "latingrammy",
-          "lacriatura"
+          "lacriatura",
         ],
         title: "Músicos",
         categoryId: 5,
@@ -37,7 +37,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 1382,
@@ -65,7 +65,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 1157,
@@ -93,7 +93,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 609,
@@ -108,7 +108,7 @@ export const sections = [
           "LaCasaDePapel",
           "Arturo",
           "Arturito",
-          "Moneyheist"
+          "Moneyheist",
         ],
         title: "Actores",
         categoryId: 4,
@@ -127,7 +127,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 2178,
@@ -155,7 +155,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 557,
@@ -183,7 +183,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 1858,
@@ -211,7 +211,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 864,
@@ -239,7 +239,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 555,
@@ -267,7 +267,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 613,
@@ -294,7 +294,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 35,
@@ -311,7 +311,7 @@ export const sections = [
           "copaamerica",
           "instasoccer",
           "worldcupfever",
-          "copadomundo"
+          "copadomundo",
         ],
         title: "Deportistas",
         categoryId: 24,
@@ -330,7 +330,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 1107,
@@ -358,7 +358,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 367,
@@ -374,7 +374,7 @@ export const sections = [
           "Telenovelas",
           "AmorMío",
           "Comedia",
-          "Mexicana"
+          "Mexicana",
         ],
         title: "Actores",
         categoryId: 4,
@@ -393,7 +393,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 774,
@@ -408,7 +408,7 @@ export const sections = [
           "JLOdouble",
           "JLO Impersonator",
           "JLO Lookalike",
-          "LaDobledeJLO"
+          "LaDobledeJLO",
         ],
         title: "Músicos",
         categoryId: 5,
@@ -427,7 +427,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 1929,
@@ -455,7 +455,7 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
+        isDonor: false,
       },
       {
         id: 1336,
@@ -483,8 +483,8 @@ export const sections = [
         turnaround: 0,
         description: "asd",
         causeName: "None",
-        isDonor: false
-      }
-    ]
-  }
+        isDonor: false,
+      },
+    ],
+  },
 ];

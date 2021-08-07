@@ -6,6 +6,6 @@ export const updateSearchFiltersMemory = (payload: SearchFiltersType) => (
 ) => {
   dispatch({
     type: TYPES.UPDATE_FILTERS_MEMORY,
-    payload: payload
+    payload: payload,
   });
 };

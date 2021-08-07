@@ -8,7 +8,7 @@ type TypingEffectLoopedProps = {
 
 function TypingEffectLooped({
   words,
-  className = ""
+  className = "",
 }: TypingEffectLoopedProps) {
   return (
     <TypistLoop interval={0}>

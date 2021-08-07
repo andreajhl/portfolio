@@ -11,7 +11,7 @@ const defaultButtonStylesSize = 35;
 
 const defaultButtonsStyle: ButtonStyle = {
   size: defaultButtonStylesSize,
-  top: "1rem"
+  top: "1rem",
 };
 
 type DirectionButtonProps = {
@@ -29,7 +29,7 @@ function DirectionButton({
   iconButtonVariant,
   onClick = noop,
   style = defaultButtonsStyle,
-  disabled
+  disabled,
 }: DirectionButtonProps) {
   const width = style?.size || defaultButtonStylesSize;
   const appliedStyles = style;

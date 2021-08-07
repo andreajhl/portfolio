@@ -22,7 +22,7 @@ const OptimizedImage = ({
         height: props.height,
         backgroundImage: placeholderSrc && `url(${placeholderSrc})`,
         backgroundPosition: "center",
-        backgroundSize
+        backgroundSize,
       }}
       className={className}
     >

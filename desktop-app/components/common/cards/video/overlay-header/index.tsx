@@ -2,7 +2,7 @@ import {
   MutedIcon,
   PauseIcon,
   PlayIcon,
-  VolumeIcon
+  VolumeIcon,
 } from "desktop-app/components/common/icons";
 import styles from "./styles.module.scss";
 import React from "react";

@@ -11,7 +11,7 @@ type SidebarWrapperProps = {
 function SidebarWrapper({
   children,
   isOpen,
-  className = ""
+  className = "",
 }: SidebarWrapperProps) {
   return (
     <div
@@ -45,7 +45,7 @@ function Sidebar({
   children,
   width = 100,
   className = "",
-  isOpen = false
+  isOpen = false,
 }: SidebarProps) {
   return (
     <aside
@@ -59,7 +59,7 @@ function Sidebar({
 
 function MainContent({
   children,
-  className = ""
+  className = "",
 }: {
   children: ReactNode;
   className?: string;

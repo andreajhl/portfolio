@@ -21,7 +21,7 @@ const InputWithFloatLabel = ({
   className = "",
   value,
   errorMessage,
-  maxLength
+  maxLength,
 }: InputWithFloatLabelProps) => {
   return (
     <div className={classes(styles.InputWithFloatLabelContainer, className)}>

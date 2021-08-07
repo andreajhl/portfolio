@@ -11,7 +11,7 @@ describe("<PriceLayout />", () => {
       props = {
         showPrefix: false,
         price: 10,
-        currencyData: { to: "USD" }
+        currencyData: { to: "USD" },
       };
       wrapper = mount(<PriceLayout {...props} />);
     });

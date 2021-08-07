@@ -12,7 +12,7 @@ const contract = {
   // Data de los descuentos
   celebrity_id: 864,
   discount_percentage: 0,
-  original_price: 15
+  original_price: 15,
 };
 
 const contractWithCelebrityDiscount = {
@@ -29,7 +29,7 @@ const contractWithCelebrityDiscount = {
   // Data de los descuentos
   celebrity_id: 864,
   discount_percentage: 0.2,
-  original_price: 15
+  original_price: 15,
 };
 
 export { contractWithCelebrityDiscount };

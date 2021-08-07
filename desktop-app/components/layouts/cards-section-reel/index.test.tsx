@@ -7,7 +7,7 @@ const props: CardsReelSectionProps = {
   itemData: sections,
   children: (data) => <span>{data.title}</span>,
   itemHeight: 200,
-  itemWidth: 200
+  itemWidth: 200,
 };
 
 it("renders without crashing", () => {

@@ -8,7 +8,7 @@ export const getCelebrityFromSimilarCelebrity = ({
   availableForFlashDeliveries,
   countryCode,
   categoryId,
-  categoryTitle
+  categoryTitle,
 }: any) => {
   return {
     id: celebrityId,
@@ -29,6 +29,6 @@ export const getCelebrityFromSimilarCelebrity = ({
     isDonor: false,
     mainVideo: "",
     showSimilarCelebrities: false,
-    availableForSubscriptions: false
+    availableForSubscriptions: false,
   };
 };

@@ -78,7 +78,7 @@ class Stripe3dSecureResponse extends Component {
       deviceId,
       IP,
       userAgent,
-      geoLocalization
+      geoLocalization,
     } = await getBuyerIdentityData();
     processStripePayment(
       this.props.contractReference,

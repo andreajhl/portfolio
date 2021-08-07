@@ -10,7 +10,7 @@ type ContractSummaryLayoutProps = {
 function ContractSummaryLayout({
   header,
   contractDetails,
-  instructions
+  instructions,
 }: ContractSummaryLayoutProps) {
   return (
     <>

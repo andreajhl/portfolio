@@ -33,6 +33,8 @@ const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
   });
 };
 
+const MAINTENANCE_IS_ACTIVE =
+  process.env.NEXT_PUBLIC_ACTIVE_MAINTENANCE === "true";
 const ROUTE_CHANGE_START = "routeChangeStart";
 
 CustomApp.getInitialProps = async (appContext: AppContext) => {
@@ -49,6 +51,12 @@ CustomApp.getInitialProps = async (appContext: AppContext) => {
 
 function CustomApp({ Component, pageProps }) {
   const router = useRouter();
+
+  if (MAINTENANCE_IS_ACTIVE) {
+    const useMaintenanceMode = require("lib/hooks/useMaintenanceMode").default;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useMaintenanceMode();
+  }
 
   useEffect(() => {
     gtmInitialize();

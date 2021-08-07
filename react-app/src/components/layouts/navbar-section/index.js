@@ -110,7 +110,7 @@ NavbarSectionLayout.propTypes = {
 
 NavbarSectionLayout.defaultProps = {
   className: "",
-  onSearchChange: () => { },
+  onSearchChange: () => {},
   showSearch: true,
   showLogin: true,
 };
