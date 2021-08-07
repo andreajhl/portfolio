@@ -172,6 +172,7 @@ class AvailablePaymentMethods extends Component {
         >
           <Elements>
             <StripeFlowHandler
+              celebrityId={this.props.celebrityId}
               contractReference={this.props.contractReference}
               contractPrice={
                 this.props.couponData.completed

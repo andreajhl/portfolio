@@ -180,17 +180,10 @@ class StripeCardForm extends Component {
             errorMessage: res.data.error,
           });
         } else {
-          if (typeof window !== "undefined") {
-            if (window.fbq != null) {
-              window.fbq("track", "Purchase", {
-                content_type: "product",
-                content_ids:
-                  VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
-                value: this.props.contractPrice,
-                currency: "USD",
-              });
-            }
-          }
+          analytics.trackContractPurchase({
+            celebrityId: this.props.celebrityId,
+            contractPrice: this.props.contractPrice,
+          });
           analytics.track("CONTRACT_PAYED", {
             widget: "StripeCardForm",
             paymentMethod: "STRIPE",
