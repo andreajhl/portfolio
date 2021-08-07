@@ -5,6 +5,8 @@ import styles from "./styles.module.scss";
 import classes from "classnames";
 import { AuthFormField } from "../../layouts/auth-form-field";
 import { useRouter } from "next/router";
+import { ROOT_PATH } from "constants/paths";
+import { redirectToAfterAuthPath } from "lib/famosos-auth";
 
 function UpdatePasswordFom() {
   const [newPassword, setNewPassword] = useState({
@@ -20,7 +22,8 @@ function UpdatePasswordFom() {
   const handleNewPasswordInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const name = event.target.name;
+    const name =
+      event.target.name === "new-password" ? "password" : event.target.name;
     const value = event.target.value;
     setNewPassword((prevState) => ({
       ...prevState,
@@ -46,7 +49,7 @@ function UpdatePasswordFom() {
   const validateSecurityCode = async () => {
     await axios
       .post("/api/update-password", {
-        newPassword: newPassword.password.trim().toLocaleLowerCase(),
+        newPassword: newPassword.password.trim(),
       })
       .then((response) => {
         setIsUpdated(true);
@@ -67,14 +70,17 @@ function UpdatePasswordFom() {
   const toggleShowPasswordState = () => {
     setShowPassword((prevState) => !prevState);
   };
+
+  function redirectUserToPreviousPath() {
+    setIsLoading(true);
+    redirectToAfterAuthPath();
+  }
+
   if (!isUpdated) {
     return (
       <div className={styles.ResetPasswordWrapper}>
         <p className={styles.SubTitle}>
-          <FormattedMessage
-            defaultMessage="Para continuar actualiza la contraseña de tu cuenta. 
-  "
-          />
+          <FormattedMessage defaultMessage="Para continuar actualiza la contraseña de tu cuenta." />
         </p>
         <p>
           <FormattedMessage defaultMessage="Asegurate de que sea una contraseña fácil de recordar." />
@@ -83,7 +89,8 @@ function UpdatePasswordFom() {
           label={<FormattedMessage defaultMessage="Nueva Contraseña" />}
           type={showPassword ? "text" : "password"}
           value={newPassword.password}
-          name="password"
+          autoComplete="new-password"
+          name="new-password"
           onChange={handleNewPasswordInputChange}
           onKeyPress={handleKeyPress}
           onIconClick={toggleShowPasswordState}
@@ -117,6 +124,12 @@ function UpdatePasswordFom() {
       </div>
     );
   }
+
+  function goToHome() {
+    setIsLoading(true);
+    push(ROOT_PATH);
+  }
+
   return (
     <div className={styles.ResetPasswordWrapper}>
       <p
@@ -125,10 +138,7 @@ function UpdatePasswordFom() {
         }}
         className={styles.SubTitle}
       >
-        <FormattedMessage
-          defaultMessage="Contraseña actualizada
-"
-        />
+        <FormattedMessage defaultMessage="Contraseña actualizada" />
       </p>
       <div className={styles.UpdateCompleteBox}>
         <i className={`far fa-check-circle ${styles.checkIcon}`}></i>
@@ -136,9 +146,17 @@ function UpdatePasswordFom() {
           type="button"
           className={classes("btn btn-primary", styles.SignInBoxSubmitButton)}
           disabled={isLoading}
-          onClick={() => push("/")}
+          onClick={redirectUserToPreviousPath}
         >
-          <FormattedMessage defaultMessage={"Ir al Inicio"} />
+          <FormattedMessage defaultMessage="Continuar" />
+        </button>
+        <button
+          type="button"
+          className={classes("btn btn-link", styles.GoToHomeButton)}
+          disabled={isLoading}
+          onClick={goToHome}
+        >
+          <FormattedMessage defaultMessage="Ir al Inicio" />
         </button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FormattedMessage, useIntl } from "react-intl";
 import styles from "./styles.module.scss";
@@ -6,11 +6,12 @@ import classes from "classnames";
 import { AuthFormField } from "../../layouts/auth-form-field";
 import { useRouter } from "next/router";
 import { CHANGE_PASSWORD_PATH } from "../../../routing/Paths";
-import { Session } from "react-app/src/state/utils/session";
 import {
   RESET_PASSSWORD_MESSAGES_WITH_TRANSLATIONS_AVAILABLE,
   TRANSLATION_RESET_PASSSWORD_MESSAGES,
 } from "react-app/src/constants/messages";
+import { useAuth } from "lib/famosos-auth";
+import useAuthenticationEmail from "lib/hooks/useAuthenticationEmail";
 
 function ResetPassword() {
   const { push } = useRouter();
@@ -20,9 +21,19 @@ function ResetPassword() {
   const [isEmailSend, setIsEmailSend] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { setAuthenticated } = useAuth();
+  const [authEmail] = useAuthenticationEmail();
+
   const handleEmailInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value.trim().toLocaleLowerCase());
   };
+
+  useEffect(() => {
+    if (!authEmail) return;
+    setEmail(authEmail);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSecurityCodeInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -55,10 +66,9 @@ function ResetPassword() {
         securityCode: securityCode.trim().toLocaleLowerCase(),
       })
       .then((response) => {
-        localStorage.setItem("finalRedirect", CHANGE_PASSWORD_PATH);
-        const session = new Session();
-        session.initSession();
         setIsLoading(false);
+        setAuthenticated(true);
+        push(CHANGE_PASSWORD_PATH);
       })
       .catch((err) => {
         setIsLoading(false);
@@ -75,7 +85,6 @@ function ResetPassword() {
     }
   };
 
-  console.log({ error });
   if (!isEmailSend) {
     return (
       <div className={styles.ResetPasswordWrapper}>
@@ -83,6 +92,9 @@ function ResetPassword() {
           <FormattedMessage defaultMessage="Indicanos tu correo electrónico y podrás restablecer tu contraseña." />
         </p>
         <AuthFormField
+          type="email"
+          name="email"
+          formNoValidate
           label={<FormattedMessage defaultMessage="Correo electrónico" />}
           placeholder="usuario@dominio.com"
           value={email}
@@ -120,11 +132,12 @@ function ResetPassword() {
       </p>
       <AuthFormField
         label={<FormattedMessage defaultMessage="Código de seguridad" />}
+        name="securityCode"
         placeholder="123456"
         value={securityCode}
-        type="number"
         onChange={handleSecurityCodeInputChange}
         onKeyPress={handleKeyPress}
+        autoComplete="off"
       />
       {error && (
         <span className={styles.ErrorMessage}>

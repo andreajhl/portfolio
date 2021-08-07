@@ -12,6 +12,7 @@ import usePromise from "lib/hooks/usePromise";
 import { CollapsibleErrorMessage } from "../../common/widgets/collapsible-error-message";
 import { signInWithEmailAndPassword } from "lib/famosos-auth";
 import { AuthPasswordField } from "../../layouts/auth-password-field";
+import useAuthenticationEmail from "lib/hooks/useAuthenticationEmail";
 
 const initialRequestErrorValue = null;
 
@@ -52,17 +53,13 @@ type SignInEmailPasswordFormProps = {
 
 function SignInEmailPasswordForm({ email }: SignInEmailPasswordFormProps) {
   const { formatMessage } = useIntl();
-  const {
-    values,
-    errors,
-    setFieldValue,
-    onChangeField,
-    validateBeforeSubmit,
-  } = useForm({
+  const { values, errors, setFieldValue, validateBeforeSubmit } = useForm({
     initialValues: getInitialValues(email),
     validations: getValidations(formatMessage),
     onSubmit,
   });
+
+  const setAuthEmail = useAuthenticationEmail()[1];
 
   const [requestError, setRequestError] = useState(initialRequestErrorValue);
   const { handle, status } = usePromise();
@@ -105,6 +102,13 @@ function SignInEmailPasswordForm({ email }: SignInEmailPasswordFormProps) {
     setFieldValue("password", value);
   }
 
+  function changeEmailValue({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement>) {
+    setFieldValue("email", value);
+    setAuthEmail(value);
+  }
+
   const disableForm = isLoading || status === "completed";
 
   return (
@@ -118,7 +122,7 @@ function SignInEmailPasswordForm({ email }: SignInEmailPasswordFormProps) {
         label={<FormattedMessage defaultMessage="Correo electrónico" />}
         placeholder="usuario@dominio.com"
         value={values.email}
-        onChange={onChangeField}
+        onChange={changeEmailValue}
         error={errors.email}
         formNoValidate
         disabled={disableForm}

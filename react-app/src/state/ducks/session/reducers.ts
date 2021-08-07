@@ -34,6 +34,8 @@ const userAccountDetailsInitialState: typeUserAccountDetailsState = {
   error_data: { error: "" },
 };
 
+const setAuthenticationEmailInitialState = "";
+
 export function getSessionReducer(state = getSessionInitialState, action) {
   switch (action.type) {
     case types.GET_SESSION_REQUEST:
@@ -137,10 +139,19 @@ export const getUserContractReducer = thunkReducer(
 
 export const getReceiptsUrlsReducer = thunkReducer(types.GET_RECEIPTS_URLS, {});
 
+export function setAuthenticationEmailReducer(
+  state = setAuthenticationEmailInitialState,
+  { type, payload }
+) {
+  if (type !== types.SET_AUTHENTICATION_EMAIL) return state;
+  return payload;
+}
+
 export default combineReducers({
   getSessionReducer,
   updateSessionReducer,
   userAccountDetails,
   getUserContractReducer,
   getReceiptsUrlsReducer,
+  setAuthenticationEmailReducer,
 });
