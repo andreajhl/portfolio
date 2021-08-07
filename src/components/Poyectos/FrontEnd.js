@@ -3,6 +3,7 @@ import React from 'react';
 import '../../styles/front.scss'
 import gifPeli from '../../img/gifPeli.gif'
 import gifClima from '../../img/gifClima.gif'
+import gifPokemon from '../../img/gifPokemon.gif'
 
 export const FrontEnd =()=>{
     return(
@@ -62,7 +63,7 @@ export const FrontEnd =()=>{
                 <div className="front_DivC">
                     <div className='front_DivC_hover'>
                         <div className="front_DivC_hover_img" >
-                            <img  className="front_DivC_hover_img_i"  src={gifPeli} alt='proyect' />
+                            <img  className="front_DivC_hover_img_i"  src={gifPokemon} alt='proyect' />
                         </div>
                         <div className="mostrar">
                             <p style={{padding:'3%'}}>Es una aplicación con 40 pokemons para empezar, podes crear mas pokemons a través de un formulario o buscar otros mas por nombres especifico, podes ordenar por fuerza, alfabéticamente o podes filtrarlos por sus tipos o creaciones propias, podes guardarlos en favoritos y ver sus detalles también</p>
