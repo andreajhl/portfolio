@@ -29,7 +29,7 @@ function contractSelector({ session: { getUserContractReducer } }: RootState) {
 
   const state: StateType = {
     contract: getUserContractReducer.data,
-    status,
+    status
   };
 
   return state;

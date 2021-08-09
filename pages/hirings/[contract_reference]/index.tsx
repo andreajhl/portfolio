@@ -6,21 +6,21 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
 
 export const getServerSideProps: GetServerSideProps = async ({
-  params,
-  query,
-}) => {
+                                                               params,
+                                                               query
+                                                             }) => {
   const contractReference = params?.contract_reference;
 
   if (typeof contractReference === "undefined") {
     return {
-      redirect: { destination: ROOT_PATH, permanent: false },
+      redirect: { destination: ROOT_PATH, permanent: false }
     };
   }
   return {
     props: {
       contractReference,
-      isUnauthorized: Boolean(query?.[IS_UNAUTHORIZED_QUERY_PARAM]),
-    },
+      isUnauthorized: Boolean(query?.[IS_UNAUTHORIZED_QUERY_PARAM])
+    }
   };
 };
 

@@ -4,26 +4,21 @@ import dynamic from "next/dynamic";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { wrapper } from "react-app/src/state/store";
-import getCookie from "react-app/src/utils/getCookie";
 import { fetchLandings } from "react-app/src/state/ducks/landings/actions";
 import { fetchCelebritySections } from "react-app/src/state/ducks/celebrity-sections/actions";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import debug from "react-app/src/utils/debug";
-import UAParser from "ua-parser-js";
-import { parse, serialize } from "cookie";
+import { parse } from "cookie";
 import {
-  cfUserCountryCode,
   OFFSET_ROTATE_CELEBRITIES_SECTIONS,
   USER_CURRENCY_CODE,
   USER_GEOLOCATION_KEY,
   USER_IP_ADDRESS,
-  USER_LOCATION_KEY,
+  USER_LOCATION_KEY
 } from "constants/keys";
 import { setCookie } from "lib/setCookie";
 import { useEffect } from "react";
 import { getLocationCookieHeader } from "lib/getLocationCookieHeader";
-import { getUserLocationData } from "lib/getUserLocationData";
-import Link from "next/link";
 import isBot from "isbot";
 
 const generateRandomNumber = (limit) => Math.floor(Math.random() * limit + 1);
@@ -76,17 +71,17 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
           landingId: query.landingId,
           alpha2Code: userLocation,
           limit: 10,
-          offset: 0,
+          offset: 0
         },
         rotationForCelebritiesSections ||
-          cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS]
+        cookies[OFFSET_ROTATE_CELEBRITIES_SECTIONS]
       )(store.dispatch);
     } else {
       await fetchLandings({
         landingId: query.landingId,
         alpha2Code: userLocation,
         limit: 10,
-        offset: 0,
+        offset: 0
       })(store.dispatch);
     }
 
@@ -94,8 +89,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       props: {
         isMobile,
         userLocation,
-        rotationForCelebritiesSections,
-      },
+        rotationForCelebritiesSections
+      }
     };
   }
 );

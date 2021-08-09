@@ -22,7 +22,7 @@ function useFetchUserCelebrityLikes(shouldFetchUserCelebrityLikes: boolean) {
     dispatch,
     hasFetchedLikes,
     isAuthenticated,
-    shouldFetchUserCelebrityLikes,
+    shouldFetchUserCelebrityLikes
   ]);
 }
 

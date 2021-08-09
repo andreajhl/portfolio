@@ -1,17 +1,11 @@
 import { useCallback } from "react";
 import { localeAvailables } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
-import {
-  IntlFormatters,
-  MessageDescriptor,
-  useIntl as useOriginalIntl,
-} from "react-intl";
+import { IntlFormatters, MessageDescriptor, useIntl as useOriginalIntl } from "react-intl";
 
 const isMessageDescriptor = (object: any) =>
   object && Object.keys(object).includes("defaultMessage");
 
-type TextType<
-  T extends MessageDescriptor | unknown
-> = T extends MessageDescriptor ? string : T;
+type TextType<T extends MessageDescriptor | unknown> = T extends MessageDescriptor ? string : T;
 
 type FormatMessageParameters = Parameters<IntlFormatters["formatMessage"]>;
 

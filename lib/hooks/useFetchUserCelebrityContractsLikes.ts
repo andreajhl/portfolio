@@ -26,7 +26,7 @@ function useFetchUserContractsLikes(
     dispatch,
     hasFetchedLikes,
     isAuthenticated,
-    shouldFetchUserCelebrityContracts,
+    shouldFetchUserCelebrityContracts
   ]);
 }
 

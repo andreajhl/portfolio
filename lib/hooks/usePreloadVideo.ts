@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import waitFor from "react-app/src/utils/waitFor";
 
 const LOADED = 4;

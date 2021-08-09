@@ -16,6 +16,6 @@ export async function getIpData(userIp: string) {
   return {
     country_code: response.data["country_code"] || "",
     currency_code: response.data?.currency?.code || "",
-    geolocation: `${latitude},${longitude}`,
+    geolocation: `${latitude},${longitude}`
   };
 }

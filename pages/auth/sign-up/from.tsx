@@ -17,4 +17,5 @@ function SignUpFrom({ query }) {
     </>
   );
 }
+
 export default SignUpFrom;

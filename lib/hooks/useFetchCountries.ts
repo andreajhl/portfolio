@@ -4,8 +4,8 @@ import { RootState } from "react-app/src/state/store";
 import { useDispatch, useSelector } from "react-redux";
 
 const countrieStateSelector = ({
-  restCountries: { fetchCountriesReducer },
-}: RootState) => fetchCountriesReducer;
+                                 restCountries: { fetchCountriesReducer }
+                               }: RootState) => fetchCountriesReducer;
 
 function useFetchCountries() {
   const dispatch = useDispatch();

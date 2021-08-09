@@ -21,7 +21,7 @@ export function getTwitterSharingLink(
   const linkParams = {
     text,
     url,
-    via,
+    via
   };
 
   return `https://twitter.com/intent/tweet${objectToQueryString(linkParams)}`;

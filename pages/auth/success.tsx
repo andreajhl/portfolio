@@ -10,8 +10,8 @@ const ServerSidePropsCallBack = async ({ req, store, query }) => {
   sessionToken = cookies[process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME];
   return {
     props: {
-      sessionToken: sessionToken,
-    },
+      sessionToken: sessionToken
+    }
   };
 };
 

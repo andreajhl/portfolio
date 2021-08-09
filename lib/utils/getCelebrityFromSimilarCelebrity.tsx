@@ -1,15 +1,15 @@
 export const getCelebrityFromSimilarCelebrity = ({
-  celebrityId,
-  celebrityUsername,
-  celebrityFullName,
-  celebrityAvatar,
-  celebrityHashTags,
-  videoMessagePrice,
-  availableForFlashDeliveries,
-  countryCode,
-  categoryId,
-  categoryTitle,
-}: any) => {
+                                                   celebrityId,
+                                                   celebrityUsername,
+                                                   celebrityFullName,
+                                                   celebrityAvatar,
+                                                   celebrityHashTags,
+                                                   videoMessagePrice,
+                                                   availableForFlashDeliveries,
+                                                   countryCode,
+                                                   categoryId,
+                                                   categoryTitle
+                                                 }: any) => {
   return {
     id: celebrityId,
     avatar: celebrityAvatar,
@@ -29,6 +29,6 @@ export const getCelebrityFromSimilarCelebrity = ({
     isDonor: false,
     mainVideo: "",
     showSimilarCelebrities: false,
-    availableForSubscriptions: false,
+    availableForSubscriptions: false
   };
 };

@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
-import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
 
 import axios from "axios";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
@@ -23,7 +22,7 @@ async function emailPasswordSignUpHandler(
       birthDate: req.body["birthDate"],
       addToNewsLetter: req.body["allowNotifications"],
       countryAlpha2Code: req.body["countryAlpha2Code"],
-      locale: transformUserNavigatorLanguageToISO2Code(req.body["locale"]),
+      locale: transformUserNavigatorLanguageToISO2Code(req.body["locale"])
     })
     .then((response) => {
       const status = response.data.status;
@@ -38,19 +37,19 @@ async function emailPasswordSignUpHandler(
             {
               path: "/",
               sameSite: "lax",
-              maxAge: ONE_YEAR_IN_MILLISECONDS,
+              maxAge: ONE_YEAR_IN_MILLISECONDS
               // ...generateHttpOnlyCookie
             }
           )
         );
         res.json({
           status: "OK",
-          error: null,
+          error: null
         });
       } else {
         res.json({
           status: "error",
-          error: response.data.error,
+          error: response.data.error
         });
       }
       return;
@@ -59,12 +58,12 @@ async function emailPasswordSignUpHandler(
       if (errorResponse.response) {
         res.json({
           status: "error",
-          error: errorResponse.response.data.error,
+          error: errorResponse.response.data.error
         });
       } else {
         res.json({
           status: "error",
-          error: "Unexpected Error",
+          error: "Unexpected Error"
         });
       }
       return;

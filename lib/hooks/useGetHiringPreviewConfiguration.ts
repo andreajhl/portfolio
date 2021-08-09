@@ -19,13 +19,13 @@ function getData(data) {
     cardMessage: data.previewMessage,
     cardColor: data.previewCardColor,
     pageBackgroundUrl: data.previewBackgroundUrl,
-    actionButtonsBackgroundColor: data.previewButtonsBackgroundColor,
+    actionButtonsBackgroundColor: data.previewButtonsBackgroundColor
   } as HiringPreviewConfigurationType;
 }
 
 function hiringPreviewSelector({
-  contracts: { getHiringPreviewConfigurationReducer },
-}: RootState) {
+                                 contracts: { getHiringPreviewConfigurationReducer }
+                               }: RootState) {
   let status: StatusType = "loading";
   if (getHiringPreviewConfigurationReducer.failed) status = "failed";
   if (getHiringPreviewConfigurationReducer.completed) status = "completed";
@@ -34,7 +34,7 @@ function hiringPreviewSelector({
     hiringPreviewConfiguration: getData(
       getHiringPreviewConfigurationReducer.data
     ),
-    status,
+    status
   };
 
   return state;

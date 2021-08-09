@@ -7,7 +7,7 @@ function getGiftPageBackgroundStyle(
   const { pageBackgroundUrl } = hiringConfiguration;
   if (!pageBackgroundUrl) return null;
   return {
-    backgroundImage: `url(${pageBackgroundUrl})`,
+    backgroundImage: `url(${pageBackgroundUrl})`
   };
 }
 
