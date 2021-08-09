@@ -8,19 +8,19 @@ import React from "react";
 import { HiringShareInWhatsappPage } from "desktop-app/components/pages/hiring-share-in-whatsapp";
 
 export const getServerSideProps: GetServerSideProps = async ({
-  params,
-}: GetServerSidePropsContext) => {
+                                                               params
+                                                             }: GetServerSidePropsContext) => {
   if (!params) {
     return {
       redirect: { destination: ROOT_PATH },
-      props: {},
+      props: {}
     };
   }
 
   return {
     props: {
-      contractReference: params.contract_reference,
-    },
+      contractReference: params.contract_reference
+    }
   };
 };
 
@@ -36,5 +36,5 @@ function HiringShareInWhatsapp({ contractReference }) {
 }
 
 export default withAuthenticationRequired(HiringShareInWhatsapp, {
-  onRedirecting: LoaderLayout,
+  onRedirecting: LoaderLayout
 });
