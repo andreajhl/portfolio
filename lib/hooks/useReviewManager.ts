@@ -6,7 +6,7 @@ import errorMessages from "lib/validations/errorMessages";
 
 const initialValues = {
   review: "",
-  stars: 3,
+  stars: 3
 };
 
 type InitialValuesType = typeof initialValues;
@@ -17,16 +17,16 @@ function getValidations(
   return {
     review(value: string) {
       if (value === "") return formatMessage(errorMessages.emptyReview);
-    },
+    }
   };
 }
 
 const additionalValueFromComponent = 1;
 
 function useReviewManager({
-  contractReference,
-  initialReviewValues,
-}: {
+                            contractReference,
+                            initialReviewValues
+                          }: {
   contractReference: string;
   initialReviewValues?: InitialValuesType;
 }) {
@@ -47,14 +47,15 @@ function useReviewManager({
       try {
         const response = await saveClientContractReview(contractReference, {
           ...reviewData,
-          stars: reviewData.stars - additionalValueFromComponent,
+          stars: reviewData.stars - additionalValueFromComponent
         });
         if (response.status === "OK") {
           setStatus("completed");
           setIsUpdatingReview(true);
         }
-      } catch (error) {}
-    },
+      } catch (error) {
+      }
+    }
   });
 
   useEffect(() => {

@@ -24,11 +24,11 @@ function DefaultLoadingFallback(): ReactElement {
  * @param location The location to redirect to.
  */
 export default function withAuthRedirect<CP = {}, IP = CP>({
-  WrappedComponent,
-  LoadingComponent = DefaultLoadingFallback,
-  expectedAuth,
-  location,
-}: {
+                                                             WrappedComponent,
+                                                             LoadingComponent = DefaultLoadingFallback,
+                                                             expectedAuth,
+                                                             location
+                                                           }: {
   WrappedComponent: NextPage<CP, IP>;
   LoadingComponent?: NextPage;
   expectedAuth: boolean;

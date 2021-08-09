@@ -1,7 +1,7 @@
 import { CelebritySectionType } from "desktop-app/types/celebritySectionType";
 import {
-  transformUserNavigatorLanguageToISO2Code,
   localeAvailables,
+  transformUserNavigatorLanguageToISO2Code
 } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 
 function getCelebritySectionTitle(

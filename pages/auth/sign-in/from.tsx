@@ -14,4 +14,5 @@ function SignInFrom({ query }) {
     </>
   );
 }
+
 export default withoutAuth(SignInFrom);

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { processStripePayment } from "react-app/src/state/ducks/payments/actions";
 import styles from "./styles.module.scss";
@@ -197,7 +197,11 @@ function StripeCardForm({
   };
 
   return (
-    <form className={styles.CheckoutFormWrapper} onSubmit={handleSubmit}>
+    <form
+      id="stripe-card-form"
+      className={styles.CheckoutFormWrapper}
+      onSubmit={handleSubmit}
+    >
       <fieldset>
         <Field
           label="Nombre del titular de la tarjeta"

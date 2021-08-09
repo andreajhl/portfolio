@@ -18,7 +18,7 @@ const MyHirings = dynamic<{ query: { [key: string]: any } }>(() =>
 
 export const getServerSideProps = async ({ req, query }) => {
   return {
-    props: { isMobile: isMobile(req.headers["user-agent"]), query },
+    props: { isMobile: isMobile(req.headers["user-agent"]), query }
   };
 };
 
@@ -35,5 +35,5 @@ function Hiring({ isMobile, query }) {
 }
 
 export default withAuthenticationRequired(Hiring, {
-  onRedirecting: LoadingPage,
+  onRedirecting: LoadingPage
 });

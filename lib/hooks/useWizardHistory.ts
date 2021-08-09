@@ -1,5 +1,5 @@
 import { createMemoryHistory } from "history";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 type WizardStepType = {
   id: string;
@@ -14,7 +14,7 @@ type UseWizardHistoryType = (
   getCurrentStep: () => WizardStepType;
 };
 
-const useWizardHistory: UseWizardHistoryType = function (
+const useWizardHistory: UseWizardHistoryType = function(
   stepsList,
   initialStep = stepsList[0]
 ) {

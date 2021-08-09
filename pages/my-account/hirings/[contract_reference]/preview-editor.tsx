@@ -22,14 +22,14 @@ const MobileHiringPreviewEditorPage = dynamic<{ contractReference: string }>(
 );
 
 export const getServerSideProps: GetServerSideProps = async ({
-  params: { contract_reference },
-  req,
-}: GetServerSidePropsContext) => {
+                                                               params: { contract_reference },
+                                                               req
+                                                             }: GetServerSidePropsContext) => {
   return {
     props: {
       contract_reference,
-      isMobile: isMobile(req?.headers?.["user-agent"]),
-    },
+      isMobile: isMobile(req?.headers?.["user-agent"])
+    }
   };
 };
 
@@ -54,5 +54,5 @@ function HiringPreviewEditor({ contract_reference, isMobile }) {
 }
 
 export default withAuthenticationRequired(HiringPreviewEditor, {
-  onRedirecting: LoaderLayout,
+  onRedirecting: LoaderLayout
 });

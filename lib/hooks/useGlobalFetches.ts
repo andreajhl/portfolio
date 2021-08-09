@@ -3,7 +3,7 @@ import useFetchUserCelebrityLikes from "./useFetchUserCelebrityLikes";
 
 const globalFetchesReducerInitialState = {
   shouldFetchUserCelebrityLikes: true,
-  shouldFetchUserContractsLikes: true,
+  shouldFetchUserContractsLikes: true
 };
 type InitialValuesType = typeof globalFetchesReducerInitialState;
 type GlobalFetchesType = {
@@ -12,10 +12,10 @@ type GlobalFetchesType = {
 
 type UseGlobalFetchesType = (globalFetches?: GlobalFetchesType) => void;
 
-const useGlobalFetches: UseGlobalFetchesType = function ({
-  shouldFetchUserCelebrityLikes,
-  shouldFetchUserContractsLikes,
-} = globalFetchesReducerInitialState) {
+const useGlobalFetches: UseGlobalFetchesType = function({
+                                                          shouldFetchUserCelebrityLikes,
+                                                          shouldFetchUserContractsLikes
+                                                        } = globalFetchesReducerInitialState) {
   useFetchUserCelebrityLikes(shouldFetchUserCelebrityLikes);
   useFetchUserContractsLikes(shouldFetchUserContractsLikes);
 };

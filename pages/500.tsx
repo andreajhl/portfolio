@@ -20,7 +20,7 @@ function ServerErrorPage() {
               <span
                 style={{
                   color: "white",
-                  fontSize: "0.8rem",
+                  fontSize: "0.8rem"
                 }}
               >
                 <FormattedMessage

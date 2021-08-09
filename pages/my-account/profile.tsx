@@ -21,8 +21,8 @@ const DesktopClientProfilePage = dynamic(() =>
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   return {
     props: {
-      isMobile: isMobile(req.headers["user-agent"]),
-    },
+      isMobile: isMobile(req.headers["user-agent"])
+    }
   };
 };
 
@@ -39,5 +39,5 @@ const Profile = ({ isMobile }) => {
 };
 
 export default withAuthenticationRequired(Profile, {
-  onRedirecting: LoadingPage,
+  onRedirecting: LoadingPage
 });

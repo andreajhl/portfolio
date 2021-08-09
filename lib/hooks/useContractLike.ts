@@ -8,7 +8,7 @@ import useUserLikesContractsWithReference from "./useUserLikesContractsWithRefer
 function useContractLike(contract_reference: string) {
   const [
     userContractsLikes,
-    toggleLikeFromList,
+    toggleLikeFromList
   ] = useUserLikesContractsWithReference();
   const { isAuthenticated } = useAuth();
   const [isFavorite, setIsFavorite] = useState(false);

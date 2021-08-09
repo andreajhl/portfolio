@@ -4,21 +4,21 @@ const TYPES = {
   SET_FIELD_VALUE: "SET_FIELD_VALUE",
   SET_FIELD_TOUCHED: "SET_FIELD_TOUCHED",
   SET_FIELD_ERROR: "SET_FIELD_ERROR",
-  FORM_SUBMITTED: "FORM_SUBMITTED",
+  FORM_SUBMITTED: "FORM_SUBMITTED"
 };
 
 const useFormInitialState = {
   errors: {},
   values: {},
-  touched: {},
+  touched: {}
 };
 
 type PayloadType =
   | any
   | {
-      name: any;
-      value: any;
-    };
+  name: any;
+  value: any;
+};
 
 type ActionType = {
   type: string;
@@ -51,8 +51,8 @@ const setFieldProperty = (
   ...state,
   [property]: {
     ...state[property],
-    [payload.name]: payload.value,
-  },
+    [payload.name]: payload.value
+  }
 });
 
 function formReducer(
@@ -73,7 +73,7 @@ function formReducer(
         touched: Object.assign(
           {},
           ...Object.keys(state.values).map((key) => ({ [key]: true }))
-        ),
+        )
       };
     default:
       return state;
@@ -85,9 +85,9 @@ const getInitialState = <InitialValuesType>(
 ) => {
   return initialValues
     ? {
-        ...useFormInitialState,
-        values: { ...initialValues },
-      }
+      ...useFormInitialState,
+      values: { ...initialValues }
+    }
     : useFormInitialState;
 };
 
@@ -106,11 +106,11 @@ type UseFormParam<InitialValuesType> = {
 };
 
 function useForm<InitialValuesType = { [key: string]: any }>({
-  initialValues,
-  validations,
-  validateOnChange = true,
-  onSubmit,
-}: UseFormParam<InitialValuesType>) {
+                                                               initialValues,
+                                                               validations,
+                                                               validateOnChange = true,
+                                                               onSubmit
+                                                             }: UseFormParam<InitialValuesType>) {
   const [state, dispatch] = useReducer(
     formReducer,
     getInitialState<InitialValuesType>(initialValues)
@@ -146,21 +146,21 @@ function useForm<InitialValuesType = { [key: string]: any }>({
   function onFocusField({ target }) {
     dispatch({
       type: TYPES.SET_FIELD_TOUCHED,
-      payload: { name: target.name, value: true },
+      payload: { name: target.name, value: true }
     });
   }
 
   function setFieldTouched(name: string, value: boolean) {
     dispatch({
       type: TYPES.SET_FIELD_TOUCHED,
-      payload: { name, value },
+      payload: { name, value }
     });
   }
 
   function setFieldError(name: string, error: any) {
     dispatch({
       type: TYPES.SET_FIELD_ERROR,
-      payload: { name, value: error },
+      payload: { name, value: error }
     });
   }
 
@@ -204,7 +204,7 @@ function useForm<InitialValuesType = { [key: string]: any }>({
     validateField,
     getTouchedFieldValues,
     validateBeforeSubmit,
-    submitForm: validateBeforeSubmit,
+    submitForm: validateBeforeSubmit
   };
 }
 

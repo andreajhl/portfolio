@@ -2,7 +2,7 @@ type EntryType = [string, any];
 
 function objectFromEntries(entries: EntryType[]) {
   if (!Array.isArray(entries)) {
-    console.error('Argument "entries" must be an array of entries');
+    console.error("Argument \"entries\" must be an array of entries");
     return {};
   }
   return (

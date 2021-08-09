@@ -3,8 +3,8 @@ import { RootState } from "react-app/src/state/store";
 import { useDispatch, useSelector } from "react-redux";
 
 const userCelebrityLikesContractsWithReferenceSelector = ({
-  account,
-}: RootState) => account.fetchUserFavoritesContractsWithReferenceReducer.data;
+                                                            account
+                                                          }: RootState) => account.fetchUserFavoritesContractsWithReferenceReducer.data;
 
 function useUserLikesContractsWithReference() {
   const userContractsLikes = useSelector(
@@ -21,7 +21,7 @@ function useUserLikesContractsWithReference() {
       contractId: number;
       reference: string;
     }[],
-    dispatchToggleContractLikeFromList,
+    dispatchToggleContractLikeFromList
   ] as const;
 }
 

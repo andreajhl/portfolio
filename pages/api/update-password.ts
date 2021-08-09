@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { parse } from "cookie";
 import axios from "axios";
+
 async function updatePassword(req: NextApiRequest, res: NextApiResponse<{}>) {
   const { method, headers } = req;
   const cookies = parse(headers.cookie);
@@ -13,14 +14,14 @@ async function updatePassword(req: NextApiRequest, res: NextApiResponse<{}>) {
       .post(
         `${endpoint}/${version}/famosos-com/update-password`,
         {
-          newPassword: req.body["newPassword"],
+          newPassword: req.body["newPassword"]
         },
         {
           headers: {
             authorization:
               "Bearer " +
-              cookies[process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME],
-          },
+              cookies[process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME]
+          }
         }
       )
       .then((response) => {
@@ -32,7 +33,7 @@ async function updatePassword(req: NextApiRequest, res: NextApiResponse<{}>) {
         } else {
           res.json({
             status: "error",
-            error: response.data.error,
+            error: response.data.error
           });
         }
       })
@@ -41,12 +42,12 @@ async function updatePassword(req: NextApiRequest, res: NextApiResponse<{}>) {
         if (errorResponse.response) {
           return res.status(errorResponse.response.status || 400).json({
             status: "error",
-            error: errorResponse.response.data.error,
+            error: errorResponse.response.data.error
           });
         } else {
           return res.status(400).json({
             status: "error",
-            error: "Unexpected Error",
+            error: "Unexpected Error"
           });
         }
       });
