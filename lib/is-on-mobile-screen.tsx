@@ -1,10 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import useGetViewportWidthOnResize from "react-app/src/utils/useGetViewportWidthOnResize";
 
 const MIN_DESKTOP_SCREEN_WIDTH = 1024;
@@ -16,9 +10,9 @@ type IsOnMobileScreenProviderProps = {
 };
 
 export function IsOnMobileScreenProvider({
-  initialIsOnMobileScreen = false,
-  children,
-}: IsOnMobileScreenProviderProps) {
+                                           initialIsOnMobileScreen = false,
+                                           children
+                                         }: IsOnMobileScreenProviderProps) {
   const [isOnMobileScreen, setIsOnMobileScreen] = useState(
     initialIsOnMobileScreen
   );

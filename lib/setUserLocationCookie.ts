@@ -1,10 +1,10 @@
 import { parse } from "cookie";
 import {
-  USER_LOCATION_KEY,
-  USER_IP_ADDRESS,
-  USER_CURRENCY_CODE,
   CURRENT_CURRENCY_TRM_CODE,
+  USER_CURRENCY_CODE,
   USER_GEOLOCATION_KEY,
+  USER_IP_ADDRESS,
+  USER_LOCATION_KEY
 } from "constants/keys";
 import axios from "axios";
 import isBot from "isbot";
@@ -12,10 +12,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import { DocumentContext } from "next/document";
 import debug from "react-app/src/utils/debug";
 import findAvailableCurrencyByName from "react-app/src/utils/findAvailableCurrencyByName";
-import {
-  serializeCurrencyCurrentData,
-  serializeUserLocationCookies,
-} from "./serializeCookies";
+import { serializeCurrencyCurrentData, serializeUserLocationCookies } from "./serializeCookies";
 
 const ONE_YEAR_IN_MILLISECONDS = 365 * 24 * 3600 * 1000;
 const invalidIpAddresses = ["127.0.0.1", "::1"];
@@ -48,14 +45,14 @@ async function getIpData(userIp: string) {
   return {
     country_code: response.data["country_code"] || "",
     currency_code: response.data?.code || response.data?.currency?.code || "",
-    geolocation: `${latitude},${longitude}`,
+    geolocation: `${latitude},${longitude}`
   };
 }
 
 const fallbackIpData = {
   geolocation: "0,0",
   country_code: "",
-  currency_code: "",
+  currency_code: ""
 };
 
 const getUserLocationData = async (
@@ -85,9 +82,10 @@ async function getLocationCookieHeader(
   const userIpAddress = getUserIp(req);
   return {
     ...userLocationValue,
-    userIpAddressLocation: userIpAddress,
+    userIpAddressLocation: userIpAddress
   };
 }
+
 async function getCurrencyCurrentTRMCookieHeader(currency: string) {
   let currencyCode = null;
   if (findAvailableCurrencyByName(currency)) {
@@ -108,26 +106,26 @@ async function getCurrencyCurrentTRMCookieHeader(currency: string) {
     }>(FINAL_PATH, {
       params: {
         from: "USD",
-        to: currencyCode,
-      },
+        to: currencyCode
+      }
     });
     return {
       currencyCurrentTRM: response.data?.data?.rate || "",
-      currentCurrencyTRMCode: response.data?.data?.to,
+      currentCurrencyTRMCode: response.data?.data?.to
     };
   } catch (error) {
     debug("Error relizando llamada a " + FINAL_PATH, error);
     return {
       currencyCurrentTRM: 1,
-      currentCurrencyTRMCode: "USD",
+      currentCurrencyTRMCode: "USD"
     };
   }
 }
 
 const setUserLocationCookie = async ({
-  req,
-  res,
-}: DocumentContext): Promise<void> => {
+                                       req,
+                                       res
+                                     }: DocumentContext): Promise<void> => {
   if (!req) return;
 
   if (isBot(req.headers["user-agent"])) {
@@ -166,7 +164,7 @@ const setUserLocationCookie = async ({
         geolocation: String(res.getHeader(USER_GEOLOCATION_KEY)),
         currency_code: String(res.getHeader(USER_CURRENCY_CODE)),
         userIpAddressLocation: String(res.getHeader(USER_IP_ADDRESS)),
-        country_code: String(res.getHeader(USER_LOCATION_KEY)),
+        country_code: String(res.getHeader(USER_LOCATION_KEY))
       })
     );
     newCookiesSerializes.push(

@@ -12,6 +12,6 @@ export default function withoutAuth<P>(
   return withAuthRedirect({
     WrappedComponent,
     location,
-    expectedAuth: false,
+    expectedAuth: false
   });
 }

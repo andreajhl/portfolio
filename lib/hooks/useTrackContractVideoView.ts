@@ -2,9 +2,9 @@ import { useRef } from "react";
 import { analytics } from "react-app/src/state/utils/gtm";
 
 function useTrackContractVideoView({
-  minimumProgress = 5,
-  ...trackData
-}: {
+                                     minimumProgress = 5,
+                                     ...trackData
+                                   }: {
   widget: string;
   occasion: string;
   contractReference: string;

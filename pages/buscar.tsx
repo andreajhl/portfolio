@@ -5,10 +5,7 @@ import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import {
-  resetSearchFilters,
-  updateSearchFilters,
-} from "react-app/src/state/ducks/search-filters/actions";
+import { resetSearchFilters, updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import { wrapper } from "react-app/src/state/store";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { connect } from "react-redux";
@@ -19,7 +16,7 @@ const allowedParams = [
   "offset",
   "country_id",
   "category_id",
-  "orderBy",
+  "orderBy"
 ];
 
 const listParamsInitialKeys = ["offset", "limit"];
@@ -52,8 +49,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     return {
       props: {
         isMobile: isMobile(req.headers["user-agent"]),
-        searchParams: query,
-      },
+        searchParams: query
+      }
     };
   }
 );
@@ -69,18 +66,18 @@ const DesktopSearchPage = dynamic(() =>
 );
 
 const CelebritiesSearchResults = ({
-  isMobile,
-  searchParams,
-  updateSearchFilters,
-  resetSearchFilters,
-}) => {
+                                    isMobile,
+                                    searchParams,
+                                    updateSearchFilters,
+                                    resetSearchFilters
+                                  }) => {
   useDesktopClass(!isMobile);
 
   useEffect(() => {
     if (searchParams) {
       analytics.track("SEARCH_PARAMS_ON_LOAD", {
         searchParams,
-        widget: "CelebritiesSearchResults",
+        widget: "CelebritiesSearchResults"
       });
       updateSearchFilters(searchParams, false);
     }

@@ -4,9 +4,9 @@ const fallbackDiscountPercentage = 0;
 const VIDEO_MESSAGE_CONTRACT_TYPE = 1;
 
 function getCelebrityDiscountPercentage({
-  discountPercentage,
-  contractTypes,
-}: celebrityType) {
+                                          discountPercentage,
+                                          contractTypes
+                                        }: celebrityType) {
   if (discountPercentage) return discountPercentage;
   if (!Array.isArray(contractTypes)) return fallbackDiscountPercentage;
   const videoMessageContractType = contractTypes.find(

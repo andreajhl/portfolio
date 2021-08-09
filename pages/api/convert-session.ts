@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
-import { generateHttpOnlyCookie } from "react-app/src/utils/generateHttpOnlyCookie";
 
 import axios from "axios";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
@@ -16,8 +15,8 @@ async function emailPasswordSignInHandler(
   await axios
     .get(`${endpoint}/${version}/famosos-com/convert-auth0-session`, {
       headers: {
-        authorization: "Bearer " + req.body["token"],
-      },
+        authorization: "Bearer " + req.body["token"]
+      }
     })
     .then((response) => {
       const status = response.data.status;
@@ -32,18 +31,18 @@ async function emailPasswordSignInHandler(
             {
               path: "/",
               sameSite: "lax",
-              maxAge: ONE_YEAR_IN_MILLISECONDS,
+              maxAge: ONE_YEAR_IN_MILLISECONDS
             }
           )
         );
         return res.json({
           status: "OK",
-          error: null,
+          error: null
         });
       } else {
         return res.json({
           status: "error",
-          error: response.data.error,
+          error: response.data.error
         });
       }
     })
@@ -56,12 +55,12 @@ async function emailPasswordSignInHandler(
       if (errorResponse.response) {
         res.json({
           status: "error",
-          error: errorResponse.response.data.error,
+          error: errorResponse.response.data.error
         });
       } else {
         res.json({
           status: "error",
-          error: "Unexpected Error",
+          error: "Unexpected Error"
         });
       }
       return;

@@ -1,4 +1,3 @@
-import React from "react";
 import { togglePaymentInProcess } from "react-app/src/state/ducks/payments/actions";
 import { useDispatch } from "react-redux";
 

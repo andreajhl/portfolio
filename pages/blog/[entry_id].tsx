@@ -4,8 +4,8 @@ import { defineMessages } from "react-intl";
 
 const headData = defineMessages({
   titleBlog: {
-    defaultMessage: "Famosos.com - Entrada de blog",
-  },
+    defaultMessage: "Famosos.com - Entrada de blog"
+  }
 });
 const Blog = () => {
   return (

@@ -7,19 +7,19 @@ import { ROOT_PATH } from "constants/paths";
 import { HiringShareInMailPage } from "desktop-app/components/pages/hiring-share-in-mail";
 
 export const getServerSideProps: GetServerSideProps = async ({
-  params,
-}: GetServerSidePropsContext) => {
+                                                               params
+                                                             }: GetServerSidePropsContext) => {
   if (!params) {
     return {
       redirect: { destination: ROOT_PATH },
-      props: {},
+      props: {}
     };
   }
 
   return {
     props: {
-      contractReference: params.contract_reference,
-    },
+      contractReference: params.contract_reference
+    }
   };
 };
 
@@ -35,5 +35,5 @@ function HiringShareInMail({ contractReference }) {
 }
 
 export default withAuthenticationRequired(HiringShareInMail, {
-  onRedirecting: LoaderLayout,
+  onRedirecting: LoaderLayout
 });

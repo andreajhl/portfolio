@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
-import { NextPage } from "next";
-import { NextPageContext } from "next";
+import { NextPage, NextPageContext } from "next";
 import { IncomingMessage } from "http";
 
 export interface CookieMessage extends IncomingMessage {
@@ -34,11 +33,11 @@ function isBrowser() {
  */
 
 export default function withConditionalRedirect<CP = {}, IP = CP>({
-  WrappedComponent,
-  clientCondition,
-  serverCondition,
-  location,
-}: {
+                                                                    WrappedComponent,
+                                                                    clientCondition,
+                                                                    serverCondition,
+                                                                    location
+                                                                  }: {
   WrappedComponent: NextPage<CP, IP>;
   clientCondition(): boolean;
   serverCondition(ctx: CookiesPageContext): boolean;

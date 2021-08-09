@@ -20,11 +20,11 @@ type ErrorPageProps = {
 const TEEN_SECONDS_IN_MILLISECONDS = 10000;
 
 const CustomError: NextPage<ErrorPageProps> = ({
-  err,
-  hasGetInitialPropsRun,
-  statusCode,
-  asPath,
-}) => {
+                                                 err,
+                                                 hasGetInitialPropsRun,
+                                                 statusCode,
+                                                 asPath
+                                               }) => {
   const { push } = useRouter();
   useEffect(() => {
     let IDClear;
@@ -63,7 +63,7 @@ const CustomError: NextPage<ErrorPageProps> = ({
           <p
             className="h6"
             style={{
-              color: "white",
+              color: "white"
             }}
           >
             <FormattedMessage defaultMessage="Estamos haciendo lo posible por resolverlo." />
@@ -74,7 +74,7 @@ const CustomError: NextPage<ErrorPageProps> = ({
               <span
                 style={{
                   color: "white",
-                  fontSize: "0.8rem",
+                  fontSize: "0.8rem"
                 }}
               >
                 <FormattedMessage
@@ -88,7 +88,7 @@ const CustomError: NextPage<ErrorPageProps> = ({
             <p
               className="font-weight-light text-center"
               style={{
-                color: "white",
+                color: "white"
               }}
             >
               <FormattedMessage
@@ -113,7 +113,7 @@ const CustomError: NextPage<ErrorPageProps> = ({
 CustomError.getInitialProps = async ({ res, err, asPath }: NextPageContext) => {
   const errorInitialProps = await NextErrorComponent.getInitialProps({
     res,
-    err,
+    err
   } as NextPageContext);
 
   // Workaround for https://github.com/vercel/next.js/issues/8592, mark when

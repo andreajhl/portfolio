@@ -14,15 +14,15 @@ type StateType = {
 };
 
 const contractSelector = ({
-  hiring: { getPublicContractReducer },
-}: RootState) => {
+                            hiring: { getPublicContractReducer }
+                          }: RootState) => {
   let status: StatusType = "loading";
   if (getPublicContractReducer.failed) status = "failed";
   if (getPublicContractReducer.completed) status = "completed";
 
   const state: StateType = {
     contract: getPublicContractReducer.data,
-    status,
+    status
   };
 
   return state;

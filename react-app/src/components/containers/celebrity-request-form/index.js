@@ -18,6 +18,10 @@ const messages = defineMessages({
   placeholderSocialNetworksInput: {
     defaultMessage: "¿Como te encontramos? Ej: andresito",
   },
+  otherSocialNetwork: {
+    defaultMessage: "Otra",
+    description: "Otra red social",
+  },
 });
 
 class CelebrityRequestForm extends Component {
@@ -98,7 +102,8 @@ class CelebrityRequestForm extends Component {
     );
   }
 
-  saveCelebrityRequest() {
+  saveCelebrityRequest(event) {
+    event?.preventDefault?.();
     let fullNameError = false;
     let subDomainError = false;
     let emailError = false;
@@ -137,7 +142,7 @@ class CelebrityRequestForm extends Component {
 
   renderForm() {
     return (
-      <>
+      <form id="apply-as-celebrity-form" onSubmit={this.saveCelebrityRequest}>
         <h4 className="font-weight-bold text-center mb-4">
           <FormattedMessage defaultMessage="Regístrate y reserva tu pagina exclusiva en Famosos.com" />
         </h4>
@@ -244,10 +249,7 @@ class CelebrityRequestForm extends Component {
             <option>Youtube</option>
             <option>TikTok</option>
             <option>
-              <FormattedMessage
-                defaultMessage="Otra"
-                description="Otra red social"
-              />
+              {this.props.intl.formatMessage(messages.otherSocialNetwork)}
             </option>
           </select>
           <input
@@ -294,9 +296,9 @@ class CelebrityRequestForm extends Component {
           </div>
         )}
         <button
+          type="submit"
           className="send-button"
           disabled={!this.state.data.cellphoneNumber}
-          onClick={this.saveCelebrityRequest}
         >
           {this.props.saveCelebrityRequestLoading ? (
             <span
@@ -310,7 +312,7 @@ class CelebrityRequestForm extends Component {
             </span>
           )}
         </button>
-      </>
+      </form>
     );
   }
 
