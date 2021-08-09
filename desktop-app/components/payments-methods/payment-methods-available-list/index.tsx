@@ -14,6 +14,8 @@ type all_payments_methods = typeof ALL_AVAILABLE_PAYMENTS_METHODS[number];
 
 const isProcessingPayment = ({ payments }: RootState) =>
   payments.setPaymentInProcess.processing;
+const couponData = ({ payments }: RootState) =>
+  payments.fetchDiscountCouponReducer;
 
 type PaymentMethodsAvailableListProps = {
   payment_methods: {
@@ -52,6 +54,7 @@ function PaymentMethodsAvailableList({
     null
   );
   const disabledAccordion = useSelector(isProcessingPayment);
+  const couponDataReducer = useSelector(couponData);
   const handleChangeCurrentOption = (newValue: all_payments_methods) => {
     if (disabledAccordion) {
       return;
@@ -75,7 +78,11 @@ function PaymentMethodsAvailableList({
         >
           <Maybe it={el.paymentMethodType === "STRIPE"}>
             <StripeForm
-              contractPrice={contractPrice}
+              contractPrice={
+                couponDataReducer.completed
+                  ? couponDataReducer.data.finalAmount
+                  : contractPrice
+              }
               contractReference={contractReference}
               expanded={currentOption === el.paymentMethodType}
               index={index}
@@ -88,7 +95,11 @@ function PaymentMethodsAvailableList({
             <PaypalForm
               expanded={currentOption === el.paymentMethodType}
               index={index}
-              contractPrice={contractPrice}
+              contractPrice={
+                couponDataReducer.completed
+                  ? couponDataReducer.data.finalAmount
+                  : contractPrice
+              }
               discountCouponId={discountCouponId}
               contractReference={contractReference}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
