@@ -1,8 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import scriptLoader from "react-async-script-loader";
-import Maybe from "desktop-app/components/common/helpers/maybe";
-import Skeleton from "react-loading-skeleton";
+import React, { useState } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { analytics } from "react-app/src/state/utils/gtm";
 let PayPalButton = null;
@@ -34,14 +30,7 @@ function PaypalReactButton({
   onPayPalButtonCancel,
   onPayPalButtonApprove,
 }: PaypalReactButtonProps) {
-  // useEffect(() => {
-  //   if (isScriptLoaded && isScriptLoadSucceed) {
-  //     PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
-  //     setShowButton(true);
-  //   }
-  // }, [isScriptLoaded, isScriptLoadSucceed]);
   const [approved, setApproved] = useState(false);
-  // const [showButton, setShowButton] = useState(false);
 
   const onCreateOrder = (data, actions) => {
     analytics.track("CLICK_PAY_WITH_PAYPAL_BUTTON", {
@@ -107,14 +96,8 @@ function PaypalReactButton({
           onError={onError}
           onCancel={onCancel}
           disabled={approved}
+          forceReRender={[contractPrice]}
         />
-        {/* <PayPalButton
-            styles={buttonStyles}
-            createOrder={(data, actions) => createOrder(data, actions)}
-            onApprove={(data, actions) => onApprove(data, actions)}
-            onError={onError}
-            onCancel={onCancel}
-          /> */}
       </div>
 
       {approved && <h6>Guardando...</h6>}
