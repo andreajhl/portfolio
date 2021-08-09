@@ -102,7 +102,8 @@ class CelebrityRequestForm extends Component {
     );
   }
 
-  saveCelebrityRequest() {
+  saveCelebrityRequest(event) {
+    event?.preventDefault?.();
     let fullNameError = false;
     let subDomainError = false;
     let emailError = false;
