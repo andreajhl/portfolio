@@ -3,7 +3,16 @@
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   height: 100%;
-  padding: 32px 42px 40px;
+  padding: 32px 15px 40px;
+  flex: 0 1 100%;
+  margin-top: 2rem;
+  @media only screen and (min-width: 768px) {
+    flex-basis: 720px;
+    padding: 32px 42px 40px;
+  }
+  @media only screen and (min-width: 1366px) {
+    flex-basis: 520px;
+  }
 }
 
 .PaymentMethodFormSection {
