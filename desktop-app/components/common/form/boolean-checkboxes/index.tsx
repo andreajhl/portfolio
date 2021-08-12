@@ -39,8 +39,9 @@ function BooleanRadiosInputs({
       >
         <i
           className={classes(
-            "fa fa-check",
-            value && styles.BooleanRadiosInputsLabelChecked
+            value
+              ? `fa fa-check-circle ${styles.BooleanRadiosInputsLabelChecked}`
+              : "far fa-circle"
           )}
         />
         <FormattedMessage defaultMessage="Sí" />
@@ -58,8 +59,9 @@ function BooleanRadiosInputs({
       >
         <i
           className={classes(
-            "fa fa-times",
-            !value && styles.BooleanRadiosInputsLabelChecked
+            !value
+              ? `fa fa-times-circle ${styles.BooleanRadiosInputsLabelChecked}`
+              : "far fa-circle"
           )}
         />
         <FormattedMessage defaultMessage="No" />
