@@ -50,12 +50,7 @@ const getStepsItems = ({
             ),
             deliveryContact: deliveryContact,
             cellPhoneNumber: Boolean(deliveryContactCellphone)
-              ? "y a " +
-                (
-                  <span className={styles.TextBold}>
-                    +{deliveryContactCellphone?.replace?.("+", "")}
-                  </span>
-                )
+              ? `y a +${deliveryContactCellphone?.replace?.("+", "")}`
               : "",
           }}
         />
@@ -89,6 +84,7 @@ const getStepsItems = ({
 function MyHiringsCardStepsBanner({
   contractData,
 }: MyHiringsCardStepsBannerProps) {
+  console.log("MyHiringsCardStepsBanner", contractData);
   return (
     <StepsGrayBanner
       direction="column"
