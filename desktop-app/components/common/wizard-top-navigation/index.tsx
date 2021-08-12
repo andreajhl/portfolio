@@ -7,7 +7,11 @@ import Maybe from "../helpers/maybe";
 type WizardTopNavigationProps = {
   className?: string;
   enableNavigation?: boolean;
-  onStepClick?: (goToClickedStep: () => void, isPreviousStep: boolean) => void;
+  onStepClick?: (
+    goToClickedStep: () => void,
+    isPreviousStep: boolean,
+    clickedStepItem: { id: string }
+  ) => void;
 };
 
 function WizardTopNavigation({
@@ -41,7 +45,11 @@ function WizardTopNavigation({
     function goToClickedStep() {
       push(clickedStepItem.id);
     }
-    onStepClick(goToClickedStep, currentStepIndex > clickedStepIndex);
+    onStepClick(
+      goToClickedStep,
+      currentStepIndex > clickedStepIndex,
+      clickedStepItem
+    );
   }
 
   return (
