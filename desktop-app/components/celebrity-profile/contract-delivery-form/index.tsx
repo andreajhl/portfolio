@@ -93,9 +93,18 @@ function ContractDeliveryForm({
   const hasBusinessPrice = businessPrice > 0;
   const contractIsForBusiness = values.contractType === 3;
 
-  function validateFormBeforeChangeStep() {
+  function validateFormBeforeChangeStep(
+    _goToClickedStep: any,
+    isPreviousStep: boolean,
+    clickedStepItem: { id: string }
+  ) {
     if (isLoading) return;
     if (contractIsForBusiness && !hasBusinessPrice) return;
+    if (isPreviousStep) {
+      analytics.track("CELEBRITY_STEP_VIEW", {
+        stepName: clickedStepItem?.id,
+      });
+    }
     validateBeforeSubmit();
   }
 
@@ -152,26 +161,25 @@ function ContractDeliveryForm({
           </Maybe>
         </span>
       </header>
-      <ContractTypeCards
-        currentType={values.contractType}
-        onChangeType={changeContractType}
-      />
-      <form
-        className={styles.InputFieldElements}
-        onSubmit={validateBeforeSubmit}
-      >
-        <VideoDeliveryFormFieldsElements
-          isLoading={isLoading}
-          hasBusinessPrice={hasBusinessPrice}
-          deliveryFrom={values.deliveryFrom}
-          deliveryTo={values.deliveryTo}
-          contractType={values.contractType}
-          onChange={setFieldValue}
-          errors={errors}
+      <form onSubmit={validateBeforeSubmit} id="contract-delivery-form">
+        <ContractTypeCards
+          currentType={values.contractType}
+          onChangeType={changeContractType}
         />
-        <Maybe it={contractIsForBusiness && !hasBusinessPrice}>
-          <WhatsappAdForContracts celebrityFullName={celebrityFullName} />
-        </Maybe>
+        <div className={styles.InputFieldElements}>
+          <VideoDeliveryFormFieldsElements
+            isLoading={isLoading}
+            hasBusinessPrice={hasBusinessPrice}
+            deliveryFrom={values.deliveryFrom}
+            deliveryTo={values.deliveryTo}
+            contractType={values.contractType}
+            onChange={setFieldValue}
+            errors={errors}
+          />
+          <Maybe it={contractIsForBusiness && !hasBusinessPrice}>
+            <WhatsappAdForContracts celebrityFullName={celebrityFullName} />
+          </Maybe>
+        </div>
       </form>
     </section>
   );
