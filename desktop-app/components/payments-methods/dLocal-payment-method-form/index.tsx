@@ -12,6 +12,7 @@ import { FormattedMessage, useIntl } from "lib/custom-intl";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import openNewTab from "lib/utils/openNewTab";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
@@ -125,7 +126,7 @@ function DLocalPaymentMethodForm({
             ["PAID", "AUTHORIZED", "PENDING"].includes(response.chargeStatus)
           ) {
             if (response.requiredRedirect) {
-              window?.open?.(response.redirectUri);
+              openNewTab(response.redirectUri);
             } else {
               analytics.trackContractPurchase({
                 contractPrice,

@@ -10,6 +10,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { AVAILABLE_PAYMENTS_METHODS } from "react-app/src/constants/messages";
 import { analytics } from "react-app/src/state/utils/gtm";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import openNewTab from "lib/utils/openNewTab";
 
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
@@ -159,7 +160,7 @@ const DLocalPaymentsMethods = ({
             ["PAID", "AUTHORIZED", "PENDING"].includes(response.chargeStatus)
           ) {
             if (response.requiredRedirect) {
-              window?.open?.(response.redirectUri);
+              openNewTab(response.redirectUri);
             } else {
               analytics.trackContractPurchase({
                 contractPrice,
