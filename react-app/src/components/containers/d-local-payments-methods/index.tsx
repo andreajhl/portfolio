@@ -10,7 +10,6 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { AVAILABLE_PAYMENTS_METHODS } from "react-app/src/constants/messages";
 import { analytics } from "react-app/src/state/utils/gtm";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
-import openNewTab from "lib/utils/openNewTab";
 
 const iconsClasses = {
   CREDIT_CARD: "far fa-credit-card",
@@ -160,7 +159,14 @@ const DLocalPaymentsMethods = ({
             ["PAID", "AUTHORIZED", "PENDING"].includes(response.chargeStatus)
           ) {
             if (response.requiredRedirect) {
-              openNewTab(response.redirectUri);
+              const isSafari = /^((?!chrome|android).)*safari/i.test(
+                window?.navigator?.userAgent
+              );
+              if (!isSafari) {
+                window?.open?.(response.redirectUri);
+              } else {
+                return window?.location?.replace?.(response.redirectUri);
+              }
             } else {
               analytics.trackContractPurchase({
                 contractPrice,
