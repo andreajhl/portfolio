@@ -49,9 +49,13 @@ function getValidations(
 
 type SignInEmailPasswordFormProps = {
   email: string;
+  onSuccessSignIn?: (formValues: FormValuesType) => void;
 };
 
-function SignInEmailPasswordForm({ email }: SignInEmailPasswordFormProps) {
+function SignInEmailPasswordForm({
+  email,
+  onSuccessSignIn,
+}: SignInEmailPasswordFormProps) {
   const { formatMessage } = useIntl();
   const { values, errors, setFieldValue, validateBeforeSubmit } = useForm({
     initialValues: getInitialValues(email),
@@ -91,6 +95,7 @@ function SignInEmailPasswordForm({ email }: SignInEmailPasswordFormProps) {
   async function requestSignIn(formValues: FormValuesType) {
     try {
       await handle(signInWithEmailAndPassword(formValues));
+      onSuccessSignIn?.(formValues);
     } catch (error) {
       setTranslatedRequestError(error);
     }

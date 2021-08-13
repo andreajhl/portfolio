@@ -1,4 +1,16 @@
-function thunkReducer<T>(type: string, initialState: T) {
+type ActionType = {
+  payload: any;
+  type: string;
+};
+
+const defaultGetActionData = (action: ActionType) =>
+  action.payload.data.data || action.payload.data;
+
+function thunkReducer<T>(
+  type: string,
+  initialState: T,
+  getActionData = defaultGetActionData
+) {
   if (typeof type !== "string") {
     throw new TypeError('Argument "type" must be a string');
   }
@@ -11,10 +23,7 @@ function thunkReducer<T>(type: string, initialState: T) {
     data: initialState,
   };
 
-  return function (
-    state = initialReducerState,
-    action: { payload: any; type: string }
-  ) {
+  return function (state = initialReducerState, action: ActionType) {
     switch (action.type) {
       case type:
         return {
@@ -30,7 +39,7 @@ function thunkReducer<T>(type: string, initialState: T) {
       case `${type}_SUCCESS`:
         return {
           ...initialReducerState,
-          data: action.payload.data.data || action.payload.data,
+          data: getActionData?.(action),
         };
       case `${type}_COMPLETED`:
         return {

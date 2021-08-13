@@ -32,3 +32,21 @@ const UNAVAILABLE_STATUS_CODE = [60, 70];
 export const celebrityIsUnavailable = (
   celebrityStatus: celebrityType["status"]
 ) => UNAVAILABLE_STATUS_CODE.includes(celebrityStatus);
+
+const BUSINESS_CONTRACT_TYPE = 2; /* Por ser definido correctamente */
+
+export const getCelebrityBusinessPrice = (contractsTypes: any[]) =>
+  contractsTypes?.find?.(
+    (contract) => contract.contractType === BUSINESS_CONTRACT_TYPE
+  )?.price || 0;
+
+export function getCelebrityAnalyticsData(celebrity: celebrityType) {
+  return {
+    ...celebrity,
+    discountPercentage:
+      celebrity.discountPercentage || getCelebrityDiscountPercentage(celebrity),
+    videoMessagePrice:
+      celebrity.videoMessagePrice || getCelebrityContractPrice(celebrity),
+    businessPrice: getCelebrityBusinessPrice(celebrity?.contractTypes),
+  };
+}

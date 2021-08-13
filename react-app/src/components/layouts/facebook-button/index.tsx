@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { useIntl } from "react-intl";
 import FacebookLogin from "react-facebook-login";
 import axios from "axios";
-import { Session } from "react-app/src/state/utils/session";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { redirectToAfterAuthPath } from "lib/famosos-auth";
 
 const clientId = process.env.NEXT_PUBLIC_FACEBOOK_LOGIN_IDENTIFIER;
 const redirectURL = process.env.NEXT_PUBLIC_FACEBOOK_LOGIN_REDIRECT;
@@ -23,8 +23,8 @@ function FacebookButton({ className, textButton }: FacebookButtonProps) {
             accessToken: response.accessToken,
           })
           .then(() => {
-            const session = new Session();
-            session.initSession();
+            analytics.trackUserSignIn({ widget: "FacebookButton" });
+            redirectToAfterAuthPath();
           });
       } catch (error) {
         console.log(error);
