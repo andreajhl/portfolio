@@ -355,6 +355,37 @@ export const retrieveUserCards = () => {
   });
 };
 
+export const processSpreedlyPayment = (data) => {
+  const FINAL_PATH = "custom-endpoints/user-payments/process-spreedly-payment";
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false,
+    })
+      .then((res) => {
+        if (res.data.status === "ERROR") {
+          rejectionFunc(res.data.error);
+        } else {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.data) {
+            rejectionFunc(error.response.data.error);
+          }
+        } else {
+          rejectionFunc("ERROR");
+        }
+      });
+  });
+};
+
 export const removeSource = (sourceId) => {
   const FINAL_PATH =
     "custom-endpoints/user-payments/remove-stripe-source/" + sourceId;
