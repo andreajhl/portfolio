@@ -63,6 +63,22 @@ export function trackContractPurchase({ celebrityId, contractPrice }) {
   });
 }
 
+export function trackAddContractToCart({
+  celebrityId,
+  contractPrice,
+  celebrityCountry,
+  celebrityCategory,
+}) {
+  return fbPixel("track", "AddToCart", {
+    content_type: "product",
+    content_ids: VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrityId,
+    value: contractPrice,
+    currency: "USD",
+    celebrityCountry,
+    celebrityCategory,
+  });
+}
+
 export function page(data) {
   const user = new Session().getSession();
   tagManagerDataLayer("PAGE_VIEW", {
@@ -100,6 +116,15 @@ export function trackUserSignUp(analyticsData = {}) {
   analytics.track("USER_SIGN_UP", { user, ...analyticsData });
 }
 
+export function trackInitiateCheckout({ celebrityId, contractPrice }) {
+  return fbPixel("track", "InitiateCheckout", {
+    content_type: "product",
+    content_ids: VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrityId,
+    value: contractPrice,
+    currency: "USD",
+  });
+}
+
 export const analytics = {
   track: tagManagerDataLayer,
   fbPixel,
@@ -109,4 +134,6 @@ export const analytics = {
   trackCelebrityProfileView,
   trackUserSignIn,
   trackUserSignUp,
+  trackAddContractToCart,
+  trackInitiateCheckout,
 };

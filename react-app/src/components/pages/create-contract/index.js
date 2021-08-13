@@ -7,12 +7,19 @@ import { withRouter } from "next/router";
 import { transformUserNavigatorLanguageToISO2Code } from "react-app/src/utils/transformUserNavigatorLanguageToISO2Code";
 import { getCelebrityContractPrice } from "lib/utils/celebrityUtils";
 import { analytics } from "react-app/src/state/utils/gtm";
+import { getCelebrityFinalContractPrice } from "lib/utils/celebrityUtils";
 
 class CreateContractPage extends Component {
   componentDidMount() {
     const { celebrity } = this.props;
     const user = new Session().getSession();
     analytics.track("CREATE_CONTRACT_PAGE_VIEW", { celebrity, user });
+    analytics.trackAddContractToCart({
+      celebrityId: celebrity?.id,
+      contractPrice: getCelebrityFinalContractPrice(celebrity),
+      celebrityCountry: celebrity.countryCode,
+      celebrityCategory: celebrity.categoryTitle,
+    });
   }
 
   static defaultProps = {

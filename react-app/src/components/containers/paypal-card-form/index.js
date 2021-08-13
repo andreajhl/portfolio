@@ -54,17 +54,10 @@ class PayPalCardForm extends Component {
     )
       .then((res) => {
         if (res.status === 10) {
-          if (typeof window !== "undefined") {
-            if (window.fbq != null) {
-              window.fbq("track", "Purchase", {
-                content_type: "product",
-                content_ids:
-                  VIDEO_MESSAGE_PRODUCT_ID_PREFIX + this.props.celebrityId,
-                value: this.props.contractPrice,
-                currency: "USD",
-              });
-            }
-          }
+          GTM.trackContractPurchase({
+            celebrityId: this.props.celebrityId,
+            contractPrice: this.props.contractPrice,
+          });
           const analyticsData = {
             ...res?.data,
             widget: "PaypalCardForm",
