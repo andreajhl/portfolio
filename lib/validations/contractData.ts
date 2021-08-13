@@ -22,8 +22,8 @@ export function validateDeliveryFrom(
 
 export function validateInstructions(value: string) {
   if (value.length === 0) return "Debes escribir tus instrucciones.";
-  if (value.length > 300) {
-    return "Debes introducir un máximo de 300 caracteres.";
+  if (value.length > 400) {
+    return "Debes introducir un máximo de 400 caracteres.";
   }
 }
 
@@ -64,7 +64,7 @@ export const getInstructionsValidator = (
   function instructionsValidator(value: string) {
     if (value.length === 0)
       return formatMessage(errorMessages.emptyInstructions);
-    const maxLength = 300;
+    const maxLength = 400;
     if (value.length > maxLength) {
       return formatMessage(errorMessages.maxLengthError, { maxLength });
     }

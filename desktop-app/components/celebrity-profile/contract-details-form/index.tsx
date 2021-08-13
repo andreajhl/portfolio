@@ -236,7 +236,7 @@ function ContractDetailsForm({
             aria-describedby="instructionsDescription"
             placeholder={instructionsPlaceholder}
             className={styles.VideoDetailsFormInstructionsTextarea}
-            maxLength={300}
+            maxLength={400}
             onKeyUp={changeInstructionsTouched}
             onBlur={changeInstructionsValue}
             value={textareaText}

@@ -26,6 +26,7 @@ function ContractInstructionsTextarea({
       <textarea
         id={id}
         className={`${styles.ContractInstructionsTextarea} ${textareaClass}`}
+        maxLength={400}
         {...textareaProps}
       />
     </div>
