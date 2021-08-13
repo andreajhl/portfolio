@@ -22,11 +22,11 @@ import {
   GIFT_GIVING_CATEGORY_CODE,
 } from "../../constants/dynamicAds";
 import { useEffect } from "react";
-import waitFor from "react-app/src/utils/waitFor";
 import { defineMessages, useIntl } from "react-intl";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import debug from "react-app/src/utils/debug";
 import { CREATE_CONTRACT_QUERY_PARAM } from "constants/paths";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const CelebrityProfilePage = dynamic<{
   celebrity: celebrityType;
