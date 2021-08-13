@@ -9,6 +9,7 @@ import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValid
 import { analytics } from "react-app/src/state/utils/gtm";
 import { useSelector } from "react-redux";
 import { RootState } from "react-app/src/state/store";
+import { SpreedlyForm } from "../spreedly-form";
 
 type all_payments_methods = typeof ALL_AVAILABLE_PAYMENTS_METHODS[number];
 
@@ -68,7 +69,7 @@ function PaymentMethodsAvailableList({
       contractReference,
     });
   };
-  console.log({ disabledAccordion });
+
   return (
     <>
       {payment_methods.map((el, index) => (
@@ -89,6 +90,14 @@ function PaymentMethodsAvailableList({
               discountCouponId={discountCouponId}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
               celebrityId={celebrityId}
+            />
+          </Maybe>
+          <Maybe it={el.paymentMethodType === "SPREEDLY"}>
+            <SpreedlyForm
+              onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
+              expanded={currentOption === el.paymentMethodType}
+              contractReference={contractReference}
+              discountCouponId={discountCouponId}
             />
           </Maybe>
           <Maybe it={el.paymentMethodType === "PAYPAL"}>
