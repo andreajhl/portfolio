@@ -173,7 +173,8 @@ function ContractDetailsForm({
 
   function validateFormBeforeChangeStep(
     goToClickedStep: () => void,
-    isPreviousStep: boolean
+    isPreviousStep: boolean,
+    clickedStepItem: { id: string }
   ): void {
     if (!isPreviousStep) return validateBeforeSubmit();
     const valuesToSave = getTouchedFieldValues();
@@ -184,6 +185,11 @@ function ContractDetailsForm({
         ? valuesToSave
         : null) as ContractDetailsType
     );
+    if (isPreviousStep) {
+      analytics.track("CELEBRITY_STEP_VIEW", {
+        stepName: clickedStepItem?.id,
+      });
+    }
     goToClickedStep();
   }
 
@@ -213,7 +219,7 @@ function ContractDetailsForm({
         enableNavigation
         onStepClick={validateFormBeforeChangeStep}
       />
-      <form onSubmit={validateBeforeSubmit}>
+      <form onSubmit={validateBeforeSubmit} id="contract-details-form">
         <label className={styles.VideoDetailsOccasionLabel}>
           <FormattedMessage defaultMessage="Selecciona una ocasión" />
         </label>
