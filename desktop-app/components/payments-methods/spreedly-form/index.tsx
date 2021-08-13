@@ -31,6 +31,7 @@ interface SpreedlyFormProps {
   onToggle: () => void;
   expanded: boolean;
   contractReference: string;
+  discountCouponId: number;
 }
 
 const initialValuesForm = {
@@ -44,6 +45,7 @@ function SpreedlyForm({
   onToggle,
   expanded,
   contractReference,
+  discountCouponId,
 }: SpreedlyFormProps) {
   const { push } = useRouter();
   const [isProccesing, setIsProccesing] = useState(false);
@@ -120,6 +122,7 @@ function SpreedlyForm({
       await processSpreedlyPayment({
         contractReference: contractReference,
         token,
+        discountCouponId,
       });
       push(getPurchaseSummaryPath(contractReference));
     } catch (e) {
