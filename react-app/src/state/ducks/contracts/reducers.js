@@ -456,7 +456,8 @@ export function fetchSimilarContractsReducer(
 
 const getUserContractInProgressRequestReducer = thunkReducer(
   TYPES.GET_USER_CONTRACT_IN_PROGRESS_REQUEST,
-  {}
+  {},
+  (action) => action?.payload?.data?.data
 );
 
 function getUserContractInProgressReducer(

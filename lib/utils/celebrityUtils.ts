@@ -10,6 +10,12 @@ export const getVideoMessageContractType = (celebrity: celebrityType) =>
 export const getCelebrityContractPrice = (celebrity: celebrityType) =>
   getVideoMessageContractType(celebrity)?.price || 0;
 
+export function getCelebrityFinalContractPrice(celebrity: celebrityType) {
+  const initialPrice = getCelebrityContractPrice(celebrity);
+  const discountPercentage = getCelebrityDiscountPercentage(celebrity);
+  return initialPrice - initialPrice * discountPercentage;
+}
+
 const fallbackDiscountPercentage = 0;
 
 export function getCelebrityDiscountPercentage(
@@ -32,3 +38,21 @@ const UNAVAILABLE_STATUS_CODE = [60, 70];
 export const celebrityIsUnavailable = (
   celebrityStatus: celebrityType["status"]
 ) => UNAVAILABLE_STATUS_CODE.includes(celebrityStatus);
+
+const BUSINESS_CONTRACT_TYPE = 2; /* Por ser definido correctamente */
+
+export const getCelebrityBusinessPrice = (contractsTypes: any[]) =>
+  contractsTypes?.find?.(
+    (contract) => contract.contractType === BUSINESS_CONTRACT_TYPE
+  )?.price || 0;
+
+export function getCelebrityAnalyticsData(celebrity: celebrityType) {
+  return {
+    ...celebrity,
+    discountPercentage:
+      celebrity.discountPercentage || getCelebrityDiscountPercentage(celebrity),
+    videoMessagePrice:
+      celebrity.videoMessagePrice || getCelebrityContractPrice(celebrity),
+    businessPrice: getCelebrityBusinessPrice(celebrity?.contractTypes),
+  };
+}

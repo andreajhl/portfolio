@@ -16,6 +16,11 @@ import {
   SIGN_UP_PATH,
 } from "constants/paths";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { analytics } from "react-app/src/state/utils/gtm";
+
+function trackSignIn() {
+  analytics.trackUserSignIn({ widget: "SignInBox" });
+}
 
 const AuthenticationFailurePopup = dynamic<AuthenticationFailurePopupProps>(
   () =>
@@ -61,7 +66,7 @@ function SignInBox({ className, willRedirect = false }: SignInBoxProps) {
           className={styles.AuthProviderButton}
           textButton={formatMessage(LoginMessages.googleMessage)}
         />
-        <SignInEmailPasswordForm email={""} />
+        <SignInEmailPasswordForm email={""} onSuccessSignIn={trackSignIn} />
         <AuthTermsAdvertise className={styles.SignInBoxAuthTermsAdvertise} />
         <Link href={RESET_PASSWORD_PATH} className={styles.ForgotPasswordLink}>
           <FormattedMessage defaultMessage="Olvidé mi contraseña" />

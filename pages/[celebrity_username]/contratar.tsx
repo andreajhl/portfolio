@@ -71,7 +71,7 @@ const CreateContract = ({ celebrity }) => {
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
       />
-      <CreateContractPage />
+      <CreateContractPage celebrity={celebrity} />
       <ValidateEmailModal />
     </>
   );
