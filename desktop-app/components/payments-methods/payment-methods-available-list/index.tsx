@@ -94,6 +94,7 @@ function PaymentMethodsAvailableList({
           </Maybe>
           <Maybe it={el.paymentMethodType === "SPREEDLY"}>
             <SpreedlyForm
+              index={index}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
               expanded={currentOption === el.paymentMethodType}
               contractReference={contractReference}
