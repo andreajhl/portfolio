@@ -80,9 +80,9 @@ function getNotificationsDataFromContractInProgress(
 }
 
 const WIZARD_STEPS = [
-  { id: "delivery" },
-  { id: "video-details" },
-  { id: "notifications" },
+  { id: "contract-delivery-form" },
+  { id: "contract-details-form" },
+  { id: "contract-notifications-form" },
 ];
 
 export function getInitialWizardStep(

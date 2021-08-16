@@ -21,6 +21,7 @@ import {
   getDeliveryContactCellphoneValidator,
   getDeliveryContactValidator,
 } from "lib/validations/contractData";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const messages = defineMessages({
   emailPlaceholder: {
@@ -97,7 +98,8 @@ function ContractNotificationsForm({
 
   function validateBeforeStepChange(
     goToClickedStep: () => void,
-    isPreviousStep: boolean
+    isPreviousStep: boolean,
+    clickedStepItem: { id: string }
   ) {
     if (!isPreviousStep && !validateFields()) return;
     const valuesToSave = isPreviousStep ? getTouchedFieldValues() : values;
@@ -108,6 +110,11 @@ function ContractNotificationsForm({
         ? valuesToSave
         : null) as ContractNotificationsType
     );
+    if (isPreviousStep) {
+      analytics.track("CELEBRITY_STEP_VIEW", {
+        stepName: clickedStepItem?.id,
+      });
+    }
     goToClickedStep();
   }
 
@@ -123,7 +130,7 @@ function ContractNotificationsForm({
           values={{ br: <br /> }}
         />
       </h2>
-      <form onSubmit={validateBeforeSubmit}>
+      <form onSubmit={validateBeforeSubmit} id="contract-notifications-form">
         <div>
           <label className={styles.FormLabel} htmlFor="deliveryContact">
             <FormattedMessage defaultMessage="Correo electrónico de notificación" />
