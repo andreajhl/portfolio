@@ -17,6 +17,7 @@ import { processSpreedlyPayment } from "react-app/src/state/ducks/payments/actio
 import { getPurchaseSummaryPath } from "constants/paths";
 import { useRouter } from "next/router";
 import WarningMessage from "desktop-app/components/common/warning-message";
+import SubmitButton from "desktop-app/components/common/button/submit-button";
 
 declare global {
   interface Window {
@@ -30,6 +31,7 @@ const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
 interface SpreedlyFormProps {
   onToggle: () => void;
   expanded: boolean;
+  index: number;
   contractReference: string;
   discountCouponId: number;
 }
@@ -44,6 +46,7 @@ const initialValuesForm = {
 function SpreedlyForm({
   onToggle,
   expanded,
+  index,
   contractReference,
   discountCouponId,
 }: SpreedlyFormProps) {
@@ -136,8 +139,8 @@ function SpreedlyForm({
     setIsProccesing(true);
   };
 
-  const sectionId = `section-spreedly`;
-  const labelId = `label-spreedly`;
+  const sectionId = `section-${index}`;
+  const labelId = `label-${index}`;
   return (
     <PaymentMethodFormWrapper>
       <PaymentMethodFormLabel role="button" onToggle={onToggle}>
@@ -266,11 +269,7 @@ function SpreedlyForm({
           </fieldset>
           <fieldset>
             {paymentError && <WarningMessage message={paymentError} />}
-            <SubmitButton
-              error={false}
-              processing={isProccesing}
-              disabled={loading}
-            >
+            <SubmitButton loading={isProccesing} disabled={loading}>
               <FormattedMessage defaultMessage="Pagar" />
             </SubmitButton>
           </fieldset>
@@ -297,18 +296,4 @@ const Field = ({ label, id, styleWraper, ...inputsProps }: FieldProps) => (
     </label>
     <input {...inputsProps} className={styles.InputElement} id={id} />
   </div>
-);
-
-const SubmitButton = ({ processing, error, children, disabled }) => (
-  <button
-    className={`btn btn-primary ${styles.SubmitButton}`}
-    type="submit"
-    disabled={processing || disabled}
-  >
-    {processing ? (
-      <FormattedMessage defaultMessage="Procesando..." />
-    ) : (
-      children
-    )}
-  </button>
 );
