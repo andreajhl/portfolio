@@ -18,26 +18,13 @@ import {
   getUserContractInProgress,
   cleanUserContractInProgress,
 } from "react-app/src/state/ducks/contracts/actions";
-import { useAuth } from "lib/famosos-auth";
 import { RootState } from "react-app/src/state/store";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { CreateContractWizardSkeleton } from "desktop-app/components/celebrity-profile/create-contract-wizard/skeleton";
-import { ComponentProps as CreateContractWizardProps } from "desktop-app/components/celebrity-profile/create-contract-wizard/types";
-import dynamic from "next/dynamic";
+import { useEffect, useRef, useState } from "react";
 import useGlobalFetches from "lib/hooks/useGlobalFetches";
-import { CREATE_CONTRACT_WIZARD_TEST_ID } from "__test__/testids";
-import { getLocalContractInProgress } from "lib/utils/localContractInProgress";
 import waitFor from "react-app/src/utils/waitFor";
 import { NotAvailableBanner } from "desktop-app/components/celebrity-profile/not-available-banner";
 import { celebrityIsUnavailable } from "lib/utils/celebrityUtils";
-
-const CreateContractWizard = dynamic<CreateContractWizardProps>(
-  () =>
-    import(
-      "desktop-app/components/celebrity-profile/create-contract-wizard"
-    ).then((mod) => mod.CreateContractWizard),
-  { loading: CreateContractWizardSkeleton }
-);
+import { CreateContractContainer } from "desktop-app/components/celebrity-profile/create-contract-container";
 
 const createContractWizardPosition = { top: 110 };
 const createContractWizardBottom = 600; // por ser definido correctamente.
@@ -75,17 +62,12 @@ function CelebrityProfilePage({
   shouldFocusCreateContractWizard = false,
   isLoadingPublicContracts,
   publicContracts,
-  getUserContractInProgress,
-  cleanUserContractInProgress,
-  contractInProgressRequest,
 }: CelebrityProfilePageProps) {
   useGlobalFetches();
   const [
     createContractWizardIsFocused,
     setCreateContractWizardIsFocused,
   ] = useState(false);
-  const { isAuthenticated, isLoading } = useAuth();
-  const [isReadyToCreateContract, setIsReadyToCreateContract] = useState(false);
   const wizardChangeFocusTimeoutRef = useRef<number | NodeJS.Timeout>();
 
   function goToCreateContractWizard() {
@@ -106,20 +88,10 @@ function CelebrityProfilePage({
     []
   );
 
-  const localContractInProgress = useMemo(
-    () => getLocalContractInProgress(celebrity.id),
-    [celebrity.id]
-  );
-
-  useEffect(() => {
-    if (!isAuthenticated || localContractInProgress) return;
-    getUserContractInProgress(celebrity.username);
-  }, [
-    celebrity.username,
-    getUserContractInProgress,
-    isAuthenticated,
-    localContractInProgress,
-  ]);
+  function onCreateContractIsReady() {
+    if (!shouldFocusCreateContractWizard) return;
+    goToCreateContractWizard();
+  }
 
   const showContractStepsBeforeReviews =
     !isLoadingPublicContracts &&
@@ -129,38 +101,6 @@ function CelebrityProfilePage({
     !isLoadingPublicContracts && publicContracts?.length >= 3;
 
   const showCelebritiesCards = publicContracts?.length > 0;
-
-  useEffect(() => {
-    if (
-      localContractInProgress ||
-      contractInProgressRequest.completed ||
-      (!isLoading && !isAuthenticated)
-    ) {
-      setIsReadyToCreateContract(true);
-    }
-  }, [
-    contractInProgressRequest.completed,
-    isAuthenticated,
-    isLoading,
-    localContractInProgress,
-  ]);
-
-  useEffect(() => {
-    if (!shouldFocusCreateContractWizard) return;
-    if (!isReadyToCreateContract) return;
-    goToCreateContractWizard();
-  }, [shouldFocusCreateContractWizard, isReadyToCreateContract]);
-
-  useEffect(
-    () => () => {
-      setIsReadyToCreateContract(false);
-      cleanUserContractInProgress();
-    },
-    [cleanUserContractInProgress, celebrity.username]
-  );
-
-  const contractInProgress =
-    localContractInProgress || contractInProgressRequest?.data;
 
   const isJuanseQuintero = celebrity?.id === 6317;
 
@@ -191,21 +131,14 @@ function CelebrityProfilePage({
                 />
               }
             >
-              <Maybe
-                it={isReadyToCreateContract}
-                orElse={<CreateContractWizardSkeleton />}
-              >
-                <CreateContractWizard
-                  data-testid={CREATE_CONTRACT_WIZARD_TEST_ID}
-                  className={classes(
-                    styles.CreateContractWizard,
-                    createContractWizardIsFocused &&
-                      styles.ContractWizardFocused
-                  )}
-                  celebrity={celebrity}
-                  contractInProgress={contractInProgress}
-                />
-              </Maybe>
+              <CreateContractContainer
+                className={classes(
+                  styles.CreateContractWizard,
+                  createContractWizardIsFocused && styles.ContractWizardFocused
+                )}
+                celebrity={celebrity}
+                onReadyToCreateContract={onCreateContractIsReady}
+              />
             </Maybe>
             <Maybe it={availableForSubscriptions}>
               <FanClubAdvertise celebrity={celebrity} />
