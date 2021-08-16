@@ -22,6 +22,9 @@ import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
 import getCookie from "react-app/src/utils/getCookie";
 import DLocalFormCard from "../DLocal-form-card";
 import DLocalSelectPaymentMethod from "../DLocal-select-payment-method";
+import PaymentMethodFormElement from "../form-element";
+import PaymentMethodFormLabel from "../form-label";
+import PaymentMethodFormWrapper from "../form-wrapper";
 import styles from "./styles.module.scss";
 
 export const AVAILABLE_PAYMENTS_METHODS_LABEL = {
@@ -169,23 +172,9 @@ function DLocalPaymentMethodForm({
     }
   };
   return (
-    <div className={styles.FormSection}>
-      <div
-        role="button"
-        onClick={onToggle}
-        onKeyDown={(e) => {
-          switch (e.key) {
-            case " ":
-            case "Enter":
-              onToggle();
-              break;
-            default:
-          }
-        }}
-        className={styles.FormLabel}
-      >
+    <PaymentMethodFormWrapper>
+      <PaymentMethodFormLabel onToggle={onToggle}>
         {PAYMENTS_METHODS_ICONS[paymentMethodType]()}
-
         <span className={styles.Label}>
           {AVAILABLE_PAYMENTS_METHODS_LABEL[paymentMethodType]}
         </span>
@@ -194,12 +183,11 @@ function DLocalPaymentMethodForm({
         ) : (
           <Ellipse className={styles.CheckIcon} />
         )}
-      </div>
-      <div
-        role="region"
-        aria-labelledby={labelId}
-        id={sectionId}
-        hidden={!expanded}
+      </PaymentMethodFormLabel>
+      <PaymentMethodFormElement
+        labelId={labelId}
+        sectionId={sectionId}
+        expanded={expanded}
       >
         <Maybe it={expanded}>
           <Maybe
@@ -231,8 +219,8 @@ function DLocalPaymentMethodForm({
             message={paymentError}
           />
         </Maybe>
-      </div>
-    </div>
+      </PaymentMethodFormElement>
+    </PaymentMethodFormWrapper>
   );
 }
 
