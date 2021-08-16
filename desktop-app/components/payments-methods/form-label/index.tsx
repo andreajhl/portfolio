@@ -5,16 +5,17 @@ import styles from "./styles.module.scss";
 interface PaymentMethodFormLabelProps {
   children: React.ReactNode;
   onToggle: () => void;
-  role: AriaRole;
+  role?: AriaRole;
 }
 
 function PaymentMethodFormLabel({
   children,
+  role = "button",
   onToggle,
 }: PaymentMethodFormLabelProps) {
   return (
     <div
-      role="button"
+      role={role}
       onClick={onToggle}
       onKeyDown={(e) => {
         switch (e.key) {
