@@ -1,13 +1,17 @@
 import styles from "./styles.module.scss";
 import { ComponentPropsWithRef } from "react";
 import classes from "classnames";
+import { LoadingSpinner } from "../../loading-spinner";
 
-type SubmitButtonProps = {} & ComponentPropsWithRef<"button">;
+type SubmitButtonProps = {
+  loading?: boolean;
+} & ComponentPropsWithRef<"button">;
 
 function SubmitButton({
   children = "Guardar",
   type = "submit",
   className,
+  loading,
   ...props
 }: SubmitButtonProps) {
   return (
@@ -16,7 +20,14 @@ function SubmitButton({
       className={classes("btn btn-primary", styles.SubmitButton, className)}
       {...props}
     >
-      {children}
+      {children}{" "}
+      {loading && (
+        <LoadingSpinner
+          cssStyle={{
+            marginLeft: "10px",
+          }}
+        />
+      )}
     </button>
   );
 }
