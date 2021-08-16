@@ -17,6 +17,9 @@ import scriptLoader from "react-async-script-loader";
 import { StripeProvider, Elements } from "react-stripe-elements";
 import { FormattedMessage } from "react-intl";
 import { useDispatch } from "react-redux";
+import PaymentMethodFormWrapper from "../form-wrapper";
+import PaymentMethodFormLabel from "../form-label";
+import PaymentMethodFormElement from "../form-element";
 
 const scriptSrc = "https://js.stripe.com/v3/";
 
@@ -79,21 +82,8 @@ function StripeForm({
 
   return (
     <StripeProvider stripe={stripeInstance}>
-      <div className={styles.FormSection}>
-        <div
-          role="button"
-          onClick={onToggle}
-          onKeyDown={(e) => {
-            switch (e.key) {
-              case " ":
-              case "Enter":
-                onToggle();
-                break;
-              default:
-            }
-          }}
-          className={styles.FormLabel}
-        >
+      <PaymentMethodFormWrapper>
+        <PaymentMethodFormLabel onToggle={onToggle}>
           <CardIcon className={styles.CardIcon} />
 
           <span className={styles.LabelSection}>
@@ -104,12 +94,11 @@ function StripeForm({
           ) : (
             <Ellipse className={styles.CheckIcon} />
           )}
-        </div>
-        <div
-          role="region"
-          aria-labelledby={labelId}
-          id={sectionId}
-          hidden={!expanded}
+        </PaymentMethodFormLabel>
+        <PaymentMethodFormElement
+          labelId={labelId}
+          sectionId={sectionId}
+          expanded={expanded}
         >
           <Maybe it={expanded}>
             {showCardForm ? (
@@ -142,8 +131,8 @@ function StripeForm({
               )}
             </button>
           </Maybe>
-        </div>
-      </div>
+        </PaymentMethodFormElement>
+      </PaymentMethodFormWrapper>
     </StripeProvider>
   );
 }
