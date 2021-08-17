@@ -46,6 +46,7 @@ function CelebrityDetails({ celebrity }: CelebrityDetailsProps) {
       </CollapsibleText>
       <Maybe it={celebrity.isDonor}>
         <DonorAlert
+          className={styles.CelebrityDetailsDonorAlert}
           fullName={celebrity.fullName}
           causeName={celebrity.causeName}
         />
