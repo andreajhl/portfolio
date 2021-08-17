@@ -4,40 +4,39 @@ export const AdWarrantyVideoPurchaseWrapper = styled.div`
   display: flex;
   flex-flow: column;
   min-height: 128px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  padding: 12px;
+  background-color: #f6f7ff;
+  border-radius: 7px;
+  padding: 16px;
 `;
 
 export const AdWarrantyHeader = styled.div`
-  margin-left: 10px;
-  margin-top: 6px;
+  display: flex;
 `;
 
-export const AdWarrantyImg = styled.img``;
-
-export const AdWarrantyTitle = styled.span`
-  color: #434a5d;
-  font-weight: bold;
-  margin-left: 0.6rem;
+export const AdWarrantyImg = styled.img`
+  margin-left: auto;
 `;
+
+export const AdWarrantyTitle = styled.h2`
+  margin-bottom: 0;
+`;
+
 export const InfoSection = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 0.75em;
 `;
 export const InfoDescription = styled.div`
+  flex: 1;
   text-align: left;
-  font-size: 0.65rem;
-  color: #434a5b;
-  width: 120px;
+  font-size: 0.875rem;
+  max-width: 160px;
 `;
 
 export const VLine = styled.hr`
-  margin: 0;
-  border-left: 1px solid rgba(219, 219, 219, 1);
-  align-self: flex-end;
-  height: 40px;
+  margin: 0 12px;
+  border-left: 1px solid black;
+  transform: scaleX(0.5);
+  height: 50px;
 `;
