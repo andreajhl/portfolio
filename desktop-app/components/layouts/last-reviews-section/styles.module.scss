@@ -1,14 +1,24 @@
 .LastReviewsSection > h2 {
   margin-bottom: 29px;
 }
-.ReviewsCards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
 
-  > div:nth-child(odd) {
+.ReviewsCards {
+  @media only screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > div:nth-child(3) {
+      display: none;
+    }
+  }
+
+  > div + div {
+    margin-top: 1.25rem;
+
     @media only screen and (min-width: 768px) {
-      margin-right: 27px;
+      margin-left: 27px;
+      margin-top: 0;
     }
   }
 
@@ -23,7 +33,12 @@
   font-size: 14px;
   line-height: 19px;
   cursor: pointer;
-  text-align: right;
   margin-top: 29px;
   text-decoration-line: underline;
+  text-align: right;
+
+  @media only screen and (max-width: 767px) {
+    text-align: center;
+    font-size: 1em;
+  }
 }

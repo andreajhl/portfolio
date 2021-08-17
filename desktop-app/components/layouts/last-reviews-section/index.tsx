@@ -44,7 +44,7 @@ const LastReviewsSection = ({
           <FormattedMessage defaultMessage="Calificaciones" />
         </h2>
         <div className={styles.ReviewsCards}>
-          {[...reviews].slice(0, 2).map((review, index) => (
+          {[...reviews].slice(0, 3).map((review, index) => (
             <CardReview
               key={index}
               contract_review={review.contract_review}
