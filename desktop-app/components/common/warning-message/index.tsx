@@ -2,7 +2,7 @@ import { WarningIcon } from "../icons";
 import styles from "./styles.module.scss";
 
 type WarningMessageProps = {
-  message: string;
+  message: string | React.ReactNode;
   className?: string;
 };
 
