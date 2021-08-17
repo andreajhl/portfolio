@@ -5,6 +5,7 @@ import { LoadingSpinner } from "../../loading-spinner";
 
 type SubmitButtonProps = {
   loading?: boolean;
+  variant?: "primary" | "secondary" | "danger" | "tertiary";
 } & ComponentPropsWithRef<"button">;
 
 function SubmitButton({
@@ -12,12 +13,31 @@ function SubmitButton({
   type = "submit",
   className,
   loading,
+  variant = "primary",
   ...props
 }: SubmitButtonProps) {
+  const getClassNameButton = () => {
+    if (variant === "primary") {
+      return "btn-primary";
+    }
+    if (variant === "secondary") {
+      return "btn-secondary";
+    }
+    if (variant === "tertiary") {
+      return "btn-tertiary";
+    }
+    if (variant === "danger") {
+      return "btn-tertiary";
+    }
+  };
   return (
     <button
       type={type}
-      className={classes("btn btn-primary", styles.SubmitButton, className)}
+      className={classes(
+        `btn ${getClassNameButton()}`,
+        styles.SubmitButton,
+        className
+      )}
       {...props}
     >
       {children}{" "}
