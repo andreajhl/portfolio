@@ -8,7 +8,6 @@ import Maybe from "react-app/src/components/common/helpers/maybe";
 import {
   removeSource,
   retrieveUserCards,
-  togglePaymentInProcess,
 } from "react-app/src/state/ducks/payments/actions";
 import StripeCardForm from "../stripe-card-form";
 import StripeCustomerSources from "../stripe-customer-sources";
@@ -20,6 +19,7 @@ import { useDispatch } from "react-redux";
 import PaymentMethodFormWrapper from "../form-wrapper";
 import PaymentMethodFormLabel from "../form-label";
 import PaymentMethodFormElement from "../form-element";
+import SubmitButton from "desktop-app/components/common/button/submit-button";
 
 const scriptSrc = "https://js.stripe.com/v3/";
 
@@ -58,9 +58,7 @@ function StripeForm({
   const [userAvailableSources, setUserAvailableSources] = useState([]);
   const fetchUserCards = useCallback(async () => {
     const response = await retrieveUserCards();
-    if (response.availableSources) {
-      setUserAvailableSources(response.availableSources);
-    }
+    setUserAvailableSources(response.availableSources || []);
   }, []);
 
   useEffect(() => {
@@ -120,16 +118,21 @@ function StripeForm({
                 availableSources={userAvailableSources}
               />
             )}
-            <button
-              className={`btn btn-outline ${styles.ChangeDisplayFormBtn}`}
-              onClick={() => setShowCardForm((value) => !value)}
-            >
-              {!showCardForm ? (
-                <FormattedMessage defaultMessage="Agregar nueva tarjeta" />
-              ) : (
-                <FormattedMessage defaultMessage="Seleccionar una tarjeta" />
-              )}
-            </button>
+            {userAvailableSources.length > 0 ? (
+              <SubmitButton
+                style={{
+                  marginTop: "0.8rem",
+                }}
+                variant="tertiary"
+                onClick={() => setShowCardForm((value) => !value)}
+              >
+                {!showCardForm ? (
+                  <FormattedMessage defaultMessage="Agregar nueva tarjeta" />
+                ) : (
+                  <FormattedMessage defaultMessage="Seleccionar una tarjeta" />
+                )}
+              </SubmitButton>
+            ) : null}
           </Maybe>
         </PaymentMethodFormElement>
       </PaymentMethodFormWrapper>
