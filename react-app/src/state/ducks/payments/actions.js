@@ -355,6 +355,39 @@ export const retrieveUserCards = () => {
   });
 };
 
+export const retrieveSpreedlyUserSources = () => {
+  const FINAL_PATH =
+    "custom-endpoints/user-payments/retrieve-spreedly-customer-sources";
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "GET",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: null,
+      custom_endpoint: false,
+    })
+      .then((res) => {
+        if (res.data.status === "ERROR") {
+          rejectionFunc(res.data.error);
+        } else {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((error) => {
+        console.log({ error });
+        if (error.response) {
+          if (error.response.data) {
+            rejectionFunc(error.response.data.error);
+          }
+        } else {
+          rejectionFunc("ERROR");
+        }
+      });
+  });
+};
+
 export const processSpreedlyPayment = (data) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-spreedly-payment";
   return new Promise((resolutionFunc, rejectionFunc) => {
@@ -389,6 +422,38 @@ export const processSpreedlyPayment = (data) => {
 export const removeSource = (sourceId) => {
   const FINAL_PATH =
     "custom-endpoints/user-payments/remove-stripe-source/" + sourceId;
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "DELETE",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: null,
+      custom_endpoint: false,
+    })
+      .then((res) => {
+        if (res.data.status === "ERROR") {
+          rejectionFunc(res.data.error);
+        } else {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.data) {
+            rejectionFunc(error.response.data.error);
+          }
+        } else {
+          rejectionFunc("ERROR");
+        }
+      });
+  });
+};
+
+export const removeSpreedlyUserSource = (sourceId) => {
+  const FINAL_PATH =
+    "custom-endpoints/user-payments/remove-spreedly-source/" + sourceId;
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
       method: "DELETE",
