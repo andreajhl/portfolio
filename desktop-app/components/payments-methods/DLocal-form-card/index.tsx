@@ -2,13 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import dynamic from "next/dynamic";
 import scriptLoader from "react-async-script-loader";
 import { findDOMNode } from "react-dom";
-import { LoaderLayout } from "react-app/src/components/layouts/loader";
 import styles from "./styles.module.scss";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import { analytics } from "react-app/src/state/utils/gtm";
+import SubmitButton from "desktop-app/components/common/button/submit-button";
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
 declare global {
@@ -208,28 +207,18 @@ function DLocalFormCard({
       <Maybe it={tokenError !== ""}>
         <WarningMessage message={tokenError} />
       </Maybe>
-      <button
-        onClick={(e) => handlerSubmitCreditCardDetails(e)}
+      <SubmitButton
         disabled={disabled}
-        className="btn btn-primary"
-        style={{
-          backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
-          height: "50px",
-          borderRadius: "10px",
-          width: "100%",
-        }}
+        type="button"
+        loading={paymentInProcess}
+        onClick={(e) => handlerSubmitCreditCardDetails(e)}
       >
-        <SubmitText
-          baseText={
-            paymentInProcess ? (
-              <FormattedMessage defaultMessage="Procesando" />
-            ) : (
-              <FormattedMessage defaultMessage="Pagar" />
-            )
-          }
-          status={paymentInProcess ? "loading" : "idle"}
-        />
-      </button>
+        {paymentInProcess ? (
+          <FormattedMessage defaultMessage="Procesando" />
+        ) : (
+          <FormattedMessage defaultMessage="Pagar" />
+        )}
+      </SubmitButton>
     </div>
   );
 }
