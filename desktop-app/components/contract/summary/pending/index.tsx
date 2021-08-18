@@ -44,6 +44,7 @@ type InstructionsContractPendingProps = {
   payment_date: string;
   email_client: string;
   contractReference: string;
+  status: number;
 };
 function HeaderContractPending() {
   return (
@@ -60,12 +61,14 @@ function InstructionsContractPending({
   email_client,
   contractReference,
   payment_date,
+  status,
 }: InstructionsContractPendingProps) {
   const router = useRouter();
   return (
     <div className={styles.InstructionsContractPending}>
       <div className={styles.StatusPaymentsDetails}>
         <StatusPaymentDetails
+          status={status}
           payment_date={payment_date}
           contractReference={contractReference}
         />
@@ -139,6 +142,7 @@ function ContractSummaryPending({
           email_client={contract.deliveryContact}
           payment_date={lastPayment.createdAt}
           contractReference={contract.reference}
+          status={lastPayment.status}
         />
       }
     />
