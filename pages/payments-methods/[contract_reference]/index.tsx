@@ -7,12 +7,13 @@ import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import dynamic from "next/dynamic";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
+import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 
-const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
-  import("react-app/src/components/pages/payment-methods").then(
-    (mod) => mod.PaymentMethodsPage
-  )
-);
+// const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
+//   import("react-app/src/components/pages/payment-methods").then(
+//     (mod) => mod.PaymentMethodsPage
+//   )
+// );
 
 const DesktopPaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
   import("desktop-app/components/pages/payment-methods").then(
@@ -45,14 +46,8 @@ const PaymentMethods = ({ contract_reference, isMobile }) => {
   return (
     <>
       <CustomHead />
-      <Maybe
-        it={isMobile}
-        orElse={
-          <DesktopPaymentMethodsPage contractReference={contract_reference} />
-        }
-      >
-        <PaymentMethodsPage contractReference={contract_reference} />
-      </Maybe>
+      <DesktopPaymentMethodsPage contractReference={contract_reference} />
+      <ValidateEmailModal />
     </>
   );
 };

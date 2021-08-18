@@ -2,18 +2,17 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import isMobile from "lib/utils/isMobile";
-import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
 import dynamic from "next/dynamic";
 import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 import { GetServerSideProps } from "next";
 
-const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
-  import("react-app/src/components/pages/payment-methods").then(
-    (mod) => mod.PaymentMethodsPage
-  )
-);
+// const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
+//   import("react-app/src/components/pages/payment-methods").then(
+//     (mod) => mod.PaymentMethodsPage
+//   )
+// );
 
 const DesktopPaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
   import("desktop-app/components/pages/payment-methods").then(
@@ -46,14 +45,7 @@ const PaymentMethods = ({ contract_reference, isMobile }) => {
   return (
     <>
       <CustomHead />
-      <Maybe
-        it={isMobile}
-        orElse={
-          <DesktopPaymentMethodsPage contractReference={contract_reference} />
-        }
-      >
-        <PaymentMethodsPage contractReference={contract_reference} />
-      </Maybe>
+      <DesktopPaymentMethodsPage contractReference={contract_reference} />
       <ValidateEmailModal />
     </>
   );
