@@ -11,11 +11,13 @@ const getVideoMessageContractType = (contractsTypes) =>
 type CelebrityVideoContractPriceProps = {
   celebrity: celebrityType;
   decimalScale?: number;
+  showDiscountPercentage?: boolean;
 };
 
 function CelebrityVideoContractPrice({
   celebrity,
   decimalScale = 0,
+  showDiscountPercentage = true,
 }: CelebrityVideoContractPriceProps) {
   const videoMessageContractType = getVideoMessageContractType(
     celebrity.contractTypes
@@ -28,7 +30,7 @@ function CelebrityVideoContractPrice({
 
   return (
     <>
-      <Maybe it={hasDiscount}>
+      <Maybe it={showDiscountPercentage && hasDiscount}>
         <DiscountPercentageBadge
           discountPercentage={discountPercentage}
           className={styles.DiscountPercentage}

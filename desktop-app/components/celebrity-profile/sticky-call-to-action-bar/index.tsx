@@ -11,6 +11,7 @@ import classes from "classnames";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import { getWindowPathname } from "react-app/src/utils/getWindow";
 import { analytics } from "react-app/src/state/utils/gtm";
+import Maybe from "desktop-app/components/common/helpers/maybe";
 
 const messages = defineMessages({
   avatarAlt: {
@@ -22,14 +23,14 @@ type StickyCallToActionTopBarProps = {
   celebrity: celebrityType;
   appearancePosition?: number;
   onCTAButtonClick?: () => void;
-  position?: "top" | "bottom";
+  isMobile?: boolean;
 };
 
 function StickyCallToActionBar({
   celebrity,
   appearancePosition,
   onCTAButtonClick = function () {},
-  position,
+  isMobile,
 }: StickyCallToActionTopBarProps) {
   const { formatMessage } = useIntl();
   const avatarImgAlt = formatMessage(messages.avatarAlt, {
@@ -56,7 +57,10 @@ function StickyCallToActionBar({
   }
 
   return (
-    <StickyBar appearancePosition={appearancePosition} position={position}>
+    <StickyBar
+      appearancePosition={appearancePosition}
+      position={isMobile ? "bottom" : "top"}
+    >
       <div
         className={classes(
           "container",
@@ -64,27 +68,49 @@ function StickyCallToActionBar({
           parentElementClass
         )}
       >
-        <img
-          src={celebrity.avatar}
-          alt={avatarImgAlt}
-          className={styles.StickyCTAAvatar}
-        />
-        <h2 className={styles.StickyCTAFullName}>
-          <TextWithOverflow
-            textClassName={styles.CelebrityFullName}
-            text={celebrity.fullName}
+        <Maybe it={!isMobile}>
+          <img
+            src={celebrity.avatar}
+            alt={avatarImgAlt}
+            className={styles.StickyCTAAvatar}
           />
-        </h2>
-        <CelebrityInfo celebrity={celebrity} className={styles.StickyCTAInfo} />
-        <span className={styles.StickyCTAPrice}>
-          <CelebrityVideoContractPrice celebrity={celebrity} />
+          <h2 className={styles.StickyCTAFullName}>
+            <TextWithOverflow
+              textClassName={styles.CelebrityFullName}
+              text={celebrity.fullName}
+            />
+          </h2>
+          <CelebrityInfo
+            celebrity={celebrity}
+            className={styles.StickyCTAInfo}
+          />
+        </Maybe>
+        <span
+          className={classes(
+            styles.StickyCTAPrice,
+            isMobile && styles.MobilePrice
+          )}
+        >
+          <CelebrityVideoContractPrice
+            celebrity={celebrity}
+            showDiscountPercentage={!isMobile}
+          />
         </span>
         <button
           type="button"
-          className={classes("btn btn-primary", styles.StickyCTAButton)}
+          className={classes(
+            "btn btn-primary",
+            styles.StickyCTAButton,
+            isMobile && styles.FillSpace
+          )}
           onClick={onClickCTAButton}
         >
-          <FormattedMessage defaultMessage="Comprar video personalizado" />
+          <Maybe
+            it={!isMobile}
+            orElse={<FormattedMessage defaultMessage="Comprar video" />}
+          >
+            <FormattedMessage defaultMessage="Comprar video personalizado" />
+          </Maybe>
         </button>
       </div>
     </StickyBar>
