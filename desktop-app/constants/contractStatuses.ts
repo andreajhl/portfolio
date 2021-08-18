@@ -1,6 +1,7 @@
 export const CREATED = 5;
 export const PENDING_TO_PAY = 6;
 export const PAYED_BY_CLIENT = 10;
+export const PAYED_BY_CLIENT_AND_REJECTED_BY_CELEBRITY = 19;
 export const REJECTED = 20;
 export const EXPIRED = 25;
 export const RECORDED = 30;
