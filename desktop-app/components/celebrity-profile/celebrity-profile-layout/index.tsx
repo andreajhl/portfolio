@@ -3,8 +3,6 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ContractSteps } from "desktop-app/components/celebrity-profile/contract-steps";
 import { CelebrityPublicContractsReel } from "desktop-app/components/layouts/celebrity-public-contracts-reel";
 import { LastReviewsSection } from "desktop-app/components/layouts/last-reviews-section";
-import { SimilarCelebritiesCardsReel } from "desktop-app/components/celebrity-profile/similar-celebrities-cards-reel";
-import { CelebritySimilarVideosReel } from "desktop-app/components/celebrity-profile/celebrity-similar-videos-reel";
 import { FanClubAdvertise } from "desktop-app/components/celebrity-profile/fan-club-advertise";
 import classes from "classnames";
 import styles from "./styles.module.scss";
@@ -14,6 +12,7 @@ import { CreateContractContainer } from "desktop-app/components/celebrity-profil
 import { connect, ConnectedProps } from "react-redux";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { RootState } from "react-app/src/state/store";
+import { SimilarCelebrityContent } from "../similar-celebrity-content";
 
 const mapStateToProps = ({ celebrities }: RootState) => {
   const publicContracts = celebrities.fetchPublicContractsReducer.data.results;
@@ -27,12 +26,9 @@ const mapStateToProps = ({ celebrities }: RootState) => {
   const showContractStepsAfterReviews =
     !isLoadingPublicContracts && publicContracts?.length >= 3;
 
-  const showSimilarCelebritiesCards = publicContracts?.length > 0;
-
   return {
     showContractStepsBeforeReviews,
     showContractStepsAfterReviews,
-    showSimilarCelebritiesCards,
   };
 };
 
@@ -54,7 +50,6 @@ function CelebrityProfileDesktopLayout({
   showFanClubAdvertise,
   showContractStepsBeforeReviews,
   showContractStepsAfterReviews,
-  showSimilarCelebritiesCards,
 }: CelebrityProfileDesktopLayoutProps) {
   return (
     <>
@@ -112,22 +107,10 @@ function CelebrityProfileDesktopLayout({
             </div>
           </Maybe>
         </div>
-        <Maybe it={celebrity.showSimilarCelebrities}>
-          <div className={styles.SimilarContentWrapper}>
-            <Maybe
-              it={showSimilarCelebritiesCards}
-              orElse={
-                <CelebritySimilarVideosReel
-                  celebrityUsername={celebrity.username}
-                />
-              }
-            >
-              <SimilarCelebritiesCardsReel
-                celebrityUsername={celebrity.username}
-              />
-            </Maybe>
-          </div>
-        </Maybe>
+        <SimilarCelebrityContent
+          celebrity={celebrity}
+          className={styles.SimilarContentWrapper}
+        />
       </div>
     </>
   );
