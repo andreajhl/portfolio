@@ -21,7 +21,7 @@ function CelebrityInfo({ celebrity, className = "" }: CelebrityInfoProps) {
     formatMessage
   );
 
-  const starsAverage = celebrity?.starsAverage > 0 ? celebrity.starsAverage : 4;
+  const starsAverage = celebrity?.starsAverage > 0 ? celebrity.starsAverage : 5;
   return (
     <div className={classes(styles.CelebrityInfo, className)}>
       <span className={styles.CelebrityInfoItemWithSeparator}>
