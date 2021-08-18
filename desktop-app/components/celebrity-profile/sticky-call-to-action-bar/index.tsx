@@ -1,6 +1,6 @@
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { CelebrityInfo } from "../celebrity-info";
-import { StickyTopBar } from "../../common/sticky-top-bar";
+import { StickyBar } from "../../common/sticky-bar";
 import styles from "./styles.module.scss";
 import { CelebrityVideoContractPrice } from "desktop-app/components/common/helpers/celebrity-video-contract-price";
 import {
@@ -22,12 +22,14 @@ type StickyCallToActionTopBarProps = {
   celebrity: celebrityType;
   appearancePosition?: number;
   onCTAButtonClick?: () => void;
+  position?: "top" | "bottom";
 };
 
-function StickyCallToActionTopBar({
+function StickyCallToActionBar({
   celebrity,
   appearancePosition,
   onCTAButtonClick = function () {},
+  position,
 }: StickyCallToActionTopBarProps) {
   const { formatMessage } = useIntl();
   const avatarImgAlt = formatMessage(messages.avatarAlt, {
@@ -54,7 +56,7 @@ function StickyCallToActionTopBar({
   }
 
   return (
-    <StickyTopBar appearancePosition={appearancePosition}>
+    <StickyBar appearancePosition={appearancePosition} position={position}>
       <div
         className={classes(
           "container",
@@ -85,8 +87,8 @@ function StickyCallToActionTopBar({
           <FormattedMessage defaultMessage="Comprar video personalizado" />
         </button>
       </div>
-    </StickyTopBar>
+    </StickyBar>
   );
 }
 
-export { StickyCallToActionTopBar };
+export { StickyCallToActionBar };
