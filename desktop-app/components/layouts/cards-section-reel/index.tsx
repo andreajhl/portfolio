@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import classes from "classnames";
 import { Link } from "desktop-app/components/common/routing/link";
 import Maybe from "react-app/src/components/common/helpers/maybe";
@@ -21,16 +21,27 @@ export type CardsReelSectionProps = Omit<
   itemHeight: number | string;
   itemData: any[];
   gap?: number;
+  sidesPadding?: CSSProperties["width"];
 };
 
-const getRenderColumn = (renderFn: Render, gap: number) => ({
-  data,
-  index,
-  style,
-}) => {
+const getRenderColumn = (
+  renderFn: Render,
+  gap: number,
+  sidesPadding: CSSProperties["width"]
+) => ({ data, index, style }) => {
   const currentData = data[index];
+  const isLastItem = index === data.length - 1;
+  const sidesPaddingWithUnit =
+    typeof sidesPadding === "number" ? `${sidesPadding}px` : sidesPadding;
+  const additionalWidth = isLastItem ? sidesPaddingWithUnit : 0;
   return (
-    <div style={{ ...style, left: style.left + gap * index }}>
+    <div
+      style={{
+        ...style,
+        width: `calc(${additionalWidth} + ${style.width}px)`,
+        left: `calc(${sidesPaddingWithUnit} + ${style.left + gap * index}px)`,
+      }}
+    >
       {renderFn(currentData)}
     </div>
   );
@@ -47,6 +58,7 @@ function CardsReelSection({
   className = "",
   itemWidth,
   itemHeight,
+  sidesPadding = 0,
   ...reelProps
 }: CardsReelSectionProps) {
   return (
@@ -72,7 +84,7 @@ function CardsReelSection({
         scrollByOffset={gap}
         {...reelProps}
       >
-        {getRenderColumn(render, gap)}
+        {getRenderColumn(render, gap, sidesPadding)}
       </Reel>
     </section>
   );
