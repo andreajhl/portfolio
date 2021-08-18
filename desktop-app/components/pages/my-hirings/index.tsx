@@ -11,6 +11,7 @@ import {
   EXPIRED,
   REJECTED,
   PAYED_BY_CLIENT,
+  PAYED_BY_CLIENT_AND_REJECTED_BY_CELEBRITY,
 } from "desktop-app/constants/contractStatuses";
 import { defineMessages, FormattedMessage } from "react-intl";
 import { useIntl } from "lib/custom-intl";
@@ -42,7 +43,10 @@ const orderByOptions = [
 ];
 
 const filterByOptions = [
-  { label: messages.pendingFilterLabel, value: `${PAYED_BY_CLIENT}` },
+  {
+    label: messages.pendingFilterLabel,
+    value: `${PAYED_BY_CLIENT},${PAYED_BY_CLIENT_AND_REJECTED_BY_CELEBRITY}`,
+  },
   { label: messages.completedFilterLabel, value: `${COMPLETED}` },
   { label: messages.expiredFilterLabel, value: `${EXPIRED}` },
   { label: messages.rejectedFilterLabel, value: `${REJECTED}` },
