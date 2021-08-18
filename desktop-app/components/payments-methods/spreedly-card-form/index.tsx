@@ -50,7 +50,9 @@ function SpreedlyCardForm({
       initSpreadly();
     }
     return () => {
-      window.Spreedly.removeHandlers();
+      if (window.Spreedly) {
+        window.Spreedly.removeHandlers();
+      }
     };
   }, []);
   const initSpreadly = () => {
