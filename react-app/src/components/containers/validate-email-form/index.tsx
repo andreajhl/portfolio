@@ -176,7 +176,13 @@ function ValidateEmailForm({
           status={status}
         />
       </button>
-
+      <span
+        style={{
+          fontSize: "12px",
+        }}
+      >
+        <FormattedMessage defaultMessage="Es posible que tu código haya llegado a tu carpeta de spam" />
+      </span>
       <CollapsibleErrorMessage
         className={styles.ValidateEmailFormErrorMessage}
         errorMessage={requestError}
