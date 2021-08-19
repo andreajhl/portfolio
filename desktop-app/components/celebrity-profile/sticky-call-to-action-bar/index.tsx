@@ -101,7 +101,7 @@ function StickyCallToActionBar({
           className={classes(
             "btn btn-primary",
             styles.StickyCTAButton,
-            isMobile && styles.FillSpace
+            isMobile && styles.StickyCTAButtonMobile
           )}
           onClick={onClickCTAButton}
         >

@@ -52,9 +52,11 @@
   color: #ff3844;
 }
 
-.FillSpace {
+.StickyCTAButtonMobile {
   min-width: unset;
   flex: 1;
+  max-width: 18.75rem;
+  margin-left: auto;
 }
 
 .CelebrityFullName {
