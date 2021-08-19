@@ -30,13 +30,13 @@ type LastReviewsSectionProps = {
 } & StateProps &
   DispatchProps;
 
-const LastReviewsSection = ({
+function LastReviewsSection({
   reviews = [{}],
   showMore = true,
   listReviews,
   paginationData,
   isLoading,
-}: LastReviewsSectionProps) => {
+}: LastReviewsSectionProps) {
   return (
     <Maybe it={reviews.length > 0}>
       <div className={styles.LastReviewsSection}>
@@ -67,7 +67,7 @@ const LastReviewsSection = ({
       </div>
     </Maybe>
   );
-};
+}
 
 const _LastReviewsSection = connect(
   mapStateToProps,
