@@ -79,7 +79,7 @@ function ValidateEmailForm({
   });
 
   useEffect(() => {
-    sendSecurityCode();
+    sendSecurityCode(email);
   }, []);
 
   const [requestError, setRequestError] = useState(initialRequestErrorValue);
@@ -162,6 +162,7 @@ function ValidateEmailForm({
         error={errors.securityCode}
         autoComplete="off"
       />
+
       <button
         type="submit"
         className={classes(
@@ -175,6 +176,7 @@ function ValidateEmailForm({
           status={status}
         />
       </button>
+
       <CollapsibleErrorMessage
         className={styles.ValidateEmailFormErrorMessage}
         errorMessage={requestError}
