@@ -65,3 +65,7 @@
 .CardActive3 {
   border: 2px solid #4cb0e8;
 }
+
+.ContractTypeCardsSkeleton > * {
+  flex: 1;
+}

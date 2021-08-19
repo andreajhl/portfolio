@@ -1,12 +1,18 @@
 import Skeleton from "react-loading-skeleton";
 import styles from "./styles.module.scss";
+import classes from "classnames";
 
 function ContractTypeCardsSkeleton() {
   return (
-    <div className={styles.ContractTypeCards}>
-      <Skeleton width={123} height={152} className={styles.SkeletonCard} />
-      <Skeleton width={123} height={152} className={styles.SkeletonCard} />
-      <Skeleton width={123} height={152} className={styles.SkeletonCard} />
+    <div
+      className={classes(
+        styles.ContractTypeCards,
+        styles.ContractTypeCardsSkeleton
+      )}
+    >
+      <Skeleton width="100%" height={152} className={styles.SkeletonCard} />
+      <Skeleton width="100%" height={152} className={styles.SkeletonCard} />
+      <Skeleton width="100%" height={152} className={styles.SkeletonCard} />
     </div>
   );
 }

@@ -71,11 +71,7 @@ function CelebrityProfilePage({
 
   function goToCreateContractWizard() {
     scrollToTop({
-      top: calculateScrollOffset(
-        `.${styles.CreateContractWizard}`,
-        32,
-        "bottom"
-      ),
+      top: calculateScrollOffset(`.${styles.CreateContractWizard}`, 32, "top"),
     });
     setCreateContractWizardIsFocused(true);
     wizardChangeFocusTimeoutRef.current = setTimeout(() => {
