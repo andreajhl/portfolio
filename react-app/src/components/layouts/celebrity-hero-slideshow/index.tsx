@@ -1,20 +1,34 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import fullscreen from "fscreen";
 import * as GTM from "../../../state/utils/gtm";
 import { VideoSlideLayout } from "../video-slide";
 import { contractOperations } from "../../../state/ducks/contracts";
 import useCurrentVideoPlaying from "../../../utils/useCurrentVideoPlaying";
 import getWindow from "react-app/src/utils/getWindow";
-import { FormattedMessage } from "react-intl";
+import classes from "classnames";
+import { ComponentProps } from "./types";
 
-const CelebrityHeroSlideshow = ({
+const mapStateToProps = ({ celebrities }) => ({
+  celebrityMainVideo: celebrities.getCelebrityReducer.data.mainVideo,
+  celebrityPublicContracts:
+    celebrities.fetchPublicContractsReducer.data.results,
+});
+
+const connector = connect(mapStateToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type CelebrityHeroSlideshowProps = ComponentProps & PropsFromRedux;
+
+function CelebrityHeroSlideshow({
+  className,
   celebrityAvatar,
   celebrityMainVideo,
   celebrityPublicContracts,
-  setPlayingVideo,
-}) => {
+  videoOverlayHeader,
+  videoOverlayFooter,
+}: CelebrityHeroSlideshowProps) {
   const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(true);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [videoIsMuted, setVideoIsMuted] = useState(true);
@@ -101,24 +115,19 @@ const CelebrityHeroSlideshow = ({
   };
   return (
     <section
-      className={`CelebrityHeroSlideshow container p-0 bg-dark ${
-        videoIsFullscreen ? "CelebrityHeroSlideshow--is-fullscreen" : ""
-      }`}
+      className={classes(
+        `CelebrityHeroSlideshow container p-0 bg-dark`,
+        videoIsFullscreen && "CelebrityHeroSlideshow--is-fullscreen",
+        className
+      )}
       ref={sectionRef}
     >
       <Carousel
+        controls={false}
         activeIndex={activeSlideIndex}
         onSelect={handleSelect}
         fade
         interval={null}
-        prevIcon={<i className="fa fa-chevron-left controls-icon" />}
-        prevLabel={
-          <FormattedMessage defaultMessage="Anterior" description="" />
-        }
-        nextIcon={<i className="fa fa-chevron-right controls-icon" />}
-        nextLabel={
-          <FormattedMessage defaultMessage="Siguiente" description="" />
-        }
       >
         {celebrityMainVideo ? (
           <Carousel.Item>
@@ -126,7 +135,6 @@ const CelebrityHeroSlideshow = ({
               videoPosterUrl={celebrityAvatar}
               videoUrl={celebrityMainVideo}
               videoReference={"SLIDESHOW-MAIN_VIDEO"}
-              autoPlayOnCanPlay
               autoPlayVideo={activeSlideIndex === 0 && slideshowIsPlaying}
               videoIsMuted={videoIsMuted}
               setVideoIsMuted={setVideoIsMuted}
@@ -136,7 +144,9 @@ const CelebrityHeroSlideshow = ({
               toggleFullscreen={toggleFullscreen}
               showFullscreenToggler={fullscreen.fullscreenEnabled}
               onEndVideo={playNextVideo}
-              shouldLoop={!celebrityPublicContracts.length > 0}
+              shouldLoop={celebrityPublicContracts.length < 1}
+              videoOverlayHeader={videoOverlayHeader}
+              videoOverlayFooter={videoOverlayFooter}
             />
           </Carousel.Item>
         ) : null}
@@ -164,27 +174,18 @@ const CelebrityHeroSlideshow = ({
               shouldLoop={
                 !celebrityMainVideo && celebrityPublicContracts.length === 1
               }
+              videoOverlayHeader={videoOverlayHeader}
+              videoOverlayFooter={videoOverlayFooter}
+              videoOccasion={publicContract.occasion}
+              contractReference={publicContract.contract_reference}
             />
           </Carousel.Item>
         ))}
       </Carousel>
     </section>
   );
-};
+}
 
-const mapStateToProps = ({ celebrities }) => ({
-  celebrityMainVideo: celebrities.getCelebrityReducer.data.mainVideo,
-  celebrityPublicContracts:
-    celebrities.fetchPublicContractsReducer.data.results,
-});
-
-const mapDispatchToProps = {
-  setPlayingVideo: contractOperations.playVideo,
-};
-
-const _CelebrityHeroSlideshow = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CelebrityHeroSlideshow);
+const _CelebrityHeroSlideshow = connector(CelebrityHeroSlideshow);
 
 export { _CelebrityHeroSlideshow as CelebrityHeroSlideshow };
