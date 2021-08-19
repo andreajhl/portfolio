@@ -14,22 +14,27 @@ import dynamic from "next/dynamic";
 import { calculateScrollOffset } from "../../../../lib/utils/calculateScrollOffset";
 import { calculateElementEdge } from "../../../../lib/utils/calculateElementEdge";
 
+const loading = () => <div className={styles.CelebrityProfileSkeleton} />;
+
 const CelebrityProfileDesktopLayout = dynamic<any>(
   import("../../celebrity-profile/celebrity-profile-layout").then(
     (mod) => mod.CelebrityProfileDesktopLayout
-  )
+  ),
+  { loading }
 );
 
 const CelebrityProfileLayoutTwo = dynamic<any>(
   import(
     "react-app/src/components/celebrity-profile/celebrity-profile-layout-two"
-  ).then((mod) => mod.CelebrityProfileLayoutTwo)
+  ).then((mod) => mod.CelebrityProfileLayoutTwo),
+  { loading }
 );
 
 const CelebrityProfileLayoutOne = dynamic<any>(
   import(
     "react-app/src/components/celebrity-profile/celebrity-profile-layout-one"
-  ).then((mod) => mod.CelebrityProfileLayoutOne)
+  ).then((mod) => mod.CelebrityProfileLayoutOne),
+  { loading }
 );
 
 const createContractWizardBottomInitialValue = 600;
