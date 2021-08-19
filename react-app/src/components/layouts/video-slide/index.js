@@ -87,12 +87,15 @@ function VideoSlideLayout({
     onEndVideo();
   };
 
-  function FullscreenToggler({ className, ...props }) {
+  function FullscreenToggler({ className, onClick, ...props }) {
     return (
       <button
         type="button"
         className={classes("btn", styles.ActionButton, className)}
-        onClick={toggleFullscreen}
+        onClick={(event) => {
+          onClick?.(event);
+          toggleFullscreen();
+        }}
         {...props}
       >
         <i

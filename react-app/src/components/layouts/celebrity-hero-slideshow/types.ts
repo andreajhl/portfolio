@@ -23,4 +23,5 @@ export type ComponentProps = {
   celebrityMainVideo: string;
   videoOverlayHeader: VideoOverlaySectionRenderPropType;
   videoOverlayFooter: VideoOverlaySectionRenderPropType;
+  playMainVideoInFullscreenOnMount?: boolean;
 };

@@ -4,13 +4,13 @@ import { connect, ConnectedProps } from "react-redux";
 import fullscreen from "fscreen";
 import * as GTM from "../../../state/utils/gtm";
 import { VideoSlideLayout } from "../video-slide";
-import { contractOperations } from "../../../state/ducks/contracts";
 import useCurrentVideoPlaying from "../../../utils/useCurrentVideoPlaying";
 import getWindow from "react-app/src/utils/getWindow";
 import classes from "classnames";
 import { ComponentProps } from "./types";
+import { RootState } from "react-app/src/state/store";
 
-const mapStateToProps = ({ celebrities }) => ({
+const mapStateToProps = ({ celebrities }: RootState) => ({
   celebrityMainVideo: celebrities.getCelebrityReducer.data.mainVideo,
   celebrityPublicContracts:
     celebrities.fetchPublicContractsReducer.data.results,
@@ -28,6 +28,7 @@ function CelebrityHeroSlideshow({
   celebrityPublicContracts,
   videoOverlayHeader,
   videoOverlayFooter,
+  playMainVideoInFullscreenOnMount = false,
 }: CelebrityHeroSlideshowProps) {
   const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(true);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -52,7 +53,7 @@ function CelebrityHeroSlideshow({
 
   useEffect(() => {
     if (!fullscreen.fullscreenEnabled) return;
-    const onFullscreenChange = () => {
+    function onFullscreenChange() {
       if (fullscreen.fullscreenElement === sectionRef.current) {
         setVideoIsFullscreen(true);
         GTM.tagManagerDataLayer("ENTER_FULLSCREEN_VIDEO_SLIDE", {
@@ -66,8 +67,12 @@ function CelebrityHeroSlideshow({
           videoIsFullscreen: false,
         });
       }
-    };
+    }
     fullscreen.addEventListener("fullscreenchange", onFullscreenChange);
+
+    return () => {
+      fullscreen.removeEventListener("fullscreenchange", onFullscreenChange);
+    };
   }, []);
 
   const toggleFullscreen = () => {
@@ -78,6 +83,12 @@ function CelebrityHeroSlideshow({
       fullscreen.requestFullscreen(sectionElement);
     }
   };
+
+  useEffect(() => {
+    if (!playMainVideoInFullscreenOnMount) return;
+    toggleFullscreen();
+    setVideoIsMuted(false);
+  }, []);
 
   const slidesVideosReferences = useMemo(
     () =>
