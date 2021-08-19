@@ -22,8 +22,8 @@ const renderVideoOverlayHeader = (
   <header className={styles.VideoOverlayHeader}>
     <Maybe it={Boolean(reference)}>
       <div className={styles.ReactionButtons}>
-        <ShareButton menuPosition="bottom left" />
         <LikeToggler />
+        <ShareButton menuPosition="bottom left" />
       </div>
     </Maybe>
     <MuteToggler className={styles.MuteToggler} />

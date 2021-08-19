@@ -16,29 +16,27 @@ const CelebrityHeroSlideshow = dynamic<CelebrityHeroSlideshowProps>(
   renderOnlyOnBrowser
 );
 
-const renderVideoOverlayHeader = ({ MuteToggler }, { occasion }) => (
+const renderVideoOverlayHeader = (_components: any, { occasion }) => (
   <header className={styles.VideoOverlayHeader}>
     <Maybe it={Boolean(occasion)}>
       <ContractOccasion occasion={occasion} className={styles.VideoOccasion} />
     </Maybe>
-    <MuteToggler className={styles.MuteToggler} />
   </header>
 );
 
 const renderVideoOverlayFooter = (
-  { FullscreenToggler, PlayToggler, LikeToggler, ShareButton },
+  { FullscreenToggler, PlayToggler, LikeToggler, ShareButton, MuteToggler },
   { reference }
 ) => (
   <footer className={styles.VideoOverlayFooter}>
-    <div>
-      <FullscreenToggler />
-    </div>
     <div className={styles.ReactionButtons}>
       <Maybe it={Boolean(reference)}>
-        <ShareButton />
         <LikeToggler />
+        <ShareButton />
       </Maybe>
+      <FullscreenToggler />
       <PlayToggler />
+      <MuteToggler className={styles.MuteToggler} />
     </div>
   </footer>
 );
