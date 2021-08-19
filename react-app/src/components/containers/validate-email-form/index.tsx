@@ -78,8 +78,16 @@ function ValidateEmailForm({
     onSubmit,
   });
 
+  async function requestResendSecurityCode() {
+    try {
+      await handle(sendSecurityCode(email));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    sendSecurityCode(email);
+    requestResendSecurityCode();
   }, []);
 
   const [requestError, setRequestError] = useState(initialRequestErrorValue);
