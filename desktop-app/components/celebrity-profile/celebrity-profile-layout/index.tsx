@@ -39,14 +39,14 @@ type PropFromRedux = ConnectedProps<typeof connector>;
 type CelebrityProfileDesktopLayoutProps = {
   celebrity: celebrityType;
   onCreateContractIsReady?: () => void;
-  createContractContainerClassName?: string;
+  createContractWizardClassName?: string;
   showFanClubAdvertise?: boolean;
 } & PropFromRedux;
 
 function CelebrityProfileDesktopLayout({
   celebrity,
   onCreateContractIsReady,
-  createContractContainerClassName,
+  createContractWizardClassName,
   showFanClubAdvertise,
   showContractStepsBeforeReviews,
   showContractStepsAfterReviews,
@@ -70,7 +70,7 @@ function CelebrityProfileDesktopLayout({
               }
             >
               <CreateContractContainer
-                className={createContractContainerClassName}
+                className={createContractWizardClassName}
                 celebrity={celebrity}
                 onReadyToCreateContract={onCreateContractIsReady}
               />
