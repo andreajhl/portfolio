@@ -4,6 +4,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ContractOccasion } from "desktop-app/components/common/widgets/contract-occasion";
 import { ComponentProps as CelebrityHeroSlideshowProps } from "../../layouts/celebrity-hero-slideshow/types";
 import dynamic from "next/dynamic";
+import { useCelebrityHasPublicContracts } from "lib/hooks/useCelebrityHasPublicContracts";
 
 const renderOnlyOnBrowser = { ssr: false };
 
@@ -51,6 +52,11 @@ function CelebritySlideshowTwo({
   className,
   celebrity,
 }: CelebritySlideshowTwoProps) {
+  const hasMainVideo = Boolean(celebrity.mainVideo);
+  const hasPublicContracts = useCelebrityHasPublicContracts();
+
+  if (!hasMainVideo && !hasPublicContracts) return null;
+
   return (
     <CelebrityHeroSlideshow
       className={className}
