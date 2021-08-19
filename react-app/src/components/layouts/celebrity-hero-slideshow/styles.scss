@@ -2,16 +2,17 @@
   background-color: black !important;
   &--is-fullscreen {
     .carousel-item {
+      max-height: 100vh !important;
       height: 100vh !important;
       max-width: 960px;
       left: 50%;
       transform: translateX(-50%);
     }
+  }
 
-    .VideoSlideLayout__poster,
-    .VideoSlideLayout__video {
-      object-fit: contain !important;
-    }
+  .VideoSlideLayout__poster,
+  .VideoSlideLayout__video {
+    object-fit: contain !important;
   }
 
   @media only screen and (min-width: 992px) {
@@ -20,6 +21,7 @@
   }
   .carousel {
     &-item {
+      max-height: 178vw;
       height: 90vh;
     }
 
