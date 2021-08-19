@@ -99,7 +99,9 @@ function CreateContractContainer({
   const contractInProgress =
     localContractInProgress || contractInProgressRequest?.data;
 
-  if (!isReadyToCreateContract) return <CreateContractWizardSkeleton />;
+  if (!isReadyToCreateContract) {
+    return <CreateContractWizardSkeleton className={className} />;
+  }
 
   return (
     <CreateContractWizard
