@@ -129,6 +129,7 @@ function CelebrityMainVideoWidget({
               <video
                 ref={videoRef}
                 src={celebrity.mainVideo}
+                onContextMenu={(e) => e.preventDefault()}
                 preload="metadata"
                 onClick={togglePlay}
                 muted={videoIsMuted}
