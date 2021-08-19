@@ -12,7 +12,7 @@ function FlashDeliveryAdvertise({ className }: FlashDeliveryAdvertiseProps) {
       <span className={styles.FlashDeliveryAdvertiseIcon}>
         <i className="fa fa-bolt text-warning" />
       </span>
-      <FormattedMessage defaultMessage="Entrega Flash (Menos de 24 hrs.)" />
+      <FormattedMessage defaultMessage="Entrega Flash (-24 hrs.)" />
     </div>
   );
 }
