@@ -33,6 +33,7 @@ import {
   getCelebrityDiscountPercentage,
 } from "lib/utils/celebrityUtils";
 import getCelebrityBusinessPrice from "lib/utils/getCelebrityBusinessPrice";
+import { CelebrityProfilePage } from "desktop-app/components/pages/celebrity-profile";
 
 function getCelebrityData(celebrity: celebrityType) {
   return {
@@ -45,20 +46,6 @@ function getCelebrityData(celebrity: celebrityType) {
   };
 }
 
-const CelebrityProfilePage = dynamic<{ celebrity: celebrityType }>(() =>
-  import("react-app/src/components/pages/celebrity-profile").then(
-    (mod) => mod.CelebrityProfilePage
-  )
-);
-
-const CelebrityProfilePageDesktop = dynamic<{
-  celebrity: celebrityType;
-  shouldFocusCreateContractWizard?: boolean;
-}>(() =>
-  import("desktop-app/components/pages/celebrity-profile").then(
-    (mod) => mod.CelebrityProfilePage
-  )
-);
 const headData = defineMessages({
   titleCelebrityProfile: {
     defaultMessage: "Famosos.com - {celebrity_username}",
@@ -84,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     try {
       const { celebrity_username } = params;
       const isMobile = isMobileDevice(req.headers["user-agent"]);
-      await get(celebrity_username, false, !isMobile)(store.dispatch);
+      await get(celebrity_username, false, true)(store.dispatch);
       const { celebrities } = store.getState();
 
       const celebrity = celebrities.getCelebrityReducer.data;
@@ -103,15 +90,9 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         setCelebrityProfileVersion(getProfileVersionDependingOnTime())
       );
 
-      if (isMobile) {
-        await listPublicContracts(celebrity.id, { currentPage: 1 })(
-          store.dispatch
-        );
-        await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
-      } else {
-        await listReviewsV2(celebrity.username)(store.dispatch);
-        await listPublicContractsV2(celebrity.username)(store.dispatch);
-      }
+      await listReviewsV2(celebrity.username)(store.dispatch);
+      await listPublicContractsV2(celebrity.username)(store.dispatch);
+
       return {
         props: {
           celebrity,
@@ -138,7 +119,7 @@ function CelebrityProfile({
   isMobile,
   shouldFocusCreateContractWizard,
 }) {
-  useDesktopClass(!isMobile);
+  useDesktopClass(true);
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
   const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
   const { formatMessage } = useIntl();
@@ -184,17 +165,11 @@ function CelebrityProfile({
         }
         productCategory={GIFT_GIVING_CATEGORY_CODE}
       />
-      <Maybe
-        it={isMobile}
-        orElse={
-          <CelebrityProfilePageDesktop
-            celebrity={celebrity}
-            shouldFocusCreateContractWizard={shouldFocusCreateContractWizard}
-          />
-        }
-      >
-        <CelebrityProfilePage celebrity={celebrity} />
-      </Maybe>
+      <CelebrityProfilePage
+        celebrity={celebrity}
+        shouldFocusCreateContractWizard={shouldFocusCreateContractWizard}
+        celebrityProfileVersion={celebrityProfileVersion}
+      />
     </>
   );
 }
