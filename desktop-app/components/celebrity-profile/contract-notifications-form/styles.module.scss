@@ -13,6 +13,10 @@
 
 .VideoNotificationFormRadio {
   margin-top: 1em;
+
+  @media only screen and (max-width: 767px) {
+    font-size: 1.125em !important;
+  }
 }
 
 .ContainerPhoneInput {
