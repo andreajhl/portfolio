@@ -18,7 +18,7 @@ const CreateContractWizard = dynamic<CreateContractWizardProps>(
     import(
       "desktop-app/components/celebrity-profile/create-contract-wizard"
     ).then((mod) => mod.CreateContractWizard),
-  { loading: CreateContractWizardSkeleton }
+  { loading: () => <CreateContractWizardSkeleton /> }
 );
 
 const mapStateToProps = ({ contracts }: RootState) => ({
