@@ -20,6 +20,7 @@ import { Dropdown } from "desktop-app/components/common/button/dropdown";
 import getWindow from "react-app/src/utils/getWindow";
 import { getHiringPreviewPath } from "constants/paths";
 import { FormattedMessage, defineMessages, useIntl } from "react-intl";
+import { PopupProps } from "reactjs-popup/dist/types";
 
 const messages = defineMessages({
   shareMessage: {
@@ -35,6 +36,7 @@ type ShareVideoButtonProps = {
   contractReference: string;
   iconColor?: string;
   children: ReactNode;
+  menuPosition?: PopupProps["position"];
 };
 
 type MenuItemType = {
@@ -58,6 +60,7 @@ const toMenuItem = ({ id, to, icon, label }) => (
 );
 
 function ShareVideoButton({
+  menuPosition = "top right",
   buttonClassName = "",
   children,
   contractReference,
@@ -114,7 +117,7 @@ function ShareVideoButton({
 
   return (
     <Dropdown
-      menuPosition="top right"
+      menuPosition={menuPosition}
       menuClassName={styles.ShareDropdownMenu}
       buttonChildren={children}
       buttonClassName={buttonClassName}

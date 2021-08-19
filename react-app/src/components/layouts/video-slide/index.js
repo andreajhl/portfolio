@@ -10,7 +10,7 @@ import { LikeButton } from "desktop-app/components/common/button/like";
 import { useContractLike } from "lib/hooks/useContractLike";
 import { ShareVideoButton } from "desktop-app/components/common/button/share-video";
 
-const VideoSlideLayout = ({
+function VideoSlideLayout({
   videoUrl,
   videoReference,
   shouldLoadPoster,
@@ -32,7 +32,7 @@ const VideoSlideLayout = ({
   videoOverlayFooter,
   videoOccasion = "",
   contractReference = "",
-}) => {
+}) {
   const { isFavorite, toggleFavorite } = useContractLike(contractReference);
   const analyticsData = {
     widget: "VideoSlideLayout",
@@ -78,7 +78,6 @@ const VideoSlideLayout = ({
   //   setIsPlayingVideo(true);
   //   playVideo();
   // }, [playVideo, setIsPlayingVideo]);
-
   useEffect(() => {
     if (!autoPlayVideo) return;
     setSlideshowIsPlaying(true);
@@ -160,7 +159,7 @@ const VideoSlideLayout = ({
     );
   }
 
-  function ShareButton({ className }) {
+  function ShareButton({ className, ...props }) {
     return (
       <ShareVideoButton
         buttonClassName={classes(
@@ -170,6 +169,7 @@ const VideoSlideLayout = ({
           className
         )}
         contractReference={contractReference}
+        {...props}
       >
         <i className="fa fa-share-alt" />
       </ShareVideoButton>
@@ -230,7 +230,7 @@ const VideoSlideLayout = ({
       </div>
     </section>
   );
-};
+}
 
 VideoSlideLayout.defaultProps = {
   shouldLoadPoster: true,
