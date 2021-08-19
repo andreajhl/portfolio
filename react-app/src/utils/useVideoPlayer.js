@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import useCurrentVideoPlaying from "./useCurrentVideoPlaying";
+const preventEvent = (event) => event.preventDefault();
 
 const noVideoPlaying = null;
 
@@ -15,6 +16,9 @@ function useVideoPlayer(
   const videoRef = useRef();
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
 
+  useEffect(() => {
+    videoRef?.current?.addEventListener?.("contextmenu", preventEvent);
+  }, []);
   const playVideo = () => {
     setPlayingVideo(videoKey);
     setVideoIsPlaying(true);
