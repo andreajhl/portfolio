@@ -1,10 +1,14 @@
 .CreateContractWizard {
   margin-top: 25px;
   margin-bottom: 21px;
-  width: 461px;
+  max-width: 461px;
   border-radius: 20px;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-  padding: 30px 36px 42px;
+  padding: 1.25rem;
+
+  @media only screen and (min-width: 576px) {
+    padding: 30px 36px 42px;
+  }
 }
 
 .CreateContractWizardSkeleton span {
