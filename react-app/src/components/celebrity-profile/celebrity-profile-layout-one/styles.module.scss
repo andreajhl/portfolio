@@ -1,0 +1,56 @@
+.Container {
+  @media only screen and (max-width: 575px) {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.DonorAlert,
+.FlashDeliveryAdvertise,
+.FanClubAdvertise {
+  margin-top: 1rem;
+}
+
+.FanClubAdvertise {
+  margin-top: 2rem;
+}
+
+.Section {
+  padding: 2rem 0;
+}
+
+.AboutCelebritySection {
+  margin-top: 1rem;
+}
+
+.CelebrityHashtags {
+  margin-top: 1.625rem;
+}
+
+.LastReviewsSectionWrapper {
+  margin-top: 2rem;
+}
+
+.AboutCelebritySection h2 {
+  margin-bottom: 0.875rem;
+}
+
+.HeroSlideshow {
+  margin-top: 21px;
+  margin-bottom: calc(-30vh + 1.125rem);
+}
+
+.CreateContractWizardOne.CreateContractWizardOne {
+  margin-top: 0;
+  z-index: 101;
+  position: relative;
+}
+
+.SimilarCelebrityContentWrapper {
+  background: #fafafa;
+  padding: 1.5rem 0;
+}
+
+.SimilarCelebrityContentWrapper h2 {
+  padding-left: 5%;
+}
