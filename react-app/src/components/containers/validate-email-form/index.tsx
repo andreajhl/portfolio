@@ -12,7 +12,7 @@ import { TRANSLATION_RESET_PASSSWORD_MESSAGES } from "react-app/src/constants/me
 import { SubmitText } from "../../common/widgets/submit-button-text";
 import useForm from "lib/hooks/useForm";
 import { analytics } from "react-app/src/state/utils/gtm";
-import { sendSecurityCode, validateEmailSecurityCode } from "lib/famosos-auth";
+import { validateEmailSecurityCode } from "lib/famosos-auth";
 import usePromise from "lib/hooks/usePromise";
 import { CollapsibleErrorMessage } from "../../common/widgets/collapsible-error-message";
 import Maybe from "../../common/helpers/maybe";
@@ -77,18 +77,6 @@ function ValidateEmailForm({
     validations: getValidations(formatMessage),
     onSubmit,
   });
-
-  async function requestResendSecurityCode() {
-    try {
-      await handle(sendSecurityCode(email));
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    requestResendSecurityCode();
-  }, []);
 
   const [requestError, setRequestError] = useState(initialRequestErrorValue);
   const { handle, status } = usePromise();
