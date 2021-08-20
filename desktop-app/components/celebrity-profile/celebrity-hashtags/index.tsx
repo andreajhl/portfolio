@@ -23,6 +23,8 @@ function CelebrityHashtags({ className, celebrity }: CelebrityHashtagsProps) {
     });
   }
 
+  if (!Array.isArray(hashtags) || hashtags?.length < 1) return null;
+
   return (
     <div className={classes(styles.CelebrityHashtags, className)}>
       {hashtags?.map?.((hashtag) => (
