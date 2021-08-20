@@ -69,9 +69,10 @@ function CelebrityProfileLayoutOne({
             celebrity={celebrity}
           />
         </Maybe>
-        <div className={styles.LastReviewsSectionWrapper}>
-          <LastReviewsSection showMore={true} />
-        </div>
+        <LastReviewsSection
+          className={styles.LastReviewsSection}
+          showMore={true}
+        />
       </div>
       <SimilarCelebrityContent
         className={styles.SimilarCelebrityContentWrapper}
