@@ -1,50 +1,42 @@
 import CardReview from "desktop-app/components/common/cards/review";
 import React from "react";
 import styles from "./styles.module.scss";
-import { celebrityOperations } from "react-app/src/state/ducks/celebrities";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import dynamic from "next/dynamic";
 import { FormattedMessage } from "react-intl";
+import classes from "classnames";
+import { RootState } from "react-app/src/state/store";
 
 const LastReviewsModal = dynamic(() =>
   import("../last-reviews-modal").then((mod) => mod.LastReviewsModal)
 );
 
-// mapStateToProps
-const mapStateToProps = ({ celebrities }) => ({
-  isLoading: celebrities.fetchReviewsReducer.loading,
-  reviews: celebrities.fetchReviewsReducer.data.results as [any],
-  paginationData: celebrities.fetchReviewsReducer.data.informationPage,
+const mapStateToProps = ({ celebrities }: RootState) => ({
+  reviews: celebrities.fetchReviewsReducer.data.results as any[],
 });
 
-// mapStateToProps
-const mapDispatchToProps = {
-  listReviews: celebrityOperations.listReviews,
-};
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+const connector = connect(mapStateToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type LastReviewsSectionProps = {
   showMore: boolean;
-} & StateProps &
-  DispatchProps;
+  className?: string;
+} & PropsFromRedux;
 
 function LastReviewsSection({
-  reviews = [{}],
+  reviews = [],
   showMore = true,
-  listReviews,
-  paginationData,
-  isLoading,
+  className,
 }: LastReviewsSectionProps) {
   return (
     <Maybe it={reviews.length > 0}>
-      <div className={styles.LastReviewsSection}>
+      <section className={classes(styles.LastReviewsSection, className)}>
         <h2>
           <FormattedMessage defaultMessage="Calificaciones" />
         </h2>
         <div className={styles.ReviewsCards}>
-          {[...reviews].slice(0, 3).map((review, index) => (
+          {reviews.slice(0, 3).map((review, index) => (
             <CardReview
               key={index}
               contract_review={review.contract_review}
@@ -64,14 +56,11 @@ function LastReviewsSection({
             }}
           </LastReviewsModal>
         ) : null}
-      </div>
+      </section>
     </Maybe>
   );
 }
 
-const _LastReviewsSection = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LastReviewsSection);
+const _LastReviewsSection = connector(LastReviewsSection);
 
 export { _LastReviewsSection as LastReviewsSection };
