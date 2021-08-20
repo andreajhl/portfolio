@@ -6,7 +6,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
 import dynamic from "next/dynamic";
-import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
+// import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 import { GetServerSideProps } from "next";
 import { RootState } from "react-app/src/state/store";
 import { useSelector } from "react-redux";
@@ -76,7 +76,7 @@ const PaymentMethods = ({ contract_reference, isMobile }) => {
       >
         <PaymentMethodsPage contractReference={contract_reference} />
       </Maybe>
-      <ValidateEmailModal />
+      {/* <ValidateEmailModal /> */}
     </>
   );
 };
