@@ -1,4 +1,4 @@
-import AppLinksBanner from "desktop-app/components/footer/app-links-banner";
+// import AppLinksBanner from "desktop-app/components/footer/app-links-banner";
 import CelebritiesFormCTA from "desktop-app/components/footer/celebrities-form-cta";
 import SocialNetWorksWebPage from "desktop-app/components/footer/social-networks-webpage";
 import SubscriptionNewsletterForm from "desktop-app/components/footer/subscription-newsletter-form";
@@ -20,7 +20,7 @@ const FooterPage = () => {
           </div>
         </div>
         <div className={styles.FooterContainerSectionAppsLinks}>
-          <AppLinksBanner />
+          {/* <AppLinksBanner /> */}
         </div>
         <div className={styles.FooterContainerSectionGeneralLinks}>
           <div>
