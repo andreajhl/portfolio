@@ -64,6 +64,10 @@ export const SUBSCRIPTION_SUCCESS =
   "/subscription/subscription-success/:celebrity_username";
 //SUBSCRIPTION FEED
 export const FEED_SUBSCRIPTION = "/subscription/feed";
+
+export const SUBSCRIPTION_FEED_VIEW_NAME = "feed";
+export const SUBSCRIPTION_BENEFITS_VIEW_NAME = "benefits";
+
 //SESSION REDIRECT
 export const SESSION_REDIRECT = "/session/redirect/";
 
