@@ -66,7 +66,10 @@ export const SUBSCRIPTION_SUCCESS =
 export const FEED_SUBSCRIPTION = "/subscription/feed";
 
 export const SUBSCRIPTION_FEED_VIEW_NAME = "feed";
+export const SUBSCRIPTION_FEED = `/subscription/${SUBSCRIPTION_FEED_VIEW_NAME}`;
+
 export const SUBSCRIPTION_BENEFITS_VIEW_NAME = "benefits";
+export const SUBSCRIPTION_BENEFITS = `/subscription/${SUBSCRIPTION_BENEFITS_VIEW_NAME}`;
 
 //SESSION REDIRECT
 export const SESSION_REDIRECT = "/session/redirect/";

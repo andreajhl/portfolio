@@ -9,6 +9,7 @@ import { SubscriptionPostsHeader } from "../../layouts/subscription-posts";
 import { SubscriptionFeedView } from "../subscription-feed-view";
 import { SUBSCRIPTION_BENEFITS_VIEW_NAME } from "constants/paths";
 import { SubscriptionBenefitsView } from "../subscription-benefits-view";
+import { SubscriptionViewsNavTabs } from "../../layouts/subscription-views-nav-tabs";
 
 function SubscriptionViews({
   isSubscriptionListCompletedFetch,
@@ -25,6 +26,7 @@ function SubscriptionViews({
   return (
     <PageContainer>
       <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
+        <SubscriptionViewsNavTabs />
         <SubscriptionPostsHeader>
           <Maybe it={subscriptionList.length > 0}>
             <SubscriptionsFilter
