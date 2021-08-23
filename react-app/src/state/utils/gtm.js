@@ -87,6 +87,7 @@ export function page(data) {
     vendor: navigator.vendor,
     receivedAt: new Date(),
     user,
+    pageTitle: document?.title,
     ...data,
   });
 }

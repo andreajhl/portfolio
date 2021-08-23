@@ -24,7 +24,7 @@ const languages = {
   "pt-BR": ptMessages,
 };
 
-const ROUTE_CHANGE_START = "routeChangeStart";
+const ROUTE_CHANGE_COMPLETE = "routeChangeComplete";
 
 CustomApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
@@ -53,9 +53,10 @@ function CustomApp({ Component, pageProps }) {
         isReactRouting: true,
       });
     };
-    router.events.on(ROUTE_CHANGE_START, handleRouteChange);
+    router.events.on(ROUTE_CHANGE_COMPLETE, handleRouteChange);
+
     return () => {
-      router.events.off(ROUTE_CHANGE_START, handleRouteChange);
+      router.events.off(ROUTE_CHANGE_COMPLETE, handleRouteChange);
     };
   }, []);
 
