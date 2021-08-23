@@ -7,7 +7,7 @@ import * as firestoreService from "../../../firebase/firestoreService";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
 
-function NotPostsResults({ message }) {
+export function NotPostsResults({ message }) {
   return (
     <div className={styles.ContainerNotPostResults}>
       <h4>

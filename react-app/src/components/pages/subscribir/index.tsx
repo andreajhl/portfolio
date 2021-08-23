@@ -35,7 +35,7 @@ import { Link } from "../../common/routing/link";
 import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
 import { useRouter } from "next/router";
 import { getPostsFromCelebrity } from "react-app/src/firebase/firestoreService";
-import { NotPostsResults } from "../subscription-feed";
+import { NotPostsResults } from "../subscription-feed-view";
 import { ConvertedPriceCopy } from "../../layouts/converted-price-copy";
 import { PoweredByFamososBanner } from "../../layouts/powered-by-famosos-banner";
 
