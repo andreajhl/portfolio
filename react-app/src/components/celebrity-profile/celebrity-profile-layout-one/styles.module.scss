@@ -41,6 +41,16 @@
   margin-bottom: calc(-30vh + 1.125rem);
 }
 
+.HeroSlideshowWithoutCreateContractOnTop {
+  margin-bottom: 0;
+}
+
+.HeroSlideshowWithoutCreateContractOnTop
+  :global(.VideoSlideLayout__overlay)
+  footer {
+  padding-bottom: 4.25rem;
+}
+
 .CreateContractWizardOne.CreateContractWizardOne {
   margin-top: 0;
   z-index: 101;

@@ -12,6 +12,8 @@ import { DonorAlert } from "desktop-app/components/celebrity-profile/donor-alert
 import { CelebritySlideshowOne } from "../celebrity-slideshow-one";
 import { CelebrityDetails } from "../../layouts/celebrity-details";
 import { FanClubAdvertise } from "desktop-app/components/celebrity-profile/fan-club-advertise";
+import { NotAvailableBanner } from "desktop-app/components/celebrity-profile/not-available-banner";
+import { celebrityIsAvailableForContract } from "lib/utils/celebrityUtils";
 
 type CelebrityProfileLayoutOneProps = {
   celebrity: celebrityType;
@@ -26,24 +28,44 @@ function CelebrityProfileLayoutOne({
   onCreateContractIsReady,
   showFanClubAdvertise = true,
 }: CelebrityProfileLayoutOneProps) {
+  const isAvailableForContract = celebrityIsAvailableForContract(
+    celebrity.status
+  );
+
   return (
     <>
       <div className={classes("container", styles.Container)}>
         <CelebrityDetails celebrity={celebrity} variant="1" />
       </div>
       <CelebritySlideshowOne
-        className={styles.HeroSlideshow}
+        className={classes(
+          styles.HeroSlideshow,
+          !isAvailableForContract &&
+            styles.HeroSlideshowWithoutCreateContractOnTop
+        )}
         celebrity={celebrity}
       />
       <div className={classes("container", styles.Container)}>
-        <CreateContractContainer
-          className={classes(
-            styles.CreateContractWizardOne,
-            createContractWizardClassName
-          )}
-          celebrity={celebrity}
-          onReadyToCreateContract={onCreateContractIsReady}
-        />
+        <Maybe
+          it={isAvailableForContract}
+          orElse={
+            <NotAvailableBanner
+              className={createContractWizardClassName}
+              celebrityName={celebrity.fullName}
+              celebrityId={celebrity.id}
+              celebrityUsername={celebrity.username}
+            />
+          }
+        >
+          <CreateContractContainer
+            className={classes(
+              styles.CreateContractWizardOne,
+              createContractWizardClassName
+            )}
+            celebrity={celebrity}
+            onReadyToCreateContract={onCreateContractIsReady}
+          />
+        </Maybe>
         <AdWarrantyVideoPurchase celebrityFullName={celebrity.fullName} />
         <AboutCelebritySection
           className={styles.AboutCelebritySection}

@@ -12,6 +12,8 @@ import { DonorAlert } from "desktop-app/components/celebrity-profile/donor-alert
 import { CelebritySlideshowTwo } from "../celebrity-slideshow-two";
 import { CelebrityDetails } from "../../layouts/celebrity-details";
 import { FanClubAdvertise } from "desktop-app/components/celebrity-profile/fan-club-advertise";
+import { celebrityIsAvailableForContract } from "lib/utils/celebrityUtils";
+import { NotAvailableBanner } from "desktop-app/components/celebrity-profile/not-available-banner";
 
 type CelebrityProfileLayoutTwoProps = {
   celebrity: celebrityType;
@@ -26,15 +28,31 @@ function CelebrityProfileLayoutTwo({
   onCreateContractIsReady,
   showFanClubAdvertise = true,
 }: CelebrityProfileLayoutTwoProps) {
+  const isAvailableForContract = celebrityIsAvailableForContract(
+    celebrity.status
+  );
+
   return (
     <>
       <div className={classes("container", styles.Container)}>
         <CelebrityDetails celebrity={celebrity} variant="2" />
-        <CreateContractContainer
-          className={createContractWizardClassName}
-          celebrity={celebrity}
-          onReadyToCreateContract={onCreateContractIsReady}
-        />
+        <Maybe
+          it={isAvailableForContract}
+          orElse={
+            <NotAvailableBanner
+              className={createContractWizardClassName}
+              celebrityName={celebrity.fullName}
+              celebrityId={celebrity.id}
+              celebrityUsername={celebrity.username}
+            />
+          }
+        >
+          <CreateContractContainer
+            className={createContractWizardClassName}
+            celebrity={celebrity}
+            onReadyToCreateContract={onCreateContractIsReady}
+          />
+        </Maybe>
         <AdWarrantyVideoPurchase celebrityFullName={celebrity.fullName} />
       </div>
       <CelebritySlideshowTwo
