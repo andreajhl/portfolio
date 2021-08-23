@@ -1,0 +1,66 @@
+.BackstageBenefitCard.BackstageBenefitCard {
+  background-color: white;
+  display: block;
+  padding-bottom: 24px;
+  text-decoration: none;
+}
+
+.PosterWrapper {
+  width: 100%;
+  height: 86.06vw;
+  max-width: 542px;
+  max-height: 542px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.PosterImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.PosterOverlay {
+  background: rgba(4, 4, 4, 0.5);
+  mix-blend-mode: normal;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  padding: 14px 24px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.BenefitTitle,
+.TimeCounter {
+  font-size: 8vw;
+
+  @media only screen and (min-width: 340px) {
+    font-size: 2.125rem;
+  }
+}
+
+.BenefitTitle {
+  max-width: 14.375rem;
+  font-weight: bold;
+  color: white;
+}
+
+.ContentWrapper {
+  margin-top: 1.25rem;
+}
+
+.BenefitDateText {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  font-size: 18px;
+}
+
+.TimeCounter {
+  margin-left: auto;
+  font-weight: bold;
+}
