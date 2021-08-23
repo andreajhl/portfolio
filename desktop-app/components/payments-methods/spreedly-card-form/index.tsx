@@ -1,14 +1,19 @@
 import { getPurchaseSummaryPath } from "constants/paths";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
 import WarningMessage from "desktop-app/components/common/warning-message";
-import { FormattedMessage } from "lib/custom-intl";
-import useForm from "lib/hooks/useForm";
+import { FormattedMessage, IntlFormatters } from "lib/custom-intl";
+import useForm, { ValidationsType } from "lib/hooks/useForm";
+import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
 import { useRouter } from "next/router";
+import { useIntl } from "react-intl";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { processSpreedlyPayment } from "react-app/src/state/ducks/payments/actions";
 import useScript from "react-script-hook";
 import styles from "./styles.module.scss";
+import errorMessages from "lib/validations/errorMessages";
+import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCurrency";
+import { getEmailValidator } from "lib/validations/common";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -19,22 +24,48 @@ interface SpreedlyCardFormProps {
 }
 
 const initialValuesForm = {
-  first_name: "",
-  last_name: "",
+  full_name: "",
+  email: "",
   month: "",
   year: "",
+  identification_document: "",
 };
+
+type InitialValuesType = typeof initialValuesForm;
+
+function getValidations(
+  formatMessage: IntlFormatters["formatMessage"],
+  currency: string
+): ValidationsType<InitialValuesType> {
+  return {
+    full_name(value) {
+      if (value.length === 0) {
+        return formatMessage(errorMessages.emptyNameError);
+      }
+    },
+    email: getEmailValidator(formatMessage),
+    identification_document(value) {
+      const checkDocument = allowedFormatDocuments[currency];
+      if (typeof checkDocument === "function" && !checkDocument(value)) {
+        return formatMessage(errorMessages.invalidIdentificationDocument);
+      }
+    },
+  };
+}
 
 function SpreedlyCardForm({
   contractReference,
   discountCouponId,
 }: SpreedlyCardFormProps) {
+  const userCurrency = useUserCurrentCurrency();
+  const { formatMessage } = useIntl();
   const { push } = useRouter();
   const [isProccesing, setIsProccesing] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
   const [isCreatingToken, setIsCreatingToken] = useState(false);
   const { values, onChangeField, submitForm, errors } = useForm({
     initialValues: initialValuesForm,
+    validations: getValidations(formatMessage, userCurrency),
     onSubmit(data) {
       submitPaymentForm(data);
     },
@@ -134,29 +165,40 @@ function SpreedlyCardForm({
     }
   };
 
+  console.log(userCurrency);
   return (
     <form id="payment-form" onSubmit={submitForm}>
       <fieldset>
         <div>
           <Field
-            label="Primer Nombre"
-            id="first_name"
+            label="Nombre Completo"
+            id="full_name"
             type="text"
-            name="first_name"
+            name="full_name"
             onChange={onChangeField}
-            value={values.first_name}
+            value={values.full_name}
             required={true}
             placeholder="Juan"
           />
           <Field
-            id="last_name"
+            label="Email"
+            id="email"
             type="text"
-            name="last_name"
+            name="email"
             onChange={onChangeField}
-            value={values.last_name}
-            placeholder="Perez"
+            value={values.email}
             required={true}
-            label="Apellido"
+            placeholder="juan@mail.com"
+          />
+          <Field
+            label="Documento de Identidad"
+            id="identification_document"
+            type="text"
+            name="identification_document"
+            onChange={onChangeField}
+            value={values.identification_document}
+            required={true}
+            placeholder="juan@mail.com"
           />
         </div>
       </fieldset>
