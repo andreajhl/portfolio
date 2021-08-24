@@ -92,12 +92,21 @@ export const PostSubscribeButton = styled.button`
 `;
 export const PostFooter = styled.footer`
   display: flex;
-  align-items: center;
+  flex-flow: column;
   border-top: 2px solid #f0f2f5;
-  padding: 18px 14px 4px;
+
+  margin-top: 1.25rem;
 `;
 export const PostInteractionCount = styled.span`
   font-size: 12px;
   margin: 0 16px 0 9px;
   font-weight: bold;
+`;
+
+export const PostCounterSection = styled.div`
+  padding-top: 18px;
+  padding-left: 23px;
+  border-bottom: 2px solid #f0f2f5;
+
+  padding-bottom: 22px;
 `;

@@ -1,3 +1,4 @@
+import { CommentCreator } from "desktop-app/components/common/comment-creator";
 import React, { ReactNode, useState } from "react";
 import {
   PostSlideshow,
@@ -22,6 +23,7 @@ import {
   PostDate,
   PostMedia,
   PostImage,
+  PostCounterSection,
   PostText,
 } from "./styles";
 
@@ -36,6 +38,17 @@ export const SubscriptionPostCard = ({
   fullName,
   date,
 }: SubscriptionPostCardProps) => {
+  const [isLiked, setIsLiked] = useState(false);
+  const [showCommentsSection, setShowCommentsSection] = useState(false);
+
+  const handleLikeClick = () => {
+    setIsLiked(true);
+    setShowCommentsSection(true);
+  };
+  const handleShowCommentsSection = () => {
+    setShowCommentsSection((prevState) => !prevState);
+  };
+
   return (
     <PostCard>
       <SubscriptionPostHeader
@@ -45,7 +58,14 @@ export const SubscriptionPostCard = ({
         username={username}
       />
       <PostBody>{children}</PostBody>
-      {/* <SubscriptionPostFooter /> Para un proximo release */}
+      <SubscriptionPostFooter
+        commentCount={200}
+        likeCount={200}
+        isLiked={isLiked}
+        onShowCommentsClick={handleShowCommentsSection}
+        onLikeClick={handleLikeClick}
+        showCommentsSection={showCommentsSection}
+      />
     </PostCard>
   );
 };
@@ -135,16 +155,41 @@ const PostSingleMedia = ({ media: { type, value } }) => {
   );
 };
 
-const SubscriptionPostFooter = () => {
+type SubscriptionPostFooterProps = {
+  onLikeClick: () => void;
+  isLiked: boolean;
+  onShowCommentsClick: () => void;
+  commentCount: number;
+  likeCount: number;
+  showCommentsSection: boolean;
+};
+const SubscriptionPostFooter = ({
+  onShowCommentsClick,
+  onLikeClick,
+  isLiked,
+  showCommentsSection,
+  commentCount,
+  likeCount,
+}: SubscriptionPostFooterProps) => {
   return (
     <PostFooter>
-      <LikeButton
-        width="20px"
-        outlinedImageSource="/assets/img/heart-regular-outlined.svg"
-      />{" "}
-      <PostInteractionCount>0</PostInteractionCount>
-      <img src="/assets/img/comment-icon.svg" alt="Comentarios" />
-      <PostInteractionCount>0</PostInteractionCount>
+      <PostCounterSection>
+        <LikeButton
+          isFavorite={isLiked}
+          width="20px"
+          onClick={onLikeClick}
+          outlinedImageSource="/assets/img/heart-regular-outlined.svg"
+        />{" "}
+        <PostInteractionCount>0</PostInteractionCount>
+        <img src="/assets/img/comment-icon.svg" alt="Comentarios" />
+        <PostInteractionCount>0</PostInteractionCount>
+      </PostCounterSection>
+      <CommentCreator
+        isLoading={false}
+        error={false}
+        firstComment={true}
+        onAddComment={(text) => console.log(text)}
+      />
     </PostFooter>
   );
 };
@@ -158,7 +203,7 @@ type SubscriptionPostHeaderProps = {
   date?: dateType;
 };
 
-const dateFormat = {
+const dateFormat: Intl.DateTimeFormatOptions = {
   day: "2-digit",
   month: "short",
   year: "numeric",
