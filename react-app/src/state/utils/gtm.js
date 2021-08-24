@@ -35,6 +35,12 @@ export const tagManagerDataLayer = (event, dataLayer) => {
       event,
     });
 
+    console.log({
+      path: getWindowPathname(),
+      ...dataLayer,
+      event,
+    });
+
     // // Segment
     // if (ENV !== "development") {
     //   window.analytics.track(event, {
@@ -88,6 +94,7 @@ export function page(data) {
     receivedAt: new Date(),
     user,
     pageTitle: document?.title,
+    url: data?.url || getWindowPathname(),
     ...data,
   });
 }
