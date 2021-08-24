@@ -14,6 +14,8 @@ import styles from "./styles.module.scss";
 import errorMessages from "lib/validations/errorMessages";
 import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCurrency";
 import { getEmailValidator } from "lib/validations/common";
+import { getUserCookieCountryCode } from "lib/utils/getUserCookieCountryCode";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -140,6 +142,12 @@ function SpreedlyCardForm({
   };
 
   const startSpreedlyPayment = async (token) => {
+    const {
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+    } = await getBuyerIdentityData();
     if (!isProccesing) {
       try {
         setPaymentError(null);
@@ -147,6 +155,10 @@ function SpreedlyCardForm({
           contractReference: contractReference,
           token,
           discountCouponId,
+          deviceId,
+          IP,
+          userAgent,
+          geoLocalization,
         });
         push(getPurchaseSummaryPath(contractReference));
       } catch (error) {
@@ -160,12 +172,14 @@ function SpreedlyCardForm({
   const submitPaymentForm = (requiredFields) => {
     if (!isCreatingToken) {
       setIsCreatingToken(true);
-      window.Spreedly.tokenizeCreditCard(requiredFields);
+      window.Spreedly.tokenizeCreditCard({
+        ...requiredFields,
+        country: getUserCookieCountryCode(),
+      });
       setIsProccesing(true);
     }
   };
 
-  console.log(userCurrency);
   return (
     <form id="payment-form" onSubmit={submitForm}>
       <fieldset>
