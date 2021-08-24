@@ -11,9 +11,11 @@
 
 .SubscriptionViewsNavTabs > * {
   flex: 1;
-  text-align: center;
   font-size: 1.375rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.875rem 0;
   color: black;
   transition: color 0.15s;
@@ -23,4 +25,8 @@
     color: #fb177d;
     text-decoration: none;
   }
+}
+
+.SubscriptionBenefitsCounter {
+  margin-left: 1rem;
 }
