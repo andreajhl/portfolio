@@ -135,7 +135,7 @@ export const SubscriptionPostContent = ({ urls, description }) => (
   </>
 );
 
-const PostSingleMedia = ({ media: { type, value } }) => {
+export const PostSingleMedia = ({ media: { type, value } }) => {
   const [videoIsMuted, setVideoIsMuted] = useState(true);
   const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(false);
   return (
