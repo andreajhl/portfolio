@@ -1,5 +1,5 @@
 import classes from "classnames";
-import { getSubscriptionBenefitDetails } from "constants/paths";
+import { getSubscriptionBenefitDetailsPath } from "constants/paths";
 import { Card } from "react-app/src/components/common/cards";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { Link } from "react-app/src/components/common/routing/link";
@@ -23,7 +23,7 @@ function BackstageBenefitCard({
   return (
     <Card
       as={Link}
-      href={getSubscriptionBenefitDetails(benefit.id)}
+      href={getSubscriptionBenefitDetailsPath(benefit.id)}
       className={classes(styles.BackstageBenefitCard, className)}
     >
       <div className={styles.PosterWrapper}>

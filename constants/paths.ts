@@ -71,8 +71,11 @@ export const SUBSCRIPTION_FEED = `/subscription/${SUBSCRIPTION_FEED_VIEW_NAME}`;
 export const SUBSCRIPTION_BENEFITS_VIEW_NAME = "benefits";
 export const SUBSCRIPTION_BENEFITS = `/subscription/${SUBSCRIPTION_BENEFITS_VIEW_NAME}`;
 
-export const getSubscriptionBenefitDetails = (benefitId: number) =>
+export const getSubscriptionBenefitDetailsPath = (benefitId: number) =>
   `${SUBSCRIPTION_BENEFITS}/${benefitId}`;
+
+export const getSubscriptionPostDetailsPath = (postId: number) =>
+  `${SUBSCRIPTION_FEED}/${postId}`;
 
 //SESSION REDIRECT
 export const SESSION_REDIRECT = "/session/redirect/";
