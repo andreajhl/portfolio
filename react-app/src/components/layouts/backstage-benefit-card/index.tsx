@@ -1,5 +1,7 @@
 import classes from "classnames";
 import { getSubscriptionBenefitDetailsPath } from "constants/paths";
+import useCountdownUntilDate from "lib/hooks/useCountdownUntilDate";
+import getFormattedDate from "lib/utils/getFormattedDate";
 import { Card } from "react-app/src/components/common/cards";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { Link } from "react-app/src/components/common/routing/link";
@@ -15,10 +17,15 @@ function BackstageBenefitCard({
   className,
   benefit,
 }: BackstageBenefitCardProps) {
+  const { hours, minutes, seconds } = useCountdownUntilDate(benefit.expireAt);
   const isExpired = benefit.expireAt - Date.now() < 0;
-  const date = "23/04/21";
+  const date = getFormattedDate(benefit.expireAt);
 
-  const timeCounter = <span className={styles.TimeCounter}>00:00:00</span>;
+  const timeCounter = (
+    <span className={styles.TimeCounter}>
+      {hours}:{minutes}:{seconds}
+    </span>
+  );
 
   return (
     <Card
