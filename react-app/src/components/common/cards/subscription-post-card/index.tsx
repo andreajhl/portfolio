@@ -28,10 +28,12 @@ import {
 } from "./styles";
 
 type SubscriptionPostCardProps = {
+  className?: string;
   children?: ReactNode;
 } & SubscriptionPostHeaderProps;
 
 export const SubscriptionPostCard = ({
+  className,
   children = null,
   avatar,
   username,
@@ -50,7 +52,7 @@ export const SubscriptionPostCard = ({
   };
 
   return (
-    <PostCard>
+    <PostCard className={className}>
       <SubscriptionPostHeader
         avatar={avatar}
         fullName={fullName}
