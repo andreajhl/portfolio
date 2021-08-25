@@ -12,19 +12,19 @@
       display: none;
     }
   }
+}
 
-  > div + div {
-    margin-top: 1.25rem;
+.ReviewsCards > div + div {
+  margin-top: 1.25rem;
 
-    @media only screen and (min-width: 768px) {
-      margin-left: 27px;
-      margin-top: 0;
-    }
+  @media only screen and (min-width: 768px) {
+    margin-left: 27px;
+    margin-top: 0;
   }
+}
 
-  > div {
-    flex-basis: calc(50% - 13.6665px);
-  }
+.ReviewsCards > div {
+  flex-basis: calc(50% - 13.6665px);
 }
 
 .SeeMoreCTA {
