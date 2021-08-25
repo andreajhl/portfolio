@@ -184,6 +184,7 @@ function SpreedlyCardForm({
             style={{
               height: 90,
               width: "100%",
+              overflow: "hidden",
             }}
           >
             <label className={styles.LabelForm} htmlFor="spreedly-number-test">
