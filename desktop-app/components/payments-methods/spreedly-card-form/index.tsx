@@ -67,6 +67,7 @@ function SpreedlyCardForm({
 
   const setupSpreedly = () => {
     const Spreedly = window.Spreedly;
+    Spreedly.setNumberFormat("prettyFormat");
     Spreedly.setFieldType("number", "text");
     Spreedly.setFieldType("cvv", "text");
     Spreedly.setPlaceholder("number", "Card");
