@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./styles.module.scss";
 
-interface CommentItemProps {
+export interface CommentItemType {
   avatar_url?: string;
   userFullName: string;
   comment: string;
 }
+interface CommentItemProps extends CommentItemType {}
 
 function CommentItem({ comment, avatar_url, userFullName }: CommentItemProps) {
   return (
