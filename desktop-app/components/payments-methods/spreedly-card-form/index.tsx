@@ -3,6 +3,8 @@ import SubmitButton from "desktop-app/components/common/button/submit-button";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import { FormattedMessage } from "lib/custom-intl";
 import useForm from "lib/hooks/useForm";
+import { generateArrayOfNumbers } from "lib/utils/generateArrayOfNumber";
+import { generateArrayOfYearsFromCurrentDate } from "lib/utils/generateArrayOfYears";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useState } from "react";
@@ -13,6 +15,16 @@ import styles from "./styles.module.scss";
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
 
+const NEXT_TEN_YEARS = generateArrayOfYearsFromCurrentDate(10);
+const TWELVE_MONTHS = generateArrayOfNumbers(12);
+const YEARS_OPTION_VALUES = NEXT_TEN_YEARS.map((el) => ({
+  placeholder: el,
+  value: el,
+}));
+const MONTHS_OPTION_VALUES = TWELVE_MONTHS.map((el) => ({
+  placeholder: ++el,
+  value: ++el,
+}));
 interface SpreedlyCardFormProps {
   contractReference: string;
   discountCouponId: number;
@@ -33,7 +45,7 @@ function SpreedlyCardForm({
   const [isProccesing, setIsProccesing] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
   const [isCreatingToken, setIsCreatingToken] = useState(false);
-  const { values, onChangeField, submitForm, errors } = useForm({
+  const { values, onChangeField, submitForm, setFieldValue, errors } = useForm({
     initialValues: initialValuesForm,
     onSubmit(data) {
       submitPaymentForm(data);
@@ -149,7 +161,6 @@ function SpreedlyCardForm({
             onChange={onChangeField}
             value={values.first_name}
             required={true}
-            placeholder="Juan"
           />
           <Field
             id="last_name"
@@ -157,7 +168,6 @@ function SpreedlyCardForm({
             name="last_name"
             onChange={onChangeField}
             value={values.last_name}
-            placeholder="Perez"
             required={true}
             label="Apellido"
           />
@@ -173,11 +183,11 @@ function SpreedlyCardForm({
           <div
             style={{
               height: 90,
-              width: "60%",
+              width: "100%",
             }}
           >
             <label className={styles.LabelForm} htmlFor="spreedly-number-test">
-              Numero de tarjeta de credito
+              <FormattedMessage defaultMessage="Numero de tarjeta de credito" />
             </label>
             <div
               id="spreedly-number-test"
@@ -186,60 +196,61 @@ function SpreedlyCardForm({
               }}
             ></div>
           </div>
-          <div
-            style={{
-              height: 90,
-              width: "30%",
-            }}
-          >
-            <label className={styles.LabelForm} htmlFor="spreedly-cvv-test">
-              CVV
-            </label>
-            <div
-              id="spreedly-cvv-test"
-              style={{
-                height: "100%",
-              }}
-            ></div>
-          </div>
         </div>
         <div style={{ marginTop: "1rem" }}>
-          <label className={styles.LabelForm}>Fecha de expiracion</label>
           <div
             style={{
               display: "flex",
             }}
           >
-            <Field
+            <FieldSelect
               id="month"
-              type="text"
-              size={3}
-              maxLength={2}
-              placeholder="MM"
-              name="month"
-              onChange={onChangeField}
-              value={values.month}
               label="Mes"
+              optionInputs={MONTHS_OPTION_VALUES}
+              selectElement={{
+                required: true,
+                name: "month",
+                value: values.month,
+                onChange: (e) => setFieldValue("month", e.target.value),
+              }}
               styleWraper={{
                 flexGrow: 1,
               }}
             />
             <span>/</span>
-            <Field
+            <FieldSelect
+              id="year"
+              label="Año"
+              optionInputs={YEARS_OPTION_VALUES}
+              selectElement={{
+                required: true,
+                name: "year",
+                value: values.year,
+                onChange: (e) => setFieldValue("year", e.target.value),
+              }}
               styleWraper={{
                 flexGrow: 1,
+              }}
+            />
+
+            <div
+              style={{
+                // flexGrow: 1,
+                height: 90,
+                width: "30%",
                 marginLeft: "10px",
               }}
-              label="Año"
-              id="year"
-              type="text"
-              size={5}
-              maxLength={4}
-              onChange={onChangeField}
-              name="year"
-              value={values.year}
-              placeholder="YYYY"
-            />
+            >
+              <label className={styles.LabelForm} htmlFor="spreedly-cvv-test">
+                CVV
+              </label>
+              <div
+                id="spreedly-cvv-test"
+                style={{
+                  height: "100%",
+                }}
+              ></div>
+            </div>
           </div>
         </div>
       </fieldset>
@@ -269,5 +280,42 @@ const Field = ({ label, id, styleWraper, ...inputsProps }: FieldProps) => (
       {label}
     </label>
     <input {...inputsProps} className={styles.InputElement} id={id} />
+  </div>
+);
+
+interface FieldSelectProps {
+  optionInputs: {
+    value: string | number;
+    placeholder: string | number;
+  }[];
+  label: string;
+  styleWraper?: React.CSSProperties;
+  id: string;
+  selectElement: React.DetailedHTMLProps<
+    React.SelectHTMLAttributes<HTMLSelectElement>,
+    HTMLSelectElement
+  >;
+}
+
+const FieldSelect = ({
+  label,
+  id,
+  styleWraper,
+  optionInputs,
+  selectElement,
+}: FieldSelectProps) => (
+  <div className={styles.FieldRow} style={{ ...styleWraper }}>
+    <label htmlFor={id} className={styles.LabelForm}>
+      {label}
+    </label>
+    <select
+      {...selectElement}
+      className={`custom-select ${styles.SelectElement}`}
+      id={id}
+    >
+      {optionInputs.map((el) => (
+        <option value={el.value}>{el.placeholder}</option>
+      ))}
+    </select>
   </div>
 );
