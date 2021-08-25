@@ -24,7 +24,7 @@ export const Contacto = () => {
                 </div>
             <div className="contac_Red">
                     <button className='p_gmail' style={{background:'none',border:'none'}} onClick={()=> copy()}><SiGmail/></button>
-                    <button onClick={()=>swal( "CV Descargado", "", "success")} style={{background:'none', border:'none'}}><a href='https://www.dropbox.com/s/68muwna8s4gmujh/Andrea%20Hernandez.pdf?dl=1' className='p' style={{textDecoration:'none'}}>CV</a></button>
+                    <button onClick={()=>swal( "CV Descargado", "", "success")} style={{background:'none', border:'none'}}><a href='https://www.dropbox.com/s/iao8tx80pimdil7/Andrea%20Hernandez.pdf?dl=0' className='p' style={{textDecoration:'none'}}>CV</a></button>
                     <a href='https://github.com/andreajhl' target='_blank' rel = "noreferrer" className='p'><SiGithub /></a>
                     <a href='https://www.linkedin.com/in/andreahernandez29/' target='_blank' rel = "noreferrer" className='p'><SiLinkedin /></a>
             
