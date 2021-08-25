@@ -1,70 +1,72 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Portfolio
 
-## Available Scripts
+ Esta simple page es mi portfolio, esta realizada usando React y SASS, el en podes encontrar algunas muestras de mis trabajos practicos, mis medios de contacto, conocer un poco mas sobre mi y las tecnologias que trabajo
+<br>
+<br>
 
-In the project directory, you can run:
+### CLONAR REPOSITORIO
+<hr>
 
-### `npm start`
+* #### $ git clone https://github.com/andreajhl/portfolio.git
+<br>
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### PROBAR
+<hr>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Después de clonar este repositorio.
 
-### `npm test`
+* Ingresar a la carpeta del proyecto desde tu editor de codigo favorito.
+* Abre la consola del proyecto
+* En la terminal del proyecto ejecute la línea de comando, 'npm install'
+* Al culminar la instalacion ejecute 'npm start' para arrancar el proyecto.
+<br>
+<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### TECNOLOGIAS USADAS
+<hr>
 
-### `npm run build`
+* #### HTML5
+* #### SASS
+* #### Javascript
+* #### ReactJS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### PANTALLAS DEL PROYECTO Y USOS
+<hr>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* ### Home
+<br>
 
-### `npm run eject`
+ Aca vas a encontrar la barra de navegacion, posee cuatro items, al clickearlos te desplazaran lentamente sobre la pantalla hasta la parte de la pagina, que quieras ver, tenes un boton rapido para descargar el cv 
+<br> 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+ En la pestaña de presentacion, cuento un poco de mi y como llegue al mundo de la tecnologia y podes ver algunas de las tecnologias que trabajo
+<br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<img src="src/gif/home.gif" width="800" height="400" />
+<br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* ### Proyectos
+<br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ A traves de estas tarjetas podes ver en un pequeño gifs un ejemplo de uso de las aplicaciones, las tecnologias que use, ademas al colocar el mause sobre ella el gifs se dezplazara para que puedas leer algunos detalles extras
+<br>
 
-### Code Splitting
+<img src="src/gif/skils.gif" width="800" height="400" />
+<br>
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* ### Contacto
+<br>
 
-### Analyzing the Bundle Size
+En esta parte tenes los medios por los cuale spodes contactarme, el boton de gmail te copia en el portapeletes mi correo, tenes dos links, uno de ellos te redirige a mi Likedin y otro a mi Github, y por ultimo tenes otro boton para descargar el cv en pdf
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="src/gif/contacto.gif"  width="800" height="400">
