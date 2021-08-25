@@ -13,7 +13,7 @@ import { RootState } from "react-app/src/state/store";
 const mapStateToProps = ({ celebrities }: RootState) => ({
   celebrityMainVideo: celebrities.getCelebrityReducer.data.mainVideo,
   celebrityPublicContracts:
-    celebrities.fetchPublicContractsReducer.data.results,
+    celebrities.fetchPublicContractsReducer.data.results || [],
 });
 
 const connector = connect(mapStateToProps);
