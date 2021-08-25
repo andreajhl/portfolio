@@ -1,3 +1,4 @@
+import { CommentCollection } from "desktop-app/components/common/comment-collection";
 import { CommentCreator } from "desktop-app/components/common/comment-creator";
 import React, { ReactNode, useState } from "react";
 import {
@@ -165,6 +166,34 @@ type SubscriptionPostFooterProps = {
   likeCount: number;
   showCommentsSection: boolean;
 };
+
+type contractComments = {
+  avatar_url: string;
+  userFullName: string;
+  comment: string;
+}[];
+const contractComments: contractComments = [
+  {
+    avatar_url: "asd",
+    comment: "Me ha encantado chaval!",
+    userFullName: "Juan",
+  },
+  {
+    avatar_url: "asd",
+    comment: "Me ha encantado chaval!",
+    userFullName: "Juan",
+  },
+  {
+    avatar_url: "asd",
+    comment: "Me ha encantado chaval!",
+    userFullName: "Juan",
+  },
+  {
+    avatar_url: "asd",
+    comment: "Me ha encantado chaval!",
+    userFullName: "Juan",
+  },
+];
 const SubscriptionPostFooter = ({
   onShowCommentsClick,
   onLikeClick,
@@ -191,6 +220,11 @@ const SubscriptionPostFooter = ({
         error={false}
         firstComment={true}
         onAddComment={(text) => console.log(text)}
+      />
+      <CommentCollection
+        displayShowMoreButton={true}
+        onShowMoreComments={() => {}}
+        comments={contractComments}
       />
     </PostFooter>
   );
