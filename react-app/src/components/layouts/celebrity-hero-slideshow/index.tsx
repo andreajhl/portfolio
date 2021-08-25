@@ -29,6 +29,7 @@ function CelebrityHeroSlideshow({
   videoOverlayHeader,
   videoOverlayFooter,
   playMainVideoInFullscreenOnMount = false,
+  onFullscreenExit,
 }: CelebrityHeroSlideshowProps) {
   const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(true);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -66,6 +67,7 @@ function CelebrityHeroSlideshow({
           ...analyticsData,
           videoIsFullscreen: false,
         });
+        onFullscreenExit?.();
       }
     }
     fullscreen.addEventListener("fullscreenchange", onFullscreenChange);

@@ -24,7 +24,7 @@ const renderVideoOverlayHeader = (_components: any, { occasion }) => (
   </header>
 );
 
-const renderVideoOverlayFooter = (onClickFullscreenToggler) => (
+const renderVideoOverlayFooter = (
   { FullscreenToggler, PlayToggler, LikeToggler, ShareButton, MuteToggler },
   { reference }
 ) => (
@@ -34,7 +34,7 @@ const renderVideoOverlayFooter = (onClickFullscreenToggler) => (
         <LikeToggler />
         <ShareButton />
       </Maybe>
-      <FullscreenToggler onClick={onClickFullscreenToggler} />
+      <FullscreenToggler />
       <PlayToggler />
       <MuteToggler className={styles.MuteToggler} />
     </div>
@@ -44,13 +44,13 @@ const renderVideoOverlayFooter = (onClickFullscreenToggler) => (
 type MainVideoWidgetSlideshowProps = {
   className?: string;
   celebrity: celebrityType;
-  onClickFullScreenToggler?: () => void;
+  onFullscreenExit?: () => void;
 };
 
 function MainVideoWidgetSlideshow({
   className,
   celebrity,
-  onClickFullScreenToggler,
+  onFullscreenExit,
 }: MainVideoWidgetSlideshowProps) {
   const hasMainVideo = Boolean(celebrity.mainVideo);
   const hasPublicContracts = useCelebrityHasPublicContracts();
@@ -63,8 +63,9 @@ function MainVideoWidgetSlideshow({
       celebrityAvatar={celebrity.avatar}
       celebrityMainVideo={celebrity.mainVideo}
       videoOverlayHeader={renderVideoOverlayHeader}
-      videoOverlayFooter={renderVideoOverlayFooter(onClickFullScreenToggler)}
+      videoOverlayFooter={renderVideoOverlayFooter}
       playMainVideoInFullscreenOnMount
+      onFullscreenExit={onFullscreenExit}
     />
   );
 }

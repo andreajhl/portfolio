@@ -85,7 +85,7 @@ function CelebrityMainVideoWidget({
       <Maybe it={hasMainVideo && carouselIsOpen}>
         <MainVideoWidgetSlideshow
           celebrity={celebrity}
-          onClickFullScreenToggler={toggleCarouselIsOpen}
+          onFullscreenExit={toggleCarouselIsOpen}
         />
       </Maybe>
     </>

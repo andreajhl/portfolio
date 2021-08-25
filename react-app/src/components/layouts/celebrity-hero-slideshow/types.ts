@@ -24,4 +24,5 @@ export type ComponentProps = {
   videoOverlayHeader: VideoOverlaySectionRenderPropType;
   videoOverlayFooter: VideoOverlaySectionRenderPropType;
   playMainVideoInFullscreenOnMount?: boolean;
+  onFullscreenExit?: () => void;
 };
