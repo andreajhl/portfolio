@@ -105,13 +105,16 @@ function CommentCreator({
           />
         </button>
       </div>
-      <WarningMessage
-        message={errors?.comment || null}
-        className={classes(
-          styles.FormError,
-          errors?.comment && styles.ErrorIsVisible
-        )}
-      />
+
+      {errors?.comment && (
+        <WarningMessage
+          message={errors?.comment || null}
+          className={classes(
+            styles.FormError,
+            errors?.comment && styles.ErrorIsVisible
+          )}
+        />
+      )}
     </form>
   );
 }
