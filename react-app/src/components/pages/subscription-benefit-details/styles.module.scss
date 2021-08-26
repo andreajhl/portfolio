@@ -1,0 +1,81 @@
+.BenefitType {
+  margin-left: auto;
+  font-size: 24px;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+.Container.Container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem 0;
+  max-width: 600px;
+}
+
+.BenefitTitle {
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 0em;
+  color: black;
+}
+
+.Flex {
+  display: flex;
+  justify-content: space-between;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.MediaContainer {
+  height: 80vh;
+  max-height: 600px;
+  max-width: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto 2.25rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .BenefitTitle {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}
+
+.SubscriptionBenefitDetails {
+  :global(.paragraf_1) {
+    font-size: 18px;
+    line-height: 50px;
+  }
+
+  :global(.paragraf_2) {
+    font-size: 34px;
+    font-weight: 700;
+    background-color: black;
+    text-align: center;
+    color: white;
+    height: 54px;
+    width: 184px;
+    border-radius: 3px;
+    margin-bottom: 30px;
+  }
+
+  :global(.photo-author) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  :global(.description_s) {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+  }
+
+  :global(.paragraf_3) {
+    width: 70;
+    font-size: 18;
+    color: hsla(0, 0%, 0%, 1);
+  }
+}
