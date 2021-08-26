@@ -1,4 +1,5 @@
 import { PURCHASE_SUMMARY } from "constants/paths";
+import SubmitButton from "desktop-app/components/common/button/submit-button";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
@@ -180,21 +181,17 @@ function StripeCustomerSources({
         </div>
       ))}
       {errorMessage !== "" && <WarningMessage message={errorMessage} />}
-      <button
+      <SubmitButton
         onClick={applyStripeAuth}
-        className={`btn btn-primary ${styles.PaymentButton}`}
+        loading={paymentInProcess}
+        disabled={paymentInProcess}
       >
-        <SubmitText
-          baseText={
-            paymentInProcess ? (
-              <FormattedMessage defaultMessage="Procesando" />
-            ) : (
-              <FormattedMessage defaultMessage="Pagar" />
-            )
-          }
-          status={paymentInProcess ? "loading" : "idle"}
-        />
-      </button>
+        {paymentInProcess ? (
+          <FormattedMessage defaultMessage="Procesando" />
+        ) : (
+          <FormattedMessage defaultMessage="Pagar" />
+        )}
+      </SubmitButton>
     </div>
   );
 }

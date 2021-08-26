@@ -13,11 +13,11 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { analytics } from "react-app/src/state/utils/gtm";
 
-const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
-  import("react-app/src/components/pages/payment-methods").then(
-    (mod) => mod.PaymentMethodsPage
-  )
-);
+// const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
+//   import("react-app/src/components/pages/payment-methods").then(
+//     (mod) => mod.PaymentMethodsPage
+//   )
+// );
 
 const DesktopPaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
   import("desktop-app/components/pages/payment-methods").then(
@@ -68,14 +68,7 @@ const PaymentMethods = ({ contract_reference, isMobile }) => {
   return (
     <>
       <CustomHead />
-      <Maybe
-        it={isMobile}
-        orElse={
-          <DesktopPaymentMethodsPage contractReference={contract_reference} />
-        }
-      >
-        <PaymentMethodsPage contractReference={contract_reference} />
-      </Maybe>
+      <DesktopPaymentMethodsPage contractReference={contract_reference} />
       {/* <ValidateEmailModal /> */}
     </>
   );

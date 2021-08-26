@@ -1,3 +1,4 @@
+import SubmitButton from "desktop-app/components/common/button/submit-button";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import WarningMessage from "desktop-app/components/common/warning-message";
@@ -113,28 +114,18 @@ function DLocalSelectPaymentMethod({
           message={errorMessage}
         />
       </Maybe>
-      <button
-        onClick={(e) => handleStartPayment()}
+      <SubmitButton
+        type="button"
         disabled={disabled}
-        className="btn btn-primary"
-        style={{
-          backgroundColor: `${paymentInProcess ? "white" : "#FB177D"}`,
-          height: "50px",
-          borderRadius: "10px",
-          width: "100%",
-        }}
+        onClick={(e) => handleStartPayment()}
+        loading={paymentInProcess}
       >
-        <SubmitText
-          baseText={
-            paymentInProcess ? (
-              <FormattedMessage defaultMessage="Procesando" />
-            ) : (
-              <FormattedMessage defaultMessage="Pagar" />
-            )
-          }
-          status={paymentInProcess ? "loading" : "idle"}
-        />
-      </button>
+        {paymentInProcess ? (
+          <FormattedMessage defaultMessage="Procesando" />
+        ) : (
+          <FormattedMessage defaultMessage="Pagar" />
+        )}
+      </SubmitButton>
     </div>
   );
 }

@@ -17,6 +17,9 @@ import { FormattedMessage } from "react-intl";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import { useIntl } from "lib/custom-intl";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import PaymentMethodFormWrapper from "../form-wrapper";
+import PaymentMethodFormLabel from "../form-label";
+import PaymentMethodFormElement from "../form-element";
 
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -105,21 +108,8 @@ function PaypalForm({
         "disable-funding": "credit,card",
       }}
     >
-      <div className={styles.FormSection}>
-        <div
-          role="button"
-          onClick={onToggle}
-          onKeyDown={(e) => {
-            switch (e.key) {
-              case " ":
-              case "Enter":
-                onToggle();
-                break;
-              default:
-            }
-          }}
-          className={styles.FormLabel}
-        >
+      <PaymentMethodFormWrapper>
+        <PaymentMethodFormLabel role="button" onToggle={onToggle}>
           <PaypalIcon className={styles.CardIcon} />
 
           <span className={styles.Label}>Paypal</span>
@@ -128,13 +118,11 @@ function PaypalForm({
           ) : (
             <Ellipse className={styles.CheckIcon} />
           )}
-        </div>
-        <div
-          role="region"
-          aria-labelledby={labelId}
-          id={sectionId}
-          className={styles.FormElement}
-          hidden={!expanded}
+        </PaymentMethodFormLabel>
+        <PaymentMethodFormElement
+          labelId={labelId}
+          sectionId={sectionId}
+          expanded={expanded}
         >
           <Maybe it={expanded}>
             <p>
@@ -164,8 +152,8 @@ function PaypalForm({
           <Maybe it={errorMessage}>
             <WarningMessage message={errorMessage} />
           </Maybe>
-        </div>
-      </div>
+        </PaymentMethodFormElement>
+      </PaymentMethodFormWrapper>
     </PayPalScriptProvider>
   );
 }
