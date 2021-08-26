@@ -61,7 +61,12 @@ function HeaderContractAuthorized() {
     <div className={styles.HeaderContractAuthorized}>
       <CheckIcon />
       <p>
-        <FormattedMessage defaultMessage="¡Felicidades! Tu pago ha sido aprobado." />
+        <FormattedMessage defaultMessage="¡Felicidades!" />{" "}
+        <br className="d-sm-none" />{" "}
+        <FormattedMessage
+          defaultMessage="La autorización de tu pago se ha
+            realizado con éxito."
+        />
       </p>
     </div>
   );
