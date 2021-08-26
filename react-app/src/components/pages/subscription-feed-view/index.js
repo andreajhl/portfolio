@@ -3,9 +3,13 @@ import { CelebrityFeedPosts } from "../../layouts/celebrity-feed-posts";
 import { LoaderLayout } from "../../layouts/loader";
 import { SubscriptionPostsSection } from "../../layouts/subscription-posts";
 import { FormattedMessage } from "lib/custom-intl";
-import * as firestoreService from "../../../firebase/firestoreService";
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
+import { listSubscriptionPosts } from "react-app/src/state/ducks/subscriptions/actions";
+import Maybe from "../../common/helpers/maybe";
+
+const offsetInitialValue = 0;
+const resultsLimit = 2;
 
 export function NotPostsResults({ message }) {
   return (
@@ -20,98 +24,96 @@ export function NotPostsResults({ message }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  subscriptionList: state.subscriptions.fetchUserSubscriptionsListReducer.data,
-  isSubscriptionListCompletedFetch:
-    state.subscriptions.fetchUserSubscriptionsListReducer.completed,
-});
+function mapStateToProps({ subscriptions }) {
+  const isSubscriptionListCompletedFetch =
+    subscriptions.fetchUserSubscriptionsListReducer.completed;
+  const subscriptionList = subscriptions.fetchUserSubscriptionsListReducer.data;
+
+  const { loading, data } = subscriptions.listSubscriptionPostsReducer;
+
+  return {
+    isSubscriptionListCompletedFetch,
+    subscriptionList,
+    postFetchIsLoading: loading,
+    subscriptionPosts: data?.results || [],
+    totalResults: data?.totalResults,
+  };
+}
+
+const mapDispatchToProps = { listSubscriptionPosts };
 
 function SubscriptionFeedView({
+  listSubscriptionPosts,
   isSubscriptionListCompletedFetch,
   subscriptionList,
+  subscriptionPosts,
+  postFetchIsLoading,
+  totalResults,
   currentChoice,
 }) {
-  const [hasMorePost, setHasMorePost] = useState(true);
-  const [indexFilter, setIndexFilter] = useState(null);
-  const [postFetched, setPostFetched] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const handlerUpdateFilterRange = (value) => {
-    setIndexFilter(value);
-  };
-  const handlerUpdateHasMorePost = (value) => {
-    setHasMorePost(value);
-  };
-  const fetchPosts = async (celebrityId, concat, indexFilter, isFirstQuery) => {
-    let documents = [];
-    const results = await firestoreService.getPostFromCelebrity(
-      "dev_posts",
-      celebrityId,
-      indexFilter,
-      handlerUpdateFilterRange,
-      isFirstQuery,
-      handlerUpdateHasMorePost
-    );
-    if (results) {
-      documents = results;
-    }
-
-    setPostFetched(true);
-    concat
-      ? setPosts((prevState) => prevState.concat(documents))
-      : setPosts(documents);
-  };
-
-  const subscriptionsIds = subscriptionList
-    .map(({ celebrityId }) => celebrityId)
-    .slice(0, 9);
-
-  const handlerFetchMorePost = () => {
-    fetchPosts(currentChoice || subscriptionsIds, true, indexFilter, false);
-  };
+  const [offset, setOffset] = useState(offsetInitialValue);
+  const hasSubscriptions =
+    isSubscriptionListCompletedFetch && subscriptionList?.length > 0;
+  const canFetchPosts = isSubscriptionListCompletedFetch && hasSubscriptions;
 
   useEffect(() => {
-    if (
-      isSubscriptionListCompletedFetch &&
-      subscriptionList.length > 0 &&
-      posts.length === 0
-    ) {
-      fetchPosts(subscriptionsIds, false, indexFilter, true);
-    }
-  }, [isSubscriptionListCompletedFetch]);
+    if (!canFetchPosts) return;
+    listSubscriptionPosts({
+      offset,
+      limit: resultsLimit,
+      celebrityId: currentChoice?.join?.(","),
+    });
+  }, [canFetchPosts, currentChoice, offset]);
 
-  useEffect(() => {
-    setIndexFilter(null);
-    handlerUpdateHasMorePost(true);
-    fetchPosts(currentChoice || subscriptionsIds, false, null, true);
-  }, [currentChoice]);
+  function fetchMoreData() {
+    setOffset((offset) => {
+      const nextOffset = offset + resultsLimit;
+      const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
+      return newOffset;
+    });
+  }
+
+  const hasPosts = subscriptionPosts?.length > 0;
+  const showLoading = offset <= 0 && postFetchIsLoading;
 
   return (
     <SubscriptionPostsSection>
-      {isSubscriptionListCompletedFetch && subscriptionList.length > 0 ? (
-        posts.length > 0 ? (
-          <CelebrityFeedPosts
-            hasMorePost={hasMorePost}
-            onFetchMorePost={handlerFetchMorePost}
-            posts={posts}
-            currentChoice={currentChoice}
-            subscriptionList={subscriptionList}
-          />
-        ) : postFetched ? (
-          <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
-        ) : (
-          <LoaderLayout />
-        )
-      ) : isSubscriptionListCompletedFetch && subscriptionList.length === 0 ? (
-        <NotPostsResults
-          message={
-            <FormattedMessage defaultMessage="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+      <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
+        <Maybe
+          it={hasSubscriptions}
+          orElse={
+            <NotPostsResults
+              message={
+                <FormattedMessage defaultMessage="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+              }
+            />
           }
-        />
-      ) : null}
+        >
+          <Maybe it={!showLoading} orElse={<LoaderLayout />}>
+            <Maybe
+              it={hasPosts}
+              orElse={
+                <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
+              }
+            >
+              <CelebrityFeedPosts
+                hasMorePost={subscriptionPosts?.length < totalResults}
+                onFetchMorePost={fetchMoreData}
+                posts={subscriptionPosts}
+                currentChoice={currentChoice}
+                subscriptionList={subscriptionList}
+              />
+            </Maybe>
+          </Maybe>
+        </Maybe>
+      </Maybe>
     </SubscriptionPostsSection>
   );
 }
 
-const _SubscriptionFeedView = connect(mapStateToProps)(SubscriptionFeedView);
+const _SubscriptionFeedView = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SubscriptionFeedView);
 
 export { _SubscriptionFeedView as SubscriptionFeedView };
