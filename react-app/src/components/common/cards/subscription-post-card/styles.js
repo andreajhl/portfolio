@@ -19,11 +19,8 @@ export const PostDate = styled.span`
 `;
 export const PostMedia = styled.div`
   display: block;
-  width: 100%;
-  /* height: 367.64px; */
   height: 86.06vw;
-  max-width: 542px;
-  max-height: 542px;
+  max-height: 572px;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
