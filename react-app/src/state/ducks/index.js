@@ -17,6 +17,7 @@ export { default as countries } from "./countries";
 export { default as cursor } from "./cursor-position";
 export { default as blog } from "./blog";
 export { default as subscriptions } from "./subscriptions";
+export { default as celebritySubscriptionBenefits } from "./celebrity-subscription-benefits";
 // export { default as userLocation } from "./userLocation";
 export { default as discountCoupons } from "./discount-coupons";
 export { default as searchFilters } from "./search-filters";

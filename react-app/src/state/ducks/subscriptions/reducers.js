@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { mergePreviousResults } from "../../utils/mergePreviousResults";
 import thunkReducer from "../../utils/thunkReducer";
 import * as types from "./types";
 
@@ -79,17 +80,7 @@ const listSubscriptionPostsReducer = thunkReducer(
     totalResults: 0,
     results: [],
   },
-  ({ payload }, previousState) => {
-    const results = [];
-    const hasOffset = payload?.config?.params?.offset > 0;
-
-    if (hasOffset) {
-      results.push(...previousState.data.results);
-    }
-
-    results.push(...payload.data.results);
-    return { ...payload.data, results };
-  }
+  mergePreviousResults
 );
 
 export default combineReducers({
