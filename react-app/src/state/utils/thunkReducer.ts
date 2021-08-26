@@ -37,7 +37,7 @@ function thunkReducer<StateType>(
     switch (action.type) {
       case type:
         return {
-          ...initialReducerState,
+          ...state,
           loading: true,
         };
       case `${type}_FAILURE`:
