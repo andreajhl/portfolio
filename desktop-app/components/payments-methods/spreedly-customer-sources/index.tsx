@@ -9,6 +9,7 @@ import styles from "./styles.module.scss";
 import { processSpreedlyPayment } from "react-app/src/state/ducks/payments/actions";
 import { useRouter } from "next/router";
 import { getPurchaseSummaryPath } from "constants/paths";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 interface SpreedlyCustomerSourcesProps {
   sources: {
@@ -33,24 +34,30 @@ function SpreedlyCustomSources({
   const [isProccesing, setIsProccesing] = useState(false);
 
   const startPayment = () => {
-    console.log(typeof selectedSourceIndex);
-    console.log(typeof selectedSourceIndex !== "number");
     if (typeof selectedSourceIndex !== "number") {
       setPaymentError("Por favor selecciona una tarjeta");
     } else {
-      console.log("we reach here");
       startSpreedlyPayment(sources[selectedSourceIndex].token);
     }
   };
   const startSpreedlyPayment = async (token) => {
-    console.log({ token });
     try {
       setPaymentError(null);
       setIsProccesing(true);
+      const {
+        deviceId,
+        IP,
+        userAgent,
+        geoLocalization,
+      } = await getBuyerIdentityData();
       await processSpreedlyPayment({
         contractReference: contractReference,
         token,
         discountCouponId,
+        deviceId,
+        IP,
+        userAgent,
+        geoLocalization,
       });
       push(getPurchaseSummaryPath(contractReference));
     } catch (error) {
