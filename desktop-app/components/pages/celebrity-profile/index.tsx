@@ -144,6 +144,7 @@ function CelebrityProfilePage({
     isAuthenticated,
     isLoading,
     localContractInProgress,
+    celebrity.username,
   ]);
 
   useEffect(() => {
