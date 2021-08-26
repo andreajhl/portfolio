@@ -18,7 +18,7 @@ function SubscriptionPostDetails({ postId }: SubscriptionPostDetailsProps) {
     celebrityFullName,
     celebrityUsername,
     id,
-    createdAt,
+    createdAt: created,
     description,
     items: urls,
     celebrityId,
@@ -32,10 +32,10 @@ function SubscriptionPostDetails({ postId }: SubscriptionPostDetailsProps) {
         avatar={celebrityAvatar}
         fullName={celebrityFullName}
         username={celebrityUsername}
-        date={createdAt}
+        date={created}
         key={id}
       >
-        <SubscriptionPostContent items={urls} description={description} />
+        <SubscriptionPostContent urls={urls} description={description} />
       </SubscriptionPostCard>
     </PageContainer>
   );

@@ -19,9 +19,9 @@ export const VideoLayout = ({
       videoIsMuted={videoIsMuted}
       shouldLoadPoster={false}
       setVideoIsMuted={setVideoIsMuted}
-      videoReference={"celebrity-shared-post" + media.value}
+      videoReference={"celebrity-shared-post" + media.mediaUrl}
       setSlideshowIsPlaying={setSlideshowIsPlaying}
-      videoUrl={media.value}
+      videoUrl={media.mediaUrl}
     />
   );
 };
@@ -30,7 +30,7 @@ const ImageLayout = ({ media, index, classNameImage }) => {
   return (
     <Image
       className={classNameImage}
-      src={media.value}
+      src={media.mediaUrl}
       alt={`media-${index}`}
     />
   );
@@ -62,7 +62,7 @@ const CarouselItemsLayout = ({
             key={index}
             className="celebrity-shared-post__media-files__item"
           >
-            {media.type === "video" ? (
+            {media.mediaType === "VIDEO" ? (
               <VideoLayout
                 videoIsMuted={videoIsMuted}
                 setVideoIsMuted={setVideoIsMuted}

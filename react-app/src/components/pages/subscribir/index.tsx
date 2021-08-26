@@ -182,13 +182,13 @@ const SubscribePage = ({
               avatar={avatar}
               fullName={fullName}
               username={username}
-              date={post.created}
+              date={post.createdAt}
             >
               <Maybe
                 it={isSubscribed}
                 orElse={
                   <SubscriptionPostHiddenContent
-                    imageSrc={post?.urls?.[0]?.value}
+                    imageSrc={post?.items?.[0]?.mediaUrl}
                     username={username}
                     price={priceLayout}
                     fullName={fullName}
@@ -197,7 +197,7 @@ const SubscribePage = ({
                 }
               >
                 <SubscriptionPostContent
-                  urls={post.urls}
+                  items={post.items}
                   description={post.description}
                 />
               </Maybe>

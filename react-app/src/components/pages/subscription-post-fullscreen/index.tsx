@@ -14,17 +14,17 @@ function SubscriptionPostFullscreen({
   postId,
 }: SubscriptionPostFullscreenProps) {
   const { post } = useGetSubscriptionPost(postId);
-  const { description, urls } = post;
+  const { description, items } = post;
 
   return (
     <main className={styles.SubscriptionPostFullscreen}>
       <PageHeading />
       <div className={styles.MediaContainer}>
         <Maybe
-          it={urls.length > 1}
-          orElse={<PostSingleMedia media={urls[0]} />}
+          it={items.length > 1}
+          orElse={<PostSingleMedia media={items[0] as any} />}
         >
-          <PostSlideshow urls={urls} />
+          <PostSlideshow urls={items} />
         </Maybe>
       </div>
       <div className={styles.ContentWrapper}>

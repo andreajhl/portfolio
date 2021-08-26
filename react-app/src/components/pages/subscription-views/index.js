@@ -48,7 +48,8 @@ function SubscriptionViews({
 }
 
 const mapStateToProps = (state) => ({
-  subscriptionList: state.subscriptions.fetchUserSubscriptionsListReducer.data,
+  subscriptionList:
+    state.subscriptions.fetchUserSubscriptionsListReducer.data || [],
   isSubscriptionListCompletedFetch:
     state.subscriptions.fetchUserSubscriptionsListReducer.completed,
 });

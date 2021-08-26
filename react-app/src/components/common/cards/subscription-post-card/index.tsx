@@ -7,6 +7,10 @@ import {
 } from "react-app/src/components/containers/celebrity-shared-post";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
 import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
+import {
+  SubscriptionPostType,
+  SubscriptionPostUrlType,
+} from "react-app/src/types/subscriptionPostType";
 import { getFirstName } from "react-app/src/utils/getFirstName";
 import { LikeButton } from "../../buttons/LikeButton";
 import Maybe from "../../helpers/maybe";
@@ -118,42 +122,49 @@ export const SubscriptionPostHiddenContent = ({
   );
 };
 
-export const SubscriptionPostContent = ({ urls, description }) => (
+export const SubscriptionPostContent = ({
+  items,
+  description,
+}: SubscriptionPostType) => (
   <>
-    <Maybe it={urls.length > 0}>
+    <Maybe it={items.length > 0}>
       <PostMedia>
         <Maybe
-          it={urls.length > 1}
-          orElse={<PostSingleMedia media={urls[0]} />}
+          it={items.length > 1}
+          orElse={<PostSingleMedia media={items[0]} />}
         >
-          <PostSlideshow urls={urls} />
+          <PostSlideshow urls={items} />
         </Maybe>
       </PostMedia>
     </Maybe>
-    <Maybe it={description}>
+    <Maybe it={Boolean(description)}>
       <PostText>{description}</PostText>
     </Maybe>
   </>
 );
 
-export const PostSingleMedia = ({ media: { type, value } }) => {
+export const PostSingleMedia = ({
+  media: { mediaType, mediaUrl },
+}: {
+  media: SubscriptionPostUrlType;
+}) => {
   const [videoIsMuted, setVideoIsMuted] = useState(true);
   const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(false);
   return (
     <Maybe
-      it={type === "image"}
+      it={mediaType === "IMAGE"}
       orElse={
         <VideoLayout
           videoIsMuted={videoIsMuted}
           setVideoIsMuted={setVideoIsMuted}
-          media={{ value }}
+          media={{ value: mediaUrl }}
           classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video"
           setSlideshowIsPlaying={setSlideshowIsPlaying}
           /* <PostVideo src={value} preload="metadata" playsInline controls /> */
         />
       }
     >
-      <PostImage src={value} />
+      <PostImage src={mediaUrl} />
     </Maybe>
   );
 };

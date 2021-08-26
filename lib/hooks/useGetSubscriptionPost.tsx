@@ -5,18 +5,25 @@ export function useGetSubscriptionPost(postId: string) {
         "https://dqb0851cl2gjs.cloudfront.net/celebrities/864/avatar/famosos-videos-personalizados-marktacher-compressed.jpg",
       celebrityFullName: "Mark Tacher Testing",
       celebrityUsername: "marktacher",
-      id: "qePoFl9h6Wc7UWqA4PH1",
-      created: "2021-04-26T11:54:08-05:00",
-      description: "Prueba varios usuarios...",
-      urls: [
+      id: 86,
+      celebrityId: 1448,
+      description: "",
+      location: "",
+      isProcessing: false,
+      processingDate: "2021-08-23T18:06:03.365246-04:00",
+      createdAt: "2021-08-23T18:05:35.682285-04:00",
+      items: [
         {
-          value:
-            "https://firebasestorage.googleapis.com/v0/b/famosos-27f08.appspot.com/o/posts%2FDEV%2F864%2FqePoFl9h6Wc7UWqA4PH1%2F864_post_IMG-20210424-WA0009.jpg?alt=media&token=51fb184a-78bf-46e9-923b-25e1be86c35e",
-          type: "image",
-          index: 0,
+          id: 138,
+          mediaType: "VIDEO",
+          mediaUrl: "",
         },
       ],
-      celebrityId: 864,
+      reactions: {
+        post_love: false,
+        post_comment: "",
+      },
+      comments: 0,
     },
     status: "completed",
   };
