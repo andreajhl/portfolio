@@ -5,13 +5,17 @@ import { RootState } from "react-app/src/state/store";
 import { SubscriptionBenefitType } from "react-app/src/types/subscriptionBenefitType";
 import { useDispatch, useSelector } from "react-redux";
 
+type ParamsType = {
+  celebrityId?: string;
+  offset?: number;
+  limit?: number;
+};
+
 const defaultParams = {
   celebrityId: "",
   offset: 0,
   limit: 10,
 };
-
-type ParamsType = typeof defaultParams;
 
 type StatusType = "loading" | "failed" | "completed";
 
