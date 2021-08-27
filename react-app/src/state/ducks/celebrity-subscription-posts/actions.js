@@ -12,3 +12,15 @@ export const togglePostReaction = (postId) =>
     }
     throw res.data.error;
   });
+
+export const addPostComment = ({ comment, postId }) =>
+  apiService({
+    method: "POST",
+    path: API_PATHS.ADD_POST_COMMENT_PATH,
+    body: { postId, comment },
+  }).then((res) => {
+    if (res.data.status === "OK") {
+      return res.data.data;
+    }
+    throw res.data.error;
+  });
