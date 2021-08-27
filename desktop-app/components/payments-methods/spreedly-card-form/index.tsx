@@ -18,6 +18,12 @@ import { getEmailValidator } from "lib/validations/common";
 import { getUserCookieCountryCode } from "lib/utils/getUserCookieCountryCode";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import { isACurrencyForDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
+import {
+  AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES,
+  DOCUMENT_NAME_FOR_COUNTRIES,
+} from "react-app/src/constants/messages";
+import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
+import { getTextOfFormatAllowedForUserDocument } from "react-app/src/state/utils/getTextOfFormatAllowedForUserDocument";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -198,6 +204,9 @@ function SpreedlyCardForm({
       setIsProccesing(true);
     }
   };
+  const document_name_available = AVAILABLE_CURRENCIES.find(
+    (data) => data.name === userCurrency
+  );
 
   return (
     <form id="payment-form" onSubmit={submitForm}>
@@ -211,6 +220,7 @@ function SpreedlyCardForm({
             onChange={onChangeField}
             value={values.full_name}
             required={true}
+            errorMessage={errors.full_name}
           />
           <Field
             label="Email"
@@ -220,17 +230,39 @@ function SpreedlyCardForm({
             onChange={onChangeField}
             value={values.email}
             required={true}
+            errorMessage={errors.email}
           />
           {isACurrencyForDLocalPaymentMethod(userCurrency) ? (
-            <Field
-              label="Documento de Identidad"
-              id="identification_document"
-              type="text"
-              name="identification_document"
-              onChange={onChangeField}
-              value={values.identification_document}
-              required={true}
-            />
+            <>
+              <Field
+                label={
+                  AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES.includes(
+                    document_name_available?.name
+                  )
+                    ? formatMessage(
+                        DOCUMENT_NAME_FOR_COUNTRIES[
+                          document_name_available?.name
+                        ]
+                      )
+                    : document_name_available?.document_name
+                }
+                id="identification_document"
+                type="text"
+                name="identification_document"
+                onChange={onChangeField}
+                value={values.identification_document}
+                required={true}
+                errorMessage={errors.identification_document}
+              />
+              {errors.identification_document ? (
+                <WarningMessage
+                  className={styles.WarningMessageIdentificationDocument}
+                  message={getTextOfFormatAllowedForUserDocument(
+                    document_name_available.document_name
+                  )}
+                />
+              ) : null}
+            </>
           ) : null}
         </div>
       </fieldset>
@@ -333,15 +365,23 @@ interface FieldProps
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  label: string;
+  label: string | React.ReactNode;
   styleWraper?: React.CSSProperties;
+  errorMessage?: string;
 }
-const Field = ({ label, id, styleWraper, ...inputsProps }: FieldProps) => (
+const Field = ({
+  label,
+  id,
+  styleWraper,
+  errorMessage,
+  ...inputsProps
+}: FieldProps) => (
   <div className={styles.FieldRow} style={{ ...styleWraper }}>
     <label htmlFor={id} className={styles.LabelForm}>
       {label}
     </label>
     <input {...inputsProps} className={styles.InputElement} id={id} />
+    {errorMessage && <WarningMessage message={errorMessage} />}
   </div>
 );
 
