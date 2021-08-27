@@ -5,7 +5,13 @@ import isMobile from "lib/utils/isMobile";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
-import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
+import dynamic from "next/dynamic";
+// import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
+import { GetServerSideProps } from "next";
+import { RootState } from "react-app/src/state/store";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 // const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
 //   import("react-app/src/components/pages/payment-methods").then(
@@ -63,7 +69,7 @@ const PaymentMethods = ({ contract_reference, isMobile }) => {
     <>
       <CustomHead />
       <DesktopPaymentMethodsPage contractReference={contract_reference} />
-      <ValidateEmailModal />
+      {/* <ValidateEmailModal /> */}
     </>
   );
 };
