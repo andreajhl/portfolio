@@ -1,44 +1,79 @@
 import classes from "classnames";
 import { BackstageBenefitCard } from "react-app/src/components/layouts/backstage-benefit-card";
 import { PoweredByFamososBanner } from "../../layouts/powered-by-famosos-banner";
+import useListSubscriptionBenefits from "lib/hooks/useListSubscriptionBenefits";
+import { LoaderLayout } from "../../layouts/loader";
 import styles from "./styles.module.scss";
+import Maybe from "../../common/helpers/maybe";
+import { useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { FormattedMessage } from "react-intl";
+import { NotResults } from "../../layouts/not-results";
 
-const dateFuture = new Date();
-const datePass = new Date();
+const offsetInitialValue = 0;
+const resultsLimit = 5;
 
-dateFuture.setDate(28);
-datePass.setDate(1);
+type SubscriptionBenefitsViewProps = {
+  currentChoice: number[];
+};
 
-const fakeBenefits = [
-  {
-    id: 1,
-    title: "Sorteo Videollamada 1:1",
-    poster:
-      "https://dqb0851cl2gjs.cloudfront.net/celebrities/864/avatar/famosos-videos-personalizados-marktacher-compressed.jpg",
-    expireAt: dateFuture,
-  },
-  {
-    id: 2,
-    title: "10% off en merchandasing",
-    poster:
-      "https://dqb0851cl2gjs.cloudfront.net/celebrities/864/avatar/famosos-videos-personalizados-marktacher-compressed.jpg",
-    expireAt: datePass,
-  },
-];
+function SubscriptionBenefitsView({
+  currentChoice,
+}: SubscriptionBenefitsViewProps) {
+  const [offset, setOffset] = useState(offsetInitialValue);
 
-type SubscriptionBenefitsViewProps = {};
+  const { benefits, totalResults, status } = useListSubscriptionBenefits({
+    offset,
+    limit: resultsLimit,
+    celebrityId: currentChoice?.join?.(","),
+  });
 
-function SubscriptionBenefitsView(props: SubscriptionBenefitsViewProps) {
+  function setNewOffset() {
+    setOffset((offset) => {
+      const nextOffset = offset + resultsLimit;
+      const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
+      return newOffset;
+    });
+  }
+
+  const showLoading = offset <= 0 && status === "loading";
+  const hasMoreBenefits = benefits?.length < totalResults;
+  const hasBenefits = benefits?.length > 0;
+
   return (
     <div className={styles.SubscriptionBenefitsView}>
       <div className={classes("container", styles.Container)}>
-        {fakeBenefits.map((benefit) => (
-          <BackstageBenefitCard
-            className={styles.BenefitCard}
-            benefit={benefit}
-          />
-        ))}
-        <PoweredByFamososBanner className={styles.BenefitsViewFamososBanner} />
+        <Maybe it={!showLoading} orElse={<LoaderLayout />}>
+          <InfiniteScroll
+            dataLength={benefits?.length}
+            next={setNewOffset}
+            hasMore={hasMoreBenefits}
+            loader={<LoaderLayout />}
+            endMessage={
+              <PoweredByFamososBanner
+                className={styles.BenefitsViewFamososBanner}
+              />
+            }
+          >
+            <Maybe
+              it={hasBenefits}
+              orElse={
+                <NotResults
+                  message={
+                    <FormattedMessage defaultMessage="Al parecer no hay beneficios actualmente" />
+                  }
+                />
+              }
+            >
+              {benefits.map((benefit) => (
+                <BackstageBenefitCard
+                  className={styles.BenefitCard}
+                  benefit={benefit}
+                />
+              ))}
+            </Maybe>
+          </InfiniteScroll>
+        </Maybe>
       </div>
     </div>
   );
