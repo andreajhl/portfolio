@@ -5,12 +5,13 @@ import getFormattedDate from "lib/utils/getFormattedDate";
 import { Card } from "react-app/src/components/common/cards";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { Link } from "react-app/src/components/common/routing/link";
+import { SubscriptionBenefitType } from "react-app/src/types/subscriptionBenefitType";
 import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 type BackstageBenefitCardProps = {
   className?: string;
-  benefit: any;
+  benefit: SubscriptionBenefitType;
 };
 
 function BackstageBenefitCard({
@@ -18,11 +19,11 @@ function BackstageBenefitCard({
   benefit,
 }: BackstageBenefitCardProps) {
   const { hours, minutes, seconds } = useCountdownUntilDate(
-    benefit.expireAt,
+    benefit.expiration_date,
     true
   );
-  const isExpired = benefit.expireAt - Date.now() < 0;
-  const date = getFormattedDate(benefit.expireAt);
+  const isExpired = Number(benefit.expiration_date) - Date.now() < 0;
+  const date = getFormattedDate(benefit.expiration_date);
 
   const timeCounter = (
     <span className={styles.TimeCounter}>
@@ -39,7 +40,7 @@ function BackstageBenefitCard({
       <div className={styles.PosterWrapper}>
         <img
           className={styles.PosterImage}
-          src={benefit.poster}
+          src={benefit.media_url}
           alt={benefit.title}
           width="368"
           height="368"
