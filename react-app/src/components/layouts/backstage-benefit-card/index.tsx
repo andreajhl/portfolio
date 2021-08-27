@@ -9,6 +9,10 @@ import { SubscriptionBenefitType } from "react-app/src/types/subscriptionBenefit
 import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
+function preventEvent(event) {
+  event?.preventDefault?.();
+}
+
 type BackstageBenefitCardProps = {
   className?: string;
   benefit: SubscriptionBenefitType;
@@ -39,10 +43,15 @@ function BackstageBenefitCard({
       className={classes(styles.BackstageBenefitCard, className)}
     >
       <div className={styles.PosterWrapper}>
-        <img
+        {/* TODO: Add poster instead of video */}
+        <video
+          onPlay={preventEvent}
+          onContextMenu={preventEvent}
+          muted
+          controls={false}
           className={styles.PosterImage}
           src={benefit.media_url}
-          alt={benefit.title}
+          preload="metadata"
           width="368"
           height="368"
         />

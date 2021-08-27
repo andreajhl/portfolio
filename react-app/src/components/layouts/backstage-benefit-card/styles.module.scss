@@ -17,6 +17,7 @@
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover !important;
 }
 
 .PosterOverlay {
@@ -32,7 +33,7 @@
   align-items: flex-end;
 }
 
-.BenefitTitle,
+.BenefitTitle.BenefitTitle,
 .TimeCounter {
   font-size: 8vw;
 
@@ -41,7 +42,7 @@
   }
 }
 
-.BenefitTitle {
+.BenefitTitle.BenefitTitle {
   max-width: 14.375rem;
   font-weight: bold;
   color: white;
