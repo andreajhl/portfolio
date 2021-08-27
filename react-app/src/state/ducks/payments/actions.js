@@ -524,7 +524,7 @@ export const discountCouponsGateways = (contractReference, discountCoupon) => {
       })
       .catch((err) => {
         if (err.response) {
-          handleApiResponseFailure(dispatch, TYPE, err.response.data);
+          dispatch({ type: `${TYPE}_FAILURE`, payload: err.response.data });
         }
       });
   };
