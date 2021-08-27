@@ -31,32 +31,30 @@ const CelebrityFeedPosts = ({
           endMessage={<PoweredByFamososBanner />}
         >
           {posts
-            ? posts.map(
-                ({ id, createdAt, description, items, celebrityId }) => {
-                  const {
-                    celebrityAvatar,
-                    celebrityFullName,
-                    celebrityUsername,
-                  } =
-                    celebrityData ||
-                    getCelebrity(subscriptionList, celebrityId);
+            ? posts.map((post) => {
+                const {
+                  celebrityAvatar,
+                  celebrityFullName,
+                  celebrityUsername,
+                } =
+                  celebrityData ||
+                  getCelebrity(subscriptionList, post.celebrityId);
 
-                  return (
-                    <SubscriptionPostCard
-                      avatar={celebrityAvatar}
-                      fullName={celebrityFullName}
-                      username={celebrityUsername}
-                      date={createdAt}
-                      key={id}
-                    >
-                      <SubscriptionPostContent
-                        items={items}
-                        description={description}
-                      />
-                    </SubscriptionPostCard>
-                  );
-                }
-              )
+                return (
+                  <SubscriptionPostCard
+                    avatar={celebrityAvatar}
+                    fullName={celebrityFullName}
+                    username={celebrityUsername}
+                    post={post}
+                    key={post.id}
+                  >
+                    <SubscriptionPostContent
+                      items={post?.items}
+                      description={post?.description}
+                    />
+                  </SubscriptionPostCard>
+                );
+              })
             : null}
         </InfiniteScroll>
       </div>

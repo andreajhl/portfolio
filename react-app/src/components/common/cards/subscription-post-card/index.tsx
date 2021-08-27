@@ -35,6 +35,7 @@ import {
 type SubscriptionPostCardProps = {
   className?: string;
   children?: ReactNode;
+  post: SubscriptionPostType;
 } & SubscriptionPostHeaderProps;
 
 export const SubscriptionPostCard = ({
@@ -43,31 +44,33 @@ export const SubscriptionPostCard = ({
   avatar,
   username,
   fullName,
-  date,
+  post,
 }: SubscriptionPostCardProps) => {
-  const [isLiked, setIsLiked] = useState(false);
+  const reactions = post?.reactions;
+  const [isLiked, setIsLiked] = useState(reactions?.post_love);
   const [showCommentsSection, setShowCommentsSection] = useState(false);
 
-  const handleLikeClick = () => {
+  function handleLikeClick() {
     setIsLiked(true);
     setShowCommentsSection(true);
-  };
-  const handleShowCommentsSection = () => {
-    setShowCommentsSection((prevState) => !prevState);
-  };
+  }
+
+  function handleShowCommentsSection() {
+    setShowCommentsSection(true);
+  }
 
   return (
     <PostCard className={className}>
       <SubscriptionPostHeader
         avatar={avatar}
         fullName={fullName}
-        date={date}
+        date={post.processingDate}
         username={username}
       />
       <PostBody>{children}</PostBody>
       <SubscriptionPostFooter
-        commentCount={200}
-        likeCount={200}
+        commentCount={post.comments}
+        likeCount={post.loved}
         isLiked={isLiked}
         onShowCommentsClick={handleShowCommentsSection}
         onLikeClick={handleLikeClick}
@@ -160,7 +163,6 @@ export const PostSingleMedia = ({
           media={{ value: mediaUrl }}
           classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video"
           setSlideshowIsPlaying={setSlideshowIsPlaying}
-          /* <PostVideo src={value} preload="metadata" playsInline controls /> */
         />
       }
     >
@@ -222,9 +224,9 @@ const SubscriptionPostFooter = ({
           onClick={onLikeClick}
           outlinedImageSource="/assets/img/heart-regular-outlined.svg"
         />{" "}
-        <PostInteractionCount>0</PostInteractionCount>
+        <PostInteractionCount>{commentCount}</PostInteractionCount>
         <img src="/assets/img/comment-icon.svg" alt="Comentarios" />
-        <PostInteractionCount>0</PostInteractionCount>
+        <PostInteractionCount>{likeCount}</PostInteractionCount>
       </PostCounterSection>
       <CommentCreator
         isLoading={false}
