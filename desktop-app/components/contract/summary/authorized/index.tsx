@@ -187,6 +187,7 @@ function ContractSummaryAuthorized({
               <StatusPaymentDetails
                 payment_date={lastPayment.createdAt}
                 contractReference={contract.reference}
+                status={lastPayment.status}
               />
             }
           />

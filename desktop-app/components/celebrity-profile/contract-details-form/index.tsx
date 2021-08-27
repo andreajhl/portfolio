@@ -152,9 +152,11 @@ function ContractDetailsForm({
   };
 
   function trackOccasionChange(newOccasion: OccasionType) {
+    const previousOccasion = values.occasion;
+    if (newOccasion === previousOccasion) return;
     analytics.track("CHANGE_CONTRACT_OCCASION", {
       ...analyticsData,
-      previousOccasion: values.occasion,
+      previousOccasion,
       newOccasion,
     });
   }
@@ -171,7 +173,8 @@ function ContractDetailsForm({
 
   function validateFormBeforeChangeStep(
     goToClickedStep: () => void,
-    isPreviousStep: boolean
+    isPreviousStep: boolean,
+    clickedStepItem: { id: string }
   ): void {
     if (!isPreviousStep) return validateBeforeSubmit();
     const valuesToSave = getTouchedFieldValues();
@@ -182,6 +185,11 @@ function ContractDetailsForm({
         ? valuesToSave
         : null) as ContractDetailsType
     );
+    if (isPreviousStep) {
+      analytics.track("CELEBRITY_STEP_VIEW", {
+        stepName: clickedStepItem?.id,
+      });
+    }
     goToClickedStep();
   }
 
@@ -211,7 +219,7 @@ function ContractDetailsForm({
         enableNavigation
         onStepClick={validateFormBeforeChangeStep}
       />
-      <form onSubmit={validateBeforeSubmit}>
+      <form onSubmit={validateBeforeSubmit} id="contract-details-form">
         <label className={styles.VideoDetailsOccasionLabel}>
           <FormattedMessage defaultMessage="Selecciona una ocasión" />
         </label>
@@ -236,7 +244,7 @@ function ContractDetailsForm({
             aria-describedby="instructionsDescription"
             placeholder={instructionsPlaceholder}
             className={styles.VideoDetailsFormInstructionsTextarea}
-            maxLength={300}
+            maxLength={400}
             onKeyUp={changeInstructionsTouched}
             onBlur={changeInstructionsValue}
             value={textareaText}

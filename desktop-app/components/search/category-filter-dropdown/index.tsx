@@ -25,18 +25,19 @@ function CategoryFilterDropdown({
   checkedOptions,
 }: CategoryFilterDropdownProps) {
   const handleChange = (indexElement: number) => {
-    const newOption = options[indexElement];
-    if (newOption.unique) {
-      onChange(newOption.value);
+    const optionSelected = options[indexElement];
+    const valuesOfOptionSelected = optionSelected.value.split(",");
+    if (
+      valuesOfOptionSelected.some((value) => checkedOptions.includes(value))
+    ) {
+      let newOptions = checkedOptions;
+      newOptions = newOptions.filter((option) => {
+        console.log(option, "option");
+        return valuesOfOptionSelected.every((value) => value != option);
+      });
+      onChange(newOptions.join(","));
     } else {
-      if (checkedOptions.includes(newOption.value)) {
-        const newOptions = checkedOptions
-          .filter((element) => element != newOption.value)
-          .join(",");
-        onChange(newOptions);
-      } else {
-        onChange([...checkedOptions, newOption.value].join(","));
-      }
+      onChange([...checkedOptions, valuesOfOptionSelected].join(","));
     }
   };
 
@@ -60,7 +61,9 @@ function CategoryFilterDropdown({
           }}
           label={option.label}
           value={option.value}
-          checked={checkedOptions.includes(option.value)}
+          checked={option.value
+            .split(",")
+            .some((el) => checkedOptions.includes(el))}
           onChange={(_) => handleChange(index)}
         ></Checkbox>
       ))}

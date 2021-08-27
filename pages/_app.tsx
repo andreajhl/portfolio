@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import App, { AppContext } from "next/app";
 import { wrapper } from "react-app/src/state/store";
 import { useRouter } from "next/router";
-import { analytics, initialize as gtmInitialize } from "react-app/src/state/utils/gtm";
+import {
+  analytics,
+  initialize as gtmInitialize,
+} from "react-app/src/state/utils/gtm";
 import "react-app/src/styles.scss";
 import "desktop-app/styles.scss";
 import { IntlProvider } from "react-intl";
@@ -18,20 +21,9 @@ const languages = {
   es: esMessages,
   pt: ptMessages,
   por: ptMessages,
-  "pt-BR": ptMessages
+  "pt-BR": ptMessages,
 };
 
-const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
-  analytics.page({
-    path: url,
-    url,
-    shallow,
-    isReactRouting: true
-  });
-};
-
-const MAINTENANCE_IS_ACTIVE =
-  process.env.NEXT_PUBLIC_ACTIVE_MAINTENANCE === "true";
 const ROUTE_CHANGE_START = "routeChangeStart";
 
 CustomApp.getInitialProps = async (appContext: AppContext) => {
@@ -41,23 +33,26 @@ CustomApp.getInitialProps = async (appContext: AppContext) => {
     ...appProps,
     pageProps: {
       ...appProps.pageProps,
-      isMobileDevice: isMobile(appContext?.ctx?.req?.headers?.["user-agent"])
-    }
+      isMobileDevice: isMobile(appContext?.ctx?.req?.headers?.["user-agent"]),
+    },
   };
 };
 
 function CustomApp({ Component, pageProps }) {
   const router = useRouter();
 
-  if (MAINTENANCE_IS_ACTIVE) {
-    const useMaintenanceMode = require("lib/hooks/useMaintenanceMode").default;
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useMaintenanceMode();
-  }
-
   useEffect(() => {
     gtmInitialize();
-    analytics.trackFirstPageLoad();
+    analytics.trackFirstPageLoad({ isMobile: pageProps.isMobileDevice });
+    const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
+      analytics.page({
+        path: url,
+        url,
+        isMobile: pageProps.isMobileDevice,
+        shallow,
+        isReactRouting: true,
+      });
+    };
     router.events.on(ROUTE_CHANGE_START, handleRouteChange);
     return () => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);

@@ -1,11 +1,9 @@
-import { GetServerSideProps } from "next";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import isMobile from "lib/utils/isMobile";
-import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import dynamic from "next/dynamic";
+import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
 import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 
@@ -41,8 +39,26 @@ export const getServerSideProps: GetServerSideProps = async ({
   };
 };
 
+const contractToPaySelector = ({
+  payments: { getContractToPayReducer },
+}: RootState) => ({
+  isCompleted: getContractToPayReducer.completed,
+  contract: getContractToPayReducer.data,
+});
+
 const PaymentMethods = ({ contract_reference, isMobile }) => {
   useDesktopClass(!isMobile);
+  const { contract, isCompleted } = useSelector(contractToPaySelector);
+
+  useEffect(() => {
+    if (!isCompleted) return;
+    if (contract_reference !== contract.reference) return;
+    analytics.trackInitiateCheckout({
+      contractPrice: contract.price,
+      celebrityId: contract.celebrity_id ?? contract.celebrityId,
+    });
+  }, [contract, isCompleted, contract_reference]);
+
   return (
     <>
       <CustomHead />
@@ -53,5 +69,5 @@ const PaymentMethods = ({ contract_reference, isMobile }) => {
 };
 
 export default withAuthenticationRequired(PaymentMethods, {
-  onRedirecting: () => <LoadingPage></LoadingPage>,
+  onRedirecting: LoadingPage,
 });

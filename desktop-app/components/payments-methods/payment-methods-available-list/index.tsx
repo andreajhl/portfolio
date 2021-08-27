@@ -57,12 +57,13 @@ function PaymentMethodsAvailableList({
   const disabledAccordion = useSelector(isProcessingPayment);
   const couponDataReducer = useSelector(couponData);
   const handleChangeCurrentOption = (newValue: all_payments_methods) => {
-    if (disabledAccordion) {
+    const previousPaymentMethod = currentOption;
+    if (disabledAccordion || previousPaymentMethod === newValue) {
       return;
     }
     setCurrentOption(newValue);
     analytics.track("CHANGE_ACTIVE_PAYMENT_METHOD_OPTION", {
-      previousPaymentMethod: currentOption,
+      previousPaymentMethod,
       newPaymentMethod: newValue,
       buyerData,
       celebrityId,

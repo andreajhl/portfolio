@@ -22,30 +22,16 @@ import {
   GIFT_GIVING_CATEGORY_CODE,
 } from "../../constants/dynamicAds";
 import { useEffect } from "react";
-import waitFor from "react-app/src/utils/waitFor";
 import { defineMessages, useIntl } from "react-intl";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import debug from "react-app/src/utils/debug";
 import { CREATE_CONTRACT_QUERY_PARAM } from "constants/paths";
 import { analytics } from "react-app/src/state/utils/gtm";
-import {
-  getCelebrityContractPrice,
-  getCelebrityDiscountPercentage,
-} from "lib/utils/celebrityUtils";
-import getCelebrityBusinessPrice from "lib/utils/getCelebrityBusinessPrice";
 
-function getCelebrityData(celebrity: celebrityType) {
-  return {
-    ...celebrity,
-    discountPercentage:
-      celebrity.discountPercentage || getCelebrityDiscountPercentage(undefined),
-    videoMessagePrice:
-      celebrity.videoMessagePrice || getCelebrityContractPrice(undefined),
-    businessPrice: getCelebrityBusinessPrice(celebrity?.contractTypes),
-  };
-}
-
-const CelebrityProfilePage = dynamic<{ celebrity: celebrityType }>(() =>
+const CelebrityProfilePage = dynamic<{
+  celebrity: celebrityType;
+  celebrityProfileVersion: string;
+}>(() =>
   import("react-app/src/components/pages/celebrity-profile").then(
     (mod) => mod.CelebrityProfilePage
   )
@@ -141,26 +127,16 @@ function CelebrityProfile({
   useDesktopClass(!isMobile);
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
   const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
+  const celebrityCountry = celebrity?.countryCode;
+  const celebrityCategory = celebrity?.categoryTitle;
   const { formatMessage } = useIntl();
 
   useEffect(() => {
-    async function captureProfileViewEvent() {
-      const fbq = await waitFor(() => (window as any)?.fbq);
-      if (typeof fbq !== "function") return;
-      fbq("track", "ViewContent", {
-        content_type: "product",
-        content_ids: productId,
-      });
-    }
-    captureProfileViewEvent();
-  }, []);
-
-  useEffect(() => {
-    analytics.track("CELEBRITY_PROFILE_PAGE_VIEW", {
-      celebrity: getCelebrityData(celebrity),
-      celebrityProfileVersion,
-      isMobile,
-      shouldFocusCreateContractWizard,
+    analytics.fbPixel("track", "ViewContent", {
+      content_type: "product",
+      content_ids: productId,
+      celebrityCountry,
+      celebrityCategory,
     });
   }, []);
 
@@ -183,6 +159,7 @@ function CelebrityProfile({
           celebrity.status === 50 ? "available for order" : "out of stock"
         }
         productCategory={GIFT_GIVING_CATEGORY_CODE}
+        itemGroupId={celebrity?.categoryTitle}
       />
       <Maybe
         it={isMobile}
@@ -193,7 +170,10 @@ function CelebrityProfile({
           />
         }
       >
-        <CelebrityProfilePage celebrity={celebrity} />
+        <CelebrityProfilePage
+          celebrity={celebrity}
+          celebrityProfileVersion={celebrityProfileVersion}
+        />
       </Maybe>
     </>
   );

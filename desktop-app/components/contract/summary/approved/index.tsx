@@ -142,6 +142,7 @@ function ContractSummaryApproved({
   celebrity,
   lastPayment,
 }: ContractWithPaymentsProps) {
+  console.log(contract);
   return (
     <ContractSummaryLayout
       header={<HeaderContractApproved />}
@@ -158,6 +159,7 @@ function ContractSummaryApproved({
             contract={contract}
             status_payment={
               <StatusPaymentDetails
+                status={lastPayment.status}
                 payment_date={lastPayment.createdAt}
                 contractReference={contract.reference}
               />

@@ -21,7 +21,7 @@ function CelebrityProfitCalculator({
   );
   const [priceVideoMessage, setPriceVideoMessage] = useState(priceOptions[0]);
 
-  const monthlyProfit = amountMessages * priceVideoMessage;
+  const monthlyProfit = amountMessages * priceVideoMessage * 0.75;
   return (
     <div className={styles.MainBox} style={{ ...boxStyles }}>
       <h2 className={styles.Heading}>

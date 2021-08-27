@@ -1524,6 +1524,9 @@
   "cheXty": {
     "translation": "{turnAroundTime} días"
   },
+  "conGn9": {
+    "translation": "Calcula cuánto puedes ganar en un mes con Famosos"
+  },
   "crQQc4": {
     "translation": "Mis Suscripciones"
   },
@@ -1693,9 +1696,6 @@
   "hbRJr6": {
     "translation": "Eliminar foto"
   },
-  "hhRDt5": {
-    "translation": "Fechar"
-  },
   "hkTaZQ": {
     "translation": "Ingresa el código que enviamos a {email}"
   },
@@ -1726,6 +1726,9 @@
   },
   "iWkyFQ": {
     "translation": "¿Eres una celebridad o influencer?"
+  },
+  "inkSqk": {
+    "translation": "Te notificaremos vía mail o Whatsapp cuando tu video esté listo."
   },
   "iyrhJi": {
     "translation": "Ingresa una fecha"
@@ -1952,6 +1955,9 @@
   },
   "p6AMrr": {
     "translation": "Famoso!"
+  },
+  "pCW9Vw": {
+    "translation": "El famoso recibirá tu solicitud y grabará tu video en un plazo de 7 días."
   },
   "pExFGK": {
     "translation": "Enviar video a {deliveryTo} ahora"
@@ -2386,6 +2392,9 @@
   },
   "zmIeqV": {
     "translation": "Menos de 3 días"
+  },
+  "zr/yku": {
+    "translation": "Comenzar"
   },
   "ztGIyo": {
     "translation": "Ver comprobante de devolución"

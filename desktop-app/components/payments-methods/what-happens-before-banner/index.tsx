@@ -12,14 +12,16 @@ const stepsItems = [
   {
     iconAlternativeText: "El famoso recibe",
     iconName: "celebrity-receive",
-    description:
-      "El famoso recibirá tu solicitud y grabará tu video en un plazo de 7 días.",
+    description: (
+      <FormattedMessage defaultMessage="El famoso recibirá tu solicitud y grabará tu video en un plazo de 7 días." />
+    ),
   },
   {
     iconAlternativeText: "Te notificaremos",
     iconName: "notification",
-    description:
-      "Te notificaremos vía mail o Whatsapp cuando tu video esté listo.",
+    description: (
+      <FormattedMessage defaultMessage="Te notificaremos vía mail o Whatsapp cuando tu video esté listo." />
+    ),
   },
   {
     iconAlternativeText: "Te respaldamos",

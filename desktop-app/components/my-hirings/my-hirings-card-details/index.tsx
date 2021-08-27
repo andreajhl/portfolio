@@ -105,7 +105,6 @@ function MyHiringsCardDetails({
           value={values.instructions}
           onChange={onChangeField}
           name="instructions"
-          maxLength={300}
         />
         <CollapsibleErrorMessage
           unmountOnExit

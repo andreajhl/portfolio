@@ -85,7 +85,7 @@ function StripeForm({
           <CardIcon className={styles.CardIcon} />
 
           <span className={styles.LabelSection}>
-            <FormattedMessage defaultMessage="Tarjeta de débito o crédito" />
+            <FormattedMessage defaultMessage="Tarjeta de Crédito" />
           </span>
           {expanded ? (
             <DotCircle className={styles.CheckIcon} />

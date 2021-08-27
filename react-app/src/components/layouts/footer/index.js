@@ -8,25 +8,6 @@ import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
 
 class FooterLayout extends Component {
-  constructor(props) {
-    super(props);
-
-    this.goToFamososTwitter = this.goToFamososTwitter.bind(this);
-    this.goToFamososFacebook = this.goToFamososFacebook.bind(this);
-    this.goToFamososInstagran = this.goToFamososInstagran.bind(this);
-  }
-
-  goToFamososTwitter() {
-    window.open("https://www.twitter.com/famosos", "_blank").focus();
-  }
-
-  goToFamososFacebook() {
-    window.open("https://www.facebook.com/contratafamosos", "_blank").focus();
-  }
-
-  goToFamososInstagran() {
-    window.open("https://www.instagram.com/famosos/", "_blank").focus();
-  }
   trackJobListingLinkClick = () => {
     tagManagerDataLayer("FOOTER_JOB_LISTING_LINK_CLICK", {
       widget: "FooterLayout",
@@ -89,27 +70,33 @@ class FooterLayout extends Component {
                   <li className="list-inline-item mr-3 font-weight-bold">
                     <FormattedMessage defaultMessage="Síguenos en Redes" />
                   </li>
-                  <li
-                    className="list-inline-item mr-3"
-                    onClick={this.goToFamososFacebook}
-                  >
-                    <img
-                      className="cursor-pointer"
-                      src="/assets/img/facebook-white.svg"
-                      width="30px"
-                      alt="Facebook"
-                    />
+                  <li className="list-inline-item mr-3">
+                    <a
+                      rel="noreferrer"
+                      target="_blank"
+                      href="https://www.facebook.com/contratafamosos"
+                    >
+                      <img
+                        className="cursor-pointer"
+                        src="/assets/img/facebook-white.svg"
+                        width="30px"
+                        alt="Facebook"
+                      />
+                    </a>
                   </li>
-                  <li
-                    className="list-inline-item mr-3"
-                    onClick={this.goToFamososInstagran}
-                  >
-                    <img
-                      className="cursor-pointer"
-                      src="/assets/img/instagram-white.svg"
-                      width="30px"
-                      alt="Instagram"
-                    />
+                  <li className="list-inline-item mr-3">
+                    <a
+                      rel="noreferrer"
+                      target="_blank"
+                      href="https://www.instagram.com/famosos/"
+                    >
+                      <img
+                        className="cursor-pointer"
+                        src="/assets/img/instagram-white.svg"
+                        width="30px"
+                        alt="Instagram"
+                      />
+                    </a>
                   </li>
                 </ul>
                 <ul className="list-inline links-lists">

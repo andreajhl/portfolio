@@ -14,17 +14,17 @@ export const categories = [
     image:
       "https://firebasestorage.googleapis.com/v0/b/famosos-users-app.appspot.com/o/celebrity-categories%2FActores.png?alt=media&token=5da749f8-9203-41bd-a962-dd24b0549718",
   },
-  {
-    id: 21,
-    createdAt: "0001-01-01T00:00:00Z",
-    updatedAt: "0001-01-01T00:00:00Z",
-    deletedAt: null,
-    codename: "ADULTOS",
-    title: defineMessage({ defaultMessage: "Adultos" }),
-    keywords: ["Adultos"],
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/famosos-users-app.appspot.com/o/celebrity-categories%2FAdultos.png?alt=media&token=a1b2013f-9753-4891-a173-05c94449bd6a",
-  },
+  // {
+  //   id: 21,
+  //   createdAt: "0001-01-01T00:00:00Z",
+  //   updatedAt: "0001-01-01T00:00:00Z",
+  //   deletedAt: null,
+  //   codename: "ADULTOS",
+  //   title: defineMessage({ defaultMessage: "Adultos" }),
+  //   keywords: ["Adultos"],
+  //   image:
+  //     "https://firebasestorage.googleapis.com/v0/b/famosos-users-app.appspot.com/o/celebrity-categories%2FAdultos.png?alt=media&token=a1b2013f-9753-4891-a173-05c94449bd6a",
+  // },
   {
     id: 25,
     createdAt: "0001-01-01T00:00:00Z",

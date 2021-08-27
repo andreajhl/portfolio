@@ -3761,6 +3761,12 @@
       "value": " días"
     }
   ],
+  "conGn9": [
+    {
+      "type": 0,
+      "value": "Calcula cuánto puedes ganar en un mes con Famosos"
+    }
+  ],
   "crQQc4": [
     {
       "type": 0,
@@ -4205,12 +4211,6 @@
       "value": "Eliminar foto"
     }
   ],
-  "hhRDt5": [
-    {
-      "type": 0,
-      "value": "Fechar"
-    }
-  ],
   "hkTaZQ": [
     {
       "type": 0,
@@ -4273,6 +4273,12 @@
     {
       "type": 0,
       "value": "¿Eres una celebridad o influencer?"
+    }
+  ],
+  "inkSqk": [
+    {
+      "type": 0,
+      "value": "Te notificaremos vía mail o Whatsapp cuando tu video esté listo."
     }
   ],
   "iyrhJi": [
@@ -4799,6 +4805,12 @@
     {
       "type": 0,
       "value": "Famoso!"
+    }
+  ],
+  "pCW9Vw": [
+    {
+      "type": 0,
+      "value": "El famoso recibirá tu solicitud y grabará tu video en un plazo de 7 días."
     }
   ],
   "pExFGK": [
@@ -5837,6 +5849,12 @@
     {
       "type": 0,
       "value": "Menos de 3 días"
+    }
+  ],
+  "zr/yku": [
+    {
+      "type": 0,
+      "value": "Comenzar"
     }
   ],
   "ztGIyo": [

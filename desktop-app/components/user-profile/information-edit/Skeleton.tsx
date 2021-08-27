@@ -3,12 +3,13 @@ import Skeleton from "react-loading-skeleton";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 import { SkeletonText } from "desktop-app/components/common/helpers/skeleton-text";
+import { FormattedMessage } from "react-intl";
 
 function SkeletonItems() {
   return (
     <div className={styles.UserInformationConfigContainer}>
       <h2 className={styles.UserInformationConfigTitle}>
-        Información de tu cuenta
+        <FormattedMessage defaultMessage="Información de tu cuenta" />
       </h2>
       <div className={styles.ConfigOptionsSections}>
         <div
@@ -27,7 +28,9 @@ function SkeletonItems() {
             }}
           >
             <Skeleton circle={true} height={128} width={128} />
-            <SkeletonText>Agregar foto</SkeletonText>
+            <SkeletonText>
+              <FormattedMessage defaultMessage="Agregar foto" />
+            </SkeletonText>
           </div>
         </div>
         <div className={styles.ConfigOptionsPersonalData}>
@@ -76,7 +79,7 @@ function SkeletonItems() {
         </div>
         <div className={styles.LogoutButtonWrapper}>
           <LogoutButton className={classes("btn", styles.LogoutButton)}>
-            Cerrar Sesión
+            <FormattedMessage defaultMessage="Cerrar sesión" />
           </LogoutButton>
         </div>
       </div>

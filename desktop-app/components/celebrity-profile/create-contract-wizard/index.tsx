@@ -30,7 +30,10 @@ import { FormattedMessage } from "react-intl";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
-import { getCelebrityContractPrice } from "lib/utils/celebrityUtils";
+import {
+  getCelebrityContractPrice,
+  getCelebrityFinalContractPrice,
+} from "lib/utils/celebrityUtils";
 import {
   setLocalContractInProgress,
   deleteLocalContractInProgress,
@@ -80,9 +83,9 @@ function getNotificationsDataFromContractInProgress(
 }
 
 const WIZARD_STEPS = [
-  { id: "delivery" },
-  { id: "video-details" },
-  { id: "notifications" },
+  { id: "contract-delivery-form" },
+  { id: "contract-details-form" },
+  { id: "contract-notifications-form" },
 ];
 
 export function getInitialWizardStep(
@@ -192,6 +195,12 @@ function CreateContractWizard({
       celebrityId: celebrity.id,
     };
     const { id } = await createContract(createData);
+    analytics.trackAddContractToCart({
+      celebrityId: celebrity.id,
+      contractPrice: getCelebrityFinalContractPrice(celebrity),
+      celebrityCategory: celebrity?.categoryTitle,
+      celebrityCountry: celebrity?.countryCode,
+    });
     analytics.track("CREATE_CONTRACT_PARTIALLY", {
       ...createData,
       widget: WIDGET_NAME,
@@ -261,12 +270,6 @@ function CreateContractWizard({
       "CONTRACT_CREATED",
       Object.assign({ celebrity }, deliveryData, detailsData, values)
     );
-    analytics.fbPixel("track", "InitiateCheckout", {
-      content_type: "product",
-      content_ids: VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id,
-      value: getCelebrityContractPrice(celebrity),
-      currency: "USD",
-    });
     await router.push(getPaymentMethodsPath(reference));
   });
 

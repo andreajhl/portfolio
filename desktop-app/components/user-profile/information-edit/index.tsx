@@ -67,7 +67,7 @@ function UserInformationEdit({ userData }: UserInformationEditProps) {
         </div>
         <div className={styles.LogoutButtonWrapper}>
           <LogoutButton className={classes("btn", styles.LogoutButton)}>
-            <FormattedMessage defaultMessage="Fechar" />
+            <FormattedMessage defaultMessage="Cerrar sesión" />
           </LogoutButton>
         </div>
       </div>

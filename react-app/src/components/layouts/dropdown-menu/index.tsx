@@ -12,10 +12,10 @@ import { HorizontalMenuIcon } from "desktop-app/components/common/icons";
 import styles from "./styles.module.scss";
 
 const { type, vendor } = new UAParser().getDevice();
-const isAppleDevice = vendor === "Apple";
-const isHuaweiDevice = vendor === "Huawei";
-const shouldRenderDownloadAppLink =
-  type === "mobile" && !isAppleDevice && !isHuaweiDevice;
+// const isAppleDevice = vendor === "Apple";
+// const isHuaweiDevice = vendor === "Huawei";
+const shouldRenderDownloadAppLink = false;
+// type === "mobile" && !isAppleDevice && !isHuaweiDevice;
 
 export const DropdownMenuLayout = ({ isLogged }) => {
   const [dropdownMenuIsOpen, setDropdownMenuIsOpen] = useState(false);

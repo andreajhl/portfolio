@@ -30,6 +30,7 @@ import { getLocalContractInProgress } from "lib/utils/localContractInProgress";
 import waitFor from "react-app/src/utils/waitFor";
 import { NotAvailableBanner } from "desktop-app/components/celebrity-profile/not-available-banner";
 import { celebrityIsUnavailable } from "lib/utils/celebrityUtils";
+import { useTrackCelebrityPageView } from "../../../../lib/hooks/useTrackCelebrityPageView";
 
 const CreateContractWizard = dynamic<CreateContractWizardProps>(
   () =>
@@ -143,6 +144,7 @@ function CelebrityProfilePage({
     isAuthenticated,
     isLoading,
     localContractInProgress,
+    celebrity.username,
   ]);
 
   useEffect(() => {
@@ -161,6 +163,15 @@ function CelebrityProfilePage({
 
   const contractInProgress =
     localContractInProgress || contractInProgressRequest?.data;
+
+  useTrackCelebrityPageView({
+    celebrity,
+    isMobile: false,
+    shouldFocusCreateContractWizard,
+    contractInProgress,
+    isReadyToTrack: isReadyToCreateContract,
+    widget: "CelebrityProfilePage",
+  });
 
   const isJuanseQuintero = celebrity?.id === 6317;
 

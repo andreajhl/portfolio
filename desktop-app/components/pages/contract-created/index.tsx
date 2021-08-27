@@ -39,7 +39,7 @@ function ContractCreated({
   useEffect(() => {
     getPurchaseSummary(contractReference);
   }, []);
-
+  console.log(contractWithPayments?.lastPayment);
   return (
     <PageContainer showFooter={false} showBotMakerFrame>
       <Maybe it={!isLoading && isCompleted}>
