@@ -9,9 +9,10 @@ import dynamic from "next/dynamic";
 // import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 import { GetServerSideProps } from "next";
 import { RootState } from "react-app/src/state/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { analytics } from "react-app/src/state/utils/gtm";
+import { clearCouponData } from "react-app/src/state/ducks/payments/actions";
 
 // const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
 //   import("react-app/src/components/pages/payment-methods").then(
@@ -54,7 +55,13 @@ const contractToPaySelector = ({
 
 const PaymentMethods = ({ contract_reference, isMobile }) => {
   useDesktopClass(!isMobile);
+  const dispatch = useDispatch();
   const { contract, isCompleted } = useSelector(contractToPaySelector);
+  useEffect(() => {
+    return () => {
+      dispatch(clearCouponData());
+    };
+  }, []);
 
   useEffect(() => {
     if (!isCompleted) return;
