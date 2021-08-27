@@ -189,7 +189,7 @@ function SubscribePage({
           </div>
         </SectionWrapper>
         <SubscriptionPostsSection>
-          <Maybe it={isLoadingPosts} orElse={<LoaderLayout />}>
+          <Maybe it={!isLoadingPosts} orElse={<LoaderLayout />}>
             <LastsPostsTitle>
               Últimas publicaciones de {fullName}
             </LastsPostsTitle>
