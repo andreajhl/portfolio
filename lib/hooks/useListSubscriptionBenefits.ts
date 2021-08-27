@@ -5,6 +5,19 @@ import { RootState } from "react-app/src/state/store";
 import { SubscriptionBenefitType } from "react-app/src/types/subscriptionBenefitType";
 import { useDispatch, useSelector } from "react-redux";
 
+function getStatus(listSubscriptionBenefitsReducer: {
+  error_data: any;
+  failed: boolean;
+  data: any;
+  loading: boolean;
+  completed: boolean;
+}) {
+  if (listSubscriptionBenefitsReducer.loading) return "loading";
+  if (listSubscriptionBenefitsReducer.failed) return "failed";
+  if (listSubscriptionBenefitsReducer.completed) return "completed";
+  return "loading";
+}
+
 type ParamsType = {
   celebrityId?: string;
   offset?: number;
@@ -28,9 +41,7 @@ type StateType = {
 function listSubscriptionBenefitsSelector({
   celebritySubscriptionBenefits: { listSubscriptionBenefitsReducer },
 }: RootState) {
-  let status: StatusType = "loading";
-  if (listSubscriptionBenefitsReducer.failed) status = "failed";
-  if (listSubscriptionBenefitsReducer.completed) status = "completed";
+  let status: StatusType = getStatus(listSubscriptionBenefitsReducer);
 
   const state: StateType = {
     benefits: listSubscriptionBenefitsReducer?.data?.results || [],

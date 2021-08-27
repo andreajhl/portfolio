@@ -56,7 +56,7 @@ function SubscriptionViews({
             it={currentView === SUBSCRIPTION_BENEFITS_VIEW_NAME}
             orElse={<SubscriptionFeedView currentChoice={currentChoice} />}
           >
-            <SubscriptionBenefitsView />
+            <SubscriptionBenefitsView currentChoice={currentChoice} />
           </Maybe>
         </Maybe>
       </Maybe>

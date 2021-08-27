@@ -5,7 +5,7 @@ import useListSubscriptionBenefits from "lib/hooks/useListSubscriptionBenefits";
 import { LoaderLayout } from "../../layouts/loader";
 import styles from "./styles.module.scss";
 import Maybe from "../../common/helpers/maybe";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import { NotResults } from "../../layouts/not-results";
@@ -14,19 +14,23 @@ const offsetInitialValue = 0;
 const resultsLimit = 5;
 
 type SubscriptionBenefitsViewProps = {
-  currentChoice: number[];
+  currentChoice: number;
 };
 
 function SubscriptionBenefitsView({
   currentChoice,
 }: SubscriptionBenefitsViewProps) {
   const [offset, setOffset] = useState(offsetInitialValue);
-
+  const celebrityId = currentChoice?.toString?.();
   const { benefits, totalResults, status } = useListSubscriptionBenefits({
     offset,
     limit: resultsLimit,
-    celebrityId: currentChoice?.join?.(","),
+    celebrityId,
   });
+
+  useEffect(() => {
+    setOffset(offsetInitialValue);
+  }, [celebrityId]);
 
   function setNewOffset() {
     setOffset((offset) => {

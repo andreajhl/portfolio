@@ -9,7 +9,7 @@ import Maybe from "../../common/helpers/maybe";
 import { NotResults } from "../../layouts/not-results";
 
 const offsetInitialValue = 0;
-const resultsLimit = 2;
+const resultsLimit = 5;
 
 function mapStateToProps({ subscriptions }) {
   const subscriptionList = subscriptions.fetchUserSubscriptionsListReducer.data;
@@ -35,14 +35,19 @@ function SubscriptionFeedView({
   currentChoice,
 }) {
   const [offset, setOffset] = useState(offsetInitialValue);
+  const celebrityId = currentChoice?.toString?.();
 
   useEffect(() => {
     listSubscriptionPosts({
       offset,
       limit: resultsLimit,
-      celebrityId: currentChoice?.join?.(","),
+      celebrityId,
     });
-  }, [currentChoice, listSubscriptionPosts, offset]);
+  }, [celebrityId, listSubscriptionPosts, offset]);
+
+  useEffect(() => {
+    setOffset(offsetInitialValue);
+  }, [celebrityId]);
 
   function fetchMoreData() {
     setOffset((offset) => {
