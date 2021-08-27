@@ -2211,12 +2211,6 @@
       "value": "Información de tu cuenta"
     }
   ],
-  "LN0I40": [
-    {
-      "type": 0,
-      "value": "Tarjeta de débito o crédito"
-    }
-  ],
   "LPelkN": [
     {
       "type": 0,
@@ -4827,6 +4821,12 @@
       "value": " ahora"
     }
   ],
+  "pGafDq": [
+    {
+      "type": 0,
+      "value": "Es posible que tu código haya llegado a tu carpeta de spam"
+    }
+  ],
   "pKdjHT": [
     {
       "type": 0,
@@ -5837,12 +5837,6 @@
     {
       "type": 0,
       "value": "Ingresa el código de seguridad que enviamos a tu correo"
-    }
-  ],
-  "zmFekE": [
-    {
-      "type": 0,
-      "value": "ESTADO DEL PAGO: APROBADO"
     }
   ],
   "zmIeqV": [

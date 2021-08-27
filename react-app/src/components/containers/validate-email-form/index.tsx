@@ -17,6 +17,7 @@ import usePromise from "lib/hooks/usePromise";
 import { CollapsibleErrorMessage } from "../../common/widgets/collapsible-error-message";
 import Maybe from "../../common/helpers/maybe";
 import { ResendSecurityCode } from "../resend-security-code";
+import { useEffect } from "react";
 
 const messages = defineMessages({
   emptySecurityCodeErro: {
@@ -157,6 +158,7 @@ function ValidateEmailForm({
         error={errors.securityCode}
         autoComplete="off"
       />
+
       <button
         type="submit"
         className={classes(
@@ -170,6 +172,13 @@ function ValidateEmailForm({
           status={status}
         />
       </button>
+      <span
+        style={{
+          fontSize: "12px",
+        }}
+      >
+        <FormattedMessage defaultMessage="Es posible que tu código haya llegado a tu carpeta de spam" />
+      </span>
       <CollapsibleErrorMessage
         className={styles.ValidateEmailFormErrorMessage}
         errorMessage={requestError}
