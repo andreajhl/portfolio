@@ -12,6 +12,15 @@ import classes from "classnames";
 import Maybe from "../../common/helpers/maybe";
 import getFormattedDate from "lib/utils/getFormattedDate";
 
+const noMediaBanner = (
+  <div className={styles.NoMediaBanner}>
+    <i className="fa fa-video-slash" />
+    <p>
+      <FormattedMessage defaultMessage="Sin video" />
+    </p>
+  </div>
+);
+
 type SubscriptionBenefitDetailsProps = {
   benefitId: string;
 };
@@ -71,13 +80,14 @@ function SubscriptionBenefitDetails({
             </div>
           </Maybe>
           <div className={styles.MediaContainer}>
-            <img
-              src={benefit?.media_url}
-              alt="Poster"
-              width="300"
-              height="300"
-              className="photo-author"
-            />
+            <Maybe it={Boolean(benefit?.media_url)} orElse={noMediaBanner}>
+              <video
+                src={benefit?.media_url}
+                width="300"
+                height="300"
+                className="photo-author"
+              />
+            </Maybe>
           </div>
           <h4 className="description_s">{descriptionLabel}</h4>
           <p className="paragraf_3">{benefit?.description}</p>
