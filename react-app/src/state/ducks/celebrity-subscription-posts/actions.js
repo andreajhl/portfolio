@@ -24,3 +24,15 @@ export const addPostComment = ({ comment, postId }) =>
     }
     throw res.data.error;
   });
+
+export const listPostComment = (postId, params) =>
+  apiService({
+    method: "GET",
+    path: API_PATHS.LIST_POST_COMMENT_PATH + postId,
+    params,
+  }).then((res) => {
+    if (res?.data?.status === "ERROR") {
+      throw res.data.error;
+    }
+    return res.data;
+  });

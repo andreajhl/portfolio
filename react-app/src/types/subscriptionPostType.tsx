@@ -10,7 +10,7 @@ type SubscriptionPostsReactions = {
 };
 
 export type SubscriptionPostType = {
-  id: string;
+  id: number;
   celebrityId: number;
   description: string;
   location: string;
