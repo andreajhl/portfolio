@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
 import errorMessages from "lib/validations/errorMessages";
 import {
@@ -11,6 +11,7 @@ import useForm, { ValidationsType } from "lib/hooks/useForm";
 import { SubmitText } from "../helpers/submit-button-text";
 import classes from "classnames";
 import WarningMessage from "../warning-message";
+import { useAuth } from "lib/famosos-auth";
 
 const initialValues = {
   comment: "",
@@ -50,14 +51,16 @@ function CommentCreator({
   firstComment,
   isLoading,
 }: CommentCreatorProps) {
+  const { user } = useAuth();
   const { formatMessage } = useIntl();
-  const { values, onChangeField, submitForm, errors } = useForm({
+  const { values, onChangeField, submitForm, errors, setFieldValue } = useForm({
     initialValues: {
       comment: "",
     },
     validations: getValidations(formatMessage),
     onSubmit(data) {
       onAddComment(data.comment);
+      setFieldValue("comment", "", false);
     },
   });
   const firstCommentPlaceholder = formatMessage(
@@ -69,6 +72,7 @@ function CommentCreator({
   const commentTextareaPlaceholder = firstComment
     ? firstCommentPlaceholder
     : lastCommentPlaceholder;
+
   return (
     <form className={styles.CommentBoxWrapper} onSubmit={submitForm}>
       <div className={styles.CommentBox}>
@@ -77,7 +81,7 @@ function CommentCreator({
           height="40px"
           width="40px"
           className={styles.UserImgProfile}
-          src="/assets/img/avatar-blank.png"
+          src={user?.avatar || "/assets/img/avatar-blank.png"}
         />
         <textarea
           id="comment-textarea"

@@ -17,6 +17,7 @@ function CommentCollection({
     <div className="comment-collection">
       {comments.map((item, index) => (
         <CommentItem
+          avatar_url={item.avatar_url}
           userFullName={item.userFullName}
           key={index}
           comment={item.comment}

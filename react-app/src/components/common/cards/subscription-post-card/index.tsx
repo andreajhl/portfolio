@@ -1,12 +1,15 @@
 import { CommentCollection } from "desktop-app/components/common/comment-collection";
 import { CommentCreator } from "desktop-app/components/common/comment-creator";
 import { CommentIcon } from "desktop-app/components/common/icons";
+import useAddSubscriptionPostComment from "lib/hooks/useAddSubscriptionPostComment";
+import useListSubscriptionPostComments from "lib/hooks/useListSubscriptionPostComments";
 import useSubscriptionPostLove from "lib/hooks/useSubscriptionPostLike";
 import React, { ReactNode, useState } from "react";
 import {
   PostSlideshow,
   VideoLayout,
 } from "react-app/src/components/containers/celebrity-shared-post";
+import { LoaderLayout } from "react-app/src/components/layouts/loader";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
 import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
 import {
@@ -32,8 +35,10 @@ import {
   PostImage,
   PostCounterSection,
   PostText,
-  PostLikeButton,
+  PostLikeIcon,
+  PostReactionButton,
 } from "./styles";
+import { useAuth } from "lib/famosos-auth";
 
 type SubscriptionPostCardProps = {
   className?: string;
@@ -164,54 +169,32 @@ type SubscriptionPostFooterProps = {
   post: SubscriptionPostType;
 };
 
-type contractComments = {
-  avatar_url: string;
-  userFullName: string;
-  comment: string;
-}[];
-const contractComments: contractComments = [
-  {
-    avatar_url: "asd",
-    comment: "Me ha encantado chaval!",
-    userFullName: "Juan",
-  },
-  {
-    avatar_url: "asd",
-    comment: "Me ha encantado chaval!",
-    userFullName: "Juan",
-  },
-  {
-    avatar_url: "asd",
-    comment: "Me ha encantado chaval!",
-    userFullName: "Juan",
-  },
-  {
-    avatar_url: "asd",
-    comment: "Me ha encantado chaval!",
-    userFullName: "Juan",
-  },
-];
 const SubscriptionPostFooter = ({ post }: SubscriptionPostFooterProps) => {
   const [lovedCount, setLovedCount] = useState(post?.loved || 0);
+  const [commentCount, setCommentCount] = useState(post?.comments || 0);
   const [isLoved, toggleIsLoved] = useSubscriptionPostLove(post);
   const [showCommentsSection, setShowCommentsSection] = useState(false);
 
+  function displayCommentsSection() {
+    setShowCommentsSection(true);
+  }
+
   async function handleLikeClick() {
+    if (!isLoved) displayCommentsSection();
     await toggleIsLoved();
     setLovedCount((previousLovedCount) =>
       isLoved ? previousLovedCount - 1 : previousLovedCount + 1
     );
-    setShowCommentsSection(true);
   }
 
-  function handleShowCommentsSection() {
-    setShowCommentsSection(true);
+  function onCommentAdded() {
+    setCommentCount((count) => count + 1);
   }
 
   return (
     <PostFooter>
       <PostCounterSection>
-        <PostLikeButton
+        <PostLikeIcon
           isFavoriteClassName="post-is-liked"
           color="black"
           isFavorite={isLoved}
@@ -219,25 +202,94 @@ const SubscriptionPostFooter = ({ post }: SubscriptionPostFooterProps) => {
           onClick={handleLikeClick}
         />
         <PostInteractionCount>{lovedCount}</PostInteractionCount>
-        <CommentIcon />
-        <PostInteractionCount>{post?.comments}</PostInteractionCount>
+        <PostReactionButton onClick={displayCommentsSection}>
+          <CommentIcon />
+          <PostInteractionCount>{commentCount}</PostInteractionCount>
+        </PostReactionButton>
       </PostCounterSection>
       <Maybe it={showCommentsSection}>
-        <CommentCreator
-          isLoading={false}
-          error={false}
-          firstComment={true}
-          onAddComment={(text) => console.log(text)}
-        />
-        <CommentCollection
-          displayShowMoreButton={true}
-          onShowMoreComments={() => {}}
-          comments={contractComments}
-        />
+        <CommentsSection post={post} onCommentAdded={onCommentAdded} />
       </Maybe>
     </PostFooter>
   );
 };
+
+const commentsLimit = 3;
+
+function CommentsSection({
+  className,
+  post,
+  onCommentAdded,
+}: {
+  className?: string;
+  post: SubscriptionPostType;
+  onCommentAdded?: () => void;
+}) {
+  const { user } = useAuth();
+  const [newComments, setNewComments] = useState([]);
+  const { addComment, status } = useAddSubscriptionPostComment(post?.id);
+  const [offset, setOffset] = useState(0);
+  const {
+    comments: commentsList,
+    totalResults,
+    status: commentsListStatus,
+  } = useListSubscriptionPostComments({
+    shouldFetch: post?.comments > 0,
+    postId: post?.id,
+    offset,
+    limit: commentsLimit,
+  });
+
+  async function addNewComment(comment: string) {
+    await addComment(comment);
+    setNewComments((comments) => [
+      { comment, avatar_url: user?.avatar, userFullName: user?.fullName },
+      ...comments,
+    ]);
+    onCommentAdded?.();
+  }
+
+  function setNewCommentsOffset() {
+    setOffset((offset) => {
+      const nextOffset = offset + commentsLimit;
+      const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
+      return newOffset;
+    });
+  }
+
+  const isLoadingComment = status === "loading";
+  const showCommentLoading = commentsListStatus === "loading";
+
+  const comments = newComments.concat(
+    ...commentsList.map((commentData) => ({
+      avatar_url: commentData?.userAvatar,
+      ...commentData,
+    }))
+  );
+
+  const isFirstComment = comments?.length < 1;
+
+  return (
+    <section className={className}>
+      <CommentCreator
+        isLoading={isLoadingComment}
+        error={false}
+        firstComment={isFirstComment}
+        onAddComment={addNewComment}
+      />
+      <Maybe it={!isFirstComment}>
+        <CommentCollection
+          displayShowMoreButton={totalResults > commentsList?.length}
+          onShowMoreComments={setNewCommentsOffset}
+          comments={comments}
+        />
+      </Maybe>
+      <Maybe it={showCommentLoading}>
+        <LoaderLayout />
+      </Maybe>
+    </section>
+  );
+}
 
 type dateType = string | Date;
 

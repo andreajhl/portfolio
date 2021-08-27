@@ -102,14 +102,16 @@ export const PostInteractionCount = styled.span`
 `;
 
 export const PostCounterSection = styled.div`
-  padding-top: 18px;
+  padding-top: 1rem;
   padding-left: 23px;
-  border-bottom: 2px solid #f0f2f5;
 
-  padding-bottom: 22px;
+  & + section {
+    margin-top: 1rem;
+    border-top: 2px solid #f0f2f5;
+  }
 `;
 
-export const PostLikeButton = styled(LikeButton)`
+export const PostLikeIcon = styled(LikeButton)`
   &:not(.post-is-liked) {
     color: ${(props) => props.color};
     fill: none;
@@ -117,5 +119,16 @@ export const PostLikeButton = styled(LikeButton)`
 
   path {
     stroke-width: 1.5px;
+  }
+`;
+
+export const PostReactionButton = styled.button`
+  padding: 0;
+  background: none;
+  border: none;
+
+  &,
+  & * {
+    line-height: 1;
   }
 `;
