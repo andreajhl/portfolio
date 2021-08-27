@@ -92,7 +92,7 @@ export const SubscriptionPostHiddenContent = ({
 
   return (
     <>
-      <Maybe it={Boolean(imageSrc)}>
+      <Maybe it={typeof imageSrc === "string"}>
         <PostMedia as={Link} href={subscriptionPath}>
           <PostHiddenImage src={imageSrc} />
           <PostHiddenDiv imageSrc={imageSrc}>
