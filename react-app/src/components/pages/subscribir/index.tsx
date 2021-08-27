@@ -35,7 +35,7 @@ import { Link } from "../../common/routing/link";
 import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
 import { useRouter } from "next/router";
 import { getPostsFromCelebrity } from "react-app/src/firebase/firestoreService";
-import { NotPostsResults } from "../subscription-feed-view";
+import { NotResults } from "../../layouts/not-results";
 import { ConvertedPriceCopy } from "../../layouts/converted-price-copy";
 import { PoweredByFamososBanner } from "../../layouts/powered-by-famosos-banner";
 
@@ -182,7 +182,7 @@ const SubscribePage = ({
               avatar={avatar}
               fullName={fullName}
               username={username}
-              date={post.createdAt}
+              post={post}
             >
               <Maybe
                 it={isSubscribed}
@@ -204,7 +204,7 @@ const SubscribePage = ({
             </SubscriptionPostCard>
           ))}
           <Maybe it={posts?.length === 0}>
-            <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
+            <NotResults message="Oops! Al parecer no hay publicaciones actualmente" />
           </Maybe>
           <PoweredByFamososBanner />
         </SubscriptionPostsSection>

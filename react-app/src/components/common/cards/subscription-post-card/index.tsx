@@ -122,7 +122,7 @@ export const SubscriptionPostHiddenContent = ({
 export const SubscriptionPostContent = ({
   items,
   description,
-}: SubscriptionPostType) => (
+}: Pick<SubscriptionPostType, "items" | "description">) => (
   <>
     <Maybe it={items.length > 0}>
       <PostMedia>
