@@ -1,5 +1,7 @@
 import { CommentCollection } from "desktop-app/components/common/comment-collection";
 import { CommentCreator } from "desktop-app/components/common/comment-creator";
+import { CommentIcon } from "desktop-app/components/common/icons";
+import useSubscriptionPostLove from "lib/hooks/useSubscriptionPostLike";
 import React, { ReactNode, useState } from "react";
 import {
   PostSlideshow,
@@ -12,7 +14,7 @@ import {
   SubscriptionPostUrlType,
 } from "react-app/src/types/subscriptionPostType";
 import { getFirstName } from "react-app/src/utils/getFirstName";
-import { LikeButton } from "../../buttons/LikeButton";
+import { FormattedMessage } from "react-intl";
 import Maybe from "../../helpers/maybe";
 import { Link } from "../../routing/link";
 import {
@@ -30,6 +32,7 @@ import {
   PostImage,
   PostCounterSection,
   PostText,
+  PostLikeButton,
 } from "./styles";
 
 type SubscriptionPostCardProps = {
@@ -46,19 +49,6 @@ export const SubscriptionPostCard = ({
   fullName,
   post,
 }: SubscriptionPostCardProps) => {
-  const reactions = post?.reactions;
-  const [isLiked, setIsLiked] = useState(reactions?.post_love);
-  const [showCommentsSection, setShowCommentsSection] = useState(false);
-
-  function handleLikeClick() {
-    setIsLiked(true);
-    setShowCommentsSection(true);
-  }
-
-  function handleShowCommentsSection() {
-    setShowCommentsSection(true);
-  }
-
   return (
     <PostCard className={className}>
       <SubscriptionPostHeader
@@ -68,14 +58,7 @@ export const SubscriptionPostCard = ({
         username={username}
       />
       <PostBody>{children}</PostBody>
-      <SubscriptionPostFooter
-        commentCount={post.comments}
-        likeCount={post.loved}
-        isLiked={isLiked}
-        onShowCommentsClick={handleShowCommentsSection}
-        onLikeClick={handleLikeClick}
-        showCommentsSection={showCommentsSection}
-      />
+      <SubscriptionPostFooter post={post} />
     </PostCard>
   );
 };
@@ -110,10 +93,16 @@ export const SubscriptionPostHiddenContent = ({
           <PostHiddenDiv imageSrc={imageSrc}>
             <img src="/assets/img/lock.svg" alt="Cerradura" />
             <PostHiddenText>
-              Únete al club de {firstName} para desbloquear este contenido
+              <FormattedMessage
+                defaultMessage="Únete al club de {firstName} para desbloquear este contenido"
+                values={{ firstName }}
+              />
             </PostHiddenText>
             <PostSubscribeButton>
-              Suscríbete ahora por {price}/mes
+              <FormattedMessage
+                defaultMessage="Suscríbete ahora por {price}/mes"
+                values={{ price }}
+              />
             </PostSubscribeButton>
           </PostHiddenDiv>
         </PostMedia>
@@ -172,12 +161,7 @@ export const PostSingleMedia = ({
 };
 
 type SubscriptionPostFooterProps = {
-  onLikeClick: () => void;
-  isLiked: boolean;
-  onShowCommentsClick: () => void;
-  commentCount: number;
-  likeCount: number;
-  showCommentsSection: boolean;
+  post: SubscriptionPostType;
 };
 
 type contractComments = {
@@ -207,38 +191,50 @@ const contractComments: contractComments = [
     userFullName: "Juan",
   },
 ];
-const SubscriptionPostFooter = ({
-  onShowCommentsClick,
-  onLikeClick,
-  isLiked,
-  showCommentsSection,
-  commentCount,
-  likeCount,
-}: SubscriptionPostFooterProps) => {
+const SubscriptionPostFooter = ({ post }: SubscriptionPostFooterProps) => {
+  const [lovedCount, setLovedCount] = useState(post?.loved || 0);
+  const [isLoved, toggleIsLoved] = useSubscriptionPostLove(post);
+  const [showCommentsSection, setShowCommentsSection] = useState(false);
+
+  async function handleLikeClick() {
+    await toggleIsLoved();
+    setLovedCount((previousLovedCount) =>
+      isLoved ? previousLovedCount - 1 : previousLovedCount + 1
+    );
+    setShowCommentsSection(true);
+  }
+
+  function handleShowCommentsSection() {
+    setShowCommentsSection(true);
+  }
+
   return (
     <PostFooter>
       <PostCounterSection>
-        <LikeButton
-          isFavorite={isLiked}
+        <PostLikeButton
+          isFavoriteClassName="post-is-liked"
+          color="black"
+          isFavorite={isLoved}
           width="20px"
-          onClick={onLikeClick}
-          outlinedImageSource="/assets/img/heart-regular-outlined.svg"
-        />{" "}
-        <PostInteractionCount>{commentCount}</PostInteractionCount>
-        <img src="/assets/img/comment-icon.svg" alt="Comentarios" />
-        <PostInteractionCount>{likeCount}</PostInteractionCount>
+          onClick={handleLikeClick}
+        />
+        <PostInteractionCount>{lovedCount}</PostInteractionCount>
+        <CommentIcon />
+        <PostInteractionCount>{post?.comments}</PostInteractionCount>
       </PostCounterSection>
-      <CommentCreator
-        isLoading={false}
-        error={false}
-        firstComment={true}
-        onAddComment={(text) => console.log(text)}
-      />
-      <CommentCollection
-        displayShowMoreButton={true}
-        onShowMoreComments={() => {}}
-        comments={contractComments}
-      />
+      <Maybe it={showCommentsSection}>
+        <CommentCreator
+          isLoading={false}
+          error={false}
+          firstComment={true}
+          onAddComment={(text) => console.log(text)}
+        />
+        <CommentCollection
+          displayShowMoreButton={true}
+          onShowMoreComments={() => {}}
+          comments={contractComments}
+        />
+      </Maybe>
     </PostFooter>
   );
 };

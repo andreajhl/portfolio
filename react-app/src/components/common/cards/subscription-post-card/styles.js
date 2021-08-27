@@ -1,3 +1,4 @@
+import { LikeButton } from "desktop-app/components/common/button/like";
 import styled from "styled-components";
 import { Card } from "..";
 
@@ -106,4 +107,15 @@ export const PostCounterSection = styled.div`
   border-bottom: 2px solid #f0f2f5;
 
   padding-bottom: 22px;
+`;
+
+export const PostLikeButton = styled(LikeButton)`
+  &:not(.post-is-liked) {
+    color: ${(props) => props.color};
+    fill: none;
+  }
+
+  path {
+    stroke-width: 1.5px;
+  }
 `;

@@ -1018,6 +1018,29 @@ export function FillDripIcon({
   );
 }
 
+export function CommentIcon({
+  strokeColor = "black",
+  ...props
+}: {
+  strokeColor?: React.SVGProps<SVGSVGElement>["fill"];
+} & React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={20}
+      height={21}
+      viewBox="0 0 20 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M17.5 0h-15A2.505 2.505 0 000 2.505v11.27a2.505 2.505 0 002.5 2.505h3.75v3.288a.468.468 0 00.746.375l4.879-3.663H17.5c1.379 0 2.5-1.123 2.5-2.504V2.505A2.505 2.505 0 0017.5 0zm.625 13.776a.627.627 0 01-.625.626h-6.25l-.5.376-2.625 1.972v-2.348H2.5a.627.627 0 01-.625-.626V2.505c0-.345.281-.626.625-.626h15c.344 0 .625.281.625.626v11.27z"
+        fill={strokeColor}
+      />
+    </svg>
+  );
+}
+
 export function PaypalIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
