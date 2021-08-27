@@ -489,6 +489,15 @@ export const clearCouponData = () => {
   };
 };
 
+export const setNewPaymentMethodSelected = (name) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.SET_CURRENT_PAYMENT_METHOD_NAME,
+      payload: { name: name },
+    });
+  };
+};
+
 export const togglePaymentInProcess = () => {
   return (dispatch) => {
     dispatch({ type: types.TOGGLE_PAYMENT_IN_PROCESS, payload: {} });
