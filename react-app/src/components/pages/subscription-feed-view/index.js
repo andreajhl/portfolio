@@ -4,25 +4,12 @@ import { LoaderLayout } from "../../layouts/loader";
 import { SubscriptionPostsSection } from "../../layouts/subscription-posts";
 import { FormattedMessage } from "lib/custom-intl";
 import { connect } from "react-redux";
-import styles from "./styles.module.scss";
 import { listSubscriptionPosts } from "react-app/src/state/ducks/subscriptions/actions";
 import Maybe from "../../common/helpers/maybe";
+import { NotResults } from "../../layouts/not-results";
 
 const offsetInitialValue = 0;
 const resultsLimit = 2;
-
-export function NotPostsResults({ message }) {
-  return (
-    <div className={styles.ContainerNotPostResults}>
-      <h4>
-        {message}
-        <span role="img" aria-label="crying-face">
-          😢
-        </span>
-      </h4>
-    </div>
-  );
-}
 
 function mapStateToProps({ subscriptions }) {
   const isSubscriptionListCompletedFetch =
@@ -82,7 +69,7 @@ function SubscriptionFeedView({
         <Maybe
           it={hasSubscriptions}
           orElse={
-            <NotPostsResults
+            <NotResults
               message={
                 <FormattedMessage defaultMessage="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
               }
@@ -93,7 +80,7 @@ function SubscriptionFeedView({
             <Maybe
               it={hasPosts}
               orElse={
-                <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
+                <NotResults message="Oops! Al parecer no hay publicaciones actualmente" />
               }
             >
               <CelebrityFeedPosts
