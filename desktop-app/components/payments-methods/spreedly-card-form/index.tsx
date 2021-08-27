@@ -24,6 +24,9 @@ import {
 } from "react-app/src/constants/messages";
 import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 import { getTextOfFormatAllowedForUserDocument } from "react-app/src/state/utils/getTextOfFormatAllowedForUserDocument";
+import { useSelector } from "react-redux";
+import { RootState } from "react-app/src/state/store";
+import { useRef } from "react";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -78,6 +81,12 @@ function SpreedlyCardForm({
   contractReference,
   discountCouponId,
 }: SpreedlyCardFormProps) {
+  // usar una referencia para mantener el ID del cupon debido a que el callback de spreedly al momento de realizar el pago
+  // no permite actualizar los valores de los closures
+  const discountCouponData = useRef(discountCouponId);
+  useEffect(() => {
+    discountCouponData.current = discountCouponId;
+  }, [discountCouponId]);
   const userCurrency = useUserCurrentCurrency();
   const { formatMessage } = useIntl();
   const { push } = useRouter();
@@ -162,6 +171,7 @@ function SpreedlyCardForm({
       startSpreedlyPayment(token);
     });
   };
+  console.log("spreedly card form", discountCouponId);
 
   const startSpreedlyPayment = async (token) => {
     const {
@@ -170,18 +180,21 @@ function SpreedlyCardForm({
       userAgent,
       geoLocalization,
     } = await getBuyerIdentityData();
+
+    const payloadPayment = {
+      contractReference: contractReference,
+      token,
+      discountCouponId: discountCouponData.current,
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+    };
+
     if (!isProccesing) {
       try {
         setPaymentError(null);
-        await processSpreedlyPayment({
-          contractReference: contractReference,
-          token,
-          discountCouponId,
-          deviceId,
-          IP,
-          userAgent,
-          geoLocalization,
-        });
+        await processSpreedlyPayment(payloadPayment);
         push(getPurchaseSummaryPath(contractReference));
       } catch (error) {
         setIsProccesing(false);
