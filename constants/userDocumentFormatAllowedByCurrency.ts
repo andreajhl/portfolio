@@ -15,3 +15,7 @@ export const allowedFormatDocuments = {
   GTQ: (value) => new RegExp(/^([a-zA-Z0-9_-]){13}$/).test(value),
   CRC: (value) => new RegExp(/^([a-zA-Z0-9_-]){9}$/).test(value),
 };
+
+export const LIST_OF_CURRENCIES_FOR_DLOCAL_PAYMENT_METHOD = Object.keys(
+  allowedFormatDocuments
+);
