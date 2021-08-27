@@ -17,6 +17,7 @@ import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCur
 import { getEmailValidator } from "lib/validations/common";
 import { getUserCookieCountryCode } from "lib/utils/getUserCookieCountryCode";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import { isACurrencyForDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -29,7 +30,7 @@ const YEARS_OPTION_VALUES = NEXT_TEN_YEARS.map((el) => ({
 }));
 const MONTHS_OPTION_VALUES = TWELVE_MONTHS.map((el) => ({
   placeholder: el,
-  value: el
+  value: el,
 }));
 interface SpreedlyCardFormProps {
   contractReference: string;
@@ -39,8 +40,8 @@ interface SpreedlyCardFormProps {
 const initialValuesForm = {
   full_name: "",
   email: "",
-  month: "",
-  year: "",
+  month: MONTHS_OPTION_VALUES[0].value,
+  year: YEARS_OPTION_VALUES[0].value,
   identification_document: "",
 };
 
@@ -59,6 +60,7 @@ function getValidations(
     email: getEmailValidator(formatMessage),
     identification_document(value) {
       const checkDocument = allowedFormatDocuments[currency];
+
       if (typeof checkDocument === "function" && !checkDocument(value)) {
         return formatMessage(errorMessages.invalidIdentificationDocument);
       }
@@ -190,8 +192,8 @@ function SpreedlyCardForm({
         ...requiredFields,
         country: getUserCookieCountryCode(),
         metadata: {
-          "document": values.identification_document
-        }
+          document: values.identification_document,
+        },
       });
       setIsProccesing(true);
     }
@@ -219,15 +221,17 @@ function SpreedlyCardForm({
             value={values.email}
             required={true}
           />
-          <Field
-            label="Documento de Identidad"
-            id="identification_document"
-            type="text"
-            name="identification_document"
-            onChange={onChangeField}
-            value={values.identification_document}
-            required={true}
-          />
+          {isACurrencyForDLocalPaymentMethod(userCurrency) ? (
+            <Field
+              label="Documento de Identidad"
+              id="identification_document"
+              type="text"
+              name="identification_document"
+              onChange={onChangeField}
+              value={values.identification_document}
+              required={true}
+            />
+          ) : null}
         </div>
       </fieldset>
       <fieldset>
@@ -269,7 +273,7 @@ function SpreedlyCardForm({
                 required: true,
                 name: "month",
                 value: values.month,
-                onChange: (e) => setFieldValue("month", e.target.value),
+                onChange: onChangeField,
               }}
               styleWraper={{
                 flexGrow: 1,
@@ -284,7 +288,7 @@ function SpreedlyCardForm({
                 required: true,
                 name: "year",
                 value: values.year,
-                onChange: (e) => setFieldValue("year", e.target.value),
+                onChange: onChangeField,
               }}
               styleWraper={{
                 flexGrow: 1,
