@@ -8,8 +8,7 @@ import useForm, { ValidationsType } from "lib/hooks/useForm";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
 import { useRouter } from "next/router";
 import { useIntl } from "react-intl";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { processSpreedlyPayment } from "react-app/src/state/ducks/payments/actions";
 import useScript from "react-script-hook";
 import styles from "./styles.module.scss";
@@ -29,8 +28,8 @@ const YEARS_OPTION_VALUES = NEXT_TEN_YEARS.map((el) => ({
   value: el,
 }));
 const MONTHS_OPTION_VALUES = TWELVE_MONTHS.map((el) => ({
-  placeholder: ++el,
-  value: ++el,
+  placeholder: el,
+  value: el
 }));
 interface SpreedlyCardFormProps {
   contractReference: string;
@@ -190,6 +189,9 @@ function SpreedlyCardForm({
       window.Spreedly.tokenizeCreditCard({
         ...requiredFields,
         country: getUserCookieCountryCode(),
+        metadata: {
+          "document": values.identification_document
+        }
       });
       setIsProccesing(true);
     }
