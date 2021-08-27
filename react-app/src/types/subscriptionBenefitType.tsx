@@ -1,15 +1,15 @@
 export type BenefitTypeType = "RAFFLE" | "VIDEO_CALL" | "DISCOUNT";
 
-export type BenefitType = {
+export type SubscriptionBenefitType = {
   id: number;
   createdAt: string;
   updatedAt: string;
-  deletedAt: string;
+  deletedAt: string | null;
   title: string;
-  mediaUrl: string;
-  publicationDate: Date;
-  expirationDate: Date;
-  benefitType: BenefitTypeType;
+  media_url: string;
+  publication_date: Date;
+  expiration_date: Date;
+  benefit_type: BenefitTypeType;
   description: string;
   instructions: string;
   celebrityId: number;
