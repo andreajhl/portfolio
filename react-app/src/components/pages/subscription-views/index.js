@@ -10,6 +10,8 @@ import { SubscriptionFeedView } from "../subscription-feed-view";
 import { SUBSCRIPTION_BENEFITS_VIEW_NAME } from "constants/paths";
 import { SubscriptionBenefitsView } from "../subscription-benefits-view";
 import { SubscriptionViewsNavTabs } from "../../layouts/subscription-views-nav-tabs";
+import { NotResults } from "../../layouts/not-results";
+import { FormattedMessage } from "react-intl";
 
 function SubscriptionViews({
   isSubscriptionListCompletedFetch,
@@ -23,12 +25,14 @@ function SubscriptionViews({
     getCelebritiesSubscribe();
   }, []);
 
+  const hasSubscriptions = subscriptionList.length > 0;
+
   return (
     <PageContainer>
       <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
         <SubscriptionViewsNavTabs />
         <SubscriptionPostsHeader>
-          <Maybe it={subscriptionList.length > 0}>
+          <Maybe it={hasSubscriptions}>
             <SubscriptionsFilter
               currentChoice={currentChoice}
               onChangeCelebrity={setCurrentChoice}
@@ -37,11 +41,24 @@ function SubscriptionViews({
           </Maybe>
         </SubscriptionPostsHeader>
       </Maybe>
-      <Maybe
-        it={currentView === SUBSCRIPTION_BENEFITS_VIEW_NAME}
-        orElse={<SubscriptionFeedView currentChoice={currentChoice} />}
-      >
-        <SubscriptionBenefitsView />
+      <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
+        <Maybe
+          it={hasSubscriptions}
+          orElse={
+            <NotResults
+              message={
+                <FormattedMessage defaultMessage="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+              }
+            />
+          }
+        >
+          <Maybe
+            it={currentView === SUBSCRIPTION_BENEFITS_VIEW_NAME}
+            orElse={<SubscriptionFeedView currentChoice={currentChoice} />}
+          >
+            <SubscriptionBenefitsView />
+          </Maybe>
+        </Maybe>
       </Maybe>
     </PageContainer>
   );

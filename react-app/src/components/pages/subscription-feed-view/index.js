@@ -12,14 +12,11 @@ const offsetInitialValue = 0;
 const resultsLimit = 2;
 
 function mapStateToProps({ subscriptions }) {
-  const isSubscriptionListCompletedFetch =
-    subscriptions.fetchUserSubscriptionsListReducer.completed;
   const subscriptionList = subscriptions.fetchUserSubscriptionsListReducer.data;
 
   const { loading, data } = subscriptions.listSubscriptionPostsReducer;
 
   return {
-    isSubscriptionListCompletedFetch,
     subscriptionList,
     postFetchIsLoading: loading,
     subscriptionPosts: data?.results || [],
@@ -31,7 +28,6 @@ const mapDispatchToProps = { listSubscriptionPosts };
 
 function SubscriptionFeedView({
   listSubscriptionPosts,
-  isSubscriptionListCompletedFetch,
   subscriptionList,
   subscriptionPosts,
   postFetchIsLoading,
@@ -39,18 +35,14 @@ function SubscriptionFeedView({
   currentChoice,
 }) {
   const [offset, setOffset] = useState(offsetInitialValue);
-  const hasSubscriptions =
-    isSubscriptionListCompletedFetch && subscriptionList?.length > 0;
-  const canFetchPosts = isSubscriptionListCompletedFetch && hasSubscriptions;
 
   useEffect(() => {
-    if (!canFetchPosts) return;
     listSubscriptionPosts({
       offset,
       limit: resultsLimit,
       celebrityId: currentChoice?.join?.(","),
     });
-  }, [canFetchPosts, currentChoice, offset]);
+  }, [currentChoice, listSubscriptionPosts, offset]);
 
   function fetchMoreData() {
     setOffset((offset) => {
@@ -65,33 +57,24 @@ function SubscriptionFeedView({
 
   return (
     <SubscriptionPostsSection>
-      <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
+      <Maybe it={!showLoading} orElse={<LoaderLayout />}>
         <Maybe
-          it={hasSubscriptions}
+          it={hasPosts}
           orElse={
             <NotResults
               message={
-                <FormattedMessage defaultMessage="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+                <FormattedMessage defaultMessage="Oops! Al parecer no hay publicaciones actualmente" />
               }
             />
           }
         >
-          <Maybe it={!showLoading} orElse={<LoaderLayout />}>
-            <Maybe
-              it={hasPosts}
-              orElse={
-                <NotResults message="Oops! Al parecer no hay publicaciones actualmente" />
-              }
-            >
-              <CelebrityFeedPosts
-                hasMorePost={subscriptionPosts?.length < totalResults}
-                onFetchMorePost={fetchMoreData}
-                posts={subscriptionPosts}
-                currentChoice={currentChoice}
-                subscriptionList={subscriptionList}
-              />
-            </Maybe>
-          </Maybe>
+          <CelebrityFeedPosts
+            hasMorePost={subscriptionPosts?.length < totalResults}
+            onFetchMorePost={fetchMoreData}
+            posts={subscriptionPosts}
+            currentChoice={currentChoice}
+            subscriptionList={subscriptionList}
+          />
         </Maybe>
       </Maybe>
     </SubscriptionPostsSection>
