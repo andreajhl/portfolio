@@ -1,0 +1,14 @@
+import apiService from "../../utils/apiService";
+import * as API_PATHS from "./paths";
+
+export const togglePostReaction = (postId) =>
+  apiService({
+    method: "POST",
+    path: API_PATHS.TOGGLE_REACTION_PATH,
+    body: { postId },
+  }).then((res) => {
+    if (res.data.status === "OK") {
+      return res.data.data;
+    }
+    throw res.data.error;
+  });
