@@ -7,8 +7,8 @@ export type SubscriptionBenefitType = {
   deletedAt: string | null;
   title: string;
   media_url: string;
-  publication_date: Date;
-  expiration_date: Date;
+  publication_date: string;
+  expirationDate: string;
   benefit_type: BenefitTypeType;
   description: string;
   instructions: string;

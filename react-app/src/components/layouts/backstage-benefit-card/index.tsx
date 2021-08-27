@@ -18,12 +18,13 @@ function BackstageBenefitCard({
   className,
   benefit,
 }: BackstageBenefitCardProps) {
+  const expirationDate = new Date(benefit?.expirationDate);
   const { hours, minutes, seconds } = useCountdownUntilDate(
-    benefit.expiration_date,
+    expirationDate,
     true
   );
-  const isExpired = Number(benefit.expiration_date) - Date.now() < 0;
-  const date = getFormattedDate(benefit.expiration_date);
+  const isExpired = Number(expirationDate) - Date.now() < 0;
+  const date = getFormattedDate(expirationDate);
 
   const timeCounter = (
     <span className={styles.TimeCounter}>

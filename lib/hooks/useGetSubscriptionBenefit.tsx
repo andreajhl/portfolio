@@ -1,25 +1,41 @@
-import { BenefitType } from "react-app/src/types/subscriptionBenefitType";
+import { useSelector } from "react-redux";
+import { RootState } from "react-app/src/state/store";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { SubscriptionBenefitType } from "react-app/src/types/subscriptionBenefitType";
+import { SUBSCRIPTION_BENEFITS } from "constants/paths";
 
-const dateFuture = new Date();
-dateFuture.setDate(28);
+type StatusType = "loading" | "failed" | "completed";
 
-const datePass = new Date();
-datePass.setDate(1);
+function subscriptionBenefitSelector({
+  celebritySubscriptionBenefits: { listSubscriptionBenefitsReducer },
+}: RootState) {
+  let status: StatusType = "completed";
 
-export function useGetSubscriptionBenefit(benefitId: string) {
-  return {
-    benefit: {
-      id: 1,
-      title: "Sorteo Videollamada 1:1",
-      mediaUrl:
-        "https://dqb0851cl2gjs.cloudfront.net/celebrities/864/avatar/famosos-videos-personalizados-marktacher-compressed.jpg",
-      publicationDate: datePass,
-      expirationDate: dateFuture,
-      benefitType: "RAFFLE",
-      description: "Una videollamada 1:1 con MarkTacher de 10 min.",
-      instructions: "Publicaré el video haciendo el sorteo y ¡al ganador!",
-      celebrityId: 864,
-    } as BenefitType,
-    status: "completed",
+  const state = {
+    benefits: listSubscriptionBenefitsReducer?.data?.results,
+    status,
   };
+
+  return state;
 }
+
+/* TODO: Implement GET endpoint */
+function useGetSubscriptionBenefit(benefitId: number) {
+  const { benefits, status } = useSelector(subscriptionBenefitSelector);
+  const [benefit, setBenefit] = useState<SubscriptionBenefitType>();
+  const { push } = useRouter();
+
+  useEffect(() => {
+    const benefit = benefits?.find?.(({ id }) => benefitId === id);
+    if (benefit) {
+      setBenefit(benefit);
+    } else {
+      push(SUBSCRIPTION_BENEFITS);
+    }
+  }, [benefitId, benefits, push]);
+
+  return { benefit, status };
+}
+
+export default useGetSubscriptionBenefit;
