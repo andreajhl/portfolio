@@ -1,12 +1,12 @@
 import classes from "classnames";
 import { getSubscriptionBenefitDetailsPath } from "constants/paths";
-import useCountdownUntilDate from "lib/hooks/useCountdownUntilDate";
 import getFormattedDate from "lib/utils/getFormattedDate";
 import { Card } from "react-app/src/components/common/cards";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { Link } from "react-app/src/components/common/routing/link";
 import { SubscriptionBenefitType } from "react-app/src/types/subscriptionBenefitType";
 import { FormattedMessage } from "react-intl";
+import { Countdown } from "../../common/helpers/countdown";
 import styles from "./styles.module.scss";
 
 function preventEvent(event) {
@@ -23,16 +23,12 @@ function BackstageBenefitCard({
   benefit,
 }: BackstageBenefitCardProps) {
   const expirationDate = new Date(benefit?.expirationDate);
-  const { hours, minutes, seconds } = useCountdownUntilDate(
-    expirationDate,
-    true
-  );
   const isExpired = Number(expirationDate) - Date.now() < 0;
   const date = getFormattedDate(expirationDate);
 
   const timeCounter = (
     <span className={styles.TimeCounter}>
-      {hours}:{minutes}:{seconds}
+      <Countdown finishDate={expirationDate} />
     </span>
   );
 

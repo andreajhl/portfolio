@@ -73,6 +73,7 @@ function SubscriptionBenefitsView({
                 <BackstageBenefitCard
                   className={styles.BenefitCard}
                   benefit={benefit}
+                  key={benefit?.id}
                 />
               ))}
             </Maybe>
