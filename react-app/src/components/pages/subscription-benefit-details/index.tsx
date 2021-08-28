@@ -11,6 +11,7 @@ import {
 import classes from "classnames";
 import Maybe from "../../common/helpers/maybe";
 import getFormattedDate from "lib/utils/getFormattedDate";
+import { Countdown } from "../../common/helpers/countdown";
 
 const noMediaBanner = (
   <div className={styles.NoMediaBanner}>
@@ -31,10 +32,6 @@ function SubscriptionBenefitDetails({
   const { benefit } = useGetSubscriptionBenefit(Number(benefitId));
   const { formatMessage } = useIntl();
   const expirationDate = new Date(benefit?.expirationDate);
-  const { hours, minutes, seconds } = useCountdownUntilDate(
-    expirationDate,
-    true
-  );
 
   const date = getFormattedDate(expirationDate);
   const isExpired = Number(expirationDate) - Date.now() < 0;
@@ -74,7 +71,7 @@ function SubscriptionBenefitDetails({
               </div>
               <div className="item-flex2">
                 <p className="paragraf_2">
-                  {hours}:{minutes}:{seconds}
+                  <Countdown finishDate={expirationDate} />
                 </p>
               </div>
             </div>
