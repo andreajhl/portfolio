@@ -2,7 +2,6 @@ import { PageContainer } from "../../layouts/page-container";
 import useGetSubscriptionBenefit from "lib/hooks/useGetSubscriptionBenefit";
 import { PageHeading } from "desktop-app/components/layouts/page-heading";
 import styles from "./styles.module.scss";
-import useCountdownUntilDate from "lib/hooks/useCountdownUntilDate";
 import { useIntl, FormattedMessage } from "lib/custom-intl";
 import {
   getBenefitTypeMessage,
@@ -12,6 +11,8 @@ import classes from "classnames";
 import Maybe from "../../common/helpers/maybe";
 import getFormattedDate from "lib/utils/getFormattedDate";
 import { Countdown } from "../../common/helpers/countdown";
+import { VideoLayout } from "react-app/src/components/containers/celebrity-shared-post";
+import { useState } from "react";
 
 const noMediaBanner = (
   <div className={styles.NoMediaBanner}>
@@ -29,6 +30,7 @@ type SubscriptionBenefitDetailsProps = {
 function SubscriptionBenefitDetails({
   benefitId,
 }: SubscriptionBenefitDetailsProps) {
+  const [videoIsMuted, setVideoIsMuted] = useState(true);
   const { benefit } = useGetSubscriptionBenefit(Number(benefitId));
   const { formatMessage } = useIntl();
   const expirationDate = new Date(benefit?.expirationDate);
@@ -78,11 +80,12 @@ function SubscriptionBenefitDetails({
           </Maybe>
           <div className={styles.MediaContainer}>
             <Maybe it={Boolean(benefit?.media_url)} orElse={noMediaBanner}>
-              <video
-                src={benefit?.media_url}
-                width="300"
-                height="300"
-                className="photo-author"
+              <VideoLayout
+                videoIsMuted={videoIsMuted}
+                setVideoIsMuted={setVideoIsMuted}
+                media={{ mediaUrl: benefit?.media_url }}
+                classNameSlideLayoutVideo="photo-author"
+                setSlideshowIsPlaying={() => {}}
               />
             </Maybe>
           </div>
