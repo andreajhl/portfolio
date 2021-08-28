@@ -3,6 +3,8 @@ import objectFromEntries from "lib/utils/objectFromEntries";
 import { useState } from "react";
 import useInterval from "./useInterval";
 
+const fallbackValue = 0;
+
 const toTwoDigits = (value: number): string =>
   value <= 9 ? "0" + value : value?.toString();
 
@@ -23,10 +25,13 @@ function useCountdownUntilDate(finishDate: Date, twoDigits?: boolean) {
   useInterval(() => setTimeRemaining(getClockDifference(finishDate)), delay);
 
   return objectFromEntries(
-    Object.entries(timeRemaining).map(([key, value]) => [
-      key,
-      twoDigits ? toTwoDigits(value) : value?.toString(),
-    ])
+    Object.entries(timeRemaining).map(([key, value]) => {
+      const valueNumber = isNaN(value) ? fallbackValue : value;
+      return [
+        key,
+        twoDigits ? toTwoDigits(valueNumber) : valueNumber?.toString(),
+      ];
+    })
   ) as TimeRemainingType;
 }
 
