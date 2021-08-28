@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import { FormattedMessage } from "react-intl";
 import CelebritiesSelect from "../../common/forms/celebrity-select";
 
 const defaultOption = {
   value: null,
-  label: "Mostrar todas mis suscripciones",
+  label: <FormattedMessage defaultMessage="Mostrar todas mis suscripciones" />,
 };
 
 const SubscriptionsFilter = ({

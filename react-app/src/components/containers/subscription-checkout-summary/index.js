@@ -2,6 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import Image from "react-bootstrap/Image";
 import { CheckIconList } from "../../layouts/check-icon-list";
+import { FormattedMessage } from "react-intl";
 
 const SubscriptionCheckoutSummary = (props) => {
   const { celebrityAvatar, celebrityFullName } = { ...props };
@@ -12,28 +13,37 @@ const SubscriptionCheckoutSummary = (props) => {
         <header className="container-subscription-checkout-summary__benefits-header">
           <img
             src="/assets/img/subscription-star-pink.svg"
-            alt="Estrella de Club de Fans"
+            alt="Famosos Backstage"
           />
-          <h5>Beneficios del Club de Fans</h5>
+          <h5>
+            <FormattedMessage defaultMessage="Beneficios del Club de Fans" />
+          </h5>
         </header>
         <h6 className="container-subscription-checkout-summary__welcome-title">
-          ¡Bienvenido!
+          <FormattedMessage defaultMessage="¡Bienvenido!" />
         </h6>
         <p className="container-subscription-checkout-summary__copy">
-          Esta suscripción te permitirá estar más cerca de {celebrityFullName} y
-          conocer todas las novedades de tu famoso favorito antes que los demás.
+          <FormattedMessage
+            defaultMessage="Esta suscripción te permitirá estar más cerca de {celebrityFullName} y conocer todas las novedades de tu famoso favorito antes que los demás."
+            values={{ celebrityFullName }}
+          />
         </p>
         <CheckIconList
           className="container-subscription-checkout-summary__benefits-list"
-          title="Disfrutarás de beneficios especiales para súper fans, como:"
+          title={
+            <FormattedMessage defaultMessage="Disfrutarás de beneficios especiales para súper fans, como:" />
+          }
           items={[
-            "Felicitación en tu cumpleaños.",
-            "Descuento en tu próxima compra de video personalizado.",
-            "Invitación a sesiones exclusivas en vivo.",
-            "Entrada con descuento a eventos.",
-            `Acceso a contenido exclusivo de ${celebrityFullName}.`,
-            "Participación en sorteos y posibilidad de recibir artículos autografiados.",
-            "¡Sorpresas que te harán reír y suspirar!  ",
+            <FormattedMessage defaultMessage="Felicitación en tu cumpleaños." />,
+            <FormattedMessage defaultMessage="Descuento en tu próxima compra de video personalizado." />,
+            <FormattedMessage defaultMessage="Invitación a sesiones exclusivas en vivo." />,
+            <FormattedMessage defaultMessage="Entrada con descuento a eventos." />,
+            <FormattedMessage
+              defaultMessage="Acceso a contenido exclusivo de {celebrityFullName}."
+              values={{ celebrityFullName }}
+            />,
+            <FormattedMessage defaultMessage="Participación en sorteos y posibilidad de recibir artículos autografiados." />,
+            <FormattedMessage defaultMessage="¡Sorpresas que te harán reír y suspirar!" />,
           ]}
         />
       </section>

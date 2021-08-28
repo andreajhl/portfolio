@@ -36,6 +36,13 @@ import { ConvertedPriceCopy } from "../../layouts/converted-price-copy";
 import { PoweredByFamososBanner } from "../../layouts/powered-by-famosos-banner";
 import { listSubscriptionPosts } from "react-app/src/state/ducks/subscriptions/actions";
 import { LoaderLayout } from "../../layouts/loader";
+import { FormattedMessage, defineMessages, useIntl } from "react-intl";
+
+const messages = defineMessages({
+  noAvailableForSubscriptionAlertText: {
+    defaultMessage: "Este famoso no esta disponible para suscripciones",
+  },
+});
 
 const isTypeImage = ({ mediaType }: { mediaType: string }): boolean =>
   mediaType === "IMAGE";
@@ -101,7 +108,11 @@ function SubscribePage({
   isLoadingPosts,
 }: SubscribePageProps) {
   const router = useRouter();
+  const { formatMessage } = useIntl();
   const { avatar, fullName, username, availableForSubscriptions } = celebrity;
+  const noAvailableForSubscriptionAlertText = formatMessage(
+    messages.noAvailableForSubscriptionAlertText
+  );
 
   useEffect(() => {
     if (!username) return;
@@ -114,7 +125,7 @@ function SubscribePage({
         limit: 10,
       });
     } else {
-      alert("Este famoso no esta disponible para suscripciones");
+      alert(noAvailableForSubscriptionAlertText);
       router.push(CELEBRITY_PROFILE.replace(":celebrity_username", username));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -158,29 +169,42 @@ function SubscribePage({
             <CelebrityInfoSection>
               <ProfilePicture avatar={avatar} width="176px" />
               <CelebrityInfoTitle>{fullName}</CelebrityInfoTitle>
-              <CelebrityInfoSubtitle>Club de Fans</CelebrityInfoSubtitle>
+              <CelebrityInfoSubtitle>
+                <FormattedMessage defaultMessage="Club de Fans" />
+              </CelebrityInfoSubtitle>
             </CelebrityInfoSection>
             <PlanInfoSection as="section">
               <PlanInfoStar />
               <PlanInfoDescription>
                 <Maybe
                   it={isSubscribed}
-                  orElse={`Al ser parte del club de Fans de ${fullName} tendrás`}
+                  orElse={
+                    <FormattedMessage
+                      defaultMessage="Al ser parte del club de Fans de {fullName} tendrás acceso a contenido exclusivo, sesiones live, sorteos y/o eventos privados."
+                      values={{ fullName }}
+                    />
+                  }
                 >
-                  Formas parte del Club de Fans de {fullName}.Ahora tienes
-                </Maybe>{" "}
-                acceso a contenido exclusivo, sesiones live, sorteos y/o eventos
-                privados.
+                  <FormattedMessage
+                    defaultMessage="Formas parte del Club de Fans de {fullName}. Ahora tienes acceso a contenido exclusivo, sesiones live, sorteos y/o eventos privados."
+                    values={{ fullName }}
+                  />
+                </Maybe>
               </PlanInfoDescription>
               <Maybe it={!isSubscribed}>
-                <PlanInfoPrice>{priceLayout} /mes</PlanInfoPrice>
+                <PlanInfoPrice>
+                  <FormattedMessage
+                    defaultMessage="{priceLayout} /mes"
+                    values={{ priceLayout }}
+                  />
+                </PlanInfoPrice>
                 <ConvertedPriceCopy price={monthlySubscription?.priceTier} />
                 <Link
                   href={SUBSCRIPTION.replace(":celebrity_username", username)}
                 >
                   <div style={{ marginTop: "20px" }}>
                     <CallToActionButton width="100%">
-                      Subscribirse
+                      <FormattedMessage defaultMessage="Subscribirse" />
                     </CallToActionButton>
                   </div>
                 </Link>
@@ -191,12 +215,19 @@ function SubscribePage({
         <SubscriptionPostsSection>
           <Maybe it={!isLoadingPosts} orElse={<LoaderLayout />}>
             <LastsPostsTitle>
-              Últimas publicaciones de {fullName}
+              <FormattedMessage
+                defaultMessage="Últimas publicaciones de {fullName}"
+                values={{ fullName }}
+              />
             </LastsPostsTitle>
             <Maybe
               it={hasPosts}
               orElse={
-                <NotResults message="Oops! Al parecer no hay publicaciones actualmente" />
+                <NotResults
+                  message={
+                    <FormattedMessage defaultMessage="Oops! Al parecer no hay publicaciones actualmente" />
+                  }
+                />
               }
             >
               {posts.map((post) => (

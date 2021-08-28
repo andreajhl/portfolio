@@ -1,11 +1,12 @@
 import classes from "classnames";
+import { ReactNode } from "react";
 import Maybe from "../../common/helpers/maybe";
 import styles from "./styles.module.scss";
 
 type CheckIconListProps = {
   className?: string;
-  title?: string;
-  items: string[];
+  title?: ReactNode;
+  items: ReactNode[];
 };
 
 function CheckIconList({ className, title = null, items }: CheckIconListProps) {

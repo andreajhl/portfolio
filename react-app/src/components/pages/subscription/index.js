@@ -10,6 +10,7 @@ import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
 import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
 import isAlreadySubscribe from "../../../utils/isAlreadySubscribe";
 import { useRouter } from "next/router";
+import { FormattedMessage } from "react-intl";
 
 function Subscription({
   celebrityUsername,
@@ -50,7 +51,10 @@ function Subscription({
           <div className="container-subscription-payment col-sm-12 my-4 mx-auto f-rounded f-shadow">
             <div className="container-subscription-payment__header">
               <h6 className="mb-0 font-weight-bold container-subscription-payment__title">
-                Suscripción al Club de Fans de {celebrity.fullName}
+                <FormattedMessage
+                  defaultMessage="Suscripción al Club de Fans de {celebrityFullName}"
+                  values={{ celebrityFullName: celebrity.fullName }}
+                />
               </h6>
             </div>
             <div className="container-subscription-payment__summary">
@@ -71,8 +75,7 @@ function Subscription({
                     />
                   </div>
                   <p className="container-subscription-payment__copy">
-                    Este precio es por una suscripción mensual y se renovará
-                    automáticamente cada mes.
+                    <FormattedMessage defaultMessage="Este precio es por una suscripción mensual y se renovará automáticamente cada mes." />
                   </p>
                   <div
                     className={`container-subscription-payment__paypalForm ${
@@ -92,25 +95,25 @@ function Subscription({
               ) : (
                 <div className="container-subscription-payment__not-available">
                   <h5>
-                    Ya estas suscrito a este famoso
+                    <FormattedMessage defaultMessage="Ya estas suscrito a este famoso" />
                     <span role="img" aria-label="smile-face">
-                      😄
+                      {"😄"}
                     </span>
                   </h5>
                   <button
                     className="btn btn-primary"
                     onClick={() => router.push(FEED_SUBSCRIPTION)}
                   >
-                    Ver mis suscripciones
+                    <FormattedMessage defaultMessage="Ver mis suscripciones" />
                   </button>
                 </div>
               )
             ) : (
               <div className="container-subscription-payment__not-available">
                 <h5>
-                  Actualmente este famoso no tiene planes habilitados
+                  <FormattedMessage defaultMessage="Actualmente este famoso no tiene planes habilitados" />
                   <span role="img" aria-label="crying-face">
-                    😢
+                    {"😢"}
                   </span>
                 </h5>
               </div>

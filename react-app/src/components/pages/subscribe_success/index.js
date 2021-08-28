@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
 import { useRouter } from "next/router";
 import { CheckIconList } from "../../layouts/check-icon-list";
+import { FormattedMessage } from "react-intl";
+
+const textBold = (chunk) => <span className="font-weight-bold">{chunk}</span>;
 
 function SubscriptionSuccess({
   celebrityUsername,
@@ -17,6 +20,8 @@ function SubscriptionSuccess({
     if (!celebrityUsername) return;
     getCelebrity(celebrityUsername);
   }, [celebrityUsername]);
+
+  const celebrityFullName = celebrity?.fullName || "Famoso";
 
   return (
     <div className="container-subscribe-success container-fluid">
@@ -37,46 +42,51 @@ function SubscriptionSuccess({
                   ? "/assets/img/avatar-blank.png"
                   : celebrity.avatar || ""
               }
-              alt="avatar"
+              alt="Avatar"
             />
           </div>
           <div className="mt-4 font-weight-bold">
-            <h5 className={"font-weight-bold"}>¡Felicitaciones!</h5>
             <h5 className={"font-weight-bold"}>
-              Tu suscripción con {celebrity.fullName || "Famoso"} fue exitosa.
+              <FormattedMessage defaultMessage="¡Felicitaciones!" />
+            </h5>
+            <h5 className={"font-weight-bold"}>
+              <FormattedMessage
+                defaultMessage="Tu suscripción con {celebrityFullName} fue exitosa."
+                values={{ celebrityFullName }}
+              />
             </h5>
           </div>
           <div className="mt-4 pl-3 pr-3 font-weight-light text-left">
             <h6>
-              A partir de ahora disfrutarás de beneficios únicos que te harán
-              quererl@ todavía más.
+              <FormattedMessage defaultMessage="A partir de ahora disfrutarás de beneficios únicos que te harán quererl@ todavía más." />
             </h6>
             <CheckIconList
               className="SubscriptionSuccessBenefitsList"
               items={[
-                "Felicitación en tu cumpleaños.",
-                "Descuento en tu próxima compra de video personalizado.",
-                "Invitación a sesiones exclusivas en vivo.",
-                "Entrada con descuento a eventos.",
-                `Acceso a contenido exclusivo de ${
-                  celebrity.fullName || "Famoso"
-                }.`,
-                "Participación en sorteos y posibilidad de recibir artículos autografiados.",
-                "¡Sorpresas que te harán reír y suspirar!  ",
+                <FormattedMessage defaultMessage="Felicitación en tu cumpleaños." />,
+                <FormattedMessage defaultMessage="Descuento en tu próxima compra de video personalizado." />,
+                <FormattedMessage defaultMessage="Invitación a sesiones exclusivas en vivo." />,
+                <FormattedMessage defaultMessage="Entrada con descuento a eventos." />,
+                <FormattedMessage
+                  defaultMessage="Acceso a contenido exclusivo de {celebrityFullName}."
+                  values={{ celebrityFullName }}
+                />,
+                <FormattedMessage defaultMessage="Participación en sorteos y posibilidad de recibir artículos autografiados." />,
+                <FormattedMessage defaultMessage="¡Sorpresas que te harán reír y suspirar!" />,
               ]}
             />
           </div>
           <p>
-            <span className="font-weight-bold">¡Recuerda!</span> Cada 30 días se
-            hará el cobro de la suscripción de manera automática.Te enviaremos
-            una notificación cuando se realice el cobro a tu TDC o PayPal
-            asociado.
+            <FormattedMessage
+              defaultMessage="<textBold>¡Recuerda!</textBold> Cada 30 días se hará el cobro de la suscripción de manera automática. Te enviaremos una notificación cuando se realice el cobro a tu TDC o PayPal asociado."
+              values={{ textBold }}
+            />
           </p>
           <button
             className="btn btn-primary mb-4"
             onClick={() => router.push(FEED_SUBSCRIPTION)}
           >
-            Ver mis suscripciones
+            <FormattedMessage defaultMessage="Ver mis suscripciones" />
           </button>
         </div>
       </div>
