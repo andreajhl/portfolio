@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { AVAILABLE_CURRENCIES } from "../../../../constants/availableCurrencies";
+import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 import NumberFormat from "react-number-format";
 import { connect } from "react-redux";
 
@@ -41,13 +41,13 @@ const PriceLayout = ({
 
   const exchangePrice = currencyData.rate ? price * currencyData.rate : price;
 
-  const prefix = showPrefix ? currencyInfo["symbol"] : null;
+  const prefix = showPrefix ? currencyInfo?.["symbol"] || "$" : null;
 
   return (
     <NumberFormat
       value={
         rounding
-          ? roundPrice(exchangePrice, parseFloat(currencyInfo.round))
+          ? roundPrice(exchangePrice, parseFloat(currencyInfo?.round))
           : exchangePrice
       }
       displayType={"text"}
@@ -56,7 +56,7 @@ const PriceLayout = ({
       fixedDecimalScale={fixedDecimalScale}
       prefix={prefix}
       renderText={(formattedValue) =>
-        renderText(formattedValue, currencyInfo.name)
+        renderText(formattedValue, currencyInfo?.name)
       }
     />
   );
