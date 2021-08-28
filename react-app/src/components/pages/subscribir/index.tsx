@@ -237,6 +237,7 @@ function SubscribePage({
                   username={username}
                   post={post}
                   key={post?.id}
+                  canReactToPosts={isSubscribed}
                 >
                   <Maybe
                     it={isSubscribed}

@@ -44,7 +44,8 @@ type SubscriptionPostCardProps = {
   className?: string;
   children?: ReactNode;
   post: SubscriptionPostType;
-} & SubscriptionPostHeaderProps;
+} & SubscriptionPostHeaderProps &
+  SubscriptionPostFooterProps;
 
 export const SubscriptionPostCard = ({
   className,
@@ -53,6 +54,7 @@ export const SubscriptionPostCard = ({
   username,
   fullName,
   post,
+  canReactToPosts,
 }: SubscriptionPostCardProps) => {
   return (
     <PostCard className={className}>
@@ -63,7 +65,7 @@ export const SubscriptionPostCard = ({
         username={username}
       />
       <PostBody>{children}</PostBody>
-      <SubscriptionPostFooter post={post} />
+      <SubscriptionPostFooter post={post} canReactToPosts={canReactToPosts} />
     </PostCard>
   );
 };
@@ -167,19 +169,25 @@ export const PostSingleMedia = ({
 
 type SubscriptionPostFooterProps = {
   post: SubscriptionPostType;
+  canReactToPosts?: boolean;
 };
 
-const SubscriptionPostFooter = ({ post }: SubscriptionPostFooterProps) => {
+const SubscriptionPostFooter = ({
+  post,
+  canReactToPosts = true,
+}: SubscriptionPostFooterProps) => {
   const [lovedCount, setLovedCount] = useState(post?.loved || 0);
   const [commentCount, setCommentCount] = useState(post?.comments || 0);
   const [isLoved, toggleIsLoved] = useSubscriptionPostLove(post);
   const [showCommentsSection, setShowCommentsSection] = useState(false);
 
   function displayCommentsSection() {
+    if (!canReactToPosts) return;
     setShowCommentsSection(true);
   }
 
   async function handleLikeClick() {
+    if (!canReactToPosts) return;
     if (!isLoved) displayCommentsSection();
     await toggleIsLoved();
     setLovedCount((previousLovedCount) =>
@@ -194,14 +202,15 @@ const SubscriptionPostFooter = ({ post }: SubscriptionPostFooterProps) => {
   return (
     <PostFooter>
       <PostCounterSection>
-        <PostLikeIcon
-          isFavoriteClassName="post-is-liked"
-          color="black"
-          isFavorite={isLoved}
-          width="20px"
-          onClick={handleLikeClick}
-        />
-        <PostInteractionCount>{lovedCount}</PostInteractionCount>
+        <PostReactionButton onClick={handleLikeClick}>
+          <PostLikeIcon
+            isFavoriteClassName="post-is-liked"
+            color="black"
+            isFavorite={isLoved}
+            width="20px"
+          />
+          <PostInteractionCount>{lovedCount}</PostInteractionCount>
+        </PostReactionButton>
         <PostReactionButton onClick={displayCommentsSection}>
           <CommentIcon />
           <PostInteractionCount>{commentCount}</PostInteractionCount>
