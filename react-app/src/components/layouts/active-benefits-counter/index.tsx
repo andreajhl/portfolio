@@ -17,6 +17,8 @@ function ActiveBenefitsCounter({ className }: ActiveBenefitsCounterProps) {
   });
 
   useEffect(() => {
+    if (status === "completed") return;
+
     async function fetchBenefitCount() {
       const response: any = await apiService({
         method: "GET",
