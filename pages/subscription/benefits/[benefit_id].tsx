@@ -1,24 +1,13 @@
-import { SUBSCRIPTION_BENEFITS } from "constants/paths";
-import { GetServerSideProps } from "next";
+import { withAuthenticationRequired } from "lib/famosos-auth";
+import { useRouter } from "next/router";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
+import LoadingPage from "react-app/src/components/layouts/loading-page";
 import { SubscriptionBenefitDetails } from "react-app/src/components/pages/subscription-benefit-details";
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const benefitId = params?.benefit_id;
+function BenefitDetails() {
+  const { query } = useRouter();
+  const benefitId = query?.benefit_id?.toString?.();
 
-  if (typeof benefitId === "undefined") {
-    return {
-      redirect: { destination: SUBSCRIPTION_BENEFITS, permanent: false },
-    };
-  }
-  return {
-    props: {
-      benefitId,
-    },
-  };
-};
-
-function BenefitDetails({ benefitId }) {
   return (
     <>
       <CustomHead />
@@ -27,4 +16,6 @@ function BenefitDetails({ benefitId }) {
   );
 }
 
-export default BenefitDetails;
+export default withAuthenticationRequired(BenefitDetails, {
+  onRedirecting: LoadingPage,
+});
