@@ -3,11 +3,11 @@ import { SubscriptionViews } from "react-app/src/components/pages/subscription-v
 import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import { defineMessages } from "react-intl";
-import { GetServerSideProps } from "next";
 import {
   SUBSCRIPTION_BENEFITS_VIEW_NAME,
   SUBSCRIPTION_FEED_VIEW_NAME,
 } from "constants/paths";
+import { useRouter } from "next/router";
 
 const headData = {
   [SUBSCRIPTION_FEED_VIEW_NAME]: defineMessages({
@@ -22,13 +22,11 @@ const headData = {
   }),
 };
 
-export const getServerSideProps: GetServerSideProps = async function ({
-  params,
-}) {
-  return { props: { viewName: params?.view_name || SUBSCRIPTION_FEED_VIEW_NAME } };
-};
+function Subscription() {
+  const { query } = useRouter();
+  const viewName =
+    query?.view_name?.toString?.() || SUBSCRIPTION_FEED_VIEW_NAME;
 
-function Subscription({ viewName }) {
   return (
     <>
       <CustomHead description={headData?.[viewName]?.title} />
