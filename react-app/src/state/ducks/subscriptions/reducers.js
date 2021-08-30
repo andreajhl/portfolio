@@ -83,8 +83,12 @@ const listSubscriptionPostsReducer = thunkReducer(
   mergePreviousResults
 );
 
+const currentCelebrityReducer = (state = null, action) =>
+  action.type === types.SET_CURRENT_CELEBRITY ? action.payload : state;
+
 export default combineReducers({
   processSubscriptionReducer,
   fetchUserSubscriptionsListReducer,
   listSubscriptionPostsReducer,
+  currentCelebrityReducer,
 });

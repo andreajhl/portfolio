@@ -74,3 +74,8 @@ export const listSubscriptionPosts = (
       params,
     })
   );
+
+export const setCurrentCelebrity = (currentCelebrity) => ({
+  type: types.SET_CURRENT_CELEBRITY,
+  payload: currentCelebrity,
+});
