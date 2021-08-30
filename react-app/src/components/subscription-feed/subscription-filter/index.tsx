@@ -7,12 +7,14 @@ const defaultOption = {
   label: <FormattedMessage defaultMessage="Mostrar todas mis suscripciones" />,
 };
 
-const SubscriptionsFilter = ({
+function SubscriptionsFilter({
+  currentChoice,
   celebritiesSubscriptions,
   onChangeCelebrity,
-}) => {
+}) {
   return (
     <CelebritiesSelect
+      value={currentChoice}
       celebrities={celebritiesSubscriptions.map(
         ({ celebrityId, celebrityAvatar, celebrityFullName }) => ({
           id: celebrityId,
@@ -26,6 +28,6 @@ const SubscriptionsFilter = ({
       }}
     />
   );
-};
+}
 
 export default SubscriptionsFilter;
