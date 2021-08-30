@@ -1,6 +1,9 @@
 import getObjectWithFallbackValues from "lib/utils/getObjectWithFallbackValues";
-import { useEffect } from "react";
-import { listSubscriptionBenefits } from "react-app/src/state/ducks/celebrity-subscription-benefits/actions";
+import { useEffect, useRef } from "react";
+import {
+  listSubscriptionBenefits,
+  setListSubscriptionBenefitsOffset,
+} from "react-app/src/state/ducks/celebrity-subscription-benefits/actions";
 import { RootState } from "react-app/src/state/store";
 import { SubscriptionBenefitType } from "react-app/src/types/subscriptionBenefitType";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,6 +39,7 @@ type StateType = {
   benefits: SubscriptionBenefitType[];
   status: StatusType;
   totalResults: number;
+  currentParams: ParamsType;
 };
 
 function listSubscriptionBenefitsSelector({
@@ -46,6 +50,7 @@ function listSubscriptionBenefitsSelector({
   const state: StateType = {
     benefits: listSubscriptionBenefitsReducer?.data?.results || [],
     totalResults: listSubscriptionBenefitsReducer?.data?.totalResults,
+    currentParams: listSubscriptionBenefitsReducer?.data?.currentParams,
     status,
   };
 
@@ -54,15 +59,25 @@ function listSubscriptionBenefitsSelector({
 
 function useListSubscriptionBenefits({
   celebrityId = defaultParams.celebrityId,
-  offset = defaultParams.offset,
   limit = defaultParams.limit,
   shouldFetch = true,
-}: { shouldFetch?: boolean } & ParamsType): StateType {
+}: { shouldFetch?: boolean } & ParamsType): StateType & {
+  setOffset: (newOffset: number) => void;
+} {
   const state = useSelector(listSubscriptionBenefitsSelector);
   const dispatch = useDispatch();
+  const { currentParams } = state;
+  const { offset } = currentParams;
+  const hasFetchedRef = useRef(
+    state.benefits?.length > 0 && currentParams?.celebrityId === celebrityId
+  );
 
   useEffect(() => {
     if (!shouldFetch) return;
+    if (hasFetchedRef.current) {
+      hasFetchedRef.current = false;
+      return;
+    }
     const listParams = getObjectWithFallbackValues(
       {
         celebrityId,
@@ -74,7 +89,11 @@ function useListSubscriptionBenefits({
     dispatch(listSubscriptionBenefits(listParams));
   }, [celebrityId, dispatch, limit, offset, shouldFetch]);
 
-  return state;
+  function setOffset(offset: number) {
+    dispatch(setListSubscriptionBenefitsOffset(offset));
+  }
+
+  return { ...state, setOffset };
 }
 
 export default useListSubscriptionBenefits;

@@ -19,3 +19,8 @@ export const listSubscriptionBenefits = (
       params,
     })
   );
+
+export const setListSubscriptionBenefitsOffset = (offset = 0) => ({
+  type: types.SET_LIST_SUBSCRIPTION_BENEFITS_OFFSET,
+  payload: offset,
+});

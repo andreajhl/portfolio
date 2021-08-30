@@ -5,7 +5,7 @@ import useListSubscriptionBenefits from "lib/hooks/useListSubscriptionBenefits";
 import { LoaderLayout } from "../../layouts/loader";
 import styles from "./styles.module.scss";
 import Maybe from "../../common/helpers/maybe";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import { NotResults } from "../../layouts/not-results";
@@ -20,24 +20,32 @@ type SubscriptionBenefitsViewProps = {
 function SubscriptionBenefitsView({
   currentChoice,
 }: SubscriptionBenefitsViewProps) {
-  const [offset, setOffset] = useState(offsetInitialValue);
   const celebrityId = currentChoice?.toString?.();
-  const { benefits, totalResults, status } = useListSubscriptionBenefits({
-    offset,
+  const {
+    benefits,
+    totalResults,
+    status,
+    currentParams: { offset },
+    setOffset,
+  } = useListSubscriptionBenefits({
     limit: resultsLimit,
     celebrityId,
   });
+  const isFirstRenderRef = useRef(true);
 
   useEffect(() => {
-    setOffset(offsetInitialValue);
+    // To prevent offset change on mount and re-fetching the currently loaded benefits.
+    if (isFirstRenderRef.current) {
+      isFirstRenderRef.current = false;
+    } else {
+      setOffset(offsetInitialValue);
+    }
   }, [celebrityId]);
 
   function setNewOffset() {
-    setOffset((offset) => {
-      const nextOffset = offset + resultsLimit;
-      const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
-      return newOffset;
-    });
+    const nextOffset = offset + resultsLimit;
+    const newOffset = nextOffset < totalResults ? nextOffset : totalResults;
+    setOffset(newOffset);
   }
 
   const showLoading = offset <= 0 && status === "loading";
