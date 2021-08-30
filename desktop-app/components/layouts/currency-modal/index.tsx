@@ -1,6 +1,5 @@
 import { CurrencyIcon } from "desktop-app/components/common/icons";
 import styles from "./styles.module.scss";
-import { AVAILABLE_CURRENCIES } from "desktop-app/constants/availableCurrencies";
 import { connect } from "react-redux";
 import findAvailableCurrencyByName from "react-app/src/utils/findAvailableCurrencyByName";
 import { currencyExchange } from "react-app/src/state/ducks/payments/actions";
@@ -11,6 +10,7 @@ import { SubmitText } from "desktop-app/components/common/helpers/submit-button-
 import { analytics } from "react-app/src/state/utils/gtm";
 import { CloseModalButton } from "desktop-app/components/common/button/close-modal-button";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 
 const messages = defineMessages({
   flagImgAlt: {
