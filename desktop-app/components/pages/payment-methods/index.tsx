@@ -15,6 +15,7 @@ import { analytics } from "react-app/src/state/utils/gtm";
 import getWindow from "react-app/src/utils/getWindow";
 import { useRouter } from "next/router";
 import { defineMessages, useIntl } from "react-intl";
+import { getPurchaseSummaryPath } from "constants/paths";
 
 const messages = defineMessages({
   pageHeadingTitle: {
@@ -22,7 +23,8 @@ const messages = defineMessages({
   },
 });
 
-function trackRouteChange(newRoute: string) {
+function trackLeave(newRoute: string) {
+  if (newRoute.includes(getPurchaseSummaryPath())) return;
   analytics.track("PAYMENT_METHODS_LEAVE", {
     newRoute,
     isBackButton: false,
@@ -69,8 +71,8 @@ function PaymentMethodsPage({
   }, [contractReference]);
 
   useEffect(() => {
-    router.events.on("routeChangeStart", trackRouteChange);
-    return () => router.events.off("routeChangeStart", trackRouteChange);
+    router.events.on("routeChangeStart", trackLeave);
+    return () => router.events.off("routeChangeStart", trackLeave);
   }, [router.events]);
 
   const pageHeadingTitle = formatMessage(messages.pageHeadingTitle);

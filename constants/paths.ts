@@ -86,7 +86,7 @@ export const PAYMENT_AUTHORIZATION_INFO =
 
 export const MAINTENANCE_PATH = "/maintenance";
 
-export const getPurchaseSummaryPath = (contract_reference) =>
+export const getPurchaseSummaryPath = (contract_reference = "") =>
   PURCHASE_SUMMARY.replace(":contract_reference", contract_reference);
 
 export const CREATE_CONTRACT_QUERY_PARAM = "createContract";
@@ -166,7 +166,7 @@ export const getClientHiringShareInWhatsappPath = (contractReference) =>
     contractReference
   );
 
-export const getPaymentMethodsPath = (contractReference) =>
+export const getPaymentMethodsPath = (contractReference = "") =>
   PAYMENT_METHODS.replace(":contract_reference", contractReference);
 
 export const getStripe3dSecureIframePath = (contractReference) =>
