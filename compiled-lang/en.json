@@ -2440,7 +2440,7 @@
   "LN0I40": [
     {
       "type": 0,
-      "value": "Debit or credit card"
+      "value": "Debit or Credit card"
     }
   ],
   "LN0yuQ": [
@@ -5439,6 +5439,12 @@
     {
       "type": 0,
       "value": " now"
+    }
+  ],
+  "pGafDq": [
+    {
+      "type": 0,
+      "value": "Your code may have reached your spam folder"
     }
   ],
   "pKdjHT": [

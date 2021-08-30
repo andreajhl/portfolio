@@ -902,9 +902,6 @@
   "LKGytJ": {
     "translation": "Información de tu cuenta"
   },
-  "LN0I40": {
-    "translation": "Tarjeta de débito o crédito"
-  },
   "LPelkN": {
     "translation": "Correo electrónico de notificación"
   },
@@ -1962,6 +1959,9 @@
   "pExFGK": {
     "translation": "Enviar video a {deliveryTo} ahora"
   },
+  "pGafDq": {
+    "translation": "Es posible que tu código haya llegado a tu carpeta de spam"
+  },
   "pKdjHT": {
     "translation": "Solicitar comprobante de devolución"
   },
@@ -2386,9 +2386,6 @@
   },
   "zjdjIn": {
     "translation": "Ingresa el código de seguridad que enviamos a tu correo"
-  },
-  "zmFekE": {
-    "translation": "ESTADO DEL PAGO: APROBADO"
   },
   "zmIeqV": {
     "translation": "Menos de 3 días"

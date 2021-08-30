@@ -8,8 +8,7 @@ import useForm, { ValidationsType } from "lib/hooks/useForm";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
 import { useRouter } from "next/router";
 import { useIntl } from "react-intl";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { processSpreedlyPayment } from "react-app/src/state/ducks/payments/actions";
 import useScript from "react-script-hook";
 import styles from "./styles.module.scss";
@@ -18,6 +17,16 @@ import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCur
 import { getEmailValidator } from "lib/validations/common";
 import { getUserCookieCountryCode } from "lib/utils/getUserCookieCountryCode";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import { isACurrencyForDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
+import {
+  AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES,
+  DOCUMENT_NAME_FOR_COUNTRIES,
+} from "react-app/src/constants/messages";
+import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
+import { getTextOfFormatAllowedForUserDocument } from "react-app/src/state/utils/getTextOfFormatAllowedForUserDocument";
+import { useSelector } from "react-redux";
+import { RootState } from "react-app/src/state/store";
+import { useRef } from "react";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -29,8 +38,8 @@ const YEARS_OPTION_VALUES = NEXT_TEN_YEARS.map((el) => ({
   value: el,
 }));
 const MONTHS_OPTION_VALUES = TWELVE_MONTHS.map((el) => ({
-  placeholder: ++el,
-  value: ++el,
+  placeholder: el,
+  value: el,
 }));
 interface SpreedlyCardFormProps {
   contractReference: string;
@@ -40,8 +49,8 @@ interface SpreedlyCardFormProps {
 const initialValuesForm = {
   full_name: "",
   email: "",
-  month: "",
-  year: "",
+  month: MONTHS_OPTION_VALUES[0].value,
+  year: YEARS_OPTION_VALUES[0].value,
   identification_document: "",
 };
 
@@ -60,6 +69,7 @@ function getValidations(
     email: getEmailValidator(formatMessage),
     identification_document(value) {
       const checkDocument = allowedFormatDocuments[currency];
+
       if (typeof checkDocument === "function" && !checkDocument(value)) {
         return formatMessage(errorMessages.invalidIdentificationDocument);
       }
@@ -71,6 +81,12 @@ function SpreedlyCardForm({
   contractReference,
   discountCouponId,
 }: SpreedlyCardFormProps) {
+  // usar una referencia para mantener el ID del cupon debido a que el callback de spreedly al momento de realizar el pago
+  // no permite actualizar los valores de los closures
+  const discountCouponData = useRef(discountCouponId);
+  useEffect(() => {
+    discountCouponData.current = discountCouponId;
+  }, [discountCouponId]);
   const userCurrency = useUserCurrentCurrency();
   const { formatMessage } = useIntl();
   const { push } = useRouter();
@@ -155,6 +171,7 @@ function SpreedlyCardForm({
       startSpreedlyPayment(token);
     });
   };
+  console.log("spreedly card form", discountCouponId);
 
   const startSpreedlyPayment = async (token) => {
     const {
@@ -163,18 +180,21 @@ function SpreedlyCardForm({
       userAgent,
       geoLocalization,
     } = await getBuyerIdentityData();
+
+    const payloadPayment = {
+      contractReference: contractReference,
+      token,
+      discountCouponId: discountCouponData.current,
+      deviceId,
+      IP,
+      userAgent,
+      geoLocalization,
+    };
+
     if (!isProccesing) {
       try {
         setPaymentError(null);
-        await processSpreedlyPayment({
-          contractReference: contractReference,
-          token,
-          discountCouponId,
-          deviceId,
-          IP,
-          userAgent,
-          geoLocalization,
-        });
+        await processSpreedlyPayment(payloadPayment);
         push(getPurchaseSummaryPath(contractReference));
       } catch (error) {
         setIsProccesing(false);
@@ -190,10 +210,16 @@ function SpreedlyCardForm({
       window.Spreedly.tokenizeCreditCard({
         ...requiredFields,
         country: getUserCookieCountryCode(),
+        metadata: {
+          document: values.identification_document,
+        },
       });
       setIsProccesing(true);
     }
   };
+  const document_name_available = AVAILABLE_CURRENCIES.find(
+    (data) => data.name === userCurrency
+  );
 
   return (
     <form id="payment-form" onSubmit={submitForm}>
@@ -207,6 +233,7 @@ function SpreedlyCardForm({
             onChange={onChangeField}
             value={values.full_name}
             required={true}
+            errorMessage={errors.full_name}
           />
           <Field
             label="Email"
@@ -216,16 +243,40 @@ function SpreedlyCardForm({
             onChange={onChangeField}
             value={values.email}
             required={true}
+            errorMessage={errors.email}
           />
-          <Field
-            label="Documento de Identidad"
-            id="identification_document"
-            type="text"
-            name="identification_document"
-            onChange={onChangeField}
-            value={values.identification_document}
-            required={true}
-          />
+          {isACurrencyForDLocalPaymentMethod(userCurrency) ? (
+            <>
+              <Field
+                label={
+                  AVAILABLE_DOCUMENTS_NAME_FOR_COUNTRIES.includes(
+                    document_name_available?.name
+                  )
+                    ? formatMessage(
+                        DOCUMENT_NAME_FOR_COUNTRIES[
+                          document_name_available?.name
+                        ]
+                      )
+                    : document_name_available?.document_name
+                }
+                id="identification_document"
+                type="text"
+                name="identification_document"
+                onChange={onChangeField}
+                value={values.identification_document}
+                required={true}
+                errorMessage={errors.identification_document}
+              />
+              {errors.identification_document ? (
+                <WarningMessage
+                  className={styles.WarningMessageIdentificationDocument}
+                  message={getTextOfFormatAllowedForUserDocument(
+                    document_name_available.document_name
+                  )}
+                />
+              ) : null}
+            </>
+          ) : null}
         </div>
       </fieldset>
       <fieldset>
@@ -267,7 +318,7 @@ function SpreedlyCardForm({
                 required: true,
                 name: "month",
                 value: values.month,
-                onChange: (e) => setFieldValue("month", e.target.value),
+                onChange: onChangeField,
               }}
               styleWraper={{
                 flexGrow: 1,
@@ -282,7 +333,7 @@ function SpreedlyCardForm({
                 required: true,
                 name: "year",
                 value: values.year,
-                onChange: (e) => setFieldValue("year", e.target.value),
+                onChange: onChangeField,
               }}
               styleWraper={{
                 flexGrow: 1,
@@ -327,15 +378,23 @@ interface FieldProps
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  label: string;
+  label: string | React.ReactNode;
   styleWraper?: React.CSSProperties;
+  errorMessage?: string;
 }
-const Field = ({ label, id, styleWraper, ...inputsProps }: FieldProps) => (
+const Field = ({
+  label,
+  id,
+  styleWraper,
+  errorMessage,
+  ...inputsProps
+}: FieldProps) => (
   <div className={styles.FieldRow} style={{ ...styleWraper }}>
     <label htmlFor={id} className={styles.LabelForm}>
       {label}
     </label>
     <input {...inputsProps} className={styles.InputElement} id={id} />
+    {errorMessage && <WarningMessage message={errorMessage} />}
   </div>
 );
 

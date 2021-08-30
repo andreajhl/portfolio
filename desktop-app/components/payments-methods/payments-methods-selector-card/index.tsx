@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 import { RootState } from "react-app/src/state/store";
 import { sessionOperations } from "react-app/src/state/ducks/session";
 import { listPaymentGateways } from "react-app/src/state/ducks/payments/operations";
-import { connect, ConnectedProps } from "react-redux";
+import { connect, ConnectedProps, useSelector } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CouponForm } from "../coupon-form";
 import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
@@ -21,6 +21,7 @@ const mapStateToProps = (state: RootState) => ({
   paymentGatewayLoading: state.payments.fetchPaymentGatewaysReducer.loading,
   paymentMethodsAvailable: state.payments.fetchPaymentGatewaysReducer.data,
   couponData: state.payments.fetchDiscountCouponReducer,
+  currentPaymentMethodSelected: state.payments.userPaymentMethodSelected.name,
 });
 
 const mapDispatchToProps = {
@@ -56,9 +57,11 @@ function PaymentsMethodsSelectorCard({
   paymentGatewayLoading,
   paymentMethodsAvailable,
   couponData,
+  currentPaymentMethodSelected,
   celebrityId,
 }: PaymentsMethodsSelectorCardProps) {
   console.log(couponData);
+
   const { formatMessage } = useIntl();
   useEffect(() => {
     if (!userInformationLoading) getToken();
@@ -76,12 +79,8 @@ function PaymentsMethodsSelectorCard({
     ""
   );
 
-  const shouldDisplayDLocalForm = useMemo(
-    () =>
-      paymentMethodsAvailable.some((paymentMethodType) =>
-        isAValidDLocalPaymentMethod(paymentMethodType.paymentMethodType)
-      ),
-    [paymentMethodsAvailable]
+  const shouldDisplayDLocalForm = isAValidDLocalPaymentMethod(
+    currentPaymentMethodSelected
   );
 
   return (
