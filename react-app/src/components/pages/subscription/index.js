@@ -78,7 +78,7 @@ function Subscription({
 
                   {currentPlanSelected ? (
                     <div className="container-subscription-payment__paypalForm ">
-                      <SpreedlyCheckoutForm />
+                      <SpreedlyCheckoutForm celebrityId={celebrity.id} />
                       {/* <SubscriptionPayPalCardForm
                         planId={currentPlanSelected}
                         celebrityId={celebrity.id}
