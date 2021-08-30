@@ -12,6 +12,7 @@ import { SubscriptionBenefitsView } from "../subscription-benefits-view";
 import { SubscriptionViewsNavTabs } from "../../layouts/subscription-views-nav-tabs";
 import { NotResults } from "../../layouts/not-results";
 import { FormattedMessage } from "react-intl";
+import useSubscriptionCurrentCelebrity from "lib/hooks/useSubscriptionCurrentCelebrity";
 
 function SubscriptionViews({
   isSubscriptionListCompletedFetch,
@@ -19,7 +20,7 @@ function SubscriptionViews({
   getCelebritiesSubscribe,
   currentView,
 }) {
-  const [currentChoice, setCurrentChoice] = useState(null);
+  const [currentChoice, setCurrentChoice] = useSubscriptionCurrentCelebrity();
 
   useEffect(() => {
     getCelebritiesSubscribe();
