@@ -23,17 +23,16 @@ function subscriptionBenefitSelector({
 /* TODO: Implement GET endpoint */
 function useGetSubscriptionBenefit(benefitId: number) {
   const { benefits, status } = useSelector(subscriptionBenefitSelector);
-  const [benefit, setBenefit] = useState<SubscriptionBenefitType>();
+  const benefit: SubscriptionBenefitType = benefits?.find?.(
+    ({ id }) => benefitId === id
+  );
   const { push } = useRouter();
 
   useEffect(() => {
-    const benefit = benefits?.find?.(({ id }) => benefitId === id);
-    if (benefit) {
-      setBenefit(benefit);
-    } else {
+    if (!benefit) {
       push(SUBSCRIPTION_BENEFITS);
     }
-  }, [benefitId, benefits, push]);
+  }, [benefit, push]);
 
   return { benefit, status };
 }
