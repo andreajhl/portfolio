@@ -7,13 +7,17 @@ import DLocalPaymentMethodForm from "../dLocal-payment-method-form";
 import { ALL_AVAILABLE_PAYMENTS_METHODS } from "constants/availablePaymentsMethods";
 import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
 import { analytics } from "react-app/src/state/utils/gtm";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "react-app/src/state/store";
+import { SpreedlyForm } from "../spreedly-form";
+import { setNewPaymentMethodSelected } from "react-app/src/state/ducks/payments/actions";
 
 type all_payments_methods = typeof ALL_AVAILABLE_PAYMENTS_METHODS[number];
 
 const isProcessingPayment = ({ payments }: RootState) =>
   payments.setPaymentInProcess.processing;
+const useCurrentPaymentMethodSelected = ({ payments }: RootState) =>
+  payments.userPaymentMethodSelected.name;
 const couponData = ({ payments }: RootState) =>
   payments.fetchDiscountCouponReducer;
 
@@ -50,17 +54,16 @@ function PaymentMethodsAvailableList({
   discountCouponId,
   celebrityId,
 }: PaymentMethodsAvailableListProps) {
-  const [currentOption, setCurrentOption] = useState<all_payments_methods>(
-    null
-  );
+  const dispatch = useDispatch();
+  const useCurrentOption = useSelector(useCurrentPaymentMethodSelected);
   const disabledAccordion = useSelector(isProcessingPayment);
   const couponDataReducer = useSelector(couponData);
   const handleChangeCurrentOption = (newValue: all_payments_methods) => {
-    const previousPaymentMethod = currentOption;
+    const previousPaymentMethod = useCurrentOption;
     if (disabledAccordion || previousPaymentMethod === newValue) {
       return;
     }
-    setCurrentOption(newValue);
+    dispatch(setNewPaymentMethodSelected(newValue));
     analytics.track("CHANGE_ACTIVE_PAYMENT_METHOD_OPTION", {
       previousPaymentMethod,
       newPaymentMethod: newValue,
@@ -85,16 +88,25 @@ function PaymentMethodsAvailableList({
                   : contractPrice
               }
               contractReference={contractReference}
-              expanded={currentOption === el.paymentMethodType}
+              expanded={useCurrentOption === el.paymentMethodType}
               index={index}
               discountCouponId={discountCouponId}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
               celebrityId={celebrityId}
             />
           </Maybe>
+          <Maybe it={el.paymentMethodType === "SPREEDLY"}>
+            <SpreedlyForm
+              index={index}
+              onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
+              expanded={useCurrentOption === el.paymentMethodType}
+              contractReference={contractReference}
+              discountCouponId={discountCouponId}
+            />
+          </Maybe>
           <Maybe it={el.paymentMethodType === "PAYPAL"}>
             <PaypalForm
-              expanded={currentOption === el.paymentMethodType}
+              expanded={useCurrentOption === el.paymentMethodType}
               index={index}
               contractPrice={
                 couponDataReducer.completed
@@ -111,7 +123,7 @@ function PaymentMethodsAvailableList({
             <DLocalPaymentMethodForm
               paymentMethodType={el.paymentMethodType}
               paymentsMethodsAvailable={el.availablePaymentMethods}
-              expanded={currentOption === el.paymentMethodType}
+              expanded={useCurrentOption === el.paymentMethodType}
               index={index}
               discountCouponId={discountCouponId}
               buyerData={buyerData}

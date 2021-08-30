@@ -11,6 +11,7 @@ import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
 import isAlreadySubscribe from "../../../utils/isAlreadySubscribe";
 import { useRouter } from "next/router";
 import { FormattedMessage } from "react-intl";
+import { SpreedlyCheckoutForm } from "desktop-app/components/subscription-checkout/spreedly-checkout-form";
 
 function Subscription({
   celebrityUsername,
@@ -77,20 +78,12 @@ function Subscription({
                   <p className="container-subscription-payment__copy">
                     <FormattedMessage defaultMessage="Este precio es por una suscripción mensual y se renovará automáticamente cada mes." />
                   </p>
-                  <div
-                    className={`container-subscription-payment__paypalForm ${
-                      currentPlanSelected ? "" : "d-none"
-                    }`}
-                  >
-                    {currentPlanSelected ? (
-                      <>
-                        <SubscriptionPayPalCardForm
-                          planId={currentPlanSelected}
-                          celebrityId={celebrity.id}
-                        />
-                      </>
-                    ) : null}
-                  </div>
+
+                  {currentPlanSelected ? (
+                    <div className="container-subscription-payment__paypalForm ">
+                      <SpreedlyCheckoutForm celebrityId={celebrity.id} />
+                    </div>
+                  ) : null}
                 </>
               ) : (
                 <div className="container-subscription-payment__not-available">

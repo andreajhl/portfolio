@@ -17,6 +17,7 @@ import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import SubmitButton from "desktop-app/components/common/button/submit-button";
 
 type StripeComponentProps = {
   contractPrice: number;
@@ -250,7 +251,13 @@ function StripeCardForm({
       {(error || paymentProcessError) && (
         <WarningMessage message={error || paymentProcessError} />
       )}
-      <SubmitButton processing={processing} error={error} disabled={false}>
+      <SubmitButton
+        style={{
+          marginTop: "0.8rem",
+        }}
+        loading={processing}
+        disabled={error || processing}
+      >
         <FormattedMessage defaultMessage="Pagar" />
       </SubmitButton>
     </form>
@@ -284,18 +291,4 @@ const Field = ({
       onChange={onChange}
     />
   </div>
-);
-
-const SubmitButton = ({ processing, error, children, disabled }) => (
-  <button
-    className={`btn btn-primary ${styles.SubmitButton}`}
-    type="submit"
-    disabled={processing || disabled}
-  >
-    {processing ? (
-      <FormattedMessage defaultMessage="Procesando..." />
-    ) : (
-      children
-    )}
-  </button>
 );

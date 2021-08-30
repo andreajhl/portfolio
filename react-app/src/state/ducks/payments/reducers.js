@@ -49,6 +49,10 @@ const paymentInProcess = {
   processing: false,
 };
 
+const currentMethodSelected = {
+  name: "",
+};
+
 const createDlocalPaymentInitialState = {
   loading: false,
   failed: false,
@@ -253,10 +257,27 @@ export function setPaymentInProcess(state = paymentInProcess, action) {
   }
 }
 
+export function userPaymentMethodSelected(
+  state = currentMethodSelected,
+  action
+) {
+  switch (action.type) {
+    case types.SET_CURRENT_PAYMENT_METHOD_NAME:
+      return {
+        ...state,
+        name: action.payload.name,
+      };
+
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   fetchPaymentGatewaysReducer,
   currencyExchangeReducer,
   getContractToPayReducer,
   fetchDiscountCouponReducer,
   setPaymentInProcess,
+  userPaymentMethodSelected,
 });
