@@ -4,7 +4,7 @@ import useForm, { ValidationsType } from "lib/hooks/useForm";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import { getEmailValidator } from "lib/validations/common";
 import errorMessages from "lib/validations/errorMessages";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useScript from "react-script-hook";
 import { FormattedMessage, useIntl } from "react-intl";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
@@ -12,6 +12,7 @@ import { getUserCookieCountryCode } from "lib/utils/getUserCookieCountryCode";
 import styles from "./styles.module.scss";
 import { generateArrayOfYearsFromCurrentDate } from "lib/utils/generateArrayOfYears";
 import { generateArrayOfNumbers } from "lib/utils/generateArrayOfNumber";
+import { processSubscriptionPayment } from "react-app/src/state/ducks/payments/actions";
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
 interface SpreedlyCardFormProps {
@@ -60,11 +61,38 @@ function getValidations(
       if (typeof checkDocument === "function" && !checkDocument(value)) {
         return formatMessage(errorMessages.invalidIdentificationDocument);
       }
+      if (value.length === 0) {
+        return formatMessage(errorMessages.invalidIdentificationDocument);
+      }
+    },
+    shipping_address1(value) {
+      if (value.length === 0) {
+        return formatMessage(errorMessages.emptyAddressError);
+      }
+    },
+    shipping_country(value) {
+      if (value.length === 0) {
+        return formatMessage(errorMessages.emptyCountryError);
+      }
+    },
+    shipping_state(value) {
+      if (value.length === 0) {
+        return formatMessage(errorMessages.emptyStateError);
+      }
+    },
+    shipping_city(value) {
+      if (value.length === 0) {
+        return formatMessage(errorMessages.emptyCityError);
+      }
     },
   };
 }
 
-function SpreedlyCheckoutForm() {
+interface SpreedlyCheckoutFormProps {
+  celebrityId: string;
+}
+
+function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
   const userCurrency = useUserCurrentCurrency();
 
   const { formatMessage } = useIntl();
@@ -74,6 +102,16 @@ function SpreedlyCheckoutForm() {
     checkForExisting: true,
     onload: () => initSpreadly(),
   });
+  useEffect(() => {
+    if (window.Spreedly) {
+      initSpreadly();
+    }
+    return () => {
+      if (window.Spreedly) {
+        window.Spreedly.removeHandlers();
+      }
+    };
+  }, []);
   const { values, onChangeField, submitForm, setFieldValue, errors } = useForm({
     initialValues: initialValuesForm,
     validations: getValidations(formatMessage, userCurrency),
@@ -136,14 +174,19 @@ function SpreedlyCheckoutForm() {
     });
   };
 
-  const startSpreedlyPayment = async (token) => {
-    console.log(token);
-    // const {
-    //   deviceId,
-    //   IP,
-    //   userAgent,
-    //   geoLocalization,
-    // } = await getBuyerIdentityData();
+  const startSpreedlyPayment = async (cardToken) => {
+    if (!isProccesing) {
+      try {
+        setPaymentError(null);
+        await processSubscriptionPayment({
+          celebrityId,
+          cardToken,
+        });
+      } catch (error) {
+        setPaymentError(error.message);
+        setIsProccesing(false);
+      }
+    }
   };
   const submitPaymentForm = (requiredFields) => {
     if (!isCreatingToken) {
