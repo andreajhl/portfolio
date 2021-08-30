@@ -13,6 +13,10 @@ import styles from "./styles.module.scss";
 import { generateArrayOfYearsFromCurrentDate } from "lib/utils/generateArrayOfYears";
 import { generateArrayOfNumbers } from "lib/utils/generateArrayOfNumber";
 import { processSubscriptionPayment } from "react-app/src/state/ducks/payments/actions";
+import SubmitButton from "desktop-app/components/common/button/submit-button";
+import { useRouter } from "next/router";
+import { SUBSCRIPTION_SUCCESS } from "constants/paths";
+import WarningMessage from "desktop-app/components/common/warning-message";
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
 interface SpreedlyCardFormProps {
@@ -94,7 +98,7 @@ interface SpreedlyCheckoutFormProps {
 
 function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
   const userCurrency = useUserCurrentCurrency();
-
+  const { push, query } = useRouter();
   const { formatMessage } = useIntl();
 
   const [loading, error] = useScript({
@@ -182,8 +186,15 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           celebrityId,
           cardToken,
         });
+        push(
+          SUBSCRIPTION_SUCCESS.replace(
+            ":celebrity_username",
+            query.celebrity_username as string
+          )
+        );
       } catch (error) {
         setPaymentError(error.message);
+        setIsCreatingToken(false);
         setIsProccesing(false);
       }
     }
@@ -203,8 +214,10 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
 
   return (
     <div className="d-flex w-100 m-0 flex-column">
-      <h4>Datos de la tarjeta</h4>
-      <form>
+      <h4>
+        <FormattedMessage defaultMessage="Datos de la tarjeta" />
+      </h4>
+      <form onSubmit={submitForm}>
         <fieldset className="row">
           <div className="col-md-6 mb-3">
             <label className={styles.LabelForm} htmlFor="spreedly-number">
@@ -228,7 +241,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           </div>
           <div className="col-md-6 mb-3">
             <Field
-              label="Nombre Completo"
+              label={<FormattedMessage defaultMessage="Nombre Completo" />}
               id="full_name"
               type="text"
               name="full_name"
@@ -242,7 +255,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           <div className="col-md-3 mb-3">
             <FieldSelect
               id="month"
-              label="Mes"
+              label={<FormattedMessage defaultMessage="Mes" />}
               optionInputs={MONTHS_OPTION_VALUES}
               selectElement={{
                 required: true,
@@ -258,7 +271,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           <div className="col-md-3 mb-3">
             <FieldSelect
               id="year"
-              label="Año"
+              label={<FormattedMessage defaultMessage="Año" />}
               optionInputs={YEARS_OPTION_VALUES}
               selectElement={{
                 required: true,
@@ -303,7 +316,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
         <fieldset className="row">
           <div className="col-md-6 mb-3">
             <Field
-              label="Email"
+              label={<FormattedMessage defaultMessage="Email" />}
               id="email"
               type="text"
               name="email"
@@ -314,7 +327,9 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           </div>
           <div className="col-md-6 mb-3">
             <Field
-              label="Documento de Identidad"
+              label={
+                <FormattedMessage defaultMessage="Documento de Identidad" />
+              }
               id="identification_document"
               type="text"
               name="identification_document"
@@ -327,7 +342,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
         <fieldset className="row">
           <div className="col-md-6 mb-3">
             <Field
-              label="Dirección"
+              label={<FormattedMessage defaultMessage="Dirección" />}
               id="shipping_address1"
               type="text"
               name="shipping_address1"
@@ -338,7 +353,9 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           </div>
           <div className="col-md-6 mb-3">
             <Field
-              label="Dirección 2(opcional)"
+              label={
+                <FormattedMessage defaultMessage="Dirección 2(opcional)" />
+              }
               id="shipping_address2"
               type="text"
               name="shipping_address2"
@@ -350,7 +367,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
         <fieldset className="row">
           <div className="col-md-6 mb-3">
             <Field
-              label="País"
+              label={<FormattedMessage defaultMessage="País" />}
               id="shipping_country"
               type="text"
               name="shipping_country"
@@ -361,7 +378,9 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           </div>
           <div className="col-md-6 mb-3">
             <Field
-              label="Estado / Departamento"
+              label={
+                <FormattedMessage defaultMessage="Estado / Departamento" />
+              }
               id="shipping_state"
               type="text"
               name="shipping_state"
@@ -374,7 +393,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
         <fieldset className="row">
           <div className="col-md-6 mb-3">
             <Field
-              label="Ciudad"
+              label={<FormattedMessage defaultMessage="Ciudad" />}
               id="shipping_city"
               type="text"
               name="shipping_city"
@@ -395,6 +414,10 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
             />
           </div>
         </fieldset>
+        {paymentError && <WarningMessage message={paymentError} />}
+        <SubmitButton loading={isProccesing} disabled={isProccesing}>
+          <FormattedMessage defaultMessage="Pagar" />
+        </SubmitButton>
       </form>
     </div>
   );
@@ -407,7 +430,7 @@ interface FieldSelectProps {
     value: string | number;
     placeholder: string | number;
   }[];
-  label: string;
+  label: string | React.ReactNode;
   styleWraper?: React.CSSProperties;
   id: string;
   selectElement: React.DetailedHTMLProps<
@@ -446,7 +469,7 @@ interface FieldProps
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  label: string;
+  label: string | React.ReactNode;
   styleWraper?: React.CSSProperties;
 }
 const Field = ({ label, id, styleWraper, ...inputsProps }: FieldProps) => (
