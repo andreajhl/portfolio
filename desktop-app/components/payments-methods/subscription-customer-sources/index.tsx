@@ -72,9 +72,7 @@ function SubscriptionCustomerSources({
       customUI: ({ onClose }) => {
         return (
           <div className="custom-ui">
-            <h4>
-              <FormattedMessage defaultMessage="¿Eliminar tarjeta?" />
-            </h4>
+            <h4>¿Eliminar tarjeta?</h4>
             <br />
             <button
               className={"btn btn-danger mr-2"}
@@ -83,7 +81,7 @@ function SubscriptionCustomerSources({
                 onClose();
               }}
             >
-              <FormattedMessage defaultMessage="Si, eliminar" />
+              Si, eliminar
             </button>
             <button
               className={"btn mr-2"}
@@ -91,7 +89,7 @@ function SubscriptionCustomerSources({
                 onClose();
               }}
             >
-              <FormattedMessage defaultMessage="No" />
+              No
             </button>
           </div>
         );
