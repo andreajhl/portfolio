@@ -31,7 +31,7 @@ async function emailPasswordSignInHandler(
           "Set-Cookie",
           serialize(
             process.env.NEXT_PUBLIC_FAMOSOS_AUTH_SESSION_NAME,
-            data.token,
+            session.toString(),
             {
               path: "/",
               sameSite: "lax",
