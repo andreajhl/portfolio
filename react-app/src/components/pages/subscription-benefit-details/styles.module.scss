@@ -111,3 +111,12 @@
     margin-top: 1rem;
   }
 }
+
+.BenefitLinkAnchor.BenefitLinkAnchor {
+  color: var(--primary);
+
+  i {
+    margin-left: 0.4em;
+    color: inherit;
+  }
+}

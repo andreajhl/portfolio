@@ -10,7 +10,7 @@ const descriptionLabelsMessages: BenefitTypeMessages = defineMessages({
     defaultMessage: "Descripción del sorteo:",
   },
   VIDEO_CALL: {
-    defaultMessage: "Descripción de videollamada:",
+    defaultMessage: "Descripción de la videollamada:",
   },
   DISCOUNT: {
     defaultMessage: "Descripción del descuento:",
@@ -64,4 +64,23 @@ export function getSubscriptionNextBenefitBannerText(
   benefitType: BenefitTypeType
 ) {
   return nextBenefitBannerText[benefitType] || nextBenefitBannerText.fallback;
+}
+
+const linkLabelMessages: BenefitTypeMessages = defineMessages({
+  RAFFLE: {
+    defaultMessage: "Enlace al sorteo",
+  },
+  VIDEO_CALL: {
+    defaultMessage: "Enlace a la videollamada",
+  },
+  DISCOUNT: {
+    defaultMessage: "Enlace al descuento",
+  },
+  fallback: {
+    defaultMessage: "Enlace al beneficio",
+  },
+});
+
+export function getLinkLabelMessage(benefitType: BenefitTypeType) {
+  return linkLabelMessages[benefitType] || linkLabelMessages.fallback;
 }
