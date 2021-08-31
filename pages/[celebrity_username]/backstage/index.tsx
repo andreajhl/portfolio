@@ -8,11 +8,11 @@ import { defineMessages, useIntl } from "react-intl";
 
 const headData = defineMessages({
   titleClub: {
-    defaultMessage: "Famosos.com - Club de fans de {celebrity_username}",
+    defaultMessage: "Famosos.com - Backstage de {celebrity_username}",
   },
   descriptionClub: {
     defaultMessage:
-      "Club de fans de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.",
+      "Backstage de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.",
   },
 });
 

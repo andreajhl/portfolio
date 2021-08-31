@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { PageContainer } from "../../layouts/page-container";
 import { ProfilePicture } from "../../layouts/profile-picture";
 import { connect, ConnectedProps } from "react-redux";
-import { CallToActionButton } from "../../layouts/call-to-action-button";
 import {
   Hero,
   CelebrityInfoSection,
@@ -21,14 +20,12 @@ import {
   SubscriptionPostContent,
   SubscriptionPostHiddenContent,
 } from "../../common/cards/subscription-post-card";
-
 import { fetchUserSubscriptionsList } from "react-app/src/state/ducks/subscriptions/actions";
 import { fetchCelebritySubscriptionPlans } from "react-app/src/state/ducks/celebrities/actions";
 import isAlreadySubscribe from "react-app/src/utils/isAlreadySubscribe";
 import Maybe from "../../common/helpers/maybe";
 import LoadingPage from "../../layouts/loading-page";
 import { PriceLayout } from "../../price-layout";
-import { Link } from "../../common/routing/link";
 import { CELEBRITY_PROFILE } from "react-app/src/routing/Paths";
 import { useRouter } from "next/router";
 import { NotResults } from "../../layouts/not-results";
@@ -46,7 +43,7 @@ import { GoToSubscriptionCheckoutButton } from "../../common/button/go-to-subscr
 
 const messages = defineMessages({
   noAvailableForSubscriptionAlertText: {
-    defaultMessage: "Este famoso no esta disponible para suscripciones",
+    defaultMessage: "Este famoso no esta disponible para Backstage",
   },
 });
 
@@ -187,7 +184,7 @@ function SubscribePage({
               <ProfilePicture avatar={avatar} width="176px" />
               <CelebrityInfoTitle>{fullName}</CelebrityInfoTitle>
               <CelebrityInfoSubtitle>
-                <FormattedMessage defaultMessage="Club de Fans" />
+                <FormattedMessage defaultMessage="Backstage" />
               </CelebrityInfoSubtitle>
             </CelebrityInfoSection>
             <PlanInfoSection as="section">
@@ -197,13 +194,13 @@ function SubscribePage({
                   it={isSubscribed}
                   orElse={
                     <FormattedMessage
-                      defaultMessage="Al ser parte del club de Fans de {fullName} tendrás acceso a contenido exclusivo, sesiones live, sorteos y/o eventos privados."
+                      defaultMessage="Al ser parte del Backstage de {fullName} tendrás acceso a contenido exclusivo, sesiones live, sorteos y/o eventos privados."
                       values={{ fullName }}
                     />
                   }
                 >
                   <FormattedMessage
-                    defaultMessage="Formas parte del Club de Fans de {fullName}. Ahora tienes acceso a contenido exclusivo, sesiones live, sorteos y/o eventos privados."
+                    defaultMessage="Formas parte del Backstage de {fullName}. Ahora tienes acceso a contenido exclusivo, sesiones live, sorteos y/o eventos privados."
                     values={{ fullName }}
                   />
                 </Maybe>
@@ -242,7 +239,7 @@ function SubscribePage({
               orElse={
                 <NotResults
                   message={
-                    <FormattedMessage defaultMessage="Oops! Al parecer no hay publicaciones actualmente" />
+                    <FormattedMessage defaultMessage="Al parecer no hay publicaciones actualmente" />
                   }
                 />
               }

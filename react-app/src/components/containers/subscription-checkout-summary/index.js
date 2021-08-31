@@ -16,7 +16,7 @@ const SubscriptionCheckoutSummary = (props) => {
             alt="Famosos Backstage"
           />
           <h5>
-            <FormattedMessage defaultMessage="Beneficios del Club de Fans" />
+            <FormattedMessage defaultMessage="Beneficios del Backstage" />
           </h5>
         </header>
         <h6 className="container-subscription-checkout-summary__welcome-title">

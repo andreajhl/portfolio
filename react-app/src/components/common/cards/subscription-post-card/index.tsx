@@ -114,7 +114,7 @@ export const SubscriptionPostHiddenContent = ({
             <img src="/assets/img/lock.svg" alt="Cerradura" />
             <PostHiddenText>
               <FormattedMessage
-                defaultMessage="Únete al club de {firstName} para desbloquear este contenido"
+                defaultMessage="Únete al Backstage de {firstName} para desbloquear este contenido"
                 values={{ firstName }}
               />
             </PostHiddenText>

@@ -52,7 +52,7 @@ function Subscription({
             <div className="container-subscription-payment__header">
               <h6 className="mb-0 font-weight-bold container-subscription-payment__title">
                 <FormattedMessage
-                  defaultMessage="Suscripción al Club de Fans de {celebrityFullName}"
+                  defaultMessage="Suscripción al Backstage de {celebrityFullName}"
                   values={{ celebrityFullName: celebrity.fullName }}
                 />
               </h6>

@@ -99,7 +99,7 @@ const CelebrityCardLayout = ({
             <img
               className="celebrity__subscription-star"
               src="/assets/img/subscription-star-pink.svg"
-              alt="Icono de Club de fans"
+              alt="Icono de Backstage"
             />
           </Maybe>
           <Maybe it={contractPrice > 0 && celebrity.status === 50}>

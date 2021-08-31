@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { PageContainer } from "../../layouts/page-container";
 import { LoaderLayout } from "../../layouts/loader";
@@ -52,7 +52,7 @@ function SubscriptionViews({
           orElse={
             <NotResults
               message={
-                <FormattedMessage defaultMessage="Oops! Al parecer no estas suscrito actualmente a ningún Famoso Prime" />
+                <FormattedMessage defaultMessage="Al parecer no estas suscrito actualmente a ningún Famosos Backstage" />
               }
             />
           }
