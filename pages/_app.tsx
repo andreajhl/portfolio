@@ -15,6 +15,8 @@ import { FamososAuthProvider } from "lib/famosos-auth";
 import ptMessages from "../compiled-lang/pt.json";
 import { IsOnMobileScreenProvider } from "lib/is-on-mobile-screen";
 import isMobile from "lib/utils/isMobile";
+import { Session } from "react-app/src/state/utils/session";
+import { REDIRECT_AFTER_LOGIN } from "constants/keys";
 
 const languages = {
   en: enMessages,
@@ -57,6 +59,15 @@ function CustomApp({ Component, pageProps }) {
     return () => {
       router.events.off(ROUTE_CHANGE_START, handleRouteChange);
     };
+  }, []);
+
+  useEffect(() => {
+    const redirectAfterLoginPath = router.query?.[
+      REDIRECT_AFTER_LOGIN
+    ] as string;
+    if (redirectAfterLoginPath) {
+      Session.setRedirectPathOnLogin(redirectAfterLoginPath);
+    }
   }, []);
 
   const { locale, defaultLocale } = router;

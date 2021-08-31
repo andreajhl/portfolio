@@ -3,6 +3,7 @@ import { serialize } from "cookie";
 
 import axios from "axios";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
+import { REDIRECT_AFTER_LOGIN } from "constants/keys";
 
 async function emailPasswordSignInHandler(
   req: NextApiRequest,
@@ -18,8 +19,8 @@ async function emailPasswordSignInHandler(
   await axios
     .get(`${endpoint}/${version}/famosos-com/get-user-data`, {
       headers: {
-        authorization: "Bearer " + session
-      }
+        authorization: "Bearer " + session,
+      },
     })
     .then((response) => {
       let status = response.data.status;
@@ -35,12 +36,16 @@ async function emailPasswordSignInHandler(
             {
               path: "/",
               sameSite: "lax",
-              maxAge: ONE_YEAR_IN_MILLISECONDS
+              maxAge: ONE_YEAR_IN_MILLISECONDS,
             }
           )
         );
         if (redirectTo2.toString() !== "") {
-          res.redirect(redirectTo.toString() + "?redirectAfterLogin=" + redirectTo2.toString());
+          res.redirect(
+            redirectTo.toString() +
+              `?${REDIRECT_AFTER_LOGIN}=` +
+              redirectTo2.toString()
+          );
         } else {
           res.redirect(redirectTo.toString());
         }
