@@ -26,7 +26,6 @@ async function emailPasswordSignInHandler(
       let status = response.data.status;
       const data = response.data.data;
       if (status === "OK") {
-        console.log("1");
         // SSR
         res.setHeader(
           "Set-Cookie",
@@ -50,13 +49,11 @@ async function emailPasswordSignInHandler(
           res.redirect(redirectTo.toString());
         }
       } else {
-        console.log("2");
         res.redirect(`/authentication/failure?error=${response.data.error}`);
       }
     })
     .catch((errorResponse) => {
       if (errorResponse.response) {
-        console.log("3");
         res.redirect(
           `/authentication/failure?error=${errorResponse.response.data.error}`
         );
