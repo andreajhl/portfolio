@@ -12,7 +12,7 @@ const headData = defineMessages({
 });
 
 const redirectToSanitizedPath = {
-  destination: "/subscription/subscription-success/celebrity_username",
+  destination: "/celebrity_username/backstage/purchase-summary",
   permanent: false,
 };
 
