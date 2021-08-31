@@ -13,6 +13,7 @@ import { SubscriptionViewsNavTabs } from "../../layouts/subscription-views-nav-t
 import { NotResults } from "../../layouts/not-results";
 import { FormattedMessage } from "react-intl";
 import useSubscriptionCurrentCelebrity from "lib/hooks/useSubscriptionCurrentCelebrity";
+import { SubscriptionNextBenefitBanner } from "react-app/src/components/layouts/subscription-next-benefit-banner";
 
 function SubscriptionViews({
   isSubscriptionListCompletedFetch,
@@ -32,6 +33,9 @@ function SubscriptionViews({
     <PageContainer>
       <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
         <SubscriptionViewsNavTabs />
+        <Maybe it={currentView === SUBSCRIPTION_BENEFITS_VIEW_NAME}>
+          <SubscriptionNextBenefitBanner />
+        </Maybe>
         <SubscriptionPostsHeader>
           <Maybe it={hasSubscriptions}>
             <SubscriptionsFilter

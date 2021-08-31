@@ -1,0 +1,41 @@
+.SubscriptionNextBenefitBanner {
+  background-color: #e20036;
+  padding: 24px 0;
+}
+
+.SubscriptionNextBenefitBannerContainer {
+  display: flex;
+  max-width: 600px !important;
+}
+
+.SubscriptionNextBenefitBannerContainer > * + * {
+  margin-left: 24px;
+}
+
+.SubscriptionNextBenefitBannerButton,
+.SubscriptionNextBenefitBannerText {
+  font-weight: bold;
+  flex: 1;
+  font-size: 18px;
+  line-height: 1.2;
+
+  @media only screen and (max-width: 575px) {
+    font-size: 4.35vw;
+  }
+}
+
+.SubscriptionNextBenefitBannerText {
+  margin-bottom: 0;
+  color: white;
+
+  @media only screen and (max-width: 767px) {
+    max-width: 10.5em;
+  }
+}
+
+.SubscriptionNextBenefitBannerButton {
+  padding: 0.6em 2em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
