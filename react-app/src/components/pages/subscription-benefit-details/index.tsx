@@ -6,6 +6,7 @@ import { useIntl, FormattedMessage } from "lib/custom-intl";
 import {
   getBenefitTypeMessage,
   getDescriptionLabelMessage,
+  getLinkLabelMessage,
 } from "lib/messages/suscription-benefits";
 import classes from "classnames";
 import Maybe from "../../common/helpers/maybe";
@@ -45,6 +46,8 @@ function SubscriptionBenefitDetails({
   const translatedBenefitType = formatMessage(
     getBenefitTypeMessage(benefit?.benefit_type)
   );
+
+  const linkLabel = formatMessage(getLinkLabelMessage(benefit?.benefit_type));
 
   return (
     <PageContainer showSearch={false} showNavbar={false}>
@@ -95,6 +98,16 @@ function SubscriptionBenefitDetails({
             <FormattedMessage defaultMessage="Dinámica:" />
           </h4>
           <p>{benefit?.instructions}</p>
+          <Maybe it={Boolean(benefit?.link)}>
+            <a
+              className={`description_s ${styles.BenefitLinkAnchor}`}
+              rel="noreferrer"
+              target="_blank"
+              href={benefit?.link}
+            >
+              {linkLabel} <i className="fa fa-external-link-alt"></i>
+            </a>
+          </Maybe>
         </div>
       </div>
     </PageContainer>

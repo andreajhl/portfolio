@@ -64,6 +64,7 @@ const defaultListSubscriptionPostsParams = {
   limit: 2,
 };
 
+// This endpoint should go to /celebrity-subscription-post.
 export const listSubscriptionPosts = (
   params = defaultListSubscriptionPostsParams
 ) =>
@@ -71,6 +72,17 @@ export const listSubscriptionPosts = (
     apiService({
       method: "GET",
       path: API_PATHS.LIST_SUBSCRIPTION_POSTS_PATH,
+      params,
+    })
+  );
+
+export const publicListSubscriptionPosts = (
+  params = defaultListSubscriptionPostsParams
+) =>
+  thunkAction(types.PUBLIC_LIST_SUBSCRIPTION_POSTS_REQUEST, () =>
+    apiService({
+      method: "GET",
+      path: API_PATHS.PUBLIC_LIST_SUBSCRIPTION_POSTS_PATH,
       params,
     })
   );

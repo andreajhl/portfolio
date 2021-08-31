@@ -29,14 +29,20 @@ import Maybe from "../../common/helpers/maybe";
 import LoadingPage from "../../layouts/loading-page";
 import { PriceLayout } from "../../price-layout";
 import { Link } from "../../common/routing/link";
-import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
+import { CELEBRITY_PROFILE } from "react-app/src/routing/Paths";
 import { useRouter } from "next/router";
 import { NotResults } from "../../layouts/not-results";
 import { ConvertedPriceCopy } from "../../layouts/converted-price-copy";
 import { PoweredByFamososBanner } from "../../layouts/powered-by-famosos-banner";
-import { listSubscriptionPosts } from "react-app/src/state/ducks/subscriptions/actions";
+import {
+  listSubscriptionPosts,
+  publicListSubscriptionPosts,
+} from "react-app/src/state/ducks/subscriptions/actions";
 import { LoaderLayout } from "../../layouts/loader";
 import { FormattedMessage, defineMessages, useIntl } from "react-intl";
+import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
+import { useAuth } from "lib/famosos-auth";
+import { GoToSubscriptionCheckoutButton } from "../../common/button/go-to-subscription-checkout-button";
 
 const messages = defineMessages({
   noAvailableForSubscriptionAlertText: {
@@ -60,27 +66,34 @@ const mapStateToProps = ({
   subscriptions: {
     fetchUserSubscriptionsListReducer,
     listSubscriptionPostsReducer,
+    publicListSubscriptionPostsReducer,
   },
 }) => {
   const subscriptionPosts = listSubscriptionPostsReducer?.data?.results || [];
+  const publicSubscriptionPosts =
+    publicListSubscriptionPostsReducer?.data?.results || [];
+  const posts =
+    subscriptionPosts?.length > 0 ? subscriptionPosts : publicSubscriptionPosts;
 
   const isSubscribed = isAlreadySubscribe(
     fetchUserSubscriptionsListReducer.data,
     getCelebrityReducer.data?.username
   );
+
+  const postFetchIsCompleted =
+    listSubscriptionPostsReducer.completed ||
+    publicListSubscriptionPostsReducer.completed;
+
   return {
     subscriptionList: fetchUserSubscriptionsListReducer.data,
     isSubscribed,
     isLoading:
-      fetchCelebritySubscriptionPlansReducer.loading ||
       fetchUserSubscriptionsListReducer.loading ||
-      !fetchUserSubscriptionsListReducer.completed,
+      (!postFetchIsCompleted && !fetchUserSubscriptionsListReducer.completed),
     celebrity: getCelebrityReducer.data,
     celebritySubscriptionPlans: fetchCelebritySubscriptionPlansReducer.data,
     isLoadingPosts: listSubscriptionPostsReducer.loading,
-    posts: !isSubscribed
-      ? getOnlyPreviewPosts(subscriptionPosts)
-      : subscriptionPosts,
+    posts: !isSubscribed ? getOnlyPreviewPosts(posts) : posts,
   };
 };
 
@@ -88,6 +101,7 @@ const mapDispatchToProps = {
   fetchUserSubscriptionsList,
   fetchCelebritySubscriptionPlans,
   listSubscriptionPosts,
+  publicListSubscriptionPosts,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -101,9 +115,8 @@ function SubscribePage({
   isLoading,
   isSubscribed,
   listSubscriptionPosts,
-  celebritySubscriptionPlans,
+  publicListSubscriptionPosts,
   fetchUserSubscriptionsList,
-  fetchCelebritySubscriptionPlans,
   posts,
   isLoadingPosts,
 }: SubscribePageProps) {
@@ -113,40 +126,44 @@ function SubscribePage({
   const noAvailableForSubscriptionAlertText = formatMessage(
     messages.noAvailableForSubscriptionAlertText
   );
+  const { isLoading: isLoadingAuthentication, isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (!username) return;
+    if (isLoadingAuthentication) return;
     if (availableForSubscriptions) {
-      fetchUserSubscriptionsList();
-      fetchCelebritySubscriptionPlans(username);
-      listSubscriptionPosts({
+      const listParams = {
         celebrityId: celebrity?.id,
         offset: 0,
         limit: 10,
-      });
+      };
+      if (isAuthenticated) {
+        fetchUserSubscriptionsList();
+        listSubscriptionPosts(listParams);
+      } else {
+        publicListSubscriptionPosts(listParams);
+      }
     } else {
       alert(noAvailableForSubscriptionAlertText);
       router.push(CELEBRITY_PROFILE.replace(":celebrity_username", username));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [availableForSubscriptions, celebrity?.id, username]);
-
-  const monthlySubscription = celebritySubscriptionPlans?.find?.(
-    (plan) => plan.frequencyType === "MONTH"
-  );
+  }, [
+    availableForSubscriptions,
+    celebrity?.id,
+    username,
+    isLoadingAuthentication,
+    isAuthenticated,
+  ]);
 
   const priceLayout = (
-    <PriceLayout
-      price={monthlySubscription?.priceTier}
-      rounding
-      showPrefix={false}
-    />
+    <PriceLayout price={SUBSCRIPTION_PLAN_PRICE} showPrefix={false} />
   );
 
   const hasPosts = posts?.length > 0;
 
   return (
-    <PageContainer>
+    <PageContainer showSearch={false}>
       <Maybe it={!isLoading} orElse={<LoadingPage />}>
         <Hero>
           <div className="d-md-none">
@@ -198,16 +215,16 @@ function SubscribePage({
                     values={{ priceLayout }}
                   />
                 </PlanInfoPrice>
-                <ConvertedPriceCopy price={monthlySubscription?.priceTier} />
-                <Link
-                  href={SUBSCRIPTION.replace(":celebrity_username", username)}
-                >
-                  <div style={{ marginTop: "20px" }}>
-                    <CallToActionButton width="100%">
-                      <FormattedMessage defaultMessage="Subscribirse" />
-                    </CallToActionButton>
-                  </div>
-                </Link>
+                <ConvertedPriceCopy price={SUBSCRIPTION_PLAN_PRICE} />
+                <div style={{ marginTop: "20px" }}>
+                  <GoToSubscriptionCheckoutButton
+                    className="CallToActionButton"
+                    celebrityUsername={celebrity?.username}
+                    style={{ width: "100%" }}
+                  >
+                    <FormattedMessage defaultMessage="Subscribirse" />
+                  </GoToSubscriptionCheckoutButton>
+                </div>
               </Maybe>
             </PlanInfoSection>
           </div>

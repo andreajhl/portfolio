@@ -1,4 +1,6 @@
+import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { ContractPriceLayout } from "../../layouts/contract-price/index";
 import { PriceLayout } from "../../price-layout";
@@ -47,17 +49,13 @@ const SubscriptionPlansOptions = (props) => {
   };
   return (
     <div className="container-subscription-plan-options container">
-      <h5>Planes Disponibles</h5>
-      Mensual{" "}
-      <span className="float-right">{<PriceLayout price={price} />}</span>
-      {optionsList.map((option, index) => (
-        <SubscriptionPlanOption
-          currentPlanSelected={currentPlanSelected}
-          key={index}
-          {...option}
-          handlerClick={handlerClick}
-        />
-      ))}
+      <h5>
+        <FormattedMessage defaultMessage="Planes Disponibles" />
+      </h5>
+      <FormattedMessage defaultMessage="Mensual" />{" "}
+      <span className="float-right">
+        {<PriceLayout price={SUBSCRIPTION_PLAN_PRICE} />}
+      </span>
     </div>
   );
 };

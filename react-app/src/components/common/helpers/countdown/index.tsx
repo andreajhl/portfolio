@@ -1,4 +1,5 @@
 import useCountdownUntilDate from "lib/hooks/useCountdownUntilDate";
+import { FormattedMessage } from "react-intl";
 
 type CountdownProps = {
   finishDate: Date;
@@ -15,10 +16,25 @@ export function Countdown({
   separator = ":",
   twoDigits = true,
 }: CountdownProps) {
-  const { hours, minutes, seconds } = useCountdownUntilDate(
+  const { days, hours, minutes, seconds } = useCountdownUntilDate(
     finishDate,
     twoDigits
   );
+
+  const daysNumber = parseFloat(days);
+
+  if (daysNumber > 1) {
+    return (
+      <FormattedMessage
+        defaultMessage="{daysNumber} días"
+        values={{ daysNumber }}
+      />
+    );
+  }
+
+  if (daysNumber > 0) {
+    return <FormattedMessage defaultMessage="1 día" />;
+  }
 
   return (
     <>

@@ -3,6 +3,8 @@ import objectFromEntries from "lib/utils/objectFromEntries";
 import { useState } from "react";
 import useInterval from "./useInterval";
 
+const ONE_DAY_IN_MILLISECONDS = 86400000;
+
 const fallbackValue = 0;
 
 const toTwoDigits = (value: number): string =>
@@ -19,7 +21,9 @@ function useCountdownUntilDate(finishDate: Date, twoDigits?: boolean) {
   const [timeRemaining, setTimeRemaining] = useState(
     getClockDifference(finishDate)
   );
-  const shouldRunCountdown = Number(finishDate) - Date.now() > 0;
+  const timeDifference = Number(finishDate) - Date.now();
+  const shouldRunCountdown =
+    timeDifference > 0 && timeDifference <= ONE_DAY_IN_MILLISECONDS;
   const delay = shouldRunCountdown ? 1000 : null;
 
   useInterval(() => setTimeRemaining(getClockDifference(finishDate)), delay);

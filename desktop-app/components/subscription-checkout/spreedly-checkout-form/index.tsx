@@ -17,12 +17,10 @@ import SubmitButton from "desktop-app/components/common/button/submit-button";
 import { useRouter } from "next/router";
 import { SUBSCRIPTION_SUCCESS } from "constants/paths";
 import WarningMessage from "desktop-app/components/common/warning-message";
+import debug from "react-app/src/utils/debug";
+
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
-interface SpreedlyCardFormProps {
-  contractReference: string;
-  discountCouponId: number;
-}
 
 const NEXT_TEN_YEARS = generateArrayOfYearsFromCurrentDate(10);
 const TWELVE_MONTHS = generateArrayOfNumbers(12);
@@ -31,14 +29,14 @@ const YEARS_OPTION_VALUES = NEXT_TEN_YEARS.map((el) => ({
   value: el,
 }));
 const MONTHS_OPTION_VALUES = TWELVE_MONTHS.map((el) => ({
-  placeholder: ++el,
-  value: ++el,
+  placeholder: el,
+  value: el,
 }));
 const initialValuesForm = {
   full_name: "",
   email: "",
-  month: "",
-  year: "",
+  month: TWELVE_MONTHS[0],
+  year: NEXT_TEN_YEARS[0],
   identification_document: "",
   shipping_address1: "",
   shipping_address2: "",
@@ -193,7 +191,12 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           )
         );
       } catch (error) {
-        setPaymentError(error.message);
+        debug(error);
+        setPaymentError(
+          error?.response?.data?.error || error?.message || (
+            <FormattedMessage defaultMessage="Ha ocurrido un error" />
+          )
+        );
         setIsCreatingToken(false);
         setIsProccesing(false);
       }
@@ -205,6 +208,9 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
       window.Spreedly.tokenizeCreditCard({
         ...requiredFields,
         country: getUserCookieCountryCode(),
+        metadata: {
+          document: values.identification_document,
+        },
         retained: true,
         storage_state: "retained",
       });
@@ -221,7 +227,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
         <fieldset className="row">
           <div className="col-md-6 mb-3">
             <label className={styles.LabelForm} htmlFor="spreedly-number">
-              <FormattedMessage defaultMessage="Numero de tarjeta de credito" />
+              <FormattedMessage defaultMessage="Numero de tarjeta de crédito" />
             </label>
             <div
               id="spreedly-number"
@@ -414,7 +420,12 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
             />
           </div>
         </fieldset>
-        {paymentError && <WarningMessage message={paymentError} />}
+        {paymentError && (
+          <WarningMessage
+            className={styles.WarningMessage}
+            message={paymentError}
+          />
+        )}
         <SubmitButton loading={isProccesing} disabled={isProccesing}>
           <FormattedMessage defaultMessage="Pagar" />
         </SubmitButton>

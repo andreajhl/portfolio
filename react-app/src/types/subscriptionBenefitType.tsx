@@ -14,4 +14,5 @@ export type SubscriptionBenefitType = {
   instructions: string;
   celebrityId: number;
   isProcessing: boolean;
+  link: string;
 };

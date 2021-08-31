@@ -39,6 +39,9 @@ import {
   PostReactionButton,
 } from "./styles";
 import { useAuth } from "lib/famosos-auth";
+import { useRouter } from "next/router";
+import { Session } from "react-app/src/state/utils/session";
+import { SIGN_IN_PATH } from "constants/paths";
 
 type SubscriptionPostCardProps = {
   className?: string;
@@ -86,16 +89,26 @@ export const SubscriptionPostHiddenContent = ({
   description,
 }: SubscriptionPostHiddenContentProps) => {
   const firstName = getFirstName(fullName);
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
 
-  const subscriptionPath = SUBSCRIPTION.replace(
-    ":celebrity_username",
-    username
-  );
+  function goToSubscriptionCheckout() {
+    const subscriptionCheckoutPath = SUBSCRIPTION.replace(
+      ":celebrity_username",
+      username
+    );
+    if (isAuthenticated) {
+      router.push(subscriptionCheckoutPath);
+    } else {
+      Session.setRedirectPathOnLogin(subscriptionCheckoutPath);
+      router.push(SIGN_IN_PATH);
+    }
+  }
 
   return (
     <>
       <Maybe it={typeof imageSrc === "string"}>
-        <PostMedia as={Link} href={subscriptionPath}>
+        <PostMedia cursor="pointer" onClick={goToSubscriptionCheckout}>
           <PostHiddenImage src={imageSrc} />
           <PostHiddenDiv imageSrc={imageSrc}>
             <img src="/assets/img/lock.svg" alt="Cerradura" />
