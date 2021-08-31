@@ -49,7 +49,7 @@ export const BLOG_ENTRY = `${BLOG}/:id`;
 export const CELEBRITY_SUBSCRIBE = "/:celebrity_username/backstage";
 export const SUBSCRIPTION = `${CELEBRITY_SUBSCRIBE}/checkout`;
 export const SUBSCRIPTION_SUCCESS = `${CELEBRITY_SUBSCRIBE}/purchase-summary`;
-export const FEED_SUBSCRIPTION = "/subscription/feed";
+export const FEED_SUBSCRIPTION = "/backstage/feed";
 
 //SESSION REDIRECT
 export const SESSION_REDIRECT = "/session/redirect/";

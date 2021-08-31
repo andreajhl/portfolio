@@ -62,13 +62,13 @@ export const SUBSCRIPTION = `${CELEBRITY_SUBSCRIBE}/checkout`;
 //SUBSCRIPTION
 export const SUBSCRIPTION_SUCCESS = `${CELEBRITY_SUBSCRIBE}/purchase-summary`;
 //SUBSCRIPTION FEED
-export const FEED_SUBSCRIPTION = "/subscription/feed";
+export const FEED_SUBSCRIPTION = "/backstage/feed";
 
 export const SUBSCRIPTION_FEED_VIEW_NAME = "feed";
-export const SUBSCRIPTION_FEED = `/subscription/${SUBSCRIPTION_FEED_VIEW_NAME}`;
+export const SUBSCRIPTION_FEED = `/backstage/${SUBSCRIPTION_FEED_VIEW_NAME}`;
 
 export const SUBSCRIPTION_BENEFITS_VIEW_NAME = "benefits";
-export const SUBSCRIPTION_BENEFITS = `/subscription/${SUBSCRIPTION_BENEFITS_VIEW_NAME}`;
+export const SUBSCRIPTION_BENEFITS = `/backstage/${SUBSCRIPTION_BENEFITS_VIEW_NAME}`;
 
 export const getSubscriptionBenefitDetailsPath = (benefitId: number) =>
   `${SUBSCRIPTION_BENEFITS}/${benefitId}`;
