@@ -30,7 +30,7 @@ function SubscriptionViews({
   const hasSubscriptions = subscriptionList.length > 0;
 
   return (
-    <PageContainer>
+    <PageContainer showSearch={false}>
       <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
         <SubscriptionViewsNavTabs />
         <Maybe it={currentView === SUBSCRIPTION_BENEFITS_VIEW_NAME}>

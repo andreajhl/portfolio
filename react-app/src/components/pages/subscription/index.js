@@ -46,7 +46,7 @@ function Subscription({
   }, [celebrityUsername]);
 
   return (
-    <PageContainer>
+    <PageContainer showSearch={false}>
       <Container>
         <Row>
           <div className="container-subscription-payment col-sm-12 my-4 mx-auto f-rounded f-shadow">

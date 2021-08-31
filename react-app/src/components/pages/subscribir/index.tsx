@@ -162,7 +162,7 @@ function SubscribePage({
   const hasPosts = posts?.length > 0;
 
   return (
-    <PageContainer>
+    <PageContainer showSearch={false}>
       <Maybe it={!isLoading} orElse={<LoadingPage />}>
         <Hero>
           <div className="d-md-none">
