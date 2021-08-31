@@ -34,10 +34,14 @@ import { useRouter } from "next/router";
 import { NotResults } from "../../layouts/not-results";
 import { ConvertedPriceCopy } from "../../layouts/converted-price-copy";
 import { PoweredByFamososBanner } from "../../layouts/powered-by-famosos-banner";
-import { listSubscriptionPosts } from "react-app/src/state/ducks/subscriptions/actions";
+import {
+  listSubscriptionPosts,
+  publicListSubscriptionPosts,
+} from "react-app/src/state/ducks/subscriptions/actions";
 import { LoaderLayout } from "../../layouts/loader";
 import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
+import { useAuth } from "lib/famosos-auth";
 
 const messages = defineMessages({
   noAvailableForSubscriptionAlertText: {
@@ -61,27 +65,34 @@ const mapStateToProps = ({
   subscriptions: {
     fetchUserSubscriptionsListReducer,
     listSubscriptionPostsReducer,
+    publicListSubscriptionPostsReducer,
   },
 }) => {
   const subscriptionPosts = listSubscriptionPostsReducer?.data?.results || [];
+  const publicSubscriptionPosts =
+    publicListSubscriptionPostsReducer?.data?.results || [];
+  const posts =
+    subscriptionPosts?.length > 0 ? subscriptionPosts : publicSubscriptionPosts;
 
   const isSubscribed = isAlreadySubscribe(
     fetchUserSubscriptionsListReducer.data,
     getCelebrityReducer.data?.username
   );
+
+  const postFetchIsCompleted =
+    listSubscriptionPostsReducer.completed ||
+    publicListSubscriptionPostsReducer.completed;
+
   return {
     subscriptionList: fetchUserSubscriptionsListReducer.data,
     isSubscribed,
     isLoading:
-      fetchCelebritySubscriptionPlansReducer.loading ||
       fetchUserSubscriptionsListReducer.loading ||
-      !fetchUserSubscriptionsListReducer.completed,
+      (!postFetchIsCompleted && !fetchUserSubscriptionsListReducer.completed),
     celebrity: getCelebrityReducer.data,
     celebritySubscriptionPlans: fetchCelebritySubscriptionPlansReducer.data,
     isLoadingPosts: listSubscriptionPostsReducer.loading,
-    posts: !isSubscribed
-      ? getOnlyPreviewPosts(subscriptionPosts)
-      : subscriptionPosts,
+    posts: !isSubscribed ? getOnlyPreviewPosts(posts) : posts,
   };
 };
 
@@ -89,6 +100,7 @@ const mapDispatchToProps = {
   fetchUserSubscriptionsList,
   fetchCelebritySubscriptionPlans,
   listSubscriptionPosts,
+  publicListSubscriptionPosts,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -102,6 +114,7 @@ function SubscribePage({
   isLoading,
   isSubscribed,
   listSubscriptionPosts,
+  publicListSubscriptionPosts,
   fetchUserSubscriptionsList,
   posts,
   isLoadingPosts,
@@ -112,22 +125,35 @@ function SubscribePage({
   const noAvailableForSubscriptionAlertText = formatMessage(
     messages.noAvailableForSubscriptionAlertText
   );
+  const { isLoading: isLoadingAuthentication, isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (!username) return;
+    if (isLoadingAuthentication) return;
     if (availableForSubscriptions) {
-      fetchUserSubscriptionsList();
-      listSubscriptionPosts({
+      const listParams = {
         celebrityId: celebrity?.id,
         offset: 0,
         limit: 10,
-      });
+      };
+      if (isAuthenticated) {
+        fetchUserSubscriptionsList();
+        listSubscriptionPosts(listParams);
+      } else {
+        publicListSubscriptionPosts(listParams);
+      }
     } else {
       alert(noAvailableForSubscriptionAlertText);
       router.push(CELEBRITY_PROFILE.replace(":celebrity_username", username));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [availableForSubscriptions, celebrity?.id, username]);
+  }, [
+    availableForSubscriptions,
+    celebrity?.id,
+    username,
+    isLoadingAuthentication,
+    isAuthenticated,
+  ]);
 
   const priceLayout = (
     <PriceLayout price={SUBSCRIPTION_PLAN_PRICE} showPrefix={false} />
