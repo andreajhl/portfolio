@@ -142,7 +142,7 @@ function SubscriptionCustomerSources({
         variant="primary"
         onClick={() => startPayment()}
       >
-        <FormattedMessage defaultMessage="Pagar" />
+        <FormattedMessage defaultMessage="Suscribirme" />
       </SubmitButton>
     </div>
   );

@@ -427,7 +427,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           />
         )}
         <SubmitButton loading={isProccesing} disabled={isProccesing}>
-          <FormattedMessage defaultMessage="Pagar" />
+          <FormattedMessage defaultMessage="Suscribirme" />
         </SubmitButton>
       </form>
     </div>
