@@ -25,6 +25,7 @@ export const PostMedia = styled.div`
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  cursor: ${(props) => props.cursor || "default"};
 `;
 export const PostText = styled.p`
   margin-bottom: 9px;
