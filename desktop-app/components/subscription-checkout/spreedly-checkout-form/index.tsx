@@ -193,7 +193,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
       } catch (error) {
         debug(error);
         setPaymentError(
-          error?.message || (
+          error?.response?.data?.error || error?.message || (
             <FormattedMessage defaultMessage="Ha ocurrido un error" />
           )
         );
@@ -420,7 +420,12 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
             />
           </div>
         </fieldset>
-        {paymentError && <WarningMessage message={paymentError} />}
+        {paymentError && (
+          <WarningMessage
+            className={styles.WarningMessage}
+            message={paymentError}
+          />
+        )}
         <SubmitButton loading={isProccesing} disabled={isProccesing}>
           <FormattedMessage defaultMessage="Pagar" />
         </SubmitButton>
