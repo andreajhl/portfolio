@@ -37,6 +37,7 @@ import { PoweredByFamososBanner } from "../../layouts/powered-by-famosos-banner"
 import { listSubscriptionPosts } from "react-app/src/state/ducks/subscriptions/actions";
 import { LoaderLayout } from "../../layouts/loader";
 import { FormattedMessage, defineMessages, useIntl } from "react-intl";
+import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
 
 const messages = defineMessages({
   noAvailableForSubscriptionAlertText: {
@@ -101,9 +102,7 @@ function SubscribePage({
   isLoading,
   isSubscribed,
   listSubscriptionPosts,
-  celebritySubscriptionPlans,
   fetchUserSubscriptionsList,
-  fetchCelebritySubscriptionPlans,
   posts,
   isLoadingPosts,
 }: SubscribePageProps) {
@@ -118,7 +117,6 @@ function SubscribePage({
     if (!username) return;
     if (availableForSubscriptions) {
       fetchUserSubscriptionsList();
-      fetchCelebritySubscriptionPlans(username);
       listSubscriptionPosts({
         celebrityId: celebrity?.id,
         offset: 0,
@@ -131,16 +129,8 @@ function SubscribePage({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availableForSubscriptions, celebrity?.id, username]);
 
-  const monthlySubscription = celebritySubscriptionPlans?.find?.(
-    (plan) => plan.frequencyType === "MONTH"
-  );
-
   const priceLayout = (
-    <PriceLayout
-      price={monthlySubscription?.priceTier}
-      rounding
-      showPrefix={false}
-    />
+    <PriceLayout price={SUBSCRIPTION_PLAN_PRICE} showPrefix={false} />
   );
 
   const hasPosts = posts?.length > 0;
@@ -198,7 +188,7 @@ function SubscribePage({
                     values={{ priceLayout }}
                   />
                 </PlanInfoPrice>
-                <ConvertedPriceCopy price={monthlySubscription?.priceTier} />
+                <ConvertedPriceCopy price={SUBSCRIPTION_PLAN_PRICE} />
                 <Link
                   href={SUBSCRIPTION.replace(":celebrity_username", username)}
                 >
