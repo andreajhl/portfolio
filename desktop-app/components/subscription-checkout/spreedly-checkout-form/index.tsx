@@ -21,10 +21,6 @@ import debug from "react-app/src/utils/debug";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
-interface SpreedlyCardFormProps {
-  contractReference: string;
-  discountCouponId: number;
-}
 
 const NEXT_TEN_YEARS = generateArrayOfYearsFromCurrentDate(10);
 const TWELVE_MONTHS = generateArrayOfNumbers(12);
@@ -33,14 +29,14 @@ const YEARS_OPTION_VALUES = NEXT_TEN_YEARS.map((el) => ({
   value: el,
 }));
 const MONTHS_OPTION_VALUES = TWELVE_MONTHS.map((el) => ({
-  placeholder: ++el,
-  value: ++el,
+  placeholder: el,
+  value: el,
 }));
 const initialValuesForm = {
   full_name: "",
   email: "",
-  month: "",
-  year: "",
+  month: TWELVE_MONTHS[0],
+  year: NEXT_TEN_YEARS[0],
   identification_document: "",
   shipping_address1: "",
   shipping_address2: "",
