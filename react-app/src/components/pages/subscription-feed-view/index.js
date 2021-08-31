@@ -68,7 +68,7 @@ function SubscriptionFeedView({
           orElse={
             <NotResults
               message={
-                <FormattedMessage defaultMessage="Oops! Al parecer no hay publicaciones actualmente" />
+                <FormattedMessage defaultMessage="Al parecer no hay publicaciones actualmente" />
               }
             />
           }
