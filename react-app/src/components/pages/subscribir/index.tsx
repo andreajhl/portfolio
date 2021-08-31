@@ -29,7 +29,7 @@ import Maybe from "../../common/helpers/maybe";
 import LoadingPage from "../../layouts/loading-page";
 import { PriceLayout } from "../../price-layout";
 import { Link } from "../../common/routing/link";
-import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
+import { CELEBRITY_PROFILE } from "react-app/src/routing/Paths";
 import { useRouter } from "next/router";
 import { NotResults } from "../../layouts/not-results";
 import { ConvertedPriceCopy } from "../../layouts/converted-price-copy";
@@ -42,6 +42,7 @@ import { LoaderLayout } from "../../layouts/loader";
 import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
 import { useAuth } from "lib/famosos-auth";
+import { GoToSubscriptionCheckoutButton } from "../../common/button/go-to-subscription-checkout-button";
 
 const messages = defineMessages({
   noAvailableForSubscriptionAlertText: {
@@ -215,15 +216,15 @@ function SubscribePage({
                   />
                 </PlanInfoPrice>
                 <ConvertedPriceCopy price={SUBSCRIPTION_PLAN_PRICE} />
-                <Link
-                  href={SUBSCRIPTION.replace(":celebrity_username", username)}
-                >
-                  <div style={{ marginTop: "20px" }}>
-                    <CallToActionButton width="100%">
-                      <FormattedMessage defaultMessage="Subscribirse" />
-                    </CallToActionButton>
-                  </div>
-                </Link>
+                <div style={{ marginTop: "20px" }}>
+                  <GoToSubscriptionCheckoutButton
+                    className="CallToActionButton"
+                    celebrityUsername={celebrity?.username}
+                    style={{ width: "100%" }}
+                  >
+                    <FormattedMessage defaultMessage="Subscribirse" />
+                  </GoToSubscriptionCheckoutButton>
+                </div>
               </Maybe>
             </PlanInfoSection>
           </div>
