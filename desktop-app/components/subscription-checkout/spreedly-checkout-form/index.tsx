@@ -17,6 +17,8 @@ import SubmitButton from "desktop-app/components/common/button/submit-button";
 import { useRouter } from "next/router";
 import { SUBSCRIPTION_SUCCESS } from "constants/paths";
 import WarningMessage from "desktop-app/components/common/warning-message";
+import debug from "react-app/src/utils/debug";
+
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
 interface SpreedlyCardFormProps {
@@ -193,7 +195,12 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           )
         );
       } catch (error) {
-        setPaymentError(error.message);
+        debug(error);
+        setPaymentError(
+          error?.message || (
+            <FormattedMessage defaultMessage="Ha ocurrido un error" />
+          )
+        );
         setIsCreatingToken(false);
         setIsProccesing(false);
       }
@@ -221,7 +228,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
         <fieldset className="row">
           <div className="col-md-6 mb-3">
             <label className={styles.LabelForm} htmlFor="spreedly-number">
-              <FormattedMessage defaultMessage="Numero de tarjeta de credito" />
+              <FormattedMessage defaultMessage="Numero de tarjeta de crédito" />
             </label>
             <div
               id="spreedly-number"

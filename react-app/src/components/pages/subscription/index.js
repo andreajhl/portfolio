@@ -78,12 +78,9 @@ function Subscription({
                   <p className="container-subscription-payment__copy">
                     <FormattedMessage defaultMessage="Este precio es por una suscripción mensual y se renovará automáticamente cada mes." />
                   </p>
-
-                  {currentPlanSelected ? (
-                    <div className="container-subscription-payment__paypalForm ">
-                      <SpreedlyCheckoutForm celebrityId={celebrity.id} />
-                    </div>
-                  ) : null}
+                  <div className="container-subscription-payment__paypalForm ">
+                    <SpreedlyCheckoutForm celebrityId={celebrity.id} />
+                  </div>
                 </>
               ) : (
                 <div className="container-subscription-payment__not-available">
