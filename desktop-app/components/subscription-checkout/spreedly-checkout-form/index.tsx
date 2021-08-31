@@ -212,6 +212,9 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
       window.Spreedly.tokenizeCreditCard({
         ...requiredFields,
         country: getUserCookieCountryCode(),
+        metadata: {
+          document: values.identification_document,
+        },
         retained: true,
         storage_state: "retained",
       });
