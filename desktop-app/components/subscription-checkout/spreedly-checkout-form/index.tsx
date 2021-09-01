@@ -335,7 +335,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
         <fieldset className="row">
           <div className="col-md-6 mb-3">
             <Field
-              label={<FormattedMessage defaultMessage="Email" />}
+              label={<FormattedMessage defaultMessage="Correo electrónico" />}
               id="email"
               type="text"
               name="email"
@@ -430,7 +430,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           </div>
           <div className="col-md-6 mb-3">
             <Field
-              label="Zip Code"
+              label={<FormattedMessage defaultMessage="Código postal" />}
               id="shipping_zip"
               type="text"
               name="shipping_zip"
