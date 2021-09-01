@@ -31,7 +31,17 @@ function SubscriptionViews({
 
   return (
     <PageContainer showSearch={false}>
-      <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
+      <Maybe
+        it={isSubscriptionListCompletedFetch}
+        orElse={
+          <div
+            className="d-flex flex-column justify-content-center"
+            style={{ minHeight: "40vh" }}
+          >
+            <LoaderLayout />
+          </div>
+        }
+      >
         <SubscriptionViewsNavTabs />
         <Maybe it={currentView === SUBSCRIPTION_BENEFITS_VIEW_NAME}>
           <SubscriptionNextBenefitBanner />
@@ -46,7 +56,17 @@ function SubscriptionViews({
           </Maybe>
         </SubscriptionPostsHeader>
       </Maybe>
-      <Maybe it={isSubscriptionListCompletedFetch} orElse={<LoaderLayout />}>
+      <Maybe
+        it={isSubscriptionListCompletedFetch}
+        orElse={
+          <div
+            className="d-flex flex-column justify-content-center"
+            style={{ minHeight: "40vh" }}
+          >
+            <LoaderLayout />
+          </div>
+        }
+      >
         <Maybe
           it={hasSubscriptions}
           orElse={

@@ -62,7 +62,17 @@ function SubscriptionFeedView({
 
   return (
     <SubscriptionPostsSection>
-      <Maybe it={!showLoading} orElse={<LoaderLayout />}>
+      <Maybe
+        it={!showLoading}
+        orElse={
+          <div
+            className="d-flex flex-column justify-content-center"
+            style={{ minHeight: "40vh" }}
+          >
+            <LoaderLayout />
+          </div>
+        }
+      >
         <Maybe
           it={hasPosts}
           orElse={

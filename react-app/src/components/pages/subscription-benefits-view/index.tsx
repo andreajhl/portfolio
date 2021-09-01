@@ -55,7 +55,17 @@ function SubscriptionBenefitsView({
   return (
     <div className={styles.SubscriptionBenefitsView}>
       <div className={classes("container", styles.Container)}>
-        <Maybe it={!showLoading} orElse={<LoaderLayout />}>
+        <Maybe
+          it={!showLoading}
+          orElse={
+            <div
+              className="d-flex flex-column justify-content-center"
+              style={{ minHeight: "40vh" }}
+            >
+              <LoaderLayout />
+            </div>
+          }
+        >
           <InfiniteScroll
             dataLength={benefits?.length}
             next={setNewOffset}
