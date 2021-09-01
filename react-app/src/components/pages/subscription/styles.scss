@@ -73,8 +73,11 @@
 .container-subscription-payment__title {
   font-size: 30px;
 
-  @media only screen and (max-width: 767px) {
-    font-size: 26px;
+  @media only screen and (max-width: 575px) {
+    font-size: 5vw;
+  }
+  @media only screen and (max-width: 410px) {
+    font-size: 20px;
   }
 }
 
