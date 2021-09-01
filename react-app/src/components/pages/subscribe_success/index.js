@@ -63,9 +63,7 @@ function SubscriptionSuccess({
             <CheckIconList
               className="SubscriptionSuccessBenefitsList"
               items={[
-                <FormattedMessage defaultMessage="Felicitación en tu cumpleaños." />,
                 <FormattedMessage defaultMessage="Descuento en tu próxima compra de video personalizado." />,
-                <FormattedMessage defaultMessage="Invitación a sesiones exclusivas en vivo." />,
                 <FormattedMessage defaultMessage="Entrada con descuento a eventos." />,
                 <FormattedMessage
                   defaultMessage="Acceso a contenido exclusivo de {celebrityFullName}."
