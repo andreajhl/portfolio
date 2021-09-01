@@ -35,3 +35,12 @@
 .SelectElement {
   height: 38px !important;
 }
+
+.InputWithError {
+  border: 1px solid #ff3844;
+}
+
+.ErrorMessage {
+  margin-top: 0.5rem;
+  font-size: 12px;
+}

@@ -1,7 +1,6 @@
 import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCurrency";
 import { IntlFormatters } from "lib/custom-intl";
 import useForm, { ValidationsType } from "lib/hooks/useForm";
-import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import { getEmailValidator } from "lib/validations/common";
 import errorMessages from "lib/validations/errorMessages";
 import React, { useEffect, useState } from "react";
@@ -18,6 +17,8 @@ import { useRouter } from "next/router";
 import { SUBSCRIPTION_SUCCESS } from "constants/paths";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import debug from "react-app/src/utils/debug";
+import { CollapsibleErrorMessage } from "react-app/src/components/common/widgets/collapsible-error-message";
+import classes from "classnames";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -253,6 +254,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
               name="full_name"
               onChange={onChangeField}
               value={values.full_name}
+              error={errors.full_name}
               required={true}
             />
           </div>
@@ -272,6 +274,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
               styleWraper={{
                 flexGrow: 1,
               }}
+              error={errors.month}
             />
           </div>
           <div className="col-md-3 mb-3">
@@ -288,6 +291,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
               styleWraper={{
                 flexGrow: 1,
               }}
+              error={errors.year}
             />
           </div>
           <div className="col-md-6 mb-3">
@@ -318,7 +322,6 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
             description=""
           />
         </h4>
-
         <fieldset className="row">
           <div className="col-md-6 mb-3">
             <Field
@@ -328,6 +331,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
               name="email"
               onChange={onChangeField}
               value={values.email}
+              error={errors.email}
               required={true}
             />
           </div>
@@ -341,6 +345,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
               name="identification_document"
               onChange={onChangeField}
               value={values.identification_document}
+              error={errors.identification_document}
               required={true}
             />
           </div>
@@ -354,6 +359,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
               name="shipping_address1"
               onChange={onChangeField}
               value={values.shipping_address1}
+              error={errors.shipping_address1}
               required={true}
             />
           </div>
@@ -367,6 +373,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
               name="shipping_address2"
               onChange={onChangeField}
               value={values.shipping_address2}
+              error={errors.shipping_address2}
             />
           </div>
         </fieldset>
@@ -379,6 +386,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
               name="shipping_country"
               onChange={onChangeField}
               value={values.shipping_country}
+              error={errors.shipping_country}
               required={true}
             />
           </div>
@@ -392,6 +400,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
               name="shipping_state"
               onChange={onChangeField}
               value={values.shipping_state}
+              error={errors.shipping_state}
               required={true}
             />
           </div>
@@ -405,6 +414,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
               name="shipping_city"
               onChange={onChangeField}
               value={values.shipping_city}
+              error={errors.shipping_city}
               required={true}
             />
           </div>
@@ -416,6 +426,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
               name="shipping_zip"
               onChange={onChangeField}
               value={values.shipping_zip}
+              error={errors.shipping_zip}
               required={true}
             />
           </div>
@@ -448,6 +459,7 @@ interface FieldSelectProps {
     React.SelectHTMLAttributes<HTMLSelectElement>,
     HTMLSelectElement
   >;
+  error?: string;
 }
 
 const FieldSelect = ({
@@ -456,6 +468,7 @@ const FieldSelect = ({
   styleWraper,
   optionInputs,
   selectElement,
+  error,
 }: FieldSelectProps) => (
   <>
     <label htmlFor={id} className={styles.LabelForm}>
@@ -463,7 +476,11 @@ const FieldSelect = ({
     </label>
     <select
       {...selectElement}
-      className={`custom-select ${styles.SelectElement}`}
+      className={classes(
+        "custom-select",
+        styles.SelectElement,
+        error && styles.InputWithError
+      )}
       id={id}
     >
       {optionInputs.map((el) => (
@@ -472,6 +489,10 @@ const FieldSelect = ({
         </option>
       ))}
     </select>
+    <CollapsibleErrorMessage
+      className={styles.ErrorMessage}
+      errorMessage={error}
+    />
   </>
 );
 
@@ -482,12 +503,27 @@ interface FieldProps
   > {
   label: string | React.ReactNode;
   styleWraper?: React.CSSProperties;
+  error?: string;
 }
-const Field = ({ label, id, styleWraper, ...inputsProps }: FieldProps) => (
+const Field = ({
+  label,
+  id,
+  styleWraper,
+  error,
+  ...inputsProps
+}: FieldProps) => (
   <>
     <label htmlFor={id} className={styles.LabelForm}>
       {label}
     </label>
-    <input {...inputsProps} className={styles.InputElement} id={id} />
+    <input
+      {...inputsProps}
+      className={classes(styles.InputElement, error && styles.InputWithError)}
+      id={id}
+    />
+    <CollapsibleErrorMessage
+      className={styles.ErrorMessage}
+      errorMessage={error}
+    />
   </>
 );
