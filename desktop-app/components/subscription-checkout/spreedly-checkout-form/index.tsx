@@ -139,8 +139,8 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
     Spreedly.setNumberFormat("prettyFormat");
     Spreedly.setFieldType("number", "text");
     Spreedly.setFieldType("cvv", "text");
-    Spreedly.setPlaceholder("number", "Card");
-    Spreedly.setPlaceholder("cvv", "CVV");
+    Spreedly.setPlaceholder("number", "");
+    Spreedly.setPlaceholder("cvv", "");
     Spreedly.setStyle(
       "number",
       "width:100%;  height:25px; padding:0; margin: 0"
