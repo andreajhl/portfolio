@@ -162,7 +162,7 @@ function SubscribePage({
   return (
     <PageContainer showSearch={false}>
       <Maybe it={!isLoading} orElse={<LoadingPage />}>
-        <Hero>
+        {/* <Hero>
           <div className="d-md-none">
             <ProfilePicture
               avatar={avatar}
@@ -177,7 +177,7 @@ function SubscribePage({
               width="100%"
             />
           </div>
-        </Hero>
+        </Hero> */}
         <SectionWrapper>
           <div className="container">
             <CelebrityInfoSection>
