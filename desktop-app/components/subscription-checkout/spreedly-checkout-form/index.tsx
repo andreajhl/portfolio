@@ -221,7 +221,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
 
   return (
     <div className="d-flex w-100 m-0 flex-column">
-      <h4>
+      <h4 className="mb-3">
         <FormattedMessage defaultMessage="Datos de la tarjeta" />
       </h4>
       <form onSubmit={submitForm}>
@@ -316,7 +316,7 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
           </div>
         </fieldset>
         <hr className="mb-4" />
-        <h4>
+        <h4 className="mb-3">
           <FormattedMessage
             defaultMessage="Datos de facturación"
             description=""
