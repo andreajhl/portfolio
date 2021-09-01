@@ -47,14 +47,11 @@ const messages = defineMessages({
   },
 });
 
-const isTypeImage = ({ mediaType }: { mediaType: string }): boolean =>
-  mediaType === "IMAGE";
-
 const getOnlyPreviewPosts = (results: any[]) =>
   results
     .map(({ items, ...posts }) => ({
       ...posts,
-      items: items.filter(isTypeImage).slice(0, 1),
+      items: items.slice(0, 1).map((item) => ({ ...item, mediaType: "IMAGE" })),
     }))
     .filter(({ items, description }) => items.length > 0 || description);
 
