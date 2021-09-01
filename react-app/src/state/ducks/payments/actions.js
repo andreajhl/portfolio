@@ -538,3 +538,29 @@ export const discountCouponsGateways = (contractReference, discountCoupon) => {
       });
   };
 };
+
+export const processSubscriptionPayment = (data) => {
+  const FINAL_PATH =
+    "/custom-endpoints/user-payments/process-subscription-payment";
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false,
+    })
+      .then((res) => {
+        if (res.data.status === "OK") {
+          resolutionFunc(res.data.data);
+        } else {
+          rejectionFunc(res.data.error);
+        }
+      })
+      .catch((err) => {
+        rejectionFunc(err);
+      });
+  });
+};

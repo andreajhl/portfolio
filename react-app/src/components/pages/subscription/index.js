@@ -3,13 +3,14 @@ import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { connect } from "react-redux";
 import { PageContainer } from "../../layouts/page-container";
 import { Container, Row } from "react-bootstrap";
-import { SubscriptionPayPalCardForm } from "../../containers/subscription-paypal-card-form";
 import SubscriptionCheckoutSummary from "../../containers/subscription-checkout-summary";
 import SubscriptionPlansOptions from "../../layouts/subscription-plans-options";
 import { subscriptionsOperations } from "../../../state/ducks/subscriptions";
 import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
 import isAlreadySubscribe from "../../../utils/isAlreadySubscribe";
 import { useRouter } from "next/router";
+import { FormattedMessage } from "react-intl";
+import { SubscriptionCheckoutContainer } from "desktop-app/components/subscription-checkout-container";
 
 function Subscription({
   celebrityUsername,
@@ -44,13 +45,16 @@ function Subscription({
   }, [celebrityUsername]);
 
   return (
-    <PageContainer>
+    <PageContainer showSearch={false}>
       <Container>
         <Row>
           <div className="container-subscription-payment col-sm-12 my-4 mx-auto f-rounded f-shadow">
             <div className="container-subscription-payment__header">
               <h6 className="mb-0 font-weight-bold container-subscription-payment__title">
-                Suscripción al Club de Fans de {celebrity.fullName}
+                <FormattedMessage
+                  defaultMessage="Suscripción al Backstage de {celebrityFullName}"
+                  values={{ celebrityFullName: celebrity.fullName }}
+                />
               </h6>
             </div>
             <div className="container-subscription-payment__summary">
@@ -59,60 +63,37 @@ function Subscription({
                 celebrityAvatar={celebrity.avatar}
               />
             </div>
-            {isLoadingPlans ? null : celebritySubscriptionPlans.length > 0 ? (
-              !isAlreadySubscribe(subscriptionList, celebrityUsername) ? (
-                <>
-                  <div className="container-subscription-payment__options">
-                    <SubscriptionPlansOptions
-                      onOptionClicked={onSelectPlan}
-                      currentPlanSelected={currentPlanSelected}
-                      optionsList={monthlySubscription.plans}
-                      price={monthlySubscription?.priceTier}
-                    />
-                  </div>
-                  <p className="container-subscription-payment__copy">
-                    Este precio es por una suscripción mensual y se renovará
-                    automáticamente cada mes.
-                  </p>
-                  <div
-                    className={`container-subscription-payment__paypalForm ${
-                      currentPlanSelected ? "" : "d-none"
-                    }`}
-                  >
-                    {currentPlanSelected ? (
-                      <>
-                        <SubscriptionPayPalCardForm
-                          planId={currentPlanSelected}
-                          celebrityId={celebrity.id}
-                        />
-                      </>
-                    ) : null}
-                  </div>
-                </>
-              ) : (
-                <div className="container-subscription-payment__not-available">
-                  <h5>
-                    Ya estas suscrito a este famoso
-                    <span role="img" aria-label="smile-face">
-                      😄
-                    </span>
-                  </h5>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => router.push(FEED_SUBSCRIPTION)}
-                  >
-                    Ver mis suscripciones
-                  </button>
+            {!isAlreadySubscribe(subscriptionList, celebrityUsername) ? (
+              <>
+                <div className="container-subscription-payment__options">
+                  <SubscriptionPlansOptions
+                    onOptionClicked={onSelectPlan}
+                    currentPlanSelected={currentPlanSelected}
+                    optionsList={monthlySubscription?.plans}
+                    price={monthlySubscription?.priceTier}
+                  />
                 </div>
-              )
+                <p className="container-subscription-payment__copy">
+                  <FormattedMessage defaultMessage="Este precio es por una suscripción mensual y se renovará automáticamente cada mes." />
+                </p>
+                <div className="container-subscription-payment__paypalForm ">
+                  <SubscriptionCheckoutContainer celebrityId={celebrity.id} />
+                </div>
+              </>
             ) : (
               <div className="container-subscription-payment__not-available">
                 <h5>
-                  Actualmente este famoso no tiene planes habilitados
-                  <span role="img" aria-label="crying-face">
-                    😢
+                  <FormattedMessage defaultMessage="Ya estas suscrito a este famoso" />
+                  <span role="img" aria-label="smile-face">
+                    {"😄"}
                   </span>
                 </h5>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => router.push(FEED_SUBSCRIPTION)}
+                >
+                  <FormattedMessage defaultMessage="Ver mis suscripciones" />
+                </button>
               </div>
             )}
           </div>

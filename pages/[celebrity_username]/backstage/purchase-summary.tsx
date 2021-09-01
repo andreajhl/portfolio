@@ -1,5 +1,5 @@
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { Subscription as SubscriptionPage } from "react-app/src/components/pages/subscription";
+import { SubscriptionSuccess as SubscriptionSuccessPage } from "react-app/src/components/pages/subscribe_success";
 import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import { defineMessages } from "react-intl";
@@ -7,19 +7,19 @@ import { GetServerSideProps } from "next";
 
 const headData = defineMessages({
   titleFeed: {
-    defaultMessage: "Las ultimas publicaciones de tus famosos favoritos."
-  }
+    defaultMessage: "Las ultimas publicaciones de tus famosos favoritos.",
+  },
 });
 
 const redirectToSanitizedPath = {
-  destination: "/subscription/subscribe/celebrity_username",
-  permanent: false
+  destination: "/celebrity_username/backstage/purchase-summary",
+  permanent: false,
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   if (typeof params === "undefined") {
     return {
-      redirect: redirectToSanitizedPath
+      redirect: redirectToSanitizedPath,
     };
   }
 
@@ -27,20 +27,20 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   return {
     props: {
-      celebrityUsername
-    }
+      celebrityUsername,
+    },
   };
 };
 
-function Subscription({ celebrityUsername }) {
+function SubscriptionSuccess({ celebrityUsername }) {
   return (
     <>
       <CustomHead description={headData.titleFeed} />
-      <SubscriptionPage celebrityUsername={celebrityUsername} />
+      <SubscriptionSuccessPage celebrityUsername={celebrityUsername} />
     </>
   );
 }
 
-export default withAuthenticationRequired(Subscription, {
-  onRedirecting: () => <LoadingPage />
+export default withAuthenticationRequired(SubscriptionSuccess, {
+  onRedirecting: () => <LoadingPage />,
 });

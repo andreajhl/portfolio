@@ -51,18 +51,21 @@ export const DropdownMenuLayout = ({ isLogged }) => {
                 activeClassName={styles.NavLinkItemActive}
                 to={PATHS.CLIENT_PROFILE}
               >
-                <FormattedMessage defaultMessage="Mi perfil" description="" />
+                <FormattedMessage defaultMessage="Mi perfil" />
               </NavLink>
-
               <NavLink
                 className={styles.NavLinkItem}
                 activeClassName={styles.NavLinkItemActive}
                 to={PATHS.CLIENT_HIRINGS}
               >
-                <FormattedMessage
-                  defaultMessage="Mis contrataciones"
-                  description=""
-                />
+                <FormattedMessage defaultMessage="Mis contrataciones" />
+              </NavLink>
+              <NavLink
+                className={styles.NavLinkItem}
+                activeClassName={styles.NavLinkItemActive}
+                to={PATHS.FEED_SUBSCRIPTION}
+              >
+                <FormattedMessage defaultMessage="Mis suscripciones" />
               </NavLink>
             </>
           ) : null}
@@ -74,7 +77,7 @@ export const DropdownMenuLayout = ({ isLogged }) => {
             activeClassName={styles.NavLinkItemActive}
             to={PATHS.BLOG}
           >
-            <FormattedMessage defaultMessage="Blog" description="" />
+            <FormattedMessage defaultMessage="Blog" />
           </NavLink>
           {!isLogged ? (
             <>
@@ -90,10 +93,7 @@ export const DropdownMenuLayout = ({ isLogged }) => {
             activeClassName={styles.NavLinkItemActive}
             to={PATHS.CELEBRITY_REQUEST}
           >
-            <FormattedMessage
-              defaultMessage="Aplicar como Famoso"
-              description=""
-            />
+            <FormattedMessage defaultMessage="Aplicar como Famoso" />
           </NavLink>
           {shouldRenderDownloadAppLink ? (
             <a
@@ -106,10 +106,7 @@ export const DropdownMenuLayout = ({ isLogged }) => {
                 className={styles.CallToActionButtonDownloadApp}
                 fontSize="0.875rem"
               >
-                <FormattedMessage
-                  defaultMessage="Descargar app de Android"
-                  description=""
-                />
+                <FormattedMessage defaultMessage="Descargar app de Android" />
               </LessImportantCallToActionButton>
             </a>
           ) : null}

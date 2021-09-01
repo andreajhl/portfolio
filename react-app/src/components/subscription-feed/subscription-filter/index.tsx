@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { FormattedMessage } from "react-intl";
 import CelebritiesSelect from "../../common/forms/celebrity-select";
 
 const defaultOption = {
   value: null,
-  label: "Mostrar todas mis suscripciones",
+  label: <FormattedMessage defaultMessage="Mostrar todas mis suscripciones" />,
 };
 
-const SubscriptionsFilter = ({
+function SubscriptionsFilter({
+  currentChoice,
   celebritiesSubscriptions,
   onChangeCelebrity,
-}) => {
+}) {
   return (
     <CelebritiesSelect
+      value={currentChoice}
       celebrities={celebritiesSubscriptions.map(
         ({ celebrityId, celebrityAvatar, celebrityFullName }) => ({
           id: celebrityId,
@@ -25,6 +28,6 @@ const SubscriptionsFilter = ({
       }}
     />
   );
-};
+}
 
 export default SubscriptionsFilter;

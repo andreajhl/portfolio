@@ -25,7 +25,7 @@ function FanClubAdvertise({ celebrity }: FanClubAdvertiseProps) {
           type="button"
           className={"btn btn-tertiary " + styles.FanClubAdvertiseButton}
         >
-          <FormattedMessage defaultMessage="Unirme al Club de Fans" />
+          <FormattedMessage defaultMessage="Unirme al Backstage" />
         </button>
       </Link>
     </div>

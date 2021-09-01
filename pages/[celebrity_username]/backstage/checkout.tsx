@@ -1,5 +1,5 @@
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { SubscriptionSuccess as SubscriptionSuccessPage } from "react-app/src/components/pages/subscribe_success";
+import { Subscription as SubscriptionPage } from "react-app/src/components/pages/subscription";
 import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import { defineMessages } from "react-intl";
@@ -12,7 +12,7 @@ const headData = defineMessages({
 });
 
 const redirectToSanitizedPath = {
-  destination: "/subscription/subscription-success/celebrity_username",
+  destination: "/celebrity_username/backstage/checkout",
   permanent: false,
 };
 
@@ -32,15 +32,15 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 };
 
-function SubscriptionSuccess({ celebrityUsername }) {
+function Subscription({ celebrityUsername }) {
   return (
     <>
       <CustomHead description={headData.titleFeed} />
-      <SubscriptionSuccessPage celebrityUsername={celebrityUsername} />
+      <SubscriptionPage celebrityUsername={celebrityUsername} />
     </>
   );
 }
 
-export default withAuthenticationRequired(SubscriptionSuccess, {
+export default withAuthenticationRequired(Subscription, {
   onRedirecting: () => <LoadingPage />,
 });
