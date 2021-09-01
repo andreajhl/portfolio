@@ -216,7 +216,7 @@ function SubscribePage({
                     celebrityUsername={celebrity?.username}
                     style={{ width: "100%" }}
                   >
-                    <FormattedMessage defaultMessage="Subscribirse" />
+                    <FormattedMessage defaultMessage="Suscribirse" />
                   </GoToSubscriptionCheckoutButton>
                 </div>
               </Maybe>
