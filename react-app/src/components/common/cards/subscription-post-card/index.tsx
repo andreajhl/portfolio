@@ -169,7 +169,7 @@ export const PostSingleMedia = ({
         <VideoLayout
           videoIsMuted={videoIsMuted}
           setVideoIsMuted={setVideoIsMuted}
-          media={{ value: mediaUrl }}
+          media={{ mediaUrl }}
           classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video"
           setSlideshowIsPlaying={setSlideshowIsPlaying}
         />

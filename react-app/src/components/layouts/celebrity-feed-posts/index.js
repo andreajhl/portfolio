@@ -38,7 +38,8 @@ const CelebrityFeedPosts = ({
                   celebrityUsername,
                 } =
                   celebrityData ||
-                  getCelebrity(subscriptionList, post.celebrityId);
+                  getCelebrity(subscriptionList, post.celebrityId) ||
+                  {};
 
                 return (
                   <SubscriptionPostCard
