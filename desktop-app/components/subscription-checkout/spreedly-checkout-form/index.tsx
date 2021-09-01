@@ -36,8 +36,8 @@ const MONTHS_OPTION_VALUES = TWELVE_MONTHS.map((el) => ({
 const initialValuesForm = {
   full_name: "",
   email: "",
-  month: TWELVE_MONTHS[0],
-  year: NEXT_TEN_YEARS[0],
+  month: "",
+  year: "",
   identification_document: "",
   shipping_address1: "",
   shipping_address2: "",
@@ -56,6 +56,16 @@ function getValidations(
     full_name(value) {
       if (value.length === 0) {
         return formatMessage(errorMessages.emptyNameError);
+      }
+    },
+    month(value) {
+      if (value?.length === 0) {
+        return formatMessage(errorMessages.emptyMonth);
+      }
+    },
+    year(value) {
+      if (value?.length === 0) {
+        return formatMessage(errorMessages.emptyYear);
       }
     },
     email: getEmailValidator(formatMessage),
@@ -483,6 +493,8 @@ const FieldSelect = ({
       )}
       id={id}
     >
+      {/* eslint-disable-next-line react/jsx-no-literals */}
+      <option value="">- -</option>
       {optionInputs.map((el) => (
         <option key={el.value} value={el.value}>
           {el.placeholder}

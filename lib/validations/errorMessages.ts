@@ -18,6 +18,8 @@ const errorMessages = defineMessages({
     defaultMessage: "Ingresa tu mensaje",
   },
   emptyDate: { defaultMessage: "Ingresa una fecha" },
+  emptyMonth: { defaultMessage: "Ingresa un mes" },
+  emptyYear: { defaultMessage: "Ingresa un año" },
   invalidDate: {
     defaultMessage: "Ingresa una fecha valida. Ejemplo: 2020-06-25",
   },
