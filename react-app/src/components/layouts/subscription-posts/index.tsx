@@ -6,7 +6,7 @@ type ChildrenProp = {
 };
 
 const Container = styled.div.attrs({ className: "container" })`
-  max-width: 600px;
+  max-width: 600px !important;
 `;
 
 const PostsSection = styled.section`

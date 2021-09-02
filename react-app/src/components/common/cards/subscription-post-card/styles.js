@@ -1,3 +1,4 @@
+import { LikeButton } from "desktop-app/components/common/button/like";
 import styled from "styled-components";
 import { Card } from "..";
 
@@ -19,14 +20,12 @@ export const PostDate = styled.span`
 `;
 export const PostMedia = styled.div`
   display: block;
-  width: 100%;
-  /* height: 367.64px; */
   height: 86.06vw;
-  max-width: 542px;
-  max-height: 542px;
+  max-height: 572px;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  cursor: ${(props) => props.cursor || "default"};
 `;
 export const PostText = styled.p`
   margin-bottom: 9px;
@@ -92,12 +91,45 @@ export const PostSubscribeButton = styled.button`
 `;
 export const PostFooter = styled.footer`
   display: flex;
-  align-items: center;
+  flex-flow: column;
   border-top: 2px solid #f0f2f5;
-  padding: 18px 14px 4px;
+
+  margin-top: 1.25rem;
 `;
 export const PostInteractionCount = styled.span`
   font-size: 12px;
   margin: 0 16px 0 9px;
   font-weight: bold;
+`;
+
+export const PostCounterSection = styled.div`
+  padding-top: 1rem;
+  padding-left: 23px;
+
+  & + section {
+    margin-top: 1rem;
+    border-top: 2px solid #f0f2f5;
+  }
+`;
+
+export const PostLikeIcon = styled(LikeButton)`
+  &:not(.post-is-liked) {
+    color: ${(props) => props.color};
+    fill: none;
+  }
+
+  path {
+    stroke-width: 1.5px;
+  }
+`;
+
+export const PostReactionButton = styled.button`
+  padding: 0;
+  background: none;
+  border: none;
+
+  &,
+  & * {
+    line-height: 1;
+  }
 `;

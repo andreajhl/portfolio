@@ -1,3 +1,4 @@
+import { CommentItem } from "desktop-app/components/common/comment-element";
 import styles from "./styles.module.scss";
 
 type CommentsContractVideoProps = {
@@ -15,22 +16,11 @@ function CommentsContractVideo({
   return (
     <div className={styles.CommentsContractVideoWrapper}>
       {contractComments.map((comment, index) => (
-        <div
-          className={styles.CommentWrapper}
-          key={`${comment.comment}-${comment.userFullName}`}
-        >
-          <img
-            alt="Avatar"
-            height="40px"
-            width="40px"
-            className={styles.UserImgProfile}
-            src="/assets/img/avatar-blank.png"
-          />
-          <div className={styles.CommentDetails}>
-            <span className={styles.UserFullName}>{comment.userFullName}</span>
-            <span className={styles.UserComment}>{comment.comment}</span>
-          </div>
-        </div>
+        <CommentItem
+          key={index}
+          userFullName={comment.userFullName}
+          comment={comment.comment}
+        />
       ))}
     </div>
   );

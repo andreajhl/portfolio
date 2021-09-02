@@ -31,25 +31,27 @@ const CelebrityFeedPosts = ({
           endMessage={<PoweredByFamososBanner />}
         >
           {posts
-            ? posts.map(({ id, created, description, urls, celebrityId }) => {
+            ? posts.map((post) => {
                 const {
                   celebrityAvatar,
                   celebrityFullName,
                   celebrityUsername,
                 } =
-                  celebrityData || getCelebrity(subscriptionList, celebrityId);
+                  celebrityData ||
+                  getCelebrity(subscriptionList, post.celebrityId) ||
+                  {};
 
                 return (
                   <SubscriptionPostCard
                     avatar={celebrityAvatar}
                     fullName={celebrityFullName}
                     username={celebrityUsername}
-                    date={created}
-                    key={id}
+                    post={post}
+                    key={post.id}
                   >
                     <SubscriptionPostContent
-                      urls={urls}
-                      description={description}
+                      items={post?.items}
+                      description={post?.description}
                     />
                   </SubscriptionPostCard>
                 );

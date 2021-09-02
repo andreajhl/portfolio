@@ -1,4 +1,5 @@
 // Handle Fetch Errors
+import debug from "react-app/src/utils/debug";
 import { Session } from "./session";
 
 function getCleanObject(object) {
@@ -21,6 +22,7 @@ function getParseableError(error) {
     return getCleanObject(error.toJSON());
   }
 
+  debug(error);
   /* Default value to prevent errors. */
   return {
     data: {

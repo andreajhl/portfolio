@@ -28,6 +28,7 @@
 }
 
 .CelebrityCardThumbnailHeader {
+  align-items: flex-start;
   justify-content: space-between;
   top: 0;
 }
@@ -120,4 +121,9 @@
 
 .DiscountPrice {
   color: var(--danger);
+}
+
+.BackstageIcon {
+  position: absolute;
+  top: -1.5rem;
 }

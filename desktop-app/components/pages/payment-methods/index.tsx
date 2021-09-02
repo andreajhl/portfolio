@@ -83,7 +83,7 @@ function PaymentMethodsPage({
         children={pageHeadingTitle}
       />
       <div className={`container ${styles.PaymentMethodsPageContent}`}>
-        <div className={styles.PaymentMethodsPageContentLeftSide}>
+        <div className={styles.PaymentMethodsPurchaseForm}>
           <Maybe
             it={isCompleted && !isLoading}
             orElse={<ContractInfoSkeleton />}
@@ -102,12 +102,6 @@ function PaymentMethodsPage({
               priceBeforeCelebrityDiscount={contract.original_price}
             />
           </Maybe>
-          <WhatHappensBeforeBanner
-            className={styles.WhatHappensBeforeBannerModifier}
-            direction={"column"}
-          />
-        </div>
-        <div className={styles.PaymentMethodsPageContentRightSide}>
           <Maybe
             it={isCompleted && !isLoading}
             orElse={<PaymentMethodsSelectorCardSkeleton />}
@@ -119,6 +113,10 @@ function PaymentMethodsPage({
             />
           </Maybe>
         </div>
+        <WhatHappensBeforeBanner
+          className={styles.WhatHappensBeforeBannerModifier}
+          direction={"column"}
+        />
       </div>
     </PageContainer>
   );

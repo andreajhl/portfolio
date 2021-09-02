@@ -1,0 +1,1 @@
+export const SUBSCRIPTION_PLAN_PRICE = 2.99;

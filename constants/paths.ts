@@ -29,9 +29,9 @@ export const AUTH_SUCCESS = "/authentication/success";
 export const SIGN_IN_PATH = "/auth/sign-in/";
 export const SIGN_IN_FROM_PATH = "/auth/sign-in/from";
 export const SIGN_UP_FROM_PATH = "/auth/sign-up/from";
-export const SIGN_IN_WITH_SPECIFIC_FORM_PATH = "/auth/sign-in/:form/";
+export const SIGN_IN_WITH_SPECIFIC_FORM_PATH = SIGN_IN_PATH;
 export const SIGN_UP_PATH = "/auth/sign-up";
-export const SIGN_UP_WITH_SPECIFIC_FORM_PATH = "/auth/sign-up/:form/";
+export const SIGN_UP_WITH_SPECIFIC_FORM_PATH = SIGN_UP_PATH;
 export const VALIDATE_SECURITY_CODE = "/auth/validate-security-code/:form";
 export const RESET_PASSWORD_PATH = "/auth/reset-password";
 export const CHANGE_PASSWORD_PATH = "/auth/change-password";
@@ -57,13 +57,25 @@ export const TRENDING = "/tendencias";
 export const BLOG = "/blog";
 export const BLOG_ENTRY = `${BLOG}/:id`;
 //SUBSCRIPTION
-export const CELEBRITY_SUBSCRIBE = "/:celebrity_username/club";
-export const SUBSCRIPTION = "/subscription/subscribe/:celebrity_username";
+export const CELEBRITY_SUBSCRIBE = "/:celebrity_username/backstage";
+export const SUBSCRIPTION = `${CELEBRITY_SUBSCRIBE}/checkout`;
 //SUBSCRIPTION
-export const SUBSCRIPTION_SUCCESS =
-  "/subscription/subscription-success/:celebrity_username";
+export const SUBSCRIPTION_SUCCESS = `${CELEBRITY_SUBSCRIBE}/purchase-summary`;
 //SUBSCRIPTION FEED
-export const FEED_SUBSCRIPTION = "/subscription/feed";
+export const FEED_SUBSCRIPTION = "/backstage/feed";
+
+export const SUBSCRIPTION_FEED_VIEW_NAME = "feed";
+export const SUBSCRIPTION_FEED = `/backstage/${SUBSCRIPTION_FEED_VIEW_NAME}`;
+
+export const SUBSCRIPTION_BENEFITS_VIEW_NAME = "benefits";
+export const SUBSCRIPTION_BENEFITS = `/backstage/${SUBSCRIPTION_BENEFITS_VIEW_NAME}`;
+
+export const getSubscriptionBenefitDetailsPath = (benefitId: number) =>
+  `${SUBSCRIPTION_BENEFITS}/${benefitId}`;
+
+export const getSubscriptionPostDetailsPath = (postId: number) =>
+  `${SUBSCRIPTION_FEED}/${postId}`;
+
 //SESSION REDIRECT
 export const SESSION_REDIRECT = "/session/redirect/";
 

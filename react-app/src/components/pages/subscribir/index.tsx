@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { PageContainer } from "../../layouts/page-container";
 import { ProfilePicture } from "../../layouts/profile-picture";
-import { connect } from "react-redux";
-import { CallToActionButton } from "../../layouts/call-to-action-button";
+import { connect, ConnectedProps } from "react-redux";
 import {
   Hero,
   CelebrityInfoSection,
@@ -15,116 +14,152 @@ import {
   SectionWrapper,
   LastsPostsTitle,
 } from "./styles";
-import {
-  SubscriptionPostsHeader,
-  SubscriptionPostsSection,
-} from "../../layouts/subscription-posts";
+import { SubscriptionPostsSection } from "../../layouts/subscription-posts";
 import {
   SubscriptionPostCard,
   SubscriptionPostContent,
   SubscriptionPostHiddenContent,
 } from "../../common/cards/subscription-post-card";
-import { SubscriptionPostType } from "react-app/src/types/subscriptionPostType";
 import { fetchUserSubscriptionsList } from "react-app/src/state/ducks/subscriptions/actions";
 import { fetchCelebritySubscriptionPlans } from "react-app/src/state/ducks/celebrities/actions";
 import isAlreadySubscribe from "react-app/src/utils/isAlreadySubscribe";
 import Maybe from "../../common/helpers/maybe";
 import LoadingPage from "../../layouts/loading-page";
 import { PriceLayout } from "../../price-layout";
-import { Link } from "../../common/routing/link";
-import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
+import { CELEBRITY_PROFILE } from "react-app/src/routing/Paths";
 import { useRouter } from "next/router";
-import { getPostsFromCelebrity } from "react-app/src/firebase/firestoreService";
-import { NotPostsResults } from "../subscription-feed";
+import { NotResults } from "../../layouts/not-results";
 import { ConvertedPriceCopy } from "../../layouts/converted-price-copy";
 import { PoweredByFamososBanner } from "../../layouts/powered-by-famosos-banner";
+import {
+  listSubscriptionPosts,
+  publicListSubscriptionPosts,
+} from "react-app/src/state/ducks/subscriptions/actions";
+import { LoaderLayout } from "../../layouts/loader";
+import { FormattedMessage, defineMessages, useIntl } from "react-intl";
+import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
+import { useAuth } from "lib/famosos-auth";
+import { GoToSubscriptionCheckoutButton } from "../../common/button/go-to-subscription-checkout-button";
 
-const isTypeImage = ({ type }: { type: string }): boolean => type === "image";
+const messages = defineMessages({
+  noAvailableForSubscriptionAlertText: {
+    defaultMessage: "Este famoso no esta disponible para Backstage",
+  },
+});
 
 const getOnlyPreviewPosts = (results: any[]) =>
   results
-    .map(({ urls, ...posts }) => ({
+    .map(({ items, ...posts }) => ({
       ...posts,
-      urls: urls.filter(isTypeImage).slice(0, 1),
+      items: items.slice(0, 1).map((item) => ({ ...item, mediaType: "IMAGE" })),
     }))
-    .filter(({ urls, description }) => urls.length > 0 || description);
+    .filter(({ items, description }) => items.length > 0 || description);
 
 const mapStateToProps = ({
   celebrities: { getCelebrityReducer, fetchCelebritySubscriptionPlansReducer },
-  subscriptions: { fetchUserSubscriptionsListReducer },
-}) => ({
-  subscriptionList: fetchUserSubscriptionsListReducer.data,
-  isSubscribed: isAlreadySubscribe(
+  subscriptions: {
+    fetchUserSubscriptionsListReducer,
+    listSubscriptionPostsReducer,
+    publicListSubscriptionPostsReducer,
+  },
+}) => {
+  const subscriptionPosts = listSubscriptionPostsReducer?.data?.results || [];
+  const publicSubscriptionPosts =
+    publicListSubscriptionPostsReducer?.data?.results || [];
+  const posts =
+    subscriptionPosts?.length > 0 ? subscriptionPosts : publicSubscriptionPosts;
+
+  const isSubscribed = isAlreadySubscribe(
     fetchUserSubscriptionsListReducer.data,
     getCelebrityReducer.data?.username
-  ),
-  isLoading:
-    fetchCelebritySubscriptionPlansReducer.loading ||
-    fetchUserSubscriptionsListReducer.loading ||
-    !fetchUserSubscriptionsListReducer.completed,
-  celebrity: getCelebrityReducer.data,
-  celebritySubscriptionPlans: fetchCelebritySubscriptionPlansReducer.data,
-});
+  );
+
+  const postFetchIsCompleted =
+    listSubscriptionPostsReducer.completed ||
+    publicListSubscriptionPostsReducer.completed;
+
+  return {
+    subscriptionList: fetchUserSubscriptionsListReducer.data,
+    isSubscribed,
+    isLoading:
+      fetchUserSubscriptionsListReducer.loading ||
+      (!postFetchIsCompleted && !fetchUserSubscriptionsListReducer.completed),
+    celebrity: getCelebrityReducer.data,
+    celebritySubscriptionPlans: fetchCelebritySubscriptionPlansReducer.data,
+    isLoadingPosts: listSubscriptionPostsReducer.loading,
+    posts: !isSubscribed ? getOnlyPreviewPosts(posts) : posts,
+  };
+};
 
 const mapDispatchToProps = {
   fetchUserSubscriptionsList,
   fetchCelebritySubscriptionPlans,
+  listSubscriptionPosts,
+  publicListSubscriptionPosts,
 };
 
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type SubscribePageProps = {} & StateProps & DispatchProps;
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const SubscribePage = ({
+type SubscribePageProps = {} & PropsFromRedux;
+
+function SubscribePage({
   celebrity,
   isLoading,
   isSubscribed,
-  subscriptionList,
-  celebritySubscriptionPlans,
+  listSubscriptionPosts,
+  publicListSubscriptionPosts,
   fetchUserSubscriptionsList,
-  fetchCelebritySubscriptionPlans,
-}: SubscribePageProps) => {
+  posts,
+  isLoadingPosts,
+}: SubscribePageProps) {
   const router = useRouter();
+  const { formatMessage } = useIntl();
   const { avatar, fullName, username, availableForSubscriptions } = celebrity;
-  const [posts, setPosts] = useState<SubscriptionPostType[]>([]);
+  const noAvailableForSubscriptionAlertText = formatMessage(
+    messages.noAvailableForSubscriptionAlertText
+  );
+  const { isLoading: isLoadingAuthentication, isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (!username) return;
+    if (isLoadingAuthentication) return;
     if (availableForSubscriptions) {
-      fetchUserSubscriptionsList();
-      fetchCelebritySubscriptionPlans(username);
+      const listParams = {
+        celebrityId: celebrity?.id,
+        offset: 0,
+        limit: 10,
+      };
+      if (isAuthenticated) {
+        fetchUserSubscriptionsList();
+        listSubscriptionPosts(listParams);
+      } else {
+        publicListSubscriptionPosts(listParams);
+      }
     } else {
-      alert("Este famoso no esta disponible para suscripciones");
+      alert(noAvailableForSubscriptionAlertText);
       router.push(CELEBRITY_PROFILE.replace(":celebrity_username", username));
     }
-  }, [availableForSubscriptions, router, username]);
-
-  useEffect(() => {
-    if (isLoading) return;
-    const fetchPosts = async () => {
-      const posts = await getPostsFromCelebrity("dev_posts", celebrity.id, 10);
-      setPosts(!isSubscribed ? getOnlyPreviewPosts(posts) : posts);
-    };
-    fetchPosts();
-  }, [isLoading, isSubscribed, celebrity.id]);
-
-  const monthlySubscription = celebritySubscriptionPlans?.find?.(
-    (plan) => plan.frequencyType === "MONTH"
-  );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    availableForSubscriptions,
+    celebrity?.id,
+    username,
+    isLoadingAuthentication,
+    isAuthenticated,
+  ]);
 
   const priceLayout = (
-    <PriceLayout
-      price={monthlySubscription?.priceTier}
-      rounding
-      showPrefix={false}
-    />
+    <PriceLayout price={SUBSCRIPTION_PLAN_PRICE} showPrefix={false} />
   );
 
+  const hasPosts = posts?.length > 0;
+
   return (
-    <PageContainer>
+    <PageContainer showSearch={false}>
       <Maybe it={!isLoading} orElse={<LoadingPage />}>
-        <Hero>
+        {/* <Hero>
           <div className="d-md-none">
             <ProfilePicture
               avatar={avatar}
@@ -139,83 +174,110 @@ const SubscribePage = ({
               width="100%"
             />
           </div>
-        </Hero>
+        </Hero> */}
         <SectionWrapper>
           <div className="container">
             <CelebrityInfoSection>
               <ProfilePicture avatar={avatar} width="176px" />
               <CelebrityInfoTitle>{fullName}</CelebrityInfoTitle>
-              <CelebrityInfoSubtitle>Club de Fans</CelebrityInfoSubtitle>
+              <CelebrityInfoSubtitle>
+                <FormattedMessage defaultMessage="Backstage" />
+              </CelebrityInfoSubtitle>
             </CelebrityInfoSection>
             <PlanInfoSection as="section">
               <PlanInfoStar />
               <PlanInfoDescription>
                 <Maybe
                   it={isSubscribed}
-                  orElse={`Al ser parte del club de Fans de ${fullName} tendrás`}
+                  orElse={
+                    <FormattedMessage
+                      defaultMessage="Al ser parte del Backstage de {fullName} tendrás acceso a contenido exclusivo, sesiones live, sorteos y/o eventos privados."
+                      values={{ fullName }}
+                    />
+                  }
                 >
-                  Formas parte del Club de Fans de {fullName}. Ahora tienes
-                </Maybe>{" "}
-                acceso a contenido exclusivo, sesiones live, sorteos y/o eventos
-                privados.
+                  <FormattedMessage
+                    defaultMessage="Formas parte del Backstage de {fullName}. Ahora tienes acceso a contenido exclusivo, sesiones live, sorteos y/o eventos privados."
+                    values={{ fullName }}
+                  />
+                </Maybe>
               </PlanInfoDescription>
               <Maybe it={!isSubscribed}>
-                <PlanInfoPrice>{priceLayout} /mes</PlanInfoPrice>
-                <ConvertedPriceCopy price={monthlySubscription?.priceTier} />
-                <Link
-                  href={SUBSCRIPTION.replace(":celebrity_username", username)}
-                >
-                  <div style={{ marginTop: "20px" }}>
-                    <CallToActionButton width="100%">
-                      Subscribirse
-                    </CallToActionButton>
-                  </div>
-                </Link>
+                <PlanInfoPrice>
+                  <FormattedMessage
+                    defaultMessage="{priceLayout} /mes"
+                    values={{ priceLayout }}
+                  />
+                </PlanInfoPrice>
+                <ConvertedPriceCopy price={SUBSCRIPTION_PLAN_PRICE} />
+                <div style={{ marginTop: "20px" }}>
+                  <GoToSubscriptionCheckoutButton
+                    className="CallToActionButton"
+                    celebrityUsername={celebrity?.username}
+                    style={{ width: "100%" }}
+                  >
+                    <FormattedMessage defaultMessage="Suscribirse" />
+                  </GoToSubscriptionCheckoutButton>
+                </div>
               </Maybe>
             </PlanInfoSection>
           </div>
         </SectionWrapper>
         <SubscriptionPostsSection>
-          <LastsPostsTitle>Últimas publicaciones de {fullName}</LastsPostsTitle>
-          {posts.map((post) => (
-            <SubscriptionPostCard
-              avatar={avatar}
-              fullName={fullName}
-              username={username}
-              date={post.created}
-            >
-              <Maybe
-                it={isSubscribed}
-                orElse={
-                  <SubscriptionPostHiddenContent
-                    imageSrc={post?.urls?.[0]?.value}
-                    username={username}
-                    price={priceLayout}
-                    fullName={fullName}
-                    description={post.description}
-                  />
-                }
-              >
-                <SubscriptionPostContent
-                  urls={post.urls}
-                  description={post.description}
+          <Maybe it={!isLoadingPosts} orElse={<LoaderLayout />}>
+            <LastsPostsTitle>
+              <FormattedMessage
+                defaultMessage="Últimas publicaciones de {fullName}"
+                values={{ fullName }}
+              />
+            </LastsPostsTitle>
+            <Maybe
+              it={hasPosts}
+              orElse={
+                <NotResults
+                  message={
+                    <FormattedMessage defaultMessage="Al parecer no hay publicaciones actualmente" />
+                  }
                 />
-              </Maybe>
-            </SubscriptionPostCard>
-          ))}
-          <Maybe it={posts?.length === 0}>
-            <NotPostsResults message="Oops! Al parecer no hay publicaciones actualmente" />
+              }
+            >
+              {posts.map((post) => (
+                <SubscriptionPostCard
+                  avatar={avatar}
+                  fullName={fullName}
+                  username={username}
+                  post={post}
+                  key={post?.id}
+                  canReactToPosts={isSubscribed}
+                >
+                  <Maybe
+                    it={isSubscribed}
+                    orElse={
+                      <SubscriptionPostHiddenContent
+                        imageSrc={post?.items?.[0]?.mediaUrl}
+                        username={username}
+                        price={priceLayout}
+                        fullName={fullName}
+                        description={post?.description}
+                      />
+                    }
+                  >
+                    <SubscriptionPostContent
+                      items={post?.items}
+                      description={post?.description}
+                    />
+                  </Maybe>
+                </SubscriptionPostCard>
+              ))}
+            </Maybe>
+            <PoweredByFamososBanner />
           </Maybe>
-          <PoweredByFamososBanner />
         </SubscriptionPostsSection>
       </Maybe>
     </PageContainer>
   );
-};
+}
 
-const _SubscribePage = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SubscribePage);
+const _SubscribePage = connector(SubscribePage);
 
 export { _SubscribePage as SubscribePage };

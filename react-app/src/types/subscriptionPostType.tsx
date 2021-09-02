@@ -1,16 +1,24 @@
 export type SubscriptionPostUrlType = {
-  index: number;
-  type: "image" | "video";
-  value: string;
+  id: number;
+  mediaType: "IMAGE" | "VIDEO";
+  mediaUrl: string;
+};
+
+type SubscriptionPostsReactions = {
+  post_love: boolean;
+  post_comment: string;
 };
 
 export type SubscriptionPostType = {
+  id: number;
   celebrityId: number;
-  created: string;
-  deleted: string | null;
   description: string;
-  id: string;
-  urls: SubscriptionPostUrlType[];
   location: string;
-  success: boolean;
+  isProcessing: boolean;
+  processingDate: string;
+  createdAt: string;
+  items: SubscriptionPostUrlType[];
+  reactions: SubscriptionPostsReactions;
+  comments: number;
+  loved: number;
 };

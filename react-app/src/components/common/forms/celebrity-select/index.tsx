@@ -29,6 +29,7 @@ const CelebrityOptionLabel = ({
 // };
 
 const CelebritiesSelect = ({
+  value,
   onChange = (option) => {},
   defaultOption,
   celebrities = [],
@@ -41,6 +42,9 @@ const CelebritiesSelect = ({
     })),
   ];
 
+  const selectedOption =
+    options.find((option) => option.value === value) || defaultOption;
+
   return (
     <Select
       isClearable={false}
@@ -50,6 +54,7 @@ const CelebritiesSelect = ({
       defaultValue={defaultOption}
       onChange={onChange}
       styles={styles}
+      value={selectedOption}
     />
   );
 };

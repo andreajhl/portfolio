@@ -1,4 +1,5 @@
 import classes from "classnames";
+import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
 type FansClubBadgeProps = {
@@ -11,9 +12,9 @@ function FansClubBadge({ className = "" }: FansClubBadgeProps) {
       <img
         className={styles.FanClubBadgeIcon}
         src="/assets/img/subscription-star-pink.svg"
-        alt="Icono de Club de Fans"
+        alt="Icono de Backstage"
       />
-      Club de Fans
+      <FormattedMessage defaultMessage="Backstage" />
     </div>
   );
 }

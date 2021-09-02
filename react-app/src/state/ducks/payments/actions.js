@@ -355,6 +355,70 @@ export const retrieveUserCards = () => {
   });
 };
 
+export const retrieveSpreedlyUserSources = () => {
+  const FINAL_PATH =
+    "custom-endpoints/user-payments/retrieve-spreedly-customer-sources";
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "GET",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: null,
+      custom_endpoint: false,
+    })
+      .then((res) => {
+        if (res.data.status === "ERROR") {
+          rejectionFunc(res.data.error);
+        } else {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((error) => {
+        console.log({ error });
+        if (error.response) {
+          if (error.response.data) {
+            rejectionFunc(error.response.data.error);
+          }
+        } else {
+          rejectionFunc("ERROR");
+        }
+      });
+  });
+};
+
+export const processSpreedlyPayment = (data) => {
+  const FINAL_PATH = "custom-endpoints/user-payments/process-spreedly-payment";
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false,
+    })
+      .then((res) => {
+        if (res.data.status === "ERROR") {
+          rejectionFunc(res.data.error);
+        } else {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.data) {
+            rejectionFunc(error.response.data.error);
+          }
+        } else {
+          rejectionFunc("ERROR");
+        }
+      });
+  });
+};
+
 export const removeSource = (sourceId) => {
   const FINAL_PATH =
     "custom-endpoints/user-payments/remove-stripe-source/" + sourceId;
@@ -387,9 +451,50 @@ export const removeSource = (sourceId) => {
   });
 };
 
+export const removeSpreedlyUserSource = (sourceId) => {
+  const FINAL_PATH =
+    "custom-endpoints/user-payments/remove-spreedly-source/" + sourceId;
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "DELETE",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: null,
+      custom_endpoint: false,
+    })
+      .then((res) => {
+        if (res.data.status === "ERROR") {
+          rejectionFunc(res.data.error);
+        } else {
+          resolutionFunc(res.data.data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.data) {
+            rejectionFunc(error.response.data.error);
+          }
+        } else {
+          rejectionFunc("ERROR");
+        }
+      });
+  });
+};
+
 export const clearCouponData = () => {
   return (dispatch) => {
     dispatch({ type: types.APLY_DISCOUNT_COUPON_CLEAR, payload: {} });
+  };
+};
+
+export const setNewPaymentMethodSelected = (name) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.SET_CURRENT_PAYMENT_METHOD_NAME,
+      payload: { name: name },
+    });
   };
 };
 
@@ -428,8 +533,34 @@ export const discountCouponsGateways = (contractReference, discountCoupon) => {
       })
       .catch((err) => {
         if (err.response) {
-          handleApiResponseFailure(dispatch, TYPE, err.response.data);
+          dispatch({ type: `${TYPE}_FAILURE`, payload: err.response.data });
         }
       });
   };
+};
+
+export const processSubscriptionPayment = (data) => {
+  const FINAL_PATH =
+    "/custom-endpoints/user-payments/process-subscription-payment";
+  return new Promise((resolutionFunc, rejectionFunc) => {
+    apiService({
+      method: "POST",
+      action: null,
+      path: FINAL_PATH,
+      async: true,
+      params: null,
+      body: data,
+      custom_endpoint: false,
+    })
+      .then((res) => {
+        if (res.data.status === "OK") {
+          resolutionFunc(res.data.data);
+        } else {
+          rejectionFunc(res.data.error);
+        }
+      })
+      .catch((err) => {
+        rejectionFunc(err);
+      });
+  });
 };

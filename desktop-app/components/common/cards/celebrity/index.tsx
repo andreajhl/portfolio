@@ -114,17 +114,25 @@ function CelebrityCard({
           />
         </Link>
         <div className={styles.CelebrityCardThumbnailHeader}>
+          <Maybe it={celebrity.availableForFlashDeliveries}>
+            <FlashDeliveryBadgeLayout />
+          </Maybe>
           <Maybe it={hasDiscount}>
             <DiscountPercentageBadge
               discountPercentage={discountPercentage}
               className={styles.CelebrityCardDiscountPercentage}
             />
           </Maybe>
-          <Maybe it={celebrity.availableForFlashDeliveries}>
-            <FlashDeliveryBadgeLayout />
-          </Maybe>
         </div>
         <div className={styles.CelebrityCardThumbnailFooter}>
+          <Maybe it={celebrity.availableForSubscriptions}>
+            <img
+              width="24"
+              className={styles.BackstageIcon}
+              src="/assets/img/subscription-star-pink.svg"
+              alt="Icono de Backstage"
+            />
+          </Maybe>
           <Maybe it={Boolean(categoryTitle)}>
             <Link
               href={getSearchCategoryPath(celebrity.categoryId)}

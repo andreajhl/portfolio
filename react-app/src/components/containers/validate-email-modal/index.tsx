@@ -29,9 +29,14 @@ function ValidateEmailModal() {
   }
 
   useEffect(() => {
+    const sessionData = session.getSession() as Record<string, unknown>;
+    const userHasEmailIsValidPropertyInToken = sessionData.hasOwnProperty(
+      "emailIsValid"
+    );
     const emailIsValid: boolean = (session.getSession() as any)?.emailIsValid;
-    if (emailIsValid) return;
-    openModal();
+    if (userHasEmailIsValidPropertyInToken && !emailIsValid) {
+      openModal();
+    }
   }, []);
 
   const email: string = (session.getSession() as any)?.email;
