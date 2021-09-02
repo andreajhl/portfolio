@@ -14,7 +14,9 @@ async function emailPasswordSignUpHandler(
   res: NextApiResponse<{}>
 ) {
   const cookies = parse(req.headers.cookie);
-  const userUTMs = getUTMsFromObject(JSON.parse(cookies?.[USER_UTMS_KEY]));
+  const userUTMs = getUTMsFromObject(
+    JSON.parse(cookies?.[USER_UTMS_KEY] || "{}")
+  );
 
   await famososAuthService
     .post("/email-password/sign-up", {

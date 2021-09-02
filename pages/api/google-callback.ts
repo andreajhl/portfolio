@@ -29,7 +29,9 @@ async function googleCallbackHandler(
     return res.end();
   }
 
-  const userUTMs = getUTMsFromObject(JSON.parse(cookies?.[USER_UTMS_KEY]));
+  const userUTMs = getUTMsFromObject(
+    JSON.parse(cookies?.[USER_UTMS_KEY] || "{}")
+  );
 
   // Send code to famosos auth and save the JWT Token in Cookies
   await famososAuthService
