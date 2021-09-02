@@ -9,15 +9,15 @@
         width: 90%;
         display: flex;
         justify-content: center;
-        align-items: center
+        align-items: flex-start
        
     }
     &_pag{
         @include caja-flex (flex, column,center,center,nowrap);
         max-width: 80%;
         font-size: 30px;
-        line-height: 250%;
-        color: rgb(2, 2, 2);
+        line-height: 200%;
+        color: black;
         width: 100%;
         &_P{
             font-weight: bold;
@@ -32,26 +32,32 @@
             font-size: 20px;
         }
         @media #{$desktop}{
-            font-size: 25px;
+            font-size: 22px;
+        }
+        @media #{$pantallaExtraGrande}{
+            font-size: 40px;
         }
     }
     .hi{
+        margin-bottom: 3%;
+        
         @media #{$smarmini}{
             font-size:16px;
-            margin: 0px;
         }
         @media #{$smarphone}{
             font-size: 20px;
-            margin: 0px;
         }
         @media #{$tablet}{
             font-size: 30px;
-            margin: 0px;
         }
         @media #{$desktop}{
-            font-size: 40px;
-            margin: 0px;
+            font-size: 37px;
+            
         }
+        @media #{$pantallaExtraGrande}{
+            font-size: 60px;
+        }
+
     }
     @media #{$smarmini}{
         margin-top:30px;

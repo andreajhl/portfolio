@@ -12,21 +12,17 @@
     @media #{$smarmini}{
         font-size:12px ;
         min-height: 50px;
-        width: 100%;
     }
     @media #{$smarphone}{
         font-size: 15px;
-        width: 100%;
         min-height: 60px;
     }
     @media #{$tablet}{
         font-size: 21px;
-        width: 100%;
         min-height: 60px;
     }
     @media #{$desktop}{
         font-size: 26px;
-        width: 100%;
         min-height: 70px;
     }
     

@@ -8,6 +8,7 @@
     background-position-x: 100%;
     background-position-y: 80%;
     background-size: 40%;
+    width: 100%;
     min-height: 850px;
     clip-path: polygon(0% 0%, 0% 100%, 100% 86%, 100% 0%);
     @media #{$smarmini}{
@@ -22,6 +23,7 @@
     }
     @media #{$desktop}{
         min-height: 700px;
+        width: 100%;
     }
     &_div{
        line-height: 500%;
@@ -56,6 +58,7 @@
         text-shadow:2px 2px 0px #fcfbfb;
         @media #{$smarmini}{
             font-size:20px ;
+            text-shadow:1px 1px 0px #fcfbfb;
         }
         @media #{$smarphone}{
             font-size: 25px;
@@ -74,6 +77,7 @@
         text-shadow:2px 2px 0px #fdfcfc;
         @media #{$smarmini}{
             font-size:20px ;
+            text-shadow:1px 1px 0px #fcfbfb;
         }
         @media #{$smarphone}{
             font-size: 25px;

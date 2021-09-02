@@ -26,6 +26,7 @@ body{
     }
     &_pre{
         width: 100%;
+        @include caja-flex(flex,row,center,center,nowrap)
     }
     &_contacto{
         width: 100%;

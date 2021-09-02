@@ -48,7 +48,7 @@ export default function Skill (){
                     <p className='skp'>PostgreSQL</p>
                 </div>
                 <div className='icon' style={{alignItems:'center'}}>
-                    <img src={Img} style={{height:'100px', width:'70%',margin:'15%'}} alt='icono expressJS'/>
+                    <img src={Img} style={{height:'100%', width:'80%',margin:'10%'}} alt='icono expressJS'/>
                     <p className='skp'>ExpressJS</p>
                 </div> 
             </div>
