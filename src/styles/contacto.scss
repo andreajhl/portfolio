@@ -2,7 +2,7 @@
 
 .contac{
     @include caja-flex (flex,column,center,center,nowrap);
-    color: $color4;
+    color:rgb(2, 2, 2);
     width: 100%;
 
     &_Port{
@@ -37,7 +37,7 @@
 
     &_Red{
         @include caja-flex (flex,row,space-around,center,nowrap);
-        background-color: $color4;
+        background-color: $color5;
         border-top: 1px solid $color2;
         width: 100%;
         .p{
@@ -88,11 +88,11 @@
 
 }
 .p:hover{
-    color:$color2;
+    color:#F28241;
 }
 .p_gmail:hover{
-    color:$color2;
+    color:#F28241;
 }
 .swal-overlay{
-    background-color:rgba(238, 189, 189, 0.144);
+    background-color:#92e7d188
 }

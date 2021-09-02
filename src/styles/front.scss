@@ -3,7 +3,6 @@
 
 .front{
     @include caja-flex(flex,column,center,center,nowrap);
-    color: $color4;
     margin-top: 40px;
     width: 90%;
     cursor: pointer;
@@ -11,7 +10,7 @@
     &_titulo{
         @include caja-flex(flex, row, center, center, nowrap);
         font-size: 40px;
-        color: $color4;
+        color:$color5;
         @media #{$smarmini}{
             font-size:20px;
         }
@@ -29,13 +28,12 @@
 
     &_DivC{
         @include caja-flex(flex,column,center,center,nowrap);
-        border: 1px solid $color4;
+        border: 1px solid $color5;
         border-radius: 8px;
-        width: 400px; 
+        width: 600px; 
         height: 400px;
         margin-bottom: 40px;
-        color: $color4;
-        overflow: hidden;
+        overflow: hidden;        
         margin: 2%;
         @media #{$smarmini}{
             width: 250px;
@@ -51,8 +49,8 @@
         }
         &_hover{
             @include caja-flex(flex,row,center,center,nowrap);
-            width: 400px;
-            height: 400px;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
             position: relative;
             z-index: 0;
@@ -70,11 +68,11 @@
             }
             &_img{
                 @include caja-flex(flex,column,center,center,nowrap);
-                height: 350px;
+                height: 100%;
                 width: 100%;
                 transition: all 800ms ease-in-out;
                 z-index: 1;
-                background-color:#ffc5c5;
+                background-color:#fffcd5;
                 @media #{$smarmini}{
                     height: 230px;
                 }
@@ -85,11 +83,11 @@
                     height: 270px;
                 }
                 &_i{
-                    height: 270px;
+                    height: 100%;
                     margin-top: 30px;
                     width: 90%;
                     transition: all 100ms ease-in-out;
-                    border: 1px solid $color4;
+                    border: 1px solid $color5;
                 }
 
             }
@@ -97,14 +95,14 @@
         }
 
         &_v{
-            @include caja-flex (flex,column,space-around,center,nowrap);
+            @include caja-flex (flex,row,center,center,nowrap);
             line-height: 40%;
             width: 100%;
-            height: 100px;
-            background-color: $color4;
+            height: 40%;
+            background-color:$color5;
             font-size: 16px;
-            color: white;
-            border-top: 1px solid $color3;
+            border-bottom: 3px solid #3EB595;
+            color:white;
             @media #{$smarmini}{
                 height:60px;
                 font-size: 10px;
@@ -118,8 +116,9 @@
                 font-size: 15px;
             }
             &_etiq{
-                @include caja-flex (flex,row,space-around,center,nowrap);
+                @include caja-flex (flex,row,start,center,nowrap);
                 width: 100%;
+                height: 100%;
             }
         }
 
@@ -128,17 +127,13 @@
     
 }
 .mostrar{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include caja-flex(flex,column,center,center,nowrap);
     line-height: 150%;
     font-size: 18px;
     position: absolute;
-    top: 0px;
     height: 350px;
-    background-color: $color4;
-    color: white;
+    background-color:$color5;
+    color:white;
     @media #{$smarmini}{
         height: 230px;
         font-size:10px ;
@@ -165,5 +160,35 @@
     .front_DivC_hover_img{
         transform: translateY(-120%); 
     }
+    .front_DivC_v{
+        border-bottom: 3px solid #F28241;
+    }
+    .avatar_b{
+        color:#F28241;
+    }
  
+}
+.avatar{
+    width: 20%;
+    height: 70%;
+    margin-left: 5%;
+    @include caja-flex(flex,column,center,center,nowrap);
+    &_img{
+        width: 100%;
+        border-radius: 100%;
+        height: 100%;
+    };
+    &_b{
+        margin-left: 5%;
+        width: 65%;
+       color: #3EB595
+    }
+}
+.divIcon{
+    @include caja-flex(flex,row, space-around,center,nowrap);
+    width: 40%;
+    .icon{
+        color: white;
+        font-size: 20px;
+    }
 }

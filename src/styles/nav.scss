@@ -4,9 +4,9 @@
     @include caja-flex(flex,row,space-around,center,nowrap);
     margin-top: 0px;
     font-size: 30px;
-    background-color: $color4;
-    min-height: 100px;  
-    border-bottom: 0.1px solid $color2;
+    background-color: $color5;
+    min-height: 100px; 
+    border-bottom: 1px solid #f89a63;
     font-weight: bold;
     width: 100%;
     @media #{$smarmini}{
@@ -35,11 +35,10 @@
     } 
     a{
         text-decoration: none;
-        color:$color1;
+        color:rgb(255, 255, 255);
     }
    
     label:hover{
-        color: $color2;
-        text-shadow:1px 2px 2px black;
+        color:#f0935e;
     }
 }

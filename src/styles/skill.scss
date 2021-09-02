@@ -1,19 +1,20 @@
-$color1: #FFE5D9;
+
 @import 'global';
 
 
 .cuerpo_Sk{
     @include caja-flex (flex,column,center,center,nowrap);
-
+    width: 100%;
     &_l{
-        @include caja-flex(flex, row, space-around, center, wrap);
-        width: 70%;
+        @include caja-flex(inline-flex,row, space-around, center,wrap);
+        width: 100%;
         height: 100%;
        
     }
     .skh1{
-        font-size: 60px;
-        color: #1d1c1c;
+        font-size: 55px;
+        color: rgb(2, 2, 2);
+        margin: 0px;
         @media #{$smarmini}{
             font-size:20px ;
         }
@@ -28,64 +29,35 @@ $color1: #FFE5D9;
         }
     }
     .skp{
-        margin-top: 10px;
+        margin: 0px;
+        font-size: 22px;
         @media #{$smarmini}{
             font-size: 10px ;
         }
         @media #{$smarphone}{
-            font-size: 18px;
+            font-size: 16px;
             margin: 0px;
         }
         @media #{$tablet}{
             margin: 0px;
-            font-size: 20px;
+            font-size: 18px;
         }
         @media #{$desktop}{
             margin: 0px;
-            font-size: 23px;
+            font-size: 20px;
         }
     }
 }
 
 .icon{
     @include caja-flex(flex,column,center,center,nowrap);
-    font-size: 25px;
-    max-height: 250px;
-    padding: 2%;;
+    margin: 1%;
     cursor: pointer;
-    @media #{$smarmini}{
-        max-height:100px;
-        margin: 0px;
-    }
-    @media #{$smarphone}{
-        max-height: 150px;
-        margin: 0px;
-    }
-    @media #{$tablet}{
-        margin:0px;
-        max-height: 140px;
-    }
-    @media #{$desktop}{
-        margin: 10px;
-        max-height: 160px;
-    }
 }
 .ii{
-    width: 170px;
-    height: 170px;
-    padding: 6px;
-    @media #{$smarmini}{
-        width: 60px;
-    }
-    @media #{$smarphone}{
-       width: 80px
-    }
-    @media #{$tablet}{
-        width: 130px;
-    }
-    @media #{$desktop}{
-        width: 120px
-    }
+    width: 60%;
+    height: 160px;
+
 }
 .icon:hover{
     transform: scale(1.1);

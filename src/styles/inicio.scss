@@ -2,7 +2,7 @@
 
 .Inicio{
     @include caja-flex(flex,column,center,center,nowrap);
-    background-color:$color4;
+    background-color:$color5;
     background-image: url('../img/me.png');
     background-repeat: no-repeat;
     background-position-x: 100%;
@@ -50,10 +50,10 @@
         }
     }
     .h1{
-        color: $color3;
+        color:#3EB595;
         margin:0px;
         font-size: 75px;
-        text-shadow:5px 5px 0px #050000;
+        text-shadow:2px 2px 0px #fcfbfb;
         @media #{$smarmini}{
             font-size:20px ;
         }
@@ -68,10 +68,10 @@
         }
     }
     .h2{
-        color: $color2;
+        color: #F28241;
         margin:0px;
         font-size: 70px;
-        text-shadow:5px 5px 0px #050000;
+        text-shadow:2px 2px 0px #fdfcfc;
         @media #{$smarmini}{
             font-size:20px ;
         }
@@ -87,7 +87,7 @@
     }
 
     .h3{
-        color: $color1;
+        color: white;
         margin:0px;
         font-size: 60px;
         @media #{$smarmini}{
@@ -111,10 +111,10 @@
         .buut{
             padding-top: 4%;
             font-size: 38px;
-            color: $color4;
-            background-color: $color2;
+            color: $color5;
+            background-color: white;
             border-radius: 15px;
-            border: 2px solid $color4;
+            border: 2px solid $color5;
             cursor: pointer;
             font-weight: bold;
             @media #{$smarmini}{
@@ -132,11 +132,14 @@
         }
     }
    .buut:hover{
-        background-color: rgb(238, 189, 189);
-        box-shadow:4px 4px 0px #c962628a;
+        background-color: #3EB595;
+        box-shadow:0px 0px 10px #fdfdfd8a;
+        .href{
+            color:white;
+        }
    }
    .href{
-        color: $color4;
+        color: $color5;
         text-decoration: none;
    }
 }

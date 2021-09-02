@@ -1,5 +1,6 @@
 import {IoLogoJavascript, IoLogoCss3,IoLogoHtml5, IoLogoSass,IoLogoReact} from 'react-icons/io5'
 import { SiRedux, SiNodeDotJs,SiPostgresql} from "react-icons/si";
+import {DiMongodb} from "react-icons/di"
 
 import Img from '../../img/ex.png'
 
@@ -39,11 +40,15 @@ export default function Skill (){
                     <p className='skp'>NodeJS</p>
                 </div>
                 <div className='icon'>
+                    <DiMongodb className='ii'/>
+                    <p className='skp'>MongoDb</p>
+                </div>
+                <div className='icon'>
                     <SiPostgresql className='ii'/>
                     <p className='skp'>PostgreSQL</p>
                 </div>
-                <div className='icon'>
-                    <img src={Img} className='ii' alt='icono expressJS'/>
+                <div className='icon' style={{alignItems:'center'}}>
+                    <img src={Img} style={{height:'100px', width:'70%',margin:'15%'}} alt='icono expressJS'/>
                     <p className='skp'>ExpressJS</p>
                 </div> 
             </div>

@@ -7,12 +7,9 @@ export const Inicio = () => {
 
     const [count,setCount]= useState(0)
     
-<<<<<<< HEAD
+
     var tecnologia= ['ReactJs','ExpressJs','Javascript','PostgreSQL','SQL','MongoDB','Mongoose','NodeJs','Redux','CSS', 'HTML5']
-=======
-    var tecnologia= ['ReactJs','ExpressJs','Javascript','MongoDB','Mongoose','PostgreSQL','SQL','NodeJs','Redux','CSS', 'HTML5']
->>>>>>> 3c61cf69a4556c4dc10a9c5ab9cae3b85786d881
-    
+
     setTimeout(() => {
         const next =count + 1
         if( next > 8) return setCount(0)
