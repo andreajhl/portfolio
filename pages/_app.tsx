@@ -17,6 +17,7 @@ import { IsOnMobileScreenProvider } from "lib/is-on-mobile-screen";
 import isMobile from "lib/utils/isMobile";
 import { Session } from "react-app/src/state/utils/session";
 import { REDIRECT_AFTER_LOGIN } from "constants/keys";
+import useSaveUserCurrencyCodeInGlobalObject from "lib/hooks/useSaveUserCurrencyCodeInGlobalObject";
 
 const languages = {
   en: enMessages,
@@ -42,6 +43,7 @@ CustomApp.getInitialProps = async (appContext: AppContext) => {
 
 function CustomApp({ Component, pageProps }) {
   const router = useRouter();
+  useSaveUserCurrencyCodeInGlobalObject();
 
   useEffect(() => {
     gtmInitialize();
