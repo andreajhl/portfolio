@@ -13,8 +13,14 @@ async function emailPasswordSignInHandler(
   const endpoint = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT;
   const version = process.env.NEXT_PUBLIC_FAMOSOS_AUTH_ENDPOINT_VERSION;
   const session = req.query?.s;
-  const redirectTo = req.query?.r;
-  const redirectTo2 = req.query?.r2;
+  let redirectTo = "";
+  let redirectTo2 = "";
+  if (req.query?.r) {
+    redirectTo = req.query?.r.toString();
+  }
+  if (req.query?.r2) {
+    redirectTo2 = req.query?.r2.toString();
+  }
   //   Validate token
   await axios
     .get(`${endpoint}/${version}/famosos-com/get-user-data`, {
