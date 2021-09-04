@@ -5,7 +5,7 @@ import axios from "axios";
 import { ONE_YEAR_IN_MILLISECONDS } from "constants/oneYearINMilliseconds";
 import { REDIRECT_AFTER_LOGIN } from "constants/keys";
 
-async function emailPasswordSignInHandler(
+async function validateSessionHandler(
   req: NextApiRequest,
   res: NextApiResponse<{}>
 ) {
@@ -15,10 +15,10 @@ async function emailPasswordSignInHandler(
   const session = req.query?.s;
   let redirectTo = "";
   let redirectTo2 = "";
-  if (req.query?.r) {
+  if (req.query?.r !== undefined && req.query?.r !== null) {
     redirectTo = req.query?.r.toString();
   }
-  if (req.query?.r2) {
+  if (req.query?.r2 !== undefined && req.query?.r2 !== null) {
     redirectTo2 = req.query?.r2.toString();
   }
   //   Validate token
@@ -55,19 +55,19 @@ async function emailPasswordSignInHandler(
           res.redirect(redirectTo.toString());
         }
       } else {
-        res.redirect(`/authentication/failure?error=${response.data.error}`);
+        res.redirect(`/`);
       }
     })
     .catch((errorResponse) => {
       if (errorResponse.response) {
         res.redirect(
-          `/authentication/failure?error=${errorResponse.response.data.error}`
+          `/`
         );
       } else {
-        res.redirect(`/authentication/failure?error=Unexpected Error`);
+        res.redirect(`/`);
       }
       return;
     });
 }
 
-export default emailPasswordSignInHandler;
+export default validateSessionHandler;
