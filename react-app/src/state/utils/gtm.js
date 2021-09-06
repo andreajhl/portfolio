@@ -5,6 +5,7 @@ import { getWindowPathname } from "react-app/src/utils/getWindow";
 import TagManager from "react-gtm-module";
 import { Session } from "./session";
 import { getCelebrityAnalyticsData } from "lib/utils/celebrityUtils";
+import Router from "next/router";
 // import { Mixpanel } from "./mixPanel";
 
 const ENV = process.env.NEXT_PUBLIC_ENVIRONMENT;
@@ -81,12 +82,16 @@ export function trackAddContractToCart({
 
 export function page(data) {
   const user = new Session().getSession();
+  const route = Router.route;
   tagManagerDataLayer("PAGE_VIEW", {
     ENV: String(process.env.NEXT_PUBLIC_ENVIRONMENT).toUpperCase(),
     userAgent: navigator.userAgent,
     vendor: navigator.vendor,
     receivedAt: new Date(),
     user,
+    pageTitle: document?.title,
+    route,
+    url: data?.url || getWindowPathname(),
     ...data,
   });
 }

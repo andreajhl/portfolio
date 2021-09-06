@@ -17,6 +17,7 @@ import { IsOnMobileScreenProvider } from "lib/is-on-mobile-screen";
 import isMobile from "lib/utils/isMobile";
 import { Session } from "react-app/src/state/utils/session";
 import { REDIRECT_AFTER_LOGIN } from "constants/keys";
+import useSaveUserCurrencyCodeInGlobalObject from "lib/hooks/useSaveUserCurrencyCodeInGlobalObject";
 
 const languages = {
   en: enMessages,
@@ -26,7 +27,7 @@ const languages = {
   "pt-BR": ptMessages,
 };
 
-const ROUTE_CHANGE_START = "routeChangeStart";
+const ROUTE_CHANGE_COMPLETE = "routeChangeComplete";
 
 CustomApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
@@ -42,6 +43,7 @@ CustomApp.getInitialProps = async (appContext: AppContext) => {
 
 function CustomApp({ Component, pageProps }) {
   const router = useRouter();
+  useSaveUserCurrencyCodeInGlobalObject();
 
   useEffect(() => {
     gtmInitialize();
@@ -55,9 +57,10 @@ function CustomApp({ Component, pageProps }) {
         isReactRouting: true,
       });
     };
-    router.events.on(ROUTE_CHANGE_START, handleRouteChange);
+    router.events.on(ROUTE_CHANGE_COMPLETE, handleRouteChange);
+
     return () => {
-      router.events.off(ROUTE_CHANGE_START, handleRouteChange);
+      router.events.off(ROUTE_CHANGE_COMPLETE, handleRouteChange);
     };
   }, []);
 
