@@ -8,11 +8,11 @@ import { defineMessages, useIntl } from "react-intl";
 
 const headData = defineMessages({
   titleClub: {
-    defaultMessage: "Famosos.com - Backstage de {celebrity_username}",
+    defaultMessage: "Famosos.com - Backstage de {celebrityFullName}",
   },
   descriptionClub: {
     defaultMessage:
-      "Backstage de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.",
+      "Backstage de {celebrityFullName} en Famosos.com. ¡Suscríbete ahora y disfruta de beneficios exclusivos de {celebrityFullName}!",
   },
 });
 
@@ -60,10 +60,10 @@ function Backstage({ celebrity }) {
     <>
       <CustomHead
         title={formatMessage(headData.titleClub, {
-          celebrity_username: celebrity.fullName,
+          celebrityFullName: celebrity.fullName,
         })}
         description={formatMessage(headData.descriptionClub, {
-          celebrity_username: celebrity.fullName,
+          celebrityFullName: celebrity.fullName,
         })}
         ogImage={celebrity.avatar}
         ogVideo={celebrity.mainVideo}
