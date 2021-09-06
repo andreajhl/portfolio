@@ -1,14 +1,8 @@
 import classes from "classnames";
-import { BackstageBenefitCard } from "react-app/src/components/layouts/backstage-benefit-card";
-import { PoweredByFamososBanner } from "../../layouts/powered-by-famosos-banner";
 import useListSubscriptionBenefits from "lib/hooks/useListSubscriptionBenefits";
-import { LoaderLayout } from "../../layouts/loader";
 import styles from "./styles.module.scss";
-import Maybe from "../../common/helpers/maybe";
-import { useEffect, useRef, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
-import { NotResults } from "../../layouts/not-results";
+import { useEffect, useRef } from "react";
+import { CelebritySubscriptionBenefitsInfinityList } from "../../layouts/celebrity-subscription-benefits-infinity-list";
 
 const offsetInitialValue = 0;
 const resultsLimit = 5;
@@ -50,53 +44,16 @@ function SubscriptionBenefitsView({
 
   const showLoading = offset <= 0 && status === "loading";
   const hasMoreBenefits = benefits?.length < totalResults;
-  const hasBenefits = benefits?.length > 0;
 
   return (
     <div className={styles.SubscriptionBenefitsView}>
       <div className={classes("container", styles.Container)}>
-        <Maybe
-          it={!showLoading}
-          orElse={
-            <div
-              className="d-flex flex-column justify-content-center"
-              style={{ minHeight: "40vh" }}
-            >
-              <LoaderLayout />
-            </div>
-          }
-        >
-          <InfiniteScroll
-            dataLength={benefits?.length}
-            next={setNewOffset}
-            hasMore={hasMoreBenefits}
-            loader={<LoaderLayout />}
-            endMessage={
-              <PoweredByFamososBanner
-                className={styles.BenefitsViewFamososBanner}
-              />
-            }
-          >
-            <Maybe
-              it={hasBenefits}
-              orElse={
-                <NotResults
-                  message={
-                    <FormattedMessage defaultMessage="Al parecer no hay beneficios actualmente" />
-                  }
-                />
-              }
-            >
-              {benefits.map((benefit) => (
-                <BackstageBenefitCard
-                  className={styles.BenefitCard}
-                  benefit={benefit}
-                  key={benefit?.id}
-                />
-              ))}
-            </Maybe>
-          </InfiniteScroll>
-        </Maybe>
+        <CelebritySubscriptionBenefitsInfinityList
+          isLoading={showLoading}
+          benefits={benefits}
+          onNext={setNewOffset}
+          hasMore={hasMoreBenefits}
+        />
       </div>
     </div>
   );
