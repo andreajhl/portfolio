@@ -1,4 +1,5 @@
 import classes from "classnames";
+import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
 import {
   getSubscriptionBenefitDetailsPath,
   getSubscriptionCheckoutPath,
@@ -9,8 +10,10 @@ import { Card } from "react-app/src/components/common/cards";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { SubscriptionBenefitType } from "react-app/src/types/subscriptionBenefitType";
 import { FormattedMessage } from "react-intl";
+import { SubscriptionHiddenContent } from "../../common/cards/subscription-post-card";
 import { Countdown } from "../../common/helpers/countdown";
 import { ProtectedRouteLink } from "../../common/routing/protected-route-link";
+import { PriceLayout } from "../../price-layout";
 import styles from "./styles.module.scss";
 
 function preventEvent(event) {
@@ -28,7 +31,7 @@ function BackstageBenefitCard({
   benefit,
   isSubscribed,
 }: BackstageBenefitCardProps) {
-  const username = useGetCelebrity()?.celebrity?.username;
+  const celebrity = useGetCelebrity()?.celebrity;
   const expirationDate = new Date(benefit?.expirationDate);
   const isExpired = Number(expirationDate) - Date.now() < 0;
   const date = getFormattedDate(expirationDate);
@@ -41,7 +44,7 @@ function BackstageBenefitCard({
 
   const cardLink = isSubscribed
     ? getSubscriptionBenefitDetailsPath(benefit.id)
-    : getSubscriptionCheckoutPath(username);
+    : getSubscriptionCheckoutPath(celebrity?.username);
 
   return (
     <Card
@@ -62,9 +65,25 @@ function BackstageBenefitCard({
           width="368"
           height="368"
         />
-        <div className={styles.PosterOverlay}>
+        <div
+          className={classes(
+            styles.PosterOverlay,
+            isSubscribed && styles.DarkenBackground
+          )}
+        >
           <h3 className={styles.BenefitTitle}>{benefit.title}</h3>
         </div>
+        <Maybe it={!isSubscribed}>
+          <SubscriptionHiddenContent
+            description=""
+            imageSrc=""
+            price={
+              <PriceLayout price={SUBSCRIPTION_PLAN_PRICE} showPrefix={false} />
+            }
+            fullName={celebrity?.fullName}
+            username={celebrity?.username}
+          />
+        </Maybe>
       </div>
       <div className={styles.ContentWrapper}>
         <span className={styles.BenefitDateText}>

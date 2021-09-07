@@ -134,6 +134,8 @@ export const SubscriptionPostHiddenContent = ({
   );
 };
 
+export const SubscriptionHiddenContent = SubscriptionPostHiddenContent;
+
 export const SubscriptionPostContent = ({
   items,
   description,
