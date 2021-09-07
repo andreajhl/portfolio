@@ -29,7 +29,7 @@ function SpreedlyCustomSources({
   onDeleteSource,
 }: SpreedlyCustomerSourcesProps) {
   const { push } = useRouter();
-  const [selectedSourceIndex, setselectedSourceIndex] = useState(null);
+  const [selectedSourceIndex, setselectedSourceIndex] = useState(0);
   const [paymentError, setPaymentError] = useState(null);
   const [isProccesing, setIsProccesing] = useState(false);
 
