@@ -47,5 +47,10 @@ export function saveUTMs(queryParams: { [key: string]: any }) {
 }
 
 export function getUTMs(): UTMsType | null {
-  return JSON.parse(getCookie(USER_UTMS_KEY));
+  try {
+    return JSON.parse(getCookie(USER_UTMS_KEY));
+  } catch (error) {
+    console.warn(error);
+    return null;
+  }
 }

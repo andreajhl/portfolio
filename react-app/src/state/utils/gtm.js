@@ -6,6 +6,7 @@ import TagManager from "react-gtm-module";
 import { Session } from "./session";
 import { getCelebrityAnalyticsData } from "lib/utils/celebrityUtils";
 import famososAnalytics from "lib/utils/famososAnalytics";
+import { getUTMs } from "lib/utils/utms";
 // import { Mixpanel } from "./mixPanel";
 
 const ENV = process.env.NEXT_PUBLIC_ENVIRONMENT;
@@ -26,17 +27,15 @@ export const initialize = () => {
 
 export const tagManagerDataLayer = (event, dataLayer) => {
   try {
-    const analyticsData = {
-      path: getWindowPathname(),
-      ...dataLayer,
-      event,
-    };
     // MIX PANEL
     // Mixpanel.track(event, { ...dataLayer });
 
     // GTM NOTIFICATION
-    window?.dataLayer?.push?.(analyticsData);
-    famososAnalytics.track(analyticsData);
+    window?.dataLayer?.push?.({
+      path: getWindowPathname(),
+      ...dataLayer,
+      event,
+    });
 
     // // Segment
     // if (ENV !== "development") {
@@ -102,9 +101,21 @@ export function trackFirstPageLoad(analyticsData = {}) {
   });
 }
 
+const CELEBRITY_PROFILE_PAGE_VIEW_EVENT = "CELEBRITY_PROFILE_PAGE_VIEW";
+
 export function trackCelebrityProfileView({ celebrity, ...analyticsData }) {
-  tagManagerDataLayer("CELEBRITY_PROFILE_PAGE_VIEW", {
+  tagManagerDataLayer(CELEBRITY_PROFILE_PAGE_VIEW_EVENT, {
     celebrity: getCelebrityAnalyticsData(celebrity),
+    ...analyticsData,
+  });
+  const userId = new Session().getSession()?.id ?? null;
+  famososAnalytics.track({
+    event: CELEBRITY_PROFILE_PAGE_VIEW_EVENT,
+    utms: getUTMs(),
+    timestamp: new Date(),
+    userId,
+    celebrityId: celebrity?.id,
+    userAgent: navigator.userAgent,
     ...analyticsData,
   });
 }
