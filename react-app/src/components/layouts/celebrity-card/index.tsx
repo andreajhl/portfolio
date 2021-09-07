@@ -17,7 +17,6 @@ import {
 } from "react-app/src/constants/messages";
 import { useIntl } from "react-intl";
 import LazyLoadingImage from "../../common/lazy-loading-image";
-import { jsonToQueryString } from "react-app/src/state/utils/apiService";
 
 export interface CelebrityCardLayoutI {
   celebrity: celebrityType;
@@ -139,6 +138,7 @@ const CelebrityCardLayout = ({
     </NavLink>
   );
 };
+
 const mapStateToProps = (state) => ({
   currencyExchangeData: state.payments.currencyExchangeReducer.data,
 });
