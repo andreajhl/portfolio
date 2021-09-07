@@ -1,8 +1,7 @@
-import classes from "classnames";
 import useListSubscriptionBenefits from "lib/hooks/useListSubscriptionBenefits";
-import styles from "./styles.module.scss";
 import { useEffect, useRef } from "react";
 import { CelebritySubscriptionBenefitsInfinityList } from "../../layouts/celebrity-subscription-benefits-infinity-list";
+import { SubscriptionContentSection } from "../../layouts/subscription-posts";
 
 const offsetInitialValue = 0;
 const resultsLimit = 5;
@@ -46,16 +45,14 @@ function SubscriptionBenefitsView({
   const hasMoreBenefits = benefits?.length < totalResults;
 
   return (
-    <div className={styles.SubscriptionBenefitsView}>
-      <div className={classes("container", styles.Container)}>
-        <CelebritySubscriptionBenefitsInfinityList
-          isLoading={showLoading}
-          benefits={benefits}
-          onNext={setNewOffset}
-          hasMore={hasMoreBenefits}
-        />
-      </div>
-    </div>
+    <SubscriptionContentSection>
+      <CelebritySubscriptionBenefitsInfinityList
+        isLoading={showLoading}
+        benefits={benefits}
+        onNext={setNewOffset}
+        hasMore={hasMoreBenefits}
+      />
+    </SubscriptionContentSection>
   );
 }
 
