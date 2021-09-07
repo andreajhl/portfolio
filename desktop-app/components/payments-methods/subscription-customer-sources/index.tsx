@@ -10,6 +10,8 @@ import { processSubscriptionPayment } from "react-app/src/state/ducks/payments/a
 import { useRouter } from "next/router";
 import { SUBSCRIPTION_SUCCESS } from "constants/paths";
 import Maybe from "react-app/src/components/common/helpers/maybe";
+import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 interface SubscriptionCustomerSourcesProps {
   sources: {
@@ -45,6 +47,10 @@ function SubscriptionCustomerSources({
       await processSubscriptionPayment({
         celebrityId,
         cardToken,
+      });
+      analytics.trackSubscription({
+        celebrityId,
+        subscriptionPlanPrice: SUBSCRIPTION_PLAN_PRICE,
       });
       push(
         SUBSCRIPTION_SUCCESS.replace(

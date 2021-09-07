@@ -1,8 +1,10 @@
+import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
 import { useCallback, useEffect, useState } from "react";
 import {
   removeSpreedlyUserSource,
   retrieveSpreedlyUserSources,
 } from "react-app/src/state/ducks/payments/actions";
+import { analytics } from "react-app/src/state/utils/gtm";
 import { FormattedMessage } from "react-intl";
 import SubmitButton from "../common/button/submit-button";
 import { LoadingSpinner } from "../common/loading-spinner";
@@ -38,6 +40,10 @@ function SubscriptionCheckoutContainer({
   }, []);
 
   useEffect(() => {
+    analytics.trackInitiateSubscriptionCheckout({
+      celebrityId,
+      subscriptionPlanPrice: SUBSCRIPTION_PLAN_PRICE,
+    });
     fetchUserSources();
   }, []);
 

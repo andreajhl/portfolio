@@ -1,4 +1,7 @@
-import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
+import {
+  BACKSTAGE_SUBSCRIPTION_PRODUCT_ID_PREFIX,
+  VIDEO_MESSAGE_PRODUCT_ID_PREFIX,
+} from "constants/dynamicAds";
 import isBrowser from "react-app/src/utils/isBrowser";
 import waitFor from "react-app/src/utils/waitFor";
 import { getWindowPathname } from "react-app/src/utils/getWindow";
@@ -130,6 +133,28 @@ export function trackInitiateCheckout({ celebrityId, contractPrice }) {
   });
 }
 
+export function trackInitiateSubscriptionCheckout({
+  celebrityId,
+  subscriptionPlanPrice,
+}) {
+  return fbPixel("track", "InitiateCheckout", {
+    content_type: "product",
+    content_ids: BACKSTAGE_SUBSCRIPTION_PRODUCT_ID_PREFIX + celebrityId,
+    value: subscriptionPlanPrice,
+    currency: "USD",
+  });
+}
+
+export function trackSubscription({ celebrityId, subscriptionPlanPrice }) {
+  return fbPixel("track", "Subscribe", {
+    content_type: "product",
+    content_ids: BACKSTAGE_SUBSCRIPTION_PRODUCT_ID_PREFIX + celebrityId,
+    predicted_ltv: subscriptionPlanPrice * 3,
+    value: subscriptionPlanPrice,
+    currency: "USD",
+  });
+}
+
 export const analytics = {
   track: tagManagerDataLayer,
   fbPixel,
@@ -141,4 +166,6 @@ export const analytics = {
   trackUserSignUp,
   trackAddContractToCart,
   trackInitiateCheckout,
+  trackInitiateSubscriptionCheckout,
+  trackSubscription,
 };
