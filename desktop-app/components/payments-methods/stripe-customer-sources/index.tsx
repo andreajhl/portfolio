@@ -5,7 +5,7 @@ import WarningMessage from "desktop-app/components/common/warning-message";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { processStripePayment } from "react-app/src/state/ducks/payments/actions";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { confirmAlert } from "react-confirm-alert"; // Import
@@ -60,6 +60,13 @@ function StripeCustomerSources({
   const [errorMessage, setErrorMessage] = useState("");
   const [paymentInProcess, setPaymentInProcess] = useState(false);
   const togglePaymentInProcess = useTogglePaymentInProcess();
+
+  useEffect(() => {
+    if (availableSources.length > 0) {
+      setSelectedSourceId(availableSources[0].sourceId);
+    }
+  }, [availableSources]);
+
   const applyStripeAuth = async () => {
     if (selectedSourceId === null)
       setErrorMessage(formatMessage(messages.errorNoCardSelected));
