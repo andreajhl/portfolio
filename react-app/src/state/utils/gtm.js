@@ -5,6 +5,7 @@ import { getWindowPathname } from "react-app/src/utils/getWindow";
 import TagManager from "react-gtm-module";
 import { Session } from "./session";
 import { getCelebrityAnalyticsData } from "lib/utils/celebrityUtils";
+import famososAnalytics from "lib/utils/famososAnalytics";
 // import { Mixpanel } from "./mixPanel";
 
 const ENV = process.env.NEXT_PUBLIC_ENVIRONMENT;
@@ -25,15 +26,17 @@ export const initialize = () => {
 
 export const tagManagerDataLayer = (event, dataLayer) => {
   try {
+    const analyticsData = {
+      path: getWindowPathname(),
+      ...dataLayer,
+      event,
+    };
     // MIX PANEL
     // Mixpanel.track(event, { ...dataLayer });
 
     // GTM NOTIFICATION
-    window?.dataLayer?.push?.({
-      path: getWindowPathname(),
-      ...dataLayer,
-      event,
-    });
+    window?.dataLayer?.push?.(analyticsData);
+    famososAnalytics.track(analyticsData);
 
     // // Segment
     // if (ENV !== "development") {
