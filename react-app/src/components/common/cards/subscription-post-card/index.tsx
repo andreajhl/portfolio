@@ -11,7 +11,7 @@ import {
 } from "react-app/src/components/containers/celebrity-shared-post";
 import { LoaderLayout } from "react-app/src/components/layouts/loader";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
-import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
+import { SUBSCRIPTION } from "react-app/src/routing/Paths";
 import {
   SubscriptionPostType,
   SubscriptionPostUrlType,
@@ -41,7 +41,7 @@ import {
 import { useAuth } from "lib/famosos-auth";
 import { useRouter } from "next/router";
 import { Session } from "react-app/src/state/utils/session";
-import { SIGN_IN_PATH } from "constants/paths";
+import { getCelebrityProfilePath, SIGN_IN_PATH } from "constants/paths";
 
 type SubscriptionPostCardProps = {
   className?: string;
@@ -345,19 +345,16 @@ function SubscriptionPostHeader({
 }: SubscriptionPostHeaderProps) {
   const formattedDate = date ? formatDate(date) : null;
 
-  const profilePath = CELEBRITY_PROFILE.replace(
-    ":celebrity_username",
-    username
-  );
+  const profilePath = getCelebrityProfilePath(username);
 
   return (
     <PostHeader>
-      {/* <Link href={profilePath}>
+      <Link href={profilePath}>
+        <ProfilePicture width="47px" avatar={avatar} />
       </Link>
       <Link href={profilePath} className="text-decoration-none">
-      </Link> */}
-      <ProfilePicture width="47px" avatar={avatar} />
-      <h3 className="font-weight-bold h6 ml-3 mb-0">{fullName}</h3>
+        <h3 className="font-weight-bold h6 ml-3 mb-0">{fullName}</h3>
+      </Link>
       <PostDate>
         <Maybe it={formattedDate !== "Invalid Date"}>{formattedDate}</Maybe>
       </PostDate>
