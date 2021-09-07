@@ -13,6 +13,7 @@ type CelebritySubscriptionBenefitsInfinityListProps = {
   benefits: SubscriptionBenefitType[];
   onNext: () => void;
   hasMore: boolean;
+  isSubscribed?: boolean;
 };
 
 function CelebritySubscriptionBenefitsInfinityList({
@@ -20,6 +21,7 @@ function CelebritySubscriptionBenefitsInfinityList({
   benefits,
   hasMore,
   onNext,
+  isSubscribed,
 }: CelebritySubscriptionBenefitsInfinityListProps) {
   const hasBenefits = benefits?.length > 0;
 
@@ -63,6 +65,7 @@ function CelebritySubscriptionBenefitsInfinityList({
             className={styles.BenefitCard}
             benefit={benefit}
             key={benefit?.id}
+            isSubscribed={isSubscribed}
           />
         ))}
       </Maybe>

@@ -85,6 +85,9 @@ export const getSubscriptionBenefitDetailsPath = (benefitId: number) =>
 export const getSubscriptionPostDetailsPath = (postId: number) =>
   `${SUBSCRIPTION_FEED}/${postId}`;
 
+export const getSubscriptionCheckoutPath = (celebrityUsername: string) =>
+  SUBSCRIPTION.replace(":celebrity_username", celebrityUsername);
+
 //SESSION REDIRECT
 export const SESSION_REDIRECT = "/session/redirect/";
 

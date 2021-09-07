@@ -1,12 +1,16 @@
 import classes from "classnames";
-import { getSubscriptionBenefitDetailsPath } from "constants/paths";
+import {
+  getSubscriptionBenefitDetailsPath,
+  getSubscriptionCheckoutPath,
+} from "constants/paths";
+import useGetCelebrity from "lib/hooks/useGetCelebrity";
 import getFormattedDate from "lib/utils/getFormattedDate";
 import { Card } from "react-app/src/components/common/cards";
 import Maybe from "react-app/src/components/common/helpers/maybe";
-import { Link } from "react-app/src/components/common/routing/link";
 import { SubscriptionBenefitType } from "react-app/src/types/subscriptionBenefitType";
 import { FormattedMessage } from "react-intl";
 import { Countdown } from "../../common/helpers/countdown";
+import { ProtectedRouteLink } from "../../common/routing/protected-route-link";
 import styles from "./styles.module.scss";
 
 function preventEvent(event) {
@@ -16,12 +20,15 @@ function preventEvent(event) {
 type BackstageBenefitCardProps = {
   className?: string;
   benefit: SubscriptionBenefitType;
+  isSubscribed?: boolean;
 };
 
 function BackstageBenefitCard({
   className,
   benefit,
+  isSubscribed,
 }: BackstageBenefitCardProps) {
+  const username = useGetCelebrity()?.celebrity?.username;
   const expirationDate = new Date(benefit?.expirationDate);
   const isExpired = Number(expirationDate) - Date.now() < 0;
   const date = getFormattedDate(expirationDate);
@@ -32,10 +39,14 @@ function BackstageBenefitCard({
     </span>
   );
 
+  const cardLink = isSubscribed
+    ? getSubscriptionBenefitDetailsPath(benefit.id)
+    : getSubscriptionCheckoutPath(username);
+
   return (
     <Card
-      as={Link}
-      href={getSubscriptionBenefitDetailsPath(benefit.id)}
+      as={ProtectedRouteLink}
+      href={cardLink}
       className={classes(styles.BackstageBenefitCard, className)}
     >
       <div className={styles.PosterWrapper}>

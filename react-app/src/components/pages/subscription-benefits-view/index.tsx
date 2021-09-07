@@ -51,6 +51,7 @@ function SubscriptionBenefitsView({
         benefits={benefits}
         onNext={setNewOffset}
         hasMore={hasMoreBenefits}
+        isSubscribed
       />
     </SubscriptionContentSection>
   );
