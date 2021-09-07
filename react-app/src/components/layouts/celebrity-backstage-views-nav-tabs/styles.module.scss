@@ -1,0 +1,20 @@
+.CelebrityBackstageViewsNavTabs.CelebrityBackstageViewsNavTabs {
+  box-shadow: none;
+
+  :global(.active) {
+    color: black;
+    box-shadow: none;
+  }
+}
+
+.CelebrityBackstageViewsNavTabs.CelebrityBackstageViewsNavTabs > * {
+  color: var(--gray-3);
+}
+
+.CelebrityBackstageViewsNavTabs > * + * {
+  border-left: 1px solid var(--gray-2);
+}
+
+.SubscriptionBenefitsCounter {
+  margin-left: 1rem;
+}

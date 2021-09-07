@@ -67,6 +67,15 @@ export const FEED_SUBSCRIPTION = "/backstage/feed";
 export const SUBSCRIPTION_FEED_VIEW_NAME = "feed";
 export const SUBSCRIPTION_FEED = `/backstage/${SUBSCRIPTION_FEED_VIEW_NAME}`;
 
+export const getCelebrityBackstagePostsPath = (celebrityUsername: string) =>
+  CELEBRITY_SUBSCRIBE.replace(":celebrity_username", celebrityUsername);
+
+export const getCelebrityBackstageBenefitsPath = (celebrityUsername: string) =>
+  `${CELEBRITY_SUBSCRIBE.replace(
+    ":celebrity_username",
+    celebrityUsername
+  )}/benefits`;
+
 export const SUBSCRIPTION_BENEFITS_VIEW_NAME = "benefits";
 export const SUBSCRIPTION_BENEFITS = `/backstage/${SUBSCRIPTION_BENEFITS_VIEW_NAME}`;
 
