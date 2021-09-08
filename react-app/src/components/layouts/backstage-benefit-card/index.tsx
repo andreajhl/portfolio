@@ -4,6 +4,7 @@ import {
   getSubscriptionBenefitDetailsPath,
   getSubscriptionCheckoutPath,
 } from "constants/paths";
+import { VimeoIframe } from "desktop-app/components/common/widgets/vimeo-iframe";
 import useGetCelebrity from "lib/hooks/useGetCelebrity";
 import getFormattedDate from "lib/utils/getFormattedDate";
 import { Card } from "react-app/src/components/common/cards";
@@ -18,6 +19,22 @@ import styles from "./styles.module.scss";
 
 function preventEvent(event) {
   event?.preventDefault?.();
+}
+
+function VideoPoster({ mediaUrl }: { mediaUrl: string }) {
+  return (
+    <video
+      onPlay={preventEvent}
+      onContextMenu={preventEvent}
+      muted
+      controls={false}
+      className={styles.PosterImage}
+      src={mediaUrl}
+      preload="metadata"
+      width="368"
+      height="368"
+    />
+  );
 }
 
 type BackstageBenefitCardProps = {
@@ -54,17 +71,17 @@ function BackstageBenefitCard({
     >
       <div className={styles.PosterWrapper}>
         {/* TODO: Add poster instead of video */}
-        <video
-          onPlay={preventEvent}
-          onContextMenu={preventEvent}
-          muted
-          controls={false}
-          className={styles.PosterImage}
-          src={benefit.media_url}
-          preload="metadata"
-          width="368"
-          height="368"
-        />
+        <Maybe
+          it={Boolean(benefit?.vimeoId)}
+          orElse={<VideoPoster mediaUrl={benefit?.media_url} />}
+        >
+          <VimeoIframe
+            vimeoId={benefit?.vimeoId}
+            showControls={false}
+            allowKeyboardControls={false}
+            className={styles.PosterImage}
+          />
+        </Maybe>
         <div
           className={classes(
             styles.PosterOverlay,
