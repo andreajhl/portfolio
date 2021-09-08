@@ -61,7 +61,7 @@ function ContractPriceSummary({
               ? `${(couponData.data?.discountPercentage * 100).toFixed(2)}%  | `
               : null}
             <PriceLayout
-              decimalScale={0}
+              decimalScale={1}
               price={couponData.data.discountAmount}
             ></PriceLayout>
           </div>
@@ -73,7 +73,7 @@ function ContractPriceSummary({
         </span>
         <span className={styles.BoldText}>
           <PriceLayout
-            decimalScale={0}
+            decimalScale={couponData.completed ? 1 : 0}
             price={
               couponData.completed ? couponData.data.finalAmount : contractPrice
             }
