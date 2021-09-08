@@ -61,12 +61,6 @@
     margin-bottom: 30px;
   }
 
-  :global(.photo-author) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover !important;
-  }
-
   :global(.description_s) {
     font-size: 18px;
     font-weight: 700;
@@ -78,6 +72,12 @@
     font-size: 18;
     color: hsla(0, 0%, 0%, 1);
   }
+}
+
+.MediaPlayer {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
 }
 
 .ExpirationDate {

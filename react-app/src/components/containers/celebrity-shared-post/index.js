@@ -10,6 +10,7 @@ export const VideoLayout = ({
   media,
   setSlideshowIsPlaying,
   classNameSlideLayoutVideo,
+  autoPlayVideo = false,
 }) => {
   return (
     <VideoSlideLayout
@@ -22,6 +23,7 @@ export const VideoLayout = ({
       videoReference={"celebrity-shared-post" + media.mediaUrl}
       setSlideshowIsPlaying={setSlideshowIsPlaying}
       videoUrl={media.mediaUrl}
+      autoPlayVideo={autoPlayVideo}
     />
   );
 };
