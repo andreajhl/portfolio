@@ -37,6 +37,7 @@ import {
   PostText,
   PostLikeIcon,
   PostReactionButton,
+  PostVimeoIframe,
 } from "./styles";
 import { useAuth } from "lib/famosos-auth";
 import { useRouter } from "next/router";
@@ -158,26 +159,29 @@ export const SubscriptionPostContent = ({
 );
 
 export const PostSingleMedia = ({
-  media: { mediaType, mediaUrl },
+  media: { mediaType, mediaUrl, vimeoId },
 }: {
   media: SubscriptionPostUrlType;
 }) => {
   const [videoIsMuted, setVideoIsMuted] = useState(true);
   const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(false);
+
   return (
-    <Maybe
-      it={mediaType === "IMAGE"}
-      orElse={
-        <VideoLayout
-          videoIsMuted={videoIsMuted}
-          setVideoIsMuted={setVideoIsMuted}
-          media={{ mediaUrl }}
-          classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video background-dark"
-          setSlideshowIsPlaying={setSlideshowIsPlaying}
-        />
-      }
-    >
-      <PostImage src={mediaUrl} />
+    <Maybe it={mediaType === "VIDEO"} orElse={<PostImage src={mediaUrl} />}>
+      <Maybe
+        it={Boolean(vimeoId)}
+        orElse={
+          <VideoLayout
+            videoIsMuted={videoIsMuted}
+            setVideoIsMuted={setVideoIsMuted}
+            media={{ mediaUrl }}
+            classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video background-dark"
+            setSlideshowIsPlaying={setSlideshowIsPlaying}
+          />
+        }
+      >
+        <PostVimeoIframe vimeoId={vimeoId} />
+      </Maybe>
     </Maybe>
   );
 };

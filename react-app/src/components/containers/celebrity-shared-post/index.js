@@ -3,6 +3,8 @@ import { Image, Carousel, ResponsiveEmbed, VideoSlide } from "react-bootstrap";
 import { VideoSlideLayout } from "../../layouts/video-slide/index";
 
 import propTypes from "prop-types";
+import Maybe from "../../common/helpers/maybe";
+import { VimeoIframe } from "desktop-app/components/common/widgets/vimeo-iframe";
 
 export const VideoLayout = ({
   videoIsMuted,
@@ -65,13 +67,23 @@ const CarouselItemsLayout = ({
             className="celebrity-shared-post__media-files__item"
           >
             {media.mediaType === "VIDEO" ? (
-              <VideoLayout
-                videoIsMuted={videoIsMuted}
-                setVideoIsMuted={setVideoIsMuted}
-                media={media}
-                setSlideshowIsPlaying={setSlideshowIsPlaying}
-                classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video"
-              />
+              <Maybe
+                it={media.vimeoId}
+                orElse={
+                  <VideoLayout
+                    videoIsMuted={videoIsMuted}
+                    setVideoIsMuted={setVideoIsMuted}
+                    media={media}
+                    setSlideshowIsPlaying={setSlideshowIsPlaying}
+                    classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video"
+                  />
+                }
+              >
+                <VimeoIframe
+                  vimeoId={media.vimeoId}
+                  className="celebrity-shared-post__vimeo-iframe"
+                />
+              </Maybe>
             ) : (
               <ImageLayout
                 media={media}

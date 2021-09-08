@@ -1,4 +1,5 @@
 import { LikeButton } from "desktop-app/components/common/button/like";
+import { VimeoIframe } from "desktop-app/components/common/widgets/vimeo-iframe";
 import styled from "styled-components";
 import { Card } from "..";
 
@@ -47,6 +48,13 @@ export const PostImage = styled.img`
   height: 100%;
   object-fit: cover;
 `;
+
+export const PostVimeoIframe = styled(VimeoIframe)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export const PostHiddenDiv = styled.div`
   padding: 0 3rem;
   display: flex;
