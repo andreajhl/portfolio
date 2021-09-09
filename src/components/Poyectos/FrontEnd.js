@@ -59,11 +59,11 @@ export const FrontEnd =()=>{
                         </div>
                         <div className="mostrar">
                             <div style={{display:'flex',justifyContent:'center'}}>
-                                <p>PEliPOP extrae datos de 'API IMDB', de entrada te trae las peliculas con mayor puntuacion, en ella podes buscar películas por nombre o palabras claves, podes guardarlas a favoritas, estas se mantendran aunque reinicies la pagina, o ver mas detalle de ellas.</p>
+                                <p>PEliPOP extrae datos de 'omdbapi', de entrada te trae las primerjas 10 peliculas con mayor puntuacion, en ella podes buscar películas por nombre o palabras claves, podes guardarlas en favoritas, estas se mantendran aunque reinicies la pagina, o ver mas detalle de ellas.</p>
                             </div>
                             <div className='divIcon'>
                              <a href='https://github.com/andreajhl/peliPOP' target='_blank' rel = "noreferrer" className='icon'><GitHubIcon/></a>
-                             <a href='https://peli-pop-andrea-h.vercel.app/' target='_blank' rel = "noreferrer" className='icon'><LanguageSharpIcon/></a>
+                             <a href='https://pelipop.netlify.app/' target='_blank' rel = "noreferrer" className='icon'><LanguageSharpIcon/></a>
                             
                             </div> 
                         </div>
