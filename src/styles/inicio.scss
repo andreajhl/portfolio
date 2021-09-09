@@ -77,10 +77,11 @@
         text-shadow:2px 2px 0px #fdfcfc;
         @media #{$smarmini}{
             font-size:20px ;
-            text-shadow:1px 1px 0px #fcfbfb;
+            text-shadow:0px 0px 0px #fcfbfb;
         }
         @media #{$smarphone}{
             font-size: 25px;
+            text-shadow:0px 0px 0px #fcfbfb;
         }
         @media #{$tablet}{
             font-size: 40px;
@@ -114,9 +115,10 @@
         margin-top: 4%;
         .buut{
             padding-top: 4%;
+            padding-bottom: 4%;
             font-size: 38px;
-            color: $color5;
-            background-color: white;
+            text-shadow:2px 2px 0px #fcfbfb;
+            background-color: #3EB595;
             border-radius: 15px;
             border: 2px solid $color5;
             cursor: pointer;
@@ -140,6 +142,7 @@
         box-shadow:0px 0px 10px #fdfdfd8a;
         .href{
             color:white;
+            text-shadow:2px 2px 0px #0f0101;
         }
    }
    .href{
