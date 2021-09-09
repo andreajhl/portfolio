@@ -189,6 +189,8 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
     });
   };
 
+  const subscriptionPlanPrice = SUBSCRIPTION_PLAN_PRICE;
+
   const startSpreedlyPayment = async (cardToken) => {
     if (!isProccesing) {
       try {
@@ -199,7 +201,11 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
         });
         analytics.trackSubscription({
           celebrityId,
-          subscriptionPlanPrice: SUBSCRIPTION_PLAN_PRICE,
+          subscriptionPlanPrice,
+        });
+        analytics.track("BACKSTAGE_SUBSCRIPTION_PAYED", {
+          celebrityId,
+          subscriptionPlanPrice,
         });
         push(
           SUBSCRIPTION_SUCCESS.replace(

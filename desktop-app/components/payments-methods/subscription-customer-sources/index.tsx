@@ -40,6 +40,8 @@ function SubscriptionCustomerSources({
       startSpreedlyPayment(sources[selectedSourceIndex].token);
     }
   };
+  const subscriptionPlanPrice = SUBSCRIPTION_PLAN_PRICE;
+
   const startSpreedlyPayment = async (cardToken) => {
     try {
       setPaymentError(null);
@@ -50,7 +52,11 @@ function SubscriptionCustomerSources({
       });
       analytics.trackSubscription({
         celebrityId,
-        subscriptionPlanPrice: SUBSCRIPTION_PLAN_PRICE,
+        subscriptionPlanPrice,
+      });
+      analytics.track("BACKSTAGE_SUBSCRIPTION_PAYED", {
+        celebrityId,
+        subscriptionPlanPrice,
       });
       push(
         SUBSCRIPTION_SUCCESS.replace(
