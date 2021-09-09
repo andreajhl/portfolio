@@ -22,6 +22,8 @@ function SubscriptionCheckoutContainer({
   const [userSources, setUserSources] = useState([]);
   const [mode, setMode] = useState<"selectSource" | "addSource">(null);
 
+  const subscriptionPlanPrice = SUBSCRIPTION_PLAN_PRICE;
+
   const fetchUserSources = useCallback(async () => {
     const response = (await retrieveSpreedlyUserSources()) as {
       cardType: string;
@@ -42,7 +44,7 @@ function SubscriptionCheckoutContainer({
   useEffect(() => {
     analytics.trackInitiateSubscriptionCheckout({
       celebrityId,
-      subscriptionPlanPrice: SUBSCRIPTION_PLAN_PRICE,
+      subscriptionPlanPrice,
     });
     fetchUserSources();
   }, []);
@@ -60,6 +62,15 @@ function SubscriptionCheckoutContainer({
         console.error(e);
       });
   };
+
+  useEffect(() => {
+    if (!mode) return;
+    analytics.track("BACKSTAGE_CHECKOUT_SET_PAYMENT_OPTION", {
+      subscriptionPlanPrice,
+      celebrityId,
+      paymentOption: mode,
+    });
+  }, [celebrityId, mode, subscriptionPlanPrice]);
 
   if (isLoading) {
     return <LoadingSpinner />;
