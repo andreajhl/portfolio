@@ -15,6 +15,7 @@ import { Countdown } from "../../common/helpers/countdown";
 import { VimeoIframe } from "desktop-app/components/common/widgets/vimeo-iframe";
 import { VideoLayout } from "react-app/src/components/containers/celebrity-shared-post";
 import { useState } from "react";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const noMediaBanner = (
   <div className={styles.NoMediaBanner}>
@@ -50,6 +51,10 @@ function SubscriptionBenefitDetails({
 
   const linkLabel = formatMessage(getLinkLabelMessage(benefit?.benefit_type));
   const hasMedia = Boolean(benefit?.media_url || benefit?.vimeoId);
+
+  function trackBenefitLinkClick() {
+    analytics.track("CLICK_ON_BENEFIT_LINK", { benefit });
+  }
 
   return (
     <PageContainer showSearch={false} showNavbar={false}>
@@ -118,6 +123,7 @@ function SubscriptionBenefitDetails({
               rel="noreferrer"
               target="_blank"
               href={benefit?.link}
+              onClick={trackBenefitLinkClick}
             >
               {linkLabel} <i className="fa fa-external-link-alt"></i>
             </a>
