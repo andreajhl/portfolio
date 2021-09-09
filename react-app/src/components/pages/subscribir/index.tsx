@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { PageContainer } from "../../layouts/page-container";
 import { ProfilePicture } from "../../layouts/profile-picture";
 import { connect, ConnectedProps } from "react-redux";
@@ -44,6 +44,7 @@ import { CelebrityBackstageViewsNavTabs } from "../../layouts/celebrity-backstag
 import styles from "./styles.module.scss";
 import { SUBSCRIPTION_BENEFITS_VIEW_NAME } from "constants/paths";
 import { SubscriptionPublicBenefitsList } from "../../containers/subscription-public-benefits-list";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const messages = defineMessages({
   noAvailableForSubscriptionAlertText: {
@@ -155,11 +156,32 @@ function SubscribePage({
     isAuthenticated,
   ]);
 
+  const subscriptionPrice = SUBSCRIPTION_PLAN_PRICE;
+
   const priceLayout = (
-    <PriceLayout price={SUBSCRIPTION_PLAN_PRICE} showPrefix={false} />
+    <PriceLayout price={subscriptionPrice} showPrefix={false} />
   );
 
   const hasPosts = posts?.length > 0;
+  const hasTrackedViewRef = useRef(false);
+
+  useEffect(() => {
+    // The ref value is kept even if change view.
+    hasTrackedViewRef.current = false;
+  }, [viewName]);
+
+  useEffect(() => {
+    if (isLoading || hasTrackedViewRef.current) return;
+    hasTrackedViewRef.current = true;
+    const event = `CELEBRITY_BACKSTAGE_${
+      viewName === SUBSCRIPTION_BENEFITS_VIEW_NAME ? "BENEFITS" : "FEED"
+    }_VIEW`;
+    analytics.track(event, {
+      subscriptionPrice,
+      celebrity,
+      isSubscribed,
+    });
+  }, [viewName, isSubscribed, isLoading, subscriptionPrice, celebrity]);
 
   return (
     <PageContainer showSearch={false}>
@@ -214,7 +236,7 @@ function SubscribePage({
                     values={{ priceLayout }}
                   />
                 </PlanInfoPrice>
-                <ConvertedPriceCopy price={SUBSCRIPTION_PLAN_PRICE} />
+                <ConvertedPriceCopy price={subscriptionPrice} />
                 <div style={{ marginTop: "20px" }}>
                   <GoToSubscriptionCheckoutButton
                     className="CallToActionButton"
