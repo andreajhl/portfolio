@@ -14,6 +14,20 @@ import { NotResults } from "../../layouts/not-results";
 import { FormattedMessage } from "react-intl";
 import useSubscriptionCurrentCelebrity from "lib/hooks/useSubscriptionCurrentCelebrity";
 import { SubscriptionNextBenefitBanner } from "react-app/src/components/layouts/subscription-next-benefit-banner";
+import { analytics } from "react-app/src/state/utils/gtm";
+
+const byCelebrityId = (celebrityId) => (celebrity) =>
+  celebrityId === celebrity.celebrityId;
+
+const toOnlyCelebrityInfo = ({
+  celebrityFullName,
+  celebrityId,
+  celebrityUsername,
+}) => ({
+  celebrityFullName,
+  celebrityId,
+  celebrityUsername,
+});
 
 function SubscriptionViews({
   isSubscriptionListCompletedFetch,
@@ -28,6 +42,24 @@ function SubscriptionViews({
   }, []);
 
   const hasSubscriptions = subscriptionList.length > 0;
+
+  function trackFilterChange(newChoice) {
+    const viewName =
+      currentView === SUBSCRIPTION_BENEFITS_VIEW_NAME ? "BENEFITS" : "FEED";
+    analytics.track(`BACKSTAGE_${viewName}_CHANGE_FILTER`, {
+      currentChoice,
+      newChoice,
+      filteredCelebrity: toOnlyCelebrityInfo(
+        subscriptionList.find(byCelebrityId(newChoice))
+      ),
+      subscriptionList: subscriptionList.map(toOnlyCelebrityInfo),
+    });
+  }
+
+  function changeCurrentChoice(newChoice) {
+    trackFilterChange(newChoice);
+    setCurrentChoice(newChoice);
+  }
 
   return (
     <PageContainer showSearch={false}>
@@ -50,7 +82,7 @@ function SubscriptionViews({
           <Maybe it={hasSubscriptions}>
             <SubscriptionsFilter
               currentChoice={currentChoice}
-              onChangeCelebrity={setCurrentChoice}
+              onChangeCelebrity={changeCurrentChoice}
               celebritiesSubscriptions={subscriptionList}
             />
           </Maybe>
