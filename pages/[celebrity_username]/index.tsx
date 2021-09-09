@@ -2,18 +2,17 @@ import { GetServerSideProps } from "next";
 import { wrapper } from "react-app/src/state/store";
 import {
   get,
-  listPublicContracts,
   listPublicContractsV2,
-  listReviews,
   listReviewsV2,
-  setCelebrityProfileVersion,
 } from "react-app/src/state/ducks/celebrities/actions";
 import { CELEBRITY_PROFILE_ERROR } from "react-app/src/routing/Paths";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { getProfileVersionDependingOnTime } from "react-app/src/utils/celebrityProfileVersion";
+import {
+  getCelebrityProfileVersion,
+  getProfileVersionDependingOnTime,
+  setCelebrityProfileVersion,
+} from "react-app/src/utils/celebrityProfileVersion";
 import isMobileDevice from "lib/utils/isMobile";
-import dynamic from "next/dynamic";
-import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import MicroDataTags from "react-app/src/components/common/helpers/micro-data-tags";
 import getContractPrice from "react-app/src/utils/getContractPrice";
@@ -86,18 +85,18 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
           },
         };
       }
-      store.dispatch(
-        setCelebrityProfileVersion(getProfileVersionDependingOnTime())
-      );
 
       await listReviewsV2(celebrity.username)(store.dispatch);
       await listPublicContractsV2(celebrity.username)(store.dispatch);
 
+      const celebrityProfileVersion =
+        getCelebrityProfileVersion(req?.headers?.cookie) ||
+        getProfileVersionDependingOnTime();
+
       return {
         props: {
           celebrity,
-          celebrityProfileVersion: store.getState().celebrities
-            .celebrityProfileVersionReducer,
+          celebrityProfileVersion,
           isMobile,
           shouldFocusCreateContractWizard: Boolean(
             query?.[CREATE_CONTRACT_QUERY_PARAM]
@@ -113,12 +112,19 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   }
 );
 
+type CelebrityProfileProps = {
+  celebrity: celebrityType;
+  celebrityProfileVersion: "A" | "B";
+  isMobile: boolean;
+  shouldFocusCreateContractWizard: boolean;
+};
+
 function CelebrityProfile({
   celebrity,
   celebrityProfileVersion,
   isMobile,
   shouldFocusCreateContractWizard,
-}) {
+}: CelebrityProfileProps) {
   useDesktopClass(true);
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
   const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
@@ -144,6 +150,11 @@ function CelebrityProfile({
       shouldFocusCreateContractWizard,
     });
   }, []);
+
+  useEffect(() => {
+    if (getCelebrityProfileVersion()) return;
+    setCelebrityProfileVersion(celebrityProfileVersion);
+  }, [celebrityProfileVersion]);
 
   return (
     <>
