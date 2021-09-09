@@ -121,6 +121,9 @@ export function trackCelebrityProfileView({ celebrity, ...analyticsData }) {
     userId,
     celebrityId: celebrity?.id,
     userAgent: navigator.userAgent,
+    celebrityProfileVersion: analyticsData.isMobile
+      ? `MOBILE-${analyticsData.celebrityProfileVersion}`
+      : "DESKTOP",
     ...analyticsData,
   });
 }
