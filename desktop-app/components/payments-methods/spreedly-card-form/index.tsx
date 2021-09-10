@@ -24,9 +24,9 @@ import {
 } from "react-app/src/constants/messages";
 import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 import { getTextOfFormatAllowedForUserDocument } from "react-app/src/state/utils/getTextOfFormatAllowedForUserDocument";
-import { useSelector } from "react-redux";
-import { RootState } from "react-app/src/state/store";
 import { useRef } from "react";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -362,6 +362,9 @@ function SpreedlyCardForm({
         </div>
       </fieldset>
       <fieldset>
+        <Maybe it={userCurrency === "MXN"}>
+          <CardGenerationReminder />
+        </Maybe>
         {paymentError && <WarningMessage message={paymentError} />}
         <SubmitButton loading={isProccesing} disabled={loading || isProccesing}>
           <FormattedMessage defaultMessage="Pagar" />
