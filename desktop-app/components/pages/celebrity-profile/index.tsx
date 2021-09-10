@@ -15,32 +15,33 @@ import { calculateScrollOffset } from "../../../../lib/utils/calculateScrollOffs
 import { calculateElementEdge } from "../../../../lib/utils/calculateElementEdge";
 import { analytics } from "react-app/src/state/utils/gtm";
 import ContractInProgressType from "desktop-app/types/contractInProgressType";
-
 const loading = () => <div className={styles.CelebrityProfileSkeleton} />;
-
 const CelebrityProfileDesktopLayout = dynamic<any>(
   import("../../celebrity-profile/celebrity-profile-layout").then(
     (mod) => mod.CelebrityProfileDesktopLayout
   ),
   { loading }
 );
-
 const CelebrityProfileLayoutTwo = dynamic<any>(
   import(
     "react-app/src/components/celebrity-profile/celebrity-profile-layout-two"
   ).then((mod) => mod.CelebrityProfileLayoutTwo),
   { loading }
 );
-
 const CelebrityProfileLayoutOne = dynamic<any>(
   import(
     "react-app/src/components/celebrity-profile/celebrity-profile-layout-one"
   ).then((mod) => mod.CelebrityProfileLayoutOne),
   { loading }
 );
-
 const createContractWizardBottomInitialValue = 600;
-
+function getWizardElement() {
+  return waitFor(
+    () => document.querySelector(`.${styles.CreateContractWizard}`) as any,
+    1000,
+    20
+  );
+}
 async function focusWizardInput() {
   const firstInputSelector = `.${styles.CreateContractWizard} input`;
   const wizardFirstInputElement: HTMLElement = await waitFor(
@@ -48,13 +49,11 @@ async function focusWizardInput() {
   );
   wizardFirstInputElement?.focus?.({ preventScroll: true });
 }
-
 type CelebrityProfilePageProps = {
   celebrity: celebrityType;
   shouldFocusCreateContractWizard?: boolean;
   celebrityProfileVersion?: "A" | "B";
 };
-
 function CelebrityProfilePage({
   celebrity,
   shouldFocusCreateContractWizard = false,
@@ -70,10 +69,11 @@ function CelebrityProfilePage({
   const [createContractWizardBottom, setCreateContractWizardBottom] = useState(
     createContractWizardBottomInitialValue
   );
-
-  function goToCreateContractWizard() {
+  async function goToCreateContractWizard() {
+    const wizardElement = await getWizardElement();
+    if (!wizardElement) return;
     scrollToTop({
-      top: calculateScrollOffset(`.${styles.CreateContractWizard}`, -32, "top"),
+      top: calculateScrollOffset(wizardElement, -32, "top"),
     });
     setCreateContractWizardIsFocused(true);
     wizardChangeFocusTimeoutRef.current = setTimeout(() => {
@@ -81,7 +81,6 @@ function CelebrityProfilePage({
     }, 2000);
     focusWizardInput();
   }
-
   useEffect(
     () =>
       function clearWizardChangeFocusTimeout() {
@@ -90,18 +89,12 @@ function CelebrityProfilePage({
       },
     []
   );
-
   async function changeCreateContractWizardBottom() {
-    const wizardElement = await waitFor(
-      () => document.querySelector(`.${styles.CreateContractWizard}`) as any,
-      1000,
-      20
-    );
+    const wizardElement = await getWizardElement();
     const wizardBottom = calculateElementEdge(wizardElement);
     if (!wizardBottom) return;
     setCreateContractWizardBottom(wizardBottom - 100);
   }
-
   function trackProfileView(contractInProgress: ContractInProgressType) {
     analytics.trackCelebrityProfileView({
       celebrity,
@@ -112,16 +105,13 @@ function CelebrityProfilePage({
       widget: "CelebrityProfilePage",
     });
   }
-
   function onCreateContractIsReady(contractInProgress: ContractInProgressType) {
     changeCreateContractWizardBottom();
     trackProfileView(contractInProgress);
     if (!shouldFocusCreateContractWizard) return;
     goToCreateContractWizard();
   }
-
   const isJuanseQuintero = celebrity?.id === 6317;
-
   const layoutProps = {
     celebrity: celebrity,
     onCreateContractIsReady,
@@ -133,7 +123,6 @@ function CelebrityProfilePage({
     ),
     showFanClubAdvertise: !isJuanseQuintero,
   };
-
   return (
     <PageContainer showSearch={false}>
       <Maybe it={!isMobile}>
@@ -159,5 +148,4 @@ function CelebrityProfilePage({
     </PageContainer>
   );
 }
-
 export { CelebrityProfilePage };
