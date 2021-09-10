@@ -9,6 +9,7 @@ import useGetCelebrity from "lib/hooks/useGetCelebrity";
 import getFormattedDate from "lib/utils/getFormattedDate";
 import { Card } from "react-app/src/components/common/cards";
 import Maybe from "react-app/src/components/common/helpers/maybe";
+import { analytics } from "react-app/src/state/utils/gtm";
 import { SubscriptionBenefitType } from "react-app/src/types/subscriptionBenefitType";
 import { FormattedMessage } from "react-intl";
 import { SubscriptionHiddenContent } from "../../common/cards/subscription-post-card";
@@ -41,12 +42,14 @@ type BackstageBenefitCardProps = {
   className?: string;
   benefit: SubscriptionBenefitType;
   isSubscribed?: boolean;
+  subscriptionPrice?: number;
 };
 
 function BackstageBenefitCard({
   className,
   benefit,
   isSubscribed,
+  subscriptionPrice = SUBSCRIPTION_PLAN_PRICE,
 }: BackstageBenefitCardProps) {
   const celebrity = useGetCelebrity()?.celebrity;
   const expirationDate = new Date(benefit?.expirationDate);
@@ -62,6 +65,14 @@ function BackstageBenefitCard({
   const cardLink = isSubscribed
     ? getSubscriptionBenefitDetailsPath(benefit.id)
     : getSubscriptionCheckoutPath(celebrity?.username);
+
+  function trackSubscribeClick() {
+    analytics.track("CLICK_ON_CELEBRITY_BENEFIT_SUBSCRIBE_BUTTON", {
+      celebrity,
+      subscriptionPrice,
+      benefit,
+    });
+  }
 
   return (
     <Card
@@ -92,11 +103,10 @@ function BackstageBenefitCard({
         </div>
         <Maybe it={!isSubscribed}>
           <SubscriptionHiddenContent
+            onClickSubscribe={trackSubscribeClick}
             description=""
             imageSrc=""
-            price={
-              <PriceLayout price={SUBSCRIPTION_PLAN_PRICE} showPrefix={false} />
-            }
+            price={<PriceLayout price={subscriptionPrice} showPrefix={false} />}
             fullName={celebrity?.fullName}
             username={celebrity?.username}
           />
