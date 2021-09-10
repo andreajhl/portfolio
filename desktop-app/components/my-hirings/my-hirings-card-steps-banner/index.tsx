@@ -84,7 +84,6 @@ const getStepsItems = ({
 function MyHiringsCardStepsBanner({
   contractData,
 }: MyHiringsCardStepsBannerProps) {
-  console.log("MyHiringsCardStepsBanner", contractData);
   return (
     <StepsGrayBanner
       direction="column"

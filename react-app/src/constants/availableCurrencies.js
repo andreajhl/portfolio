@@ -91,7 +91,7 @@ export const AVAILABLE_CURRENCIES = [
   {
     name: "PEN",
     label: "Sol",
-    symbol: "$",
+    symbol: "S/",
     implemented_by_dlocal: false,
     flag: "https://restcountries.eu/data/per.svg",
     document_name: "DNI",
