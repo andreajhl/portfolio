@@ -1,13 +1,10 @@
 import { shallow } from "enzyme";
 import testCelebrity from "__test__/fake-data/testCelebrity";
-import { StickyCallToActionTopBar } from ".";
+import { StickyCallToActionBar } from ".";
 
 it("renders without crashing", () => {
   const wrapper = shallow(
-    <StickyCallToActionTopBar
-      appearancePosition={0}
-      celebrity={testCelebrity}
-    />
+    <StickyCallToActionBar appearancePosition={0} celebrity={testCelebrity} />
   );
   expect(wrapper.exists()).toBeTruthy();
 });

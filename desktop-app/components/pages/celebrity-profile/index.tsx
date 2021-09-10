@@ -1,47 +1,44 @@
-import { CelebrityDetails } from "desktop-app/components/celebrity-profile/celebrity-details";
-import Maybe from "desktop-app/components/common/helpers/maybe";
-import { ContractSteps } from "desktop-app/components/celebrity-profile/contract-steps";
-import { CelebrityPublicContractsReel } from "desktop-app/components/layouts/celebrity-public-contracts-reel";
-import { LastReviewsSection } from "desktop-app/components/layouts/last-reviews-section";
 import PageContainer from "desktop-app/components/layouts/page-container";
 import { PageHeading } from "desktop-app/components/layouts/page-heading";
-import { StickyCallToActionTopBar } from "desktop-app/components/celebrity-profile/sticky-call-to-action-top-bar";
+import { StickyCallToActionBar } from "desktop-app/components/celebrity-profile/sticky-call-to-action-bar";
 import { celebrityType } from "desktop-app/types/celebrityType";
-import { connect, ConnectedProps } from "react-redux";
-import { SimilarCelebritiesCardsReel } from "desktop-app/components/celebrity-profile/similar-celebrities-cards-reel";
-import { CelebritySimilarVideosReel } from "desktop-app/components/celebrity-profile/celebrity-similar-videos-reel";
-import { FanClubAdvertise } from "desktop-app/components/celebrity-profile/fan-club-advertise";
 import scrollToTop from "lib/utils/scrollToTop";
 import classes from "classnames";
 import styles from "./styles.module.scss";
-import {
-  getUserContractInProgress,
-  cleanUserContractInProgress,
-} from "react-app/src/state/ducks/contracts/actions";
-import { useAuth } from "lib/famosos-auth";
-import { RootState } from "react-app/src/state/store";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { CreateContractWizardSkeleton } from "desktop-app/components/celebrity-profile/create-contract-wizard/skeleton";
-import { ComponentProps as CreateContractWizardProps } from "desktop-app/components/celebrity-profile/create-contract-wizard/types";
-import dynamic from "next/dynamic";
+import { useEffect, useRef, useState } from "react";
 import useGlobalFetches from "lib/hooks/useGlobalFetches";
-import { CREATE_CONTRACT_WIZARD_TEST_ID } from "__test__/testids";
-import { getLocalContractInProgress } from "lib/utils/localContractInProgress";
 import waitFor from "react-app/src/utils/waitFor";
-import { NotAvailableBanner } from "desktop-app/components/celebrity-profile/not-available-banner";
-import { celebrityIsUnavailable } from "lib/utils/celebrityUtils";
 import { useTrackCelebrityPageView } from "../../../../lib/hooks/useTrackCelebrityPageView";
+import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import dynamic from "next/dynamic";
+import { calculateScrollOffset } from "../../../../lib/utils/calculateScrollOffset";
+import { calculateElementEdge } from "../../../../lib/utils/calculateElementEdge";
 
-const CreateContractWizard = dynamic<CreateContractWizardProps>(
-  () =>
-    import(
-      "desktop-app/components/celebrity-profile/create-contract-wizard"
-    ).then((mod) => mod.CreateContractWizard),
-  { loading: CreateContractWizardSkeleton }
+const loading = () => <div className={styles.CelebrityProfileSkeleton} />;
+
+const CelebrityProfileDesktopLayout = dynamic<any>(
+  import("../../celebrity-profile/celebrity-profile-layout").then(
+    (mod) => mod.CelebrityProfileDesktopLayout
+  ),
+  { loading }
 );
 
-const createContractWizardPosition = { top: 110 };
-const createContractWizardBottom = 600; // por ser definido correctamente.
+const CelebrityProfileLayoutTwo = dynamic<any>(
+  import(
+    "react-app/src/components/celebrity-profile/celebrity-profile-layout-two"
+  ).then((mod) => mod.CelebrityProfileLayoutTwo),
+  { loading }
+);
+
+const CelebrityProfileLayoutOne = dynamic<any>(
+  import(
+    "react-app/src/components/celebrity-profile/celebrity-profile-layout-one"
+  ).then((mod) => mod.CelebrityProfileLayoutOne),
+  { loading }
+);
+
+const createContractWizardBottomInitialValue = 600;
 
 async function focusWizardInput() {
   const firstInputSelector = `.${styles.CreateContractWizard} input`;
@@ -51,46 +48,32 @@ async function focusWizardInput() {
   wizardFirstInputElement?.focus?.({ preventScroll: true });
 }
 
-const mapStateToProps = ({ celebrities, contracts }: RootState) => ({
-  publicContracts: celebrities.fetchPublicContractsReducer.data.results,
-  contractInProgressRequest: contracts.getUserContractInProgressReducer,
-  isLoadingPublicContracts: celebrities.fetchPublicContractsReducer.loading,
-});
-
-const mapDispatchToProps = {
-  getUserContractInProgress,
-  cleanUserContractInProgress,
-};
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropFromRedux = ConnectedProps<typeof connector>;
-
 type CelebrityProfilePageProps = {
   celebrity: celebrityType;
   shouldFocusCreateContractWizard?: boolean;
-} & PropFromRedux;
+  celebrityProfileVersion?: "A" | "B";
+};
 
 function CelebrityProfilePage({
   celebrity,
   shouldFocusCreateContractWizard = false,
-  isLoadingPublicContracts,
-  publicContracts,
-  getUserContractInProgress,
-  cleanUserContractInProgress,
-  contractInProgressRequest,
+  celebrityProfileVersion = "A",
 }: CelebrityProfilePageProps) {
   useGlobalFetches();
+  const isMobile = useIsOnMobileScreen();
   const [
     createContractWizardIsFocused,
     setCreateContractWizardIsFocused,
   ] = useState(false);
-  const { isAuthenticated, isLoading } = useAuth();
-  const [isReadyToCreateContract, setIsReadyToCreateContract] = useState(false);
   const wizardChangeFocusTimeoutRef = useRef<number | NodeJS.Timeout>();
+  const [createContractWizardBottom, setCreateContractWizardBottom] = useState(
+    createContractWizardBottomInitialValue
+  );
 
   function goToCreateContractWizard() {
-    scrollToTop(createContractWizardPosition);
+    scrollToTop({
+      top: calculateScrollOffset(`.${styles.CreateContractWizard}`, -32, "top"),
+    });
     setCreateContractWizardIsFocused(true);
     wizardChangeFocusTimeoutRef.current = setTimeout(() => {
       setCreateContractWizardIsFocused(false);
@@ -107,170 +90,70 @@ function CelebrityProfilePage({
     []
   );
 
-  const localContractInProgress = useMemo(
-    () => getLocalContractInProgress(celebrity.id),
-    [celebrity.id]
-  );
+  async function changeCreateContractWizardBottom() {
+    const wizardElement = await waitFor(
+      () => document.querySelector(`.${styles.CreateContractWizard}`) as any,
+      1000,
+      20
+    );
+    const wizardBottom = calculateElementEdge(wizardElement);
+    if (!wizardBottom) return;
+    setCreateContractWizardBottom(wizardBottom - 100);
+  }
 
-  useEffect(() => {
-    if (!isAuthenticated || localContractInProgress) return;
-    getUserContractInProgress(celebrity.username);
-  }, [
-    celebrity.username,
-    getUserContractInProgress,
-    isAuthenticated,
-    localContractInProgress,
-  ]);
-
-  const showContractStepsBeforeReviews =
-    !isLoadingPublicContracts &&
-    (publicContracts?.length < 3 || publicContracts === null);
-
-  const showContractStepsAfterReviews =
-    !isLoadingPublicContracts && publicContracts?.length >= 3;
-
-  const showCelebritiesCards = publicContracts?.length > 0;
-
-  useEffect(() => {
-    if (
-      localContractInProgress ||
-      contractInProgressRequest.completed ||
-      (!isLoading && !isAuthenticated)
-    ) {
-      setIsReadyToCreateContract(true);
-    }
-  }, [
-    contractInProgressRequest.completed,
-    isAuthenticated,
-    isLoading,
-    localContractInProgress,
-    celebrity.username,
-  ]);
-
-  useEffect(() => {
+  function onCreateContractIsReady() {
+    changeCreateContractWizardBottom();
     if (!shouldFocusCreateContractWizard) return;
-    if (!isReadyToCreateContract) return;
     goToCreateContractWizard();
-  }, [shouldFocusCreateContractWizard, isReadyToCreateContract]);
-
-  useEffect(
-    () => () => {
-      setIsReadyToCreateContract(false);
-      cleanUserContractInProgress();
-    },
-    [cleanUserContractInProgress, celebrity.username]
-  );
-
-  const contractInProgress =
-    localContractInProgress || contractInProgressRequest?.data;
+  }
 
   useTrackCelebrityPageView({
     celebrity,
     isMobile: false,
     shouldFocusCreateContractWizard,
-    contractInProgress,
-    isReadyToTrack: isReadyToCreateContract,
+    // contractInProgress,
+    // isReadyToTrack: isReadyToCreateContract,
     widget: "CelebrityProfilePage",
   });
 
   const isJuanseQuintero = celebrity?.id === 6317;
 
-  const availableForSubscriptions =
-    celebrity?.availableForSubscriptions && !isJuanseQuintero;
+  const layoutProps = {
+    celebrity: celebrity,
+    onCreateContractIsReady,
+    goToCreateContractWizard,
+    createContractWizardClassName: classes(
+      styles.CreateContractWizard,
+      isMobile && styles.CreateContractWizardMobile,
+      createContractWizardIsFocused && styles.ContractWizardFocused
+    ),
+    showFanClubAdvertise: !isJuanseQuintero,
+  };
 
   return (
-    <PageContainer>
-      <PageHeading showHomeLink />
-      <StickyCallToActionTopBar
+    <PageContainer showSearch={false}>
+      <Maybe it={!isMobile}>
+        <PageHeading showHomeLink />
+      </Maybe>
+      <StickyCallToActionBar
         appearancePosition={createContractWizardBottom}
         celebrity={celebrity}
         onCTAButtonClick={goToCreateContractWizard}
+        isMobile={isMobile}
       />
-      <div className={styles.TopSectionWrapper}>
-        <div className={classes("container", styles.CelebrityDetailsContainer)}>
-          <div className={styles.CelebrityDetailsWrapper}>
-            <CelebrityDetails celebrity={celebrity} />
-          </div>
-          <div>
-            <Maybe
-              it={!celebrityIsUnavailable(celebrity.status)}
-              orElse={
-                <NotAvailableBanner
-                  celebrityName={celebrity.fullName}
-                  celebrityId={celebrity.id}
-                  celebrityUsername={celebrity.username}
-                />
-              }
-            >
-              <Maybe
-                it={isReadyToCreateContract}
-                orElse={<CreateContractWizardSkeleton />}
-              >
-                <CreateContractWizard
-                  data-testid={CREATE_CONTRACT_WIZARD_TEST_ID}
-                  className={classes(
-                    styles.CreateContractWizard,
-                    createContractWizardIsFocused &&
-                      styles.ContractWizardFocused
-                  )}
-                  celebrity={celebrity}
-                  contractInProgress={contractInProgress}
-                />
-              </Maybe>
-            </Maybe>
-            <Maybe it={availableForSubscriptions}>
-              <FanClubAdvertise celebrity={celebrity} />
-            </Maybe>
-          </div>
-        </div>
-      </div>
-      <div className="container">
-        <div className={styles.CelebrityPublicContractWrapper}>
-          <CelebrityPublicContractsReel
-            celebrityId={celebrity.id}
-            username={celebrity.username}
-            celebrityFullName={celebrity.fullName}
-            celebrityAvatar={celebrity.avatar}
-          />
-          <Maybe it={showContractStepsBeforeReviews}>
-            <div className={styles.ContractStepsBeforeReviewsWrapper}>
-              <ContractSteps />
-            </div>
-          </Maybe>
-        </div>
-        <div className={styles.LastReviewsSectionWrapper}>
-          <LastReviewsSection showMore={true} />
-        </div>
-        <div className={styles.ContractStepsAfterReviewsContainer}>
-          <Maybe it={showContractStepsAfterReviews}>
-            <div className={styles.ContractStepsAfterReviewsWrapper}>
-              <ContractSteps />
-            </div>
-          </Maybe>
-        </div>
-        <Maybe it={celebrity.showSimilarCelebrities}>
-          <div className={styles.SimilarContentWrapper}>
-            <Maybe
-              it={showCelebritiesCards}
-              orElse={
-                <CelebritySimilarVideosReel
-                  celebrityUsername={celebrity.username}
-                />
-              }
-            >
-              <SimilarCelebritiesCardsReel
-                celebrityUsername={celebrity.username}
-              />
-            </Maybe>
-          </div>
+      <Maybe
+        it={isMobile}
+        orElse={<CelebrityProfileDesktopLayout {...layoutProps} />}
+      >
+        <Maybe
+          it={celebrityProfileVersion === "A"}
+          orElse={<CelebrityProfileLayoutTwo {...layoutProps} />}
+        >
+          <CelebrityProfileLayoutOne {...layoutProps} />
         </Maybe>
-      </div>
+      </Maybe>
     </PageContainer>
   );
 }
 
-const _CelebrityProfilePage = connector(CelebrityProfilePage);
-
-export default CelebrityProfilePage;
-
-export { _CelebrityProfilePage as CelebrityProfilePage };
+export { CelebrityProfilePage };

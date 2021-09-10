@@ -1,46 +1,50 @@
-.CelebrityDetails {
-  &Header {
-    margin-bottom: 42px;
-  }
-  &Title {
-    padding: 1rem 0 1.375rem;
-    display: flex;
-    align-items: center;
+.CelebrityDetailsHeader {
+  margin-bottom: 42px;
+}
 
-    h1 {
-      flex: 1;
-    }
-    i {
-      font-size: 1.15em;
-      margin-right: 18px;
-    }
-  }
+.CelebrityDetailsTitle {
+  padding: 1rem 0 1.375rem;
+  display: flex;
+  align-items: center;
+}
 
-  &Like {
-    fill: none;
-    height: 18px !important;
-    width: 21px !important;
+.CelebrityDetailsTitle h1 {
+  flex: 1;
+}
 
-    path {
-      stroke: var(--dark);
-    }
-  }
+.CelebrityDetailsTitle i {
+  font-size: 1.15em;
+  margin-right: 18px;
+}
 
-  &AvatarContainer {
-    display: flex;
-    margin-bottom: 36px;
-  }
+.CelebrityDetailsLike {
+  fill: none;
+  height: 18px !important;
+  width: 21px !important;
+}
 
-  &MainVideo {
-    margin-right: 84px;
-  }
+.CelebrityDetailsLike path {
+  stroke: var(--dark);
+}
 
-  &Description {
-    font-size: 14px;
-    line-height: 24px;
-    width: 550px;
-    overflow: scroll;
-    margin-bottom: 36px;
-    color: var(--gray-4);
-  }
+.CelebrityDetailsAvatarContainer {
+  display: flex;
+  margin-bottom: 36px;
+}
+
+.CelebrityDetailsMainVideo {
+  margin-right: 84px;
+}
+
+.CelebrityDetailsDescription {
+  font-size: 14px;
+  line-height: 24px;
+  width: 550px;
+  overflow: scroll;
+  margin-bottom: 36px;
+  color: var(--gray-4);
+}
+
+.CelebrityDetailsDonorAlert {
+  margin-bottom: 36px;
 }

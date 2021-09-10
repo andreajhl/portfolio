@@ -2,16 +2,17 @@
   background-color: black !important;
   &--is-fullscreen {
     .carousel-item {
+      max-height: 100vh !important;
       height: 100vh !important;
       max-width: 960px;
       left: 50%;
       transform: translateX(-50%);
     }
+  }
 
-    .VideoSlideLayout__poster,
-    .VideoSlideLayout__video {
-      object-fit: contain !important;
-    }
+  .VideoSlideLayout__poster,
+  .VideoSlideLayout__video {
+    object-fit: contain !important;
   }
 
   @media only screen and (min-width: 992px) {
@@ -20,34 +21,24 @@
   }
   .carousel {
     &-item {
-      height: 440px;
+      max-height: 178vw;
+      height: 90vh;
     }
 
     &-indicators {
-      margin-bottom: 0;
+      margin: 0 5%;
       top: 0.5rem;
       bottom: unset;
 
       li {
-        width: 0.8rem;
-        height: 0.8rem;
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
-        border-radius: 50%;
-
-        @media only screen and (min-width: 576px) {
-          height: 0.8rem;
-        }
-
-        @media only screen and (min-width: 992px) {
-          height: 0.72rem;
-          margin-left: 0.25rem;
-          margin-right: 0.25rem;
-        }
-
-        @media only screen and (min-width: 1200px) {
-          height: 0.8rem;
-        }
+        flex: 1 1 auto;
+        max-width: 50px;
+        height: 2px;
+        background-color: white;
+        opacity: 1;
+      }
+      li.active {
+        background-color: #fb1797;
       }
     }
   }

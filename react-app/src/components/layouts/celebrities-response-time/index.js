@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
+import { FlashDeliveryAdvertise } from "../../celebrity-profile/flash-delivery-advertise";
 
 function getTurnAroundText(turnAroundTime) {
   if (turnAroundTime < 1) {
@@ -26,24 +27,16 @@ function CelebritiesResponseTime({
   turnAroundTime,
   availableForFlashDeliveries,
 }) {
+  if (availableForFlashDeliveries)
+    return (
+      <FlashDeliveryAdvertise className="CelebritiesResponseTime__flash-delivery" />
+    );
+
   return (
     <span className="CelebritiesResponseTime">
       <FormattedMessage defaultMessage="Respuesta promedio:" description="" />{" "}
-      <br
-        className={`CelebritiesResponseTime__line-break ${
-          availableForFlashDeliveries ? "isAvailableForFlashDeliveries" : ""
-        }`}
-      />{" "}
-      <span>
-        {availableForFlashDeliveries ? (
-          <FormattedMessage
-            defaultMessage="Entrega flash (< de 24 hrs)"
-            description=""
-          />
-        ) : (
-          getTurnAroundText(parseInt(turnAroundTime))
-        )}
-      </span>
+      <br className="CelebritiesResponseTime__line-break" />{" "}
+      <span>{getTurnAroundText(Math.round(turnAroundTime ?? 2))}</span>
     </span>
   );
 }

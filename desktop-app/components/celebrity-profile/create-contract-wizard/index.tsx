@@ -40,6 +40,8 @@ import {
 } from "lib/utils/localContractInProgress";
 import { Session } from "react-app/src/state/utils/session";
 import objectHasProperties from "lib/utils/objectHasProperties";
+import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
+import { getCelebrityProfileVersion } from "react-app/src/utils/celebrityProfileVersion";
 
 const NO_TOKEN_ERROR = "invalid token: no token string was provided";
 
@@ -130,6 +132,11 @@ function CreateContractWizard({
     getInitialWizardStep(contractInProgress)
   );
 
+  const isMobile = useIsOnMobileScreen();
+  const profileVersion = isMobile
+    ? `MOBILE-${getCelebrityProfileVersion()}`
+    : "DESKTOP";
+
   const isLoading = status === "loading";
 
   useEffect(() => {
@@ -144,6 +151,7 @@ function CreateContractWizard({
         deliveryData,
         detailsData,
         notificationsData,
+        profileVersion,
       });
     }
     router.events.on("routeChangeStart", tractLeave);
@@ -157,6 +165,7 @@ function CreateContractWizard({
     getCurrentStep,
     notificationsData,
     router.events,
+    profileVersion,
   ]);
 
   function catchAsyncError(fn: any) {
@@ -193,6 +202,7 @@ function CreateContractWizard({
     const createData = {
       ...data,
       celebrityId: celebrity.id,
+      version: profileVersion,
     };
     const { id } = await createContract(createData);
     analytics.trackAddContractToCart({
@@ -205,6 +215,7 @@ function CreateContractWizard({
       ...createData,
       widget: WIDGET_NAME,
       contractId: id,
+      profileVersion,
     });
     setCurrentContractId(id);
   }
@@ -227,6 +238,7 @@ function CreateContractWizard({
       ...data,
       widget: WIDGET_NAME,
       celebrityUsername: celebrity.username,
+      profileVersion,
     });
     await router.push(
       getSignInFromPath({
@@ -268,7 +280,12 @@ function CreateContractWizard({
     const { reference } = await updateCurrentContractStep(values, 3);
     analytics.track(
       "CONTRACT_CREATED",
-      Object.assign({ celebrity }, deliveryData, detailsData, values)
+      Object.assign(
+        { celebrity, profileVersion },
+        deliveryData,
+        detailsData,
+        values
+      )
     );
     await router.push(getPaymentMethodsPath(reference));
   });

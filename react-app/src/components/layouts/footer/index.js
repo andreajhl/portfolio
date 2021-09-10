@@ -30,7 +30,7 @@ class FooterLayout extends Component {
             className="container"
             style={{ maxWidth: "1300px", zoom: "0.9" }}
           >
-            <div className="row">
+            <div className="row mx-0">
               <div className="col-12 col-md-4 col-lg-4 col-one">
                 <div className="col-image">
                   <img

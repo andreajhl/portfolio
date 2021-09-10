@@ -1,4 +1,5 @@
 .BooleanRadiosInputs {
+  font-size: 12px;
   display: flex;
   flex-direction: column;
 
@@ -12,33 +13,27 @@
   flex-direction: row;
 
   .BooleanRadiosInputsLabel {
+    display: flex;
+    align-items: center;
     margin-right: 1em;
     margin-bottom: 0;
   }
 }
 
 .BooleanRadiosInputsLabel {
+  font-size: 1em;
   cursor: pointer;
-  font-size: 12px;
   margin-bottom: 0;
   font-weight: bold;
 }
 
 .BooleanRadiosInputsLabel i {
-  border: 1px solid var(--gray-2);
-  color: white;
-  border-radius: 50%;
-  font-size: 9px;
-  margin-right: 1em;
-  width: 17px;
-  height: 17px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.15s, border-color 0.15s;
+  color: var(--gray-2);
+  font-size: 1.416em;
+  margin-right: 0.70625em;
+  transition: color 0.15s;
 }
 
-.BooleanRadiosInputsLabelChecked {
-  background: black;
-  border-color: black !important;
+.BooleanRadiosInputsLabelChecked.BooleanRadiosInputsLabelChecked {
+  color: black;
 }
