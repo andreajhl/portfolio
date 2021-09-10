@@ -8,6 +8,8 @@ import { getCelebrityAnalyticsData } from "lib/utils/celebrityUtils";
 import Router from "next/router";
 import famososAnalytics from "lib/utils/famososAnalytics";
 import { getUTMs } from "lib/utils/utms";
+import UAParser from "ua-parser-js";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 // import { Mixpanel } from "./mixPanel";
 
 const ENV = process.env.NEXT_PUBLIC_ENVIRONMENT;
@@ -108,11 +110,8 @@ export function trackFirstPageLoad(analyticsData = {}) {
 
 const CELEBRITY_PROFILE_PAGE_VIEW_EVENT = "CELEBRITY_PROFILE_PAGE_VIEW";
 
-export function trackCelebrityProfileView({ celebrity, ...analyticsData }) {
-  tagManagerDataLayer(CELEBRITY_PROFILE_PAGE_VIEW_EVENT, {
-    celebrity: getCelebrityAnalyticsData(celebrity),
-    ...analyticsData,
-  });
+async function trackProfileViewInFamososAnalytics(celebrity, analyticsData) {
+  const { IP, geoLocalization } = await getBuyerIdentityData();
   const userId = new Session().getSession()?.id ?? null;
   famososAnalytics.track({
     event: CELEBRITY_PROFILE_PAGE_VIEW_EVENT,
@@ -120,12 +119,22 @@ export function trackCelebrityProfileView({ celebrity, ...analyticsData }) {
     timestamp: new Date(),
     userId,
     celebrityId: celebrity?.id,
-    userAgent: navigator.userAgent,
+    userAgent: new UAParser().getResult(),
+    userIp: IP,
+    geoLocalization,
     celebrityProfileVersion: analyticsData.isMobile
       ? `MOBILE-${analyticsData.celebrityProfileVersion}`
       : "DESKTOP",
     ...analyticsData,
   });
+}
+
+export function trackCelebrityProfileView({ celebrity, ...analyticsData }) {
+  tagManagerDataLayer(CELEBRITY_PROFILE_PAGE_VIEW_EVENT, {
+    celebrity: getCelebrityAnalyticsData(celebrity),
+    ...analyticsData,
+  });
+  trackProfileViewInFamososAnalytics(celebrity, analyticsData);
 }
 
 export function trackUserSignIn(analyticsData = {}) {
