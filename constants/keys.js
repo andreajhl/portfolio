@@ -19,3 +19,4 @@ export const SUGGESTED_FULL_NAME_QUERY_PARAM = "suggestedFullName";
 export const USER_GEOLOCATION_KEY = "fs__uglk";
 export const REDIRECT_BEFORE_MAINTENANCE_KEY = "fs__rbmm";
 export const REDIRECT_AFTER_LOGIN = "redirectAfterLogin";
+export const USER_UTMS_KEY = "fs__uutms";
