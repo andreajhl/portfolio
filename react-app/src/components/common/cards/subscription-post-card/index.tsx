@@ -40,9 +40,8 @@ import {
   PostVimeoIframe,
 } from "./styles";
 import { useAuth } from "lib/famosos-auth";
-import { useRouter } from "next/router";
-import { Session } from "react-app/src/state/utils/session";
-import { getCelebrityProfilePath, SIGN_IN_PATH } from "constants/paths";
+import { getCelebrityProfilePath } from "constants/paths";
+import { ProtectedRouteLink } from "../../routing/protected-route-link";
 
 type SubscriptionPostCardProps = {
   className?: string;
@@ -80,6 +79,7 @@ type SubscriptionPostHiddenContentProps = {
   username: string;
   price?: ReactNode;
   description: string;
+  onClickSubscribe?: () => void;
 };
 
 export const SubscriptionPostHiddenContent = ({
@@ -88,28 +88,23 @@ export const SubscriptionPostHiddenContent = ({
   username,
   price = 0,
   description,
+  onClickSubscribe,
 }: SubscriptionPostHiddenContentProps) => {
   const firstName = getFirstName(fullName);
-  const router = useRouter();
-  const { isAuthenticated } = useAuth();
 
-  function goToSubscriptionCheckout() {
-    const subscriptionCheckoutPath = SUBSCRIPTION.replace(
-      ":celebrity_username",
-      username
-    );
-    if (isAuthenticated) {
-      router.push(subscriptionCheckoutPath);
-    } else {
-      Session.setRedirectPathOnLogin(subscriptionCheckoutPath);
-      router.push(SIGN_IN_PATH);
-    }
-  }
+  const subscriptionCheckoutPath = SUBSCRIPTION.replace(
+    ":celebrity_username",
+    username
+  );
 
   return (
     <>
       <Maybe it={typeof imageSrc === "string"}>
-        <PostMedia cursor="pointer" onClick={goToSubscriptionCheckout}>
+        <PostMedia
+          as={ProtectedRouteLink}
+          href={subscriptionCheckoutPath}
+          onClick={onClickSubscribe}
+        >
           <PostHiddenImage src={imageSrc} />
           <PostHiddenDiv imageSrc={imageSrc}>
             <img src="/assets/img/lock.svg" alt="Cerradura" />
