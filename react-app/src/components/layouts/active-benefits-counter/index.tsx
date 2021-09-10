@@ -29,15 +29,19 @@ function ActiveBenefitsCounter({
     if (status === "completed" || isLoadingAuthentication) return;
 
     async function fetchBenefitCount() {
-      const response: any = await apiService({
-        method: "GET",
-        path: isAuthenticated
-          ? LIST_SUBSCRIPTION_BENEFITS_PATH
-          : PUBLIC_LIST_SUBSCRIPTION_BENEFITS_PATH,
-        params: { limit: 1, offset: 0, celebrityId },
-      });
-      if (!response || response?.status === "ERROR") return;
-      setTotalItems(response?.data?.totalResults);
+      try {
+        const response: any = await apiService({
+          method: "GET",
+          path: isAuthenticated
+            ? LIST_SUBSCRIPTION_BENEFITS_PATH
+            : PUBLIC_LIST_SUBSCRIPTION_BENEFITS_PATH,
+          params: { limit: 1, offset: 0, celebrityId },
+        });
+        if (!response || response?.status === "ERROR") return;
+        setTotalItems(response?.data?.totalResults);
+      } catch (error) {
+        console.log(error?.toString?.());
+      }
     }
 
     fetchBenefitCount();
