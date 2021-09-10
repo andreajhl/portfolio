@@ -29,9 +29,8 @@ import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAOb
 import { FormattedMessage } from "react-intl";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
 import { analytics } from "react-app/src/state/utils/gtm";
-import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import {
-  getCelebrityContractPrice,
+  getCelebrityAnalyticsData,
   getCelebrityFinalContractPrice,
 } from "lib/utils/celebrityUtils";
 import {
@@ -268,7 +267,12 @@ function CreateContractWizard({
     const { reference } = await updateCurrentContractStep(values, 3);
     analytics.track(
       "CONTRACT_CREATED",
-      Object.assign({ celebrity }, deliveryData, detailsData, values)
+      Object.assign(
+        { celebrity: getCelebrityAnalyticsData(celebrity) },
+        deliveryData,
+        detailsData,
+        values
+      )
     );
     await router.push(getPaymentMethodsPath(reference));
   });
