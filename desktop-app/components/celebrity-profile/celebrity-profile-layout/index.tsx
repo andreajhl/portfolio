@@ -13,6 +13,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { RootState } from "react-app/src/state/store";
 import { SimilarCelebrityContent } from "../similar-celebrity-content";
+import ContractInProgressType from "desktop-app/types/contractInProgressType";
 
 const mapStateToProps = ({ celebrities }: RootState) => {
   const publicContracts = celebrities.fetchPublicContractsReducer.data.results;
@@ -38,7 +39,9 @@ type PropFromRedux = ConnectedProps<typeof connector>;
 
 type CelebrityProfileDesktopLayoutProps = {
   celebrity: celebrityType;
-  onCreateContractIsReady?: () => void;
+  onCreateContractIsReady?: (
+    contractInProgress: ContractInProgressType
+  ) => void;
   createContractWizardClassName?: string;
   showFanClubAdvertise?: boolean;
 } & PropFromRedux;

@@ -14,11 +14,14 @@ import { CelebrityDetails } from "../../layouts/celebrity-details";
 import { FanClubAdvertise } from "desktop-app/components/celebrity-profile/fan-club-advertise";
 import { NotAvailableBanner } from "desktop-app/components/celebrity-profile/not-available-banner";
 import { celebrityIsAvailableForContract } from "lib/utils/celebrityUtils";
+import ContractInProgressType from "desktop-app/types/contractInProgressType";
 
 type CelebrityProfileLayoutOneProps = {
   celebrity: celebrityType;
   createContractWizardClassName?: string;
-  onCreateContractIsReady?: () => void;
+  onCreateContractIsReady?: (
+    contractInProgress: ContractInProgressType
+  ) => void;
   showFanClubAdvertise?: boolean;
 };
 

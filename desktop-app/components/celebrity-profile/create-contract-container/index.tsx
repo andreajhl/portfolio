@@ -12,6 +12,7 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 import { CreateContractWizardSkeleton } from "../create-contract-wizard/skeleton";
 import dynamic from "next/dynamic";
 import { ComponentProps as CreateContractWizardProps } from "desktop-app/components/celebrity-profile/create-contract-wizard/types";
+import ContractInProgressType from "desktop-app/types/contractInProgressType";
 
 const CreateContractWizard = dynamic<CreateContractWizardProps>(
   () =>
@@ -37,7 +38,9 @@ type PropFromRedux = ConnectedProps<typeof connector>;
 type CreateContractContainerProps = {
   className?: string;
   celebrity: celebrityType;
-  onReadyToCreateContract?: () => void;
+  onReadyToCreateContract?: (
+    contractInProgress: ContractInProgressType
+  ) => void;
 } & PropFromRedux;
 
 function CreateContractContainer({
@@ -50,7 +53,9 @@ function CreateContractContainer({
 }: CreateContractContainerProps) {
   const { isAuthenticated, isLoading } = useAuth();
   const [isReadyToCreateContract, setIsReadyToCreateContract] = useState(false);
-  const onReadyToCreateContractRef = useRef<() => void>();
+  const onReadyToCreateContractRef = useRef<
+    (contractInProgress: ContractInProgressType) => void
+  >();
   onReadyToCreateContractRef.current = onReadyToCreateContractProp;
 
   const localContractInProgress = useMemo(
@@ -83,9 +88,14 @@ function CreateContractContainer({
     localContractInProgress,
   ]);
 
+  const contractInProgressRef = useRef(null);
+  contractInProgressRef.current =
+    localContractInProgress || contractInProgressRequest?.data;
+  const contractInProgress = contractInProgressRef.current;
+
   useEffect(() => {
     if (!isReadyToCreateContract) return;
-    onReadyToCreateContractRef.current?.();
+    onReadyToCreateContractRef.current?.(contractInProgressRef.current);
   }, [isReadyToCreateContract]);
 
   useEffect(
@@ -95,9 +105,6 @@ function CreateContractContainer({
     },
     [cleanUserContractInProgress, celebrity.username]
   );
-
-  const contractInProgress =
-    localContractInProgress || contractInProgressRequest?.data;
 
   if (!isReadyToCreateContract) {
     return <CreateContractWizardSkeleton className={className} />;

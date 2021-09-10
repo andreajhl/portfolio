@@ -8,12 +8,13 @@ import styles from "./styles.module.scss";
 import { useEffect, useRef, useState } from "react";
 import useGlobalFetches from "lib/hooks/useGlobalFetches";
 import waitFor from "react-app/src/utils/waitFor";
-import { useTrackCelebrityPageView } from "../../../../lib/hooks/useTrackCelebrityPageView";
 import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import dynamic from "next/dynamic";
 import { calculateScrollOffset } from "../../../../lib/utils/calculateScrollOffset";
 import { calculateElementEdge } from "../../../../lib/utils/calculateElementEdge";
+import { analytics } from "react-app/src/state/utils/gtm";
+import ContractInProgressType from "desktop-app/types/contractInProgressType";
 
 const loading = () => <div className={styles.CelebrityProfileSkeleton} />;
 
@@ -101,20 +102,23 @@ function CelebrityProfilePage({
     setCreateContractWizardBottom(wizardBottom - 100);
   }
 
-  function onCreateContractIsReady() {
+  function trackProfileView(contractInProgress: ContractInProgressType) {
+    analytics.trackCelebrityProfileView({
+      celebrity,
+      isMobile,
+      shouldFocusCreateContractWizard,
+      celebrityProfileVersion,
+      contractInProgress,
+      widget: "CelebrityProfilePage",
+    });
+  }
+
+  function onCreateContractIsReady(contractInProgress: ContractInProgressType) {
     changeCreateContractWizardBottom();
+    trackProfileView(contractInProgress);
     if (!shouldFocusCreateContractWizard) return;
     goToCreateContractWizard();
   }
-
-  useTrackCelebrityPageView({
-    celebrity,
-    isMobile: false,
-    shouldFocusCreateContractWizard,
-    // contractInProgress,
-    // isReadyToTrack: isReadyToCreateContract,
-    widget: "CelebrityProfilePage",
-  });
 
   const isJuanseQuintero = celebrity?.id === 6317;
 
