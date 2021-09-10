@@ -8,6 +8,8 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import { analytics } from "react-app/src/state/utils/gtm";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
+import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
+import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
 declare global {
@@ -117,6 +119,8 @@ function DLocalFormCard({
   const handleChangePaymentMethod = (name, paymentMethodId) => {
     setCurrentOption({ name: name, paymentMethodId: paymentMethodId });
   };
+  const userCurrency = useUserCurrentCurrency();
+
   const handlerSubmitCreditCardDetails = (e) => {
     if (currentOption.paymentMethodId || currentOption.name) {
       e.preventDefault();
@@ -204,6 +208,9 @@ function DLocalFormCard({
           ref={inputEl}
         ></div>
       </div>
+      <Maybe it={userCurrency === "MXN"}>
+        <CardGenerationReminder />
+      </Maybe>
       <Maybe it={tokenError !== ""}>
         <WarningMessage message={tokenError} />
       </Maybe>
