@@ -29,9 +29,8 @@ import pickPropertiesFromAObject from "react-app/src/utils/pickPropertiesFromAOb
 import { FormattedMessage } from "react-intl";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
 import { analytics } from "react-app/src/state/utils/gtm";
-import { VIDEO_MESSAGE_PRODUCT_ID_PREFIX } from "constants/dynamicAds";
 import {
-  getCelebrityContractPrice,
+  getCelebrityAnalyticsData,
   getCelebrityFinalContractPrice,
 } from "lib/utils/celebrityUtils";
 import {
@@ -281,7 +280,7 @@ function CreateContractWizard({
     analytics.track(
       "CONTRACT_CREATED",
       Object.assign(
-        { celebrity, profileVersion },
+        { celebrity: getCelebrityAnalyticsData(celebrity), profileVersion },
         deliveryData,
         detailsData,
         values
