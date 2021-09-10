@@ -183,6 +183,14 @@ function SubscribePage({
     });
   }, [viewName, isSubscribed, isLoading, subscriptionPrice, celebrity]);
 
+  function trackPostCardClick(post) {
+    analytics.track("CLICK_ON_CELEBRITY_POST_SUBSCRIBE_BUTTON", {
+      celebrity,
+      subscriptionPrice,
+      post,
+    });
+  }
+
   return (
     <PageContainer showSearch={false}>
       <Maybe it={!isLoading} orElse={<LoadingPage />}>
@@ -283,6 +291,7 @@ function SubscribePage({
                         it={isSubscribed}
                         orElse={
                           <SubscriptionPostHiddenContent
+                            onClickSubscribe={() => trackPostCardClick(post)}
                             imageSrc={post?.items?.[0]?.mediaUrl}
                             username={username}
                             price={priceLayout}
