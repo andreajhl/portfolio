@@ -1,10 +1,21 @@
 import styles from "./styles.module.scss";
 import { ContractDeliveryFormSkeleton } from "../contract-delivery-form/skeleton";
+import classes from "classnames";
 
-function CreateContractWizardSkeleton() {
+type CreateContractWizardSkeletonProps = {
+  className?: string;
+};
+
+function CreateContractWizardSkeleton({
+  className,
+}: CreateContractWizardSkeletonProps) {
   return (
     <div
-      className={`${styles.CreateContractWizard} ${styles.CreateContractWizardSkeleton}`}
+      className={classes(
+        styles.CreateContractWizard,
+        styles.CreateContractWizardSkeleton,
+        className
+      )}
     >
       <ContractDeliveryFormSkeleton />
     </div>

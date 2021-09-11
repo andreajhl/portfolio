@@ -39,6 +39,15 @@
   top: 0.05em;
 }
 
+@media only screen and (max-width: 575px) {
+  .VideoDeliveryFormHeader h3 {
+    font-size: 18px;
+  }
+  .VideoDeliveryFormHeader > span {
+    font-size: 16px;
+  }
+}
+
 .SkeletonSubmitButton {
   margin-top: 38px;
 }

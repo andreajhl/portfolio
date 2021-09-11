@@ -9,8 +9,6 @@ import { CelebrityInfo } from "../celebrity-info";
 import { CelebrityMainVideoWidget } from "desktop-app/components/celebrity-profile/celebrity-main-video-widget";
 import { CelebrityFavoriteButton } from "desktop-app/components/celebrity-profile/celebrity-favorite-button";
 import { ShareCelebrityDropdown } from "../share-celebrity-dropdown";
-import { analytics } from "react-app/src/state/utils/gtm";
-import { getWindowPathname } from "react-app/src/utils/getWindow";
 
 type CelebrityDetailsProps = {
   celebrity: celebrityType;
@@ -22,15 +20,6 @@ const mainVideoAvatarProps = {
 };
 
 function CelebrityDetails({ celebrity }: CelebrityDetailsProps) {
-  function trackHashtagClick(hashtag: string) {
-    analytics.track("CLICK_CELEBRITY_PROFILE_HASHTAG", {
-      widget: "CelebrityDetails",
-      path: getWindowPathname(),
-      celebrity,
-      hashtag,
-    });
-  }
-
   return (
     <section className={styles.CelebrityDetails}>
       <header className={styles.CelebrityDetailsHeader}>
@@ -57,14 +46,12 @@ function CelebrityDetails({ celebrity }: CelebrityDetailsProps) {
       </CollapsibleText>
       <Maybe it={celebrity.isDonor}>
         <DonorAlert
+          className={styles.CelebrityDetailsDonorAlert}
           fullName={celebrity.fullName}
           causeName={celebrity.causeName}
         />
       </Maybe>
-      <CelebrityHashtags
-        hashtags={celebrity.hashtags}
-        onClickHashtag={trackHashtagClick}
-      />
+      <CelebrityHashtags celebrity={celebrity} />
     </section>
   );
 }

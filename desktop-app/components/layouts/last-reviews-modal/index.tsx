@@ -59,7 +59,7 @@ function LastReviewsModal({
             <CloseModalButton variant="light" onClick={closeModal} />
           </header>
           <InfiniteScroll
-            height="75vh"
+            height="72vh"
             dataLength={reviews.length}
             next={fetchMoreData}
             hasMore={informationPage.totalItems > reviews.length}
@@ -82,6 +82,20 @@ function LastReviewsModal({
               </div>
             ))}
           </InfiniteScroll>
+          <footer
+            className={classes(
+              styles.LastReviewsModalFooter,
+              styles.CancelButtonWrapper
+            )}
+          >
+            <button
+              type="button"
+              className={classes("btn btn-secondary", styles.CancelButton)}
+              onClick={closeModal}
+            >
+              <FormattedMessage defaultMessage="Cerrar" />
+            </button>
+          </footer>
         </div>
       )}
     </AnimatedPopup>

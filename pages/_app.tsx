@@ -18,6 +18,7 @@ import isMobile from "lib/utils/isMobile";
 import { Session } from "react-app/src/state/utils/session";
 import { REDIRECT_AFTER_LOGIN } from "constants/keys";
 import useSaveUserCurrencyCodeInGlobalObject from "lib/hooks/useSaveUserCurrencyCodeInGlobalObject";
+import { saveUTMs } from "lib/utils/utms";
 
 const languages = {
   en: enMessages,
@@ -47,6 +48,7 @@ function CustomApp({ Component, pageProps }) {
 
   useEffect(() => {
     gtmInitialize();
+    saveUTMs(router.query);
     analytics.trackFirstPageLoad({ isMobile: pageProps.isMobileDevice });
     const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
       analytics.page({

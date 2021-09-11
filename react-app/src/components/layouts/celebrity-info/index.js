@@ -1,110 +1,69 @@
 import React from "react";
-import { CountryFlag } from "../../containers/celebrity-country-flag";
-import { CelebrityFavoriteButton } from "../celebrity-favorite-button";
-import { CelebrityContractPrice } from "../celebrity-contract-price";
 import { CelebritiesResponseTime } from "../celebrities-response-time";
-import Maybe from "../../common/helpers/maybe";
 import { useIntl } from "react-intl";
-import { celebrityCategories } from "react-app/src/state/ducks";
-import {
-  CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE,
-  labelMessagesForCategoriesFilter,
-} from "react-app/src/constants/messages";
+import { CelebrityInfoReviews } from "desktop-app/components/celebrity-profile/celebrity-info-reviews";
+import getTranslatedCategoryTitle from "lib/utils/getTranslatedCategoryTitle";
+import { ShareCelebrityDropdown } from "desktop-app/components/celebrity-profile/share-celebrity-dropdown";
+import { CelebrityFavoriteButton } from "desktop-app/components/celebrity-profile/celebrity-favorite-button";
+import { CountryFlag } from "desktop-app/components/common/country-flag";
+import { Link } from "desktop-app/components/common/routing/link";
+import { getSearchCategoryPath } from "constants/paths";
 
-export const CelebrityInfo = ({
-  fullName,
-  countryCode,
-  categoryTitle,
-  celebrityId,
-  contractTypes,
-  turnAround,
-  availableForFlashDeliveries,
-  variant,
-  discountPercentage,
-  status,
-}) => {
-  const intl = useIntl();
+function CelebrityInfo({ celebrity, variant }) {
+  const { formatMessage } = useIntl();
+  const categoryTitle = getTranslatedCategoryTitle(
+    celebrity.categoryTitle,
+    formatMessage
+  );
+
+  const {
+    fullName,
+    countryId,
+    alpha2Code,
+    id: celebrityId,
+    turnAround,
+    availableForFlashDeliveries,
+    starsAverage,
+    categoryId,
+  } = celebrity;
+
+  const searchCategoryLink = getSearchCategoryPath(categoryId);
 
   switch (variant) {
     case "1":
     default:
       return (
         <>
-          <h1 className="CelebrityInfo__full-name d-md-inline-block">
-            {fullName}
-          </h1>
-          <CelebrityFavoriteButton
-            className="d-none d-md-inline CelebrityInfo__fav-button-desktop"
-            celebrityId={celebrityId}
-            outlinedImageSource="assets/img/heart-regular-outlined.svg"
-            width="2rem"
-          />
-          <div className="d-flex align-items-center mb-2">
-            <CountryFlag countryCode={countryCode} />
-            <span className="ml-3 CelebrityInfo__category">
-              {CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
-                categoryTitle
-              )
-                ? intl.formatMessage(
-                    labelMessagesForCategoriesFilter[categoryTitle]
-                  )
-                : categoryTitle}
-            </span>
-            <Maybe it={status !== 50}>
-              <CelebrityFavoriteButton
-                className="d-md-none ml-auto"
-                celebrityId={celebrityId}
-                outlinedImageSource="assets/img/heart-regular-outlined.svg"
-                width="1.5rem"
-              />
-            </Maybe>
-          </div>
-          <Maybe it={status === 50}>
-            <div className="d-flex align-items-center">
-              <CelebrityContractPrice
-                contractTypes={contractTypes}
-                className="CelebrityInfo__contract-price"
-                oldPriceClassName="CelebrityInfo__contract-price--invalid"
-                discountClassName="CelebrityInfo__contract-price-discount"
+          <h1 className="CelebrityInfo__full-name">{fullName}</h1>
+          <div className="d-flex align-items-center mb-2 flex-wrap">
+            <CountryFlag
+              countryId={countryId}
+              alpha2Code={alpha2Code}
+              width={24}
+            />
+            <Link
+              href={searchCategoryLink}
+              className="ml-3 mr-auto CelebrityInfo__category"
+            >
+              {categoryTitle}
+            </Link>
+            <div>
+              <ShareCelebrityDropdown
+                celebrity={celebrity}
+                buttonClassName="CelebrityInfo__ShareCelebrityDropdown"
               />
               <CelebrityFavoriteButton
-                className="d-md-none ml-auto"
                 celebrityId={celebrityId}
-                outlinedImageSource="assets/img/heart-regular-outlined.svg"
-                width="1.5rem"
+                className="CelebrityInfo__CelebrityFavoriteButton"
               />
             </div>
-          </Maybe>
-          <div className="mt-md-2 mb-md-4">
+          </div>
+          <div className="mt-md-2 mb-md-4 CelebrityInfo__response-time-2">
+            <CelebrityInfoReviews celebrityStarsAverage={starsAverage} />
             <CelebritiesResponseTime
               turnAroundTime={turnAround}
               availableForFlashDeliveries={availableForFlashDeliveries}
             />
-          </div>
-        </>
-      );
-
-    case "1.1":
-      return (
-        <>
-          <CelebrityFavoriteButton
-            className="mb-3"
-            celebrityId={celebrityId}
-            outlinedImageSource="assets/img/heart-regular-outlined.svg"
-            width="1.25rem"
-          />
-          <h1 className="CelebrityInfo__full-name">{fullName}</h1>
-          <div className="d-flex align-items-center mb-2 mb-md-3">
-            <CountryFlag countryCode={countryCode} />
-            <span className="ml-3 CelebrityInfo__category">
-              {CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
-                categoryTitle
-              )
-                ? intl.formatMessage(
-                    labelMessagesForCategoriesFilter[categoryTitle]
-                  )
-                : categoryTitle}
-            </span>
           </div>
         </>
       );
@@ -112,52 +71,40 @@ export const CelebrityInfo = ({
     case "2":
       return (
         <>
-          <div className="text-right mb-2 d-md-none">
-            <CelebrityFavoriteButton
-              celebrityId={celebrityId}
-              outlinedImageSource="assets/img/heart-regular-outlined.svg"
-              width="1.25rem"
+          <h1 className="CelebrityInfo__full-name">{fullName}</h1>
+          <div className="d-flex align-items-center mb-2 flex-wrap">
+            <CountryFlag
+              countryId={countryId}
+              alpha2Code={alpha2Code}
+              width={24}
             />
+            <Link
+              href={searchCategoryLink}
+              className="ml-3 mr-auto CelebrityInfo__category"
+            >
+              {categoryTitle}
+            </Link>
+            <CelebrityInfoReviews celebrityStarsAverage={starsAverage} />
           </div>
-          <h1 className="CelebrityInfo__full-name d-md-inline-block">
-            {fullName}
-          </h1>
-          <CelebrityFavoriteButton
-            className="d-none d-md-inline CelebrityInfo__fav-button-desktop"
-            celebrityId={celebrityId}
-            outlinedImageSource="assets/img/heart-regular-outlined.svg"
-            width="2rem"
-          />
-          <div className="d-flex align-items-center mb-2">
-            <CountryFlag countryCode={countryCode} />
-            <span className="ml-3 CelebrityInfo__category">
-              {CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
-                categoryTitle
-              )
-                ? intl.formatMessage(
-                    labelMessagesForCategoriesFilter[categoryTitle]
-                  )
-                : categoryTitle}
-            </span>
-          </div>
-          <div className="d-flex align-items-center">
-            <Maybe it={status === 50}>
-              <CelebrityContractPrice
-                contractTypes={contractTypes}
-                className="CelebrityInfo__contract-price"
-                oldPriceClassName="CelebrityInfo__contract-price--invalid"
-                discountClassName="CelebrityInfo__contract-price-discount"
-              />
-            </Maybe>
-          </div>
-          <div className="mt-md-2 mb-md-4">
+          <div className="mt-md-2 mb-md-4 CelebrityInfo__response-time">
             <CelebritiesResponseTime
               turnAroundTime={turnAround}
               availableForFlashDeliveries={availableForFlashDeliveries}
-              className="CelebrityInfo__contract-price"
+            />
+          </div>
+          <div className="text-right mt-1">
+            <ShareCelebrityDropdown
+              celebrity={celebrity}
+              buttonClassName="CelebrityInfo__ShareCelebrityDropdown"
+            />
+            <CelebrityFavoriteButton
+              celebrityId={celebrityId}
+              className="CelebrityInfo__CelebrityFavoriteButton"
             />
           </div>
         </>
       );
   }
-};
+}
+
+export { CelebrityInfo };

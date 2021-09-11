@@ -91,7 +91,7 @@ export const AVAILABLE_CURRENCIES = [
   {
     name: "PEN",
     label: "Sol",
-    symbol: "$",
+    symbol: "S/",
     implemented_by_dlocal: false,
     flag: "https://flagcdn.com/w20/pe.webp",
     document_name: "DNI",

@@ -1,0 +1,33 @@
+.VideoOverlayHeader {
+  display: flex;
+}
+
+.VideoOverlayHeader .MuteToggler {
+  margin-left: auto;
+}
+
+.VideoOverlayFooter {
+  padding-bottom: 30vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.ReactionButtons {
+  display: flex;
+  flex-direction: column;
+}
+
+.ReactionButtons > * + * {
+  margin-top: 0.875rem;
+}
+
+.VideoOccasion.VideoOccasion {
+  color: white;
+  font-size: 18px;
+}
+
+.VideoOccasion div {
+  border-radius: 50%;
+  background-color: #bfc4ff;
+}

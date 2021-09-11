@@ -13,3 +13,8 @@
     pointer-events: none;
   }
 }
+
+.StickyBottomBar {
+  top: unset;
+  bottom: 0;
+}

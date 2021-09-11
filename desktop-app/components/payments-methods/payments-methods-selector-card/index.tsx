@@ -60,8 +60,6 @@ function PaymentsMethodsSelectorCard({
   currentPaymentMethodSelected,
   celebrityId,
 }: PaymentsMethodsSelectorCardProps) {
-  console.log(couponData);
-
   const { formatMessage } = useIntl();
   useEffect(() => {
     if (!userInformationLoading) getToken();
