@@ -12,6 +12,9 @@ import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import { getWindowPathname } from "react-app/src/utils/getWindow";
 import { analytics } from "react-app/src/state/utils/gtm";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { CelebrityBusinessPrice } from "../celebrity-business-price";
+import useWizardContract from "lib/hooks/useWizardContract";
+import { CONTRACT_TYPE_FOR_BUSINESS } from "lib/utils/celebrityUtils";
 
 const messages = defineMessages({
   avatarAlt: {
@@ -32,6 +35,7 @@ function StickyCallToActionBar({
   onCTAButtonClick = function () {},
   isMobile,
 }: StickyCallToActionTopBarProps) {
+  const [wizardContract] = useWizardContract();
   const { formatMessage } = useIntl();
   const avatarImgAlt = formatMessage(messages.avatarAlt, {
     celebrityFullName: celebrity.fullName,
@@ -55,6 +59,9 @@ function StickyCallToActionBar({
     trackCTAButtonClick();
     onCTAButtonClick?.();
   }
+
+  const contractIsForBusiness =
+    wizardContract?.contractType === CONTRACT_TYPE_FOR_BUSINESS;
 
   return (
     <StickyBar
@@ -88,13 +95,21 @@ function StickyCallToActionBar({
         <span
           className={classes(
             styles.StickyCTAPrice,
+            !contractIsForBusiness && styles.NormalPrice,
             isMobile && styles.MobilePrice
           )}
         >
-          <CelebrityVideoContractPrice
-            celebrity={celebrity}
-            showDiscountPercentage={!isMobile}
-          />
+          <Maybe
+            it={contractIsForBusiness}
+            orElse={
+              <CelebrityVideoContractPrice
+                celebrity={celebrity}
+                showDiscountPercentage={!isMobile}
+              />
+            }
+          >
+            <CelebrityBusinessPrice celebrity={celebrity} />
+          </Maybe>
         </span>
         <button
           type="button"
