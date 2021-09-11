@@ -509,6 +509,13 @@ export const getHiringPreviewConfigurationReducer = thunkReducer(
   {}
 );
 
+export function wizardContractReducer(state = {}, action) {
+  if (action.type === TYPES.SET_WIZARD_CONTRACT) {
+    return action.payload;
+  }
+  return state;
+}
+
 export default combineReducers({
   saveClientContractReducer,
   listClientContractsReducer,
@@ -526,4 +533,5 @@ export default combineReducers({
   getPurchaseSummaryReducer,
   getHiringPreviewConfigurationReducer,
   listUserContractsReducer,
+  wizardContractReducer,
 });
