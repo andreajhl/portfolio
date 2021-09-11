@@ -10,6 +10,9 @@ import { processSpreedlyPayment } from "react-app/src/state/ducks/payments/actio
 import { useRouter } from "next/router";
 import { getPurchaseSummaryPath } from "constants/paths";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
 
 interface SpreedlyCustomerSourcesProps {
   sources: {
@@ -32,6 +35,7 @@ function SpreedlyCustomSources({
   const [selectedSourceIndex, setselectedSourceIndex] = useState(null);
   const [paymentError, setPaymentError] = useState(null);
   const [isProccesing, setIsProccesing] = useState(false);
+  const userCurrency = useUserCurrentCurrency();
 
   const startPayment = () => {
     if (typeof selectedSourceIndex !== "number") {

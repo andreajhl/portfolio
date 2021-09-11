@@ -18,6 +18,9 @@ import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
+import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
 
 type StripeComponentProps = {
   contractPrice: number;
@@ -50,6 +53,7 @@ function StripeCardForm({
     email: "",
     name: "",
   });
+  const userCurrency = useUserCurrentCurrency();
 
   const createStripe3DFlow = async (sourceId) => {
     togglePaymentInProcess();
@@ -248,6 +252,9 @@ function StripeCardForm({
           />
         </div>
       </fieldset>
+      <Maybe it={userCurrency === "MXN"}>
+        <CardGenerationReminder className="mt-3" />
+      </Maybe>
       {(error || paymentProcessError) && (
         <WarningMessage message={error || paymentProcessError} />
       )}
