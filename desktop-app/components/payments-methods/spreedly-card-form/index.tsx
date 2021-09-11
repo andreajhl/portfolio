@@ -171,7 +171,6 @@ function SpreedlyCardForm({
       startSpreedlyPayment(token);
     });
   };
-  console.log("spreedly card form", discountCouponId);
 
   const startSpreedlyPayment = async (token) => {
     const {

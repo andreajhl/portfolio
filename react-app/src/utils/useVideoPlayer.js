@@ -22,7 +22,7 @@ function useVideoPlayer(
   const playVideo = () => {
     setPlayingVideo(videoKey);
     setVideoIsPlaying(true);
-    videoRef.current.play().catch((error) => {
+    videoRef?.current?.play?.()?.catch?.((error) => {
       console.log("Error", error);
     });
   };

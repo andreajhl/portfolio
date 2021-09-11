@@ -3,7 +3,7 @@ import CelebritySectionVideoCard from "desktop-app/components/layouts/celebrity-
 import CelebritySectionVideoCardSkeleton from "desktop-app/components/layouts/celebrity-section-video-card/skeleton";
 import SimilarContractType from "desktop-app/types/similarContractType";
 import getArrayOfLength from "lib/utils/getArrayOfLength";
-import { useEffect } from "react";
+import { CSSProperties, useEffect } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { fetchSimilarContractsV2 } from "react-app/src/state/ducks/contracts/actions";
 import { RootState } from "react-app/src/state/store";
@@ -56,13 +56,17 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type CelebritySimilarVideosReelProps = {
+  className?: string;
   celebrityUsername: string;
+  sidesPadding?: CSSProperties["width"];
 } & PropsFromRedux;
 
 function CelebritySimilarVideosReel({
+  className,
   celebrityUsername,
   similarVideos,
   getSimilarVideos,
+  sidesPadding,
 }: CelebritySimilarVideosReelProps) {
   const { formatMessage } = useIntl();
   useEffect(() => {
@@ -75,6 +79,7 @@ function CelebritySimilarVideosReel({
   return (
     <Maybe it={similarVideos?.length > 0}>
       <CardsReelSection
+        className={className}
         title={similarVideosReelTitle}
         itemData={similarVideos}
         itemCount={similarVideos?.length}
@@ -82,6 +87,7 @@ function CelebritySimilarVideosReel({
         itemHeight={402}
         buttonsStyle={buttonStyle}
         gap={27.333}
+        sidesPadding={sidesPadding}
       >
         {renderVideoCard}
       </CardsReelSection>

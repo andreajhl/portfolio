@@ -2,11 +2,18 @@ import { useState } from "react";
 import classes from "classnames";
 import styles from "./styles.module.scss";
 
-type ProgressCircleProps = { isDone: boolean; onFinish?: () => void };
+type ProgressCircleProps = {
+  isDone: boolean;
+  onFinish?: () => void;
+  width?: number;
+  height?: number;
+};
 
 function ProgressCircle({
   isDone,
   onFinish = function () {},
+  width = 236,
+  height = 236,
 }: ProgressCircleProps) {
   const [loadingAnimationFinished, setLoadingAnimationFinished] = useState(
     false
@@ -14,8 +21,8 @@ function ProgressCircle({
 
   return (
     <svg
-      width={236}
-      height={236}
+      width={width}
+      height={height}
       viewBox="0 0 236 236"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

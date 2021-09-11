@@ -1,12 +1,16 @@
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { FormattedMessage } from "react-intl";
+import classes from "classnames";
 import styles from "./styles.module.scss";
 
-type DonorAlertProps = Pick<celebrityType, "fullName" | "causeName">;
+type DonorAlertProps = { className?: string } & Pick<
+  celebrityType,
+  "fullName" | "causeName"
+>;
 
-function DonorAlert({ fullName, causeName }: DonorAlertProps) {
+function DonorAlert({ className, fullName, causeName }: DonorAlertProps) {
   return (
-    <div className={styles.DonorAlert}>
+    <div className={classes(styles.DonorAlert, className)}>
       <img src="/assets/img/donor-icon.png" alt="Donor icon" />
       <p>
         <FormattedMessage

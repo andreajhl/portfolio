@@ -1,97 +1,110 @@
-.Occasions {
-  &Grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 85px);
-    grid-auto-rows: 60px;
-    gap: 14px 16.25px;
-  }
-  &Item {
-    background: #f3f4ff;
-    border-radius: 10px;
+.OccasionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 85px);
+  grid-auto-rows: 60px;
+  gap: 14px 16.25px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    cursor: pointer;
-    transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
-      0.3s box-shadow,
-      0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  @media only screen and (max-width: 575px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 13vw;
+  }
+}
 
-    &:hover {
-      transform: scale(1.15);
-    }
+.OccasionsItem {
+  background: #f3f4ff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+}
 
-    &Icon,
-    p {
-      transition: opacity 0.15s;
-    }
+.OccasionsItem:hover {
+  -webkit-transform: scale(1.15);
+  transform: scale(1.15);
+}
 
-    &Icon {
-      height: 30px;
-    }
+.OccasionsItemIcon,
+.OccasionsItem p {
+  transition: opacity 0.15s;
+}
 
-    p {
-      opacity: 0;
-      text-align: center;
-      position: absolute;
-      margin: 0;
-      font-weight: bold;
-      font-size: 12px;
-    }
+.OccasionsItemIcon {
+  height: 30px;
+}
 
-    &:hover {
-      .OccasionsItemIcon {
-        opacity: 0;
-      }
-      p {
-        opacity: 1;
-      }
-    }
-  }
-  &Selected {
-    border: 2px solid var(--dark);
-    background: #ffebf4;
-  }
+.OccasionsItem p {
+  opacity: 0;
+  text-align: center;
+  position: absolute;
+  margin: 0;
+  font-weight: bold;
+  font-size: 12px;
+}
 
-  &LOVE {
-    width: 32px;
-    height: 33px;
-  }
-  &SPECIAL_OCCASION {
-    height: 32.75px;
-    width: 33.35px;
-  }
-  &SONG {
-    height: 31.4px;
-    width: 32.6px;
-  }
-  &MAKE_SMILE {
-    height: 28px;
-    width: 29px;
-  }
-  &MOTIVATION {
-    height: 32px;
-    width: 20.8px;
-  }
-  &ASK_FOR_FORGIVENESS {
-    height: 32.6px;
-    width: 16.4px;
-  }
-  &CHEER_UP {
-    height: 23px;
-    width: 37px;
-  }
-  &HOPE {
-    height: 29.5px;
-    width: 29.7px;
-  }
-  &JOKE {
-    height: 28px;
-    width: 28px;
-  }
-  &OTHER {
-    height: 26px;
-    width: 26px;
-  }
+.OccasionsItem:hover .OccasionsItemIcon {
+  opacity: 0;
+}
+
+.OccasionsItem:hover p {
+  opacity: 1;
+}
+
+.OccasionsSelected {
+  border: 2px solid var(--dark);
+  background: #ffebf4;
+}
+
+.OccasionsLOVE {
+  width: 32px;
+  height: 33px;
+}
+
+.OccasionsSPECIAL_OCCASION {
+  height: 32.75px;
+  width: 33.35px;
+}
+
+.OccasionsSONG {
+  height: 31.4px;
+  width: 32.6px;
+}
+
+.OccasionsMAKE_SMILE {
+  height: 28px;
+  width: 29px;
+}
+
+.OccasionsMOTIVATION {
+  height: 32px;
+  width: 20.8px;
+}
+
+.OccasionsASK_FOR_FORGIVENESS {
+  height: 32.6px;
+  width: 16.4px;
+}
+
+.OccasionsCHEER_UP {
+  height: 23px;
+  width: 37px;
+}
+
+.OccasionsHOPE {
+  height: 29.5px;
+  width: 29.7px;
+}
+
+.OccasionsJOKE {
+  height: 28px;
+  width: 28px;
+}
+
+.OccasionsOTHER {
+  height: 26px;
+  width: 26px;
 }

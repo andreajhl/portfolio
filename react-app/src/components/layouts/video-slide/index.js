@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import getWindow from "react-app/src/utils/getWindow";
 import * as GTM from "../../../state/utils/gtm";
 import useLoad from "../../../utils/useLoad";
 import useVideoPlayer from "../../../utils/useVideoPlayer";
+import classes from "classnames";
+import { FormattedMessage } from "react-intl";
+import styles from "./styles.module.scss";
+import { LikeButton } from "desktop-app/components/common/button/like";
+import { useContractLike } from "lib/hooks/useContractLike";
+import { ShareVideoButton } from "desktop-app/components/common/button/share-video";
 
-const VideoSlideLayout = ({
+function VideoSlideLayout({
   videoUrl,
   videoReference,
   shouldLoadPoster,
@@ -21,8 +27,13 @@ const VideoSlideLayout = ({
   classNameVideoSlideButtons,
   classNameSlideLayoutVideo,
   onEndVideo,
-  shouldLoop
-}) => {
+  shouldLoop,
+  videoOverlayHeader,
+  videoOverlayFooter,
+  videoOccasion = "",
+  contractReference = "",
+}) {
+  const { isFavorite, toggleFavorite } = useContractLike(contractReference);
   const analyticsData = {
     widget: "VideoSlideLayout",
     path: getWindow().location.pathname,
@@ -30,7 +41,8 @@ const VideoSlideLayout = ({
     videoReference,
     videoIsFullscreen,
     videoIsMuted,
-    slideshowIsPlaying
+    slideshowIsPlaying,
+    isFavorite,
   };
   const { videoRef, videoIsPlaying, playVideo, togglePlay } = useVideoPlayer(
     videoReference,
@@ -38,17 +50,17 @@ const VideoSlideLayout = ({
       onPlayVideo() {
         GTM.tagManagerDataLayer("PLAY_VIDEO_SLIDE", {
           ...analyticsData,
-          videoIsPlaying: true
+          videoIsPlaying: true,
         });
         setSlideshowIsPlaying(true);
       },
       onPauseVideo() {
         GTM.tagManagerDataLayer("PAUSE_VIDEO_SLIDE", {
           ...analyticsData,
-          videoIsPlaying: false
+          videoIsPlaying: false,
         });
         setSlideshowIsPlaying(false);
-      }
+      },
     }
   );
 
@@ -57,7 +69,7 @@ const VideoSlideLayout = ({
   const toggleVideoIsMuted = () => {
     GTM.tagManagerDataLayer(`${videoIsMuted ? "UN" : ""}MUTE_VIDEO_SLIDE`, {
       ...analyticsData,
-      videoIsMuted: !videoIsMuted
+      videoIsMuted: !videoIsMuted,
     });
     setVideoIsMuted((videoIsMuted) => !videoIsMuted);
   };
@@ -66,7 +78,6 @@ const VideoSlideLayout = ({
   //   setIsPlayingVideo(true);
   //   playVideo();
   // }, [playVideo, setIsPlayingVideo]);
-
   useEffect(() => {
     if (!autoPlayVideo) return;
     setSlideshowIsPlaying(true);
@@ -75,35 +86,122 @@ const VideoSlideLayout = ({
   const handleEndVideo = () => {
     onEndVideo();
   };
+
+  function FullscreenToggler({ className, onClick, ...props }) {
+    return (
+      <button
+        type="button"
+        className={classes("btn", styles.ActionButton, className)}
+        onClick={(event) => {
+          onClick?.(event);
+          toggleFullscreen();
+        }}
+        {...props}
+      >
+        <i
+          className={classes(
+            "fa fullscreen-icon cursor-pointer",
+            videoIsFullscreen ? "fa-compress" : "fa-expand"
+          )}
+        />
+      </button>
+    );
+  }
+
+  function PlayToggler({ className, ...props }) {
+    return (
+      <button
+        type="button"
+        className={classes("btn", styles.ActionButton, className)}
+        onClick={togglePlay}
+        {...props}
+      >
+        <i
+          className={classes(
+            "fa",
+            styles.TogglePlayIcon,
+            videoIsPlaying || slideshowIsPlaying ? "fa-pause" : "fa-play"
+          )}
+        />
+      </button>
+    );
+  }
+
+  function MuteToggler({ className, ...props }) {
+    return (
+      <button
+        type="button"
+        className={classes("btn", styles.ActionButton, className)}
+        onClick={toggleVideoIsMuted}
+        {...props}
+      >
+        <i
+          className={classes(
+            `fa fa-volume-${videoIsMuted ? "mute" : "up"}`,
+            styles.VolumenIcon
+          )}
+        />
+      </button>
+    );
+  }
+
+  function LikeToggler({ className, ...props }) {
+    return (
+      <button
+        type="button"
+        className={classes("btn", styles.ActionButton, className)}
+        onClick={toggleFavorite}
+        {...props}
+      >
+        <LikeButton
+          isFavoriteClassName={styles.IsFavoriteIcon}
+          className={styles.LikeButtonIcon}
+          isFavorite={isFavorite}
+        />
+      </button>
+    );
+  }
+
+  function ShareButton({ className, ...props }) {
+    return (
+      <ShareVideoButton
+        buttonClassName={classes(
+          "btn",
+          styles.ActionButton,
+          styles.ShareButton,
+          className
+        )}
+        contractReference={contractReference}
+        {...props}
+      >
+        <i className="fa fa-share-alt" />
+      </ShareVideoButton>
+    );
+  }
+
+  const components = {
+    MuteToggler,
+    PlayToggler,
+    FullscreenToggler,
+    LikeToggler,
+    ShareButton,
+  };
+
+  const videoDetails = {
+    occasion: videoOccasion,
+    reference: contractReference,
+  };
+
   return (
     <section className="VideoSlideLayout">
       <div
-        className={`VideoSlideLayout__buttons  ${
-          classNameVideoSlideButtons ? classNameVideoSlideButtons : ""
-        }`}
+        className={classes(
+          "VideoSlideLayout__overlay",
+          classNameVideoSlideButtons
+        )}
       >
-        <div className={`d-flex align-items-center justify-content-end`}>
-          <i
-            className={`fa fa-2x fa-volume-${
-              videoIsMuted ? "mute" : "up"
-            } volume-icon cursor-pointer`}
-            onClick={toggleVideoIsMuted}
-          />
-          <i
-            className={`fa fa-${
-              videoIsPlaying || slideshowIsPlaying ? "pause" : "play"
-            } play-pause cursor-pointer`}
-            onClick={togglePlay}
-          />
-          {showFullscreenToggler ? (
-            <i
-              className={`fa fa-${
-                videoIsFullscreen ? "compress" : "expand"
-              } fullscreen-icon cursor-pointer`}
-              onClick={toggleFullscreen}
-            />
-          ) : null}
-        </div>
+        {videoOverlayHeader?.(components, videoDetails) || null}
+        {videoOverlayFooter?.(components, videoDetails) || null}
       </div>
       <div className="VideoSlideLayout__media-container">
         {shouldLoadPoster && preload === "none" && !videoIsLoaded ? (
@@ -115,9 +213,10 @@ const VideoSlideLayout = ({
           />
         ) : null}
         <video
-          className={`VideoSlideLayout__video  ${
-            classNameSlideLayoutVideo ? classNameSlideLayoutVideo : ""
-          }`}
+          className={classes(
+            "VideoSlideLayout__video",
+            classNameSlideLayoutVideo
+          )}
           ref={videoRef}
           controls={false}
           playsInline
@@ -129,12 +228,12 @@ const VideoSlideLayout = ({
           onLoadedData={onVideoLoadedData}
           loop={shouldLoop}
         >
-          Your browser does not support the video tag.
+          <FormattedMessage defaultMessage="Tu navegador no soporta la reproducción de video." />
         </video>
       </div>
     </section>
   );
-};
+}
 
 VideoSlideLayout.defaultProps = {
   shouldLoadPoster: true,
@@ -147,7 +246,7 @@ VideoSlideLayout.defaultProps = {
   classNameVideoSlideButtons: "",
   classNameSlideLayoutVideo: "",
   onEndVideo: () => {},
-  shouldLoop: false
+  shouldLoop: false,
 };
 
 export { VideoSlideLayout };

@@ -1,0 +1,41 @@
+.TopSectionWrapper {
+  padding-bottom: 28px;
+  border-bottom: 1px solid #dedede;
+}
+
+.CelebrityDetailsContainer {
+  display: flex;
+}
+
+.CelebrityDetailsWrapper {
+  width: 616px;
+  margin-right: auto;
+}
+
+.CelebrityPublicContractWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 28px;
+}
+
+.ContractStepsBeforeReviewsWrapper {
+  margin-top: auto;
+}
+
+.LastReviewsSectionWrapper {
+  margin-top: 35px;
+  margin-bottom: 37px;
+}
+
+.ContractStepsAfterReviewsContainer {
+  margin-bottom: 36px;
+}
+
+.ContractStepsAfterReviewsWrapper {
+  flex: 1;
+}
+
+.SimilarContentWrapper {
+  margin-bottom: 3rem;
+}
