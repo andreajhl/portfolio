@@ -27,7 +27,7 @@ function FanClubAdvertise({ className, celebrity }: FanClubAdvertiseProps) {
           styles.FanClubAdvertiseLink
         )}
       >
-        <FormattedMessage defaultMessage="Unirme al Club de Fans" />
+        <FormattedMessage defaultMessage="Unirme al Backstage" />
       </Link>
     </div>
   );
