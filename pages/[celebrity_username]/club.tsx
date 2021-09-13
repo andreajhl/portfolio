@@ -1,1 +1,1 @@
-export { default, getServerSideProps } from "./backstage";
+export { default, getServerSideProps } from "./backstage/[view_name]";

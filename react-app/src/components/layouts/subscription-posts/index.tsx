@@ -20,6 +20,8 @@ export const SubscriptionPostsSection = ({ children = null }: ChildrenProp) => (
   </PostsSection>
 );
 
+export const SubscriptionContentSection = SubscriptionPostsSection;
+
 const PostsHeader = styled.header`
   padding: 1.5rem 0 0.8125rem;
   position: relative;

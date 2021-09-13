@@ -17,4 +17,5 @@ export type SubscriptionBenefitType = {
   link: string;
   status: string;
   timezone: string;
+  vimeoId: string;
 };

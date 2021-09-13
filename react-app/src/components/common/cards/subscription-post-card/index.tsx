@@ -11,7 +11,7 @@ import {
 } from "react-app/src/components/containers/celebrity-shared-post";
 import { LoaderLayout } from "react-app/src/components/layouts/loader";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
-import { CELEBRITY_PROFILE, SUBSCRIPTION } from "react-app/src/routing/Paths";
+import { SUBSCRIPTION } from "react-app/src/routing/Paths";
 import {
   SubscriptionPostType,
   SubscriptionPostUrlType,
@@ -37,11 +37,11 @@ import {
   PostText,
   PostLikeIcon,
   PostReactionButton,
+  PostVimeoIframe,
 } from "./styles";
 import { useAuth } from "lib/famosos-auth";
-import { useRouter } from "next/router";
-import { Session } from "react-app/src/state/utils/session";
-import { SIGN_IN_PATH } from "constants/paths";
+import { getCelebrityProfilePath } from "constants/paths";
+import { ProtectedRouteLink } from "../../routing/protected-route-link";
 
 type SubscriptionPostCardProps = {
   className?: string;
@@ -79,6 +79,7 @@ type SubscriptionPostHiddenContentProps = {
   username: string;
   price?: ReactNode;
   description: string;
+  onClickSubscribe?: () => void;
 };
 
 export const SubscriptionPostHiddenContent = ({
@@ -87,28 +88,23 @@ export const SubscriptionPostHiddenContent = ({
   username,
   price = 0,
   description,
+  onClickSubscribe,
 }: SubscriptionPostHiddenContentProps) => {
   const firstName = getFirstName(fullName);
-  const router = useRouter();
-  const { isAuthenticated } = useAuth();
 
-  function goToSubscriptionCheckout() {
-    const subscriptionCheckoutPath = SUBSCRIPTION.replace(
-      ":celebrity_username",
-      username
-    );
-    if (isAuthenticated) {
-      router.push(subscriptionCheckoutPath);
-    } else {
-      Session.setRedirectPathOnLogin(subscriptionCheckoutPath);
-      router.push(SIGN_IN_PATH);
-    }
-  }
+  const subscriptionCheckoutPath = SUBSCRIPTION.replace(
+    ":celebrity_username",
+    username
+  );
 
   return (
     <>
       <Maybe it={typeof imageSrc === "string"}>
-        <PostMedia cursor="pointer" onClick={goToSubscriptionCheckout}>
+        <PostMedia
+          as={ProtectedRouteLink}
+          href={subscriptionCheckoutPath}
+          onClick={onClickSubscribe}
+        >
           <PostHiddenImage src={imageSrc} />
           <PostHiddenDiv imageSrc={imageSrc}>
             <img src="/assets/img/lock.svg" alt="Cerradura" />
@@ -134,6 +130,8 @@ export const SubscriptionPostHiddenContent = ({
   );
 };
 
+export const SubscriptionHiddenContent = SubscriptionPostHiddenContent;
+
 export const SubscriptionPostContent = ({
   items,
   description,
@@ -156,26 +154,29 @@ export const SubscriptionPostContent = ({
 );
 
 export const PostSingleMedia = ({
-  media: { mediaType, mediaUrl },
+  media: { mediaType, mediaUrl, vimeoId },
 }: {
   media: SubscriptionPostUrlType;
 }) => {
   const [videoIsMuted, setVideoIsMuted] = useState(true);
   const [slideshowIsPlaying, setSlideshowIsPlaying] = useState(false);
+
   return (
-    <Maybe
-      it={mediaType === "IMAGE"}
-      orElse={
-        <VideoLayout
-          videoIsMuted={videoIsMuted}
-          setVideoIsMuted={setVideoIsMuted}
-          media={{ mediaUrl }}
-          classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video background-dark"
-          setSlideshowIsPlaying={setSlideshowIsPlaying}
-        />
-      }
-    >
-      <PostImage src={mediaUrl} />
+    <Maybe it={mediaType === "VIDEO"} orElse={<PostImage src={mediaUrl} />}>
+      <Maybe
+        it={Boolean(vimeoId)}
+        orElse={
+          <VideoLayout
+            videoIsMuted={videoIsMuted}
+            setVideoIsMuted={setVideoIsMuted}
+            media={{ mediaUrl }}
+            classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video background-dark"
+            setSlideshowIsPlaying={setSlideshowIsPlaying}
+          />
+        }
+      >
+        <PostVimeoIframe vimeoId={vimeoId} />
+      </Maybe>
     </Maybe>
   );
 };
@@ -343,19 +344,16 @@ function SubscriptionPostHeader({
 }: SubscriptionPostHeaderProps) {
   const formattedDate = date ? formatDate(date) : null;
 
-  const profilePath = CELEBRITY_PROFILE.replace(
-    ":celebrity_username",
-    username
-  );
+  const profilePath = getCelebrityProfilePath(username);
 
   return (
     <PostHeader>
-      {/* <Link href={profilePath}>
+      <Link href={profilePath}>
+        <ProfilePicture width="47px" avatar={avatar} />
       </Link>
       <Link href={profilePath} className="text-decoration-none">
-      </Link> */}
-      <ProfilePicture width="47px" avatar={avatar} />
-      <h3 className="font-weight-bold h6 ml-3 mb-0">{fullName}</h3>
+        <h3 className="font-weight-bold h6 ml-3 mb-0">{fullName}</h3>
+      </Link>
       <PostDate>
         <Maybe it={formattedDate !== "Invalid Date"}>{formattedDate}</Maybe>
       </PostDate>

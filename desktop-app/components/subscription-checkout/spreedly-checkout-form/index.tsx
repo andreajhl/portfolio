@@ -19,6 +19,8 @@ import WarningMessage from "desktop-app/components/common/warning-message";
 import debug from "react-app/src/utils/debug";
 import { CollapsibleErrorMessage } from "react-app/src/components/common/widgets/collapsible-error-message";
 import classes from "classnames";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -187,6 +189,8 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
     });
   };
 
+  const subscriptionPlanPrice = SUBSCRIPTION_PLAN_PRICE;
+
   const startSpreedlyPayment = async (cardToken) => {
     if (!isProccesing) {
       try {
@@ -194,6 +198,14 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
         await processSubscriptionPayment({
           celebrityId,
           cardToken,
+        });
+        analytics.trackSubscription({
+          celebrityId,
+          subscriptionPlanPrice,
+        });
+        analytics.track("BACKSTAGE_SUBSCRIPTION_PAYED", {
+          celebrityId,
+          subscriptionPlanPrice,
         });
         push(
           SUBSCRIPTION_SUCCESS.replace(
