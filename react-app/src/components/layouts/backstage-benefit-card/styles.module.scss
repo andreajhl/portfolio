@@ -13,6 +13,15 @@
   overflow: hidden;
 }
 
+.PosterImage,
+.PosterOverlay {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+
 .PosterImage {
   display: block;
   width: 100%;
@@ -21,16 +30,14 @@
 }
 
 .PosterOverlay {
-  background: rgba(4, 4, 4, 0.5);
-  mix-blend-mode: normal;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
   padding: 14px 24px;
   display: flex;
   align-items: flex-end;
+}
+
+.DarkenBackground {
+  background: rgba(4, 4, 4, 0.5);
+  mix-blend-mode: normal;
 }
 
 .BenefitTitle.BenefitTitle,

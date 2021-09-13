@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Image, Carousel, ResponsiveEmbed, VideoSlide } from "react-bootstrap";
-import { VideoSlideLayout } from "../../layouts/video-slide/index";
+import { Image, Carousel } from "react-bootstrap";
+import { SubscriptionVideoSlideLayout } from "../../layouts/subscription-video-slide/index";
 
 import propTypes from "prop-types";
+import Maybe from "../../common/helpers/maybe";
+import { VimeoIframe } from "desktop-app/components/common/widgets/vimeo-iframe";
 
 export const VideoLayout = ({
   videoIsMuted,
@@ -10,9 +12,10 @@ export const VideoLayout = ({
   media,
   setSlideshowIsPlaying,
   classNameSlideLayoutVideo,
+  autoPlayVideo = false,
 }) => {
   return (
-    <VideoSlideLayout
+    <SubscriptionVideoSlideLayout
       preload="true"
       classNameVideoSlideButtons="celebrity-shared-post__media-files__video-control"
       classNameSlideLayoutVideo={classNameSlideLayoutVideo}
@@ -22,6 +25,7 @@ export const VideoLayout = ({
       videoReference={"celebrity-shared-post" + media.mediaUrl}
       setSlideshowIsPlaying={setSlideshowIsPlaying}
       videoUrl={media.mediaUrl}
+      autoPlayVideo={autoPlayVideo}
     />
   );
 };
@@ -63,13 +67,23 @@ const CarouselItemsLayout = ({
             className="celebrity-shared-post__media-files__item"
           >
             {media.mediaType === "VIDEO" ? (
-              <VideoLayout
-                videoIsMuted={videoIsMuted}
-                setVideoIsMuted={setVideoIsMuted}
-                media={media}
-                setSlideshowIsPlaying={setSlideshowIsPlaying}
-                classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video"
-              />
+              <Maybe
+                it={media.vimeoId}
+                orElse={
+                  <VideoLayout
+                    videoIsMuted={videoIsMuted}
+                    setVideoIsMuted={setVideoIsMuted}
+                    media={media}
+                    setSlideshowIsPlaying={setSlideshowIsPlaying}
+                    classNameSlideLayoutVideo="celebrity-shared-post__media-files__item-video"
+                  />
+                }
+              >
+                <VimeoIframe
+                  vimeoId={media.vimeoId}
+                  className="celebrity-shared-post__vimeo-iframe"
+                />
+              </Maybe>
             ) : (
               <ImageLayout
                 media={media}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { PageContainer } from "../../layouts/page-container";
 import { ProfilePicture } from "../../layouts/profile-picture";
 import { connect, ConnectedProps } from "react-redux";
@@ -40,6 +40,11 @@ import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
 import { useAuth } from "lib/famosos-auth";
 import { GoToSubscriptionCheckoutButton } from "../../common/button/go-to-subscription-checkout-button";
+import { CelebrityBackstageViewsNavTabs } from "../../layouts/celebrity-backstage-views-nav-tabs";
+import styles from "./styles.module.scss";
+import { SUBSCRIPTION_BENEFITS_VIEW_NAME } from "constants/paths";
+import { SubscriptionPublicBenefitsList } from "../../containers/subscription-public-benefits-list";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const messages = defineMessages({
   noAvailableForSubscriptionAlertText: {
@@ -48,12 +53,10 @@ const messages = defineMessages({
 });
 
 const getOnlyPreviewPosts = (results: any[]) =>
-  results
-    .map(({ items, ...posts }) => ({
-      ...posts,
-      items: items.slice(0, 1).map((item) => ({ ...item, mediaType: "IMAGE" })),
-    }))
-    .filter(({ items, description }) => items.length > 0 || description);
+  results.map(({ items, ...posts }) => ({
+    ...posts,
+    items: items.slice(0, 1).map((item) => ({ ...item, mediaType: "IMAGE" })),
+  }));
 
 const mapStateToProps = ({
   celebrities: { getCelebrityReducer, fetchCelebritySubscriptionPlansReducer },
@@ -102,7 +105,9 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-type SubscribePageProps = {} & PropsFromRedux;
+type SubscribePageProps = {
+  viewName: string;
+} & PropsFromRedux;
 
 function SubscribePage({
   celebrity,
@@ -113,6 +118,7 @@ function SubscribePage({
   fetchUserSubscriptionsList,
   posts,
   isLoadingPosts,
+  viewName,
 }: SubscribePageProps) {
   const router = useRouter();
   const { formatMessage } = useIntl();
@@ -150,11 +156,40 @@ function SubscribePage({
     isAuthenticated,
   ]);
 
+  const subscriptionPrice = SUBSCRIPTION_PLAN_PRICE;
+
   const priceLayout = (
-    <PriceLayout price={SUBSCRIPTION_PLAN_PRICE} showPrefix={false} />
+    <PriceLayout price={subscriptionPrice} showPrefix={false} />
   );
 
   const hasPosts = posts?.length > 0;
+  const hasTrackedViewRef = useRef(false);
+
+  useEffect(() => {
+    // The ref value is kept even if change view.
+    hasTrackedViewRef.current = false;
+  }, [viewName]);
+
+  useEffect(() => {
+    if (isLoading || hasTrackedViewRef.current) return;
+    hasTrackedViewRef.current = true;
+    const event = `CELEBRITY_BACKSTAGE_${
+      viewName === SUBSCRIPTION_BENEFITS_VIEW_NAME ? "BENEFITS" : "FEED"
+    }_VIEW`;
+    analytics.track(event, {
+      subscriptionPrice,
+      celebrity,
+      isSubscribed,
+    });
+  }, [viewName, isSubscribed, isLoading, subscriptionPrice, celebrity]);
+
+  function trackPostCardClick(post) {
+    analytics.track("CLICK_ON_CELEBRITY_POST_SUBSCRIBE_BUTTON", {
+      celebrity,
+      subscriptionPrice,
+      post,
+    });
+  }
 
   return (
     <PageContainer showSearch={false}>
@@ -209,7 +244,7 @@ function SubscribePage({
                     values={{ priceLayout }}
                   />
                 </PlanInfoPrice>
-                <ConvertedPriceCopy price={SUBSCRIPTION_PLAN_PRICE} />
+                <ConvertedPriceCopy price={subscriptionPrice} />
                 <div style={{ marginTop: "20px" }}>
                   <GoToSubscriptionCheckoutButton
                     className="CallToActionButton"
@@ -221,58 +256,68 @@ function SubscribePage({
                 </div>
               </Maybe>
             </PlanInfoSection>
+            <CelebrityBackstageViewsNavTabs
+              className={styles.CelebrityBackstageViewsNavTabs}
+              celebrityUsername={celebrity?.username}
+              celebrityId={celebrity?.id}
+            />
           </div>
         </SectionWrapper>
-        <SubscriptionPostsSection>
-          <Maybe it={!isLoadingPosts} orElse={<LoaderLayout />}>
-            <LastsPostsTitle>
-              <FormattedMessage
-                defaultMessage="Últimas publicaciones de {fullName}"
-                values={{ fullName }}
-              />
-            </LastsPostsTitle>
-            <Maybe
-              it={hasPosts}
-              orElse={
-                <NotResults
-                  message={
-                    <FormattedMessage defaultMessage="Al parecer no hay publicaciones actualmente" />
-                  }
-                />
-              }
-            >
-              {posts.map((post) => (
-                <SubscriptionPostCard
-                  avatar={avatar}
-                  fullName={fullName}
-                  username={username}
-                  post={post}
-                  key={post?.id}
-                  canReactToPosts={isSubscribed}
-                >
-                  <Maybe
-                    it={isSubscribed}
-                    orElse={
-                      <SubscriptionPostHiddenContent
-                        imageSrc={post?.items?.[0]?.mediaUrl}
-                        username={username}
-                        price={priceLayout}
-                        fullName={fullName}
-                        description={post?.description}
-                      />
-                    }
-                  >
-                    <SubscriptionPostContent
-                      items={post?.items}
-                      description={post?.description}
+        <Maybe
+          it={viewName === SUBSCRIPTION_BENEFITS_VIEW_NAME}
+          orElse={
+            <SubscriptionPostsSection>
+              <Maybe it={!isLoadingPosts} orElse={<LoaderLayout />}>
+                <Maybe
+                  it={hasPosts}
+                  orElse={
+                    <NotResults
+                      message={
+                        <FormattedMessage defaultMessage="Al parecer no hay publicaciones actualmente" />
+                      }
                     />
-                  </Maybe>
-                </SubscriptionPostCard>
-              ))}
-            </Maybe>
-            <PoweredByFamososBanner />
-          </Maybe>
-        </SubscriptionPostsSection>
+                  }
+                >
+                  {posts.map((post) => (
+                    <SubscriptionPostCard
+                      avatar={avatar}
+                      fullName={fullName}
+                      username={username}
+                      post={post}
+                      key={post?.id}
+                      canReactToPosts={isSubscribed}
+                    >
+                      <Maybe
+                        it={isSubscribed}
+                        orElse={
+                          <SubscriptionPostHiddenContent
+                            onClickSubscribe={() => trackPostCardClick(post)}
+                            imageSrc={post?.items?.[0]?.mediaUrl}
+                            username={username}
+                            price={priceLayout}
+                            fullName={fullName}
+                            description={post?.description}
+                          />
+                        }
+                      >
+                        <SubscriptionPostContent
+                          items={post?.items}
+                          description={post?.description}
+                        />
+                      </Maybe>
+                    </SubscriptionPostCard>
+                  ))}
+                </Maybe>
+                <PoweredByFamososBanner />
+              </Maybe>
+            </SubscriptionPostsSection>
+          }
+        >
+          <SubscriptionPublicBenefitsList
+            currentChoice={celebrity?.id}
+            isSubscribed={isSubscribed}
+          />
+        </Maybe>
       </Maybe>
     </PageContainer>
   );

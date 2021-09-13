@@ -3,34 +3,45 @@ import styles from "./styles.module.scss";
 import useListSubscriptionBenefits from "lib/hooks/useListSubscriptionBenefits";
 import { useEffect, useState } from "react";
 import apiService from "react-app/src/state/utils/apiService";
-import { LIST_SUBSCRIPTION_BENEFITS_PATH } from "react-app/src/state/ducks/celebrity-subscription-benefits/paths";
+import {
+  LIST_SUBSCRIPTION_BENEFITS_PATH,
+  PUBLIC_LIST_SUBSCRIPTION_BENEFITS_PATH,
+} from "react-app/src/state/ducks/celebrity-subscription-benefits/paths";
+import { useAuth } from "lib/famosos-auth";
 
 type ActiveBenefitsCounterProps = {
   className?: string;
+  celebrityId?: number;
 };
 
-function ActiveBenefitsCounter({ className }: ActiveBenefitsCounterProps) {
+function ActiveBenefitsCounter({
+  className,
+  celebrityId,
+}: ActiveBenefitsCounterProps) {
   /* TODO: Add the correct endpoint, this is a provisional method to get total benefits count */
   const [totalItems, setTotalItems] = useState(0);
   const { totalResults, status } = useListSubscriptionBenefits({
     shouldFetch: false,
   });
+  const { isLoading: isLoadingAuthentication, isAuthenticated } = useAuth();
 
   useEffect(() => {
-    if (status === "completed") return;
+    if (status === "completed" || isLoadingAuthentication) return;
 
     async function fetchBenefitCount() {
       const response: any = await apiService({
         method: "GET",
-        path: LIST_SUBSCRIPTION_BENEFITS_PATH,
-        params: { limit: 1, offset: 0 },
+        path: isAuthenticated
+          ? LIST_SUBSCRIPTION_BENEFITS_PATH
+          : PUBLIC_LIST_SUBSCRIPTION_BENEFITS_PATH,
+        params: { limit: 1, offset: 0, celebrityId },
       });
       if (!response || response?.status === "ERROR") return;
       setTotalItems(response?.data?.totalResults);
     }
 
     fetchBenefitCount();
-  }, []);
+  }, [isLoadingAuthentication, isAuthenticated]);
 
   useEffect(() => {
     if (status !== "completed") return;

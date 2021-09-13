@@ -88,7 +88,7 @@ export const LastsPostsTitle = styled.h2`
 `;
 
 export const SectionWrapper = styled.div`
-  padding-bottom: 2rem;
+  padding-bottom: 0.5rem;
   box-shadow: 0px 8px 10px -8px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 3;

@@ -1,4 +1,4 @@
-import useListSubscriptionBenefits from "lib/hooks/useListSubscriptionBenefits";
+import usePublicListSubscriptionBenefits from "lib/hooks/usePublicListSubscriptionBenefits";
 import { useEffect, useRef } from "react";
 import { CelebritySubscriptionBenefitsInfinityList } from "../../layouts/celebrity-subscription-benefits-infinity-list";
 import { SubscriptionContentSection } from "../../layouts/subscription-posts";
@@ -6,13 +6,15 @@ import { SubscriptionContentSection } from "../../layouts/subscription-posts";
 const offsetInitialValue = 0;
 const resultsLimit = 5;
 
-type SubscriptionBenefitsViewProps = {
+type SubscriptionPublicBenefitsListProps = {
   currentChoice: number;
+  isSubscribed?: boolean;
 };
 
-function SubscriptionBenefitsView({
+function SubscriptionPublicBenefitsList({
   currentChoice,
-}: SubscriptionBenefitsViewProps) {
+  isSubscribed = false,
+}: SubscriptionPublicBenefitsListProps) {
   const celebrityId = currentChoice?.toString?.();
   const {
     benefits,
@@ -20,7 +22,7 @@ function SubscriptionBenefitsView({
     status,
     currentParams: { offset },
     setOffset,
-  } = useListSubscriptionBenefits({
+  } = usePublicListSubscriptionBenefits({
     limit: resultsLimit,
     celebrityId,
   });
@@ -51,10 +53,10 @@ function SubscriptionBenefitsView({
         benefits={benefits}
         onNext={setNewOffset}
         hasMore={hasMoreBenefits}
-        isSubscribed
+        isSubscribed={isSubscribed}
       />
     </SubscriptionContentSection>
   );
 }
 
-export { SubscriptionBenefitsView };
+export { SubscriptionPublicBenefitsList };

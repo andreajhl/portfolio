@@ -52,9 +52,12 @@ function PageContainer({
   useEffect(() => {
     const isLogged = new Session().getSession();
     cleanUserCelebrityLikes();
-    if (applyFetchUserCelebrityLikes && isLogged) {
-      fetchUserCelebrityLikes();
-    }
+    if (!isLogged || !applyFetchUserCelebrityLikes) return;
+    fetchUserCelebrityLikes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [applyFetchUserCelebrityLikes]);
+
+  useEffect(() => {
     if (shouldFetchRestCountries && restCountries.length === 0) {
       listRestCountries();
     }

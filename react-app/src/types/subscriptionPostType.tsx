@@ -2,6 +2,7 @@ export type SubscriptionPostUrlType = {
   id: number;
   mediaType: "IMAGE" | "VIDEO";
   mediaUrl: string;
+  vimeoId: string;
 };
 
 type SubscriptionPostsReactions = {

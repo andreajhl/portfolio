@@ -12,8 +12,10 @@ import classes from "classnames";
 import Maybe from "../../common/helpers/maybe";
 import getFormattedDate from "lib/utils/getFormattedDate";
 import { Countdown } from "../../common/helpers/countdown";
+import { VimeoIframe } from "desktop-app/components/common/widgets/vimeo-iframe";
 import { VideoLayout } from "react-app/src/components/containers/celebrity-shared-post";
 import { useState } from "react";
+import { analytics } from "react-app/src/state/utils/gtm";
 
 const noMediaBanner = (
   <div className={styles.NoMediaBanner}>
@@ -48,6 +50,11 @@ function SubscriptionBenefitDetails({
   );
 
   const linkLabel = formatMessage(getLinkLabelMessage(benefit?.benefit_type));
+  const hasMedia = Boolean(benefit?.media_url || benefit?.vimeoId);
+
+  function trackBenefitLinkClick() {
+    analytics.track("CLICK_ON_BENEFIT_LINK", { benefit });
+  }
 
   return (
     <PageContainer showSearch={false} showNavbar={false}>
@@ -82,14 +89,26 @@ function SubscriptionBenefitDetails({
             </div>
           </Maybe>
           <div className={styles.MediaContainer}>
-            <Maybe it={Boolean(benefit?.media_url)} orElse={noMediaBanner}>
-              <VideoLayout
-                videoIsMuted={videoIsMuted}
-                setVideoIsMuted={setVideoIsMuted}
-                media={{ mediaUrl: benefit?.media_url }}
-                classNameSlideLayoutVideo="photo-author"
-                setSlideshowIsPlaying={() => {}}
-              />
+            <Maybe it={hasMedia} orElse={noMediaBanner}>
+              <Maybe
+                it={Boolean(benefit?.vimeoId)}
+                orElse={
+                  <VideoLayout
+                    videoIsMuted={videoIsMuted}
+                    setVideoIsMuted={setVideoIsMuted}
+                    media={{ mediaUrl: benefit?.media_url }}
+                    classNameSlideLayoutVideo={styles.MediaPlayer}
+                    setSlideshowIsPlaying={() => {}}
+                    autoPlayVideo
+                  />
+                }
+              >
+                <VimeoIframe
+                  vimeoId={benefit?.vimeoId}
+                  className={styles.MediaPlayer}
+                  autoPlay
+                />
+              </Maybe>
             </Maybe>
           </div>
           <h4 className="description_s">{descriptionLabel}</h4>
@@ -104,6 +123,7 @@ function SubscriptionBenefitDetails({
               rel="noreferrer"
               target="_blank"
               href={benefit?.link}
+              onClick={trackBenefitLinkClick}
             >
               {linkLabel} <i className="fa fa-external-link-alt"></i>
             </a>

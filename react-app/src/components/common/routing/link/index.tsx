@@ -2,7 +2,7 @@
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import { AnchorHTMLAttributes, CSSProperties, ReactNode } from "react";
 
-type LinkProps = {
+export type LinkProps = {
   children?: ReactNode;
   className?: string | null;
   style?: CSSProperties;
