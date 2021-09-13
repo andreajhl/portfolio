@@ -1,47 +1,14 @@
-.TopSectionWrapper {
-  padding-bottom: 28px;
-  border-bottom: 1px solid #dedede;
-}
-
-.CelebrityDetailsContainer {
-  display: flex;
-}
-
-.CelebrityDetailsWrapper {
-  width: 616px;
-  margin-right: 3rem;
-}
-
-.CelebrityPublicContractWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 28px;
-}
-
-.ContractStepsBeforeReviewsWrapper {
-  margin-top: auto;
-}
-
-.LastReviewsSectionWrapper {
-  margin-top: 35px;
-  margin-bottom: 37px;
-}
-
-.ContractStepsAfterReviewsContainer {
-  margin-bottom: 36px;
-}
-
-.ContractStepsAfterReviewsWrapper {
-  flex: 1;
-}
-
-.SimilarContentWrapper {
-  margin-bottom: 3rem;
+.CelebrityProfileSkeleton {
+  height: 90vh;
 }
 
 .CreateContractWizard.CreateContractWizard {
   transition: box-shadow 1s ease, border 1s ease;
+}
+
+.CreateContractWizardMobile {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ContractWizardFocused.ContractWizardFocused {

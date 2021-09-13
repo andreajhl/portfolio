@@ -1,7 +1,7 @@
 import { connect, ConnectedProps } from "react-redux";
 import { CardsReelSection } from "../../layouts/cards-section-reel";
 import { fetchSimilarCelebritiesV2 } from "react-app/src/state/ducks/celebrities/actions";
-import { useEffect } from "react";
+import { CSSProperties, useEffect } from "react";
 import { CelebrityCard } from "../../common/cards/celebrity";
 import styles from "./styles.module.scss";
 import Maybe from "react-app/src/components/common/helpers/maybe";
@@ -10,6 +10,7 @@ import { CelebrityCardSkeleton } from "desktop-app/components/common/cards/celeb
 import { defineMessages, useIntl } from "react-intl";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { getWindowPathname } from "react-app/src/utils/getWindow";
+import classes from "classnames";
 
 const messages = defineMessages({
   similarCelebritiesReelTitle: {
@@ -41,14 +42,18 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type SimilarCelebritiesCardsReelProps = {
+  className?: string;
   celebrityUsername: string;
+  sidesPadding?: CSSProperties["width"];
 } & PropsFromRedux;
 
 function SimilarCelebritiesCardsReel({
+  className,
   celebrityUsername,
   similarCelebrities,
   isLoading,
   fetchSimilarCelebrities,
+  sidesPadding,
 }: SimilarCelebritiesCardsReelProps) {
   const { formatMessage } = useIntl();
   useEffect(() => {
@@ -74,7 +79,7 @@ function SimilarCelebritiesCardsReel({
   return (
     <Maybe it={similarCelebrities?.length > 0}>
       <CardsReelSection
-        className={styles.SimilarCelebritiesCardsReel}
+        className={classes(styles.SimilarCelebritiesCardsReel, className)}
         title={similarCelebritiesReelTitle}
         itemWidth={202}
         itemHeight={310}
@@ -85,6 +90,7 @@ function SimilarCelebritiesCardsReel({
           size: 40,
         }}
         gap={31}
+        sidesPadding={sidesPadding}
       >
         {(similarCelebrity) => (
           <Maybe

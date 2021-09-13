@@ -1,8 +1,12 @@
 .VideoDetailsOccasionLabel {
-  margin-top: 22px;
   margin-bottom: 14px;
   font-weight: bold;
   font-size: 20px;
+  margin-top: 0.5rem;
+
+  @media only screen and (min-width: 576px) {
+    margin-top: 22px;
+  }
 }
 
 .VideoDetailsFormOccasionsGrid {
@@ -36,6 +40,14 @@
   border: 1px solid #dedede !important;
   border-radius: 10px !important;
   transition: border-color 0.15s;
+}
+
+@media only screen and (max-width: 575px) {
+  .VideoDetailsFormInstructionsLabel,
+  .VideoDetailsFormInstructionsLabel span,
+  .VideoDetailsFormInstructionsTextarea {
+    font-size: 16px;
+  }
 }
 
 .VideoDetailsFormInstructionsTextarea:hover,

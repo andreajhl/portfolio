@@ -2,18 +2,17 @@ import { GetServerSideProps } from "next";
 import { wrapper } from "react-app/src/state/store";
 import {
   get,
-  listPublicContracts,
   listPublicContractsV2,
-  listReviews,
   listReviewsV2,
-  setCelebrityProfileVersion,
 } from "react-app/src/state/ducks/celebrities/actions";
 import { CELEBRITY_PROFILE_ERROR } from "react-app/src/routing/Paths";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { getProfileVersionDependingOnTime } from "react-app/src/utils/celebrityProfileVersion";
+import {
+  getCelebrityProfileVersion,
+  getProfileVersionDependingOnTime,
+  setCelebrityProfileVersion,
+} from "react-app/src/utils/celebrityProfileVersion";
 import isMobileDevice from "lib/utils/isMobile";
-import dynamic from "next/dynamic";
-import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import MicroDataTags from "react-app/src/components/common/helpers/micro-data-tags";
 import getContractPrice from "react-app/src/utils/getContractPrice";
@@ -27,24 +26,13 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 import debug from "react-app/src/utils/debug";
 import { CREATE_CONTRACT_QUERY_PARAM } from "constants/paths";
 import { analytics } from "react-app/src/state/utils/gtm";
+import {
+  getCelebrityContractPrice,
+  getCelebrityDiscountPercentage,
+} from "lib/utils/celebrityUtils";
+import getCelebrityBusinessPrice from "lib/utils/getCelebrityBusinessPrice";
+import { CelebrityProfilePage } from "desktop-app/components/pages/celebrity-profile";
 
-const CelebrityProfilePage = dynamic<{
-  celebrity: celebrityType;
-  celebrityProfileVersion: string;
-}>(() =>
-  import("react-app/src/components/pages/celebrity-profile").then(
-    (mod) => mod.CelebrityProfilePage
-  )
-);
-
-const CelebrityProfilePageDesktop = dynamic<{
-  celebrity: celebrityType;
-  shouldFocusCreateContractWizard?: boolean;
-}>(() =>
-  import("desktop-app/components/pages/celebrity-profile").then(
-    (mod) => mod.CelebrityProfilePage
-  )
-);
 const headData = defineMessages({
   titleCelebrityProfile: {
     defaultMessage: "Famosos.com - {celebrity_username}",
@@ -70,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     try {
       const { celebrity_username } = params;
       const isMobile = isMobileDevice(req.headers["user-agent"]);
-      await get(celebrity_username, false, !isMobile)(store.dispatch);
+      await get(celebrity_username, false, true)(store.dispatch);
       const { celebrities } = store.getState();
 
       const celebrity = celebrities.getCelebrityReducer.data;
@@ -85,24 +73,18 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
           },
         };
       }
-      store.dispatch(
-        setCelebrityProfileVersion(getProfileVersionDependingOnTime())
-      );
 
-      if (isMobile) {
-        await listPublicContracts(celebrity.id, { currentPage: 1 })(
-          store.dispatch
-        );
-        await listReviews(celebrity.id, { currentPage: 1 })(store.dispatch);
-      } else {
-        await listReviewsV2(celebrity.username)(store.dispatch);
-        await listPublicContractsV2(celebrity.username)(store.dispatch);
-      }
+      await listReviewsV2(celebrity.username)(store.dispatch);
+      await listPublicContractsV2(celebrity.username)(store.dispatch);
+
+      const celebrityProfileVersion =
+        getCelebrityProfileVersion(req?.headers?.cookie) ||
+        getProfileVersionDependingOnTime();
+
       return {
         props: {
           celebrity,
-          celebrityProfileVersion: store.getState().celebrities
-            .celebrityProfileVersionReducer,
+          celebrityProfileVersion,
           isMobile,
           shouldFocusCreateContractWizard: Boolean(
             query?.[CREATE_CONTRACT_QUERY_PARAM]
@@ -118,13 +100,19 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   }
 );
 
+type CelebrityProfileProps = {
+  celebrity: celebrityType;
+  celebrityProfileVersion: "A" | "B";
+  isMobile: boolean;
+  shouldFocusCreateContractWizard: boolean;
+};
+
 function CelebrityProfile({
   celebrity,
   celebrityProfileVersion,
-  isMobile,
   shouldFocusCreateContractWizard,
-}) {
-  useDesktopClass(!isMobile);
+}: CelebrityProfileProps) {
+  useDesktopClass(true);
   const videoMessagePrice = getContractPrice(celebrity.contractTypes) + ".00";
   const productId = VIDEO_MESSAGE_PRODUCT_ID_PREFIX + celebrity.id;
   const celebrityCountry = celebrity?.countryCode;
@@ -139,6 +127,11 @@ function CelebrityProfile({
       celebrityCategory,
     });
   }, []);
+
+  useEffect(() => {
+    if (getCelebrityProfileVersion()) return;
+    setCelebrityProfileVersion(celebrityProfileVersion);
+  }, [celebrityProfileVersion]);
 
   return (
     <>
@@ -161,20 +154,11 @@ function CelebrityProfile({
         productCategory={GIFT_GIVING_CATEGORY_CODE}
         itemGroupId={celebrity?.categoryTitle}
       />
-      <Maybe
-        it={isMobile}
-        orElse={
-          <CelebrityProfilePageDesktop
-            celebrity={celebrity}
-            shouldFocusCreateContractWizard={shouldFocusCreateContractWizard}
-          />
-        }
-      >
-        <CelebrityProfilePage
-          celebrity={celebrity}
-          celebrityProfileVersion={celebrityProfileVersion}
-        />
-      </Maybe>
+      <CelebrityProfilePage
+        celebrity={celebrity}
+        shouldFocusCreateContractWizard={shouldFocusCreateContractWizard}
+        celebrityProfileVersion={celebrityProfileVersion}
+      />
     </>
   );
 }

@@ -4,8 +4,7 @@
 }
 .showReviewsModal {
   cursor: pointer;
-
-  &:hover span {
-    text-decoration: underline var(--dark);
-  }
+}
+.showReviewsModal span {
+  text-decoration: underline var(--dark);
 }

@@ -48,3 +48,10 @@ span + .CelebrityDetails__fans-club-badge {
 span + .CelebrityDetails__fans-club-badge-large {
   margin-top: 1.5rem;
 }
+
+.CelebrityMainVideoWidget-skeleton {
+  height: 129px;
+  width: 129px;
+  background-color: rgb(221, 221, 221);
+  border-radius: 50%;
+}

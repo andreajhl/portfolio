@@ -5,9 +5,14 @@ import styles from "./styles.module.scss";
 type StickyTopBarProps = {
   children: ReactNode;
   appearancePosition: number;
+  position?: "top" | "bottom";
 };
 
-function StickyTopBar({ children, appearancePosition = 0 }: StickyTopBarProps) {
+function StickyBar({
+  children,
+  appearancePosition = 0,
+  position = "top",
+}: StickyTopBarProps) {
   const [isHidden, setIsHidden] = useState(true);
 
   useEffect(() => {
@@ -26,7 +31,8 @@ function StickyTopBar({ children, appearancePosition = 0 }: StickyTopBarProps) {
     <div
       className={classes(
         styles.StickyTopBar,
-        isHidden && styles.StickyTopBarIsHidden
+        isHidden && styles.StickyTopBarIsHidden,
+        position !== "top" && styles.StickyBottomBar
       )}
     >
       {children}
@@ -34,4 +40,4 @@ function StickyTopBar({ children, appearancePosition = 0 }: StickyTopBarProps) {
   );
 }
 
-export { StickyTopBar };
+export { StickyBar };

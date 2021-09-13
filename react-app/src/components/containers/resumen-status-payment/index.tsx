@@ -30,7 +30,6 @@ const ResumenStatusPayment = ({
   idTransaction,
   textColor,
 }: ResumenStatusPaymentsProps) => {
-  console.log(status);
   return (
     <ContainerResumenStatusPayment>
       <SpanGray textColor={textColor} className="mt-3">

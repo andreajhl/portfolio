@@ -32,7 +32,6 @@ function CategoryFilterDropdown({
     ) {
       let newOptions = checkedOptions;
       newOptions = newOptions.filter((option) => {
-        console.log(option, "option");
         return valuesOfOptionSelected.every((value) => value != option);
       });
       onChange(newOptions.join(","));
