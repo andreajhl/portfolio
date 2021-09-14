@@ -32,10 +32,10 @@ const CelebrityProfileLayoutTwo = dynamic<any>(
   { loading }
 );
 
-const CelebrityProfileLayoutOne = dynamic<any>(
+const CelebrityProfileLayoutThree = dynamic<any>(
   import(
-    "react-app/src/components/celebrity-profile/celebrity-profile-layout-one"
-  ).then((mod) => mod.CelebrityProfileLayoutOne),
+    "react-app/src/components/celebrity-profile/celebrity-profile-layout-three"
+  ).then((mod) => mod.CelebrityProfileLayoutThree),
   { loading }
 );
 
@@ -57,16 +57,33 @@ async function focusWizardInput() {
   wizardFirstInputElement?.focus?.({ preventScroll: true });
 }
 
+function CelebrityProfileLayout({
+  isMobile,
+  layoutProps,
+  celebrityProfileVersion,
+}: {
+  isMobile: boolean;
+  layoutProps: { [key: string]: any };
+  celebrityProfileVersion: string;
+}) {
+  if (!isMobile) return <CelebrityProfileDesktopLayout {...layoutProps} />;
+  if (celebrityProfileVersion === "B") {
+    return <CelebrityProfileLayoutTwo {...layoutProps} />;
+  }
+
+  return <CelebrityProfileLayoutThree {...layoutProps} />;
+}
+
 type CelebrityProfilePageProps = {
   celebrity: celebrityType;
   shouldFocusCreateContractWizard?: boolean;
-  celebrityProfileVersion?: "A" | "B";
+  celebrityProfileVersion?: "B" | "C";
 };
 
 function CelebrityProfilePage({
   celebrity,
   shouldFocusCreateContractWizard = false,
-  celebrityProfileVersion = "A",
+  celebrityProfileVersion = "B",
 }: CelebrityProfilePageProps) {
   useGlobalFetches();
   const isMobile = useIsOnMobileScreen();
@@ -151,17 +168,11 @@ function CelebrityProfilePage({
         onCTAButtonClick={goToCreateContractWizard}
         isMobile={isMobile}
       />
-      <Maybe
-        it={isMobile}
-        orElse={<CelebrityProfileDesktopLayout {...layoutProps} />}
-      >
-        <Maybe
-          it={celebrityProfileVersion === "A"}
-          orElse={<CelebrityProfileLayoutTwo {...layoutProps} />}
-        >
-          <CelebrityProfileLayoutOne {...layoutProps} />
-        </Maybe>
-      </Maybe>
+      <CelebrityProfileLayout
+        isMobile={isMobile}
+        layoutProps={layoutProps}
+        celebrityProfileVersion={celebrityProfileVersion}
+      />
     </PageContainer>
   );
 }

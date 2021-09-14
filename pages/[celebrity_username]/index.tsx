@@ -77,9 +77,12 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       await listReviewsV2(celebrity.username)(store.dispatch);
       await listPublicContractsV2(celebrity.username)(store.dispatch);
 
-      const celebrityProfileVersion =
-        getCelebrityProfileVersion(req?.headers?.cookie) ||
-        getProfileVersionDependingOnTime();
+      let celebrityProfileVersion = getCelebrityProfileVersion(
+        req?.headers?.cookie
+      );
+      if (!celebrityProfileVersion || celebrityProfileVersion === "A") {
+        celebrityProfileVersion = getProfileVersionDependingOnTime();
+      }
 
       return {
         props: {
@@ -102,7 +105,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
 type CelebrityProfileProps = {
   celebrity: celebrityType;
-  celebrityProfileVersion: "A" | "B";
+  celebrityProfileVersion: "B" | "C";
   isMobile: boolean;
   shouldFocusCreateContractWizard: boolean;
 };
@@ -129,7 +132,8 @@ function CelebrityProfile({
   }, []);
 
   useEffect(() => {
-    if (getCelebrityProfileVersion()) return;
+    const profileVersionFromCookies = getCelebrityProfileVersion();
+    if (profileVersionFromCookies && profileVersionFromCookies !== "A") return;
     setCelebrityProfileVersion(celebrityProfileVersion);
   }, [celebrityProfileVersion]);
 
