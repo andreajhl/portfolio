@@ -654,3 +654,8 @@ export const updateHiredContract = (contract_reference, params) =>
       throw res.data.error;
     }
   });
+
+export const setWizardContract = (wizardContract = {}) => ({
+  type: TYPES.SET_WIZARD_CONTRACT,
+  payload: wizardContract,
+});

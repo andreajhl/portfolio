@@ -60,3 +60,5 @@ export function getCelebrityAnalyticsData(celebrity: celebrityType) {
 export const celebrityIsAvailableForContract = (
   celebrityStatus: celebrityType["status"]
 ) => !celebrityIsUnavailable(celebrityStatus);
+
+export const CONTRACT_TYPE_FOR_BUSINESS = 3;

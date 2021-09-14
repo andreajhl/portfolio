@@ -22,14 +22,24 @@ function preventEvent(event) {
   event?.preventDefault?.();
 }
 
-function VideoPoster({ mediaUrl }: { mediaUrl: string }) {
+function VideoPoster({
+  mediaUrl,
+  isSubscribed,
+}: {
+  mediaUrl: string;
+  isSubscribed: boolean;
+}) {
   return (
     <video
       onPlay={preventEvent}
       onContextMenu={preventEvent}
       muted
       controls={false}
-      className={styles.PosterImage}
+      className={classes(
+        styles.PosterImageVideo,
+        styles.PosterImage,
+        !isSubscribed && styles.PosterImageBlocked
+      )}
       src={mediaUrl}
       preload="metadata"
       width="368"
@@ -84,13 +94,21 @@ function BackstageBenefitCard({
         {/* TODO: Add poster instead of video */}
         <Maybe
           it={Boolean(benefit?.vimeoId)}
-          orElse={<VideoPoster mediaUrl={benefit?.media_url} />}
+          orElse={
+            <VideoPoster
+              mediaUrl={benefit?.media_url}
+              isSubscribed={isSubscribed}
+            />
+          }
         >
           <VimeoIframe
             vimeoId={benefit?.vimeoId}
             showControls={false}
             allowKeyboardControls={false}
-            className={styles.PosterImage}
+            className={classes(
+              styles.PosterImage,
+              !isSubscribed && styles.PosterImageBlocked
+            )}
           />
         </Maybe>
         <div

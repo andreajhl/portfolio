@@ -18,7 +18,7 @@ function VimeoIframe({
   className,
   autoPauseOnPlayAnother = true,
   autoPlay = false,
-  mutedOnLoad = true,
+  mutedOnLoad = autoPlay, // Some browsers don't autoplay a video when it is not muted.
   initialTimeLapsed,
   showControls = true,
   allowKeyboardControls = true,

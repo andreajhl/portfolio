@@ -45,6 +45,7 @@ import styles from "./styles.module.scss";
 import { SUBSCRIPTION_BENEFITS_VIEW_NAME } from "constants/paths";
 import { SubscriptionPublicBenefitsList } from "../../containers/subscription-public-benefits-list";
 import { analytics } from "react-app/src/state/utils/gtm";
+import { SubscriptionBenefitsView as SubscriptionPrivateBenefitsList } from "../subscription-benefits-view";
 
 const messages = defineMessages({
   noAvailableForSubscriptionAlertText: {
@@ -313,10 +314,22 @@ function SubscribePage({
             </SubscriptionPostsSection>
           }
         >
-          <SubscriptionPublicBenefitsList
-            currentChoice={celebrity?.id}
-            isSubscribed={isSubscribed}
-          />
+          <Maybe it={!isLoadingAuthentication}>
+            <Maybe
+              it={isAuthenticated}
+              orElse={
+                <SubscriptionPublicBenefitsList
+                  currentChoice={celebrity?.id}
+                  isSubscribed={isSubscribed}
+                />
+              }
+            >
+              <SubscriptionPrivateBenefitsList
+                currentChoice={celebrity?.id}
+                isSubscribed={isSubscribed}
+              />
+            </Maybe>
+          </Maybe>
         </Maybe>
       </Maybe>
     </PageContainer>

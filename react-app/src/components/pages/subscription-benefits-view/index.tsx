@@ -8,10 +8,12 @@ const resultsLimit = 5;
 
 type SubscriptionBenefitsViewProps = {
   currentChoice: number;
+  isSubscribed?: boolean;
 };
 
 function SubscriptionBenefitsView({
   currentChoice,
+  isSubscribed = true,
 }: SubscriptionBenefitsViewProps) {
   const celebrityId = currentChoice?.toString?.();
   const {
@@ -51,7 +53,7 @@ function SubscriptionBenefitsView({
         benefits={benefits}
         onNext={setNewOffset}
         hasMore={hasMoreBenefits}
-        isSubscribed
+        isSubscribed={isSubscribed}
       />
     </SubscriptionContentSection>
   );

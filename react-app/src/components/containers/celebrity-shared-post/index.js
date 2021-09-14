@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Image, Carousel, ResponsiveEmbed, VideoSlide } from "react-bootstrap";
-import { VideoSlideLayout } from "../../layouts/video-slide/index";
+import { Image, Carousel } from "react-bootstrap";
+import { SubscriptionVideoSlideLayout } from "../../layouts/subscription-video-slide/index";
 
 import propTypes from "prop-types";
 import Maybe from "../../common/helpers/maybe";
@@ -15,7 +15,7 @@ export const VideoLayout = ({
   autoPlayVideo = false,
 }) => {
   return (
-    <VideoSlideLayout
+    <SubscriptionVideoSlideLayout
       preload="true"
       classNameVideoSlideButtons="celebrity-shared-post__media-files__video-control"
       classNameSlideLayoutVideo={classNameSlideLayoutVideo}

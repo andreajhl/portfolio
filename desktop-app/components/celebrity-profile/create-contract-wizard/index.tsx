@@ -140,7 +140,9 @@ function CreateContractWizard({
 
   useEffect(() => {
     if (typeof currentContractId === "undefined") return;
-    function tractLeave(newRoute: string) {
+    function trackLeave(newRoute: string) {
+      if (newRoute.includes(getPaymentMethodsPath())) return;
+
       analytics.track("CREATE_CONTRACT_WIZARD_LEAVE", {
         newRoute,
         widget: WIDGET_NAME,
@@ -153,9 +155,9 @@ function CreateContractWizard({
         profileVersion,
       });
     }
-    router.events.on("routeChangeStart", tractLeave);
+    router.events.on("routeChangeStart", trackLeave);
 
-    return () => router.events.off("routeChangeStart", tractLeave);
+    return () => router.events.off("routeChangeStart", trackLeave);
   }, [
     celebrity.username,
     currentContractId,

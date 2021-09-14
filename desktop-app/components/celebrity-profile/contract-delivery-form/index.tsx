@@ -19,6 +19,7 @@ import {
 } from "lib/validations/contractData";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { getWindowPathname } from "react-app/src/utils/getWindow";
+import useWizardContract from "lib/hooks/useWizardContract";
 
 const br = <br />;
 
@@ -66,6 +67,7 @@ function ContractDeliveryForm({
   initialValues: initialValuesFromProps,
   onSubmit: onSubmitFromProps,
 }: ContractDeliveryFormProps) {
+  const [, setWizardContract] = useWizardContract();
   const { formatMessage } = useIntl();
   const {
     values,
@@ -138,6 +140,14 @@ function ContractDeliveryForm({
     swapDeliveryInfoValues(newContractType);
     setFieldValue("contractType", newContractType);
   }
+
+  useEffect(() => {
+    // Only to update price in <StickyCallToActionBar />
+    setWizardContract({ contractType: values.contractType });
+
+    return () => setWizardContract({});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values.contractType]);
 
   return (
     <section className={styles.VideoDeliveryForm}>
