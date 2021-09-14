@@ -51,7 +51,6 @@ export const PostImage = styled.img`
 export const PostVimeoIframe = styled(VimeoIframe)`
   width: 100%;
   height: 100%;
-  object-fit: cover;
 `;
 
 export const PostHiddenDiv = styled.div`
