@@ -36,6 +36,7 @@ function VideoPoster({
       muted
       controls={false}
       className={classes(
+        styles.PosterImageVideo,
         styles.PosterImage,
         !isSubscribed && styles.PosterImageBlocked
       )}

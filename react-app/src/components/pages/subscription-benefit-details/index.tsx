@@ -97,7 +97,10 @@ function SubscriptionBenefitDetails({
                     videoIsMuted={videoIsMuted}
                     setVideoIsMuted={setVideoIsMuted}
                     media={{ mediaUrl: benefit?.media_url }}
-                    classNameSlideLayoutVideo={styles.MediaPlayer}
+                    classNameSlideLayoutVideo={classes(
+                      styles.MediaPlayer,
+                      styles.BenefitCardVideoLayout
+                    )}
                     setSlideshowIsPlaying={() => {}}
                     autoPlayVideo
                   />
