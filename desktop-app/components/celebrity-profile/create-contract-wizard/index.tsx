@@ -204,6 +204,7 @@ function CreateContractWizard({
       ...data,
       celebrityId: celebrity.id,
       version: profileVersion,
+      userAgent: navigator?.userAgent,
     };
     const { id } = await createContract(createData);
     analytics.trackAddContractToCart({
