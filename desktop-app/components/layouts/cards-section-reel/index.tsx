@@ -33,7 +33,7 @@ const getRenderColumn = (
   const isLastItem = index === data.length - 1;
   const sidesPaddingWithUnit =
     typeof sidesPadding === "number" ? `${sidesPadding}px` : sidesPadding;
-  const additionalWidth = isLastItem ? sidesPaddingWithUnit : 0;
+  const additionalWidth = isLastItem ? sidesPaddingWithUnit : "0px";
   return (
     <div
       style={{
