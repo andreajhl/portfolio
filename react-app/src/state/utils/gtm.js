@@ -114,7 +114,7 @@ export function trackFirstPageLoad(analyticsData = {}) {
 const CELEBRITY_PROFILE_PAGE_VIEW_EVENT = "CELEBRITY_PROFILE_PAGE_VIEW";
 
 async function trackProfileViewInFamososAnalytics(celebrity, analyticsData) {
-  const { IP, geoLocalization } = await getBuyerIdentityData();
+  const { IP, geolocation: geoLocalization } = await getBuyerIdentityData();
   const userId = new Session().getSession()?.id ?? null;
   famososAnalytics.track({
     event: CELEBRITY_PROFILE_PAGE_VIEW_EVENT,

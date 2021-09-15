@@ -13,6 +13,7 @@ import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
+import { useIntl } from "react-intl";
 
 interface SpreedlyCustomerSourcesProps {
   sources: {
@@ -32,6 +33,7 @@ function SpreedlyCustomSources({
   onDeleteSource,
 }: SpreedlyCustomerSourcesProps) {
   const { push } = useRouter();
+  const { locale } = useIntl();
   const [selectedSourceIndex, setselectedSourceIndex] = useState(0);
   const [paymentError, setPaymentError] = useState(null);
   const [isProccesing, setIsProccesing] = useState(false);
@@ -52,7 +54,7 @@ function SpreedlyCustomSources({
         deviceId,
         IP,
         userAgent,
-        geoLocalization,
+        geolocation,
       } = await getBuyerIdentityData();
       await processSpreedlyPayment({
         contractReference: contractReference,
@@ -61,7 +63,8 @@ function SpreedlyCustomSources({
         deviceId,
         IP,
         userAgent,
-        geoLocalization,
+        geolocation,
+        locale,
       });
       push(getPurchaseSummaryPath(contractReference));
     } catch (error) {

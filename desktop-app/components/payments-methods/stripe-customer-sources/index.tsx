@@ -85,7 +85,7 @@ function StripeCustomerSources({
         deviceId,
         IP,
         userAgent,
-        geoLocalization,
+        geolocation,
       } = await getBuyerIdentityData();
       processStripePayment(
         contractReference,
@@ -94,7 +94,7 @@ function StripeCustomerSources({
         deviceId,
         IP,
         userAgent,
-        geoLocalization,
+        geolocation,
         locale
       )
         .then((res) => {

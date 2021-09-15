@@ -106,7 +106,7 @@ function StripeCardForm({
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
     } = await getBuyerIdentityData();
     processStripePayment(
       contractReference,
@@ -115,7 +115,7 @@ function StripeCardForm({
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
       locale
     )
       .then((res) => {
