@@ -21,6 +21,7 @@ import { CollapsibleErrorMessage } from "react-app/src/components/common/widgets
 import classes from "classnames";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -110,7 +111,7 @@ interface SpreedlyCheckoutFormProps {
 function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
   const userCurrency = useUserCurrentCurrency();
   const { push, query } = useRouter();
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
 
   const [loading, error] = useScript({
     src: scriptSrc,
@@ -195,9 +196,20 @@ function SpreedlyCheckoutForm({ celebrityId }: SpreedlyCheckoutFormProps) {
     if (!isProccesing) {
       try {
         setPaymentError(null);
+        const {
+          deviceId,
+          IP,
+          userAgent,
+          geolocation,
+        } = await getBuyerIdentityData();
         await processSubscriptionPayment({
           celebrityId,
           cardToken,
+          deviceId,
+          IP,
+          userAgent,
+          geolocation,
+          locale,
         });
         analytics.trackSubscription({
           celebrityId,
