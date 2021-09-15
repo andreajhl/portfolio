@@ -33,7 +33,7 @@ type SubscriptionBenefitDetailsProps = {
 function SubscriptionBenefitDetails({
   benefitId,
 }: SubscriptionBenefitDetailsProps) {
-  const [videoIsMuted, setVideoIsMuted] = useState(true);
+  const [videoIsMuted, setVideoIsMuted] = useState(false);
   const { benefit } = useGetSubscriptionBenefit(Number(benefitId));
   const { formatMessage } = useIntl();
   const expirationDate = new Date(benefit?.expirationDate);
@@ -102,14 +102,12 @@ function SubscriptionBenefitDetails({
                       styles.BenefitCardVideoLayout
                     )}
                     setSlideshowIsPlaying={() => {}}
-                    autoPlayVideo
                   />
                 }
               >
                 <VimeoIframe
                   vimeoId={benefit?.vimeoId}
                   className={styles.MediaPlayer}
-                  autoPlay
                 />
               </Maybe>
             </Maybe>
