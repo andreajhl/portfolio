@@ -1,6 +1,6 @@
 import { celebrityType } from "desktop-app/types/celebrityType";
 import { CelebrityInfo } from "../celebrity-info";
-import { StickyBar } from "../../common/sticky-bar";
+import { StickyBar, StickyTopBarProps } from "../../common/sticky-bar";
 import styles from "./styles.module.scss";
 import { CelebrityVideoContractPrice } from "desktop-app/components/common/helpers/celebrity-video-contract-price";
 import {
@@ -24,7 +24,7 @@ const messages = defineMessages({
 
 type StickyCallToActionTopBarProps = {
   celebrity: celebrityType;
-  appearancePosition?: number;
+  appearancePosition: StickyTopBarProps["appearancePosition"];
   onCTAButtonClick?: () => void;
   isMobile?: boolean;
 };
