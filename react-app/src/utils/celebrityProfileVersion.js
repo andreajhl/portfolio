@@ -28,5 +28,5 @@ export const setCelebrityProfileVersionDependingOfTime = () => {
 };
 
 export function getProfileVersionDependingOnTime() {
-  return Date.now() % 2 === 0 ? "B" : "C";
+  return Date.now() % 2 === 0 ? "B" : "D";
 }

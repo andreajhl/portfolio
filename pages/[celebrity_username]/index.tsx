@@ -26,11 +26,6 @@ import { celebrityType } from "desktop-app/types/celebrityType";
 import debug from "react-app/src/utils/debug";
 import { CREATE_CONTRACT_QUERY_PARAM } from "constants/paths";
 import { analytics } from "react-app/src/state/utils/gtm";
-import {
-  getCelebrityContractPrice,
-  getCelebrityDiscountPercentage,
-} from "lib/utils/celebrityUtils";
-import getCelebrityBusinessPrice from "lib/utils/getCelebrityBusinessPrice";
 import { CelebrityProfilePage } from "desktop-app/components/pages/celebrity-profile";
 
 const headData = defineMessages({
@@ -42,6 +37,11 @@ const headData = defineMessages({
       "Perfil oficial de {celebrity_username} en Famosos.com. Reserva tu video personalizado y disfruta de experiencias únicas.",
   },
 });
+
+function isNotUsedAnymoreVersion(celebrityProfileVersion: string): boolean {
+  const notUsedAnymoreVersions = ["A", "C"];
+  return notUsedAnymoreVersions.includes(celebrityProfileVersion);
+}
 
 const redirectToSanitizedPath = {
   destination: "/celebrity_username",
@@ -80,7 +80,10 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       let celebrityProfileVersion = getCelebrityProfileVersion(
         req?.headers?.cookie
       );
-      if (!celebrityProfileVersion || celebrityProfileVersion === "A") {
+      if (
+        !celebrityProfileVersion ||
+        isNotUsedAnymoreVersion(celebrityProfileVersion)
+      ) {
         celebrityProfileVersion = getProfileVersionDependingOnTime();
       }
 
@@ -105,7 +108,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
 type CelebrityProfileProps = {
   celebrity: celebrityType;
-  celebrityProfileVersion: "B" | "C";
+  celebrityProfileVersion: "B" | "D";
   isMobile: boolean;
   shouldFocusCreateContractWizard: boolean;
 };
@@ -133,8 +136,12 @@ function CelebrityProfile({
 
   useEffect(() => {
     const profileVersionFromCookies = getCelebrityProfileVersion();
-    if (profileVersionFromCookies && profileVersionFromCookies !== "A") return;
-    setCelebrityProfileVersion(celebrityProfileVersion);
+    if (
+      !profileVersionFromCookies ||
+      isNotUsedAnymoreVersion(profileVersionFromCookies)
+    ) {
+      setCelebrityProfileVersion(celebrityProfileVersion);
+    }
   }, [celebrityProfileVersion]);
 
   return (
