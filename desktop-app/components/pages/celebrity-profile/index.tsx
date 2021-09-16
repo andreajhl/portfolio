@@ -15,6 +15,7 @@ import { calculateScrollOffset } from "../../../../lib/utils/calculateScrollOffs
 import { calculateElementEdge } from "../../../../lib/utils/calculateElementEdge";
 import { analytics } from "react-app/src/state/utils/gtm";
 import ContractInProgressType from "desktop-app/types/contractInProgressType";
+import getWindow from "react-app/src/utils/getWindow";
 
 const loading = () => <div className={styles.CelebrityProfileSkeleton} />;
 
@@ -122,7 +123,7 @@ function CelebrityProfilePage({
     const wizardElement = await getWizardElement();
     const wizardBottom = calculateElementEdge(wizardElement);
     if (!wizardBottom) return;
-    setCreateContractWizardBottom(wizardBottom - 100);
+    setCreateContractWizardBottom(wizardBottom);
   }
 
   function trackProfileView(contractInProgress: ContractInProgressType) {
@@ -157,13 +158,22 @@ function CelebrityProfilePage({
     showFanClubAdvertise: !isJuanseQuintero,
   };
 
+  const createContractWizardBottomWithOffset = createContractWizardBottom - 100;
+
   return (
     <PageContainer showSearch={false}>
       <Maybe it={!isMobile}>
         <PageHeading showHomeLink />
       </Maybe>
       <StickyCallToActionBar
-        appearancePosition={createContractWizardBottom}
+        appearancePosition={
+          isMobile
+            ? {
+                lessThan: createContractWizardBottom - getWindow()?.innerHeight,
+                greaterThan: createContractWizardBottomWithOffset,
+              }
+            : createContractWizardBottomWithOffset
+        }
         celebrity={celebrity}
         onCTAButtonClick={goToCreateContractWizard}
         isMobile={isMobile}

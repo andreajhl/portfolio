@@ -23,6 +23,7 @@ const getWindow = () =>
           removeItem: noop,
         },
         navigator: { userAgent: "", clipboard: { writeText: noop } },
+        innerHeight: 0,
       };
 
 export const getWindowPathname = () => getWindow().location.pathname;
