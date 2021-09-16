@@ -32,10 +32,10 @@ const CelebrityProfileLayoutTwo = dynamic<any>(
   { loading }
 );
 
-const CelebrityProfileLayoutThree = dynamic<any>(
+const CelebrityProfileLayoutFour = dynamic<any>(
   import(
-    "react-app/src/components/celebrity-profile/celebrity-profile-layout-three"
-  ).then((mod) => mod.CelebrityProfileLayoutThree),
+    "react-app/src/components/celebrity-profile/celebrity-profile-layout-four"
+  ).then((mod) => mod.CelebrityProfileLayoutFour),
   { loading }
 );
 
@@ -71,13 +71,13 @@ function CelebrityProfileLayout({
     return <CelebrityProfileLayoutTwo {...layoutProps} />;
   }
 
-  return <CelebrityProfileLayoutThree {...layoutProps} />;
+  return <CelebrityProfileLayoutFour {...layoutProps} />;
 }
 
 type CelebrityProfilePageProps = {
   celebrity: celebrityType;
   shouldFocusCreateContractWizard?: boolean;
-  celebrityProfileVersion?: "B" | "C";
+  celebrityProfileVersion?: "B" | "D";
 };
 
 function CelebrityProfilePage({
