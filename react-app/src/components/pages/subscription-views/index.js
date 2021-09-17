@@ -74,7 +74,7 @@ function SubscriptionViews({
           </div>
         }
       >
-        <SubscriptionViewsNavTabs />
+        <SubscriptionViewsNavTabs celebrityId={currentChoice} />
         <Maybe it={currentView === SUBSCRIPTION_BENEFITS_VIEW_NAME}>
           <SubscriptionNextBenefitBanner />
         </Maybe>

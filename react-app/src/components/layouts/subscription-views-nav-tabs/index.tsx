@@ -7,10 +7,12 @@ import { NavTabs } from "../nav-tabs";
 
 type SubscriptionViewsNavTabsProps = {
   className?: string;
+  celebrityId: number;
 };
 
 function SubscriptionViewsNavTabs({
   className,
+  celebrityId,
 }: SubscriptionViewsNavTabsProps) {
   return (
     <NavTabs className={className}>
@@ -19,7 +21,10 @@ function SubscriptionViewsNavTabs({
       </NavLink>
       <NavLink to={SUBSCRIPTION_BENEFITS}>
         <FormattedMessage defaultMessage="Beneficios" />
-        <ActiveBenefitsCounter className={styles.SubscriptionBenefitsCounter} />
+        <ActiveBenefitsCounter
+          className={styles.SubscriptionBenefitsCounter}
+          celebrityId={celebrityId}
+        />
       </NavLink>
     </NavTabs>
   );
