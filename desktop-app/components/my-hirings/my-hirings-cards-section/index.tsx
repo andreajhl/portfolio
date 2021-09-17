@@ -4,6 +4,7 @@ import {
   EXPIRED,
   PAYED_BY_CLIENT,
   REJECTED,
+  CANCELED,
 } from "desktop-app/constants/contractStatuses";
 import { useEffect, useState } from "react";
 import { listUserContracts } from "react-app/src/state/ducks/contracts/actions";
@@ -19,7 +20,13 @@ import { getReceiptsUrls } from "react-app/src/state/ducks/session/actions";
 import getObjectWithFallbackValues from "lib/utils/getObjectWithFallbackValues";
 import { FormattedMessage } from "react-intl";
 
-const allowedStatuses = [PAYED_BY_CLIENT, REJECTED, EXPIRED, COMPLETED];
+const allowedStatuses = [
+  PAYED_BY_CLIENT,
+  REJECTED,
+  EXPIRED,
+  COMPLETED,
+  CANCELED,
+];
 
 const defaultParams = {
   pageSize: 4,
