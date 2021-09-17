@@ -93,7 +93,8 @@ function MyHirings({ query }: MyHiringsProps) {
     translatedOrderByOptions,
     orderBy
   );
-  const checkedFiltersValue = status?.split(",") || "";
+  const hasFilteredByStatus = status && status !== "";
+  const checkedFiltersValue = hasFilteredByStatus ? status?.split?.(",") : [];
 
   return (
     <PageContainer>
