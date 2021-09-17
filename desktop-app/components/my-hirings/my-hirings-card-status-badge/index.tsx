@@ -4,6 +4,7 @@ import {
   EXPIRED,
   PAYED_BY_CLIENT,
   REJECTED,
+  CANCELED,
 } from "desktop-app/constants/contractStatuses";
 import { ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
@@ -43,6 +44,11 @@ const statusesInfo: { [statusCode: number]: StatusInfoType } = {
     backgroundColor: "#FFDCEC",
     icon: "far fa-check-circle",
     label: <FormattedMessage defaultMessage="Entregado" />,
+  },
+  [CANCELED]: {
+    backgroundColor: "#F6F6F6",
+    icon: "far fa-times-circle",
+    label: <FormattedMessage defaultMessage="Cancelado" />,
   },
 };
 
