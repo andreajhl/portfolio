@@ -110,6 +110,8 @@ const celebrityTypeReelProps: {
   },
 };
 
+celebrityTypeReelProps.MAIN_VIDEO_2 = celebrityTypeReelProps.MAIN_VIDEO_1;
+
 function CelebritiesSection({ celebritySection }: CelebritiesSectionProps) {
   const { locale } = useIntl();
   const { celebrities, ...celebritySectionData } = celebritySection;
