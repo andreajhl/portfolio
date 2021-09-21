@@ -1,13 +1,10 @@
 import SubmitButton from "desktop-app/components/common/button/submit-button";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import WarningMessage from "desktop-app/components/common/warning-message";
-import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
 import React, { useRef, useState } from "react";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import styles from "./styles.module.scss";
-
-const onlyThreeDaysToPayMethods = ["OXXO"];
 
 type DLocalSelectPaymentMethodProps = {
   paymentMethodType: string;
@@ -44,7 +41,6 @@ function DLocalSelectPaymentMethod({
     name: "",
     paymentMethodId: "",
   });
-  const userCurrency = useUserCurrentCurrency();
 
   const handleChangePaymentMethod = (name, paymentMethodId) => {
     setErrorMessage("");
@@ -67,6 +63,8 @@ function DLocalSelectPaymentMethod({
       setErrorMessage(formatMessage(messages.errorNotPaymentMethodSelected));
     }
   };
+
+  const isCashPaymentMethod = paymentMethodType === "TICKET";
 
   return (
     <div className={styles.DLocalSelectPaymentMethodWraper} ref={inputLabel}>
@@ -112,14 +110,9 @@ function DLocalSelectPaymentMethod({
           </div>
         </div>
       ))}
-      <Maybe
-        it={
-          onlyThreeDaysToPayMethods.includes(currentOption.name) &&
-          userCurrency === "MXN"
-        }
-      >
-        <p className={styles.OnlyThreeDaysToPayCopy}>
-          <FormattedMessage defaultMessage="Por políticas de la pasarela dispones de máximo 3 días naturales para pagar." />
+      <Maybe it={isCashPaymentMethod}>
+        <p className={styles.CashPaymentMethodCopy}>
+          <FormattedMessage defaultMessage="Por políticas de la pasarela, una vez generado tu ticket, dispones de máximo 3 días calendario (naturales) para pagar, la validación del pago puede tardar hasta 3 días hábiles." />
         </p>
       </Maybe>
       <Maybe it={errorMessage !== ""}>
