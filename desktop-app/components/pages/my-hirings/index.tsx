@@ -12,6 +12,7 @@ import {
   REJECTED,
   PAYED_BY_CLIENT,
   PAYED_BY_CLIENT_AND_REJECTED_BY_CELEBRITY,
+  CANCELED,
 } from "desktop-app/constants/contractStatuses";
 import { defineMessages, FormattedMessage } from "react-intl";
 import { useIntl } from "lib/custom-intl";
@@ -35,6 +36,9 @@ const messages = defineMessages({
   rejectedFilterLabel: {
     defaultMessage: "Rechazados",
   },
+  canceledFilterLabel: {
+    defaultMessage: "Cancelados",
+  },
 });
 
 const orderByOptions = [
@@ -50,6 +54,7 @@ const filterByOptions = [
   { label: messages.completedFilterLabel, value: `${COMPLETED}` },
   { label: messages.expiredFilterLabel, value: `${EXPIRED}` },
   { label: messages.rejectedFilterLabel, value: `${REJECTED}` },
+  { label: messages.canceledFilterLabel, value: `${CANCELED}` },
 ];
 
 type MyHiringsProps = { query: { [key: string]: any } };
