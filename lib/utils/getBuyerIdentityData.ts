@@ -18,10 +18,10 @@ async function getBuyerIp() {
 
 async function getBuyerIdentityData() {
   const IP = await getBuyerIp();
-  const geoLocalization = getCookie(USER_GEOLOCATION_KEY);
+  const geolocation = getCookie(USER_GEOLOCATION_KEY);
   const userAgent = getWindow().navigator.userAgent;
   const deviceId = String(generateDeviceId());
-  return { deviceId, IP, userAgent, geoLocalization };
+  return { deviceId, IP, userAgent, geolocation };
 }
 
 export default getBuyerIdentityData;

@@ -137,7 +137,7 @@ const DLocalPaymentsMethods = ({
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
     } = await getBuyerIdentityData();
     try {
       processDlocalPayment(
@@ -151,7 +151,7 @@ const DLocalPaymentsMethods = ({
         deviceId,
         IP,
         userAgent,
-        geoLocalization,
+        geolocation,
         locale
       )
         .then((response) => {

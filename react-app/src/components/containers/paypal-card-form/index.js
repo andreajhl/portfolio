@@ -38,7 +38,7 @@ class PayPalCardForm extends Component {
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
     } = await getBuyerIdentityData();
 
     processPayPalPayment(
@@ -49,7 +49,7 @@ class PayPalCardForm extends Component {
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
       this.props.intl.locale
     )
       .then((res) => {

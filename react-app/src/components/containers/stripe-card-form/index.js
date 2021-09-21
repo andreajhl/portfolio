@@ -161,7 +161,7 @@ class StripeCardForm extends Component {
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
     } = await getBuyerIdentityData();
     processStripePayment(
       this.props.contractReference,
@@ -170,7 +170,7 @@ class StripeCardForm extends Component {
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
       this.props.intl.locale
     )
       .then((res) => {

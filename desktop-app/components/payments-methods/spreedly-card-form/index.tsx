@@ -88,7 +88,7 @@ function SpreedlyCardForm({
     discountCouponData.current = discountCouponId;
   }, [discountCouponId]);
   const userCurrency = useUserCurrentCurrency();
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const { push } = useRouter();
   const [isProccesing, setIsProccesing] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
@@ -177,7 +177,7 @@ function SpreedlyCardForm({
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
     } = await getBuyerIdentityData();
 
     const payloadPayment = {
@@ -187,7 +187,8 @@ function SpreedlyCardForm({
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
+      locale,
     };
 
     if (!isProccesing) {

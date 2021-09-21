@@ -119,7 +119,7 @@ class StripeCustomerSources extends Component {
         deviceId,
         IP,
         userAgent,
-        geoLocalization,
+        geolocation,
       } = await getBuyerIdentityData();
       processStripePayment(
         this.props.contractReference,
@@ -128,7 +128,7 @@ class StripeCustomerSources extends Component {
         deviceId,
         IP,
         userAgent,
-        geoLocalization,
+        geolocation,
         this.props.intl.locale
       )
         .then((res) => {

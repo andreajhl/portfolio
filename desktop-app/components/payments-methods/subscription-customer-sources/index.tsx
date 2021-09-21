@@ -12,6 +12,8 @@ import { SUBSCRIPTION_SUCCESS } from "constants/paths";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { SUBSCRIPTION_PLAN_PRICE } from "constants/celebritySubscriptionPlan";
 import { analytics } from "react-app/src/state/utils/gtm";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import { useIntl } from "react-intl";
 
 interface SubscriptionCustomerSourcesProps {
   sources: {
@@ -29,6 +31,7 @@ function SubscriptionCustomerSources({
   onDeleteSource,
 }: SubscriptionCustomerSourcesProps) {
   const { push, query } = useRouter();
+  const { locale } = useIntl();
   const [selectedSourceIndex, setselectedSourceIndex] = useState(null);
   const [paymentError, setPaymentError] = useState(null);
   const [isProccesing, setIsProccesing] = useState(false);
@@ -46,9 +49,20 @@ function SubscriptionCustomerSources({
     try {
       setPaymentError(null);
       setIsProccesing(true);
+      const {
+        deviceId,
+        IP,
+        userAgent,
+        geolocation,
+      } = await getBuyerIdentityData();
       await processSubscriptionPayment({
         celebrityId,
         cardToken,
+        deviceId,
+        IP,
+        userAgent,
+        geolocation,
+        locale,
       });
       analytics.trackSubscription({
         celebrityId,
@@ -57,6 +71,7 @@ function SubscriptionCustomerSources({
       analytics.track("BACKSTAGE_SUBSCRIPTION_PAYED", {
         celebrityId,
         subscriptionPlanPrice,
+        widget: "SubscriptionCustomerSources",
       });
       push(
         SUBSCRIPTION_SUCCESS.replace(

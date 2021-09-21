@@ -58,7 +58,7 @@ function PaypalForm({
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
     } = await getBuyerIdentityData();
     processPayPalPayment(
       contractReference,
@@ -68,7 +68,7 @@ function PaypalForm({
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
       locale
     )
       .then((res) => {

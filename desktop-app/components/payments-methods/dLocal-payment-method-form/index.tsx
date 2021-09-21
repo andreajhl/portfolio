@@ -105,7 +105,7 @@ function DLocalPaymentMethodForm({
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
     } = await getBuyerIdentityData();
 
     try {
@@ -120,7 +120,7 @@ function DLocalPaymentMethodForm({
         deviceId,
         IP,
         userAgent,
-        geoLocalization,
+        geolocation,
         locale
       )
         .then((response) => {

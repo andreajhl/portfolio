@@ -78,7 +78,7 @@ class Stripe3dSecureResponse extends Component {
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
     } = await getBuyerIdentityData();
     processStripePayment(
       this.props.contractReference,
@@ -87,7 +87,7 @@ class Stripe3dSecureResponse extends Component {
       deviceId,
       IP,
       userAgent,
-      geoLocalization,
+      geolocation,
       this.props.intl.locale
     )
       .then((res) => {

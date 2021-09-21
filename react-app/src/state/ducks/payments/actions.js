@@ -172,7 +172,7 @@ export const processStripePayment = (
   deviceId,
   IP,
   userAgent,
-  geoLocalization,
+  geolocation,
   locale
 ) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-stripe-payment";
@@ -183,7 +183,7 @@ export const processStripePayment = (
     deviceId,
     IP,
     userAgent,
-    geoLocalization,
+    geolocation,
     locale,
   };
   return new Promise((resolve, reject) => {
@@ -269,7 +269,7 @@ export const processPayPalPayment = (
   deviceId,
   IP,
   userAgent,
-  geoLocalization,
+  geolocation,
   locale
 ) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-paypal-payment";
@@ -281,7 +281,7 @@ export const processPayPalPayment = (
     deviceId,
     IP,
     userAgent,
-    geoLocalization,
+    geolocation,
     locale,
   };
   return new Promise((resolutionFunc, rejectionFunc) => {
