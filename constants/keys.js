@@ -13,8 +13,11 @@ export const STRIPE_FAILURE_AUTHENTICATION = "stripe_failure_authentication";
 export const NEXT_LOCALE = "NEXT_LOCALE";
 export const cfUserCountryCode = "__cf__userCountryCode";
 
+/* Sig-Up Params */
 export const CELEBRITY_NAME_QUERY_PARAM = "celebrity";
 export const SUGGESTED_FULL_NAME_QUERY_PARAM = "suggestedFullName";
+export const REFERRER_QUERY_PARAM = "referrer";
+export const REFERRER_NAME_QUERY_PARAM = "referrerName";
 
 export const USER_GEOLOCATION_KEY = "fs__uglk";
 export const REDIRECT_BEFORE_MAINTENANCE_KEY = "fs__rbmm";

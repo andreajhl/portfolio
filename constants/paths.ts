@@ -2,6 +2,8 @@ import objectHasProperties from "lib/utils/objectHasProperties";
 import { jsonToQueryString } from "react-app/src/state/utils/apiService";
 import {
   CELEBRITY_NAME_QUERY_PARAM,
+  REFERRER_NAME_QUERY_PARAM,
+  REFERRER_QUERY_PARAM,
   SUGGESTED_FULL_NAME_QUERY_PARAM,
 } from "./keys";
 
@@ -190,6 +192,8 @@ export const getStripe3dSecureResponsePath = (contractReference) =>
 type SignInFromPathDataType = {
   [CELEBRITY_NAME_QUERY_PARAM]?: string;
   [SUGGESTED_FULL_NAME_QUERY_PARAM]?: string;
+  [REFERRER_QUERY_PARAM]?: string;
+  [REFERRER_NAME_QUERY_PARAM]?: string;
 };
 
 const getQueryParams = (data?: SignInFromPathDataType) =>
