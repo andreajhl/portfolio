@@ -21,3 +21,6 @@ export const REDIRECT_BEFORE_MAINTENANCE_KEY = "fs__rbmm";
 export const REDIRECT_AFTER_LOGIN = "redirectAfterLogin";
 export const USER_UTMS_KEY = "fs__uutms";
 export const CELEBRITY_PROFILE_VERSION_KEY = "fs__cpv";
+
+/* Referrals Params */
+export const SHOW_BACK_BUTTON_QUERY_PARAM = "showBackButton";

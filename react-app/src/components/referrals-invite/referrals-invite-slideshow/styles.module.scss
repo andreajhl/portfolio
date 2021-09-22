@@ -1,0 +1,49 @@
+.ReferralsInviteSlideshow,
+.ReferralsInviteSlideshow :global(.carousel-inner),
+.ReferralsInviteSlideshow :global(.carousel-item),
+.ReferralsInviteSlideshowItem {
+  height: 100%;
+}
+
+.ReferralsInviteSlideshow {
+  background-color: black;
+}
+
+.ReferralsInviteSlideshow :global(.carousel-indicators li) {
+  background-color: #fb177d;
+}
+
+.ReferralsInviteSlideshowItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.7rem;
+}
+
+.ReferralsInviteSlideshowItemIllustrationWrapper {
+  flex-basis: auto;
+  min-height: 12.5rem;
+  margin-top: 1.5rem;
+}
+
+.ReferralsInviteSlideshowItemTitle {
+  color: white;
+  font-size: 18px !important;
+  font-weight: bold;
+  line-height: 1.38;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 0.5rem;
+  min-height: 2.6666em;
+  flex-basis: auto;
+}
+
+.ReferralsInviteSlideshowItemText {
+  margin-top: 1.625rem;
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #999;
+}
