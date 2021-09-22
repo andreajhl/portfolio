@@ -1,5 +1,6 @@
 import styles from "./styles.module.scss";
 import classes from "classnames";
+import { CSSProperties } from "react";
 
 export function CurrencyIcon() {
   return (
@@ -1036,6 +1037,34 @@ export function CommentIcon({
       <path
         d="M17.5 0h-15A2.505 2.505 0 000 2.505v11.27a2.505 2.505 0 002.5 2.505h3.75v3.288a.468.468 0 00.746.375l4.879-3.663H17.5c1.379 0 2.5-1.123 2.5-2.504V2.505A2.505 2.505 0 0017.5 0zm.625 13.776a.627.627 0 01-.625.626h-6.25l-.5.376-2.625 1.972v-2.348H2.5a.627.627 0 01-.625-.626V2.505c0-.345.281-.626.625-.626h15c.344 0 .625.281.625.626v11.27z"
         fill={strokeColor}
+      />
+    </svg>
+  );
+}
+
+export function ReferralsStarIcon({
+  color = "#FB177D",
+  className,
+  width = 16,
+  height = 16,
+}: {
+  color?: CSSProperties["fill"];
+  className?: string;
+  width?: string | number;
+  height?: string | number;
+}) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={height}
+      viewBox="0 0 77 72"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M38.5 0L47.3683 27.2938L76.0667 27.2938L52.8492 44.1623L61.7175 71.4562L38.5 54.5877L15.2825 71.4562L24.1508 44.1623L0.93327 27.2938L29.6317 27.2938L38.5 0Z"
+        fill={color}
       />
     </svg>
   );
