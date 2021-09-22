@@ -10,6 +10,8 @@ import { AnimatedPopup } from "desktop-app/components/common/animated-popup";
 import Popup from "reactjs-popup";
 import { HorizontalMenuIcon } from "desktop-app/components/common/icons";
 import styles from "./styles.module.scss";
+import { REFERRALS_INVITE } from "constants/paths";
+import Maybe from "../../common/helpers/maybe";
 
 const { type, vendor } = new UAParser().getDevice();
 // const isAppleDevice = vendor === "Apple";
@@ -95,6 +97,15 @@ export const DropdownMenuLayout = ({ isLogged }) => {
           >
             <FormattedMessage defaultMessage="Aplicar como Famoso" />
           </NavLink>
+          <Maybe it={isLogged}>
+            <NavLink
+              className={styles.NavLinkItem}
+              activeClassName={styles.NavLinkItemActive}
+              to={REFERRALS_INVITE}
+            >
+              <FormattedMessage defaultMessage="Invitar a un amigo" />
+            </NavLink>
+          </Maybe>
           {shouldRenderDownloadAppLink ? (
             <a
               href="market://details?id=com.famosos.users"
