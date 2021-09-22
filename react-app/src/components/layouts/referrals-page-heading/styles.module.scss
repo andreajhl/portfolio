@@ -1,0 +1,59 @@
+.ReferralsPageHeading {
+  display: flex;
+  align-items: center;
+}
+
+.ReferralsPageHeadingTitle {
+  font-weight: bold;
+  margin-left: 22px;
+  margin-bottom: 0;
+  color: white;
+  font-size: 22px !important;
+  line-height: 1.35;
+  letter-spacing: 0em;
+}
+
+.ReferralsPageHeadingTitle::after {
+  display: block;
+  margin-top: 12px;
+  content: "";
+  background-color: #999999;
+  height: 1px;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+}
+
+.BackToButton {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border-radius: 50% !important;
+  box-shadow: none !important;
+  transition: background 0.15s ease;
+  background: rgba(196, 196, 196, 0.5);
+
+  &:hover {
+    background: rgba(196, 196, 196, 1);
+  }
+}
+
+.BackToButton i {
+  color: white !important;
+}
+
+.GoBackButton {
+  font-size: 12px;
+  position: absolute;
+  margin-top: -1.5rem;
+}
+
+.BackToReferralsHome {
+  margin-left: auto;
+  margin-top: -11px;
+}
