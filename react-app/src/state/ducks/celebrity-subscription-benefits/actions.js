@@ -40,3 +40,10 @@ export const setPublicListSubscriptionBenefitsOffset = (offset = 0) => ({
   type: types.SET_PUBLIC_LIST_SUBSCRIPTION_BENEFITS_OFFSET,
   payload: offset,
 });
+
+export const getCountActiveBenefits = (celebrityId) =>
+  apiService({
+    path: API_PATHS.COUNT_ACTIVE_BENEFITS_PATH,
+    params: { celebrityId },
+    method: "GET",
+  });
