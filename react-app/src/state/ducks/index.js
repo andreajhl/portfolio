@@ -25,3 +25,4 @@ export { default as searchFiltersMemory } from "./search-filters-memory";
 export { default as subscriptionCelebrityAlarm } from "./subscription-celebrity-alarm";
 export { default as account } from "./account";
 export { default as hiring } from "./hiring";
+export { default as referrals } from "./referrals";
