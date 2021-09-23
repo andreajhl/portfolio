@@ -73,6 +73,7 @@ export const SUBSCRIPTION_FEED = `/backstage/${SUBSCRIPTION_FEED_VIEW_NAME}`;
 export const REFERRALS_HOME = "/referrals";
 export const REFERRALS_INVITE = `${REFERRALS_HOME}/invite`;
 export const REFERRALS_PRIZES = `${REFERRALS_HOME}/prizes`;
+export const REFERRALS_LIST = `${REFERRALS_HOME}/list`;
 
 export const getCelebrityBackstagePostsPath = (celebrityUsername: string) =>
   CELEBRITY_SUBSCRIBE.replace(":celebrity_username", celebrityUsername);

@@ -1,0 +1,37 @@
+.ReferralsListPage {
+  padding: 38px 0 42px;
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+}
+
+.ReferralsListPageList {
+  margin-top: 42px;
+}
+
+.ReferralsListPageListItem + .ReferralsListPageListItem {
+  margin-top: 2rem;
+}
+
+.NoReferralsBannerSection {
+  margin-top: 12vh;
+}
+
+.NoReferralsBanner {
+  color: white;
+  padding: 28px 22px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  font-size: 22px;
+}
+
+.NoReferralsBackButton {
+  width: 100%;
+  font-size: 19px;
+  min-height: 50px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
