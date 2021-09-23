@@ -26,7 +26,7 @@ export const Inicio = () => {
                     <h1 className='h2'> he trabajado con <label className='h3'>{tecnologia[count]}</label></h1>
                 </div>
                 <div className="Inicio_btn">
-                    <button className='buut' onClick={()=>swal( "CV Descargado", "", "success")}><a className='href' href='https://www.dropbox.com/s/iao8tx80pimdil7/Andrea%20Hernandez.pdf?dl=0'>DESCARGAR CV</a></button>
+                    <button className='buut' onClick={()=>swal( "CV Descargado", "", "success")}><a className='href' href='https://www.dropbox.com/s/vnkac4nwwmt8vsi/Andrea%20Hernandez.pdf?dl=1'>DESCARGAR CV</a></button>
                 </div>  
             </div>
         </div>

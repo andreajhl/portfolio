@@ -58,13 +58,15 @@
         text-shadow:2px 2px 0px #fcfbfb;
         @media #{$smarmini}{
             font-size:20px ;
-            text-shadow:1px 1px 0px #fcfbfb;
+            text-shadow:0.5px 0.5px 0px #fcfbfb;
         }
         @media #{$smarphone}{
             font-size: 25px;
+            text-shadow:0.8px 0.8px 0px #fcfbfb;
         }
         @media #{$tablet}{
            font-size: 40px;
+           text-shadow:1px 1px 0px #fcfbfb;
         }
         @media #{$desktop}{
             font-size: 50px
@@ -77,14 +79,15 @@
         text-shadow:2px 2px 0px #fdfcfc;
         @media #{$smarmini}{
             font-size:20px ;
-            text-shadow:0px 0px 0px #fcfbfb;
+            text-shadow:0.5px 0.5px 0px #fcfbfb;
         }
         @media #{$smarphone}{
             font-size: 25px;
-            text-shadow:0px 0px 0px #fcfbfb;
+            text-shadow:0.8px 0.8px 0px #fcfbfb;
         }
         @media #{$tablet}{
             font-size: 40px;
+            text-shadow:1px 1px 0px #fcfbfb;
         }
         @media #{$desktop}{
             font-size: 50px
@@ -125,12 +128,15 @@
             font-weight: bold;
             @media #{$smarmini}{
                 font-size:10px ;
+                text-shadow:0.5px 0.5px 0px #fcfbfb;
             }
             @media #{$smarphone}{
                 font-size: 13px;
+                text-shadow:0.8px 0.8px 0px #fcfbfb;
             }
             @media #{$tablet}{
                 font-size: 18px;
+                text-shadow:1px 1px 0px #fcfbfb;
             }
             @media #{$desktop}{
                 font-size: 20px
@@ -138,11 +144,22 @@
         }
     }
    .buut:hover{
+       transition: 800ms;
         background-color: #3EB595;
-        box-shadow:0px 0px 10px #fdfdfd8a;
+        box-shadow: 1px 1px 10px #0f0101;
         .href{
+            transition: 800ms;
             color:white;
             text-shadow:2px 2px 0px #0f0101;
+            @media #{$smarmini}{
+                text-shadow:0.5px 0.5px 5px #0f0101;
+            }
+            @media #{$smarphone}{
+                text-shadow:0.8px 0.8px 5px #0f0101;
+            }
+            @media #{$tablet}{
+                text-shadow:1px 1px 5px #0f0101;
+            }
         }
    }
    .href{

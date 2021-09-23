@@ -70,7 +70,7 @@
                 @include caja-flex(flex,column,center,center,nowrap);
                 height: 100%;
                 width: 100%;
-                transition: all 800ms ease-in-out;
+                transition: all 1.5s ease-in-out;
                 z-index: 1;
                 background-color:#f9edfa;
                 @media #{$smarmini}{
@@ -86,7 +86,7 @@
                     height: 100%;
                     margin-top: 30px;
                     width: 90%;
-                    transition: all 100ms ease-in-out;
+                    transition: all 800ms ease-in-out;
                     border: 1px solid $color5;
                 }
 
@@ -103,6 +103,7 @@
             font-size: 16px;
             border-bottom: 3px solid #3EB595;
             color:white;
+            transition: 1s;
             @media #{$smarmini}{
                 height:60px;
                 font-size: 10px;
@@ -147,8 +148,19 @@
         font-size: 18px;
     }
     
-    p{
+    &_text{
         width: 90%;
+        height: 90%;
+        text-align: justify;
+        @media #{$smarmini}{
+            font-size:9px ;
+        }
+        @media #{$smarphone}{
+            font-size: 10px;
+        }
+        @media #{$tablet}{
+            font-size: 12px;
+        }
     }
   
 }
@@ -162,9 +174,11 @@
     }
     .front_DivC_v{
         border-bottom: 3px solid #F28241;
+        transition: 1s;
     }
     .avatar_b{
         color:#F28241;
+        transition: 1s;
     }
  
 }
@@ -181,7 +195,19 @@
     &_b{
         margin-left: 5%;
         width: 65%;
-       color: #3EB595
+       color: #3EB595;
+       transition: 2s;
+    }
+    &_text{
+        @media #{$smarmini}{
+            font-size:8px ;
+        }
+        @media #{$smarphone}{
+            font-size: 10px;
+        }
+        @media #{$tablet}{
+            font-size: 11px;
+        }
     }
 }
 .divIcon{

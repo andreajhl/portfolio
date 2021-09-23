@@ -24,7 +24,7 @@ export const FrontEnd =()=>{
                             <div className='avatar'><img src={clima} alt='avatar' className='avatar_img'/></div>
                             <div className='avatar_b'>
                                 <h3>AppWheather</h3>
-                                <div style={{display:'flex',justifyContent:'space-between',color:'white'}}><p>HTML</p><p>SASS</p><p>JS</p><p>REACT</p><p>REDUX</p></div>
+                                <div className='avatar_text' style={{display:'flex',justifyContent:'space-between',color:'white'}}><p>HTML</p><p>SASS</p><p>JS</p><p>REACT</p><p>REDUX</p></div>
                             </div>
                         </div>
                     </div>
@@ -33,8 +33,8 @@ export const FrontEnd =()=>{
                             <img  className="front_DivC_hover_img_i" src={gifClima} alt='proyect'/>
                         </div>
                         <div className="mostrar">
-                            <div style={{display:'flex',justifyContent:'center'}}>
-                                <p >AppWheather es una aplicación del clima, los datos son extraídos de 'Spire Weather '. Al ingresar te pedira autorizacion para usar tu ubicacion y asi traerte el clima de tu ubicacion actual, tambien podes buscar el clima de ciudades o paises por sus nombres,  podes eliminar las tarjetas o ver en mas detalle si quieres.</p>
+                            <div className='avatar_text' style={{display:'flex',justifyContent:'center'}}>
+                                <p className="mostrar_text">AppWheather es una aplicación del clima, los datos son extraídos de 'Spire Weather '. Al ingresar te pedira autorizacion para usar tu ubicacion y asi traerte el clima de tu ubicacion actual, tambien podes buscar el clima de ciudades o paises por sus nombres,  podes eliminar las tarjetas o ver en mas detalle si quieres.</p>
                             </div>
                             <div className='divIcon'>
                              <a href='https://github.com/andreajhl/AppWeather' target='_blank' rel = "noreferrer" ><GitHubIcon className='icon'/></a>
@@ -49,7 +49,7 @@ export const FrontEnd =()=>{
                                 <div className='avatar'><img src={peli} alt='avatar' className='avatar_img'/></div>
                                 <div className='avatar_b'>
                                     <h3>PeliPOP</h3>
-                                    <div style={{display:'flex',justifyContent:'space-between', color:'white'}}><p>HTML</p><p>SASS</p><p>JS</p><p>REACT</p><p>REDUX</p></div>
+                                    <div className='avatar_text' style={{display:'flex',justifyContent:'space-between', color:'white'}}><p>HTML</p><p>SASS</p><p>JS</p><p>REACT</p><p>REDUX</p></div>
                                 </div> 
                         </div>  
                 </div>
@@ -58,8 +58,8 @@ export const FrontEnd =()=>{
                             <img  className="front_DivC_hover_img_i" src={gifPeli}  alt='proyect'/>
                         </div>
                         <div className="mostrar">
-                            <div style={{display:'flex',justifyContent:'center'}}>
-                                <p>PEliPOP extrae datos de 'omdbapi', de entrada te trae las primerjas 10 peliculas con mayor puntuacion, en ella podes buscar películas por nombre o palabras claves, podes guardarlas en favoritas, estas se mantendran aunque reinicies la pagina, o ver mas detalle de ellas.</p>
+                            <div className='avatar_text' style={{display:'flex',justifyContent:'center'}}>
+                                <p className="mostrar_text">PEliPOP extrae datos de 'omdbapi', de entrada te trae las primerjas 10 peliculas con mayor puntuacion, en ella podes buscar películas por nombre o palabras claves, podes guardarlas en favoritas, estas se mantendran aunque reinicies la pagina, o ver mas detalle de ellas.</p>
                             </div>
                             <div className='divIcon'>
                              <a href='https://github.com/andreajhl/peliPOP' target='_blank' rel = "noreferrer" className='icon'><GitHubIcon/></a>
@@ -76,7 +76,7 @@ export const FrontEnd =()=>{
                         <div className='avatar'><img src={bloc} alt='avatar' className='avatar_img'/></div>
                             <div className='avatar_b'>
                                 <h3>El Librero (E-commerce)</h3>
-                                <div style={{display:'flex',justifyContent:'space-between', color:'white'}}><p>REACT</p><p>REDUX</p><p>EXPRESS</p><p>MONGODB</p><p>MONGOOSE</p></div>
+                                <div className='avatar_text' style={{display:'flex',justifyContent:'space-between', color:'white'}}><p>REACT/REDUX</p><p>EXPRESS</p><p>MONGODB</p><p>NODEJS</p></div>
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@ export const FrontEnd =()=>{
                         </div>
                         <div className="mostrar">
                             <div style={{display:'flex',justifyContent:'center'}} >
-                                <p>E-commerce. Como usuario, puede realizar compras, recibir correos informativos, agregar a tu wishlist, dejar review, buscar la tienda mas cercana, ver tu historial de compras y modificar tu perfil.<br/>
+                                <p className="mostrar_text">E-commerce. Como usuario, puede realizar compras, recibir correos informativos, agregar a tu wishlist, dejar review, buscar la tienda mas cercana, ver tu historial de compras y modificar tu perfil.<br/>
                                 Como administrador, podes modificar, eliminar y agregar productos,  promociones, categorias, ordenes de compras y eliminaro cambiar el status de los usuarios</p>
                             </div>
                             <div className='divIcon'>
@@ -102,7 +102,7 @@ export const FrontEnd =()=>{
                         <div className='avatar'><img src={pokemon} alt='avatar' className='avatar_img'/></div>
                             <div className='avatar_b'>
                                 <h3>Pokemon App</h3>
-                                <div style={{display:'flex',justifyContent:'space-between', color:'white'}}><p>REACT</p><p>REDUX</p><p>SQL</p><p>POSTGRESQL</p><p>EXPRESS</p></div>
+                                <div style={{display:'flex',justifyContent:'space-between', color:'white'}} className='avatar_text'><p>REACT/REDUX</p><p>SQL</p><p>POSTGRESQL</p><p>EXPRESS</p></div>
                             </div>
                         </div>  
                     </div>
@@ -112,7 +112,7 @@ export const FrontEnd =()=>{
                         </div>
                         <div className="mostrar">
                             <div style={{display:'flex',justifyContent:'center'}}>
-                                <p>Es una aplicación con 40 pokemons para empezar, podes crear mas pokemons a través de un formulario o buscar otros mas por nombres especifico, podes ordenar por fuerza, alfabéticamente o podes filtrarlos por sus tipos o creaciones propias, podes guardarlos en favoritos y ver sus detalles también</p>
+                                <p className="mostrar_text">Es una aplicación con 40 pokemons para empezar, podes crear mas pokemons a través de un formulario o buscar otros mas por nombres especifico, podes ordenar por fuerza, alfabéticamente o podes filtrarlos por sus tipos o creaciones propias, podes guardarlos en favoritos y ver sus detalles también</p>
                             </div>
                                 <div className='divIcon'>
                                     <a href='https://github.com/andreajhl/PokemonApp' target='_blank' rel = "noreferrer" className='icon'><GitHubIcon/></a>
