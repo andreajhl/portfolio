@@ -3,9 +3,9 @@ import styles from "./styles.module.scss";
 import { GoogleLogin } from "react-google-login";
 import { IsMobile } from "react-app/src/utils/isMobile";
 import axios from "axios";
-import { checkCookie } from "lib/utils/checkCookiesEnabled";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { redirectToAfterAuthPath } from "lib/famosos-auth";
+import useHasCookiesEnabled from "lib/hooks/useHasCookiesEnabled";
 
 type GoogleButtonProps = {
   textButton: string;
@@ -17,6 +17,7 @@ const clientId = process.env.NEXT_PUBLIC_GOOGLE_LOGIN_IDENTIFIER;
 const redirectURL = process.env.NEXT_PUBLIC_GOOGLE_LOGIN_REDIRECT;
 
 function GoogleButton({ textButton, className }: GoogleButtonProps) {
+  const hasCookiesEnabled = useHasCookiesEnabled();
   const responseGoogle = async (res) => {
     if (res?.tokenId) {
       await axios
@@ -46,7 +47,6 @@ function GoogleButton({ textButton, className }: GoogleButtonProps) {
       `${tokenRequestURL}?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectURL}&scope=${scope}&prompt=${state}`
     );
   };
-  const hasCookiesEnabled = checkCookie();
   if (!IsMobile() && hasCookiesEnabled) {
     return (
       <GoogleLogin
