@@ -1,0 +1,19 @@
+.ReferralsListItem {
+  display: flex;
+  align-items: center;
+}
+
+.ReferralsListItemUserFullName {
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+  margin-left: 1.75rem;
+}
+
+.ReferralsListItemStar {
+  margin-left: auto;
+}
+
+.ReferralsListItemSkeleton > span {
+  line-height: 1;
+}
