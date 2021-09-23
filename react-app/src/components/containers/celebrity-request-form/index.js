@@ -54,6 +54,7 @@ class CelebrityRequestForm extends Component {
     this.onSelectCountry = this.onSelectCountry.bind(this);
     this.saveCelebrityRequest = this.saveCelebrityRequest.bind(this);
     this.close = this.close.bind(this);
+    this.checkIfExistErrorsInState = this.checkIfExistErrorsInState.bind(this);
   }
 
   close() {
@@ -92,13 +93,19 @@ class CelebrityRequestForm extends Component {
     this.setState({ data });
   }
 
+  checkIfExistErrorsInState() {
+    const errors = this.state.errors;
+    // check if any of the errors is true
+    return Object.keys(errors).some((key) => errors[key]);
+  }
   isAValidForm() {
     return (
       this.state.data.fullName &&
       this.state.data.subDomain &&
       this.state.data.email &&
       this.state.data.cellphoneNumber &&
-      this.state.data.socialNetworkName
+      this.state.data.socialNetworkName &&
+      !this.checkIfExistErrorsInState()
     );
   }
 
@@ -113,7 +120,10 @@ class CelebrityRequestForm extends Component {
     if (!this.state.data.fullName) {
       fullNameError = true;
     }
-    if (!this.state.data.subDomain) {
+    if (
+      !this.state.data.subDomain ||
+      !/^[a-z0-9]+$/.test(this.state.data.subDomain)
+    ) {
       subDomainError = true;
     }
     if (!this.state.data.email) {
@@ -126,18 +136,22 @@ class CelebrityRequestForm extends Component {
       socialNetworkNameError = true;
     }
 
-    this.setState({
-      errors: {
-        fullNameError,
-        subDomainError,
-        emailError,
-        cellphoneNumberError,
-        socialNetworkNameError,
+    this.setState(
+      {
+        errors: {
+          fullNameError,
+          subDomainError,
+          emailError,
+          cellphoneNumberError,
+          socialNetworkNameError,
+        },
       },
-    });
-    if (this.isAValidForm()) {
-      this.props.saveCelebrityRequest(this.state.data);
-    }
+      () => {
+        if (this.isAValidForm()) {
+          this.props.saveCelebrityRequest(this.state.data);
+        }
+      }
+    );
   }
 
   renderForm() {
@@ -163,31 +177,38 @@ class CelebrityRequestForm extends Component {
           onChange={this.handleInput}
           value={this.state.data.fullName}
         />
-        <label className="">
-          <FormattedMessage defaultMessage="Pagina exclusiva" />
-          <small className="text-danger ml-1">*</small>
-        </label>
-        <div className="form-horizontal">
-          <input
-            disabled={true}
-            className={"form-control mb-3"}
-            value="famosos.com/"
-            style={{ flex: 1.2 }}
-          />
-          <input
-            type="text"
-            className={
-              "form-control mb-3" +
-              (this.state.errors.subDomainError ? " border-danger " : "")
-            }
-            placeholder={this.props.intl.formatMessage(
-              messages.placeholderSubdomainInput
-            )}
-            name="subDomain"
-            onChange={this.handleInput}
-            value={this.state.data.subDomain}
-            style={{ flex: 2 }}
-          />
+        <div>
+          <label className="">
+            <FormattedMessage defaultMessage="Pagina exclusiva" />
+            <small className="text-danger ml-1">*</small>
+          </label>
+          <div className="form-horizontal">
+            <input
+              disabled={true}
+              className={"form-control mb-3"}
+              value="famosos.com/"
+              style={{ flex: 1.2 }}
+            />
+            <input
+              type="text"
+              className={
+                "form-control mb-3" +
+                (this.state.errors.subDomainError ? " border-danger " : "")
+              }
+              placeholder={this.props.intl.formatMessage(
+                messages.placeholderSubdomainInput
+              )}
+              name="subDomain"
+              onChange={this.handleInput}
+              value={this.state.data.subDomain}
+              style={{ flex: 2 }}
+            />
+          </div>
+          {this.state.errors.subDomainError && (
+            <small className="form-text text-muted">
+              No puede contener caracteres especiales o espacios
+            </small>
+          )}
         </div>
         <label className="">
           <FormattedMessage defaultMessage="Correo electrónico" />
