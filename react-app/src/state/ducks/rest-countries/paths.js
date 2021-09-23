@@ -1,1 +1,2 @@
-export const BASE_PATH = "https://restcountries.eu/rest/v2/all?fields=callingCodes;flag;name;alpha2Code;alpha3Code";
+export const BASE_PATH =
+  "https://restcountries.com/v2/all?fields=callingCodes,name,alpha2Code,alpha3Code";
