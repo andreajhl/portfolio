@@ -28,6 +28,7 @@ import { useRef } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
 import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -90,7 +91,7 @@ function SpreedlyCardForm({
   }, [discountCouponId]);
   const userCurrency = useUserCurrentCurrency();
   const { formatMessage, locale } = useIntl();
-  const { push, query } = useRouter();
+  const { push } = useRouter();
   const [isProccesing, setIsProccesing] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
   const [isCreatingToken, setIsCreatingToken] = useState(false);
@@ -196,7 +197,7 @@ function SpreedlyCardForm({
       try {
         setPaymentError(null);
         await processSpreedlyPayment(payloadPayment);
-        if (!query.webViewInApp) {
+        if (!checkFlutterWindowsInstance()) {
           push(getPurchaseSummaryPath(contractReference));
         } else {
           SubmitCallbackInFlutterWebview({

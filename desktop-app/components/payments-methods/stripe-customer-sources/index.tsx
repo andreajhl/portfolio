@@ -3,6 +3,7 @@ import SubmitButton from "desktop-app/components/common/button/submit-button";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 import { useRouter } from "next/router";
@@ -55,7 +56,7 @@ function StripeCustomerSources({
   celebrityId,
   onDeleteSource,
 }: StripeCustomerSourcesProps) {
-  const { push, query } = useRouter();
+  const { push } = useRouter();
   const { formatMessage, locale } = useIntl();
   const [selectedSourceId, setSelectedSourceId] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -115,7 +116,7 @@ function StripeCustomerSources({
               contractPrice,
               celebrityId,
             });
-            if (!query.webViewInApp) {
+            if (!checkFlutterWindowsInstance()) {
               push(
                 PURCHASE_SUMMARY.replace(
                   ":contract_reference",

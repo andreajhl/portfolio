@@ -10,6 +10,7 @@ import {
 import WarningMessage from "desktop-app/components/common/warning-message";
 import { FormattedMessage, useIntl } from "lib/custom-intl";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
@@ -81,7 +82,7 @@ function DLocalPaymentMethodForm({
   celebrityId,
   contractPrice,
 }: DLocalPaymentMethodFormProps) {
-  const { push, query } = useRouter();
+  const { push } = useRouter();
   const { locale } = useIntl();
   const togglePaymentInProcess = useTogglePaymentInProcess();
 
@@ -151,7 +152,7 @@ function DLocalPaymentMethodForm({
                 celebrityId,
               });
             }
-            if (!query.webViewInApp) {
+            if (!checkFlutterWindowsInstance()) {
               push(getPurchaseSummaryPath(String(contractReference)));
             } else {
               SubmitCallbackInFlutterWebview({

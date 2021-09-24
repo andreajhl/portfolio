@@ -22,6 +22,7 @@ import { CardGenerationReminder } from "desktop-app/components/card-generation-r
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
 import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 
 type StripeComponentProps = {
   contractPrice: number;
@@ -45,7 +46,7 @@ function StripeCardForm({
 }: StripeComponentProps) {
   const togglePaymentInProcess = useTogglePaymentInProcess();
   const { formatMessage, locale } = useIntl();
-  const { push, query } = useRouter();
+  const { push } = useRouter();
   const [cardComplete, setCardComplete] = useState(false);
   const [error, setError] = useState(null);
   const [paymentProcessError, setPaymentProcessError] = useState(null);
@@ -89,7 +90,7 @@ function StripeCardForm({
         owner: billingDetails,
       })
       .then((response) => {
-        if (!query.webViewInApp) {
+        if (!checkFlutterWindowsInstance()) {
           push({
             pathname: iframeUrl,
             query: { url: response.source.redirect.url },

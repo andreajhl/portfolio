@@ -21,6 +21,7 @@ import PaymentMethodFormWrapper from "../form-wrapper";
 import PaymentMethodFormLabel from "../form-label";
 import PaymentMethodFormElement from "../form-element";
 import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -47,7 +48,7 @@ function PaypalForm({
   discountCouponId,
   celebrityId,
 }: PaypalFormProps) {
-  const { push, query } = useRouter();
+  const { push } = useRouter();
   const { locale } = useIntl();
   const sectionId = `section-${index}`;
   const labelId = `label-${index}`;
@@ -86,7 +87,7 @@ function PaypalForm({
         if (res.status === 10) {
           analytics.trackContractPurchase({ celebrityId, contractPrice });
           analytics.track("CONTRACT_PAYED", analyticsData);
-          if (!query.webViewInApp) {
+          if (!checkFlutterWindowsInstance()) {
             push(getPurchaseSummaryPath(res.reference));
           } else {
             SubmitCallbackInFlutterWebview({
@@ -95,7 +96,7 @@ function PaypalForm({
           }
         } else {
           analytics.track("PENDING_TO_VALIDATE_PAYMENT", analyticsData);
-          if (!query.webViewInApp) {
+          if (!checkFlutterWindowsInstance()) {
             push(getPurchaseSummaryPath(res.reference));
           } else {
             SubmitCallbackInFlutterWebview({

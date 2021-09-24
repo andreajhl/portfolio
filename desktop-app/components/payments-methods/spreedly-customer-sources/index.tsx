@@ -15,6 +15,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
 import { useIntl } from "react-intl";
 import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 
 interface SpreedlyCustomerSourcesProps {
   sources: {
@@ -33,7 +34,7 @@ function SpreedlyCustomSources({
   discountCouponId,
   onDeleteSource,
 }: SpreedlyCustomerSourcesProps) {
-  const { push, query } = useRouter();
+  const { push } = useRouter();
   const { locale } = useIntl();
   const [selectedSourceIndex, setselectedSourceIndex] = useState(0);
   const [paymentError, setPaymentError] = useState(null);
@@ -67,7 +68,7 @@ function SpreedlyCustomSources({
         geolocation,
         locale,
       });
-      if (!query.webviewInApp) {
+      if (!checkFlutterWindowsInstance()) {
         push(getPurchaseSummaryPath(contractReference));
       } else {
         SubmitCallbackInFlutterWebview({
