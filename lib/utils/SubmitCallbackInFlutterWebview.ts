@@ -1,9 +1,11 @@
 export interface CustomWindow {
-  flutter: any;
+  flutter_inappwebview: any;
 }
 
 const SubmitCallbackInFlutterWebview = ({ paymentType }) => {
-  ((window as unknown) as CustomWindow).flutter._inappwebview.callHandler(
+  console.log("Trigger SubmitCallbackInFlutterWebview");
+
+  ((window as unknown) as CustomWindow).flutter_inappwebview.callHandler(
     "onSuccessPaymentCallbackFlutter",
     {
       paymentType,
