@@ -12,6 +12,7 @@ import { FormattedMessage, useIntl } from "lib/custom-intl";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
@@ -80,7 +81,7 @@ function DLocalPaymentMethodForm({
   celebrityId,
   contractPrice,
 }: DLocalPaymentMethodFormProps) {
-  const { push } = useRouter();
+  const { push, query } = useRouter();
   const { locale } = useIntl();
   const togglePaymentInProcess = useTogglePaymentInProcess();
 
@@ -150,7 +151,13 @@ function DLocalPaymentMethodForm({
                 celebrityId,
               });
             }
-            push(getPurchaseSummaryPath(String(contractReference)));
+            if (!query.webViewInApp) {
+              push(getPurchaseSummaryPath(String(contractReference)));
+            } else {
+              SubmitCallbackInFlutterWebview({
+                paymentType: "dlocal",
+              });
+            }
           } else {
             setPaymentError(response.statusDetails);
             setPaymentInProcess(false);

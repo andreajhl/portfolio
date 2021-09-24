@@ -20,6 +20,7 @@ import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import PaymentMethodFormWrapper from "../form-wrapper";
 import PaymentMethodFormLabel from "../form-label";
 import PaymentMethodFormElement from "../form-element";
+import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -46,7 +47,7 @@ function PaypalForm({
   discountCouponId,
   celebrityId,
 }: PaypalFormProps) {
-  const { push } = useRouter();
+  const { push, query } = useRouter();
   const { locale } = useIntl();
   const sectionId = `section-${index}`;
   const labelId = `label-${index}`;
@@ -81,13 +82,26 @@ function PaypalForm({
           contractPrice,
           celebrityId,
         };
+
         if (res.status === 10) {
           analytics.trackContractPurchase({ celebrityId, contractPrice });
           analytics.track("CONTRACT_PAYED", analyticsData);
-          push(getPurchaseSummaryPath(res.reference));
+          if (!query.webViewInApp) {
+            push(getPurchaseSummaryPath(res.reference));
+          } else {
+            SubmitCallbackInFlutterWebview({
+              paymentType: "paypal",
+            });
+          }
         } else {
           analytics.track("PENDING_TO_VALIDATE_PAYMENT", analyticsData);
-          push(CLIENT_HIRINGS);
+          if (!query.webViewInApp) {
+            push(getPurchaseSummaryPath(res.reference));
+          } else {
+            SubmitCallbackInFlutterWebview({
+              paymentType: "paypal",
+            });
+          }
         }
       })
       .catch((error) => {

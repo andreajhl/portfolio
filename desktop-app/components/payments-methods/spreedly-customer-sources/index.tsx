@@ -14,6 +14,7 @@ import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
 import { useIntl } from "react-intl";
+import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 
 interface SpreedlyCustomerSourcesProps {
   sources: {
@@ -32,7 +33,7 @@ function SpreedlyCustomSources({
   discountCouponId,
   onDeleteSource,
 }: SpreedlyCustomerSourcesProps) {
-  const { push } = useRouter();
+  const { push, query } = useRouter();
   const { locale } = useIntl();
   const [selectedSourceIndex, setselectedSourceIndex] = useState(0);
   const [paymentError, setPaymentError] = useState(null);
@@ -66,7 +67,13 @@ function SpreedlyCustomSources({
         geolocation,
         locale,
       });
-      push(getPurchaseSummaryPath(contractReference));
+      if (!query.webviewInApp) {
+        push(getPurchaseSummaryPath(contractReference));
+      } else {
+        SubmitCallbackInFlutterWebview({
+          paymentType: "spreedly",
+        });
+      }
     } catch (error) {
       setIsProccesing(false);
       setPaymentError(

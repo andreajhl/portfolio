@@ -27,6 +27,7 @@ import { getTextOfFormatAllowedForUserDocument } from "react-app/src/state/utils
 import { useRef } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
+import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 
 const SPREEDLY_API_KEY = process.env.NEXT_PUBLIC_SPREEDLY_API_KEY;
 const scriptSrc = "https://core.spreedly.com/iframe/iframe-v1.min.js";
@@ -89,7 +90,7 @@ function SpreedlyCardForm({
   }, [discountCouponId]);
   const userCurrency = useUserCurrentCurrency();
   const { formatMessage, locale } = useIntl();
-  const { push } = useRouter();
+  const { push, query } = useRouter();
   const [isProccesing, setIsProccesing] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
   const [isCreatingToken, setIsCreatingToken] = useState(false);
@@ -195,7 +196,13 @@ function SpreedlyCardForm({
       try {
         setPaymentError(null);
         await processSpreedlyPayment(payloadPayment);
-        push(getPurchaseSummaryPath(contractReference));
+        if (!query.webViewInApp) {
+          push(getPurchaseSummaryPath(contractReference));
+        } else {
+          SubmitCallbackInFlutterWebview({
+            paymentType: "spreedly",
+          });
+        }
       } catch (error) {
         setIsProccesing(false);
         setIsCreatingToken(false);
