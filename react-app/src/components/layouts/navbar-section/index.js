@@ -11,6 +11,7 @@ import LoginButton from "../../containers/login-button/login-button";
 import Maybe from "../../common/helpers/maybe";
 import { useIntl, defineMessage } from "react-intl";
 import LangDropdown from "../../containers/lang-dropdown";
+import { UserStarsLink } from "desktop-app/components/user-stars-link";
 // import { UserNotificationsPopup } from "../user-notifications-popup";
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
@@ -41,8 +42,10 @@ const NavbarSectionLayout = ({
   dropdownMenuIsOpen,
   setDropdownMenuIsOpen,
 }) => {
-  const { isLoading, isAuthenticated } = useAuth();
+  const { isLoading, isAuthenticated, user } = useAuth();
   const intl = useIntl();
+
+  const showStarsLink = typeof user?.stars !== "undefined";
 
   return (
     <>
@@ -80,6 +83,11 @@ const NavbarSectionLayout = ({
             <div className="top-bar__currency mr-4">
               <CurrencyDropdownLayout />
             </div>
+            <Maybe it={showStarsLink}>
+              <div className="top-bar__currency mr-4">
+                <UserStarsLink />
+              </div>
+            </Maybe>
             <div className="top-bar__lang  mr-4">
               <DropdownMenuLayout isLogged={!isLoading && isAuthenticated} />
             </div>
