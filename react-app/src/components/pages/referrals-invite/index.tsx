@@ -7,27 +7,20 @@ import {
   getMailShareLink,
   getWhatsappSharingLink,
 } from "lib/utils/getSocialMediaLink";
-import { defineMessages, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 import { ReferralsInviteSlideshow } from "../../referrals-invite/referrals-invite-slideshow";
 import { CopyLinkContainer } from "react-app/src/components/common/widgets/copy-link-container";
 import useReferralLink from "../../../../../lib/hooks/useReferralLink";
-
-const messages = defineMessages({
-  shareEmailSubject: {
-    defaultMessage: `Me gustaría invitarte a Famosos.com`,
-  },
-  shareMessage: {
-    defaultMessage:
-      "¡Visita Famosos.com y gana conmigo! Ingresa ya a {referralLink}",
-  },
-});
+import referralsMessages from "lib/messages/referrals";
 
 function ReferralsInvitePage() {
   const { formatMessage } = useIntl();
   const { referralLink, isReady: referralLinkIsReady } = useReferralLink();
 
-  const shareEmailSubject = formatMessage(messages.shareEmailSubject);
-  const shareMessage = formatMessage(messages.shareMessage, { referralLink });
+  const shareEmailSubject = formatMessage(referralsMessages.shareMailSubject);
+  const shareMessage = formatMessage(referralsMessages.shareMessage, {
+    referralLink,
+  });
 
   return (
     <PageContainer showSearch={false}>

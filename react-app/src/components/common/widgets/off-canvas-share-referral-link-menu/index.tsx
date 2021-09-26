@@ -1,19 +1,10 @@
 import useReferralLink from "lib/hooks/useReferralLink";
+import referralMessages from "lib/messages/referrals";
 import {
   OffCanvasShareLinkMenu,
   OffCanvasShareLinkMenuProps,
 } from "react-app/src/components/common/widgets/off-canvas-share-link-menu";
-import { defineMessages, useIntl } from "react-intl";
-
-const messages = defineMessages({
-  shareMessage: {
-    defaultMessage:
-      "¡Hola! Te invito a ganar premios junto a mi en Famosos.com. Ingresa ya a {link}.",
-  },
-  shareMailSubject: {
-    defaultMessage: "Me gustaría invitarte a Famosos.com",
-  },
-});
+import { useIntl } from "react-intl";
 
 type OffCanvasShareReferralLinkMenuProps = {} & Omit<
   OffCanvasShareLinkMenuProps,
@@ -25,10 +16,10 @@ function OffCanvasShareReferralLinkMenu(
 ) {
   const { formatMessage } = useIntl();
   const { referralLink } = useReferralLink();
-  const shareMessage = formatMessage(messages.shareMessage, {
-    link: referralLink,
+  const shareMessage = formatMessage(referralMessages.shareMessage, {
+    referralLink,
   });
-  const shareMailSubject = formatMessage(messages.shareMailSubject);
+  const shareMailSubject = formatMessage(referralMessages.shareMailSubject);
 
   return (
     <OffCanvasShareLinkMenu
