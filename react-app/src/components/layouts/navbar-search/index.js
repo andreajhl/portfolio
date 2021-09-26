@@ -79,7 +79,7 @@ class NavbarSearchLayout extends Component {
   render() {
     return (
       <div className="NavbarSearchLayout">
-        <div className="form-group">
+        <div className="form-group mb-0">
           <div className="input-group">
             <i
               className={"fa fa-search"}

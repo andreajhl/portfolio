@@ -12,6 +12,8 @@ import Maybe from "../../common/helpers/maybe";
 import { useIntl, defineMessage } from "react-intl";
 import LangDropdown from "../../containers/lang-dropdown";
 import { UserStarsLink } from "desktop-app/components/user-stars-link";
+import { ReferralFirstBuyDiscountBanner } from "../referral-first-buy-discount-banner";
+import isReferralWithFirstBuyDiscount from "lib/utils/isReferralWithFirstBuyDiscount";
 // import { UserNotificationsPopup } from "../user-notifications-popup";
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
@@ -93,8 +95,11 @@ const NavbarSectionLayout = ({
             </div>
           </div>
         </div>
+        <Maybe it={isReferralWithFirstBuyDiscount(user)}>
+          <ReferralFirstBuyDiscountBanner />
+        </Maybe>
         <Maybe it={showSearch}>
-          <div className="col-12 pt-2 px-0">
+          <div className="col-12 pt-3 px-0">
             <div className="d-block top-bar__search-sm">
               <NavbarSearchLayout
                 searchLabel={intl.formatMessage(messageSearchLabel)}
