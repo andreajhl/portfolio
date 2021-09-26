@@ -2,25 +2,21 @@
   font-size: 0.9375rem;
   position: relative;
   justify-content: center;
+  align-items: center;
   display: flex;
   background: #ffffff;
   border: 0.15em solid #fb177d;
   border-radius: 0.5333em;
-  padding: 1em 1em 0.85em 3em;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
-.CopyLinkContainerCopiedLink.CopyLinkContainerCopiedLink {
-  padding-left: 1em;
-}
-
-.CopyLinkContainerIcon {
+.CopyLinkContainerButton {
   position: absolute;
-  left: 1.25em;
-  color: black;
+  left: 1em;
 }
 
 .CopyLinkContainerText {
+  padding: 1em 1em 0.85em 3em;
   font-weight: bold;
   line-height: 1.2;
   letter-spacing: 0em;
@@ -29,4 +25,5 @@
 
 .CopyLinkContainerLinkCopied {
   color: #fb177d;
+  padding-left: 1em;
 }
