@@ -9,8 +9,11 @@ import { NavLink } from "../../common/routing";
 import { REFERRALS_LIST, REFERRALS_PRIZES } from "constants/paths";
 import { useRouter } from "next/router";
 import { SHOW_BACK_BUTTON_QUERY_PARAM } from "constants/keys";
+import useIsOpen from "lib/hooks/useIsOpen";
+import { OffCanvasShareReferralLinkMenu } from "react-app/src/components/common/widgets/off-canvas-share-referral-link-menu";
 
 function ReferralsHomePage() {
+  const { open, close, isOpen } = useIsOpen(false);
   const { query } = useRouter();
   const showBackButton = Boolean(query?.[SHOW_BACK_BUTTON_QUERY_PARAM]);
   const { user } = useAuth();
@@ -50,6 +53,12 @@ function ReferralsHomePage() {
         <div
           className={classes("container", styles.ReferralsHomePageContainer)}
         >
+          <button
+            onClick={open}
+            className={classes(styles.FooterLink, styles.ShareButton)}
+          >
+            <FormattedMessage defaultMessage="Compartir" />
+          </button>
           <NavLink className={styles.FooterLink} to={REFERRALS_PRIZES}>
             <FormattedMessage defaultMessage="Ver Premios" />
           </NavLink>
@@ -58,6 +67,7 @@ function ReferralsHomePage() {
           </NavLink>
         </div>
       </footer>
+      <OffCanvasShareReferralLinkMenu isOpen={isOpen} onClose={close} />
     </PageContainer>
   );
 }
