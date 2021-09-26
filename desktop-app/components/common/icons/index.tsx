@@ -762,6 +762,39 @@ export function TwitterIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+export function TelegramIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={16}
+      height={16}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+      {...props}
+    >
+      <path
+        stroke="null"
+        d="M8.099 0a8.095 8.095 0 100 16.19 8.095 8.095 0 100-16.19z"
+        fill="#29b6f6"
+      />
+      <path
+        stroke="null"
+        d="M12.126 4.452l-1.516 7.742s-.065.354-.504.354c-.233 0-.353-.111-.353-.111L6.469 9.71l-1.607-.81-2.063-.548s-.367-.106-.367-.41c0-.253.378-.373.378-.373l8.628-3.428s.263-.095.456-.094c.118 0 .253.05.253.202 0 .101-.02.202-.02.202z"
+        fill="#fff"
+      />
+      <path
+        stroke="null"
+        d="M7.694 10.728l-1.386 1.366s-.06.046-.141.048a.2.2 0 01-.089-.017l.39-2.414 1.226 1.017z"
+        fill="#b0bec5"
+      />
+      <path
+        stroke="null"
+        d="M10.486 5.746a.202.202 0 00-.284-.038L4.861 8.905s.852 2.385.982 2.798c.13.413.235.422.235.422l.39-2.414 3.98-3.682a.202.202 0 00.038-.283z"
+        fill="#cfd8dc"
+      />
+    </svg>
+  );
+}
+
 export function HyperlinkIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

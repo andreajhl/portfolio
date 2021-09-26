@@ -1,6 +1,6 @@
 import objectToQueryString from "./objectToQueryString";
 
-export const getWhatsappSharingLink: (message: string) => string = (
+export const getWhatsappSharingLink: (message?: string) => string = (
   message = ""
 ) => `https://api.whatsapp.com/send?text=${message}`;
 
@@ -21,7 +21,7 @@ export function getTwitterSharingLink(
   const linkParams = {
     text,
     url,
-    via
+    via,
   };
 
   return `https://twitter.com/intent/tweet${objectToQueryString(linkParams)}`;
@@ -35,3 +35,8 @@ export function getMailShareLink(subject?: string, body?: string) {
   const linkParams = { subject, body };
   return `mailto:${objectToQueryString(linkParams)}`;
 }
+
+export const getTelegramShareLink = (link: string, text?: string) =>
+  `https://t.me/share/url?url=${encodeURIComponent(
+    link
+  )}&text=${encodeURIComponent(text || "")}`;

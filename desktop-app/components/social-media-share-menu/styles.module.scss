@@ -1,0 +1,36 @@
+.SocialMediaShareMenu {
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+}
+
+.SocialMediaShareMenuItem {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 1rem 1.625rem;
+  text-decoration: none !important;
+}
+
+.SocialMediaShareMenuItem:active {
+  background: var(--primary-lighten);
+}
+
+.SocialMediaShareMenuItem + .SocialMediaShareMenuItem {
+  border-top: 1px solid var(--gray-1, #f5f5f5);
+}
+
+.SocialMediaShareMenuItem svg {
+  width: 1.875em;
+  height: 1.875em;
+}
+
+.SocialMediaShareMenuItem span {
+  margin-left: 2em;
+  font-size: 1em;
+}
+
+.CheckIcon {
+  font-size: 1.875em;
+  color: var(--primary, #fb177d);
+}
