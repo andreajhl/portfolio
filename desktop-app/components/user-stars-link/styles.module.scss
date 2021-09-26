@@ -1,0 +1,4 @@
+.UserStarsLink:active svg path,
+.UserStarsLink:focus svg path {
+  fill: var(--primary) !important;
+}
