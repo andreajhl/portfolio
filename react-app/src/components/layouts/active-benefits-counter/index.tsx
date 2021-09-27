@@ -18,8 +18,6 @@ function ActiveBenefitsCounter({
     async function fetchBenefitCount() {
       try {
         const response: any = await getCountActiveBenefits(celebrityId);
-        console.log(response);
-
         if (!response || response?.data?.status === "ERROR") return;
         setTotalItems(response?.data?.data?.benefitCount);
       } catch (error) {
