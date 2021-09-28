@@ -1,0 +1,63 @@
+.ErrorMessagePage {
+  @media (prefers-color-scheme: dark) {
+    background: black;
+  }
+}
+
+.ErrorMessagePageContainer {
+  min-height: calc(100vh - 70px);
+  height: auto;
+  max-width: 600px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ErrorMessagePageTitle,
+  .ErrorMessagePageDescription {
+    color: white !important;
+  }
+}
+
+.ErrorMessagePageTitle {
+  margin-top: auto;
+  font-size: 2rem !important;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.ErrorMessagePageDescription {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.35;
+  margin-bottom: 0;
+}
+
+.ErrorMessagePagePath {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  color: var(--gray-4);
+}
+
+.ErrorMessagePageButtonsWrapper {
+  margin-top: 2.5rem;
+}
+
+.ErrorMessagePageButton {
+  font-weight: bold;
+  min-height: 3.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.ErrorMessagePageButton + .ErrorMessagePageButton {
+  margin-top: 1rem;
+}
+
+.ErrorMessagePageIllustration {
+  align-self: center;
+  margin-top: auto;
+}
