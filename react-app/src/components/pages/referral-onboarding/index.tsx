@@ -4,8 +4,8 @@ import styles from "./styles.module.scss";
 import { FormattedMessage } from "react-intl";
 import { StarPrice } from "../../common/helpers/star-price";
 import { Link } from "../../common/routing/link";
-import { SIGN_UP_PATH } from "constants/paths";
-import { REFERRER_CODE_QUERY_PARAM } from "constants/keys";
+import { getReferrerInviteLink, SIGN_UP_PATH } from "constants/paths";
+import { Session } from "react-app/src/state/utils/session";
 
 const starPrice = <StarPrice />;
 
@@ -18,10 +18,11 @@ function ReferralOnboardingPage({
   referrerName,
   referrerCode,
 }: ReferralOnboardingPageProps) {
-  const signUpPath = {
-    pathname: SIGN_UP_PATH,
-    query: { [REFERRER_CODE_QUERY_PARAM]: referrerCode },
-  };
+  function setRedirectToReferralLink() {
+    Session.setRedirectPathOnLogin(
+      getReferrerInviteLink({ referrerName, referrerCode })
+    );
+  }
 
   return (
     <PageContainer showSearch={false}>
@@ -59,8 +60,9 @@ function ReferralOnboardingPage({
               />
             </p>
             <Link
-              href={signUpPath}
+              href={SIGN_UP_PATH}
               className={classes("btn btn-primary", styles.GoToSignUpButton)}
+              onClick={setRedirectToReferralLink}
             >
               <FormattedMessage defaultMessage="Registrarse ahora" />
             </Link>
