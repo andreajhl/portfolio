@@ -26,3 +26,18 @@ export const getUserReferralsList = (
       params,
     })
   );
+
+export const registerReferralUser = (referrerCode = "") =>
+  apiService({
+    method: "POST",
+    path: API_PATHS.REGISTER_REFERRAL_USER_PATH,
+    body: { code: referrerCode },
+  })
+    .then((response) => {
+      if (response?.data?.status !== "OK") throw response?.data?.error;
+      return response?.data;
+    })
+    .catch((error) => {
+      const errorMessage = error?.response?.data?.error || error?.toString?.();
+      throw errorMessage;
+    });
