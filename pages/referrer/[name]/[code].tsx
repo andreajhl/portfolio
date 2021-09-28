@@ -1,7 +1,7 @@
 import { STAR_PRICE_IN_DOLLARS } from "constants/referrals";
 import { useRouter } from "next/router";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { ReferralOnboardingPage } from "react-app/src/components/pages/referral-onboarding";
+import { ReferrerCodePage } from "react-app/src/components/pages/referrer-code";
 import { defineMessages, useIntl } from "react-intl";
 
 const starPriceInDollars = `$${STAR_PRICE_IN_DOLLARS}`;
@@ -36,7 +36,7 @@ function ReferralOnboarding() {
   return (
     <>
       <CustomHead title={title as string} description={description as string} />
-      <ReferralOnboardingPage
+      <ReferrerCodePage
         referrerName={referrerName as string}
         referrerCode={query?.code as string}
       />
