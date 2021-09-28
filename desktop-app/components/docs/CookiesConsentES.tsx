@@ -12,14 +12,17 @@ const CookiesConsentMapping = {
   es: {
     isoCode: "es",
     cookiePolicyId: 65243796,
+    buttonCaption: "Saber más",
   },
   en: {
     isoCode: "en",
     cookiePolicyId: 94284502,
+    buttonCaption: "Learn more",
   },
   pt: {
     isoCode: "pt-BR",
     cookiePolicyId: 86085772,
+    buttonCaption: "Saiba mais",
   },
 };
 
@@ -64,6 +67,7 @@ const useIubendaCookiesConsent = () => {
       rejectButtonCaptionColor: "white",
       zIndex: "500",
       timeoutLoadConfiguration: 5000,
+      customizeButtonCaption: CookiesConsentMapping[ISO2CODE].buttonCaption,
     },
   };
 };
