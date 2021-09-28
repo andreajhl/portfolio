@@ -10,4 +10,11 @@ const messages = defineMessages({
   },
 });
 
+export const errorMessages = defineMessages({
+  "record not found": {
+    defaultMessage:
+      "El código de referido {referrerCode} no pertenece a ningún usuario",
+  },
+});
+
 export default messages;
