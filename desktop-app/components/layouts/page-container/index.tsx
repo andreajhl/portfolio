@@ -6,6 +6,7 @@ import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
 import useUserLocation from "lib/hooks/useUserLocationCookie";
 import useBotMaker from "lib/hooks/useBotmaker";
 import { useFetchCountries } from "lib/hooks/useFetchCountries";
+import { useIubendaCookiesConsent } from "desktop-app/components/docs/CookiesConsentES";
 
 const COUNTRIES_WHERE_SHOULD_ALWAYS_DISPLAY_BOTMAKER = ["BR"];
 
@@ -31,13 +32,6 @@ const NewsletterPopup = dynamic(
   { ssr: false }
 );
 
-const CookiesConsent = dynamic(
-  import("react-app/src/components/layouts/cookies-consent").then(
-    (mod) => mod.CookiesConsent
-  ),
-  { ssr: false }
-);
-
 type PageContainerProps = PageLayoutProps & PageLayoutMobileProps;
 
 function PageContainer(props: PageContainerProps) {
@@ -50,6 +44,7 @@ function PageContainer(props: PageContainerProps) {
   );
   useBotMaker(props.showBotMakerFrame || forceShowBotMakerFrame);
   useDesktopClass(!isOnMobile);
+  useIubendaCookiesConsent();
 
   return (
     <>
@@ -57,7 +52,6 @@ function PageContainer(props: PageContainerProps) {
         <MobilePageContainer {...props} showSearch={showSearch} />
       </Maybe>
       <NewsletterPopup />
-      <CookiesConsent />
     </>
   );
 }
