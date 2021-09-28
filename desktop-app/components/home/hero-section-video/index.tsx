@@ -2,7 +2,7 @@ type HeroSectionVideoProps = {
   userLocation: string;
 };
 
-const countriesWithVideo = ["CO", "AR", "MX"];
+const countriesWithVideo = ["CO", "AR", "MX", "BR"];
 
 function HeroSectionVideo({ userLocation }: HeroSectionVideoProps) {
   return (

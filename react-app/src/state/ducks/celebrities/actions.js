@@ -11,6 +11,7 @@ import { updateQueryParamsInitialState } from "./reducers";
 import thunkAction from "../../utils/thunkAction";
 import { cfUserCountryCode, USER_LOCATION_KEY } from "constants/keys";
 import getCookie from "react-app/src/utils/getCookie";
+import objectFromEntries from "lib/utils/objectFromEntries";
 // import * as firestoreService from "../../../firebase/firestoreService";
 
 const firestoreService = { getDocuments() {} };
@@ -20,7 +21,7 @@ const getValidParams = (params) => {
   const onlyValidParamsEntries = paramsEntries.filter(([key, value]) =>
     Boolean(value)
   );
-  return Object.fromEntries(onlyValidParamsEntries);
+  return objectFromEntries(onlyValidParamsEntries);
 };
 
 export const updateQueryParams = (params, router) => (dispatch) => {
