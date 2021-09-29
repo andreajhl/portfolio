@@ -564,3 +564,8 @@ export const processSubscriptionPayment = (data) => {
       });
   });
 };
+
+export const setDiscountStarsSelected = (starsSelected) => ({
+  type: types.SET_DISCOUNT_STARS_SELECTED,
+  payload: starsSelected,
+});

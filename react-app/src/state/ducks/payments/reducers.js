@@ -84,6 +84,8 @@ const applyDiscountCouponInitialState = {
   error_data: null,
 };
 
+const initialDiscountStarSelected = 0;
+
 export const processStripePaymentReducer = (
   state = { error_data: { error: "" } },
   { type, action }
@@ -273,6 +275,18 @@ export function userPaymentMethodSelected(
   }
 }
 
+export function discountStarsSelected(
+  state = initialDiscountStarSelected,
+  action
+) {
+  if (action.type === types.SET_DISCOUNT_STARS_SELECTED) {
+    return typeof action.payload === "function"
+      ? action.payload(state)
+      : action.payload;
+  }
+  return state;
+}
+
 export default combineReducers({
   fetchPaymentGatewaysReducer,
   currencyExchangeReducer,
@@ -280,4 +294,5 @@ export default combineReducers({
   fetchDiscountCouponReducer,
   setPaymentInProcess,
   userPaymentMethodSelected,
+  discountStarsSelected,
 });
