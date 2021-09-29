@@ -57,7 +57,16 @@ function SignInBox({ className, willRedirect = false }: SignInBoxProps) {
 
   return (
     <section className={classes(styles.SignInBox, className)}>
+      <p className={styles.NotRegisteredText}>
+        <FormattedMessage
+          defaultMessage="¿No tienes una cuenta? <signUpLink>Registrarme</signUpLink>"
+          values={{ signUpLink }}
+        />
+      </p>
       <div className={styles.SignInBoxCard}>
+        <h3 className={styles.SignInBoxTitle}>
+          <FormattedMessage defaultMessage="Si ya estás registrado inicia sesión" />
+        </h3>
         <FacebookButton
           className={styles.AuthProviderButton}
           textButton={formatMessage(LoginMessages.facebookMessage)}
@@ -75,12 +84,6 @@ function SignInBox({ className, willRedirect = false }: SignInBoxProps) {
       <Maybe it={errorMessage.length > 0}>
         <AuthenticationFailurePopup errorMessage={errorMessage} />
       </Maybe>
-      <p className={styles.NotRegisteredText}>
-        <FormattedMessage
-          defaultMessage="¿No tienes una cuenta? <signUpLink>Registrarme</signUpLink>"
-          values={{ signUpLink }}
-        />
-      </p>
     </section>
   );
 }
