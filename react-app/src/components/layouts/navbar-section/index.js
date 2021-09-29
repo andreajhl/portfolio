@@ -41,13 +41,13 @@ const NavbarSectionLayout = ({
   onSearchChange,
   showSearch,
   queryParams,
-  dropdownMenuIsOpen,
-  setDropdownMenuIsOpen,
+  forceHeadroomUpdate,
 }) => {
   const { isLoading, isAuthenticated, user } = useAuth();
   const intl = useIntl();
 
   const showStarsLink = typeof user?.stars !== "undefined";
+  const showReferralDiscountBanner = isReferralWithFirstBuyDiscount(user);
 
   return (
     <>
@@ -95,8 +95,8 @@ const NavbarSectionLayout = ({
             </div>
           </div>
         </div>
-        <Maybe it={isReferralWithFirstBuyDiscount(user)}>
-          <ReferralFirstBuyDiscountBanner />
+        <Maybe it={showReferralDiscountBanner}>
+          <ReferralFirstBuyDiscountBanner onCollapseEnd={forceHeadroomUpdate} />
         </Maybe>
         <Maybe it={showSearch}>
           <div className="col-12 pt-3 px-0">

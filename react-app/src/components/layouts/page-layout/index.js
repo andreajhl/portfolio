@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { NavbarSectionLayout } from "../navbar-section";
@@ -12,8 +12,7 @@ import { withRouter } from "react-app/src/components/common/routing";
 import Maybe from "../../common/helpers/maybe";
 import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { Session } from "react-app/src/state/utils/session.js";
-import { analytics } from "react-app/src/state/utils/gtm";
-import { getWindowPathname } from "react-app/src/utils/getWindow";
+import useForceUpdate from "lib/hooks/useForceUpdate";
 
 function PageContainer({
   cleanUserCelebrityLikes,
@@ -27,7 +26,7 @@ function PageContainer({
   router,
   ...props
 }) {
-  const [dropdownMenuIsOpen, setDropdownMenuIsOpen] = useState(false);
+  const forceHeadroomUpdate = useForceUpdate();
   const loginHandler = useLoginHandler();
 
   const onSearchChange = (keyword) => {
@@ -38,15 +37,6 @@ function PageContainer({
       search: keyword,
     };
     updateQueryParams(newQueryParams, router);
-  };
-
-  const handleChangeDropdownMenuIsOpen = (dropdownMenuIsOpen) => {
-    analytics.track("CLICK_ON_DROPDOWN_MENU", {
-      dropdownMenuIsOpen,
-      widget: "NavbarSectionLayout",
-      path: getWindowPathname(),
-    });
-    setDropdownMenuIsOpen(dropdownMenuIsOpen);
   };
 
   useEffect(() => {
@@ -89,9 +79,8 @@ function PageContainer({
             showLogin={props.showLogin}
             showFiltersSection={props.showFiltersSection}
             hideControls={props.hideControls}
-            dropdownMenuIsOpen={dropdownMenuIsOpen}
-            setDropdownMenuIsOpen={handleChangeDropdownMenuIsOpen}
             queryParams={queryParams}
+            forceHeadroomUpdate={forceHeadroomUpdate}
           />
         </Maybe>
         <Maybe it={props.showFiltersSection}>
@@ -105,11 +94,7 @@ function PageContainer({
         }`}
       >
         {props.children}
-        <div
-          className={`page-container-children-helper ${
-            dropdownMenuIsOpen ? "active" : ""
-          }`}
-        />
+        <div className="page-container-children-helper" />
       </div>
 
       <Maybe it={props.showFooter}>

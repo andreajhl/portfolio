@@ -14,9 +14,15 @@ const discountPrice = (
   />
 );
 
-function ReferralFirstBuyDiscountBanner() {
+type ReferralFirstBuyDiscountBannerProps = {
+  onCollapseEnd?: (node: HTMLElement) => void;
+};
+
+function ReferralFirstBuyDiscountBanner({
+  onCollapseEnd,
+}: ReferralFirstBuyDiscountBannerProps) {
   return (
-    <Collapse in appear>
+    <Collapse in appear onEntered={onCollapseEnd}>
       <div>
         <div className={styles.ReferralFirstBuyDiscountBanner}>
           <div className="container h-100">
