@@ -52,10 +52,7 @@ function ContractInfo({
       <div
         className={`${styles.ContractInfoSection} ${styles.ContractInfoPricing}`}
       >
-        <ContractPriceSummary
-          original_price={original_price}
-          contractPrice={price}
-        />
+        <ContractPriceSummary />
       </div>
     </div>
   );
