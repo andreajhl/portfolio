@@ -11,7 +11,7 @@ import { analytics } from "react-app/src/state/utils/gtm";
 import { clearCouponData } from "react-app/src/state/ducks/payments/actions";
 import useFetchContractToPay from "lib/hooks/useFetchContractToPay";
 import { PaymentMethodsPage } from "desktop-app/components/pages/payment-methods";
-import useTrackPaymentMethodsLeave from "desktop-app/components/pages/payment-methods/useTrackPaymentMethodsLeave";
+import useTrackPaymentMethodsLeave from "lib/hooks/useTrackPaymentMethodsLeave";
 // import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 
 export const getServerSideProps: GetServerSideProps = async ({
