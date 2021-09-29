@@ -2,37 +2,25 @@ import CustomHead from "react-app/src/components/common/helpers/custom-head";
 import { withAuthenticationRequired } from "lib/famosos-auth";
 import LoadingPage from "react-app/src/components/layouts/loading-page";
 import isMobile from "lib/utils/isMobile";
-import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
 import { ROOT_PATH } from "react-app/src/routing/Paths";
-import dynamic from "next/dynamic";
-// import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 import { GetServerSideProps } from "next";
-import { RootState } from "react-app/src/state/store";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { clearCouponData } from "react-app/src/state/ducks/payments/actions";
-
-// const PaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
-//   import("react-app/src/components/pages/payment-methods").then(
-//     (mod) => mod.PaymentMethodsPage
-//   )
-// );
-
-const DesktopPaymentMethodsPage = dynamic<{ contractReference: string }>(() =>
-  import("desktop-app/components/pages/payment-methods").then(
-    (mod) => mod.PaymentMethodsPage
-  )
-);
+import useFetchContractToPay from "lib/hooks/useFetchContractToPay";
+import { PaymentMethodsPage } from "desktop-app/components/pages/payment-methods";
+import useTrackPaymentMethodsLeave from "desktop-app/components/pages/payment-methods/useTrackPaymentMethodsLeave";
+// import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 
 export const getServerSideProps: GetServerSideProps = async ({
   params,
   req,
 }) => {
-  const contract_reference = params?.contract_reference;
+  const contractReference = params?.contract_reference;
 
-  if (typeof contract_reference === "undefined") {
+  if (typeof contractReference === "undefined") {
     return {
       redirect: { destination: ROOT_PATH, permanent: false },
     };
@@ -40,23 +28,20 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   return {
     props: {
-      contract_reference,
+      contractReference,
       isMobile: isMobile(req.headers["user-agent"]),
     },
   };
 };
 
-const contractToPaySelector = ({
-  payments: { getContractToPayReducer },
-}: RootState) => ({
-  isCompleted: getContractToPayReducer.completed,
-  contract: getContractToPayReducer.data,
-});
-
-const PaymentMethods = ({ contract_reference, isMobile }) => {
+function PaymentMethods({ contractReference, isMobile }) {
   useDesktopClass(!isMobile);
+  useTrackPaymentMethodsLeave();
   const dispatch = useDispatch();
-  const { contract, isCompleted } = useSelector(contractToPaySelector);
+  const { contractToPay, status } = useFetchContractToPay(contractReference);
+  const isCompleted = status === "completed";
+  const isLoading = status === "loading";
+
   useEffect(() => {
     return () => {
       dispatch(clearCouponData());
@@ -65,21 +50,24 @@ const PaymentMethods = ({ contract_reference, isMobile }) => {
 
   useEffect(() => {
     if (!isCompleted) return;
-    if (contract_reference !== contract.reference) return;
+    if (contractReference !== contractToPay.reference) return;
     analytics.trackInitiateCheckout({
-      contractPrice: contract.price,
-      celebrityId: contract.celebrity_id ?? contract.celebrityId,
+      contractPrice: contractToPay.price,
+      celebrityId: contractToPay.celebrity_id,
     });
-  }, [contract, isCompleted, contract_reference]);
+  }, [contractToPay, isCompleted, contractReference]);
 
   return (
     <>
       <CustomHead />
-      <DesktopPaymentMethodsPage contractReference={contract_reference} />
-      {/* <ValidateEmailModal /> */}
+      <PaymentMethodsPage
+        contract={contractToPay}
+        isCompleted={isCompleted}
+        isLoading={isLoading}
+      />
     </>
   );
-};
+}
 
 export default withAuthenticationRequired(PaymentMethods, {
   onRedirecting: LoadingPage,
