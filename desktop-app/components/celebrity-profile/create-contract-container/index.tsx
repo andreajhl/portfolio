@@ -19,7 +19,15 @@ const CreateContractWizard = dynamic<CreateContractWizardProps>(
     import(
       "desktop-app/components/celebrity-profile/create-contract-wizard"
     ).then((mod) => mod.CreateContractWizard),
-  { loading: () => <CreateContractWizardSkeleton /> }
+  {
+    loading: ({ error }) => {
+      if (error) {
+        console.log("<CreateContractWizard /> dynamic import fails:", error);
+      }
+
+      return <CreateContractWizardSkeleton />;
+    },
+  }
 );
 
 const mapStateToProps = ({ contracts }: RootState) => ({
@@ -72,6 +80,15 @@ function CreateContractContainer({
     isAuthenticated,
     localContractInProgress,
   ]);
+
+  // To debug possible failures removing the skeleton.
+  console.log({
+    cIPRC: contractInProgressRequest.completed,
+    iA: isAuthenticated,
+    iL: isLoading,
+    lCIP: localContractInProgress,
+    iRTCC: isReadyToCreateContract,
+  });
 
   useEffect(() => {
     if (
