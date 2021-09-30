@@ -1,0 +1,26 @@
+.containerstar.containerstar {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  border: 1px solid rgba(0, 0, 0, 1);
+
+  Input {
+    width: 70%;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 0px 7px 7px 0px;
+    text-indent: 0px;
+    font-size: 15px;
+    color: black;
+  }
+  button {
+    width: 30%;
+    background: none !important;
+    border-radius: 0px;
+    border: none !important;
+    border-right: 0.8px solid rgba(131, 131, 131, 0.65) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

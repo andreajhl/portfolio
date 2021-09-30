@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import styles from "./styles.module.scss";
-type InputWithSubmitHandlerProps = {
+
+export type InputWithSubmitHandlerProps = {
   className?: string;
   btnType?: string;
   style?: object;
@@ -11,7 +12,9 @@ type InputWithSubmitHandlerProps = {
   onSubmit?: () => void;
   inputID?: string;
   inputName?: string;
+  type?: string;
 };
+
 const InputWithSubmitHandler = ({
   className = "",
   placeHolderInput,
@@ -23,6 +26,7 @@ const InputWithSubmitHandler = ({
   onSubmit = () => {},
   inputName,
   inputID,
+  type = "text",
 }: InputWithSubmitHandlerProps) => {
   return (
     <div
@@ -39,6 +43,7 @@ const InputWithSubmitHandler = ({
           if (event.key === "Enter") onSubmit();
         }}
         onChange={({ target: { value } }) => setInputValue(value)}
+        type={type}
       />
       <button
         className={`btn ${btnType} ${styles.SubmitButton}`}
