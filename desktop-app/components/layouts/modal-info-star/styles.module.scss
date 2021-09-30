@@ -1,0 +1,81 @@
+.modalInfoStar {
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+  background-color: black;
+  padding: 5%;
+}
+
+.modalInfoStar p,
+.modalInfoStar h2,
+.modalInfoStar li {
+  color: white;
+}
+
+.modalInfoStar_Header {
+  line-height: 5px;
+  height: 10%;
+}
+
+.modalInfoStar_Header h2 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.modalInfoStar_Header p {
+  font-size: 16px;
+}
+
+.modalInfoStar_star {
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.modalInfoStar_body {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background-color: #222222;
+  border-radius: 19px;
+  padding: 5px;
+  margin-bottom: 10%;
+}
+
+.modalInfoStar_body_list {
+  font-size: 14px;
+}
+
+.modalInfoStar_body_list li {
+  margin: 5px 5px 0px 0px;
+}
+
+.modalInfoStar_body_list li::marker {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.modalInfoStar_footer {
+  height: 10%;
+  text-align: center;
+  font-size: 10px;
+}
+
+.popup-overlay {
+  z-index: 1;
+}
+
+.modal_btn {
+  text-align: right;
+}
+
+.modal_btn_i {
+  background: none !important;
+  border: none !important;
+}
+
+.modal_btn_i i {
+  font-size: 18px;
+  color: white;
+}
