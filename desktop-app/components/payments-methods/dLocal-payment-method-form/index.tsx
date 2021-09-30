@@ -10,8 +10,10 @@ import {
 import WarningMessage from "desktop-app/components/common/warning-message";
 import { FormattedMessage, useIntl } from "lib/custom-intl";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
@@ -150,7 +152,13 @@ function DLocalPaymentMethodForm({
                 celebrityId,
               });
             }
-            push(getPurchaseSummaryPath(String(contractReference)));
+            if (!checkFlutterWindowsInstance()) {
+              push(getPurchaseSummaryPath(String(contractReference)));
+            } else {
+              SubmitCallbackInFlutterWebview({
+                paymentType: "dlocal",
+              });
+            }
           } else {
             setPaymentError(response.statusDetails);
             setPaymentInProcess(false);

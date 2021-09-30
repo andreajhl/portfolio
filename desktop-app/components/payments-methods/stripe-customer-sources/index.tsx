@@ -3,7 +3,9 @@ import SubmitButton from "desktop-app/components/common/button/submit-button";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { processStripePayment } from "react-app/src/state/ducks/payments/actions";
@@ -114,12 +116,18 @@ function StripeCustomerSources({
               contractPrice,
               celebrityId,
             });
-            push(
-              PURCHASE_SUMMARY.replace(
-                ":contract_reference",
-                res.data.data.reference
-              )
-            );
+            if (!checkFlutterWindowsInstance()) {
+              push(
+                PURCHASE_SUMMARY.replace(
+                  ":contract_reference",
+                  res.data.data.reference
+                )
+              );
+            } else {
+              SubmitCallbackInFlutterWebview({
+                paymentType: "stripe",
+              });
+            }
           }
         })
         .catch((error) => {
