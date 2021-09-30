@@ -98,6 +98,17 @@ function CreateContractContainer({
     onReadyToCreateContractRef.current?.(contractInProgressRef.current);
   }, [isReadyToCreateContract]);
 
+  useEffect(() => {
+    // Ensure that <CreateContractWizard /> is displayed even if something fails to prevent payment flow interruptions.
+    const timeout = setTimeout(() => {
+      setIsReadyToCreateContract(true);
+    }, 10000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
+
   useEffect(
     () => () => {
       setIsReadyToCreateContract(false);
