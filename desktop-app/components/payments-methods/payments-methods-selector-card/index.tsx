@@ -11,6 +11,7 @@ import { CouponForm } from "../coupon-form";
 import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
 import { PaymentMethodsSelectorCardSkeleton } from "./skeleton";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+import useGetContractTotalPrice from "lib/hooks/useGetContractTotalPrice";
 
 const mapStateToProps = (state: RootState) => ({
   userInformation: state.session.getSessionReducer.data,
@@ -33,7 +34,6 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type PaymentsMethodsSelectorCardProps = {
-  contractPrice: number;
   contractReference: string;
   celebrityId: number;
 } & PropsFromRedux;
@@ -45,7 +45,6 @@ const messages = defineMessages({
 });
 
 function PaymentsMethodsSelectorCard({
-  contractPrice,
   contractReference,
   userInformation,
   userInformationCompleted,
@@ -60,6 +59,7 @@ function PaymentsMethodsSelectorCard({
   currentPaymentMethodSelected,
   celebrityId,
 }: PaymentsMethodsSelectorCardProps) {
+  const contractPrice = useGetContractTotalPrice();
   const { formatMessage } = useIntl();
   useEffect(() => {
     if (!userInformationLoading) getToken();

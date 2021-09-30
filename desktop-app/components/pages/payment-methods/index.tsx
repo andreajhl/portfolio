@@ -64,7 +64,6 @@ function PaymentMethodsPage({
             orElse={<PaymentMethodsSelectorCardSkeleton />}
           >
             <PaymentsMethodsSelectorCard
-              contractPrice={contract.price}
               contractReference={contract.reference}
               celebrityId={contract.celebrity_id}
             />

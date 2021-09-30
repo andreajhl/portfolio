@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import StripeForm from "../stripe-form";
 import Maybe from "desktop-app/components/common/helpers/maybe";
@@ -57,7 +56,7 @@ function PaymentMethodsAvailableList({
   const dispatch = useDispatch();
   const useCurrentOption = useSelector(useCurrentPaymentMethodSelected);
   const disabledAccordion = useSelector(isProcessingPayment);
-  const couponDataReducer = useSelector(couponData);
+
   const handleChangeCurrentOption = (newValue: all_payments_methods) => {
     const previousPaymentMethod = useCurrentOption;
     if (disabledAccordion || previousPaymentMethod === newValue) {
@@ -82,11 +81,7 @@ function PaymentMethodsAvailableList({
         >
           <Maybe it={el.paymentMethodType === "STRIPE"}>
             <StripeForm
-              contractPrice={
-                couponDataReducer.completed
-                  ? couponDataReducer.data.finalAmount
-                  : contractPrice
-              }
+              contractPrice={contractPrice}
               contractReference={contractReference}
               expanded={useCurrentOption === el.paymentMethodType}
               index={index}
@@ -108,11 +103,7 @@ function PaymentMethodsAvailableList({
             <PaypalForm
               expanded={useCurrentOption === el.paymentMethodType}
               index={index}
-              contractPrice={
-                couponDataReducer.completed
-                  ? couponDataReducer.data.finalAmount
-                  : contractPrice
-              }
+              contractPrice={contractPrice}
               discountCouponId={discountCouponId}
               contractReference={contractReference}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
