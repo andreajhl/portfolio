@@ -3,9 +3,9 @@ import { PriceLayout } from "desktop-app/components/common/helpers/price-layout"
 import useCouponDataState from "lib/hooks/useCouponDataState";
 import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 import useGetContractToPayState from "lib/hooks/useGetContractToPayState";
-import useHasAppliedCoupon from "lib/hooks/useHasAppliedCoupon";
 import Maybe from "../common/helpers/maybe";
 import { ReferralsStarIcon } from "../common/icons";
+import useGetContractTotalPrice from "lib/hooks/useGetContractTotalPrice";
 
 function getPercentageFromFloat(floatPercentage: number) {
   return (floatPercentage * 100).toFixed(2);
@@ -38,14 +38,9 @@ function OriginalPrice() {
 }
 
 function TotalPrice() {
-  const { couponData } = useCouponDataState();
-  const hasAppliedCoupon = useHasAppliedCoupon();
+  const totalPrice = useGetContractTotalPrice();
 
-  if (hasAppliedCoupon) {
-    return <PriceLayout decimalScale={1} price={couponData.finalAmount} />;
-  }
-
-  return <BasePrice />;
+  return <PriceLayout decimalScale={1} price={totalPrice} />;
 }
 
 function DiscountStarsSelectedPrice() {
