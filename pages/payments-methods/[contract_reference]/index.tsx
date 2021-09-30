@@ -12,6 +12,7 @@ import { clearCouponData } from "react-app/src/state/ducks/payments/actions";
 import useFetchContractToPay from "lib/hooks/useFetchContractToPay";
 import { PaymentMethodsPage } from "desktop-app/components/pages/payment-methods";
 import useTrackPaymentMethodsLeave from "lib/hooks/useTrackPaymentMethodsLeave";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 // import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 
 export const getServerSideProps: GetServerSideProps = async ({
@@ -41,12 +42,14 @@ function PaymentMethods({ contractReference, isMobile }) {
   const { contractToPay, status } = useFetchContractToPay(contractReference);
   const isCompleted = status === "completed";
   const isLoading = status === "loading";
+  const setDiscountStarsSelected = useDiscountStarsSelected()[1];
 
   useEffect(() => {
-    return () => {
-      dispatch(clearCouponData());
-    };
-  }, []);
+    dispatch(clearCouponData());
+    setDiscountStarsSelected(0);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contractReference]);
 
   useEffect(() => {
     if (!isCompleted) return;
