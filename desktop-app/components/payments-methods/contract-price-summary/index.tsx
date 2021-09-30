@@ -4,19 +4,26 @@ import {
   DiscountAmount,
   TotalPrice,
   OriginalPrice,
+  DiscountStarsSelectedPrice,
 } from "desktop-app/components/price-summary-layouts";
 import useContractHasCelebrityDiscount from "lib/hooks/useContractHasCelebrityDiscount";
 import useHasAppliedCoupon from "lib/hooks/useHasAppliedCoupon";
+import Collapse from "react-bootstrap/Collapse";
 import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
+import { useHasStarsDiscount } from "../../../../lib/hooks/useHasStarsDiscount";
 
 function ContractPriceSummary() {
   const hasAppliedCoupon = useHasAppliedCoupon();
   const contractHasCelebrityDiscount = useContractHasCelebrityDiscount();
+  const hasStarsDiscount = useHasStarsDiscount();
+
+  const hasDiscount =
+    hasAppliedCoupon || contractHasCelebrityDiscount || hasStarsDiscount;
 
   return (
     <div className={styles.ContractPriceSummary}>
-      <Maybe it={hasAppliedCoupon || contractHasCelebrityDiscount}>
+      <Collapse in={hasDiscount} unmountOnExit>
         <div className={styles.SummaryRow}>
           <span className={styles.BoldText}>
             <FormattedMessage defaultMessage="Precio Original" />
@@ -32,8 +39,8 @@ function ContractPriceSummary() {
             </span>
           </div>
         </div>
-      </Maybe>
-      <Maybe it={hasAppliedCoupon}>
+      </Collapse>
+      <Collapse in={hasAppliedCoupon} unmountOnExit>
         <div className={styles.SummaryRow}>
           <span className={styles.BoldText}>
             <FormattedMessage defaultMessage="Descuento" />
@@ -42,7 +49,17 @@ function ContractPriceSummary() {
             <DiscountAmount />
           </div>
         </div>
-      </Maybe>
+      </Collapse>
+      <Collapse in={hasStarsDiscount} unmountOnExit>
+        <div className={styles.SummaryRow}>
+          <span className={styles.BoldText}>
+            <FormattedMessage defaultMessage="Estrellas" />
+          </span>
+          <span className={styles.StarSelected}>
+            <DiscountStarsSelectedPrice />
+          </span>
+        </div>
+      </Collapse>
       <div className={styles.SummaryRow}>
         <span className={styles.BoldText}>
           <FormattedMessage defaultMessage="Total" />
