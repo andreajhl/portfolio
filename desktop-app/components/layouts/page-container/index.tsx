@@ -39,6 +39,7 @@ const NewsletterPopup = dynamic(
 type PageContainerProps = PageLayoutProps & PageLayoutMobileProps;
 
 function PageContainer(props: PageContainerProps) {
+  const { showNewsLetters = true } = props;
   const isOnMobile = useIsOnMobileScreen();
   useFetchCountries();
   const showSearch = props.showSearchInMobile ?? props.showSearch;
@@ -49,6 +50,7 @@ function PageContainer(props: PageContainerProps) {
   useBotMaker(props.showBotMakerFrame || forceShowBotMakerFrame);
   useDesktopClass(!isOnMobile);
   useIubendaCookiesConsent();
+
   const [
     shouldRenderNewsletterPopup,
     setShouldRenderNewsletterPopup,
@@ -63,7 +65,7 @@ function PageContainer(props: PageContainerProps) {
       <Maybe it={isOnMobile} orElse={<DesktopPageContainer {...props} />}>
         <MobilePageContainer {...props} showSearch={showSearch} />
       </Maybe>
-      <Maybe it={shouldRenderNewsletterPopup}>
+      <Maybe it={showNewsLetters && shouldRenderNewsletterPopup}>
         <NewsletterPopup />
       </Maybe>
     </>
