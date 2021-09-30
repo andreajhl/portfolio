@@ -1,8 +1,11 @@
+import { STAR_PRICE_IN_DOLLARS } from "constants/referrals";
 import { PriceLayout } from "desktop-app/components/common/helpers/price-layout";
 import useCouponDataState from "lib/hooks/useCouponDataState";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 import useGetContractToPayState from "lib/hooks/useGetContractToPayState";
 import useHasAppliedCoupon from "lib/hooks/useHasAppliedCoupon";
 import Maybe from "../common/helpers/maybe";
+import { ReferralsStarIcon } from "../common/icons";
 
 function getPercentageFromFloat(floatPercentage: number) {
   return (floatPercentage * 100).toFixed(2);
@@ -45,4 +48,25 @@ function TotalPrice() {
   return <BasePrice />;
 }
 
-export { TotalPrice, DiscountAmount, BasePrice, OriginalPrice };
+function DiscountStarsSelectedPrice() {
+  const starsSelected = useDiscountStarsSelected()[0] ?? 0;
+  const starsSelectedText = `${starsSelected} |`;
+
+  return (
+    <>
+      <ReferralsStarIcon /> {starsSelectedText}{" "}
+      <PriceLayout
+        decimalScale={2}
+        price={STAR_PRICE_IN_DOLLARS * starsSelected}
+      />
+    </>
+  );
+}
+
+export {
+  TotalPrice,
+  DiscountAmount,
+  BasePrice,
+  OriginalPrice,
+  DiscountStarsSelectedPrice,
+};
