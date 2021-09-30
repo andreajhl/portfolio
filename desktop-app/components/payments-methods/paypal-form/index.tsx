@@ -20,6 +20,7 @@ import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import PaymentMethodFormWrapper from "../form-wrapper";
 import PaymentMethodFormLabel from "../form-label";
 import PaymentMethodFormElement from "../form-element";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -52,6 +53,8 @@ function PaypalForm({
   const labelId = `label-${index}`;
   const [errorMessage, setErrorMessage] = useState(null);
   const togglePaymentInProcess = useTogglePaymentInProcess();
+  const stars = useDiscountStarsSelected()[0];
+
   const onPayPalButtonApprove = async (orderId, authorizationId) => {
     togglePaymentInProcess();
     const {
@@ -69,7 +72,8 @@ function PaypalForm({
       IP,
       userAgent,
       geolocation,
-      locale
+      locale,
+      stars
     )
       .then((res) => {
         const analyticsData = {

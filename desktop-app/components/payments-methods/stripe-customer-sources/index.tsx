@@ -2,6 +2,7 @@ import { PURCHASE_SUMMARY } from "constants/paths";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import WarningMessage from "desktop-app/components/common/warning-message";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import { useRouter } from "next/router";
@@ -60,6 +61,7 @@ function StripeCustomerSources({
   const [errorMessage, setErrorMessage] = useState("");
   const [paymentInProcess, setPaymentInProcess] = useState(false);
   const togglePaymentInProcess = useTogglePaymentInProcess();
+  const stars = useDiscountStarsSelected()[0];
 
   useEffect(() => {
     if (availableSources.length > 0) {
@@ -95,7 +97,8 @@ function StripeCustomerSources({
         IP,
         userAgent,
         geolocation,
-        locale
+        locale,
+        stars
       )
         .then((res) => {
           if (res.data.status === "ERROR") {

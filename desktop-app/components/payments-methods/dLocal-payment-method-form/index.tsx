@@ -9,6 +9,7 @@ import {
 } from "desktop-app/components/common/icons";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import { FormattedMessage, useIntl } from "lib/custom-intl";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
@@ -83,6 +84,7 @@ function DLocalPaymentMethodForm({
   const { push } = useRouter();
   const { locale } = useIntl();
   const togglePaymentInProcess = useTogglePaymentInProcess();
+  const stars = useDiscountStarsSelected()[0];
 
   const sectionId = `section-${index}`;
   const [paymentInProcess, setPaymentInProcess] = useState(false);
@@ -121,7 +123,8 @@ function DLocalPaymentMethodForm({
         IP,
         userAgent,
         geolocation,
-        locale
+        locale,
+        stars
       )
         .then((response) => {
           if (

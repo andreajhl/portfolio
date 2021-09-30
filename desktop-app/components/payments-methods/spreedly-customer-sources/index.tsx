@@ -14,6 +14,7 @@ import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
 import { useIntl } from "react-intl";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 
 interface SpreedlyCustomerSourcesProps {
   sources: {
@@ -38,6 +39,7 @@ function SpreedlyCustomSources({
   const [paymentError, setPaymentError] = useState(null);
   const [isProccesing, setIsProccesing] = useState(false);
   const userCurrency = useUserCurrentCurrency();
+  const stars = useDiscountStarsSelected()[0];
 
   const startPayment = () => {
     if (typeof selectedSourceIndex !== "number") {
@@ -65,6 +67,7 @@ function SpreedlyCustomSources({
         userAgent,
         geolocation,
         locale,
+        stars,
       });
       push(getPurchaseSummaryPath(contractReference));
     } catch (error) {

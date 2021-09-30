@@ -21,6 +21,7 @@ import SubmitButton from "desktop-app/components/common/button/submit-button";
 import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 
 type StripeComponentProps = {
   contractPrice: number;
@@ -54,6 +55,7 @@ function StripeCardForm({
     name: "",
   });
   const userCurrency = useUserCurrentCurrency();
+  const stars = useDiscountStarsSelected()[0];
 
   const createStripe3DFlow = async (sourceId) => {
     togglePaymentInProcess();
@@ -116,7 +118,8 @@ function StripeCardForm({
       IP,
       userAgent,
       geolocation,
-      locale
+      locale,
+      stars
     )
       .then((res) => {
         if (res.data.status === "ERROR") {

@@ -173,7 +173,8 @@ export const processStripePayment = (
   IP,
   userAgent,
   geolocation,
-  locale
+  locale,
+  stars = 0
 ) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-stripe-payment";
   const data = {
@@ -185,6 +186,7 @@ export const processStripePayment = (
     userAgent,
     geolocation,
     locale,
+    stars,
   };
   return new Promise((resolve, reject) => {
     apiService({
@@ -219,7 +221,8 @@ export const processDlocalPayment = (
   userIp,
   userAgent,
   geolocation,
-  locale
+  locale,
+  stars
 ) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-dlocal-payment";
   const data = {
@@ -235,6 +238,7 @@ export const processDlocalPayment = (
     userAgent,
     geolocation,
     locale,
+    stars,
   };
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
@@ -270,7 +274,8 @@ export const processPayPalPayment = (
   IP,
   userAgent,
   geolocation,
-  locale
+  locale,
+  stars
 ) => {
   const FINAL_PATH = "custom-endpoints/user-payments/process-paypal-payment";
   const data = {
@@ -283,6 +288,7 @@ export const processPayPalPayment = (
     userAgent,
     geolocation,
     locale,
+    stars,
   };
   return new Promise((resolutionFunc, rejectionFunc) => {
     apiService({
