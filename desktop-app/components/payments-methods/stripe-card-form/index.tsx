@@ -21,6 +21,8 @@ import SubmitButton from "desktop-app/components/common/button/submit-button";
 import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
+import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 
 type StripeComponentProps = {
   contractPrice: number;
@@ -88,10 +90,16 @@ function StripeCardForm({
         owner: billingDetails,
       })
       .then((response) => {
-        push({
-          pathname: iframeUrl,
-          query: { url: response.source.redirect.url },
-        });
+        if (!checkFlutterWindowsInstance()) {
+          push({
+            pathname: iframeUrl,
+            query: { url: response.source.redirect.url },
+          });
+        } else {
+          SubmitCallbackInFlutterWebview({
+            paymentType: "stripe",
+          });
+        }
       })
       .catch((error) => {
         setPaymentProcessError(error);
