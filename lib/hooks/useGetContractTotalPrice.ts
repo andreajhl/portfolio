@@ -14,7 +14,9 @@ function useGetContractTotalPrice() {
     ? couponData.finalAmount
     : contractToPay.price;
 
-  return priceWithCoupon - starsDiscount;
+  const priceWithStarsDiscount = priceWithCoupon - starsDiscount;
+
+  return priceWithStarsDiscount >= 0 ? priceWithStarsDiscount : 0;
 }
 
 export default useGetContractTotalPrice;
