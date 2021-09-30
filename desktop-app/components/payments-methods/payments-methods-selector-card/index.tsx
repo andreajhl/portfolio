@@ -1,17 +1,18 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DLocalPersonalInfoForm } from "../dLocal-personal-info-form";
 import PaymentMethodsAvailableList from "../payment-methods-available-list";
 import styles from "./styles.module.scss";
 import { RootState } from "react-app/src/state/store";
 import { sessionOperations } from "react-app/src/state/ducks/session";
 import { listPaymentGateways } from "react-app/src/state/ducks/payments/operations";
-import { connect, ConnectedProps, useSelector } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CouponForm } from "../coupon-form";
 import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
 import { PaymentMethodsSelectorCardSkeleton } from "./skeleton";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import useGetContractTotalPrice from "lib/hooks/useGetContractTotalPrice";
+import SelectorStar from "../selector-star";
 
 const mapStateToProps = (state: RootState) => ({
   userInformation: state.session.getSessionReducer.data,
@@ -135,6 +136,9 @@ function PaymentsMethodsSelectorCard({
         </div>
         <div className={styles.PaymentMethodFormSection}>
           <CouponForm contractReference={contractReference} />
+        </div>
+        <div className={styles.PaymentMethodFormSection}>
+          <SelectorStar />
         </div>
         <div>
           <img

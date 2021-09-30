@@ -1,0 +1,42 @@
+.containerPriceStarBody {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.containerPriceStarBody_left label {
+  font-size: 15px;
+  margin: 0px;
+}
+
+.containerPriceStarBody_left p {
+  font-size: 12px;
+  margin-bottom: 0;
+  color: #8d8d8d;
+  font-weight: 400;
+}
+
+.containerPriceStarBody_left_btn {
+  background: none;
+  border: none;
+  text-decoration: underline;
+}
+
+.containerPriceStarBody_right {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+}
+
+.btn_info {
+  background: none;
+  border: none;
+  font-weight: bold;
+  color: #fb177d;
+  cursor: pointer;
+}
+
+.FirstBuyDiscountCopyContainer {
+  grid-column: 1 / 3;
+}
