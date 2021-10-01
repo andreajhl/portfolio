@@ -12,6 +12,7 @@ import { setCookie } from "lib/setCookie";
 import { CURRENT_CURRENCY_TRM_CODE } from "constants/keys";
 import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 // import { reduxStore } from "../../../";
+import * as API_PATHS from "./paths";
 
 const reduxStore = {
   dispatch() {},
@@ -575,3 +576,25 @@ export const setDiscountStarsSelected = (starsSelected) => ({
   type: types.SET_DISCOUNT_STARS_SELECTED,
   payload: starsSelected,
 });
+
+export const processFreePayment = (data) =>
+  apiService({
+    method: "POST",
+    path: API_PATHS.PROCESS_FREE_PAYMENT_PATH,
+    body: data,
+  })
+    .then((res) => {
+      if (res.data.status === "ERROR") {
+        throw res.data.error;
+      }
+      return res.data.data;
+    })
+    .catch((error) => {
+      if (error.response) {
+        if (error.response.data) {
+          throw error.response.data.error;
+        }
+      } else {
+        throw new Error("ERROR");
+      }
+    });
