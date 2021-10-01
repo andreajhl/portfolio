@@ -10,6 +10,8 @@ import { ReferralsStarIcon } from "desktop-app/components/common/icons";
 import ModalInfoStar from "desktop-app/components/layouts/modal-info-star";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import isReferralWithFirstBuyDiscount from "lib/utils/isReferralWithFirstBuyDiscount";
+import { REFERRAL_FIRST_BUY_STARS } from "constants/referrals";
+import useGetContractTotalPrice from "lib/hooks/useGetContractTotalPrice";
 
 type SelectorStarProps = {
   className?: string;
@@ -17,31 +19,45 @@ type SelectorStarProps = {
 
 function SelectorStar({ className }: SelectorStarProps) {
   const { user } = useAuth();
+  const totalContractPrice = useGetContractTotalPrice();
   const [starsSelected, setStarsSelected] = useDiscountStarsSelected();
   const [isOpen, setIsOpen] = useState(false);
-  const availableStars = user?.stars || 0;
   const shouldApplyFirstBuyDiscount =
-    user && isReferralWithFirstBuyDiscount(user) && availableStars === 0;
+    user && isReferralWithFirstBuyDiscount(user);
+  const userStars = user?.stars || 0;
+  const availableStars = shouldApplyFirstBuyDiscount
+    ? userStars + REFERRAL_FIRST_BUY_STARS
+    : userStars;
 
   function closeModal() {
     setIsOpen(false);
   }
 
-  function changeStarsSelected(inputValue: string) {
-    if (shouldApplyFirstBuyDiscount) return;
-    const newStarsSelected = parseInt(inputValue, 10) ?? 0;
+  function isValidValue(newStarsSelected: number) {
+    if (
+      shouldApplyFirstBuyDiscount &&
+      newStarsSelected < REFERRAL_FIRST_BUY_STARS
+    ) {
+      return;
+    }
+    const starsDifference = newStarsSelected - starsSelected;
+    if (totalContractPrice - starsDifference < 0) return;
     if (newStarsSelected < 0) return;
     if (newStarsSelected > availableStars) return;
+    return true;
+  }
+
+  function changeStarsSelected(inputValue: string) {
+    const newStarsSelected = parseInt(inputValue, 10) ?? 0;
+    if (!isValidValue(newStarsSelected)) return;
     setStarsSelected(newStarsSelected);
   }
 
   useEffect(() => {
     if (!shouldApplyFirstBuyDiscount) return;
-    setStarsSelected(5);
+    setStarsSelected(REFERRAL_FIRST_BUY_STARS);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldApplyFirstBuyDiscount]);
-
-  const stars = shouldApplyFirstBuyDiscount ? starsSelected : availableStars;
 
   return (
     <div className={classes(styles.containerPriceStarBody, className)}>
@@ -63,7 +79,7 @@ function SelectorStar({ className }: SelectorStarProps) {
           >
             <FormattedMessage
               defaultMessage="Tienes {stars} estrellas"
-              values={{ stars }}
+              values={{ stars: availableStars }}
             />
           </Maybe>
           <button className={styles.btn_info} onClick={() => setIsOpen(true)}>

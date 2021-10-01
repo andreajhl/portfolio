@@ -1,12 +1,15 @@
 import { FormattedMessage } from "react-intl";
 import { PriceLayout } from "desktop-app/components/common/helpers/price-layout";
 import styles from "./styles.module.scss";
-import { STAR_PRICE_IN_DOLLARS } from "constants/referrals";
+import {
+  REFERRAL_FIRST_BUY_STARS,
+  STAR_PRICE_IN_DOLLARS,
+} from "constants/referrals";
 import Collapse from "react-bootstrap/Collapse";
 
 const discountPrice = (
   <PriceLayout
-    price={STAR_PRICE_IN_DOLLARS * 5}
+    price={STAR_PRICE_IN_DOLLARS * REFERRAL_FIRST_BUY_STARS}
     rounding={false}
     showPrefix
     fixedDecimalScale={false}
