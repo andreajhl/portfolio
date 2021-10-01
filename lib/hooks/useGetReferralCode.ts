@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { RootState } from "react-app/src/state/store";
 import { useDispatch, useSelector } from "react-redux";
 import { getReferralCode } from "react-app/src/state/ducks/referrals/actions";
+import { useAuth } from "lib/famosos-auth";
 
 function getStatus(getCodeReducer: {
   error_data: any;
@@ -34,17 +35,21 @@ function getCodeSelector({ referrals: { getCodeReducer } }: RootState) {
   return state;
 }
 
-function useGetReferralCode() {
-  const state = useSelector(getCodeSelector);
+function useGetReferralCode(): StateType {
+  const { code, status } = useSelector(getCodeSelector);
   const dispatch = useDispatch();
-  const shouldFetch = !state.code || state.status === "idle";
+  const { user } = useAuth();
+  const isLoadingUser = !user;
+  const userCode = user?.myReferralCode || code;
+  const shouldFetch = status === "idle" && !userCode;
 
   useEffect(() => {
+    if (isLoadingUser) return;
     if (!shouldFetch) return;
     dispatch(getReferralCode());
-  }, [dispatch, shouldFetch]);
+  }, [dispatch, shouldFetch, isLoadingUser]);
 
-  return state;
+  return { status: userCode ? "completed" : status, code: userCode };
 }
 
 export default useGetReferralCode;
