@@ -83,6 +83,7 @@ function SelectorStar({ className }: SelectorStarProps) {
       <AnimatedPopup
         className={styles.pop}
         open={isOpen}
+        onClose={closeModal}
         closeOnDocumentClick={false}
       >
         <ModalInfoStar closeModal={closeModal} />
