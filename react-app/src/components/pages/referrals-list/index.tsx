@@ -18,7 +18,7 @@ const loadingSkeletons = getArrayOfLength(2).map(() => (
 ));
 
 const initialOffset = 0;
-const resultsLimit = 1;
+const resultsLimit = 4;
 
 function ReferralsListPage() {
   const [offset, setOffset] = useState(initialOffset);
@@ -70,7 +70,7 @@ function ReferralsListPage() {
                 <InfiniteScroll
                   dataLength={referrals.length}
                   next={fetchMoreReferrals}
-                  hasMore={referrals.length > totalResults}
+                  hasMore={totalResults > referrals.length}
                   loader={loadingSkeletons}
                 >
                   {referrals.map((referral) => (
