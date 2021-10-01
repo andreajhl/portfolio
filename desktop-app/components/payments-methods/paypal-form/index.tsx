@@ -21,6 +21,8 @@ import PaymentMethodFormWrapper from "../form-wrapper";
 import PaymentMethodFormLabel from "../form-label";
 import PaymentMethodFormElement from "../form-element";
 import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
+import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -85,13 +87,26 @@ function PaypalForm({
           contractPrice,
           celebrityId,
         };
+
         if (res.status === 10) {
           analytics.trackContractPurchase({ celebrityId, contractPrice });
           analytics.track("CONTRACT_PAYED", analyticsData);
-          push(getPurchaseSummaryPath(res.reference));
+          if (!checkFlutterWindowsInstance()) {
+            push(getPurchaseSummaryPath(res.reference));
+          } else {
+            SubmitCallbackInFlutterWebview({
+              paymentType: "paypal",
+            });
+          }
         } else {
           analytics.track("PENDING_TO_VALIDATE_PAYMENT", analyticsData);
-          push(CLIENT_HIRINGS);
+          if (!checkFlutterWindowsInstance()) {
+            push(getPurchaseSummaryPath(res.reference));
+          } else {
+            SubmitCallbackInFlutterWebview({
+              paymentType: "paypal",
+            });
+          }
         }
       })
       .catch((error) => {

@@ -3,6 +3,7 @@ import { parseFullName } from "parse-full-name";
 const allowedShortFirstNames = ["Mark", "Maia"];
 
 export const getFirstName = (celebrityFullName) => {
+  if (typeof celebrityFullName !== "string") return "";
   const parsedFullName = parseFullName(
     celebrityFullName,
     "all",

@@ -15,6 +15,8 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
 import { useIntl } from "react-intl";
 import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
+import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 
 interface SpreedlyCustomerSourcesProps {
   sources: {
@@ -69,7 +71,13 @@ function SpreedlyCustomSources({
         locale,
         stars,
       });
-      push(getPurchaseSummaryPath(contractReference));
+      if (!checkFlutterWindowsInstance()) {
+        push(getPurchaseSummaryPath(contractReference));
+      } else {
+        SubmitCallbackInFlutterWebview({
+          paymentType: "spreedly",
+        });
+      }
     } catch (error) {
       setIsProccesing(false);
       setPaymentError(

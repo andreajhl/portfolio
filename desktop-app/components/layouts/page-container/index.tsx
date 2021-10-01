@@ -6,8 +6,13 @@ import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
 import useUserLocation from "lib/hooks/useUserLocationCookie";
 import useBotMaker from "lib/hooks/useBotmaker";
 import { useFetchCountries } from "lib/hooks/useFetchCountries";
+import { useIubendaCookiesConsent } from "desktop-app/components/docs/CookiesConsentES";
+import { useState } from "react";
+import useTimeout from "lib/hooks/useTimeout";
 
 const COUNTRIES_WHERE_SHOULD_ALWAYS_DISPLAY_BOTMAKER = ["BR"];
+
+const RECOMMENDED_TIME_TO_DISPLAY_POPUPS = 6000;
 
 const isCountryWhereShouldAlwaysDisplayBotMaker = (userLocation) =>
   COUNTRIES_WHERE_SHOULD_ALWAYS_DISPLAY_BOTMAKER.includes(userLocation);
@@ -31,16 +36,10 @@ const NewsletterPopup = dynamic(
   { ssr: false }
 );
 
-const CookiesConsent = dynamic(
-  import("react-app/src/components/layouts/cookies-consent").then(
-    (mod) => mod.CookiesConsent
-  ),
-  { ssr: false }
-);
-
 type PageContainerProps = PageLayoutProps & PageLayoutMobileProps;
 
 function PageContainer(props: PageContainerProps) {
+  const { showNewsLetters = true } = props;
   const isOnMobile = useIsOnMobileScreen();
   useFetchCountries();
   const showSearch = props.showSearchInMobile ?? props.showSearch;
@@ -50,14 +49,25 @@ function PageContainer(props: PageContainerProps) {
   );
   useBotMaker(props.showBotMakerFrame || forceShowBotMakerFrame);
   useDesktopClass(!isOnMobile);
+  useIubendaCookiesConsent();
+
+  const [
+    shouldRenderNewsletterPopup,
+    setShouldRenderNewsletterPopup,
+  ] = useState(false);
+
+  useTimeout(() => {
+    setShouldRenderNewsletterPopup(true);
+  }, RECOMMENDED_TIME_TO_DISPLAY_POPUPS);
 
   return (
     <>
       <Maybe it={isOnMobile} orElse={<DesktopPageContainer {...props} />}>
         <MobilePageContainer {...props} showSearch={showSearch} />
       </Maybe>
-      <NewsletterPopup />
-      <CookiesConsent />
+      <Maybe it={showNewsLetters && shouldRenderNewsletterPopup}>
+        <NewsletterPopup />
+      </Maybe>
     </>
   );
 }

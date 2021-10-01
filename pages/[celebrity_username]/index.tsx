@@ -39,7 +39,7 @@ const headData = defineMessages({
 });
 
 function isNotUsedAnymoreVersion(celebrityProfileVersion: string): boolean {
-  const notUsedAnymoreVersions = ["A", "C"];
+  const notUsedAnymoreVersions = ["A", "C", "B"];
   return notUsedAnymoreVersions.includes(celebrityProfileVersion);
 }
 

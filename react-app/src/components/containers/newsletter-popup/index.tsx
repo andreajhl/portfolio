@@ -9,6 +9,7 @@ import { NewsletterPopupContentBSkeleton } from "react-app/src/components/layout
 import { NewsletterPopupCompletedSkeleton } from "../../layouts/newsletter-popup-completed/skeleton";
 import { NEWSLETTER_POPUP_IS_CLOSED } from "react-app/src/constants/localStorageKeys";
 import dynamic from "next/dynamic";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 
 const NewsletterPopupCompleted = dynamic<{ closeModal: () => void }>(
   () =>
@@ -88,6 +89,8 @@ function NewsletterPopup() {
   const NewsletterPopupContent = popupIsVersionA
     ? NewsletterPopupContentA
     : NewsletterPopupContentB;
+
+  if (checkFlutterWindowsInstance()) return null;
 
   return (
     <AnimatedPopup open={isOpen} modal onClose={doNotOpenModalAgain}>
