@@ -13,6 +13,7 @@ import { PaymentMethodsSelectorCardSkeleton } from "./skeleton";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import useGetContractTotalPrice from "lib/hooks/useGetContractTotalPrice";
 import SelectorStar from "../selector-star";
+import { ProcessFreePaymentButton } from "desktop-app/components/process-free-payment-button";
 
 const mapStateToProps = (state: RootState) => ({
   userInformation: state.session.getSessionReducer.data,
@@ -82,14 +83,30 @@ function PaymentsMethodsSelectorCard({
     currentPaymentMethodSelected
   );
 
+  const isFreeContract = contractPrice <= 0;
+
   return (
     <Maybe
       it={!userInformationLoading && !paymentGatewayLoading}
       orElse={<PaymentMethodsSelectorCardSkeleton />}
     >
       <div className={styles.PaymentsMethodsSelectorCard}>
-        {shouldDisplayDLocalForm ? (
-          <>
+        <Maybe
+          it={!isFreeContract}
+          orElse={
+            <>
+              <h2 className={styles.PaymentMethodFormTitle}>
+                <FormattedMessage defaultMessage="Tu compra te sale gratis, confirma para continuar" />
+              </h2>
+              <div className={styles.PaymentMethodFormSection}>
+                <ProcessFreePaymentButton className="w-100">
+                  <FormattedMessage defaultMessage="Confirmar" />
+                </ProcessFreePaymentButton>
+              </div>
+            </>
+          }
+        >
+          <Maybe it={shouldDisplayDLocalForm}>
             <h2 className={styles.PaymentMethodFormTitle}>
               <FormattedMessage defaultMessage="1. Datos de la persona que realiza el pago." />
             </h2>
@@ -111,29 +128,29 @@ function PaymentsMethodsSelectorCard({
                   currency={currencyExchangeData.to}
                 />
               </div>
-            </Maybe>{" "}
-          </>
-        ) : null}
-        <div className={styles.PaymentMethodFormSection}>
-          <h2 className={styles.PaymentMethodFormTitle}>
-            {shouldDisplayDLocalForm ? 2 : 1}.
-            <FormattedMessage defaultMessage="Selecciona un Método de Pago." />
-          </h2>
-          <PaymentMethodsAvailableList
-            discountCouponId={couponData.data?.id || null}
-            onBuyerDataIncomplete={() => {
-              DLocalPersonalInfoFormRef.current.focus();
-              setErrorMessageForDLocalForm(
-                formatMessage(messages.errorDataIncomplete)
-              );
-            }}
-            contractPrice={contractPrice}
-            contractReference={contractReference}
-            payment_methods={paymentMethodsAvailable}
-            buyerData={dLocalBuyerFormData}
-            celebrityId={celebrityId}
-          />
-        </div>
+            </Maybe>
+          </Maybe>
+          <div className={styles.PaymentMethodFormSection}>
+            <h2 className={styles.PaymentMethodFormTitle}>
+              {shouldDisplayDLocalForm ? 2 : 1}.
+              <FormattedMessage defaultMessage="Selecciona un Método de Pago." />
+            </h2>
+            <PaymentMethodsAvailableList
+              discountCouponId={couponData.data?.id || null}
+              onBuyerDataIncomplete={() => {
+                DLocalPersonalInfoFormRef.current.focus();
+                setErrorMessageForDLocalForm(
+                  formatMessage(messages.errorDataIncomplete)
+                );
+              }}
+              contractPrice={contractPrice}
+              contractReference={contractReference}
+              payment_methods={paymentMethodsAvailable}
+              buyerData={dLocalBuyerFormData}
+              celebrityId={celebrityId}
+            />
+          </div>
+        </Maybe>
         <div className={styles.PaymentMethodFormSection}>
           <CouponForm contractReference={contractReference} />
         </div>
