@@ -19,7 +19,15 @@ const CreateContractWizard = dynamic<CreateContractWizardProps>(
     import(
       "desktop-app/components/celebrity-profile/create-contract-wizard"
     ).then((mod) => mod.CreateContractWizard),
-  { loading: () => <CreateContractWizardSkeleton /> }
+  {
+    loading: ({ error }) => {
+      if (error) {
+        console.log("<CreateContractWizard /> dynamic import fails:", error);
+      }
+
+      return <CreateContractWizardSkeleton />;
+    },
+  }
 );
 
 const mapStateToProps = ({ contracts }: RootState) => ({
@@ -73,6 +81,15 @@ function CreateContractContainer({
     localContractInProgress,
   ]);
 
+  // To debug possible failures removing the skeleton.
+  console.log({
+    cIPRC: contractInProgressRequest.completed,
+    iA: isAuthenticated,
+    iL: isLoading,
+    lCIP: localContractInProgress,
+    iRTCC: isReadyToCreateContract,
+  });
+
   useEffect(() => {
     if (
       localContractInProgress ||
@@ -97,6 +114,17 @@ function CreateContractContainer({
     if (!isReadyToCreateContract) return;
     onReadyToCreateContractRef.current?.(contractInProgressRef.current);
   }, [isReadyToCreateContract]);
+
+  useEffect(() => {
+    // Ensure that <CreateContractWizard /> is displayed even if something fails to prevent payment flow interruptions.
+    const timeout = setTimeout(() => {
+      setIsReadyToCreateContract(true);
+    }, 10000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
 
   useEffect(
     () => () => {
