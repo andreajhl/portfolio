@@ -25,6 +25,7 @@ const messages = defineMessages({
     defaultMessage:
       "No puedes usar este cupón debido a que sobrepasa el precio del pago",
   },
+  "Este cupon ha vencido": { defaultMessage: "Este cupón ha vencido" },
 });
 
 export const initialValues = {
