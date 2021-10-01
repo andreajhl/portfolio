@@ -14,6 +14,9 @@ const messages = defineMessages({
   fallbackErrorMessage: {
     defaultMessage: "Ha ocurrido un error agregando tu cupón",
   },
+  "Ya has utilizado este cupon": {
+    defaultMessage: "Ya has utilizado este cupón",
+  },
 });
 
 export const initialValues = {
