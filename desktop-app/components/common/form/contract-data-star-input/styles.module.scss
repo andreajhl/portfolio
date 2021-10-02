@@ -25,6 +25,14 @@
   }
 }
 
+.containerstar.containerstar input {
+  padding-left: 0.5em;
+}
+
+.containerstar.containerstar input::placeholder {
+  color: var(--gray-2);
+}
+
 .containerstar.HasError {
   border-color: var(--danger);
 
