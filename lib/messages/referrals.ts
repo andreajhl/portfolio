@@ -17,4 +17,19 @@ export const errorMessages = defineMessages({
   },
 });
 
+export const starsInputErrorMessages = defineMessages({
+  referralDiscountRequired: {
+    defaultMessage: "Debes gastar tus estrellas por ser referido",
+  },
+  starsExceeded: {
+    defaultMessage: "Solo se aplicarán {starsSelected} estrellas",
+  },
+  onlyPositives: {
+    defaultMessage: "Debes introducir un valor positivo",
+  },
+  notEnoughStars: {
+    defaultMessage: "No posees esa cantidad de estrellas",
+  },
+});
+
 export default messages;

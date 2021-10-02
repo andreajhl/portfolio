@@ -24,3 +24,11 @@
     align-items: center;
   }
 }
+
+.containerstar.HasError {
+  border-color: var(--danger);
+
+  input {
+    background-color: rgba(255, 237, 245, 1);
+  }
+}

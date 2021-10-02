@@ -1,4 +1,4 @@
-.containerPriceStarBody {
+.FieldContainer {
   display: grid;
   grid-template-columns: 70% 30%;
 }
@@ -37,6 +37,12 @@
   cursor: pointer;
 }
 
-.FirstBuyDiscountCopyContainer {
+.FirstBuyDiscountCopyContainer,
+.StarsErrorMessage {
   grid-column: 1 / 3;
+}
+
+.StarsErrorMessage {
+  font-size: 14px;
+  margin-top: 0.5rem;
 }
