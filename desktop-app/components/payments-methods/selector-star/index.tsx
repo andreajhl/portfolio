@@ -14,6 +14,7 @@ import { REFERRAL_FIRST_BUY_STARS } from "constants/referrals";
 import useGetContractTotalPrice from "lib/hooks/useGetContractTotalPrice";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
 import { starsInputErrorMessages } from "lib/messages/referrals";
+import usePopupWithBackButton from "lib/hooks/usePopupWithBackButton";
 
 const initialInputError = null;
 
@@ -28,17 +29,13 @@ function SelectorStar({ className }: SelectorStarProps) {
   const { user } = useAuth();
   const totalContractPrice = useGetContractTotalPrice();
   const [starsSelected, setStarsSelected] = useDiscountStarsSelected();
-  const [isOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, openModal, closeModal] = usePopupWithBackButton();
   const shouldApplyFirstBuyDiscount =
     user && isReferralWithFirstBuyDiscount(user);
   const userStars = user?.stars || 0;
   const availableStars = shouldApplyFirstBuyDiscount
     ? userStars + REFERRAL_FIRST_BUY_STARS
     : userStars;
-
-  function closeModal() {
-    setIsOpen(false);
-  }
 
   function cleanInputError() {
     setInputError(initialInputError);
@@ -104,7 +101,7 @@ function SelectorStar({ className }: SelectorStarProps) {
                 values={{ stars: availableStars }}
               />
             </Maybe>
-            <button className={styles.btn_info} onClick={() => setIsOpen(true)}>
+            <button className={styles.btn_info} onClick={openModal}>
               <FormattedMessage defaultMessage="Mas info." />
             </button>
           </p>
@@ -126,7 +123,7 @@ function SelectorStar({ className }: SelectorStarProps) {
       />
       <AnimatedPopup
         className={styles.pop}
-        open={isOpen}
+        open={modalIsOpen}
         onClose={closeModal}
         closeOnDocumentClick={false}
       >
