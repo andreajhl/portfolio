@@ -18,7 +18,7 @@ const loadingSkeletons = getArrayOfLength(2).map(() => (
 ));
 
 const initialOffset = 0;
-const resultsLimit = 4;
+const resultsLimit = 10;
 
 function ReferralsListPage() {
   const [offset, setOffset] = useState(initialOffset);
