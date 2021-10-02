@@ -14,12 +14,14 @@ function UserStarsLink({ className }: UserStarsLinkProps) {
   const starsCount = user?.stars || 0;
 
   return (
-    <Link
-      href={REFERRALS_HOME}
-      className={classes(styles.UserStarsLink, className)}
-    >
-      <StarWithNumber size={26} count={starsCount} color="black" />
-    </Link>
+    <div className={styles.TadaAnimation}>
+      <Link
+        href={REFERRALS_HOME}
+        className={classes(styles.UserStarsLink, className)}
+      >
+        <StarWithNumber size={26} count={starsCount} color="black" />
+      </Link>
+    </div>
   );
 }
 

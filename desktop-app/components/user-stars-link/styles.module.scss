@@ -2,3 +2,39 @@
 .UserStarsLink:focus svg path {
   fill: var(--primary) !important;
 }
+
+.TadaAnimation {
+  animation-fill-mode: both;
+  animation-duration: 1000ms;
+  animation-delay: 2000ms;
+  animation-iteration-count: 1;
+  animation-name: Tada;
+}
+
+@keyframes Tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    transform: scale3d(0.7, 0.7, 0.7) rotate3d(0, 0, 1, -6deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.5, 1.5, 1.5) rotate3d(0, 0, 1, 6deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.5, 1.5, 1.5) rotate3d(0, 0, 1, -6deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
