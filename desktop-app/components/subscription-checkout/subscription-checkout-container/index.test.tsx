@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import { SubscriptionCheckoutContainer } from "./";
+import { SubscriptionCheckoutContainer } from ".";
 
 it("should renders without crashing", () => {
   const wrapper = shallow(<SubscriptionCheckoutContainer />);

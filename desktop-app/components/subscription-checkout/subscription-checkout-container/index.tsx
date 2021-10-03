@@ -6,10 +6,10 @@ import {
 } from "react-app/src/state/ducks/payments/actions";
 import { analytics } from "react-app/src/state/utils/gtm";
 import { FormattedMessage } from "react-intl";
-import SubmitButton from "../common/button/submit-button";
-import { LoadingSpinner } from "../common/loading-spinner";
-import SubscriptionCustomerSources from "../payments-methods/subscription-customer-sources";
-import { SpreedlyCheckoutForm } from "../subscription-checkout/spreedly-checkout-form";
+import SubmitButton from "../../common/button/submit-button";
+import { LoadingSpinner } from "../../common/loading-spinner";
+import SubscriptionCustomerSources from "../../payments-methods/subscription-customer-sources";
+import { SpreedlyCheckoutForm } from "../spreedly-checkout-form";
 
 type SubscriptionCheckoutContainerProps = {
   celebrityId: string;
