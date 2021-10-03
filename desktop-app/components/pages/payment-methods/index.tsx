@@ -9,7 +9,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import { ContractInfoSkeleton } from "desktop-app/components/payments-methods/contract-info/skeleton";
 import { trackPaymentMethodsBackButtonClick } from "react-app/src/state/utils/gtm";
 import { defineMessages, useIntl } from "react-intl";
-import ContractToPayType from "desktop-app/types/contractToPayType";
+import useGetContractToPayState from "lib/hooks/useGetContractToPayState";
 
 const messages = defineMessages({
   pageHeadingTitle: {
@@ -17,19 +17,14 @@ const messages = defineMessages({
   },
 });
 
-type PaymentMethodsProps = {
-  isLoading: boolean;
-  isCompleted: boolean;
-  contract: ContractToPayType;
-};
+type PaymentMethodsProps = {};
 
-function PaymentMethodsPage({
-  isLoading,
-  isCompleted,
-  contract,
-}: PaymentMethodsProps) {
+function PaymentMethodsPage(props: PaymentMethodsProps) {
   const { formatMessage } = useIntl();
   const pageHeadingTitle = formatMessage(messages.pageHeadingTitle);
+  const { contractToPay: contract, status } = useGetContractToPayState();
+  const isLoading = status === "loading";
+  const isCompleted = status === "completed";
 
   return (
     <PageContainer showFooter={false} showSearch={false} showBotMakerFrame>
