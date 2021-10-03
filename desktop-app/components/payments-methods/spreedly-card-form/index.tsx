@@ -26,7 +26,7 @@ import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencie
 import { getTextOfFormatAllowedForUserDocument } from "react-app/src/state/utils/getTextOfFormatAllowedForUserDocument";
 import { useRef } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
+import { CardGenerationReminder } from "desktop-app/components/payments-methods/card-generation-reminder";
 import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";

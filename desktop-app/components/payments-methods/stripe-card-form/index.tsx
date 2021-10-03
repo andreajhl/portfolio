@@ -18,7 +18,7 @@ import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
-import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
+import { CardGenerationReminder } from "desktop-app/components/payments-methods/card-generation-reminder";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
 import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";

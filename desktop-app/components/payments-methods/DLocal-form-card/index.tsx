@@ -9,7 +9,7 @@ import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import { analytics } from "react-app/src/state/utils/gtm";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
-import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
+import { CardGenerationReminder } from "desktop-app/components/payments-methods/card-generation-reminder";
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
 declare global {
