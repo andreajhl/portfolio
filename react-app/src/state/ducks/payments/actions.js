@@ -13,6 +13,7 @@ import { CURRENT_CURRENCY_TRM_CODE } from "constants/keys";
 import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
 // import { reduxStore } from "../../../";
 import * as API_PATHS from "./paths";
+import { initialValues as initialBuyerDataValues } from "lib/hooks/useBuyerDataForm";
 
 const reduxStore = {
   dispatch() {},
@@ -598,3 +599,8 @@ export const processFreePayment = (data) =>
         throw new Error("ERROR");
       }
     });
+
+export const setBuyerData = (buyerData = initialBuyerDataValues) => ({
+  type: types.SET_BUYER_DATA,
+  payload: buyerData,
+});

@@ -79,3 +79,5 @@ export const SET_CURRENT_PAYMENT_METHOD_NAME =
 
 export const SET_DISCOUNT_STARS_SELECTED =
   "user-payments/SET_DISCOUNT_STARS_SELECTED";
+
+export const SET_BUYER_DATA = "user-payments/SET_BUYER_DATA";

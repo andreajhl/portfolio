@@ -5,6 +5,7 @@ import {
 import getCookie from "react-app/src/utils/getCookie";
 import { combineReducers } from "redux";
 import * as types from "./types";
+import { initialValues as initialBuyerDataValues } from "lib/hooks/useBuyerDataForm";
 
 const fetchPaymentGatewaysInitialState = {
   loading: false,
@@ -287,6 +288,13 @@ export function discountStarsSelected(
   return state;
 }
 
+export function buyerData(state = initialBuyerDataValues, action) {
+  if (action.type === types.SET_BUYER_DATA) {
+    return action.payload;
+  }
+  return state;
+}
+
 export default combineReducers({
   fetchPaymentGatewaysReducer,
   currencyExchangeReducer,
@@ -295,4 +303,5 @@ export default combineReducers({
   setPaymentInProcess,
   userPaymentMethodSelected,
   discountStarsSelected,
+  buyerData,
 });
