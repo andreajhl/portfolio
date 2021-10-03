@@ -70,11 +70,6 @@ function PaymentsMethodsSelectorCard({
     listPaymentGateways(currencyExchangeData.to);
   }, [currencyExchangeData.to]);
   const DLocalPersonalInfoFormRef = useRef(null);
-  const [dLocalBuyerFormData, setDLocalBuyerFormData] = useState({
-    buyer_name: "",
-    email_address: "",
-    identification_document: "",
-  });
   const [errorMessageForDLocalForm, setErrorMessageForDLocalForm] = useState(
     ""
   );
@@ -117,15 +112,7 @@ function PaymentsMethodsSelectorCard({
                 ref={DLocalPersonalInfoFormRef}
               >
                 <DLocalPersonalInfoForm
-                  initialValues={{
-                    buyer_name: userInformation.fullName,
-                    email_address: userInformation.email,
-                    identification_document:
-                      userInformation.identification_document || "",
-                  }}
-                  onChangeValues={setDLocalBuyerFormData}
                   errorMessage={errorMessageForDLocalForm}
-                  currency={currencyExchangeData.to}
                 />
               </div>
             </Maybe>
@@ -146,7 +133,6 @@ function PaymentsMethodsSelectorCard({
               contractPrice={contractPrice}
               contractReference={contractReference}
               payment_methods={paymentMethodsAvailable}
-              buyerData={dLocalBuyerFormData}
               celebrityId={celebrityId}
             />
           </div>

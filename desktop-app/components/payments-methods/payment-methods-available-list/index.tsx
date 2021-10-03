@@ -7,7 +7,10 @@ import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValid
 import { useSelector } from "react-redux";
 import { RootState } from "react-app/src/state/store";
 import { SpreedlyForm } from "../spreedly-form";
-import { PaymentMethodNameType } from "desktop-app/types/payment-methods";
+import {
+  PaymentMethodNameType,
+  PaymentMethodOption,
+} from "desktop-app/types/payment-methods";
 import useCurrentPaymentMethodSelected from "../../../../lib/hooks/useCurrentPaymentMethodSelected";
 
 const isProcessingPayment = ({ payments }: RootState) =>
@@ -16,22 +19,10 @@ const isProcessingPayment = ({ payments }: RootState) =>
 type PaymentMethodsAvailableListProps = {
   payment_methods: {
     paymentMethodType: PaymentMethodNameType;
-    availablePaymentMethods?: {
-      id: number;
-      identifier: string;
-      name: string;
-      brand: string;
-      redirect: boolean;
-      logo: string;
-    }[];
+    availablePaymentMethods?: PaymentMethodOption[];
   }[];
   contractPrice: number;
   contractReference: string;
-  buyerData: {
-    buyer_name: string;
-    email_address: string;
-    identification_document: string;
-  };
   onBuyerDataIncomplete: () => void;
   discountCouponId: number | null;
   celebrityId: number;
@@ -41,7 +32,6 @@ function PaymentMethodsAvailableList({
   payment_methods,
   contractPrice,
   contractReference,
-  buyerData,
   onBuyerDataIncomplete,
   discountCouponId,
   celebrityId,
@@ -102,7 +92,6 @@ function PaymentMethodsAvailableList({
               expanded={useCurrentOption === el.paymentMethodType}
               index={index}
               discountCouponId={discountCouponId}
-              buyerData={buyerData}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
               contractReference={contractReference}
               handleBuyerDataIncomplete={onBuyerDataIncomplete}

@@ -20,15 +20,13 @@ import React, { useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { processDlocalPayment } from "react-app/src/state/ducks/payments/actions";
 import { analytics } from "react-app/src/state/utils/gtm";
-import { getIpAddress } from "react-app/src/state/utils/localizationApiService";
-import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
-import getCookie from "react-app/src/utils/getCookie";
 import DLocalFormCard from "../DLocal-form-card";
 import DLocalSelectPaymentMethod from "../DLocal-select-payment-method";
 import PaymentMethodFormElement from "../form-element";
 import PaymentMethodFormLabel from "../form-label";
 import PaymentMethodFormWrapper from "../form-wrapper";
 import styles from "./styles.module.scss";
+import useBuyerDataState from "./useBuyerDataState";
 
 export const AVAILABLE_PAYMENTS_METHODS_LABEL = {
   CREDIT_CARD: <FormattedMessage defaultMessage="Tarjeta de Crédito" />,
@@ -59,11 +57,6 @@ type DLocalPaymentMethodFormProps = {
     name: string;
     redirect: boolean;
   }>;
-  buyerData: {
-    buyer_name: string;
-    email_address: string;
-    identification_document: string;
-  };
   discountCouponId: null | number;
   handleBuyerDataIncomplete: () => void;
   celebrityId: number;
@@ -76,7 +69,6 @@ function DLocalPaymentMethodForm({
   onToggle,
   paymentsMethodsAvailable,
   paymentMethodType,
-  buyerData,
   handleBuyerDataIncomplete,
   contractReference,
   discountCouponId,
@@ -87,6 +79,7 @@ function DLocalPaymentMethodForm({
   const { locale } = useIntl();
   const togglePaymentInProcess = useTogglePaymentInProcess();
   const stars = useDiscountStarsSelected()[0];
+  const buyerData = useBuyerDataState();
 
   const sectionId = `section-${index}`;
   const [paymentInProcess, setPaymentInProcess] = useState(false);
@@ -116,9 +109,9 @@ function DLocalPaymentMethodForm({
       processDlocalPayment(
         contractReference,
         option.paymentMethodId,
-        buyerData.buyer_name,
-        buyerData.email_address,
-        buyerData.identification_document,
+        buyerData.buyerFullName,
+        buyerData.buyerEmail,
+        buyerData.buyerDocument,
         discountCouponId,
         cardToken,
         deviceId,
