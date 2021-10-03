@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import { SocialMediaShareMenu } from "./";
+import { SocialMediaShareMenu } from ".";
 
 it("should renders without crashing", () => {
   const wrapper = shallow(<SocialMediaShareMenu />);

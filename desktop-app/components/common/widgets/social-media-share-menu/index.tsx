@@ -16,7 +16,7 @@ import {
   TwitterIcon,
   WhatsappIcon,
   TelegramIcon,
-} from "../common/icons";
+} from "../../icons";
 import styles from "./styles.module.scss";
 import classes from "classnames";
 

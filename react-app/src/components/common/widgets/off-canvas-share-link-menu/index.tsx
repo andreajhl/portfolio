@@ -2,7 +2,7 @@ import { CustomOffCanvas, CustomOffCanvasProps } from "../custom-off-canvas";
 import {
   SocialMediaShareMenu,
   SocialMediaShareMenuProps,
-} from "desktop-app/components/social-media-share-menu";
+} from "desktop-app/components/common/widgets/social-media-share-menu";
 
 const offCanvasStyle = {
   content: {
