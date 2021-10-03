@@ -1,9 +1,9 @@
 import { ComponentPropsWithoutRef, ReactNode, useState } from "react";
 import styles from "./styles.module.scss";
 import classes from "classnames";
-import { SubmitText } from "../common/helpers/submit-button-text";
+import { SubmitText } from "../../common/helpers/submit-button-text";
 import usePromise from "lib/hooks/usePromise";
-import { CollapsibleErrorMessage } from "../common/widgets/collapsible-error-message";
+import { CollapsibleErrorMessage } from "../../common/widgets/collapsible-error-message";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import { useIntl } from "react-intl";
 import useCouponDataState from "lib/hooks/useCouponDataState";

@@ -5,7 +5,7 @@ import {
   TotalPrice,
   OriginalPrice,
   DiscountStarsSelectedPrice,
-} from "desktop-app/components/price-summary-layouts";
+} from "desktop-app/components/payments-methods/price-summary-layouts";
 import useContractHasCelebrityDiscount from "lib/hooks/useContractHasCelebrityDiscount";
 import useHasAppliedCoupon from "lib/hooks/useHasAppliedCoupon";
 import Collapse from "react-bootstrap/Collapse";

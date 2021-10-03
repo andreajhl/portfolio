@@ -13,7 +13,7 @@ import { PaymentMethodsSelectorCardSkeleton } from "./skeleton";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import useGetContractTotalPrice from "lib/hooks/useGetContractTotalPrice";
 import SelectorStar from "../selector-star";
-import { ProcessFreePaymentButton } from "desktop-app/components/process-free-payment-button";
+import { ProcessFreePaymentButton } from "desktop-app/components/payments-methods/process-free-payment-button";
 
 const mapStateToProps = (state: RootState) => ({
   userInformation: state.session.getSessionReducer.data,

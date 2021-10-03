@@ -3,8 +3,8 @@ import { PriceLayout } from "desktop-app/components/common/helpers/price-layout"
 import useCouponDataState from "lib/hooks/useCouponDataState";
 import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 import useGetContractToPayState from "lib/hooks/useGetContractToPayState";
-import Maybe from "../common/helpers/maybe";
-import { ReferralsStarIcon } from "../common/icons";
+import Maybe from "../../common/helpers/maybe";
+import { ReferralsStarIcon } from "../../common/icons";
 import useGetContractTotalPrice from "lib/hooks/useGetContractTotalPrice";
 
 function getPercentageFromFloat(floatPercentage: number) {
