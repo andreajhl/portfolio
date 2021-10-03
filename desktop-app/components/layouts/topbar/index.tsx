@@ -6,7 +6,7 @@ import { TopbarSearchInput } from "desktop-app/components/topbar/search-input";
 import LangDropdown from "../lang-dropdown";
 import { useAuth } from "lib/famosos-auth";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { UserStarsLink } from "desktop-app/components/user-stars-link";
+import { UserStarsLink } from "desktop-app/components/common/widgets/user-stars-link";
 
 function TopBar() {
   const { user } = useAuth();

@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import { UserStarsLink } from "./";
+import { UserStarsLink } from ".";
 
 it("should renders without crashing", () => {
   const wrapper = shallow(<UserStarsLink />);

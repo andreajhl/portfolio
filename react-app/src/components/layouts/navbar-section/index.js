@@ -11,7 +11,7 @@ import LoginButton from "../../containers/login-button/login-button";
 import Maybe from "../../common/helpers/maybe";
 import { useIntl, defineMessage } from "react-intl";
 import LangDropdown from "../../containers/lang-dropdown";
-import { UserStarsLink } from "desktop-app/components/user-stars-link";
+import { UserStarsLink } from "desktop-app/components/common/widgets/user-stars-link";
 import { ReferralFirstBuyDiscountBanner } from "../referral-first-buy-discount-banner";
 import isReferralWithFirstBuyDiscount from "lib/utils/isReferralWithFirstBuyDiscount";
 // import { UserNotificationsPopup } from "../user-notifications-popup";
