@@ -3,26 +3,19 @@ import StripeForm from "../stripe-form";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import PaypalForm from "../paypal-form";
 import DLocalPaymentMethodForm from "../dLocal-payment-method-form";
-import { ALL_AVAILABLE_PAYMENTS_METHODS } from "constants/availablePaymentsMethods";
 import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
-import { analytics } from "react-app/src/state/utils/gtm";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "react-app/src/state/store";
 import { SpreedlyForm } from "../spreedly-form";
-import { setNewPaymentMethodSelected } from "react-app/src/state/ducks/payments/actions";
-
-type all_payments_methods = typeof ALL_AVAILABLE_PAYMENTS_METHODS[number];
+import { PaymentMethodNameType } from "desktop-app/types/payment-methods";
+import useCurrentPaymentMethodSelected from "../../../../lib/hooks/useCurrentPaymentMethodSelected";
 
 const isProcessingPayment = ({ payments }: RootState) =>
   payments.setPaymentInProcess.processing;
-const useCurrentPaymentMethodSelected = ({ payments }: RootState) =>
-  payments.userPaymentMethodSelected.name;
-const couponData = ({ payments }: RootState) =>
-  payments.fetchDiscountCouponReducer;
 
 type PaymentMethodsAvailableListProps = {
   payment_methods: {
-    paymentMethodType: all_payments_methods;
+    paymentMethodType: PaymentMethodNameType;
     availablePaymentMethods?: {
       id: number;
       identifier: string;
@@ -53,23 +46,15 @@ function PaymentMethodsAvailableList({
   discountCouponId,
   celebrityId,
 }: PaymentMethodsAvailableListProps) {
-  const dispatch = useDispatch();
-  const useCurrentOption = useSelector(useCurrentPaymentMethodSelected);
+  const [
+    useCurrentOption,
+    changeCurrentPaymentMethodSelected,
+  ] = useCurrentPaymentMethodSelected();
   const disabledAccordion = useSelector(isProcessingPayment);
 
-  const handleChangeCurrentOption = (newValue: all_payments_methods) => {
-    const previousPaymentMethod = useCurrentOption;
-    if (disabledAccordion || previousPaymentMethod === newValue) {
-      return;
-    }
-    dispatch(setNewPaymentMethodSelected(newValue));
-    analytics.track("CHANGE_ACTIVE_PAYMENT_METHOD_OPTION", {
-      previousPaymentMethod,
-      newPaymentMethod: newValue,
-      buyerData,
-      celebrityId,
-      contractReference,
-    });
+  const handleChangeCurrentOption = (newValue: PaymentMethodNameType) => {
+    if (disabledAccordion) return;
+    changeCurrentPaymentMethodSelected(newValue);
   };
 
   return (
