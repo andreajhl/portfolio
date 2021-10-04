@@ -17,7 +17,7 @@ import DLocalFormCard from "../DLocal-form-card";
 import useBuyerDataState from "../../../../lib/hooks/useBuyerDataState";
 import DLocalSelectPaymentMethod from "../DLocal-select-payment-method";
 import PaymentMethodFormElement from "../form-element-v.2";
-import PaymentMethodFormLabel from "../form-label";
+import PaymentMethodFormLabel from "../form-label-v.2";
 import PaymentMethodFormWrapper from "../form-wrapper";
 import styles from "./styles.module.scss";
 import { DLocalPersonalInfoFormV2 } from "../dLocal-personal-info-form-v.2";

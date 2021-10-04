@@ -14,6 +14,7 @@ import useGetContractToPayState from "lib/hooks/useGetContractToPayState";
 import useHasAppliedCoupon from "lib/hooks/useHasAppliedCoupon";
 import useContractHasCelebrityDiscount from "lib/hooks/useContractHasCelebrityDiscount";
 import Maybe from "desktop-app/components/common/helpers/maybe";
+import { useHasStarsDiscount } from "lib/hooks/useHasStarsDiscount";
 import classes from "classnames";
 import { Collapse } from "react-bootstrap";
 
@@ -30,6 +31,7 @@ function ContractDataStar() {
 
   const hasAppliedCoupon = useHasAppliedCoupon();
   const contractHasCelebrityDiscount = useContractHasCelebrityDiscount();
+  const hasStarsDiscount = useHasStarsDiscount();
 
   return (
     <div className={styles.containerPriceStar}>
@@ -43,7 +45,7 @@ function ContractDataStar() {
               <p style={{ marginLeft: "5%" }}>
                 <FormattedMessage defaultMessage="Video personalizado" />
               </p>
-              <p>
+              <p className={styles.InitialVideoPrice}>
                 <Maybe it={contractHasCelebrityDiscount}>
                   <span
                     className={classes(
@@ -54,7 +56,11 @@ function ContractDataStar() {
                     <OriginalPrice />
                   </span>
                 </Maybe>
-                <BasePrice />
+                <span
+                  className={classes(hasStarsDiscount && styles.RemovedPrice)}
+                >
+                  <BasePrice />
+                </span>
               </p>
             </div>
             <div className={styles.containerPriceStarBody_left_div}>

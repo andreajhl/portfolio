@@ -72,6 +72,19 @@
 
 .OriginalPrice {
   text-decoration: line-through;
-  margin-right: 0.4em;
   color: #dc3545 !important;
+}
+
+.OriginalPrice + * {
+  margin-left: 0.4em;
+}
+
+.RemovedPrice {
+  text-decoration: line-through;
+}
+
+.InitialVideoPrice {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
