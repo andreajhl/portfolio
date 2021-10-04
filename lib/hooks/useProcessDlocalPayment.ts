@@ -1,4 +1,4 @@
-import useBuyerDataState from "desktop-app/components/payments-methods/dLocal-payment-method-form/useBuyerDataState";
+import useBuyerDataState from "lib/hooks/useBuyerDataState";
 import useProcessPayment from "./useProcessPayment";
 import useTrackContractPayment from "./useTrackContractPayment";
 

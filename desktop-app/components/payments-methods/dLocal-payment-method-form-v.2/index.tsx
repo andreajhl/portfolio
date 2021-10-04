@@ -14,12 +14,14 @@ import React, { useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { analytics } from "react-app/src/state/utils/gtm";
 import DLocalFormCard from "../DLocal-form-card";
+import useBuyerDataState from "../../../../lib/hooks/useBuyerDataState";
 import DLocalSelectPaymentMethod from "../DLocal-select-payment-method";
 import PaymentMethodFormElement from "../form-element";
 import PaymentMethodFormLabel from "../form-label";
 import PaymentMethodFormWrapper from "../form-wrapper";
 import styles from "./styles.module.scss";
-import useBuyerDataState from "../../../../lib/hooks/useBuyerDataState";
+import { DLocalPersonalInfoFormV2 } from "../dLocal-personal-info-form-v.2";
+import { defineMessages, useIntl } from "react-intl";
 
 export const AVAILABLE_PAYMENTS_METHODS_LABEL = {
   CREDIT_CARD: <FormattedMessage defaultMessage="Tarjeta de Crédito" />,
@@ -35,6 +37,12 @@ const PAYMENTS_METHODS_ICONS = {
   BANK_TRANSFER: () => <ExchangeArrowIcon className={styles.CardIcon} />,
   TICKET: () => <CashIcon className={styles.CardIcon} />,
 };
+
+const messages = defineMessages({
+  errorDataIncomplete: {
+    defaultMessage: "Por favor ingrese todos los datos",
+  },
+});
 
 type DLocalPaymentMethodFormProps = {
   expanded: boolean;
@@ -56,26 +64,30 @@ type DLocalPaymentMethodFormProps = {
   contractPrice: number;
 };
 
-function DLocalPaymentMethodForm({
+function DLocalPaymentMethodFormV2({
   expanded,
   index,
   onToggle,
   paymentsMethodsAvailable,
   paymentMethodType,
-  handleBuyerDataIncomplete,
   contractReference,
   discountCouponId,
   celebrityId,
   contractPrice,
 }: DLocalPaymentMethodFormProps) {
+  const { formatMessage } = useIntl();
   const togglePaymentInProcess = useTogglePaymentInProcess();
   const buyerData = useBuyerDataState();
-
   const sectionId = `section-${index}`;
   const [paymentInProcess, setPaymentInProcess] = useState(false);
   const [paymentError, setPaymentError] = useState("");
+  const [buyerDataError, setBuyerDataError] = useState("");
   const labelId = `label-${index}`;
   const processDlocalPayment = useProcessDlocalPayment();
+
+  function handleBuyerDataIncomplete() {
+    setBuyerDataError(formatMessage(messages.errorDataIncomplete));
+  }
 
   const handleStartPayment = async (cardToken, option) => {
     analytics.track("START_DLOCAL_PAYMENT", {
@@ -105,6 +117,8 @@ function DLocalPaymentMethodForm({
   const isMissingBuyerData = () => Object.values(buyerData).includes("");
 
   const onStartRegisterPayment = (token, option) => {
+    setBuyerDataError("");
+
     // Check if buyer daya is completed
     if (!isMissingBuyerData()) {
       handleStartPayment(token, option);
@@ -131,6 +145,7 @@ function DLocalPaymentMethodForm({
         sectionId={sectionId}
         expanded={expanded}
       >
+        <DLocalPersonalInfoFormV2 errorMessage={buyerDataError} />
         <Maybe it={expanded}>
           <Maybe
             it={isADLocalPaymentMethodWithCardRequired(paymentMethodType)}
@@ -166,4 +181,4 @@ function DLocalPaymentMethodForm({
   );
 }
 
-export default DLocalPaymentMethodForm;
+export default DLocalPaymentMethodFormV2;

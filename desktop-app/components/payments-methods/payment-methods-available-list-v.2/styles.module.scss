@@ -1,0 +1,12 @@
+.PaymentMethodsAvailable {
+  width: 100%;
+  margin-bottom: 14px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
+}
+
+.PaymentMethodsAvailableDiv {
+  width: 90%;
+  margin-left: 5%;
+}

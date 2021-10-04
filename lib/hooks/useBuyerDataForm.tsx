@@ -9,7 +9,7 @@ import { allowedFormatDocuments } from "constants/userDocumentFormatAllowedByCur
 import { setBuyerData } from "react-app/src/state/ducks/payments/actions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import useBuyerDataState from "desktop-app/components/payments-methods/dLocal-payment-method-form/useBuyerDataState";
+import useBuyerDataState from "lib/hooks/useBuyerDataState";
 import { BuyerDataType } from "desktop-app/types/payment-methods";
 import { userDetails } from "desktop-app/types/userDetails";
 

@@ -1,6 +1,5 @@
 import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
 import { listPaymentGateways } from "react-app/src/state/ducks/payments/operations";
-import PaymentMethodsAvailableList from "../payment-methods-available-list";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import { sessionOperations } from "react-app/src/state/ducks/session";
 import { PaymentMethodsSelectorCardSkeleton } from "desktop-app/components/payments-methods/payments-methods-selector-card/skeleton";
@@ -9,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 
 import styles from "./styles.module.scss";
+import PaymentMethodsAvailableListV2 from "../payment-methods-available-list-v.2";
 
 type PaymentsMethodsSelectorCardProps = {
   contractPrice: number;
@@ -78,7 +78,7 @@ function PaymentsMethodsSelectorCardV2({
             <h2 className={styles.PaymentMethodFormTitle}>
               <FormattedMessage defaultMessage="SELECCIONA MÉTODO DE PAGO" />
             </h2>
-            <PaymentMethodsAvailableList
+            <PaymentMethodsAvailableListV2
               discountCouponId={fetchDiscountCouponReducer.data?.id || null}
               onBuyerDataIncomplete={() => {
                 DLocalPersonalInfoFormRef.current.focus();
@@ -89,7 +89,6 @@ function PaymentsMethodsSelectorCardV2({
               contractPrice={contractPrice}
               contractReference={contractReference}
               payment_methods={paymentMethodsAvailable}
-              buyerData={dLocalBuyerFormData}
               celebrityId={celebrityId}
             />
           </div>

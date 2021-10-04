@@ -1,73 +1,80 @@
 .PaymentsMethodsSelectorCard {
-    display: flex;
-    width: 100%;
-    min-height: 231px;
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    &Div{
-      width: 90%;
-      height: auto;
-      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-      border-radius: 10px;
-      flex: 0 1 100%;
-      @media only screen and (min-width: 768px) {
-        flex-basis: 720px;
-        padding: 32px 42px 40px;
-      }
-      @media only screen and (min-width: 1366px) {
-        flex-basis: 520px;
-      }
-    }
-   
+  display: flex;
+  width: 100%;
+  min-height: 231px;
+  height: auto;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.PaymentsMethodsSelectorCardDiv {
+  width: 90%;
+  height: auto;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  flex: 0 1 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .PaymentsMethodsSelectorCardDiv {
+    flex-basis: 720px;
+    padding: 32px 42px 40px;
   }
-  
-  .PaymentMethodFormSection {
-    margin-bottom: 28px;
-    width: 100%;
-    height: auto;
+}
+
+@media only screen and (min-width: 1366px) {
+  .PaymentsMethodsSelectorCardDiv {
+    flex-basis: 520px;
   }
-  
-  .PaymentMethodFormTitle {
-    font-family: Manrope;
-    font-style: normal;
-    width: auto;
-    margin:5% 0% 23px 8%;
-    font-weight: 900;
-    font-size: 17px;
-    line-height: 25px;
-    color: rgba(251, 23, 125, 1);
-  }
-  
-  .PaymentSecureBanner {
-    display: block;
-    margin: 0 auto;
-    height: 62px;
-    margin-bottom: 26px;
-  }
-  
-  .DisclaimerTermsAndPolicies {
-    font-family: Manrope;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 16px;
-    text-align: center;
-  }
-  .SkeletonForm {
-    margin-bottom: 45px;
-  }
-  
-  .SkeletonForm > span + span > span {
-    margin-top: 16px;
-  }
-  
-  .SkeletonPaymentMethods > span + span > span {
-    margin-top: 14px;
-  }
-  
-  .SkeletonPaymentMethod {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 7px;
-  }
-  
+}
+
+.PaymentMethodFormSection {
+  margin-bottom: 28px;
+  width: 100%;
+  height: auto;
+}
+
+.PaymentMethodFormTitle {
+  font-family: Manrope;
+  font-style: normal;
+  width: auto;
+  margin: 5% 0% 23px 8%;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 25px;
+  color: #fb177d;
+}
+
+.PaymentSecureBanner {
+  display: block;
+  margin: 0 auto;
+  height: 62px;
+  margin-bottom: 26px;
+}
+
+.DisclaimerTermsAndPolicies {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.SkeletonForm {
+  margin-bottom: 45px;
+}
+
+.SkeletonForm > span + span > span {
+  margin-top: 16px;
+}
+
+.SkeletonPaymentMethods > span + span > span {
+  margin-top: 14px;
+}
+
+.SkeletonPaymentMethod {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+}
