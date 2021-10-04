@@ -11,6 +11,12 @@ const PaymentMethodsLayoutA = dynamic<any>(() =>
   )
 );
 
+const PaymentMethodsLayoutB = dynamic<any>(() =>
+  import("../../payments-methods/payment-methods-layout-b").then(
+    (mod) => mod.PaymentMethodsLayoutB
+  )
+);
+
 const messages = defineMessages({
   pageHeadingTitle: {
     defaultMessage: "Confirmación de compra",
@@ -19,7 +25,7 @@ const messages = defineMessages({
 
 function PaymentMethodLayout({ layoutProps, checkoutVersion = "A" }) {
   if (checkoutVersion === "B") {
-    return null;
+    return <PaymentMethodsLayoutB {...layoutProps} />;
   }
   return <PaymentMethodsLayoutA {...layoutProps} />;
 }
@@ -33,7 +39,12 @@ function PaymentMethodsPage(props: PaymentMethodsProps) {
   const isLoading = status === "loading";
   const isCompleted = status === "completed";
 
-  const layoutProps = { isCompleted, isLoading, contract };
+  const layoutProps = {
+    isCompleted,
+    isLoading,
+    contract,
+    checkoutVersion: "A",
+  };
 
   return (
     <PageContainer showFooter={false} showSearch={false} showBotMakerFrame>
