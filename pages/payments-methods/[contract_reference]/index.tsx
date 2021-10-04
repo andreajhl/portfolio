@@ -7,6 +7,13 @@ import { ROOT_PATH } from "react-app/src/routing/Paths";
 import { GetServerSideProps } from "next";
 import { PaymentMethodsPage } from "desktop-app/components/pages/payment-methods";
 import useSetupPaymentMethods from "../../../lib/hooks/useSetupPaymentMethods";
+import {
+  getCheckoutVersion,
+  isNotUsedAnymoreCheckoutVersion,
+  getCheckoutVersionDependingOnTime,
+  setCheckoutVersion,
+} from "react-app/src/utils/checkoutVersion";
+import { useEffect } from "react";
 // import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 
 export const getServerSideProps: GetServerSideProps = async ({
@@ -21,22 +28,38 @@ export const getServerSideProps: GetServerSideProps = async ({
     };
   }
 
+  let checkoutVersion = getCheckoutVersion(req?.headers?.cookie);
+  if (!checkoutVersion || isNotUsedAnymoreCheckoutVersion(checkoutVersion)) {
+    checkoutVersion = getCheckoutVersionDependingOnTime();
+  }
+
   return {
     props: {
       contractReference,
       isMobile: isMobile(req.headers["user-agent"]),
+      checkoutVersion,
     },
   };
 };
 
-function PaymentMethods({ contractReference, isMobile }) {
+function PaymentMethods({ contractReference, isMobile, checkoutVersion }) {
   useDesktopClass(!isMobile);
   useSetupPaymentMethods(contractReference);
+
+  useEffect(() => {
+    const checkoutVersionFromCookies = getCheckoutVersion();
+    if (
+      !checkoutVersionFromCookies ||
+      isNotUsedAnymoreCheckoutVersion(checkoutVersionFromCookies)
+    ) {
+      setCheckoutVersion(checkoutVersion);
+    }
+  }, [checkoutVersion]);
 
   return (
     <>
       <CustomHead />
-      <PaymentMethodsPage />
+      <PaymentMethodsPage checkoutVersion={checkoutVersion} />
     </>
   );
 }
