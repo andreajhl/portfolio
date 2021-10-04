@@ -1,12 +1,21 @@
 import { CustomOffCanvas } from "react-app/src/components/common/widgets/custom-off-canvas";
 import { FormattedMessage } from "react-intl";
-import { RootState } from "react-app/src/state/store";
-import { PriceLayout } from "desktop-app/components/common/helpers/price-layout";
 import SelectorStar from "../selector-star";
 import styles from "./styles.module.scss";
-import { useSelector } from "react-redux";
 import { useState } from "react";
 import { CouponFormV2 } from "../coupon-form-v.2";
+import {
+  BasePrice,
+  OriginalPrice,
+  TotalPrice,
+  DiscountAmount,
+} from "../price-summary-layouts";
+import useGetContractToPayState from "lib/hooks/useGetContractToPayState";
+import useHasAppliedCoupon from "lib/hooks/useHasAppliedCoupon";
+import useContractHasCelebrityDiscount from "lib/hooks/useContractHasCelebrityDiscount";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import classes from "classnames";
+import { Collapse } from "react-bootstrap";
 
 const offCanvasStyle = {
   content: {
@@ -14,24 +23,14 @@ const offCanvasStyle = {
   },
 };
 
-type FormValuesType = {
-  star: number;
-  original_price: number;
-  contractPrice: number;
-};
-
-function ContractDataStar({
-  star,
-  contractPrice,
-  original_price,
-  contractReference,
-}: FormValuesType) {
-  const couponData = useSelector(
-    ({ payments }: RootState) => payments.fetchDiscountCouponReducer
-  );
-
-  const [state, setstate] = useState("");
+function ContractDataStar() {
+  const contractReference = useGetContractToPayState()?.contractToPay
+    ?.reference;
   const [isOpen, setIsOpen] = useState(false);
+
+  const hasAppliedCoupon = useHasAppliedCoupon();
+  const contractHasCelebrityDiscount = useContractHasCelebrityDiscount();
+
   return (
     <div className={styles.containerPriceStar}>
       <div className={styles.containerPriceStar_div}>
@@ -44,19 +43,22 @@ function ContractDataStar({
               <p style={{ marginLeft: "5%" }}>
                 <FormattedMessage defaultMessage="Video personalizado" />
               </p>
-              <p
-                style={
-                  original_price !== contractPrice
-                    ? { textDecoration: "line-through", color: "#8D8D8D" }
-                    : { textDecoration: "none" }
-                }
-                className={styles.containerPriceStarBody_left_p}
-              >
-                <PriceLayout decimalScale={0} price={original_price} />
+              <p>
+                <Maybe it={contractHasCelebrityDiscount}>
+                  <span
+                    className={classes(
+                      styles.containerPriceStarBody_left_p,
+                      styles.OriginalPrice
+                    )}
+                  >
+                    <OriginalPrice />
+                  </span>
+                </Maybe>
+                <BasePrice />
               </p>
             </div>
             <div className={styles.containerPriceStarBody_left_div}>
-              <SelectorStar star={star} setstate={setstate} state={state} />
+              <SelectorStar />
             </div>
             <button
               className={styles.containerPriceStarBody_left_btn}
@@ -68,21 +70,23 @@ function ContractDataStar({
             </button>
           </div>
         </div>
+        <Collapse in={hasAppliedCoupon} unmountOnExit>
+          <div className={styles.containerPriceStarBody_left_header}>
+            <p style={{ marginLeft: "5%" }}>
+              <FormattedMessage defaultMessage="Descuento" />
+            </p>
+            <p>
+              <DiscountAmount />
+            </p>
+          </div>
+        </Collapse>
         <div className={styles.containerPriceStarFooter}>
           <p>
-            {" "}
             <FormattedMessage defaultMessage="Total" />
           </p>
           <div>
             <p>
-              <PriceLayout
-                decimalScale={0}
-                price={
-                  couponData.completed
-                    ? couponData.data.finalAmount
-                    : contractPrice
-                }
-              />
+              <TotalPrice />
             </p>
           </div>
           <CustomOffCanvas

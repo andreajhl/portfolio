@@ -6,7 +6,6 @@ type ContractInfoProps = {
   celebrityAvatar: string;
   celebrityFullName: string;
   occasion: string;
-  star: number;
   price: number;
   celebrityDiscountPercentage: number;
   original_price: number;
@@ -18,10 +17,6 @@ function ContractInfoV2({
   celebrityAvatar,
   celebrityFullName,
   occasion,
-  price,
-  star,
-  original_price,
-  contractReference,
 }: ContractInfoProps) {
   return (
     <div className={styles.ContractInfo}>
@@ -37,13 +32,7 @@ function ContractInfoV2({
       <div
         className={`${styles.ContractInfoSection} ${styles.ContractInfoData}`}
       >
-        <ContractDataStar
-          contractPrice={price}
-          original_price={original_price}
-          contractReference={contractReference}
-          //agregar variable de estrellas
-          star={5}
-        />
+        <ContractDataStar />
       </div>
     </div>
   );

@@ -27,7 +27,6 @@ function PaymentMethodsLayoutB({
             celebrityFullName={contract.celebrity_full_name}
             occasion={contract.occasion}
             price={contract.price}
-            star={5}
             original_price={contract.original_price}
             celebrityDiscountPercentage={contract.discount_percentage}
             priceBeforeCelebrityDiscount={contract.original_price}
