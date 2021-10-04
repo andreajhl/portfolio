@@ -4,6 +4,7 @@ import { trackPaymentMethodsBackButtonClick } from "react-app/src/state/utils/gt
 import { defineMessages, useIntl } from "react-intl";
 import useGetContractToPayState from "lib/hooks/useGetContractToPayState";
 import dynamic from "next/dynamic";
+import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
 
 const PaymentMethodsLayoutA = dynamic<any>(() =>
   import("../../payments-methods/payment-methods-layout-a").then(
@@ -24,15 +25,19 @@ const messages = defineMessages({
 });
 
 function PaymentMethodLayout({ layoutProps, checkoutVersion = "A" }) {
-  if (checkoutVersion === "B") {
-    return <PaymentMethodsLayoutB {...layoutProps} />;
+  const isMobile = useIsOnMobileScreen();
+
+  if (!isMobile || checkoutVersion === "A") {
+    return <PaymentMethodsLayoutA {...layoutProps} />;
   }
-  return <PaymentMethodsLayoutA {...layoutProps} />;
+  return <PaymentMethodsLayoutB {...layoutProps} />;
 }
 
-type PaymentMethodsProps = {};
+type PaymentMethodsProps = {
+  checkoutVersion?: "A" | "B";
+};
 
-function PaymentMethodsPage(props: PaymentMethodsProps) {
+function PaymentMethodsPage({ checkoutVersion }: PaymentMethodsProps) {
   const { formatMessage } = useIntl();
   const pageHeadingTitle = formatMessage(messages.pageHeadingTitle);
   const { contractToPay: contract, status } = useGetContractToPayState();
@@ -43,7 +48,6 @@ function PaymentMethodsPage(props: PaymentMethodsProps) {
     isCompleted,
     isLoading,
     contract,
-    checkoutVersion: "A",
   };
 
   return (
@@ -54,7 +58,10 @@ function PaymentMethodsPage(props: PaymentMethodsProps) {
       >
         {pageHeadingTitle}
       </PageHeading>
-      <PaymentMethodLayout layoutProps={layoutProps} />
+      <PaymentMethodLayout
+        layoutProps={layoutProps}
+        checkoutVersion={checkoutVersion}
+      />
     </PageContainer>
   );
 }
