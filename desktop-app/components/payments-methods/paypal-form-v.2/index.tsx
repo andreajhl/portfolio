@@ -4,7 +4,7 @@ import {
   PaypalIcon,
 } from "desktop-app/components/common/icons";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { processPayPalPayment } from "react-app/src/state/ducks/payments/actions";
 import PaypalReactButton from "../paypal-react-button";
@@ -98,6 +98,12 @@ function PaypalFormV2({
       });
   };
 
+  const [isOpen, setisOpen] = useState(expanded);
+  
+  useEffect(() => {
+    setisOpen(expanded)
+  }, [expanded]);
+
   return (
     <PayPalScriptProvider
       options={{
@@ -122,9 +128,10 @@ function PaypalFormV2({
         <PaymentMethodFormElement
           labelId={labelId}
           sectionId={sectionId}
-          expanded={expanded}
+          expanded={isOpen}
         >
           <Maybe it={expanded}>
+            <button className={styles.btn} onClick={()=>setisOpen(false)}>x</button>
             <p>
               <FormattedMessage
                 defaultMessage="Haz clic en el siguiente botón para hacer el pago utilizando tu

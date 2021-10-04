@@ -34,11 +34,15 @@
   margin: 0px;
 }
 
-.containerPriceStarBody_left_div label {
-  font-size: 12px;
-  margin: 0px;
-  color: #8d8d8d;
-  font-weight: 400;
+.containerPriceStarBody_left_div {
+  width: 90%;
+  margin-left: 5%;
+  label {
+    font-size: 12px;
+    margin: 0px;
+    color: #8d8d8d;
+    font-weight: 400;
+  }
 }
 
 .containerPriceStarBody_left_div label b {
@@ -51,6 +55,7 @@
   text-decoration: underline;
   margin-top: 8px;
   margin-bottom: 8px;
+  margin-left: 3%;
 }
 
 .containerPriceStarFooter {

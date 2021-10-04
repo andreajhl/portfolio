@@ -73,29 +73,36 @@ function StripeFormV2({
       .catch((e) => console.log(e));
   };
 
+  const [isOpen, setisOpen] = useState(expanded)
+  useEffect(() => {
+    setisOpen(expanded)
+  }, [expanded])
+  
   const sectionId = `section-${index}`;
   const labelId = `label-${index}`;
   return (
     <StripeProvider stripe={stripeInstance}>
       <PaymentMethodFormWrapper>
-        <PaymentMethodFormLabel onToggle={onToggle}>
-          <CardIcon className={styles.CardIcon} />
+        <PaymentMethodFormLabel onToggle={onToggle} >
+            <CardIcon className={styles.CardIcon} />
 
-          <span className={styles.LabelSection}>
-            <FormattedMessage defaultMessage="Tarjeta de Crédito" />
-          </span>
-          {expanded ? (
-            <DotCircle className={styles.CheckIcon} />
-          ) : (
-            <Ellipse className={styles.CheckIcon} />
-          )}
+            <span className={styles.LabelSection}>
+              <FormattedMessage defaultMessage="Tarjeta de Crédito" />
+            </span>          
+            {expanded ? (
+              <DotCircle className={styles.CheckIcon} />
+            ) : (
+              <Ellipse className={styles.CheckIcon} />
+            )}  
+
         </PaymentMethodFormLabel>
         <PaymentMethodFormElement
           labelId={labelId}
           sectionId={sectionId}
-          expanded={expanded}
+          expanded={isOpen}
         >
           <Maybe it={expanded}>
+            <button className={styles.btn} onClick={()=>setisOpen(false)}>x</button>
             {showCardForm ? (
               <Elements>
                 <StripeCardFormV2

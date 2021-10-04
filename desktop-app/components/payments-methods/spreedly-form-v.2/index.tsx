@@ -80,6 +80,13 @@ function SpreedlyFormV2({
 
   const sectionId = `section-${index}`;
   const labelId = `label-${index}`;
+
+  const [isOpen, setisOpen] = useState(expanded);
+  
+  useEffect(() => {
+    setisOpen(expanded)
+  }, [expanded]);
+
   return (
     <PaymentMethodFormWrapper>
       <PaymentMethodFormLabel role="button" onToggle={onToggle}>
@@ -96,8 +103,9 @@ function SpreedlyFormV2({
       <PaymentMethodFormElement
         labelId={labelId}
         sectionId={sectionId}
-        expanded={expanded}
+        expanded={isOpen}
       >
+          <button className={styles.btn} onClick={()=>setisOpen(false)}>x</button>
         {(() => {
           if (isLoading) {
             return <LoadingSpinner />;

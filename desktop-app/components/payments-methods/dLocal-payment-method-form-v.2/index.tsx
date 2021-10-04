@@ -10,13 +10,13 @@ import { FormattedMessage } from "lib/custom-intl";
 import useProcessDlocalPayment from "lib/hooks/useProcessDlocalPayment";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { analytics } from "react-app/src/state/utils/gtm";
 import DLocalFormCard from "../DLocal-form-card";
 import useBuyerDataState from "../../../../lib/hooks/useBuyerDataState";
 import DLocalSelectPaymentMethod from "../DLocal-select-payment-method";
-import PaymentMethodFormElement from "../form-element";
+import PaymentMethodFormElement from "../form-element-v.2";
 import PaymentMethodFormLabel from "../form-label";
 import PaymentMethodFormWrapper from "../form-wrapper";
 import styles from "./styles.module.scss";
@@ -127,6 +127,13 @@ function DLocalPaymentMethodFormV2({
     }
   };
 
+  const [isOpen, setisOpen] = useState(expanded);
+  
+  useEffect(() => {
+    setisOpen(expanded)
+  }, [expanded]);
+
+
   return (
     <PaymentMethodFormWrapper>
       <PaymentMethodFormLabel onToggle={onToggle}>
@@ -143,8 +150,9 @@ function DLocalPaymentMethodFormV2({
       <PaymentMethodFormElement
         labelId={labelId}
         sectionId={sectionId}
-        expanded={expanded}
+        expanded={isOpen}
       >
+         <button className={styles.btn} onClick={()=>setisOpen(false)}>x</button>
         <DLocalPersonalInfoFormV2 errorMessage={buyerDataError} />
         <Maybe it={expanded}>
           <Maybe

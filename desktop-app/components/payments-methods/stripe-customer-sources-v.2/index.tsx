@@ -165,7 +165,7 @@ function StripeCustomerSources({
   };
   return (
     <div className={styles.StripeCustomerSourcesWrapper}>
-      <p>
+      <p className={styles.SourcesWrapper_title}>
         <FormattedMessage defaultMessage="Selecciona una tarjeta" />
       </p>
       {availableSources.map((source, index) => (
