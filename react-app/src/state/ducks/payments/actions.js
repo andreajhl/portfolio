@@ -7,13 +7,11 @@ import {
 } from "../../utils";
 import { history } from "../../../routing/History";
 import * as ROUTING_PATHS from "../../../routing/Paths";
-import * as GTM from "../../utils/gtm";
 import { setCookie } from "lib/setCookie";
 import { CURRENT_CURRENCY_TRM_CODE } from "constants/keys";
-import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencies";
-// import { reduxStore } from "../../../";
 import * as API_PATHS from "./paths";
 import { initialValues as initialBuyerDataValues } from "lib/hooks/useBuyerDataForm";
+import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 
 const reduxStore = {
   dispatch() {},
@@ -604,3 +602,23 @@ export const setBuyerData = (buyerData = initialBuyerDataValues) => ({
   type: types.SET_BUYER_DATA,
   payload: buyerData,
 });
+
+export async function processPayment({ gateway = "free", ...paymentData }) {
+  const buyerIdentityData = await getBuyerIdentityData();
+  try {
+    const response = await apiService({
+      path: API_PATHS.getProcessPaymentPath(gateway),
+      method: "POST",
+      body: { ...buyerIdentityData, ...paymentData },
+    });
+    if (response.data.status === "ERROR") {
+      throw response.data.error;
+    }
+    return response.data.data;
+  } catch (error) {
+    if (error?.response?.data) {
+      throw error?.response?.data?.error;
+    }
+    throw new Error(error?.toString?.());
+  }
+}
