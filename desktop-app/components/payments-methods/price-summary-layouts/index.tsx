@@ -28,13 +28,13 @@ function DiscountAmount() {
 function BasePrice() {
   const { contractToPay } = useGetContractToPayState();
 
-  return <PriceLayout decimalScale={0} price={contractToPay.price} />;
+  return <PriceLayout decimalScale={1} price={contractToPay.price} />;
 }
 
 function OriginalPrice() {
   const { contractToPay } = useGetContractToPayState();
 
-  return <PriceLayout decimalScale={0} price={contractToPay.original_price} />;
+  return <PriceLayout decimalScale={1} price={contractToPay.original_price} />;
 }
 
 function TotalPrice() {
@@ -51,7 +51,7 @@ function DiscountStarsSelectedPrice() {
     <>
       <ReferralsStarIcon /> {starsSelectedText}{" "}
       <PriceLayout
-        decimalScale={2}
+        decimalScale={1}
         price={STAR_PRICE_IN_DOLLARS * starsSelected}
       />
     </>
