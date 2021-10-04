@@ -62,6 +62,7 @@ type DLocalPaymentMethodFormProps = {
   handleBuyerDataIncomplete: () => void;
   celebrityId: number;
   contractPrice: number;
+  closePaymentModal: () => void;
 };
 
 function DLocalPaymentMethodFormV2({
@@ -74,6 +75,7 @@ function DLocalPaymentMethodFormV2({
   discountCouponId,
   celebrityId,
   contractPrice,
+  closePaymentModal,
 }: DLocalPaymentMethodFormProps) {
   const { formatMessage } = useIntl();
   const togglePaymentInProcess = useTogglePaymentInProcess();
@@ -127,13 +129,6 @@ function DLocalPaymentMethodFormV2({
     }
   };
 
-  const [isOpen, setisOpen] = useState(expanded);
-  
-  useEffect(() => {
-    setisOpen(expanded)
-  }, [expanded]);
-
-
   return (
     <PaymentMethodFormWrapper>
       <PaymentMethodFormLabel onToggle={onToggle}>
@@ -150,9 +145,12 @@ function DLocalPaymentMethodFormV2({
       <PaymentMethodFormElement
         labelId={labelId}
         sectionId={sectionId}
-        expanded={isOpen}
+        expanded={expanded}
+        onClose={closePaymentModal}
       >
-         <button className={styles.btn} onClick={()=>setisOpen(false)}>x</button>
+        <button className={styles.btn} onClick={closePaymentModal}>
+          <i className="fa fa-times text-white" />
+        </button>
         <DLocalPersonalInfoFormV2 errorMessage={buyerDataError} />
         <Maybe it={expanded}>
           <Maybe

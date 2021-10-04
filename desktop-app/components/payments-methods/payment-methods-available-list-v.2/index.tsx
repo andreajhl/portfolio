@@ -43,10 +43,14 @@ function PaymentMethodsAvailableListV2({
   ] = useCurrentPaymentMethodSelected();
   const disabledAccordion = useSelector(isProcessingPayment);
 
-  const handleChangeCurrentOption = (newValue: PaymentMethodNameType) => {
+  function handleChangeCurrentOption(newValue: PaymentMethodNameType) {
     if (disabledAccordion) return;
     changeCurrentPaymentMethodSelected(newValue);
-  };
+  }
+
+  function closePaymentModal() {
+    handleChangeCurrentOption(null);
+  }
 
   return (
     <>
@@ -64,6 +68,7 @@ function PaymentMethodsAvailableListV2({
               discountCouponId={discountCouponId}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
               celebrityId={celebrityId}
+              closePaymentModal={closePaymentModal}
             />
           </Maybe>
           <Maybe it={el.paymentMethodType === "SPREEDLY"}>
@@ -73,6 +78,7 @@ function PaymentMethodsAvailableListV2({
               expanded={useCurrentOption === el.paymentMethodType}
               contractReference={contractReference}
               discountCouponId={discountCouponId}
+              closePaymentModal={closePaymentModal}
             />
           </Maybe>
           <Maybe it={el.paymentMethodType === "PAYPAL"}>
@@ -84,6 +90,7 @@ function PaymentMethodsAvailableListV2({
               contractReference={contractReference}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
               celebrityId={celebrityId}
+              closePaymentModal={closePaymentModal}
             />
           </Maybe>
           <Maybe it={isAValidDLocalPaymentMethod(el.paymentMethodType)}>
@@ -98,6 +105,7 @@ function PaymentMethodsAvailableListV2({
               handleBuyerDataIncomplete={onBuyerDataIncomplete}
               celebrityId={celebrityId}
               contractPrice={contractPrice}
+              closePaymentModal={closePaymentModal}
             />
           </Maybe>
         </div>

@@ -33,6 +33,10 @@ function ContractDataStar() {
   const contractHasCelebrityDiscount = useContractHasCelebrityDiscount();
   const hasStarsDiscount = useHasStarsDiscount();
 
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <div className={styles.containerPriceStar}>
       <div className={styles.containerPriceStar_div}>
@@ -101,6 +105,7 @@ function ContractDataStar() {
             width="100%"
             style={offCanvasStyle}
             height="auto"
+            onClose={closeModal}
           >
             <CouponFormV2
               contractReference={contractReference}

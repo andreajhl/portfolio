@@ -28,7 +28,9 @@ function CouponFormV2({ contractReference, setIsOpen }: CouponFormProps) {
 
   return (
     <div className={styles.CouponFormWrapper}>
-      <button onClick={() => setIsOpen(false)}>x</button>
+      <button onClick={() => setIsOpen(false)}>
+        <i className="fa fa-times text-white" />
+      </button>
       <h3>
         <FormattedMessage defaultMessage="Cupones" />
       </h3>

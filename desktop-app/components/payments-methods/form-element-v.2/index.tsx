@@ -9,6 +9,7 @@ interface PaymentMethodFormElementProps {
   sectionId: string;
   expanded: boolean;
   children: React.ReactNode;
+  onClose: () => void;
 }
 
 const offCanvasStyle: CustomOffCanvasProps["style"] = {
@@ -24,6 +25,7 @@ function PaymentMethodFormElementV2({
   labelId,
   sectionId,
   children,
+  onClose,
 }: PaymentMethodFormElementProps) {
   return (
     <CustomOffCanvas
@@ -32,6 +34,7 @@ function PaymentMethodFormElementV2({
       width="100%"
       style={offCanvasStyle}
       height="auto"
+      onClose={onClose}
     >
       <div className="container py-4">{children}</div>
     </CustomOffCanvas>

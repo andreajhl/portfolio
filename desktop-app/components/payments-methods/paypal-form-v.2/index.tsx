@@ -4,7 +4,7 @@ import {
   PaypalIcon,
 } from "desktop-app/components/common/icons";
 import { useRouter } from "next/router";
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
 import { processPayPalPayment } from "react-app/src/state/ducks/payments/actions";
 import PaypalReactButton from "../paypal-react-button";
@@ -35,6 +35,7 @@ type PaypalFormProps = {
   onToggle: () => void;
   discountCouponId?: number | null;
   celebrityId: number;
+  closePaymentModal: () => void;
 };
 
 function PaypalFormV2({
@@ -45,6 +46,7 @@ function PaypalFormV2({
   contractPrice,
   discountCouponId,
   celebrityId,
+  closePaymentModal,
 }: PaypalFormProps) {
   const { push } = useRouter();
   const { locale } = useIntl();
@@ -98,12 +100,6 @@ function PaypalFormV2({
       });
   };
 
-  const [isOpen, setisOpen] = useState(expanded);
-  
-  useEffect(() => {
-    setisOpen(expanded)
-  }, [expanded]);
-
   return (
     <PayPalScriptProvider
       options={{
@@ -128,10 +124,13 @@ function PaypalFormV2({
         <PaymentMethodFormElement
           labelId={labelId}
           sectionId={sectionId}
-          expanded={isOpen}
+          expanded={expanded}
+          onClose={closePaymentModal}
         >
           <Maybe it={expanded}>
-            <button className={styles.btn} onClick={()=>setisOpen(false)}>x</button>
+            <button className={styles.btn} onClick={closePaymentModal}>
+              <i className="fa fa-times text-white" />
+            </button>
             <p>
               <FormattedMessage
                 defaultMessage="Haz clic en el siguiente botón para hacer el pago utilizando tu

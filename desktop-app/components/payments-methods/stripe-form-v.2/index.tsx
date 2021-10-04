@@ -32,6 +32,7 @@ type StripeFormProps = {
   celebrityId: number;
   isScriptLoaded: boolean;
   isScriptLoadSucceed: boolean;
+  closePaymentModal: () => void;
 };
 
 function StripeFormV2({
@@ -44,6 +45,7 @@ function StripeFormV2({
   celebrityId,
   isScriptLoaded,
   isScriptLoadSucceed,
+  closePaymentModal,
 }: StripeFormProps) {
   const [stripeInstance, setStripeInstance] = useState(null);
   useEffect(() => {
@@ -73,36 +75,33 @@ function StripeFormV2({
       .catch((e) => console.log(e));
   };
 
-  const [isOpen, setisOpen] = useState(expanded)
-  useEffect(() => {
-    setisOpen(expanded)
-  }, [expanded])
-  
   const sectionId = `section-${index}`;
   const labelId = `label-${index}`;
   return (
     <StripeProvider stripe={stripeInstance}>
       <PaymentMethodFormWrapper>
-        <PaymentMethodFormLabel onToggle={onToggle} >
-            <CardIcon className={styles.CardIcon} />
+        <PaymentMethodFormLabel onToggle={onToggle}>
+          <CardIcon className={styles.CardIcon} />
 
-            <span className={styles.LabelSection}>
-              <FormattedMessage defaultMessage="Tarjeta de Crédito" />
-            </span>          
-            {expanded ? (
-              <DotCircle className={styles.CheckIcon} />
-            ) : (
-              <Ellipse className={styles.CheckIcon} />
-            )}  
-
+          <span className={styles.LabelSection}>
+            <FormattedMessage defaultMessage="Tarjeta de Crédito" />
+          </span>
+          {expanded ? (
+            <DotCircle className={styles.CheckIcon} />
+          ) : (
+            <Ellipse className={styles.CheckIcon} />
+          )}
         </PaymentMethodFormLabel>
         <PaymentMethodFormElement
           labelId={labelId}
           sectionId={sectionId}
-          expanded={isOpen}
+          expanded={expanded}
+          onClose={closePaymentModal}
         >
           <Maybe it={expanded}>
-            <button className={styles.btn} onClick={()=>setisOpen(false)}>x</button>
+            <button className={styles.btn} onClick={closePaymentModal}>
+              <i className="fa fa-times text-white" />
+            </button>
             {showCardForm ? (
               <Elements>
                 <StripeCardFormV2

@@ -268,9 +268,6 @@ function StripeCardFormModal({
       {(error || paymentProcessError) && (
         <WarningMessage message={error || paymentProcessError} />
       )}
-      <button onClick={() => setShowCardForm(false)}>
-        <FormattedMessage defaultMessage="Agregar nueva tarjeta" />
-      </button>
       <SubmitButton
         style={{
           marginTop: "0.8rem",
