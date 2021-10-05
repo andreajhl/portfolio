@@ -9,6 +9,10 @@ import { defineMessages, IntlFormatters, useIntl } from "lib/custom-intl";
 import useCouponDataState from "lib/hooks/useCouponDataState";
 import errorMessages from "lib/validations/errorMessages";
 import useDiscountStarsSelected from "./useDiscountStarsSelected";
+import {
+  getSessionCouponCode,
+  removeSessionCouponCode,
+} from "lib/utils/session-coupon";
 
 const messages = defineMessages({
   "Este cupon ha alcanzado el número de usos permitidos": {
@@ -59,9 +63,19 @@ export function useApplyDiscountCouponForm({
     initialValues: initialValues,
     validations: getValidations(formatMessage),
     onSubmit(data) {
-      dispatch(discountCouponsGateways(contractReference, data.coupon));
+      applyDiscountCode(data.coupon);
     },
   });
+
+  function applyDiscountCode(couponCode: string) {
+    dispatch(discountCouponsGateways(contractReference, couponCode));
+  }
+
+  function applySessionCoupon(sessionCouponCode: string) {
+    formState.setFieldValue("coupon", sessionCouponCode);
+    applyDiscountCode(sessionCouponCode);
+    removeSessionCouponCode();
+  }
 
   useEffect(() => {
     if (errorData === null) return;
@@ -84,6 +98,14 @@ export function useApplyDiscountCouponForm({
     dispatch(clearCouponData());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canApplyCouponDiscount, hasFetchedCoupon]);
+
+  useEffect(() => {
+    const sessionCouponCode = getSessionCouponCode();
+    if (!sessionCouponCode || formState?.values?.coupon) {
+      return;
+    }
+    applySessionCoupon(sessionCouponCode);
+  }, []);
 
   return { ...formState, status };
 }
