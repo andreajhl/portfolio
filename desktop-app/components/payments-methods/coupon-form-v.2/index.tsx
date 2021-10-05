@@ -1,11 +1,12 @@
 import React from "react";
-import InputWithSubmitHandler from "desktop-app/components/common/form/InputWithSubmitHandler";
 import styles from "./styles.module.scss";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import { FormattedMessage } from "react-intl";
 import { useApplyDiscountCouponForm } from "lib/hooks/useApplyDiscountCouponForm";
 import { CollapsibleErrorMessage } from "desktop-app/components/common/widgets/collapsible-error-message";
+import { PaymentMethodFormHeader } from "../form-header-v.2";
+import SubmitButton from "desktop-app/components/common/button/submit-button";
 
 type CouponFormProps = {
   contractReference: string;
@@ -17,51 +18,58 @@ function CouponFormV2({ contractReference, setIsOpen }: CouponFormProps) {
     values,
     errors,
     submitForm,
-    setFieldValue,
     status,
+    onChangeField,
   } = useApplyDiscountCouponForm({
     contractReference,
   });
 
   const isCompleted = status === "completed";
+  const isLoading = status === "loading";
   const submitTextStatus = status === "failed" ? "rejected" : status;
+
+  const closeModal = () => setIsOpen(false);
 
   return (
     <div className={styles.CouponFormWrapper}>
-      <button onClick={() => setIsOpen(false)}>
-        <i className="fa fa-times text-white" />
-      </button>
-      <h3>
-        <FormattedMessage defaultMessage="Cupones" />
-      </h3>
-      <InputWithSubmitHandler
-        inputValue={values.coupon}
-        inputName="coupon"
-        onSubmit={submitForm}
-        className={styles.InputWithSubmitHandler}
-        placeHolderInput="Introduce el código promocional"
-        setInputValue={(newValue) => {
-          setFieldValue("coupon", newValue);
-        }}
-        inputID="coupon-input"
-        placeHolderButton={
-          <SubmitText
-            baseText={
-              <Maybe
-                it={isCompleted}
-                orElse={<FormattedMessage defaultMessage="Aplicar" />}
-              >
-                <FormattedMessage defaultMessage="Agregado" />
-              </Maybe>
-            }
-            status={submitTextStatus}
+      <PaymentMethodFormHeader
+        title={<FormattedMessage defaultMessage="Cupones" />}
+        closePaymentModal={closeModal}
+      />
+      <div className="container py-4">
+        <form id="coupon-form" onSubmit={submitForm}>
+          <label className={styles.CouponFormV2Label}>
+            <FormattedMessage defaultMessage="Introduce el código promocional" />
+          </label>
+          <input
+            className={styles.CouponFormV2Input}
+            type="text"
+            name="coupon"
+            value={values.coupon}
+            onChange={onChangeField}
           />
-        }
-      />
-      <CollapsibleErrorMessage
-        className={styles.ErrorMessage}
-        errorMessage={errors.coupon}
-      />
+          <CollapsibleErrorMessage
+            className={styles.ErrorMessage}
+            errorMessage={errors.coupon}
+          />
+          <SubmitButton
+            className={styles.CouponFormV2SubmitButton}
+            disabled={isLoading}
+          >
+            <SubmitText
+              baseText={
+                <Maybe
+                  it={isCompleted}
+                  orElse={<FormattedMessage defaultMessage="Aplicar" />}
+                >
+                  <FormattedMessage defaultMessage="Agregado" />
+                </Maybe>
+              }
+              status={submitTextStatus}
+            />
+          </SubmitButton>
+        </form>
+      </div>
     </div>
   );
 }

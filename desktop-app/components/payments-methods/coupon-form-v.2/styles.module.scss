@@ -1,93 +1,14 @@
-.LabelForm {
-  font-family: Manrope;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 19px;
-  color: #000000;
-}
-
-.CouponFormWrapper {
-  position: relative;
-  width: 100%;
-  border-top: 1px solid #dedede;
-  border-radius: 18px;
-  margin-bottom: 0.5rem;
-}
-
-.CouponFormWrapper h3 {
-  border-bottom: 1px solid #dedede;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  margin: 0px;
-  padding-bottom: 15px;
-}
-
-.CouponFormWrapper button {
-  color: white;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #c4c4c4;
-  border-radius: 100%;
-  margin: 3% 3% 0%;
-  height: 1.5rem;
-  width: 1.5rem;
-}
-
-.InputWithSubmitHandler {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  background: #fffdfd;
-}
-
-.InputWithSubmitHandler > input {
-  width: 80%;
-  border: 1px solid #c4c4c4;
-  margin: 14px 29px;
+.CouponFormV2Input {
+  border: 1px solid rgba(196, 196, 196, 1);
   border-radius: 8px;
-  font-size: 17px;
-  font-weight: 400;
-  padding: 9px;
+  width: 100%;
   text-align: center;
+  min-height: 45px;
+  margin-top: 0.5rem;
 }
 
-.InputWithSubmitHandler > input::-webkit-input-placeholder {
-  color: #8d8d8d;
-}
-
-.InputWithSubmitHandler > input:-ms-input-placeholder {
-  color: #8d8d8d;
-}
-
-.InputWithSubmitHandler > input::-ms-input-placeholder {
-  color: #8d8d8d;
-}
-
-.InputWithSubmitHandler > input::placeholder {
-  color: #8d8d8d;
-}
-
-.InputWithSubmitHandler > button {
-  justify-content: center;
+.CouponFormV2SubmitButton {
   margin-top: 20px;
-  color: #fbfbfb;
-  font-size: 18px;
-  font-weight: 900;
-  background: linear-gradient(180deg, #fb1797 0%, #ff004d 100%), #c4c4c4;
-  border-radius: 7px;
-  border: none;
-  width: 80%;
-}
-
-.warningCoupon {
-  position: absolute;
-  bottom: 85px;
-  left: 15%;
 }
 
 .ErrorMessage {
