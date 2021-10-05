@@ -46,7 +46,7 @@ function ContractDataStar() {
         <div className={styles.containerPriceStarBody}>
           <div className={styles.containerPriceStarBody_left}>
             <div className={styles.containerPriceStarBody_left_header}>
-              <p style={{ marginLeft: "5%" }}>
+              <p>
                 <FormattedMessage defaultMessage="Video personalizado" />
               </p>
               <p className={styles.InitialVideoPrice}>
@@ -74,15 +74,13 @@ function ContractDataStar() {
               className={styles.containerPriceStarBody_left_btn}
               onClick={() => setIsOpen(true)}
             >
-              <p>
-                <FormattedMessage defaultMessage="Introduce un cupón" />
-              </p>
+              <FormattedMessage defaultMessage="Introduce un cupón" />
             </button>
           </div>
         </div>
         <Collapse in={hasAppliedCoupon} unmountOnExit>
           <div className={styles.containerPriceStarBody_left_header}>
-            <p style={{ marginLeft: "5%" }}>
+            <p>
               <FormattedMessage defaultMessage="Descuento" />
             </p>
             <p>
@@ -100,6 +98,7 @@ function ContractDataStar() {
             </p>
           </div>
           <CustomOffCanvas
+            overlayClassName={styles.CouponFormOverlay}
             isOpen={isOpen}
             position="bottom"
             width="100%"

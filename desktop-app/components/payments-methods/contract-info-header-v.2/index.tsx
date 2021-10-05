@@ -26,7 +26,7 @@ function ContractInfoHeaderV2({
             width={124}
             avatar={celebrityAvatar || "/assets/img/avatar-blank.png"}
           />
-          <div d-flex>
+          <div>
             <h1 className={styles.ContractInfoTitle}>
               <FormattedMessage
                 defaultMessage="Tú video personalizado de <b>{celebrityFullName}</b>, está en camino!"
