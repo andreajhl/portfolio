@@ -18,11 +18,12 @@ import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
+import { CardGenerationReminder } from "desktop-app/components/payments-methods/card-generation-reminder";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
-import { CardGenerationReminder } from "../card-generation-reminder";
 
 type StripeComponentProps = {
   contractPrice: number;
@@ -30,7 +31,6 @@ type StripeComponentProps = {
   discountCouponId: number | null;
   celebrityId: number;
   stripe?: ReactStripeElements.StripeProps;
-  setShowCardForm: (value: boolean) => void;
 };
 
 const messages = defineMessages({
@@ -38,13 +38,13 @@ const messages = defineMessages({
     defaultMessage: "Ha ocurrido un error.",
   },
 });
+
 function StripeCardFormModal({
   discountCouponId,
   contractPrice,
   contractReference,
   celebrityId,
   stripe,
-  setShowCardForm,
 }: StripeComponentProps) {
   const togglePaymentInProcess = useTogglePaymentInProcess();
   const { formatMessage, locale } = useIntl();
@@ -58,6 +58,7 @@ function StripeCardFormModal({
     name: "",
   });
   const userCurrency = useUserCurrentCurrency();
+  const stars = useDiscountStarsSelected()[0];
 
   const createStripe3DFlow = async (sourceId) => {
     togglePaymentInProcess();
@@ -126,7 +127,8 @@ function StripeCardFormModal({
       IP,
       userAgent,
       geolocation,
-      locale
+      locale,
+      stars
     )
       .then((res) => {
         if (res.data.status === "ERROR") {

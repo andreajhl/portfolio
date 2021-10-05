@@ -1,9 +1,11 @@
 import { PURCHASE_SUMMARY } from "constants/paths";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
-import { SubmitText } from "desktop-app/components/common/helpers/submit-button-text";
 import WarningMessage from "desktop-app/components/common/warning-message";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
+import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { processStripePayment } from "react-app/src/state/ducks/payments/actions";
@@ -60,6 +62,7 @@ function StripeCustomerSources({
   const [errorMessage, setErrorMessage] = useState("");
   const [paymentInProcess, setPaymentInProcess] = useState(false);
   const togglePaymentInProcess = useTogglePaymentInProcess();
+  const stars = useDiscountStarsSelected()[0];
 
   useEffect(() => {
     if (availableSources.length > 0) {
@@ -95,7 +98,8 @@ function StripeCustomerSources({
         IP,
         userAgent,
         geolocation,
-        locale
+        locale,
+        stars
       )
         .then((res) => {
           if (res.data.status === "ERROR") {
@@ -114,12 +118,18 @@ function StripeCustomerSources({
               contractPrice,
               celebrityId,
             });
-            push(
-              PURCHASE_SUMMARY.replace(
-                ":contract_reference",
-                res.data.data.reference
-              )
-            );
+            if (!checkFlutterWindowsInstance()) {
+              push(
+                PURCHASE_SUMMARY.replace(
+                  ":contract_reference",
+                  res.data.data.reference
+                )
+              );
+            } else {
+              SubmitCallbackInFlutterWebview({
+                paymentType: "stripe",
+              });
+            }
           }
         })
         .catch((error) => {
