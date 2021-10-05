@@ -14,6 +14,8 @@ import LangDropdown from "../../containers/lang-dropdown";
 import { UserStarsLink } from "desktop-app/components/common/widgets/user-stars-link";
 import { ReferralFirstBuyDiscountBanner } from "../referral-first-buy-discount-banner";
 import isReferralWithFirstBuyDiscount from "lib/utils/isReferralWithFirstBuyDiscount";
+import { SessionCouponBanner } from "../session-coupon-banner";
+import { useGetSessionCouponCode } from "../../../../../lib/hooks/useGetSessionCouponCode";
 // import { UserNotificationsPopup } from "../user-notifications-popup";
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
@@ -36,18 +38,21 @@ const messageSearchLabel = defineMessage({
   defaultMessage: "Buscar famosos",
 });
 
-const NavbarSectionLayout = ({
+function NavbarSectionLayout({
   className,
   onSearchChange,
   showSearch,
   queryParams,
   forceHeadroomUpdate,
-}) => {
+}) {
   const { isLoading, isAuthenticated, user } = useAuth();
   const intl = useIntl();
 
   const showStarsLink = typeof user?.stars !== "undefined";
   const showReferralDiscountBanner = isReferralWithFirstBuyDiscount(user);
+
+  const sessionCouponCode = useGetSessionCouponCode();
+  const showSessionCouponBanner = typeof sessionCouponCode === "string";
 
   return (
     <>
@@ -76,9 +81,7 @@ const NavbarSectionLayout = ({
                 />
               </div>
             </Maybe>
-            {/* <div className="top-bar__lang  mr-4 ml-auto">
-              <UserNotificationsPopup />
-            </div> */}
+
             <div className="top-bar__lang  mr-4">
               <LangDropdown />
             </div>
@@ -95,7 +98,18 @@ const NavbarSectionLayout = ({
             </div>
           </div>
         </div>
-        <Maybe it={showReferralDiscountBanner}>
+
+        <Maybe
+          it={showReferralDiscountBanner}
+          orElse={
+            <Maybe it={showSessionCouponBanner}>
+              <SessionCouponBanner
+                couponCode={sessionCouponCode}
+                onCollapseEnd={forceHeadroomUpdate}
+              />
+            </Maybe>
+          }
+        >
           <ReferralFirstBuyDiscountBanner onCollapseEnd={forceHeadroomUpdate} />
         </Maybe>
         <Maybe it={showSearch}>
@@ -112,7 +126,7 @@ const NavbarSectionLayout = ({
       </div>
     </>
   );
-};
+}
 
 NavbarSectionLayout.propTypes = {
   className: PropTypes.string,
