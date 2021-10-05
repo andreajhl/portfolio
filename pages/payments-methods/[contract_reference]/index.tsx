@@ -17,6 +17,7 @@ import { useEffect } from "react";
 // import { ValidateEmailModal } from "react-app/src/components/containers/validate-email-modal";
 
 export const getServerSideProps: GetServerSideProps = async ({
+  query,
   params,
   req,
 }) => {
@@ -38,15 +39,25 @@ export const getServerSideProps: GetServerSideProps = async ({
       contractReference,
       isMobile: isMobile(req.headers["user-agent"]),
       checkoutVersion,
+      checkoutVersionParam: query?.checkoutVersion || null,
     },
   };
 };
 
-function PaymentMethods({ contractReference, isMobile, checkoutVersion }) {
+function PaymentMethods({
+  contractReference,
+  isMobile,
+  checkoutVersion,
+  checkoutVersionParam,
+}) {
   useDesktopClass(!isMobile);
   useSetupPaymentMethods(contractReference);
 
   useEffect(() => {
+    if (checkoutVersionParam) {
+      setCheckoutVersion(checkoutVersionParam);
+    }
+
     const checkoutVersionFromCookies = getCheckoutVersion();
     if (
       !checkoutVersionFromCookies ||
@@ -59,7 +70,9 @@ function PaymentMethods({ contractReference, isMobile, checkoutVersion }) {
   return (
     <>
       <CustomHead />
-      <PaymentMethodsPage checkoutVersion={checkoutVersion} />
+      <PaymentMethodsPage
+        checkoutVersion={checkoutVersionParam || checkoutVersion}
+      />
     </>
   );
 }
