@@ -1,6 +1,8 @@
 .ReferralsHomePage {
   padding: 42px 0;
-  min-height: calc(100vh - 70px);
+  min-height: calc(
+    calc(100vh - 70px) + 148px
+  ); // Top bar height 70px; Fixed footer height 148px
   background-color: black;
   color: white;
 }
@@ -29,6 +31,7 @@
   right: 0;
   z-index: 2;
   background-color: #f5f5f5;
+  overflow: hidden;
 }
 
 .FooterLink {

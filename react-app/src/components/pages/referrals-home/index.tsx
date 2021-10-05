@@ -21,7 +21,7 @@ function ReferralsHomePage() {
   const starCount = user?.stars || 0;
 
   return (
-    <PageContainer showSearch={false}>
+    <PageContainer showSearch={false} showFooter={false}>
       <main className={styles.ReferralsHomePage}>
         <div
           className={classes("container", styles.ReferralsHomePageContainer)}
