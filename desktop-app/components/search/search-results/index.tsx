@@ -101,7 +101,7 @@ function SearchResults({
       searchFilters,
       widget: "SearchResults",
     });
-    fetchCelebrities(searchFilters, false, true);
+    fetchCelebrities(searchFilters, false, false);
   }, [searchFilters]);
 
   useEffect(() => {
