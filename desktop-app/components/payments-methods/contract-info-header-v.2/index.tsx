@@ -3,6 +3,8 @@ import { ProfilePicture } from "react-app/src/components/layouts/profile-picture
 import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 
+const textBold = (chunks: string) => <b>{chunks}</b>;
+
 type ContractInfoHeaderProps = {
   occasion: string;
   celebrityAvatar: string;
@@ -29,9 +31,9 @@ function ContractInfoHeaderV2({
           <div>
             <h1 className={styles.ContractInfoTitle}>
               <FormattedMessage
-                defaultMessage="Tú video personalizado de <b>{celebrityFullName}</b>, está en camino!"
+                defaultMessage="Tu video personalizado de <textBold>{celebrityFullName}</textBold>, está en camino!"
                 values={{
-                  b: (chunks) => <b>{celebrityFullName}</b>,
+                  textBold,
                   celebrityFullName,
                 }}
               />
