@@ -28,3 +28,7 @@ export const SHOW_BACK_BUTTON_QUERY_PARAM = "showBackButton";
 export const REFERRER_CODE_QUERY_PARAM = "referrer";
 
 export const CHECKOUT_VERSION_KEY = "fs__cov";
+
+/* Coupon link */
+export const COUPON_QUERY_PARAM = "coupon";
+export const COUPON_CODE_KEY = "fs__cclk";
