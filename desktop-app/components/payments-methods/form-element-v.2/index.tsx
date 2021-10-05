@@ -3,6 +3,7 @@ import {
   CustomOffCanvas,
   CustomOffCanvasProps,
 } from "react-app/src/components/common/widgets/custom-off-canvas";
+import styles from "./styles.module.scss";
 
 interface PaymentMethodFormElementProps {
   labelId: string;
@@ -33,10 +34,11 @@ function PaymentMethodFormElementV2({
       position="bottom"
       width="100%"
       style={offCanvasStyle}
+      overlayClassName={styles.PaymentMethodFormElementV2Overlay}
       height="auto"
       onClose={onClose}
     >
-      <div className="container py-4">{children}</div>
+      {children}
     </CustomOffCanvas>
   );
 }
